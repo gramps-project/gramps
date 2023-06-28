@@ -59,7 +59,7 @@ from gramps.plugins.lib import libprogen
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Importer' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Import_from_another_genealogy_program')
+WIKI_HELP_SEC = _('Import_from_another_genealogy_program', 'manual')
 
 #-------------------------------------------------------------------------
 #

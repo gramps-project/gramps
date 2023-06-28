@@ -114,7 +114,7 @@ def cite_source(bibliography, database, obj, elocale=glocale):
         first = True
         for ref in slist:
             if not first:
-                # translators: needed for Arabic, ignore otherwise
+                # Translators: needed for Arabic, ignore otherwise
                 txt += trans_text(', ')
             first = False
             citation = database.get_citation_from_handle(ref)
@@ -171,7 +171,7 @@ def write_endnotes(bibliography, database, doc, printnotes=False, links=False,
                          'Endnotes-Source-Notes', links)
 
         for key, ref in citation.get_ref_list():
-            # translators: needed for French, ignore otherwise
+            # Translators: needed for French, ignore otherwise
             doc.start_paragraph('Endnotes-Ref', trans_text('%s:') % key)
             doc.write_text(_format_ref_text(ref, key, elocale), links=links)
             doc.end_paragraph()
@@ -193,20 +193,20 @@ def _format_source_text(source, elocale):
 
     if source.get_title():
         if src_txt:
-            # translators: needed for Arabic, ignore otherwise
+            # Translators: needed for Arabic, ignore otherwise
             src_txt += trans_text(', ')
-        # translators: used in French+Russian, ignore otherwise
+        # Translators: used in French+Russian, ignore otherwise
         src_txt += trans_text('"%s"') % source.get_title()
 
     if source.get_publication_info():
         if src_txt:
-            # translators: needed for Arabic, ignore otherwise
+            # Translators: needed for Arabic, ignore otherwise
             src_txt += trans_text(', ')
         src_txt += source.get_publication_info()
 
     if source.get_abbreviation():
         if src_txt:
-            # translators: needed for Arabic, ignore otherwise
+            # Translators: needed for Arabic, ignore otherwise
             src_txt += trans_text(', ')
         src_txt += "(%s)" % source.get_abbreviation()
 

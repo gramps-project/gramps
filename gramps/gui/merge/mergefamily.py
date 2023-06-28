@@ -43,7 +43,7 @@ from gramps.gen.merge import MergePersonQuery, MergeFamilyQuery
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = URL_MANUAL_SECT3
-WIKI_HELP_SEC = _('manual|Merge_Families')
+WIKI_HELP_SEC = _('Merge_Families', 'manual')
 _GLADE_FILE = 'mergefamily.glade'
 
 #-------------------------------------------------------------------------

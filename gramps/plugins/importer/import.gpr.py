@@ -21,7 +21,7 @@ from gramps.gen.plug._pluginreg import newplugin, STABLE, IMPORT
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
-MODULE_VERSION="5.1"
+MODULE_VERSION="5.2"
 
 #------------------------------------------------------------------------
 #
@@ -90,7 +90,7 @@ plg = newplugin()
 plg.id = 'im_gpkg'
 plg.name = _('Gramps package (portable XML)')
 plg.description = _('Import data from a Gramps package (an archived XML '
-                     'Family Tree together with the media object files.)')
+                     'Family Tree together with the media object files).')
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE

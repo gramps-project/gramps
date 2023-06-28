@@ -484,3 +484,13 @@ class Gramplet:
         By default, assume that the gramplet has data.
         """
         self.set_has_data(True)
+
+    def set_orientation(self, orientation):
+        """
+        Called when the gramplet orientation changes. A gramplet may override
+        this if it has a preferred horizontal and vertical layout.
+
+        :param orientation: A Gtk.Orientation (VERTCIAL or HORIZONTAL)
+        :type orientation: int
+        """
+        pass

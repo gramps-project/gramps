@@ -233,12 +233,11 @@ class GrampletWindow(ManagedWindow):
         self.docked_state = gramplet.gstate
         # Now detach it
         self.gramplet.set_state("detached")
-        ManagedWindow.__init__(self, gramplet.uistate, [],
-                                             self.title)
-        self.set_window(Gtk.Dialog("", gramplet.uistate.window,
-                                   Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                   (_('_Close'), Gtk.ResponseType.CLOSE)),
-                        None, self.title)
+        ManagedWindow.__init__(self, gramplet.uistate, [], self.title)
+        dlg = Gtk.Dialog(transient_for=gramplet.uistate.window,
+                         destroy_with_parent=True)
+        dlg.add_button(_('_Close'), Gtk.ResponseType.CLOSE)
+        self.set_window(dlg, None, self.title)
         cfg_name = gramplet.gname.replace(' ', '').lower() + '-gramplet'
         self.setup_configs('interface.' + cfg_name,
                            gramplet.detached_width, gramplet.detached_height)
@@ -246,7 +245,8 @@ class GrampletWindow(ManagedWindow):
         # add gramplet:
         if self.gramplet.pui:
             self.gramplet.pui.active = True
-        self.gramplet.mainframe.reparent(self.window.vbox)
+        self.gramplet.mainframe.get_parent().remove(self.gramplet.mainframe)
+        self.window.vbox.add(self.gramplet.mainframe)
         self.window.connect('response', self.handle_response)
         self.show()
         # After we show, then we hide:
@@ -310,7 +310,8 @@ class GrampletWindow(ManagedWindow):
         expand = self.gramplet.gstate == "maximized" and self.gramplet.expand
         column = pane.columns[col]
         parent = self.gramplet.pane.get_column_frame(self.gramplet.column)
-        self.gramplet.mainframe.reparent(parent)
+        self.gramplet.mainframe.get_parent().remove(self.gramplet.mainframe)
+        parent.add(self.gramplet.mainframe)
         if self.gramplet.pui:
             self.gramplet.pui.active = self.gramplet.pane.pageview.active
         for gframe in stack:
@@ -1308,7 +1309,7 @@ class GrampletPane(Gtk.ScrolledWindow):
             x = sx - x
         # first, find column:
         col = 0
-        for i in range(len(self.columns)):
+        for i, column in enumerate(self.columns):
             if x < (sx/len(self.columns) * (i + 1)):
                 col = i
                 break

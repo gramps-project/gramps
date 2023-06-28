@@ -40,7 +40,7 @@ from gramps.gui.views.treemodels import RepositoryModel
 from gramps.gui.views.bookmarks import RepoBookmarks
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.config import config
-from gramps.gui.editors import EditRepository, DeleteRepositoryQuery
+from gramps.gui.editors import EditRepository
 from gramps.gui.ddtargets import DdTargets
 from gramps.gui.dialog import ErrorDialog
 from gramps.gui.filters.sidebar import RepoSidebarFilter
@@ -197,7 +197,7 @@ class RepositoryView(ListView):
           <attribute name="label" translatable="yes">_Merge...</attribute>
         </item>
       </section>
-''' % _("action|_Edit..."),  # to use sgettext()
+''' % _("_Edit...", "action"),  # to use sgettext()
         '''
         <placeholder id='otheredit'>
         <item>
@@ -326,24 +326,19 @@ class RepositoryView(ListView):
         </placeholder>
       </section>
     </menu>
-    ''' % _('action|_Edit...')  # to use sgettext()
+    ''' % _('_Edit...', 'action')  # to use sgettext()
     ]
 
     def add(self, *obj):
         EditRepository(self.dbstate, self.uistate, [], Repository())
 
     def remove(self, *obj):
-        self.remove_selected_objects()
-
-    def remove_object_from_handle(self, handle):
-        source_list = [
-            item[1] for item in
-            self.dbstate.db.find_backlink_handles(handle, ['Source'])]
-        object = self.dbstate.db.get_repository_from_handle(handle)
-        query = DeleteRepositoryQuery(self.dbstate, self.uistate, object,
-                                      source_list)
-        is_used = len(source_list) > 0
-        return (query, is_used, object)
+        """
+        Method called when deleting repo(s) from the repo view.
+        """
+        handles = self.selected_handles()
+        ht_list = [('Repository', hndl) for hndl in handles]
+        self.remove_selected_objects(ht_list)
 
     def edit(self, *obj):
         for handle in self.selected_handles():
@@ -394,6 +389,14 @@ class RepositoryView(ListView):
         """
         repo = self.dbstate.db.get_repository_from_handle(repo_handle)
         repo.add_tag(tag_handle)
+        self.dbstate.db.commit_repository(repo, transaction)
+
+    def remove_tag(self, transaction, repo_handle, tag_handle):
+        """
+        Remove the given tag from the given repository.
+        """
+        repo = self.dbstate.db.get_repository_from_handle(repo_handle)
+        repo.remove_tag(tag_handle)
         self.dbstate.db.commit_repository(repo, transaction)
 
     def get_default_gramplets(self):

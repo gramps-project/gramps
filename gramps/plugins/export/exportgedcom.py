@@ -999,6 +999,11 @@ class GedcomWriter(UpdateCallback):
             self._note_references(source.get_note_list(), 1)
             self._change(source.get_change_time(), 1)
 
+            for srcattr in source.get_attribute_list():
+                if str(srcattr.type) == "_APID":
+                    self._writeln(1, "_APID", srcattr.value)
+                    break
+
     def _notes(self):
         """
         Write out the list of notes, sorting by Gramps ID.
@@ -1123,7 +1128,7 @@ class GedcomWriter(UpdateCallback):
             +1 <<NOTE_STRUCTURE>>          # not used
         """
         self._writeln(level, 'CHAN')
-        time_val = time.gmtime(timeval)
+        time_val = time.localtime(timeval)
         self._writeln(level + 1, 'DATE', '%d %s %d' % (
             time_val[2], libgedcom.MONTH[time_val[1]], time_val[0]))
         self._writeln(level + 2, 'TIME', '%02d:%02d:%02d' % (
@@ -1299,12 +1304,13 @@ class GedcomWriter(UpdateCallback):
         suffix = name.get_suffix()
         title = name.get_title()
         nick = name.get_nick_name()
+        call = name.get_call_name()
         if nick.strip() == '':
             nick = attr_nick
 
         self._writeln(1, 'NAME', gedcom_name)
         if int(name.get_type()) == NameType.BIRTH:
-            pass
+            self._writeln(2, 'TYPE', 'birth')
         elif int(name.get_type()) == NameType.MARRIED:
             self._writeln(2, 'TYPE', 'married')
         elif int(name.get_type()) == NameType.AKA:
@@ -1318,6 +1324,8 @@ class GedcomWriter(UpdateCallback):
             self._writeln(2, 'SPFX', surprefix)
         if surname:
             self._writeln(2, 'SURN', surname)
+        if call:
+            self._writeln(2, '_RUFNAME', call)
         if name.get_suffix():
             self._writeln(2, 'NSFX', suffix)
         if name.get_title():
@@ -1409,6 +1417,11 @@ class GedcomWriter(UpdateCallback):
                 if str(srcattr.type) == "EVEN:ROLE":
                     self._writeln(level + 2, "ROLE", srcattr.value)
                     break
+
+        for srcattr in citation.get_attribute_list():
+            if str(srcattr.type) == "_APID":
+                self._writeln(level + 1, "_APID", srcattr.value)
+                break
 
     def _photo(self, photo, level):
         """

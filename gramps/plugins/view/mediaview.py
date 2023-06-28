@@ -54,12 +54,11 @@ from gramps.gui.views.treemodels import MediaModel
 from gramps.gen.config import config
 from gramps.gen.utils.file import (media_path, relative_path, media_path_full,
                                    create_checksum)
-from gramps.gen.utils.db import get_media_referents
 from gramps.gui.views.bookmarks import MediaBookmarks
 from gramps.gen.mime import get_type, is_valid_type
 from gramps.gen.lib import Media
 from gramps.gen.db import DbTxn
-from gramps.gui.editors import EditMedia, DeleteMediaQuery
+from gramps.gui.editors import EditMedia
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.filters.sidebar import MediaSidebarFilter
 from gramps.gui.merge import MergeMedia
@@ -169,7 +168,10 @@ class MediaView(ListView):
         """
         if not sel_data:
             return
+
         files = sel_data.get_uris()
+        photo = None
+
         for file in files:
             protocol, site, mfile, j, k, l = urlparse(file)
             if protocol == "file":
@@ -191,6 +193,10 @@ class MediaView(ListView):
                 photo.set_description(root)
                 with DbTxn(_("Drag Media Object"), self.dbstate.db) as trans:
                     self.dbstate.db.add_media(photo, trans)
+
+        if photo:
+            self.uistate.set_active(photo.handle, "Media")
+
         widget.emit_stop_by_name('drag_data_received')
 
     def define_actions(self):
@@ -284,7 +290,7 @@ class MediaView(ListView):
           <attribute name="label" translatable="yes">_Merge...</attribute>
         </item>
       </section>
-''' % _("action|_Edit..."),  # to use sgettext()
+''' % _("_Edit...", "action"),  # to use sgettext()
         '''
         <placeholder id='otheredit'>
         <item>
@@ -377,7 +383,7 @@ class MediaView(ListView):
     </placeholder>
 ''' % (ADD_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
         '''
-    <placeholder id='AfterTools'>
+    <placeholder id='MoreButtons'>
     <child>
       <object class="GtkToolButton">
         <property name="icon-name">gramps-viewmedia</property>
@@ -437,8 +443,12 @@ class MediaView(ListView):
         <placeholder id='QuickReport'>
         </placeholder>
       </section>
+      <section>
+        <placeholder id='AfterTools'>
+        </placeholder>
+      </section>
     </menu>
-''' % _('action|_Edit...')  # to use sgettext()
+''' % _('_Edit...', 'action')  # to use sgettext()
     ]
 
     def add(self, *obj):
@@ -449,18 +459,9 @@ class MediaView(ListView):
             pass
 
     def remove(self, *obj):
-        self.remove_selected_objects()
-
-    def remove_object_from_handle(self, handle):
-        """
-        Remove the selected objects from the database after getting
-        user verification.
-        """
-        the_lists = get_media_referents(handle, self.dbstate.db)
-        object = self.dbstate.db.get_media_from_handle(handle)
-        query = DeleteMediaQuery(self.dbstate, self.uistate, handle, the_lists)
-        is_used = any(the_lists)
-        return (query, is_used, object)
+        handles = self.selected_handles()
+        ht_list = [('Media', hndl) for hndl in handles]
+        self.remove_selected_objects(ht_list)
 
     def edit(self, *obj):
         """
@@ -516,6 +517,14 @@ class MediaView(ListView):
         """
         media = self.dbstate.db.get_media_from_handle(media_handle)
         media.add_tag(tag_handle)
+        self.dbstate.db.commit_media(media, transaction)
+
+    def remove_tag(self, transaction, media_handle, tag_handle):
+        """
+        Remove the given tag from the given media object.
+        """
+        media = self.dbstate.db.get_media_from_handle(media_handle)
+        media.remove_tag(tag_handle)
         self.dbstate.db.commit_media(media, transaction)
 
     def get_default_gramplets(self):

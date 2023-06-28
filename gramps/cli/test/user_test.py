@@ -22,20 +22,9 @@
 """ Unittest for user.py """
 
 import unittest
+from unittest.mock import Mock, patch
 from .. import user
 import sys
-
-try:
-    if sys.version_info < (3,3):
-        from mock import Mock, patch
-    else:
-        from unittest.mock import Mock, patch
-
-    MOCKING = True
-
-except:
-    MOCKING = False
-    print ("Mocking disabled", sys.exc_info()[0:2])
 
 class TestUser:
     TITLE = "Testing prompt"
@@ -46,10 +35,9 @@ class TestUser:
 class TestUser_prompt(unittest.TestCase):
     def setUp(self):
         self.real_user = user.User()
-        if MOCKING:
-            self.user = user.User()
-            self.user._fileout = Mock(spec=sys.stderr)
-            self.user._input = Mock(spec=input)
+        self.user = user.User()
+        self.user._fileout = Mock(spec=sys.stderr)
+        self.user._input = Mock(spec=input)
 
     def test_default_fileout_has_write(self):
         assert hasattr(self.real_user._fileout, 'write')
@@ -57,7 +45,6 @@ class TestUser_prompt(unittest.TestCase):
     def test_default_input(self):
         assert self.real_user._input.__name__.endswith('input')
 
-    @unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
     def test_prompt_returns_True_if_ACCEPT_entered(self):
         self.user._input.configure_mock(return_value = TestUser.ACCEPT)
         assert self.user.prompt(
@@ -65,7 +52,6 @@ class TestUser_prompt(unittest.TestCase):
                 ), "True expected!"
         self.user._input.assert_called_once_with()
 
-    @unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
     def test_prompt_returns_False_if_REJECT_entered(self):
         self.user._input.configure_mock(return_value = TestUser.REJECT)
         assert not self.user.prompt(
@@ -87,37 +73,24 @@ class TestUser_prompt(unittest.TestCase):
                 "'{}' never printed in prompt: {}".format(
                     text, self.user._fileout.method_calls))
 
-    @unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
     def test_prompt_contains_title_text(self):
         self.assert_prompt_contains_text(TestUser.TITLE)
 
-    @unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
     def test_prompt_contains_msg_text(self):
         self.assert_prompt_contains_text(TestUser.MSG)
 
-    @unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
     def test_prompt_contains_accept_text(self):
         self.assert_prompt_contains_text(TestUser.ACCEPT)
 
-    @unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
     def test_prompt_contains_reject_text(self):
         self.assert_prompt_contains_text(TestUser.REJECT)
 
-    @unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
     def test_prompt_strips_underscore_in_accept(self):
         self.assert_prompt_contains_text("accepT", accept="accep_T")
 
-    @unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
     def test_prompt_strips_underscore_in_reject(self):
         self.assert_prompt_contains_text("reJect", reject="re_Ject")
 
-    if not MOCKING: #don't use SKIP, to avoid counting a skipped test
-        def test_manual_run(self):
-            b = self.real_user.prompt(
-                    TestUser.TITLE, TestUser.MSG, TestUser.ACCEPT, TestUser.REJECT)
-            print ("Returned: {}".format(b))
-
-    @unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
     def test_auto_accept_accepts_without_prompting(self):
         u = user.User(auto_accept=True)
         u._fileout = Mock(spec=sys.stderr)
@@ -126,7 +99,6 @@ class TestUser_prompt(unittest.TestCase):
                 ), "True expected!"
         assert len(u._fileout.method_calls) == 0, list(u._fileout.method_calls)
 
-    @unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
     def test_EOFError_in_prompt_caught_as_False(self):
         self.user._input.configure_mock(
                 side_effect = EOFError,
@@ -136,7 +108,6 @@ class TestUser_prompt(unittest.TestCase):
                 ), "False expected!"
         self.user._input.assert_called_once_with()
 
-@unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
 class TestUser_quiet(unittest.TestCase):
     def setUp(self):
         self.user = user.User(quiet=True)
@@ -152,7 +123,6 @@ class TestUser_quiet(unittest.TestCase):
         assert len(self.user._fileout.method_calls
                 ) == 0, list(self.user._fileout.method_calls)
 
-@unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
 class TestUser_progress(unittest.TestCase):
 
     def setUp(self):

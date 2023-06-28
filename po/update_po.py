@@ -6,6 +6,7 @@
 # Copyright (C) 2006       Brian Matherly
 # Copyright (C) 2008       Stephen George
 # Copyright (C) 2012
+# Copyright (C) 2020       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -132,232 +133,6 @@ def tests():
         os.system('''%(program)s -V''' % {'program': pythonCmd})
     except:
         print ('Please, install python')
-
-def TipsParse(filename, mark):
-    """
-    Experimental alternative to 'intltool-extract' for 'tips.xml'.
-    """
-    from xml.etree import ElementTree
-
-    tree = ElementTree.parse(filename)
-    root = tree.getroot()
-
-    '''
-    <?xml version="1.0" encoding="UTF-8"?>
-      <tips>
-        <_tip number="1">
-          <b>Working with Dates</b>
-            <br/>
-        A range of dates can be given by using the format &quot;between
-        January 4, 2000 and March 20, 2003&quot;. You can also indicate
-        the level of confidence in a date and even choose between seven
-        different calendars. Try the button next to the date field in the
-        Events Editor.
-        </_tip>
-
-    char *s = N_("<b>Working with Dates</b><br/>A range of dates can be
-    given by using the format &quot;between January 4, 2000 and March 20,
-    2003&quot;. You can also indicate the level of confidence in a date
-    and even choose between seven different calendars. Try the button
-    next to the date field in the Events Editor.");
-
-    gramps.pot:
-    msgid ""
-    "<b>Working with Dates</b><br/>A range of dates can be given by using the "
-    "format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also "
-    "indicate the level of confidence in a date and even choose between seven "
-    "different calendars. Try the button next to the date field in the Events "
-    "Editor."
-    '''
-
-    with open('../data/tips.xml.in.h', 'w', encoding='utf-8') as tips:
-        marklist = root.iter(mark)
-        for key in marklist:
-            tip = ElementTree.tostring(key, encoding="UTF-8", method="xml")
-            if sys.version_info[0] < 3:
-                tip = tip.replace("<?xml version='1.0' encoding='UTF-8'?>", "")
-                tip = tip.replace('\n<_tip number="%(number)s">' % key.attrib, "")
-            else: # python3 support
-                tip = tip.decode("utf-8")
-                tip = tip.replace('<_tip number="%(number)s">' % key.attrib, "")
-            tip = tip.replace("<br />", "<br/>")
-            #tip = tip.replace("\n</_tip>\n", "</_tip>\n") # special case tip 7
-            #tip = tip.replace("\n<b>", "<b>") # special case tip 18
-            tip = tip.replace("</_tip>\n\n", "")
-            tip = tip.replace('"', '&quot;')
-            tips.write('char *s = N_("%s");\n' % tip)
-    print ('Wrote ../data/tips.xml.in.h')
-    root.clear()
-
-def HolidaysParse(filename, mark):
-    """
-    Experimental alternative to 'intltool-extract' for 'holidays.xml'.
-    """
-    from xml.etree import ElementTree
-
-    tree = ElementTree.parse(filename)
-    root = tree.getroot()
-    ellist = root.iter()
-
-    '''
-    <?xml version="1.0" encoding="utf-8"?>
-      calendar>
-        <country _name="Bulgaria">
-          ..
-        <country _name="Jewish Holidays">
-          <date _name="Yom Kippur" value="> passover(y)" offset="172"/>
-
-    char *s = N_("Bulgaria");
-    char *s = N_("Jewish Holidays");
-    char *s = N_("Yom Kippur");
-
-    gramps.pot:
-    msgid "Bulgaria"
-    msgid "Jewish Holidays"
-    msgid "Yom Kippur"
-    '''
-    with open('../data/holidays.xml.in.h', 'w') as holidays:
-        for key in ellist:
-            if key.attrib.get(mark):
-                line = key.attrib
-                string = line.items
-                # mapping via the line dict (_name is the key)
-                name = 'char *s = N_("%(_name)s");\n' % line
-                holidays.write(name)
-    print ('Wrote ../data/holidays.xml.in.h')
-    root.clear()
-
-
-def XmlParse(filename, mark):
-    """
-    Experimental alternative to 'intltool-extract' for 'file.xml.in'.
-    """
-    from xml.etree import ElementTree
-
-    tree = ElementTree.parse(filename)
-    root = tree.getroot()
-
-    '''
-    <?xml version="1.0" encoding="UTF-8"?>
-
-    <mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
-      <mime-type type="application/x-gramps">
-        <_comment>Gramps database</_comment>
-          <glob pattern="*.grdb"/>
-      </mime-type>
-      <mime-type type="application/x-gedcom">
-        <_comment>GEDCOM</_comment>
-          <glob pattern="*.ged"/>
-          <glob pattern="*.gedcom"/>
-          <glob pattern="*.GED"/>
-          <glob pattern="*.GEDCOM"/>
-
-    msgid "Gramps database"
-    msgid "GEDCOM"
-
-    <description>
-    <_p> Gramps is a free software project and community.
-    We strive to produce a genealogy program that is both intuitive for hobbyists
-    and feature-complete for professional genealogists.
-    </p>
-    </description>
-    '''
-
-    with open(filename + '.h', 'w') as head:
-        for key in root.iter():
-            if key.tag == '{http://www.freedesktop.org/standards/shared-mime-info}%s' % mark:
-                comment = 'char *s = N_("%s");\n' % key.text
-                head.write(comment)
-            if key.tag == mark: #appdata
-                comment = 'char *s = N_("%s");\n' % key.text
-                head.write(comment)
-
-        if root.tag == 'application':
-            for key in root.iter():
-                if key.tag == mark:
-                    comment = 'char *s = N_("%s");\n' % key.text
-                    head.write(comment)
-
-    print ('Wrote %s' % filename)
-    root.clear()
-
-def DesktopParse(filename):
-    """
-    Experimental alternative to 'intltool-extract' for 'gramps.desktop'.
-    """
-
-    '''
-    [Desktop Entry]
-    _Name=Gramps
-    _GenericName=Genealogy System
-    _X-GNOME-FullName=Gramps Genealogy System
-    _Comment=Manage genealogical information,
-             perform genealogical research and analysis
-
-    msgid "Gramps"
-    msgid "Genealogy System"
-    msgid "Gramps Genealogy System"
-    msgid ""
-          "Manage genealogical information,
-           perform genealogical research and analysis"
-    '''
-    with open('../data/gramps.desktop.in.h', 'w') as desktop:
-
-        with open(filename) as f:
-            lines = [file.strip() for file in f]
-
-        for line in lines:
-            if line[0] == '_':
-                for i in range(len(line)):
-                    if line[i] == '=':
-                        val = 'char *s = N_("%s");\n' % line[i+1:len(line)]
-                        desktop.write(val)
-
-    print ('Wrote ../data/gramps.desktop.in.h')
-
-def KeyParse(filename, mark):
-    """
-    Experimental alternative to 'intltool-extract' for 'gramps.keys'.
-    """
-
-    '''
-    application/x-gramps-xml:
-    _description=Gramps XML database
-    default_action_type=application
-    short_list_application_ids=gramps
-    short_list_application_ids_for_novice_user_level=gramps
-    short_list_application_ids_for_intermediate_user_level=gramps
-    short_list_application_ids_for_advanced_user_level=gramps
-    category=Documents/Genealogy
-    icon-filename=/usr/share/gramps/gramps.png
-    open=gramps %f
-
-    application/x-gedcom:
-    _description=GEDCOM
-    default_action_type=application
-
-    msgid "Gramps XML database"
-    msgid "GEDCOM"
-    '''
-    with open('../data/gramps.keys.in.h', 'w') as key:
-
-        with open(filename) as f:
-            lines = [file for file in f]
-
-        temp = []
-
-        for line in lines:
-            for i in range(len(line)):
-                if line[i:i+12] == mark:
-                    temp.append(line.strip())
-
-        for t in temp:
-            for i in range(len(t)):
-                if t[i] == '=':
-                    val = 'char *s = N_("%s");\n' % t[i+1:len(t)]
-                    key.write(val)
-
-    print ('Wrote ../data/gramps.keys.in.h')
 
 def main():
     """
@@ -522,20 +297,6 @@ def headers():
     headers = []
 
     # in.h; extract_xml
-    if os.path.isfile('''../data/tips.xml.in.h'''):
-        headers.append('''../data/tips.xml.in.h''')
-    if os.path.isfile('''../data/holidays.xml.in.h'''):
-        headers.append('''../data/holidays.xml.in.h''')
-    if os.path.isfile('''../data/gramps.xml.in.h'''):
-        headers.append('''../data/gramps.xml.in.h''')
-    if os.path.isfile('''../data/gramps.desktop.in.h'''):
-        headers.append('''../data/gramps.desktop.in.h''')
-    if os.path.isfile('''../data/gramps.keys.in.h'''):
-        headers.append('''../data/gramps.keys.in.h''')
-    if os.path.isfile('''../data/gramps.appdata.xml.in.h'''):
-        headers.append('''../data/gramps.appdata.xml.in.h''')
-    if os.path.isfile('''gtklist.h'''):
-        headers.append('''gtklist.h''')
     if os.path.isfile('''fragments.pot'''):
         headers.append('''fragments.pot''')
 
@@ -543,15 +304,23 @@ def headers():
 
 def extract_xml():
     """
-    Extract translation strings from XML based, keys, mime and desktop
-    files. Own XML files parsing and custom translation marks.
+    Extract translation strings from XML based, mime and desktop files.
+    Uses custom ITS rules found in the po/its directory.
     """
-    HolidaysParse('../data/holidays.xml.in', '_name')
-    TipsParse('../data/tips.xml.in', '_tip')
-    XmlParse('../data/gramps.xml.in', '_comment')
-    XmlParse('../data/gramps.appdata.xml.in', '_p')
-    DesktopParse('../data/gramps.desktop.in')
-    KeyParse('../data/gramps.keys.in', '_description')
+    if not os.path.isfile('gramps.pot'):
+        create_template()
+
+    for input_file in ['../data/holidays.xml',
+                      '../data/tips.xml',
+                      '../data/org.gramps_project.Gramps.xml.in',
+                      '../data/org.gramps_project.Gramps.appdata.xml.in',
+                      '../data/org.gramps_project.Gramps.desktop.in']:
+        os.system(('GETTEXTDATADIR=. %(xgettext)s -F -j '
+                   '-o gramps.pot --from-code=UTF-8 %(inputfile)s')
+             % {'xgettext': xgettextCmd,
+                'inputfile': input_file}
+             )
+        print (input_file)
 
 def create_template():
     """
@@ -572,58 +341,6 @@ def extract_glade():
               '''--from-code=UTF-8 -o gramps.pot --files-from=glade.txt'''
              % {'xgettext': xgettextCmd}
              )
-
-def extract_gtkbuilder():
-    """
-    Temp workaround for xgettext bug (< gettext 0.18.3)
-    https://savannah.gnu.org/bugs/index.php?29216
-    See bug reports #6595, #5621
-    """
-
-    from xml.etree import ElementTree
-
-    '''
-    <?xml version="1.0" encoding="UTF-8"?>
-    <interface>
-    <!-- interface-requires gtk+ 3.0 -->
-
-    <object class="GtkListStore" id="model1">
-    <columns>
-      <!-- column-name gchararray -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">All rules must apply</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">At least one rule must apply</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Exactly one rule must apply</col>
-      </row>
-    </data>
-  </object>
-
-    msgid "All rules must apply"
-    msgid "At least one rule must apply"
-    msgid "Exactly one rule must apply"
-    '''
-
-    files = ['../gramps/plugins/importer/importgedcom.glade', '../gramps/gui/glade/rule.glade']
-    with open('gtklist.h', 'w') as temp:
-        for filename in files:
-            tree = ElementTree.parse(filename)
-            root = tree.getroot()
-            for line in root.iter():
-                att = line.attrib
-                if att == {'id': '0', 'translatable': 'yes'}:
-                    col = 'char *s = N_("%s");\n' % line.text
-                    temp.write(col)
-            root.clear()
-
-    print ('Wrote gtklist.h')
-
 
 def xml_fragments():
     """ search through the file for xml fragments that contain the
@@ -698,10 +415,6 @@ def retrieve():
     """
     Extract messages from all files used by Gramps (python, glade, xml)
     """
-    extract_xml()
-
-    extract_gtkbuilder()
-
     create_template()
 
     create_filesfile()
@@ -710,20 +423,23 @@ def retrieve():
     listing('python.txt', ['.py', '.py.in'])
 
     # additional keywords must always be kept in sync with those in genpot.sh
-    os.system('''%(xgettext)s -F -c -j --directory=./ -d gramps '''
-              '''-L Python -o gramps.pot --files-from=python.txt '''
+    os.system('''%(xgettext)s -F --add-comments=Translators -j '''
+              '''--directory=./ -d gramps -L Python '''
+              '''-o gramps.pot --files-from=python.txt '''
               '''--debug --keyword=_ --keyword=ngettext '''
-              '''--keyword=_T_ --keyword=trans_text '''
+              '''--keyword=_T_ --keyword=trans_text:1,2c '''
+              '''--keyword=_:1,2c --keyword=_T_:1,2c '''
               '''--keyword=sgettext --from-code=UTF-8''' % {'xgettext': xgettextCmd}
              )
 
     extract_glade()
+    extract_xml()
 
     # C format header (.h extension)
     for h in headers():
         print ('xgettext for %s' % h)
-        os.system('''%(xgettext)s -F --add-comments -j -o gramps.pot '''
-                  '''--keyword=N_ --from-code=UTF-8 %(head)s'''
+        os.system('''%(xgettext)s -F --add-comments=Translators -j '''
+                  '''-o gramps.pot --keyword=N_ --from-code=UTF-8 %(head)s'''
                   % {'xgettext': xgettextCmd, 'head': h}
                   )
     clean()

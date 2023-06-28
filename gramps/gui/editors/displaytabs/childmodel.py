@@ -47,7 +47,7 @@ class ChildModel(Gtk.ListStore):
 
     def __init__(self, child_ref_list, db):
         Gtk.ListStore.__init__(self, int, str, str, str, str, str,
-                               str, str, str, str, str, str, str, bool, object)
+                               str, str, str, str, str, str, str, bool, bool, object)
         self.db = db
         for index, child_ref in enumerate(child_ref_list):
             child = db.get_person_from_handle(child_ref.ref)
@@ -66,6 +66,7 @@ class ChildModel(Gtk.ListStore):
                     name_displayer.sort_string(child.primary_name),
                     self.column_birth_sort(child),
                     self.column_death_sort(child),
+                    child_ref.has_citations(),
                     child_ref.get_privacy(),
                     child_ref
                     ])

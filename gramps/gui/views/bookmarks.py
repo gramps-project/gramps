@@ -66,7 +66,7 @@ _ = glocale.translation.sgettext
 #-------------------------------------------------------------------------
 LOG = logging.getLogger(".Bookmarks")
 WIKI_HELP_PAGE = '%s_-_Navigation' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Bookmarks')
+WIKI_HELP_SEC = _('Bookmarks', 'manual')
 
 #-------------------------------------------------------------------------
 #
@@ -269,7 +269,7 @@ class BookmarksDialog(ManagedWindow):
 
     def draw_window(self):
         """Draw the bookmark dialog box."""
-        self.top = Gtk.Dialog(parent=self.parent_window)
+        self.top = Gtk.Dialog(transient_for=self.parent_window)
         self.top.vbox.set_spacing(5)
         label = Gtk.Label(label='<span size="larger" weight="bold">%s</span>'
                           % _("Organize Bookmarks"))

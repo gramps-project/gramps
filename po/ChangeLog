@@ -1,48 +1,160 @@
-2022-01-31  Krystian Safjan <ksafjan@gmail.com>
+2020-08-11  prculley <paulr2787@gmail.com>
 
-	* po/pl.po: Fixes suggested after review by @stojex
+	* po/ar.po, po/bg.po, po/br.po, po/ca.po, po/cs.po, po/da.po,
+	po/el.po, po/en_GB.po, po/eo.po, po/es.po, po/fi.po, po/fr.po,
+	po/ga.po, po/he.po, po/hr.po, po/hu.po, po/is.po, po/it.po,
+	po/ja.po, po/lt.po, po/mk.po, po/nb.po, po/nl.po, po/nn.po,
+	po/pl.po, po/pt_BR.po, po/pt_PT.po, po/ro.po, po/ru.po, po/sk.po,
+	po/sl.po, po/sq.po, po/sr.po, po/sr_Latn.po, po/sv.po, po/ta.po,
+	po/tr.po, po/uk.po, po/vi.po, po/zh_CN.po, po/zh_HK.po, po/zh_TW.po: 
+	Remove duplicates in Translations
 
-2022-01-07  Krystian Safjan <ksafjan@gmail.com>
+2020-08-10  prculley <paulr2787@gmail.com>
 
-	* po/pl.po: Update Polish translation - Consistent usage of "Tag": was "Tag" or "Atrybut", note that   "Attribute" (atrybut) is something different than tag - "Magazyn" (repository) renamed to "Repozytorium" - other fixes and addons
+	* po/ar.po, po/bg.po, po/br.po, po/ca.po, po/cs.po, po/da.po,
+	po/de.po, po/el.po, po/en_GB.po, po/eo.po, po/es.po, po/fi.po,
+	po/fr.po, po/ga.po, po/he.po, po/hr.po, po/hu.po, po/is.po,
+	po/it.po, po/ja.po, po/lt.po, po/mk.po, po/nb.po, po/nl.po,
+	po/nn.po, po/pl.po, po/pt_BR.po, po/pt_PT.po, po/ro.po, po/ru.po,
+	po/sk.po, po/sl.po, po/sq.po, po/sr.po, po/sr_Latn.po, po/sv.po,
+	po/ta.po, po/tr.po, po/uk.po, po/vi.po, po/zh_CN.po, po/zh_HK.po,
+	po/zh_TW.po: Clean up translations for Default/Home Person
 
-2022-01-29  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+2020-08-10  Leonhaeuser <mirko@leonhaeuser.de>
 
-	* po/de.po: get German translation with manual in sync (Display name
-	editor)
+	* po/de.po: Update German translation
 
-2022-01-25  pehlm <github1@m.pekholm.org>
+2020-08-10  Paul Culley <paulr2787@gmail.com>
 
-	* po/sv.po: Minor update of Swedish translation
+	* po/pl.po: Fix Charts/Pedigreeview tooltip Polish translation
+	(#1092) Fixes #11852
 
-2022-01-04  Tian Shixiong <tiansworld@fedoraproject.org>
+2020-08-10  Krystian Safjan <ksafjan@gmail.com>
 
-	* po/zh_CN.po: Minor update to zh_CN translation
+	* po/pl.po: Fix and add objects to Polish translation of Gramps
+	(#1088)
 
-2021-11-03  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+2020-07-23  Leonhaeuser <mirko@leonhaeuser.de>
 
-	* po/de.po: small German translation fixes
+	* po/de.po: German translation fixed typo
 
-2021-11-01  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+2020-07-17  niememat <niememat@gmail.com>
 
-	* po/de.po: Fixed German translation error of "Character set
-	encoding"
+	* po/fi.po: Update finnish translation
 
-2021-10-25  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+2020-06-07  Tian Shixiong <tiansworld@fedoraproject.org>
 
-	* po/de.po: Fixed German translation error of "Graph generations"
+	* po/zh_CN.po: Update Simplified Chinese translation for gramps51
+	branch
 
-2021-09-19  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+2020-01-11  giansalvo <pioggia3+github@gmail.com>
 
-	* po/de.po: Fixed German translation error of "filter person"
+	* po/ar.po, po/bg.po, po/br.po, po/ca.po, po/cs.po, po/da.po,
+	po/de.po, po/el.po, po/en_GB.po, po/eo.po, po/es.po, po/fi.po,
+	po/fr.po, po/ga.po, po/he.po, po/hr.po, po/hu.po, po/is.po,
+	po/it.po, po/ja.po, po/lt.po, po/mk.po, po/nb.po, po/nl.po,
+	po/nn.po, po/pl.po, po/pt_BR.po, po/pt_PT.po, po/ro.po, po/ru.po,
+	po/sk.po, po/sl.po, po/sq.po, po/sr.po, po/sr_Latn.po, po/sv.po,
+	po/ta.po, po/tr.po, po/uk.po, po/vi.po, po/zh_CN.po, po/zh_HK.po,
+	po/zh_TW.po: Fix bug 0011078: 'Default person' instead of 'Home
+	person' - modified button hints - modified filter rules names and descriptions - modified .pot and .po files - substituted 'home person' with 'Home Person'
 
-2021-08-30  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+2020-07-07  Leonhaeuser <mirko@leonhaeuser.de>
 
-	* po/de.po: fixed error in German translation found during manual
-	translation also fixed in master
+	* po/de.po: Germen fixed translation error of Media:
 
-2021-08-11  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+2020-07-04  Leonhaeuser <mirko@leonhaeuser.de>
 
-	* fixed German translation of 'Descendant families of' already done in
-	trunk Weblate
+	* po/de.po: Fix typo
+
+2020-07-01  Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: update German translation
+
+2020-04-23  SNoiraud <serge.noiraud@laposte.net>
+
+	* po/ar.po, po/bg.po, po/br.po, po/ca.po, po/cs.po, po/da.po,
+	po/de.po, po/el.po, po/en_GB.po, po/eo.po, po/es.po, po/fi.po,
+	po/fr.po, po/ga.po, po/he.po, po/hr.po, po/hu.po, po/is.po,
+	po/it.po, po/ja.po, po/lt.po, po/mk.po, po/nb.po, po/nl.po,
+	po/nn.po, po/pl.po, po/pt_BR.po, po/pt_PT.po, po/ro.po, po/ru.po,
+	po/sk.po, po/sl.po, po/sq.po, po/sr.po, po/sr_Latn.po, po/sv.po,
+	po/ta.po, po/tr.po, po/uk.po, po/vi.po, po/zh_CN.po, po/zh_HK.po,
+	po/zh_TW.po: Fix typo in gui/configure.py and translation files Fixes #11665
+
+2020-06-22  pehlm <par.ekholm@pekholm.org>
+
+	* po/sv.po: A little adjustment to Swedish translation
+
+2020-06-21  pehlm <par.ekholm@pekholm.org>
+
+	* po/sv.po: Updates to Swedish translation
+
+2020-06-20  Megumi Sakata <megumi.sakata.k@gmail.com>
+
+	* po/ja.po: Update Japanese translation
+
+2020-04-28  vantu5z <vantu5z@mail.ru>
+
+	* po/ru.po: update Russian translation
+
+2020-04-24  niememat <niememat@gmail.com>
+
+	* po/fi.po: Fix translation in Finnish
+
+2020-04-18  Joan Creus <joan.creusandreu@gmail.com>
+
+	* po/ca.po: Updating Catalan translation
+
+2020-04-18  Joan Creus <joan.creusandreu@gmail.com>
+
+	* po/ca.po: Updating Catalan translation
+
+2020-04-08  Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: update Germn translation
+
+2020-03-26  vantu5z <vantu5z@mail.ru>
+
+	* po/ru.po: update Russian translation
+
+2020-03-25  Translator5 <Translator5@users.noreply.github.com>
+
+	* po/ru.po: [Language: Russian] Maintenance/gramps51 (#1027) * some Russian translations updates
+
+2020-03-03  Joan Creus <joan.creusandreu@gmail.com>
+
+	* po/ca.po: Updating Catalan translation
+
+2020-02-29  Joan Creus <joan.creusandreu@gmail.com>
+
+	* po/ca.po: Updating Catalan translation
+
+2020-02-25  Bernard Banko <beernarrd@gmail.com>
+
+	* po/sl.po: V&O changed to PZV to avoid ampersand
+
+2020-02-07  pehlm <par.ekholm@pekholm.org>
+
+	* po/sv.po: Minor update to Swedish translation
+
+2020-01-31  vantu5z <vantu5z@mail.ru>
+
+	* po/ru.po: update Russian translation
+
+2020-01-26  Bernard Banko <beernarrd@gmail.com>
+
+	* po/sl.po: Slovenian translation update
+
+2020-01-23  prculley <paulr2787@gmail.com>
+
+	* po/ru.po: Fix typo in Russian translation
+
+2020-01-21  système <romjerome@users.noreply.github.com>
+
+	* po/fr.po: typos in french translation #11534 #10534
+
+2020-01-21  Fedik <getthesite@gmail.com>
+
+	* Ukrainian translation update
 

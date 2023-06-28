@@ -57,7 +57,7 @@ from gramps.gen.const import URL_MANUAL_SECT2
 #-------------------------------------------------------------------------
 
 WIKI_HELP_PAGE = URL_MANUAL_SECT2
-WIKI_HELP_SEC = _('manual|New_Repository_dialog')
+WIKI_HELP_SEC = _('New_Repository_dialog', 'manual')
 
 class EditRepository(EditPrimary):
 
@@ -65,7 +65,7 @@ class EditRepository(EditPrimary):
 
         EditPrimary.__init__(self, dbstate, uistate, track, repository,
                              dbstate.db.get_repository_from_handle,
-                             dbstate.db.get_repository_from_gramps_id)
+                             dbstate.db.get_repository_from_gramps_id, callback)
 
     def empty_object(self):
         return Repository()
@@ -208,23 +208,5 @@ class EditRepository(EditPrimary):
                     self.db.commit_repository(self.obj, trans)
 
         self._do_close()
-
-class DeleteRepositoryQuery:
-    def __init__(self, dbstate, uistate, repository, sources):
-        self.obj = repository
-        self.db = dbstate.db
-        self.uistate = uistate
-        self.sources = sources
-
-    def query_response(self):
-        with DbTxn(_("Delete Repository (%s)") % self.obj.get_name(),
-                   self.db) as trans:
-
-            repos_handle_list = [self.obj.get_handle()]
-
-            for handle in self.sources:
-                source = self.db.get_source_from_handle(handle)
-                source.remove_repo_references(repos_handle_list)
-                self.db.commit_source(source, trans)
-
-            self.db.remove_repository(self.obj.get_handle(), trans)
+        if self.callback:
+            self.callback(self.obj)

@@ -382,7 +382,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="halign">start</property>
-                            <property name="label" translatable="yes">point size|pt</property>
+                            <property name="label" translatable="yes" context="point size">pt</property>
                             <property name="justify">center</property>
                           </object>
                           <packing>

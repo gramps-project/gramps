@@ -184,7 +184,7 @@ class FamilyView(ListView):
           <attribute name="label" translatable="yes">_Merge...</attribute>
         </item>
       </section>
-''' % _("action|_Edit..."),  # to use sgettext()
+''' % _("_Edit...", "action"),  # to use sgettext()
         '''
         <placeholder id='otheredit'>
         <item>
@@ -325,7 +325,7 @@ class FamilyView(ListView):
         </placeholder>
       </section>
     </menu>
-''' % _('action|_Edit...')  # to use sgettext()
+''' % _('_Edit...', 'action')  # to use sgettext()
     ]
 
     def define_actions(self):
@@ -359,26 +359,9 @@ class FamilyView(ListView):
         """
         Method called when deleting a family from a family view.
         """
-        from gramps.gui.dialog import QuestionDialog, MultiSelectDialog
-        from gramps.gen.utils.string import data_recover_msg
         handles = self.selected_handles()
-        if len(handles) == 1:
-            family = self.dbstate.db.get_family_from_handle(handles[0])
-            msg1 = self._message1_format(family)
-            msg2 = self._message2_format(family)
-            msg2 = "%s %s" % (msg2, data_recover_msg)
-            QuestionDialog(msg1,
-                           msg2,
-                           _('_Delete Family'),
-                           lambda: self.delete_family_response(family),
-                           parent=self.uistate.window)
-        else:
-            MultiSelectDialog(self._message1_format,
-                              self._message2_format,
-                              handles,
-                              self.dbstate.db.get_family_from_handle,
-                              yes_func=self.delete_family_response,
-                              parent=self.uistate.window)
+        ht_list = [('Family', hndl) for hndl in handles]
+        self.remove_selected_objects(ht_list)
 
     def _message1_format(self, family):
         """
@@ -387,32 +370,13 @@ class FamilyView(ListView):
         return _('Delete %s?') % (_('family') +
                                   (" [%s]" % family.gramps_id))
 
-    def _message2_format(self, family):
+    def remove_object_from_handle(self, _obj_type, handle,
+                                  trans, in_use_prompt=False, parent=None):
         """
-        Detailed message format for the remove dialogs.
+        deletes a single object from database
         """
-        return _('Deleting item will remove it from the database.')
-
-    def delete_family_response(self, family):
-        """
-        Deletes the family from the database. Callback to remove
-        dialogs.
-        """
-        from gramps.gen.db import DbTxn
-        # set the busy cursor, so the user knows that we are working
-        self.uistate.set_busy_cursor(True)
-        # create the transaction
-        with DbTxn('', self.dbstate.db) as trans:
-            gramps_id = family.gramps_id
-            self.dbstate.db.remove_family_relationships(family.handle, trans)
-            trans.set_description(_("Family [%s]") % gramps_id)
-        self.uistate.set_busy_cursor(False)
-
-    def remove_object_from_handle(self, handle):
-        """
-        The remove_selected_objects method is not called in this view.
-        """
-        pass
+        family = self.dbstate.db.get_family_from_handle(handle)
+        self.dbstate.db.remove_family_relationships(handle, trans)
 
     def edit(self, *obj):
         for handle in self.selected_handles():
@@ -481,6 +445,14 @@ class FamilyView(ListView):
         """
         family = self.dbstate.db.get_family_from_handle(family_handle)
         family.add_tag(tag_handle)
+        self.dbstate.db.commit_family(family, transaction)
+
+    def remove_tag(self, transaction, family_handle, tag_handle):
+        """
+        Remove the given tag from the given family.
+        """
+        family = self.dbstate.db.get_family_from_handle(family_handle)
+        family.remove_tag(tag_handle)
         self.dbstate.db.commit_family(family, transaction)
 
     def get_default_gramplets(self):

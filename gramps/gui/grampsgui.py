@@ -343,19 +343,6 @@ UIDEFAULT = (
     </placeholder>
     <placeholder id='TagTool'>
     </placeholder>
-    <child groups='RW'>
-      <object class="GtkToolButton" id="Clipboard">
-        <property name="icon-name">edit-paste</property>
-        <property name="action-name">win.Clipboard</property>
-        <property name="tooltip_text" translatable="yes">'''
-    '''Open the Clipboard dialog</property>
-        <property name="label" translatable="yes">Clip_board</property>
-        <property name="use-underline">True</property>
-      </object>
-      <packing>
-        <property name="homogeneous">False</property>
-      </packing>
-     </child>
     <child>
       <object class="GtkSeparatorToolItem"/>
     </child>
@@ -379,32 +366,6 @@ UIDEFAULT = (
     </child>
     <placeholder id="MoreButtons">
     </placeholder>
-    <child groups='RO'>
-      <object class="GtkToolButton" id="Reports">
-        <property name="icon-name">gramps-reports</property>
-        <property name="action-name">win.Reports</property>
-        <property name="tooltip_text" translatable="yes">'''
-    '''Open the reports dialog</property>
-        <property name="label" translatable="yes">_Reports</property>
-        <property name="use-underline">True</property>
-      </object>
-      <packing>
-        <property name="homogeneous">False</property>
-      </packing>
-     </child>
-    <child groups='RW'>
-      <object class="GtkToolButton" id="Tools">
-        <property name="icon-name">gramps-tools</property>
-        <property name="action-name">win.Tools</property>
-        <property name="tooltip_text" translatable="yes">'''
-    '''Open the tools dialog</property>
-        <property name="label" translatable="yes">_Tools</property>
-        <property name="use-underline">True</property>
-      </object>
-      <packing>
-        <property name="homogeneous">False</property>
-      </packing>
-     </child>
     <placeholder id='AfterTools'>
     </placeholder>
   </object>
@@ -484,50 +445,6 @@ except ImportError:
 # Functions
 #
 #-------------------------------------------------------------------------
-
-def _display_welcome_message(parent=None):
-    """
-    Display a welcome message to the user.
-    (This docstring seems very legacy/historical, not accurate.)
-    """
-    _display_generic_message("master", 'behavior.betawarn', parent=parent)
-
-def _display_generic_message(warning_type, config_key, parent=None):
-    """
-    Display a generic warning message to the user, with the
-    warning_type in it -- if the config_key key is not set
-
-    :param warning_type: the general name of the warning, e.g. "master"
-    :type warning_type: str
-    :param config_key: name of gramps.ini config key, e.g. "behavior.betawarn"
-    :type config_key: str
-    """
-    if not config.get(config_key):
-        from .dialog import WarningDialog
-        WarningDialog(
-            _('Danger: This is unstable code!'),
-            _("This Gramps ('%s') is a development release.\n"
-             ) % warning_type +
-            _("This version is not meant for normal usage. Use "
-              "at your own risk.\n"
-              "\n"
-              "This version may:\n"
-              "1) Work differently than you expect.\n"
-              "2) Fail to run at all.\n"
-              "3) Crash often.\n"
-              "4) Corrupt your data.\n"
-              "5) Save data in a format that is incompatible with the "
-              "official release.\n"
-              "\n"
-              "%(bold_start)sBACKUP%(bold_end)s "
-              "your existing databases before opening "
-              "them with this version, and make sure to export your "
-              "data to XML every now and then."
-             ) % {'bold_start' : '<b>',
-                  'bold_end'   : '</b>'},
-            parent=parent)
-        config.set('behavior.autoload', False)
-        config.set(config_key, True)
 
 def _display_gtk_gettext_message(parent=None):
     """
@@ -617,8 +534,6 @@ class Gramps:
                 and glocale.lang != 'C'
                 and not gettext.find(GTK_GETTEXT_DOMAIN)):
             _display_gtk_gettext_message(parent=self._vm.window)
-
-        #_display_welcome_message(parent=self._vm.window)
 
         _display_translator_message(parent=self._vm.window)
 
@@ -723,7 +638,7 @@ from gramps.gen.constfunc import is_quartz
 class GrampsApplication(Gtk.Application):
 
     def __init__(self, errors, argparser):
-        super().__init__(application_id="org.gramps-project.Gramps")
+        super().__init__(application_id="org.gramps_project.Gramps")
         self.window = None
         self.errors = errors
         self.argparser = argparser

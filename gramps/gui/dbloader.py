@@ -54,18 +54,14 @@ from gi.repository import GObject
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.db.dbconst import DBBACKEND
 from gramps.gen.db.utils import make_database
+from gramps.gen.db.upgrade import make_zip_backup
 _ = glocale.translation.gettext
 from gramps.cli.grampscli import CLIDbLoader
 from gramps.gen.config import config
 from gramps.gen.db.exceptions import (DbUpgradeRequiredError,
-                                      BsddbDowngradeError,
                                       DbVersionError,
                                       DbPythonError,
-                                      DbEnvironmentError,
-                                      BsddbUpgradeRequiredError,
-                                      BsddbDowngradeRequiredError,
-                                      PythonUpgradeRequiredError,
-                                      PythonDowngradeError,
+                                      DbSupportedError,
                                       DbConnectionError)
 from .pluginmanager import GuiPluginManager
 from .dialog import (DBErrorDialog, ErrorDialog, QuestionDialog2,
@@ -163,130 +159,70 @@ class DbLoader(CLIDbLoader):
             if not os.access(filename, os.W_OK):
                 mode = "r"
                 self._warn(_('Read only database'),
-                                             _('You do not have write access '
-                                               'to the selected file.'))
+                           _('You do not have write access '
+                             'to the selected file.'))
             else:
                 mode = "w"
         else:
             mode = 'w'
 
-        dbid_path = os.path.join(filename, DBBACKEND)
-        if os.path.isfile(dbid_path):
-            with open(dbid_path) as fp:
-                dbid = fp.read().strip()
-        else:
-            dbid = "bsddb"
-
-        db = make_database(dbid)
-        db.disable_signals()
         self.dbstate.no_database()
 
-        if db.requires_login() and username is None:
-            login = GrampsLoginDialog(self.uistate)
-            credentials = login.run()
-            if credentials is None:
-                return
-            username, password = credentials
-
-        self._begin_progress()
+        self.uistate.progress.show()
+        self.uistate.pulse_progressbar(0)
 
         force_schema_upgrade = False
-        force_bsddb_upgrade = False
-        force_bsddb_downgrade = False
-        force_python_upgrade = False
         try:
             while True:
+                dbid_path = os.path.join(filename, DBBACKEND)
+                if os.path.isfile(dbid_path):
+                    with open(dbid_path) as fp:
+                        dbid = fp.read().strip()
+                else:
+                    dbid = "bsddb"
+
+                db = make_database(dbid)
+                db.disable_signals()
+                if db.requires_login() and username is None:
+                    login = GrampsLoginDialog(self.uistate)
+                    credentials = login.run()
+                    if credentials is None:
+                        return
+                    username, password = credentials
+
                 try:
-                    db.load(filename, self._pulse_progress,
+                    db.load(filename, self.uistate.pulse_progressbar,
                             mode, force_schema_upgrade,
-                            force_bsddb_upgrade,
-                            force_bsddb_downgrade,
-                            force_python_upgrade,
                             username=username,
                             password=password)
                     if self.dbstate.is_open():
                         self.dbstate.db.close(
-                            user=User(callback=self._pulse_progress,
+                            user=User(callback=self.uistate.pulse_progressbar,
                                       uistate=self.uistate,
                                       dbstate=self.dbstate))
                     self.dbstate.change_database(db)
                     break
-                except DbUpgradeRequiredError as msg:
-                    if QuestionDialog2(_("Are you sure you want "
+                except (DbSupportedError, DbUpgradeRequiredError) as msg:
+                    if(force_schema_upgrade or
+                       QuestionDialog2(_("Are you sure you want "
                                          "to upgrade this Family Tree?"),
                                        str(msg),
                                        _("I have made a backup,\n"
                                          "please upgrade my Family Tree"),
                                        _("Cancel"),
-                                       parent=self.uistate.window).run():
+                                       parent=self.uistate.window).run()):
                         force_schema_upgrade = True
-                        force_bsddb_upgrade = False
-                        force_bsddb_downgrade = False
-                        force_python_upgrade = False
-                    else:
-                        self.dbstate.no_database()
-                        break
-                except BsddbUpgradeRequiredError as msg:
-                    if QuestionDialog2(_("Are you sure you want "
-                                         "to upgrade this Family Tree?"),
-                                       str(msg),
-                                       _("I have made a backup,\n"
-                                         "please upgrade my Family Tree"),
-                                       _("Cancel"),
-                                       parent=self.uistate.window).run():
-                        force_schema_upgrade = False
-                        force_bsddb_upgrade = True
-                        force_bsddb_downgrade = False
-                        force_python_upgrade = False
-                    else:
-                        self.dbstate.no_database()
-                        break
-                except BsddbDowngradeRequiredError as msg:
-                    if QuestionDialog2(_("Are you sure you want "
-                                         "to downgrade this Family Tree?"),
-                                       str(msg),
-                                       _("I have made a backup,\n"
-                                         "please downgrade my Family Tree"),
-                                       _("Cancel"),
-                                       parent=self.uistate.window).run():
-                        force_schema_upgrade = False
-                        force_bsddb_upgrade = False
-                        force_bsddb_downgrade = True
-                        force_python_upgrade = False
-                    else:
-                        self.dbstate.no_database()
-                        break
-                except PythonUpgradeRequiredError as msg:
-                    if QuestionDialog2(_("Are you sure you want "
-                                         "to upgrade this Family Tree?"),
-                                       str(msg),
-                                       _("I have made a backup,\n"
-                                         "please upgrade my Family Tree"),
-                                       _("Cancel"),
-                                       parent=self.uistate.window).run():
-                        force_schema_upgrade = False
-                        force_bsddb_upgrade = False
-                        force_bsddb_downgrade = False
-                        force_python_upgrade = True
+                        make_zip_backup(filename)
                     else:
                         self.dbstate.no_database()
                         break
         # Get here is there is an exception the while loop does not handle
-        except BsddbDowngradeError as msg:
-            self.dbstate.no_database()
-            self._warn( _("Cannot open database"), str(msg))
         except DbVersionError as msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
         except DbPythonError as msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
-        except DbEnvironmentError as msg:
-            self.dbstate.no_database()
-            self._errordialog( _("Cannot open database"), str(msg))
-        except PythonDowngradeError as msg:
-            self.dbstate.no_database()
-            self._warn( _("Cannot open database"), str(msg))
         except DbConnectionError as msg:
             self.dbstate.no_database()
             self._warn(_("Cannot open database"), str(msg))
@@ -300,7 +236,8 @@ class DbLoader(CLIDbLoader):
         except Exception as newerror:
             self.dbstate.no_database()
             self._dberrordialog(str(newerror))
-        self._end_progress()
+
+        self.uistate.progress.hide()
         return True
 
 #-------------------------------------------------------------------------
@@ -387,7 +324,7 @@ class GrampsLoginDialog(ManagedWindow):
         self.title = _("Login")
         ManagedWindow.__init__(self, uistate, [], self.__class__, modal=True)
 
-        dialog = Gtk.Dialog(parent=uistate.window)
+        dialog = Gtk.Dialog(transient_for=uistate.window)
         grid = Gtk.Grid()
         grid.set_border_width(6)
         grid.set_row_spacing(6)
@@ -445,6 +382,11 @@ class GrampsImportFileDialog(ManagedWindow):
         self.setup_configs('interface.grampsimportfiledialog', 780, 630)
         import_dialog.set_local_only(False)
 
+        # Add all supported files depending on available plugins
+        gramps_filter = Gtk.FileFilter()
+        gramps_filter.set_name(_("All supported files"))
+        import_dialog.add_filter(gramps_filter)
+
         # Always add automatic (match all files) filter
         add_all_files_filter(import_dialog)   # *
 
@@ -454,6 +396,7 @@ class GrampsImportFileDialog(ManagedWindow):
             name = "%s (.%s)" % (plugin.get_name(), plugin.get_extension())
             file_filter.set_name(name)
             file_filter.add_pattern("*.%s" % icase(plugin.get_extension()))
+            gramps_filter.add_pattern("*.%s" % icase(plugin.get_extension()))
             import_dialog.add_filter(file_filter)
 
         (box, type_selector) = format_maker()

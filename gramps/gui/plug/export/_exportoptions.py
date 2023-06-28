@@ -163,10 +163,10 @@ class WriterOptionBox:
         label = Gtk.Label(label=_("Unfiltered Family Tree:"))
         full_database_row.pack_start(label, True, True, 0)
         people_count = len(self.dbstate.db.get_person_handles())
-        # translators: leave all/any {...} untranslated
-        button = Gtk.Button(ngettext("{number_of} Person",
-                                     "{number_of} People", people_count
-                                    ).format(number_of=people_count) )
+        # Translators: leave all/any {...} untranslated
+        button = Gtk.Button(label=ngettext("{number_of} Person",
+                                           "{number_of} People", people_count
+                                           ).format(number_of=people_count))
         button.set_tooltip_text(_("Click to see preview of unfiltered data"))
         button.set_size_request(107, -1)
         button.connect("clicked", self.show_preview_data)
@@ -270,10 +270,10 @@ class WriterOptionBox:
         # Make a box and put the option in it:
         from gi.repository import Gtk
         from ...widgets import SimpleButton
-        # translators: leave all/any {...} untranslated
-        button = Gtk.Button(ngettext("{number_of} Person",
-                                     "{number_of} People", 0
-                                    ).format(number_of=0) )
+        # Translators: leave all/any {...} untranslated
+        button = Gtk.Button(label=ngettext("{number_of} Person",
+                                           "{number_of} People", 0
+                                           ).format(number_of=0))
         button.set_size_request(107, -1)
         button.connect("clicked", self.show_preview_data)
         button.proxy_name = proxy_name
@@ -283,7 +283,8 @@ class WriterOptionBox:
             label = Gtk.Label(label=_('_Person Filter') + COLON)
             label.set_halign(Gtk.Align.START)
             label.set_size_request(120, -1)
-            label.set_padding(5, 0)
+            label.set_margin_start(5)
+            label.set_margin_end(5)
             label.set_use_underline(True)
             label.set_mnemonic_widget(self.filter_obj)
             box = Gtk.Box()
@@ -301,7 +302,8 @@ class WriterOptionBox:
             label_note = Gtk.Label(label=_('_Note Filter') + COLON)
             label_note.set_halign(Gtk.Align.START)
             label_note.set_size_request(120, -1)
-            label_note.set_padding(5, 0)
+            label_note.set_margin_start(5)
+            label_note.set_margin_end(5)
             label_note.set_use_underline(True)
             label_note.set_mnemonic_widget(self.filter_note)
             box = Gtk.Box()
@@ -317,7 +319,8 @@ class WriterOptionBox:
             label = Gtk.Label(label=_("Privacy Filter") + COLON)
             label.set_halign(Gtk.Align.START)
             label.set_size_request(120, -1)
-            label.set_padding(5, 0)
+            label.set_margin_start(5)
+            label.set_margin_end(5)
             box = Gtk.Box()
             box.pack_start(label, False, True, 0)
             box.add(self.private_check)
@@ -327,7 +330,8 @@ class WriterOptionBox:
             label = Gtk.Label(label=_("Living Filter") + COLON)
             label.set_halign(Gtk.Align.START)
             label.set_size_request(120, -1)
-            label.set_padding(5, 0)
+            label.set_margin_start(5)
+            label.set_margin_end(5)
             box = Gtk.Box()
             box.pack_start(label, False, True, 0)
             self.restrict_option = Gtk.ComboBox()
@@ -339,7 +343,8 @@ class WriterOptionBox:
             label = Gtk.Label(label=_('Reference Filter') + COLON)
             label.set_halign(Gtk.Align.START)
             label.set_size_request(120, -1)
-            label.set_padding(5, 0)
+            label.set_margin_start(5)
+            label.set_margin_end(5)
             box = Gtk.Box()
             box.pack_start(label, False, True, 0)
             box.pack_start(self.reference_filter, True, True, 0)
@@ -573,7 +578,7 @@ class WriterOptionBox:
                 self.preview_proxy_button[proxy_name].set_sensitive(1)
                 people_count = len(dbase.get_person_handles())
                 self.preview_proxy_button[proxy_name].set_label(
-                    # translators: leave all/any {...} untranslated
+                    # Translators: leave all/any {...} untranslated
                     ngettext("{number_of} Person",
                              "{number_of} People", people_count
                             ).format(number_of=people_count) )

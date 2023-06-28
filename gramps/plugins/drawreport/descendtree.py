@@ -54,9 +54,9 @@ PT2CM = utils.pt2cm
 # Constants
 #
 #------------------------------------------------------------------------
-_BORN = _("birth abbreviation|b."),
-_DIED = _("death abbreviation|d."),
-_MARR = _("marriage abbreviation|m."),
+_BORN = _("b.", "birth abbreviation"),
+_DIED = _("d.", "death abbreviation"),
+_MARR = _("m.", "marriage abbreviation"),
 
 _RPT_NAME = 'descend_chart'
 
@@ -354,7 +354,7 @@ class TitleC(DescendantTitleBase):
                 for kid in family.get_child_ref_list()]
 
         #ok we have the children.  Make a title off of them
-        # translators: needed for Arabic, ignore otherwise
+        # Translators: needed for Arabic, ignore otherwise
         cousin_names = self._(', ').join(self._get_names(kids, self._nd))
 
         self.text = self._(
@@ -1066,8 +1066,8 @@ class MakeReport:
     def __reverse_family_group(self):
         """ go through the n-1 to 0 cols of boxes looking for families
         (parents with children) that may need to be moved. """
-        for x_col in range(len(self.cols)-1, -1, -1):
-            box = self.cols[x_col][0]   #The first person in this col
+        for col in reversed(self.cols):
+            box = col[0]   #The first person in this col
             while box:
                 left_group, right_group = self.__next_family_group(box)
                 if not left_group:
@@ -1696,7 +1696,7 @@ class DescendTreeOptions(MenuReportOptions):
         repldisp = TextOption(
             _("Replace Display Format:\n'Replace this'/' with this'"),
             [])
-        repldisp.set_help(_("i.e.\nUnited States of America/U.S.A"))
+        repldisp.set_help(_("i.e.\nUnited States of America/U.S.A."))
         menu.add_option(category_name, "replace_list", repldisp)
 
         self.usenote = BooleanOption(_('Include a note'), False)
@@ -1820,30 +1820,31 @@ class DescendTreeOptions(MenuReportOptions):
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("CG2-Normal")
         graph_style.set_fill_color((255, 255, 255))
+        graph_style.set_description(_("The style for the marriage box."))
         default_style.add_draw_style("CG2-fam-box", graph_style)
 
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("CG2-Normal")
         graph_style.set_shadow(1, box_shadow)
         graph_style.set_fill_color((255, 255, 255))
+        graph_style.set_description(_("The style for the spouse box."))
         default_style.add_draw_style("CG2-box", graph_style)
 
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("CG2-Bold")
         graph_style.set_shadow(1, box_shadow)
         graph_style.set_fill_color((255, 255, 255))
+        graph_style.set_description(
+            _("The style for the direct descendant box."))
         default_style.add_draw_style("CG2b-box", graph_style)
 
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("CG2-Note")
         graph_style.set_fill_color((255, 255, 255))
+        graph_style.set_description(_("The style for the note box."))
         default_style.add_draw_style("CG2-note-box", graph_style)
 
         graph_style = GraphicsStyle()
+        graph_style.set_description(
+            _("The style for the connection lines and report border."))
         default_style.add_draw_style("CG2-line", graph_style)
-
-#=====================================
-#So do not fear, for I am with you; do not be dismayed,
-#for I am your God.  I will strengthen you and help you;
-#I will uphold you with my righteous right hand.
-#Isaiah 41:10

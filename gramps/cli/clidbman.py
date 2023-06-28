@@ -197,7 +197,7 @@ class CLIDbManager:
                 print(_('Family Tree "%s":') % summary[_("Family Tree")])
                 for item in sorted(summary):
                     if item != "Family Tree":
-                        # translators: needed for French, ignore otherwise
+                        # Translators: needed for French, ignore otherwise
                         print('   ' + _("%(str1)s: %(str2)s"
                                        ) % {'str1' : item,
                                             'str2' : summary[item]})

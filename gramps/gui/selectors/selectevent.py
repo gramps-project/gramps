@@ -76,4 +76,4 @@ class SelectEvent(BaseSelector):
         return self.db.get_event_from_handle
 
     WIKI_HELP_PAGE = URL_MANUAL_SECT1
-    WIKI_HELP_SEC = _('manual|Select_Event_selector')
+    WIKI_HELP_SEC = _('Select_Event_selector', 'manual')

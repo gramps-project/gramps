@@ -133,7 +133,7 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
         if modified == 0:
             msg = _("No event record was modified.")
         else:
-            # translators: leave all/any {...} untranslated
+            # Translators: leave all/any {...} untranslated
             msg = ngettext("{number_of} event record was modified.",
                            "{number_of} event records were modified.", modified
                           ).format(number_of=modified)

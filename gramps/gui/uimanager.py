@@ -173,10 +173,10 @@ class UIManager():
                 if((len(child) == 1 and child.tag == "submenu") or
                    (len(child) == 0 and child.tag == "section")):
                     # remove empty submenus and sections
-                    # print('del', child.tag, child.attrib)
+                    LOG.debug(('del', child.tag, child.attrib))
                     del parents[indx]
                     continue
-                # print(child.attrib)
+                LOG.debug((child.attrib))
                 groups = child.get('groups')
                 if not groups:
                     indx += 1
@@ -187,8 +187,8 @@ class UIManager():
                         indx += 1
                         break
                     else:
-                        #print('del', child.tag, child.attrib, parents.tag,
-                        #      parents.attrib)
+                        LOG.debug(('del', child.tag, child.attrib, parents.tag,
+                                parents.attrib))
                         del parents[indx]
                         break
             # The following looks for 'placeholder' elements and if found,
@@ -198,8 +198,8 @@ class UIManager():
             while indx < len(parents):
                 if parents[indx].tag == "placeholder":
                     subtree = parents[indx]
-                    #print('placholder del', parents[indx].tag,
-                    #      parents[indx].attrib, parents.tag, parents.attrib)
+                    LOG.debug(('placholder del', parents[indx].tag,
+                            parents[indx].attrib, parents.tag, parents.attrib))
                     del parents[indx]
                     for child in subtree:
                         parents.insert(indx, child)
@@ -223,7 +223,7 @@ class UIManager():
         #     file.write(xml_str)
         # with open('try.xml', encoding='utf8') as file:
         #     xml_str = file.read()
-        # print(xml_str)
+        #LOG.info(xml_str)
         self.builder = Gtk.Builder()
         self.builder.set_translation_domain(glocale.get_localedomain())
         self.builder.add_from_string(xml_str)
@@ -251,7 +251,7 @@ class UIManager():
             toolbar.show_all()
         else:
             toolbar.hide()
-        #print('*** Update ui')
+        LOG.info('*** Update ui')
 
     def add_ui_from_string(self, changexml):
         """ This performs a merge operation on the xml elements that have
@@ -284,14 +284,14 @@ class UIManager():
                     # This allow addition of popups etc.
                     self.et_xml.append(update)
             #results = ET.tostring(self.et_xml, encoding="unicode")
-            #print(results)
-            #print ('*** Add ui')
+            #LOG.info(results)
+            LOG.info('*** Add ui')
             return changexml
         except:
             # the following is only here to assist debug
-            print('*****', sys.exc_info())
-            print(xml)
-            print(changexml)
+            LOG.debug('*****', sys.exc_info())
+            LOG.debug(xml)
+            LOG.debug(changexml)
             assert False
 
     def remove_ui(self, change_xml):
@@ -317,8 +317,8 @@ class UIManager():
                 for dummy in range(len(element)):
                     del element[0]
         #results = ET.tostring(self.et_xml, encoding="unicode")
-        #print(results)
-        #print ('*** Remove ui')
+        #LOG.info(results)
+        LOG.info('*** Remove ui')
         return
 
     def get_widget(self, obj):
@@ -411,7 +411,7 @@ class UIManager():
                 self.set_actions_sensitive(group, False)
         except:
             # the following is only to assist in debug
-            print(group.name, item)
+            LOG.debug(group.name, item)
             assert False
 
     def remove_action_group(self, group):

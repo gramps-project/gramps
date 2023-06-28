@@ -60,6 +60,10 @@ class Statusbar(Gtk.Box):
 
         self.__warnbtn = WarnButton()
 
+        self.__version = Gtk.Button()
+        self.__version.set_relief(Gtk.ReliefStyle.NONE)
+        self.__version.get_style_context().add_class("destructive-action")
+
         self.__status = Gtk.Statusbar()
         self.__status.show()
 
@@ -71,6 +75,7 @@ class Statusbar(Gtk.Box):
         self.pack_start(self.__progress, False, True, 4)
         self.pack_start(self.__status, True, True, 4)
         self.pack_end(self.__filter, False, True, 4)
+        self.pack_end(self.__version, False, True, 4)
 
     def get_warning_button(self):
         """Return the warning button widget."""
@@ -79,6 +84,10 @@ class Statusbar(Gtk.Box):
     def get_progress_bar(self):
         """Return the progress bar widget."""
         return self.__progress
+
+    def get_version_btn(self):
+        """Return the version button widget."""
+        return self.__version
 
     def get_context_id(self, context_description):
         """Return a new or existing context identifier."""

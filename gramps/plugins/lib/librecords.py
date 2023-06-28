@@ -47,8 +47,8 @@ from gramps.gen.proxy import LivingProxyDb
 #
 #------------------------------------------------------------------------
 
-def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
-    return value
+def _T_(value, context=''): # enable deferred translations
+    return "%s\x04%s" % (context, value) if context else value
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 
 RECORDS = [
@@ -516,7 +516,7 @@ def _get_styled(name, callname, placeholder=False,
         elif callname == CALLNAME_UNDERLINE_ADD:
             if n.call not in n.first_name:
                 # Add call name to first name.
-                # translators: used in French+Russian, ignore otherwise
+                # Translators: used in French+Russian, ignore otherwise
                 n.first_name = trans_text('"%(callname)s" (%(firstname)s)') % {
                                              'callname':  n.call,
                                              'firstname': n.first_name }

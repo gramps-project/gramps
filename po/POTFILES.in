@@ -16,6 +16,7 @@ gramps/gen/datehandler/_dateutils.py
 gramps/gen/db/base.py
 gramps/gen/db/exceptions.py
 gramps/gen/db/generic.py
+gramps/gen/db/upgrade.py
 gramps/gen/display/name.py
 gramps/gen/display/place.py
 gramps/gen/filters/_filterparser.py
@@ -48,6 +49,7 @@ gramps/gen/filters/rules/_rule.py
 gramps/gen/filters/rules/citation/_allcitations.py
 gramps/gen/filters/rules/citation/_changedsince.py
 gramps/gen/filters/rules/citation/_citationprivate.py
+gramps/gen/filters/rules/citation/_hasattribute.py
 gramps/gen/filters/rules/citation/_hascitation.py
 gramps/gen/filters/rules/citation/_hasgallery.py
 gramps/gen/filters/rules/citation/_hasidof.py
@@ -157,6 +159,7 @@ gramps/gen/filters/rules/person/_disconnected.py
 gramps/gen/filters/rules/person/_everyone.py
 gramps/gen/filters/rules/person/_familywithincompleteevent.py
 gramps/gen/filters/rules/person/_hasaddress.py
+gramps/gen/filters/rules/person/_hasaddresstext.py
 gramps/gen/filters/rules/person/_hasalternatename.py
 gramps/gen/filters/rules/person/_hasassociation.py
 gramps/gen/filters/rules/person/_hasattribute.py
@@ -255,6 +258,7 @@ gramps/gen/filters/rules/place/_regexpidof.py
 gramps/gen/filters/rules/place/_withinarea.py
 gramps/gen/filters/rules/repository/_allrepos.py
 gramps/gen/filters/rules/repository/_changedsince.py
+gramps/gen/filters/rules/repository/_hasattribute.py
 gramps/gen/filters/rules/repository/_hasidof.py
 gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py
 gramps/gen/filters/rules/repository/_hasnoteregexp.py
@@ -267,6 +271,7 @@ gramps/gen/filters/rules/repository/_regexpidof.py
 gramps/gen/filters/rules/repository/_repoprivate.py
 gramps/gen/filters/rules/source/_allsources.py
 gramps/gen/filters/rules/source/_changedsince.py
+gramps/gen/filters/rules/source/_hasattribute.py
 gramps/gen/filters/rules/source/_hasgallery.py
 gramps/gen/filters/rules/source/_hasidof.py
 gramps/gen/filters/rules/source/_hasnote.py
@@ -378,6 +383,7 @@ gramps/gui/autocomp.py
 gramps/gui/clipboard.py
 gramps/gui/columnorder.py
 gramps/gui/configure.py
+gramps/gui/csvdialect.py
 gramps/gui/dbloader.py
 gramps/gui/dbman.py
 gramps/gui/dialog.py
@@ -571,10 +577,6 @@ gramps/gui/widgets/styledtextbuffer.py
 gramps/gui/widgets/styledtexteditor.py
 gramps/gui/widgets/validatedmaskedentry.py
 gramps/plugins/db/bsddb/bsddb.gpr.py
-gramps/plugins/db/bsddb/read.py
-gramps/plugins/db/bsddb/undoredo.py
-gramps/plugins/db/bsddb/upgrade.py
-gramps/plugins/db/bsddb/write.py
 gramps/plugins/db/dbapi/sqlite.gpr.py
 gramps/plugins/db/dbapi/sqlite.py
 gramps/plugins/docgen/asciidoc.py
@@ -711,6 +713,7 @@ gramps/plugins/textreport/summary.py
 gramps/plugins/textreport/tableofcontents.py
 gramps/plugins/textreport/tagreport.py
 gramps/plugins/textreport/textplugins.gpr.py
+gramps/plugins/thumbnailer/thumb.gpr.py
 gramps/plugins/tool/changenames.glade
 gramps/plugins/tool/changenames.py
 gramps/plugins/tool/changetypes.glade
@@ -799,6 +802,7 @@ gramps/plugins/webreport/statistics.py
 gramps/plugins/webreport/surname.py
 gramps/plugins/webreport/surnamelist.py
 gramps/plugins/webreport/thumbnail.py
+gramps/plugins/webreport/updates.py
 gramps/plugins/webreport/webcal.py
 gramps/plugins/webreport/webplugins.gpr.py
 gramps/plugins/webstuff/webstuff.gpr.py
@@ -806,9 +810,8 @@ gramps/plugins/webstuff/webstuff.py
 #
 #   Files to extract from and then merge into
 #
-data/gramps.desktop.in
-data/gramps.keys.in
-data/gramps.xml.in
-data/holidays.xml.in
-data/tips.xml.in
-data/gramps.appdata.xml.in
+data/org.gramps_project.Gramps.xml.in
+data/org.gramps_project.Gramps.appdata.xml.in
+data/org.gramps_project.Gramps.desktop.in
+data/holidays.xml
+data/tips.xml

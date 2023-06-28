@@ -60,7 +60,7 @@ _ = glocale.translation.sgettext
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Extract_Information_from_Names')
+WIKI_HELP_SEC = _('Extract_Information_from_Names', 'manual')
 
 #-------------------------------------------------------------------------
 #
@@ -443,7 +443,7 @@ class PatchNames(tool.BatchTool, ManagedWindow):
                 handle = self.model.append()
                 self.model.set_value(handle, 0, 1)
                 self.model.set_value(handle, 1, gid)
-                self.model.set_value(handle, 2, _('Person|Title'))
+                self.model.set_value(handle, 2, _('Title', 'Person'))
                 self.model.set_value(handle, 3, title)
                 self.model.set_value(
                     handle, 4, p.get_primary_name().get_name())

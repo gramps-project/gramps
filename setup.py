@@ -3,9 +3,9 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2012 Nick Hall
-# Copyright (C) 2012 Rob G. Healey
-# Copyright (C) 2012 Benny Malengier
+# Copyright (C) 2012,2020 Nick Hall
+# Copyright (C) 2012      Rob G. Healey
+# Copyright (C) 2012      Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,14 +29,14 @@ Gramps distutils module.
 #check python version first
 import sys
 
-if sys.version_info < (3, 2):
-    raise SystemExit("Gramps requires Python 3.2 or later.")
+if sys.version_info < (3, 5):
+    raise SystemExit("Gramps requires Python 3.5 or later.")
 
 from distutils import log
-from distutils.core import setup, Command
+from setuptools import setup
+from distutils.core import Command
 from distutils.util import convert_path, newer
 from distutils.command.build import build as _build
-from distutils.command.install import install as _install
 import os
 import glob
 import codecs
@@ -46,62 +46,17 @@ from gramps.version import VERSION
 import unittest
 import argparse
 
-# this list MUST be a subset of _LOCALE_NAMES in gen/utils/grampslocale.py
-# (that is, if you add a new language here, be sure it's in _LOCALE_NAMES too)
-ALL_LINGUAS = ('ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en_GB',
-               'eo', 'es', 'fi', 'fr', 'he', 'hr', 'hu', 'is', 'it',
-               'ja', 'lt', 'nb', 'nl', 'nn', 'pl', 'pt_BR', 'pt_PT',
-               'ru', 'sk', 'sl', 'sq', 'sr', 'sv', 'ta', 'tr', 'uk', 'vi',
-               'zh_CN', 'zh_HK', 'zh_TW')
-_FILES = ('data/tips.xml', 'data/holidays.xml')
 
 svem_flag = '--single-version-externally-managed'
 if svem_flag in sys.argv:
     # Die, setuptools, die.
     sys.argv.remove(svem_flag)
 
-# check if the resourcepath option is used and store the path
-# this is for packagers that build out of the source tree
-# other options to setup.py are passed through
-resource_path = ''
-packaging = False
 argparser = argparse.ArgumentParser(add_help=False)
-argparser.add_argument("--resourcepath", dest="resource_path")
 argparser.add_argument("--no-compress-manpages", dest="no_compress_manpages",
                        action="store_true")
 args, passthrough = argparser.parse_known_args()
-if args.resource_path:
-    resource_path = args.resource_path
-    packaging = True
 sys.argv = [sys.argv[0]] + passthrough
-
-def intltool_version():
-    '''
-    Return the version of intltool as a tuple.
-    '''
-    if sys.platform == 'win32':
-        cmd = ["perl",
-               r"-e print qx(intltool-update --version) =~ m/(\d+.\d+.\d+)/;"]
-        try:
-            ver, ret = subprocess.Popen(cmd ,stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE, shell=True).communicate()
-            ver = ver.decode("utf-8")
-            if ver > "":
-                version_str = ver
-            else:
-                return (0,0,0)
-        except:
-            return (0,0,0)
-    else:
-        cmd = 'intltool-update --version 2> /dev/null' # pathological case
-        retcode, version_str = subprocess.getstatusoutput(cmd)
-        if retcode != 0:
-            return None
-        cmd = 'intltool-update --version 2> /dev/null | head -1 | cut -d" " -f3'
-        retcode, version_str = subprocess.getstatusoutput(cmd)
-        if retcode != 0: # unlikely but just barely imaginable, so leave it
-            return None
-    return tuple([int(num) for num in version_str.split('.')])
 
 def substitute_variables(filename_in, filename_out, subst_vars):
     '''
@@ -116,12 +71,24 @@ def substitute_variables(filename_in, filename_out, subst_vars):
     f_in.close()
     f_out.close()
 
+def get_linguas():
+    '''
+    Read the po/LINGUAS file to get a list of all linguas.
+    '''
+    all_linguas = []
+    with open(os.path.join('po', 'LINGUAS'), 'r', encoding='utf-8') as linguas:
+        for line in linguas:
+            if '#' in line:
+                line = line[:line.find('#')]
+            all_linguas.extend(line.split())
+    return all_linguas
+
 def build_trans(build_cmd):
     '''
     Translate the language files into gramps.mo
     '''
     data_files = build_cmd.distribution.data_files
-    for lang in ALL_LINGUAS:
+    for lang in get_linguas():
         po_file = os.path.join('po', lang + '.po')
         mo_file = os.path.join(build_cmd.build_base, 'mo', lang, 'LC_MESSAGES',
                                'gramps.mo')
@@ -193,21 +160,12 @@ def build_intl(build_cmd):
     '''
     Merge translation files into desktop and mime files
     '''
-    for filename in _FILES:
-        filename = convert_path(filename)
-        strip_files(filename + '.in', filename, ['_tip', '_name'])
-
-    i_v = intltool_version()
-    if i_v is None or i_v < (0, 25, 0):
-        log.info('No intltool or version < 0.25.0, build_intl is aborting')
-        return
     data_files = build_cmd.distribution.data_files
     base = build_cmd.build_base
 
-    merge_files = (('data/gramps.desktop', 'share/applications', '-d'),
-                    ('data/gramps.keys', 'share/mime-info', '-k'),
-                    ('data/gramps.xml', 'share/mime/packages', '-x'),
-                    ('data/gramps.appdata.xml', 'share/metainfo', '-x'))
+    merge_files = (('data/org.gramps_project.Gramps.desktop', 'share/applications', '--desktop'),
+                   ('data/org.gramps_project.Gramps.xml', 'share/mime/packages', '--xml'),
+                   ('data/org.gramps_project.Gramps.appdata.xml', 'share/metainfo', '--xml'))
 
     for filename, target, option in merge_files:
         filenamelocal = convert_path(filename)
@@ -218,46 +176,17 @@ def build_intl(build_cmd):
         merge(filenamelocal + '.in', newfile, option)
         data_files.append((target, [base + '/' + filename]))
 
-def strip_files(in_file, out_file, mark):
+def merge(in_file, out_file, option, po_dir='po'):
     '''
-    strip the file of the first character (typically an underscore) in each
-    keyword (in the "mark" argument list) in the file -- so this method is an
-    Alternative to intltool-merge command.
+    Run the msgfmt command.
     '''
     if (not os.path.exists(out_file) and os.path.exists(in_file)):
-        old = open(in_file, 'r', encoding='utf-8')
-        with open(out_file, 'w', encoding='utf-8', errors='strict') as fb:
-            for line in old:
-                for marker in mark:
-                    line = line.replace(marker, marker[1:])
-                fb.write(line)
-        old.close()
-        log.info('Compiling %s >> %s', in_file, out_file)
-
-def merge(in_file, out_file, option, po_dir='po', cache=True):
-    '''
-    Run the intltool-merge command.
-    '''
-    option += ' -u'
-    if cache:
-        cache_file = os.path.join('po', '.intltool-merge-cache')
-        option += ' -c ' + cache_file
-
-    if (not os.path.exists(out_file) and os.path.exists(in_file)):
-        if sys.platform == 'win32':
-            cmd = (('set LC_ALL=C && perl -S intltool-merge %(opt)s %(po_dir)s %(in_file)s '
-                '%(out_file)s') %
-              {'opt' : option,
-               'po_dir' : po_dir,
-               'in_file' : in_file,
-               'out_file' : out_file})
-        else:
-            cmd = (('LC_ALL=C intltool-merge %(opt)s %(po_dir)s %(in_file)s '
-                '%(out_file)s') %
-              {'opt' : option,
-               'po_dir' : po_dir,
-               'in_file' : in_file,
-               'out_file' : out_file})
+        cmd = (('GETTEXTDATADIR=%(po_dir)s msgfmt %(opt)s '
+                '--template %(in_file)s -d %(po_dir)s -o %(out_file)s') %
+                {'opt' : option,
+                 'po_dir' : po_dir,
+                 'in_file' : in_file,
+                 'out_file' : out_file})
         if os.system(cmd) != 0:
             msg = ('ERROR: %s was not merged into the translation files!\n' %
                     out_file)
@@ -272,22 +201,6 @@ class build(_build):
             build_man(self)
         build_intl(self)
         _build.run(self)
-
-class install(_install):
-    """Custom install command."""
-    def run(self):
-        resource_file = os.path.join(os.path.dirname(__file__), 'gramps', 'gen',
-                                     'utils', 'resource-path')
-        with open(resource_file, 'w', encoding='utf-8', errors='strict') as fp:
-            if packaging:
-                path = resource_path
-            else:
-                path = os.path.abspath(os.path.join(self.install_data, 'share'))
-            fp.write(path)
-
-        _install.run(self)
-
-        os.remove(resource_file)
 
 class test(Command):
     """Command to run Gramps unit tests"""
@@ -411,8 +324,6 @@ for (dirpath, dirnames, filenames) in os.walk(basedir):
         package_data_core.append(dirpath[7:] + '/' + dirname + '/*.xml')
         package_data_core.append(dirpath[7:] + '/' + dirname + '/*.ini')
 
-package_data_core.append('gen/utils/resource-path')
-
 package_data_gui = ['gui/glade/*.glade']
 package_data = package_data_core + package_data_gui
 
@@ -421,7 +332,7 @@ package_data = package_data_core + package_data_gui
 # Resources
 #
 #-------------------------------------------------------------------------
-data_files_core = [('share/mime-info', ['data/gramps.mime'])]
+data_files_core = []
 DOC_FILES = ['AUTHORS', 'COPYING', 'FAQ', 'INSTALL', 'NEWS', 'README.md',
              'TODO']
 GEDCOM_FILES = glob.glob(os.path.join('example', 'gedcom', '*.*'))
@@ -439,11 +350,6 @@ data_files_core.append(('share/gramps/images/webstuff', IMAGE_WEB))
 data_files_core.append(('share/gramps/css', CSS_FILES))
 data_files_core.append(('share/gramps/css/swanky-purse', SWANKY_PURSE))
 data_files_core.append(('share/gramps/css/swanky-purse/images', SWANKY_IMG))
-
-PNG_FILES = glob.glob(os.path.join('data', '*.png'))
-SVG_FILES = glob.glob(os.path.join('data', '*.svg'))
-data_files_core.append(('share/icons/hicolor/48x48/mimetypes', PNG_FILES))
-data_files_core.append(('share/icons/hicolor/scalable/mimetypes', SVG_FILES))
 
 DTD_FILES = glob.glob(os.path.join('data', '*.dtd'))
 RNG_FILES = glob.glob(os.path.join('data', '*.rng'))
@@ -466,13 +372,13 @@ data_files_gui.append(('share/gramps/images/hicolor/22x22/actions', ICON_22))
 data_files_gui.append(('share/gramps/images/hicolor/24x24/actions', ICON_24))
 data_files_gui.append(('share/gramps/images/hicolor/48x48/actions', ICON_48))
 data_files_gui.append(('share/gramps/images/hicolor/scalable/actions', ICON_SC))
-APP_16 = os.path.join(THEME, '16x16', 'apps', 'gramps.png')
-APP_22 = os.path.join(THEME, '22x22', 'apps', 'gramps.png')
-APP_24 = os.path.join(THEME, '24x24', 'apps', 'gramps.png')
-APP_48 = os.path.join(THEME, '48x48', 'apps', 'gramps.png')
-APP_128 = os.path.join(THEME, '128x128', 'apps', 'gramps.png')
-APP_256 = os.path.join(THEME, '256x256', 'apps', 'gramps.png')
-APP_SC = os.path.join(THEME, 'scalable', 'apps', 'gramps.svg')
+APP_16 = os.path.join(THEME, '16x16', 'apps', 'org.gramps_project.Gramps.png')
+APP_22 = os.path.join(THEME, '22x22', 'apps', 'org.gramps_project.Gramps.png')
+APP_24 = os.path.join(THEME, '24x24', 'apps', 'org.gramps_project.Gramps.png')
+APP_48 = os.path.join(THEME, '48x48', 'apps', 'org.gramps_project.Gramps.png')
+APP_128 = os.path.join(THEME, '128x128', 'apps', 'org.gramps_project.Gramps.png')
+APP_256 = os.path.join(THEME, '256x256', 'apps', 'org.gramps_project.Gramps.png')
+APP_SC = os.path.join(THEME, 'scalable', 'apps', 'org.gramps_project.Gramps.svg')
 data_files_gui.append(('share/icons/hicolor/16x16/apps', [APP_16]))
 data_files_gui.append(('share/icons/hicolor/22x22/apps', [APP_22]))
 data_files_gui.append(('share/icons/hicolor/24x24/apps', [APP_24]))
@@ -480,6 +386,10 @@ data_files_gui.append(('share/icons/hicolor/48x48/apps', [APP_48]))
 data_files_gui.append(('share/icons/hicolor/128x128/apps', [APP_128]))
 data_files_gui.append(('share/icons/hicolor/256x256/apps', [APP_256]))
 data_files_gui.append(('share/icons/hicolor/scalable/apps', [APP_SC]))
+MIME_48 = glob.glob(os.path.join(THEME, '48x48', 'mimetypes', '*.png'))
+MIME_SC = glob.glob(os.path.join(THEME, 'scalable', 'mimetypes', '*.svg'))
+data_files_gui.append(('share/icons/hicolor/48x48/mimetypes', MIME_48))
+data_files_gui.append(('share/icons/hicolor/scalable/mimetypes', MIME_SC))
 
 data_files = data_files_core + data_files_gui
 
@@ -503,13 +413,20 @@ setup(name = 'gramps',
       url = 'http://gramps-project.org',
       license = 'GPL v2 or greater',
       platforms = ['FreeBSD', 'Linux', 'MacOS', 'Windows'],
-      cmdclass = {'build': build, 'install': install, 'test': test},
+      cmdclass = {'build': build, 'test': test},
       packages = packages,
       package_data = {'gramps': package_data},
+      extras_require={
+          "bsddb": ["bsddb3"],
+          "image": ["Pillow"],
+          "i18n": ["PyICU"],
+          "GUI":  ["PyGObject", "pycairo"],
+          "testing": ["jsonschema", "mock", "lxml"],
+      },
       data_files = data_files,
       scripts = ['scripts/gramps'],
       classifiers = [
-          "Development Status :: 5 - Production/Stable",
+          "Development Status :: 1 - Planning",
           "Environment :: Console",
           "Environment :: MacOS X",
           "Environment :: Plugins",
@@ -534,6 +451,7 @@ setup(name = 'gramps',
           "Natural Language :: Finnish",
           "Natural Language :: French",
           "Natural Language :: German",
+          "Natural Language :: German (Austrian)",
           "Natural Language :: Greek",
           "Natural Language :: Hebrew",
           "Natural Language :: Hungarian",

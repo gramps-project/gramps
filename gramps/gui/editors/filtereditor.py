@@ -81,9 +81,9 @@ from gramps.gen.config import config
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Filters' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Add_Rule_dialog')
-WIKI_HELP_SEC2 = _('manual|Define_Filter_dialog')
-WIKI_HELP_SEC3 = _('manual|Custom_Filters')
+WIKI_HELP_SEC = _('Add_Rule_dialog', 'manual')
+WIKI_HELP_SEC2 = _('Define_Filter_dialog', 'manual')
+WIKI_HELP_SEC3 = _('Custom_Filters', 'manual')
 
 # dictionary mapping FILTER_TYPE of views to Filter window name
 _TITLES = {
@@ -530,6 +530,8 @@ class EditRule(ManagedWindow):
                 # filters of another namespace, name may be same as caller!
                 elif v == _('Person filter name:'):
                     t = MyFilters(self.filterdb.get_filters('Person'))
+                elif v == _('Family filter name:'):
+                    t = MyFilters(self.filterdb.get_filters('Family'))
                 elif v == _('Event filter name:'):
                     t = MyFilters(self.filterdb.get_filters('Event'))
                 elif v == _('Source filter name:'):
@@ -604,16 +606,16 @@ class EditRule(ManagedWindow):
             if class_obj.allow_regex:
                 use_regex = Gtk.CheckButton(label=_('Use regular expressions'))
                 tip = _('Interpret the contents of string fields as regular '
-                        'expressions.\n'
-                        'A decimal point will match any character. '
-                        'A question mark will match zero or one occurences '
-                        'of the previous character or group. '
-                        'An asterisk will match zero or more occurences. '
-                        'A plus sign will match one or more occurences. '
-                        'Use parentheses to group expressions. '
-                        'Specify alternatives using a vertical bar. '
-                        'A caret will match the start of a line. '
-                        'A dollar sign will match the end of a line.')
+                        'expressions:\n'
+                        '.\tA decimal point will match any character.\n'
+                        '?\tA question mark will match zero or one occurences '
+                        'of the previous character or group.\n'
+                        '*\tAn asterisk will match zero or more occurences.\n'
+                        '+\tA plus sign will match one or more occurences.\n'
+                        '()\tUse parentheses to group expressions.\n'
+                        '|\tSpecify alternatives using a vertical bar.\n'
+                        '^\tA caret will match the start of a line.\n'
+                        '$\tA dollar sign will match the end of a line.')
                 use_regex.set_tooltip_text(tip)
                 grid.attach(use_regex, 1, pos, 1, 1)
 

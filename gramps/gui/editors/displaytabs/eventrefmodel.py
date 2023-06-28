@@ -51,6 +51,7 @@ from gramps.gen.datehandler import get_date, get_date_valid
 from gramps.gen.config import config
 from gramps.gen.utils.db import get_participant_from_event
 from gramps.gen.display.place import displayer as place_displayer
+from gramps.gen.proxy.cache import CacheProxyDb
 
 #-------------------------------------------------------------------------
 #
@@ -83,10 +84,11 @@ class EventRefModel(Gtk.TreeStore):
     COL_AGE = (10, str)
     COL_SORTAGE = (11, str)
     COL_PRIVATE = (12, bool)
+    COL_HAS_SOURCE = (13, bool)
 
     COLS = (COL_DESCR, COL_TYPE, COL_GID, COL_DATE, COL_PLACE, COL_ROLE,
             COL_PARTIC, COL_SORTDATE, COL_EVENTREF, COL_FONTWEIGHT, COL_AGE,
-            COL_SORTAGE, COL_PRIVATE)
+            COL_SORTAGE, COL_PRIVATE, COL_HAS_SOURCE)
 
     def __init__(self, event_list, db, groups, **kwargs):
         """
@@ -101,7 +103,7 @@ class EventRefModel(Gtk.TreeStore):
         self.start_date = kwargs.get("start_date", None)
         typeobjs = (x[1] for x in self.COLS)
         Gtk.TreeStore.__init__(self, *typeobjs)
-        self.db = db
+        self.db = CacheProxyDb(db)
         self.groups = groups
         for index, group in enumerate(event_list):
             parentiter = self.append(None, row=self.row_group(index, group))
@@ -113,7 +115,7 @@ class EventRefModel(Gtk.TreeStore):
         name = self.namegroup(index, len(group))
         spouse = self.groups[index][2]
         return [spouse, name, '', '', '', '', '', '', (index, None),
-                WEIGHT_BOLD, '', '', None]
+                WEIGHT_BOLD, '', '', None, None]
 
     def namegroup(self, groupindex, length):
         return self._GROUPSTRING % {'groupname': self.groups[groupindex][1],
@@ -133,6 +135,7 @@ class EventRefModel(Gtk.TreeStore):
                 self.column_age(event),
                 self.column_sort_age(event),
                 eventref.get_privacy(),
+                event.has_citations(),
                ]
 
     def colweight(self, index):

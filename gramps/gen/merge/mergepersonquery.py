@@ -100,14 +100,16 @@ class MergePersonQuery:
                 spouse.remove_family_handle(family_handle)
                 self.database.commit_person(spouse, trans)
         # replace the family in lds ordinances
-        for (dummy, person_handle) in self.database.find_backlink_handles(
-                family_handle, ['Person']):
-            if person_handle == old_handle:
+        for (ref_obj, ref_handle) in self.database.find_backlink_handles(
+                family_handle, ['Person', 'Note']):
+            if ref_handle == old_handle:
                 continue
-            person = self.database.get_person_from_handle(person_handle)
-            person.replace_handle_reference('Family', family_handle,
-                                            main_family_handle)
-            self.database.commit_person(person, trans)
+            obj = self.database.method(
+                "get_%s_from_handle", ref_obj)(ref_handle)
+            assert obj.has_handle_reference('Family', family_handle)
+            obj.replace_handle_reference('Family', family_handle,
+                                         main_family_handle)
+            self.database.method("commit_%s", ref_obj)(obj, trans)
         self.database.remove_family(family_handle, trans)
         self.database.commit_family(main_family, trans)
 
@@ -133,13 +135,15 @@ class MergePersonQuery:
         self.phoenix.merge(self.titanic)
         self.database.commit_person(self.phoenix, trans)
 
-        for (dummy, person_handle) in self.database.find_backlink_handles(
-                old_handle, ['Person']):
-            person = self.database.get_person_from_handle(person_handle)
-            assert person.has_handle_reference('Person', old_handle)
-            person.replace_handle_reference('Person', old_handle, new_handle)
-            if person_handle != old_handle:
-                self.database.commit_person(person, trans)
+        for (ref_obj, handle) in self.database.find_backlink_handles(
+                old_handle, ['Person', 'Note']):
+            obj = self.database.method(
+                "get_%s_from_handle", ref_obj)(handle)
+            assert obj.has_handle_reference('Person', old_handle)
+            obj.replace_handle_reference(
+                'Person', old_handle, new_handle)
+            if handle != old_handle:
+                self.database.method("commit_%s", ref_obj)(obj, trans)
 
         for family_handle in self.phoenix.get_parent_family_handle_list():
             family = self.database.get_family_from_handle(family_handle)

@@ -150,10 +150,12 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         defaults = self.get_default_gramplets()
         self.sidebar = GrampletBar(self.dbstate, self.uistate, self,
                                    self.ident + "_sidebar",
-                                   defaults[0])
+                                   defaults[0],
+                                   Gtk.Orientation.VERTICAL)
         self.bottombar = GrampletBar(self.dbstate, self.uistate, self,
                                      self.ident + "_bottombar",
-                                     defaults[1])
+                                     defaults[1],
+                                     Gtk.Orientation.HORIZONTAL)
         hpane = Gtk.Paned()
         self.vpane = Gtk.Paned(orientation=Gtk.Orientation.VERTICAL)
         hpane.pack1(self.vpane, resize=True, shrink=False)

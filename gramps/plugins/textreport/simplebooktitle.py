@@ -133,7 +133,7 @@ class SimpleBookTitleOptions(MenuReportOptions):
         """ Add the options for this report """
         category_name = _("Report Options")
 
-        self.__title = StringOption(_('book|Title'), _('Title of the Book'))
+        self.__title = StringOption(_('Title'), _('Title of the Book', 'book'))
         self.__title.set_help(_("Title string for the book."))
         menu.add_option(category_name, "title", self.__title)
 

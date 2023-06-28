@@ -30,8 +30,13 @@ import csv
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.config import config
 from .tabbeddoc import *
 from ...constfunc import win
+
+_ = glocale.translation.gettext
+
 
 class CSVTab(TabbedDoc):
 
@@ -51,7 +56,12 @@ class CSVTab(TabbedDoc):
 
         self.f = open(self.filename, "w", newline='',
                       encoding='utf_8_sig' if win() else 'utf_8')
-        self.writer = csv.writer(self.f)
+        my_dialect = config.get('csv.dialect')
+        my_delimiter = config.get('csv.delimiter')
+        if my_dialect == _("Custom"):
+            self.writer = csv.writer(self.f, delimiter=my_delimiter)
+        else:
+            self.writer = csv.writer(self.f, dialect=my_dialect)
 
     def close(self):
         assert(self.f)

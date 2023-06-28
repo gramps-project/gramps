@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<locatingRules>
+    <locatingRule name="Tips" pattern="tips.xml" target="tips.its"/>
+</locatingRules>

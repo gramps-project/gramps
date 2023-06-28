@@ -32,6 +32,7 @@ from ....db.utils import import_as_dict
 from ....filters import GenericFilter, CustomFilters
 from ....const import DATA_DIR
 from ....user import User
+from ....utils.unittest import localize_date
 
 from ..person import (
     Disconnected, Everyone, FamilyWithIncompleteEvent, HasAddress,
@@ -238,7 +239,8 @@ class BaseTest(unittest.TestCase):
         """
         Test rule.
         """
-        rule = HasBirth(['between 1600 and 1700', 'akron', ''])
+        date_str = localize_date('between 1600 and 1700')
+        rule = HasBirth([date_str, 'akron', ''])
         res = self.filter_with_rule(rule)
         self.assertEqual(len(res), 2)
 
@@ -246,7 +248,8 @@ class BaseTest(unittest.TestCase):
         """
         Test HasDeath rule.
         """
-        rule = HasDeath(['between 1600 and 1700', 'ashtabula', ''])
+        date_str = localize_date('between 1600 and 1700')
+        rule = HasDeath([date_str, 'ashtabula', ''])
         res = self.filter_with_rule(rule)
         self.assertEqual(len(res), 2)
 
@@ -254,8 +257,8 @@ class BaseTest(unittest.TestCase):
         """
         Test rule.
         """
-        rule = HasEvent(['Birth', 'between 1600 and 1700', 'akron',
-                         '', '', 1])
+        date_str = localize_date('between 1600 and 1700')
+        rule = HasEvent(['Birth', date_str, 'akron', '', '', 1])
         res = self.filter_with_rule(rule)
         self.assertEqual(len(res), 2)
 
@@ -271,7 +274,8 @@ class BaseTest(unittest.TestCase):
         """
         Test rule.
         """
-        rule = HasFamilyEvent(['Marriage', 'after 1900', 'craw', ''])
+        date_str = localize_date('after 1900')
+        rule = HasFamilyEvent(['Marriage', date_str, 'craw', ''])
         res = self.filter_with_rule(rule)
         self.assertEqual(len(res), 4)
 

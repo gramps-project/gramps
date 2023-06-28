@@ -46,7 +46,7 @@ from gramps.gen.const import URL_MANUAL_SECT2
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = URL_MANUAL_SECT2
-WIKI_HELP_SEC = _('manual|Place_Name_Editor_dialog')
+WIKI_HELP_SEC = _('Place_Name_Editor_dialog', 'manual')
 
 ISO_CODES = (
 'aa', 'ab', 'ae', 'af', 'ak', 'am', 'an', 'ar', 'as', 'av', 'ay', 'az',

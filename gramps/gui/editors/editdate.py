@@ -44,7 +44,6 @@ unambiguously built using UI controls such as menus and spin buttons.
 #
 #-------------------------------------------------------------------------
 import logging
-LOG = logging.getLogger(".EditDate")
 
 #-------------------------------------------------------------------------
 #
@@ -59,7 +58,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
+from gramps.gen.config import config
 from gramps.gen.lib.date import Date, DateError, calendar_has_fixed_newyear
 from gramps.gen.datehandler import displayer
 from gramps.gen.const import URL_MANUAL_SECT1
@@ -67,24 +66,26 @@ from ..display import display_help
 from ..managedwindow import ManagedWindow
 from ..glade import Glade
 
+LOG = logging.getLogger(".EditDate")
+_ = glocale.translation.sgettext
 #-------------------------------------------------------------------------
 #
 # Constants
 #
 #-------------------------------------------------------------------------
 MOD_TEXT = (
-    (Date.MOD_NONE       , _('Regular')),
-    (Date.MOD_BEFORE     , _('Before')),
-    (Date.MOD_AFTER      , _('After')),
-    (Date.MOD_ABOUT      , _('About')),
-    (Date.MOD_RANGE      , _('Range')),
-    (Date.MOD_SPAN       , _('Span')),
-    (Date.MOD_TEXTONLY   , _('Text only')) )
+    (Date.MOD_NONE, _('Regular')),
+    (Date.MOD_BEFORE, _('Before')),
+    (Date.MOD_AFTER, _('After')),
+    (Date.MOD_ABOUT, _('About')),
+    (Date.MOD_RANGE, _('Range')),
+    (Date.MOD_SPAN, _('Span')),
+    (Date.MOD_TEXTONLY, _('Text only')))
 
 QUAL_TEXT = (
-    (Date.QUAL_NONE,       _('Regular')),
-    (Date.QUAL_ESTIMATED,  _('Estimated')),
-    (Date.QUAL_CALCULATED, _('Calculated')) )
+    (Date.QUAL_NONE, _('Regular')),
+    (Date.QUAL_ESTIMATED, _('Estimated')),
+    (Date.QUAL_CALCULATED, _('Calculated')))
 
 CAL_TO_MONTHS_NAMES = {
     Date.CAL_GREGORIAN  : displayer.short_months,
@@ -93,10 +94,10 @@ CAL_TO_MONTHS_NAMES = {
     Date.CAL_FRENCH     : displayer.french,
     Date.CAL_PERSIAN    : displayer.persian,
     Date.CAL_ISLAMIC    : displayer.islamic,
-    Date.CAL_SWEDISH    : displayer.swedish }
+    Date.CAL_SWEDISH    : displayer.swedish}
 
 WIKI_HELP_PAGE = URL_MANUAL_SECT1
-WIKI_HELP_SEC = _('manual|Editing_dates')
+WIKI_HELP_SEC = _('Editing_dates', 'manual')
 
 #-------------------------------------------------------------------------
 #
@@ -141,15 +142,15 @@ class EditDate(ManagedWindow):
         self.calendar_box.connect('changed', self.switch_calendar)
 
         self.quality_box = self.top.get_object('quality_box')
-        for item_number in range(len(QUAL_TEXT)):
-            self.quality_box.append_text(QUAL_TEXT[item_number][1])
-            if self.date.get_quality() == QUAL_TEXT[item_number][0]:
+        for item_number, item in enumerate(QUAL_TEXT):
+            self.quality_box.append_text(item[1])
+            if self.date.get_quality() == item[0]:
                 self.quality_box.set_active(item_number)
 
         self.type_box = self.top.get_object('type_box')
-        for item_number in range(len(MOD_TEXT)):
-            self.type_box.append_text(MOD_TEXT[item_number][1])
-            if self.date.get_modifier() == MOD_TEXT[item_number][0]:
+        for item_number, item in enumerate(MOD_TEXT):
+            self.type_box.append_text(item[1])
+            if self.date.get_modifier() == item[0]:
                 self.type_box.set_active(item_number)
         self.type_box.connect('changed', self.switch_type)
 
@@ -199,19 +200,23 @@ class EditDate(ManagedWindow):
             self.calendar_box.set_active(Date.CAL_JULIAN)
         self.dual_dated.connect('toggled', self.switch_dual_dated)
 
+        cal = config.get('preferences.calendar-format-input')
+        self.calendar_box.set_active(cal)
+
         # The dialog is modal -- since dates don't have names, we don't
         # want to have several open dialogs, since then the user will
         # loose track of which is which. Much like opening files.
 
         self.validated_date = self.return_date = None
 
-        for o in self.top.get_objects():
-            if o != self.ok_button:
+        for obj in self.top.get_objects():
+            if obj != self.ok_button:
                 for signal in ['changed', 'value-changed']:
                     try:
-                        o.connect_after(signal, self.revalidate)
+                        obj.connect_after(signal, self.revalidate)
                     except TypeError:
-                        pass # some of them don't support the signal, ignore them...
+                        # some of them don't support the signal, ignore them...
+                        pass
         self.revalidate()
         self.show()
 
@@ -219,8 +224,7 @@ class EditDate(ManagedWindow):
             response = self.window.run()
             LOG.debug("response: {0}".format(response))
             if response == Gtk.ResponseType.HELP:
-                display_help(webpage=WIKI_HELP_PAGE,
-                                   section=WIKI_HELP_SEC)
+                display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
             elif response == Gtk.ResponseType.DELETE_EVENT:
                 break
             else:
@@ -236,7 +240,7 @@ class EditDate(ManagedWindow):
                 self.close()
                 break
 
-    def revalidate(self, obj = None):
+    def revalidate(self, obj=None):
         """
         If anything changed, revalidate the date and
         enable/disable the "OK" button based on the result.
@@ -245,31 +249,31 @@ class EditDate(ManagedWindow):
          the_text, the_newyear) = self.build_date_from_ui()
         LOG.debug("revalidate: {0} changed, value: {1}".format(
             obj, the_value))
-        d = Date(self.date)
+        dat = Date(self.date)
         if not self.ok_button.get_sensitive():
             self.statusbar.pop(1)
         try:
-            d.set(
-                quality=the_quality,
-                modifier=the_modifier,
-                calendar=the_calendar,
-                value=the_value,
-                text=the_text,
-                newyear=the_newyear)
+            dat.set(quality=the_quality,
+                    modifier=the_modifier,
+                    calendar=the_calendar,
+                    value=the_value,
+                    text=the_text,
+                    newyear=the_newyear)
             # didn't throw yet?
-            self.validated_date = d
-            LOG.debug("validated_date set to: {0}".format(d.__dict__))
+            self.validated_date = dat
+            LOG.debug("validated_date set to: {0}".format(dat.__dict__))
             self.ok_button.set_sensitive(1)
             self.calendar_box.set_sensitive(1)
             return True
-        except DateError as e:
+        except DateError as dummy_err:
             self.ok_button.set_sensitive(0)
             self.calendar_box.set_sensitive(0)
+            curmode = MOD_TEXT[self.type_box.get_active()][1]
+            txtmode = MOD_TEXT[-1][1]
             self.statusbar.push(1,
-                    _("Correct the date or switch from `{cur_mode}' to `{text_mode}'"
-                        ).format(
-                            cur_mode = MOD_TEXT[self.type_box.get_active()][1],
-                            text_mode = MOD_TEXT[-1][1]))
+                                _("Correct the date or switch from `{cur_mode}'"
+                                  " to `{text_mode}'").format(
+                                      cur_mode=curmode, text_mode=txtmode))
             return False
 
     def build_menu_names(self, obj):
@@ -380,16 +384,15 @@ class EditDate(ManagedWindow):
 
         self.align_newyear_ui_with_calendar(new_cal)
 
-        (the_quality, the_modifier, the_calendar,
+        (the_quality, the_modifier, dummy_the_calendar,
          the_value, the_text, the_newyear) = self.build_date_from_ui()
         try:
-            self.date.set(
-                    quality=the_quality,
-                    modifier=the_modifier,
-                    calendar=old_cal,
-                    value=the_value,
-                    text=the_text,
-                    newyear=the_newyear)
+            self.date.set(quality=the_quality,
+                          modifier=the_modifier,
+                          calendar=old_cal,
+                          value=the_value,
+                          text=the_text,
+                          newyear=the_newyear)
         except DateError:
             pass
         else:

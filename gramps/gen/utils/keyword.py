@@ -51,14 +51,14 @@ Keyword translation interface
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 
-KEYWORDS = [("title",     "t", _("Person|Title"),     _("Person|TITLE")),
+KEYWORDS = [("title",     "t", _("Title", "Person"), _("TITLE", "Person")),
             ("given",     "f", _("Given"),     _("GIVEN")),
             ("surname",   "l", _("Surname"),    _("SURNAME")),
-            ("call",      "c", _("Name|Call"),      _("Name|CALL")),
-            ("common",    "x", _("Name|Common"),    _("Name|COMMON")),
+            ("call",      "c", _("Call", "Name"), _("CALL", "Name")),
+            ("common",    "x", _("Common", "Name"), _("COMMON", "Name")),
             ("initials",  "i", _("Initials"),  _("INITIALS")),
             ("suffix",    "s", _("Suffix"),    _("SUFFIX")),
-            ("primary",   "m", _("Name|Primary"), _("PRIMARY")),
+            ("primary",   "m", _("Primary", "Name"), _("PRIMARY")),
             ("primary[pre]",    "0m", _("Primary[pre]"), _("PRIMARY[PRE]")),
             ("primary[sur]",    "1m", _("Primary[sur]"), _("PRIMARY[SUR]")),
             ("primary[con]",    "2m", _("Primary[con]"), _("PRIMARY[CON]")),

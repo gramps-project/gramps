@@ -241,92 +241,87 @@ class ImportInfo:
         Extract info from obj about 'merge-candidate', Key is one of the
         predefined keys.
         """
+        key2string = {
+            FAMILY_KEY      : _('Family'),
+            SOURCE_KEY      : _('Source'),
+            EVENT_KEY       : _('Event'),
+            MEDIA_KEY       : _('Media Object'),
+            PLACE_KEY       : _('Place'),
+            REPOSITORY_KEY  : _('Repository'),
+            NOTE_KEY        : _('Note'),
+            CITATION_KEY    : _('Citation'),
+            }
         if key == PERSON_KEY:
-            return _("  %(id)s - %(text)s with %(id2)s\n") % {
-                        'id': obj.gramps_id,
-                        'text' : name_displayer.display(obj),
-                        'id2': sec_obj.gramps_id
-                        }
-        elif key == FAMILY_KEY :
-            return _("  Family %(id)s with %(id2)s\n") % {
-                        'id': obj.gramps_id, 'id2': sec_obj.gramps_id}
-        elif key == SOURCE_KEY:
-            return _("  Source %(id)s with %(id2)s\n") % {
-                        'id': obj.gramps_id, 'id2': sec_obj.gramps_id}
-        elif key == EVENT_KEY:
-            return _("  Event %(id)s with %(id2)s\n") % {
-                        'id': obj.gramps_id, 'id2': sec_obj.gramps_id}
-        elif key == MEDIA_KEY:
-            return _("  Media Object %(id)s with %(id2)s\n") % {
-                        'id': obj.gramps_id, 'id2': sec_obj.gramps_id}
-        elif key == PLACE_KEY:
-            return _("  Place %(id)s with %(id2)s\n") % {
-                        'id': obj.gramps_id, 'id2': sec_obj.gramps_id}
-        elif key == REPOSITORY_KEY:
-            return _("  Repository %(id)s with %(id2)s\n") % {
-                        'id': obj.gramps_id, 'id2': sec_obj.gramps_id}
-        elif key == NOTE_KEY:
-            return _("  Note %(id)s with %(id2)s\n") % {
-                        'id': obj.gramps_id, 'id2': sec_obj.gramps_id}
+            return _("  {id1} - {text} with {id2}").format(
+                        id1=obj.gramps_id,
+                        text=name_displayer.display(obj),
+                        id2=sec_obj.gramps_id)
         elif key == TAG_KEY:
             pass # Tags can't be merged
-        elif key == CITATION_KEY:
-            return _("  Citation %(id)s with %(id2)s\n") % {
-                        'id': obj.gramps_id, 'id2': sec_obj.gramps_id}
+        else:
+            return _("  {obj} {id1} with {id2}").format(
+                obj=key2string[key],
+                id1=obj.gramps_id,
+                id2=sec_obj.gramps_id)
 
     def info_text(self):
         """
         Construct an info message from the data in the class.
         """
         key2string = {
-            PERSON_KEY      : _('  People: %d\n'),
-            FAMILY_KEY      : _('  Families: %d\n'),
-            SOURCE_KEY      : _('  Sources: %d\n'),
-            EVENT_KEY       : _('  Events: %d\n'),
-            MEDIA_KEY       : _('  Media Objects: %d\n'),
-            PLACE_KEY       : _('  Places: %d\n'),
-            REPOSITORY_KEY  : _('  Repositories: %d\n'),
-            NOTE_KEY        : _('  Notes: %d\n'),
-            TAG_KEY         : _('  Tags: %d\n'),
-            CITATION_KEY    : _('  Citations: %d\n'),
+            PERSON_KEY      : _('People'),
+            FAMILY_KEY      : _('Families'),
+            SOURCE_KEY      : _('Sources'),
+            EVENT_KEY       : _('Events'),
+            MEDIA_KEY       : _('Media Objects'),
+            PLACE_KEY       : _('Places'),
+            REPOSITORY_KEY  : _('Repositories'),
+            NOTE_KEY        : _('Notes'),
+            TAG_KEY         : _('Tags'),
+            CITATION_KEY    : _('Citations'),
             }
-        txt = _("Number of new objects imported:\n")
+        txt = [_("Number of new objects imported:")]
+        table = []
         for key in self.keyorder:
+            label = _('%s:') % key2string[key]
+            new = '%d' % self.data_newobject[self.key2data[key]]
             if any(self.data_unknownobject):
-                strng = key2string[key][0:-1] + ' (%d)\n'
-                txt += strng % (self.data_newobject[self.key2data[key]],
-                                self.data_unknownobject[self.key2data[key]])
+                unknown = '(%d)' % self.data_unknownobject[self.key2data[key]]
+                table.append([label, new, unknown])
             else:
-                txt += key2string[key] % self.data_newobject[self.key2data[key]]
+                table.append([label, new])
+        txt.append(table)
+
         if any(self.data_unknownobject):
-            txt += _("\n The imported file was not self-contained.\n"
-                     "To correct for that, %(new)d objects were created and\n"
-                     "their typifying attribute was set to 'Unknown'.\n"
-                     "The breakdown per category is depicted by the\n"
-                     "number in parentheses. Where possible these\n"
-                     "'Unkown' objects are referenced by note %(unknown)s.\n"
-                     ) % {'new': sum(self.data_unknownobject), 'unknown': self.expl_note}
+            txt.append(
+                _("\nThe imported file was not self-contained.\n"
+                "To correct for that, %(new)d objects were created and\n"
+                "their typifying attribute was set to 'Unknown'.\n"
+                "The breakdown per category is depicted by the\n"
+                "number in parentheses. Where possible these\n"
+                "'Unknown' objects are referenced by note %(unknown)s."
+                     ) % {'new': sum(self.data_unknownobject),
+                          'unknown': self.expl_note})
         if self.data_relpath:
-            txt += _("\nMedia objects with relative paths have been\n"
-                     "imported. These paths are considered relative to\n"
-                     "the media directory you can set in the preferences,\n"
-                     "or, if not set, relative to the user's directory.\n"
-                    )
+            txt.append(
+                _("\nMedia objects with relative paths have been\n"
+                  "imported. These paths are considered relative to\n"
+                  "the media directory you can set in the preferences,\n"
+                  "or, if not set, relative to the user's directory."))
         merge = False
         for key in self.keyorder:
             if self.data_mergecandidate[self.key2data[key]]:
                 merge = True
                 break
         if merge:
-            txt += _("\n\nObjects that are candidates to be merged:\n")
+            txt.append(_("\nObjects that are candidates to be merged:"))
             for key in self.keyorder:
                 datakey = self.key2data[key]
                 for handle in list(self.data_mergecandidate[datakey].keys()):
-                    txt += self.data_mergecandidate[datakey][handle]
+                    txt.append(self.data_mergecandidate[datakey][handle])
 
         if self.data_families:
-            txt += "\n\n"
-            txt += self.data_families
+            txt.append(self.data_families)
 
         return txt
 
@@ -916,12 +911,7 @@ class GrampsParser(UpdateCallback):
         :param ifile: must be a file handle that is already open, with position
                       at the start of the file
         """
-        if personcount < 1000:
-            no_magic = True
-        else:
-            no_magic = False
-        with DbTxn(_("Gramps XML import"), self.db, batch=True,
-                   no_magic=no_magic) as self.trans:
+        with DbTxn(_("Gramps XML import"), self.db, batch=True) as self.trans:
             self.set_total(linecount)
 
             self.db.disable_signals()
@@ -1306,10 +1296,8 @@ class GrampsParser(UpdateCallback):
             return
 
         if self.family:
-            event.personal = False
             self.family.add_event_ref(self.eventref)
         elif self.person:
-            event.personal = True
             if (event.type == EventType.BIRTH) \
                    and (self.eventref.role == EventRoleType.PRIMARY) \
                    and (self.person.get_birth_ref() is None):
@@ -2525,7 +2513,7 @@ class GrampsParser(UpdateCallback):
             attrs = " ".join(
                 ['{}="{}"'.format(k,escape(v, entities={'"' : "&quot;"}))
                     for k,v in xml_attrs.items()]))
-        # TRANSLATORS: leave the {date} and {xml} untranslated in the format string,
+        # Translators: leave the {date} and {xml} untranslated in the format string,
         # but you may re-order them if needed.
         LOG.warning(_("Invalid date {date} in XML {xml}, preserving XML as text"
             ).format(date=date_error.date.__dict__, xml=xml))

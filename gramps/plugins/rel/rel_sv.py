@@ -124,8 +124,8 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
     def _get_direct_ancestor(self, person_gender, rel_string, step, inlaw):
         result = []
-        for ix in range(len(rel_string)):
-            if rel_string[ix] == 'f':
+        for rel in rel_string:
+            if rel == 'f':
                 result.append('far')
             else:
                 result.append('mor')

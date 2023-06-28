@@ -66,7 +66,7 @@ from gramps.gen.const import URL_MANUAL_SECT2
 #-------------------------------------------------------------------------
 
 WIKI_HELP_PAGE = URL_MANUAL_SECT2
-WIKI_HELP_SEC = _('manual|Place_Editor_dialog')
+WIKI_HELP_SEC = _('Place_Editor_dialog', 'manual')
 
 #-------------------------------------------------------------------------
 #
@@ -88,7 +88,7 @@ class EditPlace(EditPrimary):
         self.set_window(self.top.toplevel, None, self.get_menu_title())
         self.setup_configs('interface.place', 650, 450)
         self.place_name_label = self.top.get_object('place_name_label')
-        self.place_name_label.set_text(_('place|Name:'))
+        self.place_name_label.set_text(_('Name:', 'place'))
 
     def get_menu_title(self):
         if self.obj and self.obj.get_handle():
@@ -236,12 +236,12 @@ class EditPlace(EditPrimary):
     def _validate_coordinate(self, widget, text, typedeg):
         if (typedeg == 'lat') and not conv_lat_lon(text, "0", "ISO-D"):
             return ValidationError(
-                # translators: translate the "S" too (and the "or" of course)
+                # Translators: translate the "S" too (and the "or" of course)
                 _('Invalid latitude\n(syntax: '
                   '18\u00b09\'48.21"S, -18.2412 or -18:9:48.21)'))
         elif (typedeg == 'lon') and not conv_lat_lon("0", text, "ISO-D"):
             return ValidationError(
-                # translators: translate the "E" too (and the "or" of course)
+                # Translators: translate the "E" too (and the "or" of course)
                 _('Invalid longitude\n(syntax: '
                   '18\u00b09\'48.21"E, -18.2412 or -18:9:48.21)'))
 
@@ -379,44 +379,3 @@ class EditPlace(EditPrimary):
         self._do_close()
         if self.callback:
             self.callback(self.obj)
-
-#-------------------------------------------------------------------------
-#
-# DeletePlaceQuery
-#
-#-------------------------------------------------------------------------
-class DeletePlaceQuery:
-
-    def __init__(self, dbstate, uistate, place, person_list, family_list,
-                 event_list):
-        self.db = dbstate.db
-        self.uistate = uistate
-        self.obj = place
-        self.person_list = person_list
-        self.family_list = family_list
-        self.event_list = event_list
-
-    def query_response(self):
-        place_title = place_displayer.display(self.db, self.obj)
-        with DbTxn(_("Delete Place (%s)") % place_title, self.db) as trans:
-            self.db.disable_signals()
-
-            place_handle = self.obj.get_handle()
-
-            for handle in self.person_list:
-                person = self.db.get_person_from_handle(handle)
-                person.remove_handle_references('Place', place_handle)
-                self.db.commit_person(person, trans)
-
-            for handle in self.family_list:
-                family = self.db.get_family_from_handle(handle)
-                family.remove_handle_references('Place', place_handle)
-                self.db.commit_family(family, trans)
-
-            for handle in self.event_list:
-                event = self.db.get_event_from_handle(handle)
-                event.remove_handle_references('Place', place_handle)
-                self.db.commit_event(event, trans)
-
-            self.db.enable_signals()
-            self.db.remove_place(place_handle, trans)

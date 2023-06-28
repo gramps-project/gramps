@@ -33,19 +33,24 @@ Unknown     #000
 ===== Web Graphics =====
 Males       Web_Gender_Male.png
 Females     Web_Gender_Female.png
-# -------------------------------------------------------------------------- #
+# -------------------------------------------------------------------------- */
 /* Subsections : Ancestors Tree -------------------------------------------- */
 #tree {
-    page-break-before:always;
     margin:0;
     padding:0;
     background:none;
+    overflow-x:auto;
+}
+#toggle_anc {
+    margin:0;
+    padding:0;
+    background:none;
+    overflow-x:auto;
 }
 #treeContainer {
     position:relative;
     display: table-cell;
     vertical-align: middle;
-    overflow: visible;
     z-index:1;
 }
 #treeContainer div.boxbg {

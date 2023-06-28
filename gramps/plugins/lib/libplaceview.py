@@ -45,7 +45,7 @@ from gramps.gen.config import config
 from gramps.gui.dialog import ErrorDialog
 from gramps.gui.pluginmanager import GuiPluginManager
 from gramps.gui.ddtargets import DdTargets
-from gramps.gui.editors import EditPlace, DeletePlaceQuery
+from gramps.gui.editors import EditPlace
 from gramps.gui.filters.sidebar import PlaceSidebarFilter
 from gramps.gui.merge import MergePlace
 from gramps.gen.plug import CATEGORY_QR_PLACE
@@ -321,7 +321,7 @@ class PlaceBaseView(ListView):
           <attribute name="label" translatable="yes">_Merge...</attribute>
         </item>
       </section>
-''' % _("action|_Edit..."),  # to use sgettext()
+''' % _("_Edit...", "action"),  # to use sgettext()
         '''
         <placeholder id='otheredit'>
         <item>
@@ -456,7 +456,7 @@ class PlaceBaseView(ListView):
         </item>
       </section>
     </menu>
-''' % _('action|_Edit...')]  # to use sgettext()
+''' % _('_Edit...', 'action')]  # to use sgettext()
 
     map_ui_menu = '''
       <menu id="MapBtnMenu">
@@ -503,34 +503,17 @@ class PlaceBaseView(ListView):
             pass
 
     def remove(self, *obj):
+        ht_list = []
         for handle in self.selected_handles():
-            for link in self.dbstate.db.find_backlink_handles(handle,['Place']):
+            for _link in self.dbstate.db.find_backlink_handles(handle,
+                                                               ['Place']):
                 msg = _("Cannot delete place.")
-                msg2 = _("This place is currently referenced by another place. "
-                         "First remove the places it contains.")
+                msg2 = _("This place is currently referenced by another place."
+                         " First remove the places it contains.")
                 ErrorDialog(msg, msg2, parent=self.uistate.window)
                 return
-        self.remove_selected_objects()
-
-    def remove_object_from_handle(self, handle):
-        person_list = [
-            item[1] for item in
-            self.dbstate.db.find_backlink_handles(handle,['Person'])]
-
-        family_list = [
-            item[1] for item in
-            self.dbstate.db.find_backlink_handles(handle,['Family'])]
-
-        event_list = [
-            item[1] for item in
-            self.dbstate.db.find_backlink_handles(handle,['Event'])]
-
-        object = self.dbstate.db.get_place_from_handle(handle)
-        query = DeletePlaceQuery(self.dbstate, self.uistate, object,
-                                 person_list, family_list, event_list)
-
-        is_used = len(person_list) + len(family_list) + len(event_list) > 0
-        return (query, is_used, object)
+            ht_list.append(('Place', handle))
+        self.remove_selected_objects(ht_list)
 
     def edit(self, *obj):
         for handle in self.selected_handles():
@@ -595,6 +578,14 @@ class PlaceBaseView(ListView):
         """
         place = self.dbstate.db.get_place_from_handle(place_handle)
         place.add_tag(tag_handle)
+        self.dbstate.db.commit_place(place, transaction)
+
+    def remove_tag(self, transaction, place_handle, tag_handle):
+        """
+        Remove the given tag from the given place.
+        """
+        place = self.dbstate.db.get_place_from_handle(place_handle)
+        place.remove_tag(tag_handle)
         self.dbstate.db.commit_place(place, transaction)
 
     def get_default_gramplets(self):

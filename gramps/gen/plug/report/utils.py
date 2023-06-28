@@ -46,9 +46,8 @@ from ...utils.file import media_path_full
 from ..docgen import IndexMark, INDEX_TYPE_ALP
 
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
-def _T_(value):
-    """ enable deferred translations (see Python docs 22.1.3.4) """
-    return value
+def _T_(value, context=''): # enable deferred translations
+    return "%s\x04%s" % (context, value) if context else value
 
 #-------------------------------------------------------------------------
 #
@@ -108,10 +107,10 @@ def roman(num):
     nums = ('M', 'CM', 'D', 'CD', 'C', 'XC', 'L',
             'XL', 'X', 'IX', 'V', 'IV', 'I')
     retval = ""
-    for i in range(len(vals)):
-        amount = int(num / vals[i])
+    for i, value in enumerate(vals):
+        amount = int(num / value)
         retval += nums[i] * amount
-        num -= vals[i] * amount
+        num -= value * amount
     return retval
 
 #-------------------------------------------------------------------------
@@ -253,7 +252,7 @@ def get_address_str(addr):
             if addr_str == "":
                 addr_str = info
             else:
-                # translators: needed for Arabic, ignore otherwise
+                # Translators: needed for Arabic, ignore otherwise
                 addr_str = _("%(str1)s, %(str2)s"
                             ) % {'str1' : addr_str, 'str2' : info}
     return addr_str

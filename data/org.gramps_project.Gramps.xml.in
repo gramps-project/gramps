@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/x-gramps">
+    <comment>Gramps database</comment>
+    <glob pattern="*.grdb"/>
+  </mime-type>
+  <mime-type type="application/x-gedcom">
+    <comment>GEDCOM</comment>
+    <glob pattern="*.ged"/>
+    <glob pattern="*.gedcom"/>
+    <glob pattern="*.GED"/>
+    <glob pattern="*.GEDCOM"/>
+    <magic priority="80">
+      <match type="string" value="0 HEAD" offset="0:1"/>
+    </magic>
+  </mime-type>
+  <mime-type type="application/x-gramps-package">
+    <comment>Gramps package</comment>
+    <glob pattern="*.gpkg"/>
+  </mime-type>
+  <mime-type type="application/x-gramps-xml">
+    <comment>Gramps XML database</comment>
+    <glob pattern="*.gramps"/>
+    <magic priority="80">
+      <match type="string" value="&lt;!DOCTYPE database" offset="0:256"/>
+      <match type="string" value="&lt;database" offset="0:64"/>
+    </magic>
+  </mime-type>
+  <mime-type type="application/x-geneweb">
+    <comment>GeneWeb source file</comment>
+    <glob pattern="*.gw"/>
+    <glob pattern="*.GW"/>
+    <magic priority="80">
+      <match type="string" value="fam " offset="0:64"/>
+    </magic>
+  </mime-type>
+</mime-info>

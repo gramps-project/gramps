@@ -37,11 +37,12 @@ from ..menu import EnumeratedListOption, BooleanOption, NumberOption
 from ...proxy import PrivateProxyDb, LivingProxyDb
 from ...utils.grampslocale import GrampsLocale
 from ...const import GRAMPS_LOCALE as glocale
+from ...utils.place import coord_formats
 _ = glocale.translation.sgettext
 
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
-def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
-    return value
+def _T_(value, context=''): # enable deferred translations
+    return "%s\x04%s" % (context, value) if context else value
 
 #-------------------------------------------------------------------------
 #
@@ -63,6 +64,22 @@ def add_localization_option(menu, category):
         trans.add_item(languages[language], language)
     trans.set_help(_("The translation to be used for the report."))
     menu.add_option(category, "trans", trans)
+    return trans
+
+def add_extra_localization_option(menu, category, name, optname):
+    """
+    Insert an option for localizing the report into a different locale
+    than the default one
+    """
+
+    trans = EnumeratedListOption(_(name),
+                                 glocale.DEFAULT_TRANSLATION_STR)
+    trans.add_item(glocale.DEFAULT_TRANSLATION_STR, _("Default"))
+    languages = glocale.get_language_dict()
+    for language in sorted(languages, key=glocale.sort_key):
+        trans.add_item(languages[language], language)
+    trans.set_help(_("The additional translation to be used for the report."))
+    menu.add_option(category, optname, trans)
     return trans
 
 def add_name_format_option(menu, category):
@@ -171,17 +188,18 @@ def add_living_people_option(menu, category,
 
     living_people = EnumeratedListOption(_("Living People"), mode)
     items = [(LivingProxyDb.MODE_INCLUDE_ALL,
-              _T_("'living people'|Included, and all data"))]
+              _T_("Included, and all data", "'living people'"))]
     if process_names:
         items += [
             (LivingProxyDb.MODE_INCLUDE_FULL_NAME_ONLY,
-             _T_("'living people'|Full names, but data removed")),
+             _T_("Full names, but data removed", "'living people'")),
             (LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY,
-             _T_("'living people'|Given names replaced, and data removed")),
+             _T_("Given names replaced, and data removed", "'living people'")),
             (LivingProxyDb.MODE_REPLACE_COMPLETE_NAME,
-             _T_("'living people'|Complete names replaced, and data removed"))]
+             _T_("Complete names replaced, and data removed",
+                 "'living people'"))]
     items += [(LivingProxyDb.MODE_EXCLUDE_ALL,
-               _T_("'living people'|Not included"))]
+               _T_("Not included", "'living people'"))]
     living_people.set_items(items, xml_items=True) # for deferred translation
     living_people.set_help(_("How to handle living people"))
     menu.add_option(category, "living_people", living_people)
@@ -300,6 +318,24 @@ def run_date_format_option(report, menu):
         format_to_be = 0 # ISO always exists
     report._ldd.set_format(format_to_be)
 
+def add_tags_option(menu, category):
+    """
+    Insert an option for deciding whether to include tags
+    in the report
+
+    :param menu: The menu the options should be added to.
+    :type menu: :class:`.Menu`
+    :param category: A label that describes the category that the option
+        belongs to, e.g. "Report Options"
+    :type category: string
+    """
+
+    include_tags = EnumeratedListOption(_('Tags'), 0)
+    include_tags.add_item(0, _('Do not include'))
+    include_tags.add_item(1, _('Include'))
+    include_tags.set_help(_("Whether to include tags"))
+    menu.add_option(category, 'inc_tags', include_tags)
+
 def add_gramps_id_option(menu, category, ownline=False):
     """
     Insert an option for deciding whether to include Gramps IDs
@@ -341,3 +377,15 @@ def add_place_format_option(menu, category):
     place_format.set_help(_("Select the format to display places"))
     menu.add_option(category, "place_format", place_format)
     return place_format
+
+def add_coordinates_format_option(menu, category):
+    """
+    Insert an option for changing the report's coordinates format to a
+    report-specific format instead of the user's Edit=>Preferences choice
+    """
+    coord_format = EnumeratedListOption(_("Coordinates format"), -1)
+    for number, fmt in enumerate(coord_formats):
+        coord_format.add_item(number, fmt)
+    coord_format.set_help(_("Select the format to display coordinates"))
+    menu.add_option(category, "coord_format", coord_format)
+    return coord_format

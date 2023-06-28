@@ -287,7 +287,7 @@ class Span:
                 elif self.date2.get_modifier() == Date.MOD_AFTER:
                     _repr = trans_text("less than") + " " + fdate12
                 elif self.date2.get_modifier() == Date.MOD_ABOUT:
-                    _repr = trans_text("age|about") + " " + fdate12p1
+                    _repr = trans_text("about", "age") + " " + fdate12p1
                 elif self.date2.is_compound():
                     start, stop = self.date2.get_start_stop_range()
                     start = Date(*start)
@@ -322,15 +322,15 @@ class Span:
                     _repr = trans_text("more than") + " " + fdate12
             elif self.date1.get_modifier() == Date.MOD_ABOUT:
                 if   self.date2.get_modifier() == Date.MOD_NONE:
-                    _repr = trans_text("age|about") + " " + fdate12p1
+                    _repr = trans_text("about", "age") + " " + fdate12p1
                 elif self.date2.get_modifier() == Date.MOD_BEFORE:
                     _repr = trans_text("more than about") + " " + fdate12p1
                 elif self.date2.get_modifier() == Date.MOD_AFTER:
                     _repr = trans_text("less than about") + " " + fdate12p1
                 elif self.date2.get_modifier() == Date.MOD_ABOUT:
-                    _repr = trans_text("age|about") + " " + fdate12p1
+                    _repr = trans_text("about", "age") + " " + fdate12p1
                 elif self.date2.is_compound():
-                    _repr = trans_text("age|about") + " " + fdate12p1
+                    _repr = trans_text("about", "age") + " " + fdate12p1
             elif self.date1.is_compound():
                 if   self.date2.get_modifier() == Date.MOD_NONE:
                     start, stop = self.date1.get_start_stop_range()
@@ -347,7 +347,7 @@ class Span:
                 elif self.date2.get_modifier() == Date.MOD_AFTER:
                     _repr = trans_text("less than") + " " + fdate12
                 elif self.date2.get_modifier() == Date.MOD_ABOUT:
-                    _repr = trans_text("age|about") + " " + fdate12p1
+                    _repr = trans_text("about", "age") + " " + fdate12p1
                 elif self.date2.is_compound():
                     start1, stop1 = self.date1.get_start_stop_range()
                     start2, stop2 = self.date2.get_start_stop_range()
@@ -423,23 +423,23 @@ class Span:
         retval = ""
         detail = 0
         if diff_tuple[0] != 0:
-            # translators: leave all/any {...} untranslated
+            # Translators: leave all/any {...} untranslated
             retval += ngettext("{number_of} year", "{number_of} years",
                                diff_tuple[0]
                               ).format(number_of=diff_tuple[0])
             detail += 1
         if self.precision == detail:
             if diff_tuple[1] >= 6: # round up years
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 retval = ngettext("{number_of} year", "{number_of} years",
                                   diff_tuple[0] + 1
                                  ).format(number_of=diff_tuple[0] + 1)
             return retval
         if diff_tuple[1] != 0:
             if retval != "":
-                # translators: needed for Arabic, ignore otherwise
+                # Translators: needed for Arabic, ignore otherwise
                 retval += trans_text(", ")
-            # translators: leave all/any {...} untranslated
+            # Translators: leave all/any {...} untranslated
             retval += ngettext("{number_of} month", "{number_of} months",
                                diff_tuple[1]
                               ).format(number_of=diff_tuple[1])
@@ -448,9 +448,9 @@ class Span:
             return retval
         if diff_tuple[2] != 0:
             if retval != "":
-                # translators: needed for Arabic, ignore otherwise
+                # Translators: needed for Arabic, ignore otherwise
                 retval += trans_text(", ")
-            # translators: leave all/any {...} untranslated
+            # Translators: leave all/any {...} untranslated
             retval += ngettext("{number_of} day", "{number_of} days",
                                diff_tuple[2]
                               ).format(number_of=diff_tuple[2])
@@ -606,13 +606,13 @@ class Date:
                       "Swedish"]
 
 
-    ui_calendar_names = [_("calendar|Gregorian"),
-                         _("calendar|Julian"),
-                         _("calendar|Hebrew"),
-                         _("calendar|French Republican"),
-                         _("calendar|Persian"),
-                         _("calendar|Islamic"),
-                         _("calendar|Swedish")]
+    ui_calendar_names = [_("Gregorian", "calendar"),
+                         _("Julian", "calendar"),
+                         _("Hebrew", "calendar"),
+                         _("French Republican", "calendar"),
+                         _("Persian", "calendar"),
+                         _("Islamic", "calendar"),
+                         _("Swedish", "calendar")]
 
     def __init__(self, *source):
         """
@@ -1853,7 +1853,7 @@ class Date:
         Lookup date quality keyword, even if translated.
         """
         qualities = ["none", "estimated", "calculated"]
-        ui_qualities = [_("date-quality|none"),
+        ui_qualities = [_("none", "date-quality"),
                         _("estimated"), _("calculated")]
         if quality.lower() in qualities:
             return qualities.index(quality.lower())
@@ -1868,7 +1868,7 @@ class Date:
         """
         mods = ["none", "before", "after", "about",
                 "range", "span", "textonly"]
-        ui_mods = [_("date-modifier|none"),
+        ui_mods = [_("none", "date-modifier"),
                    _("before"), _("after"), _("about"),
                    _("range"), _("span"), _("textonly")]
         if modifier.lower() in mods:

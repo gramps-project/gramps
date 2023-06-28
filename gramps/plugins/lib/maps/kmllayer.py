@@ -25,22 +25,16 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import GObject
-
-#------------------------------------------------------------------------
-#
-# Set up logging
-#
-#------------------------------------------------------------------------
 import logging
-_LOG = logging.getLogger("maps.kmllayer")
+
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import Gdk
 import cairo
+from gi.repository import Gdk
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -57,14 +51,17 @@ from .libkml import Kml
 
 try:
     import gi
-    gi.require_version('OsmGpsMap', '1.0')
     from gi.repository import OsmGpsMap as osmgpsmap
+    gi.require_version('OsmGpsMap', '1.0')
 except:
     raise
 
-# pylint: disable=unused-variable
-# pylint: disable=unused-argument
-# pylint: disable=no-member
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+_LOG = logging.getLogger("maps.kmllayer")
 
 class KmlLayer(GObject.GObject, osmgpsmap.MapLayer):
     """
@@ -118,7 +115,8 @@ class KmlLayer(GObject.GObject, osmgpsmap.MapLayer):
         color2 = Gdk.color_parse('blue')
         for polygons in self.polygons:
             for polygon in polygons:
-                (name, ptype, color, transparency, points) = polygon
+                (dummy_name, ptype, dummy_color,
+                 dummy_transparency, points) = polygon
                 map_points = []
                 for point in points:
                     conv_pt = osmgpsmap.MapPoint.new_degrees(point[0], point[1])
@@ -155,7 +153,8 @@ class KmlLayer(GObject.GObject, osmgpsmap.MapLayer):
                 ctx.restore()
         for paths in self.paths:
             for path in paths:
-                (name, ptype, color, transparency, points) = path
+                (dummy_name, ptype, dummy_color,
+                 dummy_transparency, points) = path
                 map_points = []
                 for point in points:
                     conv_pt = osmgpsmap.MapPoint.new_degrees(point[0], point[1])
@@ -185,7 +184,7 @@ class KmlLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         render the layer
         """
-        pass
+        dummy_map = gpsmap
 
     def do_busy(self):
         """
@@ -197,6 +196,8 @@ class KmlLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         When we press a button.
         """
+        dummy_map = gpsmap
+        dummy_evt = gdkeventbutton
         return False
 
 GObject.type_register(KmlLayer)

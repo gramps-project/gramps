@@ -76,7 +76,7 @@ _ = glocale.translation.gettext
 
 try:
     # On Darwin sys.getdefaultencoding() is correct, on Win32 it's
-    # sys.stdout.enoding, and on Linux they're both right.
+    # sys.stdout.encoding, and on Linux they're both right.
     if mac():
         _encoding = sys.getdefaultencoding()
     else:
@@ -102,7 +102,7 @@ except:
 # code. That unfortunately initializes GrampsLocale, so it has its own
 # logging setup during initialization.
 #-------------------------------------------------------------------------
-"""Setup basic logging support."""
+"""Set up basic logging support."""
 
 # Setup a formatter
 form = logging.Formatter(fmt="%(asctime)s.%(msecs).03d: %(levelname)s: "
@@ -184,10 +184,10 @@ from .gen.mime import mime_type_is_defined
 #
 #-------------------------------------------------------------------------
 
-MIN_PYTHON_VERSION = (3, 3, 0, '', 0)
+MIN_PYTHON_VERSION = (3, 5, 0, '', 0)
 if not sys.version_info >= MIN_PYTHON_VERSION:
     logging.warning(_("Your Python version does not meet the "
-             "requirements. At least python %(v1)d.%(v2)d.%(v3)d is needed to"
+             "requirements. At least Python %(v1)d.%(v2)d.%(v3)d is needed to"
              " start Gramps.\n\n"
              "Gramps will terminate now.") % {
              'v1': MIN_PYTHON_VERSION[0],
@@ -270,6 +270,13 @@ def show_settings():
         cairover_str = 'not found'
 
     try:
+        gi.require_version('PangoCairo', '1.0')
+        from gi.repository import PangoCairo
+        pangocairo_str = PangoCairo._version
+    except ImportError:
+        pangocairo_str = _("not found")
+
+    try:
         from gi import Repository
         repository = Repository.get_default()
         if repository.enumerate_versions("OsmGpsMap"):
@@ -287,10 +294,9 @@ def show_settings():
         osmgpsmap_str = 'not found'
 
     try:
-        from gi import Repository
-        repository = Repository.get_default()
+        import gi
+        repository = gi.Repository.get_default()
         if repository.enumerate_versions("GExiv2"):
-            import gi
             gi.require_version('GExiv2', '0.10')
             from gi.repository import GExiv2
             try:
@@ -306,6 +312,20 @@ def show_settings():
         gexiv2_str = 'not new enough'
 
     try:
+        vers_str = Popen(['exiv2', '-V'],
+                         stdout=PIPE).communicate(input=None)[0]
+        try:
+            if isinstance(vers_str, bytes) and sys.stdin.encoding:
+                vers_str = vers_str.decode(sys.stdin.encoding)
+            indx = vers_str.find('exiv2 ') + 6
+            vers_str = vers_str[indx: indx + 4]
+        except Exception:
+            vers_str = _('not found')
+
+    except Exception:
+        vers_str = _("can't found it because exiv2 not installed")
+
+    try:
         import PyICU
         try:
             pyicu_str = PyICU.VERSION
@@ -317,6 +337,107 @@ def show_settings():
     except ImportError:
         pyicu_str = 'not found'
         icu_str = 'not found'
+
+    try:
+        import icu
+        icu_str = icu.PY_VERSION
+    except Exception:
+        icu_str = _('not found')
+
+    try:
+        import PIL
+        try:
+            pil_ver = PIL.__version__
+        except Exception:
+            try:
+                pil_ver = str(PIL.PILLOW_VERSION)
+            except Exception:
+                try:
+                    # print(dir(PIL))
+                    pil_ver = str(PIL.VERSION)
+                except Exception:
+                    pil_ver = _("Installed but does not supply version")
+    except ImportError:
+        pil_ver = _("not found")
+
+    def verstr(nums):
+        return '.'.join(str(num) for num in nums)
+
+    #GTKSPELL_MIN_VER = (3, 0)
+    #gtkspell_min_ver_str = verstr(GTKSPELL_MIN_VER)
+    # ENCHANT_MIN_VER = (0, 0)  # TODO ?
+    gtkspell_ver_tp = (0, 0)
+    # Attempting to import gtkspell gives an error dialog if gtkspell is
+    # not available so test first and log just a warning to the console
+    # instead.
+    try:
+        from gi import Repository
+        repository = Repository.get_default()
+        gtkspell_ver = _("not found")
+        if repository.enumerate_versions("GtkSpell"):
+            try:
+                gi.require_version('GtkSpell', '3.0')
+                from gi.repository import GtkSpell as Gtkspell
+                gtkspell_ver = str(Gtkspell._version)
+                aaa = Gtkspell._version.split(".")
+                v1 = int(aaa[0])
+                v2 = int(aaa[1])
+                gtkspell_ver_tp = (v1, v2)
+                # print("gtkspell_ver " + gtkspell_ver)
+            except Exception:
+                gtkspell_ver = _("not found")
+        elif repository.enumerate_versions("Gtkspell"):
+            try:
+                gi.require_version('Gtkspell', '3.0')
+                from gi.repository import Gtkspell
+                gtkspell_ver = str(Gtkspell._version)
+                gtkspell_ver_tp = Gtkspell._version
+                # print("gtkspell_ver " + gtkspell_ver)
+            except Exception:
+                gtkspell_ver = _("not found")
+    except Exception:
+        gtkspell_ver = _("not found")
+
+    try:
+        import enchant
+        enchant_result = enchant.get_enchant_version()
+    except Exception:
+        from ctypes import cdll, c_char_p
+        try:
+            enchant = cdll.LoadLibrary("libenchant")
+        except FileNotFoundError:
+            enchant = cdll.LoadLibrary("libenchant-2")
+        enchant_ver_call = enchant.enchant_get_version
+        enchant_ver_call.restype = c_char_p
+        enchant_result = enchant_ver_call().decode("utf-8")
+
+    #RCS_MIN_VER = (5, 9, 4)
+    #rcs_ver_str = verstr(RCS_MIN_VER)
+    # print("os.environ: %s " % os.environ)
+    try:
+        if win():
+            _RCS_FOUND = os.system("rcs -V >nul 2>nul") == 0
+            rcs_ver = _("installed")
+            # print("rcs -V : " + os.system("rcs -V"))
+            if _RCS_FOUND and "TZ" not in os.environ:
+                # RCS requires the "TZ" variable be set.
+                os.environ["TZ"] = str(time.timezone)
+        else:
+            import subprocess
+            import re
+            # print("xx rcs -V : " + os.system("rcs --version"))
+            _RCS_FOUND = str(subprocess.check_output(['rcs', '--version']))
+            version = re.compile(".*GNU RCS\) ([0-9]+\.[0-9]+\.[0-9]+).*")
+            rcs_ver = version.findall(_RCS_FOUND)[0]
+    except Exception:
+                rcs_ver = _("not found")
+
+    try:
+        gi.require_version('GeocodeGlib', '1.0')
+        from gi.repository import GeocodeGlib
+        geocodeglib_ver = str(GeocodeGlib._version)
+    except Exception:
+        geocodeglib_ver = _("not found")
 
     try:
         import bsddb3 as bsddb
@@ -386,20 +507,38 @@ def show_settings():
 
     print("Gramps Settings:")
     print("----------------")
-    print(' python    : %s' % py_str)
     print(' gramps    : %s' % gramps_str)
-    print(' gtk++     : %s' % gtkver_str)
-    print(' pygobject : %s' % pygobjectver_str)
-    print(' pango     : %s' % pangover_str)
-    print(' cairo     : %s' % cairover_str)
-    print(' pycairo   : %s' % pycairover_str)
-    print(' osmgpsmap : %s' % osmgpsmap_str)
-    print(' GExiv2    : %s' % gexiv2_str)
-    print(' ICU       : %s' % icu_str)
-    print(' PyICU     : %s' % pyicu_str)
     print(' o.s.      : %s' % sys.platform)
     if kernel:
         print(' kernel    : %s' % kernel)
+    print('')
+    print("Required:")
+    print("---------")
+    print(' Python    : %s' % py_str)
+    print(' Gtk++     : %s' % gtkver_str)
+    print(' pygobject : %s' % pygobjectver_str)
+    print(' Cairo     : %s' % cairover_str)
+    print(' pycairo   : %s' % pycairover_str)
+    print(' Pango     : %s' % pangover_str)
+    print(' PangoCairo: %s' % pangocairo_str)
+    print('')
+    print("Recommended:")
+    print("------------")
+    print(' osmgpsmap : %s' % osmgpsmap_str)
+    print(' Graphviz  : %s' % dotversion_str)
+    print(' Ghostscr. : %s' % gsversion_str)
+    print(' ICU       : %s' % icu_str)
+    print(' PyICU     : %s' % pyicu_str)
+    print('')
+    print("Optional:")
+    print("---------")
+    print(' Gtkspell   :', gtkspell_ver)
+    print(' Enchant    :', enchant_result)
+    print(' RCS        :', rcs_ver)
+    print(' PILLOW     :', pil_ver)
+    print(' GExiv2     : %s' % gexiv2_str)
+    print(' Exiv2 lib. : %s' % vers_str)
+    print(' geocodeglib: %s' % geocodeglib_ver)
     print('')
     print("Environment settings:")
     print("---------------------")
@@ -413,11 +552,6 @@ def show_settings():
     print(' PYTHONPATH:')
     for folder in sys.path:
         print("   ", folder)
-    print('')
-    print("Non-python dependencies:")
-    print("------------------------")
-    print(' Graphviz  : %s' % dotversion_str)
-    print(' Ghostscr. : %s' % gsversion_str)
     print('')
     print("System PATH env variable:")
     print("-------------------------")
@@ -445,15 +579,15 @@ def run():
         error += [(_("Configuration error:"), str(msg))]
         return error
     except msg:
-        LOG.error("Error reading configuration.", exc_info=True)
-        return [(_("Error reading configuration"), str(msg))]
+        LOG.error("Could not read configuration.", exc_info=True)
+        return [(_("Could not read configuration"), str(msg))]
 
     if not mime_type_is_defined(APP_GRAMPS):
         error += [(_("Configuration error:"),
-                    _("A definition for the MIME-type %s could not "
+                    _("A definition for the media type %s could not "
                       "be found \n\n Possibly the installation of Gramps "
-                      "was incomplete. Make sure the MIME-types "
-                      "of Gramps are properly installed.")
+                      "was incomplete. Make sure something to handle the "
+                      "media types of Gramps is installed.")
                     % APP_GRAMPS)]
 
     # we start with parsing the arguments to determine if we have a cli or a
@@ -497,10 +631,10 @@ def run():
         LOG.debug('environment: LANGUAGE is not defined')
 
     if argpars.need_gui():
-        LOG.debug("A GUI is needed, set it up")
+        LOG.debug("A GUI is needed. Set one up.")
         try:
             from .gui.grampsgui import startgramps
-            # no DISPLAY is a RuntimeError in an older pygtk (e.g. F14's 2.17)
+            # no DISPLAY is a RuntimeError in an older pygtk (e.g. 2.17 in Fedora 14)
         except RuntimeError as msg:
             error += [(_("Configuration error:"), str(msg))]
             return error

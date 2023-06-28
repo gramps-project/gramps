@@ -45,7 +45,7 @@ from ..listmodel import ListModel, TOGGLE
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Filters' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Tag_selection_dialog')
+WIKI_HELP_SEC = _('Tag_selection_dialog', 'manual')
 
 #-------------------------------------------------------------------------
 #
@@ -101,7 +101,7 @@ class EditTagList(ManagedWindow):
         Create a dialog box to select tags.
         """
         # pylint: disable-msg=E1101
-        top = Gtk.Dialog(parent=self.uistate.window)
+        top = Gtk.Dialog(transient_for=self.uistate.window)
         top.vbox.set_spacing(5)
 
         columns = [('', -1, 300),

@@ -64,15 +64,16 @@ class AddressBookListPage(BasePage):
     """
     Create the index for addresses.
     """
-    def __init__(self, report, title, has_url_addr_res):
+    def __init__(self, report, the_lang, the_title, has_url_addr_res):
         """
         @param: report           -- The instance of the main report class
                                     for this report
-        @param: title            -- Is the title of the web page
+        @param: the_lang         -- The lang to process
+        @param: the_title        -- The title page related to the language
         @param: has_url_addr_res -- The url, address and residence to use
                                     for the report
         """
-        BasePage.__init__(self, report, title)
+        BasePage.__init__(self, report, the_lang, the_title)
 
         # Name the file, and create it
         output_file, sio = self.report.create_file("addressbook")
@@ -87,11 +88,11 @@ class AddressBookListPage(BasePage):
             outerwrapper += addressbooklist
 
             # Address Book Page message
-            msg = _("This page contains an index of all the individuals in "
-                    "the database, sorted by their surname, with one of the "
-                    "following: Address, Residence, or Web Links. "
-                    "Selecting the person&#8217;s name will take you "
-                    "to their individual Address Book page.")
+            msg = self._("This page contains an index of all the individuals "
+                         "in the database, sorted by their surname, with one "
+                         "of the following: Address, Residence, or Web Links. "
+                         "Selecting the person&#8217;s name will take you "
+                         "to their individual Address Book page.")
             addressbooklist += Html("p", msg, id="description")
 
             # begin Address Book table
@@ -109,10 +110,10 @@ class AddressBookListPage(BasePage):
                     Html("th", label, class_=colclass, inline=True)
                     for (label, colclass) in [
                         ["&nbsp;", "ColumnRowLabel"],
-                        [_("Full Name"), "ColumnName"],
-                        [_("Address"), "ColumnAddress"],
-                        [_("Residence"), "ColumnResidence"],
-                        [_("Web Links"), "ColumnWebLinks"]
+                        [self._("Full Name"), "ColumnName"],
+                        [self._("Address"), "ColumnAddress"],
+                        [self._("Residence"), "ColumnResidence"],
+                        [self._("Web Links"), "ColumnWebLinks"]
                     ]
                 )
 

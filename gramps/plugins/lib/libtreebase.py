@@ -703,7 +703,7 @@ class PageNumberBox(BoxBase):
 
     def __calc_position(self, page):
         """ calculate where I am to print on the page(s) """
-        # translators: needed for Arabic, ignore otherwise
+        # Translators: needed for Arabic, ignore otherwise
         self.text = "(%d" + self._(',') + "%d)"
 
         style_sheet = self.doc.get_style_sheet()

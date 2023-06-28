@@ -52,6 +52,12 @@ class Gallery(Gramplet):
         self.top = Gtk.Box(spacing=3)
         return self.top
 
+    def set_orientation(self, orientation):
+        """
+        Called when the gramplet orientation changes.
+        """
+        self.top.set_orientation(orientation)
+
     def clear_images(self):
         """
         Remove all images from the Gramplet.

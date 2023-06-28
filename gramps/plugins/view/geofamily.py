@@ -23,31 +23,28 @@
 """
 Geography for one family
 """
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import operator
-from gi.repository import Gdk
-KEY_TAB = Gdk.KEY_Tab
-from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # set up logging
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
-_LOG = logging.getLogger("GeoGraphy.geofamily")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps Modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+from gi.repository import Gdk
+from gi.repository import Gtk
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from gramps.gen.lib import EventRoleType, EventType
 from gramps.gen.config import config
 from gramps.gen.datehandler import displayer
@@ -57,11 +54,14 @@ from gramps.gen.utils.place import conv_lat_lon
 from gramps.gui.views.bookmarks import FamilyBookmarks
 from gramps.plugins.lib.maps.geography import GeoGraphyView
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+_LOG = logging.getLogger("GeoGraphy.geofamily")
+KEY_TAB = Gdk.KEY_Tab
+_ = glocale.translation.gettext
 
 _UI_DEF = [
     '''
@@ -150,11 +150,11 @@ _UI_DEF = [
 # pylint: disable=unused-variable
 # pylint: disable=unused-argument
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GeoView
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class GeoFamily(GeoGraphyView):
     """
     The view used to render family map.
@@ -162,9 +162,9 @@ class GeoFamily(GeoGraphyView):
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         GeoGraphyView.__init__(self, _('Family places map'),
-                                      pdata, dbstate, uistate,
-                                      FamilyBookmarks,
-                                      nav_group)
+                               pdata, dbstate, uistate,
+                               FamilyBookmarks,
+                               nav_group)
         self.dbstate = dbstate
         self.uistate = uistate
         self.place_list = []
@@ -216,7 +216,12 @@ class GeoFamily(GeoGraphyView):
         """
         Rebuild the tree with the given person handle as the root.
         """
-        self.build_tree()
+        if self.osm is None:
+            return
+        if self.uistate.get_active('Family'):
+            self._createmap(self.uistate.get_active('Family'))
+        else:
+            self._createmap(self.uistate.get_active('Person'))
 
     def build_tree(self):
         """
@@ -224,12 +229,7 @@ class GeoFamily(GeoGraphyView):
         all handling of visibility is now in rebuild_trees, see that for more
         information.
         """
-        if not self.dbstate.is_open():
-            return
-        if self.uistate.get_active('Family'):
-            self._createmap(self.uistate.get_active('Family'))
-        else:
-            self._createmap(self.uistate.get_active('Person'))
+        pass
 
     def _createpersonmarkers(self, dbstate, person, comment, fam_id):
         """
@@ -256,15 +256,16 @@ class GeoFamily(GeoGraphyView):
                         descr = _pd.display(dbstate.db, place)
                         evt = EventType(event.get_type())
                         descr1 = _("%(eventtype)s : %(name)s") % {
-                                        'eventtype': evt,
-                                        'name': _nd.display(person)}
+                            'eventtype': evt,
+                            'name': _nd.display(person)}
                         # place.get_longitude and place.get_latitude return
                         # one string. We have coordinates when the two values
                         # contains non null string.
                         if longitude and latitude:
-                            if not self._present_in_places_list(2,
-                                                str(descr1 + descr + str(evt))):
-                                self._append_to_places_list(descr,
+                            if not self._present_in_places_list(
+                                    2, str(descr1 + descr + str(evt))):
+                                self._append_to_places_list(
+                                    descr,
                                     str(descr1 + descr + str(evt)),
                                     _nd.display(person),
                                     latitude, longitude,
@@ -273,11 +274,10 @@ class GeoFamily(GeoGraphyView):
                                     person.gramps_id,
                                     place.gramps_id,
                                     event.gramps_id,
-                                    fam_id
-                                    )
+                                    fam_id)
                         else:
                             self._append_to_places_without_coord(
-                                                        place.gramps_id, descr)
+                                place.gramps_id, descr)
             family_list = person.get_family_handle_list()
             for family_hdl in family_list:
                 family = self.dbstate.db.get_family_from_handle(family_hdl)
@@ -285,13 +285,13 @@ class GeoFamily(GeoGraphyView):
                     for event_ref in family.get_event_ref_list():
                         if event_ref:
                             event = dbstate.db.get_event_from_handle(
-                                                                  event_ref.ref)
+                                event_ref.ref)
                             role = event_ref.get_role()
                             if event.get_place_handle():
                                 place_handle = event.get_place_handle()
                                 if place_handle:
                                     place = dbstate.db.get_place_from_handle(
-                                                                   place_handle)
+                                        place_handle)
                                     if place:
                                         longitude = place.get_longitude()
                                         latitude = place.get_latitude()
@@ -309,19 +309,20 @@ class GeoFamily(GeoGraphyView):
                                         eyear = event.get_date_object().to_calendar(self.cal).get_year()
                                         if longitude and latitude:
                                             if not self._present_in_places_list(
-                                             2, str(descr1 + descr + str(evt))):
+                                                    2, str(descr1 +
+                                                           descr + str(evt))):
                                                 self._append_to_places_list(
-                                                 descr,
-                                                 str(descr1 + descr + str(evt)),
-                                                 _nd.display(person),
-                                                 latitude, longitude,
-                                                 role, eyear,
-                                                 event.get_type(),
-                                                 person.gramps_id,
-                                                 place.gramps_id,
-                                                 event.gramps_id,
-                                                 family.gramps_id
-                                                 )
+                                                    descr,
+                                                    str(descr1 + descr + str(
+                                                        evt)),
+                                                    _nd.display(person),
+                                                    latitude, longitude,
+                                                    role, eyear,
+                                                    event.get_type(),
+                                                    person.gramps_id,
+                                                    place.gramps_id,
+                                                    event.gramps_id,
+                                                    family.gramps_id)
                                         else:
                                             self._append_to_places_without_coord(place.gramps_id, descr)
 
@@ -340,24 +341,24 @@ class GeoFamily(GeoGraphyView):
             mother = self.dbstate.db.get_person_from_handle(hdl)
         if father and mother:
             label = _("%(gramps_id)s : %(father)s and %(mother)s") % {
-                'father' : _nd.display(father),
-                'mother' : _nd.display(mother),
-                'gramps_id' : family.gramps_id,
+                'father': _nd.display(father),
+                'mother': _nd.display(mother),
+                'gramps_id': family.gramps_id,
                 }
         elif father:
             label = "%(gramps_id)s : %(father)s" % {
-                'father' : _nd.display(father),
-                'gramps_id' : family.gramps_id,
+                'father': _nd.display(father),
+                'gramps_id': family.gramps_id,
                 }
         elif mother:
             label = "%(gramps_id)s : %(mother)s" % {
-                'mother' : _nd.display(mother),
-                'gramps_id' : family.gramps_id,
+                'mother': _nd.display(mother),
+                'gramps_id': family.gramps_id,
                 }
         else:
             # No translation for bare gramps_id
             label = "%(gramps_id)s :" % {
-                'gramps_id' : family.gramps_id,
+                'gramps_id': family.gramps_id,
                 }
         return label
 
@@ -367,7 +368,7 @@ class GeoFamily(GeoGraphyView):
         """
         dbstate = self.dbstate
         self.message_layer.add_message(
-                          _("Family places for %s") % self.family_label(family))
+            _("Family places for %s") % self.family_label(family))
         person = None
         if family:
             handle = family.get_father_handle()
@@ -376,7 +377,7 @@ class GeoFamily(GeoGraphyView):
         else:
             return
         family_id = family.gramps_id
-        if person is None: # family without father ?
+        if person is None:  # family without father ?
             handle = family.get_mother_handle()
             if handle:
                 person = dbstate.db.get_person_from_handle(handle)
@@ -387,7 +388,7 @@ class GeoFamily(GeoGraphyView):
         if person is not None:
             family_list = person.get_family_handle_list()
             if len(family_list) > 0:
-                fhandle = family_list[0] # first is primary
+                fhandle = family_list[0]  # first is primary
                 fam = dbstate.db.get_family_from_handle(fhandle)
                 father = mother = None
                 handle = fam.get_father_handle()
@@ -395,8 +396,8 @@ class GeoFamily(GeoGraphyView):
                     father = dbstate.db.get_person_from_handle(handle)
                 if father:
                     comment = _("Father : %(id)s : %(name)s") % {
-                                                   'id': father.gramps_id,
-                                                   'name': _nd.display(father)}
+                        'id': father.gramps_id,
+                        'name': _nd.display(father)}
                     self._createpersonmarkers(dbstate, father,
                                               comment, family_id)
                 handle = fam.get_mother_handle()
@@ -404,30 +405,29 @@ class GeoFamily(GeoGraphyView):
                     mother = dbstate.db.get_person_from_handle(handle)
                 if mother:
                     comment = _("Mother : %(id)s : %(name)s") % {
-                                                   'id': mother.gramps_id,
-                                                   'name': _nd.display(mother)}
+                        'id': mother.gramps_id,
+                        'name': _nd.display(mother)}
                     self._createpersonmarkers(dbstate, mother,
                                               comment, family_id)
                 index = 0
                 child_ref_list = fam.get_child_ref_list()
                 if child_ref_list:
                     for child_ref in child_ref_list:
-                        child = dbstate.db.get_person_from_handle(child_ref.ref)
+                        child = dbstate.db.get_person_from_handle(
+                            child_ref.ref)
                         if child:
                             index += 1
                             comment = _("Child : %(id)s - %(index)d "
                                         ": %(name)s") % {
-                                            'id'    : child.gramps_id,
-                                            'index' : index,
-                                            'name'  : _nd.display(child)
-                                         }
+                                            'id': child.gramps_id,
+                                            'index': index,
+                                            'name': _nd.display(child)}
                             self._createpersonmarkers(dbstate, child,
                                                       comment, family_id)
             else:
                 comment = _("Person : %(id)s %(name)s has no family.") % {
-                                'id' : person.gramps_id,
-                                'name' : _nd.display(person)
-                                }
+                    'id': person.gramps_id,
+                    'name': _nd.display(person)}
                 self._createpersonmarkers(dbstate, person, comment, family_id)
 
     def _createmap(self, handle):
@@ -435,6 +435,8 @@ class GeoFamily(GeoGraphyView):
         Create all markers for each people's event in the database which has
         a lat/lon.
         """
+        if self.osm is None:
+            return
         if not handle:
             return
         self.place_list = []
@@ -495,7 +497,6 @@ class GeoFamily(GeoGraphyView):
         """
         self.menu = Gtk.Menu()
         menu = self.menu
-        menu.set_title("family")
         message = ""
         oldplace = ""
         prevmark = None

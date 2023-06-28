@@ -1,7 +1,8 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2011 Nick Hall
-# Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2011 Tim G L Lyons
+# Copyright (C) 2020 Matthias Kemmer
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -61,7 +62,10 @@ class Notes(Gramplet):
         self.right.set_sensitive(False)
         hbox.pack_start(self.right, False, False, 0)
         self.page = Gtk.Label()
-        hbox.pack_end(self.page, False, False, 10)
+        self.page.set_halign(Gtk.Align.START)
+        hbox.pack_start(self.page, True, True, 10)
+        self.ntype = Gtk.Label()
+        hbox.pack_start(self.ntype, False, False, 10)
 
         scrolledwindow = Gtk.ScrolledWindow()
         scrolledwindow.set_policy(Gtk.PolicyType.AUTOMATIC,
@@ -85,6 +89,7 @@ class Notes(Gramplet):
         self.texteditor.set_text(StyledText())
         self.note_list = obj.get_note_list()
         self.page.set_text('')
+        self.ntype.set_text('')
         if len(self.note_list) > 0:
             self.set_has_data(True)
             if len(self.note_list) > 1:
@@ -108,6 +113,7 @@ class Notes(Gramplet):
         note_handle = self.note_list[self.current]
         note = self.dbstate.db.get_note_from_handle(note_handle)
         self.texteditor.set_text(note.get_styledtext())
+        self.ntype.set_text(str(note.get_type()))
         self.page.set_text(_('%(current)d of %(total)d') %
                            {'current': self.current + 1,
                             'total': len(self.note_list)})
@@ -369,3 +375,19 @@ class MediaNotes(Notes):
                 self.set_has_data(False)
         else:
             self.set_has_data(False)
+
+class NoteNotes(Notes):
+    """
+    Display a single note in NoteView.
+    """
+    def db_changed(self):
+        self.connect(self.dbstate.db, 'note-update', self.update)
+        self.connect_signal('Note', self.update)
+
+    def main(self):
+        self.clear_text()
+        active_handle = self.get_active('Note')
+        if active_handle:
+            active = self.dbstate.db.get_note_from_handle(active_handle)
+            if active:
+                self.texteditor.set_text(active.get_styledtext())

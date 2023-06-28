@@ -21,7 +21,7 @@ from gramps.gen.plug._pluginreg import newplugin, STABLE, EXPORT
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
-MODULE_VERSION="5.1"
+MODULE_VERSION="5.2"
 
 #------------------------------------------------------------------------
 #
@@ -33,7 +33,9 @@ plg = newplugin()
 plg.id = 'ex_csv'
 plg.name = _("Comma Separated Values Spreadsheet (CSV)")
 plg.name_accell = _("Comma _Separated Values Spreadsheet (CSV)")
-plg.description = _("CSV is a common spreadsheet format.")
+plg.description = _("CSV is a common spreadsheet format."
+                    "\nYou can change this behavior in the 'Configure active"
+                    " view' of any list-based view")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE

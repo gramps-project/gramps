@@ -105,7 +105,7 @@ class StyleListDisplay(ManagedWindow):
             "on_edit_clicked" : self.on_edit_clicked,
             "on_cancel_clicked" : self.__cancel,
             "on_help_btn_clicked" : lambda x: display_help(
-                WIKI_HELP_PAGE, _('manual|Document_Styles_dialog')),
+                WIKI_HELP_PAGE, _('Document_Styles_dialog', 'manual')),
             "on_cancel_style_clicked" : dummy_callback,
             "on_save_style_clicked" : dummy_callback,
             "on_help_btn_style_clicked" : dummy_callback,
@@ -239,7 +239,7 @@ class StyleEditor(ManagedWindow):
             "on_save_style_clicked" : self.on_save_style_clicked,
             "on_cancel_style_clicked" : self.__cancel,
             "on_help_btn_style_clicked" : lambda x: display_help(
-                WIKI_HELP_PAGE, _('manual|Style_editor_dialog')),
+                WIKI_HELP_PAGE, _('Style_editor_dialog', 'manual')),
             "on_cancel_clicked" : dummy_callback,
             "on_ok_clicked" : dummy_callback,
             "on_add_clicked" : dummy_callback,
@@ -265,7 +265,7 @@ class StyleEditor(ManagedWindow):
         self.line_style.pack_start(renderer_text, True)
         self.line_style.add_attribute(renderer_text, "text", 1)
 
-        self.top.get_object("label6").set_text(_("point size|pt"))
+        self.top.get_object("label6").set_text(_("pt", "point size"))
 
         titles = [(_('Style'), 0, 130)]
         self.plist = ListModel(self.top.get_object("ptree"), titles,
@@ -414,7 +414,7 @@ class StyleEditor(ManagedWindow):
             spin.set_value(t.get_column_width(i))
             self.column.append(spin)
             hbox.pack_start(spin, False, False, 6)
-            hbox.pack_start(Gtk.Label('%'), False, False, 6)
+            hbox.pack_start(Gtk.Label(label='%'), False, False, 6)
             hbox.show_all()
             self.vbox.pack_start(hbox, False, False, 3)
 

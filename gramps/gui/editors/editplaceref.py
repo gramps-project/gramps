@@ -18,7 +18,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-
+from copy import deepcopy
 #-------------------------------------------------------------------------
 #
 # Gramps modules
@@ -51,6 +51,7 @@ class EditPlaceRef(EditReference):
     def __init__(self, state, uistate, track, place, place_ref, update):
         EditReference.__init__(self, state, uistate, track, place, place_ref,
                                update)
+        self.original = deepcopy(place.serialize())
 
     def _local_init(self):
 
@@ -61,7 +62,7 @@ class EditPlaceRef(EditReference):
         self.define_warn_box(self.top.get_object("warning"))
         self.define_expander(self.top.get_object("expander"))
         #self.place_name_label = self.top.get_object('place_name_label')
-        #self.place_name_label.set_text(_('place|Name:'))
+        #self.place_name_label.set_text(_('Name:', 'place'))
 
         tblref = self.top.get_object('table64')
         notebook = self.top.get_object('notebook_ref')
@@ -203,12 +204,12 @@ class EditPlaceRef(EditReference):
     def _validate_coordinate(self, widget, text, typedeg):
         if (typedeg == 'lat') and not conv_lat_lon(text, "0", "ISO-D"):
             return ValidationError(
-                # translators: translate the "S" too (and the "or" of course)
+                # Translators: translate the "S" too (and the "or" of course)
                 _('Invalid latitude\n(syntax: '
                   '18\u00b09\'48.21"S, -18.2412 or -18:9:48.21)'))
         elif (typedeg == 'lon') and not conv_lat_lon("0", text, "ISO-D"):
             return ValidationError(
-                # translators: translate the "E" too (and the "or" of course)
+                # Translators: translate the "E" too (and the "or" of course)
                 _('Invalid longitude\n(syntax: '
                   '18\u00b09\'48.21"E, -18.2412 or -18:9:48.21)'))
 
@@ -319,8 +320,10 @@ class EditPlaceRef(EditReference):
             return
 
         if self.source.handle:
-            with DbTxn(_("Modify Place"), self.db) as trans:
-                self.db.commit_place(self.source, trans)
+            # only commit if it has changed
+            if self.source.serialize() != self.original:
+                with DbTxn(_("Modify Place"), self.db) as trans:
+                    self.db.commit_place(self.source, trans)
         else:
             if self.check_for_duplicate_id('Place'):
                 return

@@ -29,6 +29,8 @@ _type_map = {
     'application/x-gedcom' : 'GEDCOM database',
     'application/x-gramps-package': 'Gramps package',
     'image/jpeg' : 'JPEG image',
+    'image/tiff' : 'TIFF image',
+    'image/png' : 'PNG image',
     'application/pdf' : 'PDF document',
     'text/rtf' : 'Rich Text File',
 }

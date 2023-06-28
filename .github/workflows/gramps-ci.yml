@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2022       Nick Hall
+# Copyright (C) 2021       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,9 +21,9 @@ name: Gramps CI
 
 on:
   push:
-    branches: [ maintenance/gramps51 ]
+    branches: [ master ]
   pull_request:
-    branches: [ maintenance/gramps51 ]
+    branches: [ master ]
 
 jobs:
   build:
@@ -58,11 +58,11 @@ jobs:
         sudo apt-get install python3-setuptools
     - name: Install addons
       run: |
-        mkdir -p ~/.gramps/gramps51/plugins/
-        wget https://github.com/gramps-project/addons/raw/master/gramps51/download/CliMerge.addon.tgz
-        tar -C ~/.gramps/gramps51/plugins -xzf CliMerge.addon.tgz
-        wget https://github.com/gramps-project/addons/raw/master/gramps51/download/ExportRaw.addon.tgz
-        tar -C ~/.gramps/gramps51/plugins -xzf ExportRaw.addon.tgz
+        mkdir -p ~/.gramps/gramps52/plugins/
+        wget https://github.com/gramps-project/addons/raw/master/gramps52/download/CliMerge.addon.tgz
+        tar -C ~/.gramps/gramps52/plugins -xzf CliMerge.addon.tgz
+        wget https://github.com/gramps-project/addons/raw/master/gramps52/download/ExportRaw.addon.tgz
+        tar -C ~/.gramps/gramps52/plugins -xzf ExportRaw.addon.tgz
     - name: Build
       run: |
         python3 setup.py build

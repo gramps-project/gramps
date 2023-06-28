@@ -51,7 +51,7 @@ from gramps.gen.errors import GedcomError, GrampsImportError
 from gramps.gen.lib import (Attribute, AttributeType, ChildRef, Citation,
         Date, DateError, Event, EventRef, EventRoleType, EventType,
         Family, FamilyRelType, Name, NameType, Note, Person, PersonRef,
-        Place, Source, LdsOrd)
+        Place, PlaceName ,Source, LdsOrd)
 from gramps.gen.db import DbTxn
 from html.entities import name2codepoint
 
@@ -270,7 +270,7 @@ class GeneWebParser:
                 self.errmsg(str(err))
 
             t = time.time() - t
-            # translators: leave all/any {...} untranslated
+            # Translators: leave all/any {...} untranslated
             msg = ngettext('Import Complete: {number_of} second',
                            'Import Complete: {number_of} seconds', t
                           ).format(number_of=t)
@@ -906,7 +906,7 @@ class GeneWebParser:
                 date.set(Date.QUAL_NONE,mod, cal1,
                          (sub1[0],sub1[1],sub1[2],0,sub2[0],sub2[1],sub2[2],0))
             except DateError as e:
-                # TRANSLATORS: leave the {date} and {gw_snippet} untranslated
+                # Translators: leave the {date} and {gw_snippet} untranslated
                 # in the format string, but you may re-order them if needed.
                 LOG.warning(_(
                     "Invalid date {date} in {gw_snippet}, "
@@ -960,6 +960,7 @@ class GeneWebParser:
             place = self.db.get_place_from_handle(self.pkeys[place_name])
         else:
             place = Place()
+            place.name = PlaceName(value=place_name)
             place.set_title(place_name)
             self.db.add_place(place,self.trans)
             self.db.commit_place(place,self.trans)

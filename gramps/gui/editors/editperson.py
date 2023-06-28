@@ -41,7 +41,7 @@ import pickle
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import Gdk
-from gi.repository import Pango
+from gi.repository.GLib import markup_escape_text
 
 #-------------------------------------------------------------------------
 #
@@ -239,7 +239,7 @@ class EditPerson(EditPrimary):
         self.define_ok_button(self.top.get_object("ok"), self.save)
         self.define_help_button(self.top.get_object("button134"),
                 WIKI_HELP_PAGE,
-                _('manual|Editing_information_about_people'))
+                _('Editing_information_about_people', 'manual'))
 
         self.given.connect("focus-out-event", self._given_focus_out_event)
         self.top.get_object("editnamebtn").connect("clicked",
@@ -435,7 +435,6 @@ class EditPerson(EditPrimary):
             obj.connect('changed', self._changed_name)
 
         self.preview_name = self.top.get_object("full_name")
-        self.preview_name.override_font(Pango.FontDescription('sans bold 12'))
         self.surntab = SurnameTab(self.dbstate, self.uistate, self.track,
                                   self.obj.get_primary_name(),
                                   on_change=self._changed_name)
@@ -530,7 +529,8 @@ class EditPerson(EditPrimary):
                                      self.uistate,
                                      self.track,
                                      self.obj.get_lds_ord_list())
-        self._add_tab(notebook, self.lds_list)
+        if not (config.get('interface.hide-lds') and self.lds_list.is_empty()):
+            self._add_tab(notebook, self.lds_list)
         self.track_ref_for_deletion("lds_list")
 
         self.backref_tab = PersonBackRefList(self.dbstate,
@@ -550,7 +550,9 @@ class EditPerson(EditPrimary):
         Update the window title, and default name in name tab
         """
         self.update_title(self.get_menu_title())
-        self.preview_name.set_text(self.get_preview_name())
+        self.preview_name.set_markup(
+            "<span size='x-large' weight='bold'>%s</span>" %
+            markup_escape_text(self.get_preview_name(), -1))
         self.name_list.update_defname()
 
     def name_callback(self):
@@ -638,7 +640,6 @@ class EditPerson(EditPrimary):
         """
         self.imgmenu = Gtk.Menu()
         menu = self.imgmenu
-        menu.set_title(_("Media Object"))
         obj = self.db.get_media_from_handle(photo.get_reference_handle())
         if obj:
             add_menuitem(menu, _("View"), photo,
@@ -987,8 +988,7 @@ class EditPerson(EditPrimary):
         inorder = True
         prev_date = 0
         handle_list = [ref.ref for ref in child_ref_list]
-        for i in range(len(handle_list)):
-            child_handle = handle_list[i]
+        for child_handle in handle_list:
             child = self.db.get_person_from_handle(child_handle)
             if child.get_birth_ref():
                 event_handle = child.get_birth_ref().ref
@@ -1086,9 +1086,9 @@ class EditPerson(EditPrimary):
 class GenderDialog(Gtk.MessageDialog):
     def __init__(self, parent=None):
         Gtk.MessageDialog.__init__(self,
-                                parent,
-                                flags=Gtk.DialogFlags.MODAL,
-                                type=Gtk.MessageType.QUESTION,
+                                   transient_for=parent,
+                                   modal=True,
+                                   message_type=Gtk.MessageType.QUESTION,
                                    )
         self.set_icon(ICON)
         self.set_title('')

@@ -65,7 +65,7 @@ from gramps.gen.const import URL_MANUAL_SECT2
 #-------------------------------------------------------------------------
 
 WIKI_HELP_PAGE = URL_MANUAL_SECT2
-WIKI_HELP_SEC = _('manual|New_Media_dialog')
+WIKI_HELP_SEC = _('New_Media_dialog', 'manual')
 
 #-------------------------------------------------------------------------
 #
@@ -326,6 +326,7 @@ class EditMedia(EditPrimary):
             with DbTxn(_("Add Media Object (%s)") % self.obj.get_description(),
                        self.db) as trans:
                 self.db.add_media(self.obj, trans)
+            self.uistate.set_active(self.obj.handle, "Media")
         else:
             if self.data_has_changed():
                 with DbTxn(_("Edit Media Object (%s)") % self.obj.get_description(),
@@ -334,9 +335,9 @@ class EditMedia(EditPrimary):
                         self.obj.set_gramps_id(self.db.find_next_media_gramps_id())
                     self.db.commit_media(self.obj, trans)
 
+        self._do_close()
         if self.callback:
             self.callback(self.obj)
-        self._do_close()
 
     def data_has_changed(self):
         """
@@ -358,63 +359,3 @@ class EditMedia(EditPrimary):
         else:
             cmp_obj = self.empty_object()
             return cmp_obj.serialize(True)[1:] != self.obj.serialize()[1:]
-
-class DeleteMediaQuery:
-
-    def __init__(self, dbstate, uistate, media_handle, the_lists):
-        self.db = dbstate.db
-        self.uistate = uistate
-        self.media_handle = media_handle
-        self.the_lists = the_lists
-
-    def query_response(self):
-        with DbTxn(_("Remove Media Object"), self.db) as trans:
-            self.db.disable_signals()
-
-            (person_list, family_list, event_list,
-                    place_list, source_list, citation_list) = self.the_lists
-
-            for handle in person_list:
-                person = self.db.get_person_from_handle(handle)
-                new_list = [photo for photo in person.get_media_list()
-                            if photo.get_reference_handle() != self.media_handle]
-                person.set_media_list(new_list)
-                self.db.commit_person(person, trans)
-
-            for handle in family_list:
-                family = self.db.get_family_from_handle(handle)
-                new_list = [photo for photo in family.get_media_list()
-                            if photo.get_reference_handle() != self.media_handle]
-                family.set_media_list(new_list)
-                self.db.commit_family(family, trans)
-
-            for handle in event_list:
-                event = self.db.get_event_from_handle(handle)
-                new_list = [photo for photo in event.get_media_list()
-                            if photo.get_reference_handle() != self.media_handle]
-                event.set_media_list(new_list)
-                self.db.commit_event(event, trans)
-
-            for handle in place_list:
-                place = self.db.get_place_from_handle(handle)
-                new_list = [photo for photo in place.get_media_list()
-                            if photo.get_reference_handle() != self.media_handle]
-                place.set_media_list(new_list)
-                self.db.commit_place(place, trans)
-
-            for handle in source_list:
-                source = self.db.get_source_from_handle(handle)
-                new_list = [photo for photo in source.get_media_list()
-                            if photo.get_reference_handle() != self.media_handle]
-                source.set_media_list(new_list)
-                self.db.commit_source(source, trans)
-
-            for handle in citation_list:
-                citation = self.db.get_citation_from_handle(handle)
-                new_list = [photo for photo in citation.get_media_list()
-                            if photo.get_reference_handle() != self.media_handle]
-                citation.set_media_list(new_list)
-                self.db.commit_citation(citation, trans)
-
-            self.db.enable_signals()
-            self.db.remove_media(self.media_handle, trans)

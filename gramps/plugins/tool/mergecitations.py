@@ -80,7 +80,7 @@ _val2label = {
     }
 
 WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Merge_citations')
+WIKI_HELP_SEC = _('Merge_citations', 'manual')
 
 #-------------------------------------------------------------------------
 #
@@ -231,7 +231,7 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
         db.request_rebuild()
         self.progress.close()
         OkDialog(_("Number of merges done"),
-                 # translators: leave all/any {...} untranslated
+                 # Translators: leave all/any {...} untranslated
                  ngettext("{number_of} citation merged",
                           "{number_of} citations merged", num_merges
                          ).format(number_of=num_merges),

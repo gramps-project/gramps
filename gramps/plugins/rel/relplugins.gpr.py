@@ -22,7 +22,7 @@ from gramps.gen.plug._pluginreg import newplugin, STABLE, RELCALC
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
-MODULE_VERSION="5.1"
+MODULE_VERSION="5.2"
 
 #
 # Relationship calculators
@@ -83,9 +83,22 @@ plg.fname = 'rel_de.py'
 plg.ptype = RELCALC
 plg.relcalcclass = 'RelationshipCalculator'
 plg.lang_list = ["de", "DE", "de_DE", "deutsch", "Deutsch", "de_DE.UTF8",
-                 "de_DE@euro", "de_DE.UTF8@euro", "de_AT.UTF-8", "de_AT.utf-8",
-                 "de_AT.utf8", "german","German", "de_DE.UTF-8", "de_DE.utf-8",
-                 "de_DE.utf8", "de_CH.UTF-8", "de_CH.utf-8", "de_CH.utf8"]
+                 "de_DE@euro", "de_DE.UTF8@euro","german","German", "de_DE.UTF-8",
+                 "de_DE.utf-8", "de_DE.utf8", "de_CH.UTF-8", "de_CH.utf-8", "de_CH.utf8"]
+
+# de_at
+plg = newplugin()
+plg.id = 'relcalc_de_at'
+plg.name = _("Austrian Relationship Calculator")
+plg.description = _("Calculates relationships between people")
+plg.version = '1.0'
+plg.gramps_target_version = MODULE_VERSION
+plg.status = STABLE
+plg.fname = 'rel_de_AT.py'
+plg.ptype = RELCALC
+plg.relcalcclass = 'RelationshipCalculator'
+plg.lang_list = ["de", "AT", "de_AT", "deutsch", "Deutsch", "de_AT.UTF-8", "de_AT.utf-8",
+                 "de_AT.utf8", "german","German"]
 
 # es
 plg = newplugin()
@@ -310,6 +323,22 @@ plg.relcalcclass = 'RelationshipCalculator'
 plg.lang_list = ["sv", "SV", "sv_SE", "swedish", "Swedish", "sv_SE.UTF8",
                  "sv_SE@euro", "sv_SE.UTF8@euro", "svenska", "Svenska",
                  "sv_SE.UTF-8", "sv_SE.utf-8", "sv_SE.utf8", "Swedish_Sweden"]
+
+# tr
+plg = newplugin()
+plg.id = 'relcalc_tr'
+plg.name = _("Turkish Relationship Calculator")
+plg.description = _("Calculates relationship between people")
+plg.version = '1.0'
+plg.gramps_target_version = MODULE_VERSION
+plg.status = STABLE
+plg.fname = 'rel_tr.py'
+plg.ptype = RELCALC
+plg.relcalcclass = 'RelationshipCalculator'
+plg.lang_list = ["tr", "TR", "tr_TR", "türkçe", "Türkçe",
+                 "turkish", "Turkish", "tr_TR.utf8",
+                 "tr_TR.UTF8", "tr_TR.utf-8", "tr_TR.UTF-8"]
+
 # uk
 plg = newplugin()
 plg.id = 'relcalc_uk'

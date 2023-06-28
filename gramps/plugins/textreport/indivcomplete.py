@@ -68,8 +68,8 @@ from gramps.gen.errors import ReportError
 #------------------------------------------------------------------------
 
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
-def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
-    return value
+def _T_(value, context=''): # enable deferred translations
+    return "%s\x04%s" % (context, value) if context else value
 
 CUSTOM = _T_("Custom")
 
@@ -141,6 +141,8 @@ class IndivCompleteReport(Report):
 
         self.sort = menu.get_option_by_name('sort').get_value()
 
+        self.name_is_title = menu.get_option_by_name('name_title').get_value()
+
         self.use_attrs = menu.get_option_by_name('incl_attrs').get_value()
         self.use_census = menu.get_option_by_name('incl_census').get_value()
         self.use_gramps_id = menu.get_option_by_name('inc_id').get_value()
@@ -197,7 +199,7 @@ class IndivCompleteReport(Report):
             column_1 = self._(self._get_type(event.get_type()))
             if role not in (EventRoleType.PRIMARY, EventRoleType.FAMILY):
                 column_1 = column_1 + ' (' + self._(role.xml_str()) + ')'
-            # translators: needed for Arabic, ignore otherwise
+            # Translators: needed for Arabic, ignore otherwise
             # make sure it's translated, so it can be used below, in "combine"
             ignore = _('%(str1)s, %(str2)s') % {'str1' : '', 'str2' : ''}
             column_2 = self.combine('%(str1)s, %(str2)s', '%s',
@@ -205,7 +207,7 @@ class IndivCompleteReport(Report):
         else:
             # Groups with a single type (remove event type from first column)
             column_1 = date
-            # translators: needed for Arabic, ignore otherwise
+            # Translators: needed for Arabic, ignore otherwise
             # make sure it's translated, so it can be used below, in "combine"
             ignore = _('%(str1)s, %(str2)s') % {'str1' : '', 'str2' : ''}
             column_2 = self.combine('%(str1)s, %(str2)s', '%s',
@@ -245,7 +247,7 @@ class IndivCompleteReport(Report):
         self.doc.start_row()
         self.write_cell(label)
         if parent_name:
-            # for example (a stepfather): John Smith, relationship: Step
+            # Translators: e.g. (a stepfather): John Smith, relationship: Step
             text = self._('%(parent-name)s, relationship: %(rel-type)s'
                          ) % {'parent-name' : parent_name,
                               'rel-type'    : self._(rel_type)}
@@ -853,16 +855,20 @@ class IndivCompleteReport(Report):
         self.bibli = Bibliography(
             Bibliography.MODE_DATE|Bibliography.MODE_PAGE)
 
-        title1 = self._("Complete Individual Report")
-        text2 = self._name_display.display(self.person)
+        if self.name_is_title:
+            title1 = self._name_display.display(self.person)
+        else:
+            title1 = self._("Complete Individual Report")
+            text2 = self._name_display.display(self.person)
+            mark2 = IndexMark(text2, INDEX_TYPE_TOC, 2)
         mark1 = IndexMark(title1, INDEX_TYPE_TOC, 1)
-        mark2 = IndexMark(text2, INDEX_TYPE_TOC, 2)
         self.doc.start_paragraph("IDS-Title")
         self.doc.write_text(title1, mark1)
         self.doc.end_paragraph()
-        self.doc.start_paragraph("IDS-Title")
-        self.doc.write_text(text2, mark2)
-        self.doc.end_paragraph()
+        if not self.name_is_title:
+            self.doc.start_paragraph("IDS-Title")
+            self.doc.write_text(text2, mark2)
+            self.doc.end_paragraph()
 
         self.doc.start_paragraph("IDS-Normal")
         self.doc.end_paragraph()
@@ -913,7 +919,7 @@ class IndivCompleteReport(Report):
                     p_style = 'IDS-PersonTable' # this is tested for, also
                 else:
                     self._user.warn(_("Could not add photo to page"),
-                                    # translators: for French, else ignore
+                                    # Translators: for French, else ignore
                                     _("%(str1)s: %(str2)s"
                                      ) % {'str1' : image_filename,
                                           'str2' : _('File does not exist')})
@@ -921,7 +927,7 @@ class IndivCompleteReport(Report):
         self.doc.start_table('person', p_style)
         self.doc.start_row()
 
-        # translators: needed for French, ignore otherwise
+        # Translators: needed for French, ignore otherwise
         ignore = self._("%s:")
         self.doc.start_cell('IDS-NormalCell')
         self.write_paragraph(self._("%s:") % self._("Name"))
@@ -953,7 +959,7 @@ class IndivCompleteReport(Report):
             else:
                 for attr in attr_list:
                     attr_type = attr.get_type().type2base()
-                    # translators: needed for French, ignore otherwise
+                    # Translators: needed for French, ignore otherwise
                     text = self._("%(str1)s: %(str2)s"
                                  ) % {'str1' : self._(attr_type),
                                       'str2' : attr.get_value()}
@@ -1014,7 +1020,7 @@ class IndivCompleteReport(Report):
         if not txt:
             return prior
         if prior:
-            # translators: needed for Arabic, ignore otherwise
+            # Translators: needed for Arabic, ignore otherwise
             txt = self._('%(str1)s, %(str2)s') % {'str1':prior, 'str2':txt}
         return txt
 
@@ -1024,7 +1030,7 @@ class IndivCompleteReport(Report):
             return
         for attr in attr_list:
             attr_type = attr.get_type().type2base()
-            # translators: needed for French, ignore otherwise
+            # Translators: needed for French, ignore otherwise
             text = self._("%(str1)s: %(str2)s"
                          ) % {'str1' : self._(attr_type),
                               'str2' : attr.get_value()}
@@ -1078,6 +1084,11 @@ class IndivCompleteOptions(MenuReportOptions):
         pageben.set_help(
             _("Whether to start a new page before the end notes."))
         menu.add_option(category_name, "pageben", pageben)
+
+        name_is_title = BooleanOption(_("Use name of person as title"), False)
+        name_is_title.set_help(_("Whether the title should be the name of the "
+                                 "person, or 'Complete Individual Report'"))
+        menu.add_option(category_name, "name_title", name_is_title)
 
         ################################
         category_name = _("Report Options (2)")

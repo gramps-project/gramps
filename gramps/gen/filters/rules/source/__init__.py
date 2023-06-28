@@ -27,6 +27,7 @@ Package providing filter rules for Gramps.
 from .._hassourcebase import HasSourceBase as HasSource
 
 from ._allsources import AllSources
+from ._hasattribute import HasAttribute
 from ._hasgallery import HasGallery
 from ._hasidof import HasIdOf
 from ._regexpidof import RegExpIdOf
@@ -45,6 +46,7 @@ from ._hastag import HasTag
 
 editor_rule_list = [
     AllSources,
+    HasAttribute,
     HasGallery,
     HasIdOf,
     RegExpIdOf,

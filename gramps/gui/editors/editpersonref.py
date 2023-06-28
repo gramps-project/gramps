@@ -64,7 +64,7 @@ from gramps.gen.const import URL_MANUAL_SECT1
 #-------------------------------------------------------------------------
 
 WIKI_HELP_PAGE = URL_MANUAL_SECT1
-WIKI_HELP_SEC = _('manual|Person_Reference_Editor')
+WIKI_HELP_SEC = _('Person_Reference_Editor', 'manual')
 
 #-------------------------------------------------------------------------
 #

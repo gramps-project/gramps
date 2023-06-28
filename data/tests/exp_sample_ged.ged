@@ -20,6 +20,7 @@
 1 EMAIL an_email@@gmail.com
 0 @I0000@ INDI
 1 NAME Anna /Hansdotter/
+2 TYPE birth
 2 GIVN Anna
 2 SURN Hansdotter
 2 NICK Annanana
@@ -46,6 +47,7 @@
 3 TIME 15:14:42
 0 @I0001@ INDI
 1 NAME Keith Lloyd /Smith/
+2 TYPE birth
 2 GIVN Keith Lloyd
 2 SURN Smith
 1 SEX M
@@ -60,8 +62,10 @@
 3 TIME 07:35:26
 0 @I0002@ INDI
 1 NAME Amber Marie /Smith/
+2 TYPE birth
 2 GIVN Amber Marie
 2 SURN Smith
+2 _RUFNAME Marie
 1 SEX F
 1 BIRT
 2 TYPE Birth of Amber Marie Smith
@@ -80,6 +84,7 @@
 3 TIME 07:35:26
 0 @I0003@ INDI
 1 NAME Magnes /Smith/
+2 TYPE birth
 2 GIVN Magnes
 2 SURN Smith
 1 SEX M
@@ -99,6 +104,7 @@
 3 TIME 07:35:26
 0 @I0004@ INDI
 1 NAME Ingeman /Smith/
+2 TYPE birth
 2 GIVN Ingeman
 2 SURN Smith
 1 SEX M
@@ -113,6 +119,7 @@
 3 TIME 07:35:26
 0 @I0005@ INDI
 1 NAME Mason Michael /Smith/
+2 TYPE birth
 2 GIVN Mason Michael
 2 SURN Smith
 1 SEX M
@@ -133,6 +140,7 @@
 3 TIME 07:35:26
 0 @I0006@ INDI
 1 NAME Edwin /Willard/
+2 TYPE birth
 2 GIVN Edwin
 2 SURN Willard
 1 SEX M
@@ -145,6 +153,7 @@
 3 TIME 07:35:26
 0 @I0007@ INDI
 1 NAME Ingar /Smith/
+2 TYPE birth
 2 GIVN Ingar
 2 SURN Smith
 1 SEX F
@@ -159,6 +168,7 @@
 3 TIME 07:35:26
 0 @I0008@ INDI
 1 NAME Hjalmar /Smith/
+2 TYPE birth
 2 GIVN Hjalmar
 2 SURN Smith
 1 SEX M
@@ -187,6 +197,7 @@
 3 TIME 07:35:26
 0 @I0009@ INDI
 1 NAME Emil /Smith/
+2 TYPE birth
 2 GIVN Emil
 2 SURN Smith
 1 SEX M
@@ -201,6 +212,7 @@
 3 TIME 07:35:26
 0 @I0010@ INDI
 1 NAME Hans Peter /Smith/
+2 TYPE birth
 2 GIVN Hans Peter
 2 SURN Smith
 1 SEX M
@@ -237,6 +249,7 @@
 3 TIME 21:32:08
 0 @I0011@ INDI
 1 NAME Hanna /Smith/
+2 TYPE birth
 2 GIVN Hanna
 2 SURN Smith
 1 SEX F
@@ -251,6 +264,7 @@
 3 TIME 07:35:26
 0 @I0012@ INDI
 1 NAME Herman Julius /Nielsen/
+2 TYPE birth
 2 GIVN Herman Julius
 2 SURN Nielsen
 1 SEX M
@@ -267,6 +281,7 @@
 3 TIME 07:35:26
 0 @I0013@ INDI
 1 NAME Evelyn /Michaels/
+2 TYPE birth
 2 GIVN Evelyn
 2 SURN Michaels
 1 SEX F
@@ -279,6 +294,7 @@
 3 TIME 07:35:26
 0 @I0014@ INDI
 1 NAME Marjorie Lee /Smith/
+2 TYPE birth
 2 GIVN Marjorie Lee
 2 SURN Smith
 1 SEX F
@@ -293,6 +309,7 @@
 3 TIME 07:35:26
 0 @I0015@ INDI
 1 NAME Gus /Smith/
+2 TYPE birth
 2 GIVN Gus
 2 SURN Smith
 1 SEX M
@@ -312,6 +329,7 @@
 3 TIME 07:35:26
 0 @I0016@ INDI
 1 NAME Jennifer /Anderson/
+2 TYPE birth
 2 GIVN Jennifer
 2 SURN Anderson
 1 SEX F
@@ -329,6 +347,7 @@
 3 TIME 07:35:26
 0 @I0017@ INDI
 1 NAME Lillie Harriet /Jones/
+2 TYPE birth
 2 GIVN Lillie Harriet
 2 SURN Jones
 1 SEX F
@@ -345,6 +364,7 @@
 3 TIME 07:35:26
 0 @I0018@ INDI
 1 NAME John Hjalmar /Smith/
+2 TYPE birth
 2 GIVN John Hjalmar
 2 SURN Smith
 1 SEX M
@@ -360,6 +380,7 @@
 3 TIME 07:35:26
 0 @I0019@ INDI
 1 NAME Eric Lloyd /Smith/
+2 TYPE birth
 2 GIVN Eric Lloyd
 2 SURN Smith
 2 NPFX Dr.
@@ -379,6 +400,7 @@
 3 TIME 21:25:13
 0 @I0020@ INDI
 1 NAME Carl Emil /Smith/
+2 TYPE birth
 2 GIVN Carl Emil
 2 SURN Smith
 1 SEX M
@@ -398,6 +420,7 @@
 3 TIME 07:35:26
 0 @I0021@ INDI
 1 NAME Hjalmar /Smith/
+2 TYPE birth
 2 GIVN Hjalmar
 2 SURN Smith
 1 SEX M
@@ -416,6 +439,7 @@
 3 TIME 07:35:26
 0 @I0022@ INDI
 1 NAME Martin /Smith/
+2 TYPE birth
 2 GIVN Martin
 2 SURN Smith
 1 SEX M
@@ -440,6 +464,7 @@
 3 TIME 07:35:26
 0 @I0023@ INDI
 1 NAME Astrid Shermanna Augusta /Smith/
+2 TYPE birth
 2 GIVN Astrid Shermanna Augusta
 2 SURN Smith
 1 SEX F
@@ -459,6 +484,7 @@
 3 TIME 07:35:26
 0 @I0024@ INDI
 1 NAME Gustaf /Smith/ Sr.
+2 TYPE birth
 2 GIVN Gustaf
 2 SURN Smith
 2 NSFX Sr.
@@ -487,6 +513,7 @@
 3 TIME 07:35:26
 0 @I0025@ INDI
 1 NAME Marta /Ericsdotter/
+2 TYPE birth
 2 GIVN Marta
 2 SURN Ericsdotter
 1 SEX F
@@ -500,6 +527,7 @@
 3 TIME 07:35:26
 0 @I0026@ INDI
 1 NAME Kirsti Marie /Smith/
+2 TYPE birth
 2 GIVN Kirsti Marie
 2 SURN Smith
 1 SEX F
@@ -519,6 +547,7 @@
 3 TIME 07:35:26
 0 @I0027@ INDI
 1 NAME Ingeman /Smith/
+2 TYPE birth
 2 GIVN Ingeman
 2 SURN Smith
 1 SEX M
@@ -532,6 +561,7 @@
 3 TIME 07:35:26
 0 @I0028@ INDI
 1 NAME Anna /Streiffert/
+2 TYPE birth
 2 GIVN Anna
 2 SURN Streiffert
 1 SEX F
@@ -549,6 +579,7 @@
 3 TIME 07:35:26
 0 @I0029@ INDI
 1 NAME Craig Peter /Smith/
+2 TYPE birth
 2 GIVN Craig Peter
 2 SURN Smith
 1 SEX M
@@ -566,6 +597,7 @@
 3 TIME 07:35:26
 0 @I0030@ INDI
 1 NAME Janice Ann /Adams/
+2 TYPE birth
 2 GIVN Janice Ann
 2 SURN Adams
 1 SEX F
@@ -583,6 +615,7 @@
 3 TIME 07:35:26
 0 @I0031@ INDI
 1 NAME Marjorie /Ohman/
+2 TYPE birth
 2 GIVN Marjorie
 2 SURN Ohman
 1 SEX F
@@ -607,6 +640,7 @@
 3 TIME 07:35:26
 0 @I0032@ INDI
 1 NAME Darcy /Horne/
+2 TYPE birth
 2 GIVN Darcy
 2 SURN Horne
 1 SEX F
@@ -622,6 +656,7 @@
 3 TIME 07:35:26
 0 @I0033@ INDI
 1 NAME Lloyd /Smith/
+2 TYPE birth
 2 GIVN Lloyd
 2 SURN Smith
 1 SEX M
@@ -641,6 +676,7 @@
 3 TIME 20:17:13
 0 @I0034@ INDI
 1 NAME Alice Paula /Perkins/
+2 TYPE birth
 2 GIVN Alice Paula
 2 SURN Perkins
 1 SEX F
@@ -654,6 +690,7 @@
 3 TIME 07:35:26
 0 @I0035@ INDI
 1 NAME Lars Peter /Smith/
+2 TYPE birth
 2 GIVN Lars Peter
 2 SURN Smith
 1 SEX M
@@ -671,6 +708,7 @@
 3 TIME 07:35:26
 0 @I0036@ INDI
 1 NAME Elna /Jefferson/
+2 TYPE birth
 2 GIVN Elna
 2 SURN Jefferson
 1 SEX F
@@ -691,6 +729,7 @@
 3 TIME 07:35:26
 0 @I0037@ INDI
 1 NAME Edwin Michael /Smith/
+2 TYPE birth
 2 GIVN Edwin Michael
 2 SURN Smith
 2 SOUR @S0001@
@@ -717,6 +756,7 @@
 3 TIME 07:35:26
 0 @I0038@ INDI
 1 NAME Kerstina /Hansdotter/
+2 TYPE birth
 2 GIVN Kerstina
 2 SURN Hansdotter
 1 SEX F
@@ -734,6 +774,7 @@
 3 TIME 07:35:26
 0 @I0039@ INDI
 1 NAME Martin /Smith/
+2 TYPE birth
 2 GIVN Martin
 2 SURN Smith
 1 SEX M
@@ -752,6 +793,7 @@
 3 TIME 07:35:26
 0 @I0040@ INDI
 1 NAME Marjorie Alice /Smith/
+2 TYPE birth
 2 GIVN Marjorie Alice
 2 SURN Smith
 1 SEX F
@@ -766,6 +808,7 @@
 3 TIME 07:35:26
 0 @I0041@ INDI
 1 NAME Janis Elaine /Green/
+2 TYPE birth
 2 GIVN Janis Elaine
 2 SURN Green
 1 SEX F
@@ -778,6 +821,7 @@
 3 TIME 07:35:26
 0 @I0042@ INDI
 1 NAME 雪 /Ke 柯/
+2 TYPE birth
 2 GIVN 雪
 2 SURN Ke 柯
 1 NAME Frank /Neilsen/
@@ -797,6 +841,7 @@
 3 TIME 17:04:25
 0 @I0043@ INDI
 1 NAME ピーター /リチミシキスイミ/
+2 TYPE birth
 2 GIVN ピーター
 2 SURN リチミシキスイミ
 1 SEX M
@@ -805,6 +850,7 @@
 3 TIME 16:42:08
 0 @I0044@ INDI
 1 NAME The /Tester/
+2 TYPE birth
 2 GIVN The
 2 SURN Tester
 2 NICK Testy
@@ -888,6 +934,7 @@
 3 TIME 14:22:58
 0 @I0046@ INDI
 1 NAME Tom /Von Tester y tested/
+2 TYPE birth
 2 GIVN Tom
 2 SPFX Von
 2 SURN Tester y, tested
@@ -934,9 +981,11 @@
 3 TIME 16:27:59
 0 @I0047@ INDI
 1 NAME Fake /von Person/ I
+2 TYPE birth
 2 GIVN Fake
 2 SPFX von
 2 SURN Person
+2 _RUFNAME Person
 2 NSFX I
 2 NPFX Fake person
 2 NICK Fake
@@ -1004,6 +1053,7 @@
 3 TIME 16:27:59
 0 @I0048@ INDI
 1 NAME Mary /Tester/
+2 TYPE birth
 2 GIVN Mary
 2 SURN Tester
 1 SEX F
@@ -1040,6 +1090,7 @@
 3 TIME 16:27:59
 0 @I0051@ INDI
 1 NAME Mark /Tester/
+2 TYPE birth
 2 GIVN Mark
 2 SURN Tester
 1 SEX M

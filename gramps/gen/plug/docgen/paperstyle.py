@@ -75,9 +75,9 @@ class PaperSize:
         self.height = height
         self.width = width
         if self.name == 'Letter':
-            self.trans_pname = _('paper size|Letter')
+            self.trans_pname = _('Letter', 'paper size')
         elif self.name == 'Legal':
-            self.trans_pname = _('paper size|Legal')
+            self.trans_pname = _('Legal', 'paper size')
         elif self.name == 'Custom Size':
             self.trans_pname = _('Custom Size')
         else:

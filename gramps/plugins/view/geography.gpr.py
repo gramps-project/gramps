@@ -28,7 +28,7 @@
 # pylint: disable=bad-whitespace
 # pylint: disable=bad-whitespace
 
-MODULE_VERSION = "5.1"
+MODULE_VERSION = "5.2"
 
 from gi import Repository
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -134,7 +134,7 @@ else:
              category = ("Geography", _("Geography")),
              viewclass = 'GeoMoves',
              #order = START,
-             stock_icon = 'geo-show-family',
+             stock_icon = 'geo-show-family-down',
       )
 
     register(VIEW,

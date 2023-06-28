@@ -275,6 +275,8 @@ TOKEN__PRIM = 134
 TOKEN__JUST = 135
 TOKEN__TEXT = 136
 TOKEN__DATE = 137
+TOKEN__APID = 138
+TOKEN__CALLNAME = 139
 
 TOKENS = {
     "_ADPN"           : TOKEN__ADPN,
@@ -282,6 +284,7 @@ TOKENS = {
     "_AKAN"           : TOKEN__AKA,
     "_ALIA"           : TOKEN_ALIA,
     "_ANCES_ORDRE"    : TOKEN_IGNORE,
+    "_APID"           : TOKEN__APID,    # Ancestry.com database and page id
     "_CAT"            : TOKEN_IGNORE,
     "_CHUR"           : TOKEN_IGNORE,
     "_COMM"           : TOKEN__COMM,
@@ -314,6 +317,7 @@ TOKENS = {
     "_PRIMARY"        : TOKEN__PRIMARY,
     "_PRIV"           : TOKEN__PRIV,
     "_PUBLISHER"      : TOKEN_IGNORE,
+    "_RUFNAME"        : TOKEN__CALLNAME,
     "_SCBK"           : TOKEN_IGNORE,
     "_SCHEMA"         : TOKEN__SCHEMA,
     "_SSHOW"          : TOKEN_IGNORE,
@@ -2089,6 +2093,8 @@ class GedcomParser(UpdateCallback):
             TOKEN_GIVN   : self.__name_givn,
             # NICK <NAME_PIECE_NICKNAME> {0:1}
             TOKEN_NICK   : self.__name_nick,
+            # _RUFNAME <NAME_PIECE_CALLNAME> {0:1}
+            TOKEN__CALLNAME: self.__name_call,
             # +1 SPFX <NAME_PIECE_SURNAME_PREFIX {0:1}
             TOKEN_SPFX   : self.__name_spfx,
             # +1 SURN <NAME_PIECE_SURNAME> {0:1}
@@ -2304,6 +2310,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_TEXT   : self.__citation_data_text,
             TOKEN__LINK  : self.__citation_link,
             TOKEN__JUST  : self.__citation__just,
+            TOKEN__APID  : self.__citation__apid,
         }
         self.func_list.append(self.citation_parse_tbl)
 
@@ -2452,6 +2459,7 @@ class GedcomParser(UpdateCallback):
             # not legal, but Ultimate Family Tree does this
             TOKEN_DATE   : self.__ignore,
             TOKEN_IGNORE : self.__ignore,
+            TOKEN__APID  : self.__source_attr,
         }
         self.func_list.append(self.source_func)
 
@@ -2737,9 +2745,8 @@ class GedcomParser(UpdateCallback):
           0 TRLR                                          {1:1}
 
         """
-        no_magic = self.maxpeople < 1000
-        with DbTxn(_("GEDCOM import"), self.dbase, not use_trans,
-                   no_magic=no_magic) as self.trans:
+        with DbTxn(_("GEDCOM import"), self.dbase,
+                   not use_trans) as self.trans:
 
             self.dbase.disable_signals()
             self.__parse_header_head()
@@ -4419,6 +4426,19 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         state.name.set_nick_name(line.data.strip())
+        self.__skip_subordinate_levels(state.level + 1, state)
+
+    def __name_call(self, line, state):
+        """
+        This parses the inofficial _RUFNAME tag that indicates which part
+        of a person's given name is commonly used to address them.
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.name.set_call_name(line.data.strip())
         self.__skip_subordinate_levels(state.level + 1, state)
 
     def __name_aka(self, line, state):
@@ -6377,6 +6397,17 @@ class GedcomParser(UpdateCallback):
         note.set_type(_("Citation Justification"))
         self.dbase.add_note(note, self.trans)
         state.citation.add_note(note.get_handle())
+
+    def __citation__apid(self, line, state):
+        """
+        Not legal GEDCOM - added to support Ancestry.com, converts the
+        _APID tag to an attribute. This tag identifies the location of
+        the cited page in the relevant Ancestry.com database.
+        """
+        sattr = SrcAttribute()
+        sattr.set_type("_APID")
+        sattr.set_value(line.data)
+        state.citation.add_attribute(sattr)
 
     def __citation_data_note(self, line, state):
         self.__parse_note(line, state.citation, state)

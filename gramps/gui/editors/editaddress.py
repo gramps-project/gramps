@@ -62,7 +62,7 @@ from gramps.gen.const import URL_MANUAL_SECT3
 #-------------------------------------------------------------------------
 
 WIKI_HELP_PAGE = URL_MANUAL_SECT3
-WIKI_HELP_SEC = _('manual|Address_Editor_dialog')
+WIKI_HELP_SEC = _('Address_Editor_dialog', 'manual')
 
 #-------------------------------------------------------------------------
 #

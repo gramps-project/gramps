@@ -75,16 +75,17 @@ class LastNameDialog(ManagedWindow):
     def __init__(self, database, uistate, track, surnames, skip_list=set()):
 
         ManagedWindow.__init__(self, uistate, track, self, modal=True)
-        flags = Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT
-        buttons = (_('_Cancel'), Gtk.ResponseType.REJECT,
-                   _('_OK'), Gtk.ResponseType.ACCEPT)
-        self.__dlg = Gtk.Dialog(None, uistate.window, flags, buttons)
+        self.__dlg = Gtk.Dialog(
+            transient_for=uistate.window, destroy_with_parent=True,
+            modal=True)
+        self.__dlg.add_buttons(_('_Cancel'), Gtk.ResponseType.REJECT,
+                               _('_OK'), Gtk.ResponseType.ACCEPT)
         self.set_window(self.__dlg, None, _('Select surname'))
         self.setup_configs('interface.lastnamedialog', 400, 400)
 
         # build up a container to display all of the people of interest
         self.__model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_INT)
-        self.__tree_view = Gtk.TreeView(self.__model)
+        self.__tree_view = Gtk.TreeView(model=self.__model)
         col1 = Gtk.TreeViewColumn(_('Surname'), Gtk.CellRendererText(), text=0)
         col2 = Gtk.TreeViewColumn(_('Count'), Gtk.CellRendererText(), text=1)
         col1.set_resizable(True)
@@ -1739,12 +1740,10 @@ class GuiDestinationOption(Gtk.Box):
         else:
             my_action = Gtk.FileChooserAction.SAVE
 
-        fcd = Gtk.FileChooserDialog(_("Save As"), action=my_action,
-                                    parent=self.__uistate.window,
-                                    buttons=(_('_Cancel'),
-                                             Gtk.ResponseType.CANCEL,
-                                             _('_Open'),
-                                             Gtk.ResponseType.OK))
+        fcd = Gtk.FileChooserDialog(title=_("Save As"), action=my_action,
+                                    transient_for=self.__uistate.window)
+        fcd.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
+                        _('_Open'), Gtk.ResponseType.OK)
 
         name = os.path.abspath(self.__option.get_value())
         if self.__option.get_directory_entry():

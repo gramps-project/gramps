@@ -193,7 +193,7 @@ class StatsGramplet(Gramplet):
 
         self.link(_("%s:") % _("Total size of media objects"),
                   'Filter', 'media by size')
-        self.append_text(" %s %s" % (mbytes, _("Megabyte|MB")))
+        self.append_text(" %s %s" % (mbytes, _("MB", "Megabyte")))
         self.append_text("\n")
         self.link(_("%s:") % _("Missing Media Objects"),
                   'Filter', 'missing media')

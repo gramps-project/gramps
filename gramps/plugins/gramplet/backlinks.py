@@ -35,6 +35,7 @@ from gramps.gen.utils.db import navigation_label
 from gramps.gen.plug import Gramplet
 from gramps.gui.utils import edit_object
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.datehandler import displayer
 _ = glocale.translation.gettext
 
 class Backlinks(Gramplet):
@@ -42,6 +43,8 @@ class Backlinks(Gramplet):
     Displays the back references for an object.
     """
     def init(self):
+        self.date_column = None
+        self.evts = False
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add(self.gui.WIDGET)
@@ -51,22 +54,52 @@ class Backlinks(Gramplet):
         """
         Build the GUI interface.
         """
-        top = Gtk.TreeView()
+        self.top = Gtk.TreeView()
         titles = [(_('Type'), 1, 100),
                   (_('Name'), 2, 100),
-                  ('', 3, 1), #hidden column for the handle
-                  ('', 4, 1)] #hidden column for non-localized object type
-        self.model = ListModel(top, titles, event_func=self.cb_double_click)
-        return top
+                  (_('Date'), 4, 200),
+                  ('sd', 4, 120), # sorted date column
+                  ('', 5, 1), #hidden column for the handle
+                  ('', 6, 1), #hidden column for non-localized object type
+                 ]
+        self.model = ListModel(self.top, titles,
+                               event_func=self.cb_double_click)
+        self.date_column = self.top.get_column(2)
+        self.sdate = self.top.get_column(3)
+        self.top.get_column(1).set_expand(True) # The name use the max
+                                                # possible size
+        return self.top
 
     def display_backlinks(self, active_handle):
         """
         Display the back references for an object.
         """
+        self.evts = False
+        sdcolumn = None
         for classname, handle in \
                 self.dbstate.db.find_backlink_handles(active_handle):
             name = navigation_label(self.dbstate.db, classname, handle)[0]
-            self.model.add((_(classname), name, handle, classname))
+            sdcolumn = self.top.get_column(3)
+            dcolumn = self.top.get_column(2)
+            if classname == "Event":
+                obj = self.dbstate.db.get_event_from_handle(handle)
+                o_date = obj.get_date_object()
+                date = displayer.display(o_date)
+                sdate = "%09d" % o_date.get_sort_value()
+                sdcolumn.set_sort_column_id(3)
+                dcolumn.set_sort_column_id(3)
+                self.evts = True
+            else:
+                sdcolumn.set_sort_column_id(1)
+                date = sdate = ""
+            self.model.add((_(classname), name, date, sdate, handle, classname))
+        if self.evts:
+            self.date_column.set_visible(True)
+            sdcolumn.set_visible(False)
+        else:
+            self.date_column.set_visible(False)
+            if sdcolumn:
+                sdcolumn.set_visible(False)
         self.set_has_data(self.model.count > 0)
 
     def get_has_data(self, active_handle):
@@ -87,8 +120,8 @@ class Backlinks(Gramplet):
         if not iter_:
             return
 
-        (objclass, handle) = (model.get_value(iter_, 3),
-                              model.get_value(iter_, 2))
+        (objclass, handle) = (model.get_value(iter_, 5),
+                              model.get_value(iter_, 4))
 
         edit_object(self.dbstate, self.uistate, objclass, handle)
 
@@ -277,4 +310,3 @@ class NoteBacklinks(Backlinks):
             self.display_backlinks(active_handle)
         else:
             self.set_has_data(False)
-

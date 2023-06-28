@@ -75,6 +75,7 @@ _LOCALE_NAMES = {
     'cs': ('Czech_Czech Republic', '1250', _("Czech")),
     'da': ('Danish_Denmark', '1252', _("Danish")),
     'de': ('German_Germany', '1252',  _("German")),
+    'de_AT': ('German_Austria', '1252',  _("German (Austria)")),
     'el': ('Greek_Greece', '1253', _("Greek")),
     'en': ('English_United States', '1252', _("English (USA)")),
     'en_GB': ('English_United Kingdom', '1252', _("English")),
@@ -86,6 +87,7 @@ _LOCALE_NAMES = {
     'he': ('Hebrew_Israel', '1255', _("Hebrew")),
     'hr': ('Croatian_Croatia', '1250', _("Croatian")),
     'hu': ('Hungarian_Hungary', '1250', _("Hungarian")),
+    'id': ('Indonesian', '1057', _("Indonesian")),
     'is': ('Icelandic', '1252', _("Icelandic")),
     'it': ('Italian_Italy', '1252', _("Italian")),
     'ja': ('Japanese_Japan', '932', _("Japanese")),
@@ -1029,8 +1031,8 @@ class Lexeme(str):
     Python code::
 
         _ = lexgettext
-        dec = _("localized lexeme inflections||December")
-        xmas = _("lexeme||Christmas")
+        dec = _("|December", "localized lexeme inflections")
+        xmas = _("|Christmas", "lexeme")
         text = _("{holiday} is celebrated in {month}".format(
                     holiday=xmas, month=dec))
         greeting = _("Merry {holiday}!").format(holiday=xmas)
@@ -1039,10 +1041,12 @@ class Lexeme(str):
 
     Translation database (Russian example)::
 
-        msgid "lexeme||December"
+        msgctxt "localized lexeme inflections"
+        msgid "|December"
         msgstr "NOMINATIVE=декабрь|GENITIVE=декабря|ABLATIVE=декабрём|LOCATIVE=декабре"
 
-        msgid "lexeme||Christmas"
+        msgctxt "lexeme"
+        msgid "|Christmas"
         msgstr "NOMINATIVE=рождество|GENITIVE=рождества|ABLATIVE=рождеством"
 
         msgid "{holiday} is celebrated in {month}"
@@ -1144,26 +1148,33 @@ class GrampsTranslations(gettext.GNUTranslations):
     Overrides and extends gettext.GNUTranslations. See the Python gettext
     "Class API" documentation for how to use this.
     """
+    CONTEXT = "%s\x04%s"
+
     def language(self):
         """
         Return the target languge of this translations object.
         """
         return self._language
 
-    def gettext(self, msgid):
+    def gettext(self, msgid, context=''):
         """
         Obtain translation of gettext, return a unicode object
 
         :param msgid: The string to translated.
         :type msgid: unicode
+        :param context: The message context.
+        :type context: unicode
         :returns: Translation or the original.
         :rtype: unicode
         """
-        # If msgid =="" then gettext will return po file header
+        # If context=="" and msgid =="" then gettext will return po file header
         # and that's not what we want.
-        if len(msgid.strip()) == 0:
+        if len((context + msgid).strip()) == 0:
             return msgid
-        return gettext.GNUTranslations.gettext(self, msgid)
+        if context:
+            return self.pgettext(context, msgid)
+        else:
+            return gettext.GNUTranslations.gettext(self, msgid)
 
     def ngettext(self, singular, plural, num):
         """
@@ -1183,7 +1194,7 @@ class GrampsTranslations(gettext.GNUTranslations):
         """
         return gettext.GNUTranslations.ngettext(self, singular, plural, num)
 
-    def sgettext(self, msgid, sep='|'):
+    def sgettext(self, msgid, context=''):
         """
         Strip the context used for resolving translation ambiguities.
 
@@ -1194,18 +1205,18 @@ class GrampsTranslations(gettext.GNUTranslations):
 
         :param msgid: The string to translated.
         :type msgid: unicode
+        :param context: The message context.
+        :type context: unicode
         :param sep: The separator marking the context.
         :type sep: unicode
         :returns: Translation or the original with context stripped.
         :rtype: unicode
         """
-        msgval = self.gettext(msgid)
-        if msgval == msgid:
-            sep_idx = msgid.rfind(sep)
-            msgval = msgid[sep_idx+1:]
-        return msgval
+        if '\x04' in msgid: # Deferred translation
+            context, msgid = msgid.split('\x04')
+        return self.gettext(msgid, context)
 
-    def lexgettext(self, msgid):
+    def lexgettext(self, msgid, context=''):
         """
         Extract all inflections of the same lexeme,
         stripping the '|'-separated context using :meth:`~sgettext`
@@ -1224,12 +1235,27 @@ class GrampsTranslations(gettext.GNUTranslations):
 
         :param msgid: The string to translated.
         :type msgid: unicode
+        :param context: The message context.
+        :type context: unicode
         :returns: Translation or the original with context stripped.
         :rtype: unicode (for option (1)) / Lexeme (option (2))
         """
-        variants = self.sgettext(msgid).split('|')
+        variants = self.sgettext(msgid, context).split('|')
         return Lexeme([v.split('=') for v in variants]
                 ) if len(variants) > 1 else variants[0]
+
+    def pgettext(self, context, message):
+        """
+        Copied from python 3.8
+        """
+        ctxt_msg_id = self.CONTEXT % (context, message)
+        missing = object()
+        tmsg = self._catalog.get(ctxt_msg_id, missing)
+        if tmsg is missing:
+            if self._fallback:
+                return self._fallback.pgettext(context, message)
+            return message
+        return tmsg
 
 class GrampsNullTranslations(gettext.NullTranslations):
     """
@@ -1238,12 +1264,16 @@ class GrampsNullTranslations(gettext.NullTranslations):
     Note that it's necessary for msgid to be unicode. If it's not,
     neither will be the returned string.
     """
-    def sgettext(self, msgid, sep='|'):
-        msgval = self.gettext(msgid)
-        if msgval == msgid:
-            sep_idx = msgid.rfind(sep)
-            msgval = msgid[sep_idx+1:]
-        return msgval
+    def gettext(self, msgid, context=''):
+        if context:
+            return self.pgettext(context, msgid)
+        else:
+            return gettext.NullTranslations.gettext(self, msgid)
+
+    def sgettext(self, msgid, context=''):
+        if '\x04' in msgid: # Deferred translation
+            context, msgid = msgid.split('\x04')
+        return self.gettext(msgid, context)
 
     lexgettext = sgettext
 
@@ -1252,3 +1282,11 @@ class GrampsNullTranslations(gettext.NullTranslations):
         The null translation returns the raw msgids, which are in English
         """
         return "en"
+
+    def pgettext(self, context, message):
+        """
+        Copied from python 3.8
+        """
+        if self._fallback:
+            return self._fallback.pgettext(context, message)
+        return message

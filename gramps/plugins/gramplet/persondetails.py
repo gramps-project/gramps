@@ -24,7 +24,7 @@
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
-from gi.repository import Pango
+from gi.repository.GLib import markup_escape_text
 
 #-------------------------------------------------------------------------
 #
@@ -61,7 +61,6 @@ class PersonDetails(Gramplet):
         self.photo = Photo(self.uistate.screen_height() < 1000)
         self.photo.show()
         self.name = Gtk.Label(halign=Gtk.Align.START)
-        self.name.override_font(Pango.FontDescription('sans bold 12'))
         self.name.set_selectable(True)
         vbox.pack_start(self.name, fill=True, expand=False, padding=7)
         self.grid = Gtk.Grid(orientation=Gtk.Orientation.VERTICAL)
@@ -150,7 +149,9 @@ class PersonDetails(Gramplet):
         Display details of the active person.
         """
         self.load_person_image(active_person)
-        self.name.set_text(name_displayer.display(active_person))
+        self.name.set_markup(
+            "<span size='large' weight='bold'>%s</span>" %
+            markup_escape_text(name_displayer.display(active_person), -1))
         self.clear_grid()
         self.display_alternate_names(active_person)
         self.display_parents(active_person)
@@ -177,8 +178,8 @@ class PersonDetails(Gramplet):
         """
         Display an empty row to separate groupd of entries.
         """
-        label = Gtk.Label(label='')
-        label.override_font(Pango.FontDescription('sans 4'))
+        label = Gtk.Label()
+        label.set_markup("<span font='sans 4'> </span>")
         label.set_selectable(True)
         label.show()
         self.grid.add(label)
@@ -233,7 +234,7 @@ class PersonDetails(Gramplet):
             if attr.get_type() == attr_key:
                 values.append(attr.get_value())
         if values:
-            # translators: needed for Arabic, ignore otherwise
+            # Translators: needed for Arabic, ignore otherwise
             self.add_row(attr_key, _(', ').join(values))
 
     def display_type(self, active_person, event_type):

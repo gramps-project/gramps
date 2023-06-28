@@ -23,7 +23,7 @@
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
-from gi.repository import Pango
+from gi.repository.GLib import markup_escape_text
 
 #-------------------------------------------------------------------------
 #
@@ -32,10 +32,11 @@ from gi.repository import Pango
 #-------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gui.widgets import Photo
-from gramps.gen.utils.place import conv_lat_lon
+from gramps.gen.utils.place import conv_lat_lon, coord_formats
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.const import COLON, GRAMPS_LOCALE as glocale
+from gramps.gen.config import config
 _ = glocale.translation.gettext
 
 class PlaceDetails(Gramplet):
@@ -55,7 +56,6 @@ class PlaceDetails(Gramplet):
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.photo = Photo(self.uistate.screen_height() < 1000)
         self.title = Gtk.Label(halign=Gtk.Align.START)
-        self.title.override_font(Pango.FontDescription('sans bold 12'))
         self.title.set_selectable(True)
         vbox.pack_start(self.title, False, True, 7)
         self.grid = Gtk.Grid(orientation=Gtk.Orientation.VERTICAL)
@@ -119,7 +119,8 @@ class PlaceDetails(Gramplet):
         """
         self.load_place_image(place)
         title = place_displayer.display(self.dbstate.db, place)
-        self.title.set_text(title)
+        self.title.set_markup("<span size='large' weight='bold'>%s</span>" %
+                              markup_escape_text(title))
 
         self.clear_grid()
         self.add_row(_('Name'), place.get_name().get_value())
@@ -129,7 +130,7 @@ class PlaceDetails(Gramplet):
         self.display_separator()
         lat, lon = conv_lat_lon(place.get_latitude(),
                                 place.get_longitude(),
-                                format='DEG')
+                                format=coord_formats[config.get('preferences.coord-format')])
         if lat:
             self.add_row(_('Latitude'), lat)
         if lon:
@@ -158,8 +159,8 @@ class PlaceDetails(Gramplet):
         """
         Display an empty row to separate groupd of entries.
         """
-        label = Gtk.Label(label='')
-        label.override_font(Pango.FontDescription('sans 4'))
+        label = Gtk.Label()
+        label.set_markup("<span font='sans 4'> </span>")
         label.set_selectable(True)
         label.show()
         self.grid.add(label)

@@ -20,23 +20,12 @@
 #
 
 import unittest
-import sys
-
-try:
-    if sys.version_info < (3,3):
-        from mock import Mock
-    else:
-        from unittest.mock import Mock
-
-    MOCKING = True
-
-except:
-    MOCKING = False
-    print ("Mocking disabled, some testing skipped", sys.exc_info()[0:2])
+from unittest.mock import Mock
 
 class LexGettextTest(unittest.TestCase):
     SRC_WORD = "Inflect-me"
-    MSGID = "how-to-use-lexgettext||" + SRC_WORD
+    CONTEXT = "how-to-use-lexgettext"
+    MSGID = "|" + SRC_WORD
 
     def setUp(self):
         from ..grampslocale import GrampsTranslations
@@ -44,36 +33,32 @@ class LexGettextTest(unittest.TestCase):
         self.trans = GrampsTranslations()
 
     def setup_sgettext_mock(self, msgval_expected):
-        if MOCKING:
-            mock = Mock(return_value=msgval_expected)
-        else:
-            mock = lambda msgid: msgval_expected
+        mock = Mock(return_value=msgval_expected)
         self.trans.sgettext = mock
 
     def tearDown(self):
-        if MOCKING:
-            try:
-                self.trans.sgettext.assert_called_once_with(
-                        self.MSGID)
-            except AttributeError as e:
-                print ("Apparently the test has never set up the mock: ", e)
+        try:
+            self.trans.sgettext.assert_called_once_with(
+                self.MSGID, self.CONTEXT)
+        except AttributeError as e:
+            print ("Apparently the test has never set up the mock: ", e)
 
     def testSrcWordOnlyIfNoTranslation(self):
         self.setup_sgettext_mock(self.SRC_WORD)
-        result = self.trans.lexgettext(self.MSGID)
+        result = self.trans.lexgettext(self.MSGID, self.CONTEXT)
         self.assertEqual(result, self.SRC_WORD)
 
     def test3InflectionsExtractableByNameThroughForm(self):
         translated = "n=TargetNom|g=TargetGen|d=TargetDat"
         self.setup_sgettext_mock(translated)
-        lex = self.trans.lexgettext(self.MSGID)
+        lex = self.trans.lexgettext(self.MSGID, self.CONTEXT)
         formatted = "{lex.f[n]},{lex.f[g]},{lex.f[d]}".format(lex=lex)
         self.assertEqual(formatted, "TargetNom,TargetGen,TargetDat")
 
     def testFirstLexemeFormExtractableAsDefaultString(self):
         translated = "def=Default|v1=Option1|a=AnotherOption"
         self.setup_sgettext_mock(translated)
-        lex = self.trans.lexgettext(self.MSGID)
+        lex = self.trans.lexgettext(self.MSGID, self.CONTEXT)
         formatted = "{}".format(lex)
         self.assertEqual(formatted, "Default")
 

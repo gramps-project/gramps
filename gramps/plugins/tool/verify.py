@@ -80,7 +80,7 @@ from gramps.gui.glade import Glade
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Verify_the_Data')
+WIKI_HELP_SEC = _('Verify_the_Data', 'manual')
 
 #-------------------------------------------------------------------------
 #
@@ -314,7 +314,7 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
             severity_str = 'W'
         elif severity == Rule.ERROR:
             severity_str = 'E'
-        # translators: needed for French+Arabic, ignore otherwise
+        # Translators: needed for French+Arabic, ignore otherwise
         print(_("%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s"
                ) % {'severity' : severity_str, 'msg' : msg, 'type' : the_type,
                     'gid' : gramps_id, 'name' : name})

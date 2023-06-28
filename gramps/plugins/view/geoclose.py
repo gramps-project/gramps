@@ -23,31 +23,29 @@
 """
 Geography for two persons
 """
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+# -------------------------------------------------------------------------
 import operator
-from gi.repository import Gtk
 from math import hypot
 from html import escape
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # set up logging
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
-_LOG = logging.getLogger("GeoGraphy.geoclose")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps Modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+from gi.repository import Gtk
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import EventRoleType, EventType
 from gramps.gen.config import config
 from gramps.gen.datehandler import displayer, get_date
@@ -59,13 +57,14 @@ from gramps.plugins.lib.maps import constants
 from gramps.plugins.lib.maps.geography import GeoGraphyView
 from gramps.gui.selectors import SelectorFactory
 from gramps.gen.utils.db import (get_birth_or_fallback, get_death_or_fallback)
-from gramps.gui.uimanager import ActionGroup
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+_LOG = logging.getLogger("GeoGraphy.geoclose")
+_ = glocale.translation.gettext
 
 _UI_DEF = [
     '''
@@ -185,11 +184,12 @@ _UI_DEF = [
 # pylint: disable=no-member
 # pylint: disable=unused-argument
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # GeoView
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class GeoClose(GeoGraphyView):
     """
     The view used to render person map.
@@ -204,6 +204,7 @@ class GeoClose(GeoGraphyView):
         ('geography.center-lat', 0.0),
         ('geography.center-lon', 0.0),
         ('geography.use-keypad', True),
+        ('geography.personal-map', ""),
 
         ('geography.map_service', constants.OPENSTREETMAP),
         ('geography.max_places', 5000),
@@ -218,9 +219,9 @@ class GeoClose(GeoGraphyView):
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         GeoGraphyView.__init__(self, _("Have they been able to meet?"),
-                                      pdata, dbstate, uistate,
-                                      PersonBookmarks,
-                                      nav_group)
+                               pdata, dbstate, uistate,
+                               PersonBookmarks,
+                               nav_group)
         self.dbstate = dbstate
         self.uistate = uistate
         self.place_list = []
@@ -292,6 +293,8 @@ class GeoClose(GeoGraphyView):
         """
         Rebuild the tree with the given person handle as the root.
         """
+        if self.osm is None:
+            return
         self.place_list_active = []
         self.place_list_ref = []
         self.all_place_list = []
@@ -313,16 +316,16 @@ class GeoClose(GeoGraphyView):
         if self.refperson:
             color = self._config.get('geography.color1')
             self.message_layer.add_message(
-                         _("Reference : %(name)s ( %(birth)s - %(death)s )") % {
-                                 'name': _nd.display(self.refperson),
-                                 'birth': self.birth(self.refperson),
-                                 'death': self.death(self.refperson)})
+                _("Reference : %(name)s ( %(birth)s - %(death)s )") % {
+                    'name': _nd.display(self.refperson),
+                    'birth': self.birth(self.refperson),
+                    'death': self.death(self.refperson)})
             if indiv1:
                 self.message_layer.add_message(
-                         _("The other : %(name)s ( %(birth)s - %(death)s )") % {
-                                 'name': _nd.display(indiv1),
-                                 'birth': self.birth(indiv1),
-                                 'death': self.death(indiv1)})
+                    _("The other : %(name)s ( %(birth)s - %(death)s )") % {
+                        'name': _nd.display(indiv1),
+                        'birth': self.birth(indiv1),
+                        'death': self.death(indiv1)})
             else:
                 self.message_layer.add_message(_("The other person is unknown"))
             self._createmap(self.refperson, color, self.place_list_ref, True)
@@ -331,7 +334,7 @@ class GeoClose(GeoGraphyView):
                 self.add_bookmark_from_popup(None, self.refperson_bookmark)
         else:
             self.message_layer.add_message(
-                                     _("You must choose one reference person."))
+                _("You must choose one reference person."))
             self.message_layer.add_message(_("Go to the person view and select "
                                              "the people you want to compare. "
                                              "Return to this view and use the"
@@ -401,6 +404,8 @@ class GeoClose(GeoGraphyView):
         all handling of visibility is now in rebuild_trees, see that for more
         information.
         """
+        if self.osm is None:
+            return
         self.lifeway_layer.clear_ways()
         if not self.dbstate.is_open():
             return
@@ -431,8 +436,9 @@ class GeoClose(GeoGraphyView):
                 points.append((startlat, startlon))
         self.lifeway_layer.add_way(points, color)
         if reference:
-            self.lifeway_layer.add_way_ref(points, 'orange',
-                 float(self._config.get("geography.maximum_meeting_zone")) / 10)
+            self.lifeway_layer.add_way_ref(
+                points, 'orange',
+                float(self._config.get("geography.maximum_meeting_zone")) / 10)
         return False
 
     def possible_meeting(self, place_list_ref, place_list_active):
@@ -444,11 +450,13 @@ class GeoClose(GeoGraphyView):
         for ref in place_list_ref:
             for act in place_list_active:
                 if (hypot(float(act[3])-float(ref[3]),
-                          float(act[4])-float(ref[4])) <= radius) == True:
+                          float(act[4])-float(ref[4])) <= radius):
                     # we are in the meeting zone
-                    self.add_marker(None, None, act[3], act[4], act[7], True, 1)
+                    self.add_marker(None, None, act[3], act[4], act[7],
+                                    True, 1)
                     self.all_place_list.append(act)
-                    self.add_marker(None, None, ref[3], ref[4], ref[7], True, 1)
+                    self.add_marker(None, None, ref[3], ref[4], ref[7],
+                                    True, 1)
                     self.all_place_list.append(ref)
 
     def _createmap(self, person, color, place_list, reference):
@@ -474,11 +482,11 @@ class GeoClose(GeoGraphyView):
                 role = event_ref.get_role()
                 try:
                     date = event.get_date_object().to_calendar(self.cal)
-                except:
+                except Exception:
                     continue
                 eyear = str("%04d" % date.get_year()) + \
-                          str("%02d" % date.get_month()) + \
-                          str("%02d" % date.get_day())
+                    str("%02d" % date.get_month()) + \
+                    str("%02d" % date.get_day())
                 place_handle = event.get_place_handle()
                 if place_handle:
                     place = dbstate.db.get_place_from_handle(place_handle)
@@ -490,8 +498,8 @@ class GeoClose(GeoGraphyView):
                         descr = _pd.display(dbstate.db, place)
                         evt = EventType(event.get_type())
                         descr1 = _("%(eventtype)s : %(name)s") % {
-                                        'eventtype': evt,
-                                        'name': _nd.display(person)}
+                            'eventtype': evt,
+                            'name': _nd.display(person)}
                         # place.get_longitude and place.get_latitude return
                         # one string. We have coordinates when the two values
                         # contains non null string.
@@ -504,11 +512,10 @@ class GeoClose(GeoGraphyView):
                                                         person.gramps_id,
                                                         place.gramps_id,
                                                         event.gramps_id,
-                                                        role
-                                                        )
+                                                        role)
                         else:
                             self._append_to_places_without_coord(
-                                                        place.gramps_id, descr)
+                                place.gramps_id, descr)
             family_list = person.get_family_handle_list()
             descr1 = " - "
             for family_hdl in family_list:
@@ -530,35 +537,35 @@ class GeoClose(GeoGraphyView):
                     for event_ref in family.get_event_ref_list():
                         if event_ref:
                             event = dbstate.db.get_event_from_handle(
-                                            event_ref.ref)
+                                event_ref.ref)
                             role = event_ref.get_role()
                             if event.get_place_handle():
                                 place_handle = event.get_place_handle()
                                 if place_handle:
                                     place = dbstate.db.get_place_from_handle(
-                                                    place_handle)
+                                        place_handle)
                                     if place:
                                         longitude = place.get_longitude()
                                         latitude = place.get_latitude()
                                         latitude, longitude = conv_lat_lon(
-                                                  latitude, longitude, "D.D8")
+                                            latitude, longitude, "D.D8")
                                         descr = _pd.display(dbstate.db, place)
                                         evt = EventType(event.get_type())
                                         eyear = str(
-         "%04d" % event.get_date_object().to_calendar(self.cal).get_year()) + \
+     "%04d" % event.get_date_object().to_calendar(self.cal).get_year()) + \
      str("%02d" % event.get_date_object().to_calendar(self.cal).get_month()) + \
      str("%02d" % event.get_date_object().to_calendar(self.cal).get_day())
                                         if longitude and latitude:
-                                            self._append_to_places_list(descr,
-                                                 evt, _nd.display(person),
-                                                 latitude, longitude,
-                                                 descr1, eyear,
-                                                 event.get_type(),
-                                                 person.gramps_id,
-                                                 place.gramps_id,
-                                                 event.gramps_id,
-                                                 role
-                                                 )
+                                            self._append_to_places_list(
+                                                descr,
+                                                evt, _nd.display(person),
+                                                latitude, longitude,
+                                                descr1, eyear,
+                                                event.get_type(),
+                                                person.gramps_id,
+                                                place.gramps_id,
+                                                event.gramps_id,
+                                                role)
                                         else:
                                             self._append_to_places_without_coord(place.gramps_id, descr)
 
@@ -576,7 +583,6 @@ class GeoClose(GeoGraphyView):
         """
         self.newmenu = Gtk.Menu()
         menu = self.newmenu
-        menu.set_title("person")
         events = []
         message = ""
         oldplace = ""
@@ -621,7 +627,6 @@ class GeoClose(GeoGraphyView):
                     menu.append(add_item)
                     self.itemoption = Gtk.Menu()
                     itemoption = self.itemoption
-                    itemoption.set_title(message)
                     itemoption.show()
                     add_item.set_submenu(itemoption)
                     modify = Gtk.MenuItem(label=_("Edit Event"))
@@ -643,13 +648,10 @@ class GeoClose(GeoGraphyView):
         """
         Add specific entry to the navigation menu.
         """
-        add_item = Gtk.MenuItem()
-        add_item.show()
-        menu.append(add_item)
+        menu.append(Gtk.SeparatorMenuItem())
         add_item = Gtk.MenuItem(
-                        label=_("Choose and bookmark the new reference person"))
+            label=_("Choose and bookmark the new reference person"))
         add_item.connect("activate", self.select_person)
-        add_item.show()
         menu.append(add_item)
         return
 
@@ -669,18 +671,17 @@ class GeoClose(GeoGraphyView):
         grid.set_border_width(12)
         grid.set_column_spacing(6)
         grid.set_row_spacing(6)
-        configdialog.add_text(grid,
-                _('The meeting zone probability radius.\n'
-                  'The colored zone is approximative.\n'
-                  'The meeting zone is only shown for the reference person.\n'
-                  'The value 9 means about 42 miles or 67 kms.\n'
-                  'The value 1 means about 4.6 miles or 7.5 kms.\n'
-                  'The value is in tenth of degree.'),
-                1, line_wrap=False)
-        self.config_meeting_slider = configdialog.add_slider(grid,
-                "",
-                2, 'geography.maximum_meeting_zone',
-                (1, 9))
+        configdialog.add_text(
+            grid,
+            _('The meeting zone probability radius.\n'
+              'The colored zone is approximative.\n'
+              'The meeting zone is only shown for the reference person.\n'
+              'The value 9 means about 42 miles or 67 kms.\n'
+              'The value 1 means about 4.6 miles or 7.5 kms.\n'
+              'The value is in tenth of degree.'),
+            1, line_wrap=False)
+        self.config_meeting_slider = configdialog.add_slider(
+            grid, "", 2, 'geography.maximum_meeting_zone', (1, 9))
         return _('The selection parameters'), grid
 
     def config_connect(self):
@@ -688,11 +689,10 @@ class GeoClose(GeoGraphyView):
         used to monitor changes in the ini file
         """
         self._config.connect('geography.maximum_meeting_zone',
-                          self.cb_update_meeting_radius)
+                             self.cb_update_meeting_radius)
 
     def cb_update_meeting_radius(self, client, cnxn_id, entry, data):
         """
         Called when the radius change
         """
         self.goto_handle(handle=None)
-

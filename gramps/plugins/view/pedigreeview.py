@@ -51,6 +51,7 @@ import cairo
 from gramps.gen.lib import ChildRef, ChildRefType, Family
 from gramps.gui.views.navigationview import NavigationView
 from gramps.gui.editors import FilterEditor
+from gramps.gui.display import display_url
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.utils.alive import probably_alive
 from gramps.gen.utils.file import media_path_full
@@ -62,9 +63,10 @@ from gramps.gui.editors import EditPerson, EditFamily
 from gramps.gui.ddtargets import DdTargets
 from gramps.gen.config import config
 from gramps.gui.views.bookmarks import PersonBookmarks
-from gramps.gen.const import CUSTOM_FILTERS
+from gramps.gen.const import CUSTOM_FILTERS, URL_MANUAL_PAGE, URL_WIKISTRING
 from gramps.gui.dialog import RunDatabaseRepair, ErrorDialog
-from gramps.gui.utils import color_graph_box, hex_to_rgb_float, is_right_click
+from gramps.gui.utils import (color_graph_box, hex_to_rgb_float,
+                              is_right_click, get_contrast_color)
 from gramps.gen.constfunc import lin
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
@@ -75,14 +77,14 @@ from gramps.gen.utils.symbols import Symbols
 # Constants
 #
 #-------------------------------------------------------------------------
-
+WIKI_PAGE = URL_WIKISTRING + URL_MANUAL_PAGE + '_-_Categories#Pedigree_View'
 _PERSON = "p"
-_BORN = _('short for born|b.')
-_DIED = _('short for died|d.')
-_BAPT = _('short for baptized|bap.')
-_CHRI = _('short for christened|chr.')
-_BURI = _('short for buried|bur.')
-_CREM = _('short for cremated|crem.')
+_BORN = _('b.', 'short for born')
+_DIED = _('d.', 'short for died')
+_BAPT = _('bap.', 'short for baptized')
+_CHRI = _('chr.', 'short for christened')
+_BURI = _('bur.', 'short for buried')
+_CREM = _('crem.', 'short for cremated')
 
 class _PersonWidgetBase(Gtk.DrawingArea):
     """
@@ -336,7 +338,8 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
 
         # text
         context.move_to(5, 4)
-        context.set_source_rgb(0, 0, 0)
+        fg_color = get_contrast_color(self.bgcolor)
+        context.set_source_rgb(*fg_color[:3])
         PangoCairo.show_layout(context, self.textlayout)
         context.restore()
         context.get_target().flush()
@@ -574,12 +577,15 @@ class PedigreeView(NavigationView):
         self.uistate.connect('font-changed', self.reload_symbols)
 
     def reload_symbols(self):
+        self.symbols = Symbols()
         dth_idx = self.uistate.death_symbol
         if self.uistate.symbols:
-            self.bth = self.symbols.get_symbol_for_string(self.symbols.SYMBOL_BIRTH)
+            self.bth = self.symbols.get_symbol_for_string(
+                self.symbols.SYMBOL_BIRTH)
             self.dth = self.symbols.get_death_symbol_for_char(dth_idx)
         else:
-            self.bth = self.symbols.get_symbol_fallback(self.symbols.SYMBOL_BIRTH)
+            self.bth = self.symbols.get_symbol_fallback(
+                self.symbols.SYMBOL_BIRTH)
             self.dth = self.symbols.get_death_symbol_fallback(dth_idx)
 
     def get_handle_from_gramps_id(self, gid):
@@ -823,6 +829,10 @@ class PedigreeView(NavigationView):
     def on_delete(self):
         self._config.save()
         NavigationView.on_delete(self)
+
+    def on_help_clicked(self, dummy):
+        """ Button: Display the relevant portion of Gramps manual"""
+        display_url(WIKI_PAGE)
 
     def goto_handle(self, handle=None):
         """
@@ -1692,6 +1702,18 @@ class PedigreeView(NavigationView):
         scroll_direction_menu.append(entry)
 
         scroll_direction_menu.show()
+        item.show()
+        menu.append(item)
+
+        # Separator.
+        item = Gtk.SeparatorMenuItem()
+        item.show()
+        menu.append(item)
+
+        # Help menu entry
+        menu.append(item)
+        item = Gtk.MenuItem(label=_("About Pedigree View"))
+        item.connect("activate", self.on_help_clicked)
         item.show()
         menu.append(item)
 

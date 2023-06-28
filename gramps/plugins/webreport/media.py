@@ -58,7 +58,7 @@ from gramps.gen.lib import (Date, Media)
 from gramps.gen.plug.report import Bibliography
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.thumbnails import run_thumbnailer
-from gramps.gen.utils.image import image_size # , resize_to_jpeg_buffer
+from gramps.gen.utils.image import image_size
 from gramps.plugins.lib.libhtml import Html
 
 #------------------------------------------------
@@ -89,21 +89,26 @@ class MediaPages(BasePage):
     The base class 'BasePage' is initialised once for each page that is
     displayed.
     """
-    def __init__(self, report):
+    def __init__(self, report, the_lang, the_title):
         """
-        @param: report -- The instance of the main report class for this report
+        @param: report    -- The instance of the main report class
+                             for this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
-        BasePage.__init__(self, report, title="")
+        BasePage.__init__(self, report, the_lang, the_title)
         self.media_dict = defaultdict(set)
         self.unused_media_handles = []
         self.cur_fname = None
+        self.create_images_index = self.report.options['create_images_index']
 
-    def display_pages(self, title):
+    def display_pages(self, the_lang, the_title):
         """
         Generate and output the pages under the Media tab, namely the media
         index and the individual media pages.
 
-        @param: title -- Is the title of the web page
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
         LOG.debug("obj_dict[Media]")
         for item in self.report.obj_dict[Media].items():
@@ -113,7 +118,8 @@ class MediaPages(BasePage):
         else:
             media_count = len(self.report.obj_dict[Media])
         message = _("Creating media pages")
-        with self.r_user.progress(_("Narrated Web Site Report"), message,
+        progress_title = self.report.pgrs_title(the_lang)
+        with self.r_user.progress(progress_title, message,
                                   media_count + 1
                                  ) as step:
             # bug 8950 : it seems it's better to sort on desc + gid.
@@ -152,7 +158,7 @@ class MediaPages(BasePage):
                     next_ = self.unused_media_handles[0]
                 else:
                     next_ = None
-                self.mediapage(self.report, title,
+                self.mediapage(self.report, the_lang, the_title,
                                handle, (prev, next_, index, media_count))
                 prev = handle
                 step()
@@ -169,28 +175,32 @@ class MediaPages(BasePage):
                         next_ = None
                     else:
                         next_ = self.unused_media_handles[idx]
-                    self.mediapage(self.report, title, media_handle,
+                    self.mediapage(self.report, the_lang, the_title,
+                                   media_handle,
                                    (prev, next_, index, media_count))
                     prev = media_handle
                     step()
                     index += 1
                     idx += 1
 
-        self.medialistpage(self.report, title, sorted_media_handles)
+        self.medialistpage(self.report, the_lang, the_title,
+                           sorted_media_handles)
 
-    def medialistpage(self, report, title, sorted_media_handles):
+    def medialistpage(self, report, the_lang, the_title, sorted_media_handles):
         """
         Generate and output the Media index page.
 
         @param: report               -- The instance of the main report class
                                         for this report
-        @param: title                -- Is the title of the web page
+        @param: the_lang             -- The lang to process
+        @param: the_title            -- The title page related to the language
         @param: sorted_media_handles -- A list of the handles of the media to be
                                         displayed sorted by the media title
         """
-        BasePage.__init__(self, report, title)
+        BasePage.__init__(self, report, the_lang, the_title)
 
-        output_file, sio = self.report.create_file("media")
+        if self.create_images_index:
+            output_file, sio = self.report.create_file("media")
         # save the media file name in case we create unused media pages
         self.cur_fname = self.report.cur_fname
         result = self.write_header(self._('Media'))
@@ -225,7 +235,7 @@ class MediaPages(BasePage):
                 trow.extend(
                     Html("th", trans, class_=colclass, inline=True)
                     for trans, colclass in [("&nbsp;", "ColumnRowLabel"),
-                                            (self._("Media | Name"),
+                                            (self._(" Name", "Media "),
                                              "ColumnName"),
                                             (self._("Date"), "ColumnDate"),
                                             (self._("Mime Type"), "ColumnMime")]
@@ -287,8 +297,6 @@ class MediaPages(BasePage):
                             gmfh = self.r_db.get_media_from_handle
                             media = gmfh(media_handle)
                             gc.collect() # Reduce memory usage when many images.
-                            if idx != total:
-                                self.unused_media_handles[idx]
                             trow += Html("tr")
                             media_data_row = [
                                 [index, "ColumnRowLabel"],
@@ -314,7 +322,8 @@ class MediaPages(BasePage):
         # send page out for processing
         # and close the file
         self.report.cur_fname = self.cur_fname
-        self.xhtml_writer(medialistpage, output_file, sio, ldatec)
+        if self.create_images_index:
+            self.xhtml_writer(medialistpage, output_file, sio, ldatec)
 
     def media_ref_link(self, handle, name, uplink=False):
         """
@@ -326,7 +335,8 @@ class MediaPages(BasePage):
                           result.
         """
         # get media url
-        url = self.report.build_url_fname_html(handle, "img", uplink)
+        url = self.report.build_url_fname(handle, "img", uplink=2,
+                                          image=True) + self.ext
 
         # get name
         name = html_escape(name)
@@ -337,20 +347,21 @@ class MediaPages(BasePage):
         # return hyperlink to its callers
         return hyper
 
-    def mediapage(self, report, title, media_handle, info):
+    def mediapage(self, report, the_lang, the_title, media_handle, info):
         """
         Generate and output an individual Media page.
 
         @param: report       -- The instance of the main report class
                                 for this report
-        @param: title        -- Is the title of the web page
+        @param: the_lang     -- The lang to process
+        @param: the_title    -- The title page related to the language
         @param: media_handle -- The media handle to use
         @param: info         -- A tuple containing the media handle for the
                                 next and previous media, the current page
                                 number, and the total number of media pages
         """
         media = report.database.get_media_from_handle(media_handle)
-        BasePage.__init__(self, report, title, media.gramps_id)
+        BasePage.__init__(self, report, the_lang, the_title, media.gramps_id)
         (prev, next_, page_number, total_pages) = info
 
         ldatec = media.get_change_time()
@@ -382,7 +393,10 @@ class MediaPages(BasePage):
         # if there are media rectangle regions, attach behaviour style sheet
         if _region_items:
 
-            fname = "/".join(["css", "behaviour.css"])
+            if self.the_lang and not self.usecms:
+                fname = "/".join(["..", "css", "behaviour.css"])
+            else:
+                fname = "/".join(["css", "behaviour.css"])
             url = self.report.build_url_fname(fname, None, self.uplink)
             head += Html("link", href=url, type="text/css",
                          media="screen", rel="stylesheet")
@@ -471,7 +485,7 @@ class MediaPages(BasePage):
                                 # display the image
                                 if orig_image_path != newpath:
                                     url = self.report.build_url_fname(
-                                        newpath, None, self.uplink)
+                                        newpath, None, self.uplink, image=True)
                                 s_width = 'width: %dpx;' % max_width
                                 mediadisplay += Html("a", href=url) + (
                                     Html("img", src=url,
@@ -504,12 +518,14 @@ class MediaPages(BasePage):
 
                             img_url = self.report.build_url_fname(path,
                                                                   None,
-                                                                  self.uplink)
+                                                                  self.uplink,
+                                                                  image=True)
                             if target_exists:
                                 # TODO. Convert disk path to URL
                                 url = self.report.build_url_fname(newpath,
                                                                   None,
-                                                                  self.uplink)
+                                                                  self.uplink,
+                                                                  image=True)
                                 s_width = 'width: 48px;'
                                 hyper = Html("a", href=url,
                                              title=esc_page_title) + (
@@ -576,8 +592,19 @@ class MediaPages(BasePage):
                             )
                         table += trow
 
+                    # Tags
+                    tags = self.show_tags(media)
+                    if tags and self.report.inc_tags:
+                        trow = Html("tr") + (
+                            Html("td", self._("Tags"),
+                                 class_="ColumnAttribute", inline=True),
+                            Html("td", tags,
+                                 class_="ColumnValue", inline=True)
+                            )
+                        table += trow
+
             # get media notes
-            notelist = self.display_note_list(media.get_note_list())
+            notelist = self.display_note_list(media.get_note_list(), Media)
             if notelist is not None:
                 mediadetail += notelist
 
@@ -610,8 +637,14 @@ class MediaPages(BasePage):
     def media_nav_link(self, handle, name, uplink=False):
         """
         Creates the Media Page Navigation hyperlinks for Next and Prev
+
+        @param: handle -- The media handle
+        @param: name   -- The name to use for the link
+        @param: uplink -- If True, then "../../../" is inserted in front of the
+                          result.
         """
-        url = self.report.build_url_fname_html(handle, "img", uplink)
+        url = self.report.build_url_fname(handle, "img", uplink,
+                                          image=True) + self.ext
         name = html_escape(name)
         return Html("a", name, name=name, id=name, href=url,
                     title=name, inline=True)
@@ -639,8 +672,12 @@ class MediaPages(BasePage):
         @param: photo  -- The source object (image, pdf, ...)
         """
         ext = os.path.splitext(photo.get_path())[1]
-        to_dir = self.report.build_path('images', handle)
+        to_dir = self.report.build_path('images', handle, image=True)
         newpath = os.path.join(to_dir, handle) + ext
+        if (self.the_lang is not None and
+                self.the_lang != self.report.languages[0][0]):
+            # if multi languages, copy the image only for the first language.
+            return newpath
 
         fullpath = media_path_full(self.r_db, photo.get_path())
         if not os.path.isfile(fullpath):
@@ -649,14 +686,17 @@ class MediaPages(BasePage):
         try:
             mtime = os.stat(fullpath).st_mtime
             if self.report.archive:
-                self.report.archive.add(fullpath, str(newpath))
+                if str(newpath) not in self.report.archive.getnames():
+                    # The current file not already archived.
+                    self.report.archive.add(fullpath, str(newpath))
             else:
                 to_dir = os.path.join(self.html_dir, to_dir)
                 if not os.path.isdir(to_dir):
                     os.makedirs(to_dir)
                 new_file = os.path.join(self.html_dir, newpath)
-                shutil.copyfile(fullpath, new_file)
-                os.utime(new_file, (mtime, mtime))
+                if not os.path.exists(newpath):
+                    shutil.copyfile(fullpath, new_file)
+                    os.utime(new_file, (mtime, mtime))
             return newpath
         except (IOError, OSError) as msg:
             error = _("Missing media object:"

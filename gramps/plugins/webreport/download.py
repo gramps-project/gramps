@@ -57,6 +57,7 @@ from gramps.plugins.lib.libhtml import Html
 #------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
 from gramps.plugins.webreport.common import (FULLCLEAR, html_escape)
+from gramps.gen.utils.file import create_checksum
 
 _ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb")
@@ -66,29 +67,27 @@ class DownloadPage(BasePage):
     """
     This class is responsible for displaying information about the Download page
     """
-    def __init__(self, report, title):
+    def __init__(self, report, the_lang, the_title):
         """
-        @param: report -- The instance of the main report class for this report
-        @param: title  -- Is the title of the web page
+        @param: report    -- The instance of the main report class
+                             for this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
-        BasePage.__init__(self, report, title)
+        BasePage.__init__(self, report, the_lang, the_title)
 
         # do NOT include a Download Page
         if not self.report.inc_download:
             return
 
         # menu options for class
-        # download and description #1
+        # download and description #n ( 1 <= n < 5 )
 
-        dlfname1 = self.report.dl_fname1
-        dldescr1 = self.report.dl_descr1
-
-        # download and description #2
-        dlfname2 = self.report.dl_fname2
-        dldescr2 = self.report.dl_descr2
+        dlfname = self.report.dl_fname
+        dldescr = self.report.dl_descr
 
         # if no filenames at all, return???
-        if dlfname1 or dlfname2:
+        if dlfname:
 
             output_file, sio = self.report.create_file("download")
             result = self.write_header(self._('Download'))
@@ -126,66 +125,62 @@ class DownloadPage(BasePage):
                         for (label, colclass) in [
                             (self._("File Name"), "Filename"),
                             (self._("Description"), "Description"),
-                            (self._("Last Modified"), "Modified")])
+                            (self._("Last Modified"), "Modified"),
+                            (self._("MD5"), "Md5")])
                     # table body
                     tbody = Html("tbody")
                     table += tbody
+                    dwnld = 0
 
-                    # if dlfname1 is not None, show it???
-                    if dlfname1:
+                    for fnamex in dlfname:
+                        # if fnamex is not None, do we have a file to download?
+                        if fnamex:
 
+                            fname = os.path.basename(dlfname[fnamex])
+                            # if fname is not None, show it
+                            if fname:
+                                dwnld += 1
+                                trow = Html("tr", id='Row01')
+                                tbody += trow
+                                fname_lnk = "../" + fname if the_lang else fname
+                                dldescrx = dldescr[fnamex]
+                                tcell = Html("td", class_="ColumnFilename") + (
+                                    Html("a", fname, href=fname_lnk,
+                                         title=html_escape(dldescrx))
+                                )
+                                trow += tcell
+
+                                dldescr1 = dldescrx or "&nbsp;"
+                                trow += Html("td", dldescr1, inline=True,
+                                             class_="ColumnDescription")
+
+                                tcell = Html("td", class_="ColumnModified",
+                                             inline=True)
+                                trow += tcell
+                                if os.path.exists(dlfname[fnamex]):
+                                    md5 = create_checksum(dlfname[fnamex])
+                                    trow += Html("td", md5, class_="ColumnMd5",
+                                                 inline=True)
+                                    modified = os.stat(dlfname[fnamex]).st_mtime
+                                    last_mod = datetime.datetime.fromtimestamp(
+                                        modified)
+                                    tcell += last_mod
+                                    # copy the file only once
+                                    if not os.path.exists(fname):
+                                        self.report.copy_file(dlfname[fnamex],
+                                                              fname)
+                                else:
+                                    tcell += self._("Cannot open file")
+
+                    if not dwnld:
+                        # We have several files to download
+                        # but all file names are empty
+                        dldescrx = self._("No file to download")
                         trow = Html("tr", id='Row01')
                         tbody += trow
-
-                        fname = os.path.basename(dlfname1)
-                        # TODO dlfname1 is filename, convert disk path to URL
-                        tcell = Html("td", class_="ColumnFilename") + (
-                            Html("a", fname, href=dlfname1,
-                                 title=html_escape(dldescr1))
-                        )
+                        tcell = Html("td", class_="ColumnFilename",
+                                     colspan=3) + Html("h4", dldescrx)
                         trow += tcell
-
-                        dldescr1 = dldescr1 or "&nbsp;"
-                        trow += Html("td", dldescr1,
-                                     class_="ColumnDescription", inline=True)
-
-                        tcell = Html("td", class_="ColumnModified", inline=True)
-                        trow += tcell
-                        if os.path.exists(dlfname1):
-                            modified = os.stat(dlfname1).st_mtime
-                            last_mod = datetime.datetime.fromtimestamp(modified)
-                            tcell += last_mod
-                        else:
-                            tcell += "&nbsp;"
-
-                    # if download filename #2, show it???
-                    if dlfname2:
-
-                        # begin row #2
-                        trow = Html("tr", id='Row02')
-                        tbody += trow
-
-                        fname = os.path.basename(dlfname2)
-                        tcell = Html("td", class_="ColumnFilename") + (
-                            Html("a", fname, href=dlfname2,
-                                 title=html_escape(dldescr2))
-                        )
-                        trow += tcell
-
-                        dldescr2 = dldescr2 or "&nbsp;"
-                        trow += Html("td", dldescr2,
-                                     class_="ColumnDescription", inline=True)
-
-                        tcell = Html("td", id='Col04',
-                                     class_="ColumnModified", inline=True)
-                        trow += tcell
-                        if os.path.exists(dlfname2):
-                            modified = os.stat(dlfname2).st_mtime
-                            last_mod = datetime.datetime.fromtimestamp(modified)
-                            tcell += last_mod
-                        else:
-                            tcell += "&nbsp;"
-
             # clear line for proper styling
             # create footer section
             footer = self.write_footer(None)

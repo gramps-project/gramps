@@ -5,6 +5,7 @@
 # Copyright (C) 2009 Benny Malengier
 # Copyright (C) 2011 Nick Hall
 # Copyright (C) 2011 Tim G L Lyons
+# Copyright (C) 2020 Matthias Kemmer
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,7 +25,7 @@ from gramps.gen.plug._pluginreg import register, STABLE, UNSTABLE, GRAMPLET
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
-MODULE_VERSION="5.1"
+MODULE_VERSION="5.2"
 
 #------------------------------------------------------------------------
 #
@@ -287,14 +288,14 @@ register(GRAMPLET,
 
 register(GRAMPLET,
          id="To Do",
-         name=_("gramplet|To Do"),
+         name=_("To Do", "gramplet"),
          description = _("Gramplet for displaying a To Do list"),
          status = STABLE,
          fname="todogramplet.py",
          height=300,
          expand=True,
          gramplet = 'ToDoGramplet',
-         gramplet_title=_("gramplet|To Do"),
+         gramplet_title=_("To Do", "gramplet"),
          version="1.0.0",
          gramps_target_version=MODULE_VERSION,
          navtypes=["Dashboard"],
@@ -773,6 +774,20 @@ register(GRAMPLET,
          )
 
 register(GRAMPLET,
+         id="Note Notes",
+         name=_("Notes"),
+         description = _("Gramplet showing the selected note"),
+         version="1.0.0",
+         gramps_target_version=MODULE_VERSION,
+         status = STABLE,
+         fname="notes.py",
+         height=200,
+         gramplet = 'NoteNotes',
+         gramplet_title=_("Notes"),
+         navtypes=["Note"],
+         )
+
+register(GRAMPLET,
          id="Person Citations",
          name=_("Person Citations"),
          description = _("Gramplet showing the citations for a person"),
@@ -1148,7 +1163,7 @@ register(GRAMPLET,
          fname="todo.py",
          height=200,
          gramplet = 'PersonToDo',
-         gramplet_title=_("gramplet|To Do"),
+         gramplet_title=_("To Do", "gramplet"),
          navtypes=["Person"],
          )
 
@@ -1162,7 +1177,7 @@ register(GRAMPLET,
          fname="todo.py",
          height=200,
          gramplet = 'EventToDo',
-         gramplet_title=_("gramplet|To Do"),
+         gramplet_title=_("To Do", "gramplet"),
          navtypes=["Event"],
          )
 
@@ -1176,7 +1191,7 @@ register(GRAMPLET,
          fname="todo.py",
          height=200,
          gramplet = 'FamilyToDo',
-         gramplet_title=_("gramplet|To Do"),
+         gramplet_title=_("To Do", "gramplet"),
          navtypes=["Family"],
          )
 
@@ -1190,7 +1205,7 @@ register(GRAMPLET,
          fname="todo.py",
          height=200,
          gramplet = 'PlaceToDo',
-         gramplet_title=_("gramplet|To Do"),
+         gramplet_title=_("To Do", "gramplet"),
          navtypes=["Place"],
          )
 
@@ -1204,7 +1219,7 @@ register(GRAMPLET,
          fname="todo.py",
          height=200,
          gramplet = 'SourceToDo',
-         gramplet_title=_("gramplet|To Do"),
+         gramplet_title=_("To Do", "gramplet"),
          navtypes=["Source"],
          )
 
@@ -1218,7 +1233,7 @@ register(GRAMPLET,
          fname="todo.py",
          height=200,
          gramplet = 'CitationToDo',
-         gramplet_title=_("gramplet|To Do"),
+         gramplet_title=_("To Do", "gramplet"),
          navtypes=["Citation"],
          )
 
@@ -1232,7 +1247,7 @@ register(GRAMPLET,
          fname="todo.py",
          height=200,
          gramplet = 'RepositoryToDo',
-         gramplet_title=_("gramplet|To Do"),
+         gramplet_title=_("To Do", "gramplet"),
          navtypes=["Repository"],
          )
 
@@ -1246,7 +1261,7 @@ register(GRAMPLET,
          fname="todo.py",
          height=200,
          gramplet = 'MediaToDo',
-         gramplet_title=_("gramplet|To Do"),
+         gramplet_title=_("To Do", "gramplet"),
          navtypes=["Media"],
          )
 

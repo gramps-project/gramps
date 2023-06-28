@@ -41,7 +41,7 @@ import uuid
 #-------------------------------------------------------------------------
 from .git_revision import get_git_revision
 from .constfunc import get_env_var
-from ..version import VERSION, VERSION_TUPLE, major_version
+from ..version import VERSION, VERSION_TUPLE, major_version, DEV_VERSION
 from .utils.resourcepath import ResourcePath
 from .utils.grampslocale import GrampsLocale
 
@@ -122,14 +122,13 @@ TOOL_OPTIONS = os.path.join(HOME_DIR, "tool_options.xml")
 PLACE_FORMATS = os.path.join(HOME_DIR, "place_formats.xml")
 
 ENV_DIR = os.path.join(HOME_DIR, "env")
-TEMP_DIR = os.path.join(HOME_DIR, "temp")
 THUMB_DIR = os.path.join(HOME_DIR, "thumb")
 THUMB_NORMAL = os.path.join(THUMB_DIR, "normal")
 THUMB_LARGE = os.path.join(THUMB_DIR, "large")
 USER_PLUGINS = os.path.join(VERSION_DIR, "plugins")
 USER_CSS = os.path.join(HOME_DIR, "css")
 # dirs checked/made for each Gramps session
-USER_DIRLIST = (USER_HOME, HOME_DIR, VERSION_DIR, ENV_DIR, TEMP_DIR, THUMB_DIR,
+USER_DIRLIST = (USER_HOME, HOME_DIR, VERSION_DIR, ENV_DIR, THUMB_DIR,
                 THUMB_NORMAL, THUMB_LARGE, USER_PLUGINS, USER_CSS)
 
 
@@ -145,7 +144,8 @@ sys.path.insert(0, ROOT_DIR)
 git_revision = get_git_revision(ROOT_DIR).replace('\n', '')
 if sys.platform == 'win32' and git_revision == "":
     git_revision = get_git_revision(os.path.split(ROOT_DIR)[1])
-VERSION += git_revision
+if DEV_VERSION:
+    VERSION += git_revision
 #VERSION += "-1"
 
 #
@@ -162,11 +162,6 @@ RULE_GLADE = os.path.join(GLADE_DIR, "rule.glade")
 PLUGINS_DIR = os.path.join(ROOT_DIR, "plugins")
 
 USE_TIPS = False
-
-if sys.platform == 'win32':
-    USE_THUMBNAILER = False
-else:
-    USE_THUMBNAILER = True
 
 #-------------------------------------------------------------------------
 #
@@ -198,7 +193,6 @@ ENV = {
     "major_version": major_version,
     "VERSION_DIR": VERSION_DIR,
     "ENV_DIR": ENV_DIR,
-    "TEMP_DIR": TEMP_DIR,
     "THUMB_DIR": THUMB_DIR,
     "THUMB_NORMAL": THUMB_NORMAL,
     "THUMB_LARGE": THUMB_LARGE,
@@ -255,13 +249,15 @@ DOCUMENTERS = [
 #-------------------------------------------------------------------------
 THUMBSCALE = 96.0
 THUMBSCALE_LARGE = 180.0
+SIZE_NORMAL = 0
+SIZE_LARGE = 1
 XMLFILE = "data.gramps"
-NO_SURNAME = "(%s)" % _("surname|none")
-NO_GIVEN = "(%s)" % _("given-name|none")
+NO_SURNAME = "(%s)" % _("none", "surname")
+NO_GIVEN = "(%s)" % _("none", "given-name")
 ARABIC_COMMA = "،"
 ARABIC_SEMICOLON = "؛"
 DOCGEN_OPTIONS = 'Docgen Options'
-COLON = _(':') # translators: needed for French, ignore otherwise
+COLON = _(':') # Translators: needed for French, ignore otherwise
 
 #-------------------------------------------------------------------------
 #

@@ -64,6 +64,9 @@ _DETAIL = [{'name': _("Full"), 'value': "full"},
            {'name': _("Medium"), 'value': "medium"},
            {'name': _("Short"), 'value': "short"}]
 
+_NAME_FORMAT = [{'name': _("Given Nickname Surname"), 'value': "1"},
+                {'name': _("Surname Given Nickname"), 'value': "2"}]
+
 _MARRIAGE = [{'name': _("Default"), 'value': ""},
              {'name': _("Above"), 'value': "marriage above"},
              {'name': _("Below"), 'value': "marriage below"},
@@ -146,6 +149,12 @@ class TreeOptions:
             detail.add_item(item["value"], item["name"])
         detail.set_help(_("Detail of information to be shown in a node."))
         menu.add_option(category, "detail", detail)
+
+        name_format = EnumeratedListOption(_("Name Format"), "1")
+        for item in _NAME_FORMAT:
+            name_format.add_item(item["value"], item["name"])
+        name_format.set_help(_("Select the format to display names"))
+        menu.add_option(category, "name_format", name_format)
 
         marriage = EnumeratedListOption(_("Marriage"), "")
         for item in _MARRIAGE:
@@ -281,6 +290,7 @@ class TreeDocBase(BaseDoc, TreeDoc):
         get_option = options.menu.get_option_by_name
 
         self.detail = get_option('detail').get_value()
+        self.name_format = get_option('name_format').get_value()
         self.marriage = get_option('marriage').get_value()
         self.nodesize = get_option('nodesize').get_value()
         self.levelsize = get_option('levelsize').get_value()
@@ -429,9 +439,14 @@ class TreeDocBase(BaseDoc, TreeDoc):
         name = person.get_primary_name()
         nick = name.get_nick_name()
         surn = name.get_surname()
-        name_parts = [self.format_given_names(name),
-                      '\\nick{{{}}}'.format(escape(nick)) if nick else '',
-                      '\\surn{{{}}}'.format(escape(surn)) if surn else '']
+        if self.name_format == "1":
+            name_parts = [self.format_given_names(name),
+                          '\\nick{{{}}}'.format(escape(nick)) if nick else '',
+                          '\\surn{{{}}}'.format(escape(surn)) if surn else '']
+        elif self.name_format == "2":
+            name_parts = ['\\surn{{{}}}'.format(escape(surn)) if surn else '',
+                          self.format_given_names(name),
+                          '\\nick{{{}}}'.format(escape(nick)) if nick else '']
         self.write(level+1, 'name = {{{}}},\n'.format(
             ' '.join([e for e in name_parts if e])))
         for eventref in person.get_event_ref_list():
@@ -589,6 +604,47 @@ class TreeDocBase(BaseDoc, TreeDoc):
 
 #------------------------------------------------------------------------------
 #
+# TreeGraphDoc
+#
+#------------------------------------------------------------------------------
+class TreeGraphDoc(TreeDocBase):
+    """
+    TreeGraphDoc implementation that generates a .graph file.
+    """
+
+    def write_start(self):
+        """
+        Write the start of the document - nothing for a graph file.
+        """
+        pass
+
+    def start_tree(self, option_list):
+        """
+        Write the start of a tree - nothing for a graph file.
+        """
+        pass
+
+    def end_tree(self):
+        """
+        Write the end of a tree - nothing for a graph file.
+        """
+        pass
+
+    def write_end(self):
+        """
+        Write the end of the document - nothing for a graph file.
+        """
+        pass
+
+    def close(self):
+        """ Implements TreeDocBase.close() """
+        TreeDocBase.close(self)
+
+        with open(self._filename, 'w', encoding='utf-8') as texfile:
+            texfile.write(self._tex.getvalue())
+
+#------------------------------------------------------------------------------
+#
 # TreeTexDoc
 #
 #------------------------------------------------------------------------------
@@ -653,6 +709,11 @@ if _LATEX_FOUND:
                  'descr': _("PDF"),
                  'mime' : "application/pdf",
                  'class': TreePdfDoc}]
+
+FORMATS += [{'type' : "graph",
+             'ext'  : "graph",
+             'descr': _("Graph File for genealogytree"),
+             'class': TreeGraphDoc}]
 
 FORMATS += [{'type' : "tex",
              'ext'  : "tex",

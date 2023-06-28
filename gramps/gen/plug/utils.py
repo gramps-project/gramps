@@ -116,9 +116,8 @@ class Zipfile:
                 os.mkdir(fullname)
         for name in self.get_files(names):
             fullname = os.path.join(path, name)
-            outfile = file(fullname, 'wb')
-            outfile.write(self.zip_obj.read(name))
-            outfile.close()
+            with open(fullname, 'wb') as outfile:
+                outfile.write(self.zip_obj.read(name))
 
     def extractfile(self, name):
         """
@@ -216,12 +215,12 @@ def available_updates():
                 LOG.warning("Failed to open addon metadata for {lang} {url}: {err}".
                         format(lang=lang, url=URL, err=err))
                 fp = None
-        if fp and fp.getcode() == 200: # ok
+        if fp and (fp.getcode() == 200 or fp.file):
             break
 
     pmgr = BasePluginManager.get_instance()
     addon_update_list = []
-    if fp and fp.getcode() == 200:
+    if fp and (fp.getcode() == 200 or fp.file):
         lines = list(fp.readlines())
         count = 0
         for line in lines:
@@ -259,7 +258,7 @@ def available_updates():
                 if "new" in whattypes:
                     if (not config.get('behavior.do-not-show-previously-seen-addon-updates') or
                          plugin_dict["i"] not in config.get('behavior.previously-seen-addon-updates')):
-                        addon_update_list.append((_("updates|New"),
+                        addon_update_list.append((_("New", "updates"),
                                                   "%s/download/%s" %
                                                   (config.get("behavior.addons-url"),
                                                    plugin_dict["z"]),
@@ -283,7 +282,8 @@ def load_addon_file(path, callback=None):
     import tarfile
     if (path.startswith("http://") or
         path.startswith("https://") or
-        path.startswith("ftp://")):
+        path.startswith("ftp://") or
+        path.startswith("file://")):
         try:
             fp = urlopen_maybe_no_check_cert(path)
         except:
@@ -292,7 +292,7 @@ def load_addon_file(path, callback=None):
             return False
     else:
         try:
-            fp = open(path)
+            fp = open(path, 'rb')
         except:
             if callback:
                 callback(_("Unable to open '%s'") % path)

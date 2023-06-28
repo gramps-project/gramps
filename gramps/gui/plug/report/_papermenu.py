@@ -175,7 +175,8 @@ class PaperFrame(Gtk.Box):
 
         self.paper_grid.show_all()
         # Shift the grid from glade toplevel window to this box
-        self.paper_grid.reparent(self)
+        self.paper_grid.get_parent().remove(self.paper_grid)
+        self.add(self.paper_grid)
         # need to get rid of glade toplevel now that we are done with it.
         self.top.destroy()
 
@@ -212,7 +213,7 @@ class PaperFrame(Gtk.Box):
         else:
             self.paper_unit = 'in.'
             self.paper_unit_multiplier = 2.54
-            paper_unit_text = _("inch|in.")
+            paper_unit_text = _("in.", "inch")
 
         self.lunits1.set_text(paper_unit_text)
         self.lunits2.set_text(paper_unit_text)

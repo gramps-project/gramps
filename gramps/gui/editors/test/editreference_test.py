@@ -21,22 +21,15 @@
 """ Unittest for editreference.py """
 
 import unittest
-import sys
+from unittest.mock import Mock, patch
 import os
-try:
-    if sys.version_info < (3,3):
-        from mock import Mock, patch
-    else:
-        from unittest.mock import Mock, patch
-    MOCKING = True
-except:
-    MOCKING = False
 
 from  gramps.gen.lib import (Person, Family, Event, Source, Place, Citation,
                              Repository, Media, Note, Tag)
 from gramps.cli.user import User
 from gramps.gen.dbstate import DbState
 from gramps.gen.db.utils import make_database
+from gramps.gen.db import DbTxn
 from gramps.gui.editors.editreference import EditReference
 
 class MockWindow:
@@ -53,10 +46,9 @@ class MockEditReference(EditReference):
 
 class TestEditReference(unittest.TestCase):
 
-    @unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
     def test_editreference(self):
         dbstate = DbState()
-        db = make_database("bsddb")
+        db = make_database("sqlite")
         path = "/tmp/edit_ref_test"
         try:
             os.mkdir(path)
@@ -66,7 +58,8 @@ class TestEditReference(unittest.TestCase):
         dbstate.change_database(db)
         source = Place()
         source.gramps_id = "P0001"
-        dbstate.db.place_map[source.handle] = source.serialize()
+        with DbTxn("test place", dbstate.db) as trans:
+            dbstate.db.add_place(source, trans)
         editor = MockEditReference(dbstate, uistate=None, track=[],
                                    source=source, source_ref=None, update=None)
         with patch('gramps.gui.editors.editreference.ErrorDialog') as MockED:

@@ -38,39 +38,39 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 
-fname_map = {'all': _('Filtering_on|all'),
-             'Inverse Person': _('Filtering_on|Inverse Person'),
-             'Inverse Family': _('Filtering_on|Inverse Family'),
-             'Inverse Event': _('Filtering_on|Inverse Event'),
-             'Inverse Place': _('Filtering_on|Inverse Place'),
-             'Inverse Source': _('Filtering_on|Inverse Source'),
-             'Inverse Repository': _('Filtering_on|Inverse Repository'),
-             'Inverse Media': _('Filtering_on|Inverse Media'),
-             'Inverse Note': _('Filtering_on|Inverse Note'),
-             'all people': _('Filtering_on|all people'),
-             'all families': _('Filtering_on|all families'),
-             'all events': _('Filtering_on|all events'),
-             'all places': _('Filtering_on|all places'),
-             'all sources': _('Filtering_on|all sources'),
-             'all repositories': _('Filtering_on|all repositories'),
-             'all media': _('Filtering_on|all media'),
-             'all notes': _('Filtering_on|all notes'),
-             'males': _('Filtering_on|males'),
-             'females': _('Filtering_on|females'),
+fname_map = {'all': _('all', 'Filtering_on'),
+             'Inverse Person': _('Inverse Person', 'Filtering_on'),
+             'Inverse Family': _('Inverse Family', 'Filtering_on'),
+             'Inverse Event': _('Inverse Event', 'Filtering_on'),
+             'Inverse Place': _('Inverse Place', 'Filtering_on'),
+             'Inverse Source': _('Inverse Source', 'Filtering_on'),
+             'Inverse Repository': _('Inverse Repository', 'Filtering_on'),
+             'Inverse Media': _('Inverse Media', 'Filtering_on'),
+             'Inverse Note': _('Inverse Note', 'Filtering_on'),
+             'all people': _('all people', 'Filtering_on'),
+             'all families': _('all families', 'Filtering_on'),
+             'all events': _('all events', 'Filtering_on'),
+             'all places': _('all places', 'Filtering_on'),
+             'all sources': _('all sources', 'Filtering_on'),
+             'all repositories': _('all repositories', 'Filtering_on'),
+             'all media': _('all media', 'Filtering_on'),
+             'all notes': _('all notes', 'Filtering_on'),
+             'males': _('males', 'Filtering_on'),
+             'females': _('females', 'Filtering_on'),
              'people with unknown gender':
-                _('Filtering_on|people with unknown gender'),
+                _('people with unknown gender', 'Filtering_on'),
              'incomplete names':
-                _('Filtering_on|incomplete names'),
+                _('incomplete names', 'Filtering_on'),
              'people with missing birth dates':
-                _('Filtering_on|people with missing birth dates'),
-             'disconnected people': _('Filtering_on|disconnected people'),
-             'unique surnames': _('Filtering_on|unique surnames'),
-             'people with media': _('Filtering_on|people with media'),
-             'media references': _('Filtering_on|media references'),
-             'unique media': _('Filtering_on|unique media'),
-             'missing media': _('Filtering_on|missing media'),
-             'media by size': _('Filtering_on|media by size'),
-             'list of people': _('Filtering_on|list of people')}
+                _('people with missing birth dates', 'Filtering_on'),
+             'disconnected people': _('disconnected people', 'Filtering_on'),
+             'unique surnames': _('unique surnames', 'Filtering_on'),
+             'people with media': _('people with media', 'Filtering_on'),
+             'media references': _('media references', 'Filtering_on'),
+             'unique media': _('unique media', 'Filtering_on'),
+             'missing media': _('missing media', 'Filtering_on'),
+             'media by size': _('media by size', 'Filtering_on'),
+             'list of people': _('list of people', 'Filtering_on')}
 
 def run(database, document, filter_name, *args, **kwargs):
     """
@@ -416,7 +416,7 @@ def run(database, document, filter_name, *args, **kwargs):
 
     else:
         raise AttributeError("invalid filter name: '%s'" % filter_name)
-    # translators: leave all/any {...} untranslated
+    # Translators: leave all/any {...} untranslated
     sdoc.paragraph(ngettext("Filter matched {number_of} record.",
                             "Filter matched {number_of} records.", matches
                            ).format(number_of=matches) )

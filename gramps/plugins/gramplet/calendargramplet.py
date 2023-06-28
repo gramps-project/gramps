@@ -50,6 +50,7 @@ class CalendarGramplet(Gramplet):
         self.gui.calendar.connect('day-selected-double-click',
                                   self.double_click)
         self.gui.calendar.set_display_options(
+            Gtk.CalendarDisplayOptions.SHOW_DAY_NAMES |
             Gtk.CalendarDisplayOptions.SHOW_HEADING)
         self.gui.get_container_widget().remove(self.gui.textview)
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)

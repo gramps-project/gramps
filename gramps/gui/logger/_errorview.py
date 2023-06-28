@@ -43,7 +43,7 @@ from ..managedwindow import ManagedWindow
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Error_and_Warning_Reference' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Error_Report')
+WIKI_HELP_SEC = _('Error_Report', 'manual')
 
 class ErrorView(ManagedWindow):
     """
@@ -105,7 +105,7 @@ class ErrorView(ManagedWindow):
 
     def draw_window(self):
         title = "%s - Gramps" % _("Error Report")
-        self.top = Gtk.Dialog(title)
+        self.top = Gtk.Dialog(title=title)
         # look over the top level windows, it seems the oldest come first, so
         # the most recent still visible window appears to be a good choice for
         # a transient parent

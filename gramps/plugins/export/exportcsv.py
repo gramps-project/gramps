@@ -51,6 +51,7 @@ LOG = logging.getLogger(".ExportCSV")
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.config import config
 from gramps.gen.lib import EventType, Person
 from gramps.gen.lib.eventroletype import EventRoleType
 from gramps.gui.plug.export import WriterOptionBox
@@ -256,7 +257,12 @@ class CSVWriter:
             self.fp = open(self.filename, "w",
                            encoding='utf_8_sig' if win() else 'utf_8',
                            newline='')
-            self.g = csv.writer(self.fp)
+            my_dialect = config.get('csv.dialect')
+            my_delimiter = config.get('csv.delimiter')
+            if my_dialect == _("Custom"):
+                self.g = csv.writer(self.fp, delimiter=my_delimiter)
+            else:
+                self.g = csv.writer(self.fp, dialect=my_dialect)
         except IOError as msg:
             msg2 = _("Could not create %s") % self.filename
             self.user.notify_error(msg2,str(msg))
@@ -353,7 +359,7 @@ class CSVWriter:
                 self.write_csv(
                     _("Person"), _("Surname"), _("Given"),
                     _("Call"), _("Suffix"), _("Prefix"),
-                    _("Person|Title"), _("Gender"),
+                    _("Title", "Person"), _("Gender"),
                     _("Birth date"), _("Birth place"), _("Birth source"),
                     _("Baptism date"), _("Baptism place"), _("Baptism source"),
                     _("Death date"), _("Death place"), _("Death source"),

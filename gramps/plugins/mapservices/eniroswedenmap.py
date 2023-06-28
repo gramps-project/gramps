@@ -43,7 +43,7 @@ from gramps.gen.utils.location import get_main_location
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.lib import PlaceType
 
-# Make upper case of translaed country so string search works later
+# Make upper case of translated country so string search works later
 MAP_NAMES_SWEDEN = [_("Sweden").upper(),
                       "SVERIGE",
                       "SWEDEN",

@@ -373,7 +373,7 @@
                           <object class="ValidatableMaskedEntry" id="latlon_entry">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">Field used to paste info from a web page like google, openstreetmap, ... </property>
+                            <property name="tooltip_text" translatable="yes">Field used to paste info from a web page like Google, OpenStreetMap...</property>
                             <property name="hexpand">True</property>
                             <property name="invisible_char">●</property>
                           </object>
@@ -394,7 +394,7 @@
                       <object class="GtkComboBox" id="place_type">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="tooltip_text" translatable="yes">What type of place this is. Eg 'Country', 'City', ... .</property>
+                        <property name="tooltip_text" translatable="yes">What type of place this is. Eg 'Country', 'City', ...</property>
                         <property name="hexpand">True</property>
                         <property name="has_entry">True</property>
                         <child internal-child="entry">
@@ -457,7 +457,7 @@
                       <object class="ValidatableMaskedEntry" id="lat_entry">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="tooltip_text" translatable="yes">Latitude (position above the Equator) of the place in decimal or degree notation. 
+                        <property name="tooltip_text" translatable="yes">Latitude (position above the Equator) of the place in decimal or degree notation.
 Eg, valid values are 12.0154, 50°52′21.92″N, N50°52′21.92″ or 50:52:21.92
 You can set these values via the Geography View by searching the place, or via a map service in the place view.</property>
                         <property name="hexpand">True</property>
@@ -472,7 +472,7 @@ You can set these values via the Geography View by searching the place, or via a
                       <object class="ValidatableMaskedEntry" id="lon_entry">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="tooltip_text" translatable="yes">Longitude (position relative to the Prime, or Greenwich, Meridian) of the place in decimal or degree notation. 
+                        <property name="tooltip_text" translatable="yes">Longitude (position relative to the Prime, or Greenwich, Meridian) of the place in decimal or degree notation.
 Eg, valid values are -124.3647, 124°52′21.92″E, E124°52′21.92″ or 124:52:21.92
 You can set these values via the Geography View by searching the place, or via a map service in the place view.</property>
                         <property name="hexpand">True</property>

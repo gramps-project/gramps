@@ -1,14 +1,15 @@
 /*
-**************************************************************************************************
+*******************************************************************************
 Copyright Holder and License
-**************************************************************************************************
+*******************************************************************************
 GRAMPS Cascading Style Sheet
 Style Name: Basic - Cypress
 Style Author: Jason Simanek (2008)
-Note: Adapted from GRAMPS original Modern Style stylesheet with colors from the original 'Tranquil' stylesheet
-**************************************************************************************************
+Note: Adapted from GRAMPS original Modern Style stylesheet with colors from the
+      original 'Tranquil' stylesheet
+*******************************************************************************
 This website was created with GRAMPS <http://www.gramps-project.org/>
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 GRAMPS is a Free Software Project for Genealogy, offering a professional
 
 genealogy program, and a wiki open to all. It is a community project, created,
@@ -16,7 +17,7 @@ developed and governed by genealogists.
 
 Go to <http://gramps-project.org/> to learn more!
 
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 Copyright 2008 Jason M. Simanek
 Copyright 2009 Stephane Charette
 Copyright (C) 2008-2011 Rob G. Healey <robhealey1@gmail.com>
@@ -36,10 +37,10 @@ A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with
 GRAMPS. If not, see <http://www.gnu.org/licenses/>.
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
 Color Palette
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
 black                   #000
 slate dark              #454
@@ -47,14 +48,14 @@ slate                   #7C8F7C
 slate light             #9DBF9D
 slate very light        #E0E6E0
 white                   #FFF
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 Characteristic of this style is that it uses the full width of the browser
 window and that horizontal highlighting bars extend over the full width of
 the page.
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
  NarrativeWeb Styles
------------------------------------------------------------------------------------------------- 
+-------------------------------------------------------------------------------
 
  General Elements
 ----------------------------------------------------- */
@@ -95,6 +96,16 @@ body > div {
 @media only screen and (max-width: 1080px) {
     .content {
         padding: 0em 0.5em;
+    }
+    body#fullyearlinked table.calendar {
+        float: none;
+        width: 100%;
+    }
+}
+@media only screen and (width > 1080px) {
+    body#fullyearlinked table.calendar {
+        float: left;
+        width: 33.3%;
     }
 }
 
@@ -152,6 +163,7 @@ a[href]:hover, a[href]:active {
 ----------------------------------------------------- */
 div#nav, #subnavigation {
     border: solid 1px #454; /* needed by IE7 */
+    position: relative;
 }
 #subnavigation ul {
     overflow: hidden;
@@ -192,6 +204,36 @@ div#nav ul li.CurrentSection a {
     color: #454;
     background-color: white;
 }
+div#nav li.lang {
+    color: #E0E6E0;
+    font-size: smaller;
+    font-family: sans-serif;
+    padding-top: .3em;
+    padding-bottom: .3em;
+    font-weight: bold;
+}
+div#nav li.lang:hover > ul {
+    visibility: visible;
+    opacity: 1;
+}
+div#nav ul.lang {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 999;
+    padding: 0px;
+    background-color: #454;
+    top: -1em;
+    font-size: larger;
+    font-family: sans-serif;
+}
+div#nav ul.lang:hover {
+    float: initial;
+}
+div#nav ul.lang li {
+    float: none;
+    padding: 1px 2px;
+}
 /* Alphabet Navigation
 ----------------------------------------------------- */
 div#alphanav {
@@ -229,7 +271,7 @@ div#alphanav ul li a:hover {
 }
 
 /* Responsive navigation */
-a.navIcon {
+button.navIcon {
     display: none;
 }
 
@@ -255,11 +297,6 @@ div#nav::after {
 
     .nav {
         background: none; /* Works in IE too. */
-/*
-        width: 200px;
-        position: absolute;
-        z-index: 10;
-*/
     }
 
     /* Undo some of the #nav styles  - to enable the class .nav */
@@ -281,11 +318,14 @@ div#nav::after {
     .nav li {display: none;}
     .nav ul {display: none;}
 
-    a.navIcon {
-        font-size:1.3em;
+    button.navIcon {
         display: block;
-        margin: 0.1em 0.4em 0.4em 0.4em;
         float: left;
+        font-size:2.9em;
+        line-height: 35px;
+        border: 0px;
+        color: #E0E6E0;
+        background-color: #454;
     }
 
     .nav.responsive {position: absolute; display: block; z-index: 100;}
@@ -296,11 +336,10 @@ div#nav::after {
         margin-right: 10px;
     }
     .nav.responsive li {
-        /* float: left; */
         display: block;
         text-align: left;
         color: #454;
-        background-color: #E0E6E0;
+        background-color: #454;
         /* required by IE */
         float: left;
         clear: both;
@@ -317,6 +356,21 @@ div#nav::after {
 
     .content {
         padding: 0em 0.5em;
+    }
+    .lang {
+        position: relative;
+    }
+    .lang > .lang {
+        top: 0;
+        left: 100%;
+        margin-top: -6px;
+        margin-left: -1px;
+        -webkit-border-radius: 0 6px 6px 6px;
+        -moz-border-radius: 0 6px 6px 6px;
+        border-radius: 0 6px 6px 6px;
+    }
+    .lang:hover > .lang {
+        display: block;
     }
 }
 
@@ -368,9 +422,6 @@ td.ColumnLetter, td.ColumnRowLabel {
 /* bug #8213 testing by Stephane, 2014-12-6 */
 td.ColumnEvent, td.ColumnDate {
     white-space: nowrap;
-}
-td.ColumnPlace, td.ColumnDescription {
-    width: 20%
 }
 /* end of customizations by Stephane */
 td.ColumnBirth, td.ColumnDeath, td.ColumnPartner, td.ColumnParents {
@@ -430,11 +481,30 @@ table.surname td.ColumnName {
 table.surname td.ColumnName > a {
     padding-left: 15px;
 }
+table#SortByName tr:hover td.ColumnSurname,
+table#SortByCount tr:hover td.ColumnQuantity {
+    background-color: #9DBF9D;
+}
+table#SortByName tr:hover,
+table#SortByCount tr:hover,
+table#SortByName tr:hover td.ColumnQuantity,
+table#SortByCount tr:hover td.ColumnSurname {
+    background-color: #9DBF9D;
+}
+table.surname tr:hover,
+table.surname tr:hover td.ColumnName {
+    background-color: #9DBF9D;
+}
 
 /* Individuals
 ----------------------------------------------------- */
 table.IndividualList td.ColumnSurname {
     background-color: #E0E6E0;
+}
+#parents table.infolist tr:hover,
+table.IndividualList tr:hover,
+table.IndividualList tr:hover td.ColumnSurname {
+    background-color: #9DBF9D;
 }
 
 /* Places
@@ -448,6 +518,10 @@ table.IndividualList td.ColumnSurname {
 }
 #Places table.infolist td.ColumnName > a {
     padding-left: 1ex;
+}
+#Places table.infolist tr:hover,
+#Places table.infolist tr:hover td.ColumnName {
+    background-color: #9DBF9D;
 }
 
 /* Events
@@ -463,6 +537,10 @@ table.IndividualList td.ColumnSurname {
 }
 #EventList td.ColumnPerson a {
     display: inline;
+}
+#EventList table.infolist tr:hover,
+#EventList table.infolist tr:hover td.ColumnType {
+    background-color: #9DBF9D;
 }
 #EventList td.ColumnPerson span.person:after,
 #EventList td.ColumnPerson span.father:after,
@@ -484,9 +562,48 @@ table.IndividualList td.ColumnSurname {
 #EventDetail td.ColumnPerson span.mother:last-child:after {
     content: "";
 }
-
+table.eventlist tbody tr td:first-child,
+table.eventlist thead tr th:first-child {
+    padding-left: 15px;
+}
+#attributes table.infolist td.ColumnType {
+    width: 10%;
+    padding-left: 15px;
+}
+#attributes table.infolist td.ColumnValue {
+    width: 15%;
+}
+#attributes table.infolist td.ColumnSources {
+    width: 5%;
+    padding-left: 5px;
+}
+#WebLinks table.infolist td.ColumnType {
+    width: 10%;
+    padding-left: 15px;
+}
+#events table.eventlist td.ColumnDate {
+    padding-left: 15px;
+}
+#families table.eventlist tbody tr td:first-child,
+#families table.eventlist thead tr th:first-child {
+    width: 10%;
+    padding-left: 0px;
+}
+#families table.eventlist tbody tr td.ColumnDate,
+#families table.eventlist tbody tr td.ColumnNotes {
+    padding-left: 15px;
+}
 table.eventlist tbody tr td.ColumnSources {
     width: 5%;
+}
+table.eventlist th.ColumnDate {
+    padding-left: 15px;
+    width: 15%;
+}
+table.eventlist td.ColumnEvent,
+table.eventlist td.ColumnDate,
+table.eventlist td.ColumnPlace {
+    font-weight: bold;
 }
 
 /* Gallery
@@ -541,6 +658,10 @@ table.eventlist tbody tr td.ColumnSources {
 ------------------------------------------------------ */
 div#SourceDetail {
     margin: 0 auto;
+}
+#Sources table.infolist tr:hover,
+#Sources table.infolist tr:hover td.ColumnType {
+    background-color: #9DBF9D;
 }
 
 /* Contact
@@ -603,7 +724,7 @@ div#SourceDetail {
 }
 .subsection {
     clear: both;
-    overflow: hidden;
+    overflow-x: auto;
 }
 .subsection p {
     margin: 0px;
@@ -611,6 +732,14 @@ div#SourceDetail {
 
 /* Subsection : Families
 ----------------------------------------------------- */
+#families table.infolist td.ColumnValue.Child table.infolist tr:hover,
+table.relationships tr:hover {
+    background-color: #9DBF9D;
+}
+div.content table.tags {
+    text-align: left;
+    width: auto;
+}
 div#families table.fixed_subtables table.eventlist {
     table-layout: fixed;
 }
@@ -632,6 +761,12 @@ div#families table.attrlist td.ColumnType {
 #indivgallery {
     background-color: white;
 }
+#indivgallery a {
+    color: black;
+    text-decoration: none;
+    word-wrap: break-word;
+    display: block;
+}
 #gallery .gallerycell {
     float: left;
     width: 130px;
@@ -648,7 +783,8 @@ div#families table.attrlist td.ColumnType {
 }
 #indivgallery .thumbnail {
     float: left;
-    width: 130px;
+    width: 160px;
+    height: 220px;
     font-size: smaller;
     text-align: center;
     margin: 0.8em 0.5em;
@@ -662,7 +798,6 @@ div#families table.attrlist td.ColumnType {
 }
 #gallery div.indexno {
     float: right;
-    width: 1.8em;
     font-size: large;
     text-align: center;
     background-color: #CCC;
@@ -710,11 +845,29 @@ div.snapshot div.thumbnail {
 h4 + div.grampsstylednote, a.familymap {
     margin: 1em 15px;
 }
+i.NoteType {
+    font-weight: bold;
+    font-size: .8em;
+}
 i + div.grampsstylednote p {
     margin: 0 0 0.3em 0;
 }
 div.grampsstylednote p {
-    margin-bottom: 0.5em;
+    padding-bottom: 0.6em;
+}
+div.grampsstylednote a {
+    text-decoration: underline;
+    font-weight: bold;
+    color: #9DBF9D;
+}
+div.grampsstylednote a:visited {
+    color: red;
+}
+
+/* Subsection : References
+----------------------------------------------------- */
+#references ol {
+    margin-left: 2em;
 }
 
 /* Subsection : Family Map
@@ -722,11 +875,40 @@ div.grampsstylednote p {
 a.familymap {
     display: block;
 }
+a.family_map {
+    margin-left: 15px;
+}
 
 /* Subsection : Source References
 ----------------------------------------------------- */
-#sourcerefs ol li ol {
-    list-style-type: lower-alpha;
+#sourcerefs ol#srcr {
+    counter-reset: itema;
+    list-style-type: none;
+    display: block;
+    margin-top: .1em;
+}
+#sourcerefs ol#citr {
+    counter-reset: itemb;
+    list-style-type: none;
+}
+#sourcerefs ol#srcr > li::before {
+    content: counter(itema);
+}
+#sourcerefs ol#citr > li::before {
+    content: counter(itema)counter(itemb, lower-alpha);
+}
+#sourcerefs ol#srcr > li {
+    counter-increment: itema;
+    margin-top: .1em;
+}
+#sourcerefs ol#citr > li {
+    counter-increment: itemb;
+    margin-top: .1em;
+}
+#sourcerefs ol#citr ul {
+    list-style: none;
+    display: inline-block;
+    vertical-align: top;
 }
 
 /* Subsection : Pedigree
@@ -787,10 +969,16 @@ a.familymap {
     padding-right: 15px;
 }
 
+/* Updates
+----------------------------------------------------- */
+#Updates table.list td.date {
+    width: 20%;
+}
+
 /* Overwritten
 ----------------------------------------------------- */
 body#FamilyMap {
-    background-color: #454 ! important;
+    background-color: #454 !important;
 }
 
 /* Calendar Styles
@@ -809,15 +997,11 @@ table.calendar {
     background-color: white;
     border-bottom-style: none;
     padding-top: 1em;
+    vertical-align: top;
+    height: 2em;
 }
 .calendar thead th abbr {
     border-bottom-style: none;
-}
-#CreatorInfo {
-    float: right;
-    margin: -1em 15px 0px 0px;
-    font-weight: bold;
-    color: #7C8F7C;
 }
 .calendar tfoot tr td {
     border-top: solid 4px #7C8F7C;
@@ -836,7 +1020,7 @@ table.calendar {
 
 /* Calendar : Date Container */
 .calendar td {
-    padding: 0px 0px 0px 1ex;
+    padding: 0px 5px 0px 1ex;
     border-width: 1px 0px 0px 1px;
     border-style: solid;
     border-color: #9DBF9D;
@@ -844,7 +1028,7 @@ table.calendar {
 }
 .calendar td:first-child {
     border-left-style: none;
-    padding: 0px 0px 0px 1ex;
+    padding: 0px 5px 0px 1ex;
 }
 .calendar tbody tr:first-child td {
     border-top-style: none;
@@ -892,8 +1076,6 @@ body#fullyearlinked div.content {
     overflow: hidden;
 }
 body#fullyearlinked table.calendar {
-    float: left;
-    width: 33.3%;
     height: 18em;
     border: solid 1px black;
 }
@@ -909,4 +1091,88 @@ body#fullyearlinked table.calendar tbody td {
 }
 body#OneDay div.content {
     overflow: hidden;
+}
+body#OneDay h3 {
+    font-size: xx-large;
+    vertical-align: top;
+    height: 2em;
+}
+#WebCal table.calendar tfoot {
+    display: none;
+}
+#WebCal table.calendar tr td {
+    word-wrap: break-word;
+    padding: 2px;
+}
+#WebCal .calendar tr td .empty {
+    border: 5px solid rgba(255,255,255,.0);
+}
+#WebCal .calendar tr td .clickable {
+    border: 5px solid rgba(255,255,255,.0);
+}
+#WebCal .calendar tr td .clickable:hover {
+    display: block;
+    overflow:auto;
+    word-wrap: break-word;
+    cursor: text;
+    border-radius: 10px 0px 10px 10px;
+    border: 5px solid #454;
+}
+body#fullyearlinked #YearGlance tbody td {
+    height:48px;
+    vertical-align: middle;
+    text-align: center;
+    padding-left: 6px;
+}
+body#fullyearlinked #YearGlance tbody td .date {
+    font-size: 30px;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 45px;
+    float: none;
+    border: 5px solid rgba(0,0,0,.0);
+}
+body#fullyearlinked #YearGlance tbody td:hover .date {
+    border-radius: 45px;
+    border: 5px solid;
+}
+h4 button.icon {
+    width: 0.9em;
+    border: 0px solid;
+    padding: 0;
+    opacity: 1;
+    transform: rotate(90deg);
+    transition: transform 200ms ease-out 0s;
+    background: transparent;
+}
+h4 button.icon-close {
+    transform: rotate(90deg);
+    transition: transform 0.2s linear;
+}
+h4 button.icon-open {
+    transform: rotate(180deg);
+    transition: transform 0.2s linear;
+}
+svg {
+  fill: #9DBF9D;
+}
+/* Go to the top of the page */
+#gototop {
+  display: none;
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  z-index: 999;
+  border: none;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 40px;
+  height: 40px;
+  padding: 0px;
+}
+
+#gototop:hover {
+  background-color: #E0E6E0;
 }

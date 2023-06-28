@@ -41,6 +41,7 @@ from gramps.gen.db.dbconst import (DBLOGNAME, DBBACKEND, KEY_TO_NAME_MAP,
                                    TAG_KEY, CITATION_KEY, REPOSITORY_KEY,
                                    REFERENCE_KEY)
 from gramps.gen.db.generic import DbGeneric
+from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.lib import (Tag, Media, Person, Family, Source,
                             Citation, Event, Place, Repository, Note)
 from gramps.gen.lib.genderstats import GenderStats
@@ -261,9 +262,6 @@ class DBAPI(DbGeneric):
                   TXNUPD: "-update",
                   TXNDEL: "-delete",
                   None: "-delete"}
-        if txn.batch:
-            # FIXME: need a User GUI update callback here:
-            self.reindex_reference_map(lambda percent: percent)
         self.dbapi.commit()
         if not txn.batch:
             # Now, emit signals:
@@ -289,7 +287,7 @@ class DBAPI(DbGeneric):
         self.undodb.commit(txn, msg)
         self._after_commit(txn)
         txn.clear()
-        self.has_changed = True
+        self.has_changed += 1  # Also gives commits since startup
 
     def transaction_abort(self, txn):
         """
@@ -609,8 +607,8 @@ class DBAPI(DbGeneric):
                                [obj.handle,
                                 pickle.dumps(obj.serialize())])
         self._update_secondary_values(obj)
+        self._update_backlinks(obj, trans)
         if not trans.batch:
-            self._update_backlinks(obj, trans)
             if old_data:
                 trans.add(obj_key, TXNUPD, obj.handle,
                           old_data,
@@ -622,35 +620,58 @@ class DBAPI(DbGeneric):
 
         return old_data
 
+    def _commit_raw(self, data, obj_key):
+        """
+        Commit a serialized primary object to the database, storing the
+        changes as part of the transaction.
+        """
+        table = KEY_TO_NAME_MAP[obj_key]
+        handle = data[0]
+
+        if self._has_handle(obj_key, handle):
+            # update the object:
+            sql = "UPDATE %s SET blob_data = ? WHERE handle = ?" % table
+            self.dbapi.execute(sql,
+                               [pickle.dumps(data),
+                                handle])
+        else:
+            # Insert the object:
+            sql = ("INSERT INTO %s (handle, blob_data) VALUES (?, ?)") % table
+            self.dbapi.execute(sql,
+                               [handle,
+                                pickle.dumps(data)])
+
+        return
+
     def _update_backlinks(self, obj, transaction):
 
-        # Find existing references
-        sql = ("SELECT ref_class, ref_handle " +
-               "FROM reference WHERE obj_handle = ?")
-        self.dbapi.execute(sql, [obj.handle])
-        existing_references = set(self.dbapi.fetchall())
-
-        # Once we have the list of rows that already have a reference
-        # we need to compare it with the list of objects that are
-        # still references from the primary object.
-        current_references = set(obj.get_referenced_handles_recursively())
-        no_longer_required_references = existing_references.difference(
-                                                            current_references)
-        new_references = current_references.difference(existing_references)
-
-        # Delete the existing references
-        self.dbapi.execute("DELETE FROM reference WHERE obj_handle = ?",
-                           [obj.handle])
-
-        # Now, add the current ones
-        for (ref_class_name, ref_handle) in current_references:
-            sql = ("INSERT INTO reference " +
-                   "(obj_handle, obj_class, ref_handle, ref_class)" +
-                   "VALUES(?, ?, ?, ?)")
-            self.dbapi.execute(sql, [obj.handle, obj.__class__.__name__,
-                                     ref_handle, ref_class_name])
-
         if not transaction.batch:
+            # Find existing references
+            sql = ("SELECT ref_class, ref_handle " +
+                   "FROM reference WHERE obj_handle = ?")
+            self.dbapi.execute(sql, [obj.handle])
+            existing_references = set(self.dbapi.fetchall())
+
+            # Once we have the list of rows that already have a reference
+            # we need to compare it with the list of objects that are
+            # still references from the primary object.
+            current_references = set(obj.get_referenced_handles_recursively())
+            no_longer_required_references = existing_references.difference(
+                                                                current_references)
+            new_references = current_references.difference(existing_references)
+
+            # Delete the existing references
+            self.dbapi.execute("DELETE FROM reference WHERE obj_handle = ?",
+                               [obj.handle])
+
+            # Now, add the current ones
+            for (ref_class_name, ref_handle) in current_references:
+                sql = ("INSERT INTO reference " +
+                       "(obj_handle, obj_class, ref_handle, ref_class)" +
+                       "VALUES(?, ?, ?, ?)")
+                self.dbapi.execute(sql, [obj.handle, obj.__class__.__name__,
+                                         ref_handle, ref_class_name])
+
             # Add new references to the transaction
             for (ref_class_name, ref_handle) in new_references:
                 key = (obj.handle, ref_handle)
@@ -664,6 +685,20 @@ class DBAPI(DbGeneric):
                 old_data = (obj.handle, obj.__class__.__name__,
                             ref_handle, ref_class_name)
                 transaction.add(REFERENCE_KEY, TXNDEL, key, old_data, None)
+        else:  # batch mode
+            current_references = set(obj.get_referenced_handles_recursively())
+
+            # Delete the existing references
+            self.dbapi.execute("DELETE FROM reference WHERE obj_handle = ?",
+                               [obj.handle])
+
+            # Now, add the current ones
+            for (ref_class_name, ref_handle) in current_references:
+                sql = ("INSERT INTO reference " +
+                       "(obj_handle, obj_class, ref_handle, ref_class)" +
+                       "VALUES(?, ?, ?, ?)")
+                self.dbapi.execute(sql, [obj.handle, obj.__class__.__name__,
+                                         ref_handle, ref_class_name])
 
     def _do_remove(self, handle, transaction, obj_key):
         if self.readonly or not handle:
@@ -780,9 +815,14 @@ class DBAPI(DbGeneric):
         """
         Reindex all primary records in the database.
         """
-        callback(4)
         self._txn_begin()
         self.dbapi.execute("DELETE FROM reference")
+        total = 0
+        for tbl in ('people', 'families', 'events', 'places', 'sources',
+                    'citations', 'media', 'repositories', 'notes', 'tags'):
+            total += self.method("get_number_of_%s", tbl)()
+        UpdateCallback.__init__(self, callback)
+        self.set_total(total)
         primary_table = (
             (self.get_person_cursor, Person),
             (self.get_family_cursor, Family),
@@ -813,8 +853,8 @@ class DBAPI(DbGeneric):
                              obj.__class__.__name__,
                              ref_handle,
                              ref_class_name])
+                    self.update()
         self._txn_commit()
-        callback(5)
 
     def rebuild_secondary(self, callback=None):
         """
@@ -823,26 +863,26 @@ class DBAPI(DbGeneric):
         if self.readonly:
             return
 
+        total = 0
+        for tbl in ('people', 'families', 'events', 'places', 'sources',
+                    'citations', 'media', 'repositories', 'notes', 'tags'):
+            total += self.method("get_number_of_%s", tbl)()
+        UpdateCallback.__init__(self, callback)
+        self.set_total(total)
+
         # First, expand blob to individual fields:
         self._txn_begin()
-        index = 1
         for obj_type in ('Person', 'Family', 'Event', 'Place', 'Repository',
                          'Source', 'Citation', 'Media', 'Note', 'Tag'):
             for handle in self.method('get_%s_handles', obj_type)():
                 obj = self.method('get_%s_from_handle', obj_type)(handle)
                 self._update_secondary_values(obj)
-            if callback:
-                callback(index)
-            index += 1
+                self.update()
         self._txn_commit()
-        if callback:
-            callback(11)
 
         # Next, rebuild stats:
         gstats = self.get_gender_stats()
         self.genderStats = GenderStats(gstats)
-        if callback:
-            callback(12)
 
     def _has_handle(self, obj_key, handle):
         table = KEY_TO_NAME_MAP[obj_key]

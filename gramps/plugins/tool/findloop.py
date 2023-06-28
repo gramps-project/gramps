@@ -55,7 +55,7 @@ ngettext = glocale.translation.ngettext  # else "nearby" comments are ignored
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Find_database_loop')
+WIKI_HELP_SEC = _('Find_database_loop', 'manual')
 
 
 #------------------------------------------------------------------------

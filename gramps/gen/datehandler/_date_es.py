@@ -120,14 +120,14 @@ class DateDisplayES(DateDisplay):
                     "junio", "julio", "agosto", "septiembre", "octubre",
                     "noviembre", "diciembre" )
 
-    short_months = ( "", "enero", "feb.", "marzo", "abr.", "mayo",
-                     "jun.", "jul.", "agosto", "set.", "oct.", "nov.",
+    short_months = ( "", "ene", "feb", "mar", "abr", "may",
+                     "jun", "jul", "ago", "sep", "oct", "nov",
                      "dic" )
 
     calendar = (
         "", "Juliano", "Hebreo",
-        "Revolucionario", "Persa", "Islámico",
-        "Swedish"
+        "Revolucionario francés", "Persa", "Islámico",
+        "Sueco"
         )
 
     _mod_str = ("", "antes de ", "después de ", "hacia ", "", "", "")

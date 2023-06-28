@@ -42,7 +42,7 @@ from gramps.gen.merge import MergeSourceQuery
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = URL_MANUAL_SECT3
-WIKI_HELP_SEC = _('manual|Merge_Sources')
+WIKI_HELP_SEC = _('Merge_Sources', 'manual')
 _GLADE_FILE = 'mergesource.glade'
 
 #-------------------------------------------------------------------------

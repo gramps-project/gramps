@@ -72,168 +72,168 @@ class DateStrings:
         _ = locale.translation.lexgettext
 
         self.long_months = ( "",
-            # TRANSLATORS: see
+            # Translators: see
             # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
             # to learn how to select proper inflection to be used in your localized
             # DateDisplayer code!
-            _("localized lexeme inflections||January"),
-            _("localized lexeme inflections||February"),
-            _("localized lexeme inflections||March"),
-            _("localized lexeme inflections||April"),
-            _("localized lexeme inflections||May"),
-            _("localized lexeme inflections||June"),
-            _("localized lexeme inflections||July"),
-            _("localized lexeme inflections||August"),
-            _("localized lexeme inflections||September"),
-            _("localized lexeme inflections||October"),
-            _("localized lexeme inflections||November"),
-            _("localized lexeme inflections||December") )
+            _("January", "localized lexeme inflections"),
+            _("February", "localized lexeme inflections"),
+            _("March", "localized lexeme inflections"),
+            _("April", "localized lexeme inflections"),
+            _("May", "localized lexeme inflections"),
+            _("June", "localized lexeme inflections"),
+            _("July", "localized lexeme inflections"),
+            _("August", "localized lexeme inflections"),
+            _("September", "localized lexeme inflections"),
+            _("October", "localized lexeme inflections"),
+            _("November", "localized lexeme inflections"),
+            _("December", "localized lexeme inflections") )
 
         self.short_months = ( "",
-            # TRANSLATORS: see
+            # Translators: see
             # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
             # to learn how to select proper inflection to be used in your localized
             # DateDisplayer code!
-            _("localized lexeme inflections - short month form||Jan"),
-            _("localized lexeme inflections - short month form||Feb"),
-            _("localized lexeme inflections - short month form||Mar"),
-            _("localized lexeme inflections - short month form||Apr"),
-            _("localized lexeme inflections - short month form||May"),
-            _("localized lexeme inflections - short month form||Jun"),
-            _("localized lexeme inflections - short month form||Jul"),
-            _("localized lexeme inflections - short month form||Aug"),
-            _("localized lexeme inflections - short month form||Sep"),
-            _("localized lexeme inflections - short month form||Oct"),
-            _("localized lexeme inflections - short month form||Nov"),
-            _("localized lexeme inflections - short month form||Dec") )
+            _("Jan", "localized lexeme inflections - short month form"),
+            _("Feb", "localized lexeme inflections - short month form"),
+            _("Mar", "localized lexeme inflections - short month form"),
+            _("Apr", "localized lexeme inflections - short month form"),
+            _("May", "localized lexeme inflections - short month form"),
+            _("Jun", "localized lexeme inflections - short month form"),
+            _("Jul", "localized lexeme inflections - short month form"),
+            _("Aug", "localized lexeme inflections - short month form"),
+            _("Sep", "localized lexeme inflections - short month form"),
+            _("Oct", "localized lexeme inflections - short month form"),
+            _("Nov", "localized lexeme inflections - short month form"),
+            _("Dec", "localized lexeme inflections - short month form") )
 
         _ = locale.translation.sgettext
         self.alt_long_months = ( "",
-            # TRANSLATORS: see
+            # Translators: see
             # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
             # to learn how to add proper alternatives to be recognized in your localized
             # DateParser code!
-            _("alternative month names for January||"),
-            _("alternative month names for February||"),
-            _("alternative month names for March||"),
-            _("alternative month names for April||"),
-            _("alternative month names for May||"),
-            _("alternative month names for June||"),
-            _("alternative month names for July||"),
-            _("alternative month names for August||"),
-            _("alternative month names for September||"),
-            _("alternative month names for October||"),
-            _("alternative month names for November||"),
-            _("alternative month names for December||") )
+            _("", "alternative month names for January"),
+            _("", "alternative month names for February"),
+            _("", "alternative month names for March"),
+            _("", "alternative month names for April"),
+            _("", "alternative month names for May"),
+            _("", "alternative month names for June"),
+            _("", "alternative month names for July"),
+            _("", "alternative month names for August"),
+            _("", "alternative month names for September"),
+            _("", "alternative month names for October"),
+            _("", "alternative month names for November"),
+            _("", "alternative month names for December") )
 
         self.calendar = (
 # Must appear in the order indexed by Date.CAL_... numeric constants
-                _("calendar|Gregorian"),
-                _("calendar|Julian"),
-                _("calendar|Hebrew"),
-                _("calendar|French Republican"),
-                _("calendar|Persian"),
-                _("calendar|Islamic"),
-                _("calendar|Swedish") )
+                _("Gregorian", "calendar"),
+                _("Julian", "calendar"),
+                _("Hebrew", "calendar"),
+                _("French Republican", "calendar"),
+                _("Persian", "calendar"),
+                _("Islamic", "calendar"),
+                _("Swedish", "calendar") )
         _ = locale.translation.lexgettext
 
         self.hebrew = (
             "",
-            # TRANSLATORS: see
+            # Translators: see
             # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
             # to learn how to select proper inflection to be used in your localized
             # DateDisplayer code!
-            _("Hebrew month lexeme|Tishri"),
-            _("Hebrew month lexeme|Heshvan"),
-            _("Hebrew month lexeme|Kislev"),
-            _("Hebrew month lexeme|Tevet"),
-            _("Hebrew month lexeme|Shevat"),
-            _("Hebrew month lexeme|AdarI"),
-            _("Hebrew month lexeme|AdarII"),
-            _("Hebrew month lexeme|Nisan"),
-            _("Hebrew month lexeme|Iyyar"),
-            _("Hebrew month lexeme|Sivan"),
-            _("Hebrew month lexeme|Tammuz"),
-            _("Hebrew month lexeme|Av"),
-            _("Hebrew month lexeme|Elul")
+            _("Tishri", "Hebrew month lexeme"),
+            _("Heshvan", "Hebrew month lexeme"),
+            _("Kislev", "Hebrew month lexeme"),
+            _("Tevet", "Hebrew month lexeme"),
+            _("Shevat", "Hebrew month lexeme"),
+            _("AdarI", "Hebrew month lexeme"),
+            _("AdarII", "Hebrew month lexeme"),
+            _("Nisan", "Hebrew month lexeme"),
+            _("Iyyar", "Hebrew month lexeme"),
+            _("Sivan", "Hebrew month lexeme"),
+            _("Tammuz", "Hebrew month lexeme"),
+            _("Av", "Hebrew month lexeme"),
+            _("Elul", "Hebrew month lexeme")
             )
 
         self.french = (
             "",
-            # TRANSLATORS: see
+            # Translators: see
             # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
             # to learn how to select proper inflection to be used in your localized
             # DateDisplayer code!
-            _("French month lexeme|Vendémiaire"),
-            _("French month lexeme|Brumaire"),
-            _("French month lexeme|Frimaire"),
-            _("French month lexeme|Nivôse"),
-            _("French month lexeme|Pluviôse"),
-            _("French month lexeme|Ventôse"),
-            _("French month lexeme|Germinal"),
-            _("French month lexeme|Floréal"),
-            _("French month lexeme|Prairial"),
-            _("French month lexeme|Messidor"),
-            _("French month lexeme|Thermidor"),
-            _("French month lexeme|Fructidor"),
-            _("French month lexeme|Extra"),
+            _("Vendémiaire", "French month lexeme"),
+            _("Brumaire", "French month lexeme"),
+            _("Frimaire", "French month lexeme"),
+            _("Nivôse", "French month lexeme"),
+            _("Pluviôse", "French month lexeme"),
+            _("Ventôse", "French month lexeme"),
+            _("Germinal", "French month lexeme"),
+            _("Floréal", "French month lexeme"),
+            _("Prairial", "French month lexeme"),
+            _("Messidor", "French month lexeme"),
+            _("Thermidor", "French month lexeme"),
+            _("Fructidor", "French month lexeme"),
+            _("Extra", "French month lexeme"),
             )
 
         self.islamic = (
             "",
-            # TRANSLATORS: see
+            # Translators: see
             # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
             # to learn how to select proper inflection to be used in your localized
             # DateDisplayer code!
-            _("Islamic month lexeme|Muharram"),
-            _("Islamic month lexeme|Safar"),
-            _("Islamic month lexeme|Rabi`al-Awwal"),
-            _("Islamic month lexeme|Rabi`ath-Thani"),
-            _("Islamic month lexeme|Jumada l-Ula"),
-            _("Islamic month lexeme|Jumada t-Tania"),
-            _("Islamic month lexeme|Rajab"),
-            _("Islamic month lexeme|Sha`ban"),
-            _("Islamic month lexeme|Ramadan"),
-            _("Islamic month lexeme|Shawwal"),
-            _("Islamic month lexeme|Dhu l-Qa`da"),
-            _("Islamic month lexeme|Dhu l-Hijja"),
+            _("Muharram", "Islamic month lexeme"),
+            _("Safar", "Islamic month lexeme"),
+            _("Rabi`al-Awwal", "Islamic month lexeme"),
+            _("Rabi`ath-Thani", "Islamic month lexeme"),
+            _("Jumada l-Ula", "Islamic month lexeme"),
+            _("Jumada t-Tania", "Islamic month lexeme"),
+            _("Rajab", "Islamic month lexeme"),
+            _("Sha`ban", "Islamic month lexeme"),
+            _("Ramadan", "Islamic month lexeme"),
+            _("Shawwal", "Islamic month lexeme"),
+            _("Dhu l-Qa`da", "Islamic month lexeme"),
+            _("Dhu l-Hijja", "Islamic month lexeme"),
             )
 
         self.persian = (
             "",
-            # TRANSLATORS: see
+            # Translators: see
             # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
             # to learn how to select proper inflection to be used in your localized
             # DateDisplayer code!
-            _("Persian month lexeme|Farvardin"),
-            _("Persian month lexeme|Ordibehesht"),
-            _("Persian month lexeme|Khordad"),
-            _("Persian month lexeme|Tir"),
-            _("Persian month lexeme|Mordad"),
-            _("Persian month lexeme|Shahrivar"),
-            _("Persian month lexeme|Mehr"),
-            _("Persian month lexeme|Aban"),
-            _("Persian month lexeme|Azar"),
-            _("Persian month lexeme|Dey"),
-            _("Persian month lexeme|Bahman"),
-            _("Persian month lexeme|Esfand"),
+            _("Farvardin", "Persian month lexeme"),
+            _("Ordibehesht", "Persian month lexeme"),
+            _("Khordad", "Persian month lexeme"),
+            _("Tir", "Persian month lexeme"),
+            _("Mordad", "Persian month lexeme"),
+            _("Shahrivar", "Persian month lexeme"),
+            _("Mehr", "Persian month lexeme"),
+            _("Aban", "Persian month lexeme"),
+            _("Azar", "Persian month lexeme"),
+            _("Dey", "Persian month lexeme"),
+            _("Bahman", "Persian month lexeme"),
+            _("Esfand", "Persian month lexeme"),
             )
 
         self.modifiers = ("",
-                # TRANSLATORS: if the modifier is after the date
+                # Translators: if the modifier is after the date
                 # put the space ahead of the word instead of after it
-                _("date modifier|before "),
-                # TRANSLATORS: if the modifier is after the date
+                _("before ", "date modifier"),
+                # Translators: if the modifier is after the date
                 # put the space ahead of the word instead of after it
-                _("date modifier|after "),
-                # TRANSLATORS: if the modifier is after the date
+                _("after ", "date modifier"),
+                # Translators: if the modifier is after the date
                 # put the space ahead of the word instead of after it
-                _("date modifier|about "),
+                _("about ", "date modifier"),
                 "", "", "")
 
         self.qualifiers = ("",
-                _("date quality|estimated "),
-                _("date quality|calculated "),
+                _("estimated ", "date quality"),
+                _("calculated ", "date quality"),
                 )
 
         # 6753: localized day names. Eventually should sprout into

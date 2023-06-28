@@ -192,7 +192,7 @@ class DateParserHU(DateParser):
 #    month_to_int["Karácsony hava"] = 12
 #    month_to_int["Álom hava"] = 12
 
-    modifier_after_to_int={
+    modifier_to_int = {
         'előtt'      : Date.MOD_BEFORE,
         'körül'      : Date.MOD_ABOUT,
         'után'       : Date.MOD_AFTER,
@@ -215,6 +215,7 @@ class DateParserHU(DateParser):
     calendar_to_int = {
         'Gergely'              : Date.CAL_GREGORIAN,
         'Julián'               : Date.CAL_JULIAN,
+        'julián'               : Date.CAL_JULIAN,
         'héber'                : Date.CAL_HEBREW,
         'iszlám'               : Date.CAL_ISLAMIC,
         'francia köztársasági' : Date.CAL_FRENCH,

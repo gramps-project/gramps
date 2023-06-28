@@ -67,15 +67,17 @@ class ThumbnailPreviewPage(BasePage):
     This class is responsible for displaying information about
     the Thumbnails page.
     """
-    def __init__(self, report, title, cb_progress):
+    def __init__(self, report, the_lang, the_title, cb_progress):
         """
         @param: report      -- The instance of the main report class
                                for this report
+        @param: the_lang    -- Is the lang to process.
         @param: title       -- Is the title of the web page
         @param: cb_progress -- The step used for the progress bar.
         """
-        BasePage.__init__(self, report, title)
+        BasePage.__init__(self, report, the_lang, the_title)
         self.create_thumbs_only = report.options['create_thumbs_only']
+        self.create_thumbs_index = self.report.options['create_thumbs_index']
         # bug 8950 : it seems it's better to sort on desc + gid.
         def sort_by_desc_and_gid(obj):
             """
@@ -108,7 +110,8 @@ class ThumbnailPreviewPage(BasePage):
         media_list.sort(key=lambda x: self.rlocale.sort_key(x[0]))
 
         # Create thumbnail preview page...
-        output_file, sio = self.report.create_file("thumbnails")
+        if self.create_thumbs_index:
+            output_file, sio = self.report.create_file("thumbnails")
         result = self.write_header(self._("Thumbnails"))
         thumbnailpage, dummy_head, body, outerwrapper = result
 
@@ -117,9 +120,9 @@ class ThumbnailPreviewPage(BasePage):
 
             msg = self._("This page displays a indexed list "
                          "of all the media objects "
-                         "in this database.  It is sorted by media title.  "
+                         "in this database. It is sorted by media title. "
                          "There is an index "
-                         "of all the media objects in this database.  "
+                         "of all the media objects in this database. "
                          "Clicking on a thumbnail "
                          "will take you to that image&#8217;s page.")
             previewpage += Html("p", msg, id="description")
@@ -149,17 +152,18 @@ class ThumbnailPreviewPage(BasePage):
                 # create thumbnail
                 (dummy_real_path,
                  newpath) = self.report.prepare_copy_media(photo)
-                newpath = self.report.build_url_fname(newpath)
+                newpath = self.report.build_url_fname(newpath, image=True)
+                newpathc = newpath
 
                 # attach thumbnail to list...
-                gallerycell += self.thumb_hyper_image(newpath, "img",
+                gallerycell += self.thumb_hyper_image(newpathc, "img",
                                                       person_handle, ptitle)
 
                 index += 1
                 indexpos += 1
 
         # begin Thumbnail Reference section...
-        with Html("div", class_="subsection", id="references") as section:
+        with Html("div", class_="content", id="references") as section:
             outerwrapper += section
             section += Html("h4", self._("References"), inline=True)
 
@@ -197,24 +201,32 @@ class ThumbnailPreviewPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.xhtml_writer(thumbnailpage, output_file, sio, 0)
+        if self.create_thumbs_index:
+            self.xhtml_writer(thumbnailpage, output_file, sio, 0)
 
 
     def thumbnail_link(self, name, index):
         """
         creates a hyperlink for Thumbnail Preview Reference...
+
+        @param: name    -- The image description
+        @param: index   -- The image index
         """
         return Html("a", index, title=html_escape(name),
                     href="#%d" % index)
 
     def thumb_hyper_image(self, thumbnail_url, subdir, fname, name):
         """
-        eplaces media_link() because it doesn't work for this instance
+        replaces media_link() because it doesn't work for this instance
+
+        @param: thumnail_url -- The url for this thumbnail
+        @param: subdir       -- The subdir prefix to add
+        @param: fname        -- The file name for this image
+        @param: name         -- The image description
         """
         name = html_escape(name)
         url = "/".join(self.report.build_subdirs(subdir,
                                                  fname) + [fname]) + self.ext
-
         with Html("div", class_="thumbnail") as thumbnail:
                     #snapshot += thumbnail
 

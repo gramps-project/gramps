@@ -42,7 +42,7 @@ from gramps.gen.lib import LdsOrd
 #-------------------------------------------------------------------------
 class FamilyLdsEmbedList(LdsEmbedList):
 
-    _HANDLE_COL = 6
+    _HANDLE_COL = 7
 #    _DND_TYPE = DdTargets.ADDRESS
 
     #index = column in model. Value =
@@ -52,8 +52,9 @@ class FamilyLdsEmbedList(LdsEmbedList):
         (_('Date'),    1, 150, MARKUP_COL, -1, None),
         (_('Status'),  3, 75, TEXT_COL, -1, None),
         (_('Temple'),  2, 200, TEXT_COL, -1, None),
-        (_('Place'),   3, 100, TEXT_COL, -1, None),
-        (_('Private'), 5,  30, ICON_COL, -1, 'gramps-lock')
+        (_('Place'),   4, 100, TEXT_COL, -1, None),
+        (_('Source'),  5,  30, ICON_COL, -1, 'gramps-source'),
+        (_('Private'), 6,  30, ICON_COL, -1, 'gramps-lock'),
         ]
 
     def __init__(self, dbstate, uistate, track, data):

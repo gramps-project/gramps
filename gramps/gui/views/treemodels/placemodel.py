@@ -46,7 +46,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Place, PlaceType
 from gramps.gen.datehandler import format_time
-from gramps.gen.utils.place import conv_lat_lon
+from gramps.gen.utils.place import conv_lat_lon, coord_formats
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.config import config
 from .flatbasemodel import FlatBaseModel
@@ -140,7 +140,8 @@ class PlaceBaseModel:
     def column_longitude(self, data):
         if not data[3]:
             return ''
-        value = conv_lat_lon('0', data[3], format='DEG')[1]
+        value = conv_lat_lon('0', data[3],
+                             format=coord_formats[config.get('preferences.coord-format')])[1]
         if not value:
             return _("Error in format")
         return ("\u202d" + value + "\u202e") if glocale.rtl_locale else value
@@ -148,7 +149,8 @@ class PlaceBaseModel:
     def column_latitude(self, data):
         if not data[4]:
             return ''
-        value = conv_lat_lon(data[4], '0', format='DEG')[0]
+        value = conv_lat_lon(data[4], '0',
+                             format=coord_formats[config.get('preferences.coord-format')])[0]
         if not value:
             return _("Error in format")
         return ("\u202d" + value + "\u202e") if glocale.rtl_locale else value

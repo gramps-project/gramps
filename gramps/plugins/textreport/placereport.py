@@ -181,7 +181,7 @@ class PlaceReport(Report):
 
         place_details = [self._("Gramps ID: %s ") % place.get_gramps_id()]
         for level in get_location_list(self._db, place):
-            # translators: needed for French, ignore otherwise
+            # Translators: needed for French, ignore otherwise
             place_details.append(self._("%(str1)s: %(str2)s"
                                        ) % {'str1': self._(level[1].xml_str()),
                                             'str2': level[0]})
@@ -191,12 +191,12 @@ class PlaceReport(Report):
         if len(all_names) > 1 or __debug__:
             for place_name in all_names:
                 if place_names != '':
-                    # translators: needed for Arabic, ignore otherwise
+                    # Translators: needed for Arabic, ignore otherwise
                     place_names += self._(", ")
                 place_names += '%s' % place_name.get_value()
                 if place_name.get_language() != '' or __debug__:
                     place_names += ' (%s)' % place_name.get_language()
-            place_details += [self._("places|All Names: %s") % place_names,]
+            place_details += [self._("All Names: %s", "places") % place_names,]
         self.doc.start_paragraph("PLC-PlaceTitle")
         place_title = _pd.display(self._db, place, None, self.place_format)
         self.doc.write_text(("%(nbr)s. %(place)s") % {'nbr' : place_nbr,

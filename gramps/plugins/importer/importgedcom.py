@@ -47,8 +47,8 @@ from gramps.gen.utils.libformatting import ImportInfo
 # a quick turnround, without having to restart Gramps.
 module = __import__("gramps.plugins.lib.libgedcom",
                     fromlist=["gramps.plugins.lib"])   # why o why ?? as above!
-import imp
-imp.reload(module)
+import importlib
+importlib.reload(module)
 
 from gramps.gen.config import config
 

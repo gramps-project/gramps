@@ -139,7 +139,6 @@ class GeoEvents(Gramplet, DbGUIElement):
         """
         self.menu = Gtk.Menu()
         menu = self.menu
-        menu.set_title(_('Edit'))
         title = _('Edit the event')
         add_item = Gtk.MenuItem(label=title)
         add_item.connect("activate", self.edit_event, treeview)

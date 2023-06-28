@@ -45,7 +45,7 @@ class DateDisplayCalendarTest(DateDisplayTest):
         self.assert_map_key_val(self.display.calendar, Date.CAL_GREGORIAN, "")
 
     def test_calendar_julian_RU(self):
-        self.assert_map_key_val(self.display_RU.calendar, Date.CAL_JULIAN, 'юлианский')
+        self.assert_map_key_val(self.display_RU.calendar, Date.CAL_JULIAN, 'Юлианский')
 
 # This class tests common functionality in DateDisplay as applied to RU,
 # and so it is coupled to translated strings and inflection names

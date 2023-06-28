@@ -139,7 +139,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         media_path = media_path_full(self.dbstate.db, ref_obj.get_path())
         if media_path:
             # Translators: _View means "to look at this"
-            item = Gtk.MenuItem.new_with_mnemonic(_('verb:look at this|_View'))
+            item = Gtk.MenuItem.new_with_mnemonic(_('_View', 'verb:look at this'))
             item.connect('activate', make_launcher(media_path, self.uistate))
             item.show()
             self.menu.append(item)
@@ -234,7 +234,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         while node is not None:
             newlist.append(self.iconmodel.get_value(node, 2))
             node = self.iconmodel.iter_next(node)
-        for i in range(len(self.media_list)):
+        for i in self.media_list:
             self.media_list.pop()
         for i in newlist:
             if i:

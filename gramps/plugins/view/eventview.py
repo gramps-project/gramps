@@ -40,13 +40,12 @@ _LOG = logging.getLogger(".plugins.eventview")
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 
-from gramps.gui.dialog import ErrorDialog, MultiSelectDialog, QuestionDialog
+from gramps.gui.dialog import ErrorDialog
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.lib import Event
-from gramps.gen.utils.string import data_recover_msg
 
 from gramps.gui.ddtargets import DdTargets
-from gramps.gui.editors import EditEvent, DeleteEventQuery
+from gramps.gui.editors import EditEvent
 from gramps.gui.filters.sidebar import EventSidebarFilter
 from gramps.gui.merge import MergeEvent
 from gramps.gen.plug import CATEGORY_QR_EVENT
@@ -225,7 +224,7 @@ class EventView(ListView):
           <attribute name="label" translatable="yes">_Merge...</attribute>
         </item>
       </section>
-''' % _("action|_Edit..."),  # to use sgettext()
+''' % _("_Edit...", "action"),  # to use sgettext()
         '''
         <placeholder id='otheredit'>
         <item>
@@ -354,7 +353,7 @@ class EventView(ListView):
         </placeholder>
       </section>
     </menu>
-''' % _('action|_Edit...')  # to use sgettext()
+''' % _('_Edit...', 'action')  # to use sgettext()
     ]
 
     def get_handle_from_gramps_id(self, gid):
@@ -375,23 +374,8 @@ class EventView(ListView):
         Method called when deleting event(s) from the event view.
         """
         handles = self.selected_handles()
-        if len(handles) == 1:
-            event = self.dbstate.db.get_event_from_handle(handles[0])
-            msg1 = self._message1_format(event)
-            msg2 = self._message2_format(event)
-            msg2 = "%s %s" % (msg2, data_recover_msg)
-            QuestionDialog(msg1,
-                           msg2,
-                           _('_Delete Event'),
-                           lambda: self.delete_event_response(event),
-                           parent=self.uistate.window)
-        else:
-            MultiSelectDialog(self._message1_format,
-                              self._message2_format,
-                              handles,
-                              self.dbstate.db.get_event_from_handle,
-                              yes_func=self.delete_event_response,
-                              parent=self.uistate.window)
+        ht_list = [('Event', hndl) for hndl in handles]
+        self.remove_selected_objects(ht_list)
 
     def _message1_format(self, event):
         """
@@ -399,31 +383,6 @@ class EventView(ListView):
         """
         return _('Delete {type} [{gid}]?').format(type=str(event.type),
                                                   gid=event.gramps_id)
-
-    def _message2_format(self, event):
-        """
-        Detailed message format for the remove dialogs.
-        """
-        return _('Deleting item will remove it from the database.')
-
-    def delete_event_response(self, event):
-        """
-        Delete the event from the database.
-        """
-        person_list = [item[1] for item in
-            self.dbstate.db.find_backlink_handles(event.handle, ['Person'])]
-        family_list = [item[1] for item in
-            self.dbstate.db.find_backlink_handles(event.handle, ['Family'])]
-
-        query = DeleteEventQuery(self.dbstate, self.uistate, event,
-                                 person_list, family_list)
-        query.query_response()
-
-    def remove_object_from_handle(self, handle):
-        """
-        The remove_selected_objects method is not called in this view.
-        """
-        pass
 
     def edit(self, *obj):
         for handle in self.selected_handles():
@@ -466,6 +425,14 @@ class EventView(ListView):
         """
         event = self.dbstate.db.get_event_from_handle(event_handle)
         event.add_tag(tag_handle)
+        self.dbstate.db.commit_event(event, transaction)
+
+    def remove_tag(self, transaction, event_handle, tag_handle):
+        """
+        Remove the given tag from the given event.
+        """
+        event = self.dbstate.db.get_event_from_handle(event_handle)
+        event.remove_tag(tag_handle)
         self.dbstate.db.commit_event(event, transaction)
 
     def get_default_gramplets(self):

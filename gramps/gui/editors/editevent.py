@@ -61,7 +61,7 @@ from gramps.gen.utils.db import get_participant_from_event
 #-------------------------------------------------------------------------
 
 WIKI_HELP_PAGE = URL_MANUAL_SECT2
-WIKI_HELP_SEC = _('manual|New_Event_dialog')
+WIKI_HELP_SEC = _('New_Event_dialog', 'manual')
 
 #-------------------------------------------------------------------------
 #
@@ -74,7 +74,7 @@ class EditEvent(EditPrimary):
 
         EditPrimary.__init__(self, dbstate, uistate, track,
                              event, dbstate.db.get_event_from_handle,
-                             dbstate.db.get_event_from_gramps_id)
+                             dbstate.db.get_event_from_gramps_id, callback)
 
         self._init_event()
 
@@ -278,9 +278,9 @@ class EditEvent(EditPrimary):
                         self.obj.set_gramps_id(self.db.find_next_event_gramps_id())
                     self.db.commit_event(self.obj, trans)
 
+        self._do_close()
         if self.callback:
             self.callback(self.obj)
-        self._do_close()
 
     def data_has_changed(self):
         """
@@ -319,37 +319,3 @@ class EditEvent(EditPrimary):
             self.top.get_object("place").set_markup(
                 self.place_field.EMPTY_TEXT)
             self.place_field.set_button(False)
-
-
-#-------------------------------------------------------------------------
-#
-# Delete Query class
-#
-#-------------------------------------------------------------------------
-class DeleteEventQuery:
-    def __init__(self, dbstate, uistate, event, person_list, family_list):
-        self.event = event
-        self.db = dbstate.db
-        self.uistate = uistate
-        self.person_list = person_list
-        self.family_list = family_list
-
-    def query_response(self):
-        with DbTxn(_("Delete Event (%s)") % self.event.get_gramps_id(),
-                   self.db) as trans:
-            self.db.disable_signals()
-
-            ev_handle_list = [self.event.get_handle()]
-
-            for handle in self.person_list:
-                person = self.db.get_person_from_handle(handle)
-                person.remove_handle_references('Event', ev_handle_list)
-                self.db.commit_person(person, trans)
-
-            for handle in self.family_list:
-                family = self.db.get_family_from_handle(handle)
-                family.remove_handle_references('Event', ev_handle_list)
-                self.db.commit_family(family, trans)
-
-            self.db.enable_signals()
-            self.db.remove_event(self.event.get_handle(), trans)

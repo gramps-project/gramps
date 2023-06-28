@@ -57,7 +57,7 @@ from gramps.gen.db import DbTxn
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Not_Related')
+WIKI_HELP_SEC = _('Not_Related', 'manual')
 
 #------------------------------------------------------------------------
 #
@@ -257,7 +257,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
                 progress = ProgressMeter(self.title, _('Starting'),
                                          parent=self.window)
                 progress.set_pass(
-                    # translators: leave all/any {...} untranslated
+                    # Translators: leave all/any {...} untranslated
                     #TRANS: no singular form needed, as rows is always > 1
                     ngettext("Setting tag for {number_of} person",
                              "Setting tag for {number_of} people",
@@ -300,7 +300,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
     def findRelatedPeople(self):
 
         self.progress.set_pass(
-            # translators: leave all/any {...} untranslated
+            # Translators: leave all/any {...} untranslated
             #TRANS: No singular form is needed.
             ngettext("Finding relationships between {number_of} person",
                      "Finding relationships between {number_of} people",
@@ -381,7 +381,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
             # we have at least 1 "unrelated" person to find
 
             self.progress.set_pass(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext("Looking for {number_of} person",
                          "Looking for {number_of} people",
                          self.numberOfUnrelatedPeople
@@ -409,7 +409,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
     def populateModel(self):
 
         self.progress.set_pass(
-            # translators: leave all/any {...} untranslated
+            # Translators: leave all/any {...} untranslated
             ngettext("Looking up the name of {number_of} person",
                      "Looking up the names of {number_of} people",
                      self.numberOfUnrelatedPeople

@@ -41,7 +41,7 @@ from gramps.gen.merge import MergeMediaQuery
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = URL_MANUAL_SECT3
-WIKI_HELP_SEC = _('manual|Merge_Media_Objects')
+WIKI_HELP_SEC = _('Merge_Media_Objects', 'manual')
 _GLADE_FILE = 'mergemedia.glade'
 
 #-------------------------------------------------------------------------

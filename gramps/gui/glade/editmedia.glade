@@ -203,7 +203,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">Path of the media object on your computer.
-Gramps does not store the media internally, it only stores the path! Set the 'Relative Path' in the Preferences to avoid retyping the common base directory where all your media is stored. The 'Media Manager' tool can help managing paths of a collection of media objects. </property>
+Gramps does not store the media internally, it only stores the path! Set the 'Relative Path' in the Preferences to avoid retyping the common base directory where all your media is stored. The 'Media Manager' tool can help managing paths of a collection of media objects.</property>
                     <property name="hexpand">True</property>
                     <property name="invisible_char">●</property>
                   </object>

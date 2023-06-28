@@ -59,8 +59,8 @@ import gramps.plugins.lib.libholiday as libholiday
 from gramps.gen.datehandler import displayer as date_displayer
 
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
-def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
-    return value
+def _T_(value, context=''): # enable deferred translations
+    return "%s\x04%s" % (context, value) if context else value
 
 _TITLE0 = _T_("Birthday and Anniversary Report")
 _TITLE1 = _T_("My Birthday Report")
@@ -331,11 +331,11 @@ class BirthdayReport(Report):
                         if self.showyear:
                             yeartxt = "(%s) " % year
                         if nyears == 0:
-                            text = self._('* %(person)s, birth%(relation)s') % {
+                            text = self._('* %(person)s, birth %(relation)s') % {
                                 'person'   : short_name,
                                 'relation' : comment}
                         else:
-                            # translators: leave all/any {...} untranslated
+                            # Translators: leave all/any {...} untranslated
                             text = ngettext('* {year}{person}{dead}, {age}{relation}',
                                             '* {year}{person}{dead}, {age}{relation}',
                                             nyears).format(year=yeartxt,
@@ -404,7 +404,7 @@ class BirthdayReport(Report):
                                                          'spouse' : spouse_name,
                                                          'person' : short_name}
                                             else:
-                                                # translators: leave all/any {...} untranslated
+                                                # Translators: leave all/any {...} untranslated
                                                 text = ngettext("⚭ {year}{spouse}{deadtxt2} and\n {person}{deadtxt1}, {nyears}",
                                                                 "⚭ {year}{spouse}{deadtxt2} and\n {person}{deadtxt1}, {nyears}",
                                                                 nyears).format(year=yeartxt, spouse=spouse_name, deadtxt2=deadtxt2, person=short_name, deadtxt1=deadtxt1, nyears=nyears)

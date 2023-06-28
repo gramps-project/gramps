@@ -195,8 +195,10 @@ class DateParserSR(DateParser):
 
         'процењено'  : Date.QUAL_ESTIMATED,
         'про.'       : Date.QUAL_ESTIMATED,
+        'приближно'  : Date.QUAL_ESTIMATED,
         'израчунато' : Date.QUAL_CALCULATED,
         'изр.'       : Date.QUAL_CALCULATED,
+        'прорачунато': Date.QUAL_CALCULATED,
         }
 
     bce = ["пре нове ере", "пре Христа", "п.н.е."
@@ -215,7 +217,7 @@ class DateParserSR(DateParser):
         self._numeric = re.compile(
             r"((\d+)[/\. ])?\s*((\d+)[/\.])?\s*(\d+)\.?$")
 
-        _span_1 = ['od', 'од']
+        _span_1 = ['od', 'од', 'из']
         _span_2 = ['do', 'до']
         _range_1 = ['između', 'између']
         _range_2 = ['i', 'и']

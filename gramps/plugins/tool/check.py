@@ -60,7 +60,7 @@ _ = glocale.translation.gettext
 ngettext = glocale.translation.ngettext  # else "nearby" comments are ignored
 from gramps.gen.lib import (Citation, Event, EventType, Family, Media,
                             Name, Note, Person, Place, Repository, Source,
-                            StyledText, Tag)
+                            StyledText, StyledTextTagType, Tag)
 from gramps.gen.db import DbTxn, CLASS_TO_KEY_MAP
 from gramps.gen.config import config
 from gramps.gen.utils.id import create_id
@@ -224,11 +224,7 @@ class Check(tool.BatchTool):
             checker.check_tag_references()
             checker.check_checksum()
             checker.check_media_sourceref()
-
-        # for bsddb the check_backlinks doesn't work in 'batch' mode because
-        # the table used for backlinks is closed.
-        with DbTxn(_("Check Backlink Integrity"), self.db,
-                   batch=False) as checker.trans:
+            checker.check_note_links()
             checker.check_backlinks()
 
         # rebuilding reference maps needs to be done outside of a transaction
@@ -290,6 +286,7 @@ class CheckIntegrity:
         self.place_errors = 0
         self.duplicated_gramps_ids = 0
         self.bad_backlinks = 0
+        self.bad_note_links = 0
         self.text = StringIO()
         self.last_img_dir = config.get('behavior.addmedia-image-dir')
         self.progress = ProgressMeter(_('Checking Database'), '',
@@ -775,10 +772,10 @@ class CheckIntegrity:
                                     'kept')
 
             fs_top = Gtk.FileChooserDialog(
-                "%s - Gramps" % _("Select file"),
-                parent=self.parent_window,
-                buttons=(_('_Cancel'), Gtk.ResponseType.CANCEL,
-                         _('_OK'), Gtk.ResponseType.OK))
+                title="%s - Gramps" % _("Select file"),
+                transient_for=self.parent_window)
+            fs_top.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
+                               _('_OK'), Gtk.ResponseType.OK)
             fs_top.set_current_folder(self.last_img_dir)
             response = fs_top.run()
             if response == Gtk.ResponseType.OK:
@@ -2233,6 +2230,7 @@ class CheckIntegrity:
             gid_list.append(gid)
         gid_list = []
         for note in self.db.iter_notes():
+            self.progress.step()
             ogid = gid = note.get_gramps_id()
             if gid in gid_list:
                 gid = self.db.find_next_note_gramps_id()
@@ -2290,6 +2288,40 @@ class CheckIntegrity:
                                 'Original: "%s" changed to: "%s"', ogid, gid)
                 self.duplicated_gramps_ids += 1
             gid_list.append(gid)
+
+    def check_note_links(self):
+        """
+        look for missing links in Notes StyledTextTags
+        """
+        self.progress.set_pass(_('Checking for bad links in Notes'),
+                               len(self.db.get_note_handles()))
+        for note in self.db.iter_notes():
+            self.progress.step()
+            text = note.text
+            new_tags = []
+            for tag in text.get_tags():
+                bad_tag = False
+                if tag.name == StyledTextTagType.LINK:
+                    if tag.value.startswith("gramps://"):
+                        obj_class, prop, value = tag.value[9:].split("/")
+                        if prop == 'handle':
+                            if not self.db.method("has_%s_handle",
+                                                  obj_class)(value):
+                                bad_tag = True
+                        elif prop == 'gramps_id':
+                            if not self.db.method("has_%s_gramps_id",
+                                                  obj_class)(value):
+                                bad_tag = True
+                if not bad_tag:
+                    # good link, need to keep it
+                    new_tags.append(tag)
+                else:
+                    logging.warning('    FAIL: Bad Note Link found, '
+                                    '%s: %s: %s', obj_class, prop, value)
+                    self.bad_note_links += 1
+            if len(text.get_tags()) != new_tags:
+                text.set_tags(new_tags)
+                self.db.commit_note(note, self.trans)
 
     def class_person(self, handle):
         person = Person()
@@ -2408,7 +2440,7 @@ class CheckIntegrity:
                   citation_references + repo_references + media_references +
                   note_references + tag_references + name_format + empty_objs +
                   invalid_dates + source_references + dup_gramps_ids +
-                  self.bad_backlinks)
+                  self.bad_backlinks + self.bad_note_links)
 
         if errors == 0:
             if uistate:
@@ -2422,7 +2454,7 @@ class CheckIntegrity:
 
         if blink > 0:
             self.text.write(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext("{quantity} broken child/family link was fixed\n",
                          "{quantity} broken child/family links were fixed\n",
                          blink).format(quantity=blink)
@@ -2448,7 +2480,7 @@ class CheckIntegrity:
 
         if plink > 0:
             self.text.write(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext("{quantity} broken spouse/family link was fixed\n",
                          "{quantity} broken spouse/family links were fixed\n",
                          plink).format(quantity=plink)
@@ -2474,7 +2506,7 @@ class CheckIntegrity:
 
         if slink > 0:
             self.text.write(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext("{quantity} duplicate "
                          "spouse/family link was found\n",
                          "{quantity} duplicate "
@@ -2502,7 +2534,7 @@ class CheckIntegrity:
 
         if efam:
             self.text.write(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext("{quantity} family "
                          "with no parents or children found, removed.\n",
                          "{quantity} families "
@@ -2514,7 +2546,7 @@ class CheckIntegrity:
 
         if rel:
             self.text.write(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext("{quantity} corrupted family relationship fixed\n",
                          "{quantity} corrupted family relationships fixed\n",
                          rel).format(quantity=rel)
@@ -2522,7 +2554,7 @@ class CheckIntegrity:
 
         if self.place_errors:
             self.text.write(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext("{quantity} place alternate name fixed\n",
                          "{quantity} place alternate names fixed\n",
                          self.place_errors).format(quantity=self.place_errors)
@@ -2530,7 +2562,7 @@ class CheckIntegrity:
 
         if person_references:
             self.text.write(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext(
                     "{quantity} person was referenced but not found\n",
                     "{quantity} persons were referenced, but not found\n",
@@ -2539,7 +2571,7 @@ class CheckIntegrity:
 
         if family_references:
             self.text.write(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext("{quantity} family was "
                          "referenced but not found\n",
                          "{quantity} families were "
@@ -2549,7 +2581,7 @@ class CheckIntegrity:
 
         if invalid_dates:
             self.text.write(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext("{quantity} date was corrected\n",
                          "{quantity} dates were corrected\n",
                          invalid_dates).format(quantity=invalid_dates)
@@ -2557,7 +2589,7 @@ class CheckIntegrity:
 
         if repo_references:
             self.text.write(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext(
                     "{quantity} repository was "
                     "referenced but not found\n",
@@ -2568,7 +2600,7 @@ class CheckIntegrity:
 
         if photos:
             self.text.write(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext("{quantity} media object was "
                          "referenced but not found\n",
                          "{quantity} media objects were "
@@ -2578,16 +2610,16 @@ class CheckIntegrity:
 
         if bad_photos:
             self.text.write(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext(
                     "Reference to {quantity} missing media object was kept\n",
-                    "References to {quantity} media objects were kept\n",
+                    "References to {quantity} missing media objects were kept\n",
                     bad_photos).format(quantity=bad_photos)
                 )
 
         if replaced_photos:
             self.text.write(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext("{quantity} missing media object was replaced\n",
                          "{quantity} missing media objects were replaced\n",
                          replaced_photos).format(quantity=replaced_photos)
@@ -2595,7 +2627,7 @@ class CheckIntegrity:
 
         if removed_photos:
             self.text.write(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext("{quantity} missing media object was removed\n",
                          "{quantity} missing media objects were removed\n",
                          removed_photos).format(quantity=removed_photos)
@@ -2603,7 +2635,7 @@ class CheckIntegrity:
 
         if event_invalid:
             self.text.write(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext("{quantity} event was referenced but not found\n",
                          "{quantity} events were referenced, but not found\n",
                          event_invalid).format(quantity=event_invalid)
@@ -2611,7 +2643,7 @@ class CheckIntegrity:
 
         if birth_invalid:
             self.text.write(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext("{quantity} invalid birth event name was fixed\n",
                          "{quantity} invalid birth event names were fixed\n",
                          birth_invalid).format(quantity=birth_invalid)
@@ -2619,7 +2651,7 @@ class CheckIntegrity:
 
         if death_invalid:
             self.text.write(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext("{quantity} invalid death event name was fixed\n",
                          "{quantity} invalid death event names were fixed\n",
                          death_invalid).format(quantity=death_invalid)
@@ -2627,7 +2659,7 @@ class CheckIntegrity:
 
         if place_references:
             self.text.write(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext("{quantity} place was referenced but not found\n",
                          "{quantity} places were referenced, but not found\n",
                          place_references).format(quantity=place_references)
@@ -2635,7 +2667,7 @@ class CheckIntegrity:
 
         if citation_references:
             self.text.write(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext(
                     "{quantity} citation was referenced but not found\n",
                     "{quantity} citations were referenced, but not found\n",
@@ -2645,7 +2677,7 @@ class CheckIntegrity:
 
         if source_references:
             self.text.write(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext(
                     "{quantity} source was referenced but not found\n",
                     "{quantity} sources were referenced, but not found\n",
@@ -2654,7 +2686,7 @@ class CheckIntegrity:
 
         if media_references:
             self.text.write(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext(
                     "{quantity} media object was referenced but not found\n",
                     "{quantity} media objects were referenced,"
@@ -2664,7 +2696,7 @@ class CheckIntegrity:
 
         if note_references:
             self.text.write(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext("{quantity} note object was "
                          "referenced but not found\n",
                          "{quantity} note objects were "
@@ -2674,7 +2706,7 @@ class CheckIntegrity:
 
         if tag_references:
             self.text.write(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext("{quantity} tag object was "
                          "referenced but not found\n",
                          "{quantity} tag objects were "
@@ -2684,7 +2716,7 @@ class CheckIntegrity:
 
         if tag_references:
             self.text.write(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext("{quantity} tag object was "
                          "referenced but not found\n",
                          "{quantity} tag objects were "
@@ -2694,7 +2726,7 @@ class CheckIntegrity:
 
         if name_format:
             self.text.write(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext("{quantity} invalid name format "
                          "reference was removed\n",
                          "{quantity} invalid name format "
@@ -2704,7 +2736,7 @@ class CheckIntegrity:
 
         if replaced_sourcerefs:
             self.text.write(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext(
                     "{quantity} invalid source citation was fixed\n",
                     "{quantity} invalid source citations were fixed\n",
@@ -2714,7 +2746,7 @@ class CheckIntegrity:
 
         if dup_gramps_ids > 0:
             self.text.write(
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 ngettext("{quantity} Duplicated Gramps ID fixed\n",
                          "{quantity} Duplicated Gramps IDs fixed\n",
                          dup_gramps_ids).format(quantity=dup_gramps_ids)
@@ -2747,6 +2779,10 @@ class CheckIntegrity:
             self.text.write(_("%d bad backlinks were fixed;\n")
                             % self.bad_backlinks +
                             _("All reference maps have been rebuilt.") + '\n')
+
+        if self.bad_note_links:
+            self.text.write(_("%d bad Note Links were fixed;\n")
+                            % self.bad_note_links)
 
         return errors
 

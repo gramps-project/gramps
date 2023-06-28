@@ -79,7 +79,7 @@ class SurnameTab(EmbeddedList):
         (_('Connector'), 2, 100, TEXT_EDIT_COL, -1, None),
         ]
     _column_combo = (_('Origin'), -1, 150, 3)  # name, sort, width, modelcol
-    _column_toggle = (_('Name|Primary'), -1, 80, 4)
+    _column_toggle = (_('Primary', 'Name'), -1, 80, 4)
 
     def __init__(self, dbstate, uistate, track, name, on_change=None,
                  top_label='<b>%s</b>' % _("Multiple Surnames") ):
@@ -148,14 +148,6 @@ class SurnameTab(EmbeddedList):
         self.columns.append(column)
         self.tree.append_column(column)
 
-##    def by_value(self, first, second):
-##        """
-##        Method for sorting keys based on the values.
-##        """
-##        fvalue = self.cmborigmap[first]
-##        svalue = self.cmborigmap[second]
-##        return glocale.strcoll(fvalue, svalue)
-
     def setup_editable_col(self):
         """
         inherit this and set the variables needed for editable columns
@@ -186,7 +178,7 @@ class SurnameTab(EmbeddedList):
         the model
         """
         new_list = []
-        for idx in range(len(self.model)):
+        for idx, value in enumerate(self.model):
             node = self.model.get_iter(idx)
             surn = self.model.get_value(node, 5)
             surn.set_prefix(self.model.get_value(node, 0))
@@ -318,7 +310,7 @@ class SurnameTab(EmbeddedList):
         #obtain current value
         node = self.model.get_iter(path)
         old_val = self.model.get_value(node, colnr)
-        for nr in range(len(self.obj.get_surname_list())):
+        for nr, surname in enumerate(self.obj.get_surname_list()):
             if nr == int(path[0]):
                 if old_val:
                     #True remains True

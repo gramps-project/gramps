@@ -159,7 +159,7 @@ class EditName(EditSecondary):
         self.define_cancel_button(self.top.get_object('button119'))
         self.define_help_button(self.top.get_object('button131'),
                 WIKI_HELP_PAGE,
-                _('manual|Name_Editor'))
+                _('Name_Editor', 'manual'))
         self.define_ok_button(self.top.get_object('button118'), self.save)
 
     def _validate_call(self, widget, text):

@@ -58,13 +58,11 @@ class FileEntry(Gtk.Box):
         else:
             my_action = Gtk.FileChooserAction.SAVE
 
-        dialog = Gtk.FileChooserDialog(self.title,
-                                       self.parent,
-                                       action=my_action,
-                                       buttons=(_('_Cancel'),
-                                                Gtk.ResponseType.CANCEL,
-                                                _('_Open'),
-                                                Gtk.ResponseType.OK))
+        dialog = Gtk.FileChooserDialog(title=self.title,
+                                       transient_for=self.parent,
+                                       action=my_action)
+        dialog.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
+                           _('_Open'), Gtk.ResponseType.OK)
 
         name = os.path.basename(self.entry.get_text())
         if self.dir:

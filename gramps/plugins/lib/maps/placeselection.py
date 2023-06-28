@@ -25,46 +25,38 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
 import re
 import math
-
-#------------------------------------------------------------------------
-#
-# Set up logging
-#
-#------------------------------------------------------------------------
 import logging
-_LOG = logging.getLogger("maps.placeselection")
-
-#-------------------------------------------------------------------------
-#
-# GTK/Gnome modules
-#
-#-------------------------------------------------------------------------
 import gi
 from gi.repository import Gtk
-try:
-    gi.require_version('GeocodeGlib', '1.0')
-    from gi.repository import GeocodeGlib
-    GEOCODEGLIB = True
-except:
-    GEOCODEGLIB = False
 
 #-------------------------------------------------------------------------
 #
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.dialog import WarningDialog
-from .osmgps import OsmGps
 from gramps.gen.utils.location import get_main_location
 from gramps.gen.lib import PlaceType
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gen.display.place import displayer as _pd
+from .osmgps import OsmGps
+
+#-------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+#-------------------------------------------------------------------------
+try:
+    gi.require_version('GeocodeGlib', '1.0')
+    from gi.repository import GeocodeGlib
+    GEOCODEGLIB = True
+except:
+    GEOCODEGLIB = False
 
 #-------------------------------------------------------------------------
 #
@@ -76,8 +68,13 @@ PLACE_STRING = '<span background="green">%s</span>'
 GEOCODE_REGEXP = re.compile('<span background="red">(.*)</span>')
 GEOCODE_STRING = '<span background="red">%s</span>'
 
-# pylint: disable=unused-argument
-# pylint: disable=no-member
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+_LOG = logging.getLogger("maps.placeselection")
+_ = glocale.translation.sgettext
 
 #-------------------------------------------------------------------------
 #
@@ -115,10 +112,10 @@ class PlaceSelection(ManagedWindow, OsmGps):
         self.selection_layer = layer
         self.layer = layer
         self.warning = False
-        self.set_window(
-            Gtk.Dialog(_('Place Selection in a region'), uistate.window,
-                       buttons=(_('_Close'), Gtk.ResponseType.CLOSE)),
-            None, _('Place Selection in a region'), None)
+        dlg = Gtk.Dialog(title=_('Place Selection in a region'),
+                         transient_for=uistate.window)
+        dlg.add_button(_('_Close'), Gtk.ResponseType.CLOSE)
+        self.set_window(dlg, None, _('Place Selection in a region'), None)
         mylabel = _('Choose the radius of the selection.\n'
                     'On the map you should see a circle or an'
                     ' oval depending on the latitude.')
@@ -139,11 +136,11 @@ class PlaceSelection(ManagedWindow, OsmGps):
         slider.connect('value-changed', self.slider_change, self.lat, self.lon)
         self.window.vbox.pack_start(slider, False, True, 0)
         self.vadjust = Gtk.Adjustment(page_size=15)
-        self.scroll = Gtk.ScrolledWindow(self.vadjust)
+        self.scroll = Gtk.ScrolledWindow(vadjustment=self.vadjust)
         self.scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.scroll.set_shadow_type(Gtk.ShadowType.IN)
         self.plist = Gtk.ListStore(str, str, str, str, str)
-        self.choices = Gtk.TreeView(self.plist)
+        self.choices = Gtk.TreeView(model=self.plist)
         self.scroll.add(self.choices)
         self.renderer = Gtk.CellRendererText()
         self.tvcol1 = Gtk.TreeViewColumn(_('Country'), self.renderer, markup=0)
@@ -162,8 +159,8 @@ class PlaceSelection(ManagedWindow, OsmGps):
         self.label2 = Gtk.Label()
         self.label2.set_markup('<span background="green" foreground="black"'
                                '>%s</span>' %
-             _('The green values in the row correspond '
-               'to the current place values.'))
+                               _('The green values in the row correspond '
+                                 'to the current place values.'))
         self.label2.set_valign(Gtk.Align.END)
         self.window.vbox.pack_start(self.label2, False, True, 0)
         self.window.set_default_size(400, 300)
@@ -249,7 +246,7 @@ class PlaceSelection(ManagedWindow, OsmGps):
         place = self.dbstate.db.get_place_from_gramps_id(gramps_id)
         place_name = place.name.get_value()
         parent_list = place.get_placeref_list()
-        while len(parent_list) > 0:
+        while parent_list:
             place = self.dbstate.db.get_place_from_handle(parent_list[0].ref)
             parent_list = place.get_placeref_list()
             if int(place.get_type()) == PlaceType.COUNTY:
@@ -280,7 +277,7 @@ class PlaceSelection(ManagedWindow, OsmGps):
         # place
         for entry in self.place_list:
             if (math.hypot(lat-float(entry[3]),
-                           lon-float(entry[4])) <= rds) == True:
+                           lon-float(entry[4])) <= rds):
                 # Do we already have this place ? avoid duplicates
                 (country, state, county,
                  place, other) = self.get_location(entry[9])
@@ -291,7 +288,7 @@ class PlaceSelection(ManagedWindow, OsmGps):
             latn = place.get_latitude()
             lonn = place.get_longitude()
             if latn and lonn:
-                latn, ignore = conv_lat_lon(latn, "0", "D.D8")
+                latn, dummy_ignore = conv_lat_lon(latn, "0", "D.D8")
                 if not latn:
                     if not self.warning:
                         self.close()
@@ -301,7 +298,7 @@ class PlaceSelection(ManagedWindow, OsmGps):
                     WarningDialog(warn1, warn2, parent=self.uistate.window)
                     self.warning = True
                     continue
-                ignore, lonn = conv_lat_lon("0", lonn, "D.D8")
+                dummy_ignore, lonn = conv_lat_lon("0", lonn, "D.D8")
                 if not lonn:
                     if not self.warning:
                         self.close()
@@ -312,7 +309,7 @@ class PlaceSelection(ManagedWindow, OsmGps):
                     self.warning = True
                     continue
                 if (math.hypot(lat-float(latn),
-                               lon-float(lonn)) <= rds) == True:
+                               lon-float(lonn)) <= rds):
                     (country, state, county,
                      place, other) = self.get_location(place.get_gramps_id())
                     if not [country, state, county,
@@ -324,9 +321,13 @@ class PlaceSelection(ManagedWindow, OsmGps):
         """
         get location values and call the real function : add_place, edit_place
         """
+        dummy_obj = obj
+        dummy_col = column
+        dummy_fct = function
+        #TODO : self.plist unsubscriptable
         self.function(self.plist[index], self.lat, self.lon)
 
-    def untag_text(text, tag):
+    def untag_text(self, text, tag):
         """
         suppress the green or red color tag.
         if tag = 0 : PLACE_REGEXP

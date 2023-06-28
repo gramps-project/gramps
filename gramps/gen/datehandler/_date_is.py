@@ -60,7 +60,8 @@ class DateParserIs(DateParser):
         'á undan'  : Date.MOD_BEFORE,
         'eftir'   : Date.MOD_AFTER,
         'í kringum' : Date.MOD_ABOUT,
-        'uþb'      : Date.MOD_ABOUT
+        'uþb'      : Date.MOD_ABOUT,
+        'um'       : Date.MOD_ABOUT,
         }
 
     bce = ["f Kr"]

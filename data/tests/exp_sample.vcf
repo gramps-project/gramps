@@ -122,7 +122,7 @@ BEGIN:VCARD
 VERSION:3.0
 PRODID:-//Gramps//NONSGML Gramps 5.0.0-alpha1//EN
 FN:Amber Marie Smith
-N:Smith;Amber;Marie;;
+N:Smith;Marie;Amber;;
 SORT-STRING:Smith                    Amber Marie                   
 X-GENDER:Female
 BDAY:1998-04-12

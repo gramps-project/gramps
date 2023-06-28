@@ -45,7 +45,7 @@ class HasNameOf(Rule):
 
     labels = [_('Given name:'),
                     _('Full Family name:'),
-                    _('person|Title:'),
+                    _('Title:', 'person'),
                     _('Suffix:'),
                     _('Call Name:'),
                     _('Nick Name:'),

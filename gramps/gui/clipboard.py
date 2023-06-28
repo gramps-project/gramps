@@ -67,7 +67,7 @@ _ = glocale.translation.sgettext
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Navigation' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Using_the_Clipboard')
+WIKI_HELP_SEC = _('Using_the_Clipboard', 'manual')
 clipdb = None  # current db to avoid different transient dbs during db change
 
 #-------------------------------------------------------------------------
@@ -481,7 +481,7 @@ class ClipCitation(ClipHandleWrapper):
                                   if note.get_type() == NoteType.SOURCE_TEXT]
                     page = citation.get_page()
                     if not page:
-                        page = _('not available|NA')
+                        page = _('NA', 'not available')
                     text = ""
                     if srctxtlist:
                         text = " ".join(srctxtlist[0].get().split())
@@ -1507,7 +1507,7 @@ class MultiTreeView(Gtk.TreeView):
             if obj2class(objclass):
                 if self.dbstate.db.method('has_%s_handle', objclass)(handle):
                     menu_item = Gtk.MenuItem(
-                        label=_("the object|See %s details") %
+                        label=_("See %s details", "the object") %
                         glocale.trans_objclass(objclass))
                     menu_item.connect(
                         "activate",
@@ -1516,7 +1516,7 @@ class MultiTreeView(Gtk.TreeView):
                     menu_item.show()
                     # ---------------------------
                     menu_item = Gtk.MenuItem(
-                        label=_("the object|Make %s active") %
+                        label=_("Make %s active", "the object") %
                         glocale.trans_objclass(objclass))
                     menu_item.connect(
                         "activate", lambda widget:
@@ -1538,8 +1538,8 @@ class MultiTreeView(Gtk.TreeView):
                                 gids.add(obj.gramps_id)
                 if gids:
                     menu_item = Gtk.MenuItem(
-                        label=_("the object|Create Filter from %s "
-                                "selected...") %
+                        label=_("Create Filter from %s selected...",
+                                "the object") %
                         glocale.trans_objclass(objclass))
                     menu_item.connect("activate", lambda widget: make_filter(
                         self.dbstate, self.uistate,

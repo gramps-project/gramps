@@ -47,8 +47,8 @@ from .const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
-def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
-    return value
+def _T_(value, context=''): # enable deferred translations
+    return "%s\x04%s" % (context, value) if context else value
 
 #---------------------------------------------------------------
 #
@@ -133,7 +133,6 @@ register('behavior.addmedia-image-dir', '')
 register('behavior.addmedia-relative-path', False)
 register('behavior.autoload', False)
 register('behavior.avg-generation-gap', 20)
-register('behavior.betawarn', False)
 register('behavior.check-for-addon-updates', 0)
 register('behavior.check-for-addon-update-types', ["new"])
 register('behavior.last-check-for-addon-updates', "1970/01/01")
@@ -157,7 +156,10 @@ register('behavior.translator-needed', True)
 register('behavior.use-tips', False)
 register('behavior.welcome', 100)
 register('behavior.web-search-url', 'http://google.com/#&q=%(text)s')
-register('behavior.addons-url', "https://raw.githubusercontent.com/gramps-project/addons/master/gramps51")
+register('behavior.addons-url', "https://raw.githubusercontent.com/gramps-project/addons/master/gramps52")
+
+register('csv.dialect', 'excel')
+register('csv.delimiter', ',')
 
 register('database.backend', 'sqlite')
 register('database.compress-backup', True)
@@ -179,13 +181,13 @@ register('export.proxy-order',
 register('geography.center-lon', 0.0)
 register('geography.lock', False)
 register('geography.center-lat', 0.0)
-register('geography.map', "person")
 register('geography.map_service', 1)
 register('geography.zoom', 0)
 register('geography.zoom_when_center', 12)
 register('geography.show_cross', False)
 register('geography.path', "")
 register('geography.use-keypad', True)
+register('geography.personal-map', "")
 
 # note that other calls to "register" are done in realtime (when
 # needed), for instance to four 'interface.clipboard' variables --
@@ -220,6 +222,12 @@ register('interface.size-checked', False)
 register('interface.statusbar', 1)
 register('interface.toolbar-on', True)
 register('interface.toolbar-text', False)
+register('interface.hide-lds', False)
+register('interface.toolbar-clipboard', True)
+register('interface.toolbar-plugin', True)
+register('interface.toolbar-preference', True)
+register('interface.toolbar-reports', True)
+register('interface.toolbar-tools', True)
 register('interface.view', True)
 register('interface.surname-box-height', 150)
 register('interface.treemodel-cache-size', 1000)
@@ -240,6 +248,7 @@ register('paths.quick-backup-filename',
 register('preferences.quick-backup-include-mode', False)
 register('preferences.date-format', 0)
 register('preferences.calendar-format-report', 0)
+register('preferences.calendar-format-input', 0)
 register('preferences.cprefix', 'C%04d')
 register('preferences.default-source', False)
 register('preferences.tag-on-import', False)
@@ -311,12 +320,21 @@ register('plugin.hiddenplugins', [])
 register('plugin.addonplugins', [])
 
 register('utf8.in-use', False)
-register('utf8.available-fonts', [])
-register('utf8.selected-font', "")
-register('utf8.death-symbol', 13)
+register('utf8.selected-font', '')
+register('utf8.death-symbol', 2)
+register('utf8.birth-symbol', "*")
+register('utf8.baptism-symbol', "~")
+register('utf8.marriage-symbol', "oo")
+register('utf8.engaged-symbol', "o")
+register('utf8.divorce-symbol', "o|o")
+register('utf8.partner-symbol', "o-o")
+register('utf8.dead-symbol', "✝")
+register('utf8.buried-symbol', "[]")
+register('utf8.cremated-symbol', "⚱")
+register('utf8.killed-symbol', "x")
 
 if __debug__: # enable a simple CLI test to see if the datestrings exist
-    register('test.january', _("localized lexeme inflections||January"))
+    register('test.january', _("January", "localized lexeme inflections"))
 
 #---------------------------------------------------------------
 #
@@ -368,3 +386,5 @@ if not os.path.exists(CONFIGMAN.filename):
 CONFIGMAN.load()
 
 config = CONFIGMAN
+if config.get('database.backend') == 'bsddb':
+    config.set('database.backend', 'sqlite')

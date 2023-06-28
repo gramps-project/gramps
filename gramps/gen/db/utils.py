@@ -71,15 +71,15 @@ def make_database(plugin_id):
         if mod:
             database = getattr(mod, pdata.databaseclass)
             db = database()
-            import inspect
-            frame = inspect.currentframe()
-            c_frame = frame.f_back
-            c_code = c_frame.f_code
-            _LOG.debug("Database class instance created Class:%s instance:%s. "
-                       "Called from File %s, line %s, in %s",
-                       db.__class__.__name__, hex(id(db)), c_code.co_filename,
-                       c_frame.f_lineno, c_code.co_name)
-
+            if __debug__ and _LOG.isEnabledFor(logging.DEBUG):
+                import inspect
+                frame = inspect.currentframe()
+                c_frame = frame.f_back
+                c_code = c_frame.f_code
+                _LOG.debug("Database class instance created Class:%s instance:%s. "
+                           "Called from File %s, line %s, in %s",
+                           db.__class__.__name__, hex(id(db)), c_code.co_filename,
+                           c_frame.f_lineno, c_code.co_name)
             return db
         else:
             raise Exception("can't load database backend: '%s'" % plugin_id)

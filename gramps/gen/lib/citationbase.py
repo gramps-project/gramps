@@ -135,6 +135,15 @@ class CitationBase:
         """
         return self.citation_list
 
+    def has_citations(self):
+        """
+        Return True if citations exist for this object.
+
+        :returns: Returns whether citations exist for this object.
+        :rtype: bool
+        """
+        return bool(self.get_citation_list())
+
     def get_all_citation_lists(self):
         """
         Return the list of :class:`~.citation.Citation` handles associated with

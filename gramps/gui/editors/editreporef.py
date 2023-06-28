@@ -24,7 +24,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-
+from copy import deepcopy
 #-------------------------------------------------------------------------
 #
 # gramps modules
@@ -51,6 +51,7 @@ class EditRepoRef(EditReference):
 
         EditReference.__init__(self, state, uistate, track, source,
                                source_ref, update)
+        self.original = deepcopy(source.serialize())
 
     def _local_init(self):
 
@@ -189,8 +190,10 @@ class EditRepoRef(EditReference):
     def ok_clicked(self, obj):
 
         if self.source.handle:
-            with DbTxn(_("Modify Repository"), self.db) as trans:
-                self.db.commit_repository(self.source,trans)
+            # only commit if it has changed
+            if self.source.serialize() != self.original:
+                with DbTxn(_("Modify Repository"), self.db) as trans:
+                    self.db.commit_repository(self.source, trans)
         else:
             if self.check_for_duplicate_id('Repository'):
                 return

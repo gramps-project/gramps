@@ -77,7 +77,7 @@ class DbTxn(defaultdict):
             self.db.transaction_abort(self)
 
         elapsed_time = time.time() - self.start_time
-        if __debug__:
+        if __debug__ and _LOG.isEnabledFor(logging.DEBUG):
             frame = inspect.currentframe()
             c_frame = frame.f_back
             c_code = c_frame.f_code
@@ -122,7 +122,7 @@ class DbTxn(defaultdict):
         """
 
         # Conditional on __debug__ because all that frame stuff may be slow
-        if __debug__:
+        if __debug__ and _LOG.isEnabledFor(logging.DEBUG):
             caller_frame = inspect.stack()[1]
             # If the call comes from gramps.gen.db.generic.DbGenericTxn.__init__
             # then it is just a dummy redirect, so we need to go back another

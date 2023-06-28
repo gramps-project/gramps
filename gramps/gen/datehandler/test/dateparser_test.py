@@ -77,6 +77,39 @@ class DateParserTest(unittest.TestCase):
         self.assert_map_key_val(self.parser.calendar_to_int, 'юлианский', Date.CAL_JULIAN)
         self.assert_map_key_val(self.parser.calendar_to_int, 'ю', Date.CAL_JULIAN)
 
+    def test_quarter_1(self):
+        date = self.parser.parse('q1 1900')
+        self.assertTrue(date.is_equal(self.parser.parse('Q1 1900')))
+        self.assertEqual(date.get_ymd(), (1900, 1, 1))
+        self.assertEqual(date.get_stop_ymd(), (1900, 3, 31))
+        self.assertEqual(date.get_modifier(), Date.MOD_RANGE)
+
+    def test_quarter_2(self):
+        date = self.parser.parse('q2 1900')
+        self.assertTrue(date.is_equal(self.parser.parse('Q2 1900')))
+        self.assertEqual(date.get_ymd(), (1900, 4, 1))
+        self.assertEqual(date.get_stop_ymd(), (1900, 6, 30))
+        self.assertEqual(date.get_modifier(), Date.MOD_RANGE)
+
+    def test_quarter_3(self):
+        date = self.parser.parse('q3 1900')
+        self.assertTrue(date.is_equal(self.parser.parse('Q3 1900')))
+        self.assertEqual(date.get_ymd(), (1900, 7, 1))
+        self.assertEqual(date.get_stop_ymd(), (1900, 9, 30))
+        self.assertEqual(date.get_modifier(), Date.MOD_RANGE)
+
+    def test_quarter_4(self):
+        date = self.parser.parse('q4 1900')
+        self.assertTrue(date.is_equal(self.parser.parse('Q4 1900')))
+        self.assertEqual(date.get_ymd(), (1900, 10, 1))
+        self.assertEqual(date.get_stop_ymd(), (1900, 12, 31))
+        self.assertEqual(date.get_modifier(), Date.MOD_RANGE)
+
+    def test_quarter_quality_calendar(self):
+        date = self.parser.parse('calc q1 1900 (julian)')
+        self.assertEqual(date.get_quality(), Date.QUAL_CALCULATED)
+        self.assertEqual(date.get_calendar(), Date.CAL_JULIAN)
+
 class Test_generate_variants(unittest.TestCase):
     def setUp(self):
         from .. import _datestrings

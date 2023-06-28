@@ -475,7 +475,7 @@ def str_incr(str_counter):
             raise ValueError(''.join((
                 '\n can\'t increment string ', ''.join(lili),
                 ' of length ', str(len(lili)))))
-        for i in range(len(lili)-1, -1, -1):
+        for i in reversed(lili):
             if lili[i] < 'z':
                 lili[i] = chr(ord(lili[i])+1)
                 break

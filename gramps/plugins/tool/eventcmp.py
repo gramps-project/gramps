@@ -67,7 +67,7 @@ from gramps.gen.constfunc import get_curr_dir
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Compare_Individual_Events')
+WIKI_HELP_SEC = _('Compare_Individual_Events', 'manual')
 
 #------------------------------------------------------------------------
 #
@@ -393,12 +393,10 @@ class EventComparisonResults(ManagedWindow):
 
     def on_write_table(self, obj):
         f = Gtk.FileChooserDialog(_("Select filename"),
-                                  parent=self.window,
-                                  action=Gtk.FileChooserAction.SAVE,
-                                  buttons=(_('_Cancel'),
-                                           Gtk.ResponseType.CANCEL,
-                                           _('_Save'),
-                                           Gtk.ResponseType.OK))
+                                  transient_for=self.window,
+                                  action=Gtk.FileChooserAction.SAVE)
+        f.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
+                      _('_Save'), Gtk.ResponseType.OK)
 
         f.set_current_folder(get_curr_dir())
         status = f.run()
