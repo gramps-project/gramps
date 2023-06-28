@@ -57,7 +57,8 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
  <distutils id="gramps" supports-non-srcdir-builds="no">
     <branch module="gramps-project/gramps/archive/v5.1.5.tar.gz"
 	    repo="github-tarball" version="5.1.5"
-	    checkoutdir="gramps-gramps-5.1.5"/>
+            checkoutdir="gramps-gramps-5.1.5">
+      <patch file="gramps-berkeleydb.patch" strip="1"/>
     <dependencies>
       <dep package="meta-gramps-modules"/>
     </dependencies>
@@ -101,7 +102,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </autotools>
 
   <cmake id="exiv2" cmakeargs="-DEXIV2_ENABLE_PNG=ON">
-    <branch module="exiv2-0.27.4-Source.tar.gz" repo="exiv2.org"
+    <branch module="Exiv2/exiv2/releases/download/v0.27.4/exiv2-0.27.4-Source.tar.gz" repo="github-tarball"
             checkoutdir="exiv2-0.27.4-Source" version="0.27.4"
             hash="sha256:84366dba7c162af9a7603bcd6c16f40fe0e9af294ba2fd2f66ffffb9fbec904e"/>
   </cmake>
@@ -147,6 +148,7 @@ https://files.pythonhosted.org/packages/
         repo="oracle"
             hash="sha256:12edc0df75bf9abd7f82f821795bcee50f42cb2e5f76a6a281b85732798364ef" >
       <patch file="berkeleydb-4.8-atomic.patch" strip='1'/>
+      <patch file="berkeleydb-4.8-mutex.patch" strip='1'/>
     </branch>
   </autotools>
 
@@ -163,6 +165,7 @@ https://files.pythonhosted.org/packages/
             repo="oracle"
             hash="sha256:12edc0df75bf9abd7f82f821795bcee50f42cb2e5f76a6a281b85732798364ef">
       <patch file="berkeleydb-4.8-atomic.patch" strip='1'/>
+      <patch file="berkeleydb-4.8-mutex.patch" strip='1'/>
     </branch>
   </autotools>
 
@@ -210,7 +213,6 @@ https://files.pythonhosted.org/packages/
       <dep package="pycairo"/>
       <dep package="pygobject3"/>
       <dep package='pyicu'/>
-      <dep package='pybsddb'/>
       <dep package="pillow"/>
     </dependencies>
   </metamodule>

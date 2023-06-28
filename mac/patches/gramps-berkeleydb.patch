@@ -1,0 +1,273 @@
+From 9ea0164f1f84f92deea7a0bde0343e2f0e485525 Mon Sep 17 00:00:00 2001
+From: John Ralls <jralls@ceridwen.us>
+Date: Tue, 27 Dec 2022 12:50:14 -0800
+Subject: [PATCH] Try to import berkeleydb if bsddb3 isn't found.
+
+berkelydb is usable for python >= 3.6 and required for
+python >= 3.10. See https://www.jcea.es/programacion/pybsddb.htm.
+---
+ gramps/grampsapp.py                         | 13 ++++++++++---
+ gramps/gui/aboutdialog.py                   |  6 +++++-
+ gramps/gui/logger/_errorreportassistant.py  |  6 +++++-
+ gramps/plugins/db/bsddb/bsddbtxn.py         |  5 ++++-
+ gramps/plugins/db/bsddb/cursor.py           | 17 ++++++++++-------
+ gramps/plugins/db/bsddb/read.py             | 15 +++++++++------
+ gramps/plugins/db/bsddb/summary.py          |  6 ++++--
+ gramps/plugins/db/bsddb/test/cursor_test.py |  6 ++++--
+ gramps/plugins/db/bsddb/undoredo.py         | 13 ++++++++-----
+ gramps/plugins/db/bsddb/upgrade.py          |  6 ++++--
+ gramps/plugins/db/bsddb/write.py            | 10 ++++++++--
+ gramps/plugins/gramplet/leak.py             | 11 +++++++----
+ 12 files changed, 78 insertions(+), 36 deletions(-)
+
+diff --git a/gramps/grampsapp.py b/gramps/grampsapp.py
+index 2163edc8a..fed06207d 100644
+--- a/gramps/grampsapp.py
++++ b/gramps/grampsapp.py
+@@ -325,9 +325,16 @@ def show_settings():
+                                         .replace('(', '').replace(')', '')
+         bsddb_location_str = bsddb.__file__
+     except:
+-        bsddb_str = 'not found'
+-        bsddb_db_str = 'not found'
+-        bsddb_location_str = 'not found'
++        try:
++            import berkeleydb as bsddb
++            bsddb_str = bsddb.__version__
++            bsddb_db_str = str(bsddb.db.version()).replace(', ', '.')\
++                                                  .replace('(', '').replace(')', '')
++            bsddb_location_str = bsddb.__file__
++        except:
++            bsddb_str = 'not found'
++            bsddb_db_str = 'not found'
++            bsddb_location_str = 'not found'
+ 
+     try:
+         import sqlite3
+diff --git a/gramps/gui/aboutdialog.py b/gramps/gui/aboutdialog.py
+index f2b28a036..2afb77816 100644
+--- a/gramps/gui/aboutdialog.py
++++ b/gramps/gui/aboutdialog.py
+@@ -68,7 +68,11 @@ try:
+     import bsddb3 as bsddb ## ok, in try/except
+     BSDDB_STR = ellipses(str(bsddb.__version__) + " " + str(bsddb.db.version()))
+ except:
+-    BSDDB_STR = 'not found'
++    try:
++        import berkeleydb as bsddb
++        BSDDB_STR = ellipses(str(bsddb.__version__) + " " + str(bsddb.db.version()))
++    except:
++        BSDDB_STR = 'not found'
+ 
+ try:
+     import sqlite3
+diff --git a/gramps/gui/logger/_errorreportassistant.py b/gramps/gui/logger/_errorreportassistant.py
+index af9979693..1924701e2 100644
+--- a/gramps/gui/logger/_errorreportassistant.py
++++ b/gramps/gui/logger/_errorreportassistant.py
+@@ -37,7 +37,11 @@ try:
+     import bsddb3 as bsddb # ok, in try/except
+     BSDDB_STR = str(bsddb.__version__) + " " + str(bsddb.db.version())
+ except:
+-    BSDDB_STR = 'not found'
++    try:
++        import berkeleydb as bsddb
++        BSDDB_STR = str(bsddb.__version__) + " " + str(bsddb.db.version())
++    except:
++        BSDDB_STR = 'not found'
+ 
+ try:
+     import sqlite3
+diff --git a/gramps/plugins/db/bsddb/bsddbtxn.py b/gramps/plugins/db/bsddb/bsddbtxn.py
+index 7af99494e..0f3fe0de4 100644
+--- a/gramps/plugins/db/bsddb/bsddbtxn.py
++++ b/gramps/plugins/db/bsddb/bsddbtxn.py
+@@ -218,7 +218,10 @@ class BSDDBTxn:
+ # test code
+ if __name__ == "__main__":
+     print("1")
+-    from bsddb3 import db, dbshelve
++    try:
++        from bsddb3 import db, dbshelve
++    except:
++        from berkeleydb import db, dbshelve
+     print("2")
+     x = db.DBEnv()
+     print("3")
+diff --git a/gramps/plugins/db/bsddb/cursor.py b/gramps/plugins/db/bsddb/cursor.py
+index 1eecffc03..4ddd9a64c 100644
+--- a/gramps/plugins/db/bsddb/cursor.py
++++ b/gramps/plugins/db/bsddb/cursor.py
+@@ -29,14 +29,17 @@ from pickle import dumps, loads
+ try:
+     from bsddb3 import db
+ except:
++    try:
++        from berkeleydb import db
++    except:
+     # FIXME: make this more abstract to deal with other backends
+-    class db:
+-        DB_RMW = 0
+-        DB_FIRST = 0
+-        DB_LAST = 0
+-        DB_CURRENT = 0
+-        DB_PREV = 0
+-        DB_NEXT = 0
++        class db:
++            DB_RMW = 0
++            DB_FIRST = 0
++            DB_LAST = 0
++            DB_CURRENT = 0
++            DB_PREV = 0
++            DB_NEXT = 0
+ 
+ #-------------------------------------------------------------------------
+ #
+diff --git a/gramps/plugins/db/bsddb/read.py b/gramps/plugins/db/bsddb/read.py
+index 57906b795..6b0b6a7a8 100644
+--- a/gramps/plugins/db/bsddb/read.py
++++ b/gramps/plugins/db/bsddb/read.py
+@@ -41,12 +41,15 @@ from functools import partial
+ try:
+     from bsddb3 import db
+ except:
+-    # FIXME: make this more abstract to deal with other backends
+-    class db:
+-        DBRunRecoveryError = 0
+-        DBAccessError = 0
+-        DBPageNotFoundError = 0
+-        DBInvalidArgError = 0
++    try:
++        from berkeleydb import db
++    except:
++        # FIXME: make this more abstract to deal with other backends
++        class db:
++            DBRunRecoveryError = 0
++            DBAccessError = 0
++            DBPageNotFoundError = 0
++            DBInvalidArgError = 0
+ 
+ import re
+ import logging
+diff --git a/gramps/plugins/db/bsddb/summary.py b/gramps/plugins/db/bsddb/summary.py
+index e73908128..a911d666f 100644
+--- a/gramps/plugins/db/bsddb/summary.py
++++ b/gramps/plugins/db/bsddb/summary.py
+@@ -22,8 +22,10 @@
+ ## specific to bsddb
+ 
+ import os
+-from bsddb3 import dbshelve, db
+-
++try:
++    from bsddb3 import dbshelve, db
++except:
++    from berkeleydb import db, dbshelve
+ from gramps.gen.db import META, PERSON_TBL
+ from  gramps.gen.db.dbconst import BDBVERSFN
+ 
+diff --git a/gramps/plugins/db/bsddb/test/cursor_test.py b/gramps/plugins/db/bsddb/test/cursor_test.py
+index e90e16fd4..1411aca43 100644
+--- a/gramps/plugins/db/bsddb/test/cursor_test.py
++++ b/gramps/plugins/db/bsddb/test/cursor_test.py
+@@ -23,8 +23,10 @@ import os
+ import tempfile
+ import shutil
+ 
+-from bsddb3 import dbshelve, db
+-
++try:
++    from bsddb3 import dbshelve, db
++except:
++    from berkeleydb import db, dbshelve
+ from ..read import DbBsddbTreeCursor
+ 
+ class Data:
+diff --git a/gramps/plugins/db/bsddb/undoredo.py b/gramps/plugins/db/bsddb/undoredo.py
+index 53ab39a60..729f21eb9 100644
+--- a/gramps/plugins/db/bsddb/undoredo.py
++++ b/gramps/plugins/db/bsddb/undoredo.py
+@@ -36,12 +36,15 @@ from collections import deque
+ try:
+     from bsddb3 import db
+ except:
++    try:
++        from berkeleydb import db
++    except:
+     # FIXME: make this more abstract to deal with other backends
+-    class db:
+-        DBRunRecoveryError = 0
+-        DBAccessError = 0
+-        DBPageNotFoundError = 0
+-        DBInvalidArgError = 0
++        class db:
++            DBRunRecoveryError = 0
++            DBAccessError = 0
++            DBPageNotFoundError = 0
++            DBInvalidArgError = 0
+ 
+ from gramps.gen.const import GRAMPS_LOCALE as glocale
+ _ = glocale.translation.gettext
+diff --git a/gramps/plugins/db/bsddb/upgrade.py b/gramps/plugins/db/bsddb/upgrade.py
+index 48fd189dd..6861fcd5c 100644
+--- a/gramps/plugins/db/bsddb/upgrade.py
++++ b/gramps/plugins/db/bsddb/upgrade.py
+@@ -32,8 +32,10 @@ import os
+ import re
+ import time
+ import logging
+-from bsddb3 import db
+-
++try:
++    from bsddb3 import db
++except:
++    from berkeleydb import db
+ #-------------------------------------------------------------------------
+ #
+ # Gramps modules
+diff --git a/gramps/plugins/db/bsddb/write.py b/gramps/plugins/db/bsddb/write.py
+index f1743fd21..809b77383 100644
+--- a/gramps/plugins/db/bsddb/write.py
++++ b/gramps/plugins/db/bsddb/write.py
+@@ -40,8 +40,14 @@ import logging
+ from sys import maxsize, getfilesystemencoding, version_info
+ from ast import literal_eval as safe_eval
+ 
+-from bsddb3 import dbshelve, db
+-from bsddb3.db import DB_CREATE, DB_AUTO_COMMIT, DB_DUP, DB_DUPSORT, DB_RDONLY
++try:
++    from bsddb3 import dbshelve, db
++except:
++    from berkeleydb import db, dbshelve
++try:
++    from bsddb3.db import DB_CREATE, DB_AUTO_COMMIT, DB_DUP, DB_DUPSORT, DB_RDONLY
++except:
++    from berkeleydb.db import DB_CREATE, DB_AUTO_COMMIT, DB_DUP, DB_DUPSORT, DB_RDONLY
+ 
+ DBFLAGS_O = DB_CREATE | DB_AUTO_COMMIT  # Default flags for database open
+ DBFLAGS_R = DB_RDONLY                   # Flags to open a database read-only
+diff --git a/gramps/plugins/gramplet/leak.py b/gramps/plugins/gramplet/leak.py
+index 949531cf7..0c09c0c4e 100644
+--- a/gramps/plugins/gramplet/leak.py
++++ b/gramps/plugins/gramplet/leak.py
+@@ -184,10 +184,13 @@ class Leak(Gramplet):
+         try:
+             from bsddb3.db import DBError
+         except:
+-            class DBError(Exception):
+-                """
+-                Dummy.
+-                """
++            try:
++                from berkeleydb.db import DBError
++            except:
++                class DBError(Exception):
++                    """
++                    Dummy.
++                    """
+         self.parent = self.top.get_toplevel()
+         progress = ProgressMeter(
+             _('Updating display...'), '', parent=self.parent, can_cancel=True)
+-- 
+2.37.1 (Apple Git-137.1)
+

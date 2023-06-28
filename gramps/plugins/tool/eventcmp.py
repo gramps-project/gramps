@@ -60,6 +60,7 @@ _ = glocale.translation.sgettext
 from gramps.gui.glade import Glade
 from gramps.gui.editors import FilterEditor
 from gramps.gen.constfunc import get_curr_dir
+from gramps.gen.display.place import displayer as _pd
 
 #-------------------------------------------------------------------------
 #
@@ -332,7 +333,7 @@ class EventComparisonResults(ManagedWindow):
                     if ename in the_map and len(the_map[ename]) > 0:
                         event_handle = the_map[ename][0]
                         del the_map[ename][0]
-                        date = place = ""
+                        date = p_title = ""
 
                         if event_handle:
                             event = self.db.get_event_from_handle(event_handle)
@@ -343,8 +344,9 @@ class EventComparisonResults(ManagedWindow):
                             place_handle = event.get_place_handle()
                             if place_handle:
                                 place = self.db.get_place_from_handle(
-                                            place_handle).get_title()
-                        tlist += [date, sortdate, place]
+                                    place_handle)
+                                p_title = _pd.display(self.dbstate.db, place)
+                        tlist += [date, sortdate, p_title]
                         added = True
                     else:
                         tlist += [""]*3

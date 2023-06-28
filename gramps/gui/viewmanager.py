@@ -790,7 +790,12 @@ class ViewManager(CLIManager):
             self.__create_page(page_def[0], page_def[1])
 
         self.notebook.set_current_page(page_num)
-        return self.pages[page_num]
+        try:
+            return self.pages[page_num]
+        except IndexError:
+            # The following is to avoid 'IndexError: list index out of range'
+            # Should solve bug 12636
+            return self.pages[0]
 
     def get_category(self, cat_name):
         """
@@ -841,7 +846,8 @@ class ViewManager(CLIManager):
         hbox.add(Gtk.Label(label=pdata.name))
         hbox.show_all()
         page_num = self.notebook.append_page(page.get_display(), hbox)
-        self.active_page.post_create()
+        if self.active_page:
+            self.active_page.post_create()
         if not self.file_loaded:
             self.uimanager.set_actions_visible(self.actiongroup, False)
             self.uimanager.set_actions_visible(self.readonlygroup, False)
@@ -884,7 +890,12 @@ class ViewManager(CLIManager):
         """
         self.__disconnect_previous_page()
 
-        self.active_page = self.pages[page_num]
+        # The following is to avoid 'IndexError: list index out of range'
+        # Bugs: 12304, 12429, 12623, 12695
+        try:
+            self.active_page = self.pages[page_num]
+        except IndexError:
+            self.active_page = self.pages[0]
         self.__connect_active_page(page_num)
         self.active_page.set_active()
         while Gtk.events_pending():

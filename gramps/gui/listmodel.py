@@ -233,7 +233,7 @@ class ListModel:
         new_value = not self.model[path][col]
         self.model[path][col] = new_value
         if col in self.function:
-            self.function[col](int(path), new_value)
+            self.function[col](path, new_value)
 
     def __edited_cb(self, cell, path, new_text, col):
         """
@@ -241,7 +241,7 @@ class ListModel:
         """
         self.model[path][col] = new_text
         if col in self.function:
-            self.function[col](int(path), new_text)
+            self.function[col](path, new_text)
 
     def unselect(self):
         """

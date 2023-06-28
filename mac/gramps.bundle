@@ -42,7 +42,7 @@
   </binary>
 
   <binary recurse="True">
-    ${prefix}/lib/python3.9/*.so
+    ${prefix}/lib/python3.10/*.so
   </binary>
 
   <binary>
@@ -153,19 +153,19 @@
   <!-- We have to pull in the python modules, which are mixed python
        and loadable modules.  -->
   <data recurse="True">
-    ${prefix}/lib/python3.9/*.py
+    ${prefix}/lib/python3.10/*.py
   </data>
 
   <data>
-    ${prefix}/lib/python3.9/config-3.9-darwin/
+    ${prefix}/lib/python3.10/config-3.10-darwin/
   </data>
 
   <data>
-    ${prefix}/lib/python3.9/site-packages/gramps/gen/utils/resource-path
+    ${prefix}/lib/python3.10/site-packages/gramps/gen/utils/resource-path
   </data>
 
   <data>
-    ${prefix}/include/python3.9/pyconfig.h
+    ${prefix}/include/python3.10/pyconfig.h
   </data>
 
 
@@ -182,7 +182,7 @@
   </data>
 
   <data recurse="True">
-    ${prefix}/lib/python3.9/site-packages/gramps/*.glade
+    ${prefix}/lib/python3.10/site-packages/gramps/*.glade
   </data>
 
   <data>

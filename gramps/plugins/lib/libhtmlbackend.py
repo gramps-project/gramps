@@ -300,7 +300,7 @@ class HtmlBackend(DocBackend):
         """
         if value.startswith("gramps://"):
             if self.build_link:
-                obj_class, prop, handle = value[9:].split("/", 3)
+                obj_class, prop, handle = value[9:].split("/", 2)
                 if prop in ["handle", "gramps_id"]:
                     value = self.build_link(prop, handle, obj_class)
                     if not value:

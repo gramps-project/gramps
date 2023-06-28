@@ -218,10 +218,12 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         self.goto_handle(None)
 
-    def add_bookmark(self, *obj):
+    def add_bookmark(self, menu, handle):
         """
         Add the place to the bookmark
         """
+        dummy_menu = menu
+        dummy_hdle = handle
         mlist = self.selected_handles()
         if mlist:
             self.bookmarks.add(mlist[0])

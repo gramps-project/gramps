@@ -68,7 +68,11 @@ try:
     import bsddb3 as bsddb ## ok, in try/except
     BSDDB_STR = ellipses(str(bsddb.__version__) + " " + str(bsddb.db.version()))
 except:
-    BSDDB_STR = 'not found'
+    try:
+        import berkeleydb as bsddb
+        BSDDB_STR = ellipses(str(bsddb.__version__) + " " + str(bsddb.db.version()))
+    except:
+        BSDDB_STR = 'not found'
 
 try:
     import sqlite3
