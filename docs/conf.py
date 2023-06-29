@@ -57,7 +57,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Gramps'
-copyright = '2001-2019, The Gramps Project'
+copyright = '2001-2023, The Gramps Project'
 author = 'Donald N. Allingham'
 
 # The version info for the project you're documenting, acts as replacement for
