@@ -55,10 +55,10 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </distutils>
 
  <distutils id="gramps" supports-non-srcdir-builds="no">
-    <branch module="gramps-project/gramps/archive/v5.1.5.tar.gz"
-	    repo="github-tarball" version="5.1.5"
-            checkoutdir="gramps-gramps-5.1.5">
-      <patch file="gramps-berkeleydb.patch" strip="1"/>
+    <branch module="gramps-project/gramps/archive/v5.1.6.tar.gz"
+	    repo="github-tarball" version="5.1.6"
+            checkoutdir="gramps-gramps-5.1.6">
+    </branch>
     <dependencies>
       <dep package="meta-gramps-modules"/>
     </dependencies>
@@ -82,9 +82,9 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </meson>
 
   <meson id="geocode-glib" mesonargs="-Denable-gtk-doc=false">
-    <branch module="geocode-glib/3.26/geocode-glib-3.26.2.tar.xz"
-            version="3.26.2" repo="ftp.gnome.org"
-            hash="sha256:01fe84cfa0be50c6e401147a2bc5e2f1574326e2293b55c69879be3e82030fd1"/>
+    <branch module="geocode-glib/3.26/geocode-glib-3.26.4.tar.xz"
+            version="3.26.4" repo="ftp.gnome.org"
+            hash="sha256:2d9a6826d158470449a173871221596da0f83ebdcff98b90c7049089056a37aa"/>
     <dependencies>
       <dep package="json-glib"/>
       <dep package="libsoup"/>
@@ -101,10 +101,15 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     </dependencies>
   </autotools>
 
-  <cmake id="exiv2" cmakeargs="-DEXIV2_ENABLE_PNG=ON">
+<!-- Exiv v0.28 requires std::filesystem, not available on macOS until v10.15. -->
+<cmake id="exiv2"
+       cmakeargs="-DEXIV2_ENABLE_PNG=ON -DCMAKE_CXX_STANDARD=14">
     <branch module="Exiv2/exiv2/releases/download/v0.27.4/exiv2-0.27.4-Source.tar.gz" repo="github-tarball"
             checkoutdir="exiv2-0.27.4-Source" version="0.27.4"
-            hash="sha256:84366dba7c162af9a7603bcd6c16f40fe0e9af294ba2fd2f66ffffb9fbec904e"/>
+            >
+      <!-- patch file="exiv-2.27-autoptr.patch"
+             strip="1"/ -->
+    </branch>
   </cmake>
 
   <meson id="gexiv2" mesonargs="-Dvapi=false">
@@ -117,11 +122,11 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
       <dep package="pygobject3"/>
     </dependencies>
   </meson>
-https://files.pythonhosted.org/packages/
   <distutils id="pillow">
-    <branch module="21/23/af6bac2a601be6670064a817273d4190b79df6f74d8012926a39bc7aa77f/Pillow-8.2.0.tar.gz" version="8.2.0"
+    <branch module="00/d5/4903f310765e0ff2b8e91ffe55031ac6af77d982f0156061e20a4d1a8b2d/Pillow-9.5.0.tar.gz"
+            version="9.5.0"
 	    repo="pymodules"
-	    hash="sha256:a787ab10d7bb5494e5f76536ac460741788f1fbce851068d73a87ca7c35fc3e1">
+	    hash="sha256:bf548479d336726d7a0eceb6e767e179fbde37833ae42794602631a070d630f1">
     </branch>
     <dependencies>
       <!--dep package="setuptools"/-->
@@ -129,9 +134,9 @@ https://files.pythonhosted.org/packages/
   </distutils>
 
  <distutils id='pyicu'>
-    <branch version='2.7.2' repo='pymodules'
-            module='17/0f/9d6b7eb01650960239a5d4dc21cd6e7a96921807c043d287bae4b2f440e1/PyICU-2.7.2.tar.gz'
-            hash="sha256:1382869b22d91cc99274f9b525fa7d9199b44d9007ff0036a09747839a01e9dc"/>
+    <branch version='2.11' repo='pymodules'
+            module="03/1b/800fce0236be0b8a99b3ccbb797786dd178028960b3fd65544e2d8bad5ac/PyICU-2.11.tar.gz"
+            hash="sha256:3ab531264cfe9132b3d2ac5d708da9a4649d25f6e6813730ac88cf040a08a844"/>
 
     <dependencies>
       <dep package='icu'/>
@@ -208,7 +213,7 @@ https://files.pythonhosted.org/packages/
       <dep package="osmgpsmap"/>
       <dep package="graphviz"/>
       <dep package="gexiv2"/>
-      <dep package="berkeleydb"/>
+      <dep package="pybsddb"/>
       <dep package="gtk-mac-integration-python"/>
       <dep package="pycairo"/>
       <dep package="pygobject3"/>

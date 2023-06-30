@@ -14,7 +14,7 @@
   <plist>${project}/Info.plist</plist>
   <entitlements>${project}/release.entitlements.plist</entitlements>
   <!-- Build gramps-launcher with:
-          gcc -L$PREFIX/lib `python-config -\-cflags -\-ldflags -\-embed` \
+          gcc -L$PREFIX/lib `python3-config -\-cflags -\-ldflags -\-embed` \
               -o $PREFIX/bin/gramps-launcher \
 	      path/to/gtk-mac-bundler/examples/python-launcher.c
        with the obvious substitution.
@@ -42,7 +42,7 @@
   </binary>
 
   <binary recurse="True">
-    ${prefix}/lib/python3.10/*.so
+    ${prefix}/lib/python3.11/*.so
   </binary>
 
   <binary>
@@ -78,7 +78,7 @@
   </binary>
 
   <binary>
-    ${prefix}/lib/libtiff.5.dylib
+    ${prefix}/lib/libtiff.6.dylib
   </binary>
 
   <binary dest="${bundle}/Contents/MacOS/">
@@ -153,19 +153,19 @@
   <!-- We have to pull in the python modules, which are mixed python
        and loadable modules.  -->
   <data recurse="True">
-    ${prefix}/lib/python3.10/*.py
+    ${prefix}/lib/python3.11/*.py
   </data>
 
   <data>
-    ${prefix}/lib/python3.10/config-3.10-darwin/
+    ${prefix}/lib/python3.11/config-3.11-darwin/
   </data>
 
   <data>
-    ${prefix}/lib/python3.10/site-packages/gramps/gen/utils/resource-path
+    ${prefix}/lib/python3.11/site-packages/gramps/gen/utils/resource-path
   </data>
 
   <data>
-    ${prefix}/include/python3.10/pyconfig.h
+    ${prefix}/include/python3.11/pyconfig.h
   </data>
 
 
@@ -182,7 +182,7 @@
   </data>
 
   <data recurse="True">
-    ${prefix}/lib/python3.10/site-packages/gramps/*.glade
+    ${prefix}/lib/python3.11/site-packages/gramps/*.glade
   </data>
 
   <data>
