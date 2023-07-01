@@ -51,7 +51,7 @@ _ = glocale.translation.gettext
 
 MIN_PYGOBJECT_VERSION = (3, 12, 0)
 PYGOBJ_ERR = False
-MIN_GTK_VERSION = (3, 12)
+MIN_GTK_VERSION = (3, 24)
 UIDEFAULT = (
     '''<?xml version="1.0" encoding="UTF-8"?>
 <interface>

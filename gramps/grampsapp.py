@@ -184,7 +184,7 @@ from .gen.mime import mime_type_is_defined
 #
 #-------------------------------------------------------------------------
 
-MIN_PYTHON_VERSION = (3, 5, 0, '', 0)
+MIN_PYTHON_VERSION = (3, 8, 0, '', 0)
 if not sys.version_info >= MIN_PYTHON_VERSION:
     logging.warning(_("Your Python version does not meet the "
              "requirements. At least Python %(v1)d.%(v2)d.%(v3)d is needed to"
