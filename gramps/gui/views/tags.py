@@ -276,12 +276,8 @@ class Tags(DbGUIElement):
         popup_menu = Gtk.Menu.new_from_model(menu)
         popup_menu.attach_to_widget(button, None)
         popup_menu.show_all()
-        if Gtk.MINOR_VERSION < 22:
-            # ToDo The following is reported to work poorly with Wayland
-            popup_menu.popup(None, None, cb_menu_position, button, 0, 0)
-        else:
-            popup_menu.popup_at_widget(button, Gdk.Gravity.SOUTH,
-                                       Gdk.Gravity.NORTH_WEST, None)
+        popup_menu.popup_at_widget(button, Gdk.Gravity.SOUTH,
+                                   Gdk.Gravity.NORTH_WEST, None)
 
     def cb_organize_tags(self, *action):
         """

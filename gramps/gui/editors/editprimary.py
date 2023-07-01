@@ -298,12 +298,7 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
             menu = Gtk.Menu.new_from_model(menu_model)
             menu.attach_to_widget(obj, None)
             menu.show_all()
-            if Gtk.MINOR_VERSION < 22:
-                # ToDo The following is reported to work poorly with Wayland
-                menu.popup(None, None, None, None,
-                           event.button, event.time)
-            else:
-                menu.popup_at_pointer(event)
+            menu.popup_at_pointer(event)
             return True
         return False
 

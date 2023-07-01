@@ -873,14 +873,6 @@ class GeoGraphyView(OsmGps, NavigationView):
         Print or save the view that is currently shown
         """
         dummy_obj = obj
-        if Gtk.MAJOR_VERSION == 3 and Gtk.MINOR_VERSION < 11:
-            from gramps.gui.dialog import WarningDialog
-            WarningDialog(
-                _("You can't use the print functionality"),
-                _("Your Gtk version is too old."),
-                parent=self.uistate.window)
-            return
-
         req = self.osm.get_allocation()
         widthpx = req.width
         heightpx = req.height
