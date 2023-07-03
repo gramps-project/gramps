@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-07-03 07:38+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2023-07-03 14:09+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -33,7 +33,7 @@ msgstr "קנדה"
 
 #: ../data/holidays.xml:84
 msgid "Catalonia"
-msgstr "קטלאניה"
+msgstr "קטלוניה"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
@@ -49,7 +49,7 @@ msgstr "קרואטיה"
 
 #: ../data/holidays.xml:143
 msgid "Czech Republic"
-msgstr "הרפובליקה הצ׳כית"
+msgstr "רפובליקה צ׳כית"
 
 #: ../data/holidays.xml:158
 msgid "England"
@@ -260,7 +260,8 @@ msgid ""
 "All of your research is kept organized, searchable and as precise as you "
 "need it to be."
 msgstr ""
-"תוצאות עבודת המחקר נשמרות באופן מאורגן בכל עת, הן מדויקות וניתנות לחיפוש."
+"תוצאות עבודת המחקר נשמרות באופן מאורגן בכל עת, הן ניתנות לחיפוש ומדויקות "
+"בהתאם הצורך."
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:12
 msgid "Gramps Development Team"
@@ -657,7 +658,7 @@ msgid ""
 "the development of Gramps, try the gramps-devel list. You can see the lists "
 "by selecting \"Help &gt; Gramps Mailing Lists\"."
 msgstr ""
-"<b>רשימות הדיוור של גרמפס<br/></b> מחפשים תשובות לשאלות על גרמפס? אפשר לבדוק "
+"<b>רשימות דיוור גרמפס<br/></b> מחפשים תשובות לשאלות על גרמפס? אפשר לבדוק "
 "ברשימות הדואר האלקטרוני של משתמשי גרמפס. אנשים רבים שנכונים לעזור, מופיעים "
 "ברשימה, כך שסביר להניח שתשובות יתקבלו במהירות. לגבי שאלות הקשורות לפיתוח "
 "מערכת גרמפס, כדאי לנסות את רשימת gramps-devel. אל הרשימות ניתן ללהגיע מתפריט "
@@ -764,7 +765,7 @@ msgid ""
 "see which individuals reference each source. You can use filters to group "
 "your sources."
 msgstr ""
-"<b>ניהול מקורות<br/></b>מצג \"מקורות\" מציג את רשימת כל המקורות בחלון בודד. "
+"<b>ניהול מקורות<br/></b>מצג 'מקורות' מציג את רשימת כל המקורות בחלון בודד. "
 "מכאן ניתן לערוך את המקורות, למזג כפילויות ולראות אילו אנשים מפנים לכל מקור. "
 "ניתן להשתמש במסננים כדי לקבץ את המקורות."
 
@@ -909,9 +910,9 @@ msgid ""
 "single report is easier to distribute than multiple reports, especially when "
 "printed."
 msgstr ""
-"<b>ספר דוחות<br/></b>ספר דוחות אליו ניתן לנווט מתפריט 'דוחות &lt; ספרים &lt; "
-"ספר דוחות', מאפשר איסוף מגוון דוחות לתוך מסמך אחד. קל יותר (במיוחד להדפסה) "
-"להפיץ 'ספר דוחות' מאשר מספר דוחות בודדים."
+"<b>דוחות ספר<br/></b> דוחות ספר אליו ניתן לנווט מתפריט 'דוחות &lt; ספרים &lt;"
+"  דוחות ספר', מאפשר איסוף מגוון דוחות לתוך מסמך אחד. קל יותר (במיוחד להדפסה) "
+"להפיץ 'דוח ספר' מאשר מספר דוחות בודדים."
 
 #: ../data/tips.xml:106
 msgid ""
@@ -977,8 +978,8 @@ msgid ""
 "interested in participating please email gramps-devel@lists.sf.net."
 msgstr ""
 "<b>מתרגמי גרמפס<br/></b>גרמפס תוכנן כך שניתן יהיה להוסיף תרגומים חדשים "
-"לשפות, במאמץ פיתוח קטן. במידה ואתם מעוניינים להשתתף נא שלחו דוא\"ל לכתובת"
-" ‏'gramps-devel@lists.sf.net'."
+"לשפות, במאמץ פיתוח קטן. במידה ואתם מעוניינים להשתתף נא שלחו דוא\"ל לכתובת "
+"‏'gramps-devel@lists.sf.net'."
 
 #: ../data/tips.xml:118
 msgid ""
@@ -1569,15 +1570,15 @@ msgstr "%(str1)s: %(str2)s"
 #: ../gramps/cli/clidbman.py:274
 #, python-format
 msgid "Starting Import, %s"
-msgstr "הייבוא מתחיל, %s"
+msgstr "התחלת ייבוא, %s"
 
 #: ../gramps/cli/clidbman.py:280
 msgid "Import finished..."
-msgstr "הייבוא הסתיים..."
+msgstr "ייבוא הסתיים..."
 
 #: ../gramps/cli/clidbman.py:366 ../gramps/plugins/importer/importcsv.py:362
 msgid "Importing data..."
-msgstr "הנתונים מיובאים..."
+msgstr "נתונים מיובאים..."
 
 #: ../gramps/cli/clidbman.py:425
 msgid "Remove family tree warning"
@@ -2585,7 +2586,7 @@ msgstr "עברי"
 #: ../gramps/gen/datehandler/_datestrings.py:134 ../gramps/gen/lib/date.py:612
 msgctxt "calendar"
 msgid "French Republican"
-msgstr "מהפכתי־צרפתי"
+msgstr "רפובליקני־צרפתי"
 
 #: ../gramps/gen/datehandler/_datestrings.py:135 ../gramps/gen/lib/date.py:613
 msgctxt "calendar"
@@ -2913,7 +2914,7 @@ msgstr "יום שלישי"
 
 #: ../gramps/gen/datehandler/_datestrings.py:245
 msgid "Wednesday"
-msgstr "יום רביעי"
+msgstr "רביעי"
 
 #: ../gramps/gen/datehandler/_datestrings.py:246
 msgid "Thursday"
@@ -2925,7 +2926,7 @@ msgstr "יום שישי"
 
 #: ../gramps/gen/datehandler/_datestrings.py:248
 msgid "Saturday"
-msgstr "יום שבת"
+msgstr "שבת"
 
 #: ../gramps/gen/datehandler/_datestrings.py:252
 msgid "Sun"
@@ -3396,7 +3397,7 @@ msgid ""
 "         Trying to load anyway in the hope this will be upgraded."
 msgstr ""
 "אזהרה: משתנים מועטים מדי במסנן '%s'!\n"
-"מנסה לטעון בכל מקרה בתקווה שזה ישודרג."
+"יתבצע נסיון טעינה בכל מקרה בתקווה שזה ישודרג."
 
 #: ../gramps/gen/filters/_filterparser.py:135
 #, python-format
@@ -3517,7 +3518,7 @@ msgstr "מסננים כללים"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:82
 msgid "Wrong format of date-time"
-msgstr "תבנית שגויה של תאריך – שעה"
+msgstr "תבנית תאריך־ שעה שגויה"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:83
 #, python-format
@@ -3842,7 +3843,7 @@ msgstr "שליפת מובאות עם מספר מסוים של הערות"
 
 #: ../gramps/gen/filters/rules/citation/_hasidof.py:45
 msgid "Citation with <Id>"
-msgstr "מובאה עם <Id>"
+msgstr "מובאה עם <מזהה>"
 
 #: ../gramps/gen/filters/rules/citation/_hasidof.py:46
 msgid "Matches a citation with a specified Gramps ID"
@@ -3850,7 +3851,7 @@ msgstr "שליפת מובאה עם מזהה גרמפס שצוין"
 
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:46
 msgid "Citations having <count> notes"
-msgstr "מובאות עם <count> הערות"
+msgstr "מובאות עם <מונה> הערות"
 
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:47
 msgid "Matches citations having a certain number of notes"
@@ -3858,7 +3859,7 @@ msgstr "שליפת מובאות עם מספר מסוים של הערות"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py:43
 msgid "Citations having notes containing <substring>"
-msgstr "מובאות עם הערות המכילות <substring>"
+msgstr "מובאות עם הערות המכילות <מחרוזת משנה>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py:44
 msgid "Matches citations whose notes contain text matching a substring"
@@ -32989,7 +32990,7 @@ msgstr "איתור בעיות הפניות מקור"
 
 #: ../gramps/plugins/tool/check.py:1691
 msgid "Looking for media object reference problems"
-msgstr "איתור בעיות הפניות לעצמי מדיה"
+msgstr "איתור בעיות בהפניות לעצמי מדיה"
 
 #: ../gramps/plugins/tool/check.py:1813
 msgid "Looking for note reference problems"
@@ -36913,7 +36914,7 @@ msgstr "הכללת תמונות ועצמי מדיה"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2232
 msgid "Whether to include a gallery of media objects"
-msgstr "האם לכלול גלריה של עצמי מדיה"
+msgstr "האם לכלול גלרית עצמי מדיה"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2238
 msgid "Create the images index"
