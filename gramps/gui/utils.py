@@ -574,6 +574,8 @@ def get_link_color(context):
     """
     Find the link color for the current theme.
     """
+    from gi.repository import Gtk
+
     col = context.get_color(Gtk.StateFlags.LINK)
     return rgb_to_hex((col.red, col.green, col.blue))
 
