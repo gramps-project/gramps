@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-07-03 07:12+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2023-07-03 07:20+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -4655,7 +4655,7 @@ msgid ""
 "Matches media objects changed after a specified date:time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date:time is given."
 msgstr ""
-"שליפת אובייקטי מדיה שהשתנו לאחר תאריך/שעה שצוינו (yyyy-mm-dd hh: mm: ss) או "
+"שליפת עצמי מדיה שהשתנו לאחר תאריך/שעה שצוינו (yyyy-mm-dd hh: mm: ss) או "
 "בטווח תאריכים, במידה וסופק תאריך/שעה נוסף."
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:44
@@ -4733,15 +4733,15 @@ msgstr "עצמי מדיה עם הערות המכילות <מלל>"
 #: ../gramps/gen/filters/rules/media/_hasnoteregexp.py:42
 msgid ""
 "Matches media objects whose notes contain text matching a regular expression"
-msgstr "שליפת אובייקטי מדיה שההערות שלהם מכילות מלל התואמים לביטוי רגיל"
+msgstr "שליפת עצמי מדיה שההערות שלהם מכילות מלל התואמים לביטוי רגיל"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:42
 msgid "Media objects with a reference count of <count>"
-msgstr "אובייקטי מדיה עם מונה הפניות <מונה>"
+msgstr "עצמי מדיה עם מונה הפניות <מונה>"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:43
 msgid "Matches media objects with a certain reference count"
-msgstr "שליפת אובייקטי מדיה עם מונה הפניות מסוים"
+msgstr "שליפת עצמי מדיה עם מונה הפניות מסוים"
 
 #: ../gramps/gen/filters/rules/media/_hassourcecount.py:45
 msgid "Media with <count> sources"
@@ -4761,23 +4761,23 @@ msgstr "שליפת מדיה בעלת מקור מסוים"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:49
 msgid "Media objects with the <tag>"
-msgstr "אובייקטי מדיה עם <תג>"
+msgstr "עצמי מדיה עם <תג>"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:50
 msgid "Matches media objects with the particular tag"
-msgstr "שליפת אובייקטי מדיה עם תג מסוים"
+msgstr "שליפת עצמי מדיה עם תג מסוים"
 
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:44
 msgid "Media objects matching the <filter>"
-msgstr "אובייקטי מדיה תואמים ל <מסנן>"
+msgstr "עצמי מדיה תואמים ל <מסנן>"
 
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:45
 msgid "Matches media objects matched by the specified filter name"
-msgstr "שליפת אובייקטי מדיה התואמים לשם המסנן שצוין"
+msgstr "שליפת עצמי מדיה התואמים לשם המסנן שצוין"
 
 #: ../gramps/gen/filters/rules/media/_matchessourceconfidence.py:44
 msgid "Media with a direct source >= <confidence level>"
-msgstr "אובייקטי מדיה עם מקור ישיר אחד >= <רמת וודאות>"
+msgstr "עצמי מדיה עם מקור ישיר אחד >= <רמת וודאות>"
 
 #: ../gramps/gen/filters/rules/media/_matchessourceconfidence.py:45
 msgid "Matches media with at least one direct source with confidence level(s)"
@@ -4785,19 +4785,19 @@ msgstr "שליפת מדיה עם מקור ישיר אחד לפחות ברמת(ו
 
 #: ../gramps/gen/filters/rules/media/_mediaprivate.py:42
 msgid "Media objects marked private"
-msgstr "אובייקטי מדיה המסומנים כפרטיים"
+msgstr "עצמי מדיה המסומנים כפרטיים"
 
 #: ../gramps/gen/filters/rules/media/_mediaprivate.py:43
 msgid "Matches Media objects that are indicated as private"
-msgstr "שליפת אובייקטי מדיה שהוגדרו כ'פרטי'"
+msgstr "שליפת עצמי מדיה שהוגדרו כ'פרטי'"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:47
 msgid "Media objects with Id containing <text>"
-msgstr "אובייקטי מדיה עם מזהה המכיל <מלל>"
+msgstr "עצמי מדיה עם מזהה המכיל <מלל>"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:48
 msgid "Matches media objects whose Gramps ID matches the regular expression"
-msgstr "שליפת אובייקטי מדיה שמזהה גרמפס שלהם תאום לביטוי הרגיל"
+msgstr "שליפת עצמי מדיה שמזהה גרמפס שלהם תאום לביטוי הרגיל"
 
 #: ../gramps/gen/filters/rules/note/_allnotes.py:44
 msgid "Every note"
@@ -8943,7 +8943,7 @@ msgstr "מיזוג מובאה"
 
 #: ../gramps/gen/merge/mergeeventquery.py:59
 msgid "Merge Event Objects"
-msgstr "מיזוג אובייקטי אירוע"
+msgstr "מיזוג עצמי אירוע"
 
 #: ../gramps/gen/merge/mergefamilyquery.py:90
 msgid "A parent should be a father or mother."
@@ -8967,7 +8967,7 @@ msgstr "מיזוג משפחה"
 #: ../gramps/gen/merge/mergemediaquery.py:59
 #: ../gramps/gui/merge/mergemedia.py:66
 msgid "Merge Media Objects"
-msgstr "מיזוג אובייקטי מדיה"
+msgstr "מיזוג עצמי מדיה"
 
 #: ../gramps/gen/merge/mergenotequery.py:58 ../gramps/gui/merge/mergenote.py:66
 msgid "Merge Notes"
@@ -10980,7 +10980,7 @@ msgstr "נפטר"
 
 #: ../gramps/gen/utils/unknown.py:135
 msgid "Unknown, created to replace a missing note object."
-msgstr "לא ידוע, נוצר להחלפת אובייקט הערה חסר."
+msgstr "לא ידוע, נוצר להחלפת עצם הערה חסר."
 
 #: ../gramps/gen/utils/unknown.py:145
 #, python-format
@@ -10990,7 +10990,7 @@ msgstr "לא ידוע, חסר %(time)s (%(count)d)"
 #: ../gramps/gen/utils/unknown.py:164
 #, python-format
 msgid "Objects referenced by this note were missing in a file imported on %s."
-msgstr "אובייקטים אליהם מפנה הערה זו היו חסרים בקובץ שיובא ב־%s."
+msgstr "עצמים אליהם מפנה הערה זו היו חסרים בקובץ שיובא ב־%s."
 
 #: ../gramps/grampsapp.py:189
 #, python-format
@@ -11356,7 +11356,7 @@ msgstr "תבנית מזהה"
 
 #: ../gramps/gui/configure.py:667 ../gramps/plugins/importer/importxml.py:248
 msgid "Media Object"
-msgstr "אובייקט מדיה"
+msgstr "עצם מדיה"
 
 #: ../gramps/gui/configure.py:680
 #, python-format
@@ -12722,7 +12722,7 @@ msgstr "אין הערה פעילה"
 
 #: ../gramps/gui/displaystate.py:675 ../gramps/plugins/gramplet/todo.py:200
 msgid "No active object"
-msgstr "אין אובייקט פעיל"
+msgstr "אין עצם פעיל"
 
 #: ../gramps/gui/displaystate.py:711
 msgid "Danger: This is unstable code!"
@@ -12768,11 +12768,11 @@ msgstr "נא_לבחור_בורר_מדיה"
 
 #: ../gramps/gui/editors/addmedia.py:104
 msgid "Select a media object"
-msgstr "נא לבחור אובייקט מדיה"
+msgstr "נא לבחור עצם מדיה"
 
 #: ../gramps/gui/editors/addmedia.py:148
 msgid "Select media object"
-msgstr "נא לבחור אובייקט מדיה"
+msgstr "נא לבחור עצם מדיה"
 
 #: ../gramps/gui/editors/addmedia.py:158
 msgid "Import failed"
@@ -13156,15 +13156,15 @@ msgid ""
 "\n"
 "To edit this media reference, you need to close the media object."
 msgstr ""
-"אין אפשרות לערוך כעת הפנית מדיה זו. ייתכן שאובייקט המדיה המשויך נמצא בעריכה, "
-"או שהפנית מדיה אחרת המשויכת לאותו מקור נמצאת בעריכה.\n"
+"אין אפשרות לערוך כעת הפנית מדיה זו. ייתכן שעצם המדיה המשויך נמצא בעריכה, או "
+"שהפנית מדיה אחרת המשויכת לאותו מקור נמצאת בעריכה.\n"
 "\n"
-"כדי לערוך הפנית מדיה זו, יש לסגור את אובייקט המדיה."
+"כדי לערוך הפנית מדיה זו, יש לסגור את עצם המדיה."
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:578
 #: ../gramps/plugins/view/mediaview.py:194
 msgid "Drag Media Object"
-msgstr "גרור אובייקט מדיה"
+msgstr "גרור עצם מדיה"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:51
 msgid "Create and add a new LDS ordinance"
@@ -14102,21 +14102,21 @@ msgstr "מדיה חדשה"
 
 #: ../gramps/gui/editors/editmedia.py:241
 msgid "Edit Media Object"
-msgstr "עריכת אובייקט מדיה"
+msgstr "עריכת עצם מדיה"
 
 #: ../gramps/gui/editors/editmedia.py:288
 msgid "Cannot save media object"
-msgstr "לא ניתן לשמור אובייקט מדיה"
+msgstr "לא ניתן לשמור עצם מדיה"
 
 #: ../gramps/gui/editors/editmedia.py:289
 msgid ""
 "No data exists for this media object. Please enter data or cancel the edit."
-msgstr "אין מידע על אובייקט מדיה זה. נא להזין מידע או לבטל עריכה."
+msgstr "אין מידע על עצם מדיה זה. נא להזין מידע או לבטל עריכה."
 
 #: ../gramps/gui/editors/editmedia.py:299
 #: ../gramps/gui/editors/editreference.py:280
 msgid "Cannot save media object. ID already exists."
-msgstr "לא ניתן לשמור אובייקט מדיה. מזהה קיים כבר."
+msgstr "לא ניתן לשמור עצם מדיה. מזהה קיים כבר."
 
 #: ../gramps/gui/editors/editmedia.py:314
 msgid "There is no media matching the current path value!"
@@ -14135,13 +14135,13 @@ msgstr ""
 #: ../gramps/gui/editors/editmediaref.py:532
 #, python-format
 msgid "Add Media Object (%s)"
-msgstr "הוספת אובייקט מדיה (%s)"
+msgstr "הוספת עצם מדיה (%s)"
 
 #: ../gramps/gui/editors/editmedia.py:332
 #: ../gramps/gui/editors/editmediaref.py:526
 #, python-format
 msgid "Edit Media Object (%s)"
-msgstr "עריכת אובייקט מדיה (%s)"
+msgstr "עריכת עצם מדיה (%s)"
 
 #: ../gramps/gui/editors/editmediaref.py:72
 msgctxt "manual"
@@ -14304,7 +14304,7 @@ msgstr "מצג"
 
 #: ../gramps/gui/editors/editperson.py:647
 msgid "Edit Object Properties"
-msgstr "עריכת מאפייני אובייקט"
+msgstr "עריכת מאפייני עצם"
 
 #: ../gramps/gui/editors/editperson.py:688
 msgid "Make Active Person"
@@ -14715,7 +14715,7 @@ msgstr "נא לבחור %s מהרשימה"
 
 #: ../gramps/gui/editors/filtereditor.py:391
 msgid "Give or select a source ID, leave empty to find objects with no source."
-msgstr "הזנת או בחירת מזהה מקור, להשאיר ריק למציאת אובייקט ללא מקור."
+msgstr "הזנת או בחירת מזהה מקור, להשאיר ריק למציאת עצם ללא מקור."
 
 #: ../gramps/gui/editors/filtereditor.py:533
 msgid "Family filter name:"
@@ -14899,7 +14899,7 @@ msgstr "הסרת מקור"
 
 #: ../gramps/gui/editors/objectentries.py:387
 msgid "To select a media object, use drag-and-drop or use the buttons"
-msgstr "לבחירת אובייקט מדיה, נא להשתמש ב\"גרירה ושחרור\" או בלחצנים"
+msgstr "לבחירת עצם מדיה, נא להשתמש ב\"גרירה ושחרור\" או בלחצנים"
 
 #: ../gramps/gui/editors/objectentries.py:389
 #: ../gramps/gui/plug/_guioptions.py:1117
@@ -14908,12 +14908,12 @@ msgstr "לא סופקה תמונה, נא להקיש על הלחצן לבחירה
 
 #: ../gramps/gui/editors/objectentries.py:390
 msgid "Edit media object"
-msgstr "עריכת אובייקט מדיה"
+msgstr "עריכת עצם מדיה"
 
 #: ../gramps/gui/editors/objectentries.py:391
 #: ../gramps/gui/plug/_guioptions.py:1095
 msgid "Select an existing media object"
-msgstr "נא לבחור אובייקט מדיה קיים"
+msgstr "נא לבחור עצם מדיה קיים"
 
 #: ../gramps/gui/editors/objectentries.py:392
 #: ../gramps/plugins/view/mediaview.py:111
@@ -14922,7 +14922,7 @@ msgstr "הוספת עצם מדיה חדש"
 
 #: ../gramps/gui/editors/objectentries.py:393
 msgid "Remove media object"
-msgstr "הסרת אובייקט מדיה"
+msgstr "הסרת עצם מדיה"
 
 #: ../gramps/gui/editors/objectentries.py:434
 msgid "To select a note, use drag-and-drop or use the buttons"
@@ -15279,11 +15279,11 @@ msgstr "לא להציג דו־שיח זה שנית"
 
 #: ../gramps/gui/glade/dialog.glade:254
 msgid "_Remove Object"
-msgstr "_הסרת אובייקט"
+msgstr "_הסרת עצם"
 
 #: ../gramps/gui/glade/dialog.glade:259
 msgid "Remove object and all references to it from the database"
-msgstr "הסרת אובייקט ואת כל ההפניות אליו ממסד הנתונים"
+msgstr "הסרת עצם ואת כל ההפניות אליו ממסד הנתונים"
 
 #: ../gramps/gui/glade/dialog.glade:270
 msgid "_Keep Reference"
@@ -15604,8 +15604,8 @@ msgid ""
 "house was visited during a census, or the date an entry was made in a birth "
 "log/registry."
 msgstr ""
-"תאריך הרשומה באובייקט המקור אליו נעשתה ההפניה, לדוגמה התאריך בו פקדו בבית "
-"מסויים ממפקד אוכלוסין , או התאריך בו עעשה הרישום ביומן/רשומות לידה."
+"תאריך הרשומה בעצם המקור אליו נעשתה ההפניה, לדוגמה התאריך בו פקדו בבית מסויים "
+"ממפקד אוכלוסין , או התאריך בו עעשה הרישום ביומן/רשומות לידה."
 
 #: ../gramps/gui/glade/editcitation.glade:201
 msgid ""
@@ -15968,15 +15968,15 @@ msgid ""
 "directory where all your media is stored. The 'Media Manager' tool can help "
 "managing paths of a collection of media objects."
 msgstr ""
-"נתיב אל אובייקט המדיה במחשב.\n"
+"נתיב אל עצם המדיה במחשב.\n"
 "גרמפס לא מאחסן מדיה באופן פנימי, אלא רק את הנתיב! נא להגדיר 'נתיב יחסי' "
 "ב'העדפות' כדי להימנע מהקלדה מחודשת של מחיצת הבסיס המשותפת בה מאוחסנת המדיה. "
-"כלי 'מנהל מדיה' נועד לסייע בניהול נתיבים אל אוסף אובייקטי המדיה."
+"כלי 'מנהל מדיה' נועד לסייע בניהול נתיבים אל אוסף עצמי המדיה."
 
 #: ../gramps/gui/glade/editmedia.glade:219
 #: ../gramps/gui/glade/editmediaref.glade:423
 msgid "Descriptive title for this media object."
-msgstr "כותרת תיאורית לאובייקט המדיה."
+msgstr "כותרת תיאורית לעצם המדיה."
 
 #: ../gramps/gui/glade/editmedia.glade:270
 msgid "Open File Browser to select a media file on your computer."
@@ -16011,7 +16011,7 @@ msgid ""
 "region. Point (0,0) is the top left corner of the picture, and (100,100) the "
 "bottom right corner."
 msgstr ""
-"במידה והמדיה היא תמונה, נא לבחור אזור בתמונה שתופנה לאובייקט.\n"
+"במידה והמדיה היא תמונה, נא לבחור אזור בתמונה שתופנה לעצם.\n"
 "ניתן להשתמש בעכבר כדי לבחור אזור בתמונה, או להשתמש בלחצני החצים כדי להגדיר "
 "את הפינה השמאלית העליונה והקצה הימני התחתון של האזור שאליו בוצעה ההפניה. "
 "הנקודה (0, 0) היא הפינה השמאלית העליונה של התמונה, ו־(100,100) בפינה הימנית "
@@ -16024,7 +16024,7 @@ msgid ""
 "corner of the region you want, dragging the mouse to the bottom right corner "
 "of the region, and then releasing the mouse button."
 msgstr ""
-"אזור שאליו הפנה אובייקט התמונה.\n"
+"אזור שאליו הפנה עצם התמונה.\n"
 "בחירת אזור על־ידי הקשה והחזקה של לחצן העכבר בפינה השמאלית העליונה של האזור "
 "הרצוי, גרירת העכבר לפינה הימנית התחתונה של האזור ולאחר מכן שחרור לחצן העכבר."
 
@@ -16041,7 +16041,7 @@ msgid ""
 "region. Point (0,0) is the top left corner of the picture, and (100,100) the "
 "bottom right corner.\n"
 msgstr ""
-"במידה והמדיה היא תמונה, נא לבחור אזור בתמונה שתופנה לאובייקט.\n"
+"במידה והמדיה היא תמונה, נא לבחור אזור בתמונה שתופנה לעצם.\n"
 "ניתן להשתמש בעכבר כדי לבחור אזור בתמונה, או להשתמש בלחצני החצים כדי להגדיר "
 "את הפינה השמאלית העליונה והקצה הימני התחתון של האזור שאליו בוצעה ההפניה. "
 "הנקודה (0, 0) היא הפינה השמאלית העליונה של התמונה, ו־(100,100) בפינה הימנית "
@@ -16051,8 +16051,7 @@ msgstr ""
 msgid ""
 "<b>Note:</b> Any changes in the shared media object information will be "
 "reflected in the media object itself."
-msgstr ""
-"<b>הערה:</b> כל שינוי מידע באובייקט מדיה משותף, ישתקף, באובייקט המדיה עצמו."
+msgstr "<b>הערה:</b> כל שינוי מידע בעצם מדיה משותף, ישתקף, בעצם המדיה עצמו."
 
 #: ../gramps/gui/glade/editmediaref.glade:488
 msgid "Double click image to view in an external viewer"
@@ -16664,7 +16663,7 @@ msgstr "מזהה:"
 
 #: ../gramps/gui/glade/mergecitation.glade:455
 msgid "Notes, media objects and data-items of both citations will be combined."
-msgstr "‫הערות, אובייקטי מדיה ופרטי מידע של שתי המובאות ישולבו."
+msgstr "‫הערות, עצמי מדיה ופרטי מידע של שתי המובאות ישולבו."
 
 #: ../gramps/gui/glade/mergecitation.glade:471
 #: ../gramps/gui/glade/mergeevent.glade:528
@@ -16731,7 +16730,7 @@ msgstr "אירוע 2"
 #: ../gramps/gui/glade/mergeevent.glade:512
 msgid ""
 "Attributes, notes, sources and media objects of both events will be combined."
-msgstr "תכונות, הערות, מקורות ואובייקטי מדיה של שני האירועים ישולבו."
+msgstr "תכונות, הערות, מקורות ועצםי מדיה של שני האירועים ישולבו."
 
 #: ../gramps/gui/glade/mergefamily.glade:98
 msgid ""
@@ -16769,7 +16768,7 @@ msgid ""
 "Events, lds_ord, media objects, attributes, notes, sources and tags of both "
 "families will be combined."
 msgstr ""
-"אירועים, lds_ord, אובייקטי מדיה, תכונות, הערות, מקורות ותגים של שתי המשפחות "
+"אירועים, lds_ord, עצמי מדיה, תכונות, הערות, מקורות ותגים של שתי המשפחות "
 "ישולבו."
 
 #: ../gramps/gui/glade/mergemedia.glade:97
@@ -16777,20 +16776,20 @@ msgid ""
 "Select the object that will provide the\n"
 "primary data for the merged object."
 msgstr ""
-"נא לבחור האובייקט שישמש\n"
-"כמקור המידע העיקרי לאובייקט שימוזג."
+"נא לבחור העצם שישמש\n"
+"כמקור המידע העיקרי לעצם שימוזג."
 
 #: ../gramps/gui/glade/mergemedia.glade:186
 msgid "Object 1"
-msgstr "אובייקט 1"
+msgstr "עצם 1"
 
 #: ../gramps/gui/glade/mergemedia.glade:200
 msgid "Object 2"
-msgstr "אובייקט 2"
+msgstr "עצם 2"
 
 #: ../gramps/gui/glade/mergemedia.glade:455
 msgid "Attributes, sources, notes and tags of both objects will be combined."
-msgstr "מאפיינים, מקורות, הערות ותגים של שני האובייקטים ישולבו."
+msgstr "מאפיינים, מקורות, הערות ותגים של שני העצמים ישולבו."
 
 #: ../gramps/gui/glade/mergenote.glade:97
 msgid ""
@@ -16841,7 +16840,7 @@ msgid ""
 "Events, media objects, addresses, attributes, urls, notes, sources and tags "
 "of both persons will be combined."
 msgstr ""
-"אירועים, אובייקטי מדיה, כתובות, תכונות, מעני url, הערות, מקורות ותגים של שני "
+"אירועים, עצמי מדיה, כתובות, תכונות, מעני url, הערות, מקורות ותגים של שני "
 "האנשים ישולבו."
 
 #: ../gramps/gui/glade/mergeperson.glade:500
@@ -16860,8 +16859,7 @@ msgstr ""
 msgid ""
 "Alternative names, sources, urls, media objects and notes of both places "
 "will be combined."
-msgstr ""
-"שמות חלופיים, מקורות, מעני url, אובייקטי מדיה והערות של שני המקומות ישולבו."
+msgstr "שמות חלופיים, מקורות, מעני url, עצמי מדיה והערות של שני המקומות ישולבו."
 
 #: ../gramps/gui/glade/mergerepository.glade:97
 msgid ""
@@ -16895,7 +16893,7 @@ msgstr ""
 msgid ""
 "Notes, media objects, data-items and repository references of both sources "
 "will be combined."
-msgstr "הערות, אובייקטי מדיה, פרטי מידע ומאגרים של שני ההפניות ישולבו."
+msgstr "הערות, עצמי מדיה, פרטי מידע ומאגרים של שני ההפניות ישולבו."
 
 #: ../gramps/gui/glade/papermenu.glade:8
 msgid "Paper Settings"
@@ -17881,7 +17879,7 @@ msgstr "לא ניתן למזג אנשים"
 #: ../gramps/gui/merge/mergemedia.py:44
 msgctxt "manual"
 msgid "Merge_Media_Objects"
-msgstr "מיזוג_אובייקטי_מדיה"
+msgstr "מיזוג_עצםי_מדיה"
 
 #: ../gramps/gui/merge/mergenote.py:44
 msgctxt "manual"
@@ -19034,12 +19032,12 @@ msgstr "נא_לבחור_בורר_הערות"
 
 #: ../gramps/gui/selectors/selectobject.py:67
 msgid "Select Media Object"
-msgstr "נא לבחור אובייקט מדיה"
+msgstr "נא לבחור עצם מדיה"
 
 #: ../gramps/gui/selectors/selectobject.py:108
 msgctxt "manual"
 msgid "Select_Media_Object_selector"
-msgstr "נא_לבחור_בורר_אובייקט_מדיה"
+msgstr "נא_לבחור_בורר_עצם_מדיה"
 
 #: ../gramps/gui/selectors/selectperson.py:64
 msgctxt "manual"
@@ -19412,7 +19410,7 @@ msgstr "לא ניתן להוסיף הפניה זו לרשימת הסימניות
 
 #: ../gramps/gui/views/listview.py:441
 msgid "Active object not visible"
-msgstr "אובייקט פעיל לא גלוי"
+msgstr "עצם פעיל לא גלוי"
 
 #: ../gramps/gui/views/listview.py:451
 #: ../gramps/gui/views/navigationview.py:256
@@ -21703,7 +21701,7 @@ msgstr "חבילת גרא_מפס XML (אילן יוחסין ומדיה)"
 msgid ""
 "Gramps package is an archived XML family tree together with the media object "
 "files."
-msgstr "חבילת גרמפס הוא אילן יוחסין מאורכב XML בצרוף קבצי אובייקטי המדיה."
+msgstr "חבילת גרמפס הוא אילן יוחסין מאורכב XML בצרוף קבצי עצמי המדיה."
 
 #: ../gramps/plugins/export/export.gpr.py:130
 msgid "Gramps package export options"
@@ -21723,7 +21721,7 @@ msgid ""
 "without the media object files. Suitable for backup purposes."
 msgstr ""
 "יצוא XML בגרמפס הוא למעשה גיבוי ארכיב XML מלא של אילן היוחסין אך ללא קבצי "
-"אובייקט המדיה. מתאים לצורכי גיבוי."
+"עצם המדיה. מתאים לצורכי גיבוי."
 
 #: ../gramps/plugins/export/export.gpr.py:153
 msgid "Gramps XML export options"
@@ -22207,8 +22205,8 @@ msgid ""
 "  9. %(gramps_FAQ_html_start)s%(faq_section)sHow do you find unused media "
 "objects?%(html_end)s\n"
 msgstr ""
-"  9. %(gramps_FAQ_html_start)s%(faq_section)sכיצד ניתן לאתר אובייקטי מדיה "
-"שאינם בשימוש?%(html_end)s\n"
+"  9. %(gramps_FAQ_html_start)s%(faq_section)sכיצד ניתן לאתר עצמי מדיה שאינם "
+"בשימוש?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:141
 #, python-format
@@ -22521,7 +22519,7 @@ msgstr "תצוגה מקדימה מדיה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:393
 msgid "Gramplet showing a preview of a media object"
-msgstr "גרמפלט להצגת אובייקטי מדיה בתצוגה מקדימה"
+msgstr "גרמפלט להצגת עצמי מדיה בתצוגה מקדימה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:420
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:428
@@ -22530,7 +22528,7 @@ msgstr "נתוני על לתמונה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:421
 msgid "Gramplet showing metadata for a media object"
-msgstr "גרמפלט להצגת נתוני־על לאובייקט מדיה"
+msgstr "גרמפלט להצגת נתוני־על לעצם מדיה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:442
 msgid "GExiv2 module not loaded."
@@ -22576,7 +22574,7 @@ msgstr "גלריית אדם"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:499
 msgid "Gramplet showing media objects for a person"
-msgstr "גרמפלט להצגת אובייקטי מדיה לאדם"
+msgstr "גרמפלט להצגת עצמי מדיה לאדם"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:506
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:520
@@ -22593,7 +22591,7 @@ msgstr "גלרית משפחה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:513
 msgid "Gramplet showing media objects for a family"
-msgstr "גרמפלט להצגת אובייקטי מדיה למשפחה"
+msgstr "גרמפלט להצגת עצמי מדיה למשפחה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:526
 msgid "Event Gallery"
@@ -22601,7 +22599,7 @@ msgstr "גָּלֶרְיָת אירועים"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:527
 msgid "Gramplet showing media objects for an event"
-msgstr "גרמפלט להצגת אובייקטי מדיה לאירוע"
+msgstr "גרמפלט להצגת עצמי מדיה לאירוע"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:540
 msgid "Place Gallery"
@@ -22609,7 +22607,7 @@ msgstr "גָּלֶרְיָת מקום"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:541
 msgid "Gramplet showing media objects for a place"
-msgstr "גרמפלט להצגת אובייקטי מדיה למקום"
+msgstr "גרמפלט להצגת עצמי מדיה למקום"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:554
 msgid "Source Gallery"
@@ -22617,7 +22615,7 @@ msgstr "גלרית מקורות"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:555
 msgid "Gramplet showing media objects for a source"
-msgstr "גרמפלט להצגת אובייקטי מדיה למקור"
+msgstr "גרמפלט להצגת עצמי מדיה למקור"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:568
 msgid "Citation Gallery"
@@ -22625,7 +22623,7 @@ msgstr "גלרית מובאות"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:569
 msgid "Gramplet showing media objects for a citation"
-msgstr "גרמפלט להצגת אובייקטי מדיה למובאה"
+msgstr "גרמפלט להצגת עצמי מדיה למובאה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:582
 msgid "Person Attributes"
@@ -22657,11 +22655,11 @@ msgstr "תכונות מדיה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:625
 msgid "Gramplet showing the attributes of a media object"
-msgstr "גרמפלט להצגת תכונות לאובייקט מדיה"
+msgstr "גרמפלט להצגת תכונות לעצם מדיה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:639
 msgid "Gramplet showing the attributes of a source object"
-msgstr "גרמפלט להצגת תכונות לאובייקט מקור"
+msgstr "גרמפלט להצגת תכונות לעצם מקור"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:652
 msgid "Citation Attributes"
@@ -22669,7 +22667,7 @@ msgstr "תכונות מובאה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:653
 msgid "Gramplet showing the attributes of a citation object"
-msgstr "גרמפלט להצגת תכונות לאובייקט מובאה"
+msgstr "גרמפלט להצגת תכונות לעצם מובאה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:666
 msgid "Person Notes"
@@ -22734,7 +22732,7 @@ msgstr "הערות מדיה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:765
 msgid "Gramplet showing the notes for a media object"
-msgstr "גרמפלט להצגת הערות לאובייקט מדיה"
+msgstr "גרמפלט להצגת הערות לעצם מדיה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:779
 msgid "Gramplet showing the selected note"
@@ -22778,7 +22776,7 @@ msgstr "מובאת מדיה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:849
 msgid "Gramplet showing the citations for a media object"
-msgstr "גרמפלט להצגת מובאות לאובייקט מדיה"
+msgstr "גרמפלט להצגת מובאות לעצם מדיה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:862
 msgid "Person Children"
@@ -22875,7 +22873,7 @@ msgstr "הפניות מדיה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:989
 msgid "Gramplet showing the backlink references for a media object"
-msgstr "גרמפלט להצגת הפניות קישורים נכנסים לאובייקט מדיה"
+msgstr "גרמפלט להצגת הפניות קישורים נכנסים לעצם מדיה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1002
 msgid "Note References"
@@ -23085,7 +23083,7 @@ msgstr "הפניה"
 
 #: ../gramps/plugins/gramplet/leak.py:103
 msgid "Uncollected object"
-msgstr "אובייקט שלא נאסף"
+msgstr "עצם שלא נאסף"
 
 #: ../gramps/plugins/gramplet/leak.py:112
 msgid "Refresh"
@@ -23108,7 +23106,7 @@ msgstr "%d מתיחס ל"
 #: ../gramps/plugins/gramplet/leak.py:198
 #, python-format
 msgid "Uncollected Objects: %s"
-msgstr "אובייקט שלא נאסף: %s"
+msgstr "עצם שלא נאסף: %s"
 
 #: ../gramps/plugins/gramplet/leak.py:239
 msgid "Reference Error"
@@ -23405,32 +23403,32 @@ msgstr "שמות משפחה יחידאיים"
 #: ../gramps/plugins/textreport/summary.py:299
 #: ../gramps/plugins/webreport/statistics.py:139
 msgid "Media Objects"
-msgstr "אובייקטי מדיה"
+msgstr "עצםי מדיה"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:181
 msgid "Individuals with media objects"
-msgstr "אנשים עם אובייקטי מדי"
+msgstr "אנשים עם עצמי מדי"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:185
 #: ../gramps/plugins/webreport/statistics.py:141
 msgid "Total number of media object references"
-msgstr "סך־כל הפניות לאובייקטי מדיה"
+msgstr "סך־כל הפניות לעצםי מדיה"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:189
 #: ../gramps/plugins/webreport/statistics.py:143
 msgid "Number of unique media objects"
-msgstr "מספר אובייקטי מדיה יחידאיים"
+msgstr "מספר עצמי מדיה יחידאיים"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:194
 #: ../gramps/plugins/webreport/statistics.py:145
 msgid "Total size of media objects"
-msgstr "סך־כל נפח אובייקטי מדיה"
+msgstr "סך־כל נפח עצמי מדיה"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:198
 #: ../gramps/plugins/textreport/summary.py:329
 #: ../gramps/plugins/webreport/statistics.py:149
 msgid "Missing Media Objects"
-msgstr "אובייקטי מדיה חסרים"
+msgstr "עצםי מדיה חסרים"
 
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:66
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:50
@@ -23486,7 +23484,7 @@ msgstr "הוספת הערת משימות לביצוע חדשה"
 
 #: ../gramps/plugins/gramplet/todo.py:201
 msgid "First select the object to which you want to attach a note"
-msgstr "נא לבחור תחילה אובייקט אליו תתייחס ההערה"
+msgstr "נא לבחור תחילה עצם אליו תתייחס ההערה"
 
 #: ../gramps/plugins/gramplet/todogramplet.py:149
 msgid "Unattached"
@@ -25015,7 +25013,7 @@ msgid ""
 msgstr ""
 "נתיב המדיה הבסיסי לאילן היוחסין הוגדר כ־ %s. נא לשקול לבחור נתיב פשוט יותר. "
 "ניתן לשנות את הנתיב מתפריט העדפות, תוך העברת קובצי המדיה למיקום החדש ושימוש "
-"בכלי מנהל המדיה, אפשרות 'החלפת מחרוזת משנה בנתיב' כדי לעדכן נתיבים באובייקטי "
+"בכלי מנהל המדיה, אפשרות 'החלפת מחרוזת משנה בנתיב' כדי לעדכן נתיבים בעצםי "
 "המדיה."
 
 #: ../gramps/plugins/importer/importgpkg.py:117
@@ -25033,11 +25031,11 @@ msgid ""
 "tool, option 'Replace substring in the path' to set correct paths in your "
 "media objects."
 msgstr ""
-"אילן היוחסין שיובא מכיל כבר נתיב מדיה בסיסי: %(orig_path)s. עם זאת, אובייקטי "
+"אילן היוחסין שיובא מכיל כבר נתיב מדיה בסיסי: %(orig_path)s. עם זאת, עצמי "
 "המדיה המיובאים יחסיים לאלה של הנתיב %(path)s. ניתן לשנות את נתיב המדיה "
 "בהעדפות או להמיר את הקבצים המיובאים לנתיב המדיה הבסיסי הקיים. ניתן לעשות זאת "
 "על־ידי העברת קבצי המדיה למיקום החדש ושימוש בכלי מנהל המדיה, מתפריט אפשרות "
-"'החלפת מחרוזת המשנה בנתיב' להגדרת נתיבים תקינים באובייקטי המדיה."
+"'החלפת מחרוזת המשנה בנתיב' להגדרת נתיבים תקינים בעצםי המדיה."
 
 #: ../gramps/plugins/importer/importgrdb.py:61
 #: ../gramps/plugins/importer/importprogen.py:189
@@ -25186,7 +25184,7 @@ msgid ""
 "all object tags."
 msgstr ""
 "אפשור/נטרול\n"
-"כל תגיות האובייקטים."
+"כל תגיות העצמים."
 
 #: ../gramps/plugins/importer/importprogen.glade:1198
 msgid "Tag Text"
@@ -25194,7 +25192,7 @@ msgstr "מלל תג"
 
 #: ../gramps/plugins/importer/importprogen.glade:1217
 msgid "Import Objects"
-msgstr "ייבוא אובייקטים"
+msgstr "ייבוא עצמים"
 
 #: ../gramps/plugins/importer/importprogen.glade:1241
 msgid ""
@@ -25966,7 +25964,7 @@ msgstr "SOUR (מקור) מזהה גרמפס %s"
 #: ../gramps/plugins/lib/libgedcom.py:6784
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
-msgstr "OBJE (אובייקט מולטי מדיה) מזהה גרמפס %s"
+msgstr "OBJE (עצם מולטי מדיה) מזהה גרמפס %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:7002
 #, python-format
@@ -30681,7 +30679,7 @@ msgstr "מונה/סך הכל"
 #: ../gramps/plugins/quickview/filterbyname.py:89
 #: ../gramps/plugins/tool/reorderids.glade:1401
 msgid "Object"
-msgstr "אובייקט"
+msgstr "עצם"
 
 #: ../gramps/plugins/quickview/filterbyname.py:146
 #: ../gramps/plugins/quickview/filterbyname.py:148
@@ -30823,7 +30821,7 @@ msgstr "אוקיי"
 
 #: ../gramps/plugins/quickview/linkreferences.py:56
 msgid "Failed: missing object"
-msgstr "כשל: חסר אובייקט"
+msgstr "כשל: חסר עצם"
 
 #: ../gramps/plugins/quickview/linkreferences.py:58
 #: ../gramps/plugins/textreport/notelinkreport.py:119
@@ -32433,7 +32431,7 @@ msgstr "מחרוזת שתצוג בתחתית העמוד."
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:154
 msgid "Gramps ID of the media object to use as an image."
-msgstr "מזהה גרמפס של אובייקט המדיה שישמש כתמונה."
+msgstr "מזהה גרמפס של עצם המדיה שישמש כתמונה."
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:157
 msgid "Image Size"
@@ -32493,7 +32491,7 @@ msgstr "שמות משפחה יחידאיים: %d"
 #: ../gramps/plugins/textreport/summary.py:208
 #, python-format
 msgid "Individuals with media objects: %d"
-msgstr "אנשים עם אובייקטי מדיה: %d"
+msgstr "אנשים עם עצמי מדיה: %d"
 
 #: ../gramps/plugins/textreport/summary.py:221
 #, python-format
@@ -32548,12 +32546,12 @@ msgstr "מספר מאגרים: %d"
 #: ../gramps/plugins/textreport/summary.py:318
 #, python-format
 msgid "Number of unique media objects: %d"
-msgstr "מספר אובייקטי מדיה יחידאיים: %d"
+msgstr "מספר עצמי מדיה יחידאיים: %d"
 
 #: ../gramps/plugins/textreport/summary.py:323
 #, python-format
 msgid "Total size of media objects: %s MB"
-msgstr "סך־כל נפח אובייקטי המדיה: %s MB"
+msgstr "סך־כל נפח עצמי המדיה: %s MB"
 
 #: ../gramps/plugins/textreport/summary.py:342
 msgid "Note Information"
@@ -32857,8 +32855,7 @@ msgid ""
 "Objects referenced by this note were referenced but missing so that is why "
 "they have been created when you ran Check and Repair on %s."
 msgstr ""
-"אובייקטים אליהם מפנה הערה זו, חסרים, הם נוצרו שוב בעקבות הרצת בדיקה ותיקון ב־"
-"%s."
+"עצמים אליהם מפנה הערה זו, חסרים, הם נוצרו שוב בעקבות הרצת בדיקה ותיקון ב־%s."
 
 #: ../gramps/plugins/tool/check.py:317
 msgid "Looking for invalid name format references"
@@ -32894,7 +32891,7 @@ msgstr "נא לבחור קובץ"
 
 #: ../gramps/plugins/tool/check.py:807
 msgid "Media object could not be found"
-msgstr "לא ניתן למצוא אובייקט מדיה"
+msgstr "לא ניתן למצוא עצם מדיה"
 
 #: ../gramps/plugins/tool/check.py:808
 #, python-format
@@ -32992,7 +32989,7 @@ msgstr "איתור בעיות הפניות מקור"
 
 #: ../gramps/plugins/tool/check.py:1691
 msgid "Looking for media object reference problems"
-msgstr "איתור בעיות הפניות לאובייקטי מדיה"
+msgstr "איתור בעיות הפניות לעצםי מדיה"
 
 #: ../gramps/plugins/tool/check.py:1813
 msgid "Looking for note reference problems"
@@ -33132,31 +33129,39 @@ msgstr[1] "{quantity} מאגרים מקושרים אך לא נמצאו\n"
 #, python-brace-format
 msgid "{quantity} media object was referenced but not found\n"
 msgid_plural "{quantity} media objects were referenced, but not found\n"
-msgstr[0] "{quantity} אובייקט מדיה הופנה אך לא נמצא\n"
-msgstr[1] "{quantity} אובייקטי מדיה הופנו אך לא נמצאו\n"
+msgstr[0] ""
+"{quantity} עצם מדיה הופנה אך לא נמצא\n"
+"{quantity} עצמי מדיה הופנו אך לא נמצאו\n"
+msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:2615
 #, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} missing media objects were kept\n"
-msgstr[0] "הפניה {quantity} לאובייקט מדיה חסר נשמר\n"
-msgstr[1] "{quantity} הפניות לאובייקטי מדיה חסרים נשמרו\n"
+msgstr[0] ""
+"הפניה {quantity} לעצם מדיה חסר נשמר\n"
+"{quantity} הפניות לעצםי מדיה חסרים נשמרו\n"
+msgstr[1] ""
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2623
 #, python-brace-format
 msgid "{quantity} missing media object was replaced\n"
 msgid_plural "{quantity} missing media objects were replaced\n"
-msgstr[0] "אובייקט מדיה חסר {quantity} הוחלף\n"
-msgstr[1] "{quantity} אובייקט מדיה חסרים הוחלפו\n"
+msgstr[0] ""
+"עצם מדיה חסר {quantity} הוחלף\n"
+"{quantity} עצם מדיה חסרים הוחלפו\n"
+msgstr[1] ""
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2631
 #, python-brace-format
 msgid "{quantity} missing media object was removed\n"
 msgid_plural "{quantity} missing media objects were removed\n"
-msgstr[0] "{quantity} אובייקט מדיה חסר הוסר\n"
-msgstr[1] "{quantity} אובייקטי מדיה חסרים הוסרו\n"
+msgstr[0] ""
+"{quantity} עצם מדיה חסר הוסר\n"
+"{quantity} עצמי מדיה חסרים הוסרו\n"
+msgstr[1] ""
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2639
@@ -33209,16 +33214,20 @@ msgstr[1] "{quantity} מקורות מקושרים אך לא נמצאו\n"
 #, python-brace-format
 msgid "{quantity} note object was referenced but not found\n"
 msgid_plural "{quantity} note objects were referenced, but not found\n"
-msgstr[0] "{quantity} אובייקט הערה הופנה אך לא נמצא\n"
-msgstr[1] "{quantity} אובייקטי הערה הופנו אך לא נמצאו\n"
+msgstr[0] ""
+"{quantity} עצם הערה הופנה אך לא נמצא\n"
+"{quantity} עצמי הערה הופנו אך לא נמצאו\n"
+msgstr[1] ""
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2710 ../gramps/plugins/tool/check.py:2720
 #, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
-msgstr[0] "הפניה ל {quantity} אובייקט תג אך לא נמצא\n"
-msgstr[1] "הפניה ל {quantity} אובייקטי תג אך לא נמצאו\n"
+msgstr[0] ""
+"הפניה ל {quantity} עצם תג אך לא נמצא\n"
+"הפניה ל {quantity} עצמי תג אך לא נמצאו\n"
+msgstr[1] ""
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2730
@@ -33575,11 +33584,11 @@ msgid ""
 "outside of Gramps. Then you can adjust the paths using this tool so that the "
 "media objects store the correct file locations."
 msgstr ""
-"הכלי מאפשר בצוע פעולות אצווה על אובייקטי מדיה המאוחסנים בגרמפס. חייבת להתבצע "
-"הבחנה חשובה בין אובייקט מדיה של גרמפס לבין הקובץ שלו.\n"
+"הכלי מאפשר בצוע פעולות אצווה על עצמי מדיה המאוחסנים בגרמפס. חייבת להתבצע "
+"הבחנה חשובה בין עצם מדיה של גרמפס לבין הקובץ שלו.\n"
 "\n"
-"אובייקט המדיה 'בגרמפס' הוא אוסף של נתונים על קובץ אובייקט המדיה: שם הקובץ "
-"ו/או הנתיב שלו, התיאור שלו, המזהה שלו, ההערות, ההפניות למקור וכדומה. נתונים "
+"עצם המדיה 'בגרמפס' הוא אוסף של נתונים על קובץ עצם המדיה: שם הקובץ ו/או הנתיב "
+"שלו, התיאור שלו, המזהה שלו, ההערות, ההפניות למקור וכדומה. נתונים "
 "אלה%(bold_start)sdo לא כוללים את הקובץ עצמו%(bold_end)s.\n"
 "\n"
 "הקבצים המכילים תמונה, קול, וידאו וכו ', מאוחסנים בנפרד בכונן הקשיח. קבצים "
@@ -33588,8 +33597,8 @@ msgstr ""
 "\n"
 "הכלי מאפשר לשנות רק את הרשומות בתוך מסד הנתונים בגרמפס. אם נדרש להעביר או "
 "לשנות את שם הקבצים עצמם, עליך יש לעשות באופן עצמאי, מחוץ לגרמפס. לאחר מכן "
-"ניתן לכוונן את הנתיבים באמצעות כלי זה כך שאובייקטי המדיה יאחסנו את מיקומי "
-"הקבצים הנכונים."
+"ניתן לכוונן את הנתיבים באמצעות כלי זה כך שעצםי המדיה יאחסנו את מיקומי הקבצים "
+"הנכונים."
 
 #: ../gramps/plugins/tool/mediamanager.py:344
 msgid "Affected path"
@@ -33643,8 +33652,8 @@ msgid ""
 "with another substring. This can be useful when you move your media files "
 "from one directory to another"
 msgstr ""
-"כלי זה מאפשר החלפת תת־מחרוזת שצוינה בנתיב של אובייקט מדיה בתת־מחרוזת אחרת. "
-"משמש בהעברת קובצי המדיה ממחיצה אחת לאחרת"
+"כלי זה מאפשר החלפת תת־מחרוזת שצוינה בנתיב של עצם מדיה בתת־מחרוזת אחרת. משמש "
+"בהעברת קובצי המדיה ממחיצה אחת לאחרת"
 
 #: ../gramps/plugins/tool/mediamanager.py:495
 msgid "Replace substring settings"
@@ -33743,7 +33752,7 @@ msgstr "מיזוג_מבואות"
 #: ../gramps/plugins/tool/mergecitations.py:133
 msgid ""
 "Notes, media objects and data-items of matching citations will be combined."
-msgstr "הערות, אובייקטי מדיה ופרטי מידע של מבואות תואמות ישולבו."
+msgstr "הערות, עצמי מדיה ופרטי מידע של מבואות תואמות ישולבו."
 
 #: ../gramps/plugins/tool/mergecitations.py:164
 msgid "Merge citations tool"
@@ -34142,7 +34151,7 @@ msgstr "נא להקיש כפולה על השורה לתצוגת/עריכת נת�
 
 #: ../gramps/plugins/tool/removeunused.py:69
 msgid "Unused Objects"
-msgstr "אובייקטים שאינם בשימוש"
+msgstr "עצמים שאינם בשימוש"
 
 #: ../gramps/plugins/tool/removeunused.py:188
 #: ../gramps/plugins/tool/verify.py:557
@@ -34151,7 +34160,7 @@ msgstr "סמן"
 
 #: ../gramps/plugins/tool/removeunused.py:303
 msgid "Remove unused objects"
-msgstr "הסרת אובייקטים שאינם בשימוש"
+msgstr "הסרת עצמים שאינם בשימוש"
 
 #: ../gramps/plugins/tool/reorderids.glade:1406
 msgid "Enable ID reordering."
@@ -34499,11 +34508,11 @@ msgstr "חישוב קשרי־גומלין בין שני אנשים"
 
 #: ../gramps/plugins/tool/tools.gpr.py:353
 msgid "Remove Unused Objects"
-msgstr "הסרת אובייקטים שאינם בשימוש"
+msgstr "הסרת עצמים שאינם בשימוש"
 
 #: ../gramps/plugins/tool/tools.gpr.py:354
 msgid "Removes unused objects from the database"
-msgstr "הסרת אובייקטים שאינם בשימוש ממסד הנתונים"
+msgstr "הסרת עצמים שאינם בשימוש ממסד הנתונים"
 
 #: ../gramps/plugins/tool/tools.gpr.py:376
 msgid "Reorders the Gramps IDs according to Gramps' default rules."
@@ -34860,10 +34869,10 @@ msgid ""
 "\n"
 "To edit this citation, you need to close the object."
 msgstr ""
-"אין אפשרות לערוך כעת מובאה זו . ייתכן שאובייקט המובאה המשויך נמצא בעריכה, או "
+"אין אפשרות לערוך כעת מובאה זו . ייתכן שעצם המובאה המשויך נמצא בעריכה, או "
 "שמובאה אחרת המשויכת לאותו מקור נמצא בעריכה.\n"
 "\n"
-"כדי לערוך מובאה זו, יש לסגור את האובייקט."
+"כדי לערוך מובאה זו, יש לסגור את העצם."
 
 #: ../gramps/plugins/view/citationlistview.py:401
 #: ../gramps/plugins/view/citationlistview.py:412
@@ -34938,10 +34947,10 @@ msgid ""
 "\n"
 "To edit this source, you need to close the object."
 msgstr ""
-"אין אפשרות לערוך מקור זה כעת. ייתכן שאובייקט המקור המשויך נמצא בעריכה, או "
-"שמובאה אחרת המשויכת לאותו מקור נמצא בעריכה.\n"
+"אין אפשרות לערוך מקור זה כעת. ייתכן שעצם המקור המשויך נמצא בעריכה, או שמובאה "
+"אחרת המשויכת לאותו מקור נמצא בעריכה.\n"
 "\n"
-"כדי לערוך מקור זה, יש לסגור את האובייקט."
+"כדי לערוך מקור זה, יש לסגור את העצם."
 
 #: ../gramps/plugins/view/citationtreeview.py:667
 msgid "Cannot perform merge."
@@ -34952,7 +34961,7 @@ msgid ""
 "Both objects must be of the same type, either both must be sources, or both "
 "must be citations."
 msgstr ""
-"שני האובייקטים צריכים להיות מאותו סוג, שניהם חייבים להיות מקורות, או ששניהן "
+"שני העצמים צריכים להיות מאותו סוג, שניהם חייבים להיות מקורות, או ששניהן "
 "חייבות להיות מובאות."
 
 #: ../gramps/plugins/view/dashboardview.py:51
@@ -35681,15 +35690,15 @@ msgstr "צבע סמן המקום"
 
 #: ../gramps/plugins/view/mediaview.py:112
 msgid "Edit the selected media object"
-msgstr "עריכת אובייקט המדיה שנבחר"
+msgstr "עריכת עצם המדיה שנבחר"
 
 #: ../gramps/plugins/view/mediaview.py:113
 msgid "Delete the selected media object"
-msgstr "מחיקת אובייקט מדיה שנבחר"
+msgstr "מחיקת עצם מדיה שנבחר"
 
 #: ../gramps/plugins/view/mediaview.py:114
 msgid "Merge the selected media objects"
-msgstr "מיזוג אובייקטי המדיה שנבחרו"
+msgstr "מיזוג עצמי המדיה שנבחרו"
 
 #: ../gramps/plugins/view/mediaview.py:294
 msgid "Media Filter Editor"
@@ -35701,7 +35710,7 @@ msgstr "הצגה באמצעות תכנית ברירת המחדל"
 
 #: ../gramps/plugins/view/mediaview.py:480
 msgid "Cannot merge media objects."
-msgstr "לא ניתן למזג אובייקטי מדיה."
+msgstr "לא ניתן למזג עצמי מדיה."
 
 #: ../gramps/plugins/view/mediaview.py:481
 msgid ""
@@ -35709,8 +35718,8 @@ msgid ""
 "object can be selected by holding down the control key while clicking on the "
 "desired object."
 msgstr ""
-"לבצע מיזוג ,נא לבחור שני אובייקטי מדיה בדיוק. ניתן לבחור באובייקט השני על־"
-"ידי החזקת מקש הבקרה ובו בעת הקשה על האובייקט הרצוי."
+"לבצע מיזוג ,נא לבחור שני עצמי מדיה בדיוק. ניתן לבחור בעצם השני על־ידי החזקת "
+"מקש הבקרה ובו בעת הקשה על העצם הרצוי."
 
 #: ../gramps/plugins/view/noteview.py:94
 msgid "Delete the selected note"
@@ -36136,7 +36145,7 @@ msgstr "מצג גרמפלטים"
 
 #: ../gramps/plugins/view/view.gpr.py:83
 msgid "The view showing all the media objects"
-msgstr "מצג כל אובייקטי המדיה"
+msgstr "מצג כל עצמי המדיה"
 
 #: ../gramps/plugins/view/view.gpr.py:98
 msgid "The view showing all the notes"
@@ -36464,9 +36473,9 @@ msgid ""
 "object&#8217;s page.  If you see media size dimensions above an image, click "
 "on the image to see the full sized version.  "
 msgstr ""
-"עמוד זה מכיל מיפתח של כול האובייקטים במסד הנתונים, ממוינים לפי כותרת. הקשה "
-"על הכותרת תוביל לעמוד האובייקט. במידה ומידות המדיה מוצגים מעל לתמונה, הקשה "
-"על התמונה תציג אותה בגודלה המלא.  "
+"עמוד זה מכיל מיפתח של כול העצמים במסד הנתונים, ממוינים לפי כותרת. הקשה על "
+"הכותרת תוביל לעמוד העצם. במידה ומידות המדיה מוצגים מעל לתמונה, הקשה על "
+"התמונה תציג אותה בגודלה המלא.  "
 
 #: ../gramps/plugins/webreport/media.py:238
 msgctxt "Media "
@@ -36487,7 +36496,7 @@ msgstr "דוח אתר מרשתת"
 
 #: ../gramps/plugins/webreport/media.py:290
 msgid "Below unused media objects"
-msgstr "אובייקטי מדיה שאינם בשימוש, מטה"
+msgstr "עצםי מדיה שאינם בשימוש, מטה"
 
 #: ../gramps/plugins/webreport/media.py:414
 #, python-format
@@ -36508,7 +36517,7 @@ msgstr "סוג קובץ"
 
 #: ../gramps/plugins/webreport/media.py:702
 msgid "Missing media object:"
-msgstr "אובייקט מדיה חסר:"
+msgstr "עצם מדיה חסר:"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:312
 #, python-format
@@ -36538,11 +36547,11 @@ msgstr "מזהה=%(grampsid)s, נתיב=%(dir)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:551
 msgid "Missing media objects:"
-msgstr "אובייקטי מדיה חסרים:"
+msgstr "עצםי מדיה חסרים:"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:587
 msgid "Constructing list of other objects..."
-msgstr "בניית רשימה של אובייקטים אחרים..."
+msgstr "בניית רשימה של עצמים אחרים..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:844
 #, python-format
@@ -36906,11 +36915,11 @@ msgstr "חילול תמונות"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2230
 msgid "Include images and media objects"
-msgstr "הכללת תמונות ואובייקטי מדיה"
+msgstr "הכללת תמונות ועצםי מדיה"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2232
 msgid "Whether to include a gallery of media objects"
-msgstr "האם לכלול גלריה של אובייקטיי מדיה"
+msgstr "האם לכלול גלריה של עצםיי מדיה"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2238
 msgid "Create the images index"
@@ -36922,11 +36931,11 @@ msgstr "אפשור יצירת מפתח תמונות"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2246
 msgid "Include unused images and media objects"
-msgstr "הכללת תמונות ואובייקטי מדיה שאינם בשימוש"
+msgstr "הכללת תמונות ועצםי מדיה שאינם בשימוש"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2247
 msgid "Whether to include unused or unreferenced media objects"
-msgstr "האם לכלול אובייקטיי מדיה שאינם בשימוש או אינם מופנים"
+msgstr "האם לכלול עצםיי מדיה שאינם בשימוש או אינם מופנים"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2252
 msgid "Create and only use thumbnail- sized images"
@@ -37595,9 +37604,9 @@ msgid ""
 "this database. Clicking on a thumbnail will take you to that image&#8217;s "
 "page."
 msgstr ""
-"העמוד מציג רשימה ממופתחת של כול אובייקטי המדיה במסד הנתונים. הרשימה ממוינת "
-"לפי כותרת המדיה. קיים מפתח של כול אובייקטי המדיה במסד נתונים זה. הקשה על "
-"תמונה ממוזערת תעביר לעמוד התמונה&#8217;."
+"העמוד מציג רשימה ממופתחת של כול עצמי המדיה במסד הנתונים. הרשימה ממוינת לפי "
+"כותרת המדיה. קיים מפתח של כול עצמי המדיה במסד נתונים זה. הקשה על תמונה "
+"ממוזערת תעביר לעמוד התמונה&#8217;."
 
 #: ../gramps/plugins/webreport/updates.py:78
 msgid "New and updated objects"
@@ -37610,7 +37619,7 @@ msgid ""
 "This page contains the last updated objects in the database in the last "
 "%(days)d days and for a maximum of %(nb)d objects per object type."
 msgstr ""
-"עמוד זה מכיל את האובייקטים שעודכנו לאחרונה במסד הנתונים ב־%(days)d הימים "
+"עמוד זה מכיל את העצמים שעודכנו לאחרונה במסד הנתונים ב־%(days)d הימים "
 "האחרונים ו־ %(nb)d עצמים לכל היותר לכל סוג עצם."
 
 #: ../gramps/plugins/webreport/webcal.py:193
