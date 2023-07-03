@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-07-03 07:20+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2023-07-03 07:38+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -26311,7 +26311,7 @@ msgstr "אדם זה לידה ב־%(modified_date)s."
 #: ../gramps/plugins/lib/libnarrate.py:136
 #, python-format
 msgid "He was born %(modified_date)s."
-msgstr "נולד ב־%(modified_date)s."
+msgstr "לידה ב־%(modified_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:137
 #, python-format
@@ -27200,7 +27200,7 @@ msgstr "%(male_name)s נקבר ב־%(burial_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:558
 #, python-format
 msgid "He was buried in %(burial_place)s%(endnotes)s."
-msgstr "נקבר ב־%(burial_place)s%(endnotes)s."
+msgstr "קבורה ב־%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:561
 #, python-format
@@ -33129,29 +33129,23 @@ msgstr[1] "{quantity} מאגרים מקושרים אך לא נמצאו\n"
 #, python-brace-format
 msgid "{quantity} media object was referenced but not found\n"
 msgid_plural "{quantity} media objects were referenced, but not found\n"
-msgstr[0] ""
-"{quantity} עצם מדיה הופנה אך לא נמצא\n"
-"{quantity} עצמי מדיה הופנו אך לא נמצאו\n"
-msgstr[1] ""
+msgstr[0] "{quantity} עצם מדיה הופנה אך לא נמצא\n"
+msgstr[1] "{quantity} עצמי מדיה הופנו אך לא נמצאו\n"
 
 #: ../gramps/plugins/tool/check.py:2615
 #, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} missing media objects were kept\n"
-msgstr[0] ""
-"הפניה {quantity} לעצם מדיה חסר נשמר\n"
-"{quantity} הפניות לעצםי מדיה חסרים נשמרו\n"
-msgstr[1] ""
+msgstr[0] "הפניה {quantity} לעצם מדיה חסר נשמר\n"
+msgstr[1] "{quantity} הפניות לעצמי מדיה חסרים נשמרו\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2623
 #, python-brace-format
 msgid "{quantity} missing media object was replaced\n"
 msgid_plural "{quantity} missing media objects were replaced\n"
-msgstr[0] ""
-"עצם מדיה חסר {quantity} הוחלף\n"
-"{quantity} עצם מדיה חסרים הוחלפו\n"
-msgstr[1] ""
+msgstr[0] "עצם מדיה חסר {quantity} הוחלף\n"
+msgstr[1] "{quantity} עצם מדיה חסרים הוחלפו\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2631
