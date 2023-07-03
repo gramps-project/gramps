@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-06-26 04:42+0000\n"
+"PO-Revision-Date: 2023-07-03 06:27+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 4.18.1\n"
+"X-Generator: Weblate 5.0-dev\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -242,7 +242,7 @@ msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
 msgstr ""
-"גרמפס היא תוכנת גנאולוגיה שמיועדת לגנאולוגים חובבים ולגנאולוגים מקצועיים גם "
+"גרמפס הוא תוכנת גנאולוגיה שמיועדת לגנאולוגים חובבים ולגנאולוגים מקצועיים גם "
 "יחד, בזכות התכונות הרבות וממשק המשתמש הנוח."
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:8
@@ -327,9 +327,9 @@ msgid ""
 "Actually you can add any type of file like this, useful for scans of "
 "documents and other digital sources."
 msgstr ""
-"<b>הוספת תמונות<br/></b>ניתן להוסיף תמונה לכל גלריה או תצוגת מדיה בעזרת "
-"גרירה ושחרור שלה מתוך מנהל הקבצים או דפדפן המרשתת. למעשה, ניתן להוסיף כך כל "
-"סוג קובץ. שימושי במיוחד עבור לסריקת מסמכים ומקורות דיגיטליים אחרים."
+"<b>הוספת תמונות<br/></b>ניתן להוסיף תמונה לכל גלריה או מצג מדיה בעזרת גרירה "
+"ושחרור התמונה ממנהל הקבצים או דפדפן המרשתת. למעשה, ניתן להוסיף כך כל סוג "
+"קובץ. שימושי במיוחד עבור סריקת מסמכים ומקורות דיגיטליים אחרים."
 
 #: ../data/tips.xml:10
 msgid ""
@@ -394,17 +394,17 @@ msgid ""
 "enter."
 msgstr ""
 "<b>איתור אנשים<br/></b>כברירת מחדל, כל שם משפחה בתצוגת 'אנשים' מופיע פעם אחת "
-"בלבד. בהקשה על החץ שמשמאל לשם, הרשימה תתרחב ותציג את כל האנשים בשם משפחה זה. "
-"כדי לאתר שם משפחה מרשימה ארוכה, נא לבחור שם משפחה (לא אדם) ולהתחיל להקליד. "
-"הסמן ידלג לשם המשפחה הראשון התואם את האותיות שהוזנו."
+"בלבד. בהקשה על החץ משמאל לשם, הרשימה תורחב וכל האנשים בשם משפחה זה יוצגו. "
+"לאיתור שם משפחה מרשימה ארוכה, נא להתחיל להקלידל את שם המשפחה (לא אדם) . הסמן "
+"ימוקם על שם המשפחה הראשון ברשימה שתואם את האותיות שהוזנו."
 
 #: ../data/tips.xml:20
 msgid ""
 "<b>The Family View</b><br/>The Family View is used to display a typical "
 "family unit as two parents and their children."
 msgstr ""
-"<b>תצוגת משפחה<br/></b>תצוגת המשפחה משמשת להצגת יחידה משפחתית טיפוסית, של "
-"שני הורים וצאצאיהם."
+"<b>מצג משפחה<br/></b>תצוגת המשפחה משמשת להצגת יחידה משפחתית טיפוסית, בת שני "
+"הורים וצאצאיהם."
 
 #: ../data/tips.xml:22
 msgid ""
@@ -439,7 +439,7 @@ msgid ""
 "finding duplicate people, interactive descendant browser, and many others. "
 "All tools can be accessed through the \"Tools\" menu."
 msgstr ""
-"<b>כלי גרמפס<br/></b>גרמפס מגיע עם ערכת כלים עשירה המאפשרים לבצע פעולות "
+"<b>כלי גרמפס<br/></b>גרמפס מגיע עם ערכת כלים עשירה שמאפשרים לבצע פעולות "
 "כגון, בדיקת מסד הנתונים לאיתור שגיאות ועקביות. קיימים כלי מחקר וניתוח כגון, "
 "השוואת אירועים, מציאת אנשים כפולים, דפדפן צאצא הידודי וכלים רבים אחרים. ניתן "
 "לגשת לכלים מתפריט 'כלים'."
@@ -955,10 +955,10 @@ msgid ""
 "happened, and how descendants might have been shaped by the events they went "
 "through. Narratives go a long way in making your family history come alive."
 msgstr ""
-"<b>ה'כיצד ומדוע' של הגנאלוגיה<br/></b>גנאלוגיה אינה רק על תאריכים ושמות. זה "
-"על אנשים. לכן חשוב לעשות שימוש בשפה תיאורית לרבות מדוע דברים קרו, וכיצד "
-"השפיעו האירועים שחלפו על עיצוב חיי הצאצאים. סִפֵּר טוב תורם בהפיכת ההיסטוריה "
-"המשפחתית לחיה ומוחשית."
+"<b>ה'כיצד ומדוע' של הגנאלוגיה<br/></b>גנאלוגיה אינה רק 'תאריכים ושמות'. היא "
+"עוסקת באנשים. לכן חשוב להשתמש בשפה תיאורית לרבות תיאור הסיבות לקרות האירועים "
+"שקרו, וכיצד הם השפיעו על עיצוב חיי הדורות הבאים. סִפֵּר טוב הוא זה שהופך "
+"היסטוריה משפחתית לחווית סיפור חי ומוחשי."
 
 #: ../data/tips.xml:114
 msgid ""
@@ -3184,7 +3184,7 @@ msgstr "%(n1)6d  אירועים        עודכנו ב־%(n2)6d מובאות ב�
 #, python-format
 msgid ""
 "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr "%(n1)6d  אוביקטי מדיה עודכנו ב־%(n2)6d מובאות ב־%(n3)6d שניות\n"
+msgstr "%(n1)6d  עצמי מדיה עודכנו ב־%(n2)6d מובאות ב־%(n3)6d שניות\n"
 
 #: ../gramps/gen/db/upgrade.py:380
 #, python-format
@@ -3748,7 +3748,7 @@ msgstr "כל מובאה"
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:46
 msgid "Matches every citation in the database"
-msgstr "שליפת כל המובאות במסד הנתונים"
+msgstr "שליפת כל המובאות ממסד הנתונים"
 
 #: ../gramps/gen/filters/rules/citation/_changedsince.py:45
 #: ../gramps/gen/filters/rules/event/_changedsince.py:46
@@ -3776,14 +3776,14 @@ msgstr "אך לפני:"
 
 #: ../gramps/gen/filters/rules/citation/_changedsince.py:46
 msgid "Citations changed after <date time>"
-msgstr "מובאות שונו לאחר <תאריך שעה>"
+msgstr "מובאות ששונו לאחר <תאריך שעה>"
 
 #: ../gramps/gen/filters/rules/citation/_changedsince.py:47
 msgid ""
 "Matches citation records changed after a specified date-time (yyyy-mm-dd hh:"
 "mm:ss) or in the range, if a second date-time is given."
 msgstr ""
-"שליפת רשומות מובאה שהשתנו לאחר תאריך–שעה שצוינו (yyyy-mm-dd hh: mm: ss) או "
+"שליפת רשומות מובאה ששונו לאחר תאריך־שעה שצוינו (yyyy-mm-dd hh: mm: ss) או "
 "בטווח, במידה וסופק תאריך־שעה נוסף."
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:43
@@ -3835,7 +3835,7 @@ msgstr "רמת ודאות:"
 
 #: ../gramps/gen/filters/rules/citation/_hasgallery.py:45
 msgid "Citations with <count> media"
-msgstr "מובעות עם <מונה> מדיה"
+msgstr "מובאות עם <מונה> מדיה"
 
 #: ../gramps/gen/filters/rules/citation/_hasgallery.py:46
 msgid "Matches citations with a certain number of items in the gallery"
@@ -3876,11 +3876,11 @@ msgstr "שליפת מובאות שההערות שלהן מכילות מלל הת
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:43
 msgid "Citations with a reference count of <count>"
-msgstr "מובאות עם מונה הפניות <מונה>"
+msgstr "מובאות עם <מונה> הפניות"
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:44
 msgid "Matches citations with a certain reference count"
-msgstr "שליפת מובאות עם מונה הפניות מסוים"
+msgstr "שליפת מובאות עם מספר הפניות מסוים"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:48
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:46
@@ -3945,7 +3945,7 @@ msgstr "מובאה עם מקור <מזהה>"
 
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:47
 msgid "Matches a citation with a source with a specified Gramps ID"
-msgstr "שליפת מובאה עם מקור עם מזהה גרמפס שצוין"
+msgstr "‪שליפת מובאה עם מקור עם מזהה גרמפס שצוין"
 
 #: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:52
 msgid "Citations having source notes containing <text>"
@@ -4004,7 +4004,7 @@ msgstr "שם מסנן מאגר:"
 msgid ""
 "Citations with a source with a repository reference matching the <repository "
 "filter>"
-msgstr "מובאות עם מקור והפניה למאגר, התואמים את <מסנן מאגר>"
+msgstr "מובאות עם מקור והפניה למאגר, התואמים ל<מסנן מאגר>"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:48
 msgid ""
@@ -4014,7 +4014,7 @@ msgstr "שליפת מובאות עם מקורות עם הפנית מאגר שת�
 
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:49
 msgid "Citations with source matching the <source filter>"
-msgstr "מובאות עם מקורות התואמים ל־ <מסנן מקור>"
+msgstr "מובאות עם מקורות התואמים ל<מסנן מקור>"
 
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:50
 msgid ""
@@ -5728,7 +5728,7 @@ msgstr "בתאריך:"
 
 #: ../gramps/gen/filters/rules/person/_probablyalive.py:45
 msgid "People probably alive"
-msgstr "אנשים שכנראה בחיים"
+msgstr "אנשים כנראה בחיים"
 
 #: ../gramps/gen/filters/rules/person/_probablyalive.py:46
 msgid "Matches people without indications of death that are not too old"
@@ -8940,7 +8940,7 @@ msgstr "חיפוש…"
 
 #: ../gramps/gen/merge/mergecitationquery.py:61
 msgid "Merge Citation"
-msgstr "מיזוג המובאה"
+msgstr "מיזוג מובאה"
 
 #: ../gramps/gen/merge/mergeeventquery.py:59
 msgid "Merge Event Objects"
@@ -11417,7 +11417,7 @@ msgstr "צבעים אחרים"
 
 #: ../gramps/gui/configure.py:726
 msgid "Background for Alive"
-msgstr "רקע לחי"
+msgstr "רקע לאדם 'חי'"
 
 #: ../gramps/gui/configure.py:727
 msgid "Background for Dead"
@@ -11425,7 +11425,7 @@ msgstr "רקע לנפטר"
 
 #: ../gramps/gui/configure.py:728
 msgid "Border for Alive"
-msgstr "מסגרת עבור 'חי(ה)'"
+msgstr "מסגרת לאדם 'חי'"
 
 #: ../gramps/gui/configure.py:729
 msgid "Border for Dead"
@@ -11723,7 +11723,7 @@ msgstr "תאריך 'לפני', טווח שנים: (תאריך - #)"
 
 #: ../gramps/gui/configure.py:1546
 msgid "Maximum age probably alive"
-msgstr "גיל מרבי של אנשים שעדיין בחיים"
+msgstr "גיל מרביל כנראה בחיים"
 
 #: ../gramps/gui/configure.py:1550
 msgid "Maximum sibling age difference"
@@ -11912,7 +11912,7 @@ msgstr "היכן לבדוק"
 
 #: ../gramps/gui/configure.py:1727
 msgid "Do not ask about previously notified addons"
-msgstr "לא לשאול על תוספים שדווחו בעבר"
+msgstr "לא לשאול על תוספים שכבר הותראו בעבר"
 
 #: ../gramps/gui/configure.py:1732
 msgid "Check for updated addons now"
@@ -13049,10 +13049,10 @@ msgid ""
 "\n"
 "To edit this citation, you need to close the object."
 msgstr ""
-"אין אפשרות ליצור כעת מובאה זו. ייתכן שאובייקט המקור המשויך נמצא בעריכה, או "
-"שמובאה אחרת המשויכת לאותו מקור נמצאת בעריכה.\n"
+"לא ניתן ליצור כעת מובאה זו. ייתכן שעצם המקור המשויך נמצא בעריכה, או שמובאה "
+"אחרת המשויכת לאותו מקור נמצאת בעריכה.\n"
 "\n"
-"כדי לערוך מובאה זו, יש לסגור את האובייקט."
+"כדי לערוך מובאה זו, יש לסגור את העצם."
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:64
 msgid "Add a new family event"
@@ -13578,9 +13578,9 @@ msgid ""
 "location of the information referenced within the source in the 'Volume/"
 "Page' field."
 msgstr ""
-"מקור הוא כול דבר (עדות אישית, הקלטת וידאו, צילום, טור בעיתון, צוואה, "
-"מצבה...) שממנו ניתן לגזור מידע. כדי ליצור מובאה, נא לבחור תחילה את המקור "
-"הנדרש ולאחר מכן תיעוד מיקום המידע המופנה בתוך המקור בשדה 'כרך/עמוד'."
+"מקור הוא כל דבר (עדות אישית, הקלטת וידאו, צילום, טור בעיתון, צוואה, מצבה...) "
+"שממנו ניתן לגזור מידע. כדי ליצור מובאה, נא לבחור תחילה את המקור הנדרש ולאחר "
+"מכן תיעוד מיקום המידע המופנה בתוך המקור בשדה 'כרך/עמוד'."
 
 #: ../gramps/gui/editors/editcitation.py:322
 msgid "Cannot save citation. ID already exists."
@@ -14874,7 +14874,7 @@ msgstr "הסרת מקום"
 
 #: ../gramps/gui/editors/objectentries.py:341
 msgid "To select a source, use drag-and-drop or use the buttons"
-msgstr "לבחירת הערה, נא להשתמש בגרור-שחרר או בלחצנים"
+msgstr "לבחירת הערה, נא להשתמש בגרירה ושחרור או בלחצנים"
 
 #: ../gramps/gui/editors/objectentries.py:343
 msgid "First add a source using the button"
@@ -17667,11 +17667,11 @@ msgid ""
 "so that you can paste it into the form on the bug tracking website and "
 "review exactly what information you want to include."
 msgstr ""
-"זהו סייען דיווח התקלים. תפקידו לסייע בדווח תקלים, באופן מפורט ככול הניתן, "
-"לצוות הפתוח של גרמפס.\n"
+"זהו הסייען לדיווח תקלים. תפקידו לסייע בדווח תקלים לצוות פתוח גרמפס, באופן "
+"מפורט ככול הניתן.\n"
 "\n"
 "הסייען ישאל מספר שאלות ויאסוף מידע על השגיאה שהתרחשה וסביבת העבודה. עם סיום "
-"פעולת הסייען אפשר יהיה להגיש דוח תקלים במערכת מעקב התקלים של גרמפס. הסייען "
+"פעולת הסייען, ניתן יהיה להגיש דוח תקלים במערכת מעקב התקלים של גרמפס. הסייען "
 "ימקם את דוח התקלים על גבי לוח־הגזירים כך שיתאפשר להדביק אותו לטופס באתר "
 "המרשתת של מעקב אחר התקלים ולסקור מה מהמידע שהופק ויכלל בדוח."
 
@@ -26981,13 +26981,12 @@ msgstr "נקבר ב־%(burial_date)s ב־%(burial_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was buried on %(burial_date)s in %(burial_place)s"
 "%(endnotes)s."
-msgstr ""
-"%(female_name)s נקברה ב־%(burial_date)s ב־%(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s קבורה ב־%(burial_date)s ב־%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:466
 #, python-format
 msgid "She was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr "נקברה ב־%(burial_date)s ב־%(burial_place)s%(endnotes)s."
+msgstr "קבורה ב־%(burial_date)s ב־%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:469
 #, python-format
@@ -26995,8 +26994,8 @@ msgid ""
 "%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s נקבר ב־%(burial_date)s ב־%(burial_place)s"
-"%(endnotes)s."
+"‮%(unknown_gender_name)s נקבר ב־%(burial_date)s "
+"ב־%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:470
 #, python-format
@@ -27022,12 +27021,12 @@ msgstr "נקבר ב־%(burial_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:481
 #, python-format
 msgid "%(female_name)s was buried on %(burial_date)s%(endnotes)s."
-msgstr "%(female_name)s נקברה ב־%(burial_date)s%(endnotes)s."
+msgstr "%(female_name)s קבורה ב־%(burial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:482
 #, python-format
 msgid "She was buried on %(burial_date)s%(endnotes)s."
-msgstr "נקברה ב־%(burial_date)s%(endnotes)s."
+msgstr "קבורה ב־%(burial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:485
 #, python-format
@@ -27059,12 +27058,12 @@ msgstr "נקבר ב־%(month_year)s ב־%(burial_place)s%(endnotes)s."
 #, python-format
 msgid ""
 "%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "%(female_name)s נקברה %(month_year)s ב־%(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s קבורה %(month_year)s ב־%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:498
 #, python-format
 msgid "She was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "נקברה ב־%(month_year)s ב־%(burial_place)s%(endnotes)s."
+msgstr "קבורה ב־%(month_year)s ב־%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:501
 #, python-format
@@ -27098,12 +27097,12 @@ msgstr "נקבר ב־%(month_year)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:513
 #, python-format
 msgid "%(female_name)s was buried in %(month_year)s%(endnotes)s."
-msgstr "%(female_name)s נקברה ב־%(month_year)s%(endnotes)s."
+msgstr "%(female_name)s קבורה ב־%(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:514
 #, python-format
 msgid "She was buried in %(month_year)s%(endnotes)s."
-msgstr "נקברה ב־%(month_year)s%(endnotes)s."
+msgstr "קבורה ב־%(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:517
 #, python-format
@@ -27135,13 +27134,12 @@ msgstr "נקבר %(modified_date)s ב־%(burial_place)s%(endnotes)s."
 #, python-format
 msgid ""
 "%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"%(female_name)s נקברה %(modified_date)s ב־%(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s קבורה %(modified_date)s ב־%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:530
 #, python-format
 msgid "She was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "נקברה %(modified_date)s ב־%(burial_place)s%(endnotes)s."
+msgstr "קבורה %(modified_date)s ב־%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:533
 #, python-format
@@ -27176,12 +27174,12 @@ msgstr "נקבר %(modified_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:545
 #, python-format
 msgid "%(female_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr "%(female_name)s נקברה %(modified_date)s%(endnotes)s."
+msgstr "%(female_name)s קבורה %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:546
 #, python-format
 msgid "She was buried %(modified_date)s%(endnotes)s."
-msgstr "נקברה %(modified_date)s%(endnotes)s."
+msgstr "קבורה %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:549
 #, python-format
@@ -27211,12 +27209,12 @@ msgstr "נקבר ב־%(burial_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:561
 #, python-format
 msgid "%(female_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr "%(female_name)s נקברה ב־%(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s קבורה ב־%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:562
 #, python-format
 msgid "She was buried in %(burial_place)s%(endnotes)s."
-msgstr "נקברה ב־%(burial_place)s%(endnotes)s."
+msgstr "קבורה ב־%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:565
 #, python-format
@@ -27246,12 +27244,12 @@ msgstr "נקבר %(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:577
 #, python-format
 msgid "%(female_name)s was buried%(endnotes)s."
-msgstr "%(female_name)s נקברה %(endnotes)s."
+msgstr "%(female_name)s קבורה %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:578
 #, python-format
 msgid "She was buried%(endnotes)s."
-msgstr "נקברה %(endnotes)s."
+msgstr "קבורה %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:581
 #, python-format
@@ -27977,7 +27975,7 @@ msgstr "היא בתה של %(father)s ו־%(mother)s."
 #: ../gramps/plugins/lib/libnarrate.py:888
 #, python-format
 msgid "She was the daughter of %(father)s and %(mother)s."
-msgstr "בתה של %(father)s ו־%(mother)s."
+msgstr "הבת של %(father)s ו־%(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:890
 #, python-format
@@ -28052,7 +28050,7 @@ msgstr "היא בתו של %(father)s."
 #: ../gramps/plugins/lib/libnarrate.py:924
 #, python-format
 msgid "She was the daughter of %(father)s."
-msgstr "בתו של %(father)s."
+msgstr "הבת של %(father)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:926
 #, python-format
@@ -30396,7 +30394,7 @@ msgid ""
 "Living matches: %(alive)d, Deceased matches: %(dead)d\n"
 msgstr ""
 "\n"
-"שליפת אנשים חיים: %(alive)d, שליפת נפטרים: %(dead)d\n"
+"שליפת חיים: %(alive)d, שליפת נפטרים: %(dead)d\n"
 
 #: ../gramps/plugins/quickview/all_events.py:57
 #, python-format
@@ -37389,8 +37387,8 @@ msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
 "probably alive' which is defined in the dates preference tab."
 msgstr ""
-"הצגת נתונים רק לאחר שנה זו -  'מספר שנים מרבי לאדם חי' המוגדר בלשונית העדפות "
-"התאריך."
+"הצגת נתונים לאחר שנה זו בלבד. ברירת מחדל היא שנה נוכחית –  'מספר שנים מרבי "
+"ל'כנראה בחיים'' שמוגדר בלשונית' העדפות תאריך'."
 
 #: ../gramps/plugins/webreport/person.py:150
 msgid "Creating individual pages"
