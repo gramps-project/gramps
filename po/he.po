@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
 "PO-Revision-Date: 2023-07-03 14:09+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -4734,7 +4734,7 @@ msgstr "עצמי מדיה עם הערות המכילות <מלל>"
 #: ../gramps/gen/filters/rules/media/_hasnoteregexp.py:42
 msgid ""
 "Matches media objects whose notes contain text matching a regular expression"
-msgstr "שליפת עצמי מדיה שההערות שלהם מכילות מלל התואמים לביטוי רגיל"
+msgstr "שליפת עצמי מדיה שההערות שלהם מכילות מלל התואמים לביטוי רגולרי"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:42
 msgid "Media objects with a reference count of <count>"
@@ -13165,7 +13165,7 @@ msgstr ""
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:578
 #: ../gramps/plugins/view/mediaview.py:194
 msgid "Drag Media Object"
-msgstr "גרור עצם מדיה"
+msgstr "גרירת עצם מדיה"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:51
 msgid "Create and add a new LDS ordinance"
@@ -23404,16 +23404,16 @@ msgstr "שמות משפחה יחידאיים"
 #: ../gramps/plugins/textreport/summary.py:299
 #: ../gramps/plugins/webreport/statistics.py:139
 msgid "Media Objects"
-msgstr "עצםי מדיה"
+msgstr "עצמי מדיה"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:181
 msgid "Individuals with media objects"
-msgstr "אנשים עם עצמי מדי"
+msgstr "אנשים עם עצמי מדיה"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:185
 #: ../gramps/plugins/webreport/statistics.py:141
 msgid "Total number of media object references"
-msgstr "סך־כל הפניות לעצםי מדיה"
+msgstr "סך־כל הפניות לעצמי מדיה"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:189
 #: ../gramps/plugins/webreport/statistics.py:143
@@ -23429,7 +23429,7 @@ msgstr "סך־כל נפח עצמי מדיה"
 #: ../gramps/plugins/textreport/summary.py:329
 #: ../gramps/plugins/webreport/statistics.py:149
 msgid "Missing Media Objects"
-msgstr "עצםי מדיה חסרים"
+msgstr "עצמי מדיה חסרים"
 
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:66
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:50
@@ -25184,8 +25184,8 @@ msgid ""
 "Enable/Disable\n"
 "all object tags."
 msgstr ""
-"אפשור/נטרול\n"
-"כל תגיות העצמים."
+"אפשור/השבתה\n"
+"של כל תגיות העצמים."
 
 #: ../gramps/plugins/importer/importprogen.glade:1198
 msgid "Tag Text"
@@ -36546,7 +36546,7 @@ msgstr "עצםי מדיה חסרים:"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:587
 msgid "Constructing list of other objects..."
-msgstr "בניית רשימה של עצמים אחרים..."
+msgstr "בניית רשימה של עצמים אחרים…"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:844
 #, python-format
