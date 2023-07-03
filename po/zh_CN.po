@@ -12,13 +12,14 @@
 # poi <erbaotao@outlook.com>, 2022.
 # 张子涵 <zhangzihanzhangzihan@live.com>, 2023.
 # linluoxue <linluomoxue@foxmail.com>, 2023.
+# 快乐的老鼠宝宝 <keaitianxinmail@qq.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-04-14 08:48+0000\n"
-"Last-Translator: linluoxue <linluomoxue@foxmail.com>\n"
+"PO-Revision-Date: 2023-06-27 13:52+0000\n"
+"Last-Translator: 快乐的老鼠宝宝 <keaitianxinmail@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -26,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 4.18.1\n"
 "X-Poedit-Bookmarks: 6522,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -123,7 +124,7 @@ msgstr "犹太教的新年"
 
 #: ../data/holidays.xml:369
 msgid "Rosh Ha'Shana 2"
-msgstr "罗斯哈沙纳2"
+msgstr ""
 
 #: ../data/holidays.xml:370
 msgid "Yom Kippur"
@@ -131,7 +132,7 @@ msgstr "『犹太教』赎罪日"
 
 #: ../data/holidays.xml:371
 msgid "Sukot"
-msgstr "苏克特节"
+msgstr ""
 
 #: ../data/holidays.xml:372
 msgid "2 of Sukot"
@@ -380,19 +381,15 @@ msgstr ""
 "“应用”。如果筛查器边栏不可见，选择 “视图 &gt; 筛查器”。"
 
 #: ../data/tips.xml:16
-#, fuzzy
-#| msgid ""
-#| "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
-#| "'invert' option. For instance, by inverting the 'People with children' "
-#| "filter you can select all people without children."
 msgid ""
 "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
 "'invert' option \"Return values that do not match the filter rules\". For "
 "instance, by inverting the 'People with children' filter you can select all "
 "people without children."
 msgstr ""
-"<b>倒置的筛查器</b><br/>筛查器使用“倒置”选项可以很容易转换。比如，通过转换“有"
-"孩子的成员”筛查，您可以选择所有没有孩子的成员。"
+"<b>反向的筛查器</b><br/>筛查器使用“反向”选项返回“返回与过滤规则不匹配的值”可"
+"以很容易反转过滤器。比如，通过转换“有孩子的成员”筛查，您可以选择所有没有孩子"
+"的成员。"
 
 #: ../data/tips.xml:18
 msgid ""
@@ -852,27 +849,18 @@ msgstr ""
 "择整个数据库、家庭线或者选中的成员，生成一系列的网页，上传到您的家谱网站上。"
 
 #: ../data/tips.xml:94
-#, fuzzy
-#| msgid ""
-#| "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in "
-#| "Gramps is to use the Gramps bug tracking system at https://gramps-project."
-#| "org/bugs/"
 msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
 "is to use the Gramps bug tracking system at https://gramps-project.org/bugs/."
 msgstr ""
-"<b>汇报 Gramps 的错误</b><br/>汇报 Gramps 错误的最有效的方式是，登录 https://"
-"gramps-project.org/bugs/ 使用 Gramps 的报告追踪系统"
+"<b>汇报 Gramps 的错误</b><br/>汇报 Gramps 错误的最有效的方式是，登录 https"
+"://gramps-project.org/bugs/ 使用 Gramps 的报告追踪系统。"
 
 #: ../data/tips.xml:96
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
-#| "project.org/"
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
 "project.org/."
-msgstr "<b>Gramps 主页</b><br/>Gramps 主页是 http://gramps-project.org/"
+msgstr "<b>Gramps 主页</b><br/>Gramps 主页是 http://gramps-project.org/ 。"
 
 #: ../data/tips.xml:98
 msgid ""
@@ -2849,7 +2837,7 @@ msgstr "塔尼娅节"
 #: ../gramps/gen/datehandler/_datestrings.py:194
 msgctxt "Islamic month lexeme"
 msgid "Rajab"
-msgstr "拉贾布"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:195
 msgctxt "Islamic month lexeme"
@@ -2893,12 +2881,12 @@ msgstr "鄂迪贝希特"
 #: ../gramps/gen/datehandler/_datestrings.py:210
 msgctxt "Persian month lexeme"
 msgid "Khordad"
-msgstr "霍达德"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:211
 msgctxt "Persian month lexeme"
 msgid "Tir"
-msgstr "射击"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:212
 msgctxt "Persian month lexeme"
@@ -9748,7 +9736,7 @@ msgstr "左 (←)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:84
 msgid "Perpendicular"
-msgstr "垂直"
+msgstr "直角"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:85
 msgid "Rounded"
@@ -11238,7 +11226,8 @@ msgstr ""
 "十分感谢！\n"
 "YH Tan, 2014\n"
 "霍东灵 Anthony Fok <foka@debian.org>, 2015\n"
-"Shixiong Tian <tiansworld@fedoraproject.org>, 2020, 2021"
+"Shixiong Tian <tiansworld@fedoraproject.org>, 2020, 2021\n"
+"快乐的老鼠宝宝 LaoshuBaby <laoshubaby@protonmail.com>, 2022, 2023"
 
 #: ../gramps/gui/aboutdialog.py:131
 #, python-format
