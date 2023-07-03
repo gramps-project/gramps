@@ -574,8 +574,8 @@ def get_contrast_color(color):
     """
     yiq = (color[0]*299)+(color[1]*587)+(color[2]*114)
     if (yiq < 500):
-        return (1, 1, 1)  # 'white'
-    return (0, 0, 0)      # 'black'
+        return (1.0, 1.0, 1.0)  # 'white'
+    return (0.0, 0.0, 0.0)      # 'black'
 
 def get_link_color(context):
     """
