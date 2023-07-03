@@ -5,13 +5,14 @@
 # Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>, 2019, 2021, 2022, 2023.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # Omer I.S. <omeritzicschwartz@gmail.com>, 2021, 2022, 2023.
+# Yaron Shahrabani <sh.yaron@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
 "PO-Revision-Date: 2023-07-03 06:27+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -251,7 +252,7 @@ msgid ""
 "individual as well as the complex relationships between various people, "
 "places and events."
 msgstr ""
-"התוכנה מספקת יכולות לתעוד פרטי מידע רבים בחיי אדם, כמו גם קשרי־גומלין "
+"התוכנה מספקת יכולות לתיעוד פרטי מידע רבים בחיי אדם, כמו גם קשרי־גומלין "
 "מורכבים בין אנשים שונים, מקומות ואירועים."
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:9
