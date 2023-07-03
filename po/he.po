@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
 "PO-Revision-Date: 2023-07-03 07:20+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -4666,7 +4666,7 @@ msgstr "תכונת מדיה:"
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:45
 msgid "Media objects with the attribute <attribute>"
-msgstr "אובייקטי מדיה בעלות התכונה <תכונה>"
+msgstr "עצמי מדיה בעלי התכונה <תכונה>"
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:46
 msgid "Matches media objects with the attribute of a particular value"
