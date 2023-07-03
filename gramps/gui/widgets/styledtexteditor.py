@@ -402,7 +402,8 @@ class StyledTextEditor(Gtk.TextView):
         self.match = self.textbuffer.match_check(iter_at_location.get_offset())
         tooltip = None
         for tag in (tag for tag in iter_at_location.get_tags()
-                    if tag.get_property('name').startswith("link")):
+                    if tag.get_property('name') is not None and
+                        tag.get_property('name').startswith("link")):
             self.match = (x, y, LINK, tag.data, tag)
             tooltip = self.make_tooltip_from_link(tag)
             break
@@ -808,7 +809,7 @@ class StyledTextEditor(Gtk.TextView):
         """
         Remove all formats from the selection or from all.
 
-        Remove only our own tags without touching other ones (e.g. Gtk.Spell),
+        Remove only our own tags without touching other ones (e.g. Gspell),
         thus remove_all_tags() can not be used.
         """
         clear_anything = self.textbuffer.clear_selection()

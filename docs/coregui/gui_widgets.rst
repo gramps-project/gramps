@@ -302,7 +302,7 @@ Styled Text Buffer
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: GtkSpellState
+.. autoclass:: GspellState
    :members:
    :undoc-members:
    :show-inheritance:

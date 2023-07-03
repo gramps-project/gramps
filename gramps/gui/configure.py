@@ -71,7 +71,7 @@ from .display import display_help
 from gramps.gen.plug.utils import available_updates
 from .plug import PluginWindows
 #from gramps.gen.errors import WindowActiveError
-from .spell import HAVE_GTKSPELL
+from .spell import HAVE_GSPELL
 from gramps.gen.constfunc import win
 _ = glocale.translation.gettext
 from gramps.gen.utils.symbols import Symbols
@@ -1654,14 +1654,14 @@ class GrampsPreferences(ConfigureDialog):
                                 row, 'behavior.spellcheck', start=1, stop=3,
                                 tooltip=_("Enable the spelling checker"
                                           " for notes."))
-        if not HAVE_GTKSPELL:
+        if not HAVE_GSPELL:
             obj.set_sensitive(False)
             spell_dict = {'gramps_wiki_build_spell_url':
                           URL_WIKISTRING +
                           "GEPS_029:_GTK3-GObject_introspection"
                           "_Conversion#Spell_Check_Install"}
             obj.set_tooltip_text(
-                _("GtkSpell not loaded. "
+                _("Gspell not loaded. "
                   "Spell checking will not be available.\n"
                   "To build it for Gramps see "
                   "%(gramps_wiki_build_spell_url)s") % spell_dict)

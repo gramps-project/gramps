@@ -790,6 +790,8 @@ class GrampsLocale:
         """
         return self.language
 
+    def locale_code(self):
+        return self.lang
 
     def get_addon_translator(self, filename, domain="addon",
                              languages=None):

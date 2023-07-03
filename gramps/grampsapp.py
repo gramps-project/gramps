@@ -363,53 +363,12 @@ def show_settings():
     def verstr(nums):
         return '.'.join(str(num) for num in nums)
 
-    #GTKSPELL_MIN_VER = (3, 0)
-    #gtkspell_min_ver_str = verstr(GTKSPELL_MIN_VER)
-    # ENCHANT_MIN_VER = (0, 0)  # TODO ?
-    gtkspell_ver_tp = (0, 0)
-    # Attempting to import gtkspell gives an error dialog if gtkspell is
-    # not available so test first and log just a warning to the console
-    # instead.
     try:
-        from gi import Repository
-        repository = Repository.get_default()
-        gtkspell_ver = _("not found")
-        if repository.enumerate_versions("GtkSpell"):
-            try:
-                gi.require_version('GtkSpell', '3.0')
-                from gi.repository import GtkSpell as Gtkspell
-                gtkspell_ver = str(Gtkspell._version)
-                aaa = Gtkspell._version.split(".")
-                v1 = int(aaa[0])
-                v2 = int(aaa[1])
-                gtkspell_ver_tp = (v1, v2)
-                # print("gtkspell_ver " + gtkspell_ver)
-            except Exception:
-                gtkspell_ver = _("not found")
-        elif repository.enumerate_versions("Gtkspell"):
-            try:
-                gi.require_version('Gtkspell', '3.0')
-                from gi.repository import Gtkspell
-                gtkspell_ver = str(Gtkspell._version)
-                gtkspell_ver_tp = Gtkspell._version
-                # print("gtkspell_ver " + gtkspell_ver)
-            except Exception:
-                gtkspell_ver = _("not found")
+        gi.require_version('Gspell', '1')
+        from gi.repository import Gspell
+        gspell_ver = str(Gspell._version)
     except Exception:
-        gtkspell_ver = _("not found")
-
-    try:
-        import enchant
-        enchant_result = enchant.get_enchant_version()
-    except Exception:
-        from ctypes import cdll, c_char_p
-        try:
-            enchant = cdll.LoadLibrary("libenchant")
-        except FileNotFoundError:
-            enchant = cdll.LoadLibrary("libenchant-2")
-        enchant_ver_call = enchant.enchant_get_version
-        enchant_ver_call.restype = c_char_p
-        enchant_result = enchant_ver_call().decode("utf-8")
+        gspell_ver = _("not found")
 
     #RCS_MIN_VER = (5, 9, 4)
     #rcs_ver_str = verstr(RCS_MIN_VER)
@@ -539,8 +498,7 @@ def show_settings():
     print('')
     print("Optional:")
     print("---------")
-    print(' Gtkspell   :', gtkspell_ver)
-    print(' Enchant    :', enchant_result)
+    print(' Gspell     :', gspell_ver)
     print(' RCS        :', rcs_ver)
     print(' PILLOW     :', pil_ver)
     print(' GExiv2     : %s' % gexiv2_str)

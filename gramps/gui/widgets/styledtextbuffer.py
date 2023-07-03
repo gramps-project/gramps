@@ -116,15 +116,15 @@ class LinkTag(Gtk.TextTag):
 
 #-------------------------------------------------------------------------
 #
-# GtkSpellState class
+# GspellState class
 #
 #-------------------------------------------------------------------------
-class GtkSpellState:
+class GspellState:
     """
     A simple state machine kinda thingy.
 
-    Trying to track Gtk.Spell activities on a buffer and re-apply formatting
-    after Gtk.Spell replaces a misspelled word.
+    Trying to track Gspell activities on a buffer and re-apply formatting
+    after Gspell replaces a misspelled word.
     """
     (STATE_NONE,
      STATE_CLICKED,
@@ -180,10 +180,10 @@ class GtkSpellState:
 
     def get_word_extents_from_mark(self, textbuffer, mark):
         """
-        Get the word extents as Gtk.Spell does.
+        Get the word extents as Gspell does.
 
         Used to get the beginning of the word, in which user right clicked.
-        Formatting found at that position used after Gtk.Spell replaces
+        Formatting found at that position used after Gspell replaces
         misspelled words.
         """
         start = textbuffer.get_iter_at_mark(mark)
@@ -198,7 +198,7 @@ class GtkSpellState:
 
     def forward_word_end(self, iter):
         """
-        Gtk.Spell style Gtk.TextIter.forward_word_end.
+        Gspell style Gtk.TextIter.forward_word_end.
 
         The parameter 'iter' is changing as side effect.
         """
@@ -217,7 +217,7 @@ class GtkSpellState:
 
     def backward_word_start(self, iter):
         """
-        Gtk.Spell style Gtk.TextIter.backward_word_start.
+        Gspell style Gtk.TextIter.backward_word_start.
 
         The parameter 'iter' is changing as side effect.
         """
@@ -310,8 +310,8 @@ class StyledTextBuffer(UndoableBuffer):
 
         self.linkcolor = 'blue'
 
-        # init gtkspell "state machine"
-        self.gtkspell_state = GtkSpellState(self)
+        # init gspell "state machine"
+        self.gspell_state = GspellState(self)
 
     # Virtual methods
 
@@ -385,6 +385,8 @@ class StyledTextBuffer(UndoableBuffer):
             else:
                 value = StyledTextTagType.STYLE_DEFAULT[style]
                 for tname in tag_names:
+                    if tname is None:
+                        continue
                     if tname.startswith(str(style)):
                         value = tname.split(' ', 1)[1]
                         value = StyledTextTagType.STYLE_TYPE[style](value)
@@ -612,6 +614,8 @@ class StyledTextBuffer(UndoableBuffer):
         s_tags = []
 
         for g_tagname, g_ranges in g_tags.items():
+            if g_tagname is None:
+                continue
             if g_tagname.startswith('link'):
                 tag = self.get_tag_table().lookup(g_tagname)
                 s_ranges = [(start, end+1) for (start, end) in g_ranges]

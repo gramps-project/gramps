@@ -75,11 +75,9 @@ The following packages are **STRONGLY RECOMMENDED** to be installed:
 
 The following packages are optional:
 ------------------------------------
-* **gtkspell**
+* **gspell**
 
- Enable spell checking in the notes. Gtkspell depends on
- enchant. A version of gtkspell with gobject introspection
- is needed, so minimally version 3.0.0.
+ Enable spell checking in the notes.
 
 * **rcs**
 
