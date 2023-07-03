@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
 "PO-Revision-Date: 2023-07-03 07:38+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -32989,7 +32989,7 @@ msgstr "איתור בעיות הפניות מקור"
 
 #: ../gramps/plugins/tool/check.py:1691
 msgid "Looking for media object reference problems"
-msgstr "איתור בעיות הפניות לעצםי מדיה"
+msgstr "איתור בעיות הפניות לעצמי מדיה"
 
 #: ../gramps/plugins/tool/check.py:1813
 msgid "Looking for note reference problems"
@@ -36909,11 +36909,11 @@ msgstr "חילול תמונות"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2230
 msgid "Include images and media objects"
-msgstr "הכללת תמונות ועצםי מדיה"
+msgstr "הכללת תמונות ועצמי מדיה"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2232
 msgid "Whether to include a gallery of media objects"
-msgstr "האם לכלול גלריה של עצםיי מדיה"
+msgstr "האם לכלול גלריה של עצמי מדיה"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2238
 msgid "Create the images index"
