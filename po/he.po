@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
 "PO-Revision-Date: 2023-07-04 12:24+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -33137,8 +33137,10 @@ msgstr[1] "{quantity} עצמי מדיה הופנו אך לא נמצאו\n"
 #, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} missing media objects were kept\n"
-msgstr[0] "הפניה {quantity} לעצם מדיה חסר נשמר\n"
-msgstr[1] "{quantity} הפניות לעצמי מדיה חסרים נשמרו\n"
+msgstr[0] ""
+"הפניה {quantity} לעצם מדיה חסר נשמר\n"
+"{quantity} הפניות לעצמי מדיה חסרים נשמרו\n"
+msgstr[1] ""
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2623
