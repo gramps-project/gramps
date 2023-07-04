@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-07-04 12:24+0000\n"
+"PO-Revision-Date: 2023-07-04 16:20+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -26287,7 +26287,7 @@ msgstr "‮לידה ב־%(birth_date)s."
 #: ../gramps/plugins/lib/libnarrate.py:125
 #, python-format
 msgid "Born %(birth_date)s."
-msgstr "לידה ב־ %(birth_date)s."
+msgstr "לידה ב־%(birth_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:130
 #, python-format
