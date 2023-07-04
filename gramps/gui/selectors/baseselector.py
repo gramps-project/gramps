@@ -18,7 +18,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-
+import time
+import logging
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
@@ -39,9 +40,11 @@ from ..widgets.interactivesearchbox import InteractiveSearchBox
 from ..display import display_help
 from gramps.gen.const import URL_MANUAL_PAGE
 
+_LOG = logging.getLogger("gui.selector")
+
 #-------------------------------------------------------------------------
 #
-# SelectEvent
+# Select
 #
 #-------------------------------------------------------------------------
 class BaseSelector(ManagedWindow):
@@ -61,7 +64,28 @@ class BaseSelector(ManagedWindow):
             set of handles to skip in the view, and search_bar to show the
             SearchBar at the top or not.
         """
-        self.filter = (2, filter, False)
+
+        '''
+        The model search parameter takes a tuple.
+        The first element is True for a filter, or False for a search.
+        For a filter:
+        The second element contains a Filter object.
+        A filter performs a search on the database objects.
+        For a search:
+        The second element contains a tuple of (column index, text, inversion).
+        The third element indicates if an exact search is required.
+        A filter performs a search on the displayed columns only.
+        '''
+        one = time.clock()
+
+        #from gramps.gen.filters import GenericFilterFactory, rules
+
+        # Create a filter for the selector.
+        #sfilter = GenericFilterFactory(self.namespace)()
+        #sfilter.set_logical_op('or')
+        #sfilter.add_rule(rules.classname.IsBookmarked([]))
+
+        self.filter = (1, filter, False)
 
         # Set window title, some selectors may set self.title in their __init__
         if not hasattr(self, 'title'):
@@ -80,7 +104,11 @@ class BaseSelector(ManagedWindow):
         self.glade = Glade()
 
         window = self.glade.toplevel
-        self.showall = self.glade.get_object('showall')
+        self.switch = self.glade.get_object('switch')
+        self.switch.set_state(True)
+        self.switch.connect('state-set', self._show_all)
+        self.search = self.glade.get_object('searchentry') # latency/seizure bug
+        self.search.connect('search-changed', self._search_changed)
         title_label = self.glade.get_object('title')
         vbox = self.glade.get_object('select_person_vbox')
         self.tree = self.glade.get_object('plist')
@@ -112,6 +140,8 @@ class BaseSelector(ManagedWindow):
         self.sortorder = Gtk.SortType.ASCENDING
 
         self.skip_list=skip
+        # self.filter
+        _LOG.debug(self.filter)
         self.selection = self.tree.get_selection()
         self.track_ref_for_deletion("selection")
 
@@ -122,11 +152,11 @@ class BaseSelector(ManagedWindow):
         #show or hide search bar?
         self.set_show_search_bar(show_search_bar)
         #Hide showall if no filter is specified
-        if self.filter[1] is not None:
-            self.showall.connect('toggled', self.show_toggle)
-            self.showall.show()
-        else:
-            self.showall.hide()
+        #if self.filter[1] is not None:
+            #self.showall.connect('toggled', self.show_toggle)
+            #self.showall.show()
+        #else:
+            #self.showall.hide()
         while Gtk.events_pending():
             Gtk.main_iteration()
         self.build_tree()
@@ -135,6 +165,36 @@ class BaseSelector(ManagedWindow):
 
         if default:
             self.goto_handle(default)
+
+        two = time.clock()
+        _LOG.info("BaseSelector for '%(obj)s' needs: '%(sec)s' seconds" %
+                {'obj':self.title, 'sec':two - one}
+                )
+
+    def _show_all(self, new_state_obj, was):
+        """
+        Filtering or not?
+        """
+        if was == False: # switch active = True
+            #self.showall.hide()
+            self.clear_model()
+            self.model = self.get_model_class()(self.db, self.sort_col,
+                                            self.sortorder,
+                                            sort_map=self.column_order(),
+                                            skip=[],
+                                            search=None)
+
+            self.tree.set_model(self.model)
+        else: # default filter, self.filter[1]
+            #self.showall.set_active(False)
+            #self.showall.show()
+            self.build_tree()
+
+        self._local_init
+
+    def _search_changed(self, obj):
+        text = self.search.get_text()
+        _LOG.info(text)
 
     def goto_handle(self, handle):
         """
@@ -346,7 +406,7 @@ class BaseSelector(ManagedWindow):
             self.model = None
 
     def apply_clear(self):
-        self.showall.set_active(False)
+        self.switch.set_active(False)
 
     def _cleanup_on_exit(self):
         """Unset all things that can block garbage collection.

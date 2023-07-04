@@ -34,7 +34,11 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from ..views.treemodels import SourceModel
 from .baseselector import BaseSelector
+from gramps.gen.lib.date import Today
 from gramps.gen.const import URL_MANUAL_SECT2
+
+SOURCE_DATE = Today() - 1
+
 
 #-------------------------------------------------------------------------
 #
@@ -49,11 +53,57 @@ from gramps.gen.const import URL_MANUAL_SECT2
 #-------------------------------------------------------------------------
 class SelectSource(BaseSelector):
 
+    namespace = 'Source'
+
+    def __init__(self, dbstate, uistate, track=[], title=None, filter=None,
+                 skip=set(), show_search_bar=False, default=None):
+
+        # SelectSource may have a title passed to it which should be used
+        # instead of the default defined for get_window_title()
+        if title is not None:
+            self.title = title
+
+        history = uistate.get_history(self.namespace).mru
+        active_handle = uistate.get_active(self.namespace)
+
+        # see gui.plug._guioptions
+
+        from gramps.gen.filters import GenericFilterFactory, rules
+
+        # Baseselector? rules.source.IsBookmarked?
+        # Create a filter for the family selector.
+        sfilter = GenericFilterFactory(self.namespace)()
+        sfilter.set_logical_op('or')
+        #sfilter.add_rule(rules.source.IsBookmarked([]))
+
+        # Add last edited sources.
+        sfilter.add_rule(rules.source.ChangedSince(["%s" % SOURCE_DATE, "%s" % Today()]))
+
+        # Add recent sources.
+        for handle in history:
+            recent = dbstate.db.get_source_from_handle(handle)
+            gid = recent.get_gramps_id()
+            sfilter.add_rule(rules.source.HasIdOf([gid]))
+
+        # Add bookmarked sources.
+        for handle in dbstate.db.get_source_bookmarks().get():
+            marked = dbstate.db.get_source_from_handle(handle)
+            gid = marked.get_gramps_id()
+            sfilter.add_rule(rules.source.HasIdOf([gid]))
+
+        if active_handle:
+            BaseSelector.__init__(self, dbstate, uistate, track, sfilter,
+                                  skip, show_search_bar, active_handle)
+        else:
+            BaseSelector.__init__(self, dbstate, uistate, track, sfilter,
+                                  skip, show_search_bar)
+
     def _local_init(self):
         """
         Perform local initialisation for this class
         """
         self.setup_configs('interface.source-sel', 600, 450)
+        SWITCH = self.switch.get_state()
 
     def get_window_title(self):
         return _("Select Source")
@@ -67,7 +117,7 @@ class SelectSource(BaseSelector):
             (_('Abbreviation'), 100, BaseSelector.TEXT, 3),
             (_('Author'), 200, BaseSelector.TEXT, 2),
             (_('ID'), 75, BaseSelector.TEXT, 1),
-            (_('Last Change'), 150, BaseSelector.TEXT, 7),
+            #(_('Last Change'), 150, BaseSelector.TEXT, 7),
             ]
 
     def get_from_handle_func(self):

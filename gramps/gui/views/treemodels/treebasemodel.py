@@ -462,19 +462,19 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
             else: # Fast filter
                 self.search = search[1]
                 if self.has_secondary:
-                    self.search2 = search[2]
+                    #self.search2 = search[2]
                     _LOG.debug("search2 fast filter")
                 self._build_data = self._rebuild_search
         else:
             self.search = None
             if self.has_secondary:
-                self.search2 = search[2]
+                #self.search2 = search[2]
                 _LOG.debug("search2 no search parameter")
             self._build_data = self._rebuild_search
 
         self.current_filter = self.search
         if self.has_secondary:
-            self.current_filter2 = self.search2
+            self.current_filter2 = self.current_filter
 
     def rebuild_data(self, data_filter=None, data_filter2=None, skip=[]):
         """

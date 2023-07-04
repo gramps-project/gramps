@@ -36,6 +36,8 @@ from ..views.treemodels import FamilyModel
 from .baseselector import BaseSelector
 from gramps.gen.const import URL_MANUAL_PAGE
 
+FAMILY_DATE = None
+
 #-------------------------------------------------------------------------
 #
 # Constants
@@ -49,11 +51,54 @@ from gramps.gen.const import URL_MANUAL_PAGE
 #-------------------------------------------------------------------------
 class SelectFamily(BaseSelector):
 
+    namespace = 'Family'
+
+    def __init__(self, dbstate, uistate, track=[], title=None, filter=None,
+                 skip=set(), show_search_bar=False, default=None):
+
+        # SelectFamily may have a title passed to it which should be used
+        # instead of the default defined for get_window_title()
+        if title is not None:
+            self.title = title
+
+        history = uistate.get_history(self.namespace).mru
+        active_handle = uistate.get_active(self.namespace)
+
+        # see gui.plug._guioptions
+
+        from gramps.gen.filters import GenericFilterFactory, rules
+
+        # Baseselector?
+        # Create a filter for the family selector.
+        sfilter = GenericFilterFactory(self.namespace)()
+        sfilter.set_logical_op('or')
+        sfilter.add_rule(rules.family.IsBookmarked([]))
+
+        # Add recent families.
+        for handle in history:
+            recent = dbstate.db.get_family_from_handle(handle)
+            gid = recent.get_gramps_id()
+            sfilter.add_rule(rules.family.HasIdOf([gid]))
+
+        # Add bookmarked families.
+        for handle in dbstate.db.get_family_bookmarks().get():
+            marked = dbstate.db.get_family_from_handle(handle)
+            gid = marked.get_gramps_id()
+            sfilter.add_rule(rules.family.HasIdOf([gid]))
+
+        if active_handle:
+            BaseSelector.__init__(self, dbstate, uistate, track, sfilter,
+                                  skip, show_search_bar, active_handle)
+        else:
+            BaseSelector.__init__(self, dbstate, uistate, track, sfilter,
+                                  skip, show_search_bar)
+
     def _local_init(self):
         """
         Perform local initialisation for this class
         """
         self.setup_configs('interface.family-sel', 600, 450)
+        SWITCH = self.switch.get_state()
 
     def get_window_title(self):
         return _("Select Family")
@@ -66,7 +111,7 @@ class SelectFamily(BaseSelector):
             (_('ID'),      75, BaseSelector.TEXT, 0),
             (_('Father'), 200, BaseSelector.TEXT, 1),
             (_('Mother'), 200, BaseSelector.TEXT, 2),
-            (_('Last Change'), 150, BaseSelector.TEXT, 7),
+            #(_('Last Change'), 150, BaseSelector.TEXT, 7),
             ]
 
     def get_from_handle_func(self):

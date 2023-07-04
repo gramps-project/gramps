@@ -38,6 +38,8 @@ from ..views.treemodels import PeopleBaseModel, PersonTreeModel
 from .baseselector import BaseSelector
 from gramps.gen.const import URL_MANUAL_SECT1
 
+PERSON_DATE = '2016-12-01'
+
 #-------------------------------------------------------------------------
 #
 # Constants
@@ -47,10 +49,12 @@ from gramps.gen.const import URL_MANUAL_SECT1
 
 #-------------------------------------------------------------------------
 #
-# SelectEvent
+# SelectPerson
 #
 #-------------------------------------------------------------------------
 class SelectPerson(BaseSelector):
+
+    namespace = 'Person'
 
     def __init__(self, dbstate, uistate, track=[], title=None, filter=None,
                  skip=set(), show_search_bar=False, default=None):
@@ -69,8 +73,71 @@ class SelectPerson(BaseSelector):
         else:
             self.WIKI_HELP_SEC = _('Select_Person_selector', 'manual')
 
-        BaseSelector.__init__(self, dbstate, uistate, track, filter,
-                              skip, show_search_bar, default)
+        history = uistate.get_history(self.namespace).mru
+
+        # see gui.plug._guioptions
+
+        from gramps.gen.filters import GenericFilterFactory, rules
+
+        # Baseselector?
+        # Create a filter for the person selector.
+        sfilter = GenericFilterFactory(self.namespace)()
+        sfilter.set_logical_op('or')
+        sfilter.add_rule(rules.person.IsBookmarked([]))
+
+        # Add the database home person if one exists.
+        default_person = dbstate.db.get_default_person()
+        if default_person:
+            gid = default_person.get_gramps_id()
+            sfilter.add_rule(rules.person.HasIdOf([gid]))
+
+        # Add the selected person if one exists.
+        active_handle = uistate.get_active(self.namespace)
+        if active_handle:
+            active_person = dbstate.db.get_person_from_handle(active_handle)
+            gid = active_person.get_gramps_id()
+            sfilter.add_rule(rules.person.HasIdOf([gid]))
+
+        # Add last edited people.
+        sfilter.add_rule(rules.person.ChangedSince([PERSON_DATE, ""]))
+
+        family_handle = active_person.get_main_parents_family_handle()
+        if family_handle:
+            family = dbstate.db.get_family_from_handle(family_handle)
+            father_handle = family.get_father_handle()
+            if father_handle:
+                father = dbstate.db.get_person_from_handle(father_handle)
+                fid = father.get_gramps_id()
+                sfilter.add_rule(rules.person.HasIdOf([fid]))
+            mother_handle = family.get_mother_handle()
+            if mother_handle:
+                mother = dbstate.db.get_person_from_handle(mother_handle)
+                mid = mother.get_gramps_id()
+                sfilter.add_rule(rules.person.HasIdOf([mid]))
+            sib_list = family.get_child_ref_list()
+            for sib_ref in sib_list:
+                sibling = dbstate.db.get_person_from_handle(sib_ref.ref)
+                sbid = sibling.get_gramps_id()
+                sfilter.add_rule(rules.person.HasIdOf([sbid]))
+
+        # Add recent people.
+        for handle in history:
+            recent = dbstate.db.get_person_from_handle(handle)
+            gid = recent.get_gramps_id()
+            sfilter.add_rule(rules.person.HasIdOf([gid]))
+
+        # Add bookmarked people.
+        for handle in dbstate.db.get_bookmarks().get():
+            marked = dbstate.db.get_person_from_handle(handle)
+            gid = marked.get_gramps_id()
+            sfilter.add_rule(rules.person.HasIdOf([gid]))
+
+        if filter is not None and active_handle:
+            BaseSelector.__init__(self, dbstate, uistate, track, filter,
+                              skip, show_search_bar, active_handle)
+        else:
+            BaseSelector.__init__(self, dbstate, uistate, track, sfilter,
+                              show_search_bar)
 
     def _local_init(self):
         """
@@ -78,6 +145,7 @@ class SelectPerson(BaseSelector):
         """
         self.setup_configs('interface.person-sel', 600, 450)
         self.tree.connect('key-press-event', self._key_press)
+        SWITCH = self.switch.get_state() # nothing set yet
 
     def get_window_title(self):
         return _("Select Person")
@@ -95,7 +163,7 @@ class SelectPerson(BaseSelector):
             (_('Death Date'),   150, BaseSelector.MARKUP, 5),
             (_('Death Place'),  150, BaseSelector.MARKUP, 6),
             (_('Spouse'),       150, BaseSelector.TEXT,   7),
-            (_('Last Change'),  150, BaseSelector.TEXT,   14)
+            #(_('Last Change'),  150, BaseSelector.TEXT,   14)
             ]
 
     def get_from_handle_func(self):

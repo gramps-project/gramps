@@ -708,6 +708,41 @@ class GuiPersonOption(Gtk.Box):
         if active_person:
             gid = active_person.get_gramps_id()
             rfilter.add_rule(rules.person.HasIdOf([gid]))
+            family_handle = active_person.get_main_parents_family_handle()
+            if family_handle:
+                family = self.__dbstate.db.get_family_from_handle(family_handle)
+                father_handle = family.get_father_handle()
+                if father_handle:
+                    father = self.__dbstate.db.get_person_from_handle(father_handle)
+                    fid = father.get_gramps_id()
+                    rfilter.add_rule(rules.person.HasIdOf([fid]))
+                mother_handle = family.get_mother_handle()
+                if mother_handle:
+                    mother = self.__dbstate.db.get_person_from_handle(mother_handle)
+                    mid = mother.get_gramps_id()
+                    rfilter.add_rule(rules.person.HasIdOf([mid]))
+                sib_list = family.get_child_ref_list()
+                for sib_ref in sib_list:
+                    sibling = self.__dbstate.db.get_person_from_handle(sib_ref.ref)
+                    sbid = sibling.get_gramps_id()
+                    rfilter.add_rule(rules.person.HasIdOf([sbid]))
+            families = len(active_person.get_family_handle_list())
+            if families != 0:
+                for family_handle in active_person.get_family_handle_list():
+                    dfamily = self.__dbstate.db.get_family_from_handle(family_handle)
+                    spouse_handle = None
+                    if person_handle == dfamily.get_father_handle():
+                        spouse_handle = dfamily.get_mother_handle()
+                    if person_handle == dfamily.get_mother_handle():
+                        spouse_handle = dfamily.get_father_handle()
+                    if spouse_handle:
+                        spouse = self.__dbstate.db.get_person_from_handle(spouse_handle)
+                        sid = spouse.get_gramps_id()
+                        rfilter.add_rule(rules.person.HasIdOf([sid]))
+                    for child_ref in dfamily.get_child_ref_list():
+                        child = self.__dbstate.db.get_person_from_handle(child_ref.ref)
+                        cid = child.get_gramps_id()
+                        rfilter.add_rule(rules.person.HasIdOf([cid]))
 
         select_class = SelectorFactory('Person')
         sel = select_class(self.__dbstate, self.__uistate, self.__track,
