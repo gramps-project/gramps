@@ -3,7 +3,7 @@
 # Copyright (C) 2009
 # First Translator: Igal Shapira <igal.shapira@gmail.com>, 2009, 2010, 2011.
 # Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>, 2019, 2021, 2022, 2023.
-# Nick Hall <nick-h@gramps-project.org>, 2021.
+# Nick Hall <nick-h@gramps-project.org>, 2021, 2023.
 # Omer I.S. <omeritzicschwartz@gmail.com>, 2021, 2022, 2023.
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2023.
 msgid ""
@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-07-04 16:20+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2023-07-05 16:07+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -33134,13 +33134,11 @@ msgstr[0] "{quantity} עצם מדיה הופנה אך לא נמצא\n"
 msgstr[1] "{quantity} עצמי מדיה הופנו אך לא נמצאו\n"
 
 #: ../gramps/plugins/tool/check.py:2615
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} missing media objects were kept\n"
-msgstr[0] ""
-"הפניה {quantity} לעצם מדיה חסר נשמר\n"
-"{quantity} הפניות לעצמי מדיה חסרים נשמרו\n"
-msgstr[1] ""
+msgstr[0] "הפניה {quantity} לעצם מדיה חסר נשמר\n"
+msgstr[1] "{quantity} הפניות לעצמי מדיה חסרים נשמרו\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2623
@@ -33152,13 +33150,11 @@ msgstr[1] "{quantity} עצם מדיה חסרים הוחלפו\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2631
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "{quantity} missing media object was removed\n"
 msgid_plural "{quantity} missing media objects were removed\n"
-msgstr[0] ""
-"{quantity} עצם מדיה חסר הוסר\n"
-"{quantity} עצמי מדיה חסרים הוסרו\n"
-msgstr[1] ""
+msgstr[0] "{quantity} עצם מדיה חסר הוסר\n"
+msgstr[1] "{quantity} עצמי מדיה חסרים הוסרו\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2639
@@ -33208,23 +33204,19 @@ msgstr[1] "{quantity} מקורות מקושרים אך לא נמצאו\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2700
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "{quantity} note object was referenced but not found\n"
 msgid_plural "{quantity} note objects were referenced, but not found\n"
-msgstr[0] ""
-"{quantity} עצם הערה הופנה אך לא נמצא\n"
-"{quantity} עצמי הערה הופנו אך לא נמצאו\n"
-msgstr[1] ""
+msgstr[0] "{quantity} עצם הערה הופנה אך לא נמצא\n"
+msgstr[1] "{quantity} עצמי הערה הופנו אך לא נמצאו\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2710 ../gramps/plugins/tool/check.py:2720
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
-msgstr[0] ""
-"הפניה ל {quantity} עצם תג אך לא נמצא\n"
-"הפניה ל {quantity} עצמי תג אך לא נמצאו\n"
-msgstr[1] ""
+msgstr[0] "הפניה ל {quantity} עצם תג אך לא נמצא\n"
+msgstr[1] "הפניה ל {quantity} עצמי תג אך לא נמצאו\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2730
