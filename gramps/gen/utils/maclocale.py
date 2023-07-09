@@ -55,7 +55,7 @@ formatting. POSIX specifies a locale for this, but ICU uses format
 strings, and there is no good way to map those strings into one of the
 available locales. Users who whan to specify particular ways of
 formatting different from their base locales will have to figure out
-the appropriate locale on their own and set LC_TIME and LC_NUMERIC
+the appropriate locale on their own and set LC_TIME
 appropriately. The "Formats" page on the Languages & Text
 (International in Leopard) System Preferences pane is a good way to
 quickly assess the formats in various locales.
@@ -288,5 +288,3 @@ def mac_setup_localization(glocale):
             glocale.calendar = time
         else:
             glocale.calendar = glocale.lang[:5]
-
-    glocale.numeric = locale.getlocale(locale.LC_NUMERIC)[0] or glocale.lang

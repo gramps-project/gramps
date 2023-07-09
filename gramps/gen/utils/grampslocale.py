@@ -325,11 +325,6 @@ class GrampsLocale:
         else:
             self.calendar = self.lang
 
-        if 'LC_NUMERIC' in os.environ:
-            self.numeric = os.environ['LC_NUMERIC']
-        else:
-            self.numeric = self.lang
-
     def _init_from_environment(self):
 
         def _check_locale(locale):
@@ -392,12 +387,6 @@ class GrampsLocale:
         if HAVE_ICU and 'COLLATION' in os.environ:
             self.collation = os.environ['COLLATION']
 
-        loc = locale.getlocale(locale.LC_NUMERIC)
-        if loc and loc[0]:
-            self.numeric = '.'.join(loc)
-        else:
-            self.numeric = self.lang
-
         # $LANGUAGE overrides $LANG, $LC_MESSAGES
         if "LANGUAGE" in os.environ:
             language = [x for x in [self.check_available_translations(l)
@@ -457,7 +446,7 @@ class GrampsLocale:
             else:
                 self._init_from_environment()
         else:
-            self.numeric = self.calendar = self.collation = self.lang
+            self.calendar = self.collation = self.lang
 
         if not self.lang:
             self.lang = 'en_US.UTF-8'
@@ -559,7 +548,7 @@ class GrampsLocale:
         if not self.language and _first.language:
             self.language = _first.language
 
-        self.numeric = self.calendar = self.collation = self.lang
+        self.calendar = self.collation = self.lang
 
         self.rtl_locale = False
         if self.language[0] in _RTL_LOCALES:
