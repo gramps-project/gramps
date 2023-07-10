@@ -786,6 +786,7 @@ gramps/plugins/webreport/addressbook.py
 gramps/plugins/webreport/addressbooklist.py
 gramps/plugins/webreport/basepage.py
 gramps/plugins/webreport/buchheim.py
+gramps/plugins/webreport/calendar.py
 gramps/plugins/webreport/contact.py
 gramps/plugins/webreport/download.py
 gramps/plugins/webreport/event.py
