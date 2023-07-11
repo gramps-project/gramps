@@ -70,7 +70,8 @@ _ = lambda x: x
 _LOCALE_NAMES = {
     'ar': ('Arabic_Saudi Arabia', '1256', _("Arabic")),
     'bg': ('Bulgrian_Bulgaria', '1251', _("Bulgarian")),
-    'br': (None, None, _("Breton")), #Windows has no translation for Breton
+ #Windows has no translation for Breton
+    'br': (None, None, _("Breton")),
     'ca': ('Catalan_Spain', '1252', _("Catalan")),
     'cs': ('Czech_Czech Republic', '1250', _("Czech")),
     'da': ('Danish_Denmark', '1252', _("Danish")),
@@ -79,11 +80,13 @@ _LOCALE_NAMES = {
     'el': ('Greek_Greece', '1253', _("Greek")),
     'en': ('English_United States', '1252', _("English (USA)")),
     'en_GB': ('English_United Kingdom', '1252', _("English")),
-    'eo': (None, None, _("Esperanto")), #Windows has no translation for Esperanto
+ #Windows has no translation for Esperanto
+    'eo': (None, None, _("Esperanto")),
     'es': ('Spanish_Spain', '1252', _("Spanish")),
     'fi': ('Finnish_Finland', '1252', _("Finnish")),
     'fr': ('French_France', '1252', _("French")),
-    'ga': (None, None, _("Gaelic")), #Windows has no translation for Gaelic
+ #Windows has no translation for Gaelic
+    'ga': (None, None, _("Gaelic")),
     'he': ('Hebrew_Israel', '1255', _("Hebrew")),
     'hr': ('Croatian_Croatia', '1250', _("Croatian")),
     'hu': ('Hungarian_Hungary', '1250', _("Hungarian")),
@@ -92,7 +95,8 @@ _LOCALE_NAMES = {
     'it': ('Italian_Italy', '1252', _("Italian")),
     'ja': ('Japanese_Japan', '932', _("Japanese")),
     'lt': ('Lithuanian_Lithuania', '1252', _("Lithuanian")),
-    'mk': (None, None, _("Macedonian")), #Windows has no translation for Macedonian
+ #Windows has no translation for Macedonian
+    'mk': (None, None, _("Macedonian")),
     'nb': ('Norwegian_Norway', '1252', _("Norwegian Bokmal")),
     'nl': ('Dutch_Netherlands', '1252', _("Dutch")),
     'nn': ('Norwegian-Nynorsk_Norway', '1252', _("Norwegian Nynorsk")),
@@ -106,7 +110,8 @@ _LOCALE_NAMES = {
     'sq': ('Albanian_Albania', '1250', _("Albanian")),
     'sr': ('Serbian(Cyrillic)_Serbia and Montenegro', '1251', _("Serbian")),
     'sv': ('Swedish_Sweden', '1252', _("Swedish")),
-    'ta': (None, None, _("Tamil")), # Windows has no codepage for Tamil
+ # Windows has no codepage for Tamil
+    'ta': (None, None, _("Tamil")),
     'tr': ('Turkish_Turkey', '1254', _("Turkish")),
     'uk': ('Ukrainian_Ukraine', '1251', _("Ukrainian")),
     'vi': ('Vietnamese_Vietnam', '1258', _("Vietnamese")),
@@ -230,9 +235,11 @@ class GrampsLocale:
             return cls.__first_instance
 
         if not cls.__first_instance.initialized:
-            raise RuntimeError("Second GrampsLocale created before first one was initialized")
+            raise RuntimeError("Second GrampsLocale created before "
+                               "first one was initialized")
         if ((lang is None or lang == cls.__first_instance.lang)
-            and (localedir is None or localedir == cls.__first_instance.localedir)
+            and (localedir is None or
+                 localedir == cls.__first_instance.localedir)
             and (domain is None or domain == cls.__first_instance.localedomain)
             and (languages is None or len(languages) == 0 or
                  languages == cls.__first_instance.language)):
@@ -290,7 +297,8 @@ class GrampsLocale:
             if language:
                 self.language = language
             else:
-                LOG.debug("No languages with translations found in %%LANGUAGES%%")
+                LOG.debug("No languages with translations found "
+                          "in %%LANGUAGES%%")
         if not self.language:
             self.language = [self.lang[:5]]
 
@@ -321,7 +329,9 @@ class GrampsLocale:
 # We can't import datahandler stuff or we'll get a circular
 # dependency, so we rely on the available translations list
         if 'LC_TIME' in os.environ:
-            self.calendar = self.check_available_translations(os.environ['LC_TIME']) or self.lang
+            self.calendar = (
+                self.check_available_translations(os.environ['LC_TIME']) or
+                self.lang)
         else:
             self.calendar = self.lang
 
@@ -344,8 +354,11 @@ class GrampsLocale:
         _failure = False
         try:
             locale.setlocale(locale.LC_ALL, '')
-            if not _check_locale(locale.getdefaultlocale(envvars=('LC_ALL', 'LANG', 'LANGUAGE'))):
-                LOG.debug("Usable locale not found, localization settings ignored.");
+            if not _check_locale(locale.getdefaultlocale(envvars=('LC_ALL',
+                                                                  'LANG',
+                                                                  'LANGUAGE'))):
+                LOG.debug("Usable locale not found, localization "
+                          "settings ignored.")
                 self.lang = 'C'
                 self.encoding = 'ascii'
                 self.language = ['en']
@@ -353,7 +366,7 @@ class GrampsLocale:
 
         except locale.Error as err:
             LOG.debug("Locale error %s, localization settings ignored.",
-                        err);
+                        err)
             self.lang = 'C'
             self.encoding = 'ascii'
             self.language = ['en']
@@ -370,7 +383,8 @@ class GrampsLocale:
 
         if HAVE_ICU:
             self.calendar = locale.getlocale(locale.LC_TIME)[0] or self.lang[:5]
-            self.collation = locale.getlocale(locale.LC_COLLATE)[0] or self.lang[:5]
+            self.collation = (locale.getlocale(locale.LC_COLLATE)[0]
+                              or self.lang[:5])
         else:
             loc = locale.getlocale(locale.LC_TIME)
             if loc and self.check_available_translations(loc[0]):
@@ -395,7 +409,9 @@ class GrampsLocale:
             if language:
                 self.language = language
                 if not self.lang.startswith(self.language[0]):
-                    LOG.debug("Overiding locale setting '%s' with LANGUAGE setting '%s'", self.lang, self.language[0])
+                    LOG.debug("Overiding locale setting '%s' with "
+                              "LANGUAGE setting '%s'",
+                              self.lang, self.language[0])
                     self.lang = self.calendar = self.language[0]
             elif _failure:
                 LOG.warning("No valid locale settings found, using US English")
@@ -417,7 +433,8 @@ class GrampsLocale:
             libintl.bind_textdomain_codeset(localedomain, "UTF-8")
 
         except WindowsError:
-            LOG.warning("Localization library libintl not on %PATH%, localization will be incomplete")
+            LOG.warning("Localization library libintl not on %PATH%, "
+                        "localization will be incomplete")
 
     def __init_first_instance(self):
         """
@@ -427,7 +444,8 @@ class GrampsLocale:
         """
         global _hdlr
         _hdlr = logging.StreamHandler()
-        _hdlr.setFormatter(logging.Formatter(fmt="%(name)s.%(levelname)s: %(message)s"))
+        _hdlr.setFormatter(logging.Formatter(fmt="%(name)s.%(levelname)s: "
+                                             "%(message)s"))
         LOG.addHandler(_hdlr)
 
         #Now that we have a logger set up we can issue the icu error if needed.
@@ -453,7 +471,8 @@ class GrampsLocale:
         if not self.language:
             self.language.append('en')
         if not self.localedir and not self.lang.startswith('en'):
-            LOG.warning("No translations for %s were found, setting localization to U.S. English", self.localedomain)
+            LOG.warning("No translations for %s were found, setting "
+                        "localization to U.S. English", self.localedomain)
             self.lang = 'en_US.UTF-8'
             self.language = ['en']
 
@@ -598,11 +617,13 @@ class GrampsLocale:
         if HAVE_ICU:
             self.icu_locales["default"] = Locale.createFromName(self.lang)
             if self.collation and self.collation != self.lang:
-                self.icu_locales["collation"] = Locale.createFromName(self.collation)
+                collation =  Locale.createFromName(self.collation)
+                self.icu_locales["collation"] = collation
             else:
                 self.icu_locales["collation"] = self.icu_locales["default"]
             try:
-                self.collator = Collator.createInstance(self.icu_locales["collation"])
+                collation = self.icu_locales["collation"]
+                self.collator = Collator.createInstance(collation)
             except ICUError as err:
                 LOG.warning("Unable to create collator: %s", str(err))
                 self.collator = None
@@ -612,7 +633,8 @@ class GrampsLocale:
                                                      self.localedir,
                                                      self.language)
         except ValueError:
-            LOG.warning("Unable to find translation for languages in %s, using US English", ':'.join(self.language))
+            LOG.warning("Unable to find translation for languages in %s, "
+                        "using US English", ':'.join(self.language))
             self.translation = GrampsNullTranslations()
             self.translation._language = "en"
 
@@ -794,7 +816,8 @@ class GrampsLocale:
 
         path = self.localedir
         if filename:
-            path = os.path.join(os.path.dirname(os.path.abspath(filename)), "locale")
+            path = os.path.join(os.path.dirname(os.path.abspath(filename)),
+                                "locale")
         if languages:
             addon_translator = self._get_translation(domain,
                                                      path,
@@ -907,7 +930,8 @@ class GrampsLocale:
         if HAVE_ICU and self.collator:
             # ICU can digest strings and unicode
             # Use hexlify() as to make a consistent string, fixing bug #10077
-            return hexlify(self.collator.getCollationKey(string).getByteArray()).decode()
+            key = self.collator.getCollationKey(string)
+            return hexlify(key.getByteArray()).decode()
         else:
             if isinstance(string, bytes):
                 string = string.decode("utf-8", "replace")
@@ -1023,7 +1047,8 @@ class Lexeme(str):
 
         msgctxt "localized lexeme inflections"
         msgid "|December"
-        msgstr "NOMINATIVE=декабрь|GENITIVE=декабря|ABLATIVE=декабрём|LOCATIVE=декабре"
+        msgstr "NOMINATIVE=декабрь|GENITIVE=декабря|ABLATIVE=декабрём|"
+        "LOCATIVE=декабре"
 
         msgctxt "lexeme"
         msgid "|Christmas"

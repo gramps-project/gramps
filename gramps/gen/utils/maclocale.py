@@ -90,7 +90,8 @@ def mac_setup_localization(glocale):
             if domain == "Global":
                 args = ('/usr/bin/defaults', 'read', '-g', key)
             else:
-                args = ('/usr/bin/defaults', 'read', 'org.gramps-project.gramps', key)
+                args = ('/usr/bin/defaults', 'read',
+                        'org.gramps-project.gramps', key)
 
             answer = subprocess.Popen(
                 args,
@@ -100,7 +101,8 @@ def mac_setup_localization(glocale):
                 LOG.debug("No prefs found for %s:%s", domain, key)
                 return None
             answer = answer.decode("utf-8")
-            LOG.debug("Found %s for defaults %s:%s", answer.strip(), domain, key)
+            LOG.debug("Found %s for defaults %s:%s", answer.strip(), domain,
+                      key)
             return answer
         except OSError as err:
             LOG.warning("Failed to read %s from System Preferences: %s",
@@ -134,13 +136,15 @@ def mac_setup_localization(glocale):
             translations = _mac_check_languages(languages)
             if translations:
                 return translations
-            LOG.debug("No suitable translations found in language list on Gramps defaults")
+            LOG.debug("No suitable translations found in language list on "
+                      "Gramps defaults")
         languages = _mac_get_gramps_defaults("Global", "AppleLanguages")
         if languages:
             translations = _mac_check_languages(languages)
             if translations:
                 return translations
-            LOG.debug("No suitable translations found in language list on Global defaults")
+            LOG.debug("No suitable translations found in language list on "
+                      "Global defaults")
         LOG.debug("No translations found in System Preferences")
         return None
 
@@ -223,7 +227,8 @@ def mac_setup_localization(glocale):
             LOG.debug("Environment locale %s not supported", _locale)
 
     if not glocale.lang:
-        LOG.debug("Setting from the environment didn't work out, checking defaults")
+        LOG.debug("Setting from the environment didn't work out, checking "
+                  "defaults")
         (glocale.lang, glocale.calendar) = _mac_get_locale()
 
     glocale.coll_qualifier = None
@@ -269,7 +274,8 @@ def mac_setup_localization(glocale):
             if glocale.lang:
                 glocale.language = [glocale.lang[:5]]
             else:
-                LOG.warning("No locale settings matching available translations found, using US English")
+                LOG.warning("No locale settings matching available "
+                            "translations found, using US English")
                 glocale.lang = 'C'
                 glocale.language = ['en']
                 glocale.encoding = 'utf-8'
@@ -278,10 +284,12 @@ def mac_setup_localization(glocale):
             if not glocale.lang:
                 glocale.lang = locale.normalize(glocale.language[0])
                 glocale.encoding = glocale.lang.split('.')[1]
-    LOG.debug("Ended check for languages with glocale.language %s", glocale.language)
+    LOG.debug("Ended check for languages with glocale.language %s",
+              glocale.language)
 
     if not glocale.collation:
-        glocale.collation = locale.getlocale(locale.LC_COLLATE)[0] or glocale.lang
+        glocale.collation = (locale.getlocale(locale.LC_COLLATE)[0] or
+                             glocale.lang)
     if not glocale.calendar:
         time = locale.getlocale(locale.LC_TIME)[0]
         if glocale.check_available_translations(time):
