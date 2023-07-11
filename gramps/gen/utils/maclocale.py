@@ -174,14 +174,14 @@ def mac_setup_localization(glocale):
         locale = _mac_get_gramps_defaults("Gramps", "AppleLocale")
         if locale:
             locale_values = _mac_check_locale(locale)
-            if (locale_values[0]):
+            if locale_values[0]:
                 return locale_values
             LOG.debug("Gramps defaults locale %s isn't supported", locale)
 
         locale = _mac_get_gramps_defaults("Global", "AppleLocale")
         if locale:
             locale_values = _mac_check_locale(locale)
-            if (locale_values[0]):
+            if locale_values[0]:
                 return locale_values
             LOG.debug("Global defaults locale %s isn't supported", locale)
 
@@ -194,7 +194,7 @@ def mac_setup_localization(glocale):
         # The locale module can't deal with collation-qualified
         # locales and setting one blows up setlocale, so we use
         # $COLLATION directly instead.
-        if ('COLLATION') in os.environ:
+        if 'COLLATION' in os.environ:
             apple_collation = os.environ['COLLATION']
         else:
             apple_collation = _mac_get_gramps_defaults("Gramps",
