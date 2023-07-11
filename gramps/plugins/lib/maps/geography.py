@@ -1298,8 +1298,8 @@ class GeoGraphyView(OsmGps, NavigationView):
                                   self.set_tilepath, self.select_tilepath)
         configdialog.add_text(
             grid,
-            _('If you have no more space in your file system.'
-              ' You can remove all tiles placed in the above'
+            _('If you have no more space in your file system,'
+              ' you can remove all tiles placed in the above'
               ' path.\nBe careful! If you have no internet,'
               ' you\'ll get no map.'),
             2, line_wrap=False)

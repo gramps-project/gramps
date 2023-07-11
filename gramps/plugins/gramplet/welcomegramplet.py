@@ -192,7 +192,7 @@ class WelcomeGramplet(Gramplet):
         welcome += linkst(_('Gramps View Categories'),
                           wiki('_-_Categories', manual=True)) + '\n\n'
         welcome += boldst(_('Addons and "Gramplets"')) + '\n\n' + _(
-            'There many Addons or "Gramplets" that are available to assist you'
+            'There are many Addons or "Gramplets" that are available to assist you'
             ' in data entry and visualizing your family tree. Many of these tools'
             ' are already available to you. Many more are available to download'
             ' and install.\n\n')

@@ -135,19 +135,19 @@ class OsmGps:
                 os.makedirs(cache_path, 0o755) # create dir like mkdir -p
             except:
                 ErrorDialog(_("Can't create "
-                              "tiles cache directory %s") % cache_path,
+                              "tile cache directory %s") % cache_path,
                             parent=self.uistate.window)
                 gini = os.path.join(VERSION_DIR, 'gramps.ini')
-                ErrorDialog(_("You must verify and change the tiles cache"
+                ErrorDialog(_("You must verify and change the tile cache"
                               "\n..."
                               "\n[geography]"
                               "\n..."
                               "\npath='bad/path'"
                               "\n..."
                               "\nin the gramps.ini file :\n%s"
-                              "\n\nBefore to change the gramps.ini file, "
-                              "you need to close gramps"
-                              "\n\nThe next errors will be normal") % gini,
+                              "\n\nBefore changing the gramps.ini file, "
+                              "you need to close Gramps"
+                              "\n\nThe following errors are expected") % gini,
                             parent=self.uistate.window)
                 return None
 

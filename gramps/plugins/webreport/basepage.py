@@ -2407,7 +2407,7 @@ class BasePage:
                     toggle += lightboxes_2
                     if lightbox < len(photolist):
                         toggle += Html("h3",
-                                       self._("Other media: vidéos, pdfs..."),
+                                       self._("Other media: videos, pdfs..."),
                                        inline=True)
                 if medias:
                     toggle += medias

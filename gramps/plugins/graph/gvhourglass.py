@@ -452,5 +452,5 @@ class HourGlassOptions(MenuReportOptions):
 
         ahnentafelnumvisible = BooleanOption(_("Ahnentafel number visible"), False) # 10826
         ahnentafelnumvisible.set_help(
-            _("Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others informations."))
+            _("Show Sosa / Sosa-Stradonitz / Ahnentafel number."))
         menu.add_option(category_name, "ahnentafelnum", ahnentafelnumvisible)

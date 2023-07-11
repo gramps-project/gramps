@@ -323,7 +323,7 @@ def show_settings():
             vers_str = _('not found')
 
     except Exception:
-        vers_str = _("can't found it because exiv2 not installed")
+        vers_str = _("not found because exiv2 is not installed")
 
     try:
         import PyICU

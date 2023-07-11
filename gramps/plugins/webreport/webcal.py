@@ -1562,14 +1562,12 @@ return false;
 
             amsg = None
             if self.author and self.email:
-                bemail = '<a href="mailto:' + self.email + '?subject='
-                eemail = '">' + self.author + '</a>'
-                amsg = self._('%(html_email_author_start)s'
-                              'WebCal%(html_email_author_end)s',
-                              'the "WebCal" will be the potential-email'
-                              ' Subject') % {
-                                  'html_email_author_start' : bemail,
-                                  'html_email_author_end' : eemail}
+                msg = '<a href="mailto:{email}?subject={subject}">{author}</a>'
+                # Translators: This is the email subject line in the Web Calendar
+                subject = self._("WebCal")
+                amsg = msg.format(email=self.email,
+                                  subject=subject,
+                                  author=self.author)
             elif self.author:
                 amsg = '%(author)s' % {
                     'author' : self.author}
