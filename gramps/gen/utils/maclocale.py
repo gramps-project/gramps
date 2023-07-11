@@ -212,7 +212,6 @@ def mac_setup_localization(glocale):
 
 #The action starts here
     _locale = None
-    _failure = False
     glocale.calendar = None
     try:
         locale.setlocale(locale.LC_ALL, '')

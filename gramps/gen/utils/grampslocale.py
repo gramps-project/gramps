@@ -267,7 +267,8 @@ class GrampsLocale:
                 LOG.debug("%%LANG%% value %s not usable", os.environ['LANG'])
         if not self.lang:
             locale.setlocale(locale.LC_ALL, '')
-            (lang, encoding) = locale.getlocale()
+            locale_tuple = locale.getlocale()
+            lang = locale_tuple[0]
             loc = _check_mswin_locale_reverse(lang)
             if loc[0]:
                 self.lang = loc[0]
@@ -373,7 +374,8 @@ class GrampsLocale:
             _failure = True
 
         #LC_MESSAGES
-        (loc, enc) = locale.getlocale(locale.LC_MESSAGES)
+        loc_tuple = locale.getlocale(locale.LC_MESSAGES)
+        loc = loc_tuple[0]
         if loc:
             language = self.check_available_translations(loc)
             if language:
@@ -588,7 +590,7 @@ class GrampsLocale:
         _first = self._GrampsLocale__first_instance
         self.localedir = None
         # Everything breaks without localedir, so get that set up
-        # first.  Warnings are logged in _init_first_instance or
+        # first.  Warnings are logged in __init_first_instance or
         # _init_secondary_locale if this comes up empty.
         if localedir and os.path.exists(os.path.abspath(localedir)):
             self.localedir = localedir
@@ -694,7 +696,7 @@ class GrampsLocale:
             except KeyError:
                 LOG.debug("Gramps has no translation for %s", lang_code)
                 lang = None
-        except IndexError as err:
+        except IndexError:
             LOG.debug("Bad Index for tuple %s\n" % _LOCALE_NAMES[lang_code][0])
             lang = None
 
