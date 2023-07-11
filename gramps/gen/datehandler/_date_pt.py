@@ -54,7 +54,6 @@ class DateParserPT(DateParser):
         "antes": Date.MOD_BEFORE,
         "ant.": Date.MOD_BEFORE,
         "ant": Date.MOD_BEFORE,
-        "até": Date.MOD_BEFORE,
         "depois de": Date.MOD_AFTER,
         "depois": Date.MOD_AFTER,
         "dep.": Date.MOD_AFTER,
@@ -70,8 +69,8 @@ class DateParserPT(DateParser):
         "por volta de": Date.MOD_ABOUT,
         "por volta": Date.MOD_ABOUT,
         "pvd.": Date.MOD_ABOUT,
-        "from": Date.MOD_FROM,
-        "to": Date.MOD_TO,
+        "de": Date.MOD_FROM,
+        "até": Date.MOD_TO,
     }
 
     calendar_to_int = {
