@@ -126,29 +126,29 @@ _RTL_LOCALES = ('ar', 'he')
 # locales with less than 70% currently translated
 INCOMPLETE_TRANSLATIONS = ('ar', 'bg', 'sq', 'ta', 'tr', 'zh_HK', 'zh_TW')
 
-def _check_mswin_locale(locale):
+def _check_mswin_locale(loc):
     msloc = None
     try:
-        msloc = _LOCALE_NAMES[locale[:5]][:2]
-        locale = locale[:5]
+        msloc = _LOCALE_NAMES[loc[:5]][:2]
+        loc = loc[:5]
     except KeyError:
         try:
-            msloc = _LOCALE_NAMES[locale[:2]][:2]
-            locale = locale[:2]
+            msloc = _LOCALE_NAMES[loc[:2]][:2]
+            loc = loc[:2]
         except KeyError:
             #US English is the outlier, all other English locales want
             #real English:
-            if locale[:2] == ('en') and locale[:5] != 'en_US':
+            if loc[:2] == ('en') and loc[:5] != 'en_US':
                 return ('en_GB', '1252')
             return (None, None)
-    return (locale, msloc)
+    return (loc, msloc)
 
-def _check_mswin_locale_reverse(locale):
+def _check_mswin_locale_reverse(loc):
     for (loc, msloc) in _LOCALE_NAMES.items():
-        if msloc and locale == msloc[0]:
+        if msloc and loc == msloc[0]:
             return (loc, msloc[1])
     #US English is the outlier, all other English locales want real English:
-    if locale.startswith('English') and locale != 'English_United States':
+    if loc.startswith('English') and loc != 'English_United States':
         return ('en_GB', '1252')
     return (None, None)
 
@@ -338,17 +338,17 @@ class GrampsLocale:
 
     def _init_from_environment(self):
 
-        def _check_locale(locale):
-            if not locale[0]:
+        def _check_locale(loc):
+            if not loc[0]:
                 return False
-            lang = self.check_available_translations(locale[0])
-            if not lang and locale[0].startswith('en'):
-                locale = ('en_GB', 'UTF-8')
+            lang = self.check_available_translations(loc[0])
+            if not lang and loc[0].startswith('en'):
+                loc = ('en_GB', 'UTF-8')
                 lang = 'en_GB'
             if not lang:
                 return False
-            self.lang = locale[0]
-            self.encoding = locale[1]
+            self.lang = loc[0]
+            self.encoding = loc[1]
             self.language = [lang]
             return True
 
@@ -365,9 +365,9 @@ class GrampsLocale:
                 self.language = ['en']
                 _failure = True
 
-        except locale.Error as err:
+        except locale.Error as loc_err:
             LOG.debug("Locale error %s, localization settings ignored.",
-                        err)
+                        loc_err)
             self.lang = 'C'
             self.encoding = 'ascii'
             self.language = ['en']
@@ -626,8 +626,8 @@ class GrampsLocale:
             try:
                 collation = self.icu_locales["collation"]
                 self.collator = Collator.createInstance(collation)
-            except ICUError as err:
-                LOG.warning("Unable to create collator: %s", str(err))
+            except ICUError as icu_err:
+                LOG.warning("Unable to create collator: %s", str(icu_err))
                 self.collator = None
 
         try:
@@ -860,7 +860,7 @@ class GrampsLocale:
 
         return languages
 
-    def check_available_translations(self, locale):
+    def check_available_translations(self, loc):
         """
         Test a locale for having a translation available
         locale -- string with standard language code, locale code, or name
@@ -873,16 +873,16 @@ class GrampsLocale:
         if not hasattr(self, 'languages'):
             self.languages = self.get_available_translations()
 
-        if not locale:
+        if not loc:
             return None
 
-        if locale[:5] in self.languages:
-            return locale[:5]
+        if loc[:5] in self.languages:
+            return loc[:5]
         #US English is the outlier, all other English locales want real English:
-        if locale[:2] == 'en' and locale[:5] != 'en_US':
+        if loc[:2] == 'en' and loc[:5] != 'en_US':
             return 'en_GB'
-        if locale[:2] in self.languages:
-            return locale[:2]
+        if loc[:2] in self.languages:
+            return loc[:2]
         return None
 
     def get_language_dict(self):
@@ -939,9 +939,9 @@ class GrampsLocale:
                 string = string.decode("utf-8", "replace")
             try:
                 key = locale.strxfrm(string)
-            except Exception as err:
+            except Exception as icu_err:
                 LOG.warning("Failed to obtain key for %s because %s",
-                         self.collation, str(err))
+                         self.collation, str(icu_err))
                 return string
             return key
 

@@ -149,11 +149,11 @@ def mac_setup_localization(glocale):
         return None
 
     def _mac_check_locale(locale_string):
-        locale = None
+        loc = None
         calendar = None
         div = locale_string.strip().split("@")
         LOG.debug("Checking Locale %s", ' '.join(div))
-        locale = glocale.check_available_translations(div[0])
+        loc = glocale.check_available_translations(div[0])
         if len(div) > 1:
             div = div[1].split(";")
             for phrase in div:
@@ -161,7 +161,7 @@ def mac_setup_localization(glocale):
                 if name == "calendar":
                     calendar = glocale.check_available_translations(value)
 
-        return (locale, calendar)
+        return (loc, calendar)
 
     def _mac_get_locale():
         """
@@ -171,19 +171,19 @@ def mac_setup_localization(glocale):
 #with [0] being the decimal separator and [1] the thousands
 #separator. This obviously won't translate into a locale without
 #searching the locales database for a match.
-        locale = _mac_get_gramps_defaults("Gramps", "AppleLocale")
-        if locale:
-            locale_values = _mac_check_locale(locale)
+        loc = _mac_get_gramps_defaults("Gramps", "AppleLocale")
+        if loc:
+            locale_values = _mac_check_locale(loc)
             if locale_values[0]:
                 return locale_values
-            LOG.debug("Gramps defaults locale %s isn't supported", locale)
+            LOG.debug("Gramps defaults locale %s isn't supported", loc)
 
-        locale = _mac_get_gramps_defaults("Global", "AppleLocale")
-        if locale:
-            locale_values = _mac_check_locale(locale)
+        loc = _mac_get_gramps_defaults("Global", "AppleLocale")
+        if loc:
+            locale_values = _mac_check_locale(loc)
             if locale_values[0]:
                 return locale_values
-            LOG.debug("Global defaults locale %s isn't supported", locale)
+            LOG.debug("Global defaults locale %s isn't supported", loc)
 
         return (None, None, None)
 
