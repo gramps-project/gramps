@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-10 22:36+0100\n"
-"PO-Revision-Date: 2023-07-10 20:07+0000\n"
+"PO-Revision-Date: 2023-07-11 20:29+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -3002,14 +3002,14 @@ msgstr "omstreeks "
 #: ../gramps/gen/datehandler/_datestrings.py:251
 msgctxt "date modifier"
 msgid "from "
-msgstr ""
+msgstr "van "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:254
 msgctxt "date modifier"
 msgid "to "
-msgstr ""
+msgstr "tot "
 
 #: ../gramps/gen/datehandler/_datestrings.py:259
 msgctxt "date quality"
@@ -5491,16 +5491,12 @@ msgstr ""
 "reguliere expressie"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:45
-#, fuzzy
-#| msgid "People with an alternate name"
 msgid "People who are neither male nor female"
-msgstr "Personen met een alternatieve naam"
+msgstr "Personen die noch man noch vrouw zijn"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:47
-#, fuzzy
-#| msgid "Matches all people with unknown gender"
 msgid "Matches all people with other gender"
-msgstr "Vindt alle personen met onbekend geslacht"
+msgstr "Vindt alle personen met ander geslacht"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:45
 msgid "Number of relationships:"
@@ -7405,13 +7401,11 @@ msgstr "bereik"
 
 #: ../gramps/gen/lib/date.py:2002
 msgid "from"
-msgstr ""
+msgstr "van"
 
 #: ../gramps/gen/lib/date.py:2003
-#, fuzzy
-#| msgid "Stop"
 msgid "to"
-msgstr "Stop"
+msgstr "tot"
 
 #: ../gramps/gen/lib/date.py:2004
 msgid "span"
@@ -7820,10 +7814,8 @@ msgid "Alternate Marriage"
 msgstr "Alternatief huwelijk"
 
 #: ../gramps/gen/lib/eventtype.py:210
-#, fuzzy
-#| msgid "Stillborn"
 msgid "Stillbirth"
-msgstr "Doodgeboren"
+msgstr "Doodgeboorte"
 
 #: ../gramps/gen/lib/eventtype.py:214
 #: ../gramps/plugins/drawreport/ancestortree.py:60
@@ -8067,7 +8059,7 @@ msgstr "nietigverkl."
 #| msgid "will."
 msgctxt "Stillbirth abbreviation"
 msgid "still."
-msgstr "test."
+msgstr "+*"
 
 #: ../gramps/gen/lib/family.py:155
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:60
@@ -9202,13 +9194,11 @@ msgstr "Koppeling"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:72
 msgid "Strikethrough"
-msgstr ""
+msgstr "Doorhalen"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:73
-#, fuzzy
-#| msgid "Superscript"
 msgid "Subscript"
-msgstr "Superscript"
+msgstr "Subscript"
 
 #: ../gramps/gen/lib/surname.py:87 ../gramps/gen/lib/surname.py:91
 #: ../gramps/gen/utils/keyword.py:56 ../gramps/gui/clipboard.py:605
@@ -9386,11 +9376,11 @@ msgstr "Onstabiel"
 
 #: ../gramps/gen/plug/_pluginreg.py:62
 msgid "Experimental"
-msgstr ""
+msgstr "Experimenteel"
 
 #: ../gramps/gen/plug/_pluginreg.py:63
 msgid "Beta"
-msgstr ""
+msgstr "Bèta"
 
 #: ../gramps/gen/plug/_pluginreg.py:64
 msgid "Stable"
@@ -9398,11 +9388,11 @@ msgstr "Stabiel"
 
 #: ../gramps/gen/plug/_pluginreg.py:72
 msgid "Developer"
-msgstr ""
+msgstr "Ontwikkelaar"
 
 #: ../gramps/gen/plug/_pluginreg.py:73
 msgid "Expert"
-msgstr ""
+msgstr "Expert"
 
 #: ../gramps/gen/plug/_pluginreg.py:97
 msgid "Quickreport"
@@ -9426,7 +9416,7 @@ msgstr "Documenteren"
 
 #: ../gramps/gen/plug/_pluginreg.py:102
 msgid "Plugin lib"
-msgstr "Extensies"
+msgstr "Extensiebibliotheek"
 
 #: ../gramps/gen/plug/_pluginreg.py:103
 msgid "Map service"
@@ -9459,10 +9449,8 @@ msgid "Rule"
 msgstr "Regel"
 
 #: ../gramps/gen/plug/_pluginreg.py:110
-#, fuzzy
-#| msgid "Thumbnails"
 msgid "Thumbnailer"
-msgstr "Miniatuurafbeeldingen"
+msgstr "Miniatuurautomaat"
 
 #: ../gramps/gen/plug/_pluginreg.py:583
 #: ../gramps/plugins/gramplet/faqgramplet.py:135
@@ -9485,8 +9473,8 @@ msgid ""
 "WARNING: Plugin %(plugin_name)s has no translation for any of your "
 "configured languages, using US English instead"
 msgstr ""
-"WAARSCHUWING: De plugin %(plugin_name)s heeft geen vertaling voor een van uw "
-"geconfigureerde talen, in plaats daarvan wordt Amerikaans Engels gebruikt"
+"WAARSCHUWING: De extensie %(plugin_name)s heeft geen vertaling voor een van "
+"uw geconfigureerde talen, in plaats daarvan wordt Amerikaans Engels gebruikt"
 
 #: ../gramps/gen/plug/_pluginreg.py:1340
 #, python-format
@@ -9495,9 +9483,9 @@ msgid ""
 "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s"
 "\" which is invalid for Gramps \"%(gramps_version)s\"."
 msgstr ""
-"FOUT: Het plugin-bestand %(filename)s heeft een versie van "
-"\"%(gramps_target_version)s\" die ongeldig is voor Gramps "
-"\"%(gramps_version)s\"."
+"FOUT: Het extensie-bestand %(filename)s heeft een versie van \""
+"%(gramps_target_version)s\" die ongeldig is voor Gramps \"%(gramps_version)"
+"s\"."
 
 #: ../gramps/gen/plug/_pluginreg.py:1361
 #, python-format
@@ -10234,11 +10222,11 @@ msgstr "Vertaling"
 
 #: ../gramps/gen/plug/report/stdoptions.py:65
 msgid "The translation to be used for the report."
-msgstr "De vertaling die voor het rapport moet worden gebruikt."
+msgstr "De vertaling die voor het verslag moet worden gebruikt."
 
 #: ../gramps/gen/plug/report/stdoptions.py:81
 msgid "The additional translation to be used for the report."
-msgstr "De extra vertaling die voor het rapport moet worden gebruikt."
+msgstr "De aanvullende vertaling die voor het verslag moet worden gebruikt."
 
 #: ../gramps/gen/plug/report/stdoptions.py:90 ../gramps/gui/configure.py:1290
 #: ../gramps/plugins/webreport/webcal.py:1803
@@ -10349,16 +10337,12 @@ msgid "Select the format to display places"
 msgstr "Selecteer de opmaak om plaatsen weer te geven"
 
 #: ../gramps/gen/plug/report/stdoptions.py:386 ../gramps/gui/configure.py:1246
-#, fuzzy
-#| msgid "Date format"
 msgid "Coordinates format"
-msgstr "Datumnotatie"
+msgstr "Coördinatennotatie"
 
 #: ../gramps/gen/plug/report/stdoptions.py:389
-#, fuzzy
-#| msgid "Select the format to display names"
 msgid "Select the format to display coordinates"
-msgstr "Selecteer hoe namen worden weergegeven"
+msgstr "Selecteer hoe coördinaten worden weergegeven"
 
 #: ../gramps/gen/plug/report/utils.py:157
 #: ../gramps/plugins/textreport/indivcomplete.py:925
@@ -11170,23 +11154,23 @@ msgstr "%(west_longitude)s W"
 
 #: ../gramps/gen/utils/place.py:80
 msgid "DEG"
-msgstr ""
+msgstr "Deg"
 
 #: ../gramps/gen/utils/place.py:83
 msgid "DEG-:"
-msgstr ""
+msgstr "Deg-:"
 
 #: ../gramps/gen/utils/place.py:86
 msgid "D.D4"
-msgstr ""
+msgstr "D.D4"
 
 #: ../gramps/gen/utils/place.py:89
 msgid "D.D8"
-msgstr ""
+msgstr "D.D8"
 
 #: ../gramps/gen/utils/place.py:92
 msgid "RT90"
-msgstr ""
+msgstr "RT90"
 
 #: ../gramps/gen/utils/string.py:46 ../gramps/gui/editors/editperson.py:341
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
@@ -11214,11 +11198,9 @@ msgstr "onbekend"
 
 #: ../gramps/gen/utils/string.py:49 ../gramps/gui/editors/editperson.py:343
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
-#, fuzzy
-#| msgid "Mother"
 msgctxt "gender"
 msgid "other"
-msgstr "Moeder"
+msgstr "andere"
 
 #: ../gramps/gen/utils/string.py:53
 msgid "Invalid"
@@ -11450,24 +11432,20 @@ msgstr ""
 #: ../gramps/grampsapp.py:376 ../gramps/grampsapp.py:388
 #: ../gramps/grampsapp.py:397 ../gramps/grampsapp.py:399
 #: ../gramps/grampsapp.py:433 ../gramps/grampsapp.py:440
-#, fuzzy
-#| msgid "Not found"
 msgid "not found"
-msgstr "Niet gevonden"
+msgstr "niet gevonden"
 
 #: ../gramps/grampsapp.py:326
 msgid "can't found it because exiv2 not installed"
-msgstr ""
+msgstr "niet gevonden, omdat exiv2 niet is geïnstalleerd"
 
 #: ../gramps/grampsapp.py:359
 msgid "Installed but does not supply version"
-msgstr ""
+msgstr "Geïnstalleerd, maar levert geen versie"
 
 #: ../gramps/grampsapp.py:420
-#, fuzzy
-#| msgid "Unstable"
 msgid "installed"
-msgstr "Onstabiel"
+msgstr "geïnstalleerd"
 
 #: ../gramps/grampsapp.py:586 ../gramps/grampsapp.py:593
 #: ../gramps/grampsapp.py:646
@@ -11876,7 +11854,7 @@ msgstr "Kleuren voor vrouwelijke personen"
 
 #: ../gramps/gui/configure.py:723
 msgid "Colors for people who are neither male nor female"
-msgstr ""
+msgstr "Kleuren voor personen die niet mannelijk of vrouwelijk zijn"
 
 #: ../gramps/gui/configure.py:724
 msgid "Colors for Unknown persons"
@@ -11971,7 +11949,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:840
 msgid "Show plugin status dialog on plugin load error"
-msgstr "Toon plug-in statusdialoog op laadfout van plug-in"
+msgstr "Statusdialoog van de extensie weergeven bij laadfout van extensie"
 
 #: ../gramps/gui/configure.py:843
 msgid "Warnings"
@@ -12098,10 +12076,8 @@ msgid "Age display precision *"
 msgstr "Nauwkeurigheid leeftijdsweergave *"
 
 #: ../gramps/gui/configure.py:1355
-#, fuzzy
-#| msgid "Display references for a %s"
 msgid "Display ages for events after death *"
-msgstr "Toon referenties voor een %s"
+msgstr "Leeftijd bij gebeurtenissen na de dood weergeven *"
 
 #: ../gramps/gui/configure.py:1367
 msgid "Calendar on reports"
@@ -12297,43 +12273,43 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1681
 msgid "Show Clipboard icon on toolbar"
-msgstr ""
+msgstr "Klembordpictogram op werkbalk weergeven"
 
 #: ../gramps/gui/configure.py:1683
 msgid "Show or hide the Clipboard icon on the toolbar."
-msgstr ""
+msgstr "Het klembordpictogram op de werkbalk weergeven/verbergen."
 
 #: ../gramps/gui/configure.py:1689
 msgid "Show Reports icon on toolbar"
-msgstr ""
+msgstr "Pictogram Verslagen op de werkbalk weergeven"
 
 #: ../gramps/gui/configure.py:1691
 msgid "Show or hide the Reports icon on the toolbar."
-msgstr ""
+msgstr "Het pictogram Verslagen op de werkbalk weergeven/verbergen."
 
 #: ../gramps/gui/configure.py:1697
 msgid "Show Tools icon on toolbar"
-msgstr ""
+msgstr "Gereedschapspictogram op de werkbalk weergeven"
 
 #: ../gramps/gui/configure.py:1699
 msgid "Show or hide the Tools icon on the toolbar."
-msgstr ""
+msgstr "Het gereedschapspictogram op de werkbalk weergeven/verbergen."
 
 #: ../gramps/gui/configure.py:1705
 msgid "Show Plugins icon on toolbar"
-msgstr ""
+msgstr "Pictogram Extensies op werkbalk weergeven"
 
 #: ../gramps/gui/configure.py:1707
 msgid "Show or hide the Plugins icon on the toolbar."
-msgstr ""
+msgstr "Het pictogram Extensies op de werkbalk weergeven/verbergen."
 
 #: ../gramps/gui/configure.py:1713
 msgid "Show Preferences icon on toolbar"
-msgstr ""
+msgstr "Pictogram Voorkeuren op de werkbalk weergeven"
 
 #: ../gramps/gui/configure.py:1715
 msgid "Show or hide the Preferences icon on the toolbar."
-msgstr ""
+msgstr "Het pictogram Voorkeuren op de werkbalk weergeven/verbergen."
 
 #: ../gramps/gui/configure.py:1721
 msgid "Show close button in gramplet bar tabs"
@@ -12401,9 +12377,8 @@ msgid ""
 "Addons and Plugins and their activation status.\n"
 msgstr ""
 "Configuratie-instellingen om Gramps te laten controleren op nieuwe of "
-"bijgewerkte add-ons en plug-ins van derden. De Plug-in-manager heeft de "
-"volledige lijst met geïnstalleerde add-ons en plug-ins en hun "
-"activeringsstatus.\n"
+"bijgewerkte extensies van derden. Extensiebeheer heeft de volledige lijst "
+"met geïnstalleerde extensies en hun activeringsstatus.\n"
 
 #: ../gramps/gui/configure.py:1788
 msgid "Once a month"
@@ -12746,27 +12721,25 @@ msgstr ""
 "Het wordt alleen weergegeven als het lettertype dit letterteken bevat."
 
 #: ../gramps/gui/csvdialect.py:63
-#, fuzzy
-#| msgid "Tag"
 msgctxt "character"
 msgid "Tab"
-msgstr "Label"
+msgstr "Tab"
 
 #: ../gramps/gui/csvdialect.py:81
-#, fuzzy
-#| msgid "Check your installation."
 msgid "Choose your dialect"
-msgstr "Controleer uw installatie."
+msgstr "Kies uw dialect"
 
 #: ../gramps/gui/csvdialect.py:83
 msgid ""
 "Changes are immediate.\n"
 "This is used when exporting views in CSV format."
 msgstr ""
+"Wijzigingen zijn direct van toepassing.\n"
+"Dit wordt gebruikt bij het exporteren van weergaven in CSV-formaat."
 
 #: ../gramps/gui/csvdialect.py:111
 msgid "Delimiter:"
-msgstr ""
+msgstr "Scheidingsteken:"
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:109
 msgid "Undo history warning"
@@ -13277,38 +13250,28 @@ msgid "Open the reports dialog"
 msgstr "Open het dialoogvenster Verslagen"
 
 #: ../gramps/gui/displaystate.py:407
-#, fuzzy
-#| msgid "_Reports"
 msgid "Reports"
-msgstr "_Verslagen"
+msgstr "Verslagen"
 
 #: ../gramps/gui/displaystate.py:410
 msgid "Open the tools dialog"
 msgstr "Open het dialoogvenster Tools"
 
 #: ../gramps/gui/displaystate.py:411
-#, fuzzy
-#| msgid "_Tools"
 msgid "Tools"
-msgstr "Hulp_middelen"
+msgstr "Hulpmiddelen"
 
 #: ../gramps/gui/displaystate.py:414
-#, fuzzy
-#| msgid "Plugin Manager"
 msgid "Open Plugin Manager"
-msgstr "Uitbreidingenbeheer"
+msgstr "Extensiebeheer openen"
 
 #: ../gramps/gui/displaystate.py:415
-#, fuzzy
-#| msgid "Plugin lib"
 msgid "Plugins"
 msgstr "Extensies"
 
 #: ../gramps/gui/displaystate.py:418
-#, fuzzy
-#| msgid "Preferences"
 msgid "Open Preferences"
-msgstr "Voorkeuren"
+msgstr "Voorkeuren openen"
 
 #: ../gramps/gui/displaystate.py:438
 #: ../gramps/plugins/gramplet/persondetails.py:174
@@ -14274,13 +14237,11 @@ msgstr "Bereik"
 
 #: ../gramps/gui/editors/editdate.py:82
 msgid "From"
-msgstr ""
+msgstr "Van"
 
 #: ../gramps/gui/editors/editdate.py:83
-#, fuzzy
-#| msgid "Top"
 msgid "To"
-msgstr "Boven"
+msgstr "Tot"
 
 #: ../gramps/gui/editors/editdate.py:84
 msgid "Span"
@@ -15034,10 +14995,8 @@ msgid "_Female"
 msgstr "_Vrouw"
 
 #: ../gramps/gui/editors/editperson.py:1114
-#, fuzzy
-#| msgid "Other"
 msgid "_Other"
-msgstr "Overige"
+msgstr "_Andere"
 
 #: ../gramps/gui/editors/editperson.py:1115
 msgid "_Unknown"
@@ -15521,30 +15480,22 @@ msgid "Delete Filter"
 msgstr "Verwijder filter"
 
 #: ../gramps/gui/editors/objectentries.py:293
-#, fuzzy
-#| msgid "To select a place, use drag-and-drop or use the buttons"
 msgid "To select a person, use drag-and-drop or use the buttons"
 msgstr ""
-"Gebruik slepen en neerzetten om een locatie te selecteren of gebruik de "
-"knoppen"
+"Gebruik slepen en neerzetten of gebruik de knoppen om een persoon te "
+"selecteren"
 
 #: ../gramps/gui/editors/objectentries.py:295
-#, fuzzy
-#| msgid "No place given, click button to select one"
 msgid "No person given, click button to select one"
-msgstr "Geen locatie opgegeven, klik op de knop om er een te selecteren"
+msgstr "Geen persoon aangegeven, klik op de knop om er een te selecteren"
 
 #: ../gramps/gui/editors/objectentries.py:296
-#, fuzzy
-#| msgid "Edit Person"
 msgid "Edit person"
-msgstr "Bewerk persoon"
+msgstr "Persoon bewerken"
 
 #: ../gramps/gui/editors/objectentries.py:297
-#, fuzzy
-#| msgid "Select an existing place"
 msgid "Select an existing person"
-msgstr "Selecteer een bestaande locatie"
+msgstr "Selecteer een bestaande persoon"
 
 #: ../gramps/gui/editors/objectentries.py:298
 #: ../gramps/plugins/lib/libpersonview.py:122
@@ -15552,10 +15503,8 @@ msgid "Add a new person"
 msgstr "Voeg een nieuwe persoon toe"
 
 #: ../gramps/gui/editors/objectentries.py:299
-#, fuzzy
-#| msgid "Remove version"
 msgid "Remove person"
-msgstr "Versie verwijderen"
+msgstr "Persoon verwijderen"
 
 #: ../gramps/gui/editors/objectentries.py:340
 msgid "To select a place, use drag-and-drop or use the buttons"
@@ -18098,12 +18047,12 @@ msgid ""
 "If you close this dialog now, you can install addons later from the menu "
 "under Edit -> Preferences."
 msgstr ""
-"Gramps wordt geleverd met een kernset plug-ins die alle benodigde functies "
-"bieden. U kunt deze functionaliteit echter uitbreiden met extra add-ons. "
-"Deze add-ons bieden verslagen, lijsten, weergaven, gramplets en meer. Hier "
-"kunt u een van de beschikbare extra add-ons selecteren, ze worden van "
-"internet opgehaald van de Gramps-website en lokaal op uw computer "
-"geïnstalleerd. Als u dit dialoogvenster nu sluit, kunt u later add-ons "
+"Gramps wordt geleverd met een basisverzameling aan extensies die alle "
+"benodigde functies bieden. U kunt deze functionaliteit echter uitbreiden met "
+"extra extensies. Deze bieden o.a. verslagen, lijsten, weergaven, gramplets "
+"en meer. Hier kunt u een van de beschikbare extra extensies selecteren, ze "
+"worden van internet opgehaald van de Gramps-website en lokaal op uw computer "
+"geïnstalleerd. Als u dit dialoogvenster nu sluit, kunt u later extensies "
 "installeren vanuit het menu onder Bewerken -> Voorkeuren."
 
 #: ../gramps/gui/glade/updateaddons.glade:105
@@ -18509,10 +18458,8 @@ msgstr "%(key)s:\t%(value)s"
 #: ../gramps/gui/merge/mergeperson.py:64
 #: ../gramps/gui/views/treemodels/peoplemodel.py:98
 #: ../gramps/plugins/webreport/person.py:484
-#, fuzzy
-#| msgid "Mother"
 msgid "other"
-msgstr "Moeder"
+msgstr "andere"
 
 #: ../gramps/gui/merge/mergeperson.py:92
 msgid "Merge People"
@@ -18695,7 +18642,7 @@ msgstr "Zichtbaar"
 
 #: ../gramps/gui/plug/_windows.py:97
 msgid "Plugin Manager"
-msgstr "Uitbreidingenbeheer"
+msgstr "Extensiebeheer"
 
 #: ../gramps/gui/plug/_windows.py:144 ../gramps/gui/plug/_windows.py:198
 msgid "Info"
@@ -18711,7 +18658,7 @@ msgstr "Laden"
 
 #: ../gramps/gui/plug/_windows.py:161
 msgid "Registered Plugins"
-msgstr "Geregistreerde uitbreidingen"
+msgstr "Geregistreerde extensies"
 
 #: ../gramps/gui/plug/_windows.py:174
 msgid "Loaded"
@@ -18729,7 +18676,7 @@ msgstr "Bericht"
 
 #: ../gramps/gui/plug/_windows.py:216
 msgid "Loaded Plugins"
-msgstr "Geladen uitbreidingen"
+msgstr "Geladen extensies"
 
 #: ../gramps/gui/plug/_windows.py:235
 msgid "Addon Name"
@@ -18803,7 +18750,7 @@ msgstr "OK"
 
 #: ../gramps/gui/plug/_windows.py:619
 msgid "Plugin name"
-msgstr "Naam uitbreiding"
+msgstr "Extensienaam"
 
 #: ../gramps/gui/plug/_windows.py:621
 msgid "Version"
@@ -18824,7 +18771,7 @@ msgstr "Gedetailleerde info"
 
 #: ../gramps/gui/plug/_windows.py:686
 msgid "Plugin Error"
-msgstr "Fout met uitbreiding"
+msgstr "Fout met extensie"
 
 #: ../gramps/gui/plug/_windows.py:751
 msgid "_Execute"
@@ -19845,7 +19792,7 @@ msgstr "Geen stamboom"
 
 #: ../gramps/gui/viewmanager.py:563
 msgid "Registering plugins..."
-msgstr "Plug-ins registreren..."
+msgstr "Extensies registreren…"
 
 #: ../gramps/gui/viewmanager.py:571
 msgid "Ready"
@@ -19935,11 +19882,11 @@ msgstr ""
 "(%(firstauthoremail)s).\n"
 "\n"
 "Als u niet wilt dat Gramps deze weergave opnieuw probeert te laden, kunt u "
-"deze verbergen met behulp van Uitbreidingenbeheer in het Help-menu."
+"deze verbergen met behulp van Extensiebeheer in het Help-menu."
 
 #: ../gramps/gui/viewmanager.py:1580
 msgid "Failed Loading Plugin"
-msgstr "Kan plug-in niet laden"
+msgstr "Extensie is niet geladen"
 
 #: ../gramps/gui/viewmanager.py:1581
 #, python-format
@@ -19955,16 +19902,16 @@ msgid ""
 "If you do not want Gramps to try and load this plugin again, you can hide it "
 "by using the Plugin Manager on the Help menu."
 msgstr ""
-"De plug-in %(name)s is niet geladen en heeft een fout gemeld.\n"
+"De extensie %(name)s is niet geladen en heeft een fout gemeld.\n"
 "\n"
 "%(error_msg)s\n"
 "\n"
 "Als u de fout niet zelf kunt oplossen, kunt u een foutmelding indienen bij "
-"%(gramps_bugtracker_url)s of contact opnemen met de plug-in-auteur "
+"%(gramps_bugtracker_url)s of contact opnemen met de maker van de extensie "
 "(%(firstauthoremail)s).\n"
 "\n"
-"Als u niet wilt dat Gramps deze plug-in opnieuw probeert te laden, kunt u "
-"deze verbergen met behulp van de Uitbreidingenbeheer in het Help-menu."
+"Als u niet wilt dat Gramps deze extensie opnieuw probeert te laden, kunt u "
+"deze verbergen met behulp van de Extensiebeheer in het Help-menu."
 
 #: ../gramps/gui/viewmanager.py:1661
 msgid "Gramps XML Backup"
@@ -20128,7 +20075,7 @@ msgstr "Kolommen"
 
 #: ../gramps/gui/views/listview.py:1348
 msgid "CSV Dialect"
-msgstr ""
+msgstr "CSV-dialect"
 
 #: ../gramps/gui/views/navigationview.py:252
 #, python-format
@@ -20915,26 +20862,20 @@ msgstr ""
 "onbekende personen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:851
-#, fuzzy
-#| msgid "Show dates"
 msgid "Show Index"
-msgstr "Toon datums"
+msgstr "Index weergeven"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:853
-#, fuzzy
-#| msgid "Display Tip of the Day"
 msgid "Display index of each person"
-msgstr "Toon Tip van de dag"
+msgstr "De index van elke persoon weergeven"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:857
-#, fuzzy
-#| msgid "Starting"
 msgid "Start Index"
-msgstr "Beginnen"
+msgstr "Startindex"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:858
 msgid "The start index"
-msgstr ""
+msgstr "De Startindex"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:874
 #: ../gramps/plugins/drawreport/descendtree.py:1581
@@ -21323,26 +21264,17 @@ msgstr[0] "{person}, {age}"
 msgstr[1] "{person}, {age}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:476
-#, fuzzy, python-format
-#| msgid ""
-#| "%(spouse)s and\n"
-#| " %(person)s, wedding"
+#, python-format
 msgid ""
 "%(wife)s and\n"
 " %(person)s, wedding"
 msgstr ""
-"%(spouse)s en\n"
+"%(wife)s en\n"
 " %(person)s, huwelijk"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/drawreport/calendarreport.py:488
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "{spouse} and\n"
-#| " {person}, {nyears}"
-#| msgid_plural ""
-#| "{spouse} and\n"
-#| " {person}, {nyears}"
+#, python-brace-format
 msgid ""
 "{wife} and\n"
 " {person}, {nyears}"
@@ -21350,10 +21282,10 @@ msgid_plural ""
 "{wife} and\n"
 " {person}, {nyears}"
 msgstr[0] ""
-"{spouse} en\n"
+"{wife} en\n"
 " {person}, {nyears}"
 msgstr[1] ""
-"{spouse} en\n"
+"{wife} en\n"
 " {person}, {nyears}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:554
@@ -21928,11 +21860,8 @@ msgid "Item count"
 msgstr "Aantal voorwerpen"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:315
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "all"
 msgid "All"
-msgstr "alles"
+msgstr "Alle"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:316
 #: ../gramps/plugins/drawreport/statisticschart.py:420
@@ -22308,6 +22237,9 @@ msgid ""
 "You can change this behavior in the 'Configure active view' of any list-"
 "based view"
 msgstr ""
+"CSV is een veelvoorkomend rekenbladformaat.\n"
+"U kunt dit gedrag wijzigen in de 'Actieve weergave configureren' van elke "
+"lijstgebaseerde weergave"
 
 #: ../gramps/plugins/export/export.gpr.py:46
 msgid "CSV spreadsheet options"
@@ -24075,10 +24007,8 @@ msgstr "Aantal individuen"
 #: ../gramps/plugins/gramplet/statsgramplet.py:155
 #: ../gramps/plugins/webreport/statistics.py:129
 #: ../gramps/plugins/webreport/statistics.py:197
-#, fuzzy
-#| msgid "Individuals with unknown gender"
 msgid "Individuals with other gender"
-msgstr "Individuen met onbekend geslacht"
+msgstr "Individuen met ander geslacht"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:159
 #: ../gramps/plugins/webreport/statistics.py:131
@@ -24872,10 +24802,10 @@ msgstr "De kleur om vrouwen weer te geven."
 #: ../gramps/plugins/graph/gvfamilylines.py:296
 #: ../gramps/plugins/graph/gvhourglass.py:435
 #: ../gramps/plugins/graph/gvrelgraph.py:959
-#, fuzzy
-#| msgid "The color to use to display women."
 msgid "The color to use to display people who are neither men nor women."
-msgstr "De kleur om vrouwen weer te geven."
+msgstr ""
+"De kleur die wordt gebruikt om personen weer te geven die geen man of vrouw "
+"zijn."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:301
 #: ../gramps/plugins/graph/gvhourglass.py:440
@@ -26141,16 +26071,13 @@ msgid "vCard import"
 msgstr "vCard-import"
 
 #: ../gramps/plugins/importer/importvcard.py:254
-#, fuzzy
-#| msgid "VCARD import report: No errors detected"
 msgid "vCard import report: No errors detected"
-msgstr "VCARD-importrapport: geen fouten gedetecteerd"
+msgstr "vCard-importrapport: geen fouten gedetecteerd"
 
 #: ../gramps/plugins/importer/importvcard.py:256
-#, fuzzy, python-format
-#| msgid "VCARD import report: %s errors detected\n"
+#, python-format
 msgid "vCard import report: %s errors detected\n"
-msgstr "VCARD-importrapport: %s fouten gedetecteerd\n"
+msgstr "vCard-importrapport: %s fouten gedetecteerd\n"
 
 #: ../gramps/plugins/importer/importvcard.py:321
 #, python-format
@@ -26158,53 +26085,37 @@ msgid "Token >%(token)s< unknown. line skipped: %(line)s"
 msgstr "Token >%(token)s< onbekend. regel overgeslagen: %(line)s"
 
 #: ../gramps/plugins/importer/importvcard.py:335
-#, fuzzy
-#| msgid ""
-#| "BEGIN property not properly closed by END property, Gramps can't cope "
-#| "with nested VCards."
 msgid ""
 "BEGIN property not properly closed by END property, Gramps can't cope with "
 "nested vCards."
 msgstr ""
 "BEGIN-eigenschap niet correct gesloten door END-eigenschap, Gramps kan niet "
-"omgaan met geneste VCards."
+"omgaan met geneste vCards."
 
 #: ../gramps/plugins/importer/importvcard.py:346
-#, fuzzy, python-format
-#| msgid "Import of VCards version %s is not supported by Gramps."
+#, python-format
 msgid "Import of vCards version %s is not supported by Gramps."
-msgstr ""
-"Het importeren van VCards-versie %s wordt niet ondersteund door Gramps."
+msgstr "Het importeren van vCards-versie %s wordt niet ondersteund door Gramps."
 
 #: ../gramps/plugins/importer/importvcard.py:366
-#, fuzzy
-#| msgid ""
-#| "VCard is malformed missing the compulsory N property, so there is no "
-#| "name; skip it."
 msgid ""
 "The vCard is malformed. It is missing the compulsory N property, so there is "
 "no name; skip it."
 msgstr ""
-"VCard is onjuist opgemaakt want de verplichte N-eigenschap ontbreekt, "
-"daardoor is er geen naam; wordt overgeslagen."
+"De vCard heeft een onjuiste opmaak. De verplichte N-eigenschap ontbreekt, "
+"daardoor is er geen naam; overslaan."
 
 #: ../gramps/plugins/importer/importvcard.py:371
-#, fuzzy
-#| msgid ""
-#| "VCard is malformed missing the compulsory FN property, get name from N "
-#| "alone."
 msgid ""
 "The vCard is malformed. It is missing the compulsory FN property, get name "
 "from N alone."
 msgstr ""
-"VCard is onjuist opgemaakt want de verplichte FN-eigenschap ontbreekt, "
+"De vCard heeft een onjuiste opmaak. De verplichte FN-eigenschap ontbreekt, "
 "krijgt alleen naam van N."
 
 #: ../gramps/plugins/importer/importvcard.py:375
-#, fuzzy
-#| msgid "VCard is malformed wrong number of name components."
 msgid "The vCard is malformed. Wrong number of name components."
-msgstr "VCard is verkeerd opgemaakt door verkeerd aantal naamcomponenten."
+msgstr "De vCard heeft een misvormde opmaak. Incorrect aantal naamcomponenten."
 
 #: ../gramps/plugins/importer/importvcard.py:517
 #, python-brace-format
@@ -27000,82 +26911,56 @@ msgid "%(date)s %(time)s"
 msgstr "%(date)s %(time)s"
 
 #: ../gramps/plugins/lib/libmetadata.py:115
-#, fuzzy
-#| msgid "Description"
 msgid "Descriptive Tags"
-msgstr "Beschrijving"
+msgstr "Beschrijvende labels"
 
 #: ../gramps/plugins/lib/libmetadata.py:116
-#, fuzzy
-#| msgid "Styled Text Tags"
 msgid "Date and Time Tags"
-msgstr "Tekststijl labels"
+msgstr "Datum- en tijd-labels"
 
 #: ../gramps/plugins/lib/libmetadata.py:117
-#, fuzzy
-#| msgid "People"
 msgid "People Tags"
-msgstr "Personen"
+msgstr "Personen-labels"
 
 #: ../gramps/plugins/lib/libmetadata.py:118
-#, fuzzy
-#| msgid "Events"
 msgid "Event Tags"
-msgstr "Gebeurtenissen"
+msgstr "Gebeurtenis-labels"
 
 #: ../gramps/plugins/lib/libmetadata.py:119
-#, fuzzy
-#| msgid "Images"
 msgid "Image Tags"
-msgstr "Afbeeldingen"
+msgstr "Afbeelding-labels"
 
 #: ../gramps/plugins/lib/libmetadata.py:120
-#, fuzzy
-#| msgid "Place Information"
 msgid "Camera Information"
-msgstr "Informatie van een locatie"
+msgstr "Camera-informatie"
 
 #: ../gramps/plugins/lib/libmetadata.py:121
-#, fuzzy
-#| msgid "Locations"
 msgid "Location Tags"
-msgstr "Locaties"
+msgstr "Locatie-labels"
 
 #: ../gramps/plugins/lib/libmetadata.py:122
-#, fuzzy
-#| msgid "Advanced"
 msgid "Advanced Tags"
-msgstr "Geavanceerd"
+msgstr "Geavanceerde labels"
 
 #: ../gramps/plugins/lib/libmetadata.py:123
-#, fuzzy
-#| msgid "Removing Tags"
 msgid "Rights Tags"
-msgstr "Labels verwijderen"
+msgstr "Rechten-labels"
 
 #: ../gramps/plugins/lib/libmetadata.py:124
-#, fuzzy
-#| msgid "New Tag"
 msgid "Keyword Tags"
-msgstr "Nieuw label"
+msgstr "Trefwoord-labels"
 
 #: ../gramps/plugins/lib/libmetadata.py:220
-#, fuzzy
-#| msgid "Namesake"
 msgid "Namespace"
-msgstr "Naamgenoot"
+msgstr "Naamruimte"
 
 #: ../gramps/plugins/lib/libmetadata.py:221
-#, fuzzy
-#| msgid "label"
 msgid "Label"
-msgstr "label"
+msgstr "Label"
 
 #: ../gramps/plugins/lib/libmetadata.py:222
-#, fuzzy
-#| msgid ", "
 msgid " "
-msgstr ", "
+msgstr " "
 
 #: ../gramps/plugins/lib/libnarrate.py:88
 #, python-format
@@ -31367,12 +31252,9 @@ msgid "females"
 msgstr "vrouwen"
 
 #: ../gramps/plugins/quickview/filterbyname.py:61
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "people with unknown gender"
 msgctxt "Filtering_on"
 msgid "people with other gender"
-msgstr "personen met onbekend geslacht"
+msgstr "personen met ander geslacht"
 
 #: ../gramps/plugins/quickview/filterbyname.py:63
 msgctxt "Filtering_on"
@@ -32154,7 +32036,7 @@ msgstr "Drukt het jaar af waarop de gebeurtenis plaatsvond in het verslag"
 #: ../gramps/plugins/textreport/birthdayreport.py:526
 #: ../gramps/plugins/textreport/birthdayreport.py:528
 msgid "Year of report"
-msgstr "Jaar van rapportage"
+msgstr "Jaar van verslag"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:564
 msgid "Include death anniversaries"
@@ -32766,7 +32648,7 @@ msgstr "V"
 #: ../gramps/plugins/textreport/familygroup.py:507
 msgctxt "acronym for other"
 msgid "X"
-msgstr ""
+msgstr "X"
 
 #: ../gramps/plugins/textreport/familygroup.py:509
 #, python-format
@@ -33258,10 +33140,9 @@ msgid "Females: %d"
 msgstr "Vrouwen: %d"
 
 #: ../gramps/plugins/textreport/summary.py:188
-#, fuzzy, python-format
-#| msgid "Individuals with unknown gender: %d"
+#, python-format
 msgid "Individuals with other gender: %d"
-msgstr "Personen met onbekend geslacht: %d"
+msgstr "Personen met ander geslacht: %d"
 
 #: ../gramps/plugins/textreport/summary.py:193
 #, python-format
@@ -33412,7 +33293,7 @@ msgstr "Kwartierstaatverslag"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:38
 msgid "Produces a textual ancestral report"
-msgstr "Produceert een tekstueel voorouderrapport"
+msgstr "Produceert een voorouderroverzicht in tekstvorm"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:60
 msgid "Produces a report of birthdays and anniversaries"
@@ -33525,17 +33406,13 @@ msgstr "Toont de status van koppelingen naar notities"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:35
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:36
-#, fuzzy
-#| msgid "Thumbnails"
 msgid "Gnome Thumbnailer"
-msgstr "Miniatuurafbeeldingen"
+msgstr "Gnome Miniatuurautomaat"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:49
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:50
-#, fuzzy
-#| msgid "Thumbnails"
 msgid "Image Thumbnailer"
-msgstr "Miniatuurafbeeldingen"
+msgstr "Afbeelding Miniatuurautomaat"
 
 #: ../gramps/plugins/tool/changenames.glade:34
 msgid ""
@@ -34142,7 +34019,7 @@ msgstr "Datums genereren"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:181
 msgid "Date Test Plugin"
-msgstr "Datumtest Plugin"
+msgstr "Datumtest-extensie"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:187
 msgid "Pass"
@@ -37108,7 +36985,7 @@ msgstr "Volgende"
 
 #: ../gramps/plugins/webreport/basepage.py:2410
 msgid "Other media: vidéos, pdfs..."
-msgstr ""
+msgstr "Andere media: video, pdf…"
 
 #: ../gramps/plugins/webreport/basepage.py:2572
 msgid " [Click to Go]"
@@ -38114,21 +37991,18 @@ msgstr ""
 "Selecteer welke optie u wilt gebruiken voor de Stamen-kaartenpagina's..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2520
-#, fuzzy, python-format
-#| msgid "Died %(month_year)s (%(age)s)."
+#, python-format
 msgctxt "val"
 msgid "in %(inipth)s (%(val)s)"
-msgstr "Overleden %(month_year)s (%(age)s)."
+msgstr "in %(inipth)s (%(val)s)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2522
-#, fuzzy
-#| msgid "Dates"
 msgid "latest"
-msgstr "Datums"
+msgstr "laatste"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2523
 msgid "openlayers version to use"
-msgstr ""
+msgstr "te gebruiken openlayers-versie"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2528
 msgid ""
@@ -38138,6 +38012,11 @@ msgid ""
 "openlayers_version.\n"
 "See OLDER VERSIONS in https://openlayers.org/"
 msgstr ""
+"U mag deze optie alleen gebruiken als u op uw website geen OpenStreetMap- of "
+"Stamen-kaarten te zien krijgt.\n"
+"U kunt de waarde in het opgegeven bestand wijzigen. De optienaam die moet "
+"worden gewijzigd, is openlayers_version.\n"
+"Zie OUDERE VERSIES op https://openlayers.org/"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2544
 msgid "Other inclusion (CMS, web calendar, PHP)"
@@ -38492,10 +38371,9 @@ msgid "Number of People"
 msgstr "Aantal personen"
 
 #: ../gramps/plugins/webreport/surnamelist.py:279
-#, fuzzy, python-format
-#| msgid "Surnames beginning with letter %s"
+#, python-format
 msgid "Surnames beginning with letter '%s' %s"
-msgstr "Achternamen beginnend met letter %s"
+msgstr "Achternamen beginnend met letter '%s' %s"
 
 #: ../gramps/plugins/webreport/thumbnail.py:121
 msgid ""
@@ -38694,7 +38572,7 @@ msgstr "Link naar het Websiteverslag met een verhaal"
 
 #: ../gramps/plugins/webreport/webcal.py:1971
 msgid "Whether to link data to web report or not"
-msgstr "Of er gegevens aan het webrapport moeten worden gekoppeld"
+msgstr "Of er gegevens wel/niet aan het webrapport moeten worden gekoppeld"
 
 #: ../gramps/plugins/webreport/webcal.py:1988
 msgid "Link prefix"
