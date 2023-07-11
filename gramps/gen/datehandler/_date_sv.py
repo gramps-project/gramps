@@ -60,8 +60,8 @@ class DateParserSv(DateParser):
         "omkring": Date.MOD_ABOUT,
         "ca": Date.MOD_ABOUT,
         "c:a": Date.MOD_ABOUT,
-        "from": Date.MOD_FROM,
-        "to": Date.MOD_TO,
+        "från": Date.MOD_FROM,
+        "till": Date.MOD_TO,
     }
 
     bce = ["f Kr"]

@@ -92,8 +92,8 @@ class DateParserNL(DateParser):
         "ongeveer": Date.MOD_ABOUT,
         "rond": Date.MOD_ABOUT,
         "tegen": Date.MOD_ABOUT,
-        "from": Date.MOD_FROM,
-        "to": Date.MOD_TO,
+        "van": Date.MOD_FROM,
+        "tot": Date.MOD_TO,
     }
 
     calendar_to_int = {

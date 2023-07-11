@@ -215,8 +215,8 @@ class DateParserDE(DateParser):
         "etwa": Date.MOD_ABOUT,
         "circa": Date.MOD_ABOUT,
         "ca.": Date.MOD_ABOUT,
-        "from": Date.MOD_FROM,
-        "to": Date.MOD_TO,
+        "von": Date.MOD_FROM,
+        "bis": Date.MOD_TO,
     }
 
     calendar_to_int = {
