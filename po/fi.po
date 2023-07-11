@@ -8,13 +8,14 @@
 # PeterJPower <pekka.valta@kolumbus.fi>, 2021.
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2022.
 # Jyri-Petteri Paloposki <jyri-petteri.paloposki@iki.fi>, 2022.
+# Oskari Lavinto <olavinto@protonmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-10 22:36+0100\n"
-"PO-Revision-Date: 2022-10-17 00:57+0000\n"
-"Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
+"PO-Revision-Date: 2023-07-11 20:29+0000\n"
+"Last-Translator: Oskari Lavinto <olavinto@protonmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
 "Language: fi\n"
@@ -22,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 5.0-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../Gramps/gramps\n"
@@ -5471,16 +5472,12 @@ msgstr ""
 "lausekkeen mukaisen tekstin"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:45
-#, fuzzy
-#| msgid "People with an alternate name"
 msgid "People who are neither male nor female"
-msgstr "Henkilöt vaihtoehtoisella nimellä"
+msgstr "Henkilöt, jotka eivät ole miehiä eivätkä naisia"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:47
-#, fuzzy
-#| msgid "Matches all people with unknown gender"
 msgid "Matches all people with other gender"
-msgstr "Poimii kaikki henkilöt, joiden sukupuolta ei tiedetä"
+msgstr "Poimii kaikki henkilöt, joiden sukupuoli on muu"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:45
 msgid "Number of relationships:"
@@ -7781,8 +7778,6 @@ msgid "Alternate Marriage"
 msgstr "Avoliitto"
 
 #: ../gramps/gen/lib/eventtype.py:210
-#, fuzzy
-#| msgid "Stillborn"
 msgid "Stillbirth"
 msgstr "Kuolleena syntynyt"
 
@@ -9167,10 +9162,8 @@ msgid "Strikethrough"
 msgstr ""
 
 #: ../gramps/gen/lib/styledtexttagtype.py:73
-#, fuzzy
-#| msgid "Superscript"
 msgid "Subscript"
-msgstr "Yläviite"
+msgstr "Alaindeksi"
 
 #: ../gramps/gen/lib/surname.py:87 ../gramps/gen/lib/surname.py:91
 #: ../gramps/gen/utils/keyword.py:56 ../gramps/gui/clipboard.py:605
@@ -9421,10 +9414,8 @@ msgid "Rule"
 msgstr "Sääntö"
 
 #: ../gramps/gen/plug/_pluginreg.py:110
-#, fuzzy
-#| msgid "Thumbnails"
 msgid "Thumbnailer"
-msgstr "Pikkukuvat"
+msgstr "Pienoiskuvat"
 
 #: ../gramps/gen/plug/_pluginreg.py:583
 #: ../gramps/plugins/gramplet/faqgramplet.py:135
