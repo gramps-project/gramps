@@ -74,7 +74,9 @@ locale, leaving $LANGUAGE unset (which is the same as setting it to
 #
 #------------------------------------------------------------------------
 
-import os, subprocess, locale
+import os
+import subprocess
+import locale
 import logging
 LOG = logging.getLogger(".gramps.gen.utils.grampslocale.mac")
 LOG.propagate = True
@@ -93,10 +95,12 @@ def mac_setup_localization(glocale):
                 args = ('/usr/bin/defaults', 'read',
                         'org.gramps-project.gramps', key)
 
-            answer = subprocess.Popen(
-                args,
-                stderr=open("/dev/null"),
-                stdout=subprocess.PIPE).communicate()[0]
+            answer = None
+            with subprocess.Popen(
+                    args,
+                    stderr=open("/dev/null", encoding='utf8'),
+                    stdout=subprocess.PIPE) as proc:
+                answer = proc.communicate()[0]
             if not answer:
                 LOG.debug("No prefs found for %s:%s", domain, key)
                 return None
@@ -210,46 +214,22 @@ def mac_setup_localization(glocale):
             return None
         return apple_collation
 
-#The action starts here
-    _locale = None
-    glocale.calendar = None
-    try:
-        locale.setlocale(locale.LC_ALL, '')
-        _locale = locale.getlocale()
-    except locale.Error as err:
-        LOG.warning("Environment locale not usable: %s", str(err))
-
-    if not glocale.lang and _locale:
-        if glocale.check_available_translations(_locale[0]):
-            glocale.lang = '.'.join(_locale)
-        else:
-            LOG.debug("Environment locale %s not supported", _locale)
-
-    if not glocale.lang:
-        LOG.debug("Setting from the environment didn't work out, checking "
-                  "defaults")
-        (glocale.lang, glocale.calendar) = _mac_get_locale()
-
-    glocale.coll_qualifier = None
-    glocale.collation = _mac_get_collation()
-
-    if not glocale.lang and glocale.collation:
-        coll_parts = glocale.collation.split('@')
-        glocale.lang = glocale.check_available_translations(coll_parts[0])
-
-    if not glocale.lang:
-        glocale.lang = "en_US.UTF-8"
-
-    glocale.lang = locale.normalize(glocale.lang)
-    if not glocale.lang.split('.')[1].lower() in ['utf8', 'utf-8']:
-        LOG.debug('Forcing locale encoding to UTF-8')
-        glocale.lang = '.'.join([glocale.lang.split('.')[0], 'UTF-8'])
+    def _set_from_environment(glocale):
+        _locale = None
+        glocale.calendar = None
         try:
-            locale.setlocale(locale.LC_ALL, glocale.lang)
-        except locale.Error:
-            LOG.debug('Attempt failed, locale %s unsupported', glocale.lang)
-    glocale.encoding = glocale.lang.split('.')[1]
-    if not glocale.language:
+            locale.setlocale(locale.LC_ALL, '')
+            _locale = locale.getlocale()
+        except locale.Error as err:
+            LOG.warning("Environment locale not usable: %s", str(err))
+
+        if not glocale.lang and _locale:
+            if glocale.check_available_translations(_locale[0]):
+                glocale.lang = '.'.join(_locale)
+            else:
+                LOG.debug("Environment locale %s not supported", _locale)
+
+    def _find_language(glocale):
         lang = locale.getlocale(locale.LC_MESSAGES)[0]
         language = [glocale.check_available_translations(lang)]
         if not language:
@@ -283,15 +263,49 @@ def mac_setup_localization(glocale):
             if not glocale.lang:
                 glocale.lang = locale.normalize(glocale.language[0])
                 glocale.encoding = glocale.lang.split('.')[1]
-    LOG.debug("Ended check for languages with glocale.language %s",
-              glocale.language)
+        LOG.debug("Ended check for languages with glocale.language %s",
+                  glocale.language)
 
-    if not glocale.collation:
-        glocale.collation = (locale.getlocale(locale.LC_COLLATE)[0] or
-                             glocale.lang)
-    if not glocale.calendar:
+    def _force_encoding(glocale):
+        LOG.debug('Forcing locale encoding to UTF-8')
+        glocale.lang = '.'.join([glocale.lang.split('.')[0], 'UTF-8'])
+        try:
+            locale.setlocale(locale.LC_ALL, glocale.lang)
+        except locale.Error:
+            LOG.debug('Attempt failed, locale %s unsupported', glocale.lang)
+
+    def _set_calendar_from_translation(glocale):
         time = locale.getlocale(locale.LC_TIME)[0]
         if glocale.check_available_translations(time):
             glocale.calendar = time
         else:
             glocale.calendar = glocale.lang[:5]
+
+#The action starts here
+    _set_from_environment(glocale)
+    if not glocale.lang:
+        LOG.debug("Setting from the environment didn't work out, checking "
+                  "defaults")
+        (glocale.lang, glocale.calendar) = _mac_get_locale()
+
+    glocale.coll_qualifier = None
+    glocale.collation = _mac_get_collation()
+
+    if not glocale.lang and glocale.collation:
+        coll_parts = glocale.collation.split('@')
+        glocale.lang = glocale.check_available_translations(coll_parts[0])
+
+    if not glocale.lang:
+        glocale.lang = "en_US.UTF-8"
+
+    glocale.lang = locale.normalize(glocale.lang)
+    if not glocale.lang.split('.')[1].lower() in ['utf8', 'utf-8']:
+        _force_encoding(glocale)
+    glocale.encoding = glocale.lang.split('.')[1]
+    if not glocale.language:
+        _find_language(glocale)
+    if not glocale.collation:
+        glocale.collation = (locale.getlocale(locale.LC_COLLATE)[0] or
+                             glocale.lang)
+    if not glocale.calendar:
+        _set_calendar_from_translation(glocale)
