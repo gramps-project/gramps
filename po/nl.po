@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-12 15:48+0100\n"
-"PO-Revision-Date: 2023-07-11 20:29+0000\n"
+"PO-Revision-Date: 2023-07-12 20:12+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -8054,9 +8054,6 @@ msgid "annul."
 msgstr "nietigverkl."
 
 #: ../gramps/gen/lib/eventtype.py:260
-#, fuzzy
-#| msgctxt "Will abbreviation"
-#| msgid "will."
 msgctxt "Stillbirth abbreviation"
 msgid "still."
 msgstr "+*"
@@ -11435,8 +11432,6 @@ msgid "not found"
 msgstr "niet gevonden"
 
 #: ../gramps/grampsapp.py:326
-#, fuzzy
-#| msgid "can't found it because exiv2 not installed"
 msgid "not found because exiv2 is not installed"
 msgstr "niet gevonden, omdat exiv2 niet is geïnstalleerd"
 
@@ -12251,16 +12246,13 @@ msgid "Enable the spelling checker for notes."
 msgstr "Spellingcontrole inschakelen voor notities."
 
 #: ../gramps/gui/configure.py:1664
-#, fuzzy, python-format
-#| msgid ""
-#| "GtkSpell not loaded. Spell checking will not be available.\n"
-#| "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
+#, python-format
 msgid ""
 "Gspell not loaded. Spell checking will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 msgstr ""
-"GtkSpell niet geladen. Spellingcontrole is niet beschikbaar.\n"
-"Om dit in Gramps te installeren, zie %(gramps_wiki_build_spell_url)s"
+"Gspell niet geladen. Spellingcontrole is niet beschikbaar.\n"
+"Om dit voor Gramps aan te maken, zie %(gramps_wiki_build_spell_url)s"
 
 #: ../gramps/gui/configure.py:1672
 msgid "Show text label beside Navigator buttons *"
@@ -19665,14 +19657,8 @@ msgid "Select_Source_selector"
 msgstr "Selecteer_bronkiezer"
 
 #: ../gramps/gui/spell.py:62
-#, fuzzy
-#| msgid ""
-#| "You have no installed dictionaries. Either install one or disable spell "
-#| "checking"
 msgid "You have no installed dictionaries."
-msgstr ""
-"U heeft geen woordenboeken geïnstalleerd. Installeer er een of schakel "
-"spellingcontrole uit"
+msgstr "U heeft geen woordenboeken geïnstalleerd."
 
 #: ../gramps/gui/spell.py:82
 msgid "Off"
@@ -24350,20 +24336,13 @@ msgid "Addons and \"Gramplets\""
 msgstr "Add-ons en \"Gramplets\""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:195
-#, fuzzy
-#| msgid ""
-#| "There many Addons or \"Gramplets\" that are available to assist you in "
-#| "data entry and visualizing your family tree. Many of these tools are "
-#| "already available to you. Many more are available to download and "
-#| "install.\n"
-#| "\n"
 msgid ""
 "There are many Addons or \"Gramplets\" that are available to assist you in "
 "data entry and visualizing your family tree. Many of these tools are already "
 "available to you. Many more are available to download and install.\n"
 "\n"
 msgstr ""
-"Er zijn veel add-ons of \"Gramplets\" beschikbaar om u te helpen bij het "
+"Er zijn veel extensies of \"Gramplets\" beschikbaar om u te helpen bij het "
 "invoeren van gegevens en het visualiseren van uw stamboom. Veel van deze "
 "hulpmiddelen zijn standaard voorhanden. Er zijn er nog veel meer beschikbaar "
 "om te downloaden en te installeren.\n"
@@ -24974,14 +24953,9 @@ msgid "Ahnentafel number visible"
 msgstr "Kwartierstaatnummer zichtbaar"
 
 #: ../gramps/plugins/graph/gvhourglass.py:455
-#, fuzzy
-#| msgid ""
-#| "Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
-#| "informations."
 msgid "Show Sosa / Sosa-Stradonitz / Ahnentafel number."
 msgstr ""
-"Toon het Sosa / Sosa-Stradonitz / Ahnentafel-nummer (kwartierstaatnummer) "
-"onder alle andere informatie."
+"Sosa / Sosa-Stradonitz / Ahnentafel-nummer (kwartierstaatnummer) weergeven."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:211
 #: ../gramps/plugins/textreport/indivcomplete.py:836
@@ -30800,19 +30774,14 @@ msgid "Where to save the tiles for offline mode."
 msgstr "Waar de tegels moeten worden opgeslagen voor de offline modus."
 
 #: ../gramps/plugins/lib/maps/geography.py:1301
-#, fuzzy
-#| msgid ""
-#| "If you have no more space in your file system. You can remove all tiles "
-#| "placed in the above path.\n"
-#| "Be careful! If you have no internet, you'll get no map."
 msgid ""
 "If you have no more space in your file system, you can remove all tiles "
 "placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
-"Als u geen ruimte meer heeft in uw bestandssysteem. U kunt alle tegels in "
+"Als u geen ruimte meer heeft in uw bestandssysteem, kunt u alle tegels in "
 "het bovenstaande pad verwijderen.\n"
-"Wees voorzichtig! Als u geen internet hebt, krijgt u geen kaart."
+"Wees voorzichtig! Zonder internetverbinding, krijgt u geen kaart."
 
 #: ../gramps/plugins/lib/maps/geography.py:1306
 msgid "Zoom used when centering"
@@ -30863,26 +30832,12 @@ msgid "Select tile cache directory for offline mode"
 msgstr "Selecteer de tegelcache-map voor de offline modus"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:137
-#, fuzzy, python-format
-#| msgid "Can't create tiles cache directory %s"
+#, python-format
 msgid "Can't create tile cache directory %s"
-msgstr "Kan tegelcache-map %s niet maken"
+msgstr "Kan map voor tegelbuffer %s niet aanmaken"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:141
-#, fuzzy, python-format
-#| msgid ""
-#| "You must verify and change the tiles cache\n"
-#| "...\n"
-#| "[geography]\n"
-#| "...\n"
-#| "path='bad/path'\n"
-#| "...\n"
-#| "in the gramps.ini file :\n"
-#| "%s\n"
-#| "\n"
-#| "Before to change the gramps.ini file, you need to close gramps\n"
-#| "\n"
-#| "The next errors will be normal"
+#, python-format
 msgid ""
 "You must verify and change the tile cache\n"
 "...\n"
@@ -30897,18 +30852,18 @@ msgid ""
 "\n"
 "The following errors are expected"
 msgstr ""
-"U moet de tegelcache verifiëren en wijzigen\n"
-"...\n"
+"U moet de tegelbuffer verifiëren en wijzigen\n"
+"…\n"
 "[geography]\n"
-"...\n"
+"…\n"
 "pad='slecht/pad'\n"
-"...\n"
+"…\n"
 "in het gramps.ini-bestand :\n"
 "%s\n"
 "\n"
-"Voordat u het gramps.ini-bestand kunt wijzigen, moet u gramps sluiten\n"
+"U dient Gramps af te sluiten voordat u het gramps.ini-bestand kunt wijzigen\n"
 "\n"
-"De volgende fouten zijn normaal"
+"De volgende fouten worden verwacht"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:181
 #: ../gramps/plugins/lib/maps/osmgps.py:245
@@ -34918,14 +34873,8 @@ msgid "Enable ID reordering."
 msgstr "Schakel ID-herordening in."
 
 #: ../gramps/plugins/tool/reorderids.glade:1420
-#, fuzzy
-#| msgid ""
-#| "List next ID available\n"
-#| "(maynot be continuous)."
 msgid "List next ID available (may not be continuous)."
-msgstr ""
-"Toon eerstvolgend beschikbare ID\n"
-"(is mogelijk niet doorlopend)."
+msgstr "Toon eerstvolgend beschikbare ID (is mogelijk niet doorlopend)."
 
 #: ../gramps/plugins/tool/reorderids.glade:1423
 msgid "  Actual"
@@ -34948,14 +34897,8 @@ msgid "Change"
 msgstr "Wijzig"
 
 #: ../gramps/plugins/tool/reorderids.glade:1469
-#, fuzzy
-#| msgid ""
-#| "Enable ID reordering\n"
-#| "with Start / Step sequence."
 msgid "Enable ID reordering with Start / Step sequence."
-msgstr ""
-"Herordenen van ID inschakelen\n"
-"met start/stap-volgorde."
+msgstr "Herordenen van ID inschakelen met start/stap-volgorde."
 
 #: ../gramps/plugins/tool/reorderids.glade:1481
 msgid "Start"
@@ -34978,14 +34921,8 @@ msgid "Keep"
 msgstr "Behouden"
 
 #: ../gramps/plugins/tool/reorderids.glade:1521
-#, fuzzy
-#| msgid ""
-#| "Keep IDs with alternate\n"
-#| "prefixes untouched."
 msgid "Keep IDs with alternate prefixes untouched."
-msgstr ""
-"Laat ID's met alternatieve\n"
-"voorvoegsels onaangeroerd."
+msgstr "Laat ID's met alternatieve voorvoegsels onaangeroerd."
 
 #: ../gramps/plugins/tool/reorderids.py:64
 msgctxt "manual"
@@ -37020,8 +36957,6 @@ msgid "Next"
 msgstr "Volgende"
 
 #: ../gramps/plugins/webreport/basepage.py:2410
-#, fuzzy
-#| msgid "Other media: vidéos, pdfs..."
 msgid "Other media: videos, pdfs..."
 msgstr "Andere media: video, pdf…"
 
@@ -38442,7 +38377,7 @@ msgstr ""
 #. Translators: This is the email subject line in the Web Calendar
 #: ../gramps/plugins/webreport/webcal.py:1567
 msgid "WebCal"
-msgstr ""
+msgstr "WebCal"
 
 #: ../gramps/plugins/webreport/webcal.py:1578
 #, python-format
