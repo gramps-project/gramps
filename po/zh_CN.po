@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-10 22:36+0100\n"
+"POT-Creation-Date: 2023-07-12 15:48+0100\n"
 "PO-Revision-Date: 2023-06-27 13:52+0000\n"
 "Last-Translator: 快乐的老鼠宝宝 <keaitianxinmail@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -3505,7 +3505,7 @@ msgstr "应用筛选器..."
 #: ../gramps/plugins/textreport/recordsreport.py:217
 #: ../gramps/plugins/tool/sortevents.py:168
 #: ../gramps/plugins/webreport/narrativeweb.py:1984
-#: ../gramps/plugins/webreport/webcal.py:1754
+#: ../gramps/plugins/webreport/webcal.py:1752
 msgid "Filter"
 msgstr "筛查器"
 
@@ -8485,7 +8485,7 @@ msgstr "摘录"
 
 #: ../gramps/gen/lib/note.py:119 ../gramps/gui/configure.py:1050
 #: ../gramps/gui/editors/editplaceformat.py:72
-#: ../gramps/plugins/tool/reorderids.glade:1447
+#: ../gramps/plugins/tool/reorderids.glade:1446
 msgid "Format"
 msgstr "格式"
 
@@ -9073,8 +9073,8 @@ msgstr "上标"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:71
 #: ../gramps/gui/glade/editlink.glade:171
-#: ../gramps/gui/widgets/styledtextbuffer.py:579
-#: ../gramps/gui/widgets/styledtextbuffer.py:619
+#: ../gramps/gui/widgets/styledtextbuffer.py:581
+#: ../gramps/gui/widgets/styledtextbuffer.py:623
 msgid "Link"
 msgstr "链接"
 
@@ -9916,7 +9916,7 @@ msgstr "姓名格式"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:156
 #: ../gramps/gen/plug/report/stdoptions.py:95
-#: ../gramps/plugins/webreport/webcal.py:1807
+#: ../gramps/plugins/webreport/webcal.py:1805
 msgid "Select the format to display names"
 msgstr "选择用于显示姓名的格式"
 
@@ -10097,7 +10097,7 @@ msgid "The additional translation to be used for the report."
 msgstr "要用于报告的翻译。"
 
 #: ../gramps/gen/plug/report/stdoptions.py:90 ../gramps/gui/configure.py:1290
-#: ../gramps/plugins/webreport/webcal.py:1803
+#: ../gramps/plugins/webreport/webcal.py:1801
 msgid "Name format"
 msgstr "姓名格式"
 
@@ -10800,49 +10800,49 @@ msgstr "中文（香港）"
 msgid "Chinese (Traditional)"
 msgstr "中文（繁体）"
 
-#: ../gramps/gen/utils/grampslocale.py:900
+#: ../gramps/gen/utils/grampslocale.py:902
 #, fuzzy
 msgid "the person"
 msgstr "成员"
 
-#: ../gramps/gen/utils/grampslocale.py:902
+#: ../gramps/gen/utils/grampslocale.py:904
 msgid "the family"
 msgstr "家庭"
 
-#: ../gramps/gen/utils/grampslocale.py:904
+#: ../gramps/gen/utils/grampslocale.py:906
 msgid "the place"
 msgstr "地点"
 
-#: ../gramps/gen/utils/grampslocale.py:906
+#: ../gramps/gen/utils/grampslocale.py:908
 msgid "the event"
 msgstr "事件"
 
-#: ../gramps/gen/utils/grampslocale.py:908
+#: ../gramps/gen/utils/grampslocale.py:910
 #, fuzzy
 msgid "the repository"
 msgstr "每个文库"
 
-#: ../gramps/gen/utils/grampslocale.py:910
+#: ../gramps/gen/utils/grampslocale.py:912
 msgid "the note"
 msgstr "注释"
 
-#: ../gramps/gen/utils/grampslocale.py:912
+#: ../gramps/gen/utils/grampslocale.py:914
 msgid "the media"
 msgstr "媒体"
 
-#: ../gramps/gen/utils/grampslocale.py:914
+#: ../gramps/gen/utils/grampslocale.py:916
 msgid "the source"
 msgstr "来源"
 
-#: ../gramps/gen/utils/grampslocale.py:916
+#: ../gramps/gen/utils/grampslocale.py:918
 msgid "the filter"
 msgstr "筛选器"
 
-#: ../gramps/gen/utils/grampslocale.py:918
+#: ../gramps/gen/utils/grampslocale.py:920
 msgid "the citation"
 msgstr "引用"
 
-#: ../gramps/gen/utils/grampslocale.py:920
+#: ../gramps/gen/utils/grampslocale.py:922
 msgid "See details"
 msgstr "查看细节"
 
@@ -11314,39 +11314,38 @@ msgstr ""
 
 #: ../gramps/grampsapp.py:277 ../gramps/grampsapp.py:323
 #: ../gramps/grampsapp.py:345 ../gramps/grampsapp.py:361
-#: ../gramps/grampsapp.py:376 ../gramps/grampsapp.py:388
-#: ../gramps/grampsapp.py:397 ../gramps/grampsapp.py:399
-#: ../gramps/grampsapp.py:433 ../gramps/grampsapp.py:440
+#: ../gramps/grampsapp.py:371 ../gramps/grampsapp.py:392
+#: ../gramps/grampsapp.py:399
 #, fuzzy
 #| msgid "Not found"
 msgid "not found"
 msgstr "未找到"
 
 #: ../gramps/grampsapp.py:326
-msgid "can't found it because exiv2 not installed"
+msgid "not found because exiv2 is not installed"
 msgstr ""
 
 #: ../gramps/grampsapp.py:359
 msgid "Installed but does not supply version"
 msgstr ""
 
-#: ../gramps/grampsapp.py:420
+#: ../gramps/grampsapp.py:379
 #, fuzzy
 #| msgid "Unstable"
 msgid "installed"
 msgstr "不稳定版"
 
-#: ../gramps/grampsapp.py:586 ../gramps/grampsapp.py:593
-#: ../gramps/grampsapp.py:646
+#: ../gramps/grampsapp.py:544 ../gramps/grampsapp.py:551
+#: ../gramps/grampsapp.py:604
 msgid "Configuration error:"
 msgstr "配置错误："
 
-#: ../gramps/grampsapp.py:590
+#: ../gramps/grampsapp.py:548
 #, fuzzy
 msgid "Could not read configuration"
 msgstr "读取设置出错"
 
-#: ../gramps/grampsapp.py:594
+#: ../gramps/grampsapp.py:552
 #, fuzzy, python-format
 msgid ""
 "A definition for the media type %s could not be found \n"
@@ -12167,9 +12166,12 @@ msgid "Enable the spelling checker for notes."
 msgstr "启用拼写检查"
 
 #: ../gramps/gui/configure.py:1664
-#, python-format
+#, fuzzy, python-format
+#| msgid ""
+#| "GtkSpell not loaded. Spell checking will not be available.\n"
+#| "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 msgid ""
-"GtkSpell not loaded. Spell checking will not be available.\n"
+"Gspell not loaded. Spell checking will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 msgstr ""
 "GtkSpell 未加载。拼写检查将不可用。\n"
@@ -19090,7 +19092,7 @@ msgstr "样式"
 #: ../gramps/plugins/textreport/tableofcontents.py:92
 #: ../gramps/plugins/textreport/tagreport.py:902
 #: ../gramps/plugins/webreport/narrativeweb.py:1958
-#: ../gramps/plugins/webreport/webcal.py:1739
+#: ../gramps/plugins/webreport/webcal.py:1737
 msgid "Report Options"
 msgstr "报告选项"
 
@@ -19391,24 +19393,21 @@ msgctxt "manual"
 msgid "Select_Source_selector"
 msgstr "Select_Source_selector"
 
-#: ../gramps/gui/spell.py:92
+#: ../gramps/gui/spell.py:62
+#, fuzzy
+#| msgid ""
+#| "You have no installed dictionaries. Either install one or disable spell "
+#| "checking"
+msgid "You have no installed dictionaries."
+msgstr "您没有安装字典。安装一部或者禁用拼写检查。"
+
+#: ../gramps/gui/spell.py:82
 msgid "Off"
 msgstr "关"
 
-#: ../gramps/gui/spell.py:95
+#: ../gramps/gui/spell.py:85
 msgid "On"
 msgstr "开"
-
-#: ../gramps/gui/spell.py:149
-msgid ""
-"You have no installed dictionaries. Either install one or disable spell "
-"checking"
-msgstr "您没有安装字典。安装一部或者禁用拼写检查。"
-
-#: ../gramps/gui/spell.py:153
-#, python-format
-msgid "Spelling checker initialization failed: %s"
-msgstr "拼写检查初始化失败：%s"
 
 #: ../gramps/gui/tipofday.py:67 ../gramps/gui/tipofday.py:68
 #: ../gramps/gui/tipofday.py:121
@@ -20140,7 +20139,7 @@ msgstr "重新排序关系"
 msgid "Reorder Relationships: %s"
 msgstr "重新排序关系：%s"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:431
+#: ../gramps/gui/widgets/styledtexteditor.py:432
 msgid ""
 "\n"
 "Command-Click to follow link"
@@ -20148,7 +20147,7 @@ msgstr ""
 "\n"
 "按住 Command 键点击来打开链接"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:432
+#: ../gramps/gui/widgets/styledtexteditor.py:433
 msgid ""
 "\n"
 "Ctrl-Click to follow link"
@@ -20156,40 +20155,40 @@ msgstr ""
 "\n"
 "Ctrl 单击打开链接"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:480
+#: ../gramps/gui/widgets/styledtexteditor.py:481
 msgid "Spellcheck"
 msgstr "拼写检查"
 
 # FIXME
-#: ../gramps/gui/widgets/styledtexteditor.py:485
+#: ../gramps/gui/widgets/styledtexteditor.py:486
 msgid "Search selection on web"
 msgstr "在网页中搜索选项"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:496
+#: ../gramps/gui/widgets/styledtexteditor.py:497
 msgid "_Send Mail To..."
 msgstr "发送邮件到(_S)..."
 
-#: ../gramps/gui/widgets/styledtexteditor.py:498
+#: ../gramps/gui/widgets/styledtexteditor.py:499
 msgid "Copy _E-mail Address"
 msgstr "拷贝 _E-mail 地址"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:501
+#: ../gramps/gui/widgets/styledtexteditor.py:502
 msgid "_Open Link"
 msgstr "打开链接(_O)"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:503
+#: ../gramps/gui/widgets/styledtexteditor.py:504
 msgid "Copy _Link Address"
 msgstr "拷贝链接地址(_L)"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:507
+#: ../gramps/gui/widgets/styledtexteditor.py:508
 msgid "_Edit Link"
 msgstr "编辑连接(_N)"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:765
+#: ../gramps/gui/widgets/styledtexteditor.py:766
 msgid "Select font color"
 msgstr "选择字体颜色"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:769
+#: ../gramps/gui/widgets/styledtexteditor.py:770
 msgid "Select background color"
 msgstr "选择背景颜色"
 
@@ -20722,7 +20721,7 @@ msgstr "是否包括空白页面."
 #: ../gramps/plugins/textreport/kinshipreport.py:382
 #: ../gramps/plugins/textreport/placereport.py:462
 #: ../gramps/plugins/textreport/recordsreport.py:243
-#: ../gramps/plugins/webreport/webcal.py:1792
+#: ../gramps/plugins/webreport/webcal.py:1790
 msgid "Report Options (2)"
 msgstr "报告选项 2"
 
@@ -21003,7 +21002,7 @@ msgstr[0] ""
 " {person}, {nyears}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:554
-#: ../gramps/plugins/webreport/webcal.py:1756
+#: ../gramps/plugins/webreport/webcal.py:1754
 msgid "Select filter to restrict people that appear on calendar"
 msgstr "选择筛查器限制出现在日历上的成员"
 
@@ -21050,13 +21049,13 @@ msgstr "日历底部文本的第三行"
 #: ../gramps/plugins/drawreport/calendarreport.py:587
 #: ../gramps/plugins/textreport/birthdayreport.py:508
 #: ../gramps/plugins/webreport/narrativeweb.py:2899
-#: ../gramps/plugins/webreport/webcal.py:1812
+#: ../gramps/plugins/webreport/webcal.py:1810
 msgid "Include only living people"
 msgstr "仅包含健在人员"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:588
 #: ../gramps/plugins/webreport/narrativeweb.py:2900
-#: ../gramps/plugins/webreport/webcal.py:1813
+#: ../gramps/plugins/webreport/webcal.py:1811
 msgid "Include only living people in the calendar"
 msgstr "在日历中仅包含健在人员"
 
@@ -21075,7 +21074,7 @@ msgstr "日历年份"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:603
 #: ../gramps/plugins/textreport/birthdayreport.py:531
-#: ../gramps/plugins/webreport/webcal.py:1849
+#: ../gramps/plugins/webreport/webcal.py:1847
 msgid "Country for holidays"
 msgstr "法定假日所属国家/地区"
 
@@ -21086,55 +21085,55 @@ msgstr "选择国家/地区以查看相关假期"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:617
 #: ../gramps/plugins/webreport/narrativeweb.py:2863
-#: ../gramps/plugins/webreport/webcal.py:1867
+#: ../gramps/plugins/webreport/webcal.py:1865
 msgid "First day of week"
 msgstr "每周第一天"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:625
 #: ../gramps/plugins/webreport/narrativeweb.py:2866
-#: ../gramps/plugins/webreport/webcal.py:1870
+#: ../gramps/plugins/webreport/webcal.py:1868
 msgid "Select the first day of the week for the calendar"
 msgstr "选择日历中周的第一天"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:628
 #: ../gramps/plugins/textreport/birthdayreport.py:545
 #: ../gramps/plugins/webreport/narrativeweb.py:2870
-#: ../gramps/plugins/webreport/webcal.py:1874
+#: ../gramps/plugins/webreport/webcal.py:1872
 msgid "Birthday surname"
 msgstr "生日姓"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:631
 #: ../gramps/plugins/textreport/birthdayreport.py:548
 #: ../gramps/plugins/webreport/narrativeweb.py:2871
-#: ../gramps/plugins/webreport/webcal.py:1875
+#: ../gramps/plugins/webreport/webcal.py:1873
 msgid "Wives use husband's surname (from first family listed)"
 msgstr "妻随夫姓（从列在第一位的家庭）"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:634
 #: ../gramps/plugins/textreport/birthdayreport.py:551
 #: ../gramps/plugins/webreport/narrativeweb.py:2873
-#: ../gramps/plugins/webreport/webcal.py:1877
+#: ../gramps/plugins/webreport/webcal.py:1875
 msgid "Wives use husband's surname (from last family listed)"
 msgstr "妻随夫姓"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:635
 #: ../gramps/plugins/textreport/birthdayreport.py:552
 #: ../gramps/plugins/webreport/narrativeweb.py:2875
-#: ../gramps/plugins/webreport/webcal.py:1879
+#: ../gramps/plugins/webreport/webcal.py:1877
 msgid "Wives use their own surname"
 msgstr "妻子使用自己原姓"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:636
 #: ../gramps/plugins/textreport/birthdayreport.py:553
 #: ../gramps/plugins/webreport/narrativeweb.py:2876
-#: ../gramps/plugins/webreport/webcal.py:1880
+#: ../gramps/plugins/webreport/webcal.py:1878
 msgid "Select married women's displayed surname"
 msgstr "选择已婚妇女所显示的姓氏"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:639
 #: ../gramps/plugins/textreport/birthdayreport.py:556
 #: ../gramps/plugins/webreport/narrativeweb.py:2886
-#: ../gramps/plugins/webreport/webcal.py:1958
+#: ../gramps/plugins/webreport/webcal.py:1956
 msgid "Include birthdays"
 msgstr "包括生日"
 
@@ -21146,7 +21145,7 @@ msgstr "是否包含生日"
 #: ../gramps/plugins/drawreport/calendarreport.py:643
 #: ../gramps/plugins/textreport/birthdayreport.py:560
 #: ../gramps/plugins/webreport/narrativeweb.py:2890
-#: ../gramps/plugins/webreport/webcal.py:1962
+#: ../gramps/plugins/webreport/webcal.py:1960
 msgid "Include anniversaries"
 msgstr "包含周年纪念"
 
@@ -21157,13 +21156,13 @@ msgstr "是否包含周年纪念"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:647
 #: ../gramps/plugins/webreport/narrativeweb.py:2894
-#: ../gramps/plugins/webreport/webcal.py:1966
+#: ../gramps/plugins/webreport/webcal.py:1964
 msgid "Include death dates"
 msgstr "包含去世日期"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:649
 #: ../gramps/plugins/webreport/narrativeweb.py:2895
-#: ../gramps/plugins/webreport/webcal.py:1967
+#: ../gramps/plugins/webreport/webcal.py:1965
 msgid "Include death anniversaries in the calendar"
 msgstr "在日历中包含去世周年纪念日"
 
@@ -21757,7 +21756,7 @@ msgstr "决定何类成员应当包含在报告中。"
 #: ../gramps/plugins/textreport/recordsreport.py:223
 #: ../gramps/plugins/tool/sortevents.py:173
 #: ../gramps/plugins/webreport/narrativeweb.py:1990
-#: ../gramps/plugins/webreport/webcal.py:1760
+#: ../gramps/plugins/webreport/webcal.py:1758
 msgid "Filter Person"
 msgstr "筛选人员"
 
@@ -21901,7 +21900,7 @@ msgstr "决定何类人应当包含在报告中"
 #: ../gramps/plugins/textreport/recordsreport.py:224
 #: ../gramps/plugins/tool/sortevents.py:174
 #: ../gramps/plugins/webreport/narrativeweb.py:1991
-#: ../gramps/plugins/webreport/webcal.py:1761
+#: ../gramps/plugins/webreport/webcal.py:1759
 msgid "The center person for the filter"
 msgstr "中心任务筛选器"
 
@@ -24007,8 +24006,8 @@ msgstr "添加 gramplet"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:195
 msgid ""
-"There many Addons or \"Gramplets\" that are available to assist you in data "
-"entry and visualizing your family tree. Many of these tools are already "
+"There are many Addons or \"Gramplets\" that are available to assist you in "
+"data entry and visualizing your family tree. Many of these tools are already "
 "available to you. Many more are available to download and install.\n"
 "\n"
 msgstr ""
@@ -24588,10 +24587,10 @@ msgid "Ahnentafel number visible"
 msgstr "Ahnentafel 编号可见"
 
 #: ../gramps/plugins/graph/gvhourglass.py:455
-msgid ""
-"Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
-"informations."
-msgstr ""
+#, fuzzy
+#| msgid "Sosa-Stradonitz number"
+msgid "Show Sosa / Sosa-Stradonitz / Ahnentafel number."
+msgstr "Sosa-Stradonitz 编号"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:211
 #: ../gramps/plugins/textreport/indivcomplete.py:836
@@ -26002,7 +26001,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:738
 #: ../gramps/plugins/webreport/narrativeweb.py:1971
-#: ../gramps/plugins/webreport/webcal.py:1744
+#: ../gramps/plugins/webreport/webcal.py:1742
 msgid "Destination"
 msgstr "目标文件夹"
 
@@ -30199,7 +30198,7 @@ msgstr "离线模式下标题存储的位置。"
 
 #: ../gramps/plugins/lib/maps/geography.py:1301
 msgid ""
-"If you have no more space in your file system. You can remove all tiles "
+"If you have no more space in your file system, you can remove all tiles "
 "placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
@@ -30247,14 +30246,15 @@ msgid "Select tile cache directory for offline mode"
 msgstr ""
 
 #: ../gramps/plugins/lib/maps/osmgps.py:137
-#, python-format
-msgid "Can't create tiles cache directory %s"
+#, fuzzy, python-format
+#| msgid "Can't create tiles cache directory %s"
+msgid "Can't create tile cache directory %s"
 msgstr "无法创建图块缓存目录：%s"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:141
 #, python-format
 msgid ""
-"You must verify and change the tiles cache\n"
+"You must verify and change the tile cache\n"
 "...\n"
 "[geography]\n"
 "...\n"
@@ -30263,9 +30263,9 @@ msgid ""
 "in the gramps.ini file :\n"
 "%s\n"
 "\n"
-"Before to change the gramps.ini file, you need to close gramps\n"
+"Before changing the gramps.ini file, you need to close Gramps\n"
 "\n"
-"The next errors will be normal"
+"The following errors are expected"
 msgstr ""
 
 #: ../gramps/plugins/lib/maps/osmgps.py:181
@@ -34178,63 +34178,67 @@ msgid "Enable ID reordering."
 msgstr "开启 ID 重新排序。"
 
 #: ../gramps/plugins/tool/reorderids.glade:1420
-msgid ""
-"List next ID available\n"
-"(maynot be continuous)."
+#, fuzzy
+#| msgid ""
+#| "List next ID available\n"
+#| "(maynot be continuous)."
+msgid "List next ID available (may not be continuous)."
 msgstr ""
 "列出随后可用的 ID\n"
 "（可能并不连续）。"
 
-#: ../gramps/plugins/tool/reorderids.glade:1424
+#: ../gramps/plugins/tool/reorderids.glade:1423
 msgid "  Actual"
 msgstr ""
 
-#: ../gramps/plugins/tool/reorderids.glade:1436
+#: ../gramps/plugins/tool/reorderids.glade:1435
 msgid "Amount of ID in use."
 msgstr "在用的 ID 数量。"
 
-#: ../gramps/plugins/tool/reorderids.glade:1438
+#: ../gramps/plugins/tool/reorderids.glade:1437
 msgid " Quantity"
 msgstr ""
 
-#: ../gramps/plugins/tool/reorderids.glade:1452
+#: ../gramps/plugins/tool/reorderids.glade:1451
 msgid "Actual / Upcoming ID format."
 msgstr ""
 
-#: ../gramps/plugins/tool/reorderids.glade:1465
+#: ../gramps/plugins/tool/reorderids.glade:1464
 msgid "Change"
 msgstr "修改"
 
-#: ../gramps/plugins/tool/reorderids.glade:1470
-msgid ""
-"Enable ID reordering\n"
-"with Start / Step sequence."
-msgstr ""
+#: ../gramps/plugins/tool/reorderids.glade:1469
+#, fuzzy
+#| msgid "Enable ID reordering."
+msgid "Enable ID reordering with Start / Step sequence."
+msgstr "开启 ID 重新排序。"
 
-#: ../gramps/plugins/tool/reorderids.glade:1483
+#: ../gramps/plugins/tool/reorderids.glade:1481
 msgid "Start"
 msgstr "开始"
 
-#: ../gramps/plugins/tool/reorderids.glade:1488
+#: ../gramps/plugins/tool/reorderids.glade:1486
 msgid "Reorder ID start number."
 msgstr "重排 ID 的起始数字。"
 
-#: ../gramps/plugins/tool/reorderids.glade:1501
+#: ../gramps/plugins/tool/reorderids.glade:1499
 msgid "Step"
 msgstr "梯度"
 
-#: ../gramps/plugins/tool/reorderids.glade:1506
+#: ../gramps/plugins/tool/reorderids.glade:1504
 msgid "Reorder ID step width."
 msgstr ""
 
-#: ../gramps/plugins/tool/reorderids.glade:1518
+#: ../gramps/plugins/tool/reorderids.glade:1516
 msgid "Keep"
 msgstr "保留"
 
-#: ../gramps/plugins/tool/reorderids.glade:1523
-msgid ""
-"Keep IDs with alternate\n"
-"prefixes untouched."
+#: ../gramps/plugins/tool/reorderids.glade:1521
+#, fuzzy
+#| msgid ""
+#| "Keep IDs with alternate\n"
+#| "prefixes untouched."
+msgid "Keep IDs with alternate prefixes untouched."
 msgstr ""
 "以其他前缀开头的\n"
 "ID 保留不动。"
@@ -36229,7 +36233,7 @@ msgid "Next"
 msgstr "向后"
 
 #: ../gramps/plugins/webreport/basepage.py:2410
-msgid "Other media: vidéos, pdfs..."
+msgid "Other media: videos, pdfs..."
 msgstr ""
 
 #: ../gramps/plugins/webreport/basepage.py:2572
@@ -36337,7 +36341,7 @@ msgid "%(spouse)s and %(person)s"
 msgstr "%(spouse)s 和 %(person)s"
 
 #: ../gramps/plugins/webreport/calendar.py:1402
-#: ../gramps/plugins/webreport/webcal.py:2220
+#: ../gramps/plugins/webreport/webcal.py:2218
 #, python-brace-format
 msgid "{couple}, {years} year anniversary"
 msgid_plural "{couple}, {years} year anniversary"
@@ -36572,7 +36576,7 @@ msgid "Whether to store the website in an archive file"
 msgstr "是否以存档文件保存网页"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1974
-#: ../gramps/plugins/webreport/webcal.py:1746
+#: ../gramps/plugins/webreport/webcal.py:1744
 msgid "The destination directory for the web files"
 msgstr "网页文件目标目录"
 
@@ -36610,27 +36614,27 @@ msgid "Html options"
 msgstr "Html 选项"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2021
-#: ../gramps/plugins/webreport/webcal.py:1767
+#: ../gramps/plugins/webreport/webcal.py:1765
 msgid "File extension"
 msgstr "文件扩展名"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2024
-#: ../gramps/plugins/webreport/webcal.py:1770
+#: ../gramps/plugins/webreport/webcal.py:1768
 msgid "The extension to be used for the web files"
 msgstr "用于网页文件的扩展名"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2028
-#: ../gramps/plugins/webreport/webcal.py:1773
+#: ../gramps/plugins/webreport/webcal.py:1771
 msgid "Copyright"
 msgstr "版权"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2031
-#: ../gramps/plugins/webreport/webcal.py:1776
+#: ../gramps/plugins/webreport/webcal.py:1774
 msgid "The copyright to be used for the web files"
 msgstr "用于网页文件的版权"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2034
-#: ../gramps/plugins/webreport/webcal.py:1782
+#: ../gramps/plugins/webreport/webcal.py:1780
 msgid "StyleSheet"
 msgstr "样式表"
 
@@ -36982,17 +36986,17 @@ msgid "Give a description for this file."
 msgstr "为此文件添加描述。"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2341
-#: ../gramps/plugins/webreport/webcal.py:1944
+#: ../gramps/plugins/webreport/webcal.py:1942
 msgid "Advanced Options"
 msgstr "高级选项"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2344
-#: ../gramps/plugins/webreport/webcal.py:1946
+#: ../gramps/plugins/webreport/webcal.py:1944
 msgid "Character set encoding"
 msgstr "字符编码"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2348
-#: ../gramps/plugins/webreport/webcal.py:1950
+#: ../gramps/plugins/webreport/webcal.py:1948
 msgid "The encoding to be used for the web files"
 msgstr "用于网页文件的编码"
 
@@ -37382,32 +37386,32 @@ msgid "Whether to include a calendar for year %s"
 msgstr "是否包括%s年的日历"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2880
-#: ../gramps/plugins/webreport/webcal.py:1953
+#: ../gramps/plugins/webreport/webcal.py:1951
 msgid "Create one day event pages for Year At A Glance calendar"
 msgstr "在 Year At A Glance 日历中创建一个天的日历页"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2883
-#: ../gramps/plugins/webreport/webcal.py:1955
+#: ../gramps/plugins/webreport/webcal.py:1953
 msgid "Whether to create one day pages or not"
 msgstr "是否创建单日页面"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2887
-#: ../gramps/plugins/webreport/webcal.py:1959
+#: ../gramps/plugins/webreport/webcal.py:1957
 msgid "Include birthdays in the calendar"
 msgstr "在日历中包含生日"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2891
-#: ../gramps/plugins/webreport/webcal.py:1963
+#: ../gramps/plugins/webreport/webcal.py:1961
 msgid "Include anniversaries in the calendar"
 msgstr "在日历中包含周年纪念日"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2904
-#: ../gramps/plugins/webreport/webcal.py:1977
+#: ../gramps/plugins/webreport/webcal.py:1975
 msgid "Show data only after year"
 msgstr "只在年份后显示数据"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2907
-#: ../gramps/plugins/webreport/webcal.py:1980
+#: ../gramps/plugins/webreport/webcal.py:1978
 msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
 "probably alive' which is defined in the dates preference tab."
@@ -37651,192 +37655,191 @@ msgstr ""
 "这个页面包含了最近%(days)d 天内数据库中最后更新的对象，每个对象类型最多可"
 "有%(nb)d个对象。"
 
+#. Translators: This is the email subject line in the Web Calendar
 #: ../gramps/plugins/webreport/webcal.py:1567
-#, python-format
-msgctxt "the \"WebCal\" will be the potential-email Subject"
-msgid "%(html_email_author_start)sWebCal%(html_email_author_end)s"
-msgstr "%(html_email_author_start)s网络日历%(html_email_author_end)s"
+msgid "WebCal"
+msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1580
+#: ../gramps/plugins/webreport/webcal.py:1578
 #, python-format
 msgid "Generated by %(gramps_home_html_start)sGramps%(html_end)s on %(date)s"
 msgstr "由 %(gramps_home_html_start)sGramps%(html_end)s 于 %(date)s 生成"
 
-#: ../gramps/plugins/webreport/webcal.py:1750
+#: ../gramps/plugins/webreport/webcal.py:1748
 msgid "Calendar Title"
 msgstr "日历标题"
 
-#: ../gramps/plugins/webreport/webcal.py:1750
+#: ../gramps/plugins/webreport/webcal.py:1748
 msgid "My Family Calendar"
 msgstr "我的家庭日历"
 
-#: ../gramps/plugins/webreport/webcal.py:1751
+#: ../gramps/plugins/webreport/webcal.py:1749
 msgid "The title of the calendar"
 msgstr "日历的标题"
 
-#: ../gramps/plugins/webreport/webcal.py:1785
+#: ../gramps/plugins/webreport/webcal.py:1783
 msgid "The stylesheet to be used for the web pages"
 msgstr "用于网页的样式表"
 
-#: ../gramps/plugins/webreport/webcal.py:1823
+#: ../gramps/plugins/webreport/webcal.py:1821
 msgid "Content Options"
 msgstr "内容选项"
 
-#: ../gramps/plugins/webreport/webcal.py:1828
+#: ../gramps/plugins/webreport/webcal.py:1826
 msgid "Create multiple year calendars"
 msgstr "创建多个年历"
 
-#: ../gramps/plugins/webreport/webcal.py:1830
+#: ../gramps/plugins/webreport/webcal.py:1828
 msgid "Whether to create Multiple year calendars or not."
 msgstr "是否创建多个年历。"
 
-#: ../gramps/plugins/webreport/webcal.py:1835
+#: ../gramps/plugins/webreport/webcal.py:1833
 msgid "Start Year for the Calendar(s)"
 msgstr "日历起始年"
 
-#: ../gramps/plugins/webreport/webcal.py:1837
+#: ../gramps/plugins/webreport/webcal.py:1835
 msgid "Enter the starting year for the calendars between 1900 - 3000"
 msgstr "为日历输入鉴于1900～3000的起始年份"
 
-#: ../gramps/plugins/webreport/webcal.py:1841
+#: ../gramps/plugins/webreport/webcal.py:1839
 msgid "End Year for the Calendar(s)"
 msgstr "日历的结束年"
 
 # FIXME
-#: ../gramps/plugins/webreport/webcal.py:1843
+#: ../gramps/plugins/webreport/webcal.py:1841
 msgid "Enter the ending year for the calendars between 1900 - 3000."
 msgstr "为日历输入鉴于1900～3000的结束年份"
 
-#: ../gramps/plugins/webreport/webcal.py:1862
+#: ../gramps/plugins/webreport/webcal.py:1860
 msgid "Holidays will be included for the selected country"
 msgstr "将会包含所选定国家的假期"
 
-#: ../gramps/plugins/webreport/webcal.py:1887
+#: ../gramps/plugins/webreport/webcal.py:1885
 msgid "Jan - Jun Notes"
 msgstr "一月～六月笔记"
 
-#: ../gramps/plugins/webreport/webcal.py:1889
+#: ../gramps/plugins/webreport/webcal.py:1887
 msgid "January Note"
 msgstr "一月笔记"
 
-#: ../gramps/plugins/webreport/webcal.py:1890
+#: ../gramps/plugins/webreport/webcal.py:1888
 msgid "The note for the month of January"
 msgstr "用于一月的笔记"
 
-#: ../gramps/plugins/webreport/webcal.py:1893
+#: ../gramps/plugins/webreport/webcal.py:1891
 msgid "February Note"
 msgstr "二月笔记"
 
-#: ../gramps/plugins/webreport/webcal.py:1894
+#: ../gramps/plugins/webreport/webcal.py:1892
 msgid "The note for the month of February"
 msgstr "用于二月的笔记"
 
-#: ../gramps/plugins/webreport/webcal.py:1897
+#: ../gramps/plugins/webreport/webcal.py:1895
 msgid "March Note"
 msgstr "三月笔记"
 
-#: ../gramps/plugins/webreport/webcal.py:1898
+#: ../gramps/plugins/webreport/webcal.py:1896
 msgid "The note for the month of March"
 msgstr "用于三月的笔记"
 
-#: ../gramps/plugins/webreport/webcal.py:1901
+#: ../gramps/plugins/webreport/webcal.py:1899
 msgid "April Note"
 msgstr "四月笔记"
 
-#: ../gramps/plugins/webreport/webcal.py:1902
+#: ../gramps/plugins/webreport/webcal.py:1900
 msgid "The note for the month of April"
 msgstr "用于四月的笔记"
 
-#: ../gramps/plugins/webreport/webcal.py:1905
+#: ../gramps/plugins/webreport/webcal.py:1903
 msgid "May Note"
 msgstr "五月笔记"
 
-#: ../gramps/plugins/webreport/webcal.py:1906
+#: ../gramps/plugins/webreport/webcal.py:1904
 msgid "The note for the month of May"
 msgstr "用于五月的笔记"
 
-#: ../gramps/plugins/webreport/webcal.py:1909
+#: ../gramps/plugins/webreport/webcal.py:1907
 msgid "June Note"
 msgstr "六月笔记"
 
-#: ../gramps/plugins/webreport/webcal.py:1910
+#: ../gramps/plugins/webreport/webcal.py:1908
 msgid "The note for the month of June"
 msgstr "用于六月的笔记"
 
-#: ../gramps/plugins/webreport/webcal.py:1913
+#: ../gramps/plugins/webreport/webcal.py:1911
 msgid "Jul - Dec Notes"
 msgstr "六月～十二月笔记"
 
-#: ../gramps/plugins/webreport/webcal.py:1915
+#: ../gramps/plugins/webreport/webcal.py:1913
 msgid "July Note"
 msgstr "七月笔记"
 
-#: ../gramps/plugins/webreport/webcal.py:1916
+#: ../gramps/plugins/webreport/webcal.py:1914
 msgid "The note for the month of July"
 msgstr "用于六月的笔记"
 
-#: ../gramps/plugins/webreport/webcal.py:1919
+#: ../gramps/plugins/webreport/webcal.py:1917
 msgid "August Note"
 msgstr "八月笔记"
 
-#: ../gramps/plugins/webreport/webcal.py:1920
+#: ../gramps/plugins/webreport/webcal.py:1918
 msgid "The note for the month of August"
 msgstr "用于八月的笔记"
 
-#: ../gramps/plugins/webreport/webcal.py:1923
+#: ../gramps/plugins/webreport/webcal.py:1921
 msgid "September Note"
 msgstr "九月笔记"
 
-#: ../gramps/plugins/webreport/webcal.py:1924
+#: ../gramps/plugins/webreport/webcal.py:1922
 msgid "The note for the month of September"
 msgstr "用于九月的笔记"
 
-#: ../gramps/plugins/webreport/webcal.py:1927
+#: ../gramps/plugins/webreport/webcal.py:1925
 msgid "October Note"
 msgstr "十月笔记"
 
-#: ../gramps/plugins/webreport/webcal.py:1928
+#: ../gramps/plugins/webreport/webcal.py:1926
 msgid "The note for the month of October"
 msgstr "用于十月的笔记"
 
-#: ../gramps/plugins/webreport/webcal.py:1931
+#: ../gramps/plugins/webreport/webcal.py:1929
 msgid "November Note"
 msgstr "十一月笔记"
 
-#: ../gramps/plugins/webreport/webcal.py:1932
+#: ../gramps/plugins/webreport/webcal.py:1930
 msgid "The note for the month of November"
 msgstr "用于十一月的笔记"
 
-#: ../gramps/plugins/webreport/webcal.py:1935
+#: ../gramps/plugins/webreport/webcal.py:1933
 msgid "December Note"
 msgstr "十二月笔记"
 
-#: ../gramps/plugins/webreport/webcal.py:1936
+#: ../gramps/plugins/webreport/webcal.py:1934
 msgid "The note for the month of December"
 msgstr "用于十二月的笔记"
 
-#: ../gramps/plugins/webreport/webcal.py:1970
+#: ../gramps/plugins/webreport/webcal.py:1968
 msgid "Link to Narrated Web Report"
 msgstr "链接到叙事网站报告"
 
-#: ../gramps/plugins/webreport/webcal.py:1971
+#: ../gramps/plugins/webreport/webcal.py:1969
 msgid "Whether to link data to web report or not"
 msgstr "是否链接数据到网页报告"
 
-#: ../gramps/plugins/webreport/webcal.py:1988
+#: ../gramps/plugins/webreport/webcal.py:1986
 msgid "Link prefix"
 msgstr "链接前缀"
 
-#: ../gramps/plugins/webreport/webcal.py:1989
+#: ../gramps/plugins/webreport/webcal.py:1987
 msgid "A Prefix on the links to take you to Narrated Web Report"
 msgstr "链接的前缀带您到叙事网页报告"
 
-#: ../gramps/plugins/webreport/webcal.py:2195
+#: ../gramps/plugins/webreport/webcal.py:2193
 #, python-format
 msgid "%s since death"
 msgstr "死后%s"
 
-#: ../gramps/plugins/webreport/webcal.py:2196
+#: ../gramps/plugins/webreport/webcal.py:2194
 msgid "death"
 msgstr "去世"
 
@@ -37898,6 +37901,15 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:152
 msgid "No style sheet"
 msgstr "无样式表"
+
+#, python-format
+#~ msgid "Spelling checker initialization failed: %s"
+#~ msgstr "拼写检查初始化失败：%s"
+
+#, python-format
+#~ msgctxt "the \"WebCal\" will be the potential-email Subject"
+#~ msgid "%(html_email_author_start)sWebCal%(html_email_author_end)s"
+#~ msgstr "%(html_email_author_start)s网络日历%(html_email_author_end)s"
 
 #~ msgid "Make Active Person"
 #~ msgstr "设为活跃人员"

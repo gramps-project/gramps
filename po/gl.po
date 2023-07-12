@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-10 22:36+0100\n"
+"POT-Creation-Date: 2023-07-12 15:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -3019,7 +3019,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/recordsreport.py:217
 #: ../gramps/plugins/tool/sortevents.py:168
 #: ../gramps/plugins/webreport/narrativeweb.py:1984
-#: ../gramps/plugins/webreport/webcal.py:1754
+#: ../gramps/plugins/webreport/webcal.py:1752
 msgid "Filter"
 msgstr ""
 
@@ -7860,7 +7860,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/note.py:119 ../gramps/gui/configure.py:1050
 #: ../gramps/gui/editors/editplaceformat.py:72
-#: ../gramps/plugins/tool/reorderids.glade:1447
+#: ../gramps/plugins/tool/reorderids.glade:1446
 msgid "Format"
 msgstr ""
 
@@ -8446,8 +8446,8 @@ msgstr ""
 
 #: ../gramps/gen/lib/styledtexttagtype.py:71
 #: ../gramps/gui/glade/editlink.glade:171
-#: ../gramps/gui/widgets/styledtextbuffer.py:579
-#: ../gramps/gui/widgets/styledtextbuffer.py:619
+#: ../gramps/gui/widgets/styledtextbuffer.py:581
+#: ../gramps/gui/widgets/styledtextbuffer.py:623
 msgid "Link"
 msgstr ""
 
@@ -9252,7 +9252,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:156
 #: ../gramps/gen/plug/report/stdoptions.py:95
-#: ../gramps/plugins/webreport/webcal.py:1807
+#: ../gramps/plugins/webreport/webcal.py:1805
 msgid "Select the format to display names"
 msgstr ""
 
@@ -9426,7 +9426,7 @@ msgid "The additional translation to be used for the report."
 msgstr ""
 
 #: ../gramps/gen/plug/report/stdoptions.py:90 ../gramps/gui/configure.py:1290
-#: ../gramps/plugins/webreport/webcal.py:1803
+#: ../gramps/plugins/webreport/webcal.py:1801
 msgid "Name format"
 msgstr ""
 
@@ -10114,47 +10114,47 @@ msgstr ""
 msgid "Chinese (Traditional)"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:900
+#: ../gramps/gen/utils/grampslocale.py:902
 msgid "the person"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:902
+#: ../gramps/gen/utils/grampslocale.py:904
 msgid "the family"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:904
+#: ../gramps/gen/utils/grampslocale.py:906
 msgid "the place"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:906
+#: ../gramps/gen/utils/grampslocale.py:908
 msgid "the event"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:908
+#: ../gramps/gen/utils/grampslocale.py:910
 msgid "the repository"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:910
+#: ../gramps/gen/utils/grampslocale.py:912
 msgid "the note"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:912
+#: ../gramps/gen/utils/grampslocale.py:914
 msgid "the media"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:914
+#: ../gramps/gen/utils/grampslocale.py:916
 msgid "the source"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:916
+#: ../gramps/gen/utils/grampslocale.py:918
 msgid "the filter"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:918
+#: ../gramps/gen/utils/grampslocale.py:920
 msgid "the citation"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:920
+#: ../gramps/gen/utils/grampslocale.py:922
 msgid "See details"
 msgstr ""
 
@@ -10604,34 +10604,33 @@ msgstr ""
 
 #: ../gramps/grampsapp.py:277 ../gramps/grampsapp.py:323
 #: ../gramps/grampsapp.py:345 ../gramps/grampsapp.py:361
-#: ../gramps/grampsapp.py:376 ../gramps/grampsapp.py:388
-#: ../gramps/grampsapp.py:397 ../gramps/grampsapp.py:399
-#: ../gramps/grampsapp.py:433 ../gramps/grampsapp.py:440
+#: ../gramps/grampsapp.py:371 ../gramps/grampsapp.py:392
+#: ../gramps/grampsapp.py:399
 msgid "not found"
 msgstr ""
 
 #: ../gramps/grampsapp.py:326
-msgid "can't found it because exiv2 not installed"
+msgid "not found because exiv2 is not installed"
 msgstr ""
 
 #: ../gramps/grampsapp.py:359
 msgid "Installed but does not supply version"
 msgstr ""
 
-#: ../gramps/grampsapp.py:420
+#: ../gramps/grampsapp.py:379
 msgid "installed"
 msgstr ""
 
-#: ../gramps/grampsapp.py:586 ../gramps/grampsapp.py:593
-#: ../gramps/grampsapp.py:646
+#: ../gramps/grampsapp.py:544 ../gramps/grampsapp.py:551
+#: ../gramps/grampsapp.py:604
 msgid "Configuration error:"
 msgstr ""
 
-#: ../gramps/grampsapp.py:590
+#: ../gramps/grampsapp.py:548
 msgid "Could not read configuration"
 msgstr ""
 
-#: ../gramps/grampsapp.py:594
+#: ../gramps/grampsapp.py:552
 #, python-format
 msgid ""
 "A definition for the media type %s could not be found \n"
@@ -11369,7 +11368,7 @@ msgstr ""
 #: ../gramps/gui/configure.py:1664
 #, python-format
 msgid ""
-"GtkSpell not loaded. Spell checking will not be available.\n"
+"Gspell not loaded. Spell checking will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 msgstr ""
 
@@ -17867,7 +17866,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/tableofcontents.py:92
 #: ../gramps/plugins/textreport/tagreport.py:902
 #: ../gramps/plugins/webreport/narrativeweb.py:1958
-#: ../gramps/plugins/webreport/webcal.py:1739
+#: ../gramps/plugins/webreport/webcal.py:1737
 msgid "Report Options"
 msgstr ""
 
@@ -18154,23 +18153,16 @@ msgctxt "manual"
 msgid "Select_Source_selector"
 msgstr ""
 
-#: ../gramps/gui/spell.py:92
+#: ../gramps/gui/spell.py:62
+msgid "You have no installed dictionaries."
+msgstr ""
+
+#: ../gramps/gui/spell.py:82
 msgid "Off"
 msgstr ""
 
-#: ../gramps/gui/spell.py:95
+#: ../gramps/gui/spell.py:85
 msgid "On"
-msgstr ""
-
-#: ../gramps/gui/spell.py:149
-msgid ""
-"You have no installed dictionaries. Either install one or disable spell "
-"checking"
-msgstr ""
-
-#: ../gramps/gui/spell.py:153
-#, python-format
-msgid "Spelling checker initialization failed: %s"
 msgstr ""
 
 #: ../gramps/gui/tipofday.py:67 ../gramps/gui/tipofday.py:68
@@ -18870,51 +18862,51 @@ msgstr ""
 msgid "Reorder Relationships: %s"
 msgstr ""
 
-#: ../gramps/gui/widgets/styledtexteditor.py:431
+#: ../gramps/gui/widgets/styledtexteditor.py:432
 msgid ""
 "\n"
 "Command-Click to follow link"
 msgstr ""
 
-#: ../gramps/gui/widgets/styledtexteditor.py:432
+#: ../gramps/gui/widgets/styledtexteditor.py:433
 msgid ""
 "\n"
 "Ctrl-Click to follow link"
 msgstr ""
 
-#: ../gramps/gui/widgets/styledtexteditor.py:480
+#: ../gramps/gui/widgets/styledtexteditor.py:481
 msgid "Spellcheck"
 msgstr ""
 
-#: ../gramps/gui/widgets/styledtexteditor.py:485
+#: ../gramps/gui/widgets/styledtexteditor.py:486
 msgid "Search selection on web"
 msgstr ""
 
-#: ../gramps/gui/widgets/styledtexteditor.py:496
+#: ../gramps/gui/widgets/styledtexteditor.py:497
 msgid "_Send Mail To..."
 msgstr ""
 
-#: ../gramps/gui/widgets/styledtexteditor.py:498
+#: ../gramps/gui/widgets/styledtexteditor.py:499
 msgid "Copy _E-mail Address"
 msgstr ""
 
-#: ../gramps/gui/widgets/styledtexteditor.py:501
+#: ../gramps/gui/widgets/styledtexteditor.py:502
 msgid "_Open Link"
 msgstr ""
 
-#: ../gramps/gui/widgets/styledtexteditor.py:503
+#: ../gramps/gui/widgets/styledtexteditor.py:504
 msgid "Copy _Link Address"
 msgstr ""
 
-#: ../gramps/gui/widgets/styledtexteditor.py:507
+#: ../gramps/gui/widgets/styledtexteditor.py:508
 msgid "_Edit Link"
 msgstr ""
 
-#: ../gramps/gui/widgets/styledtexteditor.py:765
+#: ../gramps/gui/widgets/styledtexteditor.py:766
 msgid "Select font color"
 msgstr ""
 
-#: ../gramps/gui/widgets/styledtexteditor.py:769
+#: ../gramps/gui/widgets/styledtexteditor.py:770
 msgid "Select background color"
 msgstr ""
 
@@ -19416,7 +19408,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/kinshipreport.py:382
 #: ../gramps/plugins/textreport/placereport.py:462
 #: ../gramps/plugins/textreport/recordsreport.py:243
-#: ../gramps/plugins/webreport/webcal.py:1792
+#: ../gramps/plugins/webreport/webcal.py:1790
 msgid "Report Options (2)"
 msgstr ""
 
@@ -19670,7 +19662,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:554
-#: ../gramps/plugins/webreport/webcal.py:1756
+#: ../gramps/plugins/webreport/webcal.py:1754
 msgid "Select filter to restrict people that appear on calendar"
 msgstr ""
 
@@ -19717,13 +19709,13 @@ msgstr ""
 #: ../gramps/plugins/drawreport/calendarreport.py:587
 #: ../gramps/plugins/textreport/birthdayreport.py:508
 #: ../gramps/plugins/webreport/narrativeweb.py:2899
-#: ../gramps/plugins/webreport/webcal.py:1812
+#: ../gramps/plugins/webreport/webcal.py:1810
 msgid "Include only living people"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:588
 #: ../gramps/plugins/webreport/narrativeweb.py:2900
-#: ../gramps/plugins/webreport/webcal.py:1813
+#: ../gramps/plugins/webreport/webcal.py:1811
 msgid "Include only living people in the calendar"
 msgstr ""
 
@@ -19742,7 +19734,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:603
 #: ../gramps/plugins/textreport/birthdayreport.py:531
-#: ../gramps/plugins/webreport/webcal.py:1849
+#: ../gramps/plugins/webreport/webcal.py:1847
 msgid "Country for holidays"
 msgstr ""
 
@@ -19753,55 +19745,55 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:617
 #: ../gramps/plugins/webreport/narrativeweb.py:2863
-#: ../gramps/plugins/webreport/webcal.py:1867
+#: ../gramps/plugins/webreport/webcal.py:1865
 msgid "First day of week"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:625
 #: ../gramps/plugins/webreport/narrativeweb.py:2866
-#: ../gramps/plugins/webreport/webcal.py:1870
+#: ../gramps/plugins/webreport/webcal.py:1868
 msgid "Select the first day of the week for the calendar"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:628
 #: ../gramps/plugins/textreport/birthdayreport.py:545
 #: ../gramps/plugins/webreport/narrativeweb.py:2870
-#: ../gramps/plugins/webreport/webcal.py:1874
+#: ../gramps/plugins/webreport/webcal.py:1872
 msgid "Birthday surname"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:631
 #: ../gramps/plugins/textreport/birthdayreport.py:548
 #: ../gramps/plugins/webreport/narrativeweb.py:2871
-#: ../gramps/plugins/webreport/webcal.py:1875
+#: ../gramps/plugins/webreport/webcal.py:1873
 msgid "Wives use husband's surname (from first family listed)"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:634
 #: ../gramps/plugins/textreport/birthdayreport.py:551
 #: ../gramps/plugins/webreport/narrativeweb.py:2873
-#: ../gramps/plugins/webreport/webcal.py:1877
+#: ../gramps/plugins/webreport/webcal.py:1875
 msgid "Wives use husband's surname (from last family listed)"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:635
 #: ../gramps/plugins/textreport/birthdayreport.py:552
 #: ../gramps/plugins/webreport/narrativeweb.py:2875
-#: ../gramps/plugins/webreport/webcal.py:1879
+#: ../gramps/plugins/webreport/webcal.py:1877
 msgid "Wives use their own surname"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:636
 #: ../gramps/plugins/textreport/birthdayreport.py:553
 #: ../gramps/plugins/webreport/narrativeweb.py:2876
-#: ../gramps/plugins/webreport/webcal.py:1880
+#: ../gramps/plugins/webreport/webcal.py:1878
 msgid "Select married women's displayed surname"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:639
 #: ../gramps/plugins/textreport/birthdayreport.py:556
 #: ../gramps/plugins/webreport/narrativeweb.py:2886
-#: ../gramps/plugins/webreport/webcal.py:1958
+#: ../gramps/plugins/webreport/webcal.py:1956
 msgid "Include birthdays"
 msgstr ""
 
@@ -19813,7 +19805,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/calendarreport.py:643
 #: ../gramps/plugins/textreport/birthdayreport.py:560
 #: ../gramps/plugins/webreport/narrativeweb.py:2890
-#: ../gramps/plugins/webreport/webcal.py:1962
+#: ../gramps/plugins/webreport/webcal.py:1960
 msgid "Include anniversaries"
 msgstr ""
 
@@ -19824,13 +19816,13 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:647
 #: ../gramps/plugins/webreport/narrativeweb.py:2894
-#: ../gramps/plugins/webreport/webcal.py:1966
+#: ../gramps/plugins/webreport/webcal.py:1964
 msgid "Include death dates"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:649
 #: ../gramps/plugins/webreport/narrativeweb.py:2895
-#: ../gramps/plugins/webreport/webcal.py:1967
+#: ../gramps/plugins/webreport/webcal.py:1965
 msgid "Include death anniversaries in the calendar"
 msgstr ""
 
@@ -20409,7 +20401,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/recordsreport.py:223
 #: ../gramps/plugins/tool/sortevents.py:173
 #: ../gramps/plugins/webreport/narrativeweb.py:1990
-#: ../gramps/plugins/webreport/webcal.py:1760
+#: ../gramps/plugins/webreport/webcal.py:1758
 msgid "Filter Person"
 msgstr ""
 
@@ -20553,7 +20545,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/recordsreport.py:224
 #: ../gramps/plugins/tool/sortevents.py:174
 #: ../gramps/plugins/webreport/narrativeweb.py:1991
-#: ../gramps/plugins/webreport/webcal.py:1761
+#: ../gramps/plugins/webreport/webcal.py:1759
 msgid "The center person for the filter"
 msgstr ""
 
@@ -22556,8 +22548,8 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:195
 msgid ""
-"There many Addons or \"Gramplets\" that are available to assist you in data "
-"entry and visualizing your family tree. Many of these tools are already "
+"There are many Addons or \"Gramplets\" that are available to assist you in "
+"data entry and visualizing your family tree. Many of these tools are already "
 "available to you. Many more are available to download and install.\n"
 "\n"
 msgstr ""
@@ -23128,9 +23120,7 @@ msgid "Ahnentafel number visible"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvhourglass.py:455
-msgid ""
-"Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
-"informations."
+msgid "Show Sosa / Sosa-Stradonitz / Ahnentafel number."
 msgstr ""
 
 #: ../gramps/plugins/graph/gvrelgraph.py:211
@@ -24445,7 +24435,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:738
 #: ../gramps/plugins/webreport/narrativeweb.py:1971
-#: ../gramps/plugins/webreport/webcal.py:1744
+#: ../gramps/plugins/webreport/webcal.py:1742
 msgid "Destination"
 msgstr ""
 
@@ -28465,7 +28455,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/maps/geography.py:1301
 msgid ""
-"If you have no more space in your file system. You can remove all tiles "
+"If you have no more space in your file system, you can remove all tiles "
 "placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
@@ -28510,13 +28500,13 @@ msgstr ""
 
 #: ../gramps/plugins/lib/maps/osmgps.py:137
 #, python-format
-msgid "Can't create tiles cache directory %s"
+msgid "Can't create tile cache directory %s"
 msgstr ""
 
 #: ../gramps/plugins/lib/maps/osmgps.py:141
 #, python-format
 msgid ""
-"You must verify and change the tiles cache\n"
+"You must verify and change the tile cache\n"
 "...\n"
 "[geography]\n"
 "...\n"
@@ -28525,9 +28515,9 @@ msgid ""
 "in the gramps.ini file :\n"
 "%s\n"
 "\n"
-"Before to change the gramps.ini file, you need to close gramps\n"
+"Before changing the gramps.ini file, you need to close Gramps\n"
 "\n"
-"The next errors will be normal"
+"The following errors are expected"
 msgstr ""
 
 #: ../gramps/plugins/lib/maps/osmgps.py:181
@@ -32370,61 +32360,55 @@ msgid "Enable ID reordering."
 msgstr ""
 
 #: ../gramps/plugins/tool/reorderids.glade:1420
-msgid ""
-"List next ID available\n"
-"(maynot be continuous)."
+msgid "List next ID available (may not be continuous)."
 msgstr ""
 
-#: ../gramps/plugins/tool/reorderids.glade:1424
+#: ../gramps/plugins/tool/reorderids.glade:1423
 msgid "  Actual"
 msgstr ""
 
-#: ../gramps/plugins/tool/reorderids.glade:1436
+#: ../gramps/plugins/tool/reorderids.glade:1435
 msgid "Amount of ID in use."
 msgstr ""
 
-#: ../gramps/plugins/tool/reorderids.glade:1438
+#: ../gramps/plugins/tool/reorderids.glade:1437
 msgid " Quantity"
 msgstr ""
 
-#: ../gramps/plugins/tool/reorderids.glade:1452
+#: ../gramps/plugins/tool/reorderids.glade:1451
 msgid "Actual / Upcoming ID format."
 msgstr ""
 
-#: ../gramps/plugins/tool/reorderids.glade:1465
+#: ../gramps/plugins/tool/reorderids.glade:1464
 msgid "Change"
 msgstr ""
 
-#: ../gramps/plugins/tool/reorderids.glade:1470
-msgid ""
-"Enable ID reordering\n"
-"with Start / Step sequence."
+#: ../gramps/plugins/tool/reorderids.glade:1469
+msgid "Enable ID reordering with Start / Step sequence."
 msgstr ""
 
-#: ../gramps/plugins/tool/reorderids.glade:1483
+#: ../gramps/plugins/tool/reorderids.glade:1481
 msgid "Start"
 msgstr ""
 
-#: ../gramps/plugins/tool/reorderids.glade:1488
+#: ../gramps/plugins/tool/reorderids.glade:1486
 msgid "Reorder ID start number."
 msgstr ""
 
-#: ../gramps/plugins/tool/reorderids.glade:1501
+#: ../gramps/plugins/tool/reorderids.glade:1499
 msgid "Step"
 msgstr ""
 
-#: ../gramps/plugins/tool/reorderids.glade:1506
+#: ../gramps/plugins/tool/reorderids.glade:1504
 msgid "Reorder ID step width."
 msgstr ""
 
-#: ../gramps/plugins/tool/reorderids.glade:1518
+#: ../gramps/plugins/tool/reorderids.glade:1516
 msgid "Keep"
 msgstr ""
 
-#: ../gramps/plugins/tool/reorderids.glade:1523
-msgid ""
-"Keep IDs with alternate\n"
-"prefixes untouched."
+#: ../gramps/plugins/tool/reorderids.glade:1521
+msgid "Keep IDs with alternate prefixes untouched."
 msgstr ""
 
 #: ../gramps/plugins/tool/reorderids.py:64
@@ -34340,7 +34324,7 @@ msgid "Next"
 msgstr ""
 
 #: ../gramps/plugins/webreport/basepage.py:2410
-msgid "Other media: vidéos, pdfs..."
+msgid "Other media: videos, pdfs..."
 msgstr ""
 
 #: ../gramps/plugins/webreport/basepage.py:2572
@@ -34446,7 +34430,7 @@ msgid "%(spouse)s and %(person)s"
 msgstr ""
 
 #: ../gramps/plugins/webreport/calendar.py:1402
-#: ../gramps/plugins/webreport/webcal.py:2220
+#: ../gramps/plugins/webreport/webcal.py:2218
 #, python-brace-format
 msgid "{couple}, {years} year anniversary"
 msgid_plural "{couple}, {years} year anniversary"
@@ -34665,7 +34649,7 @@ msgid "Whether to store the website in an archive file"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1974
-#: ../gramps/plugins/webreport/webcal.py:1746
+#: ../gramps/plugins/webreport/webcal.py:1744
 msgid "The destination directory for the web files"
 msgstr ""
 
@@ -34700,27 +34684,27 @@ msgid "Html options"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2021
-#: ../gramps/plugins/webreport/webcal.py:1767
+#: ../gramps/plugins/webreport/webcal.py:1765
 msgid "File extension"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2024
-#: ../gramps/plugins/webreport/webcal.py:1770
+#: ../gramps/plugins/webreport/webcal.py:1768
 msgid "The extension to be used for the web files"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2028
-#: ../gramps/plugins/webreport/webcal.py:1773
+#: ../gramps/plugins/webreport/webcal.py:1771
 msgid "Copyright"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2031
-#: ../gramps/plugins/webreport/webcal.py:1776
+#: ../gramps/plugins/webreport/webcal.py:1774
 msgid "The copyright to be used for the web files"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2034
-#: ../gramps/plugins/webreport/webcal.py:1782
+#: ../gramps/plugins/webreport/webcal.py:1780
 msgid "StyleSheet"
 msgstr ""
 
@@ -35051,17 +35035,17 @@ msgid "Give a description for this file."
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2341
-#: ../gramps/plugins/webreport/webcal.py:1944
+#: ../gramps/plugins/webreport/webcal.py:1942
 msgid "Advanced Options"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2344
-#: ../gramps/plugins/webreport/webcal.py:1946
+#: ../gramps/plugins/webreport/webcal.py:1944
 msgid "Character set encoding"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2348
-#: ../gramps/plugins/webreport/webcal.py:1950
+#: ../gramps/plugins/webreport/webcal.py:1948
 msgid "The encoding to be used for the web files"
 msgstr ""
 
@@ -35417,32 +35401,32 @@ msgid "Whether to include a calendar for year %s"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2880
-#: ../gramps/plugins/webreport/webcal.py:1953
+#: ../gramps/plugins/webreport/webcal.py:1951
 msgid "Create one day event pages for Year At A Glance calendar"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2883
-#: ../gramps/plugins/webreport/webcal.py:1955
+#: ../gramps/plugins/webreport/webcal.py:1953
 msgid "Whether to create one day pages or not"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2887
-#: ../gramps/plugins/webreport/webcal.py:1959
+#: ../gramps/plugins/webreport/webcal.py:1957
 msgid "Include birthdays in the calendar"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2891
-#: ../gramps/plugins/webreport/webcal.py:1963
+#: ../gramps/plugins/webreport/webcal.py:1961
 msgid "Include anniversaries in the calendar"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2904
-#: ../gramps/plugins/webreport/webcal.py:1977
+#: ../gramps/plugins/webreport/webcal.py:1975
 msgid "Show data only after year"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2907
-#: ../gramps/plugins/webreport/webcal.py:1980
+#: ../gramps/plugins/webreport/webcal.py:1978
 msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
 "probably alive' which is defined in the dates preference tab."
@@ -35652,191 +35636,190 @@ msgid ""
 "%(days)d days and for a maximum of %(nb)d objects per object type."
 msgstr ""
 
+#. Translators: This is the email subject line in the Web Calendar
 #: ../gramps/plugins/webreport/webcal.py:1567
-#, python-format
-msgctxt "the \"WebCal\" will be the potential-email Subject"
-msgid "%(html_email_author_start)sWebCal%(html_email_author_end)s"
+msgid "WebCal"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1580
+#: ../gramps/plugins/webreport/webcal.py:1578
 #, python-format
 msgid "Generated by %(gramps_home_html_start)sGramps%(html_end)s on %(date)s"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1750
+#: ../gramps/plugins/webreport/webcal.py:1748
 msgid "Calendar Title"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1750
+#: ../gramps/plugins/webreport/webcal.py:1748
 msgid "My Family Calendar"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1751
+#: ../gramps/plugins/webreport/webcal.py:1749
 msgid "The title of the calendar"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1785
+#: ../gramps/plugins/webreport/webcal.py:1783
 msgid "The stylesheet to be used for the web pages"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1823
+#: ../gramps/plugins/webreport/webcal.py:1821
 msgid "Content Options"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1828
+#: ../gramps/plugins/webreport/webcal.py:1826
 msgid "Create multiple year calendars"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1830
+#: ../gramps/plugins/webreport/webcal.py:1828
 msgid "Whether to create Multiple year calendars or not."
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1835
+#: ../gramps/plugins/webreport/webcal.py:1833
 msgid "Start Year for the Calendar(s)"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1837
+#: ../gramps/plugins/webreport/webcal.py:1835
 msgid "Enter the starting year for the calendars between 1900 - 3000"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1841
+#: ../gramps/plugins/webreport/webcal.py:1839
 msgid "End Year for the Calendar(s)"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1843
+#: ../gramps/plugins/webreport/webcal.py:1841
 msgid "Enter the ending year for the calendars between 1900 - 3000."
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1862
+#: ../gramps/plugins/webreport/webcal.py:1860
 msgid "Holidays will be included for the selected country"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1887
+#: ../gramps/plugins/webreport/webcal.py:1885
 msgid "Jan - Jun Notes"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1889
+#: ../gramps/plugins/webreport/webcal.py:1887
 msgid "January Note"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1890
+#: ../gramps/plugins/webreport/webcal.py:1888
 msgid "The note for the month of January"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1893
+#: ../gramps/plugins/webreport/webcal.py:1891
 msgid "February Note"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1894
+#: ../gramps/plugins/webreport/webcal.py:1892
 msgid "The note for the month of February"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1897
+#: ../gramps/plugins/webreport/webcal.py:1895
 msgid "March Note"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1898
+#: ../gramps/plugins/webreport/webcal.py:1896
 msgid "The note for the month of March"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1901
+#: ../gramps/plugins/webreport/webcal.py:1899
 msgid "April Note"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1902
+#: ../gramps/plugins/webreport/webcal.py:1900
 msgid "The note for the month of April"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1905
+#: ../gramps/plugins/webreport/webcal.py:1903
 msgid "May Note"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1906
+#: ../gramps/plugins/webreport/webcal.py:1904
 msgid "The note for the month of May"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1909
+#: ../gramps/plugins/webreport/webcal.py:1907
 msgid "June Note"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1910
+#: ../gramps/plugins/webreport/webcal.py:1908
 msgid "The note for the month of June"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1913
+#: ../gramps/plugins/webreport/webcal.py:1911
 msgid "Jul - Dec Notes"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1915
+#: ../gramps/plugins/webreport/webcal.py:1913
 msgid "July Note"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1916
+#: ../gramps/plugins/webreport/webcal.py:1914
 msgid "The note for the month of July"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1919
+#: ../gramps/plugins/webreport/webcal.py:1917
 msgid "August Note"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1920
+#: ../gramps/plugins/webreport/webcal.py:1918
 msgid "The note for the month of August"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1923
+#: ../gramps/plugins/webreport/webcal.py:1921
 msgid "September Note"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1924
+#: ../gramps/plugins/webreport/webcal.py:1922
 msgid "The note for the month of September"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1927
+#: ../gramps/plugins/webreport/webcal.py:1925
 msgid "October Note"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1928
+#: ../gramps/plugins/webreport/webcal.py:1926
 msgid "The note for the month of October"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1931
+#: ../gramps/plugins/webreport/webcal.py:1929
 msgid "November Note"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1932
+#: ../gramps/plugins/webreport/webcal.py:1930
 msgid "The note for the month of November"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1935
+#: ../gramps/plugins/webreport/webcal.py:1933
 msgid "December Note"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1936
+#: ../gramps/plugins/webreport/webcal.py:1934
 msgid "The note for the month of December"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1970
+#: ../gramps/plugins/webreport/webcal.py:1968
 msgid "Link to Narrated Web Report"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1971
+#: ../gramps/plugins/webreport/webcal.py:1969
 msgid "Whether to link data to web report or not"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1988
+#: ../gramps/plugins/webreport/webcal.py:1986
 msgid "Link prefix"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1989
+#: ../gramps/plugins/webreport/webcal.py:1987
 msgid "A Prefix on the links to take you to Narrated Web Report"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:2195
+#: ../gramps/plugins/webreport/webcal.py:2193
 #, python-format
 msgid "%s since death"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:2196
+#: ../gramps/plugins/webreport/webcal.py:2194
 msgid "death"
 msgstr ""
 
