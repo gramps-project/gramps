@@ -29,7 +29,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-12 15:48+0100\n"
-"PO-Revision-Date: 2023-07-11 20:29+0000\n"
+"PO-Revision-Date: 2023-07-12 20:12+0000\n"
 "Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -11304,10 +11304,8 @@ msgid "not found"
 msgstr "inte funnen"
 
 #: ../gramps/grampsapp.py:326
-#, fuzzy
-#| msgid "can't found it because exiv2 not installed"
 msgid "not found because exiv2 is not installed"
-msgstr "kan inte hitta det eftersom exiv2 inte är installerat"
+msgstr "inte hittad eftersom exiv2 inte är installerat"
 
 #: ../gramps/grampsapp.py:359
 msgid "Installed but does not supply version"
@@ -12110,15 +12108,12 @@ msgid "Enable the spelling checker for notes."
 msgstr "Aktivera stavningskontroll för notiser."
 
 #: ../gramps/gui/configure.py:1664
-#, fuzzy, python-format
-#| msgid ""
-#| "GtkSpell not loaded. Spell checking will not be available.\n"
-#| "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
+#, python-format
 msgid ""
 "Gspell not loaded. Spell checking will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 msgstr ""
-"GtkSpell ej laddat. Stavningskontroll kommer ej att vara tillgängligt.\n"
+"Gspell ej laddat. Stavningskontroll kommer ej att vara tillgängligt.\n"
 "För att åstadkomma det för Gramps se %(gramps_wiki_build_spell_url)s"
 
 #: ../gramps/gui/configure.py:1672
@@ -19445,14 +19440,8 @@ msgid "Select_Source_selector"
 msgstr "Välj_källväljare"
 
 #: ../gramps/gui/spell.py:62
-#, fuzzy
-#| msgid ""
-#| "You have no installed dictionaries. Either install one or disable spell "
-#| "checking"
 msgid "You have no installed dictionaries."
-msgstr ""
-"Du har inga installerade ordböcker. Antingen installera någon eller "
-"avaktivera rättstavning"
+msgstr "Du har inga installerade ordböcker."
 
 #: ../gramps/gui/spell.py:82
 msgid "Off"
@@ -24095,13 +24084,6 @@ msgid "Addons and \"Gramplets\""
 msgstr "Tillägg och \"Gramplets\""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:195
-#, fuzzy
-#| msgid ""
-#| "There many Addons or \"Gramplets\" that are available to assist you in "
-#| "data entry and visualizing your family tree. Many of these tools are "
-#| "already available to you. Many more are available to download and "
-#| "install.\n"
-#| "\n"
 msgid ""
 "There are many Addons or \"Gramplets\" that are available to assist you in "
 "data entry and visualizing your family tree. Many of these tools are already "
@@ -24706,14 +24688,8 @@ msgid "Ahnentafel number visible"
 msgstr "Ahnentafel-nummer synligt"
 
 #: ../gramps/plugins/graph/gvhourglass.py:455
-#, fuzzy
-#| msgid ""
-#| "Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
-#| "informations."
 msgid "Show Sosa / Sosa-Stradonitz / Ahnentafel number."
-msgstr ""
-"Visa Sosa / Sosa-Stradonitz / Ahnentafel-nummer under alla andras "
-"information."
+msgstr "Visa Sosa / Sosa-Stradonitz / Ahnentafel-nummer."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:211
 #: ../gramps/plugins/textreport/indivcomplete.py:836
@@ -30425,11 +30401,6 @@ msgid "Where to save the tiles for offline mode."
 msgstr "Var spara delrutor för offline-bruk."
 
 #: ../gramps/plugins/lib/maps/geography.py:1301
-#, fuzzy
-#| msgid ""
-#| "If you have no more space in your file system. You can remove all tiles "
-#| "placed in the above path.\n"
-#| "Be careful! If you have no internet, you'll get no map."
 msgid ""
 "If you have no more space in your file system, you can remove all tiles "
 "placed in the above path.\n"
@@ -30488,26 +30459,12 @@ msgid "Select tile cache directory for offline mode"
 msgstr "Välj cache-katalog för delrutor vid arbete utan internet"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:137
-#, fuzzy, python-format
-#| msgid "Can't create tiles cache directory %s"
+#, python-format
 msgid "Can't create tile cache directory %s"
 msgstr "Kan inte skapa cache-katalog %s för delrutor"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:141
-#, fuzzy, python-format
-#| msgid ""
-#| "You must verify and change the tiles cache\n"
-#| "...\n"
-#| "[geography]\n"
-#| "...\n"
-#| "path='bad/path'\n"
-#| "...\n"
-#| "in the gramps.ini file :\n"
-#| "%s\n"
-#| "\n"
-#| "Before to change the gramps.ini file, you need to close gramps\n"
-#| "\n"
-#| "The next errors will be normal"
+#, python-format
 msgid ""
 "You must verify and change the tile cache\n"
 "...\n"
@@ -30531,9 +30488,9 @@ msgstr ""
 "i gramps.ini-filen :\n"
 "%s\n"
 "\n"
-"Innan ändring av gramps.ini-filen, måste gramps stängas ned\n"
+"Innan ändring av gramps.ini-filen, måste Gramps stängas ned\n"
 "\n"
-"Senare fel kommer att vara normala"
+"följande fel förväntas"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:181
 #: ../gramps/plugins/lib/maps/osmgps.py:245
@@ -34513,14 +34470,8 @@ msgid "Enable ID reordering."
 msgstr "Aktivera omsortering av ID:n."
 
 #: ../gramps/plugins/tool/reorderids.glade:1420
-#, fuzzy
-#| msgid ""
-#| "List next ID available\n"
-#| "(maynot be continuous)."
 msgid "List next ID available (may not be continuous)."
-msgstr ""
-"Visa nästa tillgängliga ID\n"
-"(behöver inte vara i ordning)."
+msgstr "Visa nästa tillgängliga ID (behöver inte vara i ordning)."
 
 #: ../gramps/plugins/tool/reorderids.glade:1423
 msgid "  Actual"
@@ -34543,14 +34494,8 @@ msgid "Change"
 msgstr "Ändra"
 
 #: ../gramps/plugins/tool/reorderids.glade:1469
-#, fuzzy
-#| msgid ""
-#| "Enable ID reordering\n"
-#| "with Start / Step sequence."
 msgid "Enable ID reordering with Start / Step sequence."
-msgstr ""
-"Aktivera omsortering av ID:n\n"
-"med start / stegvis sekvens."
+msgstr "Aktivera omsortering av ID:n med start / stegvis sekvens."
 
 #: ../gramps/plugins/tool/reorderids.glade:1481
 msgid "Start"
@@ -34573,14 +34518,8 @@ msgid "Keep"
 msgstr "Behåll"
 
 #: ../gramps/plugins/tool/reorderids.glade:1521
-#, fuzzy
-#| msgid ""
-#| "Keep IDs with alternate\n"
-#| "prefixes untouched."
 msgid "Keep IDs with alternate prefixes untouched."
-msgstr ""
-"Behåll ID:n med alternativa\n"
-"prefix orörda."
+msgstr "Behåll ID:n med alternativa prefix orörda."
 
 #: ../gramps/plugins/tool/reorderids.py:64
 msgctxt "manual"
@@ -36588,8 +36527,6 @@ msgid "Next"
 msgstr "Nästa"
 
 #: ../gramps/plugins/webreport/basepage.py:2410
-#, fuzzy
-#| msgid "Other media: vidéos, pdfs..."
 msgid "Other media: videos, pdfs..."
 msgstr "Andra medier: videor, pdf-filer..."
 
@@ -37987,7 +37924,7 @@ msgstr ""
 #. Translators: This is the email subject line in the Web Calendar
 #: ../gramps/plugins/webreport/webcal.py:1567
 msgid "WebCal"
-msgstr ""
+msgstr "WebCal"
 
 #: ../gramps/plugins/webreport/webcal.py:1578
 #, python-format
