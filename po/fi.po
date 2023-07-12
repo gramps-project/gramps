@@ -3,7 +3,7 @@
 # Janne Kovesjärvi <janne.kovesjarvi@gmail.com>, 2008, 200, 2013.
 # Pekka Valta <pekka.valta@kolumbus.fi>, 2014.
 # Niemelä <niememat@gmail.com>, 2017, 2018.
-# Matti Niemelä <niememat@gmail.com>, 2014, 2015, 2016, 2017, 2019, 2021, 2022.
+# Matti Niemelä <niememat@gmail.com>, 2014, 2015, 2016, 2017, 2019, 2021, 2022, 2023.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # PeterJPower <pekka.valta@kolumbus.fi>, 2021.
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2022.
@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-12 15:48+0100\n"
-"PO-Revision-Date: 2023-07-11 20:29+0000\n"
-"Last-Translator: Oskari Lavinto <olavinto@protonmail.com>\n"
+"PO-Revision-Date: 2023-07-12 20:12+0000\n"
+"Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
 "Language: fi\n"
@@ -3021,14 +3021,14 @@ msgstr "noin "
 #: ../gramps/gen/datehandler/_datestrings.py:251
 msgctxt "date modifier"
 msgid "from "
-msgstr ""
+msgstr "alkaen "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:254
 msgctxt "date modifier"
 msgid "to "
-msgstr ""
+msgstr "päättyen "
 
 #: ../gramps/gen/datehandler/_datestrings.py:259
 msgctxt "date quality"
@@ -7363,7 +7363,7 @@ msgstr "aikavälillä"
 
 #: ../gramps/gen/lib/date.py:2002
 msgid "from"
-msgstr ""
+msgstr "alkaen"
 
 #: ../gramps/gen/lib/date.py:2003
 #, fuzzy
@@ -9159,7 +9159,7 @@ msgstr "Linkki"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:72
 msgid "Strikethrough"
-msgstr ""
+msgstr "Yliviivaus"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:73
 msgid "Subscript"
@@ -9341,11 +9341,11 @@ msgstr "Epävakaa"
 
 #: ../gramps/gen/plug/_pluginreg.py:62
 msgid "Experimental"
-msgstr ""
+msgstr "Kokeellinen"
 
 #: ../gramps/gen/plug/_pluginreg.py:63
 msgid "Beta"
-msgstr ""
+msgstr "Beta"
 
 #: ../gramps/gen/plug/_pluginreg.py:64
 msgid "Stable"
@@ -9353,11 +9353,11 @@ msgstr "Vakaa"
 
 #: ../gramps/gen/plug/_pluginreg.py:72
 msgid "Developer"
-msgstr ""
+msgstr "Kehittäjä"
 
 #: ../gramps/gen/plug/_pluginreg.py:73
 msgid "Expert"
-msgstr ""
+msgstr "Asiantuntija"
 
 #: ../gramps/gen/plug/_pluginreg.py:97
 msgid "Quickreport"
@@ -11118,23 +11118,23 @@ msgstr "%(west_longitude)s L"
 
 #: ../gramps/gen/utils/place.py:80
 msgid "DEG"
-msgstr ""
+msgstr "DEG"
 
 #: ../gramps/gen/utils/place.py:83
 msgid "DEG-:"
-msgstr ""
+msgstr "DEG-:"
 
 #: ../gramps/gen/utils/place.py:86
 msgid "D.D4"
-msgstr ""
+msgstr "D.D4"
 
 #: ../gramps/gen/utils/place.py:89
 msgid "D.D8"
-msgstr ""
+msgstr "D.D8"
 
 #: ../gramps/gen/utils/place.py:92
 msgid "RT90"
-msgstr ""
+msgstr "RT90"
 
 #: ../gramps/gen/utils/string.py:46 ../gramps/gui/editors/editperson.py:341
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
@@ -11402,11 +11402,11 @@ msgstr "Ei löytynyt"
 
 #: ../gramps/grampsapp.py:326
 msgid "not found because exiv2 is not installed"
-msgstr ""
+msgstr "ei löydy, koska exiv2:ta ei ole asennettu"
 
 #: ../gramps/grampsapp.py:359
 msgid "Installed but does not supply version"
-msgstr ""
+msgstr "asennettu, mutta ei tarjoa versiota"
 
 #: ../gramps/grampsapp.py:379
 #, fuzzy
@@ -11823,7 +11823,7 @@ msgstr "Naishenkilöiden värit"
 
 #: ../gramps/gui/configure.py:723
 msgid "Colors for people who are neither male nor female"
-msgstr ""
+msgstr "Värit ihmisille, jotka eivät ole miehiä eivätkä naisia"
 
 #: ../gramps/gui/configure.py:724
 msgid "Colors for Unknown persons"
@@ -12247,43 +12247,43 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1681
 msgid "Show Clipboard icon on toolbar"
-msgstr ""
+msgstr "Näytä leikepöydän kuvake työkalupalkissa"
 
 #: ../gramps/gui/configure.py:1683
 msgid "Show or hide the Clipboard icon on the toolbar."
-msgstr ""
+msgstr "Näytä tai piilota leikepöydän kuvake työkalupalkissa."
 
 #: ../gramps/gui/configure.py:1689
 msgid "Show Reports icon on toolbar"
-msgstr ""
+msgstr "Näytä Raportit-kuvake työkalurivillä"
 
 #: ../gramps/gui/configure.py:1691
 msgid "Show or hide the Reports icon on the toolbar."
-msgstr ""
+msgstr "Näytä tai piilota Raportit-kuvake työkalupalkissa."
 
 #: ../gramps/gui/configure.py:1697
 msgid "Show Tools icon on toolbar"
-msgstr ""
+msgstr "Näytä työkalut-kuvake työkalupalkissa"
 
 #: ../gramps/gui/configure.py:1699
 msgid "Show or hide the Tools icon on the toolbar."
-msgstr ""
+msgstr "Näytä tai piilota työkalupalkin työkalut-kuvake."
 
 #: ../gramps/gui/configure.py:1705
 msgid "Show Plugins icon on toolbar"
-msgstr ""
+msgstr "Näytä laajennusten-kuvake työkalurivillä"
 
 #: ../gramps/gui/configure.py:1707
 msgid "Show or hide the Plugins icon on the toolbar."
-msgstr ""
+msgstr "Näytä tai piilota laajennusten-kuvake työkalupalkissa."
 
 #: ../gramps/gui/configure.py:1713
 msgid "Show Preferences icon on toolbar"
-msgstr ""
+msgstr "Näytä asetukset-kuvake työkalurivillä"
 
 #: ../gramps/gui/configure.py:1715
 msgid "Show or hide the Preferences icon on the toolbar."
-msgstr ""
+msgstr "Näytä tai piilota asetukset-kuvake työkalupalkissa."
 
 #: ../gramps/gui/configure.py:1721
 msgid "Show close button in gramplet bar tabs"
@@ -12708,10 +12708,12 @@ msgid ""
 "Changes are immediate.\n"
 "This is used when exporting views in CSV format."
 msgstr ""
+"Muutokset ovat välittömiä.\n"
+"Tätä käytetään vietäessä näkymiä CSV-muodossa."
 
 #: ../gramps/gui/csvdialect.py:111
 msgid "Delimiter:"
-msgstr ""
+msgstr "Erotin:"
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:109
 msgid "Undo history warning"
@@ -14199,7 +14201,7 @@ msgstr "Aikavälillä"
 
 #: ../gramps/gui/editors/editdate.py:82
 msgid "From"
-msgstr ""
+msgstr "Alkaen"
 
 #: ../gramps/gui/editors/editdate.py:83
 #, fuzzy
@@ -20004,7 +20006,7 @@ msgstr "Sarakkeet"
 
 #: ../gramps/gui/views/listview.py:1348
 msgid "CSV Dialect"
-msgstr ""
+msgstr "CSV Dialekti"
 
 #: ../gramps/gui/views/navigationview.py:252
 #, python-format
@@ -20806,7 +20808,7 @@ msgstr "Aloitetaan"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:858
 msgid "The start index"
-msgstr ""
+msgstr "Alkuindeksi"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:874
 #: ../gramps/plugins/drawreport/descendtree.py:1581
@@ -22175,6 +22177,9 @@ msgid ""
 "You can change this behavior in the 'Configure active view' of any list-"
 "based view"
 msgstr ""
+"CSV on yleinen taulukkolaskentaformaatti.\n"
+"Voit muuttaa tätä käyttäytymistä minkä tahansa luettelopohjaisen näkymän "
+"\"Määritä aktiivinen näkymä\" -kohdassa."
 
 #: ../gramps/plugins/export/export.gpr.py:46
 msgid "CSV spreadsheet options"
@@ -32559,7 +32564,7 @@ msgstr "N"
 #: ../gramps/plugins/textreport/familygroup.py:507
 msgctxt "acronym for other"
 msgid "X"
-msgstr ""
+msgstr "X"
 
 #: ../gramps/plugins/textreport/familygroup.py:509
 #, python-format
@@ -36862,7 +36867,7 @@ msgstr "Seuraava"
 
 #: ../gramps/plugins/webreport/basepage.py:2410
 msgid "Other media: videos, pdfs..."
-msgstr ""
+msgstr "Muu media: videot, pdf-tiedostot..."
 
 #: ../gramps/plugins/webreport/basepage.py:2572
 msgid " [Click to Go]"
@@ -37876,7 +37881,7 @@ msgstr "Päivämäärät"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2523
 msgid "openlayers version to use"
-msgstr ""
+msgstr "openlayers-versio, jota käytetään"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2528
 msgid ""
@@ -37886,6 +37891,11 @@ msgid ""
 "openlayers_version.\n"
 "See OLDER VERSIONS in https://openlayers.org/"
 msgstr ""
+"Käytä tätä vaihtoehtoa vain, jos et näe OpenStreetMap- tai Stamen-karttojen "
+"karttoja verkkosivustollasi\n"
+"Voit muuttaa määritetyn tiedoston arvoa. Muokattavan vaihtoehdon nimi on "
+"openlayers_version.\n"
+"Katso vanhemmat versiot osoitteessa https://openlayers.org/"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2544
 msgid "Other inclusion (CMS, web calendar, PHP)"
@@ -38269,7 +38279,7 @@ msgstr ""
 #. Translators: This is the email subject line in the Web Calendar
 #: ../gramps/plugins/webreport/webcal.py:1567
 msgid "WebCal"
-msgstr ""
+msgstr "WebCal"
 
 #: ../gramps/plugins/webreport/webcal.py:1578
 #, python-format
