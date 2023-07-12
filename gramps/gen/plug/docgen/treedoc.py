@@ -65,7 +65,13 @@ _DETAIL = [{'name': _("Full"), 'value': "full"},
            {'name': _("Short"), 'value': "short"}]
 
 _NAME_FORMAT = [{'name': _("Given Nickname Surname"), 'value': "1"},
-                {'name': _("Surname Given Nickname"), 'value': "2"}]
+                {'name': _("Surname Given Nickname"), 'value': "2"},
+                {'name': _("Surname, Given Nickname"), 'value': "3"},
+                {'name': _("GivenNicknameSurname"), 'value': "4"}]
+
+_PREFERRED_NAME = [{'name': _("Auto"), 'value': "1"},
+                   {'name': _("Call Name Only"), 'value': "2"},
+                   {'name': _("Whole Given Name"), 'value': "3"}]
 
 _MARRIAGE = [{'name': _("Default"), 'value': ""},
              {'name': _("Above"), 'value': "marriage above"},
@@ -132,6 +138,24 @@ class TreeOptions:
     Defines all of the controls necessary
     to configure the genealogy tree reports.
     """
+    def __init__(self):
+        #Node Options
+        self.detail = None
+        self.marriage = None
+        self.nodesize = None
+        self.levelsize = None
+        self.nodecolor = None
+
+        #Tree Options
+        self.timeflow = None
+        self.edges = None
+        self.leveldist = None
+
+        #Note
+        self.note = None
+        self.noteloc = None
+        self.notesize = None
+
     def add_menu_options(self, menu):
         """
         Add all graph related options to the menu.
@@ -149,6 +173,7 @@ class TreeOptions:
             detail.add_item(item["value"], item["name"])
         detail.set_help(_("Detail of information to be shown in a node."))
         menu.add_option(category, "detail", detail)
+        self.detail = detail
 
         name_format = EnumeratedListOption(_("Name Format"), "1")
         for item in _NAME_FORMAT:
@@ -156,29 +181,42 @@ class TreeOptions:
         name_format.set_help(_("Select the format to display names"))
         menu.add_option(category, "name_format", name_format)
 
+        preferred_name = EnumeratedListOption(_("Preferred Name"), "1")
+        for item in _PREFERRED_NAME:
+            preferred_name.add_item(item["value"], item["name"])
+        preferred_name.set_help(_("Select the portion of the given name to be "
+                                  "marked as preferred. Auto sets the call "
+                                   "name if one exists, otherwise the whole "
+                                   "given name."))
+        menu.add_option(category, "preferred_name", preferred_name)
+
         marriage = EnumeratedListOption(_("Marriage"), "")
         for item in _MARRIAGE:
             marriage.add_item(item["value"], item["name"])
         marriage.set_help(_("Position of marriage information."))
         menu.add_option(category, "marriage", marriage)
+        self.marriage = marriage
 
         nodesize = NumberOption(_("Node size"), 25, 5, 100, 5)
         nodesize.set_help(_("One dimension of a node, in mm. If the timeflow "
                             "is up or down then this is the width, otherwise "
                             "it is the height."))
         menu.add_option(category, "nodesize", nodesize)
+        self.nodesize = nodesize
 
         levelsize = NumberOption(_("Level size"), 35, 5, 100, 5)
         levelsize.set_help(_("One dimension of a node, in mm. If the timeflow "
                              "is up or down then this is the height, otherwise "
                              "it is the width."))
         menu.add_option(category, "levelsize", levelsize)
+        self.levelsize = levelsize
 
         nodecolor = EnumeratedListOption(_("Color"), "none")
         for item in _COLOR:
             nodecolor.add_item(item["value"], item["name"])
         nodecolor.set_help(_("Node color."))
         menu.add_option(category, "nodecolor", nodecolor)
+        self.nodecolor = nodecolor
 
         ################################
         category = _("Tree Options")
@@ -189,12 +227,14 @@ class TreeOptions:
             timeflow.add_item(item["value"], item["name"])
         timeflow.set_help(_("Direction that the graph will grow over time."))
         menu.add_option(category, "timeflow", timeflow)
+        self.timeflow = timeflow
 
         edges = EnumeratedListOption(_("Edge style"), "")
         for item in _EDGES:
             edges.add_item(item["value"], item["name"])
         edges.set_help(_("Style of the edges between nodes."))
         menu.add_option(category, "edges", edges)
+        self.edges = edges
 
         leveldist = NumberOption(_("Level distance"), 5, 1, 20, 1)
         leveldist.set_help(_("The minimum amount of free space, in mm, "
@@ -203,6 +243,7 @@ class TreeOptions:
                              "horizontal graphs, this corresponds to spacing "
                              "between columns."))
         menu.add_option(category, "leveldist", leveldist)
+        self.leveldist = leveldist
 
         ################################
         category = _("Note")
@@ -210,7 +251,9 @@ class TreeOptions:
 
         note = TextOption(_("Note to add to the tree"), [""])
         note.set_help(_("This text will be added to the tree."))
+        note.set_available(False)
         menu.add_option(category, "note", note)
+        self.note = note
 
         noteloc = EnumeratedListOption(_("Note location"), 't')
         for item in _NOTELOC:
@@ -218,12 +261,14 @@ class TreeOptions:
         noteloc.set_help(_("Whether note will appear on top "
                            "or bottom of the page."))
         menu.add_option(category, "noteloc", noteloc)
+        self.noteloc = noteloc
 
         notesize = EnumeratedListOption(_("Note size"), 'normalsize')
         for item in _NOTESIZE:
             notesize.add_item(item["value"], item["name"])
         notesize.set_help(_("The size of note text."))
         menu.add_option(category, "notesize", notesize)
+        self.notesize = notesize
 
 
 #------------------------------------------------------------------------------
@@ -291,6 +336,7 @@ class TreeDocBase(BaseDoc, TreeDoc):
 
         self.detail = get_option('detail').get_value()
         self.name_format = get_option('name_format').get_value()
+        self.preferred_name = get_option('preferred_name').get_value()
         self.marriage = get_option('marriage').get_value()
         self.nodesize = get_option('nodesize').get_value()
         self.levelsize = get_option('levelsize').get_value()
@@ -443,12 +489,28 @@ class TreeDocBase(BaseDoc, TreeDoc):
             name_parts = [self.format_given_names(name),
                           '\\nick{{{}}}'.format(escape(nick)) if nick else '',
                           '\\surn{{{}}}'.format(escape(surn)) if surn else '']
+            self.write(level+1, 'name = {{{}}},\n'.format(
+            ' '.join([e for e in name_parts if e])))
         elif self.name_format == "2":
             name_parts = ['\\surn{{{}}}'.format(escape(surn)) if surn else '',
                           self.format_given_names(name),
                           '\\nick{{{}}}'.format(escape(nick)) if nick else '']
-        self.write(level+1, 'name = {{{}}},\n'.format(
+            self.write(level+1, 'name = {{{}}},\n'.format(
             ' '.join([e for e in name_parts if e])))
+        elif self.name_format == "3":
+            name_parts1 = [self.format_given_names(name),
+                          '\\nick{{{}}}'.format(escape(nick)) if nick else '']
+            given_nick = ' '.join([e for e in name_parts1 if e])
+            name_parts2 = ['\\surn{{{}}}'.format(escape(surn)) if surn else '',
+                           given_nick]
+            self.write(level+1, 'name = {{{}}},\n'.format(
+            ', '.join([e for e in name_parts2 if e])))
+        elif self.name_format == "4":
+            name_parts = [self.format_given_names(name),
+                          '\\nick{{{}}}'.format(escape(nick)) if nick else '',
+                          '\\surn{{{}}}'.format(escape(surn)) if surn else '']
+            self.write(level+1, 'name = {{{}}},\n'.format(
+            ''.join([e for e in name_parts if e])))
         for eventref in person.get_event_ref_list():
             if eventref.role == EventRoleType.PRIMARY:
                 event = db.get_event_from_handle(eventref.ref)
@@ -552,17 +614,16 @@ class TreeDocBase(BaseDoc, TreeDoc):
         """
         first = name.get_first_name()
         call = name.get_call_name()
-        if call:
+        if call and self.preferred_name != "3":
             if call in first:
                 where = first.index(call)
                 return '{before}\\pref{{{call}}}{after}'.format(
                     before=escape(first[:where]),
                     call=escape(call),
                     after=escape(first[where+len(call):]))
-            else:
-                # ignore erroneous call name
-                return escape(first)
-        else:
+        elif self.preferred_name in ("1", "3"):
+            return '\\pref{{{}}}'.format(escape(first))
+        elif self.preferred_name == "2":
             return escape(first)
 
     def format_iso(self, date_tuple, calendar):
