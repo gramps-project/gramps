@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-10 22:36+0100\n"
-"PO-Revision-Date: 2023-07-07 12:50+0000\n"
+"PO-Revision-Date: 2023-07-12 15:36+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -5290,16 +5290,12 @@ msgid "Matches people whose notes contain text matching a regular expression"
 msgstr "שליפת אנשים שההערות שלהם מכילות מלל התואמים לביטוי רגיל"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:45
-#, fuzzy
-#| msgid "People with an alternate name"
 msgid "People who are neither male nor female"
-msgstr "אנשים בעלי שם חלופי"
+msgstr "אנשים שאינם זכר או נקבה"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:47
-#, fuzzy
-#| msgid "Matches all people with unknown gender"
 msgid "Matches all people with other gender"
-msgstr "שליפת כל האנשים בעלי מגדר לא ידוע"
+msgstr "שליפת כל האנשים עם מגדר אחר"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:45
 msgid "Number of relationships:"
@@ -7550,10 +7546,8 @@ msgid "Alternate Marriage"
 msgstr "נישואין אלטרנטיביים"
 
 #: ../gramps/gen/lib/eventtype.py:210
-#, fuzzy
-#| msgid "Stillborn"
 msgid "Stillbirth"
-msgstr "ולד מת"
+msgstr "לידה שקטה"
 
 #: ../gramps/gen/lib/eventtype.py:214
 #: ../gramps/plugins/drawreport/ancestortree.py:60
@@ -7792,12 +7786,9 @@ msgid "annul."
 msgstr "ביט."
 
 #: ../gramps/gen/lib/eventtype.py:260
-#, fuzzy
-#| msgctxt "Will abbreviation"
-#| msgid "will."
 msgctxt "Stillbirth abbreviation"
 msgid "still."
-msgstr "צוו."
+msgstr "שקט."
 
 #: ../gramps/gen/lib/family.py:155
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:60
@@ -8932,13 +8923,11 @@ msgstr "קישור"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:72
 msgid "Strikethrough"
-msgstr ""
+msgstr "קו חוצה"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:73
-#, fuzzy
-#| msgid "Superscript"
 msgid "Subscript"
-msgstr "כתב עילי"
+msgstr "כתב תחתי"
 
 #: ../gramps/gen/lib/surname.py:87 ../gramps/gen/lib/surname.py:91
 #: ../gramps/gen/utils/keyword.py:56 ../gramps/gui/clipboard.py:605
@@ -9113,11 +9102,11 @@ msgstr "לא יציב"
 
 #: ../gramps/gen/plug/_pluginreg.py:62
 msgid "Experimental"
-msgstr ""
+msgstr "ניסיוני"
 
 #: ../gramps/gen/plug/_pluginreg.py:63
 msgid "Beta"
-msgstr ""
+msgstr "בטא"
 
 #: ../gramps/gen/plug/_pluginreg.py:64
 msgid "Stable"
@@ -9125,11 +9114,11 @@ msgstr "יציב"
 
 #: ../gramps/gen/plug/_pluginreg.py:72
 msgid "Developer"
-msgstr ""
+msgstr "מפתח"
 
 #: ../gramps/gen/plug/_pluginreg.py:73
 msgid "Expert"
-msgstr ""
+msgstr "ייצוא"
 
 #: ../gramps/gen/plug/_pluginreg.py:97
 msgid "Quickreport"
@@ -10055,10 +10044,8 @@ msgid "Select the format to display places"
 msgstr "נא לבחור תבנית למצג מקומות"
 
 #: ../gramps/gen/plug/report/stdoptions.py:386 ../gramps/gui/configure.py:1246
-#, fuzzy
-#| msgid "Date format"
 msgid "Coordinates format"
-msgstr "תבנית תאריך"
+msgstr "תבנית נקודות ציון"
 
 #: ../gramps/gen/plug/report/stdoptions.py:389
 #, fuzzy
@@ -11155,17 +11142,15 @@ msgstr "לא נמצא"
 
 #: ../gramps/grampsapp.py:326
 msgid "can't found it because exiv2 not installed"
-msgstr ""
+msgstr "לא נמצא כי exiv2 לא מותקן"
 
 #: ../gramps/grampsapp.py:359
 msgid "Installed but does not supply version"
-msgstr ""
+msgstr "מותקן אך לא מספק גרסה"
 
 #: ../gramps/grampsapp.py:420
-#, fuzzy
-#| msgid "Unstable"
 msgid "installed"
-msgstr "לא יציב"
+msgstr "מותקן"
 
 #: ../gramps/grampsapp.py:586 ../gramps/grampsapp.py:593
 #: ../gramps/grampsapp.py:646
