@@ -62,8 +62,8 @@ class DateParserFI(DateParser):
         "e.": Date.MOD_BEFORE,
         "noin": Date.MOD_ABOUT,
         "n.": Date.MOD_ABOUT,
-        "from": Date.MOD_FROM,
-        "to": Date.MOD_TO,
+        "alkaen": Date.MOD_FROM,
+        "päättyen": Date.MOD_TO,
     }
     modifier_after_to_int = {
         # examples:
