@@ -619,5 +619,8 @@ def main():
         for error in errors:
             logging.warning(error[0] + error[1])
 
+    sys.stdout.close()
+    sys.stderr.close()
+
 if __name__ == '__main__':
     main()
