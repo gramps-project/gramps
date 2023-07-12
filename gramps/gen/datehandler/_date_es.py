@@ -65,8 +65,8 @@ class DateParserES(DateParser):
         "ca": Date.MOD_ABOUT,
         "c.": Date.MOD_ABOUT,
         "hacia": Date.MOD_ABOUT,
-        "from": Date.MOD_FROM,
-        "to": Date.MOD_TO,
+        "desde": Date.MOD_FROM,
+        "hasta": Date.MOD_TO,
     }
 
     calendar_to_int = {
