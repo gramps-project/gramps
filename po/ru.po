@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-12 15:48+0100\n"
-"PO-Revision-Date: 2023-05-06 09:51+0000\n"
+"PO-Revision-Date: 2023-07-13 16:59+0000\n"
 "Last-Translator: Dmitriy Q <krotesk@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
@@ -31,9 +31,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.18-dev\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 5.0-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -3003,14 +3003,14 @@ msgstr "около "
 #: ../gramps/gen/datehandler/_datestrings.py:251
 msgctxt "date modifier"
 msgid "from "
-msgstr ""
+msgstr "от "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:254
 msgctxt "date modifier"
 msgid "to "
-msgstr ""
+msgstr "к "
 
 #: ../gramps/gen/datehandler/_datestrings.py:259
 msgctxt "date quality"
@@ -7336,7 +7336,7 @@ msgstr "отрезок"
 
 #: ../gramps/gen/lib/date.py:2002
 msgid "from"
-msgstr ""
+msgstr "от"
 
 #: ../gramps/gen/lib/date.py:2003
 #, fuzzy
@@ -9147,7 +9147,7 @@ msgstr "Ссылка"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:72
 msgid "Strikethrough"
-msgstr ""
+msgstr "Зачеркнутый"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:73
 #, fuzzy
@@ -9331,11 +9331,11 @@ msgstr "Нестабильный"
 
 #: ../gramps/gen/plug/_pluginreg.py:62
 msgid "Experimental"
-msgstr ""
+msgstr "Экспериментальный"
 
 #: ../gramps/gen/plug/_pluginreg.py:63
 msgid "Beta"
-msgstr ""
+msgstr "Бета"
 
 #: ../gramps/gen/plug/_pluginreg.py:64
 msgid "Stable"
@@ -9343,11 +9343,11 @@ msgstr "Стабильный"
 
 #: ../gramps/gen/plug/_pluginreg.py:72
 msgid "Developer"
-msgstr ""
+msgstr "Разработчик"
 
 #: ../gramps/gen/plug/_pluginreg.py:73
 msgid "Expert"
-msgstr ""
+msgstr "Эксперт"
 
 #: ../gramps/gen/plug/_pluginreg.py:97
 msgid "Quickreport"
@@ -11108,24 +11108,29 @@ msgid "%(west_longitude)s W"
 msgstr "%(west_longitude)s З"
 
 #: ../gramps/gen/utils/place.py:80
+#, fuzzy
 msgid "DEG"
-msgstr ""
+msgstr "DEG"
 
 #: ../gramps/gen/utils/place.py:83
+#, fuzzy
 msgid "DEG-:"
-msgstr ""
+msgstr "DEG-:"
 
 #: ../gramps/gen/utils/place.py:86
+#, fuzzy
 msgid "D.D4"
-msgstr ""
+msgstr "D.D4"
 
 #: ../gramps/gen/utils/place.py:89
+#, fuzzy
 msgid "D.D8"
-msgstr ""
+msgstr "D.D8"
 
 #: ../gramps/gen/utils/place.py:92
+#, fuzzy
 msgid "RT90"
-msgstr ""
+msgstr "RT90"
 
 #: ../gramps/gen/utils/string.py:46 ../gramps/gui/editors/editperson.py:341
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
@@ -11401,7 +11406,7 @@ msgstr "'Ghostscript' не установлен"
 
 #: ../gramps/grampsapp.py:359
 msgid "Installed but does not supply version"
-msgstr ""
+msgstr "Установлен, но не предоставляет версию"
 
 #: ../gramps/grampsapp.py:379
 #, fuzzy
@@ -11818,7 +11823,7 @@ msgstr "Цвета для женщин"
 
 #: ../gramps/gui/configure.py:723
 msgid "Colors for people who are neither male nor female"
-msgstr ""
+msgstr "Цвета для людей, которые не являются ни мужчинами, ни женщинами"
 
 #: ../gramps/gui/configure.py:724
 msgid "Colors for Unknown persons"
@@ -12242,43 +12247,43 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1681
 msgid "Show Clipboard icon on toolbar"
-msgstr ""
+msgstr "Показывать значок буфера обмена на панели инструментов"
 
 #: ../gramps/gui/configure.py:1683
 msgid "Show or hide the Clipboard icon on the toolbar."
-msgstr ""
+msgstr "Показать или скрыть значок буфера обмена на панели инструментов."
 
 #: ../gramps/gui/configure.py:1689
 msgid "Show Reports icon on toolbar"
-msgstr ""
+msgstr "Показать значок \"Отчеты\" на панели инструментов"
 
 #: ../gramps/gui/configure.py:1691
 msgid "Show or hide the Reports icon on the toolbar."
-msgstr ""
+msgstr "Показать или скрыть значок \"Отчеты\" на панели инструментов."
 
 #: ../gramps/gui/configure.py:1697
 msgid "Show Tools icon on toolbar"
-msgstr ""
+msgstr "Показать значок \"Инструменты\" на панели инструментов"
 
 #: ../gramps/gui/configure.py:1699
 msgid "Show or hide the Tools icon on the toolbar."
-msgstr ""
+msgstr "Показать или скрыть значок \"Инструменты\" на панели инструментов."
 
 #: ../gramps/gui/configure.py:1705
 msgid "Show Plugins icon on toolbar"
-msgstr ""
+msgstr "Показать значок \"Плагины\" на панели инструментов"
 
 #: ../gramps/gui/configure.py:1707
 msgid "Show or hide the Plugins icon on the toolbar."
-msgstr ""
+msgstr "Показать или скрыть значок \"Плагины\" на панели инструментов."
 
 #: ../gramps/gui/configure.py:1713
 msgid "Show Preferences icon on toolbar"
-msgstr ""
+msgstr "Показать значок \"Параметры\" на панели инструментов"
 
 #: ../gramps/gui/configure.py:1715
 msgid "Show or hide the Preferences icon on the toolbar."
-msgstr ""
+msgstr "Показать или скрыть значок \"Параметры\" на панели инструментов."
 
 #: ../gramps/gui/configure.py:1721
 msgid "Show close button in gramplet bar tabs"
@@ -12692,20 +12697,20 @@ msgid "Tab"
 msgstr "Метка"
 
 #: ../gramps/gui/csvdialect.py:81
-#, fuzzy
-#| msgid "Check your installation."
 msgid "Choose your dialect"
-msgstr "Проверьте свои настройки."
+msgstr "Выберите свой диалект"
 
 #: ../gramps/gui/csvdialect.py:83
 msgid ""
 "Changes are immediate.\n"
 "This is used when exporting views in CSV format."
 msgstr ""
+"Изменения применяются немедленно.\n"
+"Используется при экспорте представлений в формат CSV."
 
 #: ../gramps/gui/csvdialect.py:111
 msgid "Delimiter:"
-msgstr ""
+msgstr "Разделитель:"
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:109
 msgid "Undo history warning"
@@ -14200,7 +14205,7 @@ msgstr "Отрезок"
 
 #: ../gramps/gui/editors/editdate.py:82
 msgid "From"
-msgstr ""
+msgstr "От"
 
 #: ../gramps/gui/editors/editdate.py:83
 #, fuzzy
@@ -19591,14 +19596,8 @@ msgid "Select_Source_selector"
 msgstr "Выбор_источника"
 
 #: ../gramps/gui/spell.py:62
-#, fuzzy
-#| msgid ""
-#| "You have no installed dictionaries. Either install one or disable spell "
-#| "checking"
 msgid "You have no installed dictionaries."
-msgstr ""
-"Не установлено ни одного словаря. Установите словари или отключите проверку "
-"правописания"
+msgstr "У вас нет установленных словарей."
 
 #: ../gramps/gui/spell.py:82
 msgid "Off"
@@ -19998,7 +19997,7 @@ msgstr "Колонки"
 
 #: ../gramps/gui/views/listview.py:1348
 msgid "CSV Dialect"
-msgstr ""
+msgstr "Диалект CSV"
 
 #: ../gramps/gui/views/navigationview.py:252
 #, python-format
@@ -20799,7 +20798,7 @@ msgstr "Начинаю"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:858
 msgid "The start index"
-msgstr ""
+msgstr "Начальный индекс"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:874
 #: ../gramps/plugins/drawreport/descendtree.py:1581
@@ -22168,6 +22167,9 @@ msgid ""
 "You can change this behavior in the 'Configure active view' of any list-"
 "based view"
 msgstr ""
+"CSV - это распространенный формат электронных таблиц.\n"
+"Это поведение можно изменить в разделе \"Настройка активного представления\" "
+"любого представления на основе списка"
 
 #: ../gramps/plugins/export/export.gpr.py:46
 msgid "CSV spreadsheet options"
@@ -26860,10 +26862,8 @@ msgid "%(date)s %(time)s"
 msgstr "%(date)s %(time)s"
 
 #: ../gramps/plugins/lib/libmetadata.py:115
-#, fuzzy
-#| msgid "Description: "
 msgid "Descriptive Tags"
-msgstr "Описание: "
+msgstr "Описательные теги"
 
 #: ../gramps/plugins/lib/libmetadata.py:116
 #, fuzzy
@@ -26932,10 +26932,8 @@ msgid "Label"
 msgstr "метка"
 
 #: ../gramps/plugins/lib/libmetadata.py:222
-#, fuzzy
-#| msgid ", "
 msgid " "
-msgstr ", "
+msgstr " "
 
 #: ../gramps/plugins/lib/libnarrate.py:88
 #, python-format
@@ -32714,7 +32712,7 @@ msgstr "Ж"
 #: ../gramps/plugins/textreport/familygroup.py:507
 msgctxt "acronym for other"
 msgid "X"
-msgstr ""
+msgstr "Н"
 
 # DIKIY: проверить в программе
 #: ../gramps/plugins/textreport/familygroup.py:509
@@ -35754,7 +35752,7 @@ msgstr ""
 
 #: ../gramps/plugins/view/citationtreeview.py:671
 msgid "Cannot perform merge."
-msgstr "Не удалось объединить цитаты."
+msgstr "Невозможно выполнить объединение."
 
 #: ../gramps/plugins/view/citationtreeview.py:672
 msgid ""
@@ -36639,7 +36637,7 @@ msgstr "%s"
 
 #: ../gramps/plugins/view/relview.py:782
 msgid "Alive"
-msgstr "Возраст"
+msgstr "Живой"
 
 #: ../gramps/plugins/view/relview.py:848 ../gramps/plugins/view/relview.py:875
 #, python-format
@@ -37066,7 +37064,7 @@ msgstr "Следующее"
 
 #: ../gramps/plugins/webreport/basepage.py:2410
 msgid "Other media: videos, pdfs..."
-msgstr ""
+msgstr "Другие носители: видео, pdf..."
 
 #: ../gramps/plugins/webreport/basepage.py:2572
 msgid " [Click to Go]"
@@ -38067,11 +38065,10 @@ msgid ""
 msgstr "Выберите, какие настройки Вы хотите иметь для страниц карт Stamen..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2520
-#, fuzzy, python-format
-#| msgid "Died %(month_year)s (%(age)s)."
+#, python-format
 msgctxt "val"
 msgid "in %(inipth)s (%(val)s)"
-msgstr "Умер(ла) %(month_year)s в возрасте %(age)s."
+msgstr "Умер(ла) %(month_year)s в возрасте %(age)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2522
 #, fuzzy
@@ -38081,7 +38078,7 @@ msgstr "Даты"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2523
 msgid "openlayers version to use"
-msgstr ""
+msgstr "используемая версия openlayers"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2528
 msgid ""
@@ -38091,6 +38088,11 @@ msgid ""
 "openlayers_version.\n"
 "See OLDER VERSIONS in https://openlayers.org/"
 msgstr ""
+"Эту опцию следует использовать только в том случае, если на вашем сайте не "
+"видны карты OpenStreetMap или Stamen\n"
+"Изменить значение можно в указанном файле. Имя опции, которую необходимо "
+"изменить - openlayers_version.\n"
+"См. раздел OLDER VERSIONS на сайте https://openlayers.org/"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2544
 msgid "Other inclusion (CMS, web calendar, PHP)"
@@ -38470,7 +38472,7 @@ msgstr ""
 #. Translators: This is the email subject line in the Web Calendar
 #: ../gramps/plugins/webreport/webcal.py:1567
 msgid "WebCal"
-msgstr ""
+msgstr "WebCal"
 
 #: ../gramps/plugins/webreport/webcal.py:1578
 #, python-format
