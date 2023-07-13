@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-12 15:48+0100\n"
-"PO-Revision-Date: 2023-07-12 20:12+0000\n"
+"PO-Revision-Date: 2023-07-13 20:56+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -2368,7 +2368,7 @@ msgstr "{short_month} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:498
 msgctxt "from-date"
 msgid ""
-msgstr "from"
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "to <Month>" in your language, DON'T translate this.
@@ -7366,10 +7366,8 @@ msgid "from"
 msgstr "alkaen"
 
 #: ../gramps/gen/lib/date.py:2003
-#, fuzzy
-#| msgid "Stop"
 msgid "to"
-msgstr "Keskeytä"
+msgstr "päättyen"
 
 #: ../gramps/gen/lib/date.py:2004
 msgid "span"
@@ -8018,12 +8016,9 @@ msgid "annul."
 msgstr "peruut."
 
 #: ../gramps/gen/lib/eventtype.py:260
-#, fuzzy
-#| msgctxt "Will abbreviation"
-#| msgid "will."
 msgctxt "Stillbirth abbreviation"
 msgid "still."
-msgstr "jälkis."
+msgstr "k.synt."
 
 #: ../gramps/gen/lib/family.py:155
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:60
@@ -10297,16 +10292,12 @@ msgid "Select the format to display places"
 msgstr "Valitse paikkojen näyttömuoto"
 
 #: ../gramps/gen/plug/report/stdoptions.py:386 ../gramps/gui/configure.py:1246
-#, fuzzy
-#| msgid "Date format"
 msgid "Coordinates format"
-msgstr "Päivämäärän muoto"
+msgstr "Koordinaattien muoto"
 
 #: ../gramps/gen/plug/report/stdoptions.py:389
-#, fuzzy
-#| msgid "Select the format to display names"
 msgid "Select the format to display coordinates"
-msgstr "Valitse nimien näyttömuoto"
+msgstr "Valitse koordinaattien näyttömuoto"
 
 #: ../gramps/gen/plug/report/utils.py:157
 #: ../gramps/plugins/textreport/indivcomplete.py:925
@@ -11162,11 +11153,9 @@ msgstr "tuntematon"
 
 #: ../gramps/gen/utils/string.py:49 ../gramps/gui/editors/editperson.py:343
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
-#, fuzzy
-#| msgid "Mother"
 msgctxt "gender"
 msgid "other"
-msgstr "Äiti"
+msgstr "muut"
 
 #: ../gramps/gen/utils/string.py:53
 msgid "Invalid"
@@ -11395,10 +11384,8 @@ msgstr ""
 #: ../gramps/grampsapp.py:345 ../gramps/grampsapp.py:361
 #: ../gramps/grampsapp.py:371 ../gramps/grampsapp.py:392
 #: ../gramps/grampsapp.py:399
-#, fuzzy
-#| msgid "Not found"
 msgid "not found"
-msgstr "Ei löytynyt"
+msgstr "ei löytynyt"
 
 #: ../gramps/grampsapp.py:326
 msgid "not found because exiv2 is not installed"
@@ -11409,10 +11396,8 @@ msgid "Installed but does not supply version"
 msgstr "asennettu, mutta ei tarjoa versiota"
 
 #: ../gramps/grampsapp.py:379
-#, fuzzy
-#| msgid "Unstable"
 msgid "installed"
-msgstr "Epävakaa"
+msgstr "asennettu"
 
 #: ../gramps/grampsapp.py:544 ../gramps/grampsapp.py:551
 #: ../gramps/grampsapp.py:604
@@ -12046,10 +12031,8 @@ msgid "Age display precision *"
 msgstr "Iän näyttötarkkuus *"
 
 #: ../gramps/gui/configure.py:1355
-#, fuzzy
-#| msgid "Display references for a %s"
 msgid "Display ages for events after death *"
-msgstr "Näytä viitteet kohteena %s"
+msgstr "Näytä kuoleman jälkeisten tapahtumien iät *"
 
 #: ../gramps/gui/configure.py:1367
 msgid "Calendar on reports"
@@ -12221,10 +12204,7 @@ msgid "Enable the spelling checker for notes."
 msgstr "Ota käyttöön lisätietojen oikoluku."
 
 #: ../gramps/gui/configure.py:1664
-#, fuzzy, python-format
-#| msgid ""
-#| "GtkSpell not loaded. Spell checking will not be available.\n"
-#| "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
+#, python-format
 msgid ""
 "Gspell not loaded. Spell checking will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
@@ -12691,17 +12671,13 @@ msgstr ""
 "Se näkyy vain, jos fontti sisältää tämän merkin."
 
 #: ../gramps/gui/csvdialect.py:63
-#, fuzzy
-#| msgid "Tag"
 msgctxt "character"
 msgid "Tab"
-msgstr "Tagi"
+msgstr "Väli"
 
 #: ../gramps/gui/csvdialect.py:81
-#, fuzzy
-#| msgid "Check your installation."
 msgid "Choose your dialect"
-msgstr "Tarkisteta asennuksesi."
+msgstr "Valitse dialekti"
 
 #: ../gramps/gui/csvdialect.py:83
 msgid ""
@@ -13213,38 +13189,28 @@ msgid "Open the reports dialog"
 msgstr "Avaa Raportti-ikkunan"
 
 #: ../gramps/gui/displaystate.py:407
-#, fuzzy
-#| msgid "_Reports"
 msgid "Reports"
-msgstr "_Raportit"
+msgstr "Raportit"
 
 #: ../gramps/gui/displaystate.py:410
 msgid "Open the tools dialog"
 msgstr "Avaa Työkalut-ikkunan"
 
 #: ../gramps/gui/displaystate.py:411
-#, fuzzy
-#| msgid "_Tools"
 msgid "Tools"
 msgstr "Työkalut"
 
 #: ../gramps/gui/displaystate.py:414
-#, fuzzy
-#| msgid "Plugin Manager"
 msgid "Open Plugin Manager"
-msgstr "Laajennusten hallinta"
+msgstr "Avaa laajennusten hallinta"
 
 #: ../gramps/gui/displaystate.py:415
-#, fuzzy
-#| msgid "Plugin lib"
 msgid "Plugins"
-msgstr "Laajennuskirjasto"
+msgstr "Laajennukset"
 
 #: ../gramps/gui/displaystate.py:418
-#, fuzzy
-#| msgid "Preferences"
 msgid "Open Preferences"
-msgstr "Asetukset"
+msgstr "Avaa asetukset"
 
 #: ../gramps/gui/displaystate.py:438
 #: ../gramps/plugins/gramplet/persondetails.py:174
@@ -14204,10 +14170,8 @@ msgid "From"
 msgstr "Alkaen"
 
 #: ../gramps/gui/editors/editdate.py:83
-#, fuzzy
-#| msgid "Top"
 msgid "To"
-msgstr "Ylhäällä"
+msgstr "Päättyen"
 
 #: ../gramps/gui/editors/editdate.py:84
 msgid "Span"
@@ -14957,10 +14921,8 @@ msgid "_Female"
 msgstr "_Nainen"
 
 #: ../gramps/gui/editors/editperson.py:1114
-#, fuzzy
-#| msgid "Other"
 msgid "_Other"
-msgstr "Muu"
+msgstr "_Muu"
 
 #: ../gramps/gui/editors/editperson.py:1115
 msgid "_Unknown"
@@ -15450,28 +15412,20 @@ msgid "Delete Filter"
 msgstr "Poista suodin"
 
 #: ../gramps/gui/editors/objectentries.py:293
-#, fuzzy
-#| msgid "To select a place, use drag-and-drop or use the buttons"
 msgid "To select a person, use drag-and-drop or use the buttons"
-msgstr "Valitaksesi paikan, vedä-ja-pudota se tai käytä painikkeita"
+msgstr "Valitse henkilö vetämällä ja pudottamalla tai painikkeilla."
 
 #: ../gramps/gui/editors/objectentries.py:295
-#, fuzzy
-#| msgid "No place given, click button to select one"
 msgid "No person given, click button to select one"
-msgstr "Paikka puuttuu, napsauta painiketta valitaksesi sellaisen"
+msgstr "Henkilö puuttuu, valitse painiketta napsauttamalla"
 
 #: ../gramps/gui/editors/objectentries.py:296
-#, fuzzy
-#| msgid "Edit Person"
 msgid "Edit person"
 msgstr "Muokkaa henkilöä"
 
 #: ../gramps/gui/editors/objectentries.py:297
-#, fuzzy
-#| msgid "Select an existing place"
 msgid "Select an existing person"
-msgstr "Valitse jo olemassa oleva paikka"
+msgstr "Valitse olemassa oleva henkilö"
 
 #: ../gramps/gui/editors/objectentries.py:298
 #: ../gramps/plugins/lib/libpersonview.py:122
@@ -15479,10 +15433,8 @@ msgid "Add a new person"
 msgstr "Lisää uusi henkilö"
 
 #: ../gramps/gui/editors/objectentries.py:299
-#, fuzzy
-#| msgid "Remove version"
 msgid "Remove person"
-msgstr "Poista versio"
+msgstr "Poista henkilö"
 
 #: ../gramps/gui/editors/objectentries.py:340
 msgid "To select a place, use drag-and-drop or use the buttons"
@@ -18390,10 +18342,8 @@ msgstr "%(key)s:\t%(value)s"
 #: ../gramps/gui/merge/mergeperson.py:64
 #: ../gramps/gui/views/treemodels/peoplemodel.py:98
 #: ../gramps/plugins/webreport/person.py:484
-#, fuzzy
-#| msgid "Mother"
 msgid "other"
-msgstr "Äiti"
+msgstr "muu"
 
 #: ../gramps/gui/merge/mergeperson.py:92
 msgid "Merge People"
@@ -19596,14 +19546,8 @@ msgid "Select_Source_selector"
 msgstr "Valitse_olemassa_oleva_l.C3.A4hde"
 
 #: ../gramps/gui/spell.py:62
-#, fuzzy
-#| msgid ""
-#| "You have no installed dictionaries. Either install one or disable spell "
-#| "checking"
 msgid "You have no installed dictionaries."
-msgstr ""
-"Yhtään sanastoa ei ole asennettu. Asenna sanasto tai kytke pois kielen "
-"tarkistus"
+msgstr "Sinulla ei ole asennettuna sanakirjoja."
 
 #: ../gramps/gui/spell.py:82
 msgid "Off"
@@ -20093,7 +20037,7 @@ msgstr "Lisätään tageja"
 #: ../gramps/gui/views/tags.py:314 ../gramps/gui/views/tags.py:336
 #, python-format
 msgid "Tag Selection (%s)"
-msgstr "Valittu tagi (%s)"
+msgstr "Tagin valinta (%s)"
 
 #: ../gramps/gui/views/tags.py:331 ../gramps/gui/views/tags.py:587
 msgid "Removing Tags"
@@ -20789,22 +20733,16 @@ msgid ""
 msgstr "Välilyöntien poistaminen tuntemattomien ihmisten reunoilta"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:851
-#, fuzzy
-#| msgid "Show dates"
 msgid "Show Index"
-msgstr "Näytä päivämäärät"
+msgstr "Näytä indeksi"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:853
-#, fuzzy
-#| msgid "Display Tip of the Day"
 msgid "Display index of each person"
-msgstr "Näytä päivän vinkki"
+msgstr "Näytä kunkin henkilön indeksi"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:857
-#, fuzzy
-#| msgid "Starting"
 msgid "Start Index"
-msgstr "Aloitetaan"
+msgstr "Aloitusindeksi"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:858
 msgid "The start index"
@@ -21197,26 +21135,17 @@ msgstr[0] "{person}, {age}"
 msgstr[1] "{person}, {age}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:476
-#, fuzzy, python-format
-#| msgid ""
-#| "%(spouse)s and\n"
-#| " %(person)s, wedding"
+#, python-format
 msgid ""
 "%(wife)s and\n"
 " %(person)s, wedding"
 msgstr ""
-"%(spouse)s ja\n"
+"%(wife)s ja\n"
 " %(person)s, häät"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/drawreport/calendarreport.py:488
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "{spouse} and\n"
-#| " {person}, {nyears}"
-#| msgid_plural ""
-#| "{spouse} and\n"
-#| " {person}, {nyears}"
+#, python-brace-format
 msgid ""
 "{wife} and\n"
 " {person}, {nyears}"
@@ -21224,10 +21153,10 @@ msgid_plural ""
 "{wife} and\n"
 " {person}, {nyears}"
 msgstr[0] ""
-"{spouse} ja\n"
+"{wife} ja\n"
 " {person}, {nyears}"
 msgstr[1] ""
-"{spouse} ja\n"
+"{wife} ja\n"
 " {person}, {nyears}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:554
@@ -21799,11 +21728,8 @@ msgid "Item count"
 msgstr "Kohteiden lukumäärä"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:315
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "all"
 msgid "All"
-msgstr "kaikki"
+msgstr "Kaikki"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:316
 #: ../gramps/plugins/drawreport/statisticschart.py:420
@@ -23104,7 +23030,7 @@ msgid ""
 "Image metadata functionality will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_gexiv2_url)s"
 msgstr ""
-"Kuvan metadata toiminnallisuutta ei ole käytettävänä.\n"
+"Kuvan metadata toiminto ei ole käytettävänä.\n"
 "Saadaksesi sen Grampsiin katso %(gramps_wiki_build_gexiv2_url)s"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:456
@@ -23939,10 +23865,8 @@ msgstr "Henkilöiden määrä"
 #: ../gramps/plugins/gramplet/statsgramplet.py:155
 #: ../gramps/plugins/webreport/statistics.py:129
 #: ../gramps/plugins/webreport/statistics.py:197
-#, fuzzy
-#| msgid "Individuals with unknown gender"
 msgid "Individuals with other gender"
-msgstr "Henkilöt, joiden sukupuoli on tuntematon"
+msgstr "Henkilöt, joilla on muu sukupuoli"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:159
 #: ../gramps/plugins/webreport/statistics.py:131
@@ -24277,20 +24201,13 @@ msgid "Addons and \"Gramplets\""
 msgstr "Laajennukset ja \"Gampletit\""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:195
-#, fuzzy
-#| msgid ""
-#| "There many Addons or \"Gramplets\" that are available to assist you in "
-#| "data entry and visualizing your family tree. Many of these tools are "
-#| "already available to you. Many more are available to download and "
-#| "install.\n"
-#| "\n"
 msgid ""
 "There are many Addons or \"Gramplets\" that are available to assist you in "
 "data entry and visualizing your family tree. Many of these tools are already "
 "available to you. Many more are available to download and install.\n"
 "\n"
 msgstr ""
-"Saatavilla on monia lisäosia tai \"Grampletteja\", jotka auttavat sinua "
+"Saatavilla on monia laajennusia tai \"Grampletteja\", jotka auttavat sinua "
 "syöttämään tietoja ja visualisoimaan sukupuusi. Monet näistä työkaluista "
 "ovat jo käytettävissäsi. Monia muita on ladattavissa ja asennettavissa.\n"
 "\n"
@@ -24732,10 +24649,10 @@ msgstr "Naisilla käytettävä väri."
 #: ../gramps/plugins/graph/gvfamilylines.py:296
 #: ../gramps/plugins/graph/gvhourglass.py:435
 #: ../gramps/plugins/graph/gvrelgraph.py:959
-#, fuzzy
-#| msgid "The color to use to display women."
 msgid "The color to use to display people who are neither men nor women."
-msgstr "Naisilla käytettävä väri."
+msgstr ""
+"Väri, jota käytetään näyttämään henkilöitä, jotka eivät ole miehiä tai "
+"naisia."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:301
 #: ../gramps/plugins/graph/gvhourglass.py:440
@@ -24892,14 +24809,8 @@ msgid "Ahnentafel number visible"
 msgstr "Ahnentafel-numero näkyvä"
 
 #: ../gramps/plugins/graph/gvhourglass.py:455
-#, fuzzy
-#| msgid ""
-#| "Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
-#| "informations."
 msgid "Show Sosa / Sosa-Stradonitz / Ahnentafel number."
-msgstr ""
-"Näytä Sosa / Sosa-Stradonitz / Ahnentafelin numero kaikkien muiden tietojen "
-"perusteella."
+msgstr "Näytä Sosa / Sosa-Stradonitz / Ahnentafel numero."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:211
 #: ../gramps/plugins/textreport/indivcomplete.py:836
@@ -25987,16 +25898,13 @@ msgid "vCard import"
 msgstr "vCard-tuonti"
 
 #: ../gramps/plugins/importer/importvcard.py:254
-#, fuzzy
-#| msgid "VCARD import report: No errors detected"
 msgid "vCard import report: No errors detected"
-msgstr "VCARD-tuontiraportti: Ei virheitä"
+msgstr "vCard-tuontiraportti: Ei havaittuja virheitä"
 
 #: ../gramps/plugins/importer/importvcard.py:256
-#, fuzzy, python-format
-#| msgid "VCARD import report: %s errors detected\n"
+#, python-format
 msgid "vCard import report: %s errors detected\n"
-msgstr "VCARD-tuontiraportti: %s virhettä löytynyt\n"
+msgstr "vCard-tuontiraportti: %s virhettä löytynyt\n"
 
 #: ../gramps/plugins/importer/importvcard.py:321
 #, python-format
@@ -26004,52 +25912,37 @@ msgid "Token >%(token)s< unknown. line skipped: %(line)s"
 msgstr "Merkki >%(token)s< tuntematon. rivi ohitetaan: %(line)s"
 
 #: ../gramps/plugins/importer/importvcard.py:335
-#, fuzzy
-#| msgid ""
-#| "BEGIN property not properly closed by END property, Gramps can't cope "
-#| "with nested VCards."
 msgid ""
 "BEGIN property not properly closed by END property, Gramps can't cope with "
 "nested vCards."
 msgstr ""
 "END-ominaisuus ei ole kunnolla sulkenut BEGIN-ominaisuutta, Gramps ei "
-"hyväksy sisäkkäisiä VCardeja."
+"hyväksy sisäkkäisiä vCardeja."
 
 #: ../gramps/plugins/importer/importvcard.py:346
-#, fuzzy, python-format
-#| msgid "Import of VCards version %s is not supported by Gramps."
+#, python-format
 msgid "Import of vCards version %s is not supported by Gramps."
-msgstr "Gramps ei tue VCardien version %s tuontia."
+msgstr "Gramps ei tue vCard version %s tuontia."
 
 #: ../gramps/plugins/importer/importvcard.py:366
-#, fuzzy
-#| msgid ""
-#| "VCard is malformed missing the compulsory N property, so there is no "
-#| "name; skip it."
 msgid ""
 "The vCard is malformed. It is missing the compulsory N property, so there is "
 "no name; skip it."
 msgstr ""
-"VCard on virheellinen, puuttuu pakollinen N ominaisuus, jolle ei ole mitään "
+"vCard on virheellinen, puuttuu pakollinen N ominaisuus, jolle ei ole mitään "
 "nimeä; ohitetaan."
 
 #: ../gramps/plugins/importer/importvcard.py:371
-#, fuzzy
-#| msgid ""
-#| "VCard is malformed missing the compulsory FN property, get name from N "
-#| "alone."
 msgid ""
 "The vCard is malformed. It is missing the compulsory FN property, get name "
 "from N alone."
 msgstr ""
-"VCard-muoto on virheellinen, puuttuu pakollinen FN-ominaisuus, käytetään "
+"vCard-muoto on virheellinen, puuttuu pakollinen FN-ominaisuus, käytetään "
 "vain N nimeä."
 
 #: ../gramps/plugins/importer/importvcard.py:375
-#, fuzzy
-#| msgid "VCard is malformed wrong number of name components."
 msgid "The vCard is malformed. Wrong number of name components."
-msgstr "VCard-muoto on virheellinen, väärä numero nimiosassa."
+msgstr "vCard-muoto on virheellinen, väärä numero nimiosassa."
 
 #: ../gramps/plugins/importer/importvcard.py:517
 #, python-brace-format
@@ -26840,82 +26733,56 @@ msgid "%(date)s %(time)s"
 msgstr "%(date)s, %(time)s"
 
 #: ../gramps/plugins/lib/libmetadata.py:115
-#, fuzzy
-#| msgid "Description"
 msgid "Descriptive Tags"
-msgstr "Kuvaus"
+msgstr "Kuvailevat tagit"
 
 #: ../gramps/plugins/lib/libmetadata.py:116
-#, fuzzy
-#| msgid "Styled Text Tags"
 msgid "Date and Time Tags"
-msgstr "Tagin tekstityyli"
+msgstr "Päiväys ja kellonaika tagi"
 
 #: ../gramps/plugins/lib/libmetadata.py:117
-#, fuzzy
-#| msgid "People"
 msgid "People Tags"
-msgstr "Henkilöt"
+msgstr "Henkilöt tagi"
 
 #: ../gramps/plugins/lib/libmetadata.py:118
-#, fuzzy
-#| msgid "Events"
 msgid "Event Tags"
-msgstr "Tapahtumat"
+msgstr "Tapahtumat tagi"
 
 #: ../gramps/plugins/lib/libmetadata.py:119
-#, fuzzy
-#| msgid "Images"
 msgid "Image Tags"
-msgstr "Kuvat"
+msgstr "Kuvat tagi"
 
 #: ../gramps/plugins/lib/libmetadata.py:120
-#, fuzzy
-#| msgid "Place Information"
 msgid "Camera Information"
-msgstr "Paikan tiedot"
+msgstr "Kameratiedot"
 
 #: ../gramps/plugins/lib/libmetadata.py:121
-#, fuzzy
-#| msgid "Locations"
 msgid "Location Tags"
-msgstr "Sijainnit"
+msgstr "Sijainnit tagi"
 
 #: ../gramps/plugins/lib/libmetadata.py:122
-#, fuzzy
-#| msgid "Advanced"
 msgid "Advanced Tags"
-msgstr "Edistynyt"
+msgstr "Edistyneet tagit"
 
 #: ../gramps/plugins/lib/libmetadata.py:123
-#, fuzzy
-#| msgid "Removing Tags"
 msgid "Rights Tags"
-msgstr "Poistetaan tageja"
+msgstr "Oikeudet Tagit"
 
 #: ../gramps/plugins/lib/libmetadata.py:124
-#, fuzzy
-#| msgid "New Tag"
 msgid "Keyword Tags"
-msgstr "Uusi tagi"
+msgstr "Avainsana Tagit"
 
 #: ../gramps/plugins/lib/libmetadata.py:220
-#, fuzzy
-#| msgid "Namesake"
 msgid "Namespace"
-msgstr "Kaima"
+msgstr "Nimitila"
 
 #: ../gramps/plugins/lib/libmetadata.py:221
-#, fuzzy
-#| msgid "label"
 msgid "Label"
-msgstr "nimike"
+msgstr "Nimike"
 
 #: ../gramps/plugins/lib/libmetadata.py:222
-#, fuzzy
-#| msgid ", "
 msgid " "
-msgstr ", "
+msgstr " "
 
 #: ../gramps/plugins/lib/libnarrate.py:88
 #, python-format
@@ -30691,17 +30558,12 @@ msgid "Where to save the tiles for offline mode."
 msgstr "Laattojen tallennuspaikka offline-tilaa varten."
 
 #: ../gramps/plugins/lib/maps/geography.py:1301
-#, fuzzy
-#| msgid ""
-#| "If you have no more space in your file system. You can remove all tiles "
-#| "placed in the above path.\n"
-#| "Be careful! If you have no internet, you'll get no map."
 msgid ""
 "If you have no more space in your file system, you can remove all tiles "
 "placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
-"Jos tiedostojärjestelmässäsi ei ole enää tilaa, voit poistaa kaikki edellä "
+"Jos tiedostojärjestelmässä ei ole enää tilaa, voit poistaa kaikki edellä "
 "mainittuun polkuun sijoitetut laatat.\n"
 "Ole varovainen! Jos sinulla ei ole internetiä, et saa karttoja."
 
@@ -30754,26 +30616,12 @@ msgid "Select tile cache directory for offline mode"
 msgstr "Valitse laatoille välimuistihakemisto käytettäväksi offline-tilassa"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:137
-#, fuzzy, python-format
-#| msgid "Can't create tiles cache directory %s"
+#, python-format
 msgid "Can't create tile cache directory %s"
-msgstr "Laattojen välimuistin %s hakemiston luonti epäonnistui"
+msgstr "Laattojen välimuistihakemistoa %s ei voi luoda."
 
 #: ../gramps/plugins/lib/maps/osmgps.py:141
-#, fuzzy, python-format
-#| msgid ""
-#| "You must verify and change the tiles cache\n"
-#| "...\n"
-#| "[geography]\n"
-#| "...\n"
-#| "path='bad/path'\n"
-#| "...\n"
-#| "in the gramps.ini file :\n"
-#| "%s\n"
-#| "\n"
-#| "Before to change the gramps.ini file, you need to close gramps\n"
-#| "\n"
-#| "The next errors will be normal"
+#, python-format
 msgid ""
 "You must verify and change the tile cache\n"
 "...\n"
@@ -30788,7 +30636,7 @@ msgid ""
 "\n"
 "The following errors are expected"
 msgstr ""
-"Sinun on vahvistettava ja vaihdettava ruutujen välimuisti\n"
+"Laattojen välimuisti on tarkistettava ja muutettava.\n"
 "...\n"
 "[geography]\n"
 "...\n"
@@ -30799,7 +30647,7 @@ msgstr ""
 "\n"
 "Ennen gramps.ini-tiedoston muuttamista sinun on suljettava gramps\n"
 "\n"
-"Seuraavat virheet ovat normaalia"
+"Seuraavat virheet ovat odotettavissa"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:181
 #: ../gramps/plugins/lib/maps/osmgps.py:245
@@ -31173,12 +31021,9 @@ msgid "females"
 msgstr "naiset"
 
 #: ../gramps/plugins/quickview/filterbyname.py:61
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "people with unknown gender"
 msgctxt "Filtering_on"
 msgid "people with other gender"
-msgstr "sukupuoleltaan tuntemattomat"
+msgstr "henkilöt, joilla on muu sukupuoli"
 
 #: ../gramps/plugins/quickview/filterbyname.py:63
 msgctxt "Filtering_on"
@@ -33051,10 +32896,9 @@ msgid "Females: %d"
 msgstr "Naiset: %d"
 
 #: ../gramps/plugins/textreport/summary.py:188
-#, fuzzy, python-format
-#| msgid "Individuals with unknown gender: %d"
+#, python-format
 msgid "Individuals with other gender: %d"
-msgstr "Henkilöitä joiden sukupuoli on tuntematon: %d"
+msgstr "Henkilöt, joilla on muu sukupuoli: %d"
 
 #: ../gramps/plugins/textreport/summary.py:193
 #, python-format
@@ -33317,15 +33161,11 @@ msgstr "Näyttää linkkien tilan lisätiedoissa"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:35
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:36
-#, fuzzy
-#| msgid "Thumbnails"
 msgid "Gnome Thumbnailer"
-msgstr "Pikkukuvat"
+msgstr "Gnome pikkukuvat"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:49
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:50
-#, fuzzy
-#| msgid "Thumbnails"
 msgid "Image Thumbnailer"
 msgstr "Pikkukuvat"
 
@@ -34790,14 +34630,8 @@ msgid "Enable ID reordering."
 msgstr "Käytä ID uudelleenjärjestelyä."
 
 #: ../gramps/plugins/tool/reorderids.glade:1420
-#, fuzzy
-#| msgid ""
-#| "List next ID available\n"
-#| "(maynot be continuous)."
 msgid "List next ID available (may not be continuous)."
-msgstr ""
-"Seuraava ID saatavilla\n"
-"(Ei ole ehkä jatkuva)."
+msgstr "Seuraava ID listalla (Ei ole ehkä jatkuva)."
 
 #: ../gramps/plugins/tool/reorderids.glade:1423
 msgid "  Actual"
@@ -34820,14 +34654,8 @@ msgid "Change"
 msgstr "Muutos"
 
 #: ../gramps/plugins/tool/reorderids.glade:1469
-#, fuzzy
-#| msgid ""
-#| "Enable ID reordering\n"
-#| "with Start / Step sequence."
 msgid "Enable ID reordering with Start / Step sequence."
-msgstr ""
-"Käytä ID uudelleenjärjestelyä\n"
-"Start/Stop-järjestyksessä."
+msgstr "Käytä ID uudelleenjärjestelyä Start/Stop-järjestyksessä."
 
 #: ../gramps/plugins/tool/reorderids.glade:1481
 msgid "Start"
@@ -34850,14 +34678,8 @@ msgid "Keep"
 msgstr "Pidä"
 
 #: ../gramps/plugins/tool/reorderids.glade:1521
-#, fuzzy
-#| msgid ""
-#| "Keep IDs with alternate\n"
-#| "prefixes untouched."
 msgid "Keep IDs with alternate prefixes untouched."
-msgstr ""
-"Pitää vaihtoehdolla ID tunnuksien\n"
-"etuliitteet koskematomina."
+msgstr "Pidä vaihtoehtoisilla etuliitteillä varustetut ID:t muuttumattomina."
 
 # WIKI nettiosoite tarkistettava
 #: ../gramps/plugins/tool/reorderids.py:64
@@ -37867,17 +37689,14 @@ msgid ""
 msgstr "Valitse haluamasi vaihtoehto Stamen map karttasivuille ..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2520
-#, fuzzy, python-format
-#| msgid "Died %(month_year)s (%(age)s)."
+#, python-format
 msgctxt "val"
 msgid "in %(inipth)s (%(val)s)"
-msgstr "Kuoli %(month_year)s (ikä %(age)s)."
+msgstr "- %(inipth)s (%(val)s)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2522
-#, fuzzy
-#| msgid "Dates"
 msgid "latest"
-msgstr "Päivämäärät"
+msgstr "uusimmat"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2523
 msgid "openlayers version to use"
@@ -38244,10 +38063,9 @@ msgid "Number of People"
 msgstr "Henkilöiden määrä"
 
 #: ../gramps/plugins/webreport/surnamelist.py:279
-#, fuzzy, python-format
-#| msgid "Surnames beginning with letter %s"
+#, python-format
 msgid "Surnames beginning with letter '%s' %s"
-msgstr "Sukunimet alkavat kirjaimella %s"
+msgstr "Sukunimet alkavat kirjaimilla '%s' %s"
 
 #: ../gramps/plugins/webreport/thumbnail.py:121
 msgid ""
