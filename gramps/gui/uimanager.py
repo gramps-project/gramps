@@ -213,6 +213,7 @@ class UIManager():
         # need to copy the tree so we can preserve original for later edits.
         editable = copy.deepcopy(self.et_xml)
         iterator(editable)  # clean up tree to builder specifications
+        del iterator # Needed for garbage collection
         # The following should work, but seems to have a Gtk bug
         # xml_str = ET.tostring(editable, encoding="unicode")
 
