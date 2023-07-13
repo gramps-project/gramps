@@ -46,9 +46,8 @@ are the names of the controls in System Preferences; the names in the
 defaults system are AppleCollationOrder and AppleLocale,
 respectively.)
 
-The user can override the currency and calendar, and those values are
-appended to AppleLocale and parsed below. But Gramps makes no use of
-currency and sets the calendar in its own preferences, so they're
+The user can override the calendar, and thise value is appended to AppleLocale
+and parsed below. But Gramps sets the calendar in its own preferences, so it is
 ignored.
 
 Where the mismatch becomes a problem is in date and number
@@ -56,7 +55,7 @@ formatting. POSIX specifies a locale for this, but ICU uses format
 strings, and there is no good way to map those strings into one of the
 available locales. Users who whan to specify particular ways of
 formatting different from their base locales will have to figure out
-the appropriate locale on their own and set LC_TIME and LC_NUMERIC
+the appropriate locale on their own and set LC_TIME
 appropriately. The "Formats" page on the Languages & Text
 (International in Leopard) System Preferences pane is a good way to
 quickly assess the formats in various locales.
@@ -148,7 +147,6 @@ def mac_setup_localization(glocale):
     def _mac_check_locale(locale_string):
         locale = None
         calendar = None
-        currency = None
         div = locale_string.strip().split("@")
         LOG.debug("Checking Locale %s", ' '.join(div))
         locale = glocale.check_available_translations(div[0])
@@ -158,10 +156,8 @@ def mac_setup_localization(glocale):
                 (name, value) = phrase.split("=")
                 if name == "calendar":
                     calendar = glocale.check_available_translations(value)
-                elif name == "currency":
-                    currency = value
 
-        return (locale, calendar, currency)
+        return (locale, calendar)
 
     def _mac_get_locale():
         """
@@ -214,7 +210,6 @@ def mac_setup_localization(glocale):
     _locale = None
     _failure = False
     glocale.calendar = None
-    glocale.currency = None
     try:
         locale.setlocale(locale.LC_ALL, '')
         _locale = locale.getlocale()
@@ -229,7 +224,7 @@ def mac_setup_localization(glocale):
 
     if not glocale.lang:
         LOG.debug("Setting from the environment didn't work out, checking defaults")
-        (glocale.lang, glocale.currency, glocale.calendar) = _mac_get_locale()
+        (glocale.lang, glocale.calendar) = _mac_get_locale()
 
     glocale.coll_qualifier = None
     glocale.collation = _mac_get_collation()
@@ -293,8 +288,3 @@ def mac_setup_localization(glocale):
             glocale.calendar = time
         else:
             glocale.calendar = glocale.lang[:5]
-
-    if not glocale.currency:
-        glocale.currency = locale.getlocale(locale.LC_MONETARY)[0] or glocale.lang
-
-    glocale.numeric = locale.getlocale(locale.LC_NUMERIC)[0] or glocale.lang

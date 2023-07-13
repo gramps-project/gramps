@@ -581,8 +581,6 @@ def run():
     LOG.debug("Translating Gramps to %s", glocale.language[0])
     LOG.debug("Collation Locale: %s", glocale.collation)
     LOG.debug("Date/Time Locale: %s", glocale.calendar)
-    LOG.debug("Currency Locale: %s", glocale.currency)
-    LOG.debug("Number-format Locale: %s", glocale.numeric)
 
     if 'LANG' in os.environ:
         LOG.debug('Using LANG: %s' %
