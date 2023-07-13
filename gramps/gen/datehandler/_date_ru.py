@@ -65,8 +65,8 @@ class DateParserRU(DateParser):
         "прибл.": Date.MOD_ABOUT,
         "приб": Date.MOD_ABOUT,
         "прибл": Date.MOD_ABOUT,
-        "from": Date.MOD_FROM,
-        "to": Date.MOD_TO,
+        "от": Date.MOD_FROM,
+        "к": Date.MOD_TO,
     }
 
     quality_to_int = {
