@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-12 15:48+0100\n"
-"PO-Revision-Date: 2023-07-11 20:29+0000\n"
+"PO-Revision-Date: 2023-07-13 16:59+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -11495,10 +11495,8 @@ msgid "not found"
 msgstr "nicht gefunden"
 
 #: ../gramps/grampsapp.py:326
-#, fuzzy
-#| msgid "can't found it because exiv2 not installed"
 msgid "not found because exiv2 is not installed"
-msgstr "kann es nicht finden, weil exiv2 nicht installiert ist"
+msgstr "nicht gefunden, weil exiv2 nicht installiert ist"
 
 #: ../gramps/grampsapp.py:359
 msgid "Installed but does not supply version"
@@ -12311,15 +12309,12 @@ msgid "Enable the spelling checker for notes."
 msgstr "Aktiviere die Rechtschreibprüfung für Notizen."
 
 #: ../gramps/gui/configure.py:1664
-#, fuzzy, python-format
-#| msgid ""
-#| "GtkSpell not loaded. Spell checking will not be available.\n"
-#| "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
+#, python-format
 msgid ""
 "Gspell not loaded. Spell checking will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 msgstr ""
-"GtkSpell nicht geladen. Die Rechtschreibprüfung wird nicht verfügbar sein.\n"
+"Gspell nicht geladen. Die Rechtschreibprüfung wird nicht verfügbar sein.\n"
 "Um es für Gramps zu bauen siehe %(gramps_wiki_build_spell_url)s"
 
 #: ../gramps/gui/configure.py:1672
@@ -19767,14 +19762,8 @@ msgid "Select_Source_selector"
 msgstr "Quelle_w.C3.A4hlen_Auswahl"
 
 #: ../gramps/gui/spell.py:62
-#, fuzzy
-#| msgid ""
-#| "You have no installed dictionaries. Either install one or disable spell "
-#| "checking"
 msgid "You have no installed dictionaries."
-msgstr ""
-"Du hast keine Wörterbücher installiert. Entweder installiere eines oder "
-"deaktiviere die Rechtschreibprüfung"
+msgstr "Du hast keine Wörterbücher installiert."
 
 #: ../gramps/gui/spell.py:82
 msgid "Off"
@@ -24468,13 +24457,6 @@ msgid "Addons and \"Gramplets\""
 msgstr "ZUsatzmodule und \"Gramplets\""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:195
-#, fuzzy
-#| msgid ""
-#| "There many Addons or \"Gramplets\" that are available to assist you in "
-#| "data entry and visualizing your family tree. Many of these tools are "
-#| "already available to you. Many more are available to download and "
-#| "install.\n"
-#| "\n"
 msgid ""
 "There are many Addons or \"Gramplets\" that are available to assist you in "
 "data entry and visualizing your family tree. Many of these tools are already "
@@ -25098,14 +25080,8 @@ msgid "Ahnentafel number visible"
 msgstr "Ahnentafelnummer sichtbar"
 
 #: ../gramps/plugins/graph/gvhourglass.py:455
-#, fuzzy
-#| msgid ""
-#| "Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
-#| "informations."
 msgid "Show Sosa / Sosa-Stradonitz / Ahnentafel number."
-msgstr ""
-"Sosa / Sosa-Stradonitz / Ahnentafelnummer unter allen anderen Informationen "
-"anzeigen."
+msgstr "Sosa / Sosa-Stradonitz / Ahnentafelnummer anzeigen."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:211
 #: ../gramps/plugins/textreport/indivcomplete.py:836
@@ -30931,17 +30907,12 @@ msgid "Where to save the tiles for offline mode."
 msgstr "Wo die Kacheln für den Offline-Modus gespeichert werden."
 
 #: ../gramps/plugins/lib/maps/geography.py:1301
-#, fuzzy
-#| msgid ""
-#| "If you have no more space in your file system. You can remove all tiles "
-#| "placed in the above path.\n"
-#| "Be careful! If you have no internet, you'll get no map."
 msgid ""
 "If you have no more space in your file system, you can remove all tiles "
 "placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
-"Wenn du keinen Platz mehr in deinem Dateisystem hast. Du kannst alle Kacheln "
+"Wenn du keinen Platz mehr in deinem Dateisystem hast, kannst du alle Kacheln "
 "entfernen, die sich in dem oben genannten Pfad befinden.\n"
 "Sei vorsichtig! Wenn du kein Internet hast, bekommst du keine Karte."
 
@@ -30994,26 +30965,12 @@ msgid "Select tile cache directory for offline mode"
 msgstr "Kachelcacheverzeichnis für den Onlinemodus auswählen"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:137
-#, fuzzy, python-format
-#| msgid "Can't create tiles cache directory %s"
+#, python-format
 msgid "Can't create tile cache directory %s"
 msgstr "Kachel-Cache-Verzeichnis kann nicht erstellt werden %s"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:141
-#, fuzzy, python-format
-#| msgid ""
-#| "You must verify and change the tiles cache\n"
-#| "...\n"
-#| "[geography]\n"
-#| "...\n"
-#| "path='bad/path'\n"
-#| "...\n"
-#| "in the gramps.ini file :\n"
-#| "%s\n"
-#| "\n"
-#| "Before to change the gramps.ini file, you need to close gramps\n"
-#| "\n"
-#| "The next errors will be normal"
+#, python-format
 msgid ""
 "You must verify and change the tile cache\n"
 "...\n"
@@ -31037,9 +30994,9 @@ msgstr ""
 "in der Datei gramps.ini:\n"
 "%s\n"
 "\n"
-"Bevor du die Datei gramps.ini änderst, musst du Gramps schließen\n"
+"Bevor die Datei gramps.ini geändert wird, musst du Gramps schließen\n"
 "\n"
-"Die nächsten Fehler werden normal sein"
+"Die folgenden Fehler werden erwartet"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:181
 #: ../gramps/plugins/lib/maps/osmgps.py:245
@@ -35071,14 +35028,8 @@ msgid "Enable ID reordering."
 msgstr "Ermögliche ID-Neuordnung."
 
 #: ../gramps/plugins/tool/reorderids.glade:1420
-#, fuzzy
-#| msgid ""
-#| "List next ID available\n"
-#| "(maynot be continuous)."
 msgid "List next ID available (may not be continuous)."
-msgstr ""
-"Nächste verfügbare ID auflisten\n"
-"( muss nicht fortlaufend sein)."
+msgstr "Nächste verfügbare ID auflisten ( muss nicht fortlaufend sein)."
 
 #: ../gramps/plugins/tool/reorderids.glade:1423
 msgid "  Actual"
@@ -35101,14 +35052,8 @@ msgid "Change"
 msgstr "Ändern"
 
 #: ../gramps/plugins/tool/reorderids.glade:1469
-#, fuzzy
-#| msgid ""
-#| "Enable ID reordering\n"
-#| "with Start / Step sequence."
 msgid "Enable ID reordering with Start / Step sequence."
-msgstr ""
-"ID-Neuanordnung aktivieren\n"
-"mit Start / Schritt-Sequenz."
+msgstr "ID-Neuanordnung aktivieren mit Start / Schritt-Sequenz."
 
 #: ../gramps/plugins/tool/reorderids.glade:1481
 msgid "Start"
@@ -35131,14 +35076,8 @@ msgid "Keep"
 msgstr "Behalten"
 
 #: ../gramps/plugins/tool/reorderids.glade:1521
-#, fuzzy
-#| msgid ""
-#| "Keep IDs with alternate\n"
-#| "prefixes untouched."
 msgid "Keep IDs with alternate prefixes untouched."
-msgstr ""
-"Lass IDs mit alternativen\n"
-"Präfixen unangetastet."
+msgstr "Lass IDs mit alternativen Präfixen unangetastet."
 
 #: ../gramps/plugins/tool/reorderids.py:64
 msgctxt "manual"
@@ -37184,8 +37123,6 @@ msgid "Next"
 msgstr "Weiter"
 
 #: ../gramps/plugins/webreport/basepage.py:2410
-#, fuzzy
-#| msgid "Other media: vidéos, pdfs..."
 msgid "Other media: videos, pdfs..."
 msgstr "Andere Medien: Videos, PDFs..."
 
@@ -38615,7 +38552,7 @@ msgstr ""
 #. Translators: This is the email subject line in the Web Calendar
 #: ../gramps/plugins/webreport/webcal.py:1567
 msgid "WebCal"
-msgstr ""
+msgstr "WebKal"
 
 #: ../gramps/plugins/webreport/webcal.py:1578
 #, python-format
