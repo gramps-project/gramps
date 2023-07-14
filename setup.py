@@ -99,8 +99,8 @@ def build_trans(build_cmd):
             os.makedirs(mo_dir)
 
         if newer(po_file, mo_file):
-            cmd = 'msgfmt %s -o %s' % (po_file, mo_file)
-            if os.system(cmd) != 0:
+            cmd = ['msgfmt', po_file, '-o', mo_file]
+            if subprocess.call(cmd) != 0:
                 os.remove(mo_file)
                 msg = 'ERROR: Building language translation files failed.'
                 ask = msg + '\n Continue building y/n [n] '
@@ -181,13 +181,8 @@ def merge(in_file, out_file, option, po_dir='po'):
     Run the msgfmt command.
     '''
     if (not os.path.exists(out_file) and os.path.exists(in_file)):
-        cmd = (('GETTEXTDATADIR=%(po_dir)s msgfmt %(opt)s '
-                '--template %(in_file)s -d %(po_dir)s -o %(out_file)s') %
-                {'opt' : option,
-                 'po_dir' : po_dir,
-                 'in_file' : in_file,
-                 'out_file' : out_file})
-        if os.system(cmd) != 0:
+        cmd = ['msgfmt', option, '--template', in_file, '-d', po_dir, '-o', out_file]
+        if subprocess.call(cmd, env={'GETTEXTDATADIR': po_dir}) != 0:
             msg = ('ERROR: %s was not merged into the translation files!\n' %
                     out_file)
             raise SystemExit(msg)
