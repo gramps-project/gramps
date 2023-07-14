@@ -104,6 +104,8 @@ class PythonEvaluation(Gramplet):
         text = str(self.ebuf.get_text(self.ebuf.get_start_iter(),
                                       self.ebuf.get_end_iter(), False))
 
+        oldout = sys.stdout
+        olderr = sys.stderr
         outtext = StringIO()
         errtext = StringIO()
         sys.stdout = outtext
@@ -114,8 +116,8 @@ class PythonEvaluation(Gramplet):
             traceback.print_exc()
         self.dbuf.set_text(outtext.getvalue())
         self.error.set_text(errtext.getvalue())
-        sys.stdout = sys.__stdout__
-        sys.stderr = sys.__stderr__
+        sys.stdout = oldout
+        sys.stderr = olderr
 
     def clear_clicked(self, obj):
         self.dbuf.set_text("")
