@@ -29,13 +29,21 @@
 import gettext
 import sys
 import os
-import codecs
 import locale
-import collections
 import logging
+import time
+
 from binascii import hexlify
 
 from .grampstranslation import GrampsTranslations, GrampsNullTranslations
+
+if sys.platform == 'darwin':
+    from . maclocale import mac_setup_localization
+
+if sys.platform == 'win32':
+    from ctypes import cdll
+
+
 LOG = logging.getLogger("." + __name__)
 LOG.propagate = True
 HAVE_ICU = False
@@ -172,7 +180,6 @@ def _check_gformat():
         test for, make sure both the month and the day are double digits,
         preferably greater than 12 for human readablity
         '''
-        import time
         timestr = time.strftime('%x',(2005,10,25,1,1,1,1,1,1))
 
         # Gramps treats dates with '-' as ISO format, so replace separator
@@ -426,7 +433,6 @@ class GrampsLocale:
         Help routine for loading and setting up libintl attributes
         Returns libintl
         """
-        from ctypes import cdll
         try:
             libintl = cdll.LoadLibrary('libintl-8')
             libintl.bindtextdomain(localedomain, localedir)
@@ -458,8 +464,7 @@ class GrampsLocale:
         # expected behavior), do platform-specific setup:
         if not (self.lang and self.language):
             if sys.platform == 'darwin':
-                from . import maclocale
-                maclocale.mac_setup_localization(self)
+                mac_setup_localization(self)
             elif sys.platform == 'win32':
                 self._win_init_environment()
             else:
@@ -720,14 +725,16 @@ class GrampsLocale:
         """
         if self._dd:
             return self._dd
-
+# PyLint will whine about these not being at the top level but putting
+# it there creates a circular import.
         from ..config import config
+        from ..datehandler import LANG_TO_DISPLAY as displayers
+
         try:
             val = config.get('preferences.date-format')
         except AttributeError:
             val = 0;
 
-        from ..datehandler import LANG_TO_DISPLAY as displayers
         _first = self._GrampsLocale__first_instance
         if self.calendar in displayers:
             self._dd = displayers[self.calendar](val)
@@ -754,8 +761,10 @@ class GrampsLocale:
         """
         if self._dp:
             return self._dp
-
+# PyLint will whine about this not being at the top level but putting
+# it there creates a circular import.
         from ..datehandler import LANG_TO_PARSER as parsers
+
         _first = self._GrampsLocale__first_instance
         if self.calendar in parsers:
             self._dp = parsers[self.calendar]()
@@ -982,6 +991,8 @@ class GrampsLocale:
         :returns: The name as text in the proper language.
         :rtype: unicode
         """
+# PyLint will complain about this not being at top level but putting it there
+# creates a circular import.
         from ..lib.grampstype import GrampsType
         return GrampsType.xml_str(name)
 
