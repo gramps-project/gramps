@@ -20,6 +20,13 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
+"""
+GrampsLocale encapsulates localization and locale
+initialization. There's a default locale object but more can be
+created with a different locale and translation binding to enable
+generating reports in languages and locales other than the one used
+for the user interface.
+"""
 
 #------------------------------------------------------------------------
 #
@@ -47,23 +54,24 @@ if sys.platform == 'win32':
 LOG = logging.getLogger("." + __name__)
 LOG.propagate = True
 HAVE_ICU = False
-_icu_err = None
-_hdlr = None
+_ICU_ERR = None
+_HDLR = None
 # GrampsLocale initialization comes before command-line argument
 # passing, so one must set the log level directly. The default is
 # logging.WARN. Uncomment the following to change it to logging.DEBUG:
 # LOG.setLevel(logging.DEBUG)
 try:
-    from icu import Locale, Collator
+    from icu import Locale, Collator, ICUError
     HAVE_ICU = True
 except ImportError:
     try:
-        from PyICU import Locale, Collator
+        from PyICU import Locale, Collator, ICUError
         HAVE_ICU = True
     except ImportError as err:
+        ERRSTR = str(err)
         # No logger, save the warning message for later.
-        _icu_err = ("ICU not loaded because %s. Localization will be impaired. "
-                    "Use your package manager to install PyICU" % str(err))
+        _ICU_ERR = (f"ICU not loaded because {ERRSTR}. Localization will be "
+                    "impaired. Use your package manager to install PyICU")
 
 ICU_LOCALES = None
 if HAVE_ICU:
@@ -75,7 +83,9 @@ if HAVE_ICU:
 # get xgettext to include the string in gramps.pot; actual translation
 # is done in _get_language_string() below.
 # (The gramps officially-supported language list is ALL_LINGUAS in setup.py)
-_ = lambda x: x
+def _(msgid):
+    return msgid
+
 _LOCALE_NAMES = {
     'ar': ('Arabic_Saudi Arabia', '1256', _("Arabic")),
     'bg': ('Bulgrian_Bulgaria', '1251', _("Bulgarian")),
@@ -139,23 +149,23 @@ def _check_mswin_locale(loc):
     msloc = None
     try:
         msloc = _LOCALE_NAMES[loc[:5]][:2]
-        loc = loc[:5]
+        newloc = loc[:5]
     except KeyError:
         try:
             msloc = _LOCALE_NAMES[loc[:2]][:2]
-            loc = loc[:2]
+            newloc = loc[:2]
         except KeyError:
             #US English is the outlier, all other English locales want
             #real English:
             if loc[:2] == ('en') and loc[:5] != 'en_US':
                 return ('en_GB', '1252')
             return (None, None)
-    return (loc, msloc)
+    return (newloc, msloc)
 
 def _check_mswin_locale_reverse(loc):
-    for (loc, msloc) in _LOCALE_NAMES.items():
-        if msloc and loc == msloc[0]:
-            return (loc, msloc[1])
+    for (newloc, msloc) in _LOCALE_NAMES.items():
+        if msloc and newloc == msloc[0]:
+            return (newloc, msloc[1])
     #US English is the outlier, all other English locales want real English:
     if loc.startswith('English') and loc != 'English_United States':
         return ('en_GB', '1252')
@@ -171,15 +181,14 @@ def _check_gformat():
         # Gramps treats dates with '-' as ISO format, so replace separator
         # on locale dates that use '-' to prevent confict
         gformat = gformat.replace('-', '/')
-    except:
-        '''
-        Depending on the locale, the value returned for 20th Feb 2009
-        could be '20/2/2009', '20/02/2009', '20.2.2009', '20.02.2009',
-        '20-2-2009', '20-02-2009', '2009/02/20', '2009.02.20',
-        '2009-02-20', or '09-02-20' so to reduce the possible values to
-        test for, make sure both the month and the day are double digits,
-        preferably greater than 12 for human readablity
-        '''
+    except locale.Error:
+        # Depending on the locale, the value returned for 20th Feb 2009
+        # could be '20/2/2009', '20/02/2009', '20.2.2009', '20.02.2009',
+        # '20-2-2009', '20-02-2009', '2009/02/20', '2009.02.20',
+        # '2009-02-20', or '09-02-20' so to reduce the possible values to
+        # test for, make sure both the month and the day are double digits,
+        # preferably greater than 12 for human readablity
+
         timestr = time.strftime('%x',(2005,10,25,1,1,1,1,1,1))
 
         # Gramps treats dates with '-' as ISO format, so replace separator
@@ -245,15 +254,17 @@ class GrampsLocale:
         if not cls.__first_instance.initialized:
             raise RuntimeError("Second GrampsLocale created before "
                                "first one was initialized")
-        if ((lang is None or lang == cls.__first_instance.lang)
-            and (localedir is None or
-                 localedir == cls.__first_instance.localedir)
-            and (domain is None or domain == cls.__first_instance.localedomain)
-            and (languages is None or len(languages) == 0 or
-                 languages == cls.__first_instance.language)):
+        if cls.__first_instance._matches(localedir, lang, domain, languages):
             return cls.__first_instance
 
         return super(GrampsLocale, cls).__new__(cls)
+
+    def _matches(self, localedir, lang, domain, languages):
+        matches = localedir is None or self.localedir == localedir
+        matches = matches and (lang is None or self.lang == lang)
+        matches = matches and (domain is None or self.localedomain == domain)
+        return matches and (languages is None or len(languages) == 0 or
+                            self.languages == languages)
 
     def _win_init_environment(self):
         """
@@ -449,15 +460,15 @@ class GrampsLocale:
         available. We only do this once, and the resulting
         GrampsLocale is returned by default.
         """
-        global _hdlr
-        _hdlr = logging.StreamHandler()
-        _hdlr.setFormatter(logging.Formatter(fmt="%(name)s.%(levelname)s: "
+        global _HDLR
+        _HDLR = logging.StreamHandler()
+        _HDLR.setFormatter(logging.Formatter(fmt="%(name)s.%(levelname)s: "
                                              "%(message)s"))
-        LOG.addHandler(_hdlr)
+        LOG.addHandler(_HDLR)
 
         #Now that we have a logger set up we can issue the icu error if needed.
         if not HAVE_ICU:
-            LOG.warning(_icu_err)
+            LOG.warning(_ICU_ERR)
 
         # Even the first instance can be overridden by passing lang
         # and languages to the constructor. If it isn't (which is the
@@ -529,7 +540,7 @@ class GrampsLocale:
         # GtkBuilder uses GLib's g_dgettext wrapper, which oddly is bound
         # with locale instead of gettext. Win32 doesn't support bindtextdomain.
         if self.localedir:
-            if not sys.platform == 'win32':
+            if sys.platform != 'win32':
                 # bug12278, _build_popup_ui() under linux and macOS
                 locale.textdomain(self.localedomain)
                 locale.bindtextdomain(self.localedomain, self.localedir)
@@ -554,13 +565,13 @@ class GrampsLocale:
         if not self.localedir:
             LOG.warning("No Localedir provided, unable to find translations")
 
+        _first = self._GrampsLocale__first_instance
         if not self.localedomain:
-            if _firstlocaledomain: # TODO this variable is nowhere else
+            if _first.localedomain:
                 self.localedomain = _first.localedomain
             else:
                 self.localedomain = "gramps"
 
-        _first = self._GrampsLocale__first_instance
         if not self.lang and _first.lang:
             self.lang = _first.lang
 
@@ -585,14 +596,18 @@ class GrampsLocale:
         environment if this is the first run. Return __first_instance
         otherwise if called without arguments.
         """
-        global _hdlr
+        global _HDLR
         #initialized is special, used only for the "first instance",
         #and created by __new__(). It's used to prevent re-__init__ing
         #__first_instance when __new__() returns its pointer.
         if hasattr(self, 'initialized') and self.initialized:
             return
-        _first = self._GrampsLocale__first_instance
         self.localedir = None
+        self.collator = None
+        self.collation = None
+        self.calendar = None
+        self.rtl_locale = False
+        _first = self._GrampsLocale__first_instance
         # Everything breaks without localedir, so get that set up
         # first.  Warnings are logged in __init_first_instance or
         # _init_secondary_locale if this comes up empty.
@@ -619,7 +634,6 @@ class GrampsLocale:
             self._init_secondary_locale()
 
         self.icu_locales = {}
-        self.collator = None
         if HAVE_ICU:
             self.icu_locales["default"] = Locale.createFromName(self.lang)
             if self.collation and self.collation != self.lang:
@@ -642,18 +656,18 @@ class GrampsLocale:
             LOG.warning("Unable to find translation for languages in %s, "
                         "using US English", ':'.join(self.language))
             self.translation = GrampsNullTranslations()
-            self.translation._language = "en"
+            self.translation.lang = "en"
 
-        if _hdlr:
-            LOG.removeHandler(_hdlr)
-            _hdlr = None
+        if _HDLR:
+            LOG.removeHandler(_HDLR)
+            _HDLR = None
         self._dd = self._dp = None
         #Guards against running twice on the first instance.
         self.initialized = True
 
     def _get_translation(self, domain = None,
                          localedir = None,
-                         languages=None):
+                         languages = None):
         """
         Get a translation of one of our classes. Doesn't return the
         singleton so that it can be used by get_addon_translation()
@@ -670,21 +684,22 @@ class GrampsLocale:
                 translator = gettext.translation(domain, localedir=localedir,
                                                  languages=[lang],
                                                  class_ = GrampsTranslations)
-                translator._language = lang
+                translator.lang = lang
                 return translator
 
-            elif lang.startswith("en") or lang.startswith("C"):
+            if lang.startswith("en") or lang.startswith("C"):
                 translator = GrampsNullTranslations()
-                translator._language = "en"
+                translator.lang = "en"
                 return translator
 
         if not languages or len(languages) == 0:
             LOG.warning("No language provided, using US English")
         else:
-            raise ValueError("No usable translations in %s for " %
-                             ':'.join(languages))
+            lang_str = ':'.join(languages)
+            raise ValueError(f"No usable translations in {lang_str}"
+                             f" for {domain}" )
         translator = GrampsNullTranslations()
-        translator._language = "en"
+        translator.lang = "en"
         return translator
 
     def _get_language_string(self, lang_code):
@@ -701,7 +716,7 @@ class GrampsLocale:
                 LOG.debug("Gramps has no translation for %s", lang_code)
                 lang = None
         except IndexError:
-            LOG.debug("Bad Index for tuple %s\n" % _LOCALE_NAMES[lang_code][0])
+            LOG.debug("Bad Index for tuple %s\n", _LOCALE_NAMES[lang_code][0])
             lang = None
 
         if lang:
@@ -733,16 +748,17 @@ class GrampsLocale:
         try:
             val = config.get('preferences.date-format')
         except AttributeError:
-            val = 0;
+            val = 0
 
         _first = self._GrampsLocale__first_instance
         if self.calendar in displayers:
             self._dd = displayers[self.calendar](val)
-        elif self.calendar[:2] in displayers:
+        elif self.calendar and self.calendar[:2] in displayers:
             self._dd = displayers[self.calendar[:2]](val)
         elif self != _first and _first.calendar in displayers:
             self._dd = displayers[_first.calendar](val, blocale=self)
-        elif self != _first and _first.calendar[:2] in displayers:
+        elif (self != _first and _first.calendar and
+              q_first.calendar[:2] in displayers):
             self._dd = displayers[_first.calendar[:2]](val, blocale=self)
         else:
             self._dd = displayers['C'](val, blocale=self)
@@ -768,11 +784,12 @@ class GrampsLocale:
         _first = self._GrampsLocale__first_instance
         if self.calendar in parsers:
             self._dp = parsers[self.calendar]()
-        elif self.calendar[:2] in parsers:
+        elif self.calendar and self.calendar[:2] in parsers:
             self._dp = parsers[self.calendar]()
         elif self != _first and _first.calendar in parsers:
             self._dp = parsers[_first.calendar]()
-        elif self != _first and _first.calendar[:2] in parsers:
+        elif (self != _first and _first.calendar and
+              _first.calendar[:2] in parsers):
             self._dp = parsers[_first.calendar[:2]]()
         else:
             self._dp = parsers['C']()
@@ -801,6 +818,9 @@ class GrampsLocale:
         return self.language
 
     def locale_code(self):
+        """
+        Return the locale code.
+        """
         return self.lang
 
     def get_addon_translator(self, filename, domain="addon",
@@ -860,7 +880,7 @@ class GrampsLocale:
         for langdir in os.listdir(self.localedir):
             mofilename = os.path.join(localedir, langdir,
                                       "LC_MESSAGES",
-                                      "%s.mo" % localedomain )
+                                      f"{localedomain}.mo" )
             if os.path.exists(mofilename):
                 languages.append(langdir)
 
@@ -910,27 +930,29 @@ class GrampsLocale:
         _ = self.translation.gettext
         objclass = objclass_str.lower()
         if objclass == "person":
-            return _("the person")
+            retval = _("the person")
         elif objclass == "family":
-            return _("the family")
+            retval = _("the family")
         elif objclass == "place":
-            return _("the place")
+            retval = _("the place")
         elif objclass == "event":
-            return _("the event")
+            retval = _("the event")
         elif objclass == "repository":
-            return _("the repository")
+            retval = _("the repository")
         elif objclass == "note":
-            return _("the note")
+            retval = _("the note")
         elif objclass == "media":
-            return _("the media")
+            retval = _("the media")
         elif objclass == "source":
-            return _("the source")
+            retval = _("the source")
         elif objclass == "filter":
-            return _("the filter")
+            retval = _("the filter")
         elif objclass == "citation":
-            return _("the citation")
+            retval = _("the citation")
         else:
-            return _("See details")
+            retval = _("See details")
+
+        return retval
 
     def sort_key(self, string):
         """
@@ -942,22 +964,24 @@ class GrampsLocale:
             # Use hexlify() as to make a consistent string, fixing bug #10077
             key = self.collator.getCollationKey(string)
             return hexlify(key.getByteArray()).decode()
-        else:
-            if isinstance(string, bytes):
-                string = string.decode("utf-8", "replace")
-            try:
-                key = locale.strxfrm(string)
-            except Exception as icu_err:
-                LOG.warning("Failed to obtain key for %s because %s",
+
+        if isinstance(string, bytes):
+            string = string.decode("utf-8", "replace")
+        try:
+            key = locale.strxfrm(string)
+        except ICUError as icu_err:
+            LOG.warning("Failed to obtain key for %s because %s",
                          self.collation, str(icu_err))
-                return string
-            return key
+            return string
+        return key
 
     def get_collation(self):
         """
         Return the collation without any character encoding.
         """
-        return self.collation.split('.')[0]
+        if self.collation is not None:
+            return self.collation.split('.')[0]
+        return "C"
 
     def strcoll(self, string1, string2):
         """
@@ -1018,9 +1042,8 @@ class GrampsLocale:
             try:
                 if point == ',':
                     return locale.atof(val.replace(' ', sep).replace('.', sep))
-                elif point == '.':
+                if point == '.':
                     return locale.atof(val.replace(' ', sep).replace(',', sep))
-                else:
-                    return None
+                return None
             except ValueError:
                 return None
