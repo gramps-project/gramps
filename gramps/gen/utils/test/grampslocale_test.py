@@ -52,7 +52,7 @@ class LexGettextTest(unittest.TestCase):
         translated = "n=TargetNom|g=TargetGen|d=TargetDat"
         self.setup_sgettext_mock(translated)
         lex = self.trans.lexgettext(self.MSGID, self.CONTEXT)
-        formatted = "{lex.f[n]},{lex.f[g]},{lex.f[d]}".format(lex=lex)
+        formatted = "{lex.forms[n]},{lex.forms[g]},{lex.forms[d]}".format(lex=lex)
         self.assertEqual(formatted, "TargetNom,TargetGen,TargetDat")
 
     def testFirstLexemeFormExtractableAsDefaultString(self):
@@ -64,7 +64,7 @@ class LexGettextTest(unittest.TestCase):
 
 class LexemeTest(unittest.TestCase):
     def setUp(self):
-        from ..grampslocale import Lexeme
+        from ..grampstranslation import Lexeme
         self.lex = Lexeme((('a', 'aaa'), ('b', 'bbb'), ('c', 'ccc')))
         self.zlex = Lexeme({'z' : 'zzz'})
         self.elex = Lexeme({})

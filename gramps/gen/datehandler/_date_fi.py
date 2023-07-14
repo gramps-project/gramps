@@ -166,13 +166,13 @@ class DateDisplayFI(DateDisplay):
                         date_val[1], year, inflect, long_months
                     )
                 else:
-                    return "{long_month.f[IN]} {year}".format(
+                    return "{long_month.forms[IN]} {year}".format(
                         long_month=long_months[date_val[1]], year=year
                     )
         else:
-            if not hasattr(long_months[date_val[1]], "f"):  # not a Lexeme
+            if not hasattr(long_months[date_val[1]], "forms"):  # not a Lexeme
                 return self.dd_dformat01(date_val)  # maybe the month is zero
-            return "{day:d}. {long_month.f[P]} {year}".format(
+            return "{day:d}. {long_month.forms[P]} {year}".format(
                 day=date_val[0], long_month=long_months[date_val[1]], year=year
             )
 

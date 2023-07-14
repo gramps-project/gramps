@@ -63,7 +63,7 @@ class DateDisplayInflectionsTestRU(DateDisplayTest):
         if month is None:
             month = date.get_month()
         month_lexeme = self.months[month]
-        self.assertIn(month_lexeme.f[inflection],
+        self.assertIn(month_lexeme.forms[inflection],
                 self.dd.display(date))
 
     def test_month_only_date_nominative_quality_none(self):
