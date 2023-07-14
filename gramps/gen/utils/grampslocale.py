@@ -275,7 +275,7 @@ class GrampsLocale:
                 self.lang = loc[0]
                 self.encoding = loc[1]
             else:
-                (lang, loc) = _check_mswin_locale(locale.getdefaultlocale()[0])
+                (lang, loc) = _check_mswin_locale(locale.getlocale()[0])
                 if lang:
                     self.lang = lang
                     self.encoding = loc[1]
@@ -356,9 +356,7 @@ class GrampsLocale:
         _failure = False
         try:
             locale.setlocale(locale.LC_ALL, '')
-            if not _check_locale(locale.getdefaultlocale(envvars=('LC_ALL',
-                                                                  'LANG',
-                                                                  'LANGUAGE'))):
+            if not _check_locale(locale.getlocale(category=locale.LC_MESSAGES)):
                 LOG.debug("Usable locale not found, localization "
                           "settings ignored.")
                 self.lang = 'C'
@@ -987,22 +985,14 @@ class GrampsLocale:
         from ..lib.grampstype import GrampsType
         return GrampsType.xml_str(name)
 
-    def format(self, format, val, grouping=False, monetary=False):
-        """
-        Format a number in the current numeric locale. See python's
-        locale.format for details.  ICU's formatting codes are
-        incompatible with locale's, so just use locale.format for now.
-        """
-        return locale.format(format, val, grouping, monetary)
-
-    def format_string(self, format, val, grouping=False):
+    def format_string(self, fmt, val, grouping=False, monetary=False):
         """
         Format a string in the current numeric locale. See python's
         locale.format_string for details.  ICU's message formatting codes are
         incompatible with locale's, so just use locale.format_string
         for now.
         """
-        return locale.format_string(format, val, grouping)
+        return locale.format_string(fmt, val, grouping, monetary)
 
     def float(self, val):
         """
