@@ -47,6 +47,14 @@ from ..const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
 
+def clean_up(parser):
+    # Needed so that the parser can be removed by the garabge collection
+    for section in parser:
+        delattr(parser._proxies[section], 'getboolean')
+        delattr(parser._proxies[section], 'getint')
+        delattr(parser._proxies[section], 'getfloat')
+        del parser._proxies[section]
+    del parser._converters
 
 def safe_eval(exp):
     # restrict eval to empty environment
@@ -286,6 +294,8 @@ class ConfigManager:
                 if name not in self.data:
                     self.data[name] = {}
                 loader(section, parser)
+
+            clean_up(parser)
 
     def _load_section(self, section, parser):
         """

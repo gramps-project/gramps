@@ -58,6 +58,7 @@ _ = glocale.translation.gettext
 from gramps.gen.const import URL_MANUAL_PAGE, URL_WIKISTRING, VERSION_DIR
 from gramps.gen.config import config
 from gramps.gen.constfunc import win
+from gramps.gen.utils.configmanager import clean_up
 from ..managedwindow import ManagedWindow
 from ..display import display_help, display_url
 from .grampletpane import (AVAILABLE_GRAMPLETS,
@@ -210,6 +211,7 @@ class GrampletBar(Gtk.Notebook):
                         data["name"] = "Unnamed Gramplet"
                         data["tname"] = _("Unnamed Gramplet")
                     retval.append(data)
+            clean_up(cp)
         else:
             # give defaults as currently known
             for name in defaults:

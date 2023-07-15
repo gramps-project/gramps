@@ -47,6 +47,7 @@ LOG = logging.getLogger(".")
 #-------------------------------------------------------------------------
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.const import URL_MANUAL_PAGE, VERSION_DIR, COLON
+from gramps.gen.utils.configmanager import clean_up
 from ..editors import EditPerson, EditFamily
 from ..managedwindow import ManagedWindow
 from ..utils import is_right_click, match_primary_mask, get_link_color
@@ -1194,6 +1195,7 @@ class GrampletPane(Gtk.ScrolledWindow):
                         data["name"] = "Unnamed Gramplet"
                         data["tname"] = _("Unnamed Gramplet")
                     retval.append((data["name"], data)) # name, opts
+            clean_up(cp)
         else:
             # give defaults as currently known
             for name in self.default_gramplets:
