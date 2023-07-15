@@ -415,6 +415,8 @@ class Callback:
         finally:
             self._current_signals.remove(signal_name)
 
+        del frame # Needed for garbage collection
+
     #
     # instance signals control methods
     #
