@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-12 15:48+0100\n"
-"PO-Revision-Date: 2023-07-12 15:36+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2023-07-17 19:44+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -2899,14 +2899,14 @@ msgstr "בסביבות "
 #: ../gramps/gen/datehandler/_datestrings.py:251
 msgctxt "date modifier"
 msgid "from "
-msgstr ""
+msgstr "מאת. "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:254
 msgctxt "date modifier"
 msgid "to "
-msgstr ""
+msgstr "אל. "
 
 #: ../gramps/gen/datehandler/_datestrings.py:259
 msgctxt "date quality"
@@ -7131,13 +7131,11 @@ msgstr "טווח"
 
 #: ../gramps/gen/lib/date.py:2002
 msgid "from"
-msgstr ""
+msgstr "מאת"
 
 #: ../gramps/gen/lib/date.py:2003
-#, fuzzy
-#| msgid "Stop"
 msgid "to"
-msgstr "עצירה"
+msgstr "אל"
 
 #: ../gramps/gen/lib/date.py:2004
 msgid "span"
@@ -9175,10 +9173,8 @@ msgid "Rule"
 msgstr "כלל"
 
 #: ../gramps/gen/plug/_pluginreg.py:110
-#, fuzzy
-#| msgid "Thumbnails"
 msgid "Thumbnailer"
-msgstr "תמונות ממוזערות"
+msgstr "תמונה ממוזערת"
 
 #: ../gramps/gen/plug/_pluginreg.py:583
 #: ../gramps/plugins/gramplet/faqgramplet.py:135
@@ -9193,7 +9189,7 @@ msgstr "שונות"
 #: ../gramps/gen/plug/_pluginreg.py:1325
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
-msgstr "שגיאה: קריאת רישום התוסף %(filename)s כשלה"
+msgstr "שגיאה: קריאת רישום מתקע %(filename)s כשלה"
 
 #: ../gramps/gen/plug/_pluginreg.py:1303
 #, python-format
@@ -9201,7 +9197,7 @@ msgid ""
 "WARNING: Plugin %(plugin_name)s has no translation for any of your "
 "configured languages, using US English instead"
 msgstr ""
-"אזהרה: לתוסף %(plugin_name)s אין תרגום לאף אחת מהשפות המוגדרות במערכת, במקום "
+"אזהרה: למתקע %(plugin_name)s אין תרגום לאף אחת מהשפות המוגדרות במערכת, במקום "
 "זאת, יעשה שימוש באנגלית"
 
 #: ../gramps/gen/plug/_pluginreg.py:1340
@@ -9748,7 +9744,7 @@ msgstr "פרטי צֹמֶת"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:150
 msgid "Detail of information to be shown in a node."
-msgstr "פרטי המידע שיוצג במוצת."
+msgstr "פרטי המידע שיוצג בצומת."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:153
 msgid "Name Format"
@@ -10048,10 +10044,8 @@ msgid "Coordinates format"
 msgstr "תבנית נקודות ציון"
 
 #: ../gramps/gen/plug/report/stdoptions.py:389
-#, fuzzy
-#| msgid "Select the format to display names"
 msgid "Select the format to display coordinates"
-msgstr "נא לבחור תבנית למצג שמות"
+msgstr "בחירת מבנה להצגת נקודות־ציון"
 
 #: ../gramps/gen/plug/report/utils.py:157
 #: ../gramps/plugins/textreport/indivcomplete.py:925
@@ -10858,23 +10852,23 @@ msgstr "%(west_longitude)s מע"
 
 #: ../gramps/gen/utils/place.py:80
 msgid "DEG"
-msgstr ""
+msgstr "DEG"
 
 #: ../gramps/gen/utils/place.py:83
 msgid "DEG-:"
-msgstr ""
+msgstr "DEG-:"
 
 #: ../gramps/gen/utils/place.py:86
 msgid "D.D4"
-msgstr ""
+msgstr "D.D4"
 
 #: ../gramps/gen/utils/place.py:89
 msgid "D.D8"
-msgstr ""
+msgstr "D.D8"
 
 #: ../gramps/gen/utils/place.py:92
 msgid "RT90"
-msgstr ""
+msgstr "RT90"
 
 #: ../gramps/gen/utils/string.py:46 ../gramps/gui/editors/editperson.py:341
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
@@ -10902,11 +10896,9 @@ msgstr "לא ידוע"
 
 #: ../gramps/gen/utils/string.py:49 ../gramps/gui/editors/editperson.py:343
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
-#, fuzzy
-#| msgid "Mother"
 msgctxt "gender"
 msgid "other"
-msgstr "אם"
+msgstr "אחר"
 
 #: ../gramps/gen/utils/string.py:53
 msgid "Invalid"
@@ -11134,14 +11126,10 @@ msgstr ""
 #: ../gramps/grampsapp.py:345 ../gramps/grampsapp.py:361
 #: ../gramps/grampsapp.py:371 ../gramps/grampsapp.py:392
 #: ../gramps/grampsapp.py:399
-#, fuzzy
-#| msgid "Not found"
 msgid "not found"
 msgstr "לא נמצא"
 
 #: ../gramps/grampsapp.py:326
-#, fuzzy
-#| msgid "can't found it because exiv2 not installed"
 msgid "not found because exiv2 is not installed"
 msgstr "לא נמצא כי exiv2 לא מותקן"
 
@@ -11552,7 +11540,7 @@ msgstr "צבעים לאנשים ממין נקבה"
 
 #: ../gramps/gui/configure.py:723
 msgid "Colors for people who are neither male nor female"
-msgstr ""
+msgstr "צבע אנשים חסרי מגדר"
 
 #: ../gramps/gui/configure.py:724
 msgid "Colors for Unknown persons"
@@ -11645,7 +11633,7 @@ msgstr "דיכוי אזהרה בעת יצוא לג'דקום, לגבי חוקר �
 
 #: ../gramps/gui/configure.py:840
 msgid "Show plugin status dialog on plugin load error"
-msgstr "הצגת דו־שיח מצב תוסף עם שגיאה בטעינת התוסף"
+msgstr "הצגת דו־שיח מצב מתקע בעת שגיאת טעינה"
 
 #: ../gramps/gui/configure.py:843
 msgid "Warnings"
@@ -11770,10 +11758,8 @@ msgid "Age display precision *"
 msgstr "דיוק מצג גיל *"
 
 #: ../gramps/gui/configure.py:1355
-#, fuzzy
-#| msgid "Display references for a %s"
 msgid "Display ages for events after death *"
-msgstr "הצגת הפניות עבור %s"
+msgstr "הצגת גילאים לאירועים לאחר המוות *"
 
 #: ../gramps/gui/configure.py:1367
 msgid "Calendar on reports"
@@ -11942,16 +11928,13 @@ msgid "Enable the spelling checker for notes."
 msgstr "אפשור בדיקת איות בשדות הערות."
 
 #: ../gramps/gui/configure.py:1664
-#, fuzzy, python-format
-#| msgid ""
-#| "GtkSpell not loaded. Spell checking will not be available.\n"
-#| "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
+#, python-format
 msgid ""
 "Gspell not loaded. Spell checking will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 msgstr ""
-"GtkSpell לא טעון. בדיקת איות לא תהיה זמינה.\n"
-"כדי לבנות אותו עבור גרמפס נא לעיין ב־%(gramps_wiki_build_spell_url)s"
+"Gspell לא טעון. בדיקת איות לא תהיה זמינה.\n"
+"נא לעיין ב־%(gramps_wiki_build_spell_url)s כדי לבנות אותו מותאם לגרמפס"
 
 #: ../gramps/gui/configure.py:1672
 msgid "Show text label beside Navigator buttons *"
@@ -11962,52 +11945,52 @@ msgid ""
 "Show or hide text beside Navigator buttons (People, Families, Events...).\n"
 "Requires Gramps restart to apply."
 msgstr ""
-"הצגת או הסתרת מלל לצד לחצני הניווט (אנשים, משפחות, אירועים...).\n"
+"חשיפת או הסתרת מלל לצד לחצני הניווט (אנשים, משפחות, אירועים...).\n"
 "נדרשת הפעלה מחדש."
 
 #: ../gramps/gui/configure.py:1681
 msgid "Show Clipboard icon on toolbar"
-msgstr ""
+msgstr "הצגת סמל לוח־גזירים בסרגל־כלים"
 
 #: ../gramps/gui/configure.py:1683
 msgid "Show or hide the Clipboard icon on the toolbar."
-msgstr ""
+msgstr "חשיפת או הסתרת סמל לוח־גזירים בסרגל־הכלים"
 
 #: ../gramps/gui/configure.py:1689
 msgid "Show Reports icon on toolbar"
-msgstr ""
+msgstr "הצגת סמל דוחות בסרגל־כלים"
 
 #: ../gramps/gui/configure.py:1691
 msgid "Show or hide the Reports icon on the toolbar."
-msgstr ""
+msgstr "חשיפת או הסתרת סמל דוחות בסרגל־הכלים"
 
 #: ../gramps/gui/configure.py:1697
 msgid "Show Tools icon on toolbar"
-msgstr ""
+msgstr "הצגת סמל כלים בסרגל־כלים"
 
 #: ../gramps/gui/configure.py:1699
 msgid "Show or hide the Tools icon on the toolbar."
-msgstr ""
+msgstr "חשיפת או הסתרת סמל כלים בסרגל־הכלים."
 
 #: ../gramps/gui/configure.py:1705
 msgid "Show Plugins icon on toolbar"
-msgstr ""
+msgstr "הצגת סמל מתקעים בסרגל־כלים"
 
 #: ../gramps/gui/configure.py:1707
 msgid "Show or hide the Plugins icon on the toolbar."
-msgstr ""
+msgstr "חשיפת או הסתרת סמל מתקעים בסרגל־הכלים."
 
 #: ../gramps/gui/configure.py:1713
 msgid "Show Preferences icon on toolbar"
-msgstr ""
+msgstr "הצגת סמל העדפות בלוח־כלים"
 
 #: ../gramps/gui/configure.py:1715
 msgid "Show or hide the Preferences icon on the toolbar."
-msgstr ""
+msgstr "חשיפת או הסתרת סמל העדפות בלוח־הכלים"
 
 #: ../gramps/gui/configure.py:1721
 msgid "Show close button in gramplet bar tabs"
-msgstr "הצגת לחצן סגירה בלשוניות סרגל גרמפלטים"
+msgstr "הצגת לחצן 'סגירה' בלשוניות סרגל גרמפלטים"
 
 #: ../gramps/gui/configure.py:1724
 msgid "Show close button to simplify removing gramplets from bars."
@@ -12066,8 +12049,8 @@ msgid ""
 "Addons and Plugins. The Plugin Manager has the complete list of installed "
 "Addons and Plugins and their activation status.\n"
 msgstr ""
-"הגדרות תצורה, שתגרום לגרמפס לבדיקת המצאות תוספים ותוספי צד שלישי, חדשים או "
-"מעודכנים. מנהל המתקעים מחזיר את מלוא רשימת התוספים והמתקעים המותקנים ומצב "
+"הגדרות תצורה, שתגרום לגרמפס לבדיקת המצאות מתקעים ותוספי צד שלישי חדשים או "
+"מעודכנים. מנהל המתקעים מחזיר את מלוא רשימת התוספים והמתקעים המותקנים ואת מצב "
 "ההפעלתם.\n"
 
 #: ../gramps/gui/configure.py:1788
@@ -12404,27 +12387,25 @@ msgstr ""
 "השדה יהיה גלוי רק אם הגופן מכיל גליף זה."
 
 #: ../gramps/gui/csvdialect.py:63
-#, fuzzy
-#| msgid "Tag"
 msgctxt "character"
 msgid "Tab"
-msgstr "תג"
+msgstr "לשונית"
 
 #: ../gramps/gui/csvdialect.py:81
-#, fuzzy
-#| msgid "Check your installation."
 msgid "Choose your dialect"
-msgstr "נא לבדוק את ההתקנה."
+msgstr "נא לבחור עגה"
 
 #: ../gramps/gui/csvdialect.py:83
 msgid ""
 "Changes are immediate.\n"
 "This is used when exporting views in CSV format."
 msgstr ""
+"השינויים הם מיידיים.\n"
+"האפשרות משמשת בעת ייצוא מצגים במבנה CSV."
 
 #: ../gramps/gui/csvdialect.py:111
 msgid "Delimiter:"
-msgstr ""
+msgstr "מפריד:"
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:109
 msgid "Undo history warning"
@@ -12919,38 +12900,28 @@ msgid "Open the reports dialog"
 msgstr "פתיחת דו־שיח דוחות"
 
 #: ../gramps/gui/displaystate.py:407
-#, fuzzy
-#| msgid "_Reports"
 msgid "Reports"
-msgstr "_דוחות"
+msgstr "דוחות"
 
 #: ../gramps/gui/displaystate.py:410
 msgid "Open the tools dialog"
 msgstr "פתיחת דו־שיח כלים"
 
 #: ../gramps/gui/displaystate.py:411
-#, fuzzy
-#| msgid "_Tools"
 msgid "Tools"
-msgstr "_כלים"
+msgstr "כלים"
 
 #: ../gramps/gui/displaystate.py:414
-#, fuzzy
-#| msgid "Plugin Manager"
 msgid "Open Plugin Manager"
-msgstr "מנהל התוספים"
+msgstr "פתיחת מנהל מתקעים"
 
 #: ../gramps/gui/displaystate.py:415
-#, fuzzy
-#| msgid "Plugin lib"
 msgid "Plugins"
 msgstr "ספריית מתקעים"
 
 #: ../gramps/gui/displaystate.py:418
-#, fuzzy
-#| msgid "Preferences"
 msgid "Open Preferences"
-msgstr "העדפות"
+msgstr "פתיחת העדפות"
 
 #: ../gramps/gui/displaystate.py:438
 #: ../gramps/plugins/gramplet/persondetails.py:174
@@ -13900,13 +13871,11 @@ msgstr "טווח"
 
 #: ../gramps/gui/editors/editdate.py:82
 msgid "From"
-msgstr ""
+msgstr "מאת"
 
 #: ../gramps/gui/editors/editdate.py:83
-#, fuzzy
-#| msgid "Top"
 msgid "To"
-msgstr "מעלה"
+msgstr "למעלה"
 
 #: ../gramps/gui/editors/editdate.py:84
 msgid "Span"
@@ -14639,10 +14608,8 @@ msgid "_Female"
 msgstr "_נקבה"
 
 #: ../gramps/gui/editors/editperson.py:1114
-#, fuzzy
-#| msgid "Other"
 msgid "_Other"
-msgstr "אחר"
+msgstr "_אחר"
 
 #: ../gramps/gui/editors/editperson.py:1115
 msgid "_Unknown"
@@ -15116,28 +15083,20 @@ msgid "Delete Filter"
 msgstr "מחיקת מסנן"
 
 #: ../gramps/gui/editors/objectentries.py:293
-#, fuzzy
-#| msgid "To select a place, use drag-and-drop or use the buttons"
 msgid "To select a person, use drag-and-drop or use the buttons"
-msgstr "לבחירת מקום, נא להשתמש בגרירה ושחרור או בלחצנים"
+msgstr "לבחירת אדם, נא להשתמש בגרירה ושחרור או בלחצנים"
 
 #: ../gramps/gui/editors/objectentries.py:295
-#, fuzzy
-#| msgid "No place given, click button to select one"
 msgid "No person given, click button to select one"
-msgstr "לא הוזן מקום, נא להקיש על הלחצן לבחירה"
+msgstr "לא הוזן 'אדם', נא להקיש על הלחצן לבחירת אדם"
 
 #: ../gramps/gui/editors/objectentries.py:296
-#, fuzzy
-#| msgid "Edit Person"
 msgid "Edit person"
 msgstr "עריכת אדם"
 
 #: ../gramps/gui/editors/objectentries.py:297
-#, fuzzy
-#| msgid "Select an existing place"
 msgid "Select an existing person"
-msgstr "נא לבחור מקום קיים"
+msgstr "נא לבחור אדם קיים"
 
 #: ../gramps/gui/editors/objectentries.py:298
 #: ../gramps/plugins/lib/libpersonview.py:122
@@ -15145,10 +15104,8 @@ msgid "Add a new person"
 msgstr "הוספת אדם חדש"
 
 #: ../gramps/gui/editors/objectentries.py:299
-#, fuzzy
-#| msgid "Remove version"
 msgid "Remove person"
-msgstr "הסרת גרסה"
+msgstr "הסרת אדם"
 
 #: ../gramps/gui/editors/objectentries.py:340
 msgid "To select a place, use drag-and-drop or use the buttons"
@@ -15408,7 +15365,7 @@ msgstr "המרה לנתיב יחסי"
 
 #: ../gramps/gui/glade/baseselector.glade:121
 msgid "Show all"
-msgstr "להציג הכול"
+msgstr "הצגת הכול"
 
 #: ../gramps/gui/glade/baseselector.glade:141
 #: ../gramps/gui/views/treemodels/treebasemodel.py:535
@@ -16001,7 +15958,7 @@ msgstr "_סוג אירוע:"
 
 #: ../gramps/gui/glade/editevent.glade:134
 msgid "Show Date Editor"
-msgstr "הצגת עורך התאריכים"
+msgstr "הצגת עורך תאריכים"
 
 #: ../gramps/gui/glade/editevent.glade:163
 #: ../gramps/gui/glade/editeventref.glade:253
@@ -17606,8 +17563,8 @@ msgid ""
 "If you close this dialog now, you can install addons later from the menu "
 "under Edit -> Preferences."
 msgstr ""
-"גרמפס מגיע עם ערכת ליבה הכוללת מתקעים שמספקים את כול התכונות הדרושות. עם "
-"זאת, ניתן להרחיב פונקציונליות זו על־ידי הרחבות נוספות. הרחבות המספקות דוחות, "
+"גרמפס מגיע עם ערכת ליבה הכוללת מתקעים שמספקים את כל התכונות הדרושות. עם זאת, "
+"ניתן להרחיב פונקציונליות זו על־ידי הרחבות נוספות. הרחבות המספקות דוחות, "
 "רישומים, מצגים, גרמפלטים, ועוד. מכאן ניתן לבחור בין ההרחבות הנוספות הזמינות, "
 "הן יאוחזרו מהמרשתת, מחוץ לאתר גרמפס ויותקנו באופן מקומי במחשב. ניתן לסגור "
 "תיבת דו־שיח זו כעת ולהתקין ההרחבות מתפריט 'העדפות &gt; עריכה במועד מאוחר "
@@ -17997,10 +17954,8 @@ msgstr "%(key)s:\t%(value)s"
 #: ../gramps/gui/merge/mergeperson.py:64
 #: ../gramps/gui/views/treemodels/peoplemodel.py:98
 #: ../gramps/plugins/webreport/person.py:484
-#, fuzzy
-#| msgid "Mother"
 msgid "other"
-msgstr "אם"
+msgstr "אחר"
 
 #: ../gramps/gui/merge/mergeperson.py:92
 msgid "Merge People"
@@ -18182,7 +18137,7 @@ msgstr "גלוי"
 
 #: ../gramps/gui/plug/_windows.py:97
 msgid "Plugin Manager"
-msgstr "מנהל התוספים"
+msgstr "מנהל מתקעים"
 
 #: ../gramps/gui/plug/_windows.py:144 ../gramps/gui/plug/_windows.py:198
 msgid "Info"
@@ -18198,7 +18153,7 @@ msgstr "טעינה"
 
 #: ../gramps/gui/plug/_windows.py:161
 msgid "Registered Plugins"
-msgstr "תוספים רשומים"
+msgstr "מתקעים רשומים"
 
 #: ../gramps/gui/plug/_windows.py:174
 msgid "Loaded"
@@ -18216,7 +18171,7 @@ msgstr "הודעה"
 
 #: ../gramps/gui/plug/_windows.py:216
 msgid "Loaded Plugins"
-msgstr "תוספים שנטענו"
+msgstr "מתקעים שנטענו"
 
 #: ../gramps/gui/plug/_windows.py:235
 msgid "Addon Name"
@@ -18290,7 +18245,7 @@ msgstr "אישור"
 
 #: ../gramps/gui/plug/_windows.py:619
 msgid "Plugin name"
-msgstr "שם התוסף"
+msgstr "שם מתקעים"
 
 #: ../gramps/gui/plug/_windows.py:621
 msgid "Version"
@@ -18311,7 +18266,7 @@ msgstr "מידע מפורט"
 
 #: ../gramps/gui/plug/_windows.py:686
 msgid "Plugin Error"
-msgstr "שגיאת תוסף"
+msgstr "שגיאת מתקע"
 
 #: ../gramps/gui/plug/_windows.py:751
 msgid "_Execute"
@@ -19179,12 +19134,8 @@ msgid "Select_Source_selector"
 msgstr "נא_לבחור_בורר_מקור"
 
 #: ../gramps/gui/spell.py:62
-#, fuzzy
-#| msgid ""
-#| "You have no installed dictionaries. Either install one or disable spell "
-#| "checking"
 msgid "You have no installed dictionaries."
-msgstr "לא הותקנו מילונים. נא להתקין אחד או לנטרל בדיקת איות"
+msgstr "לא הותקנו מילונים."
 
 #: ../gramps/gui/spell.py:82
 msgid "Off"
@@ -19302,7 +19253,7 @@ msgstr "אין אילן יוחסין"
 
 #: ../gramps/gui/viewmanager.py:563
 msgid "Registering plugins..."
-msgstr "התוספים נרשמים..."
+msgstr "רישום מתקעים מתבצעת..."
 
 #: ../gramps/gui/viewmanager.py:571
 msgid "Ready"
@@ -19393,7 +19344,7 @@ msgstr ""
 
 #: ../gramps/gui/viewmanager.py:1580
 msgid "Failed Loading Plugin"
-msgstr "טעינת התוסף נכשלה"
+msgstr "טעינת מתקע כשלה"
 
 #: ../gramps/gui/viewmanager.py:1581
 #, python-format
@@ -19581,7 +19532,7 @@ msgstr "עמודות"
 
 #: ../gramps/gui/views/listview.py:1348
 msgid "CSV Dialect"
-msgstr ""
+msgstr "עגת CSV"
 
 #: ../gramps/gui/views/navigationview.py:252
 #, python-format
@@ -20353,26 +20304,20 @@ msgid ""
 msgstr "האם להסיר רשומות ריקות שנוצרו עבור אנשים לא ידועים בשם"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:851
-#, fuzzy
-#| msgid "Show dates"
 msgid "Show Index"
-msgstr "הצגת תאריכים"
+msgstr "הצגת מפתח"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:853
-#, fuzzy
-#| msgid "Display Tip of the Day"
 msgid "Display index of each person"
-msgstr "הצגת עצה יומית"
+msgstr "הצגת מפתח של כל אדם"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:857
-#, fuzzy
-#| msgid "Starting"
 msgid "Start Index"
-msgstr "התחלה"
+msgstr "מפתח התחלה"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:858
 msgid "The start index"
-msgstr ""
+msgstr "מפתח ההתחלה"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:874
 #: ../gramps/plugins/drawreport/descendtree.py:1581
@@ -20761,26 +20706,17 @@ msgstr[0] "{person}, {age}"
 msgstr[1] "{person}, {age}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:476
-#, fuzzy, python-format
-#| msgid ""
-#| "%(spouse)s and\n"
-#| " %(person)s, wedding"
+#, python-format
 msgid ""
 "%(wife)s and\n"
 " %(person)s, wedding"
 msgstr ""
-"חתונת %(spouse)s\n"
+"חתונת %(wife)s\n"
 " ו־%(person)s"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/drawreport/calendarreport.py:488
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "{spouse} and\n"
-#| " {person}, {nyears}"
-#| msgid_plural ""
-#| "{spouse} and\n"
-#| " {person}, {nyears}"
+#, python-brace-format
 msgid ""
 "{wife} and\n"
 " {person}, {nyears}"
@@ -20788,7 +20724,7 @@ msgid_plural ""
 "{wife} and\n"
 " {person}, {nyears}"
 msgstr[0] ""
-"{spouse} ו־\n"
+"{wife} ו־\n"
 " {person}, {nyears}"
 msgstr[1] ""
 "{spouse} ו־\n"
@@ -21349,11 +21285,8 @@ msgid "Item count"
 msgstr "מספר פריטים"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:315
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "all"
 msgid "All"
-msgstr "הכל"
+msgstr "הכול"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:316
 #: ../gramps/plugins/drawreport/statisticschart.py:420
@@ -21726,6 +21659,8 @@ msgid ""
 "You can change this behavior in the 'Configure active view' of any list-"
 "based view"
 msgstr ""
+"CSV הוא תסדיר גליון נפוץ.\n"
+"ניתן לשנות התנהגות זו מתפריט 'תצור מצג פעיל' מכל מצג מבוסס רשימה"
 
 #: ../gramps/plugins/export/export.gpr.py:46
 msgid "CSV spreadsheet options"
@@ -23467,10 +23402,8 @@ msgstr "מספר אנשים"
 #: ../gramps/plugins/gramplet/statsgramplet.py:155
 #: ../gramps/plugins/webreport/statistics.py:129
 #: ../gramps/plugins/webreport/statistics.py:197
-#, fuzzy
-#| msgid "Individuals with unknown gender"
 msgid "Individuals with other gender"
-msgstr "אנשים ללא מגדר"
+msgstr "אנשים במגדר אחר"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:159
 #: ../gramps/plugins/webreport/statistics.py:131
@@ -23796,21 +23729,14 @@ msgid "Addons and \"Gramplets\""
 msgstr "תוספים ו'גרמפלטים'"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:195
-#, fuzzy
-#| msgid ""
-#| "There many Addons or \"Gramplets\" that are available to assist you in "
-#| "data entry and visualizing your family tree. Many of these tools are "
-#| "already available to you. Many more are available to download and "
-#| "install.\n"
-#| "\n"
 msgid ""
 "There are many Addons or \"Gramplets\" that are available to assist you in "
 "data entry and visualizing your family tree. Many of these tools are already "
 "available to you. Many more are available to download and install.\n"
 "\n"
 msgstr ""
-"תוספים או 'גרמפלטים' רבים זמינים במטרה לסיוע בהזנת נתונים והצגת אילן־"
-"היוחסין. רבים מהכלים הללו זמינים כבר עם התקנת גרמפס. בנוסף, עוד רבים אחרים "
+"מתקעים או 'גרמפלטים' רבים זמינים במטרה לסיוע בהזנת נתונים והצגת אילן־"
+"היוחסין. רבים מהכלים הללו זמינים מיד עם התקנת גרמפס. בנוסף, עוד רבים אחרים "
 "זמינים להורדה והתקנה.\n"
 "\n"
 
@@ -24240,10 +24166,8 @@ msgstr "הצבע למצג אישה."
 #: ../gramps/plugins/graph/gvfamilylines.py:296
 #: ../gramps/plugins/graph/gvhourglass.py:435
 #: ../gramps/plugins/graph/gvrelgraph.py:959
-#, fuzzy
-#| msgid "The color to use to display women."
 msgid "The color to use to display people who are neither men nor women."
-msgstr "הצבע למצג אישה."
+msgstr "צבע מצג אנשים שאינם אישה או גבר."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:301
 #: ../gramps/plugins/graph/gvhourglass.py:440
@@ -24398,12 +24322,8 @@ msgid "Ahnentafel number visible"
 msgstr "מספרי טבלת אָבוֹת קַדמוֹנִים גלויים"
 
 #: ../gramps/plugins/graph/gvhourglass.py:455
-#, fuzzy
-#| msgid ""
-#| "Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
-#| "informations."
 msgid "Show Sosa / Sosa-Stradonitz / Ahnentafel number."
-msgstr "הצגת מספר Sosa / ‏Sosa־סטראדונץ / אננטפל תחת כל המידע האחר."
+msgstr "הצגת מספר Sosa / ‏Sosa־סטראדונץ / מספור אננטפל."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:211
 #: ../gramps/plugins/textreport/indivcomplete.py:836
@@ -25479,16 +25399,13 @@ msgid "vCard import"
 msgstr "ייבוא מקובץ vCard"
 
 #: ../gramps/plugins/importer/importvcard.py:254
-#, fuzzy
-#| msgid "VCARD import report: No errors detected"
 msgid "vCard import report: No errors detected"
-msgstr "דוח יבוא VCARD: לא זוהו שגיאות"
+msgstr "דוח יבוא vCard: לא זוהו שגיאות"
 
 #: ../gramps/plugins/importer/importvcard.py:256
-#, fuzzy, python-format
-#| msgid "VCARD import report: %s errors detected\n"
+#, python-format
 msgid "vCard import report: %s errors detected\n"
-msgstr "דוח יבוא VCARD: זוהו %s שגיאות\n"
+msgstr "דוח יבוא vCard: זוהו %s שגיאות\n"
 
 #: ../gramps/plugins/importer/importvcard.py:321
 #, python-format
@@ -25496,22 +25413,17 @@ msgid "Token >%(token)s< unknown. line skipped: %(line)s"
 msgstr "טוקן >%(token)s< לא ידוע. דילוג על שורות: %(line)s"
 
 #: ../gramps/plugins/importer/importvcard.py:335
-#, fuzzy
-#| msgid ""
-#| "BEGIN property not properly closed by END property, Gramps can't cope "
-#| "with nested VCards."
 msgid ""
 "BEGIN property not properly closed by END property, Gramps can't cope with "
 "nested vCards."
 msgstr ""
 "המאפיין 'התחלה' לא נסגר כראוי על־ידי המאפיין 'סיום', גרמפס לא יכול להתמודד "
-"עם VCards מקוננים."
+"עם vCards מקוננים."
 
 #: ../gramps/plugins/importer/importvcard.py:346
-#, fuzzy, python-format
-#| msgid "Import of VCards version %s is not supported by Gramps."
+#, python-format
 msgid "Import of vCards version %s is not supported by Gramps."
-msgstr "יבוא VCards בגרסה %s אינו נתמך על־ידי גרמפס."
+msgstr "ייבוא vCards בגרסה %s אינו נתמך על־ידי גרמפס."
 
 #: ../gramps/plugins/importer/importvcard.py:366
 #, fuzzy
@@ -26336,64 +26248,44 @@ msgid "People Tags"
 msgstr "אנשים"
 
 #: ../gramps/plugins/lib/libmetadata.py:118
-#, fuzzy
-#| msgid "Events"
 msgid "Event Tags"
-msgstr "אירועים"
+msgstr "תגי אירוע"
 
 #: ../gramps/plugins/lib/libmetadata.py:119
-#, fuzzy
-#| msgid "Images"
 msgid "Image Tags"
-msgstr "תמונות"
+msgstr "תגי תמונות"
 
 #: ../gramps/plugins/lib/libmetadata.py:120
-#, fuzzy
-#| msgid "Place Information"
 msgid "Camera Information"
-msgstr "מידע מקום"
+msgstr "מידע מצלמה"
 
 #: ../gramps/plugins/lib/libmetadata.py:121
-#, fuzzy
-#| msgid "Locations"
 msgid "Location Tags"
-msgstr "מקומות"
+msgstr "תגי מקום"
 
 #: ../gramps/plugins/lib/libmetadata.py:122
-#, fuzzy
-#| msgid "Advanced"
 msgid "Advanced Tags"
-msgstr "מתקדם"
+msgstr "תגים מתקדמים"
 
 #: ../gramps/plugins/lib/libmetadata.py:123
-#, fuzzy
-#| msgid "Removing Tags"
 msgid "Rights Tags"
-msgstr "הסרת תגים"
+msgstr "תגי זכויות"
 
 #: ../gramps/plugins/lib/libmetadata.py:124
-#, fuzzy
-#| msgid "New Tag"
 msgid "Keyword Tags"
-msgstr "תג חדש"
+msgstr "תגי מילות־מפתח"
 
 #: ../gramps/plugins/lib/libmetadata.py:220
-#, fuzzy
-#| msgid "Namesake"
 msgid "Namespace"
-msgstr "נקרא(ת) על שם"
+msgstr "שומר מקום"
 
 #: ../gramps/plugins/lib/libmetadata.py:221
-#, fuzzy
-#| msgid "label"
 msgid "Label"
 msgstr "תוית"
 
 #: ../gramps/plugins/lib/libmetadata.py:222
-#, fuzzy
-#| msgid ", "
 msgid " "
-msgstr ", "
+msgstr " . "
 
 #: ../gramps/plugins/lib/libnarrate.py:88
 #, python-format
@@ -30072,19 +29964,14 @@ msgid "Where to save the tiles for offline mode."
 msgstr "מיקום שמירת הקובץ לשימוש לא מקוון."
 
 #: ../gramps/plugins/lib/maps/geography.py:1301
-#, fuzzy
-#| msgid ""
-#| "If you have no more space in your file system. You can remove all tiles "
-#| "placed in the above path.\n"
-#| "Be careful! If you have no internet, you'll get no map."
 msgid ""
 "If you have no more space in your file system, you can remove all tiles "
 "placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
-"במידה והמקום במערכת הקבצים אזל, ניתן להסיר את כול האריחים שמוקמו בנתיב "
-"שלעיל.\n"
-"אזהרה! לא תתקבל מפה, ללא חיבור למרשתת."
+"במידה והמקום במערכת הקבצים אזל, ניתן להסיר את כל האריחים שמוקמו בנתיב שלעיל."
+"\n"
+"אזהרה! מפה לא תוצג, ללא חיבור למרשתת."
 
 #: ../gramps/plugins/lib/maps/geography.py:1306
 msgid "Zoom used when centering"
@@ -30135,26 +30022,12 @@ msgid "Select tile cache directory for offline mode"
 msgstr "נא לבחור מחיצת מטמון למצב מקוון"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:137
-#, fuzzy, python-format
-#| msgid "Can't create tiles cache directory %s"
+#, python-format
 msgid "Can't create tile cache directory %s"
-msgstr "לא ניתן ליצור מחיצת מטמון אריחים %s"
+msgstr "לא ניתן ליצור מחיצת מטמון אריח %s"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:141
-#, fuzzy, python-format
-#| msgid ""
-#| "You must verify and change the tiles cache\n"
-#| "...\n"
-#| "[geography]\n"
-#| "...\n"
-#| "path='bad/path'\n"
-#| "...\n"
-#| "in the gramps.ini file :\n"
-#| "%s\n"
-#| "\n"
-#| "Before to change the gramps.ini file, you need to close gramps\n"
-#| "\n"
-#| "The next errors will be normal"
+#, python-format
 msgid ""
 "You must verify and change the tile cache\n"
 "...\n"
@@ -30552,12 +30425,9 @@ msgid "females"
 msgstr "נקבות"
 
 #: ../gramps/plugins/quickview/filterbyname.py:61
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "people with unknown gender"
 msgctxt "Filtering_on"
 msgid "people with other gender"
-msgstr "אנשים ללא מגדר"
+msgstr "אנשים במגדר אחר"
 
 #: ../gramps/plugins/quickview/filterbyname.py:63
 msgctxt "Filtering_on"
@@ -31935,7 +31805,7 @@ msgstr "נ"
 #: ../gramps/plugins/textreport/familygroup.py:507
 msgctxt "acronym for other"
 msgid "X"
-msgstr ""
+msgstr "X"
 
 #: ../gramps/plugins/textreport/familygroup.py:509
 #, python-format
@@ -32420,10 +32290,9 @@ msgid "Females: %d"
 msgstr "נקבות: %d"
 
 #: ../gramps/plugins/textreport/summary.py:188
-#, fuzzy, python-format
-#| msgid "Individuals with unknown gender: %d"
+#, python-format
 msgid "Individuals with other gender: %d"
-msgstr "אנשים ללא מגדר: %d"
+msgstr "אנשים במגדר אחר: %d"
 
 #: ../gramps/plugins/textreport/summary.py:193
 #, python-format
@@ -32684,17 +32553,13 @@ msgstr "הצגת מצב קישור בהערות"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:35
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:36
-#, fuzzy
-#| msgid "Thumbnails"
 msgid "Gnome Thumbnailer"
-msgstr "תמונות ממוזערות"
+msgstr "תמונת Gnome ממוזערת"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:49
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:50
-#, fuzzy
-#| msgid "Thumbnails"
 msgid "Image Thumbnailer"
-msgstr "תמונות ממוזערות"
+msgstr "תמונת צלמית ממוזערת"
 
 #: ../gramps/plugins/tool/changenames.glade:34
 msgid ""
@@ -33109,10 +32974,10 @@ msgstr[0] "{quantity} עצם מדיה הופנה אך לא נמצא\n"
 msgstr[1] "{quantity} עצמי מדיה הופנו אך לא נמצאו\n"
 
 #: ../gramps/plugins/tool/check.py:2615
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} missing media objects were kept\n"
-msgstr[0] "הפניה {quantity} לעצם מדיה חסר נשמר\n"
+msgstr[0] "הפניה {quantity} לעצם מדיה חסר, נשמרה\n"
 msgstr[1] "{quantity} הפניות לעצמי מדיה חסרים נשמרו\n"
 
 #. Translators: leave all/any {...} untranslated
@@ -33179,11 +33044,11 @@ msgstr[1] "{quantity} מקורות מקושרים אך לא נמצאו\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2700
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} note object was referenced but not found\n"
 msgid_plural "{quantity} note objects were referenced, but not found\n"
-msgstr[0] "{quantity} עצם הערה הופנה אך לא נמצא\n"
-msgstr[1] "{quantity} עצמי הערה הופנו אך לא נמצאו\n"
+msgstr[0] "{quantity} עצם הערה עם הפניה קיימת לא נמצא\n"
+msgstr[1] "{quantity} עצמי הערה עם הופנוית קימות לא נמצאו\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2710 ../gramps/plugins/tool/check.py:2720
@@ -33289,7 +33154,7 @@ msgstr "תאריכי דור"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:181
 msgid "Date Test Plugin"
-msgstr "תוסף לבדיקת תאריכים"
+msgstr "מתקע לבדיקת תאריכים"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:187
 msgid "Pass"
@@ -34131,13 +33996,9 @@ msgid "Enable ID reordering."
 msgstr "אפשור סידור מזהים מחדש."
 
 #: ../gramps/plugins/tool/reorderids.glade:1420
-#, fuzzy
-#| msgid ""
-#| "List next ID available\n"
-#| "(maynot be continuous)."
 msgid "List next ID available (may not be continuous)."
 msgstr ""
-"הצג המזהה הזמין הבא\n"
+"הצגת המזהה הזמין הבא\n"
 "(עשוי לא להיות רציף)."
 
 #: ../gramps/plugins/tool/reorderids.glade:1423
@@ -34161,14 +34022,10 @@ msgid "Change"
 msgstr "שינוי"
 
 #: ../gramps/plugins/tool/reorderids.glade:1469
-#, fuzzy
-#| msgid ""
-#| "Enable ID reordering\n"
-#| "with Start / Step sequence."
 msgid "Enable ID reordering with Start / Step sequence."
 msgstr ""
 "אפשור סידור מזהים מחדש\n"
-"ברצף של התחלה/ צעד."
+" ברצף של, התחלה/ צעד."
 
 #: ../gramps/plugins/tool/reorderids.glade:1481
 msgid "Start"
@@ -34191,14 +34048,10 @@ msgid "Keep"
 msgstr "להשאיר"
 
 #: ../gramps/plugins/tool/reorderids.glade:1521
-#, fuzzy
-#| msgid ""
-#| "Keep IDs with alternate\n"
-#| "prefixes untouched."
 msgid "Keep IDs with alternate prefixes untouched."
 msgstr ""
 "להשאיר מזהים עם\n"
-"קידומות חלופיות ללא שינוי."
+" קידומות חלופיות ללא שינוי."
 
 #: ../gramps/plugins/tool/reorderids.py:64
 msgctxt "manual"
@@ -36197,7 +36050,7 @@ msgstr "הבא"
 
 #: ../gramps/plugins/webreport/basepage.py:2410
 msgid "Other media: videos, pdfs..."
-msgstr ""
+msgstr "מדיה אחרת: קטעי חוזי, קובצי pdf..."
 
 #: ../gramps/plugins/webreport/basepage.py:2572
 msgid " [Click to Go]"
@@ -37170,17 +37023,14 @@ msgid ""
 msgstr "נא לבחור באפשרות לעמודי מפת סטאמן_מאפ ..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2520
-#, fuzzy, python-format
-#| msgid "Died %(month_year)s (%(age)s)."
+#, python-format
 msgctxt "val"
 msgid "in %(inipth)s (%(val)s)"
-msgstr "פטירה %(month_year)s (%(age)s)."
+msgstr "ב־%(inipth)s (%(val)s)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2522
-#, fuzzy
-#| msgid "Dates"
 msgid "latest"
-msgstr "תאריכים"
+msgstr "המאוחר יותר"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2523
 msgid "openlayers version to use"
@@ -37194,6 +37044,11 @@ msgid ""
 "openlayers_version.\n"
 "See OLDER VERSIONS in https://openlayers.org/"
 msgstr ""
+"עליך להשתמש באפשרות זו רק אם אינך רואה את המפות באתר האינטרנט שלך עבור מפות "
+"OpenStreetMap או Stamen\n"
+"באפשרותך לשנות את הערך בקובץ שצוין. שם האפשרות לשינוי הוא openlayers_version."
+"\n"
+"ראה גירסאות ישנות יותר ב- https://openlayers.org/"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2544
 msgid "Other inclusion (CMS, web calendar, PHP)"
@@ -37538,10 +37393,9 @@ msgid "Number of People"
 msgstr "מספר אנשים"
 
 #: ../gramps/plugins/webreport/surnamelist.py:279
-#, fuzzy, python-format
-#| msgid "Surnames beginning with letter %s"
+#, python-format
 msgid "Surnames beginning with letter '%s' %s"
-msgstr "שמות משפחה המתחילים באות %s"
+msgstr "שמות משפחה המתחילים באות '%s'"
 
 #: ../gramps/plugins/webreport/thumbnail.py:121
 msgid ""
@@ -37571,7 +37425,7 @@ msgstr ""
 #. Translators: This is the email subject line in the Web Calendar
 #: ../gramps/plugins/webreport/webcal.py:1567
 msgid "WebCal"
-msgstr ""
+msgstr "WebCal"
 
 #: ../gramps/plugins/webreport/webcal.py:1578
 #, python-format
