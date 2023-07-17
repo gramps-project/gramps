@@ -75,7 +75,6 @@ class DateParserDisplayTest(tool.Tool):
             self.parent_window = None
             self.run_tool()
 
-
     def run_tool(self):
         self.progress = ProgressMeter(_('Running Date Test'), '',
                                       parent=self.parent_window)
@@ -83,53 +82,54 @@ class DateParserDisplayTest(tool.Tool):
                                4)
         dates = []
         # first some valid dates
-        calendar = Date.CAL_GREGORIAN
-        for quality in (Date.QUAL_NONE, Date.QUAL_ESTIMATED,
-                        Date.QUAL_CALCULATED):
-            for modifier in (Date.MOD_NONE, Date.MOD_BEFORE,
-                             Date.MOD_AFTER, Date.MOD_ABOUT):
-                for slash1 in (False,True):
-                    for month in range(0,13):
-                        for day in (0,5,27):
-                            if not month and day:
-                                continue
-                            d = Date()
-                            d.set(quality,modifier,calendar,(day,month,1789,slash1),"Text comment")
-                            dates.append( d)
-            for modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
-                for slash1 in (False,True):
-                    for slash2 in (False,True):
+        d_year = 1789
+        for calendar in (Date.CAL_GREGORIAN, Date.CAL_JULIAN):
+            for quality in (Date.QUAL_NONE, Date.QUAL_ESTIMATED,
+                            Date.QUAL_CALCULATED):
+                for modifier in (Date.MOD_NONE, Date.MOD_BEFORE,
+                                 Date.MOD_AFTER, Date.MOD_ABOUT):
+                    for slash1 in (False,True):
                         for month in range(0,13):
                             for day in (0,5,27):
                                 if not month and day:
                                     continue
-
                                 d = Date()
-                                d.set(quality,modifier,calendar,(day,month,1789,slash1,day,month,1876,slash2),"Text comment")
+                                d.set(quality,modifier,calendar,(day,month,d_year,slash1),"Text comment")
                                 dates.append( d)
 
-                                if not month:
-                                    continue
+                for modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
+                    for slash1 in (False,True):
+                        for slash2 in (False,True):
+                            for month in range(0,13):
+                                for day in (0,5,27):
+                                    if not month and day:
+                                        continue
 
-                                d = Date()
-                                d.set(quality,modifier,calendar,(day,month,1789,slash1,day,13-month,1876,slash2),"Text comment")
-                                dates.append( d)
+                                    d = Date()
+                                    d.set(quality,modifier,calendar,(day,month,d_year,slash1,day,month,(d_year + 87),slash2),"Text comment")
+                                    dates.append( d)
 
-                                if not day:
-                                    continue
+                                    if not month:
+                                        continue
 
-                                d = Date()
-                                d.set(quality,modifier,calendar,(day,month,1789,slash1,32-day,month,1876,slash2),"Text comment")
-                                dates.append( d)
-                                d = Date()
-                                d.set(quality,modifier,calendar,(day,month,1789,slash1,32-day,13-month,1876,slash2),"Text comment")
-                                dates.append( d)
-            modifier = Date.MOD_TEXTONLY
-            d = Date()
-            d.set(quality,modifier,calendar,Date.EMPTY,
-                  "This is a textual date")
-            dates.append( d)
-            self.progress.step()
+                                    d = Date()
+                                    d.set(quality,modifier,calendar,(day,month,d_year,slash1,day,13-month,(d_year + 87),slash2),"Text comment")
+                                    dates.append( d)
+
+                                    if not day:
+                                        continue
+
+                                    d = Date()
+                                    d.set(quality,modifier,calendar,(day,month,d_year,slash1,32-day,month,(d_year + 87),slash2),"Text comment")
+                                    dates.append( d)
+                                    d = Date()
+                                    d.set(quality,modifier,calendar,(day,month,d_year,slash1,32-day,13-month,(d_year + 87),slash2),"Text comment")
+                                    dates.append( d)
+                modifier = Date.MOD_TEXTONLY
+                d = Date()
+                d.set(quality,modifier,calendar,Date.EMPTY, "This is a textual date")
+                dates.append( d)
+                self.progress.step()
 
         # test invalid dates
         #dateval = (4,7,1789,False,5,8,1876,False)
@@ -192,16 +192,16 @@ class DateParserDisplayTest(tool.Tool):
             for dateval in dates:
                 person = Person()
                 surname = Surname()
-                surname.set_surname("DateTest")
+                surname.set_surname(_("Person"))
                 name = Name()
                 name.add_surname(surname)
-                name.set_first_name("Test %d" % i)
+                name.set_first_name("{:04d}".format(i))
                 person.set_primary_name(name)
                 self.db.add_person(person, self.trans)
                 bevent = Event()
                 bevent.set_type(EventType.BIRTH)
                 bevent.set_date_object(dateval)
-                bevent.set_description("Date Test %d (source)" % i)
+                bevent.set_description(_("Source"))
                 bevent_h = self.db.add_event(bevent, self.trans)
                 bevent_ref = EventRef()
                 bevent_ref.set_reference_handle(bevent_h)
@@ -219,7 +219,7 @@ class DateParserDisplayTest(tool.Tool):
                             person.add_tag(pass_handle)
                     except:
                         ndate = Date()
-                        ndate.set_as_text("DateParser Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
+                        ndate.set_as_text("DateParser Exception: %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
                         person.add_tag(fail_handle)
                     else:
                         person.add_tag(pass_handle)
@@ -241,7 +241,7 @@ class DateParserDisplayTest(tool.Tool):
                 devent = Event()
                 devent.set_type(EventType.DEATH)
                 devent.set_date_object(ndate)
-                devent.set_description("Date Test %d (result)" % i)
+                devent.set_description(_("Destination"))
                 devent_h = self.db.add_event(devent, self.trans)
                 devent_ref = EventRef()
                 devent_ref.set_reference_handle(devent_h)
