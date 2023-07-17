@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-12 15:48+0100\n"
 "PO-Revision-Date: 2023-07-17 19:44+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -25058,7 +25058,7 @@ msgid ""
 msgstr ""
 "נתיב המדיה הבסיסי לאילן היוחסין הוגדר כ־ %s. נא לשקול לבחור נתיב פשוט יותר. "
 "ניתן לשנות את הנתיב מתפריט העדפות, תוך העברת קובצי המדיה למיקום החדש ושימוש "
-"בכלי מנהל המדיה, אפשרות 'החלפת מחרוזת משנה בנתיב' כדי לעדכן נתיבים בעצםי "
+"בכלי מנהל המדיה, אפשרות 'החלפת מחרוזת משנה בנתיב' כדי לעדכן נתיבים בעצמי "
 "המדיה."
 
 #: ../gramps/plugins/importer/importgpkg.py:117
@@ -26018,7 +26018,7 @@ msgstr "SOUR (מקור) מזהה גרמפס %s"
 #: ../gramps/plugins/lib/libgedcom.py:7236
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
-msgstr "OBJE (עצם מולטי מדיה) מזהה גרמפס %s"
+msgstr "OBJE (עצם מולטימדיה) מזהה גרמפס %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:7455
 #, python-format
@@ -26340,7 +26340,7 @@ msgstr "%(female_name)s לידה ב־%(modified_date)s ב־%(birth_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:107
 #, python-format
 msgid "This person was born %(modified_date)s in %(birth_place)s."
-msgstr "לידה ב־ %(modified_date)s ב־%(birth_place)s."
+msgstr "לידה ב־%(modified_date)s ב־%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:108
 #, python-format
@@ -33417,16 +33417,16 @@ msgstr ""
 "הבחנה חשובה בין עצם מדיה של גרמפס לבין הקובץ שלו.\n"
 "\n"
 "עצם המדיה 'בגרמפס' הוא אוסף של נתונים על קובץ עצם המדיה: שם הקובץ ו/או הנתיב "
-"שלו, התיאור שלו, המזהה שלו, ההערות, ההפניות למקור וכדומה. נתונים אלה"
-"%(bold_start)sdo לא כוללים את הקובץ עצמו%(bold_end)s.\n"
+"שלו, התיאור שלו, המזהה שלו, ההערות, ההפניות למקור וכדומה. נתונים "
+"אלה%(bold_start)sלא כוללים את הקובץ עצמו%(bold_end)s.\n"
 "\n"
-"הקבצים המכילים תמונה, קול, וידאו וכו ', מאוחסנים בנפרד בכונן הקשיח. קבצים "
-"אלה אינם מנוהלים על־ידי גרמפס ואינם משובצים במסד הנתונים של גרמפס. מסד "
-"הנתונים של גרמפס מאחסן רק את שמות הקבצים והנתיב אליהם.\n"
+"הקבצים המכילים תמונה, קול, וידאו וכו׳, מאוחסנים בנפרד בכונן הקשיח. קבצים אלה "
+"אינם מנוהלים על־ידי גרמפס ואינם משובצים במסד הנתונים של גרמפס. מסד הנתונים "
+"של גרמפס מאחסן רק את שמות הקבצים והנתיב אליהם.\n"
 "\n"
 "הכלי מאפשר לשנות רק את הרשומות בתוך מסד הנתונים בגרמפס. אם נדרש להעביר או "
 "לשנות את שם הקבצים עצמם, עליך יש לעשות באופן עצמאי, מחוץ לגרמפס. לאחר מכן "
-"ניתן לכוונן את הנתיבים באמצעות כלי זה כך שעצםי המדיה יאחסנו את מיקומי הקבצים "
+"ניתן לכוונן את הנתיבים באמצעות כלי זה כך שעצמי המדיה יאחסנו את מיקומי הקבצים "
 "הנכונים."
 
 #: ../gramps/plugins/tool/mediamanager.py:344
