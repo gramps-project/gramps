@@ -2137,87 +2137,87 @@ msgid "{long_month} {year}"
 msgstr "{long_month} {year}"
 
 #. Translators: If "from <Month>" needs a special inflection
-#. in your language, translate to "{long_month.f[X]} {year}"
+#. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:188
 #, python-brace-format
 msgctxt "from"
 msgid "{long_month} {year}"
-msgstr "{long_month.f[D]} {year}"
+msgstr "{long_month.forms[D]} {year}"
 
 #. Translators: If "to <Month>" needs a special inflection
-#. in your language, translate to "{long_month.f[X]} {year}"
+#. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:195
 #, python-brace-format
 msgctxt "to"
 msgid "{long_month} {year}"
-msgstr "{long_month.f[D]} {year}"
+msgstr "{long_month.forms[D]} {year}"
 
 #. Translators: If "between <Month>" needs a special inflection
-#. in your language, translate to "{long_month.f[X]} {year}"
+#. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:202
 #, python-brace-format
 msgctxt "between"
 msgid "{long_month} {year}"
-msgstr "{long_month.f[O]} {year}"
+msgstr "{long_month.forms[O]} {year}"
 
 #. Translators: If "and <Month>" needs a special inflection
-#. in your language, translate to "{long_month.f[X]} {year}"
+#. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:209
 #, python-brace-format
 msgctxt "and"
 msgid "{long_month} {year}"
-msgstr "{long_month.f[O]} {year}"
+msgstr "{long_month.forms[O]} {year}"
 
 #. Translators: If "before <Month>" needs a special inflection
-#. in your language, translate to "{long_month.f[X]} {year}"
+#. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:215
 #, python-brace-format
 msgctxt "before"
 msgid "{long_month} {year}"
-msgstr "{long_month.f[O]} {year}"
+msgstr "{long_month.forms[O]} {year}"
 
 #. Translators: If "after <Month>" needs a special inflection
-#. in your language, translate to "{long_month.f[X]} {year}"
+#. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:221
 #, python-brace-format
 msgctxt "after"
 msgid "{long_month} {year}"
-msgstr "{long_month.f[T]} {year}"
+msgstr "{long_month.forms[T]} {year}"
 
 #. Translators: If "about <Month>" needs a special inflection
-#. in your language, translate to "{long_month.f[X]} {year}"
+#. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:227
 #, python-brace-format
 msgctxt "about"
 msgid "{long_month} {year}"
-msgstr "{long_month.f[D]} {year}"
+msgstr "{long_month.forms[D]} {year}"
 
 #. Translators: If "estimated <Month>" needs a special inflection
-#. in your language, translate to "{long_month.f[X]} {year}"
+#. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:233
 #, python-brace-format
 msgctxt "estimated"
 msgid "{long_month} {year}"
-msgstr "{long_month.f[D]} {year}"
+msgstr "{long_month.forms[D]} {year}"
 
 #. Translators: If "calculated <Month>" needs a special inflection
-#. in your language, translate to "{long_month.f[X]} {year}"
+#. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:239
@@ -2232,7 +2232,7 @@ msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
 
 #. Translators: If "from <Month>" needs a special inflection
-#. in your language, translate to "{short_month.f[X]} {year}"
+#. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:250
@@ -2242,7 +2242,7 @@ msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
 
 #. Translators: If "to <Month>" needs a special inflection
-#. in your language, translate to "{short_month.f[X]} {year}"
+#. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:257
@@ -2252,7 +2252,7 @@ msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
 
 #. Translators: If "between <Month>" needs a special inflection
-#. in your language, translate to "{short_month.f[X]} {year}"
+#. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:264
@@ -2262,7 +2262,7 @@ msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
 
 #. Translators: If "and <Month>" needs a special inflection
-#. in your language, translate to "{short_month.f[X]} {year}"
+#. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:271
@@ -2272,7 +2272,7 @@ msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
 
 #. Translators: If "before <Month>" needs a special inflection
-#. in your language, translate to "{short_month.f[X]} {year}"
+#. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:277
@@ -2282,7 +2282,7 @@ msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
 
 #. Translators: If "after <Month>" needs a special inflection
-#. in your language, translate to "{short_month.f[X]} {year}"
+#. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:283
@@ -2292,7 +2292,7 @@ msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
 
 #. Translators: If "about <Month>" needs a special inflection
-#. in your language, translate to "{short_month.f[X]} {year}"
+#. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:289
@@ -2302,7 +2302,7 @@ msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
 
 #. Translators: If "estimated <Month>" needs a special inflection
-#. in your language, translate to "{short_month.f[X]} {year}"
+#. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:295
@@ -2312,7 +2312,7 @@ msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
 
 #. Translators: If "calculated <Month>" needs a special inflection
-#. in your language, translate to "{short_month.f[X]} {year}"
+#. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:301

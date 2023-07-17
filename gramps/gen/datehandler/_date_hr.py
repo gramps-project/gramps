@@ -127,7 +127,7 @@ class DateDisplayHR(DateDisplay):
 
     def format_short_month_year(self, month, year, inflect, short_months):
         """Allow a subclass to modify the year, e.g. add a period"""
-        if not hasattr(short_months[1], "f"):  # not a Lexeme: no inflection
+        if not hasattr(short_months[1], "forms"):  # not a Lexeme: no inflection
             return "{short_month} {year}.".format(
                 short_month=short_months[month], year=year
             )

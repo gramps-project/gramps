@@ -115,7 +115,7 @@ class NumberOfAncestorsReport(Report):
                 gen += 1
                 theoretical = math.pow(2, (gen - 1))
                 total_theoretical += theoretical
-                percent = '(%s%%)' % self._locale.format(
+                percent = '(%s%%)' % self._locale.format_string(
                     '%3.2f', ((sum(thisgen.values()) / theoretical) * 100))
 
                 # TC # English return something like:

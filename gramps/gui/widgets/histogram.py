@@ -178,7 +178,7 @@ class Histogram(Gtk.DrawingArea):
         total = sum(self.data)
         for i in range(len(self.data)):
             if total > 0:
-                percent = glocale.format('%.2f', self.data[i] / total * 100)
+                percent = glocale.format_string('%.2f', self.data[i] / total * 100)
             else:
                 percent = ''
             layout = self.create_pango_layout(percent)
