@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-12 15:48+0100\n"
-"PO-Revision-Date: 2023-07-13 20:56+0000\n"
+"PO-Revision-Date: 2023-07-17 12:32+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -1818,7 +1818,7 @@ msgstr "Tietokannan aukaisu ei onnistu"
 #: ../gramps/gui/dbloader.py:441
 #, python-format
 msgid "Could not open file: %s"
-msgstr "Tiedoston %s avaus epäonnistui"
+msgstr "Ei voitu avata tiedostoa: %s"
 
 #: ../gramps/cli/grampscli.py:237
 msgid "Could not load a recent Family Tree."
@@ -8788,7 +8788,7 @@ msgstr "Osoitteet"
 
 #: ../gramps/gen/lib/person.py:216
 msgid "Urls"
-msgstr "URL:t"
+msgstr "Url:t"
 
 #: ../gramps/gen/lib/person.py:238
 msgid "Person references"
@@ -15413,7 +15413,7 @@ msgstr "Poista suodin"
 
 #: ../gramps/gui/editors/objectentries.py:293
 msgid "To select a person, use drag-and-drop or use the buttons"
-msgstr "Valitse henkilö vetämällä ja pudottamalla tai painikkeilla."
+msgstr "Valitse henkilö vetämällä ja pudottamalla tai painikkeilla"
 
 #: ../gramps/gui/editors/objectentries.py:295
 msgid "No person given, click button to select one"
@@ -17757,7 +17757,7 @@ msgstr "V_asen:"
 
 #: ../gramps/gui/glade/styleeditor.glade:692
 msgid "Spacing"
-msgstr "Riviväli"
+msgstr "Välistys"
 
 #: ../gramps/gui/glade/styleeditor.glade:709
 msgid "Abo_ve:"
@@ -17807,7 +17807,7 @@ msgstr "Oi_kea"
 
 #: ../gramps/gui/glade/styleeditor.glade:1059
 msgid "_Top"
-msgstr "_Ylä"
+msgstr "_Yllä"
 
 #: ../gramps/gui/glade/styleeditor.glade:1076
 msgid "_Bottom"
@@ -19595,7 +19595,7 @@ msgstr "Alkuperäinen aika"
 
 #: ../gramps/gui/undohistory.py:116
 msgid "Action"
-msgstr "Toiminto"
+msgstr "Toiminta"
 
 #: ../gramps/gui/undohistory.py:197
 msgid "Delete confirmation"
@@ -22105,7 +22105,7 @@ msgid ""
 msgstr ""
 "CSV on yleinen taulukkolaskentaformaatti.\n"
 "Voit muuttaa tätä käyttäytymistä minkä tahansa luettelopohjaisen näkymän "
-"\"Määritä aktiivinen näkymä\" -kohdassa."
+"\"Määritä aktiivinen näkymä\" -kohdassa"
 
 #: ../gramps/plugins/export/export.gpr.py:46
 msgid "CSV spreadsheet options"
@@ -30618,7 +30618,7 @@ msgstr "Valitse laatoille välimuistihakemisto käytettäväksi offline-tilassa"
 #: ../gramps/plugins/lib/maps/osmgps.py:137
 #, python-format
 msgid "Can't create tile cache directory %s"
-msgstr "Laattojen välimuistihakemistoa %s ei voi luoda."
+msgstr "Laattojen välimuistihakemistoa %s ei voi luoda"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:141
 #, python-format
@@ -34007,7 +34007,7 @@ msgstr "Johdanto"
 
 #: ../gramps/plugins/tool/mediamanager.py:104
 msgid "Selection"
-msgstr "Toiminto"
+msgstr "Valinta"
 
 #: ../gramps/plugins/tool/mediamanager.py:233
 #, python-format
