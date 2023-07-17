@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-12 15:48+0100\n"
-"PO-Revision-Date: 2023-07-12 20:12+0000\n"
+"PO-Revision-Date: 2023-07-17 19:44+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -242,15 +242,16 @@ msgstr "Gramps"
 #: ../data/org.gramps_project.Gramps.desktop.in:6
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
-msgstr "Beheer genealogische informatie, doe genealogisch onderzoek en analyse"
+msgstr ""
+"Genealogische informatie beheren, genealogisch onderzoek en analyse uitvoeren"
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:7
 msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
 msgstr ""
-"Gramps is een genealogieprogramma dat zowel intuïtief voor hobbyisten als "
-"functioneel compleet voor professionele genealogen is."
+"Gramps is een genealogieprogramma dat zowel intuïtief is voor hobbyisten als "
+"functioneel compleet is voor professionele genealogen."
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:8
 msgid ""
@@ -280,7 +281,7 @@ msgstr "Genealogiesysteem"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:12
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
-msgstr "Genealogie;Familie geschiedenis;Onderzoek;Stamboom;GEDCOM;"
+msgstr "Genealogie;Familiegeschiedenis;Onderzoek;Stamboom;GEDCOM;"
 
 #: ../data/org.gramps_project.Gramps.xml.in:6
 msgid "Gramps database"
@@ -407,11 +408,11 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>Personen zoeken</b><br/>Standaard wordt elke achternaam in de weergave "
+"<b>Personen vinden</b><br/>Standaard wordt elke achternaam in de weergave "
 "Personen maar één keer vermeld. Door op de pijl links van een naam te "
 "klikken, wordt de lijst uitgebreid met alle personen met die achternaam. Om "
-"een achternaam in een lange lijst te vinden, selecteert u een achternaam "
-"(geen persoon) en begint u te typen. De weergave springt naar de eerste "
+"een achternaam in een lange lijst te vinden, selecteert u een achternaam ("
+"geen persoon) en begint u te typen. De weergave springt naar de eerste "
 "familienaam die overeenkomt met de letters die u invoert."
 
 #: ../data/tips.xml:20
@@ -568,8 +569,8 @@ msgid ""
 "&gt; Find Possible Duplicate People...\" allows you to locate (and merge) "
 "entries of the same person entered more than once in the database."
 msgstr ""
-"<b>Dubbele vermeldingen</b><br/>Met \"Hulpmiddelen &gt;Stamboom bewerken "
-"&gt; Mogelijk Dubbele Personen zoeken...\" kunt u vermeldingen van dezelfde "
+"<b>Dubbele vermeldingen</b><br/>Met \"Hulpmiddelen &gt;Stamboom bewerken &gt;"
+" Mogelijk Dubbele Personen vinden...\" kunt u vermeldingen van dezelfde "
 "persoon die meer dan eens in de database zijn ingevoerd, lokaliseren (en "
 "samenvoegen)."
 
@@ -1415,7 +1416,8 @@ msgstr ""
 "  -S, --safe                             Start Gramps in 'Veilige modus'\n"
 "                                          (gebruik tijdelijk de "
 "standaardinstellingen)\n"
-"  -D, --default=[APXFE]                  Reset instellingen naar standaard;\n"
+"  -D, --default=[APXFE]                  Instellingen naar standaard "
+"herstellen;\n"
 "                 A - add-ons worden gewist\n"
 "                 P - Standaard voorkeuren\n"
 "                 X - Boeken worden gewist, verslagen en toolinstellingen "
@@ -3855,7 +3857,7 @@ msgstr "Filternaam:"
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:70
 #, python-format
 msgid "Can't find filter %s in the defined custom filters"
-msgstr "Kan filter %s niet vinden in de gedefinieerde zelfgemaakte filters"
+msgstr "Kan filter %s niet vinden in de gedefinieerde Aangepaste filters"
 
 #: ../gramps/gen/filters/rules/_matchessourcefilterbase.py:47
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:48
@@ -6973,7 +6975,7 @@ msgstr "Waarde"
 #: ../gramps/plugins/textreport/indivcomplete.py:74
 #: ../gramps/plugins/view/geoplaces.py:585
 msgid "Custom"
-msgstr "Zelfgemaakt"
+msgstr "Aangepast"
 
 #: ../gramps/gen/lib/attrtype.py:65
 msgid "Caste"
@@ -7846,7 +7848,7 @@ msgstr "onb."
 #: ../gramps/gen/lib/eventtype.py:218
 msgctxt "Custom abbreviation"
 msgid "cust."
-msgstr "zelf."
+msgstr "aang."
 
 #: ../gramps/gen/lib/eventtype.py:219
 msgctxt "Adopted abbreviation"
@@ -9909,7 +9911,7 @@ msgstr "Legal"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:82
 msgid "Custom Size"
-msgstr "Aangepast"
+msgstr "Aangepaste grootte"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:64
 #: ../gramps/plugins/tool/finddupes.py:61
@@ -11834,7 +11836,7 @@ msgstr "Kleurenschema"
 
 #: ../gramps/gui/configure.py:713 ../gramps/gui/configure.py:2345
 msgid "Restore to defaults"
-msgstr "Herstellen"
+msgstr "Standaardwaarden herstellen"
 
 #: ../gramps/gui/configure.py:715
 msgid "Restore colors for current theme to default."
@@ -15276,7 +15278,7 @@ msgstr "Dialoogvenster_Filter_definiëren"
 #: ../gramps/gui/editors/filtereditor.py:86
 msgctxt "manual"
 msgid "Custom_Filters"
-msgstr "Zelfgemaakte_filters"
+msgstr "Aangepaste_filters"
 
 #: ../gramps/gui/editors/filtereditor.py:90
 msgid "Person Filters"
@@ -15342,7 +15344,7 @@ msgstr "Selecteer %s in een lijst"
 #: ../gramps/gui/editors/filtereditor.py:391
 msgid "Give or select a source ID, leave empty to find objects with no source."
 msgstr ""
-"Geef of selecteer een bron-ID, laat leeg om objecten zonder bron te zoeken."
+"Geef of selecteer een bron-ID, laat leeg om objecten zonder bron te vinden."
 
 #: ../gramps/gui/editors/filtereditor.py:533
 msgid "Family filter name:"
@@ -15456,7 +15458,7 @@ msgstr "Toelichting"
 
 #: ../gramps/gui/editors/filtereditor.py:1129
 msgid "Custom Filter Editor"
-msgstr "Zelfgemaakt Filter-bewerker"
+msgstr "Aangepast filter bewerken"
 
 #: ../gramps/gui/editors/filtereditor.py:1201
 msgid "Delete Filter?"
@@ -15614,7 +15616,7 @@ msgstr "Verwijder notitie"
 #: ../gramps/gui/filters/_searchbar.py:56
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:57
 msgid "_Find"
-msgstr "_Zoek"
+msgstr "_Vinden"
 
 #: ../gramps/gui/filters/_searchbar.py:57
 #: ../gramps/gui/glade/clipboard.glade:54 ../gramps/gui/undohistory.py:88
@@ -15683,7 +15685,7 @@ msgstr "Min. Betrouwbh."
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:110
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:93
 msgid "Custom filter"
-msgstr "Zelfgemaakt filter"
+msgstr "Aangepast filter"
 
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:106
 #: ../gramps/plugins/textreport/tagreport.py:347
@@ -15739,12 +15741,12 @@ msgid ""
 "This resets the filter parameters to empty state.  The 'Find' button should "
 "be used to actually update the view to its defaults."
 msgstr ""
-"Dit maakt de filterparameters leeg. Gebruik de 'Zoek' knop om de weergave te "
-"updaten."
+"Dit wist de filterparameters. Gebruik de knop 'Vinden' om de weergave te "
+"vernieuwen."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:85
 msgid "Reset"
-msgstr "Reset"
+msgstr "Herstellen"
 
 #: ../gramps/gui/glade/addmedia.glade:127
 #: ../gramps/gui/glade/editperson.glade:292
@@ -18579,11 +18581,11 @@ msgstr "Tellen"
 
 #: ../gramps/gui/plug/_guioptions.py:119
 msgid "Finding Surnames"
-msgstr "Achternamen zoeken"
+msgstr "Achternamen vinden"
 
 #: ../gramps/gui/plug/_guioptions.py:120
 msgid "Finding surnames"
-msgstr "Zoek achternamen"
+msgstr "Achternamen vinden"
 
 #: ../gramps/gui/plug/_guioptions.py:687
 msgid "Select a different person"
@@ -22176,7 +22178,7 @@ msgstr "Geen datuminformatie"
 
 #: ../gramps/plugins/drawreport/timeline.py:339
 msgid "Finding date range..."
-msgstr "Datumbereik zoeken..."
+msgstr "Datumbereik vinden..."
 
 #: ../gramps/plugins/drawreport/timeline.py:418
 msgid "Determines what people are included in the report"
@@ -30527,11 +30529,11 @@ msgstr "Kinderen toevoegen."
 
 #: ../gramps/plugins/lib/libprogen.py:1929
 msgid "Cannot find father for I%(person)s (Father=%(father))"
-msgstr "Kan de vader niet vinden van I%(person)s (Father=%(father))"
+msgstr "Kan de vader van I%(person)s niet vinden (Vader=%(father))"
 
 #: ../gramps/plugins/lib/libprogen.py:1932
 msgid "Cannot find mother for I%(person)s (Mother=%(mother))"
-msgstr "Kan de moeder niet vinden van I%(person)s (Mother=%(mother))"
+msgstr "Kan de moeder van I%(person)s niet vinden (Moeder=%(mother))"
 
 #: ../gramps/plugins/lib/librecords.py:55
 msgid "Youngest living person"
@@ -32058,7 +32060,7 @@ msgstr "Maand tekststijl"
 #: ../gramps/plugins/textreport/custombooktext.py:93
 #: ../gramps/plugins/textreport/textplugins.gpr.py:81
 msgid "Custom Text"
-msgstr "Zelfgemaakte tekst"
+msgstr "Aangepaste tekst"
 
 #: ../gramps/plugins/textreport/custombooktext.py:134
 msgid "Initial Text"
@@ -34030,11 +34032,11 @@ msgid ""
 "Editor."
 msgstr ""
 "Het hulpprogramma voor gebeurtenisvergelijking gebruikt de filters die zijn "
-"gedefinieerd in de Zelfgemaakt Filter Editor."
+"gedefinieerd in Aangepast Filter bewerken."
 
 #: ../gramps/plugins/tool/eventcmp.glade:249
 msgid "Custom filter _editor"
-msgstr "Zelfgemaakt filter-_bewerker"
+msgstr "Aangepast filter b_ewerken"
 
 #: ../gramps/plugins/tool/eventcmp.py:71
 msgctxt "manual"
@@ -34138,11 +34140,11 @@ msgstr "Vind_mogelijk_dubbele_personen"
 #: ../gramps/plugins/tool/finddupes.py:126
 #: ../gramps/plugins/tool/tools.gpr.py:153
 msgid "Find Possible Duplicate People"
-msgstr "Mogelijk Dubbele Personen zoeken"
+msgstr "Mogelijk Dubbele Personen vinden"
 
 #: ../gramps/plugins/tool/finddupes.py:143
 msgid "Find Duplicates tool"
-msgstr "Vind Duplicaten tool"
+msgstr "Hulpmiddel Duplicaten vinden"
 
 #: ../gramps/plugins/tool/finddupes.py:143
 #: ../gramps/plugins/tool/mergecitations.py:164
@@ -34160,7 +34162,7 @@ msgstr "Er zijn geen potentiële dubbele personen gevonden"
 
 #: ../gramps/plugins/tool/finddupes.py:189
 msgid "Find Duplicates"
-msgstr "Vind duplicaten"
+msgstr "Duplicaten vinden"
 
 #: ../gramps/plugins/tool/finddupes.py:190
 msgid "Looking for duplicate people"
@@ -34206,7 +34208,7 @@ msgstr "Vind_databaselus"
 #: ../gramps/plugins/tool/findloop.py:73
 #: ../gramps/plugins/tool/tools.gpr.py:465
 msgid "Find database loop"
-msgstr "Vind databaselus"
+msgstr "Databaselus vinden"
 
 #: ../gramps/plugins/tool/findloop.py:93
 #: ../gramps/plugins/tool/notrelated.py:112
@@ -34514,8 +34516,8 @@ msgstr[1] "Label instellen voor {number_of} personen"
 #, python-brace-format
 msgid "Finding relationships between {number_of} person"
 msgid_plural "Finding relationships between {number_of} people"
-msgstr[0] "Relaties zoeken tussen {number_of} persoon"
-msgstr[1] "Relaties zoeken tussen {number_of} personen"
+msgstr[0] "Relaties vinden tussen {number_of} persoon"
+msgstr[1] "Relaties vinden tussen {number_of} personen"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/notrelated.py:385
@@ -34951,7 +34953,7 @@ msgstr "Wilt u %s vervangen?"
 
 #: ../gramps/plugins/tool/reorderids.py:694
 msgid "Finding and assigning unused IDs."
-msgstr "Ongebruikte ID's zoeken en toewijzen."
+msgstr "Ongebruikte ID's vinden en toewijzen."
 
 #: ../gramps/plugins/tool/sortevents.py:76
 msgid "Sort Events"
@@ -35162,7 +35164,7 @@ msgstr "Niet gerelateerd"
 #: ../gramps/plugins/tool/tools.gpr.py:199
 msgid "Find people who are not in any way related to the selected person"
 msgstr ""
-"Vind personen die op geen enkele manier verwant zijn aan de geselecteerde "
+"Personen vinden die op geen enkele manier verwant zijn aan de geselecteerde "
 "persoon"
 
 #: ../gramps/plugins/tool/tools.gpr.py:221
@@ -35261,7 +35263,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:64
 msgid "Dump Gender Statistics"
-msgstr "Sla geslachtsstatistieken op"
+msgstr "Geslachtsstatistieken wissen"
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:65
 msgid "Will dump the statistics for guessing the gender from the first name."
@@ -36333,7 +36335,7 @@ msgstr "Toon alle locaties"
 
 #: ../gramps/plugins/view/geoplaces.py:629
 msgid "Custom places name"
-msgstr "Aangepaste locatienaam"
+msgstr "Aangepaste plaatsnaam"
 
 #: ../gramps/plugins/view/geoplaces.py:637
 msgid "The places marker color"
@@ -37858,7 +37860,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2435
 msgid "Include the statistics page"
-msgstr "Voeg de statistiekenpagina toe"
+msgstr "De statistiekenpagina toevoegen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2436
 msgid "Whether or not to add statistics page"
