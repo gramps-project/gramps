@@ -59,6 +59,7 @@ from .ddtargets import DdTargets
 from .makefilter import make_filter
 from .utils import is_right_click, no_match_primary_mask
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.config import config
 from gramps.gui.widgets.persistenttreeview import PersistentTreeView
 _ = glocale.translation.sgettext
 
@@ -1374,6 +1375,8 @@ class ClipboardWindow(ManagedWindow):
         self.top = Glade()
         self.set_window(self.top.toplevel, None, None, msg=_("Clipboard"))
         self.setup_configs('interface.clipboard', 500, 300)
+        if not config.get('behavior.immediate-warn'):
+            self.get_window().set_tooltip_text(_("Any changes are saved immediately"))
 
         self.clear_all_btn = self.top.get_object("btn_clear_all")
         self.clear_btn = self.top.get_object("btn_clear")
