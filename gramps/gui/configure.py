@@ -193,7 +193,8 @@ class ConfigureDialog(ManagedWindow):
         self.window.vbox.pack_start(self.panel, True, True, 0)
         self.__on_close = on_close
         self.window.connect('response', self.done)
-        self.window.set_tooltip_text(_("Any changes are instantly saved"))
+        if not config.get('behavior.immediate-warn'):
+            self.window.set_tooltip_text(_("Any changes are saved immediately"))
 
         self.__setup_pages(configure_page_funcs)
 
@@ -836,6 +837,11 @@ class GrampsPreferences(ConfigureDialog):
             grid, _('Suppress warning about missing researcher when'
                     ' exporting to GEDCOM'),
             row, 'behavior.owner-warn', start=1)
+        row += 1
+        self.add_checkbox(
+            grid, _('Suppress tooltip warnings about data being saved'
+                    ' immediately'),
+            row, 'behavior.immediate-warn', start=1)
         row += 1
         self.add_checkbox(
             grid, _('Show plugin status dialog on plugin load error'),

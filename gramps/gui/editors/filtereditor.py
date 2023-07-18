@@ -1143,7 +1143,8 @@ class FilterEditor(ManagedWindow):
         self.draw_filters()
         self._set_size()
         self.filter_list.restore_column_size()
-        self.get_window().set_tooltip_text(_("Any changes are instantly saved"))
+        if not config.get('behavior.immediate-warn'):
+            self.get_window().set_tooltip_text(_("Any changes are saved immediately"))
         self.show()
 
     def build_menu_names(self, obj):
