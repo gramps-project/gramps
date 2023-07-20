@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-12 15:48+0100\n"
-"PO-Revision-Date: 2023-04-06 20:12+0000\n"
+"PO-Revision-Date: 2023-07-20 07:20+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>\n"
 "Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/en_GB/>\n"
@@ -49,7 +49,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 5.0-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -2976,14 +2976,14 @@ msgstr "about "
 #: ../gramps/gen/datehandler/_datestrings.py:251
 msgctxt "date modifier"
 msgid "from "
-msgstr ""
+msgstr "from "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:254
 msgctxt "date modifier"
 msgid "to "
-msgstr ""
+msgstr "to "
 
 #: ../gramps/gen/datehandler/_datestrings.py:259
 msgctxt "date quality"
@@ -5406,16 +5406,12 @@ msgid "Matches people whose notes contain text matching a regular expression"
 msgstr "Matches people whose notes contain text matching a regular expression"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:45
-#, fuzzy
-#| msgid "People with an alternate name"
 msgid "People who are neither male nor female"
-msgstr "People with an alternative name"
+msgstr "People who are neither male nor female"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:47
-#, fuzzy
-#| msgid "Matches all people with unknown gender"
 msgid "Matches all people with other gender"
-msgstr "Matches all people with unknown gender"
+msgstr "Matches all people with other gender"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:45
 msgid "Number of relationships:"
@@ -7276,13 +7272,11 @@ msgstr "range"
 
 #: ../gramps/gen/lib/date.py:2002
 msgid "from"
-msgstr ""
+msgstr "from"
 
 #: ../gramps/gen/lib/date.py:2003
-#, fuzzy
-#| msgid "Stop"
 msgid "to"
-msgstr "Stop"
+msgstr "to"
 
 #: ../gramps/gen/lib/date.py:2004
 msgid "span"
@@ -7691,10 +7685,8 @@ msgid "Alternate Marriage"
 msgstr "Alternative Marriage"
 
 #: ../gramps/gen/lib/eventtype.py:210
-#, fuzzy
-#| msgid "Stillborn"
 msgid "Stillbirth"
-msgstr "Stillborn"
+msgstr "Stillbirth"
 
 #: ../gramps/gen/lib/eventtype.py:214
 #: ../gramps/plugins/drawreport/ancestortree.py:60
@@ -7933,12 +7925,9 @@ msgid "annul."
 msgstr "annul."
 
 #: ../gramps/gen/lib/eventtype.py:260
-#, fuzzy
-#| msgctxt "Will abbreviation"
-#| msgid "will."
 msgctxt "Stillbirth abbreviation"
 msgid "still."
-msgstr "will."
+msgstr "still."
 
 #: ../gramps/gen/lib/family.py:155
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:60
@@ -9073,13 +9062,11 @@ msgstr "Link"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:72
 msgid "Strikethrough"
-msgstr ""
+msgstr "Strikethrough"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:73
-#, fuzzy
-#| msgid "Superscript"
 msgid "Subscript"
-msgstr "Superscript"
+msgstr "Subscript"
 
 #: ../gramps/gen/lib/surname.py:87 ../gramps/gen/lib/surname.py:91
 #: ../gramps/gen/utils/keyword.py:56 ../gramps/gui/clipboard.py:605
@@ -9257,11 +9244,11 @@ msgstr "Unstable"
 
 #: ../gramps/gen/plug/_pluginreg.py:62
 msgid "Experimental"
-msgstr ""
+msgstr "Experimental"
 
 #: ../gramps/gen/plug/_pluginreg.py:63
 msgid "Beta"
-msgstr ""
+msgstr "Beta"
 
 #: ../gramps/gen/plug/_pluginreg.py:64
 msgid "Stable"
@@ -9269,11 +9256,11 @@ msgstr "Stable"
 
 #: ../gramps/gen/plug/_pluginreg.py:72
 msgid "Developer"
-msgstr ""
+msgstr "Developer"
 
 #: ../gramps/gen/plug/_pluginreg.py:73
 msgid "Expert"
-msgstr ""
+msgstr "Expert"
 
 #: ../gramps/gen/plug/_pluginreg.py:97
 msgid "Quickreport"
@@ -9330,10 +9317,8 @@ msgid "Rule"
 msgstr "Rule"
 
 #: ../gramps/gen/plug/_pluginreg.py:110
-#, fuzzy
-#| msgid "Thumbnails"
 msgid "Thumbnailer"
-msgstr "Thumbnails"
+msgstr "Thumbnailer"
 
 #: ../gramps/gen/plug/_pluginreg.py:583
 #: ../gramps/plugins/gramplet/faqgramplet.py:135
@@ -10208,16 +10193,12 @@ msgid "Select the format to display places"
 msgstr "Select the format to display places"
 
 #: ../gramps/gen/plug/report/stdoptions.py:386 ../gramps/gui/configure.py:1246
-#, fuzzy
-#| msgid "Date format"
 msgid "Coordinates format"
-msgstr "Date format"
+msgstr "Coordinates format"
 
 #: ../gramps/gen/plug/report/stdoptions.py:389
-#, fuzzy
-#| msgid "Select the format to display names"
 msgid "Select the format to display coordinates"
-msgstr "Select the format to display names"
+msgstr "Select the format to display coordinates"
 
 #: ../gramps/gen/plug/report/utils.py:157
 #: ../gramps/plugins/textreport/indivcomplete.py:925
@@ -11028,23 +11009,23 @@ msgstr "%(west_longitude)s W"
 
 #: ../gramps/gen/utils/place.py:80
 msgid "DEG"
-msgstr ""
+msgstr "DEG"
 
 #: ../gramps/gen/utils/place.py:83
 msgid "DEG-:"
-msgstr ""
+msgstr "DEG-:"
 
 #: ../gramps/gen/utils/place.py:86
 msgid "D.D4"
-msgstr ""
+msgstr "D.D4"
 
 #: ../gramps/gen/utils/place.py:89
 msgid "D.D8"
-msgstr ""
+msgstr "D.D8"
 
 #: ../gramps/gen/utils/place.py:92
 msgid "RT90"
-msgstr ""
+msgstr "RT90"
 
 #: ../gramps/gen/utils/string.py:46 ../gramps/gui/editors/editperson.py:341
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
@@ -11072,11 +11053,9 @@ msgstr "unknown"
 
 #: ../gramps/gen/utils/string.py:49 ../gramps/gui/editors/editperson.py:343
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
-#, fuzzy
-#| msgid "Mother"
 msgctxt "gender"
 msgid "other"
-msgstr "Mother"
+msgstr "other"
 
 #: ../gramps/gen/utils/string.py:53
 msgid "Invalid"
@@ -11305,24 +11284,20 @@ msgstr ""
 #: ../gramps/grampsapp.py:345 ../gramps/grampsapp.py:361
 #: ../gramps/grampsapp.py:371 ../gramps/grampsapp.py:392
 #: ../gramps/grampsapp.py:399
-#, fuzzy
-#| msgid "Not found"
 msgid "not found"
-msgstr "Not found"
+msgstr "not found"
 
 #: ../gramps/grampsapp.py:326
 msgid "not found because exiv2 is not installed"
-msgstr ""
+msgstr "not found because exiv2 is not installed"
 
 #: ../gramps/grampsapp.py:359
 msgid "Installed but does not supply version"
-msgstr ""
+msgstr "Installed but does not supply version"
 
 #: ../gramps/grampsapp.py:379
-#, fuzzy
-#| msgid "Unstable"
 msgid "installed"
-msgstr "Unstable"
+msgstr "installed"
 
 #: ../gramps/grampsapp.py:544 ../gramps/grampsapp.py:551
 #: ../gramps/grampsapp.py:604
@@ -11726,7 +11701,7 @@ msgstr "Colours for Female persons"
 
 #: ../gramps/gui/configure.py:723
 msgid "Colors for people who are neither male nor female"
-msgstr ""
+msgstr "Colours for people who are neither male nor female"
 
 #: ../gramps/gui/configure.py:724
 msgid "Colors for Unknown persons"
@@ -11944,10 +11919,8 @@ msgid "Age display precision *"
 msgstr "Age display precision *"
 
 #: ../gramps/gui/configure.py:1355
-#, fuzzy
-#| msgid "Display references for a %s"
 msgid "Display ages for events after death *"
-msgstr "Display references for a %s"
+msgstr "Display ages for events after death *"
 
 #: ../gramps/gui/configure.py:1367
 msgid "Calendar on reports"
@@ -12119,15 +12092,12 @@ msgid "Enable the spelling checker for notes."
 msgstr "Enable the spelling checker for notes."
 
 #: ../gramps/gui/configure.py:1664
-#, fuzzy, python-format
-#| msgid ""
-#| "GtkSpell not loaded. Spell checking will not be available.\n"
-#| "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
+#, python-format
 msgid ""
 "Gspell not loaded. Spell checking will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 msgstr ""
-"GtkSpell not loaded. Spell checking will not be available.\n"
+"Gspell not loaded. Spell checking will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 
 #: ../gramps/gui/configure.py:1672
@@ -12144,43 +12114,43 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1681
 msgid "Show Clipboard icon on toolbar"
-msgstr ""
+msgstr "Show Clipboard icon on toolbar"
 
 #: ../gramps/gui/configure.py:1683
 msgid "Show or hide the Clipboard icon on the toolbar."
-msgstr ""
+msgstr "Show or hide the Clipboard icon on the toolbar."
 
 #: ../gramps/gui/configure.py:1689
 msgid "Show Reports icon on toolbar"
-msgstr ""
+msgstr "Show Reports icon on toolbar"
 
 #: ../gramps/gui/configure.py:1691
 msgid "Show or hide the Reports icon on the toolbar."
-msgstr ""
+msgstr "Show or hide the Reports icon on the toolbar."
 
 #: ../gramps/gui/configure.py:1697
 msgid "Show Tools icon on toolbar"
-msgstr ""
+msgstr "Show Tools icon on toolbar"
 
 #: ../gramps/gui/configure.py:1699
 msgid "Show or hide the Tools icon on the toolbar."
-msgstr ""
+msgstr "Show or hide the Tools icon on the toolbar."
 
 #: ../gramps/gui/configure.py:1705
 msgid "Show Plugins icon on toolbar"
-msgstr ""
+msgstr "Show Plugins icon on toolbar"
 
 #: ../gramps/gui/configure.py:1707
 msgid "Show or hide the Plugins icon on the toolbar."
-msgstr ""
+msgstr "Show or hide the Plugins icon on the toolbar."
 
 #: ../gramps/gui/configure.py:1713
 msgid "Show Preferences icon on toolbar"
-msgstr ""
+msgstr "Show Preferences icon on toolbar"
 
 #: ../gramps/gui/configure.py:1715
 msgid "Show or hide the Preferences icon on the toolbar."
-msgstr ""
+msgstr "Show or hide the Preferences icon on the toolbar."
 
 #: ../gramps/gui/configure.py:1721
 msgid "Show close button in gramplet bar tabs"
@@ -12584,27 +12554,25 @@ msgstr ""
 "It will be visible only if your font contains this glyph."
 
 #: ../gramps/gui/csvdialect.py:63
-#, fuzzy
-#| msgid "Tag"
 msgctxt "character"
 msgid "Tab"
-msgstr "Tag"
+msgstr "Tab"
 
 #: ../gramps/gui/csvdialect.py:81
-#, fuzzy
-#| msgid "Check your installation."
 msgid "Choose your dialect"
-msgstr "Check your installation."
+msgstr "Choose your dialect"
 
 #: ../gramps/gui/csvdialect.py:83
 msgid ""
 "Changes are immediate.\n"
 "This is used when exporting views in CSV format."
 msgstr ""
+"Changes are immediate.\n"
+"This is used when exporting views in CSV format."
 
 #: ../gramps/gui/csvdialect.py:111
 msgid "Delimiter:"
-msgstr ""
+msgstr "Delimiter:"
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:109
 msgid "Undo history warning"
@@ -13108,38 +13076,28 @@ msgid "Open the reports dialog"
 msgstr "Open the reports dialog"
 
 #: ../gramps/gui/displaystate.py:407
-#, fuzzy
-#| msgid "_Reports"
 msgid "Reports"
-msgstr "_Reports"
+msgstr "Reports"
 
 #: ../gramps/gui/displaystate.py:410
 msgid "Open the tools dialog"
 msgstr "Open the tools dialog"
 
 #: ../gramps/gui/displaystate.py:411
-#, fuzzy
-#| msgid "_Tools"
 msgid "Tools"
-msgstr "_Tools"
+msgstr "Tools"
 
 #: ../gramps/gui/displaystate.py:414
-#, fuzzy
-#| msgid "Plugin Manager"
 msgid "Open Plugin Manager"
-msgstr "Plugin Manager"
+msgstr "Open Plugin Manager"
 
 #: ../gramps/gui/displaystate.py:415
-#, fuzzy
-#| msgid "Plugin lib"
 msgid "Plugins"
-msgstr "Plugin lib"
+msgstr "Plugins"
 
 #: ../gramps/gui/displaystate.py:418
-#, fuzzy
-#| msgid "Preferences"
 msgid "Open Preferences"
-msgstr "Preferences"
+msgstr "Open Preferences"
 
 #: ../gramps/gui/displaystate.py:438
 #: ../gramps/plugins/gramplet/persondetails.py:174
@@ -14098,13 +14056,11 @@ msgstr "Range"
 
 #: ../gramps/gui/editors/editdate.py:82
 msgid "From"
-msgstr ""
+msgstr "From"
 
 #: ../gramps/gui/editors/editdate.py:83
-#, fuzzy
-#| msgid "Top"
 msgid "To"
-msgstr "Top"
+msgstr "To"
 
 #: ../gramps/gui/editors/editdate.py:84
 msgid "Span"
@@ -14846,10 +14802,8 @@ msgid "_Female"
 msgstr "_Female"
 
 #: ../gramps/gui/editors/editperson.py:1114
-#, fuzzy
-#| msgid "Other"
 msgid "_Other"
-msgstr "Other"
+msgstr "_Other"
 
 #: ../gramps/gui/editors/editperson.py:1115
 msgid "_Unknown"
@@ -15326,28 +15280,20 @@ msgid "Delete Filter"
 msgstr "Delete Filter"
 
 #: ../gramps/gui/editors/objectentries.py:293
-#, fuzzy
-#| msgid "To select a place, use drag-and-drop or use the buttons"
 msgid "To select a person, use drag-and-drop or use the buttons"
-msgstr "To select a place, use drag-and-drop or use the buttons"
+msgstr "To select a person, use drag-and-drop or use the buttons"
 
 #: ../gramps/gui/editors/objectentries.py:295
-#, fuzzy
-#| msgid "No place given, click button to select one"
 msgid "No person given, click button to select one"
-msgstr "No place given, click button to select one"
+msgstr "No person given, click button to select one"
 
 #: ../gramps/gui/editors/objectentries.py:296
-#, fuzzy
-#| msgid "Edit Person"
 msgid "Edit person"
-msgstr "Edit Person"
+msgstr "Edit person"
 
 #: ../gramps/gui/editors/objectentries.py:297
-#, fuzzy
-#| msgid "Select an existing place"
 msgid "Select an existing person"
-msgstr "Select an existing place"
+msgstr "Select an existing person"
 
 #: ../gramps/gui/editors/objectentries.py:298
 #: ../gramps/plugins/lib/libpersonview.py:122
@@ -15355,10 +15301,8 @@ msgid "Add a new person"
 msgstr "Add a new person"
 
 #: ../gramps/gui/editors/objectentries.py:299
-#, fuzzy
-#| msgid "Remove version"
 msgid "Remove person"
-msgstr "Remove version"
+msgstr "Remove person"
 
 #: ../gramps/gui/editors/objectentries.py:340
 msgid "To select a place, use drag-and-drop or use the buttons"
@@ -18271,10 +18215,8 @@ msgstr "%(key)s:\t%(value)s"
 #: ../gramps/gui/merge/mergeperson.py:64
 #: ../gramps/gui/views/treemodels/peoplemodel.py:98
 #: ../gramps/plugins/webreport/person.py:484
-#, fuzzy
-#| msgid "Mother"
 msgid "other"
-msgstr "Mother"
+msgstr "other"
 
 #: ../gramps/gui/merge/mergeperson.py:92
 msgid "Merge People"
@@ -19463,14 +19405,8 @@ msgid "Select_Source_selector"
 msgstr "Select_Source_selector"
 
 #: ../gramps/gui/spell.py:62
-#, fuzzy
-#| msgid ""
-#| "You have no installed dictionaries. Either install one or disable spell "
-#| "checking"
 msgid "You have no installed dictionaries."
-msgstr ""
-"You have no installed dictionaries. Either install one or disable spell "
-"checking"
+msgstr "You have no installed dictionaries."
 
 #: ../gramps/gui/spell.py:82
 msgid "Off"
@@ -19872,7 +19808,7 @@ msgstr "Columns"
 
 #: ../gramps/gui/views/listview.py:1348
 msgid "CSV Dialect"
-msgstr ""
+msgstr "CSV Dialect"
 
 #: ../gramps/gui/views/navigationview.py:252
 #, python-format
@@ -20656,26 +20592,20 @@ msgstr ""
 "unknown"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:851
-#, fuzzy
-#| msgid "Show dates"
 msgid "Show Index"
-msgstr "Show dates"
+msgstr "Show Index"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:853
-#, fuzzy
-#| msgid "Display Tip of the Day"
 msgid "Display index of each person"
-msgstr "Display Tip of the Day"
+msgstr "Display index of each person"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:857
-#, fuzzy
-#| msgid "Starting"
 msgid "Start Index"
-msgstr "Starting"
+msgstr "Start Index"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:858
 msgid "The start index"
-msgstr ""
+msgstr "The start index"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:874
 #: ../gramps/plugins/drawreport/descendtree.py:1581
@@ -21064,26 +20994,17 @@ msgstr[0] "{person}, {age}"
 msgstr[1] "{person}, {age}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:476
-#, fuzzy, python-format
-#| msgid ""
-#| "%(spouse)s and\n"
-#| " %(person)s, wedding"
+#, python-format
 msgid ""
 "%(wife)s and\n"
 " %(person)s, wedding"
 msgstr ""
-"%(spouse)s and\n"
+"%(wife)s and\n"
 " %(person)s, wedding"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/drawreport/calendarreport.py:488
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "{spouse} and\n"
-#| " {person}, {nyears}"
-#| msgid_plural ""
-#| "{spouse} and\n"
-#| " {person}, {nyears}"
+#, python-brace-format
 msgid ""
 "{wife} and\n"
 " {person}, {nyears}"
@@ -21091,10 +21012,10 @@ msgid_plural ""
 "{wife} and\n"
 " {person}, {nyears}"
 msgstr[0] ""
-"{spouse} and\n"
+"{wife} and\n"
 " {person}, {nyears}"
 msgstr[1] ""
-"{spouse} and\n"
+"{wife} and\n"
 " {person}, {nyears}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:554
@@ -21657,11 +21578,8 @@ msgid "Item count"
 msgstr "Item count"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:315
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "all"
 msgid "All"
-msgstr "all"
+msgstr "All"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:316
 #: ../gramps/plugins/drawreport/statisticschart.py:420
@@ -22036,6 +21954,9 @@ msgid ""
 "You can change this behavior in the 'Configure active view' of any list-"
 "based view"
 msgstr ""
+"CSV is a common spreadsheet format.\n"
+"You can change this behaviour in the 'Configure active view' of any list-"
+"based view"
 
 #: ../gramps/plugins/export/export.gpr.py:46
 msgid "CSV spreadsheet options"
@@ -23786,10 +23707,8 @@ msgstr "Number of individuals"
 #: ../gramps/plugins/gramplet/statsgramplet.py:155
 #: ../gramps/plugins/webreport/statistics.py:129
 #: ../gramps/plugins/webreport/statistics.py:197
-#, fuzzy
-#| msgid "Individuals with unknown gender"
 msgid "Individuals with other gender"
-msgstr "Individuals with unknown gender"
+msgstr "Individuals with other gender"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:159
 #: ../gramps/plugins/webreport/statistics.py:131
@@ -24121,21 +24040,14 @@ msgid "Addons and \"Gramplets\""
 msgstr "Addons and \"Gramplets\""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:195
-#, fuzzy
-#| msgid ""
-#| "There many Addons or \"Gramplets\" that are available to assist you in "
-#| "data entry and visualizing your family tree. Many of these tools are "
-#| "already available to you. Many more are available to download and "
-#| "install.\n"
-#| "\n"
 msgid ""
 "There are many Addons or \"Gramplets\" that are available to assist you in "
 "data entry and visualizing your family tree. Many of these tools are already "
 "available to you. Many more are available to download and install.\n"
 "\n"
 msgstr ""
-"There many Addons or \"Gramplets\" that are available to assist you in data "
-"entry and visualizing your family tree. Many of these tools are already "
+"There are many Addons or \"Gramplets\" that are available to assist you in "
+"data entry and visualizing your family tree. Many of these tools are already "
 "available to you. Many more are available to download and install.\n"
 "\n"
 
@@ -24576,10 +24488,8 @@ msgstr "The colour to use to display women."
 #: ../gramps/plugins/graph/gvfamilylines.py:296
 #: ../gramps/plugins/graph/gvhourglass.py:435
 #: ../gramps/plugins/graph/gvrelgraph.py:959
-#, fuzzy
-#| msgid "The color to use to display women."
 msgid "The color to use to display people who are neither men nor women."
-msgstr "The colour to use to display women."
+msgstr "The colour to use to display people who are neither men nor women."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:301
 #: ../gramps/plugins/graph/gvhourglass.py:440
@@ -24737,14 +24647,8 @@ msgid "Ahnentafel number visible"
 msgstr "Ahnentafel number visible"
 
 #: ../gramps/plugins/graph/gvhourglass.py:455
-#, fuzzy
-#| msgid ""
-#| "Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
-#| "informations."
 msgid "Show Sosa / Sosa-Stradonitz / Ahnentafel number."
-msgstr ""
-"Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
-"informations."
+msgstr "Show Sosa / Sosa-Stradonitz / Ahnentafel number."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:211
 #: ../gramps/plugins/textreport/indivcomplete.py:836
@@ -25829,16 +25733,13 @@ msgid "vCard import"
 msgstr "vCard import"
 
 #: ../gramps/plugins/importer/importvcard.py:254
-#, fuzzy
-#| msgid "VCARD import report: No errors detected"
 msgid "vCard import report: No errors detected"
-msgstr "VCARD import report: No errors detected"
+msgstr "vCard import report: No errors detected"
 
 #: ../gramps/plugins/importer/importvcard.py:256
-#, fuzzy, python-format
-#| msgid "VCARD import report: %s errors detected\n"
+#, python-format
 msgid "vCard import report: %s errors detected\n"
-msgstr "VCARD import report: %s errors detected\n"
+msgstr "vCard import report: %s errors detected\n"
 
 #: ../gramps/plugins/importer/importvcard.py:321
 #, python-format
@@ -25846,51 +25747,37 @@ msgid "Token >%(token)s< unknown. line skipped: %(line)s"
 msgstr "Token >%(token)s< unknown. line skipped: %(line)s"
 
 #: ../gramps/plugins/importer/importvcard.py:335
-#, fuzzy
-#| msgid ""
-#| "BEGIN property not properly closed by END property, Gramps can't cope "
-#| "with nested VCards."
 msgid ""
 "BEGIN property not properly closed by END property, Gramps can't cope with "
 "nested vCards."
 msgstr ""
 "BEGIN property not properly closed by END property, Gramps can't cope with "
-"nested VCards."
+"nested vCards."
 
 #: ../gramps/plugins/importer/importvcard.py:346
-#, fuzzy, python-format
-#| msgid "Import of VCards version %s is not supported by Gramps."
+#, python-format
 msgid "Import of vCards version %s is not supported by Gramps."
-msgstr "Import of VCards version %s is not supported by Gramps."
+msgstr "Import of vCards version %s is not supported by Gramps."
 
 #: ../gramps/plugins/importer/importvcard.py:366
-#, fuzzy
-#| msgid ""
-#| "VCard is malformed missing the compulsory N property, so there is no "
-#| "name; skip it."
 msgid ""
 "The vCard is malformed. It is missing the compulsory N property, so there is "
 "no name; skip it."
 msgstr ""
-"VCard is malformed missing the compulsory N property, so there is no name; "
-"skip it."
+"The vCard is malformed. It is missing the compulsory N property, so there is "
+"no name; skip it."
 
 #: ../gramps/plugins/importer/importvcard.py:371
-#, fuzzy
-#| msgid ""
-#| "VCard is malformed missing the compulsory FN property, get name from N "
-#| "alone."
 msgid ""
 "The vCard is malformed. It is missing the compulsory FN property, get name "
 "from N alone."
 msgstr ""
-"VCard is malformed missing the compulsory FN property, get name from N alone."
+"The vCard is malformed. It is missing the compulsory FN property, get name "
+"from N alone."
 
 #: ../gramps/plugins/importer/importvcard.py:375
-#, fuzzy
-#| msgid "VCard is malformed wrong number of name components."
 msgid "The vCard is malformed. Wrong number of name components."
-msgstr "VCard is malformed wrong number of name components."
+msgstr "The vCard is malformed. Wrong number of name components."
 
 #: ../gramps/plugins/importer/importvcard.py:517
 #, python-brace-format
@@ -26679,82 +26566,56 @@ msgid "%(date)s %(time)s"
 msgstr "%(date)s %(time)s"
 
 #: ../gramps/plugins/lib/libmetadata.py:115
-#, fuzzy
-#| msgid "Description"
 msgid "Descriptive Tags"
-msgstr "Description"
+msgstr "Descriptive Tags"
 
 #: ../gramps/plugins/lib/libmetadata.py:116
-#, fuzzy
-#| msgid "Styled Text Tags"
 msgid "Date and Time Tags"
-msgstr "Styled Text Tags"
+msgstr "Date and Time Tags"
 
 #: ../gramps/plugins/lib/libmetadata.py:117
-#, fuzzy
-#| msgid "People"
 msgid "People Tags"
-msgstr "People"
+msgstr "People Tags"
 
 #: ../gramps/plugins/lib/libmetadata.py:118
-#, fuzzy
-#| msgid "Events"
 msgid "Event Tags"
-msgstr "Events"
+msgstr "Event Tags"
 
 #: ../gramps/plugins/lib/libmetadata.py:119
-#, fuzzy
-#| msgid "Images"
 msgid "Image Tags"
-msgstr "Images"
+msgstr "Image Tags"
 
 #: ../gramps/plugins/lib/libmetadata.py:120
-#, fuzzy
-#| msgid "Place Information"
 msgid "Camera Information"
-msgstr "Place Information"
+msgstr "Camera Information"
 
 #: ../gramps/plugins/lib/libmetadata.py:121
-#, fuzzy
-#| msgid "Locations"
 msgid "Location Tags"
-msgstr "Locations"
+msgstr "Location Tags"
 
 #: ../gramps/plugins/lib/libmetadata.py:122
-#, fuzzy
-#| msgid "Advanced"
 msgid "Advanced Tags"
-msgstr "Advanced"
+msgstr "Advanced Tags"
 
 #: ../gramps/plugins/lib/libmetadata.py:123
-#, fuzzy
-#| msgid "Removing Tags"
 msgid "Rights Tags"
-msgstr "Removing Tags"
+msgstr "Rights Tags"
 
 #: ../gramps/plugins/lib/libmetadata.py:124
-#, fuzzy
-#| msgid "New Tag"
 msgid "Keyword Tags"
-msgstr "New Tag"
+msgstr "Keyword Tags"
 
 #: ../gramps/plugins/lib/libmetadata.py:220
-#, fuzzy
-#| msgid "Namesake"
 msgid "Namespace"
-msgstr "Namesake"
+msgstr "Namespace"
 
 #: ../gramps/plugins/lib/libmetadata.py:221
-#, fuzzy
-#| msgid "label"
 msgid "Label"
-msgstr "label"
+msgstr "Label"
 
 #: ../gramps/plugins/lib/libmetadata.py:222
-#, fuzzy
-#| msgid ", "
 msgid " "
-msgstr ", "
+msgstr " "
 
 #: ../gramps/plugins/lib/libnarrate.py:88
 #, python-format
@@ -30553,19 +30414,14 @@ msgid "Where to save the tiles for offline mode."
 msgstr "Where to save the tiles for offline mode."
 
 #: ../gramps/plugins/lib/maps/geography.py:1301
-#, fuzzy
-#| msgid ""
-#| "If you have no more space in your file system. You can remove all tiles "
-#| "placed in the above path.\n"
-#| "Be careful! If you have no internet, you'll get no map."
 msgid ""
 "If you have no more space in your file system, you can remove all tiles "
 "placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
-"If you have no more space in your file system. You can remove all tiles "
+"If you have no more space in your file system, you can remove all tiles "
 "placed in the above path.\n"
-"Be careful! If you have no internet, you'll get no map."
+"Be careful! If you have no Internet, you'll get no map."
 
 #: ../gramps/plugins/lib/maps/geography.py:1306
 msgid "Zoom used when centering"
@@ -30616,26 +30472,12 @@ msgid "Select tile cache directory for offline mode"
 msgstr "Select tile cache directory for offline mode"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:137
-#, fuzzy, python-format
-#| msgid "Can't create tiles cache directory %s"
+#, python-format
 msgid "Can't create tile cache directory %s"
-msgstr "Can't create tiles cache directory %s"
+msgstr "Can't create tile cache directory %s"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:141
-#, fuzzy, python-format
-#| msgid ""
-#| "You must verify and change the tiles cache\n"
-#| "...\n"
-#| "[geography]\n"
-#| "...\n"
-#| "path='bad/path'\n"
-#| "...\n"
-#| "in the gramps.ini file :\n"
-#| "%s\n"
-#| "\n"
-#| "Before to change the gramps.ini file, you need to close gramps\n"
-#| "\n"
-#| "The next errors will be normal"
+#, python-format
 msgid ""
 "You must verify and change the tile cache\n"
 "...\n"
@@ -30650,7 +30492,7 @@ msgid ""
 "\n"
 "The following errors are expected"
 msgstr ""
-"You must verify and change the tiles cache\n"
+"You must verify and change the tile cache\n"
 "...\n"
 "[geography]\n"
 "...\n"
@@ -30659,9 +30501,9 @@ msgstr ""
 "in the gramps.ini file :\n"
 "%s\n"
 "\n"
-"Before to change the gramps.ini file, you need to close gramps\n"
+"Before changing the gramps.ini file, you need to close Gramps\n"
 "\n"
-"The next errors will be normal"
+"The following errors are expected"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:181
 #: ../gramps/plugins/lib/maps/osmgps.py:245
@@ -31033,12 +30875,9 @@ msgid "females"
 msgstr "females"
 
 #: ../gramps/plugins/quickview/filterbyname.py:61
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "people with unknown gender"
 msgctxt "Filtering_on"
 msgid "people with other gender"
-msgstr "people with unknown gender"
+msgstr "people with other gender"
 
 #: ../gramps/plugins/quickview/filterbyname.py:63
 msgctxt "Filtering_on"
@@ -32420,7 +32259,7 @@ msgstr "F"
 #: ../gramps/plugins/textreport/familygroup.py:507
 msgctxt "acronym for other"
 msgid "X"
-msgstr ""
+msgstr "X"
 
 #: ../gramps/plugins/textreport/familygroup.py:509
 #, python-format
@@ -32909,10 +32748,9 @@ msgid "Females: %d"
 msgstr "Females: %d"
 
 #: ../gramps/plugins/textreport/summary.py:188
-#, fuzzy, python-format
-#| msgid "Individuals with unknown gender: %d"
+#, python-format
 msgid "Individuals with other gender: %d"
-msgstr "Individuals with unknown gender: %d"
+msgstr "Individuals with other gender: %d"
 
 #: ../gramps/plugins/textreport/summary.py:193
 #, python-format
@@ -33175,17 +33013,13 @@ msgstr "Shows status of links in notes"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:35
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:36
-#, fuzzy
-#| msgid "Thumbnails"
 msgid "Gnome Thumbnailer"
-msgstr "Thumbnails"
+msgstr "Gnome Thumbnailer"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:49
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:50
-#, fuzzy
-#| msgid "Thumbnails"
 msgid "Image Thumbnailer"
-msgstr "Thumbnails"
+msgstr "Image Thumbnailer"
 
 #: ../gramps/plugins/tool/changenames.glade:34
 msgid ""
@@ -34639,14 +34473,8 @@ msgid "Enable ID reordering."
 msgstr "Enable ID reordering."
 
 #: ../gramps/plugins/tool/reorderids.glade:1420
-#, fuzzy
-#| msgid ""
-#| "List next ID available\n"
-#| "(maynot be continuous)."
 msgid "List next ID available (may not be continuous)."
-msgstr ""
-"List next ID available\n"
-"(maynot be continuous)."
+msgstr "List next ID available (may not be continuous)."
 
 #: ../gramps/plugins/tool/reorderids.glade:1423
 msgid "  Actual"
@@ -34669,14 +34497,8 @@ msgid "Change"
 msgstr "Change"
 
 #: ../gramps/plugins/tool/reorderids.glade:1469
-#, fuzzy
-#| msgid ""
-#| "Enable ID reordering\n"
-#| "with Start / Step sequence."
 msgid "Enable ID reordering with Start / Step sequence."
-msgstr ""
-"Enable ID reordering\n"
-"with Start / Step sequence."
+msgstr "Enable ID reordering with Start / Step sequence."
 
 #: ../gramps/plugins/tool/reorderids.glade:1481
 msgid "Start"
@@ -34699,14 +34521,8 @@ msgid "Keep"
 msgstr "Keep"
 
 #: ../gramps/plugins/tool/reorderids.glade:1521
-#, fuzzy
-#| msgid ""
-#| "Keep IDs with alternate\n"
-#| "prefixes untouched."
 msgid "Keep IDs with alternate prefixes untouched."
-msgstr ""
-"Keep IDs with alternative\n"
-"prefixes untouched."
+msgstr "Keep IDs with alternate prefixes untouched."
 
 #: ../gramps/plugins/tool/reorderids.py:64
 msgctxt "manual"
@@ -36718,7 +36534,7 @@ msgstr "Next"
 
 #: ../gramps/plugins/webreport/basepage.py:2410
 msgid "Other media: videos, pdfs..."
-msgstr ""
+msgstr "Other media: videos, pdfs..."
 
 #: ../gramps/plugins/webreport/basepage.py:2572
 msgid " [Click to Go]"
@@ -37711,21 +37527,18 @@ msgstr ""
 "pages..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2520
-#, fuzzy, python-format
-#| msgid "Died %(month_year)s (%(age)s)."
+#, python-format
 msgctxt "val"
 msgid "in %(inipth)s (%(val)s)"
-msgstr "Died %(month_year)s (%(age)s)."
+msgstr "in %(inipth)s (%(val)s)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2522
-#, fuzzy
-#| msgid "Dates"
 msgid "latest"
-msgstr "Dates"
+msgstr "latest"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2523
 msgid "openlayers version to use"
-msgstr ""
+msgstr "openlayers version to use"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2528
 msgid ""
@@ -37735,6 +37548,11 @@ msgid ""
 "openlayers_version.\n"
 "See OLDER VERSIONS in https://openlayers.org/"
 msgstr ""
+"You should use this option only if you can't see the maps in your website "
+"for OpenStreetMap or Stamen maps\n"
+"You can change the value in the specified file. The option name to modify is "
+"openlayers_version.\n"
+"See OLDER VERSIONS in https://openlayers.org/"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2544
 msgid "Other inclusion (CMS, web calendar, PHP)"
@@ -38085,10 +37903,9 @@ msgid "Number of People"
 msgstr "Number of People"
 
 #: ../gramps/plugins/webreport/surnamelist.py:279
-#, fuzzy, python-format
-#| msgid "Surnames beginning with letter %s"
+#, python-format
 msgid "Surnames beginning with letter '%s' %s"
-msgstr "Surnames beginning with letter %s"
+msgstr "Surnames beginning with letter '%s' %s"
 
 #: ../gramps/plugins/webreport/thumbnail.py:121
 msgid ""
@@ -38119,7 +37936,7 @@ msgstr ""
 #. Translators: This is the email subject line in the Web Calendar
 #: ../gramps/plugins/webreport/webcal.py:1567
 msgid "WebCal"
-msgstr ""
+msgstr "WebCal"
 
 #: ../gramps/plugins/webreport/webcal.py:1578
 #, python-format
