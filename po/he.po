@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-12 15:48+0100\n"
-"PO-Revision-Date: 2023-07-19 12:18+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"PO-Revision-Date: 2023-07-20 07:20+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -1047,7 +1047,7 @@ msgid ""
 "The '-C' option cannot be used."
 msgstr ""
 "שגיאה: אילן יוחסין '%s' קיים כבר.\n"
-"אין אפשרות להשתמש באפשרות '-C'."
+"אין אפשרות להשתמש באפשרות '‎-C'."
 
 #: ../gramps/cli/arghandler.py:241
 #, python-format
@@ -2899,14 +2899,14 @@ msgstr "בסביבות "
 #: ../gramps/gen/datehandler/_datestrings.py:251
 msgctxt "date modifier"
 msgid "from "
-msgstr "מאת. "
+msgstr "מאת "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:254
 msgctxt "date modifier"
 msgid "to "
-msgstr "אל. "
+msgstr "אל "
 
 #: ../gramps/gen/datehandler/_datestrings.py:259
 msgctxt "date quality"
@@ -11986,7 +11986,7 @@ msgstr "הצגת סמל העדפות בלוח־כלים"
 
 #: ../gramps/gui/configure.py:1715
 msgid "Show or hide the Preferences icon on the toolbar."
-msgstr "חשיפת או הסתרת סמל העדפות בלוח־הכלים"
+msgstr "חשיפת או הסתרת סמל העדפות בסרגל־הכלים."
 
 #: ../gramps/gui/configure.py:1721
 msgid "Show close button in gramplet bar tabs"
@@ -32968,8 +32968,8 @@ msgstr[1] "{quantity} הפניות לעצמי מדיה חסרים, נשמרו\n"
 #, python-brace-format
 msgid "{quantity} missing media object was replaced\n"
 msgid_plural "{quantity} missing media objects were replaced\n"
-msgstr[0] "עצם מדיה חסר {quantity}, הוחלף\n"
-msgstr[1] "{quantity} עצם מדיה חסרים, הוחלפו\n"
+msgstr[0] "עצם מדיה חסר {quantity} הוחלף\n"
+msgstr[1] "{quantity} עצמי מדיה חסרים הוחלפו\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2631
@@ -37372,7 +37372,7 @@ msgstr "מספר אנשים"
 #: ../gramps/plugins/webreport/surnamelist.py:279
 #, python-format
 msgid "Surnames beginning with letter '%s' %s"
-msgstr "שמות משפחה המתחילים באות '%s'"
+msgstr "שמות משפחה המתחילים באות '%s' %s"
 
 #: ../gramps/plugins/webreport/thumbnail.py:121
 msgid ""
