@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-12 15:48+0100\n"
-"PO-Revision-Date: 2023-07-17 19:44+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2023-07-19 12:18+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -904,9 +904,9 @@ msgid ""
 "single report is easier to distribute than multiple reports, especially when "
 "printed."
 msgstr ""
-"<b>דוחות ספר<br/></b> דוחות ספר אליו ניתן לנווט מתפריט 'דוחות &lt; ספרים "
-"&lt;  דוחות ספר', מאפשר איסוף מגוון דוחות לתוך מסמך אחד. קל יותר (במיוחד "
-"להדפסה) להפיץ 'דוח ספר' מאשר מספר דוחות בודדים."
+"<b>דוח ספר<br/></b> אליו ניתן לנווט מתפריט 'דוחות &lt; ספרים &lt; דוח ספר', "
+"מאפשר איסוף מגוון דוחות לתוך מסמך אחד. קל יותר (במיוחד להדפסה) להפיץ 'דוח "
+"ספר' מאשר מספר דוחות בודדים."
 
 #: ../data/tips.xml:106
 msgid ""
@@ -971,9 +971,9 @@ msgid ""
 "translations can easily be added with little development effort. If you are "
 "interested in participating please email gramps-devel@lists.sf.net."
 msgstr ""
-"<b>מתרגמי גרמפס<br/></b>גרמפס תוכנן כך שניתן יהיה להוסיף תרגומים חדשים "
-"לשפות, במאמץ פיתוח קטן. במידה ואתם מעוניינים להשתתף נא שלחו דוא\"ל לכתובת"
-" ‏'gramps-devel@lists.sf.net'."
+"<b>מתרגמי גרמפס<br/></b>גרמפס תוכנן כך שניתן יהיה להוסיף תרגומים חדשים לשפות "
+"רבות במאמץ פיתוח קטן. למעוניינים להשתתף במייזם התרגום נא שלחו דוא\"ל לכתובת "
+"‏'gramps-devel@lists.sf.net'."
 
 #: ../data/tips.xml:118
 msgid ""
@@ -4648,7 +4648,7 @@ msgstr "משפחות עם צאצא כלשהו התואם ל<שם>"
 
 #: ../gramps/gen/filters/rules/family/_searchchildname.py:46
 msgid "Matches families where any child has a specified (partial) name"
-msgstr "שליפת משפחות שלצאצא כלשהו יש שם (חלקי) שצוין"
+msgstr "שליפת משפחות, להן צאצא בשם שצוין (שם חלקי)"
 
 #: ../gramps/gen/filters/rules/family/_searchfathername.py:45
 msgid "Families with father matching the <name>"
@@ -11727,7 +11727,7 @@ msgstr "תבנית מקום אוטומטית"
 
 #: ../gramps/gui/configure.py:1225
 msgid "Enables automatic place title generation using specified format."
-msgstr "אפשור חילול אוטומטי של כותרת מקום תוך שימוש בתבנית מוגדרת."
+msgstr "לאפשר איטמוט חילול כותרת מקום תוך שימוש במבנה מוגדרת."
 
 #: ../gramps/gui/configure.py:1303
 msgid "Custom name display options are unique to each family tree."
@@ -11921,11 +11921,11 @@ msgstr "לזכור את המצג האחרון ולפתוח אותו בפעם ה�
 
 #: ../gramps/gui/configure.py:1653
 msgid "Enable spell checker"
-msgstr "אפשור בדיקת איות"
+msgstr "לאפשר בדיקת איות"
 
 #: ../gramps/gui/configure.py:1655
 msgid "Enable the spelling checker for notes."
-msgstr "אפשור בדיקת איות בשדות הערות."
+msgstr "לאפשר בדיקת איות בשדות הערות."
 
 #: ../gramps/gui/configure.py:1664
 #, python-format
@@ -11954,7 +11954,7 @@ msgstr "הצגת סמל לוח־גזירים בסרגל־כלים"
 
 #: ../gramps/gui/configure.py:1683
 msgid "Show or hide the Clipboard icon on the toolbar."
-msgstr "חשיפת או הסתרת סמל לוח־גזירים בסרגל־הכלים"
+msgstr "חשיפת או הסתרת סמל לוח־גזירים בסרגל־הכלים."
 
 #: ../gramps/gui/configure.py:1689
 msgid "Show Reports icon on toolbar"
@@ -11962,7 +11962,7 @@ msgstr "הצגת סמל דוחות בסרגל־כלים"
 
 #: ../gramps/gui/configure.py:1691
 msgid "Show or hide the Reports icon on the toolbar."
-msgstr "חשיפת או הסתרת סמל דוחות בסרגל־הכלים"
+msgstr "חשיפת או הסתרת סמל דוחות סרגל־הכלים."
 
 #: ../gramps/gui/configure.py:1697
 msgid "Show Tools icon on toolbar"
@@ -12405,7 +12405,7 @@ msgstr ""
 
 #: ../gramps/gui/csvdialect.py:111
 msgid "Delimiter:"
-msgstr "מפריד:"
+msgstr "תוחם:"
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:109
 msgid "Undo history warning"
@@ -14923,7 +14923,7 @@ msgstr "מסנני הערה"
 
 #: ../gramps/gui/editors/filtereditor.py:98
 msgid "Citation Filters"
-msgstr "מסנני מובאה"
+msgstr "מסנני מובאות"
 
 #: ../gramps/gui/editors/filtereditor.py:252
 msgid "equal to"
@@ -15269,7 +15269,7 @@ msgstr "כרך/עמוד"
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:114
 msgctxt "Citation: Minimum Confidence"
 msgid "Min. Conf."
-msgstr "וודאות מזערית."
+msgstr "וודאות מזערית"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:117
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:111
@@ -16963,7 +16963,7 @@ msgstr "אירוע 2"
 #: ../gramps/gui/glade/mergeevent.glade:512
 msgid ""
 "Attributes, notes, sources and media objects of both events will be combined."
-msgstr "תכונות, הערות, מקורות ועצםי מדיה של שני האירועים ישולבו."
+msgstr "תכונות, הערות, מקורות ועצמי מדיה של שני האירועים ישולבו."
 
 #: ../gramps/gui/glade/mergefamily.glade:98
 msgid ""
@@ -17925,7 +17925,7 @@ msgstr "לא ניתן למזג אנשים"
 #: ../gramps/gui/merge/mergemedia.py:44
 msgctxt "manual"
 msgid "Merge_Media_Objects"
-msgstr "מיזוג_עצםי_מדיה"
+msgstr "מיזוג_עצמי_מדיה"
 
 #: ../gramps/gui/merge/mergenote.py:44
 msgctxt "manual"
@@ -19838,7 +19838,7 @@ msgid ""
 msgstr ""
 "הקשה להפיכה לאדם הפעיל\n"
 "הקשה ימנית להצגת תפריט העריכה\n"
-"הקשה על עריכת צלמית (אפשור בתיבת דו־השיח תצורה) לעריכה"
+"הקשה על צלמית (ניתן לאפשור בתיבת דו־השיח 'תצורה') לעריכה"
 
 #: ../gramps/gui/widgets/monitoredwidgets.py:628
 msgid "Bad Date"
@@ -20727,7 +20727,7 @@ msgstr[0] ""
 "{wife} ו־\n"
 " {person}, {nyears}"
 msgstr[1] ""
-"{spouse} ו־\n"
+"{wife} ו־\n"
 "{person}, {nyears}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:554
@@ -25080,7 +25080,7 @@ msgstr ""
 "המדיה המיובאים יחסיים לאלה של הנתיב %(path)s. ניתן לשנות את נתיב המדיה "
 "בהעדפות או להמיר את הקבצים המיובאים לנתיב המדיה הבסיסי הקיים. ניתן לעשות זאת "
 "על־ידי העברת קבצי המדיה למיקום החדש ושימוש בכלי מנהל המדיה, מתפריט אפשרות "
-"'החלפת מחרוזת המשנה בנתיב' להגדרת נתיבים תקינים בעצםי המדיה."
+"'החלפת מחרוזת המשנה בנתיב' להגדרת נתיבים תקינים בעצמי המדיה."
 
 #: ../gramps/plugins/importer/importgrdb.py:61
 #: ../gramps/plugins/importer/importprogen.py:189
@@ -25228,8 +25228,8 @@ msgid ""
 "Enable/Disable\n"
 "all object tags."
 msgstr ""
-"אפשור/השבתה\n"
-"של כל תגיות העצמים."
+"אפשור/השבתת\n"
+"כל תגי העצמים."
 
 #: ../gramps/plugins/importer/importprogen.glade:1198
 msgid "Tag Text"
@@ -25244,7 +25244,7 @@ msgid ""
 "Enable/Disable\n"
 "Person import."
 msgstr ""
-"אפשור/נטרול\n"
+"אפשור/השבתת\n"
 "ייבוא אדם."
 
 #: ../gramps/plugins/importer/importprogen.glade:1260
@@ -25252,7 +25252,7 @@ msgid ""
 "Enable/Disable\n"
 "Family import."
 msgstr ""
-"אפשור/נטרול\n"
+"אפשור/השבתת\n"
 "ייבוא משפחה."
 
 #: ../gramps/plugins/importer/importprogen.glade:1279
@@ -25260,8 +25260,8 @@ msgid ""
 "Enable/Disable\n"
 "Child import."
 msgstr ""
-"אפשור/נטרול\n"
-"ייבוא צאצא."
+"אפשור/השבתת\n"
+"ייבוא צאצאים."
 
 #: ../gramps/plugins/importer/importprogen.glade:1330
 msgid ""
@@ -25426,31 +25426,20 @@ msgid "Import of vCards version %s is not supported by Gramps."
 msgstr "ייבוא vCards בגרסה %s אינו נתמך על־ידי גרמפס."
 
 #: ../gramps/plugins/importer/importvcard.py:366
-#, fuzzy
-#| msgid ""
-#| "VCard is malformed missing the compulsory N property, so there is no "
-#| "name; skip it."
 msgid ""
 "The vCard is malformed. It is missing the compulsory N property, so there is "
 "no name; skip it."
-msgstr ""
-"VCard במבנה פגום, חסר מאפיין חובה N, לכן אין שם; המערכת מדלגת על הרשומה."
+msgstr "מבנה VCard פגום, חסר את מאפיין החובה N, לכן שם לא מופיע; הרשומה תדולג."
 
 #: ../gramps/plugins/importer/importvcard.py:371
-#, fuzzy
-#| msgid ""
-#| "VCard is malformed missing the compulsory FN property, get name from N "
-#| "alone."
 msgid ""
 "The vCard is malformed. It is missing the compulsory FN property, get name "
 "from N alone."
-msgstr "VCard במבנה פגום, חסר מאפיין חובה FN, קבלת שם מ־N לבד."
+msgstr "מבנה VCard פגום, חסר את מאפיין החובה FN, קבלת שם מ־N בלבד."
 
 #: ../gramps/plugins/importer/importvcard.py:375
-#, fuzzy
-#| msgid "VCard is malformed wrong number of name components."
 msgid "The vCard is malformed. Wrong number of name components."
-msgstr "VCard במבנה פגום, מספר מרכיבי שם שגוי."
+msgstr "מבנה VCard פגום, מספר מרכיבי שם, שגוי."
 
 #: ../gramps/plugins/importer/importvcard.py:517
 #, python-brace-format
@@ -26230,22 +26219,16 @@ msgid "%(date)s %(time)s"
 msgstr "%(date)s %(time)s"
 
 #: ../gramps/plugins/lib/libmetadata.py:115
-#, fuzzy
-#| msgid "Description"
 msgid "Descriptive Tags"
-msgstr "תאור"
+msgstr "תג תאורי"
 
 #: ../gramps/plugins/lib/libmetadata.py:116
-#, fuzzy
-#| msgid "Styled Text Tags"
 msgid "Date and Time Tags"
-msgstr "תגי מלל מסוגנן"
+msgstr "תגי תאריך ושעה"
 
 #: ../gramps/plugins/lib/libmetadata.py:117
-#, fuzzy
-#| msgid "People"
 msgid "People Tags"
-msgstr "אנשים"
+msgstr "תגי אנשים"
 
 #: ../gramps/plugins/lib/libmetadata.py:118
 msgid "Event Tags"
@@ -32978,15 +32961,15 @@ msgstr[1] "{quantity} עצמי מדיה הופנו אך לא נמצאו\n"
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} missing media objects were kept\n"
 msgstr[0] "הפניה {quantity} לעצם מדיה חסר, נשמרה\n"
-msgstr[1] "{quantity} הפניות לעצמי מדיה חסרים נשמרו\n"
+msgstr[1] "{quantity} הפניות לעצמי מדיה חסרים, נשמרו\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2623
 #, python-brace-format
 msgid "{quantity} missing media object was replaced\n"
 msgid_plural "{quantity} missing media objects were replaced\n"
-msgstr[0] "עצם מדיה חסר {quantity} הוחלף\n"
-msgstr[1] "{quantity} עצם מדיה חסרים הוחלפו\n"
+msgstr[0] "עצם מדיה חסר {quantity}, הוחלף\n"
+msgstr[1] "{quantity} עצם מדיה חסרים, הוחלפו\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2631
@@ -33993,13 +33976,11 @@ msgstr "הסרת עצמים שאינם בשימוש"
 
 #: ../gramps/plugins/tool/reorderids.glade:1406
 msgid "Enable ID reordering."
-msgstr "אפשור סידור מזהים מחדש."
+msgstr "לאפשר סידור מזהים מחדש."
 
 #: ../gramps/plugins/tool/reorderids.glade:1420
 msgid "List next ID available (may not be continuous)."
-msgstr ""
-"הצגת המזהה הזמין הבא\n"
-"(עשוי לא להיות רציף)."
+msgstr "הצגת המזההה זמין הבא (עשוי לא להיות רציף)."
 
 #: ../gramps/plugins/tool/reorderids.glade:1423
 msgid "  Actual"
@@ -34023,9 +34004,7 @@ msgstr "שינוי"
 
 #: ../gramps/plugins/tool/reorderids.glade:1469
 msgid "Enable ID reordering with Start / Step sequence."
-msgstr ""
-"אפשור סידור מזהים מחדש\n"
-" ברצף של, התחלה/ צעד."
+msgstr "לאפשר סידור מזהים מחדש ברצף: התחלה / צעד."
 
 #: ../gramps/plugins/tool/reorderids.glade:1481
 msgid "Start"
@@ -34049,9 +34028,7 @@ msgstr "להשאיר"
 
 #: ../gramps/plugins/tool/reorderids.glade:1521
 msgid "Keep IDs with alternate prefixes untouched."
-msgstr ""
-"להשאיר מזהים עם\n"
-" קידומות חלופיות ללא שינוי."
+msgstr "להשאיר מזהים בעלי קידומות חלופיות ללא שינוי."
 
 #: ../gramps/plugins/tool/reorderids.py:64
 msgctxt "manual"
@@ -35396,7 +35373,7 @@ msgstr ""
 
 #: ../gramps/plugins/view/geoplaces.py:463
 msgid "The place name in the status bar is disabled."
-msgstr "שם המקום בסרגל המצב נוטרל."
+msgstr "שם המקום בסרגל המצב מושבת."
 
 #: ../gramps/plugins/view/geoplaces.py:468
 #, python-format
@@ -36278,7 +36255,7 @@ msgstr "דוח אתר מרשתת"
 
 #: ../gramps/plugins/webreport/media.py:290
 msgid "Below unused media objects"
-msgstr "עצםי מדיה שאינם בשימוש, מטה"
+msgstr "עצמי מדיה שאינם בשימוש, מטה"
 
 #: ../gramps/plugins/webreport/media.py:414
 #, python-format
@@ -36329,7 +36306,7 @@ msgstr "מזהה=%(grampsid)s, נתיב=%(dir)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:552
 msgid "Missing media objects:"
-msgstr "עצםי מדיה חסרים:"
+msgstr "עצמי מדיה חסרים:"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:588
 msgid "Constructing list of other objects..."
@@ -36713,11 +36690,11 @@ msgstr "אפשור יצירת מפתח תמונות"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2261
 msgid "Include unused images and media objects"
-msgstr "הכללת תמונות ועצםי מדיה שאינם בשימוש"
+msgstr "הכללת תמונות ועצמי מדיה שאינם בשימוש"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2262
 msgid "Whether to include unused or unreferenced media objects"
-msgstr "האם לכלול עצםיי מדיה שאינם בשימוש או אינם מופנים"
+msgstr "האם לכלול עצמיי מדיה שאינם בשימוש או אינם מופנים"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2267
 msgid "Create and only use thumbnail- sized images"
@@ -37034,7 +37011,7 @@ msgstr "המאוחר יותר"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2523
 msgid "openlayers version to use"
-msgstr ""
+msgstr "גרסת openlayers בה יעשה שימוש"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2528
 msgid ""
