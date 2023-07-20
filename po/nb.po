@@ -18,16 +18,16 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-12 15:48+0100\n"
-"PO-Revision-Date: 2023-06-18 06:50+0000\n"
+"PO-Revision-Date: 2023-07-20 07:20+0000\n"
 "Last-Translator: Mikal Thunold-Olsen <mikal@thunold-olsen.no>\n"
-"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/nb_NO/>\n"
+"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/nb_NO/>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.18.1\n"
+"X-Generator: Weblate 5.0-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -3020,14 +3020,14 @@ msgstr "omtrent "
 #: ../gramps/gen/datehandler/_datestrings.py:251
 msgctxt "date modifier"
 msgid "from "
-msgstr ""
+msgstr "fra "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:254
 msgctxt "date modifier"
 msgid "to "
-msgstr ""
+msgstr "til "
 
 #: ../gramps/gen/datehandler/_datestrings.py:259
 msgctxt "date quality"
@@ -7102,8 +7102,6 @@ msgid "None"
 msgstr "Ingen"
 
 #: ../gramps/gen/lib/childreftype.py:68
-#, fuzzy
-#| msgid "Birth"
 msgctxt "relationship"
 msgid "Birth"
 msgstr "Født"
@@ -7298,7 +7296,7 @@ msgstr "Sist endret"
 #: ../gramps/plugins/webreport/repository.py:276
 #: ../gramps/plugins/webreport/source.py:297
 msgid "Tags"
-msgstr "Merker"
+msgstr "Stikkord"
 
 #: ../gramps/gen/lib/date.py:306 ../gramps/gen/lib/date.py:344
 #: ../gramps/gen/lib/date.py:350 ../gramps/gen/lib/date.py:352
@@ -7407,7 +7405,7 @@ msgstr "område"
 
 #: ../gramps/gen/lib/date.py:2002
 msgid "from"
-msgstr ""
+msgstr "fra"
 
 #: ../gramps/gen/lib/date.py:2003
 #, fuzzy
@@ -9157,7 +9155,7 @@ msgstr "Markering for stilet tekst"
 #: ../gramps/plugins/textreport/tagreport.py:910
 #: ../gramps/plugins/textreport/tagreport.py:914
 msgid "Tag"
-msgstr "Merke"
+msgstr "Stikkord"
 
 #: ../gramps/gen/lib/styledtexttag.py:112
 msgid "Ranges"
@@ -9204,7 +9202,7 @@ msgstr "Lenke"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:72
 msgid "Strikethrough"
-msgstr ""
+msgstr "Gjennomstreking"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:73
 #, fuzzy
@@ -9388,11 +9386,11 @@ msgstr "Ustabil"
 
 #: ../gramps/gen/plug/_pluginreg.py:62
 msgid "Experimental"
-msgstr ""
+msgstr "Eksperimentell"
 
 #: ../gramps/gen/plug/_pluginreg.py:63
 msgid "Beta"
-msgstr ""
+msgstr "Beta"
 
 #: ../gramps/gen/plug/_pluginreg.py:64
 msgid "Stable"
@@ -9400,11 +9398,11 @@ msgstr "Stabil"
 
 #: ../gramps/gen/plug/_pluginreg.py:72
 msgid "Developer"
-msgstr ""
+msgstr "Utvikler"
 
 #: ../gramps/gen/plug/_pluginreg.py:73
 msgid "Expert"
-msgstr ""
+msgstr "Ekspert"
 
 #: ../gramps/gen/plug/_pluginreg.py:97
 msgid "Quickreport"
@@ -11167,23 +11165,23 @@ msgstr "%(west_longitude)s W"
 
 #: ../gramps/gen/utils/place.py:80
 msgid "DEG"
-msgstr ""
+msgstr "DEG"
 
 #: ../gramps/gen/utils/place.py:83
 msgid "DEG-:"
-msgstr ""
+msgstr "DEG-:"
 
 #: ../gramps/gen/utils/place.py:86
 msgid "D.D4"
-msgstr ""
+msgstr "D.D4"
 
 #: ../gramps/gen/utils/place.py:89
 msgid "D.D8"
-msgstr ""
+msgstr "D.D8"
 
 #: ../gramps/gen/utils/place.py:92
 msgid "RT90"
-msgstr ""
+msgstr "RT90"
 
 #: ../gramps/gen/utils/string.py:46 ../gramps/gui/editors/editperson.py:341
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
@@ -11452,11 +11450,11 @@ msgstr "Ikke funnet"
 
 #: ../gramps/grampsapp.py:326
 msgid "not found because exiv2 is not installed"
-msgstr ""
+msgstr "ikke funnet på grunn av at exiv2 ikke er installert"
 
 #: ../gramps/grampsapp.py:359
 msgid "Installed but does not supply version"
-msgstr ""
+msgstr "Installert, men angir ikke versjon"
 
 #: ../gramps/grampsapp.py:379
 #, fuzzy
@@ -11868,7 +11866,7 @@ msgstr "Farger for kvinner"
 
 #: ../gramps/gui/configure.py:723
 msgid "Colors for people who are neither male nor female"
-msgstr ""
+msgstr "Farger for personer som verken er mann eller kvinne"
 
 #: ../gramps/gui/configure.py:724
 msgid "Colors for Unknown persons"
@@ -12307,43 +12305,43 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1681
 msgid "Show Clipboard icon on toolbar"
-msgstr ""
+msgstr "Vis ikon for Utklippstavle i verktøylinjen"
 
 #: ../gramps/gui/configure.py:1683
 msgid "Show or hide the Clipboard icon on the toolbar."
-msgstr ""
+msgstr "Vis eller skjul ikon for Utklippstavle i verktøylinjen."
 
 #: ../gramps/gui/configure.py:1689
 msgid "Show Reports icon on toolbar"
-msgstr ""
+msgstr "Vis ikon for rapporter i verktøylinjen"
 
 #: ../gramps/gui/configure.py:1691
 msgid "Show or hide the Reports icon on the toolbar."
-msgstr ""
+msgstr "Vis eller skjul ikon for Rapporter i verktøylinjen."
 
 #: ../gramps/gui/configure.py:1697
 msgid "Show Tools icon on toolbar"
-msgstr ""
+msgstr "Vis ikon for Verktøy i verktøylinjen"
 
 #: ../gramps/gui/configure.py:1699
 msgid "Show or hide the Tools icon on the toolbar."
-msgstr ""
+msgstr "Vis eller skjul ikon for Verktøy i verktøylinjen."
 
 #: ../gramps/gui/configure.py:1705
 msgid "Show Plugins icon on toolbar"
-msgstr ""
+msgstr "Vis ikon for Tillegg i verktøylinjen"
 
 #: ../gramps/gui/configure.py:1707
 msgid "Show or hide the Plugins icon on the toolbar."
-msgstr ""
+msgstr "Vis eller skjul ikon for Tillegg i verktøylinjen."
 
 #: ../gramps/gui/configure.py:1713
 msgid "Show Preferences icon on toolbar"
-msgstr ""
+msgstr "Vis ikon for Innstillinger i verktøylinjen"
 
 #: ../gramps/gui/configure.py:1715
 msgid "Show or hide the Preferences icon on the toolbar."
-msgstr ""
+msgstr "Vis eller skjul ikon for Innstillinger i verktøylinjen."
 
 #: ../gramps/gui/configure.py:1721
 msgid "Show close button in gramplet bar tabs"
@@ -12770,10 +12768,12 @@ msgid ""
 "Changes are immediate.\n"
 "This is used when exporting views in CSV format."
 msgstr ""
+"Endringer gjøres umiddelbart.\n"
+"Denne er brukt ved eksportering av visninger i CSV-format."
 
 #: ../gramps/gui/csvdialect.py:111
 msgid "Delimiter:"
-msgstr ""
+msgstr "Skilletegn:"
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:109
 msgid "Undo history warning"
@@ -14272,7 +14272,7 @@ msgstr "Område"
 
 #: ../gramps/gui/editors/editdate.py:82
 msgid "From"
-msgstr ""
+msgstr "Fra"
 
 #: ../gramps/gui/editors/editdate.py:83
 #, fuzzy
@@ -20097,7 +20097,7 @@ msgstr "Kolonner"
 
 #: ../gramps/gui/views/listview.py:1348
 msgid "CSV Dialect"
-msgstr ""
+msgstr "CSV-dialekt"
 
 #: ../gramps/gui/views/navigationview.py:252
 #, python-format
@@ -20898,7 +20898,7 @@ msgstr "Starter"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:858
 msgid "The start index"
-msgstr ""
+msgstr "Startindeksen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:874
 #: ../gramps/plugins/drawreport/descendtree.py:1581
@@ -22268,6 +22268,9 @@ msgid ""
 "You can change this behavior in the 'Configure active view' of any list-"
 "based view"
 msgstr ""
+"CSV er et vanlig regnearkformat.\n"
+"Du kan endre denne virkemåten i 'Konfigurer aktiv visning' i en hvilken som "
+"helst listebasert visning"
 
 #: ../gramps/plugins/export/export.gpr.py:46
 msgid "CSV spreadsheet options"
@@ -24285,6 +24288,31 @@ msgid ""
 "in Gramps. The flexibility allows you to choose which fits your work style.\n"
 "\n"
 msgstr ""
+"Du vil nå begynne å skrive inn din første familie, og det starter med den "
+"første personen.\n"
+"\n"
+"Bytt til \"Personer\"-visningen og fra menyen klikker du på \"Legg til\" og "
+"deretter \"Person\" (eller bruker [+]-ikonet) for å få opp vinduet for å "
+"angi en person. Å legge inn grunnleggende informasjon og lagre posten gir "
+"deg et utgangspunkt. Velg denne personens post og bytt nå til \"Relasjoner\""
+"-visningen.\n"
+"\n"
+"Med denne første personen har alle menyalternativer og ikonfunksjoner blitt "
+"tilgjengelige. Bruk litt tid på å flytte musen over ikonene. Når markøren "
+"passerer over et ikon, vises en melding som forteller deg ikonets funksjon. "
+"Det samme gjelder for alle redigeringsvinduene. Å flytte musepekeren over et "
+"element vil fortelle deg hva det vil gjøre.\n"
+"\n"
+"Du kan nå opprette familier ved å legge til foreldre, en ektefelle og barn. "
+"Når du har startet, vil du kunne legge til hendelser til personer og "
+"familier. Du kan oppgi kilder og sitater for å gi dokumentasjon for "
+"oppføringene dine.\n"
+"\n"
+"Når du begynner å bruke Gramps, vil du oppdage at informasjon kan legges inn "
+"fra alle de forskjellige visningene. Det er flere måter å gjøre de fleste "
+"aktivitetene på i Gramps. Fleksibiliteten lar deg velge hva som passer din "
+"arbeidsstil.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:171
 #, fuzzy
@@ -24305,6 +24333,12 @@ msgid ""
 "under the \"Family Trees\" menu to import the GEDCOM data.\n"
 "\n"
 msgstr ""
+"For å importere et slektstre fra et annet program må du først opprette en "
+"GEDCOM-fil (eller andre data) fra det forrige programmet.\n"
+"\n"
+"Når du har opprettet en ny Gramps-databasefil, bruk \"Importer\"-"
+"alternativet under \"Familietrær\"-menyen for å importere GEDCOM-dataene.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:179
 #, fuzzy
@@ -24355,6 +24389,11 @@ msgid ""
 "available to you. Many more are available to download and install.\n"
 "\n"
 msgstr ""
+"Det er mange tillegg eller \"Gramplets\" som er tilgjengelige for å hjelpe "
+"deg med å legge inn data og visualisere slektstreet ditt. Mange av disse "
+"verktøyene er allerede tilgjengelige for deg. Mange flere er tilgjengelige "
+"for nedlasting og installasjon.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:201
 msgid "Example Database"
@@ -25129,6 +25168,15 @@ msgid ""
 "however they will be offset from each other.  This will tend to make graphs "
 "with many people in a generation more square."
 msgstr ""
+"I \"Normal\"-innstillingen vil foreldre bli lokalisert for å holde de fleste "
+"linjer korte.\n"
+"«Foreldre sammen»-innstillingen kan hjelpe med å plassere ektefeller ved "
+"siden av hverandre, men med ikke-trivielle grafer vil det resultere i lengre "
+"linjer og større grafer.\n"
+"Foreldrekompensasjonsinnstillingen vil også prøve å sette ektefeller i "
+"nærheten av hverandre, men de vil bli forskjøvet fra hverandre. Dette vil ha "
+"en tendens til å gjøre grafer med mange mennesker i en generasjon mer "
+"firkantede."
 
 #: ../gramps/plugins/importer/import.gpr.py:37
 msgid "Import data from CSV files"
@@ -26082,16 +26130,20 @@ msgid ""
 "The vCard is malformed. It is missing the compulsory N property, so there is "
 "no name; skip it."
 msgstr ""
+"vCard er feil utformet. Den mangler den obligatoriske N-egenskapen, så det "
+"er ikke noe navn; Hopp over det."
 
 #: ../gramps/plugins/importer/importvcard.py:371
 msgid ""
 "The vCard is malformed. It is missing the compulsory FN property, get name "
 "from N alone."
 msgstr ""
+"vCard er feil utformet. Det mangler den obligatoriske FN-egenskapen, få navn "
+"fra N alene."
 
 #: ../gramps/plugins/importer/importvcard.py:375
 msgid "The vCard is malformed. Wrong number of name components."
-msgstr ""
+msgstr "vCard er feil utformet. Feil antall navnekomponenter."
 
 #: ../gramps/plugins/importer/importvcard.py:517
 #, python-brace-format
@@ -30625,6 +30677,10 @@ msgid ""
 "Trying to create a new one failed.\n"
 "Configure the view for the tile path and restart gramps."
 msgstr ""
+"Tittelkatalogen eksisterer ikke lenger:\n"
+"%s\n"
+"Forsøk på å opprette en ny mislyktes.\n"
+"Konfigurer visningen for tittelbanen og start gramps på nytt."
 
 #: ../gramps/plugins/lib/maps/geography.py:397
 msgid "Remove cross hair"
@@ -30825,6 +30881,18 @@ msgid ""
 "\n"
 "The following errors are expected"
 msgstr ""
+"Du må bekrefte og endre tittelbufferen\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"i gramps.ini-filen:\n"
+"%s\n"
+"\n"
+"Før du endrer filen gramps.ini, må du lukke Gramps\n"
+"\n"
+"Følgende feil forventes"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:181
 #: ../gramps/plugins/lib/maps/osmgps.py:245
@@ -32589,7 +32657,7 @@ msgstr "K"
 #: ../gramps/plugins/textreport/familygroup.py:507
 msgctxt "acronym for other"
 msgid "X"
-msgstr ""
+msgstr "X"
 
 #: ../gramps/plugins/textreport/familygroup.py:509
 #, python-format
@@ -32867,7 +32935,7 @@ msgstr "Ta med tanter/unkler/nevøer/nieser"
 #: ../gramps/plugins/textreport/notelinkreport.py:67
 #: ../gramps/plugins/textreport/notelinkreport.py:102
 msgid "Note Link Check Report"
-msgstr ""
+msgstr "Merk Link Sjekk rapport"
 
 #: ../gramps/plugins/textreport/notelinkreport.py:77
 msgid "Note ID"
@@ -36923,7 +36991,7 @@ msgstr "Neste"
 
 #: ../gramps/plugins/webreport/basepage.py:2410
 msgid "Other media: videos, pdfs..."
-msgstr ""
+msgstr "Andre mediefiler: videoer, pdf-er..."
 
 #: ../gramps/plugins/webreport/basepage.py:2572
 msgid " [Click to Go]"
@@ -37947,7 +38015,7 @@ msgstr "Datoer"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2523
 msgid "openlayers version to use"
-msgstr ""
+msgstr "openlayers-versjon som må brukes"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2528
 msgid ""
@@ -37957,6 +38025,11 @@ msgid ""
 "openlayers_version.\n"
 "See OLDER VERSIONS in https://openlayers.org/"
 msgstr ""
+"Du bør bare bruke dette alternativet hvis du ikke kan se kartene på "
+"nettstedet ditt for OpenStreetMap- eller Stamen-kart\n"
+"Du kan endre verdien i den angitte filen. Alternativnavnet som skal endres "
+"er openlayers_version.\n"
+"Se ELDRE VERSJONER på https://openlayers.org/"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2544
 msgid "Other inclusion (CMS, web calendar, PHP)"
@@ -38361,7 +38434,7 @@ msgstr ""
 #. Translators: This is the email subject line in the Web Calendar
 #: ../gramps/plugins/webreport/webcal.py:1567
 msgid "WebCal"
-msgstr ""
+msgstr "WebCal"
 
 #: ../gramps/plugins/webreport/webcal.py:1578
 #, python-format
