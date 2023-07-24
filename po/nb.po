@@ -10,7 +10,7 @@
 # Espen Berg <espenbe@gmail.com>, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2015, 2016.
 # Allan Nordhøy <epost@anotheragency.no>, 2021, 2022, 2023.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
-# Mihle <MihleGaming@gmail.com>, 2021, 2022.
+# Mihle <MihleGaming@gmail.com>, 2021, 2022, 2023.
 # Para <ahh-produktivitet@tutanota.com>, 2022.
 # Mikal Thunold-Olsen <mikal@thunold-olsen.no>, 2023.
 msgid ""
@@ -19,7 +19,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-12 15:48+0100\n"
 "PO-Revision-Date: 2023-07-21 01:46+0000\n"
-"Last-Translator: Mikal Thunold-Olsen <mikal@thunold-olsen.no>\n"
+"Last-Translator: Mihle <MihleGaming@gmail.com>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/nb_NO/>\n"
 "Language: nb\n"
@@ -9097,7 +9097,7 @@ msgstr "Markering for stilet tekst"
 #: ../gramps/plugins/textreport/tagreport.py:910
 #: ../gramps/plugins/textreport/tagreport.py:914
 msgid "Tag"
-msgstr "Stikkord"
+msgstr "Etikett"
 
 #: ../gramps/gen/lib/styledtexttag.py:112
 msgid "Ranges"
