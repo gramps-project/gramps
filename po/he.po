@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-12 15:48+0100\n"
 "PO-Revision-Date: 2023-07-24 16:57+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -972,7 +972,7 @@ msgid ""
 "interested in participating please email gramps-devel@lists.sf.net."
 msgstr ""
 "<b>מתרגמי גרמפס<br/></b>גרמפס תוכנן כך שניתן יהיה להוסיף תרגומים חדשים לשפות "
-"רבות במאמץ פיתוח קטן. למעוניינים להשתתף במייזם התרגום נא שלחו דוא\"ל לכתובת "
+"רבות במאמץ פיתוח קטן. למעוניינים להשתתף במיזם התרגום נא לשלוח דוא״ל לכתובת "
 "‏'gramps-devel@lists.sf.net'."
 
 #: ../data/tips.xml:118
@@ -980,8 +980,8 @@ msgid ""
 "<b>Hello, привет or 喂</b><br/>Whatever script you use Gramps offers full "
 "Unicode support. Characters for all languages are properly displayed."
 msgstr ""
-"<b>שלום, привет או 喂<br/></b> לא משנה באיזה שפה משתמשים, גרמפס מציע תמיכה "
-"מלאה ביוניקוד. תווים בכול השפות מוצגים כראוי."
+"<b>שלום, привет או 喂<br/></b> לא משנה באיזו שפה משתמשים, גרמפס מציע תמיכה "
+"מלאה ביוניקוד. תווים בכל השפות מוצגים כראוי."
 
 #: ../data/tips.xml:120
 msgid ""
@@ -990,7 +990,7 @@ msgid ""
 "person is the person who is selected when the database is opened or when the "
 "home button is pressed."
 msgstr ""
-"<b>אדם הבית<br/></b>ניתן להגדיר בגרמפס כול אדם כאדם הבית , ממצג 'אנשים' "
+"<b>אדם הבית<br/></b>ניתן להגדיר בגרמפס כל אדם כאדם הבית , ממצג 'אנשים' "
 "בתפריט 'עריכה &gt; הגדרת אדם הבית'. אדם הבית הוא האדם שיוצג בעת פתיחת מסד "
 "הנתונים או בעת הקשה על לחצן הבית."
 
@@ -1002,7 +1002,7 @@ msgid ""
 "Gramps is known to be run on Linux, BSD, Solaris, Windows and Mac OS X."
 msgstr ""
 "<b>קוד המקור של גרמפס<br/></b>גרמפס נכתב בשפת מחשב פייתון (Python) תוך שימוש "
-"בספריות GTK ו־GNOME עבור הממשק הגרפי. התוכנה נתמכת בכול סביבת המחשוב שתכנות "
+"בספריות GTK ו־GNOME עבור הממשק הגרפי. התוכנה נתמכת בכול סביבת המחשוב שתוכנות "
 "אלו הותאמו אליהן. גרמפס רץ על לינוקס, BSD, סולריס, וינדוס ומק OS X."
 
 #: ../data/tips.xml:124
@@ -1017,7 +1017,8 @@ msgstr ""
 "<b>תוכנת קוד פתוח<br/></b>מודל הפיתוח החינמי/חופשי ובקוד פתוח (FLOSS) "
 "שפירושם, שכול מתכנת יכול להרחיב את גרמפס שכן קוד המקור זמין בחינם וברישיון. "
 "לכן לא מדובר רק על 'בירה' בחינם, אלא גם בחופש ללמוד ולשנות את הכלי. למידע "
-"נוסף על תכנת קוד פתוח חפשו במרשתת על קרן התוכנה החופשית ויוזמת הקוד הפתוח."
+"נוסף על תוכנת קוד פתוח אפשר לחפש במרשתת על קרן התוכנה החופשית ויוזמת הקוד "
+"הפתוח."
 
 #: ../data/tips.xml:126
 msgid ""
@@ -1027,9 +1028,8 @@ msgid ""
 "rights and restrictions of this license."
 msgstr ""
 "<b>רישיון השימוש בגרמפס<br/></b>גרמפס חופשי לשימוש ומותר לחלוק אותו עם "
-"אחרים. התוכנה מופצת בהפצה חופשיות במגבלות הרישיון הציבורי הכללי של גנו, נא "
-"לעיין ב־http://www.gnu.org/licenses/licenses.html#GPL לקריאה על הזכויות "
-"וההגבלות של רישיון זה."
+"אחרים. התוכנה מופצת בכפוף לרישיון הציבורי הכללי של גנו, נא לעיין ב־http://www"
+".gnu.org/licenses/licenses.html#GPL לקריאה על הזכויות וההגבלות של רישיון זה."
 
 #: ../data/tips.xml:128
 msgid ""
@@ -1037,8 +1037,9 @@ msgid ""
 "whichever desktop environment you prefer. As long as the required GTK "
 "libraries are installed it will run fine."
 msgstr ""
-"<b>גרמפס עבור גנום או KDE? <br/></b>עבור משתמשי לינוקס גרמפס עובד עם כול "
-"סביבת שולחן העבודה. כול עוד ספריות GTK הנדרשות מותקנות, גרמפס יפעל בסדר גמור."
+"<b>גרמפס עבור גנום או KDE? <br/></b>משתמשי לינוקס יכולים ליהנות מגרמפס בכל "
+"אחת מסביבות העבודה המועדפות עליהם. כול עוד ספריות GTK הנדרשות מותקנות, גרמפס "
+"יפעל בסדר גמור."
 
 #: ../gramps/cli/arghandler.py:229
 #, python-format
@@ -33957,7 +33958,7 @@ msgstr "לאפשר סידור מזהים מחדש."
 
 #: ../gramps/plugins/tool/reorderids.glade:1420
 msgid "List next ID available (may not be continuous)."
-msgstr "הצגת המזההה זמין הבא (עשוי לא להיות רציף)."
+msgstr "הצגת המזהה הזמין הבא (עשוי לא להיות רציף)."
 
 #: ../gramps/plugins/tool/reorderids.glade:1423
 msgid "  Actual"
