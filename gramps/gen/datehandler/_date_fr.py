@@ -74,8 +74,8 @@ class DateParserFR(DateParser):
         "c.": Date.MOD_ABOUT,
         "vers": Date.MOD_ABOUT,
         "~": Date.MOD_ABOUT,
-        "from": Date.MOD_FROM,
-        "to": Date.MOD_TO,
+        "de": Date.MOD_FROM,
+        "à": Date.MOD_TO,
     }
 
     quality_to_int = {
