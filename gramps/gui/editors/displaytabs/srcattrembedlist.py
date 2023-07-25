@@ -35,7 +35,7 @@ from gi.repository import GObject, GLib
 from gramps.gen.lib import SrcAttribute
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
-from .attrmodel import AttrModel
+from .srcattrmodel import SrcAttrModel
 from .embeddedlist import (EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL,
                            TEXT_EDIT_COL)
 
@@ -74,7 +74,7 @@ class SrcAttrEmbedList(EmbeddedList):
         """
         self.data = data
         EmbeddedList.__init__(self, dbstate, uistate, track, _('_Attributes'),
-                              AttrModel, move_buttons=True)
+                              SrcAttrModel, move_buttons=True)
 
     def get_editor(self):
         from .. import EditSrcAttribute
