@@ -16,14 +16,14 @@
 # Nick Hall <nick-h@gramps-project.org>, 2022.
 # Hilario Coronado <hilariofm60@gmail.com>, 2022.
 # Óscar Fernández Díaz <oscfdezdz@users.noreply.hosted.weblate.org>, 2023.
+# gallegonovato <fran-carro@hotmail.es>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-12 15:48+0100\n"
-"PO-Revision-Date: 2023-07-12 15:36+0000\n"
-"Last-Translator: Óscar Fernández Díaz <oscfdezdz@users.noreply.hosted."
-"weblate.org>\n"
+"PO-Revision-Date: 2023-07-26 15:07+0000\n"
+"Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
 "Language: es\n"
@@ -11510,10 +11510,8 @@ msgid "not found"
 msgstr "no encontrado"
 
 #: ../gramps/grampsapp.py:326
-#, fuzzy
-#| msgid "can't found it because exiv2 not installed"
 msgid "not found because exiv2 is not installed"
-msgstr "no se puede encontrar porque exiv2 no está instalado"
+msgstr "no encontrado porque exiv2 no está instalado"
 
 #: ../gramps/grampsapp.py:359
 msgid "Installed but does not supply version"
@@ -12331,16 +12329,13 @@ msgid "Enable the spelling checker for notes."
 msgstr "Activar el corrector ortográfico de las notas."
 
 #: ../gramps/gui/configure.py:1664
-#, fuzzy, python-format
-#| msgid ""
-#| "GtkSpell not loaded. Spell checking will not be available.\n"
-#| "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
+#, python-format
 msgid ""
 "Gspell not loaded. Spell checking will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 msgstr ""
-"No se cargó GtkSpell. No estará disponible la comprobación ortográfica.\n"
-"Para construirlo para Gramps, vea %(gramps_wiki_build_spell_url)s"
+"Gspell no esta cargado. El corrector ortográfico no estará disponible.\n"
+"Para construirlo para Gramps mira %(gramps_wiki_build_spell_url)s"
 
 #: ../gramps/gui/configure.py:1672
 msgid "Show text label beside Navigator buttons *"
@@ -19732,14 +19727,8 @@ msgid "Select_Source_selector"
 msgstr "Seleccionar_selector_de_fuente"
 
 #: ../gramps/gui/spell.py:62
-#, fuzzy
-#| msgid ""
-#| "You have no installed dictionaries. Either install one or disable spell "
-#| "checking"
 msgid "You have no installed dictionaries."
-msgstr ""
-"No ha instalado diccionarios. Instale uno o desactive la revisión de "
-"ortografía"
+msgstr "No tienes diccionarios instalados."
 
 #: ../gramps/gui/spell.py:82
 msgid "Off"
@@ -20935,10 +20924,8 @@ msgid "Show Index"
 msgstr "Mostrar índice"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:853
-#, fuzzy
-#| msgid "Display Tip of the Day"
 msgid "Display index of each person"
-msgstr "Mostrar consejo del día"
+msgstr "Mostrar el índice para cada persona"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:857
 #, fuzzy
