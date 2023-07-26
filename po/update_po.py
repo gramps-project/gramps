@@ -352,6 +352,9 @@ def xml_fragments():
         print("Checking for XML fragments in Python files")
         modop = int(len(files) / 20)
     wfp = open("fragments.pot", 'w', encoding='utf-8')
+    wfp.write('msgid ""\n')
+    wfp.write('msgstr ""\n')
+    wfp.write('"Content-Type: text/plain; charset=UTF-8\\n"\n\n')
     for indx, filename in enumerate(files):
         if not indx % modop:
             print(int(indx / len(files) * 100), end='\r')
