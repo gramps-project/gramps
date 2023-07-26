@@ -262,7 +262,7 @@ class TextDoc(metaclass=ABCMeta):
                     self.write_text(piece, links=links)
 
     @abstractmethod
-    def add_media(self, name, align, w_cm, h_cm, alt='', style_name=None, crop=None):
+    def add_media(self, name, align, w_cm, h_cm, alt='', style_name=None, img_dpi=72.0, crop=None):
         """
         Add a photo of the specified width (in centimeters).
 
@@ -273,6 +273,7 @@ class TextDoc(metaclass=ABCMeta):
         :param h_cm: height in centimeters
         :param alt: an alternative text to use. Useful for eg html reports
         :param style_name: style to use for captions
+        :img_dpi: DPI (dots per inch) used for the image
         :param crop: image cropping parameters
         """
 

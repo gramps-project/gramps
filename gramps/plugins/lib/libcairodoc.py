@@ -1039,11 +1039,12 @@ class GtkDocPicture(GtkDocBaseElement):
     _type = 'IMAGE'
     _allowed_children = []
 
-    def __init__(self, style, filename, width, height, crop=None):
+    def __init__(self, style, filename, width, height, img_dpi, crop=None):
         GtkDocBaseElement.__init__(self, style)
         self._filename = filename
         self._width = width
         self._height = height
+        self._img_dpi = img_dpi
         self._crop = crop
 
     def divide(self, layout, width, height, dpi_x, dpi_y):
@@ -1070,8 +1071,15 @@ class GtkDocPicture(GtkDocBaseElement):
             l_margin = 0
 
         # load the image and get its extents
-        pixbuf = resize_to_buffer(self._filename, [img_width, img_height],
-                                  self._crop)
+        if self._img_dpi != 72.0:
+            fac_x = self._img_dpi / dpi_x
+            fac_y = self._img_dpi / dpi_y
+            pixbuf = resize_to_buffer(self._filename,
+                                      [img_width*fac_x, img_height*fac_y],
+                                      self._crop)
+        else:
+            pixbuf = resize_to_buffer(self._filename, [img_width, img_height],
+                                      self._crop)
         pixbuf_width = pixbuf.get_width()
         pixbuf_height = pixbuf.get_height()
 
@@ -1581,9 +1589,9 @@ links (like ODF) and write PDF from that format.
         markuptext = self._backend.add_markup_from_styled(text, s_tags)
         self.__write_text(markuptext, mark=mark, markup=True)
 
-    def add_media(self, name, pos, x_cm, y_cm, alt='',
+    def add_media(self, name, pos, x_cm, y_cm, img_dpi=72.0, alt='',
                          style_name=None, crop=None):
-        new_image = GtkDocPicture(pos, name, x_cm, y_cm, crop=crop)
+        new_image = GtkDocPicture(pos, name, x_cm, y_cm, img_dpi, crop=crop)
         self._active_element.add_child(new_image)
 
         if len(alt):
