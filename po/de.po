@@ -14,7 +14,7 @@
 # R. B. <weblate@macdefender.org>, 2021.
 # RiseT <tareiss1971@yahoo.de>, 2021.
 # David Straub <straub@protonmail.com>, 2021.
-# nautilusx <translate@disroot.org>, 2021.
+# nautilusx <translate@disroot.org>, 2021, 2023.
 # Andreas Abraham <andreas.abraham@gmx.de>, 2021.
 # RiseT <twilite505-4bf24909@yahoo.com>, 2022.
 msgid ""
@@ -22,8 +22,8 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-26 17:35+0100\n"
-"PO-Revision-Date: 2023-07-13 16:59+0000\n"
-"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
+"PO-Revision-Date: 2023-07-27 16:21+0000\n"
+"Last-Translator: nautilusx <translate@disroot.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
 "Language: de\n"
@@ -11062,26 +11062,24 @@ msgid "RT90"
 msgstr "RT90"
 
 #: ../gramps/gen/utils/place.py:102
-#, fuzzy
-#| msgid "Delete the selected citation"
 msgid "Degree, minutes, seconds notation"
-msgstr "Löschen der ausgewählten Fundstelle"
+msgstr "Notation von Grad, Minuten und Sekunden"
 
 #: ../gramps/gen/utils/place.py:103
 msgid "Degree, minutes, seconds notation with :"
-msgstr ""
+msgstr "Grad, Minuten, Sekunden Notation mit :"
 
 #: ../gramps/gen/utils/place.py:104
 msgid "Degree notation, 4 decimals"
-msgstr ""
+msgstr "Gradangabe, 4 Dezimalstellen"
 
 #: ../gramps/gen/utils/place.py:105
 msgid "Degree notation, 8 decimals (precision like ISO-DMS)"
-msgstr ""
+msgstr "Gradangabe, 8 Dezimalstellen (Genauigkeit wie ISO-DMS)"
 
 #: ../gramps/gen/utils/place.py:106
 msgid "Output format for the Swedish coordinate system RT90"
-msgstr ""
+msgstr "Ausgabeformat für das schwedische Koordinatensystem RT90"
 
 #: ../gramps/gen/utils/string.py:46 ../gramps/gui/editors/editperson.py:341
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
@@ -11466,10 +11464,8 @@ msgstr "Zwischenablage"
 
 #: ../gramps/gui/clipboard.py:1379 ../gramps/gui/configure.py:197
 #: ../gramps/gui/editors/filtereditor.py:1164 ../gramps/gui/views/tags.py:389
-#, fuzzy
-#| msgid "Change is not immediate"
 msgid "Any changes are saved immediately"
-msgstr "Veränderung ist nicht unmittelbar"
+msgstr "Alle Änderungen werden sofort gespeichert"
 
 #: ../gramps/gui/clipboard.py:1515 ../gramps/gui/plug/quick/_quicktable.py:141
 #, python-format
@@ -11870,7 +11866,7 @@ msgstr "Warnung vor fehlendem Forscher beim Export nach GEDCOM unterdrücken"
 
 #: ../gramps/gui/configure.py:842
 msgid "Suppress tooltip warnings about data being saved immediately"
-msgstr ""
+msgstr "Tooltip-Warnungen über das sofortige Speichern von Daten unterdrücken"
 
 #: ../gramps/gui/configure.py:847
 msgid "Show plugin status dialog on plugin load error"
@@ -15398,10 +15394,8 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:88
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:81
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:66
-#, fuzzy
-#| msgid "Case sensitive:"
 msgid "Case sensitive"
-msgstr "Groß-/Kleinschreibung beachten:"
+msgstr "Groß- und Kleinschreibung"
 
 #: ../gramps/gui/editors/filtereditor.py:650
 msgid "Rule Name"
@@ -25247,14 +25241,13 @@ msgid "Show Sosa / Sosa-Stradonitz / Ahnentafel number."
 msgstr "Sosa / Sosa-Stradonitz / Ahnentafelnummer anzeigen."
 
 #: ../gramps/plugins/graph/gvhourglass.py:474
-#, fuzzy
-#| msgid "Show all events"
 msgid "Show symbols for events"
-msgstr "Alle Ereignisse anzeigen"
+msgstr "Symbole für Ereignisse anzeigen"
 
 #: ../gramps/plugins/graph/gvhourglass.py:476
 msgid "Show genealogical symbols for birth, marriage and death events."
 msgstr ""
+"Genealogische Symbole für Geburts-, Heirats- und Sterbeereignisse anzeigen."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:211
 #: ../gramps/plugins/textreport/indivcomplete.py:836
@@ -38687,24 +38680,24 @@ msgid "Google maps API key"
 msgstr "GoogleMaps API Schlüssel"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2495
-#, fuzzy
-#| msgid "The API key used for the Google maps"
 msgid ""
 "The API key used for the Google maps.\n"
 "This key is mandatory and must be valid"
-msgstr "Der für Google Maps verwendete API-Schlüssel"
+msgstr ""
+"Der für Google Maps verwendete API-Schlüssel.\n"
+"Dieser Schlüssel ist obligatorisch und muss gültig sein"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2504
-#, fuzzy
-#| msgid "Google maps API key"
 msgid "How to get the API key"
-msgstr "GoogleMaps API Schlüssel"
+msgstr "Wie man den API-Schlüssel erhält"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2507
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Google maps service must be selected."
 msgstr ""
+"Kopiere diesen Wert und füge ihn in deinen Browser ein.\n"
+"Der Google Maps-Dienst muss ausgewählt sein."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2514
 msgid "Toner"
