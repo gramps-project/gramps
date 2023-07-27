@@ -29,7 +29,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-26 17:35+0100\n"
-"PO-Revision-Date: 2023-07-12 20:12+0000\n"
+"PO-Revision-Date: 2023-07-27 18:18+0000\n"
 "Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -10874,26 +10874,24 @@ msgid "RT90"
 msgstr "RT90"
 
 #: ../gramps/gen/utils/place.py:102
-#, fuzzy
-#| msgid "Delete the selected citation"
 msgid "Degree, minutes, seconds notation"
-msgstr "Radera den valda citeringen"
+msgstr "Grad, minuter, sekunder notation"
 
 #: ../gramps/gen/utils/place.py:103
 msgid "Degree, minutes, seconds notation with :"
-msgstr ""
+msgstr "Grad, minuter, sekunder notation med :"
 
 #: ../gramps/gen/utils/place.py:104
 msgid "Degree notation, 4 decimals"
-msgstr ""
+msgstr "Gradnotation, 4 decimaler"
 
 #: ../gramps/gen/utils/place.py:105
 msgid "Degree notation, 8 decimals (precision like ISO-DMS)"
-msgstr ""
+msgstr "Gradnotation, 8 decimaler (precision som ISO-DMS)"
 
 #: ../gramps/gen/utils/place.py:106
 msgid "Output format for the Swedish coordinate system RT90"
-msgstr ""
+msgstr "Utdataformat för det svenska koordinatsystemet RT90"
 
 #: ../gramps/gen/utils/string.py:46 ../gramps/gui/editors/editperson.py:341
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
@@ -11274,10 +11272,8 @@ msgstr "Urklipp"
 
 #: ../gramps/gui/clipboard.py:1379 ../gramps/gui/configure.py:197
 #: ../gramps/gui/editors/filtereditor.py:1164 ../gramps/gui/views/tags.py:389
-#, fuzzy
-#| msgid "Change is not immediate"
 msgid "Any changes are saved immediately"
-msgstr "Ändringen är inte omedelbar"
+msgstr "Eventuella ändringar sparas omedelbart"
 
 #: ../gramps/gui/clipboard.py:1515 ../gramps/gui/plug/quick/_quicktable.py:141
 #, python-format
@@ -11675,7 +11671,7 @@ msgstr "Varna inte om saknad forskare vid export till GEDCOM"
 
 #: ../gramps/gui/configure.py:842
 msgid "Suppress tooltip warnings about data being saved immediately"
-msgstr ""
+msgstr "Undertryck verktygstipsvarningar för data som sparas omedelbart"
 
 #: ../gramps/gui/configure.py:847
 msgid "Show plugin status dialog on plugin load error"
@@ -15146,10 +15142,8 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:88
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:81
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:66
-#, fuzzy
-#| msgid "Case sensitive:"
 msgid "Case sensitive"
-msgstr "Skiftkänslig:"
+msgstr "Skiftkänslig"
 
 #: ../gramps/gui/editors/filtereditor.py:650
 msgid "Rule Name"
@@ -20334,7 +20328,7 @@ msgstr "Typsnittsfärg"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:78
 msgid "Redo"
-msgstr "Återställ"
+msgstr "Gör om"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:78
 msgid "Undo"
@@ -21756,14 +21750,12 @@ msgstr ""
 "Du kan anpassa typsnitt och färg för varje generation i mallredigeraren"
 
 #: ../gramps/plugins/drawreport/fanchart.py:765
-#, fuzzy
-#| msgid "Flip name on the left of the fan"
 msgid "Flip names that are on the bottom half of the fan"
-msgstr "Vänd namnet på vänster sida om cirkeldiagrammet"
+msgstr "Vänd namn som finns på den nedre halvan av cirkeldiagrammet"
 
 #: ../gramps/plugins/drawreport/fanchart.py:767
 msgid "Flip names for generations 2, 3 and 4 i.e. those found in circles"
-msgstr ""
+msgstr "Vänd namn för generation 2, 3 och 4, dvs. de som finns i cirklar"
 
 #: ../gramps/plugins/drawreport/fanchart.py:823
 #, python-format
@@ -24855,14 +24847,12 @@ msgid "Show Sosa / Sosa-Stradonitz / Ahnentafel number."
 msgstr "Visa Sosa / Sosa-Stradonitz / Ahnentafel-nummer."
 
 #: ../gramps/plugins/graph/gvhourglass.py:474
-#, fuzzy
-#| msgid "Show all events"
 msgid "Show symbols for events"
-msgstr "Visa alla händelser"
+msgstr "Visa symboler för händelser"
 
 #: ../gramps/plugins/graph/gvhourglass.py:476
 msgid "Show genealogical symbols for birth, marriage and death events."
-msgstr ""
+msgstr "Visa genealogiska symboler för födelse, äktenskap och dödsfall."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:211
 #: ../gramps/plugins/textreport/indivcomplete.py:836
@@ -38066,24 +38056,24 @@ msgid "Google maps API key"
 msgstr "Google maps API key"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2495
-#, fuzzy
-#| msgid "The API key used for the Google maps"
 msgid ""
 "The API key used for the Google maps.\n"
 "This key is mandatory and must be valid"
-msgstr "API-nyckeln som används för Google-maps"
+msgstr ""
+"API-nyckeln som används för Google-maps.\n"
+"Denna nyckel är obligatorisk och måste vara giltig"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2504
-#, fuzzy
-#| msgid "Google maps API key"
 msgid "How to get the API key"
-msgstr "Google maps API key"
+msgstr "Hur man får API-nyckeln"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2507
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Google maps service must be selected."
 msgstr ""
+"Kopiera och klistra in detta värde i din webbläsare.\n"
+"Tjänsten Google maps måste väljas."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2514
 msgid "Toner"
