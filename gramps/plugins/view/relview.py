@@ -1914,6 +1914,13 @@ class RelationshipView(NavigationView):
         """
         return [self.content_panel, self.config_panel]
 
+    def get_default_gramplets(self):
+        """
+        Define the default gramplets for the sidebar and bottombar.
+        """
+        return (("WelStartRelview",),
+                ())
+
 #-------------------------------------------------------------------------
 #
 # Function to return if person has children
