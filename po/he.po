@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-26 17:35+0100\n"
-"PO-Revision-Date: 2023-07-24 16:57+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2023-07-27 17:00+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -560,7 +560,7 @@ msgid ""
 "configured to the way you like it. Have a look to the right of the top "
 "toolbar or under the \"View\" menu."
 msgstr ""
-"<b>ארגון מצגים<br/></b>מצגים רבים יכולים להציג נתונים כעץ מדרגי או כרשימה "
+"<b>ארגון מצגים<br/></b>רביםמהמצגים יכולים להציג נתונים כרשימהמדורגת או "
 "שטוחה. ניתן להגדיר כל מצג ולהתאימו על פי העדפה אישית. ניתן לגשת להגדרות "
 "מתפריט 'מצג'."
 
@@ -4650,7 +4650,7 @@ msgstr "משפחות עם צאצא כלשהו התואם ל<שם>"
 
 #: ../gramps/gen/filters/rules/family/_searchchildname.py:46
 msgid "Matches families where any child has a specified (partial) name"
-msgstr "שליפת משפחות, להן צאצא בשם שצוין (שם חלקי)"
+msgstr "שליפת משפחות, בהן מופיע צאצא כלשהו בשם (החלקי) שצוין"
 
 #: ../gramps/gen/filters/rules/family/_searchfathername.py:45
 msgid "Families with father matching the <name>"
@@ -9512,7 +9512,7 @@ msgid ""
 msgstr ""
 "השפעה על ריווח צמתים ושינוי סילום התרשים.\n"
 "אם התרשים קטן מאזור ההדפסה:\n"
-"  דחיסה לא תשנה את מרווח הצמתים. \n"
+"  דחיסה לא תשנה את מרווח הצמתים.\n"
 "  מילוי יגביר את מרווח הצמתים כך שיתאים לאזור ההדפסה ברוחב ובגובה.\n"
 "  הרחבה תגדיל את ריווח הצמתים בצורה אחידה כדי לשמר את יחס הגובה־רוחב.\n"
 "אם התרשים גדול מאזור ההדפסה:\n"
@@ -27275,7 +27275,7 @@ msgstr "קבורה %(burial_date)s ב־%(burial_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:477
 #, python-format
 msgid "%(male_name)s was buried on %(burial_date)s%(endnotes)s."
-msgstr "%(male_name)s קבורה ב־%(burial_date)s%(endnotes)s."
+msgstr "%(male_name)s קבורה ביום %(burial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:478
 #, python-format
@@ -27285,22 +27285,22 @@ msgstr "קוברה ב־%(burial_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:481
 #, python-format
 msgid "%(female_name)s was buried on %(burial_date)s%(endnotes)s."
-msgstr "%(female_name)s קבורה ב־%(burial_date)s%(endnotes)s."
+msgstr "%(female_name)s קבורה ביום %(burial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:482
 #, python-format
 msgid "She was buried on %(burial_date)s%(endnotes)s."
-msgstr "קבורה ב־%(burial_date)s%(endnotes)s."
+msgstr "קבורה ביום %(burial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:485
 #, python-format
 msgid "%(unknown_gender_name)s was buried on %(burial_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s קבורה ב־%(burial_date)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s קבורה ביום %(burial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:486
 #, python-format
 msgid "This person was buried on %(burial_date)s%(endnotes)s."
-msgstr "קבורה ב־%(burial_date)s%(endnotes)s."
+msgstr "קבורה ביום %(burial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:488
 #, python-format
@@ -27322,7 +27322,7 @@ msgstr "קבורה ב־%(month_year)s ב־%(burial_place)s%(endnotes)s."
 #, python-format
 msgid ""
 "%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "%(female_name)s קבורה %(month_year)s ב־%(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s קבורה ב־ %(month_year)s ב־%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:498
 #, python-format
