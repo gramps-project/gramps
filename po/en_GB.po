@@ -33,15 +33,15 @@
 # unrecognized -> unrecognised
 #
 # Copyright (C)
-# Nick Hall <nick-h@gramps-project.org>, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
+# Nick Hall <nick-h@gramps-project.org>, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
 # Andi Chandler <andi@gowling.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-26 17:35+0100\n"
-"PO-Revision-Date: 2023-07-20 07:20+0000\n"
-"Last-Translator: Andi Chandler <andi@gowling.com>\n"
+"PO-Revision-Date: 2023-07-27 05:43+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/en_GB/>\n"
 "Language: en_GB\n"
@@ -10861,26 +10861,24 @@ msgid "RT90"
 msgstr "RT90"
 
 #: ../gramps/gen/utils/place.py:102
-#, fuzzy
-#| msgid "Delete the selected citation"
 msgid "Degree, minutes, seconds notation"
-msgstr "Delete the selected citation"
+msgstr "Degree, minutes, seconds notation"
 
 #: ../gramps/gen/utils/place.py:103
 msgid "Degree, minutes, seconds notation with :"
-msgstr ""
+msgstr "Degree, minutes, seconds notation with :"
 
 #: ../gramps/gen/utils/place.py:104
 msgid "Degree notation, 4 decimals"
-msgstr ""
+msgstr "Degree notation, 4 decimals"
 
 #: ../gramps/gen/utils/place.py:105
 msgid "Degree notation, 8 decimals (precision like ISO-DMS)"
-msgstr ""
+msgstr "Degree notation, 8 decimals (precision like ISO-DMS)"
 
 #: ../gramps/gen/utils/place.py:106
 msgid "Output format for the Swedish coordinate system RT90"
-msgstr ""
+msgstr "Output format for the Swedish coordinate system RT90"
 
 #: ../gramps/gen/utils/string.py:46 ../gramps/gui/editors/editperson.py:341
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
@@ -11258,10 +11256,8 @@ msgstr "Clipboard"
 
 #: ../gramps/gui/clipboard.py:1379 ../gramps/gui/configure.py:197
 #: ../gramps/gui/editors/filtereditor.py:1164 ../gramps/gui/views/tags.py:389
-#, fuzzy
-#| msgid "Change is not immediate"
 msgid "Any changes are saved immediately"
-msgstr "Change is not immediate"
+msgstr "Any changes are saved immediately"
 
 #: ../gramps/gui/clipboard.py:1515 ../gramps/gui/plug/quick/_quicktable.py:141
 #, python-format
@@ -11657,7 +11653,7 @@ msgstr "Suppress warning about missing researcher when exporting to GEDCOM"
 
 #: ../gramps/gui/configure.py:842
 msgid "Suppress tooltip warnings about data being saved immediately"
-msgstr ""
+msgstr "Suppress tooltip warnings about data being saved immediately"
 
 #: ../gramps/gui/configure.py:847
 msgid "Show plugin status dialog on plugin load error"
@@ -15121,10 +15117,8 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:88
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:81
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:66
-#, fuzzy
-#| msgid "Case sensitive:"
 msgid "Case sensitive"
-msgstr "Case sensitive:"
+msgstr "Case sensitive"
 
 #: ../gramps/gui/editors/filtereditor.py:650
 msgid "Rule Name"
@@ -17900,20 +17894,16 @@ msgid "_Report a Bug"
 msgstr "_Report a Bug"
 
 #: ../gramps/gui/grampsgui.py:56
-#, fuzzy
-#| msgid "Reports"
 msgid "_Reports"
-msgstr "Reports"
+msgstr "_Reports"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Toolbar"
 msgstr "_Toolbar"
 
 #: ../gramps/gui/grampsgui.py:56
-#, fuzzy
-#| msgid "Tools"
 msgid "_Tools"
-msgstr "Tools"
+msgstr "_Tools"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_User Manual"
@@ -21726,14 +21716,12 @@ msgstr ""
 "You can customise font and colour for each generation in the style editor"
 
 #: ../gramps/plugins/drawreport/fanchart.py:765
-#, fuzzy
-#| msgid "Flip name on the left of the fan"
 msgid "Flip names that are on the bottom half of the fan"
-msgstr "Flip name on the left of the fan"
+msgstr "Flip names that are on the bottom half of the fan"
 
 #: ../gramps/plugins/drawreport/fanchart.py:767
 msgid "Flip names for generations 2, 3 and 4 i.e. those found in circles"
-msgstr ""
+msgstr "Flip names for generations 2, 3 and 4 i.e. those found in circles"
 
 #: ../gramps/plugins/drawreport/fanchart.py:823
 #, python-format
@@ -24818,14 +24806,12 @@ msgid "Show Sosa / Sosa-Stradonitz / Ahnentafel number."
 msgstr "Show Sosa / Sosa-Stradonitz / Ahnentafel number."
 
 #: ../gramps/plugins/graph/gvhourglass.py:474
-#, fuzzy
-#| msgid "Show all events"
 msgid "Show symbols for events"
-msgstr "Show all events"
+msgstr "Show symbols for events"
 
 #: ../gramps/plugins/graph/gvhourglass.py:476
 msgid "Show genealogical symbols for birth, marriage and death events."
-msgstr ""
+msgstr "Show genealogical symbols for birth, marriage and death events."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:211
 #: ../gramps/plugins/textreport/indivcomplete.py:836
@@ -38077,24 +38063,24 @@ msgid "Google maps API key"
 msgstr "Google maps API key"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2495
-#, fuzzy
-#| msgid "The API key used for the Google maps"
 msgid ""
 "The API key used for the Google maps.\n"
 "This key is mandatory and must be valid"
-msgstr "The API key used for the Google maps"
+msgstr ""
+"The API key used for the Google maps.\n"
+"This key is mandatory and must be valid"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2504
-#, fuzzy
-#| msgid "Google maps API key"
 msgid "How to get the API key"
-msgstr "Google maps API key"
+msgstr "How to get the API key"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2507
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Google maps service must be selected."
 msgstr ""
+"Copy and paste this value in your browser.\n"
+"The Google maps service must be selected."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2514
 msgid "Toner"
