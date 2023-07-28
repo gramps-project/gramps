@@ -787,7 +787,7 @@ class GrampsPreferences(ConfigureDialog):
             group_label.set_halign(Gtk.Align.START)
             group_label.set_margin_top(12)
             group_label.set_markup(_('<b>%s</b>') % frame_lbl)
-            colors_grid.attach(group_label, 0, row, 3, 1)
+            colors_grid.attach(group_label, 0, row, 6, 1)
 
             row_added = 0
             for color in color_list:
