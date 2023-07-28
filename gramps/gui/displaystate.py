@@ -386,8 +386,8 @@ TOOL_UI = '''  <child>
     <object class="GtkToolButton">
       <property name="icon-name">%s</property>
       <property name="action-name">%s</property>
-      <property name="tooltip_text" translatable="yes">%s</property>
-      <property name="label" translatable="yes">%s</property>
+      <property name="tooltip_text">%s</property>
+      <property name="label">%s</property>
       <property name="use-underline">True</property>
     </object>
     <packing>
