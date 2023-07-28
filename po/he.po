@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-26 17:35+0100\n"
 "PO-Revision-Date: 2023-07-28 15:29+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -10713,19 +10713,19 @@ msgstr "מחיקת המובאה שנבחרה"
 
 #: ../gramps/gen/utils/place.py:103
 msgid "Degree, minutes, seconds notation with :"
-msgstr ""
+msgstr "סימון מעלות, דקות, שניות עם:"
 
 #: ../gramps/gen/utils/place.py:104
 msgid "Degree notation, 4 decimals"
-msgstr ""
+msgstr "סימון מעלות, 4 ספרות עשרוניות"
 
 #: ../gramps/gen/utils/place.py:105
 msgid "Degree notation, 8 decimals (precision like ISO-DMS)"
-msgstr ""
+msgstr "סימון מעלות, 8 ספרות עשרוניות (רמת דיות כמו ISO-DMS)"
 
 #: ../gramps/gen/utils/place.py:106
 msgid "Output format for the Swedish coordinate system RT90"
-msgstr ""
+msgstr "תסדיר פלט לשיטת נקודות־הציון השוודית RT90"
 
 #: ../gramps/gen/utils/string.py:46 ../gramps/gui/editors/editperson.py:341
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
@@ -11498,7 +11498,7 @@ msgstr "דיכוי אזהרה בעת יצוא לג'דקום, לגבי חוקר �
 
 #: ../gramps/gui/configure.py:842
 msgid "Suppress tooltip warnings about data being saved immediately"
-msgstr ""
+msgstr "דיכוי אזהרות רמז־צץ על כך שנתונים נשצרים באופן מיידי"
 
 #: ../gramps/gui/configure.py:847
 msgid "Show plugin status dialog on plugin load error"
@@ -21442,7 +21442,7 @@ msgstr "היפוך שמות בצדה השמאלי של המניפה"
 
 #: ../gramps/plugins/drawreport/fanchart.py:767
 msgid "Flip names for generations 2, 3 and 4 i.e. those found in circles"
-msgstr ""
+msgstr "היפוך שמות דורות 2, 3 ו־4 כלומר נמצאים במעגלים הללו"
 
 #: ../gramps/plugins/drawreport/fanchart.py:823
 #, python-format
@@ -24502,7 +24502,7 @@ msgstr "הצגת כל האירועים"
 
 #: ../gramps/plugins/graph/gvhourglass.py:476
 msgid "Show genealogical symbols for birth, marriage and death events."
-msgstr ""
+msgstr "הצגת סמלים גנאולוגיים לארועי לידה, נישואין ופטירה."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:211
 #: ../gramps/plugins/textreport/indivcomplete.py:836
@@ -37552,6 +37552,8 @@ msgid ""
 "Copy and paste this value in your browser.\n"
 "The Google maps service must be selected."
 msgstr ""
+"נא להעתיק ולהדביק ערכים אלו בחיפוש הדפדפן.\n"
+"חובה לבחור בשרות המפות של Google."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2514
 msgid "Toner"
