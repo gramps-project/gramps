@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-26 17:35+0100\n"
-"PO-Revision-Date: 2023-07-26 15:07+0000\n"
+"PO-Revision-Date: 2023-07-28 16:42+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
@@ -11082,26 +11082,24 @@ msgid "RT90"
 msgstr "RT90"
 
 #: ../gramps/gen/utils/place.py:102
-#, fuzzy
-#| msgid "Delete the selected citation"
 msgid "Degree, minutes, seconds notation"
-msgstr "Eliminar la cita seleccionada"
+msgstr "Notación de grados, minutos y segundos"
 
 #: ../gramps/gen/utils/place.py:103
 msgid "Degree, minutes, seconds notation with :"
-msgstr ""
+msgstr "Notación de grados, minutos y segundos con :"
 
 #: ../gramps/gen/utils/place.py:104
 msgid "Degree notation, 4 decimals"
-msgstr ""
+msgstr "Notación en grados, 4 decimales"
 
 #: ../gramps/gen/utils/place.py:105
 msgid "Degree notation, 8 decimals (precision like ISO-DMS)"
-msgstr ""
+msgstr "Notación en grados, 8 decimales (precisión igual que en ISO-DMS)"
 
 #: ../gramps/gen/utils/place.py:106
 msgid "Output format for the Swedish coordinate system RT90"
-msgstr ""
+msgstr "Formato de salida para el sistema de coordenadas sueco RT90"
 
 #: ../gramps/gen/utils/string.py:46 ../gramps/gui/editors/editperson.py:341
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
@@ -11484,10 +11482,8 @@ msgstr "Portapapeles"
 
 #: ../gramps/gui/clipboard.py:1379 ../gramps/gui/configure.py:197
 #: ../gramps/gui/editors/filtereditor.py:1164 ../gramps/gui/views/tags.py:389
-#, fuzzy
-#| msgid "Change is not immediate"
 msgid "Any changes are saved immediately"
-msgstr "El cambio no es inmediato"
+msgstr "Los cambios se guardan inmediatamente"
 
 #: ../gramps/gui/clipboard.py:1515 ../gramps/gui/plug/quick/_quicktable.py:141
 #, python-format
@@ -11888,7 +11884,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:842
 msgid "Suppress tooltip warnings about data being saved immediately"
-msgstr ""
+msgstr "Suprimir los avisos de los datos que se guardan inmediatamente"
 
 #: ../gramps/gui/configure.py:847
 msgid "Show plugin status dialog on plugin load error"
@@ -15401,10 +15397,8 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:88
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:81
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:66
-#, fuzzy
-#| msgid "Case sensitive:"
 msgid "Case sensitive"
-msgstr "Distinción mayúsculas/minúsculas:"
+msgstr "Distingue entre mayúsculas y minúsculas"
 
 #: ../gramps/gui/editors/filtereditor.py:650
 msgid "Rule Name"
