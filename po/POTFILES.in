@@ -379,6 +379,7 @@ gramps/gen/utils/requirements.py
 gramps/gen/utils/string.py
 gramps/gen/utils/symbols.py
 gramps/gen/utils/unknown.py
+gramps/gen/utils/win32locale.py
 gramps/grampsapp.py
 gramps/gui/aboutdialog.py
 gramps/gui/autocomp.py
