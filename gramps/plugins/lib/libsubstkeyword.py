@@ -826,7 +826,7 @@ class VariableParse:
     def is_a(self):
         """ check """
         return self._in.this == "$" and self._in.next is not None and \
-                              "nsijbBdDmMvVauetTpPG".find(self._in.next) != -1
+                              "nhsijbBdDmMvVauetTpPG".find(self._in.next) != -1
 
     def get_event_by_type(self, marriage, e_type):
         """ get an event from a type """
@@ -951,6 +951,13 @@ class VariableParse:
         if next_char == "n":
             #Person's name
             return self.__parse_name(self.friend.person, attrib_parse)
+
+        elif next_char == "h":
+            if self.empty_item(self.friend.person):
+                return
+#            print(self.friend.person.get_maiden_name())
+            return self.friend.person.get_maiden_name()
+
         elif next_char == "s":
             #Souses name
             return self.__parse_name(self.friend.spouse, attrib_parse)
