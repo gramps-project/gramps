@@ -88,6 +88,7 @@ from gramps.gen.lib import (
     StyledTextTag,
     StyledTextTagType,
     Surname,
+    Tree,
     Tag,
     Tree,
     Url,
