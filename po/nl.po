@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-28 19:29+0100\n"
-"PO-Revision-Date: 2023-07-27 05:43+0000\n"
+"PO-Revision-Date: 2023-07-29 14:39+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -3959,11 +3959,11 @@ msgstr "Waarde:"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:47
 msgid "Citations with the attribute <attribute>"
-msgstr "Aanhalingen met het kenmerk <attribute>"
+msgstr "Citaten met het kenmerk <attribute>"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:48
 msgid "Matches citations with the attribute of a particular value"
-msgstr "Vind aanhalingen met het kenmerk van een bepaalde waarde"
+msgstr "Vind citaten met het kenmerk van een bepaalde waarde"
 
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:50
 #: ../gramps/gen/filters/rules/event/_hascitation.py:50
@@ -8632,10 +8632,8 @@ msgid "Research"
 msgstr "Onderzoek"
 
 #: ../gramps/gen/lib/notetype.py:78
-#, fuzzy
-#| msgid "Analyzing names"
 msgid "Analysis"
-msgstr "Namen analyseren"
+msgstr "Analyse"
 
 #: ../gramps/gen/lib/notetype.py:79
 msgid "Transcript"
@@ -9472,10 +9470,8 @@ msgid "Thumbnailer"
 msgstr "Miniatuurautomaat"
 
 #: ../gramps/gen/plug/_pluginreg.py:113 ../gramps/gui/configure.py:1424
-#, fuzzy
-#| msgid "Citation Information"
 msgid "Citation formatter"
-msgstr "Informatie van aanhalingen"
+msgstr "Opmaak van citaten"
 
 #: ../gramps/gen/plug/_pluginreg.py:589
 #: ../gramps/plugins/gramplet/faqgramplet.py:135
@@ -9960,32 +9956,24 @@ msgid "Surname Given Nickname"
 msgstr "Achternaam Voornaam Bijnaam"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:69
-#, fuzzy
-#| msgid "Surname Given Nickname"
 msgid "Surname, Given Nickname"
-msgstr "Achternaam Voornaam Bijnaam"
+msgstr "Achternaam, Voornaam Bijnaam"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:70
-#, fuzzy
-#| msgid "Given Nickname Surname"
 msgid "GivenNicknameSurname"
-msgstr "Voornaam Bijnaam Achternaam"
+msgstr "VoornaamBijnaamAchternaam"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:72
 msgid "Auto"
-msgstr ""
+msgstr "Automatisch"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:73
-#, fuzzy
-#| msgid "Call Name"
 msgid "Call Name Only"
-msgstr "Roepnaam"
+msgstr "Alleen Roepnaam"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:74
-#, fuzzy
-#| msgid "Given Name"
 msgid "Whole Given Name"
-msgstr "Voornaam"
+msgstr "Volledige voornaam"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:77
 msgid "Above"
@@ -10115,6 +10103,9 @@ msgid ""
 "Select the portion of the given name to be marked as preferred. Auto sets "
 "the call name if one exists, otherwise the whole given name."
 msgstr ""
+"Selecteer het deel van de voornaam dat als voorkeur moet worden gemarkeerd. "
+"Indien beschikbaar, wordt de roepnaam automatisch aangewezen, anders de "
+"volledige voornaam."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:196
 msgid "Position of marriage information."
@@ -11081,17 +11072,15 @@ msgstr "Uitvoerformaat voor het Zweedse coördinatensysteem RT90"
 
 #: ../gramps/gen/utils/requirements.py:145
 msgid "Python modules"
-msgstr ""
+msgstr "Python modules"
 
 #: ../gramps/gen/utils/requirements.py:152
 msgid "GObject introspection modules"
-msgstr ""
+msgstr "GObject introspection modules"
 
 #: ../gramps/gen/utils/requirements.py:159
-#, fuzzy
-#| msgid "_Execute"
 msgid "Executables"
-msgstr "_Uitvoeren"
+msgstr "Uitvoerbare bestanden"
 
 #: ../gramps/gen/utils/string.py:46 ../gramps/gui/editors/editperson.py:341
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
@@ -12019,32 +12008,28 @@ msgid "Calendar on input"
 msgstr "Kalender bij invoer"
 
 #: ../gramps/gui/configure.py:1391
-#, fuzzy
-#| msgid "Shows previous page"
 msgid "on the previous day"
-msgstr "Toont vorige pagina"
+msgstr "op de vorige dag"
 
 #: ../gramps/gui/configure.py:1392
-#, fuzzy
-#| msgid "Shows the next page"
 msgid "on the next day"
-msgstr "Toont de volgende pagina"
+msgstr "op de volgende dag"
 
 #: ../gramps/gui/configure.py:1393
 msgid "only on leap years"
-msgstr ""
+msgstr "alleen bij schrikkeljaren"
 
 #: ../gramps/gui/configure.py:1398
 msgid ""
 "For non leap years, anniversaries are displayed on either February 28, March "
 "1 or not at all in Gregorian calendars"
 msgstr ""
+"Voor niet-schrikkeljaren worden jubilea getoond op 28 februari, 1 maart of "
+"helemaal niet in Gregoriaanse kalenders"
 
 #: ../gramps/gui/configure.py:1401
-#, fuzzy
-#| msgid "Include death anniversaries"
 msgid "Show leap day anniversaries"
-msgstr "Overlijdensherdenkdagen opnemen"
+msgstr "Jubilea op schrikkeldagen tonen"
 
 #: ../gramps/gui/configure.py:1408
 msgid "Active person's name and ID"
@@ -12255,16 +12240,12 @@ msgid "Show or hide the Tools icon on the toolbar."
 msgstr "Het gereedschapspictogram op de werkbalk weergeven/verbergen."
 
 #: ../gramps/gui/configure.py:1721
-#, fuzzy
-#| msgid "Show Tools icon on toolbar"
 msgid "Show Addons icon on toolbar"
-msgstr "Gereedschapspictogram op de werkbalk weergeven"
+msgstr "Pictogram Extensies op de werkbalk weergeven"
 
 #: ../gramps/gui/configure.py:1723
-#, fuzzy
-#| msgid "Show or hide the Tools icon on the toolbar."
 msgid "Show or hide the Addons icon on the toolbar."
-msgstr "Het gereedschapspictogram op de werkbalk weergeven/verbergen."
+msgstr "Het pictogram Extensies op de werkbalk weergeven/verbergen."
 
 #: ../gramps/gui/configure.py:1729
 msgid "Show Preferences icon on toolbar"
@@ -13134,8 +13115,6 @@ msgid "Tools"
 msgstr "Hulpmiddelen"
 
 #: ../gramps/gui/displaystate.py:414
-#, fuzzy
-#| msgid "Open Plugin Manager"
 msgid "Open Addon Manager"
 msgstr "Extensiebeheer openen"
 
@@ -18079,10 +18058,8 @@ msgid "_About"
 msgstr "_Info over Gramps"
 
 #: ../gramps/gui/grampsgui.py:56
-#, fuzzy
-#| msgid "Add Partner..."
 msgid "_Addon Manager..."
-msgstr "Partner toevoegen..."
+msgstr "_Extensiebeheer..."
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Bookmarks"
@@ -18738,77 +18715,56 @@ msgid "Style Editor"
 msgstr "Stijl-bewerker"
 
 #: ../gramps/gui/plug/_windows.py:204
-#, fuzzy
-#| msgid "Object"
 msgid "Project"
-msgstr "Object"
+msgstr "Project"
 
 #: ../gramps/gui/plug/_windows.py:208
-#, fuzzy
-#| msgid "Audio"
 msgid "Audience"
-msgstr "Audio"
+msgstr "Publiek"
 
 #: ../gramps/gui/plug/_windows.py:212 ../gramps/gui/plug/_windows.py:1340
 msgid "Version"
 msgstr "Versie"
 
 #: ../gramps/gui/plug/_windows.py:215
-#, fuzzy
-#| msgid "Database version"
 msgid "Installed version"
-msgstr "Database versie"
+msgstr "Geïnstalleerde versie"
 
 #: ../gramps/gui/plug/_windows.py:233 ../gramps/gui/plug/_windows.py:234
-#, fuzzy
-#| msgid "installed"
 msgid "Install"
-msgstr "geïnstalleerd"
+msgstr "Installeren"
 
 #: ../gramps/gui/plug/_windows.py:239
 msgid "Wiki"
-msgstr ""
+msgstr "Wiki"
 
 #: ../gramps/gui/plug/_windows.py:244
-#, fuzzy
-#| msgid "* Requires Restart"
 msgid "Requires"
-msgstr "* Vereist opnieuw opstarten"
+msgstr "Vereist"
 
 #: ../gramps/gui/plug/_windows.py:249
-#, fuzzy
-#| msgctxt "Graduation abbreviation"
-#| msgid "grad."
 msgid "Upgrade"
-msgstr "dipl.uitr."
+msgstr "Bijwerken"
 
 #: ../gramps/gui/plug/_windows.py:270
-#, fuzzy
-#| msgid "Deletion failed"
 msgid "Module installation failed"
-msgstr "Verwijderen is mislukt"
+msgstr "Module-installatie is mislukt"
 
 #: ../gramps/gui/plug/_windows.py:294
-#, fuzzy
-#| msgid "Retirement"
 msgid "Requirements"
-msgstr "Pensioen"
+msgstr "Vereisten"
 
 #: ../gramps/gui/plug/_windows.py:328
-#, fuzzy
-#| msgid "Addon Name"
 msgid "Addon Manager"
-msgstr "Naam Add-on"
+msgstr "Extensiebeheer"
 
 #: ../gramps/gui/plug/_windows.py:335 ../gramps/plugins/gramplet/leak.py:112
 msgid "Refresh"
 msgstr "Vernieuwen"
 
 #: ../gramps/gui/plug/_windows.py:364
-#, fuzzy
-#| msgid "Filter"
 msgid "Filters"
-msgstr "Filter"
+msgstr "Filters"
 
 #: ../gramps/gui/plug/_windows.py:372 ../gramps/gui/plug/_windows.py:381
 #: ../gramps/gui/plug/_windows.py:388 ../gramps/gui/plug/_windows.py:402
@@ -18818,30 +18774,24 @@ msgid "All"
 msgstr "Alle"
 
 #: ../gramps/gui/plug/_windows.py:429
-#, fuzzy
-#| msgid "Setting"
 msgid "Settings"
-msgstr "Instelling"
+msgstr "Instellingen"
 
 #: ../gramps/gui/plug/_windows.py:432
 msgid "Projects"
-msgstr ""
+msgstr "Projecten"
 
 #: ../gramps/gui/plug/_windows.py:452
-#, fuzzy
-#| msgid "Loading items..."
 msgid "Loading..."
-msgstr "Items laden…"
+msgstr "Laden…"
 
 #: ../gramps/gui/plug/_windows.py:494
-#, fuzzy
-#| msgid "No matches found"
 msgid "No matching addons found."
-msgstr "Geen overeenkomsten gevonden"
+msgstr "Geen overeenkomstige extensies gevonden."
 
 #: ../gramps/gui/plug/_windows.py:617
 msgid "Allow Gramps to install required python modules"
-msgstr ""
+msgstr "Laat Gramps de vereiste python-modules installeren"
 
 #: ../gramps/gui/plug/_windows.py:622
 #: ../gramps/plugins/webreport/basepage.py:1767
@@ -18894,22 +18844,16 @@ msgid "Check for updated addons now"
 msgstr "Nu op bijgewerkte add-ons controleren"
 
 #: ../gramps/gui/plug/_windows.py:687
-#, fuzzy
-#| msgid "New Person"
 msgid "New Project"
-msgstr "Nieuw persoon"
+msgstr "Nieuw project"
 
 #: ../gramps/gui/plug/_windows.py:689
-#, fuzzy
-#| msgid "Edit Person"
 msgid "Edit Project"
-msgstr "Persoon bewerken"
+msgstr "Project bewerken"
 
 #: ../gramps/gui/plug/_windows.py:695
-#, fuzzy
-#| msgid "Preferred name"
 msgid "Project name"
-msgstr "Voorkeursnaam"
+msgstr "Projectnaam"
 
 #: ../gramps/gui/plug/_windows.py:754
 msgid "Checking Addons Failed"
@@ -20840,10 +20784,8 @@ msgid "'%s' is not a valid date value"
 msgstr "'%s' is geen geldige datumwaarde"
 
 #: ../gramps/plugins/cite/cite.gpr.py:36
-#, fuzzy
-#| msgid "Publication Information"
 msgid "Default citation formatter"
-msgstr "Publicatie-informatie"
+msgstr "Standaardopmaak voor citaten"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:26
 msgid "BSDDB"
@@ -24616,8 +24558,8 @@ msgstr ""
 "U begint nu met het invoeren van uw eerste familie en dat start bij de "
 "eerste persoon.\n"
 "\n"
-"Schakel over naar de weergave \"Mensen\" en klik in het menu op \"Toevoegen"
-"\" en klik vervolgens op \"Persoon\" (of gebruik het pictogram [+]) om het "
+"Schakel over naar de weergave \"Mensen\" en klik in het menu op \"Toevoegen\""
+" en klik vervolgens op \"Persoon\" (of gebruik het pictogram [+]) om het "
 "venster te openen om een persoon in te voeren. Het invoeren van de "
 "basisinformatie en het opslaan van het record geeft u een startpunt. "
 "Selecteer het record van deze persoon en schakel nu over naar de weergave "
@@ -24632,7 +24574,7 @@ msgstr ""
 "\n"
 "U kunt nu gezinnen creëren door ouders, een echtgeno(o)t(e) en kinderen toe "
 "te voegen. Eenmaal gestart, kunt u evenementen toevoegen aan mensen en "
-"gezinnen. U kunt bronnen en aanhalingen toevoegen als documentatie voor uw "
+"gezinnen. U kunt bronnen en citaten toevoegen als documentatie voor uw "
 "invoer.\n"
 "\n"
 "Terwijl u Gramps gebruikt, zult u merken dat informatie uit alle "
@@ -33854,7 +33796,7 @@ msgstr "Aantal bronnen: %d"
 
 #: ../gramps/plugins/textreport/summary.py:277
 msgid "Citation Information"
-msgstr "Informatie van aanhalingen"
+msgstr "Citaatinformatie"
 
 #: ../gramps/plugins/textreport/summary.py:281
 #, python-format
