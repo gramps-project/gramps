@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-28 19:29+0100\n"
-"PO-Revision-Date: 2023-07-28 15:29+0000\n"
+"PO-Revision-Date: 2023-07-29 11:13+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -236,15 +236,15 @@ msgstr "גרמפס"
 #: ../data/org.gramps_project.Gramps.desktop.in:6
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
-msgstr "ניהול מידע גנאלוגי, ביצוע מחקר וניתוח גנאלוגי"
+msgstr "ניהול מידע גנאלוגי, ביצוע מחקר וניתוח"
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:7
 msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
 msgstr ""
-"גרמפס הוא תוכנת גנאולוגיה שמיועדת לגנאולוגים חובבים ולגנאולוגים מקצועיים גם "
-"יחד, בזכות התכונות הרבות וממשק המשתמש הנוח."
+"גרמפס הוא מייזם פתוח תוכנת חדק־יוחסין שמיועדת לחוקרי־יוחסין (גנאולוגים) "
+"חובבים ומקצוענים כאחד, זאת בזכות התכונות הרבות שלה וממשק המשתמש הנוח."
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:8
 msgid ""
@@ -269,11 +269,11 @@ msgstr "צוות פיתוח גרמפס"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:4
 msgid "Genealogy System"
-msgstr "מערכת גנאלוגית"
+msgstr "מערכת חקר יוחסין"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:12
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
-msgstr "גנאלוגיה;היסטוריה משפחתית;מחקר;אילן יוחסין;ג'דקום;GEDCOM;"
+msgstr "חקר־יוחסין;גנאלוגיה;היסטוריה משפחתית;מחקר;אילן־יוחסין;ג'דקום;GEDCOM;"
 
 #: ../data/org.gramps_project.Gramps.xml.in:6
 msgid "Gramps database"
@@ -460,12 +460,12 @@ msgid ""
 "library or other research facility. To view the SoundEx codes for surnames "
 "in your database, add the SoundEx Gramplet."
 msgstr ""
-"<b>סאונד־אקס יכולה לסייע במחקר המשפחתי<br/></b>סאונד־אקס פותרת בעיה ארוכת "
-"שנים בגנאלוגיה, כיצד להתמודד עם וריאציות באיות שמות. גרמפלט סאונד־אקס לוקחת "
-"שם משפחה ומחוללת דפוס מפושט ושווה ערך לשמות שנשמעים דומה. הכרת קודקס "
-"סאונדאקס לשמות משפחה מועילה מאוד בחקר קבצי מפקד אוכלוסין (מיקרופיש) ספריה או "
-"מתקני מחקר אחרים. להצגת קודקס שמות המשפחה במסד הנתונים, נא להוסיף את גרמפלט "
-"סאונד־אקס."
+"<b>סאונד־אקס יכולה לסייע במחקר משפחתי<br/></b>סאונד־אקס פותרת בעיה ארוכת "
+"שנים בחקר־יוחסין, בשאלה כיצד להתמודד עם שונויות באיות שמות. סאונד־אקס "
+"בגרמפלט מחוללת דפוס מפושט ושווה ערך לשמות שנשמעים דומה, משם המשפחה שנבחר. "
+"הכרות עם קוד סאונד־אקס לשמות משפחה, מועילה מאוד בחקר במיוחד בקבצי מפקד "
+"אוכלוסין (מיקרופיש), ספריה או מתקני מחקר אחרים. להצגת קוד שמות המשפחה במסד "
+"הנתונים, נא להוסיף את גרמפלט סאונד־אקס."
 
 #: ../data/tips.xml:32
 msgid ""
@@ -560,9 +560,9 @@ msgid ""
 "configured to the way you like it. Have a look to the right of the top "
 "toolbar or under the \"View\" menu."
 msgstr ""
-"<b>ארגון מצגים<br/></b>רביםמהמצגים יכולים להציג נתונים כרשימהמדורגת או "
-"שטוחה. ניתן להגדיר כל מצג ולהתאימו על פי העדפה אישית. ניתן לגשת להגדרות "
-"מתפריט 'מצג'."
+"<b>ארגון מצגים<br/></b>מצגים רבים מסוגלים להציג נתונים כרשימה מדורגת או "
+"שטוחה. ניתן להגדיר כל מצג בנפרד ולהתאימו על פי העדפה אישית. ניתן לגשת "
+"להגדרות מתפריט 'מצג'."
 
 #: ../data/tips.xml:48
 msgid ""
@@ -594,7 +594,7 @@ msgid ""
 msgstr ""
 "<b>נא לעין במדריך<br/></b>לא לשכוח לקרוא את המדריך למשתמש, 'עזרה &gt; מדריך "
 "למשתמש'. המפתחים עמלו קשות על מנת שרוב הפעולות יהיו אינטואיטיביות, אבל "
-"המדריך מלא במידע שיהפוך את חווית הגֵנֵאָלוֹגיָה ליעילה יותר."
+"המדריך מלא במידע שיהפוך את חווית חקר־היוחסין ליעילה יותר."
 
 #: ../data/tips.xml:54
 msgid ""
@@ -801,7 +801,7 @@ msgid ""
 "from users of most other genealogy programs. Filters exist that make "
 "importing and exporting GEDCOM files trivial."
 msgstr ""
-"<b>תבנית קובץ GEDCOM<br/></b>גרמפס מאפשרת לייבא ולייצא תבנית GEDCOM. תעשייה "
+"<b>תסדיר קובץ GEDCOM<br/></b>גרמפס מאפשרת לייבא ולייצא תבנית GEDCOM. תעשייה "
 "מספקת תמיכה נרחבת לתקן GEDCOM גרסה 5.5, כך שניתן להחליף מידע בין גרמפס "
 "ואנשים אחרים המשתמשים בתכנות גנאלוגיות אחרות. מסננים מובנים הופכים את יבוא "
 "ויצוא קובצי GEDCOM למשימה פשוטה."
@@ -838,9 +838,9 @@ msgid ""
 "individuals to a collection of web pages ready for upload to the World Wide "
 "Web."
 msgstr ""
-"<b>יצירת אתר גנאלוגי<br/></b>ניתן בקלות לייצא את אילן היוחסין לעמוד מרשתת. "
-"כל שנדרש זה לבחור את מסד הנתונים כולו, קווי משפחה או אנשים מסוימים, לאוסף של "
-"דפי מרשתת המוכנים להעלאה לרשת העולמית."
+"<b>יצירת אתר חקר־יוחסין<br/></b>ניתן בקלות לייצא את אילן היוחסין לעמוד "
+"מרשתת. כל שנדרש זה לבחור את מסד הנתונים כולו, קווי משפחה או אנשים מסוימים, "
+"לאוסף של דפי מרשתת המוכנים להעלאה לרשת העולמית."
 
 #: ../data/tips.xml:94
 msgid ""
@@ -4755,7 +4755,7 @@ msgstr "עצמי מדיה עם הערות המכילות <מלל>"
 #: ../gramps/gen/filters/rules/media/_hasnoteregexp.py:42
 msgid ""
 "Matches media objects whose notes contain text matching a regular expression"
-msgstr "שליפת עצמי מדיה שההערות שלהם מכילות מלל התואמים לביטוי רגולרי"
+msgstr "שליפת עצמי מדיה שההערות שלהם מכילות מלל שתואם לביטוי רגולרי"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:42
 msgid "Media objects with a reference count of <count>"
@@ -8362,10 +8362,8 @@ msgid "Research"
 msgstr "מחקר"
 
 #: ../gramps/gen/lib/notetype.py:78
-#, fuzzy
-#| msgid "Analyzing names"
 msgid "Analysis"
-msgstr "מנתח שמות"
+msgstr "ניתוח"
 
 #: ../gramps/gen/lib/notetype.py:79
 msgid "Transcript"
@@ -9199,10 +9197,8 @@ msgid "Thumbnailer"
 msgstr "תמונה ממוזערת"
 
 #: ../gramps/gen/plug/_pluginreg.py:113 ../gramps/gui/configure.py:1424
-#, fuzzy
-#| msgid "Citation Information"
 msgid "Citation formatter"
-msgstr "מידע מובאות"
+msgstr "מתבנת מובאות"
 
 #: ../gramps/gen/plug/_pluginreg.py:589
 #: ../gramps/plugins/gramplet/faqgramplet.py:135
@@ -9671,32 +9667,24 @@ msgid "Surname Given Nickname"
 msgstr "שם־משפחה כינוי ניתן"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:69
-#, fuzzy
-#| msgid "Surname Given Nickname"
 msgid "Surname, Given Nickname"
-msgstr "שם־משפחה כינוי ניתן"
+msgstr "שם־משפחה, כינוי"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:70
-#, fuzzy
-#| msgid "Given Nickname Surname"
 msgid "GivenNicknameSurname"
-msgstr "כינוי ניתן שם־משפחה"
+msgstr "כינוי שם־משפחה"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:72
 msgid "Auto"
 msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:73
-#, fuzzy
-#| msgid "Call Name"
 msgid "Call Name Only"
-msgstr "כינוי"
+msgstr "פניה בלבד"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:74
-#, fuzzy
-#| msgid "Given Name"
 msgid "Whole Given Name"
-msgstr "שם פרטי"
+msgstr "שם פרטי במלואו"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:77
 msgid "Above"
@@ -9825,6 +9813,8 @@ msgid ""
 "Select the portion of the given name to be marked as preferred. Auto sets "
 "the call name if one exists, otherwise the whole given name."
 msgstr ""
+"בחירת חלק משם נתון שיסומן כמועדף. אוטומטי, מציב את 'שם פניה' ככל שקיים, אחרת "
+"יוצב 'שם פרטי' במלואו."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:196
 msgid "Position of marriage information."
@@ -9911,7 +9901,7 @@ msgstr "PDF"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:775
 msgid "Graph File for genealogytree"
-msgstr "קובץ תרשים עץ גנאולוגי"
+msgstr "קובץ תרשים עבור genealogytree"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:780
 msgid "LaTeX File"
@@ -10761,10 +10751,8 @@ msgid "RT90"
 msgstr "RT90"
 
 #: ../gramps/gen/utils/place.py:102
-#, fuzzy
-#| msgid "Delete the selected citation"
 msgid "Degree, minutes, seconds notation"
-msgstr "מחיקת המובאה שנבחרה"
+msgstr "סימון מעלות, דקות, שניות"
 
 #: ../gramps/gen/utils/place.py:103
 msgid "Degree, minutes, seconds notation with :"
@@ -10784,11 +10772,11 @@ msgstr "תסדיר פלט לשיטת נקודות־הציון השוודית RT9
 
 #: ../gramps/gen/utils/requirements.py:145
 msgid "Python modules"
-msgstr ""
+msgstr "פירקני פייתון"
 
 #: ../gramps/gen/utils/requirements.py:152
 msgid "GObject introspection modules"
-msgstr ""
+msgstr "פירקני בחינה עצמית GObject"
 
 #: ../gramps/gen/utils/requirements.py:159
 #, fuzzy
@@ -10903,7 +10891,7 @@ msgstr "א-מיניות, חסר מין, חסר מגדר"
 
 #: ../gramps/gen/utils/symbols.py:86
 msgid "Transgender, hermaphrodite (in entomology)"
-msgstr "טרנסג׳נדר, דו־מיניים (באנטומולוגיה)"
+msgstr "טרנסג׳נדר, דו־מיני, אנדרוגינוס (באנטומולוגיה)"
 
 #: ../gramps/gen/utils/symbols.py:87
 msgid "Lesbianism"
@@ -11722,13 +11710,15 @@ msgstr "הצגת העמוד הבא"
 
 #: ../gramps/gui/configure.py:1393
 msgid "only on leap years"
-msgstr ""
+msgstr "רק בשנים מעוברות"
 
 #: ../gramps/gui/configure.py:1398
 msgid ""
 "For non leap years, anniversaries are displayed on either February 28, March "
 "1 or not at all in Gregorian calendars"
 msgstr ""
+"בלוח שנה גרגוריאני, בשנים רגילות, לא מעוברות, ימי שנה יוצגו ב־28 בפברואר, ה־"
+"1 במרץ או שלא יוצגו כלל."
 
 #: ../gramps/gui/configure.py:1401
 #, fuzzy
@@ -12211,9 +12201,9 @@ msgid ""
 "If not checked, you can use the lower panel to customize the symbols "
 "yourself."
 msgstr ""
-"אם סומן, ייעשה שימוש בסמלים גנאלוגיים תקניים (סמל ה'פטירה' נתון לבחירת "
-"משתמש).\n"
-"אם לא סומן, ניתן להשתמש בלוח התחתון להתאמה אישית של הסמלים."
+"אם תיבת הסימון סומנה, ייעשה שימוש בסמלים גנאלוגיים תקניים (סמל 'פטירה' נתון "
+"לבחירת משתמש).\n"
+"אם לא סומנה, הלוח התחתון משמש להתאמת הסמלים באופן אישי."
 
 #: ../gramps/gui/configure.py:2148
 msgid ""
@@ -12233,7 +12223,7 @@ msgstr "נא לבחור סימול פטירה ברירת מחדל"
 
 #: ../gramps/gui/configure.py:2170
 msgid "Genealogical Symbols"
-msgstr "סמלים גנאלוגים"
+msgstr "סמלי חקר־יוחסין"
 
 #: ../gramps/gui/configure.py:2202 ../gramps/gui/glade/editfamily.glade:144
 #: ../gramps/gui/glade/editfamily.glade:398
@@ -18278,7 +18268,7 @@ msgstr "מותקן"
 
 #: ../gramps/gui/plug/_windows.py:239
 msgid "Wiki"
-msgstr ""
+msgstr "ויקי"
 
 #: ../gramps/gui/plug/_windows.py:244
 #, fuzzy
@@ -18336,7 +18326,7 @@ msgstr "אפשרויות"
 
 #: ../gramps/gui/plug/_windows.py:432
 msgid "Projects"
-msgstr ""
+msgstr "מייזם"
 
 #: ../gramps/gui/plug/_windows.py:452
 #, fuzzy
@@ -18352,7 +18342,7 @@ msgstr "לא נמצאו התאמות"
 
 #: ../gramps/gui/plug/_windows.py:617
 msgid "Allow Gramps to install required python modules"
-msgstr ""
+msgstr "לאפשר לגרמפס להתקין פירקני פייתון נדרשים"
 
 #: ../gramps/gui/plug/_windows.py:622
 #: ../gramps/plugins/webreport/basepage.py:1767
@@ -22829,7 +22819,7 @@ msgstr "גרמפלט להצגת קרובים של האדם הפעיל"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:249
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:256
 msgid "Session Log"
-msgstr "לוג שיח"
+msgstr "יומן שיח"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:250
 msgid "Gramplet showing all activity for this session"
@@ -23727,7 +23717,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:48
 msgid "Log for this Session"
-msgstr "לוג לשיח זה"
+msgstr "יומן לשיח זה"
 
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:57
 msgid "Opened data base -----------\n"
@@ -23920,8 +23910,8 @@ msgid ""
 "powerful features.\n"
 "\n"
 msgstr ""
-"גרמפס הוא חבילת תוכנה המיועדת למחקר גנאלוגי. למרות הדמיון לתכנות גנאלוגיות "
-"אחרות, גרמפס מציעה תכונות ייחודיות ורבות עוצמה.\n"
+"גרמפס היא חבילת תוכנה המיועדת לחקר יוחסין. למרות הדמיון לתכנות אחרות מסוגה, "
+"גרמפס מציע תכונות ייחודיות ורבות עוצמה.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:118
@@ -25763,7 +25753,7 @@ msgstr "_אוקיי"
 #: ../gramps/plugins/importer/importprogen.py:62
 msgctxt "manual"
 msgid "Import_from_another_genealogy_program"
-msgstr "ייבוא_מתכנית_גנאלוגיה_אחרת"
+msgstr "ייבוא_מתוכנת_גנאלוגיה_אחרת"
 
 #: ../gramps/plugins/importer/importprogen.py:121
 #, python-format
@@ -27483,7 +27473,7 @@ msgstr "קבורה ב־%(burial_date)s ב־%(burial_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:472
 #, python-format
 msgid "Buried %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr "קבורה %(burial_date)s ב־%(burial_place)s%(endnotes)s."
+msgstr "קבורה ביום %(burial_date)s ב־%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:477
 #, python-format
@@ -27493,7 +27483,7 @@ msgstr "%(male_name)s קבורה ביום %(burial_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:478
 #, python-format
 msgid "He was buried on %(burial_date)s%(endnotes)s."
-msgstr "קוברה ב־%(burial_date)s%(endnotes)s."
+msgstr "קבורה ב־%(burial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:481
 #, python-format
@@ -27602,7 +27592,8 @@ msgstr "נקבר %(month_year)s%(endnotes)s."
 #, python-format
 msgid ""
 "%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "%(male_name)s קבורה %(modified_date)s ב־%(burial_place)s%(endnotes)s."
+msgstr ""
+"%(male_name)s קבורה ביום %(modified_date)s ב־%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:526
 #, python-format
@@ -27614,12 +27605,12 @@ msgstr "קבורה %(modified_date)s ב־%(burial_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s קבורה %(modified_date)s ב־%(burial_place)s%(endnotes)s."
+"%(female_name)s קבורה ביום %(modified_date)s ב־%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:530
 #, python-format
 msgid "She was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "קבורה %(modified_date)s ב־%(burial_place)s%(endnotes)s."
+msgstr "קבורה ביום %(modified_date)s ב־%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:533
 #, python-format
@@ -27627,8 +27618,8 @@ msgid ""
 "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s קבורה %(modified_date)s ב־%(burial_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s קבורה ביום %(modified_date)s "
+"ב־%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:534
 #, python-format
@@ -27644,7 +27635,7 @@ msgstr "קבורה %(modified_date)s ב־%(burial_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:541
 #, python-format
 msgid "%(male_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr "%(male_name)s קבורה %(modified_date)s%(endnotes)s."
+msgstr "%(male_name)s קבורה ביום %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:542
 #, python-format
@@ -27654,7 +27645,7 @@ msgstr "קבורה %(modified_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:545
 #, python-format
 msgid "%(female_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr "%(female_name)s קבורה %(modified_date)s%(endnotes)s."
+msgstr "%(female_name)s קבורה ביום %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:546
 #, python-format
@@ -27664,7 +27655,7 @@ msgstr "קבורה %(modified_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:549
 #, python-format
 msgid "%(unknown_gender_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s קבורה %(modified_date)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s קבורה ביום %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:550
 #, python-format
