@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-26 17:35+0100\n"
+"POT-Creation-Date: 2023-07-28 19:29+0100\n"
 "PO-Revision-Date: 2022-10-10 18:01+0000\n"
 "Last-Translator: Bora Atıcı <boratici.acc@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
@@ -1168,7 +1168,7 @@ msgstr "Mevcut dosyanın üzerine yazılacak: %s"
 msgid "ERROR: Unrecognized format for export file %s"
 msgstr "HATA: %s dışa aktarma dosyası için tanınmayan biçim"
 
-#: ../gramps/cli/arghandler.py:386 ../gramps/gen/plug/utils.py:316
+#: ../gramps/cli/arghandler.py:386 ../gramps/gen/plug/utils.py:327
 #, python-format
 msgid "Error: cannot open '%s'"
 msgstr "Hata: '%s' açılamıyor"
@@ -1190,7 +1190,7 @@ msgstr "Gramps Soyağaçları:"
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
 #: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
-#: ../gramps/gui/clipboard.py:927 ../gramps/gui/configure.py:1985
+#: ../gramps/gui/clipboard.py:927 ../gramps/gui/configure.py:1910
 msgid "Family Tree"
 msgstr "Soyağacı"
 
@@ -1570,7 +1570,7 @@ msgstr "Bağımsız değişkenleri ayrıştırma hatası"
 
 #: ../gramps/cli/clidbman.py:72 ../gramps/cli/clidbman.py:166
 #: ../gramps/cli/clidbman.py:168 ../gramps/gui/clipboard.py:190
-#: ../gramps/gui/clipboard.py:191 ../gramps/gui/plug/_windows.py:494
+#: ../gramps/gui/clipboard.py:191 ../gramps/gui/plug/_windows.py:1213
 msgid "Unavailable"
 msgstr "Kullanım dışı"
 
@@ -1593,7 +1593,7 @@ msgstr ""
 msgid "Path"
 msgstr "Yol"
 
-#: ../gramps/cli/clidbman.py:171 ../gramps/gen/plug/_pluginreg.py:108
+#: ../gramps/cli/clidbman.py:171 ../gramps/gen/plug/_pluginreg.py:110
 msgid "Database"
 msgstr "Veri tabanı"
 
@@ -1615,11 +1615,11 @@ msgstr "Soyağacı \"%s\":"
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/cli/clidbman.py:201 ../gramps/gen/plug/report/utils.py:159
 #: ../gramps/gui/editors/editattribute.py:135
-#: ../gramps/gui/editors/editname.py:310 ../gramps/gui/plug/_windows.py:685
-#: ../gramps/gui/plug/_windows.py:1121
+#: ../gramps/gui/editors/editname.py:310 ../gramps/gui/plug/_windows.py:1404
+#: ../gramps/gui/plug/_windows.py:1840
 #: ../gramps/plugins/gramplet/whatsnext.py:494
-#: ../gramps/plugins/textreport/birthdayreport.py:192
-#: ../gramps/plugins/textreport/birthdayreport.py:196
+#: ../gramps/plugins/textreport/birthdayreport.py:194
+#: ../gramps/plugins/textreport/birthdayreport.py:198
 #: ../gramps/plugins/textreport/detancestralreport.py:475
 #: ../gramps/plugins/textreport/detdescendantreport.py:505
 #: ../gramps/plugins/textreport/familygroup.py:140
@@ -1687,8 +1687,8 @@ msgstr ""
 "    %s\n"
 "\n"
 
-#: ../gramps/cli/clidbman.py:535 ../gramps/gui/configure.py:1792
-#: ../gramps/gui/configure.py:1951
+#: ../gramps/cli/clidbman.py:535 ../gramps/gui/configure.py:1876
+#: ../gramps/gui/plug/_windows.py:636
 msgid "Never"
 msgstr "Asla"
 
@@ -1701,7 +1701,7 @@ msgstr "%s tarafından kilitlendi"
 #: ../gramps/gen/lib/childreftype.py:73 ../gramps/gen/lib/eventroletype.py:53
 #: ../gramps/gen/lib/eventtype.py:164 ../gramps/gen/lib/familyreltype.py:50
 #: ../gramps/gen/lib/grampstype.py:34 ../gramps/gen/lib/nameorigintype.py:73
-#: ../gramps/gen/lib/nametype.py:46 ../gramps/gen/lib/notetype.py:73
+#: ../gramps/gen/lib/nametype.py:46 ../gramps/gen/lib/notetype.py:74
 #: ../gramps/gen/lib/placetype.py:63 ../gramps/gen/lib/repotype.py:52
 #: ../gramps/gen/lib/srcattrtype.py:43 ../gramps/gen/lib/srcmediatype.py:56
 #: ../gramps/gen/lib/urltype.py:47 ../gramps/gen/utils/lds.py:80
@@ -2044,27 +2044,27 @@ msgstr ""
 "%(gramps_bugtracker_url)s adresinden bir hata raporu gönderin.\n"
 "\n"
 
-#: ../gramps/gen/config.py:256
+#: ../gramps/gen/config.py:260
 msgid "Imported %Y/%m/%d %H:%M:%S"
 msgstr "İçe aktarılan %Y/%m/%d %H:%M:%S"
 
-#: ../gramps/gen/config.py:268
+#: ../gramps/gen/config.py:272
 msgid "Missing Given Name"
 msgstr "Verilen Ad Eksik"
 
-#: ../gramps/gen/config.py:269
+#: ../gramps/gen/config.py:273
 msgid "Missing Record"
 msgstr "Kayıt Eksik"
 
-#: ../gramps/gen/config.py:270
+#: ../gramps/gen/config.py:274
 msgid "Missing Surname"
 msgstr "Soyadı Eksik"
 
-#: ../gramps/gen/config.py:277 ../gramps/gen/config.py:279
+#: ../gramps/gen/config.py:281 ../gramps/gen/config.py:283
 msgid "[Living]"
 msgstr "[yaşayan]"
 
-#: ../gramps/gen/config.py:278
+#: ../gramps/gen/config.py:282
 msgid "Private Record"
 msgstr "Özel Kayıt"
 
@@ -2072,7 +2072,7 @@ msgstr "Özel Kayıt"
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
-#: ../gramps/gen/config.py:344 ../gramps/gen/datehandler/_datestrings.py:89
+#: ../gramps/gen/config.py:349 ../gramps/gen/datehandler/_datestrings.py:89
 msgctxt "localized lexeme inflections"
 msgid "January"
 msgstr "Ocak"
@@ -2649,37 +2649,37 @@ msgctxt "alternative month names for December"
 msgid ""
 msgstr "|"
 
-#: ../gramps/gen/datehandler/_datestrings.py:143 ../gramps/gen/lib/date.py:642
+#: ../gramps/gen/datehandler/_datestrings.py:143 ../gramps/gen/lib/date.py:643
 msgctxt "calendar"
 msgid "Gregorian"
 msgstr "Miladi"
 
-#: ../gramps/gen/datehandler/_datestrings.py:144 ../gramps/gen/lib/date.py:643
+#: ../gramps/gen/datehandler/_datestrings.py:144 ../gramps/gen/lib/date.py:644
 msgctxt "calendar"
 msgid "Julian"
 msgstr "Jülyen"
 
-#: ../gramps/gen/datehandler/_datestrings.py:145 ../gramps/gen/lib/date.py:644
+#: ../gramps/gen/datehandler/_datestrings.py:145 ../gramps/gen/lib/date.py:645
 msgctxt "calendar"
 msgid "Hebrew"
 msgstr "İbrani"
 
-#: ../gramps/gen/datehandler/_datestrings.py:146 ../gramps/gen/lib/date.py:645
+#: ../gramps/gen/datehandler/_datestrings.py:146 ../gramps/gen/lib/date.py:646
 msgctxt "calendar"
 msgid "French Republican"
 msgstr "Fransız Cumhuriyetçi"
 
-#: ../gramps/gen/datehandler/_datestrings.py:147 ../gramps/gen/lib/date.py:646
+#: ../gramps/gen/datehandler/_datestrings.py:147 ../gramps/gen/lib/date.py:647
 msgctxt "calendar"
 msgid "Persian"
 msgstr "İran"
 
-#: ../gramps/gen/datehandler/_datestrings.py:148 ../gramps/gen/lib/date.py:647
+#: ../gramps/gen/datehandler/_datestrings.py:148 ../gramps/gen/lib/date.py:648
 msgctxt "calendar"
 msgid "Islamic"
 msgstr "Hicri"
 
-#: ../gramps/gen/datehandler/_datestrings.py:149 ../gramps/gen/lib/date.py:648
+#: ../gramps/gen/datehandler/_datestrings.py:149 ../gramps/gen/lib/date.py:649
 msgctxt "calendar"
 msgid "Swedish"
 msgstr "İsveç"
@@ -3347,13 +3347,13 @@ msgid "Surname, Given Suffix"
 msgstr "Soyadı, Ad Sonek"
 
 #: ../gramps/gen/display/name.py:357 ../gramps/gen/utils/keyword.py:55
-#: ../gramps/gui/configure.py:878 ../gramps/gui/configure.py:880
-#: ../gramps/gui/configure.py:885 ../gramps/gui/configure.py:887
-#: ../gramps/gui/configure.py:889 ../gramps/gui/configure.py:890
-#: ../gramps/gui/configure.py:891 ../gramps/gui/configure.py:892
-#: ../gramps/gui/configure.py:894 ../gramps/gui/configure.py:895
-#: ../gramps/gui/configure.py:896 ../gramps/gui/configure.py:897
-#: ../gramps/gui/configure.py:898 ../gramps/gui/configure.py:899
+#: ../gramps/gui/configure.py:877 ../gramps/gui/configure.py:879
+#: ../gramps/gui/configure.py:884 ../gramps/gui/configure.py:886
+#: ../gramps/gui/configure.py:888 ../gramps/gui/configure.py:889
+#: ../gramps/gui/configure.py:890 ../gramps/gui/configure.py:891
+#: ../gramps/gui/configure.py:893 ../gramps/gui/configure.py:894
+#: ../gramps/gui/configure.py:895 ../gramps/gui/configure.py:896
+#: ../gramps/gui/configure.py:897 ../gramps/gui/configure.py:898
 #: ../gramps/plugins/export/exportcsv.py:360
 #: ../gramps/plugins/importer/importcsv.py:166
 msgid "Given"
@@ -3477,7 +3477,7 @@ msgstr "Yanlış ad biçimi dizesi %s"
 msgid "ERROR, Edit Name format in Preferences"
 msgstr "HATA, Tercihlerde Ad biçimini düzenle"
 
-#: ../gramps/gen/display/place.py:73 ../gramps/gen/plug/utils.py:339
+#: ../gramps/gen/display/place.py:73 ../gramps/gen/plug/utils.py:350
 #, python-format
 msgid "Error in '%s' file: cannot load."
 msgstr "'%s' dosyasında hata: yüklenemiyor."
@@ -3517,7 +3517,7 @@ msgstr "Uygulanıyor ..."
 #: ../gramps/gen/filters/_genericfilter.py:143
 #: ../gramps/gen/filters/_genericfilter.py:174
 #: ../gramps/gui/editors/filtereditor.py:1157
-#: ../gramps/plugins/drawreport/calendarreport.py:552
+#: ../gramps/plugins/drawreport/calendarreport.py:554
 #: ../gramps/plugins/drawreport/statisticschart.py:1024
 #: ../gramps/plugins/drawreport/timeline.py:416
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1024
@@ -3531,7 +3531,7 @@ msgstr "Uygulanıyor ..."
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1136
 #: ../gramps/plugins/graph/gvrelgraph.py:811
 #: ../gramps/plugins/quickview/quickview.gpr.py:130
-#: ../gramps/plugins/textreport/birthdayreport.py:479
+#: ../gramps/plugins/textreport/birthdayreport.py:481
 #: ../gramps/plugins/textreport/familygroup.py:712
 #: ../gramps/plugins/textreport/indivcomplete.py:1070
 #: ../gramps/plugins/textreport/recordsreport.py:217
@@ -4839,7 +4839,7 @@ msgstr "Tür:"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:48
 #: ../gramps/gui/glade/mergemedia.glade:245
-#: ../gramps/gui/glade/mergemedia.glade:261 ../gramps/gui/viewmanager.py:1669
+#: ../gramps/gui/glade/mergemedia.glade:261 ../gramps/gui/viewmanager.py:1688
 msgid "Path:"
 msgstr "Yol:"
 
@@ -5113,7 +5113,7 @@ msgstr ""
 "eşleştirir"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:44
-#: ../gramps/gen/plug/_pluginreg.py:71
+#: ../gramps/gen/plug/_pluginreg.py:72
 msgid "Everyone"
 msgstr "Herkes"
 
@@ -6531,7 +6531,7 @@ msgid "Matches sources that are indicated as private"
 msgstr "Özel olarak belirtilen kaynaklarla eşleşir"
 
 #: ../gramps/gen/lib/address.py:97 ../gramps/gui/clipboard.py:300
-#: ../gramps/gui/configure.py:610 ../gramps/gui/editors/editaddress.py:167
+#: ../gramps/gui/configure.py:609 ../gramps/gui/editors/editaddress.py:167
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:107
 #: ../gramps/plugins/gramplet/repositorydetails.py:138
 #: ../gramps/plugins/lib/libgedcom.py:6111
@@ -6652,7 +6652,7 @@ msgid "Notes"
 msgstr "Notlar"
 
 #: ../gramps/gen/lib/address.py:111 ../gramps/gen/lib/citation.py:106
-#: ../gramps/gen/lib/date.py:760 ../gramps/gen/lib/event.py:146
+#: ../gramps/gen/lib/date.py:761 ../gramps/gen/lib/event.py:146
 #: ../gramps/gen/lib/ldsord.py:182 ../gramps/gen/lib/media.py:163
 #: ../gramps/gen/lib/name.py:157 ../gramps/gen/lib/placename.py:101
 #: ../gramps/gen/lib/placeref.py:94
@@ -6739,7 +6739,7 @@ msgid "Street"
 msgstr "Cadde/Sokak"
 
 #: ../gramps/gen/lib/address.py:115 ../gramps/gen/lib/location.py:93
-#: ../gramps/gen/lib/placetype.py:70 ../gramps/gui/configure.py:613
+#: ../gramps/gen/lib/placetype.py:70 ../gramps/gui/configure.py:612
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:73
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:55
 #: ../gramps/plugins/view/geoplaces.py:587
@@ -6751,7 +6751,7 @@ msgid "Locality"
 msgstr "Yerel"
 
 #: ../gramps/gen/lib/address.py:117 ../gramps/gen/lib/location.py:95
-#: ../gramps/gen/lib/placetype.py:68 ../gramps/gui/configure.py:616
+#: ../gramps/gen/lib/placetype.py:68 ../gramps/gui/configure.py:615
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:74
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:56
 #: ../gramps/plugins/view/geoplaces.py:621
@@ -6784,7 +6784,7 @@ msgid "State"
 msgstr "Eyalet"
 
 #: ../gramps/gen/lib/address.py:123 ../gramps/gen/lib/location.py:101
-#: ../gramps/gen/lib/placetype.py:65 ../gramps/gui/configure.py:622
+#: ../gramps/gen/lib/placetype.py:65 ../gramps/gui/configure.py:621
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:76
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:59
 #: ../gramps/gui/views/treemodels/placemodel.py:314
@@ -6807,7 +6807,7 @@ msgid "Postal Code"
 msgstr "Posta Kodu"
 
 #: ../gramps/gen/lib/address.py:127 ../gramps/gen/lib/location.py:105
-#: ../gramps/gui/configure.py:628
+#: ../gramps/gui/configure.py:627
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:78
 #: ../gramps/plugins/export/exportgedcom.py:789
 #: ../gramps/plugins/export/exportgedcom.py:1168
@@ -6840,7 +6840,7 @@ msgstr "Değer"
 #: ../gramps/gen/lib/eventroletype.py:54 ../gramps/gen/lib/eventtype.py:165
 #: ../gramps/gen/lib/familyreltype.py:51 ../gramps/gen/lib/markertype.py:52
 #: ../gramps/gen/lib/nameorigintype.py:74 ../gramps/gen/lib/nametype.py:47
-#: ../gramps/gen/lib/notetype.py:74 ../gramps/gen/lib/placetype.py:64
+#: ../gramps/gen/lib/notetype.py:75 ../gramps/gen/lib/placetype.py:64
 #: ../gramps/gen/lib/repotype.py:53 ../gramps/gen/lib/srcattrtype.py:44
 #: ../gramps/gen/lib/srcmediatype.py:57 ../gramps/gen/lib/urltype.py:48
 #: ../gramps/gui/autocomp.py:179 ../gramps/gui/csvdialect.py:96
@@ -6862,8 +6862,8 @@ msgstr "Kast"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:67
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:105
 #: ../gramps/gui/glade/rule.glade:931 ../gramps/gui/glade/styleeditor.glade:278
-#: ../gramps/gui/plug/_windows.py:134 ../gramps/gui/plug/_windows.py:243
-#: ../gramps/gui/plug/_windows.py:620 ../gramps/gui/plug/_windows.py:1110
+#: ../gramps/gui/plug/_windows.py:853 ../gramps/gui/plug/_windows.py:962
+#: ../gramps/gui/plug/_windows.py:1339 ../gramps/gui/plug/_windows.py:1829
 #: ../gramps/gui/selectors/selectevent.py:70
 #: ../gramps/plugins/gramplet/coordinates.py:90
 #: ../gramps/plugins/gramplet/events.py:94
@@ -6896,8 +6896,8 @@ msgid "Social Security Number"
 msgstr "Sosyal Güvenlik Numarası"
 
 #: ../gramps/gen/lib/attrtype.py:71 ../gramps/gen/utils/keyword.py:72
-#: ../gramps/gui/configure.py:881 ../gramps/gui/configure.py:883
-#: ../gramps/gui/configure.py:888 ../gramps/gui/configure.py:895
+#: ../gramps/gui/configure.py:880 ../gramps/gui/configure.py:882
+#: ../gramps/gui/configure.py:887 ../gramps/gui/configure.py:894
 #: ../gramps/plugins/tool/patchnames.py:435
 msgid "Nickname"
 msgstr "Lakap"
@@ -6937,7 +6937,7 @@ msgstr "Zaman"
 
 #: ../gramps/gen/lib/attrtype.py:79 ../gramps/gen/lib/eventtype.py:192
 #: ../gramps/gen/lib/nameorigintype.py:85
-#: ../gramps/gen/plug/docgen/treedoc.py:466
+#: ../gramps/gen/plug/docgen/treedoc.py:528
 #: ../gramps/plugins/gramplet/persondetails.py:164
 msgid "Occupation"
 msgstr "Uğraşı"
@@ -6957,7 +6957,7 @@ msgstr "Çocuk Referansı"
 msgid "Handle"
 msgstr "İşleyici"
 
-#: ../gramps/gen/lib/childreftype.py:67 ../gramps/gen/plug/docgen/treedoc.py:75
+#: ../gramps/gen/lib/childreftype.py:67 ../gramps/gen/plug/docgen/treedoc.py:81
 #: ../gramps/gui/configure.py:88
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:206
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:178
@@ -6996,8 +6996,8 @@ msgstr "Sponsorlu"
 msgid "Foster"
 msgstr "Besleme"
 
-#: ../gramps/gen/lib/citation.py:97 ../gramps/gen/lib/notetype.py:79
-#: ../gramps/gui/clipboard.py:470 ../gramps/gui/configure.py:667
+#: ../gramps/gen/lib/citation.py:97 ../gramps/gen/lib/notetype.py:81
+#: ../gramps/gui/clipboard.py:470 ../gramps/gui/configure.py:666
 #: ../gramps/gui/editors/editcitation.py:119
 #: ../gramps/gui/editors/editcitation.py:125
 #: ../gramps/gui/editors/editlink.py:100
@@ -7065,7 +7065,7 @@ msgid "Confidence"
 msgstr "Güven"
 
 #: ../gramps/gen/lib/citation.py:115 ../gramps/gen/lib/src.py:97
-#: ../gramps/gui/clipboard.py:772 ../gramps/gui/configure.py:664
+#: ../gramps/gui/clipboard.py:772 ../gramps/gui/configure.py:663
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:79
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:64
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:91
@@ -7172,32 +7172,32 @@ msgstr "Son değişiklik"
 msgid "Tags"
 msgstr "Etiketler"
 
-#: ../gramps/gen/lib/date.py:306 ../gramps/gen/lib/date.py:344
-#: ../gramps/gen/lib/date.py:350 ../gramps/gen/lib/date.py:352
-#: ../gramps/gen/lib/date.py:372
+#: ../gramps/gen/lib/date.py:307 ../gramps/gen/lib/date.py:345
+#: ../gramps/gen/lib/date.py:351 ../gramps/gen/lib/date.py:353
+#: ../gramps/gen/lib/date.py:373
 msgctxt "age"
 msgid "about"
 msgstr "civarında"
 
-#: ../gramps/gen/lib/date.py:455 ../gramps/gen/lib/date.py:462
+#: ../gramps/gen/lib/date.py:456 ../gramps/gen/lib/date.py:463
 #, python-brace-format
 msgid "{number_of} year"
 msgid_plural "{number_of} years"
 msgstr[0] "{number_of} yıl"
 
-#: ../gramps/gen/lib/date.py:471
+#: ../gramps/gen/lib/date.py:472
 #, python-brace-format
 msgid "{number_of} month"
 msgid_plural "{number_of} months"
 msgstr[0] "{number_of} ay"
 
-#: ../gramps/gen/lib/date.py:482
+#: ../gramps/gen/lib/date.py:483
 #, python-brace-format
 msgid "{number_of} day"
 msgid_plural "{number_of} days"
 msgstr[0] "{number_of} gün"
 
-#: ../gramps/gen/lib/date.py:763
+#: ../gramps/gen/lib/date.py:764
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:75
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:75
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:81
@@ -7206,23 +7206,23 @@ msgstr[0] "{number_of} gün"
 msgid "Calendar"
 msgstr "Takvim"
 
-#: ../gramps/gen/lib/date.py:764
+#: ../gramps/gen/lib/date.py:765
 msgid "Modifier"
 msgstr "Değiştirici"
 
-#: ../gramps/gen/lib/date.py:765
+#: ../gramps/gen/lib/date.py:766
 msgid "Quality"
 msgstr "Kalite"
 
-#: ../gramps/gen/lib/date.py:768 ../gramps/gui/editors/filtereditor.py:866
+#: ../gramps/gen/lib/date.py:769 ../gramps/gui/editors/filtereditor.py:866
 #: ../gramps/gui/glade/rule.glade:967
 msgid "Values"
 msgstr "Değerler"
 
-#: ../gramps/gen/lib/date.py:771 ../gramps/gen/lib/placename.py:99
+#: ../gramps/gen/lib/date.py:772 ../gramps/gen/lib/placename.py:99
 #: ../gramps/gen/lib/styledtext.py:322
 #: ../gramps/gen/plug/report/_constants.py:54 ../gramps/gui/clipboard.py:624
-#: ../gramps/gui/clipboard.py:632 ../gramps/gui/configure.py:1492
+#: ../gramps/gui/clipboard.py:632 ../gramps/gui/configure.py:1514
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:102
 #: ../gramps/plugins/importer/importprogen.glade:403
 #: ../gramps/plugins/importer/importprogen.glade:1107
@@ -7231,69 +7231,69 @@ msgstr "Değerler"
 msgid "Text"
 msgstr "Metin"
 
-#: ../gramps/gen/lib/date.py:772
+#: ../gramps/gen/lib/date.py:773
 msgid "Sort value"
 msgstr "Sıralama değeri"
 
-#: ../gramps/gen/lib/date.py:773
+#: ../gramps/gen/lib/date.py:774
 msgid "New year begins"
 msgstr "Yeni yıl başlangıcı"
 
-#: ../gramps/gen/lib/date.py:1973
+#: ../gramps/gen/lib/date.py:1974
 msgid "calculated"
 msgstr "hesaplanmış"
 
-#: ../gramps/gen/lib/date.py:1973
+#: ../gramps/gen/lib/date.py:1974
 msgid "estimated"
 msgstr "tahmini"
 
-#: ../gramps/gen/lib/date.py:1973
+#: ../gramps/gen/lib/date.py:1974
 msgctxt "date-quality"
 msgid "none"
 msgstr "hiçbiri"
 
-#: ../gramps/gen/lib/date.py:1997
+#: ../gramps/gen/lib/date.py:1998
 msgctxt "date-modifier"
 msgid "none"
 msgstr "hiçbiri"
 
-#: ../gramps/gen/lib/date.py:1998 ../gramps/plugins/webreport/basepage.py:3370
+#: ../gramps/gen/lib/date.py:1999 ../gramps/plugins/webreport/basepage.py:3370
 msgid "before"
 msgstr "önce"
 
-#: ../gramps/gen/lib/date.py:1999 ../gramps/plugins/lib/libprogen.py:1841
+#: ../gramps/gen/lib/date.py:2000 ../gramps/plugins/lib/libprogen.py:1841
 #: ../gramps/plugins/webreport/basepage.py:3368
 msgid "after"
 msgstr "sonra"
 
-#: ../gramps/gen/lib/date.py:2000 ../gramps/plugins/webreport/basepage.py:3372
+#: ../gramps/gen/lib/date.py:2001 ../gramps/plugins/webreport/basepage.py:3372
 msgid "about"
 msgstr "yaklaşık"
 
-#: ../gramps/gen/lib/date.py:2001
+#: ../gramps/gen/lib/date.py:2002
 msgid "range"
 msgstr "arasında"
 
-#: ../gramps/gen/lib/date.py:2002
+#: ../gramps/gen/lib/date.py:2003
 msgid "from"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:2003
+#: ../gramps/gen/lib/date.py:2004
 #, fuzzy
 #| msgid "Stop"
 msgid "to"
 msgstr "Durdur"
 
-#: ../gramps/gen/lib/date.py:2004
+#: ../gramps/gen/lib/date.py:2005
 msgid "span"
 msgstr "arası"
 
-#: ../gramps/gen/lib/date.py:2005
+#: ../gramps/gen/lib/date.py:2006
 msgid "textonly"
 msgstr "sadece metin"
 
 #: ../gramps/gen/lib/event.py:136 ../gramps/gen/lib/eventref.py:109
-#: ../gramps/gui/clipboard.py:337 ../gramps/gui/configure.py:673
+#: ../gramps/gui/clipboard.py:337 ../gramps/gui/configure.py:672
 #: ../gramps/gui/editors/editlink.py:92
 #: ../gramps/gui/editors/filtereditor.py:297
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:140
@@ -7313,7 +7313,7 @@ msgstr "Etkinlik"
 
 #: ../gramps/gen/lib/event.py:151 ../gramps/gen/lib/ldsord.py:186
 #: ../gramps/gen/lib/place.py:134 ../gramps/gui/clipboard.py:357
-#: ../gramps/gui/configure.py:661
+#: ../gramps/gui/configure.py:660
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:81
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:55
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:65
@@ -7418,7 +7418,7 @@ msgstr "Yaşam Etkinlikleri"
 
 #: ../gramps/gen/lib/eventtype.py:141 ../gramps/gen/lib/family.py:145
 #: ../gramps/gen/lib/ldsord.py:188 ../gramps/gui/clipboard.py:750
-#: ../gramps/gui/configure.py:658
+#: ../gramps/gui/configure.py:657
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:59
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:52
 #: ../gramps/gui/editors/editfamily.py:565 ../gramps/gui/editors/editlink.py:93
@@ -7494,7 +7494,7 @@ msgid "Adopted"
 msgstr "Evlatlık"
 
 #: ../gramps/gen/lib/eventtype.py:167 ../gramps/gen/utils/symbols.py:93
-#: ../gramps/gui/configure.py:2332 ../gramps/gui/merge/mergeperson.py:189
+#: ../gramps/gui/configure.py:2284 ../gramps/gui/merge/mergeperson.py:189
 #: ../gramps/plugins/export/exportvcalendar.py:150
 #: ../gramps/plugins/gramplet/ancestor.py:65
 #: ../gramps/plugins/gramplet/descendant.py:63
@@ -7510,7 +7510,7 @@ msgstr "Evlatlık"
 msgid "Birth"
 msgstr "Doğum"
 
-#: ../gramps/gen/lib/eventtype.py:168 ../gramps/gui/configure.py:2338
+#: ../gramps/gen/lib/eventtype.py:168 ../gramps/gui/configure.py:2290
 #: ../gramps/gui/merge/mergeperson.py:194
 #: ../gramps/plugins/export/exportvcalendar.py:159
 #: ../gramps/plugins/importer/importprogen.glade:1491
@@ -7528,7 +7528,7 @@ msgid "Adult Christening"
 msgstr "Yetişkin Vaftiz"
 
 #: ../gramps/gen/lib/eventtype.py:170 ../gramps/gen/lib/ldsord.py:95
-#: ../gramps/gui/configure.py:2333
+#: ../gramps/gui/configure.py:2285
 msgid "Baptism"
 msgstr "Vaftiz"
 
@@ -7642,8 +7642,8 @@ msgstr "Emeklilik"
 msgid "Will"
 msgstr "Vasiyet"
 
-#: ../gramps/gen/lib/eventtype.py:200 ../gramps/gen/plug/docgen/treedoc.py:159
-#: ../gramps/gen/utils/symbols.py:97 ../gramps/gui/configure.py:2335
+#: ../gramps/gen/lib/eventtype.py:200 ../gramps/gen/plug/docgen/treedoc.py:193
+#: ../gramps/gen/utils/symbols.py:97 ../gramps/gui/configure.py:2287
 #: ../gramps/gui/merge/mergeperson.py:258
 #: ../gramps/plugins/export/exportcsv.py:473
 #: ../gramps/plugins/export/exportvcalendar.py:138
@@ -7675,7 +7675,7 @@ msgid "Engagement"
 msgstr "Nişanlanma"
 
 #: ../gramps/gen/lib/eventtype.py:206 ../gramps/gen/utils/symbols.py:98
-#: ../gramps/gui/configure.py:2337 ../gramps/plugins/webreport/family.py:301
+#: ../gramps/gui/configure.py:2289 ../gramps/plugins/webreport/family.py:301
 msgid "Divorce"
 msgstr "Boşanma"
 
@@ -8049,8 +8049,9 @@ msgstr "Medeni Birliktelik"
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:103
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:110
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:106
-#: ../gramps/gui/merge/mergeperson.py:253 ../gramps/gui/plug/_windows.py:123
-#: ../gramps/gui/plug/_windows.py:239 ../gramps/gui/plug/_windows.py:1108
+#: ../gramps/gui/merge/mergeperson.py:253 ../gramps/gui/plug/_windows.py:206
+#: ../gramps/gui/plug/_windows.py:842 ../gramps/gui/plug/_windows.py:958
+#: ../gramps/gui/plug/_windows.py:1827
 #: ../gramps/gui/plug/report/_bookdialog.py:384
 #: ../gramps/gui/plug/report/_bookdialog.py:388
 #: ../gramps/gui/selectors/selectevent.py:66
@@ -8191,7 +8192,8 @@ msgstr "Tapınak"
 #: ../gramps/gen/lib/ldsord.py:192 ../gramps/gui/dbman.py:400
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:53
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:63
-#: ../gramps/gui/plug/_windows.py:127 ../gramps/gui/plug/_windows.py:184
+#: ../gramps/gui/plug/_windows.py:210 ../gramps/gui/plug/_windows.py:846
+#: ../gramps/gui/plug/_windows.py:903
 #: ../gramps/plugins/quickview/ageondate.py:54
 #: ../gramps/plugins/textreport/indivcomplete.py:510
 #: ../gramps/plugins/textreport/indivcomplete.py:709
@@ -8201,7 +8203,7 @@ msgid "Status"
 msgstr "Durum"
 
 #: ../gramps/gen/lib/location.py:87 ../gramps/gen/lib/nameorigintype.py:86
-#: ../gramps/gui/clipboard.py:320 ../gramps/gui/plug/_windows.py:625
+#: ../gramps/gui/clipboard.py:320 ../gramps/gui/plug/_windows.py:1344
 msgid "Location"
 msgstr "Konum"
 
@@ -8238,7 +8240,7 @@ msgstr "Yöre"
 
 #: ../gramps/gen/lib/name.py:143 ../gramps/gen/lib/repo.py:96
 #: ../gramps/gen/lib/tag.py:122 ../gramps/gui/clipboard.py:573
-#: ../gramps/gui/configure.py:607
+#: ../gramps/gui/configure.py:606
 #: ../gramps/gui/editors/displaytabs/backreflist.py:61
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:73
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:66
@@ -8251,8 +8253,8 @@ msgstr "Yöre"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:133
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:109
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:105
-#: ../gramps/gui/plug/_guioptions.py:1177 ../gramps/gui/plug/_windows.py:130
-#: ../gramps/gui/plug/_windows.py:1109
+#: ../gramps/gui/plug/_guioptions.py:1177 ../gramps/gui/plug/_windows.py:849
+#: ../gramps/gui/plug/_windows.py:1828
 #: ../gramps/gui/plug/report/_bookdialog.py:383
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
@@ -8302,11 +8304,11 @@ msgid "Surnames"
 msgstr "Soyadları"
 
 #: ../gramps/gen/lib/name.py:164 ../gramps/gen/utils/keyword.py:60
-#: ../gramps/gui/configure.py:878 ../gramps/gui/configure.py:880
-#: ../gramps/gui/configure.py:882 ../gramps/gui/configure.py:884
-#: ../gramps/gui/configure.py:885 ../gramps/gui/configure.py:890
-#: ../gramps/gui/configure.py:892 ../gramps/gui/configure.py:897
-#: ../gramps/gui/configure.py:899 ../gramps/gui/glade/editperson.glade:229
+#: ../gramps/gui/configure.py:877 ../gramps/gui/configure.py:879
+#: ../gramps/gui/configure.py:881 ../gramps/gui/configure.py:883
+#: ../gramps/gui/configure.py:884 ../gramps/gui/configure.py:889
+#: ../gramps/gui/configure.py:891 ../gramps/gui/configure.py:896
+#: ../gramps/gui/configure.py:898 ../gramps/gui/glade/editperson.glade:229
 #: ../gramps/plugins/export/exportcsv.py:361
 #: ../gramps/plugins/importer/importcsv.py:171
 msgid "Suffix"
@@ -8406,7 +8408,7 @@ msgid "Taken"
 msgstr "Alınan"
 
 #: ../gramps/gen/lib/nameorigintype.py:79 ../gramps/gen/utils/keyword.py:65
-#: ../gramps/gui/configure.py:891
+#: ../gramps/gui/configure.py:890
 msgid "Patronymic"
 msgstr "Baba Soylu"
 
@@ -8444,8 +8446,8 @@ msgid "Married Name"
 msgstr "Evlilik Adı"
 
 #: ../gramps/gen/lib/note.py:109 ../gramps/gen/plug/docgen/graphdoc.py:262
-#: ../gramps/gen/plug/docgen/treedoc.py:208 ../gramps/gui/clipboard.py:377
-#: ../gramps/gui/configure.py:679 ../gramps/gui/editors/editlink.py:95
+#: ../gramps/gen/plug/docgen/treedoc.py:249 ../gramps/gui/clipboard.py:377
+#: ../gramps/gui/configure.py:678 ../gramps/gui/editors/editlink.py:95
 #: ../gramps/gui/editors/editmedia.py:98 ../gramps/gui/editors/editmedia.py:181
 #: ../gramps/gui/editors/editmediaref.py:149
 #: ../gramps/gui/editors/filtereditor.py:302
@@ -8479,13 +8481,13 @@ msgstr "Evlilik Adı"
 msgid "Note"
 msgstr "Not"
 
-#: ../gramps/gen/lib/note.py:119 ../gramps/gui/configure.py:1057
+#: ../gramps/gen/lib/note.py:119 ../gramps/gui/configure.py:1056
 #: ../gramps/gui/editors/editplaceformat.py:72
 #: ../gramps/plugins/tool/reorderids.glade:1446
 msgid "Format"
 msgstr "Biçim"
 
-#: ../gramps/gen/lib/notetype.py:75 ../gramps/gui/configure.py:1772
+#: ../gramps/gen/lib/notetype.py:76 ../gramps/gui/configure.py:1783
 #: ../gramps/gui/editors/editeventref.py:90
 #: ../gramps/gui/editors/editmediaref.py:110
 #: ../gramps/gui/editors/editplaceref.py:72
@@ -8499,113 +8501,119 @@ msgstr "Biçim"
 #: ../gramps/gui/glade/editplaceref.glade:161
 #: ../gramps/gui/glade/editplaceref.glade:665
 #: ../gramps/gui/glade/editreporef.glade:225
-#: ../gramps/gui/glade/editreporef.glade:445
+#: ../gramps/gui/glade/editreporef.glade:445 ../gramps/gui/plug/_windows.py:603
 #: ../gramps/plugins/tool/verify.glade:406
 msgid "General"
 msgstr "Genel"
 
-#: ../gramps/gen/lib/notetype.py:76
+#: ../gramps/gen/lib/notetype.py:77
 msgid "Research"
 msgstr "Araştırma"
 
-#: ../gramps/gen/lib/notetype.py:77
+#: ../gramps/gen/lib/notetype.py:78
+#, fuzzy
+#| msgid "Analyzing names"
+msgid "Analysis"
+msgstr "Adları analiz etme"
+
+#: ../gramps/gen/lib/notetype.py:79
 msgid "Transcript"
 msgstr "Transkript"
 
-#: ../gramps/gen/lib/notetype.py:78
+#: ../gramps/gen/lib/notetype.py:80
 msgid "Source text"
 msgstr "Kaynak metin"
 
-#: ../gramps/gen/lib/notetype.py:80 ../gramps/gen/plug/_pluginreg.py:96
+#: ../gramps/gen/lib/notetype.py:82 ../gramps/gen/plug/_pluginreg.py:98
 #: ../gramps/gui/logger/_errorview.py:174
 msgid "Report"
 msgstr "Rapor"
 
-#: ../gramps/gen/lib/notetype.py:81
+#: ../gramps/gen/lib/notetype.py:83
 msgid "Html code"
 msgstr "Html kodu"
 
-#: ../gramps/gen/lib/notetype.py:82
+#: ../gramps/gen/lib/notetype.py:84
 msgctxt "notetype"
 msgid "To Do"
 msgstr "Yapılacaklar"
 
-#: ../gramps/gen/lib/notetype.py:83
+#: ../gramps/gen/lib/notetype.py:85
 msgctxt "notetype"
 msgid "Link"
 msgstr "İlişim"
 
-#: ../gramps/gen/lib/notetype.py:87
+#: ../gramps/gen/lib/notetype.py:89
 msgid "Person Note"
 msgstr "Kişi Notu"
 
-#: ../gramps/gen/lib/notetype.py:88
+#: ../gramps/gen/lib/notetype.py:90
 msgid "Name Note"
 msgstr "Ad Notu"
 
-#: ../gramps/gen/lib/notetype.py:89
+#: ../gramps/gen/lib/notetype.py:91
 msgid "Attribute Note"
 msgstr "Nitelik Notu"
 
-#: ../gramps/gen/lib/notetype.py:90
+#: ../gramps/gen/lib/notetype.py:92
 msgid "Address Note"
 msgstr "Adres Notu"
 
-#: ../gramps/gen/lib/notetype.py:91
+#: ../gramps/gen/lib/notetype.py:93
 msgid "Association Note"
 msgstr "Bağlantı Notu"
 
-#: ../gramps/gen/lib/notetype.py:92
+#: ../gramps/gen/lib/notetype.py:94
 msgid "LDS Note"
 msgstr "LDS Notu"
 
-#: ../gramps/gen/lib/notetype.py:93
+#: ../gramps/gen/lib/notetype.py:95
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:128
 msgid "Family Note"
 msgstr "Aile Notu"
 
-#: ../gramps/gen/lib/notetype.py:94
+#: ../gramps/gen/lib/notetype.py:96
 msgid "Event Note"
 msgstr "Etkinlik Notu"
 
-#: ../gramps/gen/lib/notetype.py:95
+#: ../gramps/gen/lib/notetype.py:97
 msgid "Event Reference Note"
 msgstr "Etkinlik Referans Notu"
 
-#: ../gramps/gen/lib/notetype.py:96
+#: ../gramps/gen/lib/notetype.py:98
 msgid "Source Note"
 msgstr "Kaynak Notu"
 
-#: ../gramps/gen/lib/notetype.py:97
+#: ../gramps/gen/lib/notetype.py:99
 msgid "Source Reference Note"
 msgstr "Kaynak Referans Notu"
 
-#: ../gramps/gen/lib/notetype.py:98
+#: ../gramps/gen/lib/notetype.py:100
 msgid "Place Note"
 msgstr "Yer Notu"
 
-#: ../gramps/gen/lib/notetype.py:99
+#: ../gramps/gen/lib/notetype.py:101
 msgid "Repository Note"
 msgstr "Depo Notu"
 
-#: ../gramps/gen/lib/notetype.py:100
+#: ../gramps/gen/lib/notetype.py:102
 msgid "Repository Reference Note"
 msgstr "Depo Referans Notu"
 
-#: ../gramps/gen/lib/notetype.py:101
+#: ../gramps/gen/lib/notetype.py:103
 msgid "Media Note"
 msgstr "Ortam Notu"
 
-#: ../gramps/gen/lib/notetype.py:102
+#: ../gramps/gen/lib/notetype.py:104
 msgid "Media Reference Note"
 msgstr "Ortam Referans Notu"
 
-#: ../gramps/gen/lib/notetype.py:103
+#: ../gramps/gen/lib/notetype.py:105
 msgid "Child Reference Note"
 msgstr "Çocuk Referans Notu"
 
 #: ../gramps/gen/lib/person.py:174 ../gramps/gui/clipboard.py:730
-#: ../gramps/gui/configure.py:655 ../gramps/gui/editors/editlink.py:96
+#: ../gramps/gui/configure.py:654 ../gramps/gui/editors/editlink.py:96
 #: ../gramps/gui/editors/filtereditor.py:295
 #: ../gramps/gui/glade/editpersonref.glade:181
 #: ../gramps/gui/glade/editpersonref.glade:247 ../gramps/gui/grampsgui.py:56
@@ -8853,7 +8861,7 @@ msgid "Number"
 msgstr "Numara"
 
 #: ../gramps/gen/lib/repo.py:86 ../gramps/gui/clipboard.py:792
-#: ../gramps/gui/configure.py:676 ../gramps/gui/editors/editlink.py:98
+#: ../gramps/gui/configure.py:675 ../gramps/gui/editors/editlink.py:98
 #: ../gramps/gui/editors/editrepository.py:77
 #: ../gramps/gui/editors/editrepository.py:79
 #: ../gramps/gui/editors/filtereditor.py:301 ../gramps/gui/grampsgui.py:56
@@ -9093,10 +9101,10 @@ msgstr "Üst simge"
 
 #: ../gramps/gen/lib/surname.py:87 ../gramps/gen/lib/surname.py:91
 #: ../gramps/gen/utils/keyword.py:56 ../gramps/gui/clipboard.py:607
-#: ../gramps/gui/configure.py:878 ../gramps/gui/configure.py:880
-#: ../gramps/gui/configure.py:882 ../gramps/gui/configure.py:884
-#: ../gramps/gui/configure.py:887 ../gramps/gui/configure.py:888
-#: ../gramps/gui/configure.py:889 ../gramps/gui/configure.py:890
+#: ../gramps/gui/configure.py:877 ../gramps/gui/configure.py:879
+#: ../gramps/gui/configure.py:881 ../gramps/gui/configure.py:883
+#: ../gramps/gui/configure.py:886 ../gramps/gui/configure.py:887
+#: ../gramps/gui/configure.py:888 ../gramps/gui/configure.py:889
 #: ../gramps/gui/editors/displaytabs/surnametab.py:78
 #: ../gramps/gui/plug/_guioptions.py:89 ../gramps/gui/plug/_guioptions.py:1509
 #: ../gramps/plugins/drawreport/statisticschart.py:346
@@ -9121,12 +9129,12 @@ msgid "Primary"
 msgstr "Birincil"
 
 #: ../gramps/gen/lib/surnamebase.py:187 ../gramps/gen/lib/surnamebase.py:193
-#: ../gramps/gen/lib/surnamebase.py:196
+#: ../gramps/gen/lib/surnamebase.py:196 ../gramps/gen/lib/surnamebase.py:207
 #, python-format
 msgid "%(first)s %(second)s"
 msgstr "%(first)s %(second)s"
 
-#: ../gramps/gen/lib/tag.py:125 ../gramps/gen/plug/docgen/treedoc.py:177
+#: ../gramps/gen/lib/tag.py:125 ../gramps/gen/plug/docgen/treedoc.py:214
 #: ../gramps/gui/glade/styleeditor.glade:400
 #: ../gramps/gui/glade/styleeditor.glade:1449
 #: ../gramps/gui/plug/_guioptions.py:1510 ../gramps/gui/views/tags.py:473
@@ -9138,6 +9146,7 @@ msgid "Priority"
 msgstr "Öncelik"
 
 #: ../gramps/gen/lib/url.py:88 ../gramps/gui/clipboard.py:420
+#: ../gramps/gui/plug/_windows.py:703
 msgid "Url"
 msgstr "Url"
 
@@ -9230,7 +9239,7 @@ msgid "Merge Source"
 msgstr "Kaynağı Birleştir"
 
 #: ../gramps/gen/mime/_pythonmime.py:50 ../gramps/gen/mime/_pythonmime.py:58
-#: ../gramps/gen/mime/_winmime.py:57 ../gramps/gen/utils/db.py:517
+#: ../gramps/gen/mime/_winmime.py:57 ../gramps/gen/utils/db.py:554
 #: ../gramps/gui/merge/mergeperson.py:64
 #: ../gramps/gui/views/treemodels/peoplemodel.py:98
 #: ../gramps/plugins/lib/libgedcom.py:5907
@@ -9261,69 +9270,69 @@ msgstr ""
 "'%(opt_name)s' seçeneği %(file)s içinde mevcut\n"
 "  ancak modül tarafından bilinmiyor.  Yoksayılıyor..."
 
-#: ../gramps/gen/plug/_pluginreg.py:61
+#: ../gramps/gen/plug/_pluginreg.py:62
 msgid "Unstable"
 msgstr "Kararsız"
 
-#: ../gramps/gen/plug/_pluginreg.py:62
+#: ../gramps/gen/plug/_pluginreg.py:63
 msgid "Experimental"
 msgstr ""
 
-#: ../gramps/gen/plug/_pluginreg.py:63
+#: ../gramps/gen/plug/_pluginreg.py:64
 msgid "Beta"
 msgstr ""
 
-#: ../gramps/gen/plug/_pluginreg.py:64
+#: ../gramps/gen/plug/_pluginreg.py:65
 msgid "Stable"
 msgstr "Kararlı"
 
-#: ../gramps/gen/plug/_pluginreg.py:72
+#: ../gramps/gen/plug/_pluginreg.py:73
 msgid "Developer"
 msgstr ""
 
-#: ../gramps/gen/plug/_pluginreg.py:73
+#: ../gramps/gen/plug/_pluginreg.py:74
 msgid "Expert"
 msgstr ""
 
-#: ../gramps/gen/plug/_pluginreg.py:97
+#: ../gramps/gen/plug/_pluginreg.py:99
 msgid "Quickreport"
 msgstr "Hızlı rapor"
 
-#: ../gramps/gen/plug/_pluginreg.py:98
+#: ../gramps/gen/plug/_pluginreg.py:100
 msgid "Tool"
 msgstr "Araç"
 
-#: ../gramps/gen/plug/_pluginreg.py:99
+#: ../gramps/gen/plug/_pluginreg.py:101
 msgid "Importer"
 msgstr "İçe aktarıcı"
 
-#: ../gramps/gen/plug/_pluginreg.py:100
+#: ../gramps/gen/plug/_pluginreg.py:102
 msgid "Exporter"
 msgstr "Dışa aktarıcı"
 
-#: ../gramps/gen/plug/_pluginreg.py:101
+#: ../gramps/gen/plug/_pluginreg.py:103
 msgid "Doc creator"
 msgstr "Belge oluşturucu"
 
-#: ../gramps/gen/plug/_pluginreg.py:102
+#: ../gramps/gen/plug/_pluginreg.py:104
 msgid "Plugin lib"
 msgstr "Eklenti kitaplığı"
 
-#: ../gramps/gen/plug/_pluginreg.py:103
+#: ../gramps/gen/plug/_pluginreg.py:105
 msgid "Map service"
 msgstr "Harita hizmeti"
 
-#: ../gramps/gen/plug/_pluginreg.py:104
+#: ../gramps/gen/plug/_pluginreg.py:106
 msgid "Gramps View"
 msgstr "Gramps Görünümü"
 
-#: ../gramps/gen/plug/_pluginreg.py:105 ../gramps/plugins/view/relview.py:131
+#: ../gramps/gen/plug/_pluginreg.py:107 ../gramps/plugins/view/relview.py:131
 #: ../gramps/plugins/view/view.gpr.py:112
 #: ../gramps/plugins/view/view.gpr.py:120
 msgid "Relationships"
 msgstr "İlişkiler"
 
-#: ../gramps/gen/plug/_pluginreg.py:106 ../gramps/gen/plug/_pluginreg.py:482
+#: ../gramps/gen/plug/_pluginreg.py:108 ../gramps/gen/plug/_pluginreg.py:485
 #: ../gramps/gui/glade/grampletpane.glade:156
 #: ../gramps/gui/widgets/grampletbar.py:662
 #: ../gramps/gui/widgets/grampletpane.py:229
@@ -9331,21 +9340,27 @@ msgstr "İlişkiler"
 msgid "Gramplet"
 msgstr "Gramplet"
 
-#: ../gramps/gen/plug/_pluginreg.py:107
+#: ../gramps/gen/plug/_pluginreg.py:109
 msgid "Sidebar"
 msgstr "Kenar çubuğu"
 
-#: ../gramps/gen/plug/_pluginreg.py:109
+#: ../gramps/gen/plug/_pluginreg.py:111
 msgid "Rule"
 msgstr "Kural"
 
-#: ../gramps/gen/plug/_pluginreg.py:110
+#: ../gramps/gen/plug/_pluginreg.py:112
 #, fuzzy
 #| msgid "Thumbnails"
 msgid "Thumbnailer"
 msgstr "Küçük resimler"
 
-#: ../gramps/gen/plug/_pluginreg.py:586
+#: ../gramps/gen/plug/_pluginreg.py:113 ../gramps/gui/configure.py:1424
+#, fuzzy
+#| msgid "Citation Information"
+msgid "Citation formatter"
+msgstr "Alıntı Bilgisi"
+
+#: ../gramps/gen/plug/_pluginreg.py:589
 #: ../gramps/plugins/gramplet/faqgramplet.py:135
 #: ../gramps/plugins/importer/importprogen.glade:1306
 #: ../gramps/plugins/webreport/basepage.py:1997
@@ -9354,13 +9369,13 @@ msgstr "Küçük resimler"
 msgid "Miscellaneous"
 msgstr "Çeşitli"
 
-#: ../gramps/gen/plug/_pluginreg.py:1306 ../gramps/gen/plug/_pluginreg.py:1332
-#: ../gramps/gen/plug/_pluginreg.py:1337
+#: ../gramps/gen/plug/_pluginreg.py:1311 ../gramps/gen/plug/_pluginreg.py:1338
+#: ../gramps/gen/plug/_pluginreg.py:1343
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
 msgstr "HATA: Eklenti kaydı %(filename)s okunamadı"
 
-#: ../gramps/gen/plug/_pluginreg.py:1315
+#: ../gramps/gen/plug/_pluginreg.py:1320
 #, python-format
 msgid ""
 "WARNING: Plugin %(plugin_name)s has no translation for any of your "
@@ -9369,7 +9384,7 @@ msgstr ""
 "UYARI: %(plugin_name)s eklentisinin yapılandırılmış dillerinizin hiçbiri "
 "için çevirisi yok, bunun yerine ABD İngilizcesi kullanılıyor"
 
-#: ../gramps/gen/plug/_pluginreg.py:1352
+#: ../gramps/gen/plug/_pluginreg.py:1358
 #, python-format
 msgctxt "gramps_version"
 msgid ""
@@ -9379,12 +9394,12 @@ msgstr ""
 "HATA: Eklenti dosyası %(filename)s, Gramps \"%(gramps_version)s\" için "
 "geçersiz olan bir \"%(gramps_target_version)s\" sürümüne sahip."
 
-#: ../gramps/gen/plug/_pluginreg.py:1373
+#: ../gramps/gen/plug/_pluginreg.py:1382
 #, python-format
 msgid "ERROR: Wrong python file %(filename)s in register file %(regfile)s"
 msgstr "HATA: %(regfile)s kayıt dosyasında yanlış python dosyası %(filename)s"
 
-#: ../gramps/gen/plug/_pluginreg.py:1381
+#: ../gramps/gen/plug/_pluginreg.py:1390
 #, python-format
 msgid ""
 "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
@@ -9446,12 +9461,13 @@ msgid "Could not create %s"
 msgstr "%s oluşturulamadı"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:68
-#: ../gramps/gen/plug/docgen/treedoc.py:70
 #: ../gramps/gen/plug/docgen/treedoc.py:76
+#: ../gramps/gen/plug/docgen/treedoc.py:82
 #: ../gramps/gen/plug/report/stdoptions.py:61
 #: ../gramps/gen/plug/report/stdoptions.py:77
 #: ../gramps/gen/plug/report/stdoptions.py:91
 #: ../gramps/gen/plug/report/stdoptions.py:374
+#: ../gramps/plugins/cite/cite.gpr.py:35
 #: ../gramps/plugins/importer/importprogen.glade:380
 #: ../gramps/plugins/webreport/webcal.py:492
 msgid "Default"
@@ -9530,13 +9546,13 @@ msgid "Expand uniformly"
 msgstr "Eşit olarak genişlet"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:95
-#: ../gramps/gen/plug/docgen/treedoc.py:89
+#: ../gramps/gen/plug/docgen/treedoc.py:95
 #: ../gramps/gui/glade/styleeditor.glade:1359
 msgid "Top"
 msgstr "Üst"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:96
-#: ../gramps/gen/plug/docgen/treedoc.py:90
+#: ../gramps/gen/plug/docgen/treedoc.py:96
 #: ../gramps/gui/glade/styleeditor.glade:1374
 msgid "Bottom"
 msgstr "Alt"
@@ -9733,17 +9749,17 @@ msgid "This text will be added to the graph."
 msgstr "Bu metin çizgeye eklenecektir."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:270
-#: ../gramps/gen/plug/docgen/treedoc.py:215
+#: ../gramps/gen/plug/docgen/treedoc.py:258
 msgid "Note location"
 msgstr "Not konumu"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:273
-#: ../gramps/gen/plug/docgen/treedoc.py:218
+#: ../gramps/gen/plug/docgen/treedoc.py:261
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Notun sayfanın üstünde mi yoksa altında mı görüneceği."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:277
-#: ../gramps/gen/plug/docgen/treedoc.py:222
+#: ../gramps/gen/plug/docgen/treedoc.py:266
 msgid "Note size"
 msgstr "Not boyutu"
 
@@ -9819,73 +9835,101 @@ msgstr "Ad, Lakap, Soyadı"
 msgid "Surname Given Nickname"
 msgstr "Soyadı, Ad, Lakap"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:71
+#: ../gramps/gen/plug/docgen/treedoc.py:69
+#, fuzzy
+#| msgid "Surname Given Nickname"
+msgid "Surname, Given Nickname"
+msgstr "Soyadı, Ad, Lakap"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:70
+#, fuzzy
+#| msgid "Given Nickname Surname"
+msgid "GivenNicknameSurname"
+msgstr "Ad, Lakap, Soyadı"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:72
+msgid "Auto"
+msgstr ""
+
+#: ../gramps/gen/plug/docgen/treedoc.py:73
+#, fuzzy
+#| msgid "Call Name"
+msgid "Call Name Only"
+msgstr "Seslenme Adı"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:74
+#, fuzzy
+#| msgid "Given Name"
+msgid "Whole Given Name"
+msgstr "Göbek Adı"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:77
 msgid "Above"
 msgstr "Üstünde"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:72
+#: ../gramps/gen/plug/docgen/treedoc.py:78
 msgid "Below"
 msgstr "Altında"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:73
+#: ../gramps/gen/plug/docgen/treedoc.py:79
 msgid "Not shown"
 msgstr "Gösterilmemiş"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:77 ../gramps/gui/configure.py:100
-#: ../gramps/gui/configure.py:167 ../gramps/gui/configure.py:2179
+#: ../gramps/gen/plug/docgen/treedoc.py:83 ../gramps/gui/configure.py:100
+#: ../gramps/gui/configure.py:167 ../gramps/gui/configure.py:2131
 #: ../gramps/gui/displaystate.py:419 ../gramps/gui/views/pageview.py:601
 msgid "Preferences"
 msgstr "Tercihler"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:79
+#: ../gramps/gen/plug/docgen/treedoc.py:85
 msgid "Down (↓)"
 msgstr "Aşağı (↓)"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:80
+#: ../gramps/gen/plug/docgen/treedoc.py:86
 msgid "Up (↑)"
 msgstr "Yukarı (↑)"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:81
+#: ../gramps/gen/plug/docgen/treedoc.py:87
 msgid "Right (→)"
 msgstr "Sağ (→)"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:82
+#: ../gramps/gen/plug/docgen/treedoc.py:88
 msgid "Left (←)"
 msgstr "Sol (←)"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:84
+#: ../gramps/gen/plug/docgen/treedoc.py:90
 msgid "Perpendicular"
 msgstr "Dik"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:85
+#: ../gramps/gen/plug/docgen/treedoc.py:91
 msgid "Rounded"
 msgstr "Yuvarlak"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:86
+#: ../gramps/gen/plug/docgen/treedoc.py:92
 msgid "Swing"
 msgstr "Sallanma"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:87
+#: ../gramps/gen/plug/docgen/treedoc.py:93
 msgid "Mesh"
 msgstr "Örgü"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:92
+#: ../gramps/gen/plug/docgen/treedoc.py:98
 msgid "Tiny"
 msgstr "Minik"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:93
+#: ../gramps/gen/plug/docgen/treedoc.py:99
 msgid "Script"
 msgstr "Script"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:94
+#: ../gramps/gen/plug/docgen/treedoc.py:100
 msgid "Footnote"
 msgstr "Dipnot"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:95
+#: ../gramps/gen/plug/docgen/treedoc.py:101
 msgid "Small"
 msgstr "Küçük"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:96 ../gramps/gen/utils/string.py:58
+#: ../gramps/gen/plug/docgen/treedoc.py:102 ../gramps/gen/utils/string.py:58
 #: ../gramps/gui/editors/editcitation.py:214
 #: ../gramps/plugins/graph/gvfamilylines.py:270
 #: ../gramps/plugins/graph/gvrelgraph.py:985
@@ -9893,58 +9937,69 @@ msgstr "Küçük"
 msgid "Normal"
 msgstr "Normal"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:97
+#: ../gramps/gen/plug/docgen/treedoc.py:103
 #: ../gramps/plugins/graph/gvfamilylines.py:271
 msgid "Large"
 msgstr "Büyük"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:98
+#: ../gramps/gen/plug/docgen/treedoc.py:104
 msgid "Very large"
 msgstr "Çok büyük"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:99
+#: ../gramps/gen/plug/docgen/treedoc.py:105
 msgid "Extra large"
 msgstr "Ekstra büyük"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:100
+#: ../gramps/gen/plug/docgen/treedoc.py:106
 msgid "Huge"
 msgstr "Kocaman"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:101
+#: ../gramps/gen/plug/docgen/treedoc.py:107
 msgid "Extra huge"
 msgstr "Ekstra kocaman"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:144
+#: ../gramps/gen/plug/docgen/treedoc.py:168
 msgid "Node Options"
 msgstr "Düğüm Seçenekleri"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:147
+#: ../gramps/gen/plug/docgen/treedoc.py:171
 msgid "Node detail"
 msgstr "Düğüm ayrıntısı"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:150
+#: ../gramps/gen/plug/docgen/treedoc.py:174
 msgid "Detail of information to be shown in a node."
 msgstr "Bir düğümde gösterilecek bilgilerin ayrıntısı."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:153
+#: ../gramps/gen/plug/docgen/treedoc.py:178
 msgid "Name Format"
 msgstr "Ad biçimi"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:156
+#: ../gramps/gen/plug/docgen/treedoc.py:181
 #: ../gramps/gen/plug/report/stdoptions.py:95
 #: ../gramps/plugins/webreport/webcal.py:1805
 msgid "Select the format to display names"
 msgstr "Adları görüntülemek için biçimi seçin"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:162
+#: ../gramps/gen/plug/docgen/treedoc.py:184
+#: ../gramps/gui/glade/editperson.glade:708
+msgid "Preferred Name"
+msgstr "Tercih Edilen Ad"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:187
+msgid ""
+"Select the portion of the given name to be marked as preferred. Auto sets "
+"the call name if one exists, otherwise the whole given name."
+msgstr ""
+
+#: ../gramps/gen/plug/docgen/treedoc.py:196
 msgid "Position of marriage information."
 msgstr "Evlilik bilgilerinin konumu."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:165
+#: ../gramps/gen/plug/docgen/treedoc.py:200
 msgid "Node size"
 msgstr "Düğüm boyutu"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:166
+#: ../gramps/gen/plug/docgen/treedoc.py:201
 msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
 "the width, otherwise it is the height."
@@ -9952,11 +10007,11 @@ msgstr ""
 "Bir düğümün mm cinsinden bir boyutu. Zaman akışı yukarı veya aşağı ise bu "
 "genişliktir, aksi takdirde yüksekliktir."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:171
+#: ../gramps/gen/plug/docgen/treedoc.py:207
 msgid "Level size"
 msgstr "Seviye boyutu"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:172
+#: ../gramps/gen/plug/docgen/treedoc.py:208
 msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
 "the height, otherwise it is the width."
@@ -9964,37 +10019,37 @@ msgstr ""
 "Bir düğümün mm cinsinden bir boyutu. Zaman akışı yukarı veya aşağı ise, bu "
 "yükseklik, aksi takdirde genişliktir."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:180
+#: ../gramps/gen/plug/docgen/treedoc.py:217
 msgid "Node color."
 msgstr "Düğüm rengi."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:184
+#: ../gramps/gen/plug/docgen/treedoc.py:222
 #: ../gramps/plugins/drawreport/ancestortree.py:818
 #: ../gramps/plugins/drawreport/descendtree.py:1533
 msgid "Tree Options"
 msgstr "Ağaç Seçenekleri"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:187
+#: ../gramps/gen/plug/docgen/treedoc.py:225
 msgid "Timeflow"
 msgstr "Zaman akışı"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:190
+#: ../gramps/gen/plug/docgen/treedoc.py:228
 msgid "Direction that the graph will grow over time."
 msgstr "Çizgenin zamanla büyüyeceği yön."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:193
+#: ../gramps/gen/plug/docgen/treedoc.py:232
 msgid "Edge style"
 msgstr "Kenar stili"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:196
+#: ../gramps/gen/plug/docgen/treedoc.py:235
 msgid "Style of the edges between nodes."
 msgstr "Düğümler arasındaki kenarların stili."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:199
+#: ../gramps/gen/plug/docgen/treedoc.py:239
 msgid "Level distance"
 msgstr "Seviye mesafesi"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:200
+#: ../gramps/gen/plug/docgen/treedoc.py:240
 msgid ""
 "The minimum amount of free space, in mm, between levels.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
@@ -10004,27 +10059,27 @@ msgstr ""
 "için bu, satırlar arasındaki boşluğa karşılık gelir.  Yatay çizgeler için "
 "bu, sütunlar arasındaki boşluğa karşılık gelir."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:211
+#: ../gramps/gen/plug/docgen/treedoc.py:252
 msgid "Note to add to the tree"
 msgstr "Ağaca eklemek için not"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:212
+#: ../gramps/gen/plug/docgen/treedoc.py:253
 msgid "This text will be added to the tree."
 msgstr "Bu metin ağaca eklenecektir."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:225
+#: ../gramps/gen/plug/docgen/treedoc.py:269
 msgid "The size of note text."
 msgstr "Not metninin boyutu."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:708
+#: ../gramps/gen/plug/docgen/treedoc.py:769
 msgid "PDF"
 msgstr "PDF"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:714
+#: ../gramps/gen/plug/docgen/treedoc.py:775
 msgid "Graph File for genealogytree"
 msgstr "Genealogytree için Çizge Dosyası"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:719
+#: ../gramps/gen/plug/docgen/treedoc.py:780
 msgid "LaTeX File"
 msgstr "LaTeX Dosyası"
 
@@ -10076,7 +10131,7 @@ msgstr "Ağaçlar"
 msgid "Graphics"
 msgstr "Grafikler"
 
-#: ../gramps/gen/plug/report/endnotes.py:61
+#: ../gramps/gen/plug/report/endnotes.py:63
 #: ../gramps/plugins/textreport/ancestorreport.py:376
 #: ../gramps/plugins/textreport/detancestralreport.py:990
 #: ../gramps/plugins/textreport/detdescendantreport.py:1193
@@ -10084,19 +10139,19 @@ msgstr "Grafikler"
 msgid "The style used for the generation header."
 msgstr "Kuşak başlığı için kullanılan stil."
 
-#: ../gramps/gen/plug/report/endnotes.py:68
+#: ../gramps/gen/plug/report/endnotes.py:70
 msgid "The basic style used for the endnotes source display."
 msgstr "Son not kaynağını görüntüleme için kullanılan temel stil."
 
-#: ../gramps/gen/plug/report/endnotes.py:76
+#: ../gramps/gen/plug/report/endnotes.py:78
 msgid "The basic style used for the endnotes notes display."
 msgstr "Son not notlarını görüntüleme için kullanılan temel stil."
 
-#: ../gramps/gen/plug/report/endnotes.py:84
+#: ../gramps/gen/plug/report/endnotes.py:86
 msgid "The basic style used for the endnotes reference display."
 msgstr "Son not referansını görüntüleme için kullanılan temel stil."
 
-#: ../gramps/gen/plug/report/endnotes.py:92
+#: ../gramps/gen/plug/report/endnotes.py:94
 msgid "The basic style used for the endnotes reference notes display."
 msgstr "Son not referans notlarını görüntüleme için kullanılan temel stil."
 
@@ -10112,7 +10167,7 @@ msgstr "Rapor için kullanılacak çeviri."
 msgid "The additional translation to be used for the report."
 msgstr "Rapor için kullanılacak ek çeviri."
 
-#: ../gramps/gen/plug/report/stdoptions.py:90 ../gramps/gui/configure.py:1295
+#: ../gramps/gen/plug/report/stdoptions.py:90 ../gramps/gui/configure.py:1294
 #: ../gramps/plugins/webreport/webcal.py:1801
 msgid "Name format"
 msgstr "Ad biçimi"
@@ -10182,7 +10237,7 @@ msgstr "Dahil etmeyin"
 
 #: ../gramps/gen/plug/report/stdoptions.py:335
 #: ../gramps/gen/plug/report/stdoptions.py:364
-#: ../gramps/gui/viewmanager.py:1728
+#: ../gramps/gui/viewmanager.py:1747
 #: ../gramps/plugins/graph/gvfamilylines.py:226
 #: ../gramps/plugins/graph/gvrelgraph.py:869
 #: ../gramps/plugins/textreport/detancestralreport.py:900
@@ -10221,7 +10276,7 @@ msgstr "Yer biçimi"
 msgid "Select the format to display places"
 msgstr "Yerleri görüntülemek için biçimi seçin"
 
-#: ../gramps/gen/plug/report/stdoptions.py:386 ../gramps/gui/configure.py:1251
+#: ../gramps/gen/plug/report/stdoptions.py:386 ../gramps/gui/configure.py:1250
 #, fuzzy
 #| msgid "Date format"
 msgid "Coordinates format"
@@ -10308,61 +10363,61 @@ msgstr "AİLE"
 msgid "Ancestor Families of %s"
 msgstr "%s Atasının Aileleri"
 
-#: ../gramps/gen/plug/utils.py:249
+#: ../gramps/gen/plug/utils.py:266
 msgid "Updated"
 msgstr "Güncellendi"
 
-#: ../gramps/gen/plug/utils.py:261
+#: ../gramps/gen/plug/utils.py:278
 msgctxt "updates"
 msgid "New"
 msgstr "Yeni"
 
-#: ../gramps/gen/plug/utils.py:291 ../gramps/gen/plug/utils.py:298
+#: ../gramps/gen/plug/utils.py:302 ../gramps/gen/plug/utils.py:309
 #, python-format
 msgid "Unable to open '%s'"
 msgstr "'%s' açılamıyor"
 
-#: ../gramps/gen/plug/utils.py:305
+#: ../gramps/gen/plug/utils.py:316
 #, python-format
 msgid "Error in reading '%s'"
 msgstr "'%s' okunurken hata"
 
-#: ../gramps/gen/plug/utils.py:320
+#: ../gramps/gen/plug/utils.py:331
 #, python-format
 msgid "Error: unknown file type: '%s'"
 msgstr "Hata: bilinmeyen dosya türü: '%s'"
 
-#: ../gramps/gen/plug/utils.py:326
+#: ../gramps/gen/plug/utils.py:337
 #, python-format
 msgid "Examining '%s'..."
 msgstr "'%s' inceleniyor..."
 
-#: ../gramps/gen/plug/utils.py:353
+#: ../gramps/gen/plug/utils.py:364
 #, python-format
 msgid "'%s' is for this version of Gramps."
 msgstr "'%s', Gramps'ın bu sürümü içindir."
 
-#: ../gramps/gen/plug/utils.py:357
+#: ../gramps/gen/plug/utils.py:368
 #, python-format
 msgid "'%s' is NOT for this version of Gramps."
 msgstr "'%s', Gramps'ın bu sürümü için DEĞİLDİR."
 
-#: ../gramps/gen/plug/utils.py:358
+#: ../gramps/gen/plug/utils.py:369
 #, python-format
 msgid "It is for version %(v1)d.%(v2)d"
 msgstr "%(v1)d.%(v2)d sürümü içindir"
 
-#: ../gramps/gen/plug/utils.py:368
+#: ../gramps/gen/plug/utils.py:379
 #, python-format
 msgid "Error: missing gramps_target_version in '%s'..."
 msgstr "Hata: '%s' içinde gramps_target_version eksik..."
 
-#: ../gramps/gen/plug/utils.py:380
+#: ../gramps/gen/plug/utils.py:391
 #, python-format
 msgid "Installing '%s'..."
 msgstr "'%s' yükleniyor..."
 
-#: ../gramps/gen/plug/utils.py:385
+#: ../gramps/gen/plug/utils.py:396
 #, python-format
 msgid "Registered '%s'"
 msgstr "Kayıtlı '%s'"
@@ -10628,12 +10683,12 @@ msgstr ""
 "%(file)s\n"
 "çünkü %(error)s -- yeniden oluşturuluyor\n"
 
-#: ../gramps/gen/utils/db.py:288 ../gramps/gen/utils/db.py:307
+#: ../gramps/gen/utils/db.py:308 ../gramps/gen/utils/db.py:329
 #, python-format
 msgid "%s, ..."
 msgstr "%s, ..."
 
-#: ../gramps/gen/utils/db.py:531
+#: ../gramps/gen/utils/db.py:571
 #, python-format
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s ve %(mother)s"
@@ -10705,10 +10760,10 @@ msgstr "San"
 msgid "GIVEN"
 msgstr "AD"
 
-#: ../gramps/gen/utils/keyword.py:56 ../gramps/gui/configure.py:885
-#: ../gramps/gui/configure.py:892 ../gramps/gui/configure.py:894
-#: ../gramps/gui/configure.py:895 ../gramps/gui/configure.py:896
-#: ../gramps/gui/configure.py:897 ../gramps/gui/configure.py:898
+#: ../gramps/gen/utils/keyword.py:56 ../gramps/gui/configure.py:884
+#: ../gramps/gui/configure.py:891 ../gramps/gui/configure.py:893
+#: ../gramps/gui/configure.py:894 ../gramps/gui/configure.py:895
+#: ../gramps/gui/configure.py:896 ../gramps/gui/configure.py:897
 msgid "SURNAME"
 msgstr "SOYADI"
 
@@ -10727,10 +10782,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr "YAYGIN"
 
-#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:879
-#: ../gramps/gui/configure.py:882 ../gramps/gui/configure.py:884
-#: ../gramps/gui/configure.py:887 ../gramps/gui/configure.py:888
-#: ../gramps/gui/configure.py:893 ../gramps/gui/configure.py:894
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:878
+#: ../gramps/gui/configure.py:881 ../gramps/gui/configure.py:883
+#: ../gramps/gui/configure.py:886 ../gramps/gui/configure.py:887
+#: ../gramps/gui/configure.py:892 ../gramps/gui/configure.py:893
 msgctxt "Name"
 msgid "Common"
 msgstr "Yaygın"
@@ -10813,7 +10868,7 @@ msgstr "Baba Soylu[con]"
 msgid "RAWSURNAMES"
 msgstr "HAMSOYADLARI"
 
-#: ../gramps/gen/utils/keyword.py:69 ../gramps/gui/configure.py:899
+#: ../gramps/gen/utils/keyword.py:69 ../gramps/gui/configure.py:898
 msgid "Rawsurnames"
 msgstr "Hamsoyadları"
 
@@ -10902,6 +10957,20 @@ msgstr ""
 #: ../gramps/gen/utils/place.py:106
 msgid "Output format for the Swedish coordinate system RT90"
 msgstr ""
+
+#: ../gramps/gen/utils/requirements.py:145
+msgid "Python modules"
+msgstr ""
+
+#: ../gramps/gen/utils/requirements.py:152
+msgid "GObject introspection modules"
+msgstr ""
+
+#: ../gramps/gen/utils/requirements.py:159
+#, fuzzy
+#| msgid "_Execute"
+msgid "Executables"
+msgstr "_Uygula"
 
 #: ../gramps/gen/utils/string.py:46 ../gramps/gui/editors/editperson.py:341
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
@@ -11043,7 +11112,7 @@ msgstr "Gayri meşru"
 msgid "Baptism/Christening"
 msgstr "Vaftiz/Ad Koyma"
 
-#: ../gramps/gen/utils/symbols.py:96 ../gramps/gui/configure.py:2334
+#: ../gramps/gen/utils/symbols.py:96 ../gramps/gui/configure.py:2286
 msgid "Engaged"
 msgstr "Nişanlı"
 
@@ -11051,11 +11120,11 @@ msgstr "Nişanlı"
 msgid "Unmarried partnership"
 msgstr "Evlenmemiş birliktelik"
 
-#: ../gramps/gen/utils/symbols.py:101 ../gramps/gui/configure.py:2340
+#: ../gramps/gen/utils/symbols.py:101 ../gramps/gui/configure.py:2292
 msgid "Buried"
 msgstr "Gömülü"
 
-#: ../gramps/gen/utils/symbols.py:102 ../gramps/gui/configure.py:2341
+#: ../gramps/gen/utils/symbols.py:102 ../gramps/gui/configure.py:2293
 msgid "Cremated/Funeral urn"
 msgstr "Yakılan/Cenaze vazosu"
 
@@ -11319,9 +11388,9 @@ msgstr "Ağaç Görünümü: ilk sütun \"%s\" değiştirilemez"
 msgid "Drag and drop the columns to change the order"
 msgstr "Sırayı değiştirmek için sütunları sürükleyip bırakın"
 
-#: ../gramps/gui/columnorder.py:109 ../gramps/gui/configure.py:2075
-#: ../gramps/gui/configure.py:2099 ../gramps/gui/configure.py:2125
-#: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:1799
+#: ../gramps/gui/columnorder.py:109 ../gramps/gui/configure.py:2027
+#: ../gramps/gui/configure.py:2051 ../gramps/gui/configure.py:2077
+#: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:1818
 #: ../gramps/plugins/lib/maps/geography.py:1017
 #: ../gramps/plugins/lib/maps/geography.py:1380
 msgid "_Apply"
@@ -11364,10 +11433,10 @@ msgstr "Ad Düzenleyiciyi Göster"
 #: ../gramps/gui/glade/plugins.glade:22 ../gramps/gui/glade/rule.glade:24
 #: ../gramps/gui/glade/rule.glade:1024 ../gramps/gui/glade/tipofday.glade:117
 #: ../gramps/gui/glade/updateaddons.glade:25 ../gramps/gui/grampsgui.py:56
-#: ../gramps/gui/plug/_windows.py:105 ../gramps/gui/plug/_windows.py:691
-#: ../gramps/gui/plug/_windows.py:747
+#: ../gramps/gui/plug/_windows.py:336 ../gramps/gui/plug/_windows.py:824
+#: ../gramps/gui/plug/_windows.py:1410 ../gramps/gui/plug/_windows.py:1466
 #: ../gramps/gui/plug/quick/_textbufdoc.py:60 ../gramps/gui/undohistory.py:90
-#: ../gramps/gui/viewmanager.py:1663 ../gramps/gui/views/bookmarks.py:311
+#: ../gramps/gui/viewmanager.py:1682 ../gramps/gui/views/bookmarks.py:311
 #: ../gramps/gui/views/tags.py:494 ../gramps/gui/widgets/grampletbar.py:669
 #: ../gramps/gui/widgets/grampletpane.py:240
 #: ../gramps/plugins/lib/maps/placeselection.py:117
@@ -11439,7 +11508,7 @@ msgid " Name Editor"
 msgstr " Ad Düzenleyici"
 
 #: ../gramps/gui/configure.py:245 ../gramps/gui/configure.py:251
-#: ../gramps/gui/configure.py:1041
+#: ../gramps/gui/configure.py:1040
 msgid "Invalid or incomplete format definition."
 msgstr "Geçersiz veya eksik biçim tanımı."
 
@@ -11447,21 +11516,22 @@ msgstr "Geçersiz veya eksik biçim tanımı."
 #: ../gramps/gui/configure.py:389 ../gramps/gui/configure.py:416
 #: ../gramps/gui/configure.py:438 ../gramps/gui/configure.py:454
 #: ../gramps/gui/configure.py:485 ../gramps/gui/configure.py:522
-#: ../gramps/gui/configure.py:544 ../gramps/gui/configure.py:711
-#: ../gramps/gui/configure.py:1229 ../gramps/gui/configure.py:1251
-#: ../gramps/gui/configure.py:1295 ../gramps/gui/configure.py:1330
-#: ../gramps/gui/configure.py:1352 ../gramps/gui/configure.py:1372
-#: ../gramps/gui/configure.py:1385 ../gramps/gui/configure.py:1403
-#: ../gramps/gui/configure.py:1422 ../gramps/gui/configure.py:1435
-#: ../gramps/gui/configure.py:1801 ../gramps/gui/configure.py:1819
-#: ../gramps/gui/configure.py:1901 ../gramps/gui/configure.py:1959
-#: ../gramps/gui/views/navigationview.py:344
+#: ../gramps/gui/configure.py:544 ../gramps/gui/configure.py:710
+#: ../gramps/gui/configure.py:1228 ../gramps/gui/configure.py:1250
+#: ../gramps/gui/configure.py:1294 ../gramps/gui/configure.py:1329
+#: ../gramps/gui/configure.py:1351 ../gramps/gui/configure.py:1371
+#: ../gramps/gui/configure.py:1384 ../gramps/gui/configure.py:1419
+#: ../gramps/gui/configure.py:1424 ../gramps/gui/configure.py:1444
+#: ../gramps/gui/configure.py:1457 ../gramps/gui/configure.py:1826
+#: ../gramps/gui/configure.py:1884 ../gramps/gui/plug/_windows.py:645
+#: ../gramps/gui/plug/_windows.py:663 ../gramps/gui/plug/_windows.py:695
+#: ../gramps/gui/plug/_windows.py:703 ../gramps/gui/views/navigationview.py:344
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:90
 #, python-format
 msgid "%s: "
 msgstr "%s: "
 
-#: ../gramps/gui/configure.py:580 ../gramps/gui/editors/edittaglist.py:118
+#: ../gramps/gui/configure.py:579 ../gramps/gui/editors/edittaglist.py:118
 #: ../gramps/gui/glade/addmedia.glade:55
 #: ../gramps/gui/glade/baseselector.glade:57 ../gramps/gui/glade/book.glade:498
 #: ../gramps/gui/glade/clipboard.glade:21 ../gramps/gui/glade/dbman.glade:150
@@ -11512,26 +11582,26 @@ msgstr "%s: "
 msgid "_Help"
 msgstr "_Yardım"
 
-#: ../gramps/gui/configure.py:602 ../gramps/gui/configure.py:641
+#: ../gramps/gui/configure.py:601 ../gramps/gui/configure.py:640
 msgid "Researcher"
 msgstr "Araştırmacı"
 
-#: ../gramps/gui/configure.py:619
+#: ../gramps/gui/configure.py:618
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:75
 #: ../gramps/plugins/view/repoview.py:92
 msgid "State/County"
 msgstr "Eyalet/İlçe"
 
-#: ../gramps/gui/configure.py:625 ../gramps/plugins/view/repoview.py:94
+#: ../gramps/gui/configure.py:624 ../gramps/plugins/view/repoview.py:94
 msgid "ZIP/Postal Code"
 msgstr "ZIP/Posta Kodu"
 
-#: ../gramps/gui/configure.py:631 ../gramps/gui/plug/_windows.py:623
+#: ../gramps/gui/configure.py:630 ../gramps/gui/plug/_windows.py:1342
 #: ../gramps/plugins/view/repoview.py:95
 msgid "Email"
 msgstr "E-posta"
 
-#: ../gramps/gui/configure.py:636
+#: ../gramps/gui/configure.py:635
 msgid ""
 "Enter information about yourself so people can contact you when you "
 "distribute your Family Tree."
@@ -11539,15 +11609,15 @@ msgstr ""
 "Soyağacınızı paylaşırken insanların sizinle iletişim kurabilmesi için "
 "kendinizle ilgili bilgileri girin."
 
-#: ../gramps/gui/configure.py:650 ../gramps/gui/configure.py:690
+#: ../gramps/gui/configure.py:649 ../gramps/gui/configure.py:689
 msgid "ID Formats"
 msgstr "KNo Biçimleri"
 
-#: ../gramps/gui/configure.py:670 ../gramps/plugins/importer/importxml.py:324
+#: ../gramps/gui/configure.py:669 ../gramps/plugins/importer/importxml.py:324
 msgid "Media Object"
 msgstr "Ortam Nesnesi"
 
-#: ../gramps/gui/configure.py:683
+#: ../gramps/gui/configure.py:682
 #, python-format
 msgid ""
 "Default Gramps ID formats containing a letter prefix followed by a numerical "
@@ -11559,165 +11629,165 @@ msgstr ""
 "veri tabanları daha büyük kimliklere ihtiyaç duyabilir. \"I%06d\", I000000 "
 "ile I999999 arasında kimlikler oluşturur.\n"
 
-#: ../gramps/gui/configure.py:699
+#: ../gramps/gui/configure.py:698
 msgid "Colors used for boxes in the graphical views"
 msgstr "Grafiksel görünümlerde kutular için kullanılan renkler"
 
-#: ../gramps/gui/configure.py:705
+#: ../gramps/gui/configure.py:704
 msgid "Light colors"
 msgstr "Açık renkler"
 
-#: ../gramps/gui/configure.py:706
+#: ../gramps/gui/configure.py:705
 msgid "Dark colors"
 msgstr "Koyu renkler"
 
-#: ../gramps/gui/configure.py:711
+#: ../gramps/gui/configure.py:710
 msgid "Color scheme"
 msgstr "Renk düzeni"
 
-#: ../gramps/gui/configure.py:715 ../gramps/gui/configure.py:2350
+#: ../gramps/gui/configure.py:714 ../gramps/gui/configure.py:2302
 msgid "Restore to defaults"
 msgstr "Varsayılanlara geri yükle"
 
-#: ../gramps/gui/configure.py:717
+#: ../gramps/gui/configure.py:716
 msgid "Restore colors for current theme to default."
 msgstr "Geçerli temanın renklerini varsayılana geri yükleyin."
 
-#: ../gramps/gui/configure.py:723
+#: ../gramps/gui/configure.py:722
 msgid "Colors for Male persons"
 msgstr "Erkek kişiler için renkler"
 
-#: ../gramps/gui/configure.py:724
+#: ../gramps/gui/configure.py:723
 msgid "Colors for Female persons"
 msgstr "Kadın kişiler için renkler"
 
-#: ../gramps/gui/configure.py:725
+#: ../gramps/gui/configure.py:724
 msgid "Colors for people who are neither male nor female"
 msgstr ""
 
-#: ../gramps/gui/configure.py:726
+#: ../gramps/gui/configure.py:725
 msgid "Colors for Unknown persons"
 msgstr "Bilinmeyen kişiler için renkler"
 
-#: ../gramps/gui/configure.py:727
+#: ../gramps/gui/configure.py:726
 msgid "Colors for Family nodes"
 msgstr "Aile düğümleri için renkler"
 
-#: ../gramps/gui/configure.py:728
+#: ../gramps/gui/configure.py:727
 msgid "Other colors"
 msgstr "Diğer renkler"
 
-#: ../gramps/gui/configure.py:730
+#: ../gramps/gui/configure.py:729
 msgid "Background for Alive"
 msgstr "Canlı için arka plan"
 
-#: ../gramps/gui/configure.py:731
+#: ../gramps/gui/configure.py:730
 msgid "Background for Dead"
 msgstr "Ölü için arka plan"
 
-#: ../gramps/gui/configure.py:732
+#: ../gramps/gui/configure.py:731
 msgid "Border for Alive"
 msgstr "Canlı için kenarlık"
 
-#: ../gramps/gui/configure.py:733
+#: ../gramps/gui/configure.py:732
 msgid "Border for Dead"
 msgstr "Ölü için kenarlık"
 
-#: ../gramps/gui/configure.py:758
+#: ../gramps/gui/configure.py:757
 msgid "Default background"
 msgstr "Varsayılan arka plan"
 
-#: ../gramps/gui/configure.py:759
+#: ../gramps/gui/configure.py:758
 msgid "Background for Married"
 msgstr "Evli için arka plan"
 
-#: ../gramps/gui/configure.py:760
+#: ../gramps/gui/configure.py:759
 msgid "Background for Unmarried"
 msgstr "Evlenmemiş için arka plan"
 
-#: ../gramps/gui/configure.py:762
+#: ../gramps/gui/configure.py:761
 msgid "Background for Civil union"
 msgstr "Sivil birliktelik için arka plan"
 
-#: ../gramps/gui/configure.py:764
+#: ../gramps/gui/configure.py:763
 msgid "Background for Unknown"
 msgstr "Bilinmeyen için arka plan"
 
-#: ../gramps/gui/configure.py:765
+#: ../gramps/gui/configure.py:764
 msgid "Background for Divorced"
 msgstr "Boşanmış için arka plan"
 
-#: ../gramps/gui/configure.py:766
+#: ../gramps/gui/configure.py:765
 msgid "Default border"
 msgstr "Varsayılan kenarlık"
 
-#: ../gramps/gui/configure.py:767
+#: ../gramps/gui/configure.py:766
 msgid "Border for Divorced"
 msgstr "Boşanmış için kenarlık"
 
-#: ../gramps/gui/configure.py:770
+#: ../gramps/gui/configure.py:769
 msgid "Background for Home Person"
 msgstr "Ana Kişi için arka plan"
 
-#: ../gramps/gui/configure.py:790 ../gramps/gui/configure.py:2347
+#: ../gramps/gui/configure.py:789 ../gramps/gui/configure.py:2299
 #, python-format
 msgid "<b>%s</b>"
 msgstr "<b>%s</b>"
 
-#: ../gramps/gui/configure.py:803
+#: ../gramps/gui/configure.py:802
 msgid "Colors"
 msgstr "Renkler"
 
-#: ../gramps/gui/configure.py:823
+#: ../gramps/gui/configure.py:822
 msgid "Warnings and Error dialogs"
 msgstr "Uyarılar ve Hata iletişim kutuları"
 
-#: ../gramps/gui/configure.py:829
+#: ../gramps/gui/configure.py:828
 msgid "Suppress warning when adding parents to a child"
 msgstr "Bir çocuğa ebeveyn eklerken uyarıyı bastır"
 
-#: ../gramps/gui/configure.py:833
+#: ../gramps/gui/configure.py:832
 msgid "Suppress warning when canceling with changed data"
 msgstr "Değiştirilen verilerle iptal ederken uyarıyı bastır"
 
-#: ../gramps/gui/configure.py:837
+#: ../gramps/gui/configure.py:836
 msgid "Suppress warning about missing researcher when exporting to GEDCOM"
 msgstr "GEDCOM'a dışa aktarırken eksik araştırmacı hakkında uyarıyı bastır"
 
-#: ../gramps/gui/configure.py:842
+#: ../gramps/gui/configure.py:841
 msgid "Suppress tooltip warnings about data being saved immediately"
 msgstr ""
 
-#: ../gramps/gui/configure.py:847
+#: ../gramps/gui/configure.py:846
 msgid "Show plugin status dialog on plugin load error"
 msgstr "Eklenti yükleme hatasında eklenti durumu iletişim kutusunu göster"
 
-#: ../gramps/gui/configure.py:850
+#: ../gramps/gui/configure.py:849
 msgid "Warnings"
 msgstr "Uyarılar"
 
-#: ../gramps/gui/configure.py:886 ../gramps/plugins/export/exportcsv.py:361
+#: ../gramps/gui/configure.py:885 ../gramps/plugins/export/exportcsv.py:361
 #: ../gramps/plugins/importer/importcsv.py:168
 msgid "Call"
 msgstr "Seslenme"
 
-#: ../gramps/gui/configure.py:891
+#: ../gramps/gui/configure.py:890
 msgid "NotPatronymic"
 msgstr "BabasoyluDeğil"
 
-#: ../gramps/gui/configure.py:969
+#: ../gramps/gui/configure.py:968
 msgid "Enter to save, Esc to cancel editing"
 msgstr "Kaydetmek için ENTER, düzenlemeyi iptal etmek için ESC"
 
-#: ../gramps/gui/configure.py:1018
+#: ../gramps/gui/configure.py:1017
 msgid "This format exists already."
 msgstr "Bu biçim zaten var."
 
-#: ../gramps/gui/configure.py:1067
+#: ../gramps/gui/configure.py:1066
 msgid "Example"
 msgstr "Örnek"
 
-#: ../gramps/gui/configure.py:1088
+#: ../gramps/gui/configure.py:1087
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:148
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:155
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:316
@@ -11733,7 +11803,7 @@ msgstr "Örnek"
 msgid "_Add"
 msgstr "_Ekle"
 
-#: ../gramps/gui/configure.py:1091
+#: ../gramps/gui/configure.py:1090
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:150
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:156
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:317
@@ -11749,7 +11819,7 @@ msgstr "_Ekle"
 msgid "_Edit"
 msgstr "_Düzenle"
 
-#: ../gramps/gui/configure.py:1095
+#: ../gramps/gui/configure.py:1094
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:151
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:157
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:132
@@ -11761,88 +11831,116 @@ msgstr "_Düzenle"
 msgid "_Remove"
 msgstr "_Kaldır"
 
-#: ../gramps/gui/configure.py:1210
+#: ../gramps/gui/configure.py:1209
 msgid "Display Options"
 msgstr "Görüntüleme seçenekleri"
 
-#: ../gramps/gui/configure.py:1226 ../gramps/gui/configure.py:1299
+#: ../gramps/gui/configure.py:1225 ../gramps/gui/configure.py:1298
 #: ../gramps/gui/editors/displaytabs/buttontab.py:71
 #: ../gramps/gui/glade/editfamily.glade:286
 #: ../gramps/gui/glade/editfamily.glade:594
 #: ../gramps/gui/glade/editperson.glade:12
 #: ../gramps/gui/glade/editperson.glade:516 ../gramps/gui/glade/rule.glade:463
 #: ../gramps/gui/glade/styleeditor.glade:1903
-#: ../gramps/gui/plug/_windows.py:152 ../gramps/gui/plug/_windows.py:207
+#: ../gramps/gui/plug/_windows.py:871 ../gramps/gui/plug/_windows.py:926
 #: ../gramps/plugins/gramplet/ancestor.py:112
 #: ../gramps/plugins/gramplet/descendant.py:110
 msgid "Edit"
 msgstr "Düzenle"
 
-#: ../gramps/gui/configure.py:1229
+#: ../gramps/gui/configure.py:1228
 msgid "Automate Place format"
 msgstr "Otomatik yer biçimi"
 
-#: ../gramps/gui/configure.py:1232
+#: ../gramps/gui/configure.py:1231
 msgid "Enables automatic place title generation using specified format."
 msgstr ""
 "Belirtilen biçimi kullanarak otomatik yer başlığı oluşturmayı etkinleştirir."
 
-#: ../gramps/gui/configure.py:1308
+#: ../gramps/gui/configure.py:1307
 msgid "Custom name display options are unique to each family tree."
 msgstr "Özel ad görüntüleme seçenekleri her soyağacı için farklıdır."
 
-#: ../gramps/gui/configure.py:1316
+#: ../gramps/gui/configure.py:1315
 msgid "Consider single pa/matronymic as surname"
 msgstr "Soyadı olarak tek baba/anne soylu düşünün"
 
-#: ../gramps/gui/configure.py:1330
+#: ../gramps/gui/configure.py:1329
 msgid "Date format *"
 msgstr "Tarih biçimi *"
 
-#: ../gramps/gui/configure.py:1338
+#: ../gramps/gui/configure.py:1337
 msgid "Years"
 msgstr "Yıllar"
 
-#: ../gramps/gui/configure.py:1339
+#: ../gramps/gui/configure.py:1338
 msgid "Years, Months"
 msgstr "Yıllar, Aylar"
 
-#: ../gramps/gui/configure.py:1340
+#: ../gramps/gui/configure.py:1339
 msgid "Years, Months, Days"
 msgstr "Yıllar, Aylar, Günler"
 
-#: ../gramps/gui/configure.py:1353
+#: ../gramps/gui/configure.py:1352
 msgid "Age display precision *"
 msgstr "Yaş görüntüleme hassasiyeti *"
 
-#: ../gramps/gui/configure.py:1360
+#: ../gramps/gui/configure.py:1359
 #, fuzzy
 #| msgid "Display references for a %s"
 msgid "Display ages for events after death *"
 msgstr "%s için referansları göster"
 
-#: ../gramps/gui/configure.py:1372
+#: ../gramps/gui/configure.py:1371
 msgid "Calendar on reports"
 msgstr "Raporlardaki takvim"
 
-#: ../gramps/gui/configure.py:1385
+#: ../gramps/gui/configure.py:1384
 msgid "Calendar on input"
 msgstr "Girdide takvim"
 
+#: ../gramps/gui/configure.py:1391
+#, fuzzy
+#| msgid "Shows previous page"
+msgid "on the previous day"
+msgstr "Önceki sayfayı gösterir"
+
 #: ../gramps/gui/configure.py:1392
+#, fuzzy
+#| msgid "Shows the next page"
+msgid "on the next day"
+msgstr "Sonraki sayfayı gösterir"
+
+#: ../gramps/gui/configure.py:1393
+msgid "only on leap years"
+msgstr ""
+
+#: ../gramps/gui/configure.py:1398
+msgid ""
+"For non leap years, anniversaries are displayed on either February 28, March "
+"1 or not at all in Gregorian calendars"
+msgstr ""
+
+#: ../gramps/gui/configure.py:1401
+#, fuzzy
+#| msgid "Include death anniversaries"
+msgid "Show leap day anniversaries"
+msgstr "Ölüm yıldönümlerini dahil et"
+
+#: ../gramps/gui/configure.py:1408
 msgid "Active person's name and ID"
 msgstr "Etkin kişinin adı ve KNo'su"
 
-#: ../gramps/gui/configure.py:1393
+#: ../gramps/gui/configure.py:1409
 #: ../gramps/plugins/textreport/indivcomplete.py:372
 msgid "Relationship to home person"
 msgstr "Ana kişi ile ilişki"
 
-#: ../gramps/gui/configure.py:1403
+#: ../gramps/gui/configure.py:1419
 msgid "Status bar"
 msgstr "Durum çubuğu"
 
-#: ../gramps/gui/configure.py:1409
+#: ../gramps/gui/configure.py:1431
 msgid ""
 "\n"
 "Input Options"
@@ -11850,59 +11948,59 @@ msgstr ""
 "\n"
 "Girdi seçenekleri"
 
-#: ../gramps/gui/configure.py:1422
+#: ../gramps/gui/configure.py:1444
 msgid "Surname guessing"
 msgstr "Soyadı tahmini"
 
-#: ../gramps/gui/configure.py:1435
+#: ../gramps/gui/configure.py:1457
 msgid "Default family relationship"
 msgstr "Varsayılan aile ilişkisi"
 
-#: ../gramps/gui/configure.py:1441
+#: ../gramps/gui/configure.py:1463
 msgid "Hide LDS tab in person and family editors"
 msgstr "Kişi ve aile düzenleyicilerinde LDS sekmesini gizle"
 
-#: ../gramps/gui/configure.py:1446 ../gramps/gui/configure.py:1768
+#: ../gramps/gui/configure.py:1468 ../gramps/gui/configure.py:1779
 msgid "* Requires Restart"
 msgstr "* Yeniden başlatma gerektirir"
 
-#: ../gramps/gui/configure.py:1450
+#: ../gramps/gui/configure.py:1472
 msgid "Data"
 msgstr "Veri"
 
-#: ../gramps/gui/configure.py:1467
+#: ../gramps/gui/configure.py:1489
 msgid "Conditional Text Replacements"
 msgstr "Koşullu Metin Değişiklikleri"
 
-#: ../gramps/gui/configure.py:1472
+#: ../gramps/gui/configure.py:1494
 msgid "Missing surname"
 msgstr "Eksik soyadı"
 
-#: ../gramps/gui/configure.py:1475
+#: ../gramps/gui/configure.py:1497
 msgid "Missing given name"
 msgstr "Eksik ad"
 
-#: ../gramps/gui/configure.py:1478
+#: ../gramps/gui/configure.py:1500
 msgid "Missing record"
 msgstr "Eksik kayıt"
 
-#: ../gramps/gui/configure.py:1481
+#: ../gramps/gui/configure.py:1503
 msgid "Private surname"
 msgstr "Özel soyadı"
 
-#: ../gramps/gui/configure.py:1485
+#: ../gramps/gui/configure.py:1507
 msgid "Private given name"
 msgstr "Gizli ad"
 
-#: ../gramps/gui/configure.py:1489
+#: ../gramps/gui/configure.py:1511
 msgid "Private record"
 msgstr "Özel kayıt"
 
-#: ../gramps/gui/configure.py:1558
+#: ../gramps/gui/configure.py:1563
 msgid "Change is not immediate"
 msgstr "Değişim hemen değil"
 
-#: ../gramps/gui/configure.py:1559
+#: ../gramps/gui/configure.py:1564
 msgid ""
 "Changing the date format will not take effect until the next time Gramps is "
 "started."
@@ -11910,63 +12008,63 @@ msgstr ""
 "Tarih biçiminin değiştirilmesi, Gramps'ın bir sonraki başlatılışına kadar "
 "etkili olmayacaktır."
 
-#: ../gramps/gui/configure.py:1590
+#: ../gramps/gui/configure.py:1601
 msgid "Calculation limits"
 msgstr "Hesaplama sınırları"
 
-#: ../gramps/gui/configure.py:1596
+#: ../gramps/gui/configure.py:1607
 msgid "Date 'about' year range: (date ± #)"
 msgstr "Tarih 'yaklaşık' yıl aralığı: (tarih ± #)"
 
-#: ../gramps/gui/configure.py:1600
+#: ../gramps/gui/configure.py:1611
 msgid "Date 'after' year range:  (date + #)"
 msgstr "Tarih 'sonrası' yıl aralığı:  (tarih + #)"
 
-#: ../gramps/gui/configure.py:1604
+#: ../gramps/gui/configure.py:1615
 msgid "Date 'before' year range: (date - #)"
 msgstr "Tarih 'öncesi' yıl aralığı: (tarih - #)"
 
-#: ../gramps/gui/configure.py:1608
+#: ../gramps/gui/configure.py:1619
 msgid "Maximum age probably alive"
 msgstr "Muhtemelen yaşayan en fazla yaş"
 
-#: ../gramps/gui/configure.py:1612
+#: ../gramps/gui/configure.py:1623
 msgid "Maximum sibling age difference"
 msgstr "En fazla kardeş yaş farkı"
 
-#: ../gramps/gui/configure.py:1616
+#: ../gramps/gui/configure.py:1627
 msgid "Minimum years between generations"
 msgstr "Kuşaklar arası asgari yıl"
 
-#: ../gramps/gui/configure.py:1620
+#: ../gramps/gui/configure.py:1631
 msgid "Average years between generations"
 msgstr "Kuşaklar arası ortalama yıl"
 
-#: ../gramps/gui/configure.py:1624
+#: ../gramps/gui/configure.py:1635
 msgid "Max generations for relationships"
 msgstr "İlişkiler için en fazla kuşak sayısı"
 
-#: ../gramps/gui/configure.py:1628
+#: ../gramps/gui/configure.py:1639
 msgid "Limits"
 msgstr "Sınırlar"
 
-#: ../gramps/gui/configure.py:1637
+#: ../gramps/gui/configure.py:1648
 msgid "Environment Settings"
 msgstr "Ortam Ayarları"
 
-#: ../gramps/gui/configure.py:1642
+#: ../gramps/gui/configure.py:1653
 msgid "Display Tip of the Day"
 msgstr "Günün İpucunu Göster"
 
-#: ../gramps/gui/configure.py:1644
+#: ../gramps/gui/configure.py:1655
 msgid "Show useful information about using Gramps on startup."
 msgstr "Başlangıçta Gramps'ı kullanma hakkında faydalı bilgiler göster."
 
-#: ../gramps/gui/configure.py:1647
+#: ../gramps/gui/configure.py:1658
 msgid "Remember last Family Tree"
 msgstr "Son soyağacını hatırla"
 
-#: ../gramps/gui/configure.py:1649
+#: ../gramps/gui/configure.py:1660
 msgid ""
 "Don't open dialog to choose family tree to load on startup, just load last "
 "used."
@@ -11974,23 +12072,23 @@ msgstr ""
 "Başlangıçta yüklenecek soyağacını seçmek için iletişim kutusunu açmayın, "
 "sadece en son kullanılanı yükleyin."
 
-#: ../gramps/gui/configure.py:1653
+#: ../gramps/gui/configure.py:1664
 msgid "Remember last view displayed"
 msgstr "Görüntülenen son görünümü hatırla"
 
-#: ../gramps/gui/configure.py:1655
+#: ../gramps/gui/configure.py:1666
 msgid "Remember last view displayed and open it next time."
 msgstr "Görüntülenen son görünümü hatırla ve bir dahaki sefere aç."
 
-#: ../gramps/gui/configure.py:1658
+#: ../gramps/gui/configure.py:1669
 msgid "Enable spell checker"
 msgstr "Yazım denetleyicisini etkinleştir"
 
-#: ../gramps/gui/configure.py:1660
+#: ../gramps/gui/configure.py:1671
 msgid "Enable the spelling checker for notes."
 msgstr "Notlar için yazım denetleyicisini etkinleştir."
 
-#: ../gramps/gui/configure.py:1669
+#: ../gramps/gui/configure.py:1680
 #, fuzzy, python-format
 #| msgid ""
 #| "GtkSpell not loaded. Spell checking will not be available.\n"
@@ -12002,11 +12100,11 @@ msgstr ""
 "GtkSpell yüklenmedi. Yazım denetimi kullanılamayacak.\n"
 "Gramps için oluşturmak için %(gramps_wiki_build_spell_url)s'ye bakın"
 
-#: ../gramps/gui/configure.py:1677
+#: ../gramps/gui/configure.py:1688
 msgid "Show text label beside Navigator buttons *"
 msgstr "Gezgin düğmelerinin yanında metin etiketini göster *"
 
-#: ../gramps/gui/configure.py:1679
+#: ../gramps/gui/configure.py:1690
 msgid ""
 "Show or hide text beside Navigator buttons (People, Families, Events...).\n"
 "Requires Gramps restart to apply."
@@ -12015,61 +12113,61 @@ msgstr ""
 "göster veya gizle.\n"
 "Uygulamak için Gramps'ın yeniden başlatılmasını gerektirir."
 
-#: ../gramps/gui/configure.py:1686
+#: ../gramps/gui/configure.py:1697
 msgid "Show Clipboard icon on toolbar"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1688
+#: ../gramps/gui/configure.py:1699
 msgid "Show or hide the Clipboard icon on the toolbar."
 msgstr ""
 
-#: ../gramps/gui/configure.py:1694
+#: ../gramps/gui/configure.py:1705
 msgid "Show Reports icon on toolbar"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1696
+#: ../gramps/gui/configure.py:1707
 msgid "Show or hide the Reports icon on the toolbar."
 msgstr ""
 
-#: ../gramps/gui/configure.py:1702
+#: ../gramps/gui/configure.py:1713
 msgid "Show Tools icon on toolbar"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1704
+#: ../gramps/gui/configure.py:1715
 msgid "Show or hide the Tools icon on the toolbar."
 msgstr ""
 
-#: ../gramps/gui/configure.py:1710
-msgid "Show Plugins icon on toolbar"
+#: ../gramps/gui/configure.py:1721
+msgid "Show Addons icon on toolbar"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1712
-msgid "Show or hide the Plugins icon on the toolbar."
+#: ../gramps/gui/configure.py:1723
+msgid "Show or hide the Addons icon on the toolbar."
 msgstr ""
 
-#: ../gramps/gui/configure.py:1718
+#: ../gramps/gui/configure.py:1729
 msgid "Show Preferences icon on toolbar"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1720
+#: ../gramps/gui/configure.py:1731
 msgid "Show or hide the Preferences icon on the toolbar."
 msgstr ""
 
-#: ../gramps/gui/configure.py:1726
+#: ../gramps/gui/configure.py:1737
 msgid "Show close button in gramplet bar tabs"
 msgstr "Gramplet çubuğu sekmelerinde kapat düğmesini göster"
 
-#: ../gramps/gui/configure.py:1729
+#: ../gramps/gui/configure.py:1740
 msgid "Show close button to simplify removing gramplets from bars."
 msgstr ""
 "Çubuklardan grampletleri kaldırmayı basitleştirmek için kapat düğmesini "
 "göster."
 
-#: ../gramps/gui/configure.py:1735
+#: ../gramps/gui/configure.py:1746
 msgid "Markup for invalid date format"
 msgstr "Geçersiz tarih biçimi için işaretleme"
 
-#: ../gramps/gui/configure.py:1740
+#: ../gramps/gui/configure.py:1751
 #, python-format
 msgid ""
 "Convenience markups are:\n"
@@ -12100,11 +12198,11 @@ msgstr ""
 "Örneğin: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n"
 "<u><b>Altı çizili kalın tarih</b></u> görüntülenecektir.\n"
 
-#: ../gramps/gui/configure.py:1758
+#: ../gramps/gui/configure.py:1769
 msgid "Multiple surname box height"
 msgstr "Çoklu soyadı kutusu yüksekliği"
 
-#: ../gramps/gui/configure.py:1762
+#: ../gramps/gui/configure.py:1773
 msgid ""
 "Enter height in pixels. When multiple surnames are entered, these names "
 "display in a box. This setting sets the size of this box."
@@ -12112,108 +12210,15 @@ msgstr ""
 "Yüksekliği piksel cinsinden girin. Birden çok soyadı girildiğinde, bu "
 "soyadları bir kutu içinde görüntülenir. Bu ayar, kutunun boyutunu belirler."
 
-#: ../gramps/gui/configure.py:1782
-msgid ""
-"Configuration settings to have Gramps check for new or updated third party "
-"Addons and Plugins. The Plugin Manager has the complete list of installed "
-"Addons and Plugins and their activation status.\n"
-msgstr ""
-"Gramps'ın yeni veya güncellenmiş üçüncü taraf eklentileri kontrol etmesini "
-"sağlayacak yapılandırma ayarları. Eklenti Yöneticisi, kurulu eklentilerin "
-"tam listesine ve bunların etkinleştirme durumlarına sahiptir.\n"
-
-#: ../gramps/gui/configure.py:1793
-msgid "Once a month"
-msgstr "Ayda bir kez"
-
-#: ../gramps/gui/configure.py:1794
-msgid "Once a week"
-msgstr "Haftada bir kez"
-
-#: ../gramps/gui/configure.py:1795
-msgid "Once a day"
-msgstr "Günde bir kez"
-
-#: ../gramps/gui/configure.py:1796
-msgid "Always"
-msgstr "Her zaman"
-
-#: ../gramps/gui/configure.py:1801
-msgid "Check for addon updates"
-msgstr "Eklenti güncellemelerini kontrol et"
-
-#: ../gramps/gui/configure.py:1807
-msgid "Updated addons only"
-msgstr "Yalnızca güncellenmiş eklentiler"
-
-#: ../gramps/gui/configure.py:1808
-msgid "New addons only"
-msgstr "Yalnızca yeni eklentiler"
-
-#: ../gramps/gui/configure.py:1809
-msgid "New and updated addons"
-msgstr "Yeni ve güncellenmiş eklentiler"
-
-#: ../gramps/gui/configure.py:1819
-msgid "What to check"
-msgstr "Ne kontrol edilsin"
-
-#: ../gramps/gui/configure.py:1824
-msgid "Where to check"
-msgstr "Nerede kontrol edilsin"
-
-#: ../gramps/gui/configure.py:1829
-msgid "Do not ask about previously notified addons"
-msgstr "Daha önce bildirilen eklentileri kontrol etme"
-
-#: ../gramps/gui/configure.py:1834
-msgid "Check for updated addons now"
-msgstr "Güncellenmiş eklentileri şimdi kontrol edin"
-
-#: ../gramps/gui/configure.py:1840
-msgid "Addons"
-msgstr "Eklentiler"
-
-#: ../gramps/gui/configure.py:1846
-msgid "Checking Addons Failed"
-msgstr "Eklentiler Kontrol Edilemedi"
-
-#: ../gramps/gui/configure.py:1847
-msgid "The addon repository appears to be unavailable. Please try again later."
-msgstr ""
-"Eklenti deposu kullanılamıyor gibi görünüyor. Lütfen daha sonra tekrar "
-"deneyiniz."
-
-#: ../gramps/gui/configure.py:1860
-msgid "There are no available addons of this type"
-msgstr "Bu türde kullanılabilir eklenti yok"
-
-#: ../gramps/gui/configure.py:1861
-#, python-format
-msgid "Checked for '%s'"
-msgstr "'%s' için kontrol edildi"
-
-#: ../gramps/gui/configure.py:1862
-msgid "' and '"
-msgstr "' ve '"
-
-#: ../gramps/gui/configure.py:1867
-msgid "new"
-msgstr "yeni"
-
-#: ../gramps/gui/configure.py:1867
-msgid "update"
-msgstr "güncelle"
-
-#: ../gramps/gui/configure.py:1896
+#: ../gramps/gui/configure.py:1821
 msgid "Database Setting"
 msgstr "Veri tabanı Ayarı"
 
-#: ../gramps/gui/configure.py:1901
+#: ../gramps/gui/configure.py:1826
 msgid "Database backend"
 msgstr "Veri tabanı arka ucu"
 
-#: ../gramps/gui/configure.py:1908
+#: ../gramps/gui/configure.py:1833
 msgid ""
 "\n"
 "Database Location"
@@ -12221,19 +12226,19 @@ msgstr ""
 "\n"
 "Veri tabanı konumu"
 
-#: ../gramps/gui/configure.py:1914
+#: ../gramps/gui/configure.py:1839
 msgid "Host"
 msgstr "Host"
 
-#: ../gramps/gui/configure.py:1919
+#: ../gramps/gui/configure.py:1844
 msgid "Port"
 msgstr "Port"
 
-#: ../gramps/gui/configure.py:1927
+#: ../gramps/gui/configure.py:1852
 msgid "Database path"
 msgstr "Veri tabanı yolu"
 
-#: ../gramps/gui/configure.py:1933
+#: ../gramps/gui/configure.py:1858
 msgid ""
 "\n"
 "Backup Management"
@@ -12241,35 +12246,35 @@ msgstr ""
 "\n"
 "Yedekleme yöneticisi"
 
-#: ../gramps/gui/configure.py:1939
+#: ../gramps/gui/configure.py:1864
 msgid "Backup path"
 msgstr "Yedekleme yolu"
 
-#: ../gramps/gui/configure.py:1944
+#: ../gramps/gui/configure.py:1869
 msgid "Backup on exit"
 msgstr "Çıkışta yedekle"
 
-#: ../gramps/gui/configure.py:1946
+#: ../gramps/gui/configure.py:1871
 msgid "Backup Your family tree on exit to Backup path specified above."
 msgstr "Çıkışta soyağacınızı yukarıda belirtilen yedekleme yoluna yedekleyin."
 
-#: ../gramps/gui/configure.py:1952
+#: ../gramps/gui/configure.py:1877
 msgid "Every 15 minutes"
 msgstr "Her 15 dakikada bir"
 
-#: ../gramps/gui/configure.py:1953
+#: ../gramps/gui/configure.py:1878
 msgid "Every 30 minutes"
 msgstr "Her 30 dakikada bir"
 
-#: ../gramps/gui/configure.py:1954
+#: ../gramps/gui/configure.py:1879
 msgid "Every hour"
 msgstr "Her saat"
 
-#: ../gramps/gui/configure.py:1959
+#: ../gramps/gui/configure.py:1884
 msgid "Autobackup"
 msgstr "Otomatik yedekleme"
 
-#: ../gramps/gui/configure.py:1965
+#: ../gramps/gui/configure.py:1890
 msgid ""
 "\n"
 "Family Tree's Media path"
@@ -12277,11 +12282,11 @@ msgstr ""
 "\n"
 "Soyağacının ortam yolu"
 
-#: ../gramps/gui/configure.py:1972
+#: ../gramps/gui/configure.py:1897
 msgid "Base media path"
 msgstr "Temel ortam yolu"
 
-#: ../gramps/gui/configure.py:1978
+#: ../gramps/gui/configure.py:1903
 msgid ""
 "The base relative media path is specific to the active family tree. It is "
 "not a global setting. Each family tree is able to have a unique relative "
@@ -12291,15 +12296,15 @@ msgstr ""
 "değildir. Her soyağacı, veri tabanında saklanan benzersiz bir göreli ortam "
 "yoluna sahip olabilir."
 
-#: ../gramps/gui/configure.py:1994
+#: ../gramps/gui/configure.py:1919
 msgid "Tag Records"
 msgstr "Etiket kayıtları"
 
-#: ../gramps/gui/configure.py:2014
+#: ../gramps/gui/configure.py:1939
 msgid "Add tag on import"
 msgstr "İçe aktarırken etiket ekle"
 
-#: ../gramps/gui/configure.py:2017
+#: ../gramps/gui/configure.py:1942
 msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
@@ -12307,7 +12312,7 @@ msgstr ""
 "Belirtilen etiket içe aktarma sırasında tüm kayıtlara eklenecektir.\n"
 "Varsayılan değeri ayarlamak için temizleyin."
 
-#: ../gramps/gui/configure.py:2023
+#: ../gramps/gui/configure.py:1948
 msgid ""
 "\n"
 "Source GEDCOM import"
@@ -12315,20 +12320,20 @@ msgstr ""
 "\n"
 "Kaynak GEDCOM içe aktarma"
 
-#: ../gramps/gui/configure.py:2028
+#: ../gramps/gui/configure.py:1953
 msgid "Add default source on GEDCOM import"
 msgstr "GEDCOM içe aktarmada varsayılan kaynak ekle"
 
-#: ../gramps/gui/configure.py:2031 ../gramps/gui/dbloader.py:380
+#: ../gramps/gui/configure.py:1956 ../gramps/gui/dbloader.py:380
 msgid "Import"
 msgstr "İçe Aktar"
 
-#: ../gramps/gui/configure.py:2070
+#: ../gramps/gui/configure.py:2022
 msgid "Select media directory"
 msgstr "Ortam dizini seç"
 
-#: ../gramps/gui/configure.py:2073 ../gramps/gui/configure.py:2098
-#: ../gramps/gui/configure.py:2123 ../gramps/gui/dbloader.py:345
+#: ../gramps/gui/configure.py:2025 ../gramps/gui/configure.py:2050
+#: ../gramps/gui/configure.py:2075 ../gramps/gui/dbloader.py:345
 #: ../gramps/gui/dbloader.py:379 ../gramps/gui/editors/edittaglist.py:119
 #: ../gramps/gui/glade/addmedia.glade:22
 #: ../gramps/gui/glade/baseselector.glade:25
@@ -12372,10 +12377,11 @@ msgstr "Ortam dizini seç"
 #: ../gramps/gui/glade/rule.glade:747 ../gramps/gui/glade/styleeditor.glade:86
 #: ../gramps/gui/glade/styleeditor.glade:1737
 #: ../gramps/gui/logger/_errorview.py:173 ../gramps/gui/plug/_guioptions.py:81
-#: ../gramps/gui/plug/_guioptions.py:1745 ../gramps/gui/plug/_windows.py:440
+#: ../gramps/gui/plug/_guioptions.py:1745 ../gramps/gui/plug/_windows.py:710
+#: ../gramps/gui/plug/_windows.py:1159
 #: ../gramps/gui/plug/report/_fileentry.py:64
 #: ../gramps/gui/plug/report/_reportdialog.py:162 ../gramps/gui/utils.py:180
-#: ../gramps/gui/viewmanager.py:1798 ../gramps/gui/views/listview.py:1162
+#: ../gramps/gui/viewmanager.py:1817 ../gramps/gui/views/listview.py:1162
 #: ../gramps/gui/views/navigationview.py:349 ../gramps/gui/views/tags.py:710
 #: ../gramps/gui/widgets/progressdialog.py:437
 #: ../gramps/plugins/importer/importprogen.glade:1714
@@ -12387,15 +12393,15 @@ msgstr "Ortam dizini seç"
 msgid "_Cancel"
 msgstr "_İptal"
 
-#: ../gramps/gui/configure.py:2095
+#: ../gramps/gui/configure.py:2047
 msgid "Select database directory"
 msgstr "Veri tabanı dizini seçin"
 
-#: ../gramps/gui/configure.py:2120 ../gramps/gui/viewmanager.py:1795
+#: ../gramps/gui/configure.py:2072 ../gramps/gui/viewmanager.py:1814
 msgid "Select backup directory"
 msgstr "Yedekleme dizini seçin"
 
-#: ../gramps/gui/configure.py:2190
+#: ../gramps/gui/configure.py:2142
 msgid ""
 "If checked, use the standard genealogic symbols (death symbol is user "
 "selectable).\n"
@@ -12407,7 +12413,7 @@ msgstr ""
 "İşaretli değilse, sembolleri kendiniz özelleştirmek için alt paneli "
 "kullanabilirsiniz."
 
-#: ../gramps/gui/configure.py:2196
+#: ../gramps/gui/configure.py:2148
 msgid ""
 "This can be useful if you want to add phonetic in a note to show how to "
 "pronounce a name or if you mix multiple languages like greek and russian."
@@ -12416,24 +12422,24 @@ msgstr ""
 "istiyorsanız veya Yunanca ve Rusça gibi birden çok dili karıştırıyorsanız bu "
 "yararlı olabilir."
 
-#: ../gramps/gui/configure.py:2200
+#: ../gramps/gui/configure.py:2152
 msgid "Use symbols"
 msgstr "Sembolleri kullan"
 
-#: ../gramps/gui/configure.py:2210
+#: ../gramps/gui/configure.py:2162
 msgid "Select default death symbol"
 msgstr "Varsayılan ölüm sembolünü seçin"
 
-#: ../gramps/gui/configure.py:2218
+#: ../gramps/gui/configure.py:2170
 msgid "Genealogical Symbols"
 msgstr "Şecere Sembolleri"
 
-#: ../gramps/gui/configure.py:2250 ../gramps/gui/glade/editfamily.glade:144
+#: ../gramps/gui/configure.py:2202 ../gramps/gui/glade/editfamily.glade:144
 #: ../gramps/gui/glade/editfamily.glade:398
 msgid "Death:"
 msgstr "Ölüm:"
 
-#: ../gramps/gui/configure.py:2336
+#: ../gramps/gui/configure.py:2288
 #: ../gramps/plugins/quickview/all_relations.py:286
 #: ../gramps/plugins/view/relview.py:477
 #: ../gramps/plugins/webreport/basepage.py:2779
@@ -12443,15 +12449,15 @@ msgstr "Ölüm:"
 msgid "Partner"
 msgstr "Eş"
 
-#: ../gramps/gui/configure.py:2339
+#: ../gramps/gui/configure.py:2291
 msgid "Killed"
 msgstr "Öldürüldü"
 
-#: ../gramps/gui/configure.py:2343
+#: ../gramps/gui/configure.py:2295
 msgid "Default genealogy symbols replacement"
 msgstr "Varsayılan soy sembollerinin değiştirilmesi"
 
-#: ../gramps/gui/configure.py:2355
+#: ../gramps/gui/configure.py:2307
 msgid ""
 "You can set any text you want for this field.\n"
 "You can drag and drop a symbol from the symbol list above.\n"
@@ -12527,7 +12533,7 @@ msgstr ""
 #: ../gramps/gui/dbloader.py:212 ../gramps/gui/glade/dialog.glade:701
 #: ../gramps/gui/plug/report/_bookdialog.py:250
 #: ../gramps/gui/plug/report/_bookdialog.py:751
-#: ../gramps/gui/viewmanager.py:630
+#: ../gramps/gui/viewmanager.py:633
 msgid "Cancel"
 msgstr "İptal"
 
@@ -12667,9 +12673,9 @@ msgstr "Veri Tabanı Bilgileri"
 #: ../gramps/gui/glade/reorder.glade:38 ../gramps/gui/glade/rule.glade:333
 #: ../gramps/gui/glade/rule.glade:764 ../gramps/gui/glade/styleeditor.glade:103
 #: ../gramps/gui/glade/styleeditor.glade:1754
-#: ../gramps/gui/plug/_guioptions.py:82
+#: ../gramps/gui/plug/_guioptions.py:82 ../gramps/gui/plug/_windows.py:711
 #: ../gramps/gui/plug/report/_reportdialog.py:166 ../gramps/gui/utils.py:194
-#: ../gramps/gui/viewmanager.py:1665 ../gramps/gui/views/tags.py:711
+#: ../gramps/gui/viewmanager.py:1684 ../gramps/gui/views/tags.py:711
 #: ../gramps/plugins/tool/check.py:778 ../gramps/plugins/tool/patchnames.py:118
 #: ../gramps/plugins/tool/populatesources.py:91
 #: ../gramps/plugins/tool/testcasegenerator.py:328
@@ -13005,14 +13011,12 @@ msgstr "_Araçlar"
 #: ../gramps/gui/displaystate.py:414
 #, fuzzy
 #| msgid "Plugin Manager"
-msgid "Open Plugin Manager"
+msgid "Open Addon Manager"
 msgstr "Eklenti Yöneticisi"
 
-#: ../gramps/gui/displaystate.py:415
-#, fuzzy
-#| msgid "Plugin lib"
-msgid "Plugins"
-msgstr "Eklenti kitaplığı"
+#: ../gramps/gui/displaystate.py:415 ../gramps/gui/plug/_windows.py:426
+msgid "Addons"
+msgstr "Eklentiler"
 
 #: ../gramps/gui/displaystate.py:418
 #, fuzzy
@@ -13574,14 +13578,14 @@ msgid "Set as default name"
 msgstr "Varsayılan ad olarak ayarla"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:56
-#: ../gramps/gui/plug/_guioptions.py:1259 ../gramps/gui/viewmanager.py:1050
+#: ../gramps/gui/plug/_guioptions.py:1259 ../gramps/gui/viewmanager.py:1069
 #: ../gramps/gui/views/tags.py:560
 #: ../gramps/plugins/quickview/all_relations.py:306
 msgid "Yes"
 msgstr "Evet"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:57
-#: ../gramps/gui/plug/_guioptions.py:1258 ../gramps/gui/viewmanager.py:1050
+#: ../gramps/gui/plug/_guioptions.py:1258 ../gramps/gui/viewmanager.py:1069
 #: ../gramps/gui/views/tags.py:561
 #: ../gramps/plugins/quickview/all_relations.py:310
 msgid "No"
@@ -16775,10 +16779,6 @@ msgstr "_Cinsiyet:"
 msgid "A unique ID for the person."
 msgstr "Kişi için benzersiz bir ID."
 
-#: ../gramps/gui/glade/editperson.glade:708
-msgid "Preferred Name"
-msgstr "Tercih Edilen Ad"
-
 #: ../gramps/gui/glade/editpersonref.glade:97
 msgid "_Person:"
 msgstr "_Kişi:"
@@ -17165,7 +17165,7 @@ msgid "_Merge and close"
 msgstr "_Birleştir ve kapat"
 
 #: ../gramps/gui/glade/mergedata.glade:173
-#: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:1103
+#: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:1822
 #: ../gramps/plugins/tool/changenames.py:196
 #: ../gramps/plugins/tool/patchnames.py:401
 msgid "Select"
@@ -17657,7 +17657,7 @@ msgstr "Al_t:"
 
 #: ../gramps/gui/glade/styleeditor.glade:769
 #: ../gramps/gui/glade/styleeditor.glade:1272
-#: ../gramps/plugins/drawreport/calendarreport.py:740
+#: ../gramps/plugins/drawreport/calendarreport.py:742
 msgid "Borders"
 msgstr "Kenarlar"
 
@@ -17838,7 +17838,7 @@ msgid "Install Selected _Addons"
 msgstr "Seçilen Eklentileri _Yükle"
 
 #: ../gramps/gui/glade/updateaddons.glade:72
-#: ../gramps/gui/plug/_windows.py:1083
+#: ../gramps/gui/plug/_windows.py:1802
 msgid "Available Gramps Updates for Addons"
 msgstr "Eklentiler için mevcut Gramps Güncellemeleri"
 
@@ -17920,6 +17920,12 @@ msgstr "_Değişiklikleri Bırak ve Çık"
 #: ../gramps/gui/grampsgui.py:56
 msgid "_About"
 msgstr "_Hakkında"
+
+#: ../gramps/gui/grampsgui.py:56
+#, fuzzy
+#| msgid "Add Partner..."
+msgid "_Addon Manager..."
+msgstr "Partner Ekle..."
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Bookmarks"
@@ -18009,7 +18015,7 @@ msgstr "_Görünüm"
 msgid "_Windows"
 msgstr "_Pencereler"
 
-#: ../gramps/gui/grampsgui.py:384
+#: ../gramps/gui/grampsgui.py:390
 msgid ""
 "Your version of gi (gnome-introspection) seems to be too old. You need a "
 "version which has the function 'require_version' to start Gramps"
@@ -18017,7 +18023,7 @@ msgstr ""
 "Gi (gnome-introspection) versiyonunuz çok eski görünüyor. Gramps'ı başlatmak "
 "için 'require_version' işlevine sahip bir sürüme ihtiyacınız var"
 
-#: ../gramps/gui/grampsgui.py:398
+#: ../gramps/gui/grampsgui.py:404
 #, python-format
 msgid ""
 "Your pygobject version does not meet the requirements.\n"
@@ -18032,7 +18038,7 @@ msgstr ""
 "\n"
 "Gramps şimdi sona erecek."
 
-#: ../gramps/gui/grampsgui.py:416
+#: ../gramps/gui/grampsgui.py:422
 msgid ""
 "Gdk, Gtk, Pango or PangoCairo typelib not installed.\n"
 "Install Gnome Introspection, and pygobject version 3.12 or later.\n"
@@ -18046,7 +18052,7 @@ msgstr ""
 "\n"
 "Gramps şimdi sona erecek."
 
-#: ../gramps/gui/grampsgui.py:427
+#: ../gramps/gui/grampsgui.py:433
 #, python-format
 msgid ""
 "Your Gtk version does not meet the requirements.\n"
@@ -18059,7 +18065,7 @@ msgstr ""
 "\n"
 "Gramps şimdi sona erecek."
 
-#: ../gramps/gui/grampsgui.py:438
+#: ../gramps/gui/grampsgui.py:444
 msgid ""
 "\n"
 "cairo python support not installed. Install cairo for your version of "
@@ -18072,11 +18078,11 @@ msgstr ""
 "\n"
 "Gramps şimdi sona erecek."
 
-#: ../gramps/gui/grampsgui.py:458
+#: ../gramps/gui/grampsgui.py:464
 msgid "Gramps detected an incomplete GTK installation"
 msgstr "Gramps, eksik bir GTK kurulumu tespit etti"
 
-#: ../gramps/gui/grampsgui.py:460
+#: ../gramps/gui/grampsgui.py:466
 #, python-format
 msgid ""
 "GTK translations for the current language (%(language)s) are missing.\n"
@@ -18093,15 +18099,15 @@ msgstr ""
 "Kurulum önkoşulları için Gramps README belgelerine bakın,\n"
 "genellikle /usr/share/doc/gramps içinde bulunur.\n"
 
-#: ../gramps/gui/grampsgui.py:574
+#: ../gramps/gui/grampsgui.py:580
 msgid "Error parsing arguments"
 msgstr "Bağımsız değişkenler ayrıştırılırken hata oluştu"
 
-#: ../gramps/gui/grampsgui.py:593
+#: ../gramps/gui/grampsgui.py:599
 msgid "Gramps terminated because of no DISPLAY"
 msgstr "EKRAN olmadığı için Gramps sonlandırıldı"
 
-#: ../gramps/gui/grampsgui.py:616 ../gramps/gui/grampsgui.py:690
+#: ../gramps/gui/grampsgui.py:622 ../gramps/gui/grampsgui.py:696
 msgid ""
 "\n"
 "Gramps failed to start. Please report a bug about this.\n"
@@ -18562,7 +18568,7 @@ msgstr "%s için renk seçin"
 msgid "Save As"
 msgstr "Farklı Kaydet"
 
-#: ../gramps/gui/plug/_guioptions.py:1746 ../gramps/gui/plug/_windows.py:441
+#: ../gramps/gui/plug/_guioptions.py:1746 ../gramps/gui/plug/_windows.py:1160
 #: ../gramps/gui/plug/report/_bookdialog.py:638
 #: ../gramps/gui/plug/report/_fileentry.py:65
 msgid "_Open"
@@ -18573,188 +18579,391 @@ msgstr "_Aç"
 msgid "Style Editor"
 msgstr "Stil Editörü"
 
-#: ../gramps/gui/plug/_windows.py:90
+#: ../gramps/gui/plug/_windows.py:204
+#, fuzzy
+#| msgid "Object"
+msgid "Project"
+msgstr "Nesne"
+
+#: ../gramps/gui/plug/_windows.py:208
+#, fuzzy
+#| msgid "Audio"
+msgid "Audience"
+msgstr "Ses"
+
+#: ../gramps/gui/plug/_windows.py:212 ../gramps/gui/plug/_windows.py:1340
+msgid "Version"
+msgstr "Sürüm"
+
+#: ../gramps/gui/plug/_windows.py:215
+#, fuzzy
+msgid "Installed version"
+msgstr "Şema sürümü"
+
+#: ../gramps/gui/plug/_windows.py:233 ../gramps/gui/plug/_windows.py:234
+#, fuzzy
+#| msgid "Unstable"
+msgid "Install"
+msgstr "Kararsız"
+
+#: ../gramps/gui/plug/_windows.py:239
+msgid "Wiki"
+msgstr ""
+
+#: ../gramps/gui/plug/_windows.py:244
+#, fuzzy
+#| msgid "* Requires Restart"
+msgid "Requires"
+msgstr "* Yeniden başlatma gerektirir"
+
+#: ../gramps/gui/plug/_windows.py:249
+#, fuzzy
+#| msgctxt "Graduation abbreviation"
+#| msgid "grad."
+msgid "Upgrade"
+msgstr "mezun."
+
+#: ../gramps/gui/plug/_windows.py:270
+#, fuzzy
+#| msgid "Deletion failed"
+msgid "Module installation failed"
+msgstr "Silme başarısız oldu"
+
+#: ../gramps/gui/plug/_windows.py:294
+#, fuzzy
+#| msgid "Retirement"
+msgid "Requirements"
+msgstr "Emeklilik"
+
+#: ../gramps/gui/plug/_windows.py:328
+#, fuzzy
+#| msgid "Addon Name"
+msgid "Addon Manager"
+msgstr "Eklenti Adı"
+
+#: ../gramps/gui/plug/_windows.py:335 ../gramps/plugins/gramplet/leak.py:112
+msgid "Refresh"
+msgstr "Yenile"
+
+#: ../gramps/gui/plug/_windows.py:364
+#, fuzzy
+#| msgid "Filter"
+msgid "Filters"
+msgstr "Süzgeç"
+
+#: ../gramps/gui/plug/_windows.py:372 ../gramps/gui/plug/_windows.py:381
+#: ../gramps/gui/plug/_windows.py:388 ../gramps/gui/plug/_windows.py:402
+#: ../gramps/gui/plug/_windows.py:534 ../gramps/gui/plug/_windows.py:537
+#: ../gramps/plugins/drawreport/statisticschart.py:320
+#, fuzzy
+#| msgctxt "Filtering_on"
+#| msgid "all"
+msgid "All"
+msgstr "tümü"
+
+#: ../gramps/gui/plug/_windows.py:429
+#, fuzzy
+#| msgid "Setting"
+msgid "Settings"
+msgstr "Ayar"
+
+#: ../gramps/gui/plug/_windows.py:432
+msgid "Projects"
+msgstr ""
+
+#: ../gramps/gui/plug/_windows.py:452
+#, fuzzy
+#| msgid "Loading items..."
+msgid "Loading..."
+msgstr "Öğeler yükleniyor..."
+
+#: ../gramps/gui/plug/_windows.py:494
+#, fuzzy
+#| msgid "No matches found"
+msgid "No matching addons found."
+msgstr "Hiçbir eşleşme bulunamadı"
+
+#: ../gramps/gui/plug/_windows.py:617
+msgid "Allow Gramps to install required python modules"
+msgstr ""
+
+#: ../gramps/gui/plug/_windows.py:622
+#: ../gramps/plugins/webreport/basepage.py:1767
+#: ../gramps/plugins/webreport/basepage.py:1834
+msgid "Updates"
+msgstr "Güncellemeler"
+
+#: ../gramps/gui/plug/_windows.py:637
+msgid "Once a month"
+msgstr "Ayda bir kez"
+
+#: ../gramps/gui/plug/_windows.py:638
+msgid "Once a week"
+msgstr "Haftada bir kez"
+
+#: ../gramps/gui/plug/_windows.py:639
+msgid "Once a day"
+msgstr "Günde bir kez"
+
+#: ../gramps/gui/plug/_windows.py:640
+msgid "Always"
+msgstr "Her zaman"
+
+#: ../gramps/gui/plug/_windows.py:645
+msgid "Check for addon updates"
+msgstr "Eklenti güncellemelerini kontrol et"
+
+#: ../gramps/gui/plug/_windows.py:651
+msgid "Updated addons only"
+msgstr "Yalnızca güncellenmiş eklentiler"
+
+#: ../gramps/gui/plug/_windows.py:652
+msgid "New addons only"
+msgstr "Yalnızca yeni eklentiler"
+
+#: ../gramps/gui/plug/_windows.py:653
+msgid "New and updated addons"
+msgstr "Yeni ve güncellenmiş eklentiler"
+
+#: ../gramps/gui/plug/_windows.py:663
+msgid "What to check"
+msgstr "Ne kontrol edilsin"
+
+#: ../gramps/gui/plug/_windows.py:669
+msgid "Do not ask about previously notified addons"
+msgstr "Daha önce bildirilen eklentileri kontrol etme"
+
+#: ../gramps/gui/plug/_windows.py:674
+msgid "Check for updated addons now"
+msgstr "Güncellenmiş eklentileri şimdi kontrol edin"
+
+#: ../gramps/gui/plug/_windows.py:687
+#, fuzzy
+#| msgid "New Person"
+msgid "New Project"
+msgstr "Yeni Kişi"
+
+#: ../gramps/gui/plug/_windows.py:689
+#, fuzzy
+#| msgid "Edit Person"
+msgid "Edit Project"
+msgstr "Kişiyi Düzenle"
+
+#: ../gramps/gui/plug/_windows.py:695
+#, fuzzy
+#| msgid "Preferred name"
+msgid "Project name"
+msgstr "Tercih edilen ad"
+
+#: ../gramps/gui/plug/_windows.py:754
+msgid "Checking Addons Failed"
+msgstr "Eklentiler Kontrol Edilemedi"
+
+#: ../gramps/gui/plug/_windows.py:755
+msgid "The addon repository appears to be unavailable. Please try again later."
+msgstr ""
+"Eklenti deposu kullanılamıyor gibi görünüyor. Lütfen daha sonra tekrar "
+"deneyiniz."
+
+#: ../gramps/gui/plug/_windows.py:768
+msgid "There are no available addons of this type"
+msgstr "Bu türde kullanılabilir eklenti yok"
+
+#: ../gramps/gui/plug/_windows.py:769
+#, python-format
+msgid "Checked for '%s'"
+msgstr "'%s' için kontrol edildi"
+
+#: ../gramps/gui/plug/_windows.py:770
+msgid "' and '"
+msgstr "' ve '"
+
+#: ../gramps/gui/plug/_windows.py:775
+msgid "new"
+msgstr "yeni"
+
+#: ../gramps/gui/plug/_windows.py:775
+msgid "update"
+msgstr "güncelle"
+
+#: ../gramps/gui/plug/_windows.py:809
 msgid "Hidden"
 msgstr "Gizlenmiş"
 
-#: ../gramps/gui/plug/_windows.py:92
+#: ../gramps/gui/plug/_windows.py:811
 msgid "Visible"
 msgstr "Görünür"
 
-#: ../gramps/gui/plug/_windows.py:97
+#: ../gramps/gui/plug/_windows.py:816
 msgid "Plugin Manager"
 msgstr "Eklenti Yöneticisi"
 
-#: ../gramps/gui/plug/_windows.py:144 ../gramps/gui/plug/_windows.py:198
+#: ../gramps/gui/plug/_windows.py:863 ../gramps/gui/plug/_windows.py:917
 msgid "Info"
 msgstr "Bilgi"
 
-#: ../gramps/gui/plug/_windows.py:147 ../gramps/gui/plug/_windows.py:201
+#: ../gramps/gui/plug/_windows.py:866 ../gramps/gui/plug/_windows.py:920
 msgid "Hide/Unhide"
 msgstr "Gizle/Göster"
 
-#: ../gramps/gui/plug/_windows.py:155 ../gramps/gui/plug/_windows.py:210
+#: ../gramps/gui/plug/_windows.py:874 ../gramps/gui/plug/_windows.py:929
 msgid "Load"
 msgstr "Aç"
 
-#: ../gramps/gui/plug/_windows.py:161
+#: ../gramps/gui/plug/_windows.py:880
 msgid "Registered Plugins"
 msgstr "Kayıtlı Uzantılar"
 
-#: ../gramps/gui/plug/_windows.py:174
+#: ../gramps/gui/plug/_windows.py:893
 msgid "Loaded"
 msgstr "Yüklendi"
 
-#: ../gramps/gui/plug/_windows.py:179
+#: ../gramps/gui/plug/_windows.py:898
 #: ../gramps/plugins/importer/importprogen.glade:431
 #: ../gramps/plugins/importer/importprogen.glade:1126
 msgid "File"
 msgstr "Dosya"
 
-#: ../gramps/gui/plug/_windows.py:188
+#: ../gramps/gui/plug/_windows.py:907
 msgid "Message"
 msgstr "Message"
 
-#: ../gramps/gui/plug/_windows.py:216
+#: ../gramps/gui/plug/_windows.py:935
 msgid "Loaded Plugins"
 msgstr "Yüklenen Eklentiler"
 
-#: ../gramps/gui/plug/_windows.py:235
+#: ../gramps/gui/plug/_windows.py:954
 msgid "Addon Name"
 msgstr "Eklenti Adı"
 
-#: ../gramps/gui/plug/_windows.py:250
+#: ../gramps/gui/plug/_windows.py:969
 msgid "Path to Addon:"
 msgstr "Eklenti Yolu:"
 
-#: ../gramps/gui/plug/_windows.py:270
+#: ../gramps/gui/plug/_windows.py:989
 msgid "Install Addon"
 msgstr "Eklentiyi Yükle"
 
-#: ../gramps/gui/plug/_windows.py:273
+#: ../gramps/gui/plug/_windows.py:992
 msgid "Install All Addons"
 msgstr "Tüm Eklentileri Yükle"
 
-#: ../gramps/gui/plug/_windows.py:276
+#: ../gramps/gui/plug/_windows.py:995
 msgid "Refresh Addon List"
 msgstr "Eklenti Listesini Yenile"
 
-#: ../gramps/gui/plug/_windows.py:289
+#: ../gramps/gui/plug/_windows.py:1008
 msgid "Reload"
 msgstr "Yeniden Yükle"
 
-#: ../gramps/gui/plug/_windows.py:316
+#: ../gramps/gui/plug/_windows.py:1035
 msgid "Refreshing Addon List"
 msgstr "Eklenti Listesi Yenileniyor"
 
-#: ../gramps/gui/plug/_windows.py:318 ../gramps/gui/plug/_windows.py:323
-#: ../gramps/gui/plug/_windows.py:418
+#: ../gramps/gui/plug/_windows.py:1037 ../gramps/gui/plug/_windows.py:1042
+#: ../gramps/gui/plug/_windows.py:1137
 msgid "Reading gramps-project.org..."
 msgstr "gramps-project.org okunuyor..."
 
-#: ../gramps/gui/plug/_windows.py:341
+#: ../gramps/gui/plug/_windows.py:1060
 msgid "Checking addon..."
 msgstr "Eklenti kontrol ediliyor..."
 
-#: ../gramps/gui/plug/_windows.py:349
+#: ../gramps/gui/plug/_windows.py:1068
 msgid "Unknown Help URL"
 msgstr "Bilinmeyen Yardım URL'si"
 
-#: ../gramps/gui/plug/_windows.py:360
+#: ../gramps/gui/plug/_windows.py:1079
 msgid "Unknown URL"
 msgstr "Bilinmeyen URL"
 
-#: ../gramps/gui/plug/_windows.py:396
+#: ../gramps/gui/plug/_windows.py:1115
 msgid "Install all Addons"
 msgstr "Tüm Eklentileri Yükle"
 
-#: ../gramps/gui/plug/_windows.py:396
+#: ../gramps/gui/plug/_windows.py:1115
 msgid "Installing..."
 msgstr "Yükleniyor..."
 
-#: ../gramps/gui/plug/_windows.py:416
+#: ../gramps/gui/plug/_windows.py:1135
 msgid "Installing Addon"
 msgstr "Eklentiyi Yükle"
 
-#: ../gramps/gui/plug/_windows.py:438
+#: ../gramps/gui/plug/_windows.py:1157
 msgid "Load Addon"
 msgstr "Eklenti Yükle"
 
-#: ../gramps/gui/plug/_windows.py:498
+#: ../gramps/gui/plug/_windows.py:1217
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:188
 msgid "Fail"
 msgstr "Başarısız"
 
-#: ../gramps/gui/plug/_windows.py:513 ../gramps/gui/widgets/grampletbar.py:569
+#: ../gramps/gui/plug/_windows.py:1232 ../gramps/gui/widgets/grampletbar.py:569
 msgid "OK"
 msgstr "TAMAM"
 
-#: ../gramps/gui/plug/_windows.py:619
+#: ../gramps/gui/plug/_windows.py:1338
 msgid "Plugin name"
 msgstr "Eklenti adı"
 
-#: ../gramps/gui/plug/_windows.py:621
-msgid "Version"
-msgstr "Sürüm"
-
-#: ../gramps/gui/plug/_windows.py:622
+#: ../gramps/gui/plug/_windows.py:1341
 msgid "Authors"
 msgstr "Yazarlar"
 
-#: ../gramps/gui/plug/_windows.py:624
+#: ../gramps/gui/plug/_windows.py:1343
 #: ../gramps/gui/plug/report/_reportdialog.py:472
 msgid "Filename"
 msgstr "Dosya adı"
 
-#: ../gramps/gui/plug/_windows.py:627
+#: ../gramps/gui/plug/_windows.py:1346
 msgid "Detailed Info"
 msgstr "Detaylı Bilgi"
 
-#: ../gramps/gui/plug/_windows.py:686
+#: ../gramps/gui/plug/_windows.py:1405
 msgid "Plugin Error"
 msgstr "Eklenti Hatası"
 
-#: ../gramps/gui/plug/_windows.py:751
+#: ../gramps/gui/plug/_windows.py:1470
 msgid "_Execute"
 msgstr "_Uygula"
 
-#: ../gramps/gui/plug/_windows.py:1052
+#: ../gramps/gui/plug/_windows.py:1771
 #: ../gramps/plugins/importer/importprogen.py:458
 #: ../gramps/plugins/tool/ownereditor.py:164
 #: ../gramps/plugins/tool/reorderids.py:221
 msgid "Main window"
 msgstr "Ana pencere"
 
-#: ../gramps/gui/plug/_windows.py:1180
+#: ../gramps/gui/plug/_windows.py:1899
 msgid "Downloading and installing selected addons..."
 msgstr "Seçili eklentiler indiriliyor ve yükleniyor..."
 
-#: ../gramps/gui/plug/_windows.py:1215
+#: ../gramps/gui/plug/_windows.py:1934
 msgid "Installation Errors"
 msgstr "Kurulum Hataları"
 
-#: ../gramps/gui/plug/_windows.py:1216
+#: ../gramps/gui/plug/_windows.py:1935
 msgid "The following addons had errors: "
 msgstr "Aşağıdaki eklentilerde hatalar vardı: "
 
-#: ../gramps/gui/plug/_windows.py:1222 ../gramps/gui/plug/_windows.py:1230
+#: ../gramps/gui/plug/_windows.py:1941 ../gramps/gui/plug/_windows.py:1949
 msgid "Done downloading and installing addons"
 msgstr "Eklentileri indirme ve yükleme tamamlandı"
 
 #. Translators: leave all/any {...} untranslated
-#: ../gramps/gui/plug/_windows.py:1224
+#: ../gramps/gui/plug/_windows.py:1943
 #, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
 msgstr[0] "{number_of} eklenti yüklendi."
 
-#: ../gramps/gui/plug/_windows.py:1227
+#: ../gramps/gui/plug/_windows.py:1946
 msgid "If you have installed a 'Gramps View', you will need to restart Gramps."
 msgstr ""
 "Bir 'Gramps Görünümü' yüklediyseniz, Gramps'ı yeniden başlatmanız "
 "gerekecektir."
 
-#: ../gramps/gui/plug/_windows.py:1231
+#: ../gramps/gui/plug/_windows.py:1950
 msgid "No addons were installed."
 msgstr "Hiçbir eklenti yüklenmedi."
 
@@ -19264,7 +19473,7 @@ msgstr "Biçim"
 
 #: ../gramps/gui/plug/report/_reportdialog.py:366
 #: ../gramps/plugins/drawreport/ancestortree.py:872
-#: ../gramps/plugins/drawreport/calendarreport.py:548
+#: ../gramps/plugins/drawreport/calendarreport.py:550
 #: ../gramps/plugins/drawreport/descendtree.py:1579
 #: ../gramps/plugins/drawreport/fanchart.py:721
 #: ../gramps/plugins/drawreport/statisticschart.py:1020
@@ -19274,7 +19483,7 @@ msgstr "Biçim"
 #: ../gramps/plugins/graph/gvrelgraph.py:807
 #: ../gramps/plugins/textreport/alphabeticalindex.py:93
 #: ../gramps/plugins/textreport/ancestorreport.py:288
-#: ../gramps/plugins/textreport/birthdayreport.py:477
+#: ../gramps/plugins/textreport/birthdayreport.py:479
 #: ../gramps/plugins/textreport/descendreport.py:520
 #: ../gramps/plugins/textreport/detancestralreport.py:828
 #: ../gramps/plugins/textreport/detdescendantreport.py:1003
@@ -19627,11 +19836,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../gramps/gui/undohistory.py:84 ../gramps/gui/viewmanager.py:1100
+#: ../gramps/gui/undohistory.py:84 ../gramps/gui/viewmanager.py:1119
 msgid "_Undo"
 msgstr "_Geri Al"
 
-#: ../gramps/gui/undohistory.py:86 ../gramps/gui/viewmanager.py:1120
+#: ../gramps/gui/undohistory.py:86 ../gramps/gui/viewmanager.py:1139
 msgid "_Redo"
 msgstr "_Yinele"
 
@@ -19707,23 +19916,23 @@ msgstr ""
 msgid "Cannot open new citation editor"
 msgstr "Yeni alıntı düzenleyicisi açılamıyor"
 
-#: ../gramps/gui/viewmanager.py:337 ../gramps/gui/viewmanager.py:1077
+#: ../gramps/gui/viewmanager.py:339 ../gramps/gui/viewmanager.py:1096
 msgid "No Family Tree"
 msgstr "Soyağacı Yok"
 
-#: ../gramps/gui/viewmanager.py:563
+#: ../gramps/gui/viewmanager.py:566
 msgid "Registering plugins..."
 msgstr "Eklentiler kaydediliyor..."
 
-#: ../gramps/gui/viewmanager.py:571
+#: ../gramps/gui/viewmanager.py:574
 msgid "Ready"
 msgstr "Hazır"
 
-#: ../gramps/gui/viewmanager.py:626
+#: ../gramps/gui/viewmanager.py:629
 msgid "Abort changes?"
 msgstr "Değişiklikler iptal edilsin mi?"
 
-#: ../gramps/gui/viewmanager.py:627
+#: ../gramps/gui/viewmanager.py:630
 msgid ""
 "Aborting changes will return the database to the state it was before you "
 "started this editing session."
@@ -19731,15 +19940,15 @@ msgstr ""
 "Değişikliklerin iptal edilmesi, veri tabanını bu düzenleme oturumunu "
 "başlatmadan önceki durumuna döndürür."
 
-#: ../gramps/gui/viewmanager.py:629
+#: ../gramps/gui/viewmanager.py:632
 msgid "Abort changes"
 msgstr "Değişiklikleri iptal et"
 
-#: ../gramps/gui/viewmanager.py:640
+#: ../gramps/gui/viewmanager.py:643
 msgid "Cannot abandon session's changes"
 msgstr "Toplanti degisikligini terket"
 
-#: ../gramps/gui/viewmanager.py:641
+#: ../gramps/gui/viewmanager.py:644
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
@@ -19747,40 +19956,40 @@ msgstr ""
 "Oturumda yapılan değişiklik sayısı limiti aştığı için değişikliklerden "
 "tamamen vazgeçilemez."
 
-#: ../gramps/gui/viewmanager.py:813
+#: ../gramps/gui/viewmanager.py:832
 msgid "View failed to load. Check error output."
 msgstr "Görünüm yüklenemedi. Hata çıktısını kontrol edin."
 
-#: ../gramps/gui/viewmanager.py:968
+#: ../gramps/gui/viewmanager.py:987
 #: ../gramps/plugins/importer/importprogen.py:195
 msgid "Import Statistics"
 msgstr "İstatistikleri İçe Aktar"
 
-#: ../gramps/gui/viewmanager.py:1044
+#: ../gramps/gui/viewmanager.py:1063
 msgid "Read Only"
 msgstr "Sadece Oku"
 
-#: ../gramps/gui/viewmanager.py:1048
+#: ../gramps/gui/viewmanager.py:1067
 msgid "Gramps had a problem the last time it was run."
 msgstr "Gramps, en son çalıştırıldığında bir sorun yaşadı."
 
-#: ../gramps/gui/viewmanager.py:1049
+#: ../gramps/gui/viewmanager.py:1068
 msgid "Would you like to run the Check and Repair tool?"
 msgstr "Kontrol Et ve Onar aracını çalıştırmak ister misiniz?"
 
-#: ../gramps/gui/viewmanager.py:1195
+#: ../gramps/gui/viewmanager.py:1214
 msgid "Autobackup..."
 msgstr "Otomatik yedekleme..."
 
-#: ../gramps/gui/viewmanager.py:1200
+#: ../gramps/gui/viewmanager.py:1219
 msgid "Error saving backup data"
 msgstr "Yedekleme verileri kaydedilirken hata oluştu"
 
-#: ../gramps/gui/viewmanager.py:1487
+#: ../gramps/gui/viewmanager.py:1506
 msgid "Failed Loading View"
 msgstr "Başarısız Yükleme Görünümü"
 
-#: ../gramps/gui/viewmanager.py:1488
+#: ../gramps/gui/viewmanager.py:1507
 #, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
@@ -19805,11 +20014,11 @@ msgstr ""
 "Gramps'ın bu görünümü tekrar denemesini ve yüklemesini istemiyorsanız, "
 "Yardım menüsündeki Eklenti Yöneticisi'ni kullanarak gizleyebilirsiniz."
 
-#: ../gramps/gui/viewmanager.py:1580
+#: ../gramps/gui/viewmanager.py:1599
 msgid "Failed Loading Plugin"
 msgstr "Eklenti Yüklenemedi"
 
-#: ../gramps/gui/viewmanager.py:1581
+#: ../gramps/gui/viewmanager.py:1600
 #, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
@@ -19834,56 +20043,56 @@ msgstr ""
 "Gramps'ın bu eklentiyi tekrar denemesini ve yüklemesini istemiyorsanız "
 "Yardım menüsündeki Eklenti Yöneticisini kullanarak gizleyebilirsiniz."
 
-#: ../gramps/gui/viewmanager.py:1661
+#: ../gramps/gui/viewmanager.py:1680
 msgid "Gramps XML Backup"
 msgstr "Gramps XML Yedekleme"
 
-#: ../gramps/gui/viewmanager.py:1690
+#: ../gramps/gui/viewmanager.py:1709
 msgid "File:"
 msgstr "Dosya:"
 
-#: ../gramps/gui/viewmanager.py:1722
+#: ../gramps/gui/viewmanager.py:1741
 msgid "Media:"
 msgstr "Ortam:"
 
-#: ../gramps/gui/viewmanager.py:1729
+#: ../gramps/gui/viewmanager.py:1748
 #: ../gramps/plugins/gramplet/statsgramplet.py:203
 #: ../gramps/plugins/webreport/statistics.py:150
 msgctxt "Megabyte"
 msgid "MB"
 msgstr "MB"
 
-#: ../gramps/gui/viewmanager.py:1731
+#: ../gramps/gui/viewmanager.py:1750
 msgid "Exclude"
 msgstr "Hariç tut"
 
-#: ../gramps/gui/viewmanager.py:1751
+#: ../gramps/gui/viewmanager.py:1770
 msgid "Backup file already exists! Overwrite?"
 msgstr "Yedekleme dosyası zaten var! Üzerine yazılsın mı?"
 
-#: ../gramps/gui/viewmanager.py:1752
+#: ../gramps/gui/viewmanager.py:1771
 #, python-format
 msgid "The file '%s' exists."
 msgstr "'%s' dosyası var."
 
-#: ../gramps/gui/viewmanager.py:1753
+#: ../gramps/gui/viewmanager.py:1772
 msgid "Proceed and overwrite"
 msgstr "Devam et ve üzerine yaz"
 
-#: ../gramps/gui/viewmanager.py:1754
+#: ../gramps/gui/viewmanager.py:1773
 msgid "Cancel the backup"
 msgstr "Yedeklemeyi iptal et"
 
-#: ../gramps/gui/viewmanager.py:1769
+#: ../gramps/gui/viewmanager.py:1788
 msgid "Making backup..."
 msgstr "Yedekleme yapılıyor..."
 
-#: ../gramps/gui/viewmanager.py:1782
+#: ../gramps/gui/viewmanager.py:1801
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "Yedekleme '%s' konumuna kaydedildi"
 
-#: ../gramps/gui/viewmanager.py:1785
+#: ../gramps/gui/viewmanager.py:1804
 msgid "Backup aborted"
 msgstr "Yedekleme iptal edildi"
 
@@ -20463,6 +20672,12 @@ msgstr "Bu alan zorunlu"
 msgid "'%s' is not a valid date value"
 msgstr "'%s' geçerli bir tarih değeri değil"
 
+#: ../gramps/plugins/cite/cite.gpr.py:36
+#, fuzzy
+#| msgid "Publication Information"
+msgid "Default citation formatter"
+msgstr "Yayın Bilgileri"
+
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:26
 msgid "BSDDB"
 msgstr "BSDDB"
@@ -20736,13 +20951,13 @@ msgid "Ancestor Graph for %s"
 msgstr "%s için Üstsoy Çizgesi"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:383
-#: ../gramps/plugins/drawreport/calendarreport.py:115
+#: ../gramps/plugins/drawreport/calendarreport.py:116
 #: ../gramps/plugins/drawreport/descendtree.py:695
 #: ../gramps/plugins/drawreport/fanchart.py:197
 #: ../gramps/plugins/graph/gvhourglass.py:111
 #: ../gramps/plugins/graph/gvrelgraph.py:187
 #: ../gramps/plugins/textreport/ancestorreport.py:117
-#: ../gramps/plugins/textreport/birthdayreport.py:116
+#: ../gramps/plugins/textreport/birthdayreport.py:118
 #: ../gramps/plugins/textreport/descendreport.py:453
 #: ../gramps/plugins/textreport/detancestralreport.py:167
 #: ../gramps/plugins/textreport/detdescendantreport.py:184
@@ -20768,7 +20983,7 @@ msgid "Printing the Tree..."
 msgstr "Ağacı Yazdırmak..."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:820
-#: ../gramps/plugins/drawreport/calendarreport.py:558
+#: ../gramps/plugins/drawreport/calendarreport.py:560
 #: ../gramps/plugins/drawreport/fanchart.py:723
 #: ../gramps/plugins/graph/gvhourglass.py:389
 #: ../gramps/plugins/graph/gvrelgraph.py:817
@@ -20977,7 +21192,7 @@ msgid "Whether to include pages that are blank."
 msgstr "Boş olan sayfaların dahil edilip edilmeyeceği."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:932
-#: ../gramps/plugins/drawreport/calendarreport.py:576
+#: ../gramps/plugins/drawreport/calendarreport.py:578
 #: ../gramps/plugins/drawreport/descendtree.py:1645
 #: ../gramps/plugins/drawreport/fanchart.py:771
 #: ../gramps/plugins/drawreport/statisticschart.py:1084
@@ -20986,7 +21201,7 @@ msgstr "Boş olan sayfaların dahil edilip edilmeyeceği."
 #: ../gramps/plugins/graph/gvhourglass.py:425
 #: ../gramps/plugins/graph/gvrelgraph.py:851
 #: ../gramps/plugins/textreport/ancestorreport.py:310
-#: ../gramps/plugins/textreport/birthdayreport.py:506
+#: ../gramps/plugins/textreport/birthdayreport.py:508
 #: ../gramps/plugins/textreport/descendreport.py:557
 #: ../gramps/plugins/textreport/detancestralreport.py:856
 #: ../gramps/plugins/textreport/detdescendantreport.py:1045
@@ -21204,46 +21419,46 @@ msgstr "Not ekranı için kullanılan temel stil."
 msgid "The style used for the title."
 msgstr "Başlık için kullanılan stil."
 
-#: ../gramps/plugins/drawreport/calendarreport.py:74
+#: ../gramps/plugins/drawreport/calendarreport.py:75
 msgid "My Calendar"
 msgstr "Takvimim"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:75
-#: ../gramps/plugins/textreport/birthdayreport.py:67
+#: ../gramps/plugins/drawreport/calendarreport.py:76
+#: ../gramps/plugins/textreport/birthdayreport.py:69
 msgid "Produced with Gramps"
 msgstr "Gramps ile üretilmiştir"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:209
-#: ../gramps/plugins/drawreport/calendarreport.py:235
-#: ../gramps/plugins/drawreport/calendarreport.py:323
+#: ../gramps/plugins/drawreport/calendarreport.py:210
+#: ../gramps/plugins/drawreport/calendarreport.py:236
+#: ../gramps/plugins/drawreport/calendarreport.py:324
 msgid "Calendar Report"
 msgstr "Takvim Raporu"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:210
-#: ../gramps/plugins/textreport/birthdayreport.py:230
+#: ../gramps/plugins/drawreport/calendarreport.py:211
+#: ../gramps/plugins/textreport/birthdayreport.py:232
 msgid "Formatting months..."
 msgstr "Aylar biçimleniyor..."
 
-#: ../gramps/plugins/drawreport/calendarreport.py:324
-#: ../gramps/plugins/textreport/birthdayreport.py:275
+#: ../gramps/plugins/drawreport/calendarreport.py:325
+#: ../gramps/plugins/textreport/birthdayreport.py:277
 #: ../gramps/plugins/webreport/calendar.py:932
 #: ../gramps/plugins/webreport/webcal.py:1337
 msgid "Reading database..."
 msgstr "Veri tabanı okunuyor..."
 
-#: ../gramps/plugins/drawreport/calendarreport.py:386
+#: ../gramps/plugins/drawreport/calendarreport.py:388
 #, python-format
 msgid "%(person)s, birth"
 msgstr "%(person)s, doğum"
 
 #. Translators: leave all/any {...} untranslated
-#: ../gramps/plugins/drawreport/calendarreport.py:393
+#: ../gramps/plugins/drawreport/calendarreport.py:395
 #, python-brace-format
 msgid "{person}, {age}"
 msgid_plural "{person}, {age}"
 msgstr[0] "{person}, {age}"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:476
+#: ../gramps/plugins/drawreport/calendarreport.py:478
 #, fuzzy, python-format
 #| msgid ""
 #| "%(spouse)s and\n"
@@ -21256,7 +21471,7 @@ msgstr ""
 "%(person)s, düğün"
 
 #. Translators: leave all/any {...} untranslated
-#: ../gramps/plugins/drawreport/calendarreport.py:488
+#: ../gramps/plugins/drawreport/calendarreport.py:490
 #, fuzzy, python-brace-format
 #| msgid ""
 #| "{spouse} and\n"
@@ -21274,12 +21489,12 @@ msgstr[0] ""
 "{spouse} ve\n"
 " {person}, {nyears}"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:554
+#: ../gramps/plugins/drawreport/calendarreport.py:556
 #: ../gramps/plugins/webreport/webcal.py:1754
 msgid "Select filter to restrict people that appear on calendar"
 msgstr "Takvimde görünen kişileri kısıtlamak için süzgeç seçin"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:559
+#: ../gramps/plugins/drawreport/calendarreport.py:561
 #: ../gramps/plugins/drawreport/fanchart.py:724
 #: ../gramps/plugins/graph/gvrelgraph.py:818
 #: ../gramps/plugins/textreport/ancestorreport.py:291
@@ -21292,185 +21507,185 @@ msgstr "Takvimde görünen kişileri kısıtlamak için süzgeç seçin"
 msgid "The center person for the report"
 msgstr "Rapor için merkez kişi"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:563
-#: ../gramps/plugins/textreport/birthdayreport.py:494
+#: ../gramps/plugins/drawreport/calendarreport.py:565
+#: ../gramps/plugins/textreport/birthdayreport.py:496
 msgid "Text Area 1"
 msgstr "Metin Alanı 1"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:564
+#: ../gramps/plugins/drawreport/calendarreport.py:566
 msgid "First line of text at bottom of calendar"
 msgstr "Takvimin altındaki metnin ilk satırı"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:567
-#: ../gramps/plugins/textreport/birthdayreport.py:498
+#: ../gramps/plugins/drawreport/calendarreport.py:569
+#: ../gramps/plugins/textreport/birthdayreport.py:500
 msgid "Text Area 2"
 msgstr "Metin Alanı 2"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:568
+#: ../gramps/plugins/drawreport/calendarreport.py:570
 msgid "Second line of text at bottom of calendar"
 msgstr "Takvimin altındaki metnin ikinci satırı"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:571
-#: ../gramps/plugins/textreport/birthdayreport.py:502
+#: ../gramps/plugins/drawreport/calendarreport.py:573
+#: ../gramps/plugins/textreport/birthdayreport.py:504
 msgid "Text Area 3"
 msgstr "Metin Alanı 3"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:572
+#: ../gramps/plugins/drawreport/calendarreport.py:574
 msgid "Third line of text at bottom of calendar"
 msgstr "Takvimin altındaki metnin üçüncü satırı"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:587
-#: ../gramps/plugins/textreport/birthdayreport.py:513
+#: ../gramps/plugins/drawreport/calendarreport.py:589
+#: ../gramps/plugins/textreport/birthdayreport.py:515
 #: ../gramps/plugins/webreport/narrativeweb.py:2925
 #: ../gramps/plugins/webreport/webcal.py:1810
 msgid "Include only living people"
 msgstr "Yalnızca yaşayan insanları dahil et"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:588
+#: ../gramps/plugins/drawreport/calendarreport.py:590
 #: ../gramps/plugins/webreport/narrativeweb.py:2926
 #: ../gramps/plugins/webreport/webcal.py:1811
 msgid "Include only living people in the calendar"
 msgstr "Takvime yalnızca yaşayan insanları dahil et"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:594
-#: ../gramps/plugins/textreport/birthdayreport.py:531
+#: ../gramps/plugins/drawreport/calendarreport.py:596
+#: ../gramps/plugins/textreport/birthdayreport.py:533
 #: ../gramps/plugins/textreport/detancestralreport.py:873
 #: ../gramps/plugins/textreport/detdescendantreport.py:1062
 #: ../gramps/plugins/view/relview.py:1893
 msgid "Content"
 msgstr "İçerik"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:598
 #: ../gramps/plugins/drawreport/calendarreport.py:600
+#: ../gramps/plugins/drawreport/calendarreport.py:602
 msgid "Year of calendar"
 msgstr "Takvim yılı"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:603
-#: ../gramps/plugins/textreport/birthdayreport.py:538
+#: ../gramps/plugins/drawreport/calendarreport.py:605
+#: ../gramps/plugins/textreport/birthdayreport.py:540
 #: ../gramps/plugins/webreport/webcal.py:1847
 msgid "Country for holidays"
 msgstr "Ülkelerin bayramları"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:614
-#: ../gramps/plugins/textreport/birthdayreport.py:549
+#: ../gramps/plugins/drawreport/calendarreport.py:616
+#: ../gramps/plugins/textreport/birthdayreport.py:551
 msgid "Select the country to see associated holidays"
 msgstr "İlişkili özel günleri görmek için ülkeyi seçin"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:617
+#: ../gramps/plugins/drawreport/calendarreport.py:619
 #: ../gramps/plugins/webreport/narrativeweb.py:2889
 #: ../gramps/plugins/webreport/webcal.py:1865
 msgid "First day of week"
 msgstr "Haftanın ilk günü"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:625
+#: ../gramps/plugins/drawreport/calendarreport.py:627
 #: ../gramps/plugins/webreport/narrativeweb.py:2892
 #: ../gramps/plugins/webreport/webcal.py:1868
 msgid "Select the first day of the week for the calendar"
 msgstr "Takvim için haftanın ilk gününü seçin"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:628
-#: ../gramps/plugins/textreport/birthdayreport.py:552
+#: ../gramps/plugins/drawreport/calendarreport.py:630
+#: ../gramps/plugins/textreport/birthdayreport.py:554
 #: ../gramps/plugins/webreport/narrativeweb.py:2896
 #: ../gramps/plugins/webreport/webcal.py:1872
 msgid "Birthday surname"
 msgstr "Doğum günü soyadı"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:631
-#: ../gramps/plugins/textreport/birthdayreport.py:555
+#: ../gramps/plugins/drawreport/calendarreport.py:633
+#: ../gramps/plugins/textreport/birthdayreport.py:557
 #: ../gramps/plugins/webreport/narrativeweb.py:2897
 #: ../gramps/plugins/webreport/webcal.py:1873
 msgid "Wives use husband's surname (from first family listed)"
 msgstr "Eşler kocanın soyadını kullanır (listelenen ilk aileden)"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:634
-#: ../gramps/plugins/textreport/birthdayreport.py:558
+#: ../gramps/plugins/drawreport/calendarreport.py:636
+#: ../gramps/plugins/textreport/birthdayreport.py:560
 #: ../gramps/plugins/webreport/narrativeweb.py:2899
 #: ../gramps/plugins/webreport/webcal.py:1875
 msgid "Wives use husband's surname (from last family listed)"
 msgstr "Eşler kocanın soyadını kullanır (listelenen son aileden)"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:635
-#: ../gramps/plugins/textreport/birthdayreport.py:559
+#: ../gramps/plugins/drawreport/calendarreport.py:637
+#: ../gramps/plugins/textreport/birthdayreport.py:561
 #: ../gramps/plugins/webreport/narrativeweb.py:2901
 #: ../gramps/plugins/webreport/webcal.py:1877
 msgid "Wives use their own surname"
 msgstr "Eşler kendi soyadını kullanır"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:636
-#: ../gramps/plugins/textreport/birthdayreport.py:560
+#: ../gramps/plugins/drawreport/calendarreport.py:638
+#: ../gramps/plugins/textreport/birthdayreport.py:562
 #: ../gramps/plugins/webreport/narrativeweb.py:2902
 #: ../gramps/plugins/webreport/webcal.py:1878
 msgid "Select married women's displayed surname"
 msgstr "Evli kadınların görüntülenen soyadını seçin"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:639
-#: ../gramps/plugins/textreport/birthdayreport.py:563
+#: ../gramps/plugins/drawreport/calendarreport.py:641
+#: ../gramps/plugins/textreport/birthdayreport.py:565
 #: ../gramps/plugins/webreport/narrativeweb.py:2912
 #: ../gramps/plugins/webreport/webcal.py:1956
 msgid "Include birthdays"
 msgstr "Doğum günlerini dahil et"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:640
-#: ../gramps/plugins/textreport/birthdayreport.py:564
+#: ../gramps/plugins/drawreport/calendarreport.py:642
+#: ../gramps/plugins/textreport/birthdayreport.py:566
 msgid "Whether to include birthdays"
 msgstr "Doğum günleri dahil edilsin mi"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:643
-#: ../gramps/plugins/textreport/birthdayreport.py:567
+#: ../gramps/plugins/drawreport/calendarreport.py:645
+#: ../gramps/plugins/textreport/birthdayreport.py:569
 #: ../gramps/plugins/webreport/narrativeweb.py:2916
 #: ../gramps/plugins/webreport/webcal.py:1960
 msgid "Include anniversaries"
 msgstr "Yıldönümlerini dahil et"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:644
-#: ../gramps/plugins/textreport/birthdayreport.py:568
+#: ../gramps/plugins/drawreport/calendarreport.py:646
+#: ../gramps/plugins/textreport/birthdayreport.py:570
 msgid "Whether to include anniversaries"
 msgstr "Yıldönümlerinin dahil edilip edilmeyeceği"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:647
+#: ../gramps/plugins/drawreport/calendarreport.py:649
 #: ../gramps/plugins/webreport/narrativeweb.py:2920
 #: ../gramps/plugins/webreport/webcal.py:1964
 msgid "Include death dates"
 msgstr "Ölüm tarihlerini dahil et"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:649
+#: ../gramps/plugins/drawreport/calendarreport.py:651
 #: ../gramps/plugins/webreport/narrativeweb.py:2921
 #: ../gramps/plugins/webreport/webcal.py:1965
 msgid "Include death anniversaries in the calendar"
 msgstr "Ölüm yıldönümlerini takvime dahil edin"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:718
+#: ../gramps/plugins/drawreport/calendarreport.py:720
 msgid "Title text and background color"
 msgstr "Başlık metni ve arka plan rengi"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:722
+#: ../gramps/plugins/drawreport/calendarreport.py:724
 msgid "Calendar day numbers"
 msgstr "Takvim gün numaraları"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:725
+#: ../gramps/plugins/drawreport/calendarreport.py:727
 msgid "Daily text display"
 msgstr "Günlük metin ekranı"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:727
+#: ../gramps/plugins/drawreport/calendarreport.py:729
 msgid "Holiday text display"
 msgstr "Tatil metin ekranı"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:730
+#: ../gramps/plugins/drawreport/calendarreport.py:732
 msgid "Days of the week text"
 msgstr "Haftanın günleri metni"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:734
-#: ../gramps/plugins/textreport/birthdayreport.py:657
+#: ../gramps/plugins/drawreport/calendarreport.py:736
+#: ../gramps/plugins/textreport/birthdayreport.py:659
 msgid "Text at bottom, line 1"
 msgstr "Alttaki metin, 1. satır"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:736
-#: ../gramps/plugins/textreport/birthdayreport.py:659
+#: ../gramps/plugins/drawreport/calendarreport.py:738
+#: ../gramps/plugins/textreport/birthdayreport.py:661
 msgid "Text at bottom, line 2"
 msgstr "Alttaki metin, 2. satır"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:738
-#: ../gramps/plugins/textreport/birthdayreport.py:661
+#: ../gramps/plugins/drawreport/calendarreport.py:740
+#: ../gramps/plugins/textreport/birthdayreport.py:663
 msgid "Text at bottom, line 3"
 msgstr "Alttaki metin, 3. satır"
 
@@ -21846,13 +22061,6 @@ msgstr "\"%d\" kuşağının metin gösterimi için kullanılan stil"
 msgid "Item count"
 msgstr "Öğe sayısı"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:320
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "all"
-msgid "All"
-msgstr "tümü"
-
 #: ../gramps/plugins/drawreport/statisticschart.py:321
 #: ../gramps/plugins/drawreport/statisticschart.py:425
 #: ../gramps/plugins/drawreport/statisticschart.py:804
@@ -22036,7 +22244,7 @@ msgstr "Hangi kişilerin rapora dahil edileceğini belirler."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1030
 #: ../gramps/plugins/drawreport/timeline.py:422
-#: ../gramps/plugins/textreport/birthdayreport.py:485
+#: ../gramps/plugins/textreport/birthdayreport.py:487
 #: ../gramps/plugins/textreport/indivcomplete.py:1076
 #: ../gramps/plugins/textreport/recordsreport.py:223
 #: ../gramps/plugins/tool/sortevents.py:173
@@ -22046,7 +22254,7 @@ msgid "Filter Person"
 msgstr "Kişi Süzgeci"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1031
-#: ../gramps/plugins/textreport/birthdayreport.py:486
+#: ../gramps/plugins/textreport/birthdayreport.py:488
 #: ../gramps/plugins/textreport/indivcomplete.py:1077
 msgid "The center person for the filter."
 msgstr "Süzgeç için merkez kişi."
@@ -23699,10 +23907,6 @@ msgstr "Referans"
 msgid "Uncollected object"
 msgstr "Toplanmayan nesne"
 
-#: ../gramps/plugins/gramplet/leak.py:112
-msgid "Refresh"
-msgstr "Yenile"
-
 #: ../gramps/plugins/gramplet/leak.py:122
 msgid "Press Refresh to see initial results"
 msgstr "İlk sonuçları görmek için Yenile'ye basın"
@@ -25044,7 +25248,7 @@ msgstr ""
 "çizge düğümüne bir URL ekleyin."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:906
-#: ../gramps/plugins/textreport/birthdayreport.py:576
+#: ../gramps/plugins/textreport/birthdayreport.py:578
 #: ../gramps/plugins/textreport/indivcomplete.py:1158
 msgid "Include relationship to center person"
 msgstr "Merkez kişiyle olan ilişkiyi dahil et"
@@ -32239,39 +32443,39 @@ msgstr "Her addan sonra satır sonu ekle"
 msgid "Whether a line break should follow the name."
 msgstr "Satır sonunun adı takip edip etmeyeceği."
 
-#: ../gramps/plugins/textreport/birthdayreport.py:65
-#: ../gramps/plugins/textreport/birthdayreport.py:229
-#: ../gramps/plugins/textreport/birthdayreport.py:274
+#: ../gramps/plugins/textreport/birthdayreport.py:67
+#: ../gramps/plugins/textreport/birthdayreport.py:231
+#: ../gramps/plugins/textreport/birthdayreport.py:276
 #: ../gramps/plugins/textreport/textplugins.gpr.py:59
 msgid "Birthday and Anniversary Report"
 msgstr "Doğum Günü ve Yıldönümü Raporu"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:66
+#: ../gramps/plugins/textreport/birthdayreport.py:68
 msgid "My Birthday Report"
 msgstr "Doğum Günü Raporum"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:68
+#: ../gramps/plugins/textreport/birthdayreport.py:70
 msgid "✝"
 msgstr "☾"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:226
+#: ../gramps/plugins/textreport/birthdayreport.py:228
 #, python-format
 msgid "Relationships shown are to %s"
 msgstr "Gösterilen ilişkiler %s için"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:339
+#: ../gramps/plugins/textreport/birthdayreport.py:341
 #, python-format
 msgid "* %(person)s, birth %(relation)s"
 msgstr "* %(person)s, doğum%(relation)s"
 
 #. Translators: leave all/any {...} untranslated
-#: ../gramps/plugins/textreport/birthdayreport.py:344
+#: ../gramps/plugins/textreport/birthdayreport.py:346
 #, python-brace-format
 msgid "* {year}{person}{dead}, {age}{relation}"
 msgid_plural "* {year}{person}{dead}, {age}{relation}"
 msgstr[0] "* {year}{person}{dead}, {age}{relation}"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:408
+#: ../gramps/plugins/textreport/birthdayreport.py:410
 #, python-format
 msgid ""
 "⚭ %(spouse)s and\n"
@@ -32281,7 +32485,7 @@ msgstr ""
 "%(person)s, düğün"
 
 #. Translators: leave all/any {...} untranslated
-#: ../gramps/plugins/textreport/birthdayreport.py:413
+#: ../gramps/plugins/textreport/birthdayreport.py:415
 #, python-brace-format
 msgid ""
 "⚭ {year}{spouse}{deadtxt2} and\n"
@@ -32293,94 +32497,94 @@ msgstr[0] ""
 "⚭ {year}{spouse}{deadtxt2} ve\n"
 "\t{person}{deadtxt1}, {nyears}"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:448
+#: ../gramps/plugins/textreport/birthdayreport.py:450
 #, python-brace-format
 msgid "✝ {person}, death {relation}"
 msgstr "✝ {person}, ölüm {relation}"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:450
+#: ../gramps/plugins/textreport/birthdayreport.py:452
 #, python-brace-format
 msgid "✝ {year}{person}, {age}{relation}"
 msgid_plural "✝ {year}{person}, {age}{relation}"
 msgstr[0] "✝ {year}{person}, {age}{relation}"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:481
+#: ../gramps/plugins/textreport/birthdayreport.py:483
 #: ../gramps/plugins/textreport/familygroup.py:714
 #: ../gramps/plugins/textreport/indivcomplete.py:1072
 msgid "Select the filter to be applied to the report."
 msgstr "Rapora uygulanacak süzgeci seçin."
 
-#: ../gramps/plugins/textreport/birthdayreport.py:490
+#: ../gramps/plugins/textreport/birthdayreport.py:492
 msgid "Title text"
 msgstr "Başlık metni"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:491
+#: ../gramps/plugins/textreport/birthdayreport.py:493
 msgid "Title of report"
 msgstr "Raporun başlığı"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:495
+#: ../gramps/plugins/textreport/birthdayreport.py:497
 msgid "First line of text at bottom of report"
 msgstr "Raporun altındaki metnin ilk satırı"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:499
+#: ../gramps/plugins/textreport/birthdayreport.py:501
 msgid "Second line of text at bottom of report"
 msgstr "Raporun altındaki metnin ikinci satırı"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:503
+#: ../gramps/plugins/textreport/birthdayreport.py:505
 msgid "Third line of text at bottom of report"
 msgstr "Raporun altındaki metnin üçüncü satırı"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:514
+#: ../gramps/plugins/textreport/birthdayreport.py:516
 msgid "Include only living people in the report"
 msgstr "Rapora yalnızca yaşayan insanları dahil edin"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:519
+#: ../gramps/plugins/textreport/birthdayreport.py:521
 msgid "Dead Symbol"
 msgstr "Ölü Sembol"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:520
+#: ../gramps/plugins/textreport/birthdayreport.py:522
 msgid "This will show after name to indicate that person is dead"
 msgstr "Bu, kişinin öldüğünü belirtmek için adından sonra gösterilecektir"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:527
+#: ../gramps/plugins/textreport/birthdayreport.py:529
 msgid "Show event year"
 msgstr "Etkinlik yılını göster"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:528
+#: ../gramps/plugins/textreport/birthdayreport.py:530
 msgid "Prints the year the event took place in the report"
 msgstr "Etkinliğin gerçekleştiği yılı rapora yazdırır"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:533
 #: ../gramps/plugins/textreport/birthdayreport.py:535
+#: ../gramps/plugins/textreport/birthdayreport.py:537
 msgid "Year of report"
 msgstr "Rapor yılı"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:571
+#: ../gramps/plugins/textreport/birthdayreport.py:573
 msgid "Include death anniversaries"
 msgstr "Ölüm yıldönümlerini dahil et"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:572
+#: ../gramps/plugins/textreport/birthdayreport.py:574
 msgid "Whether to include anniversaries of death"
 msgstr "Ölüm yıldönümlerinin dahil edilip edilmeyeceği"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:578
+#: ../gramps/plugins/textreport/birthdayreport.py:580
 #: ../gramps/plugins/textreport/indivcomplete.py:1160
 msgid "Whether to include relationships to the center person"
 msgstr "Merkez kişiyle ilişkilerin dahil edilip edilmeyeceği"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:647
+#: ../gramps/plugins/textreport/birthdayreport.py:649
 msgid "Title text style"
 msgstr "Başlık metin stili"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:650
+#: ../gramps/plugins/textreport/birthdayreport.py:652
 msgid "Data text display"
 msgstr "Veri metni ekranı"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:652
+#: ../gramps/plugins/textreport/birthdayreport.py:654
 msgid "Day text style"
 msgstr "Gün metin stili"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:655
+#: ../gramps/plugins/textreport/birthdayreport.py:657
 msgid "Month text style"
 msgstr "Ay metin stili"
 
@@ -37330,11 +37534,6 @@ msgstr "İndirmek"
 msgid "Contact"
 msgstr "Contact"
 
-#: ../gramps/plugins/webreport/basepage.py:1767
-#: ../gramps/plugins/webreport/basepage.py:1834
-msgid "Updates"
-msgstr "Güncellemeler"
-
 #: ../gramps/plugins/webreport/basepage.py:1769
 #: ../gramps/plugins/webreport/basepage.py:1840
 #: ../gramps/plugins/webreport/webplugins.gpr.py:58
@@ -37454,13 +37653,13 @@ msgstr ""
 msgid "One Day Within A Year"
 msgstr "Yıl İçinde Bir Gün"
 
-#: ../gramps/plugins/webreport/calendar.py:1147
+#: ../gramps/plugins/webreport/calendar.py:1148
 #: ../gramps/plugins/webreport/webcal.py:1543
 #, python-format
 msgid "%(spouse)s and %(person)s"
 msgstr "%(spouse)s ve %(person)s"
 
-#: ../gramps/plugins/webreport/calendar.py:1402
+#: ../gramps/plugins/webreport/calendar.py:1403
 #: ../gramps/plugins/webreport/webcal.py:2218
 #, python-brace-format
 msgid "{couple}, {years} year anniversary"
@@ -39021,6 +39220,24 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Stil sayfası yok"
 
+#~ msgid ""
+#~ "Configuration settings to have Gramps check for new or updated third "
+#~ "party Addons and Plugins. The Plugin Manager has the complete list of "
+#~ "installed Addons and Plugins and their activation status.\n"
+#~ msgstr ""
+#~ "Gramps'ın yeni veya güncellenmiş üçüncü taraf eklentileri kontrol "
+#~ "etmesini sağlayacak yapılandırma ayarları. Eklenti Yöneticisi, kurulu "
+#~ "eklentilerin tam listesine ve bunların etkinleştirme durumlarına "
+#~ "sahiptir.\n"
+
+#~ msgid "Where to check"
+#~ msgstr "Nerede kontrol edilsin"
+
+#, fuzzy
+#~| msgid "Plugin lib"
+#~ msgid "Plugins"
+#~ msgstr "Eklenti kitaplığı"
+
 #~ msgid "Arabic"
 #~ msgstr "Arapça"
 
@@ -39536,9 +39753,6 @@ msgstr "Stil sayfası yok"
 #~ msgid "Title"
 #~ msgstr "Başlık"
 
-#~ msgid "Given Name"
-#~ msgstr "Göbek Adı"
-
 #~ msgid "unmarried|husband"
 #~ msgstr "nikahsız koca"
 
@@ -39639,10 +39853,6 @@ msgstr "Stil sayfası yok"
 #, fuzzy
 #~ msgid "Database db version"
 #~ msgstr "Bsddb sürümü"
-
-#, fuzzy
-#~ msgid "Data version"
-#~ msgstr "Şema sürümü"
 
 #, fuzzy
 #~ msgid "Restrict"
