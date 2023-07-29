@@ -9,14 +9,14 @@
 # Brtc <boratici@gmail.com>, 2021.
 # Bora <boratici@gmail.com>, 2021, 2022.
 # Bora Atıcı <boratici@gmail.com>, 2022.
-# Bora Atıcı <boratici.acc@gmail.com>, 2022.
+# Bora Atıcı <boratici.acc@gmail.com>, 2022, 2023.
 # Nick Hall <nick-h@gramps-project.org>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-28 19:29+0100\n"
-"PO-Revision-Date: 2022-10-10 18:01+0000\n"
+"PO-Revision-Date: 2023-07-29 14:39+0000\n"
 "Last-Translator: Bora Atıcı <boratici.acc@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 5.0-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Language: tr\n"
 "X-Source-Language: C\n"
@@ -5412,16 +5412,12 @@ msgid "Matches people whose notes contain text matching a regular expression"
 msgstr "Notları normal bir ifadeyle eşleşen metin içeren kişilerle eşleşir"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:45
-#, fuzzy
-#| msgid "People with an alternate name"
 msgid "People who are neither male nor female"
-msgstr "Alternatif adı olan kişiler"
+msgstr "Ne erkek ne de kadın olmayan insanlar"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:47
-#, fuzzy
-#| msgid "Matches all people with unknown gender"
 msgid "Matches all people with other gender"
-msgstr "Cinsiyeti bilinmeyen tüm kişilerle eşleşir"
+msgstr "Diğer cinsiyetteki tüm insanları eşleştirir"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:45
 msgid "Number of relationships:"
@@ -7692,10 +7688,8 @@ msgid "Alternate Marriage"
 msgstr "Alternatif Evlilik"
 
 #: ../gramps/gen/lib/eventtype.py:210
-#, fuzzy
-#| msgid "Stillborn"
 msgid "Stillbirth"
-msgstr "Ölü doğmuş"
+msgstr "Ölü doğum"
 
 #: ../gramps/gen/lib/eventtype.py:214
 #: ../gramps/plugins/drawreport/ancestortree.py:60
@@ -8511,10 +8505,8 @@ msgid "Research"
 msgstr "Araştırma"
 
 #: ../gramps/gen/lib/notetype.py:78
-#, fuzzy
-#| msgid "Analyzing names"
 msgid "Analysis"
-msgstr "Adları analiz etme"
+msgstr "Analiz"
 
 #: ../gramps/gen/lib/notetype.py:79
 msgid "Transcript"
@@ -9276,11 +9268,11 @@ msgstr "Kararsız"
 
 #: ../gramps/gen/plug/_pluginreg.py:63
 msgid "Experimental"
-msgstr ""
+msgstr "Deneysel"
 
 #: ../gramps/gen/plug/_pluginreg.py:64
 msgid "Beta"
-msgstr ""
+msgstr "Beta"
 
 #: ../gramps/gen/plug/_pluginreg.py:65
 msgid "Stable"
@@ -9288,7 +9280,7 @@ msgstr "Kararlı"
 
 #: ../gramps/gen/plug/_pluginreg.py:73
 msgid "Developer"
-msgstr ""
+msgstr "Geliştirici"
 
 #: ../gramps/gen/plug/_pluginreg.py:74
 msgid "Expert"
@@ -10277,16 +10269,12 @@ msgid "Select the format to display places"
 msgstr "Yerleri görüntülemek için biçimi seçin"
 
 #: ../gramps/gen/plug/report/stdoptions.py:386 ../gramps/gui/configure.py:1250
-#, fuzzy
-#| msgid "Date format"
 msgid "Coordinates format"
-msgstr "Tarih biçimi"
+msgstr "Koordinat biçimi"
 
 #: ../gramps/gen/plug/report/stdoptions.py:389
-#, fuzzy
-#| msgid "Select the format to display names"
 msgid "Select the format to display coordinates"
-msgstr "Adları görüntülemek için biçimi seçin"
+msgstr "Koordinatları görüntülemek için biçimi seçin"
 
 #: ../gramps/gen/plug/report/utils.py:157
 #: ../gramps/plugins/textreport/indivcomplete.py:925
@@ -10937,10 +10925,8 @@ msgid "RT90"
 msgstr ""
 
 #: ../gramps/gen/utils/place.py:102
-#, fuzzy
-#| msgid "Delete the selected citation"
 msgid "Degree, minutes, seconds notation"
-msgstr "Seçili alıntıyı sil"
+msgstr "Derece, dakika, saniye gösterimi"
 
 #: ../gramps/gen/utils/place.py:103
 msgid "Degree, minutes, seconds notation with :"
@@ -11233,10 +11219,8 @@ msgstr ""
 #: ../gramps/grampsapp.py:345 ../gramps/grampsapp.py:361
 #: ../gramps/grampsapp.py:371 ../gramps/grampsapp.py:392
 #: ../gramps/grampsapp.py:399
-#, fuzzy
-#| msgid "Not found"
 msgid "not found"
-msgstr "Bulunamadı"
+msgstr "bulunamadı"
 
 #: ../gramps/grampsapp.py:326
 msgid "not found because exiv2 is not installed"
@@ -11663,7 +11647,7 @@ msgstr "Kadın kişiler için renkler"
 
 #: ../gramps/gui/configure.py:724
 msgid "Colors for people who are neither male nor female"
-msgstr ""
+msgstr "Ne erkek ne de kadın olmayan insanlar için renkler"
 
 #: ../gramps/gui/configure.py:725
 msgid "Colors for Unknown persons"
@@ -11886,10 +11870,8 @@ msgid "Age display precision *"
 msgstr "Yaş görüntüleme hassasiyeti *"
 
 #: ../gramps/gui/configure.py:1359
-#, fuzzy
-#| msgid "Display references for a %s"
 msgid "Display ages for events after death *"
-msgstr "%s için referansları göster"
+msgstr "Ölümden sonraki etkinlikler için yaşları göster *"
 
 #: ../gramps/gui/configure.py:1371
 msgid "Calendar on reports"
@@ -11900,16 +11882,12 @@ msgid "Calendar on input"
 msgstr "Girdide takvim"
 
 #: ../gramps/gui/configure.py:1391
-#, fuzzy
-#| msgid "Shows previous page"
 msgid "on the previous day"
-msgstr "Önceki sayfayı gösterir"
+msgstr "önceki gün"
 
 #: ../gramps/gui/configure.py:1392
-#, fuzzy
-#| msgid "Shows the next page"
 msgid "on the next day"
-msgstr "Sonraki sayfayı gösterir"
+msgstr "sonraki gün"
 
 #: ../gramps/gui/configure.py:1393
 msgid "only on leap years"
