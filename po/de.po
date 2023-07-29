@@ -22,8 +22,8 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-28 19:29+0100\n"
-"PO-Revision-Date: 2023-07-27 16:21+0000\n"
-"Last-Translator: nautilusx <translate@disroot.org>\n"
+"PO-Revision-Date: 2023-07-29 14:39+0000\n"
+"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
 "Language: de\n"
@@ -11128,11 +11128,11 @@ msgstr "Grad, Minuten, Sekunden Notation mit :"
 
 #: ../gramps/gen/utils/place.py:104
 msgid "Degree notation, 4 decimals"
-msgstr "Gradangabe, 4 Dezimalstellen"
+msgstr "Gradschreibweise, 4 Dezimalstellen"
 
 #: ../gramps/gen/utils/place.py:105
 msgid "Degree notation, 8 decimals (precision like ISO-DMS)"
-msgstr "Gradangabe, 8 Dezimalstellen (Genauigkeit wie ISO-DMS)"
+msgstr "Gradschreibweise, 8 Dezimalstellen (Genauigkeit wie ISO-DMS)"
 
 #: ../gramps/gen/utils/place.py:106
 msgid "Output format for the Swedish coordinate system RT90"
@@ -20354,7 +20354,7 @@ msgstr "Abbrechen der Sicherung"
 
 #: ../gramps/gui/viewmanager.py:1788
 msgid "Making backup..."
-msgstr "Sicherung erstellen..."
+msgstr "Erstelle Sicherung..."
 
 #: ../gramps/gui/viewmanager.py:1801
 #, python-format
