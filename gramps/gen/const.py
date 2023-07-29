@@ -125,6 +125,10 @@ else:
     USER_CONFIG = os.path.join(GLib.get_user_config_dir(), 'gramps')
     USER_CACHE = os.path.join(GLib.get_user_cache_dir(), 'gramps')
 
+USER_PICTURES = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES)
+if not USER_PICTURES:
+    USER_PICTURES = HOME_DIR
+
 VERSION_DIR_NAME = "gramps%s%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1])
 VERSION_DIR = os.path.join(USER_CONFIG, VERSION_DIR_NAME)
 USER_DATA_VERSION = os.path.join(USER_DATA, VERSION_DIR_NAME)

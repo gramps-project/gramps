@@ -39,7 +39,7 @@ import unittest
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from ...const import USER_HOME, USER_PLUGINS, VERSION
+from ...const import USER_HOME, USER_PICTURES, USER_PLUGINS, VERSION
 from ...utils.file import media_path
 from ...db.utils import make_database
 
@@ -66,7 +66,7 @@ class FileTest(unittest.TestCase):
 
             # Test without db.mediapath set
             self.assertEqual(media_path(db), os.path.normcase(os.path.normpath(
-                os.path.abspath(USER_HOME))))
+                os.path.abspath(USER_PICTURES))))
             self.assertTrue(os.path.exists(media_path(db)))
 
             # Test with absolute db.mediapath

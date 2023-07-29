@@ -43,7 +43,7 @@ LOG = logging.getLogger(".gen.utils.file")
 #
 #-------------------------------------------------------------------------
 from ..constfunc import win, mac, get_env_var
-from ..const import USER_HOME, ENV, GRAMPS_LOCALE as glocale
+from ..const import USER_HOME, USER_PICTURES, ENV, GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
 #
@@ -182,9 +182,9 @@ def expand_media_path(mpath, db):
      - Convert to absolute path
      - Convert slashes and case (on Windows)
     """
-    # Use home dir if no media_path specified
+    # Use XDG pictures diectory if no media_path specified
     if mpath is None:
-        mpath = os.path.abspath(USER_HOME)
+        mpath = os.path.abspath(USER_PICTURES)
     # Expand environment variables
     mpath = expand_path(mpath, False)
     # Relative mediapath are considered as relative to the database
