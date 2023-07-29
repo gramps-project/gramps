@@ -125,6 +125,13 @@ class DbUndo(metaclass=ABCMeta):
         txn.set_description(msg)
         txn.timestamp = time.time()
         self.undoq.append(txn)
+        self._after_commit(txn)
+
+    def _after_commit(self, transaction):
+        """
+        Post-transaction commit processing.
+        """
+        pass
 
     def undo(self, update_history=True):
         """

@@ -626,11 +626,11 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         self._set_save_path(directory)
 
-        if self._directory:
+        if self._directory and self._directory != ":memory:":
             self.undolog = os.path.join(self._directory, DBUNDOFN)
         else:
             self.undolog = None
-        self.undodb = DbGenericUndo(self, self.undolog)
+        self.undodb = self._create_undo_manager()
         self.undodb.open()
 
         # Other items to load
@@ -664,6 +664,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             else:
                 self.close()
                 raise DbUpgradeRequiredError(dbversion, self.VERSION[0])
+
+    def _create_undo_manager(self):
+        """
+        Create the undo manager.
+        """
+        return DbGenericUndo(self, self.undolog)
 
     def _close(self):
         """
