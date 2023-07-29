@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-28 19:29+0100\n"
 "PO-Revision-Date: 2023-07-29 11:13+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -10764,7 +10764,7 @@ msgstr "סימון מעלות, 4 ספרות עשרוניות"
 
 #: ../gramps/gen/utils/place.py:105
 msgid "Degree notation, 8 decimals (precision like ISO-DMS)"
-msgstr "סימון מעלות, 8 ספרות עשרוניות (רמת דיות כמו ISO-DMS)"
+msgstr "סימון מעלות, 8 ספרות עשרוניות (רמת דיוק כמו ISO-DMS)"
 
 #: ../gramps/gen/utils/place.py:106
 msgid "Output format for the Swedish coordinate system RT90"
@@ -21653,7 +21653,7 @@ msgstr "היפוך שמות בצדה השמאלי של המניפה"
 
 #: ../gramps/plugins/drawreport/fanchart.py:767
 msgid "Flip names for generations 2, 3 and 4 i.e. those found in circles"
-msgstr "היפוך שמות דורות 2, 3 ו־4 כלומר נמצאים במעגלים הללו"
+msgstr "היפוך שמות דורות 2, 3 ו־4 כלומר אלו שנמצאים במעגלים הללו"
 
 #: ../gramps/plugins/drawreport/fanchart.py:823
 #, python-format
@@ -24705,7 +24705,7 @@ msgstr "הצגת כל האירועים"
 
 #: ../gramps/plugins/graph/gvhourglass.py:476
 msgid "Show genealogical symbols for birth, marriage and death events."
-msgstr "הצגת סמלים גנאולוגיים לארועי לידה, נישואין ופטירה."
+msgstr "הצגת סמלים גנאולוגיים לאירועי לידה, נישואין ופטירה."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:211
 #: ../gramps/plugins/textreport/indivcomplete.py:836
@@ -37753,7 +37753,7 @@ msgid ""
 "The Google maps service must be selected."
 msgstr ""
 "נא להעתיק ולהדביק ערכים אלו בחיפוש הדפדפן.\n"
-"חובה לבחור בשרות המפות של Google."
+"חובה לבחור בשירות המפות של Google."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2514
 msgid "Toner"
