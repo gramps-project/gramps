@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2009       Brian G. Matherly
 # Copyright (C) 2009       Gary Burton
+# Copyright (C) 2021-      Serge Noiraud
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -37,6 +38,7 @@ import subprocess
 from urllib.parse import urlparse
 import logging
 import re
+import tempfile
 
 #-------------------------------------------------------------------------
 #
@@ -53,7 +55,7 @@ from gi.repository import Pango
 #
 #-------------------------------------------------------------------------
 from .display import display_help
-from gramps.gen.const import URL_WIKISTRING, URL_MANUAL_PAGE
+from gramps.gen.const import (URL_WIKISTRING, URL_MANUAL_PAGE, USER_HOME)
 from .user import User
 from .dialog import ErrorDialog, QuestionDialog, QuestionDialog2, ICON
 from .pluginmanager import GuiPluginManager
@@ -63,8 +65,11 @@ from .ddtargets import DdTargets
 from gramps.gen.recentfiles import rename_filename, remove_filename
 from .glade import Glade
 from gramps.gen.db.exceptions import DbException
+from gramps.gen.errors import WindowActiveError
 from gramps.gen.db.utils import make_database, open_database
 from gramps.gen.config import config
+from .dbloader import DbLoader
+
 from .listmodel import ListModel
 from gramps.gen.constfunc import win
 from gramps.gen.plug import BasePluginManager
@@ -111,6 +116,140 @@ ICON_COL = 6
 BACKEND_COL = 7
 
 RCS_BUTTON = {True : _('_Extract'), False : _('_Archive')}
+
+FIRST_TIME_DEFAULT_FILE = """<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.1//EN"
+"http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.7.1/">
+  <header>
+    <created date="2021-09-06" version="5.1.3"/>
+    <researcher>
+      <resname></resname>
+      <rescity></rescity>
+      <resstate></resstate>
+      <rescountry></rescountry>
+      <respostal></respostal>
+      <resemail></resemail>
+    </researcher>
+  </header>
+  <events>
+    <event handle="_ed548c041fa32c988d5d657b24b" change="1630921138" id="E00000">
+      <type>Birth</type>
+      <place hlink="_ed548be51c757169db87d47eb17"/>
+      <description>My birth date</description>
+    </event>
+    <event handle="_ed548d06d5015bf1a3f45d8156f" change="1630921244" id="E00002">
+      <type>Birth</type>
+      <place hlink="_ed548be51c757169db87d47eb17"/>
+    </event>
+    <event handle="_ed548d262ac57c779d40741f72b" change="1630921257" id="E00003">
+      <type>Death</type>
+      <place hlink="_ed548be51c757169db87d47eb17"/>
+    </event>
+    <event handle="_ed548dd823a29ee79af6c958406" change="1630921329" id="E00004">
+      <type>Birth</type>
+      <place hlink="_ed548dce1b23bc140e754d077a8"/>
+    </event>
+    <event handle="_ed548e0361f1ae2cbc05454d012" change="1630921347" id="E00005">
+      <type>Death</type>
+      <place hlink="_ed548be51c757169db87d47eb17"/>
+    </event>
+    <event handle="_ed548e400156e491fe92ae01bed" change="1630921372" id="E00006">
+      <type>Marriage</type>
+      <place hlink="_ed548be51c757169db87d47eb17"/>
+    </event>
+  </events>
+  <people home="_ed548ab269d640ea256206b4610">
+    <person handle="_ed548ab269d640ea256206b4610" change="1630921381" id="I00000">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>{me}</first>
+        <surname>{surnm1}</surname>
+      </name>
+      <eventref hlink="_ed548c041fa32c988d5d657b24b" role="Primary"/>
+      <childof hlink="_ed548cb8f4cc81352fdb41f3c1"/>
+      <parentin hlink="_ed6298947b8626d450000470e81"/>
+    </person>
+    <person handle="_ed548cbf0d6f280dc7e4ac78f" change="1630921381" id="I00001">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>{partner1}</first>
+        <surname>{surnm1}</surname>
+      </name>
+      <eventref hlink="_ed548d06d5015bf1a3f45d8156f" role="Primary"/>
+      <eventref hlink="_ed548d262ac57c779d40741f72b" role="Primary"/>
+      <parentin hlink="_ed548cb8f4cc81352fdb41f3c1"/>
+    </person>
+    <person handle="_ed548d3e42d4102be30eb9ed5f8" change="1630921381" id="I00002">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>{partner2}</first>
+        <surname>{surnm2}</surname>
+      </name>
+      <eventref hlink="_ed548dd823a29ee79af6c958406" role="Primary"/>
+      <eventref hlink="_ed548e0361f1ae2cbc05454d012" role="Primary"/>
+      <parentin hlink="_ed548cb8f4cc81352fdb41f3c1"/>
+    </person>
+    <person handle="_ed62975ecee19fddb286c8e9992" change="1631298158" id="I00003">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>{brother}</first>
+        <surname>{surnm1}</surname>
+      </name>
+      <childof hlink="_ed548cb8f4cc81352fdb41f3c1"/>
+    </person>
+    <person handle="_ed62989f9c834fa58b835dd7016" change="1631298372" id="I00004">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>{wife}</first>
+        <surname>{surnm3}</surname>
+      </name>
+      <parentin hlink="_ed6298947b8626d450000470e81"/>
+    </person>
+    <person handle="_ed62990eb586b17023026d1b58c" change="1631298372" id="I00005">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>{child1}</first>
+        <surname>{surnm1}</surname>
+      </name>
+      <childof hlink="_ed6298947b8626d450000470e81"/>
+    </person>
+  </people>
+  <families>
+    <family handle="_ed548cb8f4cc81352fdb41f3c1" change="1630921381" id="F00000">
+      <rel type="Civil Union"/>
+      <father hlink="_ed548cbf0d6f280dc7e4ac78f"/>
+      <mother hlink="_ed548d3e42d4102be30eb9ed5f8"/>
+      <eventref hlink="_ed548e400156e491fe92ae01bed" role="Family"/>
+      <childref hlink="_ed548ab269d640ea256206b4610"/>
+      <childref hlink="_ed62975ecee19fddb286c8e9992"/>
+    </family>
+    <family handle="_ed6298947b8626d450000470e81" change="1631298372" id="F00001">
+      <rel type="Married"/>
+      <father hlink="_ed548ab269d640ea256206b4610"/>
+      <mother hlink="_ed62989f9c834fa58b835dd7016"/>
+      <childref hlink="_ed62990eb586b17023026d1b58c"/>
+    </family>
+  </families>
+  <places>
+    <placeobj handle="_ed548bd0f7877dce591a7d7b5a" change="1630921117" id="P00000" type="Country">
+      <pname value="{place1}"/>
+    </placeobj>
+    <placeobj handle="_ed548bd3b4335a76ccf085b246a" change="1630921320" id="P00001" type="County">
+      <pname value="{place2}"/>
+      <placeref hlink="_ed548bd0f7877dce591a7d7b5a"/>
+    </placeobj>
+    <placeobj handle="_ed548be51c757169db87d47eb17" change="1630921125" id="P00002" type="Village">
+      <pname value="{place3}"/>
+      <placeref hlink="_ed548bd3b4335a76ccf085b246a"/>
+    </placeobj>
+    <placeobj handle="_ed548dce1b23bc140e754d077a8" change="1630921325" id="P00003" type="Town">
+      <pname value="{place4}"/>
+      <placeref hlink="_ed548bd3b4335a76ccf085b246a"/>
+    </placeobj>
+  </places>
+</database>
+"""
 
 class Information(ManagedWindow):
 
@@ -172,7 +311,7 @@ class DbManager(CLIDbManager, ManagedWindow):
 
         for attr in ['connect_btn', 'cancel_btn', 'new_btn', 'remove_btn',
                      'info_btn', 'rename_btn', 'convert_btn',
-                     'repair_btn', 'rcs_btn', 'msg', 'close_btn']:
+                     'repair_btn', 'rcs_btn', 'msg', 'close_btn', 'firsttime']:
             setattr(self, attr, self.glade.get_object(attr))
 
         self.model = None
@@ -233,6 +372,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         self.info_btn.connect('clicked', self.__info_db)
         self.close_btn.connect('clicked', self.__close_db)
         self.repair_btn.connect('clicked', self.__repair_db)
+        self.firsttime.connect('clicked', self.__firsttime_db)
         self.selection.connect('changed', self.__selection_changed)
         self.dblist.connect('button-press-event', self.__button_press)
         self.dblist.connect('key-press-event', self.__key_press)
@@ -292,6 +432,24 @@ class DbManager(CLIDbManager, ManagedWindow):
 
         if not _RCS_FOUND: # it's not in Windows
             self.rcs_btn.set_visible(False)
+
+        if len(self.current_names) > 1:
+            # We have several databases.
+            # No need to have the "first time" button
+            self.firsttime.set_sensitive(False)
+        elif len(self.current_names) == 1:
+            # We have one database. Is it empty ?
+            name = self.current_names[0][0]
+            bdir = self.current_names[0][1]
+            summary = self.get_dbdir_summary(bdir, name)
+            nbpeople = 0
+            for item in sorted(summary):
+                if item == "Number of people":
+                    nbpeople = summary[item]
+            if nbpeople:
+                # We have one database with people.
+                # No need to have the "first time" button.
+                self.firsttime.set_sensitive(False)
 
         # if nothing is selected
         if not node:
@@ -1034,6 +1192,224 @@ class DbManager(CLIDbManager, ManagedWindow):
                 title.append(t)
         return fname, title
 
+    def __firsttime_db(self, obj):
+        """
+        This is the first time we use gramps
+
+        1 - Verify this is the first time we use gramps.
+            Show the database dir for databases and explain how to change it.
+        2 - If no database in this database directory create a database.
+            If we have only one database and we have no people in it continue.
+            In all other cases we have nothing to do.
+        3 - Do we want to import a gedcom/gramps file.
+        4 - If no file given, create a default database with three people.
+
+        """
+        message = ""
+        nbb = len(self.current_names)
+        nbpeople = 0
+        if nbb > 1:
+            message += _("You have already created multiple databases.")
+        if nbb == 1:
+            name = self.current_names[0][0]
+            bdir = self.current_names[0][1]
+            summary = self.get_dbdir_summary(bdir, name)
+            nbpeople = 0
+            for item in sorted(summary):
+                if item == "Number of people":
+                    nbpeople = summary[item]
+            if nbpeople == 0:
+                message += _("You have nobody in your database '%s'" % name)
+        if nbb == 0:
+            message += _("You have no database.")
+        NoviceSelection(self, message, nbpeople, self.current_names)
+
+# -------------------------------------------------------------------------
+#
+# NoviceSelection (First time)
+#
+# -------------------------------------------------------------------------
+class NoviceSelection(ManagedWindow, DbLoader):
+    """
+    We select ....
+    """
+    def __init__(self, dbmanager, message, nb_people, current_names):
+        """
+        Novice Selection initialization
+        """
+        self.dbmanager = dbmanager
+        self.uistate = dbmanager.uistate
+        self.dbstate = dbmanager.dbstate
+        self.nbb = nb_people
+        try:
+            ManagedWindow.__init__(self, self.uistate, [], NoviceSelection)
+            DbLoader.__init__(self, self.dbstate, self.uistate)
+        except WindowActiveError:
+            print("Novice error")
+            return
+        self.current_names = current_names
+        self.warning = False
+        dlg = Gtk.Dialog(title=_('Novice Selection'),
+                         transient_for=self.uistate.window)
+        dlg.add_buttons(
+            Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+        )
+
+        self.set_window(dlg, None, _('Novice Selection'), None)
+        mylabel = message
+        label = Gtk.Label(label=mylabel)
+        label.set_halign(Gtk.Align.START)
+        label.set_margin_bottom(15)
+        self.window.vbox.pack_start(label, False, True, 0)
+        label1 = Gtk.Label(label=_("Your databases will be stored in"
+                                   " the following databases directory:"))
+        label1.set_halign(Gtk.Align.START)
+        self.window.vbox.pack_start(label1, False, True, 0)
+        target = Gtk.Label(label=config.get('database.path'))
+        target.set_tooltip_text(_("Family Tree Database path"))
+        target.set_margin_bottom(15)
+        target.set_halign(Gtk.Align.START)
+        self.window.vbox.pack_start(target, False, True, 0)
+        label4 = Gtk.Label()
+        label4.set_text(_("You can change the database directory above"
+                          " using:\nEdit -> Preferences -> Family Tree"
+                          "\nwith the 'Family Tree Database path' field."))
+        label4.set_halign(Gtk.Align.START)
+        label4.set_margin_bottom(15)
+        self.window.vbox.pack_start(label4, False, True, 0)
+        label6 = Gtk.Label(label=_("Your database name. You can change it:"))
+        label6.set_halign(Gtk.Align.START)
+        self.window.vbox.pack_start(label6, False, True, 0)
+        self.__targetname = Gtk.Entry()
+        self.nbb = len(self.current_names)
+        if self.nbb == 1:
+            name = self.current_names[0][0]
+            self.__targetname.set_text(name)
+            label6.set_text(_("You can't change the database name here."))
+            self.__targetname.set_sensitive(False)
+            if nb_people == 0:
+                label8 = Gtk.Label()
+                label8.set_text(_("Remove the database '%s' and retry."
+                                  % name))
+                label8.set_halign(Gtk.Align.START)
+                self.window.vbox.pack_start(label8, False, True, 0)
+                self.window.set_default_size(600, 300)
+                self.window.connect('response', self.start)
+                self.window.show_all()
+                self.show()
+                return
+        else:
+            self.__targetname.set_text('My database')
+        dlg.add_buttons(
+            Gtk.STOCK_OK, Gtk.ResponseType.OK
+        )
+        self.__targetname.set_tooltip_text(_("The name of your database"))
+        self.__targetname.set_margin_bottom(15)
+        self.window.vbox.pack_start(self.__targetname, False, True, 0)
+        load_db = Gtk.Button(label=_("Load a gedcom/gramps file?"))
+        load_db.set_tooltip_text(_("Click here if you want to load a gedcom/"
+                                   "gramps file."))
+        load_db.connect("clicked", self.load_database_selection)
+        load_db.set_halign(Gtk.Align.START)
+        self.window.vbox.pack_start(load_db, False, True, 0)
+        self.__target1 = Gtk.Entry()
+        self.__target1.set_text('')
+        self.__target1.set_tooltip_text(_("If you want to load a gedcom/"
+                                          "gramps file, select it here."))
+        self.window.vbox.pack_start(self.__target1, False, True, 0)
+        self.window.set_default_size(600, 300)
+        self.window.connect('response', self.start)
+        self.window.show_all()
+        self.show()
+
+    def start(self, obj, resp):
+        """
+        Do we start the first gramps session ?
+        """
+        if resp == Gtk.ResponseType.OK:
+            name = self.__targetname.get_text()
+            file_to_load = self.__target1.get_text()
+            temp = False
+            if file_to_load == "":
+                temp = True
+                try:
+                    file_to_load = tempfile.mktemp(suffix=".gramps")
+                    ftl = open(file_to_load, "wb")
+                except IOError as msg:
+                    ErrorDialog(_("Default gedcom/gramps file for novice"),
+                                _("Could not create %s: %s") % (file_to_load,
+                                                                msg),
+                                parent=self.uistate.window)
+                except:
+                    ErrorDialog(_("Default gedcom/gramps file for novice"),
+                                _("Could not create %s") % file_to_load,
+                                parent=self.uistate.window)
+
+                ftl = open(file_to_load, "w", encoding='utf-8')
+                xml = FIRST_TIME_DEFAULT_FILE.format(
+                    me=_("Me"),
+                    partner1=_("Father/partner1"),
+                    partner2=_("Mother/partner2"),
+                    surnm1=_("Surname"),
+                    surnm2=_("Mother/partner2 Surname"),
+                    surnm3=_("Wife Surname"),
+                    child1=_("Child"),
+                    brother=_("Brother"),
+                    wife=_("Wife"),
+                    place1=_("Country"),
+                    place2=_("County"),
+                    place3=_("Place"),
+                    place4=_("Second place")
+                    )
+                ftl.write(xml)
+                ftl.close()
+            dbid = config.get('database.backend')
+            if self.nbb == 0:
+                self.dbmanager._create_new_db(dbid=dbid, title=name,
+                                              edit_entry=False)
+            db = open_database(name)
+            if db:
+                pmgr = GuiPluginManager.get_instance()
+                filen, extension = os.path.splitext(file_to_load)
+                extension = extension[1:] # remove the leading dot
+                for plugin in pmgr.get_import_plugins():
+                    if extension == plugin.get_extension():
+                        self.close()
+                        importer = plugin.get_import_function()
+                        importer(db, file_to_load,
+                                 User(callback=self._pulse_progress,
+                                      uistate=self.uistate,
+                                      dbstate=self.dbstate))
+                        break
+            self.dbmanager.firsttime.set_sensitive(False)
+            if temp:
+                os.unlink(file_to_load)
+        else:
+            self.window.close()
+
+    def load_database_selection(self, *arg):
+        """
+        Select the gedcom/gramps file to load
+        """
+        filtering = Gtk.FileFilter()
+        filtering.add_pattern("*.ged")
+        filtering.add_pattern("*.GED")
+        filtering.add_pattern("*.gramps")
+        filtering.add_pattern("*.gpkg")
+        fcd = Gtk.FileChooserDialog(transient_for=self.uistate.window)
+        fcd.set_title(_("Select your database gedcom/gramps file"))
+        fcd.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
+                        _('_Load'), Gtk.ResponseType.OK)
+        fcd.set_filter(filtering)
+        fcd.set_current_folder(USER_HOME)
+
+        status = fcd.run()
+        if status == Gtk.ResponseType.OK:
+            path = fcd.get_filename()
+            if path:
+                self.__target1.set_text(path)
+        fcd.destroy()
+
 def drag_motion(wid, context, xpos, ypos, time_stamp):
     """
     DND callback that is called on a DND drag motion begin
@@ -1094,8 +1470,6 @@ def find_revisions(name):
     proc.stdout.close()
     del proc
     return revlist
-
-
 
 def check_out(dbase, rev, path, user):
     """
