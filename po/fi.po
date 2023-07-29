@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-28 19:29+0100\n"
-"PO-Revision-Date: 2023-07-27 08:24+0000\n"
+"PO-Revision-Date: 2023-07-29 11:13+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -8592,10 +8592,8 @@ msgid "Research"
 msgstr "Tutkimus"
 
 #: ../gramps/gen/lib/notetype.py:78
-#, fuzzy
-#| msgid "Analyzing names"
 msgid "Analysis"
-msgstr "Analysoidaan nimiä"
+msgstr "Analyysi"
 
 #: ../gramps/gen/lib/notetype.py:79
 msgid "Transcript"
@@ -9433,10 +9431,8 @@ msgid "Thumbnailer"
 msgstr "Pienoiskuvat"
 
 #: ../gramps/gen/plug/_pluginreg.py:113 ../gramps/gui/configure.py:1424
-#, fuzzy
-#| msgid "Citation Information"
 msgid "Citation formatter"
-msgstr "Lainausten tiedot"
+msgstr "Viittausmuotoilija"
 
 #: ../gramps/gen/plug/_pluginreg.py:589
 #: ../gramps/plugins/gramplet/faqgramplet.py:135
@@ -9917,32 +9913,24 @@ msgid "Surname Given Nickname"
 msgstr "Sukunimi Etunimi Lempinimi"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:69
-#, fuzzy
-#| msgid "Surname Given Nickname"
 msgid "Surname, Given Nickname"
-msgstr "Sukunimi Etunimi Lempinimi"
+msgstr "Sukunimi, Etunimi Lempinimi"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:70
-#, fuzzy
-#| msgid "Given Nickname Surname"
 msgid "GivenNicknameSurname"
-msgstr "Etunimi Lempinimi Sukunimi"
+msgstr "EtunimiLempinimiSukunimi"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:72
 msgid "Auto"
-msgstr ""
+msgstr "Auto"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:73
-#, fuzzy
-#| msgid "Call Name"
 msgid "Call Name Only"
-msgstr "Kutsumanimi"
+msgstr "Vain kutsumanimi"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:74
-#, fuzzy
-#| msgid "Given Name"
 msgid "Whole Given Name"
-msgstr "Etunimi"
+msgstr "Koko etunimi"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:77
 msgid "Above"
@@ -10071,6 +10059,8 @@ msgid ""
 "Select the portion of the given name to be marked as preferred. Auto sets "
 "the call name if one exists, otherwise the whole given name."
 msgstr ""
+"Valitse annetusta nimestä se osa, joka halutaan merkitä ensisijaiseksi. Auto "
+"asettaa kutsumanimen, jos sellainen on olemassa, muuten koko annetun nimen."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:196
 msgid "Position of marriage information."
@@ -11037,17 +11027,15 @@ msgstr "Ruotsin RT90-koordinaatiston tulostusmuoto"
 
 #: ../gramps/gen/utils/requirements.py:145
 msgid "Python modules"
-msgstr ""
+msgstr "Python moduulit"
 
 #: ../gramps/gen/utils/requirements.py:152
 msgid "GObject introspection modules"
-msgstr ""
+msgstr "GObjectin introspektiomoduulit"
 
 #: ../gramps/gen/utils/requirements.py:159
-#, fuzzy
-#| msgid "_Execute"
 msgid "Executables"
-msgstr "_Suorita"
+msgstr "Suoritettavat"
 
 #: ../gramps/gen/utils/string.py:46 ../gramps/gui/editors/editperson.py:341
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
@@ -11977,32 +11965,28 @@ msgid "Calendar on input"
 msgstr "Kalenteri syötettäessä"
 
 #: ../gramps/gui/configure.py:1391
-#, fuzzy
-#| msgid "Shows previous page"
 msgid "on the previous day"
-msgstr "Näyttää edellisen sivun"
+msgstr "edellisenä päivänä"
 
 #: ../gramps/gui/configure.py:1392
-#, fuzzy
-#| msgid "Shows the next page"
 msgid "on the next day"
-msgstr "Näyttää seuraavan sivun"
+msgstr "seuraavana päivänä"
 
 #: ../gramps/gui/configure.py:1393
 msgid "only on leap years"
-msgstr ""
+msgstr "vain karkausvuosina"
 
 #: ../gramps/gui/configure.py:1398
 msgid ""
 "For non leap years, anniversaries are displayed on either February 28, March "
 "1 or not at all in Gregorian calendars"
 msgstr ""
+"Muina kuin karkausvuosina vuosipäivät näkyvät joko 28. helmikuuta, 1. "
+"maaliskuuta tai eivät lainkaan gregoriaanisissa kalentereissa"
 
 #: ../gramps/gui/configure.py:1401
-#, fuzzy
-#| msgid "Include death anniversaries"
 msgid "Show leap day anniversaries"
-msgstr "Lisää kuolema mukaan vuosipäiviin"
+msgstr "Näytä karkauspäivän vuosipäivät"
 
 #: ../gramps/gui/configure.py:1408
 msgid "Active person's name and ID"
@@ -12212,16 +12196,12 @@ msgid "Show or hide the Tools icon on the toolbar."
 msgstr "Näytä tai piilota työkalupalkin työkalut-kuvake."
 
 #: ../gramps/gui/configure.py:1721
-#, fuzzy
-#| msgid "Show Tools icon on toolbar"
 msgid "Show Addons icon on toolbar"
-msgstr "Näytä työkalut-kuvake työkalupalkissa"
+msgstr "Näytä laajennusten kuvake työkalurivillä"
 
 #: ../gramps/gui/configure.py:1723
-#, fuzzy
-#| msgid "Show or hide the Tools icon on the toolbar."
 msgid "Show or hide the Addons icon on the toolbar."
-msgstr "Näytä tai piilota työkalupalkin työkalut-kuvake."
+msgstr "Näytä tai piilota laajennusten kuvake työkalurivillä."
 
 #: ../gramps/gui/configure.py:1729
 msgid "Show Preferences icon on toolbar"
@@ -13077,8 +13057,6 @@ msgid "Tools"
 msgstr "Työkalut"
 
 #: ../gramps/gui/displaystate.py:414
-#, fuzzy
-#| msgid "Open Plugin Manager"
 msgid "Open Addon Manager"
 msgstr "Avaa laajennusten hallinta"
 
@@ -17963,10 +17941,8 @@ msgid "_About"
 msgstr "_Tietoja"
 
 #: ../gramps/gui/grampsgui.py:56
-#, fuzzy
-#| msgid "Add Partner..."
 msgid "_Addon Manager..."
-msgstr "Lisää kumppani..."
+msgstr "_Laajennusten hallinta..."
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Bookmarks"
@@ -18629,77 +18605,56 @@ msgid "Style Editor"
 msgstr "Tyylimuokkain"
 
 #: ../gramps/gui/plug/_windows.py:204
-#, fuzzy
-#| msgid "Object"
 msgid "Project"
-msgstr "Kohde"
+msgstr "Projekti"
 
 #: ../gramps/gui/plug/_windows.py:208
-#, fuzzy
-#| msgid "Audio"
 msgid "Audience"
-msgstr "Äänite"
+msgstr ""
 
 #: ../gramps/gui/plug/_windows.py:212 ../gramps/gui/plug/_windows.py:1340
 msgid "Version"
 msgstr "Versio"
 
 #: ../gramps/gui/plug/_windows.py:215
-#, fuzzy
-#| msgid "Database version"
 msgid "Installed version"
-msgstr "Tietokannan versio"
+msgstr "Asennettu versio"
 
 #: ../gramps/gui/plug/_windows.py:233 ../gramps/gui/plug/_windows.py:234
-#, fuzzy
-#| msgid "installed"
 msgid "Install"
-msgstr "asennettu"
+msgstr "Asenna"
 
 #: ../gramps/gui/plug/_windows.py:239
 msgid "Wiki"
-msgstr ""
+msgstr "Wiki"
 
 #: ../gramps/gui/plug/_windows.py:244
-#, fuzzy
-#| msgid "* Requires Restart"
 msgid "Requires"
-msgstr "* Vaatii uudelleenkäynnistyksen"
+msgstr "Edellyttää"
 
 #: ../gramps/gui/plug/_windows.py:249
-#, fuzzy
-#| msgctxt "Graduation abbreviation"
-#| msgid "grad."
 msgid "Upgrade"
-msgstr "valm."
+msgstr "Päivitä"
 
 #: ../gramps/gui/plug/_windows.py:270
-#, fuzzy
-#| msgid "Deletion failed"
 msgid "Module installation failed"
-msgstr "Poisto epäonnistui"
+msgstr "Moduulin asennus epäonnistui"
 
 #: ../gramps/gui/plug/_windows.py:294
-#, fuzzy
-#| msgid "Retirement"
 msgid "Requirements"
-msgstr "Eläkkeelle siirtyminen"
+msgstr "Vaatimukset"
 
 #: ../gramps/gui/plug/_windows.py:328
-#, fuzzy
-#| msgid "Addon Name"
 msgid "Addon Manager"
-msgstr "Laajennuksen nimi"
+msgstr "Laajennusten hallinta"
 
 #: ../gramps/gui/plug/_windows.py:335 ../gramps/plugins/gramplet/leak.py:112
 msgid "Refresh"
 msgstr "Päivitä"
 
 #: ../gramps/gui/plug/_windows.py:364
-#, fuzzy
-#| msgid "Filter"
 msgid "Filters"
-msgstr "Suodin"
+msgstr "Suotimet"
 
 #: ../gramps/gui/plug/_windows.py:372 ../gramps/gui/plug/_windows.py:381
 #: ../gramps/gui/plug/_windows.py:388 ../gramps/gui/plug/_windows.py:402
@@ -18709,30 +18664,24 @@ msgid "All"
 msgstr "Kaikki"
 
 #: ../gramps/gui/plug/_windows.py:429
-#, fuzzy
-#| msgid "Setting"
 msgid "Settings"
-msgstr "Asetus"
+msgstr "Asetukset"
 
 #: ../gramps/gui/plug/_windows.py:432
 msgid "Projects"
-msgstr ""
+msgstr "Projektit"
 
 #: ../gramps/gui/plug/_windows.py:452
-#, fuzzy
-#| msgid "Loading items..."
 msgid "Loading..."
-msgstr "Ladataan kohteita..."
+msgstr "Ladataan..."
 
 #: ../gramps/gui/plug/_windows.py:494
-#, fuzzy
-#| msgid "No matches found"
 msgid "No matching addons found."
-msgstr "Ei tuloksia"
+msgstr "Vastaavia laajennuksia ei löytynyt."
 
 #: ../gramps/gui/plug/_windows.py:617
 msgid "Allow Gramps to install required python modules"
-msgstr ""
+msgstr "Salli Grampsin asentaa tarvittavat python-moduulit"
 
 #: ../gramps/gui/plug/_windows.py:622
 #: ../gramps/plugins/webreport/basepage.py:1767
@@ -18785,22 +18734,16 @@ msgid "Check for updated addons now"
 msgstr "Tarkista laajennusten päivitykset nyt"
 
 #: ../gramps/gui/plug/_windows.py:687
-#, fuzzy
-#| msgid "New Person"
 msgid "New Project"
-msgstr "Uusi henkilö"
+msgstr "Uusi projekti"
 
 #: ../gramps/gui/plug/_windows.py:689
-#, fuzzy
-#| msgid "Edit Person"
 msgid "Edit Project"
-msgstr "Muokkaa henkilöä"
+msgstr "Muokkaa projektia"
 
 #: ../gramps/gui/plug/_windows.py:695
-#, fuzzy
-#| msgid "Preferred name"
 msgid "Project name"
-msgstr "Ensisijainen nimi"
+msgstr "Projektin nimi"
 
 #: ../gramps/gui/plug/_windows.py:754
 msgid "Checking Addons Failed"
@@ -20725,10 +20668,8 @@ msgid "'%s' is not a valid date value"
 msgstr "%s ei kelvollinen päivämäärä"
 
 #: ../gramps/plugins/cite/cite.gpr.py:36
-#, fuzzy
-#| msgid "Publication Information"
 msgid "Default citation formatter"
-msgstr "Julkaisutiedot"
+msgstr "Oletusviittauksen muotoilija"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:26
 msgid "BSDDB"
