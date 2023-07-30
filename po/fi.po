@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-28 19:29+0100\n"
-"PO-Revision-Date: 2023-07-29 11:13+0000\n"
+"PO-Revision-Date: 2023-07-30 09:50+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -11019,7 +11019,7 @@ msgstr "Astemerkintä, 4 desimaalia"
 
 #: ../gramps/gen/utils/place.py:105
 msgid "Degree notation, 8 decimals (precision like ISO-DMS)"
-msgstr "Asteen merkintätapa, 8 desimaalia (tarkkuus kuten ISO-DMS)"
+msgstr "Astemerkintä, 8 desimaalia (tarkkuus kuten ISO-DMS)"
 
 #: ../gramps/gen/utils/place.py:106
 msgid "Output format for the Swedish coordinate system RT90"
@@ -15597,7 +15597,7 @@ msgstr "Tyhjennä kirja"
 
 #: ../gramps/gui/glade/book.glade:112
 msgid "Save current set of configured selections"
-msgstr "Tallenna konfiguroidut valinnat"
+msgstr "Tallenna nykyiset asetetut valinnat"
 
 #: ../gramps/gui/glade/book.glade:135
 msgid "Open previously created book"
@@ -16584,7 +16584,7 @@ msgstr "Kutsumanimi:"
 #: ../gramps/gui/glade/editname.glade:250
 #: ../gramps/gui/glade/editperson.glade:150
 msgid "The person's given names"
-msgstr "Henkilön etunimi"
+msgstr "Henkilön etunimet"
 
 #: ../gramps/gui/glade/editname.glade:265
 msgid "_Nick Name:"
