@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-28 19:29+0100\n"
-"PO-Revision-Date: 2023-07-30 09:50+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2023-07-30 16:22+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -243,7 +243,7 @@ msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
 msgstr ""
-"גרמפס הוא מייזם פתוח תוכנת חדק־יוחסין שמיועדת לחוקרי־יוחסין (גנאולוגים) "
+"גרמפס הוא מייזם פתוח תוכנת חקר־יוחסין שמיועדת לחוקרי־יוחסין (גנאולוגים) "
 "חובבים ומקצוענים כאחד, זאת בזכות התכונות הרבות שלה וממשק המשתמש הנוח."
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:8
@@ -11709,8 +11709,8 @@ msgid ""
 "For non leap years, anniversaries are displayed on either February 28, March "
 "1 or not at all in Gregorian calendars"
 msgstr ""
-"בלוח שנה גרגוריאני, בשנים רגילות, לא מעוברות, ימי שנה יוצגו ב־28 בפברואר, ה־"
-"1 במרץ או שלא יוצגו כלל."
+"בלוח שנה גרגוריאני, בשנים רגילות, לא מעוברות, ימי שנה יוצגו ב־28 בפברואר, ב־"
+"1 במרץ או שלא יוצגו כלל"
 
 #: ../gramps/gui/configure.py:1401
 msgid "Show leap day anniversaries"
@@ -18287,7 +18287,7 @@ msgstr "מתבצעת טעינה..."
 
 #: ../gramps/gui/plug/_windows.py:494
 msgid "No matching addons found."
-msgstr "לא נמצאו תוספים מתאימים"
+msgstr "לא נמצאו תוספים מתאימים."
 
 #: ../gramps/gui/plug/_windows.py:617
 msgid "Allow Gramps to install required python modules"
