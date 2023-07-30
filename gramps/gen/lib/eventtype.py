@@ -28,12 +28,17 @@ Provide the different event types
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .grampstype import GrampsType
 from ..const import GRAMPS_LOCALE as glocale
+from .grampstype import GrampsType
 
 _ = glocale.translation.sgettext
 
 
+# -------------------------------------------------------------------------
+#
+# EventType class
+#
+# -------------------------------------------------------------------------
 class EventType(GrampsType):
     """
     Event types.
@@ -389,9 +394,9 @@ class EventType(GrampsType):
         """
         if self.value in self._ABBREVIATIONS:
             return trans_text(self._ABBREVIATIONS[self.value])
-        else:
-            abbrev = str(self)
-            if " " in abbrev:
-                return ".".join([letter[0].lower() for letter in abbrev.split()]) + "."
-            else:
-                return abbrev[:3].lower() + "."
+        abbrev = str(self)
+        if " " in abbrev:
+            return (
+                ".".join([letter[0].lower() for letter in abbrev.split()]) + "."
+            )
+        return abbrev[:3].lower() + "."

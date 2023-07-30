@@ -30,10 +30,10 @@ Location class for Gramps.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .secondaryobj import SecondaryObject
-from .locationbase import LocationBase
-from .const import IDENTICAL, DIFFERENT
 from ..const import GRAMPS_LOCALE as glocale
+from .const import DIFFERENT, IDENTICAL
+from .locationbase import LocationBase
+from .secondaryobj import SecondaryObject
 
 _ = glocale.translation.gettext
 
@@ -121,8 +121,7 @@ class Location(SecondaryObject, LocationBase):
         """
         if self.is_equal(other):
             return IDENTICAL
-        else:
-            return DIFFERENT
+        return DIFFERENT
 
     def merge(self, acquisition):
         """
@@ -133,9 +132,9 @@ class Location(SecondaryObject, LocationBase):
         :param acquisition: The location to merge with the present location.
         :type acquisition: Location
         """
-        pass
 
     def is_empty(self):
+        """Return true if empty."""
         return (
             not self.street
             and not self.locality

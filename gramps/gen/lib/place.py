@@ -31,17 +31,17 @@ Place object for Gramps.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .primaryobj import PrimaryObject
-from .placeref import PlaceRef
-from .placename import PlaceName
-from .placetype import PlaceType
-from .citationbase import CitationBase
-from .notebase import NoteBase
-from .mediabase import MediaBase
-from .urlbase import UrlBase
-from .tagbase import TagBase
-from .location import Location
 from ..const import GRAMPS_LOCALE as glocale
+from .citationbase import CitationBase
+from .location import Location
+from .mediabase import MediaBase
+from .notebase import NoteBase
+from .placename import PlaceName
+from .placeref import PlaceRef
+from .placetype import PlaceType
+from .primaryobj import PrimaryObject
+from .tagbase import TagBase
+from .urlbase import UrlBase
 
 _ = glocale.translation.gettext
 
@@ -138,15 +138,20 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
-        from .url import Url
+        # pylint: disable=import-outside-toplevel
         from .mediaref import MediaRef
+        from .url import Url
 
         return {
             "type": "object",
             "title": _("Place"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "handle": {"type": "string", "maxLength": 50, "title": _("Handle")},
+                "handle": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "title": _("Handle"),
+                },
                 "gramps_id": {"type": "string", "title": _("Gramps ID")},
                 "title": {"type": "string", "title": _("Title")},
                 "long": {"type": "string", "title": _("Longitude")},
@@ -232,7 +237,9 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         self.place_type = PlaceType()
         self.place_type.unserialize(the_type)
         self.alt_loc = [Location().unserialize(al) for al in alt_loc]
-        self.placeref_list = [PlaceRef().unserialize(pr) for pr in placeref_list]
+        self.placeref_list = [
+            PlaceRef().unserialize(pr) for pr in placeref_list
+        ]
         self.name = PlaceName().unserialize(name)
         self.alt_names = [PlaceName().unserialize(an) for an in alt_names]
         UrlBase.unserialize(self, urls)
@@ -259,14 +266,21 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :rtype: list
         """
 
-        ret = self.media_list + self.alt_loc + self.urls + [self.name] + self.alt_names
+        ret = (
+            self.media_list
+            + self.alt_loc
+            + self.urls
+            + [self.name]
+            + self.alt_names
+        )
         return ret
 
     def get_citation_child_list(self):
         """
         Return the list of child secondary objects that may refer citations.
 
-        :returns: List of child secondary child objects that may refer citations.
+        :returns: List of child secondary child objects that may reference
+                citations.
         :rtype: list
         """
         return self.media_list

@@ -26,22 +26,22 @@ Url class for Gramps.
 
 # -------------------------------------------------------------------------
 #
-# standard python modules
+# Python modules
 #
 # -------------------------------------------------------------------------
-from warnings import warn
 from urllib.parse import urlparse
+from warnings import warn
 
 # -------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .secondaryobj import SecondaryObject
-from .privacybase import PrivacyBase
-from .urltype import UrlType
-from .const import IDENTICAL, EQUAL, DIFFERENT
 from ..const import GRAMPS_LOCALE as glocale
+from .const import DIFFERENT, EQUAL, IDENTICAL
+from .privacybase import PrivacyBase
+from .secondaryobj import SecondaryObject
+from .urltype import UrlType
 
 _ = glocale.translation.gettext
 
@@ -122,11 +122,9 @@ class Url(SecondaryObject, PrivacyBase):
             or self.desc != other.desc
         ):
             return DIFFERENT
-        else:
-            if self.get_privacy() != other.get_privacy():
-                return EQUAL
-            else:
-                return IDENTICAL
+        if self.get_privacy() != other.get_privacy():
+            return EQUAL
+        return IDENTICAL
 
     def merge(self, acquisition):
         """
@@ -196,9 +194,8 @@ class Url(SecondaryObject, PrivacyBase):
         """
         if self.type == UrlType.EMAIL and not self.path.startswith("mailto:"):
             return "mailto:" + self.path
-        elif self.type == UrlType.WEB_FTP and not self.path.startswith("ftp://"):
+        if self.type == UrlType.WEB_FTP and not self.path.startswith("ftp://"):
             return "ftp://" + self.path
-        elif self.parse_path().scheme == "":
+        if self.parse_path().scheme == "":
             return "http://" + self.path
-        else:
-            return self.path
+        return self.path

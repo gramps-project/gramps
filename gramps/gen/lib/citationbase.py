@@ -90,9 +90,8 @@ class CitationBase:
         """
         if handle in self.citation_list:
             return False
-        else:
-            self.citation_list.append(handle)
-            return True
+        self.citation_list.append(handle)
+        return True
 
     def remove_citation_references(self, citation_handle_list):
         """
@@ -111,7 +110,9 @@ class CitationBase:
         for handle in citation_handle_list:
             if handle in self.citation_list:
                 LOG.debug(
-                    "remove handle %s from citation_list %s", handle, self.citation_list
+                    "remove handle %s from citation_list %s",
+                    handle,
+                    self.citation_list,
                 )
                 self.citation_list.remove(handle)
         LOG.debug("get_citation_child_list %s", self.get_citation_child_list())
@@ -239,7 +240,7 @@ class CitationBase:
         if new_handle in self.citation_list:
             new_ref = new_handle
         n_replace = refs_list.count(old_handle)
-        for ix_replace in range(n_replace):
+        for dummy_ix_replace in range(n_replace):
             idx = refs_list.index(old_handle)
             if new_ref:
                 self.citation_list.pop(idx)

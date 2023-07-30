@@ -27,13 +27,17 @@ Note types.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .grampstype import GrampsType
 from ..const import GRAMPS_LOCALE as glocale
+from .grampstype import GrampsType
 
 _ = glocale.translation.sgettext
 
 
 class NoteType(GrampsType):
+    """
+    Class encapsulating the type of note.
+    """
+
     UNKNOWN = -1
     CUSTOM = 0
     GENERAL = 1

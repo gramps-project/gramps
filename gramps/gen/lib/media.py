@@ -27,25 +27,25 @@ Media object for Gramps.
 
 # -------------------------------------------------------------------------
 #
-# standard python modules
+# Python modules
 #
 # -------------------------------------------------------------------------
+import logging
 import os
 from urllib.parse import urlparse
-import logging
 
 # -------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .primaryobj import PrimaryObject
-from .citationbase import CitationBase
-from .notebase import NoteBase
-from .datebase import DateBase
-from .attrbase import AttributeBase
-from .tagbase import TagBase
 from ..const import GRAMPS_LOCALE as glocale
+from .attrbase import AttributeBase
+from .citationbase import CitationBase
+from .datebase import DateBase
+from .notebase import NoteBase
+from .primaryobj import PrimaryObject
+from .tagbase import TagBase
 
 _ = glocale.translation.gettext
 
@@ -134,6 +134,7 @@ class Media(CitationBase, NoteBase, DateBase, AttributeBase, PrimaryObject):
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
+        # pylint: disable=import-outside-toplevel
         from .attribute import Attribute
         from .date import Date
 
@@ -142,7 +143,11 @@ class Media(CitationBase, NoteBase, DateBase, AttributeBase, PrimaryObject):
             "title": _("Media"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "handle": {"type": "string", "maxLength": 50, "title": _("Handle")},
+                "handle": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "title": _("Handle"),
+                },
                 "gramps_id": {"type": "string", "title": _("Gramps ID")},
                 "path": {"type": "string", "title": _("Path")},
                 "mime": {"type": "string", "title": _("MIME")},
@@ -306,7 +311,7 @@ class Media(CitationBase, NoteBase, DateBase, AttributeBase, PrimaryObject):
     def set_path(self, path):
         """Set the file path to the passed path."""
         res = urlparse(path)
-        if res.scheme == "" or res.scheme == "file":
+        if res.scheme in ["", "file"]:
             self.path = os.path.normpath(path)
         else:
             # The principal case this path caters for is where the scheme is

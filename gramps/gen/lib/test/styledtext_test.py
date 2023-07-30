@@ -22,6 +22,7 @@
 
 import unittest
 from copy import deepcopy
+
 from ..styledtext import StyledText
 from ..styledtexttag import StyledTextTag
 from ..styledtexttagtype import StyledTextTagType
@@ -32,7 +33,9 @@ class Test1(unittest.TestCase):
     T2 = StyledTextTag(StyledTextTagType(2), "v2", [(1, 3), (3, 5), (0, 7)])
     T3 = StyledTextTag(StyledTextTagType(0), "v3", [(0, 1)])
     T4 = StyledTextTag(StyledTextTagType(2), "v2", [(8, 10), (10, 12), (7, 14)])
-    T5 = StyledTextTag(StyledTextTagType(2), "v2", [(19, 21), (21, 23), (18, 25)])
+    T5 = StyledTextTag(
+        StyledTextTagType(2), "v2", [(19, 21), (21, 23), (18, 25)]
+    )
 
     A = StyledText("123X456", [T1])
     B = StyledText("abcXdef", [T2])

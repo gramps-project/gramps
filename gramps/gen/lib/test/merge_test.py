@@ -23,58 +23,56 @@
 import unittest
 
 from .. import (
-    Person,
-    Surname,
-    Name,
-    NameType,
-    Family,
-    FamilyRelType,
-    Event,
-    EventType,
-    Source,
-    Place,
-    PlaceName,
+    Address,
+    Attribute,
+    AttributeType,
+    ChildRef,
+    ChildRefType,
     Citation,
     Date,
-    Repository,
-    RepositoryType,
+    Event,
+    EventRef,
+    EventRoleType,
+    EventType,
+    Family,
+    FamilyRelType,
+    LdsOrd,
     Media,
+    MediaRef,
+    Name,
+    NameType,
     Note,
     NoteType,
+    Person,
+    PersonRef,
+    Place,
+    PlaceName,
+    PlaceType,
+    RepoRef,
+    Repository,
+    RepositoryType,
+    Source,
+    SrcAttribute,
+    SrcAttributeType,
     StyledText,
     StyledTextTag,
     StyledTextTagType,
+    Surname,
     Tag,
-    ChildRef,
-    ChildRefType,
-    Attribute,
-    MediaRef,
-    AttributeType,
     Url,
     UrlType,
-    Address,
-    EventRef,
-    EventRoleType,
-    RepoRef,
-    FamilyRelType,
-    LdsOrd,
-    MediaRef,
-    PersonRef,
-    PlaceType,
-    SrcAttribute,
-    SrcAttributeType,
 )
-from ..privacybase import PrivacyBase
-from ..urlbase import UrlBase
 from ..addressbase import AddressBase
 from ..attrbase import AttributeBase
+from ..citationbase import CitationBase
+from ..const import DIFFERENT, EQUAL, IDENTICAL
 from ..ldsordbase import LdsOrdBase
 from ..mediabase import MediaBase
 from ..notebase import NoteBase
-from ..citationbase import CitationBase
+from ..privacybase import PrivacyBase
 from ..surnamebase import SurnameBase
 from ..tagbase import TagBase
-from ..const import IDENTICAL, EQUAL, DIFFERENT
+from ..urlbase import UrlBase
 
 
 class PrivacyBaseTest:
@@ -226,7 +224,9 @@ class UrlBaseCheck(unittest.TestCase):
         self.assertEqual(self.phoenix.serialize(), ref_url_list.serialize())
 
 
-class AddressCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest, CitationBaseTest):
+class AddressCheck(
+    unittest.TestCase, PrivacyBaseTest, NoteBaseTest, CitationBaseTest
+):
     def setUp(self):
         self.phoenix = Address()
         self.phoenix.set_city("Amsterdam")
@@ -361,7 +361,9 @@ class AttributeBaseCheck(unittest.TestCase):
         self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
 
 
-class ChildRefCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest, CitationBaseTest):
+class ChildRefCheck(
+    unittest.TestCase, PrivacyBaseTest, NoteBaseTest, CitationBaseTest
+):
     def setUp(self):
         self.phoenix = ChildRef()
         self.phoenix.set_reference_handle("123456")
@@ -413,7 +415,9 @@ class EventCheck(
         self.ref_obj = Event(self.phoenix)
 
 
-class EventRefCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest, AttrBaseTest):
+class EventRefCheck(
+    unittest.TestCase, PrivacyBaseTest, NoteBaseTest, AttrBaseTest
+):
     def setUp(self):
         self.phoenix = EventRef()
         self.phoenix.set_reference_handle("123456")
@@ -763,7 +767,9 @@ class FamilyCheck(
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
 
-class LdsordCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest, CitationBaseTest):
+class LdsordCheck(
+    unittest.TestCase, PrivacyBaseTest, NoteBaseTest, CitationBaseTest
+):
     def setUp(self):
         self.phoenix = LdsOrd()
         self.phoenix.set_temple("London, England")
@@ -968,7 +974,11 @@ class MediaBaseCheck(unittest.TestCase):
 
 
 class MediaCheck(
-    unittest.TestCase, PrivacyBaseTest, AttrBaseTest, NoteBaseTest, CitationBaseTest
+    unittest.TestCase,
+    PrivacyBaseTest,
+    AttrBaseTest,
+    NoteBaseTest,
+    CitationBaseTest,
 ):
     def setUp(self):
         self.phoenix = Media()
@@ -978,7 +988,11 @@ class MediaCheck(
 
 
 class MediaRefCheck(
-    unittest.TestCase, PrivacyBaseTest, AttrBaseTest, CitationBaseTest, NoteBaseTest
+    unittest.TestCase,
+    PrivacyBaseTest,
+    AttrBaseTest,
+    CitationBaseTest,
+    NoteBaseTest,
 ):
     def setUp(self):
         self.phoenix = MediaRef()
@@ -1000,7 +1014,9 @@ class MediaRefCheck(
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), EQUAL)
 
 
-class NameCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest, CitationBaseTest):
+class NameCheck(
+    unittest.TestCase, PrivacyBaseTest, NoteBaseTest, CitationBaseTest
+):
     def setUp(self):
         self.phoenix = Name()
         self.phoenix.set_first_name("Willem")
@@ -1079,7 +1095,8 @@ class NoteCheck(unittest.TestCase, PrivacyBaseTest):
         self.phoenix.add_tag("t1234")
         tag_list = self.phoenix.get_referenced_handles()
         self.assertEqual(
-            tag_list, [("Event", "e0000"), ("Person", "i0001"), ("Tag", "t1234")]
+            tag_list,
+            [("Event", "e0000"), ("Person", "i0001"), ("Tag", "t1234")],
         )
         self.assertFalse(self.phoenix.has_handle_reference("Event", "e0001"))
 
@@ -1729,7 +1746,9 @@ class RepoRefCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest):
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), EQUAL)
 
 
-class SourceCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest, MediaBaseTest):
+class SourceCheck(
+    unittest.TestCase, PrivacyBaseTest, NoteBaseTest, MediaBaseTest
+):
     def setUp(self):
         self.phoenix = Source()
         self.phoenix.set_title("Source 1")
@@ -1914,7 +1933,9 @@ class CitationBaseCheck(unittest.TestCase):
         self.assertEqual(self.phoenix.serialize(), self.obj_list.serialize())
 
 
-class CitationCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest, NoteBaseTest):
+class CitationCheck(
+    unittest.TestCase, PrivacyBaseTest, MediaBaseTest, NoteBaseTest
+):
     def setUp(self):
         self.phoenix = Citation()
         self.phoenix.set_reference_handle("123456")

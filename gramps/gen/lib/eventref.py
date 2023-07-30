@@ -31,15 +31,15 @@ Event Reference class for Gramps
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .secondaryobj import SecondaryObject
-from .privacybase import PrivacyBase
-from .notebase import NoteBase
-from .attrbase import AttributeBase
-from .refbase import RefBase
-from .eventroletype import EventRoleType
-from .const import IDENTICAL, EQUAL, DIFFERENT
-from .citationbase import CitationBase
 from ..const import GRAMPS_LOCALE as glocale
+from .attrbase import AttributeBase
+from .citationbase import CitationBase
+from .const import DIFFERENT, EQUAL, IDENTICAL
+from .eventroletype import EventRoleType
+from .notebase import NoteBase
+from .privacybase import PrivacyBase
+from .refbase import RefBase
+from .secondaryobj import SecondaryObject
 
 _ = glocale.translation.gettext
 
@@ -94,6 +94,7 @@ class EventRef(
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
+        # pylint: disable=import-outside-toplevel
         from .attribute import Attribute
 
         return {
@@ -184,7 +185,8 @@ class EventRef(
         :rtype: list
         """
         ret = (
-            self.get_referenced_citation_handles() + self.get_referenced_note_handles()
+            self.get_referenced_citation_handles()
+            + self.get_referenced_note_handles()
         )
         if self.ref:
             ret += [("Event", self.ref)]
@@ -212,11 +214,9 @@ class EventRef(
         """
         if self.ref != other.ref or self.role != other.role:
             return DIFFERENT
-        else:
-            if self.is_equal(other):
-                return IDENTICAL
-            else:
-                return EQUAL
+        if self.is_equal(other):
+            return IDENTICAL
+        return EQUAL
 
     def merge(self, acquisition):
         """

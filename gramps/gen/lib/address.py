@@ -31,27 +31,29 @@ Address class for Gramps.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .secondaryobj import SecondaryObject
-from .privacybase import PrivacyBase
+from ..const import GRAMPS_LOCALE as glocale
 from .citationbase import CitationBase
-from .notebase import NoteBase
+from .const import DIFFERENT, EQUAL, IDENTICAL
 from .datebase import DateBase
 from .locationbase import LocationBase
-from .const import IDENTICAL, EQUAL, DIFFERENT
-from ..const import GRAMPS_LOCALE as glocale
+from .notebase import NoteBase
+from .privacybase import PrivacyBase
+from .secondaryobj import SecondaryObject
 
 _ = glocale.translation.gettext
 
 
 # -------------------------------------------------------------------------
 #
-# Address for Person/Repository
+# Address class for Person/Repository
 #
 # -------------------------------------------------------------------------
 class Address(
     SecondaryObject, PrivacyBase, CitationBase, NoteBase, DateBase, LocationBase
 ):
-    """Provide address information."""
+    """
+    Provides address information.
+    """
 
     def __init__(self, source=None):
         """
@@ -96,6 +98,7 @@ class Address(
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
+        # pylint: disable=import-outside-toplevel
         from .date import Date
 
         return {
@@ -176,7 +179,8 @@ class Address(
         :rtype: list
         """
         return (
-            self.get_referenced_note_handles() + self.get_referenced_citation_handles()
+            self.get_referenced_note_handles()
+            + self.get_referenced_citation_handles()
         )
 
     def is_equivalent(self, other):
@@ -194,11 +198,9 @@ class Address(
             or self.get_date_object() != other.get_date_object()
         ):
             return DIFFERENT
-        else:
-            if self.is_equal(other):
-                return IDENTICAL
-            else:
-                return EQUAL
+        if self.is_equal(other):
+            return IDENTICAL
+        return EQUAL
 
     def merge(self, acquisition):
         """

@@ -24,16 +24,16 @@ Base Object class for Gramps
 
 # -------------------------------------------------------------------------
 #
-# Standard Python modules
+# Python modules
 #
 # -------------------------------------------------------------------------
-from abc import ABCMeta, abstractmethod
 import re
+from abc import ABCMeta, abstractmethod
 
 
 # -------------------------------------------------------------------------
 #
-# Base Object
+# BaseObject class
 #
 # -------------------------------------------------------------------------
 class BaseObject(metaclass=ABCMeta):
@@ -185,7 +185,6 @@ class BaseObject(metaclass=ABCMeta):
         :param acquisition: The object to incorporate.
         :type acquisition: BaseObject
         """
-        pass
 
     @classmethod
     def create(cls, data):

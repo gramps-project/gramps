@@ -27,13 +27,22 @@ Provide the different place types.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .grampstype import GrampsType
 from ..const import GRAMPS_LOCALE as glocale
+from .grampstype import GrampsType
 
 _ = glocale.translation.gettext
 
 
+# -------------------------------------------------------------------------
+#
+# PlaceType class
+#
+# -------------------------------------------------------------------------
 class PlaceType(GrampsType):
+    """
+    Class encapsulating the type of a place.
+    """
+
     UNKNOWN = -1
     CUSTOM = 0
     COUNTRY = 1

@@ -24,7 +24,7 @@ Base Reference class for Gramps.
 
 # -------------------------------------------------------------------------
 #
-# Standard Python modules
+# Python modules
 #
 # -------------------------------------------------------------------------
 from abc import ABCMeta, abstractmethod

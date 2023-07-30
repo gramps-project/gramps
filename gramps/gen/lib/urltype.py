@@ -27,13 +27,22 @@ URL types
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .grampstype import GrampsType
 from ..const import GRAMPS_LOCALE as glocale
+from .grampstype import GrampsType
 
 _ = glocale.translation.gettext
 
 
+# -------------------------------------------------------------------------
+#
+# UrlType class
+#
+# -------------------------------------------------------------------------
 class UrlType(GrampsType):
+    """
+    Class encapsulating the type of a url.
+    """
+
     UNKNOWN = -1
     CUSTOM = 0
     EMAIL = 1
