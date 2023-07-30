@@ -29,7 +29,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-28 19:29+0100\n"
-"PO-Revision-Date: 2023-07-27 18:18+0000\n"
+"PO-Revision-Date: 2023-07-30 09:51+0000\n"
 "Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -8505,10 +8505,8 @@ msgid "Research"
 msgstr "Forskning"
 
 #: ../gramps/gen/lib/notetype.py:78
-#, fuzzy
-#| msgid "Analyzing names"
 msgid "Analysis"
-msgstr "Analyserar namn"
+msgstr "Analys"
 
 #: ../gramps/gen/lib/notetype.py:79
 msgid "Transcript"
@@ -9345,10 +9343,8 @@ msgid "Thumbnailer"
 msgstr "Minatyrbildshanterare"
 
 #: ../gramps/gen/plug/_pluginreg.py:113 ../gramps/gui/configure.py:1424
-#, fuzzy
-#| msgid "Citation Information"
 msgid "Citation formatter"
-msgstr "Citeringsinformation"
+msgstr "Citationsformaterare"
 
 #: ../gramps/gen/plug/_pluginreg.py:589
 #: ../gramps/plugins/gramplet/faqgramplet.py:135
@@ -9829,34 +9825,24 @@ msgid "Surname Given Nickname"
 msgstr "Efternamn Förnamn Smeknamn"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:69
-#, fuzzy
-#| msgid "Surname Given Nickname"
 msgid "Surname, Given Nickname"
-msgstr "Efternamn Förnamn Smeknamn"
+msgstr "Efternamn, Förnamn Smeknamn"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:70
-#, fuzzy
-#| msgid "Given Nickname Surname"
 msgid "GivenNicknameSurname"
-msgstr "Förnamn Smeknamn Efternamn"
+msgstr "FörnamnSmeknamnEfternamn"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:72
-#, fuzzy
-#| msgid "Automatic"
 msgid "Auto"
-msgstr "Automatisk"
+msgstr "Auto"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:73
-#, fuzzy
-#| msgid "Call Name"
 msgid "Call Name Only"
-msgstr "Tilltalsnamn"
+msgstr "Endast tilltalsnamn"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:74
-#, fuzzy
-#| msgid "Given Name"
 msgid "Whole Given Name"
-msgstr "Förnamn"
+msgstr "Hela förnamnet"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:77
 msgid "Above"
@@ -9985,6 +9971,8 @@ msgid ""
 "Select the portion of the given name to be marked as preferred. Auto sets "
 "the call name if one exists, otherwise the whole given name."
 msgstr ""
+"Välj den del av det angivna namnet som ska markeras som föredragen. Auto "
+"ställer in samtalsnamnet om ett sådant finns, annars hela förnamnet."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:196
 msgid "Position of marriage information."
@@ -10952,17 +10940,15 @@ msgstr "Utdataformat för det svenska koordinatsystemet RT90"
 
 #: ../gramps/gen/utils/requirements.py:145
 msgid "Python modules"
-msgstr ""
+msgstr "Python-moduler"
 
 #: ../gramps/gen/utils/requirements.py:152
 msgid "GObject introspection modules"
-msgstr ""
+msgstr "GObject introspektionsmoduler"
 
 #: ../gramps/gen/utils/requirements.py:159
-#, fuzzy
-#| msgid "_Execute"
 msgid "Executables"
-msgstr "_Utför"
+msgstr "Körbara filer"
 
 #: ../gramps/gen/utils/string.py:46 ../gramps/gui/editors/editperson.py:341
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
@@ -11884,32 +11870,28 @@ msgid "Calendar on input"
 msgstr "Kalender för inmatning"
 
 #: ../gramps/gui/configure.py:1391
-#, fuzzy
-#| msgid "Shows previous page"
 msgid "on the previous day"
-msgstr "Visar föregående sida"
+msgstr "föregående dag"
 
 #: ../gramps/gui/configure.py:1392
-#, fuzzy
-#| msgid "Shows the next page"
 msgid "on the next day"
-msgstr "Visar nästa sida"
+msgstr "nästa dag"
 
 #: ../gramps/gui/configure.py:1393
 msgid "only on leap years"
-msgstr ""
+msgstr "endast under skottår"
 
 #: ../gramps/gui/configure.py:1398
 msgid ""
 "For non leap years, anniversaries are displayed on either February 28, March "
 "1 or not at all in Gregorian calendars"
 msgstr ""
+"För icke skottår visas årsdagar antingen 28 februari, 1 mars eller inte alls "
+"i gregorianska kalendrar"
 
 #: ../gramps/gui/configure.py:1401
-#, fuzzy
-#| msgid "Include death anniversaries"
 msgid "Show leap day anniversaries"
-msgstr "Ta med dödsårsdagar"
+msgstr "Visa skottdagsdagar"
 
 #: ../gramps/gui/configure.py:1408
 msgid "Active person's name and ID"
@@ -12117,16 +12099,12 @@ msgid "Show or hide the Tools icon on the toolbar."
 msgstr "Visa eller dölj verktygsikonen i verktygsfältet."
 
 #: ../gramps/gui/configure.py:1721
-#, fuzzy
-#| msgid "Show Tools icon on toolbar"
 msgid "Show Addons icon on toolbar"
-msgstr "Visa verktygsikonen i verktygsfältet"
+msgstr "Visa tilläggsikonen i verktygsfältet"
 
 #: ../gramps/gui/configure.py:1723
-#, fuzzy
-#| msgid "Show or hide the Tools icon on the toolbar."
 msgid "Show or hide the Addons icon on the toolbar."
-msgstr "Visa eller dölj verktygsikonen i verktygsfältet."
+msgstr "Visa eller dölj tilläggsikonen i verktygsfältet."
 
 #: ../gramps/gui/configure.py:1729
 msgid "Show Preferences icon on toolbar"
@@ -12983,10 +12961,8 @@ msgid "Tools"
 msgstr "Verktyg"
 
 #: ../gramps/gui/displaystate.py:414
-#, fuzzy
-#| msgid "Open Plugin Manager"
 msgid "Open Addon Manager"
-msgstr "Öppna Insticksmodulshanteraren"
+msgstr "Öppna tilläggshanteraren"
 
 #: ../gramps/gui/displaystate.py:415 ../gramps/gui/plug/_windows.py:426
 msgid "Addons"
@@ -17880,10 +17856,8 @@ msgid "_About"
 msgstr "_Om"
 
 #: ../gramps/gui/grampsgui.py:56
-#, fuzzy
-#| msgid "Add Partner..."
 msgid "_Addon Manager..."
-msgstr "Lägg till partner..."
+msgstr "_Tilläggshanteraren..."
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Bookmarks"
@@ -18530,73 +18504,54 @@ msgid "Style Editor"
 msgstr "Mallredigerare"
 
 #: ../gramps/gui/plug/_windows.py:204
-#, fuzzy
-#| msgid "Every object"
 msgid "Project"
-msgstr "Alla objekt"
+msgstr "Projekt"
 
 #: ../gramps/gui/plug/_windows.py:208
-#, fuzzy
-#| msgid "Evidence"
 msgid "Audience"
-msgstr "Bevis"
+msgstr "Publik"
 
 #: ../gramps/gui/plug/_windows.py:212 ../gramps/gui/plug/_windows.py:1340
 msgid "Version"
 msgstr "Version"
 
 #: ../gramps/gui/plug/_windows.py:215
-#, fuzzy
 msgid "Installed version"
-msgstr "Schema-version"
+msgstr "Installerad version"
 
 #: ../gramps/gui/plug/_windows.py:233 ../gramps/gui/plug/_windows.py:234
-#, fuzzy
-#| msgid "installed"
 msgid "Install"
-msgstr "installerad"
+msgstr "Installera"
 
 #: ../gramps/gui/plug/_windows.py:239
 msgid "Wiki"
-msgstr ""
+msgstr "Wiki"
 
 #: ../gramps/gui/plug/_windows.py:244
-#, fuzzy
-#| msgid "* Requires Restart"
 msgid "Requires"
-msgstr "* Kräver omstart"
+msgstr "Kräver"
 
 #: ../gramps/gui/plug/_windows.py:249
-#, fuzzy
-#| msgid "Upgrade now"
 msgid "Upgrade"
-msgstr "Uppgadera nu"
+msgstr "Uppgradera"
 
 #: ../gramps/gui/plug/_windows.py:270
-#, fuzzy
-#| msgid "Deletion failed"
 msgid "Module installation failed"
-msgstr "Borttagandet misslyckades"
+msgstr "Modulinstallationen misslyckades"
 
 #: ../gramps/gui/plug/_windows.py:294
-#, fuzzy
-#| msgid "Retirement"
 msgid "Requirements"
-msgstr "Pensionering"
+msgstr "Krav"
 
 #: ../gramps/gui/plug/_windows.py:328
-#, fuzzy
-#| msgid "Addon Name"
 msgid "Addon Manager"
-msgstr "Namn på tillägg"
+msgstr "Tilläggshanterare"
 
 #: ../gramps/gui/plug/_windows.py:335 ../gramps/plugins/gramplet/leak.py:112
 msgid "Refresh"
 msgstr "Läs om"
 
 #: ../gramps/gui/plug/_windows.py:364
-#, fuzzy
-#| msgid "Filter"
 msgid "Filters"
 msgstr "Filter"
 
@@ -18608,30 +18563,24 @@ msgid "All"
 msgstr "Alla"
 
 #: ../gramps/gui/plug/_windows.py:429
-#, fuzzy
-#| msgid "Setting"
 msgid "Settings"
-msgstr "Inställning"
+msgstr "Inställningar"
 
 #: ../gramps/gui/plug/_windows.py:432
-#, fuzzy
-#| msgid "Every object"
 msgid "Projects"
-msgstr "Alla objekt"
+msgstr "Projekt"
 
 #: ../gramps/gui/plug/_windows.py:452
 msgid "Loading..."
 msgstr "Laddar..."
 
 #: ../gramps/gui/plug/_windows.py:494
-#, fuzzy
-#| msgid "No matches found"
 msgid "No matching addons found."
-msgstr "Inga träffar hittades"
+msgstr "Inga matchande tillägg hittades."
 
 #: ../gramps/gui/plug/_windows.py:617
 msgid "Allow Gramps to install required python modules"
-msgstr ""
+msgstr "Tillåt Gramps att installera nödvändiga python-moduler"
 
 #: ../gramps/gui/plug/_windows.py:622
 #: ../gramps/plugins/webreport/basepage.py:1767
@@ -18684,22 +18633,16 @@ msgid "Check for updated addons now"
 msgstr "Kontrollera uppdaterade tillägg nu"
 
 #: ../gramps/gui/plug/_windows.py:687
-#, fuzzy
-#| msgid "New Person"
 msgid "New Project"
-msgstr "Ny person"
+msgstr "Nytt projekt"
 
 #: ../gramps/gui/plug/_windows.py:689
-#, fuzzy
-#| msgid "Edit Person"
 msgid "Edit Project"
-msgstr "Redigera person"
+msgstr "Redigera projekt"
 
 #: ../gramps/gui/plug/_windows.py:695
-#, fuzzy
-#| msgid "Preferred name"
 msgid "Project name"
-msgstr "Förstahandsnamn"
+msgstr "Projektnamn"
 
 #: ../gramps/gui/plug/_windows.py:754
 msgid "Checking Addons Failed"
@@ -20615,10 +20558,8 @@ msgid "'%s' is not a valid date value"
 msgstr "'%s' är inte ett giltigt datumvärde"
 
 #: ../gramps/plugins/cite/cite.gpr.py:36
-#, fuzzy
-#| msgid "Publication Information"
 msgid "Default citation formatter"
-msgstr "Publiceringsinformation"
+msgstr "Standardformaterare för citat"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:26
 msgid "BSDDB"
