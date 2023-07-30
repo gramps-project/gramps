@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-28 19:29+0100\n"
-"PO-Revision-Date: 2023-07-29 14:39+0000\n"
+"PO-Revision-Date: 2023-07-30 09:50+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -5909,7 +5909,7 @@ msgstr "Passt auf Geschwister von allen, die von einem Filter gefunden wurden"
 
 #: ../gramps/gen/filters/rules/person/_isspouseoffiltermatch.py:47
 msgid "Spouses of <filter> match"
-msgstr "(Ehe-)Partner von <Filter> Treffer"
+msgstr "(Ehe-)Partner(in) von <Filter> Treffer"
 
 #: ../gramps/gen/filters/rules/person/_isspouseoffiltermatch.py:48
 msgid "Matches people married to anybody matching a filter"
@@ -5978,7 +5978,7 @@ msgstr "Personen mit mehreren Heiratseinträgen"
 
 #: ../gramps/gen/filters/rules/person/_multiplemarriages.py:43
 msgid "Matches people who have more than one spouse"
-msgstr "Passt auf Personen, die mehr als einen Ehepartner haben"
+msgstr "Passt auf Personen, die mehr als eine(n) (Ehe)-partner(in) haben"
 
 #: ../gramps/gen/filters/rules/person/_nevermarried.py:42
 msgid "People with no marriage records"
@@ -5986,7 +5986,7 @@ msgstr "Personen ohne Heiratseinträge"
 
 #: ../gramps/gen/filters/rules/person/_nevermarried.py:43
 msgid "Matches people who have no spouse"
-msgstr "Passt auf Personen, die keinen Ehepartner haben"
+msgstr "Passt auf Personen, die keine(n) (Ehe)-partner(in) haben"
 
 #: ../gramps/gen/filters/rules/person/_nobirthdate.py:42
 msgid "People without a known birth date"
@@ -8680,10 +8680,8 @@ msgid "Research"
 msgstr "Forschung"
 
 #: ../gramps/gen/lib/notetype.py:78
-#, fuzzy
-#| msgid "Analyzing names"
 msgid "Analysis"
-msgstr "Namen analysieren"
+msgstr "Analyse"
 
 #: ../gramps/gen/lib/notetype.py:79
 msgid "Transcript"
@@ -9521,10 +9519,8 @@ msgid "Thumbnailer"
 msgstr "Miniaturbilderzeuger"
 
 #: ../gramps/gen/plug/_pluginreg.py:113 ../gramps/gui/configure.py:1424
-#, fuzzy
-#| msgid "Citation Information"
 msgid "Citation formatter"
-msgstr "Fundstelleninformation"
+msgstr "Fundstelleninformatierer"
 
 #: ../gramps/gen/plug/_pluginreg.py:589
 #: ../gramps/plugins/gramplet/faqgramplet.py:135
@@ -10008,34 +10004,24 @@ msgid "Surname Given Nickname"
 msgstr "Nachname Vorname Spitzname"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:69
-#, fuzzy
-#| msgid "Surname Given Nickname"
 msgid "Surname, Given Nickname"
-msgstr "Nachname Vorname Spitzname"
+msgstr "Nachname, Vorname Spitzname"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:70
-#, fuzzy
-#| msgid "Given Nickname Surname"
 msgid "GivenNicknameSurname"
-msgstr "Vorname Spitzname Nachname"
+msgstr "VornameSpitznameNachname"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:72
-#, fuzzy
-#| msgid "Automatic"
 msgid "Auto"
-msgstr "Automatisch"
+msgstr "Auto"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:73
-#, fuzzy
-#| msgid "Call Name"
 msgid "Call Name Only"
-msgstr "Rufname"
+msgstr "Nur Rufname"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:74
-#, fuzzy
-#| msgid "Given Name"
 msgid "Whole Given Name"
-msgstr "Vorname"
+msgstr "Vollständiger Vorname"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:77
 msgid "Above"
@@ -10053,7 +10039,7 @@ msgstr "Wird nicht angezeigt"
 #: ../gramps/gui/configure.py:167 ../gramps/gui/configure.py:2131
 #: ../gramps/gui/displaystate.py:419 ../gramps/gui/views/pageview.py:601
 msgid "Preferences"
-msgstr "Einstellungen"
+msgstr "Präferenzen"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:85
 msgid "Down (↓)"
@@ -10164,6 +10150,8 @@ msgid ""
 "Select the portion of the given name to be marked as preferred. Auto sets "
 "the call name if one exists, otherwise the whole given name."
 msgstr ""
+"Wähle den Teil des Vornamens aus, der als bevorzugt markiert werden soll. "
+"Auto setzt den Rufnamen, wenn einer existiert, ansonsten den gesamten Namen."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:196
 msgid "Position of marriage information."
@@ -11140,17 +11128,15 @@ msgstr "Ausgabeformat für das schwedische Koordinatensystem RT90"
 
 #: ../gramps/gen/utils/requirements.py:145
 msgid "Python modules"
-msgstr ""
+msgstr "Python-Module"
 
 #: ../gramps/gen/utils/requirements.py:152
 msgid "GObject introspection modules"
-msgstr ""
+msgstr "GObject-Introspektionsmodule"
 
 #: ../gramps/gen/utils/requirements.py:159
-#, fuzzy
-#| msgid "_Execute"
 msgid "Executables"
-msgstr "_Ausführen"
+msgstr "Ausführbare Dateien"
 
 #: ../gramps/gen/utils/string.py:46 ../gramps/gui/editors/editperson.py:341
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
@@ -12083,32 +12069,28 @@ msgid "Calendar on input"
 msgstr "Kalender bei Eingabe"
 
 #: ../gramps/gui/configure.py:1391
-#, fuzzy
-#| msgid "Shows previous page"
 msgid "on the previous day"
-msgstr "Zeigt die vorherige Seite an"
+msgstr "am Vortag"
 
 #: ../gramps/gui/configure.py:1392
-#, fuzzy
-#| msgid "Shows the next page"
 msgid "on the next day"
-msgstr "Zeigt die nächste Seite an"
+msgstr "am nächsten Tag"
 
 #: ../gramps/gui/configure.py:1393
 msgid "only on leap years"
-msgstr ""
+msgstr "nur in Schaltjahren"
 
 #: ../gramps/gui/configure.py:1398
 msgid ""
 "For non leap years, anniversaries are displayed on either February 28, March "
 "1 or not at all in Gregorian calendars"
 msgstr ""
+"In Nicht-Schaltjahren werden die Jahrestage entweder am 28. Februar, 1. März "
+"oder gar nicht im gregorianischen Kalender angezeigt"
 
 #: ../gramps/gui/configure.py:1401
-#, fuzzy
-#| msgid "Include death anniversaries"
 msgid "Show leap day anniversaries"
-msgstr "Todestage einbeziehen"
+msgstr "Schalttag-Jahrestage anzeigen"
 
 #: ../gramps/gui/configure.py:1408
 msgid "Active person's name and ID"
@@ -12319,16 +12301,12 @@ msgid "Show or hide the Tools icon on the toolbar."
 msgstr "Das Symbol für Werkzeuge in der Werkzeugleiste ein- oder ausblenden."
 
 #: ../gramps/gui/configure.py:1721
-#, fuzzy
-#| msgid "Show Tools icon on toolbar"
 msgid "Show Addons icon on toolbar"
-msgstr "Werkzeugsymbol in der Werkzeugleiste anzeigen"
+msgstr "Erweiterungen-Symbol in der Werkzeugleiste anzeigen"
 
 #: ../gramps/gui/configure.py:1723
-#, fuzzy
-#| msgid "Show or hide the Tools icon on the toolbar."
 msgid "Show or hide the Addons icon on the toolbar."
-msgstr "Das Symbol für Werkzeuge in der Werkzeugleiste ein- oder ausblenden."
+msgstr "Das Erweterungen-Symbol in der Werkzeugleiste ein- oder ausblenden."
 
 #: ../gramps/gui/configure.py:1729
 msgid "Show Preferences icon on toolbar"
@@ -12637,7 +12615,7 @@ msgstr "Tod:"
 #: ../gramps/plugins/webreport/person.py:389
 #: ../gramps/plugins/webreport/surname.py:150
 msgid "Partner"
-msgstr "Partner"
+msgstr "Partner(in)"
 
 #: ../gramps/gui/configure.py:2291
 msgid "Killed"
@@ -13204,10 +13182,8 @@ msgid "Tools"
 msgstr "Werkzeuge"
 
 #: ../gramps/gui/displaystate.py:414
-#, fuzzy
-#| msgid "Open Plugin Manager"
 msgid "Open Addon Manager"
-msgstr "Zusatzmodulverwaltung öffnen"
+msgstr "Erweiterungenverwaltung öffnen"
 
 #: ../gramps/gui/displaystate.py:415 ../gramps/gui/plug/_windows.py:426
 msgid "Addons"
@@ -18077,7 +18053,7 @@ msgstr "_Beim Start anzeigen"
 #: ../gramps/plugins/view/sourceview.py:153
 #: ../gramps/plugins/view/sourceview.py:196
 msgid "_Forward"
-msgstr "_Weiter"
+msgstr "_Vor"
 
 #: ../gramps/gui/glade/updateaddons.glade:41
 msgid "Install Selected _Addons"
@@ -18162,17 +18138,15 @@ msgstr "Bearbeitungsverlauf"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Abandon Changes and Quit"
-msgstr "Änderungen _aufgeben und beenden"
+msgstr "Änderungen _verwerfen und beenden"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_About"
 msgstr "_Über"
 
 #: ../gramps/gui/grampsgui.py:56
-#, fuzzy
-#| msgid "Add Partner..."
 msgid "_Addon Manager..."
-msgstr "Partner hinzufügen..."
+msgstr "_Erweiterungenverwaltung..."
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Bookmarks"
@@ -18705,7 +18679,7 @@ msgstr "Ehegatten"
 #: ../gramps/plugins/textreport/familygroup.py:568
 #: ../gramps/plugins/view/relview.py:1578
 msgid "Spouse"
-msgstr "Ehepartner"
+msgstr "Ehepartner(in)"
 
 #: ../gramps/gui/merge/mergeperson.py:264
 msgid "No spouses or children found"
@@ -18836,74 +18810,54 @@ msgid "Style Editor"
 msgstr "Formateditor"
 
 #: ../gramps/gui/plug/_windows.py:204
-#, fuzzy
-#| msgid "Every object"
 msgid "Project"
-msgstr "Jedes Objekt"
+msgstr "Projekt"
 
 #: ../gramps/gui/plug/_windows.py:208
-#, fuzzy
-#| msgid "Audio"
 msgid "Audience"
-msgstr "Audio"
+msgstr "Publikum"
 
 #: ../gramps/gui/plug/_windows.py:212 ../gramps/gui/plug/_windows.py:1340
 msgid "Version"
 msgstr "Version"
 
 #: ../gramps/gui/plug/_windows.py:215
-#, fuzzy
-#| msgid "Data version"
 msgid "Installed version"
-msgstr "Daten Version"
+msgstr "Installierte Version"
 
 #: ../gramps/gui/plug/_windows.py:233 ../gramps/gui/plug/_windows.py:234
-#, fuzzy
-#| msgid "installed"
 msgid "Install"
-msgstr "installiert"
+msgstr "Installieren"
 
 #: ../gramps/gui/plug/_windows.py:239
 msgid "Wiki"
-msgstr ""
+msgstr "Wiki"
 
 #: ../gramps/gui/plug/_windows.py:244
-#, fuzzy
-#| msgid "* Requires Restart"
 msgid "Requires"
-msgstr "* Erfordert einen Neustart"
+msgstr "Benötigt"
 
 #: ../gramps/gui/plug/_windows.py:249
-#, fuzzy
-#| msgid "Upgrade now"
 msgid "Upgrade"
-msgstr "Jetzt aktualisieren"
+msgstr "Aktualisierung"
 
 #: ../gramps/gui/plug/_windows.py:270
-#, fuzzy
-#| msgid "Deletion failed"
 msgid "Module installation failed"
-msgstr "Löschung fehlgeschlagen"
+msgstr "Modulinstallation fehlgeschlagen"
 
 #: ../gramps/gui/plug/_windows.py:294
-#, fuzzy
-#| msgid "Retirement"
 msgid "Requirements"
-msgstr "Ruhestand"
+msgstr "Anforderungen"
 
 #: ../gramps/gui/plug/_windows.py:328
-#, fuzzy
-#| msgid "Addon Name"
 msgid "Addon Manager"
-msgstr "Name der Erweiterung"
+msgstr "Erweiterungsverwaltung"
 
 #: ../gramps/gui/plug/_windows.py:335 ../gramps/plugins/gramplet/leak.py:112
 msgid "Refresh"
 msgstr "Aktualisieren"
 
 #: ../gramps/gui/plug/_windows.py:364
-#, fuzzy
-#| msgid "Filter"
 msgid "Filters"
 msgstr "Filter"
 
@@ -18915,30 +18869,24 @@ msgid "All"
 msgstr "Alles"
 
 #: ../gramps/gui/plug/_windows.py:429
-#, fuzzy
-#| msgid "Setting"
 msgid "Settings"
-msgstr "Einstellung"
+msgstr "Einstellungen"
 
 #: ../gramps/gui/plug/_windows.py:432
-#, fuzzy
-#| msgid "Every object"
 msgid "Projects"
-msgstr "Jedes Objekt"
+msgstr "Projekte"
 
 #: ../gramps/gui/plug/_windows.py:452
 msgid "Loading..."
-msgstr "Lade..."
+msgstr "Laden..."
 
 #: ../gramps/gui/plug/_windows.py:494
-#, fuzzy
-#| msgid "No matches found"
 msgid "No matching addons found."
-msgstr "Keine Treffer gefunden"
+msgstr "Keine passenden Erweiterungen gefunden."
 
 #: ../gramps/gui/plug/_windows.py:617
 msgid "Allow Gramps to install required python modules"
-msgstr ""
+msgstr "Gramps die Installation benötigter Python-Module gestatten"
 
 #: ../gramps/gui/plug/_windows.py:622
 #: ../gramps/plugins/webreport/basepage.py:1767
@@ -18991,22 +18939,16 @@ msgid "Check for updated addons now"
 msgstr "Jetzt nach aktualisierten Zusatzmodulen suchen"
 
 #: ../gramps/gui/plug/_windows.py:687
-#, fuzzy
-#| msgid "New Person"
 msgid "New Project"
-msgstr "Neue Person"
+msgstr "Neues Projekt"
 
 #: ../gramps/gui/plug/_windows.py:689
-#, fuzzy
-#| msgid "Edit Person"
 msgid "Edit Project"
-msgstr "Person bearbeiten"
+msgstr "Projekt bearbeiten"
 
 #: ../gramps/gui/plug/_windows.py:695
-#, fuzzy
-#| msgid "Preferred name"
 msgid "Project name"
-msgstr "Bevorzugter Name"
+msgstr "Projektname"
 
 #: ../gramps/gui/plug/_windows.py:754
 msgid "Checking Addons Failed"
@@ -20548,11 +20490,11 @@ msgstr "Ausgewählte Zeilen markieren"
 
 #: ../gramps/gui/views/tags.py:94
 msgid "New Tag..."
-msgstr "Neues Schlagwort..."
+msgstr "Neue Markierung..."
 
 #: ../gramps/gui/views/tags.py:94
 msgid "Organize Tags..."
-msgstr "Schlagwörter organisieren...."
+msgstr "Markierungen organisieren...."
 
 #: ../gramps/gui/views/tags.py:113
 msgctxt "manual"
@@ -20705,7 +20647,7 @@ msgstr "Verwandt"
 
 #: ../gramps/gui/widgets/fanchart.py:2081
 msgid "Add partner to person"
-msgstr "Partner zur Person hinzufügen"
+msgstr "Partner(i) zur Person hinzufügen"
 
 #: ../gramps/gui/widgets/fanchart.py:2088
 msgid "Add a person"
@@ -20948,10 +20890,8 @@ msgid "'%s' is not a valid date value"
 msgstr "'%s' ist kein gültiger Datumswert"
 
 #: ../gramps/plugins/cite/cite.gpr.py:36
-#, fuzzy
-#| msgid "Publication Information"
 msgid "Default citation formatter"
-msgstr "Informationen zur Veröffentlichung"
+msgstr "Standard-Fundstelleformatierer"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:26
 msgid "BSDDB"
@@ -22110,7 +22050,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/descendtree.py:1678
 msgid "Display format for a spouse."
-msgstr "Anzeigeformat für einen Ehepartner."
+msgstr "Anzeigeformat für eine(n) Ehepartner(in)."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1720
 msgid "inter-box Y scale factor"
@@ -22322,14 +22262,14 @@ msgstr ""
 "anpassen"
 
 #: ../gramps/plugins/drawreport/fanchart.py:765
-#, fuzzy
-#| msgid "Flip name on the left of the fan"
 msgid "Flip names that are on the bottom half of the fan"
-msgstr "Name auf der linken Seite des Fächers umdrehen"
+msgstr "Namen, die sich auf der unteren Hälfte des Fächers befinden, umdrehen"
 
 #: ../gramps/plugins/drawreport/fanchart.py:767
 msgid "Flip names for generations 2, 3 and 4 i.e. those found in circles"
 msgstr ""
+"Namen für die Generationen 2, 3 und 4 umdrehen, d. h. die in den Kreisen "
+"gefundenen"
 
 #: ../gramps/plugins/drawreport/fanchart.py:823
 #, python-format
@@ -23233,8 +23173,8 @@ msgid ""
 "  2. %(gramps_FAQ_html_start)s%(faq_section)sHow do I add an additional "
 "spouse?%(html_end)s\n"
 msgstr ""
-"  2. %(gramps_FAQ_html_start)s%(faq_section)sWie kann ich einen weiteren "
-"Ehepartner hinzufügen?%(html_end)s\n"
+"  2. %(gramps_FAQ_html_start)s%(faq_section)sWie kann ich eine(n) weiteren "
+"Ehepartner(in) hinzufügen?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:83
 #, python-format
@@ -23242,8 +23182,8 @@ msgid ""
 "  3. %(gramps_FAQ_html_start)s%(faq_section)sHow do I remove a spouse?"
 "%(html_end)s\n"
 msgstr ""
-"  3. %(gramps_FAQ_html_start)s%(faq_section)sWie entferne ich einen "
-"Ehepartner?%(html_end)s\n"
+"  3. %(gramps_FAQ_html_start)s%(faq_section)sWie entferne ich eine(n) "
+"Ehepartner(in)?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:87
 msgid "Backups and Updates"
@@ -24397,7 +24337,7 @@ msgstr "%(count)d. %(relation)s: "
 #: ../gramps/plugins/gramplet/relativegramplet.py:94
 #, python-format
 msgid "%d. Partner: Not known"
-msgstr "%d. Partner: Nicht bekannt"
+msgstr "%d. Partner(in): Nicht bekannt"
 
 #: ../gramps/plugins/gramplet/relativegramplet.py:109
 msgid "Parents:"
@@ -24973,7 +24913,7 @@ msgstr "Ort unbekannt"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:502
 msgid "spouse missing"
-msgstr "Ehepartner fehlt"
+msgstr "Ehepartner(in) fehlt"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:506
 msgid "father missing"
@@ -31060,7 +31000,7 @@ msgstr "Bearbeiten..."
 #: ../gramps/plugins/view/repoview.py:292
 #: ../gramps/plugins/view/sourceview.py:278
 msgid "Forward"
-msgstr "Weiter"
+msgstr "Vorwärts"
 
 #: ../gramps/plugins/lib/libpersonview.py:452
 msgid "Deleting the person will remove the person from the database."
@@ -31120,7 +31060,7 @@ msgstr "Ortsfiltereditor"
 
 #: ../gramps/plugins/lib/libplaceview.py:417
 msgid "_Look up with Map Service"
-msgstr "Nachsch_lagen mit Kartenservice"
+msgstr "Nachsch_lagen mit Kartendienst"
 
 #: ../gramps/plugins/lib/libplaceview.py:468
 msgid ""
@@ -33050,7 +32990,7 @@ msgstr "Mehr über %(mother_name)s und %(father_name)s:"
 #: ../gramps/plugins/textreport/detdescendantreport.py:614
 #, python-format
 msgid "Spouse: %s"
-msgstr "Partner(in): %s"
+msgstr "Ehepartner(in): %s"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:749
 #: ../gramps/plugins/textreport/detdescendantreport.py:618
@@ -33362,15 +33302,15 @@ msgstr "Ehepartner einbeziehen"
 #: ../gramps/plugins/textreport/detdescendantreport.py:1098
 msgid "Whether to include detailed spouse information."
 msgstr ""
-"Ob detaillierte Informationen über den Ehepartner aufgenommen werden sollen."
+"Ob detaillierte Informationen über Ehepartner aufgenommen werden sollen."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1101
 msgid "Include spouse reference"
-msgstr "Referenz des Ehepartners einschließen"
+msgstr "Ehepartnerreferenzen einschließen"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1102
 msgid "Whether to include reference to spouse."
-msgstr "Ob eine Referenz zum Ehepartner aufgenommen werden soll."
+msgstr "Ob Referenzen zu Ehepartnern aufgenommen werden sollen."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1149
 msgid "Include sign of succession ('+') in child-list"
@@ -33522,7 +33462,7 @@ msgstr "Daten von Verwandten"
 #: ../gramps/plugins/textreport/familygroup.py:791
 msgid "Whether to include dates for relatives (father, mother, spouse)."
 msgstr ""
-"Ob Daten für Verwandte (Vater, Mutter, Ehepartner) angegeben werden sollen."
+"Ob Daten für Verwandte (Vater, Mutter, Ehepartner) aufgenommen werden sollen."
 
 #: ../gramps/plugins/textreport/familygroup.py:795
 msgid "Children Marriages"
@@ -33659,7 +33599,7 @@ msgstr "Prüfen, ob ein separater Abschnitt erforderlich ist."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1241
 msgid "The style used for the spouse's name."
-msgstr "Das Format, das für den Namen des Partners verwendet wird."
+msgstr "Das Format, das für den Namen der Ehepartner verwendet wird."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1260
 #: ../gramps/plugins/textreport/notelinkreport.py:217
@@ -36469,7 +36409,7 @@ msgstr "Alle Knoten einklappen"
 #: ../gramps/plugins/view/persontreeview.py:87
 #: ../gramps/plugins/view/placetreeview.py:77
 msgid "Expand all Nodes"
-msgstr "Alle Knoten erweitern"
+msgstr "Alle Knoten aufklappen"
 
 #: ../gramps/plugins/view/citationtreeview.py:632
 msgid ""
@@ -37281,7 +37221,7 @@ msgstr "Die ausgewählten Notizen zusammenführen"
 
 #: ../gramps/plugins/view/noteview.py:187
 msgid "Note Filter Editor"
-msgstr "Notenfiltereditor"
+msgstr "Notizfiltereditor"
 
 #: ../gramps/plugins/view/noteview.py:351
 msgid "Cannot merge notes."
@@ -37445,11 +37385,11 @@ msgstr "Vorhandene Eltern hinzufügen..."
 
 #: ../gramps/plugins/view/relview.py:391
 msgid "Add Partner..."
-msgstr "Partner hinzufügen..."
+msgstr "Partner(in) hinzufügen..."
 
 #: ../gramps/plugins/view/relview.py:391 ../gramps/plugins/view/relview.py:477
 msgid "_Reorder"
-msgstr "_Neu anordnen"
+msgstr "Neu o_rdnen"
 
 #: ../gramps/plugins/view/relview.py:477 ../gramps/plugins/view/relview.py:977
 msgid "Add a new family with person as parent"
@@ -37894,7 +37834,7 @@ msgstr "Vorherige"
 #: ../gramps/plugins/webreport/basepage.py:1901
 #: ../gramps/plugins/webreport/media.py:424
 msgid "Next"
-msgstr "Weiter"
+msgstr "Nächste"
 
 #: ../gramps/plugins/webreport/basepage.py:2421
 msgid "Other media: videos, pdfs..."
