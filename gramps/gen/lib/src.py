@@ -31,15 +31,15 @@ Source object for Gramps.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .primaryobj import PrimaryObject
+from ..const import GRAMPS_LOCALE as glocale
+from .attrbase import SrcAttributeBase
+from .citationbase import IndirectCitationBase
+from .const import DIFFERENT, EQUAL, IDENTICAL
 from .mediabase import MediaBase
 from .notebase import NoteBase
-from .tagbase import TagBase
-from .attrbase import SrcAttributeBase
+from .primaryobj import PrimaryObject
 from .reporef import RepoRef
-from .const import DIFFERENT, EQUAL, IDENTICAL
-from .citationbase import IndirectCitationBase
-from ..const import GRAMPS_LOCALE as glocale
+from .tagbase import TagBase
 
 _ = glocale.translation.gettext
 
@@ -52,7 +52,9 @@ _ = glocale.translation.gettext
 class Source(
     MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase, PrimaryObject
 ):
-    """A record of a source of information."""
+    """
+    A record of a source of information.
+    """
 
     def __init__(self):
         """Create a new Source instance."""
@@ -94,16 +96,20 @@ class Source(
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
-        from .srcattribute import SrcAttribute
-        from .reporef import RepoRef
+        # pylint: disable=import-outside-toplevel
         from .mediaref import MediaRef
+        from .srcattribute import SrcAttribute
 
         return {
             "type": "object",
             "title": _("Source"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "handle": {"type": "string", "maxLength": 50, "title": _("Handle")},
+                "handle": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "title": _("Handle"),
+                },
                 "gramps_id": {"type": "string", "title": _("Gramps ID")},
                 "title": {"type": "string", "title": _("Title")},
                 "author": {"type": "string", "title": _("Author")},
@@ -164,7 +170,9 @@ class Source(
         MediaBase.unserialize(self, media_list)
         TagBase.unserialize(self, tag_list)
         SrcAttributeBase.unserialize(self, srcattr_list)
-        self.reporef_list = [RepoRef().unserialize(item) for item in reporef_list]
+        self.reporef_list = [
+            RepoRef().unserialize(item) for item in reporef_list
+        ]
         return self
 
     def _has_handle_reference(self, classname, handle):
@@ -194,7 +202,9 @@ class Source(
         :type handle_list: str
         """
         if classname == "Repository":
-            new_list = [ref for ref in self.reporef_list if ref.ref not in handle_list]
+            new_list = [
+                ref for ref in self.reporef_list if ref.ref not in handle_list
+            ]
             self.reporef_list = new_list
 
     def _replace_handle_reference(self, classname, old_handle, new_handle):
@@ -222,7 +232,13 @@ class Source(
         :returns: Returns the list of all textual attributes of the object.
         :rtype: list
         """
-        return [self.title, self.author, self.pubinfo, self.abbrev, self.gramps_id]
+        return [
+            self.title,
+            self.author,
+            self.pubinfo,
+            self.abbrev,
+            self.gramps_id,
+        ]
 
     def get_text_data_child_list(self):
         """
@@ -271,7 +287,10 @@ class Source(
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        return self.get_referenced_note_handles() + self.get_referenced_tag_handles()
+        return (
+            self.get_referenced_note_handles()
+            + self.get_referenced_tag_handles()
+        )
 
     def merge(self, acquisition):
         """
@@ -376,7 +395,7 @@ class Source(
                 equi = reporef.is_equivalent(addendum)
                 if equi == IDENTICAL:
                     break
-                elif equi == EQUAL:
+                if equi == EQUAL:
                     reporef.merge(addendum)
                     break
             else:
@@ -423,7 +442,7 @@ class Source(
         if new_handle in refs_list:
             new_ref = self.reporef_list[refs_list.index(new_handle)]
         n_replace = refs_list.count(old_handle)
-        for ix_replace in range(n_replace):
+        for dummy_ix_replace in range(n_replace):
             idx = refs_list.index(old_handle)
             self.reporef_list[idx].ref = new_handle
             refs_list[idx] = new_handle

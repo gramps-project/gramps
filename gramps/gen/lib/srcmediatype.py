@@ -27,13 +27,22 @@ SourceMedia types.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .grampstype import GrampsType
 from ..const import GRAMPS_LOCALE as glocale
+from .grampstype import GrampsType
 
 _ = glocale.translation.gettext
 
 
+# -------------------------------------------------------------------------
+#
+# SourceMediaType class
+#
+# -------------------------------------------------------------------------
 class SourceMediaType(GrampsType):
+    """
+    Class encapsulating the media type for a source.
+    """
+
     UNKNOWN = -1
     CUSTOM = 0
     AUDIO = 1

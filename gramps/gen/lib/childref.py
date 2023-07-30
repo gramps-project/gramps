@@ -25,35 +25,32 @@
 """
 Child Reference class for Gramps.
 """
+
 # -------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .secondaryobj import SecondaryObject
-from .privacybase import PrivacyBase
-from .citationbase import CitationBase
-from .notebase import NoteBase
-from .refbase import RefBase
-from .childreftype import ChildRefType
-from .const import IDENTICAL, EQUAL, DIFFERENT
 from ..const import GRAMPS_LOCALE as glocale
+from .childreftype import ChildRefType
+from .citationbase import CitationBase
+from .const import DIFFERENT, EQUAL, IDENTICAL
+from .notebase import NoteBase
+from .privacybase import PrivacyBase
+from .refbase import RefBase
+from .secondaryobj import SecondaryObject
 
 _ = glocale.translation.gettext
 
 
 # -------------------------------------------------------------------------
 #
-# Person References for Person/Family
+# ChildRef class
 #
 # -------------------------------------------------------------------------
 class ChildRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
     """
-    Person reference class.
-
-    This class is for keeping information about how the person relates
-    to another person from the database, if not through family.
-    Examples would be: godparent, friend, etc.
+    A class for tracking information about how a child relates to their parents.
     """
 
     def __init__(self, source=None):
@@ -120,7 +117,11 @@ class ChildRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
                     "items": {"type": "string", "maxLength": 50},
                     "title": _("Notes"),
                 },
-                "ref": {"type": "string", "maxLength": 50, "title": _("Handle")},
+                "ref": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "title": _("Handle"),
+                },
                 "frel": ChildRefType.get_schema(),
                 "mrel": ChildRefType.get_schema(),
             },
@@ -163,7 +164,8 @@ class ChildRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
         :rtype: list
         """
         ret = (
-            self.get_referenced_note_handles() + self.get_referenced_citation_handles()
+            self.get_referenced_note_handles()
+            + self.get_referenced_citation_handles()
         )
         if self.ref:
             ret += [("Person", self.ref)]
@@ -191,11 +193,9 @@ class ChildRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
         """
         if self.ref != other.ref:
             return DIFFERENT
-        else:
-            if self.is_equal(other):
-                return IDENTICAL
-            else:
-                return EQUAL
+        if self.is_equal(other):
+            return IDENTICAL
+        return EQUAL
 
     def merge(self, acquisition):
         """

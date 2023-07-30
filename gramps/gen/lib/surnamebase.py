@@ -27,16 +27,16 @@ SurnameBase class for Gramps.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .surname import Surname
-from .const import IDENTICAL, EQUAL
 from ..const import GRAMPS_LOCALE as glocale
+from .const import EQUAL, IDENTICAL
+from .surname import Surname
 
 _ = glocale.translation.gettext
 
 
 # -------------------------------------------------------------------------
 #
-# SurnameBase classes
+# SurnameBase class
 #
 # -------------------------------------------------------------------------
 class SurnameBase:
@@ -54,7 +54,9 @@ class SurnameBase:
         :param source: Object used to initialize the new object
         :type source: SurnameBase
         """
-        self.surname_list = list(map(Surname, source.surname_list)) if source else []
+        self.surname_list = (
+            list(map(Surname, source.surname_list)) if source else []
+        )
 
     def serialize(self):
         """
@@ -98,8 +100,7 @@ class SurnameBase:
         if surname in self.surname_list:
             self.surname_list.remove(surname)
             return True
-        else:
-            return False
+        return False
 
     def get_surname_list(self):
         """
@@ -136,10 +137,9 @@ class SurnameBase:
                 return surname
         if self.surname_list:
             return self.surname_list[0]
-        else:
-            # self healing, add a surname to this object and return it
-            self.set_surname_list([Surname()])
-            return self.surname_list[0]
+        # self healing, add a surname to this object and return it
+        self.set_surname_list([Surname()])
+        return self.surname_list[0]
 
     def set_primary_surname(self, surnamenr=0):
         """
@@ -172,7 +172,7 @@ class SurnameBase:
                 equi = surname.is_equivalent(addendum)
                 if equi == IDENTICAL:
                     break
-                elif equi == EQUAL:
+                if equi == EQUAL:
                     # This should normally never happen, an alternate name
                     # should be added
                     surname.merge(addendum)

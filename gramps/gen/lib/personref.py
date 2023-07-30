@@ -31,13 +31,13 @@ Person Reference class for Gramps.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .secondaryobj import SecondaryObject
-from .privacybase import PrivacyBase
-from .citationbase import CitationBase
-from .notebase import NoteBase
-from .refbase import RefBase
-from .const import IDENTICAL, EQUAL, DIFFERENT
 from ..const import GRAMPS_LOCALE as glocale
+from .citationbase import CitationBase
+from .const import DIFFERENT, EQUAL, IDENTICAL
+from .notebase import NoteBase
+from .privacybase import PrivacyBase
+from .refbase import RefBase
+from .secondaryobj import SecondaryObject
 
 _ = glocale.translation.gettext
 
@@ -113,7 +113,11 @@ class PersonRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
                     "title": _("Notes"),
                     "items": {"type": "string", "maxLength": 50},
                 },
-                "ref": {"type": "string", "title": _("Handle"), "maxLength": 50},
+                "ref": {
+                    "type": "string",
+                    "title": _("Handle"),
+                    "maxLength": 50,
+                },
                 "rel": {"type": "string", "title": _("Association")},
             },
         }
@@ -155,7 +159,8 @@ class PersonRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
         :rtype: list
         """
         ret = (
-            self.get_referenced_note_handles() + self.get_referenced_citation_handles()
+            self.get_referenced_note_handles()
+            + self.get_referenced_citation_handles()
         )
         if self.ref:
             ret += [("Person", self.ref)]
@@ -186,11 +191,9 @@ class PersonRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
             or self.get_text_data_list() != other.get_text_data_list()
         ):
             return DIFFERENT
-        else:
-            if self.is_equal(other):
-                return IDENTICAL
-            else:
-                return EQUAL
+        if self.is_equal(other):
+            return IDENTICAL
+        return EQUAL
 
     def merge(self, acquisition):
         """

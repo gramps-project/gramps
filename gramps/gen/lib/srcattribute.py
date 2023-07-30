@@ -28,9 +28,9 @@ Source Attribute class for Gramps.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from ..const import GRAMPS_LOCALE as glocale
 from .attribute import AttributeRoot
 from .srcattrtype import SrcAttributeType
-from ..const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
 

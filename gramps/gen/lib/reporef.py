@@ -30,13 +30,13 @@ Repository Reference class for Gramps
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .secondaryobj import SecondaryObject
-from .privacybase import PrivacyBase
-from .notebase import NoteBase
-from .refbase import RefBase
-from .srcmediatype import SourceMediaType
-from .const import IDENTICAL, EQUAL, DIFFERENT
 from ..const import GRAMPS_LOCALE as glocale
+from .const import DIFFERENT, EQUAL, IDENTICAL
+from .notebase import NoteBase
+from .privacybase import PrivacyBase
+from .refbase import RefBase
+from .secondaryobj import SecondaryObject
+from .srcmediatype import SourceMediaType
 
 _ = glocale.translation.gettext
 
@@ -104,7 +104,11 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
                     "title": _("Notes"),
                     "items": {"type": "string", "maxLength": 50},
                 },
-                "ref": {"type": "string", "title": _("Handle"), "maxLength": 50},
+                "ref": {
+                    "type": "string",
+                    "title": _("Handle"),
+                    "maxLength": 50,
+                },
                 "call_number": {"type": "string", "title": _("Call Number")},
                 "media_type": SourceMediaType.get_schema(),
                 "private": {"type": "boolean", "title": _("Private")},
@@ -148,11 +152,9 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
             or self.get_text_data_list() != other.get_text_data_list()
         ):
             return DIFFERENT
-        else:
-            if self.is_equal(other):
-                return IDENTICAL
-            else:
-                return EQUAL
+        if self.is_equal(other):
+            return IDENTICAL
+        return EQUAL
 
     def merge(self, acquisition):
         """
@@ -166,13 +168,25 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
         self._merge_note_list(acquisition)
 
     def set_call_number(self, number):
+        """
+        Set the call number.
+        """
         self.call_number = number
 
     def get_call_number(self):
+        """
+        Get the call number.
+        """
         return self.call_number
 
     def get_media_type(self):
+        """
+        Get the media type.
+        """
         return self.media_type
 
     def set_media_type(self, media_type):
+        """
+        Set the media type.
+        """
         self.media_type.set(media_type)

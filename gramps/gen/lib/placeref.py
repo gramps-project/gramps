@@ -28,11 +28,11 @@ Place Reference class for Gramps
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .secondaryobj import SecondaryObject
-from .refbase import RefBase
-from .datebase import DateBase
-from .const import IDENTICAL, EQUAL, DIFFERENT
 from ..const import GRAMPS_LOCALE as glocale
+from .const import DIFFERENT, EQUAL, IDENTICAL
+from .datebase import DateBase
+from .refbase import RefBase
+from .secondaryobj import SecondaryObject
 
 _ = glocale.translation.gettext
 
@@ -80,6 +80,7 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
+        # pylint: disable=import-outside-toplevel
         from .date import Date
 
         return {
@@ -87,7 +88,11 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
             "title": _("Place ref"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "ref": {"type": "string", "title": _("Handle"), "maxLength": 50},
+                "ref": {
+                    "type": "string",
+                    "title": _("Handle"),
+                    "maxLength": 50,
+                },
                 "date": {
                     "oneOf": [{"type": "null"}, Date.get_schema()],
                     "title": _("Date"),
@@ -166,8 +171,6 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
         """
         if self.ref != other.ref or self.date != other.date:
             return DIFFERENT
-        else:
-            if self.is_equal(other):
-                return IDENTICAL
-            else:
-                return EQUAL
+        if self.is_equal(other):
+            return IDENTICAL
+        return EQUAL

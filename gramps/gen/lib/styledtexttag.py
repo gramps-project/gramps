@@ -27,8 +27,8 @@
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .styledtexttagtype import StyledTextTagType
 from ..const import GRAMPS_LOCALE as glocale
+from .styledtexttagtype import StyledTextTagType
 
 _ = glocale.translation.gettext
 
@@ -105,7 +105,10 @@ class StyledTextTag:
             "properties": {
                 "_class": {"enum": [cls.__name__]},
                 "name": StyledTextTagType.get_schema(),
-                "value": {"type": ["null", "string", "integer"], "title": _("Value")},
+                "value": {
+                    "type": ["null", "string", "integer"],
+                    "title": _("Value"),
+                },
                 "ranges": {
                     "type": "array",
                     "items": {

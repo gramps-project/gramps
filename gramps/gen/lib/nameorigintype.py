@@ -19,7 +19,7 @@
 #
 
 """
-Name types.
+Name origin types.
 """
 
 # -------------------------------------------------------------------------
@@ -27,12 +27,17 @@ Name types.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .grampstype import GrampsType
 from ..const import GRAMPS_LOCALE as glocale
+from .grampstype import GrampsType
 
 _ = glocale.translation.sgettext
 
 
+# -------------------------------------------------------------------------
+#
+# NameOriginType class
+#
+# -------------------------------------------------------------------------
 class NameOriginType(GrampsType):
     """
     Name Origin Types

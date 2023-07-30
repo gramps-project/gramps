@@ -27,14 +27,23 @@ Provide the different family reference types.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .grampstype import GrampsType
 from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
+from .grampstype import GrampsType
 
 _ = glocale.translation.gettext
 
 
+# -------------------------------------------------------------------------
+#
+# FamilyRelType class
+#
+# -------------------------------------------------------------------------
 class FamilyRelType(GrampsType):
+    """
+    Class for type of relationship between two partners forming the family.
+    """
+
     MARRIED = 0
     UNMARRIED = 1
     CIVIL_UNION = 2

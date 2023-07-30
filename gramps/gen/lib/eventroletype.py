@@ -27,13 +27,22 @@ Provide the different event roles.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .grampstype import GrampsType
 from ..const import GRAMPS_LOCALE as glocale
+from .grampstype import GrampsType
 
 _ = glocale.translation.sgettext
 
 
+# -------------------------------------------------------------------------
+#
+# EventRoleType class
+#
+# -------------------------------------------------------------------------
 class EventRoleType(GrampsType):
+    """
+    Class representing role a participant played in an event.
+    """
+
     UNKNOWN = -1
     CUSTOM = 0
     PRIMARY = 1

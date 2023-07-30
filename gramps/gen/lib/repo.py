@@ -30,14 +30,14 @@ Repository object for Gramps.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .primaryobj import PrimaryObject
-from .notebase import NoteBase
-from .addressbase import AddressBase
-from .urlbase import UrlBase
-from .tagbase import TagBase
-from .repotype import RepositoryType
-from .citationbase import IndirectCitationBase
 from ..const import GRAMPS_LOCALE as glocale
+from .addressbase import AddressBase
+from .citationbase import IndirectCitationBase
+from .notebase import NoteBase
+from .primaryobj import PrimaryObject
+from .repotype import RepositoryType
+from .tagbase import TagBase
+from .urlbase import UrlBase
 
 _ = glocale.translation.gettext
 
@@ -47,7 +47,9 @@ _ = glocale.translation.gettext
 # Repository class
 #
 # -------------------------------------------------------------------------
-class Repository(NoteBase, AddressBase, UrlBase, IndirectCitationBase, PrimaryObject):
+class Repository(
+    NoteBase, AddressBase, UrlBase, IndirectCitationBase, PrimaryObject
+):
     """A location where collections of Sources are found."""
 
     def __init__(self):
@@ -86,6 +88,7 @@ class Repository(NoteBase, AddressBase, UrlBase, IndirectCitationBase, PrimaryOb
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
+        # pylint: disable=import-outside-toplevel
         from .address import Address
         from .url import Url
 
@@ -94,7 +97,11 @@ class Repository(NoteBase, AddressBase, UrlBase, IndirectCitationBase, PrimaryOb
             "title": _("Repository"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "handle": {"type": "string", "maxLength": 50, "title": _("Handle")},
+                "handle": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "title": _("Handle"),
+                },
                 "gramps_id": {"type": "string", "title": _("Gramps ID")},
                 "type": RepositoryType.get_schema(),
                 "name": {"type": "string", "title": _("Name")},
@@ -205,7 +212,10 @@ class Repository(NoteBase, AddressBase, UrlBase, IndirectCitationBase, PrimaryOb
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        return self.get_referenced_note_handles() + self.get_referenced_tag_handles()
+        return (
+            self.get_referenced_note_handles()
+            + self.get_referenced_tag_handles()
+        )
 
     def merge(self, acquisition):
         """

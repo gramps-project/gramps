@@ -27,7 +27,7 @@ Event object for Gramps.
 
 # -------------------------------------------------------------------------
 #
-# standard python modules
+# Python modules
 #
 # -------------------------------------------------------------------------
 import logging
@@ -37,16 +37,16 @@ import logging
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .primaryobj import PrimaryObject
-from .citationbase import CitationBase
-from .notebase import NoteBase
-from .mediabase import MediaBase
-from .attrbase import AttributeBase
-from .datebase import DateBase
-from .placebase import PlaceBase
-from .tagbase import TagBase
-from .eventtype import EventType
 from ..const import GRAMPS_LOCALE as glocale
+from .attrbase import AttributeBase
+from .citationbase import CitationBase
+from .datebase import DateBase
+from .eventtype import EventType
+from .mediabase import MediaBase
+from .notebase import NoteBase
+from .placebase import PlaceBase
+from .primaryobj import PrimaryObject
+from .tagbase import TagBase
 
 _ = glocale.translation.gettext
 
@@ -59,7 +59,13 @@ LOG = logging.getLogger(".citation")
 #
 # -------------------------------------------------------------------------
 class Event(
-    CitationBase, NoteBase, MediaBase, AttributeBase, DateBase, PlaceBase, PrimaryObject
+    CitationBase,
+    NoteBase,
+    MediaBase,
+    AttributeBase,
+    DateBase,
+    PlaceBase,
+    PrimaryObject,
 ):
     """
     The Event record is used to store information about some type of
@@ -138,6 +144,7 @@ class Event(
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
+        # pylint: disable=import-outside-toplevel
         from .attribute import Attribute
         from .date import Date
         from .mediaref import MediaRef
@@ -147,7 +154,11 @@ class Event(
             "title": _("Event"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "handle": {"type": "string", "maxLength": 50, "title": _("Handle")},
+                "handle": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "title": _("Handle"),
+                },
                 "gramps_id": {"type": "string", "title": _("Gramps ID")},
                 "type": EventType.get_schema(),
                 "date": {
@@ -417,7 +428,9 @@ class Event(
         """
         return self.__type
 
-    type = property(get_type, set_type, None, "Returns or sets type of the event")
+    type = property(
+        get_type, set_type, None, "Returns or sets type of the event"
+    )
 
     def set_description(self, description):
         """

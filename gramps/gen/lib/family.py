@@ -27,29 +27,29 @@ Family object for Gramps.
 
 # -------------------------------------------------------------------------
 #
-# standard python modules
+# Python modules
 #
 # -------------------------------------------------------------------------
-from warnings import warn
 import logging
+from warnings import warn
 
 # -------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .primaryobj import PrimaryObject
-from .citationbase import CitationBase
-from .notebase import NoteBase
-from .mediabase import MediaBase
-from .attrbase import AttributeBase
-from .eventref import EventRef
-from .ldsordbase import LdsOrdBase
-from .tagbase import TagBase
-from .childref import ChildRef
-from .familyreltype import FamilyRelType
-from .const import IDENTICAL, EQUAL, DIFFERENT
 from ..const import GRAMPS_LOCALE as glocale
+from .attrbase import AttributeBase
+from .childref import ChildRef
+from .citationbase import CitationBase
+from .const import DIFFERENT, EQUAL, IDENTICAL
+from .eventref import EventRef
+from .familyreltype import FamilyRelType
+from .ldsordbase import LdsOrdBase
+from .mediabase import MediaBase
+from .notebase import NoteBase
+from .primaryobj import PrimaryObject
+from .tagbase import TagBase
 
 _ = glocale.translation.gettext
 
@@ -145,17 +145,21 @@ class Family(
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
-        from .mediaref import MediaRef
-        from .ldsord import LdsOrd
-        from .childref import ChildRef
+        # pylint: disable=import-outside-toplevel
         from .attribute import Attribute
+        from .ldsord import LdsOrd
+        from .mediaref import MediaRef
 
         return {
             "type": "object",
             "title": _("Family"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "handle": {"type": "string", "maxLength": 50, "title": _("Handle")},
+                "handle": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "title": _("Handle"),
+                },
                 "gramps_id": {"type": "string", "title": _("Gramps ID")},
                 "father_handle": {
                     "type": ["string", "null"],
@@ -238,8 +242,12 @@ class Family(
 
         self.type = FamilyRelType()
         self.type.unserialize(the_type)
-        self.event_ref_list = [EventRef().unserialize(er) for er in event_ref_list]
-        self.child_ref_list = [ChildRef().unserialize(cr) for cr in child_ref_list]
+        self.event_ref_list = [
+            EventRef().unserialize(er) for er in event_ref_list
+        ]
+        self.child_ref_list = [
+            ChildRef().unserialize(cr) for cr in child_ref_list
+        ]
         MediaBase.unserialize(self, media_list)
         AttributeBase.unserialize(self, attribute_list)
         CitationBase.unserialize(self, citation_list)
@@ -263,12 +271,12 @@ class Family(
         """
         if classname == "Event":
             return handle in [ref.ref for ref in self.event_ref_list]
-        elif classname == "Person":
+        if classname == "Person":
             return handle in (
                 [ref.ref for ref in self.child_ref_list]
                 + [self.father_handle, self.mother_handle]
             )
-        elif classname == "Place":
+        if classname == "Place":
             return handle in [x.place for x in self.lds_ord_list]
         return False
 
@@ -317,7 +325,7 @@ class Family(
             if new_handle in refs_list:
                 new_ref = self.event_ref_list[refs_list.index(new_handle)]
             n_replace = refs_list.count(old_handle)
-            for ix_replace in range(n_replace):
+            for dummy_ix_replace in range(n_replace):
                 idx = refs_list.index(old_handle)
                 self.event_ref_list[idx].ref = new_handle
                 refs_list[idx] = new_handle
@@ -335,7 +343,7 @@ class Family(
             if new_handle in refs_list:
                 new_ref = self.child_ref_list[refs_list.index(new_handle)]
             n_replace = refs_list.count(old_handle)
-            for ix_replace in range(n_replace):
+            for dummy_ix_replace in range(n_replace):
                 idx = refs_list.index(old_handle)
                 self.child_ref_list[idx].ref = new_handle
                 refs_list[idx] = new_handle
@@ -418,7 +426,8 @@ class Family(
         :rtype: list
         """
         ret = (
-            self.get_referenced_note_handles() + self.get_referenced_citation_handles()
+            self.get_referenced_note_handles()
+            + self.get_referenced_citation_handles()
         )
         ret += [
             ("Person", handle)
@@ -580,7 +589,9 @@ class Family(
         """
         if not isinstance(child_ref, ChildRef):
             raise ValueError("expecting ChildRef instance")
-        new_list = [ref for ref in self.child_ref_list if ref.ref != child_ref.ref]
+        new_list = [
+            ref for ref in self.child_ref_list if ref.ref != child_ref.ref
+        ]
         self.child_ref_list = new_list
 
     def remove_child_handle(self, child_handle):
@@ -594,7 +605,9 @@ class Family(
                   in the list.
         :rtype: bool
         """
-        new_list = [ref for ref in self.child_ref_list if ref.ref != child_handle]
+        new_list = [
+            ref for ref in self.child_ref_list if ref.ref != child_handle
+        ]
         self.child_ref_list = new_list
 
     def get_child_ref_list(self):
@@ -632,7 +645,7 @@ class Family(
                 equi = childref.is_equivalent(addendum)
                 if equi == IDENTICAL:
                     break
-                elif equi == EQUAL:
+                if equi == EQUAL:
                     childref.merge(addendum)
                     break
             else:
@@ -655,7 +668,11 @@ class Family(
         self.event_ref_list.append(event_ref)
 
     def get_event_list(self):
-        warn("Use get_event_ref_list instead of get_event_list", DeprecationWarning, 2)
+        warn(
+            "Use get_event_ref_list instead of get_event_list",
+            DeprecationWarning,
+            2,
+        )
         # Wrapper for old API
         # remove when transitition done.
         event_handle_list = []
@@ -699,7 +716,7 @@ class Family(
                 equi = eventref.is_equivalent(addendum)
                 if equi == IDENTICAL:
                     break
-                elif equi == EQUAL:
+                if equi == EQUAL:
                     eventref.merge(addendum)
                     break
             else:

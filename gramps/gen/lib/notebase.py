@@ -22,6 +22,7 @@
 """
 NoteBase class for Gramps.
 """
+
 # -------------------------------------------------------------------------
 #
 # Python modules
@@ -79,9 +80,8 @@ class NoteBase:
         """
         if handle in self.note_list:
             return False
-        else:
-            self.note_list.append(handle)
-            return True
+        self.note_list.append(handle)
+        return True
 
     def remove_note(self, handle):
         """
@@ -158,7 +158,9 @@ class NoteBase:
         )
         for handle in handle_list:
             if handle in self.note_list:
-                LOG.debug("remove handle %s from note_list %s", handle, self.note_list)
+                LOG.debug(
+                    "remove handle %s from note_list %s", handle, self.note_list
+                )
                 self.note_list.remove(handle)
         LOG.debug("get_note_child_list %s", self.get_note_child_list())
         for item in self.get_note_child_list():
@@ -213,7 +215,7 @@ class NoteBase:
         if new_handle in self.note_list:
             new_ref = new_handle
         n_replace = refs_list.count(old_handle)
-        for ix_replace in range(n_replace):
+        for dummy_ix_replace in range(n_replace):
             idx = refs_list.index(old_handle)
             if new_ref:
                 self.note_list.pop(idx)
