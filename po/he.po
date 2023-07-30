@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-28 19:29+0100\n"
-"PO-Revision-Date: 2023-07-29 17:22+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"PO-Revision-Date: 2023-07-30 09:50+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -11157,19 +11157,19 @@ msgstr "לוח גזירים"
 #: ../gramps/gui/clipboard.py:1379 ../gramps/gui/configure.py:197
 #: ../gramps/gui/editors/filtereditor.py:1164 ../gramps/gui/views/tags.py:389
 msgid "Any changes are saved immediately"
-msgstr "השינוים נשמרים באופן מיידי"
+msgstr "השינויים נשמרים באופן מיידי"
 
 #: ../gramps/gui/clipboard.py:1515 ../gramps/gui/plug/quick/_quicktable.py:141
 #, python-format
 msgctxt "the object"
 msgid "See %s details"
-msgstr "הצגת %s פרטים"
+msgstr "הצגת הפרטים של %s"
 
 #: ../gramps/gui/clipboard.py:1524 ../gramps/gui/plug/quick/_quicktable.py:149
 #, python-format
 msgctxt "the object"
 msgid "Make %s active"
-msgstr "הפיכת %s הפעיל"
+msgstr "הפיכת %s לפעיל"
 
 #: ../gramps/gui/clipboard.py:1546
 #, python-format
