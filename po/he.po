@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-28 19:29+0100\n"
-"PO-Revision-Date: 2023-07-29 11:13+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2023-07-29 17:22+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -9676,7 +9676,7 @@ msgstr "כינוי שם־משפחה"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:72
 msgid "Auto"
-msgstr ""
+msgstr "אוטמטי"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:73
 msgid "Call Name Only"
@@ -10779,10 +10779,8 @@ msgid "GObject introspection modules"
 msgstr "פירקני בחינה עצמית GObject"
 
 #: ../gramps/gen/utils/requirements.py:159
-#, fuzzy
-#| msgid "_Execute"
 msgid "Executables"
-msgstr "_ביצוע"
+msgstr "קובץ הפעלה"
 
 #: ../gramps/gen/utils/string.py:46 ../gramps/gui/editors/editperson.py:341
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
@@ -11158,10 +11156,8 @@ msgstr "לוח גזירים"
 
 #: ../gramps/gui/clipboard.py:1379 ../gramps/gui/configure.py:197
 #: ../gramps/gui/editors/filtereditor.py:1164 ../gramps/gui/views/tags.py:389
-#, fuzzy
-#| msgid "Change is not immediate"
 msgid "Any changes are saved immediately"
-msgstr "השינוי אינו מיידי"
+msgstr "השינוים נשמרים באופן מיידי"
 
 #: ../gramps/gui/clipboard.py:1515 ../gramps/gui/plug/quick/_quicktable.py:141
 #, python-format
@@ -11697,16 +11693,12 @@ msgid "Calendar on input"
 msgstr "לוח־שנה בעת קלט"
 
 #: ../gramps/gui/configure.py:1391
-#, fuzzy
-#| msgid "Shows previous page"
 msgid "on the previous day"
-msgstr "הצגת עמוד קודם"
+msgstr "ביום הקודם"
 
 #: ../gramps/gui/configure.py:1392
-#, fuzzy
-#| msgid "Shows the next page"
 msgid "on the next day"
-msgstr "הצגת העמוד הבא"
+msgstr "ביום הבא"
 
 #: ../gramps/gui/configure.py:1393
 msgid "only on leap years"
@@ -11721,10 +11713,8 @@ msgstr ""
 "1 במרץ או שלא יוצגו כלל."
 
 #: ../gramps/gui/configure.py:1401
-#, fuzzy
-#| msgid "Include death anniversaries"
 msgid "Show leap day anniversaries"
-msgstr "הכללת ימי שנה לפטירה"
+msgstr "הצגת ימי־שנה בשנה מעוברת"
 
 #: ../gramps/gui/configure.py:1408
 msgid "Active person's name and ID"
@@ -11930,16 +11920,12 @@ msgid "Show or hide the Tools icon on the toolbar."
 msgstr "חשיפת או הסתרת סמל כלים בסרגל־הכלים."
 
 #: ../gramps/gui/configure.py:1721
-#, fuzzy
-#| msgid "Show Tools icon on toolbar"
 msgid "Show Addons icon on toolbar"
-msgstr "הצגת סמל כלים בסרגל־כלים"
+msgstr "הצגת סמלי תוספים בסרגל־כלים"
 
 #: ../gramps/gui/configure.py:1723
-#, fuzzy
-#| msgid "Show or hide the Tools icon on the toolbar."
 msgid "Show or hide the Addons icon on the toolbar."
-msgstr "חשיפת או הסתרת סמל כלים בסרגל־הכלים."
+msgstr "חשיפת או הסתרת סמלי תוסף בסרגל־הכלים."
 
 #: ../gramps/gui/configure.py:1729
 msgid "Show Preferences icon on toolbar"
@@ -12784,10 +12770,8 @@ msgid "Tools"
 msgstr "כלים"
 
 #: ../gramps/gui/displaystate.py:414
-#, fuzzy
-#| msgid "Open Plugin Manager"
 msgid "Open Addon Manager"
-msgstr "פתיחת מנהל מתקעים"
+msgstr "פתיחת מנהל תוספים"
 
 #: ../gramps/gui/displaystate.py:415 ../gramps/gui/plug/_windows.py:426
 msgid "Addons"
@@ -14930,10 +14914,8 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:88
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:81
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:66
-#, fuzzy
-#| msgid "Case sensitive:"
 msgid "Case sensitive"
-msgstr "תלוי רישיות:"
+msgstr "תלוי רישיות"
 
 #: ../gramps/gui/editors/filtereditor.py:650
 msgid "Rule Name"
@@ -17596,10 +17578,8 @@ msgid "_About"
 msgstr "על _אודות"
 
 #: ../gramps/gui/grampsgui.py:56
-#, fuzzy
-#| msgid "Add Partner..."
 msgid "_Addon Manager..."
-msgstr "הוספת הורים..."
+msgstr "_מנהל תוספים..."
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Bookmarks"
@@ -17662,20 +17642,16 @@ msgid "_Report a Bug"
 msgstr "_דווח על תקל"
 
 #: ../gramps/gui/grampsgui.py:56
-#, fuzzy
-#| msgid "Reports"
 msgid "_Reports"
-msgstr "דוחות"
+msgstr "_דוחות"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Toolbar"
 msgstr "_סרגל כלים"
 
 #: ../gramps/gui/grampsgui.py:56
-#, fuzzy
-#| msgid "Tools"
 msgid "_Tools"
-msgstr "כלים"
+msgstr "_כלים"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_User Manual"
@@ -18239,77 +18215,56 @@ msgid "Style Editor"
 msgstr "עורך סגנונות"
 
 #: ../gramps/gui/plug/_windows.py:204
-#, fuzzy
-#| msgid "Object"
 msgid "Project"
-msgstr "עצם"
+msgstr "מייזם"
 
 #: ../gramps/gui/plug/_windows.py:208
-#, fuzzy
-#| msgid "Audio"
 msgid "Audience"
-msgstr "קול"
+msgstr "קהל"
 
 #: ../gramps/gui/plug/_windows.py:212 ../gramps/gui/plug/_windows.py:1340
 msgid "Version"
 msgstr "גרסה"
 
 #: ../gramps/gui/plug/_windows.py:215
-#, fuzzy
-#| msgid "Database version"
 msgid "Installed version"
-msgstr "גרסת מסד נתונים"
+msgstr "גרסה מותקנת"
 
 #: ../gramps/gui/plug/_windows.py:233 ../gramps/gui/plug/_windows.py:234
-#, fuzzy
-#| msgid "installed"
 msgid "Install"
-msgstr "מותקן"
+msgstr "התקנה"
 
 #: ../gramps/gui/plug/_windows.py:239
 msgid "Wiki"
 msgstr "ויקי"
 
 #: ../gramps/gui/plug/_windows.py:244
-#, fuzzy
-#| msgid "* Requires Restart"
 msgid "Requires"
-msgstr "* נדרש אתחול"
+msgstr "נדרש"
 
 #: ../gramps/gui/plug/_windows.py:249
-#, fuzzy
-#| msgctxt "Graduation abbreviation"
-#| msgid "grad."
 msgid "Upgrade"
-msgstr "סיו."
+msgstr "עדכון"
 
 #: ../gramps/gui/plug/_windows.py:270
-#, fuzzy
-#| msgid "Deletion failed"
 msgid "Module installation failed"
-msgstr "המחיקה כשלה"
+msgstr "התקנת פרקן כשלה"
 
 #: ../gramps/gui/plug/_windows.py:294
-#, fuzzy
-#| msgid "Retirement"
 msgid "Requirements"
-msgstr "פרישה"
+msgstr "דרישות"
 
 #: ../gramps/gui/plug/_windows.py:328
-#, fuzzy
-#| msgid "Addon Name"
 msgid "Addon Manager"
-msgstr "שם תוסף"
+msgstr "מנהל תוספים"
 
 #: ../gramps/gui/plug/_windows.py:335 ../gramps/plugins/gramplet/leak.py:112
 msgid "Refresh"
 msgstr "ריענון"
 
 #: ../gramps/gui/plug/_windows.py:364
-#, fuzzy
-#| msgid "Filter"
 msgid "Filters"
-msgstr "מסנן"
+msgstr "מסננים"
 
 #: ../gramps/gui/plug/_windows.py:372 ../gramps/gui/plug/_windows.py:381
 #: ../gramps/gui/plug/_windows.py:388 ../gramps/gui/plug/_windows.py:402
@@ -18319,26 +18274,20 @@ msgid "All"
 msgstr "הכול"
 
 #: ../gramps/gui/plug/_windows.py:429
-#, fuzzy
-#| msgid "Setting"
 msgid "Settings"
-msgstr "אפשרויות"
+msgstr "הגדרות"
 
 #: ../gramps/gui/plug/_windows.py:432
 msgid "Projects"
 msgstr "מייזם"
 
 #: ../gramps/gui/plug/_windows.py:452
-#, fuzzy
-#| msgid "Loading items..."
 msgid "Loading..."
-msgstr "טעינת פריטים..."
+msgstr "מתבצעת טעינה..."
 
 #: ../gramps/gui/plug/_windows.py:494
-#, fuzzy
-#| msgid "No matches found"
 msgid "No matching addons found."
-msgstr "לא נמצאו התאמות"
+msgstr "לא נמצאו תוספים מתאימים"
 
 #: ../gramps/gui/plug/_windows.py:617
 msgid "Allow Gramps to install required python modules"
@@ -18395,22 +18344,16 @@ msgid "Check for updated addons now"
 msgstr "בדיקת זמינות עדכוני תוספים"
 
 #: ../gramps/gui/plug/_windows.py:687
-#, fuzzy
-#| msgid "New Person"
 msgid "New Project"
-msgstr "אדם חדש"
+msgstr "מייזם חדש"
 
 #: ../gramps/gui/plug/_windows.py:689
-#, fuzzy
-#| msgid "Edit Person"
 msgid "Edit Project"
-msgstr "עריכת אדם"
+msgstr "עריכת מייזם"
 
 #: ../gramps/gui/plug/_windows.py:695
-#, fuzzy
-#| msgid "Preferred name"
 msgid "Project name"
-msgstr "שם מועדף"
+msgstr "שם מייזם"
 
 #: ../gramps/gui/plug/_windows.py:754
 msgid "Checking Addons Failed"
@@ -20300,10 +20243,8 @@ msgid "'%s' is not a valid date value"
 msgstr "'%s' הוא לא ערך תקין של תאריך"
 
 #: ../gramps/plugins/cite/cite.gpr.py:36
-#, fuzzy
-#| msgid "Publication Information"
 msgid "Default citation formatter"
-msgstr "מידע על פרסומים"
+msgstr "מתבנת מובאות ברירת־מחדל"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:26
 msgid "BSDDB"
@@ -21646,10 +21587,8 @@ msgid ""
 msgstr "אפשר להתאים אישית גופן וצבע לכל דור ודור בעורך הסגנונות"
 
 #: ../gramps/plugins/drawreport/fanchart.py:765
-#, fuzzy
-#| msgid "Flip name on the left of the fan"
 msgid "Flip names that are on the bottom half of the fan"
-msgstr "היפוך שמות בצדה השמאלי של המניפה"
+msgstr "היפוך שמות שנמצאים בחצי התחתונן של המניפה"
 
 #: ../gramps/plugins/drawreport/fanchart.py:767
 msgid "Flip names for generations 2, 3 and 4 i.e. those found in circles"
@@ -24698,10 +24637,8 @@ msgid "Show Sosa / Sosa-Stradonitz / Ahnentafel number."
 msgstr "הצגת מספר Sosa / ‏Sosa־סטראדונץ / מספור אננטפל."
 
 #: ../gramps/plugins/graph/gvhourglass.py:474
-#, fuzzy
-#| msgid "Show all events"
 msgid "Show symbols for events"
-msgstr "הצגת כל האירועים"
+msgstr "הצגת סמלים לארועים"
 
 #: ../gramps/plugins/graph/gvhourglass.py:476
 msgid "Show genealogical symbols for birth, marriage and death events."
@@ -37734,18 +37671,16 @@ msgid "Google maps API key"
 msgstr "מפתח API לגוגל מפות"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2495
-#, fuzzy
-#| msgid "The API key used for the Google maps"
 msgid ""
 "The API key used for the Google maps.\n"
 "This key is mandatory and must be valid"
-msgstr "מפתח ה API שמשמש למפות גוגל"
+msgstr ""
+"מפתח ה־API שמשמש למפות גוגל.\n"
+"זהו מפתח חובה והא חייב להיות תקין"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2504
-#, fuzzy
-#| msgid "Google maps API key"
 msgid "How to get the API key"
-msgstr "מפתח API לגוגל מפות"
+msgstr "כיצד לקבל מפתח API"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2507
 msgid ""
