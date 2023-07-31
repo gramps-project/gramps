@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
-"PO-Revision-Date: 2023-07-29 05:52+0000\n"
+"PO-Revision-Date: 2023-07-31 05:47+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@gmx.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -18039,15 +18039,6 @@ msgid "Available Gramps Updates for Addons"
 msgstr "Há actualizações para extensões do Gramps"
 
 #: ../gramps/gui/glade/updateaddons.glade:89
-#, fuzzy
-#| msgid ""
-#| "Gramps comes with a core set of plugins which provide all of the "
-#| "necessary features. However, you can extend this functionality with "
-#| "additional Addons. These addons provide reports, listings, views, "
-#| "gramplets, and more. Here you can select among the available extra "
-#| "addons, they will be retrieved from the internet off of the Gramps "
-#| "website, and installed locally on your computer. If you close this dialog "
-#| "now, you can install addons later from the menu under Edit -> Preferences."
 msgid ""
 "Gramps comes with a core set of plugins which provide all of the necessary "
 "features. However, you can extend this functionality with additional Addons. "
@@ -18063,7 +18054,8 @@ msgstr ""
 "vistas, gramplets e muito mais. Aqui pode seleccionar entre as extensões "
 "adicionais disponíveis, que serão transferidas a partir da página do Gramps "
 "na Internet e instaladas localmente no seu computador. Se fechar esta Janela "
-"agora, pode instalar extensões posteriormente no menu Editar -> Preferências."
+"agora, pode instalar extensões posteriormente no menu Editar -> Gestor de "
+"extensões."
 
 #: ../gramps/gui/glade/updateaddons.glade:105
 msgid "_Select All"
@@ -20147,10 +20139,8 @@ msgid "Would you like to run the Check and Repair tool?"
 msgstr "Deseja executar a ferramenta Verificar/Corrigir?"
 
 #: ../gramps/gui/viewmanager.py:1212 ../gramps/gui/viewmanager.py:1790
-#, fuzzy
-#| msgid "Please, correct this before linking"
 msgid "Please, wait before closing gramps"
-msgstr "Por favor, corrija o erro antes de ligar"
+msgstr "Por favor, aguarde antes de fechar o Gramps"
 
 #: ../gramps/gui/viewmanager.py:1214 ../gramps/gui/viewmanager.py:1218
 msgid "Autobackup..."
