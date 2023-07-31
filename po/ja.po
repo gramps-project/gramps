@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-28 19:29+0100\n"
+"POT-Creation-Date: 2023-07-30 22:08+0100\n"
 "PO-Revision-Date: 2022-03-04 22:09+0000\n"
 "Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/gramps-project/"
@@ -1183,7 +1183,7 @@ msgstr "引数の解析エラー"
 
 #: ../gramps/cli/clidbman.py:72 ../gramps/cli/clidbman.py:166
 #: ../gramps/cli/clidbman.py:168 ../gramps/gui/clipboard.py:190
-#: ../gramps/gui/clipboard.py:191 ../gramps/gui/plug/_windows.py:1213
+#: ../gramps/gui/clipboard.py:191 ../gramps/gui/plug/_windows.py:1217
 msgid "Unavailable"
 msgstr "利用不可"
 
@@ -1228,8 +1228,8 @@ msgstr "家系図 “%s”:"
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/cli/clidbman.py:201 ../gramps/gen/plug/report/utils.py:159
 #: ../gramps/gui/editors/editattribute.py:135
-#: ../gramps/gui/editors/editname.py:310 ../gramps/gui/plug/_windows.py:1404
-#: ../gramps/gui/plug/_windows.py:1840
+#: ../gramps/gui/editors/editname.py:310 ../gramps/gui/plug/_windows.py:1408
+#: ../gramps/gui/plug/_windows.py:1844
 #: ../gramps/plugins/gramplet/whatsnext.py:494
 #: ../gramps/plugins/textreport/birthdayreport.py:194
 #: ../gramps/plugins/textreport/birthdayreport.py:198
@@ -2831,53 +2831,53 @@ msgstr "タグの数"
 msgid "Schema version"
 msgstr "スキーマのバージョン"
 
-#: ../gramps/gen/db/upgrade.py:372
+#: ../gramps/gen/db/upgrade.py:426
 #, python-format
 msgid ""
 "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:374
+#: ../gramps/gen/db/upgrade.py:428
 #, python-format
 msgid ""
 "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:376
+#: ../gramps/gen/db/upgrade.py:430
 #, python-format
 msgid ""
 "%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:378
+#: ../gramps/gen/db/upgrade.py:432
 #, python-format
 msgid ""
 "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:380
+#: ../gramps/gen/db/upgrade.py:434
 #, python-format
 msgid ""
 "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:382
+#: ../gramps/gen/db/upgrade.py:436
 #, python-format
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:384
+#: ../gramps/gen/db/upgrade.py:438
 #, python-format
 msgid ""
 "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:724
+#: ../gramps/gen/db/upgrade.py:778
 msgid "Number of new objects upgraded:\n"
 msgstr "アップグレードされた新しいオブジェクトの数:\n"
 
-#: ../gramps/gen/db/upgrade.py:733
+#: ../gramps/gen/db/upgrade.py:787
 msgid ""
 "\n"
 "\n"
@@ -2887,7 +2887,7 @@ msgid ""
 "information"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:737
+#: ../gramps/gen/db/upgrade.py:791
 msgid "Upgrade Statistics"
 msgstr "統計をアップグレード"
 
@@ -4376,7 +4376,7 @@ msgstr "タイプ:"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:48
 #: ../gramps/gui/glade/mergemedia.glade:245
-#: ../gramps/gui/glade/mergemedia.glade:261 ../gramps/gui/viewmanager.py:1688
+#: ../gramps/gui/glade/mergemedia.glade:261 ../gramps/gui/viewmanager.py:1693
 msgid "Path:"
 msgstr "パス:"
 
@@ -6051,7 +6051,7 @@ msgstr "住所"
 
 #: ../gramps/gen/lib/address.py:101 ../gramps/gen/lib/attribute.py:240
 #: ../gramps/gen/lib/childref.py:109 ../gramps/gen/lib/citation.py:133
-#: ../gramps/gen/lib/event.py:173 ../gramps/gen/lib/eventref.py:99
+#: ../gramps/gen/lib/event.py:173 ../gramps/gen/lib/eventref.py:101
 #: ../gramps/gen/lib/family.py:190 ../gramps/gen/lib/ldsord.py:194
 #: ../gramps/gen/lib/media.py:169 ../gramps/gen/lib/mediaref.py:90
 #: ../gramps/gen/lib/name.py:147 ../gramps/gen/lib/note.py:128
@@ -6111,10 +6111,11 @@ msgstr "プライベート"
 
 #: ../gramps/gen/lib/address.py:103 ../gramps/gen/lib/attribute.py:242
 #: ../gramps/gen/lib/childref.py:113 ../gramps/gen/lib/event.py:155
-#: ../gramps/gen/lib/family.py:178 ../gramps/gen/lib/ldsord.py:174
-#: ../gramps/gen/lib/media.py:156 ../gramps/gen/lib/mediaref.py:92
-#: ../gramps/gen/lib/name.py:151 ../gramps/gen/lib/person.py:223
-#: ../gramps/gen/lib/personref.py:104 ../gramps/gen/lib/place.py:170
+#: ../gramps/gen/lib/eventref.py:103 ../gramps/gen/lib/family.py:178
+#: ../gramps/gen/lib/ldsord.py:174 ../gramps/gen/lib/media.py:156
+#: ../gramps/gen/lib/mediaref.py:92 ../gramps/gen/lib/name.py:151
+#: ../gramps/gen/lib/person.py:223 ../gramps/gen/lib/personref.py:104
+#: ../gramps/gen/lib/place.py:170
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:800
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:814
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:828
@@ -6129,7 +6130,7 @@ msgstr "引用"
 
 #: ../gramps/gen/lib/address.py:107 ../gramps/gen/lib/attribute.py:248
 #: ../gramps/gen/lib/childref.py:117 ../gramps/gen/lib/citation.py:119
-#: ../gramps/gen/lib/event.py:159 ../gramps/gen/lib/eventref.py:103
+#: ../gramps/gen/lib/event.py:159 ../gramps/gen/lib/eventref.py:109
 #: ../gramps/gen/lib/family.py:182 ../gramps/gen/lib/ldsord.py:178
 #: ../gramps/gen/lib/media.py:159 ../gramps/gen/lib/mediaref.py:96
 #: ../gramps/gen/lib/name.py:155 ../gramps/gen/lib/person.py:227
@@ -6370,8 +6371,8 @@ msgstr "カースト"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:67
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:105
 #: ../gramps/gui/glade/rule.glade:931 ../gramps/gui/glade/styleeditor.glade:278
-#: ../gramps/gui/plug/_windows.py:853 ../gramps/gui/plug/_windows.py:962
-#: ../gramps/gui/plug/_windows.py:1339 ../gramps/gui/plug/_windows.py:1829
+#: ../gramps/gui/plug/_windows.py:857 ../gramps/gui/plug/_windows.py:966
+#: ../gramps/gui/plug/_windows.py:1343 ../gramps/gui/plug/_windows.py:1833
 #: ../gramps/gui/selectors/selectevent.py:70
 #: ../gramps/plugins/gramplet/coordinates.py:90
 #: ../gramps/plugins/gramplet/events.py:94
@@ -6808,7 +6809,7 @@ msgstr "幅"
 msgid "textonly"
 msgstr "テキストのみ"
 
-#: ../gramps/gen/lib/event.py:136 ../gramps/gen/lib/eventref.py:109
+#: ../gramps/gen/lib/event.py:136 ../gramps/gen/lib/eventref.py:115
 #: ../gramps/gui/clipboard.py:337 ../gramps/gui/configure.py:672
 #: ../gramps/gui/editors/editlink.py:92
 #: ../gramps/gui/editors/filtereditor.py:297
@@ -6868,7 +6869,7 @@ msgstr "イベント"
 msgid "Place"
 msgstr "場所"
 
-#: ../gramps/gen/lib/event.py:165 ../gramps/gen/lib/eventref.py:106
+#: ../gramps/gen/lib/event.py:165 ../gramps/gen/lib/eventref.py:112
 #: ../gramps/gen/lib/family.py:171 ../gramps/gen/lib/media.py:152
 #: ../gramps/gen/lib/mediaref.py:100 ../gramps/gen/lib/person.py:213
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:590
@@ -6886,7 +6887,7 @@ msgstr "場所"
 msgid "Attributes"
 msgstr "属性"
 
-#: ../gramps/gen/lib/eventref.py:95
+#: ../gramps/gen/lib/eventref.py:97
 msgid "Event reference"
 msgstr "イベント参照"
 
@@ -7568,8 +7569,8 @@ msgstr "シビルユニオン"
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:110
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:106
 #: ../gramps/gui/merge/mergeperson.py:253 ../gramps/gui/plug/_windows.py:206
-#: ../gramps/gui/plug/_windows.py:842 ../gramps/gui/plug/_windows.py:958
-#: ../gramps/gui/plug/_windows.py:1827
+#: ../gramps/gui/plug/_windows.py:846 ../gramps/gui/plug/_windows.py:962
+#: ../gramps/gui/plug/_windows.py:1831
 #: ../gramps/gui/plug/report/_bookdialog.py:384
 #: ../gramps/gui/plug/report/_bookdialog.py:388
 #: ../gramps/gui/selectors/selectevent.py:66
@@ -7710,8 +7711,8 @@ msgstr "寺"
 #: ../gramps/gen/lib/ldsord.py:192 ../gramps/gui/dbman.py:400
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:53
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:63
-#: ../gramps/gui/plug/_windows.py:210 ../gramps/gui/plug/_windows.py:846
-#: ../gramps/gui/plug/_windows.py:903
+#: ../gramps/gui/plug/_windows.py:210 ../gramps/gui/plug/_windows.py:850
+#: ../gramps/gui/plug/_windows.py:907
 #: ../gramps/plugins/quickview/ageondate.py:54
 #: ../gramps/plugins/textreport/indivcomplete.py:510
 #: ../gramps/plugins/textreport/indivcomplete.py:709
@@ -7721,7 +7722,7 @@ msgid "Status"
 msgstr "状態"
 
 #: ../gramps/gen/lib/location.py:87 ../gramps/gen/lib/nameorigintype.py:86
-#: ../gramps/gui/clipboard.py:320 ../gramps/gui/plug/_windows.py:1344
+#: ../gramps/gui/clipboard.py:320 ../gramps/gui/plug/_windows.py:1348
 msgid "Location"
 msgstr "場所"
 
@@ -7771,8 +7772,8 @@ msgstr "宗教"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:133
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:109
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:105
-#: ../gramps/gui/plug/_guioptions.py:1177 ../gramps/gui/plug/_windows.py:849
-#: ../gramps/gui/plug/_windows.py:1828
+#: ../gramps/gui/plug/_guioptions.py:1177 ../gramps/gui/plug/_windows.py:853
+#: ../gramps/gui/plug/_windows.py:1832
 #: ../gramps/gui/plug/report/_bookdialog.py:383
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
@@ -8666,7 +8667,7 @@ msgid "Priority"
 msgstr "優先度"
 
 #: ../gramps/gen/lib/url.py:88 ../gramps/gui/clipboard.py:420
-#: ../gramps/gui/plug/_windows.py:703
+#: ../gramps/gui/plug/_windows.py:705
 msgid "Url"
 msgstr "URL"
 
@@ -9738,7 +9739,7 @@ msgstr "含めない"
 
 #: ../gramps/gen/plug/report/stdoptions.py:335
 #: ../gramps/gen/plug/report/stdoptions.py:364
-#: ../gramps/gui/viewmanager.py:1747
+#: ../gramps/gui/viewmanager.py:1752
 #: ../gramps/plugins/graph/gvfamilylines.py:226
 #: ../gramps/plugins/graph/gvrelgraph.py:869
 #: ../gramps/plugins/textreport/detancestralreport.py:900
@@ -10706,6 +10707,186 @@ msgstr ""
 msgid "Objects referenced by this note were missing in a file imported on %s."
 msgstr ""
 
+#: ../gramps/gen/utils/win32locale.py:43
+msgid "Arabic"
+msgstr "アラビア語"
+
+#: ../gramps/gen/utils/win32locale.py:44
+msgid "Bulgarian"
+msgstr "ブルガリア語"
+
+#: ../gramps/gen/utils/win32locale.py:46
+msgid "Breton"
+msgstr "ブルターニュ語"
+
+#: ../gramps/gen/utils/win32locale.py:47
+msgid "Catalan"
+msgstr "カタロニア語"
+
+#: ../gramps/gen/utils/win32locale.py:48
+msgid "Czech"
+msgstr "チェコ語"
+
+#: ../gramps/gen/utils/win32locale.py:49
+msgid "Danish"
+msgstr "デンマーク語"
+
+#: ../gramps/gen/utils/win32locale.py:50
+msgid "German"
+msgstr "ドイツ語"
+
+#: ../gramps/gen/utils/win32locale.py:51
+msgid "German (Austria)"
+msgstr ""
+
+#: ../gramps/gen/utils/win32locale.py:52
+msgid "Greek"
+msgstr "ギリシャ語"
+
+#: ../gramps/gen/utils/win32locale.py:53
+msgid "English (USA)"
+msgstr "アメリカ英語"
+
+#: ../gramps/gen/utils/win32locale.py:54
+msgid "English"
+msgstr "英語"
+
+#: ../gramps/gen/utils/win32locale.py:56
+msgid "Esperanto"
+msgstr "エスペラント"
+
+#: ../gramps/gen/utils/win32locale.py:57
+msgid "Spanish"
+msgstr "スペイン語"
+
+#: ../gramps/gen/utils/win32locale.py:58
+msgid "Finnish"
+msgstr "フィンランド語"
+
+#: ../gramps/gen/utils/win32locale.py:59
+msgid "French"
+msgstr "フランス語"
+
+#: ../gramps/gen/utils/win32locale.py:61
+msgid "Gaelic"
+msgstr "ゲール語"
+
+#: ../gramps/gen/utils/win32locale.py:62
+msgid "Hebrew"
+msgstr "ヘブライ語"
+
+#: ../gramps/gen/utils/win32locale.py:63
+msgid "Croatian"
+msgstr "クロアチア語"
+
+#: ../gramps/gen/utils/win32locale.py:64
+msgid "Hungarian"
+msgstr "ハンガリー語"
+
+#: ../gramps/gen/utils/win32locale.py:65
+msgid "Indonesian"
+msgstr ""
+
+#: ../gramps/gen/utils/win32locale.py:66
+msgid "Icelandic"
+msgstr "アイスランド語"
+
+#: ../gramps/gen/utils/win32locale.py:67
+msgid "Italian"
+msgstr "イタリア語"
+
+#: ../gramps/gen/utils/win32locale.py:68
+msgid "Japanese"
+msgstr "日本語"
+
+#: ../gramps/gen/utils/win32locale.py:69
+msgid "Lithuanian"
+msgstr "リトアニア語"
+
+#: ../gramps/gen/utils/win32locale.py:71
+msgid "Macedonian"
+msgstr "マケドニア語"
+
+#: ../gramps/gen/utils/win32locale.py:72
+msgid "Norwegian Bokmal"
+msgstr "ブークモール・ノルウェー語"
+
+#: ../gramps/gen/utils/win32locale.py:73
+msgid "Dutch"
+msgstr "オランダ語"
+
+#: ../gramps/gen/utils/win32locale.py:74
+msgid "Norwegian Nynorsk"
+msgstr "ニーノシュク・ノルウェー語"
+
+#: ../gramps/gen/utils/win32locale.py:75
+msgid "Polish"
+msgstr "ポーランド語"
+
+#: ../gramps/gen/utils/win32locale.py:76
+msgid "Portuguese (Brazil)"
+msgstr "ポルトガル語(ブラジル)"
+
+#: ../gramps/gen/utils/win32locale.py:77
+msgid "Portuguese (Portugal)"
+msgstr "ポルトガル語(ポルトガル)"
+
+#: ../gramps/gen/utils/win32locale.py:78
+msgid "Romanian"
+msgstr "ルーマニア語"
+
+#: ../gramps/gen/utils/win32locale.py:79
+msgid "Russian"
+msgstr "ロシア語"
+
+#: ../gramps/gen/utils/win32locale.py:80
+msgid "Slovak"
+msgstr "スロヴァキア語"
+
+#: ../gramps/gen/utils/win32locale.py:81
+msgid "Slovenian"
+msgstr "スロヴェニア語"
+
+#: ../gramps/gen/utils/win32locale.py:82
+msgid "Albanian"
+msgstr "アルバニア語"
+
+#: ../gramps/gen/utils/win32locale.py:83
+msgid "Serbian"
+msgstr "セルビア語"
+
+#: ../gramps/gen/utils/win32locale.py:84
+msgid "Swedish"
+msgstr "スウェーデン語"
+
+#: ../gramps/gen/utils/win32locale.py:86
+msgid "Tamil"
+msgstr "タミル語"
+
+#: ../gramps/gen/utils/win32locale.py:87
+msgid "Turkish"
+msgstr "トルコ語"
+
+#: ../gramps/gen/utils/win32locale.py:88
+msgid "Ukrainian"
+msgstr "ウクライナ語"
+
+#: ../gramps/gen/utils/win32locale.py:89
+msgid "Vietnamese"
+msgstr "ベトナム語"
+
+#: ../gramps/gen/utils/win32locale.py:90
+msgid "Chinese (Simplified)"
+msgstr "中国語(簡体字)"
+
+#: ../gramps/gen/utils/win32locale.py:91
+msgid "Chinese (Hong Kong)"
+msgstr "中国語(香港)"
+
+#: ../gramps/gen/utils/win32locale.py:92
+msgid "Chinese (Traditional)"
+msgstr "中国語(繁体字)"
+
 #: ../gramps/grampsapp.py:189
 #, fuzzy, python-format
 #| msgid ""
@@ -10887,7 +11068,7 @@ msgstr "順序を変更するには、カラムをドラッグ&ドロップし�
 
 #: ../gramps/gui/columnorder.py:109 ../gramps/gui/configure.py:2027
 #: ../gramps/gui/configure.py:2051 ../gramps/gui/configure.py:2077
-#: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:1818
+#: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:1828
 #: ../gramps/plugins/lib/maps/geography.py:1017
 #: ../gramps/plugins/lib/maps/geography.py:1380
 msgid "_Apply"
@@ -10930,10 +11111,10 @@ msgstr "表示名エディタ"
 #: ../gramps/gui/glade/plugins.glade:22 ../gramps/gui/glade/rule.glade:24
 #: ../gramps/gui/glade/rule.glade:1024 ../gramps/gui/glade/tipofday.glade:117
 #: ../gramps/gui/glade/updateaddons.glade:25 ../gramps/gui/grampsgui.py:56
-#: ../gramps/gui/plug/_windows.py:336 ../gramps/gui/plug/_windows.py:824
-#: ../gramps/gui/plug/_windows.py:1410 ../gramps/gui/plug/_windows.py:1466
+#: ../gramps/gui/plug/_windows.py:336 ../gramps/gui/plug/_windows.py:828
+#: ../gramps/gui/plug/_windows.py:1414 ../gramps/gui/plug/_windows.py:1470
 #: ../gramps/gui/plug/quick/_textbufdoc.py:60 ../gramps/gui/undohistory.py:90
-#: ../gramps/gui/viewmanager.py:1682 ../gramps/gui/views/bookmarks.py:311
+#: ../gramps/gui/viewmanager.py:1687 ../gramps/gui/views/bookmarks.py:311
 #: ../gramps/gui/views/tags.py:494 ../gramps/gui/widgets/grampletbar.py:669
 #: ../gramps/gui/widgets/grampletpane.py:240
 #: ../gramps/plugins/lib/maps/placeselection.py:117
@@ -10994,8 +11175,8 @@ msgstr "無効または不完全なフォーマット定義です。"
 #: ../gramps/gui/configure.py:1424 ../gramps/gui/configure.py:1444
 #: ../gramps/gui/configure.py:1457 ../gramps/gui/configure.py:1826
 #: ../gramps/gui/configure.py:1884 ../gramps/gui/plug/_windows.py:645
-#: ../gramps/gui/plug/_windows.py:663 ../gramps/gui/plug/_windows.py:695
-#: ../gramps/gui/plug/_windows.py:703 ../gramps/gui/views/navigationview.py:344
+#: ../gramps/gui/plug/_windows.py:663 ../gramps/gui/plug/_windows.py:697
+#: ../gramps/gui/plug/_windows.py:705 ../gramps/gui/views/navigationview.py:344
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:90
 #, python-format
 msgid "%s: "
@@ -11066,7 +11247,7 @@ msgstr "州/都道府県"
 msgid "ZIP/Postal Code"
 msgstr "郵便番号"
 
-#: ../gramps/gui/configure.py:630 ../gramps/gui/plug/_windows.py:1342
+#: ../gramps/gui/configure.py:630 ../gramps/gui/plug/_windows.py:1346
 #: ../gramps/plugins/view/repoview.py:95
 msgid "Email"
 msgstr "Eメール"
@@ -11313,7 +11494,7 @@ msgstr "表示"
 #: ../gramps/gui/glade/editperson.glade:12
 #: ../gramps/gui/glade/editperson.glade:516 ../gramps/gui/glade/rule.glade:463
 #: ../gramps/gui/glade/styleeditor.glade:1903
-#: ../gramps/gui/plug/_windows.py:871 ../gramps/gui/plug/_windows.py:926
+#: ../gramps/gui/plug/_windows.py:875 ../gramps/gui/plug/_windows.py:930
 #: ../gramps/plugins/gramplet/ancestor.py:112
 #: ../gramps/plugins/gramplet/descendant.py:110
 msgid "Edit"
@@ -11863,11 +12044,11 @@ msgstr "メディアフォルダを選択"
 #: ../gramps/gui/glade/rule.glade:747 ../gramps/gui/glade/styleeditor.glade:86
 #: ../gramps/gui/glade/styleeditor.glade:1737
 #: ../gramps/gui/logger/_errorview.py:173 ../gramps/gui/plug/_guioptions.py:81
-#: ../gramps/gui/plug/_guioptions.py:1745 ../gramps/gui/plug/_windows.py:710
-#: ../gramps/gui/plug/_windows.py:1159
+#: ../gramps/gui/plug/_guioptions.py:1745 ../gramps/gui/plug/_windows.py:714
+#: ../gramps/gui/plug/_windows.py:1163
 #: ../gramps/gui/plug/report/_fileentry.py:64
-#: ../gramps/gui/plug/report/_reportdialog.py:162 ../gramps/gui/utils.py:180
-#: ../gramps/gui/viewmanager.py:1817 ../gramps/gui/views/listview.py:1162
+#: ../gramps/gui/plug/report/_reportdialog.py:162 ../gramps/gui/utils.py:235
+#: ../gramps/gui/viewmanager.py:1827 ../gramps/gui/views/listview.py:1162
 #: ../gramps/gui/views/navigationview.py:349 ../gramps/gui/views/tags.py:710
 #: ../gramps/gui/widgets/progressdialog.py:437
 #: ../gramps/plugins/importer/importprogen.glade:1714
@@ -11883,7 +12064,7 @@ msgstr "キャンセル(_C)"
 msgid "Select database directory"
 msgstr "データベースフォルダを選択してください"
 
-#: ../gramps/gui/configure.py:2072 ../gramps/gui/viewmanager.py:1814
+#: ../gramps/gui/configure.py:2072 ../gramps/gui/viewmanager.py:1824
 msgid "Select backup directory"
 msgstr "バックアップするフォルダを選択してください"
 
@@ -12151,9 +12332,9 @@ msgstr "データベース情報"
 #: ../gramps/gui/glade/reorder.glade:38 ../gramps/gui/glade/rule.glade:333
 #: ../gramps/gui/glade/rule.glade:764 ../gramps/gui/glade/styleeditor.glade:103
 #: ../gramps/gui/glade/styleeditor.glade:1754
-#: ../gramps/gui/plug/_guioptions.py:82 ../gramps/gui/plug/_windows.py:711
-#: ../gramps/gui/plug/report/_reportdialog.py:166 ../gramps/gui/utils.py:194
-#: ../gramps/gui/viewmanager.py:1684 ../gramps/gui/views/tags.py:711
+#: ../gramps/gui/plug/_guioptions.py:82 ../gramps/gui/plug/_windows.py:715
+#: ../gramps/gui/plug/report/_reportdialog.py:166 ../gramps/gui/utils.py:249
+#: ../gramps/gui/viewmanager.py:1689 ../gramps/gui/views/tags.py:711
 #: ../gramps/plugins/tool/check.py:778 ../gramps/plugins/tool/patchnames.py:118
 #: ../gramps/plugins/tool/populatesources.py:91
 #: ../gramps/plugins/tool/testcasegenerator.py:328
@@ -12440,7 +12621,7 @@ msgstr ""
 "%s"
 
 #: ../gramps/gui/dialog.py:460 ../gramps/gui/dialog.py:560
-#: ../gramps/gui/utils.py:309
+#: ../gramps/gui/utils.py:364
 msgid "Attempt to force closing the dialog"
 msgstr "ダイアログを強制的に閉じる"
 
@@ -13489,13 +13670,13 @@ msgid "New_Event_dialog"
 msgstr "新規イベントダイアログ"
 
 #: ../gramps/gui/editors/editevent.py:98
-#: ../gramps/gui/editors/editeventref.py:265
+#: ../gramps/gui/editors/editeventref.py:272
 #, python-format
 msgid "Event: %s"
 msgstr "イベント: %s"
 
 #: ../gramps/gui/editors/editevent.py:100
-#: ../gramps/gui/editors/editeventref.py:267
+#: ../gramps/gui/editors/editeventref.py:274
 msgid "New Event"
 msgstr "新しいイベント"
 
@@ -13548,7 +13729,7 @@ msgid "Event_Reference_Editor_dialog"
 msgstr "イベント参照エディタダイアログ"
 
 #: ../gramps/gui/editors/editeventref.py:77
-#: ../gramps/gui/editors/editeventref.py:268
+#: ../gramps/gui/editors/editeventref.py:275
 msgid "Event Reference Editor"
 msgstr "イベント参照エディタ"
 
@@ -13560,11 +13741,11 @@ msgstr "イベント参照エディタ"
 msgid "_General"
 msgstr "一般(_G)"
 
-#: ../gramps/gui/editors/editeventref.py:275
+#: ../gramps/gui/editors/editeventref.py:282
 msgid "Modify Event"
 msgstr "イベントの変更"
 
-#: ../gramps/gui/editors/editeventref.py:280
+#: ../gramps/gui/editors/editeventref.py:287
 msgid "Add Event"
 msgstr "イベントの追加"
 
@@ -16504,7 +16685,7 @@ msgid "_Merge and close"
 msgstr "マージして閉じる(_M)"
 
 #: ../gramps/gui/glade/mergedata.glade:173
-#: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:1822
+#: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:1826
 #: ../gramps/plugins/tool/changenames.py:196
 #: ../gramps/plugins/tool/patchnames.py:401
 msgid "Select"
@@ -17169,7 +17350,7 @@ msgid "Install Selected _Addons"
 msgstr "選択されたアドオンをインストール(_A)"
 
 #: ../gramps/gui/glade/updateaddons.glade:72
-#: ../gramps/gui/plug/_windows.py:1802
+#: ../gramps/gui/plug/_windows.py:1806
 msgid "Available Gramps Updates for Addons"
 msgstr "取得可能なGrampsアドオンのアップデート"
 
@@ -17181,7 +17362,7 @@ msgid ""
 "can select among the available extra addons, they will be retrieved from the "
 "internet off of the Gramps website, and installed locally on your computer. "
 "If you close this dialog now, you can install addons later from the menu "
-"under Edit -> Preferences."
+"under Edit -> Addon Manager."
 msgstr ""
 
 #: ../gramps/gui/glade/updateaddons.glade:105
@@ -17855,7 +18036,7 @@ msgstr "%sのフォント色を選択"
 msgid "Save As"
 msgstr "名前を付けて保存"
 
-#: ../gramps/gui/plug/_guioptions.py:1746 ../gramps/gui/plug/_windows.py:1160
+#: ../gramps/gui/plug/_guioptions.py:1746 ../gramps/gui/plug/_windows.py:1164
 #: ../gramps/gui/plug/report/_bookdialog.py:638
 #: ../gramps/gui/plug/report/_fileentry.py:65
 msgid "_Open"
@@ -17878,7 +18059,7 @@ msgstr "すべてのオブジェクト"
 msgid "Audience"
 msgstr "音声"
 
-#: ../gramps/gui/plug/_windows.py:212 ../gramps/gui/plug/_windows.py:1340
+#: ../gramps/gui/plug/_windows.py:212 ../gramps/gui/plug/_windows.py:1344
 msgid "Version"
 msgstr "バージョン"
 
@@ -18032,218 +18213,218 @@ msgstr "新しい人物"
 msgid "Edit Project"
 msgstr "人物を編集"
 
-#: ../gramps/gui/plug/_windows.py:695
+#: ../gramps/gui/plug/_windows.py:697
 #, fuzzy
 #| msgid "Preferred name"
 msgid "Project name"
 msgstr "通称氏名"
 
-#: ../gramps/gui/plug/_windows.py:754
+#: ../gramps/gui/plug/_windows.py:758
 msgid "Checking Addons Failed"
 msgstr "不具合のあるアドオンをチェックしています"
 
-#: ../gramps/gui/plug/_windows.py:755
+#: ../gramps/gui/plug/_windows.py:759
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr "アドオンのレポジトリは現在使用不可のようです。後で再度試してください。"
 
-#: ../gramps/gui/plug/_windows.py:768
+#: ../gramps/gui/plug/_windows.py:772
 msgid "There are no available addons of this type"
 msgstr "このタイプの取得可能なアドオンはありません"
 
-#: ../gramps/gui/plug/_windows.py:769
+#: ../gramps/gui/plug/_windows.py:773
 #, python-format
 msgid "Checked for '%s'"
 msgstr "Checked for '%s'"
 
-#: ../gramps/gui/plug/_windows.py:770
+#: ../gramps/gui/plug/_windows.py:774
 msgid "' and '"
 msgstr "' と '"
 
-#: ../gramps/gui/plug/_windows.py:775
+#: ../gramps/gui/plug/_windows.py:779
 msgid "new"
 msgstr "新規"
 
-#: ../gramps/gui/plug/_windows.py:775
+#: ../gramps/gui/plug/_windows.py:779
 msgid "update"
 msgstr "更新"
 
-#: ../gramps/gui/plug/_windows.py:809
+#: ../gramps/gui/plug/_windows.py:813
 msgid "Hidden"
 msgstr "非表示"
 
-#: ../gramps/gui/plug/_windows.py:811
+#: ../gramps/gui/plug/_windows.py:815
 msgid "Visible"
 msgstr "表示"
 
-#: ../gramps/gui/plug/_windows.py:816
+#: ../gramps/gui/plug/_windows.py:820
 msgid "Plugin Manager"
 msgstr "プラグインマネージャ"
 
-#: ../gramps/gui/plug/_windows.py:863 ../gramps/gui/plug/_windows.py:917
+#: ../gramps/gui/plug/_windows.py:867 ../gramps/gui/plug/_windows.py:921
 msgid "Info"
 msgstr "情報"
 
-#: ../gramps/gui/plug/_windows.py:866 ../gramps/gui/plug/_windows.py:920
+#: ../gramps/gui/plug/_windows.py:870 ../gramps/gui/plug/_windows.py:924
 msgid "Hide/Unhide"
 msgstr "隠す/再表示"
 
-#: ../gramps/gui/plug/_windows.py:874 ../gramps/gui/plug/_windows.py:929
+#: ../gramps/gui/plug/_windows.py:878 ../gramps/gui/plug/_windows.py:933
 msgid "Load"
 msgstr "ロード"
 
-#: ../gramps/gui/plug/_windows.py:880
+#: ../gramps/gui/plug/_windows.py:884
 msgid "Registered Plugins"
 msgstr "登録されているプラグイン"
 
-#: ../gramps/gui/plug/_windows.py:893
+#: ../gramps/gui/plug/_windows.py:897
 msgid "Loaded"
 msgstr "ロード済み"
 
-#: ../gramps/gui/plug/_windows.py:898
+#: ../gramps/gui/plug/_windows.py:902
 #: ../gramps/plugins/importer/importprogen.glade:431
 #: ../gramps/plugins/importer/importprogen.glade:1126
 msgid "File"
 msgstr "ファイル"
 
-#: ../gramps/gui/plug/_windows.py:907
+#: ../gramps/gui/plug/_windows.py:911
 msgid "Message"
 msgstr "メッセージ"
 
-#: ../gramps/gui/plug/_windows.py:935
+#: ../gramps/gui/plug/_windows.py:939
 msgid "Loaded Plugins"
 msgstr "ロードされたプラグイン"
 
-#: ../gramps/gui/plug/_windows.py:954
+#: ../gramps/gui/plug/_windows.py:958
 msgid "Addon Name"
 msgstr "アドオン名"
 
-#: ../gramps/gui/plug/_windows.py:969
+#: ../gramps/gui/plug/_windows.py:973
 msgid "Path to Addon:"
 msgstr "アドオンへのパス:"
 
-#: ../gramps/gui/plug/_windows.py:989
+#: ../gramps/gui/plug/_windows.py:993
 msgid "Install Addon"
 msgstr "アドオンのインストール"
 
-#: ../gramps/gui/plug/_windows.py:992
+#: ../gramps/gui/plug/_windows.py:996
 msgid "Install All Addons"
 msgstr "全てのアドオンをインストール"
 
-#: ../gramps/gui/plug/_windows.py:995
+#: ../gramps/gui/plug/_windows.py:999
 msgid "Refresh Addon List"
 msgstr "アドオンリストの更新"
 
-#: ../gramps/gui/plug/_windows.py:1008
+#: ../gramps/gui/plug/_windows.py:1012
 msgid "Reload"
 msgstr "再読み込み"
 
-#: ../gramps/gui/plug/_windows.py:1035
+#: ../gramps/gui/plug/_windows.py:1039
 msgid "Refreshing Addon List"
 msgstr "アドオンリストを更新"
 
-#: ../gramps/gui/plug/_windows.py:1037 ../gramps/gui/plug/_windows.py:1042
-#: ../gramps/gui/plug/_windows.py:1137
+#: ../gramps/gui/plug/_windows.py:1041 ../gramps/gui/plug/_windows.py:1046
+#: ../gramps/gui/plug/_windows.py:1141
 msgid "Reading gramps-project.org..."
 msgstr "gramps-project.org から読み込み中..."
 
-#: ../gramps/gui/plug/_windows.py:1060
+#: ../gramps/gui/plug/_windows.py:1064
 msgid "Checking addon..."
 msgstr "アドオンをチェックしています..."
 
-#: ../gramps/gui/plug/_windows.py:1068
+#: ../gramps/gui/plug/_windows.py:1072
 msgid "Unknown Help URL"
 msgstr "未知のヘルプURL"
 
-#: ../gramps/gui/plug/_windows.py:1079
+#: ../gramps/gui/plug/_windows.py:1083
 msgid "Unknown URL"
 msgstr "未知のURL"
 
-#: ../gramps/gui/plug/_windows.py:1115
+#: ../gramps/gui/plug/_windows.py:1119
 msgid "Install all Addons"
 msgstr "全てのアドオンをインストール"
 
-#: ../gramps/gui/plug/_windows.py:1115
+#: ../gramps/gui/plug/_windows.py:1119
 msgid "Installing..."
 msgstr "インストールしています..."
 
-#: ../gramps/gui/plug/_windows.py:1135
+#: ../gramps/gui/plug/_windows.py:1139
 msgid "Installing Addon"
 msgstr "アドオンのインストール"
 
-#: ../gramps/gui/plug/_windows.py:1157
+#: ../gramps/gui/plug/_windows.py:1161
 msgid "Load Addon"
 msgstr "アドオンを読み込む"
 
-#: ../gramps/gui/plug/_windows.py:1217
+#: ../gramps/gui/plug/_windows.py:1221
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:188
 msgid "Fail"
 msgstr "失敗"
 
-#: ../gramps/gui/plug/_windows.py:1232 ../gramps/gui/widgets/grampletbar.py:569
+#: ../gramps/gui/plug/_windows.py:1236 ../gramps/gui/widgets/grampletbar.py:569
 msgid "OK"
 msgstr "OK"
 
-#: ../gramps/gui/plug/_windows.py:1338
+#: ../gramps/gui/plug/_windows.py:1342
 msgid "Plugin name"
 msgstr "プラグイン名"
 
-#: ../gramps/gui/plug/_windows.py:1341
+#: ../gramps/gui/plug/_windows.py:1345
 msgid "Authors"
 msgstr "作者"
 
-#: ../gramps/gui/plug/_windows.py:1343
+#: ../gramps/gui/plug/_windows.py:1347
 #: ../gramps/gui/plug/report/_reportdialog.py:472
 msgid "Filename"
 msgstr "ファイル名"
 
-#: ../gramps/gui/plug/_windows.py:1346
+#: ../gramps/gui/plug/_windows.py:1350
 msgid "Detailed Info"
 msgstr "詳細情報"
 
-#: ../gramps/gui/plug/_windows.py:1405
+#: ../gramps/gui/plug/_windows.py:1409
 msgid "Plugin Error"
 msgstr "プラグインエラー"
 
-#: ../gramps/gui/plug/_windows.py:1470
+#: ../gramps/gui/plug/_windows.py:1474
 msgid "_Execute"
 msgstr "実行(_E)"
 
-#: ../gramps/gui/plug/_windows.py:1771
+#: ../gramps/gui/plug/_windows.py:1775
 #: ../gramps/plugins/importer/importprogen.py:458
 #: ../gramps/plugins/tool/ownereditor.py:164
 #: ../gramps/plugins/tool/reorderids.py:221
 msgid "Main window"
 msgstr "メインウインドウ"
 
-#: ../gramps/gui/plug/_windows.py:1899
+#: ../gramps/gui/plug/_windows.py:1903
 msgid "Downloading and installing selected addons..."
 msgstr "選択されたアドオンをダウンロード、インストールしています..."
 
-#: ../gramps/gui/plug/_windows.py:1934
+#: ../gramps/gui/plug/_windows.py:1938
 msgid "Installation Errors"
 msgstr "インストールエラー"
 
-#: ../gramps/gui/plug/_windows.py:1935
+#: ../gramps/gui/plug/_windows.py:1939
 msgid "The following addons had errors: "
 msgstr "以下のアドオンが無効です: "
 
-#: ../gramps/gui/plug/_windows.py:1941 ../gramps/gui/plug/_windows.py:1949
+#: ../gramps/gui/plug/_windows.py:1945 ../gramps/gui/plug/_windows.py:1953
 msgid "Done downloading and installing addons"
 msgstr "アドオンのダウンロード完了、インストールしています"
 
 #. Translators: leave all/any {...} untranslated
-#: ../gramps/gui/plug/_windows.py:1943
+#: ../gramps/gui/plug/_windows.py:1947
 #, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
 msgstr[0] "{number_of} アドオンはインストール済みです。"
 msgstr[1] "{number_of} アドオンはインストール済みです。"
 
-#: ../gramps/gui/plug/_windows.py:1946
+#: ../gramps/gui/plug/_windows.py:1950
 msgid "If you have installed a 'Gramps View', you will need to restart Gramps."
 msgstr "Gramps Viewをインストールした場合、Grampsの再起動が必要となります。"
 
-#: ../gramps/gui/plug/_windows.py:1950
+#: ../gramps/gui/plug/_windows.py:1954
 msgid "No addons were installed."
 msgstr "アドオンがインストールされていません。"
 
@@ -19162,29 +19343,29 @@ msgstr "データベースを開きました"
 msgid "History cleared"
 msgstr "履歴を消去しました"
 
-#: ../gramps/gui/utils.py:230
+#: ../gramps/gui/utils.py:285
 msgid "Canceling..."
 msgstr "キャンセルしています..."
 
-#: ../gramps/gui/utils.py:310
+#: ../gramps/gui/utils.py:365
 msgid "Please do not force closing this important dialog."
 msgstr "この重要なダイアログを強制的に閉じないでください。"
 
-#: ../gramps/gui/utils.py:374
+#: ../gramps/gui/utils.py:429
 msgid "The external program failed to launch or experienced an error"
 msgstr "外部プログラムが起動に失敗したか、エラーが発生しました"
 
-#: ../gramps/gui/utils.py:384
+#: ../gramps/gui/utils.py:439
 msgid "Error from external program"
 msgstr "外部プログラムによるエラー"
 
-#: ../gramps/gui/utils.py:401
+#: ../gramps/gui/utils.py:456
 #: ../gramps/plugins/textreport/simplebooktitle.py:107
 #, python-format
 msgid "File %s does not exist"
 msgstr "ファイル%s は存在しません"
 
-#: ../gramps/gui/utils.py:624
+#: ../gramps/gui/utils.py:679
 msgid ""
 "Cannot open new citation editor at this time. Either the citation is already "
 "being edited, or the associated source is already being edited, and opening "
@@ -19195,7 +19376,7 @@ msgid ""
 "citation alone"
 msgstr ""
 
-#: ../gramps/gui/utils.py:637
+#: ../gramps/gui/utils.py:692
 msgid "Cannot open new citation editor"
 msgstr "新しいcitaionのエディタを開くことができません"
 
@@ -19259,19 +19440,25 @@ msgstr "Grampsの前回使用時に問題が発生しました。"
 msgid "Would you like to run the Check and Repair tool?"
 msgstr "チェックと修復ツールを起動しますか？"
 
-#: ../gramps/gui/viewmanager.py:1214
+#: ../gramps/gui/viewmanager.py:1212 ../gramps/gui/viewmanager.py:1790
+#, fuzzy
+#| msgid "Please, correct this before linking"
+msgid "Please, wait before closing gramps"
+msgstr "リンクする前に修正してください"
+
+#: ../gramps/gui/viewmanager.py:1214 ../gramps/gui/viewmanager.py:1218
 msgid "Autobackup..."
 msgstr "自動保存..."
 
-#: ../gramps/gui/viewmanager.py:1219
+#: ../gramps/gui/viewmanager.py:1223
 msgid "Error saving backup data"
 msgstr "バックアップデータのセーブでエラーが発生しました"
 
-#: ../gramps/gui/viewmanager.py:1506
+#: ../gramps/gui/viewmanager.py:1511
 msgid "Failed Loading View"
 msgstr "ビューの読み込みに失敗しました"
 
-#: ../gramps/gui/viewmanager.py:1507
+#: ../gramps/gui/viewmanager.py:1512
 #, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
@@ -19286,11 +19473,11 @@ msgid ""
 "by using the Plugin Manager on the Help menu."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1599
+#: ../gramps/gui/viewmanager.py:1604
 msgid "Failed Loading Plugin"
 msgstr "プラグインの読み込みに失敗しました"
 
-#: ../gramps/gui/viewmanager.py:1600
+#: ../gramps/gui/viewmanager.py:1605
 #, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
@@ -19305,56 +19492,56 @@ msgid ""
 "by using the Plugin Manager on the Help menu."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1680
+#: ../gramps/gui/viewmanager.py:1685
 msgid "Gramps XML Backup"
 msgstr "Gramps XML バックアップ"
 
-#: ../gramps/gui/viewmanager.py:1709
+#: ../gramps/gui/viewmanager.py:1714
 msgid "File:"
 msgstr "ファイル:"
 
-#: ../gramps/gui/viewmanager.py:1741
+#: ../gramps/gui/viewmanager.py:1746
 msgid "Media:"
 msgstr "メディア:"
 
-#: ../gramps/gui/viewmanager.py:1748
+#: ../gramps/gui/viewmanager.py:1753
 #: ../gramps/plugins/gramplet/statsgramplet.py:203
 #: ../gramps/plugins/webreport/statistics.py:150
 msgctxt "Megabyte"
 msgid "MB"
 msgstr "MB"
 
-#: ../gramps/gui/viewmanager.py:1750
+#: ../gramps/gui/viewmanager.py:1755
 msgid "Exclude"
 msgstr "排除する"
 
-#: ../gramps/gui/viewmanager.py:1770
+#: ../gramps/gui/viewmanager.py:1775
 msgid "Backup file already exists! Overwrite?"
 msgstr "バックアップファイルはすでに存在します。上書きしますか?"
 
-#: ../gramps/gui/viewmanager.py:1771
+#: ../gramps/gui/viewmanager.py:1776
 #, python-format
 msgid "The file '%s' exists."
 msgstr "ファイル '%s' が存在しています。"
 
-#: ../gramps/gui/viewmanager.py:1772
+#: ../gramps/gui/viewmanager.py:1777
 msgid "Proceed and overwrite"
 msgstr "継続して上書きする"
 
-#: ../gramps/gui/viewmanager.py:1773
+#: ../gramps/gui/viewmanager.py:1778
 msgid "Cancel the backup"
 msgstr "バックアップをキャンセル"
 
-#: ../gramps/gui/viewmanager.py:1788
+#: ../gramps/gui/viewmanager.py:1792 ../gramps/gui/viewmanager.py:1797
 msgid "Making backup..."
 msgstr "バックアップを作成しています..."
 
-#: ../gramps/gui/viewmanager.py:1801
+#: ../gramps/gui/viewmanager.py:1811
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "バックアップが '%s' へ保存されました"
 
-#: ../gramps/gui/viewmanager.py:1804
+#: ../gramps/gui/viewmanager.py:1814
 msgid "Backup aborted"
 msgstr "バックアップが中断されました"
 
@@ -25656,7 +25843,7 @@ msgid "Old xml file"
 msgstr "古いxmlファイル"
 
 #: ../gramps/plugins/importer/importxml.py:1349
-#: ../gramps/plugins/importer/importxml.py:2916
+#: ../gramps/plugins/importer/importxml.py:2918
 #, python-format
 msgid "Witness name: %s"
 msgstr "立会人名: %s"
@@ -25690,19 +25877,19 @@ msgstr "インポート日不明"
 msgid "Any note reference must have a 'hlink' attribute."
 msgstr "いかなるノート参照にも「hlink」属性がなくてはなりません。"
 
-#: ../gramps/plugins/importer/importxml.py:2731
+#: ../gramps/plugins/importer/importxml.py:2733
 #, python-brace-format
 msgid "Invalid date {date} in XML {xml}, preserving XML as text"
 msgstr ""
 "無効な日付 {date} がXML {xml} に含まれており、XMLをテキスト形式で保存していま"
 "す"
 
-#: ../gramps/plugins/importer/importxml.py:2785
+#: ../gramps/plugins/importer/importxml.py:2787
 #, python-format
 msgid "Witness comment: %s"
 msgstr "立会コメント: %s"
 
-#: ../gramps/plugins/importer/importxml.py:3468
+#: ../gramps/plugins/importer/importxml.py:3470
 #, fuzzy, python-format
 msgctxt "father"
 msgid ""
@@ -25712,7 +25899,7 @@ msgstr ""
 "エラー: 家族’%(family)s’の父親’%(father)s’は当該家族を参照していません。参照"
 "を追加してください。"
 
-#: ../gramps/plugins/importer/importxml.py:3490
+#: ../gramps/plugins/importer/importxml.py:3492
 #, fuzzy, python-format
 msgctxt "mother"
 msgid ""
@@ -25722,7 +25909,7 @@ msgstr ""
 "エラー: 家族’%(family)s’の父親’%(father)s’は当該家族を参照していません。参照"
 "を追加してください。"
 
-#: ../gramps/plugins/importer/importxml.py:3518
+#: ../gramps/plugins/importer/importxml.py:3520
 #, fuzzy, python-format
 msgctxt "child"
 msgid ""
@@ -37974,135 +38161,6 @@ msgstr "スタイルシートなし"
 #~| msgid "Plugin lib"
 #~ msgid "Plugins"
 #~ msgstr "プラグインライブラリ"
-
-#~ msgid "Arabic"
-#~ msgstr "アラビア語"
-
-#~ msgid "Bulgarian"
-#~ msgstr "ブルガリア語"
-
-#~ msgid "Breton"
-#~ msgstr "ブルターニュ語"
-
-#~ msgid "Catalan"
-#~ msgstr "カタロニア語"
-
-#~ msgid "Czech"
-#~ msgstr "チェコ語"
-
-#~ msgid "Danish"
-#~ msgstr "デンマーク語"
-
-#~ msgid "German"
-#~ msgstr "ドイツ語"
-
-#~ msgid "Greek"
-#~ msgstr "ギリシャ語"
-
-#~ msgid "English (USA)"
-#~ msgstr "アメリカ英語"
-
-#~ msgid "English"
-#~ msgstr "英語"
-
-#~ msgid "Esperanto"
-#~ msgstr "エスペラント"
-
-#~ msgid "Spanish"
-#~ msgstr "スペイン語"
-
-#~ msgid "Finnish"
-#~ msgstr "フィンランド語"
-
-#~ msgid "French"
-#~ msgstr "フランス語"
-
-#~ msgid "Gaelic"
-#~ msgstr "ゲール語"
-
-#~ msgid "Hebrew"
-#~ msgstr "ヘブライ語"
-
-#~ msgid "Croatian"
-#~ msgstr "クロアチア語"
-
-#~ msgid "Hungarian"
-#~ msgstr "ハンガリー語"
-
-#~ msgid "Icelandic"
-#~ msgstr "アイスランド語"
-
-#~ msgid "Italian"
-#~ msgstr "イタリア語"
-
-#~ msgid "Japanese"
-#~ msgstr "日本語"
-
-#~ msgid "Lithuanian"
-#~ msgstr "リトアニア語"
-
-#~ msgid "Macedonian"
-#~ msgstr "マケドニア語"
-
-#~ msgid "Norwegian Bokmal"
-#~ msgstr "ブークモール・ノルウェー語"
-
-#~ msgid "Dutch"
-#~ msgstr "オランダ語"
-
-#~ msgid "Norwegian Nynorsk"
-#~ msgstr "ニーノシュク・ノルウェー語"
-
-#~ msgid "Polish"
-#~ msgstr "ポーランド語"
-
-#~ msgid "Portuguese (Brazil)"
-#~ msgstr "ポルトガル語(ブラジル)"
-
-#~ msgid "Portuguese (Portugal)"
-#~ msgstr "ポルトガル語(ポルトガル)"
-
-#~ msgid "Romanian"
-#~ msgstr "ルーマニア語"
-
-#~ msgid "Russian"
-#~ msgstr "ロシア語"
-
-#~ msgid "Slovak"
-#~ msgstr "スロヴァキア語"
-
-#~ msgid "Slovenian"
-#~ msgstr "スロヴェニア語"
-
-#~ msgid "Albanian"
-#~ msgstr "アルバニア語"
-
-#~ msgid "Serbian"
-#~ msgstr "セルビア語"
-
-#~ msgid "Swedish"
-#~ msgstr "スウェーデン語"
-
-#~ msgid "Tamil"
-#~ msgstr "タミル語"
-
-#~ msgid "Turkish"
-#~ msgstr "トルコ語"
-
-#~ msgid "Ukrainian"
-#~ msgstr "ウクライナ語"
-
-#~ msgid "Vietnamese"
-#~ msgstr "ベトナム語"
-
-#~ msgid "Chinese (Simplified)"
-#~ msgstr "中国語(簡体字)"
-
-#~ msgid "Chinese (Hong Kong)"
-#~ msgstr "中国語(香港)"
-
-#~ msgid "Chinese (Traditional)"
-#~ msgstr "中国語(繁体字)"
 
 #, python-format
 #~ msgid "Spelling checker initialization failed: %s"

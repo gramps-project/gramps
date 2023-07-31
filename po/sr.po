@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-28 19:29+0100\n"
+"POT-Creation-Date: 2023-07-30 22:08+0100\n"
 "PO-Revision-Date: 2023-05-18 18:50+0000\n"
 "Last-Translator: Medic Momcilo <momcilo@medic.rs>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/gramps-project/"
@@ -1544,7 +1544,7 @@ msgstr "Грешка обраде аргумената"
 
 #: ../gramps/cli/clidbman.py:72 ../gramps/cli/clidbman.py:166
 #: ../gramps/cli/clidbman.py:168 ../gramps/gui/clipboard.py:190
-#: ../gramps/gui/clipboard.py:191 ../gramps/gui/plug/_windows.py:1213
+#: ../gramps/gui/clipboard.py:191 ../gramps/gui/plug/_windows.py:1217
 msgid "Unavailable"
 msgstr "Недоступно"
 
@@ -1589,8 +1589,8 @@ msgstr "Породично стабло „%s“:"
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/cli/clidbman.py:201 ../gramps/gen/plug/report/utils.py:159
 #: ../gramps/gui/editors/editattribute.py:135
-#: ../gramps/gui/editors/editname.py:310 ../gramps/gui/plug/_windows.py:1404
-#: ../gramps/gui/plug/_windows.py:1840
+#: ../gramps/gui/editors/editname.py:310 ../gramps/gui/plug/_windows.py:1408
+#: ../gramps/gui/plug/_windows.py:1844
 #: ../gramps/plugins/gramplet/whatsnext.py:494
 #: ../gramps/plugins/textreport/birthdayreport.py:194
 #: ../gramps/plugins/textreport/birthdayreport.py:198
@@ -3243,53 +3243,53 @@ msgstr "Број бракова"
 msgid "Schema version"
 msgstr "Уклони издање"
 
-#: ../gramps/gen/db/upgrade.py:372
+#: ../gramps/gen/db/upgrade.py:426
 #, python-format
 msgid ""
 "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:374
+#: ../gramps/gen/db/upgrade.py:428
 #, python-format
 msgid ""
 "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:376
+#: ../gramps/gen/db/upgrade.py:430
 #, python-format
 msgid ""
 "%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:378
+#: ../gramps/gen/db/upgrade.py:432
 #, python-format
 msgid ""
 "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:380
+#: ../gramps/gen/db/upgrade.py:434
 #, python-format
 msgid ""
 "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:382
+#: ../gramps/gen/db/upgrade.py:436
 #, python-format
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:384
+#: ../gramps/gen/db/upgrade.py:438
 #, python-format
 msgid ""
 "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:724
+#: ../gramps/gen/db/upgrade.py:778
 msgid "Number of new objects upgraded:\n"
 msgstr "Број надограђених нових предмета:\n"
 
-#: ../gramps/gen/db/upgrade.py:733
+#: ../gramps/gen/db/upgrade.py:787
 msgid ""
 "\n"
 "\n"
@@ -3305,7 +3305,7 @@ msgstr ""
 "да бисте могли да стопите цитате који садрже\n"
 "сличне податке"
 
-#: ../gramps/gen/db/upgrade.py:737
+#: ../gramps/gen/db/upgrade.py:791
 msgid "Upgrade Statistics"
 msgstr "Надоградите статистику"
 
@@ -4825,7 +4825,7 @@ msgstr "Врста:"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:48
 #: ../gramps/gui/glade/mergemedia.glade:245
-#: ../gramps/gui/glade/mergemedia.glade:261 ../gramps/gui/viewmanager.py:1688
+#: ../gramps/gui/glade/mergemedia.glade:261 ../gramps/gui/viewmanager.py:1693
 msgid "Path:"
 msgstr "Путања:"
 
@@ -6535,7 +6535,7 @@ msgstr "Адреса"
 
 #: ../gramps/gen/lib/address.py:101 ../gramps/gen/lib/attribute.py:240
 #: ../gramps/gen/lib/childref.py:109 ../gramps/gen/lib/citation.py:133
-#: ../gramps/gen/lib/event.py:173 ../gramps/gen/lib/eventref.py:99
+#: ../gramps/gen/lib/event.py:173 ../gramps/gen/lib/eventref.py:101
 #: ../gramps/gen/lib/family.py:190 ../gramps/gen/lib/ldsord.py:194
 #: ../gramps/gen/lib/media.py:169 ../gramps/gen/lib/mediaref.py:90
 #: ../gramps/gen/lib/name.py:147 ../gramps/gen/lib/note.py:128
@@ -6595,10 +6595,11 @@ msgstr "Лично"
 
 #: ../gramps/gen/lib/address.py:103 ../gramps/gen/lib/attribute.py:242
 #: ../gramps/gen/lib/childref.py:113 ../gramps/gen/lib/event.py:155
-#: ../gramps/gen/lib/family.py:178 ../gramps/gen/lib/ldsord.py:174
-#: ../gramps/gen/lib/media.py:156 ../gramps/gen/lib/mediaref.py:92
-#: ../gramps/gen/lib/name.py:151 ../gramps/gen/lib/person.py:223
-#: ../gramps/gen/lib/personref.py:104 ../gramps/gen/lib/place.py:170
+#: ../gramps/gen/lib/eventref.py:103 ../gramps/gen/lib/family.py:178
+#: ../gramps/gen/lib/ldsord.py:174 ../gramps/gen/lib/media.py:156
+#: ../gramps/gen/lib/mediaref.py:92 ../gramps/gen/lib/name.py:151
+#: ../gramps/gen/lib/person.py:223 ../gramps/gen/lib/personref.py:104
+#: ../gramps/gen/lib/place.py:170
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:800
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:814
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:828
@@ -6613,7 +6614,7 @@ msgstr "Цитати"
 
 #: ../gramps/gen/lib/address.py:107 ../gramps/gen/lib/attribute.py:248
 #: ../gramps/gen/lib/childref.py:117 ../gramps/gen/lib/citation.py:119
-#: ../gramps/gen/lib/event.py:159 ../gramps/gen/lib/eventref.py:103
+#: ../gramps/gen/lib/event.py:159 ../gramps/gen/lib/eventref.py:109
 #: ../gramps/gen/lib/family.py:182 ../gramps/gen/lib/ldsord.py:178
 #: ../gramps/gen/lib/media.py:159 ../gramps/gen/lib/mediaref.py:96
 #: ../gramps/gen/lib/name.py:155 ../gramps/gen/lib/person.py:227
@@ -6854,8 +6855,8 @@ msgstr ""
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:67
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:105
 #: ../gramps/gui/glade/rule.glade:931 ../gramps/gui/glade/styleeditor.glade:278
-#: ../gramps/gui/plug/_windows.py:853 ../gramps/gui/plug/_windows.py:962
-#: ../gramps/gui/plug/_windows.py:1339 ../gramps/gui/plug/_windows.py:1829
+#: ../gramps/gui/plug/_windows.py:857 ../gramps/gui/plug/_windows.py:966
+#: ../gramps/gui/plug/_windows.py:1343 ../gramps/gui/plug/_windows.py:1833
 #: ../gramps/gui/selectors/selectevent.py:70
 #: ../gramps/plugins/gramplet/coordinates.py:90
 #: ../gramps/plugins/gramplet/events.py:94
@@ -7295,7 +7296,7 @@ msgstr "обухвати"
 msgid "textonly"
 msgstr "само текст"
 
-#: ../gramps/gen/lib/event.py:136 ../gramps/gen/lib/eventref.py:109
+#: ../gramps/gen/lib/event.py:136 ../gramps/gen/lib/eventref.py:115
 #: ../gramps/gui/clipboard.py:337 ../gramps/gui/configure.py:672
 #: ../gramps/gui/editors/editlink.py:92
 #: ../gramps/gui/editors/filtereditor.py:297
@@ -7355,7 +7356,7 @@ msgstr "Догађај"
 msgid "Place"
 msgstr "Место"
 
-#: ../gramps/gen/lib/event.py:165 ../gramps/gen/lib/eventref.py:106
+#: ../gramps/gen/lib/event.py:165 ../gramps/gen/lib/eventref.py:112
 #: ../gramps/gen/lib/family.py:171 ../gramps/gen/lib/media.py:152
 #: ../gramps/gen/lib/mediaref.py:100 ../gramps/gen/lib/person.py:213
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:590
@@ -7373,7 +7374,7 @@ msgstr "Место"
 msgid "Attributes"
 msgstr "Особине"
 
-#: ../gramps/gen/lib/eventref.py:95
+#: ../gramps/gen/lib/eventref.py:97
 #, fuzzy
 msgid "Event reference"
 msgstr "Уреди упуту"
@@ -8056,8 +8057,8 @@ msgstr "Цивилна заједница"
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:110
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:106
 #: ../gramps/gui/merge/mergeperson.py:253 ../gramps/gui/plug/_windows.py:206
-#: ../gramps/gui/plug/_windows.py:842 ../gramps/gui/plug/_windows.py:958
-#: ../gramps/gui/plug/_windows.py:1827
+#: ../gramps/gui/plug/_windows.py:846 ../gramps/gui/plug/_windows.py:962
+#: ../gramps/gui/plug/_windows.py:1831
 #: ../gramps/gui/plug/report/_bookdialog.py:384
 #: ../gramps/gui/plug/report/_bookdialog.py:388
 #: ../gramps/gui/selectors/selectevent.py:66
@@ -8201,8 +8202,8 @@ msgstr "Храм"
 #: ../gramps/gen/lib/ldsord.py:192 ../gramps/gui/dbman.py:400
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:53
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:63
-#: ../gramps/gui/plug/_windows.py:210 ../gramps/gui/plug/_windows.py:846
-#: ../gramps/gui/plug/_windows.py:903
+#: ../gramps/gui/plug/_windows.py:210 ../gramps/gui/plug/_windows.py:850
+#: ../gramps/gui/plug/_windows.py:907
 #: ../gramps/plugins/quickview/ageondate.py:54
 #: ../gramps/plugins/textreport/indivcomplete.py:510
 #: ../gramps/plugins/textreport/indivcomplete.py:709
@@ -8212,7 +8213,7 @@ msgid "Status"
 msgstr "Стање"
 
 #: ../gramps/gen/lib/location.py:87 ../gramps/gen/lib/nameorigintype.py:86
-#: ../gramps/gui/clipboard.py:320 ../gramps/gui/plug/_windows.py:1344
+#: ../gramps/gui/clipboard.py:320 ../gramps/gui/plug/_windows.py:1348
 msgid "Location"
 msgstr "Место"
 
@@ -8262,8 +8263,8 @@ msgstr "Област"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:133
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:109
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:105
-#: ../gramps/gui/plug/_guioptions.py:1177 ../gramps/gui/plug/_windows.py:849
-#: ../gramps/gui/plug/_windows.py:1828
+#: ../gramps/gui/plug/_guioptions.py:1177 ../gramps/gui/plug/_windows.py:853
+#: ../gramps/gui/plug/_windows.py:1832
 #: ../gramps/gui/plug/report/_bookdialog.py:383
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
@@ -9167,7 +9168,7 @@ msgid "Priority"
 msgstr ""
 
 #: ../gramps/gen/lib/url.py:88 ../gramps/gui/clipboard.py:420
-#: ../gramps/gui/plug/_windows.py:703
+#: ../gramps/gui/plug/_windows.py:705
 msgid "Url"
 msgstr "Адреса"
 
@@ -10289,7 +10290,7 @@ msgstr "Не укључуј наслов"
 
 #: ../gramps/gen/plug/report/stdoptions.py:335
 #: ../gramps/gen/plug/report/stdoptions.py:364
-#: ../gramps/gui/viewmanager.py:1747
+#: ../gramps/gui/viewmanager.py:1752
 #: ../gramps/plugins/graph/gvfamilylines.py:226
 #: ../gramps/plugins/graph/gvrelgraph.py:869
 #: ../gramps/plugins/textreport/detancestralreport.py:900
@@ -11271,6 +11272,190 @@ msgid "Objects referenced by this note were missing in a file imported on %s."
 msgstr ""
 "Предмети на које упућује ова напомена су недостајали у датотеци увезеној %s."
 
+#: ../gramps/gen/utils/win32locale.py:43
+msgid "Arabic"
+msgstr "арапски"
+
+#: ../gramps/gen/utils/win32locale.py:44
+msgid "Bulgarian"
+msgstr "бугарски"
+
+#: ../gramps/gen/utils/win32locale.py:46
+msgid "Breton"
+msgstr "бретањски"
+
+#: ../gramps/gen/utils/win32locale.py:47
+msgid "Catalan"
+msgstr "каталонски"
+
+#: ../gramps/gen/utils/win32locale.py:48
+msgid "Czech"
+msgstr "чешки"
+
+#: ../gramps/gen/utils/win32locale.py:49
+msgid "Danish"
+msgstr "дански"
+
+#: ../gramps/gen/utils/win32locale.py:50
+msgid "German"
+msgstr "немачки"
+
+#: ../gramps/gen/utils/win32locale.py:51
+msgid "German (Austria)"
+msgstr ""
+
+#: ../gramps/gen/utils/win32locale.py:52
+msgid "Greek"
+msgstr "грчки"
+
+#: ../gramps/gen/utils/win32locale.py:53
+msgid "English (USA)"
+msgstr "енглески (САД)"
+
+#: ../gramps/gen/utils/win32locale.py:54
+msgid "English"
+msgstr "енглески"
+
+#: ../gramps/gen/utils/win32locale.py:56
+msgid "Esperanto"
+msgstr "есперанто"
+
+#: ../gramps/gen/utils/win32locale.py:57
+msgid "Spanish"
+msgstr "шпански"
+
+#: ../gramps/gen/utils/win32locale.py:58
+msgid "Finnish"
+msgstr "фински"
+
+#: ../gramps/gen/utils/win32locale.py:59
+msgid "French"
+msgstr "француски"
+
+#: ../gramps/gen/utils/win32locale.py:61
+msgid "Gaelic"
+msgstr "галски"
+
+#: ../gramps/gen/utils/win32locale.py:62
+msgid "Hebrew"
+msgstr "јеврејски"
+
+#: ../gramps/gen/utils/win32locale.py:63
+msgid "Croatian"
+msgstr "хрватски"
+
+#: ../gramps/gen/utils/win32locale.py:64
+msgid "Hungarian"
+msgstr "мађарски"
+
+#: ../gramps/gen/utils/win32locale.py:65
+msgid "Indonesian"
+msgstr ""
+
+#: ../gramps/gen/utils/win32locale.py:66
+#, fuzzy
+msgid "Icelandic"
+msgstr "Исландски начин"
+
+#: ../gramps/gen/utils/win32locale.py:67
+msgid "Italian"
+msgstr "италијански"
+
+#: ../gramps/gen/utils/win32locale.py:68
+msgid "Japanese"
+msgstr "јапански"
+
+#: ../gramps/gen/utils/win32locale.py:69
+msgid "Lithuanian"
+msgstr "литвански"
+
+#: ../gramps/gen/utils/win32locale.py:71
+msgid "Macedonian"
+msgstr "македонски"
+
+#: ../gramps/gen/utils/win32locale.py:72
+msgid "Norwegian Bokmal"
+msgstr "норвешки букмал"
+
+#: ../gramps/gen/utils/win32locale.py:73
+msgid "Dutch"
+msgstr "холандски"
+
+#: ../gramps/gen/utils/win32locale.py:74
+msgid "Norwegian Nynorsk"
+msgstr "норвешки нинорск"
+
+#: ../gramps/gen/utils/win32locale.py:75
+msgid "Polish"
+msgstr "пољски"
+
+#: ../gramps/gen/utils/win32locale.py:76
+msgid "Portuguese (Brazil)"
+msgstr "португалски (Бразил)"
+
+#: ../gramps/gen/utils/win32locale.py:77
+msgid "Portuguese (Portugal)"
+msgstr "португалски (Португал)"
+
+#: ../gramps/gen/utils/win32locale.py:78
+msgid "Romanian"
+msgstr "румунски"
+
+#: ../gramps/gen/utils/win32locale.py:79
+msgid "Russian"
+msgstr "руски"
+
+#: ../gramps/gen/utils/win32locale.py:80
+msgid "Slovak"
+msgstr "словачки"
+
+#: ../gramps/gen/utils/win32locale.py:81
+msgid "Slovenian"
+msgstr "словеначки"
+
+#: ../gramps/gen/utils/win32locale.py:82
+msgid "Albanian"
+msgstr "албански"
+
+#: ../gramps/gen/utils/win32locale.py:83
+#, fuzzy
+msgid "Serbian"
+msgstr "Србија"
+
+#: ../gramps/gen/utils/win32locale.py:84
+msgid "Swedish"
+msgstr "шведски"
+
+#: ../gramps/gen/utils/win32locale.py:86
+#, fuzzy
+msgid "Tamil"
+msgstr "Породица"
+
+#: ../gramps/gen/utils/win32locale.py:87
+msgid "Turkish"
+msgstr "турски"
+
+#: ../gramps/gen/utils/win32locale.py:88
+msgid "Ukrainian"
+msgstr "украјински"
+
+#: ../gramps/gen/utils/win32locale.py:89
+msgid "Vietnamese"
+msgstr "вијетнамски"
+
+#: ../gramps/gen/utils/win32locale.py:90
+msgid "Chinese (Simplified)"
+msgstr "кинески (поједностављени)"
+
+#: ../gramps/gen/utils/win32locale.py:91
+#, fuzzy
+msgid "Chinese (Hong Kong)"
+msgstr "кинески (традиционални)"
+
+#: ../gramps/gen/utils/win32locale.py:92
+msgid "Chinese (Traditional)"
+msgstr "кинески (традиционални)"
+
 #: ../gramps/grampsapp.py:189
 #, fuzzy, python-format
 #| msgid ""
@@ -11457,7 +11642,7 @@ msgstr "Превуците и отпустите ступце да измени�
 
 #: ../gramps/gui/columnorder.py:109 ../gramps/gui/configure.py:2027
 #: ../gramps/gui/configure.py:2051 ../gramps/gui/configure.py:2077
-#: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:1818
+#: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:1828
 #: ../gramps/plugins/lib/maps/geography.py:1017
 #: ../gramps/plugins/lib/maps/geography.py:1380
 msgid "_Apply"
@@ -11500,10 +11685,10 @@ msgstr "Прикажите уређивача имена"
 #: ../gramps/gui/glade/plugins.glade:22 ../gramps/gui/glade/rule.glade:24
 #: ../gramps/gui/glade/rule.glade:1024 ../gramps/gui/glade/tipofday.glade:117
 #: ../gramps/gui/glade/updateaddons.glade:25 ../gramps/gui/grampsgui.py:56
-#: ../gramps/gui/plug/_windows.py:336 ../gramps/gui/plug/_windows.py:824
-#: ../gramps/gui/plug/_windows.py:1410 ../gramps/gui/plug/_windows.py:1466
+#: ../gramps/gui/plug/_windows.py:336 ../gramps/gui/plug/_windows.py:828
+#: ../gramps/gui/plug/_windows.py:1414 ../gramps/gui/plug/_windows.py:1470
 #: ../gramps/gui/plug/quick/_textbufdoc.py:60 ../gramps/gui/undohistory.py:90
-#: ../gramps/gui/viewmanager.py:1682 ../gramps/gui/views/bookmarks.py:311
+#: ../gramps/gui/viewmanager.py:1687 ../gramps/gui/views/bookmarks.py:311
 #: ../gramps/gui/views/tags.py:494 ../gramps/gui/widgets/grampletbar.py:669
 #: ../gramps/gui/widgets/grampletpane.py:240
 #: ../gramps/plugins/lib/maps/placeselection.py:117
@@ -11565,8 +11750,8 @@ msgstr "Неисправна или непотпуна одредница зап
 #: ../gramps/gui/configure.py:1424 ../gramps/gui/configure.py:1444
 #: ../gramps/gui/configure.py:1457 ../gramps/gui/configure.py:1826
 #: ../gramps/gui/configure.py:1884 ../gramps/gui/plug/_windows.py:645
-#: ../gramps/gui/plug/_windows.py:663 ../gramps/gui/plug/_windows.py:695
-#: ../gramps/gui/plug/_windows.py:703 ../gramps/gui/views/navigationview.py:344
+#: ../gramps/gui/plug/_windows.py:663 ../gramps/gui/plug/_windows.py:697
+#: ../gramps/gui/plug/_windows.py:705 ../gramps/gui/views/navigationview.py:344
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:90
 #, python-format
 msgid "%s: "
@@ -11637,7 +11822,7 @@ msgstr "Држава/Округ"
 msgid "ZIP/Postal Code"
 msgstr "Поштански број"
 
-#: ../gramps/gui/configure.py:630 ../gramps/gui/plug/_windows.py:1342
+#: ../gramps/gui/configure.py:630 ../gramps/gui/plug/_windows.py:1346
 #: ../gramps/plugins/view/repoview.py:95
 msgid "Email"
 msgstr "Ел. пошта"
@@ -11901,7 +12086,7 @@ msgstr "Опције приказа"
 #: ../gramps/gui/glade/editperson.glade:12
 #: ../gramps/gui/glade/editperson.glade:516 ../gramps/gui/glade/rule.glade:463
 #: ../gramps/gui/glade/styleeditor.glade:1903
-#: ../gramps/gui/plug/_windows.py:871 ../gramps/gui/plug/_windows.py:926
+#: ../gramps/gui/plug/_windows.py:875 ../gramps/gui/plug/_windows.py:930
 #: ../gramps/plugins/gramplet/ancestor.py:112
 #: ../gramps/plugins/gramplet/descendant.py:110
 msgid "Edit"
@@ -12459,11 +12644,11 @@ msgstr "Изабери директоријум медија"
 #: ../gramps/gui/glade/rule.glade:747 ../gramps/gui/glade/styleeditor.glade:86
 #: ../gramps/gui/glade/styleeditor.glade:1737
 #: ../gramps/gui/logger/_errorview.py:173 ../gramps/gui/plug/_guioptions.py:81
-#: ../gramps/gui/plug/_guioptions.py:1745 ../gramps/gui/plug/_windows.py:710
-#: ../gramps/gui/plug/_windows.py:1159
+#: ../gramps/gui/plug/_guioptions.py:1745 ../gramps/gui/plug/_windows.py:714
+#: ../gramps/gui/plug/_windows.py:1163
 #: ../gramps/gui/plug/report/_fileentry.py:64
-#: ../gramps/gui/plug/report/_reportdialog.py:162 ../gramps/gui/utils.py:180
-#: ../gramps/gui/viewmanager.py:1817 ../gramps/gui/views/listview.py:1162
+#: ../gramps/gui/plug/report/_reportdialog.py:162 ../gramps/gui/utils.py:235
+#: ../gramps/gui/viewmanager.py:1827 ../gramps/gui/views/listview.py:1162
 #: ../gramps/gui/views/navigationview.py:349 ../gramps/gui/views/tags.py:710
 #: ../gramps/gui/widgets/progressdialog.py:437
 #: ../gramps/plugins/importer/importprogen.glade:1714
@@ -12480,7 +12665,7 @@ msgstr "Откажи"
 msgid "Select database directory"
 msgstr "Изабери директоријум базе података"
 
-#: ../gramps/gui/configure.py:2072 ../gramps/gui/viewmanager.py:1814
+#: ../gramps/gui/configure.py:2072 ../gramps/gui/viewmanager.py:1824
 msgid "Select backup directory"
 msgstr "Изабери директоријум резерве"
 
@@ -12753,9 +12938,9 @@ msgstr "Нема податка о датуму"
 #: ../gramps/gui/glade/reorder.glade:38 ../gramps/gui/glade/rule.glade:333
 #: ../gramps/gui/glade/rule.glade:764 ../gramps/gui/glade/styleeditor.glade:103
 #: ../gramps/gui/glade/styleeditor.glade:1754
-#: ../gramps/gui/plug/_guioptions.py:82 ../gramps/gui/plug/_windows.py:711
-#: ../gramps/gui/plug/report/_reportdialog.py:166 ../gramps/gui/utils.py:194
-#: ../gramps/gui/viewmanager.py:1684 ../gramps/gui/views/tags.py:711
+#: ../gramps/gui/plug/_guioptions.py:82 ../gramps/gui/plug/_windows.py:715
+#: ../gramps/gui/plug/report/_reportdialog.py:166 ../gramps/gui/utils.py:249
+#: ../gramps/gui/viewmanager.py:1689 ../gramps/gui/views/tags.py:711
 #: ../gramps/plugins/tool/check.py:778 ../gramps/plugins/tool/patchnames.py:118
 #: ../gramps/plugins/tool/populatesources.py:91
 #: ../gramps/plugins/tool/testcasegenerator.py:328
@@ -13049,7 +13234,7 @@ msgstr ""
 "%s"
 
 #: ../gramps/gui/dialog.py:460 ../gramps/gui/dialog.py:560
-#: ../gramps/gui/utils.py:309
+#: ../gramps/gui/utils.py:364
 msgid "Attempt to force closing the dialog"
 msgstr "Покушај присилно затварање прозорчета"
 
@@ -14129,13 +14314,13 @@ msgid "New_Event_dialog"
 msgstr "Споји_догађаје"
 
 #: ../gramps/gui/editors/editevent.py:98
-#: ../gramps/gui/editors/editeventref.py:265
+#: ../gramps/gui/editors/editeventref.py:272
 #, python-format
 msgid "Event: %s"
 msgstr "Догађај: %s"
 
 #: ../gramps/gui/editors/editevent.py:100
-#: ../gramps/gui/editors/editeventref.py:267
+#: ../gramps/gui/editors/editeventref.py:274
 msgid "New Event"
 msgstr "Нови догађај"
 
@@ -14187,7 +14372,7 @@ msgid "Event_Reference_Editor_dialog"
 msgstr ""
 
 #: ../gramps/gui/editors/editeventref.py:77
-#: ../gramps/gui/editors/editeventref.py:268
+#: ../gramps/gui/editors/editeventref.py:275
 msgid "Event Reference Editor"
 msgstr "Уређивач упуте догађаја"
 
@@ -14199,11 +14384,11 @@ msgstr "Уређивач упуте догађаја"
 msgid "_General"
 msgstr "_Опште"
 
-#: ../gramps/gui/editors/editeventref.py:275
+#: ../gramps/gui/editors/editeventref.py:282
 msgid "Modify Event"
 msgstr "Измени догађај"
 
-#: ../gramps/gui/editors/editeventref.py:280
+#: ../gramps/gui/editors/editeventref.py:287
 msgid "Add Event"
 msgstr "Додај догађај"
 
@@ -17289,7 +17474,7 @@ msgid "_Merge and close"
 msgstr "_Споји и затвори"
 
 #: ../gramps/gui/glade/mergedata.glade:173
-#: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:1822
+#: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:1826
 #: ../gramps/plugins/tool/changenames.py:196
 #: ../gramps/plugins/tool/patchnames.py:401
 msgid "Select"
@@ -17962,11 +18147,20 @@ msgid "Install Selected _Addons"
 msgstr "Инсталирај изабране _додатке"
 
 #: ../gramps/gui/glade/updateaddons.glade:72
-#: ../gramps/gui/plug/_windows.py:1802
+#: ../gramps/gui/plug/_windows.py:1806
 msgid "Available Gramps Updates for Addons"
 msgstr "Доступна су Дедовникова освежења за додатке"
 
 #: ../gramps/gui/glade/updateaddons.glade:89
+#, fuzzy
+#| msgid ""
+#| "Gramps comes with a core set of plugins which provide all of the "
+#| "necessary features. However, you can extend this functionality with "
+#| "additional Addons. These addons provide reports, listings, views, "
+#| "gramplets, and more. Here you can select among the available extra "
+#| "addons, they will be retrieved from the internet off of the Gramps "
+#| "website, and installed locally on your computer. If you close this dialog "
+#| "now, you can install addons later from the menu under Edit -> Preferences."
 msgid ""
 "Gramps comes with a core set of plugins which provide all of the necessary "
 "features. However, you can extend this functionality with additional Addons. "
@@ -17974,7 +18168,7 @@ msgid ""
 "can select among the available extra addons, they will be retrieved from the "
 "internet off of the Gramps website, and installed locally on your computer. "
 "If you close this dialog now, you can install addons later from the menu "
-"under Edit -> Preferences."
+"under Edit -> Addon Manager."
 msgstr ""
 "Дедовник долази са основним скупом прикључака који пружају све неопходне "
 "функције. Међутим, можете да проширите ову функционалност са додатним "
@@ -18690,7 +18884,7 @@ msgstr "Изаберите боју за %s"
 msgid "Save As"
 msgstr "Сачувај као"
 
-#: ../gramps/gui/plug/_guioptions.py:1746 ../gramps/gui/plug/_windows.py:1160
+#: ../gramps/gui/plug/_guioptions.py:1746 ../gramps/gui/plug/_windows.py:1164
 #: ../gramps/gui/plug/report/_bookdialog.py:638
 #: ../gramps/gui/plug/report/_fileentry.py:65
 #, fuzzy
@@ -18714,7 +18908,7 @@ msgstr "Предмет"
 msgid "Audience"
 msgstr "Аудио"
 
-#: ../gramps/gui/plug/_windows.py:212 ../gramps/gui/plug/_windows.py:1340
+#: ../gramps/gui/plug/_windows.py:212 ../gramps/gui/plug/_windows.py:1344
 msgid "Version"
 msgstr "Издање"
 
@@ -18870,208 +19064,208 @@ msgstr "Нова особа"
 msgid "Edit Project"
 msgstr "Уредите особу"
 
-#: ../gramps/gui/plug/_windows.py:695
+#: ../gramps/gui/plug/_windows.py:697
 #, fuzzy
 #| msgid "Preferred name"
 msgid "Project name"
 msgstr "Жељено име"
 
-#: ../gramps/gui/plug/_windows.py:754
+#: ../gramps/gui/plug/_windows.py:758
 msgid "Checking Addons Failed"
 msgstr "Провера додатака није успела"
 
-#: ../gramps/gui/plug/_windows.py:755
+#: ../gramps/gui/plug/_windows.py:759
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr "Изгледа да ризница додатка није доступна. Покушајте касније."
 
-#: ../gramps/gui/plug/_windows.py:768
+#: ../gramps/gui/plug/_windows.py:772
 msgid "There are no available addons of this type"
 msgstr "Нема доступних додатака ове врсте"
 
-#: ../gramps/gui/plug/_windows.py:769
+#: ../gramps/gui/plug/_windows.py:773
 #, python-format
 msgid "Checked for '%s'"
 msgstr "Проверих за „%s“"
 
-#: ../gramps/gui/plug/_windows.py:770
+#: ../gramps/gui/plug/_windows.py:774
 msgid "' and '"
 msgstr "' и '"
 
-#: ../gramps/gui/plug/_windows.py:775
+#: ../gramps/gui/plug/_windows.py:779
 msgid "new"
 msgstr "ново"
 
-#: ../gramps/gui/plug/_windows.py:775
+#: ../gramps/gui/plug/_windows.py:779
 msgid "update"
 msgstr "освежи"
 
-#: ../gramps/gui/plug/_windows.py:809
+#: ../gramps/gui/plug/_windows.py:813
 msgid "Hidden"
 msgstr "Скривено"
 
-#: ../gramps/gui/plug/_windows.py:811
+#: ../gramps/gui/plug/_windows.py:815
 msgid "Visible"
 msgstr "Видљиво"
 
-#: ../gramps/gui/plug/_windows.py:816
+#: ../gramps/gui/plug/_windows.py:820
 msgid "Plugin Manager"
 msgstr "Управник прикључака"
 
-#: ../gramps/gui/plug/_windows.py:863 ../gramps/gui/plug/_windows.py:917
+#: ../gramps/gui/plug/_windows.py:867 ../gramps/gui/plug/_windows.py:921
 msgid "Info"
 msgstr "Подаци"
 
-#: ../gramps/gui/plug/_windows.py:866 ../gramps/gui/plug/_windows.py:920
+#: ../gramps/gui/plug/_windows.py:870 ../gramps/gui/plug/_windows.py:924
 msgid "Hide/Unhide"
 msgstr "Сакриј/Покажи"
 
-#: ../gramps/gui/plug/_windows.py:874 ../gramps/gui/plug/_windows.py:929
+#: ../gramps/gui/plug/_windows.py:878 ../gramps/gui/plug/_windows.py:933
 msgid "Load"
 msgstr "Учитај"
 
-#: ../gramps/gui/plug/_windows.py:880
+#: ../gramps/gui/plug/_windows.py:884
 msgid "Registered Plugins"
 msgstr "Забележени прикључци"
 
-#: ../gramps/gui/plug/_windows.py:893
+#: ../gramps/gui/plug/_windows.py:897
 msgid "Loaded"
 msgstr "Учитан"
 
-#: ../gramps/gui/plug/_windows.py:898
+#: ../gramps/gui/plug/_windows.py:902
 #: ../gramps/plugins/importer/importprogen.glade:431
 #: ../gramps/plugins/importer/importprogen.glade:1126
 msgid "File"
 msgstr "Датотека"
 
-#: ../gramps/gui/plug/_windows.py:907
+#: ../gramps/gui/plug/_windows.py:911
 msgid "Message"
 msgstr "Порука"
 
-#: ../gramps/gui/plug/_windows.py:935
+#: ../gramps/gui/plug/_windows.py:939
 msgid "Loaded Plugins"
 msgstr "Учитани прикључци"
 
-#: ../gramps/gui/plug/_windows.py:954
+#: ../gramps/gui/plug/_windows.py:958
 msgid "Addon Name"
 msgstr "Назив додатка"
 
-#: ../gramps/gui/plug/_windows.py:969
+#: ../gramps/gui/plug/_windows.py:973
 msgid "Path to Addon:"
 msgstr "Путања до додатка:"
 
-#: ../gramps/gui/plug/_windows.py:989
+#: ../gramps/gui/plug/_windows.py:993
 msgid "Install Addon"
 msgstr "Инсталирај додатак"
 
-#: ../gramps/gui/plug/_windows.py:992
+#: ../gramps/gui/plug/_windows.py:996
 msgid "Install All Addons"
 msgstr "Инсталирај све додатке"
 
-#: ../gramps/gui/plug/_windows.py:995
+#: ../gramps/gui/plug/_windows.py:999
 msgid "Refresh Addon List"
 msgstr "Освежи списак додатака"
 
-#: ../gramps/gui/plug/_windows.py:1008
+#: ../gramps/gui/plug/_windows.py:1012
 msgid "Reload"
 msgstr "Поново учитај"
 
-#: ../gramps/gui/plug/_windows.py:1035
+#: ../gramps/gui/plug/_windows.py:1039
 msgid "Refreshing Addon List"
 msgstr "Освежавам списак додатака"
 
-#: ../gramps/gui/plug/_windows.py:1037 ../gramps/gui/plug/_windows.py:1042
-#: ../gramps/gui/plug/_windows.py:1137
+#: ../gramps/gui/plug/_windows.py:1041 ../gramps/gui/plug/_windows.py:1046
+#: ../gramps/gui/plug/_windows.py:1141
 msgid "Reading gramps-project.org..."
 msgstr "Читам „gramps-project.org“..."
 
-#: ../gramps/gui/plug/_windows.py:1060
+#: ../gramps/gui/plug/_windows.py:1064
 msgid "Checking addon..."
 msgstr "Проверавам додатак..."
 
-#: ../gramps/gui/plug/_windows.py:1068
+#: ../gramps/gui/plug/_windows.py:1072
 msgid "Unknown Help URL"
 msgstr "Непозната адреса помоћи"
 
-#: ../gramps/gui/plug/_windows.py:1079
+#: ../gramps/gui/plug/_windows.py:1083
 msgid "Unknown URL"
 msgstr "Непозната адреса"
 
-#: ../gramps/gui/plug/_windows.py:1115
+#: ../gramps/gui/plug/_windows.py:1119
 msgid "Install all Addons"
 msgstr "Инсталирајте све додатке"
 
-#: ../gramps/gui/plug/_windows.py:1115
+#: ../gramps/gui/plug/_windows.py:1119
 msgid "Installing..."
 msgstr "Инсталирам..."
 
-#: ../gramps/gui/plug/_windows.py:1135
+#: ../gramps/gui/plug/_windows.py:1139
 msgid "Installing Addon"
 msgstr "Инсталирам додатак"
 
-#: ../gramps/gui/plug/_windows.py:1157
+#: ../gramps/gui/plug/_windows.py:1161
 msgid "Load Addon"
 msgstr "Учитај додатак"
 
-#: ../gramps/gui/plug/_windows.py:1217
+#: ../gramps/gui/plug/_windows.py:1221
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:188
 msgid "Fail"
 msgstr "Неуспело"
 
-#: ../gramps/gui/plug/_windows.py:1232 ../gramps/gui/widgets/grampletbar.py:569
+#: ../gramps/gui/plug/_windows.py:1236 ../gramps/gui/widgets/grampletbar.py:569
 msgid "OK"
 msgstr "У реду"
 
-#: ../gramps/gui/plug/_windows.py:1338
+#: ../gramps/gui/plug/_windows.py:1342
 msgid "Plugin name"
 msgstr "Назив прикључка"
 
-#: ../gramps/gui/plug/_windows.py:1341
+#: ../gramps/gui/plug/_windows.py:1345
 msgid "Authors"
 msgstr "Аутори"
 
-#: ../gramps/gui/plug/_windows.py:1343
+#: ../gramps/gui/plug/_windows.py:1347
 #: ../gramps/gui/plug/report/_reportdialog.py:472
 msgid "Filename"
 msgstr "Назив датотеке"
 
-#: ../gramps/gui/plug/_windows.py:1346
+#: ../gramps/gui/plug/_windows.py:1350
 msgid "Detailed Info"
 msgstr "Опширни подаци"
 
-#: ../gramps/gui/plug/_windows.py:1405
+#: ../gramps/gui/plug/_windows.py:1409
 msgid "Plugin Error"
 msgstr "Грешка прикључка"
 
-#: ../gramps/gui/plug/_windows.py:1470
+#: ../gramps/gui/plug/_windows.py:1474
 msgid "_Execute"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1771
+#: ../gramps/gui/plug/_windows.py:1775
 #: ../gramps/plugins/importer/importprogen.py:458
 #: ../gramps/plugins/tool/ownereditor.py:164
 #: ../gramps/plugins/tool/reorderids.py:221
 msgid "Main window"
 msgstr "Главни прозор"
 
-#: ../gramps/gui/plug/_windows.py:1899
+#: ../gramps/gui/plug/_windows.py:1903
 msgid "Downloading and installing selected addons..."
 msgstr "Преузимам и инсталирам изабране додатке..."
 
-#: ../gramps/gui/plug/_windows.py:1934
+#: ../gramps/gui/plug/_windows.py:1938
 #, fuzzy
 msgid "Installation Errors"
 msgstr "Инсталирам додатак"
 
-#: ../gramps/gui/plug/_windows.py:1935
+#: ../gramps/gui/plug/_windows.py:1939
 msgid "The following addons had errors: "
 msgstr "Следећи додаци су имали грешке: "
 
-#: ../gramps/gui/plug/_windows.py:1941 ../gramps/gui/plug/_windows.py:1949
+#: ../gramps/gui/plug/_windows.py:1945 ../gramps/gui/plug/_windows.py:1953
 msgid "Done downloading and installing addons"
 msgstr "Обавио сам преузимање и инсталирање додатака"
 
 #. Translators: leave all/any {...} untranslated
-#: ../gramps/gui/plug/_windows.py:1943
+#: ../gramps/gui/plug/_windows.py:1947
 #, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
@@ -19079,11 +19273,11 @@ msgstr[0] "{number_of} додатак је инсталиран."
 msgstr[1] "{number_of} додатка су инсталирана."
 msgstr[2] "{number_of} додатака је инсталирано."
 
-#: ../gramps/gui/plug/_windows.py:1946
+#: ../gramps/gui/plug/_windows.py:1950
 msgid "If you have installed a 'Gramps View', you will need to restart Gramps."
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1950
+#: ../gramps/gui/plug/_windows.py:1954
 msgid "No addons were installed."
 msgstr "Ниједан додатак није инсталиран."
 
@@ -20015,29 +20209,29 @@ msgstr "База података је отворена"
 msgid "History cleared"
 msgstr "Историјат је очишћен"
 
-#: ../gramps/gui/utils.py:230
+#: ../gramps/gui/utils.py:285
 msgid "Canceling..."
 msgstr "Отказујем..."
 
-#: ../gramps/gui/utils.py:310
+#: ../gramps/gui/utils.py:365
 msgid "Please do not force closing this important dialog."
 msgstr "Немојте присиљавати затварање овог важног прозорчета."
 
-#: ../gramps/gui/utils.py:374
+#: ../gramps/gui/utils.py:429
 msgid "The external program failed to launch or experienced an error"
 msgstr "Спољни програм није успео да се покрене или је наишао на грешку"
 
-#: ../gramps/gui/utils.py:384
+#: ../gramps/gui/utils.py:439
 msgid "Error from external program"
 msgstr "Грешка из спољног програма"
 
-#: ../gramps/gui/utils.py:401
+#: ../gramps/gui/utils.py:456
 #: ../gramps/plugins/textreport/simplebooktitle.py:107
 #, python-format
 msgid "File %s does not exist"
 msgstr "Датотека „%s“ не постоји"
 
-#: ../gramps/gui/utils.py:624
+#: ../gramps/gui/utils.py:679
 msgid ""
 "Cannot open new citation editor at this time. Either the citation is already "
 "being edited, or the associated source is already being edited, and opening "
@@ -20055,7 +20249,7 @@ msgstr ""
 "Да уредите цитат, затворите уређивача извора и отворите уређивача за сами "
 "цитат"
 
-#: ../gramps/gui/utils.py:637
+#: ../gramps/gui/utils.py:692
 msgid "Cannot open new citation editor"
 msgstr "Не могу да отворим нови уређивач цитата"
 
@@ -20121,19 +20315,23 @@ msgstr ""
 msgid "Would you like to run the Check and Repair tool?"
 msgstr "Да ли желите да покренете алат провере и поправке?"
 
-#: ../gramps/gui/viewmanager.py:1214
+#: ../gramps/gui/viewmanager.py:1212 ../gramps/gui/viewmanager.py:1790
+msgid "Please, wait before closing gramps"
+msgstr ""
+
+#: ../gramps/gui/viewmanager.py:1214 ../gramps/gui/viewmanager.py:1218
 msgid "Autobackup..."
 msgstr "Самостална резерва..."
 
-#: ../gramps/gui/viewmanager.py:1219
+#: ../gramps/gui/viewmanager.py:1223
 msgid "Error saving backup data"
 msgstr "Грешка чувања података резерве"
 
-#: ../gramps/gui/viewmanager.py:1506
+#: ../gramps/gui/viewmanager.py:1511
 msgid "Failed Loading View"
 msgstr "Учитавање прегледа није успело"
 
-#: ../gramps/gui/viewmanager.py:1507
+#: ../gramps/gui/viewmanager.py:1512
 #, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
@@ -20158,11 +20356,11 @@ msgstr ""
 "Ако не желите да Дедовник поново покуша и да учита овај преглед, можете га "
 "сакрити користећи управника прикључака у изборнику помоћи."
 
-#: ../gramps/gui/viewmanager.py:1599
+#: ../gramps/gui/viewmanager.py:1604
 msgid "Failed Loading Plugin"
 msgstr "Учитавање прикључка није успело"
 
-#: ../gramps/gui/viewmanager.py:1600
+#: ../gramps/gui/viewmanager.py:1605
 #, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
@@ -20187,56 +20385,56 @@ msgstr ""
 "Ако не желите да Дедовник поново покуша и да учита овај прикључак, можете га "
 "сакрити користећи управника прикључака у изборнику помоћи."
 
-#: ../gramps/gui/viewmanager.py:1680
+#: ../gramps/gui/viewmanager.py:1685
 msgid "Gramps XML Backup"
 msgstr "ИксМЛ резерва Дедовника"
 
-#: ../gramps/gui/viewmanager.py:1709
+#: ../gramps/gui/viewmanager.py:1714
 msgid "File:"
 msgstr "Датотека:"
 
-#: ../gramps/gui/viewmanager.py:1741
+#: ../gramps/gui/viewmanager.py:1746
 msgid "Media:"
 msgstr "Медиј:"
 
-#: ../gramps/gui/viewmanager.py:1748
+#: ../gramps/gui/viewmanager.py:1753
 #: ../gramps/plugins/gramplet/statsgramplet.py:203
 #: ../gramps/plugins/webreport/statistics.py:150
 msgctxt "Megabyte"
 msgid "MB"
 msgstr "MB"
 
-#: ../gramps/gui/viewmanager.py:1750
+#: ../gramps/gui/viewmanager.py:1755
 msgid "Exclude"
 msgstr "Искључи"
 
-#: ../gramps/gui/viewmanager.py:1770
+#: ../gramps/gui/viewmanager.py:1775
 msgid "Backup file already exists! Overwrite?"
 msgstr "Датотека резерве већ постоји! Да је препишем?"
 
-#: ../gramps/gui/viewmanager.py:1771
+#: ../gramps/gui/viewmanager.py:1776
 #, python-format
 msgid "The file '%s' exists."
 msgstr "Датотека „%s“ постоји."
 
-#: ../gramps/gui/viewmanager.py:1772
+#: ../gramps/gui/viewmanager.py:1777
 msgid "Proceed and overwrite"
 msgstr "Настави и препиши"
 
-#: ../gramps/gui/viewmanager.py:1773
+#: ../gramps/gui/viewmanager.py:1778
 msgid "Cancel the backup"
 msgstr "Откажи резерву"
 
-#: ../gramps/gui/viewmanager.py:1788
+#: ../gramps/gui/viewmanager.py:1792 ../gramps/gui/viewmanager.py:1797
 msgid "Making backup..."
 msgstr "Правим резерву..."
 
-#: ../gramps/gui/viewmanager.py:1801
+#: ../gramps/gui/viewmanager.py:1811
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "Резерва је сачувана у „%s“"
 
-#: ../gramps/gui/viewmanager.py:1804
+#: ../gramps/gui/viewmanager.py:1814
 msgid "Backup aborted"
 msgstr "Резерва је прекинута"
 
@@ -26710,7 +26908,7 @@ msgid "Old xml file"
 msgstr "Стара иксмл датотека"
 
 #: ../gramps/plugins/importer/importxml.py:1349
-#: ../gramps/plugins/importer/importxml.py:2916
+#: ../gramps/plugins/importer/importxml.py:2918
 #, python-format
 msgid "Witness name: %s"
 msgstr "Име сведока: %s"
@@ -26742,17 +26940,17 @@ msgstr "Непознат приликом увоза"
 msgid "Any note reference must have a 'hlink' attribute."
 msgstr "Свака упута напомене мора имати особину „hlink“."
 
-#: ../gramps/plugins/importer/importxml.py:2731
+#: ../gramps/plugins/importer/importxml.py:2733
 #, python-brace-format
 msgid "Invalid date {date} in XML {xml}, preserving XML as text"
 msgstr "Неисправан датум {date} у ИксМЛ-у {xml}, ИксМЛ ће се очувати као текст"
 
-#: ../gramps/plugins/importer/importxml.py:2785
+#: ../gramps/plugins/importer/importxml.py:2787
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Напомена сведока: %s"
 
-#: ../gramps/plugins/importer/importxml.py:3468
+#: ../gramps/plugins/importer/importxml.py:3470
 #, python-format
 msgctxt "father"
 msgid ""
@@ -26760,7 +26958,7 @@ msgid ""
 "family. Reference added."
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:3490
+#: ../gramps/plugins/importer/importxml.py:3492
 #, python-format
 msgctxt "mother"
 msgid ""
@@ -26768,7 +26966,7 @@ msgid ""
 "family. Reference added."
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:3518
+#: ../gramps/plugins/importer/importxml.py:3520
 #, python-format
 msgctxt "child"
 msgid ""
@@ -39390,139 +39588,6 @@ msgstr "Нема стилског листа"
 #~| msgid "Plugin lib"
 #~ msgid "Plugins"
 #~ msgstr "Библиотека прикључка"
-
-#~ msgid "Arabic"
-#~ msgstr "арапски"
-
-#~ msgid "Bulgarian"
-#~ msgstr "бугарски"
-
-#~ msgid "Breton"
-#~ msgstr "бретањски"
-
-#~ msgid "Catalan"
-#~ msgstr "каталонски"
-
-#~ msgid "Czech"
-#~ msgstr "чешки"
-
-#~ msgid "Danish"
-#~ msgstr "дански"
-
-#~ msgid "German"
-#~ msgstr "немачки"
-
-#~ msgid "Greek"
-#~ msgstr "грчки"
-
-#~ msgid "English (USA)"
-#~ msgstr "енглески (САД)"
-
-#~ msgid "English"
-#~ msgstr "енглески"
-
-#~ msgid "Esperanto"
-#~ msgstr "есперанто"
-
-#~ msgid "Spanish"
-#~ msgstr "шпански"
-
-#~ msgid "Finnish"
-#~ msgstr "фински"
-
-#~ msgid "French"
-#~ msgstr "француски"
-
-#~ msgid "Gaelic"
-#~ msgstr "галски"
-
-#~ msgid "Hebrew"
-#~ msgstr "јеврејски"
-
-#~ msgid "Croatian"
-#~ msgstr "хрватски"
-
-#~ msgid "Hungarian"
-#~ msgstr "мађарски"
-
-#, fuzzy
-#~ msgid "Icelandic"
-#~ msgstr "Исландски начин"
-
-#~ msgid "Italian"
-#~ msgstr "италијански"
-
-#~ msgid "Japanese"
-#~ msgstr "јапански"
-
-#~ msgid "Lithuanian"
-#~ msgstr "литвански"
-
-#~ msgid "Macedonian"
-#~ msgstr "македонски"
-
-#~ msgid "Norwegian Bokmal"
-#~ msgstr "норвешки букмал"
-
-#~ msgid "Dutch"
-#~ msgstr "холандски"
-
-#~ msgid "Norwegian Nynorsk"
-#~ msgstr "норвешки нинорск"
-
-#~ msgid "Polish"
-#~ msgstr "пољски"
-
-#~ msgid "Portuguese (Brazil)"
-#~ msgstr "португалски (Бразил)"
-
-#~ msgid "Portuguese (Portugal)"
-#~ msgstr "португалски (Португал)"
-
-#~ msgid "Romanian"
-#~ msgstr "румунски"
-
-#~ msgid "Russian"
-#~ msgstr "руски"
-
-#~ msgid "Slovak"
-#~ msgstr "словачки"
-
-#~ msgid "Slovenian"
-#~ msgstr "словеначки"
-
-#~ msgid "Albanian"
-#~ msgstr "албански"
-
-#, fuzzy
-#~ msgid "Serbian"
-#~ msgstr "Србија"
-
-#~ msgid "Swedish"
-#~ msgstr "шведски"
-
-#, fuzzy
-#~ msgid "Tamil"
-#~ msgstr "Породица"
-
-#~ msgid "Turkish"
-#~ msgstr "турски"
-
-#~ msgid "Ukrainian"
-#~ msgstr "украјински"
-
-#~ msgid "Vietnamese"
-#~ msgstr "вијетнамски"
-
-#~ msgid "Chinese (Simplified)"
-#~ msgstr "кинески (поједностављени)"
-
-#, fuzzy
-#~ msgid "Chinese (Hong Kong)"
-#~ msgstr "кинески (традиционални)"
-
-#~ msgid "Chinese (Traditional)"
-#~ msgstr "кинески (традиционални)"
 
 #, python-format
 #~ msgid "Spelling checker initialization failed: %s"
