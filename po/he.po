@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
-"PO-Revision-Date: 2023-07-30 16:22+0000\n"
+"PO-Revision-Date: 2023-07-31 05:47+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -17681,15 +17681,6 @@ msgid "Available Gramps Updates for Addons"
 msgstr "עדכוני גרמפס חדשים זמינים לתוספים"
 
 #: ../gramps/gui/glade/updateaddons.glade:89
-#, fuzzy
-#| msgid ""
-#| "Gramps comes with a core set of plugins which provide all of the "
-#| "necessary features. However, you can extend this functionality with "
-#| "additional Addons. These addons provide reports, listings, views, "
-#| "gramplets, and more. Here you can select among the available extra "
-#| "addons, they will be retrieved from the internet off of the Gramps "
-#| "website, and installed locally on your computer. If you close this dialog "
-#| "now, you can install addons later from the menu under Edit -> Preferences."
 msgid ""
 "Gramps comes with a core set of plugins which provide all of the necessary "
 "features. However, you can extend this functionality with additional Addons. "
@@ -17703,8 +17694,7 @@ msgstr ""
 "ניתן להרחיב פונקציונליות זו על־ידי הרחבות נוספות. הרחבות המספקות דוחות, "
 "רישומים, מצגים, גרמפלטים, ועוד. מכאן ניתן לבחור בין ההרחבות הנוספות הזמינות, "
 "הן יאוחזרו מהמרשתת, מחוץ לאתר גרמפס ויותקנו באופן מקומי במחשב. ניתן לסגור "
-"תיבת דו־שיח זו כעת ולהתקין ההרחבות מתפריט 'העדפות &gt; עריכה במועד מאוחר "
-"יותר' ."
+"תיבת דו־שיח זו כעת ולהתקין ההרחבות מתפריט 'העדפות &gt; מנהל תוספים' ."
 
 #: ../gramps/gui/glade/updateaddons.glade:105
 msgid "_Select All"
@@ -19746,10 +19736,8 @@ msgid "Would you like to run the Check and Repair tool?"
 msgstr "האם להריץ את כלי הבדיקה והתיקון?"
 
 #: ../gramps/gui/viewmanager.py:1212 ../gramps/gui/viewmanager.py:1790
-#, fuzzy
-#| msgid "Please, correct this before linking"
 msgid "Please, wait before closing gramps"
-msgstr "נא לתקן זאת לפני הקישור"
+msgstr "נא להמתין בטרם סגירת גרמפס"
 
 #: ../gramps/gui/viewmanager.py:1214 ../gramps/gui/viewmanager.py:1218
 msgid "Autobackup..."
