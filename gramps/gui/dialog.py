@@ -18,33 +18,35 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import sys
 import html
 import logging
 import unicodedata
+
 _LOG = logging.getLogger(".dialog")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME/GTK+ modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import GObject
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GdkPixbuf
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gramps.gen.const import ICON, URL_BUGHOME
 from gramps.gen.config import config
@@ -57,23 +59,24 @@ try:
 except:
     ICON = None
 
+
 class SaveDialog:
     def __init__(self, msg1, msg2, task1, task2, parent=None):
-        self.xml = Glade(toplevel='savedialog')
+        self.xml = Glade(toplevel="savedialog")
 
         self.top = self.xml.toplevel
         self.top.set_icon(ICON)
         self.top.set_title("%s - Gramps" % msg1)
 
-        self.dontask = self.xml.get_object('dontask')
+        self.dontask = self.xml.get_object("dontask")
         self.task1 = task1
         self.task2 = task2
 
-        label1 = self.xml.get_object('sd_label1')
+        label1 = self.xml.get_object("sd_label1")
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
         label1.set_use_markup(True)
 
-        label2 = self.xml.get_object('sd_label2')
+        label2 = self.xml.get_object("sd_label2")
         label2.set_text(msg2)
         label2.set_use_markup(True)
         if parent:
@@ -88,29 +91,31 @@ class SaveDialog:
         elif response == Gtk.ResponseType.YES:
             self.task2()
 
-        config.set('interface.dont-ask', self.dontask.get_active())
+        config.set("interface.dont-ask", self.dontask.get_active())
         self.top.destroy()
         if parent and parent_modal:
             parent.set_modal(True)
 
+
 class QuestionDialog:
     def __init__(self, msg1, msg2, label, task, parent=None):
-        self.xml = Glade(toplevel='questiondialog')
+        self.xml = Glade(toplevel="questiondialog")
 
         self.top = self.xml.toplevel
         self.top.set_icon(ICON)
         self.top.set_title("%s - Gramps" % msg1)
 
-        label1 = self.xml.get_object('qd_label1')
-        label1.set_text('<span weight="bold" size="larger">%s</span>' %
-                         html.escape(msg1))
+        label1 = self.xml.get_object("qd_label1")
+        label1.set_text(
+            '<span weight="bold" size="larger">%s</span>' % html.escape(msg1)
+        )
         label1.set_use_markup(True)
 
-        label2 = self.xml.get_object('qd_label2')
+        label2 = self.xml.get_object("qd_label2")
         label2.set_text(msg2)
         label2.set_use_markup(True)
 
-        self.xml.get_object('okbutton').set_label(label)
+        self.xml.get_object("okbutton").set_label(label)
 
         if parent:
             self.top.set_transient_for(parent)
@@ -125,34 +130,37 @@ class QuestionDialog:
         if response == Gtk.ResponseType.ACCEPT:
             task()
 
+
 def on_activate_link(label, uri):
     # see aboutdialog.py _show_url()
     display_url(uri)
     return True
 
+
 class QuestionDialog2:
     def __init__(self, msg1, msg2, label_msg1, label_msg2, parent=None):
-        self.xml = Glade(toplevel='questiondialog')
+        self.xml = Glade(toplevel="questiondialog")
 
         self.top = self.xml.toplevel
         self.top.set_icon(ICON)
         self.top.set_title("%s - Gramps" % msg1)
 
-        label1 = self.xml.get_object('qd_label1')
-        label1.set_text('<span weight="bold" size="larger">%s</span>' %
-                        html.escape(msg1))
+        label1 = self.xml.get_object("qd_label1")
+        label1.set_text(
+            '<span weight="bold" size="larger">%s</span>' % html.escape(msg1)
+        )
         label1.set_use_markup(True)
 
-        label2 = self.xml.get_object('qd_label2')
+        label2 = self.xml.get_object("qd_label2")
         # see https://github.com/emesene/emesene/issues/723
-        label2.connect('activate-link', on_activate_link)
+        label2.connect("activate-link", on_activate_link)
         label2.set_text(msg2)
         label2.set_use_markup(True)
 
-        self.xml.get_object('okbutton').set_label(label_msg1)
-        self.xml.get_object('okbutton').set_use_underline(True)
-        self.xml.get_object('no').set_label(label_msg2)
-        self.xml.get_object('no').set_use_underline(True)
+        self.xml.get_object("okbutton").set_label(label_msg1)
+        self.xml.get_object("okbutton").set_use_underline(True)
+        self.xml.get_object("no").set_label(label_msg2)
+        self.xml.get_object("no").set_use_underline(True)
 
         self.parent = parent
         if parent:
@@ -167,37 +175,40 @@ class QuestionDialog2:
         self.top.destroy()
         if self.parent and self.parent_modal:
             self.parent.set_modal(True)
-        return (response == Gtk.ResponseType.ACCEPT)
+        return response == Gtk.ResponseType.ACCEPT
+
 
 class QuestionDialog3:
-    """ Like QuestionDialog2, but includes cancel button,
+    """Like QuestionDialog2, but includes cancel button,
     returns: 1  (okbutton, label_msg1)
              0  (no button label_msg2)
              -1 (cancel button)
     """
+
     def __init__(self, msg1, msg2, label_msg1, label_msg2, parent=None):
-        self.xml = Glade(toplevel='questiondialog')
+        self.xml = Glade(toplevel="questiondialog")
 
         self.top = self.xml.toplevel
         self.top.set_icon(ICON)
         self.top.set_title("%s - Gramps" % msg1)
 
-        label1 = self.xml.get_object('qd_label1')
-        label1.set_text('<span weight="bold" size="larger">%s</span>' %
-                        html.escape(msg1))
+        label1 = self.xml.get_object("qd_label1")
+        label1.set_text(
+            '<span weight="bold" size="larger">%s</span>' % html.escape(msg1)
+        )
         label1.set_use_markup(True)
 
-        label2 = self.xml.get_object('qd_label2')
+        label2 = self.xml.get_object("qd_label2")
         # see https://github.com/emesene/emesene/issues/723
-        label2.connect('activate-link', on_activate_link)
+        label2.connect("activate-link", on_activate_link)
         label2.set_text(msg2)
         label2.set_use_markup(True)
 
-        self.xml.get_object('okbutton').set_label(label_msg1)
-        self.xml.get_object('okbutton').set_use_underline(True)
-        self.xml.get_object('no').set_label(label_msg2)
-        self.xml.get_object('no').set_use_underline(True)
-        self.xml.get_object('cancelbutton').show()
+        self.xml.get_object("okbutton").set_label(label_msg1)
+        self.xml.get_object("okbutton").set_use_underline(True)
+        self.xml.get_object("no").set_label(label_msg2)
+        self.xml.get_object("no").set_use_underline(True)
+        self.xml.get_object("cancelbutton").show()
 
         self.parent = parent
         if parent:
@@ -212,27 +223,31 @@ class QuestionDialog3:
         self.top.destroy()
         if self.parent and self.parent_modal:
             self.parent.set_modal(True)
-        return (-1 if response == Gtk.ResponseType.DELETE_EVENT
-                else response == Gtk.ResponseType.ACCEPT)
+        return (
+            -1
+            if response == Gtk.ResponseType.DELETE_EVENT
+            else response == Gtk.ResponseType.ACCEPT
+        )
+
 
 class OptionDialog:
     def __init__(self, msg1, msg2, btnmsg1, task1, btnmsg2, task2, parent=None):
-        self.xml = Glade(toplevel='optiondialog')
+        self.xml = Glade(toplevel="optiondialog")
 
         self.top = self.xml.toplevel
         self.top.set_icon(ICON)
         self.top.set_title("%s - Gramps" % msg1)
 
-        label1 = self.xml.get_object('od_label1')
+        label1 = self.xml.get_object("od_label1")
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
         label1.set_use_markup(True)
 
-        label2 = self.xml.get_object('od_label2')
+        label2 = self.xml.get_object("od_label2")
         label2.set_text(msg2)
         label2.set_use_markup(True)
 
-        self.xml.get_object('option1').set_label(btnmsg1)
-        self.xml.get_object('option2').set_label(btnmsg2)
+        self.xml.get_object("option1").set_label(btnmsg1)
+        self.xml.get_object("option2").set_label(btnmsg2)
         if parent:
             self.top.set_transient_for(parent)
             parent_modal = parent.get_modal()
@@ -253,13 +268,13 @@ class OptionDialog:
     def get_response(self):
         return self.response
 
+
 class ErrorDialog(Gtk.MessageDialog):
     def __init__(self, msg1, msg2="", parent=None):
-
-        Gtk.MessageDialog.__init__(self, transient_for=parent,
-                                   modal=True,
-                                   message_type=Gtk.MessageType.ERROR)
-        self.add_button(_('_Close'), Gtk.ResponseType.CLOSE)
+        Gtk.MessageDialog.__init__(
+            self, transient_for=parent, modal=True, message_type=Gtk.MessageType.ERROR
+        )
+        self.add_button(_("_Close"), Gtk.ResponseType.CLOSE)
         self.set_markup('<span weight="bold" size="larger">%s</span>' % str(msg1))
         self.format_secondary_text(msg2)
         self.set_icon(ICON)
@@ -274,19 +289,25 @@ class ErrorDialog(Gtk.MessageDialog):
         if parent and parent_modal:
             parent.set_modal(True)
 
+
 class RunDatabaseRepair(ErrorDialog):
     def __init__(self, msg, parent=None):
         ErrorDialog.__init__(
             # These exact strings are also in cli/user.py -- keep them in sync
             self,
-            _('Error detected in database'),
-            _('Gramps has detected an error in the database. This can '
-              'usually be resolved by running the "Check and Repair Database" '
-              'tool.\n\nIf this problem continues to exist after running this '
-              'tool, please file a bug report at '
-              '%(gramps_bugtracker_url)s\n\n'
-             ) % {'gramps_bugtracker_url' : URL_BUGHOME}
-            + msg, parent)
+            _("Error detected in database"),
+            _(
+                "Gramps has detected an error in the database. This can "
+                'usually be resolved by running the "Check and Repair Database" '
+                "tool.\n\nIf this problem continues to exist after running this "
+                "tool, please file a bug report at "
+                "%(gramps_bugtracker_url)s\n\n"
+            )
+            % {"gramps_bugtracker_url": URL_BUGHOME}
+            + msg,
+            parent,
+        )
+
 
 class DBErrorDialog(ErrorDialog):
     def __init__(self, msg, parent=None):
@@ -294,18 +315,24 @@ class DBErrorDialog(ErrorDialog):
             # These exact strings are also in cli/user.py -- keep them in sync
             self,
             _("Low level database corruption detected"),
-            _("Gramps has detected a problem in the underlying "
-              "database. This can sometimes be repaired from "
-              "the Family Tree Manager. Select the database and "
-              'click on the Repair button') + '\n\n' + msg, parent)
+            _(
+                "Gramps has detected a problem in the underlying "
+                "database. This can sometimes be repaired from "
+                "the Family Tree Manager. Select the database and "
+                "click on the Repair button"
+            )
+            + "\n\n"
+            + msg,
+            parent,
+        )
+
 
 class WarningDialog(Gtk.MessageDialog):
     def __init__(self, msg1, msg2="", parent=None):
-
-        Gtk.MessageDialog.__init__(self, transient_for=parent,
-                                   modal=True,
-                                   message_type=Gtk.MessageType.WARNING)
-        self.add_button(_('_Close'), Gtk.ResponseType.CLOSE)
+        Gtk.MessageDialog.__init__(
+            self, transient_for=parent, modal=True, message_type=Gtk.MessageType.WARNING
+        )
+        self.add_button(_("_Close"), Gtk.ResponseType.CLOSE)
         self.set_markup('<span weight="bold" size="larger">%s</span>' % msg1)
         self.format_secondary_markup(msg2)
         # FIXME: Hyper-links in the secondary text display as underlined text,
@@ -325,13 +352,13 @@ class WarningDialog(Gtk.MessageDialog):
         if parent and parent_modal:
             parent.set_modal(True)
 
+
 class OkDialog(Gtk.MessageDialog):
     def __init__(self, msg1, msg2="", parent=None):
-
-        Gtk.MessageDialog.__init__(self, transient_for=parent,
-                                   modal=True,
-                                   message_type=Gtk.MessageType.INFO)
-        self.add_button(_('_Close'), Gtk.ResponseType.CLOSE)
+        Gtk.MessageDialog.__init__(
+            self, transient_for=parent, modal=True, message_type=Gtk.MessageType.INFO
+        )
+        self.add_button(_("_Close"), Gtk.ResponseType.CLOSE)
         self.set_markup('<span weight="bold" size="larger">%s</span>' % msg1)
         self.format_secondary_text(msg2)
         self.set_icon(ICON)
@@ -346,22 +373,24 @@ class OkDialog(Gtk.MessageDialog):
         if parent and parent_modal:
             parent.set_modal(True)
 
+
 class InfoDialog:
     """
     Non modal dialog to show selectable info in a scrolled window
     """
+
     def __init__(self, msg1, infotext, parent=None, monospaced=False):
-        self.xml = Glade(toplevel='infodialog')
+        self.xml = Glade(toplevel="infodialog")
 
         self.top = self.xml.toplevel
         self.top.set_icon(ICON)
         self.top.set_title("%s - Gramps" % msg1)
 
-        label = self.xml.get_object('toplabel')
+        label = self.xml.get_object("toplabel")
         label.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
         label.set_use_markup(True)
 
-        infoview = self.xml.get_object('infoview')
+        infoview = self.xml.get_object("infoview")
         infobuffer = Gtk.TextBuffer()
         infoview.set_buffer(infobuffer)
 
@@ -371,13 +400,13 @@ class InfoDialog:
             for item in infotext:
                 enditer = infobuffer.get_end_iter()
                 if isinstance(item, str):
-                    infobuffer.insert(enditer, item + '\n')
+                    infobuffer.insert(enditer, item + "\n")
                 elif isinstance(item, list):
                     grid = Gtk.Grid()
                     grid.set_margin_start(6)
                     grid.set_margin_end(6)
                     grid.set_column_spacing(12)
-                    if unicodedata.bidirectional(item[0][0][0]) == 'R':
+                    if unicodedata.bidirectional(item[0][0][0]) == "R":
                         grid.set_direction(Gtk.TextDirection.RTL)
                     for offset_y, row in enumerate(item):
                         for offset_x, col in enumerate(row):
@@ -388,7 +417,7 @@ class InfoDialog:
                     anchor = infobuffer.create_child_anchor(enditer)
                     infoview.add_child_at_anchor(grid, anchor)
                     enditer = infobuffer.get_end_iter()
-                    infobuffer.insert(enditer, '\n')
+                    infobuffer.insert(enditer, "\n")
 
         if monospaced:
             startiter, enditer = infobuffer.get_bounds()
@@ -397,16 +426,17 @@ class InfoDialog:
 
         if parent:
             self.top.set_transient_for(parent)
-        self.top.connect('response', self.destroy)
+        self.top.connect("response", self.destroy)
         self.top.show()
 
     def destroy(self, dialog, response_id):
-        #no matter how it finishes, destroy dialog
+        # no matter how it finishes, destroy dialog
         dialog.destroy()
+
 
 class MissingMediaDialog:
     def __init__(self, msg1, msg2, task1, task2, task3, parent=None):
-        self.xml = Glade(toplevel='missmediadialog')
+        self.xml = Glade(toplevel="missmediadialog")
 
         self.top = self.xml.toplevel
         self.top.set_icon(ICON)
@@ -416,15 +446,15 @@ class MissingMediaDialog:
         self.task2 = task2
         self.task3 = task3
 
-        label1 = self.xml.get_object('label4')
+        label1 = self.xml.get_object("label4")
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
         label1.set_use_markup(True)
 
-        label2 = self.xml.get_object('label3')
+        label2 = self.xml.get_object("label3")
         label2.set_text(msg2)
         label2.set_use_markup(True)
 
-        check_button = self.xml.get_object('use_always')
+        check_button = self.xml.get_object("use_always")
 
         if parent:
             self.top.set_transient_for(parent)
@@ -432,7 +462,7 @@ class MissingMediaDialog:
             if parent_modal:
                 parent.set_modal(False)
         self.top.show()
-        self.top.connect('delete_event', self.warn)
+        self.top.connect("delete_event", self.warn)
         response = Gtk.ResponseType.DELETE_EVENT
 
         # Need some magic here, because an attempt to close the dialog
@@ -458,9 +488,12 @@ class MissingMediaDialog:
     def warn(self, obj, obj2):
         WarningDialog(
             _("Attempt to force closing the dialog"),
-            _("Please do not force closing this important dialog.\n"
-              "Instead select one of the available options"),
-            parent=self.top)
+            _(
+                "Please do not force closing this important dialog.\n"
+                "Instead select one of the available options"
+            ),
+            parent=self.top,
+        )
         return True
 
 
@@ -469,9 +502,19 @@ class MultiSelectDialog:
     Allows a Yes, No, Cancel dialog that includes a checkbox
     with "Use this answer for the rest of the items" that works with 'Yes'
     """
-    def __init__(self, msg1_func, msg2_func, items, lookup,
-                 cancel_func=None, no_func=None, yes_func=None,
-                 multi_yes_func=None, parent=None):
+
+    def __init__(
+        self,
+        msg1_func,
+        msg2_func,
+        items,
+        lookup,
+        cancel_func=None,
+        no_func=None,
+        yes_func=None,
+        multi_yes_func=None,
+        parent=None,
+    ):
         """
         msg1_func a function to display big bold text at top
         msg2_func a function to display normal text at center of dialog
@@ -487,7 +530,7 @@ class MultiSelectDialog:
             object from lookup function
             "parent=" set to this dialog for transient parent purposes.
         """
-        self.xml = Glade(toplevel='multiselectdialog')
+        self.xml = Glade(toplevel="multiselectdialog")
 
         self.top = self.xml.toplevel
         self.top.set_icon(ICON)
@@ -500,16 +543,16 @@ class MultiSelectDialog:
         self.no_func = no_func
         self.yes_func = yes_func
 
-        label1 = self.xml.get_object('label6')
-        label2 = self.xml.get_object('label5')
-        check_button = self.xml.get_object('apply_to_rest')
+        label1 = self.xml.get_object("label6")
+        label2 = self.xml.get_object("label5")
+        check_button = self.xml.get_object("apply_to_rest")
 
         if parent:
             self.top.set_transient_for(parent)
             parent_modal = parent.get_modal()
             if parent_modal:
                 parent.set_modal(False)
-        self.top.connect('delete_event', self.warn)
+        self.top.connect("delete_event", self.warn)
 
         default_action = 0
         for indx, selected in enumerate(items):
@@ -558,30 +601,32 @@ class MultiSelectDialog:
     def warn(self, obj, obj2):
         WarningDialog(
             _("Attempt to force closing the dialog"),
-            _("Please do not force closing this important dialog.\n"
-              "Instead select one of the available options"),
-            parent=self.top)
+            _(
+                "Please do not force closing this important dialog.\n"
+                "Instead select one of the available options"
+            ),
+            parent=self.top,
+        )
         return True
 
-class MessageHideDialog:
 
+class MessageHideDialog:
     def __init__(self, title, message, key, parent=None):
-        self.xml = Glade(toplevel='hidedialog')
+        self.xml = Glade(toplevel="hidedialog")
 
         self.top = self.xml.toplevel
         self.top.set_icon(ICON)
         self.top.set_title("%s - Gramps" % title)
 
-        dont_show = self.xml.get_object('dont_show')
+        dont_show = self.xml.get_object("dont_show")
         dont_show.set_active(config.get(key))
-        title_label = self.xml.get_object('title')
-        title_label.set_text(
-            '<span size="larger" weight="bold">%s</span>' % title)
+        title_label = self.xml.get_object("title")
+        title_label.set_text('<span size="larger" weight="bold">%s</span>' % title)
         title_label.set_use_markup(True)
 
-        self.xml.get_object('message').set_text(message)
+        self.xml.get_object("message").set_text(message)
 
-        dont_show.connect('toggled', self.update_checkbox, key)
+        dont_show.connect("toggled", self.update_checkbox, key)
         if parent:
             self.top.set_transient_for(parent)
             parent_modal = parent.get_modal()
@@ -596,40 +641,42 @@ class MessageHideDialog:
         config.set(constant, obj.get_active())
         config.save()
 
+
 ## Testing function of some of these dialogs
 def main(args):
-
     win = Gtk.Window()
-    win.set_title('Dialog test window')
+    win.set_title("Dialog test window")
     win.set_position(Gtk.WindowPosition.CENTER)
-    #Set the mnemonic modifier on Macs to alt-ctrl so that it
-    #doesn't interfere with the extended keyboard, see
-    #https://gramps-project.org/bugs/view.php?id=6943
+    # Set the mnemonic modifier on Macs to alt-ctrl so that it
+    # doesn't interfere with the extended keyboard, see
+    # https://gramps-project.org/bugs/view.php?id=6943
     if is_quartz():
         win.set_mnemonic_modifier(
-            Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.MOD1_MASK)
+            Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.MOD1_MASK
+        )
+
     def cb(window, event):
         Gtk.main_quit()
-    win.connect('delete-event', cb)
 
+    win.connect("delete-event", cb)
 
     def test_info(obj):
-        InfoDialog('The title',
-                   'This is a lot of info\n to show to all!',
-                   parent=win)
+        InfoDialog("The title", "This is a lot of info\n to show to all!", parent=win)
 
     vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
     win.add(vbox)
 
-    btn1 = Gtk.Button('Info dialog')
-    btn1.connect('clicked', test_info)
+    btn1 = Gtk.Button("Info dialog")
+    btn1.connect("clicked", test_info)
     vbox.pack_start(btn1, True, True, 0)
 
     win.show_all()
     Gtk.main()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     import sys
+
     # fall back to root logger for testing
     _LOG = logging
     sys.exit(main(sys.argv))

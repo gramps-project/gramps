@@ -19,44 +19,45 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasSourceOf
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasSourceOfBase(Rule):
     """Rule that checks for objects that have a particular source."""
 
-    labels = [ _('Source ID:') ]
-    name = 'Object with the <source>'
-    category = _('Citation/source filters')
-    description = 'Matches objects who have a particular source'
+    labels = [_("Source ID:")]
+    name = "Object with the <source>"
+    category = _("Citation/source filters")
+    description = "Matches objects who have a particular source"
 
     def prepare(self, db, user):
-        if self.list[0] == '':
+        if self.list[0] == "":
             self.source_handle = None
             self.nosource = True
             return
 
         self.nosource = False
         try:
-            self.source_handle = db.get_source_from_gramps_id(
-                    self.list[0]).get_handle()
+            self.source_handle = db.get_source_from_gramps_id(self.list[0]).get_handle()
         except:
             self.source_handle = None
 

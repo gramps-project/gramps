@@ -42,13 +42,13 @@ from ._dateparser import DateParser
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
 
+
 # -------------------------------------------------------------------------
 #
 # Catalan parser
 #
 # -------------------------------------------------------------------------
 class DateParserCA(DateParser):
-
     modifier_to_int = {
         "abans de": Date.MOD_BEFORE,
         "abans": Date.MOD_BEFORE,

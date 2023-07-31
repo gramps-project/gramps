@@ -17,18 +17,18 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gtk modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gui.editors import EditPerson
 from gramps.gui.listmodel import ListModel, NOSORT
 from gramps.gen.plug import Gramplet
@@ -48,12 +48,13 @@ class Children(Gramplet):
     """
     Displays the children of a person or family.
     """
+
     def init(self):
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add(self.gui.WIDGET)
         self.gui.WIDGET.show()
-        self.uistate.connect('nameformat-changed', self.update)
+        self.uistate.connect("nameformat-changed", self.update)
         self.gui.WIDGET.restore_column_size()
 
     def on_save(self):
@@ -63,12 +64,12 @@ class Children(Gramplet):
         """
         Return the date and place of the given event.
         """
-        event_date = ''
-        event_place = ''
-        event_sort = '%012d' % 0
+        event_date = ""
+        event_place = ""
+        event_sort = "%012d" % 0
         if event:
             event_date = get_date(event)
-            event_sort = '%012d' % event.get_date_object().get_sort_value()
+            event_sort = "%012d" % event.get_date_object().get_sort_value()
             event_place = place_displayer.display_event(self.dbstate.db, event)
         return (event_date, event_sort, event_place)
 
@@ -85,35 +86,43 @@ class Children(Gramplet):
             except WindowActiveError:
                 pass
 
+
 class PersonChildren(Children):
     """
     Displays the children of a person.
     """
+
     def build_gui(self):
         """
         Build the GUI interface.
         """
-        tip = _('Double-click on a row to edit the selected child.')
+        tip = _("Double-click on a row to edit the selected child.")
         self.set_tooltip(tip)
         top = PersistentTreeView(self.uistate, __name__)
-        titles = [('', NOSORT, 50,),
-                  (_('Child'), 1, 250),
-                  (_('Birth Date'), 3, 100),
-                  ('', 3, 100),
-                  (_('Death Date'), 5, 100),
-                  ('', 5, 100),
-                  (_('Spouse'), 6, 250)]
+        titles = [
+            (
+                "",
+                NOSORT,
+                50,
+            ),
+            (_("Child"), 1, 250),
+            (_("Birth Date"), 3, 100),
+            ("", 3, 100),
+            (_("Death Date"), 5, 100),
+            ("", 5, 100),
+            (_("Spouse"), 6, 250),
+        ]
         self.model = ListModel(top, titles, event_func=self.edit_person)
         return top
 
     def db_changed(self):
-        self.connect(self.dbstate.db, 'person-update', self.update)
+        self.connect(self.dbstate.db, "person-update", self.update)
 
     def active_changed(self, handle):
         self.update()
 
     def main(self):
-        active_handle = self.get_active('Person')
+        active_handle = self.get_active("Person")
         self.model.clear()
         if active_handle:
             self.display_person(active_handle)
@@ -121,7 +130,7 @@ class PersonChildren(Children):
             self.set_has_data(False)
 
     def update_has_data(self):
-        active_handle = self.get_active('Person')
+        active_handle = self.get_active("Person")
         if active_handle:
             active = self.dbstate.db.get_person_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
@@ -171,46 +180,58 @@ class PersonChildren(Children):
         name = name_displayer.display(child)
         if spouse:
             spouse = name_displayer.display(spouse)
-        spouse = spouse or ''
+        spouse = spouse or ""
         birth = get_birth_or_fallback(self.dbstate.db, child)
         birth_date, birth_sort, birth_place = self.get_date_place(birth)
         death = get_death_or_fallback(self.dbstate.db, child)
         death_date, death_sort, death_place = self.get_date_place(death)
-        self.model.add((child.get_handle(),
-                        name,
-                        birth_date,
-                        birth_sort,
-                        death_date,
-                        death_sort,
-                        spouse))
+        self.model.add(
+            (
+                child.get_handle(),
+                name,
+                birth_date,
+                birth_sort,
+                death_date,
+                death_sort,
+                spouse,
+            )
+        )
+
 
 class FamilyChildren(Children):
     """
     Displays the children of a family.
     """
+
     def build_gui(self):
         """
         Build the GUI interface.
         """
-        tip = _('Double-click on a row to edit the selected child.')
+        tip = _("Double-click on a row to edit the selected child.")
         self.set_tooltip(tip)
         top = PersistentTreeView(self.uistate, __name__)
-        titles = [('', NOSORT, 50,),
-                  (_('Child'), 1, 250),
-                  (_('Birth Date'), 3, 100),
-                  ('', 3, 100),
-                  (_('Death Date'), 5, 100),
-                  ('', 5, 100)]
+        titles = [
+            (
+                "",
+                NOSORT,
+                50,
+            ),
+            (_("Child"), 1, 250),
+            (_("Birth Date"), 3, 100),
+            ("", 3, 100),
+            (_("Death Date"), 5, 100),
+            ("", 5, 100),
+        ]
         self.model = ListModel(top, titles, event_func=self.edit_person)
         return top
 
     def db_changed(self):
-        self.connect(self.dbstate.db, 'family-update', self.update)
-        self.connect_signal('Family', self.update)  # familiy active-changed
-        self.connect(self.dbstate.db, 'person-update', self.update)
+        self.connect(self.dbstate.db, "family-update", self.update)
+        self.connect_signal("Family", self.update)  # familiy active-changed
+        self.connect(self.dbstate.db, "person-update", self.update)
 
     def main(self):
-        active_handle = self.get_active('Family')
+        active_handle = self.get_active("Family")
         self.model.clear()
         if active_handle:
             family = self.dbstate.db.get_family_from_handle(active_handle)
@@ -219,7 +240,7 @@ class FamilyChildren(Children):
             self.set_has_data(False)
 
     def update_has_data(self):
-        active_handle = self.get_active('Family')
+        active_handle = self.get_active("Family")
         if active_handle:
             active = self.dbstate.db.get_family_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
@@ -254,9 +275,6 @@ class FamilyChildren(Children):
         birth_date, birth_sort, birth_place = self.get_date_place(birth)
         death = get_death_or_fallback(self.dbstate.db, child)
         death_date, death_sort, death_place = self.get_date_place(death)
-        self.model.add((child.get_handle(),
-                        name,
-                        birth_date,
-                        birth_sort,
-                        death_date,
-                        death_sort))
+        self.model.add(
+            (child.get_handle(), name, birth_date, birth_sort, death_date, death_sort)
+        )

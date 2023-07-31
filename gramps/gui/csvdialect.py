@@ -56,12 +56,13 @@ _ = glocale.translation.gettext
 __LOG = logging.getLogger(".CsvDialect")
 
 CSV_DELIMITERS = {
-    ',': ',',
-    ';': ';',
-    ':': ':',
-    '|': '|',
-    '\t': _('Tab', 'character'),
+    ",": ",",
+    ";": ";",
+    ":": ":",
+    "|": "|",
+    "\t": _("Tab", "character"),
 }
+
 
 class CsvDialect(Gtk.Box):
     """
@@ -78,19 +79,22 @@ class CsvDialect(Gtk.Box):
         hbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 
         hbox.set_spacing(10)
-        hbox.pack_start(Gtk.Label(label=_('Choose your dialect')), False,
-                        False, 0)
-        comment = Gtk.Label(label=_('Changes are immediate.\n'
-                                    'This is used when exporting views'
-                                    ' in CSV format.'))
+        hbox.pack_start(Gtk.Label(label=_("Choose your dialect")), False, False, 0)
+        comment = Gtk.Label(
+            label=_(
+                "Changes are immediate.\n"
+                "This is used when exporting views"
+                " in CSV format."
+            )
+        )
         comment.set_justify(Gtk.Justification.LEFT)
         hbox.pack_start(comment, False, False, 0)
-        hbox.pack_start(Gtk.Label(label=' '), False, True, 0)
+        hbox.pack_start(Gtk.Label(label=" "), False, True, 0)
 
         self.pack_start(hbox, True, True, 0)
 
-        self.dialect = config.get('csv.dialect')
-        self.delimiter = config.get('csv.delimiter')
+        self.dialect = config.get("csv.dialect")
+        self.delimiter = config.get("csv.delimiter")
 
         self.dialects = csv.list_dialects()
         self.dialects.append(_("Custom"))
@@ -100,8 +104,7 @@ class CsvDialect(Gtk.Box):
 
         for dialect in self.dialects:
             title = dialect
-            button = Gtk.RadioButton.new_with_mnemonic_from_widget(button,
-                                                                   title)
+            button = Gtk.RadioButton.new_with_mnemonic_from_widget(button, title)
             button.connect("toggled", self.on_toggled, self.entry)
             self.buttons.append(button)
             hbox.pack_start(button, False, True, 0)
@@ -120,10 +123,10 @@ class CsvDialect(Gtk.Box):
         self.entry.set_model(store)
         cell = Gtk.CellRendererText()
         self.entry.pack_start(cell, True)
-        self.entry.add_attribute(cell, 'text', 1)
+        self.entry.add_attribute(cell, "text", 1)
         self.entry.set_active(default)
         self.entry.set_hexpand(False)
-        self.entry.connect('changed', self.on_changed)
+        self.entry.connect("changed", self.on_changed)
         hbox.pack_start(self.entry, False, True, 0)
         if self.dialect == _("Custom"):
             self.entry.set_sensitive(True)
@@ -140,7 +143,7 @@ class CsvDialect(Gtk.Box):
         if sep_iter is not None:
             model = obj.get_model()
             sep = model[sep_iter][0]
-            config.set('csv.delimiter', sep)
+            config.set("csv.delimiter", sep)
 
     def on_toggled(self, obj, entry):
         """
@@ -149,7 +152,7 @@ class CsvDialect(Gtk.Box):
         """
         if obj.get_active():
             button = obj.get_label()
-            config.set('csv.dialect', button)
+            config.set("csv.dialect", button)
             if button == _("Custom"):
                 entry.set_sensitive(True)
             else:

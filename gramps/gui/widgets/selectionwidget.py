@@ -18,37 +18,46 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GdkPixbuf
 from gi.repository import GLib, GObject
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.display.name import displayer as name_displayer
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # grabbers constants and routines
 #
-#-------------------------------------------------------------------------
-from .grabbers import (grabber_generators, can_grab, grabber_position,
-                       switch_grabber, CURSORS, GRABBER_INSIDE, INSIDE,
-                       INNER_GRABBERS, OUTER_GRABBERS, MOTION_FUNCTIONS)
+# -------------------------------------------------------------------------
+from .grabbers import (
+    grabber_generators,
+    can_grab,
+    grabber_position,
+    switch_grabber,
+    CURSORS,
+    GRABBER_INSIDE,
+    INSIDE,
+    INNER_GRABBERS,
+    OUTER_GRABBERS,
+    MOTION_FUNCTIONS,
+)
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # PhotoTaggingGramplet
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 RESIZE_RATIO = 1.5
 MAX_ZOOM = 10
@@ -57,6 +66,7 @@ MAX_SIZE = 2000
 MIN_SIZE = 50
 SHADING_OPACITY = 0.7
 MIN_SELECTION_SIZE = 10
+
 
 def scale_to_fit(orig_x, orig_y, target_x, target_y):
     """
@@ -69,6 +79,7 @@ def scale_to_fit(orig_x, orig_y, target_x, target_y):
         return target_x / orig_x
     else:
         return target_y / orig_y
+
 
 def resize_keep_aspect(orig_x, orig_y, target_x, target_y):
     """
@@ -83,6 +94,7 @@ def resize_keep_aspect(orig_x, orig_y, target_x, target_y):
     else:
         return (target_y * orig_x // orig_y, target_y)
 
+
 def order_coordinates(point1, point2):
     """
     Returns the rectangle (x1, y1, x2, y2) based on point1 and point2,
@@ -94,13 +106,16 @@ def order_coordinates(point1, point2):
     y2 = max(point1[1], point2[1])
     return (x1, y1, x2, y2)
 
+
 def minimum_region(point1, point2):
     """
     Returns whether the rectangle defined by the corner points point1
     and point2 exceeds the minimum dimensions.
     """
-    return (abs(point1[0] - point2[0]) >= MIN_SELECTION_SIZE and
-            abs(point1[1] - point2[1]) >= MIN_SELECTION_SIZE)
+    return (
+        abs(point1[0] - point2[0]) >= MIN_SELECTION_SIZE
+        and abs(point1[1] - point2[1]) >= MIN_SELECTION_SIZE
+    )
 
 
 class Region:
@@ -147,8 +162,7 @@ class Region:
         """
         Returns whether this region fully contains the region other.
         """
-        return (self.contains(other.x1, other.y1) and
-                self.contains(other.x2, other.y2))
+        return self.contains(other.x1, other.y1) and self.contains(other.x2, other.y2)
 
     def area(self):
         """
@@ -161,8 +175,13 @@ class Region:
         Returns whether the current region intersects other.
         """
         # assumes that x1 <= x2 and y1 <= y2
-        return not (self.x2 < other.x1 or self.x1 > other.x2 or
-                    self.y2 < other.y1 or self.y1 > other.y2)
+        return not (
+            self.x2 < other.x1
+            or self.x1 > other.x2
+            or self.y2 < other.y1
+            or self.y1 > other.y2
+        )
+
 
 class SelectionWidget(Gtk.ScrolledWindow):
     """
@@ -177,7 +196,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
         "selection-cleared": (GObject.SignalFlags.RUN_FIRST, None, ()),
         "right-button-clicked": (GObject.SignalFlags.RUN_FIRST, None, ()),
         "zoomed-in": (GObject.SignalFlags.RUN_FIRST, None, ()),
-        "zoomed-out": (GObject.SignalFlags.RUN_FIRST, None, ())
+        "zoomed-out": (GObject.SignalFlags.RUN_FIRST, None, ()),
     }
 
     def __init__(self):
@@ -213,14 +232,10 @@ class SelectionWidget(Gtk.ScrolledWindow):
         self.image.connect("query-tooltip", self._show_tooltip)
 
         self.event_box = Gtk.EventBox()
-        self.event_box.connect('button-press-event',
-          self._button_press_event)
-        self.event_box.connect('button-release-event',
-          self._button_release_event)
-        self.connect('motion-notify-event',
-          self._motion_notify_event)
-        self.connect('scroll-event',
-          self._motion_scroll_event)
+        self.event_box.connect("button-press-event", self._button_press_event)
+        self.event_box.connect("button-release-event", self._button_release_event)
+        self.connect("motion-notify-event", self._motion_notify_event)
+        self.connect("scroll-event", self._motion_scroll_event)
         self.event_box.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
         self.event_box.add_events(Gdk.EventMask.BUTTON_RELEASE_MASK)
         self.event_box.add_events(Gdk.EventMask.POINTER_MOTION_MASK)
@@ -294,15 +309,19 @@ class SelectionWidget(Gtk.ScrolledWindow):
 
         try:
             self.pixbuf = GdkPixbuf.Pixbuf.new_from_file(image_path)
-            self.original_image_size = (self.pixbuf.get_width(),
-                                        self.pixbuf.get_height())
+            self.original_image_size = (
+                self.pixbuf.get_width(),
+                self.pixbuf.get_height(),
+            )
 
             viewport_size = self.get_allocation()
             self.old_viewport_size = viewport_size
-            self.scale = scale_to_fit(self.pixbuf.get_width(),
-                                      self.pixbuf.get_height(),
-                                      viewport_size.width,
-                                      viewport_size.height)
+            self.scale = scale_to_fit(
+                self.pixbuf.get_width(),
+                self.pixbuf.get_height(),
+                viewport_size.width,
+                viewport_size.height,
+            )
             self._rescale()
             self.loaded = True
         except (GLib.GError, OSError):
@@ -313,7 +332,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
         Displays a 'missing image' icon in the widget.
         """
         self.pixbuf = None
-        self.image.set_from_icon_name('image-missing', Gtk.IconSize.DIALOG)
+        self.image.set_from_icon_name("image-missing", Gtk.IconSize.DIALOG)
         self.image.queue_draw()
 
     def _resize(self, *dummy):
@@ -322,19 +341,23 @@ class SelectionWidget(Gtk.ScrolledWindow):
         """
         if self.pixbuf:
             viewport_size = self.get_allocation()
-            if viewport_size.height != self.old_viewport_size.height or \
-                    viewport_size.width != self.old_viewport_size.width or \
-                    not self.image.get_pixbuf():
-                self.scale = scale_to_fit(self.pixbuf.get_width(),
-                                          self.pixbuf.get_height(),
-                                          viewport_size.width,
-                                          viewport_size.height)
+            if (
+                viewport_size.height != self.old_viewport_size.height
+                or viewport_size.width != self.old_viewport_size.width
+                or not self.image.get_pixbuf()
+            ):
+                self.scale = scale_to_fit(
+                    self.pixbuf.get_width(),
+                    self.pixbuf.get_height(),
+                    viewport_size.width,
+                    viewport_size.height,
+                )
                 self._rescale()
                 self.old_viewport_size = viewport_size
                 return False
 
     def expander(self, *dummy):
-        """ Handler for expander in caller; needed because Gtk doesn't handle
+        """Handler for expander in caller; needed because Gtk doesn't handle
         verticle expansion right
         """
         self.image.clear()
@@ -352,8 +375,9 @@ class SelectionWidget(Gtk.ScrolledWindow):
         coordinates (in pixels).
         """
         x1, y1, x2, y2 = rect
-        return (self._proportional_to_real((x1, y1)) +
-                self._proportional_to_real((x2, y2)))
+        return self._proportional_to_real((x1, y1)) + self._proportional_to_real(
+            (x2, y2)
+        )
 
     def real_to_proportional_rect(self, rect):
         """
@@ -361,8 +385,9 @@ class SelectionWidget(Gtk.ScrolledWindow):
         from 0 to 100).
         """
         x1, y1, x2, y2 = rect
-        return (self._real_to_proportional((x1, y1)) +
-                self._real_to_proportional((x2, y2)))
+        return self._real_to_proportional((x1, y1)) + self._real_to_proportional(
+            (x2, y2)
+        )
 
     # ======================================================
     # widget manipulation
@@ -379,8 +404,10 @@ class SelectionWidget(Gtk.ScrolledWindow):
         Returns whether it is possible to zoom in the image.
         """
         if self.original_image_size:
-            scaled_size = (self.original_image_size[0] * self.scale * RESIZE_RATIO,
-                           self.original_image_size[1] * self.scale * RESIZE_RATIO)
+            scaled_size = (
+                self.original_image_size[0] * self.scale * RESIZE_RATIO,
+                self.original_image_size[1] * self.scale * RESIZE_RATIO,
+            )
             return scaled_size[0] < MAX_SIZE and scaled_size[1] < MAX_SIZE
         return False
 
@@ -389,8 +416,10 @@ class SelectionWidget(Gtk.ScrolledWindow):
         Returns whether it is possible to zoom out the image.
         """
         if self.original_image_size:
-            scaled_size = (self.original_image_size[0] * self.scale * RESIZE_RATIO,
-                           self.original_image_size[1] * self.scale * RESIZE_RATIO)
+            scaled_size = (
+                self.original_image_size[0] * self.scale * RESIZE_RATIO,
+                self.original_image_size[1] * self.scale * RESIZE_RATIO,
+            )
             return scaled_size[0] >= MIN_SIZE and scaled_size[1] >= MIN_SIZE
         return False
 
@@ -429,7 +458,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
         self.selection = None
         self.image.queue_draw()
 
-    def find_region(self, x ,y):
+    def find_region(self, x, y):
         """
         Given screen coordinates, find where that point is in the image.
         """
@@ -448,8 +477,9 @@ class SelectionWidget(Gtk.ScrolledWindow):
         if w >= 1 and h >= 1 and self.pixbuf:
             subpixbuf = self.pixbuf.new_subpixbuf(region.x1, region.y1, w, h)
             size = resize_keep_aspect(w, h, *thumbnail_size)
-            return subpixbuf.scale_simple(size[0], size[1],
-                                          GdkPixbuf.InterpType.BILINEAR)
+            return subpixbuf.scale_simple(
+                size[0], size[1], GdkPixbuf.InterpType.BILINEAR
+            )
         else:
             return None
 
@@ -505,8 +535,10 @@ class SelectionWidget(Gtk.ScrolledWindow):
             offset_y = (image_rect[1] - viewport_rect.height) / 2
         else:
             offset_y = 0.0
-        return (int(coords[0] * self.scale - offset_x),
-                int(coords[1] * self.scale - offset_y))
+        return (
+            int(coords[0] * self.scale - offset_x),
+            int(coords[1] * self.scale - offset_y),
+        )
 
     def _screen_to_image(self, coords):
         """
@@ -523,8 +555,10 @@ class SelectionWidget(Gtk.ScrolledWindow):
             offset_y = (image_rect[1] - viewport_rect.height) / 2
         else:
             offset_y = 0.0
-        return (int((coords[0] + offset_x) / self.scale),
-                int((coords[1] + offset_y) / self.scale))
+        return (
+            int((coords[0] + offset_x) / self.scale),
+            int((coords[1] + offset_y) / self.scale),
+        )
 
     def _truncate_to_image_size(self, coords):
         """
@@ -584,8 +618,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
             x1, y1, x2, y2 = self._rect_image_to_screen(self.selection)
 
             # transparent shading
-            self._draw_transparent_shading(cr, x1, y1, x2, y2, w, h,
-                                          offset_x, offset_y)
+            self._draw_transparent_shading(cr, x1, y1, x2, y2, w, h, offset_x, offset_y)
 
             # selection frame
             self._draw_selection_frame(cr, x1, y1, x2, y2)
@@ -598,8 +631,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
                 x1, y1, x2, y2 = self._rect_image_to_screen(region.coords())
                 self._draw_region_frame(cr, x1, y1, x2, y2)
 
-    def _draw_transparent_shading(self, cr, x1, y1, x2, y2, w, h,
-                                 offset_x, offset_y):
+    def _draw_transparent_shading(self, cr, x1, y1, x2, y2, w, h, offset_x, offset_y):
         """
         Draws the shading for a selection box.
         """
@@ -624,10 +656,10 @@ class SelectionWidget(Gtk.ScrolledWindow):
         """
         Draws a region frame.
         """
-        cr.set_source_rgb(1.0, 1.0, 1.0) # white
+        cr.set_source_rgb(1.0, 1.0, 1.0)  # white
         cr.rectangle(x1, y1, x2 - x1, y2 - y1)
         cr.stroke()
-        cr.set_source_rgb(0.0, 0.0, 1.0) # blue
+        cr.set_source_rgb(0.0, 0.0, 1.0)  # blue
         cr.rectangle(x1 - 2, y1 - 2, x2 - x1 + 4, y2 - y1 + 4)
         cr.stroke()
 
@@ -658,11 +690,13 @@ class SelectionWidget(Gtk.ScrolledWindow):
         Recalculates the sizes using the current scale and updates
         the buffers.
         """
-        self.scaled_size = (int(self.original_image_size[0] * self.scale),
-                            int(self.original_image_size[1] * self.scale))
-        self.scaled_image = self.pixbuf.scale_simple(self.scaled_size[0],
-                                                self.scaled_size[1],
-                                                GdkPixbuf.InterpType.BILINEAR)
+        self.scaled_size = (
+            int(self.original_image_size[0] * self.scale),
+            int(self.original_image_size[1] * self.scale),
+        )
+        self.scaled_image = self.pixbuf.scale_simple(
+            self.scaled_size[0], self.scaled_size[1], GdkPixbuf.InterpType.BILINEAR
+        )
         self.image.set_from_pixbuf(self.scaled_image)
         self.image.set_size_request(*self.scaled_size)
         self.event_box.set_size_request(*self.scaled_size)
@@ -692,20 +726,22 @@ class SelectionWidget(Gtk.ScrolledWindow):
         """
         if not self.is_image_loaded():
             return
-        if event.button == 1: # left button
+        if event.button == 1:  # left button
             self.start_point_screen = (event.x, event.y)
-            if self.current is not None and self.grabber is None and \
-                    self.multiple_selection:
+            if (
+                self.current is not None
+                and self.grabber is None
+                and self.multiple_selection
+            ):
                 self.current = None
                 self.selection = None
                 self.refresh()
                 self.emit("selection-cleared")
-        elif event.button == 3: # right button
+        elif event.button == 3:  # right button
             # select a region, if clicked inside one
             click_point = self._screen_to_image((event.x, event.y))
             self.current = self._find_region(*click_point)
-            self.selection = \
-              self.current.coords() if self.current is not None else None
+            self.selection = self.current.coords() if self.current is not None else None
             self.start_point_screen = None
             self.refresh()
             if self.current is not None:
@@ -713,7 +749,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
                 self.emit("right-button-clicked")
             else:
                 self.emit("selection-cleared")
-        return True # don't propagate the event further
+        return True  # don't propagate the event further
 
     def _button_release_event(self, obj, event):
         """
@@ -727,8 +763,10 @@ class SelectionWidget(Gtk.ScrolledWindow):
                     # a box is currently selected
                     if self.grabber and self.grabber != INSIDE:
                         # clicked on one of the grabbers
-                        dx, dy = (event.x - self.start_point_screen[0],
-                                  event.y - self.start_point_screen[1])
+                        dx, dy = (
+                            event.x - self.start_point_screen[0],
+                            event.y - self.start_point_screen[1],
+                        )
                         self.grabber_to_draw = self._modify_selection(dx, dy)
                         self.current.set_coords(*self.selection)
                         self.emit("region-modified")
@@ -744,9 +782,10 @@ class SelectionWidget(Gtk.ScrolledWindow):
                         self.emit("region-modified")
                 else:
                     # nothing is currently selected
-                    if (minimum_region(self.start_point_screen,
-                                       (event.x, event.y)) and
-                        self._can_select()):
+                    if (
+                        minimum_region(self.start_point_screen, (event.x, event.y))
+                        and self._can_select()
+                    ):
                         # region selection
                         region = Region(*self.selection)
                         self.regions.append(region)
@@ -754,12 +793,11 @@ class SelectionWidget(Gtk.ScrolledWindow):
                         self.emit("region-created")
                     else:
                         # nothing selected, just a click
-                        click_point = \
-                          self._screen_to_image(self.start_point_screen)
+                        click_point = self._screen_to_image(self.start_point_screen)
                         self.current = self._find_region(*click_point)
-                        self.selection = \
-                          self.current.coords() if self.current is not None \
-                                                else None
+                        self.selection = (
+                            self.current.coords() if self.current is not None else None
+                        )
                         self.emit("region-selected")
 
                 self.start_point_screen = None
@@ -777,8 +815,10 @@ class SelectionWidget(Gtk.ScrolledWindow):
             # selection or dragging (mouse button pressed)
             if self.grabber is not None and self.grabber != INSIDE:
                 # dragging the grabber
-                dx, dy = (event.x - self.start_point_screen[0],
-                          event.y - self.start_point_screen[1])
+                dx, dy = (
+                    event.x - self.start_point_screen[0],
+                    event.y - self.start_point_screen[1],
+                )
                 self.grabber_to_draw = self._modify_selection(dx, dy)
             else:
                 # making new selection

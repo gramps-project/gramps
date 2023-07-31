@@ -18,28 +18,28 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._hasnotesubstrbase import HasNoteSubstrBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # "Events having notes that contain a substring"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasNoteMatchingSubstringOf(HasNoteSubstrBase):
     """People having notes containing <substring>"""
 
-    name = _('Events having notes containing <substring>')
-    description = _("Matches events whose notes contain text "
-                    "matching a substring")
-
+    name = _("Events having notes containing <substring>")
+    description = _("Matches events whose notes contain text " "matching a substring")

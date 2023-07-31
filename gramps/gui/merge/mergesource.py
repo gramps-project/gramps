@@ -24,36 +24,39 @@
 Provide merge capabilities for sources.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from gramps.gen.const import URL_MANUAL_SECT3
 from ..display import display_help
 from ..managedwindow import ManagedWindow
 from gramps.gen.merge import MergeSourceQuery
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 WIKI_HELP_PAGE = URL_MANUAL_SECT3
-WIKI_HELP_SEC = _('Merge_Sources', 'manual')
-_GLADE_FILE = 'mergesource.glade'
+WIKI_HELP_SEC = _("Merge_Sources", "manual")
+_GLADE_FILE = "mergesource.glade"
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MergeSource
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MergeSource(ManagedWindow):
     """
     Displays a dialog box that allows the sources to be combined into one.
     """
+
     def __init__(self, dbstate, uistate, track, handle1, handle2):
         ManagedWindow.__init__(self, uistate, track, self.__class__)
         self.dbstate = dbstate
@@ -61,11 +64,11 @@ class MergeSource(ManagedWindow):
         self.src1 = database.get_source_from_handle(handle1)
         self.src2 = database.get_source_from_handle(handle2)
 
-        self.define_glade('mergesource', _GLADE_FILE)
-        self.set_window(self._gladeobj.toplevel,
-                        self.get_widget('source_title'),
-                        _("Merge Sources"))
-        self.setup_configs('interface.merge-source', 500, 250)
+        self.define_glade("mergesource", _GLADE_FILE)
+        self.set_window(
+            self._gladeobj.toplevel, self.get_widget("source_title"), _("Merge Sources")
+        )
+        self.setup_configs("interface.merge-source", 500, 250)
 
         # Detailed Selection widgets
         title1 = self.src1.get_title()
@@ -75,7 +78,7 @@ class MergeSource(ManagedWindow):
         entry1.set_text(title1)
         entry2.set_text(title2)
         if entry1.get_text() == entry2.get_text():
-            for widget_name in ('title1', 'title2', 'title_btn1', 'title_btn2'):
+            for widget_name in ("title1", "title2", "title_btn1", "title_btn2"):
                 self.get_widget(widget_name).set_sensitive(False)
 
         entry1 = self.get_widget("author1")
@@ -83,8 +86,7 @@ class MergeSource(ManagedWindow):
         entry1.set_text(self.src1.get_author())
         entry2.set_text(self.src2.get_author())
         if entry1.get_text() == entry2.get_text():
-            for widget_name in ('author1', 'author2', 'author_btn1',
-                    'author_btn2'):
+            for widget_name in ("author1", "author2", "author_btn1", "author_btn2"):
                 self.get_widget(widget_name).set_sensitive(False)
 
         entry1 = self.get_widget("abbrev1")
@@ -92,8 +94,7 @@ class MergeSource(ManagedWindow):
         entry1.set_text(self.src1.get_abbreviation())
         entry2.set_text(self.src2.get_abbreviation())
         if entry1.get_text() == entry2.get_text():
-            for widget_name in ('abbrev1', 'abbrev2', 'abbrev_btn1',
-                    'abbrev_btn2'):
+            for widget_name in ("abbrev1", "abbrev2", "abbrev_btn1", "abbrev_btn2"):
                 self.get_widget(widget_name).set_sensitive(False)
 
         entry1 = self.get_widget("pub1")
@@ -101,7 +102,7 @@ class MergeSource(ManagedWindow):
         entry1.set_text(self.src1.get_publication_info())
         entry2.set_text(self.src2.get_publication_info())
         if entry1.get_text() == entry2.get_text():
-            for widget_name in ('pub1', 'pub2', 'pub_btn1', 'pub_btn2'):
+            for widget_name in ("pub1", "pub2", "pub_btn1", "pub_btn2"):
                 self.get_widget(widget_name).set_sensitive(False)
 
         gramps1 = self.src1.get_gramps_id()
@@ -111,8 +112,7 @@ class MergeSource(ManagedWindow):
         entry1.set_text(gramps1)
         entry2.set_text(gramps2)
         if entry1.get_text() == entry2.get_text():
-            for widget_name in ('gramps1', 'gramps2', 'gramps_btn1',
-                    'gramps_btn2'):
+            for widget_name in ("gramps1", "gramps2", "gramps_btn1", "gramps_btn2"):
                 self.get_widget(widget_name).set_sensitive(False)
 
         # Main window widgets that determine which handle survives
@@ -123,9 +123,9 @@ class MergeSource(ManagedWindow):
         rbutton_label2.set_label(title2 + " [" + gramps2 + "]")
         rbutton1.connect("toggled", self.on_handle1_toggled)
 
-        self.connect_button('source_help', self.cb_help)
-        self.connect_button('source_ok', self.cb_merge)
-        self.connect_button('source_cancel', self.close)
+        self.connect_button("source_help", self.cb_help)
+        self.connect_button("source_ok", self.cb_merge)
+        self.connect_button("source_cancel", self.close)
         self.show()
 
     def on_handle1_toggled(self, obj):
@@ -145,7 +145,7 @@ class MergeSource(ManagedWindow):
 
     def cb_help(self, obj):
         """Display the relevant portion of Gramps manual"""
-        display_help(webpage = WIKI_HELP_PAGE, section = WIKI_HELP_SEC)
+        display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def cb_merge(self, obj):
         """
@@ -175,6 +175,6 @@ class MergeSource(ManagedWindow):
         query.execute()
         # Add the selected handle to history so that when merge is complete,
         # phoenix is the selected row.
-        self.uistate.set_active(phoenix.get_handle(), 'Source')
+        self.uistate.set_active(phoenix.get_handle(), "Source")
         self.uistate.set_busy_cursor(False)
         self.close()

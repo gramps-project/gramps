@@ -26,11 +26,11 @@
 Name class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .secondaryobj import SecondaryObject
 from .privacybase import PrivacyBase
 from .citationbase import CitationBase
@@ -41,15 +41,16 @@ from .nametype import NameType
 from .const import IDENTICAL, EQUAL, DIFFERENT
 from .date import Date
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Personal Name
 #
-#-------------------------------------------------------------------------
-class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
-           DateBase):
+# -------------------------------------------------------------------------
+class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase, DateBase):
     """
     Provide name information about a person.
 
@@ -57,14 +58,14 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
     object stores one of them
     """
 
-    DEF = 0    # Default format (determined by gramps-wide prefs)
-    LNFN = 1   # last name first name
-    FNLN = 2   # first name last name
-    FN = 4     # first name
+    DEF = 0  # Default format (determined by gramps-wide prefs)
+    LNFN = 1  # last name first name
+    FNLN = 2  # first name last name
+    FN = 4  # first name
     LNFNP = 5  # primary name primconnector rest, given pa/ma suffix, primprefix
 
     NAMEFORMATS = (DEF, LNFN, FNLN, FN, LNFNP)
-    #deprecated :
+    # deprecated :
     PTFN = 3  # patronymic first name
 
     def __init__(self, source=None, data=None):
@@ -81,10 +82,23 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         NoteBase.__init__(self, source)
         DateBase.__init__(self, source)
         if data:
-            (privacy, citation_list, note, date,
-             self.first_name, surname_list, self.suffix, self.title, name_type,
-             self.group_as, self.sort_as, self.display_as, self.call,
-             self.nick, self.famnick) = data
+            (
+                privacy,
+                citation_list,
+                note,
+                date,
+                self.first_name,
+                surname_list,
+                self.suffix,
+                self.title,
+                name_type,
+                self.group_as,
+                self.sort_as,
+                self.display_as,
+                self.call,
+                self.nick,
+                self.famnick,
+            ) = data
             self.type = NameType(name_type)
             SurnameBase.unserialize(self, surname_list)
             PrivacyBase.unserialize(self, privacy)
@@ -118,16 +132,23 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         """
         Convert the object to a serialized tuple of data.
         """
-        return (PrivacyBase.serialize(self),
-                CitationBase.serialize(self),
-                NoteBase.serialize(self),
-                DateBase.serialize(self),
-                self.first_name,
-                SurnameBase.serialize(self),
-                self.suffix, self.title,
-                self.type.serialize(),
-                self.group_as, self.sort_as, self.display_as, self.call,
-                self.nick, self.famnick)
+        return (
+            PrivacyBase.serialize(self),
+            CitationBase.serialize(self),
+            NoteBase.serialize(self),
+            DateBase.serialize(self),
+            self.first_name,
+            SurnameBase.serialize(self),
+            self.suffix,
+            self.title,
+            self.type.serialize(),
+            self.group_as,
+            self.sort_as,
+            self.display_as,
+            self.call,
+            self.nick,
+            self.famnick,
+        )
 
     @classmethod
     def get_schema(cls):
@@ -138,69 +159,82 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         :rtype: dict
         """
         from .surname import Surname
+
         return {
             "type": "object",
             "title": _("Name"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "private": {"type": "boolean",
-                            "title": _("Private")},
-                "citation_list": {"type": "array",
-                                  "items": {"type": "string",
-                                            "maxLength": 50},
-                                  "title": _("Citations")},
-                "note_list": {"type": "array",
-                              "items": {"type": "string",
-                                        "maxLength": 50},
-                              "title": _("Notes")},
-                "date": {"oneOf": [{"type": "null"}, Date.get_schema()],
-                         "title": _("Date")},
-                "first_name": {"type": "string",
-                               "title": _("Given name")},
-                "surname_list": {"type": "array",
-                                 "items": Surname.get_schema(),
-                                 "title": _("Surnames")},
-                "suffix": {"type": "string",
-                           "title": _("Suffix")},
-                "title": {"type": "string",
-                          "title": _("Title")},
+                "private": {"type": "boolean", "title": _("Private")},
+                "citation_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Citations"),
+                },
+                "note_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Notes"),
+                },
+                "date": {
+                    "oneOf": [{"type": "null"}, Date.get_schema()],
+                    "title": _("Date"),
+                },
+                "first_name": {"type": "string", "title": _("Given name")},
+                "surname_list": {
+                    "type": "array",
+                    "items": Surname.get_schema(),
+                    "title": _("Surnames"),
+                },
+                "suffix": {"type": "string", "title": _("Suffix")},
+                "title": {"type": "string", "title": _("Title")},
                 "type": NameType.get_schema(),
-                "group_as": {"type": "string",
-                             "title": _("Group as")},
-                "sort_as": {"type": "integer",
-                            "title": _("Sort as")},
-                "display_as": {"type": "integer",
-                               "title": _("Display as")},
-                "call": {"type": "string",
-                         "title": _("Call name")},
-                "nick": {"type": "string",
-                         "title": _("Nick name")},
-                "famnick": {"type": "string",
-                            "title": _("Family nick name")}
-            }
+                "group_as": {"type": "string", "title": _("Group as")},
+                "sort_as": {"type": "integer", "title": _("Sort as")},
+                "display_as": {"type": "integer", "title": _("Display as")},
+                "call": {"type": "string", "title": _("Call name")},
+                "nick": {"type": "string", "title": _("Nick name")},
+                "famnick": {"type": "string", "title": _("Family nick name")},
+            },
         }
 
     def is_empty(self):
         """
         Indicate if the name is empty.
         """
-        namefieldsempty = (self.first_name == "" and
-                           self.suffix == "" and
-                           self.title == "" and
-                           self.nick == "" and
-                           self.famnick == "")
-        surnamefieldsempty = False not in [surn.is_empty()
-                                           for surn in self.surname_list]
+        namefieldsempty = (
+            self.first_name == ""
+            and self.suffix == ""
+            and self.title == ""
+            and self.nick == ""
+            and self.famnick == ""
+        )
+        surnamefieldsempty = False not in [
+            surn.is_empty() for surn in self.surname_list
+        ]
         return namefieldsempty and surnamefieldsempty
 
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
         """
-        (privacy, citation_list, note_list, date,
-         self.first_name, surname_list, self.suffix, self.title, name_type,
-         self.group_as, self.sort_as, self.display_as, self.call,
-         self.nick, self.famnick) = data
+        (
+            privacy,
+            citation_list,
+            note_list,
+            date,
+            self.first_name,
+            surname_list,
+            self.suffix,
+            self.title,
+            name_type,
+            self.group_as,
+            self.sort_as,
+            self.display_as,
+            self.call,
+            self.nick,
+            self.famnick,
+        ) = data
         self.type = NameType(name_type)
         PrivacyBase.unserialize(self, privacy)
         SurnameBase.unserialize(self, surname_list)
@@ -216,8 +250,15 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         :returns: Returns the list of all textual attributes of the object.
         :rtype: list
         """
-        return [self.first_name, self.suffix, self.title,
-                str(self.type), self.call, self.nick, self.famnick]
+        return [
+            self.first_name,
+            self.suffix,
+            self.title,
+            str(self.type),
+            self.call,
+            self.nick,
+            self.famnick,
+        ]
 
     def get_text_data_child_list(self):
         """
@@ -256,8 +297,9 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        return self.get_referenced_note_handles() + \
-               self.get_referenced_citation_handles()
+        return (
+            self.get_referenced_note_handles() + self.get_referenced_citation_handles()
+        )
 
     def is_equivalent(self, other):
         """
@@ -270,9 +312,11 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         :rtype: int
         """
         # TODO what to do with sort and display?
-        if self.get_text_data_list() != other.get_text_data_list() or \
-            self.get_date_object() != other.get_date_object() or \
-            SurnameBase.serialize(self) != SurnameBase.serialize(other):
+        if (
+            self.get_text_data_list() != other.get_text_data_list()
+            or self.get_date_object() != other.get_date_object()
+            or SurnameBase.serialize(self) != SurnameBase.serialize(other)
+        ):
             return DIFFERENT
         else:
             if self.is_equal(other):
@@ -458,11 +502,14 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         surname = self.get_surname()
         if self.suffix:
             # Translators: needed for Arabic, ignore otherwise
-            return _("%(surname)s, %(first)s %(suffix)s"
-                    ) % {'surname':surname, 'first':first, 'suffix':self.suffix}
+            return _("%(surname)s, %(first)s %(suffix)s") % {
+                "surname": surname,
+                "first": first,
+                "suffix": self.suffix,
+            }
         else:
             # Translators: needed for Arabic, ignore otherwise
-            return _("%(str1)s, %(str2)s") % {'str1':surname, 'str2':first}
+            return _("%(str1)s, %(str2)s") % {"str1": surname, "str2": first}
 
     def get_upper_name(self):
         """
@@ -473,11 +520,14 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         surname = self.get_surname().upper()
         if self.suffix:
             # Translators: needed for Arabic, ignore otherwise
-            return _("%(surname)s, %(first)s %(suffix)s"
-                    ) % {'surname':surname, 'first':first, 'suffix':self.suffix}
+            return _("%(surname)s, %(first)s %(suffix)s") % {
+                "surname": surname,
+                "first": first,
+                "suffix": self.suffix,
+            }
         else:
             # Translators: needed for Arabic, ignore otherwise
-            return _("%(str1)s, %(str2)s") % {'str1':surname, 'str2':first}
+            return _("%(str1)s, %(str2)s") % {"str1": surname, "str2": first}
 
     def get_regular_name(self):
         """
@@ -490,8 +540,11 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
             return "%s %s" % (first, surname)
         else:
             # Translators: needed for Arabic, ignore otherwise
-            return _("%(first)s %(surname)s, %(suffix)s"
-                    ) % {'surname':surname, 'first':first, 'suffix':self.suffix}
+            return _("%(first)s %(surname)s, %(suffix)s") % {
+                "surname": surname,
+                "first": first,
+                "suffix": self.suffix,
+            }
 
     def get_gedcom_parts(self):
         """
@@ -501,15 +554,15 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
                   surname list, added.
         """
         retval = {}
-        retval['given'] = self.first_name.strip()
-        retval['surname'] = self.get_surname().replace('/', '?')
-        retval['suffix'] = self.suffix
-        retval['title'] = self.title
-        retval['surnamelist'] = self.get_surnames()
-        retval['prefixes'] = self.get_prefixes()
-        retval['connectors'] = self.get_connectors()
-        retval['nick'] = self.nick
-        retval['famnick'] = self.famnick
+        retval["given"] = self.first_name.strip()
+        retval["surname"] = self.get_surname().replace("/", "?")
+        retval["suffix"] = self.suffix
+        retval["title"] = self.title
+        retval["surnamelist"] = self.get_surnames()
+        retval["prefixes"] = self.get_prefixes()
+        retval["connectors"] = self.get_connectors()
+        retval["nick"] = self.nick
+        retval["famnick"] = self.famnick
         return retval
 
     def get_gedcom_name(self):
@@ -517,9 +570,9 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         Returns a GEDCOM-formatted name.
         """
         firstname = self.first_name.strip()
-        surname = self.get_surname().replace('/', '?')
+        surname = self.get_surname().replace("/", "?")
         suffix = self.suffix
         if suffix == "":
-            return '%s /%s/' % (firstname, surname)
+            return "%s /%s/" % (firstname, surname)
         else:
-            return '%s /%s/ %s' % (firstname, surname, suffix)
+            return "%s /%s/ %s" % (firstname, surname, suffix)

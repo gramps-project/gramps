@@ -21,21 +21,22 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
 from ...utils.grampslocale import GrampsLocale
 from ...display.name import NameDisplay
 from ...config import config
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Report
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Report:
     """
     The Report base class.  This is a base class for generating
@@ -69,22 +70,23 @@ class Report:
         stdoptions.add_localization_option().
         """
         from ...datehandler import LANG_TO_DISPLAY, main_locale
-        if language == GrampsLocale.DEFAULT_TRANSLATION_STR: # the UI language
+
+        if language == GrampsLocale.DEFAULT_TRANSLATION_STR:  # the UI language
             locale = glocale
-        elif language in LANG_TO_DISPLAY: # a displayer exists
+        elif language in LANG_TO_DISPLAY:  # a displayer exists
             locale = LANG_TO_DISPLAY[main_locale[language]]._locale
-        else: # no displayer
+        else:  # no displayer
             locale = GrampsLocale(lang=language)
         self._ = locale.translation.sgettext
         self._get_date = locale.get_date
         self._get_type = locale.get_type
         self._ldd = locale.date_displayer
         self.doc.set_rtl_doc(locale.rtl_locale)
-        self._name_display = NameDisplay(locale) # a legacy/historical name
+        self._name_display = NameDisplay(locale)  # a legacy/historical name
         self._name_display.set_name_format(self.database.name_formats)
-        fmt_default = config.get('preferences.name-format')
+        fmt_default = config.get("preferences.name-format")
         self._name_display.set_default_format(fmt_default)
-        self._locale = locale # define it here rather than in every report
+        self._locale = locale  # define it here rather than in every report
         return locale
 
     def write_report(self):
@@ -93,4 +95,3 @@ class Report:
     def end_report(self):
         if self.standalone:
             self.doc.close()
-

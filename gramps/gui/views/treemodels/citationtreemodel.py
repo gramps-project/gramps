@@ -23,50 +23,62 @@
 CitationTreeModel classes for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 log = logging.getLogger(".")
 LOG = logging.getLogger(".citation")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # internationalization
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.utils.db import get_source_referents
 from .treebasemodel import TreeBaseModel
 from .citationbasemodel import CitationBaseModel
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # CitationModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class CitationTreeModel(CitationBaseModel, TreeBaseModel):
     """
     Hierarchical citation model.
     """
-    def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
-                 search=None, skip=set(), sort_map=None):
+
+    def __init__(
+        self,
+        db,
+        uistate,
+        scol=0,
+        order=Gtk.SortType.ASCENDING,
+        search=None,
+        skip=set(),
+        sort_map=None,
+    ):
         self.db = db
         self.number_items = self.db.get_number_of_sources
         self.map = self.db.get_raw_source_data
@@ -74,18 +86,18 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
         # The items here must correspond, in order, with data in
         # CitationTreeView, and with the items in the secondary fmap, fmap2
         self.fmap = [
-            self.source_src_title,   # COL_TITLE_PAGE (both Source & Citation)
-            self.source_src_id,      # COL_ID         (both Source & Citation)
-            None,                    # COL_DATE       (not for Source)
-            None,                    # COL_CONFIDENCE (not for Source)
-            self.source_src_private, # COL_PRIV       (both Source & Citation)
-            self.source_src_tags,    # COL_TAGS       (both Source & Citation)
-            self.source_src_chan,    # COL_CHAN       (both Source & Citation)
-            self.source_src_auth,    # COL_SRC_AUTH   (Source only)
-            self.source_src_abbr,    # COL_SRC_ABBR   (Source only)
-            self.source_src_pinfo,   # COL_SRC_PINFO  (Source only)
-            self.source_src_tag_color
-            ]
+            self.source_src_title,  # COL_TITLE_PAGE (both Source & Citation)
+            self.source_src_id,  # COL_ID         (both Source & Citation)
+            None,  # COL_DATE       (not for Source)
+            None,  # COL_CONFIDENCE (not for Source)
+            self.source_src_private,  # COL_PRIV       (both Source & Citation)
+            self.source_src_tags,  # COL_TAGS       (both Source & Citation)
+            self.source_src_chan,  # COL_CHAN       (both Source & Citation)
+            self.source_src_auth,  # COL_SRC_AUTH   (Source only)
+            self.source_src_abbr,  # COL_SRC_ABBR   (Source only)
+            self.source_src_pinfo,  # COL_SRC_PINFO  (Source only)
+            self.source_src_tag_color,
+        ]
         self.smap = [
             self.source_src_title,
             self.source_src_id,
@@ -97,14 +109,22 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
             self.source_src_auth,
             self.source_src_abbr,
             self.source_src_pinfo,
-            self.source_src_tag_color
-            ]
+            self.source_src_tag_color,
+        ]
 
-        TreeBaseModel.__init__(self, self.db, uistate, scol=scol, order=order,
-                               search=search, skip=skip, sort_map=sort_map,
-                               nrgroups=1,
-                               group_can_have_handle=True,
-                               has_secondary=True)
+        TreeBaseModel.__init__(
+            self,
+            self.db,
+            uistate,
+            scol=scol,
+            order=order,
+            search=search,
+            skip=skip,
+            sort_map=sort_map,
+            nrgroups=1,
+            group_can_have_handle=True,
+            has_secondary=True,
+        )
 
     def destroy(self):
         """
@@ -141,8 +161,8 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
             None,
             None,
             None,
-            self.citation_tag_color
-            ]
+            self.citation_tag_color,
+        ]
         self.smap2 = [
             self.citation_page,
             self.citation_id,
@@ -154,8 +174,8 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
             self.dummy_sort_key,
             self.dummy_sort_key,
             self.dummy_sort_key,
-            self.citation_tag_color
-            ]
+            self.citation_tag_color,
+        ]
 
     def color_column(self):
         """
@@ -167,7 +187,7 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
         """
         Return the headings of the levels in the hierarchy.
         """
-        return [_('Source'), _('Citation')]
+        return [_("Source"), _("Citation")]
 
     def add_row(self, handle, data):
         """
@@ -204,7 +224,7 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
             self.add_node(data[5], handle, sort_key, handle, secondary=True)
 
     def on_get_n_columns(self):
-        return len(self.fmap)+1
+        return len(self.fmap) + 1
 
     def column_header(self, node):
         """

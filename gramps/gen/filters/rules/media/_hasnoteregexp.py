@@ -18,26 +18,29 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._hasnoteregexbase import HasNoteRegexBase
 
-#-------------------------------------------------------------------------
-# "Media having notes that contain a substring"
-#-------------------------------------------------------------------------
-class HasNoteRegexp(HasNoteRegexBase):
 
-    name = _('Media objects having notes containing <text>')
-    description = _("Matches media objects whose notes contain text "
-                    "matching a regular expression")
+# -------------------------------------------------------------------------
+# "Media having notes that contain a substring"
+# -------------------------------------------------------------------------
+class HasNoteRegexp(HasNoteRegexBase):
+    name = _("Media objects having notes containing <text>")
+    description = _(
+        "Matches media objects whose notes contain text "
+        "matching a regular expression"
+    )

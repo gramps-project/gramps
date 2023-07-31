@@ -18,33 +18,35 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....utils.alive import probably_alive
 from .. import Rule
 from ....datehandler import parser
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # "People probably alive"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class ProbablyAlive(Rule):
     """People probably alive"""
 
     labels = [_("On date:")]
-    name = _('People probably alive')
+    name = _("People probably alive")
     description = _("Matches people without indications of death that are not too old")
-    category = _('General filters')
+    category = _("General filters")
 
     def prepare(self, db, user):
         try:
@@ -52,5 +54,5 @@ class ProbablyAlive(Rule):
         except:
             self.current_date = None
 
-    def apply(self,db,person):
-        return probably_alive(person,db,self.current_date)
+    def apply(self, db, person):
+        return probably_alive(person, db, self.current_date)

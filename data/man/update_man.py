@@ -42,22 +42,23 @@ try:
 except:
     DOCUTILS = False
 
-LANGUAGES = ['sv', 'nl', 'pl', 'cs', 'pt_BR', 'fr']
-VERSION = '5.0.0'
-DATE = ''
+LANGUAGES = ["sv", "nl", "pl", "cs", "pt_BR", "fr"]
+VERSION = "5.0.0"
+DATE = ""
 
 # You can set these variables from the command line.
-SPHINXBUILD   = 'sphinx-build'
+SPHINXBUILD = "sphinx-build"
 
-if sys.platform == 'win32':
-    pythonCmd = os.path.join(sys.prefix, 'bin', 'python.exe')
-    sphinxCmd = os.path.join(sys.prefix, 'bin', 'sphinx-build.exe')
-elif sys.platform in ['linux2', 'darwin', 'cygwin']:
-    pythonCmd = os.path.join(sys.prefix, 'bin', 'python')
+if sys.platform == "win32":
+    pythonCmd = os.path.join(sys.prefix, "bin", "python.exe")
+    sphinxCmd = os.path.join(sys.prefix, "bin", "sphinx-build.exe")
+elif sys.platform in ["linux2", "darwin", "cygwin"]:
+    pythonCmd = os.path.join(sys.prefix, "bin", "python")
     sphinxCmd = SPHINXBUILD
 else:
-    print ("Update Man ERROR: unknown system, don't know sphinx, ... commands")
+    print("Update Man ERROR: unknown system, don't know sphinx, ... commands")
     sys.exit(0)
+
 
 def tests():
     """
@@ -67,18 +68,19 @@ def tests():
     """
     try:
         print("\n=================='python'=============================\n")
-        os.system('''%(program)s -V''' % {'program': pythonCmd})
+        os.system("""%(program)s -V""" % {"program": pythonCmd})
     except:
-        print ('Please, install python')
+        print("Please, install python")
 
     try:
         print("\n=================='Sphinx-build'=============================\n")
-        os.system('''%(program)s''' % {'program': sphinxCmd})
+        os.system("""%(program)s""" % {"program": sphinxCmd})
     except:
-        print ('Please, install sphinx')
+        print("Please, install sphinx")
 
     if not DOCUTILS:
-        print('\nNo docutils support, cannot use -m/--man and -o/--odt arguments.')
+        print("\nNo docutils support, cannot use -m/--man and -o/--odt arguments.")
+
 
 def main():
     """
@@ -87,25 +89,45 @@ def main():
     """
 
     parser = ArgumentParser(
-                         description='This program aims to handle documentation'
-                                      ' and related translated versions.',
-                         )
+        description="This program aims to handle documentation"
+        " and related translated versions.",
+    )
 
-    parser.add_argument("-t", "--test",
-            action="store_true", dest="test",  default=True,
-            help="test if 'python' and 'sphinx' are properly installed")
+    parser.add_argument(
+        "-t",
+        "--test",
+        action="store_true",
+        dest="test",
+        default=True,
+        help="test if 'python' and 'sphinx' are properly installed",
+    )
 
-    parser.add_argument("-b", "--build",
-            action="store_true", dest="build",  default=False,
-            help="build man documentation (via sphinx-build)")
+    parser.add_argument(
+        "-b",
+        "--build",
+        action="store_true",
+        dest="build",
+        default=False,
+        help="build man documentation (via sphinx-build)",
+    )
 
-    parser.add_argument("-m", "--man",
-            action="store_true", dest="man",  default=False,
-            help="build man documentation (via docutils)")
+    parser.add_argument(
+        "-m",
+        "--man",
+        action="store_true",
+        dest="man",
+        default=False,
+        help="build man documentation (via docutils)",
+    )
 
-    parser.add_argument("-o", "--odt",
-            action="store_true", dest="odt",  default=False,
-            help="build odt documentation (via docutils)")
+    parser.add_argument(
+        "-o",
+        "--odt",
+        action="store_true",
+        dest="odt",
+        default=False,
+        help="build odt documentation (via docutils)",
+    )
 
     args = parser.parse_args()
 
@@ -121,6 +143,7 @@ def main():
     if args.odt and DOCUTILS:
         odt()
 
+
 def build():
     """
     Build documentation.
@@ -128,28 +151,39 @@ def build():
 
     # testing stage
 
-    os.system('''%(program)s -b html . _build/html''' % {'program': sphinxCmd})
-    os.system('''%(program)s -b htmlhelp . _build/htmlhelp''' % {'program': sphinxCmd})
+    os.system("""%(program)s -b html . _build/html""" % {"program": sphinxCmd})
+    os.system("""%(program)s -b htmlhelp . _build/htmlhelp""" % {"program": sphinxCmd})
     if DOCUTILS:
-        os.system('''%(program)s -b man . .''' % {'program': sphinxCmd})
-    os.system('''%(program)s -b text . _build/text''' % {'program': sphinxCmd})
-    os.system('''%(program)s -b changes . _build/changes''' % {'program': sphinxCmd})
-    #os.system('''%(program)s -b linkcheck . _build/linkcheck''' % {'program': sphinxCmd})
-    os.system('''%(program)s -b gettext . _build/gettext''' % {'program': sphinxCmd})
+        os.system("""%(program)s -b man . .""" % {"program": sphinxCmd})
+    os.system("""%(program)s -b text . _build/text""" % {"program": sphinxCmd})
+    os.system("""%(program)s -b changes . _build/changes""" % {"program": sphinxCmd})
+    # os.system('''%(program)s -b linkcheck . _build/linkcheck''' % {'program': sphinxCmd})
+    os.system("""%(program)s -b gettext . _build/gettext""" % {"program": sphinxCmd})
 
     for lang in LANGUAGES:
-        os.system('''%(program)s -b html -D language="%(lang)s" master_doc="%(lang)s" %(lang)s %(lang)s'''
-                   % {'lang': lang, 'program': sphinxCmd})
-        os.system('''%(program)s -b htmlhelp -D language="%(lang)s" master_doc="%(lang)s" %(lang)s %(lang)s'''
-                   % {'lang': lang, 'program': sphinxCmd})
+        os.system(
+            """%(program)s -b html -D language="%(lang)s" master_doc="%(lang)s" %(lang)s %(lang)s"""
+            % {"lang": lang, "program": sphinxCmd}
+        )
+        os.system(
+            """%(program)s -b htmlhelp -D language="%(lang)s" master_doc="%(lang)s" %(lang)s %(lang)s"""
+            % {"lang": lang, "program": sphinxCmd}
+        )
         if DOCUTILS:
-            os.system('''%(program)s -b man %(lang)s %(lang)s'''
-                       % {'lang': lang, 'program': sphinxCmd})
-        os.system('''%(program)s -b text -D language="%(lang)s" master_doc="%(lang)s" %(lang)s %(lang)s'''
-                   % {'lang': lang, 'program': sphinxCmd})
+            os.system(
+                """%(program)s -b man %(lang)s %(lang)s"""
+                % {"lang": lang, "program": sphinxCmd}
+            )
+        os.system(
+            """%(program)s -b text -D language="%(lang)s" master_doc="%(lang)s" %(lang)s %(lang)s"""
+            % {"lang": lang, "program": sphinxCmd}
+        )
         # for update/migration
-        os.system('''%(program)s -b gettext -D language="%(lang)s" master_doc="%(lang)s" . _build/gettext/%(lang)s'''
-                   % {'lang': lang, 'program': sphinxCmd})
+        os.system(
+            """%(program)s -b gettext -D language="%(lang)s" master_doc="%(lang)s" . _build/gettext/%(lang)s"""
+            % {"lang": lang, "program": sphinxCmd}
+        )
+
 
 def man():
     """
@@ -159,11 +193,14 @@ def man():
     from docutils.writers import manpage
     """
 
-    os.system('''rst2man en.rst gramps.1''')
+    os.system("""rst2man en.rst gramps.1""")
 
     for lang in LANGUAGES:
-        os.system('''rst2man %(lang)s/%(lang)s.rst -l %(lang)s %(lang)s/gramps.1'''
-                   % {'lang': lang})
+        os.system(
+            """rst2man %(lang)s/%(lang)s.rst -l %(lang)s %(lang)s/gramps.1"""
+            % {"lang": lang}
+        )
+
 
 def odt():
     """
@@ -173,11 +210,14 @@ def odt():
     from docutils.writers.odf_odt import Writer, Reader
     """
 
-    os.system('''rst2odt en.rst gramps.odt''')
+    os.system("""rst2odt en.rst gramps.odt""")
 
     for lang in LANGUAGES:
-        os.system('''rst2odt %(lang)s/%(lang)s.rst -l %(lang)s %(lang)s/gramps.odt'''
-                   % {'lang': lang})
+        os.system(
+            """rst2odt %(lang)s/%(lang)s.rst -l %(lang)s %(lang)s/gramps.odt"""
+            % {"lang": lang}
+        )
+
 
 if __name__ == "__main__":
     main()

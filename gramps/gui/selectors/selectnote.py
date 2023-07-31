@@ -22,43 +22,44 @@
 """Handling of selection dialog for selecting notes
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python Modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps Modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from ..views.treemodels import NoteModel
 from .baseselector import BaseSelector
 from gramps.gen.const import URL_MANUAL_SECT1
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # SelectNote
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class SelectNote(BaseSelector):
-    """ Class that handles the selection of a note
-    """
+    """Class that handles the selection of a note"""
 
     def _local_init(self):
         """
         Perform local initialisation for this class
         """
-        self.setup_configs('interface.note-sel', 600, 450)
+        self.setup_configs("interface.note-sel", 600, 450)
 
     def get_window_title(self):
         return _("Select Note")
@@ -68,12 +69,12 @@ class SelectNote(BaseSelector):
 
     def get_column_titles(self):
         return [
-            (_('Preview'), 350, BaseSelector.TEXT, 0),
-            (_('ID'),      75,  BaseSelector.TEXT, 1),
-            (_('Type'),    100, BaseSelector.TEXT, 2),
-            (_('Tags'),    100, BaseSelector.TEXT, 4),
-            (_('Last Change'), 150, BaseSelector.TEXT, 5),
-            ]
+            (_("Preview"), 350, BaseSelector.TEXT, 0),
+            (_("ID"), 75, BaseSelector.TEXT, 1),
+            (_("Type"), 100, BaseSelector.TEXT, 2),
+            (_("Tags"), 100, BaseSelector.TEXT, 4),
+            (_("Last Change"), 150, BaseSelector.TEXT, 5),
+        ]
 
     def get_from_handle_func(self):
         return self.db.get_note_from_handle
@@ -82,4 +83,4 @@ class SelectNote(BaseSelector):
         return __name__
 
     WIKI_HELP_PAGE = URL_MANUAL_SECT1
-    WIKI_HELP_SEC = _('Select_Note_selector', 'manual')
+    WIKI_HELP_SEC = _("Select_Note_selector", "manual")

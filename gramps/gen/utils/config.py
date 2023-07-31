@@ -24,32 +24,33 @@
 Configuration based utilities
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ..lib import Researcher
 from ..config import config
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Configuration based utilities
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def get_researcher():
     """
     Return a new database owner with the default values from the config file.
     """
-    name = config.get('researcher.researcher-name')
-    address = config.get('researcher.researcher-addr')
-    locality = config.get('researcher.researcher-locality')
-    city = config.get('researcher.researcher-city')
-    state = config.get('researcher.researcher-state')
-    country = config.get('researcher.researcher-country')
-    post_code = config.get('researcher.researcher-postal')
-    phone = config.get('researcher.researcher-phone')
-    email = config.get('researcher.researcher-email')
+    name = config.get("researcher.researcher-name")
+    address = config.get("researcher.researcher-addr")
+    locality = config.get("researcher.researcher-locality")
+    city = config.get("researcher.researcher-city")
+    state = config.get("researcher.researcher-state")
+    country = config.get("researcher.researcher-country")
+    post_code = config.get("researcher.researcher-postal")
+    phone = config.get("researcher.researcher-phone")
+    email = config.get("researcher.researcher-email")
 
     owner = Researcher()
     owner.set_name(name)

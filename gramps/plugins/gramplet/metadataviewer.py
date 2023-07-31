@@ -23,19 +23,21 @@
 """
 Image Metadata Gramplet
 """
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.plugins.lib.libmetadata import MetadataView
 from gramps.gen.plug import Gramplet
 from gramps.gen.utils.file import media_path_full
+
 
 class MetadataViewer(Gramplet):
     """
     Displays the exif tags of an image.
     """
+
     def init(self):
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
@@ -43,7 +45,7 @@ class MetadataViewer(Gramplet):
         self.gui.WIDGET.show()
 
     def db_changed(self):
-        self.connect_signal('Media', self.update)
+        self.connect_signal("Media", self.update)
 
     def build_gui(self):
         """
@@ -53,7 +55,7 @@ class MetadataViewer(Gramplet):
         return self.view
 
     def main(self):
-        active_handle = self.get_active('Media')
+        active_handle = self.get_active("Media")
         if active_handle:
             media = self.dbstate.db.get_media_from_handle(active_handle)
             if media:
@@ -66,7 +68,7 @@ class MetadataViewer(Gramplet):
             self.set_has_data(False)
 
     def update_has_data(self):
-        active_handle = self.get_active('Media')
+        active_handle = self.get_active("Media")
         if active_handle:
             active = self.dbstate.db.get_media_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))

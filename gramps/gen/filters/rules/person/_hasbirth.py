@@ -18,37 +18,39 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....datehandler import parser
 from ....display.place import displayer as place_displayer
 from ....lib.eventtype import EventType
 from ....lib.eventroletype import EventRoleType
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasBirth
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasBirth(Rule):
     """Rule that checks for a person with a birth of a particular value"""
 
-    labels = [ _('Date:'), _('Place:'), _('Description:') ]
-    name = _('People with the <birth data>')
+    labels = [_("Date:"), _("Place:"), _("Description:")]
+    name = _("People with the <birth data>")
     description = _("Matches people with birth data of a particular value")
-    category = _('Event filters')
+    category = _("Event filters")
     allow_regex = True
 
     def prepare(self, db, user):
@@ -57,7 +59,7 @@ class HasBirth(Rule):
         else:
             self.date = None
 
-    def apply(self,db,person):
+    def apply(self, db, person):
         for event_ref in person.get_event_ref_list():
             if not event_ref:
                 continue

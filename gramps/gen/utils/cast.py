@@ -24,26 +24,30 @@
 Utility functions to cast types
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import os
 import sys
 import logging
+
 LOG = logging.getLogger(".")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
+
 def cast_to_bool(val):
-    return val in ['True', 'true', _('True'), _('true'), '1'] # 3139
+    return val in ["True", "true", _("True"), _("true"), "1"]  # 3139
+
 
 def get_type_converter(val):
     """
@@ -61,6 +65,7 @@ def get_type_converter(val):
     elif val_type in (list, tuple):
         return list
 
+
 def type_name(val):
     """
     Return the name the type of val.
@@ -70,14 +75,15 @@ def type_name(val):
     """
     val_type = type(val)
     if val_type == int:
-        return 'int'
+        return "int"
     elif val_type == float:
-        return 'float'
+        return "float"
     elif val_type == bool:
-        return 'bool'
+        return "bool"
     elif isinstance(val, str):
-        return 'unicode'
-    return 'unicode'
+        return "unicode"
+    return "unicode"
+
 
 def get_type_converter_by_name(val_str):
     """
@@ -86,12 +92,12 @@ def get_type_converter_by_name(val_str):
     Only numbers and strings are supported.
     The rest becomes strings (unicode).
     """
-    if val_str == 'int':
+    if val_str == "int":
         return int
-    elif val_str == 'float':
+    elif val_str == "float":
         return float
-    elif val_str == 'bool':
+    elif val_str == "bool":
         return cast_to_bool
-    elif val_str in ('str', 'unicode'):
+    elif val_str in ("str", "unicode"):
         return str
     return str

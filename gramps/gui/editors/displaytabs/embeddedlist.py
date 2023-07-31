@@ -19,52 +19,54 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import pickle
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import GObject
 from gi.repository import GLib
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Pango
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...widgets.cellrenderertextedit import CellRendererTextEdit
 from ...widgets.persistenttreeview import PersistentTreeView
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from ...utils import is_right_click
 from .buttontab import ButtonTab
 
 
-#----------------------------------------------------------------
+# ----------------------------------------------------------------
 #
 # Constants
 #
-#----------------------------------------------------------------
+# ----------------------------------------------------------------
 TEXT_COL = 0
 MARKUP_COL = 1
 ICON_COL = 2
 TEXT_EDIT_COL = 3
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class EmbeddedList(ButtonTab):
     """
     This class provides the base class for all the list tabs.
@@ -76,24 +78,42 @@ class EmbeddedList(ButtonTab):
     _DND_TYPE = None
     _DND_EXTRA = None
 
-    def __init__(self, dbstate, uistate, track, name, build_model,
-                 share_button=False, move_buttons=False, jump_button=False,
-                 top_label=None):
+    def __init__(
+        self,
+        dbstate,
+        uistate,
+        track,
+        name,
+        build_model,
+        share_button=False,
+        move_buttons=False,
+        jump_button=False,
+        top_label=None,
+    ):
         """
         Create a new list, using the passed build_model to populate the list.
         """
-        ButtonTab.__init__(self, dbstate, uistate, track, name, share_button,
-                           move_buttons, jump_button, top_label)
+        ButtonTab.__init__(
+            self,
+            dbstate,
+            uistate,
+            track,
+            name,
+            share_button,
+            move_buttons,
+            jump_button,
+            top_label,
+        )
 
         self.changed = False
         self.model = None
         self.build_model = build_model
-        #renderer for pixbuf
+        # renderer for pixbuf
         self.pb_renderer = None
 
         # handle the selection
         self.selection = self.tree.get_selection()
-        self.selection.connect('changed', self._selection_changed)
+        self.selection.connect("changed", self._selection_changed)
         self.track_ref_for_deletion("selection")
 
         # build the columns
@@ -105,7 +125,7 @@ class EmbeddedList(ButtonTab):
             self._set_dnd()
 
         # set up right click option
-        self.tree.connect('button-press-event', self._on_button_press)
+        self.tree.connect("button-press-event", self._on_button_press)
 
         # build the initial data
         self.rebuild()
@@ -126,8 +146,8 @@ class EmbeddedList(ButtonTab):
         """
         self._select_row_at_coords(event.x, event.y)
         if is_right_click(event):
-            #ref = self.get_selected()
-            #if ref:
+            # ref = self.get_selected()
+            # if ref:
             self.right_click(obj, event)
             return True
         elif event.type == Gdk.EventType.BUTTON_PRESS and event.button == 2:
@@ -145,16 +165,16 @@ class EmbeddedList(ButtonTab):
         """
         if self.share_btn:
             itemlist = [
-                (True, _('_Add'), self.add_button_clicked),
-                (True,  _('Share'), self.share_button_clicked),
-                (False, _('_Edit'), self.edit_button_clicked),
-                (True, _('_Remove'), self.del_button_clicked),
-                ]
+                (True, _("_Add"), self.add_button_clicked),
+                (True, _("Share"), self.share_button_clicked),
+                (False, _("_Edit"), self.edit_button_clicked),
+                (True, _("_Remove"), self.del_button_clicked),
+            ]
         else:
             itemlist = [
-                (True, _('_Add'), self.add_button_clicked),
-                (False, _('_Edit'), self.edit_button_clicked),
-                (True, _('_Remove'), self.del_button_clicked),
+                (True, _("_Add"), self.add_button_clicked),
+                (False, _("_Edit"), self.edit_button_clicked),
+                (True, _("_Remove"), self.del_button_clicked),
             ]
         return itemlist
 
@@ -166,12 +186,12 @@ class EmbeddedList(ButtonTab):
         On right click show a popup menu.
         This is populated with get_popup_menu_items
         """
-        self.__store_menu = Gtk.Menu() #need to keep reference or menu disappears
+        self.__store_menu = Gtk.Menu()  # need to keep reference or menu disappears
         menu = self.__store_menu
         menu.set_reserve_toggle_size(False)
-        for (need_write, title, func) in self.get_popup_menu_items():
+        for need_write, title, func in self.get_popup_menu_items():
             item = Gtk.MenuItem.new_with_mnemonic(title)
-            item.connect('activate', func)
+            item.connect("activate", func)
             if need_write and self.dbstate.db.readonly:
                 item.set_sensitive(False)
             item.show()
@@ -193,21 +213,22 @@ class EmbeddedList(ButtonTab):
         """
 
         if self._DND_EXTRA:
-            dnd_types = [self._DND_TYPE.target(),
-                         self._DND_EXTRA.target()]
+            dnd_types = [self._DND_TYPE.target(), self._DND_EXTRA.target()]
         else:
             dnd_types = [self._DND_TYPE.target()]
 
         self.tree.enable_model_drag_dest(dnd_types, Gdk.DragAction.COPY)
-        self.tree.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK,
-                                           [self._DND_TYPE.target()],
-                                           Gdk.DragAction.COPY)
+        self.tree.enable_model_drag_source(
+            Gdk.ModifierType.BUTTON1_MASK,
+            [self._DND_TYPE.target()],
+            Gdk.DragAction.COPY,
+        )
 
-        self.tree.connect('drag_data_get', self.drag_data_get)
-        self.tree.connect_after('drag-begin', self.after_drag_begin)
+        self.tree.connect("drag_data_get", self.drag_data_get)
+        self.tree.connect_after("drag-begin", self.after_drag_begin)
         if not self.dbstate.db.readonly:
-            self.tree.connect('drag_data_received', self.drag_data_received)
-            self.tree.connect('drag_motion', self.tree_drag_motion)
+            self.tree.connect("drag_data_received", self.drag_data_received)
+            self.tree.connect("drag_motion", self.tree_drag_motion)
 
     def drag_data_get(self, widget, context, sel_data, info, time):
         """
@@ -254,7 +275,6 @@ class EmbeddedList(ButtonTab):
 
                 # make sure this is the correct DND type for this object
                 if mytype == self._DND_TYPE.drag_type:
-
                     # determine the destination row
                     row = self._find_row(x, y)
 
@@ -291,11 +311,13 @@ class EmbeddedList(ButtonTab):
             return len(self.get_data())
         else:
             path = row[0].get_indices()
-            if row[1] in (Gtk.TreeViewDropPosition.BEFORE,
-                          Gtk.TreeViewDropPosition.INTO_OR_BEFORE):
+            if row[1] in (
+                Gtk.TreeViewDropPosition.BEFORE,
+                Gtk.TreeViewDropPosition.INTO_OR_BEFORE,
+            ):
                 return path[0]
             else:
-                return path[0]+1
+                return path[0] + 1
 
     def _handle_drag(self, row, obj):
         self.get_data().insert(row, obj)
@@ -316,16 +338,16 @@ class EmbeddedList(ButtonTab):
         Move the item a position up in the EmbeddedList.
         Eg: 0,1,2,3 needs to become 0,2,1,3, here row_from = 2
         """
-        if selmethod :
+        if selmethod:
             dlist = selmethod()
-        else :
+        else:
             dlist = self.get_data()
         del dlist[row_from]
-        dlist.insert(row_from-1, obj)
+        dlist.insert(row_from - 1, obj)
         self.changed = True
         self.rebuild()
-        #select the row
-        path = '%d' % (row_from-1)
+        # select the row
+        path = "%d" % (row_from - 1)
         self.tree.get_selection().select_path(path)
         # The height/location of Gtk.treecells is calculated in an idle handler
         # so use idle_add to scroll cell into view.
@@ -336,16 +358,16 @@ class EmbeddedList(ButtonTab):
         Move the item a position down in the EmbeddedList.
         Eg: 0,1,2,3 needs to become 0,2,1,3, here row_from = 1
         """
-        if selmethod :
+        if selmethod:
             dlist = selmethod()
-        else :
+        else:
             dlist = self.get_data()
         del dlist[row_from]
-        dlist.insert(row_from+1, obj)
+        dlist.insert(row_from + 1, obj)
         self.changed = True
         self.rebuild()
-        #select the row
-        path = '%d' % (row_from+1)
+        # select the row
+        path = "%d" % (row_from + 1)
         self.tree.get_selection().select_path(path)
         GLib.idle_add(self.tree.scroll_to_cell, path)
 
@@ -356,7 +378,7 @@ class EmbeddedList(ButtonTab):
         STOCK_JUSTIFY_FILL icon, which in the default GTK style
         looks kind of like a list.
         """
-        return 'format-justify-fill'
+        return "format-justify-fill"
 
     def del_button_clicked(self, obj):
         ref = self.get_selected()
@@ -370,14 +392,14 @@ class EmbeddedList(ButtonTab):
         ref = self.get_selected()
         if ref:
             pos = self.find_index(ref)
-            if pos > 0 :
+            if pos > 0:
                 self._move_up(pos, ref)
 
     def down_button_clicked(self, obj):
         ref = self.get_selected()
         if ref:
             pos = self.find_index(ref)
-            if pos >= 0 and pos < len(self.get_data())-1:
+            if pos >= 0 and pos < len(self.get_data()) - 1:
                 self._move_down(pos, ref)
 
     def build_interface(self):
@@ -392,8 +414,8 @@ class EmbeddedList(ButtonTab):
         _name = self.get_config_name()
         self.tree = PersistentTreeView(self.uistate, _name)
         self.tree.set_reorderable(True)
-        self.tree.connect('button_press_event', self.double_click)
-        self.tree.connect('key_press_event', self.key_pressed)
+        self.tree.connect("button_press_event", self.double_click)
+        self.tree.connect("key_press_event", self.key_pressed)
         self.track_ref_for_deletion("tree")
 
         # create the scrolled window, and attach the treeview
@@ -401,7 +423,7 @@ class EmbeddedList(ButtonTab):
         scroll.set_shadow_type(Gtk.ShadowType.IN)
         scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         scroll.add(self.tree)
-        self.pack_end(scroll, True, True,0)
+        self.pack_end(scroll, True, True, 0)
 
     def get_selected(self):
         """
@@ -452,7 +474,7 @@ class EmbeddedList(ButtonTab):
                                   'edited': self.on_edited
                               }}
         """
-        self.edit_col_funcs ={}
+        self.edit_col_funcs = {}
 
     def build_columns(self):
         """
@@ -470,7 +492,6 @@ class EmbeddedList(ButtonTab):
 
         # loop through the values returned by column_order
         for pair in self.column_order():
-
             # if the first value isn't 1, then we skip the values
             if not pair[0]:
                 continue
@@ -483,36 +504,41 @@ class EmbeddedList(ButtonTab):
             model_col = self._column_names[pair[1]][1]
             type_col = self._column_names[pair[1]][3]
 
-            if (type_col in [TEXT_COL, MARKUP_COL, TEXT_EDIT_COL]):
+            if type_col in [TEXT_COL, MARKUP_COL, TEXT_EDIT_COL]:
                 if type_col == TEXT_EDIT_COL:
                     renderer = CellRendererTextEdit()
                 else:
                     renderer = Gtk.CellRendererText()
-                renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
+                renderer.set_property("ellipsize", Pango.EllipsizeMode.END)
                 if type_col == TEXT_COL or type_col == TEXT_EDIT_COL:
                     column = Gtk.TreeViewColumn(name, renderer, text=pair[1])
                 else:
                     column = Gtk.TreeViewColumn(name, renderer, markup=pair[1])
                 if not self._column_names[pair[1]][4] == -1:
-                    #apply weight attribute
-                    column.add_attribute(renderer, "weight",
-                                         self._column_names[pair[1]][4])
-                #set up editable
+                    # apply weight attribute
+                    column.add_attribute(
+                        renderer, "weight", self._column_names[pair[1]][4]
+                    )
+                # set up editable
                 if type_col == TEXT_EDIT_COL:
-                    #model col must have functions defined
+                    # model col must have functions defined
                     callbacks = self.edit_col_funcs[model_col]
                     for renderer in column.get_cells():
-                        renderer.set_property('editable', not self.dbstate.db.readonly)
-                        renderer.connect('editing_started',
-                                            callbacks['edit_start'], model_col)
-                        renderer.connect('edited', callbacks['edited'], model_col)
+                        renderer.set_property("editable", not self.dbstate.db.readonly)
+                        renderer.connect(
+                            "editing_started", callbacks["edit_start"], model_col
+                        )
+                        renderer.connect("edited", callbacks["edited"], model_col)
             elif self._column_names[pair[1]][3] == ICON_COL:
                 self.col_icons[pair[1]] = col_icon
                 self.pb_renderer = Gtk.CellRendererPixbuf()
                 column = Gtk.TreeViewColumn(name, self.pb_renderer)
                 column.set_cell_data_func(self.pb_renderer, self.icon_func, pair[1])
             else:
-                raise NotImplementedError('Unknown column type: %s, with column name %s' % (type_col, self._column_names[pair[1]][3]))
+                raise NotImplementedError(
+                    "Unknown column type: %s, with column name %s"
+                    % (type_col, self._column_names[pair[1]][3])
+                )
             if col_icon is not None:
                 image = Gtk.Image()
                 image.set_from_icon_name(col_icon, Gtk.IconSize.MENU)
@@ -526,7 +552,7 @@ class EmbeddedList(ButtonTab):
             column.set_clickable(True)
             if self._column_names[pair[1]][2] != -1:
                 column.set_sizing(Gtk.TreeViewColumnSizing.FIXED)
-                #column.set_min_width(self._column_names[pair[1]][2])
+                # column.set_min_width(self._column_names[pair[1]][2])
                 column.set_fixed_width(self._column_names[pair[1]][2])
             else:
                 column.set_expand(True)
@@ -538,21 +564,20 @@ class EmbeddedList(ButtonTab):
         self.tree.restore_column_size()
 
     def get_config_name(self):
-        """ used to associate the selector config name to the PersistentTreeView
-        """
+        """used to associate the selector config name to the PersistentTreeView"""
         assert False, "Must be defined in the subclass"
 
     def icon_func(self, column, renderer, model, iter_, col_num):
-        '''
+        """
         Set the stock icon property of the cell renderer.  We use a cell data
         function because there is a problem returning None from a model.
-        '''
+        """
         icon_name = model.get_value(iter_, col_num)
-        if icon_name == '' or icon_name == False:
+        if icon_name == "" or icon_name == False:
             icon_name = None
         elif icon_name == True:
             icon_name = self.col_icons[col_num]
-        renderer.set_property('icon-name', icon_name)
+        renderer.set_property("icon-name", icon_name)
 
     def construct_model(self):
         """
@@ -566,13 +591,13 @@ class EmbeddedList(ButtonTab):
         using the build_model function passed at creation time.
         """
         offset = self.tree.get_visible_rect()
-        #during rebuild, don't do _selection_changed
+        # during rebuild, don't do _selection_changed
         self.dirty_selection = True
         (model, node) = self.selection.get_selected()
         selectedpath = None
         if node:
             selectedpath = model.get_path(node)
-        if self.model and hasattr(self.model, 'destroy'):
+        if self.model and hasattr(self.model, "destroy"):
             self.tree.set_model(None)
             self.model.destroy()
         try:
@@ -580,17 +605,18 @@ class EmbeddedList(ButtonTab):
         except AttributeError as msg:
             from ...dialog import RunDatabaseRepair
             import traceback
+
             traceback.print_exc()
             RunDatabaseRepair(str(msg), parent=self.uistate.window)
             return
 
         self.tree.set_model(self.model)
-        #reset previous select
+        # reset previous select
         if selectedpath is not None:
             self.selection.select_path(selectedpath)
-        #self.selection.select_path(node)
+        # self.selection.select_path(node)
         self._set_label()
-        #model and tree are reset, allow _selection_changed again, and force it
+        # model and tree are reset, allow _selection_changed again, and force it
         self.dirty_selection = False
         self._selection_changed()
         if self.tree.get_realized():

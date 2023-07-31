@@ -19,34 +19,36 @@
 #
 # gen.filters.rules/Person/_HasNameOriginType.py
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 from ....lib.nameorigintype import NameOriginType
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasNameOriginType
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasNameOriginType(Rule):
     """Rule that checks the type of Surname origin"""
 
-    labels = [ _('Surname origin type:')]
-    name = _('People with the <Surname origin type>')
+    labels = [_("Surname origin type:")]
+    name = _("People with the <Surname origin type>")
     description = _("Matches people with a surname origin")
-    category = _('General filters')
+    category = _("General filters")
 
     def apply(self, db, person):
         if not self.list[0]:

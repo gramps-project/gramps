@@ -26,11 +26,11 @@
 Address class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .secondaryobj import SecondaryObject
 from .privacybase import PrivacyBase
 from .citationbase import CitationBase
@@ -39,15 +39,18 @@ from .datebase import DateBase
 from .locationbase import LocationBase
 from .const import IDENTICAL, EQUAL, DIFFERENT
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Address for Person/Repository
 #
-#-------------------------------------------------------------------------
-class Address(SecondaryObject, PrivacyBase, CitationBase, NoteBase, DateBase,
-              LocationBase):
+# -------------------------------------------------------------------------
+class Address(
+    SecondaryObject, PrivacyBase, CitationBase, NoteBase, DateBase, LocationBase
+):
     """Provide address information."""
 
     def __init__(self, source=None):
@@ -64,11 +67,13 @@ class Address(SecondaryObject, PrivacyBase, CitationBase, NoteBase, DateBase,
         """
         Convert the object to a serialized tuple of data.
         """
-        return (PrivacyBase.serialize(self),
-                CitationBase.serialize(self),
-                NoteBase.serialize(self),
-                DateBase.serialize(self),
-                LocationBase.serialize(self))
+        return (
+            PrivacyBase.serialize(self),
+            CitationBase.serialize(self),
+            NoteBase.serialize(self),
+            DateBase.serialize(self),
+            LocationBase.serialize(self),
+        )
 
     def unserialize(self, data):
         """
@@ -92,40 +97,36 @@ class Address(SecondaryObject, PrivacyBase, CitationBase, NoteBase, DateBase,
         :rtype: dict
         """
         from .date import Date
+
         return {
             "type": "object",
             "title": _("Address"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "private": {"type": "boolean",
-                            "title": _("Private")},
-                "citation_list": {"type": "array",
-                                  "title": _("Citations"),
-                                  "items": {"type": "string",
-                                            "maxLength": 50}},
-                "note_list": {"type": "array",
-                              "title": _("Notes"),
-                              "items": {"type": "string",
-                                        "maxLength": 50}},
-                "date": {"oneOf": [{"type": "null"}, Date.get_schema()],
-                         "title": _("Date")},
-                "street": {"type": "string",
-                           "title": _("Street")},
-                "locality": {"type": "string",
-                             "title": _("Locality")},
-                "city": {"type": "string",
-                         "title": _("City")},
-                "county": {"type": "string",
-                           "title": _("County")},
-                "state": {"type": "string",
-                          "title": _("State")},
-                "country": {"type": "string",
-                            "title": _("Country")},
-                "postal": {"type": "string",
-                           "title": _("Postal Code")},
-                "phone": {"type": "string",
-                          "title": _("Phone")}
-            }
+                "private": {"type": "boolean", "title": _("Private")},
+                "citation_list": {
+                    "type": "array",
+                    "title": _("Citations"),
+                    "items": {"type": "string", "maxLength": 50},
+                },
+                "note_list": {
+                    "type": "array",
+                    "title": _("Notes"),
+                    "items": {"type": "string", "maxLength": 50},
+                },
+                "date": {
+                    "oneOf": [{"type": "null"}, Date.get_schema()],
+                    "title": _("Date"),
+                },
+                "street": {"type": "string", "title": _("Street")},
+                "locality": {"type": "string", "title": _("Locality")},
+                "city": {"type": "string", "title": _("City")},
+                "county": {"type": "string", "title": _("County")},
+                "state": {"type": "string", "title": _("State")},
+                "country": {"type": "string", "title": _("Country")},
+                "postal": {"type": "string", "title": _("Postal Code")},
+                "phone": {"type": "string", "title": _("Phone")},
+            },
         }
 
     def get_text_data_list(self):
@@ -174,8 +175,9 @@ class Address(SecondaryObject, PrivacyBase, CitationBase, NoteBase, DateBase,
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        return self.get_referenced_note_handles() + \
-                self.get_referenced_citation_handles()
+        return (
+            self.get_referenced_note_handles() + self.get_referenced_citation_handles()
+        )
 
     def is_equivalent(self, other):
         """
@@ -187,8 +189,10 @@ class Address(SecondaryObject, PrivacyBase, CitationBase, NoteBase, DateBase,
         :returns: Constant indicating degree of equivalence.
         :rtype: int
         """
-        if self.get_text_data_list() != other.get_text_data_list() or \
-            self.get_date_object() != other.get_date_object():
+        if (
+            self.get_text_data_list() != other.get_text_data_list()
+            or self.get_date_object() != other.get_date_object()
+        ):
             return DIFFERENT
         else:
             if self.is_equal(other):

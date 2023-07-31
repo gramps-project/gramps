@@ -20,39 +20,41 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import os
 import logging
 
 _LOG = logging.getLogger(".libmetadata")
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 import gi
-gi.require_version('GExiv2', '0.10')
+
+gi.require_version("GExiv2", "0.10")
 from gi.repository import GExiv2
 from gi.repository import Gdk
 from gi.repository import GdkPixbuf
 from gi.repository import GObject
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 from gramps.gui.listmodel import ListModel, NOSORT, IMAGE as COL_IMAGE
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gramps.gen.utils.place import conv_lat_lon
 from fractions import Fraction
@@ -62,6 +64,7 @@ from datetime import datetime
 
 THUMBNAIL_IMAGE_SIZE = (50, 50)
 
+
 def format_datetime(datestring):
     """
     Convert an exif timestamp into a string for display, using the
@@ -69,17 +72,20 @@ def format_datetime(datestring):
     https://www.iptc.org/std/photometadata/specification/IPTC-PhotoMetadata#date-value-type
     """
     try:
-        timestamp = datetime.strptime(datestring, '%Y:%m:%d %H:%M:%S')
+        timestamp = datetime.strptime(datestring, "%Y:%m:%d %H:%M:%S")
     except ValueError:
-        return _('Invalid format')
+        return _("Invalid format")
 
     date_part = Date()
     date_part.set_yr_mon_day(timestamp.year, timestamp.month, timestamp.day)
     date_str = displayer.display(date_part)
-    time_str = _('%(hr)02d:%(min)02d:%(sec)02d') % {'hr': timestamp.hour,
-                                            'min': timestamp.minute,
-                                            'sec': timestamp.second}
-    return _('%(date)s %(time)s') % {'date': date_str, 'time': time_str}
+    time_str = _("%(hr)02d:%(min)02d:%(sec)02d") % {
+        "hr": timestamp.hour,
+        "min": timestamp.minute,
+        "sec": timestamp.second,
+    }
+    return _("%(date)s %(time)s") % {"date": date_str, "time": time_str}
+
 
 def format_gps(raw_dms, nsew):
     """
@@ -88,142 +94,144 @@ def format_gps(raw_dms, nsew):
     """
     value = 0.0
     divisor = 1.0
-    for val in raw_dms.split(' '):
+    for val in raw_dms.split(" "):
         try:
-            num = float(val.split('/')[0]) / float(val.split('/')[1])
+            num = float(val.split("/")[0]) / float(val.split("/")[1])
         except (ValueError, IndexError):
             value = None
             break
         value += num / divisor
         divisor *= 60
 
-    if nsew == 'N':
-        result = conv_lat_lon(str(value), '0', 'DEG')[0]
-    elif nsew == 'S':
-        result = conv_lat_lon('-' + str(value), '0', 'DEG')[0]
-    elif nsew == 'E':
-        result = conv_lat_lon('0', str(value), 'DEG')[1]
-    elif nsew == 'W':
-        result = conv_lat_lon('0', '-' + str(value), 'DEG')[1]
+    if nsew == "N":
+        result = conv_lat_lon(str(value), "0", "DEG")[0]
+    elif nsew == "S":
+        result = conv_lat_lon("-" + str(value), "0", "DEG")[0]
+    elif nsew == "E":
+        result = conv_lat_lon("0", str(value), "DEG")[1]
+    elif nsew == "W":
+        result = conv_lat_lon("0", "-" + str(value), "DEG")[1]
     else:
         result = None
 
-    return result if result is not None else _('Invalid format')
+    return result if result is not None else _("Invalid format")
 
 
-
-DESCRIPTION = _('Descriptive Tags')
-DATE = _('Date and Time Tags')
-PEOPLE = _('People Tags')
-EVENT = _('Event Tags')
-IMAGE = _('Image Tags')
-CAMERA = _('Camera Information')
-LOCATION = _('Location Tags')
-ADVANCED = _('Advanced Tags')
-RIGHTS = _('Rights Tags')
-TAGGING = _('Keyword Tags')
+DESCRIPTION = _("Descriptive Tags")
+DATE = _("Date and Time Tags")
+PEOPLE = _("People Tags")
+EVENT = _("Event Tags")
+IMAGE = _("Image Tags")
+CAMERA = _("Camera Information")
+LOCATION = _("Location Tags")
+ADVANCED = _("Advanced Tags")
+RIGHTS = _("Rights Tags")
+TAGGING = _("Keyword Tags")
 
 """
 List of tags available to plugin can be found at the Exiv2 project
 https://www.exiv2.org/metadata.html
 """
 
-TAGS = [(DESCRIPTION, 'Exif.Image.ImageDescription', None, None),
-        (DESCRIPTION, 'Exif.Image.XPSubject', None, None),
-        (DESCRIPTION, 'Exif.Image.XPComment', None, None),
-        (DESCRIPTION, 'Exif.Image.Rating', None, None),
-        (DESCRIPTION, 'Xmp.dc.title', None, None),
-        (DESCRIPTION, 'Xmp.dc.description', None, None),
-        (DESCRIPTION, 'Xmp.dc.subject', None, None),
-        (DESCRIPTION, 'Xmp.acdsee.caption', None, None),
-        (DESCRIPTION, 'Xmp.acdsee.notes', None, None),
-        (DESCRIPTION, 'Iptc.Application2.Caption', None, None),
-        (DESCRIPTION, 'Exif.Photo.UserComment', None, None),
-        (DESCRIPTION, 'Xmp.iptcExt.AOTitle', None, None),
-        (DATE, 'Exif.Photo.DateTimeOriginal', None, format_datetime),
-        (DATE, 'Exif.Photo.DateTimeDigitized', None, format_datetime),
-        (DATE, 'Exif.Image.DateTime', None, format_datetime),
-        (DATE, 'Exif.Image.TimeZoneOffset', None, None),
-        (DATE, 'Xmp.Xmp.CreateDate', None, None),
-        (DATE, 'Xmp.photoshop.DateCreated', None, None),
-        (PEOPLE, 'Xmp.mwg-rs.Regions/mwg-rs:RegionList[1]/mwg-rs:Name', None, None),
-        (PEOPLE, 'Xmp.mwg-rs.Regions', None, None),
-        (PEOPLE, 'Xmp.iptcExt.PersonInImage', None, None),
-        (EVENT, 'Xmp.iptcExt.Event', None, None),
-        (LOCATION, 'Xmp.iptcExt.LocationShown', None, None),
-        (LOCATION, 'Exif.GPSInfo.GPSLatitude',  'Exif.GPSInfo.GPSLatitudeRef', format_gps),
-        (LOCATION, 'Exif.GPSInfo.GPSLongitude', 'Exif.GPSInfo.GPSLongitudeRef', format_gps),
-        (LOCATION, 'Exif.GPSInfo.GPSAltitude', 'Exif.GPSInfo.GPSAltitudeRef', None),
-        (LOCATION, 'Exif.GPSInfo.GPSTimeStamp', None, None),
-        (LOCATION, 'Exif.GPSInfo.GPSSatellites', None, None),
-        (TAGGING, 'Exif.Image.XPKeywords', None, None),
-        (TAGGING, 'Iptc.Application2.Keywords', None, None),
-        (TAGGING, 'Xmp.mwg-kw.Hierarchy', None, None),
-        (TAGGING, 'Xmp.mwg-kw.Keywords', None, None),
-        (TAGGING, 'Xmp.digiKam.TagsList', None, None),
-        (TAGGING, 'Xmp.MicrosoftPhoto.LastKeywordXMP', None, None),
-        (TAGGING, 'Xmp.MicrosoftPhoto.LastKeywordIPTC', None, None),
-        (TAGGING, 'Xmp.lr.hierarchicalSubject', None, None),
-        (TAGGING, 'Xmp.acdsee.categories', None, None),
-        (IMAGE, 'Exif.Image.DocumentName', None, None),
-        (IMAGE, 'Exif.Photo.PixelXDimension', None, None),
-        (IMAGE, 'Exif.Photo.PixelYDimension', None, None),
-        (IMAGE, 'Exif.Image.XResolution', 'Exif.Image.ResolutionUnit', None),
-        (IMAGE, 'Exif.Image.YResolution', 'Exif.Image.ResolutionUnit', None),
-        (IMAGE, 'Exif.Image.Orientation', None, None),
-        (IMAGE, 'Exif.Photo.ColorSpace', None, None),
-        (IMAGE, 'Exif.Image.YCbCrPositioning', None, None),
-        (IMAGE, 'Exif.Photo.ComponentsConfiguration', None, None),
-        (IMAGE, 'Exif.Image.Compression', None, None),
-        (IMAGE, 'Exif.Photo.CompressedBitsPerPixel', None, None),
-        (IMAGE, 'Exif.Image.PhotometricInterpretation', None, None),
-        (RIGHTS, 'Exif.Image.Copyright', None, None),
-        (RIGHTS, 'Exif.Image.Artist', None, None),
-        (RIGHTS, 'Xmp.xmpRights.Owner', None, None),
-        (RIGHTS, 'Xmp.xmpRights.UsageTerms', None, None),
-        (RIGHTS, 'Xmp.xmpRights.WebStatement', None, None),
-        (CAMERA, 'Exif.Image.Make', None, None),
-        (CAMERA, 'Exif.Image.Model', None, None),
-        (CAMERA, 'Exif.Photo.FNumber', None, None),
-        (CAMERA, 'Exif.Photo.ExposureTime', None, None),
-        (CAMERA, 'Exif.Photo.ISOSpeedRatings', None, None),
-        (CAMERA, 'Exif.Photo.FocalLength', None, None),
-        (CAMERA, 'Exif.Photo.FocalLengthIn35mmFilm', None, None),
-        (CAMERA, 'Exif.Photo.MaxApertureValue', None, None),
-        (CAMERA, 'Exif.Photo.MeteringMode', None, None),
-        (CAMERA, 'Exif.Photo.ExposureProgram', None, None),
-        (CAMERA, 'Exif.Photo.ExposureBiasValue', None, None),
-        (CAMERA, 'Exif.Photo.Flash', None, None),
-        (CAMERA, 'Exif.Image.FlashEnergy', None, None),
-        (CAMERA, 'Exif.Image.SelfTimerMode', None, None),
-        (CAMERA, 'Exif.Image.SubjectDistance', None, None),
-        (CAMERA, 'Exif.Photo.Contrast', None, None),
-        (CAMERA, 'Exif.Photo.LightSource', None, None),
-        (CAMERA, 'Exif.Photo.Saturation', None, None),
-        (CAMERA, 'Exif.Photo.Sharpness', None, None),
-        (CAMERA, 'Exif.Photo.WhiteBalance', None, None),
-        (CAMERA, 'Exif.Photo.DigitalZoomRatio', None, None),
-        (ADVANCED, 'Exif.Image.Software', None, None),
-        (ADVANCED, 'Exif.Photo.ImageUniqueID', None, None),
-        (ADVANCED, 'Exif.Image.CameraSerialNumber', None, None),
-        (ADVANCED, 'Exif.Photo.ExifVersion', None, None),
-        (ADVANCED, 'Exif.Photo.FlashpixVersion', None, None),
-        (ADVANCED, 'Exif.Image.ExifTag', None, None),
-        (ADVANCED, 'Exif.Image.GPSTag', None, None),
-        (ADVANCED, 'Exif.Image.BatteryLevel', None, None)]
+TAGS = [
+    (DESCRIPTION, "Exif.Image.ImageDescription", None, None),
+    (DESCRIPTION, "Exif.Image.XPSubject", None, None),
+    (DESCRIPTION, "Exif.Image.XPComment", None, None),
+    (DESCRIPTION, "Exif.Image.Rating", None, None),
+    (DESCRIPTION, "Xmp.dc.title", None, None),
+    (DESCRIPTION, "Xmp.dc.description", None, None),
+    (DESCRIPTION, "Xmp.dc.subject", None, None),
+    (DESCRIPTION, "Xmp.acdsee.caption", None, None),
+    (DESCRIPTION, "Xmp.acdsee.notes", None, None),
+    (DESCRIPTION, "Iptc.Application2.Caption", None, None),
+    (DESCRIPTION, "Exif.Photo.UserComment", None, None),
+    (DESCRIPTION, "Xmp.iptcExt.AOTitle", None, None),
+    (DATE, "Exif.Photo.DateTimeOriginal", None, format_datetime),
+    (DATE, "Exif.Photo.DateTimeDigitized", None, format_datetime),
+    (DATE, "Exif.Image.DateTime", None, format_datetime),
+    (DATE, "Exif.Image.TimeZoneOffset", None, None),
+    (DATE, "Xmp.Xmp.CreateDate", None, None),
+    (DATE, "Xmp.photoshop.DateCreated", None, None),
+    (PEOPLE, "Xmp.mwg-rs.Regions/mwg-rs:RegionList[1]/mwg-rs:Name", None, None),
+    (PEOPLE, "Xmp.mwg-rs.Regions", None, None),
+    (PEOPLE, "Xmp.iptcExt.PersonInImage", None, None),
+    (EVENT, "Xmp.iptcExt.Event", None, None),
+    (LOCATION, "Xmp.iptcExt.LocationShown", None, None),
+    (LOCATION, "Exif.GPSInfo.GPSLatitude", "Exif.GPSInfo.GPSLatitudeRef", format_gps),
+    (LOCATION, "Exif.GPSInfo.GPSLongitude", "Exif.GPSInfo.GPSLongitudeRef", format_gps),
+    (LOCATION, "Exif.GPSInfo.GPSAltitude", "Exif.GPSInfo.GPSAltitudeRef", None),
+    (LOCATION, "Exif.GPSInfo.GPSTimeStamp", None, None),
+    (LOCATION, "Exif.GPSInfo.GPSSatellites", None, None),
+    (TAGGING, "Exif.Image.XPKeywords", None, None),
+    (TAGGING, "Iptc.Application2.Keywords", None, None),
+    (TAGGING, "Xmp.mwg-kw.Hierarchy", None, None),
+    (TAGGING, "Xmp.mwg-kw.Keywords", None, None),
+    (TAGGING, "Xmp.digiKam.TagsList", None, None),
+    (TAGGING, "Xmp.MicrosoftPhoto.LastKeywordXMP", None, None),
+    (TAGGING, "Xmp.MicrosoftPhoto.LastKeywordIPTC", None, None),
+    (TAGGING, "Xmp.lr.hierarchicalSubject", None, None),
+    (TAGGING, "Xmp.acdsee.categories", None, None),
+    (IMAGE, "Exif.Image.DocumentName", None, None),
+    (IMAGE, "Exif.Photo.PixelXDimension", None, None),
+    (IMAGE, "Exif.Photo.PixelYDimension", None, None),
+    (IMAGE, "Exif.Image.XResolution", "Exif.Image.ResolutionUnit", None),
+    (IMAGE, "Exif.Image.YResolution", "Exif.Image.ResolutionUnit", None),
+    (IMAGE, "Exif.Image.Orientation", None, None),
+    (IMAGE, "Exif.Photo.ColorSpace", None, None),
+    (IMAGE, "Exif.Image.YCbCrPositioning", None, None),
+    (IMAGE, "Exif.Photo.ComponentsConfiguration", None, None),
+    (IMAGE, "Exif.Image.Compression", None, None),
+    (IMAGE, "Exif.Photo.CompressedBitsPerPixel", None, None),
+    (IMAGE, "Exif.Image.PhotometricInterpretation", None, None),
+    (RIGHTS, "Exif.Image.Copyright", None, None),
+    (RIGHTS, "Exif.Image.Artist", None, None),
+    (RIGHTS, "Xmp.xmpRights.Owner", None, None),
+    (RIGHTS, "Xmp.xmpRights.UsageTerms", None, None),
+    (RIGHTS, "Xmp.xmpRights.WebStatement", None, None),
+    (CAMERA, "Exif.Image.Make", None, None),
+    (CAMERA, "Exif.Image.Model", None, None),
+    (CAMERA, "Exif.Photo.FNumber", None, None),
+    (CAMERA, "Exif.Photo.ExposureTime", None, None),
+    (CAMERA, "Exif.Photo.ISOSpeedRatings", None, None),
+    (CAMERA, "Exif.Photo.FocalLength", None, None),
+    (CAMERA, "Exif.Photo.FocalLengthIn35mmFilm", None, None),
+    (CAMERA, "Exif.Photo.MaxApertureValue", None, None),
+    (CAMERA, "Exif.Photo.MeteringMode", None, None),
+    (CAMERA, "Exif.Photo.ExposureProgram", None, None),
+    (CAMERA, "Exif.Photo.ExposureBiasValue", None, None),
+    (CAMERA, "Exif.Photo.Flash", None, None),
+    (CAMERA, "Exif.Image.FlashEnergy", None, None),
+    (CAMERA, "Exif.Image.SelfTimerMode", None, None),
+    (CAMERA, "Exif.Image.SubjectDistance", None, None),
+    (CAMERA, "Exif.Photo.Contrast", None, None),
+    (CAMERA, "Exif.Photo.LightSource", None, None),
+    (CAMERA, "Exif.Photo.Saturation", None, None),
+    (CAMERA, "Exif.Photo.Sharpness", None, None),
+    (CAMERA, "Exif.Photo.WhiteBalance", None, None),
+    (CAMERA, "Exif.Photo.DigitalZoomRatio", None, None),
+    (ADVANCED, "Exif.Image.Software", None, None),
+    (ADVANCED, "Exif.Photo.ImageUniqueID", None, None),
+    (ADVANCED, "Exif.Image.CameraSerialNumber", None, None),
+    (ADVANCED, "Exif.Photo.ExifVersion", None, None),
+    (ADVANCED, "Exif.Photo.FlashpixVersion", None, None),
+    (ADVANCED, "Exif.Image.ExifTag", None, None),
+    (ADVANCED, "Exif.Image.GPSTag", None, None),
+    (ADVANCED, "Exif.Image.BatteryLevel", None, None),
+]
+
 
 class MetadataView(Gtk.TreeView):
-
     def __init__(self):
         Gtk.TreeView.__init__(self)
         self.sections = {}
-        titles = [(_('Namespace'), 0, 150),
-                  (_('Label'), 1, 150),
-                  (_(' '), NOSORT, 60, COL_IMAGE),
-                  (_('Value'), NOSORT, 325)]
+        titles = [
+            (_("Namespace"), 0, 150),
+            (_("Label"), 1, 150),
+            (_(" "), NOSORT, 60, COL_IMAGE),
+            (_("Value"), NOSORT, 325),
+        ]
 
         self.model = ListModel(self, titles, list_mode="tree")
-
 
     def display_exif_tags(self, image_path):
         """
@@ -239,7 +247,7 @@ class MetadataView(Gtk.TreeView):
             return False
 
         retval = False
-        with open(image_path, 'rb') as fd:
+        with open(image_path, "rb") as fd:
             try:
                 buf = fd.read()
                 metadata = GExiv2.Metadata()
@@ -262,13 +270,13 @@ class MetadataView(Gtk.TreeView):
                     else:
                         human_value = get_human(key)
                         if key2 in self.__get_all_tags(metadata):
-                            human_value += ' ' + get_human(key2)
+                            human_value += " " + get_human(key2)
 
                     if human_value is None:
-                        human_value = ''
+                        human_value = ""
 
                     # If first named region is found - find all named regions
-                    if key == 'Xmp.mwg-rs.Regions/mwg-rs:RegionList[1]/mwg-rs:Name':
+                    if key == "Xmp.mwg-rs.Regions/mwg-rs:RegionList[1]/mwg-rs:Name":
                         self.__get_named_regions(metadata)
                         continue
 
@@ -290,7 +298,7 @@ class MetadataView(Gtk.TreeView):
         Add the section heading node to the model.
         """
         if section not in self.sections:
-            node = self.model.add([section, '', None, ''])
+            node = self.model.add([section, "", None, ""])
             self.sections[section] = node
         else:
             node = self.sections[section]
@@ -302,7 +310,7 @@ class MetadataView(Gtk.TreeView):
         """
         if not os.path.exists(image_path):
             return False
-        with open(image_path, 'rb') as fd:
+        with open(image_path, "rb") as fd:
             retval = False
             try:
                 buf = fd.read()
@@ -321,7 +329,11 @@ class MetadataView(Gtk.TreeView):
         """
         Return a list of all XMP, IPTC and EXIF tags in the media file
         """
-        tag_list = metadata.get_exif_tags() + metadata.get_xmp_tags() + metadata.get_iptc_tags()
+        tag_list = (
+            metadata.get_exif_tags()
+            + metadata.get_xmp_tags()
+            + metadata.get_iptc_tags()
+        )
 
         return tag_list
 
@@ -330,12 +342,12 @@ class MetadataView(Gtk.TreeView):
         Retrieve all XMP named regions in an image and populate the treeview row.
         """
 
-        region_tag = 'Xmp.mwg-rs.Regions/mwg-rs:RegionList[%s]/'
-        region_name = region_tag + 'mwg-rs:Name'
-        region_x = region_tag + 'mwg-rs:Area/stArea:x'
-        region_y = region_tag + 'mwg-rs:Area/stArea:y'
-        region_w = region_tag + 'mwg-rs:Area/stArea:w'
-        region_h = region_tag + 'mwg-rs:Area/stArea:h'
+        region_tag = "Xmp.mwg-rs.Regions/mwg-rs:RegionList[%s]/"
+        region_name = region_tag + "mwg-rs:Name"
+        region_x = region_tag + "mwg-rs:Area/stArea:x"
+        region_y = region_tag + "mwg-rs:Area/stArea:y"
+        region_w = region_tag + "mwg-rs:Area/stArea:w"
+        region_h = region_tag + "mwg-rs:Area/stArea:h"
 
         pixbuf_width = self.pixbuf.get_width()
         pixbuf_height = self.pixbuf.get_height()
@@ -353,7 +365,7 @@ class MetadataView(Gtk.TreeView):
                 w = float(metadata.get(region_w % i)) * pixbuf_width
                 h = float(metadata.get(region_h % i)) * pixbuf_height
             except ValueError:
-                x = pixbuf_width /2
+                x = pixbuf_width / 2
                 y = pixbuf_height / 2
                 w = pixbuf_width
                 h = pixbuf_height
@@ -368,7 +380,7 @@ class MetadataView(Gtk.TreeView):
             region_p3 = x + (w / 2)
             if region_p3 > pixbuf_width:
                 region_p3 = pixbuf_width
-            region_p4 =  y + (h / 2)
+            region_p4 = y + (h / 2)
             if region_p4 > pixbuf_height:
                 region_p4 = pixbuf_height
 
@@ -390,11 +402,16 @@ class MetadataView(Gtk.TreeView):
         w = region[2] - region[0]
         h = region[3] - region[1]
 
-        if w <= self.pixbuf.get_width() and h <= self.pixbuf.get_height() and self.pixbuf:
+        if (
+            w <= self.pixbuf.get_width()
+            and h <= self.pixbuf.get_height()
+            and self.pixbuf
+        ):
             subpixbuf = self.pixbuf.new_subpixbuf(region[0], region[1], w, h)
             size = self.__resize_keep_aspect(w, h, *thumbnail_size)
-            return subpixbuf.scale_simple(size[0], size[1],
-                                      GdkPixbuf.InterpType.BILINEAR)
+            return subpixbuf.scale_simple(
+                size[0], size[1], GdkPixbuf.InterpType.BILINEAR
+            )
         else:
             return None
 
@@ -412,9 +429,8 @@ class MetadataView(Gtk.TreeView):
             return (target_y * orig_x // orig_y, target_y)
 
     def __get_tag_namespace(self, key):
-
         x = key.split(".")
         del x[-1]
-        namespace =  '.'.join(x)
+        namespace = ".".join(x)
 
         return namespace

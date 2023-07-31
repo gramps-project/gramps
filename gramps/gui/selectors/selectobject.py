@@ -22,26 +22,27 @@
 # Written by Alex Roitman,
 # largely based on the MediaView and SelectPerson by Don Allingham
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # internationalization
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import gc
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK+
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from gramps.gen.const import THUMBSCALE
 from gramps.gen.utils.file import media_path_full
@@ -50,19 +51,19 @@ from ..views.treemodels import MediaModel
 from .baseselector import BaseSelector
 from gramps.gen.const import URL_MANUAL_SECT1
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # SelectObject
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class SelectObject(BaseSelector):
-
     def get_window_title(self):
         return _("Select Media Object")
 
@@ -74,25 +75,24 @@ class SelectObject(BaseSelector):
 
     def get_column_titles(self):
         return [
-            (_('Title'), 350, BaseSelector.TEXT, 0),
-            (_('ID'),     75, BaseSelector.TEXT, 1),
-            (_('Type'),   75, BaseSelector.TEXT, 2),
-            (_('Last Change'), 150, BaseSelector.TEXT, 7),
-            ]
+            (_("Title"), 350, BaseSelector.TEXT, 0),
+            (_("ID"), 75, BaseSelector.TEXT, 1),
+            (_("Type"), 75, BaseSelector.TEXT, 2),
+            (_("Last Change"), 150, BaseSelector.TEXT, 7),
+        ]
 
     def _local_init(self):
         """
         Perform local initialisation for this class
         """
-        self.setup_configs('interface.media-sel', 600, 450)
+        self.setup_configs("interface.media-sel", 600, 450)
         self.preview = Gtk.Image()
-        self.preview.set_size_request(int(THUMBSCALE),
-                                    int(THUMBSCALE))
-        vbox = self.glade.get_object('select_person_vbox')
+        self.preview.set_size_request(int(THUMBSCALE), int(THUMBSCALE))
+        vbox = self.glade.get_object("select_person_vbox")
         vbox.pack_start(self.preview, False, True, 0)
-        vbox.reorder_child(self.preview,1)
+        vbox.reorder_child(self.preview, 1)
         self.preview.show()
-        self.selection.connect('changed',self._row_change)
+        self.selection.connect("changed", self._row_change)
 
     def _row_change(self, obj):
         id_list = self.get_selected_ids()
@@ -108,4 +108,4 @@ class SelectObject(BaseSelector):
         return __name__
 
     WIKI_HELP_PAGE = URL_MANUAL_SECT1
-    WIKI_HELP_SEC = _('Select_Media_Object_selector', 'manual')
+    WIKI_HELP_SEC = _("Select_Media_Object_selector", "manual")

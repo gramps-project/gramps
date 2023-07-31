@@ -32,196 +32,254 @@
 German-specific classes for relationships.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 import re
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 from gramps.gen.lib import Person
 import gramps.gen.relationship
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 #
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-_ordinal = [ 'nullte',
-    'erste', 'zweite', 'dritte', 'vierte', 'fünfte', 'sechste',
-    'siebte', 'achte', 'neunte', 'zehnte', 'elfte', 'zwölfte',
+_ordinal = [
+    "nullte",
+    "erste",
+    "zweite",
+    "dritte",
+    "vierte",
+    "fünfte",
+    "sechste",
+    "siebte",
+    "achte",
+    "neunte",
+    "zehnte",
+    "elfte",
+    "zwölfte",
 ]
 
-_removed = [ '',
-    '', 'Groß', 'Urgroß',
-    'Alt', 'Altgroß', 'Alturgroß',
-    'Ober', 'Obergroß', 'Oberurgroß',
-    'Stamm', 'Stammgroß', 'Stammurgroß',
-    'Ahnen', 'Ahnengroß', 'Ahnenurgroß',
-    'Urahnen', 'Urahnengroß', 'Urahnenurgroß',
-    'Erz', 'Erzgroß', 'Erzurgroß',
-    'Erzahnen', 'Erzahnengroß', 'Erzahnenurgroß',
+_removed = [
+    "",
+    "",
+    "Groß",
+    "Urgroß",
+    "Alt",
+    "Altgroß",
+    "Alturgroß",
+    "Ober",
+    "Obergroß",
+    "Oberurgroß",
+    "Stamm",
+    "Stammgroß",
+    "Stammurgroß",
+    "Ahnen",
+    "Ahnengroß",
+    "Ahnenurgroß",
+    "Urahnen",
+    "Urahnengroß",
+    "Urahnenurgroß",
+    "Erz",
+    "Erzgroß",
+    "Erzurgroß",
+    "Erzahnen",
+    "Erzahnengroß",
+    "Erzahnenurgroß",
 ]
 
 _lineal_up = {
-    'many':    '%(p)sEltern%(s)s',
-    'unknown': '%(p)sElter%(s)s', # "Elter" sounds strange but is correct
-    'male':    '%(p)sVater%(s)s',
-    'female':  '%(p)sMutter%(s)s',
+    "many": "%(p)sEltern%(s)s",
+    "unknown": "%(p)sElter%(s)s",  # "Elter" sounds strange but is correct
+    "male": "%(p)sVater%(s)s",
+    "female": "%(p)sMutter%(s)s",
 }
 _lineal_down = {
-    'many':    '%(p)sKinder%(s)s',
-    'unknown': '%(p)sKind%(s)s',
-    'male':    '%(p)sSohn%(s)s',
-    'female':  '%(p)sTochter%(s)s',
+    "many": "%(p)sKinder%(s)s",
+    "unknown": "%(p)sKind%(s)s",
+    "male": "%(p)sSohn%(s)s",
+    "female": "%(p)sTochter%(s)s",
 }
 _collateral_up = {
-    'many':    '%(p)sOnkel und %(p)sTanten%(s)s',
-    'unknown': '%(p)sOnkel oder %(p)sTante%(s)s',
-    'male':    '%(p)sOnkel%(s)s',
-    'female':  '%(p)sTante%(s)s',
+    "many": "%(p)sOnkel und %(p)sTanten%(s)s",
+    "unknown": "%(p)sOnkel oder %(p)sTante%(s)s",
+    "male": "%(p)sOnkel%(s)s",
+    "female": "%(p)sTante%(s)s",
 }
 _collateral_down = {
-    'many':    '%(p)sNeffen und %(p)sNichten%(s)s',
-    'unknown': '%(p)sNeffe oder %(p)sNichte%(s)s',
-    'male':    '%(p)sNeffe%(s)s',
-    'female':  '%(p)sNichte%(s)s',
+    "many": "%(p)sNeffen und %(p)sNichten%(s)s",
+    "unknown": "%(p)sNeffe oder %(p)sNichte%(s)s",
+    "male": "%(p)sNeffe%(s)s",
+    "female": "%(p)sNichte%(s)s",
 }
 _collateral_same = {
-    'many':    '%(p)sCousins und %(p)sCousinen%(s)s',
-    'unknown': '%(p)sCousin oder %(p)sCousine%(s)s',
-    'male':    '%(p)sCousin%(s)s',
-    'female':  '%(p)sCousine%(s)s',
+    "many": "%(p)sCousins und %(p)sCousinen%(s)s",
+    "unknown": "%(p)sCousin oder %(p)sCousine%(s)s",
+    "male": "%(p)sCousin%(s)s",
+    "female": "%(p)sCousine%(s)s",
 }
 _collateral_sib = {
-    'many':    '%(p)sGeschwister%(s)s',
-    'unknown': '%(p)sGeschwisterkind%(s)s',
-    'male':    '%(p)sBruder%(s)s',
-    'female':  '%(p)sSchwester%(s)s',
+    "many": "%(p)sGeschwister%(s)s",
+    "unknown": "%(p)sGeschwisterkind%(s)s",
+    "male": "%(p)sBruder%(s)s",
+    "female": "%(p)sSchwester%(s)s",
 }
 
 _schwager = {
-    'many':    '%(p)sSchwager%(s)s',
-    'unknown': '%(p)sSchwager%(s)s',
-    'male':    '%(p)sSchwager%(s)s',
-    'female':  '%(p)sSchwägerin%(s)s',
+    "many": "%(p)sSchwager%(s)s",
+    "unknown": "%(p)sSchwager%(s)s",
+    "male": "%(p)sSchwager%(s)s",
+    "female": "%(p)sSchwägerin%(s)s",
 }
 _schwippschwager = {
-    'many':    '%(p)sSchwippschwager%(s)s',
-    'unknown': '%(p)sSchwippschwager%(s)s',
-    'male':    '%(p)sSchwippschwager%(s)s',
-    'female':  '%(p)sSchwippschwägerin%(s)s',
+    "many": "%(p)sSchwippschwager%(s)s",
+    "unknown": "%(p)sSchwippschwager%(s)s",
+    "male": "%(p)sSchwippschwager%(s)s",
+    "female": "%(p)sSchwippschwägerin%(s)s",
 }
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 #
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
 
 class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     """
     RelationshipCalculator Class
     """
+
     def __init__(self):
         gramps.gen.relationship.RelationshipCalculator.__init__(self)
 
     def _make_roman(self, num):
-        roman = ''
-        for v, r in [(1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'),
-                     ( 100, 'C'), ( 90, 'XC'), ( 50, 'L'), ( 40, 'XL'),
-                     (  10, 'X'), (  9, 'IX'), (  5, 'V'), (  4, 'IV'),
-                     (   1, 'I')]:
+        roman = ""
+        for v, r in [
+            (1000, "M"),
+            (900, "CM"),
+            (500, "D"),
+            (400, "CD"),
+            (100, "C"),
+            (90, "XC"),
+            (50, "L"),
+            (40, "XL"),
+            (10, "X"),
+            (9, "IX"),
+            (5, "V"),
+            (4, "IV"),
+            (1, "I"),
+        ]:
             while num > v:
                 num -= v
                 roman += r
         return roman
 
     def _fix_caps(self, string):
-        return re.sub(r'(?<=[^\s(/A-Z])[A-Z]', lambda m: m.group().lower(), string)
+        return re.sub(r"(?<=[^\s(/A-Z])[A-Z]", lambda m: m.group().lower(), string)
 
     def _removed_text(self, degree, removed):
         if (degree, removed) == (0, -2):
-            return 'Enkel'
+            return "Enkel"
         elif (degree, removed) == (0, -3):
-            return 'Urenkel'
+            return "Urenkel"
         removed = abs(removed)
         if removed < len(_removed):
             return _removed[removed]
         else:
-            return '(%s) Urgroß' % self._make_roman(removed-1)
+            return "(%s) Urgroß" % self._make_roman(removed - 1)
 
     def _degree_text(self, degree, removed):
         if removed == 0:
             degree -= 1  # a cousin has same degree as his parent (uncle/aunt)
         if degree <= 1:
-            return ''
+            return ""
         if degree < len(_ordinal):
-            return ' %sn Grades' % _ordinal[degree]
+            return " %sn Grades" % _ordinal[degree]
         else:
-            return ' %d. Grades' % degree
+            return " %d. Grades" % degree
 
     def _gender_convert(self, gender):
         if gender == Person.MALE:
-            return 'male'
+            return "male"
         elif gender == Person.FEMALE:
-            return 'female'
+            return "female"
         else:
-            return 'unknown'
+            return "unknown"
 
-    def _get_relationship_string(self, Ga, Gb, gender,
-                                 reltocommon_a='', reltocommon_b='',
-                                 only_birth=True,
-                                 in_law_a=False, in_law_b=False):
+    def _get_relationship_string(
+        self,
+        Ga,
+        Gb,
+        gender,
+        reltocommon_a="",
+        reltocommon_b="",
+        only_birth=True,
+        in_law_a=False,
+        in_law_b=False,
+    ):
         common_ancestor_count = 0
-        if reltocommon_a == '':
+        if reltocommon_a == "":
             reltocommon_a = self.REL_FAM_BIRTH
-        if reltocommon_b == '':
+        if reltocommon_b == "":
             reltocommon_b = self.REL_FAM_BIRTH
-        if reltocommon_a[-1] in [self.REL_MOTHER, self.REL_FAM_BIRTH,
-                                 self.REL_FAM_BIRTH_MOTH_ONLY] and \
-           reltocommon_b[-1] in [self.REL_MOTHER, self.REL_FAM_BIRTH,
-                                 self.REL_FAM_BIRTH_MOTH_ONLY]:
+        if reltocommon_a[-1] in [
+            self.REL_MOTHER,
+            self.REL_FAM_BIRTH,
+            self.REL_FAM_BIRTH_MOTH_ONLY,
+        ] and reltocommon_b[-1] in [
+            self.REL_MOTHER,
+            self.REL_FAM_BIRTH,
+            self.REL_FAM_BIRTH_MOTH_ONLY,
+        ]:
             common_ancestor_count += 1  # same female ancestor
-        if reltocommon_a[-1] in [self.REL_FATHER, self.REL_FAM_BIRTH,
-                                 self.REL_FAM_BIRTH_FATH_ONLY] and \
-           reltocommon_b[-1] in [self.REL_FATHER, self.REL_FAM_BIRTH,
-                                 self.REL_FAM_BIRTH_FATH_ONLY]:
+        if reltocommon_a[-1] in [
+            self.REL_FATHER,
+            self.REL_FAM_BIRTH,
+            self.REL_FAM_BIRTH_FATH_ONLY,
+        ] and reltocommon_b[-1] in [
+            self.REL_FATHER,
+            self.REL_FAM_BIRTH,
+            self.REL_FAM_BIRTH_FATH_ONLY,
+        ]:
             common_ancestor_count += 1  # same male ancestor
 
         degree = min(Ga, Gb)
-        removed = Ga-Gb
+        removed = Ga - Gb
 
         if degree == 0 and removed < 0:
             # for descendants the "in-law" logic is reversed
             (in_law_a, in_law_b) = (in_law_b, in_law_a)
 
-        rel_str = ''
-        pre = ''
-        post = ''
+        rel_str = ""
+        pre = ""
+        post = ""
 
         if in_law_b and degree == 0:
-            pre += 'Stief'
+            pre += "Stief"
         elif (not only_birth) or common_ancestor_count == 0:
-            pre += 'Stief-/Adoptiv'
+            pre += "Stief-/Adoptiv"
         if in_law_a and (degree, removed) != (1, 0):
             # A "Schwiegerbruder" really is a "Schwager" (handled later)
-            pre += 'Schwieger'
+            pre += "Schwieger"
         if degree != 0 and common_ancestor_count == 1:
-            pre += 'Halb'
+            pre += "Halb"
         pre += self._removed_text(degree, removed)
         post += self._degree_text(degree, removed)
         if in_law_b and degree != 0 and (degree, removed) != (1, 0):
             # A "Bruder (angeheiratet)" also is a "Schwager" (handled later)
-            post += ' (angeheiratet)'
+            post += " (angeheiratet)"
 
         if degree == 0:
             # lineal relationship
@@ -230,9 +288,9 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             elif removed < 0:
                 rel_str = _lineal_down[gender]
             elif in_law_a or in_law_b:
-                rel_str = 'Partner'
+                rel_str = "Partner"
             else:
-                rel_str = 'Proband'
+                rel_str = "Proband"
         else:
             # collateral relationship
             if removed > 0:
@@ -249,27 +307,48 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                     rel_str = _collateral_sib[gender]
             else:
                 rel_str = _collateral_same[gender]
-        return self._fix_caps(rel_str % {'p': pre, 's': post})
+        return self._fix_caps(rel_str % {"p": pre, "s": post})
 
-    def get_plural_relationship_string(self, Ga, Gb,
-                                       reltocommon_a='', reltocommon_b='',
-                                       only_birth=True,
-                                       in_law_a=False, in_law_b=False):
-        return self._get_relationship_string(Ga, Gb, 'many',
-                                             reltocommon_a, reltocommon_b,
-                                             only_birth, in_law_a, in_law_b)
+    def get_plural_relationship_string(
+        self,
+        Ga,
+        Gb,
+        reltocommon_a="",
+        reltocommon_b="",
+        only_birth=True,
+        in_law_a=False,
+        in_law_b=False,
+    ):
+        return self._get_relationship_string(
+            Ga, Gb, "many", reltocommon_a, reltocommon_b, only_birth, in_law_a, in_law_b
+        )
 
-    def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
-                                       reltocommon_a, reltocommon_b,
-                                       only_birth=True,
-                                       in_law_a=False, in_law_b=False):
-        return self._get_relationship_string(Ga, Gb,
-                                             self._gender_convert(gender_b),
-                                             reltocommon_a, reltocommon_b,
-                                             only_birth, in_law_a, in_law_b)
+    def get_single_relationship_string(
+        self,
+        Ga,
+        Gb,
+        gender_a,
+        gender_b,
+        reltocommon_a,
+        reltocommon_b,
+        only_birth=True,
+        in_law_a=False,
+        in_law_b=False,
+    ):
+        return self._get_relationship_string(
+            Ga,
+            Gb,
+            self._gender_convert(gender_b),
+            reltocommon_a,
+            reltocommon_b,
+            only_birth,
+            in_law_a,
+            in_law_b,
+        )
 
-    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b,
-                                        in_law_a=False, in_law_b=False):
+    def get_sibling_relationship_string(
+        self, sib_type, gender_a, gender_b, in_law_a=False, in_law_b=False
+    ):
         if sib_type in [self.NORM_SIB, self.UNKNOWN_SIB]:
             # the NORM_SIB translation is generic and suitable for UNKNOWN_SIB
             rel = self.REL_FAM_BIRTH
@@ -283,10 +362,16 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         elif sib_type == self.STEP_SIB:
             rel = self.REL_FAM_NONBIRTH
             only_birth = False
-        return self._get_relationship_string(1, 1,
-                                             self._gender_convert(gender_b),
-                                             rel, rel,
-                                             only_birth, in_law_a, in_law_b)
+        return self._get_relationship_string(
+            1,
+            1,
+            self._gender_convert(gender_b),
+            rel,
+            rel,
+            only_birth,
+            in_law_a,
+            in_law_b,
+        )
 
 
 if __name__ == "__main__":
@@ -297,9 +382,10 @@ if __name__ == "__main__":
     # (Above not needed here)
 
     """TRANSLATORS, copy this if statement at the bottom of your
-        rel_xx.py module, and test your work with:
-        python src/plugins/rel/rel_xx.py
+    rel_xx.py module, and test your work with:
+    python src/plugins/rel/rel_xx.py
     """
     from gramps.gen.relationship import test
+
     rc = RelationshipCalculator()
     test(rc, True)

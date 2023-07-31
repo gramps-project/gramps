@@ -26,10 +26,13 @@ from gi.repository import GObject
 
 from gramps.gen.constfunc import get_curr_dir
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
+
 class FileEntry(Gtk.Box):
-    """ A widget that allows the user to select a file from the file system """
+    """A widget that allows the user to select a file from the file system"""
+
     def __init__(self, defname, title, parent=None):
         Gtk.Box.__init__(self)
 
@@ -45,24 +48,25 @@ class FileEntry(Gtk.Box):
         self.set_homogeneous(False)
         self.button = Gtk.Button()
         image = Gtk.Image()
-        image.set_from_icon_name('document-open', Gtk.IconSize.BUTTON)
+        image.set_from_icon_name("document-open", Gtk.IconSize.BUTTON)
         self.button.add(image)
-        self.button.connect('clicked', self.__select_file)
+        self.button.connect("clicked", self.__select_file)
         self.pack_start(self.entry, True, True, 0)
         self.pack_end(self.button, False, False, 0)
 
     def __select_file(self, obj):
-        """ Call back function to handle the open button press """
+        """Call back function to handle the open button press"""
         if self.dir:
             my_action = Gtk.FileChooserAction.SELECT_FOLDER
         else:
             my_action = Gtk.FileChooserAction.SAVE
 
-        dialog = Gtk.FileChooserDialog(title=self.title,
-                                       transient_for=self.parent,
-                                       action=my_action)
-        dialog.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
-                           _('_Open'), Gtk.ResponseType.OK)
+        dialog = Gtk.FileChooserDialog(
+            title=self.title, transient_for=self.parent, action=my_action
+        )
+        dialog.add_buttons(
+            _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Open"), Gtk.ResponseType.OK
+        )
 
         name = os.path.basename(self.entry.get_text())
         if self.dir:
@@ -80,7 +84,7 @@ class FileEntry(Gtk.Box):
         dialog.destroy()
 
     def set_filename(self, path):
-        """ Set the currently selected dialog. """
+        """Set the currently selected dialog."""
         if not path:
             return
         if os.path.dirname(path):
@@ -92,7 +96,7 @@ class FileEntry(Gtk.Box):
         self.entry.set_text(os.path.join(self.__base_path, self.__file_name))
 
     def get_full_path(self, val):
-        """ Get the full path of the currently selected file. """
+        """Get the full path of the currently selected file."""
         return self.entry.get_text()
 
     def set_directory_entry(self, opt):

@@ -18,19 +18,19 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gtk modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository.GLib import markup_escape_text
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.lib import EventType, EventRoleType
 from gramps.gen.plug import Gramplet
 from gramps.gui.widgets import Photo
@@ -39,18 +39,21 @@ from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.datehandler import get_date
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.const import COLON, GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
+
 
 class PersonDetails(Gramplet):
     """
     Displays details for a person.
     """
+
     def init(self):
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add(self.gui.WIDGET)
-        self.uistate.connect('nameformat-changed', self.update)
-        self.uistate.connect('placeformat-changed', self.update)
+        self.uistate.connect("nameformat-changed", self.update)
+        self.uistate.connect("placeformat-changed", self.update)
 
     def build_gui(self):
         """
@@ -75,8 +78,9 @@ class PersonDetails(Gramplet):
         """
         Add a row to the table.
         """
-        label = Gtk.Label(label=title + COLON, halign=Gtk.Align.END,
-                          valign=Gtk.Align.START)
+        label = Gtk.Label(
+            label=title + COLON, halign=Gtk.Align.END, valign=Gtk.Align.START
+        )
         label.set_selectable(True)
         label.show()
         value = Gtk.Label(label=value, halign=Gtk.Align.START)
@@ -92,7 +96,7 @@ class PersonDetails(Gramplet):
         list(map(self.grid.remove, self.grid.get_children()))
 
     def db_changed(self):
-        self.connect(self.dbstate.db, 'person-update', self.update)
+        self.connect(self.dbstate.db, "person-update", self.update)
 
     def active_changed(self, handle):
         self.update()
@@ -105,15 +109,17 @@ class PersonDetails(Gramplet):
             2. has a father; OR
             3. has a mother
         """
-        active_handle = self.get_active('Person')
+        active_handle = self.get_active("Person")
         has_data = False
         if active_handle:
             active_person = self.dbstate.db.get_person_from_handle(active_handle)
             if active_person:
-                for event_type in [EventType(EventType.BIRTH),
-                                   EventType(EventType.BAPTISM),
-                                   EventType(EventType.DEATH),
-                                   EventType(EventType.BURIAL)]:
+                for event_type in [
+                    EventType(EventType.BIRTH),
+                    EventType(EventType.BAPTISM),
+                    EventType(EventType.DEATH),
+                    EventType(EventType.BURIAL),
+                ]:
                     event = self.get_event(active_person, event_type)
                     if event:
                         has_data = True
@@ -133,9 +139,9 @@ class PersonDetails(Gramplet):
                                         has_data = True
         self.set_has_data(has_data)
 
-    def main(self): # return false finishes
+    def main(self):  # return false finishes
         self.display_empty()
-        active_handle = self.get_active('Person')
+        active_handle = self.get_active("Person")
         if active_handle:
             active_person = self.dbstate.db.get_person_from_handle(active_handle)
             self.top.hide()
@@ -150,8 +156,9 @@ class PersonDetails(Gramplet):
         """
         self.load_person_image(active_person)
         self.name.set_markup(
-            "<span size='large' weight='bold'>%s</span>" %
-            markup_escape_text(name_displayer.display(active_person), -1))
+            "<span size='large' weight='bold'>%s</span>"
+            % markup_escape_text(name_displayer.display(active_person), -1)
+        )
         self.clear_grid()
         self.display_alternate_names(active_person)
         self.display_parents(active_person)
@@ -161,9 +168,9 @@ class PersonDetails(Gramplet):
         self.display_type(active_person, EventType(EventType.DEATH))
         self.display_type(active_person, EventType(EventType.BURIAL))
         self.display_separator()
-        self.display_attribute(active_person, _('Occupation'))
-        self.display_attribute(active_person, _('Title'))
-        self.display_attribute(active_person, _('Religion'))
+        self.display_attribute(active_person, _("Occupation"))
+        self.display_attribute(active_person, _("Title"))
+        self.display_attribute(active_person, _("Religion"))
 
     def display_empty(self):
         """
@@ -171,7 +178,7 @@ class PersonDetails(Gramplet):
         """
         self.photo.set_image(None)
         self.photo.set_uistate(None, None)
-        self.name.set_text(_('No active person'))
+        self.name.set_text(_("No active person"))
         self.clear_grid()
 
     def display_separator(self):
@@ -211,19 +218,19 @@ class PersonDetails(Gramplet):
                 father = self.dbstate.db.get_person_from_handle(handle)
                 father_name = name_displayer.display(father)
             else:
-                father_name = _('Unknown')
+                father_name = _("Unknown")
             handle = family.get_mother_handle()
             if handle:
                 mother = self.dbstate.db.get_person_from_handle(handle)
                 mother_name = name_displayer.display(mother)
             else:
-                mother_name = _('Unknown')
+                mother_name = _("Unknown")
         else:
-            father_name = _('Unknown')
-            mother_name = _('Unknown')
+            father_name = _("Unknown")
+            mother_name = _("Unknown")
 
-        self.add_row(_('Father'), father_name)
-        self.add_row(_('Mother'), mother_name)
+        self.add_row(_("Father"), father_name)
+        self.add_row(_("Mother"), mother_name)
 
     def display_attribute(self, active_person, attr_key):
         """
@@ -235,7 +242,7 @@ class PersonDetails(Gramplet):
                 values.append(attr.get_value())
         if values:
             # Translators: needed for Arabic, ignore otherwise
-            self.add_row(attr_key, _(', ').join(values))
+            self.add_row(attr_key, _(", ").join(values))
 
     def display_type(self, active_person, event_type):
         """
@@ -264,10 +271,9 @@ class PersonDetails(Gramplet):
         handle = event.get_place_handle()
         if handle:
             place = place_displayer.display_event(self.dbstate.db, event)
-            retval = _('%(date)s - %(place)s.') % {'date' : date,
-                                                   'place' : place}
+            retval = _("%(date)s - %(place)s.") % {"date": date, "place": place}
         else:
-            retval = _('%(date)s.') % dict(date=date)
+            retval = _("%(date)s.") % dict(date=date)
         return retval
 
     def load_person_image(self, person):
@@ -282,8 +288,7 @@ class PersonDetails(Gramplet):
             full_path = media_path_full(self.dbstate.db, obj.get_path())
             mime_type = obj.get_mime_type()
             if mime_type and mime_type.startswith("image"):
-                self.photo.set_image(full_path, mime_type,
-                                     media_ref.get_rectangle())
+                self.photo.set_image(full_path, mime_type, media_ref.get_rectangle())
                 self.photo.set_uistate(self.uistate, object_handle)
             else:
                 self.photo.set_image(None)

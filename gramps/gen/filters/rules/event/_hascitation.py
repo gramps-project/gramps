@@ -22,32 +22,31 @@
 """
 Filter rule to match event with a particular citation.
 """
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._hascitationbase import HasCitationBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasEvent
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasCitation(HasCitationBase):
     """Rule that checks for an event with a particular value"""
 
-    labels = [ _('Volume/Page:'),
-                    _('Date:'),
-                    _('Confidence level:')]
-    name = _('Events with the <citation>')
-    description = _("Matches events with a citation of a particular "
-                    "value")
+    labels = [_("Volume/Page:"), _("Date:"), _("Confidence level:")]
+    name = _("Events with the <citation>")
+    description = _("Matches events with a citation of a particular " "value")

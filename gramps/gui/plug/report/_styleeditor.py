@@ -27,33 +27,44 @@
 Paragraph/Font style editor
 """
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import logging
+
 log = logging.getLogger(".")
 import re
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gi.repository import Gtk, Gdk
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
-from gramps.gen.plug.docgen import (StyleSheet, FONT_SERIF, FONT_SANS_SERIF,
-            PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT,
-            PARA_ALIGN_JUSTIFY, ParagraphStyle, TableStyle, TableCellStyle,
-            GraphicsStyle)
+from gramps.gen.plug.docgen import (
+    StyleSheet,
+    FONT_SERIF,
+    FONT_SANS_SERIF,
+    PARA_ALIGN_RIGHT,
+    PARA_ALIGN_CENTER,
+    PARA_ALIGN_LEFT,
+    PARA_ALIGN_JUSTIFY,
+    ParagraphStyle,
+    TableStyle,
+    TableCellStyle,
+    GraphicsStyle,
+)
 from ...listmodel import ListModel
 from ...managedwindow import ManagedWindow
 from ...glade import Glade
@@ -63,11 +74,12 @@ from gramps.gen.const import URL_MANUAL_PAGE
 
 WIKI_HELP_PAGE = URL_MANUAL_PAGE + "_-_Settings"
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # StyleListDisplay class
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class StyleListDisplay(ManagedWindow):
     """
     Shows the available paragraph/font styles. Allows the user to select,
@@ -91,28 +103,34 @@ class StyleListDisplay(ManagedWindow):
 
         self.sheetlist = stylesheetlist
 
-        self.top = Glade(toplevel='styles')
-        self.set_window(self.top.toplevel, self.top.get_object('title'),
-                        _('Document Styles'))
-        self.setup_configs('interface.stylelistdisplay', 400, 300)
+        self.top = Glade(toplevel="styles")
+        self.set_window(
+            self.top.toplevel, self.top.get_object("title"), _("Document Styles")
+        )
+        self.setup_configs("interface.stylelistdisplay", 400, 300)
         self.show()
 
-        self.top.connect_signals({
-            "on_ok_clicked" : self.on_ok_clicked,
-            "on_add_clicked" : self.on_add_clicked,
-            "on_delete_clicked" : self.on_delete_clicked,
-            "on_button_press" : self.on_button_press,
-            "on_edit_clicked" : self.on_edit_clicked,
-            "on_cancel_clicked" : self.__cancel,
-            "on_help_btn_clicked" : lambda x: display_help(
-                WIKI_HELP_PAGE, _('Document_Styles_dialog', 'manual')),
-            "on_cancel_style_clicked" : dummy_callback,
-            "on_save_style_clicked" : dummy_callback,
-            "on_help_btn_style_clicked" : dummy_callback,
-            })
+        self.top.connect_signals(
+            {
+                "on_ok_clicked": self.on_ok_clicked,
+                "on_add_clicked": self.on_add_clicked,
+                "on_delete_clicked": self.on_delete_clicked,
+                "on_button_press": self.on_button_press,
+                "on_edit_clicked": self.on_edit_clicked,
+                "on_cancel_clicked": self.__cancel,
+                "on_help_btn_clicked": lambda x: display_help(
+                    WIKI_HELP_PAGE, _("Document_Styles_dialog", "manual")
+                ),
+                "on_cancel_style_clicked": dummy_callback,
+                "on_save_style_clicked": dummy_callback,
+                "on_help_btn_style_clicked": dummy_callback,
+            }
+        )
 
-        self.list = ListModel(self.top.get_object("list"),
-                                        [(_('Style'), -1, 10)], )
+        self.list = ListModel(
+            self.top.get_object("list"),
+            [(_("Style"), -1, 10)],
+        )
         self.redraw()
         # the self.window.run() makes Gtk make it modal, so any change to that
         # line would require the ManagedWindow.__init__ to be changed also
@@ -120,9 +138,9 @@ class StyleListDisplay(ManagedWindow):
         if self.opened:
             self.close()
 
-    def build_menu_names(self, obj): # meaningless while it's modal
+    def build_menu_names(self, obj):  # meaningless while it's modal
         """Override :class:`.ManagedWindow` method."""
-        return (_('Document Styles'), ' ')
+        return (_("Document Styles"), " ")
 
     def __cancel(self, obj):
         pass
@@ -154,14 +172,12 @@ class StyleListDisplay(ManagedWindow):
         try:
             self.sheetlist.save()
         except IOError as msg:
-            ErrorDialog(_("Error saving stylesheet"), str(msg),
-                        parent=self.window)
+            ErrorDialog(_("Error saving stylesheet"), str(msg), parent=self.window)
         except:
             log.error("Failed to save stylesheet", exc_info=True)
 
     def on_button_press(self, obj, event):
-        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
-                and event.button == 1):
+        if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS and event.button == 1:
             self.on_edit_clicked(obj)
 
     def on_edit_clicked(self, obj):
@@ -171,12 +187,13 @@ class StyleListDisplay(ManagedWindow):
         """
         store, node = self.list.selection.get_selected()
         if not node:
-            ErrorDialog(_("Missing information"), _("Select a style"),
-                        parent=self.window)
+            ErrorDialog(
+                _("Missing information"), _("Select a style"), parent=self.window
+            )
             return
 
         name = str(self.list.model.get_value(node, 0))
-        if name == _('default'): # the default style cannot be edited
+        if name == _("default"):  # the default style cannot be edited
             return
         style = self.sheetlist.get_style_sheet(name)
         StyleEditor(name, style, self)
@@ -185,20 +202,22 @@ class StyleListDisplay(ManagedWindow):
         """Deletes the selected style."""
         store, node = self.list.selection.get_selected()
         if not node:
-            ErrorDialog(_("Missing information"), _("Select a style"),
-                        parent=self.window)
+            ErrorDialog(
+                _("Missing information"), _("Select a style"), parent=self.window
+            )
             return
         name = str(self.list.model.get_value(node, 0))
-        if name == _('default'): # the default style cannot be removed
+        if name == _("default"):  # the default style cannot be removed
             return
         self.sheetlist.delete_style_sheet(name)
         self.redraw()
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # StyleEditor class
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class StyleEditor(ManagedWindow):
     """
     Edits the current style definition.
@@ -214,8 +233,9 @@ class StyleEditor(ManagedWindow):
         parent - StyleListDisplay object that called the editor
         """
 
-        ManagedWindow.__init__(self, parent.uistate, parent.track,
-                               self.__class__, modal=True)
+        ManagedWindow.__init__(
+            self, parent.uistate, parent.track, self.__class__, modal=True
+        )
         # the self.window.run() below makes Gtk make it modal, so any change
         # to the previous line's "modal" would require that line to be changed
 
@@ -225,37 +245,51 @@ class StyleEditor(ManagedWindow):
         self.style = StyleSheet(style)
         self.parent = parent
         self.top = Glade(
-            toplevel='editor',
+            toplevel="editor",
             also_load=[
-                "adjustment1", "adjustment2", "adjustment3", "adjustment4",
-                "adjustment5", "adjustment6", "adjustment7", "adjustment8",
-                "adjustment9", "adjustment10", "adjustment11"])
-        self.set_window(self.top.toplevel, self.top.get_object('title'),
-                        _('Style editor'))
-        self.setup_configs('interface.styleeditor', 550, 610)
+                "adjustment1",
+                "adjustment2",
+                "adjustment3",
+                "adjustment4",
+                "adjustment5",
+                "adjustment6",
+                "adjustment7",
+                "adjustment8",
+                "adjustment9",
+                "adjustment10",
+                "adjustment11",
+            ],
+        )
+        self.set_window(
+            self.top.toplevel, self.top.get_object("title"), _("Style editor")
+        )
+        self.setup_configs("interface.styleeditor", 550, 610)
         self.show()
 
-        self.top.connect_signals({
-            "on_save_style_clicked" : self.on_save_style_clicked,
-            "on_cancel_style_clicked" : self.__cancel,
-            "on_help_btn_style_clicked" : lambda x: display_help(
-                WIKI_HELP_PAGE, _('Style_editor_dialog', 'manual')),
-            "on_cancel_clicked" : dummy_callback,
-            "on_ok_clicked" : dummy_callback,
-            "on_add_clicked" : dummy_callback,
-            "on_delete_clicked" : dummy_callback,
-            "on_button_press" : dummy_callback,
-            "on_edit_clicked" : dummy_callback,
-            "on_help_btn_clicked" : dummy_callback,
-            })
+        self.top.connect_signals(
+            {
+                "on_save_style_clicked": self.on_save_style_clicked,
+                "on_cancel_style_clicked": self.__cancel,
+                "on_help_btn_style_clicked": lambda x: display_help(
+                    WIKI_HELP_PAGE, _("Style_editor_dialog", "manual")
+                ),
+                "on_cancel_clicked": dummy_callback,
+                "on_ok_clicked": dummy_callback,
+                "on_add_clicked": dummy_callback,
+                "on_delete_clicked": dummy_callback,
+                "on_button_press": dummy_callback,
+                "on_edit_clicked": dummy_callback,
+                "on_help_btn_clicked": dummy_callback,
+            }
+        )
 
-        self.pname = self.top.get_object('pname')
-        self.pdescription = self.top.get_object('pdescription')
+        self.pname = self.top.get_object("pname")
+        self.pdescription = self.top.get_object("pdescription")
 
-        self.notebook = self.top.get_object('notebook1')
-        self.vbox = self.top.get_object('column_widths')
+        self.notebook = self.top.get_object("notebook1")
+        self.vbox = self.top.get_object("column_widths")
 
-        self.line_style = self.top.get_object('line_style')
+        self.line_style = self.top.get_object("line_style")
         line_styles = Gtk.ListStore(int, str)
         line_styles.append([0, "Solid"])
         line_styles.append([1, "Dashed"])
@@ -267,21 +301,22 @@ class StyleEditor(ManagedWindow):
 
         self.top.get_object("label6").set_text(_("pt", "point size"))
 
-        titles = [(_('Style'), 0, 130)]
-        self.plist = ListModel(self.top.get_object("ptree"), titles,
-                                         self.change_display)
+        titles = [(_("Style"), 0, 130)]
+        self.plist = ListModel(
+            self.top.get_object("ptree"), titles, self.change_display
+        )
 
-        for widget_name in ('color', 'bgcolor', 'line_color', 'fill_color'):
+        for widget_name in ("color", "bgcolor", "line_color", "fill_color"):
             color = self.top.get_object(widget_name)
-            label = self.top.get_object(widget_name + '_code')
-            color.connect('notify::color', self.color_changed, label)
+            label = self.top.get_object(widget_name + "_code")
+            color.connect("notify::color", self.color_changed, label)
 
         self.top.get_object("style_name").set_text(name)
 
         def _alphanumeric_sort(iterable):
-            """ sort the given iterable in the way that humans expect """
+            """sort the given iterable in the way that humans expect"""
             convert = lambda text: int(text) if text.isdigit() else text
-            sort_key = lambda k: [convert(c) for c in re.split('([0-9]+)', k)]
+            sort_key = lambda k: [convert(c) for c in re.split("([0-9]+)", k)]
             return sorted(iterable, key=sort_key)
 
         names = _alphanumeric_sort(self.style.get_paragraph_style_names())
@@ -304,9 +339,9 @@ class StyleEditor(ManagedWindow):
         if self.opened:
             self.close()
 
-    def build_menu_names(self, obj): # meaningless while it's modal
+    def build_menu_names(self, obj):  # meaningless while it's modal
         """Override :class:`.ManagedWindow` method."""
-        return (_('Style editor'), None)
+        return (_("Style editor"), None)
 
     def __cancel(self, obj):
         pass
@@ -344,8 +379,9 @@ class StyleEditor(ManagedWindow):
         Updates the display with the selected graphics style.
         """
         g = self.current_style
-        self.pname.set_text( '<span size="larger" weight="bold">%s</span>' %
-                             self.current_name)
+        self.pname.set_text(
+            '<span size="larger" weight="bold">%s</span>' % self.current_name
+        )
         self.pname.set_use_markup(True)
 
         descr = g.get_description()
@@ -353,7 +389,7 @@ class StyleEditor(ManagedWindow):
         p_style = g.get_paragraph_style()
         if p_style:
             para_note = _("(Embedded style '%s' must be edited separately)")
-            descr += '\n\n' + para_note % p_style
+            descr += "\n\n" + para_note % p_style
         self.pdescription.set_text(descr)
 
         self.top.get_object("line_style").set_active(g.get_line_style())
@@ -372,8 +408,9 @@ class StyleEditor(ManagedWindow):
         Updates the display with the selected cell style.
         """
         c = self.current_style
-        self.pname.set_text( '<span size="larger" weight="bold">%s</span>' %
-                             self.current_name)
+        self.pname.set_text(
+            '<span size="larger" weight="bold">%s</span>' % self.current_name
+        )
         self.pname.set_use_markup(True)
 
         descr = c.get_description()
@@ -390,8 +427,9 @@ class StyleEditor(ManagedWindow):
         Updates the display with the selected table style.
         """
         t = self.current_style
-        self.pname.set_text( '<span size="larger" weight="bold">%s</span>' %
-                             self.current_name)
+        self.pname.set_text(
+            '<span size="larger" weight="bold">%s</span>' % self.current_name
+        )
         self.pname.set_use_markup(True)
 
         descr = t.get_description()
@@ -405,7 +443,7 @@ class StyleEditor(ManagedWindow):
 
         for i in range(t.get_columns()):
             hbox = Gtk.Box()
-            label = Gtk.Label(label=_('Column %d:') % (i + 1))
+            label = Gtk.Label(label=_("Column %d:") % (i + 1))
             hbox.pack_start(label, False, False, 6)
             spin = Gtk.SpinButton()
             spin.set_range(0, 100)
@@ -414,7 +452,7 @@ class StyleEditor(ManagedWindow):
             spin.set_value(t.get_column_width(i))
             self.column.append(spin)
             hbox.pack_start(spin, False, False, 6)
-            hbox.pack_start(Gtk.Label(label='%'), False, False, 6)
+            hbox.pack_start(Gtk.Label(label="%"), False, False, 6)
             hbox.show_all()
             self.vbox.pack_start(hbox, False, False, 3)
 
@@ -423,12 +461,13 @@ class StyleEditor(ManagedWindow):
         Updates the display with the selected paragraph style.
         """
         p = self.current_style
-        self.pname.set_text( '<span size="larger" weight="bold">%s</span>' %
-                             self.current_name)
+        self.pname.set_text(
+            '<span size="larger" weight="bold">%s</span>' % self.current_name
+        )
         self.pname.set_use_markup(True)
 
         descr = p.get_description()
-        self.pdescription.set_text(descr or _("No description available") )
+        self.pdescription.set_text(descr or _("No description available"))
 
         font = p.get_font()
         self.top.get_object("size").set_value(font.get_size())
@@ -602,11 +641,13 @@ def rgb2color(rgb):
     """
     return Gdk.Color(rgb[0] << 8, rgb[1] << 8, rgb[2] << 8)
 
+
 def color2rgb(color):
     """
     Convert a Gdk Color into a tuple containing RGB values.
     """
     return (color.red >> 8, color.green >> 8, color.blue >> 8)
+
 
 def dummy_callback(obj):
     """Dummy callback to satisfy gtkbuilder on connect of signals.

@@ -27,31 +27,48 @@
 Norwegian-Specific classes for relationships.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 from gramps.gen.lib import Person
 import gramps.gen.relationship
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-_cousin_level = [ "", "", #brother/sister, fetter/kusine -- these are taken care of separately
-"tremenning", "firemenning", "femmenning",
-"seksmenning", "sjumenning", "åttemenning",
-"nimenning", "timenning", "ellevemenning",
-"tolvmenning", "tretenmenning", "fjortenmenning",
-"femtenmenning", "sekstenmenning", "syttenmenning",
-"attenmenning", "nittenmenning", "tjuemenning" ]
+_cousin_level = [
+    "",
+    "",  # brother/sister, fetter/kusine -- these are taken care of separately
+    "tremenning",
+    "firemenning",
+    "femmenning",
+    "seksmenning",
+    "sjumenning",
+    "åttemenning",
+    "nimenning",
+    "timenning",
+    "ellevemenning",
+    "tolvmenning",
+    "tretenmenning",
+    "fjortenmenning",
+    "femtenmenning",
+    "sekstenmenning",
+    "syttenmenning",
+    "attenmenning",
+    "nittenmenning",
+    "tjuemenning",
+]
 
 _cousin_terms = _cousin_level + ["fetter", "kusine"]
-#-------------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------------
 #
 #
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     """
     RelationshipCalculator Class
@@ -64,10 +81,10 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         if level == 0:
             return "forelder"
         else:
-            return "ane i %d-te generationen" % (level+1)
+            return "ane i %d-te generationen" % (level + 1)
 
     def get_cousin(self, level):
-        if level > len(_cousin_level)-1:
+        if level > len(_cousin_level) - 1:
             # FIXME: use Norwegian term term here,
             # UPDATED by Frode: unsure about the expretion "en fjern slektning", should it be just "fjern slektning".
             # Need to see it used in the program to get the understanding.
@@ -88,54 +105,54 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 result.append(word)
                 continue
             if item:
-                if word == 'sønne':
-                    word = 'sønn'
+                if word == "sønne":
+                    word = "sønn"
                 result.append(item + word)
                 item = ""
             else:
                 item = word
         if item:
             result.append(item)
-        gen_result = [ item + 's' for item in result[0:-1] ]
-        return ' '.join(gen_result+result[-1:])
+        gen_result = [item + "s" for item in result[0:-1]]
+        return " ".join(gen_result + result[-1:])
 
     def get_direct_ancestor(self, person, rel_string):
         result = []
         for rel in rel_string:
-            if rel == 'f':
-                result.append('far')
+            if rel == "f":
+                result.append("far")
             else:
-                result.append('mor')
+                result.append("mor")
         return self.pair_up(result)
 
     def get_direct_descendant(self, person, rel_string):
         result = []
-        for ix in range(len(rel_string)-2, -1, -1):
-            if rel_string[ix] == 'f':
-                result.append('sønne')
+        for ix in range(len(rel_string) - 2, -1, -1):
+            if rel_string[ix] == "f":
+                result.append("sønne")
             else:
-                result.append('datter')
+                result.append("datter")
         if person == Person.MALE:
-            result.append('sønn')
+            result.append("sønn")
         else:
-            result.append('datter')
+            result.append("datter")
         return self.pair_up(result)
 
     def get_ancestors_cousin(self, person, rel_string_long, rel_string_short):
         result = []
-        removed = len(rel_string_long)-len(rel_string_short)
-        level = len(rel_string_short)-1
+        removed = len(rel_string_long) - len(rel_string_short)
+        level = len(rel_string_short) - 1
         for ix in range(removed):
-            if rel_string_long[ix] == 'f':
-                result.append('far')
+            if rel_string_long[ix] == "f":
+                result.append("far")
             else:
-                result.append('mor')
+                result.append("mor")
         if level > 1:
             result.append(self.get_cousin(level))
         elif person == Person.MALE:
-            result.append('fetter')
+            result.append("fetter")
         else:
-            result.append('kusine')
+            result.append("kusine")
         main_string = self.get_two_way_rel(person, rel_string_short, rel_string_long)
         aux_string = self.pair_up(result)
         return "%s (%s)" % (main_string, aux_string)
@@ -143,28 +160,28 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     def get_cousins_descendant(self, person, rel_string_long, rel_string_short):
         result = []
         aux_string = ""
-        removed = len(rel_string_long)-len(rel_string_short)-1
-        level = len(rel_string_short)-1
-        if level > 1:       # Cousin terms without gender
+        removed = len(rel_string_long) - len(rel_string_short) - 1
+        level = len(rel_string_short) - 1
+        if level > 1:  # Cousin terms without gender
             result.append(self.get_cousin(level))
-        elif level == 1:    # gender-dependent fetter/kusine
-            if rel_string_long[removed] == 'f':
-                result.append('fetter')
+        elif level == 1:  # gender-dependent fetter/kusine
+            if rel_string_long[removed] == "f":
+                result.append("fetter")
             else:
-                result.append('kusine')
-        elif rel_string_long[removed] == 'f':
-            result.append('bror')
+                result.append("kusine")
+        elif rel_string_long[removed] == "f":
+            result.append("bror")
         else:
-            result.append('søster')
-        for ix in range(removed-1, -1, -1):
-            if rel_string_long[ix] == 'f':
-                result.append('sønn')
+            result.append("søster")
+        for ix in range(removed - 1, -1, -1):
+            if rel_string_long[ix] == "f":
+                result.append("sønn")
             else:
-                result.append('datter')
+                result.append("datter")
         if person == Person.MALE:
-            result.append('sønn')
+            result.append("sønn")
         else:
-            result.append('datter')
+            result.append("datter")
         main_string = self.get_two_way_rel(person, rel_string_long, rel_string_short)
         if level:
             aux_string = " (%s)" % self.pair_up(result)
@@ -172,59 +189,57 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
     def get_ancestors_brother(self, rel_string):
         result = []
-        for ix in range(len(rel_string)-1):
-            if rel_string[ix] == 'f':
-                result.append('far')
+        for ix in range(len(rel_string) - 1):
+            if rel_string[ix] == "f":
+                result.append("far")
             else:
-                result.append('mor')
-        result.append('bror')
+                result.append("mor")
+        result.append("bror")
         return self.pair_up(result)
 
     def get_ancestors_sister(self, rel_string):
         result = []
-        for ix in range(len(rel_string)-1):
-            if rel_string[ix] == 'f':
-                result.append('far')
+        for ix in range(len(rel_string) - 1):
+            if rel_string[ix] == "f":
+                result.append("far")
             else:
-                result.append('mor')
-        result.append('søster')
+                result.append("mor")
+        result.append("søster")
         return self.pair_up(result)
 
     def get_two_way_rel(self, person, first_rel_string, second_rel_string):
         result = []
-        for ix in range(len(second_rel_string)-1):
-            if second_rel_string[ix] == 'f':
-                result.append('far')
+        for ix in range(len(second_rel_string) - 1):
+            if second_rel_string[ix] == "f":
+                result.append("far")
             else:
-                result.append('mor')
-        if len(first_rel_string)>1:
-            if first_rel_string[-2] == 'f':
-                result.append('bror')
+                result.append("mor")
+        if len(first_rel_string) > 1:
+            if first_rel_string[-2] == "f":
+                result.append("bror")
             else:
-                result.append('søster')
-            for ix in range(len(first_rel_string)-3, -1, -1):
-                if first_rel_string[ix] == 'f':
-                    result.append('sønne')
+                result.append("søster")
+            for ix in range(len(first_rel_string) - 3, -1, -1):
+                if first_rel_string[ix] == "f":
+                    result.append("sønne")
                 else:
-                    result.append('datter')
+                    result.append("datter")
             if person == Person.MALE:
-                result.append('sønn')
+                result.append("sønn")
             else:
-                result.append('datter')
+                result.append("datter")
         else:
             if person == Person.MALE:
-                result.append('bror')
+                result.append("bror")
             else:
-                result.append('søster')
+                result.append("søster")
         return self.pair_up(result)
 
-    def get_relationship(self,
-                        secondRel, firstRel, orig_person, other_person):
-
+    def get_relationship(self, secondRel, firstRel, orig_person, other_person):
         common = ""
         if not firstRel:
             if not secondRel:
-                return ('', common)
+                return ("", common)
             else:
                 return (self.get_direct_ancestor(other_person, secondRel), common)
         elif not secondRel:
@@ -235,22 +250,39 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             else:
                 return (self.get_ancestors_sister(secondRel), common)
         elif len(secondRel) >= len(firstRel):
-            return (self.get_ancestors_cousin(other_person, secondRel, firstRel), common)
+            return (
+                self.get_ancestors_cousin(other_person, secondRel, firstRel),
+                common,
+            )
         else:
-            return (self.get_cousins_descendant(other_person, firstRel, secondRel), common)
+            return (
+                self.get_cousins_descendant(other_person, firstRel, secondRel),
+                common,
+            )
 
-    def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
-                                    reltocommon_a, reltocommon_b,
-                                    only_birth=True,
-                                    in_law_a=False, in_law_b=False):
-        return self.get_relationship(reltocommon_a, reltocommon_b, gender_a, gender_b)[0];
+    def get_single_relationship_string(
+        self,
+        Ga,
+        Gb,
+        gender_a,
+        gender_b,
+        reltocommon_a,
+        reltocommon_b,
+        only_birth=True,
+        in_law_a=False,
+        in_law_b=False,
+    ):
+        return self.get_relationship(reltocommon_a, reltocommon_b, gender_a, gender_b)[
+            0
+        ]
 
-    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b,
-                                        in_law_a=False, in_law_b=False):
+    def get_sibling_relationship_string(
+        self, sib_type, gender_a, gender_b, in_law_a=False, in_law_b=False
+    ):
         return self.get_two_way_rel(gender_b, "", "")
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     # Test function. Call it as follows from the command line (so as to find
     #        imported modules):
     #    export PYTHONPATH=/path/to/gramps/src
@@ -258,9 +290,10 @@ if __name__ == "__main__":
     # (Above not needed here)
 
     """TRANSLATORS, copy this if statement at the bottom of your
-        rel_xx.py module, and test your work with:
-        python src/plugins/rel/rel_xx.py
+    rel_xx.py module, and test your work with:
+    python src/plugins/rel/rel_xx.py
     """
     from gramps.gen.relationship import test
+
     RC = RelationshipCalculator()
     test(RC, True)

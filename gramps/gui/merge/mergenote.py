@@ -22,12 +22,13 @@
 Provide merge capabilities for notes.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from gramps.gen.const import URL_MANUAL_SECT3
 from ..display import display_help
@@ -35,24 +36,26 @@ from ..managedwindow import ManagedWindow
 from ..widgets.styledtextbuffer import StyledTextBuffer
 from gramps.gen.merge import MergeNoteQuery
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 WIKI_HELP_PAGE = URL_MANUAL_SECT3
-WIKI_HELP_SEC = _('Merge_Notes', 'manual')
-_GLADE_FILE = 'mergenote.glade'
+WIKI_HELP_SEC = _("Merge_Notes", "manual")
+_GLADE_FILE = "mergenote.glade"
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MergeNote
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MergeNote(ManagedWindow):
     """
     Displays a dialog box that allows two notes to be combined into one.
     """
+
     def __init__(self, dbstate, uistate, track, handle1, handle2):
         ManagedWindow.__init__(self, uistate, track, self.__class__)
         self.dbstate = dbstate
@@ -60,11 +63,11 @@ class MergeNote(ManagedWindow):
         self.no1 = database.get_note_from_handle(handle1)
         self.no2 = database.get_note_from_handle(handle2)
 
-        self.define_glade('mergenote', _GLADE_FILE)
-        self.set_window(self._gladeobj.toplevel,
-                        self.get_widget("note_title"),
-                        _("Merge Notes"))
-        self.setup_configs('interface.merge-note', 600, 250)
+        self.define_glade("mergenote", _GLADE_FILE)
+        self.set_window(
+            self._gladeobj.toplevel, self.get_widget("note_title"), _("Merge Notes")
+        )
+        self.setup_configs("interface.merge-note", 600, 250)
 
         # Detailed selection widgets
         text1 = self.no1.get_styledtext()
@@ -80,7 +83,7 @@ class MergeNote(ManagedWindow):
         tb2.set_text(text2)
         tv2.set_size_request(-1, 60)
         if text1 == text2:
-            for widget_name in ('text1', 'text2', 'text_btn1', 'text_btn2'):
+            for widget_name in ("text1", "text2", "text_btn1", "text_btn2"):
                 self.get_widget(widget_name).set_sensitive(False)
 
         entry1 = self.get_widget("type1")
@@ -88,17 +91,16 @@ class MergeNote(ManagedWindow):
         entry1.set_text(str(self.no1.get_type()))
         entry2.set_text(str(self.no2.get_type()))
         if entry1.get_text() == entry2.get_text():
-            for widget_name in ('type1', 'type2', 'type_btn1', 'type_btn2'):
+            for widget_name in ("type1", "type2", "type_btn1", "type_btn2"):
                 self.get_widget(widget_name).set_sensitive(False)
 
-        format_names = (_('flowed'), _('preformatted'))
+        format_names = (_("flowed"), _("preformatted"))
         entry1 = self.get_widget("format1")
         entry2 = self.get_widget("format2")
         entry1.set_text(format_names[self.no1.get_format()])
         entry2.set_text(format_names[self.no2.get_format()])
         if entry1.get_text() == entry2.get_text():
-            for widget_name in ('format1', 'format2', 'format_btn1',
-                    'format_btn2'):
+            for widget_name in ("format1", "format2", "format_btn1", "format_btn2"):
                 self.get_widget(widget_name).set_sensitive(False)
 
         gramps1 = self.no1.get_gramps_id()
@@ -108,8 +110,7 @@ class MergeNote(ManagedWindow):
         entry1.set_text(gramps1)
         entry2.set_text(gramps2)
         if entry1.get_text() == entry2.get_text():
-            for widget_name in ('gramps1', 'gramps2', 'gramps_btn1',
-                    'gramps_btn2'):
+            for widget_name in ("gramps1", "gramps2", "gramps_btn1", "gramps_btn2"):
                 self.get_widget(widget_name).set_sensitive(False)
 
         # Main window widgets that determine which handle survives
@@ -132,7 +133,7 @@ class MergeNote(ManagedWindow):
         self.show()
 
     def on_handle1_toggled(self, obj):
-        """ preferred note changes"""
+        """preferred note changes"""
         if obj.get_active():
             self.get_widget("text_btn1").set_active(True)
             self.get_widget("type_btn1").set_active(True)
@@ -146,7 +147,7 @@ class MergeNote(ManagedWindow):
 
     def cb_help(self, obj):
         """Display the relevant portion of the Gramps manual"""
-        display_help(webpage = WIKI_HELP_PAGE, section= WIKI_HELP_SEC)
+        display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def cb_merge(self, obj):
         """
@@ -173,5 +174,5 @@ class MergeNote(ManagedWindow):
         query.execute()
         # Add the selected handle to history so that when merge is complete,
         # phoenix is the selected row.
-        self.uistate.set_active(phoenix.get_handle(), 'Note')
+        self.uistate.set_active(phoenix.get_handle(), "Note")
         self.close()

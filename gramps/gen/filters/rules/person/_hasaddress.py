@@ -21,52 +21,53 @@
 #
 # gen.filters.rules/Person/_HasAddress.py
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasAddress
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasAddress(Rule):
     """Rule that checks for a person with a personal address"""
 
-    labels = [  _('Number of instances:'), _('Number must be:')]
-    name = _('People with <count> addresses')
+    labels = [_("Number of instances:"), _("Number must be:")]
+    name = _("People with <count> addresses")
     description = _("Matches people with a certain number of personal addresses")
-    category = _('General filters')
-
+    category = _("General filters")
 
     def prepare(self, db, user):
         # things we want to do just once, not for every handle
-        if  self.list[1] == 'less than':
+        if self.list[1] == "less than":
             self.count_type = 0
-        elif self.list[1] == 'greater than':
+        elif self.list[1] == "greater than":
             self.count_type = 2
         else:
-            self.count_type = 1 # "equal to"
+            self.count_type = 1  # "equal to"
 
         self.userSelectedCount = int(self.list[0])
 
     def apply(self, db, person):
-        count = len( person.get_address_list())
-        if self.count_type == 0:     # "less than"
+        count = len(person.get_address_list())
+        if self.count_type == 0:  # "less than"
             return count < self.userSelectedCount
-        elif self.count_type == 2:   # "greater than"
+        elif self.count_type == 2:  # "greater than"
             return count > self.userSelectedCount
         # "equal to"
         return count == self.userSelectedCount

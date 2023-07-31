@@ -47,14 +47,16 @@ from ..const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
 
+
 def clean_up(parser):
     # Needed so that the parser can be removed by the garabge collection
     for section in parser:
-        delattr(parser._proxies[section], 'getboolean')
-        delattr(parser._proxies[section], 'getint')
-        delattr(parser._proxies[section], 'getfloat')
+        delattr(parser._proxies[section], "getboolean")
+        delattr(parser._proxies[section], "getint")
+        delattr(parser._proxies[section], "getfloat")
         del parser._proxies[section]
     del parser._converters
+
 
 def safe_eval(exp):
     # restrict eval to empty environment
@@ -165,9 +167,7 @@ class ConfigManager:
             if override:
                 path, ininame = os.path.split(os.path.abspath(override))
             else:
-                path, ininame = os.path.split(
-                    sys._getframe(1).f_code.co_filename
-                )
+                path, ininame = os.path.split(sys._getframe(1).f_code.co_filename)
             if not ininame.endswith(".ini"):
                 ininame = f"{name}.ini"
             if use_config_path:
@@ -249,9 +249,7 @@ class ConfigManager:
                     self.default[section][setting]
                 )
         else:
-            self.data[section][setting] = copy.deepcopy(
-                self.default[section][setting]
-            )
+            self.data[section][setting] = copy.deepcopy(self.default[section][setting])
         # Callbacks are still connected
 
     def get_sections(self):
@@ -394,9 +392,7 @@ class ConfigManager:
                             value = self.data[section][key]
                             default = ""  # might be a third-party setting
                             if self.has_default(f"{section}.{key}"):
-                                if value == self.get_default(
-                                    f"{section}.{key}"
-                                ):
+                                if value == self.get_default(f"{section}.{key}"):
                                     default = ";;"
                             if isinstance(value, int):
                                 value = int(value)  # TODO why is this needed?
@@ -404,9 +400,7 @@ class ConfigManager:
                         key_file.write("\n")
                 # else, no filename given; nothing to save so do nothing quietly
             except IOError as err:
-                logging.warning(
-                    "Failed to open %s because %s", filename, str(err)
-                )
+                logging.warning("Failed to open %s because %s", filename, str(err))
                 return
 
     def get(self, key):
@@ -431,9 +425,7 @@ class ConfigManager:
         if section not in self.data:
             raise AttributeError(f"No such config section name: '{section}'")
         if setting not in self.data[section]:
-            raise AttributeError(
-                f"No such config setting name: '{section}.{setting}'"
-            )
+            raise AttributeError(f"No such config setting name: '{section}.{setting}'")
 
     def is_set(self, key):
         """
@@ -482,9 +474,7 @@ class ConfigManager:
         if section not in self.default:
             raise AttributeError(f"No such config section name: '{section}'")
         if setting not in self.default[section]:
-            raise AttributeError(
-                f"No such config setting name: '{section}.{setting}'"
-            )
+            raise AttributeError(f"No such config setting name: '{section}.{setting}'")
         return self.default[section][setting]
 
     def register(self, key, default):
@@ -556,9 +546,7 @@ class ConfigManager:
         if section not in self.callbacks:
             raise AttributeError(f"No such config section name: '{section}'")
         if setting not in self.callbacks[section]:
-            raise AttributeError(
-                f"No such config setting name: '{section}.{setting}'"
-            )
+            raise AttributeError(f"No such config setting name: '{section}.{setting}'")
         for dummy_cbid, func in self.callbacks[section][setting]:
             func(self, 0, str(self.data[section][setting]), None)
 
@@ -585,20 +573,14 @@ class ConfigManager:
                     f"'{type(value)}'; should be "
                     f"'{type(self.get_default(key))}'"
                 )
-        if (
-            setting in self.data[section]
-            and self.data[section][setting] == value
-        ):
+        if setting in self.data[section] and self.data[section][setting] == value:
             # Do nothing if existed and is the same
             pass
         else:
             # Set the value:
             self.data[section][setting] = value
             # Only call callback if the value changed!
-            if (
-                section in self.callbacks
-                and setting in self.callbacks[section]
-            ):
+            if section in self.callbacks and setting in self.callbacks[section]:
                 self.emit(key)
 
     def check_type(self, value1, value2):

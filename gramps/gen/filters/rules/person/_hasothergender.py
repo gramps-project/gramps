@@ -18,33 +18,35 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 from ....lib.person import Person
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasOtherGender
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasOtherGender(Rule):
     """Rule that checks for a person that has other gender"""
 
-    name = _('People who are neither male nor female')
-    category = _('General filters')
-    description = _('Matches all people with other gender')
+    name = _("People who are neither male nor female")
+    category = _("General filters")
+    description = _("Matches all people with other gender")
 
     def apply(self, db, person):
         return person.gender == Person.OTHER

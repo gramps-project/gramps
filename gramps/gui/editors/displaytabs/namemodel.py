@@ -20,50 +20,53 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import GObject
 from gi.repository import Gtk
 from gi.repository import Pango
+
 WEIGHT_NORMAL = Pango.Weight.NORMAL
 WEIGHT_BOLD = Pango.Weight.BOLD
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...widgets.undoablebuffer import UndoableBuffer
 from gramps.gen.display.name import displayer as name_displayer
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # NameModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-YES = _('Yes')
-NO = _('No')
+YES = _("Yes")
+NO = _("No")
+
 
 class NameModel(Gtk.TreeStore):
-    #tree groups defined
+    # tree groups defined
     DEFINDEX = 0
-    DEFNAME = _('Preferred name')
+    DEFNAME = _("Preferred name")
     ALTINDEX = 1
-    ALTNAME = _('Alternative names')
+    ALTNAME = _("Alternative names")
 
-    _GROUPSTRING = _('%(groupname)s - %(groupnumber)d')
+    _GROUPSTRING = _("%(groupname)s - %(groupnumber)d")
 
     COL_NAME = (0, str)
     COL_TYPE = (1, str)
@@ -74,8 +77,16 @@ class NameModel(Gtk.TreeStore):
     COL_NOTEPREVIEW = (6, str)
     COL_PRIVATE = (7, bool)
 
-    COLS = (COL_NAME, COL_TYPE, COL_DATA, COL_FONTWEIGHT, COL_GROUPAS,
-            COL_HASSOURCE, COL_NOTEPREVIEW, COL_PRIVATE)
+    COLS = (
+        COL_NAME,
+        COL_TYPE,
+        COL_DATA,
+        COL_FONTWEIGHT,
+        COL_GROUPAS,
+        COL_HASSOURCE,
+        COL_NOTEPREVIEW,
+        COL_PRIVATE,
+    )
 
     def __init__(self, obj_list, db, groups):
         """
@@ -93,26 +104,28 @@ class NameModel(Gtk.TreeStore):
         for index, group in enumerate(obj_list):
             parentiter = self.append(None, row=self.row_group(index, group))
             for obj in group:
-                self.append(parentiter, row = self.row(index, obj))
+                self.append(parentiter, row=self.row(index, obj))
 
     def row_group(self, index, group):
         name = self.namegroup(index, len(group))
-        return [name, '', (index, None), WEIGHT_NORMAL, '', '', '', None]
+        return [name, "", (index, None), WEIGHT_NORMAL, "", "", "", None]
 
     def row(self, index, name):
         """
         Returns the row of the model in group index, and name as a
         list
         """
-        return [name_displayer.display_name(name),
-                str(name.get_type()),
-                (index, name),
-                self.colweight(index),
-                name.get_group_as(),
-                name.has_citations(),
-                self.notepreview(name),
-                name.get_privacy(),
-               ]
+        return [
+            name_displayer.display_name(name),
+            str(name.get_type()),
+            (index, name),
+            self.colweight(index),
+            name.get_group_as(),
+            name.has_citations(),
+            self.notepreview(name),
+            name.get_privacy(),
+        ]
+
     def colweight(self, index):
         if index == self.DEFINDEX:
             return WEIGHT_BOLD
@@ -122,25 +135,25 @@ class NameModel(Gtk.TreeStore):
     def namegroup(self, groupindex, length):
         if groupindex == self.DEFINDEX:
             return self.DEFNAME
-        return self._GROUPSTRING % {'groupname': self.ALTNAME,
-                                    'groupnumber': length}
+        return self._GROUPSTRING % {"groupname": self.ALTNAME, "groupnumber": length}
 
     def update_defname(self, defname):
         """
         callback if change to the preferred name happens
         """
-        #default name is path (0,0)
+        # default name is path (0,0)
         self.remove(self.get_iter((self.DEFINDEX, 0)))
-        self.insert(self.get_iter(self.DEFINDEX), 0,
-                    row=self.row(self.DEFINDEX, defname))
+        self.insert(
+            self.get_iter(self.DEFINDEX), 0, row=self.row(self.DEFINDEX, defname)
+        )
 
     def notepreview(self, name):
         nlist = name.get_note_list()
         if nlist:
             note = self.db.get_note_from_handle(nlist[0])
-            text = note.get().replace('\n', ' ')
+            text = note.get().replace("\n", " ")
             if len(text) > 80:
-                text = text[:80]+"..."
+                text = text[:80] + "..."
             return text
         else:
-            return ''
+            return ""

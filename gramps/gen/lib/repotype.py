@@ -22,17 +22,18 @@
 Repository types.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .grampstype import GrampsType
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-class RepositoryType(GrampsType):
 
+class RepositoryType(GrampsType):
     UNKNOWN = -1
     CUSTOM = 0
     LIBRARY = 1
@@ -60,7 +61,7 @@ class RepositoryType(GrampsType):
         (BOOKSTORE, _("Bookstore"), "Bookstore"),
         (COLLECTION, _("Collection"), "Collection"),
         (SAFE, _("Safe"), "Safe"),
-        ]
+    ]
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)

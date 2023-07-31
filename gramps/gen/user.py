@@ -26,6 +26,7 @@ import sys
 from abc import ABCMeta, abstractmethod
 from contextlib import contextmanager
 
+
 class UserBase(metaclass=ABCMeta):
     """
     This class provides a means to interact with the user in an abstract way.
@@ -36,7 +37,7 @@ class UserBase(metaclass=ABCMeta):
     def __init__(self, callback=None, error=None, uistate=None, dbstate=None):
         self.callback_function = callback
         self.error_function = error
-        self._fileout = sys.stderr # redirected to mocks by unit tests
+        self._fileout = sys.stderr  # redirected to mocks by unit tests
         self.uistate = uistate
         self.dbstate = dbstate
 
@@ -117,8 +118,15 @@ class UserBase(metaclass=ABCMeta):
             self.end_progress()
 
     @abstractmethod
-    def prompt(self, title, message, accept_label, reject_label, parent=None,
-               default_label=None):
+    def prompt(
+        self,
+        title,
+        message,
+        accept_label,
+        reject_label,
+        parent=None,
+        default_label=None,
+    ):
         """
         Prompt the user with a message to select an alternative.
 
@@ -188,6 +196,7 @@ class UserBase(metaclass=ABCMeta):
         Displays information to the user
         """
 
+
 class User(UserBase):
     """
     An implementation of the :class:`.gen.user.UserBase` class which supresses
@@ -209,8 +218,15 @@ class User(UserBase):
     def end_progress(self):
         pass
 
-    def prompt(self, title, message, accept_label, reject_label, parent=None,
-               default_label=None):
+    def prompt(
+        self,
+        title,
+        message,
+        accept_label,
+        reject_label,
+        parent=None,
+        default_label=None,
+    ):
         return True
 
     def warn(self, title, warning=""):

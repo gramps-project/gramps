@@ -18,34 +18,36 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....lib.notetype import NoteType
 from .. import Rule
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasType
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasType(Rule):
     """Rule that checks for a note of a particular type."""
 
-    labels = [ _('Note type:') ]
-    name = _('Notes with the particular type')
+    labels = [_("Note type:")]
+    name = _("Notes with the particular type")
     description = _("Matches notes with the particular type ")
-    category = _('General filters')
+    category = _("General filters")
 
     def apply(self, db, note):
         if not self.list[0]:

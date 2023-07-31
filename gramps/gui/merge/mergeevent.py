@@ -22,12 +22,13 @@
 Provide merge capabilities for events.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from gramps.gen.const import URL_MANUAL_SECT3
 from ..display import display_help
@@ -36,24 +37,26 @@ from gramps.gen.datehandler import get_date
 from gramps.gen.utils.db import get_participant_from_event
 from gramps.gen.merge import MergeEventQuery
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 WIKI_HELP_PAGE = URL_MANUAL_SECT3
-WIKI_HELP_SEC = _('Merge_Events', 'manual')
-_GLADE_FILE = 'mergeevent.glade'
+WIKI_HELP_SEC = _("Merge_Events", "manual")
+_GLADE_FILE = "mergeevent.glade"
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MergeEvent
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MergeEvent(ManagedWindow):
     """
     Displays a dialog box that allows the events to be combined into one.
     """
+
     def __init__(self, dbstate, uistate, track, handle1, handle2):
         ManagedWindow.__init__(self, uistate, track, self.__class__)
         self.dbstate = dbstate
@@ -61,11 +64,11 @@ class MergeEvent(ManagedWindow):
         self.ev1 = database.get_event_from_handle(handle1)
         self.ev2 = database.get_event_from_handle(handle2)
 
-        self.define_glade('mergeevent', _GLADE_FILE)
-        self.set_window(self._gladeobj.toplevel,
-                        self.get_widget("event_title"),
-                        _("Merge Events"))
-        self.setup_configs('interface.merge-event', 500, 250)
+        self.define_glade("mergeevent", _GLADE_FILE)
+        self.set_window(
+            self._gladeobj.toplevel, self.get_widget("event_title"), _("Merge Events")
+        )
+        self.setup_configs("interface.merge-event", 500, 250)
 
         # Detailed selection widgets
         type1 = str(self.ev1.get_type())
@@ -75,7 +78,7 @@ class MergeEvent(ManagedWindow):
         entry1.set_text(type1)
         entry2.set_text(type2)
         if entry1.get_text() == entry2.get_text():
-            for widget_name in ('type1', 'type2', 'type_btn1', 'type_btn2'):
+            for widget_name in ("type1", "type2", "type_btn1", "type_btn2"):
                 self.get_widget(widget_name).set_sensitive(False)
 
         entry1 = self.get_widget("date1")
@@ -83,7 +86,7 @@ class MergeEvent(ManagedWindow):
         entry1.set_text(get_date(self.ev1))
         entry2.set_text(get_date(self.ev2))
         if entry1.get_text() == entry2.get_text():
-            for widget_name in ('date1', 'date2', 'date_btn1', 'date_btn2'):
+            for widget_name in ("date1", "date2", "date_btn1", "date_btn2"):
                 self.get_widget(widget_name).set_sensitive(False)
 
         place1 = self.ev1.get_place_handle()
@@ -99,7 +102,7 @@ class MergeEvent(ManagedWindow):
         entry1.set_text(place1)
         entry2.set_text(place2)
         if entry1.get_text() == entry2.get_text():
-            for widget_name in ('place1', 'place2', 'place_btn1', 'place_btn2'):
+            for widget_name in ("place1", "place2", "place_btn1", "place_btn2"):
                 self.get_widget(widget_name).set_sensitive(False)
 
         entry1 = self.get_widget("desc1")
@@ -107,7 +110,7 @@ class MergeEvent(ManagedWindow):
         entry1.set_text(self.ev1.get_description())
         entry2.set_text(self.ev2.get_description())
         if entry1.get_text() == entry2.get_text():
-            for widget_name in ('desc1', 'desc2', 'desc_btn1', 'desc_btn2'):
+            for widget_name in ("desc1", "desc2", "desc_btn1", "desc_btn2"):
                 self.get_widget(widget_name).set_sensitive(False)
 
         gramps1 = self.ev1.get_gramps_id()
@@ -117,8 +120,7 @@ class MergeEvent(ManagedWindow):
         entry1.set_text(gramps1)
         entry2.set_text(gramps2)
         if entry1.get_text() == entry2.get_text():
-            for widget_name in ('gramps1', 'gramps2', 'gramps_btn1',
-                    'gramps_btn2'):
+            for widget_name in ("gramps1", "gramps2", "gramps_btn1", "gramps_btn2"):
                 self.get_widget(widget_name).set_sensitive(False)
 
         # Main window widgets that determine which handle survives
@@ -153,7 +155,7 @@ class MergeEvent(ManagedWindow):
 
     def cb_help(self, obj):
         """Display the relevant portion of the Gramps manual"""
-        display_help(webpage = WIKI_HELP_PAGE, section = WIKI_HELP_SEC)
+        display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def cb_merge(self, obj):
         """
@@ -184,6 +186,6 @@ class MergeEvent(ManagedWindow):
         query.execute()
         # Add the selected handle to history so that when merge is complete,
         # phoenix is the selected row.
-        self.uistate.set_active(phoenix.get_handle(), 'Event')
+        self.uistate.set_active(phoenix.get_handle(), "Event")
         self.uistate.set_busy_cursor(False)
         self.close()

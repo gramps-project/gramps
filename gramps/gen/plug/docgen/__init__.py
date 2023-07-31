@@ -28,13 +28,25 @@ A docgen plugin should fully implement this api for TextDoc or DrawDoc
 from .basedoc import BaseDoc
 from .paperstyle import PaperSize, PaperStyle, PAPER_PORTRAIT, PAPER_LANDSCAPE
 from .fontstyle import FontStyle, FONT_SANS_SERIF, FONT_SERIF, FONT_MONOSPACE
-from .paragraphstyle import ParagraphStyle, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT,\
-                           PARA_ALIGN_RIGHT, PARA_ALIGN_JUSTIFY
+from .paragraphstyle import (
+    ParagraphStyle,
+    PARA_ALIGN_CENTER,
+    PARA_ALIGN_LEFT,
+    PARA_ALIGN_RIGHT,
+    PARA_ALIGN_JUSTIFY,
+)
 from .tablestyle import TableStyle, TableCellStyle
 from .stylesheet import StyleSheetList, StyleSheet, SheetParser
 from .graphicstyle import GraphicsStyle, SOLID, DASHED, DOTTED
-from .textdoc import TextDoc, IndexMark,INDEX_TYPE_ALP, INDEX_TYPE_TOC,\
-    URL_PATTERN, LOCAL_HYPERLINK, LOCAL_TARGET
+from .textdoc import (
+    TextDoc,
+    IndexMark,
+    INDEX_TYPE_ALP,
+    INDEX_TYPE_TOC,
+    URL_PATTERN,
+    LOCAL_HYPERLINK,
+    LOCAL_TARGET,
+)
 from .drawdoc import DrawDoc
 from .graphdoc import GVDoc
 from .treedoc import TreeDoc

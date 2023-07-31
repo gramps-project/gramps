@@ -20,38 +20,40 @@
 """
 Tag editing module for Gramps.
 """
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from ..managedwindow import ManagedWindow
 from gramps.gen.const import URL_MANUAL_PAGE
 from ..display import display_help
 from ..listmodel import ListModel, TOGGLE
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Filters' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('Tag_selection_dialog', 'manual')
+# -------------------------------------------------------------------------
+WIKI_HELP_PAGE = "%s_-_Filters" % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _("Tag_selection_dialog", "manual")
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # EditTagList
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class EditTagList(ManagedWindow):
     """
     Dialog to allow the user to edit a list of tags.
@@ -67,8 +69,8 @@ class EditTagList(ManagedWindow):
 
         self.namemodel = None
         top = self._create_dialog()
-        self.set_window(top, None, _('Tag selection'))
-        self.setup_configs('interface.edittaglist', 360, 400)
+        self.set_window(top, None, _("Tag selection"))
+        self.setup_configs("interface.edittaglist", 360, 400)
 
         for tag in full_list:
             self.namemodel.add([tag[0], tag in tag_list, tag[1]])
@@ -84,15 +86,14 @@ class EditTagList(ManagedWindow):
             # that line means the ManagedWindow.__init__ must be changed also
             response = self.window.run()
             if response == Gtk.ResponseType.HELP:
-                display_help(webpage=WIKI_HELP_PAGE,
-                                   section=WIKI_HELP_SEC)
+                display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
             elif response == Gtk.ResponseType.DELETE_EVENT:
                 break
             else:
                 if response == Gtk.ResponseType.OK:
-                    self.return_list = [(row[0], row[2])
-                                        for row in self.namemodel.model
-                                        if row[1]]
+                    self.return_list = [
+                        (row[0], row[2]) for row in self.namemodel.model if row[1]
+                    ]
                 self.close()
                 break
 
@@ -104,9 +105,11 @@ class EditTagList(ManagedWindow):
         top = Gtk.Dialog(transient_for=self.uistate.window)
         top.vbox.set_spacing(5)
 
-        columns = [('', -1, 300),
-                   (' ', -1, 25, TOGGLE, True, None),
-                   (_('Tag'), -1, 300)]
+        columns = [
+            ("", -1, 300),
+            (" ", -1, 25, TOGGLE, True, None),
+            (_("Tag"), -1, 300),
+        ]
         view = Gtk.TreeView()
         self.namemodel = ListModel(view, columns)
 
@@ -115,12 +118,12 @@ class EditTagList(ManagedWindow):
         slist.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         top.vbox.pack_start(slist, 1, 1, 5)
 
-        top.add_button(_('_Help'), Gtk.ResponseType.HELP)
-        top.add_button(_('_Cancel'), Gtk.ResponseType.CANCEL)
-        top.add_button(_('_OK'), Gtk.ResponseType.OK)
+        top.add_button(_("_Help"), Gtk.ResponseType.HELP)
+        top.add_button(_("_Cancel"), Gtk.ResponseType.CANCEL)
+        top.add_button(_("_OK"), Gtk.ResponseType.OK)
         return top
 
-    def build_menu_names(self, obj): # meaningless while it's modal
+    def build_menu_names(self, obj):  # meaningless while it's modal
         """
         Define the menu entry for the ManagedWindows.
         """

@@ -19,31 +19,35 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._changedsincebase import ChangedSinceBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # ChangedSince
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class ChangedSince(ChangedSinceBase):
     """Rule that checks for citations changed since a specific time."""
 
-    labels = [ _('Changed after:'), _('but before:') ]
-    name = _('Citations changed after <date time>')
-    description = _("Matches citation records changed after a specified "
-                    "date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second "
-                    "date-time is given.")
+    labels = [_("Changed after:"), _("but before:")]
+    name = _("Citations changed after <date time>")
+    description = _(
+        "Matches citation records changed after a specified "
+        "date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second "
+        "date-time is given."
+    )

@@ -22,48 +22,50 @@
 """Printing interface based on Gtk.Print* classes.
 """
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from math import radians
 import logging
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import cairo
-try: # the Gramps-Connect server has no DISPLAY
+
+try:  # the Gramps-Connect server has no DISPLAY
     from gi.repository import GObject
     from gi.repository import Gtk
 except:
     pass
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.plug.docgen import PAPER_PORTRAIT
 import gramps.plugins.lib.libcairodoc as libcairodoc
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Set up logging
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 LOG = logging.getLogger(".GtkPrint")
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Constants
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
 # printer settings (might be needed to align for different platforms)
 PRINTER_DPI = 72.0
@@ -76,15 +78,18 @@ PRINT_SETTINGS = None
 MARGIN = 6
 
 # zoom modes in print preview
-(ZOOM_BEST_FIT,
- ZOOM_FIT_WIDTH,
- ZOOM_FREE,) = list(range(3))
+(
+    ZOOM_BEST_FIT,
+    ZOOM_FIT_WIDTH,
+    ZOOM_FREE,
+) = list(range(3))
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Converter functions
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
+
 
 def paperstyle_to_pagesetup(paper_style):
     """Convert a PaperStyle instance into a Gtk.PageSetup instance.
@@ -134,9 +139,9 @@ def paperstyle_to_pagesetup(paper_style):
         else:
             paper_width = gramps_paper_size.get_height() * 10
             paper_height = gramps_paper_size.get_width() * 10
-        paper_size = Gtk.PaperSize.new_custom("custom", "Custom Size",
-                                              paper_width, paper_height,
-                                              Gtk.Unit.MM)
+        paper_size = Gtk.PaperSize.new_custom(
+            "custom", "Custom Size", paper_width, paper_height, Gtk.Unit.MM
+        )
         LOG.debug("Selected paper size: (%f,%f)", paper_width, paper_height)
 
     page_setup = Gtk.PageSetup()
@@ -149,35 +154,32 @@ def paperstyle_to_pagesetup(paper_style):
         page_setup.set_orientation(Gtk.PageOrientation.LANDSCAPE)
 
     # Set paper margins
-    page_setup.set_top_margin(paper_style.get_top_margin() * 10,
-                              Gtk.Unit.MM)
-    page_setup.set_bottom_margin(paper_style.get_bottom_margin() * 10,
-                                 Gtk.Unit.MM)
-    page_setup.set_left_margin(paper_style.get_left_margin() * 10,
-                               Gtk.Unit.MM)
-    page_setup.set_right_margin(paper_style.get_right_margin() * 10,
-                                Gtk.Unit.MM)
+    page_setup.set_top_margin(paper_style.get_top_margin() * 10, Gtk.Unit.MM)
+    page_setup.set_bottom_margin(paper_style.get_bottom_margin() * 10, Gtk.Unit.MM)
+    page_setup.set_left_margin(paper_style.get_left_margin() * 10, Gtk.Unit.MM)
+    page_setup.set_right_margin(paper_style.get_right_margin() * 10, Gtk.Unit.MM)
 
     return page_setup
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # PrintPreview class
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class PrintPreview:
-    """Implement a dialog to show print preview.
-    """
+    """Implement a dialog to show print preview."""
+
     zoom_factors = {
-        0.50: '50%',
-        0.75: '75%',
-        1.00: '100%',
-        1.25: '125%',
-        1.50: '150%',
-        1.75: '175%',
-        2.00: '200%',
-        3.00: '300%',
-        4.00: '400%',
+        0.50: "50%",
+        0.75: "75%",
+        1.00: "100%",
+        1.25: "125%",
+        1.50: "150%",
+        1.75: "175%",
+        2.00: "200%",
+        3.00: "300%",
+        4.00: "400%",
     }
 
     def __init__(self, operation, preview, context, parent):
@@ -192,63 +194,63 @@ class PrintPreview:
     # Private
 
     def __build_window(self):
-        """Build the window from Glade.
-        """
+        """Build the window from Glade."""
         from gramps.gui.glade import Glade
+
         glade_xml = Glade()
         self._window = glade_xml.toplevel
         self._window.set_transient_for(self._parent)
 
         # remember active widgets for future use
-        self._swin = glade_xml.get_object('swin')
-        self._drawing_area = glade_xml.get_object('drawingarea')
-        self._first_button = glade_xml.get_object('first')
-        self._prev_button = glade_xml.get_object('prev')
-        self._next_button = glade_xml.get_object('next')
-        self._last_button = glade_xml.get_object('last')
-        self._pages_entry = glade_xml.get_object('entry')
-        self._pages_label = glade_xml.get_object('label')
-        self._zoom_fit_width_button = glade_xml.get_object('zoom_fit_width')
-        self._zoom_fit_width_button.set_stock_id('gramps-zoom-fit-width')
-        self._zoom_best_fit_button = glade_xml.get_object('zoom_best_fit')
-        self._zoom_best_fit_button.set_stock_id('gramps-zoom-best-fit')
-        self._zoom_in_button = glade_xml.get_object('zoom_in')
-        self._zoom_in_button.set_stock_id('gramps-zoom-in')
-        self._zoom_out_button = glade_xml.get_object('zoom_out')
-        self._zoom_out_button.set_stock_id('gramps-zoom-out')
+        self._swin = glade_xml.get_object("swin")
+        self._drawing_area = glade_xml.get_object("drawingarea")
+        self._first_button = glade_xml.get_object("first")
+        self._prev_button = glade_xml.get_object("prev")
+        self._next_button = glade_xml.get_object("next")
+        self._last_button = glade_xml.get_object("last")
+        self._pages_entry = glade_xml.get_object("entry")
+        self._pages_label = glade_xml.get_object("label")
+        self._zoom_fit_width_button = glade_xml.get_object("zoom_fit_width")
+        self._zoom_fit_width_button.set_stock_id("gramps-zoom-fit-width")
+        self._zoom_best_fit_button = glade_xml.get_object("zoom_best_fit")
+        self._zoom_best_fit_button.set_stock_id("gramps-zoom-best-fit")
+        self._zoom_in_button = glade_xml.get_object("zoom_in")
+        self._zoom_in_button.set_stock_id("gramps-zoom-in")
+        self._zoom_out_button = glade_xml.get_object("zoom_out")
+        self._zoom_out_button.set_stock_id("gramps-zoom-out")
 
         # connect the signals
         glade_xml.connect_signals(self)
         self._drawing_area.connect("draw", self.on_drawingarea_draw_event)
 
     ##def create_surface(self):
-        ##return cairo.PDFSurface(StringIO(),
-                                ##self._context.get_width(),
-                                ##self._context.get_height())
+    ##return cairo.PDFSurface(StringIO(),
+    ##self._context.get_width(),
+    ##self._context.get_height())
 
     ##def get_page(self, page_no):
-        ##"""Get the cairo surface of the given page.
+    ##"""Get the cairo surface of the given page.
 
-        ##Surfaces are also cached for instant access.
+    ##Surfaces are also cached for instant access.
 
-        ##"""
-        ##if page_no >= len(self._page_numbers):
-            ##LOG.debug("Page number %d doesn't exist." % page_no)
-            ##page_no = 0
+    ##"""
+    ##if page_no >= len(self._page_numbers):
+    ##LOG.debug("Page number %d doesn't exist." % page_no)
+    ##page_no = 0
 
-        ##if page_no not in self._page_surfaces:
-            ##surface = self.create_surface()
-            ##cr = cairo.Context(surface)
+    ##if page_no not in self._page_surfaces:
+    ##surface = self.create_surface()
+    ##cr = cairo.Context(surface)
 
-            ##if PRINTER_SCALE != 1.0:
-                ##cr.scale(PRINTER_SCALE, PRINTER_SCALE)
+    ##if PRINTER_SCALE != 1.0:
+    ##cr.scale(PRINTER_SCALE, PRINTER_SCALE)
 
-            ##self._context.set_cairo_context(cr, PRINTER_DPI, PRINTER_DPI)
-            ##self._preview.render_page(self._page_numbers[page_no])
+    ##self._context.set_cairo_context(cr, PRINTER_DPI, PRINTER_DPI)
+    ##self._preview.render_page(self._page_numbers[page_no])
 
-            ##self._page_surfaces[page_no] = surface
+    ##self._page_surfaces[page_no] = surface
 
-        ##return self._page_surfaces[page_no]
+    ##return self._page_surfaces[page_no]
 
     def __set_page(self, page_no):
         if page_no < 0 or page_no >= self._page_no:
@@ -264,7 +266,7 @@ class PrintPreview:
         self._next_button.set_sensitive(self._current_page < self._page_no - 1)
         self._last_button.set_sensitive(self._current_page < self._page_no - 1)
 
-        self._pages_entry.set_text('%d' % (self._current_page + 1))
+        self._pages_entry.set_text("%d" % (self._current_page + 1))
 
     def __set_zoom(self, zoom):
         self._zoom = zoom
@@ -274,10 +276,8 @@ class PrintPreview:
         self._drawing_area.set_size_request(screen_width, screen_height)
         self._drawing_area.queue_draw()
 
-        self._zoom_in_button.set_sensitive(self._zoom !=
-                                           max(self.zoom_factors))
-        self._zoom_out_button.set_sensitive(self._zoom !=
-                                            min(self.zoom_factors))
+        self._zoom_in_button.set_sensitive(self._zoom != max(self.zoom_factors))
+        self._zoom_out_button.set_sensitive(self._zoom != min(self.zoom_factors))
 
     def __zoom_in(self):
         zoom = [z for z in self.zoom_factors if z > self._zoom]
@@ -312,8 +312,7 @@ class PrintPreview:
         return zoom
 
     def __get_view_size(self):
-        """Get the dimensions of the scrolled window.
-        """
+        """Get the dimensions of the scrolled window."""
         width = self._swin.get_allocated_width() - 2 * MARGIN
         height = self._swin.get_allocated_height() - 2 * MARGIN
 
@@ -323,7 +322,7 @@ class PrintPreview:
 
         spacing = GObject.Value()
         spacing.init(GObject.TYPE_INT)
-        spacing = self._swin.style_get_property('scrollbar-spacing', spacing)
+        spacing = self._swin.style_get_property("scrollbar-spacing", spacing)
         if spacing:
             spacing = spacing.get_int()
         else:
@@ -343,8 +342,8 @@ class PrintPreview:
 
     def on_drawingarea_draw_event(self, drawing_area, context):
         cr = context
-        #cr.rectangle(event.area)
-        #cr.clip()
+        # cr.rectangle(event.area)
+        # cr.clip()
 
         # get the extents of the page and the screen
         paper_w = int(self._paper_width * self._zoom)
@@ -358,11 +357,11 @@ class PrintPreview:
 
         # put the paper on the middle of the window
         xtranslate = MARGIN
-        if  paper_w < width:
+        if paper_w < width:
             xtranslate += (width - paper_w) / 2
 
         ytranslate = MARGIN
-        if  paper_h < height:
+        if paper_h < height:
             ytranslate += (height - paper_h) / 2
 
         cr.translate(xtranslate, ytranslate)
@@ -381,7 +380,7 @@ class PrintPreview:
 
         ##page_setup = self._context.get_page_setup()
         ##cr.translate(page_setup.get_left_margin(Gtk.Unit.POINTS),
-                     ##page_setup.get_top_margin(Gtk.Unit.POINTS))
+        ##page_setup.get_top_margin(Gtk.Unit.POINTS))
 
         ##cr.set_source_surface(self.get_page(0))
         ##cr.paint()
@@ -477,8 +476,8 @@ class PrintPreview:
         # get the total number of pages
         ##self._page_numbers = [0,]
         ##self._page_surfaces = {}
-        self._page_no = self._operation.get_property('n_pages')
-        self._pages_label.set_text(_('of %d') % self._page_no)
+        self._page_no = self._operation.get_property("n_pages")
+        self._pages_label.set_text(_("of %d") % self._page_no)
 
         # set zoom level and initial page number
         self._zoom_mode = ZOOM_FREE
@@ -488,20 +487,21 @@ class PrintPreview:
         # let's the show begin...
         self._window.show()
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # GtkPrint class
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class GtkPrint(libcairodoc.CairoDoc):
     """Print document via GtkPrint* interface.
 
     Requires Gtk+ 2.10.
 
     """
+
     def run(self):
-        """Run the Gtk Print operation.
-        """
+        """Run the Gtk Print operation."""
         global PRINT_SETTINGS
 
         # get a page setup from the paper style we have
@@ -522,9 +522,10 @@ class GtkPrint(libcairodoc.CairoDoc):
         # run print dialog
         while True:
             self.preview = None
-            res = operation.run(Gtk.PrintOperationAction.PRINT_DIALOG,
-                                self.uistate.window)
-            if self.preview is None: # cancel or print
+            res = operation.run(
+                Gtk.PrintOperationAction.PRINT_DIALOG, self.uistate.window
+            )
+            if self.preview is None:  # cancel or print
                 break
             # set up printing again; can't reuse PrintOperation?
             operation = Gtk.PrintOperation()
@@ -542,8 +543,7 @@ class GtkPrint(libcairodoc.CairoDoc):
             PRINT_SETTINGS = operation.get_print_settings()
 
     def on_begin_print(self, operation, context):
-        """Setup environment for printing.
-        """
+        """Setup environment for printing."""
         # get data from context here only once to save time on pagination
         self.page_width = round(context.get_width())
         self.page_height = round(context.get_height())
@@ -551,15 +551,12 @@ class GtkPrint(libcairodoc.CairoDoc):
         self.dpi_y = context.get_dpi_y()
 
     def on_paginate(self, operation, context):
-        """Paginate the whole document in chunks.
-        """
+        """Paginate the whole document in chunks."""
         layout = context.create_pango_layout()
 
-        finished = self.paginate(layout,
-                                 self.page_width,
-                                 self.page_height,
-                                 self.dpi_x,
-                                 self.dpi_y)
+        finished = self.paginate(
+            layout, self.page_width, self.page_height, self.dpi_x, self.dpi_y
+        )
         # update page number
         operation.set_n_pages(len(self._pages))
 
@@ -570,8 +567,7 @@ class GtkPrint(libcairodoc.CairoDoc):
         return finished
 
     def on_draw_page(self, operation, context, page_nr):
-        """Draw the requested page.
-        """
+        """Draw the requested page."""
         cr = context.get_cairo_context()
         layout = context.create_pango_layout()
         width = round(context.get_width())
@@ -582,10 +578,9 @@ class GtkPrint(libcairodoc.CairoDoc):
         self.draw_page(page_nr, cr, layout, width, height, dpi_x, dpi_y)
 
     def on_preview(self, operation, preview, context, parent):
-        """Implement custom print preview functionality.
-        """
+        """Implement custom print preview functionality."""
         ##if constfunc.win()':
-            ##return False
+        ##return False
 
         self.preview = PrintPreview(operation, preview, context, parent)
 

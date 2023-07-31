@@ -24,33 +24,34 @@
 #
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # set up logging
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 log = logging.getLogger(".graphicstyle")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Line style
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 SOLID = 0
 DASHED = 1
 DOTTED = 2
@@ -60,27 +61,30 @@ DOTTED = 2
 #   2) the style names are used by the ODF generator and should be unique
 #   3) the line style constants above need to be imported in the
 #      gen.plug.docgen.__init__ file so they can be used in a report add-on
-line_style_names = ('solid', 'dashed', 'dotted')
-_DASH_ARRAY = [ [1, 0], [2, 4], [1, 2] ]
+line_style_names = ("solid", "dashed", "dotted")
+_DASH_ARRAY = [[1, 0], [2, 4], [1, 2]]
+
 
 def get_line_style_by_name(style_name):
     which = 0
-    for (idx, sn) in enumerate(line_style_names):
+    for idx, sn in enumerate(line_style_names):
         if sn == style_name:
             which = idx
             break
     return _DASH_ARRAY[which]
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # GraphicsStyle
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class GraphicsStyle:
     """
     Defines the properties of graphics objects, such as line width,
     color, fill, ect.
     """
+
     def __init__(self, obj=None):
         """
         Initialize the object with default values, unless a source
@@ -136,7 +140,7 @@ class GraphicsStyle:
     def set_line_style(self, val):
         self.lstyle = val
 
-    def get_dash_style(self, val = None):
+    def get_dash_style(self, val=None):
         if val is None:
             val = self.lstyle
         if val >= 0 and val < len(_DASH_ARRAY):

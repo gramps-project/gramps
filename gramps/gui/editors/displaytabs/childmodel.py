@@ -18,19 +18,19 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 from html import escape
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.datehandler import get_date
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.display.place import displayer as place_displayer
@@ -38,38 +38,57 @@ from gramps.gen.utils.string import gender as gender_map
 from gramps.gen.lib import EventType
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # ChildModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class ChildModel(Gtk.ListStore):
-
     def __init__(self, child_ref_list, db):
-        Gtk.ListStore.__init__(self, int, str, str, str, str, str,
-                               str, str, str, str, str, str, str, bool, bool, object)
+        Gtk.ListStore.__init__(
+            self,
+            int,
+            str,
+            str,
+            str,
+            str,
+            str,
+            str,
+            str,
+            str,
+            str,
+            str,
+            str,
+            str,
+            bool,
+            bool,
+            object,
+        )
         self.db = db
         for index, child_ref in enumerate(child_ref_list):
             child = db.get_person_from_handle(child_ref.ref)
             if child:
-                self.append(row=[
-                    index + 1,
-                    child.get_gramps_id(),
-                    name_displayer.display(child),
-                    gender_map[child.get_gender()],
-                    str(child_ref.get_father_relation()),
-                    str(child_ref.get_mother_relation()),
-                    self.column_birth_day(child),
-                    self.column_death_day(child),
-                    self.column_birth_place(child),
-                    self.column_death_place(child),
-                    name_displayer.sort_string(child.primary_name),
-                    self.column_birth_sort(child),
-                    self.column_death_sort(child),
-                    child_ref.has_citations(),
-                    child_ref.get_privacy(),
-                    child_ref
-                    ])
+                self.append(
+                    row=[
+                        index + 1,
+                        child.get_gramps_id(),
+                        name_displayer.display(child),
+                        gender_map[child.get_gender()],
+                        str(child_ref.get_father_relation()),
+                        str(child_ref.get_mother_relation()),
+                        self.column_birth_day(child),
+                        self.column_death_day(child),
+                        self.column_birth_place(child),
+                        self.column_death_place(child),
+                        name_displayer.sort_string(child.primary_name),
+                        self.column_birth_sort(child),
+                        self.column_death_sort(child),
+                        child_ref.has_citations(),
+                        child_ref.get_privacy(),
+                        child_ref,
+                    ]
+                )
 
     def column_birth_day(self, data):
         birth = get_birth_or_fallback(self.db, data)
@@ -77,7 +96,7 @@ class ChildModel(Gtk.ListStore):
             if birth.get_type() == EventType.BIRTH:
                 return get_date(birth)
             else:
-                return '<i>%s</i>' % escape(get_date(birth))
+                return "<i>%s</i>" % escape(get_date(birth))
         else:
             return ""
 
@@ -90,9 +109,9 @@ class ChildModel(Gtk.ListStore):
         """
         birth = get_birth_or_fallback(self.db, data)
         if birth:
-            return '%012d' % birth.get_date_object().get_sort_value()
+            return "%012d" % birth.get_date_object().get_sort_value()
         else:
-            return '%012d' % 0
+            return "%012d" % 0
 
     def column_death_day(self, data):
         death = get_death_or_fallback(self.db, data)
@@ -100,7 +119,7 @@ class ChildModel(Gtk.ListStore):
             if death.get_type() == EventType.DEATH:
                 return get_date(death)
             else:
-                return '<i>%s</i>' % escape(get_date(death))
+                return "<i>%s</i>" % escape(get_date(death))
         else:
             return ""
 
@@ -113,9 +132,9 @@ class ChildModel(Gtk.ListStore):
         """
         death = get_death_or_fallback(self.db, data)
         if death:
-            return '%012d' % death.get_date_object().get_sort_value()
+            return "%012d" % death.get_date_object().get_sort_value()
         else:
-            return '%012d' % 0
+            return "%012d" % 0
 
     def column_birth_place(self, data):
         event_ref = data.get_birth_ref()

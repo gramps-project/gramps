@@ -18,20 +18,22 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import HasTextMatchingSubstringOf
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # "HasTextMatchingRegexOf"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasTextMatchingRegexpOf(HasTextMatchingSubstringOf):
     """
     Wrap HasTextMatchingSubstringOf to enable the regex_match parameter.
     """
+
     def __init__(self, list, use_regex=False):
         HasTextMatchingSubstringOf.__init__(self, list, use_regex)
 

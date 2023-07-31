@@ -55,6 +55,7 @@ from ...lib import Date, DateError
 from ...utils.grampslocale import GrampsLocale, _LOCALE_NAMES
 from .. import LANG_TO_PARSER
 
+
 # -------------------------------------------------------------------------
 #
 #
@@ -65,7 +66,6 @@ class DateHandlerTest(unittest.TestCase):
         config.set("preferences.date-format", 0)
 
     def __base_test_all_languages(self, dates):
-
         languages = [
             lang for lang in LANG_TO_PARSER.keys() if lang in _LOCALE_NAMES.keys()
         ]
@@ -74,7 +74,6 @@ class DateHandlerTest(unittest.TestCase):
                 self.__test_language(language, dates)
 
     def __test_language(self, language, dates):
-
         locale = GrampsLocale(lang=language)
         displayer = locale.date_displayer
         parser = locale.date_parser
@@ -90,7 +89,6 @@ class DateHandlerTest(unittest.TestCase):
                 )
 
     def test_simple(self):
-
         dates = []
         for calendar in (Date.CAL_GREGORIAN, Date.CAL_JULIAN):
             for newyear in (Date.NEWYEAR_JAN1, Date.NEWYEAR_MAR25, (5, 5)):
@@ -123,7 +121,6 @@ class DateHandlerTest(unittest.TestCase):
         self.__base_test_all_languages(dates)
 
     def test_span(self):
-
         dates = []
         calendar = Date.CAL_GREGORIAN
         for quality in (Date.QUAL_NONE, Date.QUAL_ESTIMATED, Date.QUAL_CALCULATED):
@@ -207,7 +204,6 @@ class DateHandlerTest(unittest.TestCase):
         self.__base_test_all_languages(dates)
 
     def test_textual(self):
-
         dates = []
         calendar = Date.CAL_GREGORIAN
         modifier = Date.MOD_TEXTONLY

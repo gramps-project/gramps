@@ -22,20 +22,22 @@
 Define text formatting tag types.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .grampstype import GrampsType
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # StyledTextTagType class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class StyledTextTagType(GrampsType):
     """
     Text formatting tag type definition.
@@ -43,6 +45,7 @@ class StyledTextTagType(GrampsType):
     Here we only define new class variables. For details see
     :class:`~gen.lib.grampstype.GrampsType`.
     """
+
     NONE_TYPE = -1
     BOLD = 0
     ITALIC = 1
@@ -91,12 +94,12 @@ class StyledTextTagType(GrampsType):
         BOLD: False,
         ITALIC: False,
         UNDERLINE: False,
-        FONTCOLOR: '#000000',
-        HIGHLIGHT: '#FFFFFF',
-        FONTFACE: 'Sans',
+        FONTCOLOR: "#000000",
+        HIGHLIGHT: "#FFFFFF",
+        FONTFACE: "Sans",
         FONTSIZE: 10,
         SUPERSCRIPT: False,
-        LINK: '',
+        LINK: "",
         STRIKETHROUGH: False,
         SUBSCRIPT: False,
     }

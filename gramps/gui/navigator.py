@@ -23,64 +23,65 @@
 A module that provides pluggable sidebars.  These provide an interface to
 manage pages in the main Gramps window.
 """
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import Gdk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from gramps.gen.plug import (START, END)
+# -------------------------------------------------------------------------
+from gramps.gen.plug import START, END
 from .pluginmanager import GuiPluginManager
 from .uimanager import ActionGroup
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
-UICATEGORY = '''      <section id="ViewsInCatagory">
+# -------------------------------------------------------------------------
+UICATEGORY = """      <section id="ViewsInCatagory">
         %s
       </section>
-    '''
-UICATEGORYBAR = '''    <placeholder id='ViewsInCategoryBar'>
+    """
+UICATEGORYBAR = """    <placeholder id='ViewsInCategoryBar'>
         %s
       </placeholder>
-    '''
+    """
 
 CATEGORY_ICON = {
-    'Dashboard': 'gramps-gramplet',
-    'People': 'gramps-person',
-    'Relationships': 'gramps-relation',
-    'Families': 'gramps-family',
-    'Events': 'gramps-event',
-    'Ancestry': 'gramps-pedigree',
-    'Places': 'gramps-place',
-    'Geography': 'gramps-geo',
-    'Sources': 'gramps-source',
-    'Repositories': 'gramps-repository',
-    'Media': 'gramps-media',
-    'Notes': 'gramps-notes',
-    'Citations': 'gramps-citation',
+    "Dashboard": "gramps-gramplet",
+    "People": "gramps-person",
+    "Relationships": "gramps-relation",
+    "Families": "gramps-family",
+    "Events": "gramps-event",
+    "Ancestry": "gramps-pedigree",
+    "Places": "gramps-place",
+    "Geography": "gramps-geo",
+    "Sources": "gramps-source",
+    "Repositories": "gramps-repository",
+    "Media": "gramps-media",
+    "Notes": "gramps-notes",
+    "Citations": "gramps-citation",
 }
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Navigator class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Navigator:
     """
     A class which defines the graphical representation of the Gramps navigator.
     """
-    def __init__(self, viewmanager):
 
+    def __init__(self, viewmanager):
         self.viewmanager = viewmanager
         self.pages = []
         self.active_cat = None
@@ -101,35 +102,35 @@ class Navigator:
         self.select_button = Gtk.ToggleButton()
         self.select_button.set_relief(Gtk.ReliefStyle.NONE)
         select_hbox = Gtk.Box()
-        self.title_label = Gtk.Label(label='')
-        arrow = Gtk.Arrow(arrow_type=Gtk.ArrowType.DOWN,
-                                    shadow_type=Gtk.ShadowType.NONE)
+        self.title_label = Gtk.Label(label="")
+        arrow = Gtk.Arrow(
+            arrow_type=Gtk.ArrowType.DOWN, shadow_type=Gtk.ShadowType.NONE
+        )
         select_hbox.pack_start(self.title_label, False, True, 0)
         select_hbox.pack_end(arrow, False, True, 0)
         self.select_button.add(select_hbox)
 
-        self.select_button.connect('button_press_event',
-                                   self.__menu_button_pressed)
+        self.select_button.connect("button_press_event", self.__menu_button_pressed)
 
-        #close_button = Gtk.Button()
-        #img = Gtk.Image.new_from_icon_name('window-close', Gtk.IconSize.MENU)
-        #close_button.set_image(img)
-        #close_button.set_relief(Gtk.ReliefStyle.NONE)
-        #close_button.connect('clicked', self.cb_close_clicked)
+        # close_button = Gtk.Button()
+        # img = Gtk.Image.new_from_icon_name('window-close', Gtk.IconSize.MENU)
+        # close_button.set_image(img)
+        # close_button.set_relief(Gtk.ReliefStyle.NONE)
+        # close_button.connect('clicked', self.cb_close_clicked)
         hbox.pack_start(self.select_button, False, True, 0)
-        #hbox.pack_end(close_button, False, True, 0)
+        # hbox.pack_end(close_button, False, True, 0)
 
         self.top.pack_end(frame, False, True, 0)
 
         self.menu = Gtk.Menu()
         self.menu.show()
-        self.menu.connect('deactivate', cb_menu_deactivate, self.select_button)
+        self.menu.connect("deactivate", cb_menu_deactivate, self.select_button)
 
         self.notebook = Gtk.Notebook()
         self.notebook.show()
         self.notebook.set_show_tabs(False)
         self.notebook.set_show_border(False)
-        self.notebook.connect('switch_page', self.cb_switch_page)
+        self.notebook.connect("switch_page", self.cb_switch_page)
         self.top.show()
         self.top.pack_start(self.notebook, True, True, 0)
 
@@ -137,14 +138,14 @@ class Navigator:
         """
         Load the sidebar plugins.
         """
-        menuitem = '''
+        menuitem = """
             <item>
               <attribute name="action">win.ViewInCatagory</attribute>
               <attribute name="label" translatable="yes">%s</attribute>
               <attribute name="target">%d %d</attribute>
             </item>
-            '''
-        baritem = '''
+            """
+        baritem = """
             <child>
               <object class="GtkToggleToolButton" id="bar%d">
                 <property name="action-name">win.ViewInCatagory</property>
@@ -157,17 +158,16 @@ class Navigator:
                 <property name="homogeneous">False</property>
               </packing>
             </child>
-            '''
+            """
 
         plugman = GuiPluginManager.get_instance()
 
         categories = []
         views = {}
         for cat_num, cat_views in enumerate(self.viewmanager.get_views()):
-            uimenuitems = ''
-            uibaritems = ''
+            uimenuitems = ""
+            uibaritems = ""
             for view_num, page in enumerate(cat_views):
-
                 if view_num == 0:
                     views[cat_num] = []
                     cat_name = page[0].category[1]
@@ -179,37 +179,43 @@ class Navigator:
                             try:
                                 cat_icon = page[0].stock_icon
                             except AttributeError:
-                                cat_icon = 'gramps-view'
+                                cat_icon = "gramps-view"
                     if cat_icon is None:
-                        cat_icon = 'gramps-view'
+                        cat_icon = "gramps-view"
                     categories.append([cat_num, cat_name, cat_icon])
 
                 if view_num < 9:
                     accel = "<PRIMARY><ALT>%d" % ((view_num % 9) + 1)
                     self.viewmanager.uimanager.app.set_accels_for_action(
-                        "win.ViewInCatagory('%d %d')" % (cat_num, view_num),
-                        [accel])
+                        "win.ViewInCatagory('%d %d')" % (cat_num, view_num), [accel]
+                    )
                 uimenuitems += menuitem % (page[0].name, cat_num, view_num)
 
                 stock_icon = page[0].stock_icon
                 if stock_icon is None:
                     stock_icon = cat_icon
-                uibaritems += baritem % (view_num, cat_num, view_num,
-                                         stock_icon, page[0].name,
-                                         page[0].name)
+                uibaritems += baritem % (
+                    view_num,
+                    cat_num,
+                    view_num,
+                    stock_icon,
+                    page[0].name,
+                    page[0].name,
+                )
 
                 views[cat_num].append((view_num, page[0].name, stock_icon))
 
             if len(cat_views) > 1:
-                #allow for switching views in a category
-                self.ui_category[cat_num] = [UICATEGORY % uimenuitems,
-                                             UICATEGORYBAR % uibaritems]
+                # allow for switching views in a category
+                self.ui_category[cat_num] = [
+                    UICATEGORY % uimenuitems,
+                    UICATEGORYBAR % uibaritems,
+                ]
 
         for pdata in plugman.get_reg_sidebars():
             module = plugman.load_plugin(pdata)
             if not module:
-                print("Error loading sidebar '%s': skipping content"
-                      % pdata.name)
+                print("Error loading sidebar '%s': skipping content" % pdata.name)
                 continue
 
             sidebar_class = getattr(module, pdata.sidebarclass)
@@ -238,7 +244,7 @@ class Navigator:
             self.notebook.set_current_page(index)
         else:
             self.menu.append(menu_item)
-        menu_item.connect('activate', self.cb_menu_activate, index)
+        menu_item.connect("activate", self.cb_menu_activate, index)
         menu_item.show()
 
         if self.notebook.get_n_pages() == 2:
@@ -260,9 +266,13 @@ class Navigator:
             list(map(uimanager.remove_ui, self.merge_ids))
 
         if cat_num in self.ui_category:
-            action = ('ViewInCatagory', self.cb_view_clicked, '',
-                      str(cat_num) + ' ' + str(view_num))
-            self.cat_view_group = ActionGroup('viewmenu', [action])
+            action = (
+                "ViewInCatagory",
+                self.cb_view_clicked,
+                "",
+                str(cat_num) + " " + str(view_num),
+            )
+            self.cat_view_group = ActionGroup("viewmenu", [action])
             uimanager.insert_action_group(self.cat_view_group)
             mergeid = uimanager.add_ui_from_string(self.ui_category[cat_num])
             self.merge_ids.append(mergeid)
@@ -289,8 +299,9 @@ class Navigator:
             button.grab_focus()
             button.set_active(True)
 
-            self.menu.popup(None, None, cb_menu_position, button, event.button,
-                            event.time)
+            self.menu.popup(
+                None, None, cb_menu_position, button, event.button, event.time
+            )
 
     def cb_menu_activate(self, menu, index):
         """
@@ -312,8 +323,7 @@ class Navigator:
         notebook.get_nth_page(index).get_child().show()
         notebook.queue_resize()
         if self.active_view is not None:
-            self.pages[index][1].view_changed(self.active_cat,
-                                              self.active_view)
+            self.pages[index][1].view_changed(self.active_cat, self.active_view)
         self.title_label.set_text(self.pages[index][0])
 
     def cb_close_clicked(self, button):
@@ -321,13 +331,14 @@ class Navigator:
         Called when the sidebar is closed.
         """
         uimanager = self.viewmanager.uimanager
-        uimanager.get_action('/MenuBar/ViewMenu/Navigator').activate()
+        uimanager.get_action("/MenuBar/ViewMenu/Navigator").activate()
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Functions
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def cb_menu_position(*args):
     """
     Determine the position of the popup menu.
@@ -345,6 +356,7 @@ def cb_menu_position(*args):
     y_pos += button.get_allocation().y + button.get_allocation().height
 
     return (x_pos, y_pos, False)
+
 
 def cb_menu_deactivate(menu, button):
     """

@@ -19,41 +19,42 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # internationalization
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from ..views.treemodels import SourceModel
 from .baseselector import BaseSelector
 from gramps.gen.const import URL_MANUAL_SECT2
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # SelectSource
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class SelectSource(BaseSelector):
-
     def _local_init(self):
         """
         Perform local initialisation for this class
         """
-        self.setup_configs('interface.source-sel', 600, 450)
+        self.setup_configs("interface.source-sel", 600, 450)
 
     def get_window_title(self):
         return _("Select Source")
@@ -63,12 +64,12 @@ class SelectSource(BaseSelector):
 
     def get_column_titles(self):
         return [
-            (_('Title'), 350, BaseSelector.TEXT, 0),
-            (_('Abbreviation'), 100, BaseSelector.TEXT, 3),
-            (_('Author'), 200, BaseSelector.TEXT, 2),
-            (_('ID'), 75, BaseSelector.TEXT, 1),
-            (_('Last Change'), 150, BaseSelector.TEXT, 7),
-            ]
+            (_("Title"), 350, BaseSelector.TEXT, 0),
+            (_("Abbreviation"), 100, BaseSelector.TEXT, 3),
+            (_("Author"), 200, BaseSelector.TEXT, 2),
+            (_("ID"), 75, BaseSelector.TEXT, 1),
+            (_("Last Change"), 150, BaseSelector.TEXT, 7),
+        ]
 
     def get_from_handle_func(self):
         return self.db.get_source_from_handle
@@ -77,4 +78,4 @@ class SelectSource(BaseSelector):
         return __name__
 
     WIKI_HELP_PAGE = URL_MANUAL_SECT2
-    WIKI_HELP_SEC = _('Select_Source_selector', 'manual')
+    WIKI_HELP_SEC = _("Select_Source_selector", "manual")

@@ -19,36 +19,38 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import re
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
-# Notes that contain a substring or match a regular expression
-#-------------------------------------------------------------------------
-class MatchesRegexpOf(Rule):
 
-    labels = [ _('Text:')]
-    name = _('Notes containing <text>')
-    description = _("Matches notes that contain a substring "
-                    "or match a regular expression")
-    category = _('General filters')
+# -------------------------------------------------------------------------
+# Notes that contain a substring or match a regular expression
+# -------------------------------------------------------------------------
+class MatchesRegexpOf(Rule):
+    labels = [_("Text:")]
+    name = _("Notes containing <text>")
+    description = _(
+        "Matches notes that contain a substring " "or match a regular expression"
+    )
+    category = _("General filters")
     allow_regex = True
 
     def apply(self, db, note):
-        """ Apply the filter """
+        """Apply the filter"""
         if self.match_substring(0, note.get()):
             return True
         return False

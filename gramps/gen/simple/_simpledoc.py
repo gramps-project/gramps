@@ -21,8 +21,15 @@
 """
 Provide a simplified database access interface to the Gramps database.
 """
-from ..plug.docgen import StyleSheet, ParagraphStyle, TableStyle,\
-                            TableCellStyle,  FONT_SANS_SERIF, PARA_ALIGN_LEFT
+from ..plug.docgen import (
+    StyleSheet,
+    ParagraphStyle,
+    TableStyle,
+    TableCellStyle,
+    FONT_SANS_SERIF,
+    PARA_ALIGN_LEFT,
+)
+
 
 class SimpleDoc:
     """
@@ -47,31 +54,32 @@ class SimpleDoc:
         """
         Writes the Title using the Title paragraph
         """
-        self.__write('Title', text)
+        self.__write("Title", text)
 
     def header1(self, text):
         """
         Writes the first level header using the Header1 paragraph
         """
-        self.__write('Header1', text)
+        self.__write("Header1", text)
 
     def header2(self, text):
         """
         Writes the second level header using the Header2 paragraph
         """
-        self.__write('Header2', text)
+        self.__write("Header2", text)
 
     def header3(self, text):
         """
         Writes the third level header using the Header3 paragraph
         """
-        self.__write('Header3', text)
+        self.__write("Header3", text)
 
     def paragraph(self, text):
         """
         Writes a paragraph using the Normal format
         """
-        self.__write('Normal', text)
+        self.__write("Normal", text)
+
 
 def make_basic_stylesheet(**kwargs):
     """
@@ -100,7 +108,7 @@ def make_basic_stylesheet(**kwargs):
             value = kwargs["Title"][method]
             if value is not None:
                 getattr(pstyle, method)(value)
-    sheet.add_paragraph_style('Title', pstyle)
+    sheet.add_paragraph_style("Title", pstyle)
 
     pstyle = ParagraphStyle()
     fstyle = pstyle.get_font()
@@ -116,7 +124,7 @@ def make_basic_stylesheet(**kwargs):
             value = kwargs["Header1"][method]
             if value is not None:
                 getattr(pstyle, method)(value)
-    sheet.add_paragraph_style('Header1', pstyle)
+    sheet.add_paragraph_style("Header1", pstyle)
 
     pstyle = ParagraphStyle()
     fstyle = pstyle.get_font()
@@ -132,7 +140,7 @@ def make_basic_stylesheet(**kwargs):
             value = kwargs["Header2"][method]
             if value is not None:
                 getattr(pstyle, method)(value)
-    sheet.add_paragraph_style('Header2', pstyle)
+    sheet.add_paragraph_style("Header2", pstyle)
 
     pstyle = ParagraphStyle()
     fstyle = pstyle.get_font()
@@ -149,7 +157,7 @@ def make_basic_stylesheet(**kwargs):
             value = kwargs["Header3"][method]
             if value is not None:
                 getattr(pstyle, method)(value)
-    sheet.add_paragraph_style('Header3', pstyle)
+    sheet.add_paragraph_style("Header3", pstyle)
 
     pstyle = ParagraphStyle()
     pstyle.set_tabs([4, 8, 12, 16])
@@ -159,21 +167,21 @@ def make_basic_stylesheet(**kwargs):
             value = kwargs["Normal"][method]
             if value is not None:
                 getattr(pstyle, method)(value)
-    sheet.add_paragraph_style('Normal', pstyle)
+    sheet.add_paragraph_style("Normal", pstyle)
 
     # Styles for tables:
     tbl = TableStyle()
     tbl.set_width(100)
     tbl.set_columns(2)
-    tbl.set_column_width(0,20)
-    tbl.set_column_width(1,80)
+    tbl.set_column_width(0, 20)
+    tbl.set_column_width(1, 80)
     # Handle args:
     if "Table" in kwargs:
         for method in kwargs["Table"]:
             value = kwargs["Table"][method]
             if value is not None:
                 getattr(tbl, method)(value)
-    sheet.add_table_style("Table",tbl)
+    sheet.add_table_style("Table", tbl)
 
     cell = TableCellStyle()
     cell.set_top_border(1)
@@ -184,7 +192,7 @@ def make_basic_stylesheet(**kwargs):
             value = kwargs["TableHead"][method]
             if value is not None:
                 getattr(cell, method)(value)
-    sheet.add_cell_style("TableHead",cell)
+    sheet.add_cell_style("TableHead", cell)
 
     cell = TableCellStyle()
     # Handle args:
@@ -193,7 +201,7 @@ def make_basic_stylesheet(**kwargs):
             value = kwargs["TableHeaderCell"][method]
             if value is not None:
                 getattr(cell, method)(value)
-    sheet.add_cell_style("TableHeaderCell",cell)
+    sheet.add_cell_style("TableHeaderCell", cell)
 
     cell = TableCellStyle()
     cell.set_longlist(1)
@@ -203,6 +211,6 @@ def make_basic_stylesheet(**kwargs):
             value = kwargs["TableDataCell"][method]
             if value is not None:
                 getattr(cell, method)(value)
-    sheet.add_cell_style("TableDataCell",cell)
+    sheet.add_cell_style("TableDataCell", cell)
 
     return sheet

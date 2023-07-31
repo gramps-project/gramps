@@ -38,23 +38,24 @@ Narrative Web Page generator.
 Classe:
     CitationPages - dummy
 """
-#------------------------------------------------
+# ------------------------------------------------
 # python modules
-#------------------------------------------------
+# ------------------------------------------------
 from decimal import getcontext
 import logging
 
-#------------------------------------------------
+# ------------------------------------------------
 # Gramps module
-#------------------------------------------------
+# ------------------------------------------------
 
-#------------------------------------------------
+# ------------------------------------------------
 # specific narrative web import
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
 
 LOG = logging.getLogger(".NarrativeWeb")
 getcontext().prec = 8
+
 
 #################################################
 #
@@ -67,6 +68,7 @@ class CitationPages(BasePage):
     database objects. It passes this information to the 'Sources' tab. It is
     told by the 'add_instances' call which 'Citation's to display.
     """
+
     def __init__(self, report, the_lang, the_title):
         """
         @param: report    -- The instance of the main report class

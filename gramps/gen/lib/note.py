@@ -24,24 +24,26 @@
 Note class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .primaryobj import BasicPrimaryObject
 from .tagbase import TagBase
 from .notetype import NoteType
 from .styledtext import StyledText
 from .styledtexttagtype import StyledTextTagType
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Class for notes used throughout the majority of Gramps objects
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Note(BasicPrimaryObject):
     """Define a text note.
 
@@ -67,16 +69,19 @@ class Note(BasicPrimaryObject):
                  they have to be updated in case the data structure or the
                  :meth:`serialize` method changes!
     """
+
     (FLOWED, FORMATTED) = list(range(2))
 
-    (POS_HANDLE,
-     POS_ID,
-     POS_TEXT,
-     POS_FORMAT,
-     POS_TYPE,
-     POS_CHANGE,
-     POS_TAGS,
-     POS_PRIVATE,) = list(range(8))
+    (
+        POS_HANDLE,
+        POS_ID,
+        POS_TEXT,
+        POS_FORMAT,
+        POS_TYPE,
+        POS_CHANGE,
+        POS_TAGS,
+        POS_PRIVATE,
+    ) = list(range(8))
 
     def __init__(self, text=""):
         """Create a new Note object, initializing from the passed string."""
@@ -92,9 +97,16 @@ class Note(BasicPrimaryObject):
         :rtype: tuple
 
         """
-        return (self.handle, self.gramps_id, self.text.serialize(), self.format,
-                self.type.serialize(), self.change, TagBase.serialize(self),
-                self.private)
+        return (
+            self.handle,
+            self.gramps_id,
+            self.text.serialize(),
+            self.format,
+            self.type.serialize(),
+            self.change,
+            TagBase.serialize(self),
+            self.private,
+        )
 
     @classmethod
     def get_schema(cls):
@@ -109,24 +121,19 @@ class Note(BasicPrimaryObject):
             "title": _("Note"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "handle": {"type": "string",
-                           "maxLength": 50,
-                           "title": _("Handle")},
-                "gramps_id": {"type": "string",
-                              "title": _("Gramps ID")},
+                "handle": {"type": "string", "maxLength": 50, "title": _("Handle")},
+                "gramps_id": {"type": "string", "title": _("Gramps ID")},
                 "text": StyledText.get_schema(),
-                "format": {"type": "integer",
-                           "title": _("Format")},
+                "format": {"type": "integer", "title": _("Format")},
                 "type": NoteType.get_schema(),
-                "change": {"type": "integer",
-                           "title": _("Last changed")},
-                "tag_list": {"type": "array",
-                             "items": {"type": "string",
-                                       "maxLength": 50},
-                             "title": _("Tags")},
-                "private": {"type": "boolean",
-                            "title": _("Private")}
-            }
+                "change": {"type": "integer", "title": _("Last changed")},
+                "tag_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Tags"),
+                },
+                "private": {"type": "boolean", "title": _("Private")},
+            },
         }
 
     def unserialize(self, data):
@@ -135,8 +142,16 @@ class Note(BasicPrimaryObject):
         :param data: The serialized format of a Note.
         :type: data: tuple
         """
-        (self.handle, self.gramps_id, the_text, self.format,
-         the_type, self.change, tag_list, self.private) = data
+        (
+            self.handle,
+            self.gramps_id,
+            the_text,
+            self.format,
+            the_type,
+            self.change,
+            tag_list,
+            self.private,
+        ) = data
 
         self.text = StyledText()
         self.text.unserialize(the_text)
@@ -187,8 +202,12 @@ class Note(BasicPrimaryObject):
         :rtype: bool
         """
         for dom, obj, prop, hndl in self.get_links():
-            if dom == "gramps" and prop == "handle" and \
-                    obj == classname and hndl == handle:
+            if (
+                dom == "gramps"
+                and prop == "handle"
+                and obj == classname
+                and hndl == handle
+            ):
                 return True
         return False
 
@@ -206,11 +225,12 @@ class Note(BasicPrimaryObject):
         """
         tags = []
         for styledtext_tag in self.text.get_tags():
-            if(styledtext_tag.name == StyledTextTagType.LINK and
-               styledtext_tag.value.startswith("gramps://")):
+            if (
+                styledtext_tag.name == StyledTextTagType.LINK
+                and styledtext_tag.value.startswith("gramps://")
+            ):
                 obj, prop, value = styledtext_tag.value[9:].split("/", 2)
-                if obj == classname and prop == 'handle' and \
-                        value in handle_list:
+                if obj == classname and prop == "handle" and value in handle_list:
                     continue
             tags.append(styledtext_tag)
         self.text.set_tags(tags)
@@ -227,13 +247,15 @@ class Note(BasicPrimaryObject):
         :type new_handle: str
         """
         for styledtext_tag in self.text.get_tags():
-            if(styledtext_tag.name == StyledTextTagType.LINK and
-               styledtext_tag.value.startswith("gramps://")):
+            if (
+                styledtext_tag.name == StyledTextTagType.LINK
+                and styledtext_tag.value.startswith("gramps://")
+            ):
                 obj, prop, value = styledtext_tag.value[9:].split("/", 2)
-                if(obj == classname and prop == 'handle' and
-                   value == old_handle):
+                if obj == classname and prop == "handle" and value == old_handle:
                     styledtext_tag.value = styledtext_tag.value.replace(
-                        old_handle, new_handle)
+                        old_handle, new_handle
+                    )
 
     def merge(self, acquisition):
         """

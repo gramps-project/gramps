@@ -18,30 +18,31 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import MatchesFilterBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MatchesFilter
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MatchesFilter(MatchesFilterBase):
     """Rule that checks against another filter."""
 
-    name = _('Notes matching the <filter>')
-    description = _("Matches notes matched "
-                    "by the specified filter name")
-    namespace = 'Note'
+    name = _("Notes matching the <filter>")
+    description = _("Matches notes matched " "by the specified filter name")
+    namespace = "Note"

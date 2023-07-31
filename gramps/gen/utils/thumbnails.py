@@ -23,47 +23,56 @@
 Handles generation and access to thumbnails used in Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import os
 import logging
 from hashlib import md5
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import GLib
 from gi.repository import GdkPixbuf
 
 try:
     from gi.repository import Gtk
+
     _icon_theme = Gtk.IconTheme.get_default()
 except:
     _icon_theme = None
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
-from gramps.gen.const import (ICON, IMAGE_DIR, THUMB_LARGE, THUMB_NORMAL,
-                              SIZE_NORMAL, SIZE_LARGE)
+# -------------------------------------------------------------------------
+from gramps.gen.const import (
+    ICON,
+    IMAGE_DIR,
+    THUMB_LARGE,
+    THUMB_NORMAL,
+    SIZE_NORMAL,
+    SIZE_LARGE,
+)
 from gramps.gen.plug import BasePluginManager, START
 from gramps.gen.mime import get_type
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 LOG = logging.getLogger(".thumbnail")
 
 THUMBNAILERS = []
+
+
 def get_thumbnailers():
     if len(THUMBNAILERS):
         return THUMBNAILERS
@@ -72,8 +81,7 @@ def get_thumbnailers():
     for pdata in plugman.get_reg_thumbnailers():
         module = plugman.load_plugin(pdata)
         if not module:
-            print("Error loading thumbnailer '%s': skipping content"
-                  % pdata.name)
+            print("Error loading thumbnailer '%s': skipping content" % pdata.name)
             continue
         thumbnailer = getattr(module, pdata.thumbnailer)()
         if pdata.order == START:
@@ -82,11 +90,12 @@ def get_thumbnailers():
             THUMBNAILERS.append(thumbnailer)
     return THUMBNAILERS
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # __build_thumb_path
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def __build_thumb_path(path, rectangle=None, size=SIZE_NORMAL):
     """
     Convert the specified path into a corresponding path for the thumbnail
@@ -105,21 +114,21 @@ def __build_thumb_path(path, rectangle=None, size=SIZE_NORMAL):
     if rectangle is not None:
         extra = "?" + str(rectangle)
     prehash = path + extra
-    prehash = prehash.encode('utf-8')
+    prehash = prehash.encode("utf-8")
     md5_hash = md5(prehash)
     if size == SIZE_LARGE:
         base_dir = THUMB_LARGE
     else:
         base_dir = THUMB_NORMAL
-    return os.path.join(base_dir, md5_hash.hexdigest()+'.png')
+    return os.path.join(base_dir, md5_hash.hexdigest() + ".png")
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # __create_thumbnail_image
 #
-#-------------------------------------------------------------------------
-def __create_thumbnail_image(src_file, mtype=None, rectangle=None,
-                             size=SIZE_NORMAL):
+# -------------------------------------------------------------------------
+def __create_thumbnail_image(src_file, mtype=None, rectangle=None, size=SIZE_NORMAL):
     """
     Generates the thumbnail image for a file. If the mime type is specified,
     and is not an 'image', then we attempt to find and run a thumbnailer
@@ -139,6 +148,7 @@ def __create_thumbnail_image(src_file, mtype=None, rectangle=None,
         mtype = get_type(src_file)
     filename = __build_thumb_path(src_file, rectangle, size)
     return run_thumbnailer(mtype, src_file, filename, size, rectangle)
+
 
 def run_thumbnailer(mime_type, src_file, dest_file, size, rectangle=None):
     """
@@ -165,33 +175,36 @@ def run_thumbnailer(mime_type, src_file, dest_file, size, rectangle=None):
                 return True
     return False
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # find_mime_type_pixbuf
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
 
 def find_mime_type_pixbuf(mime_type):
     try:
-        icontmp = mime_type.replace('/','-')
+        icontmp = mime_type.replace("/", "-")
         newicon = "gnome-mime-%s" % icontmp
         try:
-            return _icon_theme.load_icon(newicon,48,0)
+            return _icon_theme.load_icon(newicon, 48, 0)
         except:
-            icontmp = mime_type.split('/')[0]
+            icontmp = mime_type.split("/")[0]
             try:
                 newicon = "gnome-mime-%s" % icontmp
-                return _icon_theme.load_icon(newicon,48,0)
+                return _icon_theme.load_icon(newicon, 48, 0)
             except:
                 return GdkPixbuf.Pixbuf.new_from_file(ICON)
     except:
         return GdkPixbuf.Pixbuf.new_from_file(ICON)
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # get_thumbnail_image
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def get_thumbnail_image(src_file, mtype=None, rectangle=None, size=SIZE_NORMAL):
     """
     Return the thumbnail image (in GTK Pixbuf format) associated with the
@@ -221,11 +234,12 @@ def get_thumbnail_image(src_file, mtype=None, rectangle=None, size=SIZE_NORMAL):
             default = os.path.join(IMAGE_DIR, "document.png")
             return GdkPixbuf.Pixbuf.new_from_file(default)
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # get_thumbnail_path
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def get_thumbnail_path(src_file, mtype=None, rectangle=None, size=SIZE_NORMAL):
     """
     Return the path to the thumbnail image associated with the
@@ -246,7 +260,8 @@ def get_thumbnail_path(src_file, mtype=None, rectangle=None, size=SIZE_NORMAL):
         return os.path.join(IMAGE_DIR, "image-missing.png")
     else:
         if (not os.path.isfile(filename)) or (
-                os.path.getmtime(src_file) > os.path.getmtime(filename)):
+            os.path.getmtime(src_file) > os.path.getmtime(filename)
+        ):
             if not __create_thumbnail_image(src_file, mtype, rectangle, size):
                 return os.path.join(IMAGE_DIR, "document.png")
         return os.path.abspath(filename)

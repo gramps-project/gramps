@@ -29,20 +29,20 @@
 Module responsible for handling the command line arguments for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import os
 import sys
 import re
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.recentfiles import recent_files
 from gramps.gen.utils.file import rm_tempdir, get_empty_tempdir
 from .clidbman import CLIDbManager, NAME_FILE, find_locker_name
@@ -52,14 +52,16 @@ from gramps.gen.plug import BasePluginManager
 from gramps.gen.plug.report import CATEGORY_BOOK, CATEGORY_CODE, BookList
 from .plug import cl_report, cl_book
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gramps.gen.config import config
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # private functions
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def _split_options(options_str):
     """
     Split the options for the action.
@@ -103,32 +105,32 @@ def _split_options(options_str):
         if not parsing_value:
             # Parsing the name of the option
             if char == "=":
-                #print char, "This value ends the name"
+                # print char, "This value ends the name"
                 parsing_value = True
             else:
-                #print char, "This value is part of the name"
+                # print char, "This value is part of the name"
                 name += char
         else:
             # Parsing the value of the option
-            if value == "" and char == '[':
-                #print char, "This character begins a list"
+            if value == "" and char == "[":
+                # print char, "This character begins a list"
                 in_list = True
                 value += char
-            elif in_list == True and char == ']':
-                #print char, "This character ends the list"
+            elif in_list == True and char == "]":
+                # print char, "This character ends the list"
                 in_list = False
                 value += char
             elif not in_quotes and (char == '"' or char == "'"):
-                #print char, "This character starts a quoted string"
+                # print char, "This character starts a quoted string"
                 in_quotes = True
                 quote_type = char
                 value += char
             elif in_quotes and char == quote_type:
-                #print char, "This character ends a quoted string"
+                # print char, "This character ends a quoted string"
                 in_quotes = False
                 value += char
             elif not in_quotes and not in_list and char == ",":
-                #print char, "This character ends the value of the option"
+                # print char, "This character ends the value of the option"
                 options_str_dict[name] = value
                 name = ""
                 value = ""
@@ -136,7 +138,7 @@ def _split_options(options_str):
                 in_quotes = False
                 in_list = False
             else:
-                #print char, "This character is part of the value"
+                # print char, "This character is part of the value"
                 value += char
 
     if parsing_value and not in_quotes and not in_list:
@@ -145,9 +147,10 @@ def _split_options(options_str):
 
     return options_str_dict
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # ArgHandler
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class ArgHandler:
     """
     This class is responsible for the non GUI handling of commands.
@@ -155,8 +158,7 @@ class ArgHandler:
     actions requested working on a :class:`.DbState`.
     """
 
-    def __init__(self, dbstate, parser, sessionmanager,
-                 errorfunc=None, gui=False):
+    def __init__(self, dbstate, parser, sessionmanager, errorfunc=None, gui=False):
         self.dbstate = dbstate
         self.smgr = sessionmanager
         self.errorfunc = errorfunc
@@ -198,16 +200,16 @@ class ArgHandler:
             if msg2 is not None:
                 print(msg2, file=sys.stderr)
 
-    #-------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     # Argument parser: sorts out given arguments
-    #-------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     def sanitize_args(self, importlist, exportlist):
         """
         Check the lists with open, exports, imports, and actions options.
         """
-        for (value, family_tree_format) in importlist:
+        for value, family_tree_format in importlist:
             self.__handle_import_option(value, family_tree_format)
-        for (value, family_tree_format) in exportlist:
+        for value, family_tree_format in exportlist:
             self.__handle_export_option(value, family_tree_format)
 
     def __handle_open_option(self, value, create):
@@ -226,22 +228,29 @@ class ArgHandler:
             if not self.check_db(db_path, self.force_unlock):
                 sys.exit(1)
             if create:
-                self.__error(_("Error: Family Tree '%s' already exists.\n"
-                               "The '-C' option cannot be used."
-                              ) % value)
+                self.__error(
+                    _(
+                        "Error: Family Tree '%s' already exists.\n"
+                        "The '-C' option cannot be used."
+                    )
+                    % value
+                )
                 sys.exit(1)
             return db_path
         elif create:
             # create the tree here, and continue
-            dbid = config.get('database.backend')
-            db_path, title = self.dbman.create_new_db_cli(title=value,
-                                                          dbid=dbid)
+            dbid = config.get("database.backend")
+            db_path, title = self.dbman.create_new_db_cli(title=value, dbid=dbid)
             return db_path
         else:
-            self.__error(_('Error: Input Family Tree "%s" does not exist.\n'
-                           "If GEDCOM, Gramps-xml or grdb, use the -i option "
-                           "to import into a Family Tree instead."
-                          ) % value)
+            self.__error(
+                _(
+                    'Error: Input Family Tree "%s" does not exist.\n'
+                    "If GEDCOM, Gramps-xml or grdb, use the -i option "
+                    "to import into a Family Tree instead."
+                )
+                % value
+            )
             sys.exit(1)
 
     def __handle_import_option(self, value, family_tree_format):
@@ -251,8 +260,8 @@ class ArgHandler:
         """
         fname = value
         fullpath = os.path.abspath(os.path.expanduser(fname))
-        if fname != '-' and not os.path.exists(fullpath):
-            self.__error(_('Error: Import file %s not found.') % fname)
+        if fname != "-" and not os.path.exists(fullpath):
+            self.__error(_("Error: Import file %s not found.") % fname)
             sys.exit(1)
 
         if family_tree_format is None:
@@ -270,10 +279,13 @@ class ArgHandler:
         if plugin_found:
             self.imports.append((fname, family_tree_format))
         else:
-            self.__error(_('Error: Unrecognized type: "%(format)s" for '
-                           'import file: %(filename)s'
-                          ) % {'format'   : family_tree_format,
-                               'filename' : fname})
+            self.__error(
+                _(
+                    'Error: Unrecognized type: "%(format)s" for '
+                    "import file: %(filename)s"
+                )
+                % {"format": family_tree_format, "filename": fname}
+            )
             sys.exit(1)
 
     def __handle_export_option(self, value, family_tree_format):
@@ -285,20 +297,27 @@ class ArgHandler:
         if self.gui:
             return
         fname = value
-        if fname == '-':
-            fullpath = '-'
+        if fname == "-":
+            fullpath = "-"
         else:
             fullpath = os.path.abspath(os.path.expanduser(fname))
             if os.path.exists(fullpath):
-                message = _("WARNING: Output file already exists!\n"
-                            "WARNING: It will be overwritten:\n   %s"
-                           ) % fullpath
-                accepted = self.user.prompt(_('OK to overwrite?'), message,
-                                            _('yes'), _('no'),
-                                            default_label=_('yes'))
+                message = (
+                    _(
+                        "WARNING: Output file already exists!\n"
+                        "WARNING: It will be overwritten:\n   %s"
+                    )
+                    % fullpath
+                )
+                accepted = self.user.prompt(
+                    _("OK to overwrite?"),
+                    message,
+                    _("yes"),
+                    _("no"),
+                    default_label=_("yes"),
+                )
                 if accepted:
-                    self.__error(_("Will overwrite the existing file: %s"
-                                  ) % fullpath)
+                    self.__error(_("Will overwrite the existing file: %s") % fullpath)
                 else:
                     sys.exit(1)
 
@@ -317,8 +336,7 @@ class ArgHandler:
         if plugin_found:
             self.exports.append((fullpath, family_tree_format))
         else:
-            self.__error(_("ERROR: Unrecognized format for export file %s"
-                          ) % fname)
+            self.__error(_("ERROR: Unrecognized format for export file %s") % fname)
             sys.exit(1)
 
     def __deduce_db_path(self, db_name_or_path):
@@ -343,10 +361,10 @@ class ArgHandler:
 
         return db_path
 
-    #-------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     # Overall argument handler:
     # sorts out the sequence and details of operations
-    #-------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     def handle_args_gui(self):
         """
         Method to handle the arguments that can be given for a GUI session.
@@ -368,8 +386,7 @@ class ArgHandler:
             if not db_path:
                 # Apparently it is not a database. See if it is a file that
                 # can be imported.
-                db_path, title = self.dbman.import_new_db(self.open_gui,
-                                                          self.user)
+                db_path, title = self.dbman.import_new_db(self.open_gui, self.user)
 
             if db_path:
                 # Test if not locked or problematic
@@ -402,17 +419,21 @@ class ArgHandler:
         """
         # Handle the "-l" List Family Trees option.
         if self.list:
-            print(_('List of known Family Trees in your database path\n'))
+            print(_("List of known Family Trees in your database path\n"))
 
-            for name, dirname in sorted(self.dbman.family_tree_list(),
-                                        key=lambda pair: pair[0].lower()):
-                if (self.database_names is None
-                        or any([(re.match("^" + dbname + "$", name)
-                                 or dbname == name)
-                                for dbname in self.database_names])):
-                    print(_('%(full_DB_path)s with name "%(f_t_name)s"'
-                           ) % {'full_DB_path' : dirname,
-                                'f_t_name'     : name})
+            for name, dirname in sorted(
+                self.dbman.family_tree_list(), key=lambda pair: pair[0].lower()
+            ):
+                if self.database_names is None or any(
+                    [
+                        (re.match("^" + dbname + "$", name) or dbname == name)
+                        for dbname in self.database_names
+                    ]
+                ):
+                    print(
+                        _('%(full_DB_path)s with name "%(f_t_name)s"')
+                        % {"full_DB_path": dirname, "f_t_name": name}
+                    )
             return
 
         # Handle the "--remove" Family Tree
@@ -428,7 +449,7 @@ class ArgHandler:
 
         # Handle the "-t" List Family Trees, tab delimited option.
         if self.list_table:
-            print(_('Gramps Family Trees:'))
+            print(_("Gramps Family Trees:"))
             summary_list = self.dbman.family_tree_summary(self.database_names)
             if not summary_list:
                 return
@@ -439,9 +460,9 @@ class ArgHandler:
                 if key != _("Family Tree"):
                     line_list += [key]
             print("\t".join(line_list))
-            for summary in sorted(summary_list,
-                                  key=lambda
-                                      sum: sum[_("Family Tree")].lower()):
+            for summary in sorted(
+                summary_list, key=lambda sum: sum[_("Family Tree")].lower()
+            ):
                 line_list = [(_('"%s"') % summary[_("Family Tree")])]
                 for item in sorted(summary):
                     if item != _("Family Tree"):
@@ -453,28 +474,25 @@ class ArgHandler:
         self.__open_action()
         self.__import_action()
 
-        for (action, op_string) in self.actions:
-            print(_("Performing action: %s."
-                   ) % action,
-                  file=sys.stderr)
+        for action, op_string in self.actions:
+            print(_("Performing action: %s.") % action, file=sys.stderr)
             if op_string:
-                print(_("Using options string: %s"
-                       ) % op_string,
-                      file=sys.stderr)
+                print(_("Using options string: %s") % op_string, file=sys.stderr)
             self.cl_action(action, op_string)
 
         for expt in self.exports:
-            print(_("Exporting: file %(filename)s, format %(format)s."
-                   ) % {'filename' : expt[0],
-                        'format'   : expt[1]},
-                  file=sys.stderr)
+            print(
+                _("Exporting: file %(filename)s, format %(format)s.")
+                % {"filename": expt[0], "format": expt[1]},
+                file=sys.stderr,
+            )
             self.cl_export(expt[0], expt[1])
 
         if cleanup:
             self.cleanup()
 
     def cleanup(self):
-        """ clean up any remaining files """
+        """clean up any remaining files"""
         print(_("Cleaning up."), file=sys.stderr)
         # remove files in import db subdir after use
         self.dbstate.db.close()
@@ -498,19 +516,20 @@ class ArgHandler:
             if not self.open:
                 # Create empty dir for imported database(s)
                 if self.gui:
-                    dbid = config.get('database.backend')
-                    self.imp_db_path, title = self.dbman.create_new_db_cli(
-                        dbid=dbid)
+                    dbid = config.get("database.backend")
+                    self.imp_db_path, title = self.dbman.create_new_db_cli(dbid=dbid)
                 else:
                     self.imp_db_path = get_empty_tempdir("import_dbdir")
-                    dbid = config.get('database.backend')
+                    dbid = config.get("database.backend")
                     newdb = make_database(dbid)
                     versionpath = os.path.join(self.imp_db_path, str(DBBACKEND))
                     with open(versionpath, "w") as version_file:
                         version_file.write(dbid)
 
                 try:
-                    self.smgr.open_activate(self.imp_db_path, self.username, self.password)
+                    self.smgr.open_activate(
+                        self.imp_db_path, self.username, self.password
+                    )
                     msg = _("Created empty Family Tree successfully")
                     print(msg, file=sys.stderr)
                 except:
@@ -519,9 +538,10 @@ class ArgHandler:
                     sys.exit(1)
 
             for imp in self.imports:
-                msg = _("Importing: file %(filename)s, format %(format)s."
-                       ) % {'filename' : imp[0],
-                            'format'   : imp[1]}
+                msg = _("Importing: file %(filename)s, format %(format)s.") % {
+                    "filename": imp[0],
+                    "format": imp[1],
+                }
                 print(msg, file=sys.stderr)
                 self.cl_import(imp[0], imp[1])
 
@@ -552,8 +572,10 @@ class ArgHandler:
         if force_unlock:
             self.dbman.break_lock(dbpath)
         if self.dbman.is_locked(dbpath):
-            self.__error((_("Database is locked, cannot open it!") + '\n' +
-                          _("  Info: %s")) % find_locker_name(dbpath))
+            self.__error(
+                (_("Database is locked, cannot open it!") + "\n" + _("  Info: %s"))
+                % find_locker_name(dbpath)
+            )
             return False
         if self.dbman.needs_recovery(dbpath):
             self.__error(_("Database needs recovery, cannot open it!"))
@@ -563,11 +585,11 @@ class ArgHandler:
             return False
         return True
 
-    #-------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     #
     # Import handler
     #
-    #-------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     def cl_import(self, filename, family_tree_format):
         """
         Command-line import routine.
@@ -579,11 +601,11 @@ class ArgHandler:
                 import_function = plugin.get_import_function()
                 import_function(self.dbstate.db, filename, self.user)
 
-    #-------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     #
     # Export handler
     #
-    #-------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     def cl_export(self, filename, family_tree_format):
         """
         Command-line export routine.
@@ -595,11 +617,11 @@ class ArgHandler:
                 export_function = plugin.get_export_function()
                 export_function(self.dbstate.db, filename, self.user)
 
-    #-------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     #
     # Action handler
     #
-    #-------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     def cl_action(self, action, options_str):
         """
         Command-line action routine. Try to perform specified action.
@@ -610,117 +632,130 @@ class ArgHandler:
                 options_str_dict = _split_options(options_str)
             except:
                 options_str_dict = {}
-                print(_("Ignoring invalid options string."),
-                      file=sys.stderr)
+                print(_("Ignoring invalid options string."), file=sys.stderr)
 
-            name = options_str_dict.pop('name', None)
+            name = options_str_dict.pop("name", None)
             _cl_list = pmgr.get_reg_reports(gui=False)
             if name:
                 for pdata in _cl_list:
                     if name == pdata.id:
                         mod = pmgr.load_plugin(pdata)
                         if not mod:
-                            #import of plugin failed
+                            # import of plugin failed
                             return
                         category = pdata.category
                         report_class = getattr(mod, pdata.reportclass)
                         options_class = getattr(mod, pdata.optionclass)
                         if category in (CATEGORY_BOOK, CATEGORY_CODE):
-                            options_class(self.dbstate.db, name, category,
-                                          options_str_dict)
+                            options_class(
+                                self.dbstate.db, name, category, options_str_dict
+                            )
                         else:
-                            cl_report(self.dbstate.db, name, category,
-                                      report_class, options_class,
-                                      options_str_dict)
+                            cl_report(
+                                self.dbstate.db,
+                                name,
+                                category,
+                                report_class,
+                                options_class,
+                                options_str_dict,
+                            )
                         return
                 # name exists, but is not in the list of valid report names
                 msg = _("Unknown report name.")
             else:
-                msg = _("Report name not given. "
-                        "Please use one of %(donottranslate)s=reportname"
-                       ) % {'donottranslate' : '[-p|--options] name'}
+                msg = _(
+                    "Report name not given. "
+                    "Please use one of %(donottranslate)s=reportname"
+                ) % {"donottranslate": "[-p|--options] name"}
 
             print(_("%s\n Available names are:") % msg, file=sys.stderr)
             for pdata in sorted(_cl_list, key=lambda pdata: pdata.id.lower()):
                 # Print cli report name ([item[0]), GUI report name (item[4])
                 if len(pdata.id) <= 25:
-                    print("   %s%s- %s" % (pdata.id,
-                                           " " * (26 - len(pdata.id)),
-                                           pdata.name),
-                          file=sys.stderr)
+                    print(
+                        "   %s%s- %s"
+                        % (pdata.id, " " * (26 - len(pdata.id)), pdata.name),
+                        file=sys.stderr,
+                    )
                 else:
-                    print("   %s\t- %s" % (pdata.id, pdata.name),
-                          file=sys.stderr)
+                    print("   %s\t- %s" % (pdata.id, pdata.name), file=sys.stderr)
 
         elif action == "tool":
             from gramps.gui.plug import tool
+
             try:
-                options_str_dict = dict([tuple(chunk.split('='))
-                                         for chunk in options_str.split(',')])
+                options_str_dict = dict(
+                    [tuple(chunk.split("=")) for chunk in options_str.split(",")]
+                )
             except:
                 options_str_dict = {}
-                print(_("Ignoring invalid options string."),
-                      file=sys.stderr)
+                print(_("Ignoring invalid options string."), file=sys.stderr)
 
-            name = options_str_dict.pop('name', None)
+            name = options_str_dict.pop("name", None)
             _cli_tool_list = pmgr.get_reg_tools(gui=False)
             if name:
                 for pdata in _cli_tool_list:
                     if name == pdata.id:
                         mod = pmgr.load_plugin(pdata)
                         if not mod:
-                            #import of plugin failed
+                            # import of plugin failed
                             return
                         category = pdata.category
                         tool_class = getattr(mod, pdata.toolclass)
                         options_class = getattr(mod, pdata.optionclass)
-                        tool.cli_tool(dbstate=self.dbstate,
-                                      name=name,
-                                      category=category,
-                                      tool_class=tool_class,
-                                      options_class=options_class,
-                                      options_str_dict=options_str_dict,
-                                      user=self.user)
+                        tool.cli_tool(
+                            dbstate=self.dbstate,
+                            name=name,
+                            category=category,
+                            tool_class=tool_class,
+                            options_class=options_class,
+                            options_str_dict=options_str_dict,
+                            user=self.user,
+                        )
                         return
                 msg = _("Unknown tool name.")
             else:
-                msg = _("Tool name not given. "
-                        "Please use one of %(donottranslate)s=toolname."
-                       ) % {'donottranslate' : '[-p|--options] name'}
+                msg = _(
+                    "Tool name not given. "
+                    "Please use one of %(donottranslate)s=toolname."
+                ) % {"donottranslate": "[-p|--options] name"}
 
             print(_("%s\n Available names are:") % msg, file=sys.stderr)
-            for pdata in sorted(_cli_tool_list,
-                                key=lambda pdata: pdata.id.lower()):
+            for pdata in sorted(_cli_tool_list, key=lambda pdata: pdata.id.lower()):
                 # Print cli report name ([item[0]), GUI report name (item[4])
                 if len(pdata.id) <= 25:
-                    print("   %s%s- %s" % (pdata.id,
-                                           " " * (26 - len(pdata.id)),
-                                           pdata.name),
-                          file=sys.stderr)
+                    print(
+                        "   %s%s- %s"
+                        % (pdata.id, " " * (26 - len(pdata.id)), pdata.name),
+                        file=sys.stderr,
+                    )
                 else:
-                    print("   %s\t- %s" % (pdata.id, pdata.name),
-                          file=sys.stderr)
+                    print("   %s\t- %s" % (pdata.id, pdata.name), file=sys.stderr)
 
         elif action == "book":
             try:
                 options_str_dict = _split_options(options_str)
             except:
                 options_str_dict = {}
-                print(_("Ignoring invalid options string."),
-                      file=sys.stderr)
+                print(_("Ignoring invalid options string."), file=sys.stderr)
 
-            name = options_str_dict.pop('name', None)
-            book_list = BookList('books.xml', self.dbstate.db)
+            name = options_str_dict.pop("name", None)
+            book_list = BookList("books.xml", self.dbstate.db)
             if name:
                 if name in book_list.get_book_names():
-                    cl_book(self.dbstate.db, name, book_list.get_book(name),
-                            options_str_dict)
+                    cl_book(
+                        self.dbstate.db,
+                        name,
+                        book_list.get_book(name),
+                        options_str_dict,
+                    )
                     return
                 msg = _("Unknown book name.")
             else:
-                msg = _("Book name not given. "
-                        "Please use one of %(donottranslate)s=bookname."
-                       ) % {'donottranslate' : '[-p|--options] name'}
+                msg = _(
+                    "Book name not given. "
+                    "Please use one of %(donottranslate)s=bookname."
+                ) % {"donottranslate": "[-p|--options] name"}
 
             print(_("%s\n Available names are:") % msg, file=sys.stderr)
             for name in sorted(book_list.get_book_names()):

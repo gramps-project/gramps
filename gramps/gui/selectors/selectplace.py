@@ -20,41 +20,42 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # internationalization
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from ..views.treemodels.placemodel import PlaceTreeModel
 from .baseselector import BaseSelector
 from gramps.gen.const import URL_MANUAL_SECT2
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # SelectPlace
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class SelectPlace(BaseSelector):
-
     def _local_init(self):
         """
         Perform local initialisation for this class
         """
-        self.setup_configs('interface.place-sel', 600, 450)
+        self.setup_configs("interface.place-sel", 600, 450)
 
     def get_window_title(self):
         return _("Select Place")
@@ -64,12 +65,12 @@ class SelectPlace(BaseSelector):
 
     def get_column_titles(self):
         return [
-            (_('Name'),  200, BaseSelector.TEXT, 0),
-            (_('ID'),    75,  BaseSelector.TEXT, 1),
-            (_('Type'),  100, BaseSelector.TEXT, 3),
-            (_('Title'), 300, BaseSelector.TEXT, 2),
-            (_('Last Change'), 150, BaseSelector.TEXT, 9),
-            ]
+            (_("Name"), 200, BaseSelector.TEXT, 0),
+            (_("ID"), 75, BaseSelector.TEXT, 1),
+            (_("Type"), 100, BaseSelector.TEXT, 3),
+            (_("Title"), 300, BaseSelector.TEXT, 2),
+            (_("Last Change"), 150, BaseSelector.TEXT, 9),
+        ]
 
     def get_from_handle_func(self):
         return self.db.get_place_from_handle
@@ -79,15 +80,15 @@ class SelectPlace(BaseSelector):
         This overrides the baseselector method because we use the hidden
         COL_SEARCH (11) that has alt names as well as primary name for name
         searching"""
-        cols = [(pair[3],
-                 pair[1] if pair[1] else 11,
-                 pair[0] in self.exact_search())
-                for pair in self.column_order() if pair[0]
-                ]
+        cols = [
+            (pair[3], pair[1] if pair[1] else 11, pair[0] in self.exact_search())
+            for pair in self.column_order()
+            if pair[0]
+        ]
         self.search_bar.setup_filter(cols)
 
     def get_config_name(self):
         return __name__
 
     WIKI_HELP_PAGE = URL_MANUAL_SECT2
-    WIKI_HELP_SEC = _('Select_Place_selector', 'manual')
+    WIKI_HELP_SEC = _("Select_Place_selector", "manual")

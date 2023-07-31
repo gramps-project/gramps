@@ -18,31 +18,33 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # IsAncestorOf
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class IsAncestorOf(Rule):
     """Rule that checks for a person that is an ancestor of a specified person"""
 
-    labels = [ _('ID:'), _('Inclusive:') ]
-    name = _('Ancestors of <person>')
+    labels = [_("ID:"), _("Inclusive:")]
+    name = _("Ancestors of <person>")
     category = _("Ancestral filters")
     description = _("Matches people that are ancestors of a specified person")
 
@@ -56,7 +58,7 @@ class IsAncestorOf(Rule):
             first = 1
         try:
             root_person = db.get_person_from_gramps_id(self.list[0])
-            self.init_ancestor_list(db,root_person,first)
+            self.init_ancestor_list(db, root_person, first)
         except:
             pass
 
@@ -66,7 +68,7 @@ class IsAncestorOf(Rule):
     def apply(self, db, person):
         return person.handle in self.map
 
-    def init_ancestor_list(self, db, person,first):
+    def init_ancestor_list(self, db, person, first):
         if not person:
             return
         if person.handle in self.map:
@@ -81,6 +83,6 @@ class IsAncestorOf(Rule):
                 m_id = fam.get_mother_handle()
 
                 if f_id:
-                    self.init_ancestor_list(db,db.get_person_from_handle(f_id),0)
+                    self.init_ancestor_list(db, db.get_person_from_handle(f_id), 0)
                 if m_id:
-                    self.init_ancestor_list(db,db.get_person_from_handle(m_id),0)
+                    self.init_ancestor_list(db, db.get_person_from_handle(m_id), 0)

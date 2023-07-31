@@ -27,13 +27,15 @@ from ..grampstype import GrampsType
 # some simple map items to test with
 vals = "zz ab cd ef".split()
 keys = list(range(len(vals)))
-MAP = [(k, v*2, v) for (k, v) in zip(keys, vals)]
-BLIST= [1,3]
+MAP = [(k, v * 2, v) for (k, v) in zip(keys, vals)]
+BLIST = [1, 3]
+
 
 class GT0(GrampsType):
-    _DEFAULT = 1 # just avoiding the pre-coded 0
-    _CUSTOM = 3 # just avoiding the pre-coded 0
+    _DEFAULT = 1  # just avoiding the pre-coded 0
+    _CUSTOM = 3  # just avoiding the pre-coded 0
     _DATAMAP = MAP
+
 
 # NOTE: this type of code might be used in a migration utility
 #   to allow conversions or other handling of retired type-values
@@ -42,8 +44,10 @@ class GT0(GrampsType):
 class GT1(GT0):
     _BLACKLIST = BLIST
 
+
 class GT2(GT1):
     _BLACKLIST = None
+
 
 class Test1(unittest.TestCase):
     # some basic tests
@@ -61,22 +65,23 @@ class Test1(unittest.TestCase):
     # NB: tuple tests w/ lengths < 2 fail before release 10403
     def test_init_value(self):
         for i, v, u in (
-                (None,       1, 'abab'), # all DEFAULT
-                (0,          0, 'zzzz'),
-                (1,          1, 'abab'),
-                ('efef',     3, 'efef'), # matches CUSTOM
-                ('zzzz',     0, 'zzzz'),
-                ('x',        3, 'x'),    # nomatch gives CUSTOM
-                ('',         3, ''),     # nomatch gives CUSTOM
-                ((0,'zero'), 0, 'zzzz'), # normal behavior
-                ((2,),       2, 'cdcd'), # DEFAULT-string, just like int
-                ((),         1, 'abab'), # DEFAULT-pair
-                ):
+            (None, 1, "abab"),  # all DEFAULT
+            (0, 0, "zzzz"),
+            (1, 1, "abab"),
+            ("efef", 3, "efef"),  # matches CUSTOM
+            ("zzzz", 0, "zzzz"),
+            ("x", 3, "x"),  # nomatch gives CUSTOM
+            ("", 3, ""),  # nomatch gives CUSTOM
+            ((0, "zero"), 0, "zzzz"),  # normal behavior
+            ((2,), 2, "cdcd"),  # DEFAULT-string, just like int
+            ((), 1, "abab"),  # DEFAULT-pair
+        ):
             self.gt = GT0(i)
             g = self.gt.value
             self.assertEqual(g, v)
             g = self.gt.string
             self.assertEqual(g, u)
+
 
 # test blacklist functionality added to enable fix of bug #1680
 class Test2(unittest.TestCase):
@@ -87,11 +92,12 @@ class Test2(unittest.TestCase):
         g = len(self.gt._E2IMAP)
         self.assertEqual(g, e)
 
-        self.ub=GT2()
+        self.ub = GT2()
         # check that these MAPS are now un-blacklisted
         e = len(keys)
         g = len(self.ub._E2IMAP)
         self.assertEqual(g, e)
+
 
 if __name__ == "__main__":
     unittest.main()

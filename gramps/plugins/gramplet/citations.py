@@ -18,18 +18,18 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gtk modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gui.editors import EditSource, EditCitation
 from gramps.gui.listmodel import ListModel, NOSORT
 from gramps.gen.plug import Gramplet
@@ -41,6 +41,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gui.widgets.persistenttreeview import PersistentTreeView
 
 _ = glocale.translation.gettext
+
 
 class Citations(Gramplet, DbGUIElement):
     """
@@ -66,14 +67,19 @@ class Citations(Gramplet, DbGUIElement):
         """
         called on init of DbGUIElement, connect to db as required.
         """
-        self.callman.register_callbacks({'citation-update': self.changed,
-                                         'person-update': self.changed,
-                                         'family-update': self.changed,
-                                         'event-update': self.changed,
-                                         'media-update': self.changed,
-                                         'place-update': self.changed})
-        self.callman.connect_all(keys=['citation', 'family', 'person', 'event',
-                                       'media', 'place'])
+        self.callman.register_callbacks(
+            {
+                "citation-update": self.changed,
+                "person-update": self.changed,
+                "family-update": self.changed,
+                "event-update": self.changed,
+                "media-update": self.changed,
+                "place-update": self.changed,
+            }
+        )
+        self.callman.connect_all(
+            keys=["citation", "family", "person", "event", "media", "place"]
+        )
 
     def changed(self, handle):
         """
@@ -85,17 +91,24 @@ class Citations(Gramplet, DbGUIElement):
         """
         Build the GUI interface.
         """
-        tip = _('Double-click on a row to edit the selected source/citation.')
+        tip = _("Double-click on a row to edit the selected source/citation.")
         self.set_tooltip(tip)
         top = PersistentTreeView(self.uistate, __name__)
-        titles = [('', NOSORT, 50,),
-                  (_('Source/Date'), 1, 350),
-                  (_('Volume/Page'), 2, 150),
-                  (_('Confidence Level'), 3, 150),
-                  (_('Author'), 4, 200),
-                  (_('Publisher'), 5, 150)]
-        self.model = ListModel(top, titles, list_mode="tree",
-                               event_func=self.invoke_editor)
+        titles = [
+            (
+                "",
+                NOSORT,
+                50,
+            ),
+            (_("Source/Date"), 1, 350),
+            (_("Volume/Page"), 2, 150),
+            (_("Confidence Level"), 3, 150),
+            (_("Author"), 4, 200),
+            (_("Publisher"), 5, 150),
+        ]
+        self.model = ListModel(
+            top, titles, list_mode="tree", event_func=self.invoke_editor
+        )
         return top
 
     def add_citations(self, obj):
@@ -119,7 +132,7 @@ class Citations(Gramplet, DbGUIElement):
             self.add_media_citations(media)
 
     def add_media_citations(self, media):
-        self.callman.register_handles({'media': [media.handle]})
+        self.callman.register_handles({"media": [media.handle]})
         self.add_citations(media)
         self.add_attribute_citations(media)
 
@@ -130,7 +143,7 @@ class Citations(Gramplet, DbGUIElement):
             self.add_event_citations(event)
 
     def add_event_citations(self, event):
-        self.callman.register_handles({'event': [event.handle]})
+        self.callman.register_handles({"event": [event.handle]})
         self.add_citations(event)
         self.add_attribute_citations(event)
         self.add_mediaref_citations(event)
@@ -141,7 +154,7 @@ class Citations(Gramplet, DbGUIElement):
                 self.add_place_citations(place)
 
     def add_place_citations(self, place):
-        self.callman.register_handles({'place': [place.handle]})
+        self.callman.register_handles({"place": [place.handle]})
         self.add_citations(place)
         self.add_mediaref_citations(place)
 
@@ -166,11 +179,11 @@ class Citations(Gramplet, DbGUIElement):
         """
         Add a citation to the model.
         """
-        self.callman.register_handles({'citation': [citation_handle]})
+        self.callman.register_handles({"citation": [citation_handle]})
         citation = self.dbstate.db.get_citation_from_handle(citation_handle)
         page = citation.get_page()
         if not page:
-            page = _('<No Volume/Page>')
+            page = _("<No Volume/Page>")
         source_handle = citation.get_reference_handle()
         source = self.dbstate.db.get_source_from_handle(source_handle)
         title = source.get_title()
@@ -179,13 +192,20 @@ class Citations(Gramplet, DbGUIElement):
         confidence = citation.get_confidence_level()
 
         if source_handle not in self.source_nodes:
-            node = self.model.add([source_handle, title, '', '',
-                                   author, publisher])
+            node = self.model.add([source_handle, title, "", "", author, publisher])
             self.source_nodes[source_handle] = node
 
-        self.model.add([citation_handle, get_date(citation), page,
-                        _(conf_strings[confidence]), '', ''],
-                       node=self.source_nodes[source_handle])
+        self.model.add(
+            [
+                citation_handle,
+                get_date(citation),
+                page,
+                _(conf_strings[confidence]),
+                "",
+                "",
+            ],
+            node=self.source_nodes[source_handle],
+        )
 
     def check_citations(self, obj):
         return True if obj.get_citation_list() else False
@@ -313,15 +333,17 @@ class Citations(Gramplet, DbGUIElement):
         except WindowActiveError:
             pass
 
+
 class PersonCitations(Citations):
     """
     Displays the citations for a person.
     """
+
     def active_changed(self, handle):
         self.update()
 
     def update_has_data(self):
-        active_handle = self.get_active('Person')
+        active_handle = self.get_active("Person")
         if active_handle:
             active = self.dbstate.db.get_person_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
@@ -331,7 +353,7 @@ class PersonCitations(Citations):
     def main(self):
         self.model.clear()
         self.callman.unregister_all()
-        active_handle = self.get_active('Person')
+        active_handle = self.get_active("Person")
         if active_handle:
             active = self.dbstate.db.get_person_from_handle(active_handle)
             if active:
@@ -346,7 +368,7 @@ class PersonCitations(Citations):
         Display the citations for the active person.
         """
         self.source_nodes = {}
-        self.callman.register_handles({'person': [person.handle]})
+        self.callman.register_handles({"person": [person.handle]})
         self.add_citations(person)
         self.add_eventref_citations(person)
         for handle in person.get_family_handle_list():
@@ -390,15 +412,17 @@ class PersonCitations(Citations):
             return True
         return False
 
+
 class EventCitations(Citations):
     """
     Displays the citations for an event.
     """
+
     def db_changed(self):
-        self.connect_signal('Event', self.update)
+        self.connect_signal("Event", self.update)
 
     def update_has_data(self):
-        active_handle = self.get_active('Event')
+        active_handle = self.get_active("Event")
         if active_handle:
             active = self.dbstate.db.get_event_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
@@ -408,7 +432,7 @@ class EventCitations(Citations):
     def main(self):
         self.model.clear()
         self.callman.unregister_all()
-        active_handle = self.get_active('Event')
+        active_handle = self.get_active("Event")
         if active_handle:
             active = self.dbstate.db.get_event_from_handle(active_handle)
             if active:
@@ -437,15 +461,17 @@ class EventCitations(Citations):
             return True
         return False
 
+
 class FamilyCitations(Citations):
     """
     Displays the citations for a family.
     """
+
     def db_changed(self):
-        self.connect_signal('Family', self.update)
+        self.connect_signal("Family", self.update)
 
     def update_has_data(self):
-        active_handle = self.get_active('Family')
+        active_handle = self.get_active("Family")
         if active_handle:
             active = self.dbstate.db.get_family_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
@@ -455,7 +481,7 @@ class FamilyCitations(Citations):
     def main(self):
         self.model.clear()
         self.callman.unregister_all()
-        active_handle = self.get_active('Family')
+        active_handle = self.get_active("Family")
         if active_handle:
             active = self.dbstate.db.get_family_from_handle(active_handle)
             if active:
@@ -470,7 +496,7 @@ class FamilyCitations(Citations):
         Display the citations for the active family.
         """
         self.source_nodes = {}
-        self.callman.register_handles({'family': [family.handle]})
+        self.callman.register_handles({"family": [family.handle]})
         self.add_citations(family)
         self.add_eventref_citations(family)
         self.add_attribute_citations(family)
@@ -498,15 +524,17 @@ class FamilyCitations(Citations):
             return True
         return False
 
+
 class PlaceCitations(Citations):
     """
     Displays the citations for a place.
     """
+
     def db_changed(self):
-        self.connect_signal('Place', self.update)
+        self.connect_signal("Place", self.update)
 
     def update_has_data(self):
-        active_handle = self.get_active('Place')
+        active_handle = self.get_active("Place")
         if active_handle:
             active = self.dbstate.db.get_place_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
@@ -516,7 +544,7 @@ class PlaceCitations(Citations):
     def main(self):
         self.model.clear()
         self.callman.unregister_all()
-        active_handle = self.get_active('Place')
+        active_handle = self.get_active("Place")
         if active_handle:
             active = self.dbstate.db.get_place_from_handle(active_handle)
             if active:
@@ -545,15 +573,17 @@ class PlaceCitations(Citations):
             return True
         return False
 
+
 class MediaCitations(Citations):
     """
     Displays the citations for a media object.
     """
+
     def db_changed(self):
-        self.connect_signal('Media', self.update)
+        self.connect_signal("Media", self.update)
 
     def update_has_data(self):
-        active_handle = self.get_active('Media')
+        active_handle = self.get_active("Media")
         if active_handle:
             active = self.dbstate.db.get_media_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
@@ -563,7 +593,7 @@ class MediaCitations(Citations):
     def main(self):
         self.model.clear()
         self.callman.unregister_all()
-        active_handle = self.get_active('Media')
+        active_handle = self.get_active("Media")
         if active_handle:
             active = self.dbstate.db.get_media_from_handle(active_handle)
             if active:

@@ -18,33 +18,37 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ..person import RegExpName
 from ._memberbase import mother_base
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # RegExpMotherName
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class RegExpMotherName(RegExpName):
     """Rule that checks for full or partial name matches"""
 
-    name = _('Families with mother matching the <regex_name>')
-    description = _("Matches families whose mother has a name "
-                    "matching a specified regular expression")
-    category = _('Mother filters')
+    name = _("Families with mother matching the <regex_name>")
+    description = _(
+        "Matches families whose mother has a name "
+        "matching a specified regular expression"
+    )
+    category = _("Mother filters")
     base_class = RegExpName
     apply = mother_base

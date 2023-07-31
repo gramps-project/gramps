@@ -22,27 +22,28 @@
 
 """Tools/Database Processing/Extract Event Descriptions from Event Data"""
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gnome/gtk
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
-ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
+ngettext = glocale.translation.ngettext  # else "nearby" comments are ignored
 from gramps.gen.lib import EventRoleType
 from gramps.gen.db import DbTxn
 from gramps.gen.utils.db import family_name
@@ -50,11 +51,12 @@ from gramps.gen.utils.db import family_name
 from gramps.gui.plug import tool
 from gramps.gen.display.name import displayer as name_displayer
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # EventNames
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class EventNames(tool.BatchTool):
     """
     Look for events that do not have a description, and build the description
@@ -81,9 +83,7 @@ class EventNames(tool.BatchTool):
             self.change = False
             counter = 0
 
-            with self.user.progress(
-                    _("Extract Event Description"), '',
-                    2) as step:
+            with self.user.progress(_("Extract Event Description"), "", 2) as step:
                 for person in self.db.iter_people():
                     for event_ref in person.get_event_ref_list():
                         if event_ref.get_role() == EventRoleType.PRIMARY:
@@ -111,32 +111,37 @@ class EventNames(tool.BatchTool):
         self.db.enable_signals()
         self.db.request_rebuild()
 
-        if hasattr(self.user.uistate, 'window'):
+        if hasattr(self.user.uistate, "window"):
             parent_window = self.user.uistate.window
         else:
             parent_window = None
         if self.change == True:
             # Translators: leave all/any {...} untranslated
-            message = ngettext("{quantity} event description has been added",
-                               "{quantity} event descriptions have been added",
-                               counter).format(quantity=counter)
-            self.user.info(_('Modifications made'), message,
-                           parent=parent_window)
+            message = ngettext(
+                "{quantity} event description has been added",
+                "{quantity} event descriptions have been added",
+                counter,
+            ).format(quantity=counter)
+            self.user.info(_("Modifications made"), message, parent=parent_window)
         else:
-            self.user.info(_('No modifications made'),
-                           _("No event description has been added."),
-                           parent=parent_window)
+            self.user.info(
+                _("No modifications made"),
+                _("No event description has been added."),
+                parent=parent_window,
+            )
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Support functions
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 # feature requests 2356, 1658: avoid genitive form
 EVENT_FAMILY_STR = _("%(event_name)s of %(family)s")
 # feature requests 2356, 1658: avoid genitive form
 EVENT_PERSON_STR = _("%(event_name)s of %(person)s")
+
 
 def person_event_name(event, person):
     """
@@ -144,10 +149,11 @@ def person_event_name(event, person):
     """
     if not event.get_description():
         text = EVENT_PERSON_STR % {
-            'event_name' : str(event.get_type()),
-            'person' : name_displayer.display(person),
-            }
+            "event_name": str(event.get_type()),
+            "person": name_displayer.display(person),
+        }
         event.set_description(text)
+
 
 def family_event_name(event, family, dbase):
     """
@@ -155,16 +161,17 @@ def family_event_name(event, family, dbase):
     """
     if not event.get_description():
         text = EVENT_FAMILY_STR % {
-            'event_name' : str(event.get_type()),
-            'family' : family_name(family, dbase),
-            }
+            "event_name": str(event.get_type()),
+            "family": family_name(family, dbase),
+        }
         event.set_description(text)
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 #
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class EventNamesOptions(tool.ToolOptions):
     """
     Define options and provides handling interface.

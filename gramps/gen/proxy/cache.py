@@ -24,6 +24,7 @@ Proxy class for the Gramps databases. Caches lookups from handles.
 
 from ..utils.lru import LRU
 
+
 class CacheProxyDb:
     """
     A Proxy for a database with cached lookups on handles.
@@ -31,6 +32,7 @@ class CacheProxyDb:
     Does not invalid caches. Should be used only in read-only
     places, and not where caches are altered.
     """
+
     def __init__(self, database):
         """
         CacheProxy will cache items based on their handle.

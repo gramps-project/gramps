@@ -18,39 +18,41 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....lib.repotype import RepositoryType
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasRepo
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasRepo(Rule):
     """Rule that checks for a repo with a particular value"""
 
-
-    labels = [ _('Name:', 'repo'),
-                    _('Type:'),
-                    _('Address:'),
-                    _('URL:'),
-                    ]
-    name = _('Repositories matching parameters')
+    labels = [
+        _("Name:", "repo"),
+        _("Type:"),
+        _("Address:"),
+        _("URL:"),
+    ]
+    name = _("Repositories matching parameters")
     description = _("Matches Repositories with particular parameters")
-    category = _('General filters')
+    category = _("General filters")
     allow_regex = True
 
     def prepare(self, db, user):
@@ -75,7 +77,7 @@ class HasRepo(Rule):
             addr_match = False
             for addr in repo.address_list:
                 # TODO for Arabic, should the next line's comma be translated?
-                addr_text = ', '.join(addr.get_text_data_list())
+                addr_text = ", ".join(addr.get_text_data_list())
                 if self.match_substring(2, addr_text):
                     addr_match = True
                     break
@@ -86,7 +88,7 @@ class HasRepo(Rule):
             url_match = False
             for url in repo.urls:
                 # TODO for Arabic, should the next line's comma be translated?
-                url_text = ', '.join(url.get_text_data_list())
+                url_text = ", ".join(url.get_text_data_list())
                 if self.match_substring(3, url_text):
                     url_match = True
                     break

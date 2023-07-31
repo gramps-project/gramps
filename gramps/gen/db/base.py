@@ -25,23 +25,24 @@ Base class for the Gramps databases. All database interfaces should inherit
 from this class.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import re
 import time
 from operator import itemgetter
 import logging
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ..db.dbconst import DBLOGNAME
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from ..lib.childreftype import ChildRefType
 from ..lib.childref import ChildRef
@@ -50,11 +51,11 @@ from .exceptions import DbTransactionCancel, DbException
 
 _LOG = logging.getLogger(DBLOGNAME)
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 
 class DbReadBase:
@@ -72,14 +73,14 @@ class DbReadBase:
         derived from this class should be created.
         """
         self.basedb = self
-        self.__feature = {} # {"feature": VALUE, ...}
+        self.__feature = {}  # {"feature": VALUE, ...}
 
     def get_feature(self, feature):
         """
         Databases can implement certain features or not. The default is
         None, unless otherwise explicitly stated.
         """
-        return self.__feature.get(feature, None) # can also be explicitly None
+        return self.__feature.get(feature, None)  # can also be explicitly None
 
     def set_feature(self, feature, value):
         """
@@ -1264,8 +1265,14 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def load(self, name, callback, mode=None, force_schema_upgrade=False,
-             force_bsddb_upgrade=False):
+    def load(
+        self,
+        name,
+        callback,
+        mode=None,
+        force_schema_upgrade=False,
+        force_bsddb_upgrade=False,
+    ):
         """
         Open the specified database.
         """
@@ -1295,8 +1302,9 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def set_prefixes(self, person, media, family, source, citation,
-                     place, event, repository, note):
+    def set_prefixes(
+        self, person, media, family, source, citation, place, event, repository, note
+    ):
         """
         Set the prefixes for the gramps ids for all gramps objects
         """
@@ -1797,10 +1805,9 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def add_child_to_family(self, family, child,
-                            mrel=ChildRefType(),
-                            frel=ChildRefType(),
-                            trans=None):
+    def add_child_to_family(
+        self, family, child, mrel=ChildRefType(), frel=ChildRefType(), trans=None
+    ):
         """
         Adds a child to a family.
         """
@@ -1813,26 +1820,23 @@ class DbWriteBase(DbReadBase):
         child.add_parent_family_handle(family.handle)
 
         if trans is None:
-            with DbTxn(_('Add child to family'), self) as trans:
+            with DbTxn(_("Add child to family"), self) as trans:
                 self.commit_family(family, trans)
                 self.commit_person(child, trans)
         else:
             self.commit_family(family, trans)
             self.commit_person(child, trans)
 
-    def remove_child_from_family(self, person_handle, family_handle,
-                                 trans=None):
+    def remove_child_from_family(self, person_handle, family_handle, trans=None):
         """
         Remove a person as a child of the family, deleting the family if
         it becomes empty.
         """
         if trans is None:
             with DbTxn(_("Remove child from family"), self) as trans:
-                self.__remove_child_from_family(person_handle, family_handle,
-                                                trans)
+                self.__remove_child_from_family(person_handle, family_handle, trans)
         else:
-            self.__remove_child_from_family(person_handle, family_handle,
-                                            trans)
+            self.__remove_child_from_family(person_handle, family_handle, trans)
             trans.set_description(_("Remove child from family"))
 
     def __remove_child_from_family(self, person_handle, family_handle, trans):
@@ -1845,8 +1849,11 @@ class DbWriteBase(DbReadBase):
         person.remove_parent_family_handle(family_handle)
         family.remove_child_handle(person_handle)
 
-        if (not family.get_father_handle() and not family.get_mother_handle()
-                and not family.get_child_ref_list()):
+        if (
+            not family.get_father_handle()
+            and not family.get_mother_handle()
+            and not family.get_child_ref_list()
+        ):
             self.remove_family_relationships(family_handle, trans)
         else:
             self.commit_family(family, trans)
@@ -1874,9 +1881,11 @@ class DbWriteBase(DbReadBase):
             else:
                 family.set_mother_handle(None)
 
-            if not family.get_father_handle() and \
-                    not family.get_mother_handle() and \
-                    not family.get_child_ref_list():
+            if (
+                not family.get_father_handle()
+                and not family.get_mother_handle()
+                and not family.get_child_ref_list()
+            ):
                 self.remove_family_relationships(family_handle, trans)
             else:
                 self.commit_family(family, trans)
@@ -1885,9 +1894,11 @@ class DbWriteBase(DbReadBase):
             if family_handle:
                 family = self.get_family_from_handle(family_handle)
                 family.remove_child_handle(person.get_handle())
-                if not family.get_father_handle() and \
-                        not family.get_mother_handle() and \
-                        not family.get_child_ref_list():
+                if (
+                    not family.get_father_handle()
+                    and not family.get_mother_handle()
+                    and not family.get_child_ref_list()
+                ):
                     self.remove_family_relationships(family_handle, trans)
                 else:
                     self.commit_family(family, trans)
@@ -1896,7 +1907,7 @@ class DbWriteBase(DbReadBase):
 
         for obj_type, ohandle in self.find_backlink_handles(handle):
             obj = self.method("get_%s_from_handle", obj_type)(ohandle)
-            obj.remove_handle_references('Person', [handle])
+            obj.remove_handle_references("Person", [handle])
             self.method("commit_%s", obj_type)(obj, trans)
         self.remove_person(handle, trans)
 
@@ -1918,24 +1929,23 @@ class DbWriteBase(DbReadBase):
         for obj_type, ohandle in self.find_backlink_handles(family_handle):
             obj = self.method("get_%s_from_handle", obj_type)(ohandle)
             if obj:
-                obj.remove_handle_references('Family', [family_handle])
+                obj.remove_handle_references("Family", [family_handle])
                 self.method("commit_%s", obj_type)(obj, trans)
         self.remove_family(family_handle, trans)
 
-    def remove_parent_from_family(self, person_handle, family_handle,
-                                  trans=None):
+    def remove_parent_from_family(self, person_handle, family_handle, trans=None):
         """
         Remove a person as either the father or mother of a family,
         deleting the family if it becomes empty.
         """
         if trans is None:
-            with DbTxn('', self) as trans:
-                msg = self.__remove_parent_from_family(person_handle,
-                                                       family_handle, trans)
+            with DbTxn("", self) as trans:
+                msg = self.__remove_parent_from_family(
+                    person_handle, family_handle, trans
+                )
                 trans.set_description(msg)
         else:
-            msg = self.__remove_parent_from_family(person_handle,
-                                                   family_handle, trans)
+            msg = self.__remove_parent_from_family(person_handle, family_handle, trans)
             trans.set_description(msg)
 
     def __remove_parent_from_family(self, person_handle, family_handle, trans):
@@ -1954,13 +1964,18 @@ class DbWriteBase(DbReadBase):
             msg = _("Remove mother from family")
             family.set_mother_handle(None)
         else:
-            raise DbTransactionCancel("The relation between the person and "
+            raise DbTransactionCancel(
+                "The relation between the person and "
                 "the family you try to remove is not consistent, please fix "
                 "that first, for example from the family editor or by running "
-                "the database repair tool, before removing the family.")
+                "the database repair tool, before removing the family."
+            )
 
-        if (not family.get_father_handle() and not family.get_mother_handle()
-                and not family.get_child_ref_list()):
+        if (
+            not family.get_father_handle()
+            and not family.get_mother_handle()
+            and not family.get_child_ref_list()
+        ):
             self.remove_family_relationships(family_handle, trans)
         else:
             self.commit_family(family, trans)
@@ -1992,8 +2007,18 @@ class DbWriteBase(DbReadBase):
         note_len = self.get_number_of_notes()
         tag_len = self.get_number_of_tags()
 
-        return (person_len + family_len + event_len + place_len + repo_len +
-                source_len + citation_len + media_len + note_len + tag_len)
+        return (
+            person_len
+            + family_len
+            + event_len
+            + place_len
+            + repo_len
+            + source_len
+            + citation_len
+            + media_len
+            + note_len
+            + tag_len
+        )
 
     def set_birth_death_index(self, person):
         """
@@ -2004,13 +2029,17 @@ class DbWriteBase(DbReadBase):
         event_ref_list = person.get_event_ref_list()
         for index, ref in enumerate(event_ref_list):
             event = self.get_event_from_handle(ref.ref)
-            if (event.type.is_birth()
+            if (
+                event.type.is_birth()
                 and ref.role.is_primary()
-                and (birth_ref_index == -1)):
+                and (birth_ref_index == -1)
+            ):
                 birth_ref_index = index
-            elif (event.type.is_death()
-                  and ref.role.is_primary()
-                  and (death_ref_index == -1)):
+            elif (
+                event.type.is_death()
+                and ref.role.is_primary()
+                and (death_ref_index == -1)
+            ):
                 death_ref_index = index
 
         person.birth_ref_index = birth_ref_index

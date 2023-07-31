@@ -21,68 +21,82 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import datetime
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
-from gramps.gen.lib import (ChildRefType, Date, Span, Name, StyledText,
-                            StyledTextTag, StyledTextTagType)
+from gramps.gen.lib import (
+    ChildRefType,
+    Date,
+    Span,
+    Name,
+    StyledText,
+    StyledTextTag,
+    StyledTextTagType,
+)
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.utils.alive import probably_alive
 from gramps.gen.proxy import LivingProxyDb
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # List of records
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
-def _T_(value, context=''): # enable deferred translations
+
+def _T_(value, context=""):  # enable deferred translations
     return "%s\x04%s" % (context, value) if context else value
+
+
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 
 RECORDS = [
-    (_T_("Youngest living person"),          'person_youngestliving',   True),
-    (_T_("Oldest living person"),            'person_oldestliving',     True),
-    (_T_("Person died at youngest age"),     'person_youngestdied',     False),
-    (_T_("Person died at oldest age"),       'person_oldestdied',       True),
-    (_T_("Person married at youngest age"),  'person_youngestmarried',  True),
-    (_T_("Person married at oldest age"),    'person_oldestmarried',    True),
-    (_T_("Person divorced at youngest age"), 'person_youngestdivorced', False),
-    (_T_("Person divorced at oldest age"),   'person_oldestdivorced',   False),
-    (_T_("Youngest father"),                 'person_youngestfather',   True),
-    (_T_("Youngest mother"),                 'person_youngestmother',   True),
-    (_T_("Oldest father"),                   'person_oldestfather',     True),
-    (_T_("Oldest mother"),                   'person_oldestmother',     True),
-    (_T_("Father with most children"),       'person_mostkidsfather',   False),
-    (_T_("Mother with most children"),       'person_mostkidsmother',   False),
-    (_T_("Father with most grandchildren"), 'person_mostgrandkidsfather',False),
-    (_T_("Mother with most grandchildren"), 'person_mostgrandkidsmother',False),
-    (_T_("Couple with most children"),       'family_mostchildren',     True),
-    (_T_("Living couple married most recently"), 'family_youngestmarried',True),
-    (_T_("Living couple married most long ago"), 'family_oldestmarried',  True),
-    (_T_("Shortest past marriage"),          'family_shortest',         False),
-    (_T_("Longest past marriage"),           'family_longest',          True),
-    (_T_("Couple with smallest age difference"), 'family_smallestagediff',  True),
-    (_T_("Couple with biggest age difference"),  'family_biggestagediff',   True)]
+    (_T_("Youngest living person"), "person_youngestliving", True),
+    (_T_("Oldest living person"), "person_oldestliving", True),
+    (_T_("Person died at youngest age"), "person_youngestdied", False),
+    (_T_("Person died at oldest age"), "person_oldestdied", True),
+    (_T_("Person married at youngest age"), "person_youngestmarried", True),
+    (_T_("Person married at oldest age"), "person_oldestmarried", True),
+    (_T_("Person divorced at youngest age"), "person_youngestdivorced", False),
+    (_T_("Person divorced at oldest age"), "person_oldestdivorced", False),
+    (_T_("Youngest father"), "person_youngestfather", True),
+    (_T_("Youngest mother"), "person_youngestmother", True),
+    (_T_("Oldest father"), "person_oldestfather", True),
+    (_T_("Oldest mother"), "person_oldestmother", True),
+    (_T_("Father with most children"), "person_mostkidsfather", False),
+    (_T_("Mother with most children"), "person_mostkidsmother", False),
+    (_T_("Father with most grandchildren"), "person_mostgrandkidsfather", False),
+    (_T_("Mother with most grandchildren"), "person_mostgrandkidsmother", False),
+    (_T_("Couple with most children"), "family_mostchildren", True),
+    (_T_("Living couple married most recently"), "family_youngestmarried", True),
+    (_T_("Living couple married most long ago"), "family_oldestmarried", True),
+    (_T_("Shortest past marriage"), "family_shortest", False),
+    (_T_("Longest past marriage"), "family_longest", True),
+    (_T_("Couple with smallest age difference"), "family_smallestagediff", True),
+    (_T_("Couple with biggest age difference"), "family_biggestagediff", True),
+]
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # Global functions
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 def _good_date(date):
-    return (date is not None and date.is_valid())
+    return date is not None and date.is_valid()
+
 
 def _find_death_date(db, person):
     death_ref = person.get_death_ref()
@@ -97,9 +111,17 @@ def _find_death_date(db, person):
                 return event.get_date_object()
     return None
 
-def find_records(db, filter, top_size, callname,
-                 trans_text=glocale.translation.sgettext, name_format=None,
-                 living_mode=LivingProxyDb.MODE_INCLUDE_ALL, user=None):
+
+def find_records(
+    db,
+    filter,
+    top_size,
+    callname,
+    trans_text=glocale.translation.sgettext,
+    name_format=None,
+    living_mode=LivingProxyDb.MODE_INCLUDE_ALL,
+    user=None,
+):
     """
     @param trans_text: allow deferred translation of strings
     @type trans_text: a GrampsLocale sgettext instance
@@ -113,7 +135,7 @@ def find_records(db, filter, top_size, callname,
     def get_unfiltered_person_from_handle(person_handle):
         if living_mode == LivingProxyDb.MODE_INCLUDE_ALL:
             return db.get_person_from_handle(person_handle)
-        else: # we are in the proxy so get the person before proxy changes
+        else:  # we are in the proxy so get the person before proxy changes
             return db.get_unfiltered_person(person_handle)
 
     today = datetime.date.today()
@@ -171,21 +193,33 @@ def find_records(db, filter, top_size, callname,
             # Birth date unknown or incomplete, so we can't calculate any age.
             continue
 
-        name = _get_styled_primary_name(person, callname,
-                                        trans_text=trans_text,
-                                        name_format=name_format)
+        name = _get_styled_primary_name(
+            person, callname, trans_text=trans_text, name_format=name_format
+        )
 
         if death_date is None:
             if probably_alive(unfil_person, db):
                 # Still living, look for age records
-                _record(person_youngestliving, person_oldestliving,
-                        today_date - birth_date, name, 'Person', person_handle,
-                        top_size)
+                _record(
+                    person_youngestliving,
+                    person_oldestliving,
+                    today_date - birth_date,
+                    name,
+                    "Person",
+                    person_handle,
+                    top_size,
+                )
         elif _good_date(death_date):
             # Already died, look for age records
-            _record(person_youngestdied, person_oldestdied,
-                    death_date - birth_date, name, 'Person', person_handle,
-                    top_size)
+            _record(
+                person_youngestdied,
+                person_oldestdied,
+                death_date - birth_date,
+                name,
+                "Person",
+                person_handle,
+                top_size,
+            )
 
         for family_handle in person.get_family_handle_list():
             family = db.get_family_from_handle(family_handle)
@@ -194,24 +228,38 @@ def find_records(db, filter, top_size, callname,
             divorce_date = None
             for event_ref in family.get_event_ref_list():
                 event = db.get_event_from_handle(event_ref.ref)
-                if (event.get_type().is_marriage() and
-                    (event_ref.get_role().is_family() or
-                     event_ref.get_role().is_primary())):
+                if event.get_type().is_marriage() and (
+                    event_ref.get_role().is_family()
+                    or event_ref.get_role().is_primary()
+                ):
                     marriage_date = event.get_date_object()
-                elif (event.get_type().is_divorce() and
-                      (event_ref.get_role().is_family() or
-                       event_ref.get_role().is_primary())):
+                elif event.get_type().is_divorce() and (
+                    event_ref.get_role().is_family()
+                    or event_ref.get_role().is_primary()
+                ):
                     divorce_date = event.get_date_object()
 
             if _good_date(marriage_date):
-                _record(person_youngestmarried, person_oldestmarried,
-                        marriage_date - birth_date,
-                        name, 'Person', person_handle, top_size)
+                _record(
+                    person_youngestmarried,
+                    person_oldestmarried,
+                    marriage_date - birth_date,
+                    name,
+                    "Person",
+                    person_handle,
+                    top_size,
+                )
 
             if _good_date(divorce_date):
-                _record(person_youngestdivorced, person_oldestdivorced,
-                        divorce_date - birth_date,
-                        name, 'Person', person_handle, top_size)
+                _record(
+                    person_youngestdivorced,
+                    person_oldestdivorced,
+                    divorce_date - birth_date,
+                    name,
+                    "Person",
+                    person_handle,
+                    top_size,
+                )
 
             for child_ref in family.get_child_ref_list():
                 if person.get_gender() == person.MALE:
@@ -237,13 +285,25 @@ def find_records(db, filter, top_size, callname,
                     continue
 
                 if person.get_gender() == person.MALE:
-                    _record(person_youngestfather, person_oldestfather,
-                            child_birth_date - birth_date,
-                            name, 'Person', person_handle, top_size)
+                    _record(
+                        person_youngestfather,
+                        person_oldestfather,
+                        child_birth_date - birth_date,
+                        name,
+                        "Person",
+                        person_handle,
+                        top_size,
+                    )
                 elif person.get_gender() == person.FEMALE:
-                    _record(person_youngestmother, person_oldestmother,
-                            child_birth_date - birth_date,
-                            name, 'Person', person_handle, top_size)
+                    _record(
+                        person_youngestmother,
+                        person_oldestmother,
+                        child_birth_date - birth_date,
+                        name,
+                        "Person",
+                        person_handle,
+                        top_size,
+                    )
 
     for person_handle in person_handle_list:
         # this "person loop" doesn't care about a person's birth or death
@@ -251,31 +311,55 @@ def find_records(db, filter, top_size, callname,
         if person is None:
             continue
 
-        name = _get_styled_primary_name(person, callname,
-                                        trans_text=trans_text,
-                                        name_format=name_format)
+        name = _get_styled_primary_name(
+            person, callname, trans_text=trans_text, name_format=name_format
+        )
 
         person_child_list = get_birth_children(db, person)
         if person.get_gender() == person.MALE:
-            _record(None, person_mostkidsfather,
-                    len(person_child_list),
-                    name, 'Person', person_handle, top_size)
+            _record(
+                None,
+                person_mostkidsfather,
+                len(person_child_list),
+                name,
+                "Person",
+                person_handle,
+                top_size,
+            )
         elif person.get_gender() == person.FEMALE:
-            _record(None, person_mostkidsmother,
-                    len(person_child_list),
-                    name, 'Person', person_handle, top_size)
+            _record(
+                None,
+                person_mostkidsmother,
+                len(person_child_list),
+                name,
+                "Person",
+                person_handle,
+                top_size,
+            )
 
         person_grandchild_list = []
         for child in person_child_list:
             person_grandchild_list += get_birth_children(db, child)
         if person.get_gender() == person.MALE:
-            _record(None, person_mostgrandkidsfather,
-                    len(person_grandchild_list),
-                    name, 'Person', person_handle, top_size)
+            _record(
+                None,
+                person_mostgrandkidsfather,
+                len(person_grandchild_list),
+                name,
+                "Person",
+                person_handle,
+                top_size,
+            )
         elif person.get_gender() == person.FEMALE:
-            _record(None, person_mostgrandkidsmother,
-                    len(person_grandchild_list),
-                    name, 'Person', person_handle, top_size)
+            _record(
+                None,
+                person_mostgrandkidsmother,
+                len(person_grandchild_list),
+                name,
+                "Person",
+                person_handle,
+                top_size,
+            )
 
     # Family records
     family_mostchildren = []
@@ -287,7 +371,7 @@ def find_records(db, filter, top_size, callname,
     family_biggestagediff = []
 
     for family in db.iter_families():
-        #family = db.get_family_from_handle(family_handle)
+        # family = db.get_family_from_handle(family_handle)
         if living_mode != LivingProxyDb.MODE_INCLUDE_ALL:
             # FIXME no iter_families method in LivingProxyDb so do it this way
             family = db.get_family_from_handle(family.get_handle())
@@ -314,58 +398,86 @@ def find_records(db, filter, top_size, callname,
         if mother is None:
             continue
 
-        father_name = _get_styled_primary_name(father, callname,
-                                               trans_text=trans_text,
-                                               name_format=name_format)
-        mother_name = _get_styled_primary_name(mother, callname,
-                                               trans_text=trans_text,
-                                               name_format=name_format)
+        father_name = _get_styled_primary_name(
+            father, callname, trans_text=trans_text, name_format=name_format
+        )
+        mother_name = _get_styled_primary_name(
+            mother, callname, trans_text=trans_text, name_format=name_format
+        )
 
         name = StyledText(trans_text("%(father)s and %(mother)s"))
-        name = name.replace('%(father)s', father_name)
-        name = name.replace('%(mother)s', mother_name)
+        name = name.replace("%(father)s", father_name)
+        name = name.replace("%(mother)s", mother_name)
 
-        if (living_mode == LivingProxyDb.MODE_INCLUDE_ALL
-            or (not probably_alive(unfil_father, db) and
-                not probably_alive(unfil_mother, db))):
-            _record(None, family_mostchildren,
-                    len(family.get_child_ref_list()),
-                    name, 'Family', family.handle, top_size)
+        if living_mode == LivingProxyDb.MODE_INCLUDE_ALL or (
+            not probably_alive(unfil_father, db)
+            and not probably_alive(unfil_mother, db)
+        ):
+            _record(
+                None,
+                family_mostchildren,
+                len(family.get_child_ref_list()),
+                name,
+                "Family",
+                family.handle,
+                top_size,
+            )
 
         father_birth_ref = father.get_birth_ref()
         if father_birth_ref:
-            father_birth_date = db.get_event_from_handle(father_birth_ref.ref).get_date_object()
+            father_birth_date = db.get_event_from_handle(
+                father_birth_ref.ref
+            ).get_date_object()
         else:
             father_birth_date = None
 
         mother_birth_ref = mother.get_birth_ref()
         if mother_birth_ref:
-            mother_birth_date = db.get_event_from_handle(mother_birth_ref.ref).get_date_object()
+            mother_birth_date = db.get_event_from_handle(
+                mother_birth_ref.ref
+            ).get_date_object()
         else:
             mother_birth_date = None
 
         if _good_date(father_birth_date) and _good_date(mother_birth_date):
             if father_birth_date >> mother_birth_date:
-                _record(family_smallestagediff, family_biggestagediff,
-                        father_birth_date - mother_birth_date,
-                        name, 'Family', family.handle, top_size)
+                _record(
+                    family_smallestagediff,
+                    family_biggestagediff,
+                    father_birth_date - mother_birth_date,
+                    name,
+                    "Family",
+                    family.handle,
+                    top_size,
+                )
             elif mother_birth_date >> father_birth_date:
-                _record(family_smallestagediff, family_biggestagediff,
-                        mother_birth_date - father_birth_date,
-                        name, 'Family', family.handle, top_size)
+                _record(
+                    family_smallestagediff,
+                    family_biggestagediff,
+                    mother_birth_date - father_birth_date,
+                    name,
+                    "Family",
+                    family.handle,
+                    top_size,
+                )
 
         marriage_date = None
         divorce = None
         divorce_date = None
         for event_ref in family.get_event_ref_list():
             event = db.get_event_from_handle(event_ref.ref)
-            if (event.get_type().is_marriage() and
-                (event_ref.get_role().is_family() or
-                 event_ref.get_role().is_primary())):
+            if event.get_type().is_marriage() and (
+                event_ref.get_role().is_family() or event_ref.get_role().is_primary()
+            ):
                 marriage_date = event.get_date_object()
-            if (event and event.get_type().is_divorce() and
-                (event_ref.get_role().is_family() or
-                 event_ref.get_role().is_primary())):
+            if (
+                event
+                and event.get_type().is_divorce()
+                and (
+                    event_ref.get_role().is_family()
+                    or event_ref.get_role().is_primary()
+                )
+            ):
                 divorce = event
                 divorce_date = event.get_date_object()
 
@@ -380,28 +492,35 @@ def find_records(db, filter, top_size, callname,
             # Divorced but date unknown or inexact
             continue
 
-        if (not probably_alive(unfil_father, db)
-                and not _good_date(father_death_date)):
+        if not probably_alive(unfil_father, db) and not _good_date(father_death_date):
             # Father died but death date unknown or inexact
             continue
 
-        if (not probably_alive(unfil_mother, db)
-                and not _good_date(mother_death_date)):
+        if not probably_alive(unfil_mother, db) and not _good_date(mother_death_date):
             # Mother died but death date unknown or inexact
             continue
 
-        if (divorce_date is None
+        if (
+            divorce_date is None
             and father_death_date is None
-            and mother_death_date is None):
+            and mother_death_date is None
+        ):
             # Still married and alive
-            if (probably_alive(unfil_father, db)
-                    and probably_alive(unfil_mother, db)):
-                _record(family_youngestmarried, family_oldestmarried,
-                        today_date - marriage_date,
-                        name, 'Family', family.handle, top_size)
-        elif (_good_date(divorce_date) or
-              _good_date(father_death_date) or
-              _good_date(mother_death_date)):
+            if probably_alive(unfil_father, db) and probably_alive(unfil_mother, db):
+                _record(
+                    family_youngestmarried,
+                    family_oldestmarried,
+                    today_date - marriage_date,
+                    name,
+                    "Family",
+                    family.handle,
+                    top_size,
+                )
+        elif (
+            _good_date(divorce_date)
+            or _good_date(father_death_date)
+            or _good_date(mother_death_date)
+        ):
             end = None
             if _good_date(father_death_date) and _good_date(mother_death_date):
                 end = min(father_death_date, mother_death_date)
@@ -416,17 +535,26 @@ def find_records(db, filter, top_size, callname,
                     end = divorce_date
             duration = end - marriage_date
 
-            _record(family_shortest, family_longest,
-                    duration, name, 'Family', family.handle, top_size)
-    #python 3 workaround: assign locals to tmp so we work with runtime version
+            _record(
+                family_shortest,
+                family_longest,
+                duration,
+                name,
+                "Family",
+                family.handle,
+                top_size,
+            )
+    # python 3 workaround: assign locals to tmp so we work with runtime version
     tmp = locals()
-    return [(trans_text(text), varname, tmp[varname])
-                for (text, varname, default) in RECORDS]
+    return [
+        (trans_text(text), varname, tmp[varname])
+        for (text, varname, default) in RECORDS
+    ]
+
 
 def _record(lowest, highest, value, text, handle_type, handle, top_size):
-
-    if value < 0: # ignore erroneous data
-        return # (since the data-verification tool already finds it)
+    if value < 0:  # ignore erroneous data
+        return  # (since the data-verification tool already finds it)
 
     if isinstance(value, Span):
         low_value = value.minmax[0]
@@ -437,9 +565,9 @@ def _record(lowest, highest, value, text, handle_type, handle, top_size):
 
     if lowest is not None:
         lowest.append((high_value, value, text, handle_type, handle))
-        lowest.sort(key=lambda a: a[0])   # FIXME: Ist das lambda notwendig?
+        lowest.sort(key=lambda a: a[0])  # FIXME: Ist das lambda notwendig?
         for i in range(top_size, len(lowest)):
-            if lowest[i-1][0] < lowest[i][0]:
+            if lowest[i - 1][0] < lowest[i][0]:
                 del lowest[i:]
                 break
 
@@ -447,12 +575,13 @@ def _record(lowest, highest, value, text, handle_type, handle, top_size):
         highest.append((low_value, value, text, handle_type, handle))
         highest.sort(reverse=True)
         for i in range(top_size, len(highest)):
-            if highest[i-1][0] > highest[i][0]:
+            if highest[i - 1][0] > highest[i][0]:
                 del highest[i:]
                 break
 
+
 def get_birth_children(db, person):
-    """ return all the birth children of a person, in a list """
+    """return all the birth children of a person, in a list"""
     person_child_list = []
     for family_handle in person.get_family_handle_list():
         family = db.get_family_from_handle(family_handle)
@@ -462,26 +591,33 @@ def get_birth_children(db, person):
             elif person.get_gender() == person.FEMALE:
                 relation = child_ref.get_mother_relation()
             else:
-                continue # no records are kept for unknown-sex parents
+                continue  # no records are kept for unknown-sex parents
             if relation != ChildRefType.BIRTH:
-                continue # only count birth children
+                continue  # only count birth children
             child = db.get_person_from_handle(child_ref.ref)
             if child not in person_child_list:
                 person_child_list += [child]
     return person_child_list
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # Reusable functions (could be methods of gen.lib.*)
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
 CALLNAME_DONTUSE = 0
 CALLNAME_REPLACE = 1
 CALLNAME_UNDERLINE_ADD = 2
 
-def _get_styled(name, callname, placeholder=False,
-                trans_text=glocale.translation.sgettext, name_format=None):
+
+def _get_styled(
+    name,
+    callname,
+    placeholder=False,
+    trans_text=glocale.translation.sgettext,
+    name_format=None,
+):
     """
     Return a StyledText object with the name formatted according to the
     parameters:
@@ -518,8 +654,9 @@ def _get_styled(name, callname, placeholder=False,
                 # Add call name to first name.
                 # Translators: used in French+Russian, ignore otherwise
                 n.first_name = trans_text('"%(callname)s" (%(firstname)s)') % {
-                                             'callname':  n.call,
-                                             'firstname': n.first_name }
+                    "callname": n.call,
+                    "firstname": n.first_name,
+                }
 
     real_format = name_displayer.get_default_format()
     if name_format is not None:
@@ -535,13 +672,24 @@ def _get_styled(name, callname, placeholder=False,
             if n.call in name.first_name:
                 # Underline call name
                 callpos = text.find(n.call)
-                tags = [StyledTextTag(StyledTextTagType.UNDERLINE, True,
-                            [(callpos, callpos + len(n.call))])]
+                tags = [
+                    StyledTextTag(
+                        StyledTextTagType.UNDERLINE,
+                        True,
+                        [(callpos, callpos + len(n.call))],
+                    )
+                ]
 
     return StyledText(text, tags)
 
-def _get_styled_primary_name(person, callname, placeholder=False,
-                 trans_text=glocale.translation.sgettext, name_format=None):
+
+def _get_styled_primary_name(
+    person,
+    callname,
+    placeholder=False,
+    trans_text=glocale.translation.sgettext,
+    name_format=None,
+):
     """
     Return a StyledText object with the person's name formatted according to
     the parameters:
@@ -558,6 +706,10 @@ def _get_styled_primary_name(person, callname, placeholder=False,
     :type name_format: None or int
     """
 
-    return _get_styled(person.get_primary_name(), callname,
-                       trans_text=trans_text,
-                       placeholder=placeholder, name_format=name_format)
+    return _get_styled(
+        person.get_primary_name(),
+        callname,
+        trans_text=trans_text,
+        placeholder=placeholder,
+        name_format=name_format,
+    )

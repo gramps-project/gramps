@@ -19,38 +19,38 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...lib.attrtype import AttributeType
 from . import Rule
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # HasAttribute
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasAttributeBase(Rule):
     """
     Rule that checks for an object with a particular attribute.
     """
 
-    labels = ['Attribute:', 'Value:']
-    name = 'Objects with the <attribute>'
-    description = "Matches objects with the given attribute " \
-                  "of a particular value"
-    category = _('General filters')
+    labels = ["Attribute:", "Value:"]
+    name = "Objects with the <attribute>"
+    description = "Matches objects with the given attribute " "of a particular value"
+    category = _("General filters")
     allow_regex = True
 
     def apply(self, db, obj):

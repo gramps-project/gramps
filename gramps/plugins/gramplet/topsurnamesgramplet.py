@@ -16,47 +16,49 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from collections import defaultdict
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Constants
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 _YIELD_INTERVAL = 350
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # TopSurnamesGramplet class
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class TopSurnamesGramplet(Gramplet):
     def init(self):
         self.set_tooltip(_("Double-click surname for details"))
-        self.top_size = 10 # will be overwritten in load
+        self.top_size = 10  # will be overwritten in load
         self.set_text(_("No Family Tree loaded."))
 
     def db_changed(self):
-        self.connect(self.dbstate.db, 'person-add', self.update)
-        self.connect(self.dbstate.db, 'person-delete', self.update)
-        self.connect(self.dbstate.db, 'person-update', self.update)
-        self.connect(self.dbstate.db, 'person-rebuild', self.update)
-        self.connect(self.dbstate.db, 'family-rebuild', self.update)
+        self.connect(self.dbstate.db, "person-add", self.update)
+        self.connect(self.dbstate.db, "person-delete", self.update)
+        self.connect(self.dbstate.db, "person-update", self.update)
+        self.connect(self.dbstate.db, "person-rebuild", self.update)
+        self.connect(self.dbstate.db, "family-rebuild", self.update)
         self.set_text(_("No Family Tree loaded."))
 
     def on_load(self):
@@ -99,15 +101,16 @@ class TopSurnamesGramplet(Gramplet):
         line = 0
         ### All done!
         self.set_text("")
-        nosurname = config.get('preferences.no-surname-text')
-        for (count, surname) in surname_sort:
+        nosurname = config.get("preferences.no-surname-text")
+        for count, surname in surname_sort:
             text = "%s, " % (surname if surname else nosurname)
-            text += "%d%% (%d)\n" % (int((float(count)/total) * 100), count)
+            text += "%d%% (%d)\n" % (int((float(count) / total) * 100), count)
             self.append_text(" %d. " % (line + 1))
-            self.link(text, 'Surname', representative_handle[surname])
+            self.link(text, "Surname", representative_handle[surname])
             line += 1
             if line >= self.top_size:
                 break
-        self.append_text(("\n" + _("Total unique surnames") + ": %d\n") %
-                         total_surnames)
+        self.append_text(
+            ("\n" + _("Total unique surnames") + ": %d\n") % total_surnames
+        )
         self.append_text((_("Total people") + ": %d") % total_people, "begin")

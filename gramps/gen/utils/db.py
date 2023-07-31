@@ -65,11 +65,7 @@ def get_birth_or_fallback(db, person, format=None):
     # now search the event list for fallbacks
     for event_ref in person.get_primary_event_ref_list():
         event = db.get_event_from_handle(event_ref.ref)
-        if (
-            event
-            and event.type.is_birth_fallback()
-            and event_ref.role.is_primary()
-        ):
+        if event and event.type.is_birth_fallback() and event_ref.role.is_primary():
             if format:
                 event.date.format = format
             return event
@@ -90,11 +86,7 @@ def get_death_or_fallback(db, person, format=None):
     # now search the event list for fallbacks
     for event_ref in person.get_primary_event_ref_list():
         event = db.get_event_from_handle(event_ref.ref)
-        if (
-            event
-            and event.type.is_death_fallback()
-            and event_ref.role.is_primary()
-        ):
+        if event and event.type.is_death_fallback() and event_ref.role.is_primary():
             if format:
                 event.date.format = format
             return event
@@ -131,11 +123,7 @@ def get_age(db, person, fallback=True, calendar="gregorian"):
         if birth_date and birth_date.get_valid() and not birth_date.is_empty():
             if death is not None:
                 death_date = death.get_date_object().to_calendar("gregorian")
-                if (
-                    death_date
-                    and death_date.get_valid()
-                    and not death_date.is_empty()
-                ):
+                if death_date and death_date.get_valid() and not death_date.is_empty():
                     age = death_date - birth_date
                     if not age.is_valid():
                         age = None
@@ -174,11 +162,7 @@ def get_timeperiod(db, person):
         event = db.get_event_from_handle(event_ref.ref)
         if event:
             event_date = event.get_date_object().to_calendar("gregorian")
-            if (
-                event_date
-                and event_date.get_valid()
-                and not event_date.is_empty()
-            ):
+            if event_date and event_date.get_valid() and not event_date.is_empty():
                 return event_date.get_year()
     return None
 
@@ -277,9 +261,7 @@ def get_participant_from_event(db, event_handle, all_=False):
     participant = ""
     ellipses = False
     result_list = list(
-        db.find_backlink_handles(
-            event_handle, include_classes=["Person", "Family"]
-        )
+        db.find_backlink_handles(event_handle, include_classes=["Person", "Family"])
     )
 
     # obtain handles without duplicates
@@ -290,10 +272,7 @@ def get_participant_from_event(db, event_handle, all_=False):
         if not person:
             continue
         for event_ref in person.get_event_ref_list():
-            if (
-                event_handle == event_ref.ref
-                and event_ref.get_role().is_primary()
-            ):
+            if event_handle == event_ref.ref and event_ref.get_role().is_primary():
                 if participant:
                     if all_:
                         participant += f", {name_displayer.display(person)}"
@@ -310,10 +289,7 @@ def get_participant_from_event(db, event_handle, all_=False):
     for family_handle in families:
         family = db.get_family_from_handle(family_handle)
         for event_ref in family.get_event_ref_list():
-            if (
-                event_handle == event_ref.ref
-                and event_ref.get_role().is_family()
-            ):
+            if event_handle == event_ref.ref and event_ref.get_role().is_family():
                 if participant:
                     if all_:
                         participant += f", {family_name(family, db)}"

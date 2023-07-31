@@ -23,34 +23,37 @@
 #
 # $Id: categorysidebar.py 20634 2012-11-07 17:53:14Z bmcage $
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.config import config
 from gramps.gui.basesidebar import BaseSidebar
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
-#-------------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------------
 #
 # DropdownSidebar class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class DropdownSidebar(BaseSidebar):
     """
     A sidebar displaying toggle buttons and buttons with drop-down menus that
     allows the user to change the current view.
     """
-    def __init__(self, dbstate, uistate, categories, views):
 
+    def __init__(self, dbstate, uistate, categories, views):
         self.viewmanager = uistate.viewmanager
         self.views = views
 
@@ -63,7 +66,7 @@ class DropdownSidebar(BaseSidebar):
         self.window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.window.show()
 
-        use_text = config.get('interface.sidebar-text')
+        use_text = config.get("interface.sidebar-text")
         for cat_num, cat_name, cat_icon in categories:
             self.__make_category(grid, use_text, cat_num, cat_name, cat_icon)
 
@@ -157,18 +160,19 @@ class DropdownSidebar(BaseSidebar):
         if len(self.views[cat_num]) > 1:
             dropdown = Gtk.Button()
             dropdown.set_relief(Gtk.ReliefStyle.NONE)
-            arrow = Gtk.Arrow(arrow_type=Gtk.ArrowType.DOWN,
-                                        shadow_type=Gtk.ShadowType.NONE)
+            arrow = Gtk.Arrow(
+                arrow_type=Gtk.ArrowType.DOWN, shadow_type=Gtk.ShadowType.NONE
+            )
             dropdown.add(arrow)
-            dropdown.connect('clicked', self.__view_clicked, cat_num)
-            dropdown.set_tooltip_text(_('Click to select a view'))
+            dropdown.connect("clicked", self.__view_clicked, cat_num)
+            dropdown.set_tooltip_text(_("Click to select a view"))
             grid.attach(dropdown, 1, cat_num, 1, 1)
 
         # add the tooltip
         button.set_tooltip_text(cat_name)
 
         # connect the signal, along with the cat_num as user data
-        handler_id = button.connect('clicked', self.__category_clicked, cat_num)
+        handler_id = button.connect("clicked", self.__category_clicked, cat_num)
         self.button_handlers.append(handler_id)
         button.show()
 
@@ -195,7 +199,7 @@ class DropdownSidebar(BaseSidebar):
 
         # Enable view switching during DnD
         button.drag_dest_set(0, [], 0)
-        button.connect('drag_motion', self.cb_switch_page_on_dnd, cat_num)
+        button.connect("drag_motion", self.cb_switch_page_on_dnd, cat_num)
 
         grid.attach(button, 0, cat_num, 1, 1)
 
@@ -207,6 +211,7 @@ class DropdownSidebar(BaseSidebar):
         if self.viewmanager.notebook.get_current_page() != page_no:
             self.viewmanager.notebook.set_current_page(page_no)
         self.__handlers_unblock()
+
 
 def cb_menu_position(*args):
     """

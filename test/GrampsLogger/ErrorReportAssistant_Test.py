@@ -25,21 +25,24 @@ import logging
 import sys
 import os
 
-log = logging.getLogger('Gramps.Tests.GrampsLogger')
+log = logging.getLogger("Gramps.Tests.GrampsLogger")
 import gramps.gen.const as const
-const.rootDir = os.path.join(os.path.dirname(__file__), '../../gramps')
-sys.path.append(os.path.join(const.rootDir, 'test'))
+
+const.rootDir = os.path.join(os.path.dirname(__file__), "../../gramps")
+sys.path.append(os.path.join(const.rootDir, "test"))
 try:
     from guitest.gtktest import GtkTestCase
+
     TestCaseBase = GtkTestCase
     log.info("Using guitest")
 except:
     TestCaseBase = unittest.TestCase
 
 sys.path.append(const.rootDir)
-sys.path.append(os.path.join(const.rootDir, 'GrampsLogger'))
+sys.path.append(os.path.join(const.rootDir, "GrampsLogger"))
 
 from gramps.gui.logger import RotateHandler, _errorreportassistant
+
 
 class ErrorReportAssistantTest(TestCaseBase):
     """Test the ErrorReportAssistant."""
@@ -54,19 +57,20 @@ class ErrorReportAssistantTest(TestCaseBase):
         l.addHandler(rh)
         l.info("info message")
 
-# Comment this out because there is noone to close the dialogue
-#         error_detail="Test error"
-#         ass = _errorreportassistant.ErrorReportAssistant(error_detail=error_detail,
-#                                                                rotate_handler=rh)
-#
-#         assert ass._error_detail == error_detail
+        # Comment this out because there is noone to close the dialogue
+        #         error_detail="Test error"
+        #         ass = _errorreportassistant.ErrorReportAssistant(error_detail=error_detail,
+        #                                                                rotate_handler=rh)
+        #
+        #         assert ass._error_detail == error_detail
 
         l.removeHandler(rh)
 
+
 def testSuite():
-    suite = unittest.makeSuite(ErrorReportAssistantTest,'test')
+    suite = unittest.makeSuite(ErrorReportAssistantTest, "test")
     return suite
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.TextTestRunner().run(testSuite())

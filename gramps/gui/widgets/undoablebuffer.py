@@ -31,6 +31,7 @@ __all__ = ["UndoableBuffer"]
 
 from gi.repository import Gtk
 
+
 class Stack(list):
     """
     Very simple stack implementation that cannot grow beyond an at init
@@ -38,20 +39,24 @@ class Stack(list):
     Inherits from list.
     Only append checks if this is really the case!
     """
+
     def __init__(self, stack_size=None):
         super(Stack, self).__init__()
         self.stack_size = stack_size
+
     def append(self, item):
         if self.stack_size and len(self) == self.stack_size:
             self.pop(0)
         return super(Stack, self).append(item)
 
+
 class UndoableInsert:
     """something that has been inserted into our textbuffer"""
+
     def __init__(self, text_iter, text, length, text_buffer):
         self.offset = text_iter.get_offset()
         self.text = str(text)
-        #unicode char can have length > 1 as it points in the buffer
+        # unicode char can have length > 1 as it points in the buffer
         charlength = len(str(text))
         self.length = charlength
         if charlength > 1 or self.text in ("\r", "\n", " "):
@@ -60,8 +65,10 @@ class UndoableInsert:
             self.mergeable = True
         self.tags = None
 
+
 class UndoableDelete:
     """something that has been deleted from our textbuffer"""
+
     def __init__(self, text_buffer, start_iter, end_iter):
         self.text = str(text_buffer.get_text(start_iter, end_iter, True))
         self.start = start_iter.get_offset()
@@ -79,15 +86,17 @@ class UndoableDelete:
             self.mergeable = True
         self.tags = None
 
+
 class UndoableBuffer(Gtk.TextBuffer):
     """text buffer with added undo capabilities
 
     designed as a drop-in replacement for gtksourceview,
     at least as far as undo is concerned"""
+
     insertclass = UndoableInsert
     deleteclass = UndoableDelete
 
-    #how many undo's are remembered
+    # how many undo's are remembered
     undo_stack_size = 700
 
     def __init__(self):
@@ -99,8 +108,8 @@ class UndoableBuffer(Gtk.TextBuffer):
         self.redo_stack = []
         self.not_undoable_action = False
         self.undo_in_progress = False
-        self.connect('insert-text', self.on_insert_text_undoable)
-        self.connect('delete-range', self.on_delete_range_undoable)
+        self.connect("insert-text", self.on_insert_text_undoable)
+        self.connect("delete-range", self.on_delete_range_undoable)
 
     @property
     def can_undo(self):
@@ -124,7 +133,7 @@ class UndoableBuffer(Gtk.TextBuffer):
             can't merge across word boundaries
             """
 
-            WHITESPACE = (' ', '\t')
+            WHITESPACE = (" ", "\t")
             if not cur.mergeable or not prev.mergeable:
                 return False
             elif cur.offset != (prev.offset + prev.length):
@@ -168,18 +177,16 @@ class UndoableBuffer(Gtk.TextBuffer):
             can't merge across word boundaries
             """
 
-            WHITESPACE = (' ', '\t')
+            WHITESPACE = (" ", "\t")
             if not cur.mergeable or not prev.mergeable:
                 return False
             elif prev.delete_key_used != cur.delete_key_used:
                 return False
             elif prev.start != cur.start and prev.start != cur.end:
                 return False
-            elif cur.text not in WHITESPACE and \
-               prev.text in WHITESPACE:
+            elif cur.text not in WHITESPACE and prev.text in WHITESPACE:
                 return False
-            elif cur.text in WHITESPACE and \
-               prev.text not in WHITESPACE:
+            elif cur.text in WHITESPACE and prev.text not in WHITESPACE:
                 return False
             return True
 
@@ -198,12 +205,11 @@ class UndoableBuffer(Gtk.TextBuffer):
             self.undo_stack.append(undo_action)
             return
         if can_be_merged(prev_delete, undo_action):
-            if prev_delete.start == undo_action.start: # delete key used
+            if prev_delete.start == undo_action.start:  # delete key used
                 prev_delete.text += undo_action.text
-                prev_delete.end += (undo_action.end - undo_action.start)
-            else: # Backspace used
-                prev_delete.text = "%s%s" % (undo_action.text,
-                                                     prev_delete.text)
+                prev_delete.end += undo_action.end - undo_action.start
+            else:  # Backspace used
+                prev_delete.text = "%s%s" % (undo_action.text, prev_delete.text)
                 prev_delete.start = undo_action.start
             self.undo_stack.append(prev_delete)
         else:
@@ -252,9 +258,7 @@ class UndoableBuffer(Gtk.TextBuffer):
 
     def _undo_insert(self, undo_action):
         start = self.get_iter_at_offset(undo_action.offset)
-        stop = self.get_iter_at_offset(
-            undo_action.offset + undo_action.length
-        )
+        stop = self.get_iter_at_offset(undo_action.offset + undo_action.length)
         self.delete(start, stop)
         self.place_cursor(self.get_iter_at_offset(undo_action.offset))
 
@@ -305,17 +309,26 @@ class UndoableBuffer(Gtk.TextBuffer):
     def _handle_redo(self, redo_action):
         raise NotImplementedError
 
+
 ## for test, run script as
 ## PYTHONPATH=$PYTHONPATH:~/gramps/trunk/src/ python gui/widgets/undoablebuffer.py
-if __name__ == '__main__':
+if __name__ == "__main__":
     test = Stack(5)
     if test:
-        print('WRONG: test is empty')
+        print("WRONG: test is empty")
     else:
-        print('CORRECT: test is empty')
+        print("CORRECT: test is empty")
 
-    test.append(0);test.append(1);test.append(2);test.append(3);test.append(4);
-    print('5 inserts', test)
-    test.append(5);test.append(6);test.append(7);test.append(8);test.append(9);
-    print('5 more inserts', test)
-    print('last element', test[-1])
+    test.append(0)
+    test.append(1)
+    test.append(2)
+    test.append(3)
+    test.append(4)
+    print("5 inserts", test)
+    test.append(5)
+    test.append(6)
+    test.append(7)
+    test.append(8)
+    test.append(9)
+    print("5 more inserts", test)
+    print("last element", test[-1])

@@ -23,21 +23,23 @@
 Provide the different Attribute Types for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .grampstype import GrampsType
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
+
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
-def _T_(value, context=''): # enable deferred translations
+def _T_(value, context=""):  # enable deferred translations
     return "%s\x04%s" % (context, value) if context else value
 
-class AttributeType(GrampsType):
 
+class AttributeType(GrampsType):
     UNKNOWN = -1
     CUSTOM = 0
     CASTE = 1
@@ -59,7 +61,7 @@ class AttributeType(GrampsType):
     _CUSTOM = CUSTOM
     _DEFAULT = ID
 
-    _BASEMAP = [ # allow deferred translation of attribute UI strings
+    _BASEMAP = [  # allow deferred translation of attribute UI strings
         (UNKNOWN, _T_("Unknown"), "Unknown"),
         (CUSTOM, _T_("Custom"), "Custom"),
         (CASTE, _T_("Caste"), "Caste"),
@@ -77,7 +79,7 @@ class AttributeType(GrampsType):
         (WITNESS, _T_("Witness"), "Witness"),
         (TIME, _T_("Time"), "Time"),
         (OCCUPATION, _T_("Occupation"), "Occupation"),
-        ]
+    ]
 
     _DATAMAP = [(base[0], _(base[1]), base[2]) for base in _BASEMAP]
 
@@ -90,7 +92,7 @@ class AttributeType(GrampsType):
         """
         if self.value == self.CUSTOM:
             return str(self)
-        elif self._BASEMAP[self.value+1]: # UNKNOWN is before CUSTOM, sigh
-            return self._BASEMAP[self.value+1][1]
+        elif self._BASEMAP[self.value + 1]:  # UNKNOWN is before CUSTOM, sigh
+            return self._BASEMAP[self.value + 1][1]
         else:
             return self.UNKNOWN

@@ -22,52 +22,59 @@
 
 """Provide the common export options for Exporters."""
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import COLON, GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
-ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
+ngettext = glocale.translation.ngettext  # else "nearby" comments are ignored
 from gramps.gen.config import config
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.filters import GenericFilter, rules
 from ...utils import ProgressMeter
 from ...user import User
-from gramps.gen.proxy import (PrivateProxyDb,
-                              LivingProxyDb,
-                              FilterProxyDb,
-                              ReferencedBySelectionProxyDb)
+from gramps.gen.proxy import (
+    PrivateProxyDb,
+    LivingProxyDb,
+    FilterProxyDb,
+    ReferencedBySelectionProxyDb,
+)
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Attempt to load the GZIP library. Some version of python do not seem
 # to be compiled with this available.
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 try:
     import gzip
+
     _gzip_ok = 1
 except:
     _gzip_ok = 0
+
 
 class Progress:
     """
     Mirros the same interface that the ExportAssistant uses in the
     selection, but this is for the preview selection.
     """
+
     def __init__(self, parent):
         from gi.repository import Gtk
-        self.pm = ProgressMeter(_("Selecting Preview Data"),
-                                _('Selecting...'),
-                                parent=parent)
+
+        self.pm = ProgressMeter(
+            _("Selecting Preview Data"), _("Selecting..."), parent=parent
+        )
         self.progress_cnt = 0
         self.title = _("Selecting...")
         while Gtk.events_pending():
@@ -75,6 +82,7 @@ class Progress:
 
     def reset(self, title):
         from gi.repository import Gtk
+
         self.pm.set_header(title)
         self.title = title
         while Gtk.events_pending():
@@ -82,12 +90,14 @@ class Progress:
 
     def set_total(self, count):
         from gi.repository import Gtk
-        self.pm.set_pass(self.title, total=count+1)
+
+        self.pm.set_pass(self.title, total=count + 1)
         while Gtk.events_pending():
             Gtk.main_iteration()
 
     def update(self, count):
         from gi.repository import Gtk
+
         self.pm.step()
         while Gtk.events_pending():
             Gtk.main_iteration()
@@ -96,17 +106,19 @@ class Progress:
         self.pm.step()
         self.pm.close()
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # WriterOptionBox
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class WriterOptionBox:
     """
     Create a VBox with the option widgets and define methods to retrieve
     the options.
 
     """
+
     def __init__(self, person, dbstate, uistate, track=[], window=None):
         self.person = person
         self.dbstate = dbstate
@@ -133,8 +145,8 @@ class WriterOptionBox:
         # The following are special properties. Create them to force the
         # export wizard to not ask for a file, and to override the
         # confirmation message:
-        #self.no_fileselect = True
-        #self.confirm_text = "You made it, kid!"
+        # self.no_fileselect = True
+        # self.confirm_text = "You made it, kid!"
 
     def set_config(self, config):
         """
@@ -157,6 +169,7 @@ class WriterOptionBox:
         """Build up a Gtk.Box that contains the standard options."""
         from gi.repository import Gtk
         from gi.repository import Pango
+
         widget = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 
         full_database_row = Gtk.Box()
@@ -164,9 +177,11 @@ class WriterOptionBox:
         full_database_row.pack_start(label, True, True, 0)
         people_count = len(self.dbstate.db.get_person_handles())
         # Translators: leave all/any {...} untranslated
-        button = Gtk.Button(label=ngettext("{number_of} Person",
-                                           "{number_of} People", people_count
-                                           ).format(number_of=people_count))
+        button = Gtk.Button(
+            label=ngettext(
+                "{number_of} Person", "{number_of} People", people_count
+            ).format(number_of=people_count)
+        )
         button.set_tooltip_text(_("Click to see preview of unfiltered data"))
         button.set_size_request(107, -1)
         button.connect("clicked", self.show_preview_data)
@@ -179,7 +194,8 @@ class WriterOptionBox:
         widget.pack_start(full_database_row, False, True, 0)
 
         self.private_check = Gtk.CheckButton.new_with_mnemonic(
-            _('_Do not include records marked private'))
+            _("_Do not include records marked private")
+        )
         self.private_check.connect("clicked", self.mark_dirty)
         self.private_check.set_active(self.get_proxy_value("privacy"))
 
@@ -205,30 +221,30 @@ class WriterOptionBox:
         widget.pack_start(hbox, False, True, 0)
 
         cell = Gtk.CellRendererText()
-        cell.set_property('ellipsize', Pango.EllipsizeMode.END)
+        cell.set_property("ellipsize", Pango.EllipsizeMode.END)
         self.filter_obj.pack_start(cell, True)
-        self.filter_obj.add_attribute(cell, 'text', 0)
+        self.filter_obj.add_attribute(cell, "text", 0)
         self.filter_obj.set_model(self.build_model("person"))
         self.filter_obj.set_active(self.get_proxy_value("person"))
 
         cell = Gtk.CellRendererText()
-        cell.set_property('ellipsize', Pango.EllipsizeMode.END)
+        cell.set_property("ellipsize", Pango.EllipsizeMode.END)
         self.restrict_option.pack_start(cell, True)
-        self.restrict_option.add_attribute(cell, 'text', 0)
+        self.restrict_option.add_attribute(cell, "text", 0)
         self.restrict_option.set_model(self.build_model("living"))
         self.restrict_option.set_active(self.get_proxy_value("living"))
 
         cell = Gtk.CellRendererText()
-        cell.set_property('ellipsize', Pango.EllipsizeMode.END)
+        cell.set_property("ellipsize", Pango.EllipsizeMode.END)
         self.reference_filter.pack_start(cell, True)
-        self.reference_filter.add_attribute(cell, 'text', 0)
+        self.reference_filter.add_attribute(cell, "text", 0)
         self.reference_filter.set_model(self.build_model("reference"))
         self.reference_filter.set_active(self.get_proxy_value("reference"))
 
         notes_cell = Gtk.CellRendererText()
-        notes_cell.set_property('ellipsize', Pango.EllipsizeMode.END)
+        notes_cell.set_property("ellipsize", Pango.EllipsizeMode.END)
         self.filter_note.pack_start(notes_cell, True)
-        self.filter_note.add_attribute(notes_cell, 'text', 0)
+        self.filter_note.add_attribute(notes_cell, "text", 0)
         self.filter_note.set_model(self.build_model("note"))
         self.filter_note.set_active(self.get_proxy_value("note"))
 
@@ -241,17 +257,16 @@ class WriterOptionBox:
     def show_preview_data(self, widget):
         from gramps.gen.dbstate import DbState
         from ..quick import run_quick_report_by_name
+
         if widget.proxy_name == "unfiltered":
             dbstate = self.dbstate
         else:
             dbstate = DbState()
             dbstate.db = self.proxy_dbase[widget.proxy_name]
             dbstate.open = True
-        run_quick_report_by_name(dbstate,
-                                 self.uistate,
-                                 'filterbyname',
-                                 'all',
-                                 track=self.track)
+        run_quick_report_by_name(
+            dbstate, self.uistate, "filterbyname", "all", track=self.track
+        )
 
     def preview(self, widget):
         """
@@ -259,7 +274,9 @@ class WriterOptionBox:
         """
         self.parse_options()
         pm = Progress(self.window)
-        self.preview_dbase = self.get_filtered_database(self.dbstate.db, pm, preview=True)
+        self.preview_dbase = self.get_filtered_database(
+            self.dbstate.db, pm, preview=True
+        )
         pm.close()
         self.preview_button.set_sensitive(0)
 
@@ -270,17 +287,20 @@ class WriterOptionBox:
         # Make a box and put the option in it:
         from gi.repository import Gtk
         from ...widgets import SimpleButton
+
         # Translators: leave all/any {...} untranslated
-        button = Gtk.Button(label=ngettext("{number_of} Person",
-                                           "{number_of} People", 0
-                                           ).format(number_of=0))
+        button = Gtk.Button(
+            label=ngettext("{number_of} Person", "{number_of} People", 0).format(
+                number_of=0
+            )
+        )
         button.set_size_request(107, -1)
         button.connect("clicked", self.show_preview_data)
         button.proxy_name = proxy_name
         if proxy_name == "person":
             # Frame Person:
             self.filter_obj = Gtk.ComboBox()
-            label = Gtk.Label(label=_('_Person Filter') + COLON)
+            label = Gtk.Label(label=_("_Person Filter") + COLON)
             label.set_halign(Gtk.Align.START)
             label.set_size_request(120, -1)
             label.set_margin_start(5)
@@ -291,15 +311,19 @@ class WriterOptionBox:
             box.pack_start(label, False, True, 0)
             box.pack_start(self.filter_obj, True, True, 0)
             box.pack_start(
-                SimpleButton('gtk-edit',
-                   lambda obj: self.edit_filter('Person', self.filter_obj)),
-                False, True, 0)
+                SimpleButton(
+                    "gtk-edit", lambda obj: self.edit_filter("Person", self.filter_obj)
+                ),
+                False,
+                True,
+                0,
+            )
             button.set_tooltip_text(_("Click to see preview after person filter"))
         elif proxy_name == "note":
             # Frame Note:
             # Objects for choosing a Note filter:
             self.filter_note = Gtk.ComboBox()
-            label_note = Gtk.Label(label=_('_Note Filter') + COLON)
+            label_note = Gtk.Label(label=_("_Note Filter") + COLON)
             label_note.set_halign(Gtk.Align.START)
             label_note.set_size_request(120, -1)
             label_note.set_margin_start(5)
@@ -310,9 +334,13 @@ class WriterOptionBox:
             box.pack_start(label_note, False, True, 0)
             box.pack_start(self.filter_note, True, True, 0)
             box.pack_start(
-                SimpleButton('gtk-edit',
-                   lambda obj: self.edit_filter('Note', self.filter_note)),
-                False, True, 0)
+                SimpleButton(
+                    "gtk-edit", lambda obj: self.edit_filter("Note", self.filter_note)
+                ),
+                False,
+                True,
+                0,
+            )
             button.set_tooltip_text(_("Click to see preview after note filter"))
         elif proxy_name == "privacy":
             # Frame 3:
@@ -340,7 +368,7 @@ class WriterOptionBox:
         elif proxy_name == "reference":
             # Frame 5:
             self.reference_filter = Gtk.ComboBox()
-            label = Gtk.Label(label=_('Reference Filter') + COLON)
+            label = Gtk.Label(label=_("Reference Filter") + COLON)
             label.set_halign(Gtk.Align.START)
             label.set_size_request(120, -1)
             label.set_margin_start(5)
@@ -360,20 +388,20 @@ class WriterOptionBox:
         up = Gtk.Button()
         up.connect("clicked", self.swap)
         if row == 0:
-            up.set_sensitive(0) # can't go up
+            up.set_sensitive(0)  # can't go up
         image = Gtk.Image()
-        image.set_from_icon_name('go-up', Gtk.IconSize.MENU)
+        image.set_from_icon_name("go-up", Gtk.IconSize.MENU)
         up.set_image(image)
         up.row = row - 1
         self.up_n.append(up)
         down = Gtk.Button()
         down.connect("clicked", self.swap)
         image = Gtk.Image()
-        image.set_from_icon_name('go-down', Gtk.IconSize.MENU)
+        image.set_from_icon_name("go-down", Gtk.IconSize.MENU)
         down.set_image(image)
         down.row = row
         if row == 4:
-            down.set_sensitive(0) # can't go down
+            down.set_sensitive(0)  # can't go down
         self.down_n.append(down)
         self.preview_proxy_button[proxy_name] = button
         self.preview_proxy_button[proxy_name].set_sensitive(0)
@@ -390,6 +418,7 @@ class WriterOptionBox:
         than show.
         """
         from gi.repository import Gtk
+
         if self.proxy_options_showing:
             self.advanced_button.set_label(_("Change order"))
             self.spacer_up.hide()
@@ -410,13 +439,13 @@ class WriterOptionBox:
                 up = Gtk.Button()
                 up.set_sensitive(0)
                 image = Gtk.Image()
-                image.set_from_icon_name('go-up', Gtk.IconSize.MENU)
+                image.set_from_icon_name("go-up", Gtk.IconSize.MENU)
                 up.set_image(image)
                 self.spacer.pack_start(up, False, True, 0)
                 down = Gtk.Button()
                 down.set_sensitive(0)
                 image = Gtk.Image()
-                image.set_from_icon_name('go-down', Gtk.IconSize.MENU)
+                image.set_from_icon_name("go-down", Gtk.IconSize.MENU)
                 down.set_image(image)
                 self.spacer.pack_end(down, False, True, 0)
                 self.spacer_up = up
@@ -435,8 +464,8 @@ class WriterOptionBox:
         """
         row1 = widget.row
         row2 = widget.row + 1
-        proxy1 = self.config.get('export.proxy-order')[row1][0]
-        proxy2 = self.config.get('export.proxy-order')[row2][0]
+        proxy1 = self.config.get("export.proxy-order")[row1][0]
+        proxy2 = self.config.get("export.proxy-order")[row2][0]
         widget1 = self.proxy_widget[proxy1]
         widget2 = self.proxy_widget[proxy2]
         parent1 = widget1.get_parent()
@@ -477,18 +506,24 @@ class WriterOptionBox:
         return [des, df, ans, com]
 
     def get_proxy_value(self, proxy_name):
-        return [value for (name, value) in
-                self.config.get('export.proxy-order') if name == proxy_name][0]
+        return [
+            value
+            for (name, value) in self.config.get("export.proxy-order")
+            if name == proxy_name
+        ][0]
 
     def set_proxy_value(self, proxy_name, proxy_value):
-        [name_value for name_value in
-         self.config.get('export.proxy-order') if name_value[0] == proxy_name][0][1] = int(proxy_value)
+        [
+            name_value
+            for name_value in self.config.get("export.proxy-order")
+            if name_value[0] == proxy_name
+        ][0][1] = int(proxy_value)
 
     def get_proxy_names(self):
-        return [name for (name, value) in self.config.get('export.proxy-order')]
+        return [name for (name, value) in self.config.get("export.proxy-order")]
 
     def swap_proxy_order(self, row1, row2):
-        po = self.config.get('export.proxy-order')
+        po = self.config.get("export.proxy-order")
         po[row1], po[row2] = po[row2], po[row1]
 
     def parse_options(self):
@@ -579,9 +614,10 @@ class WriterOptionBox:
                 people_count = len(dbase.get_person_handles())
                 self.preview_proxy_button[proxy_name].set_label(
                     # Translators: leave all/any {...} untranslated
-                    ngettext("{number_of} Person",
-                             "{number_of} People", people_count
-                            ).format(number_of=people_count) )
+                    ngettext(
+                        "{number_of} Person", "{number_of} People", people_count
+                    ).format(number_of=people_count)
+                )
         return dbase
 
     def apply_proxy(self, proxy_name, dbase, progress=None):
@@ -606,14 +642,13 @@ class WriterOptionBox:
                     progress.reset(_("Filtering living persons"))
                     progress.update(progress.progress_cnt)
                     progress.progress_cnt += 1
-                mode = [None, # include living
-                        LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY,
-                        LivingProxyDb.MODE_REPLACE_COMPLETE_NAME,
-                        LivingProxyDb.MODE_EXCLUDE_ALL,
-                       ][self.restrict_num]
-                dbase = LivingProxyDb(
-                            dbase,
-                            mode) #
+                mode = [
+                    None,  # include living
+                    LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY,
+                    LivingProxyDb.MODE_REPLACE_COMPLETE_NAME,
+                    LivingProxyDb.MODE_EXCLUDE_ALL,
+                ][self.restrict_num]
+                dbase = LivingProxyDb(dbase, mode)  #
 
         # If the filter returned by cfilter is not empty, apply the
         # FilterProxyDb (Person Filter)
@@ -623,8 +658,9 @@ class WriterOptionBox:
                     progress.reset(_("Applying selected person filter"))
                     progress.update(progress.progress_cnt)
                     progress.progress_cnt += 1
-                dbase = FilterProxyDb(dbase, self.cfilter,
-                                      user=User(parent=self.window))
+                dbase = FilterProxyDb(
+                    dbase, self.cfilter, user=User(parent=self.window)
+                )
 
         # Apply the Note Filter
         elif proxy_name == "note":
@@ -633,8 +669,9 @@ class WriterOptionBox:
                     progress.reset(_("Applying selected note filter"))
                     progress.update(progress.progress_cnt)
                     progress.progress_cnt += 1
-                dbase = FilterProxyDb(dbase, note_filter=self.nfilter,
-                                      user=User(parent=self.window))
+                dbase = FilterProxyDb(
+                    dbase, note_filter=self.nfilter, user=User(parent=self.window)
+                )
 
         # Apply the ReferencedBySelection
         elif proxy_name == "reference":
@@ -645,8 +682,7 @@ class WriterOptionBox:
             if self.reference_num == 0:
                 pass
             elif self.reference_num == 1:
-                dbase = ReferencedBySelectionProxyDb(dbase,
-                                                     all_people=True)
+                dbase = ReferencedBySelectionProxyDb(dbase, all_people=True)
         else:
             raise AttributeError("no such proxy '%s'" % proxy_name)
 
@@ -660,6 +696,7 @@ class WriterOptionBox:
         from ...editors import EditFilter
         from gramps.gen.filters import FilterList, GenericFilterFactory
         from gramps.gen.const import CUSTOM_FILTERS
+
         the_filter = None
         filterdb = FilterList(CUSTOM_FILTERS)
         filterdb.load()
@@ -675,14 +712,23 @@ class WriterOptionBox:
         else:
             the_filter = GenericFilterFactory(namespace)()
         if the_filter:
-            EditFilter(namespace, self.dbstate, self.uistate, self.track,
-                       the_filter, filterdb,
-                       lambda : self.edit_filter_save(filterdb, namespace))
-        else: # can't edit this filter
+            EditFilter(
+                namespace,
+                self.dbstate,
+                self.uistate,
+                self.track,
+                the_filter,
+                filterdb,
+                lambda: self.edit_filter_save(filterdb, namespace),
+            )
+        else:  # can't edit this filter
             from ...dialog import ErrorDialog
-            ErrorDialog(_("Cannot edit a system filter"),
-                        _("Please select a different filter to edit"),
-                        parent=self.window)
+
+            ErrorDialog(
+                _("Cannot edit a system filter"),
+                _("Please select a different filter to edit"),
+                parent=self.window,
+            )
 
     def edit_filter_save(self, filterdb, namespace):
         """
@@ -690,6 +736,7 @@ class WriterOptionBox:
         """
         from gramps.gen.filters import CustomFilters
         from gramps.gen.filters import reload_custom_filters
+
         filterdb.save()
         reload_custom_filters()
         if namespace == "Person":
@@ -708,6 +755,7 @@ class WriterOptionBox:
         from gi.repository import Gtk
         from gi.repository import GObject
         from gramps.gen.filters import CustomFilters
+
         if namespace == "person":
             # Populate the Person Filter
             entire_db = GenericFilter()
@@ -717,7 +765,7 @@ class WriterOptionBox:
             if self.person:
                 the_filters += self.__define_person_filters()
 
-            the_filters.extend(CustomFilters.get_filters('Person'))
+            the_filters.extend(CustomFilters.get_filters("Person"))
 
             model = Gtk.ListStore(GObject.TYPE_STRING, object)
             for item in the_filters:
@@ -727,7 +775,7 @@ class WriterOptionBox:
             entire_db = GenericFilter()
             entire_db.set_name(_("Include all selected notes"))
             notes_filters = [entire_db]
-            notes_filters.extend(CustomFilters.get_filters('Note'))
+            notes_filters.extend(CustomFilters.get_filters("Note"))
             model = Gtk.ListStore(GObject.TYPE_STRING, object)
             for item in notes_filters:
                 model.append(row=[item.get_name(), item])
@@ -735,11 +783,12 @@ class WriterOptionBox:
         elif namespace == "living":
             model = Gtk.ListStore(GObject.TYPE_STRING, int)
             row = 0
-            for item in [_('Include all selected people'),
-                         _('Replace given names of living people'),
-                         _('Replace complete name of living people'),
-                         _('Do not include living people'),
-                        ]:
+            for item in [
+                _("Include all selected people"),
+                _("Replace given names of living people"),
+                _("Replace complete name of living people"),
+                _("Do not include living people"),
+            ]:
                 model.append(row=[item, row])
                 row += 1
 
@@ -747,17 +796,20 @@ class WriterOptionBox:
             model = Gtk.ListStore(GObject.TYPE_STRING, int)
             row = 0
             for item in [
-                _('Include all selected records'),
-                _('Do not include records not linked to a selected person'),]:
+                _("Include all selected records"),
+                _("Do not include records not linked to a selected person"),
+            ]:
                 model.append(row=[item, row])
                 row += 1
 
         return model
 
+
 class WriterOptionBoxWithCompression(WriterOptionBox):
     """
     Extends the WriterOptionBox with option for using compression.
     """
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.use_compression = _gzip_ok
@@ -768,6 +820,7 @@ class WriterOptionBoxWithCompression(WriterOptionBox):
 
     def get_option_box(self):
         from gi.repository import Gtk
+
         option_box = super().get_option_box()
         self.use_compression_check = Gtk.CheckButton(label=_("Use Compression"))
         self.use_compression_check.set_active(1)

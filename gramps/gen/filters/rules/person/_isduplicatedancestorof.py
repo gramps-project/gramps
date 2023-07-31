@@ -19,35 +19,38 @@
 #
 # gen.filters.rules/Person/_IsDuplicatedAncestorOf.py
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # IsDuplicatedAncestorOf
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class IsDuplicatedAncestorOf(Rule):
     """Rule that checks for a person that is a duplicated ancestor of
     a specified person"""
 
-    labels = [ _('ID:')]
-    name = _('Duplicated ancestors of <person>')
+    labels = [_("ID:")]
+    name = _("Duplicated ancestors of <person>")
     category = _("Ancestral filters")
-    description = _("Matches people that are ancestors twice or more "
-                    "of a specified person")
+    description = _(
+        "Matches people that are ancestors twice or more " "of a specified person"
+    )
 
     def prepare(self, db, user):
         self.db = db
@@ -55,7 +58,7 @@ class IsDuplicatedAncestorOf(Rule):
         self.map2 = set()
         root_person = db.get_person_from_gramps_id(self.list[0])
         if root_person:
-            self.init_ancestor_list(db,root_person)
+            self.init_ancestor_list(db, root_person)
 
     def reset(self):
         self.map.clear()

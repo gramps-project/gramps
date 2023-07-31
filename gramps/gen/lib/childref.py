@@ -25,11 +25,11 @@
 """
 Child Reference class for Gramps.
 """
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .secondaryobj import SecondaryObject
 from .privacybase import PrivacyBase
 from .citationbase import CitationBase
@@ -38,13 +38,15 @@ from .refbase import RefBase
 from .childreftype import ChildRefType
 from .const import IDENTICAL, EQUAL, DIFFERENT
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Person References for Person/Family
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class ChildRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
     """
     Person reference class.
@@ -70,12 +72,14 @@ class ChildRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
         """
         Convert the object to a serialized tuple of data.
         """
-        return (PrivacyBase.serialize(self),
-                CitationBase.serialize(self),
-                NoteBase.serialize(self),
-                RefBase.serialize(self),
-                self.frel.serialize(),
-                self.mrel.serialize())
+        return (
+            PrivacyBase.serialize(self),
+            CitationBase.serialize(self),
+            NoteBase.serialize(self),
+            RefBase.serialize(self),
+            self.frel.serialize(),
+            self.mrel.serialize(),
+        )
 
     def unserialize(self, data):
         """
@@ -105,22 +109,21 @@ class ChildRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
             "title": _("Child Reference"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "private": {"type": "boolean",
-                            "title": _("Private")},
-                "citation_list": {"type": "array",
-                                  "items": {"type": "string",
-                                            "maxLength": 50},
-                                  "title": _("Citations")},
-                "note_list": {"type": "array",
-                              "items": {"type": "string",
-                                        "maxLength": 50},
-                              "title": _("Notes")},
-                "ref": {"type": "string",
-                        "maxLength": 50,
-                        "title": _("Handle")},
+                "private": {"type": "boolean", "title": _("Private")},
+                "citation_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Citations"),
+                },
+                "note_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Notes"),
+                },
+                "ref": {"type": "string", "maxLength": 50, "title": _("Handle")},
                 "frel": ChildRefType.get_schema(),
-                "mrel": ChildRefType.get_schema()
-            }
+                "mrel": ChildRefType.get_schema(),
+            },
         }
 
     def get_text_data_list(self):
@@ -159,10 +162,11 @@ class ChildRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        ret = self.get_referenced_note_handles() + \
-                self.get_referenced_citation_handles()
+        ret = (
+            self.get_referenced_note_handles() + self.get_referenced_citation_handles()
+        )
         if self.ref:
-            ret += [('Person', self.ref)]
+            ret += [("Person", self.ref)]
         return ret
 
     def get_handle_referents(self):

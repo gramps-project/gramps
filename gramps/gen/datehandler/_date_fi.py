@@ -40,6 +40,7 @@ from ._dateparser import DateParser
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
 
+
 # -------------------------------------------------------------------------
 #
 # Finnish parser
@@ -49,7 +50,6 @@ from ._datehandler import register_datehandler
 # - Parsing Finnish is much more complicated than English
 # -------------------------------------------------------------------------
 class DateParserFI(DateParser):
-
     # NOTE: these need to be in lower case because the "key" comparison
     # is done as lower case.  In the display method correct capitalization
     # can be used.

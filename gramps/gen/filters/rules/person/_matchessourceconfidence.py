@@ -19,28 +19,31 @@
 #
 # gen.filters.rules/Person/_MatchesSourceConfidence.py
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._matchessourceconfidencebase import MatchesSourceConfidenceBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # "Confidence level"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MatchesSourceConfidence(MatchesSourceConfidenceBase):
     """Persons matching a specific confidence level on its 'direct' source references"""
 
-    labels = [_('Confidence level:')]
-    name = _('Persons with at least one direct source >= <confidence level>')
-    description = _("Matches persons with at least one direct source with confidence level(s)")
-
+    labels = [_("Confidence level:")]
+    name = _("Persons with at least one direct source >= <confidence level>")
+    description = _(
+        "Matches persons with at least one direct source with confidence level(s)"
+    )

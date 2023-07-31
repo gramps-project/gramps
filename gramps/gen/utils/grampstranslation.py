@@ -24,20 +24,21 @@ language binding for the user interface and user-invoked language bindings
 for reports so that they can be created in a different language from the UI's.
 """
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import gettext
 import collections
 import inspect
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Translations Classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Lexeme(str):
     r"""
     Created with :meth:`~GrampsTranslations.lexgettext`
@@ -160,12 +161,15 @@ class Lexeme(str):
         """Dictionary of the lexeme forms"""
         return self._forms
 
+
 class GrampsTranslations(gettext.GNUTranslations):
     """
     Overrides and extends gettext.GNUTranslations. See the Python gettext
     "Class API" documentation for how to use this.
     """
+
     CONTEXT = "%s\x04%s"
+
     def __init__(self, fp=None):
         super().__init__(fp)
         self.lang = None
@@ -176,7 +180,7 @@ class GrampsTranslations(gettext.GNUTranslations):
         """
         return self.lang
 
-    def gettext(self, msgid, context=''):
+    def gettext(self, msgid, context=""):
         """
         Obtain translation of gettext, return a unicode object
 
@@ -213,7 +217,7 @@ class GrampsTranslations(gettext.GNUTranslations):
         """
         return gettext.GNUTranslations.ngettext(self, singular, plural, num)
 
-    def sgettext(self, msgid, context=''):
+    def sgettext(self, msgid, context=""):
         """
         Strip the context used for resolving translation ambiguities.
 
@@ -231,11 +235,11 @@ class GrampsTranslations(gettext.GNUTranslations):
         :returns: Translation or the original with context stripped.
         :rtype: unicode
         """
-        if '\x04' in msgid: # Deferred translation
-            context, msgid = msgid.split('\x04')
+        if "\x04" in msgid:  # Deferred translation
+            context, msgid = msgid.split("\x04")
         return self.gettext(msgid, context)
 
-    def lexgettext(self, msgid, context=''):
+    def lexgettext(self, msgid, context=""):
         """
         Extract all inflections of the same lexeme,
         stripping the '|'-separated context using :meth:`~sgettext`
@@ -259,9 +263,12 @@ class GrampsTranslations(gettext.GNUTranslations):
         :returns: Translation or the original with context stripped.
         :rtype: unicode (for option (1)) / Lexeme (option (2))
         """
-        variants = self.sgettext(msgid, context).split('|')
-        return Lexeme([v.split('=') for v in variants]
-                ) if len(variants) > 1 else variants[0]
+        variants = self.sgettext(msgid, context).split("|")
+        return (
+            Lexeme([v.split("=") for v in variants])
+            if len(variants) > 1
+            else variants[0]
+        )
 
     def pgettext(self, context, message):
         """
@@ -276,6 +283,7 @@ class GrampsTranslations(gettext.GNUTranslations):
             return message
         return tmsg
 
+
 class GrampsNullTranslations(gettext.NullTranslations):
     """
     Extends gettext.NullTranslations to provide the sgettext method.
@@ -283,7 +291,8 @@ class GrampsNullTranslations(gettext.NullTranslations):
     Note that it's necessary for msgid to be unicode. If it's not,
     neither will be the returned string.
     """
-    def gettext(self, msgid, context=''):
+
+    def gettext(self, msgid, context=""):
         """
         Apply the context if there is one, otherwise just pass it on.
         """
@@ -291,14 +300,14 @@ class GrampsNullTranslations(gettext.NullTranslations):
             return self.pgettext(context, msgid)
         return gettext.NullTranslations.gettext(self, msgid)
 
-    def sgettext(self, msgid, context=''):
+    def sgettext(self, msgid, context=""):
         """
         An old workaround to not having proper context msgids: The msgid
         is a single string with an ASCII Message Separator character
         between the context and the mssgid."
         """
-        if '\x04' in msgid: # Deferred translation
-            context, msgid = msgid.split('\x04')
+        if "\x04" in msgid:  # Deferred translation
+            context, msgid = msgid.split("\x04")
         return self.gettext(msgid, context)
 
     lexgettext = sgettext

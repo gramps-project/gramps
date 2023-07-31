@@ -23,22 +23,23 @@
 
 "Find people who are not related to the selected person"
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import GObject
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
-ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
+ngettext = glocale.translation.ngettext  # else "nearby" comments are ignored
 from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.plug import tool
@@ -51,30 +52,29 @@ from gramps.gui.glade import Glade
 from gramps.gen.lib import Tag
 from gramps.gen.db import DbTxn
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('Not_Related', 'manual')
+# -------------------------------------------------------------------------
+WIKI_HELP_PAGE = "%s_-_Tools" % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _("Not_Related", "manual")
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # NotRelated class
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class NotRelated(tool.ActivePersonTool, ManagedWindow):
-
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
-        tool.ActivePersonTool.__init__(self, dbstate, uistate, options_class,
-                                       name)
+        tool.ActivePersonTool.__init__(self, dbstate, uistate, options_class, name)
 
-        if self.fail:   # bug #2709 -- fail if we have no active person
+        if self.fail:  # bug #2709 -- fail if we have no active person
             return
 
-        person_handle = uistate.get_active('Person')
+        person_handle = uistate.get_active("Person")
         person = dbstate.db.get_person_from_handle(person_handle)
         self.name = person.get_primary_name().get_regular_name()
         self.title = _('Not related to "%s"') % self.name
@@ -85,48 +85,52 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
 
         topDialog = Glade()
 
-        topDialog.connect_signals({
-            "destroy_passed_object" : self.close,
-            "on_help_clicked"       : self.on_help_clicked,
-            "on_delete_event"       : self.close,
-        })
+        topDialog.connect_signals(
+            {
+                "destroy_passed_object": self.close,
+                "on_help_clicked": self.on_help_clicked,
+                "on_delete_event": self.close,
+            }
+        )
 
         window = topDialog.toplevel
         title = topDialog.get_object("title")
         self.set_window(window, title, self.title)
-        self.setup_configs('interface.notrelated', 450, 400)
+        self.setup_configs("interface.notrelated", 450, 400)
 
         self.tagcombo = topDialog.get_object("tagcombo")
         tagmodel = Gtk.ListStore(str)
         self.tagcombo.set_model(tagmodel)
         self.tagcombo.set_entry_text_column(0)
-        tagmodel.append((_('ToDo'),))
-        tagmodel.append((_('NotRelated'),))
+        tagmodel.append((_("ToDo"),))
+        tagmodel.append((_("NotRelated"),))
         self.tagcombo.set_sensitive(False)
 
         self.tagapply = topDialog.get_object("tagapply")
         self.tagapply.set_sensitive(False)
-        self.tagapply.connect('clicked', self.applyTagClicked)
+        self.tagapply.connect("clicked", self.applyTagClicked)
 
         # start the progress indicator
-        self.progress = ProgressMeter(self.title, _('Starting'),
-                                      parent=self.uistate.window)
+        self.progress = ProgressMeter(
+            self.title, _("Starting"), parent=self.uistate.window
+        )
 
         # setup the columns
         self.model = Gtk.TreeStore(
-            GObject.TYPE_STRING,    # 0==name
-            GObject.TYPE_STRING,    # 1==person gid
-            GObject.TYPE_STRING,    # 2==parents
-            GObject.TYPE_STRING,    # 3==tags
-            GObject.TYPE_STRING)    # 4==family gid (not shown to user)
+            GObject.TYPE_STRING,  # 0==name
+            GObject.TYPE_STRING,  # 1==person gid
+            GObject.TYPE_STRING,  # 2==parents
+            GObject.TYPE_STRING,  # 3==tags
+            GObject.TYPE_STRING,
+        )  # 4==family gid (not shown to user)
 
         # note -- don't assign the model to the tree until it has been populated,
         # otherwise the screen updates are terribly slow while names are appended
         self.treeView = topDialog.get_object("treeview")
-        col1 = Gtk.TreeViewColumn(_('Name'),    Gtk.CellRendererText(), text=0)
-        col2 = Gtk.TreeViewColumn(_('ID'),      Gtk.CellRendererText(), text=1)
-        col3 = Gtk.TreeViewColumn(_('Parents'), Gtk.CellRendererText(), text=2)
-        col4 = Gtk.TreeViewColumn(_('Tags'),    Gtk.CellRendererText(), text=3)
+        col1 = Gtk.TreeViewColumn(_("Name"), Gtk.CellRendererText(), text=0)
+        col2 = Gtk.TreeViewColumn(_("ID"), Gtk.CellRendererText(), text=1)
+        col3 = Gtk.TreeViewColumn(_("Parents"), Gtk.CellRendererText(), text=2)
+        col4 = Gtk.TreeViewColumn(_("Tags"), Gtk.CellRendererText(), text=3)
         col1.set_resizable(True)
         col2.set_resizable(True)
         col3.set_resizable(True)
@@ -136,8 +140,8 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
         col3.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
         col4.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
         col1.set_sort_column_id(0)
-#        col2.set_sort_column_id(1)
-#        col3.set_sort_column_id(2)
+        #        col2.set_sort_column_id(1)
+        #        col3.set_sort_column_id(2)
         col4.set_sort_column_id(3)
         self.treeView.append_column(col1)
         self.treeView.append_column(col2)
@@ -146,8 +150,8 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
         self.treeSelection = self.treeView.get_selection()
         self.treeSelection.set_mode(Gtk.SelectionMode.MULTIPLE)
         self.treeSelection.set_select_function(self.selectIsAllowed, None)
-        self.treeSelection.connect('changed', self.rowSelectionChanged)
-        self.treeView.connect('row-activated', self.rowActivated)
+        self.treeSelection.connect("changed", self.rowSelectionChanged)
+        self.treeView.connect("row-activated", self.rowActivated)
 
         # initialize a few variables we're going to need
         self.numberOfPeopleInDatabase = self.db.get_number_of_people()
@@ -170,12 +174,12 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
         # populate the treeview model with the names of unrelated people
         if self.numberOfUnrelatedPeople == 0:
             # feature request 2356: avoid genitive form
-            title.set_text(_('Everyone in the database is related to %s') % self.name)
+            title.set_text(_("Everyone in the database is related to %s") % self.name)
         else:
             self.populateModel()
             self.model.set_sort_column_id(0, Gtk.SortType.ASCENDING)
             self.treeView.set_model(self.model)
-#            self.treeView.set_row_separator_func(self.iterIsSeparator, None)
+            #            self.treeView.set_row_separator_func(self.iterIsSeparator, None)
             self.treeView.expand_all()
 
         # done searching through the database, so close the progress bar
@@ -183,27 +187,23 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
 
         self.show()
 
-
     def iterIsSeparator(self, model, iter):
         # return True only if the row is to be treated as a separator
-        if self.model.get_value(iter, 1) == '':  # does the row have a GID?
+        if self.model.get_value(iter, 1) == "":  # does the row have a GID?
             return True
         return False
-
 
     def selectIsAllowed(self, selection, model, path, isSelected, userData):
         # return True/False depending on if the row being selected is a leaf node
         iter = self.model.get_iter(path)
-        if self.model.get_value(iter, 1) == '': # does the row have a GID?
+        if self.model.get_value(iter, 1) == "":  # does the row have a GID?
             return False
         return True
-
 
     def rowSelectionChanged(self, selection):
         state = selection.count_selected_rows() > 0
         self.tagcombo.set_sensitive(state)
         self.tagapply.set_sensitive(state)
-
 
     def rowActivated(self, treeView, path, column):
         # first we need to check that the row corresponds to a person
@@ -211,7 +211,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
         personGid = self.model.get_value(iter, 1)
         familyGid = self.model.get_value(iter, 4)
 
-        if familyGid != '': # do we have a family?
+        if familyGid != "":  # do we have a family?
             # get the parent family for this person
             family = self.db.get_family_from_gramps_id(familyGid)
             if family:
@@ -220,7 +220,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
                 except WindowActiveError:
                     pass
 
-        elif personGid != '': # do we have a person?
+        elif personGid != "":  # do we have a person?
             # get the person that corresponds to this GID
             person = self.db.get_person_from_gramps_id(personGid)
             if person:
@@ -231,17 +231,15 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of Gramps manual"""
-        display_help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
+        display_help(WIKI_HELP_PAGE, WIKI_HELP_SEC)
 
-
-    def applyTagClicked(self, button) :
+    def applyTagClicked(self, button):
         progress = None
         rows = self.treeSelection.count_selected_rows()
         tag_name = str(self.tagcombo.get_active_text())
 
         # start the db transaction
         with DbTxn("Tag not related", self.db) as transaction:
-
             tag = self.db.get_tag_from_name(tag_name)
             if not tag:
                 # create the tag if it doesn't already exist
@@ -254,16 +252,17 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
 
             # if more than 1 person is selected, use a progress indicator
             if rows > 1:
-                progress = ProgressMeter(self.title, _('Starting'),
-                                         parent=self.window)
+                progress = ProgressMeter(self.title, _("Starting"), parent=self.window)
                 progress.set_pass(
                     # Translators: leave all/any {...} untranslated
-                    #TRANS: no singular form needed, as rows is always > 1
-                    ngettext("Setting tag for {number_of} person",
-                             "Setting tag for {number_of} people",
-                             rows).format(number_of=rows),
-                    rows)
-
+                    # TRANS: no singular form needed, as rows is always > 1
+                    ngettext(
+                        "Setting tag for {number_of} person",
+                        "Setting tag for {number_of} people",
+                        rows,
+                    ).format(number_of=rows),
+                    rows,
+                )
 
             # iterate through all of the selected rows
             (model, paths) = self.treeSelection.get_selected_rows()
@@ -283,7 +282,6 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
                 # save this change
                 self.db.commit_person(person, transaction)
 
-
         # refresh the tags column
         self.treeView.set_model(None)
         for path in paths:
@@ -298,24 +296,25 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
             progress.close()
 
     def findRelatedPeople(self):
-
         self.progress.set_pass(
             # Translators: leave all/any {...} untranslated
-            #TRANS: No singular form is needed.
-            ngettext("Finding relationships between {number_of} person",
-                     "Finding relationships between {number_of} people",
-                     self.numberOfPeopleInDatabase
-                    ).format(number_of=self.numberOfPeopleInDatabase),
-            self.numberOfPeopleInDatabase)
+            # TRANS: No singular form is needed.
+            ngettext(
+                "Finding relationships between {number_of} person",
+                "Finding relationships between {number_of} people",
+                self.numberOfPeopleInDatabase,
+            ).format(number_of=self.numberOfPeopleInDatabase),
+            self.numberOfPeopleInDatabase,
+        )
 
         # as long as we have people we haven't processed yet, keep looping
         while len(self.handlesOfPeopleToBeProcessed) > 0:
             handle = self.handlesOfPeopleToBeProcessed.pop()
 
-### DEBUG DEBUG DEBUG
-#            if len(self.handlesOfPeopleAlreadyProcessed) > 50:
-#                break
-###
+            ### DEBUG DEBUG DEBUG
+            #            if len(self.handlesOfPeopleAlreadyProcessed) > 50:
+            #                break
+            ###
 
             # see if we've already processed this person
             if handle in self.handlesOfPeopleAlreadyProcessed:
@@ -335,8 +334,10 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
             for familyHandle in person.get_family_handle_list():
                 family = self.db.get_family_from_handle(familyHandle)
                 spouseHandle = utils.find_spouse(person, family)
-                if spouseHandle and \
-                  spouseHandle not in self.handlesOfPeopleAlreadyProcessed:
+                if (
+                    spouseHandle
+                    and spouseHandle not in self.handlesOfPeopleAlreadyProcessed
+                ):
                     self.handlesOfPeopleToBeProcessed.add(spouseHandle)
 
             # step 2 -- parents
@@ -344,11 +345,15 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
                 family = self.db.get_family_from_handle(familyHandle)
                 fatherHandle = family.get_father_handle()
                 motherHandle = family.get_mother_handle()
-                if fatherHandle and \
-                  fatherHandle not in self.handlesOfPeopleAlreadyProcessed:
+                if (
+                    fatherHandle
+                    and fatherHandle not in self.handlesOfPeopleAlreadyProcessed
+                ):
                     self.handlesOfPeopleToBeProcessed.add(fatherHandle)
-                if motherHandle and \
-                  motherHandle not in self.handlesOfPeopleAlreadyProcessed:
+                if (
+                    motherHandle
+                    and motherHandle not in self.handlesOfPeopleAlreadyProcessed
+                ):
                     self.handlesOfPeopleToBeProcessed.add(motherHandle)
 
             # step 3 -- siblings
@@ -356,8 +361,10 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
                 family = self.db.get_family_from_handle(familyHandle)
                 for childRef in family.get_child_ref_list():
                     childHandle = childRef.ref
-                    if childHandle and \
-                      childHandle not in self.handlesOfPeopleAlreadyProcessed:
+                    if (
+                        childHandle
+                        and childHandle not in self.handlesOfPeopleAlreadyProcessed
+                    ):
                         self.handlesOfPeopleToBeProcessed.add(childHandle)
 
             # step 4 -- children
@@ -365,56 +372,58 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
                 family = self.db.get_family_from_handle(familyHandle)
                 for childRef in family.get_child_ref_list():
                     childHandle = childRef.ref
-                    if childHandle and \
-                      childHandle not in self.handlesOfPeopleAlreadyProcessed:
+                    if (
+                        childHandle
+                        and childHandle not in self.handlesOfPeopleAlreadyProcessed
+                    ):
                         self.handlesOfPeopleToBeProcessed.add(childHandle)
 
-
     def findUnrelatedPeople(self):
-
         # update our numbers
         self.numberOfRelatedPeople = len(self.handlesOfPeopleAlreadyProcessed)
-        self.numberOfUnrelatedPeople = (self.numberOfPeopleInDatabase -
-                                        self.numberOfRelatedPeople)
+        self.numberOfUnrelatedPeople = (
+            self.numberOfPeopleInDatabase - self.numberOfRelatedPeople
+        )
 
         if self.numberOfUnrelatedPeople > 0:
             # we have at least 1 "unrelated" person to find
 
             self.progress.set_pass(
                 # Translators: leave all/any {...} untranslated
-                ngettext("Looking for {number_of} person",
-                         "Looking for {number_of} people",
-                         self.numberOfUnrelatedPeople
-                        ).format(number_of=self.numberOfUnrelatedPeople),
-                self.numberOfPeopleInDatabase)
+                ngettext(
+                    "Looking for {number_of} person",
+                    "Looking for {number_of} people",
+                    self.numberOfUnrelatedPeople,
+                ).format(number_of=self.numberOfUnrelatedPeople),
+                self.numberOfPeopleInDatabase,
+            )
 
             # loop through everyone in the database
             for handle in self.db.iter_person_handles():
-
                 self.progress.step()
 
                 # if this person is related, then skip to the next one
                 if handle in self.handlesOfPeopleAlreadyProcessed:
                     continue
 
-### DEBUG DEBUG DEBUG
-#                if len(self.handlesOfPeopleNotRelated) > 10:
-#                    break
-###
+                ### DEBUG DEBUG DEBUG
+                #                if len(self.handlesOfPeopleNotRelated) > 10:
+                #                    break
+                ###
 
                 # if we get here, we have someone who is "not related"
                 self.handlesOfPeopleNotRelated.add(handle)
 
-
     def populateModel(self):
-
         self.progress.set_pass(
             # Translators: leave all/any {...} untranslated
-            ngettext("Looking up the name of {number_of} person",
-                     "Looking up the names of {number_of} people",
-                     self.numberOfUnrelatedPeople
-                    ).format(number_of=self.numberOfUnrelatedPeople),
-            self.numberOfUnrelatedPeople)
+            ngettext(
+                "Looking up the name of {number_of} person",
+                "Looking up the names of {number_of} people",
+                self.numberOfUnrelatedPeople,
+            ).format(number_of=self.numberOfUnrelatedPeople),
+            self.numberOfUnrelatedPeople,
+        )
 
         # loop through the entire list of unrelated people
         for handle in self.handlesOfPeopleNotRelated:
@@ -429,8 +438,8 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
             tag_list = self.get_tag_list(person)
 
             # find the names of the parents
-            familygid = ''
-            parentNames = ''
+            familygid = ""
+            parentNames = ""
             parentFamilyHandle = person.get_main_parents_family_handle()
             if parentFamilyHandle:
                 parentFamily = self.db.get_family_from_handle(parentFamilyHandle)
@@ -450,7 +459,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
                 if fatherName:
                     parentNames += fatherName
                 if fatherName and motherName:
-                    parentNames += ' & '
+                    parentNames += " & "
                 if motherName:
                     parentNames += motherName
 
@@ -461,16 +470,15 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
             # look for a node with a matching surname
             while iter:
                 if self.model.get_value(iter, 0) == surname:
-                    break;
+                    break
                 iter = self.model.iter_next(iter)
 
             # if we don't have a valid iter, then create a new top-level node
             if not iter:
-                iter = self.model.append(None, [surname, '', '', '', ''])
+                iter = self.model.append(None, [surname, "", "", "", ""])
 
             # finally, we now get to add this person to the model
-            self.model.append(iter, [name, gid, parentNames, tag_list,
-                                     familygid])
+            self.model.append(iter, [name, gid, parentNames, tag_list, familygid])
 
     def build_menu_names(self, obj):
         return (self.title, None)
@@ -485,17 +493,19 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
             tags.append(tag.get_name())
         tags.sort(key=glocale.sort_key)
         # TODO for Arabic, should the next line's comma be translated?
-        return ', '.join(tags)
+        return ", ".join(tags)
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # NotRelatedOptions
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class NotRelatedOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
+
     def __init__(self, name, person_id=None):
-        """ Initialize the options class """
+        """Initialize the options class"""
         tool.ToolOptions.__init__(self, name, person_id)

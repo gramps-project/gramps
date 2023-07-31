@@ -18,35 +18,38 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....utils.db import for_each_ancestor
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasCommonAncestorWith
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasCommonAncestorWith(Rule):
     """Rule that checks for a person that has a common ancestor with a specified person"""
 
-    labels = [ _('ID:') ]
-    name = _('People with a common ancestor with <person>')
+    labels = [_("ID:")]
+    name = _("People with a common ancestor with <person>")
     category = _("Ancestral filters")
-    description = _("Matches people that have a common ancestor "
-                    "with a specified person")
+    description = _(
+        "Matches people that have a common ancestor " "with a specified person"
+    )
 
     def prepare(self, db, user):
         self.db = db
@@ -84,7 +87,9 @@ class HasCommonAncestorWith(Rule):
                         if par and par.handle not in self.ancestor_cache:
                             self.add_ancs(db, par)
                         if par:
-                            self.ancestor_cache[person.handle] |= self.ancestor_cache[par.handle]
+                            self.ancestor_cache[person.handle] |= self.ancestor_cache[
+                                par.handle
+                            ]
                 if parentless_fam:
                     self.ancestor_cache[person.handle].add(fam_handle)
 
@@ -93,10 +98,11 @@ class HasCommonAncestorWith(Rule):
 
     def has_common_ancestor(self, other):
         for handle in self.with_people:
-            if ((handle in self.ancestor_cache and
-                 self.ancestor_cache[handle]) &
-                (other and other.handle in self.ancestor_cache and
-                 self.ancestor_cache[other.handle])):
+            if (handle in self.ancestor_cache and self.ancestor_cache[handle]) & (
+                other
+                and other.handle in self.ancestor_cache
+                and self.ancestor_cache[other.handle]
+            ):
                 return True
         return False
 

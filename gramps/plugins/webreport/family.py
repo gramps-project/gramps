@@ -38,35 +38,38 @@ Narrative Web Page generator.
 Classe:
     FamilyPage - Family index page and individual Family pages
 """
-#------------------------------------------------
+# ------------------------------------------------
 # python modules
-#------------------------------------------------
+# ------------------------------------------------
 from collections import defaultdict, OrderedDict
 from decimal import getcontext
 import logging
 
-#------------------------------------------------
+# ------------------------------------------------
 # Gramps module
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gen.lib import (EventType, Family, Name)
+from gramps.gen.lib import EventType, Family, Name
 from gramps.gen.plug.report import Bibliography
 from gramps.plugins.lib.libhtml import Html
 
-#------------------------------------------------
+# ------------------------------------------------
 # specific narrative web import
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
 from gramps.gen.display.name import displayer as _nd
-from gramps.plugins.webreport.common import (alphabet_navigation,
-                                             html_escape,
-                                             FULLCLEAR,
-                                             AlphabeticIndex,
-                                             get_surname_from_person)
+from gramps.plugins.webreport.common import (
+    alphabet_navigation,
+    html_escape,
+    FULLCLEAR,
+    AlphabeticIndex,
+    get_surname_from_person,
+)
 
 _ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb")
 getcontext().prec = 8
+
 
 #################################################
 #
@@ -85,6 +88,7 @@ class FamilyPages(BasePage):
     The base class 'BasePage' is initialised once for each page that is
     displayed.
     """
+
     def __init__(self, report, the_lang, the_title):
         """
         @param: report    -- The instance of the main report class
@@ -111,20 +115,29 @@ class FamilyPages(BasePage):
         message = _("Creating family pages...")
         index = 1
         progress_title = self.report.pgrs_title(the_lang)
-        with self.r_user.progress(progress_title, message,
-                                  len(self.report.obj_dict[Family]) + 1
-                                 ) as step:
+        with self.r_user.progress(
+            progress_title, message, len(self.report.obj_dict[Family]) + 1
+        ) as step:
             for family_handle in self.report.obj_dict[Family]:
                 step()
                 index += 1
                 self.familypage(self.report, the_lang, the_title, family_handle)
             step()
-            self.familylistpage(self.report, the_lang, the_title,
-                                self.report.obj_dict[Family].keys())
+            self.familylistpage(
+                self.report, the_lang, the_title, self.report.obj_dict[Family].keys()
+            )
 
-
-    def __output_family(self, ldatec, family_handle, person_handle,
-                        tbody, letter, bucket_link, first_person, first_family):
+    def __output_family(
+        self,
+        ldatec,
+        family_handle,
+        person_handle,
+        tbody,
+        letter,
+        bucket_link,
+        first_person,
+        first_family,
+    ):
         """
         Generate and output the data for a single family
 
@@ -156,10 +169,10 @@ class FamilyPages(BasePage):
             first_family = False
             # Update the ColumnRowLabel cell
             trow.attr = 'class="BeginLetter BeginFamily"'
-            ttle = self._("Families beginning with "
-                "letter ")
-            tcell += Html("a", letter, name=letter, title=ttle + letter,
-                          id_=bucket_link)
+            ttle = self._("Families beginning with " "letter ")
+            tcell += Html(
+                "a", letter, name=letter, title=ttle + letter, id_=bucket_link
+            )
             #  and create the populated ColumnPartner for the person
             tcell = Html("td", class_="ColumnPartner")
             tcell += self.new_person_link(person_handle, uplink=self.uplink)
@@ -175,14 +188,17 @@ class FamilyPages(BasePage):
         else:
             # Create the blank ColumnPartner row for the person
             tcell = Html("td", class_="ColumnPartner")
-            tcell += '&nbsp;'
+            tcell += "&nbsp;"
             trow += tcell
 
         tcell = Html("td", class_="ColumnPartner")
         trow += tcell
-        tcell += self.family_link(family.get_handle(),
-                                  self.report.get_family_name(family),
-                                  family.get_gramps_id(), self.uplink)
+        tcell += self.family_link(
+            family.get_handle(),
+            self.report.get_family_name(family),
+            family.get_gramps_id(),
+            self.uplink,
+        )
         # family events; such as marriage and divorce
         # events
         fam_evt_ref_list = family.get_event_ref_list()
@@ -190,8 +206,7 @@ class FamilyPages(BasePage):
         tcell2 = Html("td", class_="ColumnDate", inline=True)
         trow += tcell1, tcell2
         if fam_evt_ref_list:
-            fam_evt_srt_ref_list = sorted(fam_evt_ref_list,
-                                          key=self.sort_on_grampsid)
+            fam_evt_srt_ref_list = sorted(fam_evt_ref_list, key=self.sort_on_grampsid)
             for evt_ref in fam_evt_srt_ref_list:
                 evt = self.r_db.get_event_from_handle(evt_ref.ref)
                 if evt:
@@ -201,15 +216,15 @@ class FamilyPages(BasePage):
                         if evt_type == EventType.MARRIAGE:
                             tcell1 += cell
                         else:
-                            tcell1 += '&nbsp;'
+                            tcell1 += "&nbsp;"
                         if evt_type == EventType.DIVORCE:
                             tcell2 += cell
                         else:
-                            tcell2 += '&nbsp;'
+                            tcell2 += "&nbsp;"
 
         else:
-            tcell1 += '&nbsp;'
-            tcell2 += '&nbsp;'
+            tcell1 += "&nbsp;"
+            tcell2 += "&nbsp;"
         first_family = False
         return (ldatec, first_person, first_family)
 
@@ -235,12 +250,14 @@ class FamilyPages(BasePage):
             outerwrapper += relationlist
 
             # Families list page message
-            msg = self._("This page contains an index of all the "
-                         "families/ relationships in the "
-                         "database, sorted by their family name/ surname. "
-                         "Clicking on a person&#8217;s "
-                         "name will take you to their "
-                         "family/ relationship&#8217;s page.")
+            msg = self._(
+                "This page contains an index of all the "
+                "families/ relationships in the "
+                "database, sorted by their family name/ surname. "
+                "Clicking on a person&#8217;s "
+                "name will take you to their "
+                "family/ relationship&#8217;s page."
+            )
             relationlist += Html("p", msg, id="description")
 
             # go through all the families, and construct a dictionary of all the
@@ -262,7 +279,7 @@ class FamilyPages(BasePage):
 
             # Assemble all the people, we no longer care about their families
             index = AlphabeticIndex(self.rlocale)
-            for (person_handle, dummy_family) in pers_fam_dict.items():
+            for person_handle, dummy_family in pers_fam_dict.items():
                 person = self.r_db.get_person_from_handle(person_handle)
                 surname = get_surname_from_person(self.r_db, person)
                 index.addRecord(surname, person_handle)
@@ -293,13 +310,14 @@ class FamilyPages(BasePage):
                 # set up page columns
                 trow.extend(
                     Html("th", trans, class_=colclass, inline=True)
-                    for trans, colclass in [(self._("Letter"),
-                                             "ColumnRowLabel"),
-                                            (self._("Person"), "ColumnPartner"),
-                                            (self._("Family"), "ColumnPartner"),
-                                            (self._("Marriage"), "ColumnDate"),
-                                            (self._("Divorce"), "ColumnDate")]
-                    )
+                    for trans, colclass in [
+                        (self._("Letter"), "ColumnRowLabel"),
+                        (self._("Person"), "ColumnPartner"),
+                        (self._("Family"), "ColumnPartner"),
+                        (self._("Marriage"), "ColumnDate"),
+                        (self._("Divorce"), "ColumnDate"),
+                    ]
+                )
 
                 tbody = Html("tbody")
                 table += tbody
@@ -326,34 +344,38 @@ class FamilyPages(BasePage):
                             person_surname = index.recordName
                             person_handle = index.recordData
                             if person_surname in surname_ppl_handle_dict.keys():
-                                surname_ppl_handle_dict[person_surname]\
-                                    .append(person_handle)
+                                surname_ppl_handle_dict[person_surname].append(
+                                    person_handle
+                                )
                             else:
-                                surname_ppl_handle_dict[person_surname] = \
-                                            [person_handle]
+                                surname_ppl_handle_dict[person_surname] = [
+                                    person_handle
+                                ]
                         first_person = True
-                        for (surname, handle_list) in \
-                                    surname_ppl_handle_dict.items():
+                        for surname, handle_list in surname_ppl_handle_dict.items():
                             # get person from sorted database list
                             for person_handle in sorted(
-                                    handle_list,
-                                    key=self.sort_on_name_and_grampsid):
-                                person = self.r_db.get_person_from_handle\
-                                                    (person_handle)
+                                handle_list, key=self.sort_on_name_and_grampsid
+                            ):
+                                person = self.r_db.get_person_from_handle(person_handle)
                                 if person:
-                                    family_list = person.\
-                                                    get_family_handle_list()
+                                    family_list = person.get_family_handle_list()
                                     first_family = True
                                     for family_handle in family_list:
-                                        (ldatec, first_person, first_family) \
-                                        = self.__output_family(ldatec,
-                                                               family_handle,
-                                                               person_handle,
-                                                               tbody,
-                                                               bucket_letter,
-                                                               bucket_link,
-                                                               first_person,
-                                                               first_family)
+                                        (
+                                            ldatec,
+                                            first_person,
+                                            first_family,
+                                        ) = self.__output_family(
+                                            ldatec,
+                                            family_handle,
+                                            person_handle,
+                                            tbody,
+                                            bucket_letter,
+                                            bucket_link,
+                                            first_person,
+                                            first_family,
+                                        )
 
         # add clearline for proper styling
         # add footer section
@@ -377,8 +399,7 @@ class FamilyPages(BasePage):
         family = report.database.get_family_from_handle(family_handle)
         if not family:
             return
-        BasePage.__init__(self, report, the_lang, the_title,
-                          family.get_gramps_id())
+        BasePage.__init__(self, report, the_lang, the_title, family.get_gramps_id())
         ldatec = family.get_change_time()
 
         self.bibli = Bibliography()
@@ -393,8 +414,9 @@ class FamilyPages(BasePage):
         familydetailpage, head, dummy_body, outerwrapper = result
 
         # begin FamilyDetaill division
-        with Html("div", class_="content",
-                  id="RelationshipDetail") as relationshipdetail:
+        with Html(
+            "div", class_="content", id="RelationshipDetail"
+        ) as relationshipdetail:
             outerwrapper += relationshipdetail
 
             # family media list for initial thumbnail
@@ -408,8 +430,13 @@ class FamilyPages(BasePage):
                         fname = "/".join(["css", "lightbox.css"])
                         jsname = "/".join(["css", "lightbox.js"])
                     url = self.report.build_url_fname(fname, None, self.uplink)
-                    head += Html("link", href=url, type="text/css",
-                                 media="screen", rel="stylesheet")
+                    head += Html(
+                        "link",
+                        href=url,
+                        type="text/css",
+                        media="screen",
+                        rel="stylesheet",
+                    )
                     url = self.report.build_url_fname(jsname, None, self.uplink)
                     head += Html("script", src=url, type="text/javascript", inline=True)
                 # If Event pages are not being created, then we need to display
@@ -419,20 +446,25 @@ class FamilyPages(BasePage):
                         event = self.r_db.get_event_from_handle(evt_ref.ref)
                         media_list += event.get_media_list()
 
-            relationshipdetail += Html(
-                "h2", self.page_title, inline=True) + (
-                    Html('sup') + (Html('small') +
-                                   self.get_citation_links(
-                                       family.get_citation_list())))
+            relationshipdetail += Html("h2", self.page_title, inline=True) + (
+                Html("sup")
+                + (Html("small") + self.get_citation_links(family.get_citation_list()))
+            )
             # Tags
             tags = self.show_tags(family)
             if tags and self.report.inc_tags:
-                trow = Html("table", class_='tags') + (Html("tr") + (
-                    Html("td", self._("Tags") + self._(":"),
-                         class_="ColumnAttribute", inline=True),
-                    Html("td", tags,
-                         class_="ColumnValue", inline=True),
-                    ))
+                trow = Html("table", class_="tags") + (
+                    Html("tr")
+                    + (
+                        Html(
+                            "td",
+                            self._("Tags") + self._(":"),
+                            class_="ColumnAttribute",
+                            inline=True,
+                        ),
+                        Html("td", tags, class_="ColumnValue", inline=True),
+                    )
+                )
                 relationshipdetail += trow
 
             # display relationships
@@ -465,14 +497,15 @@ class FamilyPages(BasePage):
 
             # for use in family map pages...
             if self.report.options["familymappages"]:
-                name_format = self.report.options['name_format']
+                name_format = self.report.options["name_format"]
                 father = mother = None
                 with self.create_toggle("map") as h4_head:
                     relationshipdetail += h4_head
                     h4_head += self._("Family Map")
-                    disp = "none" if self.report.options['toggle'] else "block"
-                    with Html("div", style="display:%s" % disp,
-                              id="toggle_map") as toggle:
+                    disp = "none" if self.report.options["toggle"] else "block"
+                    with Html(
+                        "div", style="display:%s" % disp, id="toggle_map"
+                    ) as toggle:
                         relationshipdetail += toggle
                         mapdetail = Html("br")
                         fhdle = family.get_father_handle()
@@ -485,8 +518,7 @@ class FamilyPages(BasePage):
                             name = Name(primary_name)
                             name.set_display_as(name_format)
                             fname = html_escape(_nd.display_name(name))
-                            mapdetail += self.family_map_link_for_parent(fhdle,
-                                                                         fname)
+                            mapdetail += self.family_map_link_for_parent(fhdle, fname)
                         mapdetail += Html("br")
                         mhdle = family.get_mother_handle()
                         for handle, dummy_url in self.report.fam_link.items():
@@ -498,8 +530,7 @@ class FamilyPages(BasePage):
                             name = Name(primary_name)
                             name.set_display_as(name_format)
                             mname = html_escape(_nd.display_name(name))
-                            mapdetail += self.family_map_link_for_parent(mhdle,
-                                                                         mname)
+                            mapdetail += self.family_map_link_for_parent(mhdle, mname)
                         toggle += mapdetail
 
             # source references
@@ -525,5 +556,4 @@ class FamilyPages(BasePage):
         """
         url = self.report.fam_link[handle]
         title = self._("Family Map for %s") % name
-        return Html("a", title, href=url,
-                    title=title, class_="family_map", inline=True)
+        return Html("a", title, href=url, title=title, class_="family_map", inline=True)

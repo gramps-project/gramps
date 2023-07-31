@@ -23,60 +23,63 @@
 Backend for SQLite database.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import sqlite3
 import os
 import re
 import logging
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.plugins.db.dbapi.dbapi import DBAPI
 from gramps.gen.db.dbconst import ARRAYSIZE
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-sqlite3.paramstyle = 'qmark'
+sqlite3.paramstyle = "qmark"
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # SQLite class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class SQLite(DBAPI):
-
     def get_summary(self):
         """
         Return a dictionary of information about this database backend.
         """
         summary = super().get_summary()
-        summary.update({
-            _("Database version"): sqlite3.sqlite_version,
-            _("Database module version"): sqlite3.version,
-            _("Database module location"): sqlite3.__file__,
-        })
+        summary.update(
+            {
+                _("Database version"): sqlite3.sqlite_version,
+                _("Database module version"): sqlite3.version,
+                _("Database module location"): sqlite3.__file__,
+            }
+        )
         return summary
 
     def _initialize(self, directory, username, password):
-        if directory == ':memory:':
-            path_to_db = ':memory:'
+        if directory == ":memory:":
+            path_to_db = ":memory:"
         else:
-            path_to_db = os.path.join(directory, 'sqlite.db')
+            path_to_db = os.path.join(directory, "sqlite.db")
         self.dbapi = Connection(path_to_db)
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Connection class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Connection:
     """
     The Sqlite class is an interface between the DBAPI class which is the Gramps
@@ -101,7 +104,7 @@ class Connection:
         self.__cursor = self.__connection.cursor()
         self.__connection.create_function("regexp", 2, regexp)
         self.__collations = []
-        self.__tmap = str.maketrans('-.@=;', '_____')
+        self.__tmap = str.maketrans("-.@=;", "_____")
         self.check_collation(glocale)
 
     def check_collation(self, locale):
@@ -111,9 +114,9 @@ class Connection:
         :param locale: Locale to be checked.
         :param type: A GrampsLocale object.
         """
-        #PySQlite3 permits only ascii alphanumerics and underscores in
-        #collation names so first translate any old-style Unicode locale
-        #delimiters to underscores.
+        # PySQlite3 permits only ascii alphanumerics and underscores in
+        # collation names so first translate any old-style Unicode locale
+        # delimiters to underscores.
         collation = locale.get_collation().translate(self.__tmap)
         if collation not in self.__collations:
             self.__connection.create_collation(collation, locale.strcoll)
@@ -177,9 +180,11 @@ class Connection:
         :returns: True if the table exists, false otherwise.
         :rtype: bool
         """
-        self.execute("SELECT COUNT(*) "
-                     "FROM sqlite_master "
-                     "WHERE type='table' AND name='%s';" % table)
+        self.execute(
+            "SELECT COUNT(*) "
+            "FROM sqlite_master "
+            "WHERE type='table' AND name='%s';" % table
+        )
         return self.fetchone()[0] != 0
 
     def close(self):
@@ -196,11 +201,11 @@ class Connection:
         return Cursor(self.__connection)
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Cursor class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Cursor:
     def __init__(self, connection):
         self.__connection = connection

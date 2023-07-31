@@ -40,7 +40,8 @@ LOG = logging.getLogger(".NarrativeWeb.BuchheimTree")
 
 _ = glocale.translation.sgettext
 
-#------------------------------------------------------------
+
+# ------------------------------------------------------------
 #
 # DrawTree - a Buchheim draw tree which implements the
 #   tree drawing algorithm of:
@@ -64,24 +65,24 @@ _ = glocale.translation.sgettext
 #   node but this implementation tracks the handle of the
 #   DB node identifying the person in the Gramps DB.  This is done
 #   to minimize occupancy at any one time.
-#------------------------------------------------------------
+# ------------------------------------------------------------
 class DrawTree(object):
     def __init__(self, tree, parent=None, depth=0, number=1):
-        self.coord_x = -1.
+        self.coord_x = -1.0
         self.coord_y = depth
         self.width = self.coord_x
         self.height = self.coord_y
         self.tree = tree
-        self.children = [DrawTree(c, self, depth+1, i+1)
-                         for i, c
-                         in enumerate(tree.children)]
+        self.children = [
+            DrawTree(c, self, depth + 1, i + 1) for i, c in enumerate(tree.children)
+        ]
         self.parent = parent
         self.thread = None
         self.mod = 0
         self.ancestor = self
         self.change = self.shift = 0
         self._lmost_sibling = None
-        #this is the number of the node in its group of siblings 1..n
+        # this is the number of the node in its group of siblings 1..n
         self.number = number
 
     def left(self):
@@ -113,10 +114,10 @@ class DrawTree(object):
         """
         Return the leftmost sibling.
         """
-        if not self._lmost_sibling and self.parent and self != \
-                self.parent.children[0]:
+        if not self._lmost_sibling and self.parent and self != self.parent.children[0]:
             self._lmost_sibling = self.parent.children[0]
         return self._lmost_sibling
+
     lmost_sibling = property(get_lmost_sibling)
 
     def __str__(self):
@@ -132,13 +133,14 @@ class DrawTree(object):
         """
         return self.tree.handle
 
+
 def buchheim(tree, node_width, h_separation, node_height, v_separation):
     """
     Calculate the position of elements of the graph given a minimum
     generation width separation and minimum generation height separation.
     """
     draw_tree = firstwalk(DrawTree(tree), node_height, v_separation)
-    min_x = second_walk(draw_tree, 0, node_width+h_separation, 0)
+    min_x = second_walk(draw_tree, 0, node_width + h_separation, 0)
     if min_x < 0:
         third_walk(draw_tree, 0 - min_x)
     top = get_min_coord_y(draw_tree)
@@ -146,8 +148,9 @@ def buchheim(tree, node_width, h_separation, node_height, v_separation):
 
     return (draw_tree, top, height)
 
+
 def get_min_coord_y(tree, min_value=100.0):
-    """ Get the minimum coord_y """
+    """Get the minimum coord_y"""
     if tree.coord_y < min_value:
         min_value = tree.coord_y
     for child in tree.children:
@@ -156,8 +159,9 @@ def get_min_coord_y(tree, min_value=100.0):
             min_value = min_v
     return min_value
 
+
 def get_max_coord_y(tree, max_value=0.0):
-    """ Get the maximum coord_y """
+    """Get the maximum coord_y"""
     if tree.coord_y > max_value:
         max_value = tree.coord_y
     for child in tree.children:
@@ -165,6 +169,7 @@ def get_max_coord_y(tree, max_value=0.0):
         if max_value < max_v:
             max_value = max_v
     return max_value
+
 
 def third_walk(tree, adjust):
     """
@@ -176,6 +181,7 @@ def third_walk(tree, adjust):
     for child in tree.children:
         third_walk(child, adjust)
 
+
 def firstwalk(tree, node_height, v_separation):
     """
     Determine horizontal positions.
@@ -184,13 +190,14 @@ def firstwalk(tree, node_height, v_separation):
         if tree.lmost_sibling:
             tree.coord_y = tree.lbrother().coord_y + node_height + v_separation
         else:
-            tree.coord_y = 0.
+            tree.coord_y = 0.0
     else:
         default_ancestor = tree.children[0]
         for child in tree.children:
             firstwalk(child, node_height, v_separation)
             default_ancestor = apportion(
-                child, default_ancestor, node_height + v_separation)
+                child, default_ancestor, node_height + v_separation
+            )
             tree.height = max(tree.height, child.height)
             assert tree.width >= child.width
         execute_shifts(tree)
@@ -208,14 +215,15 @@ def firstwalk(tree, node_height, v_separation):
     tree.height = max(tree.height, tree.coord_y)
     return tree
 
+
 def apportion(tree, default_ancestor, v_separation):
     """
     Figure out relative positions of node in a tree.
     """
     brother = tree.lbrother()
     if brother is not None:
-        #in buchheim notation:
-        #i == inner; o == outer; r == right; l == left; r = +; l = -
+        # in buchheim notation:
+        # i == inner; o == outer; r == right; l == left; r = +; l = -
         vir = vor = tree
         vil = brother
         vol = tree.lmost_sibling
@@ -230,8 +238,7 @@ def apportion(tree, default_ancestor, v_separation):
             vor.ancestor = tree
             shift = (vil.coord_y + sil) - (vir.coord_y + sir) + v_separation
             if shift > 0:
-                move_subtree(ancestor(
-                    vil, tree, default_ancestor), tree, shift)
+                move_subtree(ancestor(vil, tree, default_ancestor), tree, shift)
                 sir = sir + shift
                 sor = sor + shift
             sil += vil.mod
@@ -281,6 +288,7 @@ def execute_shifts(tree):
         child.height = max(child.height, child.coord_y)
         tree.height = max(tree.height, child.height)
 
+
 def ancestor(vil, tree, default_ancestor):
     """
     The relevant text is at the bottom of page 7 of
@@ -305,8 +313,8 @@ def second_walk(tree, modifier=0, h_separation=0, width=0, min_x=None):
 
     for child in tree.children:
         min_x = second_walk(
-            child, modifier + tree.mod, h_separation,
-            width + h_separation, min_x)
+            child, modifier + tree.mod, h_separation, width + h_separation, min_x
+        )
         tree.width = max(tree.width, child.width)
         tree.height = max(tree.height, child.height)
 

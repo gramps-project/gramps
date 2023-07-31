@@ -18,27 +18,29 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasDayOfWeek
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasDayOfWeek(Rule):
     """Rule that matches an event occurring on a particular day of the week."""
 
-    labels = [ _('Day of Week:') ]
-    name = _('Events occurring on a particular day of the week')
-    description = _('Matches events occurring on a particular day of the week')
-    category = _('General filters')
+    labels = [_("Day of Week:")]
+    name = _("Events occurring on a particular day of the week")
+    description = _("Matches events occurring on a particular day of the week")
+    category = _("General filters")
 
     def apply(self, db, event):
         if not self.list[0]:

@@ -22,24 +22,31 @@
 
 """Reports/Text Reports/End of Line Report"""
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gramps.gen.errors import ReportError
-from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
-                                    TableStyle, TableCellStyle,
-                                    FONT_SANS_SERIF, INDEX_TYPE_TOC,
-                                    PARA_ALIGN_CENTER)
+from gramps.gen.plug.docgen import (
+    IndexMark,
+    FontStyle,
+    ParagraphStyle,
+    TableStyle,
+    TableCellStyle,
+    FONT_SANS_SERIF,
+    INDEX_TYPE_TOC,
+    PARA_ALIGN_CENTER,
+)
 from gramps.gen.plug.menu import PersonOption
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils
@@ -48,13 +55,14 @@ from gramps.gen.plug.report import stdoptions
 from gramps.gen.proxy import CacheProxyDb
 from gramps.gen.display.name import displayer as _nd
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # EndOfLineReport
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class EndOfLineReport(Report):
-    """ EndOfLine Report """
+    """EndOfLine Report"""
 
     def __init__(self, database, options, user):
         """
@@ -77,7 +85,7 @@ class EndOfLineReport(Report):
 
         menu = options.menu
 
-        self.set_locale(menu.get_option_by_name('trans').get_value())
+        self.set_locale(menu.get_option_by_name("trans").get_value())
 
         stdoptions.run_date_format_option(self, menu)
 
@@ -85,7 +93,7 @@ class EndOfLineReport(Report):
         stdoptions.run_living_people_option(self, menu, self._locale)
         self.database = CacheProxyDb(self.database)
 
-        pid = menu.get_option_by_name('pid').get_value()
+        pid = menu.get_option_by_name("pid").get_value()
         self.center_person = self.database.get_person_from_gramps_id(pid)
         if self.center_person is None:
             raise ReportError(_("Person %s is not in the Database") % pid)
@@ -131,10 +139,10 @@ class EndOfLineReport(Report):
                 mother_handle = family.get_mother_handle()
                 if father_handle:
                     father = self.database.get_person_from_handle(father_handle)
-                    self.get_eol(father, gen+1, new_pedigree)
+                    self.get_eol(father, gen + 1, new_pedigree)
                 if mother_handle:
                     mother = self.database.get_person_from_handle(mother_handle)
-                    self.get_eol(mother, gen+1, new_pedigree)
+                    self.get_eol(mother, gen + 1, new_pedigree)
 
                 if not father_handle or not mother_handle:
                     person_is_eol = True
@@ -163,12 +171,11 @@ class EndOfLineReport(Report):
 
         self.doc.start_paragraph("EOL-Subtitle")
         # feature request 2356: avoid genitive form
-        title = self._("All the ancestors of %s who are missing a parent"
-                      ) % pname
+        title = self._("All the ancestors of %s who are missing a parent") % pname
         self.doc.write_text(title)
         self.doc.end_paragraph()
 
-        self.doc.start_table('EolTable', 'EOL-Table')
+        self.doc.start_table("EolTable", "EOL-Table")
         for generation, handles in sorted(self.eol_map.items()):
             self.write_generation_row(generation)
             for person_handle, pedigrees in handles.items():
@@ -181,8 +188,8 @@ class EndOfLineReport(Report):
         Write out a row in the table showing the generation.
         """
         self.doc.start_row()
-        self.doc.start_cell('EOL_GenerationCell', 2)
-        self.doc.start_paragraph('EOL-Generation')
+        self.doc.start_cell("EOL_GenerationCell", 2)
+        self.doc.start_paragraph("EOL-Generation")
         self.doc.write_text(self._("Generation %d") % generation)
         self.doc.end_paragraph()
         self.doc.end_cell()
@@ -206,15 +213,16 @@ class EndOfLineReport(Report):
         if death_ref:
             event = self.database.get_event_from_handle(death_ref.ref)
             death_date = self._get_date(event.get_date_object())
-        dates = ''
+        dates = ""
         if birth_date or death_date:
             dates = " (%(birth_date)s - %(death_date)s)" % {
-                               'birth_date' : birth_date,
-                               'death_date' : death_date}
+                "birth_date": birth_date,
+                "death_date": death_date,
+            }
 
         self.doc.start_row()
-        self.doc.start_cell('EOL-TableCell', 2)
-        self.doc.start_paragraph('EOL-Normal')
+        self.doc.start_cell("EOL-TableCell", 2)
+        self.doc.start_paragraph("EOL-Normal")
         self.doc.write_text(name, mark)
         self.doc.write_text(dates)
         self.doc.end_paragraph()
@@ -233,20 +241,21 @@ class EndOfLineReport(Report):
             names.append(self._name_display.display(person))
         text = " -- ".join(names)
         self.doc.start_row()
-        self.doc.start_cell('EOL-TableCell')
+        self.doc.start_cell("EOL-TableCell")
         self.doc.end_cell()
-        self.doc.start_cell('EOL-TableCell')
-        self.doc.start_paragraph('EOL-Pedigree')
+        self.doc.start_cell("EOL-TableCell")
+        self.doc.start_paragraph("EOL-Pedigree")
         self.doc.write_text(text)
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.end_row()
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # EndOfLineOptions
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class EndOfLineOptions(MenuReportOptions):
     """
     Defines options and provides handling interface.
@@ -258,7 +267,7 @@ class EndOfLineOptions(MenuReportOptions):
         MenuReportOptions.__init__(self, name, dbase)
 
     def get_subject(self):
-        """ Return a string that describes the subject of the report. """
+        """Return a string that describes the subject of the report."""
         gid = self.__pid.get_value()
         person = self.__db.get_person_from_gramps_id(gid)
         return _nd.display(person)
@@ -305,7 +314,7 @@ class EndOfLineOptions(MenuReportOptions):
         para.set_bottom_margin(utils.pt2cm(6))
         para.set_font(font)
         para.set_alignment(PARA_ALIGN_CENTER)
-        para.set_description(_('The style used for the subtitle.'))
+        para.set_description(_("The style used for the subtitle."))
         default_style.add_paragraph_style("EOL-Subtitle", para)
 
         font = FontStyle()
@@ -314,7 +323,7 @@ class EndOfLineOptions(MenuReportOptions):
         para.set_font(font)
         para.set_top_margin(utils.pt2cm(6))
         para.set_bottom_margin(utils.pt2cm(6))
-        para.set_description(_('The basic style used for the text display.'))
+        para.set_description(_("The basic style used for the text display."))
         default_style.add_paragraph_style("EOL-Normal", para)
 
         font = FontStyle()
@@ -323,7 +332,7 @@ class EndOfLineOptions(MenuReportOptions):
         para = ParagraphStyle()
         para.set_font(font)
         para.set_top_margin(utils.pt2cm(6))
-        para.set_description(_('The style used for the generation header.'))
+        para.set_description(_("The style used for the generation header."))
         default_style.add_paragraph_style("EOL-Generation", para)
 
         font = FontStyle()
@@ -332,20 +341,20 @@ class EndOfLineOptions(MenuReportOptions):
         para.set_font(font)
         para.set_top_margin(0)
         para.set_bottom_margin(utils.pt2cm(6))
-        para.set_description(_('The style used for details.'))
+        para.set_description(_("The style used for details."))
         default_style.add_paragraph_style("EOL-Pedigree", para)
 
-        #Table Styles
+        # Table Styles
         cell = TableCellStyle()
-        default_style.add_cell_style('EOL-TableCell', cell)
+        default_style.add_cell_style("EOL-TableCell", cell)
 
         cell = TableCellStyle()
         cell.set_bottom_border(1)
-        default_style.add_cell_style('EOL_GenerationCell', cell)
+        default_style.add_cell_style("EOL_GenerationCell", cell)
 
         table = TableStyle()
         table.set_width(100)
         table.set_columns(2)
         table.set_column_width(0, 10)
         table.set_column_width(1, 90)
-        default_style.add_table_style('EOL-Table', table)
+        default_style.add_table_style("EOL-Table", table)

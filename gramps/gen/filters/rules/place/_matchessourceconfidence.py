@@ -19,27 +19,31 @@
 #
 # Filters/Rules/Person/_MatchesSourceConfidence.py
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._matchessourceconfidencebase import MatchesSourceConfidenceBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # "Confidence level"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MatchesSourceConfidence(MatchesSourceConfidenceBase):
     """Media matching a specific confidence level on its 'direct' source references"""
 
-    labels = [_('Confidence level:')]
-    name = _('Place with a direct source >= <confidence level>')
-    description = _("Matches places with at least one direct source with confidence level(s)")
+    labels = [_("Confidence level:")]
+    name = _("Place with a direct source >= <confidence level>")
+    description = _(
+        "Matches places with at least one direct source with confidence level(s)"
+    )

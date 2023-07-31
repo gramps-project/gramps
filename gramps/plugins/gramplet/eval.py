@@ -23,40 +23,43 @@
 """
 Provide a python evaluation window
 """
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # standard python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import sys
 from io import StringIO
 import traceback
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gtk modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # PythonEvaluation
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class PythonEvaluation(Gramplet):
     """
     Allows the user to evaluate python code.
     """
+
     def init(self):
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
@@ -75,10 +78,10 @@ class PythonEvaluation(Gramplet):
 
         bbox = Gtk.ButtonBox()
         apply_button = Gtk.Button(label=_("Apply"))
-        apply_button.connect('clicked', self.apply_clicked)
+        apply_button.connect("clicked", self.apply_clicked)
         bbox.pack_start(apply_button, False, False, 6)
         clear_button = Gtk.Button(label=_("Clear"))
-        clear_button.connect('clicked', self.clear_clicked)
+        clear_button.connect("clicked", self.clear_clicked)
         bbox.pack_start(clear_button, False, False, 6)
         self.top.pack_start(bbox, False, False, 6)
 
@@ -91,7 +94,7 @@ class PythonEvaluation(Gramplet):
         Add a text view to the interface.
         """
         label = Gtk.Label(halign=Gtk.Align.START)
-        label.set_markup('<b>%s</b>' % name)
+        label.set_markup("<b>%s</b>" % name)
         self.top.pack_start(label, False, False, 6)
         swin = Gtk.ScrolledWindow()
         swin.set_shadow_type(Gtk.ShadowType.IN)
@@ -101,8 +104,11 @@ class PythonEvaluation(Gramplet):
         return tview.get_buffer()
 
     def apply_clicked(self, obj):
-        text = str(self.ebuf.get_text(self.ebuf.get_start_iter(),
-                                      self.ebuf.get_end_iter(), False))
+        text = str(
+            self.ebuf.get_text(
+                self.ebuf.get_start_iter(), self.ebuf.get_end_iter(), False
+            )
+        )
 
         oldout = sys.stdout
         olderr = sys.stderr

@@ -22,32 +22,36 @@
 #
 # gen.filters.rules/_MatchesSourceConfidenceBase.py
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # "Confidence level"
 # Sources of an attribute of an event are ignored
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MatchesSourceConfidenceBase(Rule):
     """Objects with a specific confidence level on 'direct' Source references"""
 
-    labels = ['Confidence level:']
-    name = 'Object with at least one direct source >= <confidence level>'
-    description = "Matches objects with at least one direct source with confidence level(s)"
-    category = _('Citation/source filters')
+    labels = ["Confidence level:"]
+    name = "Object with at least one direct source >= <confidence level>"
+    description = (
+        "Matches objects with at least one direct source with confidence level(s)"
+    )
+    category = _("Citation/source filters")
 
     def apply(self, db, obj):
         required_conf = int(self.list[0])

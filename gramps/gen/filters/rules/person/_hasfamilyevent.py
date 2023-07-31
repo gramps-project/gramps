@@ -18,40 +18,39 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....datehandler import parser
 from ....display.place import displayer as place_displayer
 from ....lib.eventtype import EventType
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasFamilyEvent
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasFamilyEvent(Rule):
     """Rule that checks for a person who has a relationship event
     with a particular value"""
 
-    labels = [ _('Family event:'),
-                    _('Date:'),
-                    _('Place:'),
-                    _('Description:') ]
-    name = _('People with the family <event>')
+    labels = [_("Family event:"), _("Date:"), _("Place:"), _("Description:")]
+    name = _("People with the family <event>")
     description = _("Matches people with a family event of a particular value")
-    category = _('Event filters')
+    category = _("Event filters")
     allow_regex = True
 
     def prepare(self, db, user):
@@ -62,7 +61,7 @@ class HasFamilyEvent(Rule):
         except:
             pass
 
-    def apply(self,db,person):
+    def apply(self, db, person):
         for f_id in person.get_family_handle_list():
             f = db.get_family_from_handle(f_id)
             if not f:

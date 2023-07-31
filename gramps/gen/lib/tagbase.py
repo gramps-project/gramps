@@ -22,11 +22,12 @@
 TagBase class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # TagBase class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class TagBase:
     """
     Base class for tag-aware objects.
@@ -116,7 +117,7 @@ class TagBase:
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        return [('Tag', handle) for handle in self.tag_list]
+        return [("Tag", handle) for handle in self.tag_list]
 
     def _merge_tag_list(self, acquisition):
         """
@@ -151,4 +152,3 @@ class TagBase:
                 refs_list.pop(idx)
             else:
                 self.tag_list[idx] = new_handle
-

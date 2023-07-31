@@ -21,61 +21,61 @@
 
 __all__ = ["MaskedEntry", "ValidatableMaskedEntry"]
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 import string
 import sys
 
 import logging
+
 _LOG = logging.getLogger(".widgets.validatedmaskedentry")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import GObject
 from gi.repository import GLib
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Pango
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.errors import MaskError, ValidationError, WindowActiveError
 from .undoableentry import UndoableEntry
 from gramps.gen.constfunc import is_quartz
-#============================================================================
+
+# ============================================================================
 #
 # MaskedEntry and ValidatableMaskedEntry copied and merged from the Kiwi
 # project's ValidatableProxyWidgetMixin, KiwiEntry and ProxyEntry.
 #
 # http://www.async.com.br/projects/kiwi
 #
-#============================================================================
+# ============================================================================
 
 (DIRECTION_LEFT, DIRECTION_RIGHT) = (1, -1)
 
-(INPUT_ASCII_LETTER,
- INPUT_ALPHA,
- INPUT_ALPHANUMERIC,
- INPUT_DIGIT) = list(range(4))
+(INPUT_ASCII_LETTER, INPUT_ALPHA, INPUT_ALPHANUMERIC, INPUT_DIGIT) = list(range(4))
 
 INPUT_FORMATS = {
-    '0': INPUT_DIGIT,
-    'L': INPUT_ASCII_LETTER,
-    'A': INPUT_ALPHANUMERIC,
-    'a': INPUT_ALPHANUMERIC,
-    '&': INPUT_ALPHA,
-    }
+    "0": INPUT_DIGIT,
+    "L": INPUT_ASCII_LETTER,
+    "A": INPUT_ALPHANUMERIC,
+    "a": INPUT_ALPHANUMERIC,
+    "&": INPUT_ALPHA,
+}
 
 # Todo list: Other useful Masks
 #  9 - Digit, optional
@@ -83,14 +83,14 @@ INPUT_FORMATS = {
 #  C - Alpha, optional
 
 INPUT_CHAR_MAP = {
-    INPUT_ASCII_LETTER:     lambda text: text in string.ascii_letters,
-    INPUT_ALPHA:            str.isalpha,
-    INPUT_ALPHANUMERIC:     str.isalnum,
-    INPUT_DIGIT:            str.isdigit,
-    }
+    INPUT_ASCII_LETTER: lambda text: text in string.ascii_letters,
+    INPUT_ALPHA: str.isalpha,
+    INPUT_ALPHANUMERIC: str.isalnum,
+    INPUT_DIGIT: str.isdigit,
+}
 
-(COL_TEXT,
- COL_OBJECT) = list(range(2))
+(COL_TEXT, COL_OBJECT) = list(range(2))
+
 
 class MaskedEntry(UndoableEntry):
     """
@@ -105,30 +105,30 @@ class MaskedEntry(UndoableEntry):
     .. note:: Gramps does not use the mask feature at the moment, so that code
               path is not tested
     """
-    __gtype_name__ = 'MaskedEntry'
+
+    __gtype_name__ = "MaskedEntry"
 
     def __init__(self):
         self._block_changed = False
         UndoableEntry.__init__(self)
 
         # connect in UndoableEntry:
-        #self.connect('insert-text', self._on_insert_text)
-        #self.connect('delete-text', self._on_delete_text)
-        self.connect_after('grab-focus', self._after_grab_focus)
+        # self.connect('insert-text', self._on_insert_text)
+        # self.connect('delete-text', self._on_delete_text)
+        self.connect_after("grab-focus", self._after_grab_focus)
 
-        self.connect('changed', self._on_changed)
+        self.connect("changed", self._on_changed)
 
-        self.connect('focus', self._on_focus)
-        self.connect('focus-out-event', self._on_focus_out_event)
-        self.connect('move-cursor', self._on_move_cursor)
-        self.connect('button-press-event', self._on_button_press_event)
-        self.connect('notify::cursor-position',
-                     self._on_notify_cursor_position)
+        self.connect("focus", self._on_focus)
+        self.connect("focus-out-event", self._on_focus_out_event)
+        self.connect("move-cursor", self._on_move_cursor)
+        self.connect("button-press-event", self._on_button_press_event)
+        self.connect("notify::cursor-position", self._on_notify_cursor_position)
 
         self._completion = None
         self._exact_completion = False
         self.hasicon = False
-##        self._icon = IconEntry(self)
+        ##        self._icon = IconEntry(self)
 
         # List of validators
         #  str -> static characters
@@ -148,25 +148,25 @@ class MaskedEntry(UndoableEntry):
         self.in_do_draw = False
 
     # Virtual methods, note do_size_alloc needs gtk 2.9 +
-##    def do_size_allocate(self, allocation):
-##        Gtk.Entry.do_size_allocate(self, allocation)
-##
-##        if self.get_realized():
-##            self._icon.resize_windows()
+    ##    def do_size_allocate(self, allocation):
+    ##        Gtk.Entry.do_size_allocate(self, allocation)
+    ##
+    ##        if self.get_realized():
+    ##            self._icon.resize_windows()
 
-##    def do_draw(self, cairo_t):
-##        Gtk.Entry.do_draw(self, cairo_t)
-##
-##        if Gtk.cairo_should_draw_window(cairo_t, self.get_window()):
-##            self._icon.draw_pixbuf()
+    ##    def do_draw(self, cairo_t):
+    ##        Gtk.Entry.do_draw(self, cairo_t)
+    ##
+    ##        if Gtk.cairo_should_draw_window(cairo_t, self.get_window()):
+    ##            self._icon.draw_pixbuf()
 
-##    def do_realize(self):
-##        Gtk.Entry.do_realize(self)
-##        self._icon.construct()
+    ##    def do_realize(self):
+    ##        Gtk.Entry.do_realize(self)
+    ##        self._icon.construct()
 
-##    def do_unrealize(self):
-##        self._icon.deconstruct()
-##        Gtk.Entry.do_unrealize(self)
+    ##    def do_unrealize(self):
+    ##        self._icon.deconstruct()
+    ##        Gtk.Entry.do_unrealize(self)
 
     # Mask & Fields
 
@@ -238,10 +238,10 @@ class MaskedEntry(UndoableEntry):
     def get_field_text(self, field):
         if not self._mask:
             raise MaskError("a mask must be set before calling get_field_text")
-        #assert self._mask
+        # assert self._mask
         text = self.get_text()
         start, end = self._mask_fields[field]
-        return text[start: end].strip()
+        return text[start:end].strip()
 
     def get_fields(self):
         """
@@ -257,7 +257,7 @@ class MaskedEntry(UndoableEntry):
         """
         if not self._mask:
             raise MaskError("a mask must be set before calling get_fields")
-        #assert self._mask
+        # assert self._mask
 
         fields = []
 
@@ -282,10 +282,10 @@ class MaskedEntry(UndoableEntry):
         if end is None:
             end = len(self._mask_validators)
 
-        s = ''
+        s = ""
         for validator in self._mask_validators[start:end]:
             if isinstance(validator, int):
-                s += ' '
+                s += " "
             elif isinstance(validator, str):
                 s += validator
             else:
@@ -306,7 +306,7 @@ class MaskedEntry(UndoableEntry):
     def _get_field_ideal_pos(self, field):
         start, end = self._mask_fields[field]
         text = self.get_field_text(field)
-        pos = start+len(text)
+        pos = start + len(text)
         return pos
 
     def get_field(self):
@@ -334,8 +334,7 @@ class MaskedEntry(UndoableEntry):
             start, end = self._mask_fields[field]
             return end - start
 
-    def _shift_text(self, start, end, direction=DIRECTION_LEFT,
-                    positions=1):
+    def _shift_text(self, start, end, direction=DIRECTION_LEFT, positions=1):
         """
         Shift the text, to the right or left, n positions. Note that this
         does not change the entry text. It returns the shifted text.
@@ -348,7 +347,7 @@ class MaskedEntry(UndoableEntry):
                   direction provided.
         """
         text = self.get_text()
-        new_text = ''
+        new_text = ""
         validators = self._mask_validators
 
         if direction == DIRECTION_LEFT:
@@ -367,8 +366,9 @@ class MaskedEntry(UndoableEntry):
                 # so, it will be appended, to the new text.
                 # Otherwise, when shifting right, the char will be
                 # prepended.
-                next_pos = self._get_next_non_static_char_pos(i, direction,
-                                                              positions-1)
+                next_pos = self._get_next_non_static_char_pos(
+                    i, direction, positions - 1
+                )
 
                 # If its outside the bounds of the region, ignore it.
                 if not start <= next_pos <= end:
@@ -381,9 +381,9 @@ class MaskedEntry(UndoableEntry):
                         new_text = text[next_pos] + new_text
                 else:
                     if direction == DIRECTION_LEFT:
-                        new_text = new_text + ' '
+                        new_text = new_text + " "
                     else:
-                        new_text = ' ' + new_text
+                        new_text = " " + new_text
 
             else:
                 # Keep the static char where it is.
@@ -395,8 +395,7 @@ class MaskedEntry(UndoableEntry):
 
         return new_text
 
-    def _get_next_non_static_char_pos(self, pos, direction=DIRECTION_LEFT,
-                                      skip=0):
+    def _get_next_non_static_char_pos(self, pos, direction=DIRECTION_LEFT, skip=0):
         """
         Get next non-static char position, skiping some chars, if necessary.
 
@@ -405,7 +404,7 @@ class MaskedEntry(UndoableEntry):
         """
         text = self.get_text()
         validators = self._mask_validators
-        i = pos+direction+skip
+        i = pos + direction + skip
         while 0 <= i < len(text):
             if isinstance(validators[i], int):
                 return i
@@ -446,7 +445,7 @@ class MaskedEntry(UndoableEntry):
         if self._mask:
             empty = self.get_empty_mask()
         else:
-            empty = ''
+            empty = ""
 
         return text == empty
 
@@ -502,11 +501,11 @@ class MaskedEntry(UndoableEntry):
     def set_completion(self, completion):
         Gtk.Entry.set_completion(self, completion)
         # FIXME objects not supported yet, should it be at all?
-        #completion.set_model(Gtk.ListStore(str, object))
+        # completion.set_model(Gtk.ListStore(str, object))
         completion.set_model(Gtk.ListStore(GObject.TYPE_STRING))
         completion.set_text_column(0)
-        #completion.connect("match-selected",
-                           #self._on_completion__match_selected)
+        # completion.connect("match-selected",
+        # self._on_completion__match_selected)
 
         self._completion = Gtk.Entry.get_completion(self)
         self.set_exact_completion(self._exact_completion)
@@ -551,7 +550,7 @@ class MaskedEntry(UndoableEntry):
         self.set_text(model[iter][COL_TEXT])
         self.set_position(-1)
         # FIXME: Enable this at some point
-        #self.activate()
+        # self.activate()
 
     def _appers_later(self, char, start):
         """
@@ -595,9 +594,8 @@ class MaskedEntry(UndoableEntry):
 
         # If the char confirms to the mask, but is a static char, return the
         # position after that static char.
-        if (self._confirms_to_mask(pos, new) and
-            not isinstance(validators[pos], int)):
-            return pos+1
+        if self._confirms_to_mask(pos, new) and not isinstance(validators[pos], int):
+            return pos + 1
 
         # If does not confirms to mask:
         #  - Check if the char the user just tried to enter appers later.
@@ -605,40 +603,40 @@ class MaskedEntry(UndoableEntry):
         if not self._confirms_to_mask(pos, new):
             field = self._appers_later(new, pos)
             if field is not False:
-                pos = self.get_field_pos(field+1)
+                pos = self.get_field_pos(field + 1)
                 if pos is not None:
                     GLib.idle_add(self.set_position, pos)
             return pos
 
         return None
 
-#   When inserting new text, supose, the entry, at some time is like this,
-#   ahd the user presses '0', for instance:
-#   --------------------------------
-#   | ( 1 2 )   3 4 5   - 6 7 8 9  |
-#   --------------------------------
-#              ^ ^     ^
-#              S P     E
-#
-#   S - start of the field (start)
-#   E - end of the field (end)
-#   P - pos - where the new text is being inserted. (pos)
-#
-#   So, the new text will be:
-#
-#     the old text, from 0 until P
-#   + the new text
-#   + the old text, from P until the end of the field, shifted to the
-#     right
-#   + the old text, from the end of the field, to the end of the text.
-#
-#   After inserting, the text will be this:
-#   --------------------------------
-#   | ( 1 2 )   3 0 4 5 - 6 7 8 9  |
-#   --------------------------------
-#              ^   ^   ^
-#              S   P   E
-#
+    #   When inserting new text, supose, the entry, at some time is like this,
+    #   ahd the user presses '0', for instance:
+    #   --------------------------------
+    #   | ( 1 2 )   3 4 5   - 6 7 8 9  |
+    #   --------------------------------
+    #              ^ ^     ^
+    #              S P     E
+    #
+    #   S - start of the field (start)
+    #   E - end of the field (end)
+    #   P - pos - where the new text is being inserted. (pos)
+    #
+    #   So, the new text will be:
+    #
+    #     the old text, from 0 until P
+    #   + the new text
+    #   + the old text, from P until the end of the field, shifted to the
+    #     right
+    #   + the old text, from the end of the field, to the end of the text.
+    #
+    #   After inserting, the text will be this:
+    #   --------------------------------
+    #   | ( 1 2 )   3 0 4 5 - 6 7 8 9  |
+    #   --------------------------------
+    #              ^   ^   ^
+    #              S   P   E
+    #
 
     def _insert_at_pos(self, text, new, pos):
         """
@@ -657,21 +655,24 @@ class MaskedEntry(UndoableEntry):
         start, end = self._mask_fields[field]
 
         # Shift Right
-        new_text = (text[:pos] + new +
-                    self._shift_text(pos, end, DIRECTION_RIGHT)[1:] +
-                    text[end:])
+        new_text = (
+            text[:pos]
+            + new
+            + self._shift_text(pos, end, DIRECTION_RIGHT)[1:]
+            + text[end:]
+        )
 
         # Overwrite Right
-#        new_text = (text[:pos] + new +
-#                    text[pos+length:end]+
-#                    text[end:])
-        new_pos = pos+1
+        #        new_text = (text[:pos] + new +
+        #                    text[pos+length:end]+
+        #                    text[end:])
+        new_pos = pos + 1
         GLib.idle_add(self.set_position, new_pos)
 
         # If the field is full, jump to the next field
-        if len(self.get_field_text(field)) == self.get_field_length(field)-1:
-            GLib.idle_add(self.set_field, field+1, True)
-            self.set_field(field+1)
+        if len(self.get_field_text(field)) == self.get_field_length(field) - 1:
+            GLib.idle_add(self.set_field, field + 1, True)
+            self.set_field(field + 1)
 
         return new_pos, new_text
 
@@ -685,7 +686,7 @@ class MaskedEntry(UndoableEntry):
         new = str(new)
         pos = self.get_position()
 
-        self.stop_emission('insert-text')
+        self.stop_emission("insert-text")
 
         text = self.get_text()
         # Insert one char at a time
@@ -707,37 +708,37 @@ class MaskedEntry(UndoableEntry):
         ### mask not used in Gramps, following should work though
         ##UndoableEntry._on_insert_text(self, editable, text, len(text),0)
 
-#   When deleting some text, supose, the entry, at some time is like this:
-#   --------------------------------
-#   | ( 1 2 )   3 4 5 6 - 7 8 9 0  |
-#   --------------------------------
-#              ^ ^ ^   ^
-#              S s e   E
-#
-#   S - start of the field (_start)
-#   E - end of the field (_end)
-#   s - start of the text being deleted (start)
-#   e - end of the text being deleted (end)
-#
-#   end - start -> the number of characters being deleted.
-#
-#   So, the new text will be:
-#
-#     the old text, from 0 until the start of the text being deleted.
-#   + the old text, from the start of where the text is being deleted, until
-#     the end of the field, shifted to the left, end-start positions
-#   + the old text, from the end of the field, to the end of the text.
-#
-#   So, after the text is deleted, the entry will look like this:
-#
-#   --------------------------------
-#   | ( 1 2 )   3 5 6   - 7 8 9 0  |
-#   --------------------------------
-#                ^
-#                P
-#
-#   P = the position of the cursor after the deletion, witch is equal to
-#   start (s at the previous ilustration)
+    #   When deleting some text, supose, the entry, at some time is like this:
+    #   --------------------------------
+    #   | ( 1 2 )   3 4 5 6 - 7 8 9 0  |
+    #   --------------------------------
+    #              ^ ^ ^   ^
+    #              S s e   E
+    #
+    #   S - start of the field (_start)
+    #   E - end of the field (_end)
+    #   s - start of the text being deleted (start)
+    #   e - end of the text being deleted (end)
+    #
+    #   end - start -> the number of characters being deleted.
+    #
+    #   So, the new text will be:
+    #
+    #     the old text, from 0 until the start of the text being deleted.
+    #   + the old text, from the start of where the text is being deleted, until
+    #     the end of the field, shifted to the left, end-start positions
+    #   + the old text, from the end of the field, to the end of the text.
+    #
+    #   So, after the text is deleted, the entry will look like this:
+    #
+    #   --------------------------------
+    #   | ( 1 2 )   3 5 6   - 7 8 9 0  |
+    #   --------------------------------
+    #                ^
+    #                P
+    #
+    #   P = the position of the cursor after the deletion, witch is equal to
+    #   start (s at the previous ilustration)
 
     def _on_delete_text(self, editable, start, end):
         if self._block_delete:
@@ -746,22 +747,24 @@ class MaskedEntry(UndoableEntry):
             UndoableEntry._on_delete_text(self, editable, start, end)
             return
 
-        self.stop_emission('delete-text')
+        self.stop_emission("delete-text")
 
         pos = self.get_position()
         # Trying to delete an static char. Delete the char before that
-        if (0 < start < len(self._mask_validators)
+        if (
+            0 < start < len(self._mask_validators)
             and not isinstance(self._mask_validators[start], int)
-            and pos != start):
-            self._on_delete_text(editable, start-1, start)
+            and pos != start
+        ):
+            self._on_delete_text(editable, start - 1, start)
             ### mask not used in Gramps, following should work though
             ##UndoableEntry._on_delete_text(self, editable, start-1, start)
             return
 
-        field = self._get_field_at_pos(end-1)
+        field = self._get_field_at_pos(end - 1)
         # Outside a field. Cannot delete.
         if field is None:
-            self.set_position(end-1)
+            self.set_position(end - 1)
             return
         _start, _end = self._mask_fields[field]
 
@@ -773,18 +776,19 @@ class MaskedEntry(UndoableEntry):
         text = self.get_text()
 
         # Shift Left
-        new_text = (text[:start] +
-                    self._shift_text(start, _end, DIRECTION_LEFT,
-                                     end-start) +
-                    text[_end:])
+        new_text = (
+            text[:start]
+            + self._shift_text(start, _end, DIRECTION_LEFT, end - start)
+            + text[_end:]
+        )
 
         # Overwrite Left
-#        empty_mask = self.get_empty_mask()
-#        new_text = (text[:_start] +
-#                    text[_start:start] +
-#                    empty_mask[start:start+(end-start)] +
-#                    text[start+(end-start):_end] +
-#                    text[_end:])
+        #        empty_mask = self.get_empty_mask()
+        #        new_text = (text[:_start] +
+        #                    text[_start:start] +
+        #                    empty_mask[start:start+(end-start)] +
+        #                    text[start+(end-start):_end] +
+        #                    text[_end:])
 
         new_pos = start
 
@@ -817,11 +821,9 @@ class MaskedEntry(UndoableEntry):
         if not self._mask:
             return
 
-        if (direction == Gtk.DIR_TAB_FORWARD or
-            direction == Gtk.DIR_DOWN):
+        if direction == Gtk.DIR_TAB_FORWARD or direction == Gtk.DIR_DOWN:
             inc = 1
-        if (direction == Gtk.DIR_TAB_BACKWARD or
-            direction == Gtk.DIR_UP):
+        if direction == Gtk.DIR_TAB_BACKWARD or direction == Gtk.DIR_UP:
             inc = -1
 
         field = self._current_field
@@ -834,7 +836,7 @@ class MaskedEntry(UndoableEntry):
             return False
 
         if field < 0:
-            field = len(self._mask_fields)-1
+            field = len(self._mask_fields) - 1
 
         # grab_focus changes the selection, so we need to grab_focus before
         # making the selection.
@@ -881,7 +883,7 @@ class MaskedEntry(UndoableEntry):
 
     def _on_changed(self, widget):
         if self._block_changed:
-            self.stop_emission('changed')
+            self.stop_emission("changed")
 
     def _on_focus_out_event(self, widget, event):
         if not self._mask:
@@ -892,7 +894,7 @@ class MaskedEntry(UndoableEntry):
     def _on_move_cursor(self, entry, step, count, extend_selection):
         self._selecting = extend_selection
 
-    def _on_button_press_event(self, entry, event ):
+    def _on_button_press_event(self, entry, event):
         if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 1:
             self._selecting = True
         elif event.type == Gdk.EventType.BUTTON_RELEASE and event.button == 1:
@@ -913,8 +915,10 @@ class MaskedEntry(UndoableEntry):
 
     def prefill(self, itemdata, sort=False):
         if not isinstance(itemdata, (list, tuple)):
-            raise TypeError("'data' parameter must be a list or tuple of item "
-                            "descriptions, found %s") % type(itemdata)
+            raise TypeError(
+                "'data' parameter must be a list or tuple of item "
+                "descriptions, found %s"
+            ) % type(itemdata)
 
         completion = self._get_completion()
         model = completion.get_model()
@@ -929,21 +933,27 @@ class MaskedEntry(UndoableEntry):
 
         for item in itemdata:
             if item in values:
-                raise KeyError("Tried to insert duplicate value "
-                                   "%r into the entry" % item)
+                raise KeyError(
+                    "Tried to insert duplicate value " "%r into the entry" % item
+                )
             else:
                 values[item] = None
 
-            model.append((item, ))
+            model.append((item,))
 
-#number = (int, float, long)
+
+# number = (int, float, long)
 
 VALIDATION_ICON_WIDTH = 16
-MANDATORY_ICON = 'dialog-information'
-ERROR_ICON = 'process-stop'
+MANDATORY_ICON = "dialog-information"
+ERROR_ICON = "process-stop"
 DELAY_TIME = 2500
-READWRITE = (GObject.PARAM_READWRITE if GLib.check_version(2, 42, 0) else
-             GObject.ParamFlags.READWRITE)
+READWRITE = (
+    GObject.PARAM_READWRITE
+    if GLib.check_version(2, 42, 0)
+    else GObject.ParamFlags.READWRITE
+)
+
 
 class ValidatableMaskedEntry(MaskedEntry):
     """
@@ -954,36 +964,36 @@ class ValidatableMaskedEntry(MaskedEntry):
     of the instance.
     """
 
-    __gtype_name__ = 'ValidatableMaskedEntry'
+    __gtype_name__ = "ValidatableMaskedEntry"
 
     __gsignals__ = {
-        'content-changed': (GObject.SignalFlags.RUN_FIRST,
-                            None,
-                            ()),
-        'validation-changed': (GObject.SignalFlags.RUN_FIRST,
-                               None,
-                               (GObject.TYPE_BOOLEAN, )),
-        'validate': (GObject.SignalFlags.RUN_LAST,
-                     GObject.TYPE_PYOBJECT,
-                     (GObject.TYPE_PYOBJECT, )),
-        'changed': 'override',
+        "content-changed": (GObject.SignalFlags.RUN_FIRST, None, ()),
+        "validation-changed": (
+            GObject.SignalFlags.RUN_FIRST,
+            None,
+            (GObject.TYPE_BOOLEAN,),
+        ),
+        "validate": (
+            GObject.SignalFlags.RUN_LAST,
+            GObject.TYPE_PYOBJECT,
+            (GObject.TYPE_PYOBJECT,),
+        ),
+        "changed": "override",
     }
 
     __gproperties__ = {
-        'data-type': (GObject.TYPE_PYOBJECT,
-                       'Data Type of the widget',
-                       'Type object',
-                       READWRITE),
-        'mandatory': (GObject.TYPE_BOOLEAN,
-                      'Mandatory',
-                      'Mandatory',
-                      False,
-                      READWRITE),
+        "data-type": (
+            GObject.TYPE_PYOBJECT,
+            "Data Type of the widget",
+            "Type object",
+            READWRITE,
+        ),
+        "mandatory": (GObject.TYPE_BOOLEAN, "Mandatory", "Mandatory", False, READWRITE),
     }
 
     # FIXME put the data type support back
-    #allowed_data_types = (basestring, datetime.date, datetime.time,
-                          #datetime.datetime, object) + number
+    # allowed_data_types = (basestring, datetime.date, datetime.time,
+    # datetime.datetime, object) + number
 
     def __init__(self, data_type=None, error_icon=ERROR_ICON):
         self.data_type = None
@@ -998,47 +1008,47 @@ class ValidatableMaskedEntry(MaskedEntry):
         self.__delay_tag = None
 
         # FIXME put data type support back
-        #self.set_property('data-type', data_type)
+        # self.set_property('data-type', data_type)
 
     # Virtual methods
     def do_changed(self):
-        block_changed = getattr(self, '_block_changed', True)
+        block_changed = getattr(self, "_block_changed", True)
         if block_changed:
-            self.stop_emission_by_name('changed')
+            self.stop_emission_by_name("changed")
             return
-        self.emit('content-changed')
+        self.emit("content-changed")
         self.validate()
 
     def do_get_property(self, prop):
         """Return the gproperty's value."""
 
-        if prop.name == 'data-type':
+        if prop.name == "data-type":
             return self.data_type
-        elif prop.name == 'mandatory':
+        elif prop.name == "mandatory":
             return self.mandatory
         else:
-            raise AttributeError('unknown property %s' % prop.name)
+            raise AttributeError("unknown property %s" % prop.name)
 
     def do_set_property(self, prop, value):
         """Set the property of writable properties."""
 
-        if prop.name == 'data-type':
+        if prop.name == "data-type":
             if value is None:
                 self.data_type = value
                 return
 
             # FIXME put the data type support back
-            #if not issubclass(value, self.allowed_data_types):
-                #raise TypeError(
-                    #"%s only accept %s types, not %r"
-                    #% (self,
-                       #' or '.join([t.__name__ for t in self.allowed_data_types]),
-                       #value))
+            # if not issubclass(value, self.allowed_data_types):
+            # raise TypeError(
+            # "%s only accept %s types, not %r"
+            # % (self,
+            #' or '.join([t.__name__ for t in self.allowed_data_types]),
+            # value))
             self.data_type = value
-        elif prop.name == 'mandatory':
+        elif prop.name == "mandatory":
             self.mandatory = value
         else:
-            raise AttributeError('unknown or read only property %s' % prop.name)
+            raise AttributeError("unknown or read only property %s" % prop.name)
 
     # Public API
 
@@ -1075,8 +1085,9 @@ class ValidatableMaskedEntry(MaskedEntry):
 
         # If we're not visible or sensitive return a blank value, except
         # when forcing the validation
-        if not force and (not self.get_property('visible') or
-                          not self.get_property('sensitive')):
+        if not force and (
+            not self.get_property("visible") or not self.get_property("sensitive")
+        ):
             return None
 
         try:
@@ -1127,7 +1138,7 @@ class ValidatableMaskedEntry(MaskedEntry):
             self.__delay_tag = None
         self.set_stock(None)
         context = self.get_style_context()
-        context.remove_class('error')
+        context.remove_class("error")
 
     def set_invalid(self, text=None):
         """
@@ -1141,8 +1152,9 @@ class ValidatableMaskedEntry(MaskedEntry):
 
         self._set_valid_state(False)
 
-        generic_text = _("'%s' is not a valid value "
-                         "for this field") % self.get_text()
+        generic_text = (
+            _("'%s' is not a valid value " "for this field") % self.get_text()
+        )
 
         # If there is no error text, let's try with the default or
         # fall back to a generic one
@@ -1152,12 +1164,13 @@ class ValidatableMaskedEntry(MaskedEntry):
             text = generic_text
 
         try:
-            text.index('%s')
+            text.index("%s")
             text = text % self.get_text()
         except TypeError:
             # if text contains '%s' more than once
-            _LOG.error('There must be only one instance of "%s"'
-                      ' in validation error message')
+            _LOG.error(
+                'There must be only one instance of "%s"' " in validation error message"
+            )
             # fall back to a generic one so the error icon still have a tooltip
             text = generic_text
         except ValueError:
@@ -1168,7 +1181,7 @@ class ValidatableMaskedEntry(MaskedEntry):
 
         context = self.get_style_context()
         self.__delay_tag = GLib.timeout_add(DELAY_TIME, self.__delay_finished)
-        context.add_class('error')
+        context.add_class("error")
 
     def set_blank(self):
         """
@@ -1180,7 +1193,7 @@ class ValidatableMaskedEntry(MaskedEntry):
 
         if self.mandatory:
             self.set_stock(MANDATORY_ICON)
-            self.set_tooltip(_('This field is mandatory'))
+            self.set_tooltip(_("This field is mandatory"))
             valid = False
         else:
             valid = True
@@ -1201,7 +1214,7 @@ class ValidatableMaskedEntry(MaskedEntry):
         self._block_changed = True
         MaskedEntry.set_text(self, text)
         self._block_changed = False
-        self.emit('content-changed')
+        self.emit("content-changed")
 
         if pos < len(text):
             self.set_position(pos)
@@ -1216,7 +1229,7 @@ class ValidatableMaskedEntry(MaskedEntry):
         if self._valid == state:
             return
 
-        self.emit('validation-changed', state)
+        self.emit("validation-changed", state)
         self._valid = state
 
     def __delay_finished(self):
@@ -1236,47 +1249,52 @@ def main(args):
             return ValidationError(_("'%s' is not a valid date value"))
 
     win = Gtk.Window()
-    win.set_title('ValidatableMaskedEntry test window')
+    win.set_title("ValidatableMaskedEntry test window")
     win.set_position(Gtk.WindowPosition.CENTER)
-    #Set the mnemonic modifier on Macs to alt-ctrl so that it
-    #doesn't interfere with the extended keyboard, see
-    #https://gramps-project.org/bugs/view.php?id=6943
+    # Set the mnemonic modifier on Macs to alt-ctrl so that it
+    # doesn't interfere with the extended keyboard, see
+    # https://gramps-project.org/bugs/view.php?id=6943
     if is_quartz():
         win.set_mnemonic_modifier(
-            Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.MOD1_MASK)
+            Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.MOD1_MASK
+        )
+
     def cb(window, event):
         Gtk.main_quit()
-    win.connect('delete-event', cb)
+
+    win.connect("delete-event", cb)
 
     vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
     win.add(vbox)
 
-    label = Gtk.Label(label='Pre-filled entry validated against the given list:')
+    label = Gtk.Label(label="Pre-filled entry validated against the given list:")
     vbox.pack_start(label, True, True, 0)
 
     widget1 = ValidatableMaskedEntry(str)
     widget1.set_completion_mode(inline=True, popup=False)
     widget1.set_default_error_msg("'%s' is not a default Event")
-    #widget1.set_default_error_msg(widget1)
-    widget1.prefill(('Birth', 'Death', 'Conseption'))
-    #widget1.set_exact_completion(True)
+    # widget1.set_default_error_msg(widget1)
+    widget1.prefill(("Birth", "Death", "Conseption"))
+    # widget1.set_exact_completion(True)
     vbox.pack_start(widget1, True, False, 0)
 
-    label = Gtk.Label(label='Mandatory masked entry validated against user function:')
+    label = Gtk.Label(label="Mandatory masked entry validated against user function:")
     vbox.pack_start(label, True, True, 0)
 
-    #widget2 = ValidatableMaskedEntry(str, "#e0e0e0", error_icon=None)
+    # widget2 = ValidatableMaskedEntry(str, "#e0e0e0", error_icon=None)
     widget2 = ValidatableMaskedEntry()
-    widget2.set_mask('00/00/0000')
-    widget2.connect('validate', on_validate)
+    widget2.set_mask("00/00/0000")
+    widget2.connect("validate", on_validate)
     widget2.mandatory = True
     vbox.pack_start(widget2, True, False, 0)
 
     win.show_all()
     Gtk.main()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     import sys
+
     # fall back to root logger for testing
     _LOG = logging
     sys.exit(main(sys.argv))

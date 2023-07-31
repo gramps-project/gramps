@@ -25,14 +25,16 @@ From version 3.3 onwards, this is only kept to convert markers into tags
 when loading old database files.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .grampstype import GrampsType
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
+
 
 class MarkerType(GrampsType):
     """
@@ -52,7 +54,7 @@ class MarkerType(GrampsType):
         (CUSTOM, _("Custom"), "Custom"),
         (COMPLETE, _("Complete"), "Complete"),
         (TODO_TYPE, _("ToDo"), "ToDo"),
-        ]
+    ]
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)

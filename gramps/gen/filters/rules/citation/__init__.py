@@ -66,5 +66,5 @@ editor_rule_list = [
     MatchesSourceFilter,
     RegExpIdOf,
     RegExpSourceIdOf,
-    HasTag
+    HasTag,
 ]

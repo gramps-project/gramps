@@ -18,33 +18,36 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # "Families with incomplete events"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class FamilyWithIncompleteEvent(Rule):
     """Families with incomplete events"""
 
-    name = _('Families with incomplete events')
-    description = _("Matches people with missing date or "
-                    "place in an event of the family")
-    category = _('Event filters')
+    name = _("Families with incomplete events")
+    description = _(
+        "Matches people with missing date or " "place in an event of the family"
+    )
+    category = _("Event filters")
 
-    def apply(self,db,person):
+    def apply(self, db, person):
         for family_handle in person.get_family_handle_list():
             family = db.get_family_from_handle(family_handle)
             if family:

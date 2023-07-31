@@ -25,19 +25,23 @@
 Least recently used algorithm
 """
 
+
 class Node:
     """
     Node to be stored in the LRU structure
     """
+
     def __init__(self, prev, value):
         self.prev = prev
         self.value = value
         self.next = None
 
+
 class LRU:
     """
     Implementation of a length-limited O(1) LRU cache
     """
+
     def __init__(self, count):
         """
         Set count to 0 or 1 to disable.
@@ -63,7 +67,7 @@ class LRU:
         """
         Set the item in the LRU, removing an old entry if needed
         """
-        if self.count <= 1: # Disabled
+        if self.count <= 1:  # Disabled
             return
         if obj in self.data:
             del self[obj]

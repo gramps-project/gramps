@@ -25,6 +25,7 @@
 #
 # -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
@@ -43,7 +44,6 @@ from .._hasattributebase import HasAttributeBase
 class HasAttribute(HasAttributeBase):
     """Rule that checks for a repository with a particular attribute"""
 
-    labels = [_('Repository attribute:'), _('Value:')]
-    name = _('Repositories with the attribute <attribute>')
-    description = _("Matches repositories with the attribute "
-                    "of a particular value")
+    labels = [_("Repository attribute:"), _("Value:")]
+    name = _("Repositories with the attribute <attribute>")
+    description = _("Matches repositories with the attribute " "of a particular value")

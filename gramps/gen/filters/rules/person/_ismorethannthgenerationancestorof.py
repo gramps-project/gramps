@@ -18,35 +18,39 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # IsMoreThanNthGenerationAncestorOf
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class IsMoreThanNthGenerationAncestorOf(Rule):
     """Rule that checks for a person that is an ancestor of a specified person
     at least N generations away"""
 
-    labels = [ _('ID:'), _('Number of generations:') ]
-    name = _('Ancestors of <person> at least <N> generations away')
+    labels = [_("ID:"), _("Number of generations:")]
+    name = _("Ancestors of <person> at least <N> generations away")
     category = _("Ancestral filters")
-    description = _("Matches people that are ancestors "
-                    "of a specified person at least N generations away")
+    description = _(
+        "Matches people that are ancestors "
+        "of a specified person at least N generations away"
+    )
 
     def prepare(self, db, user):
         self.db = db
@@ -58,9 +62,9 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
                 self.init_ancestor_list(root_handle)
 
     def init_ancestor_list(self, root_handle):
-        queue = [(root_handle, 1)] # generation 1 is root
+        queue = [(root_handle, 1)]  # generation 1 is root
         while queue:
-            handle, gen = queue.pop(0) # pop off front of queue
+            handle, gen = queue.pop(0)  # pop off front of queue
             if gen > int(self.list[1]):
                 self.map.add(handle)
             gen += 1
@@ -80,5 +84,5 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
     def reset(self):
         self.map.clear()
 
-    def apply(self,db,person):
+    def apply(self, db, person):
         return person.handle in self.map

@@ -39,22 +39,22 @@ Narrative Web Page generator.
 Classe:
     ContactPage
 """
-#------------------------------------------------
+# ------------------------------------------------
 # python modules
-#------------------------------------------------
+# ------------------------------------------------
 from decimal import getcontext
 import logging
 
-#------------------------------------------------
+# ------------------------------------------------
 # Gramps module
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.utils.config import get_researcher
 from gramps.plugins.lib.libhtml import Html
 
-#------------------------------------------------
+# ------------------------------------------------
 # specific narrative web import
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
 from gramps.plugins.webreport.common import FULLCLEAR
 
@@ -62,10 +62,12 @@ _ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb")
 getcontext().prec = 8
 
+
 class ContactPage(BasePage):
     """
     This class is responsible for displaying information about the 'Researcher'
     """
+
     def __init__(self, report, the_lang, the_title):
         """
         @param: report    -- The instance of the main report class for
@@ -76,7 +78,7 @@ class ContactPage(BasePage):
         BasePage.__init__(self, report, the_lang, the_title)
 
         output_file, sio = self.report.create_file("contact")
-        result = self.write_header(self._('Contact'))
+        result = self.write_header(self._("Contact"))
         contactpage, head, dummy_body, outerwrapper = result
         ldatec = 0
 
@@ -85,48 +87,54 @@ class ContactPage(BasePage):
             outerwrapper += section
 
             # begin summaryarea division
-            with Html("div", id='summaryarea') as summaryarea:
+            with Html("div", id="summaryarea") as summaryarea:
                 section += summaryarea
 
-                contactimg = self.add_image('contactimg', head, 200)
+                contactimg = self.add_image("contactimg", head, 200)
                 if contactimg is not None:
                     summaryarea += contactimg
 
                 # get researcher information
                 res = get_researcher()
 
-                with Html("div", id='researcher') as researcher:
+                with Html("div", id="researcher") as researcher:
                     summaryarea += researcher
 
                     if res.name:
-                        res.name = res.name.replace(',,,', '')
+                        res.name = res.name.replace(",,,", "")
                         researcher += Html("h3", res.name, inline=True)
                     if res.addr:
-                        researcher += Html("span", res.addr,
-                                           id='streetaddress', inline=True)
+                        researcher += Html(
+                            "span", res.addr, id="streetaddress", inline=True
+                        )
                     if res.locality:
-                        researcher += Html("span", res.locality,
-                                           id="locality", inline=True)
+                        researcher += Html(
+                            "span", res.locality, id="locality", inline=True
+                        )
                     text = "".join([res.city, res.state, res.postal])
                     if text:
-                        city = Html("span", res.city, id='city', inline=True)
-                        state = Html("span", res.state, id='state', inline=True)
-                        postal = Html("span", res.postal, id='postalcode',
-                                      inline=True)
+                        city = Html("span", res.city, id="city", inline=True)
+                        state = Html("span", res.state, id="state", inline=True)
+                        postal = Html("span", res.postal, id="postalcode", inline=True)
                         researcher += (city, state, postal)
                     if res.country:
-                        researcher += Html("span", res.country,
-                                           id='country', inline=True)
+                        researcher += Html(
+                            "span", res.country, id="country", inline=True
+                        )
                     if res.email:
-                        researcher += Html("span", id='email') + (
-                            Html("a", res.email,
-                                 href='mailto:%s' % res.email, inline=True)
+                        researcher += Html("span", id="email") + (
+                            Html(
+                                "a",
+                                res.email,
+                                href="mailto:%s" % res.email,
+                                inline=True,
+                            )
                         )
 
                     # add clear line for proper styling
                     summaryarea += FULLCLEAR
 
-                    note_id = report.options['contactnote']
+                    note_id = report.options["contactnote"]
                     if note_id:
                         note = self.r_db.get_note_from_gramps_id(note_id)
                         if note:

@@ -22,30 +22,31 @@
 General utility functions useful for the generic plugin system
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import sys
 import os
 import datetime
 from io import StringIO, BytesIO
 import json
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # set up logging
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 LOG = logging.getLogger(".gen.plug")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ._pluginreg import make_environment
 from ..const import USER_PLUGINS
 from ...version import VERSION_TUPLE
@@ -54,13 +55,15 @@ from ..utils.configmanager import safe_eval
 from ..config import config
 from ..constfunc import mac
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Local utility functions for gen.plug
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def version_str_to_tup(sversion, positions):
     """
     Given a string version and positions count, returns a tuple of
@@ -76,14 +79,18 @@ def version_str_to_tup(sversion, positions):
         tup = (0,) * positions
     return tup[:positions]
 
+
 class newplugin:
     """
     Fake newplugin.
     """
+
     def __init__(self):
         globals()["register_results"].append({})
+
     def __setattr__(self, attr, value):
         globals()["register_results"][-1][attr] = value
+
 
 def register(ptype, **kwargs):
     """
@@ -97,12 +104,15 @@ def register(ptype, **kwargs):
     else:
         globals()["register_results"] = [retval]
 
+
 class Zipfile:
     """
     Class to duplicate the methods of tarfile.TarFile, for Python 2.5.
     """
+
     def __init__(self, buffer):
         import zipfile
+
         self.buffer = buffer
         self.zip_obj = zipfile.ZipFile(buffer)
 
@@ -117,7 +127,7 @@ class Zipfile:
                 os.mkdir(fullname)
         for name in self.get_files(names):
             fullname = os.path.join(path, name)
-            with open(fullname, 'wb') as outfile:
+            with open(fullname, "wb") as outfile:
                 outfile.write(self.zip_obj.read(name))
 
     def extractfile(self, name):
@@ -127,14 +137,17 @@ class Zipfile:
         >>> Zipfile(buffer).extractfile("Dir/dile.py").read()
         <Contents>
         """
+
         class ExtractFile:
             def __init__(self, zip_obj, name):
                 self.zip_obj = zip_obj
                 self.name = name
+
             def read(self):
                 data = self.zip_obj.read(self.name)
                 del self.zip_obj
                 return data
+
         return ExtractFile(self.zip_obj, name)
 
     def close(self):
@@ -173,6 +186,7 @@ class Zipfile:
         """
         return os.path.split(name)[1]
 
+
 def urlopen_maybe_no_check_cert(URL):
     """
     Similar to urllib.request.urlopen, but disables certificate
@@ -180,12 +194,14 @@ def urlopen_maybe_no_check_cert(URL):
     """
     context = None
     from urllib.request import urlopen
+
     if mac():
         from ssl import create_default_context, CERT_NONE
+
         context = create_default_context()
         context.check_hostname = False
         context.verify_mode = CERT_NONE
-    timeout = 10 # seconds
+    timeout = 10  # seconds
     fp = None
     try:
         fp = urlopen(URL, timeout=timeout, context=context)
@@ -193,25 +209,28 @@ def urlopen_maybe_no_check_cert(URL):
         fp = urlopen(URL, timeout=timeout)
     return fp
 
-def get_addons(project, url):
 
+def get_addons(project, url):
     LOG.debug("Checking for updated addons...")
     langs = glocale.get_language_list()
     langs.append("en")
     # now we have a list of languages to try:
     fp = None
     for lang in langs:
-        URL = ("%s/listings/addons-%s.json" % (url, lang))
+        URL = "%s/listings/addons-%s.json" % (url, lang)
         LOG.debug("   trying: %s" % URL)
         try:
             fp = urlopen_maybe_no_check_cert(URL)
         except:
             try:
-                URL = ("%s/listings/addons-%s.json" % (url, lang[:2]))
+                URL = "%s/listings/addons-%s.json" % (url, lang[:2])
                 fp = urlopen_maybe_no_check_cert(URL)
-            except Exception as err: # some error
-                LOG.warning("Failed to open addon metadata for {lang} {url}: {err}".
-                        format(lang=lang, url=URL, err=err))
+            except Exception as err:  # some error
+                LOG.warning(
+                    "Failed to open addon metadata for {lang} {url}: {err}".format(
+                        lang=lang, url=URL, err=err
+                    )
+                )
                 fp = None
         if fp and (fp.getcode() == 200 or fp.file):
             break
@@ -220,27 +239,28 @@ def get_addons(project, url):
     if fp and (fp.getcode() == 200 or fp.file):
         addon_list = json.load(fp)
         for plugin_dict in addon_list:
-            if 'a' not in plugin_dict:
-                plugin_dict['a'] = 0
-            if 's' not in plugin_dict:
-                plugin_dict['s'] = 0
-            if 'h' not in plugin_dict:
-                plugin_dict['h'] = ''
-            plugin_dict['_p'] = project
-            plugin_dict['_u'] = url
+            if "a" not in plugin_dict:
+                plugin_dict["a"] = 0
+            if "s" not in plugin_dict:
+                plugin_dict["s"] = 0
+            if "h" not in plugin_dict:
+                plugin_dict["h"] = ""
+            plugin_dict["_p"] = project
+            plugin_dict["_u"] = url
             id = plugin_dict["i"]
             pmgr = BasePluginManager.get_instance()
             plugin = pmgr.get_plugin(id)
             if plugin:
-                plugin_dict['_v'] = plugin.version
+                plugin_dict["_v"] = plugin.version
     else:
         LOG.debug("Checking Addons Failed")
     LOG.debug("Done checking!")
 
     return addon_list
 
+
 def get_all_addons():
-    projects = config.get('behavior.addons-projects')
+    projects = config.get("behavior.addons-projects")
     all_addons = []
     for project, url, enabled in projects:
         if enabled:
@@ -248,42 +268,61 @@ def get_all_addons():
             all_addons.extend(addons_list)
     return all_addons
 
-def available_updates():
 
-    whattypes = config.get('behavior.check-for-addon-update-types')
+def available_updates():
+    whattypes = config.get("behavior.check-for-addon-update-types")
     addon_update_list = []
     for plugin_dict in get_all_addons():
-        if '_v' in plugin_dict:
-            LOG.debug("Comparing %s > %s" %
-                      (version_str_to_tup(plugin_dict["v"], 3),
-                       version_str_to_tup(plugin_dict["_v"], 3)))
-            if (version_str_to_tup(plugin_dict["v"], 3) >
-                version_str_to_tup(plugin_dict["_v"], 3)):
+        if "_v" in plugin_dict:
+            LOG.debug(
+                "Comparing %s > %s"
+                % (
+                    version_str_to_tup(plugin_dict["v"], 3),
+                    version_str_to_tup(plugin_dict["_v"], 3),
+                )
+            )
+            if version_str_to_tup(plugin_dict["v"], 3) > version_str_to_tup(
+                plugin_dict["_v"], 3
+            ):
                 LOG.debug("   Downloading '%s'..." % plugin_dict["z"])
                 if "update" in whattypes:
-                    if (not config.get('behavior.do-not-show-previously-seen-addon-updates') or
-                         plugin_dict["i"] not in config.get('behavior.previously-seen-addon-updates')):
-                        addon_update_list.append((_("Updated"),
-                                                  "%s/download/%s" %
-                                                  (plugin_dict["_u"],
-                                                   plugin_dict["z"]),
-                                                  plugin_dict))
+                    if not config.get(
+                        "behavior.do-not-show-previously-seen-addon-updates"
+                    ) or plugin_dict["i"] not in config.get(
+                        "behavior.previously-seen-addon-updates"
+                    ):
+                        addon_update_list.append(
+                            (
+                                _("Updated"),
+                                "%s/download/%s"
+                                % (plugin_dict["_u"], plugin_dict["z"]),
+                                plugin_dict,
+                            )
+                        )
             else:
                 LOG.debug("   '%s' is ok" % plugin_dict["n"])
         else:
             LOG.debug("   '%s' is not installed" % plugin_dict["n"])
             if "new" in whattypes:
-                if (not config.get('behavior.do-not-show-previously-seen-addon-updates') or
-                     plugin_dict["i"] not in config.get('behavior.previously-seen-addon-updates')):
-                    addon_update_list.append((_("New", "updates"),
-                                              "%s/download/%s" %
-                                              (plugin_dict["_u"],
-                                               plugin_dict["z"]),
-                                              plugin_dict))
-    config.set("behavior.last-check-for-addon-updates",
-               datetime.date.today().strftime("%Y/%m/%d"))
+                if not config.get(
+                    "behavior.do-not-show-previously-seen-addon-updates"
+                ) or plugin_dict["i"] not in config.get(
+                    "behavior.previously-seen-addon-updates"
+                ):
+                    addon_update_list.append(
+                        (
+                            _("New", "updates"),
+                            "%s/download/%s" % (plugin_dict["_u"], plugin_dict["z"]),
+                            plugin_dict,
+                        )
+                    )
+    config.set(
+        "behavior.last-check-for-addon-updates",
+        datetime.date.today().strftime("%Y/%m/%d"),
+    )
 
     return addon_update_list
+
 
 def load_addon_file(path, callback=None):
     """
@@ -291,10 +330,13 @@ def load_addon_file(path, callback=None):
     """
     from urllib.request import urlopen
     import tarfile
-    if (path.startswith("http://") or
-        path.startswith("https://") or
-        path.startswith("ftp://") or
-        path.startswith("file://")):
+
+    if (
+        path.startswith("http://")
+        or path.startswith("https://")
+        or path.startswith("ftp://")
+        or path.startswith("file://")
+    ):
         try:
             fp = urlopen_maybe_no_check_cert(path)
         except:
@@ -303,7 +345,7 @@ def load_addon_file(path, callback=None):
             return False
     else:
         try:
-            fp = open(path, 'rb')
+            fp = open(path, "rb")
         except:
             if callback:
                 callback(_("Unable to open '%s'") % path)
@@ -337,9 +379,9 @@ def load_addon_file(path, callback=None):
             callback((_("Examining '%s'...") % gpr_file) + "\n")
         contents = file_obj.extractfile(gpr_file).read()
         # Put a fake register and _ function in environment:
-        env = make_environment(register=register,
-                               newplugin=newplugin,
-                               _=lambda text: text)
+        env = make_environment(
+            register=register, newplugin=newplugin, _=lambda text: text
+        )
         # clear out the result variable:
         globals()["register_results"] = []
         # evaluate the contents:
@@ -361,22 +403,41 @@ def load_addon_file(path, callback=None):
                     # If this version is not installed, or > installed, install it
                     good_gpr.add(gpr_file)
                     if callback:
-                        callback("   " + (_("'%s' is for this version of Gramps.") % id)  + "\n")
+                        callback(
+                            "   "
+                            + (_("'%s' is for this version of Gramps.") % id)
+                            + "\n"
+                        )
                 else:
                     # If the plugin is for another version; inform and do nothing
                     if callback:
-                        callback("   " + (_("'%s' is NOT for this version of Gramps.") % id)  + "\n")
-                        callback("   " + (_("It is for version %(v1)d.%(v2)d") % {
-                                             'v1': vtup[0],
-                                             'v2': vtup[1]}
-                                          + "\n"))
+                        callback(
+                            "   "
+                            + (_("'%s' is NOT for this version of Gramps.") % id)
+                            + "\n"
+                        )
+                        callback(
+                            "   "
+                            + (
+                                _("It is for version %(v1)d.%(v2)d")
+                                % {"v1": vtup[0], "v2": vtup[1]}
+                                + "\n"
+                            )
+                        )
                     continue
             else:
                 # another register function doesn't have gramps_target_version
                 if gpr_file in good_gpr:
                     s.remove(gpr_file)
                 if callback:
-                    callback("   " + (_("Error: missing gramps_target_version in '%s'...") % gpr_file)  + "\n")
+                    callback(
+                        "   "
+                        + (
+                            _("Error: missing gramps_target_version in '%s'...")
+                            % gpr_file
+                        )
+                        + "\n"
+                    )
     registered_count = 0
     if len(good_gpr) > 0:
         # Now, install the ok ones
@@ -389,8 +450,9 @@ def load_addon_file(path, callback=None):
             return False
         if callback:
             callback((_("Installing '%s'...") % path) + "\n")
-        gpr_files = set([os.path.split(os.path.join(USER_PLUGINS, name))[0]
-                         for name in good_gpr])
+        gpr_files = set(
+            [os.path.split(os.path.join(USER_PLUGINS, name))[0] for name in good_gpr]
+        )
         for gpr_file in gpr_files:
             if callback:
                 callback("   " + (_("Registered '%s'") % gpr_file) + "\n")
@@ -401,13 +463,15 @@ def load_addon_file(path, callback=None):
     else:
         return False
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # OpenFileOrStdout class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class OpenFileOrStdout:
     """Context manager to open a file or stdout for writing."""
+
     def __init__(self, filename, encoding=None, errors=None, newline=None):
         self.filename = filename
         self.filehandle = None
@@ -416,33 +480,40 @@ class OpenFileOrStdout:
         self.newline = newline
 
     def __enter__(self):
-        if self.filename == '-':
+        if self.filename == "-":
             self.filehandle = sys.stdout
         else:
-            self.filehandle = open(self.filename, 'w', encoding=self.encoding,
-                                   errors=self.errors, newline=self.newline)
+            self.filehandle = open(
+                self.filename,
+                "w",
+                encoding=self.encoding,
+                errors=self.errors,
+                newline=self.newline,
+            )
         return self.filehandle
 
     def __exit__(self, exc_type, exc_value, traceback):
-        if self.filehandle and self.filename != '-':
+        if self.filehandle and self.filename != "-":
             self.filehandle.close()
         return False
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # OpenFileOrStdin class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class OpenFileOrStdin:
     """Context manager to open a file or stdin for reading."""
-    def __init__(self, filename, add_mode='', encoding=None):
+
+    def __init__(self, filename, add_mode="", encoding=None):
         self.filename = filename
-        self.mode = 'r%s' % add_mode
+        self.mode = "r%s" % add_mode
         self.filehandle = None
         self.encoding = encoding
 
     def __enter__(self):
-        if self.filename == '-':
+        if self.filename == "-":
             self.filehandle = sys.stdin
         elif self.encoding:
             self.filehandle = open(self.filename, self.mode, encoding=self.encoding)
@@ -451,27 +522,27 @@ class OpenFileOrStdin:
         return self.filehandle
 
     def __exit__(self, exc_type, exc_value, traceback):
-        if self.filename != '-':
+        if self.filename != "-":
             self.filehandle.close()
         return False
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # get_cite function
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def get_cite():
     """
     Function that returns the active cite plugin.
     """
     plugman = BasePluginManager.get_instance()
     for pdata in plugman.get_reg_cite():
-        if pdata.id != config.get('preferences.cite-plugin'):
+        if pdata.id != config.get("preferences.cite-plugin"):
             continue
         module = plugman.load_plugin(pdata)
         if not module:
-            print("Error loading formatter '%s': skipping content"
-                  % pdata.name)
+            print("Error loading formatter '%s': skipping content" % pdata.name)
             continue
-        cite = getattr(module, 'Formatter')()
+        cite = getattr(module, "Formatter")()
         return cite

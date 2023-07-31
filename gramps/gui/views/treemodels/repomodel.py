@@ -18,39 +18,49 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 log = logging.getLogger(".")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.lib import Address, RepositoryType, Url, UrlType
 from gramps.gen.datehandler import format_time
 from .flatbasemodel import FlatBaseModel
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-#-------------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------------
 #
 # RepositoryModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class RepositoryModel(FlatBaseModel):
-
-    def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
-                 search=None, skip=set(), sort_map=None):
+    def __init__(
+        self,
+        db,
+        uistate,
+        scol=0,
+        order=Gtk.SortType.ASCENDING,
+        search=None,
+        skip=set(),
+        sort_map=None,
+    ):
         self.gen_cursor = db.get_repository_cursor
         self.get_handles = db.get_repository_handles
         self.map = db.get_raw_repository_data
@@ -70,8 +80,8 @@ class RepositoryModel(FlatBaseModel):
             self.column_private,
             self.column_tags,
             self.column_change,
-            self.column_tag_color
-            ]
+            self.column_tag_color,
+        ]
 
         self.smap = [
             self.column_name,
@@ -89,11 +99,12 @@ class RepositoryModel(FlatBaseModel):
             self.column_private,
             self.column_tags,
             self.sort_change,
-            self.column_tag_color
-            ]
+            self.column_tag_color,
+        ]
 
-        FlatBaseModel.__init__(self, db, uistate, scol, order, search=search,
-                               skip=skip, sort_map=sort_map)
+        FlatBaseModel.__init__(
+            self, db, uistate, scol, order, search=search, skip=skip, sort_map=sort_map
+        )
 
     def destroy(self):
         """
@@ -114,18 +125,18 @@ class RepositoryModel(FlatBaseModel):
         return 15
 
     def on_get_n_columns(self):
-        return len(self.fmap)+1
+        return len(self.fmap) + 1
 
-    def column_id(self,data):
+    def column_id(self, data):
         return data[1]
 
-    def column_type(self,data):
+    def column_type(self, data):
         return str(RepositoryType(data[2]))
 
-    def column_name(self,data):
+    def column_name(self, data):
         return data[3]
 
-    def column_city(self,data):
+    def column_city(self, data):
         try:
             if data[5]:
                 addr = Address()
@@ -133,9 +144,9 @@ class RepositoryModel(FlatBaseModel):
                 return addr.get_city()
         except:
             pass
-        return ''
+        return ""
 
-    def column_street(self,data):
+    def column_street(self, data):
         try:
             if data[5]:
                 addr = Address()
@@ -143,9 +154,9 @@ class RepositoryModel(FlatBaseModel):
                 return addr.get_street()
         except:
             pass
-        return ''
+        return ""
 
-    def column_locality(self,data):
+    def column_locality(self, data):
         try:
             if data[5]:
                 addr = Address()
@@ -153,9 +164,9 @@ class RepositoryModel(FlatBaseModel):
                 return addr.get_locality()
         except:
             pass
-        return ''
+        return ""
 
-    def column_state(self,data):
+    def column_state(self, data):
         try:
             if data[5]:
                 addr = Address()
@@ -163,9 +174,9 @@ class RepositoryModel(FlatBaseModel):
                 return addr.get_state()
         except:
             pass
-        return ''
+        return ""
 
-    def column_country(self,data):
+    def column_country(self, data):
         try:
             if data[5]:
                 addr = Address()
@@ -173,9 +184,9 @@ class RepositoryModel(FlatBaseModel):
                 return addr.get_country()
         except:
             pass
-        return ''
+        return ""
 
-    def column_postal_code(self,data):
+    def column_postal_code(self, data):
         try:
             if data[5]:
                 addr = Address()
@@ -183,9 +194,9 @@ class RepositoryModel(FlatBaseModel):
                 return addr.get_postal_code()
         except:
             pass
-        return ''
+        return ""
 
-    def column_phone(self,data):
+    def column_phone(self, data):
         try:
             if data[5]:
                 addr = Address()
@@ -193,27 +204,27 @@ class RepositoryModel(FlatBaseModel):
                 return addr.get_phone()
         except:
             pass
-        return ''
+        return ""
 
-    def column_email(self,data):
+    def column_email(self, data):
         if data[6]:
             for i in data[6]:
                 url = Url()
                 url.unserialize(i)
                 if url.get_type() == UrlType.EMAIL:
                     return url.path
-        return ''
+        return ""
 
-    def column_search_url(self,data):
+    def column_search_url(self, data):
         if data[6]:
             for i in data[6]:
                 url = Url()
                 url.unserialize(i)
                 if url.get_type() == UrlType.WEB_SEARCH:
                     return url.path
-        return ''
+        return ""
 
-    def column_home_url(self,data):
+    def column_home_url(self, data):
         if data[6]:
             for i in data[6]:
                 url = Url()
@@ -224,15 +235,15 @@ class RepositoryModel(FlatBaseModel):
 
     def column_private(self, data):
         if data[9]:
-            return 'gramps-lock'
+            return "gramps-lock"
         else:
             # There is a problem returning None here.
-            return ''
+            return ""
 
-    def sort_change(self,data):
+    def sort_change(self, data):
         return "%012x" % data[7]
 
-    def column_change(self,data):
+    def column_change(self, data):
         return format_time(data[7])
 
     def get_tag_name(self, tag_handle):
@@ -270,4 +281,4 @@ class RepositoryModel(FlatBaseModel):
         """
         tag_list = list(map(self.get_tag_name, data[8]))
         # TODO for Arabic, should the next line's comma be translated?
-        return ', '.join(sorted(tag_list, key=glocale.sort_key))
+        return ", ".join(sorted(tag_list, key=glocale.sort_key))

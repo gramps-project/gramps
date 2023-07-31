@@ -42,13 +42,13 @@ from ._dateparser import DateParser
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
 
+
 # -------------------------------------------------------------------------
 #
 # Portuguese parser
 #
 # -------------------------------------------------------------------------
 class DateParserPT(DateParser):
-
     modifier_to_int = {
         "antes de": Date.MOD_BEFORE,
         "antes": Date.MOD_BEFORE,

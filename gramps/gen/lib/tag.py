@@ -23,20 +23,22 @@
 Tag object for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .tableobj import TableObject
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Tag class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Tag(TableObject):
     """
     The Tag record is used to store information about a tag that can be
@@ -59,7 +61,7 @@ class Tag(TableObject):
             self.__priority = source.priority
         else:
             self.__name = ""
-            self.__color = "#000000000000" # Black
+            self.__color = "#000000000000"  # Black
             self.__priority = 0
 
     def serialize(self):
@@ -80,11 +82,7 @@ class Tag(TableObject):
                   be considered persistent.
         :rtype: tuple
         """
-        return (self.handle,
-                self.__name,
-                self.__color,
-                self.__priority,
-                self.change)
+        return (self.handle, self.__name, self.__color, self.__priority, self.change)
 
     def unserialize(self, data):
         """
@@ -95,11 +93,7 @@ class Tag(TableObject):
                      object
         :type data: tuple
         """
-        (self.handle,
-         self.__name,
-         self.__color,
-         self.__priority,
-         self.change) = data
+        (self.handle, self.__name, self.__color, self.__priority, self.change) = data
         return self
 
     @classmethod
@@ -115,20 +109,12 @@ class Tag(TableObject):
             "title": _("Tag"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "handle": {"type": "string",
-                           "maxLength": 50,
-                           "title": _("Handle")},
-                "name": {"type": "string",
-                         "title": _("Name")},
-                "color": {"type": "string",
-                          "maxLength": 13,
-                          "title": _("Color")},
-                "priority": {"type": "integer",
-                             "minimum": 0,
-                             "title": _("Priority")},
-                "change": {"type": "integer",
-                           "title": _("Last changed")}
-            }
+                "handle": {"type": "string", "maxLength": 50, "title": _("Handle")},
+                "name": {"type": "string", "title": _("Name")},
+                "color": {"type": "string", "maxLength": 13, "title": _("Color")},
+                "priority": {"type": "integer", "minimum": 0, "title": _("Priority")},
+                "change": {"type": "integer", "title": _("Last changed")},
+            },
         }
 
     def get_text_data_list(self):
@@ -161,9 +147,11 @@ class Tag(TableObject):
         if other is None:
             other = Tag()
 
-        if (self.__name != other.name or
-                self.__color != other.color or
-                self.__priority != other.priority):
+        if (
+            self.__name != other.name
+            or self.__color != other.color
+            or self.__priority != other.priority
+        ):
             return False
         return True
 
@@ -184,8 +172,8 @@ class Tag(TableObject):
         :rtype: str
         """
         return self.__name
-    name = property(get_name, set_name, None,
-                    'Returns or sets name of the tag')
+
+    name = property(get_name, set_name, None, "Returns or sets name of the tag")
 
     def set_color(self, color):
         """
@@ -206,8 +194,8 @@ class Tag(TableObject):
         :rtype: str
         """
         return self.__color
-    color = property(get_color, set_color, None,
-                     'Returns or sets color of the tag')
+
+    color = property(get_color, set_color, None, "Returns or sets color of the tag")
 
     def set_priority(self, priority):
         """
@@ -229,5 +217,6 @@ class Tag(TableObject):
         """
         return self.__priority
 
-    priority = property(get_priority, set_priority, None,
-                        'Returns or sets priority of the tag')
+    priority = property(
+        get_priority, set_priority, None, "Returns or sets priority of the tag"
+    )

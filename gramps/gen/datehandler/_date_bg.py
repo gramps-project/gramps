@@ -40,13 +40,13 @@ from ._dateparser import DateParser
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
 
+
 # -------------------------------------------------------------------------
 #
 # Bulgarian parser
 #
 # -------------------------------------------------------------------------
 class DateParserBG(DateParser):
-
     modifier_to_int = {
         "преди": Date.MOD_BEFORE,
         "пр.": Date.MOD_BEFORE,

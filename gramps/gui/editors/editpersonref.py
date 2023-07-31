@@ -24,27 +24,28 @@
 The EditPersonRef module provides the EditPersonRef class.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 import pickle
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from gramps.gen.display.name import displayer as name_displayer
 from .editsecondary import EditSecondary
@@ -57,20 +58,21 @@ from ..ddtargets import DdTargets
 from gi.repository import Gdk
 from gramps.gen.const import URL_MANUAL_SECT1
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 WIKI_HELP_PAGE = URL_MANUAL_SECT1
-WIKI_HELP_SEC = _('Person_Reference_Editor', 'manual')
+WIKI_HELP_SEC = _("Person_Reference_Editor", "manual")
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # EditPersonRef class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class EditPersonRef(EditSecondary):
     """
     Displays a dialog that allows the user to edit a person reference.
@@ -82,54 +84,59 @@ class EditPersonRef(EditSecondary):
 
         personref - The person reference that is to be edited
         """
-        EditSecondary.__init__(self, dbstate, uistate, track,
-                               personref, callback)
+        EditSecondary.__init__(self, dbstate, uistate, track, personref, callback)
 
     def _local_init(self):
-
         self.top = Glade()
-        self.set_window(self.top.toplevel,
-                        self.top.get_object("title"),
-                        _('Person Reference Editor'))
-        self.setup_configs('interface.person-ref', 600, 350)
+        self.set_window(
+            self.top.toplevel,
+            self.top.get_object("title"),
+            _("Person Reference Editor"),
+        )
+        self.setup_configs("interface.person-ref", 600, 350)
 
-        self.person_label = self.top.get_object('person')
-        self.share_btn = self.top.get_object('select')
-        self.add_del_btn = self.top.get_object('add_del')
+        self.person_label = self.top.get_object("person")
+        self.share_btn = self.top.get_object("select")
+        self.add_del_btn = self.top.get_object("add_del")
 
     def _setup_fields(self):
-
-        self.person_field = PersonEntry(self.dbstate, self.uistate, self.track,
-                                        self.top.get_object("person"),
-                                        self.top.get_object("person_event_box"),
-                                        self.obj.set_reference_handle,
-                                        self.obj.get_reference_handle,
-                                        self.add_del_btn, self.share_btn)
+        self.person_field = PersonEntry(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.top.get_object("person"),
+            self.top.get_object("person_event_box"),
+            self.obj.set_reference_handle,
+            self.obj.get_reference_handle,
+            self.add_del_btn,
+            self.share_btn,
+        )
 
         self.street = MonitoredEntry(
             self.top.get_object("relationship"),
             self.obj.set_relation,
             self.obj.get_relation,
-            self.db.readonly)
+            self.db.readonly,
+        )
 
         self.priv = PrivacyButton(
-            self.top.get_object("private"),
-            self.obj,
-            self.db.readonly)
+            self.top.get_object("private"), self.obj, self.db.readonly
+        )
 
     def _connect_signals(self):
-        self.define_cancel_button(self.top.get_object('cancel'))
-        self.define_ok_button(self.top.get_object('ok'),self.save)
-        self.define_help_button(self.top.get_object('help'),
-                WIKI_HELP_PAGE, WIKI_HELP_SEC)
+        self.define_cancel_button(self.top.get_object("cancel"))
+        self.define_ok_button(self.top.get_object("ok"), self.save)
+        self.define_help_button(
+            self.top.get_object("help"), WIKI_HELP_PAGE, WIKI_HELP_SEC
+        )
 
     def _connect_db_signals(self):
         """
         Connect any signals that need to be connected.
         Called by the init routine of the base class (_EditPrimary).
         """
-        self._add_db_signal('person-rebuild', self.close)
-        self._add_db_signal('person-delete', self.check_for_close)
+        self._add_db_signal("person-rebuild", self.close)
+        self._add_db_signal("person-delete", self.check_for_close)
 
     def check_for_close(self, handles):
         """
@@ -148,26 +155,30 @@ class EditPersonRef(EditSecondary):
 
         notebook = Gtk.Notebook()
 
-        self.srcref_list = CitationEmbedList(self.dbstate, self.uistate,
-                                             self.track,
-                                             self.obj.get_citation_list())
+        self.srcref_list = CitationEmbedList(
+            self.dbstate, self.uistate, self.track, self.obj.get_citation_list()
+        )
         self._add_tab(notebook, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
 
-        self.note_tab = NoteTab(self.dbstate, self.uistate, self.track,
-                                self.obj.get_note_list(),
-                                notetype=NoteType.ASSOCIATION)
+        self.note_tab = NoteTab(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_note_list(),
+            notetype=NoteType.ASSOCIATION,
+        )
         self._add_tab(notebook, self.note_tab)
         self.track_ref_for_deletion("note_tab")
 
         self._setup_notebook_tabs(notebook)
         notebook.show_all()
-        self.top.get_object('vbox').pack_start(notebook, True, True, 0)
+        self.top.get_object("vbox").pack_start(notebook, True, True, 0)
 
     def build_menu_names(self, obj):
-        return (_('Person Reference'),_('Person Reference Editor'))
+        return (_("Person Reference"), _("Person Reference Editor"))
 
-    def save(self,*obj):
+    def save(self, *obj):
         """
         Called when the OK button is pressed. Gets data from the
         form and updates the data structure.
@@ -182,6 +193,7 @@ class EditPersonRef(EditSecondary):
             from ..dialog import ErrorDialog
 
             ErrorDialog(
-                _('No person selected'),
-                _('You must either select a person or Cancel the edit'),
-                parent=self.uistate.window)
+                _("No person selected"),
+                _("You must either select a person or Cancel the edit"),
+                parent=self.uistate.window,
+            )

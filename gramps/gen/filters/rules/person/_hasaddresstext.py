@@ -28,6 +28,7 @@
 # -------------------------------------------------------------------------
 from .. import Rule
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
 
@@ -39,11 +40,12 @@ _ = glocale.translation.gettext
 class HasAddressText(Rule):
     """Rule that checks for text in personal addresses"""
 
-    labels = [_('Text:')]
-    name = _('People with an address containing <text>')
-    description = _("Matches people with a personal address containing "
-                    "the given text")
-    category = _('General filters')
+    labels = [_("Text:")]
+    name = _("People with an address containing <text>")
+    description = _(
+        "Matches people with a personal address containing " "the given text"
+    )
+    category = _("General filters")
     allow_regex = True
 
     def apply(self, db, person):

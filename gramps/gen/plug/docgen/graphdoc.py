@@ -28,76 +28,86 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 """ Graphviz adapter for Graphs """
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from abc import ABCMeta, abstractmethod
 import os
 from io import BytesIO
 import tempfile
 from subprocess import Popen, PIPE
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from ...utils.file import search_for, where_is
 from . import BaseDoc
-from ..menu import NumberOption, TextOption, EnumeratedListOption, \
-    BooleanOption
+from ..menu import NumberOption, TextOption, EnumeratedListOption, BooleanOption
 from ...constfunc import win
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # set up logging
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 LOG = logging.getLogger(".graphdoc")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Private Constants
 #
-#-------------------------------------------------------------------------
-_FONTS = [{'name' : _("Default"), 'value' : "serif"},
-          {'name' : _("PostScript / Helvetica"), 'value' : "Helvetica"},
-          {'name' : _("TrueType / FreeSans"), 'value' : "FreeSans"}]
+# -------------------------------------------------------------------------
+_FONTS = [
+    {"name": _("Default"), "value": "serif"},
+    {"name": _("PostScript / Helvetica"), "value": "Helvetica"},
+    {"name": _("TrueType / FreeSans"), "value": "FreeSans"},
+]
 
-_RANKDIR = [{'name' : _("Vertical (↓)"), 'value'   : "TB"},
-            {'name' : _("Vertical (↑)"), 'value'   : "BT"},
-            {'name' : _("Horizontal (→)"), 'value' : "LR"},
-            {'name' : _("Horizontal (←)"), 'value' : "RL"}]
+_RANKDIR = [
+    {"name": _("Vertical (↓)"), "value": "TB"},
+    {"name": _("Vertical (↑)"), "value": "BT"},
+    {"name": _("Horizontal (→)"), "value": "LR"},
+    {"name": _("Horizontal (←)"), "value": "RL"},
+]
 
-_NODE_PORTS = {"TB" : ("n", "s"),
-               "BT" : ("s", "n"),
-               "LR" : ("w", "e"),
-               "RL" : ("e", "w")}
+_NODE_PORTS = {"TB": ("n", "s"), "BT": ("s", "n"), "LR": ("w", "e"), "RL": ("e", "w")}
 
-_PAGEDIR = [{'name' : _("Bottom, left"), 'value'  : "BL"},
-            {'name' : _("Bottom, right"), 'value' : "BR"},
-            {'name' : _("Top, left"), 'value'     : "TL"},
-            {'name' : _("Top, Right"), 'value'    : "TR"},
-            {'name' : _("Right, bottom"), 'value' : "RB"},
-            {'name' : _("Right, top"), 'value'    : "RT"},
-            {'name' : _("Left, bottom"), 'value'  : "LB"},
-            {'name' : _("Left, top"), 'value'     : "LT"}]
+_PAGEDIR = [
+    {"name": _("Bottom, left"), "value": "BL"},
+    {"name": _("Bottom, right"), "value": "BR"},
+    {"name": _("Top, left"), "value": "TL"},
+    {"name": _("Top, Right"), "value": "TR"},
+    {"name": _("Right, bottom"), "value": "RB"},
+    {"name": _("Right, top"), "value": "RT"},
+    {"name": _("Left, bottom"), "value": "LB"},
+    {"name": _("Left, top"), "value": "LT"},
+]
 
-_RATIO = [{'name' : _("Compress to minimal size"), 'value': "compress"},
-          {'name' : _("Fill the given area"), 'value': "fill"},
-          {'name' : _("Expand uniformly"), 'value': "expand"}]
+_RATIO = [
+    {"name": _("Compress to minimal size"), "value": "compress"},
+    {"name": _("Fill the given area"), "value": "fill"},
+    {"name": _("Expand uniformly"), "value": "expand"},
+]
 
-_NOTELOC = [{'name' : _("Top"), 'value' : "t"},
-            {'name' : _("Bottom"), 'value' : "b"}]
+_NOTELOC = [{"name": _("Top"), "value": "t"}, {"name": _("Bottom"), "value": "b"}]
 
-_SPLINE = [{'name' : _("Straight"), 'value' : "false"},
-           {'name' : _("Curved"), 'value' : "true", },
-           {'name' : _("Orthogonal"), 'value' : 'ortho'}]
+_SPLINE = [
+    {"name": _("Straight"), "value": "false"},
+    {
+        "name": _("Curved"),
+        "value": "true",
+    },
+    {"name": _("Orthogonal"), "value": "ortho"},
+]
 
 if win():
     _DOT_FOUND = search_for("dot.exe")
@@ -117,16 +127,17 @@ def esc(id_txt):
     return id_txt.replace('"', '\\"')
 
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 #
 # GVOptions
 #
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 class GVOptions:
     """
     Defines all of the controls necessary
     to configure the graph reports.
     """
+
     def __init__(self):
         self.h_pages = None
         self.v_pages = None
@@ -147,10 +158,14 @@ class GVOptions:
         font_family = EnumeratedListOption(_("Font family"), "")
         for item in _FONTS:
             font_family.add_item(item["value"], item["name"])
-        font_family.set_help(_("Choose the font family. If international "
-                               "characters don't show, use FreeSans font. "
-                               "FreeSans is available from: "
-                               "http://www.nongnu.org/freefont/"))
+        font_family.set_help(
+            _(
+                "Choose the font family. If international "
+                "characters don't show, use FreeSans font. "
+                "FreeSans is available from: "
+                "http://www.nongnu.org/freefont/"
+            )
+        )
         menu.add_option(category, "font_family", font_family)
 
         font_size = NumberOption(_("Font size"), 14, 8, 128)
@@ -160,32 +175,45 @@ class GVOptions:
         rank_dir = EnumeratedListOption(_("Graph Direction"), "TB")
         for item in _RANKDIR:
             rank_dir.add_item(item["value"], item["name"])
-        rank_dir.set_help(_("Whether graph goes from top to bottom "
-                            "or left to right."))
+        rank_dir.set_help(
+            _("Whether graph goes from top to bottom " "or left to right.")
+        )
         menu.add_option(category, "rank_dir", rank_dir)
 
         h_pages = NumberOption(_("Number of Horizontal Pages"), 1, 1, 25)
-        h_pages.set_help(_("Graphviz can create very large graphs by "
-                           "spreading the graph across a rectangular "
-                           "array of pages. This controls the number "
-                           "pages in the array horizontally. "
-                           "Only valid for dot and pdf via Ghostscript."))
+        h_pages.set_help(
+            _(
+                "Graphviz can create very large graphs by "
+                "spreading the graph across a rectangular "
+                "array of pages. This controls the number "
+                "pages in the array horizontally. "
+                "Only valid for dot and pdf via Ghostscript."
+            )
+        )
         menu.add_option(category, "h_pages", h_pages)
 
         v_pages = NumberOption(_("Number of Vertical Pages"), 1, 1, 25)
-        v_pages.set_help(_("Graphviz can create very large graphs by "
-                           "spreading the graph across a rectangular "
-                           "array of pages. This controls the number "
-                           "pages in the array vertically. "
-                           "Only valid for dot and pdf via Ghostscript."))
+        v_pages.set_help(
+            _(
+                "Graphviz can create very large graphs by "
+                "spreading the graph across a rectangular "
+                "array of pages. This controls the number "
+                "pages in the array vertically. "
+                "Only valid for dot and pdf via Ghostscript."
+            )
+        )
         menu.add_option(category, "v_pages", v_pages)
 
         page_dir = EnumeratedListOption(_("Paging Direction"), "BL")
         for item in _PAGEDIR:
             page_dir.add_item(item["value"], item["name"])
-        page_dir.set_help(_("The order in which the graph pages are output. "
-                            "This option only applies if the horizontal pages "
-                            "or vertical pages are greater than 1."))
+        page_dir.set_help(
+            _(
+                "The order in which the graph pages are output. "
+                "This option only applies if the horizontal pages "
+                "or vertical pages are greater than 1."
+            )
+        )
         menu.add_option(category, "page_dir", page_dir)
 
         spline = EnumeratedListOption(_("Connecting lines"), "true")
@@ -207,8 +235,8 @@ class GVOptions:
 
         # the page direction option only makes sense when the
         # number of horizontal and/or vertical pages is > 1
-        self.h_pages.connect('value-changed', self.pages_changed)
-        self.v_pages.connect('value-changed', self.pages_changed)
+        self.h_pages.connect("value-changed", self.pages_changed)
+        self.v_pages.connect("value-changed", self.pages_changed)
 
         ################################
         category = _("Graphviz Options")
@@ -218,60 +246,71 @@ class GVOptions:
         for item in _RATIO:
             aspect_ratio.add_item(item["value"], item["name"])
         help_text = _(
-            'Affects node spacing and scaling of the graph.\n'
-            'If the graph is smaller than the print area:\n'
-            '  Compress will not change the node spacing. \n'
-            '  Fill will increase the node spacing to fit the print area in '
-            'both width and height.\n'
-            '  Expand will increase the node spacing uniformly to preserve '
-            'the aspect ratio.\n'
-            'If the graph is larger than the print area:\n'
-            '  Compress will shrink the graph to achieve tight packing at the '
-            'expense of symmetry.\n'
-            '  Fill will shrink the graph to fit the print area after first '
-            'increasing the node spacing.\n'
-            '  Expand will shrink the graph uniformly to fit the print area.')
+            "Affects node spacing and scaling of the graph.\n"
+            "If the graph is smaller than the print area:\n"
+            "  Compress will not change the node spacing. \n"
+            "  Fill will increase the node spacing to fit the print area in "
+            "both width and height.\n"
+            "  Expand will increase the node spacing uniformly to preserve "
+            "the aspect ratio.\n"
+            "If the graph is larger than the print area:\n"
+            "  Compress will shrink the graph to achieve tight packing at the "
+            "expense of symmetry.\n"
+            "  Fill will shrink the graph to fit the print area after first "
+            "increasing the node spacing.\n"
+            "  Expand will shrink the graph uniformly to fit the print area."
+        )
         aspect_ratio.set_help(help_text)
         menu.add_option(category, "ratio", aspect_ratio)
 
         dpi = NumberOption(_("DPI"), 75, 20, 1200)
-        dpi.set_help(_("Dots per inch.  When creating images such as "
-                       ".gif or .png files for the web, try numbers "
-                       "such as 100 or 300 DPI.  PostScript and PDF files "
-                       "always use 72 DPI."))
+        dpi.set_help(
+            _(
+                "Dots per inch.  When creating images such as "
+                ".gif or .png files for the web, try numbers "
+                "such as 100 or 300 DPI.  PostScript and PDF files "
+                "always use 72 DPI."
+            )
+        )
         menu.add_option(category, "dpi", dpi)
         self.dpi = dpi
 
         nodesep = NumberOption(_("Node spacing"), 0.20, 0.01, 5.00, 0.01)
-        nodesep.set_help(_("The minimum amount of free space, in inches, "
-                           "between individual nodes.  For vertical graphs, "
-                           "this corresponds to spacing between columns.  "
-                           "For horizontal graphs, this corresponds to "
-                           "spacing between rows."))
+        nodesep.set_help(
+            _(
+                "The minimum amount of free space, in inches, "
+                "between individual nodes.  For vertical graphs, "
+                "this corresponds to spacing between columns.  "
+                "For horizontal graphs, this corresponds to "
+                "spacing between rows."
+            )
+        )
         menu.add_option(category, "nodesep", nodesep)
 
         ranksep = NumberOption(_("Rank spacing"), 0.20, 0.01, 5.00, 0.01)
-        ranksep.set_help(_("The minimum amount of free space, in inches, "
-                           "between ranks.  For vertical graphs, this "
-                           "corresponds to spacing between rows.  For "
-                           "horizontal graphs, this corresponds to spacing "
-                           "between columns."))
+        ranksep.set_help(
+            _(
+                "The minimum amount of free space, in inches, "
+                "between ranks.  For vertical graphs, this "
+                "corresponds to spacing between rows.  For "
+                "horizontal graphs, this corresponds to spacing "
+                "between columns."
+            )
+        )
         menu.add_option(category, "ranksep", ranksep)
 
         ################################
         category = _("Note")
         ################################
 
-        note = TextOption(_("Note to add to the graph"),
-                          [""])
+        note = TextOption(_("Note to add to the graph"), [""])
         note.set_help(_("This text will be added to the graph."))
         menu.add_option(category, "note", note)
 
-        noteloc = EnumeratedListOption(_("Note location"), 't')
+        noteloc = EnumeratedListOption(_("Note location"), "t")
         for i in range(0, len(_NOTELOC)):
             noteloc.add_item(_NOTELOC[i]["value"], _NOTELOC[i]["name"])
-        noteloc.set_help(_("Whether note will appear on top "
-                           "or bottom of the page."))
+        noteloc.set_help(_("Whether note will appear on top " "or bottom of the page."))
         menu.add_option(category, "noteloc", noteloc)
 
         notesize = NumberOption(_("Note size"), 32, 8, 128)
@@ -291,11 +330,11 @@ class GVOptions:
             self.page_dir.set_available(False)
 
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 #
 # GVDoc
 #
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 class GVDoc(metaclass=ABCMeta):
     """
     Abstract Interface for Graphviz document generators. Output formats
@@ -304,8 +343,17 @@ class GVDoc(metaclass=ABCMeta):
     """
 
     @abstractmethod
-    def add_node(self, node_id, label, shape="", color="",
-                 style="", fillcolor="", url="", htmloutput=False):
+    def add_node(
+        self,
+        node_id,
+        label,
+        shape="",
+        color="",
+        style="",
+        fillcolor="",
+        url="",
+        htmloutput=False,
+    ):
         """
         Add a node to this graph. Nodes can be different shapes like boxes and
         circles.
@@ -410,17 +458,18 @@ class GVDoc(metaclass=ABCMeta):
         """
 
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 #
 # GVDocBase
 #
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 class GVDocBase(BaseDoc, GVDoc):
     """
     Base document generator for all Graphviz document generators. Classes that
     inherit from this class will only need to implement the close function.
     The close function will generate the actual file of the appropriate type.
     """
+
     def __init__(self, options, paper_style, uistate=None):
         BaseDoc.__init__(self, None, paper_style, uistate=uistate)
 
@@ -430,33 +479,37 @@ class GVDocBase(BaseDoc, GVDoc):
 
         get_option = options.menu.get_option_by_name
 
-        self.dpi = get_option('dpi').get_value()
-        self.fontfamily = get_option('font_family').get_value()
-        self.fontsize = get_option('font_size').get_value()
-        self.hpages = get_option('h_pages').get_value()
-        self.nodesep = get_option('nodesep').get_value()
-        self.noteloc = get_option('noteloc').get_value()
-        self.notesize = get_option('notesize').get_value()
-        self.note = get_option('note').get_value()
-        self.pagedir = get_option('page_dir').get_value()
-        self.rankdir = get_option('rank_dir').get_value()
-        self.ranksep = get_option('ranksep').get_value()
-        self.ratio = get_option('ratio').get_value()
-        self.vpages = get_option('v_pages').get_value()
-        self.spline = get_option('spline').get_value()
-        self.node_ports = get_option('node_ports').get_value()
+        self.dpi = get_option("dpi").get_value()
+        self.fontfamily = get_option("font_family").get_value()
+        self.fontsize = get_option("font_size").get_value()
+        self.hpages = get_option("h_pages").get_value()
+        self.nodesep = get_option("nodesep").get_value()
+        self.noteloc = get_option("noteloc").get_value()
+        self.notesize = get_option("notesize").get_value()
+        self.note = get_option("note").get_value()
+        self.pagedir = get_option("page_dir").get_value()
+        self.rankdir = get_option("rank_dir").get_value()
+        self.ranksep = get_option("ranksep").get_value()
+        self.ratio = get_option("ratio").get_value()
+        self.vpages = get_option("v_pages").get_value()
+        self.spline = get_option("spline").get_value()
+        self.node_ports = get_option("node_ports").get_value()
 
         paper_size = paper_style.get_size()
 
         # Subtract 0.01" from the drawing area to make some room between
         # this area and the margin in order to compensate for different
         # rounding errors internally in dot
-        sizew = (paper_size.get_width() -
-                 self._paper.get_left_margin() -
-                 self._paper.get_right_margin()) / 2.54 - 0.01
-        sizeh = (paper_size.get_height() -
-                 self._paper.get_top_margin() -
-                 self._paper.get_bottom_margin()) / 2.54 - 0.01
+        sizew = (
+            paper_size.get_width()
+            - self._paper.get_left_margin()
+            - self._paper.get_right_margin()
+        ) / 2.54 - 0.01
+        sizeh = (
+            paper_size.get_height()
+            - self._paper.get_top_margin()
+            - self._paper.get_bottom_margin()
+        ) / 2.54 - 0.01
 
         pheight = paper_size.get_height_inches()
         pwidth = paper_size.get_width_inches()
@@ -468,48 +521,52 @@ class GVDocBase(BaseDoc, GVDoc):
         sizeh *= self.vpages
 
         self.write(
-            'digraph GRAMPS_graph\n'
-            '{\n'
-            '  bgcolor=white;\n'
+            "digraph GRAMPS_graph\n"
+            "{\n"
+            "  bgcolor=white;\n"
             '  center="true"; \n'
             '  charset="utf8";\n'
-            '  concentrate="false";\n' +
-            '  dpi="%d";\n' % self.dpi +
-            '  graph [fontsize=%d];\n' % self.fontsize +
-            '  margin="%3.2f,%3.2f"; \n' % (xmargin, ymargin) +
-            '  mclimit="99";\n' +
-            '  nodesep="%.2f";\n' % self.nodesep +
-            '  outputorder="edgesfirst";\n' +
-            ('#' if self.hpages == self.vpages == 1 else '') +
+            '  concentrate="false";\n'
+            + '  dpi="%d";\n' % self.dpi
+            + "  graph [fontsize=%d];\n" % self.fontsize
+            + '  margin="%3.2f,%3.2f"; \n' % (xmargin, ymargin)
+            + '  mclimit="99";\n'
+            + '  nodesep="%.2f";\n' % self.nodesep
+            + '  outputorder="edgesfirst";\n'
+            + ("#" if self.hpages == self.vpages == 1 else "")
+            +
             # comment out "page=" if the graph is on 1 page (bug #2121)
-            '  page="%3.2f,%3.2f";\n' % (pwidth, pheight) +
-            '  pagedir="%s";\n' % self.pagedir +
-            '  rankdir="%s";\n' % self.rankdir +
-            '  ranksep="%.2f";\n' % self.ranksep +
-            '  ratio="%s";\n' % self.ratio +
-            '  searchsize="100";\n' +
-            '  size="%3.2f,%3.2f"; \n' % (sizew, sizeh) +
-            '  splines="%s";\n' % self.spline +
-            '\n' +
-            '  edge [len=0.5 style=solid fontsize=%d];\n' % self.fontsize)
+            '  page="%3.2f,%3.2f";\n' % (pwidth, pheight)
+            + '  pagedir="%s";\n' % self.pagedir
+            + '  rankdir="%s";\n' % self.rankdir
+            + '  ranksep="%.2f";\n' % self.ranksep
+            + '  ratio="%s";\n' % self.ratio
+            + '  searchsize="100";\n'
+            + '  size="%3.2f,%3.2f"; \n' % (sizew, sizeh)
+            + '  splines="%s";\n' % self.spline
+            + "\n"
+            + "  edge [len=0.5 style=solid fontsize=%d];\n" % self.fontsize
+        )
         if self.node_ports:
-            self.write('  edge [headport=%s tailport=%s];\n'
-                           % _NODE_PORTS[self.rankdir])
+            self.write(
+                "  edge [headport=%s tailport=%s];\n" % _NODE_PORTS[self.rankdir]
+            )
 
         if self.fontfamily:
-            self.write('  node [style=filled fontname="%s" fontsize=%d];\n'
-                       % (self.fontfamily, self.fontsize))
+            self.write(
+                '  node [style=filled fontname="%s" fontsize=%d];\n'
+                % (self.fontfamily, self.fontsize)
+            )
         else:
-            self.write('  node [style=filled fontsize=%d];\n'
-                       % self.fontsize)
-        self.write('\n')
+            self.write("  node [style=filled fontsize=%d];\n" % self.fontsize)
+        self.write("\n")
 
     def write(self, text):
-        """ Write text to the dot file """
-        self._dot.write(text.encode('utf8', 'xmlcharrefreplace'))
+        """Write text to the dot file"""
+        self._dot.write(text.encode("utf8", "xmlcharrefreplace"))
 
     def open(self, filename):
-        """ Implement GVDocBase.open() """
+        """Implement GVDocBase.open()"""
         self._filename = os.path.normpath(os.path.abspath(filename))
 
     def close(self):
@@ -519,33 +576,43 @@ class GVDocBase(BaseDoc, GVDoc):
         """
         if self.note:
             # build up the label
-            label = ''
-            for line in self.note:   # for every line in the note...
+            label = ""
+            for line in self.note:  # for every line in the note...
                 line = line.strip()  # ...strip whitespace from this line...
-                if line != '':       # ...and if we still have a line...
-                    if label != '':  # ...see if we need to insert a newline...
-                        label += '\\n'
-                    label += line.replace('"', '\\\"')
+                if line != "":  # ...and if we still have a line...
+                    if label != "":  # ...see if we need to insert a newline...
+                        label += "\\n"
+                    label += line.replace('"', '\\"')
 
             # after all that, see if we have a label to display
-            if label != '':
+            if label != "":
                 self.write(
-                    '\n' +
-                    '  label="%s";\n' % label +
-                    '  labelloc="%s";\n' % self.noteloc +
-                    '  fontsize="%d";\n' % self.notesize)
+                    "\n"
+                    + '  label="%s";\n' % label
+                    + '  labelloc="%s";\n' % self.noteloc
+                    + '  fontsize="%d";\n' % self.notesize
+                )
 
-        self.write('}\n\n')
+        self.write("}\n\n")
 
-    def add_node(self, node_id, label, shape="", color="",
-                 style="", fillcolor="", url="", htmloutput=False):
+    def add_node(
+        self,
+        node_id,
+        label,
+        shape="",
+        color="",
+        style="",
+        fillcolor="",
+        url="",
+        htmloutput=False,
+    ):
         """
         Add a node to this graph. Nodes can be different shapes like boxes and
         circles.
 
         Implements GVDocBase.add_node().
         """
-        text = '['
+        text = "["
 
         if shape:
             text += ' shape="%s"' % shape
@@ -563,7 +630,7 @@ class GVDocBase(BaseDoc, GVDoc):
         # otherwise Graphviz uses the node ID as the label which is unlikely
         # to be what the user wants to see in the graph
         if label.startswith("<") or htmloutput:
-            text += ' label=<%s>' % label
+            text += " label=<%s>" % label
         else:
             text += ' label="%s"' % label
 
@@ -582,32 +649,32 @@ class GVDocBase(BaseDoc, GVDoc):
         self.write('  "%s" -> "%s"' % (esc(id1), esc(id2)))
 
         if style or head or tail:
-            self.write(' [')
+            self.write(" [")
 
             if style:
-                self.write(' style=%s' % style)
+                self.write(" style=%s" % style)
             if head:
-                self.write(' arrowhead=%s' % head)
+                self.write(" arrowhead=%s" % head)
             if tail:
-                self.write(' arrowtail=%s' % tail)
+                self.write(" arrowtail=%s" % tail)
             if head:
                 if tail:
-                    self.write(' dir=both')
+                    self.write(" dir=both")
                 else:
-                    self.write(' dir=forward')
+                    self.write(" dir=forward")
             else:
                 if tail:
-                    self.write(' dir=back')
+                    self.write(" dir=back")
                 else:
-                    self.write(' dir=none')
-            self.write(' ]')
+                    self.write(" dir=none")
+            self.write(" ]")
 
-        self.write(';')
+        self.write(";")
 
         if comment:
-            self.write(' // %s' % comment)
+            self.write(" // %s" % comment)
 
-        self.write('\n')
+        self.write("\n")
 
     def add_comment(self, comment):
         """
@@ -615,15 +682,15 @@ class GVDocBase(BaseDoc, GVDoc):
 
         Implements GVDocBase.add_comment().
         """
-        tmp = comment.split('\n')
+        tmp = comment.split("\n")
         for line in tmp:
             text = line.strip()
             if text == "":
-                self.write('\n')
-            elif text.startswith('#'):
-                self.write('%s\n' % text)
+                self.write("\n")
+            elif text.startswith("#"):
+                self.write("%s\n" % text)
             else:
-                self.write('# %s\n' % text)
+                self.write("# %s\n" % text)
 
     def add_samerank(self, id1, id2):
         """
@@ -642,28 +709,27 @@ class GVDocBase(BaseDoc, GVDoc):
         self.write('  "%s" [label = "%s"]\n' % (esc(id), label))
 
     def start_subgraph(self, graph_id):
-        """ Implement GVDocBase.start_subgraph() """
-        graph_id = graph_id.replace(' ', '_')  # for user-defined ID with space
+        """Implement GVDocBase.start_subgraph()"""
+        graph_id = graph_id.replace(" ", "_")  # for user-defined ID with space
         self.write(
-            '  subgraph cluster_%s\n' % graph_id +
-            '  {\n' +
-            '  style="invis";\n')  # no border around subgraph (#0002176)
+            "  subgraph cluster_%s\n" % graph_id + "  {\n" + '  style="invis";\n'
+        )  # no border around subgraph (#0002176)
 
     def end_subgraph(self):
-        """ Implement GVDocBase.end_subgraph() """
-        self.write('  }\n')
+        """Implement GVDocBase.end_subgraph()"""
+        self.write("  }\n")
 
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 #
 # GVDotDoc
 #
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 class GVDotDoc(GVDocBase):
-    """ GVDoc implementation that generates a .gv text file. """
+    """GVDoc implementation that generates a .gv text file."""
 
     def close(self):
-        """ Implements GVDotDoc.close() """
+        """Implements GVDotDoc.close()"""
         GVDocBase.close(self)
 
         # Make sure the extension is correct
@@ -674,29 +740,29 @@ class GVDotDoc(GVDocBase):
             dotfile.write(self._dot.getvalue())
 
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 #
 # GVPsDoc
 #
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 class GVPsDoc(GVDocBase):
-    """ GVDoc implementation that generates a .ps file using Graphviz. """
+    """GVDoc implementation that generates a .ps file using Graphviz."""
 
     def __init__(self, options, paper_style):
         # DPI must always be 72 for PDF.
         # GV documentation says dpi is only for image formats.
-        options.menu.get_option_by_name('dpi').set_value(72)
+        options.menu.get_option_by_name("dpi").set_value(72)
         GVDocBase.__init__(self, options, paper_style)
         # GV documentation allow multiple pages only for ps format,
         # But it does not work with -Tps:cairo in order to
         # show Non Latin-1 letters. Force to only 1 page.
         # See bug tracker issue 2815
-        options.menu.get_option_by_name('v_pages').set_value(1)
-        options.menu.get_option_by_name('h_pages').set_value(1)
+        options.menu.get_option_by_name("v_pages").set_value(1)
+        options.menu.get_option_by_name("h_pages").set_value(1)
         GVDocBase.__init__(self, options, paper_style)
 
     def close(self):
-        """ Implements GVPsDoc.close() """
+        """Implements GVPsDoc.close()"""
         GVDocBase.close(self)
 
         # Make sure the extension is correct
@@ -725,36 +791,36 @@ class GVPsDoc(GVDocBase):
         # large page.
 
         command = 'dot -Tps:cairo -o"%s" "%s"' % (self._filename, tmp_dot)
-        dotversion = str(Popen(['dot', '-V'],
-                               stderr=PIPE).communicate(input=None)[1])
+        dotversion = str(Popen(["dot", "-V"], stderr=PIPE).communicate(input=None)[1])
         # Problem with dot 2.26.3 and later and multiple pages, which gives
         # "cairo: out of memory" If the :cairo is skipped for these cases it
         # gives bad result for non-Latin-1 characters (utf-8).
-        if (dotversion.find('2.26.3') or dotversion.find('2.28.0') != -1) and \
-                (self.vpages * self.hpages) > 1:
-            command = command.replace(':cairo', '')
+        if (dotversion.find("2.26.3") or dotversion.find("2.28.0") != -1) and (
+            self.vpages * self.hpages
+        ) > 1:
+            command = command.replace(":cairo", "")
         os.system(command)
         # Delete the temporary dot file
         os.remove(tmp_dot)
 
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 #
 # GVSvgDoc
 #
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 class GVSvgDoc(GVDocBase):
-    """ GVDoc implementation that generates a .svg file using Graphviz. """
+    """GVDoc implementation that generates a .svg file using Graphviz."""
 
     def __init__(self, options, paper_style):
         # GV documentation allow multiple pages only for ps format,
         # which also includes pdf via ghostscript.
-        options.menu.get_option_by_name('v_pages').set_value(1)
-        options.menu.get_option_by_name('h_pages').set_value(1)
+        options.menu.get_option_by_name("v_pages").set_value(1)
+        options.menu.get_option_by_name("h_pages").set_value(1)
         GVDocBase.__init__(self, options, paper_style)
 
     def close(self):
-        """ Implements GVSvgDoc.close() """
+        """Implements GVSvgDoc.close()"""
         GVDocBase.close(self)
 
         # Make sure the extension is correct
@@ -773,23 +839,23 @@ class GVSvgDoc(GVDocBase):
         os.remove(tmp_dot)
 
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 #
 # GVSvgzDoc
 #
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 class GVSvgzDoc(GVDocBase):
-    """ GVDoc implementation that generates a .svg file using Graphviz. """
+    """GVDoc implementation that generates a .svg file using Graphviz."""
 
     def __init__(self, options, paper_style):
         # GV documentation allow multiple pages only for ps format,
         # which also includes pdf via ghostscript.
-        options.menu.get_option_by_name('v_pages').set_value(1)
-        options.menu.get_option_by_name('h_pages').set_value(1)
+        options.menu.get_option_by_name("v_pages").set_value(1)
+        options.menu.get_option_by_name("h_pages").set_value(1)
         GVDocBase.__init__(self, options, paper_style)
 
     def close(self):
-        """ Implements GVSvgzDoc.close() """
+        """Implements GVSvgzDoc.close()"""
         GVDocBase.close(self)
 
         # Make sure the extension is correct
@@ -808,23 +874,23 @@ class GVSvgzDoc(GVDocBase):
         os.remove(tmp_dot)
 
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 #
 # GVPngDoc
 #
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 class GVPngDoc(GVDocBase):
-    """ GVDoc implementation that generates a .png file using Graphviz. """
+    """GVDoc implementation that generates a .png file using Graphviz."""
 
     def __init__(self, options, paper_style):
         # GV documentation allow multiple pages only for ps format,
         # which also includes pdf via ghostscript.
-        options.menu.get_option_by_name('v_pages').set_value(1)
-        options.menu.get_option_by_name('h_pages').set_value(1)
+        options.menu.get_option_by_name("v_pages").set_value(1)
+        options.menu.get_option_by_name("h_pages").set_value(1)
         GVDocBase.__init__(self, options, paper_style)
 
     def close(self):
-        """ Implements GVPngDoc.close() """
+        """Implements GVPngDoc.close()"""
         GVDocBase.close(self)
 
         # Make sure the extension is correct
@@ -843,23 +909,23 @@ class GVPngDoc(GVDocBase):
         os.remove(tmp_dot)
 
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 #
 # GVJpegDoc
 #
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 class GVJpegDoc(GVDocBase):
-    """ GVDoc implementation that generates a .jpg file using Graphviz. """
+    """GVDoc implementation that generates a .jpg file using Graphviz."""
 
     def __init__(self, options, paper_style):
         # GV documentation allow multiple pages only for ps format,
         # which also includes pdf via ghostscript.
-        options.menu.get_option_by_name('v_pages').set_value(1)
-        options.menu.get_option_by_name('h_pages').set_value(1)
+        options.menu.get_option_by_name("v_pages").set_value(1)
+        options.menu.get_option_by_name("h_pages").set_value(1)
         GVDocBase.__init__(self, options, paper_style)
 
     def close(self):
-        """ Implements GVJpegDoc.close() """
+        """Implements GVJpegDoc.close()"""
         GVDocBase.close(self)
 
         # Make sure the extension is correct
@@ -878,23 +944,23 @@ class GVJpegDoc(GVDocBase):
         os.remove(tmp_dot)
 
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 #
 # GVGifDoc
 #
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 class GVGifDoc(GVDocBase):
-    """ GVDoc implementation that generates a .gif file using Graphviz. """
+    """GVDoc implementation that generates a .gif file using Graphviz."""
 
     def __init__(self, options, paper_style):
         # GV documentation allow multiple pages only for ps format,
         # which also includes pdf via ghostscript.
-        options.menu.get_option_by_name('v_pages').set_value(1)
-        options.menu.get_option_by_name('h_pages').set_value(1)
+        options.menu.get_option_by_name("v_pages").set_value(1)
+        options.menu.get_option_by_name("h_pages").set_value(1)
         GVDocBase.__init__(self, options, paper_style)
 
     def close(self):
-        """ Implements GVGifDoc.close() """
+        """Implements GVGifDoc.close()"""
         GVDocBase.close(self)
 
         # Make sure the extension is correct
@@ -913,26 +979,26 @@ class GVGifDoc(GVDocBase):
         os.remove(tmp_dot)
 
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 #
 # GVPdfGvDoc
 #
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 class GVPdfGvDoc(GVDocBase):
-    """ GVDoc implementation that generates a .pdf file using Graphviz. """
+    """GVDoc implementation that generates a .pdf file using Graphviz."""
 
     def __init__(self, options, paper_style):
         # DPI must always be 72 for PDF.
         # GV documentation says dpi is only for image formats.
-        options.menu.get_option_by_name('dpi').set_value(72)
+        options.menu.get_option_by_name("dpi").set_value(72)
         # GV documentation allow multiple pages only for ps format,
         # which also includes pdf via ghostscript.
-        options.menu.get_option_by_name('v_pages').set_value(1)
-        options.menu.get_option_by_name('h_pages').set_value(1)
+        options.menu.get_option_by_name("v_pages").set_value(1)
+        options.menu.get_option_by_name("h_pages").set_value(1)
         GVDocBase.__init__(self, options, paper_style)
 
     def close(self):
-        """ Implements GVPdfGvDoc.close() """
+        """Implements GVPdfGvDoc.close()"""
         GVDocBase.close(self)
 
         # Make sure the extension is correct
@@ -953,21 +1019,22 @@ class GVPdfGvDoc(GVDocBase):
         os.remove(tmp_dot)
 
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 #
 # GVPdfGsDoc
 #
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 class GVPdfGsDoc(GVDocBase):
-    """ GVDoc implementation that generates a .pdf file using Ghostscript. """
+    """GVDoc implementation that generates a .pdf file using Ghostscript."""
+
     def __init__(self, options, paper_style):
         # DPI must always be 72 for PDF.
         # GV documentation says dpi is only for image formats.
-        options.menu.get_option_by_name('dpi').set_value(72)
+        options.menu.get_option_by_name("dpi").set_value(72)
         GVDocBase.__init__(self, options, paper_style)
 
     def close(self):
-        """ Implements GVPdfGsDoc.close() """
+        """Implements GVPdfGsDoc.close()"""
         GVDocBase.close(self)
 
         # Make sure the extension is correct
@@ -996,14 +1063,16 @@ class GVPdfGsDoc(GVDocBase):
 
         # Add .5 to remove rounding errors.
         paper_size = self._paper.get_size()
-        width_pt = int((paper_size.get_width_inches() * 72) + .5)
-        height_pt = int((paper_size.get_height_inches() * 72) + .5)
+        width_pt = int((paper_size.get_width_inches() * 72) + 0.5)
+        height_pt = int((paper_size.get_height_inches() * 72) + 0.5)
         if (self.vpages * self.hpages) == 1:
             # -dDEVICEWIDTHPOINTS=%d' -dDEVICEHEIGHTPOINTS=%d
-            command = '%s -q -sDEVICE=pdfwrite -dNOPAUSE '\
-                '-dDEVICEWIDTHPOINTS=%d -dDEVICEHEIGHTPOINTS=%d '\
-                '-sOutputFile="%s" "%s" -c quit' % (
-                    _GS_CMD, width_pt, height_pt, self._filename, tmp_ps)
+            command = (
+                "%s -q -sDEVICE=pdfwrite -dNOPAUSE "
+                "-dDEVICEWIDTHPOINTS=%d -dDEVICEHEIGHTPOINTS=%d "
+                '-sOutputFile="%s" "%s" -c quit'
+                % (_GS_CMD, width_pt, height_pt, self._filename, tmp_ps)
+            )
             os.system(command)
             os.remove(tmp_ps)
             return
@@ -1017,11 +1086,17 @@ class GVPdfGsDoc(GVDocBase):
         # Convert to PDF using ghostscript
         list_of_pieces = []
 
-        x_rng = range(1, self.hpages + 1) if 'L' in self.pagedir \
+        x_rng = (
+            range(1, self.hpages + 1)
+            if "L" in self.pagedir
             else range(self.hpages, 0, -1)
-        y_rng = range(1, self.vpages + 1) if 'B' in self.pagedir \
+        )
+        y_rng = (
+            range(1, self.vpages + 1)
+            if "B" in self.pagedir
             else range(self.vpages, 0, -1)
-        if self.pagedir[0] in 'TB':
+        )
+        if self.pagedir[0] in "TB":
             the_list = ((__x, __y) for __y in y_rng for __x in x_rng)
         else:
             the_list = ((__x, __y) for __x in x_rng for __y in y_rng)
@@ -1032,20 +1107,34 @@ class GVPdfGsDoc(GVDocBase):
             tmp_pdf_piece = "%s_%d_%d.pdf" % (tmp_ps, __x, __y)
             list_of_pieces.append(tmp_pdf_piece)
             # Generate Ghostscript code
-            command = '%s -q -dBATCH -dNOPAUSE -dSAFER '\
-                '-dDEVICEWIDTHPOINTS=%d -dDEVICEHEIGHTPOINTS=%d '\
-                '-dFIXEDMEDIA -sOutputFile="%s" -sDEVICE=pdfwrite '\
-                '-c "<</.HWMargins [%d %d %d %d] /PageOffset [%d %d]>> '\
-                'setpagedevice" -f "%s"' % (
-                    _GS_CMD, width_pt + 10, height_pt + 10, tmp_pdf_piece,
-                    margin_l, margin_b, margin_r, margin_t,
-                    page_offset_x + 5, page_offset_y + 5, tmp_ps)
+            command = (
+                "%s -q -dBATCH -dNOPAUSE -dSAFER "
+                "-dDEVICEWIDTHPOINTS=%d -dDEVICEHEIGHTPOINTS=%d "
+                '-dFIXEDMEDIA -sOutputFile="%s" -sDEVICE=pdfwrite '
+                '-c "<</.HWMargins [%d %d %d %d] /PageOffset [%d %d]>> '
+                'setpagedevice" -f "%s"'
+                % (
+                    _GS_CMD,
+                    width_pt + 10,
+                    height_pt + 10,
+                    tmp_pdf_piece,
+                    margin_l,
+                    margin_b,
+                    margin_r,
+                    margin_t,
+                    page_offset_x + 5,
+                    page_offset_y + 5,
+                    tmp_ps,
+                )
+            )
             # Execute Ghostscript
             os.system(command)
         # Merge pieces to single multipage PDF ;
-        command = '%s -q -dBATCH -dNOPAUSE '\
-            '-sOUTPUTFILE="%s" -sDEVICE=pdfwrite %s '\
-            % (_GS_CMD, self._filename, ' '.join(list_of_pieces))
+        command = (
+            "%s -q -dBATCH -dNOPAUSE "
+            '-sOUTPUTFILE="%s" -sDEVICE=pdfwrite %s '
+            % (_GS_CMD, self._filename, " ".join(list_of_pieces))
+        )
         os.system(command)
 
         # Clean temporary files
@@ -1054,66 +1143,102 @@ class GVPdfGsDoc(GVDocBase):
             os.remove(tmp_pdf_piece)
         os.remove(tmp_dot)
 
-#------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
 #
 # Various Graphviz formats.
 #
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 FORMATS = []
 
 if _DOT_FOUND:
-
     if _GS_CMD != "":
-        FORMATS += [{'type' : "gspdf",
-                     'ext'  : "pdf",
-                     'descr': _("PDF (Ghostscript)"),
-                     'mime' : "application/pdf",
-                     'class': GVPdfGsDoc}]
+        FORMATS += [
+            {
+                "type": "gspdf",
+                "ext": "pdf",
+                "descr": _("PDF (Ghostscript)"),
+                "mime": "application/pdf",
+                "class": GVPdfGsDoc,
+            }
+        ]
 
-    FORMATS += [{'type' : "gvpdf",
-                 'ext'  : "pdf",
-                 'descr': _("PDF (Graphviz)"),
-                 'mime' : "application/pdf",
-                 'class': GVPdfGvDoc}]
+    FORMATS += [
+        {
+            "type": "gvpdf",
+            "ext": "pdf",
+            "descr": _("PDF (Graphviz)"),
+            "mime": "application/pdf",
+            "class": GVPdfGvDoc,
+        }
+    ]
 
-    FORMATS += [{'type' : "ps",
-                 'ext'  : "ps",
-                 'descr': _("PostScript"),
-                 'mime' : "application/postscript",
-                 'class': GVPsDoc}]
+    FORMATS += [
+        {
+            "type": "ps",
+            "ext": "ps",
+            "descr": _("PostScript"),
+            "mime": "application/postscript",
+            "class": GVPsDoc,
+        }
+    ]
 
-    FORMATS += [{'type' : "svg",
-                 'ext'  : "svg",
-                 'descr': _("Structured Vector Graphics (SVG)"),
-                 'mime' : "image/svg",
-                 'class': GVSvgDoc}]
+    FORMATS += [
+        {
+            "type": "svg",
+            "ext": "svg",
+            "descr": _("Structured Vector Graphics (SVG)"),
+            "mime": "image/svg",
+            "class": GVSvgDoc,
+        }
+    ]
 
-    FORMATS += [{'type' : "svgz",
-                 'ext'  : "svgz",
-                 'descr': _("Compressed Structured Vector Graphs (SVGZ)"),
-                 'mime' : "image/svgz",
-                 'class': GVSvgzDoc}]
+    FORMATS += [
+        {
+            "type": "svgz",
+            "ext": "svgz",
+            "descr": _("Compressed Structured Vector Graphs (SVGZ)"),
+            "mime": "image/svgz",
+            "class": GVSvgzDoc,
+        }
+    ]
 
-    FORMATS += [{'type' : "jpg",
-                 'ext'  : "jpg",
-                 'descr': _("JPEG image"),
-                 'mime' : "image/jpeg",
-                 'class': GVJpegDoc}]
+    FORMATS += [
+        {
+            "type": "jpg",
+            "ext": "jpg",
+            "descr": _("JPEG image"),
+            "mime": "image/jpeg",
+            "class": GVJpegDoc,
+        }
+    ]
 
-    FORMATS += [{'type' : "gif",
-                 'ext'  : "gif",
-                 'descr': _("GIF image"),
-                 'mime' : "image/gif",
-                 'class': GVGifDoc}]
+    FORMATS += [
+        {
+            "type": "gif",
+            "ext": "gif",
+            "descr": _("GIF image"),
+            "mime": "image/gif",
+            "class": GVGifDoc,
+        }
+    ]
 
-    FORMATS += [{'type' : "png",
-                 'ext'  : "png",
-                 'descr': _("PNG image"),
-                 'mime' : "image/png",
-                 'class': GVPngDoc}]
+    FORMATS += [
+        {
+            "type": "png",
+            "ext": "png",
+            "descr": _("PNG image"),
+            "mime": "image/png",
+            "class": GVPngDoc,
+        }
+    ]
 
-FORMATS += [{'type' : "dot",
-             'ext'  : "gv",
-             'descr': _("Graphviz File"),
-             'mime' : "text/x-graphviz",
-             'class': GVDotDoc}]
+FORMATS += [
+    {
+        "type": "dot",
+        "ext": "gv",
+        "descr": _("Graphviz File"),
+        "mime": "text/x-graphviz",
+        "class": GVDotDoc,
+    }
+]

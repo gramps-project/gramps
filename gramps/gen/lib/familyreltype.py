@@ -22,18 +22,19 @@
 Provide the different family reference types.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .grampstype import GrampsType
 from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-class FamilyRelType(GrampsType):
 
+class FamilyRelType(GrampsType):
     MARRIED = 0
     UNMARRIED = 1
     CIVIL_UNION = 2
@@ -49,7 +50,7 @@ class FamilyRelType(GrampsType):
         (CIVIL_UNION, _("Civil Union"), "Civil Union"),
         (UNKNOWN, _("Unknown"), "Unknown"),
         (CUSTOM, _("Custom"), "Custom"),
-        ]
+    ]
 
     def __init__(self, value=None):
         if value is None:

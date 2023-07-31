@@ -19,39 +19,42 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 from ....lib import PlaceType
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasData
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasData(Rule):
     """
     Rule that checks for a place with a particular value
     """
 
-    labels = [ _('Name:', 'place'),
-                    _('Place type:'),
-                    _('Code:'),
-                    ]
-    name = _('Places matching parameters')
-    description = _('Matches places with particular parameters')
-    category = _('General filters')
+    labels = [
+        _("Name:", "place"),
+        _("Place type:"),
+        _("Code:"),
+    ]
+    name = _("Places matching parameters")
+    description = _("Matches places with particular parameters")
+    category = _("General filters")
     allow_regex = True
 
     def prepare(self, db, user):

@@ -19,46 +19,49 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import MatchesFilterBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MatchesFilter
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MatchesSourceFilterBase(MatchesFilterBase):
     """
     Rule that checks against another filter.
     """
 
-    labels = [_('Source filter name:')]
-    name = 'Objects with source matching the <source filter>'
-    description = "Matches objects with sources that match the " \
-                   "specified source filter name"
-    category = _('Citation/source filters')
+    labels = [_("Source filter name:")]
+    name = "Objects with source matching the <source filter>"
+    description = (
+        "Matches objects with sources that match the " "specified source filter name"
+    )
+    category = _("Citation/source filters")
 
     # we want to have this filter show source filters
-    namespace = 'Source'
+    namespace = "Source"
 
     def prepare(self, db, user):
         MatchesFilterBase.prepare(self, db, user)
         self.MSF_filt = self.find_filter()
 
     def apply(self, db, object):
-        if self.MSF_filt is None :
+        if self.MSF_filt is None:
             return False
 
         for citation_handle in object.get_citation_list():

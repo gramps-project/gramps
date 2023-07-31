@@ -96,7 +96,6 @@ class CalendarWriter:
         self.g.write("%s\n" % text)
 
     def export_data(self, filename):
-
         self.dirname = os.path.dirname(filename)
         try:
             with open(filename, "w", encoding="utf8", newline="\r\n") as self.g:

@@ -60,5 +60,5 @@ editor_rule_list = [
     MatchesTitleSubstringOf,
     HasRepositoryCallNumberRef,
     MatchesRepositoryFilter,
-    HasTag
+    HasTag,
 ]

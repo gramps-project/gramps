@@ -26,12 +26,23 @@ This module provides the Plugin class for document generator plugins.
 from . import Plugin
 from .docgen import TextDoc, DrawDoc
 
+
 class DocGenPlugin(Plugin):
     """
     This class represents a plugin for generating documents from Gramps
     """
-    def __init__(self, name, description, basedoc,
-                 paper, style, extension, docoptclass, basedocname):
+
+    def __init__(
+        self,
+        name,
+        description,
+        basedoc,
+        paper,
+        style,
+        extension,
+        docoptclass,
+        basedocname,
+    ):
         """
         :param name: A friendly name to call this plugin.
             Example: "Plain Text"

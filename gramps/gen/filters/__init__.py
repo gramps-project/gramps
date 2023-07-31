@@ -26,15 +26,21 @@ CustomFilters = None
 
 from ..const import CUSTOM_FILTERS
 from ._filterlist import FilterList
-from ._genericfilter import (GenericFilter, GenericFilterFactory,
-                             DeferredFilter, DeferredFamilyFilter)
+from ._genericfilter import (
+    GenericFilter,
+    GenericFilterFactory,
+    DeferredFilter,
+    DeferredFamilyFilter,
+)
 from ._paramfilter import ParamFilter
 from ._searchfilter import SearchFilter, ExactSearchFilter
+
 
 def reload_custom_filters():
     global CustomFilters
     CustomFilters = FilterList(CUSTOM_FILTERS)
     CustomFilters.load()
 
+
 # if not CustomFilters:  # moved to viewmanager
-    # reload_custom_filters()
+# reload_custom_filters()

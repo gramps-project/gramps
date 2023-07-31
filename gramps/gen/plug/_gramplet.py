@@ -19,22 +19,24 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import types
 import logging
+
 LOG = logging.getLogger(".Gramplets")
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from ...gui.dbguielement import DbGUIElement
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
 
@@ -42,6 +44,7 @@ class Gramplet:
     """
     Base class for non-graphical gramplet code.
     """
+
     def __init__(self, gui, nav_group=0):
         """
         Internal constructor for non-graphical gramplets.
@@ -58,8 +61,8 @@ class Gramplet:
         self._signal = {}
         self.option_order = []
         # links to each other:
-        self.gui = gui   # plugin gramplet has link to gui
-        gui.pui = self   # gui has link to plugin ui
+        self.gui = gui  # plugin gramplet has link to gui
+        gui.pui = self  # gui has link to plugin ui
         self.nav_group = nav_group
         self.dbstate = gui.dbstate
         self.uistate = gui.uistate
@@ -68,13 +71,11 @@ class Gramplet:
         self.build_options()
         self.dbstate.connect("database-changed", self._db_changed)
         self.dbstate.connect("no-database", self._no_db)
-        self.gui.textview.connect("button-press-event",
-                                  self.gui.on_button_press)
-        self.gui.textview.connect("motion-notify-event",
-                                  self.gui.on_motion)
+        self.gui.textview.connect("button-press-event", self.gui.on_button_press)
+        self.gui.textview.connect("motion-notify-event", self.gui.on_motion)
         self._db_changed(self.dbstate.db)
-        active_person = self.get_active('Person')
-        if active_person: # already changed
+        active_person = self.get_active("Person")
+        if active_person:  # already changed
             self._active_changed(active_person)
         self.post_init()
 
@@ -88,7 +89,7 @@ class Gramplet:
         # print('History: nave-type = %s' % nav_type)
         self.connect(history, "active-changed", method)
 
-    def init(self): # once, constructor
+    def init(self):  # once, constructor
         """
         External constructor for developers to put their initialization
         code. Designed to be overridden.
@@ -105,7 +106,7 @@ class Gramplet:
         """
         pass
 
-    def main(self): # return false finishes
+    def main(self):  # return false finishes
         """
         The main place for the gramplet's code. This is a generator.
         Generator which will be run in the background, through :meth:`update`.
@@ -137,8 +138,7 @@ class Gramplet:
         Return the object of the active handle for the given navigation type.
         """
         handle = self.uistate.get_active(nav_type, self.nav_group)
-        handle_func = getattr(self.dbstate.db,
-                             'get_%s_from_handle' % nav_type.lower())
+        handle_func = getattr(self.dbstate.db, "get_%s_from_handle" % nav_type.lower())
         if handle:
             return handle_func(handle)
         return None
@@ -206,7 +206,7 @@ class Gramplet:
         """
         self.gui.clear_text()
 
-    def set_text(self, text, scroll_to='start'):
+    def set_text(self, text, scroll_to="start"):
         """
         Clear and set the text to the given text. Additionally, move the
         cursor to the position given. Positions are:
@@ -248,6 +248,7 @@ class Gramplet:
         """
         textview = self.gui.textview
         from gi.repository import Gtk
+
         # Gtk.WrapMode.NONE, Gtk.WrapMode.CHAR, Gtk.WrapMode.WORD or Gtk.WrapMode.WORD_CHAR.
         if value in [True, 1]:
             textview.set_wrap_mode(Gtk.WrapMode.WORD)
@@ -259,8 +260,8 @@ class Gramplet:
             textview.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
         else:
             raise ValueError(
-                    "Unknown wrap mode: '%s': use 0,1,'char' or 'word char')"
-                        % value)
+                "Unknown wrap mode: '%s': use 0,1,'char' or 'word char')" % value
+            )
 
     def no_wrap(self):
         """
@@ -279,7 +280,7 @@ class Gramplet:
         if len(self.gui.data) >= pos + 1:
             text = self.gui.data[pos]
             text = text.replace("\\n", chr(10))
-            self.set_text(text, 'end')
+            self.set_text(text, "end")
 
     def save_text_to_data(self):
         """
@@ -294,24 +295,23 @@ class Gramplet:
         The main interface for running the :meth:`main` method.
         """
         from gi.repository import GLib
-        if ((not self.active) and
-            not self.gui.force_update):
+
+        if (not self.active) and not self.gui.force_update:
             self.dirty = True
             if self.dbstate.is_open():
-                #print "  %s is not active" % self.gui.gname
+                # print "  %s is not active" % self.gui.gname
                 self.update_has_data()
             else:
                 self.set_has_data(False)
             return
-        #print "     %s is UPDATING" % self.gui.gname
+        # print "     %s is UPDATING" % self.gui.gname
         self.dirty = False
         LOG.debug("gramplet updater: %s: running" % self.gui.title)
         if self._idle_id != 0:
             self.interrupt()
         self._generator = self.main()
         self._pause = False
-        self._idle_id = GLib.idle_add(self._updater,
-                                      priority=GLib.PRIORITY_LOW - 10)
+        self._idle_id = GLib.idle_add(self._updater, priority=GLib.PRIORITY_LOW - 10)
 
     def _updater(self):
         """
@@ -329,22 +329,23 @@ class Gramplet:
             if self._pause:
                 LOG.debug("gramplet updater: %s: return False" % self.gui.title)
                 return False
-            LOG.debug("gramplet updater: %s: return %s" %
-                      (self.gui.title, retval))
+            LOG.debug("gramplet updater: %s: return %s" % (self.gui.title, retval))
             return retval
         except StopIteration:
             self._idle_id = 0
             self._generator.close()
-            LOG.debug("gramplet updater: %s: Done!"  % self.gui.title)
+            LOG.debug("gramplet updater: %s: Done!" % self.gui.title)
             return False
         except Exception as e:
             import traceback
+
             LOG.warning("Gramplet gave an error: %s" % self.gui.title)
             traceback.print_exc()
             print("Continuing after gramplet error...")
             self._idle_id = 0
-            self.uistate.push_message(self.dbstate,
-                _("Gramplet %s caused an error") % self.gui.title)
+            self.uistate.push_message(
+                self.dbstate, _("Gramplet %s caused an error") % self.gui.title
+            )
             return False
 
     def pause(self, *args):
@@ -358,9 +359,9 @@ class Gramplet:
         Resume the :meth:`main` method that has previously paused.
         """
         from gi.repository import GLib
+
         self._pause = False
-        self._idle_id = GLib.idle_add(self._updater,
-                                      priority=GLib.PRIORITY_LOW - 10)
+        self._idle_id = GLib.idle_add(self._updater, priority=GLib.PRIORITY_LOW - 10)
 
     def update_all(self, *args):
         """
@@ -377,6 +378,7 @@ class Gramplet:
         Force the generator to stop running.
         """
         from gi.repository import GLib
+
         self._pause = True
         if self._idle_id != 0:
             GLib.source_remove(self._idle_id)
@@ -396,15 +398,15 @@ class Gramplet:
             # allows Person Gramplets to be informed of active-changed
             # Some Gramplets .gpr files don't have navtypes set, thus the
             # hasattr
-            if hasattr(self.gui, 'navtypes') and 'Person' in self.gui.navtypes:
-                self.connect_signal('Person', self._active_changed)
+            if hasattr(self.gui, "navtypes") and "Person" in self.gui.navtypes:
+                self.connect_signal("Person", self._active_changed)
             self.db_changed()
         # Some Gramplets use DbGUIElement; and DbGUIElement needs to know if
         # db is changed.  However, at initialization, DbGUIElement is not yet
         # initialized when _db_changed is called, thus the test for callman
         if hasattr(self, "callman") and isinstance(self, DbGUIElement):
             # get DbGUIElement informed if in use
-            self._change_db(db)       # DbGUIElement method
+            self._change_db(db)  # DbGUIElement method
 
         self.update()
 
@@ -449,7 +451,7 @@ class Gramplet:
 
     def disconnect(self, signal):
         if signal in self._signal:
-            for (id, signal_obj) in self._signal[signal]:
+            for id, signal_obj in self._signal[signal]:
                 signal_obj.disconnect(id)
             self._signal[signal] = []
         else:
@@ -460,7 +462,7 @@ class Gramplet:
         Used to disconnect all the signals for this specific gramplet
         """
         for signal in self._signal:
-            for (sig_id, signal_obj) in self._signal[signal]:
+            for sig_id, signal_obj in self._signal[signal]:
                 signal_obj.disconnect(sig_id)
             self._signal[signal] = []
 

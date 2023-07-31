@@ -19,35 +19,36 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import GObject
 from gi.repository import Gtk
 from gi.repository import GLib
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.utils.db import family_name, get_participant_from_event
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # BackRefModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class BackRefModel(Gtk.ListStore):
-
-    dispstr = _('%(part1)s - %(part2)s')
+    dispstr = _("%(part1)s - %(part2)s")
 
     def __init__(self, sref_list, db):
         Gtk.ListStore.__init__(self, str, str, str, str, str)
@@ -76,35 +77,35 @@ class BackRefModel(Gtk.ListStore):
         for ref in self.sref_list:
             self.count += 1
             dtype = ref[0]
-            if dtype == 'Person':
+            if dtype == "Person":
                 p = self.db.get_person_from_handle(ref[1])
                 if not p:
                     continue
                 gid = p.gramps_id
                 handle = p.handle
                 name = name_displayer.display(p)
-            elif dtype == 'Family':
+            elif dtype == "Family":
                 p = self.db.get_family_from_handle(ref[1])
                 if not p:
                     continue
                 gid = p.gramps_id
                 handle = p.handle
                 name = family_name(p, self.db)
-            elif dtype == 'Source':
+            elif dtype == "Source":
                 p = self.db.get_source_from_handle(ref[1])
                 if not p:
                     continue
                 gid = p.gramps_id
                 handle = p.handle
                 name = p.get_title()
-            elif dtype == 'Citation':
+            elif dtype == "Citation":
                 p = self.db.get_citation_from_handle(ref[1])
                 if not p:
                     continue
                 gid = p.gramps_id
                 handle = p.handle
                 name = p.get_page()
-            elif dtype == 'Event':
+            elif dtype == "Event":
                 p = self.db.get_event_from_handle(ref[1])
                 if not p:
                     continue
@@ -112,29 +113,27 @@ class BackRefModel(Gtk.ListStore):
                 handle = p.handle
                 name = p.get_description()
                 if name:
-                    name = self.dispstr % {'part1': str(p.get_type()),
-                                'part2': name}
+                    name = self.dispstr % {"part1": str(p.get_type()), "part2": name}
                 else:
                     name = str(p.get_type())
                 part = get_participant_from_event(self.db, ref[1])
-                if part :
-                    name = self.dispstr % {'part1': name,
-                                'part2': part}
-            elif dtype == 'Place':
+                if part:
+                    name = self.dispstr % {"part1": name, "part2": part}
+            elif dtype == "Place":
                 p = self.db.get_place_from_handle(ref[1])
                 if not p:
                     continue
                 name = place_displayer.display(self.db, p)
                 gid = p.gramps_id
                 handle = p.handle
-            elif dtype == 'Repository':
+            elif dtype == "Repository":
                 p = self.db.get_repository_from_handle(ref[1])
                 if not p:
                     continue
                 name = p.get_name()
                 gid = p.gramps_id
                 handle = p.handle
-            elif dtype == 'Note':
+            elif dtype == "Note":
                 p = self.db.get_note_from_handle(ref[1])
                 if not p:
                     continue
@@ -157,13 +156,14 @@ class BackRefModel(Gtk.ListStore):
             # but we don't need to show that in the view.
 
             self.hndl_iter[ref[1]] = self.append(
-                row=[_(dtype), gid, name, handle, dtype])
+                row=[_(dtype), gid, name, handle, dtype]
+            )
             yield True
         self.loading = False
         yield False
 
     def delete_row(self, hndl_list):
-        """ Remove rows of the model based on the handles """
+        """Remove rows of the model based on the handles"""
         for hndl in hndl_list:
             miter = self.hndl_iter.get(hndl, None)
             if miter is not None:

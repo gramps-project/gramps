@@ -22,17 +22,18 @@
 Provide the different place types.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .grampstype import GrampsType
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-class PlaceType(GrampsType):
 
+class PlaceType(GrampsType):
     UNKNOWN = -1
     CUSTOM = 0
     COUNTRY = 1
@@ -82,7 +83,7 @@ class PlaceType(GrampsType):
         (FARM, _("Farm"), "Farm"),
         (BUILDING, _("Building"), "Building"),
         (NUMBER, _("Number"), "Number"),
-        ]
+    ]
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)

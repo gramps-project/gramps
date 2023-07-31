@@ -24,31 +24,33 @@
 Url class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from warnings import warn
 from urllib.parse import urlparse
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .secondaryobj import SecondaryObject
 from .privacybase import PrivacyBase
 from .urltype import UrlType
 from .const import IDENTICAL, EQUAL, DIFFERENT
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Url for Person/Place/Repository
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Url(SecondaryObject, PrivacyBase):
     """
     Contains information related to internet Uniform Resource Locators,
@@ -88,14 +90,11 @@ class Url(SecondaryObject, PrivacyBase):
             "title": _("Url"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "private": {"type": "boolean",
-                            "title": _("Private")},
-                "path": {"type": "string",
-                         "title": _("Path")},
-                "desc": {"type": "string",
-                         "title": _("Description")},
-                "type": UrlType.get_schema()
-            }
+                "private": {"type": "boolean", "title": _("Private")},
+                "path": {"type": "string", "title": _("Path")},
+                "desc": {"type": "string", "title": _("Description")},
+                "type": UrlType.get_schema(),
+            },
         }
 
     def get_text_data_list(self):
@@ -117,9 +116,11 @@ class Url(SecondaryObject, PrivacyBase):
         :returns: Constant indicating degree of equivalence.
         :rtype: int
         """
-        if self.type != other.type or \
-            self.get_full_path() != other.get_full_path() or \
-            self.desc != other.desc:
+        if (
+            self.type != other.type
+            or self.get_full_path() != other.get_full_path()
+            or self.desc != other.desc
+        ):
             return DIFFERENT
         else:
             if self.get_privacy() != other.get_privacy():
@@ -197,7 +198,7 @@ class Url(SecondaryObject, PrivacyBase):
             return "mailto:" + self.path
         elif self.type == UrlType.WEB_FTP and not self.path.startswith("ftp://"):
             return "ftp://" + self.path
-        elif self.parse_path().scheme == '':
+        elif self.parse_path().scheme == "":
             return "http://" + self.path
         else:
             return self.path

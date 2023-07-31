@@ -20,22 +20,22 @@
 
 """class for generating dialogs for graphviz-based reports """
 
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 from ._graphreportdialog import GraphReportDialog, BaseFormatComboBox
 from gramps.gen.plug.report import CATEGORY_TREE
 import gramps.gen.plug.docgen.treedoc as treedoc
 
-#-----------------------------------------------------------------------
+
+# -----------------------------------------------------------------------
 #
 # TreeReportDialog
 #
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 class TreeReportDialog(GraphReportDialog):
-
     def make_doc_menu(self):
         """
         Build a menu of document types that are appropriate for
@@ -67,45 +67,46 @@ class TreeReportDialog(GraphReportDialog):
         GraphReportDialog.doc_type_changed(self, obj)
 
         output_format_str = obj.get_clname()
-        if output_format_str in ['graph']:
-            #Node Options
+        if output_format_str in ["graph"]:
+            # Node Options
             self._goptions.detail.set_available(False)
             self._goptions.marriage.set_available(False)
             self._goptions.nodesize.set_available(False)
             self._goptions.levelsize.set_available(False)
             self._goptions.nodecolor.set_available(False)
 
-            #Tree Options
+            # Tree Options
             self._goptions.timeflow.set_available(False)
             self._goptions.edges.set_available(False)
             self._goptions.leveldist.set_available(False)
 
-            #Note
+            # Note
             self._goptions.note.set_available(False)
             self._goptions.noteloc.set_available(False)
             self._goptions.notesize.set_available(False)
         else:
-            #Node Options
+            # Node Options
             self._goptions.detail.set_available(True)
             self._goptions.marriage.set_available(True)
             self._goptions.nodesize.set_available(True)
             self._goptions.levelsize.set_available(True)
             self._goptions.nodecolor.set_available(True)
 
-            #Tree Options
+            # Tree Options
             self._goptions.timeflow.set_available(True)
             self._goptions.edges.set_available(True)
             self._goptions.leveldist.set_available(True)
 
-            #Note
+            # Note
             self._goptions.note.set_available(True)
             self._goptions.noteloc.set_available(True)
             self._goptions.notesize.set_available(True)
 
-#-------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------
 #
 # TreeFormatComboBox
 #
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 class TreeFormatComboBox(BaseFormatComboBox):
     FORMATS = treedoc.FORMATS

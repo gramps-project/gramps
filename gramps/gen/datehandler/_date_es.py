@@ -40,13 +40,13 @@ from ._dateparser import DateParser
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
 
+
 # -------------------------------------------------------------------------
 #
 # Spanish parser
 #
 # -------------------------------------------------------------------------
 class DateParserES(DateParser):
-
     modifier_to_int = {
         "antes de": Date.MOD_BEFORE,
         "antes": Date.MOD_BEFORE,
@@ -123,15 +123,31 @@ class DateDisplayES(DateDisplay):
     Spanish language date display class.
     """
 
-    short_months = ( "", "ene", "feb", "mar", "abr", "may",
-                     "jun", "jul", "ago", "sep", "oct", "nov",
-                     "dic" )
+    short_months = (
+        "",
+        "ene",
+        "feb",
+        "mar",
+        "abr",
+        "may",
+        "jun",
+        "jul",
+        "ago",
+        "sep",
+        "oct",
+        "nov",
+        "dic",
+    )
 
     calendar = (
-        "", "Juliano", "Hebreo",
-        "Revolucionario francés", "Persa", "Islámico",
-        "Sueco"
-        )
+        "",
+        "Juliano",
+        "Hebreo",
+        "Revolucionario francés",
+        "Persa",
+        "Islámico",
+        "Sueco",
+    )
 
     _mod_str = ("", "antes de ", "después de ", "hacia ", "", "", "")
 

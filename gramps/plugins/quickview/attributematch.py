@@ -23,7 +23,9 @@
 from gramps.gen.simple import SimpleAccess, SimpleDoc
 from gramps.gui.plug.quick import QuickTable
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
+
 
 def run(database, document, attribute, value=None):
     sdb = SimpleAccess(database)

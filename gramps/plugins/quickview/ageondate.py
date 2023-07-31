@@ -29,9 +29,11 @@ from gramps.gen.simple import SimpleAccess, SimpleDoc
 from gramps.gui.plug.quick import QuickTable
 from gramps.gen.utils.alive import probably_alive
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gramps.gen.datehandler import displayer
 from gramps.gen.config import config
+
 
 def run(database, document, date):
     """
@@ -46,30 +48,29 @@ def run(database, document, date):
         return
     # display the title
     if date.get_day_valid():
-        sdoc.title(_("People and their ages the %s") %
-               displayer.display(date))
+        sdoc.title(_("People and their ages the %s") % displayer.display(date))
     else:
-        sdoc.title(_("People and their ages on %s") %
-               displayer.display(date))
-    stab.columns(_("Person"), _("Age"), _("Status")) # Actual Date makes column unicode
+        sdoc.title(_("People and their ages on %s") % displayer.display(date))
+    stab.columns(_("Person"), _("Age"), _("Status"))  # Actual Date makes column unicode
     alive_matches = 0
     dead_matches = 0
     for person in sdb.all_people():
-        alive, birth, death, explain, relative = \
-            probably_alive(person, database, date, return_range=True)
+        alive, birth, death, explain, relative = probably_alive(
+            person, database, date, return_range=True
+        )
         # Doesn't show people probably alive but no way of figuring an age:
         if alive:
             if birth:
-                diff_span = (date - birth)
+                diff_span = date - birth
                 stab.row(person, str(diff_span), _("Alive: %s") % explain)
                 stab.row_sort_val(1, int(diff_span))
             else:
                 stab.row(person, "", _("Alive: %s") % explain)
                 stab.row_sort_val(1, 0)
             alive_matches += 1
-        else: # not alive
+        else:  # not alive
             if birth:
-                diff_span = (date - birth)
+                diff_span = date - birth
                 stab.row(person, str(diff_span), _("Deceased: %s") % explain)
                 stab.row_sort_val(1, int(diff_span))
             else:
@@ -78,12 +79,14 @@ def run(database, document, date):
             dead_matches += 1
 
     document.has_data = (alive_matches + dead_matches) > 0
-    sdoc.paragraph(_("\nLiving matches: %(alive)d, "
-                     "Deceased matches: %(dead)d\n") %
-                         {'alive' : alive_matches, 'dead' : dead_matches})
+    sdoc.paragraph(
+        _("\nLiving matches: %(alive)d, " "Deceased matches: %(dead)d\n")
+        % {"alive": alive_matches, "dead": dead_matches}
+    )
     if document.has_data:
         stab.write(sdoc)
     sdoc.paragraph("")
+
 
 def get_event_date_from_ref(database, ref):
     date = None

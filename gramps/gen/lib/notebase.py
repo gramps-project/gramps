@@ -22,21 +22,21 @@
 """
 NoteBase class for Gramps.
 """
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
 
 LOG = logging.getLogger(".note")
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # NoteBase class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class NoteBase:
     """
     Base class for storing notes.
@@ -45,6 +45,7 @@ class NoteBase:
     Internally, this class maintains a list of Note handles,
     as a note_list attribute of the NoteBase object.
     """
+
     def __init__(self, source=None):
         """
         Create a new NoteBase, copying from source if not None.
@@ -149,14 +150,17 @@ class NoteBase:
         :param citation_handle_list: The list of note handles to be removed
         :type handle: list
         """
-        LOG.debug('enter remove_note handle: %s self: %s note_list: %s',
-                  handle_list, self, self.note_list)
+        LOG.debug(
+            "enter remove_note handle: %s self: %s note_list: %s",
+            handle_list,
+            self,
+            self.note_list,
+        )
         for handle in handle_list:
             if handle in self.note_list:
-                LOG.debug('remove handle %s from note_list %s',
-                          handle, self.note_list)
+                LOG.debug("remove handle %s from note_list %s", handle, self.note_list)
                 self.note_list.remove(handle)
-        LOG.debug('get_note_child_list %s', self.get_note_child_list())
+        LOG.debug("get_note_child_list %s", self.get_note_child_list())
         for item in self.get_note_child_list():
             item.remove_note_references(handle_list)
 
@@ -192,7 +196,7 @@ class NoteBase:
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        return [('Note', handle) for handle in self.note_list]
+        return [("Note", handle) for handle in self.note_list]
 
     def replace_note_references(self, old_handle, new_handle):
         """

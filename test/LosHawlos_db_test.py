@@ -46,32 +46,35 @@ print(sys.path)
 
 tran = None
 
+
 def dummy_callback(dummy):
     pass
 
-def add_source( db,title,commit=True,fail=False):
+
+def add_source(db, title, commit=True, fail=False):
     global tran
     if tran is None:
         tran = db.transaction_begin(DbTxn("add source", db))
     db.disable_signals()
     s = RelLib.Source()
-    db.add_source(s,tran)
+    db.add_source(s, tran)
     s.set_title(title)
     if fail:
-        return # Fail here
-    db.commit_source(s,tran)
+        return  # Fail here
+    db.commit_source(s, tran)
     db.enable_signals()
     if commit:
         db.transaction_commit(tran)
         tran = None
 
-def add_person( db,firstname,lastname,commit=True,fail=False):
+
+def add_person(db, firstname, lastname, commit=True, fail=False):
     global tran
     if tran is None:
         tran = db.transaction_begin(DbTxn("add person", db))
     db.disable_signals()
     p = RelLib.Person()
-    db.add_person(p,tran)
+    db.add_person(p, tran)
     n = RelLib.Name()
     n.set_first_name(firstname)
     s = RelLib.Surname()
@@ -79,12 +82,13 @@ def add_person( db,firstname,lastname,commit=True,fail=False):
     n.add_surname(s)
     p.set_primary_name(n)
     if fail:
-        return # Fail here
-    db.commit_person(p,tran)
+        return  # Fail here
+    db.commit_person(p, tran)
     db.enable_signals()
     if commit:
         db.transaction_commit(tran)
         tran = None
+
 
 def print_db_content(db):
     for h in db.get_person_handles():
@@ -92,10 +96,11 @@ def print_db_content(db):
     for h in db.get_source_handles():
         print("DB contains: source %s" % h)
 
+
 tmpdir = tempfile.mkdtemp()
 try:
-    filename1 = os.path.join(tmpdir,'test1.grdb')
-    filename2 = os.path.join(tmpdir,'test2.grdb')
+    filename1 = os.path.join(tmpdir, "test1.grdb")
+    filename2 = os.path.join(tmpdir, "test2.grdb")
     print("\nUsing Database file: %s" % filename1)
     dbstate = DbState()
     dbman = CLIDbManager(dbstate)
@@ -103,16 +108,16 @@ try:
     db = make_database("bsddb")
     db.load(dirpath, None)
     print("Add person 1")
-    add_person( db,"Anton", "Albers",True,False)
+    add_person(db, "Anton", "Albers", True, False)
     print("Add source")
-    add_source( db,"A short test",True,False)
+    add_source(db, "A short test", True, False)
     print("Add person 2 without commit")
-    add_person( db,"Bernd","Beta",False,False)
+    add_person(db, "Bernd", "Beta", False, False)
     print("Add source")
-    add_source( db,"A short test",True,False)
+    add_source(db, "A short test", True, False)
     print("Add person 3")
-    add_person( db,"Chris","Connor",True,False)
-    print_db_content( db)
+    add_person(db, "Chris", "Connor", True, False)
+    print_db_content(db)
     print("Closing Database file: %s" % filename1)
     db.close()
     tran = None
@@ -124,10 +129,10 @@ try:
     db = make_database("bsddb")
     db.load(dirpath, None)
     print("Add person 4")
-    add_person( db,"Felix", "Fowler",True,False)
-    print ("Add person 4")
-    add_person( db,"Felix", "Fowler",False,False)
-    print_db_content( db)
+    add_person(db, "Felix", "Fowler", True, False)
+    print("Add person 4")
+    add_person(db, "Felix", "Fowler", False, False)
+    print_db_content(db)
     print("Closing Database file: %s" % filename1)
     db.close()
     tran = None
@@ -140,14 +145,14 @@ try:
     db.load(dirpath, None)
 
     print("Add source")
-    add_source( db,"A short test",False,False)
+    add_source(db, "A short test", False, False)
     # actually, adding a second source while the first transaction is not
     # committed will just add the second source to the first transaction, so
     # nothing special will fail.
     print("Add source 2 will fail; but I don't see why it should")
-    add_source( db,"Bang bang bang",True,True)
+    add_source(db, "Bang bang bang", True, True)
 
-    print_db_content( db)
+    print_db_content(db)
     print("Closing Database file: %s" % filename2)
     db.close()
 finally:

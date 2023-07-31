@@ -21,31 +21,37 @@
 
 """Tools/Database Processing/Sort Events"""
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.sort import Sort
 from gramps.gen.db import DbTxn
 from gramps.gui.plug import MenuToolOptions, PluginWindows
 from gramps.gen.plug.report import utils
-from gramps.gen.plug.menu import FilterOption, PersonOption, \
-                          EnumeratedListOption, BooleanOption
+from gramps.gen.plug.menu import (
+    FilterOption,
+    PersonOption,
+    EnumeratedListOption,
+    BooleanOption,
+)
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # Private Functions
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 def _get_sort_functions(sort):
     """
     Define the types of sorting that is available
@@ -55,13 +61,15 @@ def _get_sort_functions(sort):
         (_("Type"), sort.by_event_type_key),
         (_("ID"), sort.by_event_id_key),
         (_("Description"), sort.by_event_description_key),
-        (_("Place"), sort.by_event_place_key),]
+        (_("Place"), sort.by_event_place_key),
+    ]
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # SortEvents
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class SortEvents(PluginWindows.ToolManagedWindowBatch):
     """
     This tool can be used to sort personal and family events by a variety
@@ -79,7 +87,7 @@ class SortEvents(PluginWindows.ToolManagedWindowBatch):
         """
         The name of the initial menu tab.
         """
-        self.setup_configs('interface.sortevents', 500, 350)
+        self.setup_configs("interface.sortevents", 500, 350)
         return _("Options")
 
     def run(self):
@@ -87,10 +95,10 @@ class SortEvents(PluginWindows.ToolManagedWindowBatch):
         Perform the actual extraction of information.
         """
         menu = self.options.menu
-        self.filter = menu.get_option_by_name('filter').get_filter()
-        sort_func_num = menu.get_option_by_name('sort_by').get_value()
-        self.sort_desc = menu.get_option_by_name('sort_desc').get_value()
-        self.fam_events = menu.get_option_by_name('family_events').get_value()
+        self.filter = menu.get_option_by_name("filter").get_filter()
+        sort_func_num = menu.get_option_by_name("sort_by").get_value()
+        self.sort_desc = menu.get_option_by_name("sort_desc").get_value()
+        self.fam_events = menu.get_option_by_name("family_events").get_value()
         sort_functions = _get_sort_functions(Sort(self.db))
         self.sort_name = sort_functions[sort_func_num][0]
         self.sort_func = sort_functions[sort_func_num][1]
@@ -107,11 +115,12 @@ class SortEvents(PluginWindows.ToolManagedWindowBatch):
         """
         Sort the personal events associated with the selected people.
         """
-        people_handles = self.filter.apply(self.db,
-                                 self.db.iter_person_handles(),
-                                 user=self._user)
-        self.progress.set_pass(_("Sorting personal events..."),
-                                    self.db.get_number_of_people())
+        people_handles = self.filter.apply(
+            self.db, self.db.iter_person_handles(), user=self._user
+        )
+        self.progress.set_pass(
+            _("Sorting personal events..."), self.db.get_number_of_people()
+        )
         family_handles = []
         for handle in people_handles:
             person = self.db.get_person_from_handle(handle)
@@ -132,8 +141,7 @@ class SortEvents(PluginWindows.ToolManagedWindowBatch):
         """
         Sort the family events associated with the selected people.
         """
-        self.progress.set_pass(_("Sorting family events..."),
-                                 len(family_handles))
+        self.progress.set_pass(_("Sorting family events..."), len(family_handles))
         for handle in family_handles:
             family = self.db.get_family_from_handle(handle)
             self.progress.step()
@@ -145,11 +153,12 @@ class SortEvents(PluginWindows.ToolManagedWindowBatch):
             self.db.commit_family(family, trans)
             self.change = True
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 #
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class SortEventOptions(MenuToolOptions):
     """
     Define options and provides handling interface.
@@ -168,21 +177,21 @@ class SortEventOptions(MenuToolOptions):
         self.__filter = FilterOption(_("Filter"), 0)
         self.__filter.set_help(_("Select the people to sort"))
         menu.add_option(category_name, "filter", self.__filter)
-        self.__filter.connect('value-changed', self.__filter_changed)
+        self.__filter.connect("value-changed", self.__filter_changed)
 
         self.__pid = PersonOption(_("Filter Person"))
         self.__pid.set_help(_("The center person for the filter"))
         menu.add_option(category_name, "pid", self.__pid)
-        self.__pid.connect('value-changed', self.__update_filters)
+        self.__pid.connect("value-changed", self.__update_filters)
 
         self.__update_filters()
 
-        sort_by = EnumeratedListOption(_('Sort by'), 0 )
+        sort_by = EnumeratedListOption(_("Sort by"), 0)
         idx = 0
         for item in _get_sort_functions(Sort(self.__db)):
             sort_by.add_item(idx, item[0])
             idx += 1
-        sort_by.set_help( _("Sorting method to use"))
+        sort_by.set_help(_("Sorting method to use"))
         menu.add_option(category_name, "sort_by", sort_by)
 
         sort_desc = BooleanOption(_("Sort descending"), False)
@@ -199,7 +208,7 @@ class SortEventOptions(MenuToolOptions):
         disable the person option
         """
         filter_value = self.__filter.get_value()
-        if filter_value == 0: # "Entire Database" (as "include_single=False")
+        if filter_value == 0:  # "Entire Database" (as "include_single=False")
             self.__pid.set_available(False)
         else:
             # The other filters need a center person (assume custom ones too)

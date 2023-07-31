@@ -20,31 +20,35 @@
 
 # gen.filters.rules/Source/_ChangedSince.py
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._changedsincebase import ChangedSinceBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # ChangedSince
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class ChangedSince(ChangedSinceBase):
     """Rule that checks for sources changed since a specific time."""
 
-    labels = [ _('Changed after:'), _('but before:') ]
-    name = _('Sources changed after <date time>')
-    description = _("Matches source records changed after a specified "
-                    "date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second "
-                    "date-time is given.")
+    labels = [_("Changed after:"), _("but before:")]
+    name = _("Sources changed after <date time>")
+    description = _(
+        "Matches source records changed after a specified "
+        "date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second "
+        "date-time is given."
+    )

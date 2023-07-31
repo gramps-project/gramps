@@ -23,18 +23,19 @@
 Gender statistics kept in Gramps database.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .person import Person
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 #
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class GenderStats:
     """
     Class for keeping track of statistics related to Given Name vs. Gender.
@@ -42,6 +43,7 @@ class GenderStats:
     This allows the tracking of the liklihood of a person's given name
     indicating the gender of the person.
     """
+
     def __init__(self, stats=None):
         if stats is None:
             self.stats = {}
@@ -128,9 +130,11 @@ class GenderStats:
 
         return Person.UNKNOWN
 
+
 def _get_key(person):
     name = person.get_primary_name().get_first_name()
     return _get_key_from_name(name)
 
+
 def _get_key_from_name(name):
-    return name.split(' ')[0].replace('?', '')
+    return name.split(" ")[0].replace("?", "")

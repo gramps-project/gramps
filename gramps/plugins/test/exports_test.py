@@ -44,25 +44,25 @@ def mock_localtime(*args):
 
 
 def call(*args):
-    """ Call Gramps to perform the action with out and err captured """
-    #print("call:", args)
+    """Call Gramps to perform the action with out and err captured"""
+    # print("call:", args)
     gramps = Gramps(user=User())
     out, err = gramps.run(*args)
-    #print("out:", out, "err:", err)
+    # print("out:", out, "err:", err)
     return out, err
 
 
 def do_it(srcfile, tstfile, dfilter=None):
-    """ based on tstfile, prepare an result export and compare with
+    """based on tstfile, prepare an result export and compare with
     expected.
     """
     tst_file = os.path.join(TEST_DIR, srcfile)
     expect_file = os.path.join(TEST_DIR, tstfile)
     with tempfile.TemporaryDirectory() as tmpdirname:
         result_file = os.path.join(tmpdirname, tstfile)
-        err = call("-C", TREE_NAME, "-q",
-                   "--import", tst_file,
-                   "--export", result_file)[1]
+        err = call(
+            "-C", TREE_NAME, "-q", "--import", tst_file, "--export", result_file
+        )[1]
         if "Cleaning up." not in err:
             return "Export failed, no 'Cleaning up.'"
         msg = compare(expect_file, result_file, dfilter)
@@ -78,15 +78,15 @@ def do_it(srcfile, tstfile, dfilter=None):
 
 
 def compare(expect_file, result_file, dfilter=None):
-    """ This uses the diff library to compare two files
-    """
-    with open(expect_file, encoding='utf-8_sig', errors='surrogateescape')\
-         as exp_f, \
-         open(result_file, encoding='utf-8_sig', errors='surrogateescape')\
-         as res_f:
-        diff = difflib.unified_diff(exp_f.readlines(),
-                                    res_f.readlines(),
-                                    n=2, lineterm='\n')
+    """This uses the diff library to compare two files"""
+    with open(
+        expect_file, encoding="utf-8_sig", errors="surrogateescape"
+    ) as exp_f, open(
+        result_file, encoding="utf-8_sig", errors="surrogateescape"
+    ) as res_f:
+        diff = difflib.unified_diff(
+            exp_f.readlines(), res_f.readlines(), n=2, lineterm="\n"
+        )
         msg = ""
         fail = False
         for line in diff:
@@ -101,31 +101,33 @@ def compare(expect_file, result_file, dfilter=None):
 
 
 def gedfilt(line):
-    """ A filter for Gedcom files.
+    """A filter for Gedcom files.
     This implements a filter that allows some differences to be ignored.
     The differences are not functional, but are related to changes in Gramps
     version, file date/time and filename.
     """
+
     def get_prev_token(back):
         if back > gedfilt.indx:
             return None
         return gedfilt.prev[gedfilt.indx - back][0]
-    #pylint: disable=unsubscriptable-object
-    if line.startswith('@@'):
+
+    # pylint: disable=unsubscriptable-object
+    if line.startswith("@@"):
         gedfilt.prev = [None] * 8
         gedfilt.indx = 0
         return False
     retval = True
     diftyp = line[0]
-    line = line[1:].partition(' ')
+    line = line[1:].partition(" ")
     level = int(line[0])
-    token, toss, line = line[2].partition(' ')
-    if diftyp == ' ':
+    token, toss, line = line[2].partition(" ")
+    if diftyp == " ":
         # save the line for later if needed to figure out the data element
         gedfilt.prev[gedfilt.indx] = token, level, line
         gedfilt.indx = (gedfilt.indx + 1) % 8
         retval = False
-    elif diftyp == '-':
+    elif diftyp == "-":
         # save the line for later if needed to figure out the data element
         gedfilt.prev[gedfilt.indx] = token, level, line
         gedfilt.indx = (gedfilt.indx + 1) % 8
@@ -138,7 +140,7 @@ def gedfilt(line):
         elif token == "TIME" and get_prev_token(2) == "DATE":
             # probably have a header with file time
             retval = False
-        elif token == "FILE" and line.endswith('.ged\n'):
+        elif token == "FILE" and line.endswith(".ged\n"):
             # probably have a header with file name
             retval = False
         elif token == "FILE" and "tests" in line:
@@ -147,19 +149,21 @@ def gedfilt(line):
         elif token == "COPR" and "Copyright (c) " in line:
             # probably have a copyright line with year
             retval = False
-    else:   # this is an addition
+    else:  # this is an addition
         if token == "VERS" and get_prev_token(1) == "VERS":
             # we must have a header with Gramps version
             retval = False
-        elif token == "DATE" and (get_prev_token(2) == "NAME" or
-                                  get_prev_token(3) == "NAME"):
+        elif token == "DATE" and (
+            get_prev_token(2) == "NAME" or get_prev_token(3) == "NAME"
+        ):
             # we must have a header with file date
             retval = False
-        elif token == "TIME" and (get_prev_token(2) == "DATE" or
-                                  get_prev_token(3) == "DATE"):
+        elif token == "TIME" and (
+            get_prev_token(2) == "DATE" or get_prev_token(3) == "DATE"
+        ):
             # probably have a header with file time
             retval = False
-        elif token == "FILE" and line.endswith('.ged\n'):
+        elif token == "FILE" and line.endswith(".ged\n"):
             # probably have a header with file name
             retval = False
         elif token == "FILE" and "tests" in line:
@@ -172,17 +176,17 @@ def gedfilt(line):
 
 
 def vcffilt(line):
-    """ A filter for VCard files.
+    """A filter for VCard files.
     This implements a filter that allows some differences to be ignored.
     The differences are not functional, but are related to changes in Gramps
     version.
     """
     diftyp = line[0]
-    if diftyp == '@':
+    if diftyp == "@":
         retval = False
-    elif diftyp == ' ':
+    elif diftyp == " ":
         retval = False
-    elif 'PRODID:' in line:  # Gramps version is on these lines
+    elif "PRODID:" in line:  # Gramps version is on these lines
         retval = False
     else:
         retval = True
@@ -190,85 +194,87 @@ def vcffilt(line):
 
 
 class ExportControl(unittest.TestCase):
-    """ These tests compare various exported files with expected files,
+    """These tests compare various exported files with expected files,
     based on the matching '.gramps' test file as a source.
     As more types of exports are tested, we will need to provide some
     filters for the differences; some types of exports have Gramps versions,
     export dates, file names etc. that don't count as differences.
     """
+
     def setUp(self):
-        config.set('behavior.date-before-range', 50)
-        config.set('behavior.date-after-range', 50)
-        config.set('behavior.date-about-range', 10)
+        config.set("behavior.date-before-range", 50)
+        config.set("behavior.date-after-range", 50)
+        config.set("behavior.date-about-range", 10)
         self.tearDown()  # removes it if it existed
 
-#        out, err = self.call("-C", TREE_NAME,
-#                            "--import", example)
+    #        out, err = self.call("-C", TREE_NAME,
+    #                            "--import", example)
 
     def tearDown(self):
         call("-y", "-q", "--remove", TREE_NAME)
 
     def test_csv(self):
-        """ Run a csv export test """
-        set_format(0)   # Use ISO date for test
-        config.set('database.backend', 'sqlite')
-        src_file = 'exp_sample_csv.gramps'
-        tst_file = 'exp_sample_csv.csv'
+        """Run a csv export test"""
+        set_format(0)  # Use ISO date for test
+        config.set("database.backend", "sqlite")
+        src_file = "exp_sample_csv.gramps"
+        tst_file = "exp_sample_csv.csv"
         msg = do_it(src_file, tst_file)
         if msg:
-            self.fail(tst_file + ': ' + msg)
+            self.fail(tst_file + ": " + msg)
 
     def test_ged(self):
-        """ Run a Gedcom export test """
-        config.set('preferences.place-auto', True)
-        config.set('database.backend', 'sqlite')
-        src_file = 'exp_sample.gramps'
-        tst_file = 'exp_sample_ged.ged'
+        """Run a Gedcom export test"""
+        config.set("preferences.place-auto", True)
+        config.set("database.backend", "sqlite")
+        src_file = "exp_sample.gramps"
+        tst_file = "exp_sample_ged.ged"
         msg = do_it(src_file, tst_file, gedfilt)
         if msg:
-            self.fail(tst_file + ': ' + msg)
+            self.fail(tst_file + ": " + msg)
 
     def test_vcard(self):
-        """ Run a vcard export test """
-        config.set('preferences.place-auto', True)
-        config.set('database.backend', 'sqlite')
-        src_file = 'exp_sample.gramps'
-        tst_file = 'exp_sample.vcf'
+        """Run a vcard export test"""
+        config.set("preferences.place-auto", True)
+        config.set("database.backend", "sqlite")
+        src_file = "exp_sample.gramps"
+        tst_file = "exp_sample.vcf"
         msg = do_it(src_file, tst_file, vcffilt)
         if msg:
-            self.fail(tst_file + ': ' + msg)
+            self.fail(tst_file + ": " + msg)
 
-    @patch('gramps.plugins.export.exportvcalendar.time.localtime', mock_localtime)
+    @patch("gramps.plugins.export.exportvcalendar.time.localtime", mock_localtime)
     def test_vcs(self):
-        """ Run a Vcalandar export test """
-        config.set('preferences.place-auto', True)
-        config.set('database.backend', 'sqlite')
-        src_file = 'exp_sample.gramps'
-        tst_file = 'exp_sample.vcs'
+        """Run a Vcalandar export test"""
+        config.set("preferences.place-auto", True)
+        config.set("database.backend", "sqlite")
+        src_file = "exp_sample.gramps"
+        tst_file = "exp_sample.vcs"
         msg = do_it(src_file, tst_file)
         if msg:
-            self.fail(tst_file + ': ' + msg)
+            self.fail(tst_file + ": " + msg)
 
     def test_gw(self):
-        """ Run a Geneweb export test """
-        config.set('preferences.place-auto', True)
-        config.set('database.backend', 'sqlite')
-        src_file = 'exp_sample.gramps'
-        tst_file = 'exp_sample.gw'
+        """Run a Geneweb export test"""
+        config.set("preferences.place-auto", True)
+        config.set("database.backend", "sqlite")
+        src_file = "exp_sample.gramps"
+        tst_file = "exp_sample.gw"
         msg = do_it(src_file, tst_file)
         if msg:
-            self.fail(tst_file + ': ' + msg)
+            self.fail(tst_file + ": " + msg)
 
     def test_wft(self):
-        """ Run a Web Family Tree export test """
-        set_format(0)   # Use ISO date for test
-        config.set('preferences.place-auto', True)
-        config.set('database.backend', 'sqlite')
-        src_file = 'exp_sample.gramps'
-        tst_file = 'exp_sample.wft'
+        """Run a Web Family Tree export test"""
+        set_format(0)  # Use ISO date for test
+        config.set("preferences.place-auto", True)
+        config.set("database.backend", "sqlite")
+        src_file = "exp_sample.gramps"
+        tst_file = "exp_sample.wft"
         msg = do_it(src_file, tst_file)
         if msg:
-            self.fail(tst_file + ': ' + msg)
+            self.fail(tst_file + ": " + msg)
+
 
 if __name__ == "__main__":
     unittest.main()

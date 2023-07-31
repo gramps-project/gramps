@@ -19,33 +19,35 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasNameOf
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class SearchName(Rule):
     """Rule that checks for full or partial name matches"""
 
-    labels = [_('Substring:')]
-    name = _('People matching the <name>')
+    labels = [_("Substring:")]
+    name = _("People matching the <name>")
     description = _("Matches people with a specified (partial) name")
-    category = _('General filters')
+    category = _("General filters")
 
     def apply(self, db, person):
         src = self.list[0].upper()
@@ -53,8 +55,15 @@ class SearchName(Rule):
             return False
 
         for name in [person.get_primary_name()] + person.get_alternate_names():
-            for field in [name.first_name, name.get_surname(), name.suffix,
-                          name.title, name.nick, name.famnick, name.call]:
+            for field in [
+                name.first_name,
+                name.get_surname(),
+                name.suffix,
+                name.title,
+                name.nick,
+                name.famnick,
+                name.call,
+            ]:
                 if src and field.upper().find(src) != -1:
                     return True
         return False

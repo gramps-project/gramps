@@ -18,32 +18,33 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # "People having notes that contain a substring"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasNoteSubstrBase(Rule):
     """People having notes containing <substring>."""
 
-    labels = [ _('Substring:')]
-    name = 'Objects having notes containing <substring>'
-    description = "Matches objects whose notes contain text matching a " \
-                    "substring"
-    category = _('General filters')
+    labels = [_("Substring:")]
+    name = "Objects having notes containing <substring>"
+    description = "Matches objects whose notes contain text matching a " "substring"
+    category = _("General filters")
 
     def apply(self, db, person):
         notelist = person.get_note_list()

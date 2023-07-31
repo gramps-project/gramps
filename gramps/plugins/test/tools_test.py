@@ -38,9 +38,9 @@ const.myrand = random.Random()
 
 
 def call(*args):
-    """ Call Gramps to perform the action with out and err captured """
-    #if __debug__:
-        #print ("call: %s", args)
+    """Call Gramps to perform the action with out and err captured"""
+    # if __debug__:
+    # print ("call: %s", args)
     gramps = Gramps(user=User())
     out, err = gramps.run(*args)
     # print("out:", out, "err:", err)
@@ -61,13 +61,17 @@ def check_res(out, err, expected, do_out=True):
             retval = False
     if not retval:
         if do_out:
-            print("*** The following was the actual stdout:\n%s"
-                  "*** The following was the stderr:\n%s"
-                  "*** End of stderr" % (out, err))
+            print(
+                "*** The following was the actual stdout:\n%s"
+                "*** The following was the stderr:\n%s"
+                "*** End of stderr" % (out, err)
+            )
         else:
-            print("*** The following was the actual stderr:\n%s"
-                  "*** The following was the stdout:\n%s"
-                  "*** End of stdout" % (err, out))
+            print(
+                "*** The following was the actual stderr:\n%s"
+                "*** The following was the stdout:\n%s"
+                "*** End of stdout" % (err, out)
+            )
     return retval
 
 
@@ -75,12 +79,13 @@ class ToolControl(unittest.TestCase):
     """
     These tests run some of the tools used to maintain Gramps db
     """
+
     def setUp(self):
-        self.db_backend = config.get('database.backend')
+        self.db_backend = config.get("database.backend")
         call("--config=database.backend:sqlite", "-y", "-q", "--remove", TREE_NAME)
 
     def tearDown(self):
-        config.set('database.backend', self.db_backend)
+        config.set("database.backend", self.db_backend)
         call("-y", "-q", "--remove", TREE_NAME)
 
     def test_tcg_and_check_and_repair(self):
@@ -98,10 +103,12 @@ class ToolControl(unittest.TestCase):
         # the TCG creates bad strings with illegal characters, so we need to
         # ignore them when we print the results
         try:
-            sys.stderr = codecs.getwriter(sys.getdefaultencoding()) \
-                (sys.stderr.buffer, 'replace')
-            sys.stdout = codecs.getwriter(sys.getdefaultencoding()) \
-                (sys.stdout.buffer, 'replace')
+            sys.stderr = codecs.getwriter(sys.getdefaultencoding())(
+                sys.stderr.buffer, "replace"
+            )
+            sys.stdout = codecs.getwriter(sys.getdefaultencoding())(
+                sys.stdout.buffer, "replace"
+            )
         except:
             pass
         tst_file = os.path.join(TEST_DIR, "data.gramps")
@@ -111,59 +118,69 @@ class ToolControl(unittest.TestCase):
         # we can access it here.
         const.myrand.seed(1234, version=1)
         # print(const.myrand.random())
-#         out, err = call("-s")
-#         expect = ["bsddb"]
-#         check_res(out, err, expect, do_out=True)
-        out, err = call("-C", TREE_NAME, "-q",
-                        "--import", tst_file)
-        expect = ["Opened successfully!",
-                  "data.gramps, format gramps.",
-                  "Cleaning up."]
+        #         out, err = call("-s")
+        #         expect = ["bsddb"]
+        #         check_res(out, err, expect, do_out=True)
+        out, err = call("-C", TREE_NAME, "-q", "--import", tst_file)
+        expect = ["Opened successfully!", "data.gramps, format gramps.", "Cleaning up."]
         self.assertTrue(check_res(out, err, expect, do_out=False))
         self.assertEqual(out, "")
-        out, err = call("-O", TREE_NAME,
-                        "-y", "-q", "-a", "tool", "-p",
-                        "name=testcasegenerator,bugs=1,persons=1,"
-                        "add_linebreak=1,add_serial=1,"
-                        "long_names=1,lowlevel=0,person_count=50,"
-                        "specialchars=1")
-        expect = ["Opened successfully!",
-                  "Performing action: tool.",
-                  "Using options string: name=testcasegenerator,bugs=1",
-                  "Cleaning up."]
+        out, err = call(
+            "-O",
+            TREE_NAME,
+            "-y",
+            "-q",
+            "-a",
+            "tool",
+            "-p",
+            "name=testcasegenerator,bugs=1,persons=1,"
+            "add_linebreak=1,add_serial=1,"
+            "long_names=1,lowlevel=0,person_count=50,"
+            "specialchars=1",
+        )
+        expect = [
+            "Opened successfully!",
+            "Performing action: tool.",
+            "Using options string: name=testcasegenerator,bugs=1",
+            "Cleaning up.",
+        ]
         self.assertTrue(check_res(out, err, expect, do_out=False))
         expect = ["person count 41"]
         self.assertTrue(check_res(out, err, expect, do_out=True))
-        out, err = call("-O", TREE_NAME,
-                        "-y", "-a", "tool", "-p", "name=check")
-        expect = ["7 broken child/family links were fixed",
-                  "4 broken spouse/family links were fixed",
-                  "1 corrupted family relationship fixed",
-                  "1 place alternate name fixed",
-                  "10 media objects were referenced, but not found",
-                  "References to 10 missing media objects were kept",
-                  "3 events were referenced, but not found",
-                  "1 invalid birth event name was fixed",
-                  "1 invalid death event name was fixed",
-                  "2 places were referenced, but not found",
-                  "12 citations were referenced, but not found",
-                  "15 sources were referenced, but not found",
-                  "9 Duplicated Gramps IDs fixed",
-                  "7 empty objects removed",
-                  "1 person objects",
-                  "1 family objects",
-                  "1 event objects",
-                  "1 source objects",
-                  "0 media objects",
-                  "0 place objects",
-                  "1 repository objects",
-                  "1 note objects"]
+        out, err = call("-O", TREE_NAME, "-y", "-a", "tool", "-p", "name=check")
+        expect = [
+            "7 broken child/family links were fixed",
+            "4 broken spouse/family links were fixed",
+            "1 corrupted family relationship fixed",
+            "1 place alternate name fixed",
+            "10 media objects were referenced, but not found",
+            "References to 10 missing media objects were kept",
+            "3 events were referenced, but not found",
+            "1 invalid birth event name was fixed",
+            "1 invalid death event name was fixed",
+            "2 places were referenced, but not found",
+            "12 citations were referenced, but not found",
+            "15 sources were referenced, but not found",
+            "9 Duplicated Gramps IDs fixed",
+            "7 empty objects removed",
+            "1 person objects",
+            "1 family objects",
+            "1 event objects",
+            "1 source objects",
+            "0 media objects",
+            "0 place objects",
+            "1 repository objects",
+            "1 note objects",
+        ]
         self.assertTrue(check_res(out, err, expect, do_out=True))
-        expect = ["Opened successfully!",
-                  "Performing action: tool.",
-                  "Using options string: name=check",
-                  "Cleaning up."]
+        expect = [
+            "Opened successfully!",
+            "Performing action: tool.",
+            "Using options string: name=check",
+            "Cleaning up.",
+        ]
         self.assertTrue(check_res(out, err, expect, do_out=False))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -41,6 +41,7 @@ from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
 from ..const import ARABIC_COMMA
 
+
 # -------------------------------------------------------------------------
 #
 # Arabic parser class

@@ -18,36 +18,40 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ._isdescendantfamilyof import IsDescendantFamilyOf
 from ._matchesfilter import MatchesFilter
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # IsDescendantFamilyOfFilterMatch
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
     """Rule that checks for a person that is a descendant
     of someone matched by a filter"""
 
-    labels = [_('Filter name:')]
-    name = _('Descendant family members of <filter> match')
-    category = _('Descendant filters')
-    description = _("Matches people that are descendants or the spouse "
-                    "of anybody matched by a filter")
+    labels = [_("Filter name:")]
+    name = _("Descendant family members of <filter> match")
+    category = _("Descendant filters")
+    description = _(
+        "Matches people that are descendants or the spouse "
+        "of anybody matched by a filter"
+    )
 
     def prepare(self, db, user):
         self.db = db
@@ -56,9 +60,11 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
         self.matchfilt = MatchesFilter(self.list[0:1])
         self.matchfilt.requestprepare(db, user)
         if user:
-            user.begin_progress(self.category,
-                                _('Retrieving all sub-filter matches'),
-                                db.get_number_of_people())
+            user.begin_progress(
+                self.category,
+                _("Retrieving all sub-filter matches"),
+                db.get_number_of_people(),
+            )
         for person in db.iter_people():
             if user:
                 user.step_progress()

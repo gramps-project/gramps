@@ -18,38 +18,42 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 from ....lib.familyreltype import FamilyRelType
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasRelationship
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasRelationship(Rule):
     """Rule that checks for a person who has a particular relationship"""
 
-    labels = [ _('Number of relationships:'),
-                    _('Relationship type:'),
-                    _('Number of children:') ]
-    name = _('People with the <relationships>')
+    labels = [
+        _("Number of relationships:"),
+        _("Relationship type:"),
+        _("Number of children:"),
+    ]
+    name = _("People with the <relationships>")
     description = _("Matches people with a particular relationship")
-    category = _('Family filters')
+    category = _("Family filters")
 
-    def apply(self,db,person):
+    def apply(self, db, person):
         rel_type = 0
         cnt = 0
         num_rel = len(person.get_family_handle_list())

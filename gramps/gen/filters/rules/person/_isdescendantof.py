@@ -18,34 +18,36 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # IsDescendantOf
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class IsDescendantOf(Rule):
     """Rule that checks for a person that is a descendant
     of a specified person"""
 
-    labels = [ _('ID:'), _('Inclusive:') ]
-    name = _('Descendants of <person>')
-    category = _('Descendant filters')
-    description = _('Matches all descendants for the specified person')
+    labels = [_("ID:"), _("Inclusive:")]
+    name = _("Descendants of <person>")
+    category = _("Descendant filters")
+    description = _("Matches all descendants for the specified person")
 
     def prepare(self, db, user):
         self.db = db
@@ -56,7 +58,7 @@ class IsDescendantOf(Rule):
             first = True
         try:
             root_person = db.get_person_from_gramps_id(self.list[0])
-            self.init_list(root_person,first)
+            self.init_list(root_person, first)
         except:
             pass
 
@@ -77,5 +79,4 @@ class IsDescendantOf(Rule):
             fam = self.db.get_family_from_handle(fam_id)
             if fam:
                 for child_ref in fam.get_child_ref_list():
-                    self.init_list(
-                        self.db.get_person_from_handle(child_ref.ref), 0)
+                    self.init_list(self.db.get_person_from_handle(child_ref.ref), 0)

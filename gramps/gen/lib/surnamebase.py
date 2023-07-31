@@ -22,21 +22,23 @@
 SurnameBase class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .surname import Surname
 from .const import IDENTICAL, EQUAL
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # SurnameBase classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class SurnameBase:
     """
     Base class for surname-aware objects.
@@ -135,7 +137,7 @@ class SurnameBase:
         if self.surname_list:
             return self.surname_list[0]
         else:
-            #self healing, add a surname to this object and return it
+            # self healing, add a surname to this object and return it
             self.set_surname_list([Surname()])
             return self.surname_list[0]
 
@@ -144,7 +146,9 @@ class SurnameBase:
         Set the surname with surnamenr in the surname list as primary surname
         Counting starts at 0
         """
-        assert isinstance(surnamenr, int), "Surname.set_primary_surname requires integer"
+        assert isinstance(
+            surnamenr, int
+        ), "Surname.set_primary_surname requires integer"
         if surnamenr >= len(self.surname_list):
             return
         for surname in self.surname_list:
@@ -169,7 +173,7 @@ class SurnameBase:
                 if equi == IDENTICAL:
                     break
                 elif equi == EQUAL:
-                    #This should normally never happen, an alternate name
+                    # This should normally never happen, an alternate name
                     # should be added
                     surname.merge(addendum)
                     break
@@ -184,17 +188,23 @@ class SurnameBase:
         for surn in self.surname_list:
             partsurn = surn.get_surname()
             if surn.get_prefix():
-                fsurn = _('%(first)s %(second)s') % {'first': surn.get_prefix(),
-                                                     'second': partsurn}
+                fsurn = _("%(first)s %(second)s") % {
+                    "first": surn.get_prefix(),
+                    "second": partsurn,
+                }
             else:
                 fsurn = partsurn
             fsurn = fsurn.strip()
             if surn.get_connector():
-                fsurn = _('%(first)s %(second)s') % {'first': fsurn,
-                                                     'second': surn.get_connector()}
+                fsurn = _("%(first)s %(second)s") % {
+                    "first": fsurn,
+                    "second": surn.get_connector(),
+                }
             fsurn = fsurn.strip()
-            totalsurn = _('%(first)s %(second)s') % {'first': totalsurn,
-                                                     'second': fsurn}
+            totalsurn = _("%(first)s %(second)s") % {
+                "first": totalsurn,
+                "second": fsurn,
+            }
         return totalsurn.strip()
 
     def get_primary(self):
@@ -204,8 +214,10 @@ class SurnameBase:
         primary = self.get_primary_surname()
         partsurn = primary.get_surname()
         if primary.get_prefix():
-            fsurn = _('%(first)s %(second)s') % {'first': primary.get_prefix(),
-                                                 'second': partsurn}
+            fsurn = _("%(first)s %(second)s") % {
+                "first": primary.get_prefix(),
+                "second": partsurn,
+            }
         else:
             fsurn = partsurn
         return fsurn.strip()

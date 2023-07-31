@@ -25,33 +25,34 @@
     Tools/Debug/Dump Gender Statistics
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gramps.gui.listmodel import ListModel, INTEGER
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.plug import tool
 
-_GENDER = [ _('female'), _('male'), _('unknown') ]
+_GENDER = [_("female"), _("male"), _("unknown")]
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 #
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class DumpGenderStats(tool.Tool, ManagedWindow):
-
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
         self.label = _("Gender Statistics tool")
@@ -60,19 +61,19 @@ class DumpGenderStats(tool.Tool, ManagedWindow):
         stats_list = []
         for name, value in dbstate.db.genderStats.stats.items():
             stats_list.append(
-                (name,)
-                + value
-                + (_GENDER[dbstate.db.genderStats.guess_gender(name)],)
-                )
+                (name,) + value + (_GENDER[dbstate.db.genderStats.guess_gender(name)],)
+            )
 
         if uistate:
             ManagedWindow.__init__(self, uistate, [], self.__class__)
 
-            titles = [(_('Name'), 0, 100),
-                      (_('Male'), 1, 70, INTEGER),
-                      (_('Female'), 2, 70, INTEGER),
-                      (_('Unknown'), 3, 90, INTEGER),
-                      (_('Guess'), 4, 70)]
+            titles = [
+                (_("Name"), 0, 100),
+                (_("Male"), 1, 70, INTEGER),
+                (_("Female"), 2, 70, INTEGER),
+                (_("Unknown"), 3, 90, INTEGER),
+                (_("Guess"), 4, 70),
+            ]
 
             treeview = Gtk.TreeView()
             model = ListModel(treeview, titles)
@@ -82,44 +83,47 @@ class DumpGenderStats(tool.Tool, ManagedWindow):
             s = Gtk.ScrolledWindow()
             s.add(treeview)
             dialog = Gtk.Dialog()
-            dialog.add_button(_('_Close'), Gtk.ResponseType.CLOSE)
-            dialog.connect('response', self._response)
+            dialog.add_button(_("_Close"), Gtk.ResponseType.CLOSE)
+            dialog.connect("response", self._response)
             dialog.vbox.pack_start(s, expand=True, fill=True, padding=0)
             self.set_window(dialog, None, self.label)
-            self.setup_configs('interface.dumpgenderstats', 420, 300)
+            self.setup_configs("interface.dumpgenderstats", 420, 300)
             self.show()
 
         else:
-            if len(_('Name')) < 16:
-                print('%s%s%s' % (_('Name'),
-                                  " " * (16 - len(_('Name'))),
-                                  _('Male')),
-                      '\t%s'*3 % (_('Female'), _('Unknown'), _('Guess')))
+            if len(_("Name")) < 16:
+                print(
+                    "%s%s%s" % (_("Name"), " " * (16 - len(_("Name"))), _("Male")),
+                    "\t%s" * 3 % (_("Female"), _("Unknown"), _("Guess")),
+                )
             else:
-                print(_('Name'), '\t%s'*4 % (_('Male'), _('Female'),
-                                             _('Unknown'), _('Guess')))
+                print(
+                    _("Name"),
+                    "\t%s" * 4 % (_("Male"), _("Female"), _("Unknown"), _("Guess")),
+                )
             print()
             for entry in sorted(stats_list):
                 if len(entry[0]) < 16:
-                    print('%s%s%s' % (entry[0],
-                                      " " * (16 - len(entry[0])),
-                                      entry[1]),
-                          '\t%s'*3 % (entry[2:]))
+                    print(
+                        "%s%s%s" % (entry[0], " " * (16 - len(entry[0])), entry[1]),
+                        "\t%s" * 3 % (entry[2:]),
+                    )
                 else:
-                    print(entry[0], '\t%s'*4 % (entry[1:]))
+                    print(entry[0], "\t%s" * 4 % (entry[1:]))
 
     def _response(self, obj, response_id):
         if response_id == Gtk.ResponseType.CLOSE:
             self.close()
 
     def build_menu_names(self, obj):
-        return (self.label,None)
+        return (self.label, None)
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 #
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class DumpGenderStatsOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.

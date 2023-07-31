@@ -22,42 +22,40 @@
 A ciation formatter that implements the current functionality.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.lib import Citation
 from gramps.gen.utils.string import conf_strings
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 LOG = logging.getLogger(".cite")
 
 
-class Formatter():
-
+class Formatter:
     def __init__(self):
         pass
 
     def format(self, bibliography, db, elocale):
-
         result = []
         for citation in bibliography.get_citation_list():
             source = db.get_source_from_handle(citation.get_source_handle())
@@ -72,8 +70,10 @@ class Formatter():
 
         return result
 
+
 def _format_source_text(source, elocale):
-    if not source: return ""
+    if not source:
+        return ""
 
     trans_text = elocale.translation.gettext
     # trans_text is a defined keyword (see po/update_po.py, po/genpot.sh)
@@ -86,26 +86,28 @@ def _format_source_text(source, elocale):
     if source.get_title():
         if src_txt:
             # Translators: needed for Arabic, ignore otherwise
-            src_txt += trans_text(', ')
+            src_txt += trans_text(", ")
         # Translators: used in French+Russian, ignore otherwise
         src_txt += trans_text('"%s"') % source.get_title()
 
     if source.get_publication_info():
         if src_txt:
             # Translators: needed for Arabic, ignore otherwise
-            src_txt += trans_text(', ')
+            src_txt += trans_text(", ")
         src_txt += source.get_publication_info()
 
     if source.get_abbreviation():
         if src_txt:
             # Translators: needed for Arabic, ignore otherwise
-            src_txt += trans_text(', ')
+            src_txt += trans_text(", ")
         src_txt += "(%s)" % source.get_abbreviation()
 
     return src_txt
 
+
 def _format_ref_text(ref, key, elocale):
-    if not ref: return ""
+    if not ref:
+        return ""
 
     ref_txt = ""
 
@@ -123,7 +125,10 @@ def _format_ref_text(ref, key, elocale):
 
     # Print only confidence level if it is not Normal
     if ref.get_confidence_level() != Citation.CONF_NORMAL:
-        ref_txt += " [" + elocale.translation.gettext(
-                              conf_strings[ref.get_confidence_level()]) + "]"
+        ref_txt += (
+            " ["
+            + elocale.translation.gettext(conf_strings[ref.get_confidence_level()])
+            + "]"
+        )
 
     return ref_txt

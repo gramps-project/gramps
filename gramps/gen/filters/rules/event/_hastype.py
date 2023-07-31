@@ -18,34 +18,36 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....lib.eventtype import EventType
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasType
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasType(Rule):
     """Rule that checks for an event of a particular type."""
 
-    labels = [ _('Event type:') ]
-    name = _('Events with the particular type')
+    labels = [_("Event type:")]
+    name = _("Events with the particular type")
     description = _("Matches events with the particular type ")
-    category = _('General filters')
+    category = _("General filters")
 
     def apply(self, db, event):
         if not self.list[0]:

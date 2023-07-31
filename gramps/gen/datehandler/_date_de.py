@@ -40,13 +40,13 @@ from ._dateparser import DateParser
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
 
+
 # -------------------------------------------------------------------------
 #
 # German parser
 #
 # -------------------------------------------------------------------------
 class DateParserDE(DateParser):
-
     month_to_int = DateParser.month_to_int
     # Always add german and austrian name variants no matter what the current
     # locale is

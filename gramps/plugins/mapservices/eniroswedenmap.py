@@ -24,19 +24,20 @@
 Eniro Sweden (Denmark) map service plugin. Opens place in kartor.eniro.se
 """
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.plugins.lib.libmapservice import MapService
 from gramps.gui.dialog import WarningDialog
 from gramps.gen.utils.location import get_main_location
@@ -44,30 +45,35 @@ from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.lib import PlaceType
 
 # Make upper case of translated country so string search works later
-MAP_NAMES_SWEDEN = [_("Sweden").upper(),
-                      "SVERIGE",
-                      "SWEDEN",
-                      "SUEDOIS",
-                      "ROUTSI",
-                      "SCHWEDEN", ]
-MAP_NAMES_DENMARK = [_("Denmark").upper(),
-                       "DANMARK",
-                       "DENMARK",
-                       "DANOIS",
-                       "TANSKA",
-                       "DÄNEMARK", ]
+MAP_NAMES_SWEDEN = [
+    _("Sweden").upper(),
+    "SVERIGE",
+    "SWEDEN",
+    "SUEDOIS",
+    "ROUTSI",
+    "SCHWEDEN",
+]
+MAP_NAMES_DENMARK = [
+    _("Denmark").upper(),
+    "DANMARK",
+    "DENMARK",
+    "DANOIS",
+    "TANSKA",
+    "DÄNEMARK",
+]
 
 
 def _strip_leading_comma(descr):
-    """ Strips leading comma
+    """Strips leading comma
     and leading and trailing spaces
     """
     if len(descr) > 0 and descr.strip()[0] == ",":
         descr = descr.strip()[1:]
     return descr.strip()
 
+
 def _build_title(db, place):
-    """ Builds descrition string for title parameter in url """
+    """Builds descrition string for title parameter in url"""
     descr = place_displayer.display(db, place)
     location = get_main_location(db, place)
     parish = location.get(PlaceType.PARISH)
@@ -78,28 +84,30 @@ def _build_title(db, place):
         title_descr += descr.strip()
     if parish:
         # TODO for Arabic, should the next line's comma be translated?
-        title_descr += ', ' + parish.strip() + _(" parish")
+        title_descr += ", " + parish.strip() + _(" parish")
     if city:
         # TODO for Arabic, should the next line's comma be translated?
-        title_descr += ', ' + city.strip()
+        title_descr += ", " + city.strip()
     if state:
         # TODO for Arabic, should the next line's comma be translated?
-        title_descr += ', ' + state.strip() + _(" state")
+        title_descr += ", " + state.strip() + _(" state")
     return _strip_leading_comma(title_descr)
 
+
 def _build_city(db, place):
-    """ Builds description string for city parameter in url """
+    """Builds description string for city parameter in url"""
     location = get_main_location(db, place)
     county = location.get(PlaceType.COUNTY)
     # Build a title description string that will work for Eniro
     city_descr = _build_area(db, place)
     if county:
         # TODO for Arabic, should the next line's comma be translated?
-        city_descr += ', ' + county
+        city_descr += ", " + county
     return _strip_leading_comma(city_descr)
 
+
 def _build_area(db, place):
-    """ Builds string for area parameter in url """
+    """Builds string for area parameter in url"""
     location = get_main_location(db, place)
     street = location.get(PlaceType.STREET)
     city = location.get(PlaceType.CITY)
@@ -109,31 +117,33 @@ def _build_area(db, place):
         area_descr += street.strip()
     if city:
         # TODO for Arabic, should the next line's comma be translated?
-        area_descr += ', ' + city
+        area_descr += ", " + city
     return _strip_leading_comma(area_descr)
 
 
 class EniroSVMapService(MapService):
     """Map  service using http://kartor.eniro.se"""
+
     def __init__(self):
         MapService.__init__(self)
 
     def calc_url(self):
-        """ Determine the url to use on maps.google.com
-            Logic: valid for places within Sweden and
-                   Denmark, only if lat lon avalible
-                   use lat lon if present
-                   otherwise use city and country if present
-                   otherwise use description of the place
+        """Determine the url to use on maps.google.com
+        Logic: valid for places within Sweden and
+               Denmark, only if lat lon avalible
+               use lat lon if present
+               otherwise use city and country if present
+               otherwise use description of the place
         """
         place = self._get_first_place()[0]
         path = ""
         # First see if we are in or near Sweden or Denmark
         # Change country to upper case
         location = get_main_location(self.database, place)
-        country = location.get(PlaceType.COUNTRY, '').upper().strip()
-        country_given = (country in MAP_NAMES_SWEDEN or \
-                        country in MAP_NAMES_DENMARK) and (country != "")
+        country = location.get(PlaceType.COUNTRY, "").upper().strip()
+        country_given = (
+            country in MAP_NAMES_SWEDEN or country in MAP_NAMES_DENMARK
+        ) and (country != "")
         # if no country given, check if we might be in the vicinity defined by
         # 54 33' 0" < lat < 66 9' 0", 54.55 and 69.05
         # 8 3' 0" < long < 24 9' 0", 8.05 and 24.15
@@ -147,10 +157,12 @@ class EniroSVMapService(MapService):
             if (54.55 < latitude < 69.05) and (8.05 < longitude < 24.15):
                 coord_ok = True
             else:
-                msg2 = _("Latitude not within '54.55' to '69.05'\n") + \
-                       _("Longitude not within '8.05' to '24.15'")
-                WarningDialog(_("Eniro map not available"), msg2,
-                              parent=self.uistate.window)
+                msg2 = _("Latitude not within '54.55' to '69.05'\n") + _(
+                    "Longitude not within '8.05' to '24.15'"
+                )
+                WarningDialog(
+                    _("Eniro map not available"), msg2, parent=self.uistate.window
+                )
                 return
 
         if coord_ok:
@@ -161,31 +173,37 @@ class EniroSVMapService(MapService):
             zoom = 5
             if not country_given:
                 zoom = 3
-            path = "http://www.eniro.se/partner.fcgi?pis=1&x=%s&y=%s" \
-                   "&zoom_level=%i&map_size=0&title=%s&city=%s&partner=gramps"
+            path = (
+                "http://www.eniro.se/partner.fcgi?pis=1&x=%s&y=%s"
+                "&zoom_level=%i&map_size=0&title=%s&city=%s&partner=gramps"
+            )
             # Note x and y are swapped!
-            path = path % (y_coord , x_coord, zoom, place_title, place_city)
-            self.url = path.replace(" ","%20")
+            path = path % (y_coord, x_coord, zoom, place_title, place_city)
+            self.url = path.replace(" ", "%20")
             return
 
         place_area = _build_area(self.database, place)
         if country_given and place_area:
             if country in MAP_NAMES_SWEDEN:
-                path = "http://kartor.eniro.se/query?&what=map_adr&mop=aq" \
-                       "&geo_area=%s&partner=gramps"
+                path = (
+                    "http://kartor.eniro.se/query?&what=map_adr&mop=aq"
+                    "&geo_area=%s&partner=gramps"
+                )
                 path = path % (place_area)
-                self.url = path.replace(" ","%20")
+                self.url = path.replace(" ", "%20")
                 return
             else:
-                WarningDialog(_("Eniro map not available"),
-                              _("Coordinates needed in Denmark"),
-                              parent=self.uistate.window)
+                WarningDialog(
+                    _("Eniro map not available"),
+                    _("Coordinates needed in Denmark"),
+                    parent=self.uistate.window,
+                )
                 self.url = ""
                 return
 
-        WarningDialog(_("Eniro map not available"),
-                      _("Latitude and longitude,\n"
-                        "or street and city needed"),
-                      parent=self.uistate.window)
+        WarningDialog(
+            _("Eniro map not available"),
+            _("Latitude and longitude,\n" "or street and city needed"),
+            parent=self.uistate.window,
+        )
         return
-

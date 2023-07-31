@@ -18,32 +18,35 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 from ....lib.nameorigintype import NameOriginType
 from ....soundex import soundex
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # HasNameOf
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasSoundexName(Rule):
     """Rule that checks for full or partial name matches"""
 
-    labels = [_('Name:')]
-    name = _('Soundex match of People with the <name>')
-    description = _("Soundex Match of people with a specified name. First "
-                    "name, Surname, Call name, and Nickname are searched in "
-                    "primary and alternate names.")
-    category = _('General filters')
+    labels = [_("Name:")]
+    name = _("Soundex match of People with the <name>")
+    description = _(
+        "Soundex Match of people with a specified name. First "
+        "name, Surname, Call name, and Nickname are searched in "
+        "primary and alternate names."
+    )
+    category = _("General filters")
     allow_regex = False
 
     def apply(self, db, person):

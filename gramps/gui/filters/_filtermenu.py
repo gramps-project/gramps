@@ -18,20 +18,21 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import GObject
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # This is used by plugins to create a menu of available filters
 #
-#-------------------------------------------------------------------------
-def build_filter_model(space, local = []):
+# -------------------------------------------------------------------------
+def build_filter_model(space, local=[]):
     from gramps.gen.filters import CustomFilters
 
     model = Gtk.ListStore(GObject.TYPE_STRING, object)

@@ -22,19 +22,19 @@ from collections import OrderedDict
 
 "Find possible loop in a people descendance"
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import GObject
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gui.plug import tool
 from gramps.gui.editors import EditFamily
@@ -46,79 +46,78 @@ from gramps.gui.glade import Glade
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.proxy import CacheProxyDb
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 ngettext = glocale.translation.ngettext  # else "nearby" comments are ignored
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('Find_database_loop', 'manual')
+# -------------------------------------------------------------------------
+WIKI_HELP_PAGE = "%s_-_Tools" % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _("Find_database_loop", "manual")
 
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # FindLoop class
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class FindLoop(ManagedWindow):
     """
     Find loops in the family tree.
     """
+
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
 
-        self.title = _('Find database loop')
+        self.title = _("Find database loop")
         ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.dbstate = dbstate
         self.uistate = uistate
-        #self.db = CacheProxyDb(dbstate.db)
+        # self.db = CacheProxyDb(dbstate.db)
         self.db = dbstate.db
 
         top_dialog = Glade()
 
-        top_dialog.connect_signals({
-            "destroy_passed_object" : self.close,
-            "on_help_clicked"       : self.on_help_clicked,
-            "on_delete_event"       : self.close,
-        })
+        top_dialog.connect_signals(
+            {
+                "destroy_passed_object": self.close,
+                "on_help_clicked": self.on_help_clicked,
+                "on_delete_event": self.close,
+            }
+        )
 
         window = top_dialog.toplevel
         title = top_dialog.get_object("title")
         self.set_window(window, title, self.title)
 
         # start the progress indicator
-        self.progress = ProgressMeter(self.title, _('Starting'),
-                                      parent=uistate.window)
-        self.progress.set_pass(_('Looking for possible loop for each person'),
-                               self.db.get_number_of_people())
+        self.progress = ProgressMeter(self.title, _("Starting"), parent=uistate.window)
+        self.progress.set_pass(
+            _("Looking for possible loop for each person"),
+            self.db.get_number_of_people(),
+        )
 
         self.model = Gtk.ListStore(
-            GObject.TYPE_STRING,    # 0==father id
-            GObject.TYPE_STRING,    # 1==father
-            GObject.TYPE_STRING,    # 2==son id
-            GObject.TYPE_STRING,    # 3==son
-            GObject.TYPE_STRING,    # 4==family gid
-            GObject.TYPE_STRING)    # 5==loop number
-        self.model.set_sort_column_id(
-            Gtk.TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID, 0)
+            GObject.TYPE_STRING,  # 0==father id
+            GObject.TYPE_STRING,  # 1==father
+            GObject.TYPE_STRING,  # 2==son id
+            GObject.TYPE_STRING,  # 3==son
+            GObject.TYPE_STRING,  # 4==family gid
+            GObject.TYPE_STRING,
+        )  # 5==loop number
+        self.model.set_sort_column_id(Gtk.TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID, 0)
 
         self.treeview = top_dialog.get_object("treeview")
         self.treeview.set_model(self.model)
-        col0 = Gtk.TreeViewColumn('',
-                                  Gtk.CellRendererText(), text=5)
-        col1 = Gtk.TreeViewColumn(_('Gramps ID'),
-                                  Gtk.CellRendererText(), text=0)
-        col2 = Gtk.TreeViewColumn(_('Parent'),
-                                  Gtk.CellRendererText(), text=1)
-        col3 = Gtk.TreeViewColumn(_('Gramps ID'),
-                                  Gtk.CellRendererText(), text=2)
-        col4 = Gtk.TreeViewColumn(_('Child'),
-                                  Gtk.CellRendererText(), text=3)
-        col5 = Gtk.TreeViewColumn(_('Family ID'),
-                                  Gtk.CellRendererText(), text=4)
+        col0 = Gtk.TreeViewColumn("", Gtk.CellRendererText(), text=5)
+        col1 = Gtk.TreeViewColumn(_("Gramps ID"), Gtk.CellRendererText(), text=0)
+        col2 = Gtk.TreeViewColumn(_("Parent"), Gtk.CellRendererText(), text=1)
+        col3 = Gtk.TreeViewColumn(_("Gramps ID"), Gtk.CellRendererText(), text=2)
+        col4 = Gtk.TreeViewColumn(_("Child"), Gtk.CellRendererText(), text=3)
+        col5 = Gtk.TreeViewColumn(_("Family ID"), Gtk.CellRendererText(), text=4)
         col1.set_resizable(True)
         col2.set_resizable(True)
         col3.set_resizable(True)
@@ -136,7 +135,7 @@ class FindLoop(ManagedWindow):
         self.treeview.append_column(col4)
         self.treeview.append_column(col5)
         self.treeselection = self.treeview.get_selection()
-        self.treeview.connect('row-activated', self.rowactivated_cb)
+        self.treeview.connect("row-activated", self.rowactivated_cb)
 
         self.curr_fam = None
         people = self.db.get_person_handles()
@@ -188,11 +187,13 @@ class FindLoop(ManagedWindow):
             for pth in range(len(self.model)):
                 path = Gtk.TreePath(pth)
                 treeiter = self.model.get_iter(path)
-                find = (self.model.get_value(treeiter, 0),
-                        self.model.get_value(treeiter, 1),
-                        self.model.get_value(treeiter, 2),
-                        self.model.get_value(treeiter, 3),
-                        self.model.get_value(treeiter, 4))
+                find = (
+                    self.model.get_value(treeiter, 0),
+                    self.model.get_value(treeiter, 1),
+                    self.model.get_value(treeiter, 2),
+                    self.model.get_value(treeiter, 3),
+                    self.model.get_value(treeiter, 4),
+                )
                 if find == value:
                     found = True  # This loop is in display model
                     break
@@ -222,8 +223,14 @@ class FindLoop(ManagedWindow):
                     pers_name = _nd.display(person)
                     parent_id = self.parent.get_gramps_id()
                     parent_name = _nd.display(self.parent)
-                    value = (parent_id, parent_name, pers_id, pers_name,
-                             fam_id, str(self.loop))
+                    value = (
+                        parent_id,
+                        parent_name,
+                        pers_id,
+                        pers_name,
+                        fam_id,
+                        str(self.loop),
+                    )
                     self.model.append(value)
             return True
         # We are not part of loop (yet) so search descendents
@@ -280,15 +287,17 @@ class FindLoop(ManagedWindow):
     def close(self, *obj):
         ManagedWindow.close(self, *obj)
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # FindLoopOptions
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class FindLoopOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
+
     def __init__(self, name, person_id=None):
-        """ Initialize the options class """
+        """Initialize the options class"""
         tool.ToolOptions.__init__(self, name, person_id)

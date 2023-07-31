@@ -22,21 +22,21 @@
 Package providing filtering framework for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ._genericfilter import GenericFilter
 from ..errors import FilterError
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # ParamFilter
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class ParamFilter(GenericFilter):
-
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
         self.need_param = 1
@@ -47,7 +47,7 @@ class ParamFilter(GenericFilter):
 
     def apply(self, db, id_list=None, user=None):
         for rule in self.flist:
-            #rule.set_list(self.param_list)
+            # rule.set_list(self.param_list)
             #
             # The above breaks filters with more than one param
             # Need to change existing params one by one to keep
@@ -58,8 +58,9 @@ class ParamFilter(GenericFilter):
             rule.set_list(new_list)
         for rule in self.flist:
             if rule.nrprepare > 0:
-                raise FilterError('Custom filters can not twice be used' \
-                                   ' in a parameter filter')
+                raise FilterError(
+                    "Custom filters can not twice be used" " in a parameter filter"
+                )
             rule.requestprepare(db, user)
         result = GenericFilter.apply(self, db, id_list)
         for rule in self.flist:

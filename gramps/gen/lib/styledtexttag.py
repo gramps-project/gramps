@@ -22,20 +22,22 @@
 
 "Provide formatting tag definition for StyledText."
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .styledtexttagtype import StyledTextTagType
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # StyledTextTag class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class StyledTextTag:
     """Hold formatting information for :py:class:`.StyledText`.
 
@@ -50,6 +52,7 @@ class StyledTextTag:
     :type ranges: list of (int(start), int(end)) tuples.
 
     """
+
     def __init__(self, name=None, value=None, ranges=None):
         """Setup initial instance variable values.
 
@@ -102,13 +105,16 @@ class StyledTextTag:
             "properties": {
                 "_class": {"enum": [cls.__name__]},
                 "name": StyledTextTagType.get_schema(),
-                "value": {"type": ["null", "string", "integer"],
-                          "title": _("Value")},
-                "ranges": {"type": "array",
-                           "items": {"type": "array",
-                                     "items": {"type": "integer"},
-                                     "minItems": 2,
-                                     "maxItems": 2},
-                           "title": _("Ranges")}
-            }
+                "value": {"type": ["null", "string", "integer"], "title": _("Value")},
+                "ranges": {
+                    "type": "array",
+                    "items": {
+                        "type": "array",
+                        "items": {"type": "integer"},
+                        "minItems": 2,
+                        "maxItems": 2,
+                    },
+                    "title": _("Ranges"),
+                },
+            },
         }

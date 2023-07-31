@@ -19,41 +19,42 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # internationalization
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from ..views.treemodels import FamilyModel
 from .baseselector import BaseSelector
 from gramps.gen.const import URL_MANUAL_PAGE
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # SelectFamily
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class SelectFamily(BaseSelector):
-
     def _local_init(self):
         """
         Perform local initialisation for this class
         """
-        self.setup_configs('interface.family-sel', 600, 450)
+        self.setup_configs("interface.family-sel", 600, 450)
 
     def get_window_title(self):
         return _("Select Family")
@@ -63,11 +64,11 @@ class SelectFamily(BaseSelector):
 
     def get_column_titles(self):
         return [
-            (_('ID'),      75, BaseSelector.TEXT, 0),
-            (_('Father'), 200, BaseSelector.TEXT, 1),
-            (_('Mother'), 200, BaseSelector.TEXT, 2),
-            (_('Last Change'), 150, BaseSelector.TEXT, 7),
-            ]
+            (_("ID"), 75, BaseSelector.TEXT, 0),
+            (_("Father"), 200, BaseSelector.TEXT, 1),
+            (_("Mother"), 200, BaseSelector.TEXT, 2),
+            (_("Last Change"), 150, BaseSelector.TEXT, 7),
+        ]
 
     def get_from_handle_func(self):
         return self.db.get_family_from_handle
@@ -75,5 +76,5 @@ class SelectFamily(BaseSelector):
     def get_config_name(self):
         return __name__
 
-    WIKI_HELP_PAGE = '%s_-_Categories' % URL_MANUAL_PAGE
-    WIKI_HELP_SEC = _('Select_Family_selector', 'manual')
+    WIKI_HELP_PAGE = "%s_-_Categories" % URL_MANUAL_PAGE
+    WIKI_HELP_SEC = _("Select_Family_selector", "manual")

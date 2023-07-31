@@ -26,6 +26,7 @@ import logging
 from ..importgeneweb import GeneWebParser
 from ....gen.lib.date import Date
 
+
 class ParseDateTest(unittest.TestCase):
     def setUp(self):
         self.parse = GeneWebParser(dbase=None, file=None).parse_date

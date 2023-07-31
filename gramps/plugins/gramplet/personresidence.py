@@ -17,18 +17,18 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gtk modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.lib import EventType, EventRoleType
 from gramps.gui.editors import EditEvent
 from gramps.gui.listmodel import ListModel, NOSORT
@@ -37,12 +37,15 @@ from gramps.gen.datehandler import get_date
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
+
 
 class PersonResidence(Gramplet):
     """
     Displays residence events for a person.
     """
+
     def init(self):
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
@@ -53,23 +56,29 @@ class PersonResidence(Gramplet):
         """
         Build the GUI interface.
         """
-        tip = _('Double-click on a row to edit the selected event.')
+        tip = _("Double-click on a row to edit the selected event.")
         self.set_tooltip(tip)
         top = Gtk.TreeView()
-        titles = [('', NOSORT, 50,),
-                  (_('Date'), 1, 200),
-                  (_('Place'), 2, 200)]
+        titles = [
+            (
+                "",
+                NOSORT,
+                50,
+            ),
+            (_("Date"), 1, 200),
+            (_("Place"), 2, 200),
+        ]
         self.model = ListModel(top, titles, event_func=self.edit_event)
         return top
 
     def db_changed(self):
-        self.connect(self.dbstate.db, 'person-update', self.update)
+        self.connect(self.dbstate.db, "person-update", self.update)
 
     def active_changed(self, handle):
         self.update()
 
     def update_has_data(self):
-        active_handle = self.get_active('Person')
+        active_handle = self.get_active("Person")
         if active_handle:
             active = self.dbstate.db.get_person_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
@@ -88,9 +97,9 @@ class PersonResidence(Gramplet):
                         return True
         return False
 
-    def main(self): # return false finishes
+    def main(self):  # return false finishes
         self.model.clear()
-        active_handle = self.get_active('Person')
+        active_handle = self.get_active("Person")
         if active_handle:
             active_person = self.dbstate.db.get_person_from_handle(active_handle)
             if active_person:
@@ -118,7 +127,7 @@ class PersonResidence(Gramplet):
         Add a residence event to the model.
         """
         date = get_date(event)
-        place = ''
+        place = ""
         handle = event.get_place_handle()
         if handle:
             place = place_displayer.display_event(self.dbstate.db, event)

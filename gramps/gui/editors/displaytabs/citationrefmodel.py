@@ -19,40 +19,47 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 from gramps.gen.utils.string import conf_strings
-from gramps.gen.datehandler import (get_date, get_date_valid)
+from gramps.gen.datehandler import get_date, get_date_valid
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # CitationModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class CitationRefModel(Gtk.ListStore):
-
     def __init__(self, citation_list, db):
-        Gtk.ListStore.__init__(self, str, str, str, str, str, str, str,
-                               bool, str, str)
+        Gtk.ListStore.__init__(self, str, str, str, str, str, str, str, bool, str, str)
         self.db = db
         dbgsfh = self.db.get_source_from_handle
         for handle in citation_list:
             citation = self.db.get_citation_from_handle(handle)
             src = dbgsfh(citation.get_reference_handle())
             confidence = citation.get_confidence_level()
-            self.append(row=[src.title, src.author,
-                             self.column_date(citation),
-                             src.get_publication_info(),
-                             _(conf_strings[confidence]), citation.page,
-                             citation.gramps_id, citation.get_privacy(),
-                             self.column_sort_date(citation),
-                             handle, ])
+            self.append(
+                row=[
+                    src.title,
+                    src.author,
+                    self.column_date(citation),
+                    src.get_publication_info(),
+                    _(conf_strings[confidence]),
+                    citation.page,
+                    citation.gramps_id,
+                    citation.get_privacy(),
+                    self.column_sort_date(citation),
+                    handle,
+                ]
+            )
 
     def column_date(self, citation):
         retval = get_date(citation)

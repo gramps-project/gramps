@@ -26,7 +26,7 @@ from bsddb3 import db
 print("Test that db.DBEnv().open() works")
 with tempfile.TemporaryDirectory() as env_name:
     env = db.DBEnv()
-    env.set_cachesize(0,0x2000000)
+    env.set_cachesize(0, 0x2000000)
     env.set_lk_max_locks(25000)
     env.set_lk_max_objects(25000)
     # env.set_flags(db.DB_LOG_AUTOREMOVE,1)
@@ -47,14 +47,21 @@ with tempfile.TemporaryDirectory() as env_name:
         autoremove_method(autoremove_flag, 1)
     else:
         print("Failed to set autoremove flag")
-    env_flags = db.DB_CREATE|db.DB_RECOVER|db.DB_PRIVATE|\
-                db.DB_INIT_MPOOL|db.DB_INIT_LOCK|\
-                db.DB_INIT_LOG|db.DB_INIT_TXN|db.DB_THREAD
+    env_flags = (
+        db.DB_CREATE
+        | db.DB_RECOVER
+        | db.DB_PRIVATE
+        | db.DB_INIT_MPOOL
+        | db.DB_INIT_LOCK
+        | db.DB_INIT_LOG
+        | db.DB_INIT_TXN
+        | db.DB_THREAD
+    )
     try:
-        env.open(env_name,env_flags)
+        env.open(env_name, env_flags)
     except db.DBRunRecoveryError as e:
         print("Exception: ")
         print(e)
         env.remove(env_name)
-        env.open(env_name,env_flags)
+        env.open(env_name, env_flags)
     print("OK")

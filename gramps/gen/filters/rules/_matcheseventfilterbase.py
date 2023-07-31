@@ -18,26 +18,28 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import MatchesFilterBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MatchesEventFilter
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MatchesEventFilterBase(MatchesFilterBase):
     """
     Rule that checks against another filter.
@@ -47,26 +49,25 @@ class MatchesEventFilterBase(MatchesFilterBase):
 
     """
 
-    labels = ['Event filter name:']
-    name = 'Objects with events matching the <event filter>'
-    description = "Matches objects who have events that match a certain" \
-                   " event filter"
-    category = _('General filters')
+    labels = ["Event filter name:"]
+    name = "Objects with events matching the <event filter>"
+    description = "Matches objects who have events that match a certain" " event filter"
+    category = _("General filters")
 
     # we want to have this filter show event filters
-    namespace = 'Event'
+    namespace = "Event"
 
     def prepare(self, db, user):
         MatchesFilterBase.prepare(self, db, user)
         self.MEF_filt = self.find_filter()
 
     def apply(self, db, object):
-        if self.MEF_filt is None :
+        if self.MEF_filt is None:
             return False
 
         eventlist = [x.ref for x in object.get_event_ref_list()]
         for eventhandle in eventlist:
-            #check if event in event filter
+            # check if event in event filter
             if self.MEF_filt.check(db, eventhandle):
                 return True
         return False

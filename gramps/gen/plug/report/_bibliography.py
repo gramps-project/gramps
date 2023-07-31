@@ -24,25 +24,27 @@
 Contain and organize bibliographic information.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import string
 import math
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...lib.citation import Citation as lib_Citation
+
 
 class Citation:
     """
     Store information about a citation and all of its references.
     """
+
     def __init__(self):
         """
         Initialize members.
@@ -87,7 +89,7 @@ class Citation:
         :return: The key of the added reference among all the references.
         :rtype: char
         """
-        letters = string.ascii_lowercase # or (e.g.) "abcdef" for testing
+        letters = string.ascii_lowercase  # or (e.g.) "abcdef" for testing
         letter_count = len(letters)
         ref_count = len(self.__ref_list)
         x_ref_count = ref_count
@@ -95,17 +97,15 @@ class Citation:
         if ref_count == 0:
             self.__ref_list.append((letters[0], source_ref))
             return letters[0]
-        last_letter = letters[ ref_count % letter_count ]
+        last_letter = letters[ref_count % letter_count]
         key = ""
         # Calculate prek number of digits.
-        number_of_letters = 1 + int(math.log(float(ref_count),
-                                             float(letter_count)))
+        number_of_letters = 1 + int(math.log(float(ref_count), float(letter_count)))
         # Exclude index for number_of_letters-1
-        for n in range(1, number_of_letters-1):
+        for n in range(1, number_of_letters - 1):
             ref_count -= pow(letter_count, n)
         # Adjust number_of_letters for new index
-        number_of_letters = 1 + int(math.log(float(ref_count),
-                                             float(letter_count)))
+        number_of_letters = 1 + int(math.log(float(ref_count), float(letter_count)))
         for n in range(1, number_of_letters):
             x_ref_count -= pow(letter_count, n)
         for letter in range(1, number_of_letters):
@@ -115,10 +115,12 @@ class Citation:
         self.__ref_list.append((key, source_ref))
         return key
 
+
 class Bibliography:
     """
     Store and organize multiple citations into a bibliography.
     """
+
     MODE_DATE = 2**0
     MODE_PAGE = 2**1
     MODE_CONF = 2**2
@@ -222,22 +224,21 @@ class Bibliography:
         Determine if this source_ref has any useful information based on the
         current mode.
         """
-        if ( self.mode & self.MODE_PAGE ) == self.MODE_PAGE:
+        if (self.mode & self.MODE_PAGE) == self.MODE_PAGE:
             if source_ref.get_page() != "":
                 return True
-        if ( self.mode & self.MODE_DATE ) == self.MODE_DATE:
+        if (self.mode & self.MODE_DATE) == self.MODE_DATE:
             date = source_ref.get_date_object()
             if date is not None and not date.is_empty():
                 return True
-        if ( self.mode & self.MODE_CONF ) == self.MODE_CONF:
+        if (self.mode & self.MODE_CONF) == self.MODE_CONF:
             confidence = source_ref.get_confidence_level()
-            if confidence is not None and confidence != \
-                                        lib_Citation.CONF_NORMAL:
+            if confidence is not None and confidence != lib_Citation.CONF_NORMAL:
                 return True
-        if ( self.mode & self.MODE_NOTE ) == self.MODE_NOTE:
+        if (self.mode & self.MODE_NOTE) == self.MODE_NOTE:
             if len(source_ref.get_note_list()) != 0:
                 return True
-        if ( self.mode & self.MODE_MEDIA ) == self.MODE_MEDIA:
+        if (self.mode & self.MODE_MEDIA) == self.MODE_MEDIA:
             if len(source_ref.get_media_list()) != 0:
                 return True
         # Can't find anything interesting.
@@ -259,20 +260,20 @@ class Bibliography:
         # are intended to represent the same citation.
         if self.mode == self.MODE_ALL:
             return source_ref1.handle == source_ref2.handle
-        if ( self.mode & self.MODE_PAGE ) == self.MODE_PAGE:
+        if (self.mode & self.MODE_PAGE) == self.MODE_PAGE:
             if source_ref1.get_page() != source_ref2.get_page():
                 return False
-        if ( self.mode & self.MODE_DATE ) == self.MODE_DATE:
+        if (self.mode & self.MODE_DATE) == self.MODE_DATE:
             date1 = source_ref1.get_date_object()
             date2 = source_ref2.get_date_object()
             if not date1.is_equal(date2):
                 return False
-        if ( self.mode & self.MODE_CONF ) == self.MODE_CONF:
+        if (self.mode & self.MODE_CONF) == self.MODE_CONF:
             conf1 = source_ref1.get_confidence_level()
             conf2 = source_ref2.get_confidence_level()
             if conf1 != conf2:
                 return False
-        if ( self.mode & self.MODE_NOTE ) == self.MODE_NOTE:
+        if (self.mode & self.MODE_NOTE) == self.MODE_NOTE:
             nl1 = source_ref1.get_note_list()
             nl2 = source_ref2.get_note_list()
             if len(nl1) != len(nl2):
@@ -280,7 +281,7 @@ class Bibliography:
             for notehandle in nl1:
                 if notehandle not in nl2:
                     return False
-        if ( self.mode & self.MODE_MEDIA ) == self.MODE_MEDIA:
+        if (self.mode & self.MODE_MEDIA) == self.MODE_MEDIA:
             nl1 = source_ref1.get_media_list()
             nl2 = source_ref2.get_media_list()
             if len(nl1) != len(nl2):

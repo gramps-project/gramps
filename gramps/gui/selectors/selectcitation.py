@@ -24,41 +24,42 @@
 SelectCitation class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # internationalization
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from ..views.treemodels import CitationTreeModel
 from .baseselector import BaseSelector
 from gramps.gen.const import URL_MANUAL_SECT2
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # SelectSource
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class SelectCitation(BaseSelector):
-
     def _local_init(self):
         """
         Perform local initialisation for this class
         """
-        self.setup_configs('interface.source-sel', 600, 450)
+        self.setup_configs("interface.source-sel", 600, 450)
 
     def get_window_title(self):
         return _("Select Source or Citation")
@@ -68,11 +69,11 @@ class SelectCitation(BaseSelector):
 
     def get_column_titles(self):
         return [
-            (_('Source: Title or Citation: Volume/Page'), 350, BaseSelector.TEXT, 0),
-            (_('Abbreviation'), 100, BaseSelector.TEXT, 8),
-            (_('ID'),     75, BaseSelector.TEXT, 1),
-            (_('Last Change'), 150, BaseSelector.TEXT, 6),
-            ]
+            (_("Source: Title or Citation: Volume/Page"), 350, BaseSelector.TEXT, 0),
+            (_("Abbreviation"), 100, BaseSelector.TEXT, 8),
+            (_("ID"), 75, BaseSelector.TEXT, 1),
+            (_("Last Change"), 150, BaseSelector.TEXT, 6),
+        ]
 
     def get_from_handle_func(self):
         return self.get_source_or_citation
@@ -87,4 +88,4 @@ class SelectCitation(BaseSelector):
         return __name__
 
     WIKI_HELP_PAGE = URL_MANUAL_SECT2
-    WIKI_HELP_SEC = _('Select_Source_or_Citation_selector', 'manual')
+    WIKI_HELP_SEC = _("Select_Source_or_Citation_selector", "manual")

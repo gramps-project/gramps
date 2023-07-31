@@ -24,12 +24,13 @@ This module provides the :class:`.Plugin` class for export plugins.
 
 from . import Plugin
 
+
 class ExportPlugin(Plugin):
     """
     This class represents a plugin for exporting data from Gramps
     """
-    def __init__(self, name, description, export_function,
-                 extension, config=None):
+
+    def __init__(self, name, description, export_function, extension, config=None):
         """
         :param name: A friendly name to call this plugin.
             Example: "GEDCOM Export"

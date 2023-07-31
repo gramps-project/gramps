@@ -23,36 +23,53 @@
 Proxy class for the Gramps databases. Filter out all living people.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .proxybase import ProxyDbBase
-from ..lib import (Date, Person, Name, Surname, NameOriginType, Family, Source,
-                   Citation, Event, Media, Place, Repository, Note, Tag)
+from ..lib import (
+    Date,
+    Person,
+    Name,
+    Surname,
+    NameOriginType,
+    Family,
+    Source,
+    Citation,
+    Event,
+    Media,
+    Place,
+    Repository,
+    Note,
+    Tag,
+)
 from ..utils.alive import probably_alive
 from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # LivingProxyDb
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class LivingProxyDb(ProxyDbBase):
     """
     A proxy to a Gramps database. This proxy will act like a Gramps database,
     but all living people will be hidden from the user.
     """
+
     MODE_EXCLUDE_ALL = 0
     MODE_INCLUDE_LAST_NAME_ONLY = 1
     MODE_INCLUDE_FULL_NAME_ONLY = 2
     MODE_REPLACE_COMPLETE_NAME = 3
-    MODE_INCLUDE_ALL = 99 # usually this will be only tested for, not invoked
+    MODE_INCLUDE_ALL = 99  # usually this will be only tested for, not invoked
 
-    def __init__(self, dbase, mode,
-                 current_year=None, years_after_death=0, llocale=glocale):
+    def __init__(
+        self, dbase, mode, current_year=None, years_after_death=0, llocale=glocale
+    ):
         """
         Create a new LivingProxyDb instance.
 
@@ -92,8 +109,8 @@ class LivingProxyDb(ProxyDbBase):
             self.current_date = None
         self.years_after_death = years_after_death
         self._ = llocale.translation.gettext
-        self._p_f_n = self._(config.get('preferences.private-given-text'))
-        self._p_s_n = self._(config.get('preferences.private-surname-text'))
+        self._p_f_n = self._(config.get("preferences.private-given-text"))
+        self._p_s_n = self._(config.get("preferences.private-surname-text"))
 
     def get_person_from_handle(self, handle):
         """
@@ -171,7 +188,7 @@ class LivingProxyDb(ProxyDbBase):
         """returns the default Person of the database"""
         person_handle = self.db.get_default_handle()
         if person_handle and self.get_person_from_handle(person_handle):
-                return person_handle
+            return person_handle
         return None
 
     def has_person_handle(self, handle):
@@ -204,15 +221,15 @@ class LivingProxyDb(ProxyDbBase):
         >    result_list = list(find_backlink_handles(handle))
         """
         handle_itr = self.db.find_backlink_handles(handle, include_classes)
-        for (class_name, handle) in handle_itr:
+        for class_name, handle in handle_itr:
             if self.mode == self.MODE_INCLUDE_ALL:
                 yield (class_name, handle)
-            elif class_name == 'Person':
+            elif class_name == "Person":
                 ## Don't get backlinks to living people at all
                 person = self.db.get_person_from_handle(handle)
                 if person and not self.__is_living(person):
                     yield (class_name, handle)
-            elif class_name == 'Family':
+            elif class_name == "Family":
                 father = mother = None
                 family = self.db.get_family_from_handle(handle)
                 father_handle = family.get_father_handle()
@@ -223,11 +240,12 @@ class LivingProxyDb(ProxyDbBase):
                     mother = self.db.get_person_from_handle(mother_handle)
                 father_not_living = father and not self.__is_living(father)
                 mother_not_living = mother and not self.__is_living(mother)
-                if ((father is None and mother is None) or # shouldn't happen
-                        (father is None and mother_not_living) or # could
-                        (mother is None and father_not_living) or # could
-                        (father_not_living and mother_not_living) # could
-                   ):
+                if (
+                    (father is None and mother is None)
+                    or (father is None and mother_not_living)  # shouldn't happen
+                    or (mother is None and father_not_living)  # could
+                    or (father_not_living and mother_not_living)  # could  # could
+                ):
                     yield (class_name, handle)
             else:
                 yield (class_name, handle)
@@ -240,10 +258,9 @@ class LivingProxyDb(ProxyDbBase):
         """
         person_handle = person.get_handle()
         unfil_person = self.get_unfiltered_person(person_handle)
-        return probably_alive( unfil_person,
-                               self.db,
-                               self.current_date,
-                               self.years_after_death )
+        return probably_alive(
+            unfil_person, self.db, self.current_date, self.years_after_death
+        )
 
     def __remove_living_from_family(self, family):
         """
@@ -298,11 +315,13 @@ class LivingProxyDb(ProxyDbBase):
         new_name.set_sort_as(old_name.get_sort_as())
         new_name.set_display_as(old_name.get_display_as())
         new_name.set_type(old_name.get_type())
-        if (self.mode == self.MODE_INCLUDE_LAST_NAME_ONLY or
-            self.mode == self.MODE_REPLACE_COMPLETE_NAME):
+        if (
+            self.mode == self.MODE_INCLUDE_LAST_NAME_ONLY
+            or self.mode == self.MODE_REPLACE_COMPLETE_NAME
+        ):
             new_name.set_first_name(self._p_f_n)
             new_name.set_title("")
-        else: # self.mode == self.MODE_INCLUDE_FULL_NAME_ONLY
+        else:  # self.mode == self.MODE_INCLUDE_FULL_NAME_ONLY
             new_name.set_first_name(old_name.get_first_name())
             new_name.set_suffix(old_name.get_suffix())
             new_name.set_title(old_name.get_title())
@@ -318,8 +337,10 @@ class LivingProxyDb(ProxyDbBase):
         else:
             for surn in old_name.get_surname_list():
                 surname = Surname(source=surn)
-                if int(surname.origintype) in [NameOriginType.PATRONYMIC,
-                                               NameOriginType.MATRONYMIC]:
+                if int(surname.origintype) in [
+                    NameOriginType.PATRONYMIC,
+                    NameOriginType.MATRONYMIC,
+                ]:
                     surname.set_surname(self._p_s_n)
                 surnlst.append(surname)
 
@@ -331,9 +352,7 @@ class LivingProxyDb(ProxyDbBase):
         new_person.set_handle(person.get_handle())
         new_person.set_change_time(person.get_change_time())
         new_person.set_family_handle_list(person.get_family_handle_list())
-        new_person.set_parent_family_handle_list(
-                                        person.get_parent_family_handle_list() )
+        new_person.set_parent_family_handle_list(person.get_parent_family_handle_list())
         new_person.set_tag_list(person.get_tag_list())
 
         return new_person
-

@@ -23,22 +23,24 @@
 Place name class for Gramps
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .secondaryobj import SecondaryObject
 from .datebase import DateBase
 from .const import IDENTICAL, EQUAL, DIFFERENT
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Place Name
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class PlaceName(SecondaryObject, DateBase):
     """
     Place name class.
@@ -55,8 +57,8 @@ class PlaceName(SecondaryObject, DateBase):
             self.value = source.value
             self.lang = source.lang
         else:
-            self.value = ''
-            self.lang = ''
+            self.value = ""
+            self.lang = ""
         for key in kwargs:
             if key in ["value", "lang"]:
                 setattr(self, key, kwargs[key])
@@ -67,11 +69,7 @@ class PlaceName(SecondaryObject, DateBase):
         """
         Convert the object to a serialized tuple of data.
         """
-        return (
-            self.value,
-            DateBase.serialize(self),
-            self.lang
-            )
+        return (self.value, DateBase.serialize(self), self.lang)
 
     def unserialize(self, data):
         """
@@ -90,18 +88,19 @@ class PlaceName(SecondaryObject, DateBase):
         :rtype: dict
         """
         from .date import Date
+
         return {
             "type": "object",
             "title": _("Place Name"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "value": {"type": "string",
-                          "title": _("Text")},
-                "date": {"oneOf": [{"type": "null"}, Date.get_schema()],
-                         "title": _("Date")},
-                "lang": {"type": "string",
-                         "title": _("Language")}
-            }
+                "value": {"type": "string", "title": _("Text")},
+                "date": {
+                    "oneOf": [{"type": "null"}, Date.get_schema()],
+                    "title": _("Date"),
+                },
+                "lang": {"type": "string", "title": _("Language")},
+            },
         }
 
     def get_text_data_list(self):
@@ -173,9 +172,11 @@ class PlaceName(SecondaryObject, DateBase):
         :returns: Constant indicating degree of equivalence.
         :rtype: int
         """
-        if (self.value != other.value or
-                self.date != other.date or
-                self.lang != other.lang):
+        if (
+            self.value != other.value
+            or self.date != other.date
+            or self.lang != other.lang
+        ):
             return DIFFERENT
         else:
             if self.is_equal(other):

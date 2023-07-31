@@ -25,61 +25,61 @@
 Provides constants for other modules
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import os
 import sys
 import uuid
 
 from gi.repository import GLib
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .git_revision import get_git_revision
 from .constfunc import get_env_var
 from ..version import VERSION, VERSION_TUPLE, major_version, DEV_VERSION
 from .utils.resourcepath import ResourcePath
 from .utils.grampslocale import GrampsLocale
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps program name
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 PROGRAM_NAME = "Gramps"
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Gramps Websites
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 URL_HOMEPAGE = "http://gramps-project.org/"
 URL_MAILINGLIST = "http://sourceforge.net/mail/?group_id=25770"
 URL_BUGHOME = "http://gramps-project.org/bugs"
 URL_BUGTRACKER = "http://gramps-project.org/bugs/bug_report_page.php"
 URL_WIKISTRING = "http://gramps-project.org/wiki/index.php?title="
 URL_MANUAL_PAGE = "Gramps_%s_Wiki_Manual" % major_version
-URL_MANUAL_DATA = '%s_-_Entering_and_editing_data:_detailed' % URL_MANUAL_PAGE
-URL_MANUAL_SECT1 = '%s_-_part_1' % URL_MANUAL_DATA
-URL_MANUAL_SECT2 = '%s_-_part_2' % URL_MANUAL_DATA
-URL_MANUAL_SECT3 = '%s_-_part_3' % URL_MANUAL_DATA
+URL_MANUAL_DATA = "%s_-_Entering_and_editing_data:_detailed" % URL_MANUAL_PAGE
+URL_MANUAL_SECT1 = "%s_-_part_1" % URL_MANUAL_DATA
+URL_MANUAL_SECT2 = "%s_-_part_2" % URL_MANUAL_DATA
+URL_MANUAL_SECT3 = "%s_-_part_3" % URL_MANUAL_DATA
 WIKI_FAQ = "FAQ"
 WIKI_KEYBINDINGS = "Gramps_%s_Wiki_Manual_-_Keybindings" % major_version
 WIKI_EXTRAPLUGINS = "%s_Addons" % major_version
 WIKI_EXTRAPLUGINS_RAWDATA = "Plugins%s&action=raw" % major_version
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Mime Types
 #
-#-------------------------------------------------------------------------
-APP_FAMTREE = 'x-directory/normal'
+# -------------------------------------------------------------------------
+APP_FAMTREE = "x-directory/normal"
 APP_GRAMPS = "application/x-gramps"
 APP_GRAMPS_XML = "application/x-gramps-xml"
 APP_GEDCOM = "application/x-gedcom"
@@ -87,43 +87,42 @@ APP_GRAMPS_PKG = "application/x-gramps-package"
 APP_GENEWEB = "application/x-geneweb"
 APP_VCARD = ["text/x-vcard", "text/x-vcalendar"]
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Determine the home directory. According to Wikipedia, most UNIX like
 # systems use HOME. I'm assuming that this would apply to OS X as well.
 # Windows apparently uses USERPROFILE
 #
-#-------------------------------------------------------------------------
-if 'GRAMPSHOME' in os.environ:
-    USER_HOME = get_env_var('GRAMPSHOME')
-    HOME_DIR = os.path.join(USER_HOME, 'gramps')
-elif 'USERPROFILE' in os.environ:
-    USER_HOME = get_env_var('USERPROFILE')
-    if 'APPDATA' in os.environ:
-        HOME_DIR = os.path.join(get_env_var('APPDATA'), 'gramps')
+# -------------------------------------------------------------------------
+if "GRAMPSHOME" in os.environ:
+    USER_HOME = get_env_var("GRAMPSHOME")
+    HOME_DIR = os.path.join(USER_HOME, "gramps")
+elif "USERPROFILE" in os.environ:
+    USER_HOME = get_env_var("USERPROFILE")
+    if "APPDATA" in os.environ:
+        HOME_DIR = os.path.join(get_env_var("APPDATA"), "gramps")
     else:
-        HOME_DIR = os.path.join(USER_HOME, 'gramps')
+        HOME_DIR = os.path.join(USER_HOME, "gramps")
 else:
-    USER_HOME = get_env_var('HOME')
-    HOME_DIR = os.path.join(USER_HOME, '.gramps')
+    USER_HOME = get_env_var("HOME")
+    HOME_DIR = os.path.join(USER_HOME, ".gramps")
 ORIG_HOME_DIR = HOME_DIR
-if 'SAFEMODE' in os.environ:
-    if 'USERPROFILE' in os.environ:
-        USER_HOME = get_env_var('USERPROFILE')
+if "SAFEMODE" in os.environ:
+    if "USERPROFILE" in os.environ:
+        USER_HOME = get_env_var("USERPROFILE")
     else:
-        USER_HOME = get_env_var('HOME')
-    HOME_DIR = get_env_var('SAFEMODE')
+        USER_HOME = get_env_var("HOME")
+    HOME_DIR = get_env_var("SAFEMODE")
 
 
-if (os.path.exists(HOME_DIR) or 'GRAMPSHOME' in os.environ
-        or 'SAFEMODE' in os.environ):
+if os.path.exists(HOME_DIR) or "GRAMPSHOME" in os.environ or "SAFEMODE" in os.environ:
     USER_DATA = HOME_DIR
     USER_CONFIG = HOME_DIR
     USER_CACHE = HOME_DIR
 else:
-    USER_DATA = os.path.join(GLib.get_user_data_dir(), 'gramps')
-    USER_CONFIG = os.path.join(GLib.get_user_config_dir(), 'gramps')
-    USER_CACHE = os.path.join(GLib.get_user_cache_dir(), 'gramps')
+    USER_DATA = os.path.join(GLib.get_user_data_dir(), "gramps")
+    USER_CONFIG = os.path.join(GLib.get_user_config_dir(), "gramps")
+    USER_CACHE = os.path.join(GLib.get_user_cache_dir(), "gramps")
 
 USER_PICTURES = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES)
 if not USER_PICTURES:
@@ -144,26 +143,36 @@ THUMB_LARGE = os.path.join(THUMB_DIR, "large")
 USER_PLUGINS = os.path.join(USER_DATA_VERSION, "plugins")
 USER_CSS = os.path.join(USER_DATA, "css")
 # dirs checked/made for each Gramps session
-USER_DIRLIST = (USER_HOME, USER_CACHE, USER_CONFIG, USER_DATA, VERSION_DIR,
-                USER_DATA_VERSION, THUMB_DIR, THUMB_NORMAL, THUMB_LARGE,
-                USER_PLUGINS, USER_CSS)
+USER_DIRLIST = (
+    USER_HOME,
+    USER_CACHE,
+    USER_CONFIG,
+    USER_DATA,
+    VERSION_DIR,
+    USER_DATA_VERSION,
+    THUMB_DIR,
+    THUMB_NORMAL,
+    THUMB_LARGE,
+    USER_PLUGINS,
+    USER_CSS,
+)
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Paths to python modules - assumes that the root directory is one level
 # above this one, and that the plugins directory is below the root directory.
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 
 sys.path.insert(0, ROOT_DIR)
-git_revision = get_git_revision(ROOT_DIR).replace('\n', '')
-if sys.platform == 'win32' and git_revision == "":
+git_revision = get_git_revision(ROOT_DIR).replace("\n", "")
+if sys.platform == "win32" and git_revision == "":
     git_revision = get_git_revision(os.path.split(ROOT_DIR)[1])
 if DEV_VERSION:
     VERSION += git_revision
-#VERSION += "-1"
+# VERSION += "-1"
 
 #
 # Glade files
@@ -180,11 +189,11 @@ PLUGINS_DIR = os.path.join(ROOT_DIR, "plugins")
 
 USE_TIPS = False
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Paths to data files.
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 _resources = ResourcePath()
 DATA_DIR = _resources.data_dir
 IMAGE_DIR = _resources.image_dir
@@ -196,13 +205,13 @@ ICON = os.path.join(IMAGE_DIR, "gramps.png")
 LOGO = os.path.join(IMAGE_DIR, "logo.png")
 SPLASH = os.path.join(IMAGE_DIR, "splash.jpg")
 
-LICENSE_FILE = os.path.join(_resources.doc_dir, 'COPYING')
+LICENSE_FILE = os.path.join(_resources.doc_dir, "COPYING")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps environment variables dictionary
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 ENV = {
     "USER_HOME": USER_HOME,
     "USER_CACHE": USER_CACHE,
@@ -223,25 +232,26 @@ ENV = {
     "IMAGE_DIR": IMAGE_DIR,
 }
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Init Localization
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 GRAMPS_LOCALE = GrampsLocale(localedir=_resources.locale_dir)
 _ = GRAMPS_LOCALE.translation.sgettext
-GTK_GETTEXT_DOMAIN = 'gtk30'
+GTK_GETTEXT_DOMAIN = "gtk30"
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # About box information
 #
-#-------------------------------------------------------------------------
-COPYRIGHT_MSG = "© 2001-2006 Donald N. Allingham\n" \
-                "© 2007-2022 The Gramps Developers"
-COMMENTS = _("Gramps\n (Genealogical Research and Analysis "
-             "Management Programming System)\n"
-             "is a personal genealogy program.")
+# -------------------------------------------------------------------------
+COPYRIGHT_MSG = "© 2001-2006 Donald N. Allingham\n" "© 2007-2022 The Gramps Developers"
+COMMENTS = _(
+    "Gramps\n (Genealogical Research and Analysis "
+    "Management Programming System)\n"
+    "is a personal genealogy program."
+)
 AUTHORS = [
     "Alexander Roitman",
     "Benny Malengier",
@@ -252,20 +262,20 @@ AUTHORS = [
     "Martin Hawlisch",
     "Richard Taylor",
     "Tim Waugh",
-    "John Ralls"
-    ]
+    "John Ralls",
+]
 
 AUTHORS_FILE = os.path.join(DATA_DIR, "authors.xml")
 
 DOCUMENTERS = [
-    'Alexander Roitman',
-    ]
+    "Alexander Roitman",
+]
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 THUMBSCALE = 96.0
 THUMBSCALE_LARGE = 180.0
 SIZE_NORMAL = 0
@@ -275,14 +285,14 @@ NO_SURNAME = "(%s)" % _("none", "surname")
 NO_GIVEN = "(%s)" % _("none", "given-name")
 ARABIC_COMMA = "،"
 ARABIC_SEMICOLON = "؛"
-DOCGEN_OPTIONS = 'Docgen Options'
-COLON = _(':') # Translators: needed for French, ignore otherwise
+DOCGEN_OPTIONS = "Docgen Options"
+COLON = _(":")  # Translators: needed for French, ignore otherwise
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Options Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 LONGOPTS = [
     "action=",
@@ -307,8 +317,7 @@ LONGOPTS = [
     "help",
     "import=",
     "load-modules=",
-    "list"
-    "name=",
+    "list" "name=",
     "oaf-activate-iid=",
     "oaf-ior-fd=",
     "oaf-private",
@@ -333,20 +342,20 @@ LONGOPTS = [
 
 SHORTOPTS = "O:U:P:C:i:e:f:a:p:d:c:r:lLthuv?syqSD:"
 
-GRAMPS_UUID = uuid.UUID('516cd010-5a41-470f-99f8-eb22f1098ad6')
+GRAMPS_UUID = uuid.UUID("516cd010-5a41-470f-99f8-eb22f1098ad6")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Fanchart Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-PIXELS_PER_GENERATION = 50 # size of radius for generation
-BORDER_EDGE_WIDTH = 10     # empty white box size at edge to indicate parents
-CHILDRING_WIDTH = 12       # width of the children ring inside the person
-TRANSLATE_PX = 10          # size of the central circle, used to move the chart
-PAD_PX = 4                 # padding with edges
-PAD_TEXT = 2               # padding for text in boxes
+PIXELS_PER_GENERATION = 50  # size of radius for generation
+BORDER_EDGE_WIDTH = 10  # empty white box size at edge to indicate parents
+CHILDRING_WIDTH = 12  # width of the children ring inside the person
+TRANSLATE_PX = 10  # size of the central circle, used to move the chart
+PAD_PX = 4  # padding with edges
+PAD_TEXT = 2  # padding for text in boxes
 
 BACKGROUND_SCHEME1 = 0
 BACKGROUND_SCHEME2 = 1
@@ -357,25 +366,31 @@ BACKGROUND_GRAD_AGE = 5
 BACKGROUND_SINGLE_COLOR = 6
 BACKGROUND_GRAD_PERIOD = 7
 GENCOLOR = {
-    BACKGROUND_SCHEME1: ((255, 63, 0),
-                         (255, 175, 15),
-                         (255, 223, 87),
-                         (255, 255, 111),
-                         (159, 255, 159),
-                         (111, 215, 255),
-                         (79, 151, 255),
-                         (231, 23, 255),
-                         (231, 23, 121),
-                         (210, 170, 124),
-                         (189, 153, 112)),
-    BACKGROUND_SCHEME2: ((229, 191, 252),
-                         (191, 191, 252),
-                         (191, 222, 252),
-                         (183, 219, 197),
-                         (206, 246, 209)),
-    BACKGROUND_WHITE: ((255, 255, 255),
-                       (255, 255, 255),),
-    }
+    BACKGROUND_SCHEME1: (
+        (255, 63, 0),
+        (255, 175, 15),
+        (255, 223, 87),
+        (255, 255, 111),
+        (159, 255, 159),
+        (111, 215, 255),
+        (79, 151, 255),
+        (231, 23, 255),
+        (231, 23, 121),
+        (210, 170, 124),
+        (189, 153, 112),
+    ),
+    BACKGROUND_SCHEME2: (
+        (229, 191, 252),
+        (191, 191, 252),
+        (191, 222, 252),
+        (183, 219, 197),
+        (206, 246, 209),
+    ),
+    BACKGROUND_WHITE: (
+        (255, 255, 255),
+        (255, 255, 255),
+    ),
+}
 
 MAX_AGE = 100
 GRADIENTSCALE = 5

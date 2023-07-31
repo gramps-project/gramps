@@ -47,6 +47,7 @@ import logging
 
 log = logging.getLogger(".DateStrings")
 
+
 # -------------------------------------------------------------------------
 #
 # DateStrings
@@ -97,7 +98,8 @@ class DateStrings:
             _("September", "localized lexeme inflections"),
             _("October", "localized lexeme inflections"),
             _("November", "localized lexeme inflections"),
-            _("December", "localized lexeme inflections") )
+            _("December", "localized lexeme inflections"),
+        )
 
         self.short_months = (
             "",
@@ -116,7 +118,8 @@ class DateStrings:
             _("Sep", "localized lexeme inflections - short month form"),
             _("Oct", "localized lexeme inflections - short month form"),
             _("Nov", "localized lexeme inflections - short month form"),
-            _("Dec", "localized lexeme inflections - short month form") )
+            _("Dec", "localized lexeme inflections - short month form"),
+        )
 
         _ = locale.translation.sgettext
         self.alt_long_months = (
@@ -136,7 +139,8 @@ class DateStrings:
             _("", "alternative month names for September"),
             _("", "alternative month names for October"),
             _("", "alternative month names for November"),
-            _("", "alternative month names for December") )
+            _("", "alternative month names for December"),
+        )
 
         self.calendar = (
             # Must appear in the order indexed by Date.CAL_... numeric constants

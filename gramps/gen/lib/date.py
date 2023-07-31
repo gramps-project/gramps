@@ -2074,7 +2074,7 @@ class Date:
         month = self.dateval[Date._POS_MON]
         day = self.dateval[Date._POS_DAY]
         if month == 2 and day == 29 and not calendar.isleap(year):
-            day_show = config.get('preferences.february-29')
+            day_show = config.get("preferences.february-29")
             if day_show == 0:
                 day = 28
             elif day_show == 1:

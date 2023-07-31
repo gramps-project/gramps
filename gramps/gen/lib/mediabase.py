@@ -23,19 +23,20 @@
 MediaBase class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .mediaref import MediaRef
 from .const import IDENTICAL, EQUAL, DIFFERENT
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MediaBase class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MediaBase:
     """
     Base class for storing media references.
@@ -135,8 +136,11 @@ class MediaBase:
         :param obj_handle_list: The list of media handles to be removed.
         :type obj_handle_list: list
         """
-        new_media_list = [media_ref for media_ref in self.media_list
-                          if media_ref.ref not in obj_handle_list]
+        new_media_list = [
+            media_ref
+            for media_ref in self.media_list
+            if media_ref.ref not in obj_handle_list
+        ]
         self.media_list = new_media_list
 
     def replace_media_references(self, old_handle, new_handle):

@@ -23,18 +23,19 @@
 Option class representing a file destination.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import StringOption
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # DestinationOption class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class DestinationOption(StringOption):
     """
     This class describes an option that specifies a destination file or path.
@@ -42,7 +43,7 @@ class DestinationOption(StringOption):
     the extension can be specified.
     """
 
-    __signals__ = { 'options-changed' : None }
+    __signals__ = {"options-changed": None}
 
     def __init__(self, label, value):
         """
@@ -70,7 +71,7 @@ class DestinationOption(StringOption):
         :return: nothing
         """
         self.__is_directory = is_directory
-        self.emit('options-changed')
+        self.emit("options-changed")
 
     def get_directory_entry(self):
         """

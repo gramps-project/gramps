@@ -25,11 +25,11 @@
 Repository Reference class for Gramps
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .secondaryobj import SecondaryObject
 from .privacybase import PrivacyBase
 from .notebase import NoteBase
@@ -37,13 +37,15 @@ from .refbase import RefBase
 from .srcmediatype import SourceMediaType
 from .const import IDENTICAL, EQUAL, DIFFERENT
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Repository Reference for Sources
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
     """
     Repository reference class.
@@ -67,9 +69,10 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
         return (
             NoteBase.serialize(self),
             RefBase.serialize(self),
-            self.call_number, self.media_type.serialize(),
+            self.call_number,
+            self.media_type.serialize(),
             PrivacyBase.serialize(self),
-            )
+        )
 
     def unserialize(self, data):
         """
@@ -96,19 +99,16 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
             "title": _("Repository ref"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "note_list": {"type": "array",
-                              "title": _("Notes"),
-                              "items": {"type": "string",
-                                        "maxLength": 50}},
-                "ref": {"type": "string",
-                        "title": _("Handle"),
-                        "maxLength": 50},
-                "call_number": {"type": "string",
-                                "title": _("Call Number")},
+                "note_list": {
+                    "type": "array",
+                    "title": _("Notes"),
+                    "items": {"type": "string", "maxLength": 50},
+                },
+                "ref": {"type": "string", "title": _("Handle"), "maxLength": 50},
+                "call_number": {"type": "string", "title": _("Call Number")},
                 "media_type": SourceMediaType.get_schema(),
-                "private": {"type": "boolean",
-                            "title": _("Private")}
-            }
+                "private": {"type": "boolean", "title": _("Private")},
+            },
         }
 
     def get_text_data_list(self):
@@ -130,7 +130,7 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
         """
         ret = self.get_referenced_note_handles()
         if self.ref:
-            ret += [('Repository', self.ref)]
+            ret += [("Repository", self.ref)]
         return ret
 
     def is_equivalent(self, other):
@@ -143,8 +143,10 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
         :returns: Constant indicating degree of equivalence.
         :rtype: int
         """
-        if self.ref != other.ref or \
-            self.get_text_data_list() != other.get_text_data_list():
+        if (
+            self.ref != other.ref
+            or self.get_text_data_list() != other.get_text_data_list()
+        ):
             return DIFFERENT
         else:
             if self.is_equal(other):

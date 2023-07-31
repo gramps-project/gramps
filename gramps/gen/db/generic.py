@@ -19,11 +19,11 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Python Modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import random
 import pickle
 import time
@@ -37,16 +37,35 @@ import datetime
 import glob
 from pathlib import Path
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps Modules
 #
-#------------------------------------------------------------------------
-from . import (DbReadBase, DbWriteBase, DbUndo, DBLOGNAME, DBUNDOFN,
-               REFERENCE_KEY, PERSON_KEY, FAMILY_KEY,
-               CITATION_KEY, SOURCE_KEY, EVENT_KEY, MEDIA_KEY, PLACE_KEY,
-               REPOSITORY_KEY, NOTE_KEY, TAG_KEY, TXNADD, TXNUPD, TXNDEL,
-               KEY_TO_NAME_MAP, DBMODE_R, DBMODE_W)
+# ------------------------------------------------------------------------
+from . import (
+    DbReadBase,
+    DbWriteBase,
+    DbUndo,
+    DBLOGNAME,
+    DBUNDOFN,
+    REFERENCE_KEY,
+    PERSON_KEY,
+    FAMILY_KEY,
+    CITATION_KEY,
+    SOURCE_KEY,
+    EVENT_KEY,
+    MEDIA_KEY,
+    PLACE_KEY,
+    REPOSITORY_KEY,
+    NOTE_KEY,
+    TAG_KEY,
+    TXNADD,
+    TXNUPD,
+    TXNDEL,
+    KEY_TO_NAME_MAP,
+    DBMODE_R,
+    DBMODE_W,
+)
 from .utils import write_lock_file, clear_lock_file
 from .exceptions import DbVersionError, DbUpgradeRequiredError
 from ..errors import HandleError
@@ -56,17 +75,41 @@ from .bookmarks import DbBookmarks
 
 from ..utils.id import create_id
 from ..lib.researcher import Researcher
-from ..lib import (Tag, Media, Person, Family, Source, Citation, Event,
-                   Place, Repository, Note, NameOriginType)
+from ..lib import (
+    Tag,
+    Media,
+    Person,
+    Family,
+    Source,
+    Citation,
+    Event,
+    Place,
+    Repository,
+    Note,
+    NameOriginType,
+)
 from ..lib.genderstats import GenderStats
 from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
 LOG = logging.getLogger(DBLOGNAME)
 
-SIGBASE = ('person', 'family', 'source', 'event', 'media',
-           'place', 'repository', 'reference', 'note', 'tag', 'citation')
+SIGBASE = (
+    "person",
+    "family",
+    "source",
+    "event",
+    "media",
+    "place",
+    "repository",
+    "reference",
+    "note",
+    "tag",
+    "citation",
+)
+
 
 class DbGenericUndo(DbUndo):
     def __init__(self, grampsdb, path):
@@ -131,8 +174,9 @@ class DbGenericUndo(DbUndo):
         try:
             self.db._txn_begin()
             for record_id in subitems:
-                (key, trans_type, handle, old_data, new_data) = \
-                    pickle.loads(self.undodb[record_id])
+                (key, trans_type, handle, old_data, new_data) = pickle.loads(
+                    self.undodb[record_id]
+                )
 
                 if key == REFERENCE_KEY:
                     self.db.undo_reference(new_data, handle)
@@ -154,8 +198,7 @@ class DbGenericUndo(DbUndo):
         if db.redo_callback:
             if self.redo_count > 1:
                 new_transaction = self.redoq[-2]
-                db.redo_callback(_("_Redo %s")
-                                 % new_transaction.get_description())
+                db.redo_callback(_("_Redo %s") % new_transaction.get_description())
             else:
                 db.redo_callback(None)
 
@@ -180,8 +223,9 @@ class DbGenericUndo(DbUndo):
         try:
             self.db._txn_begin()
             for record_id in subitems:
-                (key, trans_type, handle, old_data, new_data) = \
-                        pickle.loads(self.undodb[record_id])
+                (key, trans_type, handle, old_data, new_data) = pickle.loads(
+                    self.undodb[record_id]
+                )
 
                 if key == REFERENCE_KEY:
                     self.db.undo_reference(old_data, handle)
@@ -199,14 +243,12 @@ class DbGenericUndo(DbUndo):
         # Notify listeners
         if db.undo_callback:
             if self.undo_count > 0:
-                db.undo_callback(_("_Undo %s")
-                                 % self.undoq[-1].get_description())
+                db.undo_callback(_("_Undo %s") % self.undoq[-1].get_description())
             else:
                 db.undo_callback(None)
 
         if db.redo_callback:
-            db.redo_callback(_("_Redo %s")
-                             % transaction.get_description())
+            db.redo_callback(_("_Redo %s") % transaction.get_description())
 
         if update_history and db.undo_history_callback:
             db.undo_history_callback()
@@ -222,83 +264,109 @@ class DbGenericUndo(DbUndo):
             for obj_type in range(11):
                 handles = sigs[obj_type][trans_type]
                 if handles:
-                    if not undo and trans_type == TXNDEL \
-                            or undo and trans_type == TXNADD:
-                        typ = '-delete'
+                    if (
+                        not undo
+                        and trans_type == TXNDEL
+                        or undo
+                        and trans_type == TXNADD
+                    ):
+                        typ = "-delete"
                     else:
                         # don't update a handle if its been deleted, and note
                         # that 'deleted' handles are in the 'add' list if we
                         # are undoing
-                        handles = [handle for handle in handles
-                                   if handle not in
-                                   sigs[obj_type][TXNADD if undo else TXNDEL]]
-                        if ((not undo) and trans_type == TXNADD) \
-                                or (undo and trans_type == TXNDEL):
-                            typ = '-add'
-                        else:   # TXNUPD
-                            typ = '-update'
+                        handles = [
+                            handle
+                            for handle in handles
+                            if handle not in sigs[obj_type][TXNADD if undo else TXNDEL]
+                        ]
+                        if ((not undo) and trans_type == TXNADD) or (
+                            undo and trans_type == TXNDEL
+                        ):
+                            typ = "-add"
+                        else:  # TXNUPD
+                            typ = "-update"
                     if handles:
-                        self.db.emit(KEY_TO_NAME_MAP[obj_type] + typ,
-                                     (handles,))
+                        self.db.emit(KEY_TO_NAME_MAP[obj_type] + typ, (handles,))
+
 
 class Cursor:
     def __init__(self, iterator):
         self.iterator = iterator
         self._iter = self.__iter__()
+
     def __enter__(self):
         return self
+
     def __iter__(self):
         for handle, data in self.iterator():
             yield (handle, data)
+
     def __next__(self):
         try:
             return self._iter.__next__()
         except StopIteration:
             return None
+
     def __exit__(self, *args, **kwargs):
         pass
+
     def iter(self):
         for handle, data in self.iterator():
             yield (handle, data)
+
     def first(self):
         self._iter = self.__iter__()
         try:
             return next(self._iter)
         except:
             return
+
     def next(self):
         try:
             return next(self._iter)
         except:
             return
+
     def close(self):
         pass
+
 
 class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     """
     A Gramps Database Backend. This replicates the grampsdb functions.
     """
-    __signals__ = dict((obj+'-'+op, signal)
-                       for obj in
-                       ['person', 'family', 'event', 'place', 'repository',
-                        'source', 'citation', 'media', 'note', 'tag']
-                       for op, signal in zip(
-                           ['add', 'update', 'delete', 'rebuild'],
-                           [(list,), (list,), (list,), None]
-                       )
-                      )
+
+    __signals__ = dict(
+        (obj + "-" + op, signal)
+        for obj in [
+            "person",
+            "family",
+            "event",
+            "place",
+            "repository",
+            "source",
+            "citation",
+            "media",
+            "note",
+            "tag",
+        ]
+        for op, signal in zip(
+            ["add", "update", "delete", "rebuild"], [(list,), (list,), (list,), None]
+        )
+    )
 
     # 2. Signals for long operations
-    __signals__.update(('long-op-'+op, signal) for op, signal in zip(
-        ['start', 'heartbeat', 'end'],
-        [(object,), None, None]
-        ))
+    __signals__.update(
+        ("long-op-" + op, signal)
+        for op, signal in zip(["start", "heartbeat", "end"], [(object,), None, None])
+    )
 
     # 3. Special signal for change in home person
-    __signals__['home-person-changed'] = None
+    __signals__["home-person-changed"] = None
 
     # 4. Signal for change in person group name, parameters are
-    __signals__['person-groupname-rebuild'] = (str, str)
+    __signals__["person-groupname-rebuild"] = (str, str)
 
     __callback_map = {}
 
@@ -309,8 +377,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         DbWriteBase.__init__(self)
         Callback.__init__(self)
         self.__tables = {
-            'Person':
-            {
+            "Person": {
                 "handle_func": self.get_person_from_handle,
                 "gramps_id_func": self.get_person_from_gramps_id,
                 "class_func": Person,
@@ -327,8 +394,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "raw_id_func": self._get_raw_person_from_id_data,
                 "del_func": self.remove_person,
             },
-            'Family':
-            {
+            "Family": {
                 "handle_func": self.get_family_from_handle,
                 "gramps_id_func": self.get_family_from_gramps_id,
                 "class_func": Family,
@@ -345,8 +411,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "raw_id_func": self._get_raw_family_from_id_data,
                 "del_func": self.remove_family,
             },
-            'Source':
-            {
+            "Source": {
                 "handle_func": self.get_source_from_handle,
                 "gramps_id_func": self.get_source_from_gramps_id,
                 "class_func": Source,
@@ -362,9 +427,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "raw_func": self.get_raw_source_data,
                 "raw_id_func": self._get_raw_source_from_id_data,
                 "del_func": self.remove_source,
-                },
-            'Citation':
-            {
+            },
+            "Citation": {
                 "handle_func": self.get_citation_from_handle,
                 "gramps_id_func": self.get_citation_from_gramps_id,
                 "class_func": Citation,
@@ -381,8 +445,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "raw_id_func": self._get_raw_citation_from_id_data,
                 "del_func": self.remove_citation,
             },
-            'Event':
-            {
+            "Event": {
                 "handle_func": self.get_event_from_handle,
                 "gramps_id_func": self.get_event_from_gramps_id,
                 "class_func": Event,
@@ -399,8 +462,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "raw_id_func": self._get_raw_event_from_id_data,
                 "del_func": self.remove_event,
             },
-            'Media':
-            {
+            "Media": {
                 "handle_func": self.get_media_from_handle,
                 "gramps_id_func": self.get_media_from_gramps_id,
                 "class_func": Media,
@@ -417,8 +479,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "raw_id_func": self._get_raw_media_from_id_data,
                 "del_func": self.remove_media,
             },
-            'Place':
-            {
+            "Place": {
                 "handle_func": self.get_place_from_handle,
                 "gramps_id_func": self.get_place_from_gramps_id,
                 "class_func": Place,
@@ -435,8 +496,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "raw_id_func": self._get_raw_place_from_id_data,
                 "del_func": self.remove_place,
             },
-            'Repository':
-            {
+            "Repository": {
                 "handle_func": self.get_repository_from_handle,
                 "gramps_id_func": self.get_repository_from_gramps_id,
                 "class_func": Repository,
@@ -453,8 +513,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "raw_id_func": self._get_raw_repository_from_id_data,
                 "del_func": self.remove_repository,
             },
-            'Note':
-            {
+            "Note": {
                 "handle_func": self.get_note_from_handle,
                 "gramps_id_func": self.get_note_from_gramps_id,
                 "class_func": Note,
@@ -471,8 +530,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "raw_id_func": self._get_raw_note_from_id_data,
                 "del_func": self.remove_note,
             },
-            'Tag':
-            {
+            "Tag": {
                 "handle_func": self.get_tag_from_handle,
                 "gramps_id_func": None,
                 "class_func": Tag,
@@ -485,7 +543,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "count_func": self.get_number_of_tags,
                 "raw_func": self.get_raw_tag_data,
                 "del_func": self.remove_tag,
-            }
+            },
         }
         self.readonly = False
         self.db_is_open = False
@@ -500,15 +558,15 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.repo_bookmarks = DbBookmarks()
         self.media_bookmarks = DbBookmarks()
         self.note_bookmarks = DbBookmarks()
-        self.set_person_id_prefix('I%04d')
-        self.set_media_id_prefix('O%04d')
-        self.set_family_id_prefix('F%04d')
-        self.set_citation_id_prefix('C%04d')
-        self.set_source_id_prefix('S%04d')
-        self.set_place_id_prefix('P%04d')
-        self.set_event_id_prefix('E%04d')
-        self.set_repository_id_prefix('R%04d')
-        self.set_note_id_prefix('N%04d')
+        self.set_person_id_prefix("I%04d")
+        self.set_media_id_prefix("O%04d")
+        self.set_family_id_prefix("F%04d")
+        self.set_citation_id_prefix("C%04d")
+        self.set_source_id_prefix("S%04d")
+        self.set_place_id_prefix("P%04d")
+        self.set_event_id_prefix("E%04d")
+        self.set_repository_id_prefix("R%04d")
+        self.set_note_id_prefix("N%04d")
         # ----------------------------------
         self.undodb = None
         self.cmap_index = 0
@@ -529,7 +587,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self._bm_changes = 0
         self.has_changed = 0  # Also gives commits since startup
         self.surname_list = []
-        self.genderStats = GenderStats() # can pass in loaded stats as dict
+        self.genderStats = GenderStats()  # can pass in loaded stats as dict
         self.owner = Researcher()
         if directory:
             self.load(directory)
@@ -546,7 +604,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         otherwise return False (that is, we DO have read/write access)
         """
         # In-memory databases always allow write access.
-        if name == ':memory:':
+        if name == ":memory:":
             return False
 
         # See if we write to the target directory at all?
@@ -554,21 +612,26 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             return True
 
         # See if we lack write access to the database file
-        path = os.path.join(name, 'sqlite.db')
+        path = os.path.join(name, "sqlite.db")
         if os.path.isfile(path) and not os.access(path, os.W_OK):
             return True
 
         # All tests passed.  Inform caller that we are NOT read only
         return False
 
-    def load(self, directory, callback=None, mode=DBMODE_W,
-             force_schema_upgrade=False,
-             force_bsddb_upgrade=False,
-             force_bsddb_downgrade=False,
-             force_python_upgrade=False,
-             update=True,
-             username=None,
-             password=None):
+    def load(
+        self,
+        directory,
+        callback=None,
+        mode=DBMODE_W,
+        force_schema_upgrade=False,
+        force_bsddb_upgrade=False,
+        force_bsddb_downgrade=False,
+        force_python_upgrade=False,
+        update=True,
+        username=None,
+        password=None,
+    ):
         """
         If update is False: then don't update any files
         """
@@ -577,7 +640,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         self.readonly = mode == DBMODE_R
 
-        if not self.readonly and directory != ':memory:':
+        if not self.readonly and directory != ":memory:":
             write_lock_file(directory)
 
         # run backend-specific code:
@@ -585,41 +648,41 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         if not self._schema_exists():
             self._create_schema()
-            self._set_metadata('version', str(self.VERSION[0]))
+            self._set_metadata("version", str(self.VERSION[0]))
 
         # Load metadata
-        self.name_formats = self._get_metadata('name_formats')
-        self.owner = self._get_metadata('researcher', default=Researcher())
+        self.name_formats = self._get_metadata("name_formats")
+        self.owner = self._get_metadata("researcher", default=Researcher())
 
         # Load bookmarks
-        self.bookmarks.load(self._get_metadata('bookmarks'))
-        self.family_bookmarks.load(self._get_metadata('family_bookmarks'))
-        self.event_bookmarks.load(self._get_metadata('event_bookmarks'))
-        self.source_bookmarks.load(self._get_metadata('source_bookmarks'))
-        self.citation_bookmarks.load(self._get_metadata('citation_bookmarks'))
-        self.repo_bookmarks.load(self._get_metadata('repo_bookmarks'))
-        self.media_bookmarks.load(self._get_metadata('media_bookmarks'))
-        self.place_bookmarks.load(self._get_metadata('place_bookmarks'))
-        self.note_bookmarks.load(self._get_metadata('note_bookmarks'))
+        self.bookmarks.load(self._get_metadata("bookmarks"))
+        self.family_bookmarks.load(self._get_metadata("family_bookmarks"))
+        self.event_bookmarks.load(self._get_metadata("event_bookmarks"))
+        self.source_bookmarks.load(self._get_metadata("source_bookmarks"))
+        self.citation_bookmarks.load(self._get_metadata("citation_bookmarks"))
+        self.repo_bookmarks.load(self._get_metadata("repo_bookmarks"))
+        self.media_bookmarks.load(self._get_metadata("media_bookmarks"))
+        self.place_bookmarks.load(self._get_metadata("place_bookmarks"))
+        self.note_bookmarks.load(self._get_metadata("note_bookmarks"))
 
         # Custom type values
-        self.event_names = self._get_metadata('event_names', set())
-        self.family_attributes = self._get_metadata('fattr_names', set())
-        self.individual_attributes = self._get_metadata('pattr_names', set())
-        self.source_attributes = self._get_metadata('sattr_names', set())
-        self.marker_names = self._get_metadata('marker_names', set())
-        self.child_ref_types = self._get_metadata('child_refs', set())
-        self.family_rel_types = self._get_metadata('family_rels', set())
-        self.event_role_names = self._get_metadata('event_roles', set())
-        self.name_types = self._get_metadata('name_types', set())
-        self.origin_types = self._get_metadata('origin_types', set())
-        self.repository_types = self._get_metadata('repo_types', set())
-        self.note_types = self._get_metadata('note_types', set())
-        self.source_media_types = self._get_metadata('sm_types', set())
-        self.url_types = self._get_metadata('url_types', set())
-        self.media_attributes = self._get_metadata('mattr_names', set())
-        self.event_attributes = self._get_metadata('eattr_names', set())
-        self.place_types = self._get_metadata('place_types', set())
+        self.event_names = self._get_metadata("event_names", set())
+        self.family_attributes = self._get_metadata("fattr_names", set())
+        self.individual_attributes = self._get_metadata("pattr_names", set())
+        self.source_attributes = self._get_metadata("sattr_names", set())
+        self.marker_names = self._get_metadata("marker_names", set())
+        self.child_ref_types = self._get_metadata("child_refs", set())
+        self.family_rel_types = self._get_metadata("family_rels", set())
+        self.event_role_names = self._get_metadata("event_roles", set())
+        self.name_types = self._get_metadata("name_types", set())
+        self.origin_types = self._get_metadata("origin_types", set())
+        self.repository_types = self._get_metadata("repo_types", set())
+        self.note_types = self._get_metadata("note_types", set())
+        self.source_media_types = self._get_metadata("sm_types", set())
+        self.url_types = self._get_metadata("url_types", set())
+        self.media_attributes = self._get_metadata("mattr_names", set())
+        self.event_attributes = self._get_metadata("eattr_names", set())
+        self.place_types = self._get_metadata("place_types", set())
 
         # surname list
         self.surname_list = self.get_surname_list()
@@ -638,27 +701,28 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.genderStats = GenderStats(gstats)
 
         # Indexes:
-        self.cmap_index = self._get_metadata('cmap_index', 0)
-        self.smap_index = self._get_metadata('smap_index', 0)
-        self.emap_index = self._get_metadata('emap_index', 0)
-        self.pmap_index = self._get_metadata('pmap_index', 0)
-        self.fmap_index = self._get_metadata('fmap_index', 0)
-        self.lmap_index = self._get_metadata('lmap_index', 0)
-        self.omap_index = self._get_metadata('omap_index', 0)
-        self.rmap_index = self._get_metadata('rmap_index', 0)
-        self.nmap_index = self._get_metadata('nmap_index', 0)
+        self.cmap_index = self._get_metadata("cmap_index", 0)
+        self.smap_index = self._get_metadata("smap_index", 0)
+        self.emap_index = self._get_metadata("emap_index", 0)
+        self.pmap_index = self._get_metadata("pmap_index", 0)
+        self.fmap_index = self._get_metadata("fmap_index", 0)
+        self.lmap_index = self._get_metadata("lmap_index", 0)
+        self.omap_index = self._get_metadata("omap_index", 0)
+        self.rmap_index = self._get_metadata("rmap_index", 0)
+        self.nmap_index = self._get_metadata("nmap_index", 0)
 
         self.db_is_open = True
 
         # Check on db version to see if we need upgrade or too new
-        dbversion = int(self._get_metadata('version', default='0'))
+        dbversion = int(self._get_metadata("version", default="0"))
         if dbversion > self.VERSION[0]:
             self.close()
             raise DbVersionError(dbversion, 18, self.VERSION[0])
 
         if not self.readonly and dbversion < self.VERSION[0]:
-            LOG.debug("Schema upgrade required from %s to %s",
-                      dbversion, self.VERSION[0])
+            LOG.debug(
+                "Schema upgrade required from %s to %s", dbversion, self.VERSION[0]
+            )
             if force_schema_upgrade:
                 self._gramps_upgrade(dbversion, directory, callback)
             else:
@@ -690,56 +754,53 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 Path(filename).touch()
 
                 # Save metadata
-                self._set_metadata('name_formats', self.name_formats)
-                self._set_metadata('researcher', self.owner)
+                self._set_metadata("name_formats", self.name_formats)
+                self._set_metadata("researcher", self.owner)
 
                 # Bookmarks
-                self._set_metadata('bookmarks', self.bookmarks.get())
-                self._set_metadata('family_bookmarks',
-                                  self.family_bookmarks.get())
-                self._set_metadata('event_bookmarks', self.event_bookmarks.get())
-                self._set_metadata('place_bookmarks', self.place_bookmarks.get())
-                self._set_metadata('repo_bookmarks', self.repo_bookmarks.get())
-                self._set_metadata('source_bookmarks',
-                                  self.source_bookmarks.get())
-                self._set_metadata('citation_bookmarks',
-                                  self.citation_bookmarks.get())
-                self._set_metadata('media_bookmarks', self.media_bookmarks.get())
-                self._set_metadata('note_bookmarks', self.note_bookmarks.get())
+                self._set_metadata("bookmarks", self.bookmarks.get())
+                self._set_metadata("family_bookmarks", self.family_bookmarks.get())
+                self._set_metadata("event_bookmarks", self.event_bookmarks.get())
+                self._set_metadata("place_bookmarks", self.place_bookmarks.get())
+                self._set_metadata("repo_bookmarks", self.repo_bookmarks.get())
+                self._set_metadata("source_bookmarks", self.source_bookmarks.get())
+                self._set_metadata("citation_bookmarks", self.citation_bookmarks.get())
+                self._set_metadata("media_bookmarks", self.media_bookmarks.get())
+                self._set_metadata("note_bookmarks", self.note_bookmarks.get())
 
                 # Custom type values, sets
-                self._set_metadata('event_names', self.event_names)
-                self._set_metadata('fattr_names', self.family_attributes)
-                self._set_metadata('pattr_names', self.individual_attributes)
-                self._set_metadata('sattr_names', self.source_attributes)
-                self._set_metadata('marker_names', self.marker_names)
-                self._set_metadata('child_refs', self.child_ref_types)
-                self._set_metadata('family_rels', self.family_rel_types)
-                self._set_metadata('event_roles', self.event_role_names)
-                self._set_metadata('name_types', self.name_types)
-                self._set_metadata('origin_types', self.origin_types)
-                self._set_metadata('repo_types', self.repository_types)
-                self._set_metadata('note_types', self.note_types)
-                self._set_metadata('sm_types', self.source_media_types)
-                self._set_metadata('url_types', self.url_types)
-                self._set_metadata('mattr_names', self.media_attributes)
-                self._set_metadata('eattr_names', self.event_attributes)
-                self._set_metadata('place_types', self.place_types)
+                self._set_metadata("event_names", self.event_names)
+                self._set_metadata("fattr_names", self.family_attributes)
+                self._set_metadata("pattr_names", self.individual_attributes)
+                self._set_metadata("sattr_names", self.source_attributes)
+                self._set_metadata("marker_names", self.marker_names)
+                self._set_metadata("child_refs", self.child_ref_types)
+                self._set_metadata("family_rels", self.family_rel_types)
+                self._set_metadata("event_roles", self.event_role_names)
+                self._set_metadata("name_types", self.name_types)
+                self._set_metadata("origin_types", self.origin_types)
+                self._set_metadata("repo_types", self.repository_types)
+                self._set_metadata("note_types", self.note_types)
+                self._set_metadata("sm_types", self.source_media_types)
+                self._set_metadata("url_types", self.url_types)
+                self._set_metadata("mattr_names", self.media_attributes)
+                self._set_metadata("eattr_names", self.event_attributes)
+                self._set_metadata("place_types", self.place_types)
 
                 # Save misc items:
                 if self.has_changed:
                     self.save_gender_stats(self.genderStats)
 
                 # Indexes:
-                self._set_metadata('cmap_index', self.cmap_index)
-                self._set_metadata('smap_index', self.smap_index)
-                self._set_metadata('emap_index', self.emap_index)
-                self._set_metadata('pmap_index', self.pmap_index)
-                self._set_metadata('fmap_index', self.fmap_index)
-                self._set_metadata('lmap_index', self.lmap_index)
-                self._set_metadata('omap_index', self.omap_index)
-                self._set_metadata('rmap_index', self.rmap_index)
-                self._set_metadata('nmap_index', self.nmap_index)
+                self._set_metadata("cmap_index", self.cmap_index)
+                self._set_metadata("smap_index", self.smap_index)
+                self._set_metadata("emap_index", self.emap_index)
+                self._set_metadata("pmap_index", self.pmap_index)
+                self._set_metadata("fmap_index", self.fmap_index)
+                self._set_metadata("lmap_index", self.lmap_index)
+                self._set_metadata("omap_index", self.omap_index)
+                self._set_metadata("rmap_index", self.rmap_index)
+                self._set_metadata("nmap_index", self.nmap_index)
 
             self._close()
 
@@ -769,7 +830,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if self._directory:
             filepath = os.path.join(self._directory, "name.txt")
             try:
-                with open(filepath, "r", encoding='utf8') as name_file:
+                with open(filepath, "r", encoding="utf8") as name_file:
                     name = name_file.readline().strip()
             except (OSError, IOError) as msg:
                 LOG.error(str(msg))
@@ -786,7 +847,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if table is None:
             return list(self.__tables.keys())
         elif func is None:
-            return self.__tables[table] # dict of functions
+            return self.__tables[table]  # dict of functions
         elif func in self.__tables[table].keys():
             return self.__tables[table][func]
         else:
@@ -850,14 +911,14 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if isinstance(val, str) and val:
             try:
                 str_ = val % 1
-            except TypeError:           # missing conversion specifier
+            except TypeError:  # missing conversion specifier
                 prefix_var = val + "%d"
-            except ValueError:          # incomplete format
-                prefix_var = default+"%04d"
+            except ValueError:  # incomplete format
+                prefix_var = default + "%04d"
             else:
-                prefix_var = val        # OK as given
+                prefix_var = val  # OK as given
         else:
-            prefix_var = default+"%04d" # not a string or empty string
+            prefix_var = default + "%04d"  # not a string or empty string
         return prefix_var
 
     @staticmethod
@@ -869,13 +930,14 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         pattern_match = re.match(r"(.*)%[0 ](\d+)[diu]$", id_pattern)
         if pattern_match:
             str_prefix = pattern_match.group(1)
-            #nr_width = int(pattern_match.group(2))
+
+            # nr_width = int(pattern_match.group(2))
             def closure_func(gramps_id):
                 if gramps_id and gramps_id.startswith(str_prefix):
-                    id_number = gramps_id[len(str_prefix):]
+                    id_number = gramps_id[len(str_prefix) :]
                     if id_number.isdigit():
                         id_value = int(id_number, 10)
-                        #if len(str(id_value)) > nr_width:
+                        # if len(str(id_value)) > nr_width:
                         #    # The ID to be imported is too large to fit in the
                         #    # users format. For now just create a new ID,
                         #    # because that is also what happens with IDs that
@@ -884,12 +946,15 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                         #    # present IDs is solved the code here also needs
                         #    # some solution.
                         #    gramps_id = id_pattern % 1
-                        #else:
+                        # else:
                         gramps_id = id_pattern % id_value
                 return gramps_id
+
         else:
+
             def closure_func(gramps_id):
                 return gramps_id
+
         return closure_func
 
     def set_person_id_prefix(self, val):
@@ -990,8 +1055,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.note_prefix = self._validated_id_prefix(val, "N")
         self.nid2user_format = self.__id2user_format(self.note_prefix)
 
-    def set_prefixes(self, person, media, family, source, citation,
-                     place, event, repository, note):
+    def set_prefixes(
+        self, person, media, family, source, citation, place, event, repository, note
+    ):
         self.set_person_id_prefix(person)
         self.set_media_id_prefix(media)
         self.set_family_id_prefix(family)
@@ -1024,9 +1090,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Return the next available GRAMPS' ID for a Person object based off the
         person ID prefix.
         """
-        self.pmap_index, gid = self._find_next_gramps_id(self.person_prefix,
-                                                         self.pmap_index,
-                                                         PERSON_KEY)
+        self.pmap_index, gid = self._find_next_gramps_id(
+            self.person_prefix, self.pmap_index, PERSON_KEY
+        )
         return gid
 
     def find_next_place_gramps_id(self):
@@ -1034,9 +1100,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Return the next available GRAMPS' ID for a Place object based off the
         place ID prefix.
         """
-        self.lmap_index, gid = self._find_next_gramps_id(self.place_prefix,
-                                                         self.lmap_index,
-                                                         PLACE_KEY)
+        self.lmap_index, gid = self._find_next_gramps_id(
+            self.place_prefix, self.lmap_index, PLACE_KEY
+        )
         return gid
 
     def find_next_event_gramps_id(self):
@@ -1044,9 +1110,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Return the next available GRAMPS' ID for a Event object based off the
         event ID prefix.
         """
-        self.emap_index, gid = self._find_next_gramps_id(self.event_prefix,
-                                                         self.emap_index,
-                                                         EVENT_KEY)
+        self.emap_index, gid = self._find_next_gramps_id(
+            self.event_prefix, self.emap_index, EVENT_KEY
+        )
         return gid
 
     def find_next_media_gramps_id(self):
@@ -1054,9 +1120,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Return the next available GRAMPS' ID for a Media object based
         off the media object ID prefix.
         """
-        self.omap_index, gid = self._find_next_gramps_id(self.media_prefix,
-                                                         self.omap_index,
-                                                         MEDIA_KEY)
+        self.omap_index, gid = self._find_next_gramps_id(
+            self.media_prefix, self.omap_index, MEDIA_KEY
+        )
         return gid
 
     def find_next_citation_gramps_id(self):
@@ -1064,9 +1130,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Return the next available GRAMPS' ID for a Citation object based off the
         citation ID prefix.
         """
-        self.cmap_index, gid = self._find_next_gramps_id(self.citation_prefix,
-                                                         self.cmap_index,
-                                                         CITATION_KEY)
+        self.cmap_index, gid = self._find_next_gramps_id(
+            self.citation_prefix, self.cmap_index, CITATION_KEY
+        )
         return gid
 
     def find_next_source_gramps_id(self):
@@ -1074,9 +1140,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Return the next available GRAMPS' ID for a Source object based off the
         source ID prefix.
         """
-        self.smap_index, gid = self._find_next_gramps_id(self.source_prefix,
-                                                         self.smap_index,
-                                                         SOURCE_KEY)
+        self.smap_index, gid = self._find_next_gramps_id(
+            self.source_prefix, self.smap_index, SOURCE_KEY
+        )
         return gid
 
     def find_next_family_gramps_id(self):
@@ -1084,9 +1150,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Return the next available GRAMPS' ID for a Family object based off the
         family ID prefix.
         """
-        self.fmap_index, gid = self._find_next_gramps_id(self.family_prefix,
-                                                         self.fmap_index,
-                                                         FAMILY_KEY)
+        self.fmap_index, gid = self._find_next_gramps_id(
+            self.family_prefix, self.fmap_index, FAMILY_KEY
+        )
         return gid
 
     def find_next_repository_gramps_id(self):
@@ -1094,9 +1160,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Return the next available GRAMPS' ID for a Respository object based
         off the repository ID prefix.
         """
-        self.rmap_index, gid = self._find_next_gramps_id(self.repository_prefix,
-                                                         self.rmap_index,
-                                                         REPOSITORY_KEY)
+        self.rmap_index, gid = self._find_next_gramps_id(
+            self.repository_prefix, self.rmap_index, REPOSITORY_KEY
+        )
         return gid
 
     def find_next_note_gramps_id(self):
@@ -1104,9 +1170,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Return the next available GRAMPS' ID for a Note object based off the
         note ID prefix.
         """
-        self.nmap_index, gid = self._find_next_gramps_id(self.note_prefix,
-                                                         self.nmap_index,
-                                                         NOTE_KEY)
+        self.nmap_index, gid = self._find_next_gramps_id(
+            self.note_prefix, self.nmap_index, NOTE_KEY
+        )
         return gid
 
     ################################################################
@@ -1265,14 +1331,14 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def _get_from_handle(self, obj_key, obj_class, handle):
         if handle is None:
-            raise HandleError('Handle is None')
+            raise HandleError("Handle is None")
         if not handle:
-            raise HandleError('Handle is empty')
+            raise HandleError("Handle is empty")
         data = self._get_raw_data(obj_key, handle)
         if data:
             return obj_class.create(data)
         else:
-            raise HandleError('Handle %s not found' % handle)
+            raise HandleError("Handle %s not found" % handle)
 
     def get_event_from_handle(self, handle):
         return self._get_from_handle(EVENT_KEY, Event, handle)
@@ -1741,56 +1807,64 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             obj.handle = create_id()
         if (not obj.gramps_id) and set_gid:
             obj.gramps_id = find_func()
-        if (not obj.gramps_id):
+        if not obj.gramps_id:
             # give it a random value for the moment:
             obj.gramps_id = str(random.random())
         commit_func(obj, trans)
         return obj.handle
 
     def add_person(self, person, trans, set_gid=True):
-        return self._add_base(person, trans, set_gid,
-                              self.find_next_person_gramps_id,
-                              self.commit_person)
+        return self._add_base(
+            person, trans, set_gid, self.find_next_person_gramps_id, self.commit_person
+        )
 
     def add_family(self, family, trans, set_gid=True):
-        return self._add_base(family, trans, set_gid,
-                              self.find_next_family_gramps_id,
-                              self.commit_family)
+        return self._add_base(
+            family, trans, set_gid, self.find_next_family_gramps_id, self.commit_family
+        )
 
     def add_event(self, event, trans, set_gid=True):
-        return self._add_base(event, trans, set_gid,
-                              self.find_next_event_gramps_id,
-                              self.commit_event)
+        return self._add_base(
+            event, trans, set_gid, self.find_next_event_gramps_id, self.commit_event
+        )
 
     def add_place(self, place, trans, set_gid=True):
-        return self._add_base(place, trans, set_gid,
-                              self.find_next_place_gramps_id,
-                              self.commit_place)
+        return self._add_base(
+            place, trans, set_gid, self.find_next_place_gramps_id, self.commit_place
+        )
 
     def add_repository(self, repository, trans, set_gid=True):
-        return self._add_base(repository, trans, set_gid,
-                              self.find_next_repository_gramps_id,
-                              self.commit_repository)
+        return self._add_base(
+            repository,
+            trans,
+            set_gid,
+            self.find_next_repository_gramps_id,
+            self.commit_repository,
+        )
 
     def add_source(self, source, trans, set_gid=True):
-        return self._add_base(source, trans, set_gid,
-                              self.find_next_source_gramps_id,
-                              self.commit_source)
+        return self._add_base(
+            source, trans, set_gid, self.find_next_source_gramps_id, self.commit_source
+        )
 
     def add_citation(self, citation, trans, set_gid=True):
-        return self._add_base(citation, trans, set_gid,
-                              self.find_next_citation_gramps_id,
-                              self.commit_citation)
+        return self._add_base(
+            citation,
+            trans,
+            set_gid,
+            self.find_next_citation_gramps_id,
+            self.commit_citation,
+        )
 
     def add_media(self, media, trans, set_gid=True):
-        return self._add_base(media, trans, set_gid,
-                              self.find_next_media_gramps_id,
-                              self.commit_media)
+        return self._add_base(
+            media, trans, set_gid, self.find_next_media_gramps_id, self.commit_media
+        )
 
     def add_note(self, note, trans, set_gid=True):
-        return self._add_base(note, trans, set_gid,
-                              self.find_next_note_gramps_id,
-                              self.commit_note)
+        return self._add_base(
+            note, trans, set_gid, self.find_next_note_gramps_id, self.commit_note
+        )
 
     def add_tag(self, tag, trans):
         if not tag.handle:
@@ -1821,15 +1895,15 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if old_data:
             old_person = Person(old_data)
             # Update gender statistics if necessary
-            if (old_person.gender != person.gender
-                    or (old_person.primary_name.first_name !=
-                        person.primary_name.first_name)):
-
+            if old_person.gender != person.gender or (
+                old_person.primary_name.first_name != person.primary_name.first_name
+            ):
                 self.genderStats.uncount_person(old_person)
                 self.genderStats.count_person(person)
             # Update surname list if necessary
-            if (self._order_by_person_key(person) !=
-                    self._order_by_person_key(old_person)):
+            if self._order_by_person_key(person) != self._order_by_person_key(
+                old_person
+            ):
                 self.remove_from_surname_list(old_person)
                 self.add_to_surname_list(person, trans.batch)
         else:
@@ -1838,30 +1912,42 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         # Other misc update tasks:
         self.individual_attributes.update(
-            [str(attr.type) for attr in person.attribute_list
-             if attr.type.is_custom() and str(attr.type)])
+            [
+                str(attr.type)
+                for attr in person.attribute_list
+                if attr.type.is_custom() and str(attr.type)
+            ]
+        )
 
-        self.event_role_names.update([str(eref.role)
-                                      for eref in person.event_ref_list
-                                      if eref.role.is_custom()])
+        self.event_role_names.update(
+            [str(eref.role) for eref in person.event_ref_list if eref.role.is_custom()]
+        )
 
-        self.name_types.update([str(name.type)
-                                for name in ([person.primary_name]
-                                             + person.alternate_names)
-                                if name.type.is_custom()])
+        self.name_types.update(
+            [
+                str(name.type)
+                for name in ([person.primary_name] + person.alternate_names)
+                if name.type.is_custom()
+            ]
+        )
         all_surn = []  # new list we will use for storage
         all_surn += person.primary_name.get_surname_list()
         for asurname in person.alternate_names:
             all_surn += asurname.get_surname_list()
-        self.origin_types.update([str(surn.origintype) for surn in all_surn
-                                  if surn.origintype.is_custom()])
+        self.origin_types.update(
+            [str(surn.origintype) for surn in all_surn if surn.origintype.is_custom()]
+        )
         all_surn = None
-        self.url_types.update([str(url.type) for url in person.urls
-                               if url.type.is_custom()])
+        self.url_types.update(
+            [str(url.type) for url in person.urls if url.type.is_custom()]
+        )
         attr_list = []
         for mref in person.media_list:
-            attr_list += [str(attr.type) for attr in mref.attribute_list
-                          if attr.type.is_custom() and str(attr.type)]
+            attr_list += [
+                str(attr.type)
+                for attr in mref.attribute_list
+                if attr.type.is_custom() and str(attr.type)
+            ]
         self.media_attributes.update(attr_list)
 
     def commit_family(self, family, trans, change_time=None):
@@ -1873,8 +1959,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         # Misc updates:
         self.family_attributes.update(
-            [str(attr.type) for attr in family.attribute_list
-             if attr.type.is_custom() and str(attr.type)])
+            [
+                str(attr.type)
+                for attr in family.attribute_list
+                if attr.type.is_custom() and str(attr.type)
+            ]
+        )
 
         rel_list = []
         for ref in family.child_ref_list:
@@ -1885,16 +1975,19 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.child_ref_types.update(rel_list)
 
         self.event_role_names.update(
-            [str(eref.role) for eref in family.event_ref_list
-             if eref.role.is_custom()])
+            [str(eref.role) for eref in family.event_ref_list if eref.role.is_custom()]
+        )
 
         if family.type.is_custom():
             self.family_rel_types.add(str(family.type))
 
         attr_list = []
         for mref in family.media_list:
-            attr_list += [str(attr.type) for attr in mref.attribute_list
-                          if attr.type.is_custom() and str(attr.type)]
+            attr_list += [
+                str(attr.type)
+                for attr in mref.attribute_list
+                if attr.type.is_custom() and str(attr.type)
+            ]
         self.media_attributes.update(attr_list)
 
     def commit_citation(self, citation, trans, change_time=None):
@@ -1907,13 +2000,20 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # Misc updates:
         attr_list = []
         for mref in citation.media_list:
-            attr_list += [str(attr.type) for attr in mref.attribute_list
-                          if attr.type.is_custom() and str(attr.type)]
+            attr_list += [
+                str(attr.type)
+                for attr in mref.attribute_list
+                if attr.type.is_custom() and str(attr.type)
+            ]
         self.media_attributes.update(attr_list)
 
         self.source_attributes.update(
-            [str(attr.type) for attr in citation.attribute_list
-             if attr.type.is_custom() and str(attr.type)])
+            [
+                str(attr.type)
+                for attr in citation.attribute_list
+                if attr.type.is_custom() and str(attr.type)
+            ]
+        )
 
     def commit_source(self, source, trans, change_time=None):
         """
@@ -1924,17 +2024,28 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         # Misc updates:
         self.source_media_types.update(
-            [str(ref.media_type) for ref in source.reporef_list
-             if ref.media_type.is_custom()])
+            [
+                str(ref.media_type)
+                for ref in source.reporef_list
+                if ref.media_type.is_custom()
+            ]
+        )
 
         attr_list = []
         for mref in source.media_list:
-            attr_list += [str(attr.type) for attr in mref.attribute_list
-                          if attr.type.is_custom() and str(attr.type)]
+            attr_list += [
+                str(attr.type)
+                for attr in mref.attribute_list
+                if attr.type.is_custom() and str(attr.type)
+            ]
         self.media_attributes.update(attr_list)
         self.source_attributes.update(
-            [str(attr.type) for attr in source.attribute_list
-             if attr.type.is_custom() and str(attr.type)])
+            [
+                str(attr.type)
+                for attr in source.attribute_list
+                if attr.type.is_custom() and str(attr.type)
+            ]
+        )
 
     def commit_repository(self, repository, trans, change_time=None):
         """
@@ -1947,8 +2058,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if repository.type.is_custom():
             self.repository_types.add(str(repository.type))
 
-        self.url_types.update([str(url.type) for url in repository.urls
-                               if url.type.is_custom()])
+        self.url_types.update(
+            [str(url.type) for url in repository.urls if url.type.is_custom()]
+        )
 
     def commit_note(self, note, trans, change_time=None):
         """
@@ -1972,13 +2084,17 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if place.get_type().is_custom():
             self.place_types.add(str(place.get_type()))
 
-        self.url_types.update([str(url.type) for url in place.urls
-                               if url.type.is_custom()])
+        self.url_types.update(
+            [str(url.type) for url in place.urls if url.type.is_custom()]
+        )
 
         attr_list = []
         for mref in place.media_list:
-            attr_list += [str(attr.type) for attr in mref.attribute_list
-                          if attr.type.is_custom() and str(attr.type)]
+            attr_list += [
+                str(attr.type)
+                for attr in mref.attribute_list
+                if attr.type.is_custom() and str(attr.type)
+            ]
         self.media_attributes.update(attr_list)
 
     def commit_event(self, event, trans, change_time=None):
@@ -1990,14 +2106,21 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         # Misc updates:
         self.event_attributes.update(
-            [str(attr.type) for attr in event.attribute_list
-             if attr.type.is_custom() and str(attr.type)])
+            [
+                str(attr.type)
+                for attr in event.attribute_list
+                if attr.type.is_custom() and str(attr.type)
+            ]
+        )
         if event.type.is_custom():
             self.event_names.add(str(event.type))
         attr_list = []
         for mref in event.media_list:
-            attr_list += [str(attr.type) for attr in mref.attribute_list
-                          if attr.type.is_custom() and str(attr.type)]
+            attr_list += [
+                str(attr.type)
+                for attr in mref.attribute_list
+                if attr.type.is_custom() and str(attr.type)
+            ]
         self.media_attributes.update(attr_list)
 
     def commit_tag(self, tag, trans, change_time=None):
@@ -2016,8 +2139,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         # Misc updates:
         self.media_attributes.update(
-            [str(attr.type) for attr in media.attribute_list
-             if attr.type.is_custom() and str(attr.type)])
+            [
+                str(attr.type)
+                for attr in media.attribute_list
+                if attr.type.is_custom() and str(attr.type)
+            ]
+        )
 
     def _after_commit(self, transaction):
         """
@@ -2292,7 +2419,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def set_default_person_handle(self, handle):
         self._set_metadata("default-person-handle", handle)
-        self.emit('home-person-changed')
+        self.emit("home-person-changed")
 
     def get_mediapath(self):
         return self._get_metadata("media-path", None)
@@ -2322,7 +2449,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             return
         i = bisect.bisect(self.surname_list, name)
         if 0 < i <= len(self.surname_list):
-            if self.surname_list[i-1] != name:
+            if self.surname_list[i - 1] != name:
                 self.surname_list.insert(i, name)
         else:
             self.surname_list.insert(i, name)
@@ -2363,16 +2490,16 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.owner.set_from(owner)
 
     def request_rebuild(self):
-        self.emit('person-rebuild')
-        self.emit('family-rebuild')
-        self.emit('place-rebuild')
-        self.emit('source-rebuild')
-        self.emit('citation-rebuild')
-        self.emit('media-rebuild')
-        self.emit('event-rebuild')
-        self.emit('repository-rebuild')
-        self.emit('note-rebuild')
-        self.emit('tag-rebuild')
+        self.emit("person-rebuild")
+        self.emit("family-rebuild")
+        self.emit("place-rebuild")
+        self.emit("source-rebuild")
+        self.emit("citation-rebuild")
+        self.emit("media-rebuild")
+        self.emit("event-rebuild")
+        self.emit("repository-rebuild")
+        self.emit("note-rebuild")
+        self.emit("tag-rebuild")
 
     def get_save_path(self):
         return self._directory
@@ -2440,12 +2567,14 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         order_by = ""
         if person.primary_name:
-            order_by_list = [surname.surname + " " +
-                             person.primary_name.first_name
-                             for surname in person.primary_name.surname_list
-                             if (int(surname.origintype) not in
-                                 [NameOriginType.PATRONYMIC,
-                                  NameOriginType.MATRONYMIC])]
+            order_by_list = [
+                surname.surname + " " + person.primary_name.first_name
+                for surname in person.primary_name.surname_list
+                if (
+                    int(surname.origintype)
+                    not in [NameOriginType.PATRONYMIC, NameOriginType.MATRONYMIC]
+                )
+            ]
             order_by = " ".join(order_by_list)
         return glocale.sort_key(order_by)
 
@@ -2486,9 +2615,14 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         start = time.time()
 
         from gramps.gen.db.upgrade import (
-            gramps_upgrade_14, gramps_upgrade_15, gramps_upgrade_16,
-            gramps_upgrade_17, gramps_upgrade_18, gramps_upgrade_19,
-            gramps_upgrade_20)
+            gramps_upgrade_14,
+            gramps_upgrade_15,
+            gramps_upgrade_16,
+            gramps_upgrade_17,
+            gramps_upgrade_18,
+            gramps_upgrade_19,
+            gramps_upgrade_20,
+        )
 
         if version < 14:
             gramps_upgrade_14(self)
@@ -2513,9 +2647,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         LOG.debug("Upgrade time: %d seconds" % int(time.time() - start))
 
     def get_schema_version(self):
-        """ Return current schema version as an int """
-        return int(self._get_metadata('version', default='0'))
+        """Return current schema version as an int"""
+        return int(self._get_metadata("version", default="0"))
 
     def set_schema_version(self, value):
-        """ set the current schema version """
-        self._set_metadata('version', str(value))
+        """set the current schema version"""
+        self._set_metadata("version", str(value))

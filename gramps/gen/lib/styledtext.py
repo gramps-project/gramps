@@ -22,21 +22,23 @@
 
 "Handling formatted ('rich text') strings"
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from copy import copy
 from .styledtexttag import StyledTextTag
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # StyledText class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class StyledText:
     """Helper class to enable character based text formatting.
 
@@ -81,6 +83,7 @@ class StyledText:
      3. Warning: Some of these operations modify the source tag ranges in place
         so if you intend to use a source tag more than once, copy it for use.
     """
+
     (POS_TEXT, POS_TAGS) = list(range(2))
 
     def __init__(self, text="", tags=None):
@@ -114,17 +117,18 @@ class StyledText:
         if isinstance(other, StyledText):
             # need to join strings and merge tags
             for tag in other.tags:
-                tag.ranges = [(start + offset, end + offset)
-                              for (start, end) in tag.ranges]
+                tag.ranges = [
+                    (start + offset, end + offset) for (start, end) in tag.ranges
+                ]
 
-            return self.__class__("".join([self._string, other.string]),
-                                  self._tags + other.tags)
+            return self.__class__(
+                "".join([self._string, other.string]), self._tags + other.tags
+            )
         elif isinstance(other, str):
             # tags remain the same, only text becomes longer
             return self.__class__("".join([self._string, other]), self._tags)
         else:
-            return self.__class__("".join([self._string, str(other)]),
-                                  self._tags)
+            return self.__class__("".join([self._string, str(other)]), self._tags)
 
     def __eq__(self, other):
         return self._string == other.string and self._tags == other.tags
@@ -154,18 +158,18 @@ class StyledText:
 
         start = 0
         while True:
-            idx1 = result.string.find('%', start)
+            idx1 = result.string.find("%", start)
             if idx1 < 0:
                 break
-            if result.string[idx1+1] == '(':
-                idx2 = result.string.find(')', idx1+3)
-                param_name = result.string[idx1+2:idx2]
+            if result.string[idx1 + 1] == "(":
+                idx2 = result.string.find(")", idx1 + 3)
+                param_name = result.string[idx1 + 2 : idx2]
             else:
                 idx2 = idx1
                 param_name = None
             end = idx2 + 1
-            for end in range(idx2+1, len(result.string)):
-                if result.string[end] in 'diouxXeEfFgGcrs%':
+            for end in range(idx2 + 1, len(result.string)):
+                if result.string[end] in "diouxXeEfFgGcrs%":
                     break
             if param_name is not None:
                 param = other[param_name]
@@ -175,9 +179,9 @@ class StyledText:
             else:
                 param = other
             if not isinstance(param, StyledText):
-                param_type = '%' + result.string[idx2+1:end+1]
+                param_type = "%" + result.string[idx2 + 1 : end + 1]
                 param = StyledText(param_type % param)
-            parts = result.split(result.string[idx1:end+1], 1)
+            parts = result.split(result.string[idx1 : end + 1], 1)
             if len(parts) == 2:
                 result = parts[0] + param + parts[1]
             start = end + 1
@@ -185,7 +189,6 @@ class StyledText:
         return result
 
     # private methods
-
 
     # string methods in alphabetical order:
 
@@ -210,15 +213,17 @@ class StyledText:
                 # put the joined element tag(s) into place
                 for tag in self.tags:
                     ntag = copy(tag)
-                    ntag.ranges = [(start + offset, end + offset)
-                                   for (start, end) in tag.ranges]
+                    ntag.ranges = [
+                        (start + offset, end + offset) for (start, end) in tag.ranges
+                    ]
                     new_tags += [ntag]
                 offset += self_len
             if isinstance(text, StyledText):
                 for tag in text.tags:
                     ntag = copy(tag)
-                    ntag.ranges = [(start + offset, end + offset)
-                                   for (start, end) in tag.ranges]
+                    ntag.ranges = [
+                        (start + offset, end + offset) for (start, end) in tag.ranges
+                    ]
                     new_tags += [ntag]
             offset += len(str(text))
             not_first = True
@@ -273,13 +278,14 @@ class StyledText:
 
             for tag in self._tags:
                 new_tag = StyledTextTag(int(tag.name), tag.value)
-                for (start_tag, end_tag) in tag.ranges:
+                for start_tag, end_tag in tag.ranges:
                     start = max(start_string, start_tag)
                     end = min(end_string, end_tag)
 
                     if start < end:
-                        new_tag.ranges.append((start - start_string,
-                                               end - start_string))
+                        new_tag.ranges.append(
+                            (start - start_string, end - start_string)
+                        )
 
                 if new_tag.ranges:
                     new_tags.append(new_tag)
@@ -318,12 +324,13 @@ class StyledText:
             "title": _("Styled Text"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "string": {"type": "string",
-                           "title": _("Text")},
-                "tags": {"type": "array",
-                         "items": StyledTextTag.get_schema(),
-                         "title": _("Styled Text Tags")}
-            }
+                "string": {"type": "string", "title": _("Text")},
+                "tags": {
+                    "type": "array",
+                    "items": StyledTextTag.get_schema(),
+                    "title": _("Styled Text Tags"),
+                },
+            },
         }
 
     def unserialize(self, data):
@@ -336,7 +343,7 @@ class StyledText:
         (self._string, the_tags) = data
 
         # I really wonder why this doesn't work... it does for all other types
-        #self._tags = [StyledTextTag().unserialize(tag) for tag in the_tags]
+        # self._tags = [StyledTextTag().unserialize(tag) for tag in the_tags]
         for tag in the_tags:
             stt = StyledTextTag()
             stt.unserialize(tag)
@@ -376,22 +383,24 @@ class StyledText:
     tags = property(get_tags, set_tags)
     string = property(get_string, set_string)
 
-if __name__ == '__main__':
-    from .styledtexttagtype import StyledTextTagType
-    T1 = StyledTextTag(StyledTextTagType(1), 'v1', [(0, 2), (2, 4), (4, 6)])
-    T2 = StyledTextTag(StyledTextTagType(2), 'v2', [(1, 3), (3, 5), (0, 7)])
-    T3 = StyledTextTag(StyledTextTagType(0), 'v3', [(0, 1)])
 
-    A = StyledText('123X456', [T1])
+if __name__ == "__main__":
+    from .styledtexttagtype import StyledTextTagType
+
+    T1 = StyledTextTag(StyledTextTagType(1), "v1", [(0, 2), (2, 4), (4, 6)])
+    T2 = StyledTextTag(StyledTextTagType(2), "v2", [(1, 3), (3, 5), (0, 7)])
+    T3 = StyledTextTag(StyledTextTagType(0), "v3", [(0, 1)])
+
+    A = StyledText("123X456", [T1])
     B = StyledText("abcXdef", [T2])
 
-    C = StyledText('\n')
+    C = StyledText("\n")
 
-    S = 'cleartext'
+    S = "cleartext"
 
     C = C.join([A, S, B])
     L = C.split()
-    C = C.replace('X', StyledText('_', [T3]))
+    C = C.replace("X", StyledText("_", [T3]))
     A = A + B
 
     print(A)

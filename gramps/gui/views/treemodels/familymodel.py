@@ -19,26 +19,27 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 log = logging.getLogger(".")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.datehandler import displayer, format_time, get_date_valid
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.lib import EventRoleType, FamilyRelType
@@ -47,17 +48,25 @@ from gramps.gen.utils.db import get_marriage_or_fallback
 from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
-invalid_date_format = config.get('preferences.invalid-date-format')
+invalid_date_format = config.get("preferences.invalid-date-format")
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # FamilyModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class FamilyModel(FlatBaseModel):
-
-    def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
-                 search=None, skip=set(), sort_map=None):
+    def __init__(
+        self,
+        db,
+        uistate,
+        scol=0,
+        order=Gtk.SortType.ASCENDING,
+        search=None,
+        skip=set(),
+        sort_map=None,
+    ):
         self.gen_cursor = db.get_family_cursor
         self.map = db.get_raw_family_data
         self.fmap = [
@@ -70,7 +79,7 @@ class FamilyModel(FlatBaseModel):
             self.column_tags,
             self.column_change,
             self.column_tag_color,
-            ]
+        ]
         self.smap = [
             self.column_id,
             self.sort_father,
@@ -81,9 +90,10 @@ class FamilyModel(FlatBaseModel):
             self.column_tags,
             self.sort_change,
             self.column_tag_color,
-            ]
-        FlatBaseModel.__init__(self, db, uistate, scol, order, search=search,
-                               skip=skip, sort_map=sort_map)
+        ]
+        FlatBaseModel.__init__(
+            self, db, uistate, scol, order, search=search, skip=skip, sort_map=sort_map
+        )
 
     def destroy(self):
         """
@@ -103,7 +113,7 @@ class FamilyModel(FlatBaseModel):
         return 8
 
     def on_get_n_columns(self):
-        return len(self.fmap)+1
+        return len(self.fmap) + 1
 
     def column_father(self, data):
         handle = data[0]
@@ -170,7 +180,7 @@ class FamilyModel(FlatBaseModel):
                 else:
                     value = "%s" % displayer.display(event.date)
             else:
-                value = ''
+                value = ""
             self.set_cached_value(handle, "MARRIAGE", value)
         return value
 
@@ -183,7 +193,7 @@ class FamilyModel(FlatBaseModel):
             if event:
                 value = "%09d" % event.date.get_sort_value()
             else:
-                value = ''
+                value = ""
             self.set_cached_value(handle, "SORT_MARRIAGE", value)
         return value
 
@@ -192,10 +202,10 @@ class FamilyModel(FlatBaseModel):
 
     def column_private(self, data):
         if data[14]:
-            return 'gramps-lock'
+            return "gramps-lock"
         else:
             # There is a problem returning None here.
-            return ''
+            return ""
 
     def sort_change(self, data):
         return "%012x" % data[12]
@@ -237,4 +247,4 @@ class FamilyModel(FlatBaseModel):
         """
         tag_list = list(map(self.get_tag_name, data[13]))
         # TODO for Arabic, should the next line's comma be translated?
-        return ', '.join(sorted(tag_list, key=glocale.sort_key))
+        return ", ".join(sorted(tag_list, key=glocale.sort_key))

@@ -18,37 +18,39 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....lib.notetype import NoteType
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasNote
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasNote(Rule):
     """Rule that checks for a note with a particular value"""
 
-
-    labels = [ _('Text:'),
-                    _('Note type:'),
-                    ]
-    name = _('Notes matching parameters')
+    labels = [
+        _("Text:"),
+        _("Note type:"),
+    ]
+    name = _("Notes matching parameters")
     description = _("Matches Notes with particular parameters")
-    category = _('General filters')
+    category = _("General filters")
     allow_regex = True
 
     def prepare(self, db, user):
@@ -58,7 +60,7 @@ class HasNote(Rule):
         else:
             self.ntype = None
 
-    def apply(self,db, note):
+    def apply(self, db, note):
         if not self.match_substring(0, note.get()):
             return False
 

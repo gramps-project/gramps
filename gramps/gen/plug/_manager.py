@@ -30,44 +30,47 @@ Plugins are divided into several categories. These are: reports, tools,
 importers, exporters, quick reports, and document generators.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import os
 import sys
 import re
 import logging
 import importlib
-LOG = logging.getLogger('._manager')
+
+LOG = logging.getLogger("._manager")
 LOG.progagate = True
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ..config import config
 from . import PluginRegister, ImportPlugin, ExportPlugin, DocGenPlugin
 from ..constfunc import win
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 _UNAVAILABLE = _("No description was provided")
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # BasePluginManager
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class BasePluginManager:
-    """ unique singleton storage class for a :class:`.PluginManager`. """
+    """unique singleton storage class for a :class:`.PluginManager`."""
 
     __instance = None
 
@@ -76,16 +79,18 @@ class BasePluginManager:
         Use this function to get the instance of the :class:`.PluginManager`
         """
         if BasePluginManager.__instance is None:
-            BasePluginManager.__instance = 1 # Set to 1 for __init__()
+            BasePluginManager.__instance = 1  # Set to 1 for __init__()
             BasePluginManager.__instance = BasePluginManager()
         return BasePluginManager.__instance
+
     get_instance = staticmethod(get_instance)
 
     def __init__(self):
-        """ This function should only be run once by get_instance() """
+        """This function should only be run once by get_instance()"""
         if BasePluginManager.__instance != 1:
-            raise Exception("This class is a singleton. "
-                            "Use the get_instance() method")
+            raise Exception(
+                "This class is a singleton. " "Use the get_instance() method"
+            )
 
         self.__import_plugins = []
         self.__export_plugins = []
@@ -104,16 +109,18 @@ class BasePluginManager:
         self.__loaded_plugins = {}
         self.__scanned_dirs = []
 
-    def reg_plugin_dir(self, direct, dbstate=None, uistate=None,
-                       load_on_reg=False, rescan=False):
+    def reg_plugin_dir(
+        self, direct, dbstate=None, uistate=None, load_on_reg=False, rescan=False
+    ):
         """
         Register plugins in a given directory.
         """
         self.__scanned_dirs.remove(direct)
         self.reg_plugins(direct, dbstate, uistate, load_on_reg, rescan)
 
-    def reg_plugins(self, direct, dbstate=None, uistate=None,
-                    load_on_reg=False, rescan=False):
+    def reg_plugins(
+        self, direct, dbstate=None, uistate=None, load_on_reg=False, rescan=False
+    ):
         """
         Searches the specified directory, and registers python plugin that
         are being defined in gpr.py files.
@@ -137,12 +144,14 @@ class BasePluginManager:
         #             direct in self.__scanned_dirs, os.path.isdir(direct))
 
         if os.path.isdir(direct):
-            for (dirpath, dirnames, filenames) in os.walk(direct,
-                                                          topdown=True):
+            for dirpath, dirnames, filenames in os.walk(direct, topdown=True):
                 for dirname in dirnames[:]:
                     # Skip hidden and system directories:
-                    if dirname.startswith(".") or dirname in ["po", "locale",
-                                                              "__pycache__"]:
+                    if dirname.startswith(".") or dirname in [
+                        "po",
+                        "locale",
+                        "__pycache__",
+                    ]:
                         dirnames.remove(dirname)
                 # LOG.warning("Plugin dir scanned: %s", dirpath)
                 if dirpath not in self.__scanned_dirs:
@@ -165,7 +174,7 @@ class BasePluginManager:
             count = 0
             max_count = len(plugins_to_load)
             while plugins_to_load:
-                for plugin in plugins_to_load[:]: # copy of list
+                for plugin in plugins_to_load[:]:  # copy of list
                     # LOG.warning("\nDependencies for %s at registration",
                     #             plugin.id)
                     delay = False
@@ -174,7 +183,7 @@ class BasePluginManager:
                             delay = True
                             break
                     if delay:
-                        pass # wait till next loop
+                        pass  # wait till next loop
                     else:
                         if plugin not in plugins_sorted:
                             plugins_sorted.append(plugin)
@@ -184,8 +193,10 @@ class BasePluginManager:
                 if count > max_count:
                     print("Cannot resolve the following plugin dependencies:")
                     for plugin in plugins_to_load:
-                        print("   Plugin '%s' requires: %s" % (
-                            plugin.id, plugin.depends_on))
+                        print(
+                            "   Plugin '%s' requires: %s"
+                            % (plugin.id, plugin.depends_on)
+                        )
                     break
             # now load them:
             for plugin in plugins_sorted:
@@ -199,6 +210,7 @@ class BasePluginManager:
                         results = mod.load_on_reg(dbstate, uistate, plugin)
                     except:
                         import traceback
+
                         traceback.print_exc()
                         print("Plugin '%s' did not run; continuing..." % plugin.name)
                         continue
@@ -212,7 +224,8 @@ class BasePluginManager:
             mod = self.load_plugin(plugin)  # load the addon rule
             # get place in rule heirarchy to put the new rule
             obj_rules = importlib.import_module(
-                'gramps.gen.filters.rules.' + plugin.namespace.lower())
+                "gramps.gen.filters.rules." + plugin.namespace.lower()
+            )
             # get the new rule class object
             r_class = getattr(mod, plugin.ruleclass)
             # make the new rule findable via import statements
@@ -238,16 +251,16 @@ class BasePluginManager:
         need_reload = False
         filename = pdata.fname
         if filename in self.__modules:
-            #filename is loaded already, a different plugin in this module
+            # filename is loaded already, a different plugin in this module
             _module = self.__modules[filename]
             self.__success_list.append((filename, _module, pdata))
             self.__loaded_plugins[pdata.id] = _module
-            self.__mod2text[_module.__name__] += ' - ' + pdata.description
+            self.__mod2text[_module.__name__] += " - " + pdata.description
             return _module
         if filename in self.__attempt_list:
-            #new load attempt after a fail, a reload needed
+            # new load attempt after a fail, a reload needed
             need_reload = True
-            #remove previous fail of the plugins in this file
+            # remove previous fail of the plugins in this file
             dellist = []
             for index, data in enumerate(self.__failmsg_list):
                 if data[0] == filename:
@@ -272,6 +285,7 @@ class BasePluginManager:
             return _module
         except:
             import traceback
+
             traceback.print_exc()
             self.__failmsg_list.append((filename, sys.exc_info(), pdata))
 
@@ -298,7 +312,7 @@ class BasePluginManager:
                     if win():
                         # we don't want to load Gramps core plugin like this
                         # only 3rd party plugins
-                        if "gramps"  in pdata.fpath:
+                        if "gramps" in pdata.fpath:
                             try:
                                 sys.path.insert(0, ".")
                                 oldwd = os.getcwd()
@@ -307,14 +321,16 @@ class BasePluginManager:
                                 os.chdir(oldwd)
                                 sys.path.pop(0)
                             except ValueError as err:
-                                LOG.warning("Plugin error (from '%s'): %s"
-                                                % (pdata.mod_name, err))
+                                LOG.warning(
+                                    "Plugin error (from '%s'): %s"
+                                    % (pdata.mod_name, err)
+                                )
                     else:
-                        LOG.warning("Plugin error (from '%s'): %s"
-                                        % (pdata.mod_name, err))
+                        LOG.warning(
+                            "Plugin error (from '%s'): %s" % (pdata.mod_name, err)
+                        )
                 except ImportError as err:
-                    LOG.warning("Plugin error (from '%s'): %s"
-                                    % (pdata.mod_name, err))
+                    LOG.warning("Plugin error (from '%s'): %s" % (pdata.mod_name, err))
                 sys.path.pop(0)
             else:
                 print("WARNING: module cannot be loaded")
@@ -323,7 +339,7 @@ class BasePluginManager:
         return module
 
     def empty_managed_plugins(self):
-        """ For some plugins, managed Plugin are used. These are only
+        """For some plugins, managed Plugin are used. These are only
         reobtained from the registry if this method is called
         """
         # TODO: do other lists need to be reset here, too?
@@ -332,9 +348,8 @@ class BasePluginManager:
         self.__docgen_plugins = []
         self.__docgen_names = []
 
-
     def reload_plugins(self):
-        """ Reload previously loaded plugins """
+        """Reload previously loaded plugins"""
         pymod = re.compile(r"^(.*)\.py$")
 
         oldfailmsg = self.__failmsg_list[:]
@@ -347,14 +362,14 @@ class BasePluginManager:
         oldmodules = self.__modules
         self.__modules = {}
         dellist = []
-        #reload first modules that loaded successfully previously
-        for (index, plugin) in enumerate(self.__success_list):
+        # reload first modules that loaded successfully previously
+        for index, plugin in enumerate(self.__success_list):
             filename = plugin[0]
             pdata = plugin[2]
-            filename = filename.replace('pyc','py')
-            filename = filename.replace('pyo','py')
+            filename = filename.replace("pyc", "py")
+            filename = filename.replace("pyo", "py")
             if filename in self.__modules:
-                #module already reloaded, a second plugin in same module
+                # module already reloaded, a second plugin in same module
                 continue
             try:
                 self.reload(plugin[1], pdata)
@@ -373,7 +388,7 @@ class BasePluginManager:
         self.__purge_failed()
 
         # attempt to load the plugins that have failed in the past
-        for (filename, message, pdata) in oldfailmsg:
+        for filename, message, pdata in oldfailmsg:
             self.load_plugin(pdata)
 
     def reload(self, module, pdata):
@@ -391,11 +406,11 @@ class BasePluginManager:
         return module
 
     def get_fail_list(self):
-        """ Return the list of failed plugins. """
+        """Return the list of failed plugins."""
         return self.__failmsg_list
 
     def get_success_list(self):
-        """ Return the list of succeeded plugins. """
+        """Return the list of succeeded plugins."""
         return self.__success_list
 
     def get_plugin(self, id):
@@ -405,90 +420,77 @@ class BasePluginManager:
         return self.__pgr.get_plugin(id)
 
     def get_reg_reports(self, gui=True):
-        """ Return list of registered reports
+        """Return list of registered reports
         :param gui: bool indicating if GUI reports or CLI reports must be
         returned
         """
         return self.__pgr.report_plugins(gui)
 
     def get_reg_tools(self, gui=True):
-        """ Return list of registered tools
+        """Return list of registered tools
         :aram gui: bool indicating if GUI reports or CLI reports must be
         returned
         """
         return self.__pgr.tool_plugins(gui)
 
     def get_reg_quick_reports(self):
-        """ Return list of registered quick reports
-        """
+        """Return list of registered quick reports"""
         return self.__pgr.quickreport_plugins()
 
     def get_reg_views(self):
-        """ Return list of registered views
-        """
+        """Return list of registered views"""
         return self.__pgr.view_plugins()
 
     def get_reg_mapservices(self):
-        """ Return list of registered mapservices
-        """
+        """Return list of registered mapservices"""
         return self.__pgr.mapservice_plugins()
 
     def get_reg_bookitems(self):
-        """ Return list of reports registered as bookitem
-        """
+        """Return list of reports registered as bookitem"""
         return self.__pgr.bookitem_plugins()
 
     def get_reg_gramplets(self):
-        """ Return list of non hidden gramplets.
-        """
+        """Return list of non hidden gramplets."""
         return self.__pgr.gramplet_plugins()
 
     def get_reg_sidebars(self):
-        """ Return list of registered sidebars.
-        """
+        """Return list of registered sidebars."""
         return self.__pgr.sidebar_plugins()
 
     def get_reg_databases(self):
-        """ Return list of registered database backends
-        """
+        """Return list of registered database backends"""
         return self.__pgr.database_plugins()
 
     def get_reg_thumbnailers(self):
-        """ Return list of registered thumbnailers.
-        """
+        """Return list of registered thumbnailers."""
         return self.__pgr.thumbnailer_plugins()
 
     def get_reg_cite(self):
-        """ Return list of registered cite plugins.
-        """
+        """Return list of registered cite plugins."""
         return self.__pgr.cite_plugins()
 
     def get_external_opt_dict(self):
-        """ Return the dictionary of external options. """
+        """Return the dictionary of external options."""
         return self.__external_opt_dict
 
     def get_module_description(self, module):
-        """ Given a module name, return the module description. """
-        return self.__mod2text.get(module, '')
+        """Given a module name, return the module description."""
+        return self.__mod2text.get(module, "")
 
     def get_reg_importers(self):
-        """ Return list of registered importers
-        """
+        """Return list of registered importers"""
         return self.__pgr.import_plugins()
 
     def get_reg_exporters(self):
-        """ Return list of registered exporters
-        """
+        """Return list of registered exporters"""
         return self.__pgr.export_plugins()
 
     def get_reg_docgens(self):
-        """ Return list of registered docgen
-        """
+        """Return list of registered docgen"""
         return self.__pgr.docgen_plugins()
 
     def get_reg_general(self, category=None):
-        """ Return list of registered general libs
-        """
+        """Return list of registered general libs"""
         return self.__pgr.general_plugins(category)
 
     def load_plugin_category(self, category):
@@ -557,16 +559,18 @@ class BasePluginManager:
         ## TODO: would it not be better to remove ImportPlugin and use
         ## only PluginData, loading from module when importfunction needed?
         if self.__import_plugins == []:
-            #The module still needs to be imported
+            # The module still needs to be imported
             for pdata in self.get_reg_importers():
                 if pdata.id in config.get("plugin.hiddenplugins"):
                     continue
                 mod = self.load_plugin(pdata)
                 if mod:
-                    imp = ImportPlugin(name=pdata.name,
-                        description = pdata.description,
-                        import_function = getattr(mod, pdata.import_function),
-                        extension = pdata.extension)
+                    imp = ImportPlugin(
+                        name=pdata.name,
+                        description=pdata.description,
+                        import_function=getattr(mod, pdata.import_function),
+                        extension=pdata.extension,
+                    )
                     self.__import_plugins.append(imp)
 
         return self.__import_plugins
@@ -580,21 +584,22 @@ class BasePluginManager:
         ## TODO: would it not be better to remove ExportPlugin and use
         ## only PluginData, loading from module when export/options needed?
         if self.__export_plugins == []:
-            #The modules still need to be imported
+            # The modules still need to be imported
             for pdata in self.get_reg_exporters():
                 if pdata.id in config.get("plugin.hiddenplugins"):
                     continue
                 mod = self.load_plugin(pdata)
                 if mod:
                     options = None
-                    if (pdata.export_options and
-                        hasattr(mod, pdata.export_options)):
+                    if pdata.export_options and hasattr(mod, pdata.export_options):
                         options = getattr(mod, pdata.export_options)
-                    exp = ExportPlugin(name=pdata.name_accell,
-                        description = pdata.description,
-                        export_function = getattr(mod, pdata.export_function),
-                        extension = pdata.extension,
-                        config = (pdata.export_options_title, options))
+                    exp = ExportPlugin(
+                        name=pdata.name_accell,
+                        description=pdata.description,
+                        export_function=getattr(mod, pdata.export_function),
+                        extension=pdata.extension,
+                        config=(pdata.export_options_title, options),
+                    )
                     self.__export_plugins.append(exp)
 
         return self.__export_plugins
@@ -609,7 +614,7 @@ class BasePluginManager:
         ##       import those docgen that will then actuallly be needed?
         ##       So, only do import when docgen.get_basedoc() is requested
         if self.__docgen_plugins == []:
-            #The modules still need to be imported
+            # The modules still need to be imported
             hiddenplugins = config.get("plugin.hiddenplugins")
             for pdata in self.get_reg_docgens():
                 if pdata.id in hiddenplugins:
@@ -619,14 +624,16 @@ class BasePluginManager:
                     oclass = None
                     if pdata.optionclass:
                         oclass = getattr(mod, pdata.optionclass)
-                    dgp = DocGenPlugin(name=pdata.name,
-                            description = pdata.description,
-                            basedoc = getattr(mod, pdata.docclass),
-                            paper = pdata.paper,
-                            style = pdata.style,
-                            extension = pdata.extension,
-                            docoptclass = oclass,
-                            basedocname = pdata.docclass )
+                    dgp = DocGenPlugin(
+                        name=pdata.name,
+                        description=pdata.description,
+                        basedoc=getattr(mod, pdata.docclass),
+                        paper=pdata.paper,
+                        style=pdata.style,
+                        extension=pdata.extension,
+                        docoptclass=oclass,
+                        basedocname=pdata.docclass,
+                    )
                     self.__docgen_plugins.append(dgp)
 
         return self.__docgen_plugins
@@ -658,7 +665,7 @@ class BasePluginManager:
         :param guioption:   the gui-option class
         :type guioption:    class that inherits from Gtk.Widget.
         """
-        self.__external_opt_dict[option] = guioption;
+        self.__external_opt_dict[option] = guioption
 
     def __purge_failed(self):
         """
@@ -667,11 +674,20 @@ class BasePluginManager:
         failed_module_names = [
             os.path.splitext(os.path.basename(filename))[0]
             for filename, msg, pdata in self.__failmsg_list
-            ]
+        ]
 
-        self.__export_plugins[:] = [ item for item in self.__export_plugins
-                    if item.get_module_name() not in failed_module_names ][:]
-        self.__import_plugins[:] = [ item for item in self.__import_plugins
-                    if item.get_module_name() not in failed_module_names ][:]
-        self.__docgen_plugins[:] = [ item for item in self.__docgen_plugins
-                    if item.get_module_name() not in failed_module_names ][:]
+        self.__export_plugins[:] = [
+            item
+            for item in self.__export_plugins
+            if item.get_module_name() not in failed_module_names
+        ][:]
+        self.__import_plugins[:] = [
+            item
+            for item in self.__import_plugins
+            if item.get_module_name() not in failed_module_names
+        ][:]
+        self.__docgen_plugins[:] = [
+            item
+            for item in self.__docgen_plugins
+            if item.get_module_name() not in failed_module_names
+        ][:]

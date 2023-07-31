@@ -18,37 +18,38 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....datehandler import parser
 from ....display.place import displayer as place_displayer
 from ....lib.eventtype import EventType
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasBirth
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasData(Rule):
     """Rule that checks for an event containing particular values"""
 
-    labels = [ _('Event type:'), _('Date:'), _('Place:'),
-                    _('Description:') ]
-    name = _('Events with <data>')
+    labels = [_("Event type:"), _("Date:"), _("Place:"), _("Description:")]
+    name = _("Events with <data>")
     description = _("Matches events with data of a particular value")
-    category = _('General filters')
+    category = _("General filters")
     allow_regex = True
 
     def prepare(self, db, user):

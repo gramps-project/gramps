@@ -43,13 +43,13 @@ from ._dateparser import DateParser
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
 
+
 # -------------------------------------------------------------------------
 #
 # Polish parser
 #
 # -------------------------------------------------------------------------
 class DateParserPL(DateParser):
-
     month_to_int = DateParser.month_to_int
     month_to_int["styczeń"] = 1
     month_to_int["sty"] = 1

@@ -22,14 +22,16 @@
 Provide the different child reference types.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .grampstype import GrampsType
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
+
 
 class ChildRefType(GrampsType):
     """
@@ -65,14 +67,14 @@ class ChildRefType(GrampsType):
 
     _DATAMAP = [
         (NONE, _("None"), "None"),
-        (BIRTH, _("Birth", 'relationship'), "Birth"),
-        (ADOPTED, _("Adopted", 'relationship'), "Adopted"),
+        (BIRTH, _("Birth", "relationship"), "Birth"),
+        (ADOPTED, _("Adopted", "relationship"), "Adopted"),
         (STEPCHILD, _("Stepchild"), "Stepchild"),
         (SPONSORED, _("Sponsored"), "Sponsored"),
         (FOSTER, _("Foster"), "Foster"),
         (UNKNOWN, _("Unknown"), "Unknown"),
         (CUSTOM, _("Custom"), "Custom"),
-        ]
+    ]
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)

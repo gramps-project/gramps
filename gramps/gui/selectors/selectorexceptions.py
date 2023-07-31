@@ -18,8 +18,8 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-class SelectorException(Exception):
 
+class SelectorException(Exception):
     def __init__(self, value):
         self.value = value
 

@@ -23,24 +23,26 @@
 Option class representing color/surname mappings.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import Option
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # SurnameColorOption class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class SurnameColorOption(Option):
     """
     This class describes a widget that allows multiple surnames to be
     selected from the database, and to assign a color (not necessarily
     unique) to each one.
     """
+
     def __init__(self, label):
         """
         :param label: A friendly label to be applied to this option.

@@ -70,5 +70,5 @@ editor_rule_list = [
     ChangedSince,
     HasTag,
     MatchesPlaceFilter,
-    HasDayOfWeek
+    HasDayOfWeek,
 ]

@@ -22,11 +22,14 @@
 
 import unittest
 
-from ..keyword import (KEYWORDS, get_translation_from_keyword,
-                       get_keyword_from_translation)
+from ..keyword import (
+    KEYWORDS,
+    get_translation_from_keyword,
+    get_keyword_from_translation,
+)
+
 
 class TestCase(unittest.TestCase):
-
     def keyword_case(self, item1, item2):
         result = get_translation_from_keyword(item1)
         self.assertEqual(result, item2)

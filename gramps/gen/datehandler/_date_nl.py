@@ -46,13 +46,13 @@ from ._dateparser import DateParser
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
 
+
 # -------------------------------------------------------------------------
 #
 # Dutch parser
 #
 # -------------------------------------------------------------------------
 class DateParserNL(DateParser):
-
     month_to_int = DateParser.month_to_int
     # Always add dutch and flemish name variants
     # no matter what the current locale is

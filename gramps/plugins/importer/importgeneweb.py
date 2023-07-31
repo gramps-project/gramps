@@ -50,10 +50,29 @@ from gramps.gen.utils.libformatting import ImportInfo
 _ = glocale.translation.gettext
 ngettext = glocale.translation.ngettext  # else "nearby" comments are ignored
 from gramps.gen.errors import GedcomError, GrampsImportError
-from gramps.gen.lib import (Attribute, AttributeType, ChildRef, Citation,
-        Date, DateError, Event, EventRef, EventRoleType, EventType,
-        Family, FamilyRelType, Name, NameType, Note, Person, PersonRef,
-        Place, PlaceName ,Source, LdsOrd)
+from gramps.gen.lib import (
+    Attribute,
+    AttributeType,
+    ChildRef,
+    Citation,
+    Date,
+    DateError,
+    Event,
+    EventRef,
+    EventRoleType,
+    EventType,
+    Family,
+    FamilyRelType,
+    Name,
+    NameType,
+    Note,
+    Person,
+    PersonRef,
+    Place,
+    PlaceName,
+    Source,
+    LdsOrd,
+)
 from gramps.gen.db import DbTxn
 from html.entities import name2codepoint
 
@@ -143,13 +162,13 @@ fevents_map = {
     "#resi": EventType.RESIDENCE,  # Efam_Residence)
 }
 
+
 # -------------------------------------------------------------------------
 #
 #
 #
 # -------------------------------------------------------------------------
 def importData(database, filename, user):
-
     global callback
 
     try:
@@ -608,7 +627,6 @@ class GeneWebParser:
         return idx
 
     def parse_person(self, fields, idx, gender, father_surname):
-
         if not father_surname:
             if not idx < len(fields):
                 LOG.warning("Missing surname of person in line %d!" % self.lineno)
@@ -1031,7 +1049,6 @@ class GeneWebParser:
         return citation
 
     def read_fevent_line(self, event):
-
         if fevents_map.get(event[0:5]) == None:
             return  # need to fix custom event types not in the map
 
@@ -1060,7 +1077,6 @@ class GeneWebParser:
                 break
 
     def read_pevent_line(self, event, fields):
-
         name = fields[2] + fields[1]
 
         try:
@@ -1112,7 +1128,6 @@ class GeneWebParser:
                 break
 
     def new_gwplus_fevent(self, line):
-
         source = place = note = type = None
         date = self.parse_date(self.decode(line[6:]))
 
@@ -1146,7 +1161,6 @@ class GeneWebParser:
         return self.current_event
 
     def new_gwplus_pevent(self, line):
-
         source = place = note = type = None
         date = self.parse_date(self.decode(line[6:]))
 

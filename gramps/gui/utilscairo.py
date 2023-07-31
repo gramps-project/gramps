@@ -21,26 +21,28 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
-#from gi.repository import Pango
-#from gi.repository import GObject
-#from gi.repository import Gdk
-#from gi.repository import Gtk
-#from gi.repository import PangoCairo
+# -------------------------------------------------------------------------
+# from gi.repository import Pango
+# from gi.repository import GObject
+# from gi.repository import Gdk
+# from gi.repository import Gtk
+# from gi.repository import PangoCairo
 import cairo
-#import math
-#import colorsys
-#import pickle
 
-#-------------------------------------------------------------------------
+# import math
+# import colorsys
+# import pickle
+
+
+# -------------------------------------------------------------------------
 #
 # Functions
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def warpPath(ctx, function):
     """Transform a path given a 2D transformation function.
 

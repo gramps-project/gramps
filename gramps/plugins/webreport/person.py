@@ -39,20 +39,28 @@ Narrative Web Page generator.
 Classe:
     PersonPage - Person index page and individual `Person pages
 """
-#------------------------------------------------
+# ------------------------------------------------
 # python modules
-#------------------------------------------------
+# ------------------------------------------------
 from collections import defaultdict
 from operator import itemgetter
 from decimal import Decimal, getcontext
 import logging
 
-#------------------------------------------------
+# ------------------------------------------------
 # Gramps module
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gen.lib import (ChildRefType, Date, Name, Person, EventRoleType,
-                            Family, Event, EventType)
+from gramps.gen.lib import (
+    ChildRefType,
+    Date,
+    Name,
+    Person,
+    EventRoleType,
+    Family,
+    Event,
+    EventType,
+)
 from gramps.gen.lib.date import Today
 from gramps.gen.mime import is_image_type
 from gramps.gen.plug.report import Bibliography
@@ -67,19 +75,28 @@ from gramps.gen.utils.place import conv_lat_lon, coord_formats
 from gramps.gen.proxy import LivingProxyDb
 from gramps.gen.relationship import get_relationship_calculator
 
-#------------------------------------------------
+# ------------------------------------------------
 # specific narrative web import
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
-from gramps.plugins.webreport.common import (alphabet_navigation,
-                                             add_birthdate, FULLCLEAR,
-                                             _find_birth_date, _find_death_date,
-                                             MARKER_PATH, OPENLAYER,
-                                             OSM_MARKERS, STAMEN_MARKERS,
-                                             GOOGLE_MAPS, MARKERS, html_escape,
-                                             DROPMASTERS, FAMILYLINKS,
-                                             get_surname_from_person,
-                                             AlphabeticIndex)
+from gramps.plugins.webreport.common import (
+    alphabet_navigation,
+    add_birthdate,
+    FULLCLEAR,
+    _find_birth_date,
+    _find_death_date,
+    MARKER_PATH,
+    OPENLAYER,
+    OSM_MARKERS,
+    STAMEN_MARKERS,
+    GOOGLE_MAPS,
+    MARKERS,
+    html_escape,
+    DROPMASTERS,
+    FAMILYLINKS,
+    get_surname_from_person,
+    AlphabeticIndex,
+)
 from gramps.plugins.webreport.layout import LayoutTree
 from gramps.plugins.webreport.buchheim import buchheim
 
@@ -95,6 +112,7 @@ _SHADOW = 5
 _XOFFSET = 5
 _YOFFSET = 5
 _LOFFSET = 20
+
 
 #################################################
 #
@@ -113,6 +131,7 @@ class PersonPages(BasePage):
     The base class 'BasePage' is initialised once for each page that is
     displayed.
     """
+
     def __init__(self, report, the_lang, the_title):
         """
         @param: report    -- The instance of the main report class
@@ -146,11 +165,11 @@ class PersonPages(BasePage):
         LOG.debug("obj_dict[Person]")
         for item in self.report.obj_dict[Person].items():
             LOG.debug("    %s", str(item))
-        message = _('Creating individual pages')
+        message = _("Creating individual pages")
         progress_title = self.report.pgrs_title(the_lang)
-        with self.r_user.progress(progress_title, message,
-                                  len(self.report.obj_dict[Person]) + 1
-                                 ) as step:
+        with self.r_user.progress(
+            progress_title, message, len(self.report.obj_dict[Person]) + 1
+        ) as step:
             index = 1
             for person_handle in sorted(self.report.obj_dict[Person]):
                 step()
@@ -158,19 +177,32 @@ class PersonPages(BasePage):
                 person = self.r_db.get_person_from_handle(person_handle)
                 self.individualpage(self.report, the_lang, the_title, person)
             step()
-            self.individuallistpage(self.report, the_lang, the_title,
-                                    self.report.obj_dict[Person].keys())
+            self.individuallistpage(
+                self.report, the_lang, the_title, self.report.obj_dict[Person].keys()
+            )
 
-#################################################
-#
-#    creates the Individual List Page
-#
-#################################################
+    #################################################
+    #
+    #    creates the Individual List Page
+    #
+    #################################################
 
-    def __output_person(self, date, tbody, bucket_letter, bucket_link,
-                        showbirth, showdeath, showpartner, showparents,
-                        surname, surnamed, first_surname, first_individual,
-                        person_handle):
+    def __output_person(
+        self,
+        date,
+        tbody,
+        bucket_letter,
+        bucket_link,
+        showbirth,
+        showdeath,
+        showpartner,
+        showparents,
+        surname,
+        surnamed,
+        first_surname,
+        first_individual,
+        person_handle,
+    ):
         """
         Generate and output the data for a single person
         """
@@ -186,15 +218,22 @@ class PersonPages(BasePage):
             first_surname = False
             first_individual = False
             trow.attr = 'class = "BeginSurname"'
-            ttle = self._("Surnames %(surname)s beginning "
-                          "with letter %(letter)s" %
-                          {'surname':surname, 'letter':bucket_letter})
-            tcell += Html("a", html_escape(surnamed), name=bucket_letter,
-                          id_=bucket_link, title=ttle)
+            ttle = self._(
+                "Surnames %(surname)s beginning "
+                "with letter %(letter)s" % {"surname": surname, "letter": bucket_letter}
+            )
+            tcell += Html(
+                "a",
+                html_escape(surnamed),
+                name=bucket_letter,
+                id_=bucket_link,
+                title=ttle,
+            )
         elif first_individual:
             first_individual = False
-            tcell += Html("a", html_escape(surnamed),
-                          title=self._("Surnames") + " " + surname)
+            tcell += Html(
+                "a", html_escape(surnamed), title=self._("Surnames") + " " + surname
+            )
         else:
             tcell += "&nbsp;"
         # firstname column
@@ -207,8 +246,7 @@ class PersonPages(BasePage):
             birth_date = _find_birth_date(self.r_db, person)
             if birth_date is not None:
                 if birth_date.fallback:
-                    tcell += Html('em', self.rlocale.get_date(birth_date),
-                                  inline=True)
+                    tcell += Html("em", self.rlocale.get_date(birth_date), inline=True)
                 else:
                     tcell += self.rlocale.get_date(birth_date)
             else:
@@ -220,8 +258,7 @@ class PersonPages(BasePage):
             death_date = _find_death_date(self.r_db, person)
             if death_date is not None:
                 if death_date.fallback:
-                    tcell += Html('em', self.rlocale.get_date(death_date),
-                                  inline=True)
+                    tcell += Html("em", self.rlocale.get_date(death_date), inline=True)
                 else:
                     tcell += self.rlocale.get_date(death_date)
             else:
@@ -230,13 +267,12 @@ class PersonPages(BasePage):
         if showpartner:
             family_list = person.get_family_handle_list()
             first_family = True
-            #partner_name = None
+            # partner_name = None
             tcell = ()
             if family_list:
                 for family_handle in family_list:
                     family = self.r_db.get_family_from_handle(family_handle)
-                    partner_handle = utils.find_spouse(
-                        person, family)
+                    partner_handle = utils.find_spouse(person, family)
                     if partner_handle:
                         if not first_family:
                             # have to do this to get the comma on
@@ -247,8 +283,9 @@ class PersonPages(BasePage):
                                 tcell[-1].inside += ","
                             else:
                                 tcell = tcell[:-1] + (
-                                        # TODO for Arabic, translate?
-                                        (tcell[-1] + ", "), )
+                                    # TODO for Arabic, translate?
+                                    (tcell[-1] + ", "),
+                                )
                         # Have to manipulate as tuples so that
                         # subsequent people are not nested
                         # within the first link
@@ -280,16 +317,19 @@ class PersonPages(BasePage):
                     mother_name = self.get_name(mother)
                 samerow = False
                 if mother and father:
-                    tcell = (Html("span", father_name,
-                                  class_="father fatherNmother", inline=True),
-                             Html("span", mother_name,
-                                  class_="mother", inline=True))
+                    tcell = (
+                        Html(
+                            "span",
+                            father_name,
+                            class_="father fatherNmother",
+                            inline=True,
+                        ),
+                        Html("span", mother_name, class_="mother", inline=True),
+                    )
                 elif mother:
-                    tcell = Html("span", mother_name, class_="mother",
-                                 inline=True)
+                    tcell = Html("span", mother_name, class_="mother", inline=True)
                 elif father:
-                    tcell = Html("span", father_name, class_="father",
-                                 inline=True)
+                    tcell = Html("span", father_name, class_="father", inline=True)
                 else:
                     tcell = "&nbsp;"
                     samerow = True
@@ -313,10 +353,10 @@ class PersonPages(BasePage):
         BasePage.__init__(self, report, the_lang, the_title)
 
         # plugin variables for this module
-        showbirth = report.options['showbirth']
-        showdeath = report.options['showdeath']
-        showpartner = report.options['showpartner']
-        showparents = report.options['showparents']
+        showbirth = report.options["showbirth"]
+        showdeath = report.options["showdeath"]
+        showpartner = report.options["showpartner"]
+        showparents = report.options["showparents"]
 
         output_file, sio = self.report.create_file("individuals")
         result = self.write_header(self._("Individuals"))
@@ -328,11 +368,13 @@ class PersonPages(BasePage):
             outerwrapper += individuallist
 
             # Individual List page message
-            msg = self._("This page contains an index of all the individuals "
-                         "in the database, sorted by their last names. "
-                         "Selecting the person&#8217;s "
-                         "name will take you to that "
-                         "person&#8217;s individual page.")
+            msg = self._(
+                "This page contains an index of all the individuals "
+                "in the database, sorted by their last names. "
+                "Selecting the person&#8217;s "
+                "name will take you to that "
+                "person&#8217;s individual page."
+            )
             individuallist += Html("p", msg, id="description")
 
             # add alphabet navigation
@@ -362,8 +404,7 @@ class PersonPages(BasePage):
                 individuallist += alpha_nav
 
             # begin table and table head
-            with Html("table",
-                      class_="infolist primobjlist IndividualList") as table:
+            with Html("table", class_="infolist primobjlist IndividualList") as table:
                 individuallist += table
                 thead = Html("thead")
                 table += thead
@@ -372,28 +413,30 @@ class PersonPages(BasePage):
                 thead += trow
 
                 # show surname and first name
-                trow += Html("th", self._("Group as"), class_="ColumnSurname",
-                             inline=True)
-                trow += Html("th", self._("Name"), class_="ColumnName",
-                             inline=True)
+                trow += Html(
+                    "th", self._("Group as"), class_="ColumnSurname", inline=True
+                )
+                trow += Html("th", self._("Name"), class_="ColumnName", inline=True)
 
                 if showbirth:
-                    trow += Html("th", self._("Birth"), class_="ColumnDate",
-                                 inline=True)
+                    trow += Html(
+                        "th", self._("Birth"), class_="ColumnDate", inline=True
+                    )
 
                 if showdeath:
-                    trow += Html("th", self._("Death"), class_="ColumnDate",
-                                 inline=True)
+                    trow += Html(
+                        "th", self._("Death"), class_="ColumnDate", inline=True
+                    )
 
                 if showpartner:
-                    trow += Html("th", self._("Partner"),
-                                 class_="ColumnPartner",
-                                 inline=True)
+                    trow += Html(
+                        "th", self._("Partner"), class_="ColumnPartner", inline=True
+                    )
 
                 if showparents:
-                    trow += Html("th", self._("Parents"),
-                                 class_="ColumnParents",
-                                 inline=True)
+                    trow += Html(
+                        "th", self._("Parents"), class_="ColumnParents", inline=True
+                    )
 
             tbody = Html("tbody")
             table += tbody
@@ -418,12 +461,11 @@ class PersonPages(BasePage):
                             surname_handle_dict[surname].append(handle)
                     surname_handle_list = list(surname_handle_dict.items())
                     # sort by surname
-                    surname_handle_list.sort(key=lambda x:
-                                             self.rlocale.sort_key(x[0]))
+                    surname_handle_list.sort(key=lambda x: self.rlocale.sort_key(x[0]))
 
-                    name_format = self.report.options['name_format']
+                    name_format = self.report.options["name_format"]
                     nme_format = _nd.name_formats[name_format][1]
-                    for (surname, handle_list) in surname_handle_list:
+                    for surname, handle_list in surname_handle_list:
                         if not surname or surname.isspace():
                             surname = self._("<absent>")
 
@@ -439,16 +481,28 @@ class PersonPages(BasePage):
                             surnamed = surname
                         first_surname = True
                         first_individual = True
-                        for person_handle in sorted(handle_list,
-                                        key=self.sort_on_name_and_grampsid):
-                            (date, first_surname, first_individual) \
-                            = self.__output_person(date, tbody, bucket_letter,
-                                                   bucket_link, showbirth,
-                                                   showdeath, showpartner,
-                                                   showparents, surname,
-                                                   surnamed, first_surname,
-                                                   first_individual,
-                                                   person_handle)
+                        for person_handle in sorted(
+                            handle_list, key=self.sort_on_name_and_grampsid
+                        ):
+                            (
+                                date,
+                                first_surname,
+                                first_individual,
+                            ) = self.__output_person(
+                                date,
+                                tbody,
+                                bucket_letter,
+                                bucket_link,
+                                showbirth,
+                                showdeath,
+                                showpartner,
+                                showparents,
+                                surname,
+                                surnamed,
+                                first_surname,
+                                first_individual,
+                                person_handle,
+                            )
 
         # create clear line for proper styling
         # create footer section
@@ -459,11 +513,11 @@ class PersonPages(BasePage):
         # and close the file
         self.xhtml_writer(indlistpage, output_file, sio, date)
 
-#################################################
-#
-#    creates an Individual Page
-#
-#################################################
+    #################################################
+    #
+    #    creates an Individual Page
+    #
+    #################################################
     def individualpage(self, report, the_lang, the_title, person):
         """
         Creates an individual page
@@ -474,16 +528,15 @@ class PersonPages(BasePage):
         @param: the_title -- The title page related to the language
         @param: person    -- The person to use for this page.
         """
-        BasePage.__init__(self, report, the_lang, the_title,
-                          person.get_gramps_id())
+        BasePage.__init__(self, report, the_lang, the_title, person.get_gramps_id())
         place_lat_long = []
 
         self.gender_map = {
-            Person.MALE    : self._('male'),
-            Person.FEMALE  : self._('female'),
-            Person.OTHER   : self._('other'),
-            Person.UNKNOWN : self._('unknown'),
-            }
+            Person.MALE: self._("male"),
+            Person.FEMALE: self._("female"),
+            Person.OTHER: self._("other"),
+            Person.UNKNOWN: self._("unknown"),
+        }
 
         self.person = person
         self.bibli = Bibliography()
@@ -493,20 +546,19 @@ class PersonPages(BasePage):
         date = self.person.get_change_time()
 
         # to be used in the Family Map Pages...
-        self.familymappages = self.report.options['familymappages']
-        self.placemappages = self.report.options['placemappages']
-        self.mapservice = self.report.options['mapservice']
-        self.googleopts = self.report.options['googleopts']
-        self.googlemapkey = self.report.options['googlemapkey']
-        self.stamenopts = self.report.options['stamenopts']
+        self.familymappages = self.report.options["familymappages"]
+        self.placemappages = self.report.options["placemappages"]
+        self.mapservice = self.report.options["mapservice"]
+        self.googleopts = self.report.options["googleopts"]
+        self.googlemapkey = self.report.options["googlemapkey"]
+        self.stamenopts = self.report.options["stamenopts"]
 
         # decide if we will sort the birth order of siblings...
-        self.birthorder = self.report.options['birthorder']
+        self.birthorder = self.report.options["birthorder"]
 
         # get the Relationship Calculator so that we can determine
         # bio, half, step- siblings for use in display_ind_parents() ...
-        self.rel_class = get_relationship_calculator(reinit=True,
-                                                     clocale=self.rlocale)
+        self.rel_class = get_relationship_calculator(reinit=True, clocale=self.rlocale)
 
         output_file, sio = self.report.create_file(person.get_handle(), "ppl")
         self.uplink = True
@@ -514,8 +566,7 @@ class PersonPages(BasePage):
         indivdetpage, head, dummy_body, outerwrapper = result
 
         # begin individualdetail division
-        with Html("div", class_="content",
-                  id='IndividualDetail') as individualdetail:
+        with Html("div", class_="content", id="IndividualDetail") as individualdetail:
             outerwrapper += individualdetail
 
             # display a person's general data
@@ -524,7 +575,7 @@ class PersonPages(BasePage):
                 individualdetail += thumbnail
             individualdetail += (name, summary)
 
-            if self.report.options['notes']:
+            if self.report.options["notes"]:
                 # display Narrative Notes
                 notelist = person.get_note_list()
                 sect8 = self.display_note_list(notelist, Person)
@@ -536,7 +587,7 @@ class PersonPages(BasePage):
             if sect2 is not None:
                 individualdetail += sect2
 
-            if self.report.options['relation']:
+            if self.report.options["relation"]:
                 # display relationship to the center person
                 sect3 = self.display_ind_center_person()
                 if sect3 is not None:
@@ -548,8 +599,7 @@ class PersonPages(BasePage):
                 individualdetail += sect4
 
             # display relationships
-            relationships = self.display_relationships(self.person,
-                                                       place_lat_long)
+            relationships = self.display_relationships(self.person, place_lat_long)
             if relationships is not None:
                 individualdetail += relationships
 
@@ -596,15 +646,16 @@ class PersonPages(BasePage):
                     fname = "/".join(["css", "lightbox.css"])
                     jsname = "/".join(["css", "lightbox.js"])
                 url = self.report.build_url_fname(fname, None, self.uplink)
-                head += Html("link", href=url, type="text/css",
-                             media="screen", rel="stylesheet")
+                head += Html(
+                    "link", href=url, type="text/css", media="screen", rel="stylesheet"
+                )
                 url = self.report.build_url_fname(jsname, None, self.uplink)
                 head += Html("script", src=url, type="text/javascript", inline=True)
             sect7 = self.disp_add_img_as_gallery(media_list, person)
             if sect7 is not None:
                 individualdetail += sect7
 
-            if not self.report.options['notes']:
+            if not self.report.options["notes"]:
                 # display Narrative Notes
                 notelist = person.get_note_list()
                 sect8 = self.display_note_list(notelist, Person)
@@ -637,7 +688,8 @@ class PersonPages(BasePage):
                     sstring_io = sio
                     sfname = self.report.cur_fname
                     individualdetail += self.__display_family_map(
-                        person, place_lat_long)
+                        person, place_lat_long
+                    )
                     # restore output_file, string_io and cur_fname
                     # after creating a new page
                     output_file = sof
@@ -650,7 +702,7 @@ class PersonPages(BasePage):
                 individualdetail += sect13
 
             # display ancestor tree
-            if report.options['ancestortree']:
+            if report.options["ancestortree"]:
                 sect14 = self.display_tree()
                 if sect14 is not None:
                     individualdetail += sect14
@@ -669,8 +721,9 @@ class PersonPages(BasePage):
         # and close the file
         self.xhtml_writer(indivdetpage, output_file, sio, date)
 
-    def _create_family_tracelife(self, tracelife, placetitle,
-                                 latitude, longitude, seq_, links):
+    def _create_family_tracelife(
+        self, tracelife, placetitle, latitude, longitude, seq_, links
+    ):
         """
         creates individual family tracelife map events
 
@@ -683,28 +736,39 @@ class PersonPages(BasePage):
         """
         # are we using Google?
         if self.mapservice == "Google":
-
             # are we creating Family Links?
             if self.googleopts == "FamilyLinks":
                 tracelife += """
-    new google.maps.LatLng(%s, %s),""" % (latitude, longitude)
+    new google.maps.LatLng(%s, %s),""" % (
+                    latitude,
+                    longitude,
+                )
 
             # are we creating Drop Markers or Markers?
             elif self.googleopts in ["Drop", "Markers"]:
                 tracelife += """
-    ['%s', %s, %s, %d, %s],""" % (placetitle.replace("'", "\\'"), latitude,
-                                  longitude, seq_, links)
+    ['%s', %s, %s, %d, %s],""" % (
+                    placetitle.replace("'", "\\'"),
+                    latitude,
+                    longitude,
+                    seq_,
+                    links,
+                )
 
         # are we using OpenStreetMap, Stamen...
         else:
             tracelife += """
-    [%f, %f, \'%s\', %s],""" % (float(longitude), float(latitude),
-                                placetitle.replace("'", "\\'"), links)
+    [%f, %f, \'%s\', %s],""" % (
+                float(longitude),
+                float(latitude),
+                placetitle.replace("'", "\\'"),
+                links,
+            )
         return tracelife
 
-    def __create_links_tracelife(self, links, person, placetitle,
-                                 latitude, longitude, ref,
-                                 event):
+    def __create_links_tracelife(
+        self, links, person, placetitle, latitude, longitude, ref, event
+    ):
         """
         creates individual family events for a marker
 
@@ -724,14 +788,11 @@ class PersonPages(BasePage):
         ppl_lnk = ""
         (bkref_class, bkref_hdle, role) = ref
         if role == "Marriage" or role == "Divorce" or role == "Family":
-            url = url_fct(bkref_hdle,
-                          "fam", self.uplink)
+            url = url_fct(bkref_hdle, "fam", self.uplink)
             fam_fct = self.r_db.get_family_from_handle
             fam = fam_fct(bkref_hdle)
             fam_name = self.report.get_family_name(fam)
-            ppl_lnk = ln_str % (url,
-                                fam.get_gramps_id(),
-                                fam_name)
+            ppl_lnk = ln_str % (url, fam.get_gramps_id(), fam_name)
             if "<p>" in links:
                 links += ' + "<br>%s"' % ppl_lnk
             else:
@@ -739,19 +800,15 @@ class PersonPages(BasePage):
         elif bkref_class == Person:  # and role == "Primary":
             pers = ppl_fct(bkref_hdle)
             url = url_fct(bkref_hdle, "ppl", self.uplink)
-            ppl_lnk = ln_str % (url,
-                                pers.get_gramps_id(),
-                                self.get_name(pers))
-            ppl_lnk = ln_str % (url,
-                                pers.get_gramps_id(),
-                                self.get_name(pers))
+            ppl_lnk = ln_str % (url, pers.get_gramps_id(), self.get_name(pers))
+            ppl_lnk = ln_str % (url, pers.get_gramps_id(), self.get_name(pers))
             evt_type = self._(event.get_type().xml_str())
             evt_date = self.rlocale.get_date(event.get_date_object())
             url = url_fct(event.get_handle(), "evt", self.uplink)
             evt_lnk = ln_str % (url, evt_date, evt_type)
             evt_lnk += " (" + evt_date + ")"
             if "<p>" in links:
-                links += ' + "<br>%s"' % (ppl_lnk+self._(":") + evt_lnk)
+                links += ' + "<br>%s"' % (ppl_lnk + self._(":") + evt_lnk)
             else:
                 links = '"<p>%s"' % (ppl_lnk + self._(":") + evt_lnk)
         return links
@@ -774,12 +831,11 @@ class PersonPages(BasePage):
         minx, maxx = Decimal("0.00000001"), Decimal("0.00000001")
         miny, maxy = Decimal("0.00000001"), Decimal("0.00000001")
         xwidth, yheight = [], []
-        midx_, midy_, dummy_spanx, spany = [None]*4
+        midx_, midy_, dummy_spanx, spany = [None] * 4
 
         number_markers = len(place_lat_long)
         if number_markers > 1:
-            for (latitude, longitude, placetitle, handle,
-                 event) in place_lat_long:
+            for latitude, longitude, placetitle, handle, event in place_lat_long:
                 xwidth.append(latitude)
                 yheight.append(longitude)
             xwidth.sort()
@@ -788,15 +844,16 @@ class PersonPages(BasePage):
             minx = xwidth[0] if xwidth[0] else minx
             maxx = xwidth[-1] if xwidth[-1] else maxx
             minx, maxx = Decimal(minx), Decimal(maxx)
-            midx_ = str(Decimal((minx + maxx) /2))
+            midx_ = str(Decimal((minx + maxx) / 2))
 
             miny = yheight[0] if yheight[0] else miny
             maxy = yheight[-1] if yheight[-1] else maxy
             miny, maxy = Decimal(miny), Decimal(maxy)
-            midy_ = str(Decimal((miny + maxy) /2))
+            midy_ = str(Decimal((miny + maxy) / 2))
 
-            midx_, midy_ = conv_lat_lon(midx_, midy_,
-                                        coord_formats[self.report.options['coord_format']])
+            midx_, midy_ = conv_lat_lon(
+                midx_, midy_, coord_formats[self.report.options["coord_format"]]
+            )
 
             # get the integer span of latitude and longitude
             dummy_spanx = int(maxx - minx)
@@ -806,8 +863,10 @@ class PersonPages(BasePage):
         tinyset = [value for value in (-3, -2, -1, 0, 1, 2, 3)]
         smallset = [value for value in (-4, -5, -6, -7, 4, 5, 6, 7)]
         middleset = [value for value in (-8, -9, -10, -11, 8, 9, 10, 11)]
-        largeset = [value for value in (-11, -12, -13, -14, -15, -16,
-                                        -17, 11, 12, 13, 14, 15, 16, 17)]
+        largeset = [
+            value
+            for value in (-11, -12, -13, -14, -15, -16, -17, 11, 12, 13, 14, 15, 16, 17)
+        ]
 
         if spany in tinyset or spany in smallset:
             zoomlevel = 6
@@ -834,42 +893,41 @@ class PersonPages(BasePage):
         else:
             fname = "/".join(["css", "narrative-maps.css"])
         url = self.report.build_url_fname(fname, None, self.uplink)
-        head += Html("link", href=url, type="text/css", media="screen",
-                     rel="stylesheet")
+        head += Html(
+            "link", href=url, type="text/css", media="screen", rel="stylesheet"
+        )
 
         # add MapService specific javascript code
         if self.mapservice == "Google":
             src_js = GOOGLE_MAPS + "api/js"
             if self.googlemapkey:
                 src_js += "?key=" + self.googlemapkey
-            head += Html("script", type="text/javascript",
-                         src=src_js, inline=True)
-        else: # OpenStreetMap, Stamen...
+            head += Html("script", type="text/javascript", src=src_js, inline=True)
+        else:  # OpenStreetMap, Stamen...
             src_js = self.secure_mode
             src_js += "ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
-            head += Html("script", type="text/javascript",
-                         src=src_js, inline=True)
-            olv = self.report.options['ol_version']
+            head += Html("script", type="text/javascript", src=src_js, inline=True)
+            olv = self.report.options["ol_version"]
             build = "legacy"
             if olv < "v7.0.0":
                 build = "build"
             if olv == "latest":
                 build = "legacy"
-            src_js = ("https://openlayers.org/en/"
-                      "%(ver)s/%(bld)s/ol.js") % {"ver" : olv,
-                                                  "bld": build}
-            head += Html("script", type="text/javascript",
-                         src=src_js, inline=True)
+            src_js = ("https://openlayers.org/en/" "%(ver)s/%(bld)s/ol.js") % {
+                "ver": olv,
+                "bld": build,
+            }
+            head += Html("script", type="text/javascript", src=src_js, inline=True)
             css = "legacy"
             if olv < "v7.0.0":
                 css = "css"
             if olv == "latest":
                 css = "legacy"
-            url = ("https://openlayers.org/en/"
-                   "%(ver)s/%(css)s/ol.css") % {"ver" : olv,
-                                                "css": css}
-            head += Html("link", href=url, type="text/css",
-                         rel="stylesheet")
+            url = ("https://openlayers.org/en/" "%(ver)s/%(css)s/ol.css") % {
+                "ver": olv,
+                "css": css,
+            }
+            head += Html("link", href=url, type="text/css", rel="stylesheet")
 
         if number_markers > 0:
             tracelife = "["
@@ -877,8 +935,7 @@ class PersonPages(BasePage):
             old_place_title = ""
             links = "''"
             for index in range(0, number_markers):
-                (latitude, longitude, placetitle, handle,
-                 event) = place_lat_long[index]
+                (latitude, longitude, placetitle, handle, event) = place_lat_long[index]
                 # Do we have several events for this place?
                 evthdle = event.get_handle()
                 bkref_list = self.report.bkref_dict[Event][evthdle]
@@ -886,41 +943,57 @@ class PersonPages(BasePage):
                     if placetitle == old_place_title:
                         for ref in bkref_list:
                             links = self.__create_links_tracelife(
-                                        links, person, placetitle,
-                                        latitude, longitude, ref,
-                                        event)
+                                links,
+                                person,
+                                placetitle,
+                                latitude,
+                                longitude,
+                                ref,
+                                event,
+                            )
                         # break
                     # continue
                     elif old_place_title != "" and index != 0:
-                        (lat, lng, plcetitle, dummy_handle,
-                         dummy_event) = place_lat_long[index-1]
-                        tracelife = self._create_family_tracelife(tracelife,
-                                                              old_place_title,
-                                                              lat,
-                                                              lng,
-                                                              seq_,
-                                                              links)
+                        (
+                            lat,
+                            lng,
+                            plcetitle,
+                            dummy_handle,
+                            dummy_event,
+                        ) = place_lat_long[index - 1]
+                        tracelife = self._create_family_tracelife(
+                            tracelife, old_place_title, lat, lng, seq_, links
+                        )
                         old_place_title = placetitle
                         links = "''"
                         for ref in bkref_list:
                             (bkref_class, bkref_hdle, role) = ref
                             links = self.__create_links_tracelife(
-                                        links, person, placetitle,
-                                        latitude, longitude, ref,
-                                        event)
+                                links,
+                                person,
+                                placetitle,
+                                latitude,
+                                longitude,
+                                ref,
+                                event,
+                            )
                     else:
                         for ref in bkref_list:
                             (bkref_class, bkref_hdle, role) = ref
                             links = self.__create_links_tracelife(
-                                           links, person, placetitle,
-                                           latitude, longitude, ref,
-                                           event)
+                                links,
+                                person,
+                                placetitle,
+                                latitude,
+                                longitude,
+                                ref,
+                                event,
+                            )
                     old_place_title = placetitle
                 seq_ += 1
-            tracelife = self._create_family_tracelife(tracelife,
-                                                  placetitle,
-                                                  latitude, longitude,
-                                                  seq_, links)
+            tracelife = self._create_family_tracelife(
+                tracelife, placetitle, latitude, longitude, seq_, links
+            )
 
         # (lat, lng, plcetitle, dummy_handle,
         #  dummy_event) = place_lat_long[number_markers-1]
@@ -930,21 +1003,24 @@ class PersonPages(BasePage):
             outerwrapper += mapdetail
 
             # add page title
-            mapdetail += Html("h3",
-                              html_escape(self._("Tracking %s")
-                                          % self.get_name(person)),
-                              inline=True)
+            mapdetail += Html(
+                "h3",
+                html_escape(self._("Tracking %s") % self.get_name(person)),
+                inline=True,
+            )
 
             # page description
-            msg = self._("This map page represents that person "
-                         "and any descendants with all of their event/places."
-                         " If you place your mouse over "
-                         "the marker it will display the place name. "
-                         "The markers and the Reference "
-                         "list are sorted in date order (if any?). "
-                         "Clicking on a place&#8217;s "
-                         "name in the Reference section will take you "
-                         "to that place&#8217;s page.")
+            msg = self._(
+                "This map page represents that person "
+                "and any descendants with all of their event/places."
+                " If you place your mouse over "
+                "the marker it will display the place name. "
+                "The markers and the Reference "
+                "list are sorted in date order (if any?). "
+                "Clicking on a place&#8217;s "
+                "name in the Reference section will take you "
+                "to that place&#8217;s page."
+            )
             mapdetail += Html("p", msg, id="description")
 
             # this is the style element where the Map is held in the CSS...
@@ -956,17 +1032,16 @@ class PersonPages(BasePage):
                 with Html("div", id="popup", inline=True) as popup:
                     mapdetail += popup
             else:
-                with Html("div", id="popup", class_="ol-popup",
-                          inline=True) as popup:
+                with Html("div", id="popup", class_="ol-popup", inline=True) as popup:
                     mapdetail += popup
-                    popup += Html("a", href="#", id="popup-closer",
-                                  class_="ol-popup-closer")
-                    popup += Html("div", id="popup-title",
-                                  class_="ol-popup-title")
-                    popup += Html("div", id="popup-content",
-                                  class_="ol-popup-content")
-                with Html("div", id="tooltip", class_="ol-popup",
-                          inline=True) as tooltip:
+                    popup += Html(
+                        "a", href="#", id="popup-closer", class_="ol-popup-closer"
+                    )
+                    popup += Html("div", id="popup-title", class_="ol-popup-title")
+                    popup += Html("div", id="popup-content", class_="ol-popup-content")
+                with Html(
+                    "div", id="tooltip", class_="ol-popup", inline=True
+                ) as tooltip:
                     mapdetail += tooltip
                     tooltip += Html("div", id="tooltip-content")
 
@@ -989,7 +1064,7 @@ class PersonPages(BasePage):
                         for (label, colclass) in [
                             (self._("Date"), "ColumnDate"),
                             (self._("Place Title"), "ColumnPlace"),
-                            (self._("Event Type"), "ColumnType")
+                            (self._("Event Type"), "ColumnType"),
                         ]
                     )
 
@@ -997,11 +1072,16 @@ class PersonPages(BasePage):
                     table += tbody
 
                     # being sorted by date
-                    place_lat_long = sorted(place_lat_long,
-                                            key=lambda evt:
-                                            evt[4].get_date_object())
-                    for (latitude, longitude, placetitle, handle,
-                         event) in place_lat_long:
+                    place_lat_long = sorted(
+                        place_lat_long, key=lambda evt: evt[4].get_date_object()
+                    )
+                    for (
+                        latitude,
+                        longitude,
+                        placetitle,
+                        handle,
+                        event,
+                    ) in place_lat_long:
                         trow = Html("tr")
                         tbody += trow
 
@@ -1011,88 +1091,101 @@ class PersonPages(BasePage):
                             Html("td", data, class_=colclass, inline=True)
                             for data, colclass in [
                                 (self.rlocale.get_date(date), "ColumnDate"),
-                                (self.place_link(handle, placetitle,
-                                                 uplink=True),
-                                 "ColumnPlace"),
-                                (evt_name, "ColumnType")
+                                (
+                                    self.place_link(handle, placetitle, uplink=True),
+                                    "ColumnPlace",
+                                ),
+                                (evt_name, "ColumnType"),
                             ]
                         )
 
             # begin javascript inline code...
-            with Html("script", deter="deter",
-                      style='width =100%; height =100%;',
-                      type="text/javascript", indent=False) as jsc:
+            with Html(
+                "script",
+                deter="deter",
+                style="width =100%; height =100%;",
+                type="text/javascript",
+                indent=False,
+            ) as jsc:
                 mapdetail += jsc
 
                 # Link to Gramps marker
-                fname = "/".join(['images', 'marker.png'])
-                marker_path = self.report.build_url_image("marker.png",
-                                                          "images",
-                                                          self.uplink)
+                fname = "/".join(["images", "marker.png"])
+                marker_path = self.report.build_url_image(
+                    "marker.png", "images", self.uplink
+                )
 
                 jsc += MARKER_PATH % marker_path
                 # are we using Google?
                 if self.mapservice == "Google":
-
                     # are we creating Family Links?
                     if self.googleopts == "FamilyLinks":
                         if midy_ is None:
-                            jsc += FAMILYLINKS % (tracelife, latitude,
-                                                  longitude, int(10))
+                            jsc += FAMILYLINKS % (
+                                tracelife,
+                                latitude,
+                                longitude,
+                                int(10),
+                            )
                         else:
-                            jsc += FAMILYLINKS % (tracelife, midx_, midy_,
-                                                  zoomlevel)
+                            jsc += FAMILYLINKS % (tracelife, midx_, midy_, zoomlevel)
 
                     # are we creating Drop Markers?
                     elif self.googleopts == "Drop":
                         if midy_ is None:
-                            jsc += DROPMASTERS % (tracelife, latitude,
-                                                  longitude, int(10))
+                            jsc += DROPMASTERS % (
+                                tracelife,
+                                latitude,
+                                longitude,
+                                int(10),
+                            )
                         else:
-                            jsc += DROPMASTERS % (tracelife, midx_, midy_,
-                                                  zoomlevel)
+                            jsc += DROPMASTERS % (tracelife, midx_, midy_, zoomlevel)
 
                     # we are creating Markers only...
                     else:
                         if midy_ is None:
-                            jsc += MARKERS % (tracelife, latitude,
-                                              longitude, int(10))
+                            jsc += MARKERS % (tracelife, latitude, longitude, int(10))
                         else:
-                            jsc += MARKERS % (tracelife, midx_, midy_,
-                                              zoomlevel)
+                            jsc += MARKERS % (tracelife, midx_, midy_, zoomlevel)
 
                 # we are using OpenStreetMap
                 elif self.mapservice == "OpenStreetMap":
                     if midy_ is None:
-                        jsc += OSM_MARKERS % (tracelife,
-                                              longitude,
-                                              latitude, 10)
+                        jsc += OSM_MARKERS % (tracelife, longitude, latitude, 10)
                     else:
-                        jsc += OSM_MARKERS % (tracelife, midy_, midx_,
-                                              zoomlevel)
+                        jsc += OSM_MARKERS % (tracelife, midy_, midx_, zoomlevel)
                     jsc += OPENLAYER
                 # we are using StamenMap
                 elif self.mapservice == "StamenMap":
                     if midy_ is None:
-                        jsc += STAMEN_MARKERS % (tracelife,
-                                                 self.stamenopts,
-                                                 longitude,
-                                                 latitude,
-                                                 10,
-                                                )
+                        jsc += STAMEN_MARKERS % (
+                            tracelife,
+                            self.stamenopts,
+                            longitude,
+                            latitude,
+                            10,
+                        )
                     else:
-                        jsc += STAMEN_MARKERS % (tracelife,
-                                                 self.stamenopts,
-                                                 midy_, midx_,
-                                                 zoomlevel,
-                                                )
+                        jsc += STAMEN_MARKERS % (
+                            tracelife,
+                            self.stamenopts,
+                            midy_,
+                            midx_,
+                            zoomlevel,
+                        )
                     jsc += OPENLAYER
 
             # if Google and Drop Markers are selected,
             # then add "Drop Markers" button?
             if self.mapservice == "Google" and self.googleopts == "Drop":
-                mapdetail += Html("button", self._("Drop Markers"),
-                                  id="drop", onclick="drop()", inline=True)
+                mapdetail += Html(
+                    "button",
+                    self._("Drop Markers"),
+                    id="drop",
+                    onclick="drop()",
+                    inline=True,
+                )
 
         # add body id for this page...
         body.attr = 'id ="FamilyMap"'
@@ -1122,15 +1215,12 @@ class PersonPages(BasePage):
                 familymap += h4_head
                 h4_head += self._("Family Map")
 
-            disp = "none" if self.report.options['toggle'] else "block"
-            with Html("div", style="display:%s" % disp,
-                      id="toggle_map") as toggle:
-
+            disp = "none" if self.report.options["toggle"] else "block"
+            with Html("div", style="display:%s" % disp, id="toggle_map") as toggle:
                 familymap += toggle
                 # add family map link
                 person_handle = person.get_handle()
-                url = self.report.build_url_fname_html(person_handle,
-                                                       "maps", True)
+                url = self.report.build_url_fname_html(person_handle, "maps", True)
                 toggle += self.family_map_link(person_handle, url)
 
         # return family map link to its caller
@@ -1157,9 +1247,11 @@ class PersonPages(BasePage):
         else:
             divclass = "unknown"
 
-        boxbg = Html("div", class_="boxbg %s AncCol%s" % (divclass, col),
-                     style="top: %dpx; left: %dpx;" % (top, xoff+1)
-                    )
+        boxbg = Html(
+            "div",
+            class_="boxbg %s AncCol%s" % (divclass, col),
+            style="top: %dpx; left: %dpx;" % (top, xoff + 1),
+        )
 
         person_name = self.get_name(person)
         # This does not use [new_]person_link because the requirements are
@@ -1178,25 +1270,25 @@ class PersonPages(BasePage):
                     photo = self.r_db.get_media_from_handle(photo_handle)
                     mime_type = photo.get_mime_type()
                     if mime_type and is_image_type(mime_type):
-                        region = self.media_ref_region_to_object(photo_handle,
-                                                                 person)
+                        region = self.media_ref_region_to_object(photo_handle, person)
                         rbuf = self.report.build_url_fname
                         if region:
                             # make a thumbnail of this region
-                            newpath = self.copy_thumbnail(
-                                photo_handle, photo, region)
-                            newpath = rbuf(newpath, None, self.uplink,
-                                           image=True)
+                            newpath = self.copy_thumbnail(photo_handle, photo, region)
+                            newpath = rbuf(newpath, None, self.uplink, image=True)
                             if win():
-                                newpath = newpath.replace('\\', "/")
+                                newpath = newpath.replace("\\", "/")
                             thumbnail_url = newpath
                         else:
-                            (dummy_photo_url, thumbnail_url) = \
-                                self.report.prepare_copy_media(photo)
-                            thumbnail_url = rbuf(thumbnail_url, None,
-                                                 self.uplink, image=True)
+                            (
+                                dummy_photo_url,
+                                thumbnail_url,
+                            ) = self.report.prepare_copy_media(photo)
+                            thumbnail_url = rbuf(
+                                thumbnail_url, None, self.uplink, image=True
+                            )
                             if win():
-                                thumbnail_url = thumbnail_url.replace('\\', "/")
+                                thumbnail_url = thumbnail_url.replace("\\", "/")
             url = self.report.build_url_fname_html(person.handle, "ppl", True)
             birth = death = ""
             bd_event = get_birth_or_fallback(self.r_db, person)
@@ -1207,7 +1299,7 @@ class PersonPages(BasePage):
                 death = self.rlocale.get_date(dd_event.get_date_object())
             if death == "":
                 death = "..."
-            value = person_name + "<br>*"+ birth+ "<br>+"+ death
+            value = person_name + "<br>*" + birth + "<br>+" + death
             tdval = Html("td", value, class_="name")
             table = Html("table", class_="table")
             if thumbnail_url is None:
@@ -1220,8 +1312,12 @@ class PersonPages(BasePage):
                 table += trow
                 boxbg += Html("a", table, href=url, class_="thumbnail")
         shadow = Html(
-            "div", "", class_="shadow", inline=True,
-            style="top: %dpx; left: %dpx;" % (top + _SHADOW, xoff + _SHADOW))
+            "div",
+            "",
+            class_="shadow",
+            inline=True,
+            style="top: %dpx; left: %dpx;" % (top + _SHADOW, xoff + _SHADOW),
+        )
 
         return [boxbg, shadow]
 
@@ -1234,17 +1330,24 @@ class PersonPages(BasePage):
         @param c_node -- Child node to draw from
         @param p_node -- Parent node to draw towards
         """
-        width = (p_node.coord_x - c_node.coord_x - _WIDTH + 1)/2
+        width = (p_node.coord_x - c_node.coord_x - _WIDTH + 1) / 2
         assert width > 0
         coord_x0 = _XOFFSET + c_node.coord_x + _WIDTH
-        coord_y0 = c_node.coord_y + _LOFFSET + _VGAP/2
+        coord_y0 = c_node.coord_y + _LOFFSET + _VGAP / 2
 
         style = "top: %dpx; left: %dpx; width: %dpx"
-        bvline = Html("div", class_="bvline", inline=True,
-                      style=style % (coord_y0, coord_x0, width))
-        gvline = Html("div", class_="gvline", inline=True,
-                      style=style % (
-                          coord_y0+_SHADOW, coord_x0, width+_SHADOW))
+        bvline = Html(
+            "div",
+            class_="bvline",
+            inline=True,
+            style=style % (coord_y0, coord_x0, width),
+        )
+        gvline = Html(
+            "div",
+            class_="gvline",
+            inline=True,
+            style=style % (coord_y0 + _SHADOW, coord_x0, width + _SHADOW),
+        )
         return [bvline, gvline]
 
     def connect_line(self, coord_xc, coord_yc, coord_xp, coord_yp):
@@ -1263,31 +1366,43 @@ class PersonPages(BasePage):
         # xh is the X co-ordinate half way between the two nodes.
         # dx is the X gap between the two nodes, remembering that the
         # the coordinates are for the LEFT of both nodes.
-        coord_xh = (coord_xp + _WIDTH + coord_xc)/2
-        width_x = (coord_xp - _WIDTH - coord_xc)/2
+        coord_xh = (coord_xp + _WIDTH + coord_xc) / 2
+        width_x = (coord_xp - _WIDTH - coord_xc) / 2
         assert width_x >= 0
         stylew = "top: %dpx; left: %dpx; width: %dpx;"
         styleh = "top: %dpx; left: %dpx; height: %dpx;"
-        cnct_bv = Html("div", class_="bvline", inline=True,
-                       style=stylew % (coord_yp, coord_xh, width_x))
-        cnct_gv = Html("div", class_="gvline", inline=True,
-                       style=stylew % (coord_yp+_SHADOW,
-                                       coord_xh+_SHADOW,
-                                       width_x))
+        cnct_bv = Html(
+            "div",
+            class_="bvline",
+            inline=True,
+            style=stylew % (coord_yp, coord_xh, width_x),
+        )
+        cnct_gv = Html(
+            "div",
+            class_="gvline",
+            inline=True,
+            style=stylew % (coord_yp + _SHADOW, coord_xh + _SHADOW, width_x),
+        )
         # Experience says that line heights need to be 1 longer than we
         # expect. I suspect this is because HTML treats the lines as
         # 'number of pixels starting at...' so to create a line between
         # pixels 2 and 5 we need to light pixels 2, 3, 4, 5 - FOUR - and
         # not 5 - 2 = 3.
-        cnct_bh = Html("div", class_="bhline", inline=True,
-                       style=styleh % (coord_y, coord_xh,
-                                       abs(coord_yp-coord_yc)+1))
-        cnct_gh = Html("div", class_="gvline", inline=True,
-                       style=styleh % (coord_y+_SHADOW,
-                                       coord_xh+_SHADOW,
-                                       abs(coord_yp-coord_yc)+1))
-        cnct_gv = ''
-        cnct_gh = ''
+        cnct_bh = Html(
+            "div",
+            class_="bhline",
+            inline=True,
+            style=styleh % (coord_y, coord_xh, abs(coord_yp - coord_yc) + 1),
+        )
+        cnct_gh = Html(
+            "div",
+            class_="gvline",
+            inline=True,
+            style=styleh
+            % (coord_y + _SHADOW, coord_xh + _SHADOW, abs(coord_yp - coord_yc) + 1),
+        )
+        cnct_gv = ""
+        cnct_gh = ""
         return [cnct_bv, cnct_gv, cnct_bh, cnct_gh]
 
     def draw_connected_box(self, p_node, c_node, gen, person):
@@ -1299,14 +1414,15 @@ class PersonPages(BasePage):
         """
         coord_cx = _XOFFSET + c_node.coord_x
         coord_cy = _YOFFSET + c_node.coord_y
-        coord_px = _XOFFSET+p_node.coord_x
-        coord_py = _YOFFSET+p_node.coord_y
+        coord_px = _XOFFSET + p_node.coord_x
+        coord_py = _YOFFSET + p_node.coord_y
         box = []
         if person is None:
             return box
         box = self.draw_box(p_node, gen, person)
         box += self.connect_line(
-            coord_cx, coord_cy+_LOFFSET, coord_px, coord_py+_LOFFSET)
+            coord_cx, coord_cy + _LOFFSET, coord_px, coord_py + _LOFFSET
+        )
         return box
 
     def create_layout_tree(self, p_handle, generations):
@@ -1332,12 +1448,13 @@ class PersonPages(BasePage):
                         f_handle = family.get_father_handle()
                         m_handle = family.get_mother_handle()
                         f_layout_tree = self.create_layout_tree(
-                            f_handle, generations-1)
+                            f_handle, generations - 1
+                        )
                         m_layout_tree = self.create_layout_tree(
-                            m_handle, generations-1)
+                            m_handle, generations - 1
+                        )
 
-                family_tree = LayoutTree(
-                    p_handle, f_layout_tree, m_layout_tree)
+                family_tree = LayoutTree(p_handle, f_layout_tree, m_layout_tree)
         return family_tree
 
     def display_tree(self):
@@ -1355,23 +1472,21 @@ class PersonPages(BasePage):
         if not family_handle:
             return None
 
-        generations = self.report.options['graphgens']
+        generations = self.report.options["graphgens"]
 
         # Begin by building a representation of the Ancestry tree that can be
         # fed to the Buchheim algorithm.  Note that the algorithm doesn't care
         # who is the father and who is the mother.
         #
         # This routine is also about to go recursive!
-        layout_tree = self.create_layout_tree(
-            self.person.get_handle(), generations)
+        layout_tree = self.create_layout_tree(self.person.get_handle(), generations)
 
         # We now apply the Buchheim algorith to this tree, and it assigns X
         # and Y positions to all elements in the tree.
-        l_tree, top, height = buchheim(layout_tree, _WIDTH, _HGAP,
-                                       _HEIGHT, _VGAP)
+        l_tree, top, height = buchheim(layout_tree, _WIDTH, _HGAP, _HEIGHT, _VGAP)
 
         top = abs(top)
-        tree_width = l_tree.width + _XOFFSET* (generations + 1) + _WIDTH
+        tree_width = l_tree.width + _XOFFSET * (generations + 1) + _WIDTH
         tree_height = height + top + _HEIGHT + _VGAP
         with Html("div", id="tree", class_="subsection") as treecont:
             with self.create_toggle("anc") as h4_head:
@@ -1379,14 +1494,17 @@ class PersonPages(BasePage):
                 h4_head += self._("Ancestors")
             # We know the height in 'pixels' where every Ancestor will sit
             # precisely on an integer unit boundary.
-            disp = "none" if self.report.options['toggle'] else "block"
-            with Html("div", id="toggle_anc", class_="tree",
-                      style="display:%s" % disp) as tree:
+            disp = "none" if self.report.options["toggle"] else "block"
+            with Html(
+                "div", id="toggle_anc", class_="tree", style="display:%s" % disp
+            ) as tree:
                 treecont += tree
-                with Html("div", id="treeContainer",
-                          style="width:%dpx; height:%dpx; top: %dpx" % (
-                              tree_width, tree_height, top)
-                         ) as container:
+                with Html(
+                    "div",
+                    id="treeContainer",
+                    style="width:%dpx; height:%dpx; top: %dpx"
+                    % (tree_width, tree_height, top),
+                ) as container:
                     tree += container
                     container += self.draw_tree(l_tree, 1, None)
 
@@ -1408,8 +1526,7 @@ class PersonPages(BasePage):
         if gen_nr == 1:
             tree = self.draw_box(l_node, 0, person)
         else:
-            tree = self.draw_connected_box(
-                l_node, c_node, gen_nr-1, person)
+            tree = self.draw_connected_box(l_node, c_node, gen_nr - 1, person)
 
         # If there are any parents, we need to draw the extend line. We only
         # use the parent to define the end of the line so either will do and
@@ -1420,7 +1537,7 @@ class PersonPages(BasePage):
             # The parents are equivalent and the drawing routine figures out
             # whether they are male or female.
             for p_node in l_node.children:
-                tree += self.draw_tree(p_node, gen_nr+1, l_node)
+                tree += self.draw_tree(p_node, gen_nr + 1, l_node)
 
         return tree
 
@@ -1436,9 +1553,13 @@ class PersonPages(BasePage):
                 section += h4_head
                 h4_head += self._("Associations")
 
-            disp = "none" if self.report.options['toggle'] else "block"
-            with Html("table", class_="infolist assoclist",
-                      id="toggle_assoc", style="display:%s" % disp) as table:
+            disp = "none" if self.report.options["toggle"] else "block"
+            with Html(
+                "table",
+                class_="infolist assoclist",
+                id="toggle_assoc",
+                style="display:%s" % disp,
+            ) as table:
                 section += table
 
                 thead = Html("thead")
@@ -1448,15 +1569,16 @@ class PersonPages(BasePage):
                 thead += trow
 
                 assoc_row = [
-                    (self._("Person"), 'Person'),
-                    (self._('Relationship'), 'Relationship'),
-                    (self._("Notes"), 'Notes'),
-                    (self._("Sources"), 'Sources'),
-                    ]
+                    (self._("Person"), "Person"),
+                    (self._("Relationship"), "Relationship"),
+                    (self._("Notes"), "Notes"),
+                    (self._("Sources"), "Sources"),
+                ]
 
                 trow.extend(
                     Html("th", label, class_="Column" + colclass, inline=True)
-                    for (label, colclass) in assoc_row)
+                    for (label, colclass) in assoc_row
+                )
 
                 tbody = Html("tbody")
                 table += tbody
@@ -1465,23 +1587,21 @@ class PersonPages(BasePage):
                     trow = Html("tr")
                     tbody += trow
 
-                    person_lnk = self.new_person_link(person_ref.ref,
-                                                      uplink=True)
+                    person_lnk = self.new_person_link(person_ref.ref, uplink=True)
 
                     index = 0
                     for data in [
-                            person_lnk,
-                            person_ref.get_relation(),
-                            self.dump_notes(person_ref.get_note_list(), Person),
-                            self.get_citation_links(
-                                person_ref.get_citation_list()),
-                        ]:
-
+                        person_lnk,
+                        person_ref.get_relation(),
+                        self.dump_notes(person_ref.get_note_list(), Person),
+                        self.get_citation_links(person_ref.get_citation_list()),
+                    ]:
                         # get colclass from assoc_row
                         colclass = assoc_row[index][1]
 
-                        trow += Html("td", data, class_="Column" + colclass,
-                                     inline=True)
+                        trow += Html(
+                            "td", data, class_="Column" + colclass, inline=True
+                        )
                         index += 1
 
         # return section to its callers
@@ -1509,8 +1629,7 @@ class PersonPages(BasePage):
                 if birthorder:
                     children = sorted(children)
 
-                for dummy_birthdate, dummy_birth, \
-                        dummy_death, handle in children:
+                for dummy_birthdate, dummy_birth, dummy_death, handle in children:
                     if handle == self.person.get_handle():
                         child_ped(ol_html)
                     elif handle:
@@ -1532,6 +1651,7 @@ class PersonPages(BasePage):
                 if family:
                     pedfam += Html("ol", class_="spouselist") + family
             return ol_html + pedfam
+
         # End of helper functions
 
         parent_handle_list = self.person.get_parent_family_handle_list()
@@ -1557,29 +1677,38 @@ class PersonPages(BasePage):
             with self.create_toggle("pedigree") as h4_head:
                 ped += h4_head
                 h4_head += self._("Pedigree")
-            disp = "none" if self.report.options['toggle'] else "block"
-            with Html("ol", class_="pedigreegen", style="display:%s" % disp,
-                      id="toggle_pedigree") as pedol:
+            disp = "none" if self.report.options["toggle"] else "block"
+            with Html(
+                "ol",
+                class_="pedigreegen",
+                style="display:%s" % disp,
+                id="toggle_pedigree",
+            ) as pedol:
                 ped += pedol
                 if father and mother:
                     pedfa = Html("li") + self.pedigree_person(father)
                     pedol += pedfa
                     with Html("ol") as pedma:
                         pedfa += pedma
-                        pedma += (Html("li", class_="spouse") +
-                                  self.pedigree_person(mother) +
-                                  children_ped(Html("ol"))
-                                 )
+                        pedma += (
+                            Html("li", class_="spouse")
+                            + self.pedigree_person(mother)
+                            + children_ped(Html("ol"))
+                        )
                 elif father:
-                    pedol += (Html("li") + self.pedigree_person(father) +
-                              children_ped(Html("ol"))
-                             )
+                    pedol += (
+                        Html("li")
+                        + self.pedigree_person(father)
+                        + children_ped(Html("ol"))
+                    )
                 elif mother:
-                    pedol += (Html("li") + self.pedigree_person(mother) +
-                              children_ped(Html("ol"))
-                             )
+                    pedol += (
+                        Html("li")
+                        + self.pedigree_person(mother)
+                        + children_ped(Html("ol"))
+                    )
                 else:
-                    pedol += (Html("li") + children_ped(Html("ol")))
+                    pedol += Html("li") + children_ped(Html("ol"))
         return ped
 
     def display_ind_general(self):
@@ -1588,17 +1717,15 @@ class PersonPages(BasePage):
         """
         self.page_title = self.sort_name
         thumbnail = self.disp_first_img_as_thumbnail(
-            self.person.get_media_list(), self.person)
-        section_title = Html("h3", html_escape(self.page_title),
-                             inline=True) + (
-                                 Html('sup') + (
-                                     Html('small') +
-                                     self.get_citation_links(
-                                         self.person.get_citation_list())))
+            self.person.get_media_list(), self.person
+        )
+        section_title = Html("h3", html_escape(self.page_title), inline=True) + (
+            Html("sup")
+            + (Html("small") + self.get_citation_links(self.person.get_citation_list()))
+        )
 
         # begin summaryarea division
-        with Html("div", id='summaryarea') as summaryarea:
-
+        with Html("div", id="summaryarea") as summaryarea:
             # begin general details table
             with Html("table", class_="infolist") as table:
                 summaryarea += table
@@ -1617,19 +1744,18 @@ class PersonPages(BasePage):
                     # if we have just a firstname, then the name is preceeded
                     # by ", " which doesn't exactly look very nice printed on
                     # the web page
-                    if pname[:2] == ', ': # TODO for Arabic, translate this?
+                    if pname[:2] == ", ":  # TODO for Arabic, translate this?
                         pname = pname[2:]
                     if name != primary_name:
                         datetext = self.rlocale.get_date(name.date)
                         if datetext:
-                            pname = datetext + ': ' + pname
+                            pname = datetext + ": " + pname
 
                     type_ = self._(name.get_type().xml_str())
 
                     trow = Html("tr") + (
-                        Html("td", type_, class_="ColumnAttribute",
-                             inline=True)
-                        )
+                        Html("td", type_, class_="ColumnAttribute", inline=True)
+                    )
 
                     tcell = Html("td", pname, class_="ColumnValue")
                     # display any notes associated with this name
@@ -1652,11 +1778,14 @@ class PersonPages(BasePage):
                     call_name = name.get_call_name()
                     if call_name and call_name != first_name:
                         trow = Html("tr") + (
-                            Html("td", self._("Call Name"),
-                                 class_="ColumnAttribute", inline=True),
-                            Html("td", call_name, class_="ColumnValue",
-                                 inline=True)
-                            )
+                            Html(
+                                "td",
+                                self._("Call Name"),
+                                class_="ColumnAttribute",
+                                inline=True,
+                            ),
+                            Html("td", call_name, class_="ColumnValue", inline=True),
+                        )
                         table += trow
 
                     # display the nickname associated with this name. Note that
@@ -1670,33 +1799,36 @@ class PersonPages(BasePage):
                     nick_name = name.get_nick_name()
                     if nick_name and nick_name != first_name:
                         trow = Html("tr") + (
-                            Html("td", self._("Nick Name"),
-                                 class_="ColumnAttribute",
-                                 inline=True),
-                            Html("td", nick_name, class_="ColumnValue",
-                                 inline=True)
-                            )
+                            Html(
+                                "td",
+                                self._("Nick Name"),
+                                class_="ColumnAttribute",
+                                inline=True,
+                            ),
+                            Html("td", nick_name, class_="ColumnValue", inline=True),
+                        )
                         table += trow
 
                 # Gramps ID
                 person_gid = self.person.get_gramps_id()
                 if not self.noid and person_gid:
                     trow = Html("tr") + (
-                        Html("td", self._("Gramps ID"),
-                             class_="ColumnAttribute",
-                             inline=True),
-                        Html("td", person_gid, class_="ColumnValue",
-                             inline=True)
-                        )
+                        Html(
+                            "td",
+                            self._("Gramps ID"),
+                            class_="ColumnAttribute",
+                            inline=True,
+                        ),
+                        Html("td", person_gid, class_="ColumnValue", inline=True),
+                    )
                     table += trow
 
                 # Gender
                 gender = self._(self.gender_map[self.person.gender])
                 trow = Html("tr") + (
-                    Html("td", self._("Gender"), class_="ColumnAttribute",
-                         inline=True),
-                    Html("td", gender, class_="ColumnValue", inline=True)
-                    )
+                    Html("td", self._("Gender"), class_="ColumnAttribute", inline=True),
+                    Html("td", gender, class_="ColumnValue", inline=True),
+                )
                 table += trow
 
                 # Age At Death???
@@ -1722,58 +1854,66 @@ class PersonPages(BasePage):
 
                     if not alive and death_date is not None:
                         nyears = death_date - birth_date
-                        nyears = nyears.format(precision=3,
-                                               dlocale=self.rlocale)
+                        nyears = nyears.format(precision=3, dlocale=self.rlocale)
                         trow = Html("tr") + (
-                            Html("td", self._("Age at Death"),
-                                 class_="ColumnAttribute", inline=True),
-                            Html("td", nyears,
-                                 class_="ColumnValue", inline=True)
-                            )
+                            Html(
+                                "td",
+                                self._("Age at Death"),
+                                class_="ColumnAttribute",
+                                inline=True,
+                            ),
+                            Html("td", nyears, class_="ColumnValue", inline=True),
+                        )
                         table += trow
-                if self.report.options['toggle']:
+                if self.report.options["toggle"]:
                     # Show birth and/or death date if we use the close button.
                     # If we have associated places, show them.
                     if p_birth:
                         p_birth = "%(bdat)s (%(pbirth)s)" % {
-                            'bdat': self.rlocale.get_date(birth_date),
-                            'pbirth': p_birth
-                            }
+                            "bdat": self.rlocale.get_date(birth_date),
+                            "pbirth": p_birth,
+                        }
                     elif birth_ref and birth:
                         p_birth = self.rlocale.get_date(birth_date)
                     if p_death:
                         p_death = "%(ddat)s (%(pdeath)s)" % {
-                            'ddat': self.rlocale.get_date(death_date),
-                            'pdeath': p_death
-                            }
+                            "ddat": self.rlocale.get_date(death_date),
+                            "pdeath": p_death,
+                        }
                     elif death_ref and death:
                         p_death = self.rlocale.get_date(death_date)
                     if birth_date and birth_date is not Date.EMPTY:
                         trow = Html("tr") + (
-                            Html("td", self._("Birth date"),
-                                 class_="ColumnAttribute", inline=True),
-                            Html("td", p_birth,
-                                 class_="ColumnValue", inline=True)
-                            )
+                            Html(
+                                "td",
+                                self._("Birth date"),
+                                class_="ColumnAttribute",
+                                inline=True,
+                            ),
+                            Html("td", p_birth, class_="ColumnValue", inline=True),
+                        )
                         table += trow
                     if death_date and death_date is not Date.EMPTY:
                         trow = Html("tr") + (
-                            Html("td", self._("Death date"),
-                                 class_="ColumnAttribute", inline=True),
-                            Html("td", p_death,
-                                 class_="ColumnValue", inline=True)
-                            )
+                            Html(
+                                "td",
+                                self._("Death date"),
+                                class_="ColumnAttribute",
+                                inline=True,
+                            ),
+                            Html("td", p_death, class_="ColumnValue", inline=True),
+                        )
                         table += trow
 
                 # Tags
                 tags = self.show_tags(self.person)
                 if tags and self.report.inc_tags:
                     trow = Html("tr") + (
-                        Html("td", self._("Tags"),
-                             class_="ColumnAttribute", inline=True),
-                        Html("td", tags,
-                             class_="ColumnValue", inline=True)
-                        )
+                        Html(
+                            "td", self._("Tags"), class_="ColumnAttribute", inline=True
+                        ),
+                        Html("td", tags, class_="ColumnValue", inline=True),
+                    )
                     table += trow
 
         # return all three pieces to its caller
@@ -1800,9 +1940,10 @@ class PersonPages(BasePage):
 
             # begin events table
             classe = "infolist eventlist toggle_event"
-            disp = "none" if self.report.options['toggle'] else "block"
-            with Html("table", class_=classe, id="toggle_event",
-                      style="display:%s" % disp) as table:
+            disp = "none" if self.report.options["toggle"] else "block"
+            with Html(
+                "table", class_=classe, id="toggle_event", style="display:%s" % disp
+            ) as table:
                 section += table
 
                 thead = Html("thead")
@@ -1817,12 +1958,15 @@ class PersonPages(BasePage):
                 for evt_ref in sorted(event_ref_list, key=self.sort_by_event_date):
                     event = self.r_db.get_event_from_handle(evt_ref.ref)
                     if event:
-
                         # display event row
-                        tbody += self.display_event_row(event, evt_ref,
-                                                        place_lat_long,
-                                                        True, True,
-                                                        EventRoleType.PRIMARY)
+                        tbody += self.display_event_row(
+                            event,
+                            evt_ref,
+                            place_lat_long,
+                            True,
+                            True,
+                            EventRoleType.PRIMARY,
+                        )
         return section
 
     def display_parent(self, handle, title, rel):
@@ -1839,7 +1983,7 @@ class PersonPages(BasePage):
         tcell2 += self.new_person_link(handle, uplink=True)
 
         if rel and rel != ChildRefType(ChildRefType.BIRTH):
-            tcell2 += ''.join(['&nbsp;'] *3 + ['(%s)']) % str(rel)
+            tcell2 += "".join(["&nbsp;"] * 3 + ["(%s)"]) % str(rel)
 
         person = self.r_db.get_person_from_handle(handle)
         birth = death = ""
@@ -1851,11 +1995,13 @@ class PersonPages(BasePage):
             if dd_event:
                 death = self.rlocale.get_date(dd_event.get_date_object())
 
-        tcell3 = Html("td", birth, class_="ColumnDate",
-                      inline=False, close=False, indent=False)
+        tcell3 = Html(
+            "td", birth, class_="ColumnDate", inline=False, close=False, indent=False
+        )
 
-        tcell4 = Html("td", death, class_="ColumnDate",
-                      inline=True, close=False, indent=False)
+        tcell4 = Html(
+            "td", death, class_="ColumnDate", inline=True, close=False, indent=False
+        )
 
         tcell2 += tcell3
         tcell2 += tcell4
@@ -1874,12 +2020,15 @@ class PersonPages(BasePage):
         child_ref_list = family.get_child_ref_list()
         for child_ref in child_ref_list:
             if child_ref.ref == child_handle:
-                return (child_ref.get_father_relation(),
-                        child_ref.get_mother_relation())
+                return (
+                    child_ref.get_father_relation(),
+                    child_ref.get_mother_relation(),
+                )
         return (None, None)
 
     def display_ind_parent_family(
-            self, birthmother, birthfather, family, table, first=False):
+        self, birthmother, birthfather, family, table, first=False
+    ):
         """
         Display the individual parent family
 
@@ -1890,8 +2039,7 @@ class PersonPages(BasePage):
         @param: first       -- Is this the first indiv ?
         """
         if not first:
-            trow = Html("tr") + (Html("td", "&nbsp;", colspan=3,
-                                      inline=True))
+            trow = Html("tr") + (Html("td", "&nbsp;", colspan=3, inline=True))
             table += trow
 
         # get the father
@@ -1936,10 +2084,12 @@ class PersonPages(BasePage):
                         # routines to work. Depending on your definition of
                         # sibling, we cannot necessarily guarantee that.
                         sibling_type = self.rel_class.get_sibling_type(
-                            self.r_db, self.person, child)
+                            self.r_db, self.person, child
+                        )
 
                         reln = self.rel_class.get_sibling_relationship_string(
-                            sibling_type, self.person.gender, child.gender)
+                            sibling_type, self.person.gender, child.gender
+                        )
                         reln = reln[0].upper() + reln[1:]
                     except Exception:
                         reln = self._("Not siblings")
@@ -1954,11 +2104,12 @@ class PersonPages(BasePage):
                 else:
                     frelmrel = ""
                 trow = Html("tr") + (
-                    Html("td", reln, class_="ColumnAttribute", inline=True))
+                    Html("td", reln, class_="ColumnAttribute", inline=True)
+                )
 
                 tcell = Html("td", val1, class_="ColumnValue", inline=True)
                 if child == self.person:
-                    name_format = self.report.options['name_format']
+                    name_format = self.report.options["name_format"]
                     primary_name = child.get_primary_name()
                     name = Name(primary_name)
                     name.set_display_as(name_format)
@@ -1975,18 +2126,15 @@ class PersonPages(BasePage):
                 if dd_event:
                     death = self.rlocale.get_date(dd_event.get_date_object())
 
-                tcell2 = Html("td", birth, class_="ColumnDate",
-                              inline=True)
+                tcell2 = Html("td", birth, class_="ColumnDate", inline=True)
 
-                tcell3 = Html("td", death, class_="ColumnDate",
-                              inline=True)
+                tcell3 = Html("td", death, class_="ColumnDate", inline=True)
 
                 trow += tcell
                 trow += tcell2
                 trow += tcell3
 
-                tcell = Html("td", frelmrel, class_="ColumnValue",
-                             inline=True)
+                tcell = Html("td", frelmrel, class_="ColumnValue", inline=True)
                 trow += tcell
                 table += trow
 
@@ -2011,16 +2159,18 @@ class PersonPages(BasePage):
             bd_date = bd_event.get_date_object()
         for event_ref in family.get_event_ref_list():
             event = self.r_db.get_event_from_handle(event_ref.ref)
-            if (event.type == EventType.DIVORCE and
-                    event_ref.get_role() in (EventRoleType.FAMILY,
-                                             EventRoleType.PRIMARY)):
+            if event.type == EventType.DIVORCE and event_ref.get_role() in (
+                EventRoleType.FAMILY,
+                EventRoleType.PRIMARY,
+            ):
                 dv_date = event.get_date_object()
                 if bd_date > dv_date:
                     # We have a divorce before the child birth
                     return False
-            if (event.type == EventType.MARRIAGE and
-                    event_ref.get_role() in (EventRoleType.FAMILY,
-                                             EventRoleType.PRIMARY)):
+            if event.type == EventType.MARRIAGE and event_ref.get_role() in (
+                EventRoleType.FAMILY,
+                EventRoleType.PRIMARY,
+            ):
                 dm_date = event.get_date_object()
                 dd_date = Today()
                 dd_event = get_death_or_fallback(self.r_db, self.person)
@@ -2039,10 +2189,9 @@ class PersonPages(BasePage):
             return False
         return True
 
-    def display_step_families(self, parent_handle,
-                              all_family_handles,
-                              birthmother, birthfather,
-                              table):
+    def display_step_families(
+        self, parent_handle, all_family_handles, birthmother, birthfather, table
+    ):
         """
         Display step families
 
@@ -2057,9 +2206,11 @@ class PersonPages(BasePage):
             for parent_family_handle in parent.get_family_handle_list():
                 if parent_family_handle not in all_family_handles:
                     parent_family = self.r_db.get_family_from_handle(
-                        parent_family_handle)
-                    self.display_ind_parent_family(birthmother, birthfather,
-                                                   parent_family, table)
+                        parent_family_handle
+                    )
+                    self.display_ind_parent_family(
+                        birthmother, birthfather, parent_family, table
+                    )
                     all_family_handles.append(parent_family_handle)
         return
 
@@ -2067,18 +2218,16 @@ class PersonPages(BasePage):
         """
         Display the person's relationship to the center person
         """
-        center_person = self.r_db.get_person_from_gramps_id(
-            self.report.options['pid'])
+        center_person = self.r_db.get_person_from_gramps_id(self.report.options["pid"])
         if center_person is None:
             return None
-        if (int(self.report.options['living_people']) !=
-                LivingProxyDb.MODE_INCLUDE_ALL):
+        if int(self.report.options["living_people"]) != LivingProxyDb.MODE_INCLUDE_ALL:
             if probably_alive(center_person, self.r_db, Today()):
                 return None
-        relationship = self.rel_class.get_one_relationship(self.r_db,
-                                                           center_person,
-                                                           self.person)
-        if relationship == "": # No relation to display
+        relationship = self.rel_class.get_one_relationship(
+            self.r_db, center_person, self.person
+        )
+        if relationship == "":  # No relation to display
             return None
 
         # begin center_person division
@@ -2086,7 +2235,7 @@ class PersonPages(BasePage):
         with Html("div", class_="subsection", id="parents") as section:
             message = self._("Relation to the center person")
             message += " ("
-            name_format = self.report.options['name_format']
+            name_format = self.report.options["name_format"]
             primary_name = center_person.get_primary_name()
             name = Name(primary_name)
             name.set_display_as(name_format)
@@ -2111,9 +2260,13 @@ class PersonPages(BasePage):
                 h4_head += self._("Parents")
 
             # begin parents table
-            disp = "none" if self.report.options['toggle'] else "block"
-            with Html("table", class_="infolist toggle_parent",
-                      id="toggle_parent", style="display:%s" % disp) as table:
+            disp = "none" if self.report.options["toggle"] else "block"
+            with Html(
+                "table",
+                class_="infolist toggle_parent",
+                id="toggle_parent",
+                style="display:%s" % disp,
+            ) as table:
                 section += table
 
                 thead = Html("thead")
@@ -2129,9 +2282,10 @@ class PersonPages(BasePage):
                         (self._("Name"), "ColumnValue"),
                         (self._("Birth date"), "ColumnValue"),
                         (self._("Death date"), "ColumnValue"),
-                        (self._("Relation within this family "
-                                "(if not by birth)"),
-                         "ColumnValue")
+                        (
+                            self._("Relation within this family " "(if not by birth)"),
+                            "ColumnValue",
+                        ),
                     ]
                 )
 
@@ -2139,30 +2293,37 @@ class PersonPages(BasePage):
 
                 all_family_handles = list(parent_list)
                 (birthmother, birthfather) = self.rel_class.get_birth_parents(
-                    self.r_db, self.person)
+                    self.r_db, self.person
+                )
 
                 first = True
                 for family_handle in parent_list:
                     family = self.r_db.get_family_from_handle(family_handle)
                     if family:
                         # Display this family
-                        self.display_ind_parent_family(birthmother,
-                                                       birthfather,
-                                                       family, tbody, first)
+                        self.display_ind_parent_family(
+                            birthmother, birthfather, family, tbody, first
+                        )
                         first = False
 
-                        if self.report.options['showhalfsiblings']:
+                        if self.report.options["showhalfsiblings"]:
                             # Display all families in which the parents are
                             # involved. This displays half siblings and step
                             # siblings
                             self.display_step_families(
                                 family.get_father_handle(),
                                 all_family_handles,
-                                birthmother, birthfather, tbody)
+                                birthmother,
+                                birthfather,
+                                tbody,
+                            )
                             self.display_step_families(
                                 family.get_mother_handle(),
                                 all_family_handles,
-                                birthmother, birthfather, tbody)
+                                birthmother,
+                                birthfather,
+                                tbody,
+                            )
                 table += tbody
         return section
 
@@ -2185,11 +2346,9 @@ class PersonPages(BasePage):
             spouse_handle = utils.find_spouse(self.person, rel_family)
             if spouse_handle:
                 spouse = self.r_db.get_person_from_handle(spouse_handle)
-                pedsp = (Html("li", class_="spouse") +
-                         self.pedigree_person(spouse)
-                        )
+                pedsp = Html("li", class_="spouse") + self.pedigree_person(spouse)
             else:
-                pedsp = (Html("li", class_="spouse"))
+                pedsp = Html("li", class_="spouse")
             ped += [pedsp]
             childlist = rel_family.get_child_ref_list()
             if childlist:
@@ -2198,7 +2357,5 @@ class PersonPages(BasePage):
                     for child_ref in childlist:
                         child = self.r_db.get_person_from_handle(child_ref.ref)
                         if child:
-                            childol += (Html("li") +
-                                        self.pedigree_person(child)
-                                       )
+                            childol += Html("li") + self.pedigree_person(child)
         return ped

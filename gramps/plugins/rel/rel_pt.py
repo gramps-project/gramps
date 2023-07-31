@@ -27,46 +27,117 @@
 Specific classes for relationships.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 from gramps.gen.lib import Person
 import gramps.gen.relationship
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 #
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-_level_name_male = [ "", "primeiro", "segundo", "terceiro", "quarto", "quinto",
-                "sexto", "sétimo", "oitavo", "nono", "décimo", "décimo-primeiro",
-                "décimo-segundo", "décimo-terceiro", "décimo-quarto", "décimo-quinto",
-                "décimo-sexto", "décimo-sétimo", "décimo-oitavo", "décimo-nono",
-                "vigésimo"]
+_level_name_male = [
+    "",
+    "primeiro",
+    "segundo",
+    "terceiro",
+    "quarto",
+    "quinto",
+    "sexto",
+    "sétimo",
+    "oitavo",
+    "nono",
+    "décimo",
+    "décimo-primeiro",
+    "décimo-segundo",
+    "décimo-terceiro",
+    "décimo-quarto",
+    "décimo-quinto",
+    "décimo-sexto",
+    "décimo-sétimo",
+    "décimo-oitavo",
+    "décimo-nono",
+    "vigésimo",
+]
 
 # Short forms (in apocope) used before names
-_level_name_male_a = [ "", "primeiro", "segundo", "terceiro", "quarto", "quinto",
-                "sexto", "sétimo", "oitavo", "nono", "décimo", "décimo-primeiro",
-                "décimo-segundo", "décimo-terceiro", "décimo-quarto", "décimo-quinto",
-                "décimo-sexto", "décimo-sétimo", "décimo-oitavo", "décimo-nono",
-                "vigésimo"]
+_level_name_male_a = [
+    "",
+    "primeiro",
+    "segundo",
+    "terceiro",
+    "quarto",
+    "quinto",
+    "sexto",
+    "sétimo",
+    "oitavo",
+    "nono",
+    "décimo",
+    "décimo-primeiro",
+    "décimo-segundo",
+    "décimo-terceiro",
+    "décimo-quarto",
+    "décimo-quinto",
+    "décimo-sexto",
+    "décimo-sétimo",
+    "décimo-oitavo",
+    "décimo-nono",
+    "vigésimo",
+]
 
-_level_name_female = [ "", "primeira", "segunda", "terceira", "quarta", "quinta",
-                "sexta", "sétima", "oitava", "nona", "décima", "décima-primeira",
-                "décima-segunda", "décima-terceira", "décima-quarta", "décima-quinta",
-                "décima-sexta", "décima-sétima", "décima-oitava", "décima-nona",
-                "vigésima"]
+_level_name_female = [
+    "",
+    "primeira",
+    "segunda",
+    "terceira",
+    "quarta",
+    "quinta",
+    "sexta",
+    "sétima",
+    "oitava",
+    "nona",
+    "décima",
+    "décima-primeira",
+    "décima-segunda",
+    "décima-terceira",
+    "décima-quarta",
+    "décima-quinta",
+    "décima-sexta",
+    "décima-sétima",
+    "décima-oitava",
+    "décima-nona",
+    "vigésima",
+]
 
-_level_name_plural = [ "", "primeiros", "segundos", "terceiros", "quartos",
-                "quintos", "sextos", "sétimos", "oitavos", "nonos",
-                "décimos", "décimos-primeiros", "décimos-segundos", "décimos-terceiros",
-                "décimos-quartos", "décimos-quintos", "décimos-sextos",
-                "décimos-sétimos", "décimos-oitavos", "décimos-nonos",
-                "vigésimos"]
+_level_name_plural = [
+    "",
+    "primeiros",
+    "segundos",
+    "terceiros",
+    "quartos",
+    "quintos",
+    "sextos",
+    "sétimos",
+    "oitavos",
+    "nonos",
+    "décimos",
+    "décimos-primeiros",
+    "décimos-segundos",
+    "décimos-terceiros",
+    "décimos-quartos",
+    "décimos-quintos",
+    "décimos-sextos",
+    "décimos-sétimos",
+    "décimos-oitavos",
+    "décimos-nonos",
+    "vigésimos",
+]
 
 # This plugin tries to be flexible and expect little from the following
 # tables.  Ancestors are named from the list for the first generations.
@@ -77,14 +148,44 @@ _level_name_plural = [ "", "primeiros", "segundos", "terceiros", "quartos",
 # There is a specificity for pt_BR where they can use "tataravô" instead
 # of "tetravô", being both forms correct for pt_BR but just "tetravô"
 # correct for pt. Translation keeps "tetravô".
-_parents_level = [ "", "pais", "avós", "bisavós", "trisavós",
-                   "tetravós", "pentavós", "hexavós", "heptavós", "octavós"]
+_parents_level = [
+    "",
+    "pais",
+    "avós",
+    "bisavós",
+    "trisavós",
+    "tetravós",
+    "pentavós",
+    "hexavós",
+    "heptavós",
+    "octavós",
+]
 
-_father_level = [ "", "pai", "avô", "bisavô", "trisavô",
-                  "tetravô", "pentavô", "hexavô", "heptavô", "octavô"]
+_father_level = [
+    "",
+    "pai",
+    "avô",
+    "bisavô",
+    "trisavô",
+    "tetravô",
+    "pentavô",
+    "hexavô",
+    "heptavô",
+    "octavô",
+]
 
-_mother_level = [ "", "mãe", "avó", "bisavó", "trisavó",
-                  "tetravó", "pentavó", "hexavó", "heptavó", "octavó"]
+_mother_level = [
+    "",
+    "mãe",
+    "avó",
+    "bisavó",
+    "trisavó",
+    "tetravó",
+    "pentavó",
+    "hexavó",
+    "heptavó",
+    "octavó",
+]
 
 # Higher-order terms (after "tetravô") are not standard in Portuguese.
 # Check http://www.geneall.net/P/forum_msg.php?id=136774 that states
@@ -92,57 +193,144 @@ _mother_level = [ "", "mãe", "avó", "bisavó", "trisavó",
 # higher levels, both pt and pt_BR correct form is to use, after
 # "tetravô", the "quinto avô", "sexto avô", etc.
 
-_son_level = [ "", "filho", "neto", "bisneto",
-               "trineto", "tetraneto", "pentaneto", "hexaneto", "heptaneto", "octaneto"]
+_son_level = [
+    "",
+    "filho",
+    "neto",
+    "bisneto",
+    "trineto",
+    "tetraneto",
+    "pentaneto",
+    "hexaneto",
+    "heptaneto",
+    "octaneto",
+]
 
-_daughter_level = [ "", "filha", "neta", "bisneta",
-                    "trineta", "tetraneta", "pentaneta", "hexaneta", "heptaneta", "octaneta"]
+_daughter_level = [
+    "",
+    "filha",
+    "neta",
+    "bisneta",
+    "trineta",
+    "tetraneta",
+    "pentaneta",
+    "hexaneta",
+    "heptaneta",
+    "octaneta",
+]
 
-_sister_level = [ "", "irmã", "tia", "tia avó", "tia bisavó", "tia trisavó", "tia tetravó",
-                  "tia pentavó", "tia hexavó", "tia heptavó", "tia octavó"]
+_sister_level = [
+    "",
+    "irmã",
+    "tia",
+    "tia avó",
+    "tia bisavó",
+    "tia trisavó",
+    "tia tetravó",
+    "tia pentavó",
+    "tia hexavó",
+    "tia heptavó",
+    "tia octavó",
+]
 
-_brother_level = [ "", "irmão", "tio", "tio avô", "tio bisavô", "tio trisavô",
-                   "tio tetravô", "tio pentavô", "tio hexavô", "tio heptavô", "tio octavô"]
+_brother_level = [
+    "",
+    "irmão",
+    "tio",
+    "tio avô",
+    "tio bisavô",
+    "tio trisavô",
+    "tio tetravô",
+    "tio pentavô",
+    "tio hexavô",
+    "tio heptavô",
+    "tio octavô",
+]
 
-_nephew_level = [ "", "sobrinho", "sobrinho neto", "sobrinho bisneto", "sobrinho trineto",
-                  "sobrinho tetraneto", "sobrinho pentaneto", "sobrinho hexaneto",
-                  "sobrinho heptaneto", "sobrinho octaneto"]
+_nephew_level = [
+    "",
+    "sobrinho",
+    "sobrinho neto",
+    "sobrinho bisneto",
+    "sobrinho trineto",
+    "sobrinho tetraneto",
+    "sobrinho pentaneto",
+    "sobrinho hexaneto",
+    "sobrinho heptaneto",
+    "sobrinho octaneto",
+]
 
-_niece_level = [ "", "sobrinha", "sobrinha neta", "sobrinha bisneta", "sobrinha trineta",
-                 "sobrinha tetraneta", "sobrinha pentaneta", "sobrinha hexaneta",
-                 "sobrinha heptaneta", "sobrinha octaneta"]
+_niece_level = [
+    "",
+    "sobrinha",
+    "sobrinha neta",
+    "sobrinha bisneta",
+    "sobrinha trineta",
+    "sobrinha tetraneta",
+    "sobrinha pentaneta",
+    "sobrinha hexaneta",
+    "sobrinha heptaneta",
+    "sobrinha octaneta",
+]
 
 # Relatório de Parentesco
 
-_PARENTS_LEVEL = ["", "pais", "avós", "bisavós", "tetravós",
-                  "pentavós", "hexavós", "heptavós", "octavós"]
-
-_CHILDREN_LEVEL = ["", "filhos", "netos", "bisnetos", "trinetos",
-                   "tetranetos", "pentanetos", "hexanetos", "heptanetos"
-                   "octanetos"]
-
-_SIBLINGS_LEVEL = ["", "irmãos e irmãs", "tios e tias","tios avôs e tias avós",
-                   "tios bisavôs e tias bisavós", "tios trisavôs e tias trisavós",
-                   "tios tetravôs e tias tetravós", "tios pentavôs e tias pentavós",
-                   "tios hexavôs e tias hexavós", "tios heptavôs e tias heptavós"
-                   "tios octavôs e tias octavós"]
-
-_NEPHEWS_NIECES_LEVEL = ["", "sobrinhos e sobrinhas",
-                         "sobrinhos netos e sobrinhas netas",
-                         "sobrinhos bisnetos e sobrinhas bisnetas",
-                         "sobrinhos trinetos e sobrinhas trinetas"
-                         "sobrinhos tetranetos e sobrinhas tetranetas"
-                         "sobrinhos pentanetos e sobrinhas pentanetas"
-                         "sobrinhos hexanetos e sobrinhas hexanetas"
-                         "sobrinhos heptanetos e sobrinhas heptanetas"
-                         "sobrinhos octanetos e sobrinhas octanetas"
+_PARENTS_LEVEL = [
+    "",
+    "pais",
+    "avós",
+    "bisavós",
+    "tetravós",
+    "pentavós",
+    "hexavós",
+    "heptavós",
+    "octavós",
 ]
 
-#-------------------------------------------------------------------------
+_CHILDREN_LEVEL = [
+    "",
+    "filhos",
+    "netos",
+    "bisnetos",
+    "trinetos",
+    "tetranetos",
+    "pentanetos",
+    "hexanetos",
+    "heptanetos" "octanetos",
+]
+
+_SIBLINGS_LEVEL = [
+    "",
+    "irmãos e irmãs",
+    "tios e tias",
+    "tios avôs e tias avós",
+    "tios bisavôs e tias bisavós",
+    "tios trisavôs e tias trisavós",
+    "tios tetravôs e tias tetravós",
+    "tios pentavôs e tias pentavós",
+    "tios hexavôs e tias hexavós",
+    "tios heptavôs e tias heptavós" "tios octavôs e tias octavós",
+]
+
+_NEPHEWS_NIECES_LEVEL = [
+    "",
+    "sobrinhos e sobrinhas",
+    "sobrinhos netos e sobrinhas netas",
+    "sobrinhos bisnetos e sobrinhas bisnetas",
+    "sobrinhos trinetos e sobrinhas trinetas"
+    "sobrinhos tetranetos e sobrinhas tetranetas"
+    "sobrinhos pentanetos e sobrinhas pentanetas"
+    "sobrinhos hexanetos e sobrinhas hexanetas"
+    "sobrinhos heptanetos e sobrinhas heptanetas"
+    "sobrinhos octanetos e sobrinhas octanetas",
+]
+
+
+# -------------------------------------------------------------------------
 #
 #
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     """
     RelationshipCalculator Class
@@ -209,76 +397,78 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     def get_parents(self, level):
         if level < len(_parents_level):
             return _parents_level[level]
-        elif (level-1) < len(_level_name_plural):
-            return "%s avós" % (_level_name_plural[level-1])
+        elif (level - 1) < len(_level_name_plural):
+            return "%s avós" % (_level_name_plural[level - 1])
         else:
-            return "%dº avós" % (level-1)
+            return "%dº avós" % (level - 1)
 
     def get_father(self, level):
         if level < len(_father_level):
             return _father_level[level]
-        elif (level-1) < len(_level_name_male_a):
-            return "%s avô" % (_level_name_male_a[level-1])
+        elif (level - 1) < len(_level_name_male_a):
+            return "%s avô" % (_level_name_male_a[level - 1])
         else:
-            return "%dº avô" % (level-1)
+            return "%dº avô" % (level - 1)
 
     def get_son(self, level):
         if level < len(_son_level):
             return _son_level[level]
-        elif (level-1) < len(_level_name_male_a):
-            return "%s neto" % (_level_name_male_a[level-1])
+        elif (level - 1) < len(_level_name_male_a):
+            return "%s neto" % (_level_name_male_a[level - 1])
         else:
-            return "%dº neto" % (level-1)
+            return "%dº neto" % (level - 1)
 
     def get_mother(self, level):
         if level < len(_mother_level):
             return _mother_level[level]
-        elif (level-1)<len(_level_name_female):
-            return "%s avó" % (_level_name_female[level-1])
+        elif (level - 1) < len(_level_name_female):
+            return "%s avó" % (_level_name_female[level - 1])
         else:
-            return "%dª avó" % (level-1)
+            return "%dª avó" % (level - 1)
 
     def get_daughter(self, level):
         if level < len(_daughter_level):
             return _daughter_level[level]
-        elif (level-1) < len(_level_name_female):
-            return "%s neta" % (_level_name_female[level-1])
+        elif (level - 1) < len(_level_name_female):
+            return "%s neta" % (_level_name_female[level - 1])
         else:
-            return "%dª neta" % (level-1)
+            return "%dª neta" % (level - 1)
 
     def get_aunt(self, level):
         if level < len(_sister_level):
             return _sister_level[level]
-        elif (level-2) < len(_level_name_female):
-            return "%s tia avó" % (_level_name_female[level-2])
+        elif (level - 2) < len(_level_name_female):
+            return "%s tia avó" % (_level_name_female[level - 2])
         else:
-            return "%dª tia avó" % (level-2)
+            return "%dª tia avó" % (level - 2)
 
     def get_uncle(self, level):
         if level < len(_brother_level):
             return _brother_level[level]
-        elif (level-2) < len(_level_name_male_a):
-            return "%s tio avô" % (_level_name_male_a[level-2])
+        elif (level - 2) < len(_level_name_male_a):
+            return "%s tio avô" % (_level_name_male_a[level - 2])
         else:
-            return "%dº tio avô" % (level-2)
+            return "%dº tio avô" % (level - 2)
 
     def get_nephew(self, level):
         if level < len(_nephew_level):
             return _nephew_level[level]
-        elif (level-1) < len(_level_name_male_a):
-            return "%s sobrinho neto" % (_level_name_male_a[level-1])
+        elif (level - 1) < len(_level_name_male_a):
+            return "%s sobrinho neto" % (_level_name_male_a[level - 1])
         else:
-            return "%dº sobrinho neto" % (level-1)
+            return "%dº sobrinho neto" % (level - 1)
 
     def get_niece(self, level):
         if level < len(_niece_level):
             return _niece_level[level]
-        elif (level-1) < len(_level_name_female):
-            return "%s sobrinha neta" % (_level_name_female[level-1])
+        elif (level - 1) < len(_level_name_female):
+            return "%s sobrinha neta" % (_level_name_female[level - 1])
         else:
-            return "%dª sobrinha neta" % (level-1)
+            return "%dª sobrinha neta" % (level - 1)
 
-    def get_relationship(self, secondRel, firstRel, orig_person_gender, other_person_gender):
+    def get_relationship(
+        self, secondRel, firstRel, orig_person_gender, other_person_gender
+    ):
         """
         returns a string representing the relationship between the two people,
         along with a list of common ancestors (typically father, mother)
@@ -287,7 +477,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         common = ""
         if firstRel == 0:
             if secondRel == 0:
-                return ('', common)
+                return ("", common)
             elif other_person_gender == Person.MALE:
                 return (self.get_father(secondRel), common)
             else:
@@ -304,25 +494,25 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 return (self.get_aunt(secondRel), common)
         elif secondRel == 1:
             if other_person_gender == Person.MALE:
-                return (self.get_nephew(firstRel-1), common)
+                return (self.get_nephew(firstRel - 1), common)
             else:
-                return (self.get_niece(firstRel-1), common)
+                return (self.get_niece(firstRel - 1), common)
         elif firstRel == secondRel == 2:
             if other_person_gender == Person.MALE:
-                return ('primo irmão', common)
+                return ("primo irmão", common)
             else:
-                return ('prima irmã', common)
+                return ("prima irmã", common)
         elif firstRel == secondRel:
             if other_person_gender == Person.MALE:
-                return (self.get_male_cousin(firstRel-1), common)
+                return (self.get_male_cousin(firstRel - 1), common)
             else:
-                return (self.get_female_cousin(firstRel-1), common)
-        elif firstRel == secondRel+1:
+                return (self.get_female_cousin(firstRel - 1), common)
+        elif firstRel == secondRel + 1:
             if other_person_gender == Person.MALE:
                 return (self.get_distant_nephew(secondRel), common)
             else:
                 return (self.get_distant_niece(secondRel), common)
-        elif firstRel+1 == secondRel:
+        elif firstRel + 1 == secondRel:
             if other_person_gender == Person.MALE:
                 return (self.get_distant_uncle(firstRel), common)
             else:
@@ -333,22 +523,37 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             else:
                 return (self.get_female_relative(firstRel, secondRel), common)
 
-    def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
-                                       reltocommon_a, reltocommon_b,
-                                       only_birth=True,
-                                       in_law_a=False, in_law_b=False):
-        return self.get_relationship(Ga, Gb, gender_a, gender_b)[0];
+    def get_single_relationship_string(
+        self,
+        Ga,
+        Gb,
+        gender_a,
+        gender_b,
+        reltocommon_a,
+        reltocommon_b,
+        only_birth=True,
+        in_law_a=False,
+        in_law_b=False,
+    ):
+        return self.get_relationship(Ga, Gb, gender_a, gender_b)[0]
 
-    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b,
-                                        in_law_a=False, in_law_b=False):
-        return self.get_relationship(1, 1, gender_a, gender_b)[0];
+    def get_sibling_relationship_string(
+        self, sib_type, gender_a, gender_b, in_law_a=False, in_law_b=False
+    ):
+        return self.get_relationship(1, 1, gender_a, gender_b)[0]
 
     # Relatório de parentesco
 
-    def get_plural_relationship_string(self, Ga, Gb,
-                                       reltocommon_a='', reltocommon_b='',
-                                       only_birth=True,
-                                       in_law_a=False, in_law_b=False):
+    def get_plural_relationship_string(
+        self,
+        Ga,
+        Gb,
+        reltocommon_a="",
+        reltocommon_b="",
+        only_birth=True,
+        in_law_a=False,
+        in_law_b=False,
+    ):
         """
         Cria o objecto KinshipReport que produz o relatório.
         Os argumentos são:
@@ -396,7 +601,6 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         rel_str = "???"
 
         if Ga == 0:
-
             # These are descendants
 
             if Gb < len(_CHILDREN_LEVEL):
@@ -404,7 +608,6 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             else:
                 rel_str = "descendentes"
         elif Gb == 0:
-
             # These are parents/grand parents
 
             if Ga < len(_PARENTS_LEVEL):
@@ -412,7 +615,6 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             else:
                 rel_str = "ancestrais"
         elif Gb == 1:
-
             # These are siblings/aunts/uncles
 
             if Ga < len(_SIBLINGS_LEVEL):
@@ -420,7 +622,6 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             else:
                 rel_str = "filhos dos ancestrais"
         elif Ga == 1:
-
             # These are nieces/nephews
 
             if Gb < len(_NEPHEWS_NIECES_LEVEL):
@@ -428,17 +629,14 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             else:
                 rel_str = "sobrinhos sobrinhas"
         elif Ga > 1 and Ga == Gb:
-
             # These are cousins in the same generation
 
             if Ga == 2:
                 rel_str = "primos e primas"
             elif Ga <= len(_level_name_plural):
-                rel_str = "%s primos e primas" % _level_name_plural[Ga -
-                        2]
+                rel_str = "%s primos e primas" % _level_name_plural[Ga - 2]
             else:
-
-            # security
+                # security
 
                 rel_str = "primos e primas"
 
@@ -447,8 +645,8 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
         return rel_str
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     # Test function. Call it as follows from the command line (so as to find
     #        imported modules):
     #    export PYTHONPATH=/path/to/gramps/src
@@ -456,9 +654,10 @@ if __name__ == "__main__":
     # (Above not needed here)
 
     """TRANSLATORS, copy this if statement at the bottom of your
-        rel_xx.py module, and test your work with:
-        python src/plugins/rel/rel_xx.py
+    rel_xx.py module, and test your work with:
+    python src/plugins/rel/rel_xx.py
     """
     from gramps.gen.relationship import test
+
     RC = RelationshipCalculator()
     test(RC, True)

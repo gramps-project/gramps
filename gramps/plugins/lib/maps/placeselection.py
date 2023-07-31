@@ -20,22 +20,22 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import re
 import math
 import logging
 import gi
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps Modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.managedwindow import ManagedWindow
@@ -46,41 +46,43 @@ from gramps.gen.utils.place import conv_lat_lon
 from gramps.gen.display.place import displayer as _pd
 from .osmgps import OsmGps
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 try:
-    gi.require_version('GeocodeGlib', '1.0')
+    gi.require_version("GeocodeGlib", "1.0")
     from gi.repository import GeocodeGlib
+
     GEOCODEGLIB = True
 except:
     GEOCODEGLIB = False
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Functions and variables
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 PLACE_REGEXP = re.compile('<span background="green">(.*)</span>')
 PLACE_STRING = '<span background="green">%s</span>'
 GEOCODE_REGEXP = re.compile('<span background="red">(.*)</span>')
 GEOCODE_STRING = '<span background="red">%s</span>'
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Set up logging
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 _LOG = logging.getLogger("maps.placeselection")
 _ = glocale.translation.sgettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # PlaceSelection
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class PlaceSelection(ManagedWindow, OsmGps):
     """
     We show a selection box for possible places in a region of the map.
@@ -88,8 +90,10 @@ class PlaceSelection(ManagedWindow, OsmGps):
     Depending of this region, we can show the possible choice.
     We select the value depending of our need which open the EditPlace box.
     """
-    def __init__(self, uistate, dbstate, maps, layer, places, lat, lon,
-                 function, oldvalue=None):
+
+    def __init__(
+        self, uistate, dbstate, maps, layer, places, lat, lon, function, oldvalue=None
+    ):
         """
         Place Selection initialization
         """
@@ -112,28 +116,38 @@ class PlaceSelection(ManagedWindow, OsmGps):
         self.selection_layer = layer
         self.layer = layer
         self.warning = False
-        dlg = Gtk.Dialog(title=_('Place Selection in a region'),
-                         transient_for=uistate.window)
-        dlg.add_button(_('_Close'), Gtk.ResponseType.CLOSE)
-        self.set_window(dlg, None, _('Place Selection in a region'), None)
-        mylabel = _('Choose the radius of the selection.\n'
-                    'On the map you should see a circle or an'
-                    ' oval depending on the latitude.')
-        mylabel += _('\nIn the following table you may have :'
-                     '\n - a green row related to a selected place.')
+        dlg = Gtk.Dialog(
+            title=_("Place Selection in a region"), transient_for=uistate.window
+        )
+        dlg.add_button(_("_Close"), Gtk.ResponseType.CLOSE)
+        self.set_window(dlg, None, _("Place Selection in a region"), None)
+        mylabel = _(
+            "Choose the radius of the selection.\n"
+            "On the map you should see a circle or an"
+            " oval depending on the latitude."
+        )
+        mylabel += _(
+            "\nIn the following table you may have :"
+            "\n - a green row related to a selected place."
+        )
         if GEOCODEGLIB:
-            mylabel += _('\n - a red row related to a geocoding result.')
+            mylabel += _("\n - a red row related to a geocoding result.")
         label = Gtk.Label(label=mylabel)
         label.set_valign(Gtk.Align.END)
         self.window.vbox.pack_start(label, False, True, 0)
-        adj = Gtk.Adjustment(value=1.0, lower=0.1, upper=3.0,
-                             step_increment=0.1, page_increment=0, page_size=0)
+        adj = Gtk.Adjustment(
+            value=1.0,
+            lower=0.1,
+            upper=3.0,
+            step_increment=0.1,
+            page_increment=0,
+            page_size=0,
+        )
         # default value is 1.0, minimum is 0.1 and max is 3.0
-        slider = Gtk.Scale(orientation=Gtk.Orientation.HORIZONTAL,
-                           adjustment=adj)
+        slider = Gtk.Scale(orientation=Gtk.Orientation.HORIZONTAL, adjustment=adj)
         slider.set_digits(1)
         slider.set_value_pos(Gtk.PositionType.BOTTOM)
-        slider.connect('value-changed', self.slider_change, self.lat, self.lon)
+        slider.connect("value-changed", self.slider_change, self.lat, self.lon)
         self.window.vbox.pack_start(slider, False, True, 0)
         self.vadjust = Gtk.Adjustment(page_size=15)
         self.scroll = Gtk.ScrolledWindow(vadjustment=self.vadjust)
@@ -143,10 +157,10 @@ class PlaceSelection(ManagedWindow, OsmGps):
         self.choices = Gtk.TreeView(model=self.plist)
         self.scroll.add(self.choices)
         self.renderer = Gtk.CellRendererText()
-        self.tvcol1 = Gtk.TreeViewColumn(_('Country'), self.renderer, markup=0)
-        self.tvcol2 = Gtk.TreeViewColumn(_('State'), self.renderer, markup=1)
-        self.tvcol3 = Gtk.TreeViewColumn(_('County'), self.renderer, markup=2)
-        self.tvcol4 = Gtk.TreeViewColumn(_('Other'), self.renderer, markup=3)
+        self.tvcol1 = Gtk.TreeViewColumn(_("Country"), self.renderer, markup=0)
+        self.tvcol2 = Gtk.TreeViewColumn(_("State"), self.renderer, markup=1)
+        self.tvcol3 = Gtk.TreeViewColumn(_("County"), self.renderer, markup=2)
+        self.tvcol4 = Gtk.TreeViewColumn(_("Other"), self.renderer, markup=3)
         self.tvcol1.set_sort_column_id(0)
         self.tvcol2.set_sort_column_id(1)
         self.tvcol3.set_sort_column_id(2)
@@ -157,15 +171,18 @@ class PlaceSelection(ManagedWindow, OsmGps):
         self.choices.append_column(self.tvcol4)
         self.window.vbox.pack_start(self.scroll, True, True, 0)
         self.label2 = Gtk.Label()
-        self.label2.set_markup('<span background="green" foreground="black"'
-                               '>%s</span>' %
-                               _('The green values in the row correspond '
-                                 'to the current place values.'))
+        self.label2.set_markup(
+            '<span background="green" foreground="black"'
+            ">%s</span>"
+            % _(
+                "The green values in the row correspond " "to the current place values."
+            )
+        )
         self.label2.set_valign(Gtk.Align.END)
         self.window.vbox.pack_start(self.label2, False, True, 0)
         self.window.set_default_size(400, 300)
-        self.choices.connect('row-activated', self.selection, function)
-        self.window.connect('response', self.close)
+        self.choices.connect("row-activated", self.selection, function)
+        self.window.connect("response", self.close)
         self.window.show_all()
         self.show()
         self.label2.hide()
@@ -194,31 +211,37 @@ class PlaceSelection(ManagedWindow, OsmGps):
             self.label2.show()
             place = self.dbstate.db.get_place_from_handle(self.oldvalue)
             loc = get_main_location(self.dbstate.db, place)
-            self.plist.append((PLACE_STRING % loc.get(PlaceType.COUNTRY, ''),
-                               PLACE_STRING % loc.get(PlaceType.STATE, ''),
-                               PLACE_STRING % loc.get(PlaceType.COUNTY, ''),
-                               PLACE_STRING % _('Other'),
-                               self.oldvalue)
-                             )
+            self.plist.append(
+                (
+                    PLACE_STRING % loc.get(PlaceType.COUNTRY, ""),
+                    PLACE_STRING % loc.get(PlaceType.STATE, ""),
+                    PLACE_STRING % loc.get(PlaceType.COUNTY, ""),
+                    PLACE_STRING % _("Other"),
+                    self.oldvalue,
+                )
+            )
         for place in self.places:
-            self.plist.append((place[0], place[1],
-                               place[2], place[3], place[4]))
+            self.plist.append((place[0], place[1], place[2], place[3], place[4]))
         # here, we could add value from geography names services ...
         if GEOCODEGLIB:
             loc = GeocodeGlib.Location.new(lat, lon, 0)
             obj = GeocodeGlib.Reverse.new_for_location(loc)
             try:
                 result = GeocodeGlib.Reverse.resolve(obj)
-                self.plist.append((GEOCODE_STRING % result.get_country(),
-                                   GEOCODE_STRING % result.get_state(),
-                                   GEOCODE_STRING % result.get_town(),
-                                   GEOCODE_STRING % result.get_name(), ''))
+                self.plist.append(
+                    (
+                        GEOCODE_STRING % result.get_country(),
+                        GEOCODE_STRING % result.get_state(),
+                        GEOCODE_STRING % result.get_town(),
+                        GEOCODE_STRING % result.get_name(),
+                        "",
+                    )
+                )
             except:
                 pass
 
         # if we found no place, we must create a default place.
-        self.plist.append((_("New place with empty fields"), "",
-                           "...", "", None))
+        self.plist.append((_("New place with empty fields"), "", "...", "", None))
 
     def hide_the_region(self):
         """
@@ -235,14 +258,14 @@ class PlaceSelection(ManagedWindow, OsmGps):
         # circle (rds)
         self.hide_the_region()
         self.selection_layer = self.add_selection_layer()
-        self.selection_layer.add_circle(rds/2.0, self.lat, self.lon)
+        self.selection_layer.add_circle(rds / 2.0, self.lat, self.lon)
 
     def get_location(self, gramps_id):
         """
         get location values
         """
         parent_place = None
-        country = state = county = other = ''
+        country = state = county = other = ""
         place = self.dbstate.db.get_place_from_gramps_id(gramps_id)
         place_name = place.name.get_value()
         parent_list = place.get_placeref_list()
@@ -265,7 +288,7 @@ class PlaceSelection(ManagedWindow, OsmGps):
                 other = place.name.get_value()
                 if parent_place is None:
                     parent_place = place.get_handle()
-        return(country, state, county, place_name, other)
+        return (country, state, county, place_name, other)
 
     def match(self, lat, lon):
         """
@@ -276,11 +299,9 @@ class PlaceSelection(ManagedWindow, OsmGps):
 
         # place
         for entry in self.place_list:
-            if (math.hypot(lat-float(entry[3]),
-                           lon-float(entry[4])) <= rds):
+            if math.hypot(lat - float(entry[3]), lon - float(entry[4])) <= rds:
                 # Do we already have this place ? avoid duplicates
-                (country, state, county,
-                 place, other) = self.get_location(entry[9])
+                (country, state, county, place, other) = self.get_location(entry[9])
                 if not [country, state, county, place, other] in self.places:
                     self.places.append([country, state, county, place, other])
         self.warning = False
@@ -308,14 +329,12 @@ class PlaceSelection(ManagedWindow, OsmGps):
                     WarningDialog(warn1, warn2, parent=self.uistate.window)
                     self.warning = True
                     continue
-                if (math.hypot(lat-float(latn),
-                               lon-float(lonn)) <= rds):
-                    (country, state, county,
-                     place, other) = self.get_location(place.get_gramps_id())
-                    if not [country, state, county,
-                            place, other] in self.places:
-                        self.places.append([country, state, county,
-                                            place, other])
+                if math.hypot(lat - float(latn), lon - float(lonn)) <= rds:
+                    (country, state, county, place, other) = self.get_location(
+                        place.get_gramps_id()
+                    )
+                    if not [country, state, county, place, other] in self.places:
+                        self.places.append([country, state, county, place, other])
 
     def selection(self, obj, index, column, function):
         """
@@ -324,7 +343,7 @@ class PlaceSelection(ManagedWindow, OsmGps):
         dummy_obj = obj
         dummy_col = column
         dummy_fct = function
-        #TODO : self.plist unsubscriptable
+        # TODO : self.plist unsubscriptable
         self.function(self.plist[index], self.lat, self.lon)
 
     def untag_text(self, text, tag):

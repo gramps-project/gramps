@@ -21,51 +21,53 @@
 #
 # gen.filters.rules/Person/_HasAssociation.py
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasAssociation
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasAssociation(Rule):
     """Rule that checks for a person with a personal association"""
 
-    labels = [  _('Number of instances:'), _('Number must be:')]
-    name = _('People with <count> associations')
+    labels = [_("Number of instances:"), _("Number must be:")]
+    name = _("People with <count> associations")
     description = _("Matches people with a certain number of associations")
-    category = _('General filters')
+    category = _("General filters")
 
     def prepare(self, db, user):
         # things we want to do just once, not for every handle
-        if  self.list[1] == 'less than':
+        if self.list[1] == "less than":
             self.count_type = 0
-        elif self.list[1] == 'greater than':
+        elif self.list[1] == "greater than":
             self.count_type = 2
         else:
-            self.count_type = 1 # "equal to"
+            self.count_type = 1  # "equal to"
 
         self.selected_count = int(self.list[0])
 
     def apply(self, db, person):
         count = len(person.get_person_ref_list())
-        if self.count_type == 0:     # "less than"
+        if self.count_type == 0:  # "less than"
             return count < self.selected_count
-        elif self.count_type == 2:   # "greater than"
+        elif self.count_type == 2:  # "greater than"
             return count > self.selected_count
         # "equal to"
         return count == self.selected_count

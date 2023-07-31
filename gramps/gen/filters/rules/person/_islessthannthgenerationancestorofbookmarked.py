@@ -18,12 +18,13 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
 try:
@@ -31,46 +32,47 @@ try:
 except:
     from sets import Set as set
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # IsLessThanNthGenerationAncestorOfBookmarked
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class IsLessThanNthGenerationAncestorOfBookmarked(Rule):
     # Submitted by Wayne Bergeron
     """Rule that checks for a person that is an ancestor of bookmarked persons
     not more than N generations away"""
 
-    labels = [ _('Number of generations:') ]
-    name = _('Ancestors of bookmarked people not more '
-                    'than <N> generations away')
-    category = _('Ancestral filters')
-    description = _("Matches ancestors of the people on the bookmark list "
-                    "not more than N generations away")
+    labels = [_("Number of generations:")]
+    name = _("Ancestors of bookmarked people not more " "than <N> generations away")
+    category = _("Ancestral filters")
+    description = _(
+        "Matches ancestors of the people on the bookmark list "
+        "not more than N generations away"
+    )
 
     def prepare(self, db, user):
         self.db = db
         bookmarks = db.get_bookmarks().get()
         self.map = set()
         if len(bookmarks) == 0:
-            self.apply = lambda db,p : False
+            self.apply = lambda db, p: False
         else:
             self.bookmarks = set(bookmarks)
             self.apply = self.apply_real
             for self.bookmarkhandle in self.bookmarks:
                 self.init_ancestor_list(self.bookmarkhandle, 1)
 
-
     def init_ancestor_list(self, handle, gen):
-#        if p.get_handle() in self.map:
-#            loop_error(self.orig,p)
+        #        if p.get_handle() in self.map:
+        #            loop_error(self.orig,p)
         if not handle or handle in self.map:
             # if been here already, skip
             return
@@ -89,9 +91,9 @@ class IsLessThanNthGenerationAncestorOfBookmarked(Rule):
             m_id = fam.get_mother_handle()
 
             if f_id:
-                self.init_ancestor_list(f_id, gen+1)
+                self.init_ancestor_list(f_id, gen + 1)
             if m_id:
-                self.init_ancestor_list(m_id, gen+1)
+                self.init_ancestor_list(m_id, gen + 1)
 
     def apply_real(self, db, person):
         return person.handle in self.map

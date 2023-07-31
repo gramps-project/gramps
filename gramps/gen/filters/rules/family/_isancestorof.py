@@ -23,28 +23,31 @@
 Rule that checks for a family that is an ancestor of a specified family.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # IsAncestorOf
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class IsAncestorOf(Rule):
     """
     Rule that checks for a family that is an ancestor of a specified family.
     """
-    labels = [_('ID:'), _('Inclusive:')]
-    name = _('Ancestor families of <family>')
-    category = _('General filters')
-    description = _('Matches ancestor families of the specified family')
+
+    labels = [_("ID:"), _("Inclusive:")]
+    name = _("Ancestor families of <family>")
+    category = _("General filters")
+    description = _("Matches ancestor families of the specified family")
 
     def prepare(self, db, user):
         self.map = set()
@@ -69,8 +72,7 @@ class IsAncestorOf(Rule):
         if not first:
             self.map.add(family.handle)
 
-        for parent_handle in [family.get_father_handle(),
-                              family.get_mother_handle()]:
+        for parent_handle in [family.get_father_handle(), family.get_mother_handle()]:
             if parent_handle:
                 parent = db.get_person_from_handle(parent_handle)
                 family_handle = parent.get_main_parents_family_handle()

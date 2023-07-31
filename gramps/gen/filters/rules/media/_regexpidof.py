@@ -18,32 +18,35 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._regexpidbase import RegExpIdBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasIdOf
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class RegExpIdOf(RegExpIdBase):
     """
     Rule that checks for a media object whose Gramps ID
     matches regular expression.
     """
 
-    name = _('Media objects with Id containing <text>')
-    description = _("Matches media objects whose Gramps ID matches "
-                    "the regular expression")
+    name = _("Media objects with Id containing <text>")
+    description = _(
+        "Matches media objects whose Gramps ID matches " "the regular expression"
+    )

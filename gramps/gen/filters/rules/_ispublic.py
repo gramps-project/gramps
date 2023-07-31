@@ -19,24 +19,26 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import Rule
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # "People marked public"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class IsPublic(Rule):
     """Objects not marked private."""
 
-    name = 'Objects not marked private'
+    name = "Objects not marked private"
     description = "Matches objects that are not indicated as private"
-    category = _('General filters')
+    category = _("General filters")
 
     def apply(self, db, obj):
         return not obj.get_privacy()

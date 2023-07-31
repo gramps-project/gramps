@@ -42,13 +42,13 @@ from ._dateparser import DateParser
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
 
+
 # -------------------------------------------------------------------------
 #
 # Italian parser
 #
 # -------------------------------------------------------------------------
 class DateParserIT(DateParser):
-
     modifier_to_int = {
         "prima del": Date.MOD_BEFORE,
         "prima": Date.MOD_BEFORE,

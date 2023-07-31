@@ -18,34 +18,36 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # IncompleteNames
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class IncompleteNames(Rule):
     """People with incomplete names"""
 
-    name = _('People with incomplete names')
+    name = _("People with incomplete names")
     description = _("Matches people with firstname or lastname missing")
-    category = _('General filters')
+    category = _("General filters")
 
-    def apply(self,db,person):
+    def apply(self, db, person):
         for name in [person.get_primary_name()] + person.get_alternate_names():
             if name.get_first_name().strip() == "":
                 return True

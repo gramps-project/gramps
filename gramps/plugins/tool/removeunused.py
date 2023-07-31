@@ -23,20 +23,20 @@
 
 "Find unused objects and remove with the user's permission."
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gtk modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import GObject
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.db import DbTxn
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.managedwindow import ManagedWindow
@@ -47,13 +47,15 @@ from gramps.gui.plug import tool
 from gramps.gui.glade import Glade
 from gramps.gen.filters import GenericFilterFactory, rules
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # runTool
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
     MARK_COL = 0
     OBJ_ID_COL = 1
@@ -61,12 +63,13 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
     OBJ_TYPE_COL = 3
     OBJ_HANDLE_COL = 4
 
-    BUSY_CURSOR = Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
-                                             Gdk.CursorType.WATCH)
+    BUSY_CURSOR = Gdk.Cursor.new_for_display(
+        Gdk.Display.get_default(), Gdk.CursorType.WATCH
+    )
 
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
-        self.title = _('Unused Objects')
+        self.title = _("Unused Objects")
 
         tool.Tool.__init__(self, dbstate, options_class, name)
 
@@ -80,98 +83,111 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         self.uistate = uistate
 
         self.tables = {
-            'events': {'get_func': self.db.get_event_from_handle,
-                       'remove': self.db.remove_event,
-                       'get_text': self.get_event_text,
-                       'editor': 'EditEvent',
-                       'icon': 'gramps-event',
-                       'name_ix': 4},
-            'sources': {'get_func': self.db.get_source_from_handle,
-                        'remove': self.db.remove_source,
-                        'get_text': None,
-                        'editor': 'EditSource',
-                        'icon': 'gramps-source',
-                        'name_ix': 2},
-            'citations': {'get_func': self.db.get_citation_from_handle,
-                          'remove': self.db.remove_citation,
-                          'get_text': None,
-                          'editor': 'EditCitation',
-                          'icon': 'gramps-citation',
-                          'name_ix': 3},
-            'places': {'get_func': self.db.get_place_from_handle,
-                       'remove': self.db.remove_place,
-                       'get_text': self.get_place_text,
-                       'editor': 'EditPlace',
-                       'icon': 'gramps-place',
-                       'name_ix': 2},
-            'media': {'get_func': self.db.get_media_from_handle,
-                      'remove': self.db.remove_media,
-                      'get_text': None,
-                      'editor': 'EditMedia',
-                      'icon': 'gramps-media',
-                      'name_ix': 4},
-            'repos': {'get_func': self.db.get_repository_from_handle,
-                      'remove': self.db.remove_repository,
-                      'get_text': None,
-                      'editor': 'EditRepository',
-                      'icon': 'gramps-repository',
-                      'name_ix': 3},
-            'notes': {'get_func': self.db.get_note_from_handle,
-                      'remove': self.db.remove_note,
-                      'get_text': self.get_note_text,
-                      'editor': 'EditNote',
-                      'icon': 'gramps-notes',
-                      'name_ix': 2},
-            }
+            "events": {
+                "get_func": self.db.get_event_from_handle,
+                "remove": self.db.remove_event,
+                "get_text": self.get_event_text,
+                "editor": "EditEvent",
+                "icon": "gramps-event",
+                "name_ix": 4,
+            },
+            "sources": {
+                "get_func": self.db.get_source_from_handle,
+                "remove": self.db.remove_source,
+                "get_text": None,
+                "editor": "EditSource",
+                "icon": "gramps-source",
+                "name_ix": 2,
+            },
+            "citations": {
+                "get_func": self.db.get_citation_from_handle,
+                "remove": self.db.remove_citation,
+                "get_text": None,
+                "editor": "EditCitation",
+                "icon": "gramps-citation",
+                "name_ix": 3,
+            },
+            "places": {
+                "get_func": self.db.get_place_from_handle,
+                "remove": self.db.remove_place,
+                "get_text": self.get_place_text,
+                "editor": "EditPlace",
+                "icon": "gramps-place",
+                "name_ix": 2,
+            },
+            "media": {
+                "get_func": self.db.get_media_from_handle,
+                "remove": self.db.remove_media,
+                "get_text": None,
+                "editor": "EditMedia",
+                "icon": "gramps-media",
+                "name_ix": 4,
+            },
+            "repos": {
+                "get_func": self.db.get_repository_from_handle,
+                "remove": self.db.remove_repository,
+                "get_text": None,
+                "editor": "EditRepository",
+                "icon": "gramps-repository",
+                "name_ix": 3,
+            },
+            "notes": {
+                "get_func": self.db.get_note_from_handle,
+                "remove": self.db.remove_note,
+                "get_text": self.get_note_text,
+                "editor": "EditNote",
+                "icon": "gramps-notes",
+                "name_ix": 2,
+            },
+        }
 
         self.init_gui()
 
     def init_gui(self):
         self.top = Glade()
         window = self.top.toplevel
-        self.set_window(window, self.top.get_object('title'), self.title)
-        self.setup_configs('interface.removeunused', 400, 520)
+        self.set_window(window, self.top.get_object("title"), self.title)
+        self.setup_configs("interface.removeunused", 400, 520)
 
-        self.events_box = self.top.get_object('events_box')
-        self.sources_box = self.top.get_object('sources_box')
-        self.citations_box = self.top.get_object('citations_box')
-        self.places_box = self.top.get_object('places_box')
-        self.media_box = self.top.get_object('media_box')
-        self.repos_box = self.top.get_object('repos_box')
-        self.notes_box = self.top.get_object('notes_box')
-        self.find_button = self.top.get_object('find_button')
-        self.remove_button = self.top.get_object('remove_button')
+        self.events_box = self.top.get_object("events_box")
+        self.sources_box = self.top.get_object("sources_box")
+        self.citations_box = self.top.get_object("citations_box")
+        self.places_box = self.top.get_object("places_box")
+        self.media_box = self.top.get_object("media_box")
+        self.repos_box = self.top.get_object("repos_box")
+        self.notes_box = self.top.get_object("notes_box")
+        self.find_button = self.top.get_object("find_button")
+        self.remove_button = self.top.get_object("remove_button")
 
-        self.events_box.set_active(self.options.handler.options_dict['events'])
-        self.sources_box.set_active(
-            self.options.handler.options_dict['sources'])
-        self.citations_box.set_active(
-            self.options.handler.options_dict['citations'])
-        self.places_box.set_active(
-            self.options.handler.options_dict['places'])
-        self.media_box.set_active(self.options.handler.options_dict['media'])
-        self.repos_box.set_active(self.options.handler.options_dict['repos'])
-        self.notes_box.set_active(self.options.handler.options_dict['notes'])
+        self.events_box.set_active(self.options.handler.options_dict["events"])
+        self.sources_box.set_active(self.options.handler.options_dict["sources"])
+        self.citations_box.set_active(self.options.handler.options_dict["citations"])
+        self.places_box.set_active(self.options.handler.options_dict["places"])
+        self.media_box.set_active(self.options.handler.options_dict["media"])
+        self.repos_box.set_active(self.options.handler.options_dict["repos"])
+        self.notes_box.set_active(self.options.handler.options_dict["notes"])
 
-        self.warn_tree = self.top.get_object('warn_tree')
-        self.warn_tree.connect('button_press_event', self.double_click)
+        self.warn_tree = self.top.get_object("warn_tree")
+        self.warn_tree.connect("button_press_event", self.double_click)
 
         self.selection = self.warn_tree.get_selection()
 
-        self.mark_button = self.top.get_object('mark_button')
-        self.mark_button.connect('clicked', self.mark_clicked)
+        self.mark_button = self.top.get_object("mark_button")
+        self.mark_button.connect("clicked", self.mark_clicked)
 
-        self.unmark_button = self.top.get_object('unmark_button')
-        self.unmark_button.connect('clicked', self.unmark_clicked)
+        self.unmark_button = self.top.get_object("unmark_button")
+        self.unmark_button.connect("clicked", self.unmark_clicked)
 
-        self.invert_button = self.top.get_object('invert_button')
-        self.invert_button.connect('clicked', self.invert_clicked)
+        self.invert_button = self.top.get_object("invert_button")
+        self.invert_button.connect("clicked", self.invert_clicked)
 
-        self.real_model = Gtk.ListStore(GObject.TYPE_BOOLEAN,
-                                        GObject.TYPE_STRING,
-                                        GObject.TYPE_STRING,
-                                        GObject.TYPE_STRING,
-                                        GObject.TYPE_STRING)
+        self.real_model = Gtk.ListStore(
+            GObject.TYPE_BOOLEAN,
+            GObject.TYPE_STRING,
+            GObject.TYPE_STRING,
+            GObject.TYPE_STRING,
+            GObject.TYPE_STRING,
+        )
         # a short term Gtk introspection means we need to try both ways:
         if hasattr(self.real_model, "sort_new_with_model"):
             self.sort_model = self.real_model.sort_new_with_model()
@@ -182,11 +198,12 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         self.renderer = Gtk.CellRendererText()
         self.img_renderer = Gtk.CellRendererPixbuf()
         self.bool_renderer = Gtk.CellRendererToggle()
-        self.bool_renderer.connect('toggled', self.selection_toggled)
+        self.bool_renderer.connect("toggled", self.selection_toggled)
 
         # Add mark column
-        mark_column = Gtk.TreeViewColumn(_('Mark'), self.bool_renderer,
-                                         active=RemoveUnused.MARK_COL)
+        mark_column = Gtk.TreeViewColumn(
+            _("Mark"), self.bool_renderer, active=RemoveUnused.MARK_COL
+        )
         mark_column.set_sort_column_id(RemoveUnused.MARK_COL)
         self.warn_tree.append_column(mark_column)
 
@@ -196,29 +213,38 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         self.warn_tree.append_column(img_column)
 
         # Add column with object gramps_id
-        id_column = Gtk.TreeViewColumn(_('ID'), self.renderer,
-                                       text=RemoveUnused.OBJ_ID_COL)
+        id_column = Gtk.TreeViewColumn(
+            _("ID"), self.renderer, text=RemoveUnused.OBJ_ID_COL
+        )
         id_column.set_sort_column_id(RemoveUnused.OBJ_ID_COL)
         self.warn_tree.append_column(id_column)
 
         # Add column with object name
-        name_column = Gtk.TreeViewColumn(_('Name'), self.renderer,
-                                         text=RemoveUnused.OBJ_NAME_COL)
+        name_column = Gtk.TreeViewColumn(
+            _("Name"), self.renderer, text=RemoveUnused.OBJ_NAME_COL
+        )
         name_column.set_sort_column_id(RemoveUnused.OBJ_NAME_COL)
         self.warn_tree.append_column(name_column)
 
-        self.top.connect_signals({
-            "destroy_passed_object"   : self.close,
-            "on_remove_button_clicked": self.do_remove,
-            "on_find_button_clicked"  : self.find,
-            "on_delete_event"         : self.close,
-            })
+        self.top.connect_signals(
+            {
+                "destroy_passed_object": self.close,
+                "on_remove_button_clicked": self.do_remove,
+                "on_find_button_clicked": self.find,
+                "on_delete_event": self.close,
+            }
+        )
 
-        self.dc_label = self.top.get_object('dc_label')
+        self.dc_label = self.top.get_object("dc_label")
 
-        self.sensitive_list = [self.warn_tree, self.mark_button,
-                               self.unmark_button, self.invert_button,
-                               self.dc_label, self.remove_button]
+        self.sensitive_list = [
+            self.warn_tree,
+            self.mark_button,
+            self.unmark_button,
+            self.invert_button,
+            self.dc_label,
+            self.remove_button,
+        ]
 
         for item in self.sensitive_list:
             item.set_sensitive(False)
@@ -237,7 +263,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
             media=self.media_box.get_active(),
             repos=self.repos_box.get_active(),
             notes=self.notes_box.get_active(),
-            )
+        )
 
         for item in self.sensitive_list:
             item.set_sensitive(True)
@@ -263,20 +289,20 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
 
         db = self.db
         tables = (
-            ('events', db.get_event_cursor, db.get_number_of_events),
-            ('sources', db.get_source_cursor, db.get_number_of_sources),
-            ('citations', db.get_citation_cursor, db.get_number_of_citations),
-            ('places', db.get_place_cursor, db.get_number_of_places),
-            ('media', db.get_media_cursor, db.get_number_of_media),
-            ('repos', db.get_repository_cursor, db.get_number_of_repositories),
-            ('notes', db.get_note_cursor, db.get_number_of_notes),
-            )
+            ("events", db.get_event_cursor, db.get_number_of_events),
+            ("sources", db.get_source_cursor, db.get_number_of_sources),
+            ("citations", db.get_citation_cursor, db.get_number_of_citations),
+            ("places", db.get_place_cursor, db.get_number_of_places),
+            ("media", db.get_media_cursor, db.get_number_of_media),
+            ("repos", db.get_repository_cursor, db.get_number_of_repositories),
+            ("notes", db.get_note_cursor, db.get_number_of_notes),
+        )
 
         # bug 7619 : don't select notes from to do list.
         # notes associated to the todo list doesn't have references.
         # get the todo list (from get_note_list method of the todo gramplet )
         all_notes = self.dbstate.db.get_note_handles()
-        FilterClass = GenericFilterFactory('Note')
+        FilterClass = GenericFilterFactory("Note")
         filter1 = FilterClass()
         filter1.add_rule(rules.note.HasType(["To Do"]))
         todo_list = filter1.apply(self.dbstate.db, all_notes)
@@ -284,7 +310,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         filter2.add_rule(rules.note.HasType(["Link"]))
         link_list = filter2.apply(self.dbstate.db, all_notes)
 
-        for (the_type, cursor_func, total_func) in tables:
+        for the_type, cursor_func, total_func in tables:
             if not self.options.handler.options_dict[the_type]:
                 # This table was not requested. Skip it.
                 continue
@@ -303,7 +329,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         with DbTxn(_("Remove unused objects"), self.db, batch=False) as trans:
             self.db.disable_signals()
 
-            for row_num in range(len(self.real_model)-1, -1, -1):
+            for row_num in range(len(self.real_model) - 1, -1, -1):
                 path = (row_num,)
                 row = self.real_model[path]
                 if not row[RemoveUnused.MARK_COL]:
@@ -311,7 +337,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
 
                 the_type = row[RemoveUnused.OBJ_TYPE_COL]
                 handle = row[RemoveUnused.OBJ_HANDLE_COL]
-                remove_func = self.tables[the_type]['remove']
+                remove_func = self.tables[the_type]["remove"]
                 remove_func(handle, trans)
 
                 self.real_model.remove(row.iter)
@@ -320,7 +346,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         self.db.request_rebuild()
 
     def selection_toggled(self, cell, path_string):
-        sort_path = tuple(map(int, path_string.split(':')))
+        sort_path = tuple(map(int, path_string.split(":")))
         real_path = self.sort_model.convert_path_to_child_path(Gtk.TreePath(sort_path))
         row = self.real_model[real_path]
         row[RemoveUnused.MARK_COL] = not row[RemoveUnused.MARK_COL]
@@ -345,8 +371,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
             row[RemoveUnused.MARK_COL] = not row[RemoveUnused.MARK_COL]
 
     def double_click(self, obj, event):
-        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
-                and event.button == 1):
+        if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS and event.button == 1:
             (model, node) = self.selection.get_selected()
             if not node:
                 return
@@ -359,9 +384,10 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
 
     def call_editor(self, the_type, handle):
         try:
-            obj = self.tables[the_type]['get_func'](handle)
-            editor_str = 'from gramps.gui.editors import %s as editor' % (
-                self.tables[the_type]['editor'])
+            obj = self.tables[the_type]["get_func"](handle)
+            editor_str = "from gramps.gui.editors import %s as editor" % (
+                self.tables[the_type]["editor"]
+            )
             exec(editor_str, globals())
             editor(self.dbstate, self.uistate, [], obj)
         except WindowActiveError:
@@ -369,8 +395,8 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
 
     def get_image(self, column, cell, model, iter, user_data=None):
         the_type = model.get_value(iter, RemoveUnused.OBJ_TYPE_COL)
-        the_icon = self.tables[the_type]['icon']
-        cell.set_property('icon-name', the_icon)
+        the_icon = self.tables[the_type]["icon"]
+        cell.set_property("icon-name", the_icon)
 
     def add_results(self, results):
         (the_type, handle, data) = results
@@ -379,12 +405,12 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         # if we have a function that will return to us some type
         # of text summary, then we should use it; otherwise we'll
         # use the generic field index provided in the tables above
-        if self.tables[the_type]['get_text']:
-            text = self.tables[the_type]['get_text'](the_type, handle, data)
+        if self.tables[the_type]["get_text"]:
+            text = self.tables[the_type]["get_text"](the_type, handle, data)
         else:
             # grab the text field index we know about, and hope
             # it represents something useful to the user
-            name_ix = self.tables[the_type]['name_ix']
+            name_ix = self.tables[the_type]["name_ix"]
             text = data[name_ix]
 
         # insert a new row into the table
@@ -397,13 +423,13 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         """
 
         # get the event:
-        event = self.tables[the_type]['get_func'](handle)
+        event = self.tables[the_type]["get_func"](handle)
 
         # first check to see if the event has a descriptive name
         text = event.get_description()  # (this is rarely set for events)
 
         # if we don't have a description...
-        if text == '':
+        if text == "":
             # ... then we merge together several fields
 
             # get the event type (marriage, birth, death, etc.)
@@ -411,12 +437,12 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
 
             # see if there is a date
             date = _dd.display(event.get_date_object())
-            if date != '':
-                text += '; %s' % date
+            if date != "":
+                text += "; %s" % date
 
             # see if there is a place
             if event.get_place_handle():
-                text += '; %s' % _pd.display_event(self.db, event)
+                text += "; %s" % _pd.display_event(self.db, event)
 
         return text
 
@@ -425,7 +451,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         We need just the first few words of a note as a summary.
         """
         # get the note object
-        note = self.tables[the_type]['get_func'](handle)
+        note = self.tables[the_type]["get_func"](handle)
 
         # get the note text; this ignores (discards) formatting
         text = note.get()
@@ -444,17 +470,19 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         We need just the place name.
         """
         # get the place object
-        place = self.tables[the_type]['get_func'](handle)
+        place = self.tables[the_type]["get_func"](handle)
 
         # get the name
         text = place.get_name().get_value()
 
         return text
-#------------------------------------------------------------------------
+
+
+# ------------------------------------------------------------------------
 #
 #
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class CheckOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
@@ -465,34 +493,55 @@ class CheckOptions(tool.ToolOptions):
 
         # Options specific for this report
         self.options_dict = {
-            'events': 1,
-            'sources': 1,
-            'citations': 1,
-            'places': 1,
-            'media': 1,
-            'repos': 1,
-            'notes': 1,
+            "events": 1,
+            "sources": 1,
+            "citations": 1,
+            "places": 1,
+            "media": 1,
+            "repos": 1,
+            "notes": 1,
         }
         self.options_help = {
-            'events': ("=0/1", "Whether to use check for unused events",
-                       ["Do not check events", "Check events"],
-                       True),
-            'sources': ("=0/1", "Whether to use check for unused sources",
-                        ["Do not check sources", "Check sources"],
-                        True),
-            'citations': ("=0/1", "Whether to use check for unused citations",
-                          ["Do not check citations", "Check citations"],
-                          True),
-            'places': ("=0/1", "Whether to use check for unused places",
-                       ["Do not check places", "Check places"],
-                       True),
-            'media': ("=0/1", "Whether to use check for unused media",
-                      ["Do not check media", "Check media"],
-                      True),
-            'repos': ("=0/1", "Whether to use check for unused repositories",
-                      ["Do not check repositories", "Check repositories"],
-                      True),
-            'notes': ("=0/1", "Whether to use check for unused notes",
-                      ["Do not check notes", "Check notes"],
-                      True),
-            }
+            "events": (
+                "=0/1",
+                "Whether to use check for unused events",
+                ["Do not check events", "Check events"],
+                True,
+            ),
+            "sources": (
+                "=0/1",
+                "Whether to use check for unused sources",
+                ["Do not check sources", "Check sources"],
+                True,
+            ),
+            "citations": (
+                "=0/1",
+                "Whether to use check for unused citations",
+                ["Do not check citations", "Check citations"],
+                True,
+            ),
+            "places": (
+                "=0/1",
+                "Whether to use check for unused places",
+                ["Do not check places", "Check places"],
+                True,
+            ),
+            "media": (
+                "=0/1",
+                "Whether to use check for unused media",
+                ["Do not check media", "Check media"],
+                True,
+            ),
+            "repos": (
+                "=0/1",
+                "Whether to use check for unused repositories",
+                ["Do not check repositories", "Check repositories"],
+                True,
+            ),
+            "notes": (
+                "=0/1",
+                "Whether to use check for unused notes",
+                ["Do not check notes", "Check notes"],
+                True,
+            ),
+        }

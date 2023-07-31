@@ -45,24 +45,25 @@
 
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # set up logging
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 log = logging.getLogger(".DdTargets")
 
 from gi.repository import Gdk
 from gi.repository import Gtk
+
 
 class _DdType:
     """Represents the fields needed by a drag and drop target."""
 
     _APP_ID_OFFSET = 40  # Starting value of app_ids
 
-    def __init__(self, container, drag_type,
-                 target_flags=0, app_id=None):
+    def __init__(self, container, drag_type, target_flags=0, app_id=None):
         """Create a new DdType:
 
         drag_type: string holding the name of the type.
@@ -88,8 +89,7 @@ class _DdType:
         Return the full target information in the format required by the
         Gtk functions.
         """
-        return Gtk.TargetEntry.new(self.drag_type, self.target_flags,
-                                   self.app_id)
+        return Gtk.TargetEntry.new(self.drag_type, self.target_flags, self.app_id)
 
     def target_data(self):
         """
@@ -105,10 +105,11 @@ class _DdType:
         """
         return [self.atom_drag_type, self.target_flags, self.app_id]
 
+
 class _DdTargets:
     """A single class that manages all the drag and drop targets."""
 
-    _instance = None # Singleton instance
+    _instance = None  # Singleton instance
 
     def __new__(cls):
         """Ensure that we never have more than one instance."""
@@ -124,36 +125,36 @@ class _DdTargets:
         self._type_map = {}
         self._app_id_map = {}
 
-        self.ADDRESS = _DdType(self, 'paddr')
-        self.ATTRIBUTE = _DdType(self, 'pattr')
-        self.CHILDREF = _DdType(self, 'childref')
-        self.DATA = _DdType(self, 'data_tuple')
-        self.EVENT = _DdType(self, 'pevent')
-        self.EVENTREF = _DdType(self, 'eventref')
-        self.FAMILY_ATTRIBUTE = _DdType(self, 'fattr')
-        self.FAMILY_EVENT = _DdType(self, 'fevent')
-        self.LOCATION = _DdType(self, 'location')
-        self.MEDIAOBJ = _DdType(self, 'media')
-        self.MEDIAREF = _DdType(self, 'mediaref')
-        self.NAME = _DdType(self, 'name')
-        self.NOTE_LINK = _DdType(self, 'note-link')
-        self.PLACE_LINK = _DdType(self, 'place-link')
-        self.PLACENAME = _DdType(self, 'placename')
-        self.PLACEREF = _DdType(self, 'placeref')
-        self.REPO_LINK = _DdType(self, 'repo-link')
-        self.REPOREF = _DdType(self, 'reporef')
-        self.PERSON_LINK = _DdType(self, 'person-link')
-        self.FAMILY_LINK = _DdType(self, 'family-link')
-        self.LINK_LIST = _DdType(self, 'link-list')
-        self.RAW_LIST = _DdType(self, 'raw-list')
-        self.HANDLE_LIST = _DdType(self, 'handle-list')
-        self.PERSONREF = _DdType(self, 'personref')
-        self.SOURCEREF = _DdType(self, 'srcref')
-        self.SOURCE_LINK = _DdType(self, 'source-link')
-        self.SRCATTRIBUTE = _DdType(self, 'sattr')
-        self.URL = _DdType(self, 'url')
-        self.SURNAME = _DdType(self, 'surname')
-        self.CITATION_LINK = _DdType(self, 'citation-link')
+        self.ADDRESS = _DdType(self, "paddr")
+        self.ATTRIBUTE = _DdType(self, "pattr")
+        self.CHILDREF = _DdType(self, "childref")
+        self.DATA = _DdType(self, "data_tuple")
+        self.EVENT = _DdType(self, "pevent")
+        self.EVENTREF = _DdType(self, "eventref")
+        self.FAMILY_ATTRIBUTE = _DdType(self, "fattr")
+        self.FAMILY_EVENT = _DdType(self, "fevent")
+        self.LOCATION = _DdType(self, "location")
+        self.MEDIAOBJ = _DdType(self, "media")
+        self.MEDIAREF = _DdType(self, "mediaref")
+        self.NAME = _DdType(self, "name")
+        self.NOTE_LINK = _DdType(self, "note-link")
+        self.PLACE_LINK = _DdType(self, "place-link")
+        self.PLACENAME = _DdType(self, "placename")
+        self.PLACEREF = _DdType(self, "placeref")
+        self.REPO_LINK = _DdType(self, "repo-link")
+        self.REPOREF = _DdType(self, "reporef")
+        self.PERSON_LINK = _DdType(self, "person-link")
+        self.FAMILY_LINK = _DdType(self, "family-link")
+        self.LINK_LIST = _DdType(self, "link-list")
+        self.RAW_LIST = _DdType(self, "raw-list")
+        self.HANDLE_LIST = _DdType(self, "handle-list")
+        self.PERSONREF = _DdType(self, "personref")
+        self.SOURCEREF = _DdType(self, "srcref")
+        self.SOURCE_LINK = _DdType(self, "source-link")
+        self.SRCATTRIBUTE = _DdType(self, "sattr")
+        self.URL = _DdType(self, "url")
+        self.SURNAME = _DdType(self, "surname")
+        self.CITATION_LINK = _DdType(self, "citation-link")
 
         # List of all types that are used between
         # gramps widgets but should not be exported
@@ -185,26 +186,28 @@ class _DdTargets:
             self.SRCATTRIBUTE,
             self.URL,
             self.SURNAME,
-            self.CITATION_LINK
+            self.CITATION_LINK,
         ]
 
-        self.CHILD = _DdType(self, 'child')
-        self.SPOUSE = _DdType(self, 'spouse')
-        self.TEXT_MIME = _DdType(self, 'text/plain', 0, 0)
-        self.TEXT = _DdType(self, 'TEXT', 0, 1)
-        self.STRING = _DdType(self, 'STRING', 0, 2)
-        self.COMPOUND_TEXT = _DdType(self, 'COMPOUND_TEXT', 0, 3)
-        self.UTF8_STRING = _DdType(self, 'UTF8_STRING', 0, 4)
-        self.URI_LIST = _DdType(self, 'text/uri-list', 0, 5)
-        self.APP_ROOT = _DdType(self, 'application/x-rootwin-drop', 0, 6)
+        self.CHILD = _DdType(self, "child")
+        self.SPOUSE = _DdType(self, "spouse")
+        self.TEXT_MIME = _DdType(self, "text/plain", 0, 0)
+        self.TEXT = _DdType(self, "TEXT", 0, 1)
+        self.STRING = _DdType(self, "STRING", 0, 2)
+        self.COMPOUND_TEXT = _DdType(self, "COMPOUND_TEXT", 0, 3)
+        self.UTF8_STRING = _DdType(self, "UTF8_STRING", 0, 4)
+        self.URI_LIST = _DdType(self, "text/uri-list", 0, 5)
+        self.APP_ROOT = _DdType(self, "application/x-rootwin-drop", 0, 6)
 
         # List of all the text types. These are types
         # that can be interpreted as text.
-        self._all_text_types = (self.UTF8_STRING,
-                                self.TEXT,
-                                self.TEXT_MIME,
-                                self.STRING,
-                                self.COMPOUND_TEXT)
+        self._all_text_types = (
+            self.UTF8_STRING,
+            self.TEXT,
+            self.TEXT_MIME,
+            self.STRING,
+            self.COMPOUND_TEXT,
+        )
 
     def insert(self, dd_type):
         """
@@ -259,8 +262,8 @@ class _DdTargets:
 
     def all_dtype(self):
         """Return all known Ddtype"""
-        return [x for x in self._all_gramps_types] + \
-                [x for x in self._all_text_types]
+        return [x for x in self._all_gramps_types] + [x for x in self._all_text_types]
+
 
 # Create the singleton instance.
 
@@ -271,7 +274,6 @@ DdTargets = _DdTargets()
 # Below here is test code.
 #
 if __name__ == "__main__":
-
     print(repr(DdTargets.all_text_types()))
     print(repr(DdTargets.URL))
-    print(DdTargets.is_gramps_type('pevent'))
+    print(DdTargets.is_gramps_type("pevent"))

@@ -22,18 +22,18 @@
 
 """Tools/Database Processing/Find Possible Duplicate People"""
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gen.lib import Event, Person
 from gramps.gui.utils import ProgressMeter
@@ -48,50 +48,51 @@ from gramps.gui.display import display_help
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.dialog import RunDatabaseRepair
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from gramps.gui.glade import Glade
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 _val2label = {
-    0.25 : _("Low"),
-    1.0  : _("Medium"),
-    2.0  : _("High"),
-    }
+    0.25: _("Low"),
+    1.0: _("Medium"),
+    2.0: _("High"),
+}
 
-WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('Find_Possible_Duplicate_People', 'manual')
+WIKI_HELP_PAGE = "%s_-_Tools" % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _("Find_Possible_Duplicate_People", "manual")
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 #
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def is_initial(name):
     if len(name) > 2:
         return 0
     elif len(name) == 2:
-        if name[0] == name[0].upper() and name[1] == '.':
+        if name[0] == name[0].upper() and name[1] == ".":
             return 1
     else:
         return name[0] == name[0].upper()
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # The Actual tool.
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class DuplicatePeopleTool(tool.Tool, ManagedWindow):
-
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
 
         tool.Tool.__init__(self, dbstate, options_class, name)
-        ManagedWindow.__init__(self, uistate, [],
-                                             self.__class__)
+        ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.dbstate = dbstate
         self.uistate = uistate
         self.map = {}
@@ -106,8 +107,8 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
         top = Glade(toplevel="finddupes", also_load=["liststore1"])
 
         # retrieve options
-        threshold = self.options.handler.options_dict['threshold']
-        use_soundex = self.options.handler.options_dict['soundex']
+        threshold = self.options.handler.options_dict["threshold"]
+        use_soundex = self.options.handler.options_dict["soundex"]
 
         my_menu = Gtk.ListStore(str, object)
         for val in sorted(_val2label):
@@ -122,30 +123,33 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
         self.menu.set_active(0)
 
         window = top.toplevel
-        self.set_window(window, top.get_object('title'),
-                        _('Find Possible Duplicate People'))
-        self.setup_configs('interface.duplicatepeopletool', 350, 220)
+        self.set_window(
+            window, top.get_object("title"), _("Find Possible Duplicate People")
+        )
+        self.setup_configs("interface.duplicatepeopletool", 350, 220)
 
-        top.connect_signals({
-            "on_do_merge_clicked"   : self.__dummy,
-            "on_help_show_clicked"  : self.__dummy,
-            "on_delete_show_event"  : self.__dummy,
-            "on_merge_ok_clicked"   : self.on_merge_ok_clicked,
-            "destroy_passed_object" : self.close,
-            "on_help_clicked"       : self.on_help_clicked,
-            "on_delete_merge_event" : self.close,
-            "on_delete_event"       : self.close,
-            })
+        top.connect_signals(
+            {
+                "on_do_merge_clicked": self.__dummy,
+                "on_help_show_clicked": self.__dummy,
+                "on_delete_show_event": self.__dummy,
+                "on_merge_ok_clicked": self.on_merge_ok_clicked,
+                "destroy_passed_object": self.close,
+                "on_help_clicked": self.on_help_clicked,
+                "on_delete_merge_event": self.close,
+                "on_delete_event": self.close,
+            }
+        )
 
         self.show()
 
     def build_menu_names(self, obj):
-        return (_("Tool settings"),_("Find Duplicates tool"))
+        return (_("Tool settings"), _("Find Duplicates tool"))
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of Gramps manual"""
 
-        display_help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
+        display_help(WIKI_HELP_PAGE, WIKI_HELP_SEC)
 
     def ancestors_of(self, p1_id, id_list):
         if (not p1_id) or (p1_id in id_list):
@@ -155,8 +159,8 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
         f1_id = p1.get_main_parents_family_handle()
         if f1_id:
             f1 = self.db.get_family_from_handle(f1_id)
-            self.ancestors_of(f1.get_father_handle(),id_list)
-            self.ancestors_of(f1.get_mother_handle(),id_list)
+            self.ancestors_of(f1.get_father_handle(), id_list)
+            self.ancestors_of(f1.get_mother_handle(), id_list)
 
     def on_merge_ok_clicked(self, obj):
         threshold = self.menu.get_model()[self.menu.get_active()][1]
@@ -167,8 +171,8 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
             RunDatabaseRepair(str(msg), parent=self.window)
             return
 
-        self.options.handler.options_dict['threshold'] = threshold
-        self.options.handler.options_dict['soundex'] = self.use_soundex
+        self.options.handler.options_dict["threshold"] = threshold
+        self.options.handler.options_dict["soundex"] = self.use_soundex
         # Save options
         self.options.handler.save_options()
 
@@ -176,19 +180,25 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
             OkDialog(
                 _("No matches found"),
                 _("No potential duplicate people were found"),
-                parent=self.window)
+                parent=self.window,
+            )
         else:
             try:
-                DuplicatePeopleToolMatches(self.dbstate, self.uistate,
-                                           self.track, self.list, self.map,
-                                           self.update)
+                DuplicatePeopleToolMatches(
+                    self.dbstate,
+                    self.uistate,
+                    self.track,
+                    self.list,
+                    self.map,
+                    self.update,
+                )
             except WindowActiveError:
                 pass
 
     def find_potentials(self, thresh):
-        self.progress = ProgressMeter(_('Find Duplicates'),
-                                      _('Looking for duplicate people'),
-                                      parent=self.window)
+        self.progress = ProgressMeter(
+            _("Find Duplicates"), _("Looking for duplicate people"), parent=self.window
+        )
 
         index = 0
         males = {}
@@ -197,8 +207,7 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
 
         length = self.db.get_number_of_people()
 
-        self.progress.set_pass(_('Pass 1: Building preliminary lists'),
-                               length)
+        self.progress.set_pass(_("Pass 1: Building preliminary lists"), length)
 
         for p1_id in self.db.iter_person_handles():
             self.progress.step()
@@ -215,8 +224,7 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
                 else:
                     females[key] = [p1_id]
 
-        self.progress.set_pass(_('Pass 2: Calculating potential matches'),
-                               length)
+        self.progress.set_pass(_("Pass 2: Calculating potential matches"), length)
 
         for p1key in self.db.iter_person_handles():
             self.progress.step()
@@ -228,25 +236,25 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
             else:
                 remaining = females[key]
 
-            #index = 0
+            # index = 0
             for p2key in remaining:
-                #index += 1
+                # index += 1
                 if p1key == p2key:
                     continue
                 p2 = self.db.get_person_from_handle(p2key)
                 if p2key in self.map:
-                    (v,c) = self.map[p2key]
+                    (v, c) = self.map[p2key]
                     if v == p1key:
                         continue
 
-                chance = self.compare_people(p1,p2)
+                chance = self.compare_people(p1, p2)
                 if chance >= thresh:
                     if p1key in self.map:
                         val = self.map[p1key]
                         if val[1] > chance:
-                            self.map[p1key] = (p2key,chance)
+                            self.map[p1key] = (p2key, chance)
                     else:
-                        self.map[p1key] = (p2key,chance)
+                        self.map[p1key] = (p2key, chance)
 
         self.list = sorted(self.map)
         self.length = len(self.list)
@@ -262,12 +270,11 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
             return val
 
     def compare_people(self, p1, p2):
-
         name1 = p1.get_primary_name()
         name2 = p2.get_primary_name()
 
         chance = self.name_match(name1, name2)
-        if chance == -1  :
+        if chance == -1:
             return -1
 
         birth1_ref = p1.get_birth_ref()
@@ -294,37 +301,33 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
         else:
             death2 = Event()
 
-        value = self.date_match(birth1.get_date_object(),
-                                birth2.get_date_object())
-        if value == -1 :
+        value = self.date_match(birth1.get_date_object(), birth2.get_date_object())
+        if value == -1:
             return -1
         chance += value
 
-        value = self.date_match(death1.get_date_object(),
-                                death2.get_date_object())
-        if value == -1 :
+        value = self.date_match(death1.get_date_object(), death2.get_date_object())
+        if value == -1:
             return -1
         chance += value
 
-        value = self.place_match(birth1.get_place_handle(),
-                                 birth2.get_place_handle())
-        if value == -1 :
+        value = self.place_match(birth1.get_place_handle(), birth2.get_place_handle())
+        if value == -1:
             return -1
         chance += value
 
-        value = self.place_match(death1.get_place_handle(),
-                                 death2.get_place_handle())
-        if value == -1 :
+        value = self.place_match(death1.get_place_handle(), death2.get_place_handle())
+        if value == -1:
             return -1
         chance += value
 
         ancestors = []
-        self.ancestors_of(p1.get_handle(),ancestors)
+        self.ancestors_of(p1.get_handle(), ancestors)
         if p2.get_handle() in ancestors:
             return -1
 
         ancestors = []
-        self.ancestors_of(p2.get_handle(),ancestors)
+        self.ancestors_of(p2.get_handle(), ancestors)
         if p1.get_handle() in ancestors:
             return -1
 
@@ -345,7 +348,7 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
             else:
                 dad2 = None
 
-            value = self.name_match(dad1,dad2)
+            value = self.name_match(dad1, dad2)
 
             if value == -1:
                 return -1
@@ -363,7 +366,7 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
             else:
                 mom2 = None
 
-            value = self.name_match(mom1,mom2)
+            value = self.name_match(mom1, mom2)
             if value == -1:
                 return -1
 
@@ -384,7 +387,7 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
                             father2 = self.db.get_person_from_handle(father2_id)
                             fname1 = get_name_obj(father1)
                             fname2 = get_name_obj(father2)
-                            value = self.name_match(fname1,fname2)
+                            value = self.name_match(fname1, fname2)
                             if value != -1:
                                 chance += value
                 else:
@@ -398,7 +401,7 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
                             mother2 = self.db.get_person_from_handle(mother2_id)
                             mname1 = get_name_obj(mother1)
                             mname2 = get_name_obj(mother2)
-                            value = self.name_match(mname1,mname2)
+                            value = self.name_match(mname1, mname2)
                             if value != -1:
                                 chance += value
         return chance
@@ -406,7 +409,7 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
     def name_compare(self, s1, s2):
         if self.use_soundex:
             try:
-                return compare(s1,s2)
+                return compare(s1, s2)
             except UnicodeEncodeError:
                 return s1 == s2
         else:
@@ -419,7 +422,7 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
             return 1
 
         if date1.is_compound() or date2.is_compound():
-            return self.range_compare(date1,date2)
+            return self.range_compare(date1, date2)
 
         if date1.get_year() == date2.get_year():
             if date1.get_month() == date2.get_month():
@@ -437,10 +440,12 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
         stop_date_1 = date1.get_stop_date()[0:3]
         stop_date_2 = date2.get_stop_date()[0:3]
         if date1.is_compound() and date2.is_compound():
-            if (start_date_2 <= start_date_1 <= stop_date_2 or
-                start_date_1 <= start_date_2 <= stop_date_1 or
-                start_date_2 <= stop_date_1 <= stop_date_2 or
-                start_date_1 <= stop_date_2 <= stop_date_1):
+            if (
+                start_date_2 <= start_date_1 <= stop_date_2
+                or start_date_1 <= start_date_2 <= stop_date_1
+                or start_date_2 <= stop_date_1 <= stop_date_2
+                or start_date_1 <= stop_date_2 <= stop_date_1
+            ):
                 return 0.5
             else:
                 return -1
@@ -456,7 +461,6 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
                 return -1
 
     def name_match(self, name, name1):
-
         if not name1 or not name:
             return 0
 
@@ -465,7 +469,7 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
         srn2 = get_surnames(name1)
         sfx2 = name1.get_suffix()
 
-        if not self.name_compare(srn1,srn2):
+        if not self.name_compare(srn1, srn2):
             return -1
         if sfx1 != sfx2:
             if sfx1 != "" and sfx2 != "":
@@ -478,9 +482,9 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
             list2 = name1.get_first_name().split()
 
             if len(list1) < len(list2):
-                return self.list_reduce(list1,list2)
+                return self.list_reduce(list1, list2)
             else:
-                return self.list_reduce(list2,list1)
+                return self.list_reduce(list2, list1)
 
     def place_match(self, p1_id, p2_id):
         if p1_id == p2_id:
@@ -503,8 +507,8 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
         if name1 == name2:
             return 1
 
-        list1 = name1.replace(","," ").split()
-        list2 = name2.replace(","," ").split()
+        list1 = name1.replace(",", " ").split()
+        list2 = name2.replace(",", " ").split()
 
         value = 0
         for name in list1:
@@ -513,7 +517,7 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
                     value += 0.5
                 elif name[0] == name2[0] and self.name_compare(name, name2):
                     value += 0.25
-        return min(value,1) if value else -1
+        return min(value, 1) if value else -1
 
     def list_reduce(self, list1, list2):
         value = 0
@@ -527,7 +531,7 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
                     value += 0.5
                 elif name[0] == name2[0] and self.name_compare(name, name2):
                     value += 0.25
-        return min(value,1) if value else -1
+        return min(value, 1) if value else -1
 
     def __dummy(self, obj):
         """dummy callback, needed because a shared glade file is used for
@@ -537,9 +541,8 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
 
 
 class DuplicatePeopleToolMatches(ManagedWindow):
-
     def __init__(self, dbstate, uistate, track, the_list, the_map, callback):
-        ManagedWindow.__init__(self,uistate,track,self.__class__)
+        ManagedWindow.__init__(self, uistate, track, self.__class__)
 
         self.dellist = set()
         self.list = the_list
@@ -552,31 +555,31 @@ class DuplicatePeopleToolMatches(ManagedWindow):
 
         top = Glade(toplevel="mergelist")
         window = top.toplevel
-        self.set_window(window, top.get_object('title'),
-                        _('Potential Merges'))
-        self.setup_configs('interface.duplicatepeopletoolmatches', 500, 350)
+        self.set_window(window, top.get_object("title"), _("Potential Merges"))
+        self.setup_configs("interface.duplicatepeopletoolmatches", 500, 350)
 
         self.mlist = top.get_object("mlist")
-        top.connect_signals({
-            "destroy_passed_object" : self.close,
-            "on_do_merge_clicked"   : self.on_do_merge_clicked,
-            "on_help_show_clicked"  : self.on_help_clicked,
-            "on_delete_show_event"  : self.close,
-            "on_merge_ok_clicked"   : self.__dummy,
-            "on_help_clicked"       : self.__dummy,
-            "on_delete_merge_event" : self.__dummy,
-            "on_delete_event"       : self.__dummy,
-            })
+        top.connect_signals(
+            {
+                "destroy_passed_object": self.close,
+                "on_do_merge_clicked": self.on_do_merge_clicked,
+                "on_help_show_clicked": self.on_help_clicked,
+                "on_delete_show_event": self.close,
+                "on_merge_ok_clicked": self.__dummy,
+                "on_help_clicked": self.__dummy,
+                "on_delete_merge_event": self.__dummy,
+                "on_delete_event": self.__dummy,
+            }
+        )
         self.db.connect("person-delete", self.person_delete)
 
         mtitles = [
-                (_('Rating'),3,75),
-                (_('First Person'),1,200),
-                (_('Second Person'),2,200),
-                ('',-1,0)
-                ]
-        self.list = ListModel(self.mlist,mtitles,
-                              event_func=self.on_do_merge_clicked)
+            (_("Rating"), 3, 75),
+            (_("First Person"), 1, 200),
+            (_("Second Person"), 2, 200),
+            ("", -1, 0),
+        ]
+        self.list = ListModel(self.mlist, mtitles, event_func=self.on_do_merge_clicked)
 
         self.redraw()
         self.show()
@@ -587,39 +590,47 @@ class DuplicatePeopleToolMatches(ManagedWindow):
     def on_help_clicked(self, obj):
         """Display the relevant portion of Gramps manual"""
 
-        display_help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
+        display_help(WIKI_HELP_PAGE, WIKI_HELP_SEC)
+
     def redraw(self):
         list = []
         for p1key, p1data in self.map.items():
             if p1key in self.dellist:
                 continue
-            (p2key,c) = p1data
+            (p2key, c) = p1data
             if p2key in self.dellist:
                 continue
             if p1key == p2key:
                 continue
-            list.append((c,p1key,p2key))
+            list.append((c, p1key, p2key))
 
         self.list.clear()
-        for (c,p1key,p2key) in list:
+        for c, p1key, p2key in list:
             c1 = "%5.2f" % c
-            c2 = "%5.2f" % (100-c)
+            c2 = "%5.2f" % (100 - c)
             p1 = self.db.get_person_from_handle(p1key)
             p2 = self.db.get_person_from_handle(p2key)
             if not p1 or not p2:
                 continue
             pn1 = name_displayer.display(p1)
             pn2 = name_displayer.display(p2)
-            self.list.add([c1, pn1, pn2,c2],(p1key,p2key))
+            self.list.add([c1, pn1, pn2, c2], (p1key, p2key))
 
     def on_do_merge_clicked(self, obj):
-        store,iter = self.list.selection.get_selected()
+        store, iter = self.list.selection.get_selected()
         if not iter:
             return
 
-        (self.p1,self.p2) = self.list.get_object(iter)
-        MergePerson(self.dbstate, self.uistate, self.track, self.p1, self.p2,
-                    self.on_update, True)
+        (self.p1, self.p2) = self.list.get_object(iter)
+        MergePerson(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.p1,
+            self.p2,
+            self.on_update,
+            True,
+        )
 
     def on_update(self):
         if self.db.has_person_handle(self.p1):
@@ -635,7 +646,7 @@ class DuplicatePeopleToolMatches(ManagedWindow):
         self.close()
 
     def person_delete(self, handle_list):
-        """ deal with person deletes outside of the tool """
+        """deal with person deletes outside of the tool"""
         self.dellist.update(handle_list)
         self.redraw()
 
@@ -646,15 +657,16 @@ class DuplicatePeopleToolMatches(ManagedWindow):
         pass
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 #
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def name_of(p):
     if not p:
         return ""
-    return "%s (%s)" % (name_displayer.display(p),p.get_handle())
+    return "%s (%s)" % (name_displayer.display(p), p.get_handle())
+
 
 def get_name_obj(person):
     if person:
@@ -662,32 +674,36 @@ def get_name_obj(person):
     else:
         return None
 
+
 def get_surnames(name):
     """Construct a full surname of the surnames"""
-    return ' '.join([surn.get_surname() for surn in name.get_surname_list()])
+    return " ".join([surn.get_surname() for surn in name.get_surname_list()])
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 #
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class DuplicatePeopleToolOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
 
-    def __init__(self, name,person_id=None):
-        tool.ToolOptions.__init__(self, name,person_id)
+    def __init__(self, name, person_id=None):
+        tool.ToolOptions.__init__(self, name, person_id)
 
         # Options specific for this report
         self.options_dict = {
-            'soundex'   : 1,
-            'threshold' : 0.25,
+            "soundex": 1,
+            "threshold": 0.25,
         }
         self.options_help = {
-            'soundex'   : ("=0/1","Whether to use SoundEx codes",
-                           ["Do not use SoundEx","Use SoundEx"],
-                           True),
-            'threshold' : ("=num","Threshold for tolerance",
-                           "Floating point number")
-            }
+            "soundex": (
+                "=0/1",
+                "Whether to use SoundEx codes",
+                ["Do not use SoundEx", "Use SoundEx"],
+                True,
+            ),
+            "threshold": ("=num", "Threshold for tolerance", "Floating point number"),
+        }

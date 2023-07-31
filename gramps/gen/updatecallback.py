@@ -26,21 +26,23 @@ That way, e.g. database classes can safely depend on that without
 other Gramps baggage.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import time
 from collections import abc
 import logging
+
 _LOG = logging.getLogger(".gen")
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Callback updater
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class UpdateCallback:
     """
     Basic class providing way of calling the callback to update
@@ -89,7 +91,7 @@ class UpdateCallback:
         """
         self.total = total
         if self.total == 0:
-            _LOG.warning('UpdateCallback with total == 0 created')
+            _LOG.warning("UpdateCallback with total == 0 created")
             self.total = 1
 
     def update_empty(self, count=None):
@@ -105,9 +107,9 @@ class UpdateCallback:
         self.count += 1
         if count is None:
             count = self.count
-        newval = int(100 * count/self.total)
+        newval = int(100 * count / self.total)
         newtime = time.time()
-        time_has_come = self.interval and (newtime-self.oldtime > self.interval)
+        time_has_come = self.interval and (newtime - self.oldtime > self.interval)
         value_changed = newval != self.oldval
         if value_changed or time_has_come:
             if self.text:

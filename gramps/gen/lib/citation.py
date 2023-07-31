@@ -25,18 +25,18 @@
 Citation object for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .primaryobj import PrimaryObject
 from .mediabase import MediaBase
 from .notebase import NoteBase
@@ -45,17 +45,20 @@ from .tagbase import TagBase
 from .attrbase import SrcAttributeBase
 from .citationbase import IndirectCitationBase
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
 LOG = logging.getLogger(".citation")
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Citation class
 #
-#-------------------------------------------------------------------------
-class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
-               DateBase, PrimaryObject):
+# -------------------------------------------------------------------------
+class Citation(
+    MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase, DateBase, PrimaryObject
+):
     """
     A record of a citation of a source of information.
 
@@ -73,13 +76,13 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
     def __init__(self):
         """Create a new Citation instance."""
         PrimaryObject.__init__(self)
-        MediaBase.__init__(self)                       #  7
-        NoteBase.__init__(self)                        #  6
-        DateBase.__init__(self)                        #  2
-        self.source_handle = None                      #  5
-        self.page = ""                                 #  3
-        self.confidence = Citation.CONF_NORMAL         #  4
-        SrcAttributeBase.__init__(self)                #  8
+        MediaBase.__init__(self)  #  7
+        NoteBase.__init__(self)  #  6
+        DateBase.__init__(self)  #  2
+        self.source_handle = None  #  5
+        self.page = ""  #  3
+        self.confidence = Citation.CONF_NORMAL  #  4
+        SrcAttributeBase.__init__(self)  #  8
 
     @classmethod
     def get_schema(cls):
@@ -92,82 +95,92 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         from .srcattribute import SrcAttribute
         from .mediaref import MediaRef
         from .date import Date
+
         return {
             "type": "object",
             "title": _("Citation"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "handle": {"type": "string",
-                           "maxLength": 50,
-                           "title": _("Handle")},
-                "gramps_id": {"type": "string",
-                              "title": _("Gramps ID")},
-                "date": {"oneOf": [{"type": "null"}, Date.get_schema()],
-                         "title": _("Date")},
-                "page": {"type": "string",
-                         "title": _("Page")},
-                "confidence": {"type": "integer",
-                               "minimum": 0,
-                               "maximum": 4,
-                               "title": _("Confidence")},
-                "source_handle": {"type": "string",
-                                  "maxLength": 50,
-                                  "title": _("Source")},
-                "note_list": {"type": "array",
-                              "items": {"type": "string",
-                                        "maxLength": 50},
-                              "title": _("Notes")},
-                "media_list": {"type": "array",
-                               "items": MediaRef.get_schema(),
-                               "title": _("Media")},
-                "attribute_list": {"type": "array",
-                                   "items": SrcAttribute.get_schema(),
-                                   "title": _("Source Attributes")},
-                "change": {"type": "integer",
-                           "title": _("Last changed")},
-                "tag_list": {"type": "array",
-                             "items": {"type": "string",
-                                       "maxLength": 50},
-                             "title": _("Tags")},
-                "private": {"type": "boolean",
-                            "title": _("Private")}
-            }
+                "handle": {"type": "string", "maxLength": 50, "title": _("Handle")},
+                "gramps_id": {"type": "string", "title": _("Gramps ID")},
+                "date": {
+                    "oneOf": [{"type": "null"}, Date.get_schema()],
+                    "title": _("Date"),
+                },
+                "page": {"type": "string", "title": _("Page")},
+                "confidence": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 4,
+                    "title": _("Confidence"),
+                },
+                "source_handle": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "title": _("Source"),
+                },
+                "note_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Notes"),
+                },
+                "media_list": {
+                    "type": "array",
+                    "items": MediaRef.get_schema(),
+                    "title": _("Media"),
+                },
+                "attribute_list": {
+                    "type": "array",
+                    "items": SrcAttribute.get_schema(),
+                    "title": _("Source Attributes"),
+                },
+                "change": {"type": "integer", "title": _("Last changed")},
+                "tag_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Tags"),
+                },
+                "private": {"type": "boolean", "title": _("Private")},
+            },
         }
 
     def serialize(self, no_text_date=False):
         """
         Convert the object to a serialized tuple of data.
         """
-        return (self.handle,                           #  0
-                self.gramps_id,                        #  1
-                DateBase.serialize(self, no_text_date),#  2
-                str(self.page),                       #  3
-                self.confidence,                       #  4
-                self.source_handle,                    #  5
-                NoteBase.serialize(self),              #  6
-                MediaBase.serialize(self),             #  7
-                SrcAttributeBase.serialize(self),      #  8
-                self.change,                           #  9
-                TagBase.serialize(self),               # 10
-                self.private)                          # 11
+        return (
+            self.handle,  #  0
+            self.gramps_id,  #  1
+            DateBase.serialize(self, no_text_date),  #  2
+            str(self.page),  #  3
+            self.confidence,  #  4
+            self.source_handle,  #  5
+            NoteBase.serialize(self),  #  6
+            MediaBase.serialize(self),  #  7
+            SrcAttributeBase.serialize(self),  #  8
+            self.change,  #  9
+            TagBase.serialize(self),  # 10
+            self.private,
+        )  # 11
 
     def unserialize(self, data):
         """
         Convert the data held in a tuple created by the serialize method
         back into the data in a Citation structure.
         """
-        (self.handle,                                  #  0
-         self.gramps_id,                               #  1
-         date,                                         #  2
-         self.page,                                    #  3
-         self.confidence,                              #  4
-         self.source_handle,                           #  5
-         note_list,                                    #  6
-         media_list,                                   #  7
-         srcattr_list,                                 #  8
-         self.change,                                  #  9
-         tag_list,                                     # 10
-         self.private                                  # 11
+        (
+            self.handle,  #  0
+            self.gramps_id,  #  1
+            date,  #  2
+            self.page,  #  3
+            self.confidence,  #  4
+            self.source_handle,  #  5
+            note_list,  #  6
+            media_list,  #  7
+            srcattr_list,  #  8
+            self.change,  #  9
+            tag_list,  # 10
+            self.private,  # 11
         ) = data
 
         DateBase.unserialize(self, date)
@@ -190,11 +203,11 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
                   this object type.
         :rtype: bool
         """
-        if classname == 'Note':
+        if classname == "Note":
             return handle in [ref.ref for ref in self.note_list]
-        elif classname == 'Media':
+        elif classname == "Media":
             return handle in [ref.ref for ref in self.media_list]
-        elif classname == 'Source':
+        elif classname == "Source":
             return handle == self.get_reference_handle()
         return False
 
@@ -207,8 +220,7 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         :param handle_list: The list of handles to be removed.
         :type handle_list: str
         """
-        if classname == 'Source' and \
-           self.get_reference_handle() in handle_list:
+        if classname == "Source" and self.get_reference_handle() in handle_list:
             self.set_reference_handle(None)
 
     def _replace_handle_reference(self, classname, old_handle, new_handle):
@@ -222,8 +234,7 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         :param new_handle: The handle to replace the old one with.
         :type new_handle: str
         """
-        if classname == 'Source' and \
-           self.get_reference_handle() == old_handle:
+        if classname == "Source" and self.get_reference_handle() == old_handle:
             self.set_reference_handle(new_handle)
 
     def get_citation_child_list(self):
@@ -282,10 +293,9 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        ret = (self.get_referenced_note_handles() +
-               self.get_referenced_tag_handles())
+        ret = self.get_referenced_note_handles() + self.get_referenced_tag_handles()
         if self.get_reference_handle():
-            ret += [('Source', self.get_reference_handle())]
+            ret += [("Source", self.get_reference_handle())]
         return ret
 
     def merge(self, acquisition):
@@ -301,8 +311,10 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         self._merge_tag_list(acquisition)
         # merge confidence
         level_priority = [0, 4, 1, 3, 2]
-        idx = min(level_priority.index(self.confidence),
-                  level_priority.index(acquisition.confidence))
+        idx = min(
+            level_priority.index(self.confidence),
+            level_priority.index(acquisition.confidence),
+        )
         self.confidence = level_priority[idx]
         self._merge_attribute_list(acquisition)
         # N.B. a Citation can refer to only one 'Source', so the

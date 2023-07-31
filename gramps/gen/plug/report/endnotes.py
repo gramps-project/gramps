@@ -27,24 +27,26 @@
 Provide utilities for printing endnotes in text reports.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from ..docgen import FontStyle, ParagraphStyle, FONT_SANS_SERIF
 from ...lib import NoteType, Citation
 from ...utils.string import conf_strings
 from ...config import config
 from ..utils import get_cite
+
 
 def add_endnote_styles(style_sheet):
     """
@@ -60,40 +62,41 @@ def add_endnote_styles(style_sheet):
     para.set_header_level(2)
     para.set_top_margin(0.2)
     para.set_bottom_margin(0.2)
-    para.set_description(_('The style used for the generation header.'))
+    para.set_description(_("The style used for the generation header."))
     style_sheet.add_paragraph_style("Endnotes-Header", para)
 
     para = ParagraphStyle()
-    para.set(first_indent=-0.75, lmargin=.75)
+    para.set(first_indent=-0.75, lmargin=0.75)
     para.set_top_margin(0.2)
     para.set_bottom_margin(0.0)
-    para.set_description(_('The basic style used for '
-                           'the endnotes source display.'))
+    para.set_description(_("The basic style used for " "the endnotes source display."))
     style_sheet.add_paragraph_style("Endnotes-Source", para)
 
     para = ParagraphStyle()
-    para.set(lmargin=.75)
+    para.set(lmargin=0.75)
     para.set_top_margin(0.2)
     para.set_bottom_margin(0.0)
-    para.set_description(_('The basic style used for '
-                           'the endnotes notes display.'))
+    para.set_description(_("The basic style used for " "the endnotes notes display."))
     style_sheet.add_paragraph_style("Endnotes-Source-Notes", para)
 
     para = ParagraphStyle()
     para.set(first_indent=-0.9, lmargin=1.9)
     para.set_top_margin(0.2)
     para.set_bottom_margin(0.0)
-    para.set_description(_('The basic style used for '
-                           'the endnotes reference display.'))
+    para.set_description(
+        _("The basic style used for " "the endnotes reference display.")
+    )
     style_sheet.add_paragraph_style("Endnotes-Ref", para)
 
     para = ParagraphStyle()
     para.set(lmargin=1.9)
     para.set_top_margin(0.2)
     para.set_bottom_margin(0.0)
-    para.set_description(_('The basic style used for '
-                           'the endnotes reference notes display.'))
+    para.set_description(
+        _("The basic style used for " "the endnotes reference notes display.")
+    )
     style_sheet.add_paragraph_style("Endnotes-Ref-Notes", para)
+
 
 def cite_source(bibliography, database, obj, elocale=glocale):
     """
@@ -117,7 +120,7 @@ def cite_source(bibliography, database, obj, elocale=glocale):
         for ref in slist:
             if not first:
                 # Translators: needed for Arabic, ignore otherwise
-                txt += trans_text(', ')
+                txt += trans_text(", ")
             first = False
             citation = database.get_citation_from_handle(ref)
             (cindex, key) = bibliography.add_reference(citation)
@@ -126,8 +129,10 @@ def cite_source(bibliography, database, obj, elocale=glocale):
                 txt += key
     return txt
 
-def write_endnotes(bibliography, database, doc, printnotes=False, links=False,
-                   elocale=glocale):
+
+def write_endnotes(
+    bibliography, database, doc, printnotes=False, links=False, elocale=glocale
+):
     """
     Write all the entries in the bibliography as endnotes.
 
@@ -154,8 +159,8 @@ def write_endnotes(bibliography, database, doc, printnotes=False, links=False,
     trans_text = elocale.translation.gettext
     # trans_text is a defined keyword (see po/update_po.py, po/genpot.sh)
 
-    doc.start_paragraph('Endnotes-Header')
-    doc.write_text(trans_text('Endnotes'))
+    doc.start_paragraph("Endnotes-Header")
+    doc.write_text(trans_text("Endnotes"))
     doc.end_paragraph()
 
     cindex = 0
@@ -163,23 +168,22 @@ def write_endnotes(bibliography, database, doc, printnotes=False, links=False,
     for citation in cite.format(bibliography, database, elocale):
         cindex += 1
 
-        doc.start_paragraph('Endnotes-Source', "%d." % cindex)
+        doc.start_paragraph("Endnotes-Source", "%d." % cindex)
         doc.write_text(citation[0], links=links)
         doc.end_paragraph()
 
         if printnotes:
-            _print_notes(source, database, doc,
-                         'Endnotes-Source-Notes', links)
+            _print_notes(source, database, doc, "Endnotes-Source-Notes", links)
 
         for key, ref in citation[1]:
             # Translators: needed for French, ignore otherwise
-            doc.start_paragraph('Endnotes-Ref', trans_text('%s:') % key)
+            doc.start_paragraph("Endnotes-Ref", trans_text("%s:") % key)
             doc.write_text(ref, links=links)
             doc.end_paragraph()
 
             if printnotes:
-                _print_notes(ref, database, doc,
-                             'Endnotes-Ref-Notes', links)
+                _print_notes(ref, database, doc, "Endnotes-Ref-Notes", links)
+
 
 def _print_notes(obj, db, doc, style, links):
     note_list = obj.get_note_list()
@@ -187,6 +191,11 @@ def _print_notes(obj, db, doc, style, links):
     for notehandle in note_list:
         note = db.get_note_from_handle(notehandle)
         contains_html = note.get_type() == NoteType.HTML_CODE
-        doc.write_styled_note(note.get_styledtext(), note.get_format(), style,
-                              contains_html=contains_html, links=links)
+        doc.write_styled_note(
+            note.get_styledtext(),
+            note.get_format(),
+            style,
+            contains_html=contains_html,
+            links=links,
+        )
         ind += 1

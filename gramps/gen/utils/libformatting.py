@@ -23,35 +23,36 @@
 """Format of commonly used expressions, making use of a cache to not
 recompute
 """
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from html import escape
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.utils.symbols import Symbols
 from ..lib import EventType
 from ..datehandler import get_date
 from ..display.name import displayer as name_displayer
 from ..display.place import displayer as place_displayer
-from .db import (get_birth_or_fallback, get_death_or_fallback,
-                 get_marriage_or_fallback)
+from .db import get_birth_or_fallback, get_death_or_fallback, get_marriage_or_fallback
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # FormattingHelper class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class FormattingHelper:
     """Format of commonly used expressions, making use of a cache to not
     recompute
     """
+
     def __init__(self, dbstate, uistate=None):
         self.dbstate = dbstate
         self.uistate = uistate
@@ -80,8 +81,7 @@ class FormattingHelper:
             self.dth = self.symbols.get_death_symbol_fallback(death_idx)
 
     def format_relation(self, family, line_count, use_markup=False):
-        """ Format a relation between parents of a family
-        """
+        """Format a relation between parents of a family"""
         if not family:
             return ""
         if use_markup:
@@ -97,7 +97,9 @@ class FormattingHelper:
         marriage = get_marriage_or_fallback(self.dbstate.db, family)
         if marriage and use_markup and marriage.get_type() != EventType.MARRIAGE:
             mdate = "<i>%s %s</i>" % (self.marr, escape(get_date(marriage)))
-            mplace = "<i>%s</i>" % escape(self.get_place_name(marriage.get_place_handle()))
+            mplace = "<i>%s</i>" % escape(
+                self.get_place_name(marriage.get_place_handle())
+            )
             name = "<i>%s</i>" % str(marriage.get_type())
         elif marriage and use_markup:
             mdate = "%s %s" % (self.marr, escape(get_date(marriage)))
@@ -137,8 +139,7 @@ class FormattingHelper:
         return text
 
     def get_place_name(self, place_handle):
-        """ Obtain a place name
-        """
+        """Obtain a place name"""
         text = ""
         if place_handle:
             place = self.dbstate.db.get_place_from_handle(place_handle)
@@ -146,14 +147,13 @@ class FormattingHelper:
                 place_title = place_displayer.display(self.dbstate.db, place)
                 if place_title != "":
                     if len(place_title) > 25:
-                        text = place_title[:24]+"..."
+                        text = place_title[:24] + "..."
                     else:
                         text = place_title
         return text
 
     def format_person(self, person, line_count, use_markup=False):
-        """fromat how info about a person should be presented
-        """
+        """fromat how info about a person should be presented"""
         if not person:
             return ""
         if use_markup:
@@ -171,8 +171,9 @@ class FormattingHelper:
             birth = get_birth_or_fallback(self.dbstate.db, person)
             if birth and use_markup and birth.get_type() != EventType.BIRTH:
                 bdate = "<i>%s</i>" % escape(get_date(birth))
-                bplace = "<i>%s</i>" % escape(self.get_place_name(
-                    birth.get_place_handle()))
+                bplace = "<i>%s</i>" % escape(
+                    self.get_place_name(birth.get_place_handle())
+                )
             elif birth and use_markup:
                 bdate = escape(get_date(birth))
                 bplace = escape(self.get_place_name(birth.get_place_handle()))
@@ -185,8 +186,9 @@ class FormattingHelper:
             death = get_death_or_fallback(self.dbstate.db, person)
             if death and use_markup and death.get_type() != EventType.DEATH:
                 ddate = "<i>%s</i>" % escape(get_date(death))
-                dplace = "<i>%s</i>" % escape(self.get_place_name(
-                    death.get_place_handle()))
+                dplace = "<i>%s</i>" % escape(
+                    self.get_place_name(death.get_place_handle())
+                )
             elif death and use_markup:
                 ddate = escape(get_date(death))
                 dplace = escape(self.get_place_name(death.get_place_handle()))
@@ -198,12 +200,17 @@ class FormattingHelper:
                 dplace = ""
 
             if line_count < 5:
-                text = "%s\n%s %s\n%s %s" % (name, self.bth, bdate,
-                                             self.dth, ddate)
+                text = "%s\n%s %s\n%s %s" % (name, self.bth, bdate, self.dth, ddate)
             else:
-                text = "%s\n%s %s\n  %s\n%s %s\n  %s" % (name, self.bth, bdate,
-                                                         bplace, self.dth,
-                                                         ddate, dplace)
+                text = "%s\n%s %s\n  %s\n%s %s\n  %s" % (
+                    name,
+                    self.bth,
+                    bdate,
+                    bplace,
+                    self.dth,
+                    ddate,
+                    dplace,
+                )
         if use_markup:
             if not person.handle in self._markup_cache:
                 self._markup_cache[person.handle] = {}
@@ -215,8 +222,7 @@ class FormattingHelper:
         return text
 
     def clear_cache(self):
-        """clear the cache of kept format strings
-        """
+        """clear the cache of kept format strings"""
         self._text_cache = {}
         self._markup_cache = {}
 
@@ -225,6 +231,7 @@ class ImportInfo:
     """
     Class object that can hold information about the import
     """
+
     def __init__(self, default_info=None):
         """
         Init of the import class.

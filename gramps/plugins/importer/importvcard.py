@@ -22,43 +22,58 @@
 
 "Import from vCard (RFC 2426)"
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import sys
 import re
 import time
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Set up logging
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import logging
+
 LOG = logging.getLogger(".ImportvCard")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 ngettext = glocale.translation.ngettext  # else "nearby" comments are ignored
 from gramps.gen.errors import GrampsImportError
-from gramps.gen.lib import (Address, Date, DateError, Event, EventRef,
-        EventType, Name, NameType, Person, Surname, Url, UrlType)
+from gramps.gen.lib import (
+    Address,
+    Date,
+    DateError,
+    Event,
+    EventRef,
+    EventType,
+    Name,
+    NameType,
+    Person,
+    Surname,
+    Url,
+    UrlType,
+)
 from gramps.gen.db import DbTxn
 from gramps.gen.plug.utils import OpenFileOrStdin
 from gramps.gen.utils.libformatting import ImportInfo
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Support Functions
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def importData(database, filename, user):
     """Function called by Gramps to import data on persons in vCard format."""
     parser = VCardParser(database)
@@ -91,7 +106,7 @@ def splitof_nameprefix(name):
                 look_for_capital = False
         if not char.isalpha():
             look_for_capital = True
-    return ('', name)
+    return ("", name)
 
 
 def fitin(prototype, receiver, element):
@@ -126,45 +141,49 @@ def fitin(prototype, receiver, element):
         idx = prototype.find(receiver_chunks[i])
     return receiver_idx
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # VCardParser class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class VCardParser:
     """Class to read data in vCard format from a file."""
-    DATE_RE = re.compile(r'^(\d{4}-\d{1,2}-\d{1,2})|(?:(\d{4})-?(\d\d)-?(\d\d))')
-    GROUP_RE = re.compile(r'^(?:[-0-9A-Za-z]+\.)?(.+)$')  # see RFC 2425 sec5.8.2
-    ESCAPE_CHAR = '\\'
-    TOBE_ESCAPED = ['\\', ',', ';']  # order is important
-    LINE_CONTINUATION = [' ', '\t']
+
+    DATE_RE = re.compile(r"^(\d{4}-\d{1,2}-\d{1,2})|(?:(\d{4})-?(\d\d)-?(\d\d))")
+    GROUP_RE = re.compile(r"^(?:[-0-9A-Za-z]+\.)?(.+)$")  # see RFC 2425 sec5.8.2
+    ESCAPE_CHAR = "\\"
+    TOBE_ESCAPED = ["\\", ",", ";"]  # order is important
+    LINE_CONTINUATION = [" ", "\t"]
 
     @staticmethod
     def name_value_split(data):
         """Property group.name:value split is on first unquoted colon."""
-        colon_idx = data.find(':')
+        colon_idx = data.find(":")
         if colon_idx < 1:
             return ()
         quote_count = data.count('"', 0, colon_idx)
         while quote_count % 2 == 1:
-            colon_idx = data.find(':', colon_idx + 1)
+            colon_idx = data.find(":", colon_idx + 1)
             quote_count = data.count('"', 0, colon_idx)
-        group_name, value = data[:colon_idx], data[colon_idx + 1:]
+        group_name, value = data[:colon_idx], data[colon_idx + 1 :]
         name_parts = VCardParser.GROUP_RE.match(group_name)
         return (name_parts.group(1), value)
 
     @staticmethod
     def unesc(data):
         """Remove vCard escape sequences."""
-        if type(data) == type('string'):
+        if type(data) == type("string"):
             for char in reversed(VCardParser.TOBE_ESCAPED):
                 data = data.replace(VCardParser.ESCAPE_CHAR + char, char)
             return data
         elif type(data) == type([]):
             return list(map(VCardParser.unesc, data))
         else:
-            raise TypeError("vCard unescaping is not implemented for "
-                              "data type %s." % str(type(data)))
+            raise TypeError(
+                "vCard unescaping is not implemented for "
+                "data type %s." % str(type(data))
+            )
 
     @staticmethod
     def count_escapes(strng):
@@ -189,8 +208,8 @@ class VCardParser:
 
     def __init__(self, dbase):
         self.database = dbase
-        self.formatted_name = ''
-        self.name_parts = ''
+        self.formatted_name = ""
+        self.name_parts = ""
         self.next_line = None
         self.trans = None
         self.version = None
@@ -225,8 +244,7 @@ class VCardParser:
         if problem != "":
             self.number_of_errors += 1
         if line:
-            message = _("Line %(line)5d: %(prob)s\n") % {"line": line,
-                                                         "prob": problem}
+            message = _("Line %(line)5d: %(prob)s\n") % {"line": line, "prob": problem}
         else:
             message = problem + "\n"
         self.errors.append(message)
@@ -246,21 +264,23 @@ class VCardParser:
         self.database.request_rebuild()
         tym = time.time() - tym
         # Translators: leave all/any {...} untranslated
-        msg = ngettext('Import Complete: {number_of} second',
-                       'Import Complete: {number_of} seconds', tym
-                      ).format(number_of=tym)
+        msg = ngettext(
+            "Import Complete: {number_of} second",
+            "Import Complete: {number_of} seconds",
+            tym,
+        ).format(number_of=tym)
         LOG.debug(msg)
         if self.number_of_errors == 0:
             message = _("vCard import report: No errors detected")
         else:
-            message = _("vCard import report: %s errors detected\n") % \
-                self.number_of_errors
-        if hasattr(user.uistate, 'window'):
+            message = (
+                _("vCard import report: %s errors detected\n") % self.number_of_errors
+            )
+        if hasattr(user.uistate, "window"):
             parent_window = user.uistate.window
         else:
             parent_window = None
-        user.info(message, "".join(self.errors),
-                  parent=parent_window, monospaced=True)
+        user.info(message, "".join(self.errors), parent=parent_window, monospaced=True)
 
     def _parse_vCard_file(self, filehandle):
         """Read each line of the input file and act accordingly."""
@@ -318,8 +338,10 @@ class VCardParser:
                 # Included cause vCards made by Gramps have this prop.
                 pass
             else:
-                self.__add_msg(_("Token >%(token)s< unknown. line skipped: %(line)s") %
-                               {"token": (fields[0], line), "line": self.line_num - 1})
+                self.__add_msg(
+                    _("Token >%(token)s< unknown. line skipped: %(line)s")
+                    % {"token": (fields[0], line), "line": self.line_num - 1}
+                )
 
     def finish_person(self):
         """All info has been collected, write to database."""
@@ -332,19 +354,25 @@ class VCardParser:
         """A vCard for another person is started."""
         if self.person is not None:
             self.finish_person()
-            self.__add_msg(_("BEGIN property not properly closed by END "
-                           "property, Gramps can't cope with nested vCards."),
-                           self.line_num - 1)
+            self.__add_msg(
+                _(
+                    "BEGIN property not properly closed by END "
+                    "property, Gramps can't cope with nested vCards."
+                ),
+                self.line_num - 1,
+            )
         self.person = Person()
-        self.formatted_name = ''
-        self.name_parts = ''
+        self.formatted_name = ""
+        self.name_parts = ""
 
     def check_version(self, fields, data):
         """Check the version of the vCard, only version 3.0 is supported."""
         self.version = data
         if self.version != "3.0":
-            raise GrampsImportError(_("Import of vCards version %s is "
-                    "not supported by Gramps.") % self.version)
+            raise GrampsImportError(
+                _("Import of vCards version %s is " "not supported by Gramps.")
+                % self.version
+            )
 
     def add_formatted_name(self, fields, data):
         """Read the FN property of a vCard."""
@@ -363,24 +391,35 @@ class VCardParser:
         Returns True on success, False on failure.
         """
         if not self.name_parts.strip():
-            self.__add_msg(_("The vCard is malformed. It is missing the compulsory N "
-                           "property, so there is no name; skip it."),
-                           self.line_num - 1)
+            self.__add_msg(
+                _(
+                    "The vCard is malformed. It is missing the compulsory N "
+                    "property, so there is no name; skip it."
+                ),
+                self.line_num - 1,
+            )
             return False
         if not self.formatted_name:
-            self.__add_msg(_("The vCard is malformed. It is missing the compulsory FN "
-                           "property, get name from N alone."), self.line_num - 1)
-        data_fields = self.split_unescaped(self.name_parts, ';')
+            self.__add_msg(
+                _(
+                    "The vCard is malformed. It is missing the compulsory FN "
+                    "property, get name from N alone."
+                ),
+                self.line_num - 1,
+            )
+        data_fields = self.split_unescaped(self.name_parts, ";")
         if len(data_fields) != 5:
-            self.__add_msg(_("The vCard is malformed. Wrong number of name "
-                           "components."), self.line_num - 1)
+            self.__add_msg(
+                _("The vCard is malformed. Wrong number of name " "components."),
+                self.line_num - 1,
+            )
 
         name = Name()
         name.set_type(NameType(NameType.BIRTH))
 
         if data_fields[0].strip():
             # assume first surname is primary
-            for surname_str in self.split_unescaped(data_fields[0], ','):
+            for surname_str in self.split_unescaped(data_fields[0], ","):
                 surname = Surname()
                 prefix, sname = splitof_nameprefix(self.unesc(surname_str))
                 surname.set_surname(sname.strip())
@@ -389,23 +428,25 @@ class VCardParser:
             name.set_primary_surname()
 
         if len(data_fields) > 1 and data_fields[1].strip():
-            given_name = ' '.join(self.unesc(
-                                  self.split_unescaped(data_fields[1], ',')))
+            given_name = " ".join(self.unesc(self.split_unescaped(data_fields[1], ",")))
         else:
-            given_name = ''
+            given_name = ""
         if len(data_fields) > 2 and data_fields[2].strip():
-            additional_names = ' '.join(self.unesc(
-                                     self.split_unescaped(data_fields[2], ',')))
+            additional_names = " ".join(
+                self.unesc(self.split_unescaped(data_fields[2], ","))
+            )
         else:
-            additional_names = ''
+            additional_names = ""
         self.add_firstname(given_name.strip(), additional_names.strip(), name)
 
         if len(data_fields) > 3 and data_fields[3].strip():
-            name.set_title(' '.join(self.unesc(
-                            self.split_unescaped(data_fields[3], ','))))
+            name.set_title(
+                " ".join(self.unesc(self.split_unescaped(data_fields[3], ",")))
+            )
         if len(data_fields) > 4 and data_fields[4].strip():
-            name.set_suffix(' '.join(self.unesc(
-                             self.split_unescaped(data_fields[4], ','))))
+            name.set_suffix(
+                " ".join(self.unesc(self.split_unescaped(data_fields[4], ",")))
+            )
 
         self.person.set_primary_name(name)
         return True
@@ -428,18 +469,21 @@ class VCardParser:
                                 firstname = default
                                 # Uncertain if given name is used as callname
                             else:
-                                firstname = "%s %s" % (additional_names,
-                                                       given_name)
+                                firstname = "%s %s" % (additional_names, given_name)
                                 name.set_call_name(given_name)
                         else:
-                            idx = fitin(self.formatted_name, additional_names,
-                                        given_name)
+                            idx = fitin(
+                                self.formatted_name, additional_names, given_name
+                            )
                             if idx == -1:
                                 # Additional names is not in formatted name
                                 firstname = default
                             else:  # Given name in middle of additional names
-                                firstname = "%s%s %s" % (additional_names[:idx],
-                                             given_name, additional_names[idx:])
+                                firstname = "%s%s %s" % (
+                                    additional_names[:idx],
+                                    given_name,
+                                    additional_names[idx:],
+                                )
                                 name.set_call_name(given_name)
                     else:  # Given name is not in formatted name
                         firstname = default
@@ -454,7 +498,7 @@ class VCardParser:
 
     def add_nicknames(self, fields, data):
         """Read the NICKNAME property of a vCard."""
-        for nick in self.split_unescaped(data, ','):
+        for nick in self.split_unescaped(data, ","):
             nickname = nick.strip()
             if nickname:
                 name = Name()
@@ -468,10 +512,11 @@ class VCardParser:
 
     def add_address(self, fields, data):
         """Read the ADR property of a vCard."""
-        data_fields = self.split_unescaped(data, ';')
+        data_fields = self.split_unescaped(data, ";")
         data_fields = [x.strip() for x in self.unesc(data_fields)]
-        if ''.join(data_fields):
+        if "".join(data_fields):
             addr = Address()
+
             def add_street(strng):
                 if strng:
                     already = addr.get_street()
@@ -479,9 +524,17 @@ class VCardParser:
                         addr.set_street("%s %s" % (already, strng))
                     else:
                         addr.set_street(strng)
+
             addr.add_street = add_street
-            set_func = ['add_street', 'add_street', 'add_street', 'set_city',
-                        'set_state', 'set_postal_code', 'set_country']
+            set_func = [
+                "add_street",
+                "add_street",
+                "add_street",
+                "set_city",
+                "set_state",
+                "set_postal_code",
+                "set_country",
+            ]
             for i, data in enumerate(data_fields):
                 if i >= len(set_func):
                     break
@@ -503,28 +556,37 @@ class VCardParser:
         date = Date()
         if date_match:
             if date_match.group(2):
-                date_str = "%s-%s-%s" % (date_match.group(2),
-                                       date_match.group(3), date_match.group(4))
+                date_str = "%s-%s-%s" % (
+                    date_match.group(2),
+                    date_match.group(3),
+                    date_match.group(4),
+                )
             else:
                 date_str = date_match.group(1)
-            y, m, d = [int(x, 10) for x in date_str.split('-')]
+            y, m, d = [int(x, 10) for x in date_str.split("-")]
             try:
                 date.set(value=(d, m, y, False))
             except DateError:
                 # Translators: leave the {vcard_snippet} untranslated
                 # in the format string, but you may re-order it if needed.
-                self.__add_msg(_(
-                    "Invalid date in BDAY {vcard_snippet}, "
-                    "preserving date as text."
-                    ).format(vcard_snippet=data), self.line_num - 1)
+                self.__add_msg(
+                    _(
+                        "Invalid date in BDAY {vcard_snippet}, "
+                        "preserving date as text."
+                    ).format(vcard_snippet=data),
+                    self.line_num - 1,
+                )
                 date.set(modifier=Date.MOD_TEXTONLY, text=data)
         else:
             if date_str:
                 # Translators: leave the {vcard_snippet} untranslated.
-                self.__add_msg(_(
-                    "Date {vcard_snippet} not in appropriate format "
-                    "yyyy-mm-dd, preserving date as text."
-                    ).format(vcard_snippet=date_str), self.line_num - 1)
+                self.__add_msg(
+                    _(
+                        "Date {vcard_snippet} not in appropriate format "
+                        "yyyy-mm-dd, preserving date as text."
+                    ).format(vcard_snippet=date_str),
+                    self.line_num - 1,
+                )
                 date.set(modifier=Date.MOD_TEXTONLY, text=date_str)
             else:  # silently ignore an empty BDAY record
                 return
@@ -573,11 +635,11 @@ class VCardParser:
         if gender_value:
             gender_value = gender_value.upper()
             gender_value = gender_value[0]
-            if gender_value == 'M':
+            if gender_value == "M":
                 gender = Person.MALE
-            elif gender_value == 'F':
+            elif gender_value == "F":
                 gender = Person.FEMALE
-            elif gender_value == 'O':
+            elif gender_value == "O":
                 gender = Person.OTHER
             else:
                 return

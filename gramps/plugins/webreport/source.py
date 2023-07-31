@@ -38,29 +38,30 @@ Narrative Web Page generator.
 Classe:
     SourcePage - Source index page and individual Source pages
 """
-#------------------------------------------------
+# ------------------------------------------------
 # python modules
-#------------------------------------------------
+# ------------------------------------------------
 from collections import defaultdict
 from decimal import getcontext
 import logging
 
-#------------------------------------------------
+# ------------------------------------------------
 # Gramps module
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import Source
 from gramps.plugins.lib.libhtml import Html
 
-#------------------------------------------------
+# ------------------------------------------------
 # specific narrative web import
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
-from gramps.plugins.webreport.common import (FULLCLEAR, html_escape)
+from gramps.plugins.webreport.common import FULLCLEAR, html_escape
 
 _ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb.source")
 getcontext().prec = 8
+
 
 #################################################
 #
@@ -79,6 +80,7 @@ class SourcePages(BasePage):
     The base class 'BasePage' is initialised once for each page that is
     displayed.
     """
+
     def __init__(self, report, the_lang, the_title):
         """
         @param: report    -- The instance of the main report class
@@ -104,11 +106,12 @@ class SourcePages(BasePage):
             LOG.debug("    %s", str(item))
         message = _("Creating source pages")
         progress_title = self.report.pgrs_title(the_lang)
-        with self.r_user.progress(progress_title, message,
-                                  len(self.report.obj_dict[Source]) + 1
-                                 ) as step:
-            self.sourcelistpage(self.report, the_lang, the_title,
-                                self.report.obj_dict[Source].keys())
+        with self.r_user.progress(
+            progress_title, message, len(self.report.obj_dict[Source]) + 1
+        ) as step:
+            self.sourcelistpage(
+                self.report, the_lang, the_title, self.report.obj_dict[Source].keys()
+            )
 
             index = 1
             for source_handle in self.report.obj_dict[Source]:
@@ -149,15 +152,16 @@ class SourcePages(BasePage):
 
             keys = sorted(source_dict, key=self.rlocale.sort_key)
 
-            msg = self._("This page contains an index of all the sources "
-                         "in the database, sorted by their title. "
-                         "Clicking on a source&#8217;s "
-                         "title will take you to that source&#8217;s page.")
+            msg = self._(
+                "This page contains an index of all the sources "
+                "in the database, sorted by their title. "
+                "Clicking on a source&#8217;s "
+                "title will take you to that source&#8217;s page."
+            )
             sourceslist += Html("p", msg, id="description")
 
             # begin sourcelist table and table head
-            with Html("table",
-                      class_="infolist primobjlist sourcelist") as table:
+            with Html("table", class_="infolist primobjlist sourcelist") as table:
                 sourceslist += table
                 thead = Html("thead")
                 table += thead
@@ -168,7 +172,8 @@ class SourcePages(BasePage):
                 header_row = [
                     (self._("Number"), "ColumnRowLabel"),
                     (self._("Author"), "ColumnAuthor"),
-                    (self._("Name", "Source Name"), "ColumnName")]
+                    (self._("Name", "Source Name"), "ColumnName"),
+                ]
 
                 trow.extend(
                     Html("th", label or "&nbsp;", class_=colclass, inline=True)
@@ -183,19 +188,27 @@ class SourcePages(BasePage):
                     source, source_handle = source_dict[key]
 
                     trow = Html("tr") + (
-                        Html("td", index + 1, class_="ColumnRowLabel",
-                             inline=True)
+                        Html("td", index + 1, class_="ColumnRowLabel", inline=True)
                     )
                     tbody += trow
                     trow.extend(
-                        Html("td", source.get_author(), class_="ColumnAuthor",
-                             inline=True)
+                        Html(
+                            "td",
+                            source.get_author(),
+                            class_="ColumnAuthor",
+                            inline=True,
+                        )
                     )
                     trow.extend(
-                        Html("td", self.source_link(source_handle,
-                                                    source.get_title(),
-                                                    source.get_gramps_id()),
-                             class_="ColumnName")
+                        Html(
+                            "td",
+                            self.source_link(
+                                source_handle,
+                                source.get_title(),
+                                source.get_gramps_id(),
+                            ),
+                            class_="ColumnName",
+                        )
                     )
 
         # add clearline for proper styling
@@ -218,21 +231,19 @@ class SourcePages(BasePage):
         @param: source_handle -- The handle of the source to be output
         """
         source = report.database.get_source_from_handle(source_handle)
-        BasePage.__init__(self, report, the_lang, the_title,
-                          source.get_gramps_id())
+        BasePage.__init__(self, report, the_lang, the_title, source.get_gramps_id())
         if not source:
             return
 
         self.page_title = source.get_title()
 
         inc_repositories = self.report.options["inc_repository"]
-        self.navigation = self.report.options['navigation']
-        self.citationreferents = self.report.options['citationreferents']
+        self.navigation = self.report.options["navigation"]
+        self.citationreferents = self.report.options["citationreferents"]
 
         output_file, sio = self.report.create_file(source_handle, "src")
         self.uplink = True
-        result = self.write_header("%s - %s" % (self._('Sources'),
-                                                self.page_title))
+        result = self.write_header("%s - %s" % (self._("Sources"), self.page_title))
         sourcepage, head, dummy_body, outerwrapper = result
 
         ldatec = 0
@@ -249,18 +260,17 @@ class SourcePages(BasePage):
                     fname = "/".join(["css", "lightbox.css"])
                     jsname = "/".join(["css", "lightbox.js"])
                 url = self.report.build_url_fname(fname, None, self.uplink)
-                head += Html("link", href=url, type="text/css",
-                             media="screen", rel="stylesheet")
+                head += Html(
+                    "link", href=url, type="text/css", media="screen", rel="stylesheet"
+                )
                 url = self.report.build_url_fname(jsname, None, self.uplink)
                 head += Html("script", src=url, type="text/javascript", inline=True)
-                thumbnail = self.disp_first_img_as_thumbnail(media_list,
-                                                             source)
+                thumbnail = self.disp_first_img_as_thumbnail(media_list, source)
                 if thumbnail is not None:
                     sourcedetail += thumbnail
 
             # add section title
-            sourcedetail += Html("h3", html_escape(source.get_title()),
-                                 inline=True)
+            sourcedetail += Html("h3", html_escape(source.get_title()), inline=True)
 
             # begin sources table
             with Html("table", class_="infolist source") as table:
@@ -276,17 +286,16 @@ class SourcePages(BasePage):
                     # last modification of this source
                     ldatec = source.get_change_time()
 
-                for (label, value) in [(self._("Gramps ID"), source_gid),
-                                       (self._("Author"), source.get_author()),
-                                       (self._("Abbreviation"),
-                                        source.get_abbreviation()),
-                                       (self._("Publication information"),
-                                        source.get_publication_info())]:
+                for label, value in [
+                    (self._("Gramps ID"), source_gid),
+                    (self._("Author"), source.get_author()),
+                    (self._("Abbreviation"), source.get_abbreviation()),
+                    (self._("Publication information"), source.get_publication_info()),
+                ]:
                     if value:
                         trow = Html("tr") + (
-                            Html("td", label, class_="ColumnAttribute",
-                                 inline=True),
-                            Html("td", value, class_="ColumnValue", inline=True)
+                            Html("td", label, class_="ColumnAttribute", inline=True),
+                            Html("td", value, class_="ColumnValue", inline=True),
                         )
                         tbody += trow
 
@@ -294,11 +303,9 @@ class SourcePages(BasePage):
             tags = self.show_tags(source)
             if tags and self.report.inc_tags:
                 trow = Html("tr") + (
-                    Html("td", self._("Tags"),
-                         class_="ColumnAttribute", inline=True),
-                    Html("td", tags,
-                         class_="ColumnValue", inline=True)
-                    )
+                    Html("td", self._("Tags"), class_="ColumnAttribute", inline=True),
+                    Html("td", tags, class_="ColumnValue", inline=True),
+                )
                 tbody += trow
 
             # Source notes
@@ -319,8 +326,7 @@ class SourcePages(BasePage):
 
             # Source Repository list
             if inc_repositories:
-                repo_list = self.dump_repository_ref_list(
-                    source.get_reporef_list())
+                repo_list = self.dump_repository_ref_list(source.get_reporef_list())
                 if repo_list is not None:
                     sourcedetail += repo_list
 

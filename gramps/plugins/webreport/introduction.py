@@ -38,21 +38,21 @@ Narrative Web Page generator.
 Classe:
     IntroductionPage
 """
-#------------------------------------------------
+# ------------------------------------------------
 # python modules
-#------------------------------------------------
+# ------------------------------------------------
 from decimal import getcontext
 import logging
 
-#------------------------------------------------
+# ------------------------------------------------
 # Gramps module
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.plugins.lib.libhtml import Html
 
-#------------------------------------------------
+# ------------------------------------------------
 # specific narrative web import
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
 from gramps.plugins.webreport.common import FULLCLEAR
 
@@ -60,11 +60,13 @@ _ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb")
 getcontext().prec = 8
 
+
 class IntroductionPage(BasePage):
     """
     This class is responsible for displaying information
     about the introduction page.
     """
+
     def __init__(self, report, the_lang, the_title):
         """
         @param: report    -- The instance of the main report class for
@@ -76,18 +78,18 @@ class IntroductionPage(BasePage):
         ldatec = 0
 
         output_file, sio = self.report.create_file(report.intro_fname)
-        result = self.write_header(self._('Introduction'))
+        result = self.write_header(self._("Introduction"))
         intropage, head, dummy_body, outerwrapper = result
 
         # begin Introduction division
         with Html("div", class_="content", id="Introduction") as section:
             outerwrapper += section
 
-            introimg = self.add_image('introimg', head)
+            introimg = self.add_image("introimg", head)
             if introimg is not None:
                 section += introimg
 
-            note_id = report.options['intronote']
+            note_id = report.options["intronote"]
             ldatec = None
             if note_id:
                 note = self.r_db.get_note_from_gramps_id(note_id)

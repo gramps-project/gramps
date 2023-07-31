@@ -19,39 +19,39 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...datehandler import parser
 from . import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasCitation
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasCitationBase(Rule):
     """Rule that checks for a citation with a particular value
 
     First parameter is [Volume/page, Date, Confidence]
     """
 
-    labels = [ _('Volume/Page:'),
-                    _('Date:'),
-                    _('Confidence:') ]
-    name = _('Citations matching parameters')
+    labels = [_("Volume/Page:"), _("Date:"), _("Confidence:")]
+    name = _("Citations matching parameters")
     description = _("Matches citations with particular parameters")
-    category = _('Citation/source filters')
+    category = _("Citation/source filters")
     allow_regex = True
 
     def prepare(self, db, user):

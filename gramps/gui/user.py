@@ -22,35 +22,44 @@
 The User class provides basic interaction with the user.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import sys
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen import user
 from .utils import ProgressMeter
-from .dialog import (WarningDialog, ErrorDialog, DBErrorDialog,
-                     RunDatabaseRepair, InfoDialog, QuestionDialog2)
+from .dialog import (
+    WarningDialog,
+    ErrorDialog,
+    DBErrorDialog,
+    RunDatabaseRepair,
+    InfoDialog,
+    QuestionDialog2,
+)
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # User class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class User(user.UserBase):
     """
     This class provides a means to interact with the user via GTK.
     It implements the interface in :class:`.gen.user.UserBase`
     """
-    def __init__(self, callback=None, error=None, parent=None,
-                 uistate=None, dbstate=None): # TODO User API: gen==cli==gui
+
+    def __init__(
+        self, callback=None, error=None, parent=None, uistate=None, dbstate=None
+    ):  # TODO User API: gen==cli==gui
         user.UserBase.__init__(self, callback, error, uistate, dbstate)
         self._progress = None
 
@@ -96,8 +105,15 @@ class User(user.UserBase):
             self._progress.close()
             self._progress = None
 
-    def prompt(self, title, message, accept_label, reject_label, parent=None,
-               default_label=None):
+    def prompt(
+        self,
+        title,
+        message,
+        accept_label,
+        reject_label,
+        parent=None,
+        default_label=None,
+    ):
         """
         Prompt the user with a message to select an alternative.
 
@@ -117,9 +133,9 @@ class User(user.UserBase):
         :returns: the user's answer to the question
         :rtype: bool
         """
-        dialog = QuestionDialog2(title, message,
-                                 accept_label, reject_label,
-                                 parent=parent)
+        dialog = QuestionDialog2(
+            title, message, accept_label, reject_label, parent=parent
+        )
         return dialog.run()
 
     def warn(self, title, warning=""):

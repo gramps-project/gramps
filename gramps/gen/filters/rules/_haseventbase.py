@@ -18,42 +18,39 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...datehandler import parser
 from ...lib.eventtype import EventType
 from . import Rule
 from ...utils.db import get_participant_from_event
 from ...display.place import displayer as place_displayer
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasEventBase
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasEventBase(Rule):
     """Rule that checks for an event with a particular value."""
 
-
-    labels = [ 'Event type:',
-                    'Date:',
-                    'Place:',
-                    'Description:',
-                    'Main Participants:' ]
-    name = 'Events matching parameters'
+    labels = ["Event type:", "Date:", "Place:", "Description:", "Main Participants:"]
+    name = "Events matching parameters"
     description = "Matches events with particular parameters"
-    category = _('Event filters')
+    category = _("Event filters")
     allow_regex = True
 
     def prepare(self, db, user):
@@ -94,8 +91,9 @@ class HasEventBase(Rule):
             else:
                 return False
 
-        if not self.match_substring(4,
-                get_participant_from_event(db, event.get_handle(), all_=True)):
+        if not self.match_substring(
+            4, get_participant_from_event(db, event.get_handle(), all_=True)
+        ):
             return False
 
         return True

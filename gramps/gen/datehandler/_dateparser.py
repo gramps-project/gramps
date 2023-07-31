@@ -544,30 +544,40 @@ class DateParser:
             r"%s\.?(\s+\d+)?\s*,?\s+((\d+)(/\d+)?)?\s*$" % self._mon_str, re.IGNORECASE
         )
         # this next RE has the (possibly-slashed) year at the string's end
-        self._text2 = re.compile(r'(\d+)?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$'
-                                 % self._mon_str, re.IGNORECASE)
-        self._jtext = re.compile(r'%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$'
-                                 % self._jmon_str, re.IGNORECASE)
-        self._jtext2 = re.compile(r'(\d+)?\s+?%s\s*((\d+)(/\d+)?)?\s*$'
-                                  % self._jmon_str, re.IGNORECASE)
-        self._ftext = re.compile(r'%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$'
-                                 % self._fmon_str, re.IGNORECASE)
-        self._ftext2 = re.compile(r'(\d+)?\s+?%s\s*((\d+)(/\d+)?)?\s*$'
-                                  % self._fmon_str, re.IGNORECASE)
-        self._ptext = re.compile(r'%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$'
-                                 % self._pmon_str, re.IGNORECASE)
-        self._ptext2 = re.compile(r'(\d+)?\s+?%s\s*((\d+)(/\d+)?)?\s*$'
-                                  % self._pmon_str, re.IGNORECASE)
-        self._itext = re.compile(r'%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$'
-                                 % self._imon_str, re.IGNORECASE)
-        self._itext2 = re.compile(r'(\d+)?\s+?%s\s*((\d+)(/\d+)?)?\s*$'
-                                  % self._imon_str, re.IGNORECASE)
-        self._stext = re.compile(r'%s\.?\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$'
-                                 % self._smon_str, re.IGNORECASE)
-        self._stext2 = re.compile(r'(\d+)?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$'
-                                  % self._smon_str, re.IGNORECASE)
-        self._numeric = re.compile(
-            r"((\d+)[/\.]\s*)?((\d+)[/\.]\s*)?(\d+)\s*$")
+        self._text2 = re.compile(
+            r"(\d+)?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$" % self._mon_str, re.IGNORECASE
+        )
+        self._jtext = re.compile(
+            r"%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$" % self._jmon_str, re.IGNORECASE
+        )
+        self._jtext2 = re.compile(
+            r"(\d+)?\s+?%s\s*((\d+)(/\d+)?)?\s*$" % self._jmon_str, re.IGNORECASE
+        )
+        self._ftext = re.compile(
+            r"%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$" % self._fmon_str, re.IGNORECASE
+        )
+        self._ftext2 = re.compile(
+            r"(\d+)?\s+?%s\s*((\d+)(/\d+)?)?\s*$" % self._fmon_str, re.IGNORECASE
+        )
+        self._ptext = re.compile(
+            r"%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$" % self._pmon_str, re.IGNORECASE
+        )
+        self._ptext2 = re.compile(
+            r"(\d+)?\s+?%s\s*((\d+)(/\d+)?)?\s*$" % self._pmon_str, re.IGNORECASE
+        )
+        self._itext = re.compile(
+            r"%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$" % self._imon_str, re.IGNORECASE
+        )
+        self._itext2 = re.compile(
+            r"(\d+)?\s+?%s\s*((\d+)(/\d+)?)?\s*$" % self._imon_str, re.IGNORECASE
+        )
+        self._stext = re.compile(
+            r"%s\.?\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$" % self._smon_str, re.IGNORECASE
+        )
+        self._stext2 = re.compile(
+            r"(\d+)?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$" % self._smon_str, re.IGNORECASE
+        )
+        self._numeric = re.compile(r"((\d+)[/\.]\s*)?((\d+)[/\.]\s*)?(\d+)\s*$")
         self._iso = re.compile(r"(\d+)(/(\d+))?-(\d+)(-(\d+))?\s*$")
         self._isotimestamp = re.compile(
             r"^\s*?(\d{4})([01]\d)([0123]\d)(?:(?:[012]\d[0-5]\d[0-5]\d)|"

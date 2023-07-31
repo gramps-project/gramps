@@ -23,36 +23,40 @@ Filter rule to match citations whose source notes contain a substring or
 match a regular expression.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._hasnoteregexbase import HasNoteRegexBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasSourceNoteRegexp
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasSourceNoteRegexp(HasNoteRegexBase):
     """
     Rule that checks if a citation has a source note that contains a
     substring or matches a regular expression.
     """
 
-    name = _('Citations having source notes containing <text>')
-    description = _("Matches citations whose source notes contain a substring "
-                    "or match a regular expression")
-    category = _('Source filters')
+    name = _("Citations having source notes containing <text>")
+    description = _(
+        "Matches citations whose source notes contain a substring "
+        "or match a regular expression"
+    )
+    category = _("Source filters")
 
     def apply(self, db, citation):
         source = db.get_source_from_handle(citation.get_reference_handle())

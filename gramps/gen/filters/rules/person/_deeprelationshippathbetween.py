@@ -20,27 +20,28 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from collections import deque
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 from . import MatchesFilter
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # DeepRelationshipPathBetween
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 
 def get_family_handle_people(db, exclude_handle, family_handle):
@@ -67,8 +68,7 @@ def get_person_family_people(db, person, person_handle):
 
     def add_family_handle_list(fam_list):
         for family_handle in fam_list:
-            people.update(get_family_handle_people(db, person_handle,
-                                                   family_handle))
+            people.update(get_family_handle_people(db, person_handle, family_handle))
 
     add_family_handle_list(person.get_family_handle_list())
     add_family_handle_list(person.get_parent_family_handle_list())
@@ -77,14 +77,14 @@ def get_person_family_people(db, person, person_handle):
 
 
 def find_deep_relations(db, user, person, target_people):
-    """ This explores all possible paths between a person and one or more
+    """This explores all possible paths between a person and one or more
     targets.  The algorithm processes paths in a breadth first wave, one
     remove at a time.  The first path that reaches a target causes the target
     to be marked complete and the path to be stored in the return_paths set.
     By processing in wave, the return path should be a shortest path.
     The function stores to do data and intermediate results in an ordered dict,
     rather than using a recursive algorithm becasue some trees have been found
-    that exceed the standard python recursive depth. """
+    that exceed the standard python recursive depth."""
     return_paths = set()  # all people in paths between targets and person
     if person is None:
         return return_paths
@@ -117,9 +117,9 @@ def find_deep_relations(db, user, person, target_people):
 
         people = get_person_family_people(db, person, handle)
         for p_hndl in people:
-            if p_hndl in done:     # check if we have already been here
-                continue           # and ignore if we have
-            todo.append(p_hndl)    # Add to the todo list
+            if p_hndl in done:  # check if we have already been here
+                continue  # and ignore if we have
+            todo.append(p_hndl)  # Add to the todo list
             done[p_hndl] = handle  # Add to the (almost) done list
 
     return return_paths
@@ -127,18 +127,20 @@ def find_deep_relations(db, user, person, target_people):
 
 class DeepRelationshipPathBetween(Rule):
     """Checks if there is any familial connection between a person and a
-       filter match by searching over all connections."""
+    filter match by searching over all connections."""
 
-    labels = [_('ID:'), _('Filter name:')]
+    labels = [_("ID:"), _("Filter name:")]
     name = _("Relationship path between <person> and people matching <filter>")
-    category = _('Relationship filters')
-    description = _("Searches over the database starting from a specified"
-                    " person and returns everyone between that person and"
-                    " a set of target people specified with a filter.  "
-                    "This produces a set of relationship paths (including"
-                    " by marriage) between the specified person and the"
-                    " target people.  Each path is not necessarily"
-                    " the shortest path.")
+    category = _("Relationship filters")
+    description = _(
+        "Searches over the database starting from a specified"
+        " person and returns everyone between that person and"
+        " a set of target people specified with a filter.  "
+        "This produces a set of relationship paths (including"
+        " by marriage) between the specified person and the"
+        " target people.  Each path is not necessarily"
+        " the shortest path."
+    )
 
     def prepare(self, db, user):
         root_person_id = self.list[0]
@@ -149,9 +151,11 @@ class DeepRelationshipPathBetween(Rule):
         self.filt.requestprepare(db, user)
 
         if user:
-            user.begin_progress(_('Finding relationship paths'),
-                                _('Retrieving all sub-filter matches'),
-                                db.get_number_of_people())
+            user.begin_progress(
+                _("Finding relationship paths"),
+                _("Retrieving all sub-filter matches"),
+                db.get_number_of_people(),
+            )
         target_people = []
         for handle in db.iter_person_handles():
             person = db.get_person_from_handle(handle)
@@ -161,11 +165,12 @@ class DeepRelationshipPathBetween(Rule):
                 user.step_progress()
         if user:
             user.end_progress()
-            user.begin_progress(_('Finding relationship paths'),
-                                _('Evaluating people'),
-                                db.get_number_of_people())
-        self.__matches = find_deep_relations(db, user, root_person,
-                                             target_people)
+            user.begin_progress(
+                _("Finding relationship paths"),
+                _("Evaluating people"),
+                db.get_number_of_people(),
+            )
+        self.__matches = find_deep_relations(db, user, root_person, target_people)
         if user:
             user.end_progress()
 

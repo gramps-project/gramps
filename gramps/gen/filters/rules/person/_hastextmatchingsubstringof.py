@@ -19,36 +19,37 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 import logging
+
 LOG = logging.getLogger(".citationfilter")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....utils.db import get_source_and_citation_referents
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # "HasTextMatchingSubstringOf"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasTextMatchingSubstringOf(Rule):
     """Rule that checks for string matches in any textual information"""
 
-    labels = [ _('Substring:'),
-                    _('Case sensitive:')]
-    name = _('People with records containing <substring>')
-    description = _("Matches people whose records contain text "
-                    "matching a substring")
-    category = _('General filters')
+    labels = [_("Substring:"), _("Case sensitive:")]
+    name = _("People with records containing <substring>")
+    description = _("Matches people whose records contain text " "matching a substring")
+    category = _("General filters")
     allow_regex = True
 
     def prepare(self, db, user):
@@ -79,29 +80,35 @@ class HasTextMatchingSubstringOf(Rule):
         self.place_map.clear()
         self.media_map.clear()
 
-    def apply(self,db,person):
-        if person.handle in self.person_map:   # Cached by matching Source?
+    def apply(self, db, person):
+        if person.handle in self.person_map:  # Cached by matching Source?
             return True
-        if self.match_object(person):        # first match the person itself
+        if self.match_object(person):  # first match the person itself
             return True
 
         # Look for matching events
-        if any(self.search_event(event_ref.ref)
-            for event_ref in person.get_event_ref_list()):
-                return True
+        if any(
+            self.search_event(event_ref.ref)
+            for event_ref in person.get_event_ref_list()
+        ):
+            return True
 
         # Look for matching families
-        if any(self.search_family(family_handle)
-            for family_handle in person.get_family_handle_list()):
-                return True
+        if any(
+            self.search_family(family_handle)
+            for family_handle in person.get_family_handle_list()
+        ):
+            return True
 
         # Look for matching media objects
-        if any(self.search_media(media_ref.get_reference_handle())
-            for media_ref in person.get_media_list()):
-                return True
+        if any(
+            self.search_media(media_ref.get_reference_handle())
+            for media_ref in person.get_media_list()
+        ):
+            return True
         return False
 
-    def search_family(self,family_handle):
+    def search_family(self, family_handle):
         if not family_handle:
             return False
         # search inside the family and cache the result to not search a family twice
@@ -111,17 +118,21 @@ class HasTextMatchingSubstringOf(Rule):
             if self.match_object(family):
                 match = 1
             else:
-                if any(self.search_event(event_ref.ref)
-                    for event_ref in family.get_event_ref_list()):
-                        match = 1
-                if any(self.search_media(media_ref.get_reference_handle())
-                    for media_ref in family.get_media_list()):
-                        return True
+                if any(
+                    self.search_event(event_ref.ref)
+                    for event_ref in family.get_event_ref_list()
+                ):
+                    match = 1
+                if any(
+                    self.search_media(media_ref.get_reference_handle())
+                    for media_ref in family.get_media_list()
+                ):
+                    return True
             if match:
                 self.family_map.add(family_handle)
         return family_handle in self.family_map
 
-    def search_event(self,event_handle):
+    def search_event(self, event_handle):
         if not event_handle:
             return False
         # search inside the event and cache the result (event sharing)
@@ -134,14 +145,16 @@ class HasTextMatchingSubstringOf(Rule):
                 place_handle = event.get_place_handle()
                 if place_handle and self.search_place(place_handle):
                     match = 1
-                if any(self.search_media(media_ref.get_reference_handle())
-                    for media_ref in event.get_media_list()):
-                        return True
+                if any(
+                    self.search_media(media_ref.get_reference_handle())
+                    for media_ref in event.get_media_list()
+                ):
+                    return True
             if match:
                 self.event_map.add(event_handle)
         return event_handle in self.event_map
 
-    def search_place(self,place_handle):
+    def search_place(self, place_handle):
         if not place_handle:
             return False
         # search inside the place and cache the result
@@ -151,7 +164,7 @@ class HasTextMatchingSubstringOf(Rule):
                 self.place_map.add(place_handle)
         return place_handle in self.place_map
 
-    def search_media(self,media_handle):
+    def search_media(self, media_handle):
         if not media_handle:
             return False
         # search inside the media object and cache the result
@@ -164,40 +177,58 @@ class HasTextMatchingSubstringOf(Rule):
     def cache_repos(self):
         # search all matching repositories
         self.repo_map.update(
-
-            repo.handle for repo in self.db.iter_repositories()
-                if repo and self.match_object(repo)
-
-            )
+            repo.handle
+            for repo in self.db.iter_repositories()
+            if repo and self.match_object(repo)
+        )
 
     def cache_sources(self):
         # search all sources and match all referents of a matching source
         for source in self.db.iter_sources():
             match = self.match_object(source)
-            LOG.debug("cache_sources match %s string %s source %s" %
-                      (match, self.list[0], source.gramps_id))
+            LOG.debug(
+                "cache_sources match %s string %s source %s"
+                % (match, self.list[0], source.gramps_id)
+            )
             if not match:
-                if any(reporef.get_reference_handle() in self.repo_map
-                            for reporef in source.get_reporef_list()
-                      ):
+                if any(
+                    reporef.get_reference_handle() in self.repo_map
+                    for reporef in source.get_reporef_list()
+                ):
                     match = True
-                    LOG.debug("cache_sources repomatch %s string %s source %s" %
-                              (match, self.list[0], source.gramps_id))
-            (citation_list, citation_referents_list) = \
-                    get_source_and_citation_referents(source.handle, self.db)
-            LOG.debug("the_lists %s %s" %
-                      (citation_list, citation_referents_list))
-            for (citation_handle, refs) in citation_referents_list:
+                    LOG.debug(
+                        "cache_sources repomatch %s string %s source %s"
+                        % (match, self.list[0], source.gramps_id)
+                    )
+            (
+                citation_list,
+                citation_referents_list,
+            ) = get_source_and_citation_referents(source.handle, self.db)
+            LOG.debug("the_lists %s %s" % (citation_list, citation_referents_list))
+            for citation_handle, refs in citation_referents_list:
                 citation = self.db.get_citation_from_handle(citation_handle)
-                LOG.debug("cache_sources match %s matchcitation %s string %s"
-                          " source %s citation %s" %
-                          (match, self.match_object(citation),
-                           self.list[0], source.gramps_id,
-                           citation.gramps_id))
+                LOG.debug(
+                    "cache_sources match %s matchcitation %s string %s"
+                    " source %s citation %s"
+                    % (
+                        match,
+                        self.match_object(citation),
+                        self.list[0],
+                        source.gramps_id,
+                        citation.gramps_id,
+                    )
+                )
                 if match or self.match_object(citation):
                     # Update the maps to reflect the reference
-                    (person_list, family_list, event_list, place_list,
-                     source_list, media_list, repo_list) = refs
+                    (
+                        person_list,
+                        family_list,
+                        event_list,
+                        place_list,
+                        source_list,
+                        media_list,
+                        repo_list,
+                    ) = refs
                     self.person_map.update(person_list)
                     self.family_map.update(family_list)
                     self.event_map.update(event_list)
@@ -209,5 +240,5 @@ class HasTextMatchingSubstringOf(Rule):
         if not obj:
             return False
         if self.use_regex:
-            return obj.matches_regexp(self.list[0],self.case_sensitive)
-        return obj.matches_string(self.list[0],self.case_sensitive)
+            return obj.matches_regexp(self.list[0], self.case_sensitive)
+        return obj.matches_string(self.list[0], self.case_sensitive)

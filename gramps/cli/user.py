@@ -22,36 +22,45 @@
 The User class provides basic interaction with the user.
 """
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps Modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gramps.gen.const import URL_BUGHOME
 from gramps.gen import user
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Private Constants
 #
-#------------------------------------------------------------------------
-_SPINNER = ['|', '/', '-', '\\']
+# ------------------------------------------------------------------------
+_SPINNER = ["|", "/", "-", "\\"]
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # User class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class User(user.UserBase):
     """
     This class provides a means to interact with the user via CLI.
     It implements the interface in :class:`.gen.user.UserBase`
     """
-    def __init__(self, callback=None, error=None,
-                 auto_accept=False, quiet=False,
-                 uistate=None, dbstate=None):
+
+    def __init__(
+        self,
+        callback=None,
+        error=None,
+        auto_accept=False,
+        quiet=False,
+        uistate=None,
+        dbstate=None,
+    ):
         """
         Init.
 
@@ -59,8 +68,8 @@ class User(user.UserBase):
         :type error: function(title, error)
         """
         user.UserBase.__init__(self, callback, error, uistate, dbstate)
-        self.steps = 0;
-        self.current_step = 0;
+        self.steps = 0
+        self.current_step = 0
         self._input = input
 
         def yes(*args, **kwargs):
@@ -69,8 +78,9 @@ class User(user.UserBase):
         if auto_accept:
             self.prompt = yes
         if quiet:
-            self.begin_progress = self.end_progress = self.step_progress = \
-                    self._default_callback = yes
+            self.begin_progress = (
+                self.end_progress
+            ) = self.step_progress = self._default_callback = yes
 
     def begin_progress(self, title, message, steps):
         """
@@ -88,7 +98,7 @@ class User(user.UserBase):
         """
         self._fileout.write(message)
         self.steps = steps
-        self.current_step = 0;
+        self.current_step = 0
         if self.steps == 0:
             self._fileout.write(_SPINNER[self.current_step])
         else:
@@ -112,8 +122,15 @@ class User(user.UserBase):
         """
         self._fileout.write("\r100%\n")
 
-    def prompt(self, title, message, accept_label, reject_label,
-               parent=None, default_label=None):
+    def prompt(
+        self,
+        title,
+        message,
+        accept_label,
+        reject_label,
+        parent=None,
+        default_label=None,
+    ):
         """
         Prompt the user with a message to select an alternative.
 
@@ -142,11 +159,9 @@ class User(user.UserBase):
             reject_text = "[%s]" % reject_text
             default = False
         text = "{t}\n{m} ({y}/{n}): ".format(
-                t = title,
-                m = message,
-                y = accept_text,
-                n = reject_text)
-        print (text, file = self._fileout) # TODO: python 3.3 add flush=True
+            t=title, m=message, y=accept_text, n=reject_text
+        )
+        print(text, file=self._fileout)  # TODO: python 3.3 add flush=True
         try:
             reply = self._input()
         except EOFError:
@@ -198,10 +213,15 @@ class User(user.UserBase):
         """
         self.notify_error(
             _("Low level database corruption detected"),
-            _("Gramps has detected a problem in the underlying "
-              "database. This can sometimes be repaired from "
-              "the Family Tree Manager. Select the database and "
-              'click on the Repair button') + '\n\n' + error)
+            _(
+                "Gramps has detected a problem in the underlying "
+                "database. This can sometimes be repaired from "
+                "the Family Tree Manager. Select the database and "
+                "click on the Repair button"
+            )
+            + "\n\n"
+            + error,
+        )
 
     def notify_db_repair(self, error):
         """
@@ -214,14 +234,18 @@ class User(user.UserBase):
         These exact strings are also in gui/dialog.py -- keep them in sync
         """
         self.notify_error(
-            _('Error detected in database'),
-            _('Gramps has detected an error in the database. This can '
-              'usually be resolved by running the "Check and Repair Database" '
-              'tool.\n\nIf this problem continues to exist after running this '
-              'tool, please file a bug report at '
-              '%(gramps_bugtracker_url)s\n\n'
-             ) % {'gramps_bugtracker_url' : URL_BUGHOME}
-            + error + '\n\n')
+            _("Error detected in database"),
+            _(
+                "Gramps has detected an error in the database. This can "
+                'usually be resolved by running the "Check and Repair Database" '
+                "tool.\n\nIf this problem continues to exist after running this "
+                "tool, please file a bug report at "
+                "%(gramps_bugtracker_url)s\n\n"
+            )
+            % {"gramps_bugtracker_url": URL_BUGHOME}
+            + error
+            + "\n\n",
+        )
 
     def info(self, msg1, infotext, parent=None, monospaced=False):
         """

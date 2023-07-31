@@ -23,23 +23,25 @@
 Place Reference class for Gramps
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .secondaryobj import SecondaryObject
 from .refbase import RefBase
 from .datebase import DateBase
 from .const import IDENTICAL, EQUAL, DIFFERENT
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Place References
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class PlaceRef(RefBase, DateBase, SecondaryObject):
     """
     Place reference class.
@@ -59,10 +61,7 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
         """
         Convert the object to a serialized tuple of data.
         """
-        return (
-            RefBase.serialize(self),
-            DateBase.serialize(self)
-            )
+        return (RefBase.serialize(self), DateBase.serialize(self))
 
     def unserialize(self, data):
         """
@@ -82,17 +81,18 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
         :rtype: dict
         """
         from .date import Date
+
         return {
             "type": "object",
             "title": _("Place ref"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "ref": {"type": "string",
-                        "title": _("Handle"),
-                        "maxLength": 50},
-                "date": {"oneOf": [{"type": "null"}, Date.get_schema()],
-                         "title": _("Date")}
-            }
+                "ref": {"type": "string", "title": _("Handle"), "maxLength": 50},
+                "date": {
+                    "oneOf": [{"type": "null"}, Date.get_schema()],
+                    "title": _("Date"),
+                },
+            },
         }
 
     def get_text_data_list(self):
@@ -142,7 +142,7 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
                   objects.
         :rtype: list
         """
-        return [('Place', self.ref)]
+        return [("Place", self.ref)]
 
     def get_handle_referents(self):
         """

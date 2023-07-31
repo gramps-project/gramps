@@ -19,26 +19,27 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import Gdk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from ...widgets import SimpleButton
 from .grampstab import GrampsTab
@@ -53,11 +54,12 @@ _OPEN = Gdk.keyval_from_name("o")
 _LEFT = Gdk.keyval_from_name("Left")
 _RIGHT = Gdk.keyval_from_name("Right")
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class ButtonTab(GrampsTab):
     """
     This class derives from the base GrampsTab, yet is not a usable Tab. It
@@ -66,20 +68,29 @@ class ButtonTab(GrampsTab):
     """
 
     _MSG = {
-        'add'   : _('Add'),
-        'del'   : _('Remove'),
-        'edit'  : _('Edit'),
-        'share' : _('Share'),
-        'jump'  : _('Jump To'),
-        'up'    : _('Move Up'),
-        'down'  : _('Move Down'),
-        'left'  : _('Move Left'),
-        'right' : _('Move right')
+        "add": _("Add"),
+        "del": _("Remove"),
+        "edit": _("Edit"),
+        "share": _("Share"),
+        "jump": _("Jump To"),
+        "up": _("Move Up"),
+        "down": _("Move Down"),
+        "left": _("Move Left"),
+        "right": _("Move right"),
     }
     L_R = 2  # indicator for left/right move buttons
 
-    def __init__(self, dbstate, uistate, track, name, share_button=False,
-                    move_buttons=False, jump_button=False, top_label=None):
+    def __init__(
+        self,
+        dbstate,
+        uistate,
+        track,
+        name,
+        share_button=False,
+        move_buttons=False,
+        jump_button=False,
+        top_label=None,
+    ):
         """
         Similar to the base class, except after Build.
 
@@ -106,11 +117,10 @@ class ButtonTab(GrampsTab):
         @type top_label: string or None for no label
         """
         self.dirty_selection = False
-        GrampsTab.__init__(self,dbstate, uistate, track, name)
+        GrampsTab.__init__(self, dbstate, uistate, track, name)
         self._create_buttons(share_button, move_buttons, jump_button, top_label)
 
-    def _create_buttons(self, share_button, move_buttons, jump_button,
-                         top_label):
+    def _create_buttons(self, share_button, move_buttons, jump_button, top_label):
         """
         Create a button box consisting of three buttons, one for Add,
         one for Edit, and one for Delete.
@@ -126,33 +136,34 @@ class ButtonTab(GrampsTab):
             self.top_label.set_use_markup(True)
             self.track_ref_for_deletion("top_label")
 
-        self.add_btn = SimpleButton('list-add', self.add_button_clicked)
-        self.edit_btn = SimpleButton('gtk-edit', self.edit_button_clicked)
-        self.del_btn = SimpleButton('list-remove', self.del_button_clicked)
+        self.add_btn = SimpleButton("list-add", self.add_button_clicked)
+        self.edit_btn = SimpleButton("gtk-edit", self.edit_button_clicked)
+        self.del_btn = SimpleButton("list-remove", self.del_button_clicked)
         self.track_ref_for_deletion("add_btn")
         self.track_ref_for_deletion("edit_btn")
         self.track_ref_for_deletion("del_btn")
 
-        self.add_btn.set_tooltip_text(self._MSG['add'])
-        self.edit_btn.set_tooltip_text(self._MSG['edit'])
-        self.del_btn.set_tooltip_text(self._MSG['del'])
+        self.add_btn.set_tooltip_text(self._MSG["add"])
+        self.edit_btn.set_tooltip_text(self._MSG["edit"])
+        self.del_btn.set_tooltip_text(self._MSG["del"])
 
         if share_button:
-            self.share_btn = SimpleButton('gtk-index', self.share_button_clicked)
-            self.share_btn.set_tooltip_text(self._MSG['share'])
+            self.share_btn = SimpleButton("gtk-index", self.share_button_clicked)
+            self.share_btn.set_tooltip_text(self._MSG["share"])
             self.track_ref_for_deletion("share_btn")
         else:
             self.share_btn = None
 
         if move_buttons:
             l_r = move_buttons == self.L_R
-            self.up_btn = SimpleButton('go-previous' if l_r else 'go-up',
-                                       self.up_button_clicked)
-            self.up_btn.set_tooltip_text(self._MSG['left' if l_r else 'up'])
-            self.down_btn = SimpleButton('go-next' if l_r else 'go-down',
-                                         self.down_button_clicked)
-            self.down_btn.set_tooltip_text(
-                self._MSG['right' if l_r else 'down'])
+            self.up_btn = SimpleButton(
+                "go-previous" if l_r else "go-up", self.up_button_clicked
+            )
+            self.up_btn.set_tooltip_text(self._MSG["left" if l_r else "up"])
+            self.down_btn = SimpleButton(
+                "go-next" if l_r else "go-down", self.down_button_clicked
+            )
+            self.down_btn.set_tooltip_text(self._MSG["right" if l_r else "down"])
             self.track_ref_for_deletion("up_btn")
             self.track_ref_for_deletion("down_btn")
         else:
@@ -160,9 +171,9 @@ class ButtonTab(GrampsTab):
             self.down_btn = None
 
         if jump_button:
-            self.jump_btn = SimpleButton('go-jump', self.jump_button_clicked)
+            self.jump_btn = SimpleButton("go-jump", self.jump_button_clicked)
             self.track_ref_for_deletion("jump_btn")
-            self.jump_btn.set_tooltip_text(self._MSG['jump'])
+            self.jump_btn.set_tooltip_text(self._MSG["jump"])
         else:
             self.jump_btn = None
 
@@ -200,8 +211,7 @@ class ButtonTab(GrampsTab):
         Handles the double click on list. If the double click occurs,
         the Edit button handler is called
         """
-        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
-                and event.button == 1):
+        if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS and event.button == 1:
             try:
                 self.edit_button_clicked(obj)
             except WindowActiveError:
@@ -213,8 +223,8 @@ class ButtonTab(GrampsTab):
         the Edit button handler is called
         """
         if event.type == Gdk.EventType.KEY_PRESS:
-            #print 'key pressed', event.keyval, event.get_state(), _ADD
-            if  event.keyval in (_RETURN, _KP_ENTER):
+            # print 'key pressed', event.keyval, event.get_state(), _ADD
+            if event.keyval in (_RETURN, _KP_ENTER):
                 try:
                     self.edit_button_clicked(obj)
                 except WindowActiveError:
@@ -227,14 +237,19 @@ class ButtonTab(GrampsTab):
                 if self.dirty_selection or self.dbstate.db.readonly:
                     return
                 self.add_button_clicked(obj)
-            elif event.keyval in (_OPEN,) and self.share_btn and \
-                    match_primary_mask(event.get_state()):
+            elif (
+                event.keyval in (_OPEN,)
+                and self.share_btn
+                and match_primary_mask(event.get_state())
+            ):
                 self.share_button_clicked(obj)
-            elif event.keyval in (_LEFT,) and \
-                    (event.get_state() & Gdk.ModifierType.MOD1_MASK):
+            elif event.keyval in (_LEFT,) and (
+                event.get_state() & Gdk.ModifierType.MOD1_MASK
+            ):
                 self.prev_page()
-            elif event.keyval in (_RIGHT,) and \
-                    (event.get_state() & Gdk.ModifierType.MOD1_MASK):
+            elif event.keyval in (_RIGHT,) and (
+                event.get_state() & Gdk.ModifierType.MOD1_MASK
+            ):
                 self.next_page()
             else:
                 return
@@ -310,7 +325,7 @@ class ButtonTab(GrampsTab):
                 self.del_btn.set_sensitive(True)
             # note: up and down cannot be set unsensitive after clicked
             #       or they do not respond to a next click
-            #if self.up_btn :
+            # if self.up_btn :
             #    self.up_btn.set_sensitive(True)
             #    self.down_btn.set_sensitive(True)
         else:
@@ -321,6 +336,6 @@ class ButtonTab(GrampsTab):
                 self.del_btn.set_sensitive(False)
             # note: up and down cannot be set unsensitive after clicked
             #       or they do not respond to a next click
-            #if self.up_btn :
+            # if self.up_btn :
             #    self.up_btn.set_sensitive(False)
             #    self.down_btn.set_sensitive(False)

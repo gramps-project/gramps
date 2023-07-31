@@ -41,6 +41,7 @@ from ._dateparser import DateParser
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
 
+
 # -------------------------------------------------------------------------
 #
 # Hungarian parser
@@ -48,7 +49,6 @@ from ._datehandler import register_datehandler
 #
 # -------------------------------------------------------------------------
 class DateParserHU(DateParser):
-
     month_to_int = DateParser.month_to_int
 
     month_to_int["-"] = 0  # to make the Zero month to work

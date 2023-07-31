@@ -18,33 +18,34 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ..person import HasNameOf
 from ._memberbase import child_base
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasNameOf
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class ChildHasNameOf(HasNameOf):
     """Rule that checks for full or partial name matches"""
 
-    name = _('Families with child with the <name>')
-    description = _("Matches families where child has a specified "
-                    "(partial) name")
-    category = _('Child filters')
+    name = _("Families with child with the <name>")
+    description = _("Matches families where child has a specified " "(partial) name")
+    category = _("Child filters")
     base_class = HasNameOf
     apply = child_base

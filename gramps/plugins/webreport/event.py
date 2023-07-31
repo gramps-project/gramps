@@ -38,34 +38,38 @@ Narrative Web Page generator.
 Classe:
     EventPage - Event index page and individual Event pages
 """
-#------------------------------------------------
+# ------------------------------------------------
 # python modules
-#------------------------------------------------
+# ------------------------------------------------
 from collections import defaultdict
 from operator import itemgetter
 from decimal import getcontext
 import logging
 
-#------------------------------------------------
+# ------------------------------------------------
 # Gramps module
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gen.lib import (Date, Event)
+from gramps.gen.lib import Date, Event
 from gramps.gen.plug.report import Bibliography
 from gramps.plugins.lib.libhtml import Html
 
-#------------------------------------------------
+# ------------------------------------------------
 # specific narrative web import
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
-from gramps.plugins.webreport.common import (_EVENTMAP,
-                                             alphabet_navigation,
-                                             FULLCLEAR, sort_event_types,
-                                             AlphabeticIndex)
+from gramps.plugins.webreport.common import (
+    _EVENTMAP,
+    alphabet_navigation,
+    FULLCLEAR,
+    sort_event_types,
+    AlphabeticIndex,
+)
 
 _ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb")
 getcontext().prec = 8
+
 
 #################################################
 #
@@ -84,6 +88,7 @@ class EventPages(BasePage):
     The base class 'BasePage' is initialised once for each page that is
     displayed.
     """
+
     def __init__(self, report, the_lang, the_title):
         """
         @param: report    -- The instance of the main report class
@@ -115,22 +120,31 @@ class EventPages(BasePage):
             event_types.append(self._(event.get_type().xml_str()))
         message = _("Creating event pages")
         progress_title = self.report.pgrs_title(the_lang)
-        with self.r_user.progress(progress_title, message,
-                                  len(event_handle_list) + 1
-                                 ) as step:
+        with self.r_user.progress(
+            progress_title, message, len(event_handle_list) + 1
+        ) as step:
             index = 1
             for event_handle in event_handle_list:
                 step()
                 index += 1
                 self.eventpage(self.report, the_lang, the_title, event_handle)
             step()
-        self.eventlistpage(self.report, the_lang, the_title, event_types,
-                           event_handle_list)
+        self.eventlistpage(
+            self.report, the_lang, the_title, event_types, event_handle_list
+        )
 
-
-    def __output_event(self, ldatec, event_type, tbody, bucket_letter,
-                       bucket_link, first_letter, _event_displayed, first_type,
-                       event_handle):
+    def __output_event(
+        self,
+        ldatec,
+        event_type,
+        tbody,
+        bucket_letter,
+        bucket_link,
+        first_letter,
+        _event_displayed,
+        first_type,
+        event_handle,
+    ):
         """
         Generate and output the data for a single event
 
@@ -159,14 +173,17 @@ class EventPages(BasePage):
         # check to see if we have listed this gramps_id yet?
         if gid not in _event_displayed:
             if int(_type) in _EVENTMAP:
-                handle_list = set(self.r_db.find_backlink_handles(
-                        event_handle,
-                        include_classes=['Family', 'Person']))
+                handle_list = set(
+                    self.r_db.find_backlink_handles(
+                        event_handle, include_classes=["Family", "Person"]
+                    )
+                )
             else:
                 handle_list = set(
                     self.r_db.find_backlink_handles(
-                        event_handle,
-                        include_classes=['Person']))
+                        event_handle, include_classes=["Person"]
+                    )
+                )
             if handle_list:
                 trow = Html("tr")
                 tbody += trow
@@ -181,26 +198,24 @@ class EventPages(BasePage):
                     t_a = 'class = "BeginLetter BeginType"'
                     trow.attr = t_a
                     letter = bucket_letter
-                    ttle = self._("Event types beginning "
-                        "with letter %s") % letter
-                    tcell += Html("a", letter, name=letter, id_=bucket_link,
-                                  title=ttle)
-                    tcell = Html("td", class_="ColumnType",
-                                 title=self._(event_type),
-                                 inline=True)
+                    ttle = self._("Event types beginning " "with letter %s") % letter
+                    tcell += Html("a", letter, name=letter, id_=bucket_link, title=ttle)
+                    tcell = Html(
+                        "td", class_="ColumnType", title=self._(event_type), inline=True
+                    )
                     tcell += self._(event_type)
                 elif first_type:
                     first_type = False
                     # Update the ColumnLetter cell and
                     # create a populated ColumnType cell
                     trow.attr = 'class = "BeginType"'
-                    tcell = Html("td", class_="ColumnType",
-                                 title=self._(event_type), inline=True)
+                    tcell = Html(
+                        "td", class_="ColumnType", title=self._(event_type), inline=True
+                    )
                     tcell += self._(event_type)
                 else:
-                    tcell = Html("td", class_="ColumnType",
-                                 title="&nbsp;", inline=True)
-                    tcell += "&nbsp;" # create a non-populated ColumnType
+                    tcell = Html("td", class_="ColumnType", title="&nbsp;", inline=True)
+                    tcell += "&nbsp;"  # create a non-populated ColumnType
                 # Add the ColumnType cell
                 trow += tcell
                 # event date
@@ -214,8 +229,9 @@ class EventPages(BasePage):
                 else:
                     tcell += "&nbsp;"
                 # Gramps ID
-                trow += Html("td", class_="ColumnGRAMPSID") \
-                        + (self.event_grampsid_link(event_handle, gid, None))
+                trow += Html("td", class_="ColumnGRAMPSID") + (
+                    self.event_grampsid_link(event_handle, gid, None)
+                )
                 # Person(s) column
                 tcell = Html("td", class_="ColumnPerson")
                 trow += tcell
@@ -223,13 +239,13 @@ class EventPages(BasePage):
                 first_person = True
                 # get person(s) for ColumnPerson
                 sorted_list = sorted(handle_list)
-                self.complete_people(tcell, first_person, sorted_list,
-                                     uplink=False)
+                self.complete_people(tcell, first_person, sorted_list, uplink=False)
         _event_displayed.append(gid)
         return (ldatec, first_letter, first_type, _event_displayed)
 
-    def eventlistpage(self, report, the_lang, the_title,
-                      event_types, event_handle_list):
+    def eventlistpage(
+        self, report, the_lang, the_title, event_types, event_handle_list
+    ):
         """
         Will create the event list page
 
@@ -251,19 +267,20 @@ class EventPages(BasePage):
         with Html("div", class_="content", id="EventList") as eventlist:
             outerwrapper += eventlist
 
-            msg = self._("This page contains an index of all the events in the "
-                         "database, sorted by their type and date (if one is "
-                         "present). Clicking on an event&#8217;s Gramps ID "
-                         "will open a page for that event.")
+            msg = self._(
+                "This page contains an index of all the events in the "
+                "database, sorted by their type and date (if one is "
+                "present). Clicking on an event&#8217;s Gramps ID "
+                "will open a page for that event."
+            )
             eventlist += Html("p", msg, id="description")
 
             # get alphabet navigation...
             # Assemble all the event types
             index = AlphabeticIndex(self.rlocale)
-            for (event_type, data_list) in sort_event_types(self.r_db,
-                                                event_types,
-                                                event_handle_list,
-                                                self.rlocale):
+            for event_type, data_list in sort_event_types(
+                self.r_db, event_types, event_handle_list, self.rlocale
+            ):
                 index.addRecord(event_type, data_list)
 
             # Extract the buckets from the index
@@ -278,8 +295,7 @@ class EventPages(BasePage):
                 eventlist += alpha_nav
 
             # begin alphabet event table
-            with Html("table",
-                      class_="infolist primobjlist alphaevent") as table:
+            with Html("table", class_="infolist primobjlist alphaevent") as table:
                 eventlist += table
 
                 thead = Html("thead")
@@ -290,14 +306,13 @@ class EventPages(BasePage):
 
                 trow.extend(
                     Html("th", label, class_=colclass, inline=True)
-                    for (label, colclass) in [(self._("Letter"),
-                                               "ColumnRowLabel"),
-                                              (self._("Type"), "ColumnType"),
-                                              (self._("Date"), "ColumnDate"),
-                                              (self._("Gramps ID"),
-                                               "ColumnGRAMPSID"),
-                                              (self._("Person"), "ColumnPerson")
-                                             ]
+                    for (label, colclass) in [
+                        (self._("Letter"), "ColumnRowLabel"),
+                        (self._("Type"), "ColumnType"),
+                        (self._("Date"), "ColumnDate"),
+                        (self._("Gramps ID"), "ColumnGRAMPSID"),
+                        (self._("Person"), "ColumnPerson"),
+                    ]
                 )
 
                 tbody = Html("tbody")
@@ -324,16 +339,23 @@ class EventPages(BasePage):
                             # sort datalist by date of event and by event
                             # handle...
                             data_list = sorted(data_list, key=itemgetter(0, 1))
-                            for (dummy_sort_value, event_handle) in data_list:
-                                (ldatec, first_letter, first_type,
-                                _event_displayed) \
-                                = self.__output_event(ldatec, event_type,
-                                                           tbody, bucket_letter,
-                                                           bucket_link,
-                                                           first_letter,
-                                                           _event_displayed,
-                                                           first_type,
-                                                           event_handle)
+                            for dummy_sort_value, event_handle in data_list:
+                                (
+                                    ldatec,
+                                    first_letter,
+                                    first_type,
+                                    _event_displayed,
+                                ) = self.__output_event(
+                                    ldatec,
+                                    event_type,
+                                    tbody,
+                                    bucket_letter,
+                                    bucket_link,
+                                    first_letter,
+                                    _event_displayed,
+                                    first_type,
+                                    event_handle,
+                                )
 
         # add clearline for proper styling
         # add footer section
@@ -355,10 +377,12 @@ class EventPages(BasePage):
         if event:
             date = event.get_date_object()
             if date:
-
                 # returns the date in YYYY-MM-DD format
-                return Date(date.get_year_calendar("Gregorian"),
-                            date.get_month(), date.get_day())
+                return Date(
+                    date.get_year_calendar("Gregorian"),
+                    date.get_month(),
+                    date.get_day(),
+                )
 
         # return empty date string
         return event_date
@@ -388,8 +412,7 @@ class EventPages(BasePage):
         @param: event_handle -- The event handle for the database
         """
         event = report.database.get_event_from_handle(event_handle)
-        BasePage.__init__(self, report, the_lang, the_title,
-                          event.get_gramps_id())
+        BasePage.__init__(self, report, the_lang, the_title, event.get_gramps_id())
         if not event:
             return
 
@@ -398,7 +421,7 @@ class EventPages(BasePage):
         self.uplink = True
         subdirs = True
         evt_type = self._(event.get_type().xml_str())
-        self.page_title = "%(eventtype)s" % {'eventtype' : evt_type}
+        self.page_title = "%(eventtype)s" % {"eventtype": evt_type}
         self.bibli = Bibliography()
 
         output_file, sio = self.report.create_file(event_handle, "evt")
@@ -412,8 +435,9 @@ class EventPages(BasePage):
                 fname = "/".join(["css", "lightbox.css"])
                 jsname = "/".join(["css", "lightbox.js"])
             url = self.report.build_url_fname(fname, None, self.uplink)
-            head += Html("link", href=url, type="text/css",
-                         media="screen", rel="stylesheet")
+            head += Html(
+                "link", href=url, type="text/css", media="screen", rel="stylesheet"
+            )
             url = self.report.build_url_fname(jsname, None, self.uplink)
             head += Html("script", src=url, type="text/javascript", inline=True)
 
@@ -421,8 +445,7 @@ class EventPages(BasePage):
         with Html("div", class_="content", id="EventDetail") as eventdetail:
             outerwrapper += eventdetail
 
-            thumbnail = self.disp_first_img_as_thumbnail(event_media_list,
-                                                         event)
+            thumbnail = self.disp_first_img_as_thumbnail(event_media_list, event)
             if thumbnail is not None:
                 eventdetail += thumbnail
 
@@ -439,38 +462,39 @@ class EventPages(BasePage):
                 evt_gid = event.get_gramps_id()
                 if not self.noid and evt_gid:
                     trow = Html("tr") + (
-                        Html("td", self._("Gramps ID"),
-                             class_="ColumnAttribute", inline=True),
-                        Html("td", evt_gid,
-                             class_="ColumnGRAMPSID", inline=True)
-                        )
+                        Html(
+                            "td",
+                            self._("Gramps ID"),
+                            class_="ColumnAttribute",
+                            inline=True,
+                        ),
+                        Html("td", evt_gid, class_="ColumnGRAMPSID", inline=True),
+                    )
                     tbody += trow
 
                 # get event data
                 #
                 # for more information: see get_event_data()
                 #
-                event_data = self.get_event_data(event, event_handle,
-                                                 subdirs, evt_gid)
+                event_data = self.get_event_data(event, event_handle, subdirs, evt_gid)
 
-                for (label, colclass, data) in event_data:
+                for label, colclass, data in event_data:
                     if data:
                         trow = Html("tr") + (
-                            Html("td", label, class_="ColumnAttribute",
-                                 inline=True),
-                            Html('td', data, class_="Column" + colclass)
-                            )
+                            Html("td", label, class_="ColumnAttribute", inline=True),
+                            Html("td", data, class_="Column" + colclass),
+                        )
                         tbody += trow
 
                 # Tags
                 tags = self.show_tags(event)
                 if tags and self.report.inc_tags:
                     trow = Html("tr") + (
-                        Html("td", self._("Tags"),
-                             class_="ColumnAttribute", inline=True),
-                        Html("td", tags,
-                             class_="ColumnValue", inline=True)
-                        )
+                        Html(
+                            "td", self._("Tags"), class_="ColumnAttribute", inline=True
+                        ),
+                        Html("td", tags, class_="ColumnValue", inline=True),
+                    )
                     table += trow
 
             # Narrative subsection
@@ -493,8 +517,7 @@ class EventPages(BasePage):
 
             # display additional images as gallery
             if self.create_media:
-                addgallery = self.disp_add_img_as_gallery(event_media_list,
-                                                          event)
+                addgallery = self.disp_add_img_as_gallery(event_media_list, event)
                 if addgallery:
                     eventdetail += addgallery
 

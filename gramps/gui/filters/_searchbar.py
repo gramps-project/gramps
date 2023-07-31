@@ -23,62 +23,64 @@ from gi.repository import GObject
 Package providing filtering framework for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from ..utils import no_match_primary_mask
+
 _RETURN = Gdk.keyval_from_name("Return")
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # SearchBar
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class SearchBar:
-    def __init__( self, dbstate, uistate, on_apply, apply_done = None, apply_clear = None):
+    def __init__(self, dbstate, uistate, on_apply, apply_done=None, apply_clear=None):
         self.on_apply_callback = on_apply
         self.apply_done_callback = apply_done
         self.apply_clear_callback = apply_clear
         self.dbstate = dbstate
         self.uistate = uistate
-        self.apply_text = ''
+        self.apply_text = ""
         self.visible = False
 
         self.filterbar = Gtk.Box()
         self.filter_text = Gtk.Entry()
-        self.filter_button = Gtk.Button.new_with_mnemonic(_('_Find'))
-        self.clear_button = Gtk.Button.new_with_mnemonic(_('_Clear'))
+        self.filter_button = Gtk.Button.new_with_mnemonic(_("_Find"))
+        self.clear_button = Gtk.Button.new_with_mnemonic(_("_Clear"))
         self.filter_list = Gtk.ComboBox()
-        self.filter_model = Gtk.ListStore(GObject.TYPE_STRING,
-                                          GObject.TYPE_INT,
-                                          GObject.TYPE_BOOLEAN)
+        self.filter_model = Gtk.ListStore(
+            GObject.TYPE_STRING, GObject.TYPE_INT, GObject.TYPE_BOOLEAN
+        )
 
     def destroy(self):
-        """Unset all things that can block garbage collection.
-        """
+        """Unset all things that can block garbage collection."""
         self.on_apply_callback = None
         self.apply_done_callback = None
         self.dbstate = None
         self.uistate = None
 
-    def build( self):
+    def build(self):
         self.filterbar.set_spacing(4)
-        self.filter_list.connect('changed', self.filter_changed)
+        self.filter_list.connect("changed", self.filter_changed)
 
-        self.filter_text.connect('key-press-event', self.key_press)
-        self.filter_text.connect('changed', self.text_changed)
+        self.filter_text.connect("key-press-event", self.key_press)
+        self.filter_text.connect("changed", self.text_changed)
 
-        self.filter_button.connect( 'clicked', self.apply_filter_clicked)
+        self.filter_button.connect("clicked", self.apply_filter_clicked)
         self.filter_button.set_sensitive(False)
 
-        self.clear_button.connect( 'clicked', self.apply_clear)
+        self.clear_button.connect("clicked", self.apply_clear)
         self.clear_button.set_sensitive(False)
 
         self.filterbar.pack_start(self.filter_list, False, True, 0)
@@ -88,7 +90,7 @@ class SearchBar:
 
         return self.filterbar
 
-    def setup_filter( self, column_data ):
+    def setup_filter(self, column_data):
         """
         column_data is a list of tuples:
         [(trans_col_name, index, use_exact), ...]
@@ -99,7 +101,7 @@ class SearchBar:
         cell = Gtk.CellRendererText()
         self.filter_list.clear()
         self.filter_list.pack_start(cell, True)
-        self.filter_list.add_attribute(cell, 'text', 0)
+        self.filter_list.add_attribute(cell, "text", 0)
 
         maxval = 0
         for col, index, exact in column_data:
@@ -128,7 +130,7 @@ class SearchBar:
 
     def text_changed(self, obj):
         text = obj.get_text()
-        if self.apply_text == '' and text == '':
+        if self.apply_text == "" and text == "":
             self.filter_button.set_sensitive(False)
             self.clear_button.set_sensitive(False)
         elif self.apply_text == text:
@@ -150,7 +152,7 @@ class SearchBar:
         self.apply_filter()
 
     def apply_clear(self, obj):
-        self.filter_text.set_text('')
+        self.filter_text.set_text("")
         self.apply_filter()
         if self.apply_clear_callback is not None:
             self.apply_clear_callback()
@@ -165,7 +167,7 @@ class SearchBar:
     def apply_filter(self, current_model=None):
         self.apply_text = str(self.filter_text.get_text())
         self.filter_button.set_sensitive(False)
-        self.uistate.status_text(_('Updating display...'))
+        self.uistate.status_text(_("Updating display..."))
         self.on_apply_callback()
         self.filter_text.grab_focus()
         self.uistate.modify_statusbar(self.dbstate)

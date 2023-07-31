@@ -27,7 +27,9 @@ import json
 from ..db.utils import import_as_dict
 from ..lib.serialize import to_json
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
+
 
 def to_struct(obj):
     """
@@ -35,12 +37,13 @@ def to_struct(obj):
     """
     return json.loads(to_json(obj))
 
+
 def diff_dates(json1, json2):
     """
     Compare two json date objects. Returns True if different.
     """
-    if json1 == json2: # if same, then Not Different
-        return False   # else, they still might be Not Different
+    if json1 == json2:  # if same, then Not Different
+        return False  # else, they still might be Not Different
     elif isinstance(json1, dict) and isinstance(json2, dict):
         if json1["dateval"] == json2["dateval"] and json2["dateval"] != 0:
             return False
@@ -50,6 +53,7 @@ def diff_dates(json1, json2):
             return True
     else:
         return True
+
 
 def diff_items(path, json1, json2):
     """
@@ -71,13 +75,13 @@ def diff_items(path, json1, json2):
     elif isinstance(json1, dict) and isinstance(json2, dict):
         for key in json1.keys():
             if key == "change":
-                continue # don't care about time differences, only data changes
+                continue  # don't care about time differences, only data changes
             elif key == "date":
                 result = diff_dates(json1["date"], json2["date"])
                 if result:
-                    #print("different dates", path)
-                    #print("   old:", json1["date"])
-                    #print("   new:", json2["date"])
+                    # print("different dates", path)
+                    # print("   old:", json1["date"])
+                    # print("   new:", json2["date"])
                     return True
             else:
                 result = diff_items(path + "." + key, json1[key], json2[key])
@@ -85,10 +89,11 @@ def diff_items(path, json1, json2):
                     return True
         return False
     else:
-        #print("different values", path)
-        #print("   old:", json1)
-        #print("   new:", json2)
+        # print("different values", path)
+        # print("   old:", json1)
+        # print("   new:", json2)
         return True
+
 
 def diff_dbs(db1, db2, user):
     """
@@ -103,23 +108,32 @@ def diff_dbs(db1, db2, user):
     missing_from_old = []
     missing_from_new = []
     diffs = []
-    with user.progress(_('Family Tree Differences'),
-            _('Searching...'), 10) as step:
-        for item in ['Person', 'Family', 'Source', 'Citation', 'Event', 'Media',
-                     'Place', 'Repository', 'Note', 'Tag']:
+    with user.progress(_("Family Tree Differences"), _("Searching..."), 10) as step:
+        for item in [
+            "Person",
+            "Family",
+            "Source",
+            "Citation",
+            "Event",
+            "Media",
+            "Place",
+            "Repository",
+            "Note",
+            "Tag",
+        ]:
             step()
 
-            handles_func1 = db1.method('get_%s_handles', item)
-            handles_func2 = db2.method('get_%s_handles', item)
-            handle_func1 = db1.method('get_%s_from_handle', item)
-            handle_func2 = db2.method('get_%s_from_handle', item)
+            handles_func1 = db1.method("get_%s_handles", item)
+            handles_func2 = db2.method("get_%s_handles", item)
+            handle_func1 = db1.method("get_%s_from_handle", item)
+            handle_func2 = db2.method("get_%s_from_handle", item)
 
             handles1 = sorted([handle for handle in handles_func1()])
             handles2 = sorted([handle for handle in handles_func2()])
             p1 = 0
             p2 = 0
             while p1 < len(handles1) and p2 < len(handles2):
-                if handles1[p1] == handles2[p2]: # in both
+                if handles1[p1] == handles2[p2]:  # in both
                     item1 = handle_func1(handles1[p1])
                     item2 = handle_func2(handles2[p2])
                     diff = diff_items(item, to_struct(item1), to_struct(item2))
@@ -128,11 +142,11 @@ def diff_dbs(db1, db2, user):
                     # else same!
                     p1 += 1
                     p2 += 1
-                elif handles1[p1] < handles2[p2]: # p1 is mssing in p2
+                elif handles1[p1] < handles2[p2]:  # p1 is mssing in p2
                     item1 = handle_func1(handles1[p1])
                     missing_from_new += [(item, item1)]
                     p1 += 1
-                elif handles1[p1] > handles2[p2]: # p2 is mssing in p1
+                elif handles1[p1] > handles2[p2]:  # p2 is mssing in p1
                     item2 = handle_func2(handles2[p2])
                     missing_from_old += [(item, item2)]
                     p2 += 1
@@ -146,6 +160,7 @@ def diff_dbs(db1, db2, user):
                 p2 += 1
     return diffs, missing_from_old, missing_from_new
 
+
 def diff_db_to_file(old_db, filename, user):
     # First, get data as a InMemoryDB
     new_db = import_as_dict(filename, user, user)
@@ -153,4 +168,3 @@ def diff_db_to_file(old_db, filename, user):
         # Next get differences:
         diffs, m_old, m_new = diff_dbs(old_db, new_db, user)
         return diffs, m_old, m_new
-

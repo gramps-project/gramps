@@ -73,19 +73,17 @@ from ._isdescendantof import IsDescendantOf
 from ._isdescendantoffiltermatch import IsDescendantOfFilterMatch
 from ._isduplicatedancestorof import IsDuplicatedAncestorOf
 from ._isfemale import IsFemale
-from ._islessthannthgenerationancestorof import \
-     IsLessThanNthGenerationAncestorOf
-from ._islessthannthgenerationancestorofbookmarked import \
-     IsLessThanNthGenerationAncestorOfBookmarked
-from ._islessthannthgenerationancestorofdefaultperson import \
-     IsLessThanNthGenerationAncestorOfDefaultPerson
-from ._islessthannthgenerationdescendantof import \
-     IsLessThanNthGenerationDescendantOf
+from ._islessthannthgenerationancestorof import IsLessThanNthGenerationAncestorOf
+from ._islessthannthgenerationancestorofbookmarked import (
+    IsLessThanNthGenerationAncestorOfBookmarked,
+)
+from ._islessthannthgenerationancestorofdefaultperson import (
+    IsLessThanNthGenerationAncestorOfDefaultPerson,
+)
+from ._islessthannthgenerationdescendantof import IsLessThanNthGenerationDescendantOf
 from ._ismale import IsMale
-from ._ismorethannthgenerationancestorof import \
-     IsMoreThanNthGenerationAncestorOf
-from ._ismorethannthgenerationdescendantof import \
-     IsMoreThanNthGenerationDescendantOf
+from ._ismorethannthgenerationancestorof import IsMoreThanNthGenerationAncestorOf
+from ._ismorethannthgenerationdescendantof import IsMoreThanNthGenerationDescendantOf
 from ._isparentoffiltermatch import IsParentOfFilterMatch
 from ._issiblingoffiltermatch import IsSiblingOfFilterMatch
 from ._isspouseoffiltermatch import IsSpouseOfFilterMatch
@@ -113,11 +111,11 @@ from ._changedsince import ChangedSince
 from ._isrelatedwith import IsRelatedWith
 from ._hassoundexname import HasSoundexName
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # This is used by Custom Filter Editor tool
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 editor_rule_list = [
     Everyone,
     IsFemale,
@@ -197,4 +195,3 @@ editor_rule_list = [
     IsRelatedWith,
     HasSoundexName,
 ]
-

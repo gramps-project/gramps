@@ -40,13 +40,13 @@ from ._dateparser import DateParser
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
 
+
 # -------------------------------------------------------------------------
 #
 # Slovak parser
 #
 # -------------------------------------------------------------------------
 class DateParserSK(DateParser):
-
     modifier_to_int = {
         "pred": Date.MOD_BEFORE,
         "do": Date.MOD_BEFORE,

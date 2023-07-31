@@ -21,33 +21,36 @@
 
 import mimetypes
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
 _type_map = {
-    'application/x-gramps' : 'Gramps database',
-    'application/x-gramps-xml' : 'Gramps XML database',
-    'application/x-gedcom' : 'GEDCOM database',
-    'application/x-gramps-package': 'Gramps package',
-    'image/jpeg' : 'JPEG image',
-    'image/tiff' : 'TIFF image',
-    'image/png' : 'PNG image',
-    'application/pdf' : 'PDF document',
-    'text/rtf' : 'Rich Text File',
+    "application/x-gramps": "Gramps database",
+    "application/x-gramps-xml": "Gramps XML database",
+    "application/x-gedcom": "GEDCOM database",
+    "application/x-gramps-package": "Gramps package",
+    "image/jpeg": "JPEG image",
+    "image/tiff": "TIFF image",
+    "image/png": "PNG image",
+    "application/pdf": "PDF document",
+    "text/rtf": "Rich Text File",
 }
 
-mimetypes.add_type('application/x-gramps','.grdb')
-mimetypes.add_type('application/x-gramps','.GRDB')
-mimetypes.add_type('application/x-gramps-xml','.gramps')
-mimetypes.add_type('application/x-gramps-xml','.Gramps')
-mimetypes.add_type('application/x-gedcom','.ged')
-mimetypes.add_type('application/x-gedcom','.GED')
-mimetypes.add_type('application/x-gramps-package','.gpkg')
-mimetypes.add_type('application/x-gramps-package','.GPKG')
-mimetypes.add_type('text/x-comma-separated-values', '.csv')
+mimetypes.add_type("application/x-gramps", ".grdb")
+mimetypes.add_type("application/x-gramps", ".GRDB")
+mimetypes.add_type("application/x-gramps-xml", ".gramps")
+mimetypes.add_type("application/x-gramps-xml", ".Gramps")
+mimetypes.add_type("application/x-gedcom", ".ged")
+mimetypes.add_type("application/x-gedcom", ".GED")
+mimetypes.add_type("application/x-gramps-package", ".gpkg")
+mimetypes.add_type("application/x-gramps-package", ".GPKG")
+mimetypes.add_type("text/x-comma-separated-values", ".csv")
+
 
 def get_description(mime_type):
     """Return the description of the specified mime type"""
-    return _type_map.get(mime_type,_("unknown"))
+    return _type_map.get(mime_type, _("unknown"))
+
 
 def get_type(filename):
     """Return the mime type of the specified file"""
@@ -55,7 +58,8 @@ def get_type(filename):
     if value and value[0]:
         return value[0]
     else:
-        return _('unknown')
+        return _("unknown")
+
 
 def mime_type_is_defined(mime_type):
     """

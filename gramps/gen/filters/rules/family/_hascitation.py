@@ -22,32 +22,31 @@
 """
 Filter rule to match family with a particular citation.
 """
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._hascitationbase import HasCitationBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasEvent
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasCitation(HasCitationBase):
     """Rule that checks for a family with a particular value"""
 
-    labels = [ _('Volume/Page:'),
-                    _('Date:'),
-                    _('Confidence level:')]
-    name = _('Families with the <citation>')
-    description = _("Matches families with a citation of a particular "
-                    "value")
+    labels = [_("Volume/Page:"), _("Date:"), _("Confidence level:")]
+    name = _("Families with the <citation>")
+    description = _("Matches families with a citation of a particular " "value")

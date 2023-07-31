@@ -19,14 +19,16 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#------------------------------------------------
+# ------------------------------------------------
 #    python modules
-#------------------------------------------------
+# ------------------------------------------------
 import os
 import re
 from gramps.gen.const import USER_DATA_VERSION, IMAGE_DIR, DATA_DIR, USER_CSS
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
+
 
 def make_css_dict(tup):
     """
@@ -34,159 +36,246 @@ def make_css_dict(tup):
     """
     return {
         "id": tup[0],
-        "user"        : tup[1],
-        "translation" : tup[2],
-        "filename"    : tup[3],
-        "navigation"  : tup[4],
-        "images"      : tup[5],
-        "javascript"  : tup[6],
-        }
+        "user": tup[1],
+        "translation": tup[2],
+        "filename": tup[3],
+        "navigation": tup[4],
+        "images": tup[5],
+        "javascript": tup[6],
+    }
+
 
 def load_on_reg(dbstate, uistate, plugin):
     """
     Runs when plugin is registered.
     """
     from functools import partial
+
     path_css = partial(os.path.join, DATA_DIR, "css")
     path_img = partial(os.path.join, IMAGE_DIR, "webstuff")
     path_img_48x48 = partial(os.path.join, IMAGE_DIR, "hicolor/48x48/actions")
     CSS_FILES = [
-
         # id, user selectable?, translated_name, option name, fullpath,
         # navigation target name, images, javascript
         # "default" is used as default
-
         # default style sheet in the options
         # Translators: Basic Ash style sheet
-        ["Basic-Ash", 1, _("Basic-Ash"),
-         path_css('Web_Basic-Ash.css'), None, [], []],
-
+        ["Basic-Ash", 1, _("Basic-Ash"), path_css("Web_Basic-Ash.css"), None, [], []],
         # Translators: Basic Blue style sheet with navigation menus
-        ["Basic-Blue", 1, _("Basic-Blue"),
-         path_css('Web_Basic-Blue.css'), None, [], []],
-
+        [
+            "Basic-Blue",
+            1,
+            _("Basic-Blue"),
+            path_css("Web_Basic-Blue.css"),
+            None,
+            [],
+            [],
+        ],
         # Translators: Basic Cypress style sheet
-        ["Basic-Cypress", 1, _("Basic-Cypress"),
-         path_css('Web_Basic-Cypress.css'), None, [], []],
-
+        [
+            "Basic-Cypress",
+            1,
+            _("Basic-Cypress"),
+            path_css("Web_Basic-Cypress.css"),
+            None,
+            [],
+            [],
+        ],
         # Translators: Basic Lilac style sheet
-        ["Basic-Lilac", 1, _("Basic-Lilac"),
-         path_css('Web_Basic-Lilac.css'), None, [], []],
-
+        [
+            "Basic-Lilac",
+            1,
+            _("Basic-Lilac"),
+            path_css("Web_Basic-Lilac.css"),
+            None,
+            [],
+            [],
+        ],
         # Translators: Basic Peach style sheet
-        ["Basic-Peach", 1, _("Basic-Peach"),
-         path_css('Web_Basic-Peach.css'), None, [], []],
-
+        [
+            "Basic-Peach",
+            1,
+            _("Basic-Peach"),
+            path_css("Web_Basic-Peach.css"),
+            None,
+            [],
+            [],
+        ],
         # Translators: Basic Spruce style sheet
-        ["Basic-Spruce", 1, _("Basic-Spruce"),
-         path_css('Web_Basic-Spruce.css'), None, [], []],
-
+        [
+            "Basic-Spruce",
+            1,
+            _("Basic-Spruce"),
+            path_css("Web_Basic-Spruce.css"),
+            None,
+            [],
+            [],
+        ],
         # Translators: Mainz style sheet with its images
-        ["Mainz", 1, _("Mainz"),
-         path_css('Web_Mainz.css'), None,
-         [path_img("Web_Mainz_Bkgd.png"),
-          path_img("Web_Mainz_Header.png"),
-          path_img("Web_Mainz_Mid.png"),
-          path_img("Web_Mainz_MidLight.png")], []],
-
+        [
+            "Mainz",
+            1,
+            _("Mainz"),
+            path_css("Web_Mainz.css"),
+            None,
+            [
+                path_img("Web_Mainz_Bkgd.png"),
+                path_img("Web_Mainz_Header.png"),
+                path_img("Web_Mainz_Mid.png"),
+                path_img("Web_Mainz_MidLight.png"),
+            ],
+            [],
+        ],
         # Translators: Nebraska style sheet
-        ["Nebraska", 1, _("Nebraska"),
-         path_css('Web_Nebraska.css'), None, [], []],
-
+        ["Nebraska", 1, _("Nebraska"), path_css("Web_Nebraska.css"), None, [], []],
         # Translators: Visually Impaired style sheet with its navigation menus
-        ["Visually Impaired", 1, _("Visually Impaired"),
-         path_css('Web_Visually.css'), "narrative-menus.css", [], []],
-
+        [
+            "Visually Impaired",
+            1,
+            _("Visually Impaired"),
+            path_css("Web_Visually.css"),
+            "narrative-menus.css",
+            [],
+            [],
+        ],
         # ancestor tree style sheet and its images
-        ["ancestortree", 0, "ancestortree",
-         path_css("ancestortree.css"), None,
-         [path_img("Web_Gender_Female.png"),
-          path_img("Web_Gender_Male.png")], []],
-
+        [
+            "ancestortree",
+            0,
+            "ancestortree",
+            path_css("ancestortree.css"),
+            None,
+            [path_img("Web_Gender_Female.png"), path_img("Web_Gender_Male.png")],
+            [],
+        ],
         # media reference regions style sheet
-        ["behaviour", 0, "Behaviour",
-         path_css('behaviour.css'), None, [], []],
-
+        ["behaviour", 0, "Behaviour", path_css("behaviour.css"), None, [], []],
         # media lightbox style sheet
-        ["lightbox", 0, "",
-         path_css('lightbox.css'), None, [], []],
-
+        ["lightbox", 0, "", path_css("lightbox.css"), None, [], []],
         # media lightbox javascript
-        ["lightbox_js", 0, "",
-         path_css('lightbox.js'), None, [], []],
-
+        ["lightbox_js", 0, "", path_css("lightbox.js"), None, [], []],
         # NarrativeMap stylesheet/ image for NarrativeWeb place maps
-        ["NarrativeMaps", 0, "",
-         path_css("narrative-maps.css"), None, [], []],
-
+        ["NarrativeMaps", 0, "", path_css("narrative-maps.css"), None, [], []],
         # default printer style sheet
-        ["Print-Default", 0, "Print-Default",
-         path_css('Web_Print-Default.css'), None, [], []],
-
+        [
+            "Print-Default",
+            0,
+            "Print-Default",
+            path_css("Web_Print-Default.css"),
+            None,
+            [],
+            [],
+        ],
         # Horizontal Navigation Menus Style Sheet
-        ["Horizontal-Menus", 0, "Horizontal Menus",
-         path_css('Web_Horizontal-Menus.css'), None, [], []],
-
+        [
+            "Horizontal-Menus",
+            0,
+            "Horizontal Menus",
+            path_css("Web_Horizontal-Menus.css"),
+            None,
+            [],
+            [],
+        ],
         # Vertical Navigation Menus Style Sheet
-        ["Vertical-Menus", 0, "Vertical Menus",
-         path_css('Web_Vertical-Menus.css'), None, [], []],
-
+        [
+            "Vertical-Menus",
+            0,
+            "Vertical Menus",
+            path_css("Web_Vertical-Menus.css"),
+            None,
+            [],
+            [],
+        ],
         # WebKit/ Html5/ CSS3 Fade Navigation Menus Style Sheet
-        ["Fade-Menus", 0, "Fade In/ Out Menus",
-         path_css('Web_Fade-Menus.css'), None, [], []],
-
+        [
+            "Fade-Menus",
+            0,
+            "Fade In/ Out Menus",
+            path_css("Web_Fade-Menus.css"),
+            None,
+            [],
+            [],
+        ],
         # WebKit/ Html5/ CSS3 Animated Drop Down Style Sheet
-        ["Animated DropDown", 0, "Animated DropDown",
-         path_css("Web_Citations-Animated.css"), None, [],
-         "https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"],
-
+        [
+            "Animated DropDown",
+            0,
+            "Animated DropDown",
+            path_css("Web_Citations-Animated.css"),
+            None,
+            [],
+            "https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js",
+        ],
         # Source Page Citations Referents Outline Style sheet...
-        ["Outline", 0, "Outline Citations",
-         path_css("Web_Citations-Outline.css"), None, [], []],
-
+        [
+            "Outline",
+            0,
+            "Outline Citations",
+            path_css("Web_Citations-Outline.css"),
+            None,
+            [],
+            [],
+        ],
         # WebKit/ Html5/ CSS3 Drop Down Navigation Menus Style Sheet
-        ["DropDown-Menus", 0, "Drop Down Menus",
-         path_css("Web_DropDown-Menus.css"), None, [], []],
-
+        [
+            "DropDown-Menus",
+            0,
+            "Drop Down Menus",
+            path_css("Web_DropDown-Menus.css"),
+            None,
+            [],
+            [],
+        ],
         # no style sheet option
         ["No style sheet", 1, _("No style sheet"), [], None, [], []],
-
         # Document image
-        ["Document", 0, "Document",
-         os.path.join(IMAGE_DIR, "document.png"), None, [], []],
-
+        [
+            "Document",
+            0,
+            "Document",
+            os.path.join(IMAGE_DIR, "document.png"),
+            None,
+            [],
+            [],
+        ],
         # blank
-        ["Blank", 0, "Blank",
-         path_img("blank.gif"), None, [], []],
-
+        ["Blank", 0, "Blank", path_img("blank.gif"), None, [], []],
         # all other images for use in NarrativeWeb
-        ['All Images', 0, 'All Images', None, None,
-         [path_img("blank.gif"),
-          os.path.join(IMAGE_DIR, "document.png")], []],
-
+        [
+            "All Images",
+            0,
+            "All Images",
+            None,
+            None,
+            [path_img("blank.gif"), os.path.join(IMAGE_DIR, "document.png")],
+            [],
+        ],
         # Gramps Fav icon #2
-        ["favicon2", 0, "FavIcon2",
-         path_img("favicon2.ico"), None, [], []],
-
+        ["favicon2", 0, "FavIcon2", path_img("favicon2.ico"), None, [], []],
         # copyright image
-        ['Copyright', 0, 'Copyright',
-         path_img("somerights20.gif"), None, [], []],
-
+        ["Copyright", 0, "Copyright", path_img("somerights20.gif"), None, [], []],
         # marker icon for openstreetmap
-        ['marker', 0, 'marker',
-         path_img_48x48("gramps-geo-mainmap.png"), None, [], []],
-        ]
+        ["marker", 0, "marker", path_img_48x48("gramps-geo-mainmap.png"), None, [], []],
+    ]
     # If we add css user files, we must restart gramps to use them.
     if os.path.exists(USER_CSS):
         list_files = os.listdir(USER_CSS)
         for cssfile in list_files:
             if cssfile.endswith(".css"):
-                css_f = cssfile.replace('.css', '')
-                CSS_FILES.append(["UsEr_" + css_f, 1, css_f,
-                                  os.path.join(USER_CSS, cssfile), None,
-                                  looking_for_urls_in_user_css(cssfile),
-                                  []])
+                css_f = cssfile.replace(".css", "")
+                CSS_FILES.append(
+                    [
+                        "UsEr_" + css_f,
+                        1,
+                        css_f,
+                        os.path.join(USER_CSS, cssfile),
+                        None,
+                        looking_for_urls_in_user_css(cssfile),
+                        [],
+                    ]
+                )
     return CSS_FILES
+
 
 def looking_for_urls_in_user_css(css_file):
     """
@@ -204,7 +293,7 @@ def looking_for_urls_in_user_css(css_file):
                     img = url.group(1).replace("../images/", "")
                     img = os.path.join(USER_CSS, img)
                     if img not in images:
-                        images.append('%s' % img)
+                        images.append("%s" % img)
     return images
 
 

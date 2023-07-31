@@ -23,37 +23,40 @@
 Base class for filter rules.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import re
 
 from ...errors import FilterError
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # enable logging for error handling
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 LOG = logging.getLogger(".")
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Rule
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Rule:
     """Base rule class."""
 
     labels = []
-    name = ''
-    category = _('Miscellaneous filters')
-    description = _('No description')
+    name = ""
+    category = _("Miscellaneous filters")
+    description = _("No description")
     allow_regex = False
 
     def __init__(self, arg, use_regex=False, use_case=False):
@@ -81,7 +84,7 @@ class Rule:
         """
         if self.nrprepare == 0:
             if self.use_regex:
-                self.regex = [None]*len(self.labels)
+                self.regex = [None] * len(self.labels)
                 for index, label in enumerate(self.labels):
                     if self.list[index]:
                         try:
@@ -90,14 +93,18 @@ class Rule:
                             else:
                                 self.regex[index] = re.compile(self.list[index], re.I)
                         except re.error:
-                            self.regex[index] = re.compile('')
+                            self.regex[index] = re.compile("")
                 self.match_substring = self.match_regex
             self.prepare(db, user)
         self.nrprepare += 1
         if self.nrprepare > 20:  # more references to a filter than expected
-            raise FilterError(_("The filter definition contains a loop."),
-                              _("One rule references another which eventually"
-                                " references the first."))
+            raise FilterError(
+                _("The filter definition contains a loop."),
+                _(
+                    "One rule references another which eventually"
+                    " references the first."
+                ),
+            )
 
     def prepare(self, db, user):
         """prepare so the rule can be executed efficiently"""
@@ -126,9 +133,13 @@ class Rule:
         """Store the values of this rule."""
         assert isinstance(arg, list) or arg is None, "Argument is not a list"
         if len(arg) != len(self.labels):
-            LOG.warning(("Number of arguments does not match number of " +
-                         "labels.\n   list:   %s\n   labels: %s") % (arg,
-                             self.labels))
+            LOG.warning(
+                (
+                    "Number of arguments does not match number of "
+                    + "labels.\n   list:   %s\n   labels: %s"
+                )
+                % (arg, self.labels)
+            )
         self.list = arg
 
     def values(self):
@@ -145,12 +156,21 @@ class Rule:
 
     def display_values(self):
         """Return the labels and values of this rule."""
-        l_v = ('%s="%s"' % (_(self.labels[index][0] if
-                              isinstance(self.labels[index], tuple) else
-                              self.labels[index]), item)
-               for index, item in enumerate(self.list) if item)
+        l_v = (
+            '%s="%s"'
+            % (
+                _(
+                    self.labels[index][0]
+                    if isinstance(self.labels[index], tuple)
+                    else self.labels[index]
+                ),
+                item,
+            )
+            for index, item in enumerate(self.list)
+            if item
+        )
 
-        return ';'.join(l_v)
+        return ";".join(l_v)
 
     def __match_substring(self, param_index, str_var):
         """
@@ -161,8 +181,9 @@ class Rule:
         # make str_var unicode so that search for ü works
         # see issue 3188
         str_var = str(str_var)
-        if self.list[param_index] and \
-               (str_var.upper().find(self.list[param_index].upper()) == -1):
+        if self.list[param_index] and (
+            str_var.upper().find(self.list[param_index].upper()) == -1
+        ):
             return False
         else:
             return True
@@ -174,8 +195,7 @@ class Rule:
         expression search.
         """
         str_var = str(str_var)
-        if (self.list[param_index] and  self.regex[param_index].search(str_var)
-                is None):
+        if self.list[param_index] and self.regex[param_index].search(str_var) is None:
             return False
         else:
             return True

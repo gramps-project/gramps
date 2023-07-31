@@ -154,6 +154,7 @@ EVENT_PERSON_STR = _("%(event_name)s of %(person)s")
 HANDLE = 0
 INSTANTIATED = 1
 
+
 # -------------------------------------------------------------------------
 #
 # Importing data into the currently open database.
@@ -318,51 +319,51 @@ class ImportInfo:
         predefined keys.
         """
         key2string = {
-            FAMILY_KEY      : _('Family'),
-            SOURCE_KEY      : _('Source'),
-            EVENT_KEY       : _('Event'),
-            MEDIA_KEY       : _('Media Object'),
-            PLACE_KEY       : _('Place'),
-            REPOSITORY_KEY  : _('Repository'),
-            NOTE_KEY        : _('Note'),
-            CITATION_KEY    : _('Citation'),
-            }
+            FAMILY_KEY: _("Family"),
+            SOURCE_KEY: _("Source"),
+            EVENT_KEY: _("Event"),
+            MEDIA_KEY: _("Media Object"),
+            PLACE_KEY: _("Place"),
+            REPOSITORY_KEY: _("Repository"),
+            NOTE_KEY: _("Note"),
+            CITATION_KEY: _("Citation"),
+        }
         if key == PERSON_KEY:
             return _("  {id1} - {text} with {id2}").format(
-                        id1=obj.gramps_id,
-                        text=name_displayer.display(obj),
-                        id2=sec_obj.gramps_id)
+                id1=obj.gramps_id,
+                text=name_displayer.display(obj),
+                id2=sec_obj.gramps_id,
+            )
         elif key == TAG_KEY:
-            pass # Tags can't be merged
+            pass  # Tags can't be merged
         else:
             return _("  {obj} {id1} with {id2}").format(
-                obj=key2string[key],
-                id1=obj.gramps_id,
-                id2=sec_obj.gramps_id)
+                obj=key2string[key], id1=obj.gramps_id, id2=sec_obj.gramps_id
+            )
 
     def info_text(self):
         """
         Construct an info message from the data in the class.
         """
         key2string = {
-            PERSON_KEY      : _('People'),
-            FAMILY_KEY      : _('Families'),
-            SOURCE_KEY      : _('Sources'),
-            EVENT_KEY       : _('Events'),
-            MEDIA_KEY       : _('Media Objects'),
-            PLACE_KEY       : _('Places'),
-            REPOSITORY_KEY  : _('Repositories'),
-            NOTE_KEY        : _('Notes'),
-            TAG_KEY         : _('Tags'),
-            CITATION_KEY    : _('Citations'),
-            }
+            PERSON_KEY: _("People"),
+            FAMILY_KEY: _("Families"),
+            SOURCE_KEY: _("Sources"),
+            EVENT_KEY: _("Events"),
+            MEDIA_KEY: _("Media Objects"),
+            PLACE_KEY: _("Places"),
+            REPOSITORY_KEY: _("Repositories"),
+            NOTE_KEY: _("Notes"),
+            TAG_KEY: _("Tags"),
+            CITATION_KEY: _("Citations"),
+        }
         txt = [_("Number of new objects imported:")]
         table = []
         for key in self.keyorder:
-            label = _('%s:') % key2string[key]
-            new = '%d' % self.data_newobject[self.key2data[key]]
+            label = _("%s:") % key2string[key]
+            new = "%d" % self.data_newobject[self.key2data[key]]
             if any(self.data_unknownobject):
-                unknown = '(%d)' % self.data_unknownobject[self.key2data[key]]
+                unknown = "(%d)" % self.data_unknownobject[self.key2data[key]]
                 table.append([label, new, unknown])
             else:
                 table.append([label, new])
@@ -370,20 +371,25 @@ class ImportInfo:
 
         if any(self.data_unknownobject):
             txt.append(
-                _("\nThe imported file was not self-contained.\n"
-                "To correct for that, %(new)d objects were created and\n"
-                "their typifying attribute was set to 'Unknown'.\n"
-                "The breakdown per category is depicted by the\n"
-                "number in parentheses. Where possible these\n"
-                "'Unknown' objects are referenced by note %(unknown)s."
-                     ) % {'new': sum(self.data_unknownobject),
-                          'unknown': self.expl_note})
+                _(
+                    "\nThe imported file was not self-contained.\n"
+                    "To correct for that, %(new)d objects were created and\n"
+                    "their typifying attribute was set to 'Unknown'.\n"
+                    "The breakdown per category is depicted by the\n"
+                    "number in parentheses. Where possible these\n"
+                    "'Unknown' objects are referenced by note %(unknown)s."
+                )
+                % {"new": sum(self.data_unknownobject), "unknown": self.expl_note}
+            )
         if self.data_relpath:
             txt.append(
-                _("\nMedia objects with relative paths have been\n"
-                  "imported. These paths are considered relative to\n"
-                  "the media directory you can set in the preferences,\n"
-                  "or, if not set, relative to the user's directory."))
+                _(
+                    "\nMedia objects with relative paths have been\n"
+                    "imported. These paths are considered relative to\n"
+                    "the media directory you can set in the preferences,\n"
+                    "or, if not set, relative to the user's directory."
+                )
+            )
         merge = False
         for key in self.keyorder:
             if self.data_mergecandidate[self.key2data[key]]:
@@ -404,7 +410,6 @@ class ImportInfo:
 
 class LineParser:
     def __init__(self, filename):
-
         self.count = 0
         self.person_count = 0
 
@@ -3064,9 +3069,9 @@ class GrampsParser(UpdateCallback):
         if t == "M":
             self.person.set_gender(Person.MALE)
         elif t == "F":
-            self.person.set_gender (Person.FEMALE)
+            self.person.set_gender(Person.FEMALE)
         elif t == "X":
-            self.person.set_gender (Person.OTHER)
+            self.person.set_gender(Person.OTHER)
         else:
             self.person.set_gender(Person.UNKNOWN)
 

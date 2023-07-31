@@ -22,51 +22,54 @@
 
 "Export to Web Family Tree"
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Set up logging
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import logging
 from collections import abc
+
 log = logging.getLogger(".WriteFtree")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 # keep the following line even though not obviously used (works on import)
 from gramps.gui.plug.export import WriterOptionBox
 from gramps.gui.dialog import ErrorDialog
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # writeData
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def writeData(database, filename, user, option_box=None):
-    """ function to export Web Family Tree file """
+    """function to export Web Family Tree file"""
     writer = FtreeWriter(database, filename, user, option_box)
     return writer.export_data()
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # FtreeWriter
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class FtreeWriter:
-    """ Export a Web Family Tree format file """
+    """Export a Web Family Tree format file"""
+
     def __init__(self, database, filename, user, option_box=None):
         self.db = database
         self.filename = filename
@@ -90,11 +93,11 @@ class FtreeWriter:
         self.oldval = 0  # we only update when percentage changes
 
     def update_empty(self):
-        """ used when no callback is present """
+        """used when no callback is present"""
         pass
 
     def update_real(self):
-        """ Progress update """
+        """Progress update"""
         self.count += 1
         newval = int(100 * self.count / self.total)
         if newval != self.oldval:
@@ -102,7 +105,7 @@ class FtreeWriter:
             self.oldval = newval
 
     def export_data(self):
-        """ main export processing """
+        """main export processing"""
         name_map = {}
         id_map = {}
         id_name = {}
@@ -130,7 +133,7 @@ class FtreeWriter:
             id_name[key] = get_name(pnam, snam, count)
 
         try:
-            with open(self.filename, "w", encoding='utf_8') as file:
+            with open(self.filename, "w", encoding="utf_8") as file:
                 return self._export_data(file, id_name, id_map)
         except IOError as msg:
             msg2 = _("Could not create %s") % self.filename
@@ -138,7 +141,7 @@ class FtreeWriter:
             return False
 
     def _export_data(self, file, id_name, id_map):
-        """ file export processing """
+        """file export processing"""
         for key in self.plist:
             self.update()
             pers = self.db.get_person_from_handle(key)
@@ -148,11 +151,9 @@ class FtreeWriter:
             family_handle = pers.get_main_parents_family_handle()
             if family_handle:
                 family = self.db.get_family_from_handle(family_handle)
-                if family.get_father_handle() and \
-                        family.get_father_handle() in id_map:
+                if family.get_father_handle() and family.get_father_handle() in id_map:
                     father = id_map[family.get_father_handle()]
-                if family.get_mother_handle() and \
-                        family.get_mother_handle() in id_map:
+                if family.get_mother_handle() and family.get_mother_handle() in id_map:
                     mother = id_map[family.get_mother_handle()]
 
             #
@@ -171,9 +172,9 @@ class FtreeWriter:
             else:
                 death = None
 
-            #if self.restrict:
+            # if self.restrict:
             #    alive = probably_alive(pers, self.db)
-            #else:
+            # else:
             #    alive = 0
 
             if birth:
@@ -187,19 +188,19 @@ class FtreeWriter:
                 else:
                     dates = ""
 
-            file.write('%s;%s;%s;%s;%s;%s\n' %
-                       (name, father, mother, email, web, dates))
+            file.write(
+                "%s;%s;%s;%s;%s;%s\n" % (name, father, mother, email, web, dates)
+            )
 
         return True
 
 
 def fdate(val):
-    """ return properly formatted date """
+    """return properly formatted date"""
     if val.get_year_valid():
         if val.get_month_valid():
             if val.get_day_valid():
-                return "%d/%d/%d" % (val.get_day(), val.get_month(),
-                                     val.get_year())
+                return "%d/%d/%d" % (val.get_day(), val.get_month(), val.get_year())
             return "%d/%d" % (val.get_month(), val.get_year())
         return "%d" % val.get_year()
     return ""
@@ -209,7 +210,10 @@ def get_name(name, surname, count):
     """returns a name string built from the components of the Name
     instance, in the form of Firstname Surname"""
 
-    return (name.first_name + ' ' +
-            surname +
-            (str(count) if count != -1 else '') +
-            (', ' + name.suffix if name.suffix else ''))
+    return (
+        name.first_name
+        + " "
+        + surname
+        + (str(count) if count != -1 else "")
+        + (", " + name.suffix if name.suffix else "")
+    )

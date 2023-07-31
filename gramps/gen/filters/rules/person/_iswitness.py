@@ -18,35 +18,37 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 from ....lib.eventroletype import EventRoleType
 from ....lib.eventtype import EventType
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # "Witnesses"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class IsWitness(Rule):
     """Witnesses"""
 
-    labels = [_('Event type:')]
-    name = _('Witnesses')
+    labels = [_("Event type:")]
+    name = _("Witnesses")
     description = _("Matches people who are witnesses in any event")
-    category = _('Event filters')
+    category = _("Event filters")
 
-    def apply(self,db,person):
+    def apply(self, db, person):
         for event_ref in person.event_ref_list:
             if event_ref and event_ref.role == EventRoleType.WITNESS:
                 # This is the witness.

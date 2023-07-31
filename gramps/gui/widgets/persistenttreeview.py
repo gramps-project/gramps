@@ -38,11 +38,11 @@ __all__ = ["PersistentTreeView"]
 
 
 class PersistentTreeView(Gtk.TreeView):
-    '''
+    """
     TreeView that has resizable columns
-    '''
+    """
 
-    __gtype_name__ = 'PersistentTreeView'
+    __gtype_name__ = "PersistentTreeView"
 
     def __init__(self, uistate=None, config_name=None):
         """
@@ -64,7 +64,7 @@ class PersistentTreeView(Gtk.TreeView):
         """
         if not self.uistate and uistate:
             _LOG.debug("connect signal font-changed")
-            uistate.connect('font-changed', self.restore_column_size)
+            uistate.connect("font-changed", self.restore_column_size)
             self.uistate = uistate
 
     def set_config_name(self, name):
@@ -76,7 +76,7 @@ class PersistentTreeView(Gtk.TreeView):
         # name = gramps.gui.editors.displaytabs.personeventembedlist
         # The following line return only the last part of the string.
         # personeventembedlist in this case
-        last = name.split('.')[-1]
+        last = name.split(".")[-1]
         _LOG.debug("set persistent name : %s" % last)
         self.config_name = "spacing.%s" % last
         if not config.is_set(self.config_name):
@@ -93,8 +93,7 @@ class PersistentTreeView(Gtk.TreeView):
         if 0 not in newsize:
             # Don't save the values if one column size is null.
             config.set(self.config_name, newsize)
-            _LOG.debug("save persistent : %s = %s" % (self.config_name,
-                                                      newsize))
+            _LOG.debug("save persistent : %s = %s" % (self.config_name, newsize))
         return
 
     def get_columns_size(self):
@@ -130,8 +129,9 @@ class PersistentTreeView(Gtk.TreeView):
             return
         size = config.get(self.config_name)
         if len(size) == 0:
-            _LOG.debug("restore for the first time : %s = %s" %
-                       (self.config_name, size))
+            _LOG.debug(
+                "restore for the first time : %s = %s" % (self.config_name, size)
+            )
             return
         _LOG.debug("restore persistent : %s = %s" % (self.config_name, size))
         context = Gtk.Label().get_pango_context()

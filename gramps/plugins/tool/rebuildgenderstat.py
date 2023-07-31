@@ -22,50 +22,52 @@
 
 "Rebuild gender stat values"
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Set up logging
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import logging
+
 log = logging.getLogger(".RebuildGenderStat")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gtk modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gui.plug import tool
 from gramps.gui.dialog import OkDialog
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.lib import Name
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # runTool
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 COLUMN_GENDER = 2
 COLUMN_NAME = 3
 COLUMN_ALTNAMES = 4
 
-class RebuildGenderStat(tool.Tool, UpdateCallback):
 
+class RebuildGenderStat(tool.Tool, UpdateCallback):
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
 
@@ -79,7 +81,9 @@ class RebuildGenderStat(tool.Tool, UpdateCallback):
             self.callback = uistate.pulse_progressbar
             uistate.set_busy_cursor(True)
             uistate.progress.show()
-            uistate.push_message(dbstate, _("Rebuilding gender statistics for name gender guessing..."))
+            uistate.push_message(
+                dbstate, _("Rebuilding gender statistics for name gender guessing...")
+            )
         else:
             self.callback = None
             print("Rebuilding gender statistics for name gender guessing...")
@@ -92,9 +96,11 @@ class RebuildGenderStat(tool.Tool, UpdateCallback):
         if uistate:
             uistate.set_busy_cursor(False)
             uistate.progress.hide()
-            OkDialog(_("Gender statistics rebuilt"),
-                     _('Gender statistics for name gender guessing have been rebuilt.'),
-                     parent=uistate.window)
+            OkDialog(
+                _("Gender statistics rebuilt"),
+                _("Gender statistics for name gender guessing have been rebuilt."),
+                parent=uistate.window,
+            )
         else:
             print("Gender statistics for name gender guessing have been rebuilt.")
         self.db.enable_signals()
@@ -105,21 +111,23 @@ class RebuildGenderStat(tool.Tool, UpdateCallback):
         """
         self.db.genderStats.clear_stats()
         with self.db.get_person_cursor() as cursor:
-            #loop over database and store the sort field, and the handle, and
-            #allow for a third iter
+            # loop over database and store the sort field, and the handle, and
+            # allow for a third iter
             for key, data in cursor:
                 rawprimname = data[COLUMN_NAME]
                 rawaltnames = data[COLUMN_ALTNAMES]
                 primary_name = Name().unserialize(rawprimname).get_first_name()
-                alternate_names = [Name().unserialize(name).get_first_name()
-                                            for name in rawaltnames]
+                alternate_names = [
+                    Name().unserialize(name).get_first_name() for name in rawaltnames
+                ]
                 self.db.genderStats.count_name(primary_name, data[COLUMN_GENDER])
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 #
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class RebuildGenderStatOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.

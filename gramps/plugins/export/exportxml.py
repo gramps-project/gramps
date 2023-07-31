@@ -223,7 +223,6 @@ class GrampsXmlWriter(UpdateCallback):
         return 1
 
     def write_xml_data(self):
-
         date = time.localtime(time.time())
         owner = self.db.get_researcher()
 
@@ -536,7 +535,7 @@ class GrampsXmlWriter(UpdateCallback):
                 self.g.write(' value="%s"' % escxml(str(value)))
             self.g.write(">\n")
 
-            for (start, end) in style.ranges:
+            for start, end in style.ranges:
                 self.g.write(
                     ("  " * (index + 1))
                     + '<range start="%d" end="%d"/>\n' % (start, end)
@@ -561,9 +560,9 @@ class GrampsXmlWriter(UpdateCallback):
         if person.get_gender() == Person.MALE:
             self.write_line("gender", "M", index + 1)
         elif person.get_gender() == Person.FEMALE:
-            self.write_line("gender","F",index+1)
+            self.write_line("gender", "F", index + 1)
         elif person.get_gender() == Person.OTHER:
-            self.write_line("gender","X",index+1)
+            self.write_line("gender", "X", index + 1)
         else:
             self.write_line("gender", "U", index + 1)
         self.dump_name(person.get_primary_name(), False, index + 1)
@@ -784,7 +783,7 @@ class GrampsXmlWriter(UpdateCallback):
         attribute_list = eventref.get_attribute_list()
         citation_list = eventref.get_citation_list()
         note_list = eventref.get_note_list()
-        if (len(citation_list) + len(attribute_list) + len(note_list) == 0):
+        if len(citation_list) + len(attribute_list) + len(note_list) == 0:
             self.write_ref(
                 "eventref",
                 eventref.ref,
@@ -803,7 +802,7 @@ class GrampsXmlWriter(UpdateCallback):
             self.write_attribute_list(attribute_list, index + 1)
             self.write_note_list(note_list, index + 1)
             for citation_handle in citation_list:
-                self.write_ref("citationref", citation_handle, index+1)
+                self.write_ref("citationref", citation_handle, index + 1)
             self.g.write("%s</eventref>\n" % sp)
 
     def dump_place_ref(self, placeref, index=1):
@@ -856,7 +855,6 @@ class GrampsXmlWriter(UpdateCallback):
         self.g.write("%s</event>\n" % sp)
 
     def dump_ordinance(self, ord, index=1):
-
         name = ord.type2xml()
 
         sp = "  " * index

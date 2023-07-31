@@ -22,17 +22,18 @@
 Provide the different event roles.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .grampstype import GrampsType
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 
-class EventRoleType(GrampsType):
 
+class EventRoleType(GrampsType):
     UNKNOWN = -1
     CUSTOM = 0
     PRIMARY = 1
@@ -62,7 +63,7 @@ class EventRoleType(GrampsType):
         (FAMILY, _("Family", "Role"), "Family"),
         (INFORMANT, _("Informant"), "Informant"),
         (GODPARENT, _("Godparent"), "Godparent"),
-        ]
+    ]
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)

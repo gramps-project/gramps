@@ -44,6 +44,7 @@ from ._dateparser import DateParser
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
 
+
 # -------------------------------------------------------------------------
 #
 # French parser
@@ -270,7 +271,7 @@ class DateDisplayFR(DateDisplay):
             "Jour. MOI Année",  # 5
             "Mois Jour, Année",  # 6
             "MOI Jour, Année",  # 7
-            "JJ/MM/AAAA", # 8
+            "JJ/MM/AAAA",  # 8
         )
         # this definition must agree with its "_display_gregorian" method
 
@@ -281,12 +282,10 @@ class DateDisplayFR(DateDisplay):
         # this must agree with its locale-specific "formats" definition
         year = self._slash_year(date_val[2], date_val[3])
         if self.format == 0:
-
             # ISO
 
             return self.display_iso(date_val)
         elif self.format == 1:
-
             # numerical
 
             if date_val[2] < 0 or date_val[3]:
@@ -304,7 +303,6 @@ class DateDisplayFR(DateDisplay):
 
                     value = value.replace("%Y", str(date_val[2]))
         elif self.format == 2:
-
             # day month_name year
 
             if date_val[0] == 0:
@@ -313,10 +311,8 @@ class DateDisplayFR(DateDisplay):
                 else:
                     value = "%s %s" % (self.long_months[date_val[1]], year)
             else:
-
                 value = "%d %s %s" % (date_val[0], self.long_months[date_val[1]], year)
         elif self.format == 3:
-
             # day month_abbreviation year
 
             if date_val[0] == 0:
@@ -325,10 +321,8 @@ class DateDisplayFR(DateDisplay):
                 else:
                     value = "%s %s" % (self.short_months[date_val[1]], year)
             else:
-
                 value = "%d %s %s" % (date_val[0], self.short_months[date_val[1]], year)
         elif self.format == 4:
-
             # day. month_name year
 
             if date_val[0] == 0:
@@ -337,14 +331,12 @@ class DateDisplayFR(DateDisplay):
                 else:
                     value = "%s %s" % (self.long_months[date_val[1]], year)
             else:
-
                 # base_display :
                 # value = "%d %s %s" % (date_val[0],
                 #                       self.long_months[date_val[1]], year)
 
                 value = "%d. %s %s" % (date_val[0], self.long_months[date_val[1]], year)
         elif self.format == 5:
-
             # day. month_abbreviation year
 
             if date_val[0] == 0:
@@ -353,7 +345,6 @@ class DateDisplayFR(DateDisplay):
                 else:
                     value = "%s %s" % (self.short_months[date_val[1]], year)
             else:
-
                 # base_display :
                 # value = "%d %s %s" % (date_val[0],
                 #                       self.short_months[date_val[1]], year)
@@ -364,7 +355,6 @@ class DateDisplayFR(DateDisplay):
                     year,
                 )
         elif self.format == 6:
-
             # month_name day, year
 
             if date_val[0] == 0:
@@ -375,7 +365,6 @@ class DateDisplayFR(DateDisplay):
             else:
                 value = "%s %d, %s" % (self.long_months[date_val[1]], date_val[0], year)
         elif self.format == 7:
-
             # month_abbreviation day, year
 
             if date_val[0] == 0:
@@ -390,7 +379,6 @@ class DateDisplayFR(DateDisplay):
                     year,
                 )
         elif self.format == 8:
-
             # French numerical with 0
 
             if date_val[2] < 0 or date_val[3]:
@@ -399,9 +387,9 @@ class DateDisplayFR(DateDisplay):
                 if date_val[0] == date_val[1] == 0:
                     value = str(date_val[2])
                 else:
-                    value = self.dhformat.replace('%m', str(date_val[1]).zfill(2))
-                    value = value.replace('%d', str(date_val[0]).zfill(2))
-                    value = value.replace('%Y', str(date_val[2]))
+                    value = self.dhformat.replace("%m", str(date_val[1]).zfill(2))
+                    value = value.replace("%d", str(date_val[0]).zfill(2))
+                    value = value.replace("%Y", str(date_val[2]))
         else:
             return self.display_iso(date_val)
 

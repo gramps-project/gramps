@@ -24,10 +24,12 @@ This module provides the :class:`.Plugin` class for import plugins.
 
 from . import Plugin
 
+
 class ImportPlugin(Plugin):
     """
     This class represents a plugin for importing data into Gramps
     """
+
     def __init__(self, name, description, import_function, extension):
         """
         :param name: A friendly name to call this plugin.
@@ -50,7 +52,7 @@ class ImportPlugin(Plugin):
         :type extension: str
         :return: nothing
         """
-        Plugin.__init__(self, name, description, import_function.__module__ )
+        Plugin.__init__(self, name, description, import_function.__module__)
         self.__import_func = import_function
         self.__extension = extension
 

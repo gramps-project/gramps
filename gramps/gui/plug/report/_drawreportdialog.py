@@ -19,35 +19,36 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import GObject
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.plug.report._constants import CATEGORY_DRAW
 from ._docreportdialog import DocReportDialog
 from ...pluginmanager import GuiPluginManager
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # _DrawFormatComboBox
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class _DrawFormatComboBox(Gtk.ComboBox):
     """
     This class is a combo box that allows the selection of a docgen plugin
     from all drawdoc plugins.
     """
-    def __init__(self, active):
 
+    def __init__(self, active):
         Gtk.ComboBox.__init__(self)
 
         pmgr = GuiPluginManager.get_instance()
@@ -60,7 +61,7 @@ class _DrawFormatComboBox(Gtk.ComboBox):
         self.set_model(self.store)
         cell = Gtk.CellRendererText()
         self.pack_start(cell, True)
-        self.add_attribute(cell, 'text', 0)
+        self.add_attribute(cell, "text", 0)
 
         index = 0
         active_index = 0
@@ -78,15 +79,17 @@ class _DrawFormatComboBox(Gtk.ComboBox):
         """
         return self.__drawdoc_plugins[self.get_active()]
 
-#-----------------------------------------------------------------------
+
+# -----------------------------------------------------------------------
 #
 # DrawReportDialog
 #
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 class DrawReportDialog(DocReportDialog):
     """
     A class of ReportDialog customized for drawing based reports.
     """
+
     def __init__(self, dbstate, uistate, opt, name, translated_name):
         """
         Initialize a dialog to request that the user select options
@@ -95,12 +98,11 @@ class DrawReportDialog(DocReportDialog):
         """
         self.format_menu = None
         self.category = CATEGORY_DRAW
-        DocReportDialog.__init__(self, dbstate, uistate, opt,
-                                 name, translated_name)
+        DocReportDialog.__init__(self, dbstate, uistate, opt, name, translated_name)
 
-    def make_doc_menu(self,active=None):
+    def make_doc_menu(self, active=None):
         """
         Build a menu of document types that are appropriate for
         this drawing report.
         """
-        self.format_menu = _DrawFormatComboBox( active )
+        self.format_menu = _DrawFormatComboBox(active)

@@ -28,11 +28,11 @@
 Manages the main window and the pluggable views
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from collections import defaultdict
 import os
 import time
@@ -41,29 +41,31 @@ from io import StringIO
 import gc
 import html
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # set up logging
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 LOG = logging.getLogger(".")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GLib
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from gramps.cli.grampscli import CLIManager
 from .user import User
@@ -71,15 +73,24 @@ from .plug import tool
 from gramps.gen.plug import START
 from gramps.gen.plug import REPORT
 from gramps.gen.plug.report._constants import standalone_categories
-from .plug import (PluginWindows, ReportPluginDialog, ToolPluginDialog)
+from .plug import PluginWindows, ReportPluginDialog, ToolPluginDialog
 from .plug.report import report, BookSelector
-from .utils import (AvailableUpdates, Popup)
+from .utils import AvailableUpdates, Popup
 from .pluginmanager import GuiPluginManager
 from gramps.gen.relationship import get_relationship_calculator
 from .displaystate import DisplayState, RecentDocsMenu
-from gramps.gen.const import (USER_DATA, ICON, URL_BUGTRACKER, URL_HOMEPAGE,
-                              URL_MAILINGLIST, URL_MANUAL_PAGE, URL_WIKISTRING,
-                              WIKI_EXTRAPLUGINS, URL_BUGHOME, DATA_DIR)
+from gramps.gen.const import (
+    USER_DATA,
+    ICON,
+    URL_BUGTRACKER,
+    URL_HOMEPAGE,
+    URL_MAILINGLIST,
+    URL_MANUAL_PAGE,
+    URL_WIKISTRING,
+    WIKI_EXTRAPLUGINS,
+    URL_BUGHOME,
+    DATA_DIR,
+)
 from gramps.gen.constfunc import is_quartz
 from gramps.gen.config import config
 from gramps.gen.errors import WindowActiveError
@@ -94,38 +105,59 @@ from .aboutdialog import GrampsAboutDialog
 from .navigator import Navigator
 from .views.tags import Tags
 from .uimanager import ActionGroup, valid_action_name
-from gramps.gen.lib import (Person, Surname, Family, Media, Note, Place,
-                            Source, Repository, Citation, Event, EventType,
-                            ChildRef)
-from gramps.gui.editors import (EditPerson, EditFamily, EditMedia, EditNote,
-                                EditPlace, EditSource, EditRepository,
-                                EditCitation, EditEvent)
+from gramps.gen.lib import (
+    Person,
+    Surname,
+    Family,
+    Media,
+    Note,
+    Place,
+    Source,
+    Repository,
+    Citation,
+    Event,
+    EventType,
+    ChildRef,
+)
+from gramps.gui.editors import (
+    EditPerson,
+    EditFamily,
+    EditMedia,
+    EditNote,
+    EditPlace,
+    EditSource,
+    EditRepository,
+    EditCitation,
+    EditEvent,
+)
 from gramps.gen.db.exceptions import DbWriteFailure
 from gramps.gen.filters import reload_custom_filters
 from .managedwindow import ManagedWindow
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 _UNSUPPORTED = ("Unsupported", _("Unsupported"))
 
-WIKI_HELP_PAGE_FAQ = '%s_-_FAQ' % URL_MANUAL_PAGE
-WIKI_HELP_PAGE_KEY = '%s_-_Keybindings' % URL_MANUAL_PAGE
-WIKI_HELP_PAGE_MAN = '%s' % URL_MANUAL_PAGE
+WIKI_HELP_PAGE_FAQ = "%s_-_FAQ" % URL_MANUAL_PAGE
+WIKI_HELP_PAGE_KEY = "%s_-_Keybindings" % URL_MANUAL_PAGE
+WIKI_HELP_PAGE_MAN = "%s" % URL_MANUAL_PAGE
 
 CSS_FONT = """
 #view {
     font-family: %s;
   }
 """
-#-------------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------------
 #
 # ViewManager
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class ViewManager(CLIManager):
     """
     **Overview**
@@ -168,7 +200,7 @@ class ViewManager(CLIManager):
         self.view_category_order = view_category_order
         self.app = app
 
-        #set pluginmanager to GUI one
+        # set pluginmanager to GUI one
         self._pmgr = GuiPluginManager.get_instance()
         self.merge_ids = []
         self.toolactions = None
@@ -180,35 +212,37 @@ class ViewManager(CLIManager):
         self.pages = []
         self.page_lookup = {}
         self.views = None
-        self.current_views = [] # The current view in each category
+        self.current_views = []  # The current view in each category
         self.view_changing = False
         self.autobackup_time = time.time()  # time of start or last autobackup
         self.delay_timer = None  # autobackup delay timer for after wakeup
         self.prev_has_changed = 0  # db commit count at autobackup time
 
-        self.show_navigator = config.get('interface.view')
-        self.show_toolbar = config.get('interface.toolbar-on')
-        self.fullscreen = config.get('interface.fullscreen')
+        self.show_navigator = config.get("interface.view")
+        self.show_toolbar = config.get("interface.toolbar-on")
+        self.fullscreen = config.get("interface.fullscreen")
 
-        self.__build_main_window() # sets self.uistate
+        self.__build_main_window()  # sets self.uistate
         if self.user is None:
-            self.user = User(error=ErrorDialog,
-                             parent=self.window,
-                             callback=self.uistate.pulse_progressbar,
-                             uistate=self.uistate,
-                             dbstate=self.dbstate)
+            self.user = User(
+                error=ErrorDialog,
+                parent=self.window,
+                callback=self.uistate.pulse_progressbar,
+                uistate=self.uistate,
+                dbstate=self.dbstate,
+            )
         self.__connect_signals()
 
         self.do_reg_plugins(self.dbstate, self.uistate)
         reload_custom_filters()
-        #plugins loaded now set relationship class
+        # plugins loaded now set relationship class
         self.rel_class = get_relationship_calculator()
         self.uistate.set_relationship_class()
         # Need to call after plugins have been registered
-        self.uistate.connect('update-available', self.process_updates)
+        self.uistate.connect("update-available", self.process_updates)
         self.check_for_updates()
         # Set autobackup
-        self.uistate.connect('autobackup', self.autobackup)
+        self.uistate.connect("autobackup", self.autobackup)
         self.uistate.set_backup_timer()
         self.uistate.set_toolbar()
 
@@ -218,17 +252,18 @@ class ViewManager(CLIManager):
         """
         howoften = config.get("behavior.check-for-addon-updates")
         update = False
-        if howoften != 0: # update never if zero
-            year, mon, day = list(map(
-                int, config.get("behavior.last-check-for-addon-updates").split("/")))
+        if howoften != 0:  # update never if zero
+            year, mon, day = list(
+                map(int, config.get("behavior.last-check-for-addon-updates").split("/"))
+            )
             days = (datetime.date.today() - datetime.date(year, mon, day)).days
-            if howoften == 1 and days >= 30: # once a month
+            if howoften == 1 and days >= 30:  # once a month
                 update = True
-            elif howoften == 2 and days >= 7: # once a week
+            elif howoften == 2 and days >= 7:  # once a week
                 update = True
-            elif howoften == 3 and days >= 1: # once a day
+            elif howoften == 3 and days >= 1:  # once a day
                 update = True
-            elif howoften == 4: # always
+            elif howoften == 4:  # always
                 update = True
 
         if update:
@@ -238,8 +273,7 @@ class ViewManager(CLIManager):
         """
         Called when add-on updates are available.
         """
-        rescan = PluginWindows.UpdateAddons(self.uistate, [],
-                                            addon_update_list).rescan
+        rescan = PluginWindows.UpdateAddons(self.uistate, [], addon_update_list).rescan
         self.do_reg_plugins(self.dbstate, self.uistate, rescan=rescan)
 
     def _errordialog(self, title, errormessage):
@@ -247,19 +281,18 @@ class ViewManager(CLIManager):
         Show the error.
         In the GUI, the error is shown, and a return happens
         """
-        ErrorDialog(title, errormessage,
-                    parent=self.uistate.window)
+        ErrorDialog(title, errormessage, parent=self.uistate.window)
         return 1
 
     def __build_main_window(self):
         """
         Builds the GTK interface
         """
-        width = config.get('interface.main-window-width')
-        height = config.get('interface.main-window-height')
-        horiz_position = config.get('interface.main-window-horiz-position')
-        vert_position = config.get('interface.main-window-vert-position')
-        font = config.get('utf8.selected-font')
+        width = config.get("interface.main-window-width")
+        height = config.get("interface.main-window-height")
+        horiz_position = config.get("interface.main-window-horiz-position")
+        vert_position = config.get("interface.main-window-vert-position")
+        font = config.get("utf8.selected-font")
 
         self.window = Gtk.ApplicationWindow(application=self.app)
         self.app.window = self.window
@@ -272,12 +305,13 @@ class ViewManager(CLIManager):
         self.provider = Gtk.CssProvider()
         self.change_font(font)
 
-        #Set the mnemonic modifier on Macs to alt-ctrl so that it
-        #doesn't interfere with the extended keyboard, see
-        #https://gramps-project.org/bugs/view.php?id=6943
+        # Set the mnemonic modifier on Macs to alt-ctrl so that it
+        # doesn't interfere with the extended keyboard, see
+        # https://gramps-project.org/bugs/view.php?id=6943
         if is_quartz():
             self.window.set_mnemonic_modifier(
-                Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.MOD1_MASK)
+                Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.MOD1_MASK
+            )
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.window.add(vbox)
         self.hpane = Gtk.Paned()
@@ -296,7 +330,7 @@ class ViewManager(CLIManager):
         self.__build_ui_manager()
 
         self.hpane.add2(self.notebook)
-        toolbar = self.uimanager.get_widget('ToolBar')
+        toolbar = self.uimanager.get_widget("ToolBar")
         toolbar.show_all()
         self.statusbar = Statusbar()
         self.statusbar.show()
@@ -305,21 +339,30 @@ class ViewManager(CLIManager):
         vbox.pack_end(self.hpane, True, True, 0)
         vbox.show()
 
-        self.uistate = DisplayState(self.window, self.statusbar,
-                                    self.uimanager, self)
+        self.uistate = DisplayState(self.window, self.statusbar, self.uimanager, self)
 
         # Create history objects
-        for nav_type in ('Person', 'Family', 'Event', 'Place', 'Source',
-                         'Citation', 'Repository', 'Note', 'Media'):
+        for nav_type in (
+            "Person",
+            "Family",
+            "Event",
+            "Place",
+            "Source",
+            "Citation",
+            "Repository",
+            "Note",
+            "Media",
+        ):
             self.uistate.register(self.dbstate, nav_type, 0)
 
-        self.dbstate.connect('database-changed', self.uistate.db_changed)
+        self.dbstate.connect("database-changed", self.uistate.db_changed)
 
         self.tags = Tags(self.uistate, self.dbstate)
 
         # handle OPEN Recent Menu, insert it into the toolbar.
         self.recent_manager = RecentDocsMenu(
-            self.uistate, self.dbstate, self._read_recent_file)
+            self.uistate, self.dbstate, self._read_recent_file
+        )
         self.recent_manager.build(update_menu=False)
 
         self.db_loader = DbLoader(self.dbstate, self.uistate)
@@ -327,7 +370,7 @@ class ViewManager(CLIManager):
         self.__setup_navigator()
 
         # need to get toolbar again, because it is a new object now.
-        toolbar = self.uimanager.get_widget('ToolBar')
+        toolbar = self.uimanager.get_widget("ToolBar")
         if self.show_toolbar:
             toolbar.show()
         else:
@@ -336,7 +379,7 @@ class ViewManager(CLIManager):
         if self.fullscreen:
             self.window.fullscreen()
 
-        self.window.set_title("%s - Gramps" % _('No Family Tree'))
+        self.window.set_title("%s - Gramps" % _("No Family Tree"))
         self.window.show()
 
     def __setup_navigator(self):
@@ -353,108 +396,113 @@ class ViewManager(CLIManager):
         """
         Connects the signals needed
         """
-        self.del_event = self.window.connect('delete-event', self.quit)
-        self.notebook.connect('switch-page', self.view_changed)
+        self.del_event = self.window.connect("delete-event", self.quit)
+        self.notebook.connect("switch-page", self.view_changed)
 
     def __init_lists(self):
         """
         Initialize the actions lists for the UIManager
         """
         self._app_actionlist = [
-            ('quit', self.quit, None if is_quartz() else "<PRIMARY>q"),
-            ('preferences', self.preferences_activate),
-            ('about', self.display_about_box), ]
+            ("quit", self.quit, None if is_quartz() else "<PRIMARY>q"),
+            ("preferences", self.preferences_activate),
+            ("about", self.display_about_box),
+        ]
 
         self._file_action_list = [
-            #('FileMenu', None, _('_Family Trees')),
-            ('Open', self.__open_activate, "<PRIMARY>o"),
-            #('OpenRecent'_("Open an existing database")),
-            #('quit', self.quit, "<PRIMARY>q"),
-            #('ViewMenu', None, _('_View')),
-            ('Navigator', self.navigator_toggle, "<PRIMARY>m",
-             self.show_navigator),
-            ('Toolbar', self.toolbar_toggle, '', self.show_toolbar),
-            ('Fullscreen', self.fullscreen_toggle, "F11", self.fullscreen),
-            #('EditMenu', None, _('_Edit')),
-            #('preferences', self.preferences_activate),
-            #('HelpMenu', None, _('_Help')),
-            ('HomePage', home_page_activate),
-            ('MailingLists', mailing_lists_activate),
-            ('ReportBug', report_bug_activate),
-            ('ExtraPlugins', extra_plugins_activate),
-            #('about', self.display_about_box),
-            ('PluginStatus', self.__plugin_status),
-            ('AddonManager', self.__addon_manager),
-            ('FAQ', faq_activate),
-            ('KeyBindings', key_bindings),
-            ('UserManual', manual_activate, 'F1'),
-            ('TipOfDay', self.tip_of_day_activate), ]
+            # ('FileMenu', None, _('_Family Trees')),
+            ("Open", self.__open_activate, "<PRIMARY>o"),
+            # ('OpenRecent'_("Open an existing database")),
+            # ('quit', self.quit, "<PRIMARY>q"),
+            # ('ViewMenu', None, _('_View')),
+            ("Navigator", self.navigator_toggle, "<PRIMARY>m", self.show_navigator),
+            ("Toolbar", self.toolbar_toggle, "", self.show_toolbar),
+            ("Fullscreen", self.fullscreen_toggle, "F11", self.fullscreen),
+            # ('EditMenu', None, _('_Edit')),
+            # ('preferences', self.preferences_activate),
+            # ('HelpMenu', None, _('_Help')),
+            ("HomePage", home_page_activate),
+            ("MailingLists", mailing_lists_activate),
+            ("ReportBug", report_bug_activate),
+            ("ExtraPlugins", extra_plugins_activate),
+            # ('about', self.display_about_box),
+            ("PluginStatus", self.__plugin_status),
+            ("AddonManager", self.__addon_manager),
+            ("FAQ", faq_activate),
+            ("KeyBindings", key_bindings),
+            ("UserManual", manual_activate, "F1"),
+            ("TipOfDay", self.tip_of_day_activate),
+        ]
 
         self._readonly_action_list = [
-            ('Close', self.close_database, "<control>w"),
-            ('Export', self.export_data, "<PRIMARY>e"),
-            ('Backup', self.quick_backup),
-            ('Abandon', self.abort),
-            ('Reports', self.reports_clicked),
-            #('GoMenu', None, _('_Go')),
-            #('ReportsMenu', None, _('_Reports')),
-            ('Books', self.run_book),
-            #('WindowsMenu', None, _('_Windows')),
-            #('F2', self.__keypress, 'F2'),   #pedigreeview
-            #('F3', self.__keypress, 'F3'),     # timelinepedigreeview
-            #('F4', self.__keypress, 'F4'),     # timelinepedigreeview
-            #('F5', self.__keypress, 'F5'),     # timelinepedigreeview
-            #('F6', self.__keypress, 'F6'),     # timelinepedigreeview
-            #('F7', self.__keypress, 'F7'),
-            #('F8', self.__keypress, 'F8'),
-            #('F9', self.__keypress, 'F9'),
-            #('F11', self.__keypress, 'F11'),  # used to go full screen
-            #('F12', self.__keypress, 'F12'),
-            #('<PRIMARY>BackSpace', self.__keypress, '<PRIMARY>BackSpace'),
-            #('<PRIMARY>Delete', self.__keypress, '<PRIMARY>Delete'),
-            #('<PRIMARY>Insert', self.__keypress, '<PRIMARY>Insert'),
-            #('<PRIMARY>J', self.__keypress, '<PRIMARY>J'),
-            ('PRIMARY-1', self.__gocat, '<PRIMARY>1'),
-            ('PRIMARY-2', self.__gocat, '<PRIMARY>2'),
-            ('PRIMARY-3', self.__gocat, '<PRIMARY>3'),
-            ('PRIMARY-4', self.__gocat, '<PRIMARY>4'),
-            ('PRIMARY-5', self.__gocat, '<PRIMARY>5'),
-            ('PRIMARY-6', self.__gocat, '<PRIMARY>6'),
-            ('PRIMARY-7', self.__gocat, '<PRIMARY>7'),
-            ('PRIMARY-8', self.__gocat, '<PRIMARY>8'),
-            ('PRIMARY-9', self.__gocat, '<PRIMARY>9'),
-            ('PRIMARY-0', self.__gocat, '<PRIMARY>0'),
+            ("Close", self.close_database, "<control>w"),
+            ("Export", self.export_data, "<PRIMARY>e"),
+            ("Backup", self.quick_backup),
+            ("Abandon", self.abort),
+            ("Reports", self.reports_clicked),
+            # ('GoMenu', None, _('_Go')),
+            # ('ReportsMenu', None, _('_Reports')),
+            ("Books", self.run_book),
+            # ('WindowsMenu', None, _('_Windows')),
+            # ('F2', self.__keypress, 'F2'),   #pedigreeview
+            # ('F3', self.__keypress, 'F3'),     # timelinepedigreeview
+            # ('F4', self.__keypress, 'F4'),     # timelinepedigreeview
+            # ('F5', self.__keypress, 'F5'),     # timelinepedigreeview
+            # ('F6', self.__keypress, 'F6'),     # timelinepedigreeview
+            # ('F7', self.__keypress, 'F7'),
+            # ('F8', self.__keypress, 'F8'),
+            # ('F9', self.__keypress, 'F9'),
+            # ('F11', self.__keypress, 'F11'),  # used to go full screen
+            # ('F12', self.__keypress, 'F12'),
+            # ('<PRIMARY>BackSpace', self.__keypress, '<PRIMARY>BackSpace'),
+            # ('<PRIMARY>Delete', self.__keypress, '<PRIMARY>Delete'),
+            # ('<PRIMARY>Insert', self.__keypress, '<PRIMARY>Insert'),
+            # ('<PRIMARY>J', self.__keypress, '<PRIMARY>J'),
+            ("PRIMARY-1", self.__gocat, "<PRIMARY>1"),
+            ("PRIMARY-2", self.__gocat, "<PRIMARY>2"),
+            ("PRIMARY-3", self.__gocat, "<PRIMARY>3"),
+            ("PRIMARY-4", self.__gocat, "<PRIMARY>4"),
+            ("PRIMARY-5", self.__gocat, "<PRIMARY>5"),
+            ("PRIMARY-6", self.__gocat, "<PRIMARY>6"),
+            ("PRIMARY-7", self.__gocat, "<PRIMARY>7"),
+            ("PRIMARY-8", self.__gocat, "<PRIMARY>8"),
+            ("PRIMARY-9", self.__gocat, "<PRIMARY>9"),
+            ("PRIMARY-0", self.__gocat, "<PRIMARY>0"),
             # NOTE: CTRL+ALT+NUMBER is set in gramps.gui.navigator
-            ('PRIMARY-N', self.__next_view, '<PRIMARY>N'),
+            ("PRIMARY-N", self.__next_view, "<PRIMARY>N"),
             # the following conflicts with PrintView!!!
-            ('PRIMARY-P', self.__prev_view, '<PRIMARY>P'), ]
+            ("PRIMARY-P", self.__prev_view, "<PRIMARY>P"),
+        ]
 
         self._action_action_list = [
-            ('Clipboard', self.clipboard, "<PRIMARY>b"),
-            #('AddMenu', None, _('_Add')),
-            #('AddNewMenu', None, _('New')),
-            ('PersonAdd', self.add_new_person, "<shift><Alt>p"),
-            ('FamilyAdd', self.add_new_family, "<shift><Alt>f"),
-            ('EventAdd', self.add_new_event, "<shift><Alt>e"),
-            ('PlaceAdd', self.add_new_place, "<shift><Alt>l"),
-            ('SourceAdd', self.add_new_source, "<shift><Alt>s"),
-            ('CitationAdd', self.add_new_citation, "<shift><Alt>c"),
-            ('RepositoryAdd', self.add_new_repository, "<shift><Alt>r"),
-            ('MediaAdd', self.add_new_media, "<shift><Alt>m"),
-            ('NoteAdd', self.add_new_note, "<shift><Alt>n"),
-            ('UndoHistory', self.undo_history, "<PRIMARY>H"),
-            #--------------------------------------
-            ('Import', self.import_data, "<PRIMARY>i"),
-            ('Tools', self.tools_clicked),
-            #('BookMenu', None, _('_Bookmarks')),
-            #('ToolsMenu', None, _('_Tools')),
-            ('ConfigView', self.config_view, '<shift><PRIMARY>c'), ]
+            ("Clipboard", self.clipboard, "<PRIMARY>b"),
+            # ('AddMenu', None, _('_Add')),
+            # ('AddNewMenu', None, _('New')),
+            ("PersonAdd", self.add_new_person, "<shift><Alt>p"),
+            ("FamilyAdd", self.add_new_family, "<shift><Alt>f"),
+            ("EventAdd", self.add_new_event, "<shift><Alt>e"),
+            ("PlaceAdd", self.add_new_place, "<shift><Alt>l"),
+            ("SourceAdd", self.add_new_source, "<shift><Alt>s"),
+            ("CitationAdd", self.add_new_citation, "<shift><Alt>c"),
+            ("RepositoryAdd", self.add_new_repository, "<shift><Alt>r"),
+            ("MediaAdd", self.add_new_media, "<shift><Alt>m"),
+            ("NoteAdd", self.add_new_note, "<shift><Alt>n"),
+            ("UndoHistory", self.undo_history, "<PRIMARY>H"),
+            # --------------------------------------
+            ("Import", self.import_data, "<PRIMARY>i"),
+            ("Tools", self.tools_clicked),
+            # ('BookMenu', None, _('_Bookmarks')),
+            # ('ToolsMenu', None, _('_Tools')),
+            ("ConfigView", self.config_view, "<shift><PRIMARY>c"),
+        ]
 
         self._undo_action_list = [
-            ('Undo', self.undo, '<PRIMARY>z'), ]
+            ("Undo", self.undo, "<PRIMARY>z"),
+        ]
 
         self._redo_action_list = [
-            ('Redo', self.redo, '<shift><PRIMARY>z'), ]
+            ("Redo", self.redo, "<shift><PRIMARY>z"),
+        ]
 
     def run_book(self, *action):
         """
@@ -475,7 +523,7 @@ class ViewManager(CLIManager):
             cat = 10
         cat -= 1
         if cat >= len(self.current_views):
-            #this view is not present
+            # this view is not present
             return False
         self.goto_page(cat, None)
 
@@ -486,16 +534,16 @@ class ViewManager(CLIManager):
         we wrap around to the first.
         """
         curpage = self.notebook.get_current_page()
-        #find cat and view of the current page
+        # find cat and view of the current page
         for key in self.page_lookup:
             if self.page_lookup[key] == curpage:
                 cat_num, view_num = key
                 break
-        #now go to next category
-        if cat_num >= len(self.current_views)-1:
+        # now go to next category
+        if cat_num >= len(self.current_views) - 1:
             self.goto_page(0, None)
         else:
-            self.goto_page(cat_num+1, None)
+            self.goto_page(cat_num + 1, None)
 
     def __prev_view(self, action, value):
         """
@@ -504,24 +552,23 @@ class ViewManager(CLIManager):
         the beginning of the list, we wrap around to the last.
         """
         curpage = self.notebook.get_current_page()
-        #find cat and view of the current page
+        # find cat and view of the current page
         for key in self.page_lookup:
             if self.page_lookup[key] == curpage:
                 cat_num, view_num = key
                 break
-        #now go to next category
+        # now go to next category
         if cat_num > 0:
-            self.goto_page(cat_num-1, None)
+            self.goto_page(cat_num - 1, None)
         else:
-            self.goto_page(len(self.current_views)-1, None)
+            self.goto_page(len(self.current_views) - 1, None)
 
     def init_interface(self):
         """
         Initialize the interface.
         """
         self.views = self.get_available_views()
-        defaults = views_to_show(self.views,
-                                 config.get('preferences.use-last-view'))
+        defaults = views_to_show(self.views, config.get("preferences.use-last-view"))
         self.current_views = defaults[2]
 
         self.navigator.load_plugins(self.dbstate, self.uistate)
@@ -531,8 +578,7 @@ class ViewManager(CLIManager):
         self.uimanager.set_actions_sensitive(self.fileactions, False)
         self.__build_tools_menu(self._pmgr.get_reg_tools())
         self.__build_report_menu(self._pmgr.get_reg_reports())
-        self._pmgr.connect('plugins-reloaded',
-                           self.__rebuild_report_and_tool_menus)
+        self._pmgr.connect("plugins-reloaded", self.__rebuild_report_and_tool_menus)
         self.uimanager.set_actions_sensitive(self.fileactions, True)
         if not self.file_loaded:
             self.uimanager.set_actions_visible(self.actiongroup, False)
@@ -563,15 +609,14 @@ class ViewManager(CLIManager):
         is opened on an error if the user has requested.
         """
         # registering plugins
-        self.uistate.status_text(_('Registering plugins...'))
-        error = CLIManager.do_reg_plugins(self, dbstate, uistate,
-                                          rescan=rescan)
+        self.uistate.status_text(_("Registering plugins..."))
+        error = CLIManager.do_reg_plugins(self, dbstate, uistate, rescan=rescan)
 
         #  get to see if we need to open the plugin status window
-        if error and config.get('behavior.pop-plugin-status'):
+        if error and config.get("behavior.pop-plugin-status"):
             self.__plugin_status()
 
-        self.uistate.push_message(self.dbstate, _('Ready'))
+        self.uistate.push_message(self.dbstate, _("Ready"))
 
     def close_database(self, action=None, make_backup=True):
         """
@@ -581,8 +626,8 @@ class ViewManager(CLIManager):
         self.post_close_db()
 
     def no_del_event(self, *obj):
-        """ Routine to prevent window destroy with default handler if user
-        hits 'x' multiple times. """
+        """Routine to prevent window destroy with default handler if user
+        hits 'x' multiple times."""
         return True
 
     def quit(self, *obj):
@@ -595,10 +640,10 @@ class ViewManager(CLIManager):
         self.window.disconnect(self.del_event)
         # the following prevents premature closing of main window if user
         # hits 'x' multiple times.
-        self.window.connect('delete-event', self.no_del_event)
+        self.window.connect("delete-event", self.no_del_event)
 
         # backup data
-        if config.get('database.backup-on-exit'):
+        if config.get("database.backup-on-exit"):
             self.autobackup()
 
         # close the database
@@ -610,12 +655,12 @@ class ViewManager(CLIManager):
 
         # save the current window size
         (width, height) = self.window.get_size()
-        config.set('interface.main-window-width', width)
-        config.set('interface.main-window-height', height)
+        config.set("interface.main-window-width", width)
+        config.set("interface.main-window-height", height)
         # save the current window position
         (horiz_position, vert_position) = self.window.get_position()
-        config.set('interface.main-window-horiz-position', horiz_position)
-        config.set('interface.main-window-vert-position', vert_position)
+        config.set("interface.main-window-horiz-position", horiz_position)
+        config.set("interface.main-window-vert-position", vert_position)
         config.save()
         self.app.quit()
 
@@ -624,14 +669,16 @@ class ViewManager(CLIManager):
         Abandon changes and quit.
         """
         if self.dbstate.db.abort_possible:
-
             dialog = QuestionDialog2(
                 _("Abort changes?"),
-                _("Aborting changes will return the database to the state "
-                  "it was before you started this editing session."),
+                _(
+                    "Aborting changes will return the database to the state "
+                    "it was before you started this editing session."
+                ),
                 _("Abort changes"),
                 _("Cancel"),
-                parent=self.uistate.window)
+                parent=self.uistate.window,
+            )
 
             if dialog.run():
                 self.dbstate.db.disable_signals()
@@ -641,9 +688,13 @@ class ViewManager(CLIManager):
         else:
             WarningDialog(
                 _("Cannot abandon session's changes"),
-                _('Changes cannot be completely abandoned because the '
-                  'number of changes made in the session exceeded the '
-                  'limit.'), parent=self.uistate.window)
+                _(
+                    "Changes cannot be completely abandoned because the "
+                    "number of changes made in the session exceeded the "
+                    "limit."
+                ),
+                parent=self.uistate.window,
+            )
 
     def __init_action_group(self, name, actions, sensitive=True, toggles=None):
         """
@@ -660,17 +711,18 @@ class ViewManager(CLIManager):
         """
         self.uimanager = self.app.uimanager
 
-        self.actiongroup = self.__init_action_group(
-            'RW', self._action_action_list)
-        self.readonlygroup = self.__init_action_group(
-            'RO', self._readonly_action_list)
+        self.actiongroup = self.__init_action_group("RW", self._action_action_list)
+        self.readonlygroup = self.__init_action_group("RO", self._readonly_action_list)
         self.fileactions = self.__init_action_group(
-            'FileWindow', self._file_action_list)
+            "FileWindow", self._file_action_list
+        )
         self.undoactions = self.__init_action_group(
-            'Undo', self._undo_action_list, sensitive=False)
+            "Undo", self._undo_action_list, sensitive=False
+        )
         self.redoactions = self.__init_action_group(
-            'Redo', self._redo_action_list, sensitive=False)
-        self.appactions = ActionGroup('AppActions', self._app_actionlist, 'app')
+            "Redo", self._redo_action_list, sensitive=False
+        )
+        self.appactions = ActionGroup("AppActions", self._app_actionlist, "app")
         self.uimanager.insert_action_group(self.appactions, gio_group=self.app)
 
     def preferences_activate(self, *obj):
@@ -684,36 +736,39 @@ class ViewManager(CLIManager):
 
     def load_css(self):
         provider = Gtk.CssProvider()
-        provider.load_from_path(os.path.join(DATA_DIR, 'gramps.css'))
+        provider.load_from_path(os.path.join(DATA_DIR, "gramps.css"))
         Gtk.StyleContext.add_provider_for_screen(
-                         self.window.get_screen(), provider,
-                         Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+            self.window.get_screen(), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        )
 
     def reset_font(self):
         """
         Reset to the default application font.
         """
-        Gtk.StyleContext.remove_provider_for_screen(self.window.get_screen(),
-                                                    self.provider)
+        Gtk.StyleContext.remove_provider_for_screen(
+            self.window.get_screen(), self.provider
+        )
 
     def change_font(self, font):
         """
         Change the default application font.
         Only in the case we use symbols.
         """
-        if config.get('utf8.in-use') and font != "":
+        if config.get("utf8.in-use") and font != "":
             css_font = CSS_FONT % font
             try:
-                self.provider.load_from_data(css_font.encode('UTF-8'))
+                self.provider.load_from_data(css_font.encode("UTF-8"))
                 Gtk.StyleContext.add_provider_for_screen(
-                                 self.window.get_screen(), self.provider,
-                                 Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+                    self.window.get_screen(),
+                    self.provider,
+                    Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
+                )
                 return True
             except:
                 # Force gramps to use the standard font.
                 print("I can't set the new font :", font)
-                config.set('utf8.in-use', False)
-                config.set('utf8.selected-font', "")
+                config.set("utf8.in-use", False)
+                config.set("utf8.selected-font", "")
         return False
 
     def tip_of_day_activate(self, *obj):
@@ -721,6 +776,7 @@ class ViewManager(CLIManager):
         Display Tip of the day
         """
         from .tipofday import TipOfDay
+
         TipOfDay(self.uistate)
 
     def __plugin_status(self, obj=None, data=None):
@@ -749,11 +805,11 @@ class ViewManager(CLIManager):
         action.set_state(value)
         if value.get_boolean():
             self.ebox.show()
-            config.set('interface.view', True)
+            config.set("interface.view", True)
             self.show_navigator = True
         else:
             self.ebox.hide()
-            config.set('interface.view', False)
+            config.set("interface.view", False)
             self.show_navigator = False
         config.save()
 
@@ -763,13 +819,13 @@ class ViewManager(CLIManager):
         results in the configuration settings
         """
         action.set_state(value)
-        toolbar = self.uimanager.get_widget('ToolBar')
+        toolbar = self.uimanager.get_widget("ToolBar")
         if value.get_boolean():
             toolbar.show_all()
-            config.set('interface.toolbar-on', True)
+            config.set("interface.toolbar-on", True)
         else:
             toolbar.hide()
-            config.set('interface.toolbar-on', False)
+            config.set("interface.toolbar-on", False)
         config.save()
 
     def fullscreen_toggle(self, action, value):
@@ -780,10 +836,10 @@ class ViewManager(CLIManager):
         action.set_state(value)
         if value.get_boolean():
             self.window.fullscreen()
-            config.set('interface.fullscreen', True)
+            config.set("interface.fullscreen", True)
         else:
             self.window.unfullscreen()
-            config.set('interface.fullscreen', False)
+            config.set("interface.fullscreen", False)
         config.save()
 
     def get_views(self):
@@ -826,10 +882,17 @@ class ViewManager(CLIManager):
         return None
 
     def __create_dummy_page(self, pdata, error):
-        """ Create a dummy page """
+        """Create a dummy page"""
         from .views.pageview import DummyPage
-        return DummyPage(pdata.name, pdata, self.dbstate, self.uistate,
-                         _("View failed to load. Check error output."), error)
+
+        return DummyPage(
+            pdata.name,
+            pdata,
+            self.dbstate,
+            self.uistate,
+            _("View failed to load. Check error output."),
+            error,
+        )
 
     def __create_page(self, pdata, page_def):
         """
@@ -839,6 +902,7 @@ class ViewManager(CLIManager):
             page = page_def(pdata, self.dbstate, self.uistate)
         except:
             import traceback
+
             LOG.warning("View '%s' failed to load.", pdata.id)
             traceback.print_exc()
             page = self.__create_dummy_page(pdata, traceback.format_exc())
@@ -847,6 +911,7 @@ class ViewManager(CLIManager):
             page_display = page.get_display()
         except:
             import traceback
+
             print("ERROR: '%s' failed to create view" % pdata.name)
             traceback.print_exc()
             page = self.__create_dummy_page(pdata, traceback.format_exc())
@@ -890,13 +955,13 @@ class ViewManager(CLIManager):
 
         # Save last view in configuration
         view_id = self.views[cat_num][view_num][0].id
-        config.set('preferences.last-view', view_id)
-        last_views = config.get('preferences.last-views')
+        config.set("preferences.last-view", view_id)
+        last_views = config.get("preferences.last-views")
         if len(last_views) != len(self.views):
             # If the number of categories has changed then reset the defaults
-            last_views = [''] * len(self.views)
+            last_views = [""] * len(self.views)
         last_views[cat_num] = view_id
-        config.set('preferences.last-views', last_views)
+        config.set("preferences.last-views", last_views)
         config.save()
 
         self.navigator.view_changed(cat_num, view_num)
@@ -929,8 +994,7 @@ class ViewManager(CLIManager):
             self.active_page.change_page()
             return False
 
-        GLib.idle_add(page_changer, self,
-                      priority=GLib.PRIORITY_DEFAULT_IDLE - 10)
+        GLib.idle_add(page_changer, self, priority=GLib.PRIORITY_DEFAULT_IDLE - 10)
 
     def __delete_pages(self):
         """
@@ -969,8 +1033,7 @@ class ViewManager(CLIManager):
             mergeid = self.uimanager.add_ui_from_string(uidef)
             self.merge_ids.append(mergeid)
 
-        configaction = self.uimanager.get_action(self.actiongroup,
-                                                 'ConfigView')
+        configaction = self.uimanager.get_action(self.actiongroup, "ConfigView")
         if self.active_page.can_configure():
             configaction.set_enabled(True)
         else:
@@ -984,8 +1047,7 @@ class ViewManager(CLIManager):
             self.db_loader.import_file()
             infotxt = self.db_loader.import_info_text()
             if infotxt:
-                InfoDialog(_('Import Statistics'), infotxt,
-                           parent=self.window)
+                InfoDialog(_("Import Statistics"), infotxt, parent=self.window)
             self.__post_load()
 
     def __open_activate(self, obj, value):
@@ -993,6 +1055,7 @@ class ViewManager(CLIManager):
         Called when the Open button is clicked, opens the DbManager
         """
         from .dbman import DbManager
+
         dialog = DbManager(self.uistate, self.dbstate, self, self.window)
         value = dialog.run()
         if value:
@@ -1000,22 +1063,22 @@ class ViewManager(CLIManager):
                 self.dbstate.db.close(user=self.user)
             (filename, title) = value
             self.db_loader.read_file(filename)
-            self._post_load_newdb(filename, 'x-directory/normal', title)
+            self._post_load_newdb(filename, "x-directory/normal", title)
         else:
             if dialog.after_change != "":
                 # We change the title of the main window.
                 old_title = self.uistate.window.get_title()
                 if old_title:
-                    delim = old_title.find(' - ')
+                    delim = old_title.find(" - ")
                     tit1 = old_title[:delim]
                     tit2 = old_title[delim:]
                     new_title = dialog.after_change
-                    if '<=' in tit2:
+                    if "<=" in tit2:
                         ## delim2 = tit2.find('<=') + 3
                         ## tit3 = tit2[delim2:-1]
-                        new_title += tit2.replace(']', '') + ' => ' + tit1 + ']'
+                        new_title += tit2.replace("]", "") + " => " + tit1 + "]"
                     else:
-                        new_title += tit2 + ' <= [' + tit1 + ']'
+                        new_title += tit2 + " <= [" + tit1 + "]"
                     self.uistate.window.set_title(new_title)
 
     def __post_load(self):
@@ -1060,23 +1123,32 @@ class ViewManager(CLIManager):
             if rw:
                 msg = "%s - Gramps" % name
             else:
-                msg = "%s (%s) - Gramps" % (name, _('Read Only'))
+                msg = "%s (%s) - Gramps" % (name, _("Read Only"))
         self.uistate.window.set_title(msg)
 
-        if(bool(config.get('behavior.runcheck')) and QuestionDialog2(
-           _("Gramps had a problem the last time it was run."),
-           _("Would you like to run the Check and Repair tool?"),
-           _("Yes"), _("No"), parent=self.uistate.window).run()):
-            pdata = self._pmgr.get_plugin('check')
+        if (
+            bool(config.get("behavior.runcheck"))
+            and QuestionDialog2(
+                _("Gramps had a problem the last time it was run."),
+                _("Would you like to run the Check and Repair tool?"),
+                _("Yes"),
+                _("No"),
+                parent=self.uistate.window,
+            ).run()
+        ):
+            pdata = self._pmgr.get_plugin("check")
             mod = self._pmgr.load_plugin(pdata)
-            tool.gui_tool(dbstate=self.dbstate, user=self.user,
-                          tool_class=getattr(mod, pdata.toolclass),
-                          options_class=getattr(mod, pdata.optionclass),
-                          translated_name=pdata.name,
-                          name=pdata.id,
-                          category=pdata.category,
-                          callback=self.dbstate.db.request_rebuild)
-        config.set('behavior.runcheck', False)
+            tool.gui_tool(
+                dbstate=self.dbstate,
+                user=self.user,
+                tool_class=getattr(mod, pdata.toolclass),
+                options_class=getattr(mod, pdata.optionclass),
+                translated_name=pdata.name,
+                name=pdata.id,
+                category=pdata.category,
+                callback=self.dbstate.db.request_rebuild,
+            )
+        config.set("behavior.runcheck", False)
         self.__change_page(self.notebook.get_current_page())
         self.uimanager.set_actions_visible(self.actiongroup, rw)
         self.uimanager.set_actions_visible(self.readonlygroup, isopen)
@@ -1093,7 +1165,7 @@ class ViewManager(CLIManager):
         Called after a database is closed to do GUI stuff.
         """
         self.undo_history_close()
-        self.uistate.window.set_title("%s - Gramps" % _('No Family Tree'))
+        self.uistate.window.set_title("%s - Gramps" % _("No Family Tree"))
         self.uistate.clear_filter_results()
         self.__disconnect_previous_page()
         self.uimanager.set_actions_visible(self.actiongroup, False)
@@ -1101,22 +1173,22 @@ class ViewManager(CLIManager):
         self.uimanager.set_actions_visible(self.undoactions, False)
         self.uimanager.set_actions_visible(self.redoactions, False)
         self.uimanager.update_menu()
-        config.set('paths.recent-file', '')
+        config.set("paths.recent-file", "")
         config.save()
 
     def __change_undo_label(self, label, update_menu=True):
         """
         Change the UNDO label
         """
-        _menu = '''<placeholder id="undo">
+        _menu = """<placeholder id="undo">
         <item>
           <attribute name="action">win.Undo</attribute>
           <attribute name="label">%s</attribute>
         </item>
         </placeholder>
-        '''
+        """
         if not label:
-            label = _('_Undo')
+            label = _("_Undo")
             self.uimanager.set_actions_sensitive(self.undoactions, False)
         else:
             self.uimanager.set_actions_sensitive(self.undoactions, True)
@@ -1128,15 +1200,15 @@ class ViewManager(CLIManager):
         """
         Change the REDO label
         """
-        _menu = '''<placeholder id="redo">
+        _menu = """<placeholder id="redo">
         <item>
           <attribute name="action">win.Redo</attribute>
           <attribute name="label">%s</attribute>
         </item>
         </placeholder>
-        '''
+        """
         if not label:
-            label = _('_Redo')
+            label = _("_Redo")
             self.uimanager.set_actions_sensitive(self.redoactions, False)
         else:
             self.uimanager.set_actions_sensitive(self.redoactions, True)
@@ -1185,19 +1257,19 @@ class ViewManager(CLIManager):
         if self.delay_timer is not None:
             GLib.source_remove(self.delay_timer)
             self.delay_timer = None
-        interval = config.get('database.autobackup')
+        interval = config.get("database.autobackup")
         if interval == 1:
-            seconds = 900.  # 15min *60
+            seconds = 900.0  # 15min *60
         elif interval == 2:
-            seconds = 1800.  # 30min *60
+            seconds = 1800.0  # 30min *60
         elif interval == 3:
-            seconds = 3600.  # 60min *60
+            seconds = 3600.0  # 60min *60
         elif interval == 4:
-            seconds = 43200.  # (12 hours) 720min *60
+            seconds = 43200.0  # (12 hours) 720min *60
         elif interval == 5:
-            seconds = 86400.  # (24 hours) 1440min *60
+            seconds = 86400.0  # (24 hours) 1440min *60
         now = time.time()
-        if interval and now > self.autobackup_time + seconds + 300.:
+        if interval and now > self.autobackup_time + seconds + 300.0:
             # we have been delayed by more than 5 minutes
             # so we have probably been awakened from sleep/hibernate
             # we should delay a bit more to let the system settle
@@ -1206,8 +1278,10 @@ class ViewManager(CLIManager):
             return
         self.autobackup_time = now
         # Only backup if more commits since last time
-        if(self.dbstate.db.is_open() and
-           self.dbstate.db.has_changed > self.prev_has_changed):
+        if (
+            self.dbstate.db.is_open()
+            and self.dbstate.db.has_changed > self.prev_has_changed
+        ):
             self.prev_has_changed = self.dbstate.db.has_changed
             message = _("Please, wait before closing gramps")
             message = '<span size="larger" weight="bold">%s</span>' % message
@@ -1219,8 +1293,7 @@ class ViewManager(CLIManager):
             try:
                 self.__backup()
             except DbWriteFailure as msg:
-                self.uistate.push_message(self.dbstate,
-                                          _("Error saving backup data"))
+                self.uistate.push_message(self.dbstate, _("Error saving backup data"))
             self.uistate.set_busy_cursor(False)
             popup.destroy()
             self.uistate.progress.hide()
@@ -1230,13 +1303,14 @@ class ViewManager(CLIManager):
         Backup database to a Gramps XML file.
         """
         from gramps.plugins.export.exportxml import XmlWriter
-        backup_path = config.get('database.backup-path')
-        compress = config.get('database.compress-backup')
-        writer = XmlWriter(self.dbstate.db, self.user, strip_photos=0,
-                           compress=compress)
-        timestamp = '{0:%Y-%m-%d-%H-%M-%S}'.format(datetime.datetime.now())
-        backup_name = "%s-%s.gramps" % (self.dbstate.db.get_dbname(),
-                                        timestamp)
+
+        backup_path = config.get("database.backup-path")
+        compress = config.get("database.compress-backup")
+        writer = XmlWriter(
+            self.dbstate.db, self.user, strip_photos=0, compress=compress
+        )
+        timestamp = "{0:%Y-%m-%d-%H-%M-%S}".format(datetime.datetime.now())
+        backup_name = "%s-%s.gramps" % (self.dbstate.db.get_dbname(), timestamp)
         filename = os.path.join(backup_path, backup_name)
         writer.write(filename)
 
@@ -1263,6 +1337,7 @@ class ViewManager(CLIManager):
         Displays the Clipboard
         """
         from .clipboard import ClipboardWindow
+
         try:
             ClipboardWindow(self.dbstate, self.uistate)
         except WindowActiveError:
@@ -1274,7 +1349,7 @@ class ViewManager(CLIManager):
         Add a new person to the database.  (Global keybinding)
         """
         person = Person()
-        #the editor requires a surname
+        # the editor requires a surname
         person.primary_name.add_surname(Surname())
         person.primary_name.set_primary_surname(0)
 
@@ -1347,6 +1422,7 @@ class ViewManager(CLIManager):
             EditNote(self.dbstate, self.uistate, [], Note())
         except WindowActiveError:
             pass
+
     # ------------------------------------------------------------------------
 
     def config_view(self, *obj):
@@ -1386,6 +1462,7 @@ class ViewManager(CLIManager):
         """
         if self.dbstate.is_open():
             from .plug.export import ExportAssistant
+
             try:
                 ExportAssistant(self.dbstate, self.uistate)
             except WindowActiveError:
@@ -1406,10 +1483,10 @@ class ViewManager(CLIManager):
         if self.toolactions:
             self.uistate.uimanager.remove_action_group(self.toolactions)
             self.uistate.uimanager.remove_ui(self.tool_menu_ui_id)
-        self.toolactions = ActionGroup(name='ToolWindow')
+        self.toolactions = ActionGroup(name="ToolWindow")
         (uidef, actions) = self.build_plugin_menu(
-            'ToolsMenu', tool_menu_list, tool.tool_categories,
-            make_plugin_callback)
+            "ToolsMenu", tool_menu_list, tool.tool_categories, make_plugin_callback
+        )
         self.toolactions.add_actions(actions)
         self.tool_menu_ui_id = self.uistate.uimanager.add_ui_from_string(uidef)
         self.uimanager.insert_action_group(self.toolactions)
@@ -1421,10 +1498,10 @@ class ViewManager(CLIManager):
         if self.reportactions:
             self.uistate.uimanager.remove_action_group(self.reportactions)
             self.uistate.uimanager.remove_ui(self.report_menu_ui_id)
-        self.reportactions = ActionGroup(name='ReportWindow')
+        self.reportactions = ActionGroup(name="ReportWindow")
         (udef, actions) = self.build_plugin_menu(
-            'ReportsMenu', report_menu_list, standalone_categories,
-            make_plugin_callback)
+            "ReportsMenu", report_menu_list, standalone_categories, make_plugin_callback
+        )
         self.reportactions.add_actions(actions)
         self.report_menu_ui_id = self.uistate.uimanager.add_ui_from_string(udef)
         self.uimanager.insert_action_group(self.reportactions)
@@ -1433,14 +1510,16 @@ class ViewManager(CLIManager):
         """
         Builds a new XML description for a menu based on the list of plugindata
         """
-        menuitem = ('<item>\n'
-                    '<attribute name="action">win.%s</attribute>\n'
-                    '<attribute name="label">%s...</attribute>\n'
-                    '</item>\n')
+        menuitem = (
+            "<item>\n"
+            '<attribute name="action">win.%s</attribute>\n'
+            '<attribute name="label">%s...</attribute>\n'
+            "</item>\n"
+        )
 
         actions = []
         ofile = StringIO()
-        ofile.write('<section id="%s">' % ('P_' + text))
+        ofile.write('<section id="%s">' % ("P_" + text))
 
         hash_data = defaultdict(list)
         for pdata in item_list:
@@ -1454,33 +1533,33 @@ class ViewManager(CLIManager):
         catlist = sorted(item for item in hash_data if item != _UNSUPPORTED)
 
         for key in catlist:
-            ofile.write('<submenu>\n<attribute name="label"'
-                        '>%s</attribute>\n' % key[1])
+            ofile.write(
+                '<submenu>\n<attribute name="label"' ">%s</attribute>\n" % key[1]
+            )
             pdatas = hash_data[key]
             pdatas.sort(key=lambda x: x.name)
             for pdata in pdatas:
                 new_key = valid_action_name(pdata.id)
                 ofile.write(menuitem % (new_key, pdata.name))
-                actions.append((new_key, func(pdata, self.dbstate,
-                                self.uistate)))
-            ofile.write('</submenu>\n')
+                actions.append((new_key, func(pdata, self.dbstate, self.uistate)))
+            ofile.write("</submenu>\n")
 
         # If there are any unsupported items we add separator
         # and the unsupported category at the end of the menu
         if _UNSUPPORTED in hash_data:
-            ofile.write('<submenu>\n<attribute name="label"'
-                        '>%s</attribute>\n' %
-                        _UNSUPPORTED[1])
+            ofile.write(
+                '<submenu>\n<attribute name="label"'
+                ">%s</attribute>\n" % _UNSUPPORTED[1]
+            )
             pdatas = hash_data[_UNSUPPORTED]
             pdatas.sort(key=lambda x: x.name)
             for pdata in pdatas:
-                new_key = pdata.id.replace(' ', '-')
+                new_key = pdata.id.replace(" ", "-")
                 ofile.write(menuitem % (new_key, pdata.name))
-                actions.append((new_key, func(pdata, self.dbstate,
-                                self.uistate)))
-            ofile.write('</submenu>\n')
+                actions.append((new_key, func(pdata, self.dbstate, self.uistate)))
+            ofile.write("</submenu>\n")
 
-        ofile.write('</section>\n')
+        ofile.write("</section>\n")
         return ([ofile.getvalue()], actions)
 
     def display_about_box(self, *obj):
@@ -1501,28 +1580,34 @@ class ViewManager(CLIManager):
         for pdata in view_list:
             mod = pmgr.load_plugin(pdata)
             if not mod or not hasattr(mod, pdata.viewclass):
-                #import of plugin failed
+                # import of plugin failed
                 try:
                     lasterror = pmgr.get_fail_list()[-1][1][1]
                 except:
-                    lasterror = '*** No error found, '
-                    lasterror += 'probably error in gpr.py file ***'
+                    lasterror = "*** No error found, "
+                    lasterror += "probably error in gpr.py file ***"
                 ErrorDialog(
-                    _('Failed Loading View'),
-                    _('The view %(name)s did not load and reported an error.'
-                      '\n\n%(error_msg)s\n\n'
-                      'If you are unable to fix the fault yourself then you '
-                      'can submit a bug at %(gramps_bugtracker_url)s '
-                      'or contact the view author (%(firstauthoremail)s).\n\n'
-                      'If you do not want Gramps to try and load this view '
-                      'again, you can hide it by using the Plugin Manager '
-                      'on the Help menu.'
-                     ) % {'name': pdata.name,
-                          'gramps_bugtracker_url': URL_BUGHOME,
-                          'firstauthoremail': pdata.authors_email[0]
-                                              if pdata.authors_email else '...',
-                          'error_msg': lasterror},
-                    parent=self.uistate.window)
+                    _("Failed Loading View"),
+                    _(
+                        "The view %(name)s did not load and reported an error."
+                        "\n\n%(error_msg)s\n\n"
+                        "If you are unable to fix the fault yourself then you "
+                        "can submit a bug at %(gramps_bugtracker_url)s "
+                        "or contact the view author (%(firstauthoremail)s).\n\n"
+                        "If you do not want Gramps to try and load this view "
+                        "again, you can hide it by using the Plugin Manager "
+                        "on the Help menu."
+                    )
+                    % {
+                        "name": pdata.name,
+                        "gramps_bugtracker_url": URL_BUGHOME,
+                        "firstauthoremail": pdata.authors_email[0]
+                        if pdata.authors_email
+                        else "...",
+                        "error_msg": lasterror,
+                    },
+                    parent=self.uistate.window,
+                )
                 continue
             viewclass = getattr(mod, pdata.viewclass)
 
@@ -1533,15 +1618,20 @@ class ViewManager(CLIManager):
                 viewstoshow[pdata.category[0]].append((pdata, viewclass))
 
         # First, get those in order defined, if exists:
-        resultorder = [viewstoshow[cat]
-                       for cat in config.get("interface.view-categories")
-                       if cat in viewstoshow]
+        resultorder = [
+            viewstoshow[cat]
+            for cat in config.get("interface.view-categories")
+            if cat in viewstoshow
+        ]
 
         # Next, get the rest in some order:
-        resultorder.extend(viewstoshow[cat]
-                           for cat in sorted(viewstoshow.keys())
-                           if viewstoshow[cat] not in resultorder)
+        resultorder.extend(
+            viewstoshow[cat]
+            for cat in sorted(viewstoshow.keys())
+            if viewstoshow[cat] not in resultorder
+        )
         return resultorder
+
 
 def key_bindings(*obj):
     """
@@ -1549,11 +1639,13 @@ def key_bindings(*obj):
     """
     display_help(webpage=WIKI_HELP_PAGE_KEY)
 
+
 def manual_activate(*obj):
     """
     Display the Gramps manual
     """
     display_help(webpage=WIKI_HELP_PAGE_MAN)
+
 
 def report_bug_activate(*obj):
     """
@@ -1561,11 +1653,13 @@ def report_bug_activate(*obj):
     """
     display_url(URL_BUGTRACKER)
 
+
 def home_page_activate(*obj):
     """
     Display the Gramps home page
     """
     display_url(URL_HOMEPAGE)
+
 
 def mailing_lists_activate(*obj):
     """
@@ -1573,17 +1667,20 @@ def mailing_lists_activate(*obj):
     """
     display_url(URL_MAILINGLIST)
 
+
 def extra_plugins_activate(*obj):
     """
     Display the wiki page with extra plugins
     """
-    display_url(URL_WIKISTRING+WIKI_EXTRAPLUGINS)
+    display_url(URL_WIKISTRING + WIKI_EXTRAPLUGINS)
+
 
 def faq_activate(*obj):
     """
     Display FAQ
     """
     display_help(webpage=WIKI_HELP_PAGE_FAQ)
+
 
 def run_plugin(pdata, dbstate, uistate):
     """
@@ -1594,51 +1691,68 @@ def run_plugin(pdata, dbstate, uistate):
     pmgr = GuiPluginManager.get_instance()
     mod = pmgr.load_plugin(pdata)
     if not mod:
-        #import of plugin failed
+        # import of plugin failed
         failed = pmgr.get_fail_list()
         if failed:
             error_msg = failed[-1][1][1]
         else:
             error_msg = "(no error message)"
         ErrorDialog(
-            _('Failed Loading Plugin'),
-            _('The plugin %(name)s did not load and reported an error.\n\n'
-              '%(error_msg)s\n\n'
-              'If you are unable to fix the fault yourself then you can '
-              'submit a bug at %(gramps_bugtracker_url)s or contact '
-              'the plugin author (%(firstauthoremail)s).\n\n'
-              'If you do not want Gramps to try and load this plugin again, '
-              'you can hide it by using the Plugin Manager on the '
-              'Help menu.') % {'name' : pdata.name,
-                               'gramps_bugtracker_url' : URL_BUGHOME,
-                               'firstauthoremail' : pdata.authors_email[0]
-                                                    if pdata.authors_email
-                                                    else '...',
-                               'error_msg' : error_msg},
-            parent=uistate.window)
+            _("Failed Loading Plugin"),
+            _(
+                "The plugin %(name)s did not load and reported an error.\n\n"
+                "%(error_msg)s\n\n"
+                "If you are unable to fix the fault yourself then you can "
+                "submit a bug at %(gramps_bugtracker_url)s or contact "
+                "the plugin author (%(firstauthoremail)s).\n\n"
+                "If you do not want Gramps to try and load this plugin again, "
+                "you can hide it by using the Plugin Manager on the "
+                "Help menu."
+            )
+            % {
+                "name": pdata.name,
+                "gramps_bugtracker_url": URL_BUGHOME,
+                "firstauthoremail": pdata.authors_email[0]
+                if pdata.authors_email
+                else "...",
+                "error_msg": error_msg,
+            },
+            parent=uistate.window,
+        )
         return
 
     if pdata.ptype == REPORT:
-        report(dbstate, uistate, uistate.get_active('Person'),
-               getattr(mod, pdata.reportclass),
-               getattr(mod, pdata.optionclass),
-               pdata.name, pdata.id,
-               pdata.category, pdata.require_active)
+        report(
+            dbstate,
+            uistate,
+            uistate.get_active("Person"),
+            getattr(mod, pdata.reportclass),
+            getattr(mod, pdata.optionclass),
+            pdata.name,
+            pdata.id,
+            pdata.category,
+            pdata.require_active,
+        )
     else:
-        tool.gui_tool(dbstate=dbstate, user=User(uistate=uistate),
-                      tool_class=getattr(mod, pdata.toolclass),
-                      options_class=getattr(mod, pdata.optionclass),
-                      translated_name=pdata.name,
-                      name=pdata.id,
-                      category=pdata.category,
-                      callback=dbstate.db.request_rebuild)
+        tool.gui_tool(
+            dbstate=dbstate,
+            user=User(uistate=uistate),
+            tool_class=getattr(mod, pdata.toolclass),
+            options_class=getattr(mod, pdata.optionclass),
+            translated_name=pdata.name,
+            name=pdata.id,
+            category=pdata.category,
+            callback=dbstate.db.request_rebuild,
+        )
     gc.collect(2)
+
 
 def make_plugin_callback(pdata, dbstate, uistate):
     """
     Makes a callback for a report/tool menu item
     """
     return lambda x, y: run_plugin(pdata, dbstate, uistate)
+
 
 def views_to_show(views, use_last=True):
     """
@@ -1648,8 +1762,8 @@ def views_to_show(views, use_last=True):
     current_cat_view = 0
     default_cat_views = [0] * len(views)
     if use_last:
-        current_page_id = config.get('preferences.last-view')
-        default_page_ids = config.get('preferences.last-views')
+        current_page_id = config.get("preferences.last-view")
+        default_page_ids = config.get("preferences.last-views")
         found = False
         for indexcat, cat_views in enumerate(views):
             cat_view = 0
@@ -1669,8 +1783,8 @@ def views_to_show(views, use_last=True):
             current_cat_view = 0
     return current_cat, current_cat_view, default_cat_views
 
-class QuickBackup(ManagedWindow): # TODO move this class into its own module
 
+class QuickBackup(ManagedWindow):  # TODO move this class into its own module
     def __init__(self, dbstate, uistate, user):
         """
         Make a quick XML back with or without media.
@@ -1679,15 +1793,13 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
         self.user = user
 
         ManagedWindow.__init__(self, uistate, [], self.__class__)
-        window = Gtk.Dialog(title='',
-                            transient_for=self.uistate.window,
-                            destroy_with_parent=True)
+        window = Gtk.Dialog(
+            title="", transient_for=self.uistate.window, destroy_with_parent=True
+        )
         self.set_window(window, None, _("Gramps XML Backup"))
-        self.setup_configs('interface.quick-backup', 500, 150)
-        close_button = window.add_button(_('_Close'),
-                                         Gtk.ResponseType.CLOSE)
-        ok_button = window.add_button(_('_OK'),
-                                      Gtk.ResponseType.APPLY)
+        self.setup_configs("interface.quick-backup", 500, 150)
+        close_button = window.add_button(_("_Close"), Gtk.ResponseType.CLOSE)
+        ok_button = window.add_button(_("_OK"), Gtk.ResponseType.APPLY)
         vbox = window.get_content_area()
         hbox = Gtk.Box()
         label = Gtk.Label(label=_("Path:"))
@@ -1696,16 +1808,16 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
         label.set_halign(Gtk.Align.START)
         hbox.pack_start(label, False, True, 0)
         path_entry = Gtk.Entry()
-        dirtext = config.get('paths.quick-backup-directory')
+        dirtext = config.get("paths.quick-backup-directory")
         path_entry.set_text(dirtext)
         hbox.pack_start(path_entry, True, True, 0)
         file_entry = Gtk.Entry()
         button = Gtk.Button()
-        button.connect("clicked",
-                       lambda widget:
-                       self.select_backup_path(widget, path_entry))
+        button.connect(
+            "clicked", lambda widget: self.select_backup_path(widget, path_entry)
+        )
         image = Gtk.Image()
-        image.set_from_icon_name('document-open', Gtk.IconSize.BUTTON)
+        image.set_from_icon_name("document-open", Gtk.IconSize.BUTTON)
         image.show()
         button.add(image)
         hbox.pack_end(button, False, True, 0)
@@ -1718,15 +1830,18 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
         hbox.pack_start(label, False, True, 0)
         struct_time = time.localtime()
         file_entry.set_text(
-            config.get('paths.quick-backup-filename'
-                      ) % {"filename": self.dbstate.db.get_dbname(),
-                           "year": struct_time.tm_year,
-                           "month": struct_time.tm_mon,
-                           "day": struct_time.tm_mday,
-                           "hour": struct_time.tm_hour,
-                           "minutes": struct_time.tm_min,
-                           "seconds": struct_time.tm_sec,
-                           "extension": "gpkg"})
+            config.get("paths.quick-backup-filename")
+            % {
+                "filename": self.dbstate.db.get_dbname(),
+                "year": struct_time.tm_year,
+                "month": struct_time.tm_mon,
+                "day": struct_time.tm_mday,
+                "hour": struct_time.tm_hour,
+                "minutes": struct_time.tm_min,
+                "seconds": struct_time.tm_sec,
+                "extension": "gpkg",
+            }
+        )
         hbox.pack_end(file_entry, True, True, 0)
         vbox.pack_start(hbox, False, True, 0)
         hbox = Gtk.Box()
@@ -1740,7 +1855,7 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
                 if fbytes <= 999999:
                     mbytes = "< 1"
                 else:
-                    mbytes = str(fbytes)[:(length-6)]
+                    mbytes = str(fbytes)[: (length - 6)]
             except OSError:
                 pass
         label = Gtk.Label(label=_("Media:"))
@@ -1749,13 +1864,11 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
         label.set_halign(Gtk.Align.START)
         hbox.pack_start(label, False, True, 0)
         include = Gtk.RadioButton.new_with_mnemonic_from_widget(
-            None, "%s (%s %s)" % (_("Include"),
-                                  mbytes, _("MB", "Megabyte")))
-        exclude = Gtk.RadioButton.new_with_mnemonic_from_widget(include,
-                                                                _("Exclude"))
-        include.connect("toggled", lambda widget: self.media_toggle(widget,
-                                                                    file_entry))
-        include_mode = config.get('preferences.quick-backup-include-mode')
+            None, "%s (%s %s)" % (_("Include"), mbytes, _("MB", "Megabyte"))
+        )
+        exclude = Gtk.RadioButton.new_with_mnemonic_from_widget(include, _("Exclude"))
+        include.connect("toggled", lambda widget: self.media_toggle(widget, file_entry))
+        include_mode = config.get("preferences.quick-backup-include-mode")
         if include_mode:
             include.set_active(True)
         else:
@@ -1776,15 +1889,16 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
                     _("The file '%s' exists.") % filename,
                     _("Proceed and overwrite"),
                     _("Cancel the backup"),
-                    parent=self.window)
+                    parent=self.window,
+                )
                 yes_no = question.run()
                 if not yes_no:
                     current_dir = path_entry.get_text()
                     if current_dir != dirtext:
-                        config.set('paths.quick-backup-directory', current_dir)
+                        config.set("paths.quick-backup-directory", current_dir)
                     self.close()
                     return
-            position = self.window.get_position() # crock
+            position = self.window.get_position()  # crock
             window.hide()
             self.window.move(position[0], position[1])
             message = _("Please, wait before closing gramps")
@@ -1797,19 +1911,23 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
             self.uistate.push_message(self.dbstate, _("Making backup..."))
             if include.get_active():
                 from gramps.plugins.export.exportpkg import PackageWriter
+
                 writer = PackageWriter(self.dbstate.db, filename, self.user)
                 writer.export()
             else:
                 from gramps.plugins.export.exportxml import XmlWriter
-                writer = XmlWriter(self.dbstate.db, self.user,
-                                   strip_photos=0, compress=1)
+
+                writer = XmlWriter(
+                    self.dbstate.db, self.user, strip_photos=0, compress=1
+                )
                 writer.write(filename)
             self.uistate.set_busy_cursor(False)
             popup.destroy()
             self.uistate.progress.hide()
-            self.uistate.push_message(self.dbstate,
-                                      _("Backup saved to '%s'") % filename)
-            config.set('paths.quick-backup-directory', path_entry.get_text())
+            self.uistate.push_message(
+                self.dbstate, _("Backup saved to '%s'") % filename
+            )
+            config.set("paths.quick-backup-directory", path_entry.get_text())
         else:
             self.uistate.push_message(self.dbstate, _("Backup aborted"))
         if dbackup != Gtk.ResponseType.DELETE_EVENT:
@@ -1823,9 +1941,11 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
         fdialog = Gtk.FileChooserDialog(
             title=_("Select backup directory"),
             transient_for=self.window,
-            action=Gtk.FileChooserAction.SELECT_FOLDER)
-        fdialog.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
-                            _('_Apply'), Gtk.ResponseType.OK)
+            action=Gtk.FileChooserAction.SELECT_FOLDER,
+        )
+        fdialog.add_buttons(
+            _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Apply"), Gtk.ResponseType.OK
+        )
         mpath = path_entry.get_text()
         if not mpath:
             mpath = USER_DATA
@@ -1844,7 +1964,7 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
         Toggles media include values in the quick backup dialog.
         """
         include = widget.get_active()
-        config.set('preferences.quick-backup-include-mode', include)
+        config.set("preferences.quick-backup-include-mode", include)
         extension = "gpkg" if include else "gramps"
         filename = file_entry.get_text()
         if "." in filename:

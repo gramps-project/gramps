@@ -38,22 +38,22 @@ Narrative Web Page generator.
 Classe:
     AddressBookPage
 """
-#------------------------------------------------
+# ------------------------------------------------
 # python modules
-#------------------------------------------------
+# ------------------------------------------------
 from decimal import getcontext
 import logging
 
-#------------------------------------------------
+# ------------------------------------------------
 # Gramps module
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.plug.report import Bibliography
 from gramps.plugins.lib.libhtml import Html
 
-#------------------------------------------------
+# ------------------------------------------------
 # specific narrative web import
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
 from gramps.plugins.webreport.common import FULLCLEAR
 
@@ -61,12 +61,15 @@ _ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb")
 getcontext().prec = 8
 
+
 class AddressBookPage(BasePage):
     """
     Create one page for one Address
     """
-    def __init__(self, report, the_lang, the_title, person_handle,
-                 has_add, has_res, has_url):
+
+    def __init__(
+        self, report, the_lang, the_title, person_handle, has_add, has_res, has_url
+    ):
         """
         @param: report        -- The instance of the main report class
                                  for this report
@@ -90,12 +93,10 @@ class AddressBookPage(BasePage):
         addressbookpage, dummy_head, dummy_body, outerwrapper = result
 
         # begin address book page division and section title
-        with Html("div", class_="content",
-                  id="AddressBookDetail") as addressbookdetail:
+        with Html("div", class_="content", id="AddressBookDetail") as addressbookdetail:
             outerwrapper += addressbookdetail
 
-            link = self.new_person_link(person_handle, uplink=True,
-                                        person=person)
+            link = self.new_person_link(person_handle, uplink=True, person=person)
             addressbookdetail += Html("h3", link)
 
             # individual has an address
@@ -104,10 +105,7 @@ class AddressBookPage(BasePage):
 
             # individual has a residence
             if has_res:
-                addressbookdetail.extend(
-                    self.dump_residence(res)
-                    for res in has_res
-                )
+                addressbookdetail.extend(self.dump_residence(res) for res in has_res)
 
             # individual has a url
             if has_url:

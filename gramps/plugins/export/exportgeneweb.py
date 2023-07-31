@@ -90,7 +90,6 @@ class GeneWebWriter:
         self.g.write(self.iso8859("%s\n" % (text)))
 
     def export_data(self):
-
         self.dirname = os.path.dirname(self.filename)
         try:
             with open(self.filename, "wb") as self.g:

@@ -59,6 +59,7 @@ from gramps.gen.lib.eventtype import EventType
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.plug.utils import OpenFileOrStdout
 
+
 # -------------------------------------------------------------------------
 #
 # Support Functions
@@ -283,9 +284,9 @@ class VCardWriter:
         if gender == Person.MALE:
             gender_value = "Male"
         elif gender == Person.FEMALE:
-            gender_value = 'Female'
+            gender_value = "Female"
         elif gender == Person.OTHER:
-            gender_value = 'Other'
+            gender_value = "Other"
         log.info("gender: %s -> %s" % (gender, gender_value))
         if gender_value:
             self.writeln("X-GENDER:%s" % (gender_value))

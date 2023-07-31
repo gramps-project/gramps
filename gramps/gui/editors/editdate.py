@@ -104,6 +104,7 @@ CAL_TO_MONTHS_NAMES = {
 WIKI_HELP_PAGE = URL_MANUAL_SECT1
 WIKI_HELP_SEC = _("Editing_dates", "manual")
 
+
 # -------------------------------------------------------------------------
 #
 # EditDate

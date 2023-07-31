@@ -18,62 +18,65 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-__all__ = ["LinkLabel", "EditLabel", "BasicLabel",
-           "MarkupLabel", "DualMarkupLabel"]
+__all__ = ["LinkLabel", "EditLabel", "BasicLabel", "MarkupLabel", "DualMarkupLabel"]
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import os
 from html import escape
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 import logging
+
 _LOG = logging.getLogger(".widgets.labels")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Pango
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.constfunc import has_display, win
 from ..utils import get_link_color
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 if has_display():
-    HAND_CURSOR = Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
-                                             Gdk.CursorType.HAND2)
+    HAND_CURSOR = Gdk.Cursor.new_for_display(
+        Gdk.Display.get_default(), Gdk.CursorType.HAND2
+    )
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Module functions
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def realize_cb(widget):
     widget.get_window().set_cursor(HAND_CURSOR)
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # LinkLabel class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class LinkLabel(Gtk.EventBox):
-
     def __init__(self, label, func, handle, emph=False, theme="CLASSIC"):
         self.theme = theme
         self.emph = emph
@@ -84,7 +87,7 @@ class LinkLabel(Gtk.EventBox):
         self.color = get_link_color(st_cont)
 
         if emph:
-            #emphasize a link
+            # emphasize a link
             if theme == "CLASSIC":
                 format = 'underline="single" weight="heavy" style="italic"'
             elif theme == "WEBPAGE":
@@ -92,7 +95,7 @@ class LinkLabel(Gtk.EventBox):
             else:
                 raise AttributeError("invalid theme: '%s'" % theme)
         elif emph is None:
-            #emphasize, but not a link
+            # emphasize, but not a link
             if theme == "CLASSIC":
                 format = 'weight="heavy"'
             elif theme == "WEBPAGE":
@@ -100,7 +103,7 @@ class LinkLabel(Gtk.EventBox):
             else:
                 raise AttributeError("invalid theme: '%s'" % theme)
         else:
-            #no emphasize, a link
+            # no emphasize, a link
             if theme == "CLASSIC":
                 format = 'underline="single"'
             elif theme == "WEBPAGE":
@@ -111,12 +114,14 @@ class LinkLabel(Gtk.EventBox):
         self.orig_text = escape(label[0])
         self.gender = label[1]
         self.decoration = format
-        text = '<span %s>%s</span>' % (self.decoration, self.orig_text)
+        text = "<span %s>%s</span>" % (self.decoration, self.orig_text)
 
         if func:
-            msg = _('Click to make this person active\n'
-                    'Right click to display the edit menu\n'
-                    'Click Edit icon (enable in configuration dialog) to edit')
+            msg = _(
+                "Click to make this person active\n"
+                "Right click to display the edit menu\n"
+                "Click Edit icon (enable in configuration dialog) to edit"
+            )
 
             self.set_tooltip_text(msg)
 
@@ -132,10 +137,10 @@ class LinkLabel(Gtk.EventBox):
         self.add(hbox)
 
         if func:
-            self.connect('button-press-event', func, handle)
-            self.connect('enter-notify-event', self.enter_text, handle)
-            self.connect('leave-notify-event', self.leave_text, handle)
-            self.connect('realize', realize_cb)
+            self.connect("button-press-event", func, handle)
+            self.connect("enter-notify-event", self.enter_text, handle)
+            self.connect("leave-notify-event", self.leave_text, handle)
+            self.connect("realize", realize_cb)
 
     def set_padding(self, x, y):
         self.label.set_margin_start(x)
@@ -145,13 +150,17 @@ class LinkLabel(Gtk.EventBox):
 
     def enter_text(self, obj, event, handle):
         if self.emph:
-            #emphasize a link
+            # emphasize a link
             if self.theme == "CLASSIC":
-                format = 'foreground="' + self.color + '" underline="single" '\
-                         'weight="heavy" style="italic"'
+                format = (
+                    'foreground="' + self.color + '" underline="single" '
+                    'weight="heavy" style="italic"'
+                )
             elif self.theme == "WEBPAGE":
-                format = 'underline="single" foreground="' + self.color + '" '\
-                         'weight="heavy"'
+                format = (
+                    'underline="single" foreground="' + self.color + '" '
+                    'weight="heavy"'
+                )
             else:
                 raise AttributeError("invalid theme: '%s'" % self.theme)
         elif self.emph is None:
@@ -163,7 +172,7 @@ class LinkLabel(Gtk.EventBox):
             else:
                 raise AttributeError("invalid theme: '%s'" % self.theme)
         else:
-            #no emphasize, a link
+            # no emphasize, a link
             if self.theme == "CLASSIC":
                 format = 'foreground="' + self.color + '" underline="single"'
             elif self.theme == "WEBPAGE":
@@ -171,37 +180,39 @@ class LinkLabel(Gtk.EventBox):
             else:
                 raise AttributeError("invalid theme: '%s'" % self.theme)
 
-        text = '<span %s>%s</span>' % (format, self.orig_text)
+        text = "<span %s>%s</span>" % (format, self.orig_text)
         self.label.set_text(text)
         self.label.set_use_markup(True)
 
     def leave_text(self, obj, event, handle):
-        text = '<span %s>%s</span>' % (self.decoration, self.orig_text)
+        text = "<span %s>%s</span>" % (self.decoration, self.orig_text)
         self.label.set_text(text)
         self.label.set_use_markup(True)
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # EditLabel class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class EditLabel(Gtk.Box):
     def __init__(self, text):
         Gtk.Box.__init__(self)
         label = BasicLabel(text)
         self.pack_start(label, False, True, 0)
-        self.pack_start(Gtk.Image.new_from_icon_name('gtk-edit',
-                                                     Gtk.IconSize.MENU), False)
+        self.pack_start(
+            Gtk.Image.new_from_icon_name("gtk-edit", Gtk.IconSize.MENU), False
+        )
         self.set_spacing(4)
         self.show_all()
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # BasicLabel class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class BasicLabel(Gtk.Label):
-
     def __init__(self, text, ellipsize=Pango.EllipsizeMode.NONE):
         Gtk.Label.__init__(self, label=text)
         self.set_halign(Gtk.Align.START)
@@ -209,26 +220,25 @@ class BasicLabel(Gtk.Label):
         self.show()
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # MarkupLabel class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MarkupLabel(Gtk.Label):
-
     def __init__(self, text, halign=Gtk.Align.START):
         Gtk.Label.__init__(self, label=text)
         self.set_halign(halign)
         self.set_use_markup(True)
         self.show_all()
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # DualMarkupLabel class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class DualMarkupLabel(Gtk.Box):
-
     def __init__(self, text, alt, halign=Gtk.Align.START):
         Gtk.Box.__init__(self)
         label = Gtk.Label(label=text)

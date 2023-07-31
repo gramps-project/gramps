@@ -20,35 +20,36 @@
 
 __all__ = ["PlaceEntry"]
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 _LOG = logging.getLogger(".widgets.placeentry")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ..selectors import SelectorFactory
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # PlaceEntry class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class PlaceEntry(Gtk.Box):
-
     def __init__(self, dbstate, uistate, track):
         Gtk.Box.__init__(self)
         self.dbstate = dbstate
@@ -58,16 +59,16 @@ class PlaceEntry(Gtk.Box):
         self.entry.set_width_chars(5)
         self.pack_start(self.entry, True, True, 0)
         image = Gtk.Image()
-        image.set_from_icon_name('gtk-index', Gtk.IconSize.BUTTON)
+        image.set_from_icon_name("gtk-index", Gtk.IconSize.BUTTON)
         button = Gtk.Button()
         button.set_image(image)
         button.set_relief(Gtk.ReliefStyle.NORMAL)
         self.pack_start(button, False, True, 0)
-        button.connect('clicked', self.on_clicked)
+        button.connect("clicked", self.on_clicked)
         self.show_all()
 
     def on_clicked(self, button):
-        SelectPlace = SelectorFactory('Place')
+        SelectPlace = SelectorFactory("Place")
         sel = SelectPlace(self.dbstate, self.uistate, self.track)
         place = sel.run()
         if place:

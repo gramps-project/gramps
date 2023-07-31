@@ -81,7 +81,8 @@ from ._matcheseventfilterbase import MatchesEventFilterBase
 from ._matchessourceconfidencebase import MatchesSourceConfidenceBase
 from ._matchessourcefilterbase import MatchesSourceFilterBase
 from ._changedsincebase import ChangedSinceBase
-#object filters
+
+# object filters
 from . import person
 from . import family
 from . import event

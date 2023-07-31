@@ -47,5 +47,5 @@ editor_rule_list = [
     MatchesFilter,
     ChangedSince,
     MatchesNameSubstringOf,
-    HasTag
+    HasTag,
 ]

@@ -20,27 +20,29 @@
 
 """Tools/Debug/Populate sources and citations"""
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import logging
+
 LOG = logging.getLogger(".citation")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gnome/gtk
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import COLON, GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gramps.gui.utils import ProgressMeter
 from gramps.gui.plug import tool
@@ -49,6 +51,7 @@ from gramps.gui.managedwindow import ManagedWindow
 from gramps.gen.lib import Citation, Source
 from gramps.gen.db import DbTxn
 
+
 class PopulateSources(tool.Tool, ManagedWindow):
     """
     Tool that populates the database with sources and citations.
@@ -56,9 +59,9 @@ class PopulateSources(tool.Tool, ManagedWindow):
 
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
-        self.label = 'Populate sources and citations tool'
+        self.label = "Populate sources and citations tool"
         ManagedWindow.__init__(self, uistate, [], self.__class__)
-        self.set_window(Gtk.Window(), Gtk.Label(), '')
+        self.set_window(Gtk.Window(), Gtk.Label(), "")
         tool.Tool.__init__(self, dbstate, options_class, name)
 
         dialog = self.display()
@@ -67,9 +70,11 @@ class PopulateSources(tool.Tool, ManagedWindow):
 
         if response == Gtk.ResponseType.ACCEPT:
             self.on_ok_clicked()
-            OkDialog('Data generated',
-                     "The requested sources and citations were generated",
-                     parent=uistate.window)
+            OkDialog(
+                "Data generated",
+                "The requested sources and citations were generated",
+                parent=uistate.window,
+            )
 
         self.close()
 
@@ -80,20 +85,25 @@ class PopulateSources(tool.Tool, ManagedWindow):
         """
 
         # retrieve options
-        num_sources = self.options.handler.options_dict['sources']
-        num_citations = self.options.handler.options_dict['citations']
+        num_sources = self.options.handler.options_dict["sources"]
+        num_citations = self.options.handler.options_dict["citations"]
 
         # GUI setup:
-        dialog = Gtk.Dialog(title="Populate sources and citations tool",
-                            transient_for=self.uistate.window,
-                            modal=True, destroy_with_parent=True)
-        dialog.add_buttons(_('_Cancel'), Gtk.ResponseType.REJECT,
-                           _('_OK'), Gtk.ResponseType.ACCEPT)
+        dialog = Gtk.Dialog(
+            title="Populate sources and citations tool",
+            transient_for=self.uistate.window,
+            modal=True,
+            destroy_with_parent=True,
+        )
+        dialog.add_buttons(
+            _("_Cancel"), Gtk.ResponseType.REJECT, _("_OK"), Gtk.ResponseType.ACCEPT
+        )
         label = Gtk.Label(
             label="Enter a valid number of sources and citations."
             " This will create the requested number of sources,"
             " and for each source, will create the requested"
-            " number of citations.")
+            " number of citations."
+        )
         label.set_line_wrap(True)
 
         hbox1 = Gtk.Box()
@@ -135,18 +145,15 @@ class PopulateSources(tool.Tool, ManagedWindow):
         num_citations_text = self.citations_entry.get_text()
         num_citations = int(num_citations_text)
 
-        self.progress = ProgressMeter(
-            'Generating data', '', parent=self.uistate.window)
-        self.progress.set_pass('Generating data',
-                               num_sources*num_citations)
-        LOG.debug("sources %04d citations %04d" % (num_sources,
-                                                     num_citations))
+        self.progress = ProgressMeter("Generating data", "", parent=self.uistate.window)
+        self.progress.set_pass("Generating data", num_sources * num_citations)
+        LOG.debug("sources %04d citations %04d" % (num_sources, num_citations))
 
         source = Source()
         citation = Citation()
 
         self.db.disable_signals()
-        with DbTxn('Populate sources and citations', self.db) as trans:
+        with DbTxn("Populate sources and citations", self.db) as trans:
             for i in range(num_sources):
                 source.gramps_id = None
                 source.handle = None
@@ -165,10 +172,11 @@ class PopulateSources(tool.Tool, ManagedWindow):
         self.db.request_rebuild()
         self.progress.close()
 
-        self.options.handler.options_dict['sources'] = num_sources
-        self.options.handler.options_dict['citations'] = num_citations
+        self.options.handler.options_dict["sources"] = num_sources
+        self.options.handler.options_dict["citations"] = num_citations
         # Save options
         self.options.handler.save_options()
+
 
 class PopulateSourcesOptions(tool.ToolOptions):
     """
@@ -180,14 +188,14 @@ class PopulateSourcesOptions(tool.ToolOptions):
 
         # Options specific for this report
         self.options_dict = {
-            'sources'   : 2,
-            'citations' : 2,
+            "sources": 2,
+            "citations": 2,
         }
         self.options_help = {
-            'sources'   : ("=num",
-                           "Number of sources to generate",
-                           "Integer number"),
-            'citations' : ("=num",
-                           "Number of citations to generate for each source",
-                           "Integer number")
-            }
+            "sources": ("=num", "Number of sources to generate", "Integer number"),
+            "citations": (
+                "=num",
+                "Number of citations to generate for each source",
+                "Integer number",
+            ),
+        }

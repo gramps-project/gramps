@@ -1,4 +1,4 @@
- #
+#
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2009 Gerald Britton <gerald.britton@gmail.com>
@@ -18,11 +18,11 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Glade
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
 """
 Glade file operations
@@ -31,37 +31,38 @@ This module exports the Glade class.
 
 """
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import sys
 import os
 from gi.repository import Gtk
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.const import GLADE_DIR, GRAMPS_LOCALE as glocale
 from gramps.gen.constfunc import is_quartz
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Glade class. Derived from Gtk.Builder
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
+
 
 class Glade(Gtk.Builder):
     """
     Glade class: Manage glade files as Gtk.Builder objects
     """
-    __slots__ = ['__toplevel', '__filename', '__dirname']
 
-    def __init__(self, filename=None, dirname=None, toplevel=None,
-                 also_load=[]):
+    __slots__ = ["__toplevel", "__filename", "__dirname"]
+
+    def __init__(self, filename=None, dirname=None, toplevel=None, also_load=[]):
         """
         Class Constructor: Returns a new instance of the Glade class
 
@@ -103,8 +104,8 @@ class Glade(Gtk.Builder):
         if not filename_given:
             filename = sys._getframe(1).f_code.co_filename
             filename = os.path.basename(filename)
-            filename = filename.rpartition('.')[0] + '.glade'
-            filename = filename.lstrip('_').lower()
+            filename = filename.rpartition(".")[0] + ".glade"
+            filename = filename.lstrip("_").lower()
 
         # if dirname not given, use current directory
 
@@ -114,15 +115,15 @@ class Glade(Gtk.Builder):
 
         # try to find the glade file
 
-        if filename_given and dirname_given:    # both given -- use them
+        if filename_given and dirname_given:  # both given -- use them
             path = os.path.join(dirname, filename)
 
-        elif filename_given:                    # try default directory first
+        elif filename_given:  # try default directory first
             path = os.path.join(GLADE_DIR, filename)
-            if not os.path.exists(path):        # then module directory
+            if not os.path.exists(path):  # then module directory
                 path = os.path.join(dirname, filename)
 
-        elif dirname_given:                     # dirname given -- use it
+        elif dirname_given:  # dirname given -- use it
             path = os.path.join(dirname, filename)
 
         # neither filename nor dirname given.  Try:
@@ -143,31 +144,30 @@ class Glade(Gtk.Builder):
         # toplevel is given
         if toplevel:
             loadlist = [toplevel] + also_load
-            with open(path, 'r', encoding='utf-8') as builder_file:
+            with open(path, "r", encoding="utf-8") as builder_file:
                 data = builder_file.read()
                 if is_quartz():
-                    data = data.replace('GDK_CONTROL_MASK', 'GDK_META_MASK')
+                    data = data.replace("GDK_CONTROL_MASK", "GDK_META_MASK")
                 self.add_objects_from_string(data, loadlist)
             self.__toplevel = self.get_object(toplevel)
         # toplevel not given
         else:
-            with open(path, 'r', encoding='utf-8') as builder_file:
+            with open(path, "r", encoding="utf-8") as builder_file:
                 data = builder_file.read()
                 if is_quartz():
-                    data = data.replace('GDK_CONTROL_MASK', 'GDK_META_MASK')
+                    data = data.replace("GDK_CONTROL_MASK", "GDK_META_MASK")
                 self.add_from_string(data)
             # first, use filename as possible toplevel widget name
-            self.__toplevel = self.get_object(filename.rpartition('.')[0])
+            self.__toplevel = self.get_object(filename.rpartition(".")[0])
 
             # next try lowercase filename as possible widget name
             if not self.__toplevel:
-                self.__toplevel = self.get_object(
-                                        filename.rpartition('.')[0].lower())
+                self.__toplevel = self.get_object(filename.rpartition(".")[0].lower())
 
                 if not self.__toplevel:
                     # if no match found, search for first toplevel widget
                     for obj in self.get_objects():
-                        if hasattr(obj, 'get_toplevel'):
+                        if hasattr(obj, "get_toplevel"):
                             self.__toplevel = obj.get_toplevel()
                             break
                     else:
@@ -240,7 +240,7 @@ class Glade(Gtk.Builder):
             obj_id = Gtk.Buildable.get_name(obj)
             if obj_id == value:
                 return obj
-            if hasattr(obj, 'get_children'):
+            if hasattr(obj, "get_children"):
                 queue += obj.get_children()
 
         return None

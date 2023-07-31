@@ -18,36 +18,39 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # IsMoreThanNthGenerationDescendantOf
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class IsMoreThanNthGenerationDescendantOf(Rule):
     """Rule that checks for a person that is a descendant of a specified person
     at least N generations away"""
 
-    labels = [ _('ID:'), _('Number of generations:') ]
-    name = _('Descendants of <person> at least <N> generations away')
+    labels = [_("ID:"), _("Number of generations:")]
+    name = _("Descendants of <person> at least <N> generations away")
     category = _("Descendant filters")
-    description = _("Matches people that are descendants of a specified "
-                 "person at least N generations away")
-
+    description = _(
+        "Matches people that are descendants of a specified "
+        "person at least N generations away"
+    )
 
     def prepare(self, db, user):
         self.db = db
@@ -61,7 +64,7 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
     def reset(self):
         self.map.clear()
 
-    def apply(self,db,person):
+    def apply(self, db, person):
         return person.handle in self.map
 
     def init_list(self, person, gen):
@@ -75,4 +78,5 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
             if fam:
                 for child_ref in fam.get_child_ref_list():
                     self.init_list(
-                        self.db.get_person_from_handle(child_ref.ref), gen+1)
+                        self.db.get_person_from_handle(child_ref.ref), gen + 1
+                    )

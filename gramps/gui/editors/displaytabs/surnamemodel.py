@@ -19,34 +19,39 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # SurnamModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class SurnameModel(Gtk.ListStore):
-
     def __init__(self, surn_list, db):
-        #setup model for the treeview
-        Gtk.ListStore.__init__(self, str, str, str, str,
-                               bool, object)
+        # setup model for the treeview
+        Gtk.ListStore.__init__(self, str, str, str, str, bool, object)
         for surn in surn_list:
             # fill the liststore
-            self.append(row=[surn.get_prefix(), surn.get_surname(),
-                             surn.get_connector(), str(surn.get_origintype()),
-                             surn.get_primary(), surn])
+            self.append(
+                row=[
+                    surn.get_prefix(),
+                    surn.get_surname(),
+                    surn.get_connector(),
+                    str(surn.get_origintype()),
+                    surn.get_primary(),
+                    surn,
+                ]
+            )
         self.db = db

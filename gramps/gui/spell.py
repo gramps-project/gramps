@@ -25,37 +25,41 @@ present, we default to no spell checking.
 
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Set up logging
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 LOG = logging.getLogger(".Spell")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
 HAVE_GSPELL = False
 
 try:
     import gi
-    gi.require_version('Gspell', '1')
+
+    gi.require_version("Gspell", "1")
     from gi.repository import Gspell
+
     langs = Gspell.language_get_available()
     for lang in langs:
-        LOG.debug('%s (%s) dict available', lang.get_name(), lang.get_code())
+        LOG.debug("%s (%s) dict available", lang.get_name(), lang.get_code())
     if langs:
         HAVE_GSPELL = True
     else:
@@ -63,29 +67,30 @@ try:
 except (ImportError, ValueError):
     pass
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.config import config
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
 
 class Spell:
-    """Attach a Gspell instance to the passed TextView instance.
-    """
-    _spellcheck_options = {'off': _('Off')}
+    """Attach a Gspell instance to the passed TextView instance."""
+
+    _spellcheck_options = {"off": _("Off")}
 
     if HAVE_GSPELL:
-        _spellcheck_options['on'] = _('On')
+        _spellcheck_options["on"] = _("On")
 
     def __init__(self, textview):
-        self._active_spellcheck = 'off'
+        self._active_spellcheck = "off"
 
         if not HAVE_GSPELL:
             return
@@ -95,16 +100,16 @@ class Spell:
         if locale_code is not None:
             gspell_language = Gspell.language_lookup(locale_code[:5])
             if gspell_language is None:
-                gspell_language= Gspell.language_lookup(locale_code[:2])
+                gspell_language = Gspell.language_lookup(locale_code[:2])
         checker = Gspell.Checker.new(gspell_language)
         buffer = Gspell.TextBuffer.get_from_gtk_text_buffer(textview.get_buffer())
         buffer.set_spell_checker(checker)
         self.gspell_view = Gspell.TextView.get_from_gtk_text_view(textview)
 
-        if config.get('behavior.spellcheck'):
-            self.spellcheck = 'on'
+        if config.get("behavior.spellcheck"):
+            self.spellcheck = "on"
         else:
-            self.spellcheck = 'off'
+            self.spellcheck = "off"
 
         self.__real_set_active_spellcheck(self.spellcheck)
 
@@ -115,8 +120,8 @@ class Spell:
         if self._active_spellcheck == spellcheck_code:
             return
 
-        self.gspell_view.set_inline_spell_checking(spellcheck_code == 'on')
-        self.gspell_view.set_enable_language_menu(spellcheck_code == 'on')
+        self.gspell_view.set_inline_spell_checking(spellcheck_code == "on")
+        self.gspell_view.set_enable_language_menu(spellcheck_code == "on")
         self._active_spellcheck = spellcheck_code
 
     # Public API

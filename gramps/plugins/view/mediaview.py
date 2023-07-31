@@ -24,36 +24,41 @@
 Media View.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 import os
 from urllib.parse import urlparse
 from urllib.request import url2pathname
 import pickle
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gui.utils import open_file_with_default_application
 from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gui.views.treemodels import MediaModel
 from gramps.gen.config import config
-from gramps.gen.utils.file import (media_path, relative_path, media_path_full,
-                                   create_checksum)
+from gramps.gen.utils.file import (
+    media_path,
+    relative_path,
+    media_path_full,
+    create_checksum,
+)
 from gramps.gui.views.bookmarks import MediaBookmarks
 from gramps.gen.mime import get_type, is_valid_type
 from gramps.gen.lib import Media
@@ -66,11 +71,12 @@ from gramps.gui.ddtargets import DdTargets
 from gramps.gui.dialog import ErrorDialog
 from gramps.gen.plug import CATEGORY_QR_MEDIA
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MediaView
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MediaView(ListView):
     """
     Provide the Media View interface on the Gramps main window. This allows
@@ -79,6 +85,7 @@ class MediaView(ListView):
     thumbnail image at the top of the view that must be updated when the
     selection changes or when the selected media object changes.
     """
+
     COL_TITLE = 0
     COL_ID = 1
     COL_TYPE = 2
@@ -90,53 +97,68 @@ class MediaView(ListView):
 
     # column definitions
     COLUMNS = [
-        (_('Title'), TEXT, None),
-        (_('ID'), TEXT, None),
-        (_('Type'), TEXT, None),
-        (_('Path'), TEXT, None),
-        (_('Date'), TEXT, None),
-        (_('Private'), ICON, 'gramps-lock'),
-        (_('Tags'), TEXT, None),
-        (_('Last Changed'), TEXT, None),
-        ]
+        (_("Title"), TEXT, None),
+        (_("ID"), TEXT, None),
+        (_("Type"), TEXT, None),
+        (_("Path"), TEXT, None),
+        (_("Date"), TEXT, None),
+        (_("Private"), ICON, "gramps-lock"),
+        (_("Tags"), TEXT, None),
+        (_("Last Changed"), TEXT, None),
+    ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
-        ('columns.visible', [COL_TITLE, COL_ID, COL_TYPE, COL_PATH,
-                             COL_DATE]),
-        ('columns.rank', [COL_TITLE, COL_ID, COL_TYPE, COL_PATH,
-                           COL_DATE, COL_PRIV, COL_TAGS, COL_CHAN]),
-        ('columns.size', [200, 75, 100, 200, 150, 40, 100, 150])
-        )
+        ("columns.visible", [COL_TITLE, COL_ID, COL_TYPE, COL_PATH, COL_DATE]),
+        (
+            "columns.rank",
+            [
+                COL_TITLE,
+                COL_ID,
+                COL_TYPE,
+                COL_PATH,
+                COL_DATE,
+                COL_PRIV,
+                COL_TAGS,
+                COL_CHAN,
+            ],
+        ),
+        ("columns.size", [200, 75, 100, 200, 150, 40, 100, 150]),
+    )
 
     ADD_MSG = _("Add a new media object")
     EDIT_MSG = _("Edit the selected media object")
     DEL_MSG = _("Delete the selected media object")
     MERGE_MSG = _("Merge the selected media objects")
-    FILTER_TYPE = 'Media'
+    FILTER_TYPE = "Media"
     QR_CATEGORY = CATEGORY_QR_MEDIA
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
-
         signal_map = {
-            'media-add'     : self.row_add,
-            'media-update'  : self.row_update,
-            'media-delete'  : self.row_delete,
-            'media-rebuild' : self.object_build,
-            }
+            "media-add": self.row_add,
+            "media-update": self.row_update,
+            "media-delete": self.row_delete,
+            "media-rebuild": self.object_build,
+        }
 
         ListView.__init__(
-            self, _('Media'), pdata, dbstate, uistate,
+            self,
+            _("Media"),
+            pdata,
+            dbstate,
+            uistate,
             MediaModel,
             signal_map,
-            MediaBookmarks, nav_group,
+            MediaBookmarks,
+            nav_group,
             filter_class=MediaSidebarFilter,
-            multiple=True)
+            multiple=True,
+        )
 
         self.additional_uis.append(self.additional_ui)
         self.uistate = uistate
 
     def navigation_type(self):
-        return 'Media'
+        return "Media"
 
     def drag_info(self):
         """
@@ -197,7 +219,7 @@ class MediaView(ListView):
         if photo:
             self.uistate.set_active(photo.handle, "Media")
 
-        widget.emit_stop_by_name('drag_data_received')
+        widget.emit_stop_by_name("drag_data_received")
 
     def define_actions(self):
         """
@@ -207,8 +229,8 @@ class MediaView(ListView):
         """
         ListView.define_actions(self)
 
-        self._add_action('OpenMedia', self.view_media)
-        self._add_action('OpenContainingFolder', self.open_containing_folder)
+        self._add_action("OpenMedia", self.view_media)
+        self._add_action("OpenContainingFolder", self.open_containing_folder)
 
     def view_media(self, *obj):
         """
@@ -234,18 +256,18 @@ class MediaView(ListView):
         """
         Return the icon for this view
         """
-        return 'gramps-media'
+        return "gramps-media"
 
     additional_ui = [  # Defines the UI string for UIManager
-        '''
+        """
       <placeholder id="LocalExport">
         <item>
           <attribute name="action">win.ExportTab</attribute>
           <attribute name="label" translatable="yes">Export View...</attribute>
         </item>
       </placeholder>
-''',
-        '''
+""",
+        """
       <section id="AddEditBook">
         <item>
           <attribute name="action">win.AddBook</attribute>
@@ -256,8 +278,9 @@ class MediaView(ListView):
           <attribute name="label" translatable="no">%s...</attribute>
         </item>
       </section>
-''' % _('Organize Bookmarks'),
-        '''
+"""
+        % _("Organize Bookmarks"),
+        """
       <placeholder id="CommonGo">
       <section>
         <item>
@@ -270,8 +293,8 @@ class MediaView(ListView):
         </item>
       </section>
       </placeholder>
-''',
-        '''
+""",
+        """
       <section id='CommonEdit' groups='RW'>
         <item>
           <attribute name="action">win.Add</attribute>
@@ -290,24 +313,25 @@ class MediaView(ListView):
           <attribute name="label" translatable="yes">_Merge...</attribute>
         </item>
       </section>
-''' % _("_Edit...", "action"),  # to use sgettext()
-        '''
+"""
+        % _("_Edit...", "action"),  # to use sgettext()
+        """
         <placeholder id='otheredit'>
         <item>
           <attribute name="action">win.FilterEdit</attribute>
-          <attribute name="label" translatable="yes">'''
-        '''Media Filter Editor</attribute>
+          <attribute name="label" translatable="yes">"""
+        """Media Filter Editor</attribute>
         </item>
         </placeholder>
-''',  # Following are the Toolbar items
-        '''
+""",  # Following are the Toolbar items
+        """
     <placeholder id='CommonNavigation'>
     <child groups='RO'>
       <object class="GtkToolButton">
         <property name="icon-name">go-previous</property>
         <property name="action-name">win.Back</property>
-        <property name="tooltip_text" translatable="yes">'''
-        '''Go to the previous object in the history</property>
+        <property name="tooltip_text" translatable="yes">"""
+        """Go to the previous object in the history</property>
         <property name="label" translatable="yes">_Back</property>
         <property name="use-underline">True</property>
       </object>
@@ -319,8 +343,8 @@ class MediaView(ListView):
       <object class="GtkToolButton">
         <property name="icon-name">go-next</property>
         <property name="action-name">win.Forward</property>
-        <property name="tooltip_text" translatable="yes">'''
-        '''Go to the next object in the history</property>
+        <property name="tooltip_text" translatable="yes">"""
+        """Go to the next object in the history</property>
         <property name="label" translatable="yes">_Forward</property>
         <property name="use-underline">True</property>
       </object>
@@ -329,8 +353,8 @@ class MediaView(ListView):
       </packing>
     </child>
     </placeholder>
-''',
-        '''
+""",
+        """
     <placeholder id='BarCommonEdit'>
     <child groups='RW'>
       <object class="GtkToolButton">
@@ -381,15 +405,16 @@ class MediaView(ListView):
       </packing>
     </child>
     </placeholder>
-''' % (ADD_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
-        '''
+"""
+        % (ADD_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
+        """
     <placeholder id='MoreButtons'>
     <child>
       <object class="GtkToolButton">
         <property name="icon-name">gramps-viewmedia</property>
         <property name="action-name">win.OpenMedia</property>
-        <property name="tooltip_text" translatable="yes">'''
-        '''View in the default viewer</property>
+        <property name="tooltip_text" translatable="yes">"""
+        """View in the default viewer</property>
         <property name="label" translatable="yes">View</property>
       </object>
       <packing>
@@ -397,8 +422,8 @@ class MediaView(ListView):
       </packing>
     </child>
     </placeholder>
-''',
-        '''
+""",
+        """
     <menu id="Popup">
       <section>
         <item>
@@ -417,8 +442,8 @@ class MediaView(ListView):
         </item>
         <item>
           <attribute name="action">win.OpenContainingFolder</attribute>
-          <attribute name="label" translatable="yes">'''
-        '''Open Containing _Folder</attribute>
+          <attribute name="label" translatable="yes">"""
+        """Open Containing _Folder</attribute>
         </item>
       </section>
       <section>
@@ -448,7 +473,8 @@ class MediaView(ListView):
         </placeholder>
       </section>
     </menu>
-''' % _('_Edit...', 'action')  # to use sgettext()
+"""
+        % _("_Edit...", "action"),  # to use sgettext()
     ]
 
     def add(self, *obj):
@@ -460,7 +486,7 @@ class MediaView(ListView):
 
     def remove(self, *obj):
         handles = self.selected_handles()
-        ht_list = [('Media', hndl) for hndl in handles]
+        ht_list = [("Media", hndl) for hndl in handles]
         self.remove_selected_objects(ht_list)
 
     def edit(self, *obj):
@@ -482,9 +508,11 @@ class MediaView(ListView):
 
         if len(mlist) != 2:
             msg = _("Cannot merge media objects.")
-            msg2 = _("Exactly two media objects must be selected to perform a "
-            "merge. A second object can be selected by holding down the "
-            "control key while clicking on the desired object.")
+            msg2 = _(
+                "Exactly two media objects must be selected to perform a "
+                "merge. A second object can be selected by holding down the "
+                "control key while clicking on the desired object."
+            )
             ErrorDialog(msg, msg2, parent=self.uistate.window)
         else:
             MergeMedia(self.dbstate, self.uistate, [], mlist[0], mlist[1])
@@ -505,9 +533,14 @@ class MediaView(ListView):
         """
         all_links = set([])
         for tag_handle in handle_list:
-            links = set([link[1] for link in
-                         self.dbstate.db.find_backlink_handles(tag_handle,
-                                                include_classes='Media')])
+            links = set(
+                [
+                    link[1]
+                    for link in self.dbstate.db.find_backlink_handles(
+                        tag_handle, include_classes="Media"
+                    )
+                ]
+            )
             all_links = all_links.union(links)
         self.row_update(list(all_links))
 
@@ -531,13 +564,17 @@ class MediaView(ListView):
         """
         Define the default gramplets for the sidebar and bottombar.
         """
-        return (("Media Filter",),
-                ("Media Preview",
-                 "Media Citations",
-                 "Media Notes",
-                 "Media Attributes",
-                 "Metadata Viewer",
-                 "Media Backlinks"))
+        return (
+            ("Media Filter",),
+            (
+                "Media Preview",
+                "Media Citations",
+                "Media Notes",
+                "Media Attributes",
+                "Metadata Viewer",
+                "Media Backlinks",
+            ),
+        )
 
     def get_config_name(self):
         return __name__
