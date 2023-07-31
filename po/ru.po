@@ -39058,7 +39058,7 @@ msgstr "Выберите, какие настройки Вы хотите име
 #, python-format
 msgctxt "val"
 msgid "in %(inipth)s (%(val)s)"
-msgstr "Умер(ла) %(month_year)s в возрасте %(age)s"
+msgstr "in %(inipth)s (%(val)s)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2538
 #, fuzzy
