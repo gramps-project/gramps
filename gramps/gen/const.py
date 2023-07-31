@@ -246,7 +246,7 @@ GTK_GETTEXT_DOMAIN = "gtk30"
 # About box information
 #
 # -------------------------------------------------------------------------
-COPYRIGHT_MSG = "© 2001-2006 Donald N. Allingham\n" "© 2007-2022 The Gramps Developers"
+COPYRIGHT_MSG = "© 2001-2006 Donald N. Allingham\n" "© 2007-2023 The Gramps Developers"
 COMMENTS = _(
     "Gramps\n (Genealogical Research and Analysis "
     "Management Programming System)\n"
