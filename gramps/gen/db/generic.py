@@ -762,6 +762,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.tree.set_name(name)
             self._save_tree()
 
+    def _create_undo_manager(self):
+        """
+        Create the undo manager.
+        """
+        return DbGenericUndo(self, self.undolog)
+
     def _close(self):
         """
         Close database backend.
