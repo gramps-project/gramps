@@ -29,8 +29,8 @@ Gramps setuptools module.
 # check python version first
 import sys
 
-if sys.version_info < (3, 5):
-    raise SystemExit("Gramps requires Python 3.5 or later.")
+if sys.version_info < (3, 8):
+    raise SystemExit("Gramps requires Python 3.8 or later.")
 
 from setuptools import setup, Command
 
