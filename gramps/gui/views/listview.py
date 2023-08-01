@@ -283,8 +283,7 @@ class ListView(NavigationView):
             column.set_resizable(True)
             column.set_clickable(True)
             column.set_sizing(Gtk.TreeViewColumnSizing.FIXED)
-            # removed since we have a PersistentTreeView
-            # column.set_fixed_width(pair[2])
+            column.set_fixed_width(pair[2])
 
             self.columns.append(column)
             self.list.append_column(column)
