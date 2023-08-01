@@ -94,10 +94,11 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   <autotools id="osmgpsmap" skip-autogen="never"
 	     autogenargs="--disable-gtk-doc-html"
 	     supports-non-srcdir-builds="no">
-    <branch module="nzjrs/osm-gps-map" revision="1.2.0" repo="github"/>
+    <branch version="1.2.0" repo="github-tarball"
+            module="nzjrs/osm-gps-map/releases/download/1.2.0/osm-gps-map-1.2.0.tar.gz"/>
     <dependencies>
       <dep package="libsoup"/>
-      <dep package="gtk+-3.0"/>
+      <dep package="gtk+-33.0"/>
     </dependencies>
   </autotools>
 
