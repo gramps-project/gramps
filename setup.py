@@ -459,7 +459,7 @@ setup(
     data_files=data_files,
     scripts=["scripts/gramps"],
     classifiers=[
-        "Development Status :: 1 - Planning",
+        "Development Status :: 4 - Beta",
         "Environment :: Console",
         "Environment :: MacOS X",
         "Environment :: Plugins",
