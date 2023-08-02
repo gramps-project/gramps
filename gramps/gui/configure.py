@@ -471,7 +471,7 @@ class ConfigureDialog(ManagedWindow):
         if not callback:
             callback = self.update_entry
         if label:
-            lwidget = BasicLabel(_("%s: ") % label)  # translators: for French
+            lwidget = BasicLabel(_("%s: ") % label)  # Translators: for French
         entry = Gtk.Entry()
         if localized_config:
             entry.set_text(config.get(constant))
@@ -888,7 +888,7 @@ class GrampsPreferences(ConfigureDialog):
         hbox.pack_start(lwidget, False, False, 0)
         hbox.pack_start(self.color_scheme_box, False, False, 0)
 
-        restore_btn = Gtk.Button(_("Restore to defaults"))
+        restore_btn = Gtk.Button(label=_("Restore to defaults"))
         restore_btn.set_tooltip_text(_("Restore colors for current theme to default."))
         restore_btn.connect("clicked", self.restore_colors)
         hbox.pack_start(restore_btn, False, False, 0)
@@ -2279,6 +2279,8 @@ class GrampsPreferences(ConfigureDialog):
             _("Every 15 minutes"),
             _("Every 30 minutes"),
             _("Every hour"),
+            _("Every 12 hours"),
+            _("Every day"),
         ]
         list(map(obox.append_text, formats))
         active = config.get("database.autobackup")
@@ -2415,6 +2417,8 @@ class GrampsPreferences(ConfigureDialog):
         for plugin in sorted(backend_plugins, key=lambda plugin: plugin.name):
             if plugin.id == default:
                 active = count
+            if plugin.id == "bsddb":
+                continue  # dsddb is deprecated, so don't allow setting
             model.append(row=[count, plugin.name, plugin.id])
             count += 1
         obox.set_model(model)
