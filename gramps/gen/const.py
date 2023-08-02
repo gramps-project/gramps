@@ -260,6 +260,7 @@ AUTHORS = [
     "Donald N. Allingham",
     "David Hampton",
     "Martin Hawlisch",
+    "Nick Hall",
     "Richard Taylor",
     "Tim Waugh",
     "John Ralls",
