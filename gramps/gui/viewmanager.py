@@ -1283,7 +1283,10 @@ class ViewManager(CLIManager):
             and self.dbstate.db.has_changed > self.prev_has_changed
         ):
             self.prev_has_changed = self.dbstate.db.has_changed
-            message = _("Please, wait before closing gramps")
+            message = _(
+                "Please wait for backup in progress.\n"
+                "Gramps will close when complete."
+            )
             message = '<span size="larger" weight="bold">%s</span>' % message
             pgr_title = _("Autobackup...")
             popup = Popup(pgr_title, message, parent=self.window)
@@ -1901,7 +1904,10 @@ class QuickBackup(ManagedWindow):  # TODO move this class into its own module
             position = self.window.get_position()  # crock
             window.hide()
             self.window.move(position[0], position[1])
-            message = _("Please, wait before closing gramps")
+            message = _(
+                "Please wait for backup in progress.\n"
+                "Gramps will close when complete."
+            )
             message = '<span size="larger" weight="bold">%s</span>' % message
             pgr_title = _("Making backup...")
             popup = Popup(pgr_title, message, parent=self.window)
