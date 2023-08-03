@@ -11,10 +11,10 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
-"PO-Revision-Date: 2023-07-31 05:47+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2023-08-03 16:24+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
-"gramps/he/>\n"
+"v5-2/he/>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -6033,11 +6033,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:49
 msgid "Places enclosed by another place"
-msgstr "מקומות המוכלים על־ידי מקום אחר"
+msgstr "מקומות מוכלים בתוך מקום אחר"
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:50
 msgid "Matches a place enclosed by a particular place"
-msgstr "שליפת מקומות המוכלים על־ידי מקום מסוים"
+msgstr "שליפת מקומות מוכלים בתוך מקום מסוים"
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:50
 msgid "Places of events matching the <event filter>"
@@ -16805,8 +16805,8 @@ msgid ""
 "<b>Note:</b> Any changes in the enclosing place information will be "
 "reflected in the place itself, for places that it encloses."
 msgstr ""
-"<b>הערה:</b> כל שינוי במידע מקומות מכילים ישתקף במקום עצמו, עבור המקומות "
-"המוכלים."
+"<b>הערה:</b> כל שינוי במידע מקומות שממכילים מקומות אחרים ישתקף במקום עצמו, "
+"עבור כלל המקומות המוכלים בו."
 
 #: ../gramps/gui/glade/editreporef.glade:127
 msgid "_Media Type:"
@@ -22316,7 +22316,7 @@ msgstr "תרגום כותרות"
 
 #: ../gramps/plugins/export/exportcsv.py:294
 msgid "Enclosed_by"
-msgstr "מוכל_על־ידי"
+msgstr "מוכל_בתוך"
 
 #: ../gramps/plugins/export/exportcsv.py:346
 #, python-brace-format
@@ -25344,7 +25344,7 @@ msgstr "מוכול על־ידי"
 
 #: ../gramps/plugins/importer/importcsv.py:248
 msgid "enclosed_by"
-msgstr "מוכל_על־ידי"
+msgstr "מוכל_בתוך"
 
 #: ../gramps/plugins/importer/importcsv.py:283
 #, python-format
@@ -31467,7 +31467,7 @@ msgstr "קרבה לאדם הבית"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:111
 msgid "Display all relationships between person and home person."
-msgstr "הצגת כל קשרי־הגומלין בין האדם והאדם הבית."
+msgstr "הצגת כל קשרי־הגומלין בין אדם ו'אדם הבית'."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:131
 msgid "Display filtered data"
@@ -37274,7 +37274,7 @@ msgstr "הצגת קשרי־הגומלין בין האדם הנוכחי והאד�
 msgid ""
 "For each person page, show the relationship between this person and the "
 "active person."
-msgstr "לכול עמוד אדם, הצגת קשרי־הגומלין בין האדם והאדם הפעיל."
+msgstr "הצגת קשרי־גומלין בין אדם ו'האדם הפעיל' בכל עמוד ה'אדם' ."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2019
 msgid "Html options"
