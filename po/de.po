@@ -22,10 +22,10 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
-"PO-Revision-Date: 2023-08-03 16:24+0000\n"
+"PO-Revision-Date: 2023-08-03 16:25+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
-"v5-2/de/>\n"
+"gramps/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -402,8 +402,8 @@ msgid ""
 msgstr ""
 "<b>Filter invertieren</b><br/>Filter können einfach durch das Benutzen der "
 "Option \"Invertieren\" \"Werte liefern, die nicht den Filterregeln "
-"entsprechen\" umgekehrt werden. Zum Beispiel: Wenn du \"Personen mit "
-"Kindern\" invertierst, kannst du alle Personen ohne Kinder anzeigen lassen."
+"entsprechen\" umgekehrt werden. Zum Beispiel: Wenn du \"Personen mit Kindern"
+"\" invertierst, kannst du alle Personen ohne Kinder anzeigen lassen."
 
 #: ../data/tips.xml:18
 msgid ""
@@ -733,8 +733,8 @@ msgstr ""
 "das Schreiben von Dokumentation, das Testen von Entwicklungsversionen, als "
 "auch das Helfen bei der Webseite beinhalten. Beginne mit dem Eintragen in "
 "die Gramps-Entwickler-Mailingliste, gramps-devel und arbeite dich ein. "
-"Informationen zum Anmelden findest du unter \"Hilfe &gt; Gramps "
-"Mailinglisten\"."
+"Informationen zum Anmelden findest du unter \"Hilfe &gt; Gramps Mailinglisten"
+"\"."
 
 #: ../data/tips.xml:66
 msgid ""
@@ -747,8 +747,8 @@ msgid ""
 msgstr ""
 "<b>Namen sind Schall und Rauch</b><br/>Der Name Gramps wurde dem "
 "ursprünglichen Entwickler Don Allingham von seinem Vater vorgeschlagen. Er "
-"bedeutet <i>Genealogical Research and Analysis Management Program System ("
-"auf Deutsch: Genealogisches Recherche und Analyse Management Programm "
+"bedeutet <i>Genealogical Research and Analysis Management Program System "
+"(auf Deutsch: Genealogisches Recherche und Analyse Management Programm "
 "System)</i> Es ist ein voll funktionales Ahnenforschungsprogramm um "
 "genealogische Daten abzulegen, zu bearbeiten und zu erforschen. Das "
 "Datenbank-Backend von Gramps ist so robust, dass einige Benutzer Stammbäume "
@@ -807,8 +807,8 @@ msgid ""
 "Name section."
 msgstr ""
 "<b>Verwalten von Namen</b><br/>Es ist einfach, Personen mit mehreren Namen "
-"in Gramps zu verwalten. Wähle im Personen-Editor die Registerkarte \"Namen\""
-". Du kannst Namen verschiedener Arten hinzufügen und den bevorzugten Namen "
+"in Gramps zu verwalten. Wähle im Personen-Editor die Registerkarte \"Namen"
+"\". Du kannst Namen verschiedener Arten hinzufügen und den bevorzugten Namen "
 "festlegen, indem du ihn in den Bereich \"Bevorzugter Name\" ziehst."
 
 #: ../data/tips.xml:76
@@ -930,8 +930,8 @@ msgid ""
 "is to use the Gramps bug tracking system at https://gramps-project.org/bugs/."
 msgstr ""
 "<b>Fehler in Gramps melden</b><br/>Der beste Weg, einen Fehler in Gramps zu "
-"melden, ist die Gramps-Fehlerdatenbank unter https://gramps-project.org/bugs/"
-" zu verwenden."
+"melden, ist die Gramps-Fehlerdatenbank unter https://gramps-project.org/"
+"bugs/ zu verwenden."
 
 #: ../data/tips.xml:96
 msgid ""
@@ -1537,8 +1537,8 @@ msgstr ""
 "6. Eine Datenbank öffnen und anhand ihrer Daten einen Zeitlinienbericht als "
 "PDF-Dokument\n"
 "der meine_zeitlinie.pdf Datei:\n"
-"gramps -O 'Stammbaum 1' -a report -p name=timeline,off=pdf,of=meine_zeitlinie"
-".pdf\n"
+"gramps -O 'Stammbaum 1' -a report -p name=timeline,off=pdf,"
+"of=meine_zeitlinie.pdf\n"
 "\n"
 "7. Um eine Zusammenfassung der Datenbank zu erstellen, verwende:\n"
 "gramps -O 'Stammbaum 1' -a report -p name=summary\n"
@@ -1546,12 +1546,12 @@ msgstr ""
 "8. Berichtsoptionen listen\n"
 "Verwende name=timeline,show=all um alle Optionen für den Zeitlinienbericht "
 "zu erhalten.\n"
-"Um Details zu einer bestimmten Option zu erhalten, verwende show=Optionsname "
-", z.B.. name=timeline,show=off string.\n"
+"Um Details zu einer bestimmten Option zu erhalten, verwende "
+"show=Optionsname , z.B.. name=timeline,show=off string.\n"
 "Um die verfügbaren Berichtsnamen zu sehen, verwende name=show string.\n"
 "\n"
-"9. Um einen Stammbaum schnell in eine Gramps XML Datei umzuwandeln, verwende:"
-"\n"
+"9. Um einen Stammbaum schnell in eine Gramps XML Datei umzuwandeln, "
+"verwende:\n"
 "gramps -O 'Stammbaum 1' -e Ausgabe.gramps -f gramps-xml\n"
 "\n"
 "10. Um einen Webauftritt in einer anderen Sprache zu erstellen (in deutsch), "
@@ -2030,8 +2030,8 @@ msgid ""
 "Ignoring '%(notranslate1)s=%(notranslate2)s' and using '%(notranslate1)s="
 "%(notranslate3)s'."
 msgstr ""
-"Ignoriere '%(notranslate1)s=%(notranslate2)s' und verwende "
-"'%(notranslate1)s=%(notranslate3)s'."
+"Ignoriere '%(notranslate1)s=%(notranslate2)s' und verwende '%(notranslate1)s="
+"%(notranslate3)s'."
 
 #: ../gramps/cli/plug/__init__.py:533
 #, python-format
@@ -2089,8 +2089,8 @@ msgid ""
 "\n"
 msgstr ""
 "Gramps hat einen Fehler in der Datenbank entdeckt. Dieser kann meist durch "
-"Verwendung des Werkzeugs \"Datenbank prüfen und reparieren\" behoben werden."
-"\n"
+"Verwendung des Werkzeugs \"Datenbank prüfen und reparieren\" behoben "
+"werden.\n"
 "\n"
 "Wenn das Problem nach dem Ausführen dieses Werkzeugs weiterhin besteht, "
 "reichen Sie bitte einen Fehlerbericht unter %(gramps_bugtracker_url)s ein.\n"
@@ -4272,7 +4272,8 @@ msgstr "Ereignisse mit dem Attribut <Attribut>"
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:46
 msgid "Matches events with the event attribute of a particular value"
-msgstr "Passt auf Ereignisse mit dem Ereignisattribut mit einem bestimmten Wert"
+msgstr ""
+"Passt auf Ereignisse mit dem Ereignisattribut mit einem bestimmten Wert"
 
 #: ../gramps/gen/filters/rules/event/_hascitation.py:51
 msgid "Events with the <citation>"
@@ -4482,7 +4483,8 @@ msgstr "Ereignisse mit ID, die <Text> enthalten"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:48
 msgid "Matches events whose Gramps ID matches the regular expression"
-msgstr "Passt auf Ereignisse, deren Gramps-ID dem regulären Ausdruck entspricht"
+msgstr ""
+"Passt auf Ereignisse, deren Gramps-ID dem regulären Ausdruck entspricht"
 
 #: ../gramps/gen/filters/rules/family/_allfamilies.py:44
 #: ../gramps/gen/plug/report/utils.py:377
@@ -4534,7 +4536,8 @@ msgstr "Familien mit Kind mit dem <Name>"
 
 #: ../gramps/gen/filters/rules/family/_childhasnameof.py:46
 msgid "Matches families where child has a specified (partial) name"
-msgstr "Passt auf Familien, in denen das Kind einen bestimmten (Teil-)Namen hat"
+msgstr ""
+"Passt auf Familien, in denen das Kind einen bestimmten (Teil-)Namen hat"
 
 #: ../gramps/gen/filters/rules/family/_familyprivate.py:42
 msgid "Families marked private"
@@ -4581,7 +4584,8 @@ msgstr "Familien mit dem Familie <Attribut>"
 
 #: ../gramps/gen/filters/rules/family/_hasattribute.py:46
 msgid "Matches families with the family attribute of a particular value"
-msgstr "Passt auf Familien mit einem Familienattribut mit einem bestimmten Wert"
+msgstr ""
+"Passt auf Familien mit einem Familienattribut mit einem bestimmten Wert"
 
 #: ../gramps/gen/filters/rules/family/_hascitation.py:51
 msgid "Families with the <citation>"
@@ -4851,7 +4855,8 @@ msgstr "Familien mit einem Kind, das dem <Name> entspricht"
 
 #: ../gramps/gen/filters/rules/family/_searchchildname.py:46
 msgid "Matches families where any child has a specified (partial) name"
-msgstr "Passt auf Familien, in denen ein Kind einen bestimmten (Teil-)Namen hat"
+msgstr ""
+"Passt auf Familien, in denen ein Kind einen bestimmten (Teil-)Namen hat"
 
 #: ../gramps/gen/filters/rules/family/_searchfathername.py:45
 msgid "Families with father matching the <name>"
@@ -5161,7 +5166,8 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:133
 msgid "Relationship path between <person> and people matching <filter>"
-msgstr "Beziehungspfad zwischen <Person> und Personen, die <Filter> entsprechen"
+msgstr ""
+"Beziehungspfad zwischen <Person> und Personen, die <Filter> entsprechen"
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:134
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:46
@@ -6502,7 +6508,8 @@ msgstr "Aufbewahrungsorte, die mit <Filter> übereinstimmen"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:45
 msgid "Matches repositories matched by the specified filter name"
-msgstr "Passt auf Aufbewahrungsorte, die auf den angegebenen Filternamen passen"
+msgstr ""
+"Passt auf Aufbewahrungsorte, die auf den angegebenen Filternamen passen"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:43
 msgid "Repositories with name containing <text>"
@@ -6549,8 +6556,8 @@ msgid ""
 "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Passt auf Quellendatensätze, die nach einem bestimmten Datum (JJJJ-MM-TT "
-"HH:MM:ss) oder im Bereich geändert wurden, wenn ein zweites Datum angegeben "
+"Passt auf Quellendatensätze, die nach einem bestimmten Datum (JJJJ-MM-TT HH:"
+"MM:ss) oder im Bereich geändert wurden, wenn ein zweites Datum angegeben "
 "wird."
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:46
@@ -12650,8 +12657,8 @@ msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
 msgstr ""
-"Das angegebene Schlagwort wird beim Import zu allen Datensätzen hinzugefügt."
-"\n"
+"Das angegebene Schlagwort wird beim Import zu allen Datensätzen "
+"hinzugefügt.\n"
 "Leeren um auf Standardwert zu setzen."
 
 #: ../gramps/gui/configure.py:1948
@@ -16348,8 +16355,8 @@ msgid ""
 "Note: several predefined attributes refer to values present in the GEDCOM "
 "standard."
 msgstr ""
-"Der Name eines Attributs, das du verwenden möchtest. Zum Beispiel: Größe ("
-"für eine Person), Wetter an diesem Tag (für ein Ereignis), ...\n"
+"Der Name eines Attributs, das du verwenden möchtest. Zum Beispiel: Größe "
+"(für eine Person), Wetter an diesem Tag (für ein Ereignis), ...\n"
 "Verwende dies, um Informationsschnipsel zu speichern, die du sammeln und die "
 "du korrekt mit Quellen verknüpfen möchtest. Attribute können für Personen, "
 "Familien, Ereignisse und Medien verwendet werden.\n"
@@ -24443,11 +24450,11 @@ msgid ""
 msgid_plural ""
 " has {count_person} of {max_count_person} individuals ({percent} complete)\n"
 msgstr[0] ""
-" enthält {count_person} von {max_count_person} Personen ({percent} komplett)"
-"\n"
+" enthält {count_person} von {max_count_person} Personen ({percent} "
+"komplett)\n"
 msgstr[1] ""
-" enthält {count_person} von {max_count_person} Personen ({percent} komplett)"
-"\n"
+" enthält {count_person} von {max_count_person} Personen ({percent} "
+"komplett)\n"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:279
 msgid "All generations"
@@ -26926,8 +26933,8 @@ msgid ""
 " for more info."
 msgstr ""
 "Die .gramps-Datei, die du importierst, wurde mit der Version %(oldgramps)s "
-"von Gramps erstellt, während du eine neuere Version %(newgramps)s verwendest."
-"\n"
+"von Gramps erstellt, während du eine neuere Version %(newgramps)s "
+"verwendest.\n"
 "\n"
 "Die Datei kann nicht importiert werden. Bitte verwende eine ältere Version "
 "von Gramps, die die Version %(xmlversion)s der xml unterstützt.\n"
@@ -28393,8 +28400,8 @@ msgid ""
 "%(female_name)s was buried on %(burial_date)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s wurde am %(burial_date)s in %(burial_place)s "
-"begraben%(endnotes)s."
+"%(female_name)s wurde am %(burial_date)s in %(burial_place)s begraben"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:466
 #, python-format
@@ -28476,8 +28483,8 @@ msgstr "Er wurde im %(month_year)s in %(burial_place)s begraben%(endnotes)s."
 msgid ""
 "%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s wurde im %(month_year)s in %(burial_place)s "
-"begraben%(endnotes)s."
+"%(female_name)s wurde im %(month_year)s in %(burial_place)s begraben"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:498
 #, python-format
@@ -28559,8 +28566,8 @@ msgstr "Er wurde %(modified_date)s in %(burial_place)s begraben%(endnotes)s."
 msgid ""
 "%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s wurde %(modified_date)s in %(burial_place)s "
-"begraben%(endnotes)s."
+"%(female_name)s wurde %(modified_date)s in %(burial_place)s begraben"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:530
 #, python-format
@@ -28802,8 +28809,8 @@ msgid ""
 "%(female_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s wurde im %(month_year)s in %(baptism_place)s "
-"getauft%(endnotes)s."
+"%(female_name)s wurde im %(month_year)s in %(baptism_place)s getauft"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:631
 #, python-format
@@ -28887,8 +28894,8 @@ msgid ""
 "%(female_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s wurde %(modified_date)s in %(baptism_place)s "
-"getauft%(endnotes)s."
+"%(female_name)s wurde %(modified_date)s in %(baptism_place)s getauft"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:663
 #, python-format
@@ -29141,8 +29148,8 @@ msgid ""
 "%(female_name)s was christened in %(month_year)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s wurde im %(month_year)s in %(christening_place)s "
-"getauft%(endnotes)s."
+"%(female_name)s wurde im %(month_year)s in %(christening_place)s getauft"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:764
 #, python-format
@@ -29231,8 +29238,8 @@ msgid ""
 "%(female_name)s was christened %(modified_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s wurde %(modified_date)s in %(christening_place)s "
-"getauft%(endnotes)s."
+"%(female_name)s wurde %(modified_date)s in %(christening_place)s getauft"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:796
 #, python-format
@@ -34831,8 +34838,10 @@ msgstr[1] "{quantity} Notizobjekte wurden referenziert, aber nicht gefunden\n"
 #, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
-msgstr[0] "{quantity} Schlagwortobjekt wurde referenziert, aber nicht gefunden\n"
-msgstr[1] "{quantity} Schlagwortobjekte wurden referenziert, aber nicht gefunden\n"
+msgstr[0] ""
+"{quantity} Schlagwortobjekt wurde referenziert, aber nicht gefunden\n"
+msgstr[1] ""
+"{quantity} Schlagwortobjekte wurden referenziert, aber nicht gefunden\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2730

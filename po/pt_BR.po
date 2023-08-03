@@ -3288,7 +3288,7 @@ msgstr ""
 "Recomenda-se fortemente que se faça uma cópia de segurança.\n"
 "\n"
 "Se você ainda não fez uma cópia de segurança de sua árvore genealógica, "
-"então você deve iniciar a sua versão antiga do "
+"então você deve iniciar a sua versão %(bold_start)santiga%(bold_end)s do "
 "Gramps e %(wiki_backup_html_start)sfazer uma cópia de segurança%(html_end)s "
 "de sua árvore genealógica."
 
