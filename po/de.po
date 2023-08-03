@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
-"PO-Revision-Date: 2023-07-30 09:50+0000\n"
+"PO-Revision-Date: 2023-08-03 16:25+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -897,7 +897,7 @@ msgstr ""
 "<b>Das Gramps XML Paket</b><br/>Du kannst deinen Stammbaum in ein Gramps XML "
 "Paket exportieren. Dieses Paket ist eine komprimierte Datei, in der deine "
 "Stammbaumdaten und Mediendateien, wie z.B. Bilder, enthalten sind. Diese "
-"Datei ist komplett portabel und somit besonders für Backups oder den "
+"Datei ist komplett portabel und somit besonders für Sicherungen oder den "
 "Austausch mit anderen Gramps Anwendern geeignet. Dieses Format hat den "
 "Hauptvorteil gegenüber GEDCOM, das beim Export oder Import keine "
 "Informationen verloren gehen."
@@ -1165,7 +1165,7 @@ msgstr ""
 #: ../gramps/cli/arghandler.py:255
 #, python-format
 msgid "Error: Import file %s not found."
-msgstr "FEHLER: die Importdatei %s wurde nicht gefunden."
+msgstr "Fehler: die Importdatei %s wurde nicht gefunden."
 
 #: ../gramps/cli/arghandler.py:273
 #, python-format
@@ -1181,8 +1181,8 @@ msgid ""
 "WARNING: It will be overwritten:\n"
 "   %s"
 msgstr ""
-"ACHTUNG: Ausgabedatei existiert bereits!\n"
-"ACHTUNG: Sie wird überschrieben:\n"
+"WARNUNG: Ausgabedatei existiert bereits!\n"
+"WARNUNG: Sie wird überschrieben:\n"
 "   %s"
 
 #: ../gramps/cli/arghandler.py:296
@@ -1829,7 +1829,7 @@ msgstr "Unbekannt"
 #: ../gramps/cli/grampscli.py:81
 #, python-format
 msgid "WARNING: %s"
-msgstr "ACHTUNG: %s"
+msgstr "WARNUNG: %s"
 
 #: ../gramps/cli/grampscli.py:88 ../gramps/cli/grampscli.py:224
 #, python-format
@@ -2142,12 +2142,12 @@ msgstr ""
 #: ../gramps/gen/const.py:270
 msgctxt "surname"
 msgid "none"
-msgstr "kein(e)"
+msgstr "kein"
 
 #: ../gramps/gen/const.py:271
 msgctxt "given-name"
 msgid "none"
-msgstr "kein(e)"
+msgstr "kein"
 
 #: ../gramps/gen/const.py:275 ../gramps/plugins/gramplet/todo.py:202
 #: ../gramps/plugins/webreport/basepage.py:200
@@ -2401,7 +2401,7 @@ msgstr "{short_month} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:498
 msgctxt "from-date"
 msgid ""
-msgstr "  "
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "to <Month>" in your language, DON'T translate this.
@@ -2413,7 +2413,7 @@ msgstr "  "
 #: ../gramps/gen/datehandler/_datedisplay.py:503
 msgctxt "to-date"
 msgid ""
-msgstr "  "
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:422
 #, python-brace-format
@@ -2426,7 +2426,7 @@ msgstr "{date_quality}von {date_start} bis {date_stop}{nonstd_calendar_and_ny}"
 #: ../gramps/gen/datehandler/_datedisplay.py:443
 msgctxt "between-date"
 msgid ""
-msgstr "  "
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "and <Month>" in your language, DON'T translate this.
@@ -2434,7 +2434,7 @@ msgstr "  "
 #: ../gramps/gen/datehandler/_datedisplay.py:450
 msgctxt "and-date"
 msgid ""
-msgstr "  "
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:453
 #, python-brace-format
@@ -2449,7 +2449,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:488
 msgctxt "before-date"
 msgid ""
-msgstr "  "
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "after <Month>" in your language, DON'T translate this.
@@ -2457,7 +2457,7 @@ msgstr "  "
 #: ../gramps/gen/datehandler/_datedisplay.py:493
 msgctxt "after-date"
 msgid ""
-msgstr "  "
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "about <Month>" in your language, DON'T translate this.
@@ -2465,7 +2465,7 @@ msgstr "  "
 #: ../gramps/gen/datehandler/_datedisplay.py:508
 msgctxt "about-date"
 msgid ""
-msgstr "  "
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "estimated <Month>" in your language, DON'T translate this.
@@ -2473,7 +2473,7 @@ msgstr "  "
 #: ../gramps/gen/datehandler/_datedisplay.py:513
 msgctxt "estimated-date"
 msgid ""
-msgstr "  "
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "calculated <Month>" in your language, DON'T translate this.
@@ -2481,7 +2481,7 @@ msgstr "  "
 #: ../gramps/gen/datehandler/_datedisplay.py:518
 msgctxt "calculated-date"
 msgid ""
-msgstr "  "
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:538
 #, python-brace-format
@@ -3313,7 +3313,7 @@ msgstr "Anzahl der Notizen"
 
 #: ../gramps/gen/db/generic.py:2425
 msgid "Number of tags"
-msgstr "Anzahl der Schlagwörter"
+msgstr "Anzahl der Markierungen"
 
 #: ../gramps/gen/db/generic.py:2426
 msgid "Schema version"
@@ -4153,7 +4153,7 @@ msgstr "Schlagwort:"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:49
 msgid "Citations with the <tag>"
-msgstr "Fundstellen mit der <Schlagwort>"
+msgstr "Fundstellen mit dem <Schlagwort>"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:50
 msgid "Matches citations with the particular tag"
@@ -5629,7 +5629,7 @@ msgstr "Groß-/Kleinschreibung beachten:"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:48
 msgid "People with records containing <substring>"
-msgstr "Personen mit Aufzeichnungen mit <Zeichenfolge>"
+msgstr "Personen mit Aufzeichnungen mit <Teilzeichenfolge>"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:49
 msgid "Matches people whose records contain text matching a substring"
@@ -5780,7 +5780,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/statistics.py:127
 #: ../gramps/plugins/webreport/statistics.py:195
 msgid "Females"
-msgstr "Frauen"
+msgstr "Weibliche Personen"
 
 #: ../gramps/gen/filters/rules/person/_isfemale.py:47
 msgid "Matches all females"
@@ -5853,7 +5853,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/statistics.py:125
 #: ../gramps/plugins/webreport/statistics.py:193
 msgid "Males"
-msgstr "Männer"
+msgstr "Männliche Personen"
 
 #: ../gramps/gen/filters/rules/person/_ismale.py:47
 msgid "Matches all males"
@@ -6599,7 +6599,7 @@ msgstr "Passt auf Quellen mit einer bestimmten Anzahl von Notizen"
 
 #: ../gramps/gen/filters/rules/source/_hasnotematchingsubstringof.py:42
 msgid "Sources having notes containing <substring>"
-msgstr "Quellen mit Notizen, die <Zeichenfolge> enthalten"
+msgstr "Quellen mit Notizen, die <Teilzeichenfolge> enthalten"
 
 #: ../gramps/gen/filters/rules/source/_hasnotematchingsubstringof.py:43
 msgid "Matches sources whose notes contain text matching a substring"
@@ -8385,7 +8385,7 @@ msgstr "Kirchengemeinde"
 #: ../gramps/gen/lib/markertype.py:53
 #: ../gramps/gui/logger/_errorreportassistant.py:704
 msgid "Complete"
-msgstr "Vollständig"
+msgstr "Komplett"
 
 #: ../gramps/gen/lib/markertype.py:54 ../gramps/plugins/tool/notrelated.py:103
 msgid "ToDo"
@@ -12487,7 +12487,7 @@ msgstr "Erweiterungen-Symbol in der Werkzeugleiste anzeigen"
 
 #: ../gramps/gui/configure.py:1723
 msgid "Show or hide the Addons icon on the toolbar."
-msgstr "Das Erweterungen-Symbol in der Werkzeugleiste ein- oder ausblenden."
+msgstr "Das Erweiterungen-Symbol in der Werkzeugleiste ein- oder ausblenden."
 
 #: ../gramps/gui/configure.py:1729
 msgid "Show Preferences icon on toolbar"
@@ -13364,7 +13364,7 @@ msgstr "Werkzeuge"
 
 #: ../gramps/gui/displaystate.py:414
 msgid "Open Addon Manager"
-msgstr "Erweiterungenverwaltung öffnen"
+msgstr "Erweiterungsverwaltung öffnen"
 
 #: ../gramps/gui/displaystate.py:415 ../gramps/gui/plug/_windows.py:426
 msgid "Addons"
@@ -17997,7 +17997,7 @@ msgstr "_Roman (Times, serif)"
 
 #: ../gramps/gui/glade/styleeditor.glade:332
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
-msgstr "_Swiss (Arial, Helvetica, sans-serif)"
+msgstr "_Schweizerisch (Arial, Helvetica, Sans Serif)"
 
 #: ../gramps/gui/glade/styleeditor.glade:355
 msgid "Size"
@@ -18238,23 +18238,14 @@ msgstr "_Vor"
 
 #: ../gramps/gui/glade/updateaddons.glade:41
 msgid "Install Selected _Addons"
-msgstr "_Ausgewählte Zusatzmodule installieren"
+msgstr "_Ausgewählte Erweiterungen installieren"
 
 #: ../gramps/gui/glade/updateaddons.glade:72
 #: ../gramps/gui/plug/_windows.py:1806
 msgid "Available Gramps Updates for Addons"
-msgstr "Verfügbare Gramps-Aktualisierungen für Zusatzmodule"
+msgstr "Verfügbare Gramps-Aktualisierungen für Erweiterungen"
 
 #: ../gramps/gui/glade/updateaddons.glade:89
-#, fuzzy
-#| msgid ""
-#| "Gramps comes with a core set of plugins which provide all of the "
-#| "necessary features. However, you can extend this functionality with "
-#| "additional Addons. These addons provide reports, listings, views, "
-#| "gramplets, and more. Here you can select among the available extra "
-#| "addons, they will be retrieved from the internet off of the Gramps "
-#| "website, and installed locally on your computer. If you close this dialog "
-#| "now, you can install addons later from the menu under Edit -> Preferences."
 msgid ""
 "Gramps comes with a core set of plugins which provide all of the necessary "
 "features. However, you can extend this functionality with additional Addons. "
@@ -18266,12 +18257,12 @@ msgid ""
 msgstr ""
 "Gramps wird mit einem Kernsatz von Zusatzmodulen geliefert, die alle "
 "notwendigen Funktionen bieten. Du kannst diese Funktionalität jedoch mit "
-"zusätzlichen Zusatzmodulen erweitern. Diese Zusatzmodule bieten Berichte, "
-"Auflistungen, Ansichten, Gramplets und mehr. Hier kannst du unter den "
-"verfügbaren zusätzlichen Zusatzmodulen auswählen. Diese werden dann aus dem "
-"Internet von der Gramps-Website abgerufen und lokal auf deinem Computer "
-"installiert. Wenn du diesen Dialog jetzt schließt, kannst du später über das "
-"Menü unter Bearbeiten -> Einstellungen Zusatzmodule installieren."
+"zusätzlichen Erweiterungen ausbauen. Diese Erweiterungen bieten Berichte, "
+"Auflistungen, Ansichten, Gramplets und mehr. Hier kannst du zwischen den "
+"verfügbaren Erweiterungen wählen. Sie werden aus dem Internet von der Gramps-"
+"Website abgerufen und lokal auf deinem Computer installiert. Wenn du diesen "
+"Dialog jetzt schließt, kannst du Erweiterungen später über das Menü unter "
+"Bearbeiten -> Erweiterungsverwaltung installieren."
 
 #: ../gramps/gui/glade/updateaddons.glade:105
 msgid "_Select All"
@@ -18336,7 +18327,7 @@ msgstr "_Über"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Addon Manager..."
-msgstr "_Erweiterungenverwaltung..."
+msgstr "_Erweiterungsverwaltung..."
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Bookmarks"
@@ -19102,19 +19093,19 @@ msgstr "Immer"
 
 #: ../gramps/gui/plug/_windows.py:645
 msgid "Check for addon updates"
-msgstr "Nach Zusatzmodul Aktualisierungen suchen"
+msgstr "Nach Aktualisierungen für Erweiterungen suchen"
 
 #: ../gramps/gui/plug/_windows.py:651
 msgid "Updated addons only"
-msgstr "Nur aktualisierte Zusatzmodule"
+msgstr "Nur aktualisierte Erweiterungen"
 
 #: ../gramps/gui/plug/_windows.py:652
 msgid "New addons only"
-msgstr "Nur neue Zusatzmodule"
+msgstr "Nur neue Erweiterungen"
 
 #: ../gramps/gui/plug/_windows.py:653
 msgid "New and updated addons"
-msgstr "Neue und aktualisierte Zusatzmodule"
+msgstr "Neue und aktualisierte Erweiterungen"
 
 #: ../gramps/gui/plug/_windows.py:663
 msgid "What to check"
@@ -19122,11 +19113,11 @@ msgstr "Was zu prüfen ist"
 
 #: ../gramps/gui/plug/_windows.py:669
 msgid "Do not ask about previously notified addons"
-msgstr "Nicht nach bereits benachrichtigten Zusatzmodulen fragen"
+msgstr "Nicht nach bereits benachrichtigten Erweiterungen fragen"
 
 #: ../gramps/gui/plug/_windows.py:674
 msgid "Check for updated addons now"
-msgstr "Jetzt nach aktualisierten Zusatzmodulen suchen"
+msgstr "Jetzt nach aktualisierten Erweiterungen suchen"
 
 #: ../gramps/gui/plug/_windows.py:687
 msgid "New Project"
@@ -19142,12 +19133,12 @@ msgstr "Projektname"
 
 #: ../gramps/gui/plug/_windows.py:758
 msgid "Checking Addons Failed"
-msgstr "Überprüfung von Zusatzmodulen fehlgeschlagen"
+msgstr "Überprüfung von Erweiterungen fehlgeschlagen"
 
 #: ../gramps/gui/plug/_windows.py:759
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr ""
-"Der Zusatzmodul-Aufbewahrungsort scheint nicht verfügbar zu sein. Bitte "
+"Der Erweiterung-Aufbewahrungsort scheint nicht verfügbar zu sein. Bitte "
 "versuche es später noch einmal."
 
 #: ../gramps/gui/plug/_windows.py:772
@@ -19235,7 +19226,7 @@ msgstr "Alle Erweiterungen installieren"
 
 #: ../gramps/gui/plug/_windows.py:999
 msgid "Refresh Addon List"
-msgstr "Zusatzmodul-Liste aktualisieren"
+msgstr "Erweiterung-Liste aktualisieren"
 
 #: ../gramps/gui/plug/_windows.py:1012
 msgid "Reload"
@@ -19243,7 +19234,7 @@ msgstr "Neu laden"
 
 #: ../gramps/gui/plug/_windows.py:1039
 msgid "Refreshing Addon List"
-msgstr "Aktualisieren der Zusatzmodul-Liste"
+msgstr "Aktualisieren der Erweiterung-Liste"
 
 #: ../gramps/gui/plug/_windows.py:1041 ../gramps/gui/plug/_windows.py:1046
 #: ../gramps/gui/plug/_windows.py:1141
@@ -20378,10 +20369,8 @@ msgid "Would you like to run the Check and Repair tool?"
 msgstr "Möchtest du das Werkzeug zum Prüfen und Reparieren ausführen?"
 
 #: ../gramps/gui/viewmanager.py:1212 ../gramps/gui/viewmanager.py:1790
-#, fuzzy
-#| msgid "Please, correct this before linking"
 msgid "Please, wait before closing gramps"
-msgstr "Bitte korrigiere dies vor der Verknüpfung"
+msgstr "Bitte warte mit dem Schließen von Gramps"
 
 #: ../gramps/gui/viewmanager.py:1214 ../gramps/gui/viewmanager.py:1218
 msgid "Autobackup..."
@@ -20686,11 +20675,11 @@ msgstr "Ausgewählte Zeilen markieren"
 
 #: ../gramps/gui/views/tags.py:94
 msgid "New Tag..."
-msgstr "Neue Markierung..."
+msgstr "Neues Schlagwort..."
 
 #: ../gramps/gui/views/tags.py:94
 msgid "Organize Tags..."
-msgstr "Markierungen organisieren...."
+msgstr "Schlagworte organisieren...."
 
 #: ../gramps/gui/views/tags.py:113
 msgctxt "manual"
@@ -20763,7 +20752,7 @@ msgstr "Neues Schlagwort"
 
 #: ../gramps/gui/views/tags.py:669
 msgid "Cannot save tag"
-msgstr "Schlagwort kann nicht gespeichert werden"
+msgstr "Kann Schlagwort nicht speichern"
 
 #: ../gramps/gui/views/tags.py:670
 msgid "The tag name cannot be empty"
@@ -24625,7 +24614,7 @@ msgstr "Personen mit anderem Geschlecht"
 #: ../gramps/plugins/webreport/statistics.py:131
 #: ../gramps/plugins/webreport/statistics.py:199
 msgid "Individuals with unknown gender"
-msgstr "Personen mit unbekanntem Geschlecht"
+msgstr "Individuen mit unbekanntem Geschlecht"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:163
 msgid "Incomplete names"
@@ -24959,7 +24948,7 @@ msgstr "Gramps Ansicht Kategorien"
 #: ../gramps/plugins/gramplet/welcomegramplet.py:194
 #: ../gramps/plugins/gramplet/welcomegramplet.py:199
 msgid "Addons and \"Gramplets\""
-msgstr "ZUsatzmodule und \"Gramplets\""
+msgstr "Erweiterungen und \"Gramplets\""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:195
 msgid ""
@@ -24968,9 +24957,9 @@ msgid ""
 "available to you. Many more are available to download and install.\n"
 "\n"
 msgstr ""
-"Es gibt viele Zusatzmodule oder \"Gramplets\", die dich bei der Dateneingabe "
-"und der Visualisierung deines Stammbaums unterstützen. Viele dieser "
-"Werkzeuge sind bereits für dich verfügbar. Viele weitere kannst du "
+"Es gibt viele Erweiterungen oder \"Gramplets\", die dich bei der "
+"Dateneingabe und der Visualisierung deines Stammbaums unterstützen. Viele "
+"dieser Werkzeuge sind bereits für dich verfügbar. Viele weitere kannst du "
 "herunterladen und installieren.\n"
 "\n"
 
@@ -25252,9 +25241,9 @@ msgid ""
 "for filled. If the sex of an individual is unknown it will be shown with "
 "gray."
 msgstr ""
-"Männer werden mit blau, Frauen mit rot dargestellt, es sei denn, oben wurde "
-"etwas anderes für die Füllung festgelegt. Wenn das Geschlecht einer Person "
-"unbekannt ist, wird sie grau dargestellt."
+"Männliche Personen werden mit blau, weibliche mit rot dargestellt, sofern "
+"oben nicht anders angegeben. Wenn das Geschlecht eines Individuums unbekannt "
+"ist, wird es grau dargestellt."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:160
 msgid "Rounded corners"
@@ -25547,8 +25536,8 @@ msgid ""
 "Males will be shown with blue, females with red.  If the sex of an "
 "individual is unknown it will be shown with gray."
 msgstr ""
-"Männer werden mit blau, Frauen mit rot dargestellt.  Wenn das Geschlecht "
-"einer Person unbekannt ist, wird sie grau dargestellt."
+"Männliche Personen werden mit blau, weibliche mit rot dargestellt.  Wenn das "
+"Geschlecht eines Individuums unbekannt ist, wird es grau dargestellt."
 
 #: ../gramps/plugins/graph/gvhourglass.py:417
 #: ../gramps/plugins/graph/gvrelgraph.py:837
@@ -27364,7 +27353,7 @@ msgstr "Versionsnummer des Softwareprodukts"
 #: ../gramps/plugins/lib/libgedcom.py:7781
 #, python-format
 msgid "Business that produced the product: %s"
-msgstr "Unternehmen, das das Produkt hergestellt hat: %s"
+msgstr "Unternehmen, welches das Produkt hergestellt hat: %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:7802
 msgid "Name of source data"
@@ -27547,23 +27536,23 @@ msgstr "%(date)s %(time)s"
 
 #: ../gramps/plugins/lib/libmetadata.py:115
 msgid "Descriptive Tags"
-msgstr "Beschreibende Markierungen"
+msgstr "Beschreibende Schlagworte"
 
 #: ../gramps/plugins/lib/libmetadata.py:116
 msgid "Date and Time Tags"
-msgstr "Datum- und Uhrzeit-Markierungen"
+msgstr "Datum- und Uhrzeit-Schlagworte"
 
 #: ../gramps/plugins/lib/libmetadata.py:117
 msgid "People Tags"
-msgstr "Personen Markierungen"
+msgstr "Personen Schlagworte"
 
 #: ../gramps/plugins/lib/libmetadata.py:118
 msgid "Event Tags"
-msgstr "Ereignis Markierungen"
+msgstr "Ereignis Schlagworte"
 
 #: ../gramps/plugins/lib/libmetadata.py:119
 msgid "Image Tags"
-msgstr "Bild Markierungen"
+msgstr "Bild Schlagworte"
 
 #: ../gramps/plugins/lib/libmetadata.py:120
 msgid "Camera Information"
@@ -27571,19 +27560,19 @@ msgstr "Kamerainformationen"
 
 #: ../gramps/plugins/lib/libmetadata.py:121
 msgid "Location Tags"
-msgstr "Ort Markierungen"
+msgstr "Ort Schlagworte"
 
 #: ../gramps/plugins/lib/libmetadata.py:122
 msgid "Advanced Tags"
-msgstr "Erweiterte Markierungen"
+msgstr "Erweiterte Schlagworte"
 
 #: ../gramps/plugins/lib/libmetadata.py:123
 msgid "Rights Tags"
-msgstr "Rechte Markierungen"
+msgstr "Rechte Schlagworte"
 
 #: ../gramps/plugins/lib/libmetadata.py:124
 msgid "Keyword Tags"
-msgstr "Stichwort Markierungen"
+msgstr "Stichwort Schlagworte"
 
 #: ../gramps/plugins/lib/libmetadata.py:220
 msgid "Namespace"
@@ -28733,8 +28722,8 @@ msgid ""
 "%(female_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s wurde am %(baptism_date)s in %(baptism_place)s getauft"
-"%(endnotes)s."
+"%(female_name)s wurde am %(baptism_date)s in %(baptism_place)s "
+"getauft%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:599
 #, python-format
@@ -32163,7 +32152,7 @@ msgstr "männlich"
 #: ../gramps/plugins/quickview/filterbyname.py:59
 msgctxt "Filtering_on"
 msgid "females"
-msgstr "weiblich"
+msgstr "weibliche"
 
 #: ../gramps/plugins/quickview/filterbyname.py:61
 msgctxt "Filtering_on"
@@ -34058,7 +34047,7 @@ msgstr "Männlich: %d"
 #: ../gramps/plugins/textreport/summary.py:184
 #, python-format
 msgid "Females: %d"
-msgstr "Weiblich: %d"
+msgstr "Weibliche: %d"
 
 #: ../gramps/plugins/textreport/summary.py:188
 #, python-format
@@ -35427,7 +35416,7 @@ msgstr[1] "{number_of} Fundstellen zusammengeführt"
 
 #: ../gramps/plugins/tool/notrelated.glade:162
 msgid "_Tag"
-msgstr "_Schlagwort"
+msgstr "Schlagwor_t"
 
 #: ../gramps/plugins/tool/notrelated.py:60
 msgctxt "manual"
@@ -39519,7 +39508,7 @@ msgstr "Anfangsjahr für den/die Kalender"
 
 #: ../gramps/plugins/webreport/webcal.py:1835
 msgid "Enter the starting year for the calendars between 1900 - 3000"
-msgstr "Gib das Anfangsjahr für die Kalender zwischen 1900 und 3000 ein."
+msgstr "Gib das Anfangsjahr für die Kalender zwischen 1900 und 3000 ein"
 
 #: ../gramps/plugins/webreport/webcal.py:1839
 msgid "End Year for the Calendar(s)"
@@ -39531,7 +39520,7 @@ msgstr "Gib das Endjahr für die Kalender zwischen 1900 und 3000 ein."
 
 #: ../gramps/plugins/webreport/webcal.py:1860
 msgid "Holidays will be included for the selected country"
-msgstr "Feiertage werden für das ausgewählte Land eingeschlossen"
+msgstr "Die Feiertage werden für das ausgewählte Land berücksichtigt"
 
 #: ../gramps/plugins/webreport/webcal.py:1885
 msgid "Jan - Jun Notes"
