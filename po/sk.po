@@ -5,7 +5,7 @@
 #
 # LDS terms consulted with slovak-based LDS Church (www.mormoni.sk)
 # Nick Hall <nick-h@gramps-project.org>, 2021.
-# Milan <mobrcian@hotmail.com>, 2021, 2022.
+# Milan <mobrcian@hotmail.com>, 2021, 2022, 2023.
 # Jose Riha <jose1711@gmail.com>, 2022.
 # Jano Svitok <jan.svitok@gmail.com>, 2022.
 msgid ""
@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
-"PO-Revision-Date: 2022-11-26 08:05+0000\n"
+"PO-Revision-Date: 2023-08-03 16:25+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 5.0-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -5409,16 +5409,12 @@ msgstr ""
 "výrazu"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:45
-#, fuzzy
-#| msgid "People with an alternate name"
 msgid "People who are neither male nor female"
-msgstr "Ľudia s alternatívnym menom"
+msgstr "Ľudia, ktorí nie sú ani muž ani žena"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:47
-#, fuzzy
-#| msgid "Matches all people with unknown gender"
 msgid "Matches all people with other gender"
-msgstr "Porovnáva všetkých ľudí s neznámym pohlavím"
+msgstr "Porovnáva všetkých ľudí s iným pohlavím"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:45
 msgid "Number of relationships:"
