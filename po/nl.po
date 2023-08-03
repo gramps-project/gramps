@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
-"PO-Revision-Date: 2023-07-29 14:39+0000\n"
+"PO-Revision-Date: 2023-08-03 16:25+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -968,9 +968,10 @@ msgid ""
 "new functionality."
 msgstr ""
 "<b>Extra verslagen en hulpmiddelen</b><br/>Extra verslagen en hulpmiddelen "
-"kunnen worden toegevoegd aan Gramps met het Add-on-systeem. Zie ze onder "
-"\"Help &gt; Extra Verslagen / Hulpmiddelen\". Dit is de beste manier voor "
-"ervaren gebruikers om te experimenteren en nieuwe functionaliteit te creëren."
+"kunnen worden toegevoegd aan Gramps met het systeem van uitbreidingen. Zie "
+"ze onder \"Help &gt; Extra Verslagen / Hulpmiddelen\". Dit is de beste "
+"manier voor ervaren gebruikers om te experimenteren en nieuwe "
+"functionaliteit te creëren."
 
 #: ../data/tips.xml:104
 msgid ""
@@ -1418,7 +1419,7 @@ msgstr ""
 "standaardinstellingen)\n"
 "  -D, --default=[APXFE]                  Instellingen naar standaard "
 "herstellen;\n"
-"                 A - add-ons worden gewist\n"
+"                 A - Uitbreidingen worden gewist\n"
 "                 P - Standaard voorkeuren\n"
 "                 X - Boeken worden gewist, verslagen en toolinstellingen "
 "worden naar standaard ingesteld\n"
@@ -12422,11 +12423,11 @@ msgstr "Het gereedschapspictogram op de werkbalk weergeven/verbergen."
 
 #: ../gramps/gui/configure.py:1721
 msgid "Show Addons icon on toolbar"
-msgstr "Pictogram Extensies op de werkbalk weergeven"
+msgstr "Pictogram Uitbreidingen op de werkbalk weergeven"
 
 #: ../gramps/gui/configure.py:1723
 msgid "Show or hide the Addons icon on the toolbar."
-msgstr "Het pictogram Extensies op de werkbalk weergeven/verbergen."
+msgstr "Het pictogram Uitbreidingen op de werkbalk weergeven/verbergen."
 
 #: ../gramps/gui/configure.py:1729
 msgid "Show Preferences icon on toolbar"
@@ -13297,11 +13298,11 @@ msgstr "Hulpmiddelen"
 
 #: ../gramps/gui/displaystate.py:414
 msgid "Open Addon Manager"
-msgstr "Extensiebeheer openen"
+msgstr "Uitbreidingenbeheer openen"
 
 #: ../gramps/gui/displaystate.py:415 ../gramps/gui/plug/_windows.py:426
 msgid "Addons"
-msgstr "Add-ons"
+msgstr "Uitbreidingen"
 
 #: ../gramps/gui/displaystate.py:418
 msgid "Open Preferences"
@@ -18152,23 +18153,14 @@ msgstr "_Vooruit"
 
 #: ../gramps/gui/glade/updateaddons.glade:41
 msgid "Install Selected _Addons"
-msgstr "Installeer geselecteerde _Add-ons"
+msgstr "Geselecteerde _Uitbreidingen installeren"
 
 #: ../gramps/gui/glade/updateaddons.glade:72
 #: ../gramps/gui/plug/_windows.py:1806
 msgid "Available Gramps Updates for Addons"
-msgstr "Beschikbare Gramps-updates voor add-ons"
+msgstr "Beschikbare Gramps-updates voor uitbreidingen"
 
 #: ../gramps/gui/glade/updateaddons.glade:89
-#, fuzzy
-#| msgid ""
-#| "Gramps comes with a core set of plugins which provide all of the "
-#| "necessary features. However, you can extend this functionality with "
-#| "additional Addons. These addons provide reports, listings, views, "
-#| "gramplets, and more. Here you can select among the available extra "
-#| "addons, they will be retrieved from the internet off of the Gramps "
-#| "website, and installed locally on your computer. If you close this dialog "
-#| "now, you can install addons later from the menu under Edit -> Preferences."
 msgid ""
 "Gramps comes with a core set of plugins which provide all of the necessary "
 "features. However, you can extend this functionality with additional Addons. "
@@ -18178,13 +18170,14 @@ msgid ""
 "If you close this dialog now, you can install addons later from the menu "
 "under Edit -> Addon Manager."
 msgstr ""
-"Gramps wordt geleverd met een basisverzameling aan extensies die alle "
+"Gramps wordt geleverd met een basisverzameling aan uitbreidingen die alle "
 "benodigde functies bieden. U kunt deze functionaliteit echter uitbreiden met "
-"extra extensies. Deze bieden o.a. verslagen, lijsten, weergaven, Gramplets "
-"en meer. Hier kunt u een van de beschikbare extra extensies selecteren, ze "
-"worden van internet opgehaald van de Gramps-website en lokaal op uw computer "
-"geïnstalleerd. Als u dit dialoogvenster nu sluit, kunt u later extensies "
-"installeren vanuit het menu onder Bewerken -> Voorkeuren."
+"extra toevoegingen. Deze bieden o.a. verslagen, lijsten, weergaven, "
+"Gramplets en meer. Hier kunt u een van de beschikbare extra uitbreiding "
+"selecteren welke van internet wordt opgehaald van de Gramps-website en "
+"lokaal op uw computer geïnstalleerd. Als u dit dialoogvenster nu sluit, kunt "
+"u later uitbreidingen installeren vanuit het menu onder Bewerken -> "
+"Uitbreidingenbeheer."
 
 #: ../gramps/gui/glade/updateaddons.glade:105
 msgid "_Select All"
@@ -18249,7 +18242,7 @@ msgstr "_Info over Gramps"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Addon Manager..."
-msgstr "_Extensiebeheer..."
+msgstr "_Uitbreidingenbeheer..."
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Bookmarks"
@@ -18946,7 +18939,7 @@ msgstr "Vereisten"
 
 #: ../gramps/gui/plug/_windows.py:328
 msgid "Addon Manager"
-msgstr "Extensiebeheer"
+msgstr "Uitbreidingenbeheer"
 
 #: ../gramps/gui/plug/_windows.py:335 ../gramps/plugins/gramplet/leak.py:112
 msgid "Refresh"
@@ -18977,7 +18970,7 @@ msgstr "Laden…"
 
 #: ../gramps/gui/plug/_windows.py:494
 msgid "No matching addons found."
-msgstr "Geen overeenkomstige extensies gevonden."
+msgstr "Geen overeenkomstige uitbreidingen gevonden."
 
 #: ../gramps/gui/plug/_windows.py:617
 msgid "Allow Gramps to install required python modules"
@@ -19007,19 +19000,19 @@ msgstr "Altijd"
 
 #: ../gramps/gui/plug/_windows.py:645
 msgid "Check for addon updates"
-msgstr "Op add-on updates controleren"
+msgstr "Uitbreidingen op updates controleren"
 
 #: ../gramps/gui/plug/_windows.py:651
 msgid "Updated addons only"
-msgstr "Alleen bijgewerkte add-ons"
+msgstr "Alleen bijgewerkte uitbreidingen"
 
 #: ../gramps/gui/plug/_windows.py:652
 msgid "New addons only"
-msgstr "Alleen nieuwe add-ons"
+msgstr "Alleen nieuwe uitbreidingen"
 
 #: ../gramps/gui/plug/_windows.py:653
 msgid "New and updated addons"
-msgstr "Nieuwe en bijgewerkte add-ons"
+msgstr "Nieuwe en bijgewerkte uitbreidingen"
 
 #: ../gramps/gui/plug/_windows.py:663
 msgid "What to check"
@@ -19027,11 +19020,11 @@ msgstr "Wat te controleren"
 
 #: ../gramps/gui/plug/_windows.py:669
 msgid "Do not ask about previously notified addons"
-msgstr "Vraag niet naar eerder aangemelde add-ons"
+msgstr "Vraag niet naar eerder aangemelde uitbreidingen"
 
 #: ../gramps/gui/plug/_windows.py:674
 msgid "Check for updated addons now"
-msgstr "Nu op bijgewerkte add-ons controleren"
+msgstr "Nu op bijgewerkte uitbreidingen controleren"
 
 #: ../gramps/gui/plug/_windows.py:687
 msgid "New Project"
@@ -19047,17 +19040,17 @@ msgstr "Projectnaam"
 
 #: ../gramps/gui/plug/_windows.py:758
 msgid "Checking Addons Failed"
-msgstr "Het controleren op add-ons is mislukt"
+msgstr "Controle op uitbreidingen is mislukt"
 
 #: ../gramps/gui/plug/_windows.py:759
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr ""
-"De add-on bibliotheek lijkt niet beschikbaar te zijn. Probeer het later "
-"opnieuw."
+"De bibliotheek met uitbreidingen lijkt niet beschikbaar te zijn. Probeer het "
+"later opnieuw."
 
 #: ../gramps/gui/plug/_windows.py:772
 msgid "There are no available addons of this type"
-msgstr "Er zijn geen add-ons van dit type"
+msgstr "Er zijn geen uitbreidingen van dit type"
 
 #: ../gramps/gui/plug/_windows.py:773
 #, python-format
@@ -19124,23 +19117,23 @@ msgstr "Geladen extensies"
 
 #: ../gramps/gui/plug/_windows.py:958
 msgid "Addon Name"
-msgstr "Naam Add-on"
+msgstr "Naam van de uitbreiding"
 
 #: ../gramps/gui/plug/_windows.py:973
 msgid "Path to Addon:"
-msgstr "Pad naar Add-on:"
+msgstr "Pad naar de uitbreiding:"
 
 #: ../gramps/gui/plug/_windows.py:993
 msgid "Install Addon"
-msgstr "Installeer Add-on"
+msgstr "Uitbreiding installeren"
 
 #: ../gramps/gui/plug/_windows.py:996
 msgid "Install All Addons"
-msgstr "Installeer alle Add-ons"
+msgstr "Alle uitbreidingen installeren"
 
 #: ../gramps/gui/plug/_windows.py:999
 msgid "Refresh Addon List"
-msgstr "Vernieuw Add-on-lijst"
+msgstr "Lijst met uitbreidingen vernieuwen"
 
 #: ../gramps/gui/plug/_windows.py:1012
 msgid "Reload"
@@ -19148,7 +19141,7 @@ msgstr "Herladen"
 
 #: ../gramps/gui/plug/_windows.py:1039
 msgid "Refreshing Addon List"
-msgstr "Add-on-lijst vernieuwen"
+msgstr "Lijst met uitbreidingen vernieuwen"
 
 #: ../gramps/gui/plug/_windows.py:1041 ../gramps/gui/plug/_windows.py:1046
 #: ../gramps/gui/plug/_windows.py:1141
@@ -19157,7 +19150,7 @@ msgstr "Gramps-project.org lezen…"
 
 #: ../gramps/gui/plug/_windows.py:1064
 msgid "Checking addon..."
-msgstr "Add-on controleren …"
+msgstr "Uitbreiding controleren…"
 
 #: ../gramps/gui/plug/_windows.py:1072
 msgid "Unknown Help URL"
@@ -19169,7 +19162,7 @@ msgstr "Onbekende URL"
 
 #: ../gramps/gui/plug/_windows.py:1119
 msgid "Install all Addons"
-msgstr "Installeer alle add-ons"
+msgstr "Alle uitbreidingen installeren"
 
 #: ../gramps/gui/plug/_windows.py:1119
 msgid "Installing..."
@@ -19177,11 +19170,11 @@ msgstr "Installeren…"
 
 #: ../gramps/gui/plug/_windows.py:1139
 msgid "Installing Addon"
-msgstr "Addon installeren"
+msgstr "Uitbreiding installeren"
 
 #: ../gramps/gui/plug/_windows.py:1161
 msgid "Load Addon"
-msgstr "Add-on laden"
+msgstr "Uitbreiding laden"
 
 #: ../gramps/gui/plug/_windows.py:1221
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:188
@@ -19226,7 +19219,7 @@ msgstr "Hoofdvenster"
 
 #: ../gramps/gui/plug/_windows.py:1903
 msgid "Downloading and installing selected addons..."
-msgstr "Geselecteerde add-ons downloaden en installeren…"
+msgstr "Geselecteerde uitbreidingen downloaden en installeren…"
 
 #: ../gramps/gui/plug/_windows.py:1938
 msgid "Installation Errors"
@@ -19234,19 +19227,19 @@ msgstr "Installatie fouten"
 
 #: ../gramps/gui/plug/_windows.py:1939
 msgid "The following addons had errors: "
-msgstr "De volgende add-ons bevatten fouten: "
+msgstr "De volgende uitbreidingen bevatten fouten: "
 
 #: ../gramps/gui/plug/_windows.py:1945 ../gramps/gui/plug/_windows.py:1953
 msgid "Done downloading and installing addons"
-msgstr "Klaar met het downloaden en installeren van add-ons"
+msgstr "Klaar met het downloaden en installeren van uitbreidingen"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/gui/plug/_windows.py:1947
 #, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
-msgstr[0] "{number_of} add-on is geïnstalleerd."
-msgstr[1] "{number_of} add-ons zijn geïnstalleerd."
+msgstr[0] "{number_of} uitbreiding is geïnstalleerd."
+msgstr[1] "{number_of} uitbreidingen zijn geïnstalleerd."
 
 #: ../gramps/gui/plug/_windows.py:1950
 msgid "If you have installed a 'Gramps View', you will need to restart Gramps."
@@ -19256,7 +19249,7 @@ msgstr ""
 
 #: ../gramps/gui/plug/_windows.py:1954
 msgid "No addons were installed."
-msgstr "Er zijn geen add-ons geïnstalleerd."
+msgstr "Er zijn geen uitbreidingen geïnstalleerd."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:119
 msgid "Export Assistant"
@@ -20275,10 +20268,8 @@ msgid "Would you like to run the Check and Repair tool?"
 msgstr "Wilt u de tool Controle en reparatie uitvoeren?"
 
 #: ../gramps/gui/viewmanager.py:1212 ../gramps/gui/viewmanager.py:1790
-#, fuzzy
-#| msgid "Please, correct this before linking"
 msgid "Please, wait before closing gramps"
-msgstr "Corrigeer dit alstublieft voordat het gekoppeld wordt"
+msgstr "Wacht alstublieft voordat u Gramps afsluit"
 
 #: ../gramps/gui/viewmanager.py:1214 ../gramps/gui/viewmanager.py:1218
 msgid "Autobackup..."
@@ -24841,7 +24832,7 @@ msgstr "Gramps weergave-categorieën"
 #: ../gramps/plugins/gramplet/welcomegramplet.py:194
 #: ../gramps/plugins/gramplet/welcomegramplet.py:199
 msgid "Addons and \"Gramplets\""
-msgstr "Add-ons en \"Gramplets\""
+msgstr "Uitbreidingen en \"Gramplets\""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:195
 msgid ""
@@ -24850,8 +24841,8 @@ msgid ""
 "available to you. Many more are available to download and install.\n"
 "\n"
 msgstr ""
-"Er zijn veel extensies of \"Gramplets\" beschikbaar om u te helpen bij het "
-"invoeren van gegevens en het visualiseren van uw stamboom. Veel van deze "
+"Er zijn veel uitbreidingen of \"Gramplets\" beschikbaar om u te helpen bij "
+"het invoeren van gegevens en het visualiseren van uw stamboom. Veel van deze "
 "hulpmiddelen zijn standaard voorhanden. Er zijn er nog veel meer beschikbaar "
 "om te downloaden en te installeren.\n"
 "\n"
