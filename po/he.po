@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
-"PO-Revision-Date: 2023-07-31 05:47+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2023-08-03 16:25+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -1411,8 +1411,8 @@ msgstr ""
 "\n"
 "4. על מנת לשמור הודעות שגיאה מהדוגמה שלעיל בקבצים outfile ו־errfile, נא "
 "להריץ:\n"
-"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile "
-"2>errfile\n"
+"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile 2>"
+"errfile\n"
 "\n"
 "5. על מנת ליבוא שלושה מסדי נתונים ולהתחיל את שיח גרמפס הִדּוּדִי עם התוצאה:\n"
 "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps\n"
@@ -1439,7 +1439,7 @@ msgstr ""
 "LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Family Tree 1' -a report -p "
 "name=navwebpage,target=/../de\n"
 "\n"
-"11. לבסוף, כדי לאתחל את גרמפס הפעלה אינטראקטיבית רגילה:\n"
+"11. לבסוף, אתחול שיח הידודי רגיל:\n"
 "gramps\n"
 "\n"
 "הערה: דוגמאות אלה מיועדות למעטפת bash.\n"
@@ -3100,13 +3100,12 @@ msgid ""
 "start your previous version of Gramps and %(wiki_backup_html_start)smake a "
 "backup%(html_end)s of your Family Tree."
 msgstr ""
-"אילן היוחסין שבטעינה הוא במסד נתונים %(dbtype)s, שאינו נתמך עוד.\n"
-"לכן לא ניתן לטעון אילן יוחסין זה ללא שדרוג.\n"
+"אילן־היוחסין שבטעינה הוא מסד נתונים מסוג %(dbtype)s, שאינו נתמך עוד.\n"
+"לכן לא ניתן לטעון אילן־יוחסין זה, ללא שדרוג.\n"
 "\n"
-"אם תבחרו לשדרג לא תוכלו להשתמש בגרסה הקודמת של גרמפס, גם אם לאחר מכן "
-"%(wiki_manual_backup_html_start)sbackup%(html_end)s או "
-"%(wiki_manual_export_html_start)sexport%(html_end)ss את אילן היוחסין "
-"המשודרג.\n"
+"לאחר שדרג, לא ניתן יהיה עוד להשתמש בגרסה הקודמת של גרמפס, גם לאחר "
+"%(wiki_manual_backup_html_start)sגיבוי%(html_end)s או "
+"%(wiki_manual_export_html_start)sייצוא%(html_end)ss אילן־היוחסין ששודרג.\n"
 "\n"
 "מומלץ בחום לגבות את אילן היוחסין.\n"
 "\n"
@@ -3276,12 +3275,12 @@ msgstr "שם פרטי"
 
 #: ../gramps/gen/display/name.py:359
 msgid "Given Surname Suffix"
-msgstr "סיומת שם פרטי שם משפחה"
+msgstr "סיומת שם משפחה שניתן"
 
 #. Translators: long string, have a look at Preferences dialog
 #: ../gramps/gen/display/name.py:363
 msgid "Main Surnames, Given Patronymic Suffix Prefix"
-msgstr "שם משפחה עיקרי, סיומת שם פרטי פטרונימי"
+msgstr "שם משפחה עיקרי, סיומת/קידומת שם פטרונימי שניתן"
 
 #: ../gramps/gen/display/name.py:366
 msgid "Patronymic, Given"
@@ -6033,11 +6032,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:49
 msgid "Places enclosed by another place"
-msgstr "מקומות המוכלים על־ידי מקום אחר"
+msgstr "מקומות מוכלים בתוך מקום אחר"
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:50
 msgid "Matches a place enclosed by a particular place"
-msgstr "שליפת מקומות המוכלים על־ידי מקום מסוים"
+msgstr "שליפת מקומות מוכלים בתוך מקום מסוים"
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:50
 msgid "Places of events matching the <event filter>"
@@ -12037,7 +12036,7 @@ msgid ""
 "Don't open dialog to choose family tree to load on startup, just load last "
 "used."
 msgstr ""
-"לא לפתוח דו־שיח לבחירת אילן יוחסין לטעינה, פשוט לטעון את האחרון שהיה בשימוש."
+"לא לפתוח דו־שיח לבחירת אילן־יוחסין לטעינה, פשוט לטעון את האחרון שהיה בשימוש."
 
 #: ../gramps/gui/configure.py:1664
 msgid "Remember last view displayed"
@@ -12448,7 +12447,7 @@ msgstr "תוחם:"
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:109
 msgid "Undo history warning"
-msgstr "הסגת אזהרת היסטורית"
+msgstr "הסגת אזהרת היסטורה"
 
 #: ../gramps/gui/dbloader.py:117
 msgid ""
@@ -12459,10 +12458,10 @@ msgid ""
 "If you think you may want to revert the import, please stop here and backup "
 "your database."
 msgstr ""
-"בחירה להמשיך בייבוא תמחק את היסטוריית ה'החזרה' בשיח זה. במיוחד, לא ניתן יהיה "
-"להשיג את תוצאות פעולת הייבוא או כל שינוי בנתונים שנעשה לפני הייבוא.\n"
+"בחירה להמשיך בייבוא תמחק את היסטוריית ה'הסגה' בשיח זה. במיוחד, לא ניתן יהיה "
+"להסיג את תוצאות פעולת הייבוא או כל שינוי בנתונים שנעשה לפני הייבוא.\n"
 "\n"
-"למקרה שתידרש הסגת תוצאות ריצת כלי זה, נא לגבות את מסד הנתונים תחילה."
+"נא לגבות את מסד הנתונים תחילה, למקרה שתידרש הסגת תוצאות ריצת כלי זה."
 
 #: ../gramps/gui/dbloader.py:122
 msgid "_Proceed with import"
@@ -16805,8 +16804,8 @@ msgid ""
 "<b>Note:</b> Any changes in the enclosing place information will be "
 "reflected in the place itself, for places that it encloses."
 msgstr ""
-"<b>הערה:</b> כל שינוי במידע מקומות מכילים ישתקף במקום עצמו, עבור המקומות "
-"המוכלים."
+"<b>הערה:</b> כל שינוי במידע מקומות שממכילים מקומות אחרים ישתקף במקום עצמו, "
+"עבור כלל המקומות המוכלים בו."
 
 #: ../gramps/gui/glade/editreporef.glade:127
 msgid "_Media Type:"
@@ -19456,7 +19455,7 @@ msgstr ""
 "התקדמות עם כלי זה תמחק את כל היסטורית ההסגות בשיח זה. במיוחד, לא ניתן יהיה "
 "להסיג עוד את השינויים שנעשו באמצעות כלי זה או כל שינוי שנעשה טרם השימוש בו.\n"
 "\n"
-"למקרה שתידרש הסגת תוצאות ריצת כלי זה, נא לגבות את מסד הנתונים תחילה."
+"נא לגבות את מסד הנתונים תחילה, למקרה שתידרש הסגת תוצאות ריצת כלי זה ."
 
 #: ../gramps/gui/plug/tool.py:116
 msgid "_Proceed with the tool"
@@ -19620,7 +19619,7 @@ msgstr "אישור מחיקה"
 
 #: ../gramps/gui/undohistory.py:198
 msgid "Are you sure you want to clear the Undo history?"
-msgstr "האם לנקות היסטורית הסגות?"
+msgstr "האם לסלק היסטורית הסגות?"
 
 #: ../gramps/gui/undohistory.py:199 ../gramps/plugins/gramplet/eval.py:80
 msgid "Clear"
@@ -19696,7 +19695,8 @@ msgstr "האם לנטוש שינויים?"
 msgid ""
 "Aborting changes will return the database to the state it was before you "
 "started this editing session."
-msgstr "נטישת שינויים תחזיר את מסד הנתונים למצב שהיה לפני התחלת פעולת העריכה."
+msgstr ""
+"נטישת שינויים תחזיר את מסד הנתונים למצב שהיה לפני התחלת פעולת עריכת שיח זה."
 
 #: ../gramps/gui/viewmanager.py:632
 msgid "Abort changes"
@@ -22316,7 +22316,7 @@ msgstr "תרגום כותרות"
 
 #: ../gramps/plugins/export/exportcsv.py:294
 msgid "Enclosed_by"
-msgstr "מוכל_על־ידי"
+msgstr "מוכל_בתוך"
 
 #: ../gramps/plugins/export/exportcsv.py:346
 #, python-brace-format
@@ -25344,7 +25344,7 @@ msgstr "מוכול על־ידי"
 
 #: ../gramps/plugins/importer/importcsv.py:248
 msgid "enclosed_by"
-msgstr "מוכל_על־ידי"
+msgstr "מוכל_בתוך"
 
 #: ../gramps/plugins/importer/importcsv.py:283
 #, python-format
@@ -25408,8 +25408,8 @@ msgid ""
 "import, and override the character set by selecting a different encoding "
 "below."
 msgstr ""
-"קובץ ה־GEDCOM הזדהה בשימוש בקידוד ANSEL. לפעמים, זה קורה בטעות במידה "
-"והנתונים המיובאים מכילים תווים יוצאי דופן, נא לבטל את הייבוא ולעקוף את ערכת "
+"קובץ ה־GEDCOM הזדהה בשימוש בקידוד ANSEL. לעיתים, זה קורה בשוגג. במידה "
+"והנתונים המיובאים מכילים תווים יוצאי דופן, נא לבטל הייבוא ולעקוף את ערכת "
 "התווים על־ידי בחירת קידוד אחר להלן."
 
 #: ../gramps/plugins/importer/importgedcom.glade:125
@@ -26070,7 +26070,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importxml.py:1729
 #: ../gramps/plugins/importer/importxml.py:2161
 msgid "The Gramps Xml you are trying to import is malformed."
-msgstr "קובץ ה XML גרמפס שבטעינה שגוי."
+msgstr "קובץ הגרמפס XML שבטעינה שגוי."
 
 #: ../gramps/plugins/importer/importxml.py:901
 msgid "Attributes that link the data together are missing."
@@ -30638,7 +30638,7 @@ msgstr "החלפת '%(map)s' ב־=>"
 #: ../gramps/plugins/lib/maps/geography.py:448
 #, python-format
 msgid "Reload all visible tiles for '%(map)s'."
-msgstr "טעינה מחדש של כותרות גלויות עבור '%(map)s'."
+msgstr "טעינת כותרות גלויות עבור '%(map)s מחדש'."
 
 #: ../gramps/plugins/lib/maps/geography.py:455
 #, python-format
@@ -31467,7 +31467,7 @@ msgstr "קרבה לאדם הבית"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:111
 msgid "Display all relationships between person and home person."
-msgstr "הצגת כל קשרי־הגומלין בין האדם והאדם הבית."
+msgstr "הצגת כל קשרי־הגומלין בין אדם ו'אדם הבית'."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:131
 msgid "Display filtered data"
@@ -33371,8 +33371,8 @@ msgid ""
 "This tool will rename all events of one type to a different type. Once "
 "completed, this cannot be undone by the regular Undo function."
 msgstr ""
-"כלי זה ישנה את שמות כל האירועים מסוג אחד לסוג אחד. לאחר השלמת הריצה, לא ניתן "
-"להסיג הפעולה בפעולת הסגה הרגילה."
+"כלי זה ישנה שמות האירועים מסוג אחד לסוג אחר. לאחר השלמת הפעולה, תוצאותיה לא "
+"ניתות יהיו להסגה באמצאות פעולת הסגה הרגילה."
 
 #: ../gramps/plugins/tool/changetypes.glade:112
 msgid "Original event type:"
@@ -34616,7 +34616,7 @@ msgstr "אבות קדמונים משותפים להם הם: "
 #: ../gramps/plugins/tool/removespaces.py:55
 msgctxt "manual"
 msgid "Remove_leading_and_trailing_spaces"
-msgstr "הסרת_רווח_מוביל_וסיומת"
+msgstr "הסרת_רווח_מוביל_ועוקב"
 
 #: ../gramps/plugins/tool/removespaces.py:88
 #: ../gramps/plugins/tool/tools.gpr.py:489
@@ -34879,8 +34879,8 @@ msgid ""
 "Generate low level database errors\n"
 "Correction needs database reload"
 msgstr ""
-"חילול שגיאות במסד נתונים ברמה נמוכה\n"
-"לתיקון נדרשת טעינה מחדש של מסד נתונים"
+"חילול שגיאות רמה נמוכה במסד נתונים\n"
+"לתיקון נדרשת טעינת מסד נתונים מחדש"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:290
 msgid "Generate database errors"
@@ -37274,7 +37274,7 @@ msgstr "הצגת קשרי־הגומלין בין האדם הנוכחי והאד�
 msgid ""
 "For each person page, show the relationship between this person and the "
 "active person."
-msgstr "לכול עמוד אדם, הצגת קשרי־הגומלין בין האדם והאדם הפעיל."
+msgstr "הצגת קשרי־גומלין בין אדם ו'האדם הפעיל' בכל עמוד ה'אדם' ."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2019
 msgid "Html options"
@@ -37288,7 +37288,7 @@ msgstr "סיומת קובץ"
 #: ../gramps/plugins/webreport/narrativeweb.py:2025
 #: ../gramps/plugins/webreport/webcal.py:1768
 msgid "The extension to be used for the web files"
-msgstr "הסיומת שתשמש עבור עמודי המרשתת"
+msgstr "הסיומת שתשמש בקובצי עמודי המרשתת"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2029
 #: ../gramps/plugins/webreport/webcal.py:1771
@@ -37531,7 +37531,7 @@ msgstr "הערה שתשמש ככותרת העמוד או כקוד PHP להכנס
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2225
 msgid "HTML user footer"
-msgstr "סיומת עמוד HTML"
+msgstr "סיומת משתמש HTML"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2226
 msgid "A note to be used as the page footer"
@@ -37539,15 +37539,15 @@ msgstr "הערה שתכלת בתחתית העמוד"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2231
 msgid "PHP user session"
-msgstr "מופע משתמש PHP"
+msgstr "שיח משתמש PHP"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2232
 msgid ""
 "A note to use for starting the php session.\n"
 "This option will be available only if the .php file extension is selected."
 msgstr ""
-"הערה שתשמש באתחול מופע php.\n"
-"אפשרות זו תהיה זמינה רק אם נבחרה סיומת הקובץ .php."
+"הערה שתשמש באתחול שיח php.\n"
+"אפשרות זו תהיה זמינה רק אם נבחרה סיומת קובץ ה־php.."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2243
 msgid "Images Generation"
