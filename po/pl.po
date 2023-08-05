@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
-"PO-Revision-Date: 2023-08-03 16:25+0000\n"
+"PO-Revision-Date: 2023-08-05 19:36+0000\n"
 "Last-Translator: Michał Stojek <stojex@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/pl/>\n"
@@ -220,7 +220,7 @@ msgstr "Słowacja"
 
 #: ../data/holidays.xml:481 ../gramps/plugins/mapservices/eniroswedenmap.py:47
 msgid "Sweden"
-msgstr "Szwedzki"
+msgstr "Szwecja"
 
 #: ../data/holidays.xml:508
 msgid "Turkey"
@@ -573,7 +573,6 @@ msgstr ""
 "bazy danych."
 
 #: ../data/tips.xml:44
-#, fuzzy
 msgid ""
 "<b>Merging Entries</b><br/>The function \"Edit &gt; Merge...\" allows you to "
 "combine separately listed people into one. Select the second entry by "
@@ -582,10 +581,10 @@ msgid ""
 "differing names for one individual. Merging is available in all list views "
 "for all primary object types."
 msgstr ""
-"<b>Łączenie wpisów</b><br/>Funkcja &quot;Educja &gt; Porównaj i połącz..."
-"&quot; łączenia umożliwia złączenie oddzielnie wymienionych osób w jedną "
-"osobę. Wybierz drugą osobę przez przytrzymanie klawisza Ctrl podczas jej "
-"zaznaczania. Jest to bardzo przydatne przy łączeniu dwóch baz danych z "
+"<b>Łączenie wpisów</b><br/>Funkcja &quot;Edycja &gt; Porównaj i "
+"połącz...&quot; łączenia umożliwia złączenie oddzielnie wymienionych osób w "
+"jedną osobę. Wybierz drugą osobę przez przytrzymanie klawisza Ctrl podczas "
+"jej zaznaczania. Jest to bardzo przydatne przy łączeniu dwóch baz danych z "
 "powtarzającymi się osobami lub łączenia przypadkiem źle wpisanych nazwisk "
 "jednej osoby. Działa także na widokach miejsc, źródeł i magazynów."
 
@@ -983,15 +982,14 @@ msgstr ""
 "wielokrotne, zwłaszcza po wydrukowaniu."
 
 #: ../data/tips.xml:106
-#, fuzzy
 msgid ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
 "\"Help &gt; Gramps Mailing Lists\"."
 msgstr ""
 "<b>Nowości w Gramps</b><br/>Chcesz być informowany o nowych wersjach "
-"programu Gramps? Dołącz do listy dyskusyjnej gramps-announce w &quot;Pomoc "
-"&gt; Listy mailingowe Gramps &quot;"
+"programu Gramps? Dołącz do listy dyskusyjnej gramps-announce w \"Pomoc &gt; "
+"Listy mailingowe Gramps \"."
 
 #: ../data/tips.xml:108
 msgid ""
@@ -1045,11 +1043,6 @@ msgstr ""
 "ponownie Gramps."
 
 #: ../data/tips.xml:116
-#, fuzzy
-#| msgid ""
-#| "<b>Gramps Translators</b><br/>Gramps has been designed so that new "
-#| "translations can easily be added with little development effort. If you "
-#| "are interested in participating please email gramps-devel@lists.sf.net"
 msgid ""
 "<b>Gramps Translators</b><br/>Gramps has been designed so that new "
 "translations can easily be added with little development effort. If you are "
@@ -1058,7 +1051,7 @@ msgstr ""
 "<b>Tłumaczenie Gramps</b><br/>Gramps został tak zaprojektowany, aby nowe "
 "tłumaczenia mogły być łatwo dodawane przy niewielkim narzucie pracy. Jeśli "
 "jesteś zainteresowany w udziale w tłumaczeniu, proszę wysłać email na gramps-"
-"devel@lists.sf.net"
+"devel@lists.sf.net."
 
 #: ../data/tips.xml:118
 msgid ""
@@ -1892,7 +1885,7 @@ msgstr "BŁĄD: Proszę wskaż rodzinę"
 
 #: ../gramps/cli/plug/__init__.py:293
 msgid "=filename"
-msgstr "=filename"
+msgstr "=nazwa pliku"
 
 #: ../gramps/cli/plug/__init__.py:294
 msgid "Output file name. MANDATORY"
@@ -2704,7 +2697,7 @@ msgstr "Islamski"
 #: ../gramps/gen/datehandler/_datestrings.py:149 ../gramps/gen/lib/date.py:649
 msgctxt "calendar"
 msgid "Swedish"
-msgstr "Szewdzki"
+msgstr "Szwedzki"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -3108,7 +3101,8 @@ msgstr ""
 "\n"
 "Schemat drzewa rodzinnego jest w wersji %(tree_vers)s, a ta wersja Gramps "
 "wspiera schematy w wersji %(min_vers)s do %(max_vers)s\n"
-"Proszę zaktualizować to odpowiedniej wersji lub użyć formatu XML w celu "
+"\n"
+"Proszę zaktualizować do odpowiedniej wersji lub użyć formatu XML w celu "
 "przenoszenia danych między różnymi wersjami schematu."
 
 #: ../gramps/gen/db/exceptions.py:114
@@ -3126,7 +3120,8 @@ msgstr ""
 "\n"
 "To drzewo jest dla Pythona w wersji %(tree_vers)s, a ta wersja Gramps "
 "wspiera Pythona w wersjach %(min_vers)s do %(max_vers)s\n"
-"Proszę zaktualizować to odpowiedniej wersji lub użyć formatu XML w celu "
+"\n"
+"Proszę zaktualizować do odpowiedniej wersji lub użyć formatu XML w celu "
 "przenoszenia danych między różnymi wersjami Pythona."
 
 #: ../gramps/gen/db/exceptions.py:137
@@ -3328,7 +3323,7 @@ msgstr ""
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Magazynów   zaktualizowanych z %(n2)6d cytatami w %(n3)6d sek.\n"
+"%(n1)6d  Repozytoriów   zaktualizowanych z %(n2)6d cytatami w %(n3)6d sek.\n"
 
 #: ../gramps/gen/db/upgrade.py:438
 #, python-format
@@ -4111,15 +4106,15 @@ msgstr ""
 #: ../gramps/gen/filters/rules/source/_hastag.py:48
 #: ../gramps/gui/editors/filtereditor.py:584
 msgid "Tag:"
-msgstr "Atrybut:"
+msgstr "Tag:"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:49
 msgid "Citations with the <tag>"
-msgstr "Cytaty ze <atrybutem>"
+msgstr "Cytaty z <tagiem>"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:50
 msgid "Matches citations with the particular tag"
-msgstr "Dopasowuje cytaty z określonym atrybutem"
+msgstr "Dopasowuje cytaty z określonym tagiem"
 
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:45
 msgid "Citations matching the <filter>"
@@ -4143,22 +4138,23 @@ msgstr ""
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:43
 #: ../gramps/gui/editors/filtereditor.py:545
 msgid "Repository filter name:"
-msgstr "Filtry nazwy magazynu:"
+msgstr "Filtry nazwy repozytoriów:"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:46
 msgid ""
 "Citations with a source with a repository reference matching the <repository "
 "filter>"
 msgstr ""
-"Cytaty ze źródłem z odnośnikiem do magazynu pasującym do <filtra magazynów>"
+"Cytaty ze źródłem z odnośnikiem do repozytorium pasującym do <filtra "
+"repozytorium>"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:48
 msgid ""
 "Matches citations with sources with a repository reference that match a "
 "certain repository filter"
 msgstr ""
-"Dopasowuje cytaty, których odnośniki do magazynów pasują do określonego "
-"filtru magazynów"
+"Dopasowuje cytaty, których odnośniki do repozytoriów pasują do określonego "
+"filtru repozytoriów"
 
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:49
 msgid "Citations with source matching the <source filter>"
@@ -4356,11 +4352,11 @@ msgstr "Dopasowuje zdarzenia z określoną ilością połączeń do źródeł"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:49
 msgid "Events with the <tag>"
-msgstr "Zdarzenia z <atrybutem>"
+msgstr "Zdarzenia z <tagiem>"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:50
 msgid "Matches events with the particular tag"
-msgstr "Dopasowuje zdarzenia z określonym atrybutem"
+msgstr "Dopasowuje zdarzenia z określonym tagiem"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:46
 msgid "Events with the particular type"
@@ -4669,11 +4665,11 @@ msgstr "Dopasowuje rodziny posiadające określone źródło"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:49
 msgid "Families with the <tag>"
-msgstr "Rodziny ze <atrybutem>"
+msgstr "Rodziny z <tagiem>"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:50
 msgid "Matches families with the particular tag"
-msgstr "Dopasowuje rodziny z określonym atrybutem"
+msgstr "Dopasowuje rodziny z określonym tagiem"
 
 #: ../gramps/gen/filters/rules/family/_hastwins.py:45
 msgid "Families with twins"
@@ -4951,11 +4947,11 @@ msgstr "Dopasowuje obiekty medialne z określonym źródłem"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:49
 msgid "Media objects with the <tag>"
-msgstr "Obiekty medialne z <atrybutem>"
+msgstr "Obiekty medialne z <tagiem>"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:50
 msgid "Matches media objects with the particular tag"
-msgstr "Dopasowuje obiekty medialne z określonym atrybutem"
+msgstr "Dopasowuje obiekty medialne z określonym tagiem"
 
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:44
 msgid "Media objects matching the <filter>"
@@ -5046,11 +5042,11 @@ msgstr "Dopasowuje notatki z określoną ilością odwołań"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:49
 msgid "Notes with the <tag>"
-msgstr "Notatki z <atrybutem>"
+msgstr "Notatki z <tagiem>"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:50
 msgid "Matches notes with the particular tag"
-msgstr "Dopasowuje notatki z określonym atrybutem"
+msgstr "Dopasowuje notatki z określonym tagiem"
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:46
 msgid "Notes with the particular type"
@@ -5558,11 +5554,11 @@ msgstr "Dopasowuje ludzi o z określonym źródłem"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:49
 msgid "People with the <tag>"
-msgstr "Osoby z atrybutem <tag>"
+msgstr "Osoby z <tagiem>"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:50
 msgid "Matches people with the particular tag"
-msgstr "Dopasowuje osoby z określonym atrybutem"
+msgstr "Dopasowuje osoby z określonym tagiem"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:47
 #: ../gramps/gui/editors/filtereditor.py:576
@@ -6190,11 +6186,11 @@ msgstr "Dopasowuje miejsca z określonym źródłem"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:49
 msgid "Places with the <tag>"
-msgstr "Osoby z <atrybutem>"
+msgstr "Miejsca z <tagiem>"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:50
 msgid "Matches places with the particular tag"
-msgstr "Dopasowuje miejsca z określonym atrybutem"
+msgstr "Dopasowuje miejsca z określonym tagiem"
 
 #: ../gramps/gen/filters/rules/place/_hastitle.py:49
 msgid "Places matching a title"
@@ -6304,7 +6300,7 @@ msgstr "Jednostki:"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:58
 msgid "Places within an area"
-msgstr "Miejsca w okolicy"
+msgstr "Miejsca w obszarze"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:59
 msgid "Matches places within a given distance of another place"
@@ -6324,23 +6320,23 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:44
 msgid "Every repository"
-msgstr "Każdy magazyn"
+msgstr "Każde repozytorium"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:45
 msgid "Matches every repository in the database"
-msgstr "Dopasowuje wszystkie magazyny w bazie danych"
+msgstr "Dopasowuje wszystkie repozytoria w bazie danych"
 
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:47
 msgid "Repositories changed after <date time>"
-msgstr "Magazyny zmienione po <data czas>"
+msgstr "Repozytoria zmienione po <data czas>"
 
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:48
 msgid ""
 "Matches repository records changed after a specified date/time (yyyy-mm-dd "
 "hh:mm:ss) or in the range, if a second date/time is given."
 msgstr ""
-"Dopasowuje rekordy magazynów zmienione po określonej dacie/czasie (yyyy-mm-"
-"dd hh:mm:ss) albo w danym zakresie (jeśli druga data/czas jest podana)."
+"Dopasowuje rekordy repozytoriów zmienione po określonej dacie/czasie (yyyy-"
+"mm-dd hh:mm:ss) albo w danym zakresie (jeśli druga data/czas jest podana)."
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:46
 msgid "Repository attribute:"
@@ -6356,40 +6352,40 @@ msgstr "Dopasowuje repozytoria z atrybutem o określonej wartości"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:44
 msgid "Repository with <Id>"
-msgstr "Magazyny o <identyfikatorze>"
+msgstr "Repozytoria o <identyfikatorze>"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:45
 msgid "Matches a repository with a specified Gramps ID"
-msgstr "Dopasowuje magazyn o określonym identyfikatorze Gramps ID"
+msgstr "Dopasowuje repozytorium o określonym identyfikatorze Gramps ID"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:42
 msgid "Repositories having notes containing <substring>"
-msgstr "Magazyny mające notatki zawierające <podciąg znaków>"
+msgstr "Repozytoria mające notatki zawierające <podciąg znaków>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:43
 msgid "Matches repositories whose notes contain text matching a substring"
 msgstr ""
-"Dopasowuje magazyny, których notatki zawierają tekst pasujący do podciągu "
+"Dopasowuje repozytoria, których notatki zawierają tekst pasujący do podciągu "
 "znaków"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:41
 msgid "Repositories having notes containing <text>"
-msgstr "Magazyny mające notatki zawierające <tekst>"
+msgstr "Repozytoria mające notatki zawierające <tekst>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:42
 msgid ""
 "Matches repositories whose notes contain text matching a regular expression"
 msgstr ""
-"Dopasowuje magazyny, których notatki zawierają tekst pasujący do wyrażenia "
-"regularnego"
+"Dopasowuje repozytoria, których notatki zawierają tekst pasujący do "
+"wyrażenia regularnego"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:42
 msgid "Repositories with a reference count of <count>"
-msgstr "Magazyny z <ilością> odniesień"
+msgstr "Repozytoria z <ilością> odniesień"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:43
 msgid "Matches repositories with a certain reference count"
-msgstr "Dopasowuje magazyny z określoną ilością odwołań"
+msgstr "Dopasowuje repozytoria z określoną ilością odwołań"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:46
 #: ../gramps/gui/glade/mergerepository.glade:212
@@ -6409,27 +6405,27 @@ msgstr "URL:"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:51
 msgid "Repositories matching parameters"
-msgstr "Magazyny spełniające warunki"
+msgstr "Repozytoria spełniające warunki"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:52
 msgid "Matches Repositories with particular parameters"
-msgstr "Dopasowuje magazyny spełniające określone warunki"
+msgstr "Dopasowuje repozytoria spełniające określone warunki"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:49
 msgid "Repositories with the <tag>"
-msgstr "Magazyny z <atrybutem>"
+msgstr "Repozytoria z <tagiem>"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:50
 msgid "Matches repositories with the particular tag"
-msgstr "Dopasowuje magazyny z określonym atrybutem"
+msgstr "Dopasowuje repozytoria z określonym tagiem"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:44
 msgid "Repositories matching the <filter>"
-msgstr "Magazyny pasujące do <filtra>"
+msgstr "Repozytoria pasujące do <filtra>"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:45
 msgid "Matches repositories matched by the specified filter name"
-msgstr "Dopasowuje magazyny dopasowane przez filtr o określonej nazwie"
+msgstr "Dopasowuje repozytoria dopasowane przez filtr o określonej nazwie"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:43
 msgid "Repositories with name containing <text>"
@@ -6442,21 +6438,21 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:47
 msgid "Repositories with Id containing <text>"
-msgstr "Magazyny o Id zawierającym <tekst>"
+msgstr "Repozytoria o Id zawierającym <tekst>"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:48
 msgid "Matches repositories whose Gramps ID matches the regular expression"
 msgstr ""
-"Dopasowuje magazyny, których identyfikator Gramps ID pasuje do wyrażenia "
+"Dopasowuje repozytoria, których identyfikator Gramps ID pasuje do wyrażenia "
 "regularnego"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:42
 msgid "Repositories marked private"
-msgstr "Magazyny oznaczone jako prywatne"
+msgstr "Repozytoria oznaczone jako prywatne"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:43
 msgid "Matches repositories that are indicated as private"
-msgstr "Dopasowuje magazyny oznaczone jako prywatne"
+msgstr "Dopasowuje repozytoria oznaczone jako prywatne"
 
 #: ../gramps/gen/filters/rules/source/_allsources.py:44
 msgid "Every source"
@@ -6546,7 +6542,7 @@ msgstr "Źródła z <ilością> odwołań do repozytoriów"
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:48
 msgid "Matches sources with a certain number of repository references"
-msgstr "Dopasowuje źródła z określoną ilością odniesień do magazynów"
+msgstr "Dopasowuje źródła z określoną ilością odniesień do repozytoriów"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:44
 msgid "Sources with repository reference containing <text> in \"Call Number\""
@@ -6564,11 +6560,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:49
 msgid "Sources with the <tag>"
-msgstr "Źródła z <atrybutem>"
+msgstr "Źródła z <tagiem>"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:50
 msgid "Matches sources with the particular tag"
-msgstr "Dopasowuje źródła z określonym atrybutem"
+msgstr "Dopasowuje źródła z określonym tagiem"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:44
 msgid "Sources matching the <filter>"
@@ -6580,15 +6576,15 @@ msgstr "Dopasowuje źródła pasujące do filtra o określonej nazwie"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:44
 msgid "Sources with repository reference matching the <repository filter>"
-msgstr "Zdarzenia z magazynem pasującym do <filtra magazynów>"
+msgstr "Zdarzenia z repozytorium pasującym do <filtra repozytoriów>"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:45
 msgid ""
 "Matches sources with a repository reference that match a certain\n"
 "repository filter"
 msgstr ""
-"Dopasowuje źródła, których odnośniki do magazynów pasują do określonego\n"
-"filtru magazynów"
+"Dopasowuje źródła, których odnośniki do repozytoriów pasują do określonego\n"
+"filtru repozytoriów"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:43
 msgid "Sources with title containing <text>"
@@ -7257,7 +7253,7 @@ msgstr "Ostatnio zmienione"
 #: ../gramps/plugins/webreport/repository.py:276
 #: ../gramps/plugins/webreport/source.py:297
 msgid "Tags"
-msgstr "Atrybuty"
+msgstr "Tagi"
 
 #: ../gramps/gen/lib/date.py:307 ../gramps/gen/lib/date.py:345
 #: ../gramps/gen/lib/date.py:351 ../gramps/gen/lib/date.py:353
@@ -7334,11 +7330,11 @@ msgstr "Nowy rok zaczyna się"
 
 #: ../gramps/gen/lib/date.py:1974
 msgid "calculated"
-msgstr "Obliczona"
+msgstr "obliczona"
 
 #: ../gramps/gen/lib/date.py:1974
 msgid "estimated"
-msgstr "Szacowana"
+msgstr "szacowana"
 
 #: ../gramps/gen/lib/date.py:1974
 msgctxt "date-quality"
@@ -7361,11 +7357,11 @@ msgstr "Po"
 
 #: ../gramps/gen/lib/date.py:2001 ../gramps/plugins/webreport/basepage.py:3372
 msgid "about"
-msgstr "Około"
+msgstr "około"
 
 #: ../gramps/gen/lib/date.py:2002
 msgid "range"
-msgstr "Przedział"
+msgstr "przedział"
 
 #: ../gramps/gen/lib/date.py:2003
 msgid "from"
@@ -8233,7 +8229,7 @@ msgstr "Nie skaluj drzewa"
 
 #: ../gramps/gen/lib/ldsord.py:110
 msgid "Infant"
-msgstr "Dziecięcy/Początkujący"
+msgstr "Niemowle"
 
 #: ../gramps/gen/lib/ldsord.py:111
 msgid "Pre-1970"
@@ -8257,7 +8253,7 @@ msgstr "Wysłany"
 
 #: ../gramps/gen/lib/ldsord.py:116
 msgid "Uncleared"
-msgstr "Niepewny"
+msgstr "Nieoczyszczony"
 
 #: ../gramps/gen/lib/ldsord.py:170 ../gramps/gui/editors/editldsord.py:314
 #: ../gramps/gui/editors/editldsord.py:442
@@ -8378,7 +8374,7 @@ msgstr "Nazwa"
 
 #: ../gramps/gen/lib/name.py:159 ../gramps/plugins/importer/importcsv.py:166
 msgid "Given name"
-msgstr "Imię:"
+msgstr "Imię"
 
 #: ../gramps/gen/lib/name.py:162 ../gramps/plugins/webreport/basepage.py:1753
 #: ../gramps/plugins/webreport/basepage.py:1805
@@ -8612,7 +8608,7 @@ msgstr "Tekst źródłowy"
 #: ../gramps/gen/lib/notetype.py:82 ../gramps/gen/plug/_pluginreg.py:98
 #: ../gramps/gui/logger/_errorview.py:174
 msgid "Report"
-msgstr "Raportuj"
+msgstr "Raporty"
 
 #: ../gramps/gen/lib/notetype.py:83
 msgid "Html code"
@@ -8679,7 +8675,7 @@ msgstr "Notatka o miejscu"
 
 #: ../gramps/gen/lib/notetype.py:101
 msgid "Repository Note"
-msgstr "Notatka o magazynie"
+msgstr "Notatka o repozytorium"
 
 #: ../gramps/gen/lib/notetype.py:102
 msgid "Repository Reference Note"
@@ -8956,11 +8952,11 @@ msgstr "Numer"
 #: ../gramps/plugins/quickview/filterbyname.py:266
 #: ../gramps/plugins/tool/reorderids.glade:835
 msgid "Repository"
-msgstr "Magazyn"
+msgstr "Repozytorium"
 
 #: ../gramps/gen/lib/reporef.py:96 ../gramps/gui/clipboard.py:516
 msgid "Repository ref"
-msgstr "Magazyn ref"
+msgstr "Repozytorium ref"
 
 #: ../gramps/gen/lib/reporef.py:107
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:68
@@ -9045,7 +9041,7 @@ msgstr "Skrót"
 #: ../gramps/plugins/webreport/repository.py:235
 #: ../gramps/plugins/webreport/updates.py:133
 msgid "Repositories"
-msgstr "Magazyny"
+msgstr "Repozytoria"
 
 #: ../gramps/gen/lib/srcmediatype.py:58
 msgid "Audio"
@@ -9105,7 +9101,7 @@ msgstr "Tekst stylizowany"
 
 #: ../gramps/gen/lib/styledtext.py:325
 msgid "Styled Text Tags"
-msgstr "Tagi stylizowanego tekstu"
+msgstr "Styl tekstu Tagów"
 
 #: ../gramps/gen/lib/styledtexttag.py:101 ../gramps/gen/lib/tag.py:115
 #: ../gramps/gui/editors/edittaglist.py:109
@@ -9379,35 +9375,35 @@ msgstr "Ekspert"
 
 #: ../gramps/gen/plug/_pluginreg.py:99
 msgid "Quickreport"
-msgstr "Szybki raport"
+msgstr "Szybkie raporty"
 
 #: ../gramps/gen/plug/_pluginreg.py:100
 msgid "Tool"
-msgstr "Narzędzie"
+msgstr "Narzędzia"
 
 #: ../gramps/gen/plug/_pluginreg.py:101
 msgid "Importer"
-msgstr "Importer"
+msgstr "Importujące"
 
 #: ../gramps/gen/plug/_pluginreg.py:102
 msgid "Exporter"
-msgstr "Eksporter"
+msgstr "Eksportujące"
 
 #: ../gramps/gen/plug/_pluginreg.py:103
 msgid "Doc creator"
-msgstr "Kreator Doc"
+msgstr "Kreatory"
 
 #: ../gramps/gen/plug/_pluginreg.py:104
 msgid "Plugin lib"
-msgstr "lib wtyczki"
+msgstr "Wtyczki"
 
 #: ../gramps/gen/plug/_pluginreg.py:105
 msgid "Map service"
-msgstr "Usługa map"
+msgstr "Usługi map"
 
 #: ../gramps/gen/plug/_pluginreg.py:106
 msgid "Gramps View"
-msgstr "Widok Gramps"
+msgstr "Widoki Gramps"
 
 #: ../gramps/gen/plug/_pluginreg.py:107 ../gramps/plugins/view/relview.py:131
 #: ../gramps/plugins/view/view.gpr.py:112
@@ -9421,7 +9417,7 @@ msgstr "Związki"
 #: ../gramps/gui/widgets/grampletpane.py:229
 #: ../gramps/gui/widgets/grampletpane.py:988
 msgid "Gramplet"
-msgstr "Gramplet"
+msgstr "Gramplety"
 
 #: ../gramps/gen/plug/_pluginreg.py:109
 msgid "Sidebar"
@@ -9429,11 +9425,11 @@ msgstr "Pasek boczny"
 
 #: ../gramps/gen/plug/_pluginreg.py:111
 msgid "Rule"
-msgstr "Reguła"
+msgstr "Reguły"
 
 #: ../gramps/gen/plug/_pluginreg.py:112
 msgid "Thumbnailer"
-msgstr "Miniaturka"
+msgstr "Miniaturki"
 
 #: ../gramps/gen/plug/_pluginreg.py:113 ../gramps/gui/configure.py:1424
 msgid "Citation formatter"
@@ -9488,7 +9484,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/docbackend/docbackend.py:129
 msgid "Close file first"
-msgstr "Zamknij plik najpierw"
+msgstr "Najpierw zamknij plik"
 
 #: ../gramps/gen/plug/docbackend/docbackend.py:139
 msgid "No filename given"
@@ -9735,11 +9731,11 @@ msgstr "W jaki sposób będą rysowane linie pomiędzy obiektami."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:197
 msgid "Alternate line attachment"
-msgstr "Alternatywne łączenie linii"
+msgstr "Alternatywny sposób łączenia linii do węzłów"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:198
 msgid "Whether lines attach to nodes differently"
-msgstr "Czy linie łączą się z węzłami w inny sposób"
+msgstr "Określa, czy linie łączą się z węzłami w różny sposób"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:214
 msgid "Graphviz Options"
@@ -9822,9 +9818,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:265
 msgid "Note to add to the graph"
-msgstr ""
-"Tekst do dołączenia\n"
-"do grafu"
+msgstr "Notatka do dodania do wykresu"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:267
 msgid "This text will be added to the graph."
@@ -10294,9 +10288,7 @@ msgstr "Jak traktować osoby żyjące"
 
 #: ../gramps/gen/plug/report/stdoptions.py:207
 msgid "Years from death to consider living"
-msgstr ""
-"Ile lat jeszcze po śmierci\n"
-"uważaj osobę za żyjącą"
+msgstr "Ile lat jeszcze po śmierci uważaj osobę za żyjącą"
 
 #: ../gramps/gen/plug/report/stdoptions.py:210
 msgid "Whether to restrict data on recently-dead people"
@@ -10346,7 +10338,7 @@ msgstr "Określa, czy dołączać identyfikator Gramps ID obok nazwisk"
 
 #: ../gramps/gen/plug/report/stdoptions.py:365
 msgid "Whether to include Gramps IDs"
-msgstr "Określa, czy dołączać identyfikator Gramps ID obok nazwisk."
+msgstr "Określa, czy dołączać identyfikatory Gramps"
 
 #: ../gramps/gen/plug/report/stdoptions.py:373
 msgid "Place format"
@@ -10786,7 +10778,7 @@ msgstr "zdarzenie"
 
 #: ../gramps/gen/utils/grampslocale.py:750
 msgid "the repository"
-msgstr "magazyn"
+msgstr "repozytorium"
 
 #: ../gramps/gen/utils/grampslocale.py:752
 msgid "the note"
@@ -11538,7 +11530,7 @@ msgstr "Strona domowa Gramps"
 
 #: ../gramps/gui/aboutdialog.py:121
 msgid "Contributions by"
-msgstr "Wkład:"
+msgstr "Wkład"
 
 #. Translators: Translate this to your name in your native language
 #: ../gramps/gui/aboutdialog.py:124
@@ -11905,7 +11897,7 @@ msgstr "Przywrócić ustawienia domyślne"
 
 #: ../gramps/gui/configure.py:716
 msgid "Restore colors for current theme to default."
-msgstr "Przywróć kolory obecnego motywu do domyślnych"
+msgstr "Przywróć kolory obecnego motywu do domyślnych."
 
 #: ../gramps/gui/configure.py:722
 msgid "Colors for Male persons"
@@ -12138,7 +12130,7 @@ msgstr "Lata, miesiące"
 
 #: ../gramps/gui/configure.py:1339
 msgid "Years, Months, Days"
-msgstr "lata, miesiące, dnie"
+msgstr "Lata, miesiące, dni"
 
 #: ../gramps/gui/configure.py:1352
 msgid "Age display precision *"
@@ -12295,7 +12287,7 @@ msgstr "Średni wiek pomiędzy generacjami"
 
 #: ../gramps/gui/configure.py:1635
 msgid "Max generations for relationships"
-msgstr "Maks. ilość generacji dla związków rodzinnych"
+msgstr "Maksymalna ilość generacji dla związków rodzinnych"
 
 #: ../gramps/gui/configure.py:1639
 msgid "Limits"
@@ -12311,7 +12303,7 @@ msgstr "Wyświetlaj Poradę Dnia"
 
 #: ../gramps/gui/configure.py:1655
 msgid "Show useful information about using Gramps on startup."
-msgstr "Pokaż w czasie uruchamiania informacje o używaniu Gramps"
+msgstr "Pokaż przydatne informacje o korzystaniu z Gramps podczas uruchamiania."
 
 #: ../gramps/gui/configure.py:1658
 msgid "Remember last Family Tree"
@@ -12365,7 +12357,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1697
 msgid "Show Clipboard icon on toolbar"
-msgstr "Pokaż ikonę schowka na pasku narzędzi"
+msgstr "Pokaż ikonę Schowka na pasku narzędzi"
 
 #: ../gramps/gui/configure.py:1699
 msgid "Show or hide the Clipboard icon on the toolbar."
@@ -12550,18 +12542,18 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1919
 msgid "Tag Records"
-msgstr "Tagi Rekordów"
+msgstr "Tag Rekordów"
 
 #: ../gramps/gui/configure.py:1939
 msgid "Add tag on import"
-msgstr "Dodaj znacznik do importu"
+msgstr "Dodaj tag do importu"
 
 #: ../gramps/gui/configure.py:1942
 msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
 msgstr ""
-"Określony znacznik zostanie dodany do wszystkich rekordów podczas importu.\n"
+"Określony tag zostanie dodany do wszystkich rekordów podczas importu.\n"
 "Wyczyść, aby ustawić wartość domyślną."
 
 #: ../gramps/gui/configure.py:1948
@@ -13299,7 +13291,7 @@ msgstr "Brak aktywnego cytatu"
 
 #: ../gramps/gui/displaystate.py:444
 msgid "No active repository"
-msgstr "Brak aktywnego magazynu"
+msgstr "Brak aktywnego repozytorium"
 
 #: ../gramps/gui/displaystate.py:445
 msgid "No active media"
@@ -13998,32 +13990,32 @@ msgstr "Miejsce, które dodajesz już zawiera się w tym miejscu"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:55
 msgid "Create and add a new repository"
-msgstr "Utwórz i dodaj nowy magazyn"
+msgstr "Utwórz i dodaj nowe repozytorium"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:56
 msgid "Remove the existing repository"
-msgstr "Usuń istniejący magazyn"
+msgstr "Usuń istniejące repozytorium"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:57
 #: ../gramps/plugins/view/repoview.py:113
 msgid "Edit the selected repository"
-msgstr "Modyfikuj wybrany magazyn"
+msgstr "Modyfikuj wybrane repozytorium"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:58
 msgid "Add an existing repository"
-msgstr "Dodaj istniejący magazyn"
+msgstr "Dodaj istniejące repozytorium"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:59
 msgid "Move the selected repository upwards"
-msgstr "Przenieś zaznaczony magazyn w górę"
+msgstr "Przenieś zaznaczone repozytorium w górę"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:60
 msgid "Move the selected repository downwards"
-msgstr "Przenieś zaznaczony magazyn w dół"
+msgstr "Przenieś zaznaczone repozytorium w dół"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:76
 msgid "_Repositories"
-msgstr "_Magazyny"
+msgstr "_Repozytoria"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:169
 msgid ""
@@ -14033,11 +14025,13 @@ msgid ""
 "\n"
 "To edit this repository reference, you need to close the repository."
 msgstr ""
-"Odwołanie do magazynu nie może być w tej chwili modyfikowane. Albo powiązany "
-"magazyn jest już obecnie modyfikowany albo inne odwołanie do magazynu, które "
-"jest powiązane z tym magazynem jest obecnie modyfikowane.\n"
+"Odwołanie do repozytorium nie może być w tej chwili modyfikowane. Albo "
+"powiązane repozytorium jest już obecnie modyfikowane albo inne odwołanie do "
+"repozytorium, które jest powiązane z tym repozytorium jest obecnie "
+"modyfikowane.\n"
 "\n"
-"Aby modyfikować to odwołanie do magazynu musisz najpierw zamknąć magazyn."
+"Aby modyfikować to odwołanie do repozytorium musisz najpierw zamknąć "
+"repozytorium."
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:67
 msgid "Create and add a new surname"
@@ -14705,7 +14699,7 @@ msgstr "Edytor lokalizacji"
 #: ../gramps/gui/editors/editmedia.py:68
 msgctxt "manual"
 msgid "New_Media_dialog"
-msgstr "Zarządzanie mediami..."
+msgstr ""
 
 #: ../gramps/gui/editors/editmedia.py:99
 #: ../gramps/gui/editors/editmediaref.py:412
@@ -15052,7 +15046,8 @@ msgid ""
 "Invalid latitude\n"
 "(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr ""
-"Błędna szerokość (składnia: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
+"Błędna szerokość\n"
+"(składnia: 18\\u00b09'48.21\"S, -18.2412 lub -18:9:48.21)"
 
 #. Translators: translate the "E" too (and the "or" of course)
 #: ../gramps/gui/editors/editplace.py:245
@@ -15150,7 +15145,7 @@ msgstr "Jeśli zakończysz bez zapisywania, wprowadzone zmiany zostaną utracone
 #: ../gramps/gui/editors/editreference.py:283
 #: ../gramps/gui/editors/editrepository.py:188
 msgid "Cannot save repository. ID already exists."
-msgstr "Nie można zapisać magazynu. Dane ID już istnieje."
+msgstr "Nie można zapisać repozytorium. Dane ID już istnieje."
 
 #: ../gramps/gui/editors/editreference.py:286
 msgid "Cannot save item. ID already exists."
@@ -15158,59 +15153,59 @@ msgstr "Nie można zapisać notatki. Dane ID już istnieje."
 
 #: ../gramps/gui/editors/editreporef.py:61
 msgid "Repository Reference Editor"
-msgstr "Edytor Odwołań do Magazynu"
+msgstr "Edytor Odwołań do Repozytorium"
 
 #: ../gramps/gui/editors/editreporef.py:185
 #, python-format
 msgid "Repository: %s"
-msgstr "Magazyn: %s"
+msgstr "Repozytorium: %s"
 
 #: ../gramps/gui/editors/editreporef.py:187
 #: ../gramps/gui/editors/editrepository.py:81
 msgid "New Repository"
-msgstr "Nowy Magazyn"
+msgstr "Nowe Repozytorium"
 
 #: ../gramps/gui/editors/editreporef.py:188
 msgid "Repo Reference Editor"
-msgstr "Edytor Odwołań do Magazynu"
+msgstr "Edytor Odwołań do Repozytorium"
 
 #: ../gramps/gui/editors/editreporef.py:195
 msgid "Modify Repository"
-msgstr "Modyfikuj Magazyn"
+msgstr "Modyfikuj Repozytorium"
 
 #: ../gramps/gui/editors/editreporef.py:200
 msgid "Add Repository"
-msgstr "Dodaj Magazyn"
+msgstr "Dodaj Repozytorium"
 
 #: ../gramps/gui/editors/editrepository.py:60
 msgctxt "manual"
 msgid "New_Repository_dialog"
-msgstr "Nowy_magazyn"
+msgstr "Nowe_repozytorium"
 
 #: ../gramps/gui/editors/editrepository.py:92
 msgid "Edit Repository"
-msgstr "Modyfikuj Magazyn"
+msgstr "Edytuj Repozytorium"
 
 #: ../gramps/gui/editors/editrepository.py:177
 msgid "Cannot save repository"
-msgstr "Nie można zapisać magazynu"
+msgstr "Nie można zapisać repozytorium"
 
 #: ../gramps/gui/editors/editrepository.py:178
 msgid ""
 "No data exists for this repository. Please enter data or cancel the edit."
 msgstr ""
-"Ten magazyn nie zawiera żadnych informacji. Proszę wprowadzić dane albo "
+"To repozytorium nie zawiera żadnych informacji. Proszę wprowadzić dane albo "
 "anulować edycję."
 
 #: ../gramps/gui/editors/editrepository.py:199
 #, python-format
 msgid "Add Repository (%s)"
-msgstr "Dodaj Magazyn (%s)"
+msgstr "Dodaj Repozytorium (%s)"
 
 #: ../gramps/gui/editors/editrepository.py:204
 #, python-format
 msgid "Edit Repository (%s)"
-msgstr "Edytuj Magazyn (%s)"
+msgstr "Edytuj Repozytorium (%s)"
 
 #: ../gramps/gui/editors/editsource.py:64
 msgctxt "manual"
@@ -15257,7 +15252,7 @@ msgstr "Okno_wyboru_tagów"
 #: ../gramps/gui/editors/edittaglist.py:70
 #: ../gramps/gui/editors/edittaglist.py:127
 msgid "Tag selection"
-msgstr "Wybór atrybutu"
+msgstr "Wybór tagu"
 
 #: ../gramps/gui/editors/editurl.py:47
 msgctxt "manual"
@@ -15309,7 +15304,7 @@ msgstr "Filtry obiektów medialnych"
 
 #: ../gramps/gui/editors/filtereditor.py:97
 msgid "Repository Filters"
-msgstr "Filtry magazynów"
+msgstr "Filtry Repozytoriów"
 
 #: ../gramps/gui/editors/filtereditor.py:98
 msgid "Note Filters"
@@ -15364,9 +15359,7 @@ msgstr "Uwzględniaj wielkość liter"
 
 #: ../gramps/gui/editors/filtereditor.py:578
 msgid "Regular-Expression matching:"
-msgstr ""
-"Dopasowanie wyrażenia\n"
-"regularnego:"
+msgstr "Dopasowywanie wyrażeń regularnych:"
 
 #: ../gramps/gui/editors/filtereditor.py:579
 msgid "Use regular expression"
@@ -15688,12 +15681,12 @@ msgstr "Cytat:"
 #: ../gramps/plugins/textreport/tagreport.py:827
 #: ../gramps/plugins/view/citationlistview.py:97
 msgid "Volume/Page"
-msgstr "Tom/Strona:"
+msgstr "Tom/Strona"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:115
 msgctxt "Citation: Minimum Confidence"
 msgid "Min. Conf."
-msgstr "Cytat: Minimalny poziom ufności"
+msgstr "Min. poziom ufności."
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:118
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:112
@@ -16037,7 +16030,7 @@ msgid ""
 "selected items"
 msgstr ""
 "Jeśli zaznaczysz tę kratkę, twoja następna odpowiedź zostanie zastosowana do "
-"reszty wybranych elementów."
+"reszty wybranych elementów"
 
 #: ../gramps/gui/glade/dialog.glade:776 ../gramps/gui/glade/dialog.glade:793
 #: ../gramps/gui/glade/dialog.glade:906
@@ -16349,7 +16342,7 @@ msgstr "Unikalne ID identyfikujące ten cytat"
 #: ../gramps/gui/glade/editrepository.glade:234
 #: ../gramps/gui/glade/editsource.glade:229
 msgid "Tags:"
-msgstr "Atrybuty:"
+msgstr "Tagi:"
 
 #: ../gramps/gui/glade/editdate.glade:140
 msgid "Calenda_r:"
@@ -16560,12 +16553,12 @@ msgstr ""
 #: ../gramps/gui/glade/editnote.glade:248
 #: ../gramps/gui/glade/editperson.glade:650
 msgid "_Tags:"
-msgstr "_Atrybuty:"
+msgstr "_Tagi:"
 
 #: ../gramps/gui/glade/editfamily.glade:764
 #: ../gramps/gui/widgets/monitoredwidgets.py:819
 msgid "Edit the tag list"
-msgstr "Edytuj listę atrybutów"
+msgstr "Edytuj listę tagów"
 
 #: ../gramps/gui/glade/editldsord.glade:180
 msgid "Ordinance:"
@@ -16913,8 +16906,9 @@ msgid ""
 msgstr ""
 "Widok drzewa osób grupuje osoby według ich głównego nazwiska. Możesz zmienić "
 "to zachowanie tutaj przez ustawienie\n"
-"wartości grupującej. Będziesz później spytany, czy chcesz zastosować to "
-"tylko do danej osoby, albo do wszystkich osób\n"
+"wartości grupującej. \n"
+"Będziesz później spytany, czy chcesz zastosować to tylko do danej osoby, "
+"albo do wszystkich osób\n"
 "o określonym głównym nazwisku."
 
 #: ../gramps/gui/glade/editname.glade:615
@@ -17160,7 +17154,7 @@ msgstr "Nazwa tego miejsca."
 #: ../gramps/gui/glade/editplace.glade:458
 #: ../gramps/gui/glade/editplaceref.glade:618
 msgid "Invoke place name editor."
-msgstr "Wywołaj edytor miejsc"
+msgstr "Wywołaj edytor miejsc."
 
 #: ../gramps/gui/glade/editplaceformat.glade:124
 msgid "Levels:"
@@ -17226,7 +17220,7 @@ msgstr "Jakiego typu obiekty medialne tego źródła są dostępne w repozytoriu
 
 #: ../gramps/gui/glade/editreporef.glade:209
 msgid "Id number of the source in the repository."
-msgstr "Numer ID źródła w magazynie."
+msgstr "Numer ID źródła w repozytorium."
 
 #: ../gramps/gui/glade/editreporef.glade:264
 #: ../gramps/gui/glade/editrepository.glade:97
@@ -17238,7 +17232,7 @@ msgstr "Nazwa:"
 #: ../gramps/gui/glade/editreporef.glade:293
 #: ../gramps/gui/glade/editrepository.glade:126
 msgid "Name of the repository (where sources are stored)."
-msgstr "Nazwa magazynu (gdzie źródła są przechowywane)."
+msgstr "Nazwa repozytorium (gdzie źródła są przechowywane)."
 
 #: ../gramps/gui/glade/editreporef.glade:329
 msgid ""
@@ -17246,19 +17240,19 @@ msgid ""
 "reflected in the repository itself, for all items that reference the "
 "repository."
 msgstr ""
-"<b>Uwaga:</b> Wszystkie zmiany we współdzielonych informacjach o magazynie "
-"będą odzwierciedlone w samym magazynie, dla wszystkich obiektów, które się "
-"do niego odwołują."
+"<b>Uwaga:</b> Wszystkie zmiany we współdzielonych informacjach o "
+"repozytorium będą odzwierciedlone w samym repozytorium, dla wszystkich "
+"obiektów, które się do niego odwołują."
 
 #: ../gramps/gui/glade/editreporef.glade:370
 #: ../gramps/gui/glade/editrepository.glade:179
 msgid "A unique ID to identify the repository."
-msgstr "Unikalne ID do identyfikacji magazynu."
+msgstr "Unikalne ID do identyfikacji repozytorium."
 
 #: ../gramps/gui/glade/editreporef.glade:424
 #: ../gramps/gui/glade/editrepository.glade:144
 msgid "Type of repository, eg., 'Library', 'Album', ..."
-msgstr "Typ magazynu, np.: 'Biblioteka', 'Album', ..."
+msgstr "Typ repozytorium, np.: 'Biblioteka', 'Album', ..."
 
 #: ../gramps/gui/glade/editsource.glade:112
 msgid "_Author:"
@@ -17504,8 +17498,8 @@ msgid ""
 "Events, lds_ord, media objects, attributes, notes, sources and tags of both "
 "families will be combined."
 msgstr ""
-"Zdarzenia, lds_ord, obiekty medialne, atrybuty, notatki, źródła, atrybuty "
-"obu rodzin będą połączone."
+"Zdarzenia, lds_ord, obiekty medialne, atrybuty, notatki, źródła i tagi obu "
+"rodzin będą połączone."
 
 #: ../gramps/gui/glade/mergemedia.glade:97
 msgid ""
@@ -17525,7 +17519,7 @@ msgstr "Obiekt 2"
 
 #: ../gramps/gui/glade/mergemedia.glade:455
 msgid "Attributes, sources, notes and tags of both objects will be combined."
-msgstr "Atrybuty, źródła, notatki oraz atrybuty obu obiektów będą połączone."
+msgstr "Atrybuty, źródła, notatki i tagi obu obiektów będą połączone."
 
 #: ../gramps/gui/glade/mergenote.glade:97
 msgid ""
@@ -17576,8 +17570,8 @@ msgid ""
 "Events, media objects, addresses, attributes, urls, notes, sources and tags "
 "of both persons will be combined."
 msgstr ""
-"Zdarzenia, obiekty medialne, adresy, atrybuty, adresy url, notatki, źródła "
-"oraz atrybuty obu osób będą połączone."
+"Zdarzenia, obiekty medialne, adresy, atrybuty, adresy url, notatki, źródła i "
+"tagi obu osób będą połączone."
 
 #: ../gramps/gui/glade/mergeperson.glade:500
 msgid "Context Information"
@@ -17604,20 +17598,20 @@ msgid ""
 "Select the repository that will provide the\n"
 "primary data for the merged repository."
 msgstr ""
-"Zaznacz magazyn, które będzie zapewniać\n"
-"podstawowe dane dla łączonego magazynu."
+"Zaznacz repozytorium, które będzie zapewniać\n"
+"podstawowe dane dla łączonego repozytorium."
 
 #: ../gramps/gui/glade/mergerepository.glade:186
 msgid "Repository 1"
-msgstr "Magazyn 1"
+msgstr "Repozytorium 1"
 
 #: ../gramps/gui/glade/mergerepository.glade:200
 msgid "Repository 2"
-msgstr "Magazyn 2"
+msgstr "Repozytorium 2"
 
 #: ../gramps/gui/glade/mergerepository.glade:398
 msgid "Addresses, urls and notes of both repositories will be combined."
-msgstr "Adresy, odnośniki URL oraz notatki obu magazynów będą połączone."
+msgstr "Adresy, odnośniki URL oraz notatki obu repozytoriów będą połączone."
 
 #: ../gramps/gui/glade/mergesource.glade:97
 msgid ""
@@ -17632,8 +17626,8 @@ msgid ""
 "Notes, media objects, data-items and repository references of both sources "
 "will be combined."
 msgstr ""
-"Notatki, obiekty medialne, elementy danych oraz odniesienia do magazynów obu "
-"źródeł będą połączone."
+"Notatki, obiekty medialne, elementy danych oraz odniesienia do repozytoriów "
+"obu źródeł będą połączone."
 
 #: ../gramps/gui/glade/papermenu.glade:8
 msgid "Paper Settings"
@@ -17720,7 +17714,7 @@ msgstr "Stan:"
 
 #: ../gramps/gui/glade/plugins.glade:206
 msgid "Author's email:"
-msgstr "Email autora"
+msgstr "Email autora:"
 
 #: ../gramps/gui/glade/reorder.glade:87
 msgid "Parent relationships"
@@ -18729,7 +18723,7 @@ msgstr "Łączenie miejsc"
 #: ../gramps/gui/merge/mergerepository.py:44
 msgctxt "manual"
 msgid "Merge_Repositories"
-msgstr "Połącz_magazyny"
+msgstr "Połącz_Repozytoria"
 
 #: ../gramps/gui/merge/mergesource.py:45
 msgctxt "manual"
@@ -18854,7 +18848,7 @@ msgstr "Wiki"
 
 #: ../gramps/gui/plug/_windows.py:244
 msgid "Requires"
-msgstr "Wymaga"
+msgstr "Wymaga dodatkowych modułów"
 
 #: ../gramps/gui/plug/_windows.py:249
 msgid "Upgrade"
@@ -19324,7 +19318,6 @@ msgstr ""
 "przez Gramps formatów. Można tego używać w celu wykonania (zapasowej) kopii "
 "danych lub przekonwertowaniu ich do formatu, który pozwoli przenieść je do "
 "innego programu.\n"
-"\n"
 "\n"
 "Jeśli w czasie tej operacji zmienisz zdanie, możesz w dowolnym momencie "
 "bezpiecznie wcisnąć przycisk Anuluj i baza danych pozostanie nienaruszona."
@@ -20005,12 +19998,12 @@ msgstr "Okno_wyboru_miejsca"
 
 #: ../gramps/gui/selectors/selectrepository.py:59
 msgid "Select Repository"
-msgstr "Wybierz Magazyn"
+msgstr "Wybierz Repozytorium"
 
 #: ../gramps/gui/selectors/selectrepository.py:78
 msgctxt "manual"
 msgid "Select_Repository_selector"
-msgstr "Okno_wyboru_magazynu"
+msgstr "Okno_wyboru_Repozytorium"
 
 #: ../gramps/gui/selectors/selectsource.py:59
 msgid "Select Source"
@@ -20491,11 +20484,11 @@ msgstr "Taguj zaznaczone wiersze"
 
 #: ../gramps/gui/views/tags.py:94
 msgid "New Tag..."
-msgstr "Nowy tag..."
+msgstr "Nowy Tag..."
 
 #: ../gramps/gui/views/tags.py:94
 msgid "Organize Tags..."
-msgstr "Organizuj tagi..."
+msgstr "Organizuj Tagi..."
 
 #: ../gramps/gui/views/tags.py:113
 msgctxt "manual"
@@ -20519,43 +20512,43 @@ msgstr "Usuń tag '%s'"
 
 #: ../gramps/gui/views/tags.py:310
 msgid "Adding Tags"
-msgstr "Dodawanie atrybutów"
+msgstr "Dodawanie Tagów"
 
 #: ../gramps/gui/views/tags.py:315 ../gramps/gui/views/tags.py:337
 #, python-format
 msgid "Tag Selection (%s)"
-msgstr "Wybrany atrybut (%s)"
+msgstr "Wybrany Tag (%s)"
 
 #: ../gramps/gui/views/tags.py:332 ../gramps/gui/views/tags.py:590
 msgid "Removing Tags"
-msgstr "Usuwanie atrybutów"
+msgstr "Usuwanie Tagów"
 
 #: ../gramps/gui/views/tags.py:386 ../gramps/gui/views/tags.py:396
 #: ../gramps/gui/views/tags.py:464
 msgid "Organize Tags"
-msgstr "Organizuj atrybuty"
+msgstr "Organizuj Tagi"
 
 #: ../gramps/gui/views/tags.py:415
 msgid "Change Tag Priority"
-msgstr "Zmień priorytet atrybutów"
+msgstr "Zmień priorytet Tagów"
 
 #: ../gramps/gui/views/tags.py:557
 #, python-format
 msgid "Remove tag '%s'?"
-msgstr "Usunąć atrybut '%s'?"
+msgstr "Usunąć tag '%s'?"
 
 #: ../gramps/gui/views/tags.py:558
 msgid ""
 "The tag definition will be removed.  The tag will be also removed from all "
 "objects in the database."
 msgstr ""
-"Definicja znacznika będzie usunięta. Znacznik będzie też usunięty ze "
-"wszystkich obiektów w bazie."
+"Definicja tagu będzie usunięta. Tag będzie też usunięty ze wszystkich "
+"obiektów w bazie."
 
 #: ../gramps/gui/views/tags.py:595
 #, python-format
 msgid "Delete Tag (%s)"
-msgstr "Usuń atrybut (%s)"
+msgstr "Usuń Tag (%s)"
 
 #: ../gramps/gui/views/tags.py:620
 #, python-format
@@ -20568,25 +20561,25 @@ msgstr "Nowy Tag"
 
 #: ../gramps/gui/views/tags.py:669
 msgid "Cannot save tag"
-msgstr "Nie można zapisać taga"
+msgstr "Nie można zapisać Taga"
 
 #: ../gramps/gui/views/tags.py:670
 msgid "The tag name cannot be empty"
-msgstr "Nazwa taga nie może być pusta"
+msgstr "Nazwa Taga nie może być pusta"
 
 #: ../gramps/gui/views/tags.py:675
 #, python-format
 msgid "Add Tag (%s)"
-msgstr "Dodaj tag (%s)"
+msgstr "Dodaj Tag (%s)"
 
 #: ../gramps/gui/views/tags.py:681
 #, python-format
 msgid "Edit Tag (%s)"
-msgstr "Edytuj tag (%s)"
+msgstr "Edytuj Tag (%s)"
 
 #: ../gramps/gui/views/tags.py:696
 msgid "Tag Name:"
-msgstr "Nazwa taga:"
+msgstr "Nazwa Taga:"
 
 #: ../gramps/gui/views/tags.py:703
 #, python-format
@@ -22192,7 +22185,7 @@ msgstr "pół okręgu"
 
 #: ../gramps/plugins/drawreport/fanchart.py:735
 msgid "overhang"
-msgstr ""
+msgstr "nawis"
 
 #: ../gramps/plugins/drawreport/fanchart.py:736
 msgid "quarter circle"
@@ -22511,9 +22504,7 @@ msgstr "Wybierz, osoby której płci mają być dołączone do statystyki."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1071
 msgid "Max. items for a pie"
-msgstr ""
-"Maks. ilość elementów\n"
-"dla wykresu kołowego"
+msgstr "Maks. ilość elementów dla wykresu kołowego"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1072
 msgid ""
@@ -22881,7 +22872,7 @@ msgstr "Zapisywanie notatek"
 
 #: ../gramps/plugins/export/exportgedcom.py:1055
 msgid "Writing repositories"
-msgstr "Zapisywanie magazynów"
+msgstr "Zapisywanie repozytoriów"
 
 #: ../gramps/plugins/export/exportgedcom.py:1172
 #: ../gramps/plugins/lib/libgedcom.py:6401
@@ -23527,7 +23518,7 @@ msgstr "Szczegóły"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:364
 msgid "Repository Details"
-msgstr "Szczegóły magazynu"
+msgstr "Szczegóły repozytorium"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:365
 msgid "Gramplet showing details of a repository"
@@ -23753,7 +23744,7 @@ msgstr "Zapisywanie źródła"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:751
 msgid "Gramplet showing the notes for a repository"
-msgstr "Gramplet pokazujący notatki dla magazynu"
+msgstr "Gramplet pokazujący notatki dla repozytorium"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:764
 msgid "Media Notes"
@@ -23970,11 +23961,11 @@ msgstr "Wybór zapewniający filtr obiektów medialnych"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1114
 msgid "Repository Filter"
-msgstr "Filtr magazynów"
+msgstr "Filtr Repozytoriów"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1115
 msgid "Gramplet providing a repository filter"
-msgstr "Wybór zapewniający filtr magazynów"
+msgstr "Gramplet zapewniający filtr repozytoriów"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1128
 msgid "Note Filter"
@@ -24049,7 +24040,7 @@ msgstr "Repozytoria Do zrobienia"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1243
 msgid "Gramplet showing the To Do notes for a repository"
-msgstr "Gramplet pokazujący notatki Do zrobienia dla magazynu"
+msgstr "Gramplet pokazujący notatki Do zrobienia dla repozytorium"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1256
 msgid "Media To Do"
@@ -25885,12 +25876,12 @@ msgstr "typ"
 #: ../gramps/plugins/importer/importcsv.py:244
 #: ../gramps/plugins/tool/removespaces.py:194
 msgid "latitude"
-msgstr "Szerokość geogr."
+msgstr "szerokość geograficzna"
 
 #: ../gramps/plugins/importer/importcsv.py:245
 #: ../gramps/plugins/tool/removespaces.py:198
 msgid "longitude"
-msgstr "Długość geogr."
+msgstr "długość geograficzna"
 
 #: ../gramps/plugins/importer/importcsv.py:246
 msgid "code"
@@ -26117,9 +26108,7 @@ msgstr "Błąd ekstrakcji do %s"
 
 #: ../gramps/plugins/importer/importgpkg.py:107
 msgid "Base path for relative media set"
-msgstr ""
-"Ścieżka bazowa dla względnych\n"
-"ścieżek do mediów"
+msgstr "Ścieżka bazowa dla względnych ścieżek do mediów"
 
 #: ../gramps/plugins/importer/importgpkg.py:108
 #, python-format
@@ -26253,7 +26242,7 @@ msgid ""
 "Default Tagtext\n"
 "(out of Settings)."
 msgstr ""
-"Domyślny text taga\n"
+"Domyślny text Taga\n"
 "(z Ustawień)."
 
 #: ../gramps/plugins/importer/importprogen.glade:443
@@ -26280,7 +26269,7 @@ msgid ""
 "to all Tag Text'."
 msgstr ""
 "Kopiuj domyślny tekst\n"
-"do tekstu każdego taga."
+"do tekstu każdego Taga."
 
 #: ../gramps/plugins/importer/importprogen.glade:1130
 msgid ""
@@ -26288,7 +26277,7 @@ msgid ""
 "to all sensitive Tag Text'."
 msgstr ""
 "Kopiuj domyślną nazwę pliku\n"
-"do wszystkich wrażliwych tekstów tagów'."
+"do wszystkich wrażliwych tekstów Tagów'."
 
 #: ../gramps/plugins/importer/importprogen.glade:1149
 msgid ""
@@ -26296,7 +26285,7 @@ msgid ""
 "to all sensitive Tag Text'."
 msgstr ""
 "Kopiuj domyślną datę\n"
-"do wszystkich wrażliwych tekstów tagów”."
+"do wszystkich wrażliwych tekstów Tagów”."
 
 #: ../gramps/plugins/importer/importprogen.glade:1164
 msgid "  Objects"
@@ -26307,12 +26296,12 @@ msgid ""
 "Enable/Disable\n"
 "all object tags."
 msgstr ""
-"Włącz/wyłącz\n"
-"wszystkie tagi obiektów."
+"Włącz/Wyłącz\n"
+"wszystkie Tagi obiektów."
 
 #: ../gramps/plugins/importer/importprogen.glade:1198
 msgid "Tag Text"
-msgstr "Tekst taga"
+msgstr "Tekst Taga"
 
 #: ../gramps/plugins/importer/importprogen.glade:1217
 msgid "Import Objects"
@@ -26971,7 +26960,7 @@ msgstr "Linia zignorowana jako niezrozumiała"
 
 #: ../gramps/plugins/lib/libgedcom.py:3488
 msgid "Tag recognized but not supported"
-msgstr "Znacznik rozpoznany ale nie obsługiwany"
+msgstr "Tag rozpoznany ale nie obsługiwany"
 
 #: ../gramps/plugins/lib/libgedcom.py:3524
 msgid "Skipped subordinate line"
@@ -27047,7 +27036,7 @@ msgstr "Dane GEDCOM"
 
 #: ../gramps/plugins/lib/libgedcom.py:3989
 msgid "Unknown tag"
-msgstr "Nieznany znacznik"
+msgstr "Nieznany tag"
 
 #: ../gramps/plugins/lib/libgedcom.py:3991
 #: ../gramps/plugins/lib/libgedcom.py:4005
@@ -27356,28 +27345,20 @@ msgid "Descriptive Tags"
 msgstr "Tagi opisowe"
 
 #: ../gramps/plugins/lib/libmetadata.py:116
-#, fuzzy
-#| msgid "Styled Text Tags"
 msgid "Date and Time Tags"
-msgstr "Tagi stylizowanego tekstu"
+msgstr "Data i czas Tagów"
 
 #: ../gramps/plugins/lib/libmetadata.py:117
-#, fuzzy
-#| msgid "People"
 msgid "People Tags"
-msgstr "Osoby"
+msgstr "Tagi Osób"
 
 #: ../gramps/plugins/lib/libmetadata.py:118
-#, fuzzy
-#| msgid "Events"
 msgid "Event Tags"
-msgstr "Wydarzenia"
+msgstr "Tagi Wydarzeń"
 
 #: ../gramps/plugins/lib/libmetadata.py:119
-#, fuzzy
-#| msgid "Images"
 msgid "Image Tags"
-msgstr "Obrazy"
+msgstr "Tagi Obrazów"
 
 #: ../gramps/plugins/lib/libmetadata.py:120
 #, fuzzy
@@ -27386,28 +27367,20 @@ msgid "Camera Information"
 msgstr "Format miejsca"
 
 #: ../gramps/plugins/lib/libmetadata.py:121
-#, fuzzy
-#| msgid "Locations"
 msgid "Location Tags"
-msgstr "Położenie"
+msgstr "Tagi Miejsc"
 
 #: ../gramps/plugins/lib/libmetadata.py:122
-#, fuzzy
-#| msgid "Advanced"
 msgid "Advanced Tags"
-msgstr "Zaawansowane"
+msgstr "Tagi zaawansowane"
 
 #: ../gramps/plugins/lib/libmetadata.py:123
-#, fuzzy
-#| msgid "Edit Tags"
 msgid "Rights Tags"
-msgstr "Edytuj atrybuty"
+msgstr "Tagi praw"
 
 #: ../gramps/plugins/lib/libmetadata.py:124
-#, fuzzy
-#| msgid "Keywords"
 msgid "Keyword Tags"
-msgstr "Słowa kluczowe"
+msgstr "Tagi słów kluczowych"
 
 #: ../gramps/plugins/lib/libmetadata.py:220
 #, fuzzy
@@ -31118,7 +31091,7 @@ msgstr "Import Pro-Gen"
 
 #: ../gramps/plugins/lib/libprogen.py:539
 msgid "Saving."
-msgstr "Zapisywanie"
+msgstr "Zapisywanie."
 
 #: ../gramps/plugins/lib/libprogen.py:929
 msgid "Pro-Gen Import"
@@ -31842,7 +31815,7 @@ msgstr "odwróć źródła"
 #: ../gramps/plugins/quickview/filterbyname.py:47
 msgctxt "Filtering_on"
 msgid "Inverse Repository"
-msgstr "odwróć magazyny"
+msgstr "Odwróć Repozytoria"
 
 #: ../gramps/plugins/quickview/filterbyname.py:48
 msgctxt "Filtering_on"
@@ -31882,7 +31855,7 @@ msgstr "wszystkie źródła"
 #: ../gramps/plugins/quickview/filterbyname.py:55
 msgctxt "Filtering_on"
 msgid "all repositories"
-msgstr "wszystkie magazyny"
+msgstr "wszystkie repozytoria"
 
 #: ../gramps/plugins/quickview/filterbyname.py:56
 msgctxt "Filtering_on"
@@ -32259,7 +32232,8 @@ msgstr "Wyświetli odnośniki linków jako notatki"
 #: ../gramps/plugins/quickview/quickview.gpr.py:252
 msgid ""
 "Display the repository reference for sources related to the active repository"
-msgstr "Wyświetl odwołania do źródeł w odniesieniu do aktywnego magazynu"
+msgstr ""
+"Wyświetl odwołania do repozytorium w odniesieniu do aktywnego repozytorium"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:272
 msgid "Same Surnames"
@@ -32289,7 +32263,7 @@ msgstr "Wyświetl rodzeństwo osoby."
 #: ../gramps/plugins/quickview/references.py:68
 #, python-format
 msgid "References for this %s"
-msgstr "Odniesienia do tego %s:"
+msgstr "Odniesienia do tego %s"
 
 #: ../gramps/plugins/quickview/references.py:80
 #, python-format
@@ -32926,7 +32900,7 @@ msgstr " "
 #: ../gramps/plugins/textreport/detdescendantreport.py:679
 #, python-format
 msgid "Children of %(mother_name)s and %(father_name)s"
-msgstr "Dzieci %(mother_name)s i %(father_name)s:"
+msgstr "Dzieci %(mother_name)s i %(father_name)s"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:690
 #: ../gramps/plugins/textreport/detdescendantreport.py:788
@@ -33517,11 +33491,11 @@ msgstr "Określa, czy cytować źródła."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1145
 msgid "Include Tags"
-msgstr "Dołącz tagi"
+msgstr "Dołącz Tagi"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1146
 msgid "Whether to include tags."
-msgstr "Określa, czy dołączać tagi."
+msgstr "Określa, czy dołączać Tagi."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1149
 msgid "Include Attributes"
@@ -33562,7 +33536,7 @@ msgstr "Podstawowy styl używany do nagłówków tabeli."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1270
 msgid "The style used for image notes."
-msgstr "Styl używany do notatek obrazów"
+msgstr "Styl używany do notatek obrazów."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1280
 #, fuzzy
@@ -33958,16 +33932,16 @@ msgstr "Styl używany do nagłówka trzeciego poziomu."
 #: ../gramps/plugins/textreport/tagreport.py:106
 #: ../gramps/plugins/textreport/textplugins.gpr.py:258
 msgid "Tag Report"
-msgstr "Raport tagów"
+msgstr "Raport Tagów"
 
 #: ../gramps/plugins/textreport/tagreport.py:107
 msgid "You must first create a tag before running this report."
-msgstr "Musisz utworzyć tag przed uruchomieniem tego raportu."
+msgstr "Musisz utworzyć Tag przed uruchomieniem tego raportu."
 
 #: ../gramps/plugins/textreport/tagreport.py:116
 #, python-format
 msgid "Tag Report for %s Items"
-msgstr "Raport tagów dla %s elementów"
+msgstr "Raport Tagów dla %s elementów"
 
 #: ../gramps/plugins/textreport/tagreport.py:672
 msgid "Email Address"
@@ -34052,7 +34026,7 @@ msgstr "Generuje tekstowy raport relacji rodzinnych dla danej osoby"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:259
 msgid "Produces a list of people with a specified tag"
-msgstr "Generuje listę osób z określonym tagiem"
+msgstr "Generuje listę osób z określonym Tagiem"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:281
 msgid "Number of Ancestors Report"
@@ -34128,10 +34102,9 @@ msgid "_Accept changes and close"
 msgstr "Zaakceptuj zmiany i zamknij"
 
 #: ../gramps/plugins/tool/changenames.py:64
-#, fuzzy
 msgctxt "manual"
 msgid "Fix_Capitalization_of_Family_Names"
-msgstr "Poprawa wielkich/małych liter w nazwiskach..."
+msgstr ""
 
 #: ../gramps/plugins/tool/changenames.py:75
 #: ../gramps/plugins/tool/changenames.py:236
@@ -34338,7 +34311,7 @@ msgstr "Wyszukiwanie wpisów z pustymi obiektami medialnymi"
 
 #: ../gramps/plugins/tool/check.py:940
 msgid "Looking for empty repository records"
-msgstr "Wyszukiwanie wpisów z pustymi magazynami"
+msgstr "Wyszukiwanie wpisów z pustymi repozytoriami"
 
 #: ../gramps/plugins/tool/check.py:947
 msgid "Looking for empty note records"
@@ -34372,7 +34345,7 @@ msgstr "Wyszukiwanie problemów z odwołaniami do rodzin"
 
 #: ../gramps/plugins/tool/check.py:1385
 msgid "Looking for repository reference problems"
-msgstr "Wyszukiwanie problemów z odwołaniami do magazynów"
+msgstr "Wyszukiwanie problemów z odwołaniami do repozytoriów"
 
 #: ../gramps/plugins/tool/check.py:1420
 msgid "Looking for place reference problems"
@@ -34541,11 +34514,9 @@ msgstr[2] "{quantity} dat zostało poprawionych\n"
 msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
 msgstr[0] ""
-"Istniało {quantity} odwołanie do magazynu, którego nie odnaleziono\n"
-msgstr[1] ""
-"Istniało odwołanie do {quantity} magazynów, których nie odnaleziono\n"
-msgstr[2] ""
-"Istniało odwołanie do {quantity} magazynów, których nie odnaleziono\n"
+"Istniało {quantity} odwołanie do repozytorium, którego nie odnaleziono\n"
+msgstr[1] "Istniało {quantity} odwołań do repozytoriów, których nie odnaleziono\n"
+msgstr[2] "Istniało {quantity} odwołań do repozytoriów, których nie odnaleziono\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2604 ../gramps/plugins/tool/check.py:2691
@@ -34658,11 +34629,9 @@ msgstr[2] "Istniało {quantity} odwołań do notatek, których nie odnaleziono.\
 #, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
-msgstr[0] "Istniało {quantity} odwołań do taga, którego nie odnaleziono\n"
-msgstr[1] ""
-"Istniało {quantity} odwołania do znaczników, których nie odnaleziono.\n"
-msgstr[2] ""
-"Istniało {quantity} odwołań do znaczników, których nie odnaleziono.\n"
+msgstr[0] "Istniało {quantity} odwołań do Taga, którego nie odnaleziono\n"
+msgstr[1] "Istniało {quantity} odwołań do Taga, których nie odnaleziono.\n"
+msgstr[2] "Istniało {quantity} odwołań do Taga, których nie odnaleziono.\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2730
@@ -34710,7 +34679,7 @@ msgstr ""
 "   %(source)d obiektów typu źródło\n"
 "   %(media)d obiektów medialnych\n"
 "   %(place)d obiektów typu miejsce\n"
-"   %(repo)d obiektów typu magazyn\n"
+"   %(repo)d obiektów typu repozytorium\n"
 "   %(note)d obiektów typu notatka\n"
 
 #: ../gramps/plugins/tool/check.py:2779
@@ -34798,10 +34767,9 @@ msgid "Custom filter _editor"
 msgstr "Edytor filtrów własnych"
 
 #: ../gramps/plugins/tool/eventcmp.py:71
-#, fuzzy
 msgctxt "manual"
 msgid "Compare_Individual_Events"
-msgstr "Porównywanie poszczególnych zdarzeń..."
+msgstr ""
 
 #: ../gramps/plugins/tool/eventcmp.py:139
 msgid "Event comparison filter selection"
@@ -34894,10 +34862,9 @@ msgid "Co_mpare"
 msgstr "Porównaj"
 
 #: ../gramps/plugins/tool/finddupes.py:66
-#, fuzzy
 msgctxt "manual"
 msgid "Find_Possible_Duplicate_People"
-msgstr "Wyszukiwanie zduplikowanych osób..."
+msgstr ""
 
 #: ../gramps/plugins/tool/finddupes.py:126
 #: ../gramps/plugins/tool/tools.gpr.py:153
@@ -35273,9 +35240,9 @@ msgstr "Każdy w bazie jest spokrewniony do %s"
 #, python-brace-format
 msgid "Setting tag for {number_of} person"
 msgid_plural "Setting tag for {number_of} people"
-msgstr[0] "Ustawianie taga dla {number_of} osoby"
-msgstr[1] "Ustawianie atrybutu dla {number_of} osób"
-msgstr[2] "Ustawianie atrybutu dla {number_of} ludzi"
+msgstr[0] "Ustawianie Taga dla {number_of} osoby"
+msgstr[1] "Ustawianie Taga dla {number_of} osób"
+msgstr[2] "Ustawianie Taga dla {number_of} ludzi"
 
 #. Translators: leave all/any {...} untranslated
 #. TRANS: No singular form is needed.
@@ -35344,10 +35311,9 @@ msgstr ""
 "Kliknij prawym przyciskiem myszy, aby skopiować z/do Preferencji Naukowca"
 
 #: ../gramps/plugins/tool/ownereditor.py:56
-#, fuzzy
 msgctxt "manual"
 msgid "Edit_Database_Owner_Information"
-msgstr "Edycja informacji o właścicielu bazy..."
+msgstr ""
 
 #: ../gramps/plugins/tool/ownereditor.py:102
 msgid "Database Owner Editor"
@@ -35545,9 +35511,8 @@ msgid "firstname"
 msgstr "pierwsze imię"
 
 #: ../gramps/plugins/tool/removespaces.py:148
-#, fuzzy
 msgid "alternate name"
-msgstr "Alternatywne nazwiska"
+msgstr "alternatywne nazwiska"
 
 #: ../gramps/plugins/tool/removespaces.py:152
 msgid "group as"
@@ -35600,7 +35565,7 @@ msgstr "Szukaj obiektów medialnych"
 
 #: ../gramps/plugins/tool/removeunused.glade:179
 msgid "Search for repositories"
-msgstr "Szukaj magazynów"
+msgstr "Szukaj repozytoriów"
 
 #: ../gramps/plugins/tool/removeunused.glade:197
 msgid "Search for notes"
@@ -35644,14 +35609,8 @@ msgid "Enable ID reordering."
 msgstr "Włącz zmianę kolejności ID."
 
 #: ../gramps/plugins/tool/reorderids.glade:1420
-#, fuzzy
-#| msgid ""
-#| "List next ID available\n"
-#| "(maynot be continuous)."
 msgid "List next ID available (may not be continuous)."
-msgstr ""
-"Wyświetl następne wolne numery ID\n"
-"(numeracja może nie być ciągła)."
+msgstr "Wyświetl następne wolne numery ID (numeracja może nie być ciągła)."
 
 #: ../gramps/plugins/tool/reorderids.glade:1423
 msgid "  Actual"
@@ -35674,14 +35633,8 @@ msgid "Change"
 msgstr "Zmiana"
 
 #: ../gramps/plugins/tool/reorderids.glade:1469
-#, fuzzy
-#| msgid ""
-#| "Enable ID reordering\n"
-#| "with Start / Step sequence."
 msgid "Enable ID reordering with Start / Step sequence."
-msgstr ""
-"Włącz zmianę kolejności ID\n"
-"z sekwencją Start / Krok."
+msgstr "Włącz zmianę kolejności ID z sekwencją Start / Krok."
 
 #: ../gramps/plugins/tool/reorderids.glade:1481
 msgid "Start"
@@ -35719,7 +35672,7 @@ msgstr "Poprzestawiaj wewnętrzne identyfikatory Gramps"
 #: ../gramps/plugins/tool/reorderids.py:631
 #: ../gramps/plugins/tool/tools.gpr.py:375
 msgid "Reorder Gramps IDs"
-msgstr "Zmień kolejnoś identyfikatorów Gramps ID"
+msgstr "Zmień kolejność identyfikatorów Gramps ID"
 
 #: ../gramps/plugins/tool/reorderids.py:547
 #: ../gramps/plugins/tool/reorderids.py:552
@@ -37358,7 +37311,7 @@ msgstr "Pokaż nieznane osoby"
 
 #: ../gramps/plugins/view/pedigreeview.py:2130
 msgid "Show tags"
-msgstr "Pokaż tagi"
+msgstr "Pokaż Tagi"
 
 #: ../gramps/plugins/view/pedigreeview.py:2133
 msgid "Tree style"
@@ -37599,11 +37552,11 @@ msgstr "Adres URL wyszukiwania"
 
 #: ../gramps/plugins/view/repoview.py:112
 msgid "Add a new repository"
-msgstr "Dodaj nowy magazyn"
+msgstr "Dodaj nowe Repozytorium"
 
 #: ../gramps/plugins/view/repoview.py:114
 msgid "Delete the selected repository"
-msgstr "Usuń wybrany magazyn"
+msgstr "Usuń wybrane Repozytorium"
 
 #: ../gramps/plugins/view/repoview.py:115
 msgid "Merge the selected repositories"
@@ -37611,7 +37564,7 @@ msgstr "Połącz wybrane repozytoria"
 
 #: ../gramps/plugins/view/repoview.py:201
 msgid "Repository Filter Editor"
-msgstr "Edytor filtrów magazynów"
+msgstr "Edytor filtrów Repozytoriów"
 
 #: ../gramps/plugins/view/repoview.py:358
 msgid "Cannot merge repositories."
@@ -37623,9 +37576,9 @@ msgid ""
 "repository can be selected by holding down the control key while clicking on "
 "the desired repository."
 msgstr ""
-"Dokładnie dwa magazyny muszą być wybrane, żeby dokonać złączenia. Drugi "
-"magazyn może być zaznaczony przez przytrzymanie klawisza Ctrl w czasie "
-"klikania na pożądanym magazynie."
+"Dokładnie dwa repozytoria muszą być wybrane, żeby dokonać złączenia. Drugie "
+"repozytorium może być zaznaczone przez przytrzymanie klawisza Ctrl w czasie "
+"klikania na pożądanym repozytorium."
 
 #: ../gramps/plugins/view/sourceview.py:99
 msgid "Edit the selected source"
@@ -38743,11 +38696,11 @@ msgstr "Określa, czy dołączać strony źródeł."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2419
 msgid "Include repository pages"
-msgstr "Dołącz strony magazynów"
+msgstr "Dołącz strony repozytorium"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2421
 msgid "Whether or not to include the repository pages."
-msgstr "Określa, czy dołączać strony magazynów."
+msgstr "Określa, czy dołączać strony repozytorium."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2425
 msgid "Include GENDEX file (/gendex.txt)"
@@ -38850,12 +38803,12 @@ msgid "Google maps API key"
 msgstr "Klucz API do map Google"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2495
-#, fuzzy
-#| msgid "The API key used for the Google maps"
 msgid ""
 "The API key used for the Google maps.\n"
 "This key is mandatory and must be valid"
-msgstr "Klucz API używany do map Google"
+msgstr ""
+"Klucz API używany do map Google.\n"
+"Ten klucz jest obowiązkowy i musi być ważny"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2504
 #, fuzzy
@@ -39198,10 +39151,8 @@ msgstr "Nazwa"
 
 #: ../gramps/plugins/webreport/place.py:301
 #: ../gramps/plugins/webreport/place.py:313
-#, fuzzy
-#| msgid "State/Province:"
 msgid "State/Province"
-msgstr "Województwo:"
+msgstr "Województwo"
 
 #: ../gramps/plugins/webreport/place.py:528
 msgid "Place Map"
@@ -39209,7 +39160,7 @@ msgstr "Mapa miejsc"
 
 #: ../gramps/plugins/webreport/repository.py:105
 msgid "Creating repository pages"
-msgstr "Tworzenie stron magazynów"
+msgstr "Tworzenie stron repozytorium"
 
 #: ../gramps/plugins/webreport/repository.py:155
 msgid ""
@@ -39217,9 +39168,9 @@ msgid ""
 "by their title. Clicking on a repositories&#8217;s title will take you to "
 "that repositories&#8217;s page."
 msgstr ""
-"Ta strona zawiera spis wszystkich magazynów w bazie posortowanych według ich "
-"nazwy. Kliknięcie na nazwie magazynu zabierze Cię do strony poświęconej temu "
-"magazynowi."
+"Ta strona zawiera spis wszystkich repozytoriów w bazie posortowanych według "
+"ich nazwy. Kliknięcie na nazwie repozytorium zabierze Cię do strony "
+"poświęconej temu repozytorium."
 
 #: ../gramps/plugins/webreport/repository.py:173
 #, fuzzy
