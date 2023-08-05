@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
-"PO-Revision-Date: 2023-08-03 16:25+0000\n"
+"PO-Revision-Date: 2023-08-05 19:36+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -18238,7 +18238,7 @@ msgstr "Wijzigingen _annuleren en stoppen"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_About"
-msgstr "_Info over Gramps"
+msgstr "_Over Gramps"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Addon Manager..."
@@ -18286,7 +18286,7 @@ msgstr "_Stambomen beheren ..."
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Navigator"
-msgstr "_Navigator"
+msgstr "_Navigatie"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Plugin Manager"
