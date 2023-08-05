@@ -57,7 +57,6 @@ class DateParserUK(DateParser):
     # modifiers before the date
     modifier_to_int = {
         "перед": Date.MOD_BEFORE,
-        "до": Date.MOD_BEFORE,
         "раніше": Date.MOD_BEFORE,
         "після": Date.MOD_AFTER,
         "п.": Date.MOD_AFTER,
@@ -68,8 +67,8 @@ class DateParserUK(DateParser):
         "близько": Date.MOD_ABOUT,
         "бл.": Date.MOD_ABOUT,
         "біля": Date.MOD_ABOUT,
-        "from": Date.MOD_FROM,
-        "to": Date.MOD_TO,
+        "від": Date.MOD_FROM,
+        "до": Date.MOD_TO,
     }
 
     quality_to_int = {

@@ -66,8 +66,8 @@ class DateParserCA(DateParser):
         "cap a": Date.MOD_ABOUT,
         "al voltant": Date.MOD_ABOUT,
         "al voltant de": Date.MOD_ABOUT,
-        "from": Date.MOD_FROM,
-        "to": Date.MOD_TO,
+        "des de": Date.MOD_FROM,
+        "fins": Date.MOD_TO,
     }
 
     calendar_to_int = {
