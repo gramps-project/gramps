@@ -11,14 +11,14 @@
 # Arnau <arnaullv at gmail dot com>, 2017.
 # jcreusand <joan.creusandreu@gmail.com>, 2021.
 # Maite Guix <maite.guix@gmail.com>, 2022.
-# Arnau Llovet Vidal <arnaullv@gmail.com>, 2022.
+# Arnau Llovet Vidal <arnaullv@gmail.com>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
-"PO-Revision-Date: 2022-11-26 08:05+0000\n"
-"Last-Translator: Maite Guix <maite.guix@gmail.com>\n"
+"PO-Revision-Date: 2023-08-05 19:36+0000\n"
+"Last-Translator: Arnau Llovet Vidal <arnaullv@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ca/>\n"
 "Language: ca\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 5.0-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -3003,14 +3003,14 @@ msgstr "al voltant de "
 #: ../gramps/gen/datehandler/_datestrings.py:251
 msgctxt "date modifier"
 msgid "from "
-msgstr ""
+msgstr "des de "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:254
 msgctxt "date modifier"
 msgid "to "
-msgstr ""
+msgstr "fins "
 
 #: ../gramps/gen/datehandler/_datestrings.py:259
 msgctxt "date quality"
@@ -5522,16 +5522,12 @@ msgstr ""
 "amb una expressió regular"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:45
-#, fuzzy
-#| msgid "People with an alternate name"
 msgid "People who are neither male nor female"
-msgstr "Persones amb un nom alternatiu"
+msgstr "Persones que no són ni homes ni dones"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:47
-#, fuzzy
-#| msgid "Matches all people with unknown gender"
 msgid "Matches all people with other gender"
-msgstr "Concorda amb totes les persones de gènere desconegut"
+msgstr "Concorda amb totes les persones d'un altre gènere"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:45
 msgid "Number of relationships:"
@@ -7448,13 +7444,11 @@ msgstr "intèrval"
 
 #: ../gramps/gen/lib/date.py:2003
 msgid "from"
-msgstr ""
+msgstr "des de"
 
 #: ../gramps/gen/lib/date.py:2004
-#, fuzzy
-#| msgid "Stop"
 msgid "to"
-msgstr "Aturar"
+msgstr "fins"
 
 #: ../gramps/gen/lib/date.py:2005
 msgid "span"
@@ -7864,8 +7858,6 @@ msgid "Alternate Marriage"
 msgstr "Casament Alternatiu"
 
 #: ../gramps/gen/lib/eventtype.py:210
-#, fuzzy
-#| msgid "Stillborn"
 msgid "Stillbirth"
 msgstr "Nascut mort"
 
@@ -8106,12 +8098,9 @@ msgid "annul."
 msgstr "annul."
 
 #: ../gramps/gen/lib/eventtype.py:260
-#, fuzzy
-#| msgctxt "Will abbreviation"
-#| msgid "will."
 msgctxt "Stillbirth abbreviation"
 msgid "still."
-msgstr "test."
+msgstr "mort."
 
 #: ../gramps/gen/lib/family.py:155
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:60
@@ -8683,10 +8672,8 @@ msgid "Research"
 msgstr "Recerca"
 
 #: ../gramps/gen/lib/notetype.py:78
-#, fuzzy
-#| msgid "Analyzing names"
 msgid "Analysis"
-msgstr "Analitzant noms"
+msgstr "Anàlisis"
 
 #: ../gramps/gen/lib/notetype.py:79
 msgid "Transcript"
@@ -9262,14 +9249,12 @@ msgstr "Enllaç"
 #: ../gramps/gen/lib/styledtexttagtype.py:72
 #: ../gramps/gui/widgets/styledtexteditor.py:78
 msgid "Strikethrough"
-msgstr ""
+msgstr "Ratllat"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:73
 #: ../gramps/gui/widgets/styledtexteditor.py:78
-#, fuzzy
-#| msgid "Superscript"
 msgid "Subscript"
-msgstr "Superíndex"
+msgstr "Subíndex"
 
 #: ../gramps/gen/lib/surname.py:87 ../gramps/gen/lib/surname.py:91
 #: ../gramps/gen/utils/keyword.py:56 ../gramps/gui/clipboard.py:607
@@ -9448,11 +9433,11 @@ msgstr "Inestable"
 
 #: ../gramps/gen/plug/_pluginreg.py:63
 msgid "Experimental"
-msgstr ""
+msgstr "Experimental"
 
 #: ../gramps/gen/plug/_pluginreg.py:64
 msgid "Beta"
-msgstr ""
+msgstr "Beta"
 
 #: ../gramps/gen/plug/_pluginreg.py:65
 msgid "Stable"
@@ -9460,11 +9445,11 @@ msgstr "Estable"
 
 #: ../gramps/gen/plug/_pluginreg.py:73
 msgid "Developer"
-msgstr ""
+msgstr "Desenvolupador"
 
 #: ../gramps/gen/plug/_pluginreg.py:74
 msgid "Expert"
-msgstr ""
+msgstr "Expert"
 
 #: ../gramps/gen/plug/_pluginreg.py:99
 msgid "Quickreport"
@@ -12848,10 +12833,8 @@ msgid "Tab"
 msgstr "Etiqueta"
 
 #: ../gramps/gui/csvdialect.py:81
-#, fuzzy
-#| msgid "Check your installation."
 msgid "Choose your dialect"
-msgstr "Comprovi la instal·lació."
+msgstr "Tria el teu dialecte"
 
 #: ../gramps/gui/csvdialect.py:83
 msgid ""
@@ -15581,10 +15564,8 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:88
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:81
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:66
-#, fuzzy
-#| msgid "Case sensitive:"
 msgid "Case sensitive"
-msgstr "Distingir majúscules:"
+msgstr "Distingeix majúscules"
 
 #: ../gramps/gui/editors/filtereditor.py:650
 msgid "Rule Name"
@@ -19053,11 +19034,8 @@ msgid "Requires"
 msgstr "* Cal reiniciar"
 
 #: ../gramps/gui/plug/_windows.py:249
-#, fuzzy
-#| msgctxt "Graduation abbreviation"
-#| msgid "grad."
 msgid "Upgrade"
-msgstr "grad."
+msgstr "Actualitza"
 
 #: ../gramps/gui/plug/_windows.py:270
 #, fuzzy
@@ -19112,10 +19090,8 @@ msgid "Loading..."
 msgstr "Carregant..."
 
 #: ../gramps/gui/plug/_windows.py:494
-#, fuzzy
-#| msgid "No matches found"
 msgid "No matching addons found."
-msgstr "No s'han trobat concordàncies"
+msgstr "No s'han trobat extensions."
 
 #: ../gramps/gui/plug/_windows.py:617
 msgid "Allow Gramps to install required python modules"
@@ -20242,14 +20218,8 @@ msgid "Select_Source_selector"
 msgstr "Selector_Selecciona_Font"
 
 #: ../gramps/gui/spell.py:62
-#, fuzzy
-#| msgid ""
-#| "You have no installed dictionaries. Either install one or disable spell "
-#| "checking"
 msgid "You have no installed dictionaries."
-msgstr ""
-"No teniu diccionaris instal·lats. Instal·leu-ne un o deshabiliteu la "
-"correcció ortográfica"
+msgstr "No tens diccionaris instal·lats."
 
 #: ../gramps/gui/spell.py:82
 msgid "Off"
@@ -21921,13 +21891,7 @@ msgstr ""
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/drawreport/calendarreport.py:490
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "{spouse} and\n"
-#| " {person}, {nyears}"
-#| msgid_plural ""
-#| "{spouse} and\n"
-#| " {person}, {nyears}"
+#, python-brace-format
 msgid ""
 "{wife} and\n"
 " {person}, {nyears}"
@@ -21935,10 +21899,10 @@ msgid_plural ""
 "{wife} and\n"
 " {person}, {nyears}"
 msgstr[0] ""
-"{spouse} i\n"
+"{wife} i\n"
 " {person}, {nyears}"
 msgstr[1] ""
-"{spouse} i\n"
+"{wife} i\n"
 " {person}, {nyears}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:556
@@ -27669,10 +27633,8 @@ msgid "Label"
 msgstr "etiqueta"
 
 #: ../gramps/plugins/lib/libmetadata.py:222
-#, fuzzy
-#| msgid ", "
 msgid " "
-msgstr ", "
+msgstr " "
 
 #: ../gramps/plugins/lib/libnarrate.py:88
 #, python-format
@@ -39154,11 +39116,10 @@ msgstr ""
 "Maps..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2536
-#, fuzzy, python-format
-#| msgid "Died %(month_year)s (%(age)s)."
+#, python-format
 msgctxt "val"
 msgid "in %(inipth)s (%(val)s)"
-msgstr "Mort %(month_year)s (%(age)s)."
+msgstr "el %(inipth)s (%(val)s)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2538
 #, fuzzy
