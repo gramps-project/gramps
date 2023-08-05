@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
-"PO-Revision-Date: 2023-08-03 16:25+0000\n"
+"PO-Revision-Date: 2023-08-05 19:36+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -17997,7 +17997,7 @@ msgstr "_Roman (Times, serif)"
 
 #: ../gramps/gui/glade/styleeditor.glade:332
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
-msgstr "_Schweizerisch (Arial, Helvetica, Sans Serif)"
+msgstr "_Swiss (Arial, Helvetica, Sans Serif)"
 
 #: ../gramps/gui/glade/styleeditor.glade:355
 msgid "Size"
