@@ -9,13 +9,14 @@
 # Paulo Henrique Paiva de Moraes <paulohpmoraes@gmail.com>, 2016, 2017, 2018...
 # AL <andre.leopoldino+weblate@gmail.com>, 2022.
 # Luam Souza <luamsilva10@gmail.com>, 2022.
+# Nick Hall <nick-h@gramps-project.org>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
-"PO-Revision-Date: 2022-11-04 16:07+0000\n"
-"Last-Translator: Luam Souza <luamsilva10@gmail.com>\n"
+"PO-Revision-Date: 2023-08-05 19:36+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -23,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.14.2-dev\n"
+"X-Generator: Weblate 5.0-dev\n"
 "X-Poedit-Basepath: ../gramps-master/gramps\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -3281,16 +3282,16 @@ msgstr ""
 "Você não pode carregar esta árvore sem atualizar a versão da árvore.\n"
 "\n"
 "Se você atualizar então não poderá usar a versão anterior do Gramps, mesmo "
-"que depois você %(wiki_manual_backup_html_start)sfaça uma cópia de segurança"
-"%(html_end)s ou %(wiki_manual_export_html_start)s>exporte%(html_end)s a sua "
-"árvore genealógica atualizada.\n"
+"que depois você %(wiki_manual_backup_html_start)sfaça uma cópia de "
+"segurança%(html_end)s ou %(wiki_manual_export_html_start)s>exporte%(html_end)"
+"s a sua árvore genealógica atualizada.\n"
 "\n"
 "Recomenda-se fortemente que se faça uma cópia de segurança.\n"
 "\n"
 "Se você ainda não fez uma cópia de segurança de sua árvore genealógica, "
-"então você deve iniciar a sua versão %(bold_start)santiga%(bold_end)s do "
-"Gramps e %(wiki_backup_html_start)sfazer uma cópia de segurança%(html_end)s "
-"de sua árvore genealógica."
+"então você deve iniciar a sua versão antiga do Gramps e "
+"%(wiki_backup_html_start)sfazer uma cópia de segurança%(html_end)s de sua "
+"árvore genealógica."
 
 #: ../gramps/gen/db/generic.py:152 ../gramps/gen/db/generic.py:202
 #: ../gramps/gen/db/generic.py:2024
