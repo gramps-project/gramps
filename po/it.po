@@ -57,7 +57,7 @@
 #
 # Marco Molteni <molter@gufi.org>, 2001-2002;.
 # Lorenzo Cappelletti <lorenzo.cappelletti@email.it>, 2003.
-# Luigi Toscano <luigi.toscano@tiscali.it>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022.
+# Luigi Toscano <luigi.toscano@tiscali.it>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023.
 # Gianluca Boiano <morf3089@gmail.com>, 2021.
 # Alessandro Combatti <combatti.alessandro@gmail.com>, 2022.
 msgid ""
@@ -65,7 +65,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
-"PO-Revision-Date: 2022-11-29 19:48+0000\n"
+"PO-Revision-Date: 2023-08-05 19:36+0000\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/it/>\n"
@@ -74,7 +74,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 5.0-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -411,16 +411,6 @@ msgstr ""
 
 # XXX Search?, not Apply; View &gt; Filter -> View &gt; Filter Sidebar
 #: ../data/tips.xml:14
-#, fuzzy
-#| msgid ""
-#| "<b>Filtering People</b><br/>In the People View, you can 'filter' "
-#| "individuals based on many criteria. To define a new filter go to \"Edit "
-#| "&gt; Person Filter Editor\". There you can name your filter and add and "
-#| "combine rules using the many preset rules. For example, you can define a "
-#| "filter to find all adopted people in the family tree. People without a "
-#| "birth date mentioned can also be filtered. To get the results save your "
-#| "filter and select it at the bottom of the Filter Sidebar, then click "
-#| "Apply. If the Filter Sidebar is not visible, select View &gt; Filter."
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit &gt; Person "
@@ -437,10 +427,10 @@ msgstr ""
 "aggiungere e combinare regole usando le varie regole predefinite. Ad "
 "esempio, è possibile definire un filtro per trovare nell'albero genealogico "
 "tutte le persone adottate. Anche le persone senza una data di nascita "
-"possono essere filtrate. Per ottenere i risultati, salvare il filtro e "
-"selezionarlo dalla barra laterale filtri, in basso, quindi fare clic su "
-"Applica. Se la barra laterale dei filtri non è visibile, selezionare "
-"Visualizza &gt; Filtro."
+"possono essere filtrate. Per ottenere i risultati, salvare il filtro. "
+"Selezionare quindi questo filtro nel campo filtri della barra laterale, "
+"quindi fare clic sul pulsante Trova Applica. Se la barra laterale non è "
+"visibile, selezionare Visualizza &gt; Barra laterale."
 
 #: ../data/tips.xml:16
 msgid ""
@@ -5540,16 +5530,12 @@ msgstr ""
 "un'espressione regolare"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:45
-#, fuzzy
-#| msgid "People with an alternate name"
 msgid "People who are neither male nor female"
-msgstr "Persone con un nome alternativo"
+msgstr "Persone di genere né maschile né femminile"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:47
-#, fuzzy
-#| msgid "Matches all people with unknown gender"
 msgid "Matches all people with other gender"
-msgstr "Estrae tutte le persone con genere sconosciuto"
+msgstr "Estrae tutte le persone con altro genere"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:45
 msgid "Number of relationships:"
@@ -7435,12 +7421,11 @@ msgstr "intervallo"
 
 #: ../gramps/gen/lib/date.py:2003
 msgid "from"
-msgstr ""
+msgstr "da"
 
 #: ../gramps/gen/lib/date.py:2004
-#, fuzzy
 msgid "to"
-msgstr "Data"
+msgstr "a"
 
 #: ../gramps/gen/lib/date.py:2005
 msgid "span"
@@ -7850,8 +7835,6 @@ msgid "Alternate Marriage"
 msgstr "Matrimonio alternativo"
 
 #: ../gramps/gen/lib/eventtype.py:210
-#, fuzzy
-#| msgid "Stillborn"
 msgid "Stillbirth"
 msgstr "Nato/a morto/a"
 
@@ -8092,12 +8075,9 @@ msgid "annul."
 msgstr "ann.matr."
 
 #: ../gramps/gen/lib/eventtype.py:260
-#, fuzzy
-#| msgctxt "Will abbreviation"
-#| msgid "will."
 msgctxt "Stillbirth abbreviation"
 msgid "still."
-msgstr "test."
+msgstr "nat.mort."
 
 #: ../gramps/gen/lib/family.py:155
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:60
@@ -8301,9 +8281,8 @@ msgid "Completed"
 msgstr "Finito"
 
 #: ../gramps/gen/lib/ldsord.py:109
-#, fuzzy
 msgid "Do not seal"
-msgstr "Non ridimensionare l'albero"
+msgstr ""
 
 #: ../gramps/gen/lib/ldsord.py:110
 msgid "Infant"
@@ -8318,9 +8297,8 @@ msgid "Qualified"
 msgstr "Qualificato"
 
 #: ../gramps/gen/lib/ldsord.py:113
-#, fuzzy
 msgid "Do not seal/Cancel"
-msgstr "Non chiedere più"
+msgstr ""
 
 #: ../gramps/gen/lib/ldsord.py:114
 msgid "Stillborn"
@@ -8674,10 +8652,8 @@ msgid "Research"
 msgstr "Ricerca"
 
 #: ../gramps/gen/lib/notetype.py:78
-#, fuzzy
-#| msgid "Analyzing names"
 msgid "Analysis"
-msgstr "Analisi nomi"
+msgstr "Analisi"
 
 #: ../gramps/gen/lib/notetype.py:79
 msgid "Transcript"
@@ -9253,14 +9229,12 @@ msgstr "Collegamento"
 #: ../gramps/gen/lib/styledtexttagtype.py:72
 #: ../gramps/gui/widgets/styledtexteditor.py:78
 msgid "Strikethrough"
-msgstr ""
+msgstr "Barrato"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:73
 #: ../gramps/gui/widgets/styledtexteditor.py:78
-#, fuzzy
-#| msgid "Superscript"
 msgid "Subscript"
-msgstr "Apice"
+msgstr "Pedice"
 
 #: ../gramps/gen/lib/surname.py:87 ../gramps/gen/lib/surname.py:91
 #: ../gramps/gen/utils/keyword.py:56 ../gramps/gui/clipboard.py:607
@@ -9439,7 +9413,7 @@ msgstr "Non stabile"
 
 #: ../gramps/gen/plug/_pluginreg.py:63
 msgid "Experimental"
-msgstr ""
+msgstr "Sperimentale"
 
 #: ../gramps/gen/plug/_pluginreg.py:64
 msgid "Beta"
@@ -9451,11 +9425,11 @@ msgstr "Stabile"
 
 #: ../gramps/gen/plug/_pluginreg.py:73
 msgid "Developer"
-msgstr ""
+msgstr "Sviluppatore"
 
 #: ../gramps/gen/plug/_pluginreg.py:74
 msgid "Expert"
-msgstr ""
+msgstr "Esperto"
 
 #: ../gramps/gen/plug/_pluginreg.py:99
 msgid "Quickreport"
@@ -9512,16 +9486,12 @@ msgid "Rule"
 msgstr "Regola"
 
 #: ../gramps/gen/plug/_pluginreg.py:112
-#, fuzzy
-#| msgid "Thumbnail"
 msgid "Thumbnailer"
-msgstr "Miniatura"
+msgstr "Generatore di miniature"
 
 #: ../gramps/gen/plug/_pluginreg.py:113 ../gramps/gui/configure.py:1424
-#, fuzzy
-#| msgid "Citation Information"
 msgid "Citation formatter"
-msgstr "Informazioni citazione"
+msgstr "Formattatore di citazioni"
 
 #: ../gramps/gen/plug/_pluginreg.py:589
 #: ../gramps/plugins/gramplet/faqgramplet.py:135
@@ -9992,34 +9962,24 @@ msgid "Surname Given Nickname"
 msgstr "Cognome Nome Soprannome"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:69
-#, fuzzy
-#| msgid "Surname Given Nickname"
 msgid "Surname, Given Nickname"
-msgstr "Cognome Nome Soprannome"
+msgstr "Cognome, Nome Soprannome"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:70
-#, fuzzy
-#| msgid "Given Nickname Surname"
 msgid "GivenNicknameSurname"
-msgstr "Nome Soprannome Cognome"
+msgstr "NomeSoprannomeCognome"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:72
-#, fuzzy
-#| msgid "Automatic"
 msgid "Auto"
-msgstr "Automatico"
+msgstr "Auto"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:73
-#, fuzzy
-#| msgid "Call Name"
 msgid "Call Name Only"
-msgstr "Pseudonimo"
+msgstr "Solo pseudonimo"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:74
-#, fuzzy
-#| msgid "Given Name"
 msgid "Whole Given Name"
-msgstr "Nome"
+msgstr "Nome intero"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:77
 msgid "Above"
@@ -10148,6 +10108,8 @@ msgid ""
 "Select the portion of the given name to be marked as preferred. Auto sets "
 "the call name if one exists, otherwise the whole given name."
 msgstr ""
+"Selezionare la porzione del nome da segnare come preferita. Auto seleziona "
+"lo pseudonimo se esiste, altrimenti il nome intero."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:196
 msgid "Position of marriage information."
@@ -10442,16 +10404,12 @@ msgid "Select the format to display places"
 msgstr "Seleziona il formato per la visualizzazione dei luoghi"
 
 #: ../gramps/gen/plug/report/stdoptions.py:386 ../gramps/gui/configure.py:1250
-#, fuzzy
-#| msgid "Date format"
 msgid "Coordinates format"
-msgstr "Formato data"
+msgstr "Formato coordinate"
 
 #: ../gramps/gen/plug/report/stdoptions.py:389
-#, fuzzy
-#| msgid "Select the format to display names"
 msgid "Select the format to display coordinates"
-msgstr "Seleziona il formato per la visualizzazione dei nomi"
+msgstr "Seleziona il formato per la visualizzazione delle coordinate"
 
 #: ../gramps/gen/plug/report/utils.py:157
 #: ../gramps/plugins/textreport/indivcomplete.py:925
@@ -11088,11 +11046,11 @@ msgstr "%(west_longitude)s O"
 
 #: ../gramps/gen/utils/place.py:80
 msgid "DEG"
-msgstr ""
+msgstr "DEG"
 
 #: ../gramps/gen/utils/place.py:83
 msgid "DEG-:"
-msgstr ""
+msgstr "DEG-:"
 
 #: ../gramps/gen/utils/place.py:86
 msgid "D.D4"
@@ -11104,45 +11062,39 @@ msgstr ""
 
 #: ../gramps/gen/utils/place.py:92
 msgid "RT90"
-msgstr ""
+msgstr "RT90"
 
 #: ../gramps/gen/utils/place.py:102
-#, fuzzy
-#| msgid "Delete the selected citation"
 msgid "Degree, minutes, seconds notation"
-msgstr "Elimina la citazione selezionata"
+msgstr "Notazione di gradi, minuti, secondi"
 
 #: ../gramps/gen/utils/place.py:103
 msgid "Degree, minutes, seconds notation with :"
-msgstr ""
+msgstr "Notazione di gradi, minuti, secondi con :"
 
 #: ../gramps/gen/utils/place.py:104
 msgid "Degree notation, 4 decimals"
-msgstr ""
+msgstr "Notazione dei gradi, 4 decimali"
 
 #: ../gramps/gen/utils/place.py:105
 msgid "Degree notation, 8 decimals (precision like ISO-DMS)"
-msgstr ""
+msgstr "Notazione dei gradi, 8 decimali (precisione come ISO-DMS)"
 
 #: ../gramps/gen/utils/place.py:106
 msgid "Output format for the Swedish coordinate system RT90"
-msgstr ""
+msgstr "Formato di uscita per il sistema di coordinate svedese RT90"
 
 #: ../gramps/gen/utils/requirements.py:145
-#, fuzzy
-#| msgid "Python Gramplet"
 msgid "Python modules"
-msgstr "Gramplet Python"
+msgstr "Moduli Python"
 
 #: ../gramps/gen/utils/requirements.py:152
 msgid "GObject introspection modules"
-msgstr ""
+msgstr "Moduli di introspezione GObject"
 
 #: ../gramps/gen/utils/requirements.py:159
-#, fuzzy
-#| msgid "_Execute"
 msgid "Executables"
-msgstr "_Esegui"
+msgstr "Eseguibili"
 
 #: ../gramps/gen/utils/string.py:46 ../gramps/gui/editors/editperson.py:341
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
@@ -11170,11 +11122,9 @@ msgstr "sconosciuto"
 
 #: ../gramps/gen/utils/string.py:49 ../gramps/gui/editors/editperson.py:343
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
-#, fuzzy
-#| msgid "Mother"
 msgctxt "gender"
 msgid "other"
-msgstr "Madre"
+msgstr "altro"
 
 #: ../gramps/gen/utils/string.py:53
 msgid "Invalid"
@@ -11585,24 +11535,20 @@ msgstr ""
 #: ../gramps/grampsapp.py:345 ../gramps/grampsapp.py:361
 #: ../gramps/grampsapp.py:371 ../gramps/grampsapp.py:392
 #: ../gramps/grampsapp.py:399
-#, fuzzy
-#| msgid "Not found"
 msgid "not found"
-msgstr "Non trovato"
+msgstr "non trovato"
 
 #: ../gramps/grampsapp.py:326
 msgid "not found because exiv2 is not installed"
-msgstr ""
+msgstr "non trovato perché exiv2 non è installato"
 
 #: ../gramps/grampsapp.py:359
 msgid "Installed but does not supply version"
-msgstr ""
+msgstr "installato ma non fornisce la versione"
 
 #: ../gramps/grampsapp.py:379
-#, fuzzy
-#| msgid "Unstable"
 msgid "installed"
-msgstr "Non stabile"
+msgstr "installato"
 
 #: ../gramps/grampsapp.py:544 ../gramps/grampsapp.py:551
 #: ../gramps/grampsapp.py:602
@@ -11710,10 +11656,8 @@ msgstr "Appunti"
 
 #: ../gramps/gui/clipboard.py:1379 ../gramps/gui/configure.py:197
 #: ../gramps/gui/editors/filtereditor.py:1164 ../gramps/gui/views/tags.py:389
-#, fuzzy
-#| msgid "Change is not immediate"
 msgid "Any changes are saved immediately"
-msgstr "Modifica non immediata"
+msgstr "Ogni modifica sarà salvata immediatamente"
 
 #: ../gramps/gui/clipboard.py:1515 ../gramps/gui/plug/quick/_quicktable.py:141
 #, python-format
@@ -11986,7 +11930,7 @@ msgstr "Colori per persone donne"
 
 #: ../gramps/gui/configure.py:724
 msgid "Colors for people who are neither male nor female"
-msgstr ""
+msgstr "Colori per persone di genere né maschile né femminile"
 
 #: ../gramps/gui/configure.py:725
 msgid "Colors for Unknown persons"
@@ -12212,9 +12156,8 @@ msgid "Age display precision *"
 msgstr "Precisione età visualizzata *"
 
 #: ../gramps/gui/configure.py:1359
-#, fuzzy
 msgid "Display ages for events after death *"
-msgstr "Mostra gli eventi di una persona, sia personali che familiari."
+msgstr "Mostra l'età per gli eventi dopo la morte *"
 
 #: ../gramps/gui/configure.py:1371
 msgid "Calendar on reports"
@@ -12225,32 +12168,28 @@ msgid "Calendar on input"
 msgstr "Calendario per l'input"
 
 #: ../gramps/gui/configure.py:1391
-#, fuzzy
-#| msgid "Shows previous page"
 msgid "on the previous day"
-msgstr "Mostra pagina precedente"
+msgstr "nel giorno precedente"
 
 #: ../gramps/gui/configure.py:1392
-#, fuzzy
-#| msgid "Shows the next page"
 msgid "on the next day"
-msgstr "Mostra pagina successiva"
+msgstr "nel giorno successivo"
 
 #: ../gramps/gui/configure.py:1393
 msgid "only on leap years"
-msgstr ""
+msgstr "solo in anni bisestili"
 
 #: ../gramps/gui/configure.py:1398
 msgid ""
 "For non leap years, anniversaries are displayed on either February 28, March "
 "1 or not at all in Gregorian calendars"
 msgstr ""
+"Per anni non bisestili, gli anniversari sono mostrati nei calendari "
+"gregoriani o il 28 febbraio, o l'1 marzo, o non lo sono affatto"
 
 #: ../gramps/gui/configure.py:1401
-#, fuzzy
-#| msgid "Include death anniversaries"
 msgid "Show leap day anniversaries"
-msgstr "Includere anniversari dei decessi"
+msgstr "Mostra gli anniversari del giorno del bisestile"
 
 #: ../gramps/gui/configure.py:1408
 msgid "Active person's name and ID"
@@ -12287,7 +12226,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1468 ../gramps/gui/configure.py:1779
 msgid "* Requires Restart"
-msgstr ""
+msgstr "* Richiede un riavvio"
 
 #: ../gramps/gui/configure.py:1472
 msgid "Data"
@@ -12295,7 +12234,7 @@ msgstr "Dati"
 
 #: ../gramps/gui/configure.py:1489
 msgid "Conditional Text Replacements"
-msgstr ""
+msgstr "Sostituzione condizionale del testo"
 
 #: ../gramps/gui/configure.py:1494
 msgid "Missing surname"
@@ -12371,7 +12310,7 @@ msgstr "Numero massimo generazioni per le relazioni"
 
 #: ../gramps/gui/configure.py:1639
 msgid "Limits"
-msgstr ""
+msgstr "Limiti"
 
 #: ../gramps/gui/configure.py:1648
 msgid "Environment Settings"
@@ -12414,15 +12353,12 @@ msgid "Enable the spelling checker for notes."
 msgstr "Abilita controllo ortografico per le note."
 
 #: ../gramps/gui/configure.py:1680
-#, fuzzy, python-format
-#| msgid ""
-#| "GtkSpell not loaded. Spell checking will not be available.\n"
-#| "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
+#, python-format
 msgid ""
 "Gspell not loaded. Spell checking will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 msgstr ""
-"GtkSpell non è caricato. Il controllo ortografico non sarà disponibile.\n"
+"GSpell non è caricato. Il controllo ortografico non sarà disponibile.\n"
 "Per compilarlo per Gramps consultare %(gramps_wiki_build_spell_url)s"
 
 #: ../gramps/gui/configure.py:1688
@@ -12440,11 +12376,11 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1697
 msgid "Show Clipboard icon on toolbar"
-msgstr ""
+msgstr "Mostra l'icona degli appunti nella barra degli strumenti"
 
 #: ../gramps/gui/configure.py:1699
 msgid "Show or hide the Clipboard icon on the toolbar."
-msgstr ""
+msgstr "Mostra o nascondi l'icona degli appunti nella barra degli strumenti."
 
 #: ../gramps/gui/configure.py:1705
 msgid "Show Reports icon on toolbar"
