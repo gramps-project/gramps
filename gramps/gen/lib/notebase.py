@@ -215,7 +215,7 @@ class NoteBase:
         if new_handle in self.note_list:
             new_ref = new_handle
         n_replace = refs_list.count(old_handle)
-        for dummy_ix_replace in range(n_replace):
+        for _ in range(n_replace):
             idx = refs_list.index(old_handle)
             if new_ref:
                 self.note_list.pop(idx)

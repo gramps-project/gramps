@@ -442,7 +442,7 @@ class Source(
         if new_handle in refs_list:
             new_ref = self.reporef_list[refs_list.index(new_handle)]
         n_replace = refs_list.count(old_handle)
-        for dummy_ix_replace in range(n_replace):
+        for _ in range(n_replace):
             idx = refs_list.index(old_handle)
             self.reporef_list[idx].ref = new_handle
             refs_list[idx] = new_handle

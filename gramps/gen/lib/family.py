@@ -325,7 +325,7 @@ class Family(
             if new_handle in refs_list:
                 new_ref = self.event_ref_list[refs_list.index(new_handle)]
             n_replace = refs_list.count(old_handle)
-            for dummy_ix_replace in range(n_replace):
+            for _ in range(n_replace):
                 idx = refs_list.index(old_handle)
                 self.event_ref_list[idx].ref = new_handle
                 refs_list[idx] = new_handle
@@ -343,7 +343,7 @@ class Family(
             if new_handle in refs_list:
                 new_ref = self.child_ref_list[refs_list.index(new_handle)]
             n_replace = refs_list.count(old_handle)
-            for dummy_ix_replace in range(n_replace):
+            for _ in range(n_replace):
                 idx = refs_list.index(old_handle)
                 self.child_ref_list[idx].ref = new_handle
                 refs_list[idx] = new_handle
