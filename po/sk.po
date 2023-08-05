@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
-"PO-Revision-Date: 2023-08-03 16:25+0000\n"
+"PO-Revision-Date: 2023-08-05 19:36+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -2953,9 +2953,10 @@ msgstr "okolo "
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:251
+#, fuzzy
 msgctxt "date modifier"
 msgid "from "
-msgstr ""
+msgstr "od "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
