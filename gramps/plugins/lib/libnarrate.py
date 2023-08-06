@@ -73,6 +73,24 @@ def _get_empty_endnote_numbers(obj):
     return ""
 
 
+def convert_prefix(word):
+    """
+    Convert Hebrew grammar for prefixes
+    """
+    if not word or len(word) < 2:
+        return word
+    if word[0] == "ו" and word[1] != "ו":
+        # Double the Vav if not already double
+        word = "ו" + word
+    if word[0] == "ה":
+        # Remove the leading He
+        word = word[1:]
+    if word[0] < "א" or word[0] > "ת":
+        # Prefix a maqaf for non-Hebrew words and numbers
+        word = "־" + word
+    return word
+
+
 # avoid normal translation!
 # enable deferred translations
 # (these days this is done elsewhere as _T_ but it was done here first)
@@ -1781,6 +1799,10 @@ class Narrator:
                 bdate_full = bdate_obj and bdate_obj.get_day_valid()
                 bdate_mod = bdate_obj and bdate_obj.get_modifier() != Date.MOD_NONE
 
+        if self._locale.locale_code() == "he":
+            bdate = convert_prefix(bdate)
+            bplace = convert_prefix(bplace)
+
         value_map = {
             "name": self.__first_name,
             "male_name": self.__first_name,
@@ -1896,6 +1918,10 @@ class Narrator:
         else:
             age = 0
             age_index = _AGE_INDEX_NO_AGE
+
+        if self._locale.locale_code() == "he":
+            ddate = convert_prefix(ddate)
+            dplace = convert_prefix(dplace)
 
         value_map = {
             "name": self.__first_name,
@@ -2014,6 +2040,10 @@ class Narrator:
         else:
             return text
 
+        if self._locale.locale_code() == "he":
+            bdate = convert_prefix(bdate)
+            bplace = convert_prefix(bplace)
+
         value_map = {
             "unknown_gender_name": self.__first_name,
             "male_name": self.__first_name,
@@ -2126,6 +2156,10 @@ class Narrator:
             bdate_mod = bdate_obj and bdate_obj.get_modifier() != Date.MOD_NONE
         else:
             return text
+
+        if self._locale.locale_code() == "he":
+            bdate = convert_prefix(bdate)
+            bplace = convert_prefix(bplace)
 
         value_map = {
             "unknown_gender_name": self.__first_name,
@@ -2242,6 +2276,10 @@ class Narrator:
         else:
             return text
 
+        if self._locale.locale_code() == "he":
+            cdate = convert_prefix(cdate)
+            cplace = convert_prefix(cplace)
+
         value_map = {
             "unknown_gender_name": self.__first_name,
             "male_name": self.__first_name,
@@ -2349,6 +2387,10 @@ class Narrator:
                 place_obj = self.__db.get_place_from_handle(place_handle)
                 place = _pd.display_event(self.__db, event, fmt=self._place_format)
         relationship = family.get_relationship()
+
+        if self._locale.locale_code() == "he":
+            date = convert_prefix(date)
+            place = convert_prefix(place)
 
         value_map = {
             "spouse": spouse_name,
