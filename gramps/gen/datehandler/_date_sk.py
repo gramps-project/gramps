@@ -49,13 +49,12 @@ from ._datehandler import register_datehandler
 class DateParserSK(DateParser):
     modifier_to_int = {
         "pred": Date.MOD_BEFORE,
-        "do": Date.MOD_BEFORE,
         "po": Date.MOD_AFTER,
         "asi": Date.MOD_ABOUT,
         "okolo": Date.MOD_ABOUT,
         "pribl.": Date.MOD_ABOUT,
-        "from": Date.MOD_FROM,
-        "to": Date.MOD_TO,
+        "od": Date.MOD_FROM,
+        "do": Date.MOD_TO,
     }
 
     calendar_to_int = {
