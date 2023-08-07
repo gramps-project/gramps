@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
-"PO-Revision-Date: 2023-08-07 05:33+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"PO-Revision-Date: 2023-08-07 15:03+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -1108,7 +1108,7 @@ msgstr "הקובץ הקיים יידרס: %s"
 #: ../gramps/cli/arghandler.py:320
 #, python-format
 msgid "ERROR: Unrecognized format for export file %s"
-msgstr "שגיאה: תסדיר יצוא קובץ %s לא מזוהה"
+msgstr "שגיאה: תסדיר ייצוא קובץ %s לא מזוהה"
 
 #: ../gramps/cli/arghandler.py:386 ../gramps/gen/plug/utils.py:327
 #, python-format
@@ -12128,7 +12128,7 @@ msgstr "הצגת לחצן סגירה להקלה בהסרת גרמפלטים מס
 
 #: ../gramps/gui/configure.py:1746
 msgid "Markup for invalid date format"
-msgstr "סימון תסדיר תאריך לא תקינה"
+msgstr "סימון תסדיר תאריך לא תקין"
 
 #: ../gramps/gui/configure.py:1751
 #, python-format
@@ -18879,12 +18879,12 @@ msgstr ""
 "בנסיבות רגילות אין צורך לשמור באופן ישיר את השינויים. כל השינויים המבוצעים "
 "נשמרים מיידית אל מסד הנתונים.\n"
 "\n"
-"תהליך זה יעזור לשמור עותק של הנתונים באחד מהתבניות הנתמכות. ניתן להשתמש בכך "
-"ליצירת עותק של הנתונים לגיבוי או על מנת להמירם לתסדיר שתאפשר העברת הנתונים "
+"תהליך זה יעזור לשמור עותק של הנתונים באחת מהתבניות הנתמכות. ניתן להשתמש בכך "
+"ליצירת עותק של הנתונים לגיבוי או על מנת להמירם לתסדיר שיאפשר העברת הנתונים "
 "לתוכנה אחרת.\n"
 "\n"
-"ניתן להפסיק את התהליך בבטחה בכל עת תוך הקשה על מקש 'ביטול'. מסד הנתונים "
-"הנוכחי לא יינזק."
+"ניתן להפסיק את התהליך בבטחה בכל עת בהקשה על 'ביטול'. מסד הנתונים הנוכחי "
+"יישאר ללא שינוי."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:596
 msgid "Error exporting your Family Tree"
@@ -20528,7 +20528,7 @@ msgstr "תמלילן אופן-דוקומנט"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:119
 msgid "Generates documents in OpenDocument Text format (.odt)."
-msgstr "חילול מסמכים בתסדיר מלל אופן-דוקומנט (.odt)."
+msgstr "חילול מסמכים בתסדיר מלל מסמך פתוח - Open Document‏ (‎.odt)."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:140
 msgid "PDF document"
@@ -20536,11 +20536,11 @@ msgstr "מסמך PDF"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:141
 msgid "Generates documents in PDF format (.pdf)."
-msgstr "חילול מסמכים בתסדיר PDF (.pdf)."
+msgstr "חילול מסמכים בתסדיר PDF‏ (‎.pdf)."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:162
 msgid "Generates documents in PostScript format (.ps)."
-msgstr "חילול מסמכים בתסדיר פוסט-סקריפט (.ps)."
+msgstr "חילול מסמכים בתסדיר פוסט-סקריפט (‎.ps)."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:182
 msgid "RTF document"
@@ -20548,7 +20548,7 @@ msgstr "מסמך RTF"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:183
 msgid "Generates documents in Rich Text format (.rtf)."
-msgstr "חילול מסמכים בתסדיר מלל עשיר (.rtf)."
+msgstr "חילול מסמכים בתסדיר מלל עשיר (‎.rtf)."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:203
 msgid "SVG document"
@@ -22182,7 +22182,7 @@ msgstr "תסדיר אילן יוחסין מרשתת"
 
 #: ../gramps/plugins/export/export.gpr.py:67
 msgid "Web Family Tree export options"
-msgstr "אפשרויות יצוא תסדיר אילן יוחסין מרשתת"
+msgstr "אפשרויות ייצוא תסדיר אילן־יוחסין מרשתת"
 
 #: ../gramps/plugins/export/export.gpr.py:78
 #: ../gramps/plugins/importer/import.gpr.py:54
@@ -22324,7 +22324,7 @@ msgstr "מוכל_בתוך"
 #: ../gramps/plugins/export/exportcsv.py:346
 #, python-brace-format
 msgid "CSV export doesn't support non-primary surnames, {count} dropped"
-msgstr "יצוא בתסדיר CSV אינו תומך בשמות משפחה משניים, {count} הושמטו"
+msgstr "ייצוא בתסדיר CSV אינו תומך בשמות משפחה משניים, {count} הושמטו"
 
 #: ../gramps/plugins/export/exportcsv.py:363
 msgid "Birth source"
@@ -24474,7 +24474,7 @@ msgstr "צאצאים ילקחו בחשבון בקביעת 'קווי משפחה'.
 
 #: ../gramps/plugins/graph/gvfamilylines.py:137
 msgid "Try to remove extra people and families"
-msgstr "כדי לנסות הסרת אנשים ומשפחות מיותרות"
+msgstr "כדאי לנסות להסיר אנשים ומשפחות מיותרים"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:139
 msgid ""
@@ -25957,7 +25957,7 @@ msgstr "תאריך שגוי ב־BDAY {vcard_snippet}, שמירת תאריך כמ
 msgid ""
 "Date {vcard_snippet} not in appropriate format yyyy-mm-dd, preserving date "
 "as text."
-msgstr "תאריך {vcard_snippet} אינו בתסדיר תקין yyyy-mm-dd, שימור תאריך כמלל."
+msgstr "התאריך {vcard_snippet} אינו בתבנית תקינה yyyy-mm-dd, התאריך יישמר כמלל."
 
 #: ../gramps/plugins/importer/importxml.py:150
 #: ../gramps/plugins/tool/eventnames.py:137
@@ -26637,42 +26637,42 @@ msgstr "מזהה הערה גרמפס %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:8201
 msgid "Submission: Submitter"
-msgstr "שגור: משגר"
+msgstr "הגשה: מגיש"
 
 #: ../gramps/plugins/lib/libgedcom.py:8203
 msgid "Submission: Family file"
-msgstr "שיגור: קובץ משפחת"
+msgstr "הגשה: קובץ משפחה"
 
 #: ../gramps/plugins/lib/libgedcom.py:8205
 msgid "Submission: Temple code"
-msgstr "שגור: קוד היכל"
+msgstr "הגשה קוד מקדש"
 
 #: ../gramps/plugins/lib/libgedcom.py:8207
 msgid "Submission: Generations of ancestors"
-msgstr "שיגור: דורות של אבות קדמונים"
+msgstr "הגשה: דורות של אבות קדמונים"
 
 #: ../gramps/plugins/lib/libgedcom.py:8209
 msgid "Submission: Generations of descendants"
-msgstr "שיגור: דורות של צאצאים"
+msgstr "הגשה: דורות של צאצאים"
 
 #: ../gramps/plugins/lib/libgedcom.py:8211
 msgid "Submission: Ordinance process flag"
-msgstr "שיגור: דגל תהליך תקנה"
+msgstr "הגשה: דגל תהליך תקנה"
 
 #: ../gramps/plugins/lib/libgedcom.py:8471
 msgid "Invalid temple code"
-msgstr "קוד תסדיר לא תקין"
+msgstr "קוד מקדש שגוי"
 
 #: ../gramps/plugins/lib/libgedcom.py:8569
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
 msgstr ""
-"קובץ ה־GEDCOM פגום. נראה שהקובץ מקודד בסדרת תווים UTF16 אבל חסר את סמן ה BOM."
+"קובץ ה־GEDCOM פגום. נראה שהקובץ מקודד בערכת תווים UTF16 אבל סמן ה־BOM חסר."
 
 #: ../gramps/plugins/lib/libgedcom.py:8573
 msgid "Your GEDCOM file is empty."
-msgstr "קובץ ה־GEDCOM ריק."
+msgstr "קובץ ה־GEDCOM שלך ריק."
 
 #: ../gramps/plugins/lib/libhtmlconst.py:51
 msgid "Unicode UTF-8 (recommended)"
@@ -32469,7 +32469,7 @@ msgstr "מספור (הסגלת יומן) רשומות"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1021
 msgid "Report structure"
-msgstr "תסדיר דוח"
+msgstr "מבנה דוח"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1024
 msgid "show people by generations"
@@ -33816,10 +33816,8 @@ msgstr[1] "הפניה ל־{quantity} עצמי תג אך לא נמצאו\n"
 #, python-brace-format
 msgid "{quantity} invalid name format reference was removed\n"
 msgid_plural "{quantity} invalid name format references were removed\n"
-msgstr[0] ""
-"הפניית תסדיר שם {quantity} שגויה הוסרה\n"
-"{quantity} הפניות תסדיר שם שגוית הוסרו\n"
-msgstr[1] ""
+msgstr[0] "הפניית תסדיר שם שגויה הוסרה\n"
+msgstr[1] "{quantity} הפניות תסדיר שם שגויות הוסרו\n"
 
 #: ../gramps/plugins/tool/check.py:2741
 #, python-brace-format
@@ -34673,7 +34671,7 @@ msgstr "רווחים מובילים/עוקבים"
 #: ../gramps/plugins/tool/removespaces.py:282
 #: ../gramps/plugins/tool/removespaces.py:294
 msgid "invalid format"
-msgstr "תסדיר תקין"
+msgstr "תסדיר שגוי"
 
 #: ../gramps/plugins/tool/removespaces.py:288
 #: ../gramps/plugins/tool/removespaces.py:300
@@ -37815,7 +37813,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2463
 msgid "Include Place map on Place Pages"
-msgstr "הכללת מפת מקום בעמוד המקום"
+msgstr "הכללת מפת מקום בעמודי המקום"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2465
 msgid ""
