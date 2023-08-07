@@ -328,6 +328,8 @@ class ListView(NavigationView):
         self.uistate.viewmanager.tags.tag_disable()
 
     def build_tree(self, force_sidebar=False, preserve_col=True):
+        if self.list.get_columns()[0].get_width() > 0:
+            self.list.save_column_info(self.list)
         if self.active:
             cput0 = perf_counter()
             if not self.search_bar.is_visible():

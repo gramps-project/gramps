@@ -115,7 +115,7 @@ class PersistentTreeView(Gtk.TreeView):
                     # Don't resize the icons
                     size = 2
                 else:
-                    size = int(column.get_width() / char_width) + 1
+                    size = column.get_width() / char_width
                     size = 2 if size < 2 else size
                 newsize.append(size)
             nbc += 1
