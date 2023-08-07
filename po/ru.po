@@ -24,8 +24,8 @@ msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
-"PO-Revision-Date: 2023-08-05 19:36+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2023-08-07 05:34+0000\n"
+"Last-Translator: Павел Жуков <papazukko@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
 "Language: ru\n"
@@ -5450,7 +5450,7 @@ msgstr ""
 #, fuzzy
 #| msgid "People with an alternate name"
 msgid "People who are neither male nor female"
-msgstr "Лица с альтернативным именем"
+msgstr "Лица, не относящиеся ни к мужскому, ни к женскому полу"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:47
 #, fuzzy
@@ -11041,12 +11041,14 @@ msgid "Degree notation, 8 decimals (precision like ISO-DMS)"
 msgstr ""
 
 #: ../gramps/gen/utils/place.py:106
+#, fuzzy
 msgid "Output format for the Swedish coordinate system RT90"
-msgstr ""
+msgstr "Формат вывода для шведской системы координат RT90"
 
 #: ../gramps/gen/utils/requirements.py:145
+#, fuzzy
 msgid "Python modules"
-msgstr ""
+msgstr "Модули Python"
 
 #: ../gramps/gen/utils/requirements.py:152
 msgid "GObject introspection modules"
@@ -12033,8 +12035,9 @@ msgstr ""
 "экспорте в GEDCOM"
 
 #: ../gramps/gui/configure.py:841
+#, fuzzy
 msgid "Suppress tooltip warnings about data being saved immediately"
-msgstr ""
+msgstr "Не выводить всплывающие сообщения об автоматическом сохранении данных"
 
 #: ../gramps/gui/configure.py:846
 msgid "Show plugin status dialog on plugin load error"
@@ -12191,14 +12194,18 @@ msgid "on the next day"
 msgstr "Отображение следующей страницы"
 
 #: ../gramps/gui/configure.py:1393
+#, fuzzy
 msgid "only on leap years"
-msgstr ""
+msgstr "только в високосные годы"
 
 #: ../gramps/gui/configure.py:1398
+#, fuzzy
 msgid ""
 "For non leap years, anniversaries are displayed on either February 28, March "
 "1 or not at all in Gregorian calendars"
 msgstr ""
+"В григорианском календаре в невисокосные годы годовщина отображается 28 "
+"февраля, 1 марта или вообще не отображается"
 
 #: ../gramps/gui/configure.py:1401
 #, fuzzy
@@ -18978,8 +18985,9 @@ msgid "No matching addons found."
 msgstr "Соответствий не найдено"
 
 #: ../gramps/gui/plug/_windows.py:617
+#, fuzzy
 msgid "Allow Gramps to install required python modules"
-msgstr ""
+msgstr "Разрешить Gramps установку необходимых модулей Python"
 
 #: ../gramps/gui/plug/_windows.py:622
 #: ../gramps/plugins/webreport/basepage.py:1767
@@ -25482,8 +25490,10 @@ msgid "Show symbols for events"
 msgstr "Отображать все события"
 
 #: ../gramps/plugins/graph/gvhourglass.py:476
+#, fuzzy
 msgid "Show genealogical symbols for birth, marriage and death events."
 msgstr ""
+"Отображать генеалогические символы для событий рождения, свадьбы или смерти."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:211
 #: ../gramps/plugins/textreport/indivcomplete.py:836
@@ -26576,16 +26586,13 @@ msgid "vCard import"
 msgstr "Импорт vCard"
 
 #: ../gramps/plugins/importer/importvcard.py:254
-#, fuzzy
-#| msgid "VCARD import report: No errors detected"
 msgid "vCard import report: No errors detected"
-msgstr "Отчёт импорта VCARD: ошибок не обнаружено"
+msgstr "Отчёт импорта vCard: ошибок не обнаружено"
 
 #: ../gramps/plugins/importer/importvcard.py:256
-#, fuzzy, python-format
-#| msgid "VCARD import report: %s errors detected\n"
+#, python-format
 msgid "vCard import report: %s errors detected\n"
-msgstr "Отчёт импорта VCARD: обнаружены ошибки %s\n"
+msgstr "Отчёт импорта vCard: обнаружены ошибки %s\n"
 
 #: ../gramps/plugins/importer/importvcard.py:321
 #, python-format
@@ -26593,22 +26600,17 @@ msgid "Token >%(token)s< unknown. line skipped: %(line)s"
 msgstr "Элемент >%(token)s< неизвестен. Строка пропущена: %(line)s"
 
 #: ../gramps/plugins/importer/importvcard.py:335
-#, fuzzy
-#| msgid ""
-#| "BEGIN property not properly closed by END property, Gramps can't cope "
-#| "with nested VCards."
 msgid ""
 "BEGIN property not properly closed by END property, Gramps can't cope with "
 "nested vCards."
 msgstr ""
 "Оператор BEGIN корректно не завершён оператором END, Gramps не удалось "
-"обработать VCards."
+"обработать карточки vCard."
 
 #: ../gramps/plugins/importer/importvcard.py:346
-#, fuzzy, python-format
-#| msgid "Import of VCards version %s is not supported by Gramps."
+#, python-format
 msgid "Import of vCards version %s is not supported by Gramps."
-msgstr "Версия VCards %s не поддерживается этой версией Gramps."
+msgstr "Импорт файлов vCard версии %s не поддерживается этой версией Gramps."
 
 #: ../gramps/plugins/importer/importvcard.py:366
 #, fuzzy
@@ -26619,8 +26621,8 @@ msgid ""
 "The vCard is malformed. It is missing the compulsory N property, so there is "
 "no name; skip it."
 msgstr ""
-"Неверная запись в VCard, отсутствует обязательный параметр N, как следствие "
-"- нет имени; будет пропущено."
+"Неверная запись в vCard. Пропущен обязательный параметр N, значит имени нет; "
+"будет пропущено."
 
 #: ../gramps/plugins/importer/importvcard.py:371
 #, fuzzy
@@ -26635,10 +26637,8 @@ msgstr ""
 "получено только из N."
 
 #: ../gramps/plugins/importer/importvcard.py:375
-#, fuzzy
-#| msgid "VCard is malformed wrong number of name components."
 msgid "The vCard is malformed. Wrong number of name components."
-msgstr "Неверное количество компонентов имени в VCard."
+msgstr "Неверное количество компонентов имени в vCard."
 
 #: ../gramps/plugins/importer/importvcard.py:517
 #, python-brace-format
@@ -27448,67 +27448,63 @@ msgstr "Описательные теги"
 #, fuzzy
 #| msgid "Styled Text Tags"
 msgid "Date and Time Tags"
-msgstr "Стилизованные теги текста"
+msgstr "Теги даты и времени"
 
 #: ../gramps/plugins/lib/libmetadata.py:117
 #, fuzzy
 #| msgid "People"
 msgid "People Tags"
-msgstr "Люди"
+msgstr "Теги людей"
 
 #: ../gramps/plugins/lib/libmetadata.py:118
 #, fuzzy
 #| msgid "Events"
 msgid "Event Tags"
-msgstr "События"
+msgstr "Теги событий"
 
 #: ../gramps/plugins/lib/libmetadata.py:119
 #, fuzzy
 #| msgid "Images"
 msgid "Image Tags"
-msgstr "Изображения"
+msgstr "Теги изображений"
 
 #: ../gramps/plugins/lib/libmetadata.py:120
 #, fuzzy
 #| msgid "Place Information"
 msgid "Camera Information"
-msgstr "Информация о месте"
+msgstr "Информация о камере"
 
 #: ../gramps/plugins/lib/libmetadata.py:121
-#, fuzzy
-#| msgid "Locations"
 msgid "Location Tags"
-msgstr "Расположения"
+msgstr "Теги мест"
 
 #: ../gramps/plugins/lib/libmetadata.py:122
 #, fuzzy
 #| msgid "Advanced"
 msgid "Advanced Tags"
-msgstr "Дополнительно"
+msgstr "Дополнительные теги"
 
 #: ../gramps/plugins/lib/libmetadata.py:123
 #, fuzzy
 #| msgid "Edit Tags"
 msgid "Rights Tags"
-msgstr "Редактировать метки"
+msgstr "Теги авторских прав"
 
 #: ../gramps/plugins/lib/libmetadata.py:124
-#, fuzzy
-#| msgid "Keywords"
 msgid "Keyword Tags"
-msgstr "Ключевые слова"
+msgstr "Теги ключевых слов"
 
 #: ../gramps/plugins/lib/libmetadata.py:220
 #, fuzzy
 #| msgid "Namesake"
 msgid "Namespace"
-msgstr "Тёзка"
+msgstr "Пространство имён"
 
 #: ../gramps/plugins/lib/libmetadata.py:221
 #, fuzzy
 #| msgid "label"
 msgid "Label"
-msgstr "метка"
+msgstr "Метка"
 
 #: ../gramps/plugins/lib/libmetadata.py:222
 msgid " "
@@ -31698,8 +31694,8 @@ msgid ""
 "placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
-"Если у Вас закончилось место на диске, можете удалить кеш карт.\n"
-"Осторожно! При отсутствии соединения с интернетом карта будет недоступна."
+"Если у Вас закончилось место на диске, можно удалить сохраненный кэш карт.\n"
+"Осторожно! Без доступа к Интернету карта станет недоступна."
 
 #: ../gramps/plugins/lib/maps/geography.py:1306
 msgid "Zoom used when centering"
@@ -31784,7 +31780,7 @@ msgid ""
 "\n"
 "The following errors are expected"
 msgstr ""
-"Вы должны проверить и изменить кэш тайлов\n"
+"Вы должны проверить и изменить кэш карт\n"
 "...\n"
 "[geography]\n"
 "...\n"
@@ -31795,7 +31791,7 @@ msgstr ""
 "\n"
 "Перед изменением файла gramps.ini Вы должны закрыть Gramps\n"
 "\n"
-"Получение последующих ошибок - это нормально"
+"Ожидается появление следующих ошибок"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:181
 #: ../gramps/plugins/lib/maps/osmgps.py:245
@@ -34334,14 +34330,14 @@ msgstr "Показывает статус ссылок в заметках"
 #, fuzzy
 #| msgid "Thumbnail"
 msgid "Gnome Thumbnailer"
-msgstr "Миниатюра"
+msgstr "Миниатюры Gnome"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:49
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:50
 #, fuzzy
 #| msgid "Thumbnail"
 msgid "Image Thumbnailer"
-msgstr "Миниатюра"
+msgstr "Миниатюры изображений"
 
 #: ../gramps/plugins/tool/changenames.glade:34
 msgid ""
@@ -39019,19 +39015,24 @@ msgstr "Ключ для API карт Google"
 msgid ""
 "The API key used for the Google maps.\n"
 "This key is mandatory and must be valid"
-msgstr "Ключ, используемый для API карт Google"
+msgstr ""
+"Ключ, используемый для API карт Google.\n"
+"Этот обязательный ключ и он должен быть действующим"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2504
 #, fuzzy
 #| msgid "Google maps API key"
 msgid "How to get the API key"
-msgstr "Ключ для API карт Google"
+msgstr "Как получить этот ключ API"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2507
+#, fuzzy
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Google maps service must be selected."
 msgstr ""
+"Скопируйте и вставьте это значение в свой браузер.\n"
+"Перед этим надо выбрать сервис Карты Google."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2514
 msgid "Toner"
@@ -39059,13 +39060,13 @@ msgstr "Выберите, какие настройки Вы хотите име
 #, fuzzy, python-format
 msgctxt "val"
 msgid "in %(inipth)s (%(val)s)"
-msgstr "in %(inipth)s (%(val)s)"
+msgstr "в %(inipth)s (%(val)s)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2538
 #, fuzzy
 #| msgid "Dates"
 msgid "latest"
-msgstr "Даты"
+msgstr "самые новые"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2539
 msgid "openlayers version to use"
@@ -39433,7 +39434,7 @@ msgstr "Число людей"
 #, fuzzy, python-format
 #| msgid "Surnames beginning with letter %s"
 msgid "Surnames beginning with letter '%s' %s"
-msgstr "Фамилии на букву %s"
+msgstr "Фамилии на букву '%s' %s"
 
 #: ../gramps/plugins/webreport/thumbnail.py:121
 msgid ""
