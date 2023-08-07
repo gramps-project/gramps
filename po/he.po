@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
-"PO-Revision-Date: 2023-08-05 19:38+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"PO-Revision-Date: 2023-08-06 04:37+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -9676,7 +9676,7 @@ msgstr "כינוי שם־משפחה"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:72
 msgid "Auto"
-msgstr "אוטמטי"
+msgstr "אוטומטי"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:73
 msgid "Call Name Only"
@@ -10780,7 +10780,7 @@ msgstr "פירקני בחינה עצמית GObject"
 
 #: ../gramps/gen/utils/requirements.py:159
 msgid "Executables"
-msgstr "קובץ הפעלה"
+msgstr "קובצי הפעלה"
 
 #: ../gramps/gen/utils/string.py:46 ../gramps/gui/editors/editperson.py:341
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
@@ -11889,8 +11889,8 @@ msgid ""
 "For non leap years, anniversaries are displayed on either February 28, March "
 "1 or not at all in Gregorian calendars"
 msgstr ""
-"בלוח שנה גרגוריאני, בשנים רגילות, לא מעוברות, ימי שנה יוצגו ב־28 בפברואר, ב־"
-"1 במרץ או שלא יוצגו כלל"
+"בלוח שנה גרגוריאני, בשנים רגילות, לא מעוברות, ימי שנה יוצגו ב־28 בפברואר, 1 "
+"במרץ או שלא יוצגו כלל"
 
 #: ../gramps/gui/configure.py:1401
 msgid "Show leap day anniversaries"
@@ -12101,11 +12101,11 @@ msgstr "חשיפת או הסתרת סמל כלים בסרגל־הכלים."
 
 #: ../gramps/gui/configure.py:1721
 msgid "Show Addons icon on toolbar"
-msgstr "הצגת סמלי תוספים בסרגל־כלים"
+msgstr "הצגת סמל תוספים בסרגל־כלים"
 
 #: ../gramps/gui/configure.py:1723
 msgid "Show or hide the Addons icon on the toolbar."
-msgstr "חשיפת או הסתרת סמלי תוסף בסרגל־הכלים."
+msgstr "חשיפת או הסתרת סמל תוספים בסרגל־הכלים."
 
 #: ../gramps/gui/configure.py:1729
 msgid "Show Preferences icon on toolbar"
@@ -12447,7 +12447,7 @@ msgstr "תוחם:"
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:109
 msgid "Undo history warning"
-msgstr "הסגת אזהרת היסטורה"
+msgstr "הסגת אזהרת היסטוריה"
 
 #: ../gramps/gui/dbloader.py:117
 msgid ""
@@ -18395,7 +18395,7 @@ msgstr "עורך סגנונות"
 
 #: ../gramps/gui/plug/_windows.py:204
 msgid "Project"
-msgstr "מייזם"
+msgstr "מיזם"
 
 #: ../gramps/gui/plug/_windows.py:208
 msgid "Audience"
@@ -18458,7 +18458,7 @@ msgstr "הגדרות"
 
 #: ../gramps/gui/plug/_windows.py:432
 msgid "Projects"
-msgstr "מייזם"
+msgstr "מיזמים"
 
 #: ../gramps/gui/plug/_windows.py:452
 msgid "Loading..."
@@ -18524,7 +18524,7 @@ msgstr "בדיקת זמינות עדכוני תוספים"
 
 #: ../gramps/gui/plug/_windows.py:687
 msgid "New Project"
-msgstr "מייזם חדש"
+msgstr "מיזם חדש"
 
 #: ../gramps/gui/plug/_windows.py:689
 msgid "Edit Project"
@@ -19599,11 +19599,11 @@ msgstr ""
 
 #: ../gramps/gui/undohistory.py:84 ../gramps/gui/viewmanager.py:1119
 msgid "_Undo"
-msgstr "_הסגה"
+msgstr "ה_סגה"
 
 #: ../gramps/gui/undohistory.py:86 ../gramps/gui/viewmanager.py:1139
 msgid "_Redo"
-msgstr "_בצוע חוזר"
+msgstr "_ביצוע חוזר"
 
 #: ../gramps/gui/undohistory.py:113
 msgid "Original time"
@@ -19619,7 +19619,7 @@ msgstr "אישור מחיקה"
 
 #: ../gramps/gui/undohistory.py:198
 msgid "Are you sure you want to clear the Undo history?"
-msgstr "האם לסלק היסטורית הסגות?"
+msgstr "האם לסלק היסטוריית הסגות?"
 
 #: ../gramps/gui/undohistory.py:199 ../gramps/plugins/gramplet/eval.py:80
 msgid "Clear"
@@ -21772,7 +21772,7 @@ msgstr "אפשר להתאים אישית גופן וצבע לכל דור ודו�
 
 #: ../gramps/plugins/drawreport/fanchart.py:765
 msgid "Flip names that are on the bottom half of the fan"
-msgstr "היפוך שמות שנמצאים בחצי התחתונן של המניפה"
+msgstr "היפוך שמות שנמצאים בחצי התחתון של המניפה"
 
 #: ../gramps/plugins/drawreport/fanchart.py:767
 msgid "Flip names for generations 2, 3 and 4 i.e. those found in circles"
@@ -24822,7 +24822,7 @@ msgstr "הצגת מספר Sosa / ‏Sosa־סטראדונץ / מספור אננט
 
 #: ../gramps/plugins/graph/gvhourglass.py:474
 msgid "Show symbols for events"
-msgstr "הצגת סמלים לארועים"
+msgstr "הצגת סמלים לאירועים"
 
 #: ../gramps/plugins/graph/gvhourglass.py:476
 msgid "Show genealogical symbols for birth, marriage and death events."
@@ -33372,8 +33372,8 @@ msgid ""
 "This tool will rename all events of one type to a different type. Once "
 "completed, this cannot be undone by the regular Undo function."
 msgstr ""
-"כלי זה ישנה שמות האירועים מסוג אחד לסוג אחר. לאחר השלמת הפעולה, תוצאותיה לא "
-"ניתות יהיו להסגה באמצאות פעולת הסגה הרגילה."
+"כלי זה ישנה שמות האירועים מסוג אחד לסוג אחר. לאחר השלמת הפעולה, לא ניתן יהיה "
+"להסיג את תוצאותיה באמצעות פעולת ההסגה הרגילה."
 
 #: ../gramps/plugins/tool/changetypes.glade:112
 msgid "Original event type:"
@@ -37862,7 +37862,7 @@ msgid ""
 "This key is mandatory and must be valid"
 msgstr ""
 "מפתח ה־API שמשמש למפות גוגל.\n"
-"זהו מפתח חובה והא חייב להיות תקין"
+"זהו מפתח חובה ועליו להיות בתוקף"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2504
 msgid "How to get the API key"
