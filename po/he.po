@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
 "PO-Revision-Date: 2023-08-07 15:03+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -8339,7 +8339,7 @@ msgstr "הערה"
 #: ../gramps/gui/editors/editplaceformat.py:72
 #: ../gramps/plugins/tool/reorderids.glade:1446
 msgid "Format"
-msgstr "תבנית"
+msgstr "תסדיר"
 
 #: ../gramps/gen/lib/notetype.py:76 ../gramps/gui/configure.py:1783
 #: ../gramps/gui/editors/editeventref.py:90
@@ -9798,7 +9798,7 @@ msgstr "פרטי המידע שיוצג בצומת."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:178
 msgid "Name Format"
-msgstr "תבנית שם"
+msgstr "תסדיר שם"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:181
 #: ../gramps/gen/plug/report/stdoptions.py:95
@@ -10104,7 +10104,7 @@ msgstr "נא לבחור תסדיר למצג מקומות"
 
 #: ../gramps/gen/plug/report/stdoptions.py:386 ../gramps/gui/configure.py:1250
 msgid "Coordinates format"
-msgstr "תבנית נקודות ציון"
+msgstr "תסדיר נקודות ציון"
 
 #: ../gramps/gen/plug/report/stdoptions.py:389
 msgid "Select the format to display coordinates"
@@ -11491,7 +11491,7 @@ msgstr " עורך שמות"
 #: ../gramps/gui/configure.py:245 ../gramps/gui/configure.py:251
 #: ../gramps/gui/configure.py:1040
 msgid "Invalid or incomplete format definition."
-msgstr "הגדרת תבנית לא תקינה או חלקית."
+msgstr "הגדרת תסדיר לא תקינה או חלקית."
 
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/gui/configure.py:389 ../gramps/gui/configure.py:416
@@ -11603,9 +11603,9 @@ msgid ""
 "string. \"I%04d\" creates IDs from I0000 to I9999. Large databases may need "
 "larger IDs. \"I%06d\" creates IDs from I000000 to I999999.\n"
 msgstr ""
-"תבניות ברירת־מחדל למזהי גרמפס, המכילות אות קידומת ואחריה מחרוזת מספרית. "
-"תסדיר \"I%04d\" תיצור מזהים מ־I0000 עד I9999. מסד נתונים גדול, עם רשומות "
-"רבות, עשוי להזדקק למזהים ארוכים יותר. תסדיר \"I%06d\" תיצור מזהים מ־I000000 "
+"תסדירי ברירת־מחדל למזהי גרמפס, שמכילים אות קידומת ואחריה מחרוזת מספרית. "
+"תסדיר \"I%04d\" יצור מזהים מ־I0000 עד I9999. מסד־נתונים גדול, עם רשומות "
+"רבות, עשוי להזדקק למזהים ארוכים יותר. תסדיר \"I%06d\" יצור מזהים מ־I000000 "
 "עד I999999.\n"
 
 #: ../gramps/gui/configure.py:698
@@ -11829,7 +11829,7 @@ msgstr "עריכה"
 
 #: ../gramps/gui/configure.py:1228
 msgid "Automate Place format"
-msgstr "תבנית מקום אוטומטית"
+msgstr "תסדיר מקום אוטומטית"
 
 #: ../gramps/gui/configure.py:1231
 msgid "Enables automatic place title generation using specified format."
@@ -11845,7 +11845,7 @@ msgstr "להחשיב משפחה פטרו/מטרונימית חד הורית כש
 
 #: ../gramps/gui/configure.py:1329
 msgid "Date format *"
-msgstr "תבנית תאריך*"
+msgstr "תסדיר תאריך*"
 
 #: ../gramps/gui/configure.py:1337
 msgid "Years"
@@ -25019,7 +25019,7 @@ msgid ""
 "Import data from a Gramps package (an archived XML Family Tree together with "
 "the media object files)."
 msgstr ""
-"יבוא נתונים מחבילת 'גרמפס' (אילן־יוחסין מאוחסן בארכיון בתבנית XML, בלווית כל "
+"יבוא נתונים מחבילת 'גרמפס' (אילן־יוחסין מאוחסן בארכיון בתסדיר XML, בלווית כל "
 "קבצי עצמי המדיה)."
 
 #: ../gramps/plugins/importer/import.gpr.py:110
@@ -25957,7 +25957,7 @@ msgstr "תאריך שגוי ב־BDAY {vcard_snippet}, שמירת תאריך כמ
 msgid ""
 "Date {vcard_snippet} not in appropriate format yyyy-mm-dd, preserving date "
 "as text."
-msgstr "התאריך {vcard_snippet} אינו בתבנית תקינה yyyy-mm-dd, התאריך יישמר כמלל."
+msgstr "התאריך {vcard_snippet} אינו בתסדיר תקינה yyyy-mm-dd, התאריך יישמר כמלל."
 
 #: ../gramps/plugins/importer/importxml.py:150
 #: ../gramps/plugins/tool/eventnames.py:137
@@ -26255,8 +26255,8 @@ msgid ""
 "Mismatch between selected extension %(ext)s and actual format.\n"
 " Writing to %(filename)s in format %(impliedext)s."
 msgstr ""
-"אין התאמה בין ההרחבה שנבחרה %(ext)s לתבנית בפועל.\n"
-"כתיבה לקובץ %(filename)s בתבנית %(impliedext)s."
+"אין התאמה בין ההרחבה שנבחרה %(ext)s לתסדיר בפועל.\n"
+"כתיבה לקובץ %(filename)s בתסדיר %(impliedext)s."
 
 #: ../gramps/plugins/lib/libgedcom.py:737
 msgid "Common Law Marriage"
@@ -34766,7 +34766,7 @@ msgstr " כמות"
 
 #: ../gramps/plugins/tool/reorderids.glade:1451
 msgid "Actual / Upcoming ID format."
-msgstr "תבנית מזהה בפועל/בקרוב."
+msgstr "תסדיר מזהה בפועל/בקרוב."
 
 #: ../gramps/plugins/tool/reorderids.glade:1464
 msgid "Change"
@@ -36770,7 +36770,7 @@ msgstr "עץ מקומות"
 
 #: ../gramps/plugins/view/view.gpr.py:237
 msgid "A view displaying places in a tree format."
-msgstr "מצג להצגת מקומות בתבנית עץ."
+msgstr "מצג להצגת מקומות בתסדיר עץ."
 
 #: ../gramps/plugins/view/view.gpr.py:253
 msgid "The view showing all the repositories"
@@ -36790,7 +36790,7 @@ msgstr "עץ מובאות"
 
 #: ../gramps/plugins/view/view.gpr.py:299
 msgid "A view displaying citations and sources in a tree format."
-msgstr "מצג להצגת מובאות ומקורות בתבנית עץ."
+msgstr "מצג להצגת מובאות ומקורות בתסדיר עץ."
 
 #: ../gramps/plugins/webreport/addressbook.py:89
 #: ../gramps/plugins/webreport/addressbooklist.py:82
@@ -37344,7 +37344,7 @@ msgstr "סגנון מתאר רגיל"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2068
 msgid "Citation Referents Layout"
-msgstr "תבנית הפניות מובאה"
+msgstr "תסדיר הפניות מובאה"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2072
 msgid ""
