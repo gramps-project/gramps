@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
-"PO-Revision-Date: 2023-08-05 19:36+0000\n"
+"PO-Revision-Date: 2023-08-07 05:34+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -2953,7 +2953,6 @@ msgstr "okolo "
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:251
-#, fuzzy
 msgctxt "date modifier"
 msgid "from "
 msgstr "od "
@@ -2963,7 +2962,7 @@ msgstr "od "
 #: ../gramps/gen/datehandler/_datestrings.py:254
 msgctxt "date modifier"
 msgid "to "
-msgstr ""
+msgstr "do "
 
 #: ../gramps/gen/datehandler/_datestrings.py:259
 msgctxt "date quality"
@@ -7292,13 +7291,11 @@ msgstr "rozmedzie"
 
 #: ../gramps/gen/lib/date.py:2003
 msgid "from"
-msgstr ""
+msgstr "od"
 
 #: ../gramps/gen/lib/date.py:2004
-#, fuzzy
-#| msgid "Stop"
 msgid "to"
-msgstr "Zastaviť"
+msgstr "do"
 
 #: ../gramps/gen/lib/date.py:2005
 msgid "span"
@@ -7951,12 +7948,9 @@ msgid "annul."
 msgstr "anul."
 
 #: ../gramps/gen/lib/eventtype.py:260
-#, fuzzy
-#| msgctxt "Will abbreviation"
-#| msgid "will."
 msgctxt "Stillbirth abbreviation"
 msgid "still."
-msgstr "posl.v."
+msgstr "+*"
 
 #: ../gramps/gen/lib/family.py:155
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:60
@@ -8528,10 +8522,8 @@ msgid "Research"
 msgstr "Výskum"
 
 #: ../gramps/gen/lib/notetype.py:78
-#, fuzzy
-#| msgid "Analyzing names"
 msgid "Analysis"
-msgstr "Analýza mien"
+msgstr "Analýza"
 
 #: ../gramps/gen/lib/notetype.py:79
 msgid "Transcript"
@@ -9107,14 +9099,12 @@ msgstr "Prepojenie"
 #: ../gramps/gen/lib/styledtexttagtype.py:72
 #: ../gramps/gui/widgets/styledtexteditor.py:78
 msgid "Strikethrough"
-msgstr ""
+msgstr "Prečiarknuté"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:73
 #: ../gramps/gui/widgets/styledtexteditor.py:78
-#, fuzzy
-#| msgid "Superscript"
 msgid "Subscript"
-msgstr "Horný index"
+msgstr "Dolný index"
 
 #: ../gramps/gen/lib/surname.py:87 ../gramps/gen/lib/surname.py:91
 #: ../gramps/gen/utils/keyword.py:56 ../gramps/gui/clipboard.py:607
@@ -9294,11 +9284,11 @@ msgstr "Nestabilný"
 
 #: ../gramps/gen/plug/_pluginreg.py:63
 msgid "Experimental"
-msgstr ""
+msgstr "Experimentálny"
 
 #: ../gramps/gen/plug/_pluginreg.py:64
 msgid "Beta"
-msgstr ""
+msgstr "Beta"
 
 #: ../gramps/gen/plug/_pluginreg.py:65
 msgid "Stable"
@@ -9306,11 +9296,11 @@ msgstr "Stabilný"
 
 #: ../gramps/gen/plug/_pluginreg.py:73
 msgid "Developer"
-msgstr ""
+msgstr "Vývojár"
 
 #: ../gramps/gen/plug/_pluginreg.py:74
 msgid "Expert"
-msgstr ""
+msgstr "Expert"
 
 #: ../gramps/gen/plug/_pluginreg.py:99
 msgid "Quickreport"
@@ -9367,16 +9357,12 @@ msgid "Rule"
 msgstr "Pravidlo"
 
 #: ../gramps/gen/plug/_pluginreg.py:112
-#, fuzzy
-#| msgid "Thumbnail"
 msgid "Thumbnailer"
-msgstr "Náhľad"
+msgstr "Generátor náhľadov"
 
 #: ../gramps/gen/plug/_pluginreg.py:113 ../gramps/gui/configure.py:1424
-#, fuzzy
-#| msgid "Citation Information"
 msgid "Citation formatter"
-msgstr "Informácie o citácii"
+msgstr "Formátovač citácií"
 
 #: ../gramps/gen/plug/_pluginreg.py:589
 #: ../gramps/plugins/gramplet/faqgramplet.py:135
@@ -9853,10 +9839,8 @@ msgid "Surname Given Nickname"
 msgstr "Priezvisko Daná prezývka"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:69
-#, fuzzy
-#| msgid "Surname Given Nickname"
 msgid "Surname, Given Nickname"
-msgstr "Priezvisko Daná prezývka"
+msgstr "Priezvisko, Daná prezývka"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:70
 #, fuzzy
@@ -9871,16 +9855,12 @@ msgid "Auto"
 msgstr "Automaticky"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:73
-#, fuzzy
-#| msgid "Call Name"
 msgid "Call Name Only"
-msgstr "Používané meno"
+msgstr "Iba používané meno"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:74
-#, fuzzy
-#| msgid "Given Name"
 msgid "Whole Given Name"
-msgstr "Krstné meno"
+msgstr "Celé krstné meno"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:77
 msgid "Above"
@@ -10009,6 +9989,8 @@ msgid ""
 "Select the portion of the given name to be marked as preferred. Auto sets "
 "the call name if one exists, otherwise the whole given name."
 msgstr ""
+"Vyberte časť krstného mena, ktorá sa má označiť ako preferovaná. Automaticky "
+"sa nastaví používané meno, ak existuje, inak sa použije celé krstné meno."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:196
 msgid "Position of marriage information."
@@ -10296,16 +10278,12 @@ msgid "Select the format to display places"
 msgstr "Voľba formátu pre zobrazenie miest"
 
 #: ../gramps/gen/plug/report/stdoptions.py:386 ../gramps/gui/configure.py:1250
-#, fuzzy
-#| msgid "Date format"
 msgid "Coordinates format"
-msgstr "Formát dátumu"
+msgstr "Formát súradníc"
 
 #: ../gramps/gen/plug/report/stdoptions.py:389
-#, fuzzy
-#| msgid "Select the format to display names"
 msgid "Select the format to display coordinates"
-msgstr "Voľba formátu pre zobrazenie mien"
+msgstr "Voľba formátu pre zobrazenie súradníc"
 
 #: ../gramps/gen/plug/report/utils.py:157
 #: ../gramps/plugins/textreport/indivcomplete.py:925
@@ -10937,59 +10915,55 @@ msgstr "%(west_longitude)s Z"
 
 #: ../gramps/gen/utils/place.py:80
 msgid "DEG"
-msgstr ""
+msgstr "DEG"
 
 #: ../gramps/gen/utils/place.py:83
 msgid "DEG-:"
-msgstr ""
+msgstr "DEG-:"
 
 #: ../gramps/gen/utils/place.py:86
 msgid "D.D4"
-msgstr ""
+msgstr "D.D4"
 
 #: ../gramps/gen/utils/place.py:89
 msgid "D.D8"
-msgstr ""
+msgstr "D.D8"
 
 #: ../gramps/gen/utils/place.py:92
 msgid "RT90"
-msgstr ""
+msgstr "RT90"
 
 #: ../gramps/gen/utils/place.py:102
-#, fuzzy
-#| msgid "Delete the selected citation"
 msgid "Degree, minutes, seconds notation"
-msgstr "Vymazať vybranú citáciu"
+msgstr "Zápis stupňov, minút a sekúnd"
 
 #: ../gramps/gen/utils/place.py:103
 msgid "Degree, minutes, seconds notation with :"
-msgstr ""
+msgstr "Zápis stupňov, minút a sekúnd s:"
 
 #: ../gramps/gen/utils/place.py:104
 msgid "Degree notation, 4 decimals"
-msgstr ""
+msgstr "Zápis stupňov, 4 desatinnné miesta"
 
 #: ../gramps/gen/utils/place.py:105
 msgid "Degree notation, 8 decimals (precision like ISO-DMS)"
-msgstr ""
+msgstr "Zápis stupňov, 8 desatinných miest (presnosť ako ISO-DMS)"
 
 #: ../gramps/gen/utils/place.py:106
 msgid "Output format for the Swedish coordinate system RT90"
-msgstr ""
+msgstr "Výstupný formát pre švédsky súradnicový systém RT90"
 
 #: ../gramps/gen/utils/requirements.py:145
 msgid "Python modules"
-msgstr ""
+msgstr "Moduly Pythonu"
 
 #: ../gramps/gen/utils/requirements.py:152
 msgid "GObject introspection modules"
-msgstr ""
+msgstr "Moduly introspekcie GObject"
 
 #: ../gramps/gen/utils/requirements.py:159
-#, fuzzy
-#| msgid "_Execute"
 msgid "Executables"
-msgstr "_Vykonať"
+msgstr "Spustiteľné súbory"
 
 #: ../gramps/gen/utils/string.py:46 ../gramps/gui/editors/editperson.py:341
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
@@ -11017,11 +10991,9 @@ msgstr "neznáme"
 
 #: ../gramps/gen/utils/string.py:49 ../gramps/gui/editors/editperson.py:343
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
-#, fuzzy
-#| msgid "Mother"
 msgctxt "gender"
 msgid "other"
-msgstr "Matka"
+msgstr "iné"
 
 #: ../gramps/gen/utils/string.py:53
 msgid "Invalid"
@@ -11431,10 +11403,8 @@ msgstr ""
 #: ../gramps/grampsapp.py:345 ../gramps/grampsapp.py:361
 #: ../gramps/grampsapp.py:371 ../gramps/grampsapp.py:392
 #: ../gramps/grampsapp.py:399
-#, fuzzy
-#| msgid "Not found"
 msgid "not found"
-msgstr "Nenájdené"
+msgstr "nenájdený"
 
 #: ../gramps/grampsapp.py:326
 msgid "not found because exiv2 is not installed"
@@ -11445,10 +11415,8 @@ msgid "Installed but does not supply version"
 msgstr ""
 
 #: ../gramps/grampsapp.py:379
-#, fuzzy
-#| msgid "Unstable"
 msgid "installed"
-msgstr "Nestabilný"
+msgstr "nainštalovaný"
 
 #: ../gramps/grampsapp.py:544 ../gramps/grampsapp.py:551
 #: ../gramps/grampsapp.py:602
@@ -18927,22 +18895,16 @@ msgid "Check for updated addons now"
 msgstr "Skontrolovať aktualizácie doplnkov teraz"
 
 #: ../gramps/gui/plug/_windows.py:687
-#, fuzzy
-#| msgid "New Person"
 msgid "New Project"
-msgstr "Nová osoba"
+msgstr "Nový projekt"
 
 #: ../gramps/gui/plug/_windows.py:689
-#, fuzzy
-#| msgid "Edit Person"
 msgid "Edit Project"
-msgstr "Upraviť osobu"
+msgstr "Upraviť projekt"
 
 #: ../gramps/gui/plug/_windows.py:697
-#, fuzzy
-#| msgid "Preferred name"
 msgid "Project name"
-msgstr "Uprednostňované meno"
+msgstr "Názov projektu"
 
 #: ../gramps/gui/plug/_windows.py:758
 msgid "Checking Addons Failed"
@@ -27352,10 +27314,8 @@ msgid "Location Tags"
 msgstr "Miesta"
 
 #: ../gramps/plugins/lib/libmetadata.py:122
-#, fuzzy
-#| msgid "Advanced"
 msgid "Advanced Tags"
-msgstr "Pokročilé"
+msgstr "Pokročilé značky"
 
 #: ../gramps/plugins/lib/libmetadata.py:123
 #, fuzzy
@@ -27364,10 +27324,8 @@ msgid "Rights Tags"
 msgstr "Editovať značky"
 
 #: ../gramps/plugins/lib/libmetadata.py:124
-#, fuzzy
-#| msgid "New Tag"
 msgid "Keyword Tags"
-msgstr "Nová značka"
+msgstr "Kľúčové značky"
 
 #: ../gramps/plugins/lib/libmetadata.py:220
 #, fuzzy
@@ -27376,16 +27334,12 @@ msgid "Namespace"
 msgstr "Menovec"
 
 #: ../gramps/plugins/lib/libmetadata.py:221
-#, fuzzy
-#| msgid "label"
 msgid "Label"
-msgstr "štítok"
+msgstr "Štítok"
 
 #: ../gramps/plugins/lib/libmetadata.py:222
-#, fuzzy
-#| msgid ", "
 msgid " "
-msgstr ", "
+msgstr " "
 
 #: ../gramps/plugins/lib/libnarrate.py:88
 #, python-format
@@ -31400,17 +31354,12 @@ msgid "Where to save the tiles for offline mode."
 msgstr "Kam uložiť dlaždice pre režim offline."
 
 #: ../gramps/plugins/lib/maps/geography.py:1301
-#, fuzzy
-#| msgid ""
-#| "If you have no more space in your file system. You can remove all tiles "
-#| "placed in the above path.\n"
-#| "Be careful! If you have no internet, you'll get no map."
 msgid ""
 "If you have no more space in your file system, you can remove all tiles "
 "placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
-"Ak v systéme súborov už nie je miesto. Môžete odstrániť všetky dlaždice "
+"Ak v systéme súborov už nie je miesto môžete odstrániť všetky dlaždice "
 "umiestnené vo vyššie uvedenej ceste.\n"
 "Buďte opatrní! Ak nemáte internet, nedostanete žiadnu mapu."
 
@@ -31469,20 +31418,7 @@ msgid "Can't create tile cache directory %s"
 msgstr "Nie je možné vytvoriť adresár vyrovnávacej pamäte dlaždíc %s"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:141
-#, fuzzy, python-format
-#| msgid ""
-#| "You must verify and change the tiles cache\n"
-#| "...\n"
-#| "[geography]\n"
-#| "...\n"
-#| "path='bad/path'\n"
-#| "...\n"
-#| "in the gramps.ini file :\n"
-#| "%s\n"
-#| "\n"
-#| "Before to change the gramps.ini file, you need to close gramps\n"
-#| "\n"
-#| "The next errors will be normal"
+#, python-format
 msgid ""
 "You must verify and change the tile cache\n"
 "...\n"
@@ -31499,16 +31435,16 @@ msgid ""
 msgstr ""
 "Musíte overiť a zmeniť vyrovnávaciu pamäť dlaždíc\n"
 "...\n"
-"[[geography]\n"
+"[geography]\n"
 "...\n"
 "path='bad/path'\n"
 "...\n"
 "v súbore gramps.ini :\n"
 "%s\n"
 "\n"
-"Pred zmenou súboru gramps.ini musíte súbor gramps zatvoriť\n"
+"Pred zmenou súboru gramps.ini musíte Gramps zatvoriť\n"
 "\n"
-"Ďalšie chyby budú normálne"
+"Očakávané sú nasledujúce chyby"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:181
 #: ../gramps/plugins/lib/maps/osmgps.py:245
@@ -31880,12 +31816,9 @@ msgid "females"
 msgstr "ženy"
 
 #: ../gramps/plugins/quickview/filterbyname.py:61
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "people with unknown gender"
 msgctxt "Filtering_on"
 msgid "people with other gender"
-msgstr "ľudia s neznámym pohlavím"
+msgstr "ľudia s iným pohlavím"
 
 #: ../gramps/plugins/quickview/filterbyname.py:63
 msgctxt "Filtering_on"
@@ -33770,10 +33703,9 @@ msgid "Females: %d"
 msgstr "Ženy: %d"
 
 #: ../gramps/plugins/textreport/summary.py:188
-#, fuzzy, python-format
-#| msgid "Individuals with unknown gender: %d"
+#, python-format
 msgid "Individuals with other gender: %d"
-msgstr "Jednotlivci s neznámym pohlavím: %d"
+msgstr "Jednotlivci s iným pohlavím: %d"
 
 #: ../gramps/plugins/textreport/summary.py:193
 #, python-format
@@ -34043,10 +33975,8 @@ msgstr "Náhľad"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:49
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:50
-#, fuzzy
-#| msgid "Thumbnail"
 msgid "Image Thumbnailer"
-msgstr "Náhľad"
+msgstr "Generátor miniatúr obrázka"
 
 #: ../gramps/plugins/tool/changenames.glade:34
 msgid ""
@@ -35539,14 +35469,8 @@ msgid "Enable ID reordering."
 msgstr "Povoliť zmenu poradia ID."
 
 #: ../gramps/plugins/tool/reorderids.glade:1420
-#, fuzzy
-#| msgid ""
-#| "List next ID available\n"
-#| "(maynot be continuous)."
 msgid "List next ID available (may not be continuous)."
-msgstr ""
-"Zoznam ďalších dostupných ID\n"
-"(nemusí byť súvislý)."
+msgstr "Zoznam ďalších dostupných ID (nemusí byť súvislý)."
 
 #: ../gramps/plugins/tool/reorderids.glade:1423
 msgid "  Actual"
@@ -35569,14 +35493,8 @@ msgid "Change"
 msgstr "Zmeniť"
 
 #: ../gramps/plugins/tool/reorderids.glade:1469
-#, fuzzy
-#| msgid ""
-#| "Enable ID reordering\n"
-#| "with Start / Step sequence."
 msgid "Enable ID reordering with Start / Step sequence."
-msgstr ""
-"Povoliť zmenu poradia ID\n"
-"s postupnosťou Štart / Krok."
+msgstr "Povoliť zmenu poradia ID s postupnosťou Štart / Krok."
 
 #: ../gramps/plugins/tool/reorderids.glade:1481
 msgid "Start"
@@ -35599,14 +35517,8 @@ msgid "Keep"
 msgstr "Ponechať"
 
 #: ../gramps/plugins/tool/reorderids.glade:1521
-#, fuzzy
-#| msgid ""
-#| "Keep IDs with alternate\n"
-#| "prefixes untouched."
 msgid "Keep IDs with alternate prefixes untouched."
-msgstr ""
-"Ponechať ID s alternatívnymi\n"
-"predponami nedotknuté."
+msgstr "Ponechať ID s alternatívnymi predponami nedotknuté."
 
 #: ../gramps/plugins/tool/reorderids.py:64
 msgctxt "manual"
@@ -38708,18 +38620,16 @@ msgid "Google maps API key"
 msgstr "Kľúč API pre mapy Google"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2495
-#, fuzzy
-#| msgid "The API key used for the Google maps"
 msgid ""
 "The API key used for the Google maps.\n"
 "This key is mandatory and must be valid"
-msgstr "Kľúč API použitý pre mapy Google"
+msgstr ""
+"Kľúč API použitý pre mapy Google.\n"
+"Tento kľúč je povinný a musí byť platný"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2504
-#, fuzzy
-#| msgid "Google maps API key"
 msgid "How to get the API key"
-msgstr "Kľúč API pre mapy Google"
+msgstr "Ako získať kľúč API"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2507
 msgid ""
@@ -38750,11 +38660,10 @@ msgid ""
 msgstr "Vyberte si možnosť, ktorú chcete mať na mapových stránkach Stamen..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2536
-#, fuzzy, python-format
-#| msgid "Died %(month_year)s (%(age)s)."
+#, python-format
 msgctxt "val"
 msgid "in %(inipth)s (%(val)s)"
-msgstr "Úmrtie %(month_year)s (%(age)s)."
+msgstr "v %(inipth)s (%(val)s)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2538
 #, fuzzy
