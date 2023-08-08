@@ -595,7 +595,7 @@ class GrampsLocale:
             self._dd = displayers[self.calendar[:2]](val)
         elif self != _first and _first.calendar in displayers:
             self._dd = displayers[_first.calendar](val, blocale=self)
-        elif self != _first and _first.calendar and q_first.calendar[:2] in displayers:
+        elif self != _first and _first.calendar and _first.calendar[:2] in displayers:
             self._dd = displayers[_first.calendar[:2]](val, blocale=self)
         else:
             self._dd = displayers["C"](val, blocale=self)
