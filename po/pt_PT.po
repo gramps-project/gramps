@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
-"PO-Revision-Date: 2023-07-31 05:47+0000\n"
+"PO-Revision-Date: 2023-08-08 04:51+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@gmx.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -18180,7 +18180,7 @@ msgstr "_Sair"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Report a Bug"
-msgstr "_Reportar um erro"
+msgstr "_Relatar um erro"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Reports"
@@ -30858,7 +30858,7 @@ msgstr "Ir para o indivíduo inicial"
 #: ../gramps/plugins/view/relview.py:434 ../gramps/plugins/view/repoview.py:210
 #: ../gramps/plugins/view/sourceview.py:196
 msgid "Go to the next object in the history"
-msgstr "Ir para o próximo objecto no histórico"
+msgstr "Ir para o objecto seguinte no histórico"
 
 #: ../gramps/plugins/lib/libpersonview.py:258
 #: ../gramps/plugins/lib/libplaceview.py:334
@@ -30972,8 +30972,8 @@ msgid ""
 "Attempt to see selected locations with a Map Service (OpenstreetMap, Google "
 "Maps, ...)"
 msgstr ""
-"Tentar ver os locais seleccionados com um serviço de mapas (OpenStreetMap."
-"org, etc....)"
+"Tentar ver os locais seleccionados com um serviço de mapas ("
+"OpenStreetMap.org, etc....)"
 
 #: ../gramps/plugins/lib/libplaceview.py:468
 msgid "Select a Map Service"
