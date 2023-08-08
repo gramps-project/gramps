@@ -70,7 +70,7 @@ class PersonRefEmbedList(DbGUIElement, EmbeddedList):
         (_("Private"), 4, 30, ICON_COL, -1, "gramps-lock"),
     ]
 
-    def __init__(self, dbstate, uistate, track, data):
+    def __init__(self, dbstate, uistate, track, data, config_key):
         self.data = data
         DbGUIElement.__init__(self, dbstate.db)
         EmbeddedList.__init__(
@@ -80,6 +80,7 @@ class PersonRefEmbedList(DbGUIElement, EmbeddedList):
             track,
             _("_Associations"),
             PersonRefModel,
+            config_key,
             move_buttons=True,
         )
 
@@ -208,6 +209,3 @@ class PersonRefEmbedList(DbGUIElement, EmbeddedList):
             )
         except WindowActiveError:
             pass
-
-    def get_config_name(self):
-        return __name__

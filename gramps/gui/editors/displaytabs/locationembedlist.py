@@ -60,7 +60,7 @@ class LocationEmbedList(EmbeddedList):
         (_("Country"), 5, 75, TEXT_COL, -1, None),
     ]
 
-    def __init__(self, dbstate, uistate, track, data):
+    def __init__(self, dbstate, uistate, track, data, config_key):
         self.data = data
         EmbeddedList.__init__(
             self,
@@ -69,6 +69,7 @@ class LocationEmbedList(EmbeddedList):
             track,
             _("Alternate _Locations"),
             LocationModel,
+            config_key,
             move_buttons=True,
         )
 
@@ -107,6 +108,3 @@ class LocationEmbedList(EmbeddedList):
 
     def edit_callback(self, name):
         self.rebuild()
-
-    def get_config_name(self):
-        return __name__

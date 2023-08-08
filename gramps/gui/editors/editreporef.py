@@ -156,6 +156,7 @@ class EditRepoRef(EditReference):
             self.uistate,
             self.track,
             self.source.get_note_list(),
+            "reporef_editor_shared_notes",
             notetype=NoteType.REPO,
         )
         self._add_tab(notebook_src, self.note_tab)
@@ -166,19 +167,28 @@ class EditRepoRef(EditReference):
             self.uistate,
             self.track,
             self.source_ref.get_note_list(),
+            "reporef_editor_ref_notes",
             notetype=NoteType.REPOREF,
         )
         self._add_tab(notebook_ref, self.comment_tab)
         self.track_ref_for_deletion("comment_tab")
 
         self.address_tab = AddrEmbedList(
-            self.dbstate, self.uistate, self.track, self.source.get_address_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.source.get_address_list(),
+            "reporef_editor_shared_address",
         )
         self._add_tab(notebook_src, self.address_tab)
         self.track_ref_for_deletion("address_tab")
 
         self.web_list = WebEmbedList(
-            self.dbstate, self.uistate, self.track, self.source.get_url_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.source.get_url_list(),
+            "reporef_editor_shared_internet",
         )
         self._add_tab(notebook_src, self.web_list)
         self.track_ref_for_deletion("web_list")
@@ -188,6 +198,7 @@ class EditRepoRef(EditReference):
             self.uistate,
             self.track,
             self.db.find_backlink_handles(self.source.handle),
+            "reporef_editor_shared_references",
             self.enable_warnbox,
         )
         self._add_tab(notebook_src, self.backref_tab)

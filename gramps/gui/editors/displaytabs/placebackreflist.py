@@ -28,9 +28,16 @@ from .backreflist import BackRefList
 
 
 class PlaceBackRefList(BackRefList):
-    def __init__(self, dbstate, uistate, track, obj, callback=None):
+    def __init__(self, dbstate, uistate, track, obj, config_key, callback=None):
         BackRefList.__init__(
-            self, dbstate, uistate, track, obj, BackRefModel, callback=callback
+            self,
+            dbstate,
+            uistate,
+            track,
+            obj,
+            BackRefModel,
+            config_key,
+            callback=callback,
         )
 
     def get_icon_name(self):

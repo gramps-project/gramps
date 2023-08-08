@@ -151,7 +151,7 @@ class ChildEmbedList(DbGUIElement, EmbeddedList):
         (_("Private"), 14, 30, ICON_COL, -1, "gramps-lock"),
     ]
 
-    def __init__(self, dbstate, uistate, track, family):
+    def __init__(self, dbstate, uistate, track, family, config_key):
         """
         Create the object, storing the passed family value
         """
@@ -164,6 +164,7 @@ class ChildEmbedList(DbGUIElement, EmbeddedList):
             track,
             _("Chil_dren"),
             ChildModel,
+            config_key,
             share_button=True,
             move_buttons=True,
         )
@@ -409,9 +410,6 @@ class ChildEmbedList(DbGUIElement, EmbeddedList):
             return name
         else:
             return name
-
-    def get_config_name(self):
-        return __name__
 
 
 class FastMaleFilter:
@@ -823,7 +821,7 @@ class EditFamily(EditPrimary):
         notebook = Gtk.Notebook()
 
         self.child_list = ChildEmbedList(
-            self.dbstate, self.uistate, self.track, self.obj
+            self.dbstate, self.uistate, self.track, self.obj, "family_editor_childrefs"
         )
         self.child_tab = self._add_tab(notebook, self.child_list)
         self.track_ref_for_deletion("child_list")
@@ -834,6 +832,7 @@ class EditFamily(EditPrimary):
             self.uistate,
             self.track,
             self.obj,
+            "family_editor_events",
             start_date=self.get_start_date(),
         )
 
@@ -845,13 +844,18 @@ class EditFamily(EditPrimary):
             self.uistate,
             self.track,
             self.obj.get_citation_list(),
+            "family_editor_citations",
             self.get_menu_title(),
         )
         self._add_tab(notebook, self.citation_list)
         self.track_ref_for_deletion("citation_list")
 
         self.attr_list = FamilyAttrEmbedList(
-            self.dbstate, self.uistate, self.track, self.obj.get_attribute_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_attribute_list(),
+            "family_editor_attributes",
         )
         self._add_tab(notebook, self.attr_list)
         self.track_ref_for_deletion("attr_list")
@@ -861,6 +865,7 @@ class EditFamily(EditPrimary):
             self.uistate,
             self.track,
             self.obj.get_note_list(),
+            "family_editor_notes",
             self.get_menu_title(),
             notetype=NoteType.FAMILY,
         )
@@ -868,13 +873,20 @@ class EditFamily(EditPrimary):
         self.track_ref_for_deletion("note_tab")
 
         self.gallery_tab = GalleryTab(
-            self.dbstate, self.uistate, self.track, self.obj.get_media_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_media_list(),
         )
         self._add_tab(notebook, self.gallery_tab)
         self.track_ref_for_deletion("gallery_tab")
 
         self.lds_embed = FamilyLdsEmbedList(
-            self.dbstate, self.uistate, self.track, self.obj.get_lds_ord_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_lds_ord_list(),
+            "family_editor_ldsord",
         )
         if not (config.get("interface.hide-lds") and self.lds_embed.is_empty()):
             self._add_tab(notebook, self.lds_embed)
@@ -1396,9 +1408,6 @@ class EditFamily(EditPrimary):
                         name.set_surname_list([surnames[-1]])
                         return name
         return name
-
-    def get_config_name(self):
-        return __name__
 
 
 def button_activated(event, mouse_button):

@@ -71,7 +71,7 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
         (_("Private"), 4, 30, ICON_COL, -1, "gramps-lock"),
     ]
 
-    def __init__(self, dbstate, uistate, track, obj):
+    def __init__(self, dbstate, uistate, track, obj, config_key):
         self.obj = obj
         EmbeddedList.__init__(
             self,
@@ -80,6 +80,7 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
             track,
             _("_Repositories"),
             RepoRefModel,
+            config_key,
             share_button=True,
             move_buttons=True,
         )
@@ -229,6 +230,3 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
             if handle in ref_handles:
                 self.rebuild()
                 break
-
-    def get_config_name(self):
-        return __name__

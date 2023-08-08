@@ -81,7 +81,16 @@ class NoteTab(EmbeddedList, DbGUIElement):
         (_("Private"), 2, 30, ICON_COL, -1, "gramps-lock"),
     ]
 
-    def __init__(self, dbstate, uistate, track, data, callertitle=None, notetype=None):
+    def __init__(
+        self,
+        dbstate,
+        uistate,
+        track,
+        data,
+        config_key,
+        callertitle=None,
+        notetype=None,
+    ):
         self.data = data
         self.callertitle = callertitle
         self.notetype = notetype
@@ -92,6 +101,7 @@ class NoteTab(EmbeddedList, DbGUIElement):
             track,
             _("_Notes"),
             NoteModel,
+            config_key,
             share_button=True,
             move_buttons=True,
         )
@@ -231,6 +241,3 @@ class NoteTab(EmbeddedList, DbGUIElement):
             if handle in self.data:
                 self.rebuild()
                 break
-
-    def get_config_name(self):
-        return __name__

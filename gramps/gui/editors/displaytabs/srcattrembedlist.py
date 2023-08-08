@@ -65,7 +65,7 @@ class SrcAttrEmbedList(EmbeddedList):
         (_("Private"), 2, 30, ICON_COL, -1, "gramps-lock"),
     ]
 
-    def __init__(self, dbstate, uistate, track, data):
+    def __init__(self, dbstate, uistate, track, data, config_key):
         """
         Initialize the displaytab. The dbstate and uistate is needed
         track is the list of parent windows
@@ -80,6 +80,7 @@ class SrcAttrEmbedList(EmbeddedList):
             track,
             _("_Attributes"),
             SrcAttrModel,
+            config_key,
             move_buttons=True,
         )
 
@@ -180,6 +181,3 @@ class SrcAttrEmbedList(EmbeddedList):
     def edit_callback(self, name):
         self.changed = True
         self.rebuild()
-
-    def get_config_name(self):
-        return __name__

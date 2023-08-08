@@ -129,7 +129,12 @@ class EditName(EditSecondary):
         hbox_surn.set_size_request(-1, int(config.get("interface.surname-box-height")))
         hbox_surn.pack_start(
             SurnameTab(
-                self.dbstate, self.uistate, self.track, self.obj, top_label=None
+                self.dbstate,
+                self.uistate,
+                self.track,
+                self.obj,
+                "name_editor_surnames",
+                top_label=None,
             ),
             True,
             True,
@@ -300,7 +305,11 @@ class EditName(EditSecondary):
         self.track_ref_for_deletion("gennam")
 
         self.srcref_list = CitationEmbedList(
-            self.dbstate, self.uistate, self.track, self.obj.get_citation_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_citation_list(),
+            "name_editor_citations",
         )
         self._add_tab(notebook, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
@@ -310,6 +319,7 @@ class EditName(EditSecondary):
             self.uistate,
             self.track,
             self.obj.get_note_list(),
+            "name_editor_notes",
             notetype=NoteType.PERSONNAME,
         )
         self._add_tab(notebook, self.note_tab)

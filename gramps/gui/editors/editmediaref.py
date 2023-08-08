@@ -494,13 +494,21 @@ class EditMediaRef(EditReference):
         self._add_tab(notebook_ref, self.reftab)
 
         self.srcref_list = CitationEmbedList(
-            self.dbstate, self.uistate, self.track, self.source_ref.get_citation_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.source_ref.get_citation_list(),
+            "mediaref_editor_ref_citations",
         )
         self._add_tab(notebook_ref, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
 
         self.attr_list = MediaAttrEmbedList(
-            self.dbstate, self.uistate, self.track, self.source_ref.get_attribute_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.source_ref.get_attribute_list(),
+            "mediaref_editor_ref_attributes",
         )
         self._add_tab(notebook_ref, self.attr_list)
         self.track_ref_for_deletion("attr_list")
@@ -510,6 +518,7 @@ class EditMediaRef(EditReference):
             self.uistate,
             self.track,
             self.db.find_backlink_handles(self.source.handle),
+            "mediaref_editor_shared_references",
             self.enable_warnbox,
         )
         self._add_tab(notebook_src, self.backref_list)
@@ -520,19 +529,28 @@ class EditMediaRef(EditReference):
             self.uistate,
             self.track,
             self.source_ref.get_note_list(),
+            "mediaref_editor_ref_notes",
             notetype=NoteType.MEDIAREF,
         )
         self._add_tab(notebook_ref, self.note_ref_tab)
         self.track_ref_for_deletion("note_ref_tab")
 
         self.src_srcref_list = CitationEmbedList(
-            self.dbstate, self.uistate, self.track, self.source.get_citation_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.source.get_citation_list(),
+            "mediaref_editor_shared_citations",
         )
         self._add_tab(notebook_src, self.src_srcref_list)
         self.track_ref_for_deletion("src_srcref_list")
 
         self.src_attr_list = MediaAttrEmbedList(
-            self.dbstate, self.uistate, self.track, self.source.get_attribute_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.source.get_attribute_list(),
+            "mediaref_editor_shared_attributes",
         )
         self._add_tab(notebook_src, self.src_attr_list)
         self.track_ref_for_deletion("src_attr_list")
@@ -542,6 +560,7 @@ class EditMediaRef(EditReference):
             self.uistate,
             self.track,
             self.source.get_note_list(),
+            "mediaref_editor_shared_notes",
             notetype=NoteType.MEDIA,
         )
         self._add_tab(notebook_src, self.src_note_ref_tab)

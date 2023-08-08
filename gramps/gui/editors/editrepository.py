@@ -138,13 +138,21 @@ class EditRepository(EditPrimary):
         notebook = Gtk.Notebook()
 
         self.addr_tab = AddrEmbedList(
-            self.dbstate, self.uistate, self.track, self.obj.get_address_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_address_list(),
+            "repository_editor_addresses",
         )
         self._add_tab(notebook, self.addr_tab)
         self.track_ref_for_deletion("addr_tab")
 
         self.url_tab = WebEmbedList(
-            self.dbstate, self.uistate, self.track, self.obj.get_url_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_url_list(),
+            "repository_editor_internet",
         )
         self._add_tab(notebook, self.url_tab)
         self.track_ref_for_deletion("url_tab")
@@ -154,6 +162,7 @@ class EditRepository(EditPrimary):
             self.uistate,
             self.track,
             self.obj.get_note_list(),
+            "repository_editor_notes",
             self.get_menu_title(),
             notetype=NoteType.REPO,
         )
@@ -165,6 +174,7 @@ class EditRepository(EditPrimary):
             self.uistate,
             self.track,
             self.db.find_backlink_handles(self.obj.handle),
+            "repository_editor_references",
         )
         self.backref_list = self._add_tab(notebook, self.backref_tab)
         self.track_ref_for_deletion("backref_tab")

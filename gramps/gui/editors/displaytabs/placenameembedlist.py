@@ -66,7 +66,7 @@ class PlaceNameEmbedList(EmbeddedList):
         (_("Language"), 2, 100, TEXT_COL, -1, None),
     ]
 
-    def __init__(self, dbstate, uistate, track, data):
+    def __init__(self, dbstate, uistate, track, data, config_key):
         self.data = data
         EmbeddedList.__init__(
             self,
@@ -75,6 +75,7 @@ class PlaceNameEmbedList(EmbeddedList):
             track,
             _("Alternative Names"),
             PlaceNameModel,
+            config_key,
             move_buttons=True,
         )
 
@@ -127,6 +128,3 @@ class PlaceNameEmbedList(EmbeddedList):
         Called to update the screen when the place name changes.
         """
         self.rebuild()
-
-    def get_config_name(self):
-        return __name__

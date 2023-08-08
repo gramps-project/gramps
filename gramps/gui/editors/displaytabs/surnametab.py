@@ -89,6 +89,7 @@ class SurnameTab(EmbeddedList):
         uistate,
         track,
         name,
+        config_key,
         on_change=None,
         top_label="<b>%s</b>" % _("Multiple Surnames"),
     ):
@@ -105,6 +106,7 @@ class SurnameTab(EmbeddedList):
             track,
             _("Family Surnames"),
             SurnameModel,
+            config_key,
             move_buttons=True,
             top_label=top_label,
         )
@@ -437,6 +439,3 @@ class SurnameTab(EmbeddedList):
                     self.curr_celle.editing_done()
                     return
         return True
-
-    def get_config_name(self):
-        return __name__

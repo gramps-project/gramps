@@ -69,7 +69,7 @@ class WebEmbedList(EmbeddedList):
         (_("Private"), 3, 30, ICON_COL, -1, "gramps-lock"),
     ]
 
-    def __init__(self, dbstate, uistate, track, data):
+    def __init__(self, dbstate, uistate, track, data, config_key):
         self.data = data
         EmbeddedList.__init__(
             self,
@@ -78,6 +78,7 @@ class WebEmbedList(EmbeddedList):
             track,
             _("_Internet"),
             WebModel,
+            config_key,
             move_buttons=True,
             jump_button=True,
         )
@@ -135,6 +136,3 @@ class WebEmbedList(EmbeddedList):
         url = self.get_selected()
         if url.get_path():
             display_url(url.get_path())
-
-    def get_config_name(self):
-        return __name__

@@ -156,7 +156,11 @@ class EditPersonRef(EditSecondary):
         notebook = Gtk.Notebook()
 
         self.srcref_list = CitationEmbedList(
-            self.dbstate, self.uistate, self.track, self.obj.get_citation_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_citation_list(),
+            "personref_editor_ref_citations",
         )
         self._add_tab(notebook, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
@@ -166,6 +170,7 @@ class EditPersonRef(EditSecondary):
             self.uistate,
             self.track,
             self.obj.get_note_list(),
+            "personref_editor_ref_notes",
             notetype=NoteType.ASSOCIATION,
         )
         self._add_tab(notebook, self.note_tab)

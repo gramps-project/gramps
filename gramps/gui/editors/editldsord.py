@@ -268,7 +268,11 @@ class EditLdsOrd(EditSecondary):
     def _create_tabbed_pages(self):
         notebook = Gtk.Notebook()
         self.citation_list = CitationEmbedList(
-            self.dbstate, self.uistate, self.track, self.obj.get_citation_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_citation_list(),
+            "ldsord_editor_citations",
         )
         self._add_tab(notebook, self.citation_list)
         self.track_ref_for_deletion("citation_list")
@@ -278,6 +282,7 @@ class EditLdsOrd(EditSecondary):
             self.uistate,
             self.track,
             self.obj.get_note_list(),
+            "ldsord_editor_notes",
             notetype=NoteType.LDS,
         )
         self._add_tab(notebook, self.note_tab)
@@ -453,7 +458,11 @@ class EditFamilyLdsOrd(EditSecondary):
     def _create_tabbed_pages(self):
         notebook = Gtk.Notebook()
         self.srcref_list = CitationEmbedList(
-            self.dbstate, self.uistate, self.track, self.obj.get_citation_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_citation_list(),
+            "ldsord_editor_citations",
         )
         self._add_tab(notebook, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
@@ -463,6 +472,7 @@ class EditFamilyLdsOrd(EditSecondary):
             self.uistate,
             self.track,
             self.obj.get_note_list(),
+            "ldsord_editor_notes",
             notetype=NoteType.LDS,
         )
         self._add_tab(notebook, self.note_tab)

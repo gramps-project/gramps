@@ -111,7 +111,14 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
     ]
 
     def __init__(
-        self, dbstate, uistate, track, obj, build_model=EventRefModel, **kwargs
+        self,
+        dbstate,
+        uistate,
+        track,
+        obj,
+        config_key,
+        build_model=EventRefModel,
+        **kwargs
     ):
         self.obj = obj
         self._groups = []
@@ -124,6 +131,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
             track,
             _("_Events"),
             build_model,
+            config_key,
             share_button=True,
             move_buttons=True,
             **kwargs,
@@ -484,6 +492,3 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         self.tree.expand_all()
         if prebuildpath is not None:
             self.selection.select_path(prebuildpath)
-
-    def get_config_name(self):
-        return __name__
