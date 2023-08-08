@@ -218,7 +218,11 @@ class EditAttribute(EditAttributeRoot):
     def _create_tabbed_pages(self):
         notebook = Gtk.Notebook()
         self.srcref_list = CitationEmbedList(
-            self.dbstate, self.uistate, self.track, self.obj.get_citation_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_citation_list(),
+            "attribute_editor_citations",
         )
         self._add_tab(notebook, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
@@ -228,6 +232,7 @@ class EditAttribute(EditAttributeRoot):
             self.uistate,
             self.track,
             self.obj.get_note_list(),
+            "attribute_editor_notes",
             notetype=NoteType.ATTRIBUTE,
         )
         self._add_tab(notebook, self.note_tab)

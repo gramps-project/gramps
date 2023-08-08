@@ -58,8 +58,8 @@ class FamilyLdsEmbedList(LdsEmbedList):
         (_("Private"), 6, 30, ICON_COL, -1, "gramps-lock"),
     ]
 
-    def __init__(self, dbstate, uistate, track, data):
-        LdsEmbedList.__init__(self, dbstate, uistate, track, data)
+    def __init__(self, dbstate, uistate, track, data, config_key):
+        LdsEmbedList.__init__(self, dbstate, uistate, track, data, config_key)
 
     def get_editor(self):
         from .. import EditFamilyLdsOrd
@@ -70,6 +70,3 @@ class FamilyLdsEmbedList(LdsEmbedList):
         lds = LdsOrd()
         lds.set_type(LdsOrd.SEAL_TO_SPOUSE)
         return lds
-
-    def get_config_name(self):
-        return __name__

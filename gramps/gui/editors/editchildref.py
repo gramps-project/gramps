@@ -171,7 +171,11 @@ class EditChildRef(EditSecondary):
         notebook = Gtk.Notebook()
 
         self.srcref_list = CitationEmbedList(
-            self.dbstate, self.uistate, self.track, self.obj.get_citation_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_citation_list(),
+            "childref_editor_citations",
         )
         self._add_tab(notebook, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
@@ -181,6 +185,7 @@ class EditChildRef(EditSecondary):
             self.uistate,
             self.track,
             self.obj.get_note_list(),
+            "childref_editor_notes",
             notetype=NoteType.CHILDREF,
         )
         self._add_tab(notebook, self.note_tab)

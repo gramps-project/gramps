@@ -81,7 +81,7 @@ class NameEmbedList(GroupEmbeddedList):
         (_("Private"), NameModel.COL_PRIVATE[0], 30, ICON_COL, -1, "gramps-lock"),
     ]
 
-    def __init__(self, dbstate, uistate, track, data, person, callback):
+    def __init__(self, dbstate, uistate, track, data, person, config_key, callback):
         """callback is the function to call when preferred name changes
         on the namelist"""
         self.data = data
@@ -89,7 +89,14 @@ class NameEmbedList(GroupEmbeddedList):
         self.callback = callback
 
         GroupEmbeddedList.__init__(
-            self, dbstate, uistate, track, _("_Names"), NameModel, move_buttons=True
+            self,
+            dbstate,
+            uistate,
+            track,
+            _("_Names"),
+            NameModel,
+            config_key,
+            move_buttons=True,
         )
         self.tree.expand_all()
 
@@ -232,6 +239,3 @@ class NameEmbedList(GroupEmbeddedList):
         self.tree.expand_all()
         if prebuildpath is not None:
             self.selection.select_path(prebuildpath)
-
-    def get_config_name(self):
-        return __name__

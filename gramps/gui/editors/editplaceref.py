@@ -275,6 +275,7 @@ class EditPlaceRef(EditReference):
             self.uistate,
             self.track,
             self.source.get_placeref_list(),
+            "placeref_editor_placerefs",
             self.source.handle,
             self.update_title,
         )
@@ -282,20 +283,32 @@ class EditPlaceRef(EditReference):
         self.track_ref_for_deletion("placeref_list")
 
         self.alt_name_list = PlaceNameEmbedList(
-            self.dbstate, self.uistate, self.track, self.source.alt_names
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.source.alt_names,
+            "placeref_editor_altnames",
         )
         self._add_tab(notebook, self.alt_name_list)
         self.track_ref_for_deletion("alt_name_list")
 
         if len(self.source.alt_loc) > 0:
             self.loc_list = LocationEmbedList(
-                self.dbstate, self.uistate, self.track, self.source.alt_loc
+                self.dbstate,
+                self.uistate,
+                self.track,
+                self.source.alt_loc,
+                "placeref_editor_locations",
             )
             self._add_tab(notebook, self.loc_list)
             self.track_ref_for_deletion("loc_list")
 
         self.citation_list = CitationEmbedList(
-            self.dbstate, self.uistate, self.track, self.source.get_citation_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.source.get_citation_list(),
+            "placeref_editor_citations",
         )
         self._add_tab(notebook, self.citation_list)
         self.track_ref_for_deletion("citation_list")
@@ -305,19 +318,27 @@ class EditPlaceRef(EditReference):
             self.uistate,
             self.track,
             self.source.get_note_list(),
+            "placeref_editor_notes",
             notetype=NoteType.PLACE,
         )
         self._add_tab(notebook, self.note_tab)
         self.track_ref_for_deletion("note_tab")
 
         self.gallery_tab = GalleryTab(
-            self.dbstate, self.uistate, self.track, self.source.get_media_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.source.get_media_list(),
         )
         self._add_tab(notebook, self.gallery_tab)
         self.track_ref_for_deletion("gallery_tab")
 
         self.web_list = WebEmbedList(
-            self.dbstate, self.uistate, self.track, self.source.get_url_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.source.get_url_list(),
+            "placeref_editor_internet",
         )
         self._add_tab(notebook, self.web_list)
         self.track_ref_for_deletion("web_list")
@@ -327,6 +348,7 @@ class EditPlaceRef(EditReference):
             self.uistate,
             self.track,
             self.db.find_backlink_handles(self.source.handle),
+            "placeref_editor_references",
         )
         self.backref_tab = self._add_tab(notebook, self.backref_list)
         self.track_ref_for_deletion("backref_list")

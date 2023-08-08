@@ -90,7 +90,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         (_("Sorted date"), 8, 80, TEXT_COL, -1, None),
     ]
 
-    def __init__(self, dbstate, uistate, track, data, callertitle=None):
+    def __init__(self, dbstate, uistate, track, data, config_key, callertitle=None):
         self.data = data
         self.callertitle = callertitle
         EmbeddedList.__init__(
@@ -100,6 +100,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
             track,
             _("_Source Citations"),
             CitationRefModel,
+            config_key,
             share_button=True,
             move_buttons=True,
         )
@@ -345,6 +346,3 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                     )
             else:
                 raise ValueError("selection must be either source or citation")
-
-    def get_config_name(self):
-        return __name__

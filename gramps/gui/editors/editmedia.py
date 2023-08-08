@@ -228,13 +228,18 @@ class EditMedia(EditPrimary):
             self.uistate,
             self.track,
             self.obj.get_citation_list(),
+            "media_editor_citations",
             self.get_menu_title(),
         )
         self._add_tab(notebook, self.citation_tab)
         self.track_ref_for_deletion("citation_tab")
 
         self.attr_tab = MediaAttrEmbedList(
-            self.dbstate, self.uistate, self.track, self.obj.get_attribute_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_attribute_list(),
+            "media_editor_attributes",
         )
         self._add_tab(notebook, self.attr_tab)
         self.track_ref_for_deletion("attr_tab")
@@ -244,6 +249,7 @@ class EditMedia(EditPrimary):
             self.uistate,
             self.track,
             self.obj.get_note_list(),
+            "media_editor_notes",
             notetype=NoteType.MEDIA,
         )
         self._add_tab(notebook, self.note_tab)
@@ -254,6 +260,7 @@ class EditMedia(EditPrimary):
             self.uistate,
             self.track,
             self.db.find_backlink_handles(self.obj.handle),
+            "media_editor_references",
         )
         self.backref_list = self._add_tab(notebook, self.backref_tab)
         self.track_ref_for_deletion("backref_tab")

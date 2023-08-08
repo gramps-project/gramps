@@ -282,7 +282,9 @@ class EditNote(EditPrimary):
         self._add_tab(notebook, self.ntab)
 
         handles = self.dbstate.db.find_backlink_handles(self.obj.handle)
-        self.rlist = NoteBackRefList(self.dbstate, self.uistate, self.track, handles)
+        self.rlist = NoteBackRefList(
+            self.dbstate, self.uistate, self.track, handles, "note_editor_references"
+        )
         self.backref_tab = self._add_tab(notebook, self.rlist)
         self.track_ref_for_deletion("rlist")
         self.track_ref_for_deletion("backref_tab")

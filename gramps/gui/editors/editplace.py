@@ -301,6 +301,7 @@ class EditPlace(EditPrimary):
             self.uistate,
             self.track,
             self.obj.get_placeref_list(),
+            "place_editor_placerefs",
             self.obj.handle,
             self.update_title,
         )
@@ -308,14 +309,22 @@ class EditPlace(EditPrimary):
         self.track_ref_for_deletion("placeref_list")
 
         self.alt_name_list = PlaceNameEmbedList(
-            self.dbstate, self.uistate, self.track, self.obj.alt_names
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.alt_names,
+            "place_editor_altnames",
         )
         self._add_tab(notebook, self.alt_name_list)
         self.track_ref_for_deletion("alt_name_list")
 
         if len(self.obj.alt_loc) > 0:
             self.loc_list = LocationEmbedList(
-                self.dbstate, self.uistate, self.track, self.obj.alt_loc
+                self.dbstate,
+                self.uistate,
+                self.track,
+                self.obj.alt_loc,
+                "place_editor_locations",
             )
             self._add_tab(notebook, self.loc_list)
             self.track_ref_for_deletion("loc_list")
@@ -325,6 +334,7 @@ class EditPlace(EditPrimary):
             self.uistate,
             self.track,
             self.obj.get_citation_list(),
+            "place_editor_citations",
             self.get_menu_title(),
         )
         self._add_tab(notebook, self.citation_list)
@@ -335,6 +345,7 @@ class EditPlace(EditPrimary):
             self.uistate,
             self.track,
             self.obj.get_note_list(),
+            "place_editor_notes",
             self.get_menu_title(),
             notetype=NoteType.PLACE,
         )
@@ -342,13 +353,20 @@ class EditPlace(EditPrimary):
         self.track_ref_for_deletion("note_tab")
 
         self.gallery_tab = GalleryTab(
-            self.dbstate, self.uistate, self.track, self.obj.get_media_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_media_list(),
         )
         self._add_tab(notebook, self.gallery_tab)
         self.track_ref_for_deletion("gallery_tab")
 
         self.web_list = WebEmbedList(
-            self.dbstate, self.uistate, self.track, self.obj.get_url_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_url_list(),
+            "place_editor_internet",
         )
         self._add_tab(notebook, self.web_list)
         self.track_ref_for_deletion("web_list")
@@ -358,6 +376,7 @@ class EditPlace(EditPrimary):
             self.uistate,
             self.track,
             self.db.find_backlink_handles(self.obj.handle),
+            "place_editor_references",
         )
         self.backref_tab = self._add_tab(notebook, self.backref_list)
         self.track_ref_for_deletion("backref_list")

@@ -68,10 +68,17 @@ class LdsEmbedList(EmbeddedList):
         (_("Private"), 6, 30, ICON_COL, -1, "gramps-lock"),
     ]
 
-    def __init__(self, dbstate, uistate, track, data):
+    def __init__(self, dbstate, uistate, track, data, config_key):
         self.data = data
         EmbeddedList.__init__(
-            self, dbstate, uistate, track, _("_LDS"), LdsModel, move_buttons=True
+            self,
+            dbstate,
+            uistate,
+            track,
+            _("_LDS"),
+            LdsModel,
+            config_key,
+            move_buttons=True,
         )
 
     def get_editor(self):
@@ -118,6 +125,3 @@ class LdsEmbedList(EmbeddedList):
 
     def edit_callback(self, name):
         self.rebuild()
-
-    def get_config_name(self):
-        return __name__

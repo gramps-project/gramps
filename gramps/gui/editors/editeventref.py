@@ -225,25 +225,41 @@ class EditEventRef(EditReference):
         self.track_ref_for_deletion("reftab")
 
         self.srcref_list = CitationEmbedList(
-            self.dbstate, self.uistate, self.track, self.source.get_citation_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.source.get_citation_list(),
+            "eventref_editor_shared_citations",
         )
         self._add_tab(notebook, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
 
         self.srcref_ref_list = CitationEmbedList(
-            self.dbstate, self.uistate, self.track, self.source_ref.get_citation_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.source_ref.get_citation_list(),
+            "eventref_editor_ref_citations",
         )
         self._add_tab(notebook_ref, self.srcref_ref_list)
         self.track_ref_for_deletion("srcref_ref_list")
 
         self.attr_list = EventAttrEmbedList(
-            self.dbstate, self.uistate, self.track, self.source.get_attribute_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.source.get_attribute_list(),
+            "eventref_editor_shared_attributes",
         )
         self._add_tab(notebook, self.attr_list)
         self.track_ref_for_deletion("attr_list")
 
         self.attr_ref_list = EventAttrEmbedList(
-            self.dbstate, self.uistate, self.track, self.source_ref.get_attribute_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.source_ref.get_attribute_list(),
+            "eventref_editor_ref_attributes",
         )
         self._add_tab(notebook_ref, self.attr_ref_list)
         self.track_ref_for_deletion("attr_ref_list")
@@ -253,6 +269,7 @@ class EditEventRef(EditReference):
             self.uistate,
             self.track,
             self.source.get_note_list(),
+            "eventref_editor_shared_notes",
             notetype=NoteType.EVENT,
         )
         self._add_tab(notebook, self.note_tab)
@@ -263,13 +280,17 @@ class EditEventRef(EditReference):
             self.uistate,
             self.track,
             self.source_ref.get_note_list(),
+            "eventref_editor_ref_notes",
             notetype=NoteType.EVENTREF,
         )
         self._add_tab(notebook_ref, self.note_ref_tab)
         self.track_ref_for_deletion("note_ref_tab")
 
         self.gallery_tab = GalleryTab(
-            self.dbstate, self.uistate, self.track, self.source.get_media_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.source.get_media_list(),
         )
         self._add_tab(notebook, self.gallery_tab)
         self.track_ref_for_deletion("gallery_tab")
@@ -279,6 +300,7 @@ class EditEventRef(EditReference):
             self.uistate,
             self.track,
             self.db.find_backlink_handles(self.source.handle),
+            "eventref_editor_references",
             self.enable_warnbox,
         )
         self._add_tab(notebook, self.backref_tab)

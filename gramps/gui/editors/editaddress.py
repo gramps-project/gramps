@@ -172,7 +172,11 @@ class EditAddress(EditSecondary):
         notebook = Gtk.Notebook()
 
         self.srcref_list = CitationEmbedList(
-            self.dbstate, self.uistate, self.track, self.obj.get_citation_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_citation_list(),
+            "address_editor_citations",
         )
         self._add_tab(notebook, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
@@ -182,6 +186,7 @@ class EditAddress(EditSecondary):
             self.uistate,
             self.track,
             self.obj.get_note_list(),
+            "address_editor_notes",
             notetype=NoteType.ADDRESS,
         )
         self._add_tab(notebook, self.note_tab)

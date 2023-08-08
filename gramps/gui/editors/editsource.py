@@ -182,6 +182,7 @@ class EditSource(EditPrimary):
             self.uistate,
             self.track,
             self.obj.get_note_list(),
+            "source_editor_notes",
             self.get_menu_title(),
             NoteType.SOURCE,
         )
@@ -189,19 +190,30 @@ class EditSource(EditPrimary):
         self.track_ref_for_deletion("note_tab")
 
         self.gallery_tab = GalleryTab(
-            self.dbstate, self.uistate, self.track, self.obj.get_media_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_media_list(),
         )
         self._add_tab(notebook, self.gallery_tab)
         self.track_ref_for_deletion("gallery_tab")
 
         self.attr_tab = SrcAttrEmbedList(
-            self.dbstate, self.uistate, self.track, self.obj.get_attribute_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_attribute_list(),
+            "source_editor_attributes",
         )
         self._add_tab(notebook, self.attr_tab)
         self.track_ref_for_deletion("attr_tab")
 
         self.repo_tab = RepoEmbedList(
-            self.dbstate, self.uistate, self.track, self.obj.get_reporef_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_reporef_list(),
+            "source_editor_repositories",
         )
         self._add_tab(notebook, self.repo_tab)
         self.track_ref_for_deletion("repo_tab")
@@ -211,6 +223,7 @@ class EditSource(EditPrimary):
             self.uistate,
             self.track,
             self.db.find_backlink_handles(self.obj.handle),
+            "source_editor_references",
         )
         self.backref_tab = self._add_tab(notebook, self.backref_list)
         self.track_ref_for_deletion("backref_tab")
