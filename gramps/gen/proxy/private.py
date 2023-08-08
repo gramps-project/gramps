@@ -993,6 +993,7 @@ def sanitize_media(db, media):
     new_media.set_change_time(media.get_change_time())
     new_media.set_date_object(media.get_date_object())
     new_media.set_tag_list(media.get_tag_list())
+    new_media.set_checksum(media.get_checksum())
 
     copy_citation_ref_list(db, media, new_media)
     copy_attributes(db, media, new_media)
