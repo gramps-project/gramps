@@ -65,7 +65,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
-"PO-Revision-Date: 2023-08-08 04:50+0000\n"
+"PO-Revision-Date: 2023-08-10 06:44+0000\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/it/>\n"
@@ -12278,15 +12278,15 @@ msgstr "Limiti di calcolo"
 
 #: ../gramps/gui/configure.py:1607
 msgid "Date 'about' year range: (date ± #)"
-msgstr "Intervallo di anni per date \"circa\" (data ± #):"
+msgstr "Intervallo di anni per date \"circa\": (data ± #)"
 
 #: ../gramps/gui/configure.py:1611
 msgid "Date 'after' year range:  (date + #)"
-msgstr "Intervallo di anni per date \"dopo di\"   (data + #):"
+msgstr "Intervallo di anni per date \"dopo di\":   (data + #)"
 
 #: ../gramps/gui/configure.py:1615
 msgid "Date 'before' year range: (date - #)"
-msgstr "Intervallo di anni per date \"prima di\" (data - #):"
+msgstr "Intervallo di anni per date \"prima di\": (data - #)"
 
 #: ../gramps/gui/configure.py:1619
 msgid "Maximum age probably alive"
@@ -14989,10 +14989,8 @@ msgid "_Female"
 msgstr "_Femmina"
 
 #: ../gramps/gui/editors/editperson.py:1114
-#, fuzzy
-#| msgid "Other"
 msgid "_Other"
-msgstr "Altro"
+msgstr "Altr_o"
 
 #: ../gramps/gui/editors/editperson.py:1115
 msgid "_Unknown"
@@ -16207,6 +16205,14 @@ msgid ""
 "Note: several predefined attributes refer to values present in the GEDCOM "
 "standard."
 msgstr ""
+"Il nome di un attributo che si vuole usare. Ad esempio: altezza (per una "
+"persona), tempo del giorno (per un evento), ... \n"
+"Usare questo per memorizzare frammenti di informazioni raccolte che si "
+"desidera collegare correttamente alle fonti. Gli attributi possono essere "
+"usati per persone, famiglie, eventi e oggetti multimediali.\n"
+" \n"
+"Nota: diversi attributi predefiniti fanno riferimento ai valori presenti "
+"nello standard GEDCOM."
 
 #: ../gramps/gui/glade/editchildref.glade:97
 msgid "Relationship to _Mother:"
@@ -20908,8 +20914,6 @@ msgid "'%s' is not a valid date value"
 msgstr "«%s» non è un valore valido per una data"
 
 #: ../gramps/plugins/cite/cite.gpr.py:36
-#, fuzzy
-#| msgid "Publication Information"
 msgid "Default citation formatter"
 msgstr "Formattatore predefinito citazioni"
 
@@ -24737,6 +24741,11 @@ msgid ""
 "available to you. Many more are available to download and install.\n"
 "\n"
 msgstr ""
+"Ci sono molti componenti aggiuntivi o \"gramplet\" disponibili per assistere "
+"nell'inserimento dei dati e nella visualizzazione dell'albero genealogico. "
+"Molti di questi strumenti sono già disponibili nel programma. Molti altri "
+"sono pronti per essere scaricati e installati.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:201
 msgid "Example Database"
@@ -26250,9 +26259,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1198
-#, fuzzy
 msgid "Tag Text"
-msgstr "Testo semplice"
+msgstr "Testo dell'etichetta"
 
 #: ../gramps/plugins/importer/importprogen.glade:1217
 msgid "Import Objects"
@@ -26440,40 +26448,29 @@ msgstr ""
 "può gestire delle vCard annidate."
 
 #: ../gramps/plugins/importer/importvcard.py:346
-#, fuzzy, python-format
-#| msgid "Import of VCards version %s is not supported by Gramps."
+#, python-format
 msgid "Import of vCards version %s is not supported by Gramps."
 msgstr "L'importazione delle vCard versione %s non è supportata da Gramps."
 
 #: ../gramps/plugins/importer/importvcard.py:366
-#, fuzzy
-#| msgid ""
-#| "VCard is malformed missing the compulsory N property, so there is no "
-#| "name; skip it."
 msgid ""
 "The vCard is malformed. It is missing the compulsory N property, so there is "
 "no name; skip it."
 msgstr ""
-"vCard non corretta: manca la proprietà obbligatoria N, quindi non ha nome; "
+"vCard non corretta. Manca la proprietà obbligatoria N, quindi non ha nome; "
 "viene saltata."
 
 #: ../gramps/plugins/importer/importvcard.py:371
-#, fuzzy
-#| msgid ""
-#| "VCard is malformed missing the compulsory FN property, get name from N "
-#| "alone."
 msgid ""
 "The vCard is malformed. It is missing the compulsory FN property, get name "
 "from N alone."
 msgstr ""
-"vCard non corretta: manca la proprietà obbligatoria FN, il nome viene "
+"vCard non corretta. Manca la proprietà obbligatoria FN, il nome viene "
 "ricavato solo dalla proprietà N."
 
 #: ../gramps/plugins/importer/importvcard.py:375
-#, fuzzy
-#| msgid "VCard is malformed wrong number of name components."
 msgid "The vCard is malformed. Wrong number of name components."
-msgstr "vCard non corretta: tutale non corretto dei componenti nome."
+msgstr "vCard non corretta. Totale non corretto dei componenti nome."
 
 #: ../gramps/plugins/importer/importvcard.py:517
 #, python-brace-format
@@ -26520,7 +26517,7 @@ msgstr "  {id1} - {text} con {id2}"
 #: ../gramps/plugins/importer/importxml.py:338
 #, python-brace-format
 msgid "  {obj} {id1} with {id2}"
-msgstr ""
+msgstr "  {obj} {id1} con {id2}"
 
 #: ../gramps/plugins/importer/importxml.py:348
 #: ../gramps/plugins/quickview/filterbyname.py:93
@@ -27275,82 +27272,56 @@ msgid "%(date)s %(time)s"
 msgstr "%(date)s %(time)s"
 
 #: ../gramps/plugins/lib/libmetadata.py:115
-#, fuzzy
-#| msgid "Description"
 msgid "Descriptive Tags"
-msgstr "Descrizione"
+msgstr "Etichette descrittive"
 
 #: ../gramps/plugins/lib/libmetadata.py:116
-#, fuzzy
-#| msgid "Styled Text Tags"
 msgid "Date and Time Tags"
-msgstr "Etichette di testo con stile"
+msgstr "Etichette data e ora"
 
 #: ../gramps/plugins/lib/libmetadata.py:117
-#, fuzzy
-#| msgid "People"
 msgid "People Tags"
-msgstr "Persone"
+msgstr "Etichette persone"
 
 #: ../gramps/plugins/lib/libmetadata.py:118
-#, fuzzy
-#| msgid "Events"
 msgid "Event Tags"
-msgstr "Eventi"
+msgstr "Etichette eventi"
 
 #: ../gramps/plugins/lib/libmetadata.py:119
-#, fuzzy
-#| msgid "Images"
 msgid "Image Tags"
-msgstr "Immagini"
+msgstr "Etichette immagini"
 
 #: ../gramps/plugins/lib/libmetadata.py:120
-#, fuzzy
-#| msgid "Place Information"
 msgid "Camera Information"
-msgstr "Informazioni luogo"
+msgstr "Informazioni fotocamera"
 
 #: ../gramps/plugins/lib/libmetadata.py:121
-#, fuzzy
-#| msgid "Locations"
 msgid "Location Tags"
-msgstr "Posizioni"
+msgstr "Etichette posizione"
 
 #: ../gramps/plugins/lib/libmetadata.py:122
-#, fuzzy
-#| msgid "Advanced"
 msgid "Advanced Tags"
-msgstr "Avanzate"
+msgstr "Etichette avanzate"
 
 #: ../gramps/plugins/lib/libmetadata.py:123
-#, fuzzy
-#| msgid "Edit Tags"
 msgid "Rights Tags"
-msgstr "Modifica etichette"
+msgstr "Etichette diritti"
 
 #: ../gramps/plugins/lib/libmetadata.py:124
-#, fuzzy
-#| msgid "Keywords"
 msgid "Keyword Tags"
-msgstr "Parole chiave"
+msgstr "Etichette parole chiave"
 
 #: ../gramps/plugins/lib/libmetadata.py:220
-#, fuzzy
-#| msgid "Namesake"
 msgid "Namespace"
-msgstr "Omonimo"
+msgstr "Spazio dei nomi"
 
 #: ../gramps/plugins/lib/libmetadata.py:221
-#, fuzzy
-#| msgid "label"
 msgid "Label"
-msgstr "etichetta"
+msgstr "Etichetta"
 
 #: ../gramps/plugins/lib/libmetadata.py:222
-#, fuzzy
-#| msgid ", "
 msgid " "
-msgstr ", "
+msgstr " "
 
 #: ../gramps/plugins/lib/libnarrate.py:88
 #, python-format
@@ -31412,7 +31383,7 @@ msgstr "In basso a destra"
 
 #: ../gramps/plugins/lib/maps/geography.py:160
 msgid "Tile path"
-msgstr ""
+msgstr "Percorso dei tasselli"
 
 #: ../gramps/plugins/lib/maps/geography.py:161
 #, python-format
@@ -31422,6 +31393,10 @@ msgid ""
 "Trying to create a new one failed.\n"
 "Configure the view for the tile path and restart gramps."
 msgstr ""
+"La directory dei tasselli non esiste più:\n"
+"%s\n"
+"Il tentativo di crearne una nuova non è riuscito.\n"
+"Configurare la vista per il percorso dei tasselli e riavviare gramps."
 
 #: ../gramps/plugins/lib/maps/geography.py:397
 msgid "Remove cross hair"
@@ -31492,13 +31467,15 @@ msgstr "Seleziona un file kml usato per aggiungere luoghi"
 #: ../gramps/plugins/lib/maps/geography.py:1046
 msgid "You will need to edit each place manually to add place type, ...\n"
 msgstr ""
+"Bisogna modificare ogni luogo manualmente per aggiungere il tipo di luogo, "
+"...\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1048
 #, python-brace-format
 msgid "You have {places_nb} place to edit."
 msgid_plural "You have {places_nb} places to edit."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "C'è {places_nb} luogo da modificare."
+msgstr[1] "Ci sono {places_nb} luoghi da modificare."
 
 #: ../gramps/plugins/lib/maps/geography.py:1052
 msgid "You have more than 5 places in this kml file."
@@ -31538,11 +31515,6 @@ msgid "Where to save the tiles for offline mode."
 msgstr "Dove salvare i tasselli per la modalità fuori linea."
 
 #: ../gramps/plugins/lib/maps/geography.py:1301
-#, fuzzy
-#| msgid ""
-#| "If you have no more space in your file system. You can remove all tiles "
-#| "placed in the above path.\n"
-#| "Be careful! If you have no internet, you'll get no map."
 msgid ""
 "If you have no more space in your file system, you can remove all tiles "
 "placed in the above path.\n"
@@ -31602,26 +31574,12 @@ msgstr ""
 "Selezionare la directory per la cache del tasselli nella modalità fuori linea"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:137
-#, fuzzy, python-format
-#| msgid "Can't create tiles cache directory %s"
+#, python-format
 msgid "Can't create tile cache directory %s"
 msgstr "Impossibile creare la directory della cache dei tasselli %s"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:141
-#, fuzzy, python-format
-#| msgid ""
-#| "You must verify and change the tiles cache\n"
-#| "...\n"
-#| "[geography]\n"
-#| "...\n"
-#| "path='bad/path'\n"
-#| "...\n"
-#| "in the gramps.ini file :\n"
-#| "%s\n"
-#| "\n"
-#| "Before to change the gramps.ini file, you need to close gramps\n"
-#| "\n"
-#| "The next errors will be normal"
+#, python-format
 msgid ""
 "You must verify and change the tile cache\n"
 "...\n"
@@ -31645,9 +31603,9 @@ msgstr ""
 "nel file gramps.ini:\n"
 "%s\n"
 "\n"
-"Prima di modificare il file gramps.ini è necessario chiudere gramps\n"
+"Prima di modificare il file gramps.ini è necessario chiudere Gramps\n"
 "\n"
-"I prossimi errori saranno normali"
+"Gli errori seguenti sono previsti"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:181
 #: ../gramps/plugins/lib/maps/osmgps.py:245
@@ -32021,12 +31979,9 @@ msgid "females"
 msgstr "femmine"
 
 #: ../gramps/plugins/quickview/filterbyname.py:61
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "people with unknown gender"
 msgctxt "Filtering_on"
 msgid "people with other gender"
-msgstr "persone dal genere sconosciuto"
+msgstr "persone con altro genere"
 
 #: ../gramps/plugins/quickview/filterbyname.py:63
 msgctxt "Filtering_on"
@@ -33417,7 +33372,7 @@ msgstr "F"
 #: ../gramps/plugins/textreport/familygroup.py:507
 msgctxt "acronym for other"
 msgid "X"
-msgstr ""
+msgstr "X"
 
 #: ../gramps/plugins/textreport/familygroup.py:509
 #, python-format
@@ -33809,9 +33764,8 @@ msgid "%(number)s. "
 msgstr "%(number)s. "
 
 #: ../gramps/plugins/textreport/recordsreport.py:228
-#, fuzzy
 msgid "Number of ranks to display"
-msgstr "Numero minimo di elementi da visualizzare"
+msgstr "Numero di file da visualizzare"
 
 #: ../gramps/plugins/textreport/recordsreport.py:231
 msgid "Use call name"
@@ -33909,10 +33863,9 @@ msgid "Females: %d"
 msgstr "Femmine: %d"
 
 #: ../gramps/plugins/textreport/summary.py:188
-#, fuzzy, python-format
-#| msgid "Individuals with unknown gender: %d"
+#, python-format
 msgid "Individuals with other gender: %d"
-msgstr "Persone dal genere sconosciuto: %d"
+msgstr "Persone con altro genere: %d"
 
 #: ../gramps/plugins/textreport/summary.py:193
 #, python-format
@@ -34175,17 +34128,13 @@ msgstr "Mostra lo stato dei collegamenti nelle note"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:35
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:36
-#, fuzzy
-#| msgid "Thumbnail"
 msgid "Gnome Thumbnailer"
-msgstr "Miniatura"
+msgstr "Generatore di miniatura di Gnome"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:49
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:50
-#, fuzzy
-#| msgid "Thumbnail"
 msgid "Image Thumbnailer"
-msgstr "Miniatura"
+msgstr "Generatore di miniature per le immagini"
 
 #: ../gramps/plugins/tool/changenames.glade:34
 msgid ""
@@ -35679,14 +35628,8 @@ msgid "Enable ID reordering."
 msgstr "Abilita riordinamento ID."
 
 #: ../gramps/plugins/tool/reorderids.glade:1420
-#, fuzzy
-#| msgid ""
-#| "List next ID available\n"
-#| "(maynot be continuous)."
 msgid "List next ID available (may not be continuous)."
-msgstr ""
-"Elenca il prossimo ID disponibile\n"
-"(potrebbe non essere continuo)."
+msgstr "Elenca il prossimo ID disponibile (potrebbe non essere continuo)."
 
 #: ../gramps/plugins/tool/reorderids.glade:1423
 msgid "  Actual"
@@ -35709,14 +35652,8 @@ msgid "Change"
 msgstr "Cambia"
 
 #: ../gramps/plugins/tool/reorderids.glade:1469
-#, fuzzy
-#| msgid ""
-#| "Enable ID reordering\n"
-#| "with Start / Step sequence."
 msgid "Enable ID reordering with Start / Step sequence."
-msgstr ""
-"Abilita riordinamento ID\n"
-"con sequenza Inizio/Passo."
+msgstr "Abilita riordinamento ID con sequenza Inizio/Passo."
 
 #: ../gramps/plugins/tool/reorderids.glade:1481
 msgid "Start"
@@ -35739,14 +35676,8 @@ msgid "Keep"
 msgstr "Mantenere"
 
 #: ../gramps/plugins/tool/reorderids.glade:1521
-#, fuzzy
-#| msgid ""
-#| "Keep IDs with alternate\n"
-#| "prefixes untouched."
 msgid "Keep IDs with alternate prefixes untouched."
-msgstr ""
-"Mantenere come sono gli ID\n"
-"con prefissi alternativi."
+msgstr "Mantenere invariati gli ID con prefissi alternativi."
 
 #: ../gramps/plugins/tool/reorderids.py:64
 #, fuzzy
@@ -36637,16 +36568,14 @@ msgstr "Bianco"
 #: ../gramps/plugins/view/fanchart2wayview.py:297
 #: ../gramps/plugins/view/fanchartdescview.py:295
 #: ../gramps/plugins/view/fanchartview.py:392
-#, fuzzy
 msgid "Color scheme classic report"
 msgstr "Schema di colore classico per resoconto"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:298
 #: ../gramps/plugins/view/fanchartdescview.py:296
 #: ../gramps/plugins/view/fanchartview.py:393
-#, fuzzy
 msgid "Color scheme classic view"
-msgstr "Schema di colore classico per la vista"
+msgstr "Schema di colore classico per vista"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:306
 #: ../gramps/plugins/view/fanchartdescview.py:304
@@ -37898,7 +37827,7 @@ msgstr "Successiva"
 
 #: ../gramps/plugins/webreport/basepage.py:2421
 msgid "Other media: videos, pdfs..."
-msgstr ""
+msgstr "Altri oggetti multimediali: video, pdf..."
 
 #: ../gramps/plugins/webreport/basepage.py:2583
 msgid " [Click to Go]"
@@ -38883,24 +38812,24 @@ msgid "Google maps API key"
 msgstr "Chiave per API di Google Maps"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2495
-#, fuzzy
-#| msgid "The API key used for the Google maps"
 msgid ""
 "The API key used for the Google maps.\n"
 "This key is mandatory and must be valid"
-msgstr "La chiave per le API usata per Google maps"
+msgstr ""
+"La chiave per le API usata per Google maps.\n"
+"Questa chiave è obbligatoria e deve essere valida"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2504
-#, fuzzy
-#| msgid "Google maps API key"
 msgid "How to get the API key"
-msgstr "Chiave per API di Google Maps"
+msgstr "Come ottenere la chiave per le API"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2507
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Google maps service must be selected."
 msgstr ""
+"Copiare e incollare questo valore nel browser.\n"
+"Il servizio Mappe di Google deve essere selezionato."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2514
 msgid "Toner"
@@ -38926,21 +38855,18 @@ msgstr ""
 "Selezionare quale opzione abilitare per le pagine delle mappe Stamen..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2536
-#, fuzzy, python-format
-#| msgid "Died %(month_year)s (%(age)s)."
+#, python-format
 msgctxt "val"
 msgid "in %(inipth)s (%(val)s)"
-msgstr "Muore nel %(month_year)s (%(age)s)."
+msgstr "in %(inipth)s (%(val)s)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2538
-#, fuzzy
-#| msgid "Dates"
 msgid "latest"
-msgstr "Date"
+msgstr "ultima"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2539
 msgid "openlayers version to use"
-msgstr ""
+msgstr "versione di openlayers da usare"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2544
 msgid ""
@@ -38950,6 +38876,11 @@ msgid ""
 "openlayers_version.\n"
 "See OLDER VERSIONS in https://openlayers.org/"
 msgstr ""
+"Questa opzione dovrebbe essere usata solo se non è possibile vedere le mappe "
+"nel sito per mappe OpenStreetMap o Stamen\n"
+"È possibile cambiare il valore nel file specificato. Il nome dell'opzione da "
+"modificare è openlayers_version.\n"
+"Consultare OLDER VERSIONS su https://openlayers.org/"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2560
 msgid "Other inclusion (CMS, web calendar, PHP)"
@@ -39303,10 +39234,9 @@ msgid "Number of People"
 msgstr "Totale delle persone"
 
 #: ../gramps/plugins/webreport/surnamelist.py:279
-#, fuzzy, python-format
-#| msgid "Surnames beginning with letter %s"
+#, python-format
 msgid "Surnames beginning with letter '%s' %s"
-msgstr "Cognomi che iniziano con la lettera %s"
+msgstr "Cognomi che iniziano con la lettera \"%s\" %s"
 
 #: ../gramps/plugins/webreport/thumbnail.py:121
 msgid ""
@@ -39339,7 +39269,7 @@ msgstr ""
 #. Translators: This is the email subject line in the Web Calendar
 #: ../gramps/plugins/webreport/webcal.py:1567
 msgid "WebCal"
-msgstr ""
+msgstr "WebCal"
 
 #: ../gramps/plugins/webreport/webcal.py:1578
 #, python-format
