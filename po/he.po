@@ -274,8 +274,9 @@ msgstr "מערכת חקר יוחסין"
 #: ../data/org.gramps_project.Gramps.desktop.in:12
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
 msgstr ""
-"חקר־יוחסין;חקר יוחסין;גנאלוגיה;היסטוריה משפחתית;מחקר;אילן־יוחסין;אילן יוחסין;"
-"ג'דקום;GEDCOM;"
+"חקר־יוחסין;חקר יוחסין;גנאלוגיה;גינאולוגיה;גיניאולוגיה;היסטוריה משפחתית;מחקר;"
+"אילן־יוחסין;אילן יוחסין;ג'דקום;GEDCOM;יוחסין;משפחה;עץ־יוחסין;עץ יוחסין; קשר "
+"משפחתי; ג׳דקום;"
 
 #: ../data/org.gramps_project.Gramps.xml.in:6
 msgid "Gramps database"
@@ -466,7 +467,7 @@ msgstr ""
 "באיות שמות היא בעיה שהעסיקה את חוקרי־היוחסין שנים רבות, סאונד־אקס פותרת "
 "סוגיה ארוכת שנים זו. גרמפלט סאונד־אקס, מחולל דפוס מפושט וזהה לשמות במסד־"
 "הנתונים שנשמעים דומה לשם המשפחה שנבחר. הכרות עם קוד סאונד־אקס לשמות משפחה, "
-"מועילה מאוד בחקר קבצי מפקד אוכלוסין ( בצורת מיקרופיש) בספריות או מכוני מחקר "
+"מועילה מאוד בחקר קובצי מפקד אוכלוסין (בצורת מיקרופיש) בספריות או מכוני מחקר "
 "אחרים. לצפיה בקוד סאונד־אקס שמות המשפחה במסד הנתונים, נא להתקין את גרמפלט "
 "סאונד־אקס."
 
@@ -819,11 +820,11 @@ msgid ""
 "other Gramps users. This format has the key advantage over GEDCOM that no "
 "information is ever lost when exporting and importing."
 msgstr ""
-"<b>חבילתגרמפס XML<br/></b>ניתן ליצא את אילן היוחסין כחבילת XML של גרמפס. זהו "
-"קובץ דחוס המכיל את נתוני אילן היוחסין ואת כל קבצי המדיה המחוברים למסד "
+"<b>חבילתגרמפס XML<br/></b>ניתן לייצא את אילן היוחסין כחבילת XML של גרמפס. "
+"זהו קובץ דחוס המכיל את נתוני אילן היוחסין ואת כל קובצי המדיה המחוברים למסד "
 "הנתונים (תמונות לדוגמה). הקובץ נייד לחלוטין ולכן הוא שימושי לגיבויים או "
-"שיתוף עם משתמשי גרמפס אחרים. לשימוש בתסדיר ג'דקום יתרון מרכזי שאין אובדן "
-"מידע בעת יצוא או יבוא."
+"שיתוף עם משתמשי גרמפס אחרים. לשימוש בתסדיר ג׳דקום יתרון מרכזי שאין אובדן "
+"מידע בעת ייצוא או ייבוא."
 
 #: ../data/tips.xml:90
 msgid ""
@@ -3541,7 +3542,7 @@ msgstr "מסננים כללים"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:82
 msgid "Wrong format of date-time"
-msgstr "תסדיר תאריך־ שעה שגויה"
+msgstr "תסדיר תאריך־שעה שגוי"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:83
 #, python-format
@@ -12461,7 +12462,7 @@ msgid ""
 "If you think you may want to revert the import, please stop here and backup "
 "your database."
 msgstr ""
-"בחירה להמשיך בייבוא תמחק אתהיסטורית ה'הסגה' בשיח זה. במיוחד, לא ניתן יהיה "
+"בחירה להמשיך בייבוא תמחק את היסטוריית ה'הסגה' בשיח זה. במיוחד, לא ניתן יהיה "
 "להסיג את תוצאות פעולת הייבוא או כל שינוי בנתונים שנעשה לפני הייבוא.\n"
 "\n"
 "נא לגבות את מסד הנתונים תחילה, למקרה שתידרש הסגת תוצאות ריצת כלי זה."
@@ -13030,7 +13031,7 @@ msgid ""
 "with this version, and make sure to export your data to XML every now and "
 "then."
 msgstr ""
-"גרסה זו לא נועדה לשימוש רגיל. השימוש באחריותכם בלבד.\n"
+"גרסה זו לא נועדה לשימוש שוטף. השימוש באחריותכם בלבד.\n"
 "\n"
 "גרסה זו עשויה:\n"
 "1) לפעול שונה מהמצופה.\n"
@@ -13039,7 +13040,7 @@ msgstr ""
 "4) לפגום בנתונים.\n"
 "5) לשמור נתונים בתסדיר שאינו תואם את הגרסה הרשמית.\n"
 "\n"
-"‏נא %(bold_start)sלגבות%(bold_end)s את כל מסדי־הנתונים הקיימים לפני כל נסיון "
+"‏נא %(bold_start)sלגבות%(bold_end)s את כל מסדי־הנתונים הקיימים לפני כל ניסיון "
 "לפתוח אותם באמצעות גרסה זו, נא לייצא את הנתונים לקובץ XML מדי פעם."
 
 #: ../gramps/gui/editors/addmedia.py:70
@@ -18888,7 +18889,7 @@ msgstr ""
 
 #: ../gramps/gui/plug/export/_exportassistant.py:596
 msgid "Error exporting your Family Tree"
-msgstr "שגיאה ביצוא אילן יוחסין"
+msgstr "שגיאה בייצוא אילן יוחסין"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:604
 #: ../gramps/gui/plug/export/_exportassistant.py:638
@@ -20500,7 +20501,7 @@ msgstr "חילול מסמכים בתסדיר מלל פשוט (.txt)."
 #: ../gramps/plugins/view/geoplaces.py:84
 #: ../gramps/plugins/view/geoplaces.py:134
 msgid "Print..."
-msgstr "הדפסה..."
+msgstr "הדפסה…"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:56
 msgid "Generates documents and prints them directly."
@@ -36246,7 +36247,7 @@ msgstr "במקרה זה, עשוי לֶאֱרוֹך זמן מה להצגת כל �
 #: ../gramps/plugins/view/geoplaces.py:507
 #: ../gramps/plugins/view/geoplaces.py:530
 msgid "Bookmark this place"
-msgstr "הוספת סימניה למקום זה"
+msgstr "הוספת סימנייה למקום זה"
 
 #: ../gramps/plugins/view/geoplaces.py:544
 msgid "Show all places"
