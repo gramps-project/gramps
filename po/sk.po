@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
-"PO-Revision-Date: 2023-08-07 05:34+0000\n"
+"PO-Revision-Date: 2023-08-10 06:44+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -11408,11 +11408,11 @@ msgstr "nenájdený"
 
 #: ../gramps/grampsapp.py:326
 msgid "not found because exiv2 is not installed"
-msgstr ""
+msgstr "nenájdený, pretože exiv2 nie je nainštalovaný"
 
 #: ../gramps/grampsapp.py:359
 msgid "Installed but does not supply version"
-msgstr ""
+msgstr "Nainštalovaný, ale neuvádza verziu"
 
 #: ../gramps/grampsapp.py:379
 msgid "installed"
@@ -11830,7 +11830,7 @@ msgstr "Farby pre ženské osoby"
 
 #: ../gramps/gui/configure.py:724
 msgid "Colors for people who are neither male nor female"
-msgstr ""
+msgstr "Farby pre osoby, ktoré nie sú ani mužmi, ani ženami"
 
 #: ../gramps/gui/configure.py:725
 msgid "Colors for Unknown persons"
@@ -11923,7 +11923,7 @@ msgstr "Potlačiť varovanie o chýbajúcom bádateľovi pri exporte do GEDCOM"
 
 #: ../gramps/gui/configure.py:841
 msgid "Suppress tooltip warnings about data being saved immediately"
-msgstr ""
+msgstr "Nezobrazovať upozornenia o okamžitom ukladaní údajov"
 
 #: ../gramps/gui/configure.py:846
 msgid "Show plugin status dialog on plugin load error"
@@ -12081,13 +12081,15 @@ msgstr "Zobrazí nasledujúcu stranu"
 
 #: ../gramps/gui/configure.py:1393
 msgid "only on leap years"
-msgstr ""
+msgstr "len v priestupných rokoch"
 
 #: ../gramps/gui/configure.py:1398
 msgid ""
 "For non leap years, anniversaries are displayed on either February 28, March "
 "1 or not at all in Gregorian calendars"
 msgstr ""
+"V nepriestupných rokoch sa výročia zobrazujú buď 28. februára, 1. marca, "
+"alebo sa v gregoriánskych kalendároch nezobrazujú vôbec"
 
 #: ../gramps/gui/configure.py:1401
 #, fuzzy
@@ -12282,11 +12284,11 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1697
 msgid "Show Clipboard icon on toolbar"
-msgstr ""
+msgstr "Zobraziť ikonu Schránky na paneli nástrojov"
 
 #: ../gramps/gui/configure.py:1699
 msgid "Show or hide the Clipboard icon on the toolbar."
-msgstr ""
+msgstr "Zobraziť alebo skryť ikonu Schránky na paneli nástrojov."
 
 #: ../gramps/gui/configure.py:1705
 msgid "Show Reports icon on toolbar"
@@ -12298,19 +12300,19 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1713
 msgid "Show Tools icon on toolbar"
-msgstr ""
+msgstr "Zobraziť ikonu Nástroje na paneli nástrojov"
 
 #: ../gramps/gui/configure.py:1715
 msgid "Show or hide the Tools icon on the toolbar."
-msgstr ""
+msgstr "Zobraziť alebo skryť ikonu Nástroje na paneli nástrojov."
 
 #: ../gramps/gui/configure.py:1721
 msgid "Show Addons icon on toolbar"
-msgstr ""
+msgstr "Zobraziť ikonu Doplnky na paneli nástrojov"
 
 #: ../gramps/gui/configure.py:1723
 msgid "Show or hide the Addons icon on the toolbar."
-msgstr ""
+msgstr "Zobraziť alebo skryť ikonu Doplnky na paneli nástrojov."
 
 #: ../gramps/gui/configure.py:1729
 msgid "Show Preferences icon on toolbar"
@@ -21207,26 +21209,20 @@ msgstr ""
 "neznámi"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:851
-#, fuzzy
-#| msgid "Show dates"
 msgid "Show Index"
-msgstr "Zobraziť dátumy"
+msgstr "Zobraziť index"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:853
-#, fuzzy
-#| msgid "Display Tip of the Day"
 msgid "Display index of each person"
-msgstr "Zobraziť Tip dňa"
+msgstr "Zobrazenie indexu každej osoby"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:857
-#, fuzzy
-#| msgid "Starting"
 msgid "Start Index"
-msgstr "Spúšťanie"
+msgstr "Spustiť index"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:858
 msgid "The start index"
-msgstr ""
+msgstr "Východiskový index"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:874
 #: ../gramps/plugins/drawreport/descendtree.py:1581
@@ -21616,26 +21612,17 @@ msgstr[1] "{{person}, {age}"
 msgstr[2] "{person}, {age}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:478
-#, fuzzy, python-format
-#| msgid ""
-#| "%(spouse)s and\n"
-#| " %(person)s, wedding"
+#, python-format
 msgid ""
 "%(wife)s and\n"
 " %(person)s, wedding"
 msgstr ""
-"%(spouse)s a\n"
+"%(wife)s a\n"
 " %(person)s, svadba"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/drawreport/calendarreport.py:490
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "{spouse} and\n"
-#| " {person}, {nyears}"
-#| msgid_plural ""
-#| "{spouse} and\n"
-#| " {person}, {nyears}"
+#, python-brace-format
 msgid ""
 "{wife} and\n"
 " {person}, {nyears}"
@@ -21643,10 +21630,10 @@ msgid_plural ""
 "{wife} and\n"
 " {person}, {nyears}"
 msgstr[0] ""
-"{spouse} a\n"
+"{wife} a\n"
 " {person}, {nyears}"
 msgstr[1] ""
-"{{spouse} a\n"
+"{wife} a\n"
 " {person}, {nyears}"
 msgstr[2] ""
 "{spouse} a\n"
@@ -24356,10 +24343,8 @@ msgstr "Počet jedincov"
 #: ../gramps/plugins/gramplet/statsgramplet.py:155
 #: ../gramps/plugins/webreport/statistics.py:129
 #: ../gramps/plugins/webreport/statistics.py:197
-#, fuzzy
-#| msgid "Individuals with unknown gender"
 msgid "Individuals with other gender"
-msgstr "Jedinci s neznámym pohlavím"
+msgstr "Jedinci s iným pohlavím"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:159
 #: ../gramps/plugins/webreport/statistics.py:131
@@ -24694,22 +24679,15 @@ msgid "Addons and \"Gramplets\""
 msgstr "Doplnky a \"Gramplety\""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:195
-#, fuzzy
-#| msgid ""
-#| "There many Addons or \"Gramplets\" that are available to assist you in "
-#| "data entry and visualizing your family tree. Many of these tools are "
-#| "already available to you. Many more are available to download and "
-#| "install.\n"
-#| "\n"
 msgid ""
 "There are many Addons or \"Gramplets\" that are available to assist you in "
 "data entry and visualizing your family tree. Many of these tools are already "
 "available to you. Many more are available to download and install.\n"
 "\n"
 msgstr ""
-"K dispozícii je mnoho Doplnkov alebo \"Grampletov\", ktoré vám pomôžu pri "
+"K dispozícii je množstvo Doplnkov alebo \"Grampletov\", ktoré vám pomôžu pri "
 "zadávaní údajov a vizualizácii vášho rodinného stromu. Mnohé z týchto "
-"nástrojov už máte k dispozícii. Mnohé ďalšie si môžete stiahnuť a "
+"nástrojov už máte k dispozícii. Mnoho dalších si môžete stiahnuť a "
 "nainštalovať.\n"
 "\n"
 
@@ -25147,10 +25125,10 @@ msgstr "Farba, ktorá sa použije na zobrazenie žien."
 #: ../gramps/plugins/graph/gvfamilylines.py:296
 #: ../gramps/plugins/graph/gvhourglass.py:451
 #: ../gramps/plugins/graph/gvrelgraph.py:959
-#, fuzzy
-#| msgid "The color to use to display women."
 msgid "The color to use to display people who are neither men nor women."
-msgstr "Farba, ktorá sa použije na zobrazenie žien."
+msgstr ""
+"Farba, ktorá sa použije na zobrazenie osôb, ktoré nie sú ani mužmi, ani "
+"ženami."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:301
 #: ../gramps/plugins/graph/gvhourglass.py:456
@@ -25308,24 +25286,16 @@ msgid "Ahnentafel number visible"
 msgstr "Viditeľné číslo Ahnentafel"
 
 #: ../gramps/plugins/graph/gvhourglass.py:471
-#, fuzzy
-#| msgid ""
-#| "Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
-#| "informations."
 msgid "Show Sosa / Sosa-Stradonitz / Ahnentafel number."
-msgstr ""
-"Zobrazte číslo Sosa / Sosa-Stradonitz / Ahnentafel pod všetkými ostatnými "
-"informáciami."
+msgstr "Zobraziť číslo Sosa / Sosa-Stradonitz / Ahnentafel."
 
 #: ../gramps/plugins/graph/gvhourglass.py:474
-#, fuzzy
-#| msgid "Show all events"
 msgid "Show symbols for events"
-msgstr "Zobraziť všetky udalosti"
+msgstr "Zobraziť symboly pre udalosti"
 
 #: ../gramps/plugins/graph/gvhourglass.py:476
 msgid "Show genealogical symbols for birth, marriage and death events."
-msgstr ""
+msgstr "Zobraziť genealogické symboly pre udalosti narodenia, sobáša a úmrtia."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:211
 #: ../gramps/plugins/textreport/indivcomplete.py:836
@@ -26416,16 +26386,13 @@ msgid "vCard import"
 msgstr "Import vCard"
 
 #: ../gramps/plugins/importer/importvcard.py:254
-#, fuzzy
-#| msgid "VCARD import report: No errors detected"
 msgid "vCard import report: No errors detected"
-msgstr "Správa o importe VCARD: Neboli zistené žiadne chyby"
+msgstr "Správa o importe vCARD: Neboli zistené žiadne chyby"
 
 #: ../gramps/plugins/importer/importvcard.py:256
-#, fuzzy, python-format
-#| msgid "VCARD import report: %s errors detected\n"
+#, python-format
 msgid "vCard import report: %s errors detected\n"
-msgstr "Správa o importe VCARD: %s zistené chyby\n"
+msgstr "Správa o importe vCARD: %s zistené chyby\n"
 
 #: ../gramps/plugins/importer/importvcard.py:321
 #, python-format
@@ -26433,22 +26400,17 @@ msgid "Token >%(token)s< unknown. line skipped: %(line)s"
 msgstr "Token >%(token)s< neznámy. Vynechaný riadok: %(line)s"
 
 #: ../gramps/plugins/importer/importvcard.py:335
-#, fuzzy
-#| msgid ""
-#| "BEGIN property not properly closed by END property, Gramps can't cope "
-#| "with nested VCards."
 msgid ""
 "BEGIN property not properly closed by END property, Gramps can't cope with "
 "nested vCards."
 msgstr ""
 "Vlastnosť BEGIN nie je správne uzavretá vlastnosťou END, Gramps si nevie "
-"poradiť s vnorenými vizitkami VCard."
+"poradiť s vnorenými vizitkami vCard."
 
 #: ../gramps/plugins/importer/importvcard.py:346
-#, fuzzy, python-format
-#| msgid "Import of VCards version %s is not supported by Gramps."
+#, python-format
 msgid "Import of vCards version %s is not supported by Gramps."
-msgstr "Import VCard verzie %s Gramps nepodporuje."
+msgstr "Import vCard verzie %s Gramps nepodporuje."
 
 #: ../gramps/plugins/importer/importvcard.py:366
 #, fuzzy
@@ -27290,10 +27252,8 @@ msgid "People Tags"
 msgstr "Ľudia"
 
 #: ../gramps/plugins/lib/libmetadata.py:118
-#, fuzzy
-#| msgid "Events"
 msgid "Event Tags"
-msgstr "Udalosti"
+msgstr "Značky udalostí"
 
 #: ../gramps/plugins/lib/libmetadata.py:119
 #, fuzzy
@@ -27302,16 +27262,12 @@ msgid "Image Tags"
 msgstr "Obrázky"
 
 #: ../gramps/plugins/lib/libmetadata.py:120
-#, fuzzy
-#| msgid "Place Information"
 msgid "Camera Information"
-msgstr "Informácie o mieste"
+msgstr "Informácie o kamere"
 
 #: ../gramps/plugins/lib/libmetadata.py:121
-#, fuzzy
-#| msgid "Locations"
 msgid "Location Tags"
-msgstr "Miesta"
+msgstr "Značky miest"
 
 #: ../gramps/plugins/lib/libmetadata.py:122
 msgid "Advanced Tags"
@@ -37649,7 +37605,7 @@ msgstr "Ďalšia"
 
 #: ../gramps/plugins/webreport/basepage.py:2421
 msgid "Other media: videos, pdfs..."
-msgstr ""
+msgstr "Iné médiá: videá, pdf..."
 
 #: ../gramps/plugins/webreport/basepage.py:2583
 msgid " [Click to Go]"
@@ -38636,6 +38592,8 @@ msgid ""
 "Copy and paste this value in your browser.\n"
 "The Google maps service must be selected."
 msgstr ""
+"Skopírujte a vložte túto hodnotu do prehliadača.\n"
+"Musí byť vybraná služba Google mapy."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2514
 msgid "Toner"
@@ -38673,7 +38631,7 @@ msgstr "Dátumy"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2539
 msgid "openlayers version to use"
-msgstr ""
+msgstr "verzia openlayers na použitie"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2544
 msgid ""
@@ -38683,6 +38641,11 @@ msgid ""
 "openlayers_version.\n"
 "See OLDER VERSIONS in https://openlayers.org/"
 msgstr ""
+"Túto možnosť by ste mali použiť len vtedy, ak na svojej webovej stránke "
+"nevidíte mapy OpenStreetMap alebo mapy Stamen\n"
+"Hodnotu môžete zmeniť v uvedenom súbore. Názov možnosti, ktorú treba zmeniť, "
+"je openlayers_version.\n"
+"Pozri časť OLDER VERSIONS na stránke https://openlayers.org/"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2560
 msgid "Other inclusion (CMS, web calendar, PHP)"
@@ -39030,10 +38993,9 @@ msgid "Number of People"
 msgstr "Počet ľudí"
 
 #: ../gramps/plugins/webreport/surnamelist.py:279
-#, fuzzy, python-format
-#| msgid "Surnames beginning with letter %s"
+#, python-format
 msgid "Surnames beginning with letter '%s' %s"
-msgstr "Priezviská začínajúce písmenom %s"
+msgstr "Priezviská začínajúce písmenom '%s' %s"
 
 #: ../gramps/plugins/webreport/thumbnail.py:121
 msgid ""
