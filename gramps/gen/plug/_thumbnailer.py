@@ -24,7 +24,7 @@ This module provides the base class for thumbnailer plugins.
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Python modules
 #
 # -------------------------------------------------------------------------
 from abc import ABCMeta, abstractmethod
@@ -36,6 +36,10 @@ from abc import ABCMeta, abstractmethod
 #
 # -------------------------------------------------------------------------
 class Thumbnailer(metaclass=ABCMeta):
+    """
+    Base class for thumbnailer plugins.
+    """
+
     @abstractmethod
     def is_supported(self, mime_type):
         """
