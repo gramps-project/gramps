@@ -19,6 +19,10 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+"""
+Base class for Gramplet plugins
+"""
+
 # -------------------------------------------------------------------------
 #
 # Python modules
@@ -26,8 +30,6 @@
 # -------------------------------------------------------------------------
 import types
 import logging
-
-LOG = logging.getLogger(".Gramplets")
 
 # ------------------------------------------------------------------------
 #
@@ -37,9 +39,16 @@ LOG = logging.getLogger(".Gramplets")
 from ...gui.dbguielement import DbGUIElement
 from ..const import GRAMPS_LOCALE as glocale
 
+LOG = logging.getLogger(".Gramplets")
+
 _ = glocale.translation.gettext
 
 
+# ------------------------------------------------------------------------
+#
+# Gramplet class
+#
+# ------------------------------------------------------------------------
 class Gramplet:
     """
     Base class for non-graphical gramplet code.
@@ -94,17 +103,17 @@ class Gramplet:
         External constructor for developers to put their initialization
         code. Designed to be overridden.
         """
-        pass
 
     def post_init(self):
-        pass
+        """
+        Another for developers to hook into post initialization phase.
+        """
 
     def build_options(self):
         """
         External constructor for developers to put code for building
         options.
         """
-        pass
 
     def main(self):  # return false finishes
         """
@@ -118,14 +127,12 @@ class Gramplet:
         Gramplets should override this to take care of loading previously
         their special data.
         """
-        pass
 
     def on_save(self):
         """
         Gramplets should override this to take care of saving their
         special data.
         """
-        return
 
     def get_active(self, nav_type):
         """
@@ -138,7 +145,7 @@ class Gramplet:
         Return the object of the active handle for the given navigation type.
         """
         handle = self.uistate.get_active(nav_type, self.nav_group)
-        handle_func = getattr(self.dbstate.db, "get_%s_from_handle" % nav_type.lower())
+        handle_func = getattr(self.dbstate.db, f"get_{nav_type.lower()}_from_handle")
         if handle:
             return handle_func(handle)
         return None
@@ -154,7 +161,6 @@ class Gramplet:
         Developers should put their code that occurs when the active
         person is changed.
         """
-        pass
 
     def _active_changed(self, handle):
         """
@@ -166,7 +172,6 @@ class Gramplet:
         """
         Method executed when the database is changed.
         """
-        pass
 
     def link(self, text, link_type, data, size=None, tooltip=None):
         """
@@ -260,7 +265,7 @@ class Gramplet:
             textview.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
         else:
             raise ValueError(
-                "Unknown wrap mode: '%s': use 0,1,'char' or 'word char')" % value
+                f"Unknown wrap mode: '{value}': use 0,1,'char' or 'word char')"
             )
 
     def no_wrap(self):
@@ -290,7 +295,7 @@ class Gramplet:
         text = text.replace(chr(10), "\\n")
         self.gui.data.append(text)
 
-    def update(self, *args):
+    def update(self, *_):
         """
         The main interface for running the :meth:`main` method.
         """
@@ -306,7 +311,7 @@ class Gramplet:
             return
         # print "     %s is UPDATING" % self.gui.gname
         self.dirty = False
-        LOG.debug("gramplet updater: %s: running" % self.gui.title)
+        LOG.debug("gramplet updater: %s: running", self.gui.title)
         if self._idle_id != 0:
             self.interrupt()
         self._generator = self.main()
@@ -317,29 +322,29 @@ class Gramplet:
         """
         Runs the generator.
         """
-        LOG.debug("gramplet updater: %s" % self.gui.title)
+        LOG.debug("gramplet updater: %s", self.gui.title)
         if not isinstance(self._generator, types.GeneratorType):
             self._idle_id = 0
-            LOG.debug("gramplet updater: %s : One time, done!" % self.gui.title)
+            LOG.debug("gramplet updater: %s : One time, done!", self.gui.title)
             return False
         try:
             retval = next(self._generator)
             if not retval:
                 self._idle_id = 0
             if self._pause:
-                LOG.debug("gramplet updater: %s: return False" % self.gui.title)
+                LOG.debug("gramplet updater: %s: return False", self.gui.title)
                 return False
-            LOG.debug("gramplet updater: %s: return %s" % (self.gui.title, retval))
+            LOG.debug("gramplet updater: %s: return %s", self.gui.title, retval)
             return retval
         except StopIteration:
             self._idle_id = 0
             self._generator.close()
-            LOG.debug("gramplet updater: %s: Done!" % self.gui.title)
+            LOG.debug("gramplet updater: %s: Done!", self.gui.title)
             return False
-        except Exception as e:
+        except Exception:
             import traceback
 
-            LOG.warning("Gramplet gave an error: %s" % self.gui.title)
+            LOG.warning("Gramplet gave an error: %s", self.gui.title)
             traceback.print_exc()
             print("Continuing after gramplet error...")
             self._idle_id = 0
@@ -348,13 +353,13 @@ class Gramplet:
             )
             return False
 
-    def pause(self, *args):
+    def pause(self, *_):
         """
         Pause the :meth:`main` method.
         """
         self._pause = True
 
-    def resume(self, *args):
+    def resume(self, *_):
         """
         Resume the :meth:`main` method that has previously paused.
         """
@@ -363,17 +368,17 @@ class Gramplet:
         self._pause = False
         self._idle_id = GLib.idle_add(self._updater, priority=GLib.PRIORITY_LOW - 10)
 
-    def update_all(self, *args):
+    def update_all(self, *_):
         """
         Force the main loop to run right now (as opposed to running in
         background).
         """
         self._generator = self.main()
         if isinstance(self._generator, types.GeneratorType):
-            for step in self._generator:
+            for _ in self._generator:
                 pass
 
-    def interrupt(self, *args):
+    def interrupt(self, *_):
         """
         Force the generator to stop running.
         """
@@ -421,7 +426,7 @@ class Gramplet:
 
     def get_option(self, label):
         """
-        Retireve an option by its label text.
+        Retrieve an option by its label text.
         """
         return self.option_dict[label][1]
 
@@ -429,7 +434,7 @@ class Gramplet:
         """
         Add an option to the GUI gramplet.
         """
-        widget, label = self.gui.add_gui_option(option)
+        widget, _ = self.gui.add_gui_option(option)
         self.option_dict.update({option.get_label(): [widget, option]})
         self.option_order.append(option.get_label())
 
@@ -441,29 +446,37 @@ class Gramplet:
         self.update()
 
     def save_options(self):
-        pass
+        """
+        Save a gramplet's options.
+        """
 
     def connect(self, signal_obj, signal, method):
-        id = signal_obj.connect(signal, method)
+        """
+        Connect signals.
+        """
+        signal_id = signal_obj.connect(signal, method)
         signal_list = self._signal.get(signal, [])
-        signal_list.append((id, signal_obj))
+        signal_list.append((signal_id, signal_obj))
         self._signal[signal] = signal_list
 
     def disconnect(self, signal):
+        """
+        Disconnect signals.
+        """
         if signal in self._signal:
-            for id, signal_obj in self._signal[signal]:
-                signal_obj.disconnect(id)
+            for signal_id, signal_obj in self._signal[signal]:
+                signal_obj.disconnect(signal_id)
             self._signal[signal] = []
         else:
-            raise AttributeError("unknown signal: '%s'" % signal)
+            raise AttributeError(f"unknown signal: '{signal}'")
 
     def disconnect_all(self):
         """
         Used to disconnect all the signals for this specific gramplet
         """
-        for signal in self._signal:
-            for sig_id, signal_obj in self._signal[signal]:
-                signal_obj.disconnect(sig_id)
+        for signal, signal_data in self._signal.items():
+            for signal_id, signal_obj in signal_data:
+                signal_obj.disconnect(signal_id)
             self._signal[signal] = []
 
     def hidden_widgets(self):
@@ -495,4 +508,3 @@ class Gramplet:
         :param orientation: A Gtk.Orientation (VERTCIAL or HORIZONTAL)
         :type orientation: int
         """
-        pass

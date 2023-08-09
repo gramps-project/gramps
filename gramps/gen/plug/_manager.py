@@ -32,20 +32,13 @@ importers, exporters, quick reports, and document generators.
 
 # -------------------------------------------------------------------------
 #
-# Standard Python modules
+# Python modules
 #
 # -------------------------------------------------------------------------
+import importlib
+import logging
 import os
 import sys
-import re
-import logging
-import importlib
-
-LOG = logging.getLogger("._manager")
-LOG.progagate = True
-from ..const import GRAMPS_LOCALE as glocale
-
-_ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
@@ -53,8 +46,15 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from ..config import config
-from . import PluginRegister, ImportPlugin, ExportPlugin, DocGenPlugin
+from ..const import GRAMPS_LOCALE as glocale
 from ..constfunc import win
+from . import PluginRegister, ImportPlugin, ExportPlugin, DocGenPlugin
+
+LOG = logging.getLogger("._manager")
+LOG.progagate = True
+
+_ = glocale.translation.gettext
+
 
 # -------------------------------------------------------------------------
 #
@@ -88,9 +88,7 @@ class BasePluginManager:
     def __init__(self):
         """This function should only be run once by get_instance()"""
         if BasePluginManager.__instance != 1:
-            raise Exception(
-                "This class is a singleton. " "Use the get_instance() method"
-            )
+            raise Exception("This class is a singleton. Use the get_instance() method")
 
         self.__import_plugins = []
         self.__export_plugins = []
@@ -193,10 +191,7 @@ class BasePluginManager:
                 if count > max_count:
                     print("Cannot resolve the following plugin dependencies:")
                     for plugin in plugins_to_load:
-                        print(
-                            "   Plugin '%s' requires: %s"
-                            % (plugin.id, plugin.depends_on)
-                        )
+                        print(f"   Plugin '{plugin.id}' requires: {plugin.depends_on}")
                     break
             # now load them:
             for plugin in plugins_sorted:
@@ -212,7 +207,7 @@ class BasePluginManager:
                         import traceback
 
                         traceback.print_exc()
-                        print("Plugin '%s' did not run; continuing..." % plugin.name)
+                        print(f"Plugin '{plugin.name}' did not run; continuing...")
                         continue
                     try:
                         iter(results)
@@ -320,17 +315,16 @@ class BasePluginManager:
                                 module = __import__(pdata.mod_name)
                                 os.chdir(oldwd)
                                 sys.path.pop(0)
-                            except ValueError as err:
+                            except ValueError as error:
                                 LOG.warning(
-                                    "Plugin error (from '%s'): %s"
-                                    % (pdata.mod_name, err)
+                                    "Plugin error (from '%s'): %s",
+                                    pdata.mod_name,
+                                    error,
                                 )
                     else:
-                        LOG.warning(
-                            "Plugin error (from '%s'): %s" % (pdata.mod_name, err)
-                        )
+                        LOG.warning("Plugin error (from '%s'): %s", pdata.mod_name, err)
                 except ImportError as err:
-                    LOG.warning("Plugin error (from '%s'): %s" % (pdata.mod_name, err))
+                    LOG.warning("Plugin error (from '%s'): %s", pdata.mod_name, err)
                 sys.path.pop(0)
             else:
                 print("WARNING: module cannot be loaded")
@@ -350,8 +344,6 @@ class BasePluginManager:
 
     def reload_plugins(self):
         """Reload previously loaded plugins"""
-        pymod = re.compile(r"^(.*)\.py$")
-
         oldfailmsg = self.__failmsg_list[:]
         self.__failmsg_list = []
 
@@ -359,7 +351,6 @@ class BasePluginManager:
         self.empty_managed_plugins()
         self.__loaded_plugins = {}
 
-        oldmodules = self.__modules
         self.__modules = {}
         dellist = []
         # reload first modules that loaded successfully previously
@@ -388,7 +379,7 @@ class BasePluginManager:
         self.__purge_failed()
 
         # attempt to load the plugins that have failed in the past
-        for filename, message, pdata in oldfailmsg:
+        for filename, _, pdata in oldfailmsg:
             self.load_plugin(pdata)
 
     def reload(self, module, pdata):
@@ -413,11 +404,11 @@ class BasePluginManager:
         """Return the list of succeeded plugins."""
         return self.__success_list
 
-    def get_plugin(self, id):
+    def get_plugin(self, plugin_id):
         """
         Returns a plugin object from :class:`.PluginRegister` by id.
         """
-        return self.__pgr.get_plugin(id)
+        return self.__pgr.get_plugin(plugin_id)
 
     def get_reg_reports(self, gui=True):
         """Return list of registered reports
@@ -558,7 +549,7 @@ class BasePluginManager:
         """
         ## TODO: would it not be better to remove ImportPlugin and use
         ## only PluginData, loading from module when importfunction needed?
-        if self.__import_plugins == []:
+        if not self.__import_plugins:
             # The module still needs to be imported
             for pdata in self.get_reg_importers():
                 if pdata.id in config.get("plugin.hiddenplugins"):
@@ -583,7 +574,7 @@ class BasePluginManager:
         """
         ## TODO: would it not be better to remove ExportPlugin and use
         ## only PluginData, loading from module when export/options needed?
-        if self.__export_plugins == []:
+        if not self.__export_plugins:
             # The modules still need to be imported
             for pdata in self.get_reg_exporters():
                 if pdata.id in config.get("plugin.hiddenplugins"):
@@ -613,7 +604,7 @@ class BasePluginManager:
         ## TODO: would it not be better to return list of plugindata, and only
         ##       import those docgen that will then actuallly be needed?
         ##       So, only do import when docgen.get_basedoc() is requested
-        if self.__docgen_plugins == []:
+        if not self.__docgen_plugins:
             # The modules still need to be imported
             hiddenplugins = config.get("plugin.hiddenplugins")
             for pdata in self.get_reg_docgens():
@@ -644,7 +635,7 @@ class BasePluginManager:
 
         :return: a list of :class:`.DocGenPlugin` names
         """
-        if self.__docgen_names == []:
+        if not self.__docgen_names:
             hiddenplugins = config.get("plugin.hiddenplugins")
             for pdata in self.get_reg_docgens():
                 if pdata.id not in hiddenplugins:

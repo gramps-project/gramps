@@ -28,7 +28,7 @@ General option handling, including saving and parsing.
 
 # -------------------------------------------------------------------------
 #
-# Standard Python modules
+# Python modules
 #
 # -------------------------------------------------------------------------
 import os
@@ -44,15 +44,15 @@ from xml.sax.saxutils import quoteattr
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
+from ..const import GRAMPS_LOCALE as glocale
+from ..plug import BasePluginManager
 from ..utils.cast import get_type_converter
 from .menu import Menu
-from ..plug import BasePluginManager
 
 PLUGMAN = BasePluginManager.get_instance()
-from ..const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
 
@@ -147,7 +147,9 @@ class OptionListCollection:
         self.parse()
 
     def init_common(self):
-        pass
+        """
+        Stub function for common initialization
+        """
 
     def get_option_list_map(self):
         """
@@ -194,13 +196,11 @@ class OptionListCollection:
         """
         Stub function for common options. Overridden by reports.
         """
-        pass
 
     def write_module_common(self, filename, option_list):
         """
         Stub function for common options. Overridden by reports.
         """
-        pass
 
     def save(self):
         """
@@ -217,7 +217,7 @@ class OptionListCollection:
                 module_docgen_opts = {}
                 for docgen_name in self.docgen_names:
                     module_docgen_opts[docgen_name] = []
-                file.write("<module name=%s>\n" % quoteattr(module_name))
+                file.write(f"<module name={quoteattr(module_name)}>\n")
                 options = option_list.get_options()
                 for option_name in sorted(options.keys()):  # enable a diff
                     option_data = options[option_name]
@@ -228,33 +228,27 @@ class OptionListCollection:
                             )
                         else:
                             file.write(
-                                "  <option name=%s "
-                                'value="" length="%d">\n'
-                                % (quoteattr(option_name), len(option_data))
+                                f"  <option name={quoteattr(option_name)} "
+                                f'value="" length="{len(option_data)}">\n'
                             )
                             for list_index, list_data in enumerate(option_data):
                                 file.write(
-                                    "    <listitem "
-                                    'number="%d" value=%s/>\n'
-                                    % (list_index, quoteattr(str(list_data)))
+                                    f'    <listitem number="{list_index}" '
+                                    f"value={quoteattr(str(list_data))}/>\n"
                                 )
                             file.write("  </option>\n")
                     else:
                         file.write(
-                            "  <option name=%s value=%s/>\n"
-                            % (quoteattr(option_name), quoteattr(str(option_data)))
+                            f"  <option name={quoteattr(option_name)} "
+                            f"value={quoteattr(str(option_data))}/>\n"
                         )
                 for docgen_name in self.docgen_names:
                     if module_docgen_opts[docgen_name]:
-                        for idx, data in enumerate(module_docgen_opts[docgen_name]):
+                        for data in module_docgen_opts[docgen_name]:
                             file.write(
-                                "  <docgen-option docgen=%s "
-                                "name=%s value=%s/>\n"
-                                % (
-                                    quoteattr(docgen_name),
-                                    quoteattr(data[0]),
-                                    quoteattr(str(data[1])),
-                                )
+                                f"  <docgen-option docgen={quoteattr(docgen_name)} "
+                                f"name={quoteattr(data[0])} "
+                                f"value={quoteattr(str(data[1]))}/>\n"
                             )
                 self.write_module_common(file, option_list)
 
@@ -301,10 +295,11 @@ class OptionParser(handler.ContentHandler):
         self.an_o = None
         self.list_class = OptionList
 
-    def startElement(self, tag, attrs):
+    def startElement(self, name, attrs):
         """
         Overridden class that handles the start of a XML element
         """
+        tag = name
         if tag in ("report", "module"):
             self.mname = attrs["name"]
             self.option_list = self.list_class()
@@ -318,8 +313,9 @@ class OptionParser(handler.ContentHandler):
         elif tag == "listitem":
             self.an_o.append(attrs["value"])
 
-    def endElement(self, tag):
+    def endElement(self, name):
         "Overridden class that handles the end of a XML element"
+        tag = name
         if tag == "option":
             self.odict[self.oname] = self.an_o
         elif tag in ("report", "module"):
@@ -362,12 +358,17 @@ class OptionHandler:
             )
 
     def init_subclass(self):
+        """
+        Initialize option subclasses
+        """
         self.collection_class = OptionListCollection
         self.list_class = OptionList
         self.filename = None
 
     def init_common(self):
-        pass
+        """
+        Stub method to initialize common options, for derived classes
+        """
 
     def set_options(self):
         """
@@ -418,7 +419,9 @@ class OptionHandler:
         self.set_common_options()
 
     def set_common_options(self):
-        pass
+        """
+        Stub method to set common options, for derived classes
+        """
 
     def save_options(self):
         """
@@ -444,12 +447,20 @@ class OptionHandler:
         self.option_list_collection.save()
 
     def save_common_options(self):
-        pass
+        """
+        Stub method to save common options, for derived classes
+        """
 
     def get_person_id(self):
+        """
+        Return the person id
+        """
         return self.person_id
 
     def set_person_id(self, val):
+        """
+        Set the person id
+        """
         self.person_id = val
 
 
@@ -513,7 +524,6 @@ class Options:
                   set up here must be also parsed in the
                   :meth:`parse_user_options` method below.
         """
-        pass
 
     def parse_user_options(self):
         """
@@ -528,7 +538,6 @@ class Options:
         .. note:: Any widget parsed here MUST be defined and added to the dialog
                   in the :meth:`add_user_options` method above.
         """
-        pass
 
 
 # ------------------------------------------------------------------------
@@ -560,7 +569,6 @@ class MenuOptions:
         """
         This function is currently required by some reports.
         """
-        pass
 
     def add_menu_options(self, menu):
         """
