@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
-"PO-Revision-Date: 2023-08-08 04:50+0000\n"
+"PO-Revision-Date: 2023-08-10 06:44+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -491,11 +491,11 @@ msgid ""
 "your family tree to members of the family via email. If you're ready to make "
 "a website for your family tree then there's a report for that as well."
 msgstr ""
-"<b>דוחות גרמפס<br/></b>גרמפס מציע מגוון רחב של דוחות. הדוחות והתרשימים "
-"הגרפיים יכולים להציג קשרי־גומלין מורכבים בקלות ודו־השיח 'דוחות מילוליים' "
-"שימושיים במיוחד אם ברצונכם לשלוח את תוצאות אילן היוחסין לחברי המשפחה באמצעות "
-"דואר אלקטרוני. אם תרצו לייצור אתר מרשתת מאילן היוחסין, אזי קיים דו־שיח גם "
-"עבור זה."
+"<b>דוחות גרמפס<br/></b>גרמפס מציע מגוון רחב של דוחות. דוחות ותרשימים חזותיים "
+"נועדו להציג בקלות קשרי־גומלין מורכבים. דו־שיח 'דוחות מילוליים' מתפריט "
+"הדוחות, שימושי במיוחד לשיטוף תוצאות אילן־היוחסין עם בניי המשפחה באמצעות דואר "
+"אלקטרוני. לייצור אתר מרשתת מאילן־היוחסין, ניתן להגיע מאותו תפריט, \"אתר "
+"מרשתת\"."
 
 #: ../data/tips.xml:36
 msgid ""
@@ -505,7 +505,7 @@ msgid ""
 "the People View). Then go to the Relationship View and create relationships "
 "between people."
 msgstr ""
-"<b>הקמת אילן יוחסין חדש<br/></b> דרך טובה להקמת אילן יוחסין חדש היא על־ידי "
+"<b>הקמת אילן־יוחסין חדש<br/></b> דרך טובה להקמת אילן־יוחסין חדש היא על־ידי "
 "הזנת כל בני המשפחה למאגר הנתונים ‏ (מתפריט 'עריכה > הוספה...'או הקשה על "
 "'הוספת אדם חדש' מתצוגת אנשים). לאחר מכן, מעבר למצג קשרי־הגומלין ליצירת קשרים "
 "בין אנשים."
@@ -820,8 +820,8 @@ msgid ""
 "other Gramps users. This format has the key advantage over GEDCOM that no "
 "information is ever lost when exporting and importing."
 msgstr ""
-"<b>חבילתגרמפס XML<br/></b>ניתן לייצא את אילן היוחסין כחבילת XML של גרמפס. "
-"זהו קובץ דחוס המכיל את נתוני אילן היוחסין ואת כל קובצי המדיה המחוברים למסד "
+"<b>חבילתגרמפס XML<br/></b>ניתן לייצא את אילן־היוחסין כחבילת XML של גרמפס. "
+"זהו קובץ דחוס המכיל את נתוני אילן־היוחסין ואת כל קובצי המדיה המחוברים למסד "
 "הנתונים (תמונות לדוגמה). הקובץ נייד לחלוטין ולכן הוא שימושי לגיבויים או "
 "שיתוף עם משתמשי גרמפס אחרים. לשימוש בתסדיר ג׳דקום יתרון מרכזי שאין אובדן "
 "מידע בעת ייצוא או ייבוא."
@@ -832,7 +832,7 @@ msgid ""
 "Tree (WFT) format. This format allows a family tree to be displayed online "
 "using a single file, instead of many html files."
 msgstr ""
-"<b>תסדיר אילן יוחסין מרשתת<br/></b>ניתן לייצא נתונים מגרמפס לתסדיר אילן־"
+"<b>תסדיר אילן־יוחסין מרשתת<br/></b>ניתן לייצא נתונים מגרמפס לתסדיר אילן־"
 "יוחסין (WFT) מרשתת. תסדיר זה מאפשר מצג מקוון של אילן־היוחסין באמצעות קובץ "
 "יחיד במקום קבצי html רבים."
 
@@ -843,7 +843,7 @@ msgid ""
 "individuals to a collection of web pages ready for upload to the World Wide "
 "Web."
 msgstr ""
-"<b>יצירת אתר חקר־יוחסין<br/></b>ניתן בקלות לייצא את אילן היוחסין לעמוד "
+"<b>יצירת אתר חקר־יוחסין<br/></b>ניתן בקלות לייצא את אילן־היוחסין לעמוד "
 "מרשתת. כל שנדרש זה לבחור את מסד הנתונים כולו, קווי משפחה או אנשים מסוימים, "
 "לאוסף של דפי מרשתת המוכנים להעלאה לרשת העולמית."
 
@@ -1053,7 +1053,7 @@ msgid ""
 "Error: Family Tree '%s' already exists.\n"
 "The '-C' option cannot be used."
 msgstr ""
-"שגיאה: אילן יוחסין '%s' קיים כבר.\n"
+"שגיאה: אילן־יוחסין '%s' קיים כבר.\n"
 "אין אפשרות להשתמש באפשרות '‎-C'."
 
 #: ../gramps/cli/arghandler.py:241
@@ -1063,9 +1063,9 @@ msgid ""
 "If GEDCOM, Gramps-xml or grdb, use the -i option to import into a Family "
 "Tree instead."
 msgstr ""
-"שגיאה: הזנת אילן היוחסין '%s' לא קיים.\n"
+"שגיאה: הזנת אילן־היוחסין '%s' לא קיים.\n"
 "אם GEDCOM‏, Gramps-xml או grdb, במקום זאת, נא להשתמש באפשרות i- כדי לייבא "
-"לאילן היוחסין."
+"לאילן־היוחסין."
 
 #: ../gramps/cli/arghandler.py:255
 #, python-format
@@ -1135,7 +1135,7 @@ msgstr "אילנות יוחסין של גרמפס:"
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:927 ../gramps/gui/configure.py:1910
 msgid "Family Tree"
-msgstr "אילן יוחסין"
+msgstr "אילן־יוחסין"
 
 #. Translators: used in French+Russian, ignore otherwise
 #: ../gramps/cli/arghandler.py:445 ../gramps/cli/arghandler.py:449
@@ -1164,7 +1164,7 @@ msgstr "ניקיון."
 
 #: ../gramps/cli/arghandler.py:514
 msgid "Created empty Family Tree successfully"
-msgstr "אילן יוחסין ריק נוצר בהצלחה"
+msgstr "אילן־יוחסין ריק נוצר בהצלחה"
 
 #: ../gramps/cli/arghandler.py:517 ../gramps/cli/arghandler.py:543
 msgid "Error opening the file."
@@ -1415,8 +1415,8 @@ msgstr ""
 "gramps -i file1.ged -i file2.gpkg -e ~/new-package -f gramps-pkg\n"
 "\n"
 "4. לשמירת הודעות שגיאה מהדוגמה שלעיל בקבצים outfile ו־errfile, נא להריץ:\n"
-"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile "
-"2>errfile\n"
+"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile 2>"
+"errfile\n"
 "\n"
 "5. ליבוא שלושה מסדי נתונים ואתחול שיח גרמפס הִדּוּדִי עם התוצאה:\n"
 "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps\n"
@@ -1430,13 +1430,13 @@ msgstr ""
 "gramps -O 'Family Tree 1' -a report -p name=summary\n"
 "\n"
 "8. להצגת רשימת אפשרויות דוח\n"
-"נא להשתמש ב־name=timeline,show=all להצגת כל האפשרויות הזמינות לדוח ציר "
-"הזמן.\n"
+"נא להשתמש ב־name=timeline,show=all להצגת כל האפשרויות הזמינות לדוח ציר הזמן."
+"\n"
 "כדי לברר פרטים על אפשרות מסוימת, נא להשתמש ב־show=option_name , e.g. "
 "name=timeline,show=off string.\n"
 "למידע על שמות דוחות זמינים, נא להשתמש name=show string.\n"
 "\n"
-"9. להמרת אילן יוחסין בחטף לקובץ .gramps xml:\n"
+"9. להמרת אילן־יוחסין בחטף לקובץ .gramps xml:\n"
 "gramps -O 'Family Tree 1' -e output.gramps -f gramps-xml\n"
 "\n"
 "10.ליצירת אתר מרשתת בסביבה מקומית אחרת (בגרמנית):\n"
@@ -1541,7 +1541,7 @@ msgstr "נעול?"
 #: ../gramps/cli/clidbman.py:197
 #, python-format
 msgid "Family Tree \"%s\":"
-msgstr "אילן יוחסין '%s':"
+msgstr "אילן־יוחסין '%s':"
 
 #. Translators: needed for French, ignore otherwise
 #. Translators: for French, else ignore
@@ -1582,7 +1582,7 @@ msgstr "נתונים מיובאים..."
 
 #: ../gramps/cli/clidbman.py:425
 msgid "Remove family tree warning"
-msgstr "הסרת התראות אילן יוחסין"
+msgstr "הסרת התראות אילן־יוחסין"
 
 #: ../gramps/cli/clidbman.py:426
 #, python-format
@@ -1590,7 +1590,7 @@ msgid ""
 "Are you sure you want to remove the family tree named\n"
 "\"%s\"?"
 msgstr ""
-"האם להסיר את אילן היוחסין\n"
+"האם להסיר את אילן־היוחסין\n"
 "'%s'?"
 
 #: ../gramps/cli/clidbman.py:436 ../gramps/gui/dbman.py:745
@@ -1731,7 +1731,7 @@ msgid ""
 "be repaired from the Family Tree Manager. Select the database and click on "
 "the Repair button"
 msgstr ""
-"גרמפס זיהה בעיה במסד הנתונים הבסיסיי. ניתן לתקן זאת מדו־שיח מנהל אילן "
+"גרמפס זיהה בעיה במסד הנתונים הבסיסיי. ניתן לתקן זאת מדו־שיח מנהל אילן־"
 "היוחסין. נא לבחור את מסד הנתונים ולהקיש על לחצן 'תיקון'"
 
 #: ../gramps/cli/grampscli.py:149 ../gramps/gui/dbloader.py:161
@@ -2905,7 +2905,7 @@ msgstr "בסביבות "
 #: ../gramps/gen/datehandler/_datestrings.py:251
 msgctxt "date modifier"
 msgid "from "
-msgstr "מאת "
+msgstr "מ "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
@@ -3013,8 +3013,8 @@ msgid ""
 msgstr ""
 "גרסת סְכֵמָה אינה נתמכת בגרסה זו של גרמפס.\n"
 "\n"
-"אילן היוחסין הוא בגרסת סְכֵמָה %(tree_vers)s, וגרסה זו של גרמפס תומכת בגרסאות "
-"%(min_vers)s עד %(max_vers)s\n"
+"אילן־היוחסין הוא בגרסת סְכֵמָה %(tree_vers)s, וגרסה זו של גרמפס תומכת "
+"בגרסאות %(min_vers)s עד %(max_vers)s\n"
 "\n"
 "נא לשדרג לגרסה המתאימה או להשתמש ב־XML להמרת נתונים בין גרסאות סְכֵמָה שונות."
 
@@ -3031,7 +3031,7 @@ msgid ""
 msgstr ""
 "גרסת פייתון אינה נתמכת על־ידי גרסה זו של גרמפס.\n"
 "\n"
-"אילן היוחסין הוא בגרסת פייטון %(tree_vers)s, וגרסה זו של גרמפס תומכת בגרסאות "
+"אילן־היוחסין הוא בגרסת פייטון %(tree_vers)s, וגרסה זו של גרמפס תומכת בגרסאות "
 "%(min_vers)s עד %(max_vers)s\n"
 "\n"
 "נא לשדרג לגרסה המתאימה או להשתמש ב־XML להמרת נתונים בין גרסאות סְכֵמָה שונות."
@@ -3056,20 +3056,20 @@ msgid ""
 "start your %(bold_start)sold%(bold_end)s version of Gramps and "
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 msgstr ""
-"נעשה ניסיון לטעון אילן יוחסין בתסדיר סכימה גרסת %(oldschema)s. גרסה זו של "
-"גרמפס משתמשת בגרסת סכימה %(newschema)s. לכן, לא ניתן לטעון את אילן היוחסין "
+"נעשה ניסיון לטעון אילן־יוחסין בתסדיר סכימה גרסת %(oldschema)s. גרסה זו של "
+"גרמפס משתמשת בגרסת סכימה %(newschema)s. לכן, לא ניתן לטעון את אילן־היוחסין "
 "ללא שדרוג גרסת הסכימה שלו.\n"
 "\n"
 "במידה ויתבצע שדרוג, לא ניתן יהיה להשתמש בגרסה הקודמת של גרמפס, גם אם לאחר "
 "מכן יתבצע %(wiki_manual_backup_html_start)sגיבוי%(html_end)s או "
-"%(wiki_manual_export_html_start)sיצוא%(html_end)s של אילן היוחסין.\n"
+"%(wiki_manual_export_html_start)sיצוא%(html_end)s של אילן־היוחסין.\n"
 "\n"
-"שדרוג כרוך במשימה קשה, שעלולה להשחית את אילן היוחסין ללא אפשרות תיקון, במידה "
+"שדרוג כרוך במשימה קשה, שעלולה להשחית את אילן־היוחסין ללא אפשרות תיקון, במידה "
 "והשדרוג נקטע או נכשל.\n"
 "\n"
-"במידה ועדין לא בוצע גיבוי לאילן יוחסין, נא להתחיל את %(bold_start)sold"
-"%(bold_end)s גרסת גרמפס ו־%(wiki_backup_html_start)sלבצע גיבוי%(html_end)s "
-"לאילן היוחסין."
+"במידה ועדין לא בוצע גיבוי לאילן־יוחסין, נא להתחיל את "
+"%(bold_start)sold%(bold_end)s גרסת גרמפס ו־%(wiki_backup_html_start)sלבצע "
+"גיבוי%(html_end)s לאילן־היוחסין."
 
 #: ../gramps/gen/db/exceptions.py:174
 #, python-format
@@ -3111,11 +3111,11 @@ msgstr ""
 "%(wiki_manual_backup_html_start)sגיבוי%(html_end)s או "
 "%(wiki_manual_export_html_start)sייצוא%(html_end)ss אילן־היוחסין ששודרג.\n"
 "\n"
-"מומלץ בחום לגבות את אילן היוחסין.\n"
+"מומלץ בחום לגבות את אילן־היוחסין.\n"
 "\n"
-"אם עדיין בוצע גיבוי של אילן היוחסין, נא לאתחל עם הגרסה הקודמת של גרמפס ו־ "
-"%(wiki_backup_html_start)smake a backup%(html_end)s) של גיבוי של אילן "
-"היוחסין."
+"אם עדיין בוצע גיבוי של אילן־היוחסין, נא לאתחל עם הגרסה הקודמת של גרמפס "
+"ו־%(wiki_backup_html_start)smake a backup%(html_end)s) של גיבוי של "
+"אילן־היוחסין."
 
 #: ../gramps/gen/db/generic.py:152 ../gramps/gen/db/generic.py:202
 #: ../gramps/gen/db/generic.py:2024
@@ -3243,7 +3243,7 @@ msgstr ""
 "\n"
 "\n"
 "נא להריץ\n"
-"כלים &gt; עיבוד אילן יוחסין &gt; מיזוג\n"
+"כלים &gt; עיבוד אילן־יוחסין &gt; מיזוג\n"
 "על מנת למזג מובאות המכילות מידע\n"
 "זהה"
 
@@ -7138,7 +7138,7 @@ msgstr "טווח"
 
 #: ../gramps/gen/lib/date.py:2003
 msgid "from"
-msgstr "מאת"
+msgstr "מ"
 
 #: ../gramps/gen/lib/date.py:2004
 msgid "to"
@@ -9019,7 +9019,7 @@ msgstr "FTP"
 
 #: ../gramps/gen/merge/diff.py:106
 msgid "Family Tree Differences"
-msgstr "הבדלי אילן יוחסין"
+msgstr "הבדלי אילן־יוחסין"
 
 #: ../gramps/gen/merge/diff.py:107
 msgid "Searching..."
@@ -9762,7 +9762,7 @@ msgstr "קטן"
 #: ../gramps/plugins/graph/gvrelgraph.py:985
 #: ../gramps/plugins/importer/importprogen.py:488
 msgid "Normal"
-msgstr "רגיל"
+msgstr "נתון"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:103
 #: ../gramps/plugins/graph/gvfamilylines.py:271
@@ -9893,7 +9893,7 @@ msgstr "הערה להוספה לעץ"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:253
 msgid "This text will be added to the tree."
-msgstr "מלל זה יתווסף לאילן היוחסין."
+msgstr "מלל זה יתווסף לאילן־היוחסין."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:269
 msgid "The size of note text."
@@ -12477,7 +12477,7 @@ msgstr "_עצירה"
 
 #: ../gramps/gui/dbloader.py:207
 msgid "Are you sure you want to upgrade this Family Tree?"
-msgstr "האם לשדרג אילן יוחסין?"
+msgstr "האם לשדרג אילן־יוחסין?"
 
 #: ../gramps/gui/dbloader.py:210
 msgid ""
@@ -12485,7 +12485,7 @@ msgid ""
 "please upgrade my Family Tree"
 msgstr ""
 "בוצע כבר גיבוי,\n"
-"נא לשדרג את אילן היוחסין"
+"נא לשדרג את אילן־היוחסין"
 
 #: ../gramps/gui/dbloader.py:212 ../gramps/gui/glade/dialog.glade:701
 #: ../gramps/gui/plug/report/_bookdialog.py:250
@@ -12520,7 +12520,7 @@ msgstr "סיסמה:‏ "
 
 #: ../gramps/gui/dbloader.py:369
 msgid "Import Family Tree"
-msgstr "ייבוא אילן יוחסין"
+msgstr "ייבוא אילן־יוחסין"
 
 #: ../gramps/gui/dbloader.py:387
 msgid "All supported files"
@@ -12697,7 +12697,7 @@ msgstr "לא ניתן לשנות את שם עץ המשפחה."
 
 #: ../gramps/gui/dbman.py:634
 msgid "Family Tree already exists, choose a unique name."
-msgstr "אילן היוחסין כבר קיים, נא לבחור שם יחידאי."
+msgstr "אילן־היוחסין כבר קיים, נא לבחור שם יחידאי."
 
 #: ../gramps/gui/dbman.py:681
 msgid "Extracting archive..."
@@ -12710,15 +12710,15 @@ msgstr "ייבוא ארכיון..."
 #: ../gramps/gui/dbman.py:702
 #, python-format
 msgid "Remove the '%s' Family Tree?"
-msgstr "הסרת אילן יוחסין '%s'?"
+msgstr "הסרת אילן־יוחסין '%s'?"
 
 #: ../gramps/gui/dbman.py:703
 msgid "Removing this Family Tree will permanently destroy the data."
-msgstr "הסרת אילן היוחסין תשמיד את כל הנתונים לצמיתות."
+msgstr "הסרת אילן־היוחסין תשמיד את כל הנתונים לצמיתות."
 
 #: ../gramps/gui/dbman.py:705
 msgid "Remove Family Tree"
-msgstr "הסרת אילן יוחסין"
+msgstr "הסרת אילן־יוחסין"
 
 #: ../gramps/gui/dbman.py:710
 #, python-format
@@ -12758,7 +12758,7 @@ msgstr "המרת מסד נתונים '%s'?"
 #, python-format
 msgid ""
 "Do you wish to convert this family tree into a %(database_type)s database?"
-msgstr "האם להמיר אילן יוחסין זה למסד נתונים %(database_type)s?"
+msgstr "האם להמיר אילן־יוחסין זה למסד נתונים %(database_type)s?"
 
 #: ../gramps/gui/dbman.py:793
 msgid "Convert"
@@ -12797,7 +12797,7 @@ msgstr "הניסיון לייבוא מסד הנתונים כשל."
 
 #: ../gramps/gui/dbman.py:899
 msgid "Repair Family Tree?"
-msgstr "תיקון אילן יוחסין?"
+msgstr "תיקון אילן־יוחסין?"
 
 #: ../gramps/gui/dbman.py:900
 #, python-format
@@ -12825,23 +12825,23 @@ msgid ""
 "this is the case, you can disable the repair button by removing the file "
 "%(recover_file)s in the Family Tree directory."
 msgstr ""
-"בהקשה על%(bold_start)sלהמשיך%(bold_end)s, גרמפס ינסה לשחזר את אילן היוחסין "
+"בהקשה על%(bold_start)sלהמשיך%(bold_end)s, גרמפס ינסה לשחזר את אילן־היוחסין "
 "מהגיבוי התקין האחרון. פעולה זו עלולה לגרום לאפקטים לא רצויים במספר אופנים, "
-"לכן %(bold_start)sיש לגבות%(bold_end)s את אילן היוחסין תחילה.\n"
-"אילן היוחסין שנבחר מאוחסן ב־%(dirname)s.\n"
+"לכן %(bold_start)sיש לגבות%(bold_end)s את אילן־היוחסין תחילה.\n"
+"אילן־היוחסין שנבחר מאוחסן ב־%(dirname)s.\n"
 "\n"
-"לפני בצוע תיקון, נא לוודא שאכן לא ניתן לפתוח את אילן היוחסין, מכיוון ששרת "
+"לפני בצוע תיקון, נא לוודא שאכן לא ניתן לפתוח את אילן־היוחסין, מכיוון ששרת "
 "מסד הנתונים עשוי להתאושש מכמה שגיאות באופן אוטומטי.\n"
 "\n"
-"‏%(bold_start)sפרטים:%(bold_end)s תיקון אילן יוחסין למעשה משתמש בגיבוי "
+"‏%(bold_start)sפרטים:%(bold_end)s תיקון אילן־יוחסין למעשה משתמש בגיבוי "
 "האחרון, אותו גרמפס אחסן בשימוש האחרון. המשמעות היא שכול המידע שנוצר לאחר "
-"הגיבוי האחרון יאבד! במידה והתיקון כשל, אילן היוחסין המקורי יאבד לנצח, ולכן "
-"חשוב לגבות. אם התיקון כשל, או אם מידע רב מדי אבד, ניתן לתקן את אילן היוחסין "
+"הגיבוי האחרון יאבד! במידה והתיקון כשל, אילן־היוחסין המקורי יאבד לנצח, ולכן "
+"חשוב לגבות. אם התיקון כשל, או אם מידע רב מדי אבד, ניתן לתקן את אילן־היוחסין "
 "המקורי באופן ידני. לפרטים, נא לעיין בעמוד המרשתת\n"
 "‏‎‎%(gramps_wiki_recover_url)s\n"
-"לפני בצוע תיקון, נא לנסות לפתוח את אילן היוחסין באופן רגיל. ניתן לתקן באופן "
+"לפני בצוע תיקון, נא לנסות לפתוח את אילן־היוחסין באופן רגיל. ניתן לתקן באופן "
 "אוטומטי מספר שגיאות המפעילות את לחצן התיקון. אם זה המקרה, ניתן להשבית את "
-"לחצן התיקון על־ידי הסרת הקובץ %(recover_file)s במחיצת אילן היוחסין."
+"לחצן התיקון על־ידי הסרת הקובץ %(recover_file)s במחיצת אילן־היוחסין."
 
 #: ../gramps/gui/dbman.py:931
 msgid "Proceed, I have taken a backup"
@@ -12861,7 +12861,7 @@ msgstr "שגיאה בשחזור נתוני גיבוי"
 
 #: ../gramps/gui/dbman.py:995
 msgid "Could not create Family Tree"
-msgstr "לא ניתן ליצור אילן יוחסין"
+msgstr "לא ניתן ליצור אילן־יוחסין"
 
 #: ../gramps/gui/dbman.py:1116
 msgid "Retrieve failed"
@@ -13896,7 +13896,7 @@ msgstr "עריכת מובאה (%s)"
 
 #: ../gramps/gui/editors/editdate.py:77 ../gramps/gui/editors/editdate.py:89
 msgid "Regular"
-msgstr "רגיל"
+msgstr "סדיר"
 
 #: ../gramps/gui/editors/editdate.py:78
 msgid "Before"
@@ -13916,15 +13916,15 @@ msgstr "טווח"
 
 #: ../gramps/gui/editors/editdate.py:82
 msgid "From"
-msgstr "מאת"
+msgstr "מ"
 
 #: ../gramps/gui/editors/editdate.py:83
 msgid "To"
-msgstr "למעלה"
+msgstr "עד"
 
 #: ../gramps/gui/editors/editdate.py:84
 msgid "Span"
-msgstr "נמשך"
+msgstr "טווח זמן"
 
 #: ../gramps/gui/editors/editdate.py:85
 msgid "Text only"
@@ -15575,7 +15575,7 @@ msgstr "_סגירת חלון"
 
 #: ../gramps/gui/glade/dbman.glade:134
 msgid "_Load Family Tree"
-msgstr "_טעינת אילן יוחסין"
+msgstr "_טעינת אילן־יוחסין"
 
 #: ../gramps/gui/glade/dbman.glade:235 ../gramps/gui/glade/editlink.glade:208
 msgid "_New"
@@ -17954,8 +17954,8 @@ msgstr ""
 "\n"
 "גרמפס לא הצליח לאתחל. נא לדווח על תקל.\n"
 "יתכן וזה עקב שגיאה במצג (צד ג') בהפעלה.\n"
-"על מנת להשתמש במצג אחר, נא לא לטעון אילן יוחסין, לשנות תצוגה ורק אז לטעון את "
-"אילן היוחסין הרצוי.\n"
+"על מנת להשתמש במצג אחר, נא לא לטעון אילן־יוחסין, לשנות תצוגה ורק אז לטעון את "
+"אילן־היוחסין הרצוי.\n"
 "ניתן גם לשנות באופן ידני את מצג האתחול בקובץ gramps.ini\n"
 "על־ידי שינוי המשתנה 'תצוגה אחרונה'.\n"
 
@@ -18889,7 +18889,7 @@ msgstr ""
 
 #: ../gramps/gui/plug/export/_exportassistant.py:596
 msgid "Error exporting your Family Tree"
-msgstr "שגיאה בייצוא אילן יוחסין"
+msgstr "שגיאה בייצוא אילן־יוחסין"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:604
 #: ../gramps/gui/plug/export/_exportassistant.py:638
@@ -19433,11 +19433,11 @@ msgstr "ניתוח וחקירה"
 
 #: ../gramps/gui/plug/tool.py:57
 msgid "Family Tree Processing"
-msgstr "עיבוד אילן יוחסין"
+msgstr "עיבוד אילן־יוחסין"
 
 #: ../gramps/gui/plug/tool.py:58
 msgid "Family Tree Repair"
-msgstr "תיקון אילן יוחסין"
+msgstr "תיקון אילן־יוחסין"
 
 #: ../gramps/gui/plug/tool.py:59
 msgid "Revision Control"
@@ -19681,7 +19681,7 @@ msgstr "לא ניתן לפתוח עורך מובאה חדש"
 
 #: ../gramps/gui/viewmanager.py:339 ../gramps/gui/viewmanager.py:1096
 msgid "No Family Tree"
-msgstr "אין אילן יוחסין"
+msgstr "אין אילן־יוחסין"
 
 #: ../gramps/gui/viewmanager.py:566
 msgid "Registering plugins..."
@@ -22171,15 +22171,15 @@ msgstr "אפשרויות גיליון אלקטרוני CSV"
 
 #: ../gramps/plugins/export/export.gpr.py:57
 msgid "Web Family Tree"
-msgstr "אילן יוחסין מרשתת"
+msgstr "אילן־יוחסין מרשתת"
 
 #: ../gramps/plugins/export/export.gpr.py:58
 msgid "_Web Family Tree"
-msgstr "_אילן יוחסין מרשתת"
+msgstr "_אילן־יוחסין מרשתת"
 
 #: ../gramps/plugins/export/export.gpr.py:59
 msgid "Web Family Tree format"
-msgstr "תסדיר אילן יוחסין מרשתת"
+msgstr "תסדיר אילן־יוחסין מרשתת"
 
 #: ../gramps/plugins/export/export.gpr.py:67
 msgid "Web Family Tree export options"
@@ -22226,17 +22226,17 @@ msgstr "אפשרויות ייצוא כקובץ GeneWeb"
 
 #: ../gramps/plugins/export/export.gpr.py:121
 msgid "Gramps XML Package (family tree and media)"
-msgstr "חבילת גרמפס XML (אילן יוחסין ומדיה)"
+msgstr "חבילת גרמפס XML (אילן־יוחסין ומדיה)"
 
 #: ../gramps/plugins/export/export.gpr.py:122
 msgid "Gra_mps XML Package (family tree and media)"
-msgstr "חבילת גרא_מפס XML (אילן יוחסין ומדיה)"
+msgstr "חבילת גרא_מפס XML (אילן־יוחסין ומדיה)"
 
 #: ../gramps/plugins/export/export.gpr.py:123
 msgid ""
 "Gramps package is an archived XML family tree together with the media object "
 "files."
-msgstr "חבילת גרמפס הוא אילן יוחסין מאורכב XML בצרוף קבצי עצמי המדיה."
+msgstr "חבילת גרמפס הוא אילן־יוחסין מאורכב XML בצרוף קבצי עצמי המדיה."
 
 #: ../gramps/plugins/export/export.gpr.py:132
 msgid "Gramps package export options"
@@ -22244,18 +22244,18 @@ msgstr "אפשרויות יצוא חבילת גרמפס"
 
 #: ../gramps/plugins/export/export.gpr.py:143
 msgid "Gramps XML (family tree)"
-msgstr "גרמפס XML (אילן יוחסין)"
+msgstr "גרמפס XML (אילן־יוחסין)"
 
 #: ../gramps/plugins/export/export.gpr.py:144
 msgid "Gramps _XML (family tree)"
-msgstr "גרמפס _XML (אילן יוחסין)"
+msgstr "גרמפס _XML (אילן־יוחסין)"
 
 #: ../gramps/plugins/export/export.gpr.py:145
 msgid ""
 "Gramps XML export is a complete archived XML backup of a Gramps family tree "
 "without the media object files. Suitable for backup purposes."
 msgstr ""
-"יצוא XML בגרמפס הוא למעשה גיבוי ארכיב XML מלא של אילן היוחסין אך ללא קבצי "
+"יצוא XML בגרמפס הוא למעשה גיבוי ארכיב XML מלא של אילן־היוחסין אך ללא קבצי "
 "עצם המדיה. מתאים לצורכי גיבוי."
 
 #: ../gramps/plugins/export/export.gpr.py:155
@@ -22459,7 +22459,7 @@ msgid ""
 "then sort by the age column, and double-click the row to view or edit."
 msgstr ""
 "נא להזין תאריך חוקי (כגון YYYY-MM-DD) ברשומה שלהלן והקשה על 'הרצה'. מהלך זה "
-"יחשב את הגילאים לכל אדם באילן היוחסין לתאריך שהוזן. לאחר מכן ניתן יהיה למיין "
+"יחשב את הגילאים לכל אדם באילן־היוחסין לתאריך שהוזן. לאחר מכן ניתן יהיה למיין "
 "לפי עמודת הגיל, הקשה כפולה על שורה תאפשר הצגה או עריכה."
 
 #: ../gramps/plugins/gramplet/agestats.py:82
@@ -22749,7 +22749,7 @@ msgid ""
 "Gramps and my tree?%(html_end)s\n"
 msgstr ""
 " 10. %(gramps_FAQ_html_start)s%(faq_section)sכיצד ניתן לייצר אתר מרשתת "
-"באמצעות גרמפס ואילן היוחסין שלי?%(html_end)s\n"
+"באמצעות גרמפס ואילן־היוחסין שלי?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:148
 #, python-format
@@ -22811,7 +22811,7 @@ msgstr "נא להקיש כפולה על שם פרטי לפרטים"
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:60
 #: ../gramps/plugins/gramplet/whatsnext.py:45
 msgid "No Family Tree loaded."
-msgstr "אין אילן יוחסין טעון."
+msgstr "אין אילן־יוחסין טעון."
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:150
 msgid "Total unique given names"
@@ -24102,13 +24102,13 @@ msgid ""
 "\n"
 msgstr ""
 "באיתחול הראשון של גרמפס, כל המצגים יהיו ריקים, עם מספר מעט של אפשרויות תפריט "
-"פעילות. כדי שמשו יקרה, נדרש אילן יוחסין.\n"
+"פעילות. כדי שמשו יקרה, נדרש אילן־יוחסין.\n"
 "\n"
 "ליצירת אילן־יוחסין חדש (נקרא לעיתם גם 'מסד־נתונים') נא לבחור מהתפריט "
 "ב'אילנות־יוחסין', 'ניהול אילות־יוחסין', לחיצה על 'חדש' והזנת שם לאילן־"
 "היוחסין. 'טעינת אילן־יוחסין' כדי להפוך אותו לפעיל וזמין לקליטת נתונים. קליטת "
-"הנתונים יכולה להתבצעה על ידי, הזנת המשפחה הראשונה, או ייבוא אילן־יוחסין."
-"לפרטים נוספים, נא לעיין במידע בקישורים שלהלן.\n"
+"הנתונים יכולה להתבצעה על ידי, הזנת המשפחה הראשונה, או ייבוא אילן־"
+"יוחסין.לפרטים נוספים, נא לעיין במידע בקישורים שלהלן.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:147
@@ -24173,7 +24173,7 @@ msgstr "הזנה ועריכת נתונים (קצרה)"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:174
 msgid "Importing a Family Tree"
-msgstr "ייבוא אילן יוחסין"
+msgstr "ייבוא אילן־יוחסין"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:175
 msgid ""
@@ -25025,14 +25025,14 @@ msgstr ""
 
 #: ../gramps/plugins/importer/import.gpr.py:110
 msgid "Gramps XML Family Tree"
-msgstr "אילן יוחסין גרמפס XML"
+msgstr "אילן־יוחסין גרמפס XML"
 
 #: ../gramps/plugins/importer/import.gpr.py:111
 msgid ""
 "The Gramps XML format is a text version of a Family Tree. It is read-write "
 "compatible with the present Gramps database format."
 msgstr ""
-"תסדיר XML גרמפס הנה גרסת מלל של אילן היוחסין. הקובץ תואם קריאה-כתיבה לתסדיר "
+"תסדיר XML גרמפס הנה גרסת מלל של אילן־היוחסין. הקובץ תואם קריאה-כתיבה לתסדיר "
 "מסד הנתונים הנוכחית של גרמפס."
 
 #: ../gramps/plugins/importer/import.gpr.py:131
@@ -25563,7 +25563,7 @@ msgid ""
 "media files to the new position, and using the media manager tool, option "
 "'Replace substring in the path' to set correct paths in your media objects."
 msgstr ""
-"נתיב המדיה הבסיסי לאילן היוחסין הוגדר כ־ %s. נא לשקול לבחור נתיב פשוט יותר. "
+"נתיב המדיה הבסיסי לאילן־היוחסין הוגדר כ־ %s. נא לשקול לבחור נתיב פשוט יותר. "
 "ניתן לשנות את הנתיב מתפריט העדפות, תוך העברת קובצי המדיה למיקום החדש ושימוש "
 "בכלי מנהל המדיה, אפשרות 'החלפת מחרוזת משנה בנתיב' כדי לעדכן נתיבים בעצמי "
 "המדיה."
@@ -25583,7 +25583,7 @@ msgid ""
 "tool, option 'Replace substring in the path' to set correct paths in your "
 "media objects."
 msgstr ""
-"אילן היוחסין שיובא מכיל כבר נתיב מדיה בסיסי: %(orig_path)s. עם זאת, עצמי "
+"אילן־היוחסין שיובא מכיל כבר נתיב מדיה בסיסי: %(orig_path)s. עם זאת, עצמי "
 "המדיה המיובאים יחסיים לאלה של הנתיב %(path)s. ניתן לשנות את נתיב המדיה "
 "בהעדפות או להמיר את הקבצים המיובאים לנתיב המדיה הבסיסי הקיים. ניתן לעשות זאת "
 "על־ידי העברת קבצי המדיה למיקום החדש ושימוש בכלי מנהל המדיה, מתפריט אפשרות "
@@ -25609,8 +25609,8 @@ msgid ""
 msgstr ""
 "מסד הנתונים בגרסה זו אינו נתמך בגרסה זו של גרמפס. נא לאתחל את גרמפס בגרסה "
 "ישנה יותר במהדורה 3.0.x ולייבא את מסד הנתונים לגרסה זו. נא לייצא את מסד "
-"הנתונים לקובץ XML (אילן יוחסין). כעת, יש לשדרג את גרמפס לגרסה האחרונה "
-"(לדוגמה גרסה זו) וליצר מסד נתונים ריק ולייבא אליו את קובץ ה־ XML שנוצר קודם. "
+"הנתונים לקובץ XML (אילן־יוחסין). כעת, יש לשדרג את גרמפס לגרסה האחרונה ("
+"לדוגמה גרסה זו) וליצר מסד נתונים ריק ולייבא אליו את קובץ ה־ XML שנוצר קודם. "
 "נא לעיין ב: %(gramps_wiki_migrate_two_to_three_url)s"
 
 #: ../gramps/plugins/importer/importprogen.glade:49
@@ -26098,7 +26098,7 @@ msgid ""
 "Copy the files to a correct directory or change the media path in the "
 "Preferences."
 msgstr ""
-"הקובץ שנפתח כולל את נתיב המדיה %s, המתנגש עם נתיב המדיה של אילן היוחסין "
+"הקובץ שנפתח כולל את נתיב המדיה %s, המתנגש עם נתיב המדיה של אילן־היוחסין "
 "לתוכו מייבאים. נתיב המדיה המקורי נשמר. נא להעתיק את הקבצים למחיצה נכונה או "
 "לשנות את נתיב המדיה בהעדפות."
 
@@ -26200,7 +26200,7 @@ msgid ""
 "Your Family Tree groups name \"%(key)s\" together with \"%(parent)s\", did "
 "not change this grouping to \"%(value)s\"."
 msgstr ""
-"שם קבוצת אילנות היוחסין '%(key)s' יחד עם '%(parent)s', לא שינה קיבוץ זה ל־ "
+"שם קבוצת אילנות־היוחסין '%(key)s' יחד עם '%(parent)s', לא שינה קיבוץ זה ל־ "
 "'%(value)s'."
 
 #: ../gramps/plugins/importer/importxml.py:1925
@@ -33430,11 +33430,11 @@ msgid ""
 "tree. The rest of the checking is skipped, the Check and\n"
 "Repair tool should be run anew on this new Family Tree."
 msgstr ""
-"אילן היוחסין מכיל כפילויות בטבלאות צולבות.\n"
+"אילן־היוחסין מכיל כפילויות בטבלאות צולבות.\n"
 " זה לא טוב, אך ניתן לתיקון על־ידי ביצוע גיבוי\n"
-"אילן היוחסין וייבוא הגיבוי לעץ ריק.\n"
+"אילן־היוחסין וייבוא הגיבוי לעץ ריק.\n"
 "המערכת תדלג על שאר הבדיקה ו\n"
-"יש להפעיל את כלי 'בדיקה ותיקון' מחדש באילן היוחסין החדש."
+"יש להפעיל את כלי 'בדיקה ותיקון' מחדש באילן־היוחסין החדש."
 
 #: ../gramps/plugins/tool/check.py:187
 msgid "Check Integrity"
@@ -34489,7 +34489,7 @@ msgid ""
 "that can be extracted."
 msgstr ""
 "להלן רשימת כינויים, כותרות, קידומות ושמות משפחה מורכבים שגרמפס יכול לחלץ "
-"מאילן היוחסין.\n"
+"מאילן־היוחסין.\n"
 "אם קבלת השינויים, גרמפס תשנה את הערכים שנבחרו.\n"
 "\n"
 "שמות משפחה מורכבים מוצגים כרשימות של [קידומת, שם משפחה, מחבר].\n"
@@ -37259,7 +37259,7 @@ msgstr "מחיצת היעד לקובצי המרשתת"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1981
 msgid "My Family Tree"
-msgstr "אילן יוחסין שלי"
+msgstr "אילן־יוחסין שלי"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1981
 msgid "Website title"
@@ -37343,7 +37343,7 @@ msgstr "נא לבחור הפריסה עבור תפריטי הניווט."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2064
 msgid "Normal Outline Style"
-msgstr "סגנון מתאר רגיל"
+msgstr "סגנון מתאר תקני"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2068
 msgid "Citation Referents Layout"
@@ -37647,7 +37647,7 @@ msgstr "תאור ההורדה"
 #: ../gramps/plugins/webreport/narrativeweb.py:2329
 #, python-format
 msgid "Family Tree #%c"
-msgstr "אילן יוחסין #%c"
+msgstr "אילן־יוחסין #%c"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2330
 msgid "Give a description for this file."
