@@ -568,8 +568,14 @@ class AddonManager(ManagedWindow):
         value = model.get_value(status_iter, 0)
         if value != -1 and row.addon["s"] != value:
             return False
-        if search_text and search_text not in row.addon["d"]:
-            return False
+        if search_text:
+            search_text = search_text.lower()
+            if (
+                search_text not in row.addon["n"].lower()
+                and search_text not in row.addon["d"].lower()
+                and search_text not in row.addon["i"].lower()
+            ):
+                return False
         return True
 
     def __on_dialog_button(self, dialog, response_id):
