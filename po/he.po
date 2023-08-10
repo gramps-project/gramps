@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
 "PO-Revision-Date: 2023-08-10 06:44+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -17961,11 +17961,11 @@ msgstr ""
 
 #: ../gramps/gui/logger/_errorreportassistant.py:101
 msgid "Error Report Assistant"
-msgstr "סייען דוח שגיאות"
+msgstr "סייען דיווח שגיאות"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:263
 msgid "Report a bug"
-msgstr "דווח על תקל"
+msgstr "דיווח על תקל"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:270
 msgid ""
