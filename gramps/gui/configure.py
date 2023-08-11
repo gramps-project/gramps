@@ -1596,9 +1596,9 @@ class GrampsPreferences(ConfigureDialog):
         # Birthday on february 29
         feb29 = Gtk.ComboBoxText()
         show_on = [
-            _("on the previous day"),
-            _("on the next day"),
-            _("only on leap years"),
+            _("On the previous day"),
+            _("On the next day"),
+            _("Only on leap years"),
         ]
         list(map(feb29.append_text, show_on))
         active = config.get("preferences.february-29")
@@ -1609,7 +1609,7 @@ class GrampsPreferences(ConfigureDialog):
             "February 28, March 1 or not at all in Gregorian calendars"
         )
         feb29.set_tooltip_text(ttip)
-        lwidget = BasicLabel(_("Show leap day anniversaries"))
+        lwidget = BasicLabel(_("%s: ") % _("Show leap day anniversaries"))
         grid.attach(lwidget, 1, row, 1, 1)
         grid.attach(feb29, 2, row, 2, 1)
 
