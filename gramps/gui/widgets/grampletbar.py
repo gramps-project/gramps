@@ -83,10 +83,10 @@ from ..dialog import QuestionDialog
 # -------------------------------------------------------------------------
 WIKI_HELP_PAGE = URL_WIKISTRING + URL_MANUAL_PAGE + "_-_Gramplets"
 WIKI_HELP_GRAMPLETBAR = (
-    URL_WIKISTRING + URL_MANUAL_PAGE + "_-_Main_Window#Gramplet_Bar_Menu"
+    URL_WIKISTRING + URL_MANUAL_PAGE + "_-_Main_Window#Bottombar_and_Sidebar"
 )
 WIKI_HELP_ABOUT_GRAMPLETS = (
-    URL_WIKISTRING + URL_MANUAL_PAGE + "_-_Gramplets#What_is_a_Gramplet"
+    URL_WIKISTRING + URL_MANUAL_PAGE + "_-_Gramplets#What_is_a_Gramplet.3F"
 )
 NL = "\n"
 
