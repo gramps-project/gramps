@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-11 17:47+0000\n"
+"PO-Revision-Date: 2023-08-12 06:43+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -2977,7 +2977,7 @@ msgstr "הוספת צאצאים למשפחה"
 
 #: ../gramps/gen/db/base.py:1836 ../gramps/gen/db/base.py:1840
 msgid "Remove child from family"
-msgstr "הסרת צאצאים מהמשפחה"
+msgstr "הסרת צאצאים ממשפחה"
 
 #: ../gramps/gen/db/base.py:1919 ../gramps/gen/db/base.py:1923
 msgid "Remove Family"
@@ -2985,11 +2985,11 @@ msgstr "הסרת משפחה"
 
 #: ../gramps/gen/db/base.py:1962
 msgid "Remove father from family"
-msgstr "הסרת אב מהמשפחה"
+msgstr "הסרת אב ממשפחה"
 
 #: ../gramps/gen/db/base.py:1964
 msgid "Remove mother from family"
-msgstr "הסרת אם מהמשפחה"
+msgstr "הסרת אם ממשפחה"
 
 #: ../gramps/gen/db/exceptions.py:99
 #, python-format
@@ -3305,7 +3305,7 @@ msgstr "סיומת"
 #: ../gramps/gen/display/name.py:666 ../gramps/gen/display/name.py:793
 msgctxt "Name"
 msgid "call"
-msgstr "נקרא"
+msgstr "ידוע בשם"
 
 #: ../gramps/gen/display/name.py:670 ../gramps/gen/display/name.py:797
 msgctxt "Name"
@@ -4041,7 +4041,7 @@ msgstr "מובאות עם מזהה המכיל <מלל>"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:52
 msgid "Matches citations whose Gramps ID matches the regular expression"
-msgstr "שליפת מובאות שמזהה גרמפס שלהן תאום לביטוי הרגיל"
+msgstr "שליפת מובאות שמזהה גרמפס שלהן תאום לביטוי רגיל"
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:50
 msgid "Citations with Source Id containing <text>"
@@ -4051,7 +4051,7 @@ msgstr "מובאות עם מזהה מקור המכיל <מלל>"
 msgid ""
 "Matches citations whose source has a Gramps ID that matches the regular "
 "expression"
-msgstr "שליפת מובאות עם מקור עם מזהה גרמפס התאום לביטוי הרגיל"
+msgstr "שליפת מובאות עם מקור עם מזהה גרמפס התאום לביטוי רגיל"
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:46
 msgid "Every event"
@@ -4952,8 +4952,8 @@ msgid ""
 "between the specified person and the target people.  Each path is not "
 "necessarily the shortest path."
 msgstr ""
-"חיפוש במסד הנתונים, החל באדם מסויים, ושליפת כל האנשים שבין אותו אדםמסויים, "
-"לקבוצת אנשי יעד שהוגדרה במסנן.  הפעולה תייצר קבוצת נתיבי קשרי־גומלין (כולל "
+"חיפוש במסד הנתונים, החל באדם מסויים, ושליפת כל האנשים שבין אותו אדם מסויים, "
+"לקבוצת אנשי יעד שהוגדרה במסנן.  הפעולה תיצור קבוצת נתיבי קשרי־גומלין (כולל "
 "מחותנים) בין האדם המסויים לבין אנשי היעד.  כל נתיב שיתקבל אינו בהכרח הנתיב "
 "הקצר ביותר."
 
@@ -5187,7 +5187,7 @@ msgstr "סיומת:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:53
 msgid "Call Name:"
-msgstr "שם פניה:"
+msgstr "ידוע בשם:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:54
 msgid "Nick Name:"
@@ -5345,7 +5345,7 @@ msgid ""
 "name, and Nickname are searched in primary and alternate names."
 msgstr ""
 "התאמת סאונדאקס של אנשים בעלי שם שצוין. יתבצע חיפוש בשמות ראשיים וחלופיים של "
-"שם פרטי, שם משפחה, פניה וכינוי."
+"שם פרטי, שם משפחה, ידוע בשם."
 
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:47
 msgid "People with <count> sources"
@@ -8201,7 +8201,7 @@ msgstr "הצגה כ"
 
 #: ../gramps/gen/lib/name.py:195 ../gramps/plugins/importer/importcsv.py:208
 msgid "Call name"
-msgstr "כינוי"
+msgstr "ידוע בשם"
 
 #: ../gramps/gen/lib/name.py:196
 msgid "Nick name"
@@ -9438,7 +9438,7 @@ msgstr "כיוון תרשים"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:179
 msgid "Whether graph goes from top to bottom or left to right."
-msgstr "האם התרשים ייפרס מלמעלה למטה או משמאל לימין."
+msgstr "האם כיוון התרשים מלמעלה למטה או משמאל לימין."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:183
 msgid "Number of Horizontal Pages"
@@ -9678,7 +9678,7 @@ msgstr "אוטומטי"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:79
 msgid "Call Name Only"
-msgstr "פניה בלבד"
+msgstr "ידוע בשם בלבד"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:80
 msgid "Whole Given Name"
@@ -9756,7 +9756,7 @@ msgstr "קטן"
 #: ../gramps/plugins/graph/gvrelgraph.py:1082
 #: ../gramps/plugins/importer/importprogen.py:513
 msgid "Normal"
-msgstr "נתון"
+msgstr "בדיוק"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:124
 #: ../gramps/plugins/graph/gvfamilylines.py:321
@@ -10037,7 +10037,7 @@ msgstr "איך לטפל באנשים חיים"
 
 #: ../gramps/gen/plug/report/stdoptions.py:228
 msgid "Years from death to consider living"
-msgstr "שנים מהפטירה להיחשב בחיים"
+msgstr "מספר שנים שחלפו מהלידה על מנת להיחשב 'בחיים'"
 
 #: ../gramps/gen/plug/report/stdoptions.py:230
 msgid "Whether to restrict data on recently-dead people"
@@ -10257,9 +10257,9 @@ msgid ""
 "If you're sure there is no problem with other files, delete it, and restart "
 "Gramps."
 msgstr ""
-"שגיאה בניתוח רשימת מסדי הנתונים האחרונים מהקובץ {fname}: {error}.\n"
-"עשוי להצביע על נזק לקבצים.\n"
-"במידה ואין חשש לבעיה עם הקבצים האחרים, נא למחוק אותם ולהפעיל מחדש את גרמפס."
+"שגיאת ניתוח רשימת מסדי־הנתונים האחרונים מהקובץ {fname}: {error}.\n"
+"זה עשוי להצביע על נזק לקבצים.\n"
+"במידה ואין חשש לבעיה בקבצים האחרים, נא למחוק אותו ולאתחל את גרמפס."
 
 #: ../gramps/gen/relationship.py:1416
 #: ../gramps/plugins/view/pedigreeview.py:1730
@@ -10582,12 +10582,12 @@ msgstr "שם משפחה"
 #: ../gramps/gen/utils/keyword.py:59
 msgctxt "Name"
 msgid "CALL"
-msgstr "בשימוש"
+msgstr "ידוע בשם"
 
 #: ../gramps/gen/utils/keyword.py:59
 msgctxt "Name"
 msgid "Call"
-msgstr "בשימוש"
+msgstr "ידוע בשם"
 
 #: ../gramps/gen/utils/keyword.py:60
 msgctxt "Name"
@@ -11353,7 +11353,7 @@ msgstr "הפיכת %s לפעיל"
 #, python-format
 msgctxt "the object"
 msgid "Create Filter from %s selected..."
-msgstr "נא לייצור מסננן מה%s שנבחר..."
+msgstr "ייצירת מסננן מה%s שנבחר..."
 
 #: ../gramps/gui/columnorder.py:94
 #, python-format
@@ -11453,19 +11453,20 @@ msgid ""
 msgstr ""
 "מילות המפתח הבאות יוחלפו בחלקי השם המתאימים:<tt>\n"
 "‏  <b>פרטי</b>   - שם פרטי     <b>משפחה</b>  - שם משפחה (עם קידומת וקישור)\n"
-"‏  <b>תואר</b>   - תואר (דר', גב.)           <b>סיומת</b>   - סיומת (ג'וניור, "
-"השלישי)\n"
-"‏  <b>פניה</b>    - פניה                   <b>כינוי</b> - כינוי\n"
+"‏  <b>תואר</b>   - תואר (דר', גב.)           <b>סיומת</b>   - סיומת ("
+"ג'וניור, השלישי)\n"
+"‏  <b>ידוע בשם</b>    - השם בו אדם קורא לעצמו                   <b>כינוי</b> "
+"- כינוי\n"
 "‏  <b>ראשי תיבות</b>- אות ראשונה של שם פרטי      <b>Common</b>   - כינוי, "
-"פניה, או אות ראשונה של שם פרטי\n"
+"ידוע בשם, או אות ראשונה של שם פרטי\n"
 "‏  <b>קידומת</b>  - כל הקידומות (וון, דה)\n"
 "‏שמות משפחה:\n"
 "‏  <b>השאר</b>      - לא שמות משפחה עיקריים    <b>Notpatronymic</b>- כל שמות "
 "המשפחה, למעט פטרו/מטרונימי &amp; ראשי\n"
 "‏  <b>כינוי משפחה</b>- כינוי משפחה        <b>שם משפחה גלמי</b>  - שמות משפחה "
 "(ללא קידומות וקישורים)\n"
-"‏  <b>עיקרי, עיקרי[עיק] או [משפ] או [קיש]</b>- שם משפחה עיקרי מלא, קידומת, שם "
-"משפחה בלבד, קישור\n"
+"‏  <b>עיקרי, עיקרי[עיק] או [משפ] או [קיש]</b>- שם משפחה עיקרי מלא, קידומת, "
+"שם משפחה בלבד, קישור\n"
 "‏  <b>פטרונימי, או [עיק] או [משפ] או [קיש]</b> - שם משפחה פטרו/מטרונימי מלא, "
 "קידומת, שם משפחה בלבד, קישור\n"
 "‏</tt>\n"
@@ -11474,10 +11475,10 @@ msgstr ""
 "‏\n"
 "‏<b>דוגמה</b>: דר' אדווין חוזה וון דר סמיט וווסטון ווילסון סניור   ('א.ד') - "
 "אנדרהילס\n"
-"‏     <i>אדווין חוזה</i>: פרטי, <i>וון דר</i>: קידומת, <i>Smith</i> ו־"
-"<i>ווסטון</i>: ראשי, <i>ו</i>: [קישור], <i>ווילסון</i>: פטרונימי,\n"
-" ‏    <i>דר'</i>: תואר, <i>סניור</i>: סיומת, <i>א.ד</i>: כינוי, <i>אנדרהילס</"
-"i>: כינוי משפחה, <i>חוזה</i>: כינוי.\n"
+"‏     <i>אדווין חוזה</i>: פרטי, <i>וון דר</i>: קידומת, <i>סמיט</i> "
+"ו<i>וסטון</i>: ראשי, <i>'ו'</i>: [קישור], <i>ווילסון</i>: פטרונימי,\n"
+" ‏    <i>דר'</i>: תואר, <i>סניור</i>: סיומת, <i>אד</i>: כינוי, "
+"<i>אנדרהילס</i>: כינוי משפחה, <i>חוזה</i>: ידוע בשם.\n"
 
 #: ../gramps/gui/configure.py:162
 msgid " Name Editor"
@@ -12126,7 +12127,7 @@ msgstr "הצגת לחצן 'סגירה' בלשוניות סרגל גרמפלטי�
 
 #: ../gramps/gui/configure.py:2099
 msgid "Show close button to simplify removing gramplets from bars."
-msgstr "הצגת לחצן סגירה להקלה בהסרת גרמפלטים מסרגלים."
+msgstr "הצגת לחצן סגירה לפישוט הסרת גרמפלטים מסרגלים."
 
 #: ../gramps/gui/configure.py:2106
 msgid "Markup for invalid date format"
@@ -12433,9 +12434,9 @@ msgid ""
 "You can drag and drop a symbol from the symbol list above.\n"
 "It will be visible only if your font contains this glyph."
 msgstr ""
-"ניתן להגדיר לשדה זה כל מלל.\n"
+"ניתן לקבוע כל מלל בשדה זה.\n"
 "ניתן לגרור ולשחרר סמל מרשימת הסמלים מעלה.\n"
-"השדה יהיה גלוי רק אם הגופן מכיל גליף זה."
+"השדה יהיה במצב גלוי רק אם הגופן מכיל גליף זה."
 
 #: ../gramps/gui/csvdialect.py:63
 msgctxt "character"
@@ -12737,7 +12738,7 @@ msgstr "הסרת גרסת '%(revision)s' של '%(database)s'"
 #: ../gramps/gui/dbman.py:758
 msgid ""
 "Removing this version will prevent you from extracting it in the future."
-msgstr "הסרת גרסה זו תמנע ממך שימוש בה בעתיד."
+msgstr "הסרת גרסה זו תמנע חילוץ שלה בעתיד."
 
 #: ../gramps/gui/dbman.py:761
 msgid "Remove version"
@@ -12835,12 +12836,12 @@ msgid ""
 "%(recover_file)s in the Family Tree directory."
 msgstr ""
 "בהקשה על%(bold_start)sלהמשיך%(bold_end)s, גרמפס ינסה לשחזר את אילן־היוחסין "
-"מהגיבוי התקין האחרון. פעולה זו עלולה לגרום לאפקטים לא רצויים במספר אופנים, "
-"לכן %(bold_start)sיש לגבות%(bold_end)s את אילן־היוחסין תחילה.\n"
+"מהגיבוי התקין האחרון. פעולה זו עלולה לגרום לתוצאים לא רצויים במספר אופנים, "
+"לכן %(bold_start)נא לגבות%(bold_end)s את אילן־היוחסין תחילה.\n"
 "אילן־היוחסין שנבחר מאוחסן ב־%(dirname)s.\n"
 "\n"
-"לפני בצוע תיקון, נא לוודא שאכן לא ניתן לפתוח את אילן־היוחסין, מכיוון ששרת "
-"מסד הנתונים עשוי להתאושש מכמה שגיאות באופן אוטומטי.\n"
+"לפני בצוע תיקון, נא לוודא שאכן לא ניתן לפתוח את אילן־היוחסין, שכן ששרת מסד "
+"הנתונים עשוי להתאושש ממספר שגיאות באופן אוטומטי.\n"
 "\n"
 "‏%(bold_start)sפרטים:%(bold_end)s תיקון אילן־יוחסין למעשה משתמש בגיבוי "
 "האחרון, אותו גרמפס אחסן בשימוש האחרון. המשמעות היא שכול המידע שנוצר לאחר "
@@ -12848,9 +12849,9 @@ msgstr ""
 "חשוב לגבות. אם התיקון כשל, או אם מידע רב מדי אבד, ניתן לתקן את אילן־היוחסין "
 "המקורי באופן ידני. לפרטים, נא לעיין בעמוד המרשתת\n"
 "‏‎‎%(gramps_wiki_recover_url)s\n"
-"לפני בצוע תיקון, נא לנסות לפתוח את אילן־היוחסין באופן רגיל. ניתן לתקן באופן "
-"אוטומטי מספר שגיאות המפעילות את לחצן התיקון. אם זה המקרה, ניתן להשבית את "
-"לחצן התיקון על־ידי הסרת הקובץ %(recover_file)s במחיצת אילן־היוחסין."
+"לפני בצוע תיקון, נא לנסות לטעון את אילן־היוחסין כרגיל. מספר שגיאות שהזניקו "
+"את לחצן התיקון, ניתנות לתקן באופן אוטומטי . במקרה זה,אפשר להשבית את לחצן "
+"התיקון על־ידי הסרת הקובץ %(recover_file)s ממחיצת אילן־היוחסין."
 
 #: ../gramps/gui/dbman.py:998
 msgid "Proceed, I have taken a backup"
@@ -12862,7 +12863,7 @@ msgstr "עצירה"
 
 #: ../gramps/gui/dbman.py:1019
 msgid "Rebuilding database from backup files"
-msgstr "בנית מסד הנתונים מחדש מקבצי הגיבוי"
+msgstr "בנית מסד הנתונים מחדש מקבצי גיבוי"
 
 #: ../gramps/gui/dbman.py:1024
 msgid "Error restoring backup data"
@@ -13049,8 +13050,8 @@ msgstr ""
 "4) לפגום בנתונים.\n"
 "5) לשמור נתונים בתסדיר שאינו תואם את הגרסה הרשמית.\n"
 "\n"
-"‏נא %(bold_start)sלגבות%(bold_end)s את כל מסדי־הנתונים הקיימים לפני כל ניסיון "
-"לפתוח אותם באמצעות גרסה זו, נא לייצא את הנתונים לקובץ XML מדי פעם."
+"‏נא %(bold_start)sלגבות%(bold_end)s את כל מסדי־הנתונים הקיימים לפני כל "
+"ניסיון לפתוח אותם באמצעות גרסה זו, נא לייצא את הנתונים לקובץ XML מדי פעם."
 
 #: ../gramps/gui/editors/addmedia.py:70
 msgctxt "manual"
@@ -13960,7 +13961,7 @@ msgstr "נא לבחור תאריך"
 #: ../gramps/gui/editors/editdate.py:288
 #, python-brace-format
 msgid "Correct the date or switch from `{cur_mode}' to `{text_mode}'"
-msgstr "תיקון תאריך או החלפה מ `{cur_mode}' ל `{text_mode}'"
+msgstr "תיקון התאריך או מעבר מ `{cur_mode}' ל `{text_mode}'"
 
 #: ../gramps/gui/editors/editevent.py:75
 msgctxt "manual"
@@ -14475,7 +14476,7 @@ msgstr "עורך_שמות"
 #: ../gramps/gui/editors/editname.py:182
 #: ../gramps/gui/editors/editperson.py:342
 msgid "Call name must be the given name that is normally used."
-msgstr "מכונה בשם צריך להיות השם הפרטי בו האדם משתמש."
+msgstr "'ידוע בשם' חייב להיות שמו הפרטי של אדם, בו הוא משתמש."
 
 #: ../gramps/gui/editors/editname.py:336
 msgid "New Name"
@@ -15011,7 +15012,7 @@ msgstr "בחירה..."
 #: ../gramps/gui/editors/filtereditor.py:340
 #, python-format
 msgid "Select %s from a list"
-msgstr "נא לבחור %s מהרשימה"
+msgstr "בחירת %s מרשימה"
 
 #: ../gramps/gui/editors/filtereditor.py:407
 msgid "Give or select a source ID, leave empty to find objects with no source."
@@ -15476,7 +15477,7 @@ msgstr "הוספת פריט לספר"
 
 #: ../gramps/gui/glade/book.glade:350
 msgid "Remove currently selected item from the book"
-msgstr "הסרת פריט נבחר מתוך הספר"
+msgstr "הסרת פריט שנבחר מתוך הספר"
 
 #: ../gramps/gui/glade/book.glade:372
 msgid "Move current selection one step up in the book"
@@ -15620,7 +15621,7 @@ msgstr "_הסרת עצם"
 
 #: ../gramps/gui/glade/dialog.glade:259
 msgid "Remove object and all references to it from the database"
-msgstr "הסרת עצם ואת כל ההפניות אליו ממסד הנתונים"
+msgstr "הסרת עצם לרבות ההפניות אליו ממסד הנתונים"
 
 #: ../gramps/gui/glade/dialog.glade:270
 msgid "_Keep Reference"
@@ -16104,8 +16105,8 @@ msgid ""
 "Date of the event. This can be an exact date, a range (from ... to, "
 "between, ...), or an inexact date (about, ...)."
 msgstr ""
-"תאריך האירוע. יכול להיות תאריך מדויק, טווח (מ... עד, בין... לבין) או תאריך "
-"לא מדויק (בקרוב,...)."
+"תאריך האירוע. יכול להיות תאריך מדויק, טווח ומשך (מ... עד, בין... לבין) או "
+"תאריך לא מדויק (בסביבות, בקרוב...)."
 
 #: ../gramps/gui/glade/editevent.glade:375
 #: ../gramps/gui/glade/editeventref.glade:451
@@ -16447,8 +16448,8 @@ msgid ""
 "call name is not part of Given name and will not be printed underlined in "
 "some reports."
 msgstr ""
-"חלק מהשם הפרטי שהוא השם שמשמש לפניה לאדם בדרך כלל. אם רקע השדה צבוע באדום, "
-"שם הפניה אינו מהווה חלק מהשם הפרטי ולא יודפס מודגש בקו תחתון בכמה מהדוחות."
+"חלק מהשם הפרטי בו שמשמשים בדרך כלל. אם רקע השדה צבוע באדום, 'ידוע בשם' לא "
+"מהווה חלק מהשם הפרטי ולכן לא יודפס בכמה מהדוחות, כשהו מודגש בקו תחתון."
 
 #: ../gramps/gui/glade/editname.glade:291
 #: ../gramps/gui/glade/editperson.glade:211
@@ -25002,7 +25003,7 @@ msgid ""
 "however they will be offset from each other.  This will tend to make graphs "
 "with many people in a generation more square."
 msgstr ""
-"בהגדרה 'רגיל', הורים יאותרו לשימור מרבית הקווים קצרים.\n"
+"בהגדרה 'תקני', הורים יאותרו לשימור מרבית הקווים קצרים.\n"
 "ההגדרה 'הורים יחד' תסייע למקם בני־זוג בסמיכות, אבל התרשימים לא יהיו ברורים "
 "מאליהם, התוצאה תתקבל עם קווים ארוכים יותר ותרשימום גדולים יותר.\n"
 "גם הגדרת 'הזחת הורים', תנסה למקם בני זוג בסמיכות, אך הם יוזחו זו מזה. הגדרה "
