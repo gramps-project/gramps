@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
-"PO-Revision-Date: 2023-07-28 16:42+0000\n"
+"PO-Revision-Date: 2023-08-11 17:47+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
@@ -8703,10 +8703,8 @@ msgid "Research"
 msgstr "Investigación"
 
 #: ../gramps/gen/lib/notetype.py:78
-#, fuzzy
-#| msgid "Analyzing names"
 msgid "Analysis"
-msgstr "Analizando nombres"
+msgstr "Análisis"
 
 #: ../gramps/gen/lib/notetype.py:79
 msgid "Transcript"
