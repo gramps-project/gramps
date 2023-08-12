@@ -19,78 +19,76 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+"""
+Gramps generic database handler
+"""
+
 # ------------------------------------------------------------------------
 #
-# Python Modules
+# Python modules
 #
 # ------------------------------------------------------------------------
-import random
-import pickle
-import time
-import re
-import os
-import logging
 import bisect
-import ast
-import sys
-import datetime
-import glob
+import logging
+import os
+import pickle
+import random
+import re
+import time
 from pathlib import Path
 
 # ------------------------------------------------------------------------
 #
-# Gramps Modules
+# Gramps modules
 #
 # ------------------------------------------------------------------------
-from . import (
-    DbReadBase,
-    DbWriteBase,
-    DbUndo,
-    DBLOGNAME,
-    DBUNDOFN,
-    REFERENCE_KEY,
-    PERSON_KEY,
-    FAMILY_KEY,
-    CITATION_KEY,
-    SOURCE_KEY,
-    EVENT_KEY,
-    MEDIA_KEY,
-    PLACE_KEY,
-    REPOSITORY_KEY,
-    NOTE_KEY,
-    TAG_KEY,
-    TXNADD,
-    TXNUPD,
-    TXNDEL,
-    KEY_TO_NAME_MAP,
-    DBMODE_R,
-    DBMODE_W,
-)
-from .utils import write_lock_file, clear_lock_file
-from .exceptions import DbVersionError, DbUpgradeRequiredError
+from ..const import GRAMPS_LOCALE as glocale
 from ..errors import HandleError
-from ..utils.callback import Callback
-from ..updatecallback import UpdateCallback
-from .bookmarks import DbBookmarks
-
-from ..utils.id import create_id
-from ..lib.researcher import Researcher
 from ..lib import (
-    Tag,
-    Media,
-    Person,
-    Family,
-    Source,
     Citation,
     Event,
+    Family,
+    Media,
+    NameOriginType,
+    Note,
+    Person,
     Place,
     Repository,
-    Note,
-    NameOriginType,
+    Source,
+    Tag,
 )
 from ..lib.genderstats import GenderStats
-from ..config import config
-from ..const import GRAMPS_LOCALE as glocale
+from ..lib.researcher import Researcher
+from ..updatecallback import UpdateCallback
+from ..utils.callback import Callback
+from ..utils.id import create_id
+from . import (
+    CITATION_KEY,
+    DBLOGNAME,
+    DBMODE_R,
+    DBMODE_W,
+    DBUNDOFN,
+    EVENT_KEY,
+    FAMILY_KEY,
+    KEY_TO_NAME_MAP,
+    MEDIA_KEY,
+    NOTE_KEY,
+    PERSON_KEY,
+    PLACE_KEY,
+    REFERENCE_KEY,
+    REPOSITORY_KEY,
+    SOURCE_KEY,
+    TAG_KEY,
+    TXNADD,
+    TXNDEL,
+    TXNUPD,
+    DbReadBase,
+    DbUndo,
+    DbWriteBase,
+)
+from .bookmarks import DbBookmarks
+from .exceptions import DbUpgradeRequiredError, DbVersionError
+from .utils import clear_lock_file, write_lock_file
 
 _ = glocale.translation.gettext
 
@@ -111,9 +109,18 @@ SIGBASE = (
 )
 
 
+# ------------------------------------------------------------------------
+#
+# DbGenericUndo class
+#
+# ------------------------------------------------------------------------
 class DbGenericUndo(DbUndo):
+    """
+    Generic undo/redo handler
+    """
+
     def __init__(self, grampsdb, path):
-        super(DbGenericUndo, self).__init__(grampsdb)
+        super().__init__(grampsdb)
         self.undodb = []
 
     def open(self, value=None):
@@ -121,14 +128,12 @@ class DbGenericUndo(DbUndo):
         Open the backing storage.  Needs to be overridden in the derived
         class.
         """
-        pass
 
     def close(self):
         """
         Close the backing storage.  Needs to be overridden in the derived
         class.
         """
-        pass
 
     def append(self, value):
         """
@@ -174,7 +179,7 @@ class DbGenericUndo(DbUndo):
         try:
             self.db._txn_begin()
             for record_id in subitems:
-                (key, trans_type, handle, old_data, new_data) = pickle.loads(
+                (key, trans_type, handle, _, new_data) = pickle.loads(
                     self.undodb[record_id]
                 )
 
@@ -223,7 +228,7 @@ class DbGenericUndo(DbUndo):
         try:
             self.db._txn_begin()
             for record_id in subitems:
-                (key, trans_type, handle, old_data, new_data) = pickle.loads(
+                (key, trans_type, handle, old_data, _) = pickle.loads(
                     self.undodb[record_id]
                 )
 
@@ -290,7 +295,16 @@ class DbGenericUndo(DbUndo):
                         self.db.emit(KEY_TO_NAME_MAP[obj_type] + typ, (handles,))
 
 
+# ------------------------------------------------------------------------
+#
+# Cursor class
+#
+# ------------------------------------------------------------------------
 class Cursor:
+    """
+    Simple iteration handler
+    """
+
     def __init__(self, iterator):
         self.iterator = iterator
         self._iter = self.__iter__()
@@ -332,6 +346,11 @@ class Cursor:
         pass
 
 
+# ------------------------------------------------------------------------
+#
+# DbGeneric class
+#
+# ------------------------------------------------------------------------
 class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     """
     A Gramps Database Backend. This replicates the grampsdb functions.
@@ -545,6 +564,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "del_func": self.remove_tag,
             },
         }
+        self._directory = None
+        self.path = None
+        self.full_name = None
+        self.brief_name = None
         self.readonly = False
         self.db_is_open = False
         self.name_formats = []
@@ -846,33 +869,29 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         if table is None:
             return list(self.__tables.keys())
-        elif func is None:
+        if func is None:
             return self.__tables[table]  # dict of functions
-        elif func in self.__tables[table].keys():
+        if func in self.__tables[table].keys():
             return self.__tables[table][func]
-        else:
-            return None
+        return None
 
     def _txn_begin(self):
         """
         Lowlevel interface to the backend transaction.
         Executes a db BEGIN;
         """
-        pass
 
     def _txn_commit(self):
         """
         Lowlevel interface to the backend transaction.
         Executes a db END;
         """
-        pass
 
     def _txn_abort(self):
         """
         Lowlevel interface to the backend transaction.
         Executes a db ROLLBACK;
         """
-        pass
 
     def transaction_begin(self, transaction):
         """
@@ -910,7 +929,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def _validated_id_prefix(val, default):
         if isinstance(val, str) and val:
             try:
-                str_ = val % 1
+                _ = val % 1
             except TypeError:  # missing conversion specifier
                 prefix_var = val + "%d"
             except ValueError:  # incomplete format
@@ -1337,8 +1356,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         data = self._get_raw_data(obj_key, handle)
         if data:
             return obj_class.create(data)
-        else:
-            raise HandleError("Handle %s not found" % handle)
+        raise HandleError(f"Handle {handle} not found")
 
     def get_event_from_handle(self, handle):
         return self._get_from_handle(EVENT_KEY, Event, handle)
@@ -1813,63 +1831,87 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         commit_func(obj, trans)
         return obj.handle
 
-    def add_person(self, person, trans, set_gid=True):
+    def add_person(self, person, transaction, set_gid=True):
         return self._add_base(
-            person, trans, set_gid, self.find_next_person_gramps_id, self.commit_person
+            person,
+            transaction,
+            set_gid,
+            self.find_next_person_gramps_id,
+            self.commit_person,
         )
 
-    def add_family(self, family, trans, set_gid=True):
+    def add_family(self, family, transaction, set_gid=True):
         return self._add_base(
-            family, trans, set_gid, self.find_next_family_gramps_id, self.commit_family
+            family,
+            transaction,
+            set_gid,
+            self.find_next_family_gramps_id,
+            self.commit_family,
         )
 
-    def add_event(self, event, trans, set_gid=True):
+    def add_event(self, event, transaction, set_gid=True):
         return self._add_base(
-            event, trans, set_gid, self.find_next_event_gramps_id, self.commit_event
+            event,
+            transaction,
+            set_gid,
+            self.find_next_event_gramps_id,
+            self.commit_event,
         )
 
-    def add_place(self, place, trans, set_gid=True):
+    def add_place(self, place, transaction, set_gid=True):
         return self._add_base(
-            place, trans, set_gid, self.find_next_place_gramps_id, self.commit_place
+            place,
+            transaction,
+            set_gid,
+            self.find_next_place_gramps_id,
+            self.commit_place,
         )
 
-    def add_repository(self, repository, trans, set_gid=True):
+    def add_repository(self, repository, transaction, set_gid=True):
         return self._add_base(
             repository,
-            trans,
+            transaction,
             set_gid,
             self.find_next_repository_gramps_id,
             self.commit_repository,
         )
 
-    def add_source(self, source, trans, set_gid=True):
+    def add_source(self, source, transaction, set_gid=True):
         return self._add_base(
-            source, trans, set_gid, self.find_next_source_gramps_id, self.commit_source
+            source,
+            transaction,
+            set_gid,
+            self.find_next_source_gramps_id,
+            self.commit_source,
         )
 
-    def add_citation(self, citation, trans, set_gid=True):
+    def add_citation(self, citation, transaction, set_gid=True):
         return self._add_base(
             citation,
-            trans,
+            transaction,
             set_gid,
             self.find_next_citation_gramps_id,
             self.commit_citation,
         )
 
-    def add_media(self, media, trans, set_gid=True):
+    def add_media(self, media, transaction, set_gid=True):
         return self._add_base(
-            media, trans, set_gid, self.find_next_media_gramps_id, self.commit_media
+            media,
+            transaction,
+            set_gid,
+            self.find_next_media_gramps_id,
+            self.commit_media,
         )
 
-    def add_note(self, note, trans, set_gid=True):
+    def add_note(self, note, transaction, set_gid=True):
         return self._add_base(
-            note, trans, set_gid, self.find_next_note_gramps_id, self.commit_note
+            note, transaction, set_gid, self.find_next_note_gramps_id, self.commit_note
         )
 
-    def add_tag(self, tag, trans):
+    def add_tag(self, tag, transaction):
         if not tag.handle:
             tag.handle = create_id()
-        self.commit_tag(tag, trans)
+        self.commit_tag(tag, transaction)
         return tag.handle
 
     ################################################################
@@ -1885,12 +1927,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         raise NotImplementedError
 
-    def commit_person(self, person, trans, change_time=None):
+    def commit_person(self, person, transaction, change_time=None):
         """
         Commit the specified Person to the database, storing the changes as
         part of the transaction.
         """
-        old_data = self._commit_base(person, PERSON_KEY, trans, change_time)
+        old_data = self._commit_base(person, PERSON_KEY, transaction, change_time)
 
         if old_data:
             old_person = Person(old_data)
@@ -1905,10 +1947,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 old_person
             ):
                 self.remove_from_surname_list(old_person)
-                self.add_to_surname_list(person, trans.batch)
+                self.add_to_surname_list(person, transaction.batch)
         else:
             self.genderStats.count_person(person)
-            self.add_to_surname_list(person, trans.batch)
+            self.add_to_surname_list(person, transaction.batch)
 
         # Other misc update tasks:
         self.individual_attributes.update(
@@ -1950,12 +1992,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             ]
         self.media_attributes.update(attr_list)
 
-    def commit_family(self, family, trans, change_time=None):
+    def commit_family(self, family, transaction, change_time=None):
         """
         Commit the specified Family to the database, storing the changes as
         part of the transaction.
         """
-        self._commit_base(family, FAMILY_KEY, trans, change_time)
+        self._commit_base(family, FAMILY_KEY, transaction, change_time)
 
         # Misc updates:
         self.family_attributes.update(
@@ -1990,12 +2032,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             ]
         self.media_attributes.update(attr_list)
 
-    def commit_citation(self, citation, trans, change_time=None):
+    def commit_citation(self, citation, transaction, change_time=None):
         """
         Commit the specified Citation to the database, storing the changes as
         part of the transaction.
         """
-        self._commit_base(citation, CITATION_KEY, trans, change_time)
+        self._commit_base(citation, CITATION_KEY, transaction, change_time)
 
         # Misc updates:
         attr_list = []
@@ -2015,12 +2057,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             ]
         )
 
-    def commit_source(self, source, trans, change_time=None):
+    def commit_source(self, source, transaction, change_time=None):
         """
         Commit the specified Source to the database, storing the changes as
         part of the transaction.
         """
-        self._commit_base(source, SOURCE_KEY, trans, change_time)
+        self._commit_base(source, SOURCE_KEY, transaction, change_time)
 
         # Misc updates:
         self.source_media_types.update(
@@ -2047,12 +2089,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             ]
         )
 
-    def commit_repository(self, repository, trans, change_time=None):
+    def commit_repository(self, repository, transaction, change_time=None):
         """
         Commit the specified Repository to the database, storing the changes
         as part of the transaction.
         """
-        self._commit_base(repository, REPOSITORY_KEY, trans, change_time)
+        self._commit_base(repository, REPOSITORY_KEY, transaction, change_time)
 
         # Misc updates:
         if repository.type.is_custom():
@@ -2062,23 +2104,23 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             [str(url.type) for url in repository.urls if url.type.is_custom()]
         )
 
-    def commit_note(self, note, trans, change_time=None):
+    def commit_note(self, note, transaction, change_time=None):
         """
         Commit the specified Note to the database, storing the changes as part
         of the transaction.
         """
-        self._commit_base(note, NOTE_KEY, trans, change_time)
+        self._commit_base(note, NOTE_KEY, transaction, change_time)
 
         # Misc updates:
         if note.type.is_custom():
             self.note_types.add(str(note.type))
 
-    def commit_place(self, place, trans, change_time=None):
+    def commit_place(self, place, transaction, change_time=None):
         """
         Commit the specified Place to the database, storing the changes as
         part of the transaction.
         """
-        self._commit_base(place, PLACE_KEY, trans, change_time)
+        self._commit_base(place, PLACE_KEY, transaction, change_time)
 
         # Misc updates:
         if place.get_type().is_custom():
@@ -2097,12 +2139,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             ]
         self.media_attributes.update(attr_list)
 
-    def commit_event(self, event, trans, change_time=None):
+    def commit_event(self, event, transaction, change_time=None):
         """
         Commit the specified Event to the database, storing the changes as
         part of the transaction.
         """
-        self._commit_base(event, EVENT_KEY, trans, change_time)
+        self._commit_base(event, EVENT_KEY, transaction, change_time)
 
         # Misc updates:
         self.event_attributes.update(
@@ -2123,19 +2165,19 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             ]
         self.media_attributes.update(attr_list)
 
-    def commit_tag(self, tag, trans, change_time=None):
+    def commit_tag(self, tag, transaction, change_time=None):
         """
         Commit the specified Tag to the database, storing the changes as
         part of the transaction.
         """
-        self._commit_base(tag, TAG_KEY, trans, change_time)
+        self._commit_base(tag, TAG_KEY, transaction, change_time)
 
-    def commit_media(self, media, trans, change_time=None):
+    def commit_media(self, media, transaction, change_time=None):
         """
         Commit the specified Media to the database, storing the changes
         as part of the transaction.
         """
-        self._commit_base(media, MEDIA_KEY, trans, change_time)
+        self._commit_base(media, MEDIA_KEY, transaction, change_time)
 
         # Misc updates:
         self.media_attributes.update(
@@ -2414,8 +2456,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         handle = self.get_default_handle()
         if handle:
             return self.get_person_from_handle(handle)
-        else:
-            return None
+        return None
 
     def set_default_person_handle(self, handle):
         self._set_metadata("default-person-handle", handle)
@@ -2644,7 +2685,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.reset()
 
         self.set_schema_version(self.VERSION[0])
-        LOG.debug("Upgrade time: %d seconds" % int(time.time() - start))
+        LOG.debug("Upgrade time: %d seconds", int(time.time() - start))
 
     def get_schema_version(self):
         """Return current schema version as an int"""
