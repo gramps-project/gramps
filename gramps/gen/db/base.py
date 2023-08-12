@@ -1011,7 +1011,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_tag_from_name(self, val):
+    def get_tag_from_name(self, name):
         """
         Find a Tag in the database from the passed Tag name.
 
@@ -1133,7 +1133,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def has_name_group_key(self, name):
+    def has_name_group_key(self, key):
         """
         Return if a key exists in the name_group table.
         """
