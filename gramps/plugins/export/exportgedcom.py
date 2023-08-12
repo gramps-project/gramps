@@ -1267,7 +1267,10 @@ class GedcomWriter(UpdateCallback):
                 self._writeln(3, "AGE", attr.get_value())
 
         self._note_references(event.get_note_list(), 2)
+        self._note_references(event_ref.get_note_list(), 2)
+
         self._source_references(event.get_citation_list(), 2)
+        self._source_references(event_ref.get_citation_list(), 2)
 
         self._photos(event.get_media_list(), 2)
         if place:
