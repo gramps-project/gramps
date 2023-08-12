@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
 "PO-Revision-Date: 2023-08-11 17:47+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -7146,7 +7146,7 @@ msgstr "אל"
 
 #: ../gramps/gen/lib/date.py:2005
 msgid "span"
-msgstr "משתרע"
+msgstr "תקופה"
 
 #: ../gramps/gen/lib/date.py:2006
 msgid "textonly"
@@ -7434,7 +7434,7 @@ msgstr "תואר"
 
 #: ../gramps/gen/lib/eventtype.py:181
 msgid "Education"
-msgstr "חינוך"
+msgstr "השכלה"
 
 #: ../gramps/gen/lib/eventtype.py:182
 msgid "Elected"
@@ -13924,7 +13924,7 @@ msgstr "עד"
 
 #: ../gramps/gui/editors/editdate.py:84
 msgid "Span"
-msgstr "טווח זמן"
+msgstr "תקופה"
 
 #: ../gramps/gui/editors/editdate.py:85
 msgid "Text only"
@@ -16096,8 +16096,8 @@ msgid ""
 "Date of the event. This can be an exact date, a range (from ... to, "
 "between, ...), or an inexact date (about, ...)."
 msgstr ""
-"תאריך האירוע. יכול להיות תאריך מדויק, טווח (מ... אל, בין,...) או תאריך לא "
-"מדויק (בסביבות,...)."
+"תאריך האירוע. יכול להיות תאריך מדויק, טווח (מ... עד, בין... לבין) או תאריך "
+"לא מדויק (בקרוב,...)."
 
 #: ../gramps/gui/glade/editevent.glade:375
 #: ../gramps/gui/glade/editeventref.glade:451
