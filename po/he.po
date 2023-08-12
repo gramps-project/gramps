@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 22:08+0100\n"
-"PO-Revision-Date: 2023-08-10 06:44+0000\n"
+"PO-Revision-Date: 2023-08-11 17:47+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -1063,9 +1063,9 @@ msgid ""
 "If GEDCOM, Gramps-xml or grdb, use the -i option to import into a Family "
 "Tree instead."
 msgstr ""
-"שגיאה: הזנת אילן־היוחסין '%s' לא קיים.\n"
-"אם GEDCOM‏, Gramps-xml או grdb, במקום זאת, נא להשתמש באפשרות i- כדי לייבא "
-"לאילן־היוחסין."
+"שגיאה: קלט אילן־היוחסין '%s' לא קיים.\n"
+"אם הוא GEDCOM‏, Gramps-xml או grdb, במקום זאת, נא להשתמש באפשרות i- כדי "
+"לייבא לאילן־היוחסין."
 
 #: ../gramps/cli/arghandler.py:255
 #, python-format
@@ -12797,7 +12797,7 @@ msgstr "הניסיון לייבוא מסד הנתונים כשל."
 
 #: ../gramps/gui/dbman.py:899
 msgid "Repair Family Tree?"
-msgstr "תיקון אילן־יוחסין?"
+msgstr "לתקן אילן־יוחסין?"
 
 #: ../gramps/gui/dbman.py:900
 #, python-format
@@ -22458,9 +22458,9 @@ msgid ""
 "will compute the ages for everyone in your Family Tree on that date. You can "
 "then sort by the age column, and double-click the row to view or edit."
 msgstr ""
-"נא להזין תאריך חוקי (כגון YYYY-MM-DD) ברשומה שלהלן והקשה על 'הרצה'. מהלך זה "
+"נא להזין תאריך חוקי (כגון YYYY-MM-DD) ברשומה שלהלן להקיש על 'הרצה'. מהלך זה "
 "יחשב את הגילאים לכל אדם באילן־היוחסין לתאריך שהוזן. לאחר מכן ניתן יהיה למיין "
-"לפי עמודת הגיל, הקשה כפולה על שורה תאפשר הצגה או עריכה."
+"לפי עמודת הגיל, הקשה כפולה על השורה תאפשר הצגה או עריכה."
 
 #: ../gramps/plugins/gramplet/agestats.py:82
 #: ../gramps/plugins/gramplet/agestats.py:90
@@ -25583,11 +25583,11 @@ msgid ""
 "tool, option 'Replace substring in the path' to set correct paths in your "
 "media objects."
 msgstr ""
-"אילן־היוחסין שיובא מכיל כבר נתיב מדיה בסיסי: %(orig_path)s. עם זאת, עצמי "
-"המדיה המיובאים יחסיים לאלה של הנתיב %(path)s. ניתן לשנות את נתיב המדיה "
-"בהעדפות או להמיר את הקבצים המיובאים לנתיב המדיה הבסיסי הקיים. ניתן לעשות זאת "
-"על־ידי העברת קבצי המדיה למיקום החדש ושימוש בכלי מנהל המדיה, מתפריט אפשרות "
-"'החלפת מחרוזת המשנה בנתיב' להגדרת נתיבים תקינים בעצמי המדיה."
+"אילן־היוחסין שיובא כבר מכיל נתיב מדיה בסיסי: %(orig_path)s. עם זאת, עצמי "
+"המדיה המיובאים הם ביחס לנתיב %(path)s. ניתן לשנות את נתיב המדיה בהעדפות או "
+"להמיר את הקבצים המיובאים לנתיב המדיה הבסיסי הקיים. ניתן לעשות זאת על־ידי "
+"העברת קובצי המדיה למיקום החדש ושימוש בכלי ניהול המדיה, מתפריט אפשרות 'החלפת "
+"מחרוזת המשנה בנתיב' להגדרת נתיבים תקינים בעצמי המדיה."
 
 #: ../gramps/plugins/importer/importgrdb.py:61
 #: ../gramps/plugins/importer/importprogen.py:189
@@ -25619,7 +25619,7 @@ msgid ""
 "Source reference\n"
 "(out of Settings)"
 msgstr ""
-"הפנית מקור\n"
+"הפניית מקור\n"
 "(מתוך ההגדרות)"
 
 #: ../gramps/plugins/importer/importprogen.glade:124
@@ -25627,8 +25627,8 @@ msgid ""
 "Source reference text\n"
 "(Text & import Filename)."
 msgstr ""
-"מלל הפנית מקור\n"
-"(מלל ויבוא שם קובץ)."
+"מלל הפניית מקור\n"
+"(מלל ושם קובץ ייבוא)."
 
 #: ../gramps/plugins/importer/importprogen.glade:155
 #: ../gramps/plugins/importer/importprogen.glade:325
@@ -35909,7 +35909,7 @@ msgstr ""
 #: ../gramps/plugins/view/geoevents.py:410
 #: ../gramps/plugins/view/geoevents.py:441
 msgid "Bookmark this event"
-msgstr "הוספת סימניה לאירוע זה"
+msgstr "הוספת סימנייה לאירוע זה"
 
 #: ../gramps/plugins/view/geoevents.py:454
 msgid "Show all events"
@@ -37259,7 +37259,7 @@ msgstr "מחיצת היעד לקובצי המרשתת"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1981
 msgid "My Family Tree"
-msgstr "אילן־יוחסין שלי"
+msgstr "אילן־היוחסין שלי"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1981
 msgid "Website title"
@@ -37542,7 +37542,7 @@ msgstr "סיומת משתמש HTML"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2226
 msgid "A note to be used as the page footer"
-msgstr "הערה שתכלת בתחתית העמוד"
+msgstr "הערה לשימוש בתחתית העמוד"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2231
 msgid "PHP user session"
