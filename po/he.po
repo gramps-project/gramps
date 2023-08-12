@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
 "PO-Revision-Date: 2023-08-12 19:58+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -31546,7 +31546,7 @@ msgstr "שם פרטי זהה"
 #: ../gramps/plugins/quickview/quickview.gpr.py:304
 #: ../gramps/plugins/quickview/quickview.gpr.py:319
 msgid "Display people with the same given name as a person."
-msgstr "הצג אנשים עם אותו שם פרטי כאדם."
+msgstr "הצגת אנשים עם אותו שם פרטי כאדם."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:318
 msgid "Same Given Names - stand-alone"
@@ -31624,7 +31624,7 @@ msgstr[1] "קיימים {number_of} אנשים עם שם תואם, או שם ח�
 #: ../gramps/plugins/quickview/samesurnames.py:177
 #, python-format
 msgid "People with the given name '%s'"
-msgstr "אנשים בעלי שם בפרטי '%s'"
+msgstr "אנשים עם השם הפרטי '%s'"
 
 #: ../gramps/plugins/quickview/siblings.py:48
 #, python-format
