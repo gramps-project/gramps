@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-12 13:06+0000\n"
+"PO-Revision-Date: 2023-08-12 19:58+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -2288,7 +2288,7 @@ msgstr "to"
 #: ../gramps/gen/datehandler/_datedisplay.py:423
 #, python-brace-format
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
-msgstr "{date_quality}מ- {date_start} עד {date_stop}{nonstd_calendar_and_ny}"
+msgstr "{date_quality}מ־{date_start} עד {date_stop}{nonstd_calendar_and_ny}"
 
 #. Translators: If there is no special inflection for
 #. "between <Month>" in your language, DON'T translate this.
@@ -2896,7 +2896,7 @@ msgstr "בסביבות "
 #: ../gramps/gen/datehandler/_datestrings.py:255
 msgctxt "date modifier"
 msgid "from "
-msgstr "מ "
+msgstr "מ־ "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
@@ -18529,7 +18529,7 @@ msgstr "מה לבדוק"
 
 #: ../gramps/gui/plug/_windows.py:702
 msgid "Do not ask about previously notified addons"
-msgstr "לא לשאול על תוספים שכבר הותראו בעבר"
+msgstr "לא לבדוק תוספים שכבר נבדקו בעבר"
 
 #: ../gramps/gui/plug/_windows.py:707
 msgid "Check for updated addons now"
