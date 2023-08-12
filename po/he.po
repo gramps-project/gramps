@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-12 06:43+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2023-08-12 13:06+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -742,7 +742,7 @@ msgid ""
 "different types and set the preferred name by dragging it to the Preferred "
 "Name section."
 msgstr ""
-"<b>ניהול שמות<br/></b>קל לנהל אנשים בעלי מספר שמות בגרמפס. בדו־שיח 'עריכת "
+"<b>ניהול שמות<br/></b>קל לנהל אנשים עם מספר שמות בגרמפס. בדו־שיח 'עריכת "
 "אדם', יש לבחור בלשונית שמות. ניתן להוסיף שמות מסוגים שונים ולהגדיר את השם "
 "המועדף על־ידי גרירתו למקטע שם מועדף."
 
@@ -2903,7 +2903,7 @@ msgstr "מ "
 #: ../gramps/gen/datehandler/_datestrings.py:258
 msgctxt "date modifier"
 msgid "to "
-msgstr "אל "
+msgstr "עד "
 
 #: ../gramps/gen/datehandler/_datestrings.py:263
 msgctxt "date quality"
@@ -5010,7 +5010,7 @@ msgstr "אנשים עם <מונה> כתובות"
 
 #: ../gramps/gen/filters/rules/person/_hasaddress.py:52
 msgid "Matches people with a certain number of personal addresses"
-msgstr "שליפת אנשים בעלי מספר מסוים של כתובות"
+msgstr "שליפת אנשים עם מספר מסוים של כתובות"
 
 #: ../gramps/gen/filters/rules/person/_hasaddresstext.py:44
 msgid "People with an address containing <text>"
@@ -5018,7 +5018,7 @@ msgstr "אנשים עם כתובת המכילה <מלל>"
 
 #: ../gramps/gen/filters/rules/person/_hasaddresstext.py:46
 msgid "Matches people with a personal address containing the given text"
-msgstr "שליפת אנשים בעלי כתובת אישית הכוללת את המלל הנתון"
+msgstr "שליפת אנשים עם כתובת אישית הכוללת את המלל הנתון"
 
 #: ../gramps/gen/filters/rules/person/_hasalternatename.py:47
 msgid "People with an alternate name"
@@ -5026,7 +5026,7 @@ msgstr "אנשים בעלי שם חלופי"
 
 #: ../gramps/gen/filters/rules/person/_hasalternatename.py:48
 msgid "Matches people with an alternate name"
-msgstr "שליפת אנשים בעלי שם חלופי"
+msgstr "שליפת אנשים עם שם חלופי"
 
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:51
 msgid "People with <count> associations"
@@ -5034,7 +5034,7 @@ msgstr "אנשים בעלי <מונה> שיוכים"
 
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:52
 msgid "Matches people with a certain number of associations"
-msgstr "שליפת אנשים בעלי מספר מסוים של שיוכים"
+msgstr "שליפת אנשים עם מספר מסוים של שיוכים"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:46
 #: ../gramps/gui/editors/filtereditor.py:114
@@ -5048,7 +5048,7 @@ msgstr "אנשים בעלי תכונה אישית <תכונה>"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:49
 msgid "Matches people with the personal attribute of a particular value"
-msgstr "שליפת אנשים בעלי תכונת אישיות עם ערך מסוים"
+msgstr "שליפת אנשים עם תכונת אישיות עם ערך מסוים"
 
 #: ../gramps/gen/filters/rules/person/_hasbirth.py:51
 msgid "People with the <birth data>"
@@ -5056,7 +5056,7 @@ msgstr "אנשים עם תאריך לידה <נתוני לידה>"
 
 #: ../gramps/gen/filters/rules/person/_hasbirth.py:52
 msgid "Matches people with birth data of a particular value"
-msgstr "שליפת אנשים בעלי תאריך לידה עם ערך מסוים"
+msgstr "שליפת אנשים עם תאריך לידה עם ערך מסוים"
 
 #: ../gramps/gen/filters/rules/person/_hascitation.py:50
 msgid "People with the <citation>"
@@ -5064,7 +5064,7 @@ msgstr "אנשים עם <מובאה>"
 
 #: ../gramps/gen/filters/rules/person/_hascitation.py:51
 msgid "Matches people with a citation of a particular value"
-msgstr "שליפת אנשים בעלי מובאה עם ערך מסוים"
+msgstr "שליפת אנשים עם מובאה עם ערך מסוים"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:48
 msgid "People with a common ancestor with <person>"
@@ -5084,16 +5084,16 @@ msgstr "מסנני אבות קדמונים"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:51
 msgid "Matches people that have a common ancestor with a specified person"
-msgstr "שליפת אנשים בעלי אב קדמון משותף לאדם שצוין"
+msgstr "שליפת אנשים עם אב קדמון משותף לאדם שצוין"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:50
 msgid "People with a common ancestor with <filter> match"
-msgstr "שליפת אנשים בעלי אב קדמן משותף <מסנן>"
+msgstr "שליפת אנשים עם אב קדמן משותף <מסנן>"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:52
 msgid ""
 "Matches people that have a common ancestor with anybody matched by a filter"
-msgstr "שליפת אנשים בעלי אב קדמון משותף לכל אדם שנמצא עם הסינון"
+msgstr "שליפת אנשים עם אב קדמון משותף לכל אדם שנמצא עם הסינון"
 
 #: ../gramps/gen/filters/rules/person/_hasdeath.py:51
 msgid "People with the <death data>"
@@ -5101,7 +5101,7 @@ msgstr "אנשים עם תאריך פטירה <נתוני פטירה>"
 
 #: ../gramps/gen/filters/rules/person/_hasdeath.py:52
 msgid "Matches people with death data of a particular value"
-msgstr "שליפת אנשים בעלי תאריך פטירה עם ערך מסוים"
+msgstr "שליפת אנשים עם תאריך פטירה עם ערך מסוים"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:51
 #: ../gramps/gui/editors/filtereditor.py:111
@@ -5124,7 +5124,7 @@ msgstr "אנשים עם אירוע אישי <אירוע>"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:59
 msgid "Matches people with a personal event of a particular value"
-msgstr "שליפת אנשים בעלי אירוע אישי עם ערך מסוים"
+msgstr "שליפת אנשים עם אירוע אישי עם ערך מסוים"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:47
 msgid "People with the family <attribute>"
@@ -5132,7 +5132,7 @@ msgstr "אנשים עם תכונות משפחה <תכונה>"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:48
 msgid "Matches people with the family attribute of a particular value"
-msgstr "שליפת אנשים בעלי תכונת משפחה עם ערך מסוים"
+msgstr "שליפת אנשים עם תכונת משפחה עם ערך מסוים"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:51
 msgid "People with the family <event>"
@@ -5140,7 +5140,7 @@ msgstr "אנשים עם אירוע משפחה <אירוע>"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:52
 msgid "Matches people with a family event of a particular value"
-msgstr "שליפת אנשים בעלי אירוע משפחה עם ערך מסוים"
+msgstr "שליפת אנשים עם אירוע משפחה עם ערך מסוים"
 
 #: ../gramps/gen/filters/rules/person/_hasgallery.py:44
 msgid "People with <count> media"
@@ -5148,7 +5148,7 @@ msgstr "אנשים עם <מונה> מדיה"
 
 #: ../gramps/gen/filters/rules/person/_hasgallery.py:45
 msgid "Matches people with a certain number of items in the gallery"
-msgstr "שליפת אנשים בעלי מספר מסוים של פריטים בגלריה"
+msgstr "שליפת אנשים עם מספר מסוים של פריטים בגלריה"
 
 #: ../gramps/gen/filters/rules/person/_hasidof.py:46
 #: ../gramps/gen/filters/rules/person/_matchidof.py:47
@@ -5166,7 +5166,7 @@ msgstr "אנשים בעלי <מונה> אירועים מורמוניים"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:51
 msgid "Matches people with a certain number of LDS events"
-msgstr "שליפת אנשים בעלי מספר מסוים של אירועים מורמוניים"
+msgstr "שליפת אנשים עם מספר מסוים של אירועים מורמוניים"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:49
 msgid "Given name:"
@@ -5222,7 +5222,7 @@ msgstr "אנשים עם <שם>"
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:62
 #: ../gramps/gen/filters/rules/person/_searchname.py:49
 msgid "Matches people with a specified (partial) name"
-msgstr "שליפת אנשים בעלי שם (חלקי) שצוין"
+msgstr "שליפת אנשים עם שם (חלקי) שצוין"
 
 #: ../gramps/gen/filters/rules/person/_hasnameorigintype.py:48
 #: ../gramps/gui/editors/filtereditor.py:121
@@ -5236,7 +5236,7 @@ msgstr "אנשים עם <סוג מקור שם משפחה>"
 
 #: ../gramps/gen/filters/rules/person/_hasnameorigintype.py:50
 msgid "Matches people with a surname origin"
-msgstr "שליפת אנשים בעלי מקור שם משפחה"
+msgstr "שליפת אנשים עם מקור שם משפחה"
 
 #: ../gramps/gen/filters/rules/person/_hasnametype.py:48
 #: ../gramps/gui/editors/filtereditor.py:120
@@ -5250,7 +5250,7 @@ msgstr "אנשים עם <סוג שם>"
 
 #: ../gramps/gen/filters/rules/person/_hasnametype.py:50
 msgid "Matches people with a type of name"
-msgstr "שליפת אנשים בעלי סוג שם"
+msgstr "שליפת אנשים עם סוג שם"
 
 #: ../gramps/gen/filters/rules/person/_hasnickname.py:47
 msgid "People with a nickname"
@@ -5258,7 +5258,7 @@ msgstr "אנשים בעלי כינוי"
 
 #: ../gramps/gen/filters/rules/person/_hasnickname.py:48
 msgid "Matches people with a nickname"
-msgstr "שליפת אנשים בעלי כינוי"
+msgstr "שליפת אנשים עם כינוי"
 
 #: ../gramps/gen/filters/rules/person/_hasnote.py:47
 msgid "People having <count> notes"
@@ -5266,7 +5266,7 @@ msgstr "אנשים עם <מונה> הערות"
 
 #: ../gramps/gen/filters/rules/person/_hasnote.py:48
 msgid "Matches people having a certain number of notes"
-msgstr "שליפת אנשים בעלי מספר מסוים של הערות"
+msgstr "שליפת אנשים עם מספר מסוים של הערות"
 
 #: ../gramps/gen/filters/rules/person/_hasnotematchingsubstringof.py:44
 msgid "People having notes containing <substring>"
@@ -5274,7 +5274,7 @@ msgstr "אנשים עם הערות המכילות < מחרוזת משנה>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotematchingsubstringof.py:45
 msgid "Matches people whose notes contain text matching a substring"
-msgstr "שליפת אנשים בעלי הערות המכילות מלל התואם למחרוזת משנה"
+msgstr "שליפת אנשים עם הערות המכילות מלל התואם למחרוזת משנה"
 
 #: ../gramps/gen/filters/rules/person/_hasnoteregexp.py:42
 msgid "People having notes containing <text>"
@@ -5344,8 +5344,8 @@ msgid ""
 "Soundex Match of people with a specified name. First name, Surname, Call "
 "name, and Nickname are searched in primary and alternate names."
 msgstr ""
-"התאמת סאונדאקס של אנשים בעלי שם שצוין. יתבצע חיפוש בשמות ראשיים וחלופיים של "
-"שם פרטי, שם משפחה, ידוע בשם."
+"התאמת סאונדאקס של אנשים עם שם שצוין. יתבצע חיפוש בשמות ראשיים וחלופיים של שם "
+"פרטי, שם משפחה, ידוע בשם."
 
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:47
 msgid "People with <count> sources"
@@ -5353,7 +5353,7 @@ msgstr "אנשים עם <מונה> מקורות"
 
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:48
 msgid "Matches people with a certain number of sources connected to it"
-msgstr "שליפת אנשים בעלי מספר מסוים של מקורות מקושרים"
+msgstr "שליפת אנשים עם מספר מסוים של מקורות מקושרים"
 
 #: ../gramps/gen/filters/rules/person/_hassourceof.py:48
 msgid "People with the <source>"
@@ -5361,7 +5361,7 @@ msgstr "אנשים עם <מקור>"
 
 #: ../gramps/gen/filters/rules/person/_hassourceof.py:50
 msgid "Matches people who have a particular source"
-msgstr "שליפת אנשים בעלי מקור מסוים"
+msgstr "שליפת אנשים עם מקור מסוים"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:52
 msgid "People with the <tag>"
@@ -5369,7 +5369,7 @@ msgstr "אנשים עם <תג>"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:53
 msgid "Matches people with the particular tag"
-msgstr "שליפת אנשים בעלי תג מסוים"
+msgstr "שליפת אנשים עם תג מסוים"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:49
 #: ../gramps/gui/editors/filtereditor.py:609
@@ -5406,7 +5406,7 @@ msgstr "אנשים עם צאצאים"
 
 #: ../gramps/gen/filters/rules/person/_havechildren.py:48
 msgid "Matches people who have children"
-msgstr "שליפת אנשים בעלי צאצאים"
+msgstr "שליפת אנשים עם צאצאים"
 
 #: ../gramps/gen/filters/rules/person/_incompletenames.py:46
 msgid "People with incomplete names"
@@ -5657,7 +5657,7 @@ msgstr "אנשים עם אירועים התואמים ל <מסנן אירוע>"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:56
 msgid "Matches persons who have events that match a certain event filter"
-msgstr "שליפת אנשים בעלי אירועים התואמים למסנן אירועים מסוים"
+msgstr "שליפת אנשים עם אירועים התואמים למסנן אירועים מסוים"
 
 #: ../gramps/gen/filters/rules/person/_matchesfilter.py:46
 msgid "People matching the <filter>"
@@ -5693,7 +5693,7 @@ msgstr "אנשים עם ריבוי רשומות נישואין"
 
 #: ../gramps/gen/filters/rules/person/_multiplemarriages.py:45
 msgid "Matches people who have more than one spouse"
-msgstr "שליפת אנשים בעלי יותר מבן(ת) זוג אחד"
+msgstr "שליפת אנשים עם יותר מבן(ת) זוג אחד"
 
 #: ../gramps/gen/filters/rules/person/_nevermarried.py:44
 msgid "People with no marriage records"
@@ -7135,7 +7135,7 @@ msgstr "מ"
 
 #: ../gramps/gen/lib/date.py:2004
 msgid "to"
-msgstr "אל"
+msgstr "עד"
 
 #: ../gramps/gen/lib/date.py:2005
 msgid "span"
@@ -16105,7 +16105,7 @@ msgid ""
 "Date of the event. This can be an exact date, a range (from ... to, "
 "between, ...), or an inexact date (about, ...)."
 msgstr ""
-"תאריך האירוע. יכול להיות תאריך מדויק, טווח ומשך (מ... עד, בין... לבין) או "
+"תאריך האירוע. יכול להיות תאריך מדויק, טווח או משך (מ... עד, בין... לבין) או "
 "תאריך לא מדויק (בסביבות, בקרוב...)."
 
 #: ../gramps/gui/glade/editevent.glade:375
@@ -16533,8 +16533,8 @@ msgid ""
 "You will be asked if you want to group this person only, or all people with "
 "this specific primary surname."
 msgstr ""
-"מצג 'עץ אנשים' מקבץ אנשים בעלי אותו שם משפחה ראשי. ניתן לעקוף זאת על־ידי "
-"הגדרת ערך קבוצה.\n"
+"מצג 'עץ אנשים' מקבץ אנשים עם אותו שם משפחה ראשי. ניתן לעקוף זאת על־ידי הגדרת "
+"ערך קבוצה.\n"
 "המערכת תישאל האם לקבץ אדם זה בלבד, או את כל האנשים בעלי שם משפחה ראשי מסויים "
 "זה."
 
@@ -31083,7 +31083,7 @@ msgstr "אנשים עם תכונה '%s'"
 #: ../gramps/plugins/quickview/attributematch.py:48
 #, python-format
 msgid "There are %d people with a matching attribute name.\n"
-msgstr "ישנם %d אנשים בעלי שם תכונה תואם.\n"
+msgstr "ישנם %d אנשים עם שם תכונה תואם.\n"
 
 #: ../gramps/plugins/quickview/filterbyname.py:43
 msgctxt "Filtering_on"
@@ -31449,7 +31449,7 @@ msgstr "התאמת תכונה"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:59
 msgid "Display people with same attribute."
-msgstr "הצגת אנשים בעלי אותה תכונה."
+msgstr "הצגת אנשים עם אותה תכונה."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:79
 msgid "All Events"
@@ -31537,7 +31537,7 @@ msgstr "שמות משפחה זהים"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:289
 msgid "Display people with the same surname as a person."
-msgstr "הצגת אנשים בעלי אותו שם משפחה כאדם."
+msgstr "הצגת אנשים עם אותו שם משפחה כאדם."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:303
 msgid "Same Given Names"
@@ -31546,7 +31546,7 @@ msgstr "שם פרטי זהה"
 #: ../gramps/plugins/quickview/quickview.gpr.py:304
 #: ../gramps/plugins/quickview/quickview.gpr.py:319
 msgid "Display people with the same given name as a person."
-msgstr "הצג אנשים בעלי אותו שם פרטי כאדם."
+msgstr "הצג אנשים עם אותו שם פרטי כאדם."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:318
 msgid "Same Given Names - stand-alone"
@@ -31589,7 +31589,7 @@ msgstr "אנשים תואמים ל<שם משפחה>"
 
 #: ../gramps/plugins/quickview/samesurnames.py:58
 msgid "Matches people with same lastname"
-msgstr "שליפת אנשים בעלי שם משפחה זהה"
+msgstr "שליפת אנשים עם שם משפחה זהה"
 
 #: ../gramps/plugins/quickview/samesurnames.py:73
 msgid "People matching the <given>"
@@ -31597,7 +31597,7 @@ msgstr "אנשים התואמים ל<פרטי>"
 
 #: ../gramps/plugins/quickview/samesurnames.py:74
 msgid "Matches people with same given name"
-msgstr "שליפת אנשים בעלי שם פרטי זהה"
+msgstr "שליפת אנשים עם שם פרטי זהה"
 
 #: ../gramps/plugins/quickview/samesurnames.py:100
 msgid "People with incomplete given names"
@@ -31618,8 +31618,10 @@ msgstr "אנשים שחולקים את שם המשפחה '%s'"
 msgid "There is {number_of} person with a matching name, or alternate name.\n"
 msgid_plural ""
 "There are {number_of} people with a matching name, or alternate name.\n"
-msgstr[0] "קיים אדם {number_of} בעל שם תואם, או שם חליפי.\n"
-msgstr[1] "קיימים {number_of} אנשים בעלי שם תואם, או שם חליפי.\n"
+msgstr[0] ""
+"קיים אדם {number_of} בעל שם תואם, או שם חליפי.\n"
+"קיימים {number_of} אנשים עם שם תואם, או שם חליפי.\n"
+msgstr[1] ""
 
 #: ../gramps/plugins/quickview/samesurnames.py:177
 #, python-format
