@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-05 19:36+0000\n"
+"PO-Revision-Date: 2023-08-12 05:58+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -12185,22 +12185,16 @@ msgid "Calendar on input"
 msgstr "Kalender bij invoer"
 
 #: ../gramps/gui/configure.py:1599
-#, fuzzy
-#| msgid "on the previous day"
 msgid "On the previous day"
-msgstr "op de vorige dag"
+msgstr "Op de vorige dag"
 
 #: ../gramps/gui/configure.py:1600
-#, fuzzy
-#| msgid "on the next day"
 msgid "On the next day"
-msgstr "op de volgende dag"
+msgstr "Op de volgende dag"
 
 #: ../gramps/gui/configure.py:1601
-#, fuzzy
-#| msgid "only on leap years"
 msgid "Only on leap years"
-msgstr "alleen bij schrikkeljaren"
+msgstr "Alleen bij schrikkeljaren"
 
 #: ../gramps/gui/configure.py:1608
 msgid ""
@@ -12560,14 +12554,12 @@ msgid "Every hour"
 msgstr "Elk uur"
 
 #: ../gramps/gui/configure.py:2282
-#, fuzzy
 msgid "Every 12 hours"
-msgstr "Elk uur"
+msgstr "Elke 12 uur"
 
 #: ../gramps/gui/configure.py:2283
-#, fuzzy
 msgid "Every day"
-msgstr "Elk gezin"
+msgstr "Elke dag"
 
 #: ../gramps/gui/configure.py:2289
 msgid "Autobackup"
@@ -20280,6 +20272,8 @@ msgid ""
 "Please wait for backup in progress.\n"
 "Gramps will close when complete."
 msgstr ""
+"Wacht op lopende back-up.\n"
+"Gramps zal sluiten als deze klaar is."
 
 #: ../gramps/gui/viewmanager.py:1291 ../gramps/gui/viewmanager.py:1295
 msgid "Autobackup..."
