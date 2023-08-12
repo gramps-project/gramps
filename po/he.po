@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
 "PO-Revision-Date: 2023-08-12 06:43+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -4041,7 +4041,7 @@ msgstr "מובאות עם מזהה המכיל <מלל>"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:52
 msgid "Matches citations whose Gramps ID matches the regular expression"
-msgstr "שליפת מובאות שמזהה גרמפס שלהן תאום לביטוי רגיל"
+msgstr "שליפת מובאות שמזהה גרמפס שלהן תואם לביטוי רגולרי"
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:50
 msgid "Citations with Source Id containing <text>"
@@ -4051,7 +4051,7 @@ msgstr "מובאות עם מזהה מקור המכיל <מלל>"
 msgid ""
 "Matches citations whose source has a Gramps ID that matches the regular "
 "expression"
-msgstr "שליפת מובאות עם מקור עם מזהה גרמפס התאום לביטוי רגיל"
+msgstr "שליפת מובאות שלמקור שלהן מזהה גרמפס התואם לביטוי רגולרי"
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:46
 msgid "Every event"
