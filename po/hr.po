@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-06-26 04:42+0000\n"
+"PO-Revision-Date: 2023-08-12 19:58+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -17,9 +17,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.18.1\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 5.0-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
 
@@ -7548,7 +7548,7 @@ msgstr "Blagoslov"
 
 #: ../gramps/gen/lib/eventtype.py:200
 msgid "Burial"
-msgstr "Pogreb"
+msgstr "Pokop"
 
 #: ../gramps/gen/lib/eventtype.py:201
 msgid "Cause Of Death"
@@ -7763,7 +7763,7 @@ msgstr "blag."
 #: ../gramps/gen/lib/eventtype.py:251
 msgctxt "Burial abbreviation"
 msgid "bur."
-msgstr "pog."
+msgstr "pok."
 
 #: ../gramps/gen/lib/eventtype.py:252
 msgctxt "Cause Of Death abbreviation"
@@ -12678,10 +12678,8 @@ msgid "Tab"
 msgstr "Etiketa"
 
 #: ../gramps/gui/csvdialect.py:82
-#, fuzzy
-#| msgid "Check your installation."
 msgid "Choose your dialect"
-msgstr "Provjeri instalaciju."
+msgstr "Odaberi dijalekt"
 
 #: ../gramps/gui/csvdialect.py:85
 msgid ""
@@ -15389,10 +15387,8 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:96
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:89
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:73
-#, fuzzy
-#| msgid "Case sensitive:"
 msgid "Case sensitive"
-msgstr "Razlikovanje velikih/malih slova:"
+msgstr "Razlikovanje velikih/malih slova"
 
 #: ../gramps/gui/editors/filtereditor.py:688
 msgid "Rule Name"
@@ -18797,11 +18793,8 @@ msgid "Requires"
 msgstr "* Zahtijeva ponovno pokretanje"
 
 #: ../gramps/gui/plug/_windows.py:263
-#, fuzzy
-#| msgctxt "Graduation abbreviation"
-#| msgid "grad."
 msgid "Upgrade"
-msgstr "mat."
+msgstr "Nadogradnja"
 
 #: ../gramps/gui/plug/_windows.py:286
 #, fuzzy
@@ -18835,11 +18828,8 @@ msgstr "Filtar"
 #: ../gramps/gui/plug/_windows.py:409 ../gramps/gui/plug/_windows.py:423
 #: ../gramps/gui/plug/_windows.py:557 ../gramps/gui/plug/_windows.py:560
 #: ../gramps/plugins/drawreport/statisticschart.py:334
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "all"
 msgid "All"
-msgstr "sve"
+msgstr "Sve"
 
 #: ../gramps/gui/plug/_windows.py:450
 #, fuzzy
@@ -18858,10 +18848,8 @@ msgid "Loading..."
 msgstr "Učitavanje stavke ..."
 
 #: ../gramps/gui/plug/_windows.py:517
-#, fuzzy
-#| msgid "No matches found"
 msgid "No matching addons found."
-msgstr "Nema podudarnosti"
+msgstr "Nisu pronađeni odgovarajući dodaci."
 
 #: ../gramps/gui/plug/_windows.py:646
 msgid "Allow Gramps to install required python modules"
@@ -19984,14 +19972,8 @@ msgid "Select_Source_selector"
 msgstr "Odaberi_izvor"
 
 #: ../gramps/gui/spell.py:66
-#, fuzzy
-#| msgid ""
-#| "You have no installed dictionaries. Either install one or disable spell "
-#| "checking"
 msgid "You have no installed dictionaries."
-msgstr ""
-"Nemaš instalirane rječnike. Instaliraj rječnik ili isključi provjeru "
-"pravopisa"
+msgstr "Nemaš instalirane rječnike."
 
 #: ../gramps/gui/spell.py:87
 msgid "Off"
@@ -21640,25 +21622,16 @@ msgstr[1] "{person}, {age}"
 msgstr[2] "{person}, {age}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:519
-#, fuzzy, python-format
-#| msgid ""
-#| "%(spouse)s and\n"
-#| " %(person)s, wedding"
+#, python-format
 msgid ""
 "%(wife)s and\n"
 " %(person)s, wedding"
 msgstr ""
-"%(spouse)s i\n"
+"%(wife)s i\n"
 " %(person)s, vjenčanje"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:532
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "{spouse} and\n"
-#| " {person}, {nyears}"
-#| msgid_plural ""
-#| "{spouse} and\n"
-#| " {person}, {nyears}"
+#, python-brace-format
 msgid ""
 "{wife} and\n"
 " {person}, {nyears}"
@@ -21666,13 +21639,13 @@ msgid_plural ""
 "{wife} and\n"
 " {person}, {nyears}"
 msgstr[0] ""
-"{spouse} i\n"
+"{wife} i\n"
 " {person}, {nyears}"
 msgstr[1] ""
-"{spouse} i\n"
+"{wife} i\n"
 " {person}, {nyears}"
 msgstr[2] ""
-"{spouse} i\n"
+"{wife} i\n"
 " {person}, {nyears}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:602
@@ -22805,15 +22778,15 @@ msgstr "Izvor smrti"
 
 #: ../gramps/plugins/export/exportcsv.py:436
 msgid "Burial date"
-msgstr "Datum pogreba"
+msgstr "Datum pokopa"
 
 #: ../gramps/plugins/export/exportcsv.py:437
 msgid "Burial place"
-msgstr "Mjesto pogreba"
+msgstr "Mjesto pokoba"
 
 #: ../gramps/plugins/export/exportcsv.py:438
 msgid "Burial source"
-msgstr "Izvor pogreba"
+msgstr "Izvor pokoba"
 
 #: ../gramps/plugins/export/exportcsv.py:578
 #: ../gramps/plugins/importer/importcsv.py:362
@@ -25651,19 +25624,19 @@ msgstr "izvor podataka o krštenju"
 
 #: ../gramps/plugins/importer/importcsv.py:252
 msgid "burial place"
-msgstr "mjesto pogreba"
+msgstr "mjesto pokoba"
 
 #: ../gramps/plugins/importer/importcsv.py:256
 msgid "burial place id"
-msgstr "ID mjesta pogreba"
+msgstr "ID mjesta pokoba"
 
 #: ../gramps/plugins/importer/importcsv.py:260
 msgid "burial date"
-msgstr "datum pogreba"
+msgstr "datum pokoba"
 
 #: ../gramps/plugins/importer/importcsv.py:261
 msgid "burial source"
-msgstr "izvor pogreba"
+msgstr "izvor pokoba"
 
 #: ../gramps/plugins/importer/importcsv.py:266
 msgid "death place"
@@ -27335,10 +27308,8 @@ msgid "Label"
 msgstr "oznaka"
 
 #: ../gramps/plugins/lib/libmetadata.py:230
-#, fuzzy
-#| msgid ", "
 msgid " "
-msgstr ", "
+msgstr " "
 
 #: ../gramps/plugins/lib/libnarrate.py:93
 #, python-format
@@ -28162,8 +28133,8 @@ msgstr "Smrt (%(age)s)."
 msgid ""
 "%(male_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s je pokopan %(burial_date)s u mjestu %(burial_place)s"
-"%(endnotes)s."
+"%(male_name)s je pokopan %(burial_date)s u mjestu "
+"%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:519
 #, python-format
@@ -28176,8 +28147,8 @@ msgid ""
 "%(female_name)s was buried on %(burial_date)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s je pokopana %(burial_date)s u mjestu %(burial_place)s"
-"%(endnotes)s."
+"%(female_name)s je pokopana %(burial_date)s u mjestu "
+"%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:525
 #, python-format
@@ -28203,7 +28174,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:533
 #, python-format
 msgid "Buried %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Pokop %(burial_date)s u mjestu %(burial_place)s%(endnotes)s."
+msgstr "Pokopan/a je %(burial_date)s u mjestu %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:538
 #, python-format
@@ -28238,15 +28209,15 @@ msgstr "Ova je osoba pokopana %(burial_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:549
 #, python-format
 msgid "Buried %(burial_date)s%(endnotes)s."
-msgstr "Pokop %(burial_date)s%(endnotes)s."
+msgstr "Pokopan/a %(burial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:555
 #, python-format
 msgid ""
 "%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s je pokopan %(month_year)s u mjestu %(burial_place)s"
-"%(endnotes)s."
+"%(male_name)s je pokopan %(month_year)s u mjestu "
+"%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:557
 #, python-format
@@ -28258,8 +28229,8 @@ msgstr "Pokopan je %(month_year)s u mjestu %(burial_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s je pokopana %(month_year)s u mjestu %(burial_place)s"
-"%(endnotes)s."
+"%(female_name)s je pokopana %(month_year)s u mjestu "
+"%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:563
 #, python-format
@@ -28272,8 +28243,8 @@ msgid ""
 "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s je pokopan/a %(month_year)s u mjestu %(burial_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s je pokopan/a %(month_year)s u mjestu "
+"%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:569
 #, python-format
@@ -28285,7 +28256,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:571
 #, python-format
 msgid "Buried %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "Pokop %(month_year)s u mjestu %(burial_place)s%(endnotes)s."
+msgstr "Pokopan/a %(month_year)s u mjestu %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:576
 #, python-format
@@ -28327,8 +28298,8 @@ msgstr "Pokop %(month_year)s%(endnotes)s."
 msgid ""
 "%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s je pokopan %(modified_date)s u mjestu %(burial_place)s"
-"%(endnotes)s."
+"%(male_name)s je pokopan %(modified_date)s u mjestu "
+"%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:595
 #, python-format
@@ -28340,8 +28311,8 @@ msgstr "Pokopan je %(modified_date)s u mjestu %(burial_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s je pokopana %(modified_date)s u mjestu %(burial_place)s"
-"%(endnotes)s."
+"%(female_name)s je pokopana %(modified_date)s u mjestu "
+"%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:601
 #, python-format
@@ -28362,13 +28333,13 @@ msgstr ""
 msgid ""
 "This person was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"Ova je osoba pokopana %(modified_date)s u mjestu %(burial_place)s"
-"%(endnotes)s."
+"Ova je osoba pokopana %(modified_date)s u mjestu "
+"%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:609
 #, python-format
 msgid "Buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Pokop %(modified_date)s u mjestu %(burial_place)s%(endnotes)s."
+msgstr "Pokopan/a %(modified_date)s u mjestu %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:614
 #, python-format
@@ -28439,7 +28410,7 @@ msgstr "Ova je osoba pokopana u mjestu %(burial_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:641
 #, python-format
 msgid "Buried in %(burial_place)s%(endnotes)s."
-msgstr "Pokop u mjestu %(burial_place)s%(endnotes)s."
+msgstr "Pokopan/a u mjestu %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:646
 #, python-format
@@ -35513,14 +35484,8 @@ msgid "Enable ID reordering."
 msgstr "Aktiviraj mijenjanje rasporeda ID oznaka."
 
 #: ../gramps/plugins/tool/reorderids.glade:1420
-#, fuzzy
-#| msgid ""
-#| "List next ID available\n"
-#| "(maynot be continuous)."
 msgid "List next ID available (may not be continuous)."
-msgstr ""
-"Prikaži sljedeću ID oznaku koja je dostupna\n"
-"(može biti, da nije u slijedu)."
+msgstr "Prikaži sljedeću dostupnu ID oznaku (može biti da nije u slijedu)."
 
 #: ../gramps/plugins/tool/reorderids.glade:1423
 msgid "  Actual"
@@ -35543,14 +35508,9 @@ msgid "Change"
 msgstr "Promjena"
 
 #: ../gramps/plugins/tool/reorderids.glade:1469
-#, fuzzy
-#| msgid ""
-#| "Enable ID reordering\n"
-#| "with Start / Step sequence."
 msgid "Enable ID reordering with Start / Step sequence."
 msgstr ""
-"Aktiviraj mijenjanje redoslijeda ID oznaka\n"
-"sa sekvencama „Pokreni”/„Korak”."
+"Aktiviraj mijenjanje redoslijeda ID oznaka sa sekvencama „Pokreni”/„Korak”."
 
 #: ../gramps/plugins/tool/reorderids.glade:1481
 msgid "Start"
@@ -35573,14 +35533,8 @@ msgid "Keep"
 msgstr "Zadrži"
 
 #: ../gramps/plugins/tool/reorderids.glade:1521
-#, fuzzy
-#| msgid ""
-#| "Keep IDs with alternate\n"
-#| "prefixes untouched."
 msgid "Keep IDs with alternate prefixes untouched."
-msgstr ""
-"Zadrži ID oznake s alternativnim\n"
-"prefiksima, netaknutima."
+msgstr "Zadrži ID oznake s alternativnim prefiksima netaknutima."
 
 #: ../gramps/plugins/tool/reorderids.py:65
 msgctxt "manual"
@@ -38667,12 +38621,12 @@ msgid "Google maps API key"
 msgstr "API ključ za Google karte"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2647
-#, fuzzy
-#| msgid "The API key used for the Google maps"
 msgid ""
 "The API key used for the Google maps.\n"
 "This key is mandatory and must be valid"
-msgstr "API ključ korišten za Google karte"
+msgstr ""
+"API ključ korišten za Google karte.\n"
+"Ovaj ključ je obavezan i mora biti ispravan"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2659
 #, fuzzy
@@ -38711,11 +38665,10 @@ msgstr ""
 "kartama …"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2695
-#, fuzzy, python-format
-#| msgid "Died %(month_year)s (%(age)s)."
+#, python-format
 msgctxt "val"
 msgid "in %(inipth)s (%(val)s)"
-msgstr "Smrt %(month_year)s (%(age)s)."
+msgstr "u %(inipth)s (%(val)s)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2696
 #, fuzzy
@@ -39081,10 +39034,9 @@ msgid "Number of People"
 msgstr "Broj osoba"
 
 #: ../gramps/plugins/webreport/surnamelist.py:299
-#, fuzzy, python-format
-#| msgid "Surnames beginning with letter %s"
+#, python-format
 msgid "Surnames beginning with letter '%s' %s"
-msgstr "Prezimena koja počinju sa slovom %s"
+msgstr "Prezimena koja počinju sa slovom „%s” %s"
 
 #: ../gramps/plugins/webreport/thumbnail.py:125
 msgid ""
