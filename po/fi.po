@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-12 19:58+0000\n"
+"PO-Revision-Date: 2023-08-13 16:44+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -17139,8 +17139,9 @@ msgid "Number Street"
 msgstr "Numero katu"
 
 #: ../gramps/gui/glade/editplaceformat.glade:187
+#, fuzzy
 msgid "Street Number"
-msgstr "Katunumero"
+msgstr "Katu numero"
 
 #: ../gramps/gui/glade/editplacename.glade:156
 #: ../gramps/plugins/webreport/basepage.py:3239
