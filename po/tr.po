@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-05 19:36+0000\n"
-"Last-Translator: Osman Öz <osmanoz05@hotmail.com>\n"
+"PO-Revision-Date: 2023-08-13 16:44+0000\n"
+"Last-Translator: Bora Atıcı <boratici.acc@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
 "Language: tr\n"
@@ -12033,22 +12033,16 @@ msgid "Calendar on input"
 msgstr "Girdide takvim"
 
 #: ../gramps/gui/configure.py:1599
-#, fuzzy
-#| msgid "on the previous day"
 msgid "On the previous day"
-msgstr "önceki gün"
+msgstr "Önceki gün"
 
 #: ../gramps/gui/configure.py:1600
-#, fuzzy
-#| msgid "on the next day"
 msgid "On the next day"
-msgstr "sonraki gün"
+msgstr "Sonraki gün"
 
 #: ../gramps/gui/configure.py:1601
-#, fuzzy
-#| msgid "only on leap years"
 msgid "Only on leap years"
-msgstr "sadece artık yıllarda"
+msgstr "Sadece artık yıllarda"
 
 #: ../gramps/gui/configure.py:1608
 msgid ""
@@ -20045,6 +20039,8 @@ msgid ""
 "Please wait for backup in progress.\n"
 "Gramps will close when complete."
 msgstr ""
+"Lütfen devam eden yedeklemeyi bekleyin.\n"
+"Gramps tamamlandığında kapanacaktır."
 
 #: ../gramps/gui/viewmanager.py:1291 ../gramps/gui/viewmanager.py:1295
 msgid "Autobackup..."
@@ -21365,7 +21361,7 @@ msgid ""
 "i.e.\n"
 "United States of America/U.S.A."
 msgstr ""
-"Yani.\n"
+"yani.\n"
 "Amerika Birleşik Devletleri/ABD"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1029
