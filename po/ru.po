@@ -25,7 +25,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
 "PO-Revision-Date: 2023-08-13 20:01+0000\n"
-"Last-Translator: Павел Жуков <papazukko@gmail.com>\n"
+"Last-Translator: Stanislav <bsv999@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
 "Language: ru\n"
@@ -2082,7 +2082,6 @@ msgid "Missing Record"
 msgstr "Запись отсутствует"
 
 #: ../gramps/gen/config.py:316
-#, fuzzy
 msgid "Missing Surname"
 msgstr "Фамилия отсутствует"
 
@@ -2685,7 +2684,6 @@ msgid "French Republican"
 msgstr "Французский республиканский"
 
 #: ../gramps/gen/datehandler/_datestrings.py:151 ../gramps/gen/lib/date.py:647
-#, fuzzy
 msgctxt "calendar"
 msgid "Persian"
 msgstr "Персидский"
@@ -5438,10 +5436,8 @@ msgstr ""
 "выражению"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:47
-#, fuzzy
-#| msgid "People with an alternate name"
 msgid "People who are neither male nor female"
-msgstr "Лица, не относящиеся ни к мужскому, ни к женскому полу"
+msgstr "Люди, которые не мужчины, не женщины"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:49
 msgid "Matches all people with other gender"
@@ -8067,7 +8063,7 @@ msgstr "События"
 
 #: ../gramps/gen/lib/family.py:194 ../gramps/gen/lib/person.py:248
 msgid "LDS ordinances"
-msgstr "Процедура СПД"
+msgstr "Обряды церкви СПД"
 
 #: ../gramps/gen/lib/familyreltype.py:48
 msgid "Married"
@@ -8240,7 +8236,7 @@ msgstr "Отозвано"
 #: ../gramps/plugins/textreport/indivcomplete.py:733
 #: ../gramps/plugins/webreport/basepage.py:561
 msgid "LDS Ordinance"
-msgstr "Процедура СПД"
+msgstr "Обряд церкви СПД"
 
 #: ../gramps/gen/lib/ldsord.py:205
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:55
@@ -11578,7 +11574,7 @@ msgstr "Буфер обмена"
 #: ../gramps/gui/clipboard.py:1380 ../gramps/gui/configure.py:219
 #: ../gramps/gui/editors/filtereditor.py:1236 ../gramps/gui/views/tags.py:417
 msgid "Any changes are saved immediately"
-msgstr "Все изменения сохраняются немедленно"
+msgstr "Любые изменения сохраняются немедленно"
 
 #: ../gramps/gui/clipboard.py:1522 ../gramps/gui/plug/quick/_quicktable.py:154
 #, python-format
@@ -18870,7 +18866,7 @@ msgstr "Требования"
 
 #: ../gramps/gui/plug/_windows.py:347
 msgid "Addon Manager"
-msgstr "Менеджер дополнений"
+msgstr "Менеджер Дополнений"
 
 #: ../gramps/gui/plug/_windows.py:355 ../gramps/plugins/gramplet/leak.py:114
 msgid "Refresh"
