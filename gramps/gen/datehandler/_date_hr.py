@@ -62,8 +62,8 @@ class DateParserHR(DateParser):
         "oko": Date.MOD_ABOUT,
         "okolo": Date.MOD_ABOUT,
         "ok. ": Date.MOD_ABOUT,
-        "from": Date.MOD_FROM,
-        "to": Date.MOD_TO,
+        "od": Date.MOD_FROM,
+        "do": Date.MOD_TO,
     }
 
     quality_to_int = {
