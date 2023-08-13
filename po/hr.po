@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-12 19:58+0000\n"
+"PO-Revision-Date: 2023-08-12 23:22+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -2937,14 +2937,14 @@ msgstr "oko "
 #: ../gramps/gen/datehandler/_datestrings.py:255
 msgctxt "date modifier"
 msgid "from "
-msgstr ""
+msgstr "od "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:258
 msgctxt "date modifier"
 msgid "to "
-msgstr ""
+msgstr "do "
 
 #: ../gramps/gen/datehandler/_datestrings.py:263
 msgctxt "date quality"
@@ -5380,16 +5380,12 @@ msgid "Matches people whose notes contain text matching a regular expression"
 msgstr "Pronalazi osobe, čije zabilješke sadrže tekst s regularnim izrazom"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:47
-#, fuzzy
-#| msgid "People with an alternate name"
 msgid "People who are neither male nor female"
-msgstr "Osobe s alternativnim imenom"
+msgstr "Osobe koje nisu muškog niti ženskog spola"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:49
-#, fuzzy
-#| msgid "Matches all people with unknown gender"
 msgid "Matches all people with other gender"
-msgstr "Pronalazi sve osobe s nepoznatim spolom"
+msgstr "Pronalazi sve osobe s drugim spolom"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:48
 msgid "Number of relationships:"
@@ -7278,17 +7274,15 @@ msgstr "razdoblje"
 
 #: ../gramps/gen/lib/date.py:2003
 msgid "from"
-msgstr ""
+msgstr "od"
 
 #: ../gramps/gen/lib/date.py:2004
-#, fuzzy
-#| msgid "Stop"
 msgid "to"
-msgstr "Prekid"
+msgstr "do"
 
 #: ../gramps/gen/lib/date.py:2005
 msgid "span"
-msgstr "razdoblje od/do"
+msgstr "raspon"
 
 #: ../gramps/gen/lib/date.py:2006
 msgid "textonly"
@@ -7694,10 +7688,8 @@ msgid "Alternate Marriage"
 msgstr "Alternativni brak"
 
 #: ../gramps/gen/lib/eventtype.py:236
-#, fuzzy
-#| msgid "Stillborn"
 msgid "Stillbirth"
-msgstr "Mrtvorođeno"
+msgstr "Mrtvorođenje"
 
 #: ../gramps/gen/lib/eventtype.py:240
 #: ../gramps/plugins/drawreport/ancestortree.py:71
@@ -7936,12 +7928,9 @@ msgid "annul."
 msgstr "pon."
 
 #: ../gramps/gen/lib/eventtype.py:286
-#, fuzzy
-#| msgctxt "Will abbreviation"
-#| msgid "will."
 msgctxt "Stillbirth abbreviation"
 msgid "still."
-msgstr "opr."
+msgstr "mrtvorođenje."
 
 #: ../gramps/gen/lib/family.py:163
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:61
@@ -8513,10 +8502,8 @@ msgid "Research"
 msgstr "Istraživanje"
 
 #: ../gramps/gen/lib/notetype.py:79
-#, fuzzy
-#| msgid "Analyzing names"
 msgid "Analysis"
-msgstr "Analiziranje imena"
+msgstr "Analiza"
 
 #: ../gramps/gen/lib/notetype.py:80
 msgid "Transcript"
@@ -9318,7 +9305,7 @@ msgstr "Kreator dokumenata"
 
 #: ../gramps/gen/plug/_pluginreg.py:121
 msgid "Plugin lib"
-msgstr "Biblioteka programskih dodataka"
+msgstr "Biblioteka dodataka"
 
 #: ../gramps/gen/plug/_pluginreg.py:122
 msgid "Map service"
@@ -9375,8 +9362,7 @@ msgstr "Razno"
 #: ../gramps/gen/plug/_pluginreg.py:1401
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
-msgstr ""
-"GREŠKA: Neuspjelo čitanje registracijske datoteke dodatka: %(filename)s"
+msgstr "GREŠKA: Neuspjelo čitanje registracije dodatka %(filename)s"
 
 #: ../gramps/gen/plug/_pluginreg.py:1370
 #, python-format
@@ -9385,7 +9371,7 @@ msgid ""
 "configured languages, using US English instead"
 msgstr ""
 "UPOZORENJE: Dodatak %(plugin_name)s nema prijevod za bilo koji od tvojih "
-"konfiguriranih jezika, koristit će se engleski (US English)"
+"konfiguriranih jezika, koristit će se američki engleski"
 
 #: ../gramps/gen/plug/_pluginreg.py:1419
 #, python-format
@@ -9394,7 +9380,7 @@ msgid ""
 "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s"
 "\" which is invalid for Gramps \"%(gramps_version)s\"."
 msgstr ""
-"GREŠKA: Datoteka dodatka %(filename)s sadrži inačicu "
+"GREŠKA: Datoteka dodatka %(filename)s sadrži verziju "
 "„%(gramps_target_version)s” koja ne vrijedi za Gramps „%(gramps_version)s”."
 
 #: ../gramps/gen/plug/_pluginreg.py:1451
@@ -11955,8 +11941,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1041
 msgid "Show plugin status dialog on plugin load error"
-msgstr ""
-"Prikaži dijaloški okvir stanja dodatka, prilikom greške učitavanja dodatka"
+msgstr "Prikaži dijalog stanja dodatka pri grešci učitavanja dodatka"
 
 #: ../gramps/gui/configure.py:1047
 msgid "Warnings"
@@ -12689,7 +12674,7 @@ msgstr ""
 
 #: ../gramps/gui/csvdialect.py:114
 msgid "Delimiter:"
-msgstr ""
+msgstr "Znak razdvajanja:"
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:124
 msgid "Undo history warning"
@@ -13208,10 +13193,8 @@ msgid "Tools"
 msgstr "_Alati"
 
 #: ../gramps/gui/displaystate.py:422
-#, fuzzy
-#| msgid "Plugin Manager"
 msgid "Open Addon Manager"
-msgstr "Upravljač dodataka"
+msgstr "Otvori upravljač dodataka"
 
 #: ../gramps/gui/displaystate.py:423 ../gramps/gui/plug/_windows.py:447
 msgid "Addons"
@@ -18011,15 +17994,6 @@ msgid "Available Gramps Updates for Addons"
 msgstr "Dostupne nadogradnje Gramps dodataka"
 
 #: ../gramps/gui/glade/updateaddons.glade:89
-#, fuzzy
-#| msgid ""
-#| "Gramps comes with a core set of plugins which provide all of the "
-#| "necessary features. However, you can extend this functionality with "
-#| "additional Addons. These addons provide reports, listings, views, "
-#| "gramplets, and more. Here you can select among the available extra "
-#| "addons, they will be retrieved from the internet off of the Gramps "
-#| "website, and installed locally on your computer. If you close this dialog "
-#| "now, you can install addons later from the menu under Edit -> Preferences."
 msgid ""
 "Gramps comes with a core set of plugins which provide all of the necessary "
 "features. However, you can extend this functionality with additional Addons. "
@@ -18034,7 +18008,7 @@ msgstr ""
 "omogućuju izvještaje, popise, poglede, gramplete i razne druge funkcije. "
 "Ovdje možeš odabrati i instalirati dostupne dodatke preuzetih s Grampsove "
 "internetske web stranice. Ako sada zatvoriš ovaj prozor, dodatke možeš "
-"instalirati i kasnije, putem izbornika „Uredi > Postavke”."
+"instalirati i kasnije putem izbornika „Pomoć > Upravljač dodataka”."
 
 #: ../gramps/gui/glade/updateaddons.glade:105
 msgid "_Select All"
@@ -18098,10 +18072,8 @@ msgid "_About"
 msgstr "_O programu"
 
 #: ../gramps/gui/grampsgui.py:58
-#, fuzzy
-#| msgid "Add Partner..."
 msgid "_Addon Manager..."
-msgstr "Dodaj partnera ..."
+msgstr "_Upavljač dodataka …"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Bookmarks"
@@ -18809,10 +18781,8 @@ msgid "Requirements"
 msgstr "Umirovljenje"
 
 #: ../gramps/gui/plug/_windows.py:347
-#, fuzzy
-#| msgid "Addon Name"
 msgid "Addon Manager"
-msgstr "Naziv dodatka"
+msgstr "Upavljač dodataka"
 
 #: ../gramps/gui/plug/_windows.py:355 ../gramps/plugins/gramplet/leak.py:114
 msgid "Refresh"
@@ -19087,7 +19057,7 @@ msgstr "Detaljne informacije"
 
 #: ../gramps/gui/plug/_windows.py:1542
 msgid "Plugin Error"
-msgstr "Greška programskog dodatka"
+msgstr "Greška u dodatku"
 
 #: ../gramps/gui/plug/_windows.py:1611
 msgid "_Execute"
@@ -20083,7 +20053,7 @@ msgstr "Nema rodoslova"
 
 #: ../gramps/gui/viewmanager.py:612
 msgid "Registering plugins..."
-msgstr "Registracija programskih dodataka ..."
+msgstr "Registracija dodataka ..."
 
 #: ../gramps/gui/viewmanager.py:619
 msgid "Ready"
@@ -20177,8 +20147,8 @@ msgstr ""
 "%(gramps_bugtracker_url)s ili kontaktiraj tvorca ovog pogleda "
 "(%(firstauthoremail)s).\n"
 "\n"
-"Ako ne želiš da Gramps ponovo pokuša učitatati pogled, možeš ga sakriti s "
-"uređivačem dodataka u izborniku pod „Pomoć”."
+"Ako ne želiš da Gramps ponovo pokuša učitatati pogled, možeš ga sakriti "
+"pomoću funikcije „Upravljač dodataka” u izborniku „Pomoć”."
 
 #: ../gramps/gui/viewmanager.py:1704
 msgid "Failed Loading Plugin"
@@ -20206,8 +20176,8 @@ msgstr ""
 "%(gramps_bugtracker_url)s ili kontaktiraj tvorca ovog dodatka "
 "(%(firstauthoremail)s).\n"
 "\n"
-"Ako ne želiš da Gramps ponovi pokušaj učitavanja dodatka, možeš ga sakriti s "
-"uređivačem dodataka u izborniku pod „Pomoć”."
+"Ako ne želiš da Gramps ponovo pokuša učitatati ovaj dodatak, možeš ga "
+"sakriti pomoću funikcije „Upravljač dodataka” u izborniku „Pomoć”."
 
 #: ../gramps/gui/viewmanager.py:1802
 msgid "Gramps XML Backup"
