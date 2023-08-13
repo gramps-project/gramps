@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-13 19:50+0000\n"
+"PO-Revision-Date: 2023-08-13 20:01+0000\n"
 "Last-Translator: Павел Жуков <papazukko@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
@@ -11985,9 +11985,8 @@ msgstr ""
 "экспорте в GEDCOM"
 
 #: ../gramps/gui/configure.py:1033
-#, fuzzy
 msgid "Suppress tooltip warnings about data being saved immediately"
-msgstr "Не выводить всплывающие сообщения об автоматическом сохранении данных"
+msgstr "Скрыть предупреждения о немедленном сохранении данных"
 
 #: ../gramps/gui/configure.py:1041
 msgid "Show plugin status dialog on plugin load error"
@@ -12118,10 +12117,8 @@ msgid "Age display precision *"
 msgstr "Точность отображения возраста *"
 
 #: ../gramps/gui/configure.py:1562
-#, fuzzy
-#| msgid "Display references for a %s"
 msgid "Display ages for events after death *"
-msgstr "Показывает ссылки на %s"
+msgstr "Показывать возраст на момент событий после смерти *"
 
 #: ../gramps/gui/configure.py:1578
 msgid "Calendar on reports"
