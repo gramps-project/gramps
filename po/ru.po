@@ -25,7 +25,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
 "PO-Revision-Date: 2023-08-13 19:09+0000\n"
-"Last-Translator: Stanislav <bsv999@mail.ru>\n"
+"Last-Translator: Павел Жуков <papazukko@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
 "Language: ru\n"
@@ -19017,10 +19017,8 @@ msgid "Check for updated addons now"
 msgstr "Проверить дополнения на наличие обновлений"
 
 #: ../gramps/gui/plug/_windows.py:720
-#, fuzzy
-#| msgid "New Person"
 msgid "New Project"
-msgstr "Новое лицо"
+msgstr "Новый проект"
 
 #: ../gramps/gui/plug/_windows.py:722
 #, fuzzy
