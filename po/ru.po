@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-13 20:01+0000\n"
+"PO-Revision-Date: 2023-08-13 20:49+0000\n"
 "Last-Translator: Stanislav <bsv999@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
@@ -11691,17 +11691,17 @@ msgid ""
 "     <i>Dr.</i>: Title, <i>Sr</i>: Suffix, <i>Ed</i>: Nickname, "
 "<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
 msgstr ""
-"Нижеследующие ключевые слова будут заменены соответствующими частями имени:"
-"<tt>\n"
+"Нижеследующие ключевые слова будут заменены соответствующими частями "
+"имени:<tt>\n"
 "  <b>Имя</b>         - личное имя                   <b>Фамилия</b>     - "
 "фамилии (с префиксом и связками)\n"
-"  <b>Титул</b>       - звание (Др., Мис.)    <b>Суффикс</b>     - суффикс "
-"(Мл., Ст.)\n"
+"  <b>Титул</b>       - звание (Др., Мис.)    <b>Суффикс</b>     - суффикс ("
+"Мл., Ст.)\n"
 "  <b>Обиходное</b>   - бытовое или мирское имя   <b>Прозвище</b> - прозвище, "
 "псевдоним\n"
 "  <b>Инициалы</b>    - начальные буквы имён         <b>Разговорное</b> - "
 "прозвище, или одно из имен\n"
-"  <b>Префикс</b>     - приставки («де», «ван», ...)\n"
+"  <b>Префикс</b>     - приставки (ван, де)\n"
 "Фамилии:\n"
 "  <b>Главное, Главное[пр], или …[фам] …[св]</b> - полностью главная фамилия, "
 "префикс, только фамилия, связка\n"
@@ -11717,13 +11717,13 @@ msgstr ""
 "полей.\n"
 "Прочий введённый здесь текст будет отображён дословно.\n"
 "\n"
-"<b>Пример</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") - "
-"Underhills'\n"
-"     <i>Edwin Jose</i> - личное имя, <i>von der</i> - префикс, <i>Smith</i> "
-"and <i>Weston</i> - Главная фамилия, \n"
-"     <i>and</i> - связка, <i>Wilson</i> - Отчество, <i>Dr.</i> - Титул, "
-"<i>Sr</i> - Суффикс, <i>Ed</i> - Прозвище, \n"
-"     <i>Underhills</i> - семейное прозвище, <i>Jose</i> - имя в быту.\n"
+"<b>Пример</b>: Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") - "
+"Underhills\n"
+"     <i>Edwin Jose</i>: личное имя, <i>von der</i>: префикс, <i>Smith</i> "
+"and <i>Weston</i>: Главная фамилия, \n"
+"     <i>and</i>: связка, <i>Wilson</i>: Отчество, <i>Dr.</i>: Титул, "
+"<i>Sr</i>: Суффикс, <i>Ed</i>: Прозвище, \n"
+"     <i>Underhills</i>: семейное прозвище, <i>Jose</i>: имя в быту.\n"
 
 #: ../gramps/gui/configure.py:162
 msgid " Name Editor"
@@ -12125,36 +12125,28 @@ msgid "Calendar on input"
 msgstr "Календарь при вводе"
 
 #: ../gramps/gui/configure.py:1599
-#, fuzzy
-#| msgid "Shows previous page"
 msgid "On the previous day"
-msgstr "Показывает предыдущую страницу"
+msgstr "В предыдущий день"
 
 #: ../gramps/gui/configure.py:1600
-#, fuzzy
-#| msgid "Shows the next page"
 msgid "On the next day"
-msgstr "Отображение следующей страницы"
+msgstr "На следующий день"
 
 #: ../gramps/gui/configure.py:1601
-#, fuzzy
 msgid "Only on leap years"
-msgstr "только в високосные годы"
+msgstr "Только в високосные годы"
 
 #: ../gramps/gui/configure.py:1608
-#, fuzzy
 msgid ""
 "For non leap years, anniversaries are displayed on either February 28, March "
 "1 or not at all in Gregorian calendars"
 msgstr ""
-"В григорианском календаре в невисокосные годы годовщина отображается 28 "
-"февраля, 1 марта или вообще не отображается"
+"Для невисокосных годов годовщины отображаются 28 февраля или 1 марта, либо "
+"вообще не отображаются (в григорианских календарях)"
 
 #: ../gramps/gui/configure.py:1612
-#, fuzzy
-#| msgid "Include death anniversaries"
 msgid "Show leap day anniversaries"
-msgstr "Включить годовщины смерти"
+msgstr "Показать годовщины високосного дня"
 
 #: ../gramps/gui/configure.py:1619
 msgid "Active person's name and ID"
@@ -12319,15 +12311,12 @@ msgid "Enable the spelling checker for notes."
 msgstr "Включить проверку правописания для заметок."
 
 #: ../gramps/gui/configure.py:2000
-#, fuzzy, python-format
-#| msgid ""
-#| "GtkSpell not loaded. Spell checking will not be available.\n"
-#| "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
+#, python-format
 msgid ""
 "Gspell not loaded. Spell checking will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 msgstr ""
-"Не загружен GtkSpell. Проверка правописания недоступна.\n"
+"Не загружен GSpell. Проверка правописания недоступна.\n"
 "Для его сборки для Gramps см. %(gramps_wiki_build_spell_url)s"
 
 #: ../gramps/gui/configure.py:2012
@@ -12367,16 +12356,12 @@ msgid "Show or hide the Tools icon on the toolbar."
 msgstr "Показать или скрыть значок \"Инструменты\" на панели инструментов."
 
 #: ../gramps/gui/configure.py:2067
-#, fuzzy
-#| msgid "Show Tools icon on toolbar"
 msgid "Show Addons icon on toolbar"
-msgstr "Показать значок \"Инструменты\" на панели инструментов"
+msgstr "Показать значок \"Дополнения\" на панели инструментов"
 
 #: ../gramps/gui/configure.py:2072
-#, fuzzy
-#| msgid "Show or hide the Tools icon on the toolbar."
 msgid "Show or hide the Addons icon on the toolbar."
-msgstr "Показать или скрыть значок \"Инструменты\" на панели инструментов."
+msgstr "Показать или скрыть значок \"Дополнения\" на панели инструментов."
 
 #: ../gramps/gui/configure.py:2080
 msgid "Show Preferences icon on toolbar"
@@ -12708,11 +12693,9 @@ msgstr ""
 "Он будет виден, только если ваш шрифт содержит этот символ."
 
 #: ../gramps/gui/csvdialect.py:63
-#, fuzzy
-#| msgid "Tag"
 msgctxt "character"
 msgid "Tab"
-msgstr "Метка"
+msgstr "Вкладка"
 
 #: ../gramps/gui/csvdialect.py:82
 msgid "Choose your dialect"
@@ -15430,8 +15413,6 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:96
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:89
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:73
-#, fuzzy
-#| msgid "Case sensitive:"
 msgid "Case sensitive"
 msgstr "С учётом регистра"
 
@@ -15485,29 +15466,20 @@ msgid "Delete Filter"
 msgstr "Удалить фильтр"
 
 #: ../gramps/gui/editors/objectentries.py:306
-#, fuzzy
-#| msgid "To select a place, use drag-and-drop or use the buttons"
 msgid "To select a person, use drag-and-drop or use the buttons"
-msgstr ""
-"Для выбора места пользуйтесь кнопками или перетаскиванием с помощью мыши"
+msgstr "Для выбора персоны используйте перетаскивание с помощью мыши или кнопки"
 
 #: ../gramps/gui/editors/objectentries.py:308
-#, fuzzy
-#| msgid "No place given, click button to select one"
 msgid "No person given, click button to select one"
-msgstr "Не указано место; нажмите кнопку чтобы выбрать"
+msgstr "Не указана персона, нажмите кнопку для выбора"
 
 #: ../gramps/gui/editors/objectentries.py:309
-#, fuzzy
-#| msgid "Edit Person"
 msgid "Edit person"
-msgstr "Редактировать информацию о человеке"
+msgstr "Редактировать персону"
 
 #: ../gramps/gui/editors/objectentries.py:310
-#, fuzzy
-#| msgid "Select an existing place"
 msgid "Select an existing person"
-msgstr "Выбрать существующее место"
+msgstr "Выбрать существующую персону"
 
 #: ../gramps/gui/editors/objectentries.py:311
 #: ../gramps/plugins/lib/libpersonview.py:144
@@ -15515,10 +15487,8 @@ msgid "Add a new person"
 msgstr "Добавить новое лицо"
 
 #: ../gramps/gui/editors/objectentries.py:312
-#, fuzzy
-#| msgid "Remove version"
 msgid "Remove person"
-msgstr "Удалить версию"
+msgstr "Удалить персону"
 
 #: ../gramps/gui/editors/objectentries.py:375
 msgid "To select a place, use drag-and-drop or use the buttons"
@@ -21685,13 +21655,7 @@ msgstr ""
 " %(person)s, свадьба"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:532
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "{spouse} and\n"
-#| " {person}, {nyears}"
-#| msgid_plural ""
-#| "{spouse} and\n"
-#| " {person}, {nyears}"
+#, python-brace-format
 msgid ""
 "{wife} and\n"
 " {person}, {nyears}"
@@ -22990,7 +22954,6 @@ msgstr "Распределение разницы в возрасте отца �
 
 #: ../gramps/plugins/gramplet/agestats.py:179
 #: ../gramps/plugins/gramplet/agestats.py:187
-#, fuzzy
 msgid "Diff"
 msgstr "Разница"
 
@@ -24417,10 +24380,8 @@ msgstr "Количество человек"
 #: ../gramps/plugins/gramplet/statsgramplet.py:157
 #: ../gramps/plugins/webreport/statistics.py:134
 #: ../gramps/plugins/webreport/statistics.py:244
-#, fuzzy
-#| msgid "Individuals with unknown gender"
 msgid "Individuals with other gender"
-msgstr "Лица неизвестного пола"
+msgstr "Лица другого пола"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:164
 #: ../gramps/plugins/webreport/statistics.py:139
@@ -24760,22 +24721,15 @@ msgid "Addons and \"Gramplets\""
 msgstr "Дополнения и \"грамплеты\""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:247
-#, fuzzy
-#| msgid ""
-#| "There many Addons or \"Gramplets\" that are available to assist you in "
-#| "data entry and visualizing your family tree. Many of these tools are "
-#| "already available to you. Many more are available to download and "
-#| "install.\n"
-#| "\n"
 msgid ""
 "There are many Addons or \"Gramplets\" that are available to assist you in "
 "data entry and visualizing your family tree. Many of these tools are already "
 "available to you. Many more are available to download and install.\n"
 "\n"
 msgstr ""
-"Существует множество надстроек (аддонов) или «Gramplets», которые помогут "
-"вам вводить данные и визуализировать ваше генеалогическое древо. Многие из "
-"этих инструментов уже доступны вам. Многие другие доступны для загрузки и "
+"Существует множество Дополнений или \"Gramplets\", которые помогут Вам "
+"вводить данные и визуализировать Ваше семейное древо. Многие из этих "
+"инструментов уже доступны Вам. Многие другие доступны для загрузки и "
 "установки.\n"
 "\n"
 
@@ -25220,10 +25174,10 @@ msgstr "Цвет для отображения женщин."
 #: ../gramps/plugins/graph/gvfamilylines.py:347
 #: ../gramps/plugins/graph/gvhourglass.py:512
 #: ../gramps/plugins/graph/gvrelgraph.py:1055
-#, fuzzy
-#| msgid "The color to use to display women."
 msgid "The color to use to display people who are neither men nor women."
-msgstr "Цвет для отображения женщин."
+msgstr ""
+"Цвет, используемый для отображения людей, которые не являются ни мужчинами, "
+"ни женщинами."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:352
 #: ../gramps/plugins/graph/gvhourglass.py:517
@@ -25382,26 +25336,17 @@ msgid "Ahnentafel number visible"
 msgstr "Показывать счёт поколений"
 
 #: ../gramps/plugins/graph/gvhourglass.py:536
-#, fuzzy
-#| msgid ""
-#| "Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
-#| "informations."
 msgid "Show Sosa / Sosa-Stradonitz / Ahnentafel number."
-msgstr ""
-"Показать номер Sosa / Sosa-Stradonitz / Ahnentafel под всей остальной "
-"информацией."
+msgstr "Показать номер Sosa / Sosa-Stradonitz / Ahnentafel."
 
 #: ../gramps/plugins/graph/gvhourglass.py:540
-#, fuzzy
-#| msgid "Show all events"
 msgid "Show symbols for events"
-msgstr "Отображать все события"
+msgstr "Показать символы событий"
 
 #: ../gramps/plugins/graph/gvhourglass.py:542
-#, fuzzy
 msgid "Show genealogical symbols for birth, marriage and death events."
 msgstr ""
-"Отображать генеалогические символы для событий рождения, свадьбы или смерти."
+"Отображать генеалогические символы для событий рождения, свадьбы и смерти."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:226
 #: ../gramps/plugins/textreport/indivcomplete.py:860
@@ -26400,7 +26345,6 @@ msgid "Diverse"
 msgstr "Разные"
 
 #: ../gramps/plugins/importer/importprogen.glade:1526
-#, fuzzy
 msgid "REFN"
 msgstr "REFN"
 
@@ -26515,22 +26459,14 @@ msgid "Import of vCards version %s is not supported by Gramps."
 msgstr "Импорт файлов vCard версии %s не поддерживается этой версией Gramps."
 
 #: ../gramps/plugins/importer/importvcard.py:396
-#, fuzzy
-#| msgid ""
-#| "VCard is malformed missing the compulsory N property, so there is no "
-#| "name; skip it."
 msgid ""
 "The vCard is malformed. It is missing the compulsory N property, so there is "
 "no name; skip it."
 msgstr ""
 "Неверная запись в vCard. Пропущен обязательный параметр N, значит имени нет; "
-"будет пропущено."
+"оно будет пропущено."
 
 #: ../gramps/plugins/importer/importvcard.py:405
-#, fuzzy
-#| msgid ""
-#| "VCard is malformed missing the compulsory FN property, get name from N "
-#| "alone."
 msgid ""
 "The vCard is malformed. It is missing the compulsory FN property, get name "
 "from N alone."
@@ -27347,32 +27283,22 @@ msgid "Descriptive Tags"
 msgstr "Описательные теги"
 
 #: ../gramps/plugins/lib/libmetadata.py:121
-#, fuzzy
-#| msgid "Styled Text Tags"
 msgid "Date and Time Tags"
-msgstr "Теги даты и времени"
+msgstr "Метки Даты и Времени"
 
 #: ../gramps/plugins/lib/libmetadata.py:122
-#, fuzzy
-#| msgid "People"
 msgid "People Tags"
-msgstr "Теги людей"
+msgstr "Метки Людей"
 
 #: ../gramps/plugins/lib/libmetadata.py:123
-#, fuzzy
-#| msgid "Events"
 msgid "Event Tags"
-msgstr "Теги событий"
+msgstr "Метки Событий"
 
 #: ../gramps/plugins/lib/libmetadata.py:124
-#, fuzzy
-#| msgid "Images"
 msgid "Image Tags"
-msgstr "Теги изображений"
+msgstr "Метки Изображений"
 
 #: ../gramps/plugins/lib/libmetadata.py:125
-#, fuzzy
-#| msgid "Place Information"
 msgid "Camera Information"
 msgstr "Информация о камере"
 
@@ -27381,32 +27307,24 @@ msgid "Location Tags"
 msgstr "Теги мест"
 
 #: ../gramps/plugins/lib/libmetadata.py:127
-#, fuzzy
-#| msgid "Advanced"
 msgid "Advanced Tags"
-msgstr "Дополнительные теги"
+msgstr "Дополнительные Метки"
 
 #: ../gramps/plugins/lib/libmetadata.py:128
-#, fuzzy
-#| msgid "Edit Tags"
 msgid "Rights Tags"
-msgstr "Теги авторских прав"
+msgstr "Метки Авторских прав"
 
 #: ../gramps/plugins/lib/libmetadata.py:129
 msgid "Keyword Tags"
 msgstr "Теги ключевых слов"
 
 #: ../gramps/plugins/lib/libmetadata.py:228
-#, fuzzy
-#| msgid "Namesake"
 msgid "Namespace"
 msgstr "Пространство имён"
 
 #: ../gramps/plugins/lib/libmetadata.py:229
-#, fuzzy
-#| msgid "label"
 msgid "Label"
-msgstr "Метка"
+msgstr "Надпись"
 
 #: ../gramps/plugins/lib/libmetadata.py:230
 msgid " "
@@ -31586,18 +31504,14 @@ msgid "Where to save the tiles for offline mode."
 msgstr "Каталог в который сохранять части карты для автономного режима."
 
 #: ../gramps/plugins/lib/maps/geography.py:1431
-#, fuzzy
-#| msgid ""
-#| "If you have no more space in your file system. You can remove all tiles "
-#| "placed in the above path.\n"
-#| "Be careful! If you have no internet, you'll get no map."
 msgid ""
 "If you have no more space in your file system, you can remove all tiles "
 "placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
-"Если у Вас закончилось место на диске, можно удалить сохраненный кэш карт.\n"
-"Осторожно! Без доступа к Интернету карта станет недоступна."
+"Если в Вашей файловой системе больше нет места, Вы можете удалить все "
+"кусочки карт, расположенные по указанному выше пути.\n"
+"Будьте осторожны! Если у Вас нет интернета, Вы не получите карту."
 
 #: ../gramps/plugins/lib/maps/geography.py:1441
 msgid "Zoom used when centering"
@@ -31648,26 +31562,12 @@ msgid "Select tile cache directory for offline mode"
 msgstr "Выберите каталог с кэшем карт для автономного режима"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:143
-#, fuzzy, python-format
-#| msgid "Can't create tiles cache directory %s"
+#, python-format
 msgid "Can't create tile cache directory %s"
 msgstr "Не удалось создать каталог с кэшем карт %s"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:149
-#, fuzzy, python-format
-#| msgid ""
-#| "You must verify and change the tiles cache\n"
-#| "...\n"
-#| "[geography]\n"
-#| "...\n"
-#| "path='bad/path'\n"
-#| "...\n"
-#| "in the gramps.ini file :\n"
-#| "%s\n"
-#| "\n"
-#| "Before to change the gramps.ini file, you need to close gramps\n"
-#| "\n"
-#| "The next errors will be normal"
+#, python-format
 msgid ""
 "You must verify and change the tile cache\n"
 "...\n"
@@ -32065,12 +31965,9 @@ msgid "females"
 msgstr "женщины"
 
 #: ../gramps/plugins/quickview/filterbyname.py:62
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "people with unknown gender"
 msgctxt "Filtering_on"
 msgid "people with other gender"
-msgstr "люди неизвестного пола"
+msgstr "люди другого пола"
 
 #: ../gramps/plugins/quickview/filterbyname.py:63
 msgctxt "Filtering_on"
@@ -33957,10 +33854,9 @@ msgid "Females: %d"
 msgstr "Женщины: %d"
 
 #: ../gramps/plugins/textreport/summary.py:199
-#, fuzzy, python-format
-#| msgid "Individuals with unknown gender: %d"
+#, python-format
 msgid "Individuals with other gender: %d"
-msgstr "Лица неизвестного пола: %d"
+msgstr "Лица другого пола: %d"
 
 #: ../gramps/plugins/textreport/summary.py:203
 #, python-format
@@ -34225,17 +34121,13 @@ msgstr "Показывает статус ссылок в заметках"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:35
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:36
-#, fuzzy
-#| msgid "Thumbnail"
 msgid "Gnome Thumbnailer"
-msgstr "Миниатюры Gnome"
+msgstr "Создатель Миниатюр Gnome"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:49
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:50
-#, fuzzy
-#| msgid "Thumbnail"
 msgid "Image Thumbnailer"
-msgstr "Миниатюры изображений"
+msgstr "Создатель Миниатюр изображений"
 
 #: ../gramps/plugins/tool/changenames.glade:34
 msgid ""
@@ -34352,10 +34244,9 @@ msgid ""
 msgstr ""
 "Ваше Семейное древо содержит дубликаты указателей в таблицах.\n"
 " Это плохо и может быть исправлено созданием резервной копии\n"
-"Вашего Семейного древа и импортом этой копии в пустое\n"
-"Семейное древо. Остальные проверки пропущены, инструмент\n"
-"Проверка и Исправления необходимо запустить ещё раз на новом\n"
-"Семейном древе."
+"Вашего Семейного древа и импортом этой копии в пустое Семейное\n"
+"древо. Остальные проверки пропущены, инструмент Проверка и Исправление\n"
+"необходимо запустить ещё раз на новом Семейном древе."
 
 #: ../gramps/plugins/tool/check.py:208
 msgid "Check Integrity"
@@ -35703,14 +35594,8 @@ msgid "Enable ID reordering."
 msgstr "Разрешить переупорядочивание ID."
 
 #: ../gramps/plugins/tool/reorderids.glade:1420
-#, fuzzy
-#| msgid ""
-#| "List next ID available\n"
-#| "(maynot be continuous)."
 msgid "List next ID available (may not be continuous)."
-msgstr ""
-"Список следующих доступных ID\n"
-"(не может быть непрерывным)."
+msgstr "Список следующих доступных ID (не может быть непрерывным)."
 
 #: ../gramps/plugins/tool/reorderids.glade:1423
 msgid "  Actual"
@@ -35733,14 +35618,8 @@ msgid "Change"
 msgstr "Изменить"
 
 #: ../gramps/plugins/tool/reorderids.glade:1469
-#, fuzzy
-#| msgid ""
-#| "Enable ID reordering\n"
-#| "with Start / Step sequence."
 msgid "Enable ID reordering with Start / Step sequence."
-msgstr ""
-"Включить упорядочивание ID\n"
-"c Начала / и Шагом."
+msgstr "Включить упорядочивание ID c последовательностью Начало / Шаг."
 
 #: ../gramps/plugins/tool/reorderids.glade:1481
 msgid "Start"
@@ -35763,14 +35642,8 @@ msgid "Keep"
 msgstr "Оставить"
 
 #: ../gramps/plugins/tool/reorderids.glade:1521
-#, fuzzy
-#| msgid ""
-#| "Keep IDs with alternate\n"
-#| "prefixes untouched."
 msgid "Keep IDs with alternate prefixes untouched."
-msgstr ""
-"Не изменять ID с\n"
-"нестандартным префиксом."
+msgstr "Не изменять ID с нестандартным префиксом."
 
 #: ../gramps/plugins/tool/reorderids.py:65
 msgctxt "manual"
@@ -38875,23 +38748,18 @@ msgid "Google maps API key"
 msgstr "Ключ для API карт Google"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2647
-#, fuzzy
-#| msgid "The API key used for the Google maps"
 msgid ""
 "The API key used for the Google maps.\n"
 "This key is mandatory and must be valid"
 msgstr ""
 "Ключ, используемый для API карт Google.\n"
-"Этот обязательный ключ и он должен быть действующим"
+"Этот ключ обязателен и он должен быть действующим"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2659
-#, fuzzy
-#| msgid "Google maps API key"
 msgid "How to get the API key"
-msgstr "Как получить этот ключ API"
+msgstr "Как получить ключ API"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2662
-#, fuzzy
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Google maps service must be selected."
@@ -38922,16 +38790,14 @@ msgid ""
 msgstr "Выберите, какие настройки Вы хотите иметь для страниц карт Stamen..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2695
-#, fuzzy, python-format
+#, python-format
 msgctxt "val"
 msgid "in %(inipth)s (%(val)s)"
 msgstr "в %(inipth)s (%(val)s)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2696
-#, fuzzy
-#| msgid "Dates"
 msgid "latest"
-msgstr "самые новые"
+msgstr "последние"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2698
 msgid "openlayers version to use"
@@ -39296,8 +39162,7 @@ msgid "Number of People"
 msgstr "Число людей"
 
 #: ../gramps/plugins/webreport/surnamelist.py:299
-#, fuzzy, python-format
-#| msgid "Surnames beginning with letter %s"
+#, python-format
 msgid "Surnames beginning with letter '%s' %s"
 msgstr "Фамилии на букву '%s' %s"
 
