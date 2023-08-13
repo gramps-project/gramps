@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-05 19:36+0000\n"
+"PO-Revision-Date: 2023-08-12 23:22+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -12245,22 +12245,16 @@ msgid "Calendar on input"
 msgstr "Kalender bei Eingabe"
 
 #: ../gramps/gui/configure.py:1599
-#, fuzzy
-#| msgid "on the previous day"
 msgid "On the previous day"
-msgstr "am Vortag"
+msgstr "Am Vortag"
 
 #: ../gramps/gui/configure.py:1600
-#, fuzzy
-#| msgid "on the next day"
 msgid "On the next day"
-msgstr "am nächsten Tag"
+msgstr "Am nächsten Tag"
 
 #: ../gramps/gui/configure.py:1601
-#, fuzzy
-#| msgid "only on leap years"
 msgid "Only on leap years"
-msgstr "nur in Schaltjahren"
+msgstr "Nur in Schaltjahren"
 
 #: ../gramps/gui/configure.py:1608
 msgid ""
@@ -20379,6 +20373,8 @@ msgid ""
 "Please wait for backup in progress.\n"
 "Gramps will close when complete."
 msgstr ""
+"Bitte warte auf die laufende Sicherung.\n"
+"Gramps wird nach Abschluss geschlossen."
 
 #: ../gramps/gui/viewmanager.py:1291 ../gramps/gui/viewmanager.py:1295
 msgid "Autobackup..."
