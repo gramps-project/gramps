@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-12 19:58+0000\n"
+"PO-Revision-Date: 2023-08-13 16:44+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -11873,20 +11873,14 @@ msgid "Calendar on input"
 msgstr "לוח־שנה בעת קלט"
 
 #: ../gramps/gui/configure.py:1599
-#, fuzzy
-#| msgid "on the previous day"
 msgid "On the previous day"
 msgstr "ביום הקודם"
 
 #: ../gramps/gui/configure.py:1600
-#, fuzzy
-#| msgid "on the next day"
 msgid "On the next day"
 msgstr "ביום הבא"
 
 #: ../gramps/gui/configure.py:1601
-#, fuzzy
-#| msgid "only on leap years"
 msgid "Only on leap years"
 msgstr "רק בשנים מעוברות"
 
@@ -19751,6 +19745,8 @@ msgid ""
 "Please wait for backup in progress.\n"
 "Gramps will close when complete."
 msgstr ""
+"נא להמתין בעת ביצוע הגיבוי.\n"
+"גרמפס ייסגר עם השלמת התהליך."
 
 #: ../gramps/gui/viewmanager.py:1291 ../gramps/gui/viewmanager.py:1295
 msgid "Autobackup..."
