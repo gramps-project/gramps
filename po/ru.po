@@ -25,7 +25,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
 "PO-Revision-Date: 2023-08-13 19:02+0000\n"
-"Last-Translator: Stanislav <bsv999@mail.ru>\n"
+"Last-Translator: Павел Жуков <papazukko@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
 "Language: ru\n"
@@ -18918,28 +18918,20 @@ msgid "Requires"
 msgstr "Требуются"
 
 #: ../gramps/gui/plug/_windows.py:263
-#, fuzzy
-#| msgid "Upgrade now"
 msgid "Upgrade"
-msgstr "Обновить сейчас"
+msgstr "Обновить"
 
 #: ../gramps/gui/plug/_windows.py:286
-#, fuzzy
-#| msgid "Deletion failed"
 msgid "Module installation failed"
-msgstr "Удаление не удалось"
+msgstr "Установка модуля завершилась неудачно"
 
 #: ../gramps/gui/plug/_windows.py:311
-#, fuzzy
-#| msgid "Retirement"
 msgid "Requirements"
-msgstr "Уход на пенсию"
+msgstr "Требования"
 
 #: ../gramps/gui/plug/_windows.py:347
-#, fuzzy
-#| msgid "Addon Name"
 msgid "Addon Manager"
-msgstr "Название модуля"
+msgstr "Менеджер дополнений"
 
 #: ../gramps/gui/plug/_windows.py:355 ../gramps/plugins/gramplet/leak.py:114
 msgid "Refresh"
@@ -18957,16 +18949,12 @@ msgid "All"
 msgstr "Все"
 
 #: ../gramps/gui/plug/_windows.py:450
-#, fuzzy
-#| msgid "Setting"
 msgid "Settings"
-msgstr "Применяются настройки"
+msgstr "Настройки"
 
 #: ../gramps/gui/plug/_windows.py:453
-#, fuzzy
-#| msgid "Every object"
 msgid "Projects"
-msgstr "Все объекты"
+msgstr "Проекты"
 
 #: ../gramps/gui/plug/_windows.py:473
 msgid "Loading..."
