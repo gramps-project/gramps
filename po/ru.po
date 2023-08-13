@@ -25,7 +25,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
 "PO-Revision-Date: 2023-08-13 20:49+0000\n"
-"Last-Translator: Stanislav <bsv999@mail.ru>\n"
+"Last-Translator: Павел Жуков <papazukko@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
 "Language: ru\n"
@@ -13233,20 +13233,16 @@ msgid "Tools"
 msgstr "Инструменты"
 
 #: ../gramps/gui/displaystate.py:422
-#, fuzzy
-#| msgid "Plugin Manager"
 msgid "Open Addon Manager"
-msgstr "Менеджер дополнений"
+msgstr "Открыть Менеджер дополнений"
 
 #: ../gramps/gui/displaystate.py:423 ../gramps/gui/plug/_windows.py:447
 msgid "Addons"
 msgstr "Дополнения"
 
 #: ../gramps/gui/displaystate.py:428
-#, fuzzy
-#| msgid "Preferences"
 msgid "Open Preferences"
-msgstr "Настройки"
+msgstr "Открыть Настройки"
 
 #: ../gramps/gui/displaystate.py:449
 #: ../gramps/plugins/gramplet/persondetails.py:181
@@ -14211,10 +14207,8 @@ msgid "From"
 msgstr "От"
 
 #: ../gramps/gui/editors/editdate.py:83
-#, fuzzy
-#| msgid "Top"
 msgid "To"
-msgstr "Верх"
+msgstr "До"
 
 #: ../gramps/gui/editors/editdate.py:84
 msgid "Span"
@@ -14973,10 +14967,8 @@ msgid "_Female"
 msgstr "Женский"
 
 #: ../gramps/gui/editors/editperson.py:1212
-#, fuzzy
-#| msgid "Other"
 msgid "_Other"
-msgstr "Иное"
+msgstr "_Иное"
 
 #: ../gramps/gui/editors/editperson.py:1213
 msgid "_Unknown"
@@ -18135,10 +18127,8 @@ msgid "_About"
 msgstr "О _программе"
 
 #: ../gramps/gui/grampsgui.py:58
-#, fuzzy
-#| msgid "Add Partner..."
 msgid "_Addon Manager..."
-msgstr "Добавить партнёра..."
+msgstr "_Менеджер дополнений..."
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Bookmarks"
@@ -18618,10 +18608,8 @@ msgstr "%(key)s:\t%(value)s"
 #: ../gramps/gui/merge/mergeperson.py:65
 #: ../gramps/gui/views/treemodels/peoplemodel.py:109
 #: ../gramps/plugins/webreport/person.py:537
-#, fuzzy
-#| msgid "Mother"
 msgid "other"
-msgstr "Мать"
+msgstr "иное"
 
 #: ../gramps/gui/merge/mergeperson.py:103
 msgid "Merge People"
@@ -21233,22 +21221,16 @@ msgid ""
 msgstr "Подавлять ли отступы, резервирующие место для неизвестных лиц"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:875
-#, fuzzy
-#| msgid "Show dates"
 msgid "Show Index"
-msgstr "Показывать даты"
+msgstr "Показывать индекс"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:876
-#, fuzzy
-#| msgid "Display Tip of the Day"
 msgid "Display index of each person"
-msgstr "Показывать совет дня"
+msgstr "Показывать индекс для каждого человека"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:880
-#, fuzzy
-#| msgid "Starting"
 msgid "Start Index"
-msgstr "Начинаю"
+msgstr "Начальный индекс"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:881
 msgid "The start index"
@@ -21643,16 +21625,13 @@ msgstr[1] "{person}, {age} года"
 msgstr[2] "{person}, {age} лет"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:519
-#, fuzzy, python-format
-#| msgid ""
-#| "%(spouse)s and\n"
-#| " %(person)s, wedding"
+#, python-format
 msgid ""
 "%(wife)s and\n"
 " %(person)s, wedding"
 msgstr ""
-"%(spouse)s и\n"
-" %(person)s, свадьба"
+"%(wife) и\n"
+" %(person), свадьба"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:532
 #, python-brace-format
@@ -22226,10 +22205,8 @@ msgstr ""
 "Вы можете настроить шрифт и цвет для каждого поколения ва редакторе стилей"
 
 #: ../gramps/plugins/drawreport/fanchart.py:853
-#, fuzzy
-#| msgid "Flip name on the left of the fan"
 msgid "Flip names that are on the bottom half of the fan"
-msgstr "Разворачивать имена относительно левого края карты"
+msgstr "Разворачивать имена в нижнем полукруге"
 
 #: ../gramps/plugins/drawreport/fanchart.py:856
 msgid "Flip names for generations 2, 3 and 4 i.e. those found in circles"
