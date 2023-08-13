@@ -25,7 +25,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
 "PO-Revision-Date: 2023-08-13 19:50+0000\n"
-"Last-Translator: Stanislav <bsv999@mail.ru>\n"
+"Last-Translator: Павел Жуков <papazukko@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
 "Language: ru\n"
@@ -9154,10 +9154,8 @@ msgstr "Зачеркнутый"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:76
 #: ../gramps/gui/widgets/styledtexteditor.py:84
-#, fuzzy
-#| msgid "Superscript"
 msgid "Subscript"
-msgstr "Верхний индекс"
+msgstr "Нижний индекс"
 
 #: ../gramps/gen/lib/surname.py:94 ../gramps/gen/lib/surname.py:97
 #: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/clipboard.py:610
@@ -9906,7 +9904,7 @@ msgstr "ДанноеПрозвищеФамилия"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:78
 msgid "Auto"
-msgstr ""
+msgstr "Авто"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:79
 msgid "Call Name Only"
@@ -10333,16 +10331,12 @@ msgid "Select the format to display places"
 msgstr "Выберите формат отображения местоположений"
 
 #: ../gramps/gen/plug/report/stdoptions.py:425 ../gramps/gui/configure.py:1445
-#, fuzzy
-#| msgid "Date format"
 msgid "Coordinates format"
-msgstr "Формат дат"
+msgstr "Формат координат"
 
 #: ../gramps/gen/plug/report/stdoptions.py:428
-#, fuzzy
-#| msgid "Select the format to display names"
 msgid "Select the format to display coordinates"
-msgstr "Выберите формат отображения имён"
+msgstr "Выберите формат отображения координат"
 
 #: ../gramps/gen/plug/report/utils.py:179
 #: ../gramps/plugins/textreport/indivcomplete.py:946
@@ -10994,10 +10988,8 @@ msgid "RT90"
 msgstr "RT90"
 
 #: ../gramps/gen/utils/place.py:99
-#, fuzzy
-#| msgid "Delete the selected citation"
 msgid "Degree, minutes, seconds notation"
-msgstr "Удалить выделенную цитату"
+msgstr "Запись градусов, минут и секунд"
 
 #: ../gramps/gen/utils/place.py:100
 msgid "Degree, minutes, seconds notation with :"
@@ -11005,11 +10997,11 @@ msgstr "Градусы, минуты и секунды с:"
 
 #: ../gramps/gen/utils/place.py:101
 msgid "Degree notation, 4 decimals"
-msgstr ""
+msgstr "Градусы, 4 десятичных знака"
 
 #: ../gramps/gen/utils/place.py:102
 msgid "Degree notation, 8 decimals (precision like ISO-DMS)"
-msgstr ""
+msgstr "Градусы, 8 десятичных знаков (точность по ISO-DMS)"
 
 #: ../gramps/gen/utils/place.py:103
 msgid "Output format for the Swedish coordinate system RT90"
@@ -11021,7 +11013,7 @@ msgstr "Модули Python"
 
 #: ../gramps/gen/utils/requirements.py:150
 msgid "GObject introspection modules"
-msgstr ""
+msgstr "Модули самопроверки GObject"
 
 #: ../gramps/gen/utils/requirements.py:157
 msgid "Executables"
@@ -11053,11 +11045,9 @@ msgstr "неизвестен"
 
 #: ../gramps/gen/utils/string.py:53 ../gramps/gui/editors/editperson.py:366
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:112
-#, fuzzy
-#| msgid "Mother"
 msgctxt "gender"
 msgid "other"
-msgstr "Мать"
+msgstr "иное"
 
 #: ../gramps/gen/utils/string.py:58
 msgid "Invalid"
@@ -11468,26 +11458,20 @@ msgstr ""
 #: ../gramps/grampsapp.py:386 ../gramps/grampsapp.py:403
 #: ../gramps/grampsapp.py:414 ../gramps/grampsapp.py:436
 #: ../gramps/grampsapp.py:444
-#, fuzzy
-#| msgid "Not found"
 msgid "not found"
-msgstr "Не найдено"
+msgstr "не найдено"
 
 #: ../gramps/grampsapp.py:365
-#, fuzzy
-#| msgid "'Ghostscript' is not installed"
 msgid "not found because exiv2 is not installed"
-msgstr "'Ghostscript' не установлен"
+msgstr "не найдено, потому что не установлен exiv2"
 
 #: ../gramps/grampsapp.py:401
 msgid "Installed but does not supply version"
 msgstr "Установлен, но не предоставляет версию"
 
 #: ../gramps/grampsapp.py:422
-#, fuzzy
-#| msgid "Unstable"
 msgid "installed"
-msgstr "Нестабильный"
+msgstr "установлено"
 
 #: ../gramps/grampsapp.py:605 ../gramps/grampsapp.py:614
 #: ../gramps/grampsapp.py:669
@@ -11593,10 +11577,8 @@ msgstr "Буфер обмена"
 
 #: ../gramps/gui/clipboard.py:1380 ../gramps/gui/configure.py:219
 #: ../gramps/gui/editors/filtereditor.py:1236 ../gramps/gui/views/tags.py:417
-#, fuzzy
-#| msgid "Change is not immediate"
 msgid "Any changes are saved immediately"
-msgstr "Изменение требует перезапуска"
+msgstr "Все изменения сохраняются немедленно"
 
 #: ../gramps/gui/clipboard.py:1522 ../gramps/gui/plug/quick/_quicktable.py:154
 #, python-format
