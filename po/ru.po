@@ -24,8 +24,8 @@ msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-13 19:09+0000\n"
-"Last-Translator: Павел Жуков <papazukko@gmail.com>\n"
+"PO-Revision-Date: 2023-08-13 19:50+0000\n"
+"Last-Translator: Stanislav <bsv999@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
 "Language: ru\n"
@@ -5444,10 +5444,8 @@ msgid "People who are neither male nor female"
 msgstr "Лица, не относящиеся ни к мужскому, ни к женскому полу"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:49
-#, fuzzy
-#| msgid "Matches all people with unknown gender"
 msgid "Matches all people with other gender"
-msgstr "Выбирает всех людей с неизвестным полом"
+msgstr "Выбирает всех людей с другим полом"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:48
 msgid "Number of relationships:"
@@ -6967,7 +6965,6 @@ msgstr "Агентство"
 #: ../gramps/plugins/gramplet/agestats.py:171
 #: ../gramps/plugins/gramplet/events.py:106
 #: ../gramps/plugins/quickview/ageondate.py:54
-#, fuzzy
 msgid "Age"
 msgstr "Возраст"
 
@@ -7337,10 +7334,8 @@ msgid "from"
 msgstr "от"
 
 #: ../gramps/gen/lib/date.py:2004
-#, fuzzy
-#| msgid "Stop"
 msgid "to"
-msgstr "Стоп"
+msgstr "к"
 
 #: ../gramps/gen/lib/date.py:2005
 msgid "span"
@@ -7752,10 +7747,8 @@ msgstr "Альтернативный брак"
 
 # LDS
 #: ../gramps/gen/lib/eventtype.py:236
-#, fuzzy
-#| msgid "Stillborn"
 msgid "Stillbirth"
-msgstr "Мертворождённый"
+msgstr "Мёртворождение"
 
 #: ../gramps/gen/lib/eventtype.py:240
 #: ../gramps/plugins/drawreport/ancestortree.py:71
@@ -7994,12 +7987,9 @@ msgid "annul."
 msgstr "аннул."
 
 #: ../gramps/gen/lib/eventtype.py:286
-#, fuzzy
-#| msgctxt "Will abbreviation"
-#| msgid "will."
 msgctxt "Stillbirth abbreviation"
 msgid "still."
-msgstr "завещ."
+msgstr "мёрт."
 
 #: ../gramps/gen/lib/family.py:163
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:61
@@ -8583,10 +8573,8 @@ msgid "Research"
 msgstr "Исследование"
 
 #: ../gramps/gen/lib/notetype.py:79
-#, fuzzy
-#| msgid "Analyzing names"
 msgid "Analysis"
-msgstr "Анализирую имена"
+msgstr "Анализ"
 
 #: ../gramps/gen/lib/notetype.py:80
 msgid "Transcript"
@@ -9388,7 +9376,7 @@ msgstr "Генератор документов"
 
 #: ../gramps/gen/plug/_pluginreg.py:121
 msgid "Plugin lib"
-msgstr "Библиотека модулей расширения"
+msgstr "Библиотека Модулей расширения"
 
 #: ../gramps/gen/plug/_pluginreg.py:122
 msgid "Map service"
@@ -9421,16 +9409,12 @@ msgid "Rule"
 msgstr "Правило"
 
 #: ../gramps/gen/plug/_pluginreg.py:129
-#, fuzzy
-#| msgid "Thumbnail"
 msgid "Thumbnailer"
-msgstr "Миниатюра"
+msgstr "Создатель миниатюр"
 
 #: ../gramps/gen/plug/_pluginreg.py:130 ../gramps/gui/configure.py:1635
-#, fuzzy
-#| msgid "Citation Information"
 msgid "Citation formatter"
-msgstr "Информация о цитате"
+msgstr "Форматирование цитат"
 
 #: ../gramps/gen/plug/_pluginreg.py:617
 #: ../gramps/plugins/gramplet/faqgramplet.py:176
@@ -9445,7 +9429,8 @@ msgstr "Разное"
 #: ../gramps/gen/plug/_pluginreg.py:1401
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
-msgstr "ОШИБКА: Не удаётся прочесть файл регистрации модуля %(filename)s"
+msgstr ""
+"ОШИБКА: Не удаётся прочесть файл регистрации модуля расширения %(filename)s"
 
 #: ../gramps/gen/plug/_pluginreg.py:1370
 #, python-format
@@ -9453,8 +9438,8 @@ msgid ""
 "WARNING: Plugin %(plugin_name)s has no translation for any of your "
 "configured languages, using US English instead"
 msgstr ""
-"ВНИМАНИЕ: Модуль %(plugin_name)s не переведён ни на один из языков, которые "
-"указаны у Вас в настройках, будет использован английский язык"
+"ВНИМАНИЕ: Модуль расширения %(plugin_name)s не переведён ни на один из "
+"языков, которые указаны у Вас в настройках, будет использован английский язык"
 
 #: ../gramps/gen/plug/_pluginreg.py:1419
 #, python-format
@@ -9912,32 +9897,24 @@ msgid "Surname Given Nickname"
 msgstr "Фамилия, произошедшая от прозвища"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:73
-#, fuzzy
-#| msgid "Surname Given Nickname"
 msgid "Surname, Given Nickname"
-msgstr "Фамилия, произошедшая от прозвища"
+msgstr "Фамилия, Данное Прозвище"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:74
-#, fuzzy
-#| msgid "Given Nickname Surname"
 msgid "GivenNicknameSurname"
-msgstr "Прозвище, произошедшее от фамилии"
+msgstr "ДанноеПрозвищеФамилия"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:78
 msgid "Auto"
 msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:79
-#, fuzzy
-#| msgid "Call Name"
 msgid "Call Name Only"
-msgstr "Бытовое имя"
+msgstr "Бытовое имя только"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:80
-#, fuzzy
-#| msgid "Given Name"
 msgid "Whole Given Name"
-msgstr "Имя"
+msgstr "Полное Данное Имя"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:85
 msgid "Above"
@@ -10066,6 +10043,9 @@ msgid ""
 "Select the portion of the given name to be marked as preferred. Auto sets "
 "the call name if one exists, otherwise the whole given name."
 msgstr ""
+"Выберите часть имени, которую нужно пометить как предпочтительную. "
+"Автоматически устанавливается Прозвище, если оно существует. В противном "
+"случае — полное имя."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:225
 msgid "Position of marriage information."
@@ -10994,27 +10974,22 @@ msgid "%(west_longitude)s W"
 msgstr "%(west_longitude)s З"
 
 #: ../gramps/gen/utils/place.py:83
-#, fuzzy
 msgid "DEG"
-msgstr "DEG"
+msgstr "ГРД"
 
 #: ../gramps/gen/utils/place.py:85
-#, fuzzy
 msgid "DEG-:"
-msgstr "DEG-:"
+msgstr "ГРД-:"
 
 #: ../gramps/gen/utils/place.py:87
-#, fuzzy
 msgid "D.D4"
-msgstr "D.D4"
+msgstr "Г.Г4"
 
 #: ../gramps/gen/utils/place.py:89
-#, fuzzy
 msgid "D.D8"
-msgstr "D.D8"
+msgstr "Г.Г8"
 
 #: ../gramps/gen/utils/place.py:91
-#, fuzzy
 msgid "RT90"
 msgstr "RT90"
 
@@ -11026,7 +11001,7 @@ msgstr "Удалить выделенную цитату"
 
 #: ../gramps/gen/utils/place.py:100
 msgid "Degree, minutes, seconds notation with :"
-msgstr ""
+msgstr "Градусы, минуты и секунды с:"
 
 #: ../gramps/gen/utils/place.py:101
 msgid "Degree notation, 4 decimals"
@@ -11037,12 +11012,10 @@ msgid "Degree notation, 8 decimals (precision like ISO-DMS)"
 msgstr ""
 
 #: ../gramps/gen/utils/place.py:103
-#, fuzzy
 msgid "Output format for the Swedish coordinate system RT90"
 msgstr "Формат вывода для шведской системы координат RT90"
 
 #: ../gramps/gen/utils/requirements.py:143
-#, fuzzy
 msgid "Python modules"
 msgstr "Модули Python"
 
@@ -11051,10 +11024,8 @@ msgid "GObject introspection modules"
 msgstr ""
 
 #: ../gramps/gen/utils/requirements.py:157
-#, fuzzy
-#| msgid "_Execute"
 msgid "Executables"
-msgstr "З_апустить"
+msgstr "Исполняемые файлы"
 
 #: ../gramps/gen/utils/string.py:50 ../gramps/gui/editors/editperson.py:364
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:110
@@ -12038,7 +12009,7 @@ msgstr "Не выводить всплывающие сообщения об а�
 
 #: ../gramps/gui/configure.py:1041
 msgid "Show plugin status dialog on plugin load error"
-msgstr "Показывать статус модулей при ошибках загрузки"
+msgstr "Показывать статус модулей расширения при ошибках загрузки"
 
 #: ../gramps/gui/configure.py:1047
 msgid "Warnings"
@@ -18140,15 +18111,6 @@ msgid "Available Gramps Updates for Addons"
 msgstr "Доступны обновления для дополнений"
 
 #: ../gramps/gui/glade/updateaddons.glade:89
-#, fuzzy
-#| msgid ""
-#| "Gramps comes with a core set of plugins which provide all of the "
-#| "necessary features. However, you can extend this functionality with "
-#| "additional Addons. These addons provide reports, listings, views, "
-#| "gramplets, and more. Here you can select among the available extra "
-#| "addons, they will be retrieved from the internet off of the Gramps "
-#| "website, and installed locally on your computer. If you close this dialog "
-#| "now, you can install addons later from the menu under Edit -> Preferences."
 msgid ""
 "Gramps comes with a core set of plugins which provide all of the necessary "
 "features. However, you can extend this functionality with additional Addons. "
@@ -18158,13 +18120,13 @@ msgid ""
 "If you close this dialog now, you can install addons later from the menu "
 "under Edit -> Addon Manager."
 msgstr ""
-"Grapms поставляется с набором модулей, которые обеспечивают работу всех "
-"необходимых функций. Однако, Вы можете расширить набор доступных функций с "
-"помощью дополнительных модулей. Эти модули добавляют новые отчёты, списки, "
-"виды, грамплеты, и т.д. Ниже можете выбрать из списка доступных модулей. "
-"Выбранные модули будут загружены через интернет со страницы Gramps и "
-"установлены на Вашем компьютере. Если закроете это окно, то позжеустановить "
-"новые модули можно через меню Правка -> Настройки."
+"Grapms поставляется с набором модулей расширения, которые обеспечивают "
+"работу всех необходимых функций. Однако, Вы можете расширить набор доступных "
+"функций с помощью дополнительных модулей. Эти модули добавляют новые отчёты, "
+"списки, виды, грамплеты, и т.д. Ниже можете выбрать из списка доступных "
+"модулей. Выбранные модули будут загружены через интернет со страницы Gramps "
+"и установлены на Вашем компьютере. Если закроете это окно, то "
+"позжеустановить новые модули можно через меню Правка -> Менеджер дополнений."
 
 #: ../gramps/gui/glade/updateaddons.glade:105
 msgid "_Select All"
@@ -18279,7 +18241,7 @@ msgstr "_Навигатор"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Plugin Manager"
-msgstr "_Менеджер дополнений"
+msgstr "_Менеджер Модулей расширения"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Preferences..."
@@ -19018,19 +18980,15 @@ msgstr "Проверить дополнения на наличие обновл
 
 #: ../gramps/gui/plug/_windows.py:720
 msgid "New Project"
-msgstr "Новый проект"
+msgstr "Новый Проект"
 
 #: ../gramps/gui/plug/_windows.py:722
-#, fuzzy
-#| msgid "Edit Person"
 msgid "Edit Project"
-msgstr "Редактировать информацию о человеке"
+msgstr "Редактировать Проект"
 
 #: ../gramps/gui/plug/_windows.py:730
-#, fuzzy
-#| msgid "Preferred name"
 msgid "Project name"
-msgstr "Предпочитаемое имя"
+msgstr "Название Проекта"
 
 #: ../gramps/gui/plug/_windows.py:796
 msgid "Checking Addons Failed"
@@ -19073,7 +19031,7 @@ msgstr "Видимый"
 
 #: ../gramps/gui/plug/_windows.py:861
 msgid "Plugin Manager"
-msgstr "Менеджер дополнений"
+msgstr "Менеджер Модулей расширения"
 
 #: ../gramps/gui/plug/_windows.py:913 ../gramps/gui/plug/_windows.py:971
 msgid "Info"
@@ -19089,7 +19047,7 @@ msgstr "Загрузить"
 
 #: ../gramps/gui/plug/_windows.py:931
 msgid "Registered Plugins"
-msgstr "Зарегистрированные модули"
+msgstr "Зарегистрированные Модули расширения"
 
 #: ../gramps/gui/plug/_windows.py:950
 msgid "Loaded"
@@ -19107,7 +19065,7 @@ msgstr "Сообщение"
 
 #: ../gramps/gui/plug/_windows.py:990
 msgid "Loaded Plugins"
-msgstr "Загруженные модули"
+msgstr "Загруженные Модули расширения"
 
 #: ../gramps/gui/plug/_windows.py:1012
 msgid "Addon Name"
@@ -19181,7 +19139,7 @@ msgstr "OK"
 
 #: ../gramps/gui/plug/_windows.py:1479
 msgid "Plugin name"
-msgstr "Название модуля расширения"
+msgstr "Название Модуля расширения"
 
 #: ../gramps/gui/plug/_windows.py:1482
 msgid "Authors"
@@ -19198,7 +19156,7 @@ msgstr "Подробности"
 
 #: ../gramps/gui/plug/_windows.py:1542
 msgid "Plugin Error"
-msgstr "Ошибка расширения"
+msgstr "Ошибка Модуля расширения"
 
 #: ../gramps/gui/plug/_windows.py:1611
 msgid "_Execute"
@@ -20192,7 +20150,7 @@ msgstr "Нет семейного древа"
 
 #: ../gramps/gui/viewmanager.py:612
 msgid "Registering plugins..."
-msgstr "Регистрация модулей..."
+msgstr "Регистрация модулей расширения..."
 
 #: ../gramps/gui/viewmanager.py:619
 msgid "Ready"
@@ -20252,6 +20210,8 @@ msgid ""
 "Please wait for backup in progress.\n"
 "Gramps will close when complete."
 msgstr ""
+"Подождите, пока идёт резервное копирование.\n"
+"Gramps закроется по его завершении."
 
 #: ../gramps/gui/viewmanager.py:1291 ../gramps/gui/viewmanager.py:1295
 msgid "Autobackup..."
@@ -20283,16 +20243,16 @@ msgstr ""
 "\n"
 "%(error_msg)s\n"
 "\n"
-"Если не можете устранить причину сами, то сообщите об ошибке по адресу "
+"Если Вы не можете устранить причину сами, то сообщите об ошибке по адресу "
 "%(gramps_bugtracker_url)s, либо свяжитесь с автором вида "
 "(%(firstauthoremail)s).\n"
 "\n"
-"Если не хотите, чтобы Gramps пыталась загрузить этот вид в следующий раз, "
-"спрячьте его, с помощью «Справка / Менеджер дополнений»."
+"Если Вы не хотите, чтобы Gramps пыталась загрузить этот вид снова, скройте "
+"его используя Менеджер Модулей расширения с меню «Справка»."
 
 #: ../gramps/gui/viewmanager.py:1704
 msgid "Failed Loading Plugin"
-msgstr "Ошибка загрузки модуля"
+msgstr "Ошибка загрузки Модуля расширения"
 
 #: ../gramps/gui/viewmanager.py:1706
 #, python-format
@@ -20308,16 +20268,16 @@ msgid ""
 "If you do not want Gramps to try and load this plugin again, you can hide it "
 "by using the Plugin Manager on the Help menu."
 msgstr ""
-"Модуль %(name)s дал сбой при загрузке.\n"
+"Модуль расширения %(name)s дал сбой при загрузке.\n"
 "\n"
 "%(error_msg)s\n"
 "\n"
-"Если не можете устранить причину сами, то сообщите об ошибке по адресу "
+"Если Вы не можете устранить причину сами, то сообщите об ошибке по адресу "
 "%(gramps_bugtracker_url)s, либо свяжитесь с автором модуля "
 "(%(firstauthoremail)s).\n"
 "\n"
-"Если не хотите, чтобы Gramps пыталась загрузить этот модуль в следующий раз, "
-"спрячьте его, с помощью «Справка / Менеджер дополнений»."
+"Если Вы не хотите, чтобы Gramps пыталась загрузить этот модуль снова, "
+"скройте его используя Менеджер Модулей расширений в меню «Справка»."
 
 #: ../gramps/gui/viewmanager.py:1802
 msgid "Gramps XML Backup"
@@ -22335,6 +22295,8 @@ msgstr "Разворачивать имена относительно лево�
 #: ../gramps/plugins/drawreport/fanchart.py:856
 msgid "Flip names for generations 2, 3 and 4 i.e. those found in circles"
 msgstr ""
+"Перевернуть имена для поколений 2, 3 и 4, то есть те, которые находятся в "
+"кругах"
 
 #: ../gramps/plugins/drawreport/fanchart.py:912
 #, python-format
@@ -34908,7 +34870,7 @@ msgstr "Генерируются даты"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:255
 msgid "Date Test Plugin"
-msgstr "Модуль проверки дат"
+msgstr "Модуль расширения Проверки дат"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:260
 msgid "Pass"
