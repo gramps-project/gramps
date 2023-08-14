@@ -217,7 +217,7 @@ class AddonRow(Gtk.ListBoxRow):
         hbox.set_spacing(6)
         lozenge = self.__create_lozenge(_("Project"), addon["_p"])
         hbox.pack_start(lozenge, False, False, 0)
-        lozenge = self.__create_lozenge(_("Type"), addon["t"])
+        lozenge = self.__create_lozenge(_("Type"), PTYPE_STR[addon["t"]])
         hbox.pack_start(lozenge, False, False, 0)
         lozenge = self.__create_lozenge(_("Audience"), AUDIENCETEXT[addon["a"]])
         hbox.pack_start(lozenge, False, False, 0)
@@ -390,47 +390,33 @@ class AddonManager(ManagedWindow):
         self.project_combo = Gtk.ComboBoxText()
         self.project_combo.set_entry_text_column(0)
         self.project_combo.connect("changed", self.__combo_changed)
-        self.project_combo.append_text(_("All"))
+        self.project_combo.append_text(_("All projects"))
         for project in self.projects:
             self.project_combo.append_text(project[0])
         self.project_combo.set_active(0)
         hbox.pack_start(self.project_combo, False, False, 0)
 
-        self.type_combo = Gtk.ComboBoxText()
-        self.type_combo.set_entry_text_column(0)
-        self.type_combo.connect("changed", self.__combo_changed)
-        self.type_combo.append_text(_("All"))
-        for typestr in PTYPE_STR.values():
-            self.type_combo.append_text(typestr)
-        self.type_combo.set_active(0)
+        type_store = Gtk.ListStore(int, str)
+        type_store.append([-1, _("All types")])
+        entries = list(PTYPE_STR.items())
+        for entry in sorted(entries, key=lambda item: item[1]):
+            type_store.append(entry)
+        self.type_combo = self.__create_filter_combo(type_store, 0)
         hbox.pack_start(self.type_combo, False, False, 0)
 
         audience_store = Gtk.ListStore(int, str)
-        audience_store.append([-1, _("All")])
+        audience_store.append([-1, _("All audiences")])
         for key, value in AUDIENCETEXT.items():
             audience_store.append([key, value])
-        self.audience_combo = Gtk.ComboBox()
-        self.audience_combo.set_model(audience_store)
-        self.audience_combo.set_entry_text_column(1)
-        self.audience_combo.connect("changed", self.__combo_changed)
-        self.audience_combo.set_active(1)
-        renderer_text = Gtk.CellRendererText()
-        self.audience_combo.pack_start(renderer_text, True)
-        self.audience_combo.add_attribute(renderer_text, "text", 1)
+        self.audience_combo = self.__create_filter_combo(audience_store, 1)
         hbox.pack_start(self.audience_combo, False, False, 0)
 
         status_store = Gtk.ListStore(int, str)
-        status_store.append([-1, _("All")])
-        for key, value in STATUSTEXT.items():
-            status_store.append([key, value])
-        self.status_combo = Gtk.ComboBox()
-        self.status_combo.set_model(status_store)
-        self.status_combo.set_entry_text_column(1)
-        self.status_combo.connect("changed", self.__combo_changed)
-        self.status_combo.set_active(4)
-        renderer_text = Gtk.CellRendererText()
-        self.status_combo.pack_start(renderer_text, True)
-        self.status_combo.add_attribute(renderer_text, "text", 1)
+        status_store.append([-1, _("All statuses")])
+        entries = list(STATUSTEXT.items())
+        for entry in sorted(entries, reverse=True):
+            status_store.append(entry)
+        self.status_combo = self.__create_filter_combo(status_store, 1)
         hbox.pack_start(self.status_combo, False, False, 0)
 
         clear = Gtk.Button.new_from_icon_name("edit-clear", Gtk.IconSize.BUTTON)
@@ -463,6 +449,20 @@ class AddonManager(ManagedWindow):
         self.show()
 
         self.refresh()
+
+    def __create_filter_combo(self, store, default):
+        """
+        Create a ComboBox for filters.
+        """
+        combo = Gtk.ComboBox()
+        combo.set_model(store)
+        combo.set_entry_text_column(1)
+        combo.connect("changed", self.__combo_changed)
+        combo.set_active(default)
+        renderer_text = Gtk.CellRendererText()
+        combo.pack_start(renderer_text, True)
+        combo.add_attribute(renderer_text, "text", 1)
+        return combo
 
     def refresh(self):
         """
@@ -550,16 +550,18 @@ class AddonManager(ManagedWindow):
         Filter the addons list according to the user selection.
         """
         search_text = self.search.get_text()
-        type_text = self.type_combo.get_active_text()
         project_text = self.project_combo.get_active_text()
+        type_iter = self.type_combo.get_active_iter()
         audience_iter = self.audience_combo.get_active_iter()
         status_iter = self.status_combo.get_active_iter()
-        if type_text != _("All"):
-            if row.addon["t"] != type_text:
-                return False
-        if project_text != _("All"):
+
+        if project_text != _("All projects"):
             if row.addon["_p"] != project_text:
                 return False
+        model = self.type_combo.get_model()
+        value = model.get_value(type_iter, 0)
+        if value != -1 and row.addon["t"] != value:
+            return False
         model = self.audience_combo.get_model()
         value = model.get_value(audience_iter, 0)
         if value != -1 and row.addon["a"] != value:
@@ -1985,7 +1987,7 @@ class UpdateAddons(ManagedWindow):
             # Translators: needed for French, ignore otherwise
             category = _("%(str1)s: %(str2)s") % {
                 "str1": status,
-                "str2": _(plugin_dict["t"]),
+                "str2": PTYPE_STR[plugin_dict["t"]],
             }
             if last_category != category:
                 last_category = category
@@ -1995,7 +1997,7 @@ class UpdateAddons(ManagedWindow):
             iter = self.list.add(
                 [
                     False,  # initially selected?
-                    "%s %s" % (status, _(plugin_dict["t"])),
+                    "%s %s" % (status, PTYPE_STR[plugin_dict["t"]]),
                     "%s (%s)" % (plugin_dict["n"], plugin_dict["v"]),
                     plugin_dict["d"],
                     plugin_url,
@@ -2106,7 +2108,7 @@ class UpdateAddons(ManagedWindow):
                         count,
                     ).format(number_of=count),
                     _(
-                        "If you have installed a 'Gramps View', you will need to restart Gramps."
+                        "If you have installed a 'View', you will need to restart Gramps."
                     ),
                 ),
                 parent=self.parent_window,
