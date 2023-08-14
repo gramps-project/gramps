@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-12 23:22+0000\n"
+"PO-Revision-Date: 2023-08-14 17:08+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -9844,16 +9844,12 @@ msgid "Auto"
 msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:79
-#, fuzzy
-#| msgid "Call Name"
 msgid "Call Name Only"
-msgstr "Upotrebno ime"
+msgstr "Samo upotrebno ime"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:80
-#, fuzzy
-#| msgid "Given Name"
 msgid "Whole Given Name"
-msgstr "Ime"
+msgstr "Cijelo ime"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:85
 msgid "Above"
@@ -10267,16 +10263,12 @@ msgid "Select the format to display places"
 msgstr "Odaberi format za prikaz mjesta"
 
 #: ../gramps/gen/plug/report/stdoptions.py:425 ../gramps/gui/configure.py:1445
-#, fuzzy
-#| msgid "Date format"
 msgid "Coordinates format"
-msgstr "Format datuma"
+msgstr "Format koordinata"
 
 #: ../gramps/gen/plug/report/stdoptions.py:428
-#, fuzzy
-#| msgid "Select the format to display names"
 msgid "Select the format to display coordinates"
-msgstr "Odaberi format za prikaz imena"
+msgstr "Odaberi format za prikaz koordinata"
 
 #: ../gramps/gen/plug/report/utils.py:179
 #: ../gramps/plugins/textreport/indivcomplete.py:946
