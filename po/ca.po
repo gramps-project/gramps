@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-05 19:36+0000\n"
+"PO-Revision-Date: 2023-08-14 17:08+0000\n"
 "Last-Translator: Arnau Llovet Vidal <arnaullv@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ca/>\n"
@@ -9499,16 +9499,12 @@ msgid "Rule"
 msgstr "Regla"
 
 #: ../gramps/gen/plug/_pluginreg.py:129
-#, fuzzy
-#| msgid "Thumbnails"
 msgid "Thumbnailer"
-msgstr "Imatges en miniatura"
+msgstr "Miniaturitzador"
 
 #: ../gramps/gen/plug/_pluginreg.py:130 ../gramps/gui/configure.py:1635
-#, fuzzy
-#| msgid "Citation Information"
 msgid "Citation formatter"
-msgstr "Informació de citació"
+msgstr "Formatador de la citació"
 
 #: ../gramps/gen/plug/_pluginreg.py:617
 #: ../gramps/plugins/gramplet/faqgramplet.py:176
@@ -9626,7 +9622,7 @@ msgstr "No s'ha pogut crear %s"
 #: ../gramps/plugins/importer/importprogen.glade:380
 #: ../gramps/plugins/webreport/webcal.py:531
 msgid "Default"
-msgstr "Per defecte"
+msgstr "Predeterminat"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:71
 msgid "PostScript / Helvetica"
@@ -9992,32 +9988,24 @@ msgid "Surname Given Nickname"
 msgstr "Cognom Nom Sobrenom"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:73
-#, fuzzy
-#| msgid "Surname Given Nickname"
 msgid "Surname, Given Nickname"
-msgstr "Cognom Nom Sobrenom"
+msgstr "Cognom, Sobrenom donat"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:74
-#, fuzzy
-#| msgid "Given Nickname Surname"
 msgid "GivenNicknameSurname"
-msgstr "Nom Sobrenom Cognom"
+msgstr "SobrenomDonatCognom"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:78
 msgid "Auto"
-msgstr ""
+msgstr "Auto"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:79
-#, fuzzy
-#| msgid "Call Name"
 msgid "Call Name Only"
-msgstr "Nom Habitual"
+msgstr "Només Nom Habitual"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:80
-#, fuzzy
-#| msgid "Given Name"
 msgid "Whole Given Name"
-msgstr "Nom de Pila"
+msgstr "Nom de Pila Complet"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:85
 msgid "Above"
@@ -10146,6 +10134,9 @@ msgid ""
 "Select the portion of the given name to be marked as preferred. Auto sets "
 "the call name if one exists, otherwise the whole given name."
 msgstr ""
+"Selecciona la porció del nom de pila que ha de ser marcat com a preferit. "
+"Auto estableix el nom comú si n'hi ha algun, d'altra manera s'establirà el "
+"nom de pila complet."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:225
 msgid "Position of marriage information."
@@ -10434,16 +10425,12 @@ msgid "Select the format to display places"
 msgstr "Selecciona el format per mostrar els llocs"
 
 #: ../gramps/gen/plug/report/stdoptions.py:425 ../gramps/gui/configure.py:1445
-#, fuzzy
-#| msgid "Date format"
 msgid "Coordinates format"
-msgstr "Format de data"
+msgstr "Format de les coordenades"
 
 #: ../gramps/gen/plug/report/stdoptions.py:428
-#, fuzzy
-#| msgid "Select the format to display names"
 msgid "Select the format to display coordinates"
-msgstr "Selecciona el format per mostrar els noms"
+msgstr "Selecciona el format per mostrar les coordenades"
 
 #: ../gramps/gen/plug/report/utils.py:179
 #: ../gramps/plugins/textreport/indivcomplete.py:946
@@ -11077,59 +11064,55 @@ msgstr "%(west_longitude)s O"
 
 #: ../gramps/gen/utils/place.py:83
 msgid "DEG"
-msgstr ""
+msgstr "DEG"
 
 #: ../gramps/gen/utils/place.py:85
 msgid "DEG-:"
-msgstr ""
+msgstr "DEG-:"
 
 #: ../gramps/gen/utils/place.py:87
 msgid "D.D4"
-msgstr ""
+msgstr "D.D4"
 
 #: ../gramps/gen/utils/place.py:89
 msgid "D.D8"
-msgstr ""
+msgstr "D.D8"
 
 #: ../gramps/gen/utils/place.py:91
 msgid "RT90"
-msgstr ""
+msgstr "RT90"
 
 #: ../gramps/gen/utils/place.py:99
-#, fuzzy
-#| msgid "Delete the selected citation"
 msgid "Degree, minutes, seconds notation"
-msgstr "Esborrar la cita seleccionada"
+msgstr "Notació amb graus, minuts, segons"
 
 #: ../gramps/gen/utils/place.py:100
 msgid "Degree, minutes, seconds notation with :"
-msgstr ""
+msgstr "Notació de graus, minuts i segons amb :"
 
 #: ../gramps/gen/utils/place.py:101
 msgid "Degree notation, 4 decimals"
-msgstr ""
+msgstr "Notació en graus, 4 decimals"
 
 #: ../gramps/gen/utils/place.py:102
 msgid "Degree notation, 8 decimals (precision like ISO-DMS)"
-msgstr ""
+msgstr "Notació en graus, 8 decimals (precisió igual que a ISO-DMS)"
 
 #: ../gramps/gen/utils/place.py:103
 msgid "Output format for the Swedish coordinate system RT90"
-msgstr ""
+msgstr "Format de sortida pel sistema de coordenades suec RT90"
 
 #: ../gramps/gen/utils/requirements.py:143
 msgid "Python modules"
-msgstr ""
+msgstr "Mòduls Python"
 
 #: ../gramps/gen/utils/requirements.py:150
 msgid "GObject introspection modules"
-msgstr ""
+msgstr "Mòduls d'introspecció GObject"
 
 #: ../gramps/gen/utils/requirements.py:157
-#, fuzzy
-#| msgid "_Execute"
 msgid "Executables"
-msgstr "_Executa"
+msgstr "Executables"
 
 #: ../gramps/gen/utils/string.py:50 ../gramps/gui/editors/editperson.py:364
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:110
@@ -11157,11 +11140,9 @@ msgstr "desconegut"
 
 #: ../gramps/gen/utils/string.py:53 ../gramps/gui/editors/editperson.py:366
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:112
-#, fuzzy
-#| msgid "Mother"
 msgctxt "gender"
 msgid "other"
-msgstr "Mare"
+msgstr "altre"
 
 #: ../gramps/gen/utils/string.py:58
 msgid "Invalid"
@@ -11572,24 +11553,20 @@ msgstr ""
 #: ../gramps/grampsapp.py:386 ../gramps/grampsapp.py:403
 #: ../gramps/grampsapp.py:414 ../gramps/grampsapp.py:436
 #: ../gramps/grampsapp.py:444
-#, fuzzy
-#| msgid "Not found"
 msgid "not found"
-msgstr "No s'ha trobat"
+msgstr "no s'ha trobat"
 
 #: ../gramps/grampsapp.py:365
 msgid "not found because exiv2 is not installed"
-msgstr ""
+msgstr "no s'ha trobat perquè exiv2 no està instal·lat"
 
 #: ../gramps/grampsapp.py:401
 msgid "Installed but does not supply version"
-msgstr ""
+msgstr "Instal·lat però no proveeix la versió"
 
 #: ../gramps/grampsapp.py:422
-#, fuzzy
-#| msgid "Unstable"
 msgid "installed"
-msgstr "Inestable"
+msgstr "instal·lat"
 
 #: ../gramps/grampsapp.py:605 ../gramps/grampsapp.py:614
 #: ../gramps/grampsapp.py:669
@@ -11695,10 +11672,8 @@ msgstr "Portapapers"
 
 #: ../gramps/gui/clipboard.py:1380 ../gramps/gui/configure.py:219
 #: ../gramps/gui/editors/filtereditor.py:1236 ../gramps/gui/views/tags.py:417
-#, fuzzy
-#| msgid "Change is not immediate"
 msgid "Any changes are saved immediately"
-msgstr "El canvi no és immediat"
+msgstr "Qualsevol canvi es desarà immediatament"
 
 #: ../gramps/gui/clipboard.py:1522 ../gramps/gui/plug/quick/_quicktable.py:154
 #, python-format
@@ -12007,7 +11982,7 @@ msgstr "Colors per a persones Femenines"
 
 #: ../gramps/gui/configure.py:901
 msgid "Colors for people who are neither male nor female"
-msgstr ""
+msgstr "Colors per a persones que no són ni homes ni dones"
 
 #: ../gramps/gui/configure.py:902
 msgid "Colors for Unknown persons"
@@ -12100,7 +12075,7 @@ msgstr "Suprimir l'avís sobre investigador inexistent quan s'exporti a GEDCOM"
 
 #: ../gramps/gui/configure.py:1033
 msgid "Suppress tooltip warnings about data being saved immediately"
-msgstr ""
+msgstr "Suprimeix els avisos de les dades que es desen immediatament"
 
 #: ../gramps/gui/configure.py:1041
 msgid "Show plugin status dialog on plugin load error"
@@ -12235,10 +12210,8 @@ msgid "Age display precision *"
 msgstr "Precisió de la visualització de l'edat *"
 
 #: ../gramps/gui/configure.py:1562
-#, fuzzy
-#| msgid "Display references for a %s"
 msgid "Display ages for events after death *"
-msgstr "Mostra les referències per a %s"
+msgstr "Mostra les edats per esdeveniments després de la mort *"
 
 #: ../gramps/gui/configure.py:1578
 msgid "Calendar on reports"
@@ -12249,32 +12222,28 @@ msgid "Calendar on input"
 msgstr "Calendari a l'entrada"
 
 #: ../gramps/gui/configure.py:1599
-#, fuzzy
-#| msgid "Shows previous page"
 msgid "On the previous day"
-msgstr "Mostra la pàgina anterior"
+msgstr "Al dia anterior"
 
 #: ../gramps/gui/configure.py:1600
-#, fuzzy
-#| msgid "Shows the next page"
 msgid "On the next day"
-msgstr "Mostra la pàgina següent"
+msgstr "Al dia següent"
 
 #: ../gramps/gui/configure.py:1601
 msgid "Only on leap years"
-msgstr ""
+msgstr "Només en anys de traspàs"
 
 #: ../gramps/gui/configure.py:1608
 msgid ""
 "For non leap years, anniversaries are displayed on either February 28, March "
 "1 or not at all in Gregorian calendars"
 msgstr ""
+"Per anys no de traspàs, els aniversaris seran mostrats o bé el 28 de Febrer, "
+"1 de Març o no mostrats als calendaris Gregorians"
 
 #: ../gramps/gui/configure.py:1612
-#, fuzzy
-#| msgid "Include death anniversaries"
 msgid "Show leap day anniversaries"
-msgstr "Incloure aniversaris de mort"
+msgstr "Mostra els aniversaris del dia de traspàs"
 
 #: ../gramps/gui/configure.py:1619
 msgid "Active person's name and ID"
@@ -12438,15 +12407,12 @@ msgid "Enable the spelling checker for notes."
 msgstr "Activa la correcció ortogràfica per les notes."
 
 #: ../gramps/gui/configure.py:2000
-#, fuzzy, python-format
-#| msgid ""
-#| "GtkSpell not loaded. Spell checking will not be available.\n"
-#| "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
+#, python-format
 msgid ""
 "Gspell not loaded. Spell checking will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 msgstr ""
-"GtkSpell no s'ha carregat. No hi haurà correcció ortogràfica.\n"
+"Gspell no s'ha carregat. No hi haurà correcció ortogràfica.\n"
 "Per construir-lo per a Gramps vegeu %(gramps_wiki_build_spell_url)s"
 
 #: ../gramps/gui/configure.py:2012
@@ -12464,43 +12430,43 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2028
 msgid "Show Clipboard icon on toolbar"
-msgstr ""
+msgstr "Mostra l'icona del Portaretalls a la barra d'eines"
 
 #: ../gramps/gui/configure.py:2033
 msgid "Show or hide the Clipboard icon on the toolbar."
-msgstr ""
+msgstr "Mostra o amaga l'icona del Portaretalls a la barra d'eines."
 
 #: ../gramps/gui/configure.py:2041
 msgid "Show Reports icon on toolbar"
-msgstr ""
+msgstr "Mostra l'icona d'Informes a la barra d'eines"
 
 #: ../gramps/gui/configure.py:2046
 msgid "Show or hide the Reports icon on the toolbar."
-msgstr ""
+msgstr "Mostra o amaga l'icona d'Informes a la barra d'eines."
 
 #: ../gramps/gui/configure.py:2054
 msgid "Show Tools icon on toolbar"
-msgstr ""
+msgstr "Mostra l'icona d'Eines a la barra d'eines"
 
 #: ../gramps/gui/configure.py:2059
 msgid "Show or hide the Tools icon on the toolbar."
-msgstr ""
+msgstr "Mostra o amaga l'icona d'Eines a la barra d'eines."
 
 #: ../gramps/gui/configure.py:2067
 msgid "Show Addons icon on toolbar"
-msgstr ""
+msgstr "Mostra l'icona de complements a la barra d'eines"
 
 #: ../gramps/gui/configure.py:2072
 msgid "Show or hide the Addons icon on the toolbar."
-msgstr ""
+msgstr "Mostra o amaga l'icona de complements a la barra d'eines."
 
 #: ../gramps/gui/configure.py:2080
 msgid "Show Preferences icon on toolbar"
-msgstr ""
+msgstr "Mostra l'icona de Preferències a la barra d'eines"
 
 #: ../gramps/gui/configure.py:2085
 msgid "Show or hide the Preferences icon on the toolbar."
-msgstr ""
+msgstr "Mostra o amaga l'icona de Preferències a la barra d'eines."
 
 #: ../gramps/gui/configure.py:2093
 msgid "Show close button in gramplet bar tabs"
@@ -12829,11 +12795,9 @@ msgstr ""
 "Només serà visible si el vostre tipus de lletra conté aquest glif."
 
 #: ../gramps/gui/csvdialect.py:63
-#, fuzzy
-#| msgid "Tag"
 msgctxt "character"
 msgid "Tab"
-msgstr "Etiqueta"
+msgstr "Tabulador"
 
 #: ../gramps/gui/csvdialect.py:82
 msgid "Choose your dialect"
@@ -12844,10 +12808,12 @@ msgid ""
 "Changes are immediate.\n"
 "This is used when exporting views in CSV format."
 msgstr ""
+"Els canvis són immediats.\n"
+"Això s'utilitza quan s'exporten vistes en format CSV."
 
 #: ../gramps/gui/csvdialect.py:114
 msgid "Delimiter:"
-msgstr ""
+msgstr "Delimitador:"
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:124
 msgid "Undo history warning"
@@ -13357,36 +13323,28 @@ msgid "Open the reports dialog"
 msgstr "Obre el diàleg d'informes"
 
 #: ../gramps/gui/displaystate.py:416
-#, fuzzy
-#| msgid "_Reports"
 msgid "Reports"
-msgstr "_Informes"
+msgstr "Informes"
 
 #: ../gramps/gui/displaystate.py:418
 msgid "Open the tools dialog"
 msgstr "Obre el diàleg d'eines"
 
 #: ../gramps/gui/displaystate.py:418
-#, fuzzy
-#| msgid "_Tools"
 msgid "Tools"
-msgstr "Ei_nes"
+msgstr "Eines"
 
 #: ../gramps/gui/displaystate.py:422
-#, fuzzy
-#| msgid "Plugin Manager"
 msgid "Open Addon Manager"
-msgstr "Gestor de Connectors"
+msgstr "Obre el Gestor de Complements"
 
 #: ../gramps/gui/displaystate.py:423 ../gramps/gui/plug/_windows.py:447
 msgid "Addons"
 msgstr "Complements"
 
 #: ../gramps/gui/displaystate.py:428
-#, fuzzy
-#| msgid "Preferences"
 msgid "Open Preferences"
-msgstr "Preferències"
+msgstr "Obre les Preferències"
 
 #: ../gramps/gui/displaystate.py:449
 #: ../gramps/plugins/gramplet/persondetails.py:181
@@ -14356,13 +14314,11 @@ msgstr "Intèrval"
 
 #: ../gramps/gui/editors/editdate.py:82
 msgid "From"
-msgstr ""
+msgstr "Des de"
 
 #: ../gramps/gui/editors/editdate.py:83
-#, fuzzy
-#| msgid "Top"
 msgid "To"
-msgstr "Superior"
+msgstr "Fins a"
 
 #: ../gramps/gui/editors/editdate.py:84
 msgid "Span"
@@ -15124,10 +15080,8 @@ msgid "_Female"
 msgstr "_Dona"
 
 #: ../gramps/gui/editors/editperson.py:1212
-#, fuzzy
-#| msgid "Other"
 msgid "_Other"
-msgstr "Un altre"
+msgstr "_Altre"
 
 #: ../gramps/gui/editors/editperson.py:1213
 msgid "_Unknown"
@@ -15619,30 +15573,22 @@ msgid "Delete Filter"
 msgstr "Esborra Filtre"
 
 #: ../gramps/gui/editors/objectentries.py:306
-#, fuzzy
-#| msgid "To select a place, use drag-and-drop or use the buttons"
 msgid "To select a person, use drag-and-drop or use the buttons"
 msgstr ""
-"Per seleccionar un lloc, faci-ho arrossegant i deixant, o fent servir els "
+"Per seleccionar una persona, utilitza arrossega i deixa, o fes servir els "
 "botons"
 
 #: ../gramps/gui/editors/objectentries.py:308
-#, fuzzy
-#| msgid "No place given, click button to select one"
 msgid "No person given, click button to select one"
-msgstr "No s'ha donat el lloc, cliqui el botó per seleccionar-ne un"
+msgstr "No s'ha indicat cap persona, clica el botó per seleccionar-ne una"
 
 #: ../gramps/gui/editors/objectentries.py:309
-#, fuzzy
-#| msgid "Edit Person"
 msgid "Edit person"
-msgstr "Edita Persona"
+msgstr "Edita persona"
 
 #: ../gramps/gui/editors/objectentries.py:310
-#, fuzzy
-#| msgid "Select an existing place"
 msgid "Select an existing person"
-msgstr "Selecciona un lloc existent"
+msgstr "Selecciona una persona existent"
 
 #: ../gramps/gui/editors/objectentries.py:311
 #: ../gramps/plugins/lib/libpersonview.py:144
@@ -15650,10 +15596,8 @@ msgid "Add a new person"
 msgstr "Afegeix una persona nova"
 
 #: ../gramps/gui/editors/objectentries.py:312
-#, fuzzy
-#| msgid "Remove version"
 msgid "Remove person"
-msgstr "Esborra versió"
+msgstr "Treu una persona"
 
 #: ../gramps/gui/editors/objectentries.py:375
 msgid "To select a place, use drag-and-drop or use the buttons"
@@ -18239,15 +18183,6 @@ msgid "Available Gramps Updates for Addons"
 msgstr "Hi ha actualitzacions disponibles de Complements de Gramps"
 
 #: ../gramps/gui/glade/updateaddons.glade:89
-#, fuzzy
-#| msgid ""
-#| "Gramps comes with a core set of plugins which provide all of the "
-#| "necessary features. However, you can extend this functionality with "
-#| "additional Addons. These addons provide reports, listings, views, "
-#| "gramplets, and more. Here you can select among the available extra "
-#| "addons, they will be retrieved from the internet off of the Gramps "
-#| "website, and installed locally on your computer. If you close this dialog "
-#| "now, you can install addons later from the menu under Edit -> Preferences."
 msgid ""
 "Gramps comes with a core set of plugins which provide all of the necessary "
 "features. However, you can extend this functionality with additional Addons. "
@@ -18263,8 +18198,8 @@ msgstr ""
 "llistats, vistes, gramplets, i més. Aquí pot seleccionar entre els "
 "complements addicionals disponibles, que es baixaran d'Internet des del web "
 "de Gramps, i s'instal·laran localment al seu ordinador. Si tanca aquest "
-"diàleg ara, pot instal·lar complements més tard des del menú Editar -> "
-"Preferències."
+"diàleg ara, pots instal·lar complements més tard des del menú Edita -> "
+"Gestor de Connectors."
 
 #: ../gramps/gui/glade/updateaddons.glade:105
 msgid "_Select All"
@@ -18328,10 +18263,8 @@ msgid "_About"
 msgstr "_Quant a"
 
 #: ../gramps/gui/grampsgui.py:58
-#, fuzzy
-#| msgid "Add Partner..."
 msgid "_Addon Manager..."
-msgstr "Afegeix Company..."
+msgstr "_Gestor de Connectors..."
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Bookmarks"
@@ -18394,8 +18327,6 @@ msgid "_Report a Bug"
 msgstr "_Informa d'un Error"
 
 #: ../gramps/gui/grampsgui.py:58
-#, fuzzy
-#| msgid "_Reports"
 msgid "_Reports"
 msgstr "_Informes"
 
@@ -18404,8 +18335,6 @@ msgid "_Toolbar"
 msgstr "Barra d'_Eines"
 
 #: ../gramps/gui/grampsgui.py:58
-#, fuzzy
-#| msgid "_Tools"
 msgid "_Tools"
 msgstr "Ei_nes"
 
@@ -18821,10 +18750,8 @@ msgstr "%(key)s:\t%(value)s"
 #: ../gramps/gui/merge/mergeperson.py:65
 #: ../gramps/gui/views/treemodels/peoplemodel.py:109
 #: ../gramps/plugins/webreport/person.py:537
-#, fuzzy
-#| msgid "Mother"
 msgid "other"
-msgstr "Mare"
+msgstr "altre"
 
 #: ../gramps/gui/merge/mergeperson.py:103
 msgid "Merge People"
@@ -18998,94 +18925,71 @@ msgid "Style Editor"
 msgstr "Editor d'Estils"
 
 #: ../gramps/gui/plug/_windows.py:218
-#, fuzzy
-#| msgid "Object"
 msgid "Project"
-msgstr "Objecte"
+msgstr "Projecte"
 
 #: ../gramps/gui/plug/_windows.py:222
-#, fuzzy
-#| msgid "Audio"
 msgid "Audience"
-msgstr "Àudio"
+msgstr "Audiència"
 
 #: ../gramps/gui/plug/_windows.py:226 ../gramps/gui/plug/_windows.py:1481
 msgid "Version"
 msgstr "Versió"
 
 #: ../gramps/gui/plug/_windows.py:229
-#, fuzzy
-#| msgid "Data version"
 msgid "Installed version"
-msgstr "Versió de BD"
+msgstr "Versió instal·lada"
 
 #: ../gramps/gui/plug/_windows.py:247 ../gramps/gui/plug/_windows.py:248
-#, fuzzy
-#| msgid "Unstable"
 msgid "Install"
-msgstr "Inestable"
+msgstr "Instal·la"
 
 #: ../gramps/gui/plug/_windows.py:253
 msgid "Wiki"
-msgstr ""
+msgstr "Wiki"
 
 #: ../gramps/gui/plug/_windows.py:258
-#, fuzzy
-#| msgid "* Requires Restart"
 msgid "Requires"
-msgstr "* Cal reiniciar"
+msgstr "Es necessita"
 
 #: ../gramps/gui/plug/_windows.py:263
 msgid "Upgrade"
 msgstr "Actualitza"
 
 #: ../gramps/gui/plug/_windows.py:286
-#, fuzzy
-#| msgid "Deletion failed"
 msgid "Module installation failed"
-msgstr "L'acció d'esborrar ha fallat"
+msgstr "La instal·lació del mòdul ha fallat"
 
 #: ../gramps/gui/plug/_windows.py:311
-#, fuzzy
-#| msgid "Retirement"
 msgid "Requirements"
-msgstr "Jubilació"
+msgstr "Requeriments"
 
 #: ../gramps/gui/plug/_windows.py:347
-#, fuzzy
-#| msgid "Addon Name"
 msgid "Addon Manager"
-msgstr "Nom de complement"
+msgstr "Gestor de Complements"
 
 #: ../gramps/gui/plug/_windows.py:355 ../gramps/plugins/gramplet/leak.py:114
 msgid "Refresh"
 msgstr "Refresca"
 
 #: ../gramps/gui/plug/_windows.py:385
-#, fuzzy
-#| msgid "Filter"
 msgid "Filters"
-msgstr "Filtre"
+msgstr "Filtres"
 
 #: ../gramps/gui/plug/_windows.py:393 ../gramps/gui/plug/_windows.py:402
 #: ../gramps/gui/plug/_windows.py:409 ../gramps/gui/plug/_windows.py:423
 #: ../gramps/gui/plug/_windows.py:557 ../gramps/gui/plug/_windows.py:560
 #: ../gramps/plugins/drawreport/statisticschart.py:334
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "all"
 msgid "All"
-msgstr "tots"
+msgstr "Tot"
 
 #: ../gramps/gui/plug/_windows.py:450
-#, fuzzy
-#| msgid "Setting"
 msgid "Settings"
 msgstr "Configuració"
 
 #: ../gramps/gui/plug/_windows.py:453
 msgid "Projects"
-msgstr ""
+msgstr "Projectes"
 
 #: ../gramps/gui/plug/_windows.py:473
 msgid "Loading..."
@@ -19097,7 +19001,7 @@ msgstr "No s'han trobat extensions."
 
 #: ../gramps/gui/plug/_windows.py:646
 msgid "Allow Gramps to install required python modules"
-msgstr ""
+msgstr "Permet a Gramps instal·lar els mòduls requerits de python"
 
 #: ../gramps/gui/plug/_windows.py:651
 #: ../gramps/plugins/webreport/basepage.py:1899
@@ -19150,22 +19054,16 @@ msgid "Check for updated addons now"
 msgstr "Comprova ara si hi ha actualitzacions dels complements"
 
 #: ../gramps/gui/plug/_windows.py:720
-#, fuzzy
-#| msgid "New Person"
 msgid "New Project"
-msgstr "Persona Nova"
+msgstr "Projecte nou"
 
 #: ../gramps/gui/plug/_windows.py:722
-#, fuzzy
-#| msgid "Edit Person"
 msgid "Edit Project"
-msgstr "Edita Persona"
+msgstr "Edita Projecte"
 
 #: ../gramps/gui/plug/_windows.py:730
-#, fuzzy
-#| msgid "Preferred name"
 msgid "Project name"
-msgstr "Nom preferit"
+msgstr "Nom del projecte"
 
 #: ../gramps/gui/plug/_windows.py:796
 msgid "Checking Addons Failed"
@@ -20390,6 +20288,8 @@ msgid ""
 "Please wait for backup in progress.\n"
 "Gramps will close when complete."
 msgstr ""
+"Si us plau espera que la còpia de acabi.\n"
+"Gramps es tancarà en acabar."
 
 #: ../gramps/gui/viewmanager.py:1291 ../gramps/gui/viewmanager.py:1295
 msgid "Autobackup..."
@@ -20619,7 +20519,7 @@ msgstr "Columnes"
 
 #: ../gramps/gui/views/listview.py:1457
 msgid "CSV Dialect"
-msgstr ""
+msgstr "Dialecte CSV"
 
 #: ../gramps/gui/views/navigationview.py:247
 #, python-format
@@ -21092,10 +20992,8 @@ msgid "'%s' is not a valid date value"
 msgstr "'%s' no és un valor de data vàlid"
 
 #: ../gramps/plugins/cite/cite.gpr.py:36
-#, fuzzy
-#| msgid "Publication Information"
 msgid "Default citation formatter"
-msgstr "Informació de Publicació"
+msgstr "Formatador prederminat de les citacions"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:27
 msgid "BSDDB"
@@ -21471,26 +21369,20 @@ msgstr ""
 "per a persones desconegudes"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:875
-#, fuzzy
-#| msgid "Show dates"
 msgid "Show Index"
-msgstr "Mostra dates"
+msgstr "Mostra Índex"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:876
-#, fuzzy
-#| msgid "Display Tip of the Day"
 msgid "Display index of each person"
-msgstr "Mostra el Consell del Dia"
+msgstr "Mostra l'índex per cada persona"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:880
-#, fuzzy
-#| msgid "Starting"
 msgid "Start Index"
-msgstr "Començant"
+msgstr "Índex inicial"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:881
 msgid "The start index"
-msgstr ""
+msgstr "L'índex inicial"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:897
 #: ../gramps/plugins/drawreport/descendtree.py:1629
@@ -21592,14 +21484,14 @@ msgstr ""
 "Amb aquesta opció seleccionada, passarà el següent:\n"
 "\n"
 "Amb l'opció 'No escalar l'arbre' la pàgina canvia\n"
-"  de mida fins l'alçada/amplada de l'arbre\n"
+"   de mida fins l'alçada/amplada de l'arbre\n"
 "\n"
 "Amb 'Escalar l'arbre només fins a l'amplada de la pàgina'\n"
-"  l'alçada de la pàgina canvia de mida fins l'alçada de l'arbre\n"
+"   l'alçada de la pàgina canvia de mida fins l'alçada de l'arbre\n"
 "\n"
 "Amb 'Escalar l'arbre perquè càpiga a la pàgina' la pàgina\n"
-"  canvia de mida per treure qualsevol buit tant en alçada\n"
-"  com en amplada"
+"   canvia de mida per treure qualsevol buit tant en alçada\n"
+"   com en amplada"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:951
 #: ../gramps/plugins/drawreport/descendtree.py:1688
@@ -21879,15 +21771,12 @@ msgstr[0] "{person}, {age}"
 msgstr[1] "{person}, {age}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:519
-#, fuzzy, python-format
-#| msgid ""
-#| "%(spouse)s and\n"
-#| " %(person)s, wedding"
+#, python-format
 msgid ""
 "%(wife)s and\n"
 " %(person)s, wedding"
 msgstr ""
-"%(spouse)s i\n"
+"%(wife)s i\n"
 " %(person)s, casament"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:532
@@ -22467,14 +22356,14 @@ msgstr ""
 "l'editor d'estils"
 
 #: ../gramps/plugins/drawreport/fanchart.py:853
-#, fuzzy
-#| msgid "Flip name on the left of the fan"
 msgid "Flip names that are on the bottom half of the fan"
-msgstr "Dóna la volta al nom a l'esquerra del ventall"
+msgstr "Dóna la volta als nom que són a la part inferior del ventall"
 
 #: ../gramps/plugins/drawreport/fanchart.py:856
 msgid "Flip names for generations 2, 3 and 4 i.e. those found in circles"
 msgstr ""
+"Gira els noms de les generacions 2, 3 i 4 p.e. els que s'hagin trobat en "
+"cercles"
 
 #: ../gramps/plugins/drawreport/fanchart.py:912
 #, python-format
@@ -22860,6 +22749,9 @@ msgid ""
 "You can change this behavior in the 'Configure active view' of any list-"
 "based view"
 msgstr ""
+"CSV és un format habitual de fulla de càlcul.\n"
+"Pots canviar aquest comportament a 'Configura vista activa' de qualsevol "
+"vista basada en llistes"
 
 #: ../gramps/plugins/export/export.gpr.py:49
 msgid "CSV spreadsheet options"
@@ -24625,10 +24517,8 @@ msgstr "Nombre d'individus"
 #: ../gramps/plugins/gramplet/statsgramplet.py:157
 #: ../gramps/plugins/webreport/statistics.py:134
 #: ../gramps/plugins/webreport/statistics.py:244
-#, fuzzy
-#| msgid "Individuals with unknown gender"
 msgid "Individuals with other gender"
-msgstr "Individus de gènere desconegut"
+msgstr "Individus amb altres gèneres"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:164
 #: ../gramps/plugins/webreport/statistics.py:139
@@ -24966,13 +24856,6 @@ msgid "Addons and \"Gramplets\""
 msgstr "Complements i \"Gramplets\""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:247
-#, fuzzy
-#| msgid ""
-#| "There many Addons or \"Gramplets\" that are available to assist you in "
-#| "data entry and visualizing your family tree. Many of these tools are "
-#| "already available to you. Many more are available to download and "
-#| "install.\n"
-#| "\n"
 msgid ""
 "There are many Addons or \"Gramplets\" that are available to assist you in "
 "data entry and visualizing your family tree. Many of these tools are already "
@@ -25424,10 +25307,8 @@ msgstr "El color a utilitzar per mostrar les dones."
 #: ../gramps/plugins/graph/gvfamilylines.py:347
 #: ../gramps/plugins/graph/gvhourglass.py:512
 #: ../gramps/plugins/graph/gvrelgraph.py:1055
-#, fuzzy
-#| msgid "The color to use to display women."
 msgid "The color to use to display people who are neither men nor women."
-msgstr "El color a utilitzar per mostrar les dones."
+msgstr "El color a utilitzar per mostrar la gent que no és ni home ni dona."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:352
 #: ../gramps/plugins/graph/gvhourglass.py:517
@@ -25584,24 +25465,18 @@ msgid "Ahnentafel number visible"
 msgstr "Nombre Ahnentafel visible"
 
 #: ../gramps/plugins/graph/gvhourglass.py:536
-#, fuzzy
-#| msgid ""
-#| "Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
-#| "informations."
 msgid "Show Sosa / Sosa-Stradonitz / Ahnentafel number."
-msgstr ""
-"Mostra el número Sosa / Sosa-Stradonitz / Ahnentafel a sota de totes les "
-"altres informacions."
+msgstr "Mostra el número Sosa / Sosa-Stradonitz / Ahnentafel."
 
 #: ../gramps/plugins/graph/gvhourglass.py:540
-#, fuzzy
-#| msgid "Show all events"
 msgid "Show symbols for events"
-msgstr "Mostra tots els esdeveniments"
+msgstr "Mostra símbols pels esdeveniments"
 
 #: ../gramps/plugins/graph/gvhourglass.py:542
 msgid "Show genealogical symbols for birth, marriage and death events."
 msgstr ""
+"Mostra els símbols genealògics pels esdeveniments de naixement, casament i "
+"mort."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:226
 #: ../gramps/plugins/textreport/indivcomplete.py:860
@@ -26691,16 +26566,13 @@ msgid "vCard import"
 msgstr "Importació de vCard"
 
 #: ../gramps/plugins/importer/importvcard.py:274
-#, fuzzy
-#| msgid "VCARD import report: No errors detected"
 msgid "vCard import report: No errors detected"
-msgstr "Informe d'importació d'VCARD: No s'han detectat errors"
+msgstr "Informe d'importació d'vCard: No s'han detectat errors"
 
 #: ../gramps/plugins/importer/importvcard.py:277
-#, fuzzy, python-format
-#| msgid "VCARD import report: %s errors detected\n"
+#, python-format
 msgid "vCard import report: %s errors detected\n"
-msgstr "Informe d'importació d'VCARD: S'han detectat %s errors\n"
+msgstr "Informe d'importació d'vCard: S'han detectat %s errors\n"
 
 #: ../gramps/plugins/importer/importvcard.py:342
 #, python-format
@@ -26708,53 +26580,38 @@ msgid "Token >%(token)s< unknown. line skipped: %(line)s"
 msgstr "Token >%(token)s< desconegut. línia saltada: %(line)s"
 
 #: ../gramps/plugins/importer/importvcard.py:359
-#, fuzzy
-#| msgid ""
-#| "BEGIN property not properly closed by END property, Gramps can't cope "
-#| "with nested VCards."
 msgid ""
 "BEGIN property not properly closed by END property, Gramps can't cope with "
 "nested vCards."
 msgstr ""
 "La propietat BEGIN no s'ha tancat correctament per la propietat END. Gramps "
-"no pot fer front a VCards niades."
+"no pot fer front a vCards niades."
 
 #: ../gramps/plugins/importer/importvcard.py:373
-#, fuzzy, python-format
-#| msgid "Import of VCards version %s is not supported by Gramps."
+#, python-format
 msgid "Import of vCards version %s is not supported by Gramps."
-msgstr "La importació de VCards versió %s no està suportada per Gramps."
+msgstr "La importació de vCards versió %s no està suportada per Gramps."
 
 #: ../gramps/plugins/importer/importvcard.py:396
-#, fuzzy
-#| msgid ""
-#| "VCard is malformed missing the compulsory N property, so there is no "
-#| "name; skip it."
 msgid ""
 "The vCard is malformed. It is missing the compulsory N property, so there is "
 "no name; skip it."
 msgstr ""
-"La VCard està mal creada, li falta la propietat obligatòria N, així que no "
+"La vCard està mal creada, li falta la propietat obligatòria N, així que no "
 "hi ha nom; la salto."
 
 #: ../gramps/plugins/importer/importvcard.py:405
-#, fuzzy
-#| msgid ""
-#| "VCard is malformed missing the compulsory FN property, get name from N "
-#| "alone."
 msgid ""
 "The vCard is malformed. It is missing the compulsory FN property, get name "
 "from N alone."
 msgstr ""
-"La VCard està mal creada, li falta la propietat obligatòria FN, només posali "
+"La vCard està mal creada, li falta la propietat obligatòria FN, només posali "
 "un nom de la N."
 
 #: ../gramps/plugins/importer/importvcard.py:413
-#, fuzzy
-#| msgid "VCard is malformed wrong number of name components."
 msgid "The vCard is malformed. Wrong number of name components."
 msgstr ""
-"La VCard està mal creada amb un número incorrecte de components del nom."
+"La vCard està mal creada amb un número incorrecte de components del nom."
 
 #: ../gramps/plugins/importer/importvcard.py:574
 #, python-brace-format
@@ -27552,76 +27409,52 @@ msgid "%(date)s %(time)s"
 msgstr "%(date)s %(time)s"
 
 #: ../gramps/plugins/lib/libmetadata.py:120
-#, fuzzy
-#| msgid "Description"
 msgid "Descriptive Tags"
-msgstr "Descripció"
+msgstr "Etiquetes descriptives"
 
 #: ../gramps/plugins/lib/libmetadata.py:121
-#, fuzzy
-#| msgid "Styled Text Tags"
 msgid "Date and Time Tags"
-msgstr "Etiquetes del text amb estil"
+msgstr "Etiquetes de Data i Hora"
 
 #: ../gramps/plugins/lib/libmetadata.py:122
-#, fuzzy
-#| msgid "People"
 msgid "People Tags"
-msgstr "Persones"
+msgstr "Etiquetes de Persones"
 
 #: ../gramps/plugins/lib/libmetadata.py:123
-#, fuzzy
-#| msgid "Events"
 msgid "Event Tags"
-msgstr "Esdeveniments"
+msgstr "Etiquetes d'Esdeveniments"
 
 #: ../gramps/plugins/lib/libmetadata.py:124
-#, fuzzy
-#| msgid "Images"
 msgid "Image Tags"
-msgstr "Imatges"
+msgstr "Etiquetes d'Imatges"
 
 #: ../gramps/plugins/lib/libmetadata.py:125
-#, fuzzy
-#| msgid "Place Information"
 msgid "Camera Information"
-msgstr "Informació del lloc"
+msgstr "Informació de la càmera"
 
 #: ../gramps/plugins/lib/libmetadata.py:126
-#, fuzzy
-#| msgid "Locations"
 msgid "Location Tags"
-msgstr "Ubicacions"
+msgstr "Etiquetes d'ubicacions"
 
 #: ../gramps/plugins/lib/libmetadata.py:127
-#, fuzzy
-#| msgid "Advanced"
 msgid "Advanced Tags"
-msgstr "Avançat"
+msgstr "Etiquetes avançades"
 
 #: ../gramps/plugins/lib/libmetadata.py:128
-#, fuzzy
-#| msgid "Removing Tags"
 msgid "Rights Tags"
-msgstr "S'estan esborrant Etiquetes"
+msgstr "Etiquetes de drets"
 
 #: ../gramps/plugins/lib/libmetadata.py:129
-#, fuzzy
-#| msgid "New Tag"
 msgid "Keyword Tags"
-msgstr "Etiqueta Nova"
+msgstr "Etiquetes de paraules clau"
 
 #: ../gramps/plugins/lib/libmetadata.py:228
-#, fuzzy
-#| msgid "Namesake"
 msgid "Namespace"
-msgstr "Homònim"
+msgstr "Espai de noms"
 
 #: ../gramps/plugins/lib/libmetadata.py:229
-#, fuzzy
-#| msgid "label"
 msgid "Label"
-msgstr "etiqueta"
+msgstr "Etiqueta"
 
 #: ../gramps/plugins/lib/libmetadata.py:230
 msgid " "
@@ -31737,19 +31570,14 @@ msgid "Where to save the tiles for offline mode."
 msgstr "On desar les caselles per mode fora de línia."
 
 #: ../gramps/plugins/lib/maps/geography.py:1431
-#, fuzzy
-#| msgid ""
-#| "If you have no more space in your file system. You can remove all tiles "
-#| "placed in the above path.\n"
-#| "Be careful! If you have no internet, you'll get no map."
 msgid ""
 "If you have no more space in your file system, you can remove all tiles "
 "placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
-"Si no us queda espai al sistema de fitxers, podeu esborrar totes les "
+"Si no us queda espai al teu sistema de fitxers, pots esborrar totes les "
 "caselles ubicades al camí anterior.\n"
-"Vigileu! Si no teniu internet, no podreu treure el mapa."
+"Vigila! Si no tens internet, no podràs treure el mapa."
 
 #: ../gramps/plugins/lib/maps/geography.py:1441
 msgid "Zoom used when centering"
@@ -31800,26 +31628,12 @@ msgid "Select tile cache directory for offline mode"
 msgstr "Selecciona el directori cau per les caselles per al mode fora de línia"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:143
-#, fuzzy, python-format
-#| msgid "Can't create tiles cache directory %s"
+#, python-format
 msgid "Can't create tile cache directory %s"
 msgstr "No s'ha pogut crear el directori de reserva de caselles %s"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:149
-#, fuzzy, python-format
-#| msgid ""
-#| "You must verify and change the tiles cache\n"
-#| "...\n"
-#| "[geography]\n"
-#| "...\n"
-#| "path='bad/path'\n"
-#| "...\n"
-#| "in the gramps.ini file :\n"
-#| "%s\n"
-#| "\n"
-#| "Before to change the gramps.ini file, you need to close gramps\n"
-#| "\n"
-#| "The next errors will be normal"
+#, python-format
 msgid ""
 "You must verify and change the tile cache\n"
 "...\n"
@@ -31845,7 +31659,7 @@ msgstr ""
 "\n"
 "Abans de canviar el fitxer gramps.ini, heu de tancar Gramps\n"
 "\n"
-"Els següents errors seran normals"
+"Els següents errors són esperats"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:194
 #: ../gramps/plugins/lib/maps/osmgps.py:260
@@ -32217,12 +32031,9 @@ msgid "females"
 msgstr "dones"
 
 #: ../gramps/plugins/quickview/filterbyname.py:62
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "people with unknown gender"
 msgctxt "Filtering_on"
 msgid "people with other gender"
-msgstr "persones de gènere desconegut"
+msgstr "persones amb un altre gènere"
 
 #: ../gramps/plugins/quickview/filterbyname.py:63
 msgctxt "Filtering_on"
@@ -33609,7 +33420,7 @@ msgstr "D"
 #: ../gramps/plugins/textreport/familygroup.py:520
 msgctxt "acronym for other"
 msgid "X"
-msgstr ""
+msgstr "X"
 
 #: ../gramps/plugins/textreport/familygroup.py:522
 #, python-format
@@ -34102,10 +33913,9 @@ msgid "Females: %d"
 msgstr "Dones: %d"
 
 #: ../gramps/plugins/textreport/summary.py:199
-#, fuzzy, python-format
-#| msgid "Individuals with unknown gender: %d"
+#, python-format
 msgid "Individuals with other gender: %d"
-msgstr "Individus de gènere desconegut: %d"
+msgstr "Individus amb un altre gènere: %d"
 
 #: ../gramps/plugins/textreport/summary.py:203
 #, python-format
@@ -34368,17 +34178,13 @@ msgstr "Mostra l'estat dels enllaços a les notes"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:35
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:36
-#, fuzzy
-#| msgid "Thumbnails"
 msgid "Gnome Thumbnailer"
-msgstr "Imatges en miniatura"
+msgstr "Miniaturitzador de Gnome"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:49
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:50
-#, fuzzy
-#| msgid "Thumbnails"
 msgid "Image Thumbnailer"
-msgstr "Imatges en miniatura"
+msgstr "Miniaturitzador d'Imatges"
 
 #: ../gramps/plugins/tool/changenames.glade:34
 msgid ""
@@ -35833,14 +35639,8 @@ msgid "Enable ID reordering."
 msgstr "Habilita la reordenació d'ID's."
 
 #: ../gramps/plugins/tool/reorderids.glade:1420
-#, fuzzy
-#| msgid ""
-#| "List next ID available\n"
-#| "(maynot be continuous)."
 msgid "List next ID available (may not be continuous)."
-msgstr ""
-"Llista la següent ID disponible\n"
-"(podria no ser consecutiva)."
+msgstr "Llista la següent ID disponible (podria no ser consecutiva)."
 
 #: ../gramps/plugins/tool/reorderids.glade:1423
 msgid "  Actual"
@@ -35863,14 +35663,8 @@ msgid "Change"
 msgstr "Canvia"
 
 #: ../gramps/plugins/tool/reorderids.glade:1469
-#, fuzzy
-#| msgid ""
-#| "Enable ID reordering\n"
-#| "with Start / Step sequence."
 msgid "Enable ID reordering with Start / Step sequence."
-msgstr ""
-"Habilita la reordenació d'ID's\n"
-"amb la seqüència Inici / Pas."
+msgstr "Habilita la reordenació d'ID's amb la seqüència Inici / Pas."
 
 #: ../gramps/plugins/tool/reorderids.glade:1481
 msgid "Start"
@@ -35893,14 +35687,8 @@ msgid "Keep"
 msgstr "Mantingues"
 
 #: ../gramps/plugins/tool/reorderids.glade:1521
-#, fuzzy
-#| msgid ""
-#| "Keep IDs with alternate\n"
-#| "prefixes untouched."
 msgid "Keep IDs with alternate prefixes untouched."
-msgstr ""
-"Mantingues les ID's amb prefixes\n"
-"alternatius inalterats."
+msgstr "Mantingues les ID's amb prefixes alternatius inalterats."
 
 #: ../gramps/plugins/tool/reorderids.py:65
 msgctxt "manual"
@@ -38051,7 +37839,7 @@ msgstr "Següent"
 
 #: ../gramps/plugins/webreport/basepage.py:2575
 msgid "Other media: videos, pdfs..."
-msgstr ""
+msgstr "Altres mitjans: vídeos, pdfs..."
 
 #: ../gramps/plugins/webreport/basepage.py:2749
 msgid " [Click to Go]"
@@ -39026,24 +38814,24 @@ msgid "Google maps API key"
 msgstr "Clau API Google maps"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2647
-#, fuzzy
-#| msgid "The API key used for the Google maps"
 msgid ""
 "The API key used for the Google maps.\n"
 "This key is mandatory and must be valid"
-msgstr "La clau API utilitzada per al Google maps"
+msgstr ""
+"La clau API utilitzada per al Google maps.\n"
+"Aquesta clau és obligatoria i ha de ser vàlida"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2659
-#, fuzzy
-#| msgid "Google maps API key"
 msgid "How to get the API key"
-msgstr "Clau API Google maps"
+msgstr "Com aconseguir una clau API"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2662
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Google maps service must be selected."
 msgstr ""
+"Còpia i enganxa aquest valor al teu navegador.\n"
+"El servei de Google maps ha d'estar seleccionat."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2670
 msgid "Toner"
@@ -39076,14 +38864,12 @@ msgid "in %(inipth)s (%(val)s)"
 msgstr "el %(inipth)s (%(val)s)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2696
-#, fuzzy
-#| msgid "Dates"
 msgid "latest"
-msgstr "Dates"
+msgstr "darrer"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2698
 msgid "openlayers version to use"
-msgstr ""
+msgstr "versió a utilitzar d'openlayers"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2703
 msgid ""
@@ -39093,6 +38879,11 @@ msgid ""
 "openlayers_version.\n"
 "See OLDER VERSIONS in https://openlayers.org/"
 msgstr ""
+"Només hauries d'utilitzar aquesta opció si no pots veure els mapes "
+"d'OpenStreetMap o Stamen maps a la teva web.\n"
+"Pots canviar aquest valor a l'arxiu especificat. El nom de l'opció a "
+"modificar es openlayers_version.\n"
+"Veure OLDER VERSIONS a https://openlayers.org/"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2720
 msgid "Other inclusion (CMS, web calendar, PHP)"
@@ -39446,10 +39237,9 @@ msgid "Number of People"
 msgstr "Nombre de Persones"
 
 #: ../gramps/plugins/webreport/surnamelist.py:299
-#, fuzzy, python-format
-#| msgid "Surnames beginning with letter %s"
+#, python-format
 msgid "Surnames beginning with letter '%s' %s"
-msgstr "Cognoms que comencin amb la lletra %s"
+msgstr "Cognoms que comencin amb la lletra'%s' %s"
 
 #: ../gramps/plugins/webreport/thumbnail.py:125
 msgid ""
@@ -39481,7 +39271,7 @@ msgstr ""
 #. Translators: This is the email subject line in the Web Calendar
 #: ../gramps/plugins/webreport/webcal.py:1669
 msgid "WebCal"
-msgstr ""
+msgstr "WebCal"
 
 #: ../gramps/plugins/webreport/webcal.py:1678
 #, python-format
