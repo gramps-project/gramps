@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-15 13:22+0000\n"
+"PO-Revision-Date: 2023-08-16 00:18+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -3090,22 +3090,21 @@ msgid ""
 "start your %(bold_start)sold%(bold_end)s version of Gramps and "
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 msgstr ""
-"Rodoslov koji pokušavaš otvoriti je u formatu shemine inačice %(oldschema)s. "
-"Ova inačica Grampsa koristi sheminu inačicu %(newschema)s. Stoga ne možeš "
-"učitati ovaj rodoslov, bez nadogradnje njegove shemine inačice.\n"
+"Rodoslov koji pokušavaš otvoriti je u formatu sheme verzije %(oldschema)s. "
+"Ova verzija Grampsa koristi shema verziju %(newschema)s. Stoga ne možeš "
+"učitati ovaj rodoslov bez nadogradnje njegove verzije sheme.\n"
 "\n"
-"Ako nadogradiš, nećeš moći koristiti prijašnju inačicu Grampsa, čak niti ako "
-"naknadno %(wiki_manual_backup_html_start)sizradiš zaštitnu kopiju"
-"%(html_end)s ili %(wiki_manual_export_html_start)sizvezeš%(html_end)s tvoj "
-"nadograđeni rodoslov.\n"
+"Ako nadogradiš, nećeš moći koristiti prethodnu Gramps verziju, čak niti ako "
+"naknadno %(wiki_manual_backup_html_start)sizradiš zaštitnu kopiju%(html_end)"
+"s ili %(wiki_manual_export_html_start)sizvezeš%(html_end)s tvoj nadograđeni "
+"rodoslov.\n"
 "\n"
-"Nadogradnja inačice je komplicirani zadatak, te može nepovratno oštetiti "
-"tvoj rodoslov, ako je proces nadogradnje prekinut ili ako ne uspije.\n"
+"Nadogradnja je kompliciran zadatak, te može nepovratno oštetiti tvoj "
+"rodoslov, ako se proces nadogradnje prekine ili ako ne uspije.\n"
 "\n"
-"Ako još nemaš zaštitnu kopiju tvog rodoslova, trebaš pokrenuti "
-"%(bold_start)sstaru%(bold_end)s inačicu Grampsa i "
-"%(wiki_backup_html_start)snnapraviti zaštitnu kopiju%(html_end)s tvog "
-"rodoslova."
+"Ako još nemaš zaštitnu kopiju tvog rodoslova, pokreni "
+"%(bold_start)sstaru%(bold_end)s verziju Grampsa i %(wiki_backup_html_start)"
+"sspremi zaštitnu kopiju%(html_end)s tvog rodoslova."
 
 #: ../gramps/gen/db/exceptions.py:195
 #, python-format
@@ -3140,20 +3139,20 @@ msgid ""
 "start your previous version of Gramps and %(wiki_backup_html_start)smake a "
 "backup%(html_end)s of your Family Tree."
 msgstr ""
-"Rodoslov koji pokušavaš otvoriti je u %(dbtype)s vrsti baze podataka koja se "
-"više ne podržava.\n"
-"Stoga ovaj rodoslov ne možeš učitati bez nadogradnje.\n"
+"Rodoslov koji pokušavaš otvoriti koristi %(dbtype)s bazu podataka koja se "
+"više ne podržava. \n"
+"Stoga ne možeš učitati ovaj rodoslov bez nadogradnje njegove verzije sheme.\n"
 "\n"
-"Ako nadogradiš, nećeš moći koristiti prijašnju inačicu Grampsa, čak niti ako "
-"naknadno %(wiki_manual_backup_html_start)sspremiš zaštitnu kopiju"
-"%(html_end)s ili %(wiki_manual_export_html_start)sizvezeš%(html_end)s tvoj "
-"nadograđeni rodoslov.\n"
+"Ako nadogradiš, nećeš moći koristiti prethodnu Gramps verziju, čak niti ako "
+"naknadno %(wiki_manual_backup_html_start)sizradiš zaštitnu kopiju%(html_end)"
+"s ili %(wiki_manual_export_html_start)sizvezeš%(html_end)s tvoj nadograđeni "
+"rodoslov.\n"
 "\n"
-"Svakako spremi zaštitnu kopiju tvog rodoslova.\n"
+"Preporučujemo da spremiš sigurnosnu kopiju tvog rodoslova.\n"
 "\n"
-"Ako još nemaš zaštitnu kopiju tvog rodoslova, pokrenuti prijašnju inačicu "
-"Grampsa i %(wiki_backup_html_start)sspremi zaštitnu kopiju%(html_end)s tvog "
-"rodoslova."
+"Ako još nemaš zaštitnu kopiju tvog rodoslova, pokreni tvoju prethodnu "
+"verziju Grampsa i %(wiki_backup_html_start)sspremi zaštitnu kopiju%(html_end)"
+"s tvog rodoslova."
 
 #: ../gramps/gen/db/generic.py:196 ../gramps/gen/db/generic.py:246
 #: ../gramps/gen/db/generic.py:2157
@@ -3221,7 +3220,7 @@ msgstr "Broj etiketa"
 
 #: ../gramps/gen/db/generic.py:2559
 msgid "Schema version"
-msgstr "Shemina inačica"
+msgstr "Verzija sheme"
 
 #: ../gramps/gen/db/upgrade.py:584
 #, python-format
@@ -9263,11 +9262,11 @@ msgstr "Nestabilno"
 
 #: ../gramps/gen/plug/_pluginreg.py:66
 msgid "Experimental"
-msgstr ""
+msgstr "Eksperimentalno"
 
 #: ../gramps/gen/plug/_pluginreg.py:67
 msgid "Beta"
-msgstr ""
+msgstr "Beta"
 
 #: ../gramps/gen/plug/_pluginreg.py:68
 msgid "Stable"
@@ -9275,11 +9274,11 @@ msgstr "Stabilno"
 
 #: ../gramps/gen/plug/_pluginreg.py:76
 msgid "Developer"
-msgstr ""
+msgstr "Programer"
 
 #: ../gramps/gen/plug/_pluginreg.py:76
 msgid "Expert"
-msgstr ""
+msgstr "Stručnjak"
 
 #: ../gramps/gen/plug/_pluginreg.py:116
 msgid "Quickreport"
@@ -10382,7 +10381,7 @@ msgstr "Namijenjeno je za verziju %(v1)d.%(v2)d"
 #: ../gramps/gen/plug/utils.py:436
 #, python-format
 msgid "Error: missing gramps_target_version in '%s'..."
-msgstr "Greška: nedostaje gramps_cilj_inačica u „%s” ..."
+msgstr "Greška: gramps_target_version nedostaje u „%s” ..."
 
 #: ../gramps/gen/plug/utils.py:452
 #, python-format
@@ -10902,15 +10901,15 @@ msgstr ""
 
 #: ../gramps/gen/utils/place.py:87
 msgid "D.D4"
-msgstr ""
+msgstr "D.D4"
 
 #: ../gramps/gen/utils/place.py:89
 msgid "D.D8"
-msgstr ""
+msgstr "D.D8"
 
 #: ../gramps/gen/utils/place.py:91
 msgid "RT90"
-msgstr ""
+msgstr "RT90"
 
 #: ../gramps/gen/utils/place.py:99
 msgid "Degree, minutes, seconds notation"
@@ -10930,21 +10929,19 @@ msgstr "Zapis stupnjeva, 8 decimala (točnost kao ISO-DMS)"
 
 #: ../gramps/gen/utils/place.py:103
 msgid "Output format for the Swedish coordinate system RT90"
-msgstr ""
+msgstr "Format rezultata za švedski koordinatni sustav RT90"
 
 #: ../gramps/gen/utils/requirements.py:143
 msgid "Python modules"
-msgstr ""
+msgstr "Python moduli"
 
 #: ../gramps/gen/utils/requirements.py:150
 msgid "GObject introspection modules"
-msgstr ""
+msgstr "GObject moduli introspekcije"
 
 #: ../gramps/gen/utils/requirements.py:157
-#, fuzzy
-#| msgid "_Execute"
 msgid "Executables"
-msgstr "_Izvrši"
+msgstr "Izvršavajuće datoteke"
 
 #: ../gramps/gen/utils/string.py:50 ../gramps/gui/editors/editperson.py:364
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:110
@@ -10968,15 +10965,13 @@ msgstr "ženski"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:113
 msgctxt "gender"
 msgid "unknown"
-msgstr "nepoznato"
+msgstr "nepoznati"
 
 #: ../gramps/gen/utils/string.py:53 ../gramps/gui/editors/editperson.py:366
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:112
-#, fuzzy
-#| msgid "Mother"
 msgctxt "gender"
 msgid "other"
-msgstr "Majka"
+msgstr "drugi"
 
 #: ../gramps/gen/utils/string.py:58
 msgid "Invalid"
@@ -24913,11 +24908,11 @@ msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:189
 msgid "Rounded corners"
-msgstr "Zaobljeni rubovi"
+msgstr "Zaobljeni kutovi"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:193
 msgid "Use rounded corners e.g. to differentiate between women and men."
-msgstr "Koristi zaobljene rubove, npr. za razlikovanje ženskih i muških osoba."
+msgstr "Koristi zaobljene kutove, npr. za razlikovanje ženskih i muških osoba."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:214
 msgid "Use subgraphs"
@@ -25198,7 +25193,7 @@ msgstr ""
 #: ../gramps/plugins/graph/gvhourglass.py:476
 #: ../gramps/plugins/graph/gvrelgraph.py:910
 msgid "Use rounded corners"
-msgstr "Koristi zaobljene rubove"
+msgstr "Koristi zaobljene kutove"
 
 #: ../gramps/plugins/graph/gvhourglass.py:478
 #: ../gramps/plugins/graph/gvrelgraph.py:912
@@ -25454,8 +25449,8 @@ msgid ""
 "The Gramps XML format is a text version of a Family Tree. It is read-write "
 "compatible with the present Gramps database format."
 msgstr ""
-"Foramt Gramps XML je tekstualna verzija rodoslova. Združiva je sa sadašnjom "
-"inačicom formata Gramps baze podataka, uz mogućnost čitanja i pisanja."
+"Gramps XML format je tekstualna verzija rodoslova. Kompatibilan je sa "
+"sadašnjom verzijom formata Gramps baze podataka za čitanje i pisanje."
 
 #: ../gramps/plugins/importer/import.gpr.py:138
 msgid "Gramps 2.x database"
@@ -26034,11 +26029,11 @@ msgid ""
 "example this version), create a new empty database and import the Gramps XML "
 "into that version. Please refer to:%(gramps_wiki_migrate_two_to_three_url)s"
 msgstr ""
-"Inačica baze podataka nije podržana ovom inačicom Grampsa. Trebaš koristiti "
-"jednu staru kopiju Grampsa inačice 3.0.x, i uvesti tvoju bazu podataka u tu "
-"inačicu. Zatim moraš izvesti kopiju tvojih podataka u Gramps XML (rodoslov). "
-"Zatim nadogradi na najnoviju inačicu Grampsa (npr. ovu inačicu), stvori novu "
-"praznu bazu podataka, te uvezi Gramps XML u tu inačicu. Pogledaj: "
+"Ova verzija Grampsa ne podržava verziju baze podataka. Koristi jednu staru "
+"kopiju Grampsa verzije 3.0.x i uvezi tvoju bazu podataka u tu verziju. Zatim "
+"izvezi kopiju tvojih podataka u Gramps XML (Rodoslov). Zatim nadogradi na "
+"najnoviju Gramps verziju (npr. ovu verziju), stvori novu praznu bazu "
+"podataka te uvezi Gramps XML u tu verziju. Pogledaj: "
 "%(gramps_wiki_migrate_two_to_three_url)s"
 
 #: ../gramps/plugins/importer/importprogen.glade:49
@@ -26360,7 +26355,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importvcard.py:373
 #, python-format
 msgid "Import of vCards version %s is not supported by Gramps."
-msgstr "Gramps ne podržava uvoz VCard verziju %s."
+msgstr "Gramps ne podržava uvoz VCards verziju %s."
 
 #: ../gramps/plugins/importer/importvcard.py:396
 #, fuzzy
@@ -26560,7 +26555,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importxml.py:1155
 msgid "Import file misses Gramps version"
-msgstr "Uvezenoj datoteci nedostaje Gramps inačica"
+msgstr "Datoteka za uvoz ne sadrži podatak o Gramps verziji"
 
 #: ../gramps/plugins/importer/importxml.py:1158
 #, python-format
@@ -26569,9 +26564,9 @@ msgid ""
 "while you are running an older version %(older)s. The file will not be "
 "imported. Please upgrade to the latest version of Gramps and try again."
 msgstr ""
-".gramps datoteka koju pokušavaš uvesti je stvorena s inačicom %(newer)s "
-"Grampsa, dok ti koristiš stariju inačicu %(older)s. Datoteka neće biti "
-"uvezena. Nadogradi Gramps na najnoviju inačicu i pokušaj ponovo."
+".gramps datoteka koju pokušavaš uvesti je stvorena s Gramps verzijom %(newer)"
+"s. Ti koristiš stariju verziju %(older)s. Datoteka se neće uvesti. Nadogradi "
+"Gramps na najnoviju verziju i pokušaj ponovo."
 
 #: ../gramps/plugins/importer/importxml.py:1167
 #, python-format
@@ -26585,11 +26580,11 @@ msgid ""
 "  %(gramps_wiki_xml_url)s\n"
 " for more info."
 msgstr ""
-".gramps datoteka koju pokušavaš uvesti stvorena je s inačicom %(oldgramps)s "
-"Grampsa, dok ti koristiš noviju inačicu %(newgramps)s.\n"
+".gramps datoteka koju pokušavaš uvesti je stvorena s Gramps verzijom "
+"%(oldgramps)s. Ti koristiš noviju verziju %(newgramps)s.\n"
 "\n"
-"Datoteka neće biti uvezena. Koristi stariju inačicu programa Gramps, koja "
-"podržava inačicu %(xmlversion)s xml formata.\n"
+"Datoteka se neće uvesti. Koristi stariju Gramps verziju, koja podržava "
+"verziju %(xmlversion)s xml formata.\n"
 "Za detaljne informacije, pogledaj\n"
 "  %(gramps_wiki_xml_url)s."
 
@@ -26610,12 +26605,12 @@ msgid ""
 "  %(gramps_wiki_xml_url)s\n"
 "for more info."
 msgstr ""
-".gramps datoteka koju pokušavaš uvesti stvorena je s inačicom %(oldgramps)s "
-"Grampsa, dok ti koristiš noviju inačicu %(newgramps)s.\n"
+".gramps datoteka koju pokušavaš uvesti je stvorena s Gramps verzijom "
+"%(oldgramps)s. Ti koristiš noviju verziju %(newgramps)s.\n"
 "\n"
-"Provjeri ispravnost i cjelovitost uvezenih podataka. U slučaju problema, "
-"molimo te da prijaviš grešku, a u međuvremenu koristi stariju inačicu "
-"Grampsa za uvoz podataka, a to je %(xmlversion)s xml formata.\n"
+"Provjeri ispravnost i cjelovitost uvezenih podataka. U slučaju problema "
+"prijavi grešku, a u međuvremenu koristi stariju verziju Grampsa za uvoz "
+"podataka, a to je verzija %(xmlversion)s xml formata.\n"
 "Za detaljne informacije, pogledaj\n"
 "  %(gramps_wiki_xml_url)s."
 
@@ -26994,7 +26989,7 @@ msgstr "Ime programa"
 
 #: ../gramps/plugins/lib/libgedcom.py:7761
 msgid "Version number of software product"
-msgstr "Inačica programa"
+msgstr "Verzija programa"
 
 #: ../gramps/plugins/lib/libgedcom.py:7779
 #, python-format
@@ -27045,15 +27040,15 @@ msgstr "Skup znakova"
 
 #: ../gramps/plugins/lib/libgedcom.py:7955
 msgid "Character set and version"
-msgstr "Skup znakova i inačica"
+msgstr "Skup znakova i verzija"
 
 #: ../gramps/plugins/lib/libgedcom.py:7972
 msgid "GEDCOM version not supported"
-msgstr "GEDCOM inačica nije podržana"
+msgstr "GEDCOM verzija nije podržana"
 
 #: ../gramps/plugins/lib/libgedcom.py:7975
 msgid "GEDCOM version"
-msgstr "GEDCOM inačica"
+msgstr "GEDCOM verzija"
 
 #: ../gramps/plugins/lib/libgedcom.py:7984
 msgid "GEDCOM FORM should be in uppercase"
