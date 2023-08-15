@@ -61,6 +61,7 @@ from . import _date_el
 from . import _date_es
 from . import _date_fi
 from . import _date_fr
+from . import _date_he
 from . import _date_hr
 from . import _date_hu
 from . import _date_is
