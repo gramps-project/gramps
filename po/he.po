@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
 "PO-Revision-Date: 2023-08-15 13:51+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -25606,7 +25606,7 @@ msgid ""
 "example this version), create a new empty database and import the Gramps XML "
 "into that version. Please refer to:%(gramps_wiki_migrate_two_to_three_url)s"
 msgstr ""
-"מסד הנתונים בגרסה זו אינו נתמך בגרסה זו של גרמפס. נא לאתחל את גרמפס בגרסה "
+"גרסה זו של מסד נתונים לאו תומך בגרס גרמפס הנוכחית. נא לאתחל את גרמפס בגרסה "
 "ישנה יותר במהדורה ‎3.0.x ולייבא את מסד הנתונים לגרסה זו. נא לייצא עותק של "
 "מסד הנתונים לקובץ XML (אילן־יוחסין). לאחר מכן, יש לשדרג את גרמפס לגרסה "
 "העדכנית ביותר (לדוגמה גרסה זו), לייצר מסד נתונים ריק ולייבא אליו את קובץ ה־"
@@ -30667,7 +30667,7 @@ msgstr "נא לבחור קובץ kml המשמש להוספת מקומות"
 
 #: ../gramps/plugins/lib/maps/geography.py:1146
 msgid "You will need to edit each place manually to add place type, ...\n"
-msgstr "תידרש עריכת כל מקום באופן ידני על מנת להוסיך סוג מקום, ...\n"
+msgstr "הוספת סוג מקום,כרוכה בעריכה ידנית של כל מקום ומקום, ...\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1150
 #, python-brace-format
