@@ -212,6 +212,8 @@ def urlopen_maybe_no_check_cert(URL):
 
 def get_addons(project, url):
     LOG.debug("Checking for updated addons...")
+    if not url.startswith(("http://", "https://", "file://")):
+        return []
     langs = glocale.get_language_list()
     langs.append("en")
     # now we have a list of languages to try:
