@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-15 13:22+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"PO-Revision-Date: 2023-08-15 13:32+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -12847,7 +12847,7 @@ msgstr ""
 
 #: ../gramps/gui/dbman.py:998
 msgid "Proceed, I have taken a backup"
-msgstr "נא להמשיך, נעשה כבר גיבוי"
+msgstr "אפשר להמשיך, כבר גיביתי"
 
 #: ../gramps/gui/dbman.py:999
 msgid "Stop"
@@ -12855,7 +12855,7 @@ msgstr "עצירה"
 
 #: ../gramps/gui/dbman.py:1019
 msgid "Rebuilding database from backup files"
-msgstr "בנית מסד הנתונים מחדש מקבצי גיבוי"
+msgstr "בניית מסד הנתונים מחדש מקובצי גיבוי"
 
 #: ../gramps/gui/dbman.py:1024
 msgid "Error restoring backup data"
@@ -13953,7 +13953,7 @@ msgstr "נא לבחור תאריך"
 #: ../gramps/gui/editors/editdate.py:288
 #, python-brace-format
 msgid "Correct the date or switch from `{cur_mode}' to `{text_mode}'"
-msgstr "תיקון התאריך או מעבר מ `{cur_mode}' ל `{text_mode}'"
+msgstr "יש לתקן את התאריך או לעבור ממצב `{cur_mode}' למצב `{text_mode}'"
 
 #: ../gramps/gui/editors/editevent.py:75
 msgctxt "manual"
@@ -15028,7 +15028,7 @@ msgstr "התאמות ביטוי רגיל (RegEx):"
 
 #: ../gramps/gui/editors/filtereditor.py:612
 msgid "Use regular expression"
-msgstr "שימוש בביטוי רגיל"
+msgstr "שימוש בביטוי רגולרי"
 
 #: ../gramps/gui/editors/filtereditor.py:614
 msgid "Also family events where person is spouse"
@@ -16441,7 +16441,7 @@ msgid ""
 "some reports."
 msgstr ""
 "חלק מהשם הפרטי בו שמשמשים בדרך כלל. אם רקע השדה צבוע באדום, 'ידוע בשם' לא "
-"מהווה חלק מהשם הפרטי ולכן לא יודפס בכמה מהדוחות, כשהו מודגש בקו תחתון."
+"מהווה חלק מהשם הפרטי ולכן לא יודפס בכמה מהדוחות, כשהוא מודגש בקו תחתון."
 
 #: ../gramps/gui/glade/editname.glade:291
 #: ../gramps/gui/glade/editperson.glade:211
@@ -17880,9 +17880,9 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Gdk, Gtk, פאנגו או פאנגו־קיירו typelib לא מותקן.\n"
-"נא להתקין Gnome Introspection וגרסת pygobject 3.12 או מאוחרת יותר.\n"
-"לאחר מכן להתקין נתונים introspection של Gdk, Gtk, פאנגו ופאנגו-קיירו\n"
+"Gdk,‏ Gtk,‏ Pango או PangoCairo typelib אינן מותקנות.\n"
+"יש להתקין Gnome Introspection, ואת pygobject בגרסה 3.12 ומעלה.\n"
+"לאחר מכן להתקין את introspection data עבור Gdk,‏ Gtk,‏ Pango ו־PangoCairo\n"
 "\n"
 "גרמפס ייסגר כעת."
 
@@ -17954,7 +17954,7 @@ msgid ""
 msgstr ""
 "\n"
 "גרמפס לא הצליח לאתחל. נא לדווח על תקל.\n"
-"יתכן וזה עקב שגיאה במצג (צד ג') בהפעלה.\n"
+"יתכן וזה עקב שגיאה במצג (צד ג׳) בהפעלה.\n"
 "על מנת להשתמש במצג אחר, נא לא לטעון אילן־יוחסין, לשנות תצוגה ורק אז לטעון את "
 "אילן־היוחסין הרצוי.\n"
 "ניתן גם לשנות באופן ידני את מצג האתחול בקובץ gramps.ini\n"
@@ -17980,13 +17980,13 @@ msgid ""
 "so that you can paste it into the form on the bug tracking website and "
 "review exactly what information you want to include."
 msgstr ""
-"זהו הסייען לדיווח תקלים. תפקידו לסייע בדווח תקלים לצוות פתוח גרמפס, באופן "
-"מפורט ככול הניתן.\n"
+"זהו הסייען לדיווח תקלים. תפקידו לסייע בדיווח תקלים לצוות פיתוח גרמפס, באופן "
+"מפורט ככל הניתן.\n"
 "\n"
 "הסייען ישאל מספר שאלות ויאסוף מידע על השגיאה שהתרחשה וסביבת העבודה. עם סיום "
 "פעולת הסייען, ניתן יהיה להגיש דוח תקלים במערכת מעקב התקלים של גרמפס. הסייען "
-"ימקם את דוח התקלים על גבי לוח־הגזירים כך שיתאפשר להדביק אותו לטופס באתר "
-"המרשתת של מעקב אחר התקלים ולסקור מה מהמידע שהופק ויכלל בדוח."
+"ימקם את דוח התקלים בלוח־הגזירים כך שיתאפשר להדביק אותו לטופס באתר המרשתת של "
+"מעקב אחר התקלים ולסקור מה מהמידע שהופק וייכלל בדוח."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:320
 msgid ""
@@ -18880,7 +18880,7 @@ msgstr ""
 "בנסיבות רגילות אין צורך לשמור באופן ישיר את השינויים. כל השינויים המבוצעים "
 "נשמרים מיידית אל מסד הנתונים.\n"
 "\n"
-"תהליך זה יעזור לשמור עותק של הנתונים באחת מהתסדירים הנתמכים. ניתן להשתמש בכך "
+"תהליך זה יעזור לשמור עותק של הנתונים באחד מהתסדירים הנתמכים. ניתן להשתמש בכך "
 "ליצירת עותק של הנתונים לגיבוי או על מנת להמירם לתסדיר שיאפשר העברת הנתונים "
 "לתוכנה אחרת.\n"
 "\n"
@@ -20489,7 +20489,7 @@ msgstr "מלל פשוט"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:36
 msgid "Generates documents in plain text format (.txt)."
-msgstr "חילול מסמכים בתסדיר מלל פשוט (.txt)."
+msgstr "חילול מסמכים בתסדיר מלל פשוט (‎.txt)."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:56
 #: ../gramps/plugins/view/fanchartview.py:165
@@ -20969,8 +20969,8 @@ msgid ""
 "Father\n"
 "Display Format"
 msgstr ""
-"אב\n"
-"תסדיר מצג"
+"תסדיר\n"
+"מצג אב"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:976
 msgid "Display format for the fathers box."
@@ -20993,8 +20993,8 @@ msgid ""
 "Center person uses\n"
 "which format"
 msgstr ""
-"האדם המרכזי משתמש\n"
-"איזה תסדיר"
+"באיזה תסדיר משתמש\n"
+"האדם המרכזי"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:995
 msgid "Use Fathers Display format"
@@ -22239,11 +22239,11 @@ msgstr "חבילת גרא_מפס XML (אילן־יוחסין ומדיה)"
 msgid ""
 "Gramps package is an archived XML family tree together with the media object "
 "files."
-msgstr "חבילת גרמפס הוא אילן־יוחסין מאורכב XML בצרוף קבצי עצמי המדיה."
+msgstr "חבילת גרמפס היא אילן־יוחסין ב־XML בצירוף קובצי עצמי מדיה."
 
 #: ../gramps/plugins/export/export.gpr.py:139
 msgid "Gramps package export options"
-msgstr "אפשרויות יצוא חבילת גרמפס"
+msgstr "אפשרויות ייצוא חבילת גרמפס"
 
 #: ../gramps/plugins/export/export.gpr.py:150
 msgid "Gramps XML (family tree)"
@@ -22258,12 +22258,12 @@ msgid ""
 "Gramps XML export is a complete archived XML backup of a Gramps family tree "
 "without the media object files. Suitable for backup purposes."
 msgstr ""
-"יצוא XML בגרמפס הוא למעשה גיבוי ארכיב XML מלא של אילן־היוחסין אך ללא קבצי "
+"יצוא XML בגרמפס הוא למעשה גיבוי ארכיב XML מלא של אילן־היוחסין אך ללא קובצי "
 "עצם המדיה. מתאים לצורכי גיבוי."
 
 #: ../gramps/plugins/export/export.gpr.py:164
 msgid "Gramps XML export options"
-msgstr "אפשרויות יצוא XML גרמפס"
+msgstr "אפשרויות ייצוא XML גרמפס"
 
 #: ../gramps/plugins/export/export.gpr.py:175
 msgid "vCalendar"
@@ -24102,14 +24102,14 @@ msgid ""
 "more details, please read the information at the links below.\n"
 "\n"
 msgstr ""
-"באיתחול הראשון של גרמפס, כל המצגים יהיו ריקים, עם מספר מעט של אפשרויות תפריט "
-"פעילות. כדי שמשו יקרה, נדרש אילן־יוחסין.\n"
+"בהפעלה הראשונה של גרמפס, כל המצגים יהיו ריקים, עם מספר מעט של אפשרויות תפריט "
+"פעילות. כדי שמשהו יקרה, נדרש אילן־יוחסין.\n"
 "\n"
-"ליצירת אילן־יוחסין חדש (נקרא לעיתם גם 'מסד־נתונים') נא לבחור מהתפריט "
+"ליצירת אילן־יוחסין חדש (נקרא לעתים גם 'מסד־נתונים') נא לבחור מהתפריט "
 "ב'אילנות־יוחסין', 'ניהול אילות־יוחסין', לחיצה על 'חדש' והזנת שם לאילן־"
 "היוחסין. 'טעינת אילן־יוחסין' כדי להפוך אותו לפעיל וזמין לקליטת נתונים. קליטת "
-"הנתונים יכולה להתבצעה על ידי, הזנת המשפחה הראשונה, או ייבוא אילן־יוחסין."
-"לפרטים נוספים, נא לעיין במידע בקישורים שלהלן.\n"
+"הנתונים יכולה להתבצעה על ידי, הזנת המשפחה הראשונה, או ייבוא אילן־"
+"יוחסין.לפרטים נוספים, נא לעיין במידע בקישורים שלהלן.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:169
@@ -24496,7 +24496,7 @@ msgstr "כיוון ראש־חץ"
 #: ../gramps/plugins/graph/gvhourglass.py:461
 #: ../gramps/plugins/graph/gvrelgraph.py:894
 msgid "Choose the direction that the arrows point."
-msgstr "נא לבחור בכיוון עלו מורה החץ."
+msgstr "נא לבחור בכיוון עליו מורה החץ."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:176
 #: ../gramps/plugins/graph/gvhourglass.py:464
@@ -25020,8 +25020,8 @@ msgid ""
 "Import data from a Gramps package (an archived XML Family Tree together with "
 "the media object files)."
 msgstr ""
-"יבוא נתונים מחבילת 'גרמפס' (אילן־יוחסין מאוחסן בארכיון בתסדיר XML, בלווית כל "
-"קבצי עצמי המדיה)."
+"ייבוא נתונים מחבילת 'גרמפס' (אילן־יוחסין מאוחסן בארכיון בתסדיר XML, בלווית "
+"כל קובצי עצמי המדיה)."
 
 #: ../gramps/plugins/importer/import.gpr.py:115
 msgid "Gramps XML Family Tree"
@@ -25033,7 +25033,7 @@ msgid ""
 "compatible with the present Gramps database format."
 msgstr ""
 "תסדיר XML גרמפס הנה גרסת מלל של אילן־היוחסין. הקובץ תואם קריאה-כתיבה לתסדיר "
-"מסד הנתונים הנוכחית של גרמפס."
+"מסד הנתונים הנוכחי של גרמפס."
 
 #: ../gramps/plugins/importer/import.gpr.py:138
 msgid "Gramps 2.x database"
