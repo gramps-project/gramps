@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-15 13:43+0000\n"
+"PO-Revision-Date: 2023-08-15 13:51+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -26194,8 +26194,8 @@ msgid ""
 "Your Family Tree groups name \"%(key)s\" together with \"%(parent)s\", did "
 "not change this grouping to \"%(value)s\"."
 msgstr ""
-"שם קבוצת אילנות־היוחסין '%(key)s' יחד עם '%(parent)s', לא שינה קיבוץ זה ל־ "
-"'%(value)s'."
+"שם קבוצות אילנות־היוחסין '%(key)s' יחד עם '%(parent)s', לא שינה קיבוץ זה "
+"ל־'%(value)s'."
 
 #: ../gramps/plugins/importer/importxml.py:1930
 msgid "Gramps ignored a name grouping"
@@ -30254,7 +30254,7 @@ msgstr "מיזוג המקומות שנבחרו"
 
 #: ../gramps/plugins/lib/libplaceview.py:256
 msgid "No map service is available."
-msgstr "לא קיים שירות מפות."
+msgstr "אין שירות מפות זמין."
 
 #: ../gramps/plugins/lib/libplaceview.py:257
 msgid "Check your installation."
@@ -30639,7 +30639,7 @@ msgstr "החלפת '%(map)s' ב־=>"
 #: ../gramps/plugins/lib/maps/geography.py:447
 #, python-format
 msgid "Reload all visible tiles for '%(map)s'."
-msgstr "טעינת כותרות גלויות עבור '%(map)s מחדש'."
+msgstr "טעינת כותרות גלויות עבור '%(map)s' מחדש."
 
 #: ../gramps/plugins/lib/maps/geography.py:453
 #, python-format
@@ -33797,14 +33797,14 @@ msgstr[1] "{quantity} הפניות תסדיר שם שגויות הוסרו\n"
 #, python-brace-format
 msgid "{quantity} invalid source citation was fixed\n"
 msgid_plural "{quantity} invalid source citations were fixed\n"
-msgstr[0] "מובאת מקור שגויה {quantity} תוקנה\n"
+msgstr[0] "מובאת מקור שגויה תוקנה\n"
 msgstr[1] "{quantity} מובאות מקור שגויות תוקנו\n"
 
 #: ../gramps/plugins/tool/check.py:3029
 #, python-brace-format
 msgid "{quantity} Duplicated Gramps ID fixed\n"
 msgid_plural "{quantity} Duplicated Gramps IDs fixed\n"
-msgstr[0] "{quantity} מזהה גרמפס כפול תוקן\n"
+msgstr[0] "מזהה גרמפס כפול תוקן\n"
 msgstr[1] "{quantity} מזהי גרמפס כפולים תוקנו\n"
 
 #: ../gramps/plugins/tool/check.py:3038
