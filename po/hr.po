@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-14 17:08+0000\n"
+"PO-Revision-Date: 2023-08-15 13:22+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -3043,13 +3043,13 @@ msgid ""
 "Please upgrade to the corresponding version or use XML for porting data "
 "between different schema versions."
 msgstr ""
-"Inačica baze podataka nije podržana ovom inačicom programa Gramps.\n"
+"Ova Gramps verzija ne podržava ovu verziju sheme.\n"
 "\n"
-"Ovaj rodoslov je u inačici %(tree_vers)s, a ova inačica Grampsa podržava "
-"inačice %(min_vers)s do %(max_vers)s\n"
+"Verzija sheme ovog rodoslova je %(tree_vers)s, a ova Gramps verzija podržava "
+"verzije %(min_vers)s do %(max_vers)s\n"
 "\n"
-"Nadogradi program na odgovarajuću inačicu ili upotrijebi XML format za "
-"prenošenje podataka između različitih inačica baze podataka."
+"Nadogradi program na odgovarajuću verziju ili koristi XML format za "
+"prenošenje podataka između različitih verzija shema."
 
 #: ../gramps/gen/db/exceptions.py:127
 #, python-format
@@ -3062,13 +3062,13 @@ msgid ""
 "Please upgrade to the corresponding version or use XML for porting data "
 "between different Python versions."
 msgstr ""
-"Inačica Python-a nije podržana u ovoj inačici Grampsa.\n"
+"Ova Gramps verzija ne podržava ovu Python verziju.\n"
 "\n"
-"Ovaj rodoslov je Python inačice %(tree_vers)s, a ova inačica Grampsa "
-"podržava inačice %(min_vers)s do %(max_vers)s.\n"
+"Python verzija ovog rodoslova je %(tree_vers)s, a ova Gramps verzija "
+"podržava verzije %(min_vers)s do %(max_vers)s.\n"
 "\n"
-"Nadogradi program na odgovarajuću inačicu ili upotrijebi XML format za "
-"prijenos podataka između različitih inačica Python-a."
+"Nadogradi program na odgovarajuću verziju ili koristi XML format za "
+"prenošenje podataka između različitih Python verzija."
 
 #: ../gramps/gen/db/exceptions.py:154
 #, python-format
@@ -3636,7 +3636,7 @@ msgstr "Svezak/Stranica:"
 #: ../gramps/gen/filters/rules/_hascitationbase.py:52
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:51
 msgid "Citations matching parameters"
-msgstr "Citati, koji odgovaraju parametrima"
+msgstr "Citati koji odgovaraju parametrima"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:53
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:53
@@ -8981,7 +8981,7 @@ msgstr "Časopis"
 
 #: ../gramps/gen/lib/srcmediatype.py:66
 msgid "Manuscript"
-msgstr "Rukopis"
+msgstr "Manuskript"
 
 #: ../gramps/gen/lib/srcmediatype.py:67
 msgid "Map"
@@ -9066,7 +9066,7 @@ msgstr "Istaknuto"
 #: ../gramps/gen/lib/styledtexttagtype.py:73
 #: ../gramps/gui/widgets/styledtexteditor.py:84
 msgid "Superscript"
-msgstr "Nadignuto"
+msgstr "Eksponent"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:74
 #: ../gramps/gui/glade/editlink.glade:171
@@ -9079,14 +9079,12 @@ msgstr "Poveznica"
 #: ../gramps/gen/lib/styledtexttagtype.py:75
 #: ../gramps/gui/widgets/styledtexteditor.py:84
 msgid "Strikethrough"
-msgstr ""
+msgstr "Precrtano"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:76
 #: ../gramps/gui/widgets/styledtexteditor.py:84
-#, fuzzy
-#| msgid "Superscript"
 msgid "Subscript"
-msgstr "Nadignuto"
+msgstr "Indeks"
 
 #: ../gramps/gen/lib/surname.py:94 ../gramps/gen/lib/surname.py:97
 #: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/clipboard.py:610
@@ -9338,16 +9336,12 @@ msgid "Rule"
 msgstr "Pravilo"
 
 #: ../gramps/gen/plug/_pluginreg.py:129
-#, fuzzy
-#| msgid "Thumbnails"
 msgid "Thumbnailer"
-msgstr "Sličice"
+msgstr "Generiranje sličica"
 
 #: ../gramps/gen/plug/_pluginreg.py:130 ../gramps/gui/configure.py:1635
-#, fuzzy
-#| msgid "Citation Information"
 msgid "Citation formatter"
-msgstr "Informacije o citatima"
+msgstr "Formatiranje citata"
 
 #: ../gramps/gen/plug/_pluginreg.py:617
 #: ../gramps/plugins/gramplet/faqgramplet.py:176
@@ -9828,20 +9822,16 @@ msgid "Surname Given Nickname"
 msgstr "Prezime ime nadimak"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:73
-#, fuzzy
-#| msgid "Surname Given Nickname"
 msgid "Surname, Given Nickname"
-msgstr "Prezime ime nadimak"
+msgstr "Prezime, ime nadimak"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:74
-#, fuzzy
-#| msgid "Given Nickname Surname"
 msgid "GivenNicknameSurname"
-msgstr "Ime nadimak prezime"
+msgstr "ImeNadimakPrezime"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:78
 msgid "Auto"
-msgstr ""
+msgstr "Automatski"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:79
 msgid "Call Name Only"
@@ -10377,17 +10367,17 @@ msgstr "Pregledavanje „%s” ..."
 #: ../gramps/gen/plug/utils.py:408
 #, python-format
 msgid "'%s' is for this version of Gramps."
-msgstr "„%s” je za ovu inačicu Grampsa."
+msgstr "„%s” je za ovu verziju Grampsa."
 
 #: ../gramps/gen/plug/utils.py:416
 #, python-format
 msgid "'%s' is NOT for this version of Gramps."
-msgstr "„%s” NIJE za ovu inačicu Grampsa."
+msgstr "„%s” NIJE za ovu verziju Grampsa."
 
 #: ../gramps/gen/plug/utils.py:422
 #, python-format
 msgid "It is for version %(v1)d.%(v2)d"
-msgstr "Namijenjeno je za inačicu %(v1)d.%(v2)d"
+msgstr "Namijenjeno je za verziju %(v1)d.%(v2)d"
 
 #: ../gramps/gen/plug/utils.py:436
 #, python-format
@@ -10923,22 +10913,20 @@ msgid "RT90"
 msgstr ""
 
 #: ../gramps/gen/utils/place.py:99
-#, fuzzy
-#| msgid "Delete the selected citation"
 msgid "Degree, minutes, seconds notation"
-msgstr "Izbriši odabrani citat"
+msgstr "Zapis stupnjeva, minuta i sekundi"
 
 #: ../gramps/gen/utils/place.py:100
 msgid "Degree, minutes, seconds notation with :"
-msgstr ""
+msgstr "Zapis stupnjeva, minuta i sekundi sa:"
 
 #: ../gramps/gen/utils/place.py:101
 msgid "Degree notation, 4 decimals"
-msgstr ""
+msgstr "Zapis stupnjeva, 4 decimale"
 
 #: ../gramps/gen/utils/place.py:102
 msgid "Degree notation, 8 decimals (precision like ISO-DMS)"
-msgstr ""
+msgstr "Zapis stupnjeva, 8 decimala (točnost kao ISO-DMS)"
 
 #: ../gramps/gen/utils/place.py:103
 msgid "Output format for the Swedish coordinate system RT90"
@@ -11389,7 +11377,7 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Tvoja Pythona verzija ne zadovoljava uvjete. Za pokretanje Grampsa potrebna "
+"Tvoja Python verzija ne zadovoljava uvjete. Za pokretanje Grampsa potrebna "
 "je barem verzija %(v1)d.%(v2)d.%(v3)d.\n"
 "\n"
 "Gramps će sada isključiti."
@@ -11398,24 +11386,20 @@ msgstr ""
 #: ../gramps/grampsapp.py:386 ../gramps/grampsapp.py:403
 #: ../gramps/grampsapp.py:414 ../gramps/grampsapp.py:436
 #: ../gramps/grampsapp.py:444
-#, fuzzy
-#| msgid "Not found"
 msgid "not found"
-msgstr "Nije pronađeno"
+msgstr "nije pronađen"
 
 #: ../gramps/grampsapp.py:365
 msgid "not found because exiv2 is not installed"
-msgstr ""
+msgstr "nije pronađen jer exiv2 nije instaliran"
 
 #: ../gramps/grampsapp.py:401
 msgid "Installed but does not supply version"
-msgstr ""
+msgstr "Instaliran ali ne navodi verziju"
 
 #: ../gramps/grampsapp.py:422
-#, fuzzy
-#| msgid "Unstable"
 msgid "installed"
-msgstr "Nestabilno"
+msgstr "instaliran"
 
 #: ../gramps/grampsapp.py:605 ../gramps/grampsapp.py:614
 #: ../gramps/grampsapp.py:669
@@ -12357,12 +12341,12 @@ msgstr ""
 "Osnovne oznake za formatiranje teksta:\n"
 "<b>&lt;b&gt;Podebljani tekst&lt;/b&gt;</b>\n"
 "<big>&lt;big&gt;Relativno veći tekst&lt;/big&gt;</big>\n"
-"<i>&lt;i&gt;Ukošeni tekst&lt;/i&gt;</i>\n"
+"<i>&lt;i&gt;Kurzivni tekst&lt;/i&gt;</i>\n"
 "<s>&lt;s&gt;Precrtani tekst&lt;/s&gt;</s>\n"
-"<sub>&lt;sub&gt;Spušteni tekst&lt;/sub&gt;</sub>\n"
-"<sup>&lt;sup&gt;Nadignuti tekst&lt;/sup&gt;</sup>\n"
+"<sub>&lt;sub&gt;Indeks&lt;/sub&gt;</sub>\n"
+"<sup>&lt;sup&gt;Eksponent&lt;/sup&gt;</sup>\n"
 "<small>&lt;small&gt;Relativno manji tekst&lt;/small&gt;</small>\n"
-"<tt>&lt;tt&gt;Neproporcionalno pismo&lt;/tt&gt;</tt>\n"
+"<tt>&lt;tt&gt;Font fiksne širine&lt;/tt&gt;</tt>\n"
 "<u>&lt;u&gt;Podvučeni tekst&lt;/u&gt;</u>\n"
 "\n"
 "Na primjer: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n"
@@ -12648,11 +12632,9 @@ msgstr ""
 "Bit će vidljiv samo ako tvoj font sadrži ovaj grafem."
 
 #: ../gramps/gui/csvdialect.py:63
-#, fuzzy
-#| msgid "Tag"
 msgctxt "character"
 msgid "Tab"
-msgstr "Etiketa"
+msgstr "Tabulator"
 
 #: ../gramps/gui/csvdialect.py:82
 msgid "Choose your dialect"
@@ -12663,6 +12645,8 @@ msgid ""
 "Changes are immediate.\n"
 "This is used when exporting views in CSV format."
 msgstr ""
+"Promjene se provode odmah.\n"
+"Ovo se koristi pri izvozu prikaza u CSV formatu."
 
 #: ../gramps/gui/csvdialect.py:114
 msgid "Delimiter:"
@@ -12697,7 +12681,7 @@ msgstr "_Prekid"
 
 #: ../gramps/gui/dbloader.py:220
 msgid "Are you sure you want to upgrade this Family Tree?"
-msgstr "Zaista želiš nadograditi inačicu ovog rodoslova?"
+msgstr "Stvarno želiš nadograditi verziju ovog rodoslova?"
 
 #: ../gramps/gui/dbloader.py:223
 msgid ""
@@ -12705,7 +12689,7 @@ msgid ""
 "please upgrade my Family Tree"
 msgstr ""
 "Imam sigurnosnu kopiju\n"
-"nadogradi inačicu mojeg rodoslova"
+"nadogradi verziju mojeg rodoslova"
 
 #: ../gramps/gui/dbloader.py:226 ../gramps/gui/glade/dialog.glade:701
 #: ../gramps/gui/plug/report/_bookdialog.py:258
@@ -12907,7 +12891,7 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Pokušaj preimenovanja inačice nije uspjeo. Poruka glasi:\n"
+"Pokušaj preimenovanja verzije nije uspjeo. Poruka glasi:\n"
 "\n"
 "%s"
 
@@ -12953,7 +12937,7 @@ msgstr ""
 
 #: ../gramps/gui/dbman.py:761
 msgid "Remove version"
-msgstr "Ukloni inačicu"
+msgstr "Ukloni verziju"
 
 #: ../gramps/gui/dbman.py:817
 msgid "Deletion failed"
@@ -12966,7 +12950,7 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Pokušaj brisanja inačice nije uspjeo. Poruka glasi:\n"
+"Pokušaj brisanja verzije nije uspio. Poruka glasi:\n"
 "\n"
 "%s"
 
@@ -13246,7 +13230,7 @@ msgstr "Upozorenje: Ovo je nestabilan kod!"
 #: ../gramps/gui/displaystate.py:772
 #, python-format
 msgid "This Gramps ('%s') is a development release.\n"
-msgstr "Ovaj Gramps („%s”) je razvojna inačica.\n"
+msgstr "Ovaj Gramps („%s”) je verzija u razvoju.\n"
 
 #: ../gramps/gui/displaystate.py:774
 #, python-format
@@ -13264,19 +13248,19 @@ msgid ""
 "with this version, and make sure to export your data to XML every now and "
 "then."
 msgstr ""
-"Ova inačica nije namijenjena normalnom korištenju. Koristi ju na vlastitu "
+"Ova verzija nije namijenjena za normalno korištenje. Koristi je na vlastitu "
 "odgovornost.\n"
 "\n"
-"Ova inačica može:\n"
+"Ova verzija može:\n"
 "1) raditi drugačije od očekivanoga\n"
 "2) uopće ne raditi\n"
 "3) učestalo se rušiti\n"
 "4) oštetiti tvoje podatke\n"
 "5) spremiti tvoje podatke u formatu, koji neće biti kompatibilan sa "
-"službenom inačicom\n"
+"službenom verzijom\n"
 "\n"
 "%(bold_start)sIZRADI ZAŠTITNU KOPIJU%(bold_end)s tvojih baza podataka prije "
-"otvaranja ovom inačicom i povremeno izvezi podatke u XML formatu."
+"otvaranja s ovom verzijom i povremeno izvezi podatke u XML formatu."
 
 #: ../gramps/gui/editors/addmedia.py:70
 msgctxt "manual"
@@ -15444,10 +15428,8 @@ msgid "Add a new person"
 msgstr "Dodaj novu osobu"
 
 #: ../gramps/gui/editors/objectentries.py:312
-#, fuzzy
-#| msgid "Remove version"
 msgid "Remove person"
-msgstr "Ukloni inačicu"
+msgstr "Ukloni osobu"
 
 #: ../gramps/gui/editors/objectentries.py:375
 msgid "To select a place, use drag-and-drop or use the buttons"
@@ -15833,11 +15815,11 @@ msgstr "Primjer:"
 
 #: ../gramps/gui/glade/dbman.glade:7
 msgid "Revision comment - Gramps"
-msgstr "Komentar inačice – Gramps"
+msgstr "Komentar revizije – Gramps"
 
 #: ../gramps/gui/glade/dbman.glade:58
 msgid "Version description"
-msgstr "Opis inačice"
+msgstr "Opis verzije"
 
 #: ../gramps/gui/glade/dbman.glade:103
 msgid "Family Trees - Gramps"
@@ -18160,8 +18142,8 @@ msgid ""
 "Your version of gi (gnome-introspection) seems to be too old. You need a "
 "version which has the function 'require_version' to start Gramps"
 msgstr ""
-"Tvoja inačica gi (gnome-introspection) je zastarjela. Za pokretanje Grampsa, "
-"trebaš inačicu s funkcijom „require_version”"
+"Tvoja gi verzija (gnome-introspection) je zastarjela. Za pokretanje Grampsa, "
+"trebaš verziju s funkcijom „require_version”"
 
 #: ../gramps/gui/grampsgui.py:415
 #, python-format
@@ -18187,11 +18169,11 @@ msgid ""
 "Gramps will terminate now."
 msgstr ""
 "Gdk, Gtk, Pango ili PangoCairo typelib nije instaliran.\n"
-"Instaliraj Gnome Introspection i PyGobject inačice 3.12 ili veće.\n"
+"Instaliraj Gnome Introspection i PyGobject verziju 3.12 ili noviju.\n"
 "Nako toga instaliraj instrospekcijske datoteke za Gdk, Gtk, Pango i "
 "PangoCairo\n"
 "\n"
-"Gramps će sada prekinuti."
+"Gramps će sada isključiti."
 
 #: ../gramps/gui/grampsgui.py:454
 #, python-format
@@ -18202,7 +18184,8 @@ msgid ""
 "Gramps will terminate now."
 msgstr ""
 "Tvoja Gtk verzija ne zadovoljava uvjete.\n"
-"Za pokretanje Grampsa potrebna je barem verzija %(major)d.%(minor)d.\n"
+"Za pokretanje Grampsa s grafičkim korisničkim sučeljem potrebna je barem "
+"verzija %(major)d.%(minor)d.\n"
 "\n"
 "Gramps će sada isključiti."
 
@@ -18215,10 +18198,10 @@ msgid ""
 "Gramps will terminate now."
 msgstr ""
 "\n"
-"Podrška za cairo python nije instalirana. Instaliraj cairo za tvoju inačicu "
-"python-a\n"
+"Podrška za cairo python nije instalirana. Instaliraj cairo za tvoju python "
+"verziju\n"
 "\n"
-"Gramps će sada prekinuti."
+"Gramps će sada isključiti."
 
 #: ../gramps/gui/grampsgui.py:494
 msgid "Gramps detected an incomplete GTK installation"
@@ -18248,7 +18231,7 @@ msgstr "Greška prilikom obrade argumenata"
 
 #: ../gramps/gui/grampsgui.py:637
 msgid "Gramps terminated because of no DISPLAY"
-msgstr "Gramps je prekinuo jer nema DISPLAY"
+msgstr "Gramps se isključio jer nema DISPLAY"
 
 #: ../gramps/gui/grampsgui.py:667 ../gramps/gui/grampsgui.py:748
 msgid ""
@@ -18732,13 +18715,11 @@ msgstr "Audio"
 
 #: ../gramps/gui/plug/_windows.py:226 ../gramps/gui/plug/_windows.py:1481
 msgid "Version"
-msgstr "Inačica"
+msgstr "Verzija"
 
 #: ../gramps/gui/plug/_windows.py:229
-#, fuzzy
-#| msgid "Database version"
 msgid "Installed version"
-msgstr "Inačica baze podataka"
+msgstr "Instalirana verzija"
 
 #: ../gramps/gui/plug/_windows.py:247 ../gramps/gui/plug/_windows.py:248
 #, fuzzy
@@ -19798,7 +19779,7 @@ msgstr "Popravak rodoslova"
 
 #: ../gramps/gui/plug/tool.py:71
 msgid "Revision Control"
-msgstr "Upravljanje inačicama"
+msgstr "Upravljanje revizijama"
 
 #: ../gramps/gui/plug/tool.py:72
 msgid "Utilities"
@@ -20832,11 +20813,11 @@ msgstr "SQLite baza podataka"
 
 #: ../gramps/plugins/db/dbapi/sqlite.py:63
 msgid "Database version"
-msgstr "Inačica baze podataka"
+msgstr "Verzija baze podataka"
 
 #: ../gramps/plugins/db/dbapi/sqlite.py:64
 msgid "Database module version"
-msgstr "Inačica modula baze podataka"
+msgstr "Verzija modula baze podataka"
 
 #: ../gramps/plugins/db/dbapi/sqlite.py:65
 msgid "Database module location"
@@ -23092,7 +23073,7 @@ msgid ""
 "Gramps every time an update is released?%(html_end)s\n"
 msgstr ""
 "  5. %(gramps_FAQ_html_start)s%(faq_section)sJe li neophodno nadograditi "
-"Gramps nakon svake nove izdane inačice?%(html_end)s\n"
+"Gramps nakon svakog novog izdanja?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:124
 msgid "Data Entry"
@@ -25050,7 +25031,7 @@ msgstr "Pored imena"
 #: ../gramps/plugins/graph/gvfamilylines.py:315
 #: ../gramps/plugins/graph/gvrelgraph.py:1014
 msgid "Where the thumbnail image should appear relative to the name"
-msgstr "Gdje smjestiti sličice, u odnosu na ime"
+msgstr "Gdje prikazati sličicu u odnosu na ime"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:319
 msgid "Thumbnail size"
@@ -25473,7 +25454,7 @@ msgid ""
 "The Gramps XML format is a text version of a Family Tree. It is read-write "
 "compatible with the present Gramps database format."
 msgstr ""
-"Foramt Gramps XML je tekstualna inačica rodoslova. Združiva je sa sadašnjom "
+"Foramt Gramps XML je tekstualna verzija rodoslova. Združiva je sa sadašnjom "
 "inačicom formata Gramps baze podataka, uz mogućnost čitanja i pisanja."
 
 #: ../gramps/plugins/importer/import.gpr.py:138
@@ -26377,10 +26358,9 @@ msgstr ""
 "baratati s ugniježđenim VCard karticama."
 
 #: ../gramps/plugins/importer/importvcard.py:373
-#, fuzzy, python-format
-#| msgid "Import of VCards version %s is not supported by Gramps."
+#, python-format
 msgid "Import of vCards version %s is not supported by Gramps."
-msgstr "Uvoz VCard inačice %s nije podržano u ovoj verziji programa Gramps."
+msgstr "Gramps ne podržava uvoz VCard verziju %s."
 
 #: ../gramps/plugins/importer/importvcard.py:396
 #, fuzzy
@@ -26573,10 +26553,10 @@ msgid ""
 "\n"
 "The file will not be imported."
 msgstr ""
-".gramps datoteka koju pokušavaš uvesti, ne sadrži podatke o inačici Gramps "
-"programa s kojim je stvorena.\n"
+".gramps datoteka koju pokušavaš uvesti, ne sadrži podatke o Gramps verziji s "
+"kojom je stvorena.\n"
 "\n"
-"Datoteka neće biti uvezena."
+"Datoteka se neće uvesti."
 
 #: ../gramps/plugins/importer/importxml.py:1155
 msgid "Import file misses Gramps version"
