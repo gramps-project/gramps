@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-10 06:44+0000\n"
+"PO-Revision-Date: 2023-08-16 00:18+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -11516,10 +11516,8 @@ msgstr "Schránka"
 
 #: ../gramps/gui/clipboard.py:1380 ../gramps/gui/configure.py:219
 #: ../gramps/gui/editors/filtereditor.py:1236 ../gramps/gui/views/tags.py:417
-#, fuzzy
-#| msgid "Change is not immediate"
 msgid "Any changes are saved immediately"
-msgstr "Zmena nie je okamžitá"
+msgstr "Akékoľvek zmeny sa okamžite uložia"
 
 #: ../gramps/gui/clipboard.py:1522 ../gramps/gui/plug/quick/_quicktable.py:154
 #, python-format
@@ -12049,10 +12047,8 @@ msgid "Age display precision *"
 msgstr "Presnosť zobrazenia veku *"
 
 #: ../gramps/gui/configure.py:1562
-#, fuzzy
-#| msgid "Display references for a %s"
 msgid "Display ages for events after death *"
-msgstr "Zobrazí odkazy pre %s"
+msgstr "Zobrazenie veku pre udalosti po smrti *"
 
 #: ../gramps/gui/configure.py:1578
 msgid "Calendar on reports"
@@ -12075,10 +12071,8 @@ msgid "On the next day"
 msgstr "Zobrazí nasledujúcu stranu"
 
 #: ../gramps/gui/configure.py:1601
-#, fuzzy
-#| msgid "only on leap years"
 msgid "Only on leap years"
-msgstr "len v priestupných rokoch"
+msgstr "Len v priestupných rokoch"
 
 #: ../gramps/gui/configure.py:1608
 msgid ""
@@ -12289,11 +12283,11 @@ msgstr "Zobraziť alebo skryť ikonu Schránky na paneli nástrojov."
 
 #: ../gramps/gui/configure.py:2041
 msgid "Show Reports icon on toolbar"
-msgstr ""
+msgstr "Zobraziť ikonu Správy na paneli nástrojov"
 
 #: ../gramps/gui/configure.py:2046
 msgid "Show or hide the Reports icon on the toolbar."
-msgstr ""
+msgstr "Zobraziť alebo skryť ikonu Správy na paneli nástrojov."
 
 #: ../gramps/gui/configure.py:2054
 msgid "Show Tools icon on toolbar"
@@ -12313,11 +12307,11 @@ msgstr "Zobraziť alebo skryť ikonu Doplnky na paneli nástrojov."
 
 #: ../gramps/gui/configure.py:2080
 msgid "Show Preferences icon on toolbar"
-msgstr ""
+msgstr "Zobraziť ikonu Predvoľby na paneli nástrojov"
 
 #: ../gramps/gui/configure.py:2085
 msgid "Show or hide the Preferences icon on the toolbar."
-msgstr ""
+msgstr "Zobraziť alebo skryť ikonu Predvoľby na paneli nástrojov"
 
 #: ../gramps/gui/configure.py:2093
 msgid "Show close button in gramplet bar tabs"
@@ -14151,7 +14145,7 @@ msgstr "Rozmedzie"
 
 #: ../gramps/gui/editors/editdate.py:82
 msgid "From"
-msgstr ""
+msgstr "Od"
 
 #: ../gramps/gui/editors/editdate.py:83
 #, fuzzy
@@ -15354,10 +15348,8 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:96
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:89
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:73
-#, fuzzy
-#| msgid "Case sensitive:"
 msgid "Case sensitive"
-msgstr "Rozlišovanie veľkých a malých písmen:"
+msgstr "Rozlišovanie veľkých a malých písmen"
 
 #: ../gramps/gui/editors/filtereditor.py:688
 msgid "Rule Name"
@@ -15410,29 +15402,20 @@ msgid "Delete Filter"
 msgstr "Vymazať filter"
 
 #: ../gramps/gui/editors/objectentries.py:306
-#, fuzzy
-#| msgid "To select a place, use drag-and-drop or use the buttons"
 msgid "To select a person, use drag-and-drop or use the buttons"
-msgstr "Ak chcete vybrať miesto, použite funkciu ťahaj-a-pusť alebo tlačidlá"
+msgstr "Ak chcete vybrať osobu, použite funkciu ťahaj-a-pusť alebo tlačidlá"
 
 #: ../gramps/gui/editors/objectentries.py:308
-#, fuzzy
-#| msgid "No place given, click button to select one"
 msgid "No person given, click button to select one"
-msgstr ""
-"Nie je zadané žiadne miesto, kliknite na tlačidlo a vyberte jedno z nich"
+msgstr "Nie je zadaná žiadna osoba, kliknite na tlačidlo a vyberte jednu z nich"
 
 #: ../gramps/gui/editors/objectentries.py:309
-#, fuzzy
-#| msgid "Edit Person"
 msgid "Edit person"
 msgstr "Upraviť osobu"
 
 #: ../gramps/gui/editors/objectentries.py:310
-#, fuzzy
-#| msgid "Select an existing place"
 msgid "Select an existing person"
-msgstr "Vybrať existujúce miesto"
+msgstr "Vybrať existujúcu osobu"
 
 #: ../gramps/gui/editors/objectentries.py:311
 #: ../gramps/plugins/lib/libpersonview.py:144
@@ -15440,10 +15423,8 @@ msgid "Add a new person"
 msgstr "Pridať novú osobu"
 
 #: ../gramps/gui/editors/objectentries.py:312
-#, fuzzy
-#| msgid "Remove version"
 msgid "Remove person"
-msgstr "Odstrániť verziu"
+msgstr "Odstrániť osobu"
 
 #: ../gramps/gui/editors/objectentries.py:375
 msgid "To select a place, use drag-and-drop or use the buttons"
@@ -18744,10 +18725,8 @@ msgid "Style Editor"
 msgstr "Editor štýlu"
 
 #: ../gramps/gui/plug/_windows.py:218
-#, fuzzy
-#| msgid "Every object"
 msgid "Project"
-msgstr "každý objekt"
+msgstr "Projekt"
 
 #: ../gramps/gui/plug/_windows.py:222
 #, fuzzy
@@ -18760,43 +18739,32 @@ msgid "Version"
 msgstr "Verzia"
 
 #: ../gramps/gui/plug/_windows.py:229
-#, fuzzy
 msgid "Installed version"
-msgstr "Verzia schémy"
+msgstr "Nainštalovaná verzia"
 
 #: ../gramps/gui/plug/_windows.py:247 ../gramps/gui/plug/_windows.py:248
-#, fuzzy
-#| msgid "Unstable"
 msgid "Install"
-msgstr "Nestabilný"
+msgstr "Nainštalovať"
 
 #: ../gramps/gui/plug/_windows.py:253
 msgid "Wiki"
-msgstr ""
+msgstr "Wiki"
 
 #: ../gramps/gui/plug/_windows.py:258
-#, fuzzy
-#| msgid "* Requires Restart"
 msgid "Requires"
-msgstr "* Vyžaduje reštart"
+msgstr "Vyžaduje"
 
 #: ../gramps/gui/plug/_windows.py:263
-#, fuzzy
-#| msgid "Upgrade now"
 msgid "Upgrade"
-msgstr "Upgradovať teraz"
+msgstr "Aktualizovať"
 
 #: ../gramps/gui/plug/_windows.py:286
-#, fuzzy
-#| msgid "Deletion failed"
 msgid "Module installation failed"
-msgstr "Vymazanie zlyhalo"
+msgstr "Inštalácia modulu zlyhala"
 
 #: ../gramps/gui/plug/_windows.py:311
-#, fuzzy
-#| msgid "Retirement"
 msgid "Requirements"
-msgstr "Dôchodok"
+msgstr "Požiadavky"
 
 #: ../gramps/gui/plug/_windows.py:347
 #, fuzzy
@@ -18809,32 +18777,23 @@ msgid "Refresh"
 msgstr "Obnoviť"
 
 #: ../gramps/gui/plug/_windows.py:385
-#, fuzzy
-#| msgid "Filter"
 msgid "Filters"
-msgstr "Filter"
+msgstr "Filtre"
 
 #: ../gramps/gui/plug/_windows.py:393 ../gramps/gui/plug/_windows.py:402
 #: ../gramps/gui/plug/_windows.py:409 ../gramps/gui/plug/_windows.py:423
 #: ../gramps/gui/plug/_windows.py:557 ../gramps/gui/plug/_windows.py:560
 #: ../gramps/plugins/drawreport/statisticschart.py:334
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "all"
 msgid "All"
-msgstr "všetky"
+msgstr "Všetky"
 
 #: ../gramps/gui/plug/_windows.py:450
-#, fuzzy
-#| msgid "Setting"
 msgid "Settings"
-msgstr "Nastavenie"
+msgstr "Nastavenia"
 
 #: ../gramps/gui/plug/_windows.py:453
-#, fuzzy
-#| msgid "Every object"
 msgid "Projects"
-msgstr "každý objekt"
+msgstr "Projekty"
 
 #: ../gramps/gui/plug/_windows.py:473
 msgid "Loading..."
@@ -19959,14 +19918,8 @@ msgid "Select_Source_selector"
 msgstr "Selektor_Výber_zdroja"
 
 #: ../gramps/gui/spell.py:66
-#, fuzzy
-#| msgid ""
-#| "You have no installed dictionaries. Either install one or disable spell "
-#| "checking"
 msgid "You have no installed dictionaries."
-msgstr ""
-"Nemáte nainštalované žiadne slovníky. Buď si ho nainštalujte, alebo vypnite "
-"kontrolu pravopisu"
+msgstr "Nemáte nainštalované žiadne slovníky."
 
 #: ../gramps/gui/spell.py:87
 msgid "Off"
@@ -20137,6 +20090,8 @@ msgid ""
 "Please wait for backup in progress.\n"
 "Gramps will close when complete."
 msgstr ""
+"Počkajte na prebiehajúce zálohovanie.\n"
+"Gramps sa po dokončení zavrie."
 
 #: ../gramps/gui/viewmanager.py:1291 ../gramps/gui/viewmanager.py:1295
 msgid "Autobackup..."
@@ -27227,22 +27182,16 @@ msgid "%(date)s %(time)s"
 msgstr "%(date)s %(time)s"
 
 #: ../gramps/plugins/lib/libmetadata.py:120
-#, fuzzy
-#| msgid "Description: "
 msgid "Descriptive Tags"
-msgstr "Popis: "
+msgstr "Popisné značky"
 
 #: ../gramps/plugins/lib/libmetadata.py:121
-#, fuzzy
-#| msgid "Styled Text Tags"
 msgid "Date and Time Tags"
-msgstr "Štylizovaný text značiek"
+msgstr "Značky dátumu a času"
 
 #: ../gramps/plugins/lib/libmetadata.py:122
-#, fuzzy
-#| msgid "People"
 msgid "People Tags"
-msgstr "Ľudia"
+msgstr "Značky ľudí"
 
 #: ../gramps/plugins/lib/libmetadata.py:123
 msgid "Event Tags"
