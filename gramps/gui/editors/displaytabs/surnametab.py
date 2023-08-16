@@ -248,8 +248,11 @@ class SurnameTab(EmbeddedList):
         """
         Delete button is clicked. Remove from the model
         """
-        (model, node) = self.selection.get_selected()
+        (_model, node) = self.selection.get_selected()
         if node:
+            path = self.model.get_path(node).to_string()
+            if path == self.curr_path:
+                self.curr_path = None
             self.model.remove(node)
             self.update()
 
@@ -260,6 +263,7 @@ class SurnameTab(EmbeddedList):
         self.curr_col = colnr
         self.curr_cellr = cellr
         self.curr_celle = celle
+        self.curr_path = path
 
     def on_edit_start_cmb(self, cellr, celle, path, colnr):
         """
@@ -291,6 +295,8 @@ class SurnameTab(EmbeddedList):
         Edit is happening. The model is updated and the surname objects updated.
         colnr must be the column in the model.
         """
+        if self.curr_path == None:
+            return
         node = self.model.get_iter(path)
         text = new_text.translate(INVISIBLE).strip()
         self.model.set_value(node, colnr, text)
