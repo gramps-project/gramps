@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-17 12:40+0000\n"
+"PO-Revision-Date: 2023-08-17 13:43+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -3232,7 +3232,7 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"נא להריץ\n"
+"ניתן להריץ\n"
 "כלים &gt; עיבוד אילן־יוחסין &gt; מיזוג\n"
 "על מנת למזג מובאות המכילות מידע\n"
 "זהה"
@@ -15339,7 +15339,7 @@ msgstr "כרך/עמוד"
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:125
 msgctxt "Citation: Minimum Confidence"
 msgid "Min. Conf."
-msgstr "וודאות מזערית"
+msgstr "ודא. מזע."
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:129
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:120
@@ -22669,8 +22669,8 @@ msgid ""
 "  2. %(gramps_FAQ_html_start)s%(faq_section)sHow do I add an additional "
 "spouse?%(html_end)s\n"
 msgstr ""
-"  2. %(gramps_FAQ_html_start)s%(faq_section)sכיצד להוסיף בן זוג נוספים?"
-"%(html_end)s\n"
+"  2. %(gramps_FAQ_html_start)s%(faq_section)sכיצד להוסיף בן זוג "
+"נוסף?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:95
 #, python-format
