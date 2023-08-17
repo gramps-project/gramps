@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-16 00:18+0000\n"
+"PO-Revision-Date: 2023-08-17 12:40+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -527,7 +527,7 @@ msgid ""
 "over a button and a tooltip will appear."
 msgstr ""
 "<b>Čemu ovo služi?</b><br/>Ne znaš što koji gumb čini? Jednostavno zadrži "
-"pokazivač miša iznad gumba i pojavit će se info-oblačić."
+"pokazivač miša iznad gumba i pojavit će se informativni oblačić."
 
 #: ../data/tips.xml:40
 msgid ""
@@ -624,8 +624,8 @@ msgid ""
 msgstr ""
 "<b>Dodavanje djece</b><br/>Dodavanje djece u Grampsu je moguće na dva "
 "načina. Možeš pronaći jednog od roditelja u pogledu „Obitelji” i otvoriti tu "
-"obitelj, te odabrati stvaranje nove osobe ili dodavanje postojeće osobe. "
-"Također možeš dodati djecu (ili braću/sestre) u pogledu „Srodstva”."
+"obitelj. Zatim odaberi stvaranje nove osobe ili dodaj jednu postojeću osobu. "
+"Djecu (ili braću/sestre) možeš dodati i u pogledu „Srodstva”."
 
 #: ../data/tips.xml:56
 msgid ""
@@ -646,11 +646,11 @@ msgid ""
 "is wrong in making this choice, you can override the filter by checking the "
 "Show All checkbutton."
 msgstr ""
-"<b>Gumb za odabir „Prikaži sve”</b><br/>Kad dodaješ postojeću osobu kao "
-"supružnika, popis osoba je filtriran tako da sadrži samo osobe, koje uopće "
-"dolaze u obzir (na osnovi datuma u bazi podataka). Ako misliš da program "
-"griješi u odabiru, možeš nadvladati to filtriranje, upotrebom gumba „Prikaži "
-"sve”."
+"<b>Gumb za odabir „Prikaži sve”</b><br/>Kad dodaješ jednu postojeću osobu "
+"kao supružnika, popis osoba se filtrira tako da sadrži samo osobe, koje "
+"uopće dolaze u obzir (na osnovi datuma u bazi podataka). Ako misliš da "
+"program griješi u odabiru, možeš nadvladati to filtriranje upotrebom gumba „"
+"Prikaži sve”."
 
 #: ../data/tips.xml:60
 msgid ""
@@ -1142,7 +1142,7 @@ msgstr "ne"
 #: ../gramps/cli/arghandler.py:320
 #, python-format
 msgid "Will overwrite the existing file: %s"
-msgstr "Prepisuje postojeću datoteku: %s"
+msgstr "Prepisat će postojeću datoteku: %s"
 
 #: ../gramps/cli/arghandler.py:339
 #, python-format
@@ -3922,22 +3922,22 @@ msgstr "Pronalazi citate s određenim brojem zabilježaka"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py:45
 msgid "Citations having notes containing <substring>"
-msgstr "Citati s bilješkama koje sadrže <podniz znakova>"
+msgstr "Citati sa zabilješkama koje sadrže <podniz znakova>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py:47
 msgid "Matches citations whose notes contain text matching a substring"
 msgstr ""
-"Pronalazi citate, čije bilješke sadrže tekst s određenim podnizom znakova"
+"Pronalazi citate čije zabilješke sadrže tekst koji odgovara podnizu znakova"
 
 #: ../gramps/gen/filters/rules/citation/_hasnoteregexp.py:43
 msgid "Citations having notes containing <text>"
-msgstr "Citati s bilješkama koje sadrže <tekst>"
+msgstr "Citati sa zabilješkama koje sadrže <tekst>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnoteregexp.py:45
 msgid ""
 "Matches citations whose notes contain text matching a regular expression"
 msgstr ""
-"Pronalazi citate, čije bilješke sadrže tekst koji odgavara regularnom izrazu"
+"Pronalazi citate čije zabilješke sadrže tekst koji odgavara regularnom izrazu"
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:45
 msgid "Citations with a reference count of <count>"
@@ -4014,14 +4014,14 @@ msgstr "Pronalazi citate s izvorom, koji ima određenu Gramps ID oznaku"
 
 #: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:54
 msgid "Citations having source notes containing <text>"
-msgstr "Citati, čije bilješke izvora sadrže <tekst>"
+msgstr "Citati, čije zabilješke izvora sadrže <tekst>"
 
 #: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:56
 msgid ""
 "Matches citations whose source notes contain a substring or match a regular "
 "expression"
 msgstr ""
-"Pronalazi citate, čije bilješke izvora sadrže određeni podniz znakova ili "
+"Pronalazi citate čije zabilješke izvora sadrže određeni podniz znakova ili "
 "odgovaraju regularnom izrazu"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:51
@@ -4240,21 +4240,22 @@ msgstr "Pronalazi događaje s određenim brojem zabilježaka"
 
 #: ../gramps/gen/filters/rules/event/_hasnotematchingsubstringof.py:44
 msgid "Events having notes containing <substring>"
-msgstr "Događaji s bilješkama koje sadrže <podniz znakova>"
+msgstr "Događaji sa zabilješkama koje sadrže <podniz znakova>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotematchingsubstringof.py:45
 msgid "Matches events whose notes contain text matching a substring"
 msgstr ""
-"Pronalazi događaje, čije bilješke sadrže tekst s određenim podnizom znakova"
+"Pronalazi događaje čije zabilješke sadrže tekst s određenim podnizom znakova"
 
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:42
 msgid "Events having notes containing <text>"
-msgstr "Događaji s bilješkama koje sadrže <tekst>"
+msgstr "Događaji sa zabilješkama koje sadrže <tekst>"
 
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:44
 msgid "Matches events whose notes contain text matching a regular expression"
 msgstr ""
-"Pronalazi događaje, čije bilješke sadrže tekst dobiven regularnim izrazom"
+"Pronalazi događaje čije zabilješke sadrže tekst koji odgovara regularnom "
+"izrazu"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:44
 msgid "Events with a reference count of <count>"
@@ -4521,21 +4522,22 @@ msgstr "Pronalazi obitelji, koje imaju određeni broj zabilježaka"
 
 #: ../gramps/gen/filters/rules/family/_hasnotematchingsubstringof.py:44
 msgid "Families having notes containing <substring>"
-msgstr "Obitelji s bilješkama koje sadrže <podniz znakova>"
+msgstr "Obitelji sa zabilješkama koje sadrže <podniz znakova>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotematchingsubstringof.py:45
 msgid "Matches families whose notes contain text matching a substring"
 msgstr ""
-"Pronalazi obitelji, čije bilješke sadrže tekst s određenim podnizom znakova"
+"Pronalazi obitelji čije zabilješke sadrže tekst koji odgovara podnizu znakova"
 
 #: ../gramps/gen/filters/rules/family/_hasnoteregexp.py:42
 msgid "Families having notes containing <text>"
-msgstr "Obitelji s bilješkama koje sadrže <tekst>"
+msgstr "Obitelji sa zabilješkama koje sadrže <tekst>"
 
 #: ../gramps/gen/filters/rules/family/_hasnoteregexp.py:44
 msgid "Matches families whose notes contain text matching a regular expression"
 msgstr ""
-"Pronalazi obitelji, čije bilješke sadrže tekst određenog regularnog izraza"
+"Pronalazi obitelji čije zabilješke sadrže tekst koji odgovara regularnom "
+"izrazu"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:44
 msgid "Families with a reference count of <count>"
@@ -4811,23 +4813,23 @@ msgstr "Pronalazi medijske objekte s određenim parametrima"
 
 #: ../gramps/gen/filters/rules/media/_hasnotematchingsubstringof.py:44
 msgid "Media objects having notes containing <substring>"
-msgstr "Medijski objekti s bilješkama koje sadrže <podniz znakova>"
+msgstr "Medijski objekti sa zabilješkama koje sadrže <podniz znakova>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotematchingsubstringof.py:46
 msgid "Matches media objects whose notes contain text matching a substring"
 msgstr ""
-"Pronalazi medijske objekte, čije bilješke sadrže tekst s određenim podnizom "
-"znakova"
+"Pronalazi medijske objekte čije zabilješke sadrže tekst koji odgovara "
+"podnizu znakova"
 
 #: ../gramps/gen/filters/rules/media/_hasnoteregexp.py:42
 msgid "Media objects having notes containing <text>"
-msgstr "Medijski objekti s bilješkama koje sadrže <tekst>"
+msgstr "Medijski objekti sa zabilješkama koje sadrže <tekst>"
 
 #: ../gramps/gen/filters/rules/media/_hasnoteregexp.py:44
 msgid ""
 "Matches media objects whose notes contain text matching a regular expression"
 msgstr ""
-"Pronalazi medijske objekte, čije bilješke sadrže tekst koje odgovaraju "
+"Pronalazi medijske objekte čije zabilješke sadrže tekst koji odgovara "
 "regularnom izrazu"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:44
@@ -4899,7 +4901,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/note/_allnotes.py:46
 msgid "Every note"
-msgstr "Svaka bilješka"
+msgstr "Svaka zabilješka"
 
 #: ../gramps/gen/filters/rules/note/_allnotes.py:47
 msgid "Matches every note in the database"
@@ -4907,7 +4909,7 @@ msgstr "Pronalazi sve bilješke u bazi podataka"
 
 #: ../gramps/gen/filters/rules/note/_changedsince.py:49
 msgid "Notes changed after <date time>"
-msgstr "Bilješke promijenjene nakon <datuma>"
+msgstr "Zabilješke promijenjene nakon <datuma>"
 
 #: ../gramps/gen/filters/rules/note/_changedsince.py:51
 msgid ""
@@ -4919,7 +4921,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:46
 msgid "Note with <Id>"
-msgstr "Bilješka s <ID> oznakom"
+msgstr "Zabilješka s <ID> oznakom"
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:47
 msgid "Matches a note with a specified Gramps ID"
@@ -4930,82 +4932,82 @@ msgstr "Pronalazi bilješku s određenom Gramps ID oznakom"
 #: ../gramps/gui/editors/filtereditor.py:119
 #: ../gramps/gui/editors/filtereditor.py:596
 msgid "Note type:"
-msgstr "Vrsta bilješke:"
+msgstr "Vrsta zabilješke:"
 
 #: ../gramps/gen/filters/rules/note/_hasnote.py:51
 msgid "Notes matching parameters"
-msgstr "Bilješke koje odgovaraju parametrima"
+msgstr "Zabilješke koje odgovaraju parametrima"
 
 #: ../gramps/gen/filters/rules/note/_hasnote.py:52
 msgid "Matches Notes with particular parameters"
-msgstr "Pronalazi bilješke s određenim parametrima"
+msgstr "Pronalazi zabilješke s određenim parametrima"
 
 #: ../gramps/gen/filters/rules/note/_hasreferencecountof.py:44
 msgid "Notes with a reference count of <count>"
-msgstr "Bilješke s <brojem> referenca"
+msgstr "Zabilješke s <brojem> referenca"
 
 #: ../gramps/gen/filters/rules/note/_hasreferencecountof.py:45
 msgid "Matches notes with a certain reference count"
-msgstr "Pronalazi bilješke s određenim brojem referenca"
+msgstr "Pronalazi zabilješke s određenim brojem referenca"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:52
 msgid "Notes with the <tag>"
-msgstr "Bilješke s <etiketom>"
+msgstr "Zabilješke s <etiketom>"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:53
 msgid "Matches notes with the particular tag"
-msgstr "Pronalazi bilješke s određenom etiketom"
+msgstr "Pronalazi zabilješke s određenom etiketom"
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:48
 msgid "Notes with the particular type"
-msgstr "Bilješke određene vrste"
+msgstr "Zabilješke s određenom vrstom"
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:49
 msgid "Matches notes with the particular type "
-msgstr "Pronalazi bilješke određene vrste "
+msgstr "Pronalazi zabilješke s određenom vrstom "
 
 #: ../gramps/gen/filters/rules/note/_matchesfilter.py:46
 msgid "Notes matching the <filter>"
-msgstr "Bilješke određenog <filtra>"
+msgstr "Zabilješke koje odgovaraju <filtru>"
 
 #: ../gramps/gen/filters/rules/note/_matchesfilter.py:47
 msgid "Matches notes matched by the specified filter name"
-msgstr "Pronalazi bilješke koje odgovaraju određenom filtru"
+msgstr "Pronalazi zabilješke koje odgovaraju određenom imenu filtra"
 
 #: ../gramps/gen/filters/rules/note/_matchesregexpof.py:45
 msgid "Notes containing <text>"
-msgstr "Bilješke koje sadrže <tekst>"
+msgstr "Zabilješke koje sadrže <tekst>"
 
 #: ../gramps/gen/filters/rules/note/_matchesregexpof.py:47
 msgid "Matches notes that contain a substring or match a regular expression"
 msgstr ""
-"Pronalazi bilješke koje sadrže podniz znakova ili odgovaraju regularnom "
+"Pronalazi zabilješke koje sadrže podniz znakova ili odgovaraju regularnom "
 "izrazu"
 
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:46
 msgid "Notes containing <substring>"
-msgstr "Bilješke koje sadrže <podniz znakova>"
+msgstr "Zabilješke koje sadrže <podniz znakova>"
 
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:47
 msgid "Matches notes that contain text which matches a substring"
-msgstr "Pronalazi bilješke koje sadrže tekst s određenim podnizom znakova"
+msgstr "Pronalazi zabilješke koje sadrže tekst s određenim podnizom znakova"
 
 #: ../gramps/gen/filters/rules/note/_noteprivate.py:44
 msgid "Notes marked private"
-msgstr "Bilješke označene kao privatne"
+msgstr "Zabilješke označene kao privatne"
 
 #: ../gramps/gen/filters/rules/note/_noteprivate.py:45
 msgid "Matches notes that are indicated as private"
-msgstr "Pronalazi bilješke koje su označene kao privatne"
+msgstr "Pronalazi zabilješke koje su označene kao privatne"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:49
 msgid "Notes with Id containing <text>"
-msgstr "Bilješke, čije ID oznake sadrže <tekst>"
+msgstr "Zabilješke, čije ID oznake sadrže <tekst>"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:50
 msgid "Matches notes whose Gramps ID matches the regular expression"
 msgstr ""
-"Pronalazi bilješke čije Gramps ID oznake odgovaraju određenom regularnom "
+"Pronalazi zabilješke čije Gramps ID oznake odgovaraju određenom regularnom "
 "izrazu"
 
 #: ../gramps/gen/filters/rules/person/_changedsince.py:49
@@ -5363,7 +5365,7 @@ msgstr "Pronalazi osobe s određenim brojem zabilježaka"
 
 #: ../gramps/gen/filters/rules/person/_hasnotematchingsubstringof.py:44
 msgid "People having notes containing <substring>"
-msgstr "Osobe s bilješkama koje sadrže <podniz znakova>"
+msgstr "Osobe sa zabilješkama koje sadrže <podniz znakova>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotematchingsubstringof.py:45
 msgid "Matches people whose notes contain text matching a substring"
@@ -5372,7 +5374,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_hasnoteregexp.py:42
 msgid "People having notes containing <text>"
-msgstr "Osobe sa zabilješkama, koje sadrže <tekst>"
+msgstr "Osobe sa zabilješkama koje sadrže <tekst>"
 
 #: ../gramps/gen/filters/rules/person/_hasnoteregexp.py:44
 msgid "Matches people whose notes contain text matching a regular expression"
@@ -6012,7 +6014,7 @@ msgstr "Pronalazi mjesta s određenim brojem zabilježaka"
 
 #: ../gramps/gen/filters/rules/place/_hasnotematchingsubstringof.py:44
 msgid "Places having notes containing <substring>"
-msgstr "Mjesta sa zabilješkama, koje sadrže <podniz znakova>"
+msgstr "Mjesta sa zabilješkama koje sadrže <podniz znakova>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotematchingsubstringof.py:45
 msgid "Matches places whose notes contain text matching a substring"
@@ -6021,12 +6023,12 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_hasnoteregexp.py:42
 msgid "Places having notes containing <text>"
-msgstr "Mjesta sa zabilješkama, koje sadrže <tekst>"
+msgstr "Mjesta sa zabilješkama koje sadrže <tekst>"
 
 #: ../gramps/gen/filters/rules/place/_hasnoteregexp.py:44
 msgid "Matches places whose notes contain text matching a regular expression"
 msgstr ""
-"Pronalazi mjesta, čije zabilješke sadrže tekst, koji odgavara regularnom "
+"Pronalazi mjesta, čije zabilješke sadrže tekst koji odgavara regularnom "
 "izrazu"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:52
@@ -6261,24 +6263,24 @@ msgstr "Uspoređuje repozitorij s određenom Gramps ID oznakom"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:44
 msgid "Repositories having notes containing <substring>"
-msgstr "Repozitoriji s bilješkama koja sadrže <podniz znakova>"
+msgstr "Repozitoriji sa zabilješkama koje sadrže <podniz znakova>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:46
 msgid "Matches repositories whose notes contain text matching a substring"
 msgstr ""
-"Pronalazi repozitorije, čije bilješke sadrže tekst s određenim podnizom "
+"Pronalazi repozitorije, čije zabilješke sadrže tekst koji odgovara podnizu "
 "znakova"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:42
 msgid "Repositories having notes containing <text>"
-msgstr "Repozitoriji s bilješkama koje sadrže <tekst>"
+msgstr "Repozitoriji sa zabilješkama koje sadrže <tekst>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:44
 msgid ""
 "Matches repositories whose notes contain text matching a regular expression"
 msgstr ""
-"Pronalazi repozitorije, čije bilješke sadrže tekst koji odgovara regularnom "
-"izrazu"
+"Pronalazi repozitorije, čije zabilješke sadrže tekst koji odgovara "
+"regularnom izrazu"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:44
 msgid "Repositories with a reference count of <count>"
@@ -6412,21 +6414,22 @@ msgstr "Pronalazi izvore s određenim brojem zabilježaka"
 
 #: ../gramps/gen/filters/rules/source/_hasnotematchingsubstringof.py:44
 msgid "Sources having notes containing <substring>"
-msgstr "Izvori sa zabilješkama, koje sadrže <podniz znakova>"
+msgstr "Izvori sa zabilješkama koje sadrže <podniz znakova>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotematchingsubstringof.py:45
 msgid "Matches sources whose notes contain text matching a substring"
 msgstr ""
-"Pronalazi izvore, čije zabilješke sadrže tekst s određenim podnizom znakova"
+"Pronalazi izvore, čije zabilješke sadrže tekst koji odgovara podnizu znakova"
 
 #: ../gramps/gen/filters/rules/source/_hasnoteregexp.py:42
 msgid "Sources having notes containing <text>"
-msgstr "Izvori sa zabilješkama, koje sadrže <tekst>"
+msgstr "Izvori sa zabilješkama koje sadrže <tekst>"
 
 #: ../gramps/gen/filters/rules/source/_hasnoteregexp.py:44
 msgid "Matches sources whose notes contain text matching a regular expression"
 msgstr ""
-"Pronalazi izvore, čije zabilješke sadrže tekst dobiven regularnim izrazom"
+"Pronalazi izvore, čije zabilješke sadrže tekst koji odgovara regularnom "
+"izrazu"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:44
 msgid "Sources with a reference count of <count>"
@@ -8582,11 +8585,11 @@ msgstr "Zabilješka mjesta"
 
 #: ../gramps/gen/lib/notetype.py:102
 msgid "Repository Note"
-msgstr "Bilješka repozitorija"
+msgstr "Zabilješka repozitorija"
 
 #: ../gramps/gen/lib/notetype.py:103
 msgid "Repository Reference Note"
-msgstr "Bilješka reference repozitorija"
+msgstr "Zabilješka reference repozitorija"
 
 #: ../gramps/gen/lib/notetype.py:104
 msgid "Media Note"
@@ -9736,7 +9739,7 @@ msgstr "Ovaj tekst će biti dodan dijagramu."
 #: ../gramps/gen/plug/docgen/graphdoc.py:310
 #: ../gramps/gen/plug/docgen/treedoc.py:299
 msgid "Note location"
-msgstr "Položaj zabilješke"
+msgstr "Mjesto zabilješke"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:313
 #: ../gramps/gen/plug/docgen/treedoc.py:302
@@ -9900,7 +9903,7 @@ msgstr "Skript"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:121
 msgid "Footnote"
-msgstr "Bilješka"
+msgstr "Fusnota"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:122
 msgid "Small"
@@ -10037,7 +10040,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:293
 msgid "Note to add to the tree"
-msgstr "Zabilješka za stablo"
+msgstr "Zabilješka za dodavanje stablu"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:294
 msgid "This text will be added to the tree."
@@ -10113,23 +10116,23 @@ msgstr "Grafički prikazi"
 #: ../gramps/plugins/textreport/detdescendantreport.py:1241
 #: ../gramps/plugins/textreport/endoflinereport.py:335
 msgid "The style used for the generation header."
-msgstr "Korišteni stil za zaglavlje generacija."
+msgstr "Stil za zaglavlje generacija."
 
 #: ../gramps/gen/plug/report/endnotes.py:72
 msgid "The basic style used for the endnotes source display."
-msgstr "Osnovni stil za prikaz izvora u završnim zabilješkama."
+msgstr "Osnovni stil za prikaz izvora završnih zabilježaka."
 
 #: ../gramps/gen/plug/report/endnotes.py:79
 msgid "The basic style used for the endnotes notes display."
-msgstr "Osnovni stil za prikaz zabilježaka u završnim zabilješkama."
+msgstr "Osnovni stil za prikaz zabilježaka završnih zabilježaka."
 
 #: ../gramps/gen/plug/report/endnotes.py:87
 msgid "The basic style used for the endnotes reference display."
-msgstr "Osnovni stil za prikaz referenca u završnim zabilješkama."
+msgstr "Osnovni stil za prikaz referenca završnih zabilježaka."
 
 #: ../gramps/gen/plug/report/endnotes.py:96
 msgid "The basic style used for the endnotes reference notes display."
-msgstr "Osnovni stil za prikaz zabilježaka referenca u završnim zabilješkama."
+msgstr "Osnovni stil za prikaz zabilježaka referenca završnih zabilježaka."
 
 #: ../gramps/gen/plug/report/stdoptions.py:63
 msgid "Translation"
@@ -10229,7 +10232,7 @@ msgstr "Da li uključiti etikete"
 
 #: ../gramps/gen/plug/report/stdoptions.py:397
 msgid "Share an existing line"
-msgstr "Koristi postojeći redak"
+msgstr "Dijeli jedan postojeći redak"
 
 #: ../gramps/gen/plug/report/stdoptions.py:398
 msgid "On a line of its own"
@@ -11502,10 +11505,8 @@ msgstr "Međuspremnik"
 
 #: ../gramps/gui/clipboard.py:1380 ../gramps/gui/configure.py:219
 #: ../gramps/gui/editors/filtereditor.py:1236 ../gramps/gui/views/tags.py:417
-#, fuzzy
-#| msgid "Change is not immediate"
 msgid "Any changes are saved immediately"
-msgstr "Promjena nije trenutačna"
+msgstr "Sve promjene se odmah spremaju"
 
 #: ../gramps/gui/clipboard.py:1522 ../gramps/gui/plug/quick/_quicktable.py:154
 #, python-format
@@ -11909,6 +11910,8 @@ msgstr ""
 #: ../gramps/gui/configure.py:1033
 msgid "Suppress tooltip warnings about data being saved immediately"
 msgstr ""
+"Spriječi prikaz informativnog oblačića upozorenja o trenutnom spremanju "
+"podataka"
 
 #: ../gramps/gui/configure.py:1041
 msgid "Show plugin status dialog on plugin load error"
@@ -12038,10 +12041,8 @@ msgid "Age display precision *"
 msgstr "Točnost prikaza starosti *"
 
 #: ../gramps/gui/configure.py:1562
-#, fuzzy
-#| msgid "Display references for a %s"
 msgid "Display ages for events after death *"
-msgstr "Prikaži reference za %s"
+msgstr "Prikaz starosti za događaje nakon smrti *"
 
 #: ../gramps/gui/configure.py:1578
 msgid "Calendar on reports"
@@ -12052,32 +12053,28 @@ msgid "Calendar on input"
 msgstr "Kalendar za unos"
 
 #: ../gramps/gui/configure.py:1599
-#, fuzzy
-#| msgid "Shows previous page"
 msgid "On the previous day"
-msgstr "Prikazuje prethodnu stranicu"
+msgstr "Prethodni dan"
 
 #: ../gramps/gui/configure.py:1600
-#, fuzzy
-#| msgid "Shows the next page"
 msgid "On the next day"
-msgstr "Prikazuje slijedeću stranicu"
+msgstr "Sljedeći dan"
 
 #: ../gramps/gui/configure.py:1601
 msgid "Only on leap years"
-msgstr ""
+msgstr "Samo prijestupne godine"
 
 #: ../gramps/gui/configure.py:1608
 msgid ""
 "For non leap years, anniversaries are displayed on either February 28, March "
 "1 or not at all in Gregorian calendars"
 msgstr ""
+"Za godine koje nisu prijestupne, godišnjice se prikazuju 28. veljače, 1. "
+"ožujka ili se u gregorijanskom kalendaru uopće ne prikazuju"
 
 #: ../gramps/gui/configure.py:1612
-#, fuzzy
-#| msgid "Include death anniversaries"
 msgid "Show leap day anniversaries"
-msgstr "Uključi godišnjice smrti"
+msgstr "Prikaži dan godišnjice za prijestupne godine"
 
 #: ../gramps/gui/configure.py:1619
 msgid "Active person's name and ID"
@@ -12150,7 +12147,7 @@ msgstr "Privatan zapis"
 
 #: ../gramps/gui/configure.py:1817
 msgid "Change is not immediate"
-msgstr "Promjena nije trenutačna"
+msgstr "Promjena se ne provodi odmah"
 
 #: ../gramps/gui/configure.py:1819
 msgid ""
@@ -12238,19 +12235,16 @@ msgstr "Aktiviraj provjeru pravopisa"
 
 #: ../gramps/gui/configure.py:1989
 msgid "Enable the spelling checker for notes."
-msgstr "Aktiviraj provjeru pravopisa za bilješke."
+msgstr "Aktiviraj provjeru pravopisa za zabilješke."
 
 #: ../gramps/gui/configure.py:2000
-#, fuzzy, python-format
-#| msgid ""
-#| "GtkSpell not loaded. Spell checking will not be available.\n"
-#| "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
+#, python-format
 msgid ""
 "Gspell not loaded. Spell checking will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 msgstr ""
-"GtkSpell nije učitan. Provjera pravopisa neće biti dostupna.\n"
-"Za njegovo korištenje pogledaj %(gramps_wiki_build_spell_url)s"
+"Gspell nije učitan. Provjera pravopisa neće biti dostupna.\n"
+"Za izgradnju za Gramps pogledaj %(gramps_wiki_build_spell_url)s"
 
 #: ../gramps/gui/configure.py:2012
 msgid "Show text label beside Navigator buttons *"
@@ -13148,20 +13142,16 @@ msgid "Open the reports dialog"
 msgstr "Otvori dijaloški okvir za izvještaje"
 
 #: ../gramps/gui/displaystate.py:416
-#, fuzzy
-#| msgid "_Reports"
 msgid "Reports"
-msgstr "_Izvještaji"
+msgstr "Izvještaji"
 
 #: ../gramps/gui/displaystate.py:418
 msgid "Open the tools dialog"
 msgstr "Otvori dijaloški okvir za alate"
 
 #: ../gramps/gui/displaystate.py:418
-#, fuzzy
-#| msgid "_Tools"
 msgid "Tools"
-msgstr "_Alati"
+msgstr "Alati"
 
 #: ../gramps/gui/displaystate.py:422
 msgid "Open Addon Manager"
@@ -13172,10 +13162,8 @@ msgid "Addons"
 msgstr "Dodaci"
 
 #: ../gramps/gui/displaystate.py:428
-#, fuzzy
-#| msgid "Preferences"
 msgid "Open Preferences"
-msgstr "Postavke"
+msgstr "Otvori postavke"
 
 #: ../gramps/gui/displaystate.py:449
 #: ../gramps/plugins/gramplet/persondetails.py:181
@@ -13254,8 +13242,9 @@ msgstr ""
 "5) spremiti tvoje podatke u formatu, koji neće biti kompatibilan sa "
 "službenom verzijom\n"
 "\n"
-"%(bold_start)sIZRADI ZAŠTITNU KOPIJU%(bold_end)s tvojih baza podataka prije "
-"otvaranja s ovom verzijom i povremeno izvezi podatke u XML formatu."
+"%(bold_start)sIZRADI ZAŠTITNU KOPIJU%(bold_end)s tvojih postojećih baza "
+"podataka prije otvaranja s ovom verzijom i povremeno izvezi podatke u XML "
+"formatu."
 
 #: ../gramps/gui/editors/addmedia.py:70
 msgctxt "manual"
@@ -13466,23 +13455,23 @@ msgstr "Dijeli"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:75
 msgid "Jump To"
-msgstr "Skoči do"
+msgstr "Idi na"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:76
 msgid "Move Up"
-msgstr "Pomakni prema gore"
+msgstr "Pomakni gore"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:77
 msgid "Move Down"
-msgstr "Pomakni prema dolje"
+msgstr "Pomakni dolje"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:78
 msgid "Move Left"
-msgstr "Premjesti u lijevo"
+msgstr "Pomakni lijevo"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:79
 msgid "Move right"
-msgstr "Premjesti u desno"
+msgstr "Pomakni desno"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:71
 msgid "Create and add a new citation and new source"
@@ -13499,7 +13488,7 @@ msgstr "Uredi odabrani citat"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:74
 msgid "Add an existing citation or source"
-msgstr "Dodaj postojeći citat ili izvor"
+msgstr "Dodaj jedan postojeći citat ili izvor"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:75
 msgid "Move the selected citation upwards"
@@ -13567,7 +13556,7 @@ msgstr "Uredi odabrani obiteljski događaj ili osobu"
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:68
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:60
 msgid "Share an existing event"
-msgstr "Sudjelovanje u postojećem događaju"
+msgstr "Dijeli jedan postojeći događaj"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:69
 msgid "Move the selected event upwards"
@@ -13647,7 +13636,7 @@ msgstr "Postavi _medij aktivnim"
 #: ../gramps/gui/editors/editperson.py:1063
 #: ../gramps/plugins/textreport/indivcomplete.py:624
 msgid "Non existing media found in the Gallery"
-msgstr "Pronađeni su nepostojeći mediji u galeriji"
+msgstr "U galeriji su pronađeni nepostojeći mediji"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:332
 msgid ""
@@ -13761,7 +13750,7 @@ msgstr "Stvori i dodaj novu zabilješku"
 
 #: ../gramps/gui/editors/displaytabs/notetab.py:69
 msgid "Remove the existing note"
-msgstr "Ukloni postojeću zabilješku"
+msgstr "Ukloni postojeću bilješku"
 
 #: ../gramps/gui/editors/displaytabs/notetab.py:70
 #: ../gramps/plugins/view/noteview.py:97
@@ -13770,7 +13759,7 @@ msgstr "Uredi odabranu zabilješku"
 
 #: ../gramps/gui/editors/displaytabs/notetab.py:71
 msgid "Add an existing note"
-msgstr "Dodaj postojeću zabilješku"
+msgstr "Dodaj jednu postojeću zabilješku"
 
 #: ../gramps/gui/editors/displaytabs/notetab.py:72
 msgid "Move the selected note upwards"
@@ -13867,7 +13856,7 @@ msgstr "Stvori i dodaj novo ime mjesta"
 
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:55
 msgid "Remove the existing place name"
-msgstr "Ukloni postojeće ime mjesta"
+msgstr "Ukloni ime postojećeg mjesta"
 
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:56
 msgid "Edit the selected place name"
@@ -13916,7 +13905,7 @@ msgstr "Uredi odabrani repozitorij"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:59
 msgid "Add an existing repository"
-msgstr "Dodaj postojeći repozitorij"
+msgstr "Dodaj jedan postojeći repozitorij"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:60
 msgid "Move the selected repository upwards"
@@ -14103,9 +14092,9 @@ msgid ""
 "value is already used by '%(prim_object)s'. Please enter a different ID or "
 "leave blank to get the next available ID value."
 msgstr ""
-"Pokušavaš upotrijebiti postojeću Gramps ID oznaku: %(id)s. Ovu oznaku već "
-"koristi „%(prim_object)s”. Upiši drugu ID oznaku ili ostavi prazno za "
-"dobivanje slijedeće dostupne ID oznake."
+"Pokušavaš koristiti postojeću Gramps ID oznaku: %(id)s. Ovu oznaku već "
+"koristi „%(prim_object)s”. Upiši jednu drugu ID oznaku ili ostavi prazno za "
+"dobivanje sljedeće dostupne ID oznake."
 
 #: ../gramps/gui/editors/editcitation.py:379
 #, python-format
@@ -14139,13 +14128,11 @@ msgstr "Razdoblje"
 
 #: ../gramps/gui/editors/editdate.py:82
 msgid "From"
-msgstr ""
+msgstr "Od"
 
 #: ../gramps/gui/editors/editdate.py:83
-#, fuzzy
-#| msgid "Top"
 msgid "To"
-msgstr "Gore"
+msgstr "Do"
 
 #: ../gramps/gui/editors/editdate.py:84
 msgid "Span"
@@ -14280,7 +14267,7 @@ msgstr "Uredi reference djeteta"
 
 #: ../gramps/gui/editors/editfamily.py:130
 msgid "Add an existing person as a child of the family"
-msgstr "Dodaj postojeću osobu, kao dijete obitelji"
+msgstr "Dodaj jednu postojeću osobu kao dijete obitelji"
 
 #: ../gramps/gui/editors/editfamily.py:131
 msgid "Move the child up in the children list"
@@ -14357,7 +14344,7 @@ msgstr "Uredi dijete"
 
 #: ../gramps/gui/editors/editfamily.py:221
 msgid "Add an existing child"
-msgstr "Dodaj postojeće dijete"
+msgstr "Dodaj jedno postojeće dijete"
 
 #: ../gramps/gui/editors/editfamily.py:222
 msgid "Edit relationship"
@@ -14555,9 +14542,9 @@ msgid ""
 "value is already used. Please enter a different ID or leave blank to get the "
 "next available ID value."
 msgstr ""
-"Pokušavaš upotrijebiti Gramps ID oznaku %(id)s. Ova oznaka se već koristi. "
-"Upiši drugu ID oznaku ili ju ostavi praznom za dobivanje sljedeće dostupne "
-"vrijednosti."
+"Pokušavaš koristiti Gramps ID oznaku %(id)s. Ova se oznaka već koristi. "
+"Upiši jednu drugu ID oznaku ili ju ostavi praznom za dobivanje sljedeće "
+"dostupne vrijednosti."
 
 #: ../gramps/gui/editors/editfamily.py:1284
 msgid "Add Family"
@@ -14901,10 +14888,8 @@ msgid "_Female"
 msgstr "_Ženski"
 
 #: ../gramps/gui/editors/editperson.py:1212
-#, fuzzy
-#| msgid "Other"
 msgid "_Other"
-msgstr "Ostalo"
+msgstr "_Drugi"
 
 #: ../gramps/gui/editors/editperson.py:1213
 msgid "_Unknown"
@@ -15215,7 +15200,7 @@ msgstr "Filtri repozitorija"
 
 #: ../gramps/gui/editors/filtereditor.py:106
 msgid "Note Filters"
-msgstr "Filtri zabilješke"
+msgstr "Filtri zabilježaka"
 
 #: ../gramps/gui/editors/filtereditor.py:107
 msgid "Citation Filters"
@@ -15394,28 +15379,20 @@ msgid "Delete Filter"
 msgstr "Izbriši filtar"
 
 #: ../gramps/gui/editors/objectentries.py:306
-#, fuzzy
-#| msgid "To select a place, use drag-and-drop or use the buttons"
 msgid "To select a person, use drag-and-drop or use the buttons"
-msgstr "Za odabir mjesta koristi metodu povuci-i-ispusti ili gumbe"
+msgstr "Za biranje osobe koristi metodu povuci-i-ispusti ili gumbe"
 
 #: ../gramps/gui/editors/objectentries.py:308
-#, fuzzy
-#| msgid "No place given, click button to select one"
 msgid "No person given, click button to select one"
-msgstr "Mjesto nije zadano. Pritisni gumb za odabir mjesta"
+msgstr "Nijedna osoba nije zadana. Pritisni gumb za biranje osobe"
 
 #: ../gramps/gui/editors/objectentries.py:309
-#, fuzzy
-#| msgid "Edit Person"
 msgid "Edit person"
 msgstr "Uredi osobu"
 
 #: ../gramps/gui/editors/objectentries.py:310
-#, fuzzy
-#| msgid "Select an existing place"
 msgid "Select an existing person"
-msgstr "Odaberi postojeće mjesto"
+msgstr "Odaberi jednu postojeću osobu"
 
 #: ../gramps/gui/editors/objectentries.py:311
 #: ../gramps/plugins/lib/libpersonview.py:144
@@ -15440,12 +15417,12 @@ msgstr "Uredi mjesto"
 
 #: ../gramps/gui/editors/objectentries.py:379
 msgid "Select an existing place"
-msgstr "Odaberi postojeće mjesto"
+msgstr "Odaberi jedno postojeće mjesto"
 
 #: ../gramps/gui/editors/objectentries.py:380
 #: ../gramps/plugins/lib/libplaceview.py:117
 msgid "Add a new place"
-msgstr "Dodat novo mjesto"
+msgstr "Dodaj novo mjesto"
 
 #: ../gramps/gui/editors/objectentries.py:381
 msgid "Remove place"
@@ -15453,7 +15430,7 @@ msgstr "Ukloni mjesto"
 
 #: ../gramps/gui/editors/objectentries.py:447
 msgid "To select a source, use drag-and-drop or use the buttons"
-msgstr "Za odabir zabilješke koristi metodu povuci-i-ispusti ili gumbe"
+msgstr "Za biranje zabilješke koristi metodu povuci-i-ispusti ili gumbe"
 
 #: ../gramps/gui/editors/objectentries.py:449
 msgid "First add a source using the button"
@@ -15465,7 +15442,7 @@ msgstr "Uredi izvor"
 
 #: ../gramps/gui/editors/objectentries.py:451
 msgid "Select an existing source"
-msgstr "Odaberi postojeći izvor"
+msgstr "Odaberi jedan postojeći izvor"
 
 #: ../gramps/gui/editors/objectentries.py:452
 #: ../gramps/plugins/view/citationlistview.py:143
@@ -15494,7 +15471,7 @@ msgstr "Uredi medijski objekt"
 #: ../gramps/gui/editors/objectentries.py:520
 #: ../gramps/gui/plug/_guioptions.py:1101
 msgid "Select an existing media object"
-msgstr "Odaberi postojeći medijski objekt"
+msgstr "Odaberi jedan postojeći medijski objekt"
 
 #: ../gramps/gui/editors/objectentries.py:521
 #: ../gramps/plugins/view/mediaview.py:128
@@ -15507,17 +15484,17 @@ msgstr "Ukloni medijski objekt"
 
 #: ../gramps/gui/editors/objectentries.py:586
 msgid "To select a note, use drag-and-drop or use the buttons"
-msgstr "Za odabir zabilješke koristi metodu povuci-i-ispusti ili gumbe"
+msgstr "Za biranje zabilješke koristi metodu povuci-i-ispusti ili gumbe"
 
 #: ../gramps/gui/editors/objectentries.py:588
 #: ../gramps/gui/plug/_guioptions.py:1021
 msgid "No note given, click button to select one"
-msgstr "Zabilješka nije odabrana. Pritisni gumb za odabir zabilješke"
+msgstr "Zabilješka nije odabrana. Pritisni gumb za biranje zabilješke"
 
 #: ../gramps/gui/editors/objectentries.py:590
 #: ../gramps/gui/plug/_guioptions.py:996
 msgid "Select an existing note"
-msgstr "Odaberi postojeću zabilješku"
+msgstr "Odaberi jednu postojeću zabilješku"
 
 #: ../gramps/gui/editors/objectentries.py:591
 #: ../gramps/plugins/view/noteview.py:96
@@ -16301,7 +16278,7 @@ msgstr "_Godina"
 
 #: ../gramps/gui/glade/editdate.glade:562
 msgid "Te_xt comment:"
-msgstr "Te_kst zabilješke:"
+msgstr "Te_kst komentara:"
 
 #: ../gramps/gui/glade/editevent.glade:29
 msgid "Close window without changes"
@@ -17484,7 +17461,7 @@ msgstr "Repozitorij 2"
 
 #: ../gramps/gui/glade/mergerepository.glade:398
 msgid "Addresses, urls and notes of both repositories will be combined."
-msgstr "Adrese, url adrese i bilješke obaju repozitorija bit će spojene."
+msgstr "Adrese, url adrese i zabilješke obaju repozitorija bit će spojene."
 
 #: ../gramps/gui/glade/mergesource.glade:97
 msgid ""
@@ -17499,7 +17476,7 @@ msgid ""
 "Notes, media objects, data-items and repository references of both sources "
 "will be combined."
 msgstr ""
-"Bilješke, medijski objekti, podaci i reference repozitorija obaju izvora "
+"Zabilješke, medijski objekti, podaci i reference repozitorija obaju izvora "
 "biti će spojeni."
 
 #: ../gramps/gui/glade/papermenu.glade:8
@@ -18105,8 +18082,6 @@ msgid "_Report a Bug"
 msgstr "P_rijavi grešku"
 
 #: ../gramps/gui/grampsgui.py:58
-#, fuzzy
-#| msgid "_Reports"
 msgid "_Reports"
 msgstr "_Izvještaji"
 
@@ -18115,8 +18090,6 @@ msgid "_Toolbar"
 msgstr "Ala_tna traka"
 
 #: ../gramps/gui/grampsgui.py:58
-#, fuzzy
-#| msgid "_Tools"
 msgid "_Tools"
 msgstr "_Alati"
 
@@ -18428,9 +18401,9 @@ msgid ""
 "please click Report and the Error Reporting Wizard will help you to make a "
 "bug report."
 msgstr ""
-"Tvoji će podaci biti sigurni, ali se preporuča ponovno pokretanje Grampsa. "
+"Tvoji će podaci biti sigurni, ali preporučujemo ponovno pokretanje Grampsa. "
 "Ako želiš prijaviti problem Grampsovom timu, odaberi „Prijavi grešku” i "
-"pomoćnik za prijavu greške će ti pomoći s prijavom."
+"pomoćnik za prijavu grešaka će ti pomoći prijaviti problem."
 
 #: ../gramps/gui/logger/_errorview.py:166
 #: ../gramps/gui/logger/_errorview.py:182
@@ -18520,10 +18493,8 @@ msgstr "%(key)s:\t%(value)s"
 #: ../gramps/gui/merge/mergeperson.py:65
 #: ../gramps/gui/views/treemodels/peoplemodel.py:109
 #: ../gramps/plugins/webreport/person.py:537
-#, fuzzy
-#| msgid "Mother"
 msgid "other"
-msgstr "Majka"
+msgstr "drugi"
 
 #: ../gramps/gui/merge/mergeperson.py:103
 msgid "Merge People"
@@ -18683,7 +18654,7 @@ msgstr "Odaberi boju za %s"
 #: ../gramps/gui/plug/_guioptions.py:1754
 #: ../gramps/gui/plug/report/_reportdialog.py:462
 msgid "Save As"
-msgstr "Spremi pod"
+msgstr "Spremi kao"
 
 #: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:1259
 #: ../gramps/gui/plug/report/_bookdialog.py:651
@@ -18697,16 +18668,12 @@ msgid "Style Editor"
 msgstr "Uređivač stila"
 
 #: ../gramps/gui/plug/_windows.py:218
-#, fuzzy
-#| msgid "Object"
 msgid "Project"
-msgstr "Stavka"
+msgstr "Projekt"
 
 #: ../gramps/gui/plug/_windows.py:222
-#, fuzzy
-#| msgid "Audio"
 msgid "Audience"
-msgstr "Audio"
+msgstr "Publika"
 
 #: ../gramps/gui/plug/_windows.py:226 ../gramps/gui/plug/_windows.py:1481
 msgid "Version"
@@ -18717,50 +18684,40 @@ msgid "Installed version"
 msgstr "Instalirana verzija"
 
 #: ../gramps/gui/plug/_windows.py:247 ../gramps/gui/plug/_windows.py:248
-#, fuzzy
-#| msgid "Unstable"
 msgid "Install"
-msgstr "Nestabilno"
+msgstr "Instaliraj"
 
 #: ../gramps/gui/plug/_windows.py:253
 msgid "Wiki"
-msgstr ""
+msgstr "Wiki"
 
 #: ../gramps/gui/plug/_windows.py:258
-#, fuzzy
-#| msgid "* Requires Restart"
 msgid "Requires"
-msgstr "* Zahtijeva ponovno pokretanje"
+msgstr "Zahtijeva"
 
 #: ../gramps/gui/plug/_windows.py:263
 msgid "Upgrade"
 msgstr "Nadogradnja"
 
 #: ../gramps/gui/plug/_windows.py:286
-#, fuzzy
-#| msgid "Deletion failed"
 msgid "Module installation failed"
-msgstr "Brisanje nije uspjelo"
+msgstr "Instaliranje modula nije uspjelo"
 
 #: ../gramps/gui/plug/_windows.py:311
-#, fuzzy
-#| msgid "Retirement"
 msgid "Requirements"
-msgstr "Umirovljenje"
+msgstr "Preduvjeti"
 
 #: ../gramps/gui/plug/_windows.py:347
 msgid "Addon Manager"
-msgstr "Upavljač dodataka"
+msgstr "Upravljač dodataka"
 
 #: ../gramps/gui/plug/_windows.py:355 ../gramps/plugins/gramplet/leak.py:114
 msgid "Refresh"
 msgstr "Aktualiziraj"
 
 #: ../gramps/gui/plug/_windows.py:385
-#, fuzzy
-#| msgid "Filter"
 msgid "Filters"
-msgstr "Filtar"
+msgstr "Filtri"
 
 #: ../gramps/gui/plug/_windows.py:393 ../gramps/gui/plug/_windows.py:402
 #: ../gramps/gui/plug/_windows.py:409 ../gramps/gui/plug/_windows.py:423
@@ -18770,20 +18727,16 @@ msgid "All"
 msgstr "Sve"
 
 #: ../gramps/gui/plug/_windows.py:450
-#, fuzzy
-#| msgid "Setting"
 msgid "Settings"
-msgstr "Postavljanje"
+msgstr "Postavke"
 
 #: ../gramps/gui/plug/_windows.py:453
 msgid "Projects"
-msgstr ""
+msgstr "Projekti"
 
 #: ../gramps/gui/plug/_windows.py:473
-#, fuzzy
-#| msgid "Loading items..."
 msgid "Loading..."
-msgstr "Učitavanje stavke ..."
+msgstr "Učitavanje …"
 
 #: ../gramps/gui/plug/_windows.py:517
 msgid "No matching addons found."
@@ -18844,22 +18797,16 @@ msgid "Check for updated addons now"
 msgstr "Traži aktualizirane dodatke sada"
 
 #: ../gramps/gui/plug/_windows.py:720
-#, fuzzy
-#| msgid "New Person"
 msgid "New Project"
-msgstr "Nova osoba"
+msgstr "Novi projekt"
 
 #: ../gramps/gui/plug/_windows.py:722
-#, fuzzy
-#| msgid "Edit Person"
 msgid "Edit Project"
-msgstr "Uredi osobu"
+msgstr "Uredi projekt"
 
 #: ../gramps/gui/plug/_windows.py:730
-#, fuzzy
-#| msgid "Preferred name"
 msgid "Project name"
-msgstr "Preferirano ime"
+msgstr "Ime projekta"
 
 #: ../gramps/gui/plug/_windows.py:796
 msgid "Checking Addons Failed"
@@ -19204,12 +19151,12 @@ msgid ""
 "If you change your mind during this process, you can safely press the Cancel "
 "button at any time and your present database will still be intact."
 msgstr ""
-"U normalnim okolnostima, u Grampsu ne moraš ručno spremati podatke. Sve se "
-"promjene automatski spremaju u bazu podataka.\n"
+"U normalnim okolnostima, u Grampsu ne moraš ručno spremati podatke. Sve "
+"tvoje promjene se odmah spremaju u bazu podataka.\n"
 "\n"
 "Ovaj postupak ti pomaže spremati tvoje podatke u jedan od mogućih formata "
 "koji Gramps podržava. Može ti poslužiti za izradu kopija, sigurnosnih kopija "
-"ili pretvaranje u formate, koji će ti omogućiti prenijeti podatke u druge "
+"ili pretvaranje u formate koji će ti omogućiti prenijeti podatke u druge "
 "programe.\n"
 "\n"
 "Ako se predomisliš, postupak spremanja možeš u svakom trenutku prekinuti "
@@ -19275,7 +19222,7 @@ msgstr "Pritisni za prikaz pregleda nakon filtra osobe"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:326
 msgid "_Note Filter"
-msgstr "Filtar _zabilješke"
+msgstr "Filtar _zabilježaka"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:344
 msgid "Click to see preview after note filter"
@@ -19323,7 +19270,7 @@ msgstr "Primjena odabranog filtra osoba"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:669
 msgid "Applying selected note filter"
-msgstr "Primjena odabranog filtra zabilješke"
+msgstr "Primjena odabranog filtra zabilježaka"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:679
 msgid "Filtering referenced records"
@@ -20777,10 +20724,8 @@ msgid "'%s' is not a valid date value"
 msgstr "„%s” nije ispravna vrijednost za datum"
 
 #: ../gramps/plugins/cite/cite.gpr.py:36
-#, fuzzy
-#| msgid "Publication Information"
 msgid "Default citation formatter"
-msgstr "Podaci o publikaciji"
+msgstr "Standardno formatiranje citata"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:27
 msgid "BSDDB"
@@ -21152,26 +21097,20 @@ msgid ""
 msgstr "Da li ukolniti dodatne razmake, korištenih za nepoznate osobe"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:875
-#, fuzzy
-#| msgid "Show dates"
 msgid "Show Index"
-msgstr "Prikaži datume"
+msgstr "Prikaži indeks"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:876
-#, fuzzy
-#| msgid "Display Tip of the Day"
 msgid "Display index of each person"
-msgstr "Prikaži „Savjet dana”"
+msgstr "Prikaži indeks svake osobe"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:880
-#, fuzzy
-#| msgid "Starting"
 msgid "Start Index"
-msgstr "Početak"
+msgstr "Početak indeksa"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:881
 msgid "The start index"
-msgstr ""
+msgstr "Početak indeksa"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:897
 #: ../gramps/plugins/drawreport/descendtree.py:1629
@@ -21182,7 +21121,7 @@ msgstr "Naslov izvještaja"
 #: ../gramps/plugins/drawreport/descendtree.py:1630
 #: ../gramps/plugins/drawreport/descendtree.py:1802
 msgid "Do not include a title"
-msgstr "Ne uključuj naslov"
+msgstr "Nemoj uključiti naslov"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:899
 msgid "Include Report Title"
@@ -21429,7 +21368,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/ancestortree.py:1039
 #: ../gramps/plugins/drawreport/descendtree.py:1758
 msgid "Note Location"
-msgstr "Položaj zabilješke"
+msgstr "Mjesto zabilježaka"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1042
 #: ../gramps/plugins/drawreport/descendtree.py:1761
@@ -22139,19 +22078,19 @@ msgid ""
 msgstr "Možeš prilagoditi font i boju za svaku generaciju u uređivaču stila"
 
 #: ../gramps/plugins/drawreport/fanchart.py:853
-#, fuzzy
-#| msgid "Flip name on the left of the fan"
 msgid "Flip names that are on the bottom half of the fan"
-msgstr "Okreni smjer prikaza imena u lepezi"
+msgstr "Okreni smjer prikaza imena koja se nalaze u donjem dijelu lepeze"
 
 #: ../gramps/plugins/drawreport/fanchart.py:856
 msgid "Flip names for generations 2, 3 and 4 i.e. those found in circles"
 msgstr ""
+"Okreni smjer prikaza imena 2., 3. i 4. generacije, za ona koja su pronađena "
+"u krugovima"
 
 #: ../gramps/plugins/drawreport/fanchart.py:912
 #, python-format
 msgid "The style used for the text display of generation \"%d\""
-msgstr "Stil korišten za prikaz teksta „%d.” generacije"
+msgstr "Stil za prikaz teksta „%d.” generacije"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:330
 msgid "Item count"
@@ -24276,10 +24215,8 @@ msgstr "Broj osoba"
 #: ../gramps/plugins/gramplet/statsgramplet.py:157
 #: ../gramps/plugins/webreport/statistics.py:134
 #: ../gramps/plugins/webreport/statistics.py:244
-#, fuzzy
-#| msgid "Individuals with unknown gender"
 msgid "Individuals with other gender"
-msgstr "Osobe nepoznatog spola"
+msgstr "Osobe drugog spola"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:164
 #: ../gramps/plugins/webreport/statistics.py:139
@@ -24611,13 +24548,6 @@ msgid "Addons and \"Gramplets\""
 msgstr "Dodaci i „grampleti”"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:247
-#, fuzzy
-#| msgid ""
-#| "There many Addons or \"Gramplets\" that are available to assist you in "
-#| "data entry and visualizing your family tree. Many of these tools are "
-#| "already available to you. Many more are available to download and "
-#| "install.\n"
-#| "\n"
 msgid ""
 "There are many Addons or \"Gramplets\" that are available to assist you in "
 "data entry and visualizing your family tree. Many of these tools are already "
@@ -25063,10 +24993,8 @@ msgstr "Boja za prikaz žena."
 #: ../gramps/plugins/graph/gvfamilylines.py:347
 #: ../gramps/plugins/graph/gvhourglass.py:512
 #: ../gramps/plugins/graph/gvrelgraph.py:1055
-#, fuzzy
-#| msgid "The color to use to display women."
 msgid "The color to use to display people who are neither men nor women."
-msgstr "Boja za prikaz žena."
+msgstr "Boja za prikaz osoba koje nisu muškog niti ženskog spola."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:352
 #: ../gramps/plugins/graph/gvhourglass.py:517
@@ -25223,24 +25151,16 @@ msgid "Ahnentafel number visible"
 msgstr "Broj ploče predaka vidljiv"
 
 #: ../gramps/plugins/graph/gvhourglass.py:536
-#, fuzzy
-#| msgid ""
-#| "Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
-#| "informations."
 msgid "Show Sosa / Sosa-Stradonitz / Ahnentafel number."
-msgstr ""
-"Prisili broj za Sosa/Sosa-Stradonitz/ploču predaka ispod svih ostalih "
-"informacija."
+msgstr "Prikaži Sosa / Sosa-Stradonitz / broj ploče predaka."
 
 #: ../gramps/plugins/graph/gvhourglass.py:540
-#, fuzzy
-#| msgid "Show all events"
 msgid "Show symbols for events"
-msgstr "Prikaži sve događaje"
+msgstr "Prikaži simbole za događaje"
 
 #: ../gramps/plugins/graph/gvhourglass.py:542
 msgid "Show genealogical symbols for birth, marriage and death events."
-msgstr ""
+msgstr "Prikaži genealoške simbole za događaje rođenja, vjenčanja i smrti."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:226
 #: ../gramps/plugins/textreport/indivcomplete.py:860
@@ -25530,7 +25450,7 @@ msgstr "izvor"
 
 #: ../gramps/plugins/importer/importcsv.py:220
 msgid "note"
-msgstr "bilješka"
+msgstr "zabilješka"
 
 #: ../gramps/plugins/importer/importcsv.py:225
 msgid "birth place"
@@ -26324,16 +26244,13 @@ msgid "vCard import"
 msgstr "vCard uvoz"
 
 #: ../gramps/plugins/importer/importvcard.py:274
-#, fuzzy
-#| msgid "VCARD import report: No errors detected"
 msgid "vCard import report: No errors detected"
-msgstr "Izvještaj VCARD uvoza: Nisu otkrivene greške"
+msgstr "Izvještaj vCard uvoza: Nisu otkrivene greške"
 
 #: ../gramps/plugins/importer/importvcard.py:277
-#, fuzzy, python-format
-#| msgid "VCARD import report: %s errors detected\n"
+#, python-format
 msgid "vCard import report: %s errors detected\n"
-msgstr "Izvještaj VCARD uvoza: otkriveni broj grešaka je %s\n"
+msgstr "Izvještaj vCard uvoza: broj otkrivenih grešaka: %s\n"
 
 #: ../gramps/plugins/importer/importvcard.py:342
 #, python-format
@@ -35332,7 +35249,7 @@ msgstr "grupiraj kao"
 
 #: ../gramps/plugins/tool/removespaces.py:203
 msgid "tooltip"
-msgstr "opis alata"
+msgstr "informativni oblačić"
 
 #: ../gramps/plugins/tool/removespaces.py:278
 #: ../gramps/plugins/tool/removespaces.py:288
@@ -36086,7 +36003,7 @@ msgstr "Dodaj novi citat i izvor"
 #: ../gramps/plugins/view/citationlistview.py:144
 #: ../gramps/plugins/view/citationtreeview.py:136
 msgid "Add a new citation to an existing source"
-msgstr "Dodaj novi citat postojećem izvoru"
+msgstr "Dodaj novi citat jednom postojećem izvoru"
 
 #: ../gramps/plugins/view/citationlistview.py:146
 msgid "Delete the selected citation"
@@ -37161,7 +37078,7 @@ msgstr "Dodaj novi par roditelja"
 
 #: ../gramps/plugins/view/relview.py:498 ../gramps/plugins/view/relview.py:1017
 msgid "Add person as child to an existing family"
-msgstr "Dodaj osobu, kao dijete postojeće obitelji"
+msgstr "Dodaj osobu kao dijete jednoj postojećoj obitelji"
 
 #: ../gramps/plugins/view/relview.py:498
 msgid "Change order of parents and families"
