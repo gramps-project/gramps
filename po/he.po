@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-15 13:51+0000\n"
+"PO-Revision-Date: 2023-08-17 12:40+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -527,8 +527,9 @@ msgid ""
 msgstr ""
 "<b>תאריך לא ודאי?<br/></b> במידה ותאריך התרחשות האירוע אינו ודאי או מוחלט, "
 "ניתן להזין מגוון רחב של מבני תאריך המבוססים על ניחוש או על הערכה. כך לדוגמה, "
-"הביטוי 'בסביבות 1908' הוא ערך חוקי לתאריך לידה בגרמפס. בהקשה על‏ לחצן 'קריאה "
-"לעורך תאריך' בסמוך לשדה התאריך. למידע נוסף, נא לעיין במדריך גרמפס."
+"הביטוי 'בסביבות 1908' הוא ערך חוקי לתאריך לידה בגרמפס. הקריאה לעורך העשית על "
+"ידי הקשה על‏ לחצן 'קריאה לעורך תאריך' בסמוך לשדה התאריך. למידע נוסף, נא "
+"לעיין במדריך גרמפס."
 
 #: ../data/tips.xml:42
 msgid ""
@@ -2887,7 +2888,7 @@ msgstr "אחרי "
 #: ../gramps/gen/datehandler/_datestrings.py:249
 msgctxt "date modifier"
 msgid "about "
-msgstr "בסביבות "
+msgstr "בקרוב "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
@@ -7027,7 +7028,7 @@ msgstr "תגים"
 #: ../gramps/gen/lib/date.py:373
 msgctxt "age"
 msgid "about"
-msgstr "בסביבות"
+msgstr "מקורב"
 
 #: ../gramps/gen/lib/date.py:456 ../gramps/gen/lib/date.py:463
 #, python-brace-format
@@ -7121,7 +7122,7 @@ msgstr "אחרי"
 
 #: ../gramps/gen/lib/date.py:2001 ../gramps/plugins/webreport/basepage.py:3574
 msgid "about"
-msgstr "בסביבות"
+msgstr "מקורב"
 
 #: ../gramps/gen/lib/date.py:2002
 msgid "range"
@@ -11979,7 +11980,7 @@ msgstr "מגבלות חישוב"
 
 #: ../gramps/gui/configure.py:1865
 msgid "Date 'about' year range: (date ± #)"
-msgstr "תאריך 'בסביבות', טווח שנים: (תאריך ± #)"
+msgstr "טווח שנים לתאריך 'מקורב': (תאריך ± #)"
 
 #: ../gramps/gui/configure.py:1873
 msgid "Date 'after' year range:  (date + #)"
@@ -13911,7 +13912,7 @@ msgstr "אחרי"
 
 #: ../gramps/gui/editors/editdate.py:80
 msgid "About"
-msgstr "בסביבות"
+msgstr "מקורב"
 
 #: ../gramps/gui/editors/editdate.py:81
 msgid "Range"
@@ -16098,7 +16099,7 @@ msgid ""
 "between, ...), or an inexact date (about, ...)."
 msgstr ""
 "תאריך האירוע. יכול להיות תאריך מדויק, טווח או משך (מ... עד, בין... לבין) או "
-"תאריך לא מדויק (בסביבות, בקרוב...)."
+"תאריך לא מדויק (בסביבות, מקורב...)."
 
 #: ../gramps/gui/glade/editevent.glade:375
 #: ../gramps/gui/glade/editeventref.glade:451
