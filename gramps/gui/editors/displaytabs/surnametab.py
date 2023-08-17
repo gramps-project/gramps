@@ -91,12 +91,14 @@ class SurnameTab(EmbeddedList):
         name,
         on_change=None,
         top_label="<b>%s</b>" % _("Multiple Surnames"),
+        surname_override = None
     ):
         self.obj = name
         self.on_change = on_change
         self.curr_col = -1
         self.curr_cellr = None
         self.curr_celle = None
+        self.surname_override = surname_override
 
         EmbeddedList.__init__(
             self,
@@ -433,4 +435,6 @@ class SurnameTab(EmbeddedList):
         return True
 
     def get_config_name(self):
+        if self.surname_override:
+            return self.surname_override
         return __name__

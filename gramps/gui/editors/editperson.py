@@ -479,6 +479,7 @@ class EditPerson(EditPrimary):
             self.track,
             self.obj.get_primary_name(),
             on_change=self._changed_name,
+            surname_override = "pers_surnnametab"
         )
 
     def get_start_date(self):
