@@ -260,8 +260,8 @@ class AddonRow(Gtk.ListBoxRow):
             bb.pack_start(b3, False, False, 0)
 
         if "_v" in addon and addon["_v"] != addon["v"]:
-            b4 = Gtk.Button(label=_("Upgrade"))
-            b4.connect("clicked", self.__on_upgrade_clicked, addon)
+            b4 = Gtk.Button(label=_("Update"))
+            b4.connect("clicked", self.__on_update_clicked, addon)
             bb.pack_end(b4, False, False, 0)
 
         vbox.pack_start(bb, False, False, 0)
@@ -310,13 +310,13 @@ class AddonRow(Gtk.ListBoxRow):
         """
         InfoDialog(_("Requirements"), self.req.info(addon), parent=self.window)
 
-    def __on_upgrade_clicked(self, button, addon):
+    def __on_update_clicked(self, button, addon):
         """
-        Upgrade the addon.
+        Update the addon.
         """
         path = addon["_u"] + "/download/" + addon["z"]
         load_addon_file(path)
-        self.manager.upgrade_addon(addon["i"])
+        self.manager.update_addon(addon["i"])
         self.manager.refresh()
 
     def __create_lozenge(self, description, text):
@@ -392,7 +392,7 @@ class AddonManager(ManagedWindow):
         self.addon_combo.append_text(_("All addons"))
         self.addon_combo.append_text(_("Uninstalled"))
         self.addon_combo.append_text(_("Installed"))
-        self.addon_combo.append_text(_("Upgrade"))
+        self.addon_combo.append_text(_("Update"))
         self.addon_combo.set_active(0)
         self.addon_combo.connect("changed", self.__combo_changed)
         hbox.pack_start(self.addon_combo, False, False, 0)
@@ -503,9 +503,9 @@ class AddonManager(ManagedWindow):
         thread = GetAddons(self.load_addons)
         thread.start()
 
-    def upgrade_addon(self, addon_id):
+    def update_addon(self, addon_id):
         """
-        Upgrade the given addon.
+        Update the given addon.
         """
         pdata = self.__preg.get_plugin(addon_id)
         self.__pmgr.reg_plugin_dir(
@@ -591,7 +591,7 @@ class AddonManager(ManagedWindow):
         if addon_text == _("Installed"):
             if "_v" not in row.addon:
                 return False
-        if addon_text == _("Upgrade"):
+        if addon_text == _("Update"):
             if "_v" not in row.addon:
                 return False
             if row.addon["v"] == row.addon["_v"]:
