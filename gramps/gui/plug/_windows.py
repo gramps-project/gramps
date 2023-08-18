@@ -387,6 +387,16 @@ class AddonManager(ManagedWindow):
         label.set_margin_end(12)
         hbox.pack_start(label, False, False, 0)
 
+        self.addon_combo = Gtk.ComboBoxText()
+        self.addon_combo.set_entry_text_column(0)
+        self.addon_combo.append_text(_("All addons"))
+        self.addon_combo.append_text(_("Uninstalled"))
+        self.addon_combo.append_text(_("Installed"))
+        self.addon_combo.append_text(_("Upgrade"))
+        self.addon_combo.set_active(0)
+        self.addon_combo.connect("changed", self.__combo_changed)
+        hbox.pack_start(self.addon_combo, False, False, 0)
+
         self.projects = config.get("behavior.addons-projects")
         self.project_combo = Gtk.ComboBoxText()
         self.project_combo.set_entry_text_column(0)
@@ -540,9 +550,10 @@ class AddonManager(ManagedWindow):
         """
         self.search.set_text("")
         self.type_combo.set_active(0)
+        self.addon_combo.set_active(0)
         self.project_combo.set_active(0)
         self.audience_combo.set_active(1)
-        self.status_combo.set_active(4)
+        self.status_combo.set_active(1)
 
     def __combo_changed(self, combo):
         """
@@ -568,11 +579,23 @@ class AddonManager(ManagedWindow):
         Filter the addons list according to the user selection.
         """
         search_text = self.search.get_text()
+        addon_text = self.addon_combo.get_active_text()
         project_text = self.project_combo.get_active_text()
         type_iter = self.type_combo.get_active_iter()
         audience_iter = self.audience_combo.get_active_iter()
         status_iter = self.status_combo.get_active_iter()
 
+        if addon_text == _("Uninstalled"):
+            if "_v" in row.addon:
+                return False
+        if addon_text == _("Installed"):
+            if "_v" not in row.addon:
+                return False
+        if addon_text == _("Upgrade"):
+            if "_v" not in row.addon:
+                return False
+            if row.addon["v"] == row.addon["_v"]:
+                return False
         if project_text != _("All projects"):
             if row.addon["_p"] != project_text:
                 return False
