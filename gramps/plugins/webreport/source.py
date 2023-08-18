@@ -273,7 +273,10 @@ class SourcePages(BasePage):
             sourcedetail += Html("h3", html_escape(source.get_title()), inline=True)
 
             # begin sources table
-            with Html("table", class_="infolist source " + self.dir) as table:
+            with Html(
+                "table",
+                class_="infolist source " + self.dir
+            ) as table:
                 sourcedetail += table
 
                 tbody = Html("tbody")

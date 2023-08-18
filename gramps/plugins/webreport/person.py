@@ -404,7 +404,10 @@ class PersonPages(BasePage):
                 individuallist += alpha_nav
 
             # begin table and table head
-            with Html("table", class_="infolist primobjlist IndividualList " + self.dir) as table:
+            with Html(
+                "table",
+                class_="infolist primobjlist IndividualList " + self.dir
+            ) as table:
                 individuallist += table
                 thead = Html("thead")
                 table += thead
@@ -1323,13 +1326,12 @@ class PersonPages(BasePage):
 
     def extend_line(self, c_node, p_node):
         """
-        Draw a line 'half the distance out to the parents.  connect_line()
-        will then draw the horizontal to the parent and the vertical connector
-ggl
-        to this line.
+                Draw a line 'half the distance out to the parents.  connect_line()
+                will then draw the horizontal to the parent and the vertical connector
+                ggl to this line.
 
-        @param c_node -- Child node to draw from
-        @param p_node -- Parent node to draw towards
+                @param c_node -- Child node to draw from
+                @param p_node -- Parent node to draw towards
         """
         width = (p_node.coord_x - c_node.coord_x - _WIDTH + 1) / 2
         assert width > 0

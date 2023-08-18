@@ -161,7 +161,10 @@ class RepositoryPages(BasePage):
             repositorylist += Html("p", msg, id="description")
 
             # begin repositories table and table head
-            with Html("table", class_="infolist primobjlist repolist " + self.dir) as table:
+            with Html(
+                "table",
+                class_="infolist primobjlist repolist " + self.dir
+            ) as table:
                 repositorylist += table
 
                 thead = Html("thead")

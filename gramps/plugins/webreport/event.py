@@ -295,7 +295,10 @@ class EventPages(BasePage):
                 eventlist += alpha_nav
 
             # begin alphabet event table
-            with Html("table", class_="infolist primobjlist alphaevent " + self.dir) as table:
+            with Html(
+                "table",
+                class_="infolist primobjlist alphaevent " + self.dir
+            ) as table:
                 eventlist += table
 
                 thead = Html("thead")

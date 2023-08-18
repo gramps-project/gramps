@@ -307,7 +307,10 @@ class PlacePages(BasePage):
                 placelist += alpha_nav
 
             # begin places table and table head
-            with Html("table", class_="infolist primobjlist placelist " + self.dir) as table:
+            with Html(
+                "table",
+                class_="infolist primobjlist placelist " + self.dir
+            ) as table:
                 placelist += table
 
                 # begin table head

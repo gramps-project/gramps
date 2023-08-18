@@ -1318,11 +1318,11 @@ class BasePage:
 
                 # get table class based on showsrc
                 if showsrc is True:
-                    table.attr = 'class = "infolist addrlist ' + self.dir+'"'
+                    table.attr = 'class = "infolist addrlist ' + self.dir + '"'
                 elif showsrc is False:
-                    table.attr = 'class = "infolist repolist ' + self.dir+'"'
+                    table.attr = 'class = "infolist repolist ' + self.dir + '"'
                 else:
-                    table.attr = 'class = "infolist addressbook ' + self.dir+'"'
+                    table.attr = 'class = "infolist addressbook ' + self.dir + '"'
 
                 # begin table head
                 thead = Html("thead")
