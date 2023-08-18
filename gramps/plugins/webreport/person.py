@@ -404,7 +404,7 @@ class PersonPages(BasePage):
                 individuallist += alpha_nav
 
             # begin table and table head
-            with Html("table", class_="infolist primobjlist IndividualList "+self.dir) as table:
+            with Html("table", class_="infolist primobjlist IndividualList " + self.dir) as table:
                 individuallist += table
                 thead = Html("thead")
                 table += thead
@@ -1050,7 +1050,7 @@ class PersonPages(BasePage):
                 mapdetail += section
                 section += Html("h4", self._("References"), inline=True)
 
-                with Html("table", class_="infolist "+self.dir) as table:
+                with Html("table", class_="infolist " + self.dir) as table:
                     section += table
 
                     thead = Html("thead")
@@ -1940,7 +1940,7 @@ ggl
                 h4_head += self._("Events")
 
             # begin events table
-            classe = "infolist eventlist toggle_event "+self.dir
+            classe = "infolist eventlist toggle_event " + self.dir
             disp = "none" if self.report.options["toggle"] else "block"
             with Html(
                 "table", class_=classe, id="toggle_event", style="display:%s" % disp
@@ -2264,7 +2264,7 @@ ggl
             disp = "none" if self.report.options["toggle"] else "block"
             with Html(
                 "table",
-                class_="infolist toggle_parent "+self.dir,
+                class_="infolist toggle_parent " + self.dir,
                 id="toggle_parent",
                 style="display:%s" % disp,
             ) as table:

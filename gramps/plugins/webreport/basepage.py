@@ -513,7 +513,7 @@ class BasePage:
             tcell = Html("td", class_="ColumnValue Child", close=False, colspan=2)
             trow += tcell
 
-            with Html("table", class_="infolist eventlist "+self.dir) as table2:
+            with Html("table", class_="infolist eventlist " + self.dir) as table2:
                 thead = Html("thead")
                 table2 += thead
                 header = Html("tr")
@@ -1046,7 +1046,7 @@ class BasePage:
                                   None if called from Family pages, which do
                                   not create a Family Map
         """
-        with Html("table", class_="infolist eventlist "+self.dir) as table:
+        with Html("table", class_="infolist eventlist " + self.dir) as table:
             thead = Html("thead")
             table += thead
 
@@ -1124,12 +1124,12 @@ class BasePage:
             disp = "none" if self.report.options["toggle"] else "block"
             ordin = Html(
                 "table",
-                class_="infolist ldsordlist "+self.dir,
+                class_="infolist ldsordlist " + self.dir,
                 id="toggle_lds",
                 style="display:%s" % disp,
             )
         else:
-            ordin = Html("table", class_="infolist ldsordlist "+self.dir)
+            ordin = Html("table", class_="infolist ldsordlist " + self.dir)
         # begin LDS ordinance table and table head
         with ordin as table:
             thead = Html("thead")
@@ -1212,7 +1212,7 @@ class BasePage:
             disp = "none" if self.report.options["toggle"] else "block"
             with Html(
                 "table",
-                class_="infolist "+self.dir,
+                class_="infolist " + self.dir,
                 id="toggle_srcattr",
                 style="display:%s" % disp,
             ) as table:
@@ -1318,11 +1318,11 @@ class BasePage:
 
                 # get table class based on showsrc
                 if showsrc is True:
-                    table.attr = 'class = "infolist addrlist '+self.dir+'"'
+                    table.attr = 'class = "infolist addrlist ' + self.dir+'"'
                 elif showsrc is False:
-                    table.attr = 'class = "infolist repolist '+self.dir+'"'
+                    table.attr = 'class = "infolist repolist ' + self.dir+'"'
                 else:
-                    table.attr = 'class = "infolist addressbook '+self.dir+'"'
+                    table.attr = 'class = "infolist addressbook ' + self.dir+'"'
 
                 # begin table head
                 thead = Html("thead")
@@ -1914,7 +1914,7 @@ class BasePage:
 
         # begin navigation menu division...
         with Html(
-            "div", class_="wrappernav "+self.dir, id="nav", role="navigation"
+            "div", class_="wrappernav " + self.dir, id="nav", role="navigation"
         ) as navigation:
             with Html("div", class_="container") as container:
                 index = 0
@@ -2490,7 +2490,7 @@ class BasePage:
                         photo = self.r_db.get_media_from_handle(photo_handle)
                         mime_type = photo.get_mime_type()
                         if mime_type and "image" in mime_type:
-                            with Html("div", class_="MediaColumn "+self.dir) as boxes:
+                            with Html("div", class_="MediaColumn " + self.dir) as boxes:
                                 lightboxes_1 += boxes
                                 try:
                                     url_thumb = (
@@ -2702,7 +2702,7 @@ class BasePage:
             disp = "none" if self.report.options["toggle"] else "block"
             with Html(
                 "table",
-                class_="infolist weblinks "+self.dir,
+                class_="infolist weblinks " + self.dir,
                 id="toggle_links",
                 style="display:%s" % disp,
             ) as table:
@@ -3413,7 +3413,7 @@ class BasePage:
         with Html("div", class_="subsection", id="repositories") as repositories:
             repositories += Html("h4", self._("Repositories"), inline=True)
 
-            with Html("table", class_="infolist "+self.dir) as table:
+            with Html("table", class_="infolist " + self.dir) as table:
                 repositories += table
 
                 thead = Html("thead")

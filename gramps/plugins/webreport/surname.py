@@ -134,7 +134,7 @@ class SurnamePage(BasePage):
             surnamedetail += Html("p", msg, id="description")
 
             # begin surname table and thead
-            with Html("table", class_="infolist primobjlist surname "+self.dir) as table:
+            with Html("table", class_="infolist primobjlist surname " + self.dir) as table:
                 surnamedetail += table
                 thead = Html("thead")
                 table += thead

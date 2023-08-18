@@ -162,7 +162,7 @@ class SurnameListPage(BasePage):
 
             # begin surnamelist table and table head
             with Html(
-                "table", class_="infolist primobjlist surnamelist "+self.dir, id=table_id
+                "table", class_="infolist primobjlist surnamelist " + self.dir, id=table_id
             ) as table:
                 surnamelist += table
 

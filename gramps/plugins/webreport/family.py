@@ -298,7 +298,7 @@ class FamilyPages(BasePage):
                 relationlist += alpha_nav
 
             # begin families table and table head
-            with Html("table", class_="infolist relationships "+self.dir) as table:
+            with Html("table", class_="infolist relationships " + self.dir) as table:
                 relationlist += table
 
                 thead = Html("thead")
