@@ -354,6 +354,7 @@ class AddonManager(ManagedWindow):
         )
         dialog.add_button(_("Refresh"), RELOAD)
         dialog.add_button(_("_Close"), Gtk.ResponseType.CLOSE)
+        dialog.add_button(_("_Help"), Gtk.ResponseType.HELP)
         self.set_window(dialog, None, self.title)
 
         self.req = Requirements()
@@ -449,6 +450,12 @@ class AddonManager(ManagedWindow):
         self.show()
 
         self.refresh()
+
+    def help(self):
+        """
+        Display the Addon Manager help page.
+        """
+        display_help("Addon_Manager")
 
     def __create_filter_combo(self, store, default):
         """
@@ -588,6 +595,8 @@ class AddonManager(ManagedWindow):
             self.close(dialog)
         elif response_id == RELOAD:
             self.refresh()
+        elif response_id == Gtk.ResponseType.HELP:
+            self.help()
 
     def create_projects_panel(self):
         """
