@@ -399,12 +399,12 @@ class PersonPages(BasePage):
                 if index.bucketRecordCount != 0:
                     index_list.append(index.bucketLabel)
             # Output the navigation
-            alpha_nav = alphabet_navigation(index_list, self.rlocale)
+            alpha_nav = alphabet_navigation(index_list, self.rlocale, rtl=self.dir)
             if alpha_nav is not None:
                 individuallist += alpha_nav
 
             # begin table and table head
-            with Html("table", class_="infolist primobjlist IndividualList") as table:
+            with Html("table", class_="infolist primobjlist IndividualList "+self.dir) as table:
                 individuallist += table
                 thead = Html("thead")
                 table += thead
@@ -1050,7 +1050,7 @@ class PersonPages(BasePage):
                 mapdetail += section
                 section += Html("h4", self._("References"), inline=True)
 
-                with Html("table", class_="infolist") as table:
+                with Html("table", class_="infolist "+self.dir) as table:
                     section += table
 
                     thead = Html("thead")
@@ -1325,6 +1325,7 @@ class PersonPages(BasePage):
         """
         Draw a line 'half the distance out to the parents.  connect_line()
         will then draw the horizontal to the parent and the vertical connector
+ggl
         to this line.
 
         @param c_node -- Child node to draw from
@@ -1939,7 +1940,7 @@ class PersonPages(BasePage):
                 h4_head += self._("Events")
 
             # begin events table
-            classe = "infolist eventlist toggle_event"
+            classe = "infolist eventlist toggle_event "+self.dir
             disp = "none" if self.report.options["toggle"] else "block"
             with Html(
                 "table", class_=classe, id="toggle_event", style="display:%s" % disp
@@ -2263,7 +2264,7 @@ class PersonPages(BasePage):
             disp = "none" if self.report.options["toggle"] else "block"
             with Html(
                 "table",
-                class_="infolist toggle_parent",
+                class_="infolist toggle_parent "+self.dir,
                 id="toggle_parent",
                 style="display:%s" % disp,
             ) as table:

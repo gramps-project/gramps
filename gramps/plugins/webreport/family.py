@@ -293,12 +293,12 @@ class FamilyPages(BasePage):
 
             # Output the navigation
             # add alphabet navigation
-            alpha_nav = alphabet_navigation(index_list, self.rlocale)
+            alpha_nav = alphabet_navigation(index_list, self.rlocale, rtl=self.dir)
             if alpha_nav:
                 relationlist += alpha_nav
 
             # begin families table and table head
-            with Html("table", class_="infolist relationships") as table:
+            with Html("table", class_="infolist relationships "+self.dir) as table:
                 relationlist += table
 
                 thead = Html("thead")

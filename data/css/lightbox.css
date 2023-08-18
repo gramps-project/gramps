@@ -39,8 +39,13 @@ Style Author: Serge Noiraud based on W3C: https://www.w3schools.com/howto/howto_
   clear: both;
 }
 
-.MediaColumn {
+.MediaColumn.ltr {
   float: left;
+}
+.MediaColumn.rtl {
+  float: right;
+}
+.MediaColumn {
   width: 15%;
   height: 100px;
 }
@@ -110,6 +115,12 @@ Style Author: Serge Noiraud based on W3C: https://www.w3schools.com/howto/howto_
   user-select: none;
   -webkit-user-select: none;
   background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Position the "prev button" to the left */
+.MediaPrev {
+  left: 2%;
+  border-radius: 3px 0 0 3px;
 }
 
 /* Position the "next button" to the right */

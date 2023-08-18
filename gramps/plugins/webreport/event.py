@@ -290,12 +290,12 @@ class EventPages(BasePage):
                 if index.bucketRecordCount != 0:
                     index_list.append(index.bucketLabel)
             # Output the navigation
-            alpha_nav = alphabet_navigation(index_list, self.rlocale)
+            alpha_nav = alphabet_navigation(index_list, self.rlocale, rtl=self.dir)
             if alpha_nav:
                 eventlist += alpha_nav
 
             # begin alphabet event table
-            with Html("table", class_="infolist primobjlist alphaevent") as table:
+            with Html("table", class_="infolist primobjlist alphaevent "+self.dir) as table:
                 eventlist += table
 
                 thead = Html("thead")

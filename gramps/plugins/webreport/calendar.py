@@ -270,7 +270,7 @@ class CalendarPage(BasePage):
         # begin month subnavigation
         with Html("div", class_="wrapper", id="nav", role="navigation") as navigation:
             with Html("div", class_="container") as container:
-                unordered = Html("ul", class_="menu")
+                unordered = Html("ul", class_="menu "+self.dir)
 
                 for url_fname, nav_text in navs:
                     # Note. We use '/' here because it is a URL, not a OS

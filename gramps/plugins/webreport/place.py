@@ -302,12 +302,12 @@ class PlacePages(BasePage):
                 if index.bucketRecordCount != 0:
                     index_list.append(index.bucketLabel)
             # Output the navigation
-            alpha_nav = alphabet_navigation(index_list, self.rlocale)
+            alpha_nav = alphabet_navigation(index_list, self.rlocale, rtl=self.dir)
             if alpha_nav:
                 placelist += alpha_nav
 
             # begin places table and table head
-            with Html("table", class_="infolist primobjlist placelist") as table:
+            with Html("table", class_="infolist primobjlist placelist "+self.dir) as table:
                 placelist += table
 
                 # begin table head

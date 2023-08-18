@@ -161,7 +161,7 @@ class SourcePages(BasePage):
             sourceslist += Html("p", msg, id="description")
 
             # begin sourcelist table and table head
-            with Html("table", class_="infolist primobjlist sourcelist") as table:
+            with Html("table", class_="infolist primobjlist sourcelist "+self.dir) as table:
                 sourceslist += table
                 thead = Html("thead")
                 table += thead
@@ -273,7 +273,7 @@ class SourcePages(BasePage):
             sourcedetail += Html("h3", html_escape(source.get_title()), inline=True)
 
             # begin sources table
-            with Html("table", class_="infolist source") as table:
+            with Html("table", class_="infolist source "+self.dir) as table:
                 sourcedetail += table
 
                 tbody = Html("tbody")

@@ -222,6 +222,11 @@ class BasePage:
             self.rlocale = report.set_locale(the_lang)
         else:
             self.rlocale = report.set_locale(report.options["trans"])
+        self.dir = False
+        if the_lang in ["he", "ar"]:
+            self.dir = "rtl"
+        else:
+            self.dir = "ltr"
         self._ = self.rlocale.translation.sgettext
         self.colon = self._(":")  # Translators: needed for French, else ignore
 
@@ -508,7 +513,7 @@ class BasePage:
             tcell = Html("td", class_="ColumnValue Child", close=False, colspan=2)
             trow += tcell
 
-            with Html("table", class_="infolist eventlist") as table2:
+            with Html("table", class_="infolist eventlist "+self.dir) as table2:
                 thead = Html("thead")
                 table2 += thead
                 header = Html("tr")
@@ -1041,7 +1046,7 @@ class BasePage:
                                   None if called from Family pages, which do
                                   not create a Family Map
         """
-        with Html("table", class_="infolist eventlist") as table:
+        with Html("table", class_="infolist eventlist "+self.dir) as table:
             thead = Html("thead")
             table += thead
 
@@ -1119,12 +1124,12 @@ class BasePage:
             disp = "none" if self.report.options["toggle"] else "block"
             ordin = Html(
                 "table",
-                class_="infolist ldsordlist",
+                class_="infolist ldsordlist "+self.dir,
                 id="toggle_lds",
                 style="display:%s" % disp,
             )
         else:
-            ordin = Html("table", class_="infolist ldsordlist")
+            ordin = Html("table", class_="infolist ldsordlist "+self.dir)
         # begin LDS ordinance table and table head
         with ordin as table:
             thead = Html("thead")
@@ -1207,7 +1212,7 @@ class BasePage:
             disp = "none" if self.report.options["toggle"] else "block"
             with Html(
                 "table",
-                class_="infolist",
+                class_="infolist "+self.dir,
                 id="toggle_srcattr",
                 style="display:%s" % disp,
             ) as table:
@@ -1313,11 +1318,11 @@ class BasePage:
 
                 # get table class based on showsrc
                 if showsrc is True:
-                    table.attr = 'class = "infolist addrlist"'
+                    table.attr = 'class = "infolist addrlist '+self.dir+'"'
                 elif showsrc is False:
-                    table.attr = 'class = "infolist repolist"'
+                    table.attr = 'class = "infolist repolist '+self.dir+'"'
                 else:
-                    table.attr = 'class = "infolist addressbook"'
+                    table.attr = 'class = "infolist addressbook '+self.dir+'"'
 
                 # begin table head
                 thead = Html("thead")
@@ -1630,6 +1635,7 @@ class BasePage:
             xmllang,
             cms=self.usecms,
             php_session=note,
+            dir=self.dir,
         )
 
         # temporary fix for .php parsing error
@@ -1793,14 +1799,14 @@ class BasePage:
         body += outerwrapperdiv
 
         # begin header section
-        headerdiv = Html("div", id="header") + (
+        headerdiv = Html("div", id="header", class_=self.dir) + (
             Html(
                 '<button href="javascript:void(0);" class="navIcon"'
                 ' onclick="navFunction()">&#8801;</button>'
             )
         )
         headerdiv += Html(
-            "h1", html_escape(self.title_str), id="SiteTitle", inline=True
+            "h1", html_escape(self.title_str), class_="nav", id="SiteTitle", inline=True
         )
         outerwrapperdiv += headerdiv
 
@@ -1908,11 +1914,11 @@ class BasePage:
 
         # begin navigation menu division...
         with Html(
-            "div", class_="wrappernav", id="nav", role="navigation"
+            "div", class_="wrappernav "+self.dir, id="nav", role="navigation"
         ) as navigation:
             with Html("div", class_="container") as container:
                 index = 0
-                unordered = Html("ul", class_="nav", id="dropmenu")
+                unordered = Html("ul", class_="nav dropmenu", id="dropmenu")
                 while index < number_items:
                     url_fname, nav_text = menu_items[index]
                     hyper = self.get_nav_menu_hyperlink(url_fname, nav_text, cal=cal)
@@ -2484,7 +2490,7 @@ class BasePage:
                         photo = self.r_db.get_media_from_handle(photo_handle)
                         mime_type = photo.get_mime_type()
                         if mime_type and "image" in mime_type:
-                            with Html("div", class_="MediaColumn") as boxes:
+                            with Html("div", class_="MediaColumn "+self.dir) as boxes:
                                 lightboxes_1 += boxes
                                 try:
                                     url_thumb = (
@@ -2696,7 +2702,7 @@ class BasePage:
             disp = "none" if self.report.options["toggle"] else "block"
             with Html(
                 "table",
-                class_="infolist weblinks",
+                class_="infolist weblinks "+self.dir,
                 id="toggle_links",
                 style="display:%s" % disp,
             ) as table:
@@ -3407,7 +3413,7 @@ class BasePage:
         with Html("div", class_="subsection", id="repositories") as repositories:
             repositories += Html("h4", self._("Repositories"), inline=True)
 
-            with Html("table", class_="infolist") as table:
+            with Html("table", class_="infolist "+self.dir) as table:
                 repositories += table
 
                 thead = Html("thead")

@@ -142,7 +142,7 @@ class ThumbnailPreviewPage(BasePage):
                 photo = media_list[indexpos][2]
 
                 # begin table cell and attach to table row(trow)...
-                gallerycell = Html("div", class_="gallerycell")
+                gallerycell = Html("div", class_="gallerycell "+self.dir)
                 gallery += gallerycell
 
                 # attach index number...

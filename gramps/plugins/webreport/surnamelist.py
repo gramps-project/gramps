@@ -151,7 +151,7 @@ class SurnameListPage(BasePage):
                     if index.bucketRecordCount != 0:
                         index_list.append(index.bucketLabel)
                 # Output the navigation
-                alpha_nav = alphabet_navigation(index_list, self.rlocale)
+                alpha_nav = alphabet_navigation(index_list, self.rlocale, rtl=self.dir)
                 if alpha_nav is not None:
                     surnamelist += alpha_nav
 
@@ -162,7 +162,7 @@ class SurnameListPage(BasePage):
 
             # begin surnamelist table and table head
             with Html(
-                "table", class_="infolist primobjlist surnamelist", id=table_id
+                "table", class_="infolist primobjlist surnamelist "+self.dir, id=table_id
             ) as table:
                 surnamelist += table
 

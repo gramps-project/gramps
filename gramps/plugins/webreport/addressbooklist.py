@@ -99,7 +99,7 @@ class AddressBookListPage(BasePage):
             addressbooklist += Html("p", msg, id="description")
 
             # begin Address Book table
-            with Html("table", class_="infolist primobjlist addressbook") as table:
+            with Html("table", class_="infolist primobjlist addressbook "+self.dir) as table:
                 addressbooklist += table
 
                 thead = Html("thead")
