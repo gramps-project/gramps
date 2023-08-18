@@ -56,10 +56,12 @@ _LOCALE_NAMES = {
     # Windows has no translation for Esperanto
     "eo": (None, None, _("Esperanto")),
     "es": ("Spanish_Spain", "1252", _("Spanish")),
+    "fa": ("Farsi_Iran", "1256", _("Farsi")),
     "fi": ("Finnish_Finland", "1252", _("Finnish")),
     "fr": ("French_France", "1252", _("French")),
     # Windows has no translation for Gaelic
     "ga": (None, None, _("Gaelic")),
+    "gl": ("Galician_Spain", "1252", _("Galician")),
     "he": ("Hebrew_Israel", "1255", _("Hebrew")),
     "hr": ("Croatian_Croatia", "1250", _("Croatian")),
     "hu": ("Hungarian_Hungary", "1250", _("Hungarian")),
@@ -78,11 +80,7 @@ _LOCALE_NAMES = {
     "pt_PT": ("Portuguese_Portugal", "1252", _("Portuguese (Portugal)")),
     "ro": ("Romanian_Romania", "1250", _("Romanian")),
     "ru": ("Russian_Russia", "1251", _("Russian")),
-    "sk": (
-        "Slovak_Slovakia",
-        "1250",
-        _("Slovak"),
-    ),
+    "sk": ("Slovak_Slovakia", "1250", _("Slovak")),
     "sl": ("Slovenian_Slovenia", "1250", _("Slovenian")),
     "sq": ("Albanian_Albania", "1250", _("Albanian")),
     "sr": ("Serbian(Cyrillic)_Serbia and Montenegro", "1251", _("Serbian")),
