@@ -1392,7 +1392,10 @@ class GrampsPreferences(ConfigureDialog):
         """
         Config tab with user Appearance and format settings.
         """
+        scroll_window = Gtk.ScrolledWindow()
+        scroll_window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         grid = self.create_grid()
+        scroll_window.add(grid)
 
         label = self.add_text(
             grid, _("Display Options"), 0, line_wrap=True, bold=True, start=0, stop=3
@@ -1693,7 +1696,7 @@ class GrampsPreferences(ConfigureDialog):
         )
         label.set_margin_top(10)
 
-        return _("Data"), grid
+        return _("Data"), scroll_window
 
     def auto_title_changed(self, obj):
         """
