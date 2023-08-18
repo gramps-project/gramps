@@ -162,8 +162,7 @@ class RepositoryPages(BasePage):
 
             # begin repositories table and table head
             with Html(
-                "table",
-                class_="infolist primobjlist repolist " + self.dir
+                "table", class_="infolist primobjlist repolist " + self.dir
             ) as table:
                 repositorylist += table
 

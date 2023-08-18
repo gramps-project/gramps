@@ -308,8 +308,7 @@ class PlacePages(BasePage):
 
             # begin places table and table head
             with Html(
-                "table",
-                class_="infolist primobjlist placelist " + self.dir
+                "table", class_="infolist primobjlist placelist " + self.dir
             ) as table:
                 placelist += table
 

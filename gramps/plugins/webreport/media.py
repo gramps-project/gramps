@@ -233,8 +233,7 @@ class MediaPages(BasePage):
 
             # begin gallery table and table head
             with Html(
-                "table",
-                class_="infolist primobjlist gallerylist " + self.dir
+                "table", class_="infolist primobjlist gallerylist " + self.dir
             ) as table:
                 medialist += table
 

@@ -100,8 +100,7 @@ class AddressBookListPage(BasePage):
 
             # begin Address Book table
             with Html(
-                "table",
-                class_="infolist primobjlist addressbook " + self.dir
+                "table", class_="infolist primobjlist addressbook " + self.dir
             ) as table:
                 addressbooklist += table
 

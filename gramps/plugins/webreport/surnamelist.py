@@ -164,7 +164,7 @@ class SurnameListPage(BasePage):
             with Html(
                 "table",
                 class_="infolist primobjlist surnamelist " + self.dir,
-                id=table_id
+                id=table_id,
             ) as table:
                 surnamelist += table
 

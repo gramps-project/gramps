@@ -296,8 +296,7 @@ class EventPages(BasePage):
 
             # begin alphabet event table
             with Html(
-                "table",
-                class_="infolist primobjlist alphaevent " + self.dir
+                "table", class_="infolist primobjlist alphaevent " + self.dir
             ) as table:
                 eventlist += table
 
