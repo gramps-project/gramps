@@ -698,6 +698,8 @@ class AddonManager(ManagedWindow):
         row = 1
         install = Gtk.CheckButton()
         install.set_label(_("Allow Gramps to install required python modules"))
+        active = config.get("behavior.addons-allow-install")
+        install.set_active(active)
         install.connect("toggled", self.install_changed)
         grid.attach(install, 1, row, 1, 1)
 
@@ -754,6 +756,8 @@ class AddonManager(ManagedWindow):
         row += 1
         previous = Gtk.CheckButton()
         previous.set_label(_("Do not ask about previously notified addons"))
+        active = config.get("behavior.do-not-show-previously-seen-addon-updates")
+        previous.set_active(active)
         previous.connect("toggled", self.previous_changed)
         grid.attach(previous, 1, row, 1, 1)
 
