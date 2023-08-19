@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-19 20:21+0000\n"
+"PO-Revision-Date: 2023-08-19 20:32+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -10036,9 +10036,8 @@ msgid ""
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
 "this corresponds to spacing between columns."
 msgstr ""
-"Najmanja količina slobodnog prostora između razina, u mm. Kod uspravnih "
-"dijagrama to odgovara razmaku između redaka, a kod vodoravnih dijagrama, "
-"razmaku između stupaca."
+"Najmanji razmak između razina, u mm. Kod uspravnih dijagrama to odgovara "
+"razmaku između redaka, a kod vodoravnih dijagrama, razmaku između stupaca."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:293
 msgid "Note to add to the tree"
@@ -37855,11 +37854,11 @@ msgstr "Standardni stilski predložak za stranice"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2144
 msgid "Horizontal -- Default"
-msgstr "Vodoravni – zadano"
+msgstr "Vodoravno – zadano"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2145
 msgid "Vertical   -- Left Side"
-msgstr "Uspravni – na lijevoj strani"
+msgstr "Uspravno – lijeva strana"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2146
 msgid "Fade       -- WebKit Browsers Only"
