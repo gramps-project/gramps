@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-17 13:43+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2023-08-19 09:46+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -526,10 +526,10 @@ msgid ""
 "date field. See the Gramps Manual to learn more."
 msgstr ""
 "<b>תאריך לא ודאי?<br/></b> אם תאריך האירוע אינו ודאי או מוחלט, ניתן להזין "
-"מגוון רחב של מבני תאריך המבוססים על ניחוש או על הערכה. כך לדוגמה, הביטוי "
-"'בסביבות 1908' הוא ערך חוקי לתאריך לידה בגרמפס. הקריאה לעורך נעשית על ידי "
-"הקשה על‏ לחצן 'קריאה לעורך תאריך' בסמוך לשדה התאריך. למידע נוסף, נא לעיין "
-"במדריך גרמפס."
+"מגוון רחב של תסדירי תאריך שמבוססים על, ניחוש או הערכה. כך לדוגמה, הביטוי "
+"'בסביבות 1908' הוא ערך תקין לציון תאריך לידה בגרמפס. הקריאה לעורך התאריך, "
+"נעשית בקשה על‏ לחצן 'קריאה לעורך תאריך' שבסמוך לשדה התאריך. למידע נוסף ניתן "
+"לעיין במדריך גרמפס."
 
 #: ../data/tips.xml:42
 msgid ""
@@ -1064,8 +1064,8 @@ msgid ""
 "Tree instead."
 msgstr ""
 "שגיאה: קלט אילן־היוחסין '%s' לא קיים.\n"
-"אם הוא GEDCOM‏, Gramps-xml או grdb, במקום זאת, נא להשתמש באפשרות i- כדי לייבא "
-"לאילן־היוחסין."
+"אם זה קובץ GEDCOM‏, Gramps-xml או grdb, נא להשתמש באפשרות i- כדי לייבא לאילן־"
+"היוחסין, במקום זאת."
 
 #: ../gramps/cli/arghandler.py:264
 #, python-format
@@ -3304,7 +3304,7 @@ msgstr "סיומת"
 #: ../gramps/gen/display/name.py:666 ../gramps/gen/display/name.py:793
 msgctxt "Name"
 msgid "call"
-msgstr "ידוע בשם"
+msgstr "שם פניה"
 
 #: ../gramps/gen/display/name.py:670 ../gramps/gen/display/name.py:797
 msgctxt "Name"
@@ -5186,7 +5186,7 @@ msgstr "סיומת:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:53
 msgid "Call Name:"
-msgstr "ידוע בשם:"
+msgstr "שם פניה:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:54
 msgid "Nick Name:"
@@ -5343,8 +5343,8 @@ msgid ""
 "Soundex Match of people with a specified name. First name, Surname, Call "
 "name, and Nickname are searched in primary and alternate names."
 msgstr ""
-"התאמת סאונדאקס של אנשים עם שם שצוין. יתבצע חיפוש בשמות ראשיים וחלופיים של שם "
-"פרטי, שם משפחה, ידוע בשם."
+"התאמת סאונדאקס לאנשים עם שם שצוין. חיפוש מתבצע בשמות ראשיים וחלופיים, ובשמות;"
+" פרטיים, משפחה, ופניה"
 
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:47
 msgid "People with <count> sources"
@@ -6315,7 +6315,7 @@ msgstr "שליפת מקורות בעלי מספר מסוים של פריטים �
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:46
 msgid "Sources with repository reference containing <text> in \"Call Number\""
-msgstr "מקורות עם הפנית מאגר המכילות <מלל> ב'מספר התקשרות'"
+msgstr "מקורות עם הפנית מאגר, שמכילות <מלל> ב'מספר הפניה'"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:48
 msgid ""
@@ -6323,7 +6323,7 @@ msgid ""
 "containing a substring in \"Call Number\""
 msgstr ""
 "שליפת מקורות עם הפנית מאגר\n"
-"המכילות מחרוזת משנה ב'מספר התקשרות'"
+"שמכילות מחרוזת משנה ב'מספר פניה'"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:52
 msgid "Sources with the <tag>"
@@ -8200,7 +8200,7 @@ msgstr "הצגה כ"
 
 #: ../gramps/gen/lib/name.py:195 ../gramps/plugins/importer/importcsv.py:208
 msgid "Call name"
-msgstr "ידוע בשם"
+msgstr "שם פניה"
 
 #: ../gramps/gen/lib/name.py:196
 msgid "Nick name"
@@ -9463,9 +9463,9 @@ msgid ""
 "rectangular array of pages. This controls the number pages in the array "
 "vertically. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"גרף־וויז יכול ליצור תרשימים גדולים מאוד על־ידי פיזור התרשים על פני מערך "
+"Graphviz יכול ליצור תרשימים גדולים מאוד על־ידי פיזור התרשים על פני מערך "
 "עמודים מלבני. פעולה זו שולטת במספר העמודים במערך במאוזן. תקף רק עבור מסמכי "
-"dot ו־pdf באמצעות גרף־וויז."
+"dot ו־pdf באמצעות Graphviz."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:207
 msgid "Paging Direction"
@@ -9677,7 +9677,7 @@ msgstr "אוטומטי"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:79
 msgid "Call Name Only"
-msgstr "ידוע בשם בלבד"
+msgstr "שם פניה בלבד"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:80
 msgid "Whole Given Name"
@@ -9810,8 +9810,8 @@ msgid ""
 "Select the portion of the given name to be marked as preferred. Auto sets "
 "the call name if one exists, otherwise the whole given name."
 msgstr ""
-"בחירת חלק משם נתון שיסומן כמועדף. אוטומטי, מציב את 'שם פניה' ככל שקיים, אחרת "
-"יוצב 'שם פרטי' במלואו."
+"בחירת חלק מהשם הפרטי שיסומן כמועדף. 'אוטומטי', מציב 'שם פניה' ככל שקיים כזה, "
+"אחרת יוצב 'השם הפרטי' במלואו."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:225
 msgid "Position of marriage information."
@@ -10581,12 +10581,12 @@ msgstr "שם משפחה"
 #: ../gramps/gen/utils/keyword.py:59
 msgctxt "Name"
 msgid "CALL"
-msgstr "ידוע בשם"
+msgstr "שם פניה"
 
 #: ../gramps/gen/utils/keyword.py:59
 msgctxt "Name"
 msgid "Call"
-msgstr "ידוע בשם"
+msgstr "שם פניה"
 
 #: ../gramps/gen/utils/keyword.py:60
 msgctxt "Name"
@@ -11454,10 +11454,10 @@ msgstr ""
 "‏  <b>פרטי</b>   - שם פרטי     <b>משפחה</b>  - שם משפחה (עם קידומת וקישור)\n"
 "‏  <b>תואר</b>   - תואר (דר', גב.)           <b>סיומת</b>   - סיומת ("
 "ג'וניור, השלישי)\n"
-"‏  <b>ידוע בשם</b>    - השם בו אדם קורא לעצמו                   <b>כינוי</b> "
-"- כינוי\n"
-"‏  <b>ראשי תיבות</b>- אות ראשונה של שם פרטי      <b>Common</b>   - כינוי, "
-"ידוע בשם, או אות ראשונה של שם פרטי\n"
+"‏  <b>שם פניה</b>    - השם הפרטי (במידה וקים יותר מאחד) בו אדם קורא "
+"לעצמו                   <b>כינוי</b> - כינוי\n"
+"‏  <b>ראשי תיבות</b>- אות ראשונה של שם פרטי      <b>Common</b>   - כינוי, שם "
+"פניה, או אות ראשונה של שם פרטי\n"
 "‏  <b>קידומת</b>  - כל הקידומות (וון, דה)\n"
 "‏שמות משפחה:\n"
 "‏  <b>השאר</b>      - לא שמות משפחה עיקריים    <b>Notpatronymic</b>- כל שמות "
@@ -11477,7 +11477,7 @@ msgstr ""
 "‏     <i>אדווין חוזה</i>: פרטי, <i>וון דר</i>: קידומת, <i>סמיט</i> "
 "ו<i>וסטון</i>: ראשי, <i>'ו'</i>: [קישור], <i>ווילסון</i>: פטרונימי,\n"
 " ‏    <i>דר'</i>: תואר, <i>סניור</i>: סיומת, <i>אד</i>: כינוי, "
-"<i>אנדרהילס</i>: כינוי משפחה, <i>חוזה</i>: ידוע בשם.\n"
+"<i>אנדרהילס</i>: כינוי משפחה, <i>חוזה</i>: שם פניה.\n"
 
 #: ../gramps/gui/configure.py:162
 msgid " Name Editor"
@@ -11744,7 +11744,7 @@ msgstr "התראות"
 #: ../gramps/gui/configure.py:1085 ../gramps/plugins/export/exportcsv.py:422
 #: ../gramps/plugins/importer/importcsv.py:212
 msgid "Call"
-msgstr "מכונה בשם"
+msgstr "שם פניה"
 
 #: ../gramps/gui/configure.py:1090
 msgid "NotPatronymic"
@@ -12503,7 +12503,7 @@ msgstr "כל הקבצים"
 
 #: ../gramps/gui/dbloader.py:318
 msgid "Automatically detected"
-msgstr "זוהה אוטומטית"
+msgstr "זוהי אוטומטי"
 
 #: ../gramps/gui/dbloader.py:327
 msgid "Select file _type:"
@@ -14469,7 +14469,7 @@ msgstr "עורך_שמות"
 #: ../gramps/gui/editors/editname.py:182
 #: ../gramps/gui/editors/editperson.py:342
 msgid "Call name must be the given name that is normally used."
-msgstr "'ידוע בשם' חייב להיות שמו הפרטי של אדם, בו הוא משתמש."
+msgstr "'שם פניה' חייב להיות שמו הפרטי של אדם, בו הוא משתמש."
 
 #: ../gramps/gui/editors/editname.py:336
 msgid "New Name"
@@ -15033,7 +15033,7 @@ msgstr "שימוש בביטוי רגולרי"
 
 #: ../gramps/gui/editors/filtereditor.py:614
 msgid "Also family events where person is spouse"
-msgstr "גם אירועים בהם האדם הוא בן(ת) זוג"
+msgstr "לרבות אירועי משפחה שם 'אדם' הוא בן־הזוג"
 
 #: ../gramps/gui/editors/filtereditor.py:616
 msgid "Only include primary participants"
@@ -15548,7 +15548,7 @@ msgstr ""
 "‏  <b>%t</b> - תואר            <b>%T</b> - תואר\n"
 "‏  <b>%p</b> - קידומת           <b>%P</b> - קידומת\n"
 " ‏ <b>%s</b> - סיומת           <b>%S</b> - סיומת\n"
-"‏  <b>%c</b> - פניה        <b>%C</b> - פניה\n"
+"‏  <b>%c</b> - שם פניה        <b>%C</b> - שם פניה\n"
 "‏  <b>%y</b> - נגזר משם האב       <b>%Y</b> - נגזר משם האב</tt>"
 
 #: ../gramps/gui/glade/configure.glade:155
@@ -15642,7 +15642,7 @@ msgid ""
 "treated according to the currently selected option. No further dialogs will "
 "be presented for any missing media files."
 msgstr ""
-"סימון תיבת סימון זו, יביא לכך שכל קבצי המדיה החסרים יטופלו באופן אוטומטי "
+"סימון כפתור־רדיו זו, יגרום לכך שכל קבצי המדיה שחסרים, יטופלו באופן אוטומטי "
 "בהתאם לאפשרות הנוכחית שנבחרה. לא יוצגו תיבות דו־שיח נוספות עבור קבצי מדיה "
 "חסרים."
 
@@ -16251,7 +16251,7 @@ msgid ""
 "that only mention the parish."
 msgstr ""
 "המחלקה המנהלית הנמוכה ביותר של מקום זה. משמש בדרך כלל למקורות שמגיעים "
-"מכנסיות שם מזכירים רק את הקהילה."
+"מכנסיות שם מזכירים רק את שם 'הקהילה'."
 
 #: ../gramps/gui/glade/editlocation.glade:164
 msgid "Co_unty:"
@@ -16441,8 +16441,9 @@ msgid ""
 "call name is not part of Given name and will not be printed underlined in "
 "some reports."
 msgstr ""
-"חלק מהשם הפרטי בו שמשמשים בדרך כלל. אם רקע השדה צבוע באדום, 'ידוע בשם' לא "
-"מהווה חלק מהשם הפרטי ולכן לא יודפס בכמה מהדוחות, כשהוא מודגש בקו תחתון."
+"חלק מהשם הפרטי (כאשר יש יותר משם אחד) בו שמשמשים בדרך כלל לפנות לאדם. אם רקע "
+"השדה צבוע באדום, משמע ש'שם פניה' לא חלק מהשם הפרטי ולכן לא יודפס מודגש בקו "
+"תחתון במספר דוחות ."
 
 #: ../gramps/gui/glade/editname.glade:291
 #: ../gramps/gui/glade/editperson.glade:211
@@ -20806,7 +20807,7 @@ msgstr "דחיסת עץ"
 msgid ""
 "Whether to remove any extra blank spaces set aside for people that are "
 "unknown"
-msgstr "האם להסיר רשומות ריקות שנוצרו עבור אנשים לא ידועים בשם"
+msgstr "האם להסיר רשומות ריקות שנוצרו עבור אנשים בלתי ידועים"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:875
 msgid "Show Index"
@@ -21502,7 +21503,7 @@ msgstr "רמת בני זוג"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1590
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
-msgstr "0=ללא בן זוג, 1=הכללת בן זוג, 2=הכללת בן/בת של בן/בת, וכו'"
+msgstr "0=ללא בן זוג, 1=הכללת בן זוג, 2=הכללת בני זוג של בני הזוג, וכן הלאה"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1597
 msgid "Start with the parent(s) of the selected first"
@@ -24998,11 +24999,11 @@ msgid ""
 "however they will be offset from each other.  This will tend to make graphs "
 "with many people in a generation more square."
 msgstr ""
-"בהגדרה 'תקני', הורים יאותרו לשימור מרבית הקווים קצרים.\n"
+"בהגדרה ה'תקנית', הורים יאותרו כזוגות כדי לשמור את מרבית הקווים קצרים.\n"
 "ההגדרה 'הורים יחד' תסייע למקם בני־זוג בסמיכות, אבל התרשימים לא יהיו ברורים "
 "מאליהם, התוצאה תתקבל עם קווים ארוכים יותר ותרשימום גדולים יותר.\n"
-"גם הגדרת 'הזחת הורים', תנסה למקם בני זוג בסמיכות, אך הם יוזחו זו מזה. הגדרה "
-"זו נוטה להפוך תרשימים בעלי מספר רב של פרטים בדור ל'מרובע' יותר."
+"הגדרת 'הזחת הורים', תנסה למקם בני זוג בסמיכות, אך הם יוזחו זו מזה. הגדרה זו "
+"נוטה להפוך תרשימים בעלי מספר רב של פרטים בדור, ל'מרובעים' יותר."
 
 #: ../gramps/plugins/importer/import.gpr.py:38
 msgid "Import data from CSV files"
@@ -31351,8 +31352,8 @@ msgid ""
 "This report shows the mother lineage, also called matronymic lineage mtDNA "
 "lineage. People in this lineage all share the same Mitochondrial DNA (mtDNA)."
 msgstr ""
-"דוח זה מראה את שושלת האם, המכונה גם השושלת המטרונימית קן-mtdna. אנשים בשושלת "
-"זו כולם חולקים את אותו DNA מיטוכונדרי (mtDNA)."
+"הדוח מציג את שושלת האם, מכונה גם שושלת מטרונימית קו־מטכונדרי. אנשי שושלת כזו "
+"חולקים כולם את אותו DNA מיטוכונדרי (mtDNA)."
 
 #: ../gramps/plugins/quickview/lineage.py:100
 msgid "Name Mother"
@@ -31564,7 +31565,7 @@ msgstr "אין הפניות עבור %s"
 #: ../gramps/plugins/quickview/reporef.py:64
 #: ../gramps/plugins/webreport/basepage.py:3420
 msgid "Call number"
-msgstr "מספר לחיוג"
+msgstr "מספר פניה"
 
 #: ../gramps/plugins/quickview/reporef.py:64
 msgid "Type of media"
@@ -32957,7 +32958,7 @@ msgstr "החלפת שם פרטי בשם פניה"
 
 #: ../gramps/plugins/textreport/recordsreport.py:257
 msgid "Underline call name in first names / add call name to first name"
-msgstr "סימון בקו תחתון שם פניה בשם פרטי / הוספת שם פניה לכל השמות הפרטיים"
+msgstr "סימון שם פניה שהוא חלק משם פרטי בקו תחתון  / הוספת שם פניה לשם פרטי"
 
 #: ../gramps/plugins/textreport/recordsreport.py:265
 msgid "Footer text"
@@ -38090,7 +38091,7 @@ msgstr "השמטת סמנים"
 
 #: ../gramps/plugins/webreport/person.py:1783
 msgid "Call Name"
-msgstr "כינוי"
+msgstr "שם פניה"
 
 #: ../gramps/plugins/webreport/person.py:1804
 msgid "Nick Name"
