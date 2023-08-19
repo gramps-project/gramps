@@ -75,7 +75,7 @@ from ..utils import open_file_with_default_application
 from ..pluginmanager import GuiPluginManager
 from . import tool
 from ._guioptions import add_gui_options
-from ..dialog import InfoDialog, OkDialog
+from ..dialog import InfoDialog, OkDialog, QuestionDialog2
 from ..editors import EditPerson
 from ..glade import Glade
 from ..listmodel import ListModel, NOSORT, TOGGLE
@@ -260,8 +260,8 @@ class AddonRow(Gtk.ListBoxRow):
             bb.pack_start(b3, False, False, 0)
 
         if "_v" in addon and addon["_v"] != addon["v"]:
-            b4 = Gtk.Button(label=_("Upgrade"))
-            b4.connect("clicked", self.__on_upgrade_clicked, addon)
+            b4 = Gtk.Button(label=_("Update"))
+            b4.connect("clicked", self.__on_update_clicked, addon)
             bb.pack_end(b4, False, False, 0)
 
         vbox.pack_start(bb, False, False, 0)
@@ -310,13 +310,13 @@ class AddonRow(Gtk.ListBoxRow):
         """
         InfoDialog(_("Requirements"), self.req.info(addon), parent=self.window)
 
-    def __on_upgrade_clicked(self, button, addon):
+    def __on_update_clicked(self, button, addon):
         """
-        Upgrade the addon.
+        Update the addon.
         """
         path = addon["_u"] + "/download/" + addon["z"]
         load_addon_file(path)
-        self.manager.upgrade_addon(addon["i"])
+        self.manager.update_addon(addon["i"])
         self.manager.refresh()
 
     def __create_lozenge(self, description, text):
@@ -354,6 +354,7 @@ class AddonManager(ManagedWindow):
         )
         dialog.add_button(_("Refresh"), RELOAD)
         dialog.add_button(_("_Close"), Gtk.ResponseType.CLOSE)
+        dialog.add_button(_("_Help"), Gtk.ResponseType.HELP)
         self.set_window(dialog, None, self.title)
 
         self.req = Requirements()
@@ -386,14 +387,20 @@ class AddonManager(ManagedWindow):
         label.set_margin_end(12)
         hbox.pack_start(label, False, False, 0)
 
+        self.addon_combo = Gtk.ComboBoxText()
+        self.addon_combo.set_entry_text_column(0)
+        self.addon_combo.append_text(_("All addons"))
+        self.addon_combo.append_text(_("Uninstalled"))
+        self.addon_combo.append_text(_("Installed"))
+        self.addon_combo.append_text(_("Update"))
+        self.addon_combo.set_active(0)
+        self.addon_combo.connect("changed", self.__combo_changed)
+        hbox.pack_start(self.addon_combo, False, False, 0)
+
         self.projects = config.get("behavior.addons-projects")
         self.project_combo = Gtk.ComboBoxText()
         self.project_combo.set_entry_text_column(0)
         self.project_combo.connect("changed", self.__combo_changed)
-        self.project_combo.append_text(_("All projects"))
-        for project in self.projects:
-            self.project_combo.append_text(project[0])
-        self.project_combo.set_active(0)
         hbox.pack_start(self.project_combo, False, False, 0)
 
         type_store = Gtk.ListStore(int, str)
@@ -440,6 +447,7 @@ class AddonManager(ManagedWindow):
 
         for project in self.projects:
             self.project_list.add(ProjectRow(self, project))
+        self.update_project_list()
 
         self.window.get_content_area().pack_start(book, True, True, 0)
 
@@ -449,6 +457,12 @@ class AddonManager(ManagedWindow):
         self.show()
 
         self.refresh()
+
+    def help(self):
+        """
+        Display the Addon Manager help page.
+        """
+        display_help("Addon_Manager")
 
     def __create_filter_combo(self, store, default):
         """
@@ -464,20 +478,34 @@ class AddonManager(ManagedWindow):
         combo.add_attribute(renderer_text, "text", 1)
         return combo
 
+    def update_project_list(self):
+        """
+        Update the project list after it has been changed.
+        """
+        self.projects = [row.project for row in self.project_list]
+        config.set("behavior.addons-projects", self.projects)
+
+        self.project_combo.remove_all()
+        self.project_combo.append_text(_("All projects"))
+        for project in self.projects:
+            self.project_combo.append_text(project[0])
+        self.project_combo.set_active(0)
+
     def refresh(self):
         """
         Refresh the addons list.
         """
         for child in self.lb.get_children():
             self.lb.remove(child)
+
         self.__placeholder(_("Loading..."))
 
         thread = GetAddons(self.load_addons)
         thread.start()
 
-    def upgrade_addon(self, addon_id):
+    def update_addon(self, addon_id):
         """
-        Upgrade the given addon.
+        Update the given addon.
         """
         pdata = self.__preg.get_plugin(addon_id)
         self.__pmgr.reg_plugin_dir(
@@ -522,9 +550,10 @@ class AddonManager(ManagedWindow):
         """
         self.search.set_text("")
         self.type_combo.set_active(0)
+        self.addon_combo.set_active(0)
         self.project_combo.set_active(0)
         self.audience_combo.set_active(1)
-        self.status_combo.set_active(4)
+        self.status_combo.set_active(1)
 
     def __combo_changed(self, combo):
         """
@@ -550,11 +579,23 @@ class AddonManager(ManagedWindow):
         Filter the addons list according to the user selection.
         """
         search_text = self.search.get_text()
+        addon_text = self.addon_combo.get_active_text()
         project_text = self.project_combo.get_active_text()
         type_iter = self.type_combo.get_active_iter()
         audience_iter = self.audience_combo.get_active_iter()
         status_iter = self.status_combo.get_active_iter()
 
+        if addon_text == _("Uninstalled"):
+            if "_v" in row.addon:
+                return False
+        if addon_text == _("Installed"):
+            if "_v" not in row.addon:
+                return False
+        if addon_text == _("Update"):
+            if "_v" not in row.addon:
+                return False
+            if row.addon["v"] == row.addon["_v"]:
+                return False
         if project_text != _("All projects"):
             if row.addon["_p"] != project_text:
                 return False
@@ -588,6 +629,8 @@ class AddonManager(ManagedWindow):
             self.close(dialog)
         elif response_id == RELOAD:
             self.refresh()
+        elif response_id == Gtk.ResponseType.HELP:
+            self.help()
 
     def create_projects_panel(self):
         """
@@ -602,7 +645,9 @@ class AddonManager(ManagedWindow):
 
         self.project_list = Gtk.ListBox()
         self.project_list.set_activate_on_single_click(False)
+        self.project_list.set_selection_mode(Gtk.SelectionMode.SINGLE)
         self.project_list.connect("row-activated", self.__edit_project)
+        self.project_list.connect("row-selected", self.__project_selected)
         self.project_list.set_margin_start(6)
 
         sw = Gtk.ScrolledWindow()
@@ -613,8 +658,15 @@ class AddonManager(ManagedWindow):
         hbox = Gtk.Box()
         add_btn = SimpleButton("list-add", self.__add_project)
         del_btn = SimpleButton("list-remove", self.__remove_project)
-        hbox.pack_start(add_btn, False, False, 0)
-        hbox.pack_start(del_btn, False, False, 0)
+        up_btn = SimpleButton("go-up", self.__move_up)
+        down_btn = SimpleButton("go-down", self.__move_down)
+        restore_btn = SimpleButton("document-revert", self.__restore_defaults)
+        self.buttons = [add_btn, del_btn, up_btn, down_btn, restore_btn]
+        for button in self.buttons:
+            hbox.pack_start(button, False, False, 0)
+        self.buttons[1].set_sensitive(False)
+        self.buttons[2].set_sensitive(False)
+        self.buttons[3].set_sensitive(False)
         vbox.pack_start(hbox, False, False, 0)
 
         return vbox
@@ -646,6 +698,8 @@ class AddonManager(ManagedWindow):
         row = 1
         install = Gtk.CheckButton()
         install.set_label(_("Allow Gramps to install required python modules"))
+        active = config.get("behavior.addons-allow-install")
+        install.set_active(active)
         install.connect("toggled", self.install_changed)
         grid.attach(install, 1, row, 1, 1)
 
@@ -702,6 +756,8 @@ class AddonManager(ManagedWindow):
         row += 1
         previous = Gtk.CheckButton()
         previous.set_label(_("Do not ask about previously notified addons"))
+        active = config.get("behavior.do-not-show-previously-seen-addon-updates")
+        previous.set_active(active)
         previous.connect("toggled", self.previous_changed)
         grid.attach(previous, 1, row, 1, 1)
 
@@ -758,8 +814,7 @@ class AddonManager(ManagedWindow):
             row.project[0] = name.get_text()
             row.project[1] = url.get_text()
             row.update()
-            projects = [row.project for row in self.project_list]
-            config.set("behavior.addons-projects", projects)
+            self.update_project_list()
             self.refresh()
         dialog.destroy()
 
@@ -776,12 +831,70 @@ class AddonManager(ManagedWindow):
         row = self.project_list.get_selected_row()
         if row:
             self.project_list.remove(row)
-            projects = [
-                p
-                for p in config.get("behavior.addons-projects")
-                if p[0] != row.project[0]
-            ]
-            config.set("behavior.addons-projects", projects)
+            self.update_project_list()
+            self.refresh()
+
+    def __move_up(self, button):
+        row = self.project_list.get_selected_row()
+        index = row.get_index()
+        if index > 1:
+            self.project_list.unselect_row(row)
+            self.project_list.remove(row)
+            self.project_list.insert(row, index - 1)
+            self.project_list.select_row(row)
+            self.update_project_list()
+
+    def __move_down(self, button):
+        row = self.project_list.get_selected_row()
+        index = row.get_index()
+        if index > 0 and index < len(self.project_list) - 1:
+            self.project_list.unselect_row(row)
+            self.project_list.remove(row)
+            self.project_list.insert(row, index + 1)
+            self.project_list.select_row(row)
+            self.update_project_list()
+
+    def __project_selected(self, listbox, row):
+        if row:
+            index = row.get_index()
+            if index == 0:
+                self.buttons[1].set_sensitive(False)
+                self.buttons[2].set_sensitive(False)
+                self.buttons[3].set_sensitive(False)
+            elif index == 1:
+                self.buttons[1].set_sensitive(True)
+                self.buttons[2].set_sensitive(False)
+                self.buttons[3].set_sensitive(True)
+            elif index < len(self.project_list) - 1:
+                self.buttons[1].set_sensitive(True)
+                self.buttons[2].set_sensitive(True)
+                self.buttons[3].set_sensitive(True)
+            else:
+                self.buttons[1].set_sensitive(True)
+                self.buttons[2].set_sensitive(True)
+                self.buttons[3].set_sensitive(False)
+        else:
+            self.buttons[1].set_sensitive(False)
+            self.buttons[2].set_sensitive(False)
+            self.buttons[3].set_sensitive(False)
+
+    def __restore_defaults(self, button):
+        """
+        Restore project defaults.
+        """
+        dlg = QuestionDialog2(
+            _("Restore project defaults"),
+            _("Are you sure?"),
+            _("Yes"),
+            _("No"),
+            parent=self.window,
+        )
+        if dlg.run():
+            for row in self.project_list.get_children():
+                self.project_list.remove(row)
+            projects = [["Gramps", config.get("behavior.addons-url"), True]]
+            self.project_list.add(ProjectRow(self, projects[0]))
+            self.update_project_list()
             self.refresh()
 
     def __edit_project(self, listbox, row):
