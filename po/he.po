@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
 "PO-Revision-Date: 2023-08-19 16:14+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -8729,7 +8729,7 @@ msgstr "מספר פניה"
 
 #: ../gramps/gen/lib/repotype.py:55
 msgid "Library"
-msgstr "ספריה"
+msgstr "ספרייה"
 
 #: ../gramps/gen/lib/repotype.py:56
 msgid "Cemetery"
