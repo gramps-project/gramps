@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-19 20:32+0000\n"
+"PO-Revision-Date: 2023-08-19 20:48+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -22015,7 +22015,7 @@ msgstr "Vrsta dijagrama"
 
 #: ../gramps/plugins/drawreport/fanchart.py:812
 msgid "full circle"
-msgstr "puni krug"
+msgstr "krug"
 
 #: ../gramps/plugins/drawreport/fanchart.py:813
 msgid "half circle"
@@ -37867,7 +37867,7 @@ msgstr "Postupni prijelaz – samo za WebKit preglednike"
 #: ../gramps/plugins/webreport/narrativeweb.py:2147
 #: ../gramps/plugins/webreport/narrativeweb.py:2163
 msgid "Drop-Down  -- WebKit Browsers Only"
-msgstr "Padajući – samo za WebKit preglednike"
+msgstr "Padajući izbornik – samo za WebKit preglednike"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2150
 msgid "Navigation Menu Layout"
