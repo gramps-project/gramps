@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-17 13:43+0000\n"
+"PO-Revision-Date: 2023-08-19 09:46+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -1219,7 +1219,7 @@ msgstr "Uvoz: datoteka %(filename)s, format %(format)s."
 
 #: ../gramps/cli/arghandler.py:561
 msgid "Opened successfully!"
-msgstr "Uspješno otvoreno!"
+msgstr "Uspješno otvoren!"
 
 #: ../gramps/cli/arghandler.py:576
 #, python-format
@@ -3325,7 +3325,7 @@ msgstr "Glavna prezimena, ime patronim sufiks prefiks"
 
 #: ../gramps/gen/display/name.py:427
 msgid "Patronymic, Given"
-msgstr "Patronim, Ime"
+msgstr "Patronim, ime"
 
 #: ../gramps/gen/display/name.py:658 ../gramps/gen/display/name.py:789
 msgctxt "Person"
@@ -5294,7 +5294,7 @@ msgstr "Prefiks:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:56
 msgid "Single Surname:"
-msgstr "Pojedinačno prezime:"
+msgstr "Jedno prezime:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:57
 #: ../gramps/gen/lib/surname.py:101
@@ -7536,7 +7536,7 @@ msgstr "Bar Mitzvah"
 
 #: ../gramps/gen/lib/eventtype.py:198
 msgid "Bat Mitzvah"
-msgstr "Bar Mitzvah"
+msgstr "Bat Mitzvah"
 
 #: ../gramps/gen/lib/eventtype.py:199
 msgid "Blessing"
@@ -8387,7 +8387,7 @@ msgstr "%(first)s %(surname)s, %(suffix)s"
 #: ../gramps/gen/lib/nameorigintype.py:78
 msgctxt "Surname"
 msgid "Inherited"
-msgstr "Nasljedno"
+msgstr "Naslijeđeno"
 
 #: ../gramps/gen/lib/nameorigintype.py:79
 msgctxt "Surname"
@@ -9970,6 +9970,8 @@ msgid ""
 "Select the portion of the given name to be marked as preferred. Auto sets "
 "the call name if one exists, otherwise the whole given name."
 msgstr ""
+"Odaberi dio zadanog imena koji će biti označen kao preferirani. Automatski "
+"postavlja upotrebno ime ako postoji, inače cijeli zadano ime."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:225
 msgid "Position of marriage information."
@@ -10896,11 +10898,11 @@ msgstr "%(west_longitude)s Z"
 
 #: ../gramps/gen/utils/place.py:83
 msgid "DEG"
-msgstr ""
+msgstr "DEG"
 
 #: ../gramps/gen/utils/place.py:85
 msgid "DEG-:"
-msgstr ""
+msgstr "DEG-:"
 
 #: ../gramps/gen/utils/place.py:87
 msgid "D.D4"
@@ -11814,7 +11816,7 @@ msgstr "Boje za ženske osobe"
 
 #: ../gramps/gui/configure.py:901
 msgid "Colors for people who are neither male nor female"
-msgstr ""
+msgstr "Boje za osobe koji nisu muške niti ženske"
 
 #: ../gramps/gui/configure.py:902
 msgid "Colors for Unknown persons"
@@ -12259,43 +12261,43 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2028
 msgid "Show Clipboard icon on toolbar"
-msgstr ""
+msgstr "Prikaži ikonu međuspremnika u alatnoj traci"
 
 #: ../gramps/gui/configure.py:2033
 msgid "Show or hide the Clipboard icon on the toolbar."
-msgstr ""
+msgstr "Prikaži ili sakrij ikonu međuspremnika u alatnoj traci."
 
 #: ../gramps/gui/configure.py:2041
 msgid "Show Reports icon on toolbar"
-msgstr ""
+msgstr "Prikaži ikonu izvještaja u alatnoj traci"
 
 #: ../gramps/gui/configure.py:2046
 msgid "Show or hide the Reports icon on the toolbar."
-msgstr ""
+msgstr "Prikaži ili sakrij ikonu izvještaja u alatnoj traci."
 
 #: ../gramps/gui/configure.py:2054
 msgid "Show Tools icon on toolbar"
-msgstr ""
+msgstr "Prikaži ikonu alata u alatnoj traci"
 
 #: ../gramps/gui/configure.py:2059
 msgid "Show or hide the Tools icon on the toolbar."
-msgstr ""
+msgstr "Prikaži ili sakrij ikonu alata u alatnoj traci."
 
 #: ../gramps/gui/configure.py:2067
 msgid "Show Addons icon on toolbar"
-msgstr ""
+msgstr "Prikaži ikonu dodataka u alatnoj traci"
 
 #: ../gramps/gui/configure.py:2072
 msgid "Show or hide the Addons icon on the toolbar."
-msgstr ""
+msgstr "Prikaži ili sakrij ikonu dodataka u alatnoj traci."
 
 #: ../gramps/gui/configure.py:2080
 msgid "Show Preferences icon on toolbar"
-msgstr ""
+msgstr "Prikaži ikonu postavki u alatnoj traci"
 
 #: ../gramps/gui/configure.py:2085
 msgid "Show or hide the Preferences icon on the toolbar."
-msgstr ""
+msgstr "Prikaži ili sakrij ikonu postavki u alatnoj traci."
 
 #: ../gramps/gui/configure.py:2093
 msgid "Show close button in gramplet bar tabs"
@@ -15429,7 +15431,7 @@ msgstr "Ukloni mjesto"
 
 #: ../gramps/gui/editors/objectentries.py:447
 msgid "To select a source, use drag-and-drop or use the buttons"
-msgstr "Za biranje zabilješke koristi metodu povuci-i-ispusti ili gumbe"
+msgstr "Za biranje izvora koristi metodu povuci-i-ispusti ili gumbe"
 
 #: ../gramps/gui/editors/objectentries.py:449
 msgid "First add a source using the button"
@@ -16829,10 +16831,10 @@ msgid ""
 "Ramón y Cajal can be stored as Ramón, which is inherited from the father, "
 "the connector y, and Cajal, which is inherited from the mother."
 msgstr ""
-"Koristi višestruka prezimena\n"
+"Koristi više od jednog prezimena\n"
 "Označuje, da je prezime sastavljeno od više dijelova. Svako prezime ima svoj "
-"vlastiti prefiks i mogući veznik sa slijedećim prezimenom. Npr., prezime "
-"„Ramón y Cajal” može biti upisano kao „Ramón”, koje je naslijeđeno od oca, "
+"vlastiti prefiks i mogući veznik sa slijedećim prezimenom. Npr., prezime „"
+"Ramón y Cajal” može biti upisano kao „Ramón”, koje je naslijeđeno od oca, "
 "veznika „y”, te „Cajal”, koje je naslijeđeno od majke."
 
 #: ../gramps/gui/glade/editperson.glade:399
@@ -16868,7 +16870,7 @@ msgstr "P_orijeklo:"
 msgid ""
 "The origin of this family name for this family, eg 'Inherited' or "
 "'Patronymic'."
-msgstr "Porijeklo prezimena ove obitelji, npr. „Patronim”, itd."
+msgstr "Porijeklo prezimena ove obitelji, npr. „Naslijeđeno”, „Patronim”, itd."
 
 #: ../gramps/gui/glade/editperson.glade:585
 msgid "G_ender:"
@@ -18742,7 +18744,7 @@ msgstr "Nisu pronađeni odgovarajući dodaci."
 
 #: ../gramps/gui/plug/_windows.py:646
 msgid "Allow Gramps to install required python modules"
-msgstr ""
+msgstr "Dozvoli Grampsu da instalira potrebne python module"
 
 #: ../gramps/gui/plug/_windows.py:651
 #: ../gramps/plugins/webreport/basepage.py:1899
@@ -20025,6 +20027,8 @@ msgid ""
 "Please wait for backup in progress.\n"
 "Gramps will close when complete."
 msgstr ""
+"Pričekaj. U tijeku je izrada sigurnosne kopije.\n"
+"Gramps će se zatvoriti kada postupak završi."
 
 #: ../gramps/gui/viewmanager.py:1291 ../gramps/gui/viewmanager.py:1295
 msgid "Autobackup..."
@@ -22385,12 +22389,12 @@ msgstr "Stil korišten za stavke i njihove vrijednosti."
 #: ../gramps/plugins/drawreport/timeline.py:76
 msgctxt "sorted by"
 msgid "Birth Date"
-msgstr "datum rođenja"
+msgstr "Datum rođenja"
 
 #: ../gramps/plugins/drawreport/timeline.py:77
 msgctxt "sorted by"
 msgid "Name"
-msgstr "ime"
+msgstr "Ime"
 
 #: ../gramps/plugins/drawreport/timeline.py:169
 msgid "Sorting dates..."
@@ -31196,11 +31200,6 @@ msgid "Where to save the tiles for offline mode."
 msgstr "Gdje spremiti odsječke karata za bezmrežnu upotrebu."
 
 #: ../gramps/plugins/lib/maps/geography.py:1431
-#, fuzzy
-#| msgid ""
-#| "If you have no more space in your file system. You can remove all tiles "
-#| "placed in the above path.\n"
-#| "Be careful! If you have no internet, you'll get no map."
 msgid ""
 "If you have no more space in your file system, you can remove all tiles "
 "placed in the above path.\n"
@@ -31261,10 +31260,9 @@ msgstr ""
 "podnev"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:143
-#, fuzzy, python-format
-#| msgid "Can't create tiles cache directory %s"
+#, python-format
 msgid "Can't create tile cache directory %s"
-msgstr "Nije moguće stvoriti memorijski direktorij odsječaka karata %s"
+msgstr "Nije moguće stvoriti direktorij odsječaka karata %s"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:149
 #, python-format
@@ -33807,17 +33805,13 @@ msgstr "Prikazuje stanje poveznica u bilješkama"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:35
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:36
-#, fuzzy
-#| msgid "Thumbnails"
 msgid "Gnome Thumbnailer"
-msgstr "Sličice"
+msgstr "Gnome generator sličica"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:49
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:50
-#, fuzzy
-#| msgid "Thumbnails"
 msgid "Image Thumbnailer"
-msgstr "Sličice"
+msgstr "Generator sličica"
 
 #: ../gramps/plugins/tool/changenames.glade:34
 msgid ""
@@ -37458,7 +37452,7 @@ msgstr " [Pritisni za „Idi”]"
 
 #: ../gramps/plugins/webreport/basepage.py:2775
 msgid "Latter-Day Saints/ LDS Ordinance"
-msgstr "Mormonska crkva/ Obred CIK"
+msgstr "Mormonska crkva/ CIK obred"
 
 #: ../gramps/plugins/webreport/basepage.py:2942
 #: ../gramps/plugins/webreport/basepage.py:2944
@@ -38425,10 +38419,8 @@ msgstr ""
 "Ovaj ključ je obavezan i mora biti ispravan"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2659
-#, fuzzy
-#| msgid "Google maps API key"
 msgid "How to get the API key"
-msgstr "API ključ za Google karte"
+msgstr "Kako dobiti API ključ"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2662
 msgid ""
@@ -38467,10 +38459,8 @@ msgid "in %(inipth)s (%(val)s)"
 msgstr "u %(inipth)s (%(val)s)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2696
-#, fuzzy
-#| msgid "Dates"
 msgid "latest"
-msgstr "Datumi"
+msgstr "najnoviji"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2698
 msgid "openlayers version to use"
