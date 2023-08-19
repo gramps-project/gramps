@@ -70,6 +70,7 @@ from gramps.gen.errors import HandleError
 from .widgets.progressdialog import ProgressMonitor, GtkProgressDialog
 from .dialog import ErrorDialog, WarningDialog
 from .uimanager import ActionGroup
+from .utils import get_display_size
 from ..version import VERSION_QUALIFIER, DEV_VERSION
 from gramps.gen.const import VERSION
 
@@ -550,13 +551,15 @@ class DisplayState(Callback):
         """
         Return the width of the current screen.
         """
-        return self.window.get_screen().get_width()
+        width, _height = get_display_size(self.window)
+        return width
 
     def screen_height(self):
         """
         Return the height of the current screen.
         """
-        return self.window.get_screen().get_height()
+        _width, height = get_display_size(self.window)
+        return height
 
     def clear_history(self):
         """

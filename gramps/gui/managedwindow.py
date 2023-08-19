@@ -58,6 +58,7 @@ from gramps.gen.errors import WindowActiveError
 from gramps.gen.config import config
 from gramps.gen.constfunc import is_quartz
 from .uimanager import ActionGroup, valid_action_name
+from .utils import get_display_size
 from .glade import Glade
 
 # -------------------------------------------------------------------------
@@ -645,9 +646,7 @@ class ManagedWindow:
             vert_position = config.get(self.vert_position_key)
             # make sure some of left side shows on screen
             # for part time multi monitor setups
-            screen = Gtk.Window().get_screen()
-            s_width = screen.get_width()
-            s_height = screen.get_height()
+            s_width, s_height = get_display_size(self.window)
             if horiz_position > s_width - 50 or vert_position > s_height - 50:
                 (p_width, p_height) = self.parent_window.get_size()
                 (p_horiz, p_vert) = self.parent_window.get_position()

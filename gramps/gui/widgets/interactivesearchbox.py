@@ -44,7 +44,7 @@ from gi.repository import Gtk, Gdk, GLib
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from ..utils import match_primary_mask
+from ..utils import match_primary_mask, get_display_size
 
 # -------------------------------------------------------------------------
 #
@@ -91,8 +91,8 @@ class InteractiveSearchBox:
         popup_menu_id = self._search_entry.connect("popup-menu", lambda x: True)
 
         # Move the entry off screen
-        screen = self._treeview.get_screen()
-        self._search_window.move(screen.get_width() + 1, screen.get_height() + 1)
+        width, height = get_display_size(self._treeview)
+        self._search_window.move(width + 1, height + 1)
         self._search_window.show()
 
         # Send the event to the window.  If the preedit_changed signal is
@@ -135,17 +135,14 @@ class InteractiveSearchBox:
 
     def ensure_interactive_directory(self):
         toplevel = self._treeview.get_toplevel()
-        screen = self._treeview.get_screen()
         if self._search_window:
             if toplevel.has_group():
                 toplevel.get_group().add_window(self._search_window)
             elif self._search_window.has_group():
                 self._search_window.get_group().remove_window(self._search_window)
-            self._search_window.set_screen(screen)
             return
 
         self._search_window = Gtk.Window(type=Gtk.WindowType.POPUP)
-        self._search_window.set_screen(screen)
         if toplevel.has_group():
             toplevel.get_group().add_window(self._search_window)
         self._search_window.set_type_hint(Gdk.WindowTypeHint.UTILITY)
@@ -420,10 +417,7 @@ class InteractiveSearchBox:
 
     def _position_func(self, userdata=None):
         tree_window = self._treeview.get_window()
-        screen = self._treeview.get_screen()
-
-        monitor_num = screen.get_monitor_at_window(tree_window)
-        monitor = screen.get_monitor_workarea(monitor_num)
+        s_width, s_height = get_display_size(tree_window)
 
         self._search_window.realize()
         ret, tree_x, tree_y = tree_window.get_origin()
@@ -431,15 +425,15 @@ class InteractiveSearchBox:
         tree_height = tree_window.get_height()
         _, requisition = self._search_window.get_preferred_size()
 
-        if tree_x + tree_width > screen.get_width():
-            x = screen.get_width() - requisition.width
+        if tree_x + tree_width > s_width:
+            x = s_width - requisition.width
         elif tree_x + tree_width - requisition.width < 0:
             x = 0
         else:
             x = tree_x + tree_width - requisition.width
 
-        if tree_y + tree_height + requisition.height > screen.get_height():
-            y = screen.get_height() - requisition.height
+        if tree_y + tree_height + requisition.height > s_height:
+            y = s_height - requisition.height
         elif tree_y + tree_height < 0:  # isn't really possible ...
             y = 0
         else:

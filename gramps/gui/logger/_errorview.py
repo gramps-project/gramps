@@ -36,6 +36,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from ._errorreportassistant import ErrorReportAssistant
 from ..display import display_help
+from ..utils import get_display_size
 from ..managedwindow import ManagedWindow
 
 # -------------------------------------------------------------------------
@@ -124,9 +125,7 @@ class ErrorView(ManagedWindow):
             if win.is_toplevel() and win.is_visible():
                 self.parent_window = win  # for ManagedWindow
         if self.parent_window is None:  # but it is on some screen
-            self.parent_window = self.top.get_screen()
-            self.p_width = self.top.get_screen().get_width()
-            self.p_height = self.top.get_screen().get_height()
+            self.p_width, self.p_height = get_display_size(self.top)
             self.top.set_position(Gtk.WindowPosition.CENTER)
             self.top.set_urgency_hint(True)
             self.top.set_keep_above(True)
