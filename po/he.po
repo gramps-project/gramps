@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-19 09:46+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2023-08-19 16:14+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -393,8 +393,8 @@ msgid ""
 msgstr ""
 "<b>איתור אנשים<br/></b>כברירת מחדל, כל שם משפחה בתצוגת 'אנשים' מופיע פעם אחת "
 "בלבד. בהקשה על החץ משמאל לשם, הרשימה תורחב וכל האנשים בשם משפחה זה יוצגו. "
-"לאיתור שם משפחה מרשימה ארוכה, נא להתחיל להקלידל את שם המשפחה (לא אדם) . הסמן "
-"ימוקם על שם המשפחה הראשון ברשימה שתואם את האותיות שהוזנו."
+"לאיתור שם משפחה מרשימה ארוכה, נא להתחיל להקלידל את שם המשפחה (לא שם פרטי) . "
+"הסמן ימוקם על שם המשפחה הראשון ברשימה שתואם את האותיות שהוזנו."
 
 #: ../data/tips.xml:20
 msgid ""
@@ -730,7 +730,7 @@ msgid ""
 "they will be added to the available events, but not translated."
 msgstr ""
 "<b>רישום אירועים</b><br/>ניתן להוסיף אירועים נוספים מעורך האירועים אליו ניתן "
-"להגיע מתפריט 'אדם&gt; עריכת אדם &gt; אירועים'. קיימת רשימה ארוכה של סוגי "
+"להגיע מתפריט 'אנשים&gt; עריכת אנשים &gt; אירועים'. קיימת רשימה ארוכה של סוגי "
 "אירועים מוגדרים מראש. ניתן להוסיף סוגי אירועים נוספים על־ידי הזנה לשדה המלל, "
 "הם יתווספו לאירועים הזמינים, אך לא יתורגמו."
 
@@ -741,8 +741,8 @@ msgid ""
 "different types and set the preferred name by dragging it to the Preferred "
 "Name section."
 msgstr ""
-"<b>ניהול שמות<br/></b>קל לנהל אנשים עם מספר שמות בגרמפס. בדו־שיח 'עריכת "
-"אדם', יש לבחור בלשונית שמות. ניתן להוסיף שמות מסוגים שונים ולהגדיר את השם "
+"<b>ניהול שמות<br/></b>קל לנהל בגרמפס אנשים להם יותר משם אחד . בדו־שיח 'עריכת "
+"אנשים', נא לבחור בלשונית שמות. ניתן להוסיף שמות מסוגים שונים ולהגדיר את השם "
 "המועדף על־ידי גרירתו למקטע שם מועדף."
 
 #: ../data/tips.xml:76
@@ -1837,7 +1837,7 @@ msgstr "מספר פריסת נייר."
 
 #: ../gramps/cli/plug/__init__.py:328
 msgid "Left paper margin"
-msgstr "שול דף שמאלי"
+msgstr "שול עמוד שמאלי"
 
 #: ../gramps/cli/plug/__init__.py:328 ../gramps/cli/plug/__init__.py:329
 #: ../gramps/cli/plug/__init__.py:330 ../gramps/cli/plug/__init__.py:331
@@ -4316,7 +4316,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:47
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:47
 msgid "Person ID:"
-msgstr "מזהה אדם:"
+msgstr "מזהה אנשים:"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:48
 msgid "Families having child with Id containing <text>"
@@ -4835,7 +4835,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:46
 msgid "Note with <Id>"
-msgstr "הערה עם <מזהה>"
+msgstr "הערה בעלת <מזהה>"
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:47
 msgid "Matches a note with a specified Gramps ID"
@@ -8390,7 +8390,7 @@ msgstr "קישור"
 
 #: ../gramps/gen/lib/notetype.py:90
 msgid "Person Note"
-msgstr "הערה אישית"
+msgstr "הערת אדם"
 
 #: ../gramps/gen/lib/notetype.py:91
 msgid "Name Note"
@@ -9570,7 +9570,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:306
 msgid "Note to add to the graph"
-msgstr "הערה להוספה לתרשים"
+msgstr "הערה שתתוסף לתרשים"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:307
 msgid "This text will be added to the graph."
@@ -9584,7 +9584,7 @@ msgstr "מיקום הערה"
 #: ../gramps/gen/plug/docgen/graphdoc.py:313
 #: ../gramps/gen/plug/docgen/treedoc.py:302
 msgid "Whether note will appear on top or bottom of the page."
-msgstr "האם להציג את ההערה בראש או בתחתית הדף."
+msgstr "האם להציג הערה בראש או בתחתית העמוד."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:316
 #: ../gramps/gen/plug/docgen/treedoc.py:306
@@ -9810,7 +9810,7 @@ msgid ""
 "Select the portion of the given name to be marked as preferred. Auto sets "
 "the call name if one exists, otherwise the whole given name."
 msgstr ""
-"בחירת חלק מהשם הפרטי שיסומן כמועדף. 'אוטומטי', מציב 'שם פניה' ככל שקיים כזה, "
+"בחירת חלק מהשם הפרטי שיסומן כמועדף. 'אוטומטי', מציב 'שם פניה' ככל שכזה קיים, "
 "אחרת יוצב 'השם הפרטי' במלואו."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:225
@@ -9882,7 +9882,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:293
 msgid "Note to add to the tree"
-msgstr "הערה להוספה לעץ"
+msgstr "הערה שתתוסף לאילן־היוחסין"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:294
 msgid "This text will be added to the tree."
@@ -11016,7 +11016,7 @@ msgstr "לא ידוע, חסר %(time)s (%(count)d)"
 #: ../gramps/gen/utils/unknown.py:188
 #, python-format
 msgid "Objects referenced by this note were missing in a file imported on %s."
-msgstr "עצמים אליהם מפנה הערה זו היו חסרים בקובץ שיובא ב־%s."
+msgstr "הערה זו מפנה לעצמים חסרים בקובץ שיובא ב־%s."
 
 #: ../gramps/gen/utils/win32locale.py:44
 msgid "Arabic"
@@ -13507,7 +13507,7 @@ msgstr "קיבוץ כ"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:80
 msgid "Notes Preview"
-msgstr "תצוגה מקדימה הערה"
+msgstr "תצוגת הערה מקדימה"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:92
 msgid "_Names"
@@ -14537,7 +14537,7 @@ msgstr "הערה: %s"
 #: ../gramps/gui/editors/editnote.py:183
 #, python-format
 msgid "New Note - %(context)s"
-msgstr "הערה חדשה - %(context)s"
+msgstr "הערה חדשה – %(context)s"
 
 #: ../gramps/gui/editors/editnote.py:185
 msgid "New Note"
@@ -14562,7 +14562,7 @@ msgstr "אין מידע על הערה זו. נא להזין מידע או לבט
 
 #: ../gramps/gui/editors/editnote.py:359
 msgid "Cannot save note. ID already exists."
-msgstr "לא ניתן לשמור הערה. המזהה כבר קיים."
+msgstr "לא ניתן לשמור הערה. מזהה כבר קיים."
 
 #: ../gramps/gui/editors/editnote.py:371
 msgid "Add Note"
@@ -14590,7 +14590,7 @@ msgstr "עריכת_מידע_על_אנשים"
 #: ../gramps/gui/editors/editperson.py:664
 #: ../gramps/plugins/view/geofamily.py:499
 msgid "Edit Person"
-msgstr "עריכת אדם"
+msgstr "עריכת אנשים"
 
 #: ../gramps/gui/editors/editperson.py:711
 #: ../gramps/plugins/view/mediaview.py:410
@@ -14646,7 +14646,7 @@ msgstr "הוספת אדם (%s)"
 #: ../gramps/plugins/view/relview.py:1522
 #, python-format
 msgid "Edit Person (%s)"
-msgstr "עריכת אדם (%s)"
+msgstr "עריכת אנשים (%s)"
 
 #: ../gramps/gui/editors/editperson.py:1201
 msgid "Unknown gender specified"
@@ -14976,7 +14976,7 @@ msgstr "מסנני מאגר"
 
 #: ../gramps/gui/editors/filtereditor.py:106
 msgid "Note Filters"
-msgstr "מסנני הערה"
+msgstr "מסנני הערות"
 
 #: ../gramps/gui/editors/filtereditor.py:107
 msgid "Citation Filters"
@@ -15130,7 +15130,7 @@ msgstr "נסה מסנן"
 
 #: ../gramps/gui/editors/filtereditor.py:1228
 msgid "Comment"
-msgstr "הערה"
+msgstr "תגובה"
 
 #: ../gramps/gui/editors/filtereditor.py:1240
 msgid "Custom Filter Editor"
@@ -15162,7 +15162,7 @@ msgstr "לא הוזן 'אדם', נא להקיש על הלחצן לבחירת א�
 
 #: ../gramps/gui/editors/objectentries.py:309
 msgid "Edit person"
-msgstr "עריכת אדם"
+msgstr "עריכת אנשים"
 
 #: ../gramps/gui/editors/objectentries.py:310
 msgid "Select an existing person"
@@ -15263,12 +15263,12 @@ msgstr "לבחירת הערה, נא להשתמש בגרירה ושחרר או ב
 #: ../gramps/gui/editors/objectentries.py:588
 #: ../gramps/gui/plug/_guioptions.py:1021
 msgid "No note given, click button to select one"
-msgstr "לא סופקה הערה, נא להקיש על הלחצן לבחירה"
+msgstr "לא סופקה הערה, נא להקיש על הלחצן לבחירת הערה"
 
 #: ../gramps/gui/editors/objectentries.py:590
 #: ../gramps/gui/plug/_guioptions.py:996
 msgid "Select an existing note"
-msgstr "נא לבחור הערה קיימת"
+msgstr "בחירת הערה קיימת"
 
 #: ../gramps/gui/editors/objectentries.py:591
 #: ../gramps/plugins/view/noteview.py:96
@@ -15794,7 +15794,7 @@ msgid ""
 msgstr ""
 "כתובת דואר.\n"
 "\n"
-"הערה: שימוש בכתובת מגורים לנתוני כתובת גנאלוגיים."
+"הערה: ניתן להשתמש ב באירוע מגורים למידע כתובות מגורים למטרת חקר־יוחסין."
 
 #: ../gramps/gui/glade/editaddress.glade:290
 #: ../gramps/gui/glade/editattribute.glade:146
@@ -15874,12 +15874,12 @@ msgid ""
 "Note: several predefined attributes refer to values present in the GEDCOM "
 "standard."
 msgstr ""
-"שם התכונה שבה יעשה שימוש. לדוגמה: גובה (עבור אדם), מזג האוויר ביום זה "
-"(לאירוע),... \n"
-"ניתן להשתמש באפשרות זו לאחסן גזירים של מידע שנאסף לקישור למקורות. ניתן "
-"להשתמש בתכונות עבור אנשים, משפחות, אירועים ומדיה.\n"
+"התכונה בה יעשה שימוש. לדוגמה: גובה (לאדם), מזג אוויר ביום מסויים (לאירוע)"
+",... \n"
+"ניתן להשתמש באפשרות זו לאחסן גזירי מידע שנאסף קישורם למקורות האופן תקין.  "
+"ב'תכונות', ניתן להשתמש לאנשים, משפחות, אירועים ומדיה.\n"
 " \n"
-"הערה: מספר תכונות מוגדרות מראש מתייחסות לערכים הקיימים בתקן הג'דקום."
+"הערה: כמה תכונות מוגדרות מראש, מתייחסות לערכים קיימים בתקן הג'דקום."
 
 #: ../gramps/gui/glade/editchildref.glade:97
 msgid "Relationship to _Mother:"
@@ -16383,7 +16383,7 @@ msgstr ""
 msgid ""
 "<b>Note:</b> Any changes in the shared media object information will be "
 "reflected in the media object itself."
-msgstr "<b>הערה:</b> כל שינוי מידע בעצם מדיה משותף, ישתקף, בעצם המדיה עצמו."
+msgstr "<b>הערה:</b> כל שינוי מידע בעצם מדיה משותף, ישתקף בעצם המדיה עצמו."
 
 #: ../gramps/gui/glade/editmediaref.glade:488
 msgid "Double click image to view in an external viewer"
@@ -16658,8 +16658,8 @@ msgid ""
 msgstr ""
 "תיאור השיוך, לדוגמה. הסנדק, חבר, ...\n"
 "\n"
-"הערה: נא להשתמש באירועים לקשרים הקשורים למסגרות זמן או לאירועים ספציפיים. "
-"ניתן לשתף אירועים בין אנשים, כאשר לכל אחד ניתן לציין את תפקידו באירוע."
+"הערה: ניתן להשתמש באירועים במקום קשרי־גומלין שקשרים למסגרות זמן או נסיבות "
+"מסויימות. ניתן לשתף אירועים בין אנשים ולציין את תפקידו של ה'אדם'באירוע."
 
 #: ../gramps/gui/glade/editpersonref.glade:146
 msgid ""
@@ -16730,7 +16730,7 @@ msgid ""
 "or use copy/paste from your favorite map provider (format : latitude,"
 "longitude) in the following field:"
 msgstr ""
-"או, העתקת/הדבקת נקודות־הציון מספק ישרות המפות המועדף (תסדיר: קו רוחב, קו "
+"או, העתקת/הדבקת נקודות־הציון מספק שרות המפות המועדף (בתסדיר: קו רוחב, קו "
 "אורך) לתוך השדה הבא:"
 
 #: ../gramps/gui/glade/editplace.glade:240
@@ -16811,8 +16811,8 @@ msgid ""
 "<b>Note:</b> Any changes in the enclosing place information will be "
 "reflected in the place itself, for places that it encloses."
 msgstr ""
-"<b>הערה:</b> כל שינוי במידע מקומות שממכילים מקומות אחרים ישתקף במקום עצמו, "
-"עבור כלל המקומות המוכלים בו."
+"<b>הערה:</b> כל שינוי מידע במקומות שמכילים בתוכם מקומות אחרים, ישתקף במקום "
+"עצמו ובכול המקומות המוכלים בו."
 
 #: ../gramps/gui/glade/editreporef.glade:127
 msgid "_Media Type:"
@@ -16848,8 +16848,8 @@ msgid ""
 "reflected in the repository itself, for all items that reference the "
 "repository."
 msgstr ""
-"<b>הערה:</b> כל שינוי במידע במאגרים המשותפים ישתקף במאגר עצמו, עבור כל "
-"המקומות שמפנים למאגר."
+"<b>הערה:</b> כל שינוי מידע במאגריםמשותפים ישתקף במאגר עצמו ובכול הפריטים "
+"שמפנים למאגר."
 
 #: ../gramps/gui/glade/editreporef.glade:370
 #: ../gramps/gui/glade/editrepository.glade:179
@@ -17126,8 +17126,8 @@ msgid ""
 "Select the note that will provide the\n"
 "primary data for the merged note."
 msgstr ""
-"נא לבחור ההערה שתשמש\n"
-"כמקור המידע העיקרי להערה שתמוזג."
+"בחירת ההערה שתהווה\n"
+"כמקור מידע עיקרי להערה שתמוזג."
 
 #: ../gramps/gui/glade/mergenote.glade:186
 msgid "Note 1"
@@ -18840,10 +18840,10 @@ msgid ""
 "you have just saved. Future editing of the currently opened database will "
 "not alter the copy you have just made. "
 msgstr ""
-"עותק של המידע נשמר בהצלחה. ניתן ללחוץ על לחצן 'סגירה' על מנת להמשיך.\n"
+"עותק של המידע נשמר בהצלחה. ניתן ללחוץ על לחצן 'סגירה' כדי להמשיך.\n"
 "\n"
-"הערה: מסד הנתונים שפתוח כעת בתוכנה הוא לא הקובץ שנשמר. עריכות עתידיות בקובץ "
-"הפתוח לא יישנו את העותק שנוצר עכשיו. "
+"הערה: מסד הנתונים שפתוח כעת בחלון גרמפס, אינו הקובץ שנשמר זה עתה. עריכות "
+"עתידיות במסד־הנתונים הפתוח לא ישפיע עוד על העותק שנוצרזה מכבר. "
 
 #: ../gramps/gui/plug/export/_exportassistant.py:539
 #, python-format
@@ -18862,9 +18862,9 @@ msgid ""
 "Note: your currently opened database is safe. It was only a copy of your "
 "data that failed to save."
 msgstr ""
-"אירעה שגיאה בעת שמירת הנתונים. ניתן לנסות להריץ את הייצוא מחדש.\n"
+"אירעה שגיאה בעת שמירת הנתונים. ניתן לנסות להריץ את היצוא מחדש.\n"
 "\n"
-"הערה: מסד הנתונים הפתוח כעת בטוח. אך יצירת עותק של הנתונים כשלה."
+"הערה: מסד הנתונים שפתוח כעת בטוח. אך יצירת עותק לנתונים כשלה."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:562
 msgid ""
@@ -18947,11 +18947,11 @@ msgstr "נא להקיש לתצוגה מקדימה של תוצאות סינון '
 
 #: ../gramps/gui/plug/export/_exportoptions.py:326
 msgid "_Note Filter"
-msgstr "_מסנן הערה"
+msgstr "_מסנן הערות"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:344
 msgid "Click to see preview after note filter"
-msgstr "נא להקיש לתצוגה מקדימה של תוצאות סינון 'הערה'"
+msgstr "נא להקיש לתצוגה מקדימה של תוצאות סינון 'הערות'"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:347
 msgid "Privacy Filter"
@@ -20918,20 +20918,20 @@ msgid ""
 "With 'Scale tree to fit the size of the page' the page\n"
 "  is resized to remove any gap in either height or width"
 msgstr ""
-"האם לשנות את גודל הדף כך שיתאים\n"
-"לגודל העץ.  הערה:  הדף\n"
-"לאיהיה בגודל תקני.\n"
+"האם לשנות את גודל העמוד כך שיתאים\n"
+"לגודל אילן־היוחסין.   הערה:   גודל העמוד\n"
+"לא יהיה תקני.\n"
 "\n"
 "בבחירה באפשרות זו, יתרחשו הפעולות הבאות:\n"
 "\n"
-"יחד עם האפשרות 'לא לשנות גודל עץ'\n"
-" גודל הדף ישתנה לפי 'גובה/רוחב' העץ\n"
+"עם אפשרות 'לא לשנות גודל אילן־היוחסין'\n"
+" גודל העמוד ישתנה לפי 'גובה/רוחב' אילן־היוחסין\n"
 "\n"
-"יחד עם האפשרות 'שינוי גודל עץ להתאמה רק לרוחב הדף'\n"
-"  גודל הדף ישתנה לפי 'גובה' העץ\n"
+"עם אפשרות 'שינוי גודל עץ להתאמה רק לרוחב העמוד'\n"
+"  גודל העמוד ישתנה לפי 'גובה' אילן־היוחסין\n"
 "\n"
-"יחד עם האפשרות 'שינוי גודל עץ להתאמה לגודל הדף' \n"
-" גודל הדף ישתנה כך שכול פער ב'גובה' או ב'רוחב' הדף יוסר"
+"עם אפשרות 'שינוי גודל אילן־היוחסין להתאמה לגודל העמוד' \n"
+" גודל העמוד ישתנה כך שכול פער ב'גובה' או ב'רוחב' העמוד יוסר"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:951
 #: ../gramps/plugins/drawreport/descendtree.py:1688
@@ -21144,7 +21144,7 @@ msgstr "הסגנון הבסיסי המשמש להצגת המלל."
 #: ../gramps/plugins/textreport/familygroup.py:897
 #: ../gramps/plugins/textreport/tagreport.py:1004
 msgid "The basic style used for the note display."
-msgstr "הסגנון הבסיסי המשמש להצגת ההערה."
+msgstr "הסגנון הבסיסי שמשמש להצגת ההערה."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1135
 #: ../gramps/plugins/drawreport/descendtree.py:1821
@@ -21885,7 +21885,7 @@ msgstr "(מועדף) חסר תואר"
 #: ../gramps/plugins/drawreport/statisticschart.py:485
 #: ../gramps/plugins/drawreport/statisticschart.py:1043
 msgid "(Preferred) forename missing"
-msgstr "(מועדף) שם פרטי חסר"
+msgstr "(מועדף) חסר שם פרטי"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:495
 msgid "(Preferred) surname missing"
@@ -23420,7 +23420,7 @@ msgstr "הפניות הערה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1080
 msgid "Gramplet showing the backlink references for a note"
-msgstr "גרמפלט להצגת הפניות קישורים נכנסים להערה"
+msgstr "גרמפלט להצגת הפניות קישורים חוזרים להערה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1094
 msgid "Person Filter"
@@ -23804,7 +23804,7 @@ msgstr "נא להקיש על השם להפיכה לאדם הפעיל\n"
 
 #: ../gramps/plugins/gramplet/relativegramplet.py:46
 msgid "Right-click name to edit person"
-msgstr "נא להקיש ימנית על השם לעריכת אדם"
+msgstr "נא להקיש ימנית על השם לעריכת אנשים"
 
 #: ../gramps/plugins/gramplet/relativegramplet.py:77
 #, python-format
@@ -24023,7 +24023,7 @@ msgstr "הוספת הערת משימות לביצוע חדשה"
 
 #: ../gramps/plugins/gramplet/todo.py:207
 msgid "First select the object to which you want to attach a note"
-msgstr "נא לבחור תחילה עצם אליו תתייחס ההערה"
+msgstr "תחילה נא לבחור עצם אליו תצורף ההערה"
 
 #: ../gramps/plugins/gramplet/todogramplet.py:151
 msgid "Unattached"
@@ -26039,11 +26039,11 @@ msgid ""
 msgstr ""
 "\n"
 "הקובץ שיובא לא היה שלם.\n"
-"כדי לתקן זאת, נוצרו %(new)d עצמים\n"
-"והתכונה המאפיינת שלהם הוגדרה כ'לא ידוע'.\n"
+"לפעולת תיקן, נוצרו %(new)d עצמים\n"
+"שסיווג התכונה שלהם נקבע כ'לא ידוע'.\n"
 "התפלגות לסוגי־אב מתוארת על־ידי\n"
-"המספר בסוגריים. בכול מקום שמתאפשר,\n"
-"עצמים 'לא ידועים' אלו מפנים להערה %(unknown)s."
+"המספר בסוגריים. \n"
+"עצמים 'לא ידועים' אלו מפנים להערה %(unknown)s ככל שמתאפשר."
 
 #: ../gramps/plugins/importer/importxml.py:387
 msgid ""
@@ -26406,10 +26406,11 @@ msgid ""
 msgstr ""
 "\n"
 "הקובץ שיובא לא היה שלם.\n"
-"כדי לתקן זאת, נוצרו %(new)d עצמים\n"
-"והתכונה המאפיינת שלהם הוגדרה כ'לא ידוע'.\n"
-"במידת האפשר העצמים ה'לא ידוע'ים הללו\n"
-"מפנים להערה %(unknown)s..\n"
+"לפעולת תיקן, נוצרו %(new)d עצמים\n"
+"שסיווג התכונה שלהם נקבע כ'לא ידוע'.\n"
+"התפלגות לסוגי־אב מתוארת על־ידי\n"
+"המספר בסוגריים. \n"
+"עצמים 'לא ידועים' אלו מפנים להערה %(unknown)s ככל שמתאפשר.\n"
 
 #: ../gramps/plugins/lib/libgedcom.py:3868
 #, python-format
@@ -31124,7 +31125,7 @@ msgstr "מדיה הופכית"
 #: ../gramps/plugins/quickview/filterbyname.py:51
 msgctxt "Filtering_on"
 msgid "Inverse Note"
-msgstr "הערה הופכית"
+msgstr "היפוך הערה"
 
 #: ../gramps/plugins/quickview/filterbyname.py:52
 msgctxt "Filtering_on"
@@ -31380,7 +31381,7 @@ msgstr "מגדר לא ידוע"
 
 #: ../gramps/plugins/quickview/linkreferences.py:45
 msgid "Link References for this note"
-msgstr "הפניות קישור להערה זו"
+msgstr "קישור הפניות להערה זו"
 
 #: ../gramps/plugins/quickview/linkreferences.py:47
 msgid "Link check"
@@ -31402,7 +31403,7 @@ msgstr "מרשתת"
 
 #: ../gramps/plugins/quickview/linkreferences.py:69
 msgid "No link references for this note"
-msgstr "אין הפניות עבור הערה זו"
+msgstr "אין קישור הפניות להערה זו"
 
 #: ../gramps/plugins/quickview/onthisday.py:80
 #, python-format
@@ -31520,7 +31521,7 @@ msgstr "הפנית קישור"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:244
 msgid "Display link references for a note"
-msgstr "הצגת הפניות קישור להערה"
+msgstr "הצגת קישור הפניות להערה"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:266
 msgid ""
@@ -33443,7 +33444,8 @@ msgid ""
 "Objects referenced by this note were referenced but missing so that is why "
 "they have been created when you ran Check and Repair on %s."
 msgstr ""
-"עצמים אליהם מפנה הערה זו, חסרים, הם נוצרו שוב בעקבות הרצת בדיקה ותיקון ב־%s."
+"חסרים עצמים אליהם מפנה הערה זו , לכן הם נוצרו שוב בעקבות הפעת בדיקה ותיקון "
+"ב־%s."
 
 #: ../gramps/plugins/tool/check.py:344
 msgid "Looking for invalid name format references"
@@ -33778,8 +33780,8 @@ msgstr[1] "{quantity} מקורות מקושרים אך לא נמצאו\n"
 #, python-brace-format
 msgid "{quantity} note object was referenced but not found\n"
 msgid_plural "{quantity} note objects were referenced, but not found\n"
-msgstr[0] "{quantity} עצם הערה עם הפניה קיימת לא נמצא\n"
-msgstr[1] "{quantity} עצמי הערה עם הופנוית קימות לא נמצאו\n"
+msgstr[0] "{quantity} עצם הערה עם הפניות, לא נמצא\n"
+msgstr[1] "{quantity} עצמי הערה עם הופנוית, לא נמצאו\n"
 
 #: ../gramps/plugins/tool/check.py:2989 ../gramps/plugins/tool/check.py:2999
 #, python-brace-format
@@ -36278,8 +36280,8 @@ msgid ""
 "Exactly two notes must be selected to perform a merge. A second note can be "
 "selected by holding down the control key while clicking on the desired note."
 msgstr ""
-"לבצע מיזוג ,נא לבחור שתי הערות בדיוק. ניתן לבחור בהערה השניה על־ידי החזקת "
-"מקש הבקרה ובו בעת הקשה על ההערה הרצויה."
+"לבצע מיזוג ,נא לבחור בדיוק בשתי הערות. ניתן לבחור בהערה השניה על־ידי החזקת "
+"מקש הבקרה ובה בעת הקשה על ההערה הרצויה."
 
 # ל.=לידה
 #: ../gramps/plugins/view/pedigreeview.py:87
@@ -36996,9 +36998,10 @@ msgid ""
 "download page and files have the same copyright as the remainder of these "
 "web pages."
 msgstr ""
-"דף זה מיועד למשתמש/יוצר של אתר אילן יוחסיו/אתר מילולי זה, שנועד לשיתוף כמה "
-"קבצים הקשורים למשפחה שלהם.  אם ישנם קבצים המפורטים להלן, הקשה עליהם תאפשר את "
-"הורדתם. על עמוד ההורדות והקבצים חלים אותם זכויות יוצרים כמו לשאר דפי המרשתת."
+"עמוד זה נועד למשתמש או יוצר אתר אילן־יוחסין / אתר מילולי זה, שנועד לשתף מספר "
+"קבצים שקשורים עם בני המשפחה.  ניתן להקיש על הקבצים שמפורטים להלן כדי להורידם "
+"למחשב. על עמוד ההורדות והקבצים חלים אותם זכויות יוצרים כמו על שאר עמןדי "
+"המרשתת."
 
 #: ../gramps/plugins/webreport/download.py:128
 msgid "File Name"
@@ -37031,8 +37034,8 @@ msgid ""
 "their type and date (if one is present). Clicking on an event&#8217;s Gramps "
 "ID will open a page for that event."
 msgstr ""
-"דף זה מכיל מפתח של כל האירועים במסד הנתונים, ממוינים לפי סוג ותאריך (ככול "
-"שאחד מאלו קיים). הקשה על מזהה גרמפס של אירוע&8217; יפתח עמוד עבור אירוע זה."
+"העמוד מכיל מפתח של כל האירועים במסד הנתונים, ממוינים לפי סוג ותאריך (ככול "
+"שאחד מאלו קיים). הקשה על מזהה אירוע&8217;  גרמפס תפתח עמוד לאירוע זה."
 
 #: ../gramps/plugins/webreport/event.py:310
 #: ../gramps/plugins/webreport/family.py:314
@@ -37311,7 +37314,7 @@ msgstr "תסדיר הפניות מובאה"
 #: ../gramps/plugins/webreport/narrativeweb.py:2172
 msgid ""
 "Determine the default layout for the Source Page's Citation Referents section"
-msgstr "קביעת פריסת ברירת המחדל עבור מקטע 'הפניות מובאה' של דף המקור"
+msgstr "קביעת פריסת ברירת המחדל למקטע 'הפניות מובאה' בעמוד המקור"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2178
 msgid "Include ancestor's tree"
@@ -37429,11 +37432,11 @@ msgstr "יצירת עמוד"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2299
 msgid "Home page note"
-msgstr "הערה בעמוד הבית"
+msgstr "הערת עמוד הבית"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2300
 msgid "A note to be used on the home page"
-msgstr "הערה לשימוש בעמוד הבית"
+msgstr "הערה שתשמש בעמוד הבית"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2303
 msgid "Home page image"
@@ -37485,7 +37488,7 @@ msgid ""
 msgstr ""
 "תמונה שתשמש בפרטי קשר המפרסם.\n"
 "אם לא קיים מידע על מפרסם,\n"
-"לא ייווצר דף יצירת קשר"
+"לא ייווצר עמוד פרטי קשר"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2335
 msgid "HTML user header"
@@ -37501,7 +37504,7 @@ msgstr "סיומת משתמש HTML"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2342
 msgid "A note to be used as the page footer"
-msgstr "הערה לשימוש בתחתית העמוד"
+msgstr "הערה שתשמש בתחתית העמוד"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2347
 msgid "PHP user session"
@@ -37513,7 +37516,7 @@ msgid ""
 "This option will be available only if the .php file extension is selected."
 msgstr ""
 "הערה שתשמש באתחול שיח php.\n"
-"אפשרות זו תהיה זמינה רק אם נבחרה סיומת קובץ ה־php.."
+"אפשרות זו תהיה זמינה רק אם נבחרה סיומת קובץ php.."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2363
 msgid "Images Generation"
@@ -37576,7 +37579,7 @@ msgstr "אפשור קביעת הרוחב תמונה המרבי בעמוד המד
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2431
 msgid "Include download page"
-msgstr "הכללת דף הורדות"
+msgstr "הכללת עמוד הורדות"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2432
 msgid "Whether to include a database download option"
@@ -38331,7 +38334,7 @@ msgstr "הערת ינואר"
 
 #: ../gramps/plugins/webreport/webcal.py:1993
 msgid "The note for the month of January"
-msgstr "הערה עבור חודש ינואר"
+msgstr "הערה לחודש ינואר"
 
 #: ../gramps/plugins/webreport/webcal.py:1996
 msgid "February Note"
@@ -38339,7 +38342,7 @@ msgstr "הערת פברואר"
 
 #: ../gramps/plugins/webreport/webcal.py:1997
 msgid "The note for the month of February"
-msgstr "הערה עבור חודש פברואר"
+msgstr "הערה לחודש פברואר"
 
 #: ../gramps/plugins/webreport/webcal.py:2000
 msgid "March Note"
@@ -38347,7 +38350,7 @@ msgstr "הערת מרץ"
 
 #: ../gramps/plugins/webreport/webcal.py:2001
 msgid "The note for the month of March"
-msgstr "הערה עבור חודש מרץ"
+msgstr "הערה לחודש מרץ"
 
 #: ../gramps/plugins/webreport/webcal.py:2004
 msgid "April Note"
@@ -38355,7 +38358,7 @@ msgstr "הערת אפריל"
 
 #: ../gramps/plugins/webreport/webcal.py:2005
 msgid "The note for the month of April"
-msgstr "הערה עבור חודש אפריל"
+msgstr "הערה לחודש אפריל"
 
 #: ../gramps/plugins/webreport/webcal.py:2008
 msgid "May Note"
@@ -38363,7 +38366,7 @@ msgstr "הערת מאי"
 
 #: ../gramps/plugins/webreport/webcal.py:2009
 msgid "The note for the month of May"
-msgstr "הערה עבור חודש מאי"
+msgstr "הערה לחודש מאי"
 
 #: ../gramps/plugins/webreport/webcal.py:2012
 msgid "June Note"
@@ -38371,7 +38374,7 @@ msgstr "הערת יוני"
 
 #: ../gramps/plugins/webreport/webcal.py:2013
 msgid "The note for the month of June"
-msgstr "הערה עבור חודש יוני"
+msgstr "הערה לחודש יוני"
 
 #: ../gramps/plugins/webreport/webcal.py:2016
 msgid "Jul - Dec Notes"
@@ -38383,7 +38386,7 @@ msgstr "הערת יולי"
 
 #: ../gramps/plugins/webreport/webcal.py:2019
 msgid "The note for the month of July"
-msgstr "הערה עבור חודש יולי"
+msgstr "הערה לחודש יולי"
 
 #: ../gramps/plugins/webreport/webcal.py:2022
 msgid "August Note"
@@ -38391,7 +38394,7 @@ msgstr "הערת אוגוסט"
 
 #: ../gramps/plugins/webreport/webcal.py:2023
 msgid "The note for the month of August"
-msgstr "הערה עבור חודש אוגוסט"
+msgstr "הערה לחודש אוגוסט"
 
 #: ../gramps/plugins/webreport/webcal.py:2026
 msgid "September Note"
@@ -38399,7 +38402,7 @@ msgstr "הערת ספטמבר"
 
 #: ../gramps/plugins/webreport/webcal.py:2027
 msgid "The note for the month of September"
-msgstr "הערה עבור חודש ספטמבר"
+msgstr "הערה לחודש ספטמבר"
 
 #: ../gramps/plugins/webreport/webcal.py:2030
 msgid "October Note"
@@ -38407,7 +38410,7 @@ msgstr "הערת אוקטובר"
 
 #: ../gramps/plugins/webreport/webcal.py:2031
 msgid "The note for the month of October"
-msgstr "הערה עבור חודש אוקטובר"
+msgstr "הערה לחודש אוקטובר"
 
 #: ../gramps/plugins/webreport/webcal.py:2034
 msgid "November Note"
@@ -38415,7 +38418,7 @@ msgstr "הערת נובמבר"
 
 #: ../gramps/plugins/webreport/webcal.py:2035
 msgid "The note for the month of November"
-msgstr "הערה עבור חודש נובמבר"
+msgstr "הערה לחודש נובמבר"
 
 #: ../gramps/plugins/webreport/webcal.py:2038
 msgid "December Note"
@@ -38423,7 +38426,7 @@ msgstr "הערת דצמבר"
 
 #: ../gramps/plugins/webreport/webcal.py:2039
 msgid "The note for the month of December"
-msgstr "הערה עבור חודש דצמבר"
+msgstr "הערה לחודש דצמבר"
 
 #: ../gramps/plugins/webreport/webcal.py:2075
 msgid "Link to Narrated Web Report"
@@ -38456,7 +38459,7 @@ msgstr "אתר מרשתת"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:37
 msgid "Produces web (HTML) pages for individuals, or a set of individuals"
-msgstr "יצירת דף מרשתת (HTML) עבור אנשים או קבוצת אנשים"
+msgstr "יצירת עמוד מרשתת (HTML) לאנשים או קבוצת אנשים"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:61
 msgid "Produces web (HTML) calendars."
