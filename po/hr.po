@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-19 20:09+0000\n"
+"PO-Revision-Date: 2023-08-19 20:21+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -9594,7 +9594,7 @@ msgstr "Da li je smjer dijagrama odozgo prema dolje ili s lijeva na desno."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:183
 msgid "Number of Horizontal Pages"
-msgstr "Broj polegnutih stranica"
+msgstr "Broj ležećih stranica"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:186
 msgid ""
@@ -9603,8 +9603,8 @@ msgid ""
 "horizontally. Only valid for dot and pdf via Ghostscript."
 msgstr ""
 "Graphviz omogućuje izradu velikih dijagrama, koji se prostiru preko nekoliko "
-"stranica. Ovo određuje broj polegnutih stranica u nizu. Vrijedi samo za "
-"izlazne formate dot i pdf (Ghostscript)."
+"stranica. Ovo određuje broj ležećih stranica u nizu. Vrijedi samo za izlazne "
+"formate dot i pdf (Ghostscript)."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:195
 msgid "Number of Vertical Pages"
@@ -9629,8 +9629,8 @@ msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
 msgstr ""
-"Redoslijed ispisa stranica dijagrama. Ova se opcija primjenjuje samo, ako je "
-"broj polegnutih ili uspravnih stranica veći od 1."
+"Redoslijed ispisa stranica dijagrama. Ova se opcija primjenjuje samo ako je "
+"broj ležećih ili uspravnih stranica veći od 1."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:219
 msgid "Connecting lines"
@@ -10036,8 +10036,9 @@ msgid ""
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
 "this corresponds to spacing between columns."
 msgstr ""
-"Najmanji razmak između razina, u mm. Kod uspravnih dijagrama to odgovara "
-"razmaku između redaka, a kod vodoravnih dijagrama, razmaku između stupaca."
+"Najmanja količina slobodnog prostora između razina, u mm. Kod uspravnih "
+"dijagrama to odgovara razmaku između redaka, a kod vodoravnih dijagrama, "
+"razmaku između stupaca."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:293
 msgid "Note to add to the tree"
@@ -24821,7 +24822,7 @@ msgstr "Smjer strelice"
 #: ../gramps/plugins/graph/gvhourglass.py:461
 #: ../gramps/plugins/graph/gvrelgraph.py:894
 msgid "Choose the direction that the arrows point."
-msgstr "Odabir smjera koji pokazuje strelica."
+msgstr "Odaberi smjer strelica."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:176
 #: ../gramps/plugins/graph/gvhourglass.py:464
@@ -36956,7 +36957,7 @@ msgstr "Standardno"
 
 #: ../gramps/plugins/view/pedigreeview.py:2266
 msgid "Tree direction"
-msgstr "Položaj stabla"
+msgstr "Smjer stabla"
 
 #: ../gramps/plugins/view/pedigreeview.py:2277
 msgid "Tree size"
