@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-19 16:14+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2023-08-19 18:04+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -3179,43 +3179,43 @@ msgstr "גרסת סְכֵמָה"
 #, python-format
 msgid ""
 "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr "%(n1)6d  אנשים        עודכנו ב־%(n2)6d מובאות ב־%(n3)6d שניות\n"
+msgstr "%(n1)6d  אנשים        עודכנו תוך %(n2)6d מובאות ב־%(n3)6d שניות\n"
 
 #: ../gramps/gen/db/upgrade.py:588
 #, python-format
 msgid ""
 "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr "%(n1)6d  משפחות      עודכנו ב־%(n2)6d מובאות ב־%(n3)6d שניות\n"
+msgstr "%(n1)6d  משפחות      עודכנו תוך %(n2)6d מובאות ב־%(n3)6d שניות\n"
 
 #: ../gramps/gen/db/upgrade.py:592
 #, python-format
 msgid ""
 "%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr "%(n1)6d  אירועים        עודכנו ב־%(n2)6d מובאות ב־%(n3)6d שניות\n"
+msgstr "%(n1)6d  אירועים        עודכנו תוך %(n2)6d מובאות ב־%(n3)6d שניות\n"
 
 #: ../gramps/gen/db/upgrade.py:596
 #, python-format
 msgid ""
 "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr "%(n1)6d  עצמי מדיה עודכנו ב־%(n2)6d מובאות ב־%(n3)6d שניות\n"
+msgstr "%(n1)6d  עצמי מדיה עודכנו תוך %(n2)6d מובאות ב־%(n3)6d שניות\n"
 
 #: ../gramps/gen/db/upgrade.py:600
 #, python-format
 msgid ""
 "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr "%(n1)6d  מקומות          עודכנו ב־%(n2)6d מובאות ב־%(n3)6d שניות\n"
+msgstr "%(n1)6d  מקומות          עודכנו תוך %(n2)6d מובאות ב־%(n3)6d שניות\n"
 
 #: ../gramps/gen/db/upgrade.py:604
 #, python-format
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr "%(n1)6d  קשרי־גומלין  עודכנו ב־%(n2)6d מובאות ב־%(n3)6d שניות\n"
+msgstr "%(n1)6d  קשרי־גומלין  עודכנו תוך %(n2)6d מובאות ב־%(n3)6d שניות\n"
 
 #: ../gramps/gen/db/upgrade.py:608
 #, python-format
 msgid ""
 "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr "%(n1)6d  מקורות       עודכנו ב־%(n2)6d מובאות ב־%(n3)6d שניות\n"
+msgstr "%(n1)6d  מקורות       עודכנו תוך %(n2)6d מובאות ב־%(n3)6d שניות\n"
 
 #: ../gramps/gen/db/upgrade.py:1173
 msgid "Number of new objects upgraded:\n"
@@ -5047,7 +5047,7 @@ msgstr "אנשים בעלי תכונה אישית <תכונה>"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:49
 msgid "Matches people with the personal attribute of a particular value"
-msgstr "שליפת אנשים עם תכונת אישיות עם ערך מסוים"
+msgstr "שליפת אנשים בעלי תכונת אישיות עם ערך מסוים"
 
 #: ../gramps/gen/filters/rules/person/_hasbirth.py:51
 msgid "People with the <birth data>"
@@ -5457,7 +5457,7 @@ msgstr "שליפת אדם הבית"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:52
 msgid "Descendant family members of <person>"
-msgstr "בני משפחת של צאצא <אדם>"
+msgstr "צאצאי משפחת <אדם>"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:53
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:50
@@ -5490,7 +5490,7 @@ msgstr "צאצאים של <אדם>"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:50
 msgid "Matches all descendants for the specified person"
-msgstr "שליפת כל הצאצאים לאדם שצוין"
+msgstr "שליפת כל צאצאי האדם שצוין"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantoffiltermatch.py:49
 msgid "Descendants of <filter> match"
@@ -5534,13 +5534,13 @@ msgstr "מספר דורות:"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorof.py:48
 msgid "Ancestors of <person> not more than <N> generations away"
-msgstr "אבות קדמונים של <אדם> לא יותר ממרחק <N> דורות"
+msgstr "אבות קדמונים של <אדם> מרוחקים לא יותר מ־<N> דורות"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorof.py:51
 msgid ""
 "Matches people that are ancestors of a specified person not more than N "
 "generations away"
-msgstr "שליפת אנשים שהם אבות קדמונים של אדם מסוים במרחק לא יותר מ N דורות"
+msgstr "שליפת אנשים שהם אבות קדמונים של אדם מסוים מרוחקים לא יותר מ־<N> דורות"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofbookmarked.py:54
 msgid "Ancestors of bookmarked people not more than <N> generations away"
@@ -5554,21 +5554,21 @@ msgstr "שליפת אבות קדמונים של האנשים ברשימת הסי
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:49
 msgid "Ancestors of the Home Person not more than <N> generations away"
-msgstr "אבות קדמונים של אדם ברירת מחדל לא יותר ממרחק <N> דורות"
+msgstr "אבות קדמונים של אדם ברירת מחדל מרוחקים לא יותר מ־<N> דורות"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:52
 msgid "Matches ancestors of the Home Person not more than N generations away"
-msgstr "שליפת אבות קדמונים של אדם הבית במרחק לא יותר מ N דורות"
+msgstr "שליפת אבות קדמונים של אדם הבית מרוחקים לא יותר מ־<N> דורות"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:48
 msgid "Descendants of <person> not more than <N> generations away"
-msgstr "אבות צאצאים של <אדם> לא יותר ממרחק <N> דורות"
+msgstr "צאצאים של <אדם> מרוחקים לא יותר מ־<N> דורות"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:51
 msgid ""
 "Matches people that are descendants of a specified person not more than N "
 "generations away"
-msgstr "שליפת אנשים שהם צאצאים של אדם מסוים במרחק לא יותר מ N דורות"
+msgstr "שליפת אנשים שהם צאצאים של אדם מסוים מרוחקים לא יותר מ־<N> דורות"
 
 #: ../gramps/gen/filters/rules/person/_ismale.py:47
 #: ../gramps/plugins/gramplet/statsgramplet.py:150
@@ -5586,23 +5586,23 @@ msgstr "שליפת כל האנשים במגדר זכר"
 
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationancestorof.py:48
 msgid "Ancestors of <person> at least <N> generations away"
-msgstr "אבות קדמונים של <אדם> לפחות במרחק <N> דורות"
+msgstr "אבות קדמונים של <אדם> מרוחק לפחות ב־<N> דורות"
 
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationancestorof.py:51
 msgid ""
 "Matches people that are ancestors of a specified person at least N "
 "generations away"
-msgstr "שליפת אנשים שהם אבות קדמונים של אדם מסוים במרחק של לפחות N דורות"
+msgstr "שליפת אנשים שהם אבות קדמונים של אדם מסוים מרוחק לפחות ב־<N> דורות"
 
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationdescendantof.py:48
 msgid "Descendants of <person> at least <N> generations away"
-msgstr "צאצאים של <אדם> לפחות במרחק <N> דורות"
+msgstr "צאצאים של <אדם> מרוחק לפחות ב־<N> דורות"
 
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationdescendantof.py:51
 msgid ""
 "Matches people that are descendants of a specified person at least N "
 "generations away"
-msgstr "שליפת אנשים שהם צאצאים של אדם מסוים במרחק של לפחות N דורות"
+msgstr "שליפת אנשים שהם צאצאים של אדם מסוים מרוחק לפחות ב־<N> דורות"
 
 #: ../gramps/gen/filters/rules/person/_isparentoffiltermatch.py:49
 msgid "Parents of <filter> match"
@@ -5652,7 +5652,7 @@ msgstr "שם מסנן אירוע:"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:54
 msgid "Persons with events matching the <event filter>"
-msgstr "אנשים עם אירועים התואמים ל <מסנן אירוע>"
+msgstr "אנשים עם אירועים התואמים ל<מסנן אירוע>"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:56
 msgid "Matches persons who have events that match a certain event filter"
@@ -5668,12 +5668,12 @@ msgstr "שליפת אנשים התואמים לשם המסנן שצוין"
 
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:46
 msgid "Persons with at least one direct source >= <confidence level>"
-msgstr "הורים עם לפחות מקור ישיר אחד >= <רמת וודאות>"
+msgstr "הורים להם מקור ישיר אחד לפחות >= <רמת וודאות>"
 
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:48
 msgid ""
 "Matches persons with at least one direct source with confidence level(s)"
-msgstr "שליפת אנשים עם מקור ישיר אחד לפחות ברמת(ות) וודאות"
+msgstr "שליפת אנשים להםמקור ישיר אחד לפחות ברמת וודאות"
 
 #: ../gramps/gen/filters/rules/person/_missingparent.py:45
 msgid "People missing parents"
@@ -5781,8 +5781,8 @@ msgid ""
 "Matches the ancestors of two persons back to a common ancestor, producing "
 "the relationship path between two persons."
 msgstr ""
-"שליפת אבות קדמונים של שני אנשים לאבות קדמונים משותפים, תוך יצירת נתיב קשרי־"
-"גומלין בין שני האנשים."
+"שליפת אבות קדמונים של שני אנשים, לאבות קדמונים משותפים לשניהם, תוך יצירת "
+"נתיב קשרי־גומלין בין האנשים."
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetweenbookmarks.py:53
 msgid "Relationship path between bookmarked persons"
@@ -8390,7 +8390,7 @@ msgstr "קישור"
 
 #: ../gramps/gen/lib/notetype.py:90
 msgid "Person Note"
-msgstr "הערת אדם"
+msgstr "הערת אנשים"
 
 #: ../gramps/gen/lib/notetype.py:91
 msgid "Name Note"
@@ -9062,7 +9062,7 @@ msgstr ""
 
 #: ../gramps/gen/merge/mergepersonquery.py:136
 msgid "Merge Person"
-msgstr "מיזוג אדם"
+msgstr "מיזוג אנשים"
 
 #: ../gramps/gen/merge/mergeplacequery.py:63
 #: ../gramps/gui/merge/mergeplace.py:79
@@ -11630,11 +11630,11 @@ msgstr "שחזור צבעי ערכת נושא זו לברירת מחדל."
 
 #: ../gramps/gui/configure.py:899
 msgid "Colors for Male persons"
-msgstr "צבעים לאנשים ממין זכר"
+msgstr "צבעים לאנשים במגדר זכר"
 
 #: ../gramps/gui/configure.py:900
 msgid "Colors for Female persons"
-msgstr "צבעים לאנשים ממין נקבה"
+msgstr "צבעים לאנשים במגדר נקבה"
 
 #: ../gramps/gui/configure.py:901
 msgid "Colors for people who are neither male nor female"
