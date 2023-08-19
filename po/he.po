@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
 "PO-Revision-Date: 2023-08-19 18:04+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -393,7 +393,7 @@ msgid ""
 msgstr ""
 "<b>איתור אנשים<br/></b>כברירת מחדל, כל שם משפחה בתצוגת 'אנשים' מופיע פעם אחת "
 "בלבד. בהקשה על החץ משמאל לשם, הרשימה תורחב וכל האנשים בשם משפחה זה יוצגו. "
-"לאיתור שם משפחה מרשימה ארוכה, נא להתחיל להקלידל את שם המשפחה (לא שם פרטי) . "
+"לאיתור שם משפחה מרשימה ארוכה, נא להתחיל להקליד את שם המשפחה (לא שם פרטי) . "
 "הסמן ימוקם על שם המשפחה הראשון ברשימה שתואם את האותיות שהוזנו."
 
 #: ../data/tips.xml:20
@@ -13353,7 +13353,7 @@ msgstr "עריכת האירוע משפחתי שנבחר או האדם"
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:68
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:60
 msgid "Share an existing event"
-msgstr "שיתוף thrug ehho"
+msgstr "שיתוף אירוע קיים"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:69
 msgid "Move the selected event upwards"
