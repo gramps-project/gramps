@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-19 09:46+0000\n"
+"PO-Revision-Date: 2023-08-19 16:14+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -488,10 +488,10 @@ msgid ""
 "Each separate view can also be configured under \"View &gt; Configure View..."
 "\"."
 msgstr ""
-"<b>Podešavanje postavaka</b><br/>„Uredi > Postavke …” omogućuje promjenu u "
-"postavkama, npr. mijenjanje staze do medijskih datoteka ili prilagodbu "
-"načina prikaza podataka. Svaki pogled može biti zasebno prilagođen, "
-"korištenjem glavnog izbornika „Pogled > Podesi …”."
+"<b>Podešavanje postavaka</b><br/>„Uredi > Postavke …” omogućuje mijenjanje "
+"raznih postavaka, npr. mijenjanje staze do medijskih datoteka ili "
+"prilagođavanje načina prikaza podataka. Svaki se pogled može zasebno "
+"prilagoditi u glavnom izborniku „Pogled > Podesi …”."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -3216,7 +3216,7 @@ msgstr "Broj zabilježaka"
 
 #: ../gramps/gen/db/generic.py:2558
 msgid "Number of tags"
-msgstr "Broj etiketa"
+msgstr "Broj oznaka"
 
 #: ../gramps/gen/db/generic.py:2559
 msgid "Schema version"
@@ -3462,7 +3462,7 @@ msgstr ""
 #: ../gramps/gen/filters/_filterparser.py:154
 #, python-format
 msgid "ERROR: filter %s could not be correctly loaded. Edit the filter!"
-msgstr "GREŠKA: filtar %s ne može biti pravilno učitan. Uredi filtar!"
+msgstr "GREŠKA: nije bilo moguće pravilno učitati filtar „%s”. Uredi filtar!"
 
 #: ../gramps/gen/filters/_genericfilter.py:144
 #: ../gramps/gen/filters/_genericfilter.py:173
@@ -4035,15 +4035,15 @@ msgstr ""
 #: ../gramps/gen/filters/rules/source/_hastag.py:51
 #: ../gramps/gui/editors/filtereditor.py:617
 msgid "Tag:"
-msgstr "Etiketa:"
+msgstr "Oznaka:"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:52
 msgid "Citations with the <tag>"
-msgstr "Citati s <etiketom>"
+msgstr "Citati s <oznakom>"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:53
 msgid "Matches citations with the particular tag"
-msgstr "Pronalazi citate s određenom etiketom"
+msgstr "Pronalazi citate s određenom oznakom"
 
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:47
 msgid "Citations matching the <filter>"
@@ -4275,11 +4275,11 @@ msgstr "Pronalazi događaje s određenim brojem povezanih izvora"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:52
 msgid "Events with the <tag>"
-msgstr "Događaji s <etiketom>"
+msgstr "Događaji s <oznakom>"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:53
 msgid "Matches events with the particular tag"
-msgstr "Pronalazi događaje s određenom etiketom"
+msgstr "Pronalazi događaje s određenom oznakom"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:48
 msgid "Events with the particular type"
@@ -4580,11 +4580,11 @@ msgstr "Pronalazi obitelji s određenim izvorima"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:52
 msgid "Families with the <tag>"
-msgstr "Obitelji s <etiketom>"
+msgstr "Obitelji s <oznakom>"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:53
 msgid "Matches families with the particular tag"
-msgstr "Pronalazi obitelji s određenom etiketom"
+msgstr "Pronalazi obitelji s određenom oznakom"
 
 #: ../gramps/gen/filters/rules/family/_hastwins.py:47
 msgid "Families with twins"
@@ -4858,11 +4858,11 @@ msgstr "Pronalazi medije s određenim izvorom"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:52
 msgid "Media objects with the <tag>"
-msgstr "Medijski objekti s <etiketom>"
+msgstr "Medijski objekti s <oznakom>"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:53
 msgid "Matches media objects with the particular tag"
-msgstr "Pronalazi medijske objekte s određenom etiketom"
+msgstr "Pronalazi medijske objekte s određenom oznakom"
 
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:46
 msgid "Media objects matching the <filter>"
@@ -4952,11 +4952,11 @@ msgstr "Pronalazi zabilješke s određenim brojem referenca"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:52
 msgid "Notes with the <tag>"
-msgstr "Zabilješke s <etiketom>"
+msgstr "Zabilješke s <oznakom>"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:53
 msgid "Matches notes with the particular tag"
-msgstr "Pronalazi zabilješke s određenom etiketom"
+msgstr "Pronalazi zabilješke s određenom oznakom"
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:48
 msgid "Notes with the particular type"
@@ -5461,11 +5461,11 @@ msgstr "Pronalazi osobe s određenim izvorom"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:52
 msgid "People with the <tag>"
-msgstr "Osobe s <etiketom>"
+msgstr "Osobe s <oznakom>"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:53
 msgid "Matches people with the particular tag"
-msgstr "Pronalazi osobe s određenom etiketom"
+msgstr "Pronalazi osobe s određenom oznakom"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:49
 #: ../gramps/gui/editors/filtereditor.py:609
@@ -6089,11 +6089,11 @@ msgstr "Pronalazi mjesta s određenim izvorom"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:52
 msgid "Places with the <tag>"
-msgstr "Mjesta s <etiketom>"
+msgstr "Mjesta s <oznakom>"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:53
 msgid "Matches places with the particular tag"
-msgstr "Pronalazi mjesta s određenom etiketom"
+msgstr "Pronalazi mjesta s određenom oznakom"
 
 #: ../gramps/gen/filters/rules/place/_hastitle.py:51
 msgid "Places matching a title"
@@ -6316,11 +6316,11 @@ msgstr "Pronalazi repozitorije s određenim parametrima"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:52
 msgid "Repositories with the <tag>"
-msgstr "Repozitoriji s <etiketom>"
+msgstr "Repozitoriji s <oznakom>"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:53
 msgid "Matches repositories with the particular tag"
-msgstr "Pronalazi repozitorije s određenom etiketom"
+msgstr "Pronalazi repozitorije s određenom oznakom"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:46
 msgid "Repositories matching the <filter>"
@@ -6462,11 +6462,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:52
 msgid "Sources with the <tag>"
-msgstr "Izvori s <etiketom>"
+msgstr "Izvori s <oznakom>"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:53
 msgid "Matches sources with the particular tag"
-msgstr "Pronalazi izvore s određenom etiketom"
+msgstr "Pronalazi izvore s određenom oznakom"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:46
 msgid "Sources matching the <filter>"
@@ -7158,7 +7158,7 @@ msgstr "Zadnje promijenjeno"
 #: ../gramps/plugins/webreport/repository.py:285
 #: ../gramps/plugins/webreport/source.py:306
 msgid "Tags"
-msgstr "Etikete"
+msgstr "Oznake"
 
 #: ../gramps/gen/lib/date.py:307 ../gramps/gen/lib/date.py:345
 #: ../gramps/gen/lib/date.py:351 ../gramps/gen/lib/date.py:353
@@ -9028,7 +9028,7 @@ msgstr "Oznake stiliziranog teksta"
 #: ../gramps/plugins/textreport/tagreport.py:920
 #: ../gramps/plugins/textreport/tagreport.py:924
 msgid "Tag"
-msgstr "Etiketa"
+msgstr "Oznaka"
 
 #: ../gramps/gen/lib/styledtexttag.py:117
 msgid "Ranges"
@@ -10230,7 +10230,7 @@ msgstr "Uključi"
 
 #: ../gramps/gen/plug/report/stdoptions.py:372
 msgid "Whether to include tags"
-msgstr "Da li uključiti etikete"
+msgstr "Da li uključiti oznake"
 
 #: ../gramps/gen/plug/report/stdoptions.py:397
 msgid "Share an existing line"
@@ -11531,11 +11531,11 @@ msgstr "Izradi filtar od odabranog %s ..."
 #: ../gramps/gui/columnorder.py:94
 #, python-format
 msgid "Tree View: first column \"%s\" cannot be changed"
-msgstr "Stablasti pogled: prvi stupac „%s” ne može biti promijenjen"
+msgstr "Stablasti pogled: prvi stupac „%s” se ne može promijeniti"
 
 #: ../gramps/gui/columnorder.py:102
 msgid "Drag and drop the columns to change the order"
-msgstr "Povuci-i-ispusti stupce za promjenu redoslijeda"
+msgstr "Povuci-i-ispusti stupce za mijenjanje redoslijeda"
 
 #: ../gramps/gui/columnorder.py:117 ../gramps/gui/configure.py:2474
 #: ../gramps/gui/configure.py:2502 ../gramps/gui/configure.py:2531
@@ -12452,18 +12452,18 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2342
 msgid "Tag Records"
-msgstr "Označi zapise"
+msgstr "Zapisi oznaka"
 
 #: ../gramps/gui/configure.py:2364
 msgid "Add tag on import"
-msgstr "Dodaj etiketu pri uvozu"
+msgstr "Dodaj oznaku pri uvozu"
 
 #: ../gramps/gui/configure.py:2371
 msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
 msgstr ""
-"Određena oznaka bit će dodana svakom zapisu prilikom uvoza.\n"
+"Određena oznaka će se dodati svakom zapisu prilikom uvoza.\n"
 "Izbriši za postavljanje zadane vrijednosti."
 
 #: ../gramps/gui/configure.py:2380
@@ -12572,7 +12572,7 @@ msgid ""
 "This can be useful if you want to add phonetic in a note to show how to "
 "pronounce a name or if you mix multiple languages like greek and russian."
 msgstr ""
-"To može biti korisno, ako u bilješku želiš dodati fonetski zapis za prikaz "
+"To može biti korisno, ako u zabilješku želiš dodati fonetski zapis za prikaz "
 "izgovaranja imena ili ako miješaš više jezika istovremeno kao što su grčki i "
 "ruski."
 
@@ -13240,8 +13240,8 @@ msgstr ""
 "2) uopće ne raditi\n"
 "3) učestalo se rušiti\n"
 "4) oštetiti tvoje podatke\n"
-"5) spremiti tvoje podatke u formatu, koji neće biti kompatibilan sa "
-"službenom verzijom\n"
+"5) spremiti tvoje podatke u formatu koji neće biti kompatibilan sa službenom "
+"verzijom\n"
 "\n"
 "%(bold_start)sIZRADI ZAŠTITNU KOPIJU%(bold_end)s tvojih postojećih baza "
 "podataka prije otvaranja s ovom verzijom i povremeno izvezi podatke u XML "
@@ -13537,10 +13537,10 @@ msgid ""
 "\n"
 "To edit this citation, you need to close the object."
 msgstr ""
-"Ovaj citat trenutačno ne može biti stvoren. Ili se izvor povezan s ovim "
+"Ovaj se citat trenutačno ne može stvoriti. Povezani izvorni objekt se već "
 "uređuje ili se uređuje neki drugi citat povezan s istim izvorom.\n"
 "\n"
-"Za uređivanje citata, zatvori citat."
+"Za uređivanje citata, zatvori objekt."
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:65
 msgid "Add a new family event"
@@ -15140,12 +15140,12 @@ msgstr "Uredi izvor (%s)"
 #: ../gramps/gui/editors/edittaglist.py:49
 msgctxt "manual"
 msgid "Tag_selection_dialog"
-msgstr "Odabir_etikete"
+msgstr "Odabir_oznake"
 
 #: ../gramps/gui/editors/edittaglist.py:72
 #: ../gramps/gui/editors/edittaglist.py:130
 msgid "Tag selection"
-msgstr "Odabir etikete"
+msgstr "Odabir oznake"
 
 #: ../gramps/gui/editors/editurl.py:48
 msgctxt "manual"
@@ -15681,7 +15681,7 @@ msgstr "Ukloni sve stavke iz knjige"
 
 #: ../gramps/gui/glade/book.glade:112
 msgid "Save current set of configured selections"
-msgstr "Spremi odabrane stavke kao knjigu"
+msgstr "Spremi trenutačni skup podešenih odabira"
 
 #: ../gramps/gui/glade/book.glade:135
 msgid "Open previously created book"
@@ -16219,7 +16219,7 @@ msgstr "Jedinstvena ID oznaka citata"
 #: ../gramps/gui/glade/editrepository.glade:234
 #: ../gramps/gui/glade/editsource.glade:229
 msgid "Tags:"
-msgstr "Etikete:"
+msgstr "Oznake:"
 
 #: ../gramps/gui/glade/editdate.glade:140
 msgid "Calenda_r:"
@@ -16332,8 +16332,8 @@ msgid ""
 "Date of the event. This can be an exact date, a range (from ... to, "
 "between, ...), or an inexact date (about, ...)."
 msgstr ""
-"Datum događaja. Datum može biti određen točno, razdobljem (od … do …, između "
-"… i …) ili približno (oko …)."
+"Datum događaja. Datum se može odrediti točno, razdobljem (od … do, između, …)"
+" ili približno (oko …)."
 
 #: ../gramps/gui/glade/editevent.glade:375
 #: ../gramps/gui/glade/editeventref.glade:451
@@ -16426,12 +16426,12 @@ msgstr ""
 #: ../gramps/gui/glade/editnote.glade:248
 #: ../gramps/gui/glade/editperson.glade:650
 msgid "_Tags:"
-msgstr "_Etikete:"
+msgstr "O_znake:"
 
 #: ../gramps/gui/glade/editfamily.glade:764
 #: ../gramps/gui/widgets/monitoredwidgets.py:864
 msgid "Edit the tag list"
-msgstr "Uredi popis etiketa"
+msgstr "Uredi popis oznaka"
 
 #: ../gramps/gui/glade/editldsord.glade:180
 msgid "Ordinance:"
@@ -16738,9 +16738,9 @@ msgid ""
 "Here you can make sure this person is displayed according to a custom name "
 "format (extra formats can be set in the Preferences)."
 msgstr ""
-"Osobe su prikazane u formatu imena, koji je zadan u postavkama (zadano).\n"
-"Ovdje možeđ odrediti prikaz osobe prilagođenim formatom imena (dodatni "
-"formati mogu biti zadani u postavkama)."
+"Osobe se prikazuju u formatu imena koji je zadan u postavkama (zadano).\n"
+"Ovdje možeš osigurati prikaz ove osobe u skladu s prilagođenim formatom "
+"imena (dodatni formati se mogu zadati u postavkama)."
 
 #: ../gramps/gui/glade/editname.glade:524
 msgid "Dat_e:"
@@ -16753,9 +16753,9 @@ msgid ""
 "Here you can make sure this person is sorted according to a custom name "
 "format (extra formats can be set in the Preferences)."
 msgstr ""
-"Osobe su svrstane prema formatu imena, koji je zadan u postavkama (zadano).\n"
-"Ovdje možeš odrediti prikaz osobe prilagođenim formatom imena (dodatni "
-"formati mogu biti zadani u postavkama)."
+"Osobe su svrstane prema formatu imena koji je zadan u postavkama (zadano).\n"
+"Ovdje možeš osigurati svrstavanje ove osobe u skladu s prilagođenim formatom "
+"imena (dodatni formati se mogu zadati u postavkama)."
 
 #: ../gramps/gui/glade/editname.glade:601
 msgid ""
@@ -17348,8 +17348,8 @@ msgid ""
 "Events, lds_ord, media objects, attributes, notes, sources and tags of both "
 "families will be combined."
 msgstr ""
-"Događaji, id_obreda, medijski objekti, svojstva, zabilješke, izvori i "
-"etikete obiju obitelji će se sjediniti."
+"Događaji, id_obreda, medijski objekti, svojstva, zabilješke, izvori i oznake "
+"obiju obitelji će se sjediniti."
 
 #: ../gramps/gui/glade/mergemedia.glade:97
 msgid ""
@@ -17369,7 +17369,7 @@ msgstr "Objekt 2"
 
 #: ../gramps/gui/glade/mergemedia.glade:455
 msgid "Attributes, sources, notes and tags of both objects will be combined."
-msgstr "Svojstva, izvori, zabilješke i etikete obaju objekata će biti spojeni."
+msgstr "Svojstva, izvori, zabilješke i oznake obaju objekata će se spojiti."
 
 #: ../gramps/gui/glade/mergenote.glade:97
 msgid ""
@@ -17420,8 +17420,8 @@ msgid ""
 "Events, media objects, addresses, attributes, urls, notes, sources and tags "
 "of both persons will be combined."
 msgstr ""
-"Događaji, medijski objekti, adrese, svojstva, url adrese, zabilješke i "
-"etikete obiju osoba biti će spojeni."
+"Događaji, medijski objekti, adrese, svojstva, url adrese, zabilješke, izvori "
+"i oznake obiju osoba će se spojiti."
 
 #: ../gramps/gui/glade/mergeperson.glade:500
 msgid "Context Information"
@@ -18213,11 +18213,10 @@ msgid ""
 msgstr ""
 "\n"
 "Gramps se nije uspio pokrenuti. Prijavi ovu grešku.\n"
-"Uzrok može biti greška u jednom (dodatnom) pogledu pri pokretanju "
-"rodoslova.\n"
-"Za korištenje nekog drugog pogleda, nemoj učitati rodoslov, izmijeni pogled "
-"i onda učitaj tvoj rodoslov.\n"
-"Početni pogled možeš promijeniti i ručno, u datoteci gramps.ini,\n"
+"Uzrok može biti greška u jednom (stranom) pogledu pri pokretanju.\n"
+"Za korištenje nekog drugog pogleda, nemoj učitati rodoslov, promijeni pogled "
+"i zatim učitaj tvoj rodoslov.\n"
+"Početni pogled možeš promijeniti i ručno, u datoteci gramps.ini\n"
 "mijenjanjem parametra za posljednji pogled.\n"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:106
@@ -19635,7 +19634,7 @@ msgstr "Za ispravan rad ovog izvještaja, moraš postaviti aktivnu osobu."
 #: ../gramps/gui/plug/report/_reportdialog.py:778
 #: ../gramps/gui/plug/report/_reportdialog.py:785
 msgid "Report could not be created"
-msgstr "Izvještaj ne može biti izrađen"
+msgstr "Nije bilo moguće stvoriti izvještaj"
 
 #: ../gramps/gui/plug/report/_stylecombobox.py:68
 #: ../gramps/gui/plug/report/_stylecombobox.py:87
@@ -20257,7 +20256,7 @@ msgstr "Stupci"
 
 #: ../gramps/gui/views/listview.py:1457
 msgid "CSV Dialect"
-msgstr ""
+msgstr "CSV dijalekt"
 
 #: ../gramps/gui/views/navigationview.py:247
 #, python-format
@@ -20325,106 +20324,106 @@ msgstr "Pogled %(name)s: %(msg)s"
 
 #: ../gramps/gui/views/tags.py:73
 msgid "Tag selected rows"
-msgstr "Označi odabrane retke etiketama"
+msgstr "Označi odabrane retke"
 
 #: ../gramps/gui/views/tags.py:96
 msgid "New Tag..."
-msgstr "Nova etiketa ..."
+msgstr "Nova oznaka ..."
 
 #: ../gramps/gui/views/tags.py:96
 msgid "Organize Tags..."
-msgstr "Uredi etikete ..."
+msgstr "Uredi oznake ..."
 
 #: ../gramps/gui/views/tags.py:115
 msgctxt "manual"
 msgid "Organize_Tags_Window"
-msgstr "Prozor_za_uređivanje_etiketa"
+msgstr "Prozor_za_uređivanje_oznaka"
 
 #: ../gramps/gui/views/tags.py:116
 msgctxt "manual"
 msgid "New_Tag_dialog"
-msgstr "Nova_etiketa"
+msgstr "Nova_oznaka"
 
 #: ../gramps/gui/views/tags.py:257
 #, python-format
 msgid "Add tag '%s'"
-msgstr "Dodaj etiketu „%s”"
+msgstr "Dodaj oznaku „%s”"
 
 #: ../gramps/gui/views/tags.py:265
 #, python-format
 msgid "Remove tag '%s'"
-msgstr "Ukloni etiketu „%s”"
+msgstr "Ukloni oznaku „%s”"
 
 #: ../gramps/gui/views/tags.py:328
 msgid "Adding Tags"
-msgstr "Dodavanje etiketa"
+msgstr "Dodavanje oznake"
 
 #: ../gramps/gui/views/tags.py:334 ../gramps/gui/views/tags.py:361
 #, python-format
 msgid "Tag Selection (%s)"
-msgstr "Odabir etikete (%s)"
+msgstr "Odabir oznake (%s)"
 
 #: ../gramps/gui/views/tags.py:355 ../gramps/gui/views/tags.py:620
 msgid "Removing Tags"
-msgstr "Uklanjanje etiketa"
+msgstr "Uklanjanje oznaka"
 
 #: ../gramps/gui/views/tags.py:414 ../gramps/gui/views/tags.py:424
 #: ../gramps/gui/views/tags.py:490
 msgid "Organize Tags"
-msgstr "Uredi etikete"
+msgstr "Uredi oznake"
 
 #: ../gramps/gui/views/tags.py:442
 msgid "Change Tag Priority"
-msgstr "Promijeni prioritet etiketa"
+msgstr "Promijeni prioritet oznaka"
 
 #: ../gramps/gui/views/tags.py:585
 #, python-format
 msgid "Remove tag '%s'?"
-msgstr "Ukloniti etiketu: „%s”?"
+msgstr "Ukloniti oznaku „%s”?"
 
 #: ../gramps/gui/views/tags.py:587
 msgid ""
 "The tag definition will be removed.  The tag will be also removed from all "
 "objects in the database."
 msgstr ""
-"Definicija etikete će biti uklonjena. Etiketa će također biti uklonjena iz "
-"svih objekata u bazi podataka."
+"Definicija oznake će se ukloniti. Oznaka će se također ukloniti iz svih "
+"objekata u bazi podataka."
 
 #: ../gramps/gui/views/tags.py:626
 #, python-format
 msgid "Delete Tag (%s)"
-msgstr "Izbriši etiketu (%s)"
+msgstr "Izbriši oznaku (%s)"
 
 #: ../gramps/gui/views/tags.py:653
 #, python-format
 msgid "Tag: %s"
-msgstr "Etiketa: %s"
+msgstr "Oznaka: %s"
 
 #: ../gramps/gui/views/tags.py:655
 msgid "New Tag"
-msgstr "Nova etiketa"
+msgstr "Nova oznaka"
 
 #: ../gramps/gui/views/tags.py:704
 msgid "Cannot save tag"
-msgstr "Nije moguće spremiti etiketu"
+msgstr "Nije moguće spremiti oznaku"
 
 #: ../gramps/gui/views/tags.py:705
 msgid "The tag name cannot be empty"
-msgstr "Naziv etikete ne može biti prazan"
+msgstr "Naziv oznake ne može biti prazan"
 
 #: ../gramps/gui/views/tags.py:711
 #, python-format
 msgid "Add Tag (%s)"
-msgstr "Dodaj etiketu (%s)"
+msgstr "Dodaj oznaku (%s)"
 
 #: ../gramps/gui/views/tags.py:717
 #, python-format
 msgid "Edit Tag (%s)"
-msgstr "Uredi etiketu (%s)"
+msgstr "Uredi oznaku (%s)"
 
 #: ../gramps/gui/views/tags.py:732
 msgid "Tag Name:"
-msgstr "Naziv etikete:"
+msgstr "Naziv oznake:"
 
 #: ../gramps/gui/views/tags.py:739
 #, python-format
@@ -22470,6 +22469,9 @@ msgid ""
 "You can change this behavior in the 'Configure active view' of any list-"
 "based view"
 msgstr ""
+"CSV je uobičajeni format za proračunske tablice.\n"
+"Ovo ponašanje možeš promijeniti u '„Podesi aktivni pogled” u bilo kojem "
+"prikazu popisa"
 
 #: ../gramps/plugins/export/export.gpr.py:49
 msgid "CSV spreadsheet options"
@@ -22745,16 +22747,16 @@ msgid ""
 "the directory. Please make sure you have write access to the directory and "
 "try again."
 msgstr ""
-"Baza podataka ne može biti spremljena, jer nemaš prava za pisanje u "
-"direktorij. Provjeri da li imaš pravo pisanja i pokušaj ponovo."
+"Baza podataka se ne može spremiti jer nemaš prava za pisanje u direktorij. "
+"Provjeri da li imaš pravo pisanja i pokušaj ponovo."
 
 #: ../gramps/plugins/export/exportxml.py:177
 msgid ""
 "The database cannot be saved because you do not have permission to write to "
 "the file. Please make sure you have write access to the file and try again."
 msgstr ""
-"Baza podataka ne može biti spremljena, jer nemaš prava za pisanje u "
-"datoteku. Provjeri da li imaš pravo pisanja i pokušaj ponovo."
+"Baza podataka se ne može spremiti jer nemaš prava za pisanje u datoteku. "
+"Provjeri da li imaš pravo pisanja i pokušaj ponovo."
 
 #: ../gramps/plugins/gramplet/ageondategramplet.py:56
 msgid "Enter a date, click Run"
@@ -24606,16 +24608,15 @@ msgstr "Odgađanje, dok se potomci predaka ne obrade"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:76
 msgid "Tag to indicate that a person is complete"
-msgstr "Etiketa kojom se ukazuje na to, da su podaci za osobu potpuni"
+msgstr "Oznaka koja ukazuje da su podaci za osobu potpuni"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:83
 msgid "Tag to indicate that a family is complete"
-msgstr "Etiketa kojom se ukazuje na to, da su podaci za obitelj potpuni"
+msgstr "Oznaka koja ukazuje da su podaci za obitelj potpuni"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:89
 msgid "Tag to indicate that a person or family should be ignored"
-msgstr ""
-"Etiketa kojom se ukazuje na to, da se osoba ili obitelj trebaju zanemariti"
+msgstr "Oznaka koja ukazuje da se osoba ili obitelj moraju zanemariti"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:163
 msgid "No Home Person set."
@@ -25336,11 +25337,11 @@ msgstr ""
 "U postavci „Normalno”, roditelji će biti smješteni kako bi većina redaka "
 "bila kratka.\n"
 "Postavka „Roditelji zajedno” može pomoći da se supružnici smjeste jedan "
-"pored drugog, ali s kompleknim dijagramima rezultirat će dužim linijama i "
+"pored drugog, ali s kompleknim dijagramima rezultirat će dužim redcima i "
 "većim dijagramima.\n"
-"Postavka „Roditelji odmaknuti” također će pokušati približiti supružnike, "
-"ali će biti odmaknuti. To će prouzročiti da dijagrami s mnogo ljudi u "
-"generaciji budu kvadratniji."
+"Postavka za odmak roditelja također će pokušati približiti supružnike, ali "
+"će biti odmaknuti. To će prouzročiti da dijagrami s mnogo ljudi u generaciji "
+"budu kvadratniji."
 
 #: ../gramps/plugins/importer/import.gpr.py:38
 msgid "Import data from CSV files"
@@ -25407,7 +25408,7 @@ msgstr "Loše reference"
 #: ../gramps/plugins/importer/importvcard.py:87
 #, python-format
 msgid "%s could not be opened\n"
-msgstr "%s ne može biti otvoren\n"
+msgstr "nije bilo moguće otvoriti %s\n"
 
 #: ../gramps/plugins/importer/importcsv.py:159
 #: ../gramps/plugins/importer/importgedcom.py:169
@@ -25766,7 +25767,7 @@ msgstr "Neispravna GEDCOM datoteka"
 #: ../gramps/plugins/importer/importgedcom.py:147
 #, python-format
 msgid "%s could not be imported"
-msgstr "%s ne može biti uvezen"
+msgstr "Nije bilo moguće uvesti %s"
 
 #: ../gramps/plugins/importer/importgedcom.py:165
 msgid "Error reading GEDCOM file"
@@ -25939,7 +25940,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importxml.py:524
 #, python-format
 msgid "%s could not be opened"
-msgstr "%s ne može biti otvoren"
+msgstr "Nije bilo moguće otvoriti %s"
 
 #: ../gramps/plugins/importer/importgrdb.py:67
 #, python-format
@@ -26055,7 +26056,7 @@ msgid ""
 "Copy Default Filename\n"
 "to all sensitive Tag Text'."
 msgstr ""
-"Kopiraj standardno naziv datoteke\n"
+"Kopiraj standardni naziv datoteke\n"
 "u sav osjetljiv označeni tekst."
 
 #: ../gramps/plugins/importer/importprogen.glade:1149
@@ -26080,7 +26081,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1198
 msgid "Tag Text"
-msgstr "Tekst etikete"
+msgstr "Tekst oznake"
 
 #: ../gramps/plugins/importer/importprogen.glade:1217
 msgid "Import Objects"
@@ -26706,7 +26707,7 @@ msgstr "Redak je zanemaren, jer nije razumljiv"
 
 #: ../gramps/plugins/lib/libgedcom.py:3487
 msgid "Tag recognized but not supported"
-msgstr "Etiketa je prepoznata, ali nije podržana"
+msgstr "Oznaka je prepoznata, ali nije podržana"
 
 #: ../gramps/plugins/lib/libgedcom.py:3523
 msgid "Skipped subordinate line"
@@ -26782,7 +26783,7 @@ msgstr "GEDCOM podaci"
 
 #: ../gramps/plugins/lib/libgedcom.py:3987
 msgid "Unknown tag"
-msgstr "Nepoznata etiketa"
+msgstr "Nepoznata oznaka"
 
 #: ../gramps/plugins/lib/libgedcom.py:3989
 #: ../gramps/plugins/lib/libgedcom.py:4003
@@ -27079,23 +27080,23 @@ msgstr "%(date)s %(time)s"
 
 #: ../gramps/plugins/lib/libmetadata.py:120
 msgid "Descriptive Tags"
-msgstr "Etikete za opise"
+msgstr "Oznake za opise"
 
 #: ../gramps/plugins/lib/libmetadata.py:121
 msgid "Date and Time Tags"
-msgstr "Etikete za datum i vrijeme"
+msgstr "Oznake za datum i vrijeme"
 
 #: ../gramps/plugins/lib/libmetadata.py:122
 msgid "People Tags"
-msgstr "Etikete za osobe"
+msgstr "Oznake za osobe"
 
 #: ../gramps/plugins/lib/libmetadata.py:123
 msgid "Event Tags"
-msgstr "Etikete za događaje"
+msgstr "Oznake za događaje"
 
 #: ../gramps/plugins/lib/libmetadata.py:124
 msgid "Image Tags"
-msgstr "Etikete za slike"
+msgstr "Oznake za slike"
 
 #: ../gramps/plugins/lib/libmetadata.py:125
 msgid "Camera Information"
@@ -27103,19 +27104,19 @@ msgstr "Informacije o kameri"
 
 #: ../gramps/plugins/lib/libmetadata.py:126
 msgid "Location Tags"
-msgstr "Etikete za lokacije"
+msgstr "Oznake za lokacije"
 
 #: ../gramps/plugins/lib/libmetadata.py:127
 msgid "Advanced Tags"
-msgstr "Etikete za napredne"
+msgstr "Napredne oznake"
 
 #: ../gramps/plugins/lib/libmetadata.py:128
 msgid "Rights Tags"
-msgstr "Etikete za prava"
+msgstr "Oznake za prava"
 
 #: ../gramps/plugins/lib/libmetadata.py:129
 msgid "Keyword Tags"
-msgstr "Etikete za ključne riječi"
+msgstr "Oznake za ključne riječi"
 
 #: ../gramps/plugins/lib/libmetadata.py:228
 msgid "Namespace"
@@ -30718,8 +30719,8 @@ msgid ""
 "be selected by holding down the control key while clicking on the desired "
 "person."
 msgstr ""
-"Točno dvije osobe moraju biti odabrane za spajanje. Drugu osobu možeš "
-"odabrati držeći pritisnutu Ctrl tipku i pritiskom na odabranu osobu."
+"Za spajanje se moraju odabrati točno dvije osobe. Drugu osobu možeš odabrati "
+"držeći tipku Ctrl pritisnutom te pritisnuti željenu osobu."
 
 #: ../gramps/plugins/lib/libplaceview.py:118
 msgid "Edit the selected place"
@@ -30796,9 +30797,8 @@ msgid ""
 "be selected by holding down the control key while clicking on the desired "
 "place."
 msgstr ""
-"Točno dva mjesta moraju biti odabrana za izvođenje spajanja mjesta. Drugu "
-"mjesto možeš odabrati držeći pritisnutu Ctrl tipku i pritiskom na odabrano "
-"mjesto."
+"Za spajanje se moraju odabrati točno dva mjesta. Drugo mjesto možeš odabrati "
+"držeći tipku Ctrl pritisnutom te pritisnuti željeno mjesto."
 
 #: ../gramps/plugins/lib/libplaceview.py:580
 msgid "Merging these places would create a cycle in the place hierarchy."
@@ -33240,11 +33240,11 @@ msgstr "Da li citirati izvore."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1180
 msgid "Include Tags"
-msgstr "Uključi etikete"
+msgstr "Uključi oznake"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1181
 msgid "Whether to include tags."
-msgstr "Da li uključiti etikete."
+msgstr "Da li uključiti oznake."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1184
 msgid "Include Attributes"
@@ -33663,16 +33663,16 @@ msgstr "Korišteni stil za naslove treće razine."
 #: ../gramps/plugins/textreport/tagreport.py:114
 #: ../gramps/plugins/textreport/textplugins.gpr.py:261
 msgid "Tag Report"
-msgstr "Izvještaj o etiketi"
+msgstr "Izvještaj o oznakama"
 
 #: ../gramps/plugins/textreport/tagreport.py:115
 msgid "You must first create a tag before running this report."
-msgstr "Za izradu ovog izvještaja, moraš najprije stvoriti etiketu."
+msgstr "Za izradu ovog izvještaja moraš najprije stvoriti jednu oznaku."
 
 #: ../gramps/plugins/textreport/tagreport.py:125
 #, python-format
 msgid "Tag Report for %s Items"
-msgstr "Izvještaj o etiketi „%s”"
+msgstr "Izvještaj o oznakama za %s"
 
 #: ../gramps/plugins/textreport/tagreport.py:681
 msgid "Email Address"
@@ -33685,7 +33685,7 @@ msgstr "Podaci o publikaciji"
 
 #: ../gramps/plugins/textreport/tagreport.py:927
 msgid "The tag to use for the report"
-msgstr "Etiketa koja se koristi za izvještaj"
+msgstr "Oznaka koja se koristi za izvještaj"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:38
 msgid "Ahnentafel Report"
@@ -33757,7 +33757,7 @@ msgstr "Izrađuje tekstualan izvještaj o srodstvu za danu osobu"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:262
 msgid "Produces a list of people with a specified tag"
-msgstr "Izrađuje popis osoba s određenom etiketom"
+msgstr "Izrađuje popis osoba s određenom oznakom"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:284
 msgid "Number of Ancestors Report"
@@ -33930,7 +33930,7 @@ msgstr ""
 "Tvoj rodoslov sadrži duple upravljače u tablicama.\n"
 "To je loše, no može se ispraviti. Napravi zaštitnu kopiju\n"
 "tvog rodoslova, a zatim uvezi tu kopiju u prazni rodoslov.\n"
-"Ostatak provjere će biti preskočeno. Alat „Provjeri i popravi”\n"
+"Ostatak provjere će se preskočiti. Alat „Provjeri i popravi”\n"
 "treba ponovo pokrenuti na taj novi rodoslov."
 
 #: ../gramps/plugins/tool/check.py:208
@@ -34096,7 +34096,7 @@ msgstr "Obnavljanje kontrolne sume medija"
 
 #: ../gramps/plugins/tool/check.py:2155
 msgid "Looking for tag reference problems"
-msgstr "Traženje nepravilnosti u referencama etikete"
+msgstr "Traženje nepravilnosti u referencama oznaka"
 
 #: ../gramps/plugins/tool/check.py:2299
 msgid "Looking for media source reference problems"
@@ -34316,9 +34316,9 @@ msgstr[2] "{quantity} referenciranih zabilješka nije pronađeno\n"
 #, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
-msgstr[0] "{quantity} etiketa je referencirana, ali nije pronađena\n"
-msgstr[1] "{quantity} etikete su referencirane, ali nisu pronađene\n"
-msgstr[2] "{quantity} etiketa je referencirano, ali nisu pronađene\n"
+msgstr[0] "{quantity} oznaka je referencirana, ali nije pronađena\n"
+msgstr[1] "{quantity} oznake su referencirane, ali nisu pronađene\n"
+msgstr[2] "{quantity} oznaka je referencirano, ali nisu pronađene\n"
 
 #: ../gramps/plugins/tool/check.py:3009
 #, python-brace-format
@@ -34679,20 +34679,20 @@ msgid ""
 "outside of Gramps. Then you can adjust the paths using this tool so that the "
 "media objects store the correct file locations."
 msgstr ""
-"Ovaj alat omogućuje višestruke operacije nad medijskim objektima, "
-"spremljenima u Grampsu. Važno je razlikovati medijske objekte i njihove "
+"Ovaj alat omogućuje grupne operacije nad medijskim objektima koji su "
+"spremljeni u Grampsu. Važno je razlikovati medijske objekte i njihove "
 "datoteke.\n"
 "\n"
 "Grampsov medijski objekt je skup podataka o datoteci medijskog objekta: "
 "njezin naziv i/ili staza, opis, ID oznaka, zabilješke, reference izvora, "
-"itd. Ovi podaci %(bold_start)sne uključuju samu medijsku datoteku"
-"%(bold_end)s.\n"
+"itd. Ovi podaci %(bold_start)sne uključuju samu medijsku "
+"datoteku%(bold_end)s.\n"
 "\n"
 "Datoteke koje sadrže slike, zvuk, video i sl. su na tvom tvrdom disku. "
 "Gramps ne upravlja ovim datotekama i ne sprema ih u Grampsovu bazu podataka. "
 "Gramps sprema samo njihove nazive i stazu do njih.\n"
 "\n"
-"Ovaj alat ti omogućuje samo promjenu zapisa u Grampsovoj bazi podataka. Ako "
+"Ovaj alat omogućuje samo mijenjanje zapisa u Grampsovoj bazi podataka. Ako "
 "želiš premjestiti ili preimenovati datoteke, moraš to uraditi vlastoručno, "
 "izvan Grampsa. Nakon toga, možeš podesiti staze pomoću ovog alata, tako da "
 "medijski objekti sadrže točnu lokaciju datoteka."
@@ -34753,9 +34753,9 @@ msgid ""
 "with another substring. This can be useful when you move your media files "
 "from one directory to another"
 msgstr ""
-"Ovaj alat omogućuje izmjenu zadanog podniza znakova u nazivima staza "
-"medijskih objekata, drugim podnizom. To može biti korisno pri premještanju "
-"medijskih datoteka iz jednog direktorija u drugi"
+"Ovaj alat omogućuje zamjenu zadanog podniza znakova u nazivima staza "
+"medijskih objekata s jednim drugim podnizom. To može biti korisno pri "
+"premještanju medijskih datoteka iz jednog direktorija u drugi"
 
 #: ../gramps/plugins/tool/mediamanager.py:518
 msgid "Replace substring settings"
@@ -34887,7 +34887,7 @@ msgstr[2] "{number_of} citata spojeno"
 
 #: ../gramps/plugins/tool/notrelated.glade:162
 msgid "_Tag"
-msgstr "_Etiketa"
+msgstr "_Oznaka"
 
 #: ../gramps/plugins/tool/notrelated.py:61
 msgctxt "manual"
@@ -34912,9 +34912,9 @@ msgstr "Svatko u bazi podataka je povezan sa: %s"
 #, python-brace-format
 msgid "Setting tag for {number_of} person"
 msgid_plural "Setting tag for {number_of} people"
-msgstr[0] "Postavljanje etikete za {number_of} osobu"
-msgstr[1] "Postavljanje etikete za {number_of} osobe"
-msgstr[2] "Postavljanje etikete za {number_of} osoba"
+msgstr[0] "Postavljanje oznake za {number_of} osobu"
+msgstr[1] "Postavljanje oznake za {number_of} osobe"
+msgstr[2] "Postavljanje oznake za {number_of} osoba"
 
 #: ../gramps/plugins/tool/notrelated.py:303
 #, python-brace-format
@@ -35009,16 +35009,17 @@ msgid ""
 "that can be extracted."
 msgstr ""
 "Niže dolje se nalazi popis nadimaka, titula, prefiksa i sastavljenih "
-"prezimena, koje Gramps može izvući iz rodoslova.\n"
-"Ako prihvatiš promjene, Gramps će promijeniti unose, koji su odabrani.\n"
+"prezimena koje Gramps može izvući iz rodoslova.\n"
+"Ako prihvatiš promjene, Gramps će promijeniti unose koji su odabrani.\n"
 "\n"
-"Sastavljena prezimena su pokazana kao popisi sa [prefiks, prezime, veznik].\n"
-"Npr. koristeći zadane postavke, ime „de Mascarenhas da Silva e Lencastre” "
-"biti će pokazano kao:\n"
+"Sastavljena prezimena se prikazuju kao popisi sa [prefiks, prezime, veznik]."
+"\n"
+"Npr. koristeći zadane postavke, ime „de Mascarenhas da Silva e Lencastre” će "
+"se prikazati kao:\n"
 "       [de, Mascarenhas]-[da, Silva, e]-[,Lencastre]\n"
 "\n"
-"Pokreni ovaj alat nekoliko puta, za ispravak imena koja imaju mnogostruke "
-"podatke koji mogu biti izlučeni."
+"Pokreni ovaj alat nekoliko puta, za ispravljanje imena koja imaju "
+"mnogobrojne podatke koji se mogu izvuči."
 
 #: ../gramps/plugins/tool/patchnames.py:64
 msgctxt "manual"
@@ -35275,7 +35276,7 @@ msgstr "Aktiviraj mijenjanje rasporeda ID oznaka."
 
 #: ../gramps/plugins/tool/reorderids.glade:1420
 msgid "List next ID available (may not be continuous)."
-msgstr "Prikaži sljedeću dostupnu ID oznaku (može biti da nije u slijedu)."
+msgstr "Prikaži sljedeću dostupnu ID oznaku (ne mora biti u slijedu)."
 
 #: ../gramps/plugins/tool/reorderids.glade:1423
 msgid "  Actual"
@@ -35985,8 +35986,8 @@ msgid ""
 "can be selected by holding down the control key while clicking on the "
 "desired citation."
 msgstr ""
-"Točno dva citata moraju biti odabrana za izvođenje spajanja. Drugi citat "
-"možeš odabrati, držeći pritisnutu Ctrl tipku i pritiskom na odabrani citat."
+"Za spajanje se moraju odabrati točno dva citata. Drugi citat možeš odabrati "
+"držeći tipku Ctrl pritisnutom te pritisnuti željeni citat."
 
 #: ../gramps/plugins/view/citationlistview.py:445
 #: ../gramps/plugins/view/citationtreeview.py:701
@@ -35994,8 +35995,8 @@ msgid ""
 "The two selected citations must have the same source to perform a merge. If "
 "you want to merge these two citations, then you must merge the sources first."
 msgstr ""
-"Dva odabrana citata moraju imati isti izvor za uspješno spajanje. Ako želiš "
-"spojiti ova dva citata, moraš prvo spojiti njihove izvore."
+"Dva odabrana citata moraju imati isti izvor za spajanje. Ako želiš spojiti "
+"ova dva citata najprije moraš spojiti njihove izvore."
 
 #: ../gramps/plugins/view/citationtreeview.py:137
 msgid "Edit the selected citation or source"
@@ -36097,8 +36098,8 @@ msgid ""
 "be selected by holding down the control key while clicking on the desired "
 "event."
 msgstr ""
-"Točno dva događaja moraju biti odabrana za izvođenje spajanja. Drugi događaj "
-"možeš odabrati držeći pritisnutu Ctrl tipku i pritiskom na željeni događaj."
+"Za spajanje se moraju odabrati točno dva događaja. Drugi događaj možeš "
+"odabrati držeći tipku Ctrl pritisnutom te pritisnuti željeni događaj."
 
 #: ../gramps/plugins/view/familyview.py:86
 msgid "Marriage Date"
@@ -36142,9 +36143,8 @@ msgid ""
 "can be selected by holding down the control key while clicking on the "
 "desired family."
 msgstr ""
-"Točno dvije obitelji moraju biti odabrane za izvođenje spajanja obiteji. "
-"Drugu obitelj možeš odabrati držeći pritisnutu Ctrl tipku i pritiskom na "
-"odabranu obitelj."
+"Za spajanje se moraju odabrati točno dvije obitelji. Drugu obitelj možeš "
+"odabrati držeći tipku Ctrl pritisnutom te pritisnuti željenu obitelj."
 
 #: ../gramps/plugins/view/fanchart2wayview.py:288
 msgid "Max ancestor generations"
@@ -36820,9 +36820,8 @@ msgid ""
 "object can be selected by holding down the control key while clicking on the "
 "desired object."
 msgstr ""
-"Točno dva medijska objekta moraju biti odabrana za izvođenje spajanja. Drugi "
-"medijski objekt možeš odabrati držeći pritisnutu Ctrl tipku i pritiskom na "
-"željeni medijski objekt."
+"Za spajanje se moraju odabrati točno dva medijska objekta. Drugi objekt "
+"možeš odabrati držeći tipku Ctrl pritisnutom te pritisnuti željeni objekt."
 
 #: ../gramps/plugins/view/noteview.py:98
 msgid "Delete the selected note"
@@ -36845,9 +36844,9 @@ msgid ""
 "Exactly two notes must be selected to perform a merge. A second note can be "
 "selected by holding down the control key while clicking on the desired note."
 msgstr ""
-"Točno dvije zabilješke moraju biti odabrane za izvođenje spajanja. Drugu "
-"zabilješku možeš odabrati držeći pritisnutu Ctrl tipku i pritiskom na "
-"željenu zabilješku."
+"Za spajanje se moraju odabrati točno dvije zabilješke. Drugu zabilješku "
+"možeš odabrati držeći tipku Ctrl pritisnutom te pritisnuti željenu "
+"zabilješku."
 
 #: ../gramps/plugins/view/pedigreeview.py:87
 msgctxt "short for born"
@@ -36938,7 +36937,7 @@ msgstr "Prikaži nepoznate osobe"
 
 #: ../gramps/plugins/view/pedigreeview.py:2254
 msgid "Show tags"
-msgstr "Prikaži etikete"
+msgstr "Prikaži oznake"
 
 #: ../gramps/plugins/view/pedigreeview.py:2258
 msgid "Tree style"
@@ -37201,9 +37200,8 @@ msgid ""
 "repository can be selected by holding down the control key while clicking on "
 "the desired repository."
 msgstr ""
-"Točno dva spremišta moraju biti odabrana za izvođenje spajanja mjesta. Drugo "
-"spremište možeš odabrati držeći pritisnutu Ctrl tipku i pritiskom na željeno "
-"spremište."
+"Za spajanje se moraju odabrati točno dva spremišta. Drugo spremište možeš "
+"odabrati držeći tipku Ctrl pritisnutom te pritisnuti željeno spremište."
 
 #: ../gramps/plugins/view/sourceview.py:112
 msgid "Edit the selected source"
@@ -37231,9 +37229,8 @@ msgid ""
 "be selected by holding down the control key while clicking on the desired "
 "source."
 msgstr ""
-"Točno dva izvora moraju biti odabrana, da bi se izvršilo spajanje. Drugi "
-"izvor možeš odabrati držeći pritisnutu tipku Ctrl i pritiskom na željeni "
-"izvor."
+"Za spajanje se moraju odabrati točno dva izvora. Drugi izvor možeš odabrati "
+"držeći tipku Ctrl pritisnutom te pritisnuti željeni izvor."
 
 #: ../gramps/plugins/view/view.gpr.py:40
 msgid "The view showing all the events"
@@ -38427,6 +38424,8 @@ msgid ""
 "Copy and paste this value in your browser.\n"
 "The Google maps service must be selected."
 msgstr ""
+"Kopiraj i umetni ovu vrijednost u preglednik.\n"
+"Usluga „Google karte” mora biti odabrana."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2670
 msgid "Toner"
@@ -38464,7 +38463,7 @@ msgstr "najnoviji"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2698
 msgid "openlayers version to use"
-msgstr ""
+msgstr "openlayers verzija koja će se koristiti"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2703
 msgid ""
@@ -38474,6 +38473,11 @@ msgid ""
 "openlayers_version.\n"
 "See OLDER VERSIONS in https://openlayers.org/"
 msgstr ""
+"Koristi ovu opciju samo ako ne vidiš karte na svojoj web stranici za "
+"„OpenStreetMap” ili „Stamen” karte.\n"
+"Vrijednost možeš promijeniti u navedenoj datoteci. Opcija za mijenjanje se "
+"zove openlayers_version.\n"
+"Pogledaj STARIJE VERZIJE na https://openlayers.org/"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2720
 msgid "Other inclusion (CMS, web calendar, PHP)"
