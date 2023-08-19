@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 18:45+0100\n"
-"PO-Revision-Date: 2023-08-19 16:14+0000\n"
+"PO-Revision-Date: 2023-08-19 20:09+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -974,11 +974,10 @@ msgid ""
 "time looking through thousands of records hoping for a trail when you have "
 "other unexplored leads."
 msgstr ""
-"<b>Usmjeravanje istraživanja</b><br/>Kreni od onoga, što već znaš. Uvijek "
-"bilježi sve podatke prije donošenja zaključaka i poveznica. Otkriveni podaci "
-"često upućuju na više smjerova istraživanja. Ne gubi vrijeme pregledavajući "
-"na tisuće zapisa, u nadi za otkrićem nekog traga, dok imaš još drugih "
-"mogućih smjerova istraživanja."
+"<b>Koraci za istraživanje</b><br/>Kreni od onoga, što već znaš. Uvijek "
+"zabilježi sve podatke prije donošenja pretpostavki. Činjenice često upućuju "
+"na daljnja istraživanja. Ne gubi vrijeme pregledavajući tisuće zapisa u nadi "
+"za otkrićem nekog traga ako imaš vlastite neotkrivene tragove."
 
 #: ../data/tips.xml:112
 msgid ""
@@ -10017,7 +10016,7 @@ msgstr "Vremenski tijek"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:265
 msgid "Direction that the graph will grow over time."
-msgstr "Smjer, kojim će dijagram rasti s vremenom."
+msgstr "Smjer u kojem će dijagram rasti s vremenom."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:269
 msgid "Edge style"
