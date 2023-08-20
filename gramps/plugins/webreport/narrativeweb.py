@@ -1983,8 +1983,10 @@ class NavWebOptions(MenuReportOptions):
         self.__stamenopts = None
         self.__googleopts = None
         self.__googlemapkey = None
+        self.__stamenmapkey = None
         self.__olv = None
         self.googlemapkeyhelp = None
+        self.stamenmapkeyhelp = None
         self.__ancestortree = None
         self.__css = None
         self.__gallery = None
@@ -2681,6 +2683,30 @@ class NavWebOptions(MenuReportOptions):
             )
         )
         addopt("stamenopts", self.__stamenopts)
+        self.__stamenmapkey = StringOption(_("Stamen maps API key"), "")
+        self.__stamenmapkey.set_help(
+            _(
+                "The API key used for the Stamen maps.\n"
+                "This key is mandatory and must be valid"
+            )
+        )
+        if not config.is_set("paths.stamen-get-api-key"):
+            # The following will be used to change the URL if it changes without
+            # creating a patch. We will only need to change gramps.ini
+            config.register(
+                "paths.stamen-get-api-key",
+                "https://stadiamaps.com/stamen/onboarding",
+            )
+        keyvalue = config.get("paths.stamen-get-api-key")
+        self.stamenmapkeyhelp = StringOption(_("How to get the API key"), keyvalue)
+        self.stamenmapkeyhelp.connect("value-changed", self.url_changed)
+        keytooltip = _(
+            "Copy and paste this value in your browser."
+            "\nThe Stamen maps service must be selected."
+        )
+        self.stamenmapkeyhelp.set_help(keytooltip)
+        addopt("stamenmapkey", self.__stamenmapkey)
+        addopt("stamenmapkeyhelp", self.stamenmapkeyhelp)
 
         self.__placemap_options()
 
@@ -3022,6 +3048,12 @@ class NavWebOptions(MenuReportOptions):
         else:
             self.__googlemapkey.set_available(False)
             self.googlemapkeyhelp.set_available(False)
+        if (place_active or family_active) and mapservice_opts == "StamenMap":
+            self.__stamenmapkey.set_available(True)
+            self.stamenmapkeyhelp.set_available(True)
+        else:
+            self.__stamenmapkey.set_available(False)
+            self.stamenmapkeyhelp.set_available(False)
 
     def url_changed(self):
         """
