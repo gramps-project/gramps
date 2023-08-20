@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-19 21:56+0100\n"
-"PO-Revision-Date: 2023-08-12 23:22+0000\n"
+"PO-Revision-Date: 2023-08-20 05:36+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -9455,8 +9455,6 @@ msgid "Expert"
 msgstr "Experte"
 
 #: ../gramps/gen/plug/_pluginreg.py:116
-#, fuzzy
-#| msgid "Quick View"
 msgid "Quick view"
 msgstr "Schnellansicht"
 
@@ -9473,16 +9471,12 @@ msgid "Exporter"
 msgstr "Exporteur"
 
 #: ../gramps/gen/plug/_pluginreg.py:120
-#, fuzzy
-#| msgid "Doc creator"
 msgid "Document creator"
 msgstr "Dokumentersteller"
 
 #: ../gramps/gen/plug/_pluginreg.py:121
-#, fuzzy
-#| msgid "Plugin lib"
 msgid "Plugin library"
-msgstr "Zusatzmodul-Bibliothek"
+msgstr "Zusatzmodulbibliothek"
 
 #: ../gramps/gen/plug/_pluginreg.py:122
 msgid "Map service"
@@ -9495,8 +9489,6 @@ msgid "View"
 msgstr "Anzeigen"
 
 #: ../gramps/gen/plug/_pluginreg.py:124
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Relationship calculator"
 msgstr "Beziehungsrechner"
 
@@ -19025,10 +19017,8 @@ msgstr "Benötigt"
 
 #: ../gramps/gui/plug/_windows.py:263 ../gramps/gui/plug/_windows.py:395
 #: ../gramps/gui/plug/_windows.py:594
-#, fuzzy
-#| msgid "Updated"
 msgid "Update"
-msgstr "Aktualisiert"
+msgstr "Aktualisieren"
 
 #: ../gramps/gui/plug/_windows.py:286
 msgid "Module installation failed"
@@ -19051,39 +19041,28 @@ msgid "Filters"
 msgstr "Filter"
 
 #: ../gramps/gui/plug/_windows.py:392
-#, fuzzy
-#| msgid "Addons"
 msgid "All addons"
-msgstr "Erweiterungen"
+msgstr "Alle Erweiterungen"
 
 #: ../gramps/gui/plug/_windows.py:393 ../gramps/gui/plug/_windows.py:588
-#, fuzzy
-#| msgid "installed"
 msgid "Uninstalled"
-msgstr "installiert"
+msgstr "Deinstalliert"
 
 #: ../gramps/gui/plug/_windows.py:394 ../gramps/gui/plug/_windows.py:591
-#, fuzzy
-#| msgid "installed"
 msgid "Installed"
-msgstr "installiert"
+msgstr "Installiert"
 
 #: ../gramps/gui/plug/_windows.py:407
-#, fuzzy
 msgid "All types"
-msgstr "Linienart"
+msgstr "Alle Arten"
 
 #: ../gramps/gui/plug/_windows.py:415
-#, fuzzy
-#| msgid "Audience"
 msgid "All audiences"
-msgstr "Publikum"
+msgstr "Alle Zielgruppen"
 
 #: ../gramps/gui/plug/_windows.py:422
-#, fuzzy
-#| msgid " state"
 msgid "All statuses"
-msgstr " Staat"
+msgstr "Alle Zustände"
 
 #: ../gramps/gui/plug/_windows.py:443
 msgid "Settings"
@@ -19094,10 +19073,8 @@ msgid "Projects"
 msgstr "Projekte"
 
 #: ../gramps/gui/plug/_windows.py:489 ../gramps/gui/plug/_windows.py:599
-#, fuzzy
-#| msgid "Projects"
 msgid "All projects"
-msgstr "Projekte"
+msgstr "Alle Projekte"
 
 #: ../gramps/gui/plug/_windows.py:501
 msgid "Loading..."
@@ -19174,14 +19151,12 @@ msgid "Project name"
 msgstr "Projektname"
 
 #: ../gramps/gui/plug/_windows.py:886
-#, fuzzy
-#| msgid "Restore to defaults"
 msgid "Restore project defaults"
-msgstr "Standardwerte wiederherstellen"
+msgstr "Projekt-Standardwerte wiederherstellen"
 
 #: ../gramps/gui/plug/_windows.py:887
 msgid "Are you sure?"
-msgstr ""
+msgstr "Bist du dir sicher?"
 
 #: ../gramps/gui/plug/_windows.py:911
 msgid "Checking Addons Failed"
@@ -19386,13 +19361,8 @@ msgstr[0] "{number_of} Erweiterung wurde installiert."
 msgstr[1] "{number_of} Erweiterungen wurden installiert."
 
 #: ../gramps/gui/plug/_windows.py:2224
-#, fuzzy
-#| msgid ""
-#| "If you have installed a 'Gramps View', you will need to restart Gramps."
 msgid "If you have installed a 'View', you will need to restart Gramps."
-msgstr ""
-"Wenn du eine \"Gramps-Ansicht\" installiert hast, musst du Gramps neu "
-"starten."
+msgstr "Wenn du eine \"Ansicht\" installiert hast, musst du Gramps neu starten."
 
 #: ../gramps/gui/plug/_windows.py:2232
 msgid "No addons were installed."
@@ -20778,7 +20748,7 @@ msgstr "Schlagwörter organisieren"
 
 #: ../gramps/gui/views/tags.py:442
 msgid "Change Tag Priority"
-msgstr "Schlagwort-Priorität ändern"
+msgstr "Markierungspriorität ändern"
 
 #: ../gramps/gui/views/tags.py:585
 #, python-format
