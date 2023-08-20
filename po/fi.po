@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-19 21:56+0100\n"
-"PO-Revision-Date: 2023-08-19 20:09+0000\n"
+"PO-Revision-Date: 2023-08-19 21:58+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -9366,8 +9366,6 @@ msgid "Expert"
 msgstr "Asiantuntija"
 
 #: ../gramps/gen/plug/_pluginreg.py:116
-#, fuzzy
-#| msgid "Quick View"
 msgid "Quick view"
 msgstr "Pikanäkymä"
 
@@ -9384,14 +9382,10 @@ msgid "Exporter"
 msgstr "Viejä"
 
 #: ../gramps/gen/plug/_pluginreg.py:120
-#, fuzzy
-#| msgid "Doc creator"
 msgid "Document creator"
 msgstr "Dokumentin luoja"
 
 #: ../gramps/gen/plug/_pluginreg.py:121
-#, fuzzy
-#| msgid "Plugin lib"
 msgid "Plugin library"
 msgstr "Laajennuskirjasto"
 
@@ -9406,8 +9400,6 @@ msgid "View"
 msgstr "Näytä"
 
 #: ../gramps/gen/plug/_pluginreg.py:124
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Relationship calculator"
 msgstr "Suhdelaskin"
 
@@ -18822,10 +18814,8 @@ msgstr "Edellyttää"
 
 #: ../gramps/gui/plug/_windows.py:263 ../gramps/gui/plug/_windows.py:395
 #: ../gramps/gui/plug/_windows.py:594
-#, fuzzy
-#| msgid "Updated"
 msgid "Update"
-msgstr "Päivitetty"
+msgstr "Päivitys"
 
 #: ../gramps/gui/plug/_windows.py:286
 msgid "Module installation failed"
@@ -18848,40 +18838,28 @@ msgid "Filters"
 msgstr "Suotimet"
 
 #: ../gramps/gui/plug/_windows.py:392
-#, fuzzy
-#| msgid "Addons"
 msgid "All addons"
 msgstr "Laajennukset"
 
 #: ../gramps/gui/plug/_windows.py:393 ../gramps/gui/plug/_windows.py:588
-#, fuzzy
-#| msgid "installed"
 msgid "Uninstalled"
-msgstr "asennettu"
+msgstr "Asennus poistettu"
 
 #: ../gramps/gui/plug/_windows.py:394 ../gramps/gui/plug/_windows.py:591
-#, fuzzy
-#| msgid "installed"
 msgid "Installed"
-msgstr "asennettu"
+msgstr "Asennettu"
 
 #: ../gramps/gui/plug/_windows.py:407
-#, fuzzy
-#| msgid "All files"
 msgid "All types"
-msgstr "Kaikki tiedostot"
+msgstr "Kaikki tyypit"
 
 #: ../gramps/gui/plug/_windows.py:415
-#, fuzzy
-#| msgid "Audience"
 msgid "All audiences"
-msgstr "Audienssi"
+msgstr "Audienssit"
 
 #: ../gramps/gui/plug/_windows.py:422
-#, fuzzy
-#| msgid " state"
 msgid "All statuses"
-msgstr " lääni"
+msgstr "Kaikki asemat"
 
 #: ../gramps/gui/plug/_windows.py:443
 msgid "Settings"
@@ -18892,8 +18870,6 @@ msgid "Projects"
 msgstr "Projektit"
 
 #: ../gramps/gui/plug/_windows.py:489 ../gramps/gui/plug/_windows.py:599
-#, fuzzy
-#| msgid "Projects"
 msgid "All projects"
 msgstr "Projektit"
 
@@ -18972,14 +18948,12 @@ msgid "Project name"
 msgstr "Projektin nimi"
 
 #: ../gramps/gui/plug/_windows.py:886
-#, fuzzy
-#| msgid "Restore to defaults"
 msgid "Restore project defaults"
 msgstr "Palauta oletusasetukset"
 
 #: ../gramps/gui/plug/_windows.py:887
 msgid "Are you sure?"
-msgstr ""
+msgstr "Oletko varma?"
 
 #: ../gramps/gui/plug/_windows.py:911
 msgid "Checking Addons Failed"
@@ -19182,9 +19156,6 @@ msgstr[0] "{number_of} laajennus asennettu."
 msgstr[1] "{number_of} laajennusta asennettu."
 
 #: ../gramps/gui/plug/_windows.py:2224
-#, fuzzy
-#| msgid ""
-#| "If you have installed a 'Gramps View', you will need to restart Gramps."
 msgid "If you have installed a 'View', you will need to restart Gramps."
 msgstr ""
 "Jos olet asentanut \"Gramps-näkymän\", sinun on käynnistettävä Gramps "
