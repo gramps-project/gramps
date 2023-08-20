@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-11 18:45+0100\n"
+"POT-Creation-Date: 2023-08-19 21:56+0100\n"
 "PO-Revision-Date: 2022-06-22 08:20+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/gramps-project/"
@@ -1254,7 +1254,7 @@ msgstr "Mun skrifa yfir skrána: %s"
 msgid "ERROR: Unrecognized format for export file %s"
 msgstr "VILLA: óþekkt skráasnið á útflutningsskránni %s"
 
-#: ../gramps/cli/arghandler.py:403 ../gramps/gen/plug/utils.py:369
+#: ../gramps/cli/arghandler.py:403 ../gramps/gen/plug/utils.py:371
 #, python-format
 msgid "Error: cannot open '%s'"
 msgstr "Villa: get ekki opnað '%s'"
@@ -1276,7 +1276,7 @@ msgstr "Gramps ættartölur:"
 #: ../gramps/cli/arghandler.py:464 ../gramps/cli/arghandler.py:466
 #: ../gramps/cli/arghandler.py:468 ../gramps/cli/clidbman.py:70
 #: ../gramps/cli/clidbman.py:177 ../gramps/cli/clidbman.py:216
-#: ../gramps/gui/clipboard.py:920 ../gramps/gui/configure.py:2333
+#: ../gramps/gui/clipboard.py:920 ../gramps/gui/configure.py:2336
 msgid "Family Tree"
 msgstr "Ættartala"
 
@@ -1552,7 +1552,7 @@ msgstr "Villa við að þátta viðföng"
 
 #: ../gramps/cli/clidbman.py:73 ../gramps/cli/clidbman.py:172
 #: ../gramps/cli/clidbman.py:174 ../gramps/gui/clipboard.py:201
-#: ../gramps/gui/clipboard.py:202 ../gramps/gui/plug/_windows.py:1337
+#: ../gramps/gui/clipboard.py:202 ../gramps/gui/plug/_windows.py:1452
 msgid "Unavailable"
 msgstr "Ekki tiltækt"
 
@@ -1597,8 +1597,8 @@ msgstr "Ættartala \"%s\":"
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/cli/clidbman.py:222 ../gramps/gen/plug/report/utils.py:182
 #: ../gramps/gui/editors/editattribute.py:140
-#: ../gramps/gui/editors/editname.py:334 ../gramps/gui/plug/_windows.py:1542
-#: ../gramps/gui/plug/_windows.py:1986
+#: ../gramps/gui/editors/editname.py:334 ../gramps/gui/plug/_windows.py:1657
+#: ../gramps/gui/plug/_windows.py:2101
 #: ../gramps/plugins/gramplet/whatsnext.py:495
 #: ../gramps/plugins/textreport/birthdayreport.py:213
 #: ../gramps/plugins/textreport/birthdayreport.py:218
@@ -1669,8 +1669,8 @@ msgstr ""
 "    %s\n"
 "\n"
 
-#: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2278
-#: ../gramps/gui/plug/_windows.py:666
+#: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2281
+#: ../gramps/gui/plug/_windows.py:722
 msgid "Never"
 msgstr "Aldrei"
 
@@ -3401,7 +3401,7 @@ msgstr "Rangt snið á nafnastrengnum %s"
 msgid "ERROR, Edit Name format in Preferences"
 msgstr "VILLA, breyttu nafnasniði í kjörstillingum"
 
-#: ../gramps/gen/display/place.py:74 ../gramps/gen/plug/utils.py:392
+#: ../gramps/gen/display/place.py:74 ../gramps/gen/plug/utils.py:394
 #, python-format
 msgid "Error in '%s' file: cannot load."
 msgstr "Villa í skránni '%s': get ekki hlaðið skrá."
@@ -6852,8 +6852,8 @@ msgstr "Stétt/Ættbálkur"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:68
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:113
 #: ../gramps/gui/glade/rule.glade:931 ../gramps/gui/glade/styleeditor.glade:278
-#: ../gramps/gui/plug/_windows.py:903 ../gramps/gui/plug/_windows.py:1018
-#: ../gramps/gui/plug/_windows.py:1480 ../gramps/gui/plug/_windows.py:1973
+#: ../gramps/gui/plug/_windows.py:1018 ../gramps/gui/plug/_windows.py:1133
+#: ../gramps/gui/plug/_windows.py:1595 ../gramps/gui/plug/_windows.py:2088
 #: ../gramps/gui/selectors/selectevent.py:71
 #: ../gramps/plugins/gramplet/coordinates.py:100
 #: ../gramps/plugins/gramplet/events.py:103
@@ -7219,7 +7219,7 @@ msgstr "Gildi"
 #: ../gramps/gen/lib/date.py:772 ../gramps/gen/lib/placename.py:97
 #: ../gramps/gen/lib/styledtext.py:327
 #: ../gramps/gen/plug/report/_constants.py:62 ../gramps/gui/clipboard.py:626
-#: ../gramps/gui/clipboard.py:634 ../gramps/gui/configure.py:1766
+#: ../gramps/gui/clipboard.py:634 ../gramps/gui/configure.py:1769
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:104
 #: ../gramps/plugins/importer/importprogen.glade:403
 #: ../gramps/plugins/importer/importprogen.glade:1107
@@ -7492,8 +7492,8 @@ msgstr "Annað"
 msgid "Adopted"
 msgstr "Ættleiðing"
 
-#: ../gramps/gen/lib/eventtype.py:193 ../gramps/gen/utils/symbols.py:95
-#: ../gramps/gui/configure.py:2748 ../gramps/gui/merge/mergeperson.py:206
+#: ../gramps/gen/lib/eventtype.py:193 ../gramps/gen/utils/symbols.py:94
+#: ../gramps/gui/configure.py:2751 ../gramps/gui/merge/mergeperson.py:206
 #: ../gramps/plugins/export/exportvcalendar.py:149
 #: ../gramps/plugins/gramplet/ancestor.py:69
 #: ../gramps/plugins/gramplet/descendant.py:67
@@ -7509,7 +7509,7 @@ msgstr "Ættleiðing"
 msgid "Birth"
 msgstr "Fæðing"
 
-#: ../gramps/gen/lib/eventtype.py:194 ../gramps/gui/configure.py:2754
+#: ../gramps/gen/lib/eventtype.py:194 ../gramps/gui/configure.py:2757
 #: ../gramps/gui/merge/mergeperson.py:213
 #: ../gramps/plugins/export/exportvcalendar.py:158
 #: ../gramps/plugins/importer/importprogen.glade:1491
@@ -7527,7 +7527,7 @@ msgid "Adult Christening"
 msgstr "Fullorðinsskírn"
 
 #: ../gramps/gen/lib/eventtype.py:196 ../gramps/gen/lib/ldsord.py:94
-#: ../gramps/gui/configure.py:2749
+#: ../gramps/gui/configure.py:2752
 msgid "Baptism"
 msgstr "Skírn"
 
@@ -7642,7 +7642,7 @@ msgid "Will"
 msgstr "Erfðaskrá"
 
 #: ../gramps/gen/lib/eventtype.py:226 ../gramps/gen/plug/docgen/treedoc.py:222
-#: ../gramps/gen/utils/symbols.py:98 ../gramps/gui/configure.py:2751
+#: ../gramps/gen/utils/symbols.py:97 ../gramps/gui/configure.py:2754
 #: ../gramps/gui/merge/mergeperson.py:278
 #: ../gramps/plugins/export/exportcsv.py:577
 #: ../gramps/plugins/export/exportvcalendar.py:137
@@ -7673,8 +7673,8 @@ msgstr "Bann við hjónabandi"
 msgid "Engagement"
 msgstr "Trúlofun"
 
-#: ../gramps/gen/lib/eventtype.py:232 ../gramps/gen/utils/symbols.py:99
-#: ../gramps/gui/configure.py:2753 ../gramps/plugins/webreport/family.py:318
+#: ../gramps/gen/lib/eventtype.py:232 ../gramps/gen/utils/symbols.py:98
+#: ../gramps/gui/configure.py:2756 ../gramps/plugins/webreport/family.py:318
 msgid "Divorce"
 msgstr "Skilnaður"
 
@@ -8049,8 +8049,8 @@ msgstr "Borgaraleg athöfn"
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:118
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:114
 #: ../gramps/gui/merge/mergeperson.py:273 ../gramps/gui/plug/_windows.py:220
-#: ../gramps/gui/plug/_windows.py:892 ../gramps/gui/plug/_windows.py:1015
-#: ../gramps/gui/plug/_windows.py:1971
+#: ../gramps/gui/plug/_windows.py:1007 ../gramps/gui/plug/_windows.py:1130
+#: ../gramps/gui/plug/_windows.py:2086
 #: ../gramps/gui/plug/report/_bookdialog.py:398
 #: ../gramps/gui/plug/report/_bookdialog.py:402
 #: ../gramps/gui/selectors/selectevent.py:67
@@ -8191,8 +8191,8 @@ msgstr "Hof"
 #: ../gramps/gen/lib/ldsord.py:206 ../gramps/gui/dbman.py:420
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:54
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:64
-#: ../gramps/gui/plug/_windows.py:224 ../gramps/gui/plug/_windows.py:896
-#: ../gramps/gui/plug/_windows.py:958
+#: ../gramps/gui/plug/_windows.py:224 ../gramps/gui/plug/_windows.py:1011
+#: ../gramps/gui/plug/_windows.py:1073
 #: ../gramps/plugins/quickview/ageondate.py:54
 #: ../gramps/plugins/textreport/indivcomplete.py:531
 #: ../gramps/plugins/textreport/indivcomplete.py:736
@@ -8202,7 +8202,7 @@ msgid "Status"
 msgstr "Staða"
 
 #: ../gramps/gen/lib/location.py:89 ../gramps/gen/lib/nameorigintype.py:88
-#: ../gramps/gui/clipboard.py:331 ../gramps/gui/plug/_windows.py:1485
+#: ../gramps/gui/clipboard.py:331 ../gramps/gui/plug/_windows.py:1600
 msgid "Location"
 msgstr "Staðsetning"
 
@@ -8252,8 +8252,8 @@ msgstr "Hérað"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:158
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:117
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:113
-#: ../gramps/gui/plug/_guioptions.py:1185 ../gramps/gui/plug/_windows.py:899
-#: ../gramps/gui/plug/_windows.py:1972
+#: ../gramps/gui/plug/_guioptions.py:1185 ../gramps/gui/plug/_windows.py:1014
+#: ../gramps/gui/plug/_windows.py:2087
 #: ../gramps/gui/plug/report/_bookdialog.py:398
 #: ../gramps/gui/selectors/selectperson.py:99
 #: ../gramps/gui/selectors/selectplace.py:68
@@ -8486,7 +8486,7 @@ msgstr "Minnispunktur"
 msgid "Format"
 msgstr "Snið"
 
-#: ../gramps/gen/lib/notetype.py:77 ../gramps/gui/configure.py:2157
+#: ../gramps/gen/lib/notetype.py:77 ../gramps/gui/configure.py:2160
 #: ../gramps/gui/editors/editeventref.py:102
 #: ../gramps/gui/editors/editmediaref.py:121
 #: ../gramps/gui/editors/editplaceref.py:84
@@ -8500,7 +8500,7 @@ msgstr "Snið"
 #: ../gramps/gui/glade/editplaceref.glade:161
 #: ../gramps/gui/glade/editplaceref.glade:665
 #: ../gramps/gui/glade/editreporef.glade:225
-#: ../gramps/gui/glade/editreporef.glade:445 ../gramps/gui/plug/_windows.py:632
+#: ../gramps/gui/glade/editreporef.glade:445 ../gramps/gui/plug/_windows.py:686
 #: ../gramps/plugins/tool/verify.glade:406
 msgid "General"
 msgstr "Almennt"
@@ -9145,7 +9145,7 @@ msgid "Priority"
 msgstr "Forgangur"
 
 #: ../gramps/gen/lib/url.py:90 ../gramps/gui/clipboard.py:428
-#: ../gramps/gui/plug/_windows.py:738
+#: ../gramps/gui/plug/_windows.py:796
 msgid "Url"
 msgstr "Slóð"
 
@@ -9292,8 +9292,10 @@ msgid "Expert"
 msgstr ""
 
 #: ../gramps/gen/plug/_pluginreg.py:116
-msgid "Quickreport"
-msgstr "Flýtiskýrsla"
+#, fuzzy
+#| msgid "Quick View"
+msgid "Quick view"
+msgstr "Flýtiskoðun"
 
 #: ../gramps/gen/plug/_pluginreg.py:117
 msgid "Tool"
@@ -9308,26 +9310,32 @@ msgid "Exporter"
 msgstr "Útflutningur"
 
 #: ../gramps/gen/plug/_pluginreg.py:120
-msgid "Doc creator"
+#, fuzzy
+#| msgid "Doc creator"
+msgid "Document creator"
 msgstr "Skjalagerð"
 
 #: ../gramps/gen/plug/_pluginreg.py:121
-msgid "Plugin lib"
+#, fuzzy
+#| msgid "Plugin lib"
+msgid "Plugin library"
 msgstr "Aðgerðasöfn viðbóta (library)"
 
 #: ../gramps/gen/plug/_pluginreg.py:122
 msgid "Map service"
 msgstr "Kortagrunnsþjónusta"
 
-#: ../gramps/gen/plug/_pluginreg.py:123
-msgid "Gramps View"
-msgstr "Gramps sýn"
+#: ../gramps/gen/plug/_pluginreg.py:123 ../gramps/gui/editors/editperson.py:711
+#: ../gramps/plugins/view/mediaview.py:410
+#: ../gramps/plugins/view/mediaview.py:426
+msgid "View"
+msgstr "Skoða"
 
-#: ../gramps/gen/plug/_pluginreg.py:124 ../gramps/plugins/view/relview.py:148
-#: ../gramps/plugins/view/view.gpr.py:119
-#: ../gramps/plugins/view/view.gpr.py:127
-msgid "Relationships"
-msgstr "Vensl"
+#: ../gramps/gen/plug/_pluginreg.py:124
+#, fuzzy
+#| msgid "Relationship Calculator"
+msgid "Relationship calculator"
+msgstr "Venslaútreikningur"
 
 #: ../gramps/gen/plug/_pluginreg.py:125 ../gramps/gen/plug/_pluginreg.py:513
 #: ../gramps/gui/glade/grampletpane.glade:156
@@ -9351,7 +9359,7 @@ msgstr "Regla"
 msgid "Thumbnailer"
 msgstr "Smámyndir"
 
-#: ../gramps/gen/plug/_pluginreg.py:130 ../gramps/gui/configure.py:1635
+#: ../gramps/gen/plug/_pluginreg.py:130 ../gramps/gui/configure.py:1638
 #, fuzzy
 #| msgid "Publication Information"
 msgid "Citation formatter"
@@ -9443,7 +9451,7 @@ msgstr "Skráin %s er þegar opin, lokaðu henni fyrst."
 #: ../gramps/plugins/export/exportcsv.py:281
 #: ../gramps/plugins/export/exportcsv.py:285
 #: ../gramps/plugins/export/exportftree.py:139
-#: ../gramps/plugins/export/exportgedcom.py:1700
+#: ../gramps/plugins/export/exportgedcom.py:1703
 #: ../gramps/plugins/export/exportgeneweb.py:111
 #: ../gramps/plugins/export/exportgeneweb.py:115
 #: ../gramps/plugins/export/exportvcalendar.py:123
@@ -9860,7 +9868,7 @@ msgid "Not shown"
 msgstr "Ekki birt"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:93 ../gramps/gui/configure.py:105
-#: ../gramps/gui/configure.py:187 ../gramps/gui/configure.py:2588
+#: ../gramps/gui/configure.py:187 ../gramps/gui/configure.py:2591
 #: ../gramps/gui/displaystate.py:429 ../gramps/gui/views/pageview.py:642
 msgid "Preferences"
 msgstr "Kjörstillingar"
@@ -10149,7 +10157,7 @@ msgstr "Þýðingin sem notuð verður í þessari skýrslu."
 msgid "The additional translation to be used for the report."
 msgstr "Viðbótarþýðingin sem notuð verður í þessari skýrslu."
 
-#: ../gramps/gen/plug/report/stdoptions.py:94 ../gramps/gui/configure.py:1488
+#: ../gramps/gen/plug/report/stdoptions.py:94 ../gramps/gui/configure.py:1491
 #: ../gramps/plugins/webreport/webcal.py:1903
 msgid "Name format"
 msgstr "Nafnasnið"
@@ -10257,7 +10265,7 @@ msgstr "Staðasnið"
 msgid "Select the format to display places"
 msgstr "Veldu snið sem verður notað við að birta staði"
 
-#: ../gramps/gen/plug/report/stdoptions.py:425 ../gramps/gui/configure.py:1445
+#: ../gramps/gen/plug/report/stdoptions.py:425 ../gramps/gui/configure.py:1448
 #, fuzzy
 #| msgid "Date format"
 msgid "Coordinates format"
@@ -10344,61 +10352,61 @@ msgstr "FJÖLSKYLDA"
 msgid "Ancestor Families of %s"
 msgstr "Fjölskyldur forfeðra %s"
 
-#: ../gramps/gen/plug/utils.py:296
+#: ../gramps/gen/plug/utils.py:298
 msgid "Updated"
 msgstr "Uppfært"
 
-#: ../gramps/gen/plug/utils.py:314
+#: ../gramps/gen/plug/utils.py:316
 msgctxt "updates"
 msgid "New"
 msgstr "Nýtt"
 
-#: ../gramps/gen/plug/utils.py:344 ../gramps/gen/plug/utils.py:351
+#: ../gramps/gen/plug/utils.py:346 ../gramps/gen/plug/utils.py:353
 #, python-format
 msgid "Unable to open '%s'"
 msgstr "Gat ekki opnað '%s'"
 
-#: ../gramps/gen/plug/utils.py:358
+#: ../gramps/gen/plug/utils.py:360
 #, python-format
 msgid "Error in reading '%s'"
 msgstr "Villa við lestur '%s'"
 
-#: ../gramps/gen/plug/utils.py:373
+#: ../gramps/gen/plug/utils.py:375
 #, python-format
 msgid "Error: unknown file type: '%s'"
 msgstr "Villa: óþekkt skráartegund: '%s'"
 
-#: ../gramps/gen/plug/utils.py:379
+#: ../gramps/gen/plug/utils.py:381
 #, python-format
 msgid "Examining '%s'..."
 msgstr "Skoða '%s'..."
 
-#: ../gramps/gen/plug/utils.py:408
+#: ../gramps/gen/plug/utils.py:410
 #, python-format
 msgid "'%s' is for this version of Gramps."
 msgstr "'%s' er fyrir þessa útgáfu af Gramps."
 
-#: ../gramps/gen/plug/utils.py:416
+#: ../gramps/gen/plug/utils.py:418
 #, python-format
 msgid "'%s' is NOT for this version of Gramps."
 msgstr "'%s' er EKKI fyrir þessa útgáfu af Gramps."
 
-#: ../gramps/gen/plug/utils.py:422
+#: ../gramps/gen/plug/utils.py:424
 #, python-format
 msgid "It is for version %(v1)d.%(v2)d"
 msgstr "Það er fyrir útgáfu %(v1)d.%(v2)d"
 
-#: ../gramps/gen/plug/utils.py:436
+#: ../gramps/gen/plug/utils.py:438
 #, python-format
 msgid "Error: missing gramps_target_version in '%s'..."
 msgstr "Villa: vantar gramps_target_version í '%s'..."
 
-#: ../gramps/gen/plug/utils.py:452
+#: ../gramps/gen/plug/utils.py:454
 #, python-format
 msgid "Installing '%s'..."
 msgstr "Set '%s' upp á tölvunni..."
 
-#: ../gramps/gen/plug/utils.py:458
+#: ../gramps/gen/plug/utils.py:460
 #, python-format
 msgid "Registered '%s'"
 msgstr "Skráði '%s'"
@@ -11041,7 +11049,7 @@ msgstr ""
 "Gögnin er einungis hægt að endurheimta með afturköllun síðustu aðgerðar eða "
 "með því að hætta og hunsa allar breytingar."
 
-#: ../gramps/gen/utils/symbols.py:85
+#: ../gramps/gen/utils/symbols.py:84
 #: ../gramps/plugins/graph/gvfamilylines.py:95
 #: ../gramps/plugins/textreport/indivcomplete.py:966
 #: ../gramps/plugins/tool/dumpgenderstats.py:73
@@ -11050,7 +11058,7 @@ msgstr ""
 msgid "Female"
 msgstr "Kona"
 
-#: ../gramps/gen/utils/symbols.py:86
+#: ../gramps/gen/utils/symbols.py:85
 #: ../gramps/plugins/graph/gvfamilylines.py:96
 #: ../gramps/plugins/textreport/indivcomplete.py:964
 #: ../gramps/plugins/tool/dumpgenderstats.py:72
@@ -11059,129 +11067,129 @@ msgstr "Kona"
 msgid "Male"
 msgstr "Karl"
 
-#: ../gramps/gen/utils/symbols.py:87
+#: ../gramps/gen/utils/symbols.py:86
 msgid "Asexuality, sexless, genderless"
 msgstr "Kynlaus"
 
-#: ../gramps/gen/utils/symbols.py:88
+#: ../gramps/gen/utils/symbols.py:87
 msgid "Transgender, hermaphrodite (in entomology)"
 msgstr "Kyngervingur/transgender, tvíkynjungur/hermaphrodite (í dýrafræði)"
 
-#: ../gramps/gen/utils/symbols.py:89
+#: ../gramps/gen/utils/symbols.py:88
 msgid "Lesbianism"
 msgstr "Lesbísk"
 
-#: ../gramps/gen/utils/symbols.py:90
+#: ../gramps/gen/utils/symbols.py:89
 msgid "Male homosexuality"
 msgstr "Hommi"
 
-#: ../gramps/gen/utils/symbols.py:91
+#: ../gramps/gen/utils/symbols.py:90
 msgid "Heterosexuality"
 msgstr "Gagnkynhneigð"
 
-#: ../gramps/gen/utils/symbols.py:92
+#: ../gramps/gen/utils/symbols.py:91
 msgid "Transgender"
 msgstr "Kyngervingur (trans)"
 
-#: ../gramps/gen/utils/symbols.py:93
+#: ../gramps/gen/utils/symbols.py:92
 msgid "Neuter"
 msgstr "Hvorugkyn"
 
-#: ../gramps/gen/utils/symbols.py:94
+#: ../gramps/gen/utils/symbols.py:93
 msgid "Illegitimate"
 msgstr "Óskilgetið"
 
-#: ../gramps/gen/utils/symbols.py:96
+#: ../gramps/gen/utils/symbols.py:95
 msgid "Baptism/Christening"
 msgstr "Skírn/Nafngjöf"
 
-#: ../gramps/gen/utils/symbols.py:97 ../gramps/gui/configure.py:2750
+#: ../gramps/gen/utils/symbols.py:96 ../gramps/gui/configure.py:2753
 msgid "Engaged"
 msgstr "Trúlofun"
 
-#: ../gramps/gen/utils/symbols.py:100
+#: ../gramps/gen/utils/symbols.py:99
 #, fuzzy
 msgid "Unmarried partnership"
 msgstr "maki"
 
-#: ../gramps/gen/utils/symbols.py:101 ../gramps/gui/configure.py:2756
+#: ../gramps/gen/utils/symbols.py:100 ../gramps/gui/configure.py:2759
 msgid "Buried"
 msgstr "Jarðsetning"
 
-#: ../gramps/gen/utils/symbols.py:102 ../gramps/gui/configure.py:2757
+#: ../gramps/gen/utils/symbols.py:101 ../gramps/gui/configure.py:2760
 msgid "Cremated/Funeral urn"
 msgstr "Bálför/Duftker"
 
-#: ../gramps/gen/utils/symbols.py:103
+#: ../gramps/gen/utils/symbols.py:102
 msgid "Killed in action"
 msgstr "Féll í orustu"
 
-#: ../gramps/gen/utils/symbols.py:104
+#: ../gramps/gen/utils/symbols.py:103
 msgid "Extinct"
 msgstr ""
 
-#: ../gramps/gen/utils/symbols.py:110
+#: ../gramps/gen/utils/symbols.py:109
 msgid "Nothing"
 msgstr "Ekkert"
 
-#: ../gramps/gen/utils/symbols.py:112
+#: ../gramps/gen/utils/symbols.py:111
 msgid "Skull and crossbones"
 msgstr ""
 
-#: ../gramps/gen/utils/symbols.py:113
+#: ../gramps/gen/utils/symbols.py:112
 msgid "Ankh"
 msgstr "Ankh fleygrún"
 
-#: ../gramps/gen/utils/symbols.py:114
+#: ../gramps/gen/utils/symbols.py:113
 msgid "Orthodox cross"
 msgstr "Rétttrúnaðarkirkjukross"
 
-#: ../gramps/gen/utils/symbols.py:115
+#: ../gramps/gen/utils/symbols.py:114
 msgid "Chi rho"
 msgstr "Chi-rho tákn"
 
-#: ../gramps/gen/utils/symbols.py:116
+#: ../gramps/gen/utils/symbols.py:115
 msgid "Cross of Lorraine"
 msgstr "Lorrainekross"
 
-#: ../gramps/gen/utils/symbols.py:117
+#: ../gramps/gen/utils/symbols.py:116
 msgid "Cross of Jerusalem"
 msgstr "Jerúsalemkross"
 
-#: ../gramps/gen/utils/symbols.py:118
+#: ../gramps/gen/utils/symbols.py:117
 msgid "Star and crescent"
 msgstr "Stjarna og vaxandi tungl"
 
-#: ../gramps/gen/utils/symbols.py:119
+#: ../gramps/gen/utils/symbols.py:118
 msgid "West Syriac cross"
 msgstr ""
 
-#: ../gramps/gen/utils/symbols.py:120
+#: ../gramps/gen/utils/symbols.py:119
 #, fuzzy
 msgid "East Syriac cross"
 msgstr "Síðast notað"
 
-#: ../gramps/gen/utils/symbols.py:121
+#: ../gramps/gen/utils/symbols.py:120
 msgid "Heavy Greek cross"
 msgstr ""
 
-#: ../gramps/gen/utils/symbols.py:122
+#: ../gramps/gen/utils/symbols.py:121
 msgid "Latin cross"
 msgstr "Latneskur kross"
 
-#: ../gramps/gen/utils/symbols.py:123
+#: ../gramps/gen/utils/symbols.py:122
 msgid "Shadowed White Latin cross"
 msgstr ""
 
-#: ../gramps/gen/utils/symbols.py:124
+#: ../gramps/gen/utils/symbols.py:123
 msgid "Maltese cross"
 msgstr "Möltukross"
 
-#: ../gramps/gen/utils/symbols.py:125
+#: ../gramps/gen/utils/symbols.py:124
 msgid "Star of David"
 msgstr "Davíðsstjarna"
 
-#: ../gramps/gen/utils/symbols.py:126
+#: ../gramps/gen/utils/symbols.py:125
 msgid "Dead"
 msgstr "Látin/n"
 
@@ -11554,8 +11562,8 @@ msgstr "Kvíslasýn: fyrsta dálknum \"%s\" er ekki hægt að breyta"
 msgid "Drag and drop the columns to change the order"
 msgstr "Dragðu og slepptu dálkum til þess að breyta uppröðuninni"
 
-#: ../gramps/gui/columnorder.py:117 ../gramps/gui/configure.py:2474
-#: ../gramps/gui/configure.py:2502 ../gramps/gui/configure.py:2531
+#: ../gramps/gui/columnorder.py:117 ../gramps/gui/configure.py:2477
+#: ../gramps/gui/configure.py:2505 ../gramps/gui/configure.py:2534
 #: ../gramps/gui/plug/_dialogs.py:144 ../gramps/gui/viewmanager.py:1953
 #: ../gramps/plugins/lib/maps/geography.py:1113
 #: ../gramps/plugins/lib/maps/geography.py:1534
@@ -11599,8 +11607,8 @@ msgstr "Birtingarnafnaritill"
 #: ../gramps/gui/glade/plugins.glade:22 ../gramps/gui/glade/rule.glade:24
 #: ../gramps/gui/glade/rule.glade:1024 ../gramps/gui/glade/tipofday.glade:117
 #: ../gramps/gui/glade/updateaddons.glade:25 ../gramps/gui/grampsgui.py:58
-#: ../gramps/gui/plug/_windows.py:356 ../gramps/gui/plug/_windows.py:869
-#: ../gramps/gui/plug/_windows.py:1548 ../gramps/gui/plug/_windows.py:1608
+#: ../gramps/gui/plug/_windows.py:356 ../gramps/gui/plug/_windows.py:984
+#: ../gramps/gui/plug/_windows.py:1663 ../gramps/gui/plug/_windows.py:1723
 #: ../gramps/gui/plug/quick/_textbufdoc.py:71 ../gramps/gui/undohistory.py:88
 #: ../gramps/gui/viewmanager.py:1804 ../gramps/gui/views/bookmarks.py:316
 #: ../gramps/gui/views/tags.py:523 ../gramps/gui/widgets/grampletbar.py:720
@@ -11656,15 +11664,15 @@ msgstr "Ógild eða ófullkomin skilgreining á sniði."
 #: ../gramps/gui/configure.py:505 ../gramps/gui/configure.py:521
 #: ../gramps/gui/configure.py:561 ../gramps/gui/configure.py:599
 #: ../gramps/gui/configure.py:627 ../gramps/gui/configure.py:887
-#: ../gramps/gui/configure.py:1418 ../gramps/gui/configure.py:1445
-#: ../gramps/gui/configure.py:1488 ../gramps/gui/configure.py:1532
-#: ../gramps/gui/configure.py:1554 ../gramps/gui/configure.py:1578
-#: ../gramps/gui/configure.py:1591 ../gramps/gui/configure.py:1612
-#: ../gramps/gui/configure.py:1630 ../gramps/gui/configure.py:1635
-#: ../gramps/gui/configure.py:1656 ../gramps/gui/configure.py:1672
-#: ../gramps/gui/configure.py:2200 ../gramps/gui/configure.py:2289
-#: ../gramps/gui/plug/_windows.py:676 ../gramps/gui/plug/_windows.py:696
-#: ../gramps/gui/plug/_windows.py:730 ../gramps/gui/plug/_windows.py:738
+#: ../gramps/gui/configure.py:1421 ../gramps/gui/configure.py:1448
+#: ../gramps/gui/configure.py:1491 ../gramps/gui/configure.py:1535
+#: ../gramps/gui/configure.py:1557 ../gramps/gui/configure.py:1581
+#: ../gramps/gui/configure.py:1594 ../gramps/gui/configure.py:1615
+#: ../gramps/gui/configure.py:1633 ../gramps/gui/configure.py:1638
+#: ../gramps/gui/configure.py:1659 ../gramps/gui/configure.py:1675
+#: ../gramps/gui/configure.py:2203 ../gramps/gui/configure.py:2292
+#: ../gramps/gui/plug/_windows.py:732 ../gramps/gui/plug/_windows.py:752
+#: ../gramps/gui/plug/_windows.py:788 ../gramps/gui/plug/_windows.py:796
 #: ../gramps/gui/views/navigationview.py:351
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:110
 #, python-format
@@ -11712,6 +11720,7 @@ msgstr "%s: "
 #: ../gramps/gui/glade/reorder.glade:54 ../gramps/gui/glade/rule.glade:41
 #: ../gramps/gui/glade/rule.glade:351 ../gramps/gui/glade/rule.glade:781
 #: ../gramps/gui/grampsgui.py:58 ../gramps/gui/logger/_errorview.py:191
+#: ../gramps/gui/plug/_windows.py:357
 #: ../gramps/gui/plug/report/_reportdialog.py:167
 #: ../gramps/gui/undohistory.py:84 ../gramps/gui/views/bookmarks.py:317
 #: ../gramps/gui/views/tags.py:524 ../gramps/gui/views/tags.py:745
@@ -11736,7 +11745,7 @@ msgstr "Sveitarfélag/Sýsla"
 msgid "ZIP/Postal Code"
 msgstr "Póstnúmer"
 
-#: ../gramps/gui/configure.py:734 ../gramps/gui/plug/_windows.py:1483
+#: ../gramps/gui/configure.py:734 ../gramps/gui/plug/_windows.py:1598
 #: ../gramps/plugins/view/repoview.py:96
 msgid "Email"
 msgstr "Tölvupóstur"
@@ -11785,7 +11794,7 @@ msgstr "Ljósir litir"
 msgid "Color scheme"
 msgstr "Litastef"
 
-#: ../gramps/gui/configure.py:891 ../gramps/gui/configure.py:2766
+#: ../gramps/gui/configure.py:891 ../gramps/gui/configure.py:2769
 msgid "Restore to defaults"
 msgstr "Endurheimta sjálfgefin gildi"
 
@@ -11869,7 +11878,7 @@ msgstr "Jaðar fyrir fráskilda"
 msgid "Background for Home Person"
 msgstr "Bakgrunnur fyrir upphafseinstakling"
 
-#: ../gramps/gui/configure.py:963 ../gramps/gui/configure.py:2763
+#: ../gramps/gui/configure.py:963 ../gramps/gui/configure.py:2766
 #, python-format
 msgid "<b>%s</b>"
 msgstr "<b>%s</b>"
@@ -11973,125 +11982,125 @@ msgstr "Br_eyta"
 msgid "_Remove"
 msgstr "Fja_rlægja"
 
-#: ../gramps/gui/configure.py:1398
+#: ../gramps/gui/configure.py:1401
 #, fuzzy
 #| msgid "Display as"
 msgid "Display Options"
 msgstr "Birta sem"
 
-#: ../gramps/gui/configure.py:1414 ../gramps/gui/configure.py:1492
+#: ../gramps/gui/configure.py:1417 ../gramps/gui/configure.py:1495
 #: ../gramps/gui/editors/displaytabs/buttontab.py:73
 #: ../gramps/gui/glade/editfamily.glade:286
 #: ../gramps/gui/glade/editfamily.glade:594
 #: ../gramps/gui/glade/editperson.glade:12
 #: ../gramps/gui/glade/editperson.glade:516 ../gramps/gui/glade/rule.glade:463
 #: ../gramps/gui/glade/styleeditor.glade:1903
-#: ../gramps/gui/plug/_windows.py:922 ../gramps/gui/plug/_windows.py:981
+#: ../gramps/gui/plug/_windows.py:1037 ../gramps/gui/plug/_windows.py:1096
 #: ../gramps/plugins/gramplet/ancestor.py:122
 #: ../gramps/plugins/gramplet/descendant.py:119
 msgid "Edit"
 msgstr "Breyta"
 
-#: ../gramps/gui/configure.py:1418
+#: ../gramps/gui/configure.py:1421
 #, fuzzy
 #| msgid "Place format"
 msgid "Automate Place format"
 msgstr "Staðasnið"
 
-#: ../gramps/gui/configure.py:1425
+#: ../gramps/gui/configure.py:1428
 msgid "Enables automatic place title generation using specified format."
 msgstr "Virkjar sjálfvirka gerð titla fyrir staði með tilteknu sniði."
 
-#: ../gramps/gui/configure.py:1502
+#: ../gramps/gui/configure.py:1505
 msgid "Custom name display options are unique to each family tree."
 msgstr ""
 
-#: ../gramps/gui/configure.py:1514
+#: ../gramps/gui/configure.py:1517
 msgid "Consider single pa/matronymic as surname"
 msgstr "Líta á stakt föður/móðurnafn sem kenninafn"
 
-#: ../gramps/gui/configure.py:1532
+#: ../gramps/gui/configure.py:1535
 #, fuzzy
 #| msgid "Date format"
 msgid "Date format *"
 msgstr "Snið dagsetninga"
 
-#: ../gramps/gui/configure.py:1540
+#: ../gramps/gui/configure.py:1543
 msgid "Years"
 msgstr "Ár"
 
-#: ../gramps/gui/configure.py:1540
+#: ../gramps/gui/configure.py:1543
 msgid "Years, Months"
 msgstr "Ár, mánuðir"
 
-#: ../gramps/gui/configure.py:1540
+#: ../gramps/gui/configure.py:1543
 msgid "Years, Months, Days"
 msgstr "Ár, mánuðir, dagar"
 
-#: ../gramps/gui/configure.py:1554
+#: ../gramps/gui/configure.py:1557
 #, fuzzy
 #| msgid "Age display precision (requires restart)"
 msgid "Age display precision *"
 msgstr "Nákvæmni birtingar á aldri (krefst endurræsingar)"
 
-#: ../gramps/gui/configure.py:1562
+#: ../gramps/gui/configure.py:1565
 #, fuzzy
 #| msgid "Display references for a %s"
 msgid "Display ages for events after death *"
 msgstr "Birta tilvísanir fyrir %s"
 
-#: ../gramps/gui/configure.py:1578
+#: ../gramps/gui/configure.py:1581
 msgid "Calendar on reports"
 msgstr "Dagatal á skýrslum"
 
-#: ../gramps/gui/configure.py:1591
+#: ../gramps/gui/configure.py:1594
 #, fuzzy
 #| msgid "Calendar on reports"
 msgid "Calendar on input"
 msgstr "Dagatal á skýrslum"
 
-#: ../gramps/gui/configure.py:1599
+#: ../gramps/gui/configure.py:1602
 #, fuzzy
 #| msgid "Shows previous page"
 msgid "On the previous day"
 msgstr "Birtir fyrri síðu"
 
-#: ../gramps/gui/configure.py:1600
+#: ../gramps/gui/configure.py:1603
 #, fuzzy
 #| msgid "Shows the next page"
 msgid "On the next day"
 msgstr "Birtir næstu síðu"
 
-#: ../gramps/gui/configure.py:1601
+#: ../gramps/gui/configure.py:1604
 msgid "Only on leap years"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1608
+#: ../gramps/gui/configure.py:1611
 msgid ""
 "For non leap years, anniversaries are displayed on either February 28, March "
 "1 or not at all in Gregorian calendars"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1612
+#: ../gramps/gui/configure.py:1615
 #, fuzzy
 #| msgid "Include death anniversaries"
 msgid "Show leap day anniversaries"
 msgstr "Hafa með dánardægur"
 
-#: ../gramps/gui/configure.py:1619
+#: ../gramps/gui/configure.py:1622
 msgid "Active person's name and ID"
 msgstr "Nafn og auðkenni einstaklings"
 
-#: ../gramps/gui/configure.py:1619
+#: ../gramps/gui/configure.py:1622
 #: ../gramps/plugins/textreport/indivcomplete.py:394
 msgid "Relationship to home person"
 msgstr "Vensl við upphafseinstakling"
 
-#: ../gramps/gui/configure.py:1630
+#: ../gramps/gui/configure.py:1633
 msgid "Status bar"
 msgstr "Stöðustika"
 
-#: ../gramps/gui/configure.py:1642
+#: ../gramps/gui/configure.py:1645
 msgid ""
 "\n"
 "Input Options"
@@ -12099,162 +12108,162 @@ msgstr ""
 "\n"
 "Valkostir skýrslu"
 
-#: ../gramps/gui/configure.py:1656
+#: ../gramps/gui/configure.py:1659
 msgid "Surname guessing"
 msgstr "Giska á kenninöfn"
 
-#: ../gramps/gui/configure.py:1672
+#: ../gramps/gui/configure.py:1675
 msgid "Default family relationship"
 msgstr "Sjálfgefin vensl í fjölskyldu"
 
-#: ../gramps/gui/configure.py:1679
+#: ../gramps/gui/configure.py:1682
 msgid "Hide LDS tab in person and family editors"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1687 ../gramps/gui/configure.py:2148
+#: ../gramps/gui/configure.py:1690 ../gramps/gui/configure.py:2151
 msgid "* Requires Restart"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1696
+#: ../gramps/gui/configure.py:1699
 #, fuzzy
 #| msgid "Database"
 msgid "Data"
 msgstr "Gagnagrunnur"
 
-#: ../gramps/gui/configure.py:1714
+#: ../gramps/gui/configure.py:1717
 msgid "Conditional Text Replacements"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1725
+#: ../gramps/gui/configure.py:1728
 msgid "Missing surname"
 msgstr "Vantar kenninafn"
 
-#: ../gramps/gui/configure.py:1730
+#: ../gramps/gui/configure.py:1733
 msgid "Missing given name"
 msgstr "Vantar eiginnafn"
 
-#: ../gramps/gui/configure.py:1737
+#: ../gramps/gui/configure.py:1740
 msgid "Missing record"
 msgstr "Færslu vantar"
 
-#: ../gramps/gui/configure.py:1742
+#: ../gramps/gui/configure.py:1745
 msgid "Private surname"
 msgstr "Einka kenninafn"
 
-#: ../gramps/gui/configure.py:1751
+#: ../gramps/gui/configure.py:1754
 msgid "Private given name"
 msgstr "Einka eiginnafn"
 
-#: ../gramps/gui/configure.py:1760
+#: ../gramps/gui/configure.py:1763
 msgid "Private record"
 msgstr "Einkafærsla"
 
-#: ../gramps/gui/configure.py:1817
+#: ../gramps/gui/configure.py:1820
 msgid "Change is not immediate"
 msgstr "Breytingin verður ekki strax"
 
-#: ../gramps/gui/configure.py:1819
+#: ../gramps/gui/configure.py:1822
 msgid ""
 "Changing the date format will not take effect until the next time Gramps is "
 "started."
 msgstr "Breyting á dagsetningasniði mun taka gildi næst þegar þú ræsir Gramps."
 
-#: ../gramps/gui/configure.py:1858
+#: ../gramps/gui/configure.py:1861
 #, fuzzy
 #| msgid "Calculating timeline..."
 msgid "Calculation limits"
 msgstr "Reikna tímalínu..."
 
-#: ../gramps/gui/configure.py:1865
+#: ../gramps/gui/configure.py:1868
 #, fuzzy
 #| msgid "Date about range"
 msgid "Date 'about' year range: (date ± #)"
 msgstr "Leitarsvið dagsetninga 'um það bil'"
 
-#: ../gramps/gui/configure.py:1873
+#: ../gramps/gui/configure.py:1876
 #, fuzzy
 #| msgid "Date after range"
 msgid "Date 'after' year range:  (date + #)"
 msgstr "Leitarsvið dagsetninga 'á eftir'"
 
-#: ../gramps/gui/configure.py:1881
+#: ../gramps/gui/configure.py:1884
 #, fuzzy
 #| msgid "Date before range"
 msgid "Date 'before' year range: (date - #)"
 msgstr "Leitarsvið dagsetninga 'á undan'"
 
-#: ../gramps/gui/configure.py:1889
+#: ../gramps/gui/configure.py:1892
 msgid "Maximum age probably alive"
 msgstr "Hámarks ævilíkur"
 
-#: ../gramps/gui/configure.py:1897
+#: ../gramps/gui/configure.py:1900
 msgid "Maximum sibling age difference"
 msgstr "Hámarks aldurmunur systkina"
 
-#: ../gramps/gui/configure.py:1905
+#: ../gramps/gui/configure.py:1908
 msgid "Minimum years between generations"
 msgstr "Lágmarks árafjöldi á milli kynslóða"
 
-#: ../gramps/gui/configure.py:1913
+#: ../gramps/gui/configure.py:1916
 msgid "Average years between generations"
 msgstr "Meðaltal ára á milli kynslóða"
 
-#: ../gramps/gui/configure.py:1921
+#: ../gramps/gui/configure.py:1924
 msgid "Max generations for relationships"
 msgstr "Hámark kynslóða fyrir vensl"
 
-#: ../gramps/gui/configure.py:1928
+#: ../gramps/gui/configure.py:1931
 msgid "Limits"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1938
+#: ../gramps/gui/configure.py:1941
 #, fuzzy
 #| msgid "Event Citations"
 msgid "Environment Settings"
 msgstr "Tilvitnanir v. atburða"
 
-#: ../gramps/gui/configure.py:1950
+#: ../gramps/gui/configure.py:1953
 msgid "Display Tip of the Day"
 msgstr "Birta vísbendingar dagsins"
 
-#: ../gramps/gui/configure.py:1955
+#: ../gramps/gui/configure.py:1958
 msgid "Show useful information about using Gramps on startup."
 msgstr ""
 
-#: ../gramps/gui/configure.py:1960
+#: ../gramps/gui/configure.py:1963
 #, fuzzy
 #| msgid "Remove Family Tree"
 msgid "Remember last Family Tree"
 msgstr "Fjarlægja ættartölu"
 
-#: ../gramps/gui/configure.py:1966
+#: ../gramps/gui/configure.py:1969
 msgid ""
 "Don't open dialog to choose family tree to load on startup, just load last "
 "used."
 msgstr ""
 
-#: ../gramps/gui/configure.py:1974
+#: ../gramps/gui/configure.py:1977
 msgid "Remember last view displayed"
 msgstr "Muna síðustu birta sýn"
 
-#: ../gramps/gui/configure.py:1979
+#: ../gramps/gui/configure.py:1982
 #, fuzzy
 msgid "Remember last view displayed and open it next time."
 msgstr "Muna síðustu birta sýn"
 
-#: ../gramps/gui/configure.py:1984
+#: ../gramps/gui/configure.py:1987
 #, fuzzy
 #| msgid "Enable spelling checker"
 msgid "Enable spell checker"
 msgstr "Virkja stafsetningaryfirferð"
 
-#: ../gramps/gui/configure.py:1989
+#: ../gramps/gui/configure.py:1992
 #, fuzzy
 #| msgid "Enable spelling checker"
 msgid "Enable the spelling checker for notes."
 msgstr "Virkja stafsetningaryfirferð"
 
-#: ../gramps/gui/configure.py:2000
+#: ../gramps/gui/configure.py:2003
 #, fuzzy, python-format
 #| msgid ""
 #| "GtkSpell not loaded. Spell checking will not be available.\n"
@@ -12266,13 +12275,13 @@ msgstr ""
 "GtkSpell ekki hlaðið inn. Stafsetningaryfirferð verður ekki tiltæk.\n"
 "Til að byggja hana inn í Gramps skoðaðu %(gramps_wiki_build_spell_url)s"
 
-#: ../gramps/gui/configure.py:2012
+#: ../gramps/gui/configure.py:2015
 #, fuzzy
 #| msgid "Show text label beside Navigator buttons (requires restart)"
 msgid "Show text label beside Navigator buttons *"
 msgstr "Birta texta við hlið örvahnappa (krefst endurræsingar)"
 
-#: ../gramps/gui/configure.py:2018
+#: ../gramps/gui/configure.py:2021
 msgid ""
 "Show or hide text beside Navigator buttons (People, Families, Events...).\n"
 "Requires Gramps restart to apply."
@@ -12280,60 +12289,60 @@ msgstr ""
 "Birta texta við hlið örvahnappa (Einstaklingar, Fjölskyldur, Atburðir...).\n"
 "Krefst endurræsingar Gramps til að virkjast."
 
-#: ../gramps/gui/configure.py:2028
+#: ../gramps/gui/configure.py:2031
 msgid "Show Clipboard icon on toolbar"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2033
+#: ../gramps/gui/configure.py:2036
 msgid "Show or hide the Clipboard icon on the toolbar."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2041
+#: ../gramps/gui/configure.py:2044
 msgid "Show Reports icon on toolbar"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2046
+#: ../gramps/gui/configure.py:2049
 msgid "Show or hide the Reports icon on the toolbar."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2054
+#: ../gramps/gui/configure.py:2057
 msgid "Show Tools icon on toolbar"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2059
+#: ../gramps/gui/configure.py:2062
 msgid "Show or hide the Tools icon on the toolbar."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2067
+#: ../gramps/gui/configure.py:2070
 msgid "Show Addons icon on toolbar"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2072
+#: ../gramps/gui/configure.py:2075
 msgid "Show or hide the Addons icon on the toolbar."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2080
+#: ../gramps/gui/configure.py:2083
 msgid "Show Preferences icon on toolbar"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2085
+#: ../gramps/gui/configure.py:2088
 msgid "Show or hide the Preferences icon on the toolbar."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2093
+#: ../gramps/gui/configure.py:2096
 msgid "Show close button in gramplet bar tabs"
 msgstr "Birta lokunarhnappa á gramplinga-flipum"
 
-#: ../gramps/gui/configure.py:2099
+#: ../gramps/gui/configure.py:2102
 #, fuzzy
 msgid "Show close button to simplify removing gramplets from bars."
 msgstr "Birta lokunarhnappa á gramplinga-flipum"
 
-#: ../gramps/gui/configure.py:2106
+#: ../gramps/gui/configure.py:2109
 msgid "Markup for invalid date format"
 msgstr "Merking fyrir ógilt dagsetningarsnið"
 
-#: ../gramps/gui/configure.py:2112
+#: ../gramps/gui/configure.py:2115
 #, python-format
 msgid ""
 "Convenience markups are:\n"
@@ -12364,29 +12373,29 @@ msgstr ""
 "Sem dæmi: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n"
 "mun birta <u><b>undirstrikaða og feitletraða dagsetningu</b></u>.\n"
 
-#: ../gramps/gui/configure.py:2133
+#: ../gramps/gui/configure.py:2136
 #, fuzzy
 #| msgid "Multiple Surnames"
 msgid "Multiple surname box height"
 msgstr "Mörg kenninöfn"
 
-#: ../gramps/gui/configure.py:2139
+#: ../gramps/gui/configure.py:2142
 msgid ""
 "Enter height in pixels. When multiple surnames are entered, these names "
 "display in a box. This setting sets the size of this box."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2195
+#: ../gramps/gui/configure.py:2198
 #, fuzzy
 #| msgid "Database version"
 msgid "Database Setting"
 msgstr "Útgáfa gagnagrunns"
 
-#: ../gramps/gui/configure.py:2200
+#: ../gramps/gui/configure.py:2203
 msgid "Database backend"
 msgstr "Gagnagrunnsbakendi"
 
-#: ../gramps/gui/configure.py:2208
+#: ../gramps/gui/configure.py:2211
 msgid ""
 "\n"
 "Database Location"
@@ -12394,21 +12403,21 @@ msgstr ""
 "\n"
 "Upplýsingar um gagnagrunn"
 
-#: ../gramps/gui/configure.py:2219
+#: ../gramps/gui/configure.py:2222
 msgid "Host"
 msgstr "Vél"
 
-#: ../gramps/gui/configure.py:2223
+#: ../gramps/gui/configure.py:2226
 msgid "Port"
 msgstr "Gátt"
 
-#: ../gramps/gui/configure.py:2232
+#: ../gramps/gui/configure.py:2235
 #, fuzzy
 #| msgid "Database Type"
 msgid "Database path"
 msgstr "Tegund gagnagrunns"
 
-#: ../gramps/gui/configure.py:2243
+#: ../gramps/gui/configure.py:2246
 msgid ""
 "\n"
 "Backup Management"
@@ -12416,43 +12425,43 @@ msgstr ""
 "\n"
 "Sýsl með öryggisafrit"
 
-#: ../gramps/gui/configure.py:2256
+#: ../gramps/gui/configure.py:2259
 msgid "Backup path"
 msgstr "Slóð á öryggisafrit"
 
-#: ../gramps/gui/configure.py:2266
+#: ../gramps/gui/configure.py:2269
 msgid "Backup on exit"
 msgstr "Taka öryggisafrit þegar hætt er"
 
-#: ../gramps/gui/configure.py:2271
+#: ../gramps/gui/configure.py:2274
 msgid "Backup Your family tree on exit to Backup path specified above."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2279
+#: ../gramps/gui/configure.py:2282
 msgid "Every 15 minutes"
 msgstr "Á 15 mínútna fresti"
 
-#: ../gramps/gui/configure.py:2280
+#: ../gramps/gui/configure.py:2283
 msgid "Every 30 minutes"
 msgstr "Á 30 mínútna fresti"
 
-#: ../gramps/gui/configure.py:2281
+#: ../gramps/gui/configure.py:2284
 msgid "Every hour"
 msgstr "Á klukkustundar fresti"
 
-#: ../gramps/gui/configure.py:2282
+#: ../gramps/gui/configure.py:2285
 msgid "Every 12 hours"
 msgstr "Á 12 klukkustunda fresti"
 
-#: ../gramps/gui/configure.py:2283
+#: ../gramps/gui/configure.py:2286
 msgid "Every day"
 msgstr "Daglega"
 
-#: ../gramps/gui/configure.py:2289
+#: ../gramps/gui/configure.py:2292
 msgid "Autobackup"
 msgstr "Sjálfvirk öryggisafritun"
 
-#: ../gramps/gui/configure.py:2296
+#: ../gramps/gui/configure.py:2299
 msgid ""
 "\n"
 "Family Tree's Media path"
@@ -12460,36 +12469,36 @@ msgstr ""
 "\n"
 "Slóð á gögn ættartölu"
 
-#: ../gramps/gui/configure.py:2309
+#: ../gramps/gui/configure.py:2312
 #, fuzzy
 #| msgid "Cannot set base media path"
 msgid "Base media path"
 msgstr "Get ekki sett grunnslóð fyrir gagnahluti"
 
-#: ../gramps/gui/configure.py:2321
+#: ../gramps/gui/configure.py:2324
 msgid ""
 "The base relative media path is specific to the active family tree. It is "
 "not a global setting. Each family tree is able to have a unique relative "
 "media path that is stored with the database."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2342
+#: ../gramps/gui/configure.py:2345
 #, fuzzy
 #| msgid "Records"
 msgid "Tag Records"
 msgstr "Færslur"
 
-#: ../gramps/gui/configure.py:2364
+#: ../gramps/gui/configure.py:2367
 msgid "Add tag on import"
 msgstr "Bæta við merki við innflutning"
 
-#: ../gramps/gui/configure.py:2371
+#: ../gramps/gui/configure.py:2374
 msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2380
+#: ../gramps/gui/configure.py:2383
 msgid ""
 "\n"
 "Source GEDCOM import"
@@ -12497,20 +12506,20 @@ msgstr ""
 "\n"
 "Innflutningur GEDCOM heimilda"
 
-#: ../gramps/gui/configure.py:2392
+#: ../gramps/gui/configure.py:2395
 msgid "Add default source on GEDCOM import"
 msgstr "Bæta við tilvísun í upprunaskrá þegar flutt er inn GEDCOM"
 
-#: ../gramps/gui/configure.py:2399 ../gramps/gui/dbloader.py:400
+#: ../gramps/gui/configure.py:2402 ../gramps/gui/dbloader.py:400
 msgid "Import"
 msgstr "Flytja inn"
 
-#: ../gramps/gui/configure.py:2468
+#: ../gramps/gui/configure.py:2471
 msgid "Select media directory"
 msgstr "Veldu gagnamöppu"
 
-#: ../gramps/gui/configure.py:2472 ../gramps/gui/configure.py:2502
-#: ../gramps/gui/configure.py:2529 ../gramps/gui/dbloader.py:363
+#: ../gramps/gui/configure.py:2475 ../gramps/gui/configure.py:2505
+#: ../gramps/gui/configure.py:2532 ../gramps/gui/dbloader.py:363
 #: ../gramps/gui/dbloader.py:400 ../gramps/gui/editors/edittaglist.py:122
 #: ../gramps/gui/glade/addmedia.glade:22
 #: ../gramps/gui/glade/baseselector.glade:25
@@ -12554,8 +12563,8 @@ msgstr "Veldu gagnamöppu"
 #: ../gramps/gui/glade/rule.glade:747 ../gramps/gui/glade/styleeditor.glade:86
 #: ../gramps/gui/glade/styleeditor.glade:1737
 #: ../gramps/gui/logger/_errorview.py:189 ../gramps/gui/plug/_guioptions.py:84
-#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:748
-#: ../gramps/gui/plug/_windows.py:1259
+#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:806
+#: ../gramps/gui/plug/_windows.py:1374
 #: ../gramps/gui/plug/report/_fileentry.py:68
 #: ../gramps/gui/plug/report/_reportdialog.py:170 ../gramps/gui/utils.py:265
 #: ../gramps/gui/viewmanager.py:1953 ../gramps/gui/views/listview.py:1250
@@ -12570,15 +12579,15 @@ msgstr "Veldu gagnamöppu"
 msgid "_Cancel"
 msgstr "_Hætta við"
 
-#: ../gramps/gui/configure.py:2497
+#: ../gramps/gui/configure.py:2500
 msgid "Select database directory"
 msgstr "Veldu gagnagrunnsmöppu"
 
-#: ../gramps/gui/configure.py:2525 ../gramps/gui/viewmanager.py:1948
+#: ../gramps/gui/configure.py:2528 ../gramps/gui/viewmanager.py:1948
 msgid "Select backup directory"
 msgstr "Veldu möppu fyrir öryggisafrit"
 
-#: ../gramps/gui/configure.py:2600
+#: ../gramps/gui/configure.py:2603
 msgid ""
 "If checked, use the standard genealogic symbols (death symbol is user "
 "selectable).\n"
@@ -12586,31 +12595,31 @@ msgid ""
 "yourself."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2607
+#: ../gramps/gui/configure.py:2610
 msgid ""
 "This can be useful if you want to add phonetic in a note to show how to "
 "pronounce a name or if you mix multiple languages like greek and russian."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2613
+#: ../gramps/gui/configure.py:2616
 msgid "Use symbols"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2627
+#: ../gramps/gui/configure.py:2630
 #, fuzzy
 msgid "Select default death symbol"
 msgstr "Setja sem sjálfgefið nafn"
 
-#: ../gramps/gui/configure.py:2637
+#: ../gramps/gui/configure.py:2640
 msgid "Genealogical Symbols"
 msgstr "Ættfræðitákn"
 
-#: ../gramps/gui/configure.py:2668 ../gramps/gui/glade/editfamily.glade:144
+#: ../gramps/gui/configure.py:2671 ../gramps/gui/glade/editfamily.glade:144
 #: ../gramps/gui/glade/editfamily.glade:398
 msgid "Death:"
 msgstr "Andlát:"
 
-#: ../gramps/gui/configure.py:2752
+#: ../gramps/gui/configure.py:2755
 #: ../gramps/plugins/quickview/all_relations.py:345
 #: ../gramps/plugins/view/relview.py:498
 #: ../gramps/plugins/webreport/basepage.py:2970
@@ -12620,15 +12629,15 @@ msgstr "Andlát:"
 msgid "Partner"
 msgstr "Sambýlingur"
 
-#: ../gramps/gui/configure.py:2755
+#: ../gramps/gui/configure.py:2758
 msgid "Killed"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2759
+#: ../gramps/gui/configure.py:2762
 msgid "Default genealogy symbols replacement"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2772
+#: ../gramps/gui/configure.py:2775
 msgid ""
 "You can set any text you want for this field.\n"
 "You can drag and drop a symbol from the symbol list above.\n"
@@ -12843,7 +12852,7 @@ msgstr "Upplýsingar um gagnagrunn"
 #: ../gramps/gui/glade/reorder.glade:38 ../gramps/gui/glade/rule.glade:333
 #: ../gramps/gui/glade/rule.glade:764 ../gramps/gui/glade/styleeditor.glade:103
 #: ../gramps/gui/glade/styleeditor.glade:1754
-#: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:748
+#: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:806
 #: ../gramps/gui/plug/report/_reportdialog.py:173 ../gramps/gui/utils.py:279
 #: ../gramps/gui/viewmanager.py:1805 ../gramps/gui/views/tags.py:747
 #: ../gramps/plugins/tool/check.py:828 ../gramps/plugins/tool/patchnames.py:152
@@ -13156,7 +13165,7 @@ msgstr "_Verkfæri"
 msgid "Open Addon Manager"
 msgstr "Umsjón viðbóta"
 
-#: ../gramps/gui/displaystate.py:423 ../gramps/gui/plug/_windows.py:447
+#: ../gramps/gui/displaystate.py:423 ../gramps/gui/plug/_windows.py:440
 #, fuzzy
 #| msgid "Addon Name"
 msgid "Addons"
@@ -13698,15 +13707,15 @@ msgid "Set as default name"
 msgstr "Setja sem sjálfgefið nafn"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
-#: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/viewmanager.py:1134
-#: ../gramps/gui/views/tags.py:590
+#: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:888
+#: ../gramps/gui/viewmanager.py:1134 ../gramps/gui/views/tags.py:590
 #: ../gramps/plugins/quickview/all_relations.py:365
 msgid "Yes"
 msgstr "Já"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:59
-#: ../gramps/gui/plug/_guioptions.py:1266 ../gramps/gui/viewmanager.py:1135
-#: ../gramps/gui/views/tags.py:591
+#: ../gramps/gui/plug/_guioptions.py:1266 ../gramps/gui/plug/_windows.py:889
+#: ../gramps/gui/viewmanager.py:1135 ../gramps/gui/views/tags.py:591
 #: ../gramps/plugins/quickview/all_relations.py:371
 msgid "No"
 msgstr "Nei"
@@ -14758,12 +14767,6 @@ msgstr "Breyta_upplýsingum_um_fólk"
 #: ../gramps/plugins/view/geofamily.py:499
 msgid "Edit Person"
 msgstr "Breyta einstaklingi"
-
-#: ../gramps/gui/editors/editperson.py:711
-#: ../gramps/plugins/view/mediaview.py:410
-#: ../gramps/plugins/view/mediaview.py:426
-msgid "View"
-msgstr "Skoða"
 
 #: ../gramps/gui/editors/editperson.py:713
 msgid "Edit Object Properties"
@@ -17174,7 +17177,7 @@ msgid "_Merge and close"
 msgstr "Sa_meina og loka"
 
 #: ../gramps/gui/glade/mergedata.glade:173
-#: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:1965
+#: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:2080
 #: ../gramps/plugins/tool/changenames.py:226
 #: ../gramps/plugins/tool/patchnames.py:454
 msgid "Select"
@@ -17851,7 +17854,7 @@ msgid "Install Selected _Addons"
 msgstr "Setja upp valdar viðbætur"
 
 #: ../gramps/gui/glade/updateaddons.glade:72
-#: ../gramps/gui/plug/_windows.py:1942
+#: ../gramps/gui/plug/_windows.py:2057
 msgid "Available Gramps Updates for Addons"
 msgstr "Tiltækar uppfærslur á Gramps-viðbótum"
 
@@ -18537,7 +18540,7 @@ msgstr "Veldu lit fyrir %s"
 msgid "Save As"
 msgstr "Vista sem"
 
-#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:1259
+#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:1374
 #: ../gramps/gui/plug/report/_bookdialog.py:651
 #: ../gramps/gui/plug/report/_fileentry.py:68
 msgid "_Open"
@@ -18560,7 +18563,7 @@ msgstr "Hlutur"
 msgid "Audience"
 msgstr "Hljóðrit"
 
-#: ../gramps/gui/plug/_windows.py:226 ../gramps/gui/plug/_windows.py:1481
+#: ../gramps/gui/plug/_windows.py:226 ../gramps/gui/plug/_windows.py:1596
 msgid "Version"
 msgstr "Útgáfunúmer"
 
@@ -18584,12 +18587,12 @@ msgstr ""
 msgid "Requires"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:263
+#: ../gramps/gui/plug/_windows.py:263 ../gramps/gui/plug/_windows.py:395
+#: ../gramps/gui/plug/_windows.py:594
 #, fuzzy
-#| msgctxt "Graduation abbreviation"
-#| msgid "grad."
-msgid "Upgrade"
-msgstr "útskr."
+#| msgid "Updated"
+msgid "Update"
+msgstr "Uppfært"
 
 #: ../gramps/gui/plug/_windows.py:286
 #, fuzzy
@@ -18613,320 +18616,362 @@ msgstr "Heiti viðbótar"
 msgid "Refresh"
 msgstr "Uppfæra"
 
-#: ../gramps/gui/plug/_windows.py:385
+#: ../gramps/gui/plug/_windows.py:386
 #, fuzzy
 #| msgid "Filter"
 msgid "Filters"
 msgstr "Síun"
 
-#: ../gramps/gui/plug/_windows.py:393 ../gramps/gui/plug/_windows.py:402
-#: ../gramps/gui/plug/_windows.py:409 ../gramps/gui/plug/_windows.py:423
-#: ../gramps/gui/plug/_windows.py:557 ../gramps/gui/plug/_windows.py:560
-#: ../gramps/plugins/drawreport/statisticschart.py:334
+#: ../gramps/gui/plug/_windows.py:392
 #, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "all"
-msgid "All"
-msgstr "allt"
+#| msgid "Addon Name"
+msgid "All addons"
+msgstr "Heiti viðbótar"
 
-#: ../gramps/gui/plug/_windows.py:450
+#: ../gramps/gui/plug/_windows.py:393 ../gramps/gui/plug/_windows.py:588
+#, fuzzy
+#| msgid "Unstable"
+msgid "Uninstalled"
+msgstr "Óstöðugt"
+
+#: ../gramps/gui/plug/_windows.py:394 ../gramps/gui/plug/_windows.py:591
+#, fuzzy
+#| msgid "Unstable"
+msgid "Installed"
+msgstr "Óstöðugt"
+
+#: ../gramps/gui/plug/_windows.py:407
+#, fuzzy
+#| msgid "All files"
+msgid "All types"
+msgstr "Allar skrár"
+
+#: ../gramps/gui/plug/_windows.py:415
+#, fuzzy
+#| msgid "Audio"
+msgid "All audiences"
+msgstr "Hljóðrit"
+
+#: ../gramps/gui/plug/_windows.py:422
+#, fuzzy
+#| msgid " state"
+msgid "All statuses"
+msgstr " staða"
+
+#: ../gramps/gui/plug/_windows.py:443
 #, fuzzy
 #| msgid "Setting"
 msgid "Settings"
 msgstr "Stilling"
 
-#: ../gramps/gui/plug/_windows.py:453
+#: ../gramps/gui/plug/_windows.py:446
 msgid "Projects"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:473
+#: ../gramps/gui/plug/_windows.py:489 ../gramps/gui/plug/_windows.py:599
+#, fuzzy
+#| msgid "All Events"
+msgid "All projects"
+msgstr "Allir atburðir"
+
+#: ../gramps/gui/plug/_windows.py:501
 msgid "Loading..."
 msgstr "Hleð..."
 
-#: ../gramps/gui/plug/_windows.py:517
+#: ../gramps/gui/plug/_windows.py:545
 #, fuzzy
 #| msgid "No matches found"
 msgid "No matching addons found."
 msgstr "Engar samsvaranir fundust"
 
-#: ../gramps/gui/plug/_windows.py:646
+#: ../gramps/gui/plug/_windows.py:700
 msgid "Allow Gramps to install required python modules"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:651
+#: ../gramps/gui/plug/_windows.py:707
 #: ../gramps/plugins/webreport/basepage.py:1899
 #: ../gramps/plugins/webreport/basepage.py:1964
 msgid "Updates"
 msgstr "Uppfærslur"
 
-#: ../gramps/gui/plug/_windows.py:667
+#: ../gramps/gui/plug/_windows.py:723
 msgid "Once a month"
 msgstr "Einu sinni í mánuði"
 
-#: ../gramps/gui/plug/_windows.py:668
+#: ../gramps/gui/plug/_windows.py:724
 msgid "Once a week"
 msgstr "Einu sinni í viku"
 
-#: ../gramps/gui/plug/_windows.py:669
+#: ../gramps/gui/plug/_windows.py:725
 msgid "Once a day"
 msgstr "Einu sinni á dag"
 
-#: ../gramps/gui/plug/_windows.py:670
+#: ../gramps/gui/plug/_windows.py:726
 msgid "Always"
 msgstr "Ávallt"
 
-#: ../gramps/gui/plug/_windows.py:676
+#: ../gramps/gui/plug/_windows.py:732
 msgid "Check for addon updates"
 msgstr "Leita að uppfærslum fyrir viðbætur"
 
-#: ../gramps/gui/plug/_windows.py:683
+#: ../gramps/gui/plug/_windows.py:739
 msgid "Updated addons only"
 msgstr "Einungis uppfærðar viðbætur"
 
-#: ../gramps/gui/plug/_windows.py:684
+#: ../gramps/gui/plug/_windows.py:740
 msgid "New addons only"
 msgstr "Einungis nýjar viðbætur"
 
-#: ../gramps/gui/plug/_windows.py:685
+#: ../gramps/gui/plug/_windows.py:741
 msgid "New and updated addons"
 msgstr "Nýjar og uppfærðar viðbætur"
 
-#: ../gramps/gui/plug/_windows.py:696
+#: ../gramps/gui/plug/_windows.py:752
 msgid "What to check"
 msgstr "Hvað á að athuga"
 
-#: ../gramps/gui/plug/_windows.py:702
+#: ../gramps/gui/plug/_windows.py:758
 msgid "Do not ask about previously notified addons"
 msgstr "Ekki spyrja um viðbætur sem áður hafa verið tilkynntar"
 
-#: ../gramps/gui/plug/_windows.py:707
+#: ../gramps/gui/plug/_windows.py:765
 msgid "Check for updated addons now"
 msgstr "Leita núna að uppfærslum á viðbótum"
 
-#: ../gramps/gui/plug/_windows.py:720
+#: ../gramps/gui/plug/_windows.py:778
 #, fuzzy
 #| msgid "New Person"
 msgid "New Project"
 msgstr "Nýr einstaklingur"
 
-#: ../gramps/gui/plug/_windows.py:722
+#: ../gramps/gui/plug/_windows.py:780
 #, fuzzy
 #| msgid "Edit Person"
 msgid "Edit Project"
 msgstr "Breyta einstaklingi"
 
-#: ../gramps/gui/plug/_windows.py:730
+#: ../gramps/gui/plug/_windows.py:788
 #, fuzzy
 #| msgid "Preferred name"
 msgid "Project name"
 msgstr "Umbeðið nafn"
 
-#: ../gramps/gui/plug/_windows.py:796
+#: ../gramps/gui/plug/_windows.py:886
+#, fuzzy
+#| msgid "Restore to defaults"
+msgid "Restore project defaults"
+msgstr "Endurheimta sjálfgefin gildi"
+
+#: ../gramps/gui/plug/_windows.py:887
+msgid "Are you sure?"
+msgstr ""
+
+#: ../gramps/gui/plug/_windows.py:911
 msgid "Checking Addons Failed"
 msgstr "Mistókst að athuga með viðbætur"
 
-#: ../gramps/gui/plug/_windows.py:798
+#: ../gramps/gui/plug/_windows.py:913
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr ""
 "Viðbótasafnið virðist ekki vera tiltækt í augnablikinu. Reyndu aftur síðar."
 
-#: ../gramps/gui/plug/_windows.py:813
+#: ../gramps/gui/plug/_windows.py:928
 msgid "There are no available addons of this type"
 msgstr "Það eru engar tiltækar viðbætur af þessari gerð"
 
-#: ../gramps/gui/plug/_windows.py:814
+#: ../gramps/gui/plug/_windows.py:929
 msgid "' and '"
 msgstr "' og '"
 
-#: ../gramps/gui/plug/_windows.py:814
+#: ../gramps/gui/plug/_windows.py:929
 #, python-format
 msgid "Checked for '%s'"
 msgstr "Athugaði '%s'"
 
-#: ../gramps/gui/plug/_windows.py:820
+#: ../gramps/gui/plug/_windows.py:935
 msgid "new"
 msgstr "nýtt"
 
-#: ../gramps/gui/plug/_windows.py:820
+#: ../gramps/gui/plug/_windows.py:935
 msgid "update"
 msgstr "uppfæra"
 
-#: ../gramps/gui/plug/_windows.py:855
+#: ../gramps/gui/plug/_windows.py:970
 msgid "Hidden"
 msgstr "Falið"
 
-#: ../gramps/gui/plug/_windows.py:856
+#: ../gramps/gui/plug/_windows.py:971
 msgid "Visible"
 msgstr "Sýnilegt"
 
-#: ../gramps/gui/plug/_windows.py:861
+#: ../gramps/gui/plug/_windows.py:976
 msgid "Plugin Manager"
 msgstr "Umsjón viðbóta"
 
-#: ../gramps/gui/plug/_windows.py:913 ../gramps/gui/plug/_windows.py:971
+#: ../gramps/gui/plug/_windows.py:1028 ../gramps/gui/plug/_windows.py:1086
 msgid "Info"
 msgstr "Upplýsingar"
 
-#: ../gramps/gui/plug/_windows.py:916 ../gramps/gui/plug/_windows.py:974
+#: ../gramps/gui/plug/_windows.py:1031 ../gramps/gui/plug/_windows.py:1089
 msgid "Hide/Unhide"
 msgstr "Fela/birta"
 
-#: ../gramps/gui/plug/_windows.py:925 ../gramps/gui/plug/_windows.py:984
+#: ../gramps/gui/plug/_windows.py:1040 ../gramps/gui/plug/_windows.py:1099
 msgid "Load"
 msgstr "Hlaða"
 
-#: ../gramps/gui/plug/_windows.py:931
+#: ../gramps/gui/plug/_windows.py:1046
 msgid "Registered Plugins"
 msgstr "Skráðar viðbætur"
 
-#: ../gramps/gui/plug/_windows.py:950
+#: ../gramps/gui/plug/_windows.py:1065
 msgid "Loaded"
 msgstr "Lesið inn"
 
-#: ../gramps/gui/plug/_windows.py:954
+#: ../gramps/gui/plug/_windows.py:1069
 #: ../gramps/plugins/importer/importprogen.glade:431
 #: ../gramps/plugins/importer/importprogen.glade:1126
 msgid "File"
 msgstr "Skrá"
 
-#: ../gramps/gui/plug/_windows.py:961
+#: ../gramps/gui/plug/_windows.py:1076
 msgid "Message"
 msgstr "Skilaboð"
 
-#: ../gramps/gui/plug/_windows.py:990
+#: ../gramps/gui/plug/_windows.py:1105
 msgid "Loaded Plugins"
 msgstr "Hlaðnar viðbætur"
 
-#: ../gramps/gui/plug/_windows.py:1012
+#: ../gramps/gui/plug/_windows.py:1127
 msgid "Addon Name"
 msgstr "Heiti viðbótar"
 
-#: ../gramps/gui/plug/_windows.py:1024
+#: ../gramps/gui/plug/_windows.py:1139
 msgid "Path to Addon:"
 msgstr "Slóð að viðbót:"
 
-#: ../gramps/gui/plug/_windows.py:1044
+#: ../gramps/gui/plug/_windows.py:1159
 msgid "Install Addon"
 msgstr "Setja upp viðbót"
 
-#: ../gramps/gui/plug/_windows.py:1047
+#: ../gramps/gui/plug/_windows.py:1162
 msgid "Install All Addons"
 msgstr "Setja upp allar viðbætur"
 
-#: ../gramps/gui/plug/_windows.py:1050
+#: ../gramps/gui/plug/_windows.py:1165
 msgid "Refresh Addon List"
 msgstr "Endurnýja viðbótalista"
 
-#: ../gramps/gui/plug/_windows.py:1063
+#: ../gramps/gui/plug/_windows.py:1178
 msgid "Reload"
 msgstr "Endurhlaða"
 
-#: ../gramps/gui/plug/_windows.py:1091
+#: ../gramps/gui/plug/_windows.py:1206
 msgid "Refreshing Addon List"
 msgstr "Er að endurnýja viðbótalista"
 
-#: ../gramps/gui/plug/_windows.py:1092 ../gramps/gui/plug/_windows.py:1097
-#: ../gramps/gui/plug/_windows.py:1235
+#: ../gramps/gui/plug/_windows.py:1207 ../gramps/gui/plug/_windows.py:1212
+#: ../gramps/gui/plug/_windows.py:1350
 msgid "Reading gramps-project.org..."
 msgstr "Les gramps-project.org..."
 
-#: ../gramps/gui/plug/_windows.py:1115
+#: ../gramps/gui/plug/_windows.py:1230
 msgid "Checking addon..."
 msgstr "Athuga viðbót..."
 
-#: ../gramps/gui/plug/_windows.py:1123
+#: ../gramps/gui/plug/_windows.py:1238
 msgid "Unknown Help URL"
 msgstr "Óþekkt slóð á hjálparskjöl"
 
-#: ../gramps/gui/plug/_windows.py:1134
+#: ../gramps/gui/plug/_windows.py:1249
 msgid "Unknown URL"
 msgstr "Óþekkt slóð"
 
-#: ../gramps/gui/plug/_windows.py:1199
+#: ../gramps/gui/plug/_windows.py:1314
 msgid "Install all Addons"
 msgstr "Setja upp allar viðbætur"
 
-#: ../gramps/gui/plug/_windows.py:1200
+#: ../gramps/gui/plug/_windows.py:1315
 msgid "Installing..."
 msgstr "Uppsetning..."
 
-#: ../gramps/gui/plug/_windows.py:1233
+#: ../gramps/gui/plug/_windows.py:1348
 msgid "Installing Addon"
 msgstr "Set upp viðbót"
 
-#: ../gramps/gui/plug/_windows.py:1256
+#: ../gramps/gui/plug/_windows.py:1371
 msgid "Load Addon"
 msgstr "Hleð inn viðbót"
 
-#: ../gramps/gui/plug/_windows.py:1348
+#: ../gramps/gui/plug/_windows.py:1463
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:261
 msgid "Fail"
 msgstr "Mistókst"
 
-#: ../gramps/gui/plug/_windows.py:1371 ../gramps/gui/widgets/grampletbar.py:612
+#: ../gramps/gui/plug/_windows.py:1486 ../gramps/gui/widgets/grampletbar.py:612
 msgid "OK"
 msgstr "Í lagi"
 
-#: ../gramps/gui/plug/_windows.py:1479
+#: ../gramps/gui/plug/_windows.py:1594
 msgid "Plugin name"
 msgstr "Heiti viðbótar"
 
-#: ../gramps/gui/plug/_windows.py:1482
+#: ../gramps/gui/plug/_windows.py:1597
 msgid "Authors"
 msgstr "Höfundar"
 
-#: ../gramps/gui/plug/_windows.py:1484
+#: ../gramps/gui/plug/_windows.py:1599
 #: ../gramps/gui/plug/report/_reportdialog.py:481
 msgid "Filename"
 msgstr "Skráarheiti"
 
-#: ../gramps/gui/plug/_windows.py:1487
+#: ../gramps/gui/plug/_windows.py:1602
 msgid "Detailed Info"
 msgstr "Ítarlegar upplýsingar"
 
-#: ../gramps/gui/plug/_windows.py:1542
+#: ../gramps/gui/plug/_windows.py:1657
 msgid "Plugin Error"
 msgstr "Villa í viðbót"
 
-#: ../gramps/gui/plug/_windows.py:1611
+#: ../gramps/gui/plug/_windows.py:1726
 msgid "_Execute"
 msgstr "_Keyra"
 
-#: ../gramps/gui/plug/_windows.py:1909
+#: ../gramps/gui/plug/_windows.py:2024
 #: ../gramps/plugins/importer/importprogen.py:478
 #: ../gramps/plugins/tool/ownereditor.py:171
 #: ../gramps/plugins/tool/reorderids.py:249
 msgid "Main window"
 msgstr "Aðalgluggi"
 
-#: ../gramps/gui/plug/_windows.py:2047
+#: ../gramps/gui/plug/_windows.py:2162
 msgid "Downloading and installing selected addons..."
 msgstr "Sæki og set upp valdar viðbætur..."
 
-#: ../gramps/gui/plug/_windows.py:2090
+#: ../gramps/gui/plug/_windows.py:2205
 msgid "Installation Errors"
 msgstr "Uppsetningarvillur"
 
-#: ../gramps/gui/plug/_windows.py:2091
+#: ../gramps/gui/plug/_windows.py:2206
 msgid "The following addons had errors: "
 msgstr "Eftirfarandi viðbætur voru gallaðar: "
 
-#: ../gramps/gui/plug/_windows.py:2099 ../gramps/gui/plug/_windows.py:2116
+#: ../gramps/gui/plug/_windows.py:2214 ../gramps/gui/plug/_windows.py:2231
 msgid "Done downloading and installing addons"
 msgstr "Búið að sækja og setja upp viðbætur"
 
-#: ../gramps/gui/plug/_windows.py:2104
+#: ../gramps/gui/plug/_windows.py:2219
 #, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
 msgstr[0] "{number_of} viðbót var sett upp."
 msgstr[1] "{number_of} viðbætur voru settar upp."
 
-#: ../gramps/gui/plug/_windows.py:2109
-msgid "If you have installed a 'Gramps View', you will need to restart Gramps."
+#: ../gramps/gui/plug/_windows.py:2224
+msgid "If you have installed a 'View', you will need to restart Gramps."
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:2117
+#: ../gramps/gui/plug/_windows.py:2232
 msgid "No addons were installed."
 msgstr "Engar viðbætur voru settar upp."
 
@@ -21954,6 +21999,13 @@ msgstr "Stíllinn sem verður notaður til birtingar texta fyrir kynslóð \"%d\
 msgid "Item count"
 msgstr "Fjölda atriða"
 
+#: ../gramps/plugins/drawreport/statisticschart.py:334
+#, fuzzy
+#| msgctxt "Filtering_on"
+#| msgid "all"
+msgid "All"
+msgstr "allt"
+
 #: ../gramps/plugins/drawreport/statisticschart.py:335
 #: ../gramps/plugins/drawreport/statisticschart.py:502
 #: ../gramps/plugins/drawreport/statisticschart.py:893
@@ -22576,11 +22628,11 @@ msgstr "Tölvupóstur"
 msgid "WWW"
 msgstr "Vefur"
 
-#: ../gramps/plugins/export/exportgedcom.py:1522
+#: ../gramps/plugins/export/exportgedcom.py:1525
 msgid "Writing media"
 msgstr "Skrifa á gagnamiðil"
 
-#: ../gramps/plugins/export/exportgedcom.py:1703
+#: ../gramps/plugins/export/exportgedcom.py:1706
 msgid "GEDCOM Export failed"
 msgstr "GEDCOM útflutningur mistókst"
 
@@ -36496,6 +36548,11 @@ msgstr "Fella saman allan hópinn"
 msgid "Expand this Entire Group"
 msgstr "Fletta út öllum þessum hóp"
 
+#: ../gramps/plugins/view/relview.py:148 ../gramps/plugins/view/view.gpr.py:119
+#: ../gramps/plugins/view/view.gpr.py:127
+msgid "Relationships"
+msgstr "Vensl"
+
 #: ../gramps/plugins/view/relview.py:390
 #, fuzzy
 msgid "Organize Bookmarks..."
@@ -38623,6 +38680,18 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:230
 msgid "No style sheet"
 msgstr "Ekkert stílblað"
+
+#~ msgid "Quickreport"
+#~ msgstr "Flýtiskýrsla"
+
+#~ msgid "Gramps View"
+#~ msgstr "Gramps sýn"
+
+#, fuzzy
+#~| msgctxt "Graduation abbreviation"
+#~| msgid "grad."
+#~ msgid "Upgrade"
+#~ msgstr "útskr."
 
 #~ msgid ""
 #~ "Gramps\n"
