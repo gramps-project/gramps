@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-19 21:56+0100\n"
-"PO-Revision-Date: 2023-08-19 20:09+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"PO-Revision-Date: 2023-08-19 21:58+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -9152,14 +9152,10 @@ msgid "Exporter"
 msgstr "מייצא"
 
 #: ../gramps/gen/plug/_pluginreg.py:120
-#, fuzzy
-#| msgid "Doc creator"
 msgid "Document creator"
-msgstr "יצירת Doc"
+msgstr "יוצר מסמכים"
 
 #: ../gramps/gen/plug/_pluginreg.py:121
-#, fuzzy
-#| msgid "Plugin lib"
 msgid "Plugin library"
 msgstr "ספריית מתקעים"
 
@@ -9174,10 +9170,8 @@ msgid "View"
 msgstr "מצג"
 
 #: ../gramps/gen/plug/_pluginreg.py:124
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Relationship calculator"
-msgstr "מחשבון קשר־גומלין"
+msgstr "מחשבון קשרי־גומלין"
 
 #: ../gramps/gen/plug/_pluginreg.py:125 ../gramps/gen/plug/_pluginreg.py:513
 #: ../gramps/gui/glade/grampletpane.glade:156
@@ -18432,10 +18426,8 @@ msgstr "נדרש"
 
 #: ../gramps/gui/plug/_windows.py:263 ../gramps/gui/plug/_windows.py:395
 #: ../gramps/gui/plug/_windows.py:594
-#, fuzzy
-#| msgid "Updated"
 msgid "Update"
-msgstr "עודכן"
+msgstr "עדכון"
 
 #: ../gramps/gui/plug/_windows.py:286
 msgid "Module installation failed"
@@ -18458,40 +18450,28 @@ msgid "Filters"
 msgstr "מסננים"
 
 #: ../gramps/gui/plug/_windows.py:392
-#, fuzzy
-#| msgid "Addons"
 msgid "All addons"
-msgstr "תוספים"
+msgstr "כל התוספים"
 
 #: ../gramps/gui/plug/_windows.py:393 ../gramps/gui/plug/_windows.py:588
-#, fuzzy
-#| msgid "installed"
 msgid "Uninstalled"
-msgstr "מותקן"
+msgstr "הוסר"
 
 #: ../gramps/gui/plug/_windows.py:394 ../gramps/gui/plug/_windows.py:591
-#, fuzzy
-#| msgid "installed"
 msgid "Installed"
 msgstr "מותקן"
 
 #: ../gramps/gui/plug/_windows.py:407
-#, fuzzy
-#| msgid "All files"
 msgid "All types"
-msgstr "כל הקבצים"
+msgstr "כל הסוגים"
 
 #: ../gramps/gui/plug/_windows.py:415
-#, fuzzy
-#| msgid "Audience"
 msgid "All audiences"
-msgstr "קהל"
+msgstr "כל הקהלים"
 
 #: ../gramps/gui/plug/_windows.py:422
-#, fuzzy
-#| msgid " state"
 msgid "All statuses"
-msgstr " מדינה"
+msgstr "כל המצבים"
 
 #: ../gramps/gui/plug/_windows.py:443
 msgid "Settings"
@@ -18502,10 +18482,8 @@ msgid "Projects"
 msgstr "מיזמים"
 
 #: ../gramps/gui/plug/_windows.py:489 ../gramps/gui/plug/_windows.py:599
-#, fuzzy
-#| msgid "Projects"
 msgid "All projects"
-msgstr "מיזמים"
+msgstr "כל המיזמים"
 
 #: ../gramps/gui/plug/_windows.py:501
 msgid "Loading..."
@@ -18582,14 +18560,12 @@ msgid "Project name"
 msgstr "שם מיזם"
 
 #: ../gramps/gui/plug/_windows.py:886
-#, fuzzy
-#| msgid "Restore to defaults"
 msgid "Restore project defaults"
-msgstr "שחזור לברירת מחדל"
+msgstr "שחזור לברירות המחדל של המיזם"
 
 #: ../gramps/gui/plug/_windows.py:887
 msgid "Are you sure?"
-msgstr ""
+msgstr "להמשיך?"
 
 #: ../gramps/gui/plug/_windows.py:911
 msgid "Checking Addons Failed"
@@ -18792,11 +18768,8 @@ msgstr[0] "{number_of} תוסף הותקן."
 msgstr[1] "{number_of}‏ תוספים הותקנו."
 
 #: ../gramps/gui/plug/_windows.py:2224
-#, fuzzy
-#| msgid ""
-#| "If you have installed a 'Gramps View', you will need to restart Gramps."
 msgid "If you have installed a 'View', you will need to restart Gramps."
-msgstr "במידה והותקן 'מצג גרמפס', נא לאתחל את גרמפס."
+msgstr "אם הותקן 'מצג', נא לאתחל את גרמפס."
 
 #: ../gramps/gui/plug/_windows.py:2232
 msgid "No addons were installed."
