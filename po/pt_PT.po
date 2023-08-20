@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-19 21:56+0100\n"
-"PO-Revision-Date: 2023-08-13 04:40+0000\n"
+"PO-Revision-Date: 2023-08-20 05:36+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@gmx.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -9346,8 +9346,6 @@ msgid "Expert"
 msgstr "Perito"
 
 #: ../gramps/gen/plug/_pluginreg.py:116
-#, fuzzy
-#| msgid "Quick View"
 msgid "Quick view"
 msgstr "Vista rápida"
 
@@ -9364,14 +9362,10 @@ msgid "Exporter"
 msgstr "Exportador"
 
 #: ../gramps/gen/plug/_pluginreg.py:120
-#, fuzzy
-#| msgid "Doc creator"
 msgid "Document creator"
 msgstr "Criador de documentos"
 
 #: ../gramps/gen/plug/_pluginreg.py:121
-#, fuzzy
-#| msgid "Plugin lib"
 msgid "Plugin library"
 msgstr "Biblioteca de extensões"
 
@@ -9386,8 +9380,6 @@ msgid "View"
 msgstr "Ver"
 
 #: ../gramps/gen/plug/_pluginreg.py:124
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Relationship calculator"
 msgstr "Calculadora de parentesco"
 
@@ -18810,10 +18802,8 @@ msgstr "Requer"
 
 #: ../gramps/gui/plug/_windows.py:263 ../gramps/gui/plug/_windows.py:395
 #: ../gramps/gui/plug/_windows.py:594
-#, fuzzy
-#| msgid "Updated"
 msgid "Update"
-msgstr "Actualizado"
+msgstr "Actualizar"
 
 #: ../gramps/gui/plug/_windows.py:286
 msgid "Module installation failed"
@@ -18836,40 +18826,28 @@ msgid "Filters"
 msgstr "Filtros"
 
 #: ../gramps/gui/plug/_windows.py:392
-#, fuzzy
-#| msgid "Addons"
 msgid "All addons"
-msgstr "Extensões"
+msgstr "Todas as extensões"
 
 #: ../gramps/gui/plug/_windows.py:393 ../gramps/gui/plug/_windows.py:588
-#, fuzzy
-#| msgid "installed"
 msgid "Uninstalled"
-msgstr "instalado"
+msgstr "Desinstaladas"
 
 #: ../gramps/gui/plug/_windows.py:394 ../gramps/gui/plug/_windows.py:591
-#, fuzzy
-#| msgid "installed"
 msgid "Installed"
-msgstr "instalado"
+msgstr "Instaladas"
 
 #: ../gramps/gui/plug/_windows.py:407
-#, fuzzy
-#| msgid "All files"
 msgid "All types"
-msgstr "Todos os ficheiros"
+msgstr "Todos os tipos"
 
 #: ../gramps/gui/plug/_windows.py:415
-#, fuzzy
-#| msgid "Audience"
 msgid "All audiences"
-msgstr "Audiência"
+msgstr "Todas as audiências"
 
 #: ../gramps/gui/plug/_windows.py:422
-#, fuzzy
-#| msgid " state"
 msgid "All statuses"
-msgstr " distrito"
+msgstr "Todos os estados"
 
 #: ../gramps/gui/plug/_windows.py:443
 msgid "Settings"
@@ -18880,10 +18858,8 @@ msgid "Projects"
 msgstr "Projectos"
 
 #: ../gramps/gui/plug/_windows.py:489 ../gramps/gui/plug/_windows.py:599
-#, fuzzy
-#| msgid "Projects"
 msgid "All projects"
-msgstr "Projectos"
+msgstr "Todos os projectos"
 
 #: ../gramps/gui/plug/_windows.py:501
 msgid "Loading..."
@@ -18960,14 +18936,12 @@ msgid "Project name"
 msgstr "Nome do projecto"
 
 #: ../gramps/gui/plug/_windows.py:886
-#, fuzzy
-#| msgid "Restore to defaults"
 msgid "Restore project defaults"
-msgstr "Repor pré-definições"
+msgstr "Repor pré-definições do projecto"
 
 #: ../gramps/gui/plug/_windows.py:887
 msgid "Are you sure?"
-msgstr ""
+msgstr "Tem a certeza?"
 
 #: ../gramps/gui/plug/_windows.py:911
 msgid "Checking Addons Failed"
@@ -19172,11 +19146,8 @@ msgstr[0] "Foi instalada {number_of} extensão."
 msgstr[1] "Foram instaladas {number_of} extensões."
 
 #: ../gramps/gui/plug/_windows.py:2224
-#, fuzzy
-#| msgid ""
-#| "If you have installed a 'Gramps View', you will need to restart Gramps."
 msgid "If you have installed a 'View', you will need to restart Gramps."
-msgstr "Se instalou um separador Gramps terá de reiniciar o programa."
+msgstr "Se instalou uma vista, terá de reiniciar o Gramps."
 
 #: ../gramps/gui/plug/_windows.py:2232
 msgid "No addons were installed."
