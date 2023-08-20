@@ -188,17 +188,11 @@ div#nav.rlt ul li {
 div#nav.ltr ul li {
     float: left;
 }
-/*
-div#nav ul li, #subnavigation ul li {
-    float: left;
-}
-*/
 div#nav ul li a, #subnavigation ul li a {
     display: block;
     font-size: smaller;
     font-weight: bold;
     color: #E0E6E0;
-    padding: 5px;
     border-bottom: solid 1px #454;
 }
 div#nav ul li a:hover, #subnavigation ul li a:hover {
@@ -229,6 +223,8 @@ div#nav li.lang {
 div#nav li.lang:hover > ul {
     visibility: visible;
     opacity: 1;
+    width: 80px;
+    padding-right: 5px;
 }
 div#nav ul.lang {
     position: absolute;
@@ -422,7 +418,6 @@ div#nav::after {
     }
     .lang > .lang {
         top: 0;
-        /* left: 100%; */
         margin-top: -6px;
         margin-left: -1px;
         -webkit-border-radius: 0 6px 6px 6px;

@@ -181,16 +181,10 @@ div#nav.wrappernav.ltr {
 div#nav.wrappernav.rtl {
     float: right;
 }
-/*
-div#nav ul li, #subnavigation ul li {
-    float: left;
-}
-*/
 div#nav ul li a, #subnavigation ul li a {
     display: block;
     font-size: smaller;
     font-weight: bold;
-    padding: 5px;
     border-bottom: solid 1px #EEE;
 }
 div#nav ul li a:hover, #subnavigation ul li a:hover {
@@ -210,12 +204,12 @@ div#nav ul li.CurrentSection a {
 }
 div#nav li.lang {
     font-family: sans-serif;
-    padding-top: .4em;
-    padding-bottom: .2em;
 }
 div#nav li.lang:hover > ul {
     visibility: visible;
     opacity: 1;
+    width: 80px;
+    padding-right: 5px;
 }
 div#nav ul.lang {
     position: absolute;

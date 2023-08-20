@@ -184,16 +184,10 @@ div#nav ul, #subnavigation ul {
 #subnavigation ul {
     border-bottom: solid 1px #8C581C;
 }
-/*
-div#nav ul li, #subnavigation ul li {
-    float: left;
-}
-*/
 div#nav ul li a, #subnavigation ul li a {
     display: block;
     font-size: smaller;
     font-weight: bold;
-    padding: 5px;
     border-bottom: solid 1px #FFE09F;
 }
 div#nav ul li a:hover, #subnavigation ul li a:hover {
@@ -221,6 +215,8 @@ div#nav li.lang {
 div#nav li.lang:hover > ul {
     visibility: visible;
     opacity: 1;
+    width: 80px;
+    padding-right: 5px;
 }
 div#nav ul.lang {
     position: absolute;

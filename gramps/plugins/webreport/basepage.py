@@ -222,11 +222,9 @@ class BasePage:
             self.rlocale = report.set_locale(the_lang)
         else:
             self.rlocale = report.set_locale(report.options["trans"])
-        self.dir = False
+        self.dir = "ltr"
         if the_lang in ["he", "ar"]:
             self.dir = "rtl"
-        else:
-            self.dir = "ltr"
         self._ = self.rlocale.translation.sgettext
         self.colon = self._(":")  # Translators: needed for French, else ignore
 

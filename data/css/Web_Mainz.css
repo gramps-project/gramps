@@ -183,11 +183,6 @@ div#nav.wrappernav.ltr {
 div#nav.wrappernav.rtl {
     float: right;
 }
-/*
-div#nav ul li, #subnavigation ul li {
-    float: left;
-}
-*/
 div#nav ul li a, #subnavigation ul li a {
     display: run-in;
     padding: 0.4em 0.8em 0.3em 0.8em;
@@ -217,6 +212,8 @@ div#nav li.lang {
 div#nav li.lang:hover > ul {
     visibility: visible;
     opacity: 1;
+    width: 80px;
+    padding-right: 5px;
 }
 div#nav ul.lang {
     position: absolute;
