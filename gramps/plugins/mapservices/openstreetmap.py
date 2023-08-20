@@ -62,6 +62,6 @@ class OpensStreetMapService(MapService):
             return
 
         titledescr = place_displayer.display(self.database, place)
-        self.url = "http://nominatim.openstreetmap.org/" "search.php?q=%s" % "+".join(
+        self.url = "http://nominatim.openstreetmap.org/" "search?q=%s" % "+".join(
             titledescr.split()
         )
