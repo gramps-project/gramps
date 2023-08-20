@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-19 21:56+0100\n"
-"PO-Revision-Date: 2023-08-19 20:48+0000\n"
+"PO-Revision-Date: 2023-08-20 05:36+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -17,8 +17,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 5.0-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
@@ -3207,7 +3207,7 @@ msgstr "Broj mjesta"
 #: ../gramps/plugins/webreport/statistics.py:214
 #: ../gramps/plugins/webreport/statistics.py:295
 msgid "Number of repositories"
-msgstr "Broj repozitorija"
+msgstr "Broj spremišta"
 
 #: ../gramps/gen/db/generic.py:2557
 msgid "Number of notes"
@@ -3255,8 +3255,7 @@ msgstr "Mjesta:           %(n1)6d nadograđeno sa %(n2)6d citata za %(n3)6d s\n"
 #, python-format
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
-"Repozitoriji:        %(n1)6d nadograđeno sa %(n2)6d citata za %(n3)6d s\n"
+msgstr "Spremišta:        %(n1)6d nadograđena sa %(n2)6d citata za %(n3)6d s\n"
 
 #: ../gramps/gen/db/upgrade.py:608
 #, python-format
@@ -3438,7 +3437,7 @@ msgstr "Greška u datoteci „%s”: učitavanje nije moguće."
 
 #: ../gramps/gen/display/place.py:75 ../gramps/gen/plug/docgen/treedoc.py:65
 msgid "Full"
-msgstr "Cjelokupno"
+msgstr "Potpuno"
 
 #: ../gramps/gen/filters/_filterparser.py:130
 #, python-format
@@ -4064,23 +4063,23 @@ msgstr "Pronalazi citate, čiji svezak/stranica sadrži određeni podniz znakova
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:45
 #: ../gramps/gui/editors/filtereditor.py:574
 msgid "Repository filter name:"
-msgstr "Ime filtra repozitorija:"
+msgstr "Ime filtra spremišta:"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:50
 msgid ""
 "Citations with a source with a repository reference matching the <repository "
 "filter>"
 msgstr ""
-"Citati s izvorom, koji ima referencu na repozitorij, koje odgovara <filtru "
-"repozitorija>"
+"Citati s izvorom, koji ima referencu na spremište koje odgovara <filtru "
+"spremišta>"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:54
 msgid ""
 "Matches citations with sources with a repository reference that match a "
 "certain repository filter"
 msgstr ""
-"Usklađuje citate s izvorima s referencom repozitorija koji odgovaraju "
-"određenom filtru repozitorija"
+"Usklađuje citate s izvorima s referencom spremišta koji odgovaraju određenom "
+"filtru spremišta"
 
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:51
 msgid "Citations with source matching the <source filter>"
@@ -5268,7 +5267,7 @@ msgstr "Ime:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:50
 msgid "Full Family name:"
-msgstr "Cjelokupno prezime:"
+msgstr "Potpuno ime obitelji:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:51
 msgctxt "person"
@@ -6221,15 +6220,15 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:46
 msgid "Every repository"
-msgstr "Svaki repozitorij"
+msgstr "Svako spremište"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:47
 msgid "Matches every repository in the database"
-msgstr "Uspoređuje sve repozitorije u bazi podataka"
+msgstr "Uspoređuje svako spremište u bazi podataka"
 
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:49
 msgid "Repositories changed after <date time>"
-msgstr "Repozitoriji promijenjeni nakon <vremena datuma>"
+msgstr "Promijenjena spremišta nakon <datuma vremena>"
 
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:51
 msgid ""
@@ -10180,7 +10179,7 @@ msgstr "Uključene, sa svim podacima"
 #: ../gramps/gen/plug/report/stdoptions.py:211
 msgctxt "'living people'"
 msgid "Full names, but data removed"
-msgstr "Imena i prezimena prikazana, datumi uklonjeni"
+msgstr "Potpuna imena, ali podaci uklonjeni"
 
 #: ../gramps/gen/plug/report/stdoptions.py:215
 msgctxt "'living people'"
@@ -11645,10 +11644,10 @@ msgstr ""
 "sva prezimena, osim pa/matronima i primarnoga\n"
 "  <b>Obiteljski nadimak</b> – obiteljski nadimak       <b>Prezimena</b>  – "
 "prezimena (bez prefiksa i veznika)\n"
-"  <b>Primarno, Primarno[prf] ili [pre] ili [vez]</b> – cjelovito primarno "
+"  <b>Primarno, Primarno[prf] ili [pre] ili [vez]</b> – potpuno primarno "
 "prezime, prefiks, samo prezime, veznik\n"
-"  <b>Patronim, ili [prf] ili [pre] ili [vez]</b>     – cjelovito pa/matronim "
-"prezime, prefiks, samo prezime, veznik\n"
+"  <b>Patronim, ili [prf] ili [pre] ili [vez]</b>     – potpuno patronim/"
+"matronim prezime, prefiks, samo prezime, veznik\n"
 "</tt>\n"
 "Upisom ključnih riječi VELIKIM SLOVIMA, određuje se korištenje velikih slova "
 "u ispisu. Dodatne zagrade i zarezi se uklanjaju. Ostali tekst se prikazuje "
@@ -16935,7 +16934,7 @@ msgstr "_Zemljopisna dužina:"
 #: ../gramps/gui/glade/editplace.glade:151
 #: ../gramps/gui/glade/editplaceref.glade:446
 msgid "Full title of this place."
-msgstr "Puno ime mjesta."
+msgstr "Potpuno ime ovog mjesta."
 
 #: ../gramps/gui/glade/editplace.glade:179
 #: ../gramps/gui/glade/editplaceref.glade:460
@@ -34127,7 +34126,7 @@ msgstr "Traženje nepravilnosti u referencama obitelji"
 
 #: ../gramps/plugins/tool/check.py:1524
 msgid "Looking for repository reference problems"
-msgstr "Traženje nepravilnosti u referencama skladišta"
+msgstr "Traženje problema s referencama spremišta"
 
 #: ../gramps/plugins/tool/check.py:1564
 msgid "Looking for place reference problems"
@@ -34279,9 +34278,9 @@ msgstr[2] "{quantity} datuma je ispravljeno\n"
 #, python-brace-format
 msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
-msgstr[0] "{quantity} referencirano spremište nije pronađeno\n"
-msgstr[1] "{quantity} referencirana spremišta nisu pronađena\n"
-msgstr[2] "{quantity} referenciranih spremišta nije pronađeno\n"
+msgstr[0] "{quantity} repozitorij je referenciran ali nije pronađen\n"
+msgstr[1] "{quantity} repozitorija su referencirana ali nisu pronađena\n"
+msgstr[2] "{quantity} repozitorija su referencirana ali nisu pronađena\n"
 
 #: ../gramps/plugins/tool/check.py:2869 ../gramps/plugins/tool/check.py:2969
 #, python-brace-format
@@ -36348,7 +36347,7 @@ msgstr "Vrsta lepezastog dijagrama"
 #: ../gramps/plugins/view/fanchartdescview.py:346
 #: ../gramps/plugins/view/fanchartview.py:435
 msgid "Full Circle"
-msgstr "Puni krug"
+msgstr "Krug"
 
 #: ../gramps/plugins/view/fanchartdescview.py:347
 #: ../gramps/plugins/view/fanchartview.py:435
@@ -37409,7 +37408,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/addressbooklist.py:115
 msgid "Full Name"
-msgstr "Cjelokupno ime"
+msgstr "Potpuno ime"
 
 #: ../gramps/plugins/webreport/addressbooklist.py:118
 #: ../gramps/plugins/webreport/basepage.py:2694
