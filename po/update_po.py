@@ -502,11 +502,12 @@ def retrieve():
     os.system(
         """%(xgettext)s -F --add-comments=Translators -j """
         """--directory=./ -d gramps -L Python """
-        """-o gramps.pot --files-from=python.txt """
-        """--debug --keyword=_ --keyword=ngettext """
-        """--keyword=_T_ --keyword=trans_text:1,2c """
-        """--keyword=_:1,2c --keyword=_T_:1,2c """
-        """--keyword=sgettext --from-code=UTF-8""" % {"xgettext": xgettextCmd}
+        """-o gramps.pot --files-from=python.txt --debug """
+        """--keyword=_ --keyword=_:1,2c """
+        """--keyword=_T_ --keyword=_T_:1,2c """
+        """--keyword=trans_text --keyword=trans_text:1,2c """
+        """--keyword=ngettext --keyword=sgettext """
+        """--from-code=UTF-8""" % {"xgettext": xgettextCmd}
     )
 
     extract_glade()
