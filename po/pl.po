@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-19 21:56+0100\n"
-"PO-Revision-Date: 2023-08-12 05:58+0000\n"
+"PO-Revision-Date: 2023-08-21 09:38+0000\n"
 "Last-Translator: Michał Stojek <stojex@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/pl/>\n"
@@ -9366,10 +9366,8 @@ msgid "Expert"
 msgstr "Ekspert"
 
 #: ../gramps/gen/plug/_pluginreg.py:116
-#, fuzzy
-#| msgid "Quick View"
 msgid "Quick view"
-msgstr "Szybki raport"
+msgstr "Szybki podgląd"
 
 #: ../gramps/gen/plug/_pluginreg.py:117
 msgid "Tool"
@@ -9384,16 +9382,12 @@ msgid "Exporter"
 msgstr "Eksportujące"
 
 #: ../gramps/gen/plug/_pluginreg.py:120
-#, fuzzy
-#| msgid "Doc creator"
 msgid "Document creator"
-msgstr "Kreatory"
+msgstr "Kreator dokumentu"
 
 #: ../gramps/gen/plug/_pluginreg.py:121
-#, fuzzy
-#| msgid "Plugin lib"
 msgid "Plugin library"
-msgstr "Wtyczki"
+msgstr "Biblioteka wtyczek"
 
 #: ../gramps/gen/plug/_pluginreg.py:122
 msgid "Map service"
@@ -9406,8 +9400,6 @@ msgid "View"
 msgstr "Wyświetl"
 
 #: ../gramps/gen/plug/_pluginreg.py:124
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Relationship calculator"
 msgstr "Kalkulator relacji"
 
@@ -11030,7 +11022,7 @@ msgstr "Moduły Pythona"
 
 #: ../gramps/gen/utils/requirements.py:150
 msgid "GObject introspection modules"
-msgstr ""
+msgstr "Moduły GObject introspection"
 
 #: ../gramps/gen/utils/requirements.py:157
 msgid "Executables"
@@ -15407,15 +15399,6 @@ msgid "Use regular expressions"
 msgstr "Używaj wyrażeń regularnych"
 
 #: ../gramps/gui/editors/filtereditor.py:652
-#, fuzzy
-#| msgid ""
-#| "Interpret the contents of string fields as regular expressions.\n"
-#| "A decimal point will match any character. A question mark will match zero "
-#| "or one occurences of the previous character or group. An asterisk will "
-#| "match zero or more occurences. A plus sign will match one or more "
-#| "occurences. Use parentheses to group expressions. Specify alternatives "
-#| "using a vertical bar. A caret will match the start of a line. A dollar "
-#| "sign will match the end of a line."
 msgid ""
 "Interpret the contents of string fields as regular expressions:\n"
 ".\tA decimal point will match any character.\n"
@@ -15429,12 +15412,14 @@ msgid ""
 "$\tA dollar sign will match the end of a line."
 msgstr ""
 "Interpretuje zawartość pola tekstowego jako wyrażenie regularne.\n"
-"Znak kropki dopasowuje dowolny znak. Znak pytajnika dopasowuje zero albo "
-"jedno wystąpienie znaku lub grupy. Znak gwiazdki dopasowuje zero lub więcej "
-"wystąpień. Znak plusa dopasowuje jeden lub więcej wystąpień. Użyj nawiasów "
-"aby pogrupować wyrażenia. Określ alternatywy za pomocą znaku pionowej "
-"kreski. Znak karetki dopasowuje początek linii. Znak dolara dopasowuje "
-"koniec linii."
+".\tZnak kropki dopasowuje dowolny znak.\n"
+"?\tZnak pytajnika dopasowuje zero albo jedno wystąpienie znaku lub grupy.\n"
+"*\tZnak gwiazdki dopasowuje zero lub więcej wystąpień.\n"
+"+\tZnak plusa dopasowuje jeden lub więcej wystąpień.\n"
+"()\tUżyj nawiasów aby pogrupować wyrażenia.\n"
+"|\tOkreśl alternatywy za pomocą znaku pionowej kreski.\n"
+"^\tZnak karetki dopasowuje początek linii.\n"
+"$\tZnak dolara dopasowuje koniec linii."
 
 #: ../gramps/gui/editors/filtereditor.py:668
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:86
@@ -18857,10 +18842,8 @@ msgstr "Wymaga dodatkowych modułów"
 
 #: ../gramps/gui/plug/_windows.py:263 ../gramps/gui/plug/_windows.py:395
 #: ../gramps/gui/plug/_windows.py:594
-#, fuzzy
-#| msgid "Updated"
 msgid "Update"
-msgstr "Uaktualniony"
+msgstr "Aktualizacja"
 
 #: ../gramps/gui/plug/_windows.py:286
 msgid "Module installation failed"
@@ -18883,40 +18866,28 @@ msgid "Filters"
 msgstr "Filtry"
 
 #: ../gramps/gui/plug/_windows.py:392
-#, fuzzy
-#| msgid "Addons"
 msgid "All addons"
-msgstr "Dodatki"
+msgstr "Wszystkie dodatki"
 
 #: ../gramps/gui/plug/_windows.py:393 ../gramps/gui/plug/_windows.py:588
-#, fuzzy
-#| msgid "installed"
 msgid "Uninstalled"
-msgstr "zainstalowany"
+msgstr "Odinstalowano"
 
 #: ../gramps/gui/plug/_windows.py:394 ../gramps/gui/plug/_windows.py:591
-#, fuzzy
-#| msgid "installed"
 msgid "Installed"
-msgstr "zainstalowany"
+msgstr "Zainstalowany"
 
 #: ../gramps/gui/plug/_windows.py:407
-#, fuzzy
-#| msgid "All files"
 msgid "All types"
-msgstr "Wszystkie pliki"
+msgstr "Wszystkie typy"
 
 #: ../gramps/gui/plug/_windows.py:415
-#, fuzzy
-#| msgid "Audience"
 msgid "All audiences"
-msgstr "Użytkownicy"
+msgstr "Wszyscy odbiorcy"
 
 #: ../gramps/gui/plug/_windows.py:422
-#, fuzzy
-#| msgid " state"
 msgid "All statuses"
-msgstr " województwo"
+msgstr "Wszystkie statusy"
 
 #: ../gramps/gui/plug/_windows.py:443
 msgid "Settings"
@@ -18927,10 +18898,8 @@ msgid "Projects"
 msgstr "Projekty"
 
 #: ../gramps/gui/plug/_windows.py:489 ../gramps/gui/plug/_windows.py:599
-#, fuzzy
-#| msgid "Projects"
 msgid "All projects"
-msgstr "Projekty"
+msgstr "Wszystkie projekty"
 
 #: ../gramps/gui/plug/_windows.py:501
 msgid "Loading..."
@@ -19007,14 +18976,12 @@ msgid "Project name"
 msgstr "Nazwa Projektu"
 
 #: ../gramps/gui/plug/_windows.py:886
-#, fuzzy
-#| msgid "Restore to defaults"
 msgid "Restore project defaults"
-msgstr "Przywrócić ustawienia domyślne"
+msgstr "Przywróć ustawienia domyślne projektu"
 
 #: ../gramps/gui/plug/_windows.py:887
 msgid "Are you sure?"
-msgstr ""
+msgstr "Jesteś pewny?"
 
 #: ../gramps/gui/plug/_windows.py:911
 msgid "Checking Addons Failed"
@@ -19219,13 +19186,9 @@ msgstr[1] "{number_of} dodatki zostały zainstalowane."
 msgstr[2] "{number_of} dodatków zostało zainstalowanych."
 
 #: ../gramps/gui/plug/_windows.py:2224
-#, fuzzy
-#| msgid ""
-#| "If you have installed a 'Gramps View', you will need to restart Gramps."
 msgid "If you have installed a 'View', you will need to restart Gramps."
 msgstr ""
-"Jeśli zainstalowałeś „Widok Grampsa”, będziesz musiał ponownie uruchomić "
-"Grampsa."
+"Jeśli zainstalowałeś „Widok”, będziesz musiał ponownie uruchomić Grampsa."
 
 #: ../gramps/gui/plug/_windows.py:2232
 msgid "No addons were installed."
@@ -20240,6 +20203,8 @@ msgid ""
 "Please wait for backup in progress.\n"
 "Gramps will close when complete."
 msgstr ""
+"Proszę czekać na kopię zapasową w toku.\n"
+"Gramps zamknie się po zakończeniu."
 
 #: ../gramps/gui/viewmanager.py:1291 ../gramps/gui/viewmanager.py:1295
 msgid "Autobackup..."
@@ -20468,7 +20433,7 @@ msgstr "Kolumny"
 
 #: ../gramps/gui/views/listview.py:1457
 msgid "CSV Dialect"
-msgstr ""
+msgstr "CSV Dialect"
 
 #: ../gramps/gui/views/navigationview.py:247
 #, python-format
@@ -24644,14 +24609,6 @@ msgid "Getting Started"
 msgstr "Jak rozpocząć"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:157
-#, fuzzy
-#| msgid ""
-#| "The first thing you must do is to create a new Family Tree. To create a "
-#| "new Family Tree (sometimes called 'database') select \"Family Trees\" "
-#| "from the menu, pick \"Manage Family Trees\", press \"New\" and name your "
-#| "Family Tree. For more details, please read the information at the links "
-#| "above\n"
-#| "\n"
 msgid ""
 "The first time Gramps is started all of the Views are blank. There are very "
 "few menu options. A Family Tree is needed for any activity to happen.\n"
@@ -24663,11 +24620,17 @@ msgid ""
 "more details, please read the information at the links below.\n"
 "\n"
 msgstr ""
-"Pierwszą rzeczą, którą musisz zrobić jest założenie nowego drzewa "
-"rodzinnego. Aby utworzyć nowe drzewo rodzinne (czasem zwane 'bazą danych') "
-"wybierz \"Drzewo rodzinne\" z menu, wybierz opcję \"Zarządzaj drzewami "
-"rodzinnymi\", wciśnij \"Nowe\" i wprowadź nazwę swojego drzewa. Aby uzyskać "
-"więcej informacji, kliknij na linki powyżej\n"
+"Przy pierwszym uruchomieniu Gramps wszystkie widoki są puste. Jest bardzo "
+"mało opcji menu. Drzewo genealogiczne jest potrzebne do jakiejkolwiek "
+"aktywności.\n"
+"\n"
+"Aby utworzyć nowe drzewo genealogiczne (czasami nazywane „bazą danych”) "
+"wybierz „Drzewa genealogiczne” z menu, wybierz „Zarządzaj drzewami "
+"genealogicznymi”, naciśnij „Nowe” i nazwij swoje drzewo genealogiczne. „"
+"Załaduj drzewo genealogiczne”, aby drzewo było aktywne i gotowe do "
+"uzupełnienia danych poprzez wprowadzenie pierwszej rodziny lub "
+"zaimportowanie drzewa genealogicznego. Aby uzyskać więcej informacji, "
+"przeczytaj informacje dostępne pod poniższymi linkami.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:169
@@ -24783,10 +24746,8 @@ msgstr ""
 "Gramps."
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:240
-#, fuzzy
-#| msgid "Gramps View"
 msgid "Gramps View Categories"
-msgstr "Widok Gramps"
+msgstr "Kategorie widoku Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:244
 #: ../gramps/plugins/gramplet/welcomegramplet.py:253
@@ -24836,10 +24797,8 @@ msgstr ""
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:266
-#, fuzzy
-#| msgid "Example"
 msgid "Example.gramps"
-msgstr "Przykład"
+msgstr "Example.gramps"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:57
 msgid "Minimum number of items to display"
@@ -25845,7 +25804,7 @@ msgstr "Miejsce śmierci"
 #: ../gramps/plugins/importer/importcsv.py:328
 #, fuzzy
 msgid "residencesource"
-msgstr "Zamieszkanie"
+msgstr "źródło zamieszkania"
 
 #: ../gramps/plugins/importer/importcsv.py:329
 msgid "residence source"
@@ -25856,9 +25815,8 @@ msgid "attribute type"
 msgstr "typ atrybutu"
 
 #: ../gramps/plugins/importer/importcsv.py:331
-#, fuzzy
 msgid "attributetype"
-msgstr "Artybuty notatki"
+msgstr "Atrybut typu"
 
 #: ../gramps/plugins/importer/importcsv.py:334
 msgid "attributevalue"
@@ -25871,7 +25829,7 @@ msgstr "wartość atrybutu"
 #: ../gramps/plugins/importer/importcsv.py:339
 #, fuzzy
 msgid "attributesource"
-msgstr "Atrybuty"
+msgstr "źródło atrybutu"
 
 #: ../gramps/plugins/importer/importcsv.py:340
 msgid "attribute source"
@@ -26077,9 +26035,8 @@ msgid "Excommunication"
 msgstr "Ekskomunika"
 
 #: ../gramps/plugins/importer/importgeneweb.py:125
-#, fuzzy
 msgid "LDS Family Link"
-msgstr "Linki do rodzin"
+msgstr "LDS Link do rodziny"
 
 #: ../gramps/plugins/importer/importgeneweb.py:126
 #: ../gramps/plugins/lib/libgedcom.py:744
@@ -26099,9 +26056,8 @@ msgid "List Passenger"
 msgstr "Pasażer z listy"
 
 #: ../gramps/plugins/importer/importgeneweb.py:132
-#, fuzzy
 msgid "Military Distinction"
-msgstr "Służba wojskowa"
+msgstr "Wyróżnienie wojskowe"
 
 #: ../gramps/plugins/importer/importgeneweb.py:133
 msgid "Militaty Mobilisation"
@@ -26112,14 +26068,12 @@ msgid "Military Promotion"
 msgstr "Przysięga wojskowa"
 
 #: ../gramps/plugins/importer/importgeneweb.py:143
-#, fuzzy
 msgid "LDS Seal to child"
-msgstr "Wybierz Dziecko"
+msgstr "Pieczęć LDS dla dziecka"
 
 #: ../gramps/plugins/importer/importgeneweb.py:147
-#, fuzzy
 msgid "Sold property"
-msgstr "Własność"
+msgstr "Sprzedana nieruchomość"
 
 #: ../gramps/plugins/importer/importgeneweb.py:154
 #, fuzzy
@@ -26276,7 +26230,6 @@ msgstr ""
 "(Tekst i data (systemowa))."
 
 #: ../gramps/plugins/importer/importprogen.glade:341
-#, fuzzy
 msgid ""
 "Citation attribute text\n"
 "(Text, import Filename & (System-)Date)."
@@ -32389,10 +32342,8 @@ msgid "German Relationship Calculator"
 msgstr "Niemiecki kalkulator pokrewieństwa"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:133
-#, fuzzy
-#| msgid "Russian Relationship Calculator"
 msgid "Austrian Relationship Calculator"
-msgstr "Rosyjski kalkulator pokrewieństwa"
+msgstr "Austriacki kalkulator pokrewieństwa"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:157
 msgid "Spanish Relationship Calculator"
@@ -32415,7 +32366,6 @@ msgid "Hungarian Relationship Calculator"
 msgstr "Węgierski kalkulator pokrewieństwa"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:278
-#, fuzzy
 msgid "Icelandic Relationship Calculator"
 msgstr "Islandzki kalkulator relacji"
 
@@ -32456,16 +32406,12 @@ msgid "Swedish Relationship Calculator"
 msgstr "Szwedzki kalkulator pokrewieństwa"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:534
-#, fuzzy
-#| msgid "Danish Relationship Calculator"
 msgid "Turkish Relationship Calculator"
-msgstr "Duński kalkulator pokrewieństwa"
+msgstr "Turecki kalkulator pokrewieństwa"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:535
-#, fuzzy
-#| msgid "Calculates relationships between people"
 msgid "Calculates relationship between people"
-msgstr "Oblicza pokrewieństwa między osobami"
+msgstr "Oblicza pokrewieństwo między osobami"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:559
 msgid "Ukrainian Relationship Calculator"
@@ -32547,9 +32493,8 @@ msgid "Add linebreak after each name"
 msgstr "Złam linię po każdym nazwisku"
 
 #: ../gramps/plugins/textreport/ancestorreport.py:320
-#, fuzzy
 msgid "Whether a line break should follow the name."
-msgstr "Wskazuje, czy znak nowej linii powinien być drukowany po nazwisku."
+msgstr "Określa, czy po nazwisku powinien następować podział wiersza."
 
 #: ../gramps/plugins/textreport/birthdayreport.py:82
 #: ../gramps/plugins/textreport/birthdayreport.py:255
@@ -32685,7 +32630,6 @@ msgstr "Określa, uwzględnić rocznice śmierci"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:659
 #: ../gramps/plugins/textreport/indivcomplete.py:1196
-#, fuzzy
 msgid "Whether to include relationships to the center person"
 msgstr "Dodaj pokrewieństwo z osobą w centrum"
 
@@ -32990,15 +32934,13 @@ msgstr "Określa czy wypisywać dzieci."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:926
 #: ../gramps/plugins/textreport/detdescendantreport.py:1134
-#, fuzzy
 msgid "Include spouses of children"
-msgstr "Dołącz ilość dzieci"
+msgstr "Uwzględnij małżonków dzieci"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:927
 #: ../gramps/plugins/textreport/detdescendantreport.py:1135
-#, fuzzy
 msgid "Whether to list the spouses of the children."
-msgstr "Określa, czy zagłębiać małżonków w drzewie."
+msgstr "Określa, czy wymienić małżonków dzieci."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:930
 #: ../gramps/plugins/textreport/detdescendantreport.py:1146
@@ -33015,13 +32957,11 @@ msgid "Include other events"
 msgstr "Dołącz inne zdarzenia"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:936
-#, fuzzy
 msgid "Whether to include other events people participated in."
-msgstr "Określa, czy dołączać zdarzenia dla rodziców."
+msgstr "Określa, czy uwzględnić inne wydarzenia, w których brali udział ludzie."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:940
 #: ../gramps/plugins/textreport/detdescendantreport.py:1150
-#, fuzzy
 msgid "Include descendant reference in child list"
 msgstr "Dodaj odwołania do potomków w liście dzieci"
 
@@ -33150,9 +33090,8 @@ msgstr "Styl używany do tekstu związanego z dziećmi."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:1040
 #: ../gramps/plugins/textreport/detdescendantreport.py:1271
-#, fuzzy
 msgid "The style used for the note header."
-msgstr "Styl używany do nagłówka pokolenia."
+msgstr "Styl używany do nagłówka notatki."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:1054
 #: ../gramps/plugins/textreport/detdescendantreport.py:1285
@@ -33172,9 +33111,8 @@ msgstr "Styl używany do nagłówka drugiego poziomu."
 #: ../gramps/plugins/textreport/detdescendantreport.py:1305
 #: ../gramps/plugins/textreport/endoflinereport.py:344
 #: ../gramps/plugins/textreport/placereport.py:579
-#, fuzzy
 msgid "The style used for details."
-msgstr "Styl używany do szczegółów zdarzenia."
+msgstr "Styl używany do szczegółów."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:363
 #, python-format
@@ -33200,18 +33138,16 @@ msgid "Report structure"
 msgstr "Struktura raportu"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1070
-#, fuzzy
 msgid "show people by generations"
-msgstr "Wszystkie generacje"
+msgstr "pokaż ludzi według pokoleń"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1071
 msgid "show people by lineage"
 msgstr "pokarz osoby według rodowodu"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1074
-#, fuzzy
 msgid "How people are organized in the report"
-msgstr "Określa osoby, które dołączone będą do raportu"
+msgstr "Jak ludzie są zorganizowani w raporcie"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1138
 #: ../gramps/plugins/textreport/kinshipreport.py:380
@@ -33291,7 +33227,7 @@ msgstr "M"
 #: ../gramps/plugins/textreport/familygroup.py:520
 msgctxt "acronym for other"
 msgid "X"
-msgstr ""
+msgstr "X"
 
 #: ../gramps/plugins/textreport/familygroup.py:522
 #, python-format
@@ -33315,9 +33251,8 @@ msgid "Center Family"
 msgstr "Centruj rodzinę"
 
 #: ../gramps/plugins/textreport/familygroup.py:729
-#, fuzzy
 msgid "The center family for the filter"
-msgstr "Centruj rodzinę w raporcie"
+msgstr "Centralna rodzina dla filtra"
 
 #: ../gramps/plugins/textreport/familygroup.py:733
 msgid "Recursive (down)"
@@ -33471,9 +33406,8 @@ msgid "Include Notes"
 msgstr "Dołącz notatki"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1151
-#, fuzzy
 msgid "Whether to include Person and Family Notes."
-msgstr "Określa, czy dołączać dodatkowe nazwiska."
+msgstr "Określa, czy dołączyć uwagi dotyczące osób i rodzin."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1154
 msgid "Include Source Information"
@@ -33496,14 +33430,12 @@ msgid "Include Attributes"
 msgstr "Dołącz atrybuty"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1188
-#, fuzzy
 msgid "Include Census Events"
-msgstr "Dołącz zdarzenia"
+msgstr "Uwzględnij wydarzenia ze spisu ludności"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1189
-#, fuzzy
 msgid "Whether to include Census Events."
-msgstr "Określa, czy dołączać zdarzenia."
+msgstr "Określa, czy uwzględniać wydarzenia ze Spisu Ludności."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1201
 msgid "Sections"
@@ -33533,9 +33465,8 @@ msgid "The style used for image notes."
 msgstr "Styl używany do notatek obrazów."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1317
-#, fuzzy
 msgid "The style used for image descriptions."
-msgstr "Styl używany do każdej sekcji."
+msgstr "Styl używany do opisów obrazów."
 
 #: ../gramps/plugins/textreport/kinshipreport.py:131
 #, python-format
@@ -33572,9 +33503,8 @@ msgstr "Określa, czy dodawać wujków/ciotki/siostrzenice/bratanków"
 
 #: ../gramps/plugins/textreport/notelinkreport.py:75
 #: ../gramps/plugins/textreport/notelinkreport.py:111
-#, fuzzy
 msgid "Note Link Check Report"
-msgstr "Raport o krańcowych linii rodu"
+msgstr "Raport o sprawdzeniu linków Notatek"
 
 #: ../gramps/plugins/textreport/notelinkreport.py:85
 msgid "Note ID"
@@ -33622,9 +33552,8 @@ msgid "Place Report"
 msgstr "Raport o miejscach"
 
 #: ../gramps/plugins/textreport/placereport.py:137
-#, fuzzy
 msgid "Please select at least one place before running this."
-msgstr "Najpierw musisz utworzyć atrybut przed uruchomieniem tego raportu."
+msgstr "Przed uruchomieniem wybierz co najmniej jedno miejsce."
 
 #: ../gramps/plugins/textreport/placereport.py:189
 #, python-format
@@ -33829,10 +33758,8 @@ msgid "Number of families: %d"
 msgstr "Liczba rodzin: %d"
 
 #: ../gramps/plugins/textreport/summary.py:247
-#, fuzzy
-#| msgid "Context Information"
 msgid "Event Information"
-msgstr "Informacje kontekstowe"
+msgstr "Informacje o wydarzeniu"
 
 #: ../gramps/plugins/textreport/summary.py:252
 #, python-format
@@ -33840,10 +33767,8 @@ msgid "Number of events: %d"
 msgstr "Ilość zdarzeń: %d"
 
 #: ../gramps/plugins/textreport/summary.py:261
-#, fuzzy
-#| msgid "Place format"
 msgid "Place Information"
-msgstr "Format miejsca"
+msgstr "Informacje o miejscu"
 
 #: ../gramps/plugins/textreport/summary.py:266
 #, python-format
@@ -33851,10 +33776,8 @@ msgid "Number of places: %d"
 msgstr "Ilość miejsc: %d"
 
 #: ../gramps/plugins/textreport/summary.py:275
-#, fuzzy
-#| msgid "Shared Information"
 msgid "Source Information"
-msgstr "Informacje współdzielone"
+msgstr "Informacje o źródle"
 
 #: ../gramps/plugins/textreport/summary.py:280
 #, python-format
@@ -33862,10 +33785,8 @@ msgid "Number of sources: %d"
 msgstr "Ilość źródeł: %d"
 
 #: ../gramps/plugins/textreport/summary.py:289
-#, fuzzy
-#| msgid "Publication Information"
 msgid "Citation Information"
-msgstr "Informacje o wydaniu"
+msgstr "Informacje o cytatach"
 
 #: ../gramps/plugins/textreport/summary.py:294
 #, python-format
@@ -33873,10 +33794,8 @@ msgid "Number of citations: %d"
 msgstr "Ilość cytowań: %d"
 
 #: ../gramps/plugins/textreport/summary.py:303
-#, fuzzy
-#| msgid "Relationship Information"
 msgid "Repository Information"
-msgstr "Informacje o związku"
+msgstr "Informacje o repozytorium"
 
 #: ../gramps/plugins/textreport/summary.py:308
 #, python-format
@@ -33894,10 +33813,8 @@ msgid "Total size of media objects: %s MB"
 msgstr "Całkowity rozmiar obiektów medialnych: %s MB"
 
 #: ../gramps/plugins/textreport/summary.py:364
-#, fuzzy
-#| msgid "No Date Information"
 msgid "Note Information"
-msgstr "Brak informacji o dacie"
+msgstr "Informacja o uwagach"
 
 #: ../gramps/plugins/textreport/summary.py:369
 #, python-format
@@ -33905,9 +33822,8 @@ msgid "Number of notes: %d"
 msgstr "Ilość notatek: %d"
 
 #: ../gramps/plugins/textreport/summary.py:399
-#, fuzzy
 msgid "Whether to count private data"
-msgstr "Określa, czy dołączać prywatne obiekty"
+msgstr "Określa, czy liczyć prywatne dane"
 
 #: ../gramps/plugins/textreport/tableofcontents.py:73
 #: ../gramps/plugins/textreport/textplugins.gpr.py:374
@@ -34058,9 +33974,8 @@ msgid "Records Report"
 msgstr "Raport o rekordach"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:440
-#, fuzzy
 msgid "Note Link Report"
-msgstr "Raport o krańcowych linii rodu"
+msgstr "Raport o linkach Notatek"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:441
 msgid "Shows status of links in notes"
@@ -34232,9 +34147,8 @@ msgid "Looking for ctrl characters in notes"
 msgstr "Poszukiwanie znaków kontrolnych w notatkach"
 
 #: ../gramps/plugins/tool/check.py:496
-#, fuzzy
 msgid "Looking for bad alternate place names"
-msgstr "Wyszukiwanie wpisów z pustymi miejscami"
+msgstr "Wyszukiwanie złych alternatywnych nazw miejsc"
 
 #: ../gramps/plugins/tool/check.py:525
 msgid "Looking for broken family links"
@@ -34319,9 +34233,8 @@ msgstr "Wyszukiwanie problemów ze zdarzeniami"
 
 #: ../gramps/plugins/tool/check.py:1365 ../gramps/plugins/tool/check.py:1394
 #: ../gramps/plugins/tool/check.py:1422
-#, fuzzy
 msgid "Looking for backlink reference problems"
-msgstr "Wyszukiwanie problemów z odwołaniami do miejsc"
+msgstr "Wyszukiwanie problemów z odwołaniami do linków zwrotnych"
 
 #: ../gramps/plugins/tool/check.py:1457
 msgid "Looking for person reference problems"
@@ -34372,9 +34285,8 @@ msgid "Looking for Duplicated Gramps ID problems"
 msgstr "Wyszukiwanie problemów ze zduplikowanymi identyfikatorami Gramps ID"
 
 #: ../gramps/plugins/tool/check.py:2521
-#, fuzzy
 msgid "Checking for bad links in Notes"
-msgstr "Sprawdź uaktualnienia dodatków"
+msgstr "Sprawdzanie złych linków w Notatkach"
 
 #: ../gramps/plugins/tool/check.py:2694
 msgid "No errors were found"
@@ -34654,9 +34566,9 @@ msgstr ""
 "   %(note)d obiektów typu notatka\n"
 
 #: ../gramps/plugins/tool/check.py:3063
-#, fuzzy, python-format
+#, python-format
 msgid "%d bad backlinks were fixed;\n"
-msgstr "Naprawiono %d nieprawidłowych zdarzeń urodzin\n"
+msgstr "Naprawiono %d nieprawidłowych linków zwrotnych\n"
 
 #: ../gramps/plugins/tool/check.py:3064
 #: ../gramps/plugins/tool/rebuildrefmap.py:91
@@ -34665,9 +34577,9 @@ msgid "All reference maps have been rebuilt."
 msgstr "Odbudowano wszystkie mapy odwołań."
 
 #: ../gramps/plugins/tool/check.py:3069
-#, fuzzy, python-format
+#, python-format
 msgid "%d bad Note Links were fixed;\n"
-msgstr "Naprawiono %d nieprawidłowych zdarzeń urodzin\n"
+msgstr "Naprawiono %d nieprawidłowych linków notatek\n"
 
 #: ../gramps/plugins/tool/check.py:3099
 msgid "Integrity Check Results"
@@ -34707,9 +34619,8 @@ msgid "Date Test Plugin"
 msgstr "Wtyczka testu dat"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:260
-#, fuzzy
 msgid "Pass"
-msgstr "Passover"
+msgstr "Zaliczony"
 
 #: ../gramps/plugins/tool/dumpgenderstats.py:58
 msgid "Gender Statistics tool"
@@ -34896,9 +34807,8 @@ msgid "Merge candidates"
 msgstr "Złącz kandydatów"
 
 #: ../gramps/plugins/tool/finddupes.py:588
-#, fuzzy
 msgid "Merge persons"
-msgstr "Połącz osobę"
+msgstr "Połącz osoby"
 
 #: ../gramps/plugins/tool/findloop.py:59
 msgctxt "manual"
@@ -34907,9 +34817,8 @@ msgstr "Znajdź_cykle_w_bazie_danych"
 
 #: ../gramps/plugins/tool/findloop.py:75
 #: ../gramps/plugins/tool/tools.gpr.py:498
-#, fuzzy
 msgid "Find database loop"
-msgstr "Inna baza danych"
+msgstr "Znajdź pętlę bazy danych"
 
 #: ../gramps/plugins/tool/findloop.py:97
 #: ../gramps/plugins/tool/notrelated.py:115
@@ -34919,9 +34828,8 @@ msgid "Starting"
 msgstr "Rozpoczynanie"
 
 #: ../gramps/plugins/tool/findloop.py:99
-#, fuzzy
 msgid "Looking for possible loop for each person"
-msgstr "Wyszukiwanie dla {number_of} osoby"
+msgstr "Szukanie możliwej pętli dla każdej osoby"
 
 #: ../gramps/plugins/tool/mediamanager.py:69
 msgctxt "manual"
@@ -35268,10 +35176,9 @@ msgid "_Email:"
 msgstr "_E-mail:"
 
 #: ../gramps/plugins/tool/ownereditor.glade:383
-#, fuzzy
 msgid "Right-click to copy from/to Researcher Preferences"
 msgstr ""
-"Kliknij prawym przyciskiem myszy, aby skopiować z/do Preferencji Naukowca"
+"Kliknij prawym przyciskiem myszy, aby skopiować z/do Preferencji Badacza"
 
 #: ../gramps/plugins/tool/ownereditor.py:57
 msgctxt "manual"
@@ -35469,7 +35376,6 @@ msgid "handle"
 msgstr "uchwyt"
 
 #: ../gramps/plugins/tool/removespaces.py:145
-#, fuzzy
 msgid "firstname"
 msgstr "pierwsze imię"
 
@@ -35699,9 +35605,8 @@ msgstr "Generowanie_Testów_dla_Osób_i_Rodzin"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:336
 #: ../gramps/plugins/tool/testcasegenerator.py:343
-#, fuzzy
 msgid "Generate testcases"
-msgstr "Ogólne filtry"
+msgstr "Generuj przypadki testowe"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:350
 msgid ""
@@ -35712,17 +35617,14 @@ msgstr ""
 "Korekta wymaga przeładowania bazy danych"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:357
-#, fuzzy
 msgid "Generate database errors"
-msgstr "Błąd danych Pro-Gen"
+msgstr "Generuj błędy bazy danych"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:361
-#, fuzzy
 msgid "Generate dummy data"
 msgstr "Generuj fikcyjne dane"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:366
-#, fuzzy
 msgid "Generate long names"
 msgstr "Generuj długie nazwy"
 
@@ -35753,16 +35655,14 @@ msgstr "Generowanie niskopoziomowych błedów bazy danych"
 #: ../gramps/plugins/tool/testcasegenerator.py:438
 #: ../gramps/plugins/tool/testcasegenerator.py:448
 #: ../gramps/plugins/tool/testcasegenerator.py:454
-#, fuzzy
 msgid "Generating testcases"
-msgstr "Generowanie raportu"
+msgstr "Generowanie przypadków testowych"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:448
 msgid "Generating database errors"
 msgstr "Generowanie błędów bazy danych"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:455
-#, fuzzy
 msgid "Generating families"
 msgstr "Generowanie rodzin"
 
@@ -35951,30 +35851,24 @@ msgstr ""
 "stronę, datę i ufność."
 
 #: ../gramps/plugins/tool/tools.gpr.py:499
-#, fuzzy
 msgid "Searches the entire database, looking for a possible loop."
-msgstr ""
-"Przeszukuje całą bazę danych, szukając wpisów osób, które mogą reprezentować "
-"tę samą osobę."
+msgstr "Przeszukuje całą bazę danych, szukając możliwej pętli."
 
 #: ../gramps/plugins/tool/tools.gpr.py:524
-#, fuzzy
 msgid ""
 "Searches the entire database, looking for trailing or leading spaces for "
 "places and people. Search comma in coordinates fields in places."
 msgstr ""
-"Przeszukuje całą bazę danych, szukając cytatów, które mają ten sam wolumin/"
-"stronę, datę i poufność."
+"Przeszukuje całą bazę danych, szukając końcowych lub wiodących spacji dla "
+"miejsc i osób. Wyszukaj przecinek w polach współrzędnych w miejscach."
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:69
-#, fuzzy
 msgid "Dump Gender Statistics"
-msgstr "Przebuduj statystyki płci"
+msgstr "Zrzuć statystyki dotyczące płci"
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:71
-#, fuzzy
 msgid "Will dump the statistics for guessing the gender from the first name."
-msgstr "Pozwala na odgadnięcie płci na podstawie imienia."
+msgstr "Zrzuć statystyki dotyczące odgadnięcia płci na podstawie imienia."
 
 #: ../gramps/plugins/tool/verify.glade:215
 msgid "Maximum _age"
@@ -36210,19 +36104,16 @@ msgid "Old age but no death"
 msgstr "Stary wiek ale nie zmarły"
 
 #: ../gramps/plugins/tool/verify.py:2015
-#, fuzzy
 msgid "Birth equals death"
 msgstr "Narodziny równają się śmierci"
 
 #: ../gramps/plugins/tool/verify.py:2036
-#, fuzzy
 msgid "Birth equals marriage"
-msgstr "Najkrócej trwające małżeństwo"
+msgstr "Narodziny równają się małżeństwu"
 
 #: ../gramps/plugins/tool/verify.py:2057
-#, fuzzy
 msgid "Death equals marriage"
-msgstr "Późne małżeństwo"
+msgstr "Śmierć równa się małżeństwu"
 
 #: ../gramps/plugins/view/citationlistview.py:107
 msgid "Source: Title"
@@ -36479,9 +36370,8 @@ msgid "Max ancestor generations"
 msgstr "Maks. liczba generacji przodków"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:296
-#, fuzzy
 msgid "Max descendant generations"
-msgstr "Maks. liczba generacji potomków"
+msgstr "Maks. liczba pokoleń potomków"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:304
 #: ../gramps/plugins/view/fanchartdescview.py:296
@@ -36576,9 +36466,8 @@ msgstr "Jednorodny rozkład dzieci"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:366
 #: ../gramps/plugins/view/fanchartdescview.py:362
-#, fuzzy
 msgid "Size proportional to number of descendants"
-msgstr "Rozmiar proporcjonalny do ilości potomków"
+msgstr "Rozmiar proporcjonalny do liczby potomków"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:374
 #: ../gramps/plugins/view/fanchartdescview.py:370
@@ -36932,9 +36821,8 @@ msgstr ""
 "całego jej życia."
 
 #: ../gramps/plugins/view/geography.gpr.py:134
-#, fuzzy
 msgid "Every residence or move for a person and any descendants"
-msgstr "Wszystkie przemieszczenia dla jednej osoby i jej potomków"
+msgstr "Każde miejsce zamieszkania lub przeprowadzka osoby i jej potomków"
 
 #: ../gramps/plugins/view/geography.gpr.py:136
 msgid ""
@@ -36980,8 +36868,6 @@ msgid "A view showing all the event places of the database."
 msgstr "Widok pokazuje wszystkie miejsca zdarzeń w bazie danych."
 
 #: ../gramps/plugins/view/geomoves.py:210
-#, fuzzy
-#| msgid "Descendance of the active person."
 msgid "Descendants of the active person."
 msgstr "Potomkowie aktywnej osoby."
 
@@ -37121,7 +37007,6 @@ msgid "Custom places name"
 msgstr "Niestandardowa nazwa miejsca"
 
 #: ../gramps/plugins/view/geoplaces.py:643
-#, fuzzy
 msgid "The places marker color"
 msgstr "Kolor znacznika miejsc"
 
@@ -37251,7 +37136,6 @@ msgid "Left <-> Right"
 msgstr "Lewo <-> Prawo"
 
 #: ../gramps/plugins/view/pedigreeview.py:1832
-#, fuzzy
 msgid "About Pedigree View"
 msgstr "Informacje o widoku rodowodu"
 
@@ -37982,9 +37866,9 @@ msgstr ""
 "poświęconej tej rodzinie/ relacji rodzinnej."
 
 #: ../gramps/plugins/webreport/family.py:558
-#, fuzzy, python-format
+#, python-format
 msgid "Family Map for %s"
-msgstr "Miejsca rodzinne dla %s"
+msgstr "Mapa rodziny dla %s"
 
 #: ../gramps/plugins/webreport/home.py:81
 msgid "Home"
@@ -38017,18 +37901,16 @@ msgid "Mime Type"
 msgstr "Typ Mime"
 
 #: ../gramps/plugins/webreport/media.py:264
-#, fuzzy
 msgid "Creating list of media pages"
-msgstr "Tworzenie stron z obiektami medialnymi"
+msgstr "Tworzenie list z obiektami medialnymi"
 
 #: ../gramps/plugins/webreport/media.py:266
 msgid "Narrated Web Site Report"
 msgstr "Opisowa strona internetowa"
 
 #: ../gramps/plugins/webreport/media.py:308
-#, fuzzy
 msgid "Below unused media objects"
-msgstr "Liczba pojedynczych obiektów medialnych"
+msgstr "Poniżej nieużywane obiekty multimedialne"
 
 #: ../gramps/plugins/webreport/media.py:440
 #, python-format
@@ -38164,11 +38046,11 @@ msgid "Show the relationship between the current person and the active person"
 msgstr "Wyświetl wszystkie relacje pomiędzy tą osobą a osobą początkową"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2096
-#, fuzzy
 msgid ""
 "For each person page, show the relationship between this person and the "
 "active person."
-msgstr "Wyświetl wszystkie relacje pomiędzy tą osobą a osobą początkową."
+msgstr ""
+"Dla każdej strony osoby pokaż związek między tą osobą a osobą początkową."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2117
 msgid "Html options"
@@ -38639,16 +38521,12 @@ msgid "Whether or not to include the place pages."
 msgstr "Określa, czy dołączać strony miejsc."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2546
-#, fuzzy
-#| msgid "Include place pages"
 msgid "Include unused place pages"
-msgstr "Dołącz strony z miejscami"
+msgstr "Uwzględnij strony niewykorzystanych miejsc"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2547
-#, fuzzy
-#| msgid "Whether or not to include the place pages."
 msgid "Whether or not to include the unused place pages."
-msgstr "Określa, czy dołączać strony miejsc."
+msgstr "Określa, czy uwzględnić strony niewykorzystanych miejsc."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2550
 msgid "Include source pages"
@@ -38699,9 +38577,8 @@ msgid "Place Map Options"
 msgstr "Opcje mapy miejsc"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2588
-#, fuzzy
 msgid "Stamen Map"
-msgstr "Opcje zawartości"
+msgstr "Mapa Stamen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2589
 msgid "Google"
@@ -38799,16 +38676,14 @@ msgid "WaterColor"
 msgstr "Kolory zakreślacza"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2674
-#, fuzzy
 msgid "Stamen Option"
-msgstr "Opcje zawartości"
+msgstr "Opcje mapy Stamen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2679
-#, fuzzy
 msgid ""
 "Select which option that you would like to have for the Stamen map map-"
 "pages..."
-msgstr "Wybierz którą opcję chciałbyś mieć dla stron rodzin w Google Maps..."
+msgstr "Wybierz opcję, którą chcesz mieć na stronach mapy Stamen..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2695
 #, python-format
@@ -39018,13 +38893,6 @@ msgid "Tracking %s"
 msgstr "Śledzenie %s"
 
 #: ../gramps/plugins/webreport/person.py:1014
-#, fuzzy
-#| msgid ""
-#| "This map page represents that person and any descendants with all of "
-#| "their event/ places. If you place your mouse over the marker it will "
-#| "display the place name. The markers and the Reference list are sorted in "
-#| "date order (if any?). Clicking on a place&#8217;s name in the Reference "
-#| "section will take you to that place&#8217;s page."
 msgid ""
 "This map page represents that person and any descendants with all of their "
 "event/places. If you place your mouse over the marker it will display the "
@@ -39032,11 +38900,11 @@ msgid ""
 "any?). Clicking on a place&#8217;s name in the Reference section will take "
 "you to that place&#8217;s page."
 msgstr ""
-"Ta strona map reprezentuje osobę oraz jej potomków ze wszystkimi miejscami/"
-"zdarzeniami. Jeśli zatrzymasz kursor myszy nad znacznikiem, wyświetli Ci się "
-"nazwa miejsca. Znaczniki i lista odniesień jest posortowana według daty "
-"(jeśli jest znana). Klikając na nazwę miejsca w sekcji referencji "
-"przejdziesz na stronę tego miejsca."
+"Ta strona mapy przedstawia tę osobę oraz jej potomków ze wszystkimi "
+"miejscami/zdarzeniami. Jeśli zatrzymasz kursor myszy nad znacznikiem, "
+"wyświetli Ci się nazwa miejsca. Znaczniki i lista odniesień jest posortowana "
+"według daty (jeśli jest znana). Klikając na nazwę miejsca w sekcji "
+"referencji przejdziesz na stronę tego miejsca."
 
 #: ../gramps/plugins/webreport/person.py:1066
 msgid "Place Title"
@@ -39226,7 +39094,7 @@ msgstr ""
 #. Translators: This is the email subject line in the Web Calendar
 #: ../gramps/plugins/webreport/webcal.py:1669
 msgid "WebCal"
-msgstr ""
+msgstr "WebCal"
 
 #: ../gramps/plugins/webreport/webcal.py:1678
 #, python-format
