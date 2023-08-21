@@ -44,7 +44,7 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# Person References for Person/Family
+# PersonRef
 #
 # -------------------------------------------------------------------------
 class PersonRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
@@ -159,8 +159,7 @@ class PersonRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
         :rtype: list
         """
         ret = (
-            self.get_referenced_note_handles()
-            + self.get_referenced_citation_handles()
+            self.get_referenced_note_handles() + self.get_referenced_citation_handles()
         )
         if self.ref:
             ret += [("Person", self.ref)]

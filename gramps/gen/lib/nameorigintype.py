@@ -35,7 +35,7 @@ _ = glocale.translation.sgettext
 
 # -------------------------------------------------------------------------
 #
-# NameOriginType class
+# NameOriginType
 #
 # -------------------------------------------------------------------------
 class NameOriginType(GrampsType):

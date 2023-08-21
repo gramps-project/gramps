@@ -35,7 +35,7 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# ChildRefType class
+# ChildRefType
 #
 # -------------------------------------------------------------------------
 class ChildRefType(GrampsType):

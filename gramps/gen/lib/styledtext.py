@@ -42,7 +42,7 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# StyledText class
+# StyledText
 #
 # -------------------------------------------------------------------------
 class StyledText:
@@ -124,8 +124,7 @@ class StyledText:
             # need to join strings and merge tags
             for tag in other.tags:
                 tag.ranges = [
-                    (start + offset, end + offset)
-                    for (start, end) in tag.ranges
+                    (start + offset, end + offset) for (start, end) in tag.ranges
                 ]
 
             return self.__class__(
@@ -220,8 +219,7 @@ class StyledText:
                 for tag in self.tags:
                     ntag = copy(tag)
                     ntag.ranges = [
-                        (start + offset, end + offset)
-                        for (start, end) in tag.ranges
+                        (start + offset, end + offset) for (start, end) in tag.ranges
                     ]
                     new_tags += [ntag]
                 offset += self_len
@@ -229,8 +227,7 @@ class StyledText:
                 for tag in text.tags:
                     ntag = copy(tag)
                     ntag.ranges = [
-                        (start + offset, end + offset)
-                        for (start, end) in tag.ranges
+                        (start + offset, end + offset) for (start, end) in tag.ranges
                     ]
                     new_tags += [ntag]
             offset += len(str(text))

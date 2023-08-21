@@ -37,8 +37,8 @@ from .attribute import Attribute
 from .attrtype import AttributeType
 from .citationbase import CitationBase
 from .const import DIFFERENT, EQUAL, IDENTICAL
+from .eventbase import EventBase
 from .eventref import EventRef
-from .eventroletype import EventRoleType
 from .ldsordbase import LdsOrdBase
 from .mediabase import MediaBase
 from .name import Name
@@ -53,12 +53,13 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# Person class
+# Person
 #
 # -------------------------------------------------------------------------
 class Person(
     CitationBase,
     NoteBase,
+    EventBase,
     AttributeBase,
     MediaBase,
     AddressBase,
@@ -99,12 +100,12 @@ class Person(
         CitationBase.__init__(self)
         NoteBase.__init__(self)
         MediaBase.__init__(self)
+        EventBase.__init__(self)
         AttributeBase.__init__(self)
         AddressBase.__init__(self)
         UrlBase.__init__(self)
         LdsOrdBase.__init__(self)
         self.primary_name = Name()
-        self.event_ref_list = []
         self.family_list = []
         self.parent_family_list = []
         self.alternate_names = []
@@ -151,7 +152,7 @@ class Person(
             [name.serialize() for name in self.alternate_names],  #  4
             self.death_ref_index,  #  5
             self.birth_ref_index,  #  6
-            [er.serialize() for er in self.event_ref_list],  #  7
+            EventBase.serialize(self),  #  7
             self.family_list,  #  8
             self.parent_family_list,  #  9
             MediaBase.serialize(self),  # 10
@@ -186,11 +187,7 @@ class Person(
             "title": _("Person"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "handle": {
-                    "type": "string",
-                    "maxLength": 50,
-                    "title": _("Handle"),
-                },
+                "handle": {"type": "string", "maxLength": 50, "title": _("Handle")},
                 "gramps_id": {"type": "string", "title": _("Gramps ID")},
                 "gender": {
                     "type": "integer",
@@ -312,15 +309,9 @@ class Person(
 
         self.primary_name = Name()
         self.primary_name.unserialize(primary_name)
-        self.alternate_names = [
-            Name().unserialize(name) for name in alternate_names
-        ]
-        self.event_ref_list = [
-            EventRef().unserialize(er) for er in event_ref_list
-        ]
-        self.person_ref_list = [
-            PersonRef().unserialize(pr) for pr in person_ref_list
-        ]
+        self.alternate_names = [Name().unserialize(name) for name in alternate_names]
+        self.person_ref_list = [PersonRef().unserialize(pr) for pr in person_ref_list]
+        EventBase.unserialize(self, event_ref_list)
         MediaBase.unserialize(self, media_list)
         LdsOrdBase.unserialize(self, lds_ord_list)
         AddressBase.unserialize(self, address_list)
@@ -345,7 +336,7 @@ class Person(
         :rtype: bool
         """
         if classname == "Event":
-            return any(ref.ref == handle for ref in self.event_ref_list)
+            return self._has_event_reference(handle)
         if classname == "Person":
             return any(ref.ref == handle for ref in self.person_ref_list)
         if classname == "Family":
@@ -356,9 +347,7 @@ class Person(
                 + [ordinance.famc for ordinance in self.lds_ord_list]
             )
         if classname == "Place":
-            return any(
-                ordinance.place == handle for ordinance in self.lds_ord_list
-            )
+            return any(ordinance.place == handle for ordinance in self.lds_ord_list)
         return False
 
     def _remove_handle_references(self, classname, handle_list):
@@ -391,16 +380,12 @@ class Person(
                 self.set_death_ref(death_ref)
         elif classname == "Person":
             new_list = [
-                ref
-                for ref in self.person_ref_list
-                if ref.ref not in handle_list
+                ref for ref in self.person_ref_list if ref.ref not in handle_list
             ]
             self.person_ref_list = new_list
         elif classname == "Family":
             new_list = [
-                handle
-                for handle in self.family_list
-                if handle not in handle_list
+                handle for handle in self.family_list if handle not in handle_list
             ]
             self.family_list = new_list
             new_list = [
@@ -697,9 +682,9 @@ class Person(
 
     def get_nick_name(self):
         """
-        Return nick name of a person.
+        Return the person nick name if available.
 
-        :returns: Nickname of person if one found.
+        :returns: Returns the nick name
         :rtype: str
         """
         for name in [self.get_primary_name()] + self.get_alternate_names():
@@ -723,12 +708,7 @@ class Person(
                        - Person.UNKNOWN
         :type gender: int
         """
-        if gender not in (
-            Person.MALE,
-            Person.FEMALE,
-            Person.OTHER,
-            Person.UNKNOWN,
-        ):
+        if gender not in (Person.MALE, Person.FEMALE, Person.OTHER, Person.UNKNOWN):
             raise ValueError("Attempt to assign invalid gender")
         self.__gender = gender
 
@@ -832,63 +812,6 @@ class Person(
             return self.event_ref_list[self.death_ref_index]
         return None
 
-    def add_event_ref(self, event_ref):
-        """
-        Add the :class:`~.eventref.EventRef` to the Person instance's
-        :class:`~.eventref.EventRef` list.
-
-        This is accomplished by assigning the :class:`~.eventref.EventRef` of a
-        valid :class:`~.event.Event` in the current database.
-
-        :param event_ref: the :class:`~.eventref.EventRef` to be added to the
-                          Person's :class:`~.eventref.EventRef` list.
-        :type event_ref: EventRef
-        """
-        if event_ref and not isinstance(event_ref, EventRef):
-            raise ValueError("Expecting EventRef instance")
-
-        # check whether we already have this ref in the list
-        if not any(event_ref.is_equal(ref) for ref in self.event_ref_list):
-            self.event_ref_list.append(event_ref)
-
-    def get_event_ref_list(self):
-        """
-        Return the list of :class:`~.eventref.EventRef` objects associated with
-        :class:`~.event.Event` instances.
-
-        :returns: Returns the list of :class:`~.eventref.EventRef` objects
-                  associated with the Person instance.
-        :rtype: list
-        """
-        return self.event_ref_list
-
-    def get_primary_event_ref_list(self):
-        """
-        Return the list of :class:`~.eventref.EventRef` objects associated with
-        :class:`~.event.Event` instances that have been marked as primary
-        events.
-
-        :returns: Returns generator of :class:`~.eventref.EventRef` objects
-                  associated with the Person instance.
-        :rtype: generator
-        """
-        return (
-            ref
-            for ref in self.event_ref_list
-            if ref.get_role() == EventRoleType.PRIMARY
-        )
-
-    def set_event_ref_list(self, event_ref_list):
-        """
-        Set the Person instance's :class:`~.eventref.EventRef` list to the
-        passed list.
-
-        :param event_ref_list: List of valid :class:`~.eventref.EventRef`
-                               objects.
-        :type event_ref_list: list
-        """
-        self.event_ref_list = event_ref_list
-
     def _merge_event_ref_list(self, acquisition):
         """
         Merge the list of event references from acquisition with our own.
@@ -908,15 +831,9 @@ class Person(
                     break
             else:
                 self.event_ref_list.append(addendum)
-                if (
-                    self.birth_ref_index == -1
-                    and idx == acquisition.birth_ref_index
-                ):
+                if self.birth_ref_index == -1 and idx == acquisition.birth_ref_index:
                     self.birth_ref_index = len(self.event_ref_list) - 1
-                if (
-                    self.death_ref_index == -1
-                    and idx == acquisition.death_ref_index
-                ):
+                if self.death_ref_index == -1 and idx == acquisition.death_ref_index:
                     self.death_ref_index = len(self.event_ref_list) - 1
 
     def add_family_handle(self, family_handle):

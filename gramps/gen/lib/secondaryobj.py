@@ -39,7 +39,7 @@ from .baseobj import BaseObject
 
 # -------------------------------------------------------------------------
 #
-# SecondaryObject class
+# SecondaryObject
 #
 # -------------------------------------------------------------------------
 class SecondaryObject(BaseObject):

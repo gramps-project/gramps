@@ -46,7 +46,7 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# Event References for Person/Family
+# EventRef
 #
 # -------------------------------------------------------------------------
 class EventRef(
@@ -185,8 +185,7 @@ class EventRef(
         :rtype: list
         """
         ret = (
-            self.get_referenced_citation_handles()
-            + self.get_referenced_note_handles()
+            self.get_referenced_citation_handles() + self.get_referenced_note_handles()
         )
         if self.ref:
             ret += [("Event", self.ref)]

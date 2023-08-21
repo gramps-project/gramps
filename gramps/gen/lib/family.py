@@ -31,7 +31,6 @@ Family object for Gramps.
 #
 # -------------------------------------------------------------------------
 import logging
-from warnings import warn
 
 # -------------------------------------------------------------------------
 #
@@ -43,6 +42,7 @@ from .attrbase import AttributeBase
 from .childref import ChildRef
 from .citationbase import CitationBase
 from .const import DIFFERENT, EQUAL, IDENTICAL
+from .eventbase import EventBase
 from .eventref import EventRef
 from .familyreltype import FamilyRelType
 from .ldsordbase import LdsOrdBase
@@ -58,11 +58,17 @@ LOG = logging.getLogger(".citation")
 
 # -------------------------------------------------------------------------
 #
-# Family class
+# Family
 #
 # -------------------------------------------------------------------------
 class Family(
-    CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase, PrimaryObject
+    CitationBase,
+    NoteBase,
+    MediaBase,
+    EventBase,
+    AttributeBase,
+    LdsOrdBase,
+    PrimaryObject,
 ):
     """
     The Family record is the Gramps in-memory representation of the
@@ -92,13 +98,13 @@ class Family(
         CitationBase.__init__(self)
         NoteBase.__init__(self)
         MediaBase.__init__(self)
+        EventBase.__init__(self)
         AttributeBase.__init__(self)
         LdsOrdBase.__init__(self)
         self.father_handle = None
         self.mother_handle = None
         self.child_ref_list = []
         self.type = FamilyRelType()
-        self.event_ref_list = []
         self.complete = 0
 
     def serialize(self):
@@ -126,7 +132,7 @@ class Family(
             self.mother_handle,
             [cr.serialize() for cr in self.child_ref_list],
             self.type.serialize(),
-            [er.serialize() for er in self.event_ref_list],
+            EventBase.serialize(self),
             MediaBase.serialize(self),
             AttributeBase.serialize(self),
             LdsOrdBase.serialize(self),
@@ -155,11 +161,7 @@ class Family(
             "title": _("Family"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "handle": {
-                    "type": "string",
-                    "maxLength": 50,
-                    "title": _("Handle"),
-                },
+                "handle": {"type": "string", "maxLength": 50, "title": _("Handle")},
                 "gramps_id": {"type": "string", "title": _("Gramps ID")},
                 "father_handle": {
                     "type": ["string", "null"],
@@ -242,13 +244,9 @@ class Family(
 
         self.type = FamilyRelType()
         self.type.unserialize(the_type)
-        self.event_ref_list = [
-            EventRef().unserialize(er) for er in event_ref_list
-        ]
-        self.child_ref_list = [
-            ChildRef().unserialize(cr) for cr in child_ref_list
-        ]
+        self.child_ref_list = [ChildRef().unserialize(cr) for cr in child_ref_list]
         MediaBase.unserialize(self, media_list)
+        EventBase.unserialize(self, event_ref_list)
         AttributeBase.unserialize(self, attribute_list)
         CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
@@ -270,7 +268,7 @@ class Family(
         :rtype: bool
         """
         if classname == "Event":
-            return handle in [ref.ref for ref in self.event_ref_list]
+            return self._has_event_reference(handle)
         if classname == "Person":
             return handle in (
                 [ref.ref for ref in self.child_ref_list]
@@ -290,10 +288,7 @@ class Family(
         :type handle_list: str
         """
         if classname == "Event":
-            new_list = [
-                ref for ref in self.event_ref_list if ref.ref not in handle_list
-            ]
-            self.event_ref_list = new_list
+            self._remove_event_references(handle_list)
         elif classname == "Person":
             new_list = [
                 ref for ref in self.child_ref_list if ref.ref not in handle_list
@@ -320,23 +315,7 @@ class Family(
         :type new_handle: str
         """
         if classname == "Event":
-            refs_list = [ref.ref for ref in self.event_ref_list]
-            new_ref = None
-            if new_handle in refs_list:
-                new_ref = self.event_ref_list[refs_list.index(new_handle)]
-            n_replace = refs_list.count(old_handle)
-            for _ in range(n_replace):
-                idx = refs_list.index(old_handle)
-                self.event_ref_list[idx].ref = new_handle
-                refs_list[idx] = new_handle
-                if new_ref:
-                    evt_ref = self.event_ref_list[idx]
-                    equi = new_ref.is_equivalent(evt_ref)
-                    if equi != DIFFERENT:
-                        if equi == EQUAL:
-                            new_ref.merge(evt_ref)
-                        self.event_ref_list.pop(idx)
-                        refs_list.pop(idx)
+            self._replace_event_references(old_handle, new_handle)
         elif classname == "Person":
             refs_list = [ref.ref for ref in self.child_ref_list]
             new_ref = None
@@ -426,8 +405,7 @@ class Family(
         :rtype: list
         """
         ret = (
-            self.get_referenced_note_handles()
-            + self.get_referenced_citation_handles()
+            self.get_referenced_note_handles() + self.get_referenced_citation_handles()
         )
         ret += [
             ("Person", handle)
@@ -589,9 +567,7 @@ class Family(
         """
         if not isinstance(child_ref, ChildRef):
             raise ValueError("expecting ChildRef instance")
-        new_list = [
-            ref for ref in self.child_ref_list if ref.ref != child_ref.ref
-        ]
+        new_list = [ref for ref in self.child_ref_list if ref.ref != child_ref.ref]
         self.child_ref_list = new_list
 
     def remove_child_handle(self, child_handle):
@@ -605,9 +581,7 @@ class Family(
                   in the list.
         :rtype: bool
         """
-        new_list = [
-            ref for ref in self.child_ref_list if ref.ref != child_handle
-        ]
+        new_list = [ref for ref in self.child_ref_list if ref.ref != child_handle]
         self.child_ref_list = new_list
 
     def get_child_ref_list(self):
@@ -650,57 +624,6 @@ class Family(
                     break
             else:
                 self.child_ref_list.append(addendum)
-
-    def add_event_ref(self, event_ref):
-        """
-        Add the :class:`~.eventref.EventRef` to the Family instance's
-        :class:`~.eventref.EventRef` list.
-
-        This is accomplished by assigning the :class:`~.eventref.EventRef` for
-        the valid :class:`~.event.Event` in the current database.
-
-        :param event_ref: the :class:`~.eventref.EventRef` to be added to the
-                          Person's :class:`~.eventref.EventRef` list.
-        :type event_ref: EventRef
-        """
-        if event_ref and not isinstance(event_ref, EventRef):
-            raise ValueError("Expecting EventRef instance")
-        self.event_ref_list.append(event_ref)
-
-    def get_event_list(self):
-        warn(
-            "Use get_event_ref_list instead of get_event_list",
-            DeprecationWarning,
-            2,
-        )
-        # Wrapper for old API
-        # remove when transitition done.
-        event_handle_list = []
-        for event_ref in self.get_event_ref_list():
-            event_handle_list.append(event_ref.get_reference_handle())
-        return event_handle_list
-
-    def get_event_ref_list(self):
-        """
-        Return the list of :class:`~.eventref.EventRef` objects associated with
-        :class:`~.event.Event` instances.
-
-        :returns: Returns the list of :class:`~.eventref.EventRef` objects
-                  associated with the Family instance.
-        :rtype: list
-        """
-        return self.event_ref_list
-
-    def set_event_ref_list(self, event_ref_list):
-        """
-        Set the Family instance's :class:`~.eventref.EventRef` list to the
-        passed list.
-
-        :param event_ref_list: List of valid :class:`~.eventref.EventRef`
-                               objects
-        :type event_ref_list: list
-        """
-        self.event_ref_list = event_ref_list
 
     def _merge_event_ref_list(self, acquisition):
         """

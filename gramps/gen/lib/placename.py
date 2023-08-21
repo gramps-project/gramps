@@ -38,7 +38,7 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# Place Name
+# PlaceName
 #
 # -------------------------------------------------------------------------
 class PlaceName(SecondaryObject, DateBase):
@@ -63,9 +63,7 @@ class PlaceName(SecondaryObject, DateBase):
             if key in ["value", "lang"]:
                 setattr(self, key, value)
             else:
-                raise AttributeError(
-                    f"PlaceName does not have property '{key}'"
-                )
+                raise AttributeError(f"PlaceName does not have property '{key}'")
 
     def serialize(self):
         """

@@ -35,7 +35,7 @@ LOG = logging.getLogger(".note")
 
 # -------------------------------------------------------------------------
 #
-# NoteBase class
+# NoteBase
 #
 # -------------------------------------------------------------------------
 class NoteBase:
@@ -158,9 +158,7 @@ class NoteBase:
         )
         for handle in handle_list:
             if handle in self.note_list:
-                LOG.debug(
-                    "remove handle %s from note_list %s", handle, self.note_list
-                )
+                LOG.debug("remove handle %s from note_list %s", handle, self.note_list)
                 self.note_list.remove(handle)
         LOG.debug("get_note_child_list %s", self.get_note_child_list())
         for item in self.get_note_child_list():

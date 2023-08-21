@@ -268,8 +268,7 @@ class Attribute(AttributeRoot, CitationBase, NoteBase):
         :rtype: list
         """
         return (
-            self.get_referenced_note_handles()
-            + self.get_referenced_citation_handles()
+            self.get_referenced_note_handles() + self.get_referenced_citation_handles()
         )
 
     def merge(self, acquisition):

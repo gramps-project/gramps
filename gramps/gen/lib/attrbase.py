@@ -35,7 +35,7 @@ from .srcattribute import SrcAttribute
 
 # -------------------------------------------------------------------------
 #
-# AttributeRootBase class
+# AttributeRootBase
 #
 # -------------------------------------------------------------------------
 class AttributeRootBase:
@@ -148,6 +148,11 @@ class AttributeRootBase:
                 self.attribute_list.append(addendum)
 
 
+# -------------------------------------------------------------------------
+#
+# AttributeBase
+#
+# -------------------------------------------------------------------------
 class AttributeBase(AttributeRootBase):
     """
     Base class for an Attribute list.
@@ -156,6 +161,11 @@ class AttributeBase(AttributeRootBase):
     _CLASS = Attribute
 
 
+# -------------------------------------------------------------------------
+#
+# SrcAttributeBase
+#
+# -------------------------------------------------------------------------
 class SrcAttributeBase(AttributeRootBase):
     """
     Base class for a SrcAttribute list.

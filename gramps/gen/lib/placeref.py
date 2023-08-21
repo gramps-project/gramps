@@ -39,7 +39,7 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# Place References
+# PlaceRef
 #
 # -------------------------------------------------------------------------
 class PlaceRef(RefBase, DateBase, SecondaryObject):

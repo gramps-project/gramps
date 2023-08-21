@@ -34,7 +34,7 @@ from .const import EQUAL, IDENTICAL
 
 # -------------------------------------------------------------------------
 #
-# AddressBase classes
+# AddressBase
 #
 # -------------------------------------------------------------------------
 class AddressBase:
@@ -52,9 +52,7 @@ class AddressBase:
         :param source: Object used to initialize the new object
         :type source: AddressBase
         """
-        self.address_list = (
-            list(map(Address, source.address_list)) if source else []
-        )
+        self.address_list = list(map(Address, source.address_list)) if source else []
 
     def serialize(self):
         """

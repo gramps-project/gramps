@@ -345,17 +345,13 @@ for calendar in (
 ):
     for month in range(1, 13):
         d = Date()
-        d.set(
-            quality, modifier, calendar, (4, month, 1789, False), "Text comment"
-        )
+        d.set(quality, modifier, calendar, (4, month, 1789, False), "Text comment")
         dates.append(d)
 
 for calendar in (Date.CAL_HEBREW, Date.CAL_FRENCH):
     for month in range(1, 14):
         d = Date()
-        d.set(
-            quality, modifier, calendar, (4, month, 1789, False), "Text comment"
-        )
+        d.set(quality, modifier, calendar, (4, month, 1789, False), "Text comment")
         dates.append(d)
 
 date_tests[testset] = dates
@@ -1622,9 +1618,7 @@ class SwedishDateTest(BaseDateTest):
 
     def test_swedish(self):
         for date in swedish_dates:
-            self.assertEqual(
-                date.sortval, date.to_calendar("gregorian").sortval
-            )
+            self.assertEqual(date.sortval, date.to_calendar("gregorian").sortval)
 
 
 class Test_set2(BaseDateTest):
@@ -1678,9 +1672,7 @@ class Test_set2(BaseDateTest):
         self.assertEqual(stop, (2009, 1, 1))
 
     def test_copy_ymd_preserves_orig(self):
-        copied = self.date.copy_ymd(
-            year=1000, month=10, day=10, remove_stop_date=True
-        )
+        copied = self.date.copy_ymd(year=1000, month=10, day=10, remove_stop_date=True)
         self.testStartStopSanity()
         start, stop = copied.get_start_stop_range()
         self.assertEqual(start, (1000, 10, 10))
@@ -1722,9 +1714,7 @@ class Test_set_newyear(BaseDateTest):
         for cal in Date.CALENDARS:
             d = Date(1111, 2, 3)
             should_raise = calendar_has_fixed_newyear(cal)
-            message = "{name} {cal}".format(
-                name=Date.calendar_names[cal], cal=cal
-            )
+            message = "{name} {cal}".format(name=Date.calendar_names[cal], cal=cal)
             try:
                 d.set(calendar=cal, newyear=2)
                 self.assertFalse(should_raise, message)
@@ -1766,9 +1756,7 @@ class EmptyDateTest(BaseDateTest):
 
     def test_span_empty(self):
         d = Date()
-        d.set(
-            value=(1, 1, 1900, False, 1, 1, 1910, False), modifier=Date.MOD_SPAN
-        )
+        d.set(value=(1, 1, 1900, False, 1, 1, 1910, False), modifier=Date.MOD_SPAN)
         self.assertFalse(d.is_empty())
 
 

@@ -35,7 +35,7 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# SrcAttributeType class
+# SrcAttributeType
 #
 # -------------------------------------------------------------------------
 class SrcAttributeType(GrampsType):

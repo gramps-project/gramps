@@ -41,7 +41,7 @@ def _T_(value, context=""):  # enable deferred translations
 
 # -------------------------------------------------------------------------
 #
-# AttributeType class
+# AttributeType
 #
 # -------------------------------------------------------------------------
 class AttributeType(GrampsType):

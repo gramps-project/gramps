@@ -44,12 +44,10 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# Repository class
+# Repository
 #
 # -------------------------------------------------------------------------
-class Repository(
-    NoteBase, AddressBase, UrlBase, IndirectCitationBase, PrimaryObject
-):
+class Repository(NoteBase, AddressBase, UrlBase, IndirectCitationBase, PrimaryObject):
     """A location where collections of Sources are found."""
 
     def __init__(self):
@@ -212,10 +210,7 @@ class Repository(
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        return (
-            self.get_referenced_note_handles()
-            + self.get_referenced_tag_handles()
-        )
+        return self.get_referenced_note_handles() + self.get_referenced_tag_handles()
 
     def merge(self, acquisition):
         """

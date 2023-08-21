@@ -45,7 +45,7 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# Address class for Person/Repository
+# Address
 #
 # -------------------------------------------------------------------------
 class Address(
@@ -179,8 +179,7 @@ class Address(
         :rtype: list
         """
         return (
-            self.get_referenced_note_handles()
-            + self.get_referenced_citation_handles()
+            self.get_referenced_note_handles() + self.get_referenced_citation_handles()
         )
 
     def is_equivalent(self, other):

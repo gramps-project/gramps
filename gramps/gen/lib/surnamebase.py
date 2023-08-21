@@ -36,7 +36,7 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# SurnameBase class
+# SurnameBase
 #
 # -------------------------------------------------------------------------
 class SurnameBase:
@@ -54,9 +54,7 @@ class SurnameBase:
         :param source: Object used to initialize the new object
         :type source: SurnameBase
         """
-        self.surname_list = (
-            list(map(Surname, source.surname_list)) if source else []
-        )
+        self.surname_list = list(map(Surname, source.surname_list)) if source else []
 
     def serialize(self):
         """

@@ -43,7 +43,7 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# Repository Reference for Sources
+# RepoRef
 #
 # -------------------------------------------------------------------------
 class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):

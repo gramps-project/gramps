@@ -34,7 +34,7 @@ from .mediaref import MediaRef
 
 # -------------------------------------------------------------------------
 #
-# MediaBase class
+# MediaBase
 #
 # -------------------------------------------------------------------------
 class MediaBase:
@@ -49,9 +49,7 @@ class MediaBase:
         :param source: Object used to initialize the new object
         :type source: MediaBase
         """
-        self.media_list = (
-            list(map(MediaRef, source.media_list)) if source else []
-        )
+        self.media_list = list(map(MediaRef, source.media_list)) if source else []
 
     def serialize(self):
         """

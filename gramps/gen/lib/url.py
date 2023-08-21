@@ -48,7 +48,7 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# Url for Person/Place/Repository
+# Url
 #
 # -------------------------------------------------------------------------
 class Url(SecondaryObject, PrivacyBase):

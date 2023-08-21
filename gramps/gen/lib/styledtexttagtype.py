@@ -35,7 +35,7 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# StyledTextTagType class
+# StyledTextTagType
 #
 # -------------------------------------------------------------------------
 class StyledTextTagType(GrampsType):

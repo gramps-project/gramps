@@ -33,7 +33,7 @@ from .locationbase import LocationBase
 
 # -------------------------------------------------------------------------
 #
-# Researcher class
+# Researcher
 #
 # -------------------------------------------------------------------------
 class Researcher(LocationBase):

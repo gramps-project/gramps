@@ -157,6 +157,7 @@ gramps/gen/lib/baseobj.py
 gramps/gen/lib/citationbase.py
 gramps/gen/lib/const.py
 gramps/gen/lib/datebase.py
+gramps/gen/lib/eventbase.py
 gramps/gen/lib/gcalendar.py
 gramps/gen/lib/genderstats.py
 gramps/gen/lib/ldsordbase.py

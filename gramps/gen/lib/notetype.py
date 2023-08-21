@@ -33,6 +33,11 @@ from .grampstype import GrampsType
 _ = glocale.translation.sgettext
 
 
+# -------------------------------------------------------------------------
+#
+# NoteType
+#
+# -------------------------------------------------------------------------
 class NoteType(GrampsType):
     """
     Class encapsulating the type of note.

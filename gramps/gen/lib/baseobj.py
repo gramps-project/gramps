@@ -33,7 +33,7 @@ from abc import ABCMeta, abstractmethod
 
 # -------------------------------------------------------------------------
 #
-# BaseObject class
+# BaseObject
 #
 # -------------------------------------------------------------------------
 class BaseObject(metaclass=ABCMeta):

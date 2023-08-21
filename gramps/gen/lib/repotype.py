@@ -35,7 +35,7 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# RepositoryType class
+# RepositoryType
 #
 # -------------------------------------------------------------------------
 class RepositoryType(GrampsType):

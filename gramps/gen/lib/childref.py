@@ -45,7 +45,7 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# ChildRef class
+# ChildRef
 #
 # -------------------------------------------------------------------------
 class ChildRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
@@ -164,8 +164,7 @@ class ChildRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
         :rtype: list
         """
         ret = (
-            self.get_referenced_note_handles()
-            + self.get_referenced_citation_handles()
+            self.get_referenced_note_handles() + self.get_referenced_citation_handles()
         )
         if self.ref:
             ret += [("Person", self.ref)]

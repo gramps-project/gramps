@@ -36,7 +36,7 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# FamilyRelType class
+# FamilyRelType
 #
 # -------------------------------------------------------------------------
 class FamilyRelType(GrampsType):
