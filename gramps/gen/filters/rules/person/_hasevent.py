@@ -21,22 +21,17 @@
 """
 Filter rule to match persons with a particular event.
 """
-# -------------------------------------------------------------------------
-#
-# Standard Python modules
-#
-# -------------------------------------------------------------------------
-from ....const import GRAMPS_LOCALE as glocale
-
-_ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from ....const import GRAMPS_LOCALE as glocale
 from ....lib.eventroletype import EventRoleType
 from .._haseventbase import HasEventBase
+
+_ = glocale.translation.gettext
 
 
 # -------------------------------------------------------------------------
@@ -45,7 +40,9 @@ from .._haseventbase import HasEventBase
 #
 # -------------------------------------------------------------------------
 class HasEvent(HasEventBase):
-    """Rule that checks for a person with a particular value"""
+    """
+    Rule that checks for a person with a event with a particular value.
+    """
 
     labels = [
         _("Personal event:"),
@@ -56,16 +53,17 @@ class HasEvent(HasEventBase):
         _("Primary Role:"),
     ]
     name = _("People with the personal <event>")
-    description = _("Matches people with a personal event of a particular " "value")
+    description = _("Matches people with a personal event of a particular value")
 
-    def apply(self, dbase, person):
+    def apply(self, db, person):
+        """
+        Apply the rule. Return True if a match.
+        """
         for event_ref in person.get_event_ref_list():
-            if not event_ref:
-                continue
             if int(self.list[5]) and event_ref.role != EventRoleType.PRIMARY:
                 # Only match primaries, no witnesses
                 continue
-            event = dbase.get_event_from_handle(event_ref.ref)
-            if HasEventBase.apply(self, dbase, event):
+            event = db.get_event_from_handle(event_ref.ref)
+            if HasEventBase.apply(self, db, event):
                 return True
         return False
