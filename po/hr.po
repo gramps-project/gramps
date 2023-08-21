@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-19 21:56+0100\n"
-"PO-Revision-Date: 2023-08-20 05:36+0000\n"
+"PO-Revision-Date: 2023-08-21 09:38+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -302,7 +302,7 @@ msgid ""
 "the level of confidence in a date and even choose between seven different "
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
-"<b>Rad s datumima</b><br/>Razdoblje može biti zadano u formatu „između 4. "
+"<b>Rad s datumima</b><br/>Razdoblje se može zadati u formatu „između 4. "
 "siječnja 2000. i 20. ožujka 2003.”. Uz to, možeš odrediti i razinu "
 "pouzdanosti datuma, te koristiti jedan od sedam kalendara. Isprobaj gumb "
 "pokraj polja datuma u uređivaču događaja."
@@ -538,9 +538,9 @@ msgid ""
 "date field. See the Gramps Manual to learn more."
 msgstr ""
 "<b>Ne znaš točan datum?</b><br/>Ako ne znaš točan datum, Gramps omogućuje "
-"upotrebu raznih formata datuma, zasnovanih na pogađanjima ili procjenama. Na "
-"primjer, „oko 1908.” je valjani unos za datum rođenja u Grampsu. Pritisni "
-"„Otvori uređivač datuma” pokraj polja datuma. Saznaj više u Grampsovom "
+"unos raznih formata datuma, zasnovanih na pogađanjima ili procjenama. Na "
+"primjer, „oko 1908.” je valjani unos za datum rođenja u Grampsu. Pritisni „"
+"Otvori uređivač datuma” pokraj polja datuma. Saznaj više u Grampsovom "
 "priručnik."
 
 #: ../data/tips.xml:42
@@ -3844,8 +3844,8 @@ msgid ""
 "Matches citation records changed after a specified date-time (yyyy-mm-dd hh:"
 "mm:ss) or in the range, if a second date-time is given."
 msgstr ""
-"Pronalazi podatke citata koji su promijenjeni nakon navedenog datuma (gggg-"
-"mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
+"Pronalazi podatke citata koji su promijenjeni nakon određenog datuma/vremena "
+"(gggg-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:45
 msgid "Citations marked private"
@@ -4127,8 +4127,9 @@ msgid ""
 "Matches event records changed after a specified date/time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date/time is given."
 msgstr ""
-"Pronalazi podatke događaja koji su promijenjeni nakon navedenog datuma (gggg-"
-"mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
+"Pronalazi podatke događaja koji su promijenjeni nakon određenog datuma/"
+"vremena (gggg-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/"
+"vrijeme."
 
 #: ../gramps/gen/filters/rules/event/_eventprivate.py:44
 msgid "Events marked private"
@@ -4375,8 +4376,9 @@ msgid ""
 "Matches family records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Pronalazi podatke obitelji koji su promijenjeni nakon navedenog datuma (gggg-"
-"mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
+"Pronalazi podatke obitelji koji su promijenjeni nakon određenog datuma/"
+"vremena (gggg-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/"
+"vrijeme."
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:47
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:47
@@ -4746,8 +4748,9 @@ msgid ""
 "Matches media objects changed after a specified date:time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date:time is given."
 msgstr ""
-"Pronalazi medijske objekte koji su promijenjeni nakon navedenog datuma (gggg-"
-"mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
+"Pronalazi medijske objekte koji su promijenjeni nakon određenog datuma/"
+"vremena (gggg-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/"
+"vrijeme."
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:46
 #: ../gramps/gui/editors/filtereditor.py:117
@@ -4914,8 +4917,9 @@ msgid ""
 "Matches note records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Pronalazi podatke zabilježaka koji su promijenjeni nakon navedenog datuma "
-"(gggg-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
+"Pronalazi podatke zabilježaka koji su promijenjeni nakon određenog datuma/"
+"vremena (gggg-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/"
+"vrijeme."
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:46
 msgid "Note with <Id>"
@@ -5017,8 +5021,8 @@ msgid ""
 "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Pronalazi podatke osoba koji su promijenjeni nakon navedenog datuma (gggg-mm-"
-"dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
+"Pronalazi podatke osoba koji su promijenjeni nakon određenog datuma/vremena "
+"(gggg-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:133
 msgid "Relationship path between <person> and people matching <filter>"
@@ -5929,8 +5933,8 @@ msgid ""
 "Matches place records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Pronalazi podatke mjesta koji su promijenjeni nakon navedenog datuma (gggg-"
-"mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
+"Pronalazi podatke mjesta koji su promijenjeni nakon određenog datuma/vremena "
+"(gggg-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:51
 msgid "Place with the <citation>"
@@ -6235,58 +6239,58 @@ msgid ""
 "Matches repository records changed after a specified date/time (yyyy-mm-dd "
 "hh:mm:ss) or in the range, if a second date/time is given."
 msgstr ""
-"Uspoređuje zapise repozitorija koji su promijenjeni nakon navedenog datuma "
-"(gggg-mm-dd hh:mm:ss) ili u razdoblju, ako je zadan jedan drugi datum/"
-"vrijeme."
+"Uspoređuje zapise spremišta koji su promijenjeni nakon određenog datuma/"
+"vremena (gggg-mm-dd hh:mm:ss) ili u razdoblju, ako je zadan jedan drugi "
+"datum/vrijeme."
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:47
 msgid "Repository attribute:"
-msgstr "Svojstvo repozitorija:"
+msgstr "Svojstvo spremišta:"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:48
 msgid "Repositories with the attribute <attribute>"
-msgstr "Repozitorij sa svojstvom <svojstvo>"
+msgstr "Spremišta sa svojstvom <svojstvo>"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:49
 msgid "Matches repositories with the attribute of a particular value"
-msgstr "Pronalazi repozitorije sa svojstvom određene vrijednosti"
+msgstr "Pronalazi spremišta sa svojstvom određene vrijednosti"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:46
 msgid "Repository with <Id>"
-msgstr "Repozitorij s oznakom <Id>"
+msgstr "Spremište s oznakom <Id>"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:47
 msgid "Matches a repository with a specified Gramps ID"
-msgstr "Uspoređuje repozitorij s određenom Gramps ID oznakom"
+msgstr "Uspoređuje spremište s određenom Gramps ID oznakom"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:44
 msgid "Repositories having notes containing <substring>"
-msgstr "Repozitoriji sa zabilješkama koje sadrže <podniz znakova>"
+msgstr "Spremišta sa zabilješkama koje sadrže <podniz znakova>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:46
 msgid "Matches repositories whose notes contain text matching a substring"
 msgstr ""
-"Pronalazi repozitorije, čije zabilješke sadrže tekst koji odgovara podnizu "
+"Pronalazi spremišta čije zabilješke sadrže tekst koji odgovara podnizu "
 "znakova"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:42
 msgid "Repositories having notes containing <text>"
-msgstr "Repozitoriji sa zabilješkama koje sadrže <tekst>"
+msgstr "Spremišta sa zabilješkama koje sadrže <tekst>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:44
 msgid ""
 "Matches repositories whose notes contain text matching a regular expression"
 msgstr ""
-"Pronalazi repozitorije, čije zabilješke sadrže tekst koji odgovara "
-"regularnom izrazu"
+"Pronalazi spremišta čije zabilješke sadrže tekst koji odgovara regularnom "
+"izrazu"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:44
 msgid "Repositories with a reference count of <count>"
-msgstr "Repozitoriji s <brojem> referenca"
+msgstr "Spremišta s <brojem> referenca"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:45
 msgid "Matches repositories with a certain reference count"
-msgstr "Pronalazi repozitorije s određenim brojem referenca"
+msgstr "Pronalazi spremišta s određenim brojem referenca"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:48
 #: ../gramps/gui/glade/mergerepository.glade:212
@@ -6306,53 +6310,53 @@ msgstr "URL:"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:53
 msgid "Repositories matching parameters"
-msgstr "Repozitoriji koji odgovaraju parametrima"
+msgstr "Spremišta koja odgovaraju parametrima"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:54
 msgid "Matches Repositories with particular parameters"
-msgstr "Pronalazi repozitorije s određenim parametrima"
+msgstr "Pronalazi spremišta s određenim parametrima"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:52
 msgid "Repositories with the <tag>"
-msgstr "Repozitoriji s <oznakom>"
+msgstr "Spremišta s <oznakom>"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:53
 msgid "Matches repositories with the particular tag"
-msgstr "Pronalazi repozitorije s određenom oznakom"
+msgstr "Pronalazi spremišta s određenom oznakom"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:46
 msgid "Repositories matching the <filter>"
-msgstr "Repozitoriji koji odgovaraju <filtru>"
+msgstr "Spremišta koja odgovaraju <filtru>"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:47
 msgid "Matches repositories matched by the specified filter name"
-msgstr "Pronalazi repozitorije koji odgovaraju određenom filtru"
+msgstr "Pronalazi spremišta koja odgovaraju određenom filtru"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:45
 msgid "Repositories with name containing <text>"
-msgstr "Repozitoriji, čiji nazivi sadrže <tekst>"
+msgstr "Spremišta čiji nazivi sadrže <tekst>"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:46
 msgid "Matches repositories whose name contains a certain substring"
-msgstr "Pronalazi repozitorije, čiji nazivi sadrže određeni podniz znakova"
+msgstr "Pronalazi spremišta čiji nazivi sadrže određeni podniz znakova"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:49
 msgid "Repositories with Id containing <text>"
-msgstr "Repozitoriji, čije ID oznake sadrže <tekst>"
+msgstr "Spremišta čije ID oznake sadrže <tekst>"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:51
 msgid "Matches repositories whose Gramps ID matches the regular expression"
 msgstr ""
-"Pronalazi repozitorije, čije Gramps ID oznake odgovaraju određenom "
-"regularnom izrazu"
+"Pronalazi spremišta čije Gramps ID oznake odgovaraju određenom regularnom "
+"izrazu"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:44
 msgid "Repositories marked private"
-msgstr "Repozitoriji označeni kao privatni"
+msgstr "Spremišta označeni kao privatni"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:45
 msgid "Matches repositories that are indicated as private"
-msgstr "Pronalazi repozitorije označene kao privatne"
+msgstr "Pronalazi spremišta koja su označena kao privatna"
 
 #: ../gramps/gen/filters/rules/source/_allsources.py:46
 msgid "Every source"
@@ -6371,8 +6375,8 @@ msgid ""
 "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Pronalazi podatke izvora koji su promijenjeni nakon navedenog datuma (gggg-"
-"mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
+"Pronalazi podatke izvora koji su promijenjeni nakon određenog datuma/vremena "
+"(gggg-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:47
 msgid "Source attribute:"
@@ -6439,23 +6443,22 @@ msgstr "Pronalazi izvore s određenim brojem referenca"
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:49
 msgid "Sources with <count> Repository references"
-msgstr "Izvori s <brojem> referenca repozitorija"
+msgstr "Izvori s <brojem> referenca spremišta"
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:50
 msgid "Matches sources with a certain number of repository references"
-msgstr "Pronalazi izvore s određenim brojem referenca repozitorija"
+msgstr "Pronalazi izvore s određenim brojem referenca spremišta"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:46
 msgid "Sources with repository reference containing <text> in \"Call Number\""
-msgstr ""
-"Izvori s referencama repozitorija, koje sadrže <tekst> u „Pozivnom broju”"
+msgstr "Izvori s referencama spremišta koja sadrže <tekst> u „Pozivnom broju”"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:48
 msgid ""
 "Matches sources with a repository reference\n"
 "containing a substring in \"Call Number\""
 msgstr ""
-"Pronalazi izvore, čije reference repozitorija\n"
+"Pronalazi izvore čije reference spremišta\n"
 "sadrže određeni podniz znakova u „Pozivnom broju”"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:52
@@ -6476,16 +6479,15 @@ msgstr "Pronalazi izvore, koji odgovaraju određenom filtru"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:46
 msgid "Sources with repository reference matching the <repository filter>"
-msgstr ""
-"Izvori s referencama repozitorija, koji odgovaraju <filtru repozitorija>"
+msgstr "Izvori s referencama spremišta koji odgovaraju <filtru spremišta>"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:48
 msgid ""
 "Matches sources with a repository reference that match a certain\n"
 "repository filter"
 msgstr ""
-"Pronalazi izvore s referencama repozitorija dobivena određenim\n"
-"filtrom repozitorija"
+"Pronalazi izvore s referencama spremišta koji odgovaraju\n"
+"određenom filtru spremišta"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:45
 msgid "Sources with title containing <text>"
@@ -8583,11 +8585,11 @@ msgstr "Zabilješka mjesta"
 
 #: ../gramps/gen/lib/notetype.py:102
 msgid "Repository Note"
-msgstr "Zabilješka repozitorija"
+msgstr "Zabilješka spremišta"
 
 #: ../gramps/gen/lib/notetype.py:103
 msgid "Repository Reference Note"
-msgstr "Zabilješka reference repozitorija"
+msgstr "Zabilješka reference spremišta"
 
 #: ../gramps/gen/lib/notetype.py:104
 msgid "Media Note"
@@ -8860,11 +8862,11 @@ msgstr "Broj"
 #: ../gramps/plugins/quickview/filterbyname.py:347
 #: ../gramps/plugins/tool/reorderids.glade:835
 msgid "Repository"
-msgstr "Repozitorij"
+msgstr "Spremište"
 
 #: ../gramps/gen/lib/reporef.py:99 ../gramps/gui/clipboard.py:524
 msgid "Repository ref"
-msgstr "Referenca repozitorija"
+msgstr "Referenca spremišta"
 
 #: ../gramps/gen/lib/reporef.py:108
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:69
@@ -8949,7 +8951,7 @@ msgstr "Kratica"
 #: ../gramps/plugins/webreport/repository.py:241
 #: ../gramps/plugins/webreport/updates.py:141
 msgid "Repositories"
-msgstr "Repozitoriji"
+msgstr "Spremišta"
 
 #: ../gramps/gen/lib/srcmediatype.py:59
 msgid "Audio"
@@ -9030,7 +9032,7 @@ msgstr "Oznaka"
 
 #: ../gramps/gen/lib/styledtexttag.py:117
 msgid "Ranges"
-msgstr "Rasponi"
+msgstr "Razdoblja"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:66
 #: ../gramps/gui/widgets/styledtexteditor.py:84
@@ -9219,7 +9221,7 @@ msgstr "Spoji mjesta"
 #: ../gramps/gen/merge/mergerepositoryquery.py:62
 #: ../gramps/gui/merge/mergerepository.py:71
 msgid "Merge Repositories"
-msgstr "Spoji repozitorije"
+msgstr "Spoji spremišta"
 
 #: ../gramps/gen/merge/mergesourcequery.py:64
 msgid "Merge Source"
@@ -9282,8 +9284,6 @@ msgid "Expert"
 msgstr "Stručnjak"
 
 #: ../gramps/gen/plug/_pluginreg.py:116
-#, fuzzy
-#| msgid "Quick View"
 msgid "Quick view"
 msgstr "Brzi pogled"
 
@@ -9300,14 +9300,10 @@ msgid "Exporter"
 msgstr "Izvoznik"
 
 #: ../gramps/gen/plug/_pluginreg.py:120
-#, fuzzy
-#| msgid "Doc creator"
 msgid "Document creator"
 msgstr "Kreator dokumenata"
 
 #: ../gramps/gen/plug/_pluginreg.py:121
-#, fuzzy
-#| msgid "Plugin lib"
 msgid "Plugin library"
 msgstr "Biblioteka dodataka"
 
@@ -9322,8 +9318,6 @@ msgid "View"
 msgstr "Pogled"
 
 #: ../gramps/gen/plug/_pluginreg.py:124
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Relationship calculator"
 msgstr "Kalkulator srodstva"
 
@@ -10697,7 +10691,7 @@ msgstr "događaj"
 
 #: ../gramps/gen/utils/grampslocale.py:775
 msgid "the repository"
-msgstr "repozitorij"
+msgstr "spremište"
 
 #: ../gramps/gen/utils/grampslocale.py:777
 msgid "the note"
@@ -12172,15 +12166,15 @@ msgstr "Ograničenja računjanja"
 
 #: ../gramps/gui/configure.py:1868
 msgid "Date 'about' year range: (date ± #)"
-msgstr "Raspon godina datuma „oko”: (datum ± #)"
+msgstr "Razdoblje „oko” : (datum ± broj)"
 
 #: ../gramps/gui/configure.py:1876
 msgid "Date 'after' year range:  (date + #)"
-msgstr "Raspon godina datuma „nakon”: (datum ± #)"
+msgstr "Razdoblje „nakon”: (datum ± broj)"
 
 #: ../gramps/gui/configure.py:1884
 msgid "Date 'before' year range: (date - #)"
-msgstr "Raspon godina datuma „prije”: (datum ± #)"
+msgstr "Razdoblje „prije”: (datum ± broj)"
 
 #: ../gramps/gui/configure.py:1892
 msgid "Maximum age probably alive"
@@ -13201,7 +13195,7 @@ msgstr "Nema aktivnog citata"
 
 #: ../gramps/gui/displaystate.py:455
 msgid "No active repository"
-msgstr "Nema aktivnog repozitorija"
+msgstr "Nema aktivnog spremišta"
 
 #: ../gramps/gui/displaystate.py:456
 msgid "No active media"
@@ -13901,32 +13895,32 @@ msgstr "Mjesto koje dodaješ, već je obuhvaćeno ovim mjestom"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:56
 msgid "Create and add a new repository"
-msgstr "Stvori i dodaj novi repozitorij"
+msgstr "Stvori i dodaj novo spremište"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:57
 msgid "Remove the existing repository"
-msgstr "Ukloni postojeći repozitorij"
+msgstr "Ukloni postojeće spremište"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:58
 #: ../gramps/plugins/view/repoview.py:140
 msgid "Edit the selected repository"
-msgstr "Uredi odabrani repozitorij"
+msgstr "Uredi odabrano spremište"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:59
 msgid "Add an existing repository"
-msgstr "Dodaj jedan postojeći repozitorij"
+msgstr "Dodaj jedno postojeće spremište"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:60
 msgid "Move the selected repository upwards"
-msgstr "Pomakni odabrani repozitorij prema gore"
+msgstr "Pomakni odabrano spremište prema gore"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:61
 msgid "Move the selected repository downwards"
-msgstr "Pomakni odabrani repozitorij prema dolje"
+msgstr "Pomakni odabrano spremište prema dolje"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:81
 msgid "_Repositories"
-msgstr "_Repozitoriji"
+msgstr "Sp_remišta"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:183
 msgid ""
@@ -13936,11 +13930,11 @@ msgid ""
 "\n"
 "To edit this repository reference, you need to close the repository."
 msgstr ""
-"Ova se referenca repozitorija trenutačno ne može urediti. Repozitorij se "
-"upravo uređuje ili se uređuje neka druga referenca repozitorija, koja je "
-"povezana s istim repozitorijem.\n"
+"Ova se referenca spremišta trenutačno ne može urediti. Ili se spremište "
+"upravo uređuje ili se uređuje neka druga referenca spremišta, koja je "
+"povezana s istim spremištem.\n"
 "\n"
-"Za uređivanje reference repozitorija moraš zatvoriti repozitorij."
+"Za uređivanje reference spremišta moraš zatvoriti spremište."
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:69
 msgid "Create and add a new surname"
@@ -14145,7 +14139,7 @@ msgstr "Do"
 
 #: ../gramps/gui/editors/editdate.py:84
 msgid "Span"
-msgstr "Razdoblje od/do"
+msgstr "Raspon"
 
 #: ../gramps/gui/editors/editdate.py:85
 msgid "Text only"
@@ -15041,7 +15035,7 @@ msgstr "Ako zatvoriš bez spremanja, tvoje promjene će se izgubiti"
 #: ../gramps/gui/editors/editreference.py:284
 #: ../gramps/gui/editors/editrepository.py:210
 msgid "Cannot save repository. ID already exists."
-msgstr "Nije moguće spremiti repozitorij. ID oznaka već postoji."
+msgstr "Nije moguće spremiti spremište. ID oznaka već postoji."
 
 #: ../gramps/gui/editors/editreference.py:287
 msgid "Cannot save item. ID already exists."
@@ -15049,17 +15043,17 @@ msgstr "Nije moguće spremiti stavku. ID oznaka već postoji."
 
 #: ../gramps/gui/editors/editreporef.py:61
 msgid "Repository Reference Editor"
-msgstr "Uređivač reference repozitorija"
+msgstr "Uređivač referenca spremišta"
 
 #: ../gramps/gui/editors/editreporef.py:202
 #, python-format
 msgid "Repository: %s"
-msgstr "Repozitorij: %s"
+msgstr "Spremište: %s"
 
 #: ../gramps/gui/editors/editreporef.py:204
 #: ../gramps/gui/editors/editrepository.py:87
 msgid "New Repository"
-msgstr "Novi repozitorij"
+msgstr "Novo spremište"
 
 #: ../gramps/gui/editors/editreporef.py:205
 msgid "Repo Reference Editor"
@@ -15067,41 +15061,40 @@ msgstr "Uređivač reference spremište"
 
 #: ../gramps/gui/editors/editreporef.py:211
 msgid "Modify Repository"
-msgstr "Izmjeni repozitorij"
+msgstr "Promijeni spremište"
 
 #: ../gramps/gui/editors/editreporef.py:216
 msgid "Add Repository"
-msgstr "Dodaj repozitorij"
+msgstr "Dodaj spremište"
 
 #: ../gramps/gui/editors/editrepository.py:60
 msgctxt "manual"
 msgid "New_Repository_dialog"
-msgstr "Novi_repozitorij_dijalog"
+msgstr "Novo_spremište_dijalog"
 
 #: ../gramps/gui/editors/editrepository.py:97
 msgid "Edit Repository"
-msgstr "Uredi repozitorij"
+msgstr "Uredi spremište"
 
 #: ../gramps/gui/editors/editrepository.py:196
 msgid "Cannot save repository"
-msgstr "Nije moguće spremiti repozitorij"
+msgstr "Nije moguće spremiti spremište"
 
 #: ../gramps/gui/editors/editrepository.py:198
 msgid ""
 "No data exists for this repository. Please enter data or cancel the edit."
 msgstr ""
-"Ne postoje podaci za ovaj repozitorij. Upiši podatke ili prekini s "
-"uređivanjem."
+"Ne postoje podaci za ovo spremište. Upiši podatke ili prekini s uređivanjem."
 
 #: ../gramps/gui/editors/editrepository.py:223
 #, python-format
 msgid "Add Repository (%s)"
-msgstr "Dodaj repozitorij (%s)"
+msgstr "Dodaj spremište (%s)"
 
 #: ../gramps/gui/editors/editrepository.py:229
 #, python-format
 msgid "Edit Repository (%s)"
-msgstr "Uredi repozitorij (%s)"
+msgstr "Uredi spremište (%s)"
 
 #: ../gramps/gui/editors/editsource.py:71
 msgctxt "manual"
@@ -15199,7 +15192,7 @@ msgstr "Filtri medija"
 
 #: ../gramps/gui/editors/filtereditor.py:105
 msgid "Repository Filters"
-msgstr "Filtri repozitorija"
+msgstr "Filtri spremišta"
 
 #: ../gramps/gui/editors/filtereditor.py:106
 msgid "Note Filters"
@@ -16334,8 +16327,8 @@ msgid ""
 "Date of the event. This can be an exact date, a range (from ... to, "
 "between, ...), or an inexact date (about, ...)."
 msgstr ""
-"Datum događaja. Datum se može odrediti točno, razdobljem (od … do, između, "
-"…) ili približno (oko …)."
+"Datum događaja. Datum može biti točan datum, razdoblje (od … do, između, …) "
+"ili približno (oko …)."
 
 #: ../gramps/gui/glade/editevent.glade:375
 #: ../gramps/gui/glade/editeventref.glade:451
@@ -16975,14 +16968,14 @@ msgid ""
 "or use copy/paste from your favorite map provider (format : latitude,"
 "longitude) in the following field:"
 msgstr ""
-"ili kopiraj/zalijepi podatke iz tvog omiljenog kartografskog servisa "
-"(format: širina,dužina) u sljedeće polje:"
+"ili kopiraj/umetni podatke iz tvoje omiljene kartografske usluge (format: "
+"širina,dužina) u sljedeće polje:"
 
 #: ../gramps/gui/glade/editplace.glade:240
 #: ../gramps/gui/glade/editplaceref.glade:376
 msgid "Field used to paste info from a web page like Google, OpenStreetMap..."
 msgstr ""
-"Polje korišteno za prijenos informacija s web stranice, kao npr. google, "
+"Polje korišteno za umetanje informacija s web stranice, kao npr. google, "
 "openstreetmap, ..."
 
 #: ../gramps/gui/glade/editplace.glade:267
@@ -17072,11 +17065,11 @@ msgstr "Poziv_ni broj:"
 
 #: ../gramps/gui/glade/editreporef.glade:156
 msgid "On what type of media this source is available in the repository."
-msgstr "Na kojoj vrsti medija je ovaj izvor dostupan u repozitoriju."
+msgstr "Na kojoj vrsti medija je ovaj izvor dostupan u spremištu."
 
 #: ../gramps/gui/glade/editreporef.glade:209
 msgid "Id number of the source in the repository."
-msgstr "ID-broj izvora u repozitoriju."
+msgstr "ID-broj izvora u spremištu."
 
 #: ../gramps/gui/glade/editreporef.glade:264
 #: ../gramps/gui/glade/editrepository.glade:97
@@ -17088,7 +17081,7 @@ msgstr "_Ime:"
 #: ../gramps/gui/glade/editreporef.glade:293
 #: ../gramps/gui/glade/editrepository.glade:126
 msgid "Name of the repository (where sources are stored)."
-msgstr "Ime repozitorija (gdje su izvori podataka spremljeni)."
+msgstr "Ime spremišta (gdje su izvori spremljeni)."
 
 #: ../gramps/gui/glade/editreporef.glade:329
 msgid ""
@@ -17096,18 +17089,18 @@ msgid ""
 "reflected in the repository itself, for all items that reference the "
 "repository."
 msgstr ""
-"<b>Napomena:</b> Sve promjene u dijeljenom repozitoriju biti će vidljive u "
-"samom repozitoriju, za sve elemente koji se na njega referenciraju."
+"<b>Napomena:</b> Sve promjene u dijeljenom spremištu biti će vidljive u "
+"samom spremištu, za sve elemente koji se na njega referenciraju."
 
 #: ../gramps/gui/glade/editreporef.glade:370
 #: ../gramps/gui/glade/editrepository.glade:179
 msgid "A unique ID to identify the repository."
-msgstr "Jedinstvena ID oznaka repozitorija."
+msgstr "Jedinstvena ID oznaka spremišta."
 
 #: ../gramps/gui/glade/editreporef.glade:424
 #: ../gramps/gui/glade/editrepository.glade:144
 msgid "Type of repository, eg., 'Library', 'Album', ..."
-msgstr "Vrsta repozitorija, npr.: knjižnica, album ..."
+msgstr "Vrsta spremišta, npr.: knjižnica, album ..."
 
 #: ../gramps/gui/glade/editsource.glade:112
 msgid "_Author:"
@@ -17451,20 +17444,20 @@ msgid ""
 "Select the repository that will provide the\n"
 "primary data for the merged repository."
 msgstr ""
-"Odaberi repozitorij, čiji će podaci biti\n"
-"primarni za sjedinjeni repozitorij."
+"Odaberi spremište koje će pružati\n"
+"primarne podatke za spojeno spremište."
 
 #: ../gramps/gui/glade/mergerepository.glade:186
 msgid "Repository 1"
-msgstr "Repozitorij 1"
+msgstr "Spremište 1"
 
 #: ../gramps/gui/glade/mergerepository.glade:200
 msgid "Repository 2"
-msgstr "Repozitorij 2"
+msgstr "Spremište 2"
 
 #: ../gramps/gui/glade/mergerepository.glade:398
 msgid "Addresses, urls and notes of both repositories will be combined."
-msgstr "Adrese, url adrese i zabilješke obaju repozitorija bit će spojene."
+msgstr "Adrese, url adrese i zabilješke oba spremišta bit će spojene."
 
 #: ../gramps/gui/glade/mergesource.glade:97
 msgid ""
@@ -17479,8 +17472,8 @@ msgid ""
 "Notes, media objects, data-items and repository references of both sources "
 "will be combined."
 msgstr ""
-"Zabilješke, medijski objekti, podaci i reference repozitorija obaju izvora "
-"biti će spojeni."
+"Zabilješke, medijski objekti, podaci i reference spremišta oba izvora bit će "
+"spojeni."
 
 #: ../gramps/gui/glade/papermenu.glade:8
 msgid "Paper Settings"
@@ -18248,8 +18241,8 @@ msgstr ""
 "Postaviti će ti nekoliko pitanja i sakupiti podatke o nastaloj grešci te "
 "operacijskom okruženju. Na kraju ćemo te zamoliti, da prijaviš grešku na "
 "Gramps sustav za praćenje grešaka. Pomoćnik će smjestiti izvještaj o grešci "
-"u privremeno odlagalište, odakle ih možeš prenijeti u formular za prijavu "
-"greške i pregledati sve uključene podatke."
+"u međuspremnik kako bi se mogao umetnuti u formular za prijavu greške i "
+"pregledati sve uključene podatke."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:320
 msgid ""
@@ -18357,8 +18350,8 @@ msgid ""
 "submit report"
 msgstr ""
 "Koristi ovaj gumb za kopiranje izvještaja o grešci u međuspremnik. Zatim, "
-"pomoću donjeg gumba otiđi na web stranicu za praćenje grešaka, prenesi taj "
-"izvještaj i pritisni gumb za prijavu izvještaja (submit report)"
+"pomoću donjeg gumba otiđi na web stranicu za praćenje grešaka, umetni "
+"sadržaj izvještaja i pritisni gumb za slanje izvještaja"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:727
 #: ../gramps/gui/logger/_errorreportassistant.py:758
@@ -18570,7 +18563,7 @@ msgstr "Spoji_mjesta"
 #: ../gramps/gui/merge/mergerepository.py:45
 msgctxt "manual"
 msgid "Merge_Repositories"
-msgstr "Sjedini_repozitorije"
+msgstr "Spoji_spremišta"
 
 #: ../gramps/gui/merge/mergesource.py:46
 msgctxt "manual"
@@ -18699,10 +18692,8 @@ msgstr "Zahtijeva"
 
 #: ../gramps/gui/plug/_windows.py:263 ../gramps/gui/plug/_windows.py:395
 #: ../gramps/gui/plug/_windows.py:594
-#, fuzzy
-#| msgid "Updated"
 msgid "Update"
-msgstr "Aktualizirano"
+msgstr "Aktualiziranje"
 
 #: ../gramps/gui/plug/_windows.py:286
 msgid "Module installation failed"
@@ -18725,40 +18716,28 @@ msgid "Filters"
 msgstr "Filtri"
 
 #: ../gramps/gui/plug/_windows.py:392
-#, fuzzy
-#| msgid "Addons"
 msgid "All addons"
-msgstr "Dodaci"
+msgstr "Svi dodaci"
 
 #: ../gramps/gui/plug/_windows.py:393 ../gramps/gui/plug/_windows.py:588
-#, fuzzy
-#| msgid "installed"
 msgid "Uninstalled"
-msgstr "instaliran"
+msgstr "Neinstaliran"
 
 #: ../gramps/gui/plug/_windows.py:394 ../gramps/gui/plug/_windows.py:591
-#, fuzzy
-#| msgid "installed"
 msgid "Installed"
-msgstr "instaliran"
+msgstr "Instaliran"
 
 #: ../gramps/gui/plug/_windows.py:407
-#, fuzzy
-#| msgid "All files"
 msgid "All types"
-msgstr "Sve datoteke"
+msgstr "Sve vrste"
 
 #: ../gramps/gui/plug/_windows.py:415
-#, fuzzy
-#| msgid "Audience"
 msgid "All audiences"
-msgstr "Publika"
+msgstr "Sva publika"
 
 #: ../gramps/gui/plug/_windows.py:422
-#, fuzzy
-#| msgid " state"
 msgid "All statuses"
-msgstr " pokrajina"
+msgstr "Sva stanja"
 
 #: ../gramps/gui/plug/_windows.py:443
 msgid "Settings"
@@ -18769,10 +18748,8 @@ msgid "Projects"
 msgstr "Projekti"
 
 #: ../gramps/gui/plug/_windows.py:489 ../gramps/gui/plug/_windows.py:599
-#, fuzzy
-#| msgid "Projects"
 msgid "All projects"
-msgstr "Projekti"
+msgstr "Svi projekti"
 
 #: ../gramps/gui/plug/_windows.py:501
 msgid "Loading..."
@@ -18849,14 +18826,12 @@ msgid "Project name"
 msgstr "Ime projekta"
 
 #: ../gramps/gui/plug/_windows.py:886
-#, fuzzy
-#| msgid "Restore to defaults"
 msgid "Restore project defaults"
-msgstr "Vrati na zadane vrijednosti"
+msgstr "Obnovi zadane vrijednosti projekta"
 
 #: ../gramps/gui/plug/_windows.py:887
 msgid "Are you sure?"
-msgstr ""
+msgstr "Sigurno?"
 
 #: ../gramps/gui/plug/_windows.py:911
 msgid "Checking Addons Failed"
@@ -19060,11 +19035,8 @@ msgstr[1] "{number_of} dodatka su instalirana."
 msgstr[2] "{number_of} dodataka je instalirano."
 
 #: ../gramps/gui/plug/_windows.py:2224
-#, fuzzy
-#| msgid ""
-#| "If you have installed a 'Gramps View', you will need to restart Gramps."
 msgid "If you have installed a 'View', you will need to restart Gramps."
-msgstr "Ako instaliraš jedan „Gramps pogled”, moraš ponovo pokrenuti Gramps."
+msgstr "Ako instaliraš jedan „Pogled”, moraš ponovo pokrenuti Gramps."
 
 #: ../gramps/gui/plug/_windows.py:2232
 msgid "No addons were installed."
@@ -19893,12 +19865,12 @@ msgstr "Odaberi_mjesto"
 
 #: ../gramps/gui/selectors/selectrepository.py:60
 msgid "Select Repository"
-msgstr "Odaberi repozitorij"
+msgstr "Odaberi spremište"
 
 #: ../gramps/gui/selectors/selectrepository.py:79
 msgctxt "manual"
 msgid "Select_Repository_selector"
-msgstr "Odaberi_repozitorij"
+msgstr "Odaberi_selektor_spremišta"
 
 #: ../gramps/gui/selectors/selectsource.py:60
 msgid "Select Source"
@@ -22767,7 +22739,7 @@ msgstr "Zapisivanje zabilježaka"
 
 #: ../gramps/plugins/export/exportgedcom.py:1127
 msgid "Writing repositories"
-msgstr "Zapisivanje repozitorija"
+msgstr "Zapisivanje spremišta"
 
 #: ../gramps/plugins/export/exportgedcom.py:1253
 #: ../gramps/plugins/lib/libgedcom.py:6399
@@ -23405,11 +23377,11 @@ msgstr "Detalji"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:390
 msgid "Repository Details"
-msgstr "Detalji repozitorija"
+msgstr "Detalji spremišta"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:391
 msgid "Gramplet showing details of a repository"
-msgstr "Gramplet prikazuje detalje repozitorija"
+msgstr "Gramplet prikazuje detalje spremišta"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:405
 msgid "Place Details"
@@ -23627,11 +23599,11 @@ msgstr "Gramplet prikazuje zabilješke za citat"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:809
 msgid "Repository Notes"
-msgstr "Bilješke repozitorija"
+msgstr "Zabilješke spremišta"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:810
 msgid "Gramplet showing the notes for a repository"
-msgstr "Gramplet koji prikazuje zabilješke za repozitorij"
+msgstr "Gramplet prikazuje zabilješke za spremište"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:824
 msgid "Media Notes"
@@ -23768,11 +23740,11 @@ msgstr "Gramplet prikazuje povratne poveznice za citat"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1049
 #: ../gramps/plugins/quickview/quickview.gpr.py:264
 msgid "Repository References"
-msgstr "Reference repozitorija"
+msgstr "Reference spremišta"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1050
 msgid "Gramplet showing the backlink references for a repository"
-msgstr "Gramplet prikazuje povratne poveznice za repozitorij"
+msgstr "Gramplet prikazuje povratne poveznice za spremište"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1064
 msgid "Media References"
@@ -23848,11 +23820,11 @@ msgstr "Gramplet za korištenje filtra medija"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1199
 msgid "Repository Filter"
-msgstr "Filtar repozitorija"
+msgstr "Filtar spremišta"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1200
 msgid "Gramplet providing a repository filter"
-msgstr "Gramplet za korištenje filtra repozitorija"
+msgstr "Gramplet pruža filtar spremišta"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1214
 msgid "Note Filter"
@@ -23923,11 +23895,11 @@ msgstr "Gramplet prikazuje zadatke za citat"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1336
 msgid "Repository To Do"
-msgstr "Zadaci (repozitorij)"
+msgstr "Zadaci spremišta"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1337
 msgid "Gramplet showing the To Do notes for a repository"
-msgstr "Gramplet koji prikazuje zabilješke za zadatke za repozitorij"
+msgstr "Gramplet prikazuje zabilješke zadataka za spremište"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1351
 msgid "Media To Do"
@@ -26923,12 +26895,12 @@ msgstr "SOUR (izvor) Gramps ID %s"
 #: ../gramps/plugins/lib/libgedcom.py:7234
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
-msgstr "OBJE (multi-/medijski objekt) Gramps ID %s"
+msgstr "OBJE (multimedijski objekt) Gramps ID %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:7453
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
-msgstr "REPO (repozitorij) Gramps ID %s"
+msgstr "REPO (spremište) Gramps ID %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:7514
 #: ../gramps/plugins/lib/libgedcom.py:8531
@@ -31659,7 +31631,7 @@ msgstr "Preokreni izvore"
 #: ../gramps/plugins/quickview/filterbyname.py:49
 msgctxt "Filtering_on"
 msgid "Inverse Repository"
-msgstr "Preokreni repozitorij"
+msgstr "Preokreni spremište"
 
 #: ../gramps/plugins/quickview/filterbyname.py:50
 msgctxt "Filtering_on"
@@ -31699,7 +31671,7 @@ msgstr "svi izvori"
 #: ../gramps/plugins/quickview/filterbyname.py:57
 msgctxt "Filtering_on"
 msgid "all repositories"
-msgstr "svi repozitoriji"
+msgstr "sva spremišta"
 
 #: ../gramps/plugins/quickview/filterbyname.py:58
 msgctxt "Filtering_on"
@@ -32073,8 +32045,7 @@ msgstr "Prikaži reference zabilješke"
 #: ../gramps/plugins/quickview/quickview.gpr.py:266
 msgid ""
 "Display the repository reference for sources related to the active repository"
-msgstr ""
-"Prikaži reference repozitorija za izvore povezane s aktivnim repozitorijem"
+msgstr "Prikaži reference spremišta za izvore povezane s aktivnim spremištem"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:288
 msgid "Same Surnames"
@@ -33675,12 +33646,12 @@ msgstr "Broj citata: %d"
 
 #: ../gramps/plugins/textreport/summary.py:303
 msgid "Repository Information"
-msgstr "Informacije repozitorija"
+msgstr "Informacije spremišta"
 
 #: ../gramps/plugins/textreport/summary.py:308
 #, python-format
 msgid "Number of repositories: %d"
-msgstr "Broj repozitorija: %d"
+msgstr "Broj spremišta: %d"
 
 #: ../gramps/plugins/textreport/summary.py:342
 #, python-format
@@ -34093,7 +34064,7 @@ msgstr "Traženje praznih zapisa medija"
 
 #: ../gramps/plugins/tool/check.py:1019
 msgid "Looking for empty repository records"
-msgstr "Traženje praznih zapisa repozitorija"
+msgstr "Traženje praznih zapisa spremišta"
 
 #: ../gramps/plugins/tool/check.py:1028
 msgid "Looking for empty note records"
@@ -34278,9 +34249,9 @@ msgstr[2] "{quantity} datuma je ispravljeno\n"
 #, python-brace-format
 msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
-msgstr[0] "{quantity} repozitorij je referenciran ali nije pronađen\n"
-msgstr[1] "{quantity} repozitorija su referencirana ali nisu pronađena\n"
-msgstr[2] "{quantity} repozitorija su referencirana ali nisu pronađena\n"
+msgstr[0] "{quantity} referencirano spremište nije pronađeno\n"
+msgstr[1] "{quantity} referencirana spremišta nisu pronađena\n"
+msgstr[2] "{quantity} referenciranih spremišta nije pronađeno\n"
 
 #: ../gramps/plugins/tool/check.py:2869 ../gramps/plugins/tool/check.py:2969
 #, python-brace-format
@@ -35922,7 +35893,7 @@ msgstr "Majka umrla"
 
 #: ../gramps/plugins/tool/verify.py:1832
 msgid "Large year span for all children"
-msgstr "Veliki vremenski razmak između prvog i zadnjeg djeteta"
+msgstr "Veliki raspon godina za svu djecu"
 
 #: ../gramps/plugins/tool/verify.py:1863
 msgid "Large age differences between children"
