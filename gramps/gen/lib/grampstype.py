@@ -37,7 +37,7 @@ _UNKNOWN = _("Unknown")
 
 # -------------------------------------------------------------------------
 #
-# GrampsTypeMeta class
+# GrampsTypeMeta
 #
 # -------------------------------------------------------------------------
 class GrampsTypeMeta(type):
@@ -75,7 +75,7 @@ class GrampsTypeMeta(type):
 
 # -------------------------------------------------------------------------
 #
-# GrampsType class
+# GrampsType
 #
 # -------------------------------------------------------------------------
 class GrampsType(metaclass=GrampsTypeMeta):

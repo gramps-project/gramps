@@ -45,7 +45,7 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# Media References for Person/Place/Source
+# MediaRef
 #
 # -------------------------------------------------------------------------
 class MediaRef(
@@ -189,8 +189,7 @@ class MediaRef(
         :rtype: list
         """
         ret = (
-            self.get_referenced_note_handles()
-            + self.get_referenced_citation_handles()
+            self.get_referenced_note_handles() + self.get_referenced_citation_handles()
         )
         if self.ref:
             ret += [("Media", self.ref)]

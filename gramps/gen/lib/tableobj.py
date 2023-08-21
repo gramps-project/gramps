@@ -44,7 +44,7 @@ CODESET = glocale.encoding
 
 # -------------------------------------------------------------------------
 #
-# TableObject class
+# TableObject
 #
 # -------------------------------------------------------------------------
 class TableObject(BaseObject):
@@ -121,9 +121,7 @@ class TableObject(BaseObject):
 
         """
         if self.change:
-            return str(
-                time.strftime("%x %X", time.localtime(self.change)), CODESET
-            )
+            return str(time.strftime("%x %X", time.localtime(self.change)), CODESET)
         return ""
 
     def set_handle(self, handle):
@@ -165,7 +163,5 @@ class TableObject(BaseObject):
             elif isinstance(schema_type, dict):
                 schema_type = None
             if schema_type in ("string", "integer", "number", "boolean"):
-                result.append(
-                    (key.lower(), schema_type, value.get("maxLength"))
-                )
+                result.append((key.lower(), schema_type, value.get("maxLength")))
         return result

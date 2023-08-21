@@ -35,7 +35,7 @@ _ = glocale.translation.sgettext
 
 # -------------------------------------------------------------------------
 #
-# EventRoleType class
+# EventRoleType
 #
 # -------------------------------------------------------------------------
 class EventRoleType(GrampsType):

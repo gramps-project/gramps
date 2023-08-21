@@ -237,9 +237,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         self.place_type = PlaceType()
         self.place_type.unserialize(the_type)
         self.alt_loc = [Location().unserialize(al) for al in alt_loc]
-        self.placeref_list = [
-            PlaceRef().unserialize(pr) for pr in placeref_list
-        ]
+        self.placeref_list = [PlaceRef().unserialize(pr) for pr in placeref_list]
         self.name = PlaceName().unserialize(name)
         self.alt_names = [PlaceName().unserialize(an) for an in alt_names]
         UrlBase.unserialize(self, urls)
@@ -266,13 +264,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :rtype: list
         """
 
-        ret = (
-            self.media_list
-            + self.alt_loc
-            + self.urls
-            + [self.name]
-            + self.alt_names
-        )
+        ret = self.media_list + self.alt_loc + self.urls + [self.name] + self.alt_names
         return ret
 
     def get_citation_child_list(self):

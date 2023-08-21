@@ -34,7 +34,7 @@ from .ldsord import LdsOrd
 
 # -------------------------------------------------------------------------
 #
-# LdsOrdBase classes
+# LdsOrdBase
 #
 # -------------------------------------------------------------------------
 class LdsOrdBase:
@@ -54,9 +54,7 @@ class LdsOrdBase:
         """
 
         if source:
-            self.lds_ord_list = [
-                LdsOrd(lds_ord) for lds_ord in source.lds_ord_list
-            ]
+            self.lds_ord_list = [LdsOrd(lds_ord) for lds_ord in source.lds_ord_list]
         else:
             self.lds_ord_list = []
 

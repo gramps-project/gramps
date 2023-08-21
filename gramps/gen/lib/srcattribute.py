@@ -37,7 +37,7 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# Attribute for Source/Citation
+# SrcAttribute
 #
 # -------------------------------------------------------------------------
 class SrcAttribute(AttributeRoot):

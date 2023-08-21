@@ -119,11 +119,7 @@ def _tishri1(metonic_year, molad_day, molad_halakim):
     # Apply rules 2, 3 and 4.
     if (
         (molad_halakim >= _HBR_NOON)
-        or (
-            (not leap_year)
-            and dow == _HBR_TUESDAY
-            and molad_halakim >= _HBR_AM3_11_20
-        )
+        or ((not leap_year) and dow == _HBR_TUESDAY and molad_halakim >= _HBR_AM3_11_20)
         or (
             last_was_leap_year
             and dow == _HBR_MONDAY
@@ -195,9 +191,7 @@ def _molad_of_metonic_cycle(metonic_cycle):
     # bits of the result will be in r2 and the lower 16 bits will be
     # in r1.
 
-    var_r1 = var_r1 + (
-        metonic_cycle * (_HBR_HALAKIM_PER_METONIC_CYCLE & 0xFFFF)
-    )
+    var_r1 = var_r1 + (metonic_cycle * (_HBR_HALAKIM_PER_METONIC_CYCLE & 0xFFFF))
     var_r2 = var_r1 >> 16
     var_r2 = var_r2 + (
         metonic_cycle * ((_HBR_HALAKIM_PER_METONIC_CYCLE >> 16) & 0xFFFF)
@@ -272,9 +266,7 @@ def hebrew_sdn(year, month, day):
         )
         molad_day = molad_day + (molad_halakim // _HBR_HALAKIM_PER_DAY)
         molad_halakim = molad_halakim % _HBR_HALAKIM_PER_DAY
-        tishri1_after = _tishri1(
-            (metonic_year + 1) % 19, molad_day, molad_halakim
-        )
+        tishri1_after = _tishri1((metonic_year + 1) % 19, molad_day, molad_halakim)
 
         year_length = tishri1_after - tishri1
 
@@ -358,9 +350,7 @@ def hebrew_ymd(sdn):
         # We need the length of the year to figure this out, so find
         # Tishri 1 of the next year.
 
-        halakim += (
-            _HBR_HALAKIM_PER_LUNAR_CYCLE * _HBR_MONTHS_PER_YEAR[metonic_year]
-        )
+        halakim += _HBR_HALAKIM_PER_LUNAR_CYCLE * _HBR_MONTHS_PER_YEAR[metonic_year]
         day1 += halakim // _HBR_HALAKIM_PER_DAY
         halakim = halakim % _HBR_HALAKIM_PER_DAY
         tishri1_after = _tishri1((metonic_year + 1) % 19, day1, halakim)
@@ -638,9 +628,7 @@ def islamic_ymd(sdn):
     """Convert an SDN number to an Islamic calendar date."""
     sdn = math.floor(sdn) + 0.5
     year = int(math.floor(((30 * (sdn - _ISM_EPOCH)) + 10646) / 10631))
-    month = int(
-        min(12, math.ceil((sdn - (29 + islamic_sdn(year, 1, 1))) / 29.5) + 1)
-    )
+    month = int(min(12, math.ceil((sdn - (29 + islamic_sdn(year, 1, 1))) / 29.5) + 1))
     day = int((sdn - islamic_sdn(year, month, 1)) + 1)
     return (year, month, day)
 

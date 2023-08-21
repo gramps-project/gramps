@@ -54,7 +54,7 @@ LOG = logging.getLogger(".citation")
 
 # -------------------------------------------------------------------------
 #
-# Media class
+# Media
 #
 # -------------------------------------------------------------------------
 class Media(CitationBase, NoteBase, DateBase, AttributeBase, PrimaryObject):

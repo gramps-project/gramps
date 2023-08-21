@@ -40,7 +40,7 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# Location class for Places
+# Location
 #
 # -------------------------------------------------------------------------
 class Location(SecondaryObject, LocationBase):

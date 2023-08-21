@@ -46,7 +46,7 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# Source class
+# Source
 #
 # -------------------------------------------------------------------------
 class Source(
@@ -170,9 +170,7 @@ class Source(
         MediaBase.unserialize(self, media_list)
         TagBase.unserialize(self, tag_list)
         SrcAttributeBase.unserialize(self, srcattr_list)
-        self.reporef_list = [
-            RepoRef().unserialize(item) for item in reporef_list
-        ]
+        self.reporef_list = [RepoRef().unserialize(item) for item in reporef_list]
         return self
 
     def _has_handle_reference(self, classname, handle):
@@ -202,9 +200,7 @@ class Source(
         :type handle_list: str
         """
         if classname == "Repository":
-            new_list = [
-                ref for ref in self.reporef_list if ref.ref not in handle_list
-            ]
+            new_list = [ref for ref in self.reporef_list if ref.ref not in handle_list]
             self.reporef_list = new_list
 
     def _replace_handle_reference(self, classname, old_handle, new_handle):
@@ -287,10 +283,7 @@ class Source(
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        return (
-            self.get_referenced_note_handles()
-            + self.get_referenced_tag_handles()
-        )
+        return self.get_referenced_note_handles() + self.get_referenced_tag_handles()
 
     def merge(self, acquisition):
         """

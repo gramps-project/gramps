@@ -41,7 +41,7 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# Class for notes used throughout the majority of Gramps objects
+# Note
 #
 # -------------------------------------------------------------------------
 class Note(BasicPrimaryObject):
@@ -233,11 +233,7 @@ class Note(BasicPrimaryObject):
                 and styledtext_tag.value.startswith("gramps://")
             ):
                 obj, prop, value = styledtext_tag.value[9:].split("/", 2)
-                if (
-                    obj == classname
-                    and prop == "handle"
-                    and value in handle_list
-                ):
+                if obj == classname and prop == "handle" and value in handle_list:
                     continue
             tags.append(styledtext_tag)
         self.text.set_tags(tags)
@@ -259,11 +255,7 @@ class Note(BasicPrimaryObject):
                 and styledtext_tag.value.startswith("gramps://")
             ):
                 obj, prop, value = styledtext_tag.value[9:].split("/", 2)
-                if (
-                    obj == classname
-                    and prop == "handle"
-                    and value == old_handle
-                ):
+                if obj == classname and prop == "handle" and value == old_handle:
                     styledtext_tag.value = styledtext_tag.value.replace(
                         old_handle, new_handle
                     )
@@ -371,12 +363,8 @@ class Note(BasicPrimaryObject):
         for styledtext_tag in self.text.get_tags():
             if int(styledtext_tag.name) == StyledTextTagType.LINK:
                 if styledtext_tag.value.startswith("gramps://"):
-                    object_class, prop, value = styledtext_tag.value[9:].split(
-                        "/", 2
-                    )
+                    object_class, prop, value = styledtext_tag.value[9:].split("/", 2)
                     retval.append(("gramps", object_class, prop, value))
                 else:
-                    retval.append(
-                        ("external", "www", "url", styledtext_tag.value)
-                    )
+                    retval.append(("external", "www", "url", styledtext_tag.value))
         return retval

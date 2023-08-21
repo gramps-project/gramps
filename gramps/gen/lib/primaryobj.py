@@ -45,7 +45,7 @@ from .tagbase import TagBase
 
 # -------------------------------------------------------------------------
 #
-# Basic Primary Object class
+# BasicPrimaryObject
 #
 # -------------------------------------------------------------------------
 class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):

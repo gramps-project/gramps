@@ -53,7 +53,7 @@ LOG = logging.getLogger(".citation")
 
 # -------------------------------------------------------------------------
 #
-# Citation class
+# Citation
 #
 # -------------------------------------------------------------------------
 class Citation(
@@ -303,10 +303,7 @@ class Citation(
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        ret = (
-            self.get_referenced_note_handles()
-            + self.get_referenced_tag_handles()
-        )
+        ret = self.get_referenced_note_handles() + self.get_referenced_tag_handles()
         if self.get_reference_handle():
             ret += [("Source", self.get_reference_handle())]
         return ret

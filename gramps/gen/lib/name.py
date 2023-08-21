@@ -47,12 +47,10 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# Name class
+# Name
 #
 # -------------------------------------------------------------------------
-class Name(
-    SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase, DateBase
-):
+class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase, DateBase):
     """
     Provide name information about a person.
 
@@ -301,8 +299,7 @@ class Name(
         :rtype: list
         """
         return (
-            self.get_referenced_note_handles()
-            + self.get_referenced_citation_handles()
+            self.get_referenced_note_handles() + self.get_referenced_citation_handles()
         )
 
     def is_equivalent(self, other):

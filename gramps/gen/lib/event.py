@@ -55,7 +55,7 @@ LOG = logging.getLogger(".citation")
 
 # -------------------------------------------------------------------------
 #
-# Event class
+# Event
 #
 # -------------------------------------------------------------------------
 class Event(
@@ -428,9 +428,7 @@ class Event(
         """
         return self.__type
 
-    type = property(
-        get_type, set_type, None, "Returns or sets type of the event"
-    )
+    type = property(get_type, set_type, None, "Returns or sets type of the event")
 
     def set_description(self, description):
         """

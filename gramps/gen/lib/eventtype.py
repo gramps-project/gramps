@@ -36,7 +36,7 @@ _ = glocale.translation.sgettext
 
 # -------------------------------------------------------------------------
 #
-# EventType class
+# EventType
 #
 # -------------------------------------------------------------------------
 class EventType(GrampsType):
@@ -396,7 +396,5 @@ class EventType(GrampsType):
             return trans_text(self._ABBREVIATIONS[self.value])
         abbrev = str(self)
         if " " in abbrev:
-            return (
-                ".".join([letter[0].lower() for letter in abbrev.split()]) + "."
-            )
+            return ".".join([letter[0].lower() for letter in abbrev.split()]) + "."
         return abbrev[:3].lower() + "."

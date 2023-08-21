@@ -36,7 +36,7 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# Tag class
+# Tag
 #
 # -------------------------------------------------------------------------
 class Tag(TableObject):
@@ -219,9 +219,7 @@ class Tag(TableObject):
         """
         return self.__color
 
-    color = property(
-        get_color, set_color, None, "Returns or sets color of the tag"
-    )
+    color = property(get_color, set_color, None, "Returns or sets color of the tag")
 
     def set_priority(self, priority):
         """

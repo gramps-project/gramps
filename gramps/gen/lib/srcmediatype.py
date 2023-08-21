@@ -35,7 +35,7 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# SourceMediaType class
+# SourceMediaType
 #
 # -------------------------------------------------------------------------
 class SourceMediaType(GrampsType):

@@ -65,7 +65,7 @@ LOG = logging.getLogger(".Date")
 
 # ------------------------------------------------------------------------
 #
-# Span class
+# Span
 #
 # ------------------------------------------------------------------------
 class Span:
@@ -558,7 +558,7 @@ class Span:
 
 # -------------------------------------------------------------------------
 #
-# Date class
+# Date
 #
 # -------------------------------------------------------------------------
 class Date:
@@ -891,10 +891,7 @@ class Date:
         Needed, because the __cmp__ only looks at the sorting value, and
         ignores the modifiers/comments.
         """
-        if (
-            self.modifier == other.modifier
-            and self.modifier == Date.MOD_TEXTONLY
-        ):
+        if self.modifier == other.modifier and self.modifier == Date.MOD_TEXTONLY:
             value = self.text == other.text
         else:
             value = (
@@ -973,10 +970,7 @@ class Date:
                 startmin = date_offset(stopmax, 1)
             fdiff = config.get("behavior.date-after-range")
             stopmax = (startmin[0] + fdiff, startmin[1], startmin[2])
-        elif (
-            self.modifier == Date.MOD_ABOUT
-            or self.quality == Date.QUAL_ESTIMATED
-        ):
+        elif self.modifier == Date.MOD_ABOUT or self.quality == Date.QUAL_ESTIMATED:
             fdiff = config.get("behavior.date-about-range")
             startmin = (startmin[0] - fdiff, startmin[1], startmin[2])
             stopmax = (stopmax[0] + fdiff, stopmax[1], stopmax[2])
@@ -1064,9 +1058,7 @@ class Date:
         if comparison == ">>":
             # If all > all
             return self_start > other_stop
-        raise AttributeError(
-            f"invalid match comparison operator: '{comparison}'"
-        )
+        raise AttributeError(f"invalid match comparison operator: '{comparison}'")
 
     def __str__(self):
         """
@@ -1413,9 +1405,7 @@ class Date:
             year, month, day, Date._POS_RYR, Date._POS_RMON, Date._POS_RDAY
         )
 
-    def __set_yr_mon_day_offset(
-        self, year, month, day, pos_yr, pos_mon, pos_day
-    ):
+    def __set_yr_mon_day_offset(self, year, month, day, pos_yr, pos_mon, pos_day):
         dlist = list(self.dateval)
         if dlist[pos_yr]:
             dlist[pos_yr] += year
@@ -1699,8 +1689,7 @@ class Date:
             raise DateError("Invalid value. Should be: (DD, MM, YY, slash)")
         if modifier in (Date.MOD_RANGE, Date.MOD_SPAN) and len(value) < 8:
             raise DateError(
-                "Invalid value. Should be: (DD, MM, "
-                "YY, slash1, DD, MM, YY, slash2)"
+                "Invalid value. Should be: (DD, MM, " "YY, slash1, DD, MM, YY, slash2)"
             )
         if modifier not in (
             Date.MOD_NONE,
@@ -1789,9 +1778,7 @@ class Date:
                 raise DateError(f"Invalid date value {value}")
 
             for adjusted, original in day, month:
-                if adjusted != original and not (
-                    original == 0 and adjusted == 1
-                ):
+                if adjusted != original and not (original == 0 and adjusted == 1):
                     raise DateError(
                         f"Invalid day/month {original} passed in value {value}"
                     )
@@ -1799,9 +1786,7 @@ class Date:
             adjusted, original = year
             adjusted -= year_delta
             if adjusted != original and not (original == 0 and adjusted == 1):
-                raise DateError(
-                    f"Invalid year {original} passed in value {value}"
-                )
+                raise DateError(f"Invalid year {original} passed in value {value}")
 
     def recalc_sort_value(self):
         """
@@ -1901,11 +1886,7 @@ class Date:
         """
         Return True if the date is fully specified.
         """
-        return (
-            self.get_year_valid()
-            and self.get_month_valid()
-            and self.get_day_valid()
-        )
+        return self.get_year_valid() and self.get_month_valid() and self.get_day_valid()
 
     def get_ymd(self):
         """
@@ -1947,9 +1928,7 @@ class Date:
         """
         Return (year, month, day) of this date +- value.
         """
-        return Date(
-            Date._calendar_change[Date.CAL_GREGORIAN](self.sortval + value)
-        )
+        return Date(Date._calendar_change[Date.CAL_GREGORIAN](self.sortval + value))
 
     def lookup_calendar(self, calendar):
         """

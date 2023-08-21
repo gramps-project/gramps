@@ -52,12 +52,10 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# LDS Ordinance class
+# LdsOrd
 #
 # -------------------------------------------------------------------------
-class LdsOrd(
-    SecondaryObject, CitationBase, NoteBase, DateBase, PlaceBase, PrivacyBase
-):
+class LdsOrd(SecondaryObject, CitationBase, NoteBase, DateBase, PlaceBase, PrivacyBase):
     """
     Class that contains information about LDS Ordinances.
 
@@ -249,8 +247,7 @@ class LdsOrd(
         :rtype: list
         """
         ret = (
-            self.get_referenced_note_handles()
-            + self.get_referenced_citation_handles()
+            self.get_referenced_note_handles() + self.get_referenced_citation_handles()
         )
         if self.place:
             ret += [("Place", self.place)]

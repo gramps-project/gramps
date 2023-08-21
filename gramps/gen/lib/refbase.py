@@ -32,7 +32,7 @@ from abc import ABCMeta, abstractmethod
 
 # -------------------------------------------------------------------------
 #
-# RefBase class
+# RefBase
 #
 # -------------------------------------------------------------------------
 class RefBase(metaclass=ABCMeta):
