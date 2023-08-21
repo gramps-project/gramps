@@ -29,7 +29,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-19 21:56+0100\n"
-"PO-Revision-Date: 2023-08-12 13:06+0000\n"
+"PO-Revision-Date: 2023-08-21 09:38+0000\n"
 "Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -9279,8 +9279,6 @@ msgid "Expert"
 msgstr "Expert"
 
 #: ../gramps/gen/plug/_pluginreg.py:116
-#, fuzzy
-#| msgid "Quick View"
 msgid "Quick view"
 msgstr "Snabbrapportvy"
 
@@ -9297,14 +9295,10 @@ msgid "Exporter"
 msgstr "Exportör"
 
 #: ../gramps/gen/plug/_pluginreg.py:120
-#, fuzzy
-#| msgid "Doc creator"
 msgid "Document creator"
 msgstr "Dokumentskapare"
 
 #: ../gramps/gen/plug/_pluginreg.py:121
-#, fuzzy
-#| msgid "Plugin lib"
 msgid "Plugin library"
 msgstr "Insticksmodulbibliotek"
 
@@ -9319,8 +9313,6 @@ msgid "View"
 msgstr "Visa"
 
 #: ../gramps/gen/plug/_pluginreg.py:124
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Relationship calculator"
 msgstr "Släktskapsberäknare"
 
@@ -18719,10 +18711,8 @@ msgstr "Kräver"
 
 #: ../gramps/gui/plug/_windows.py:263 ../gramps/gui/plug/_windows.py:395
 #: ../gramps/gui/plug/_windows.py:594
-#, fuzzy
-#| msgid "Updated"
 msgid "Update"
-msgstr "Uppdaterade"
+msgstr "Uppdatera"
 
 #: ../gramps/gui/plug/_windows.py:286
 msgid "Module installation failed"
@@ -18745,40 +18735,28 @@ msgid "Filters"
 msgstr "Filter"
 
 #: ../gramps/gui/plug/_windows.py:392
-#, fuzzy
-#| msgid "Addons"
 msgid "All addons"
-msgstr "Tillägg"
+msgstr "Alla tillägg"
 
 #: ../gramps/gui/plug/_windows.py:393 ../gramps/gui/plug/_windows.py:588
-#, fuzzy
-#| msgid "installed"
 msgid "Uninstalled"
-msgstr "installerad"
+msgstr "Avinstallerad"
 
 #: ../gramps/gui/plug/_windows.py:394 ../gramps/gui/plug/_windows.py:591
-#, fuzzy
-#| msgid "installed"
 msgid "Installed"
-msgstr "installerad"
+msgstr "Installerad"
 
 #: ../gramps/gui/plug/_windows.py:407
-#, fuzzy
-#| msgid "All files"
 msgid "All types"
-msgstr "Alla filer"
+msgstr "Alla typer"
 
 #: ../gramps/gui/plug/_windows.py:415
-#, fuzzy
-#| msgid "Audience"
 msgid "All audiences"
-msgstr "Publik"
+msgstr "All publik"
 
 #: ../gramps/gui/plug/_windows.py:422
-#, fuzzy
-#| msgid " state"
 msgid "All statuses"
-msgstr " delstat"
+msgstr "Alla statusar"
 
 #: ../gramps/gui/plug/_windows.py:443
 msgid "Settings"
@@ -18789,10 +18767,8 @@ msgid "Projects"
 msgstr "Projekt"
 
 #: ../gramps/gui/plug/_windows.py:489 ../gramps/gui/plug/_windows.py:599
-#, fuzzy
-#| msgid "Projects"
 msgid "All projects"
-msgstr "Projekt"
+msgstr "Alla projekt"
 
 #: ../gramps/gui/plug/_windows.py:501
 msgid "Loading..."
@@ -18869,14 +18845,12 @@ msgid "Project name"
 msgstr "Projektnamn"
 
 #: ../gramps/gui/plug/_windows.py:886
-#, fuzzy
-#| msgid "Restore to defaults"
 msgid "Restore project defaults"
-msgstr "Återställ till standard"
+msgstr "Återställ projektets standardinställningar"
 
 #: ../gramps/gui/plug/_windows.py:887
 msgid "Are you sure?"
-msgstr ""
+msgstr "Är du säker?"
 
 #: ../gramps/gui/plug/_windows.py:911
 msgid "Checking Addons Failed"
@@ -19079,11 +19053,8 @@ msgstr[0] "{number_of} tillägg installerades."
 msgstr[1] "{number_of} tillägg installerades."
 
 #: ../gramps/gui/plug/_windows.py:2224
-#, fuzzy
-#| msgid ""
-#| "If you have installed a 'Gramps View', you will need to restart Gramps."
 msgid "If you have installed a 'View', you will need to restart Gramps."
-msgstr "Om du har installerat en 'Grampsvy' behöver du starta om Gramps."
+msgstr "Om du har installerat en 'Vy' behöver du starta om Gramps."
 
 #: ../gramps/gui/plug/_windows.py:2232
 msgid "No addons were installed."
