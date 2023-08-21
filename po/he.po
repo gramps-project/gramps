@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-19 21:56+0100\n"
-"PO-Revision-Date: 2023-08-19 21:58+0000\n"
+"PO-Revision-Date: 2023-08-21 09:38+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -15644,7 +15644,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/dialog.glade:422
 msgid "Cancel the rest of the operations"
-msgstr "ביטול הפעולה הנותרת"
+msgstr "ביטול שאר הפעולות"
 
 #: ../gramps/gui/glade/dialog.glade:433 ../gramps/gui/views/listview.py:725
 #: ../gramps/plugins/tool/reorderids.glade:21
