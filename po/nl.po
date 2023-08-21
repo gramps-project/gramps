@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-19 21:56+0100\n"
-"PO-Revision-Date: 2023-08-12 05:58+0000\n"
+"PO-Revision-Date: 2023-08-21 09:38+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -9407,8 +9407,6 @@ msgid "Expert"
 msgstr "Expert"
 
 #: ../gramps/gen/plug/_pluginreg.py:116
-#, fuzzy
-#| msgid "Quick View"
 msgid "Quick view"
 msgstr "Snelle weergave"
 
@@ -9425,16 +9423,12 @@ msgid "Exporter"
 msgstr "Exporteur"
 
 #: ../gramps/gen/plug/_pluginreg.py:120
-#, fuzzy
-#| msgid "Doc creator"
 msgid "Document creator"
-msgstr "Documenteren"
+msgstr "Maker van het document"
 
 #: ../gramps/gen/plug/_pluginreg.py:121
-#, fuzzy
-#| msgid "Plugin lib"
 msgid "Plugin library"
-msgstr "Extensiebibliotheek"
+msgstr "Uitbreidingenbibliotheek"
 
 #: ../gramps/gen/plug/_pluginreg.py:122
 msgid "Map service"
@@ -9447,8 +9441,6 @@ msgid "View"
 msgstr "Beeld"
 
 #: ../gramps/gen/plug/_pluginreg.py:124
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Relationship calculator"
 msgstr "Relatiecalculator"
 
@@ -9489,7 +9481,7 @@ msgstr "Diversen"
 #: ../gramps/gen/plug/_pluginreg.py:1401
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
-msgstr "FOUT: Lezen van pluginregistratie %(filename)s is mislukt"
+msgstr "FOUT: Lezen van uitbreidingregistratie %(filename)s is mislukt"
 
 #: ../gramps/gen/plug/_pluginreg.py:1370
 #, python-format
@@ -9497,8 +9489,8 @@ msgid ""
 "WARNING: Plugin %(plugin_name)s has no translation for any of your "
 "configured languages, using US English instead"
 msgstr ""
-"WAARSCHUWING: De extensie %(plugin_name)s heeft geen vertaling voor een van "
-"uw geconfigureerde talen, in plaats daarvan wordt Amerikaans Engels gebruikt"
+"WAARSCHUWING: De uitbreiding %(plugin_name)s heeft geen vertaling voor een "
+"van uw ingestelde talen, in plaats daarvan wordt Amerikaans Engels gebruikt"
 
 #: ../gramps/gen/plug/_pluginreg.py:1419
 #, python-format
@@ -9507,9 +9499,9 @@ msgid ""
 "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s"
 "\" which is invalid for Gramps \"%(gramps_version)s\"."
 msgstr ""
-"FOUT: Het extensie-bestand %(filename)s heeft een versie van "
-"\"%(gramps_target_version)s\" die ongeldig is voor Gramps "
-"\"%(gramps_version)s\"."
+"FOUT: Het bestand van uitbreiding %(filename)s heeft een versie van \""
+"%(gramps_target_version)s\" die ongeldig is voor Gramps \"%(gramps_version)"
+"s\"."
 
 #: ../gramps/gen/plug/_pluginreg.py:1451
 #, python-format
@@ -12055,7 +12047,7 @@ msgstr "Onderdruk waarschuwingen over direct opslaan van gegevens"
 
 #: ../gramps/gui/configure.py:1041
 msgid "Show plugin status dialog on plugin load error"
-msgstr "Statusdialoog van de extensie weergeven bij laadfout van extensie"
+msgstr "Statusdialoog van de uitbreiding weergeven bij laadfout ervan"
 
 #: ../gramps/gui/configure.py:1047
 msgid "Warnings"
@@ -18932,10 +18924,8 @@ msgstr "Vereist"
 
 #: ../gramps/gui/plug/_windows.py:263 ../gramps/gui/plug/_windows.py:395
 #: ../gramps/gui/plug/_windows.py:594
-#, fuzzy
-#| msgid "Updated"
 msgid "Update"
-msgstr "Bijgewerkt"
+msgstr "Bijwerken"
 
 #: ../gramps/gui/plug/_windows.py:286
 msgid "Module installation failed"
@@ -18958,40 +18948,28 @@ msgid "Filters"
 msgstr "Filters"
 
 #: ../gramps/gui/plug/_windows.py:392
-#, fuzzy
-#| msgid "Addons"
 msgid "All addons"
-msgstr "Uitbreidingen"
+msgstr "Alle uitbreidingen"
 
 #: ../gramps/gui/plug/_windows.py:393 ../gramps/gui/plug/_windows.py:588
-#, fuzzy
-#| msgid "installed"
 msgid "Uninstalled"
-msgstr "geïnstalleerd"
+msgstr "Gedeïnstalleerd"
 
 #: ../gramps/gui/plug/_windows.py:394 ../gramps/gui/plug/_windows.py:591
-#, fuzzy
-#| msgid "installed"
 msgid "Installed"
-msgstr "geïnstalleerd"
+msgstr "Geïnstalleerd"
 
 #: ../gramps/gui/plug/_windows.py:407
-#, fuzzy
-#| msgid "All files"
 msgid "All types"
-msgstr "Alle bestanden"
+msgstr "Alle typen"
 
 #: ../gramps/gui/plug/_windows.py:415
-#, fuzzy
-#| msgid "Audience"
 msgid "All audiences"
-msgstr "Publiek"
+msgstr "Alle doelgroepen"
 
 #: ../gramps/gui/plug/_windows.py:422
-#, fuzzy
-#| msgid " state"
 msgid "All statuses"
-msgstr " staat"
+msgstr "Alle toestanden"
 
 #: ../gramps/gui/plug/_windows.py:443
 msgid "Settings"
@@ -19002,10 +18980,8 @@ msgid "Projects"
 msgstr "Projecten"
 
 #: ../gramps/gui/plug/_windows.py:489 ../gramps/gui/plug/_windows.py:599
-#, fuzzy
-#| msgid "Projects"
 msgid "All projects"
-msgstr "Projecten"
+msgstr "Alle projecten"
 
 #: ../gramps/gui/plug/_windows.py:501
 msgid "Loading..."
@@ -19082,14 +19058,12 @@ msgid "Project name"
 msgstr "Projectnaam"
 
 #: ../gramps/gui/plug/_windows.py:886
-#, fuzzy
-#| msgid "Restore to defaults"
 msgid "Restore project defaults"
-msgstr "Standaardwaarden herstellen"
+msgstr "Project herstellen naar standaardwaarden"
 
 #: ../gramps/gui/plug/_windows.py:887
 msgid "Are you sure?"
-msgstr ""
+msgstr "Weet u het zeker?"
 
 #: ../gramps/gui/plug/_windows.py:911
 msgid "Checking Addons Failed"
@@ -19132,7 +19106,7 @@ msgstr "Zichtbaar"
 
 #: ../gramps/gui/plug/_windows.py:976
 msgid "Plugin Manager"
-msgstr "Extensiebeheer"
+msgstr "Uitbreidingenbeheer"
 
 #: ../gramps/gui/plug/_windows.py:1028 ../gramps/gui/plug/_windows.py:1086
 msgid "Info"
@@ -19148,7 +19122,7 @@ msgstr "Laden"
 
 #: ../gramps/gui/plug/_windows.py:1046
 msgid "Registered Plugins"
-msgstr "Geregistreerde extensies"
+msgstr "Geregistreerde uitbreidingen"
 
 #: ../gramps/gui/plug/_windows.py:1065
 msgid "Loaded"
@@ -19166,7 +19140,7 @@ msgstr "Bericht"
 
 #: ../gramps/gui/plug/_windows.py:1105
 msgid "Loaded Plugins"
-msgstr "Geladen extensies"
+msgstr "Geladen uitbreidingen"
 
 #: ../gramps/gui/plug/_windows.py:1127
 msgid "Addon Name"
@@ -19240,7 +19214,7 @@ msgstr "OK"
 
 #: ../gramps/gui/plug/_windows.py:1594
 msgid "Plugin name"
-msgstr "Extensienaam"
+msgstr "Naam van de uitbreiding"
 
 #: ../gramps/gui/plug/_windows.py:1597
 msgid "Authors"
@@ -19257,7 +19231,7 @@ msgstr "Gedetailleerde info"
 
 #: ../gramps/gui/plug/_windows.py:1657
 msgid "Plugin Error"
-msgstr "Fout met extensie"
+msgstr "Fout met uitbreiding"
 
 #: ../gramps/gui/plug/_windows.py:1726
 msgid "_Execute"
@@ -19294,13 +19268,9 @@ msgstr[0] "{number_of} uitbreiding is geïnstalleerd."
 msgstr[1] "{number_of} uitbreidingen zijn geïnstalleerd."
 
 #: ../gramps/gui/plug/_windows.py:2224
-#, fuzzy
-#| msgid ""
-#| "If you have installed a 'Gramps View', you will need to restart Gramps."
 msgid "If you have installed a 'View', you will need to restart Gramps."
 msgstr ""
-"Als u een 'Grampsweergave' hebt geïnstalleerd, moet u Gramps opnieuw "
-"opstarten."
+"Als u een 'Weergave' hebt geïnstalleerd, moet u Gramps opnieuw opstarten."
 
 #: ../gramps/gui/plug/_windows.py:2232
 msgid "No addons were installed."
@@ -20266,7 +20236,7 @@ msgstr "Geen stamboom"
 
 #: ../gramps/gui/viewmanager.py:612
 msgid "Registering plugins..."
-msgstr "Extensies registreren…"
+msgstr "Uitbreidingen registreren…"
 
 #: ../gramps/gui/viewmanager.py:619
 msgid "Ready"
@@ -20364,11 +20334,11 @@ msgstr ""
 "(%(firstauthoremail)s).\n"
 "\n"
 "Als u niet wilt dat Gramps deze weergave opnieuw probeert te laden, kunt u "
-"deze verbergen met behulp van Extensiebeheer in het Help-menu."
+"deze verbergen met behulp van Uitbreidingenbeheer in het Help-menu."
 
 #: ../gramps/gui/viewmanager.py:1704
 msgid "Failed Loading Plugin"
-msgstr "Extensie is niet geladen"
+msgstr "Uitbreiding is niet geladen"
 
 #: ../gramps/gui/viewmanager.py:1706
 #, python-format
@@ -20384,16 +20354,16 @@ msgid ""
 "If you do not want Gramps to try and load this plugin again, you can hide it "
 "by using the Plugin Manager on the Help menu."
 msgstr ""
-"De extensie %(name)s is niet geladen en heeft een fout gemeld.\n"
+"De uitbreiding %(name)s is niet geladen en heeft een fout gemeld.\n"
 "\n"
 "%(error_msg)s\n"
 "\n"
 "Als u de fout niet zelf kunt oplossen, kunt u een foutmelding indienen bij "
-"%(gramps_bugtracker_url)s of contact opnemen met de maker van de extensie "
+"%(gramps_bugtracker_url)s of contact opnemen met de maker van de uitbreiding "
 "(%(firstauthoremail)s).\n"
 "\n"
-"Als u niet wilt dat Gramps deze extensie opnieuw probeert te laden, kunt u "
-"deze verbergen met behulp van de Extensiebeheer in het Help-menu."
+"Als u niet wilt dat Gramps deze uitbreiding opnieuw probeert te laden, kunt "
+"u deze verbergen met behulp van de Uitbreidingenbeheer in het Help-menu."
 
 #: ../gramps/gui/viewmanager.py:1802
 msgid "Gramps XML Backup"
@@ -34823,7 +34793,7 @@ msgstr "Datums genereren"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:255
 msgid "Date Test Plugin"
-msgstr "Datumtest-extensie"
+msgstr "Datumtest-uitbreiding"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:260
 msgid "Pass"
