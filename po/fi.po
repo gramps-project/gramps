@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-19 21:56+0100\n"
-"PO-Revision-Date: 2023-08-19 21:58+0000\n"
+"PO-Revision-Date: 2023-08-21 09:38+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -18292,7 +18292,7 @@ msgstr ""
 "GUI on todennäköisesti rikkoutunut, etenkin RTL kielissä!\n"
 "\n"
 "Katso Gramps README dokumentaatiosta asennuksen edellytyksistä,\n"
-"tyypillisesti löytyy kansiosta in /usr/share/doc/Gramps.\n"
+"tyypillisesti löytyy kansiosta /usr/share/doc/Gramps.\n"
 
 #: ../gramps/gui/grampsgui.py:617
 msgid "Error parsing arguments"
@@ -37179,7 +37179,7 @@ msgstr "Elossa"
 #: ../gramps/plugins/view/relview.py:882 ../gramps/plugins/view/relview.py:909
 #, python-format
 msgid "%(date)s in %(place)s"
-msgstr "%(date)s - %(place)s"
+msgstr "%(date)s %(place)s"
 
 #: ../gramps/plugins/view/relview.py:1018
 msgid "Edit parents"
@@ -37254,7 +37254,7 @@ msgstr "Suhdetyyppi: %s"
 #: ../gramps/plugins/view/relview.py:1591
 #, python-format
 msgid "%(event_type)s %(date)s in %(place)s"
-msgstr "%(event_type)s %(date)s - %(place)s"
+msgstr "%(event_type)s %(date)s %(place)s"
 
 #: ../gramps/plugins/view/relview.py:1598
 #, python-format
