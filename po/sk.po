@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-22 00:23+0100\n"
-"PO-Revision-Date: 2023-08-16 00:18+0000\n"
+"PO-Revision-Date: 2023-08-22 09:45+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -9349,8 +9349,6 @@ msgid "Expert"
 msgstr "Expert"
 
 #: ../gramps/gen/plug/_pluginreg.py:116
-#, fuzzy
-#| msgid "Quick View"
 msgid "Quick view"
 msgstr "Rýchly náhľad"
 
@@ -9367,14 +9365,10 @@ msgid "Exporter"
 msgstr "Exportér"
 
 #: ../gramps/gen/plug/_pluginreg.py:120
-#, fuzzy
-#| msgid "Doc creator"
 msgid "Document creator"
 msgstr "Tvorca dokumentu"
 
 #: ../gramps/gen/plug/_pluginreg.py:121
-#, fuzzy
-#| msgid "Plugin lib"
 msgid "Plugin library"
 msgstr "Knižnica zásuvných modulov"
 
@@ -9389,8 +9383,6 @@ msgid "View"
 msgstr "Pohľad"
 
 #: ../gramps/gen/plug/_pluginreg.py:124
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Relationship calculator"
 msgstr "Kalkulátor vzťahov"
 
@@ -11380,7 +11372,7 @@ msgstr "Španielčina"
 
 #: ../gramps/gen/utils/win32locale.py:59
 msgid "Farsi"
-msgstr ""
+msgstr "Perzština"
 
 #: ../gramps/gen/utils/win32locale.py:60
 msgid "Finnish"
@@ -12218,10 +12210,8 @@ msgstr ""
 "alebo sa v gregoriánskych kalendároch nezobrazujú vôbec"
 
 #: ../gramps/gui/configure.py:1615
-#, fuzzy
-#| msgid "Include death anniversaries"
 msgid "Show leap day anniversaries"
-msgstr "Zahrnúť výročia úmrtia"
+msgstr "Zobraziť výročia priestupných dní"
 
 #: ../gramps/gui/configure.py:1622
 msgid "Active person's name and ID"
@@ -12384,15 +12374,12 @@ msgid "Enable the spelling checker for notes."
 msgstr "Povoliť kontrolu pravopisu pre poznámky."
 
 #: ../gramps/gui/configure.py:2003
-#, fuzzy, python-format
-#| msgid ""
-#| "GtkSpell not loaded. Spell checking will not be available.\n"
-#| "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
+#, python-format
 msgid ""
 "Gspell not loaded. Spell checking will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 msgstr ""
-"GtkSpell nie je načítaný. Kontrola pravopisu nebude k dispozícii.\n"
+"Gspell nie je načítaný. Kontrola pravopisu nebude k dispozícii.\n"
 "Pre nastavenie v Gramps si pozrite %(gramps_wiki_build_spell_url)s"
 
 #: ../gramps/gui/configure.py:2015
@@ -12790,10 +12777,12 @@ msgid ""
 "Changes are immediate.\n"
 "This is used when exporting views in CSV format."
 msgstr ""
+"Zmeny sú okamžité.\n"
+"Používa sa pri exporte pohľadov vo formáte CSV."
 
 #: ../gramps/gui/csvdialect.py:114
 msgid "Delimiter:"
-msgstr ""
+msgstr "Oddeľovač:"
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:124
 msgid "Undo history warning"
@@ -13305,20 +13294,16 @@ msgid "Tools"
 msgstr "Nástroje"
 
 #: ../gramps/gui/displaystate.py:422
-#, fuzzy
-#| msgid "Plugin Manager"
 msgid "Open Addon Manager"
-msgstr "Správca zásuvných modulov"
+msgstr "Otvoriť správcu zásuvných modulov"
 
 #: ../gramps/gui/displaystate.py:423 ../gramps/gui/plug/_windows.py:440
 msgid "Addons"
 msgstr "Doplnky"
 
 #: ../gramps/gui/displaystate.py:428
-#, fuzzy
-#| msgid "Preferences"
 msgid "Open Preferences"
-msgstr "Predvoľby"
+msgstr "Otvoriť predvoľby"
 
 #: ../gramps/gui/displaystate.py:449
 #: ../gramps/plugins/gramplet/persondetails.py:181
@@ -14283,10 +14268,8 @@ msgid "From"
 msgstr "Od"
 
 #: ../gramps/gui/editors/editdate.py:83
-#, fuzzy
-#| msgid "Top"
 msgid "To"
-msgstr "Hore"
+msgstr "Do"
 
 #: ../gramps/gui/editors/editdate.py:84
 msgid "Span"
@@ -14997,10 +14980,8 @@ msgid "_Female"
 msgstr "_Ženské"
 
 #: ../gramps/gui/editors/editperson.py:1239
-#, fuzzy
-#| msgid "Other"
 msgid "_Other"
-msgstr "iné"
+msgstr "Iné"
 
 #: ../gramps/gui/editors/editperson.py:1240
 msgid "_Unknown"
@@ -18067,15 +18048,6 @@ msgid "Available Gramps Updates for Addons"
 msgstr "Dostupné aktualizácie Gramps pre Doplnky"
 
 #: ../gramps/gui/glade/updateaddons.glade:89
-#, fuzzy
-#| msgid ""
-#| "Gramps comes with a core set of plugins which provide all of the "
-#| "necessary features. However, you can extend this functionality with "
-#| "additional Addons. These addons provide reports, listings, views, "
-#| "gramplets, and more. Here you can select among the available extra "
-#| "addons, they will be retrieved from the internet off of the Gramps "
-#| "website, and installed locally on your computer. If you close this dialog "
-#| "now, you can install addons later from the menu under Edit -> Preferences."
 msgid ""
 "Gramps comes with a core set of plugins which provide all of the necessary "
 "features. However, you can extend this functionality with additional Addons. "
@@ -18091,7 +18063,7 @@ msgstr ""
 "ďalšie funkcie. Tu si môžete vybrať z dostupných doplnkov, ktoré sa načítajú "
 "z internetu z webovej stránky Gramps a nainštalujú sa lokálne do vášho "
 "počítača. Ak teraz tento dialóg zatvoríte, môžete doplnky nainštalovať "
-"neskôr z menu v časti Upraviť -> Predvoľby."
+"neskôr z menu v časti Upraviť -> Správca zásuvných modulov."
 
 #: ../gramps/gui/glade/updateaddons.glade:105
 msgid "_Select All"
@@ -18155,10 +18127,8 @@ msgid "_About"
 msgstr "_O programe"
 
 #: ../gramps/gui/grampsgui.py:58
-#, fuzzy
-#| msgid "Add Partner..."
 msgid "_Addon Manager..."
-msgstr "Pridať partnera..."
+msgstr "_Správca zásuvných modulov..."
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Bookmarks"
@@ -18627,10 +18597,8 @@ msgstr "%(key)s:\t%(value)s"
 #: ../gramps/gui/merge/mergeperson.py:65
 #: ../gramps/gui/views/treemodels/peoplemodel.py:109
 #: ../gramps/plugins/webreport/person.py:537
-#, fuzzy
-#| msgid "Mother"
 msgid "other"
-msgstr "Matka"
+msgstr "iné"
 
 #: ../gramps/gui/merge/mergeperson.py:103
 msgid "Merge People"
@@ -18849,10 +18817,8 @@ msgid "Requirements"
 msgstr "Požiadavky"
 
 #: ../gramps/gui/plug/_windows.py:347
-#, fuzzy
-#| msgid "Addon Name"
 msgid "Addon Manager"
-msgstr "Doplnok Názov"
+msgstr "Správca doplnkov"
 
 #: ../gramps/gui/plug/_windows.py:355 ../gramps/plugins/gramplet/leak.py:114
 msgid "Refresh"
@@ -18863,28 +18829,20 @@ msgid "Filters"
 msgstr "Filtre"
 
 #: ../gramps/gui/plug/_windows.py:392
-#, fuzzy
-#| msgid "Addons"
 msgid "All addons"
-msgstr "Doplnky"
+msgstr "Všetky doplnky"
 
 #: ../gramps/gui/plug/_windows.py:393 ../gramps/gui/plug/_windows.py:588
-#, fuzzy
-#| msgid "installed"
 msgid "Uninstalled"
-msgstr "nainštalovaný"
+msgstr "Odinštalovaný"
 
 #: ../gramps/gui/plug/_windows.py:394 ../gramps/gui/plug/_windows.py:591
-#, fuzzy
-#| msgid "installed"
 msgid "Installed"
-msgstr "nainštalovaný"
+msgstr "Nainštalovaný"
 
 #: ../gramps/gui/plug/_windows.py:407
-#, fuzzy
-#| msgid "All files"
 msgid "All types"
-msgstr "Všetky súbory"
+msgstr "Všetky typy"
 
 #: ../gramps/gui/plug/_windows.py:415
 #, fuzzy
@@ -18893,10 +18851,8 @@ msgid "All audiences"
 msgstr "Zvuk"
 
 #: ../gramps/gui/plug/_windows.py:422
-#, fuzzy
-#| msgid " state"
 msgid "All statuses"
-msgstr " štát"
+msgstr "Všetky statusy"
 
 #: ../gramps/gui/plug/_windows.py:443
 msgid "Settings"
@@ -18907,10 +18863,8 @@ msgid "Projects"
 msgstr "Projekty"
 
 #: ../gramps/gui/plug/_windows.py:489 ../gramps/gui/plug/_windows.py:599
-#, fuzzy
-#| msgid "Projects"
 msgid "All projects"
-msgstr "Projekty"
+msgstr "Všetky projekty"
 
 #: ../gramps/gui/plug/_windows.py:501
 msgid "Loading..."
@@ -18924,7 +18878,7 @@ msgstr "Zhody neboli nájdené"
 
 #: ../gramps/gui/plug/_windows.py:700
 msgid "Allow Gramps to install required python modules"
-msgstr ""
+msgstr "Povoliť Gramps nainštalovať požadované moduly pythonu"
 
 #: ../gramps/gui/plug/_windows.py:707
 #: ../gramps/plugins/webreport/basepage.py:1899
@@ -18989,10 +18943,8 @@ msgid "Project name"
 msgstr "Názov projektu"
 
 #: ../gramps/gui/plug/_windows.py:886
-#, fuzzy
-#| msgid "Restore to defaults"
 msgid "Restore project defaults"
-msgstr "Obnoviť predvolené nastavenia"
+msgstr "Obnoviť predvolené nastavenia projektu"
 
 #: ../gramps/gui/plug/_windows.py:887
 msgid "Are you sure?"
@@ -19200,12 +19152,8 @@ msgstr[1] "{number_of} doplnky boli nainštalované."
 msgstr[2] "{number_of} doplnkov bolo nainštalovaných."
 
 #: ../gramps/gui/plug/_windows.py:2224
-#, fuzzy
-#| msgid ""
-#| "If you have installed a 'Gramps View', you will need to restart Gramps."
 msgid "If you have installed a 'View', you will need to restart Gramps."
-msgstr ""
-"Ak ste nainštalovali 'Pohľad Gramps', musíte reštartovať program Gramps."
+msgstr "Ak ste nainštalovali 'Pohľad', musíte reštartovať program Gramps."
 
 #: ../gramps/gui/plug/_windows.py:2232
 msgid "No addons were installed."
@@ -31234,9 +31182,9 @@ msgstr "Pár s najväčším vekovým rozdielom"
 
 #. Translators: used in French+Russian, ignore otherwise
 #: ../gramps/plugins/lib/librecords.py:656
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(callname)s\" (%(firstname)s)"
-msgstr "%(name1)s a %(name2)s"
+msgstr "\"%(callname)s\" (%(firstname)s)"
 
 #: ../gramps/plugins/lib/libtreebase.py:778
 msgid "Top Left"
@@ -33220,7 +33168,7 @@ msgstr "♀"
 #: ../gramps/plugins/textreport/familygroup.py:520
 msgctxt "acronym for other"
 msgid "X"
-msgstr ""
+msgstr "X"
 
 #: ../gramps/plugins/textreport/familygroup.py:522
 #, python-format
@@ -37759,7 +37707,7 @@ msgstr "%(couple)s, <em>svadba</em>"
 #: ../gramps/plugins/webreport/calendar.py:1466
 #: ../gramps/plugins/webreport/webcal.py:2347
 msgid "Until"
-msgstr ""
+msgstr "Do"
 
 #: ../gramps/plugins/webreport/calendar.py:1476
 #: ../gramps/plugins/webreport/webcal.py:2357
@@ -38667,34 +38615,24 @@ msgid ""
 msgstr "Vyberte si možnosť, ktorú chcete mať na mapových stránkach Stamen..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2686
-#, fuzzy
-#| msgid "Google maps API key"
 msgid "Stamen maps API key"
-msgstr "Kľúč API pre mapy Google"
+msgstr "Kľúč API pre mapy Stamen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2689
-#, fuzzy
-#| msgid ""
-#| "The API key used for the Google maps.\n"
-#| "This key is mandatory and must be valid"
 msgid ""
 "The API key used for the Stamen maps.\n"
 "This key is mandatory and must be valid"
 msgstr ""
-"Kľúč API použitý pre mapy Google.\n"
+"Kľúč API použitý pre mapy Stamen.\n"
 "Tento kľúč je povinný a musí byť platný"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2704
-#, fuzzy
-#| msgid ""
-#| "Copy and paste this value in your browser.\n"
-#| "The Google maps service must be selected."
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Stamen maps service must be selected."
 msgstr ""
 "Skopírujte a vložte túto hodnotu do prehliadača.\n"
-"Musí byť vybraná služba Google mapy."
+"Musí byť vybraná služba Stamen mapy."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2721
 #, python-format
@@ -39105,7 +39043,7 @@ msgstr ""
 #. Translators: This is the email subject line in the Web Calendar
 #: ../gramps/plugins/webreport/webcal.py:1669
 msgid "WebCal"
-msgstr ""
+msgstr "WebCal"
 
 #: ../gramps/plugins/webreport/webcal.py:1678
 #, python-format
