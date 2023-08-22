@@ -29,7 +29,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-22 00:23+0100\n"
-"PO-Revision-Date: 2023-08-21 09:38+0000\n"
+"PO-Revision-Date: 2023-08-22 08:29+0000\n"
 "Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -11360,7 +11360,7 @@ msgstr "Spanska"
 
 #: ../gramps/gen/utils/win32locale.py:59
 msgid "Farsi"
-msgstr ""
+msgstr "Persiska"
 
 #: ../gramps/gen/utils/win32locale.py:60
 msgid "Finnish"
@@ -38503,34 +38503,24 @@ msgid ""
 msgstr "Välj vilket val du vill ha för Stamen-map familjekartsidor..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2686
-#, fuzzy
-#| msgid "Google maps API key"
 msgid "Stamen maps API key"
-msgstr "Google maps API key"
+msgstr "Stamen maps API key"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2689
-#, fuzzy
-#| msgid ""
-#| "The API key used for the Google maps.\n"
-#| "This key is mandatory and must be valid"
 msgid ""
 "The API key used for the Stamen maps.\n"
 "This key is mandatory and must be valid"
 msgstr ""
-"API-nyckeln som används för Google-maps.\n"
+"API-nyckeln som används för Stamen-maps.\n"
 "Denna nyckel är obligatorisk och måste vara giltig"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2704
-#, fuzzy
-#| msgid ""
-#| "Copy and paste this value in your browser.\n"
-#| "The Google maps service must be selected."
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Stamen maps service must be selected."
 msgstr ""
 "Kopiera och klistra in detta värde i din webbläsare.\n"
-"Tjänsten Google maps måste väljas."
+"Tjänsten Stamen maps måste väljas."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2721
 #, python-format
