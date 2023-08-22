@@ -30,7 +30,7 @@
 # python modules
 #
 # ------------------------------------------------------------------------
-from math import pi, cos, sin, log10, acos, asin, degrees, radians
+from math import pi, cos, sin, log10, acos
 
 
 def log2(val):
@@ -82,7 +82,6 @@ from gramps.gen.display.name import displayer as _nd
 FULL_CIRCLE = 0
 HALF_CIRCLE = 1
 QUAR_CIRCLE = 2
-OVERHANG = 3
 
 BACKGROUND_WHITE = 0
 BACKGROUND_GEN = 1
@@ -120,9 +119,10 @@ def draw_wedge(
 
     path = []
 
-    radiansdelta = radians(0.5)
-    sangle = radians(start_angle)
-    eangle = radians(end_angle)
+    degreestoradians = pi / 180.0
+    radiansdelta = degreestoradians / 2
+    sangle = start_angle * degreestoradians
+    eangle = end_angle * degreestoradians
     while eangle < sangle:
         eangle = eangle + 2 * pi
     angle = sangle
@@ -187,8 +187,7 @@ class FanChart(Report):
         that come in the options class.
 
         maxgen       - Maximum number of generations to include.
-        circle       - Draw a full circle, half circle, half circle with
-                       overhang or quarter circle.
+        circle       - Draw a full circle, half circle or quarter circle.
         background   - Background color is generation dependent or white.
         radial       - Print radial texts roundabout or as upright as possible.
         draw_empty   - draw background when there is no information
@@ -272,25 +271,6 @@ class FanChart(Report):
             _y_ = self.doc.get_usable_height()
             min_xy = min(_x_, _y_)
 
-        elif self.circle == OVERHANG:
-            if (
-                self.doc.get_usable_height() < self.doc.get_usable_width()
-                and self.doc.get_usable_height() > self.doc.get_usable_width() / 2
-            ):
-                # Determine overhang angle to fill the paper
-                radius = self.doc.get_usable_width() / 2
-                _overhang_height_ = self.doc.get_usable_height() - radius
-                overhang_angle = degrees(asin(_overhang_height_ / radius))
-            else:
-                overhang_angle = 25.0
-            max_angle = 180 + 2 * overhang_angle
-            start_angle = 180 - overhang_angle
-            max_circular = 3
-            _x_ = self.doc.get_usable_width() / 2.0
-            _overhang_height_ = sin(radians(overhang_angle)) * _x_
-            _y_ = self.doc.get_usable_height() - _overhang_height_
-            min_xy = min(_x_, _y_)
-
         else:  # quarter circle
             max_angle = 90.0
             start_angle = 270
@@ -356,12 +336,9 @@ class FanChart(Report):
 
         # title
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
-        titlex = self.doc.get_usable_width() / 2
-        if self.circle == OVERHANG:
-            titley = self.doc.get_usable_height() - _overhang_height_ / 2
-        else:
-            titley = 0
-        self.doc.center_text("FC-Graphic-title", title, titlex, titley, mark)
+        self.doc.center_text(
+            "FC-Graphic-title", title, self.doc.get_usable_width() / 2, 0, mark
+        )
 
         # wheel
         for generation in range(0, min(max_circular, self.max_generations)):
@@ -426,7 +403,7 @@ class FanChart(Report):
 
             if self.circle == FULL_CIRCLE:
                 return [name, val]
-            elif self.circle in (HALF_CIRCLE, OVERHANG):
+            elif self.circle == HALF_CIRCLE:
                 return [name, val]
             else:
                 if (name != "") and (val != ""):
@@ -437,7 +414,7 @@ class FanChart(Report):
         elif generation == 6:
             if self.circle == FULL_CIRCLE:
                 return [p_pn.get_first_name(), p_pn.get_surname(), val]
-            elif self.circle in (HALF_CIRCLE, OVERHANG):
+            elif self.circle == HALF_CIRCLE:
                 return [p_pn.get_first_name(), p_pn.get_surname(), val]
             else:
                 if (p_pn.get_first_name() != "") and (p_pn.get_surname() != ""):
@@ -717,7 +694,7 @@ class FanChart(Report):
         if circle == FULL_CIRCLE:
             rad1 = size * ((generation * 2) - 5)
             rad2 = size * ((generation * 2) - 3)
-        elif circle in (HALF_CIRCLE, OVERHANG):
+        elif circle == HALF_CIRCLE:
             rad1 = size * ((generation * 2) - 3)
             rad2 = size * ((generation * 2) - 1)
         else:  # quarter circle
@@ -811,13 +788,9 @@ class FanChartOptions(MenuReportOptions):
         circle = EnumeratedListOption(_("Type of graph"), HALF_CIRCLE)
         circle.add_item(FULL_CIRCLE, _("full circle"))
         circle.add_item(HALF_CIRCLE, _("half circle"))
-        circle.add_item(OVERHANG, _("overhang"))
         circle.add_item(QUAR_CIRCLE, _("quarter circle"))
         circle.set_help(
-            _(
-                "The form of the graph: full circle, half circle,"
-                " half circle with overhang or quarter circle."
-            )
+            _("The form of the graph: full circle, half circle," " or quarter circle.")
         )
         menu.add_option(category_name, "circle", circle)
 
