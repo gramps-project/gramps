@@ -4,7 +4,7 @@
 # Jiří Pejchal <jiri.pejchal@gmail.com>, 2005
 # Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006 - 2020, 2021, 2022.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
-# Milan <mobrcian@hotmail.com>, 2021, 2022.
+# Milan <mobrcian@hotmail.com>, 2021, 2022, 2023.
 #
 # Common terms and translations:
 # ancestor        předek
@@ -40,8 +40,8 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-22 00:23+0100\n"
-"PO-Revision-Date: 2022-12-14 10:47+0000\n"
-"Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
+"PO-Revision-Date: 2023-08-22 09:45+0000\n"
+"Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
 "Language: cs\n"
@@ -49,7 +49,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 5.0-dev\n"
 "X-Poedit-Bookmarks: 2035,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -12536,15 +12536,12 @@ msgid "Enable the spelling checker for notes."
 msgstr "Povolit kontrolu pravopisu v poznámkách."
 
 #: ../gramps/gui/configure.py:2003
-#, fuzzy, python-format
-#| msgid ""
-#| "GtkSpell not loaded. Spell checking will not be available.\n"
-#| "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
+#, python-format
 msgid ""
 "Gspell not loaded. Spell checking will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 msgstr ""
-"GtkSpell nebyl nahrán. Kontrola pravopisu nebude k dispozici.\n"
+"Gspell nebyl nahrán. Kontrola pravopisu nebude k dispozici.\n"
 "Překladem modulu pro Gramps vás provede %(gramps_wiki_build_spell_url)s"
 
 #: ../gramps/gui/configure.py:2015
