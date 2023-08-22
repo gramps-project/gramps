@@ -169,16 +169,17 @@ def write_endnotes(
         cindex += 1
 
         doc.start_paragraph("Endnotes-Source", "%d." % cindex)
-        doc.write_text(citation[0], links=links)
+        source, text = citation[0]
+        doc.write_text(text, links=links)
         doc.end_paragraph()
 
         if printnotes:
             _print_notes(source, database, doc, "Endnotes-Source-Notes", links)
 
-        for key, ref in citation[1]:
+        for ref, key, text in citation[1]:
             # Translators: needed for French, ignore otherwise
             doc.start_paragraph("Endnotes-Ref", trans_text("%s:") % key)
-            doc.write_text(ref, links=links)
+            doc.write_text(key, links=links)
             doc.end_paragraph()
 
             if printnotes:

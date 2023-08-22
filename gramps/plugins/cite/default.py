@@ -63,10 +63,10 @@ class Formatter:
 
             refs = []
             for key, ref in citation.get_ref_list():
-                ref = _format_ref_text(ref, key, elocale)
-                refs.append([key, ref])
+                text = _format_ref_text(ref, key, elocale)
+                refs.append([ref, key, text])
 
-            result.append([src, refs])
+            result.append([[source, src], refs])
 
         return result
 
