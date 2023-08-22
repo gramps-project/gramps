@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-19 21:56+0100\n"
-"PO-Revision-Date: 2023-08-21 13:18+0000\n"
+"PO-Revision-Date: 2023-08-21 23:46+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -14260,7 +14260,7 @@ msgstr "Ukloni dijete iz obitelji"
 
 #: ../gramps/gui/editors/editfamily.py:129
 msgid "Edit the child reference"
-msgstr "Uredi reference djeteta"
+msgstr "Uredi referencu djeteta"
 
 #: ../gramps/gui/editors/editfamily.py:130
 msgid "Add an existing person as a child of the family"
@@ -15975,7 +15975,7 @@ msgstr "_Pokrajina/Regija:"
 #: ../gramps/gui/glade/editaddress.glade:166
 #: ../gramps/gui/glade/editlocation.glade:248
 msgid "_ZIP/Postal code:"
-msgstr "_Poštanski broj:"
+msgstr "Poštanski _broj:"
 
 #: ../gramps/gui/glade/editaddress.glade:180
 msgid "Postal code"
@@ -16264,7 +16264,7 @@ msgstr "M_jesec"
 
 #: ../gramps/gui/glade/editdate.glade:460
 msgid "Y_ear"
-msgstr "_Godina"
+msgstr "G_odina"
 
 #: ../gramps/gui/glade/editdate.glade:562
 msgid "Te_xt comment:"
@@ -17229,7 +17229,7 @@ msgstr "Gramps ID:"
 
 #: ../gramps/gui/glade/mergecitation.glade:455
 msgid "Notes, media objects and data-items of both citations will be combined."
-msgstr "Zabilješke, medijski objekti i podaci obaju citata biti će spojeni."
+msgstr "Zabilješke, medijski objekti i podaci obaju citata će se spojiti."
 
 #: ../gramps/gui/glade/mergecitation.glade:471
 #: ../gramps/gui/glade/mergeevent.glade:528
@@ -17527,7 +17527,7 @@ msgstr "_Gore:"
 
 #: ../gramps/gui/glade/papermenu.glade:244
 msgid "_Bottom:"
-msgstr "Do_lje:"
+msgstr "D_olje:"
 
 #: ../gramps/gui/glade/papermenu.glade:377
 msgid "Metric"
@@ -18981,7 +18981,7 @@ msgstr "Autori"
 #: ../gramps/gui/plug/_windows.py:1599
 #: ../gramps/gui/plug/report/_reportdialog.py:481
 msgid "Filename"
-msgstr "Datoteka"
+msgstr "Ime datoteke"
 
 #: ../gramps/gui/plug/_windows.py:1602
 msgid "Detailed Info"
@@ -19926,7 +19926,7 @@ msgstr "Zaista želiš isprazniti kronologiju obrade?"
 
 #: ../gramps/gui/undohistory.py:198 ../gramps/plugins/gramplet/eval.py:83
 msgid "Clear"
-msgstr "Ukloni"
+msgstr "Isprazni"
 
 #: ../gramps/gui/undohistory.py:236
 msgid "Database opened"
@@ -20658,7 +20658,7 @@ msgstr "Prerasporedi srodstva: %s"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:84
 msgid "Background Color"
-msgstr "Boja polja"
+msgstr "Boja pozadine"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:84
 msgid "Clear Markup"
@@ -20961,7 +20961,7 @@ msgstr ""
 #: ../gramps/plugins/docgen/odfdoc.py:1208
 #, python-format
 msgid "Could not open %s"
-msgstr "Nije bilo moguće otvoriti datoteku: %s"
+msgstr "Nije bilo moguće otvoriti datoteku %s"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:349
 msgid "SVG background color"
@@ -21125,11 +21125,11 @@ msgstr "Prikaži indeks svake osobe"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:880
 msgid "Start Index"
-msgstr "Početak indeksa"
+msgstr "Početni indeks"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:881
 msgid "The start index"
-msgstr "Početak indeksa"
+msgstr "Početni indeks"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:897
 #: ../gramps/plugins/drawreport/descendtree.py:1629
@@ -22837,7 +22837,7 @@ msgstr "Distribucija starosne razlike majka–dijete"
 #: ../gramps/plugins/webreport/basepage.py:1967
 #: ../gramps/plugins/webreport/statistics.py:88
 msgid "Statistics"
-msgstr "Statistike"
+msgstr "Statistika"
 
 #: ../gramps/plugins/gramplet/agestats.py:262
 msgid "Total"
@@ -22845,7 +22845,7 @@ msgstr "Ukupno"
 
 #: ../gramps/plugins/gramplet/agestats.py:263
 msgid "Minimum"
-msgstr "Najmanje"
+msgstr "Minimum"
 
 #: ../gramps/plugins/gramplet/agestats.py:264
 msgid "Average"
@@ -23257,7 +23257,7 @@ msgstr "Oblak imena"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:201
 msgid "Gramplet showing all given names as a text cloud"
-msgstr "Gramplet prikazuje sva imena u oblacima"
+msgstr "Gramplet prikazuje sva imena u tekstualnom oblaku"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:215
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:221
@@ -26231,7 +26231,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1692
 msgid "Option"
-msgstr "Opcije"
+msgstr "Opcija"
 
 #: ../gramps/plugins/importer/importprogen.glade:1731
 msgid "_Ok"
@@ -27482,13 +27482,13 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:286
 #, python-format
 msgid "Died %(death_date)s in %(death_place)s."
-msgstr "Smrt %(death_date)s u mjestu %(death_place)s."
+msgstr "Umro/la je %(death_date)s u mjestu %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:244
 #: ../gramps/plugins/lib/libnarrate.py:287
 #, python-format
 msgid "Died %(death_date)s in %(death_place)s (%(age)s)."
-msgstr "Smrt %(death_date)s u mjestu %(death_place)s (%(age)s)."
+msgstr "Umro/la je %(death_date)s u mjestu %(death_place)s (%(age)s)."
 
 #: ../gramps/plugins/lib/libnarrate.py:251
 #, python-format
@@ -28454,7 +28454,7 @@ msgstr "Ova je osoba krštena %(month_year)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:741
 #, python-format
 msgid "Baptized %(month_year)s%(endnotes)s."
-msgstr "Krštenje %(month_year)s%(endnotes)s."
+msgstr "Kršten/a je %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:747
 #, python-format
@@ -28539,7 +28539,7 @@ msgstr "Ova je osoba krštena %(modified_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:781
 #, python-format
 msgid "Baptized %(modified_date)s%(endnotes)s."
-msgstr "Krštenje %(modified_date)s%(endnotes)s."
+msgstr "Kršten/a je %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:786
 #, python-format
@@ -28610,7 +28610,7 @@ msgstr "Ova je osoba krštena%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:813
 #, python-format
 msgid "Baptized%(endnotes)s."
-msgstr "Krštenje%(endnotes)s."
+msgstr "Kršten/a je%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:824
 #, python-format
@@ -28792,7 +28792,7 @@ msgstr "Ova je osoba krštena %(month_year)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:906
 #, python-format
 msgid "Christened %(month_year)s%(endnotes)s."
-msgstr "Krštenje %(month_year)s%(endnotes)s."
+msgstr "Kršten/a je %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:912
 #, python-format
@@ -28881,7 +28881,7 @@ msgstr "Ova je osoba krštena %(modified_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:946
 #, python-format
 msgid "Christened %(modified_date)s%(endnotes)s."
-msgstr "Krštenje %(modified_date)s%(endnotes)s."
+msgstr "Kršten/a je %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:951
 #, python-format
@@ -28954,7 +28954,7 @@ msgstr "Ova je osoba krštena%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:980
 #, python-format
 msgid "Christened%(endnotes)s."
-msgstr "Krštenje%(endnotes)s."
+msgstr "Kršten/a je%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:991
 #, python-format
@@ -30417,7 +30417,7 @@ msgstr "Broj zadataka"
 #: ../gramps/plugins/view/noteview.py:87 ../gramps/plugins/view/repoview.py:100
 #: ../gramps/plugins/view/sourceview.py:91
 msgid "Last Changed"
-msgstr "Zadnje promijenjeno"
+msgstr "Zadnja promjena"
 
 #: ../gramps/plugins/lib/libpersonview.py:145
 msgid "Edit the selected person"
@@ -35310,7 +35310,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/reorderids.glade:1481
 msgid "Start"
-msgstr "Početak"
+msgstr "Pokreni"
 
 #: ../gramps/plugins/tool/reorderids.glade:1486
 msgid "Reorder ID start number."
@@ -36216,7 +36216,7 @@ msgstr "Sustav boja klasičnog pogleda"
 #: ../gramps/plugins/view/fanchartdescview.py:321
 #: ../gramps/plugins/view/fanchartview.py:414
 msgid "Background"
-msgstr "Boja polja"
+msgstr "Pozadina"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:341
 msgid "Add global background colored gradient"
@@ -36268,7 +36268,7 @@ msgstr "Okreni smjer prikaza imena u lepezi"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:387
 msgid "Show the gramps id"
-msgstr "Prikaži grampsov ID"
+msgstr "Prikaži gramps ID"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:390
 #: ../gramps/plugins/view/fanchartdescview.py:386
@@ -36307,7 +36307,7 @@ msgstr "Četvrt kruga"
 #: ../gramps/plugins/view/fanchartdescview.py:383
 #: ../gramps/plugins/view/fanchartview.py:459
 msgid "Show gramps id"
-msgstr "Prikaži grampsov ID"
+msgstr "Prikaži gramps ID"
 
 #: ../gramps/plugins/view/fanchartview.py:229
 msgid "Print or save the Fan Chart View"
