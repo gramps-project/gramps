@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-22 00:23+0100\n"
-"PO-Revision-Date: 2023-08-21 09:38+0000\n"
+"PO-Revision-Date: 2023-08-22 09:58+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -11443,7 +11443,7 @@ msgstr "espanja"
 
 #: ../gramps/gen/utils/win32locale.py:59
 msgid "Farsi"
-msgstr ""
+msgstr "persia"
 
 #: ../gramps/gen/utils/win32locale.py:60
 msgid "Finnish"
@@ -11459,7 +11459,7 @@ msgstr "gaeli"
 
 #: ../gramps/gen/utils/win32locale.py:64
 msgid "Galician"
-msgstr ""
+msgstr "galego"
 
 #: ../gramps/gen/utils/win32locale.py:65
 msgid "Hebrew"
@@ -17166,7 +17166,8 @@ msgstr ""
 #: ../gramps/gui/glade/editplaceref.glade:376
 msgid "Field used to paste info from a web page like Google, OpenStreetMap..."
 msgstr ""
-"Kenttää käytetään liittämään nettisivun tieto kuten Google, OpenStreedMap ..."
+"Kenttää käytetään liittämään nettisivun tieto kuten Google-, OpenStreed-"
+"kartat ..."
 
 #: ../gramps/gui/glade/editplace.glade:267
 #: ../gramps/gui/glade/editplaceref.glade:496
@@ -30977,7 +30978,7 @@ msgstr "Sulauta valitut paikat"
 
 #: ../gramps/plugins/lib/libplaceview.py:256
 msgid "No map service is available."
-msgstr "Karttapalvelua ei saatavilla."
+msgstr "Karttapalvelua ei ole saatavilla."
 
 #: ../gramps/plugins/lib/libplaceview.py:257
 msgid "Check your installation."
@@ -31008,8 +31009,8 @@ msgid ""
 "Attempt to see selected locations with a Map Service (OpenstreetMap, Google "
 "Maps, ...)"
 msgstr ""
-"Yrittää näyttää valitut paikat karttapalvelussa (OpenStreetMap, Google "
-"kartat, ...)"
+"Yrittää näyttää valitut paikat karttapalvelussa (OpenStreet-, Google-kartat, "
+"...)"
 
 #: ../gramps/plugins/lib/libplaceview.py:500
 msgid "Select a Map Service"
@@ -31368,7 +31369,7 @@ msgstr "Korvaa '%(map)s' tällä =>"
 #: ../gramps/plugins/lib/maps/geography.py:447
 #, python-format
 msgid "Reload all visible tiles for '%(map)s'."
-msgstr "Päivitä kaikki näkyvä ruudut '%(map)s'."
+msgstr "Päivitä kaikki näkyvä laatat '%(map)s'."
 
 #: ../gramps/plugins/lib/maps/geography.py:453
 #, python-format
@@ -31596,7 +31597,7 @@ msgstr "Pituusaste ei ole '8.05' ja '24.15' välissä"
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:197
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:205
 msgid "Eniro map not available"
-msgstr "Eniron kartta ei saatavilla"
+msgstr "Eniro-kartta ei ole käytettävissä"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:198
 msgid "Coordinates needed in Denmark"
@@ -31612,7 +31613,7 @@ msgstr ""
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:35
 msgid "EniroMaps"
-msgstr "Eniro Kartat"
+msgstr "Eniro-kartat"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:36
 msgid "Opens on kartor.eniro.se"
@@ -31620,7 +31621,7 @@ msgstr "Avaa kartor.eniro.se"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:55
 msgid "GoogleMaps"
-msgstr "Googlen kartat"
+msgstr "Google-kartta"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:56
 msgid "Open on maps.google.com"
@@ -31629,7 +31630,7 @@ msgstr "Avaa maps.google.com"
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:75
 #: ../gramps/plugins/webreport/narrativeweb.py:2589
 msgid "OpenStreetMap"
-msgstr "OpenStreetMap-kartat"
+msgstr "OpenStreet-kartta"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:76
 msgid "Open on openstreetmap.org"
@@ -35784,7 +35785,7 @@ msgstr "Luo uudelleen viitekartat"
 
 #: ../gramps/plugins/tool/tools.gpr.py:312
 msgid "Rebuilds reference maps"
-msgstr "Luo uudelleen viitekartat"
+msgstr "Luodaan uudelleen viitekarttoja"
 
 #: ../gramps/plugins/tool/tools.gpr.py:334
 msgid "Rebuild Gender Statistics"
@@ -36603,7 +36604,7 @@ msgstr "Lisätiedot jotka vastaavat annettuja arvoja"
 
 #: ../gramps/plugins/view/geoevents.py:168
 msgid "Events places map"
-msgstr "Tapahtumapaikka"
+msgstr "Tapahtumapaikkakartta"
 
 #: ../gramps/plugins/view/geoevents.py:192
 msgid "GeoEvents"
@@ -36635,7 +36636,7 @@ msgstr "Kirjanmerkkaa tämä tapahtuma"
 
 #: ../gramps/plugins/view/geoevents.py:467
 msgid "Show all events"
-msgstr "Näytä kaikki tapahtumapaikat"
+msgstr "Näytä kaikki tapahtumat"
 
 #: ../gramps/plugins/view/geoevents.py:470
 #: ../gramps/plugins/view/geoplaces.py:561
@@ -36840,7 +36841,7 @@ msgstr "Kaikki tapahtumiin liittyvät paikat"
 
 #: ../gramps/plugins/view/geography.gpr.py:217
 msgid "A view showing all the event places of the database."
-msgstr "Näyttää kaikki tapahtumapaikat tietokannassa."
+msgstr "Näkymä, joka näyttää kaikki tietokannan tapahtumapaikat."
 
 #: ../gramps/plugins/view/geomoves.py:210
 msgid "Descendants of the active person."
@@ -38563,11 +38564,11 @@ msgstr "Paikkakarttojen valinnat"
 # 10
 #: ../gramps/plugins/webreport/narrativeweb.py:2590
 msgid "Stamen Map"
-msgstr "Stamen Map"
+msgstr "Stamen-kartta"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2591
 msgid "Google"
-msgstr "Googlen kartat"
+msgstr "Google-kartta"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2593
 msgid "Map Service"
@@ -38623,7 +38624,7 @@ msgstr "Google/Perhekartan valinnat"
 msgid ""
 "Select which option that you would like to have for the Google Maps family-"
 "map pages..."
-msgstr "Valitse haluamasi vaihtoehto Google Mapsin perhekarttasivuille ..."
+msgstr "Valitse haluamasi Google-kartta vaihtoehto perhekarttasivuille ..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2646
 msgid "Google maps API key"
@@ -38648,7 +38649,7 @@ msgid ""
 "The Google maps service must be selected."
 msgstr ""
 "Kopioi ja liitä tämä arvo selaimeesi.\n"
-"Google Maps -palvelun on oltava valittuna."
+"Google-karttapalvelun on oltava valittuna."
 
 # 10
 #: ../gramps/plugins/webreport/narrativeweb.py:2672
@@ -38675,37 +38676,27 @@ msgstr "Stamen valinnat"
 msgid ""
 "Select which option that you would like to have for the Stamen map map-"
 "pages..."
-msgstr "Valitse haluamasi vaihtoehto Stamen map karttasivuille ..."
+msgstr "Valitse haluamasi vaihtoehto Stamen-karttasivuille ..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2686
-#, fuzzy
-#| msgid "Google maps API key"
 msgid "Stamen maps API key"
-msgstr "Google-karttojen API-avain"
+msgstr "Stamen-karttojen API-avain"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2689
-#, fuzzy
-#| msgid ""
-#| "The API key used for the Google maps.\n"
-#| "This key is mandatory and must be valid"
 msgid ""
 "The API key used for the Stamen maps.\n"
 "This key is mandatory and must be valid"
 msgstr ""
-"Google-kartoissa käytetty API-avain.\n"
+"Stamen-kartoissa käytetty API-avain.\n"
 "Avain on pakollinen ja sen on oltava voimassa"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2704
-#, fuzzy
-#| msgid ""
-#| "Copy and paste this value in your browser.\n"
-#| "The Google maps service must be selected."
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Stamen maps service must be selected."
 msgstr ""
 "Kopioi ja liitä tämä arvo selaimeesi.\n"
-"Google Maps -palvelun on oltava valittuna."
+"Stamenin karttapalvelu on valittava."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2721
 #, python-format
@@ -38729,8 +38720,8 @@ msgid ""
 "openlayers_version.\n"
 "See OLDER VERSIONS in https://openlayers.org/"
 msgstr ""
-"Käytä tätä vaihtoehtoa vain, jos et näe OpenStreetMap- tai Stamen-karttojen "
-"karttoja verkkosivustollasi\n"
+"Käytä tätä vaihtoehtoa vain, jos et näe OpenStreet- tai Stamen-karttoja "
+"verkkosivustollasi\n"
 "Voit muuttaa määritetyn tiedoston arvoa. Muokattavan vaihtoehdon nimi on "
 "openlayers_version.\n"
 "Katso vanhemmat versiot osoitteessa https://openlayers.org/"
