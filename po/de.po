@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-22 00:23+0100\n"
-"PO-Revision-Date: 2023-08-20 05:36+0000\n"
+"PO-Revision-Date: 2023-08-22 09:45+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -10377,7 +10377,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/report/endnotes.py:163
 msgid "Endnotes"
-msgstr "Quellennachweis"
+msgstr "Fußnoten"
 
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/gen/plug/report/endnotes.py:180
@@ -10755,11 +10755,11 @@ msgstr "Partner(in)"
 
 #: ../gramps/gen/relationship.py:2468
 msgid "ex-husband"
-msgstr "Ex-Ehemann"
+msgstr "Ex-Mann"
 
 #: ../gramps/gen/relationship.py:2470
 msgid "ex-wife"
-msgstr "Ex-Ehefrau"
+msgstr "Ex-Frau"
 
 #: ../gramps/gen/relationship.py:2472
 msgctxt "gender unknown"
@@ -11551,7 +11551,7 @@ msgstr "Spanisch"
 
 #: ../gramps/gen/utils/win32locale.py:59
 msgid "Farsi"
-msgstr ""
+msgstr "Farsi"
 
 #: ../gramps/gen/utils/win32locale.py:60
 msgid "Finnish"
@@ -11567,7 +11567,7 @@ msgstr "Gälisch"
 
 #: ../gramps/gen/utils/win32locale.py:64
 msgid "Galician"
-msgstr "Galicisch"
+msgstr "Galizisch"
 
 #: ../gramps/gen/utils/win32locale.py:65
 msgid "Hebrew"
@@ -39126,34 +39126,24 @@ msgstr ""
 "Wähle die Option aus, die du für die Stamen Karten-Seiten haben möchtest..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2686
-#, fuzzy
-#| msgid "Google maps API key"
 msgid "Stamen maps API key"
-msgstr "GoogleMaps API Schlüssel"
+msgstr "Stamen Karten API Schlüssel"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2689
-#, fuzzy
-#| msgid ""
-#| "The API key used for the Google maps.\n"
-#| "This key is mandatory and must be valid"
 msgid ""
 "The API key used for the Stamen maps.\n"
 "This key is mandatory and must be valid"
 msgstr ""
-"Der für Google Maps verwendete API-Schlüssel.\n"
+"Der für Stamen Karten verwendete API-Schlüssel.\n"
 "Dieser Schlüssel ist obligatorisch und muss gültig sein"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2704
-#, fuzzy
-#| msgid ""
-#| "Copy and paste this value in your browser.\n"
-#| "The Google maps service must be selected."
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Stamen maps service must be selected."
 msgstr ""
 "Kopiere diesen Wert und füge ihn in deinen Browser ein.\n"
-"Der Google Maps-Dienst muss ausgewählt sein."
+"Der Stamen Karten-Dienst muss ausgewählt sein."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2721
 #, python-format
