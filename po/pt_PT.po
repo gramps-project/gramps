@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-22 00:23+0100\n"
-"PO-Revision-Date: 2023-08-20 05:36+0000\n"
+"PO-Revision-Date: 2023-08-22 04:49+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@gmx.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -11418,7 +11418,7 @@ msgstr "Espanhol"
 
 #: ../gramps/gen/utils/win32locale.py:59
 msgid "Farsi"
-msgstr ""
+msgstr "Farsi"
 
 #: ../gramps/gen/utils/win32locale.py:60
 msgid "Finnish"
@@ -38772,34 +38772,24 @@ msgstr ""
 "Seleccione a opção que gostaria de ter para as páginas de mapas Stamenmap..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2686
-#, fuzzy
-#| msgid "Google maps API key"
 msgid "Stamen maps API key"
-msgstr "Chave API do Google Maps"
+msgstr "Chave API do Stamen Maps"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2689
-#, fuzzy
-#| msgid ""
-#| "The API key used for the Google maps.\n"
-#| "This key is mandatory and must be valid"
 msgid ""
 "The API key used for the Stamen maps.\n"
 "This key is mandatory and must be valid"
 msgstr ""
-"A chave API usada para o Google Maps.\n"
+"A chave API usada para o Stamen Maps.\n"
 "É obrigatória e tem de estar válida."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2704
-#, fuzzy
-#| msgid ""
-#| "Copy and paste this value in your browser.\n"
-#| "The Google maps service must be selected."
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Stamen maps service must be selected."
 msgstr ""
 "Copie e cole este valor no seu navegador.\n"
-"Tem de seleccionar o serviço Google Maps."
+"Tem de seleccionar o serviço Stamen Maps."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2721
 #, python-format
