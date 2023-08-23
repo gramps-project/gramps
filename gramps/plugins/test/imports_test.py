@@ -26,6 +26,7 @@ import os
 import sys
 import re
 import locale
+import tempfile
 from time import localtime, strptime
 from unittest.mock import patch
 
