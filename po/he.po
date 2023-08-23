@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-22 00:23+0100\n"
 "PO-Revision-Date: 2023-08-23 11:52+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -11173,7 +11173,7 @@ msgstr "יוונית"
 
 #: ../gramps/gen/utils/win32locale.py:54
 msgid "English (USA)"
-msgstr "אנגלית (ארה\"ב)"
+msgstr "אנגלית (ארה״ב)"
 
 #: ../gramps/gen/utils/win32locale.py:55
 msgid "English"
@@ -11189,7 +11189,7 @@ msgstr "ספרדית"
 
 #: ../gramps/gen/utils/win32locale.py:59
 msgid "Farsi"
-msgstr ""
+msgstr "פרסית"
 
 #: ../gramps/gen/utils/win32locale.py:60
 msgid "Finnish"
@@ -11205,7 +11205,7 @@ msgstr "גאלית"
 
 #: ../gramps/gen/utils/win32locale.py:64
 msgid "Galician"
-msgstr ""
+msgstr "גליסית"
 
 #: ../gramps/gen/utils/win32locale.py:65
 msgid "Hebrew"
@@ -37979,34 +37979,24 @@ msgid ""
 msgstr "נא לבחור באפשרות לעמודי מפת סטאמן_מאפ ..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2686
-#, fuzzy
-#| msgid "Google maps API key"
 msgid "Stamen maps API key"
-msgstr "מפתח API לגוגל מפות"
+msgstr "מפתח API למפות Stamen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2689
-#, fuzzy
-#| msgid ""
-#| "The API key used for the Google maps.\n"
-#| "This key is mandatory and must be valid"
 msgid ""
 "The API key used for the Stamen maps.\n"
 "This key is mandatory and must be valid"
 msgstr ""
-"מפתח ה־API שמשמש למפות גוגל.\n"
+"מפתח ה־API שמשמש למפות Stamen.\n"
 "זהו מפתח חובה ועליו להיות בתוקף"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2704
-#, fuzzy
-#| msgid ""
-#| "Copy and paste this value in your browser.\n"
-#| "The Google maps service must be selected."
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Stamen maps service must be selected."
 msgstr ""
 "נא להעתיק ולהדביק ערכים אלו בחיפוש הדפדפן.\n"
-"חובה לבחור בשירות המפות של Google."
+"חובה לבחור בשירות המפות של Stamen."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2721
 #, python-format
