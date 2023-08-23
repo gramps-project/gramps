@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-22 00:23+0100\n"
-"PO-Revision-Date: 2023-08-21 23:46+0000\n"
+"PO-Revision-Date: 2023-08-23 11:52+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -3989,7 +3989,7 @@ msgstr "תג:"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:52
 msgid "Citations with the <tag>"
-msgstr "מובאות עם <תג>"
+msgstr "מובאות מתוייגות עם <תג>"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:53
 msgid "Matches citations with the particular tag"
@@ -4216,11 +4216,11 @@ msgstr "שליפת אירועים בעלי מספר מסוים של מקורות
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:52
 msgid "Events with the <tag>"
-msgstr "אירועים עם <תג>"
+msgstr "אירועים מתוייגים עם <תג>"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:53
 msgid "Matches events with the particular tag"
-msgstr "שליפת אירועים בעלי תג מסוים"
+msgstr "שליפת אירועים מתוייגים בתג מסוים"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:48
 msgid "Events with the particular type"
@@ -4513,11 +4513,11 @@ msgstr "שליפת משפחות בעלות מקור מסוים"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:52
 msgid "Families with the <tag>"
-msgstr "משפחות עם <תג>"
+msgstr "משפחות מתוייגות עם <תג>"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:53
 msgid "Matches families with the particular tag"
-msgstr "שליפת משפחות בעלות תג מסוים"
+msgstr "שליפת משפחות מתוייגות בתג מסוים"
 
 #: ../gramps/gen/filters/rules/family/_hastwins.py:47
 msgid "Families with twins"
@@ -4779,11 +4779,11 @@ msgstr "שליפת מדיה בעלת מקור מסוים"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:52
 msgid "Media objects with the <tag>"
-msgstr "עצמי מדיה עם <תג>"
+msgstr "עצמי מדיה מתוייגים עם <תג>"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:53
 msgid "Matches media objects with the particular tag"
-msgstr "שליפת עצמי מדיה עם תג מסוים"
+msgstr "שליפת עצמי מדיה מתוייגים בתג מסוים"
 
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:46
 msgid "Media objects matching the <filter>"
@@ -4870,11 +4870,11 @@ msgstr "שליפת הערות עם מונה הפניות מסוים"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:52
 msgid "Notes with the <tag>"
-msgstr "הערות עם <תג>"
+msgstr "הערות מתוייגות עם <תג>"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:53
 msgid "Matches notes with the particular tag"
-msgstr "שליפת הערות בעלות תג מסוים"
+msgstr "שליפת הערות מתויגות בג מסוים"
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:48
 msgid "Notes with the particular type"
@@ -5368,11 +5368,11 @@ msgstr "שליפת אנשים עם מקור מסוים"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:52
 msgid "People with the <tag>"
-msgstr "אנשים עם <תג>"
+msgstr "אנשים מתוייגים עם <תג>"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:53
 msgid "Matches people with the particular tag"
-msgstr "שליפת אנשים עם תג מסוים"
+msgstr "שליפת אנשים מתוייגים בתג מסוים"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:49
 #: ../gramps/gui/editors/filtereditor.py:609
@@ -5976,11 +5976,11 @@ msgstr "שליפת מקומות בעלי מקור מסוים"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:52
 msgid "Places with the <tag>"
-msgstr "מקומות עם <תג>"
+msgstr "מקומות מתוייגים עם <תג>"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:53
 msgid "Matches places with the particular tag"
-msgstr "שליפת מקומות בעל תג מסוים"
+msgstr "שליפת מקומות מתוייגים בתג מסוים"
 
 #: ../gramps/gen/filters/rules/place/_hastitle.py:51
 msgid "Places matching a title"
@@ -6191,11 +6191,11 @@ msgstr "שליפת מאגרים בעלי משתנים מסוימים"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:52
 msgid "Repositories with the <tag>"
-msgstr "מאגרי מידע עם <תג>"
+msgstr "מאגרי מידע מתוייגים עם <תג>"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:53
 msgid "Matches repositories with the particular tag"
-msgstr "שליפת מאגרי מידע בעלי תג מסוים"
+msgstr "שליפת מאגרי מידע מתוייגים בתג מסוים"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:46
 msgid "Repositories matching the <filter>"
@@ -6331,11 +6331,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:52
 msgid "Sources with the <tag>"
-msgstr "מקורות עם <תג>"
+msgstr "מקורות מתוייגים עם <תג>"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:53
 msgid "Matches sources with the particular tag"
-msgstr "שליפת מקורות בעלי תג מסוים"
+msgstr "שליפת מקורות מתוייגים בתג מסוים"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:46
 msgid "Sources matching the <filter>"
@@ -12390,7 +12390,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2345
 msgid "Tag Records"
-msgstr "רשומות תגים"
+msgstr "תיוג רשומות"
 
 #: ../gramps/gui/configure.py:2367
 msgid "Add tag on import"
@@ -12401,8 +12401,8 @@ msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
 msgstr ""
-"התג שפורט יתווסף לכל הרשומות, בייבוא.\n"
-"נא לנקות להגדרת ערכי ברירת מחדל."
+"בפעולת ייבוא תג שצויין יתווסף לכל הרשומות.\n"
+"נא לנקות הגדרת ערכי ברירת מחדל."
 
 #: ../gramps/gui/configure.py:2383
 msgid ""
@@ -14995,12 +14995,12 @@ msgstr "עריכת מקור (%s)"
 #: ../gramps/gui/editors/edittaglist.py:49
 msgctxt "manual"
 msgid "Tag_selection_dialog"
-msgstr "דו־שיח_נא_לבחור_תג"
+msgstr "דו־שיח_בחירת_תגים"
 
 #: ../gramps/gui/editors/edittaglist.py:72
 #: ../gramps/gui/editors/edittaglist.py:130
 msgid "Tag selection"
-msgstr "נא לבחור תג"
+msgstr "בחירת תגים"
 
 #: ../gramps/gui/editors/editurl.py:48
 msgctxt "manual"
@@ -16274,7 +16274,7 @@ msgstr "_תגים:"
 #: ../gramps/gui/glade/editfamily.glade:764
 #: ../gramps/gui/widgets/monitoredwidgets.py:864
 msgid "Edit the tag list"
-msgstr "עריכת רשימת תגים"
+msgstr "עריכת רשימת התגים"
 
 #: ../gramps/gui/glade/editldsord.glade:180
 msgid "Ordinance:"
@@ -20141,7 +20141,7 @@ msgstr "מצג %(name)s: %(msg)s"
 
 #: ../gramps/gui/views/tags.py:73
 msgid "Tag selected rows"
-msgstr "שורות שנבחרו על פי תג"
+msgstr "שורות שנבחרו לפי תג"
 
 #: ../gramps/gui/views/tags.py:96
 msgid "New Tag..."
@@ -20149,7 +20149,7 @@ msgstr "תג חדש..."
 
 #: ../gramps/gui/views/tags.py:96
 msgid "Organize Tags..."
-msgstr "ארגון תגים..."
+msgstr "ניהול תגים..."
 
 #: ../gramps/gui/views/tags.py:115
 msgctxt "manual"
@@ -20178,7 +20178,7 @@ msgstr "הוספת תגים"
 #: ../gramps/gui/views/tags.py:334 ../gramps/gui/views/tags.py:361
 #, python-format
 msgid "Tag Selection (%s)"
-msgstr "נא לבחור תג (%s)"
+msgstr "בחירת תג (%s)"
 
 #: ../gramps/gui/views/tags.py:355 ../gramps/gui/views/tags.py:620
 msgid "Removing Tags"
@@ -20191,18 +20191,18 @@ msgstr "ניהול תגים"
 
 #: ../gramps/gui/views/tags.py:442
 msgid "Change Tag Priority"
-msgstr "שינוי תעדוף תג"
+msgstr "שינוי תעדוף תגים"
 
 #: ../gramps/gui/views/tags.py:585
 #, python-format
 msgid "Remove tag '%s'?"
-msgstr "למחוק תג '%s'?"
+msgstr "הסרת תג '%s'?"
 
 #: ../gramps/gui/views/tags.py:587
 msgid ""
 "The tag definition will be removed.  The tag will be also removed from all "
 "objects in the database."
-msgstr "הגדרת התג תוסר. התג יוסר גם מכל הרשומות במסד הנתונים."
+msgstr "הגדרת התג תוסר.   גם התג יוסר מכול הרשומות במסד הנתונים."
 
 #: ../gramps/gui/views/tags.py:626
 #, python-format
@@ -24389,15 +24389,15 @@ msgstr "משך ההשהיה לפני עיבוד צאצאי אב קדמון"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:76
 msgid "Tag to indicate that a person is complete"
-msgstr "תג המציין כי אין עוד אירועי 'נישואין' לאדם"
+msgstr "תג שמצביע על השלמת מחקר לאדם מסויים"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:83
 msgid "Tag to indicate that a family is complete"
-msgstr "תג מצביע על כך שאין עוד צאצאים במשפחה"
+msgstr "תג שמצביע על כך שאין עוד צאצאים במשפחה"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:89
 msgid "Tag to indicate that a person or family should be ignored"
-msgstr "תג מצביע על כך שיש להתעלם מאדם או משפחה"
+msgstr "תג שמצביע על כך שיש להתעלם מאדם או משפחה"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:163
 msgid "No Home Person set."
@@ -25799,7 +25799,7 @@ msgid ""
 "to all Tag Text'."
 msgstr ""
 "העתקת מלל ברירת מחדל\n"
-"לכל תגיות המלל."
+"לכל המלל בתגים."
 
 #: ../gramps/plugins/importer/importprogen.glade:1130
 msgid ""
@@ -25807,7 +25807,7 @@ msgid ""
 "to all sensitive Tag Text'."
 msgstr ""
 "העתקת שם קובץ ברירת מחדל\n"
-"לכל תגיות המלל הרגישות."
+"לכל מלל רגיש בתגים."
 
 #: ../gramps/plugins/importer/importprogen.glade:1149
 msgid ""
@@ -25815,7 +25815,7 @@ msgid ""
 "to all sensitive Tag Text'."
 msgstr ""
 "העתקת תאריך ברירת מחדל\n"
-"לכל תגיות המלל הרגישות."
+"לכל מלל רגיש בתגים."
 
 #: ../gramps/plugins/importer/importprogen.glade:1164
 msgid "  Objects"
@@ -26257,14 +26257,14 @@ msgid ""
 "  %(gramps_wiki_xml_url)s\n"
 "for more info."
 msgstr ""
-"קובץ .gramps ליבוא, נוצר בגרסת גרמפס %(oldgramps)s, בזמן שמותקנת כעת גרסה "
-"עדכנית יותר%(newgramps)s.\n"
+"קובץ .gramps ליבוא, נוצר בגרסת גרמפס %(oldgramps)s, בעוד שגרסה עדכנית "
+"יותר%(newgramps)s, מותקנת כעת.\n"
 "\n"
-"נא לוודא לאחר היבוא שכול הנתונים יובאו כראוי. במידה ונתגלו בעיות, נא לדוח על "
-"תקל ולהשתמש בינתיים בגרסת גרמפס ישנה יותר לייבא הקובץ, שהוא גרסה "
-"%(xmlversion)s של ה־xml.\n"
+"לאחר היבוא, נא לוודא שכול הנתונים יובאו כראוי. במידה ונתגלו בעיות, נא לדוח "
+"על תקל ולהשתמש בינתיים בגרסת גרמפס ישנה יותר לייבוא הקובץ בגרסת  XML  "
+"%(xmlversion)s.\n"
 "נא לעיין ב־\n"
-"  %(gramps_wiki_xml_url)s\n"
+"%(gramps_wiki_xml_url)s\n"
 "למידע נוסף."
 
 #: ../gramps/plugins/importer/importxml.py:1196
@@ -26451,7 +26451,7 @@ msgstr "השורה אינה מובנת"
 
 #: ../gramps/plugins/lib/libgedcom.py:3487
 msgid "Tag recognized but not supported"
-msgstr "התג זוהה אך לא ניתמך"
+msgstr "תג זוהה אך לא ניתמך"
 
 #: ../gramps/plugins/lib/libgedcom.py:3523
 msgid "Skipped subordinate line"
@@ -26833,7 +26833,7 @@ msgstr "תגי אנשים"
 
 #: ../gramps/plugins/lib/libmetadata.py:123
 msgid "Event Tags"
-msgstr "תגי אירוע"
+msgstr "תגי אירועים"
 
 #: ../gramps/plugins/lib/libmetadata.py:124
 msgid "Image Tags"
@@ -26845,7 +26845,7 @@ msgstr "מידע מצלמה"
 
 #: ../gramps/plugins/lib/libmetadata.py:126
 msgid "Location Tags"
-msgstr "תגי מקום"
+msgstr "תגי מקומות"
 
 #: ../gramps/plugins/lib/libmetadata.py:127
 msgid "Advanced Tags"
@@ -30601,7 +30601,7 @@ msgstr "התחתנו בגיל המבוגר ביותר"
 
 #: ../gramps/plugins/lib/librecords.py:72
 msgid "Person divorced at youngest age"
-msgstr "התגרשו בגיל הצעיר ביותר"
+msgstr "גרושים בגיל הצעיר ביותר"
 
 #: ../gramps/plugins/lib/librecords.py:73
 msgid "Person divorced at oldest age"
@@ -32825,7 +32825,7 @@ msgstr "האם לצטט מקורות."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1180
 msgid "Include Tags"
-msgstr "לכלול תגיות"
+msgstr "לכלול תגים"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1181
 msgid "Whether to include tags."
@@ -33266,7 +33266,7 @@ msgstr "מידע על פרסומים"
 
 #: ../gramps/plugins/textreport/tagreport.py:927
 msgid "The tag to use for the report"
-msgstr "התג שמשמש בדוח"
+msgstr "התג שישמש בדוח"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:38
 msgid "Ahnentafel Report"
@@ -34444,7 +34444,7 @@ msgstr "כל האנשים במסד הנתונים קשורים ל־%s"
 #, python-brace-format
 msgid "Setting tag for {number_of} person"
 msgid_plural "Setting tag for {number_of} people"
-msgstr[0] "הגדרת תג ל {number_of} אדם"
+msgstr[0] "הגדרת תג לאדם {number_of}"
 msgstr[1] "הגדרת תג ל {number_of} אנשים"
 
 #: ../gramps/plugins/tool/notrelated.py:303
