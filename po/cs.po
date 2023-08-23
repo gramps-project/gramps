@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-22 00:23+0100\n"
-"PO-Revision-Date: 2023-08-22 09:45+0000\n"
+"PO-Revision-Date: 2023-08-23 11:51+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -18357,7 +18357,7 @@ msgstr "_Navigátor"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Plugin Manager"
-msgstr "S_právce zásuvných modulů"
+msgstr "_Správce zásuvných modulů"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Preferences..."
@@ -20441,7 +20441,7 @@ msgstr ""
 
 #: ../gramps/gui/viewmanager.py:1704
 msgid "Failed Loading Plugin"
-msgstr "Zásuvný moduly se nepodařilo nahrát"
+msgstr "Zásuvný modul se nepodařilo nahrát"
 
 #: ../gramps/gui/viewmanager.py:1706
 #, python-format
