@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-22 00:23+0100\n"
-"PO-Revision-Date: 2023-08-22 09:45+0000\n"
+"PO-Revision-Date: 2023-08-23 11:52+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -7232,11 +7232,11 @@ msgstr "a"
 
 #: ../gramps/gen/lib/date.py:329 ../gramps/gen/lib/date.py:349
 msgid "less than about"
-msgstr "menej ako"
+msgstr "menej ako o"
 
 #: ../gramps/gen/lib/date.py:340 ../gramps/gen/lib/date.py:347
 msgid "more than about"
-msgstr "viac ako"
+msgstr "viac ako o"
 
 #: ../gramps/gen/lib/date.py:456 ../gramps/gen/lib/date.py:463
 #, python-brace-format
@@ -11388,7 +11388,7 @@ msgstr "Galčina"
 
 #: ../gramps/gen/utils/win32locale.py:64
 msgid "Galician"
-msgstr ""
+msgstr "Galícijčina"
 
 #: ../gramps/gen/utils/win32locale.py:65
 msgid "Hebrew"
@@ -12767,10 +12767,8 @@ msgid "Tab"
 msgstr "Značka"
 
 #: ../gramps/gui/csvdialect.py:82
-#, fuzzy
-#| msgid "Check your installation."
 msgid "Choose your dialect"
-msgstr "Skontrolujte Vašu inštaláciu."
+msgstr "Vyberte si svoj dialekt"
 
 #: ../gramps/gui/csvdialect.py:85
 msgid ""
@@ -13295,7 +13293,7 @@ msgstr "Nástroje"
 
 #: ../gramps/gui/displaystate.py:422
 msgid "Open Addon Manager"
-msgstr "Otvoriť správcu zásuvných modulov"
+msgstr "Otvoriť správcu doplnkov"
 
 #: ../gramps/gui/displaystate.py:423 ../gramps/gui/plug/_windows.py:440
 msgid "Addons"
@@ -18063,7 +18061,7 @@ msgstr ""
 "ďalšie funkcie. Tu si môžete vybrať z dostupných doplnkov, ktoré sa načítajú "
 "z internetu z webovej stránky Gramps a nainštalujú sa lokálne do vášho "
 "počítača. Ak teraz tento dialóg zatvoríte, môžete doplnky nainštalovať "
-"neskôr z menu v časti Upraviť -> Správca zásuvných modulov."
+"neskôr z menu v časti Upraviť -> Správca doplnkov."
 
 #: ../gramps/gui/glade/updateaddons.glade:105
 msgid "_Select All"
@@ -18128,7 +18126,7 @@ msgstr "_O programe"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Addon Manager..."
-msgstr "_Správca zásuvných modulov..."
+msgstr "_Správca doplnkov..."
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Bookmarks"
@@ -18776,10 +18774,8 @@ msgid "Project"
 msgstr "Projekt"
 
 #: ../gramps/gui/plug/_windows.py:222
-#, fuzzy
-#| msgid "Audio"
 msgid "Audience"
-msgstr "Zvuk"
+msgstr "Audiencia"
 
 #: ../gramps/gui/plug/_windows.py:226 ../gramps/gui/plug/_windows.py:1596
 msgid "Version"
@@ -18845,10 +18841,8 @@ msgid "All types"
 msgstr "Všetky typy"
 
 #: ../gramps/gui/plug/_windows.py:415
-#, fuzzy
-#| msgid "Audio"
 msgid "All audiences"
-msgstr "Zvuk"
+msgstr "Všetky audiencie"
 
 #: ../gramps/gui/plug/_windows.py:422
 msgid "All statuses"
@@ -18871,10 +18865,8 @@ msgid "Loading..."
 msgstr "Nahrávam..."
 
 #: ../gramps/gui/plug/_windows.py:545
-#, fuzzy
-#| msgid "No matches found"
 msgid "No matching addons found."
-msgstr "Zhody neboli nájdené"
+msgstr "Nenájdené žiadne vhodné doplnky."
 
 #: ../gramps/gui/plug/_windows.py:700
 msgid "Allow Gramps to install required python modules"
@@ -18892,11 +18884,11 @@ msgstr "Raz za mesiac"
 
 #: ../gramps/gui/plug/_windows.py:724
 msgid "Once a week"
-msgstr "Raz týždenne"
+msgstr "Raz za týždeň"
 
 #: ../gramps/gui/plug/_windows.py:725
 msgid "Once a day"
-msgstr "Raz denne"
+msgstr "Raz za deň"
 
 #: ../gramps/gui/plug/_windows.py:726
 msgid "Always"
@@ -18948,7 +18940,7 @@ msgstr "Obnoviť predvolené nastavenia projektu"
 
 #: ../gramps/gui/plug/_windows.py:887
 msgid "Are you sure?"
-msgstr ""
+msgstr "Ste ai istí?"
 
 #: ../gramps/gui/plug/_windows.py:911
 msgid "Checking Addons Failed"
@@ -19027,7 +19019,7 @@ msgstr "Načítané zásuvné moduly"
 
 #: ../gramps/gui/plug/_windows.py:1127
 msgid "Addon Name"
-msgstr "Doplnok Názov"
+msgstr "Názov doplnku"
 
 #: ../gramps/gui/plug/_windows.py:1139
 msgid "Path to Addon:"
@@ -20398,7 +20390,7 @@ msgstr "Stĺpce"
 
 #: ../gramps/gui/views/listview.py:1457
 msgid "CSV Dialect"
-msgstr ""
+msgstr "Dialekt CSV"
 
 #: ../gramps/gui/views/navigationview.py:247
 #, python-format
@@ -20869,10 +20861,8 @@ msgid "'%s' is not a valid date value"
 msgstr "'%s' nie je platná hodnota dátumu"
 
 #: ../gramps/plugins/cite/cite.gpr.py:36
-#, fuzzy
-#| msgid "Publication Information"
 msgid "Default citation formatter"
-msgstr "Informácie o publikácii"
+msgstr "Predvolený formátovač citácií"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:27
 msgid "BSDDB"
@@ -22233,14 +22223,13 @@ msgid ""
 msgstr "V editore štýlu môžete prispôsobiť písmo a farbu pre každú generáciu"
 
 #: ../gramps/plugins/drawreport/fanchart.py:853
-#, fuzzy
-#| msgid "Flip name on the left of the fan"
 msgid "Flip names that are on the bottom half of the fan"
-msgstr "Obrátiť meno na ľavej strane vejára"
+msgstr "Obrátiť mená, ktoré sú v spodnej polovici vejára"
 
 #: ../gramps/plugins/drawreport/fanchart.py:856
 msgid "Flip names for generations 2, 3 and 4 i.e. those found in circles"
 msgstr ""
+"Obrátiť mená pre generácie 2, 3 a 4, t. j. tie, ktoré sa nachádzajú v kruhoch"
 
 #: ../gramps/plugins/drawreport/fanchart.py:912
 #, python-format
@@ -22622,11 +22611,15 @@ msgid "Comma _Separated Values Spreadsheet (CSV)"
 msgstr "Čiarkou _oddelené hodnoty tabuľky (CSV)"
 
 #: ../gramps/plugins/export/export.gpr.py:38
+#, fuzzy
 msgid ""
 "CSV is a common spreadsheet format.\n"
 "You can change this behavior in the 'Configure active view' of any list-"
 "based view"
 msgstr ""
+"CSV je bežný formát tabuľkového procesora.\n"
+"Toto správanie môžete zmeniť v \"Konfigurovať aktívny pohľad\" akéhokoľvek "
+"pohľadu založeného na zozname"
 
 #: ../gramps/plugins/export/export.gpr.py:49
 msgid "CSV spreadsheet options"
@@ -26435,34 +26428,23 @@ msgid "Import of vCards version %s is not supported by Gramps."
 msgstr "Import vCard verzie %s Gramps nepodporuje."
 
 #: ../gramps/plugins/importer/importvcard.py:396
-#, fuzzy
-#| msgid ""
-#| "VCard is malformed missing the compulsory N property, so there is no "
-#| "name; skip it."
 msgid ""
 "The vCard is malformed. It is missing the compulsory N property, so there is "
 "no name; skip it."
 msgstr ""
-"VCard má nesprávny tvar, chýba jej povinná vlastnosť N, preto nemá meno; "
+"vCard má nesprávny tvar. Chýba jej povinná vlastnosť N, preto nemá názov; "
 "vynechajte ju."
 
 #: ../gramps/plugins/importer/importvcard.py:405
-#, fuzzy
-#| msgid ""
-#| "VCard is malformed missing the compulsory FN property, get name from N "
-#| "alone."
 msgid ""
 "The vCard is malformed. It is missing the compulsory FN property, get name "
 "from N alone."
 msgstr ""
-"VCard je chybne vytvorená, chýba povinná vlastnosť FN, získajte názov len z "
-"N."
+"vCard má nesprávny tvar. Chýba povinná vlastnosť FN, získajte názov len z N."
 
 #: ../gramps/plugins/importer/importvcard.py:413
-#, fuzzy
-#| msgid "VCard is malformed wrong number of name components."
 msgid "The vCard is malformed. Wrong number of name components."
-msgstr "VCard má nesprávny počet komponentov názvu."
+msgstr "Karta vCard je chybne vytvorená. Nesprávny počet komponentov názvu."
 
 #: ../gramps/plugins/importer/importvcard.py:574
 #, python-brace-format
@@ -38641,10 +38623,8 @@ msgid "in %(inipth)s (%(val)s)"
 msgstr "v %(inipth)s (%(val)s)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2722
-#, fuzzy
-#| msgid "Dates"
 msgid "latest"
-msgstr "Dátumy"
+msgstr "najnovšie"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2724
 msgid "openlayers version to use"
