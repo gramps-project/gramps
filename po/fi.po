@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-22 00:23+0100\n"
-"PO-Revision-Date: 2023-08-22 09:58+0000\n"
+"PO-Revision-Date: 2023-08-23 11:52+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -5162,7 +5162,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_everyone.py:46
 #: ../gramps/gen/plug/_pluginreg.py:76
 msgid "Everyone"
-msgstr "Kaikki henkilöt"
+msgstr "Kaikki"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:48
 msgid "Matches everyone in the database"
