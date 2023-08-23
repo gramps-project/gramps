@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-22 00:23+0100\n"
-"PO-Revision-Date: 2023-08-16 00:18+0000\n"
+"PO-Revision-Date: 2023-08-23 11:52+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
@@ -7378,9 +7378,9 @@ msgid "unknown"
 msgstr "desconocido"
 
 #: ../gramps/gen/lib/date.py:298
-#, fuzzy, python-format
+#, python-format
 msgid "greater than %s years"
-msgstr "menos de %s años"
+msgstr "más de %s años"
 
 #: ../gramps/gen/lib/date.py:303 ../gramps/gen/lib/date.py:334
 #: ../gramps/gen/lib/date.py:336 ../gramps/gen/lib/date.py:342
@@ -9529,8 +9529,6 @@ msgid "Expert"
 msgstr "Experto"
 
 #: ../gramps/gen/plug/_pluginreg.py:116
-#, fuzzy
-#| msgid "Quick View"
 msgid "Quick view"
 msgstr "Vista rápida"
 
@@ -9547,14 +9545,10 @@ msgid "Exporter"
 msgstr "Exportador"
 
 #: ../gramps/gen/plug/_pluginreg.py:120
-#, fuzzy
-#| msgid "Doc creator"
 msgid "Document creator"
-msgstr "Creador de documentos"
+msgstr "Autor del documento"
 
 #: ../gramps/gen/plug/_pluginreg.py:121
-#, fuzzy
-#| msgid "Plugin lib"
 msgid "Plugin library"
 msgstr "Biblioteca de complementos"
 
@@ -9569,10 +9563,8 @@ msgid "View"
 msgstr "Ver"
 
 #: ../gramps/gen/plug/_pluginreg.py:124
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Relationship calculator"
-msgstr "Calculador de parentesco"
+msgstr "Calculadora del parentesco"
 
 #: ../gramps/gen/plug/_pluginreg.py:125 ../gramps/gen/plug/_pluginreg.py:513
 #: ../gramps/gui/glade/grampletpane.glade:156
