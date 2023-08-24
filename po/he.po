@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-22 00:23+0100\n"
-"PO-Revision-Date: 2023-08-23 11:52+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"PO-Revision-Date: 2023-08-24 21:34+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.0\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -4228,7 +4228,7 @@ msgstr "אירועים בעלי סוג מסיום"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:49
 msgid "Matches events with the particular type "
-msgstr "שליפת אירועים בעלי סוג מסוים "
+msgstr "שליפת אירועים מסוג מסוים "
 
 #: ../gramps/gen/filters/rules/event/_matchesfilter.py:46
 msgid "Events matching the <filter>"
@@ -4787,7 +4787,7 @@ msgstr "שליפת עצמי מדיה מתוייגים בתג מסוים"
 
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:46
 msgid "Media objects matching the <filter>"
-msgstr "עצמי מדיה תואמים ל <מסנן>"
+msgstr "עצמי מדיה שתואמים ל<מסנן>"
 
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:47
 msgid "Matches media objects matched by the specified filter name"
@@ -4870,7 +4870,7 @@ msgstr "שליפת הערות עם מונה הפניות מסוים"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:52
 msgid "Notes with the <tag>"
-msgstr "הערות מתוייגות עם <תג>"
+msgstr "הערות שמתויגות ב<תג>"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:53
 msgid "Matches notes with the particular tag"
@@ -4882,7 +4882,7 @@ msgstr "הערות עם סוג מסוים"
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:49
 msgid "Matches notes with the particular type "
-msgstr "שליפת הערות בעלי סוג מסוים "
+msgstr "שליפת הערות מסוג מסוים "
 
 #: ../gramps/gen/filters/rules/note/_matchesfilter.py:46
 msgid "Notes matching the <filter>"
@@ -5976,7 +5976,7 @@ msgstr "שליפת מקומות בעלי מקור מסוים"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:52
 msgid "Places with the <tag>"
-msgstr "מקומות מתוייגים עם <תג>"
+msgstr "מקומות שמתויגים ב<תג>"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:53
 msgid "Matches places with the particular tag"
@@ -6199,7 +6199,7 @@ msgstr "שליפת מאגרי מידע מתוייגים בתג מסוים"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:46
 msgid "Repositories matching the <filter>"
-msgstr "מאגרים התואמים ל <מסנן>"
+msgstr "מאגרים התואמים ל<מסנן>"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:47
 msgid "Matches repositories matched by the specified filter name"
@@ -6339,7 +6339,7 @@ msgstr "שליפת מקורות מתוייגים בתג מסוים"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:46
 msgid "Sources matching the <filter>"
-msgstr "מקורות תואמים ל<מסנן>"
+msgstr "מקורות שתואמים ל<מסנן>"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:47
 msgid "Matches sources matched by the specified filter name"
@@ -10345,7 +10345,7 @@ msgstr "לא ניתן לשמור רשימת קובצי מסד־נתונים {fna
 #: ../gramps/gen/recentfiles.py:250
 #, python-brace-format
 msgid "Unable to open list of recent DBs file {fname}: {error}"
-msgstr "לא ניתן לפתוח רשימת קובצי מסד־נתונים {fname}: {error}"
+msgstr "לא ניתן לפתוח רשימת קובצי מסדי־נתונים {fname}: {error}"
 
 #: ../gramps/gen/recentfiles.py:257
 #, python-brace-format
@@ -10588,7 +10588,7 @@ msgstr "תאריך קשור פטירה של קדמון"
 #: ../gramps/gen/utils/alive.py:626
 #, python-format
 msgid "Database error: loop in %s's ancestors"
-msgstr "שגיאת מסד־נתונים:לולאה באבות קדמונים של %s"
+msgstr "שגיאת מסד־נתונים: לולאה באבות הקדמונים של %s"
 
 #: ../gramps/gen/utils/alive.py:684
 msgid "no evidence"
@@ -12881,13 +12881,13 @@ msgstr ""
 #: ../gramps/gui/dbman.py:839
 #, python-format
 msgid "Convert the '%s' database?"
-msgstr "המרת מסד־נתונים '%s'?"
+msgstr "להמיר את מסד־הנתונים '%s'?"
 
 #: ../gramps/gui/dbman.py:841
 #, python-format
 msgid ""
 "Do you wish to convert this family tree into a %(database_type)s database?"
-msgstr "האם להמיר אילן־יוחסין זה למסד נתונים %(database_type)s?"
+msgstr "האם להמיר אילן־יוחסין זה למסד־נתונים %(database_type)s?"
 
 #: ../gramps/gui/dbman.py:845
 msgid "Convert"
@@ -12900,20 +12900,20 @@ msgstr "פתיחת מסד־נתונים '%s'"
 
 #: ../gramps/gui/dbman.py:860
 msgid "An attempt to convert the database failed. Perhaps it needs updating."
-msgstr "ניסיון להמרת מסד־הנתונים כשל. ייתכן ונדרש עדכון."
+msgstr "ניסיון להמרת מסד־הנתונים כשל. ייתכן שנדרש עדכון."
 
 #: ../gramps/gui/dbman.py:875 ../gramps/gui/dbman.py:902
 #, python-format
 msgid "Converting the '%s' database"
-msgstr "המרת מסד־נתונים '%s'"
+msgstr "מסד־הנתונים '%s' עובר המרה"
 
 #: ../gramps/gui/dbman.py:876
 msgid "An attempt to export the database failed."
-msgstr "ניסיון ליצוא מסד־הנתונים כשל."
+msgstr "ניסיון לייצוא מסד־הנתונים כשל."
 
 #: ../gramps/gui/dbman.py:881
 msgid "Converting data..."
-msgstr "המרת מידע..."
+msgstr "הנתונים עוברים המרה…"
 
 #: ../gramps/gui/dbman.py:886 ../gramps/gui/dbman.py:889
 #, python-format
@@ -12982,7 +12982,7 @@ msgstr "עצירה"
 
 #: ../gramps/gui/dbman.py:1018
 msgid "Rebuilding database from backup files"
-msgstr "בניית מסד־הנתונים מחדש מקובצי גיבוי"
+msgstr "מסד־הנתונים נבנה מחדש מקובצי גיבוי"
 
 #: ../gramps/gui/dbman.py:1023
 msgid "Error restoring backup data"
@@ -22545,20 +22545,20 @@ msgid ""
 "the directory. Please make sure you have write access to the directory and "
 "try again."
 msgstr ""
-"לא ניתן לשמור את מסד־הנתונים מכיוון שאין את ההרשאה לכתיבה למחיצה. נא לוודא "
-"שיש גישת כתיבה למחיצה ולנסות שוב."
+"לא ניתן לשמור את מסד־הנתונים מכיוון שאין הרשאת כתיבה לתיקייה. נא לוודא שיש "
+"גישת כתיבה לתיקייה ולנסות שוב."
 
 #: ../gramps/plugins/export/exportxml.py:177
 msgid ""
 "The database cannot be saved because you do not have permission to write to "
 "the file. Please make sure you have write access to the file and try again."
 msgstr ""
-"לא ניתן לשמור את מסד־הנתונים מכיוון שאין את ההרשאה לכתיבה לקובץ. נא לוודא "
-"שיש גישת כתיבה לקבוץ ולנסות שוב."
+"לא ניתן לשמור את מסד־הנתונים מכיוון שאין הרשאת כתיבה לקובץ. נא לוודא שיש "
+"גישת כתיבה לקובץ ולנסות שוב."
 
 #: ../gramps/plugins/gramplet/ageondategramplet.py:56
 msgid "Enter a date, click Run"
-msgstr "הזנת תאריך, הקשה על הרצה"
+msgstr "נא למלא תאריך וללחוץ על הרצה"
 
 #: ../gramps/plugins/gramplet/ageondategramplet.py:66
 msgid ""
@@ -26455,11 +26455,11 @@ msgstr "תג זוהה אך לא ניתמך"
 
 #: ../gramps/plugins/lib/libgedcom.py:3523
 msgid "Skipped subordinate line"
-msgstr "המערכת דילגה על שור המשנה"
+msgstr "המערכת דילגה על שורת המשנה"
 
 #: ../gramps/plugins/lib/libgedcom.py:3560
 msgid "Records not imported into "
-msgstr "לא יובאו רשומות ל "
+msgstr "לא יובאו רשומות אל "
 
 #: ../gramps/plugins/lib/libgedcom.py:3603
 #, python-format
@@ -33490,7 +33490,7 @@ msgstr[1] "{number_of} רשומות אירוע הסגלו."
 
 #: ../gramps/plugins/tool/check.py:134 ../gramps/plugins/tool/check.py:313
 msgid "Checking Database"
-msgstr "בדיקת מסד־נתונים"
+msgstr "מסד־הנתונים נבדק"
 
 #: ../gramps/plugins/tool/check.py:135
 msgid "Looking for cross table duplicates"
@@ -34458,14 +34458,14 @@ msgstr[1] "מציאת {number_of} קשרי־גומלין אנשים"
 #, python-brace-format
 msgid "Looking for {number_of} person"
 msgid_plural "Looking for {number_of} people"
-msgstr[0] "איתור {number_of} אדם"
-msgstr[1] "חיפוש {number_of} אנשים"
+msgstr[0] "איתור אדם {number_of}"
+msgstr[1] "איתור {number_of} אנשים"
 
 #: ../gramps/plugins/tool/notrelated.py:421
 #, python-brace-format
 msgid "Looking up the name of {number_of} person"
 msgid_plural "Looking up the names of {number_of} people"
-msgstr[0] "איתור שם של {number_of} אדם"
+msgstr[0] "איתור שם של אדם {number_of}"
 msgstr[1] "חיפוש שם של {number_of} אנשים"
 
 #: ../gramps/plugins/tool/ownereditor.glade:10
