@@ -65,7 +65,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-22 00:23+0100\n"
-"PO-Revision-Date: 2023-08-23 11:52+0000\n"
+"PO-Revision-Date: 2023-08-24 21:35+0000\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/it/>\n"
@@ -74,7 +74,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -9478,10 +9478,8 @@ msgid "Expert"
 msgstr "Esperto"
 
 #: ../gramps/gen/plug/_pluginreg.py:116
-#, fuzzy
-#| msgid "Quick View"
 msgid "Quick view"
-msgstr "Anteprima"
+msgstr "Vista rapida"
 
 #: ../gramps/gen/plug/_pluginreg.py:117
 msgid "Tool"
@@ -9496,14 +9494,10 @@ msgid "Exporter"
 msgstr "Esportatore"
 
 #: ../gramps/gen/plug/_pluginreg.py:120
-#, fuzzy
-#| msgid "Doc creator"
 msgid "Document creator"
 msgstr "Generatore di documenti"
 
 #: ../gramps/gen/plug/_pluginreg.py:121
-#, fuzzy
-#| msgid "Plugin lib"
 msgid "Plugin library"
 msgstr "Libreria plugin"
 
@@ -9518,8 +9512,6 @@ msgid "View"
 msgstr "Visualizza"
 
 #: ../gramps/gen/plug/_pluginreg.py:124
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Relationship calculator"
 msgstr "Calcolatrice relazioni"
 
@@ -11174,11 +11166,11 @@ msgstr "DEG-:"
 
 #: ../gramps/gen/utils/place.py:87
 msgid "D.D4"
-msgstr ""
+msgstr "D.D4"
 
 #: ../gramps/gen/utils/place.py:89
 msgid "D.D8"
-msgstr ""
+msgstr "D.D8"
 
 #: ../gramps/gen/utils/place.py:91
 msgid "RT90"
@@ -11364,15 +11356,15 @@ msgstr "Unione senza matrimonio"
 
 #: ../gramps/gen/utils/symbols.py:100 ../gramps/gui/configure.py:2759
 msgid "Buried"
-msgstr "Sepolto"
+msgstr "Sepoltura"
 
 #: ../gramps/gen/utils/symbols.py:101 ../gramps/gui/configure.py:2760
 msgid "Cremated/Funeral urn"
-msgstr "Cremato/urna funeraria"
+msgstr "Cremazione/urna funeraria"
 
 #: ../gramps/gen/utils/symbols.py:102
 msgid "Killed in action"
-msgstr "Morto in combattimento"
+msgstr "Uccisione in combattimento"
 
 #: ../gramps/gen/utils/symbols.py:103
 msgid "Extinct"
@@ -11512,7 +11504,7 @@ msgstr "Spagnolo"
 
 #: ../gramps/gen/utils/win32locale.py:59
 msgid "Farsi"
-msgstr ""
+msgstr "Farsi"
 
 #: ../gramps/gen/utils/win32locale.py:60
 msgid "Finnish"
@@ -12025,6 +12017,10 @@ msgid ""
 "string. \"I%04d\" creates IDs from I0000 to I9999. Large databases may need "
 "larger IDs. \"I%06d\" creates IDs from I000000 to I999999.\n"
 msgstr ""
+"I formati predefiniti degli ID Gramps contengono una lettera come prefisso, "
+"seguita da una stringa numerica. \"I%04d\" create ID da I0000 a I9999. I "
+"database grossi potrebbero richiedere ID più grandi. \"I%06d\" crea ID da "
+"I000000 a I999999.\n"
 
 #: ../gramps/gui/configure.py:871
 msgid "Colors used for boxes in the graphical views"
@@ -12155,6 +12151,8 @@ msgstr ""
 #: ../gramps/gui/configure.py:1033
 msgid "Suppress tooltip warnings about data being saved immediately"
 msgstr ""
+"Nasconde i suggerimenti a comparsa sui dati che vengono salvati "
+"immediatamente"
 
 #: ../gramps/gui/configure.py:1041
 msgid "Show plugin status dialog on plugin load error"
@@ -12260,6 +12258,8 @@ msgstr ""
 #: ../gramps/gui/configure.py:1505
 msgid "Custom name display options are unique to each family tree."
 msgstr ""
+"Le opzioni di visualizzazione dei nomi personalizzati sono uniche per ogni "
+"albero genealogico."
 
 #: ../gramps/gui/configure.py:1517
 msgid "Consider single pa/matronymic as surname"
@@ -12298,22 +12298,16 @@ msgid "Calendar on input"
 msgstr "Calendario per l'input"
 
 #: ../gramps/gui/configure.py:1602
-#, fuzzy
-#| msgid "on the previous day"
 msgid "On the previous day"
-msgstr "nel giorno precedente"
+msgstr "Nel giorno precedente"
 
 #: ../gramps/gui/configure.py:1603
-#, fuzzy
-#| msgid "on the next day"
 msgid "On the next day"
-msgstr "nel giorno successivo"
+msgstr "Nel giorno successivo"
 
 #: ../gramps/gui/configure.py:1604
-#, fuzzy
-#| msgid "only on leap years"
 msgid "Only on leap years"
-msgstr "solo in anni bisestili"
+msgstr "Solo in anni bisestili"
 
 #: ../gramps/gui/configure.py:1611
 msgid ""
@@ -12358,7 +12352,7 @@ msgstr "Relazione familiare predefinita"
 
 #: ../gramps/gui/configure.py:1682
 msgid "Hide LDS tab in person and family editors"
-msgstr ""
+msgstr "Nasconde la scheda LDS negli editor delle persone e delle famiglie"
 
 #: ../gramps/gui/configure.py:1690 ../gramps/gui/configure.py:2151
 msgid "* Requires Restart"
@@ -12520,35 +12514,37 @@ msgstr "Mostra o nascondi l'icona degli appunti nella barra degli strumenti."
 
 #: ../gramps/gui/configure.py:2044
 msgid "Show Reports icon on toolbar"
-msgstr ""
+msgstr "Mostra l'icona dei resoconti nella barra degli strumenti"
 
 #: ../gramps/gui/configure.py:2049
 msgid "Show or hide the Reports icon on the toolbar."
-msgstr ""
+msgstr "Mostra o nasconde l'icona dei resoconti nella barra degli strumenti."
 
 #: ../gramps/gui/configure.py:2057
 msgid "Show Tools icon on toolbar"
-msgstr ""
+msgstr "Mostra l'icona degli strumenti nella barra degli strumenti"
 
 #: ../gramps/gui/configure.py:2062
 msgid "Show or hide the Tools icon on the toolbar."
-msgstr ""
+msgstr "Mostra o nasconde l'icona degli strumenti nella barra degli strumenti."
 
 #: ../gramps/gui/configure.py:2070
 msgid "Show Addons icon on toolbar"
-msgstr ""
+msgstr "Mostra l'icona dei componenti aggiuntivi nella barra degli strumenti"
 
 #: ../gramps/gui/configure.py:2075
 msgid "Show or hide the Addons icon on the toolbar."
 msgstr ""
+"Mostra o nasconde l'icona dei componenti aggiuntivi nella barra degli "
+"strumenti."
 
 #: ../gramps/gui/configure.py:2083
 msgid "Show Preferences icon on toolbar"
-msgstr ""
+msgstr "Mostra l'icona delle preferenze nella barra degli strumenti"
 
 #: ../gramps/gui/configure.py:2088
 msgid "Show or hide the Preferences icon on the toolbar."
-msgstr ""
+msgstr "Mostra o nasconde l'icona delle preferenze nella barra degli strumenti."
 
 #: ../gramps/gui/configure.py:2096
 msgid "Show close button in gramplet bar tabs"
@@ -12591,6 +12587,9 @@ msgid ""
 "Enter height in pixels. When multiple surnames are entered, these names "
 "display in a box. This setting sets the size of this box."
 msgstr ""
+"Inserire l'altezza in pixel. Quando vengono inseriti diversi cognomi, questi "
+"sono mostrati in una casella. Questa impostazione regola la dimensione di "
+"tale casella."
 
 #: ../gramps/gui/configure.py:2198
 msgid "Database Setting"
@@ -12698,6 +12697,9 @@ msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
 msgstr ""
+"L'etichetta specificata sarà aggiunta a tutti i record durante "
+"l'importazione.\n"
+"Cancellarla per impostare il valore predefinito."
 
 #: ../gramps/gui/configure.py:2383
 msgid ""
@@ -12795,6 +12797,10 @@ msgid ""
 "If not checked, you can use the lower panel to customize the symbols "
 "yourself."
 msgstr ""
+"Se marcata, vengono usati i simboli genealogici standard (il simbolo di "
+"decesso può essere selezionato dagli utenti).\n"
+"Se non marcata, si può usare il pannello inferiore per personalizzare i "
+"simboli."
 
 #: ../gramps/gui/configure.py:2610
 msgid ""
@@ -12834,11 +12840,11 @@ msgstr "Partner"
 
 #: ../gramps/gui/configure.py:2758
 msgid "Killed"
-msgstr ""
+msgstr "Assassinio"
 
 #: ../gramps/gui/configure.py:2762
 msgid "Default genealogy symbols replacement"
-msgstr ""
+msgstr "Sostituzione dei simboli genealogici predefiniti"
 
 #: ../gramps/gui/configure.py:2775
 msgid ""
@@ -12846,29 +12852,30 @@ msgid ""
 "You can drag and drop a symbol from the symbol list above.\n"
 "It will be visible only if your font contains this glyph."
 msgstr ""
+"Si può impostare un testo a piacere in questo campo.\n"
+"È possibile trascinare un simbolo dall'elenco dei simboli in alto.\n"
+"Sarà visibile solo se l'insieme di caratteri in uso contiene questo glifo."
 
 #: ../gramps/gui/csvdialect.py:63
-#, fuzzy
-#| msgid "Tag"
 msgctxt "character"
 msgid "Tab"
-msgstr "Etichette"
+msgstr "Tab"
 
 #: ../gramps/gui/csvdialect.py:82
-#, fuzzy
-#| msgid "Check your installation."
 msgid "Choose your dialect"
-msgstr "Verificare la propria installazione."
+msgstr "Scegliere il proprio dialetto"
 
 #: ../gramps/gui/csvdialect.py:85
 msgid ""
 "Changes are immediate.\n"
 "This is used when exporting views in CSV format."
 msgstr ""
+"Le modifiche sono immediate.\n"
+"Questo è usato quando si esportano delle viste in formato CSV."
 
 #: ../gramps/gui/csvdialect.py:114
 msgid "Delimiter:"
-msgstr ""
+msgstr "Delimitatore:"
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:124
 msgid "Undo history warning"
@@ -14359,13 +14366,11 @@ msgstr "Intervallo"
 
 #: ../gramps/gui/editors/editdate.py:82
 msgid "From"
-msgstr ""
+msgstr "Da"
 
 #: ../gramps/gui/editors/editdate.py:83
-#, fuzzy
-#| msgid "Top"
 msgid "To"
-msgstr "In alto"
+msgstr "A"
 
 #: ../gramps/gui/editors/editdate.py:84
 msgid "Span"
@@ -14858,7 +14863,7 @@ msgstr "Modifica oggetto multimediale (%s)"
 #: ../gramps/gui/editors/editmediaref.py:84
 msgctxt "manual"
 msgid "Media_Reference_Editor_dialog"
-msgstr "Edito_ riferimento_oggetto_multimediale"
+msgstr "Edito_riferimento_oggetto_multimediale"
 
 #: ../gramps/gui/editors/editmediaref.py:106
 #: ../gramps/gui/editors/editmediaref.py:436
@@ -18941,10 +18946,8 @@ msgstr "Richiede"
 
 #: ../gramps/gui/plug/_windows.py:263 ../gramps/gui/plug/_windows.py:395
 #: ../gramps/gui/plug/_windows.py:594
-#, fuzzy
-#| msgid "Updated"
 msgid "Update"
-msgstr "Aggiornato/a"
+msgstr "Aggiorna"
 
 #: ../gramps/gui/plug/_windows.py:286
 msgid "Module installation failed"
@@ -18967,40 +18970,28 @@ msgid "Filters"
 msgstr "Filtri"
 
 #: ../gramps/gui/plug/_windows.py:392
-#, fuzzy
-#| msgid "Addons"
 msgid "All addons"
-msgstr "Componenti aggiuntivi"
+msgstr "Tutti i componenti aggiuntivi"
 
 #: ../gramps/gui/plug/_windows.py:393 ../gramps/gui/plug/_windows.py:588
-#, fuzzy
-#| msgid "installed"
 msgid "Uninstalled"
-msgstr "installato"
+msgstr "Disinstallato"
 
 #: ../gramps/gui/plug/_windows.py:394 ../gramps/gui/plug/_windows.py:591
-#, fuzzy
-#| msgid "installed"
 msgid "Installed"
-msgstr "installato"
+msgstr "Installato"
 
 #: ../gramps/gui/plug/_windows.py:407
-#, fuzzy
-#| msgid "All files"
 msgid "All types"
-msgstr "Tutti i file"
+msgstr "Tutti i tipi"
 
 #: ../gramps/gui/plug/_windows.py:415
-#, fuzzy
-#| msgid "Audience"
 msgid "All audiences"
-msgstr "Pubblico"
+msgstr "Tutto il pubblico"
 
 #: ../gramps/gui/plug/_windows.py:422
-#, fuzzy
-#| msgid " state"
 msgid "All statuses"
-msgstr " stato (federato)"
+msgstr "Tutti gli stati"
 
 #: ../gramps/gui/plug/_windows.py:443
 msgid "Settings"
@@ -19011,10 +19002,8 @@ msgid "Projects"
 msgstr "Progetti"
 
 #: ../gramps/gui/plug/_windows.py:489 ../gramps/gui/plug/_windows.py:599
-#, fuzzy
-#| msgid "Projects"
 msgid "All projects"
-msgstr "Progetti"
+msgstr "Tutti i progetti"
 
 #: ../gramps/gui/plug/_windows.py:501
 msgid "Loading..."
@@ -19091,14 +19080,12 @@ msgid "Project name"
 msgstr "Nome progetto"
 
 #: ../gramps/gui/plug/_windows.py:886
-#, fuzzy
-#| msgid "Restore to defaults"
 msgid "Restore project defaults"
-msgstr "Ripristinare ai valori predefiniti"
+msgstr "Ripristinare i valori predefiniti del progetto"
 
 #: ../gramps/gui/plug/_windows.py:887
 msgid "Are you sure?"
-msgstr ""
+msgstr "Si desidera confermare?"
 
 #: ../gramps/gui/plug/_windows.py:911
 msgid "Checking Addons Failed"
@@ -19303,12 +19290,8 @@ msgstr[0] "È stato installato {number_of} componente aggiuntivo."
 msgstr[1] "Sono stati installati {number_of} componenti aggiuntivi."
 
 #: ../gramps/gui/plug/_windows.py:2224
-#, fuzzy
-#| msgid ""
-#| "If you have installed a 'Gramps View', you will need to restart Gramps."
 msgid "If you have installed a 'View', you will need to restart Gramps."
-msgstr ""
-"Se è stata installata una «vista Gramps» è necessario riavviare Gramps."
+msgstr "Se è stata installata una «vista», è necessario riavviare Gramps."
 
 #: ../gramps/gui/plug/_windows.py:2232
 msgid "No addons were installed."
@@ -19648,9 +19631,8 @@ msgid "See data not in Filter"
 msgstr "Visualizzare dati non nel filtro"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:94
-#, fuzzy
 msgid "Generate_Book_dialog"
-msgstr "Genera libro"
+msgstr ""
 
 #: ../gramps/gui/plug/report/_bookdialog.py:175
 msgid "Available Books"
@@ -20346,6 +20328,8 @@ msgid ""
 "Please wait for backup in progress.\n"
 "Gramps will close when complete."
 msgstr ""
+"Attendere, la copia di sicurezza è in corso.\n"
+"Gramps si chiuderà al completamento dell'operazione."
 
 #: ../gramps/gui/viewmanager.py:1291 ../gramps/gui/viewmanager.py:1295
 msgid "Autobackup..."
@@ -20655,16 +20639,14 @@ msgid "Organize Tags..."
 msgstr "Organizzare etichette..."
 
 #: ../gramps/gui/views/tags.py:115
-#, fuzzy
 msgctxt "manual"
 msgid "Organize_Tags_Window"
-msgstr "Organizzare etichette"
+msgstr ""
 
 #: ../gramps/gui/views/tags.py:116
-#, fuzzy
 msgctxt "manual"
 msgid "New_Tag_dialog"
-msgstr "Etichette"
+msgstr ""
 
 #: ../gramps/gui/views/tags.py:257
 #, python-format
@@ -24274,7 +24256,7 @@ msgstr "Gramplet che mostra gli eventi per tutta la famiglia"
 
 #: ../gramps/plugins/gramplet/leak.py:102
 msgid "Referrer"
-msgstr ""
+msgstr "Referente"
 
 #: ../gramps/plugins/gramplet/leak.py:106
 msgid "Uncollected object"
@@ -24287,7 +24269,7 @@ msgstr "Premere Aggiorna per vedere i risultati iniziali"
 #: ../gramps/plugins/gramplet/leak.py:160
 #, python-format
 msgid "Referrers of %d"
-msgstr ""
+msgstr "Referente di %d"
 
 #: ../gramps/plugins/gramplet/leak.py:184
 #, python-format
