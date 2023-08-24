@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-22 00:23+0100\n"
-"PO-Revision-Date: 2023-08-24 21:34+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2023-08-24 21:35+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -7050,7 +7050,7 @@ msgstr "יותר מ %s שנים"
 #: ../gramps/gen/lib/date.py:336 ../gramps/gen/lib/date.py:342
 #: ../gramps/gen/lib/date.py:369
 msgid "more than"
-msgstr "יותר מ"
+msgstr "יותר מאשר"
 
 #: ../gramps/gen/lib/date.py:305 ../gramps/gen/lib/date.py:323
 #: ../gramps/gen/lib/date.py:327 ../gramps/gen/lib/date.py:331
@@ -7080,11 +7080,11 @@ msgstr "ו־"
 
 #: ../gramps/gen/lib/date.py:329 ../gramps/gen/lib/date.py:349
 msgid "less than about"
-msgstr "פחות מבסביבות"
+msgstr "קירוב גס"
 
 #: ../gramps/gen/lib/date.py:340 ../gramps/gen/lib/date.py:347
 msgid "more than about"
-msgstr "יותר מבערך"
+msgstr "קירוב מעודן"
 
 #: ../gramps/gen/lib/date.py:456 ../gramps/gen/lib/date.py:463
 #, python-brace-format
@@ -9269,8 +9269,8 @@ msgid ""
 "WARNING: Plugin %(plugin_name)s has no translation for any of your "
 "configured languages, using US English instead"
 msgstr ""
-"אזהרה: למתקע %(plugin_name)s אין תרגום לאף אחת מהשפות המוגדרות במערכת, במקום "
-"זאת, יעשה שימוש באנגלית"
+"אזהרה: לא נמצא תרגום למתקע %(plugin_name)s לאף אחת מהשפות המוגדרות במערכת, "
+"במקום זאת יעשה שימוש באנגלית של ארצות הברית"
 
 #: ../gramps/gen/plug/_pluginreg.py:1419
 #, python-format
@@ -10509,8 +10509,7 @@ msgstr "בן זוג לשעבר"
 msgid ""
 "Family relationship translator not available for language '%s'. Using "
 "'english' instead."
-msgstr ""
-"תרגמון קשרי־גומלין משפחה אינו זמין לשפה '%s'. יעשה שימוש ב'אנגלית' במקום."
+msgstr "תרגמון קשרי־גומלין לא זמין בשפה ה'%s'.במקום זאת יעשה שימוש ב'אנגלית'."
 
 #: ../gramps/gen/utils/alive.py:153 ../gramps/plugins/importer/importcsv.py:275
 msgid "death date"
@@ -11205,7 +11204,7 @@ msgstr "גאלית"
 
 #: ../gramps/gen/utils/win32locale.py:64
 msgid "Galician"
-msgstr "גליסית"
+msgstr "גליצאית"
 
 #: ../gramps/gen/utils/win32locale.py:65
 msgid "Hebrew"
@@ -18528,7 +18527,7 @@ msgstr "כל התוספים"
 
 #: ../gramps/gui/plug/_windows.py:393 ../gramps/gui/plug/_windows.py:588
 msgid "Uninstalled"
-msgstr "הוסר"
+msgstr "התקנה הוסרה"
 
 #: ../gramps/gui/plug/_windows.py:394 ../gramps/gui/plug/_windows.py:591
 msgid "Installed"
@@ -18634,11 +18633,11 @@ msgstr "שם מיזם"
 
 #: ../gramps/gui/plug/_windows.py:886
 msgid "Restore project defaults"
-msgstr "שחזור לברירות המחדל של המיזם"
+msgstr "שחזור המיזם לברירות המחדל"
 
 #: ../gramps/gui/plug/_windows.py:887
 msgid "Are you sure?"
-msgstr "להמשיך?"
+msgstr "האם להמשיך?"
 
 #: ../gramps/gui/plug/_windows.py:911
 msgid "Checking Addons Failed"
