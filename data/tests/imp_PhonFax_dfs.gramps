@@ -3,7 +3,7 @@
 "http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
 <database xmlns="http://gramps-project.org/xml/1.7.1/">
   <header>
-    <created date="2017-12-19" version="5.0.0-alpha3"/>
+    <created date="1999-12-25" version="5.2.0"/>
     <researcher>
       <resname>The Subm /Tester/</resname>
       <resaddr>123 Main St.</resaddr>
@@ -15,7 +15,7 @@
     </researcher>
   </header>
   <tags>
-    <tag handle="_0000000400000004" change="1" name="Imported" color="#000000000000" priority="0"/>
+    <tag handle="_0000000200000002" change="1" name="Imported" color="#000000000000" priority="0"/>
   </tags>
   <events>
     <event handle="_0000000800000008" change="1" id="E0000">
@@ -56,7 +56,7 @@
       </name>
       <eventref hlink="_0000000800000008" role="Primary"/>
       <citationref hlink="_0000000a0000000a"/>
-      <tagref hlink="_0000000400000004"/>
+      <tagref hlink="_0000000200000002"/>
     </person>
     <person handle="_0000000b0000000b" change="1" id="I0001">
       <gender>U</gender>
@@ -78,7 +78,7 @@
       <url  href="http://mrstester.com" type="Web Home"/>
       <noteref hlink="_0000000c0000000c"/>
       <citationref hlink="_0000001000000010"/>
-      <tagref hlink="_0000000400000004"/>
+      <tagref hlink="_0000000200000002"/>
     </person>
     <person handle="_0000001100000011" change="1" id="I0002">
       <gender>U</gender>
@@ -88,25 +88,25 @@
       </name>
       <eventref hlink="_0000001200000012" role="Primary"/>
       <citationref hlink="_0000001300000013"/>
-      <tagref hlink="_0000000400000004"/>
+      <tagref hlink="_0000000200000002"/>
     </person>
   </people>
   <citations>
     <citation handle="_0000000a0000000a" change="1" id="C0000">
       <confidence>2</confidence>
-      <sourceref hlink="_0000000300000003"/>
+      <sourceref hlink="_0000000100000001"/>
     </citation>
     <citation handle="_0000001000000010" change="1" id="C0001">
       <confidence>2</confidence>
-      <sourceref hlink="_0000000300000003"/>
+      <sourceref hlink="_0000000100000001"/>
     </citation>
     <citation handle="_0000001300000013" change="1" id="C0002">
       <confidence>2</confidence>
-      <sourceref hlink="_0000000300000003"/>
+      <sourceref hlink="_0000000100000001"/>
     </citation>
   </citations>
   <sources>
-    <source handle="_0000000300000003" change="1" id="S0000">
+    <source handle="_0000000100000001" change="1" id="S0000">
       <stitle>Import from imp_FTM_LINK.ged</stitle>
       <sauthor>The Tester</sauthor>
       <srcattribute type="Approved system identification" value="Tester"/>
@@ -119,7 +119,7 @@
       <srcattribute type="Character set and version" value="UTF-8 1.1"/>
       <srcattribute type="GEDCOM version" value="5.5"/>
       <srcattribute type="GEDCOM form" value="Lineage-Linked"/>
-      <reporef hlink="_0000000100000001" medium="Unknown"/>
+      <reporef hlink="_0000000300000003" medium="Unknown"/>
       <reporef hlink="_0000000500000005" medium="Unknown"/>
     </source>
     <source handle="_0000001400000014" change="1" id="S0006">
@@ -160,7 +160,7 @@
     </placeobj>
   </places>
   <repositories>
-    <repository handle="_0000000100000001" change="1" id="R0000">
+    <repository handle="_0000000300000003" change="1" id="R0000">
       <rname>Business that produced the product: Ancestry.com</rname>
       <type>GEDCOM data</type>
       <address>
@@ -201,7 +201,7 @@
     </repository>
   </repositories>
   <notes>
-    <note handle="_0000000200000002" change="1" id="N0000" type="GEDCOM import">
+    <note handle="_0000000400000004" change="1" id="N0000" type="GEDCOM import">
       <text>Records not imported into HEAD (header):
 
 Only one phone number supported                                     Line     9: 3 PHON (800) 705-7000
@@ -223,15 +223,15 @@ Only one phone number supported                                     Line    35: 
     </note>
     <note handle="_0000000c0000000c" change="1" id="N0002" type="Person Note">
       <text>Address with PHON,FAX,EMAIL,WWW. attached directly to person is not legal Gedcom, but allowed here.</text>
-      <tagref hlink="_0000000400000004"/>
+      <tagref hlink="_0000000200000002"/>
     </note>
     <note handle="_0000000e0000000e" change="1" id="N0003" type="Event Note">
       <text>Address as event is legal, with PHON,FAX,EMAIL,WWW</text>
-      <tagref hlink="_0000000400000004"/>
+      <tagref hlink="_0000000200000002"/>
     </note>
     <note handle="_0000001600000016" change="1" id="N0004" type="Repository Note">
       <text>The repository record</text>
-      <tagref hlink="_0000000400000004"/>
+      <tagref hlink="_0000000200000002"/>
     </note>
     <note handle="_0000001700000017" change="1" id="N0005" type="GEDCOM import">
       <text>Records not imported into REPO (repository) Gramps ID R0002:
