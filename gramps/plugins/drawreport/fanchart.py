@@ -256,55 +256,14 @@ class FanChart(Report):
         self.apply_filter(self.center_person.get_handle(), 1)
         p_rn = self.center_person.get_primary_name().get_regular_name()
 
-        if self.circle == FULL_CIRCLE:
-            max_angle = 360.0
-            start_angle = 90
-            max_circular = 5
-            _x_ = self.doc.get_usable_width() / 2.0
-            _y_ = self.doc.get_usable_height() / 2.0
-            min_xy = min(_x_, _y_)
-
-        elif self.circle == HALF_CIRCLE:
-            max_angle = 180.0
-            start_angle = 180
-            max_circular = 3
-            _x_ = self.doc.get_usable_width() / 2.0
-            _y_ = self.doc.get_usable_height()
-            min_xy = min(_x_, _y_)
-
-        elif self.circle == OVERHANG:
-            if (
-                self.doc.get_usable_height() < self.doc.get_usable_width()
-                and self.doc.get_usable_height() > self.doc.get_usable_width() / 2
-            ):
-                # Determine overhang angle to fill the paper
-                radius = self.doc.get_usable_width() / 2
-                _overhang_height_ = self.doc.get_usable_height() - radius
-                overhang_angle = degrees(asin(_overhang_height_ / radius))
-            else:
-                overhang_angle = 25.0
-            max_angle = 180 + 2 * overhang_angle
-            start_angle = 180 - overhang_angle
-            max_circular = 3
-            _x_ = self.doc.get_usable_width() / 2.0
-            _overhang_height_ = sin(radians(overhang_angle)) * _x_
-            _y_ = self.doc.get_usable_height() - _overhang_height_
-            min_xy = min(_x_, _y_)
-
-        else:  # quarter circle
-            max_angle = 90.0
-            start_angle = 270
-            max_circular = 2
-            _x_ = 0
-            _y_ = self.doc.get_usable_height()
-            min_xy = min(self.doc.get_usable_width(), _y_)
-
-        # choose  one line or two lines translation according to the width
+        # choose one line or two lines translation according to the width
         title = self._("%(generations)d Generation Fan Chart " "for %(person)s") % {
             "generations": self.max_generations,
             "person": p_rn,
         }
         title_nb_lines = 1
+        chart_height = self.doc.get_usable_height()
+        title_height = 0
         style_sheet = self.doc.get_style_sheet()
         if style_sheet:
             p_style = style_sheet.get_paragraph_style("FC-Title")
@@ -317,24 +276,53 @@ class FanChart(Report):
                             "%(generations)d Generation Fan Chart " "for\n%(person)s"
                         ) % {"generations": self.max_generations, "person": p_rn}
                         title_nb_lines = 2
+                    fontsize = utils.pt2cm(font.get_size())
+                    title_height = fontsize * title_nb_lines * 1.5
+        chart_height -= title_height
 
-        if self.circle == FULL_CIRCLE or self.circle == QUAR_CIRCLE:
-            # adjust only if full circle or 1/4 circle in landscape mode
-            if self.doc.get_usable_height() <= self.doc.get_usable_width():
-                # Should be in Landscape now
-                style_sheet = self.doc.get_style_sheet()
-                p_style = style_sheet.get_paragraph_style("FC-Title")
-                if p_style:
-                    font = p_style.get_font()
-                    if font:
-                        fontsize = utils.pt2cm(font.get_size())
-                        # _y_ is vertical distance to center of circle,
-                        # move center down 1 fontsize
-                        _y_ += fontsize * title_nb_lines
-                        # min_XY is the diameter of the circle,
-                        # subtract two fontsize
-                        # so we dont draw outside bottom of the paper
-                        min_xy = min(min_xy, _y_ - 2 * fontsize * title_nb_lines)
+        if self.circle == FULL_CIRCLE:
+            max_angle = 360.0
+            start_angle = 90
+            max_circular = 5
+            _x_ = self.doc.get_usable_width() / 2.0
+            _y_ = chart_height / 2.0
+            min_xy = min(_x_, _y_)
+
+        elif self.circle == HALF_CIRCLE:
+            max_angle = 180.0
+            start_angle = 180
+            max_circular = 3
+            _x_ = self.doc.get_usable_width() / 2.0
+            _y_ = chart_height
+            min_xy = min(_x_, _y_)
+
+        elif self.circle == OVERHANG:
+            if (
+                chart_height < self.doc.get_usable_width()
+                and chart_height > self.doc.get_usable_width() / 2
+            ):
+                # Determine overhang angle to fill the paper
+                radius = self.doc.get_usable_width() / 2
+                _overhang_height_ = chart_height - radius
+                overhang_angle = degrees(asin(_overhang_height_ / radius))
+            else:
+                overhang_angle = 25.0
+            max_angle = 180 + 2 * overhang_angle
+            start_angle = 180 - overhang_angle
+            max_circular = 3
+            _x_ = self.doc.get_usable_width() / 2.0
+            _overhang_height_ = sin(radians(overhang_angle)) * _x_
+            _y_ = chart_height - _overhang_height_
+            min_xy = min(_x_, _y_)
+
+        else:  # quarter circle
+            max_angle = 90.0
+            start_angle = 270
+            max_circular = 2
+            _x_ = 0
+            _y_ = chart_height
+            min_xy = min(self.doc.get_usable_width(), _y_)
+
         if self.max_generations > max_circular:
             block_size = min_xy / (self.max_generations * 2 - max_circular)
         else:
@@ -357,11 +345,9 @@ class FanChart(Report):
         # title
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         titlex = self.doc.get_usable_width() / 2
-        if self.circle == OVERHANG:
-            titley = self.doc.get_usable_height() - _overhang_height_ / 2
-        else:
-            titley = 0
+        titley = 0
         self.doc.center_text("FC-Graphic-title", title, titlex, titley, mark)
+        _y_ += title_height
 
         # wheel
         for generation in range(0, min(max_circular, self.max_generations)):
