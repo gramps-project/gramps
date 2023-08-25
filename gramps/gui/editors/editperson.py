@@ -478,6 +478,7 @@ class EditPerson(EditPrimary):
             self.uistate,
             self.track,
             self.obj.get_primary_name(),
+            "person_editor_surnames",
             on_change=self._changed_name,
         )
 
@@ -509,6 +510,7 @@ class EditPerson(EditPrimary):
             self.uistate,
             self.track,
             self.obj,
+            "person_editor_events",
             start_date=self.get_start_date(),
             end_date=self.get_end_date(),
         )
@@ -522,6 +524,7 @@ class EditPerson(EditPrimary):
             self.track,
             self.obj.get_alternate_names(),
             self.obj,
+            "person_editor_names",
             self.name_callback,
         )
         self._add_tab(notebook, self.name_list)
@@ -532,19 +535,28 @@ class EditPerson(EditPrimary):
             self.uistate,
             self.track,
             self.obj.get_citation_list(),
+            "person_editor_citations",
             self.get_menu_title(),
         )
         self._add_tab(notebook, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
 
         self.attr_list = AttrEmbedList(
-            self.dbstate, self.uistate, self.track, self.obj.get_attribute_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_attribute_list(),
+            "person_editor_attributes",
         )
         self._add_tab(notebook, self.attr_list)
         self.track_ref_for_deletion("attr_list")
 
         self.addr_list = AddrEmbedList(
-            self.dbstate, self.uistate, self.track, self.obj.get_address_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_address_list(),
+            "person_editor_addresses",
         )
         self._add_tab(notebook, self.addr_list)
         self.track_ref_for_deletion("addr_list")
@@ -554,6 +566,7 @@ class EditPerson(EditPrimary):
             self.uistate,
             self.track,
             self.obj.get_note_list(),
+            "person_editor_notes",
             self.get_menu_title(),
             notetype=NoteType.PERSON,
         )
@@ -571,19 +584,31 @@ class EditPerson(EditPrimary):
         self.track_ref_for_deletion("gallery_tab")
 
         self.web_list = WebEmbedList(
-            self.dbstate, self.uistate, self.track, self.obj.get_url_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_url_list(),
+            "person_editor_internet",
         )
         self._add_tab(notebook, self.web_list)
         self.track_ref_for_deletion("web_list")
 
         self.person_ref_list = PersonRefEmbedList(
-            self.dbstate, self.uistate, self.track, self.obj.get_person_ref_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_person_ref_list(),
+            "person_editor_associations",
         )
         self._add_tab(notebook, self.person_ref_list)
         self.track_ref_for_deletion("person_ref_list")
 
         self.lds_list = LdsEmbedList(
-            self.dbstate, self.uistate, self.track, self.obj.get_lds_ord_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_lds_ord_list(),
+            "person_editor_ldsord",
         )
         if not (config.get("interface.hide-lds") and self.lds_list.is_empty()):
             self._add_tab(notebook, self.lds_list)
@@ -594,6 +619,7 @@ class EditPerson(EditPrimary):
             self.uistate,
             self.track,
             self.db.find_backlink_handles(self.obj.handle),
+            "person_editor_references",
         )
         self._add_tab(notebook, self.backref_tab)
         self.track_ref_for_deletion("backref_tab")
@@ -1036,6 +1062,7 @@ class EditPerson(EditPrimary):
             self.uistate,
             self.track,
             self.obj.get_primary_name(),
+            "person_editor_surnames",
             on_change=self._changed_name,
         )
         self.multsurnfr.set_size_request(

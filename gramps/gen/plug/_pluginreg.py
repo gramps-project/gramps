@@ -70,10 +70,10 @@ STATUSTEXT = {
 
 # Intended audience
 EVERYONE = 0
-DEVELOPER = 1
-EXPERT = 2
-AUDIENCE = [EVERYONE, DEVELOPER, EXPERT]
-AUDIENCETEXT = {EVERYONE: _("Everyone"), DEVELOPER: _("Developer"), EXPERT: _("Expert")}
+EXPERT = 1
+DEVELOPER = 2
+AUDIENCE = [EVERYONE, EXPERT, DEVELOPER]
+AUDIENCETEXT = {EVERYONE: _("Everyone"), EXPERT: _("Expert"), DEVELOPER: _("Developer")}
 
 # possible plugin types
 REPORT = 0
@@ -113,15 +113,15 @@ PTYPE = [
 ]
 PTYPE_STR = {
     REPORT: _("Report"),
-    QUICKREPORT: _("Quickreport"),
+    QUICKREPORT: _("Quick view"),
     TOOL: _("Tool"),
     IMPORT: _("Importer"),
     EXPORT: _("Exporter"),
-    DOCGEN: _("Doc creator"),
-    GENERAL: _("Plugin lib"),
+    DOCGEN: _("Document creator"),
+    GENERAL: _("Plugin library"),
     MAPSERVICE: _("Map service"),
-    VIEW: _("Gramps View"),
-    RELCALC: _("Relationships"),
+    VIEW: _("View"),
+    RELCALC: _("Relationship calculator"),
     GRAMPLET: _("Gramplet"),
     SIDEBAR: _("Sidebar"),
     DATABASE: _("Database"),

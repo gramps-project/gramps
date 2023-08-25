@@ -35,6 +35,17 @@ VQ = {
     "": 0,
 }
 
+
+def normalize(version):
+    version = version.replace("-", "")
+    version = version.replace("alpha", "a")
+    version = version.replace("beta", "b")
+    return version
+
+
+FULL_VERSION = ".".join(map(str, VERSION_TUPLE)) + VERSION_QUALIFIER
+NORMALIZED_VERSION = normalize(FULL_VERSION)
+
 VERSION = ".".join(map(str, VERSION_TUPLE)) + "." + str(VQ.get(VERSION_QUALIFIER, 99))
 COPYRIGHT = "Copyright 2020, Gramps developers.  GNU General Public License"
 # Prepare a temporay directory
@@ -103,7 +114,7 @@ REPLACE_PATHS = [
 ]
 MISSING_DLL = [
     "libgtk-3-0.dll",
-    "libgtkspell3-3-0.dll",
+    "libgspell-1-2.dll",
     "libgexiv2-2.dll",
     "libgoocanvas-3.0-9.dll",
     "libosmgpsmap-1.0-1.dll",
@@ -122,6 +133,7 @@ MISSING_DLL = [
     "gspawn-win64-helper-console.exe",
     "gspawn-win64-helper.exe",
     "libgeocode-glib-0.dll",
+    "gdbus.exe",
 ]
 BIN_EXCLUDES = ["Qt5Core.dll", "gdiplus.dll", "gdiplus"]
 
@@ -163,17 +175,11 @@ MISSING_LIBS = [
     "share/icons/gramps.png",
     "share/icons/Adwaita/icon-theme.cache",
     "share/icons/Adwaita/index.theme",
-    "share/hunspell",
+    "share/locale",
 ]
 ADWAITA = [
-    "8x8",
     "16x16",
-    "22x22",
-    "24x24",
     "32x32",
-    "48x48",
-    "64x64",
-    "96x96",
     "cursors",
 ]
 for adw in ADWAITA:
@@ -188,7 +194,7 @@ for lib in MISSING_LIBS:
 
 INCLUDE_FILES.append("dist/gramps")
 INCLUDE_FILES.append(
-    ("dist/gramps-" + ".".join(map(str, VERSION_TUPLE)) + ".data/data/share", "share")
+    ("dist/gramps-" + NORMALIZED_VERSION + ".data/data/share", "share")
 )
 EXECUTABLES = [
     cx_Freeze.Executable(

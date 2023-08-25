@@ -719,6 +719,40 @@ def get_link_color(context):
     return rgb_to_hex((col.red, col.green, col.blue))
 
 
+def get_display_size(widget):
+    """
+    Get current display size for the ``Gdk.Display`` which has a top level window
+    associated with this widget. This function can only be called after the
+    widget has been added to a widget hierarchy with a ``Gtk.Window`` at the top.
+    Replaces ``screen.get_width()`` and ``screen.get_height()``.
+
+    :param widget: A Gtk widget
+    :type widget: ``Gtk.Widget``
+
+    :return: width, height
+    :rtype: tuple (int, int)
+
+    .. rubric:: Example::
+
+        widget = Gtk.Window()
+        width, height = get_display_size(display)
+    """
+    try:
+        display = widget.get_display()
+    except:
+        display = Gdk.Display.get_default()
+    mon_geoms = [
+        display.get_monitor(i).get_geometry() for i in range(display.get_n_monitors())
+    ]
+
+    x0 = min(rect.x for rect in mon_geoms)
+    y0 = min(rect.y for rect in mon_geoms)
+    x1 = max(rect.x + rect.width for rect in mon_geoms)
+    y1 = max(rect.y + rect.height for rect in mon_geoms)
+
+    return x1 - x0, y1 - y0
+
+
 def edit_object(dbstate, uistate, reftype, ref):
     """
     Invokes the appropriate editor for an object type and given handle.
@@ -889,7 +923,7 @@ def match_primary_mask(test_mask, addl_mask=0):
     GdkModifierIntent.PRIMARY_ACCELERATOR and addl_mask, False
     otherwise.
     """
-    keymap = Gdk.Keymap.get_default()
+    keymap = Gdk.Keymap.get_for_display(Gdk.Display.get_default())
     primary = keymap.get_modifier_mask(Gdk.ModifierIntent.PRIMARY_ACCELERATOR)
     return (test_mask & (primary | addl_mask)) == (primary | addl_mask)
 
@@ -900,6 +934,6 @@ def no_match_primary_mask(test_mask, addl_mask=0):
     GdkModifierIntent.PRIMARY_ACCELERATOR or addl_mask, True
     otherwise.
     """
-    keymap = Gdk.Keymap.get_default()
+    keymap = Gdk.Keymap.get_for_display(Gdk.Display.get_default())
     primary = keymap.get_modifier_mask(Gdk.ModifierIntent.PRIMARY_ACCELERATOR)
     return (test_mask & (primary | addl_mask)) == 0

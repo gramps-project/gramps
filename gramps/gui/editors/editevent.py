@@ -219,6 +219,7 @@ class EditEvent(EditPrimary):
             self.uistate,
             self.track,
             self.obj.get_citation_list(),
+            "event_editor_citations",
             self.get_menu_title(),
         )
         self._add_tab(notebook, self.citation_list)
@@ -228,23 +229,35 @@ class EditEvent(EditPrimary):
             self.uistate,
             self.track,
             self.obj.get_note_list(),
+            "event_editor_notes",
             notetype=NoteType.EVENT,
         )
         self._add_tab(notebook, self.note_list)
 
         self.gallery_list = GalleryTab(
-            self.dbstate, self.uistate, self.track, self.obj.get_media_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_media_list(),
         )
         self._add_tab(notebook, self.gallery_list)
 
         self.attr_list = EventAttrEmbedList(
-            self.dbstate, self.uistate, self.track, self.obj.get_attribute_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_attribute_list(),
+            "event_editor_attributes",
         )
         self._add_tab(notebook, self.attr_list)
 
         handle_list = self.dbstate.db.find_backlink_handles(self.obj.handle)
         self.backref_list = EventBackRefList(
-            self.dbstate, self.uistate, self.track, handle_list
+            self.dbstate,
+            self.uistate,
+            self.track,
+            handle_list,
+            "event_editor_references",
         )
         self._add_tab(notebook, self.backref_list)
 

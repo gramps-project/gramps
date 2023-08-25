@@ -595,7 +595,7 @@ class GrampsLocale:
             self._dd = displayers[self.calendar[:2]](val)
         elif self != _first and _first.calendar in displayers:
             self._dd = displayers[_first.calendar](val, blocale=self)
-        elif self != _first and _first.calendar and q_first.calendar[:2] in displayers:
+        elif self != _first and _first.calendar and _first.calendar[:2] in displayers:
             self._dd = displayers[_first.calendar[:2]](val, blocale=self)
         else:
             self._dd = displayers["C"](val, blocale=self)
@@ -731,17 +731,17 @@ class GrampsLocale:
         # is cached so we don't have to query the file system every
         # time this function is called.
         if not hasattr(self, "languages"):
-            self.language = self.get_available_translations()
+            self.languages = self.get_available_translations()
 
         if not loc:
             return None
 
-        if loc[:5] in self.language:
+        if loc[:5] in self.languages:
             return loc[:5]
         # US English is the outlier, all other English locales want real English:
         if loc[:2] == "en" and loc[:5] != "en_US":
             return "en_GB"
-        if loc[:2] in self.language:
+        if loc[:2] in self.languages:
             return loc[:2]
         return None
 

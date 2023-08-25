@@ -150,10 +150,12 @@ def image_dpi(source):
     try:
         from gi.repository import Gdk
 
-        s = Gdk.Display.get_default().get_default_screen()
+        mon = Gdk.Display.get_default().get_primary_monitor()
+        mon_geom = mon.get_geometry()
+        scale = mon.get_scale_factor() * MM_PER_INCH
         dpi = (
-            s.get_width() * MM_PER_INCH / s.get_width_mm(),
-            s.get_height() * MM_PER_INCH / s.get_height_mm(),
+            mon_geom.width * scale / mon.get_width_mm(),
+            mon_geom.height * scale / mon.get_height_mm(),
         )
     except:
         dpi = (96.0, 96.0)  # LibOO 3.6 assumes this if image contains no DPI info

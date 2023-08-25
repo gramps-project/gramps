@@ -471,7 +471,7 @@ class ConfigureDialog(ManagedWindow):
         if not callback:
             callback = self.update_entry
         if label:
-            lwidget = BasicLabel(_("%s: ") % label)  # translators: for French
+            lwidget = BasicLabel(_("%s: ") % label)  # Translators: for French
         entry = Gtk.Entry()
         if localized_config:
             entry.set_text(config.get(constant))
@@ -888,7 +888,7 @@ class GrampsPreferences(ConfigureDialog):
         hbox.pack_start(lwidget, False, False, 0)
         hbox.pack_start(self.color_scheme_box, False, False, 0)
 
-        restore_btn = Gtk.Button(_("Restore to defaults"))
+        restore_btn = Gtk.Button(label=_("Restore to defaults"))
         restore_btn.set_tooltip_text(_("Restore colors for current theme to default."))
         restore_btn.connect("clicked", self.restore_colors)
         hbox.pack_start(restore_btn, False, False, 0)
@@ -1392,7 +1392,10 @@ class GrampsPreferences(ConfigureDialog):
         """
         Config tab with user Appearance and format settings.
         """
+        scroll_window = Gtk.ScrolledWindow()
+        scroll_window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         grid = self.create_grid()
+        scroll_window.add(grid)
 
         label = self.add_text(
             grid, _("Display Options"), 0, line_wrap=True, bold=True, start=0, stop=3
@@ -1596,9 +1599,9 @@ class GrampsPreferences(ConfigureDialog):
         # Birthday on february 29
         feb29 = Gtk.ComboBoxText()
         show_on = [
-            _("on the previous day"),
-            _("on the next day"),
-            _("only on leap years"),
+            _("On the previous day"),
+            _("On the next day"),
+            _("Only on leap years"),
         ]
         list(map(feb29.append_text, show_on))
         active = config.get("preferences.february-29")
@@ -1609,7 +1612,7 @@ class GrampsPreferences(ConfigureDialog):
             "February 28, March 1 or not at all in Gregorian calendars"
         )
         feb29.set_tooltip_text(ttip)
-        lwidget = BasicLabel(_("Show leap day anniversaries"))
+        lwidget = BasicLabel(_("%s: ") % _("Show leap day anniversaries"))
         grid.attach(lwidget, 1, row, 1, 1)
         grid.attach(feb29, 2, row, 2, 1)
 
@@ -1693,7 +1696,7 @@ class GrampsPreferences(ConfigureDialog):
         )
         label.set_margin_top(10)
 
-        return _("Data"), grid
+        return _("Data"), scroll_window
 
     def auto_title_changed(self, obj):
         """
@@ -2279,6 +2282,8 @@ class GrampsPreferences(ConfigureDialog):
             _("Every 15 minutes"),
             _("Every 30 minutes"),
             _("Every hour"),
+            _("Every 12 hours"),
+            _("Every day"),
         ]
         list(map(obox.append_text, formats))
         active = config.get("database.autobackup")
@@ -2415,6 +2420,8 @@ class GrampsPreferences(ConfigureDialog):
         for plugin in sorted(backend_plugins, key=lambda plugin: plugin.name):
             if plugin.id == default:
                 active = count
+            if plugin.id == "bsddb":
+                continue  # dsddb is deprecated, so don't allow setting
             model.append(row=[count, plugin.name, plugin.id])
             count += 1
         obox.set_model(model)

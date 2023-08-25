@@ -53,12 +53,10 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
       <dep package="meta-gramps-modules"/>
     </dependencies>
   </distutils>
-
  <distutils id="gramps" supports-non-srcdir-builds="no">
-    <branch module="gramps-project/gramps/archive/v5.1.5.tar.gz"
-	    repo="github-tarball" version="5.1.5"
-            checkoutdir="gramps-gramps-5.1.5">
-      <patch file="gramps-berkeleydb.patch" strip="1"/>
+    <branch module="gramps-project/gramps/archive/v5.2.0-beta1.tar.gz"
+	    repo="github-tarball" version="5.2.0-beta1"
+            checkoutdir="gramps-gramps-5.2.0-beta1" />
     <dependencies>
       <dep package="meta-gramps-modules"/>
     </dependencies>
@@ -94,10 +92,11 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   <autotools id="osmgpsmap" skip-autogen="never"
 	     autogenargs="--disable-gtk-doc-html"
 	     supports-non-srcdir-builds="no">
-    <branch module="nzjrs/osm-gps-map" revision="1.2.0" repo="github"/>
+    <branch version="1.2.0" repo="github-tarball"
+            module="nzjrs/osm-gps-map/releases/download/1.2.0/osm-gps-map-1.2.0.tar.gz"/>
     <dependencies>
       <dep package="libsoup"/>
-      <dep package="gtk+-3.0"/>
+      <dep package="gtk+-33.0"/>
     </dependencies>
   </autotools>
 
@@ -208,12 +207,12 @@ https://files.pythonhosted.org/packages/
       <dep package="osmgpsmap"/>
       <dep package="graphviz"/>
       <dep package="gexiv2"/>
-      <dep package="berkeleydb"/>
       <dep package="gtk-mac-integration-python"/>
       <dep package="pycairo"/>
       <dep package="pygobject3"/>
       <dep package='pyicu'/>
       <dep package="pillow"/>
+      <dep package="pybsddb"/>
     </dependencies>
   </metamodule>
 

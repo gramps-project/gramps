@@ -86,7 +86,7 @@ class Requirements:
         """
         if executable in self.exe_list:
             return True
-        if search_for(executable):
+        if search_for(executable) or search_for(executable + ".exe"):
             self.exe_list.append(executable)
             return True
         else:

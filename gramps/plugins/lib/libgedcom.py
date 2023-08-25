@@ -3107,12 +3107,12 @@ class GedcomParser(UpdateCallback):
             self.dbase.disable_signals()
             self.__parse_header_head()
             self.want_parse_warnings = False
-            self.__parse_header()
             self.want_parse_warnings = True
             if self.use_def_src:
                 self.dbase.add_source(self.def_src, self.trans)
             if self.default_tag and self.default_tag.handle is None:
                 self.dbase.add_tag(self.default_tag, self.trans)
+            self.__parse_header()
             self.__parse_record()
             self.__parse_trailer()
             for title, handle in self.inline_srcs.items():

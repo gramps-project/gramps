@@ -62,10 +62,19 @@ class PersonEventEmbedList(EventEmbedList):
         "down": _("Move the selected event downwards or change family order"),
     }
 
-    def __init__(self, dbstate, uistate, track, obj, **kwargs):
+    def __init__(
+        self,
+        dbstate,
+        uistate,
+        track,
+        obj,
+        config_key,
+        build_model=EventRefModel,
+        **kwargs
+    ):
         self.dbstate = dbstate
         EventEmbedList.__init__(
-            self, dbstate, uistate, track, obj, build_model=EventRefModel, **kwargs
+            self, dbstate, uistate, track, obj, config_key, build_model, **kwargs
         )
 
     def get_data(self):
@@ -193,6 +202,3 @@ class PersonEventEmbedList(EventEmbedList):
         path = (index + 2,)
         self.tree.get_selection().select_path(path)
         GLib.idle_add(self.tree.scroll_to_cell, path)
-
-    def get_config_name(self):
-        return __name__

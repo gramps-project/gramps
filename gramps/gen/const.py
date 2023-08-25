@@ -246,11 +246,10 @@ GTK_GETTEXT_DOMAIN = "gtk30"
 # About box information
 #
 # -------------------------------------------------------------------------
-COPYRIGHT_MSG = "© 2001-2006 Donald N. Allingham\n" "© 2007-2022 The Gramps Developers"
+COPYRIGHT_MSG = "© 2001-2006 Donald N. Allingham\n" "© 2007-2023 The Gramps Developers"
 COMMENTS = _(
-    "Gramps\n (Genealogical Research and Analysis "
-    "Management Programming System)\n"
-    "is a personal genealogy program."
+    "Gramps is a genealogy program that is both intuitive for hobbyists "
+    "and feature-complete for professional genealogists."
 )
 AUTHORS = [
     "Alexander Roitman",
@@ -260,6 +259,7 @@ AUTHORS = [
     "Donald N. Allingham",
     "David Hampton",
     "Martin Hawlisch",
+    "Nick Hall",
     "Richard Taylor",
     "Tim Waugh",
     "John Ralls",

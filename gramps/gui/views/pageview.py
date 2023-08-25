@@ -182,8 +182,7 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         self.vpane.pack1(self.widget, resize=True, shrink=False)
         self.vpane.pack2(self.bottombar, resize=False, shrink=False)
         self.vpane.show()
-        self._config.register("vpane.slider-position", -1)
-        self.vpane.set_position(self._config.get("vpane.slider-position"))
+        self._setup_slider_config(self.vpane, "vpane.slider-position", position=-1)
 
         self.sidebar_toggled(self.sidebar.get_property("visible"))
         self.hpane_sig = hpane.connect("draw", self.set_page_slider)

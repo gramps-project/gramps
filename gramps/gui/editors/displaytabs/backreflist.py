@@ -62,9 +62,13 @@ class BackRefList(EmbeddedList):
         (_("Name"), 2, 250, TEXT_COL, -1, None),
     ]
 
-    def __init__(self, dbstate, uistate, track, obj, refmodel, callback=None):
+    def __init__(
+        self, dbstate, uistate, track, obj, refmodel, config_key, callback=None
+    ):
         self.obj = obj
-        EmbeddedList.__init__(self, dbstate, uistate, track, _("_References"), refmodel)
+        EmbeddedList.__init__(
+            self, dbstate, uistate, track, _("_References"), refmodel, config_key
+        )
         self._callback = callback
         self.connectid = self.model.connect("row-inserted", self.update_label)
         self.db_connect = []
@@ -153,6 +157,3 @@ class BackRefList(EmbeddedList):
     def edit_button_clicked(self, obj):
         (reftype, ref) = self.find_node()
         edit_object(self.dbstate, self.uistate, reftype, ref)
-
-    def get_config_name(self):
-        return __name__

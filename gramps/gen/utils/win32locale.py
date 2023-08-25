@@ -56,10 +56,12 @@ _LOCALE_NAMES = {
     # Windows has no translation for Esperanto
     "eo": (None, None, _("Esperanto")),
     "es": ("Spanish_Spain", "1252", _("Spanish")),
+    "fa": ("Farsi_Iran", "1256", _("Farsi")),
     "fi": ("Finnish_Finland", "1252", _("Finnish")),
     "fr": ("French_France", "1252", _("French")),
     # Windows has no translation for Gaelic
     "ga": (None, None, _("Gaelic")),
+    "gl": ("Galician_Spain", "1252", _("Galician")),
     "he": ("Hebrew_Israel", "1255", _("Hebrew")),
     "hr": ("Croatian_Croatia", "1250", _("Croatian")),
     "hu": ("Hungarian_Hungary", "1250", _("Hungarian")),
@@ -78,11 +80,7 @@ _LOCALE_NAMES = {
     "pt_PT": ("Portuguese_Portugal", "1252", _("Portuguese (Portugal)")),
     "ro": ("Romanian_Romania", "1250", _("Romanian")),
     "ru": ("Russian_Russia", "1251", _("Russian")),
-    "sk": (
-        "Slovak_Slovakia",
-        "1250",
-        _("Slovak"),
-    ),
+    "sk": ("Slovak_Slovakia", "1250", _("Slovak")),
     "sl": ("Slovenian_Slovenia", "1250", _("Slovenian")),
     "sq": ("Albanian_Albania", "1250", _("Albanian")),
     "sr": ("Serbian(Cyrillic)_Serbia and Montenegro", "1251", _("Serbian")),
@@ -117,12 +115,21 @@ def _check_mswin_locale(loc):
 
 
 def _check_mswin_locale_reverse(loc):
-    for newloc, msloc in _LOCALE_NAMES.items():
-        if msloc and newloc == msloc[0]:
-            return (newloc, msloc[1])
+    (lang, country) = loc.split("_")
     # US English is the outlier, all other English locales want real English:
-    if loc.startswith("English") and loc != "English_United States":
+    if lang == "English" and country != "United States":
         return ("en_GB", "1252")
+
+    for newloc, msloc in _LOCALE_NAMES.items():
+        if not msloc[0] is None and loc == msloc[0]:
+            return (newloc, msloc[1])
+
+    # Didn't get a full language-country match, find the first locale
+    # with the same language:
+    for newloc, msloc in _LOCALE_NAMES.items():
+        if loc == msloc[2] or lang == msloc[2]:
+            return (newloc, msloc[1])
+
     return (None, None)
 
 
@@ -137,17 +144,17 @@ def _set_lang(glocale):
             LOG.debug("%%LANG%% value %s not usable", os.environ["LANG"])
     if not glocale.lang:
         locale.setlocale(locale.LC_ALL, "")
-        locale_tuple = locale.getlocale()
-        lang = locale_tuple[0]
-        loc = _check_mswin_locale_reverse(lang)
-        if loc[0]:
-            glocale.lang = loc[0]
-            glocale.encoding = loc[1]
-        else:
-            (lang, loc) = _check_mswin_locale(locale.getlocale()[0])
-            if lang:
+        (pylang, pyenc) = locale.getlocale()
+        # Sometimes getlocale returns a Microsoft locale code
+        (lang, enc) = _check_mswin_locale_reverse(pylang)
+        if not lang is None:
+            glocale.lang = lang
+            glocale.encoding = enc
+        else:  # and sometimes it returns a POSIX locale
+            (lang, enc) = _check_mswin_locale(pylang)
+            if not lang is None:
                 glocale.lang = lang
-                glocale.encoding = loc[1]
+                glocale.encoding = enc
             else:
                 LOG.debug("No usable locale found in environment")
 

@@ -63,7 +63,7 @@ class PlaceRefEmbedList(DbGUIElement, EmbeddedList):
         (_("Date"), 3, 150, TEXT_COL, -1, None),
     ]
 
-    def __init__(self, dbstate, uistate, track, data, handle, callback):
+    def __init__(self, dbstate, uistate, track, data, config_key, handle, callback):
         self.data = data
         self.handle = handle
         self.callback = callback
@@ -75,6 +75,7 @@ class PlaceRefEmbedList(DbGUIElement, EmbeddedList):
             track,
             _("Enclosed By"),
             PlaceRefModel,
+            config_key,
             share_button=True,
             move_buttons=True,
         )
@@ -231,6 +232,3 @@ class PlaceRefEmbedList(DbGUIElement, EmbeddedList):
             )
         except WindowActiveError:
             pass
-
-    def get_config_name(self):
-        return __name__

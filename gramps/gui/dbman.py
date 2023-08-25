@@ -196,10 +196,9 @@ class DbManager(CLIDbManager, ManagedWindow):
         self.lock_file = None
         self.data_to_delete = None
 
-        objectlist = self.glade.get_object("dblist")
         self.dblist = PersistentTreeView(uistate, "dbman")
-        scrolledwindow = self.glade.get_object("scrolledwindow88")
-        scrolledwindow.remove(objectlist)
+        self.dblist.set_vexpand(True)
+        scrolledwindow = self.glade.get_object("scrolledwindow")
         scrolledwindow.add(self.dblist)
         self.selection = self.dblist.get_selection()
 

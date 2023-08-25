@@ -271,6 +271,7 @@ class EditCitation(EditPrimary):
             self.uistate,
             self.track,
             self.obj.get_note_list(),
+            "citation_editor_notes",
             self.get_menu_title(),
             notetype=NoteType.CITATION,
         )
@@ -278,13 +279,20 @@ class EditCitation(EditPrimary):
         self.track_ref_for_deletion("note_tab")
 
         self.gallery_tab = GalleryTab(
-            self.dbstate, self.uistate, self.track, self.obj.get_media_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_media_list(),
         )
         self._add_tab(notebook, self.gallery_tab)
         self.track_ref_for_deletion("gallery_tab")
 
         self.attr_tab = SrcAttrEmbedList(
-            self.dbstate, self.uistate, self.track, self.obj.get_attribute_list()
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_attribute_list(),
+            "citation_editor_attributes",
         )
         self._add_tab(notebook, self.attr_tab)
         self.track_ref_for_deletion("attr_tab")
@@ -294,6 +302,7 @@ class EditCitation(EditPrimary):
             self.uistate,
             self.track,
             self.db.find_backlink_handles(self.obj.handle),
+            "citation_editor_references",
         )
         self._add_tab(notebook, self.citationref_list)
         self.track_ref_for_deletion("citationref_list")

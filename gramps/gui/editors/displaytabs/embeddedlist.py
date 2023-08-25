@@ -85,6 +85,7 @@ class EmbeddedList(ButtonTab):
         track,
         name,
         build_model,
+        config_key,
         share_button=False,
         move_buttons=False,
         jump_button=False,
@@ -93,6 +94,8 @@ class EmbeddedList(ButtonTab):
         """
         Create a new list, using the passed build_model to populate the list.
         """
+        self.config_key = config_key
+
         ButtonTab.__init__(
             self,
             dbstate,
@@ -565,7 +568,7 @@ class EmbeddedList(ButtonTab):
 
     def get_config_name(self):
         """used to associate the selector config name to the PersistentTreeView"""
-        assert False, "Must be defined in the subclass"
+        return self.config_key
 
     def icon_func(self, column, renderer, model, iter_, col_num):
         """

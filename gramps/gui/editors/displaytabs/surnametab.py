@@ -89,6 +89,7 @@ class SurnameTab(EmbeddedList):
         uistate,
         track,
         name,
+        config_key,
         on_change=None,
         top_label="<b>%s</b>" % _("Multiple Surnames"),
     ):
@@ -105,6 +106,7 @@ class SurnameTab(EmbeddedList):
             track,
             _("Family Surnames"),
             SurnameModel,
+            config_key,
             move_buttons=True,
             top_label=top_label,
         )
@@ -248,8 +250,11 @@ class SurnameTab(EmbeddedList):
         """
         Delete button is clicked. Remove from the model
         """
-        (model, node) = self.selection.get_selected()
+        (_model, node) = self.selection.get_selected()
         if node:
+            path = self.model.get_path(node).to_string()
+            if path == self.curr_path:
+                self.curr_path = None
             self.model.remove(node)
             self.update()
 
@@ -260,6 +265,7 @@ class SurnameTab(EmbeddedList):
         self.curr_col = colnr
         self.curr_cellr = cellr
         self.curr_celle = celle
+        self.curr_path = path
 
     def on_edit_start_cmb(self, cellr, celle, path, colnr):
         """
@@ -291,6 +297,8 @@ class SurnameTab(EmbeddedList):
         Edit is happening. The model is updated and the surname objects updated.
         colnr must be the column in the model.
         """
+        if self.curr_path == None:
+            return
         node = self.model.get_iter(path)
         text = new_text.translate(INVISIBLE).strip()
         self.model.set_value(node, colnr, text)
@@ -431,6 +439,3 @@ class SurnameTab(EmbeddedList):
                     self.curr_celle.editing_done()
                     return
         return True
-
-    def get_config_name(self):
-        return __name__

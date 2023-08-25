@@ -32,8 +32,8 @@ from .attrembedlist import AttrEmbedList
 #
 # -------------------------------------------------------------------------
 class FamilyAttrEmbedList(AttrEmbedList):
-    def __init__(self, dbstate, uistate, track, data):
-        AttrEmbedList.__init__(self, dbstate, uistate, track, data)
+    def __init__(self, dbstate, uistate, track, data, config_key):
+        AttrEmbedList.__init__(self, dbstate, uistate, track, data, config_key)
 
     def get_editor(self):
         from .. import EditAttribute
@@ -42,6 +42,3 @@ class FamilyAttrEmbedList(AttrEmbedList):
 
     def get_user_values(self):
         return self.dbstate.db.get_family_attribute_types()
-
-    def get_config_name(self):
-        return __name__
