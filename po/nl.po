@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-24 22:33+0100\n"
-"PO-Revision-Date: 2023-08-23 11:52+0000\n"
+"PO-Revision-Date: 2023-08-25 05:41+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.0.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -20367,14 +20367,8 @@ msgid "Would you like to run the Check and Repair tool?"
 msgstr "Wilt u de tool Controle en reparatie uitvoeren?"
 
 #: ../gramps/gui/viewmanager.py:1286 ../gramps/gui/viewmanager.py:1904
-#, fuzzy
-#| msgid ""
-#| "Please wait for backup in progress.\n"
-#| "Gramps will close when complete."
 msgid "Please wait for backup to complete."
-msgstr ""
-"Wacht op lopende back-up.\n"
-"Gramps zal sluiten als deze klaar is."
+msgstr "Wacht tot de lopende back-up klaar is."
 
 #: ../gramps/gui/viewmanager.py:1288 ../gramps/gui/viewmanager.py:1292
 msgid "Autobackup..."
@@ -22450,14 +22444,12 @@ msgid "Flip names for generations 2, 3 and 4 i.e. those found in circles"
 msgstr "De namen voor generaties 2, 3 en 4 (in de cirkels) omdraaien"
 
 #: ../gramps/plugins/drawreport/fanchart.py:854
-#, fuzzy
-#| msgid "The title of the calendar"
 msgid "Exclude the title of the chart"
-msgstr "De titel van de kalender"
+msgstr "De titel van de grafiek uitsluiten"
 
 #: ../gramps/plugins/drawreport/fanchart.py:855
 msgid "Exclude the title to make more room for the chart"
-msgstr ""
+msgstr "Sluit de titel uit om meer ruimte te maken voor de grafiek"
 
 #: ../gramps/plugins/drawreport/fanchart.py:910
 #, python-format
