@@ -21663,7 +21663,7 @@ msgstr[1] ""
 "{wife} a\n"
 " {person}, {nyears}"
 msgstr[2] ""
-"{spouse} a\n"
+"{wife} a\n"
 " {person}, {nyears}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:602
