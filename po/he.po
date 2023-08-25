@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-24 22:33+0100\n"
-"PO-Revision-Date: 2023-08-24 21:35+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"PO-Revision-Date: 2023-08-25 05:41+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.0\n"
+"X-Generator: Weblate 5.0.1-dev\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -19839,14 +19839,8 @@ msgid "Would you like to run the Check and Repair tool?"
 msgstr "האם להריץ את כלי הבדיקה והתיקון?"
 
 #: ../gramps/gui/viewmanager.py:1286 ../gramps/gui/viewmanager.py:1904
-#, fuzzy
-#| msgid ""
-#| "Please wait for backup in progress.\n"
-#| "Gramps will close when complete."
 msgid "Please wait for backup to complete."
-msgstr ""
-"נא להמתין בעת ביצוע הגיבוי.\n"
-"גרמפס ייסגר עם השלמת התהליך."
+msgstr "נא להמתין להשלמת הגיבוי."
 
 #: ../gramps/gui/viewmanager.py:1288 ../gramps/gui/viewmanager.py:1292
 msgid "Autobackup..."
@@ -21888,14 +21882,12 @@ msgid "Flip names for generations 2, 3 and 4 i.e. those found in circles"
 msgstr "היפוך שמות דורות 2, 3 ו־4 כלומר אלו שנמצאים במעגלים הללו"
 
 #: ../gramps/plugins/drawreport/fanchart.py:854
-#, fuzzy
-#| msgid "The title of the calendar"
 msgid "Exclude the title of the chart"
-msgstr "כותרת לוח-השנה"
+msgstr "החרגת כותרת התרשים"
 
 #: ../gramps/plugins/drawreport/fanchart.py:855
 msgid "Exclude the title to make more room for the chart"
-msgstr ""
+msgstr "להחריג את הכותרת כדי לפנות מקום לתרשים"
 
 #: ../gramps/plugins/drawreport/fanchart.py:910
 #, python-format
