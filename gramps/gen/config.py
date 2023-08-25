@@ -177,14 +177,14 @@ register("behavior.welcome", 100)
 register("behavior.web-search-url", "http://google.com/#&q=%(text)s")
 register(
     "behavior.addons-url",
-    "https://raw.githubusercontent.com/gramps-project/addons/master/gramps52",
+    "https://raw.githubusercontent.com/gramps-project/addons/master/gramps53",
 )
 register(
     "behavior.addons-projects",
     [
         [
             "Gramps",
-            "https://raw.githubusercontent.com/gramps-project/addons/master/gramps52",
+            "https://raw.githubusercontent.com/gramps-project/addons/master/gramps53",
             True,
         ]
     ],

@@ -26,7 +26,7 @@ _ = glocale.translation.gettext
 GRAMPS registration file
 """
 
-MODULE_VERSION = "5.2"
+MODULE_VERSION = "5.3"
 
 # ------------------------------------------------------------------------
 #
