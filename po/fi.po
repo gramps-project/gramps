@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-24 22:33+0100\n"
-"PO-Revision-Date: 2023-08-24 21:34+0000\n"
+"PO-Revision-Date: 2023-08-25 06:51+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0\n"
+"X-Generator: Weblate 5.0.1-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../Gramps/gramps\n"
@@ -20254,14 +20254,8 @@ msgid "Would you like to run the Check and Repair tool?"
 msgstr "Haluatko suorittaa \"Tarkista ja korjaa\"-työkalun?"
 
 #: ../gramps/gui/viewmanager.py:1286 ../gramps/gui/viewmanager.py:1904
-#, fuzzy
-#| msgid ""
-#| "Please wait for backup in progress.\n"
-#| "Gramps will close when complete."
 msgid "Please wait for backup to complete."
-msgstr ""
-"Odota, varmuuskopiointi käynnissä.\n"
-"Gramps sulkeutuu, kun se on valmis."
+msgstr "Odota, että varmuuskopiointi on valmis."
 
 #: ../gramps/gui/viewmanager.py:1288 ../gramps/gui/viewmanager.py:1292
 msgid "Autobackup..."
@@ -22329,14 +22323,12 @@ msgid "Flip names for generations 2, 3 and 4 i.e. those found in circles"
 msgstr "Käännä sukupolvien 2, 3 ja 4 nimet eli ne, jotka löytyvät ympyröistä"
 
 #: ../gramps/plugins/drawreport/fanchart.py:854
-#, fuzzy
-#| msgid "The title of the calendar"
 msgid "Exclude the title of the chart"
-msgstr "Kalenterin otsikko"
+msgstr "Jätä kaavion otsikko pois"
 
 #: ../gramps/plugins/drawreport/fanchart.py:855
 msgid "Exclude the title to make more room for the chart"
-msgstr ""
+msgstr "Jätä otsikko pois, jotta kaaviolle jää enemmän tilaa"
 
 #: ../gramps/plugins/drawreport/fanchart.py:910
 #, python-format
