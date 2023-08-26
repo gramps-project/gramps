@@ -44,8 +44,8 @@ msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-24 22:33+0100\n"
-"PO-Revision-Date: 2023-08-26 13:41+0000\n"
-"Last-Translator: Jean-Marc <m.balthazar@posteo.net>\n"
+"PO-Revision-Date: 2023-08-26 13:43+0000\n"
+"Last-Translator: Patrice Legoux <patrice.legoux.perso@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -36917,7 +36917,7 @@ msgstr "Toutes les tables de références ont été reconstruites."
 #: ../gramps/plugins/tool/check.py:3069
 #, fuzzy, python-format
 msgid "%d bad Note Links were fixed;\n"
-msgstr "%d liens de retour ont été corrigés ;\n"
+msgstr "%d liens incorrects de Notes ont été corrigées ;\n"
 
 #: ../gramps/plugins/tool/check.py:3099
 msgid "Integrity Check Results"
