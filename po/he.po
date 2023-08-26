@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-24 22:33+0100\n"
-"PO-Revision-Date: 2023-08-25 19:51+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2023-08-26 13:43+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -33749,13 +33749,11 @@ msgstr[0] "משפחה {quantity} ללא הורים או צאצאים, הוסרה
 msgstr[1] "{quantity} משפחות ללא הורים או צאצאים, הוסרו.\n"
 
 #: ../gramps/plugins/tool/check.py:2809
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "{quantity} corrupted family relationship fixed\n"
 msgid_plural "{quantity} corrupted family relationships fixed\n"
-msgstr[0] ""
-"קשר־משפחה משפחה פגום {quantity} תוקן\n"
-"{quantity} קשרי־משפחה משפחה פגומים תוקנו\n"
-msgstr[1] ""
+msgstr[0] "קשר־משפחה משפחה פגום {quantity} תוקן\n"
+msgstr[1] "{quantity} קשרי־משפחה משפחה פגומים תוקנו\n"
 
 #: ../gramps/plugins/tool/check.py:2819
 #, python-brace-format
