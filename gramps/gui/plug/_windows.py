@@ -648,7 +648,6 @@ class AddonManager(ManagedWindow):
         self.project_list.set_selection_mode(Gtk.SelectionMode.SINGLE)
         self.project_list.connect("row-activated", self.__edit_project)
         self.project_list.connect("row-selected", self.__project_selected)
-        self.project_list.set_margin_start(6)
 
         sw = Gtk.ScrolledWindow()
         sw.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
