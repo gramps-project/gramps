@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-24 22:33+0100\n"
-"PO-Revision-Date: 2023-08-22 09:45+0000\n"
+"PO-Revision-Date: 2023-08-26 12:30+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.0.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -20468,14 +20468,8 @@ msgid "Would you like to run the Check and Repair tool?"
 msgstr "Möchtest du das Werkzeug zum Prüfen und Reparieren ausführen?"
 
 #: ../gramps/gui/viewmanager.py:1286 ../gramps/gui/viewmanager.py:1904
-#, fuzzy
-#| msgid ""
-#| "Please wait for backup in progress.\n"
-#| "Gramps will close when complete."
 msgid "Please wait for backup to complete."
-msgstr ""
-"Bitte warte auf die laufende Sicherung.\n"
-"Gramps wird nach Abschluss geschlossen."
+msgstr "Bitte warte, bis die Sicherung abgeschlossen ist."
 
 #: ../gramps/gui/viewmanager.py:1288 ../gramps/gui/viewmanager.py:1292
 msgid "Autobackup..."
@@ -22562,14 +22556,12 @@ msgstr ""
 "gefundenen"
 
 #: ../gramps/plugins/drawreport/fanchart.py:854
-#, fuzzy
-#| msgid "The title of the calendar"
 msgid "Exclude the title of the chart"
-msgstr "Der Titel des Kalenders"
+msgstr "Den Titel des Diagramms ausschließen"
 
 #: ../gramps/plugins/drawreport/fanchart.py:855
 msgid "Exclude the title to make more room for the chart"
-msgstr ""
+msgstr "Den Titel ausschließen, um mehr Platz für das Diagramm zu schaffen"
 
 #: ../gramps/plugins/drawreport/fanchart.py:910
 #, python-format
