@@ -152,8 +152,7 @@ def get_date_from_event_handle(db, event_handle, estimate=False):
         if not estimate and (date_obj.get_day() == 0 or date_obj.get_month() == 0):
             return 0
         return date_obj.get_sort_value()
-    else:
-        return 0
+    return 0
 
 
 def get_date_from_event_type(db, person, event_type, estimate=False):
@@ -219,10 +218,7 @@ def get_death(db, person):
     if not person:
         return False
     death_ref = person.get_death_ref()
-    if death_ref:
-        return True
-    else:
-        return False
+    return bool(death_ref)
 
 
 def get_death_date(db, person, estimate=False):
@@ -572,7 +568,9 @@ class VerifyResults(ManagedWindow):
         self.invert_button = self.top.get_object("invert_all")
         self.invert_button.connect("clicked", self.invert_clicked)
 
-        self.real_model = Gtk.ListStore(
+        self.parent_iter_cache = {}
+
+        self.real_model = Gtk.TreeStore(
             GObject.TYPE_BOOLEAN,
             GObject.TYPE_STRING,
             GObject.TYPE_STRING,
@@ -691,8 +689,7 @@ class VerifyResults(ManagedWindow):
     def get_marking(self, handle, rule_id):
         if handle in self.ignores:
             return rule_id in self.ignores[handle]
-        else:
-            return False
+        return False
 
     def get_new_marking(self):
         new_ignores = {}
@@ -716,7 +713,39 @@ class VerifyResults(ManagedWindow):
         ManagedWindow.close(self, *obj)
         self.closeall()
 
+    def set_parent_text(self, parent_iter, msg, num):
+        """update the parent rows message including the number of the children"""
+        parent_msg = msg + " (" + str(num) + ")"
+        self.real_model.set_value(parent_iter, VerifyResults.WARNING_COL, parent_msg)
+
+    def refresh_all_parent_texts(self):
+        """sync all parent texts with the number of currently displayed children"""
+        parent_iter = self.filt_model.get_iter_first()
+        while parent_iter:
+            child_iter = self.filt_model.iter_children(parent_iter)
+            if child_iter:
+                msg = self.filt_model.get_value(child_iter, VerifyResults.WARNING_COL)
+                num = self.filt_model.iter_n_children(parent_iter)
+                real_parent_iter = self.filt_model.convert_iter_to_child_iter(
+                    parent_iter
+                )
+                self.set_parent_text(real_parent_iter, msg, num)
+            parent_iter = self.filt_model.iter_next(parent_iter)
+
     def hide_toggled(self, button):
+        """either hide the marked rows or show all rows"""
+        # memorize all currently expanded rows
+        expanded_paths = []
+        parent_iter = self.sort_model.get_iter_first()
+        while parent_iter:
+            sort_path = self.sort_model.get_path(parent_iter)
+            if self.warn_tree.row_expanded(sort_path):
+                filt_path = self.sort_model.convert_path_to_child_path(sort_path)
+                expanded_paths.append(
+                    self.filt_model.convert_path_to_child_path(filt_path)
+                )
+            parent_iter = self.sort_model.iter_next(parent_iter)
+
         self.filt_model = self.real_model.filter_new()
         if button.get_active():
             button.set_label(_("_Show all"))
@@ -728,40 +757,120 @@ class VerifyResults(ManagedWindow):
             self.sort_model = self.filt_model.sort_new_with_model()
         else:
             self.sort_model = Gtk.TreeModelSort.new_with_model(self.filt_model)
+
+        self.refresh_all_parent_texts()
+
         self.warn_tree.set_model(self.sort_model)
 
+        # expand all not filtered rows which already where expanded
+        for real_path in expanded_paths:
+            filt_path = self.filt_model.convert_child_path_to_path(real_path)
+            if filt_path is not None:
+                self.warn_tree.expand_row(filt_path, False)
+
+    def set_row_selection(self, row_iter, value):
+        """toggle the given rows checkbox"""
+        path = self.real_model.get_path(row_iter)
+        self.real_model.set_value(row_iter, VerifyResults.IGNORE_COL, value)
+        self.real_model.set_value(row_iter, VerifyResults.SHOW_COL, not value)
+        self.real_model.row_changed(path, row_iter)
+
     def selection_toggled(self, cell, path_string):
+        """the rows checkbox click handler"""
         sort_path = tuple(map(int, path_string.split(":")))
         filt_path = self.sort_model.convert_path_to_child_path(Gtk.TreePath(sort_path))
         real_path = self.filt_model.convert_path_to_child_path(filt_path)
         row = self.real_model[real_path]
-        row[VerifyResults.IGNORE_COL] = not row[VerifyResults.IGNORE_COL]
-        row[VerifyResults.SHOW_COL] = not row[VerifyResults.IGNORE_COL]
-        self.real_model.row_changed(real_path, row.iter)
+        the_type = row[VerifyResults.OBJ_TYPE_COL]
+
+        ignore = not row[VerifyResults.IGNORE_COL]
+        if the_type == Rule.TYPE_GROUP:
+            # (un)select all children when the parent gets activly (un)selected
+            child_iter = self.real_model.iter_children(row.iter)
+            while child_iter:
+                self.set_row_selection(child_iter, ignore)
+                child_iter = self.real_model.iter_next(child_iter)
+        else:
+            parent_iter = self.real_model.iter_parent(row.iter)
+            parent_ignore = self.real_model.get_value(
+                parent_iter, VerifyResults.IGNORE_COL
+            )
+            if parent_ignore and not ignore:
+                # remove the parents selection when a child becomes no longer selected
+                self.set_row_selection(parent_iter, False)
+            else:
+                all_ignored = True
+                child_iter = self.real_model.iter_children(parent_iter)
+                while child_iter:
+                    # check if all children are selected (or not)
+                    if self.real_model.get_path(child_iter) == real_path:
+                        # the value of the triggering row is not yet synced into
+                        #   the model so we can't read it from there
+                        value = ignore
+                    else:
+                        value = self.real_model.get_value(
+                            child_iter, VerifyResults.IGNORE_COL
+                        )
+                    if not value:
+                        all_ignored = False
+                        break
+                    child_iter = self.real_model.iter_next(child_iter)
+                if all_ignored:
+                    # select parent when all children become selected
+                    self.set_row_selection(parent_iter, True)
+                elif self.hide_button.get_active():
+                    # update parents warning text when view is in filter mode
+                    filt_iter = self.filt_model.get_iter(filt_path)
+                    filt_parent_iter = self.filt_model.iter_parent(filt_iter)
+                    num_children = self.filt_model.iter_n_children(filt_parent_iter)
+                    msg = row[VerifyResults.WARNING_COL]
+                    self.set_parent_text(parent_iter, msg, num_children - 1)
+        self.set_row_selection(row.iter, ignore)
+
+    def mark_unmark(self, mark):
+        """either selects or unselects all rows"""
+        parent_iter = self.real_model.get_iter_first()
+        while parent_iter:
+            ignore = self.real_model.get_value(parent_iter, VerifyResults.IGNORE_COL)
+            if (mark and not ignore) or not mark:
+                # if the parent should be selected but is already selected skip it
+                # if the selection should be removed we must always loop through
+                #   all children
+                child_iter = self.real_model.iter_children(parent_iter)
+                while child_iter:
+                    self.set_row_selection(child_iter, mark)
+                    child_iter = self.real_model.iter_next(child_iter)
+                self.set_row_selection(parent_iter, mark)
+            parent_iter = self.real_model.iter_next(parent_iter)
+        self.filt_model.refilter()
+        self.refresh_all_parent_texts()
 
     def mark_clicked(self, mark_button):
-        for row_num in range(len(self.real_model)):
-            path = (row_num,)
-            row = self.real_model[path]
-            row[VerifyResults.IGNORE_COL] = True
-            row[VerifyResults.SHOW_COL] = False
-        self.filt_model.refilter()
+        """the mark button click handler"""
+        self.mark_unmark(True)
 
     def unmark_clicked(self, unmark_button):
-        for row_num in range(len(self.real_model)):
-            path = (row_num,)
-            row = self.real_model[path]
-            row[VerifyResults.IGNORE_COL] = False
-            row[VerifyResults.SHOW_COL] = True
-        self.filt_model.refilter()
+        """the unmark button click handler"""
+        self.mark_unmark(False)
 
     def invert_clicked(self, invert_button):
-        for row_num in range(len(self.real_model)):
-            path = (row_num,)
-            row = self.real_model[path]
-            row[VerifyResults.IGNORE_COL] = not row[VerifyResults.IGNORE_COL]
-            row[VerifyResults.SHOW_COL] = not row[VerifyResults.SHOW_COL]
+        """invert the current selection"""
+        parent_iter = self.real_model.get_iter_first()
+        while parent_iter:
+            child_iter = self.real_model.iter_children(parent_iter)
+            all_ignored = True
+            while child_iter:
+                ignore = not self.real_model.get_value(
+                    child_iter, VerifyResults.IGNORE_COL
+                )
+                if not ignore:
+                    all_ignored = False
+                self.set_row_selection(child_iter, ignore)
+                child_iter = self.real_model.iter_next(child_iter)
+            self.set_row_selection(parent_iter, all_ignored)
+            parent_iter = self.real_model.iter_next(parent_iter)
         self.filt_model.refilter()
+        self.refresh_all_parent_texts()
 
     def double_click(self, obj, event):
         """the user wants to edit the selected person or family"""
@@ -775,35 +884,67 @@ class VerifyResults(ManagedWindow):
             row = self.real_model[real_path]
             the_type = row[VerifyResults.OBJ_TYPE_COL]
             handle = row[VerifyResults.OBJ_HANDLE_COL]
-            if the_type == "Person":
+            if the_type == Rule.TYPE_PERSON:
                 try:
                     person = self.dbstate.db.get_person_from_handle(handle)
                     EditPerson(self.dbstate, self.uistate, self.track, person)
                 except WindowActiveError:
                     pass
-            elif the_type == "Family":
+            elif the_type == Rule.TYPE_FAMILY:
                 try:
                     family = self.dbstate.db.get_family_from_handle(handle)
                     EditFamily(self.dbstate, self.uistate, self.track, family)
                 except WindowActiveError:
                     pass
+            elif the_type == Rule.TYPE_GROUP:
+                if self.warn_tree.row_expanded(filt_path):
+                    self.warn_tree.collapse_row(filt_path)
+                else:
+                    self.warn_tree.expand_row(filt_path, False)
 
     def get_image(self, column, cell, model, iter_, user_data=None):
         """flag whether each line is a person or family"""
         the_type = model.get_value(iter_, VerifyResults.OBJ_TYPE_COL)
-        if the_type == "Person":
+        if the_type == Rule.TYPE_PERSON:
             cell.set_property("icon-name", "gramps-person")
-        elif the_type == "Family":
+        elif the_type == Rule.TYPE_FAMILY:
             cell.set_property("icon-name", "gramps-family")
+        else:
+            cell.set_property("icon-name", None)
 
     def add_results(self, results):
+        """adds the negative result of an evaluated Rule to the model"""
         (msg, gramps_id, name, the_type, rule_id, severity, handle) = results
         ignore = self.get_marking(handle, rule_id)
         if severity == Rule.ERROR:
             line_color = "red"
         else:
             line_color = None
+
+        parent_iter = None
+        # rule_id can't be used because there are rules with dynamic messages
+        if msg in self.parent_iter_cache:
+            parent_iter = self.parent_iter_cache[msg]
+        else:
+            parent_iter = self.real_model.append(
+                None,
+                row=[
+                    None,
+                    msg,
+                    None,
+                    None,
+                    Rule.TYPE_GROUP,
+                    rule_id,
+                    None,
+                    line_color,
+                    True,
+                    True,
+                ],
+            )
+            self.parent_iter_cache[msg] = parent_iter
+
         self.real_model.append(
+            parent_iter,
             row=[
                 ignore,
                 msg,
@@ -815,8 +956,11 @@ class VerifyResults(ManagedWindow):
                 line_color,
                 True,
                 not ignore,
-            ]
+            ],
         )
+
+        num = self.real_model.iter_n_children(parent_iter)
+        self.set_parent_text(parent_iter, msg, num)
 
         if not self.window_shown:
             self.window.show()
@@ -947,6 +1091,10 @@ class Rule:
 
     SEVERITY = WARNING
 
+    TYPE_PERSON = "Person"
+    TYPE_FAMILY = "Family"
+    TYPE_GROUP = "Group"
+
     def __init__(self, db, obj):
         """initialize the rule"""
         self.db = db
@@ -1000,7 +1148,7 @@ class PersonRule(Rule):
     Person-based class.
     """
 
-    TYPE = "Person"
+    TYPE = Rule.TYPE_PERSON
 
     def get_name(self):
         """return the person's primary name"""
@@ -1012,7 +1160,7 @@ class FamilyRule(Rule):
     Family-based class.
     """
 
-    TYPE = "Family"
+    TYPE = Rule.TYPE_FAMILY
 
     def get_name(self):
         """return the name of the family"""
