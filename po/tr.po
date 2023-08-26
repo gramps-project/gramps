@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-24 22:33+0100\n"
-"PO-Revision-Date: 2023-08-13 16:44+0000\n"
+"PO-Revision-Date: 2023-08-25 18:38+0000\n"
 "Last-Translator: Bora Atıcı <boratici.acc@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.0.1-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Language: tr\n"
 "X-Source-Language: C\n"
@@ -7182,18 +7182,15 @@ msgid "unknown"
 msgstr "bilinmeyen"
 
 #: ../gramps/gen/lib/date.py:298
-#, fuzzy, python-format
-#| msgid "greater than"
+#, python-format
 msgid "greater than %s years"
-msgstr "büyük"
+msgstr "%s yıldan daha büyük"
 
 #: ../gramps/gen/lib/date.py:303 ../gramps/gen/lib/date.py:334
 #: ../gramps/gen/lib/date.py:336 ../gramps/gen/lib/date.py:342
 #: ../gramps/gen/lib/date.py:369
-#, fuzzy
-#| msgid "greater than"
 msgid "more than"
-msgstr "büyük"
+msgstr "fazlası"
 
 #: ../gramps/gen/lib/date.py:305 ../gramps/gen/lib/date.py:323
 #: ../gramps/gen/lib/date.py:327 ../gramps/gen/lib/date.py:331
@@ -7222,14 +7219,12 @@ msgid "and"
 msgstr "ve"
 
 #: ../gramps/gen/lib/date.py:329 ../gramps/gen/lib/date.py:349
-#, fuzzy
-#| msgid "less than 1"
 msgid "less than about"
-msgstr "1'den az"
+msgstr "yaklaşık olarak daha az"
 
 #: ../gramps/gen/lib/date.py:340 ../gramps/gen/lib/date.py:347
 msgid "more than about"
-msgstr ""
+msgstr "yaklaşık olarak daha fazla"
 
 #: ../gramps/gen/lib/date.py:456 ../gramps/gen/lib/date.py:463
 #, python-brace-format
@@ -7251,7 +7246,7 @@ msgstr[0] "{number_of} gün"
 
 #: ../gramps/gen/lib/date.py:489
 msgid "0 days"
-msgstr ""
+msgstr "0 gün"
 
 #: ../gramps/gen/lib/date.py:764
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:76
@@ -9332,10 +9327,8 @@ msgid "Expert"
 msgstr "Uzman"
 
 #: ../gramps/gen/plug/_pluginreg.py:116
-#, fuzzy
-#| msgid "Quick View"
 msgid "Quick view"
-msgstr "Hızlı Görünüm"
+msgstr "Hızlı görünüm"
 
 #: ../gramps/gen/plug/_pluginreg.py:117
 msgid "Tool"
@@ -9350,14 +9343,10 @@ msgid "Exporter"
 msgstr "Dışa aktarıcı"
 
 #: ../gramps/gen/plug/_pluginreg.py:120
-#, fuzzy
-#| msgid "Doc creator"
 msgid "Document creator"
 msgstr "Belge oluşturucu"
 
 #: ../gramps/gen/plug/_pluginreg.py:121
-#, fuzzy
-#| msgid "Plugin lib"
 msgid "Plugin library"
 msgstr "Eklenti kitaplığı"
 
@@ -9372,10 +9361,8 @@ msgid "View"
 msgstr "Görünüm"
 
 #: ../gramps/gen/plug/_pluginreg.py:124
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Relationship calculator"
-msgstr "İlişki Hesaplayıcı"
+msgstr "İlişki hesaplayıcı"
 
 #: ../gramps/gen/plug/_pluginreg.py:125 ../gramps/gen/plug/_pluginreg.py:513
 #: ../gramps/gui/glade/grampletpane.glade:156
@@ -10194,10 +10181,8 @@ msgid "The basic style used for the endnotes reference notes display."
 msgstr "Son not referans notlarını görüntüleme için kullanılan temel stil."
 
 #: ../gramps/gen/plug/report/endnotes.py:163
-#, fuzzy
-#| msgid "Include notes"
 msgid "Endnotes"
-msgstr "Notları dahil et"
+msgstr "Dipnotlar"
 
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/gen/plug/report/endnotes.py:181
@@ -11363,7 +11348,7 @@ msgstr "İspanyolca"
 
 #: ../gramps/gen/utils/win32locale.py:59
 msgid "Farsi"
-msgstr ""
+msgstr "Farsça"
 
 #: ../gramps/gen/utils/win32locale.py:60
 msgid "Finnish"
@@ -11379,7 +11364,7 @@ msgstr "Galce"
 
 #: ../gramps/gen/utils/win32locale.py:64
 msgid "Galician"
-msgstr ""
+msgstr "Galiçyaca"
 
 #: ../gramps/gen/utils/win32locale.py:65
 msgid "Hebrew"
@@ -18794,10 +18779,8 @@ msgstr "Gerekli"
 
 #: ../gramps/gui/plug/_windows.py:263 ../gramps/gui/plug/_windows.py:395
 #: ../gramps/gui/plug/_windows.py:594
-#, fuzzy
-#| msgid "Updated"
 msgid "Update"
-msgstr "Güncellendi"
+msgstr "Güncelleme"
 
 #: ../gramps/gui/plug/_windows.py:286
 msgid "Module installation failed"
@@ -18820,40 +18803,28 @@ msgid "Filters"
 msgstr "Filtreler"
 
 #: ../gramps/gui/plug/_windows.py:392
-#, fuzzy
-#| msgid "Addons"
 msgid "All addons"
-msgstr "Eklentiler"
+msgstr "Tüm eklentiler"
 
 #: ../gramps/gui/plug/_windows.py:393 ../gramps/gui/plug/_windows.py:588
-#, fuzzy
-#| msgid "installed"
 msgid "Uninstalled"
-msgstr "yüklendi"
+msgstr "Kaldırıldı"
 
 #: ../gramps/gui/plug/_windows.py:394 ../gramps/gui/plug/_windows.py:591
-#, fuzzy
-#| msgid "installed"
 msgid "Installed"
-msgstr "yüklendi"
+msgstr "Yüklendi"
 
 #: ../gramps/gui/plug/_windows.py:407
-#, fuzzy
-#| msgid "All files"
 msgid "All types"
-msgstr "Tüm dosyalar"
+msgstr "Tüm türler"
 
 #: ../gramps/gui/plug/_windows.py:415
-#, fuzzy
-#| msgid "Audience"
 msgid "All audiences"
-msgstr "İzleyici"
+msgstr "Tüm izleyiciler"
 
 #: ../gramps/gui/plug/_windows.py:422
-#, fuzzy
-#| msgid " state"
 msgid "All statuses"
-msgstr " eyalet"
+msgstr "Tüm durumlar"
 
 #: ../gramps/gui/plug/_windows.py:443
 msgid "Settings"
@@ -18864,10 +18835,8 @@ msgid "Projects"
 msgstr "Projeler"
 
 #: ../gramps/gui/plug/_windows.py:489 ../gramps/gui/plug/_windows.py:599
-#, fuzzy
-#| msgid "Projects"
 msgid "All projects"
-msgstr "Projeler"
+msgstr "Tüm projeler"
 
 #: ../gramps/gui/plug/_windows.py:501
 msgid "Loading..."
@@ -18944,14 +18913,12 @@ msgid "Project name"
 msgstr "Proje adı"
 
 #: ../gramps/gui/plug/_windows.py:886
-#, fuzzy
-#| msgid "Restore to defaults"
 msgid "Restore project defaults"
-msgstr "Varsayılanlara geri yükle"
+msgstr "Proje varsayılanlarını geri yükle"
 
 #: ../gramps/gui/plug/_windows.py:887
 msgid "Are you sure?"
-msgstr ""
+msgstr "Emin misin?"
 
 #: ../gramps/gui/plug/_windows.py:911
 msgid "Checking Addons Failed"
@@ -19155,13 +19122,8 @@ msgid_plural "{number_of} addons were installed."
 msgstr[0] "{number_of} eklenti yüklendi."
 
 #: ../gramps/gui/plug/_windows.py:2224
-#, fuzzy
-#| msgid ""
-#| "If you have installed a 'Gramps View', you will need to restart Gramps."
 msgid "If you have installed a 'View', you will need to restart Gramps."
-msgstr ""
-"Bir 'Gramps Görünümü' yüklediyseniz, Gramps'ı yeniden başlatmanız "
-"gerekecektir."
+msgstr "Bir 'Görünüm' yüklediyseniz, Gramps'ı yeniden başlatmanız gerekecektir."
 
 #: ../gramps/gui/plug/_windows.py:2232
 msgid "No addons were installed."
@@ -20171,14 +20133,8 @@ msgid "Would you like to run the Check and Repair tool?"
 msgstr "Kontrol Et ve Onar aracını çalıştırmak ister misiniz?"
 
 #: ../gramps/gui/viewmanager.py:1286 ../gramps/gui/viewmanager.py:1904
-#, fuzzy
-#| msgid ""
-#| "Please wait for backup in progress.\n"
-#| "Gramps will close when complete."
 msgid "Please wait for backup to complete."
-msgstr ""
-"Lütfen devam eden yedeklemeyi bekleyin.\n"
-"Gramps tamamlandığında kapanacaktır."
+msgstr "Lütfen yedeklemenin tamamlanmasını bekleyin."
 
 #: ../gramps/gui/viewmanager.py:1288 ../gramps/gui/viewmanager.py:1292
 msgid "Autobackup..."
@@ -22238,14 +22194,12 @@ msgstr ""
 "2., 3. ve 4. nesiller için isimleri çevirin, yani daireler içinde bulunanlar"
 
 #: ../gramps/plugins/drawreport/fanchart.py:854
-#, fuzzy
-#| msgid "The title of the calendar"
 msgid "Exclude the title of the chart"
-msgstr "Takvimin başlığı"
+msgstr "Çizelge başlığını hariç tutun"
 
 #: ../gramps/plugins/drawreport/fanchart.py:855
 msgid "Exclude the title to make more room for the chart"
-msgstr ""
+msgstr "Çizelgeye daha fazla yer açmak için başlığı hariç tutun"
 
 #: ../gramps/plugins/drawreport/fanchart.py:910
 #, python-format
@@ -31288,10 +31242,9 @@ msgstr "En çok yaş farkına sahip çift"
 
 #. Translators: used in French+Russian, ignore otherwise
 #: ../gramps/plugins/lib/librecords.py:656
-#, fuzzy, python-format
-#| msgid "%(name1)s and %(name2)s"
+#, python-format
 msgid "\"%(callname)s\" (%(firstname)s)"
-msgstr "%(name1)s ve %(name2)s"
+msgstr "\"%(callname)s\" (%(firstname)s)"
 
 #: ../gramps/plugins/lib/libtreebase.py:778
 msgid "Top Left"
@@ -37694,7 +37647,7 @@ msgstr "%(spouse)s ve %(person)s"
 #: ../gramps/plugins/webreport/webcal.py:2315
 #, python-format
 msgid "%s old"
-msgstr ""
+msgstr "%s yaşında"
 
 #: ../gramps/plugins/webreport/calendar.py:1447
 #: ../gramps/plugins/webreport/webcal.py:2331
@@ -37711,12 +37664,12 @@ msgstr "ölüm"
 #: ../gramps/plugins/webreport/webcal.py:2338
 #, python-format
 msgid "%(couple)s, <em>wedding</em>"
-msgstr ""
+msgstr "%(couple)s, <em>düğün</em>"
 
 #: ../gramps/plugins/webreport/calendar.py:1466
 #: ../gramps/plugins/webreport/webcal.py:2347
 msgid "Until"
-msgstr ""
+msgstr "Değin"
 
 #: ../gramps/plugins/webreport/calendar.py:1476
 #: ../gramps/plugins/webreport/webcal.py:2357
@@ -38628,34 +38581,24 @@ msgid ""
 msgstr "Stamen harita sayfaları için sahip olmak istediğiniz seçeneği seçin..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2686
-#, fuzzy
-#| msgid "Google maps API key"
 msgid "Stamen maps API key"
-msgstr "Google haritalar API anahtarı"
+msgstr "Stamen haritaları API anahtarı"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2689
-#, fuzzy
-#| msgid ""
-#| "The API key used for the Google maps.\n"
-#| "This key is mandatory and must be valid"
 msgid ""
 "The API key used for the Stamen maps.\n"
 "This key is mandatory and must be valid"
 msgstr ""
-"Google haritaları için kullanılan API anahtarı.\n"
+"Stamen haritaları için kullanılan API anahtarı.\n"
 "Bu anahtar zorunludur ve geçerli olmalıdır"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2704
-#, fuzzy
-#| msgid ""
-#| "Copy and paste this value in your browser.\n"
-#| "The Google maps service must be selected."
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Stamen maps service must be selected."
 msgstr ""
 "Bu değeri kopyalayıp tarayıcınıza yapıştırın.\n"
-"Google haritalar hizmeti seçilmelidir."
+"Stamen haritalar hizmeti seçilmelidir."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2721
 #, python-format
