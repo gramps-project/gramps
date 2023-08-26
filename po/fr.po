@@ -45,7 +45,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-24 22:33+0100\n"
 "PO-Revision-Date: 2023-08-26 13:24+0000\n"
-"Last-Translator: Jean-Marc <m.balthazar@posteo.net>\n"
+"Last-Translator: Patrice Legoux <patrice.legoux.perso@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -28398,12 +28398,12 @@ msgstr ""
 "\n"
 "Le fichier importé n'est pas auto-suffisant.\n"
 "Pour corriger cela, %(new)d objets ont été créés et\n"
-"le type d'attribut a été défini comme « Inconnu ».\n"
-"Le nombre d'ajouts est noté dans les parenthèses.\n"
-"Ces objets « Inconnu » ont été référencés par la note %(unknown)s.\n"
+"leur type d'attribut a été défini comme « Inconnu ».\n"
+"La répartition par catégorie est représentée par le\n"
+"numéro entre parenthèses. Ces objets « Inconnu »\n"
+"ont été référencés par la note %(unknown)s."
 
 #: ../gramps/plugins/importer/importxml.py:387
-#, fuzzy
 msgid ""
 "\n"
 "Media objects with relative paths have been\n"
@@ -28412,19 +28412,18 @@ msgid ""
 "or, if not set, relative to the user's directory."
 msgstr ""
 "\n"
-"Les objets media avec chemins relatifs ont été\n"
+"Les objets média avec des chemins relatifs ont été\n"
 "importés. Ces chemins sont considérés comme\n"
 "relatifs par rapport au répertoire défini dans les\n"
-"préférences, ou, si absent, le répertoire utilisateur.\n"
+"préférences, ou, si absent, au répertoire utilisateur."
 
 #: ../gramps/plugins/importer/importxml.py:399
-#, fuzzy
 msgid ""
 "\n"
 "Objects that are candidates to be merged:"
 msgstr ""
 "\n"
-"Candidats à la fusion :\n"
+"Candidats à la fusion :"
 
 #: ../gramps/plugins/importer/importxml.py:905
 #: ../gramps/plugins/importer/importxml.py:1441
@@ -29187,34 +29186,29 @@ msgid "%(date)s %(time)s"
 msgstr "%(date)s %(time)s"
 
 #: ../gramps/plugins/lib/libmetadata.py:120
-#, fuzzy
 msgid "Descriptive Tags"
-msgstr "Étiquettes descriptives"
+msgstr "Propriétés Description"
 
 # master
 #: ../gramps/plugins/lib/libmetadata.py:121
-#, fuzzy
 msgid "Date and Time Tags"
-msgstr "Étiquettes de date et d’heure"
+msgstr "Propriétés Date et Heure"
 
 # Liste d'individus dans plugins/view/view.gpr.py:152
 #: ../gramps/plugins/lib/libmetadata.py:122
 #, fuzzy
 msgid "People Tags"
-msgstr "Étiquettes Individus"
+msgstr "Propriétés Individus"
 
 #: ../gramps/plugins/lib/libmetadata.py:123
-#, fuzzy
 msgid "Event Tags"
 msgstr "Étiquettes d'évènements"
 
 #: ../gramps/plugins/lib/libmetadata.py:124
-#, fuzzy
 msgid "Image Tags"
 msgstr "Étiquettes d'images"
 
 #: ../gramps/plugins/lib/libmetadata.py:125
-#, fuzzy
 msgid "Camera Information"
 msgstr "Informations sur l'appareil photographique"
 
@@ -29230,20 +29224,17 @@ msgid "Advanced Tags"
 msgstr "Avancé"
 
 #: ../gramps/plugins/lib/libmetadata.py:128
-#, fuzzy
 msgid "Rights Tags"
-msgstr "Retrait d'étiquette"
+msgstr "Propriétés Droits"
 
 #: ../gramps/plugins/lib/libmetadata.py:129
-#, fuzzy
 msgid "Keyword Tags"
-msgstr "Nouvelle étiquette"
+msgstr "Propriétés Mot-clé"
 
 # master
 #: ../gramps/plugins/lib/libmetadata.py:228
-#, fuzzy
 msgid "Namespace"
-msgstr "Homonyme"
+msgstr "Espace de nommage"
 
 #: ../gramps/plugins/lib/libmetadata.py:229
 #, fuzzy
@@ -33240,9 +33231,9 @@ msgstr "Initialisation."
 
 # master
 #: ../gramps/plugins/lib/libprogen.py:590
-#, fuzzy
 msgid "Not a supported Pro-Gen import file language"
-msgstr "Langue de fichier Pro-Gen non prise en charge à l'importation"
+msgstr ""
+"La langue n'est pas celle supportée par un fichier d'importation Pro-Gen"
 
 #: ../gramps/plugins/lib/libprogen.py:607
 msgid "Pro-Gen import"
@@ -33441,16 +33432,20 @@ msgstr "Inférieur droit"
 
 #: ../gramps/plugins/lib/maps/geography.py:162
 msgid "Tile path"
-msgstr ""
+msgstr "Chemin des tuiles"
 
 #: ../gramps/plugins/lib/maps/geography.py:164
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "The tile directory doesn't exist anymore:\n"
 "%s\n"
 "Trying to create a new one failed.\n"
 "Configure the view for the tile path and restart gramps."
 msgstr ""
+"Le répertoire des tuiles n'existe plus :\n"
+"%s\n"
+"La tentative d'en créer un nouveau a échoué.\n"
+"Configurez la vue indiquant le chemin des tuiles et redémarrez Gramps."
 
 # cible ? croix ? mire ?
 #: ../gramps/plugins/lib/maps/geography.py:397
@@ -33525,14 +33520,13 @@ msgid "Select a kml file used to add places"
 msgstr "Sélectionner un fichier kml pour ajouter des lieux"
 
 #: ../gramps/plugins/lib/maps/geography.py:1146
-#, fuzzy
 msgid "You will need to edit each place manually to add place type, ...\n"
 msgstr ""
-"Vous devrez modifier chaque lieu manuellement pour ajouter un type de "
-"lieu...\n"
+"Vous devrez modifier chaque lieu manuellement pour ajouter un type de lieu..."
+"\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1150
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "You have {places_nb} place to edit."
 msgid_plural "You have {places_nb} places to edit."
 msgstr[0] "Vous avez {places_nb} lieu à modifier."
