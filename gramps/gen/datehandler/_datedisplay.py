@@ -495,12 +495,12 @@ class DateDisplay:
             elif mod == Date.MOD_FROM:
                 # Translators: If there is no special inflection for
                 # "after <Month>" in your language, DON'T translate this.
-                # Otherwise, translate to "after" in ENGLISH!!! ENGLISH!!!
+                # Otherwise, translate to "from" in ENGLISH!!! ENGLISH!!!
                 date_type = _("", "from-date")
             elif mod == Date.MOD_TO:
                 # Translators: If there is no special inflection for
                 # "after <Month>" in your language, DON'T translate this.
-                # Otherwise, translate to "after" in ENGLISH!!! ENGLISH!!!
+                # Otherwise, translate to "to" in ENGLISH!!! ENGLISH!!!
                 date_type = _("", "to-date")
             elif mod == Date.MOD_ABOUT:
                 # Translators: If there is no special inflection for
