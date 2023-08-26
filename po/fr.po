@@ -44,7 +44,7 @@ msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-24 22:33+0100\n"
-"PO-Revision-Date: 2023-08-26 13:24+0000\n"
+"PO-Revision-Date: 2023-08-26 13:41+0000\n"
 "Last-Translator: Patrice Legoux <patrice.legoux.perso@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
@@ -33574,16 +33574,15 @@ msgstr "Où enregistrer les tuiles en mode hors ligne."
 
 # trunk
 #: ../gramps/plugins/lib/maps/geography.py:1431
-#, fuzzy
 msgid ""
 "If you have no more space in your file system, you can remove all tiles "
 "placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
-"Si vous n'avez plus de place sur votre système de fichier,\n"
-"vous pouvez enlever toutes les tuiles du chemin ci-dessus.\n"
-"Soyez prudent(e) ! Si vous n'avez pas Internet, vous n'aurez\n"
-"pas de carte."
+"Si vous n'avez plus de place sur votre système de fichier, vous pouvez "
+"enlever toutes les tuiles du chemin ci-dessus.\n"
+"Soyez prudent(e) ! Si vous n'avez pas Internet, vous ne visualiserez plus "
+"les cartes."
 
 #: ../gramps/plugins/lib/maps/geography.py:1441
 msgid "Zoom used when centering"
@@ -33613,12 +33612,12 @@ msgid "Select tile cache directory for offline mode"
 msgstr "Sélectionner le répertoire de stockage des tuiles en mode hors ligne"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:143
-#, fuzzy, python-format
+#, python-format
 msgid "Can't create tile cache directory %s"
 msgstr "Impossible de créer le répertoire cache %s des tuiles"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:149
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You must verify and change the tile cache\n"
 "...\n"
@@ -34027,10 +34026,9 @@ msgid "females"
 msgstr "les femmes"
 
 #: ../gramps/plugins/quickview/filterbyname.py:62
-#, fuzzy
 msgctxt "Filtering_on"
 msgid "people with other gender"
-msgstr "les personnes d'un autre sexe"
+msgstr "les personnes d'un autre genre"
 
 #: ../gramps/plugins/quickview/filterbyname.py:63
 msgctxt "Filtering_on"
@@ -34549,7 +34547,6 @@ msgid "German Relationship Calculator"
 msgstr "Calcul relationnel allemand"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:133
-#, fuzzy
 msgid "Austrian Relationship Calculator"
 msgstr "Calculateur de relations autrichien"
 
@@ -34614,14 +34611,12 @@ msgid "Swedish Relationship Calculator"
 msgstr "Calcul relationnel suédois"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:534
-#, fuzzy
 msgid "Turkish Relationship Calculator"
 msgstr "Calculateur de relations turc"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:535
-#, fuzzy
 msgid "Calculates relationship between people"
-msgstr "Calcule la relation entre les individus"
+msgstr "Calcule les relations entre individus"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:559
 msgid "Ukrainian Relationship Calculator"
@@ -36065,20 +36060,18 @@ msgid "Number of events: %d"
 msgstr "Nombre d'évènements : %d"
 
 #: ../gramps/plugins/textreport/summary.py:261
-#, fuzzy
 msgid "Place Information"
-msgstr "Informations du lieu"
+msgstr "Informations sur le lieu"
 
 # master
 #: ../gramps/plugins/textreport/summary.py:266
-#, fuzzy, python-format
+#, python-format
 msgid "Number of places: %d"
 msgstr "Nombre de lieux : %d"
 
 #: ../gramps/plugins/textreport/summary.py:275
-#, fuzzy
 msgid "Source Information"
-msgstr "Informations de la source"
+msgstr "Informations sur la source"
 
 # master
 #: ../gramps/plugins/textreport/summary.py:280
@@ -36087,9 +36080,8 @@ msgid "Number of sources: %d"
 msgstr "Nombre de sources : %d"
 
 #: ../gramps/plugins/textreport/summary.py:289
-#, fuzzy
 msgid "Citation Information"
-msgstr "Informations de la citation"
+msgstr "Informations sur la citation"
 
 # master
 #: ../gramps/plugins/textreport/summary.py:294
@@ -36099,9 +36091,8 @@ msgstr "Nombre de citations : %d"
 
 # trunk
 #: ../gramps/plugins/textreport/summary.py:303
-#, fuzzy
 msgid "Repository Information"
-msgstr "Informations du dépôt"
+msgstr "Informations sur le dépôt"
 
 # master
 #: ../gramps/plugins/textreport/summary.py:308
@@ -36121,9 +36112,8 @@ msgstr "Taille totale des media : %s MB"
 
 # trunk
 #: ../gramps/plugins/textreport/summary.py:364
-#, fuzzy
 msgid "Note Information"
-msgstr "Informations de la note"
+msgstr "Informations sur la note"
 
 # master
 #: ../gramps/plugins/textreport/summary.py:369
@@ -36298,15 +36288,13 @@ msgstr "Affiche l'état des liens dans les notes"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:35
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:36
-#, fuzzy
 msgid "Gnome Thumbnailer"
-msgstr "Aperçus"
+msgstr "Miniature Gnome"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:49
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:50
-#, fuzzy
 msgid "Image Thumbnailer"
-msgstr "Aperçus"
+msgstr "Vignette"
 
 #: ../gramps/plugins/tool/changenames.glade:34
 msgid ""
@@ -36781,13 +36769,11 @@ msgstr[1] "{quantity} supports media ont été référencés, mais non trouvés\
 
 # trunk
 #: ../gramps/plugins/tool/check.py:2879
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} missing media objects were kept\n"
-msgstr[0] ""
-"Une référence à {quantity} support medium manquant a été conservée\n"
-msgstr[1] ""
-"Les références à {quantity} supports media manquants ont été conservées\n"
+msgstr[0] "La référence au média manquant a été conservée\n"
+msgstr[1] "Les références aux {quantity} médias manquants ont été conservées\n"
 
 # trunk
 #: ../gramps/plugins/tool/check.py:2889
