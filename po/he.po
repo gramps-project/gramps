@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-24 22:33+0100\n"
-"PO-Revision-Date: 2023-08-25 18:38+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"PO-Revision-Date: 2023-08-25 19:51+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -6158,7 +6158,7 @@ msgstr "שליפת מאגרים שההערות שלהם מכילות מלל הת
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:44
 msgid "Repositories with a reference count of <count>"
-msgstr "קשרי־משפחה עם מונה הפניות <מונה>"
+msgstr "קשרי־משפחה עם מונה הפניות על סך <מונה>"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:45
 msgid "Matches repositories with a certain reference count"
@@ -10339,12 +10339,12 @@ msgstr "'%s' רשום"
 #: ../gramps/gen/recentfiles.py:191
 #, python-brace-format
 msgid "Unable to save list of recent DBs file {fname}: {error}"
-msgstr "לא ניתן לשמור רשימת קובצי מסד־נתונים {fname}: {error}"
+msgstr "לא ניתן לשמור רשימת קובצי מסדי־נתונים אחרונים {fname}: {error}"
 
 #: ../gramps/gen/recentfiles.py:250
 #, python-brace-format
 msgid "Unable to open list of recent DBs file {fname}: {error}"
-msgstr "לא ניתן לפתוח רשימת קובצי מסדי־נתונים {fname}: {error}"
+msgstr "לא ניתן לפתוח רשימת קובצי מסדי־נתונים אחרונים {fname}: {error}"
 
 #: ../gramps/gen/recentfiles.py:257
 #, python-brace-format
@@ -16739,7 +16739,7 @@ msgstr ""
 msgid ""
 "Use the select button to choose a person that has an association to the "
 "edited person."
-msgstr "נא להשתמש במקש 'בחירה' על מנת לבחור אדם עם שיוך לאדם שבעריכה."
+msgstr "נא להשתמש בכפתור 'בחירה' על מנת לבחור אדם עם שיוך לאדם שבעריכה."
 
 #: ../gramps/gui/glade/editpersonref.glade:163
 #: ../gramps/gui/glade/editpersonref.glade:229
@@ -18357,8 +18357,8 @@ msgid ""
 "additional manual merging of families is necessary."
 msgstr ""
 "האנשים מוזגו.\n"
-"עם זאת, המשפחות במיזוג זה היו מורכבות מדי כדי לטפל בהן באופן אוטומטי.  מומלץ "
-"לעבור למצג קשרי המשפחה ולבדוק אם נדרש מיזוג משפחות נוסף באופן ידני."
+"עם זאת, המשפחות במיזוג זה היו מורכבות מכדי לטפל בהן אוטומטית.  מומלץ לעבור "
+"למצג קשרי המשפחה ולבדוק אם נדרש מיזוג משפחות נוסף באופן ידני."
 
 #: ../gramps/gui/merge/mergeplace.py:54
 msgctxt "manual"
@@ -25152,7 +25152,7 @@ msgstr "יבוא נתונים מקובץ מסד־נתונים גרמפס 2‎.x"
 
 #: ../gramps/plugins/importer/import.gpr.py:156
 msgid "Pro-Gen"
-msgstr "פרן-ג'ן"
+msgstr "Pro-Gen"
 
 #: ../gramps/plugins/importer/import.gpr.py:157
 msgid "Import data from Pro-Gen files"
@@ -31722,7 +31722,7 @@ msgstr "עצמי"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:35
 msgid "Catalan Relationship Calculator"
-msgstr "מחשבון קשרי־משפחה קאטאלני"
+msgstr "מחשבון קשרי־משפחה קטלאני"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:36
 #: ../gramps/plugins/rel/relplugins.gpr.py:50
@@ -31750,7 +31750,7 @@ msgstr "חישוב קשרי־משפחה בין אנשים"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:49
 msgid "Czech Relationship Calculator"
-msgstr "מחשבון קשרי־משפחה צ'כי"
+msgstr "מחשבון קשרי־משפחה צ׳כי"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:73
 msgid "Danish Relationship Calculator"
@@ -32045,7 +32045,7 @@ msgstr "האם לכלול ימי זיכרון"
 #: ../gramps/plugins/textreport/birthdayreport.py:659
 #: ../gramps/plugins/textreport/indivcomplete.py:1196
 msgid "Whether to include relationships to the center person"
-msgstr "האם לכלולל קשרי־משפחה לאדם המרכזי"
+msgstr "האם לכלול קשרי־משפחה לאדם המרכזי"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:743
 msgid "Title text style"
@@ -37180,7 +37180,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/family.py:558
 #, python-format
 msgid "Family Map for %s"
-msgstr "מפת משפחה ל־ %s"
+msgstr "מפת משפחת %s"
 
 #: ../gramps/plugins/webreport/home.py:81
 msgid "Home"
@@ -38258,7 +38258,7 @@ msgstr "קרבה לאדם המרכזי"
 
 #: ../gramps/plugins/webreport/person.py:2281
 msgid "Relation to main person"
-msgstr "קרבה משפחה לאדם הבית"
+msgstr "קרבה משפחתית לאדם הבית"
 
 #: ../gramps/plugins/webreport/person.py:2286
 msgid "Relation within this family (if not by birth)"
