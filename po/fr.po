@@ -44,7 +44,7 @@ msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-24 22:33+0100\n"
-"PO-Revision-Date: 2023-08-26 13:43+0000\n"
+"PO-Revision-Date: 2023-08-26 16:16+0000\n"
 "Last-Translator: Patrice Legoux <patrice.legoux.perso@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
@@ -7976,9 +7976,8 @@ msgid "from"
 msgstr "depuis"
 
 #: ../gramps/gen/lib/date.py:2004
-#, fuzzy
 msgid "to"
-msgstr "et"
+msgstr "à"
 
 #: ../gramps/gen/lib/date.py:2005
 msgid "span"
@@ -8401,7 +8400,6 @@ msgid "Alternate Marriage"
 msgstr "Mariage alternatif"
 
 #: ../gramps/gen/lib/eventtype.py:236
-#, fuzzy
 msgid "Stillbirth"
 msgstr "Mort-né"
 
@@ -37911,11 +37909,10 @@ msgstr "Permettre la réorganisation de l'identifiant."
 
 # master
 #: ../gramps/plugins/tool/reorderids.glade:1420
-#, fuzzy
 msgid "List next ID available (may not be continuous)."
 msgstr ""
-"Liste le prochain identifiant\n"
-"disponible (peut être un saut)."
+"Indique le prochain identifiant\n"
+"disponible (peut être discontinu)."
 
 # master
 #: ../gramps/plugins/tool/reorderids.glade:1423
@@ -37947,8 +37944,8 @@ msgstr "Modifier"
 #, fuzzy
 msgid "Enable ID reordering with Start / Step sequence."
 msgstr ""
-"Permettre la réorganisation\n"
-"avec la séquence Arrêt/Départ."
+"Activer la réorganisation des identifiants\n"
+"avec séquence de Démarrage / Etape."
 
 # master
 #: ../gramps/plugins/tool/reorderids.glade:1481
@@ -37977,11 +37974,10 @@ msgstr "Conserver"
 
 # master
 #: ../gramps/plugins/tool/reorderids.glade:1521
-#, fuzzy
 msgid "Keep IDs with alternate prefixes untouched."
 msgstr ""
-"Conserver les identifiants avec des\n"
-"préfixes alternatifs non modifiés."
+"Conserver tels quels les identifiants\n"
+"avec des préfixes alternatifs."
 
 # master
 #: ../gramps/plugins/tool/reorderids.py:65
@@ -39388,18 +39384,17 @@ msgstr ""
 "Cette vue permet de voir tous les lieux des évènements de la base de données."
 
 #: ../gramps/plugins/view/geomoves.py:210
-#, fuzzy
 msgid "Descendants of the active person."
-msgstr "Descendance de l'individu actif."
+msgstr "Descendants de l'individu actif."
 
 #: ../gramps/plugins/view/geomoves.py:244
 msgid "GeoMoves"
 msgstr "GéoDéplacements"
 
 #: ../gramps/plugins/view/geomoves.py:602
-#, fuzzy, python-format
+#, python-format
 msgid "All descendants for %s"
-msgstr "Toute la descendance de %s"
+msgstr "Tous les descendants de %s"
 
 #: ../gramps/plugins/view/geomoves.py:751
 msgid "Bookmark this person"
@@ -40226,9 +40221,8 @@ msgid "Next"
 msgstr "Suivant"
 
 #: ../gramps/plugins/webreport/basepage.py:2575
-#, fuzzy
 msgid "Other media: videos, pdfs..."
-msgstr "Autres supports : vidéos, pdf..."
+msgstr "Autres médias : vidéos, pdf…"
 
 #: ../gramps/plugins/webreport/basepage.py:2749
 msgid " [Click to Go]"
@@ -40603,25 +40597,22 @@ msgstr "Création des pages adresses ..."
 
 # Site internet descriptif ou narratif ?
 #: ../gramps/plugins/webreport/narrativeweb.py:1936
-#, fuzzy, python-format
+#, python-format
 msgid "Narrative Website Report for the %s language"
-msgstr "Saga"
+msgstr "Saga (Langage : %s)"
 
 # Site internet descriptif ou narratif ?
 #: ../gramps/plugins/webreport/narrativeweb.py:1938
-#, fuzzy
 msgid "Narrative Website Report"
 msgstr "Saga"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2057
-#, fuzzy
 msgid "Store website in .tar.gz archive"
-msgstr "Extrait les pages Web en archive .tar.gz"
+msgstr "Enregistrer les pages Web dans une archive .tar.gz"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2058
-#, fuzzy
 msgid "Whether to store the website in an archive file"
-msgstr "Conserver ou non les pages web dans un format d'archive"
+msgstr "Conserver ou non les pages web dans un fichier d'archive"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2068
 #: ../gramps/plugins/webreport/webcal.py:1841
@@ -40633,9 +40624,8 @@ msgid "My Family Tree"
 msgstr "Mon arbre généalogique"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2073
-#, fuzzy
 msgid "Website title"
-msgstr "Titre du site"
+msgstr "Titre du site Web"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2074
 #, fuzzy
@@ -40643,11 +40633,10 @@ msgid "The title of the website"
 msgstr "Le titre du site web"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2079
-#, fuzzy
 msgid "Select filter to restrict people that appear on the website"
 msgstr ""
-"Sélectionnez un filtre pour restreindre les individus qui apparaîtront dans "
-"le site web"
+"Sélectionnez un filtre pour restreindre les individus visibles sur le site "
+"web"
 
 # https://gramps-project.org/bugs/view.php?id=11286
 #: ../gramps/plugins/webreport/narrativeweb.py:2091
@@ -40758,9 +40747,8 @@ msgstr "Ajouter précédent/suivant à la barre de navigation."
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:2191
-#, fuzzy
 msgid "This is a secure site (HTTPS)"
-msgstr "Ceci est un site sécurisé (https)"
+msgstr "Ceci est un site sécurisé (HTTPS)"
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:2192
@@ -40770,7 +40758,7 @@ msgstr "Utiliser http:// ou https://"
 #: ../gramps/plugins/webreport/narrativeweb.py:2195
 #, fuzzy
 msgid "Toggle sections"
-msgstr "Sélection du titre"
+msgstr "Sections basculantes"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2196
 msgid "Check it if you want to open/close a section"
@@ -40938,7 +40926,6 @@ msgid "HTML user header"
 msgstr "En-tête HTML"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2339
-#, fuzzy
 msgid "A note to be used as the page header or a PHP code to insert."
 msgstr "Une note à utiliser comme en-tête de page ou un code PHP à insérer."
 
@@ -40952,7 +40939,6 @@ msgid "A note to be used as the page footer"
 msgstr "La note utilisée pour le pied de page"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2349
-#, fuzzy
 msgid "PHP user session"
 msgstr "Session utilisateur PHP"
 
@@ -41129,7 +41115,6 @@ msgid "Whether to include a parents column"
 msgstr "Inclure ou non une colonne parents"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2517
-#, fuzzy
 msgid "Include half and/or step-siblings on the individual pages"
 msgstr "Inclure les demi-frères et demi-sœurs sur la page de l'individu"
 
@@ -41158,9 +41143,8 @@ msgid "Add a complete events list and relevant pages or not"
 msgstr "Ajouter ou non une liste complète des évènements et pages liées"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2544
-#, fuzzy
 msgid "Include place pages"
-msgstr "Inclure les lieux"
+msgstr "Inclure les pages de lieu"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2545
 #, fuzzy
@@ -41168,14 +41152,12 @@ msgid "Whether or not to include the place pages."
 msgstr "Inclure ou non les pages des lieux."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2548
-#, fuzzy
 msgid "Include unused place pages"
-msgstr "Inclure les lieux"
+msgstr "Inclure les pages des lieux inutilisés"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2549
-#, fuzzy
 msgid "Whether or not to include the unused place pages."
-msgstr "Inclure ou non les pages des lieux."
+msgstr "Inclure ou non les pages des lieux inutilisés."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2552
 #, fuzzy
@@ -41309,27 +41291,26 @@ msgstr "Clé API de Google Maps"
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:2649
-#, fuzzy
 msgid ""
 "The API key used for the Google maps.\n"
 "This key is mandatory and must be valid"
-msgstr "La clé API utilisée pour Google Maps"
+msgstr ""
+"La clé API utilisée pour Google Maps.\n"
+"Cette clé est obligatoire et doit être valide"
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:2661
 #: ../gramps/plugins/webreport/narrativeweb.py:2701
-#, fuzzy
 msgid "How to get the API key"
-msgstr "Clé API de Google Maps"
+msgstr "Comment obtenir la clé API"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2664
-#, fuzzy
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Google maps service must be selected."
 msgstr ""
 "Copiez et collez cette valeur dans votre navigateur.\n"
-"Le service de cartes Google doit être sélectionné."
+"Le service de cartes Google Maps doit être sélectionné."
 
 # Toner, Terrain, Watercolor, Burning Map,... sont des styles de cartes de stamen.com. Ne pas traduire
 #: ../gramps/plugins/webreport/narrativeweb.py:2672
@@ -41363,15 +41344,16 @@ msgstr ""
 #: ../gramps/plugins/webreport/narrativeweb.py:2686
 #, fuzzy
 msgid "Stamen maps API key"
-msgstr "Clé API de Google Maps"
+msgstr "Clé API de Stamen Maps"
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:2689
-#, fuzzy
 msgid ""
 "The API key used for the Stamen maps.\n"
 "This key is mandatory and must be valid"
-msgstr "La clé API utilisée pour Google Maps"
+msgstr ""
+"La clé API utilisée pour Stamen Maps.\n"
+"Cette clé est obligatoire et doit être valide"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2704
 #, fuzzy
@@ -41390,9 +41372,8 @@ msgid "in %(inipth)s (%(val)s)"
 msgstr "en %(inipth)s (%(val)s)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2722
-#, fuzzy
 msgid "latest"
-msgstr "Dates"
+msgstr "dernier"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2724
 #, fuzzy
@@ -41472,9 +41453,8 @@ msgstr "Traduction"
 
 # trunk
 #: ../gramps/plugins/webreport/narrativeweb.py:2796
-#, fuzzy
 msgid "second language"
-msgstr "Deuxième date"
+msgstr "deuxième langue"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2801
 #, fuzzy
@@ -41495,9 +41475,8 @@ msgstr "Titre du site"
 #: ../gramps/plugins/webreport/narrativeweb.py:2821
 #: ../gramps/plugins/webreport/narrativeweb.py:2830
 #: ../gramps/plugins/webreport/narrativeweb.py:2839
-#, fuzzy
 msgid "Enter a title in the respective language"
-msgstr "Donnez un titre dans la langue appropriée"
+msgstr "Donnez un titre dans la langue respective"
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:2805
@@ -41617,7 +41596,6 @@ msgid "Tracking %s"
 msgstr "Suivi de %s"
 
 #: ../gramps/plugins/webreport/person.py:1014
-#, fuzzy
 msgid ""
 "This map page represents that person and any descendants with all of their "
 "event/places. If you place your mouse over the marker it will display the "
@@ -41625,10 +41603,10 @@ msgid ""
 "any?). Clicking on a place&#8217;s name in the Reference section will take "
 "you to that place&#8217;s page."
 msgstr ""
-"Cette page carte représente l'individu et ses descendants avec leurs "
-"évènements/lieux. Si vous passez le curseur de votre souris au-dessus du "
+"Cette page carte représente l'individu et ses descendants avec leurs évè"
+"nements/lieux. Si vous passez le curseur de votre souris au-dessus du "
 "marqueur vous obtiendrez le nom du lieu. Les marqueurs et la liste de "
-"référence sont triés par date (si elle existe). Cliquez sur le nom du lieu "
+"référence sont triés par date (si elle existe). Cliquez sur un nom du lieu "
 "dans la section référence pour accéder la page du lieu."
 
 #: ../gramps/plugins/webreport/person.py:1066
@@ -41808,30 +41786,31 @@ msgid "Surnames beginning with letter '%s' %s"
 msgstr "Noms de famille commençant par la lettre %s"
 
 #: ../gramps/plugins/webreport/thumbnail.py:125
-#, fuzzy
 msgid ""
 "This page displays a indexed list of all the media objects in this database. "
 "It is sorted by media title. There is an index of all the media objects in "
 "this database. Clicking on a thumbnail will take you to that image&#8217;s "
 "page."
 msgstr ""
-"Cette page affiche une liste indexée de tous les media de la base de "
-"données, classés par titre. Il y a un index de tous les objets media de la "
-"base de données. Cliquez sur un aperçu pour aller sur la page de l'image."
+"Cette page affiche une liste indexée de tous les média de la base de "
+"données, classés par titre. Il existe un index de tous les médias de la base "
+"de données. Cliquez sur une miniature pour aller sur la page de l'image "
+"correspondante."
 
 #: ../gramps/plugins/webreport/updates.py:88
 msgid "New and updated objects"
 msgstr "Les objets mis à jour et les nouveaux"
 
 #: ../gramps/plugins/webreport/updates.py:99
-#, fuzzy, python-format
+#, python-format
 msgctxt "nb"
 msgid ""
 "This page contains the last updated objects in the database in the last "
 "%(days)d days and for a maximum of %(nb)d objects per object type."
 msgstr ""
-"Cette page liste les mises à jour de la base de données durant les %(days)d "
-"derniers jours pour un maximum de %(nb)d objets par type."
+"Cette page liste les derniers objets mis à jour dans la base de données "
+"durant les %(days)d derniers jours, avec par type d'objet, un maximum de "
+"%(nb)d objets."
 
 #. Translators: This is the email subject line in the Web Calendar
 #: ../gramps/plugins/webreport/webcal.py:1669
