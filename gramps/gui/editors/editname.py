@@ -125,20 +125,13 @@ class EditName(EditSecondary):
 
         tblgnam = self.top.get_object("table23")
         notebook = self.top.get_object("notebook")
-        hbox_surn = self.top.get_object("hboxmultsurnames")
-        hbox_surn.set_size_request(-1, int(config.get("interface.surname-box-height")))
-        hbox_surn.pack_start(
-            SurnameTab(
-                self.dbstate,
-                self.uistate,
-                self.track,
-                self.obj,
-                "name_editor_surnames",
-                top_label=None,
-            ),
-            True,
-            True,
-            0,
+        self.surntab = SurnameTab(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj,
+            "name_editor_surnames",
+            top_label=None,
         )
         # recreate start page as GrampsTab
         notebook.remove_page(0)
@@ -159,6 +152,10 @@ class EditName(EditSecondary):
 
     def _post_init(self):
         """if there is override, set the override toggle active"""
+        hbox_surn = self.top.get_object("hboxmultsurnames")
+        hbox_surn.pack_start(self.surntab, True, True, 0)
+        hbox_surn.set_size_request(-1, int(config.get("interface.surname-box-height")))
+
         if self.original_group_set:
             self.group_over.set_active(True)
         else:
