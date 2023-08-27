@@ -649,7 +649,7 @@ else:
     AlphabeticIndex = localAlphabeticIndex
 
 
-def alphabet_navigation(sorted_alpha_index, rlocale=glocale):
+def alphabet_navigation(sorted_alpha_index, rlocale=glocale, rtl=False):
     """
     Will create the alphabet navigation bar for classes IndividualListPage,
     SurnameListPage, PlaceListPage, and EventList
@@ -666,12 +666,12 @@ def alphabet_navigation(sorted_alpha_index, rlocale=glocale):
     num_of_rows = (num_ltrs // num_of_cols) + 1
 
     # begin alphabet navigation division
-    with Html("div", id="alphanav") as alphabetnavigation:
+    with Html("div", id=rtl) as alphabetnavigation:
         index = 0
         output = []
         dup_index = 0
         for dummy_row in range(num_of_rows):
-            unordered = Html("ul")
+            unordered = Html("ul", class_=rtl)
 
             cols = 0
             while cols <= num_of_cols and index < num_ltrs:

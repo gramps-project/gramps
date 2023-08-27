@@ -77,6 +77,7 @@ body > div {
     width: 98%;
 }
 #outerwrapper > div {
+    width: 100%;
     clear: both;
 }
 .content {
@@ -176,8 +177,11 @@ div#nav ul, #subnavigation ul {
     margin: 0px;
     padding-left: 0px;
 }
-div#nav ul li, #subnavigation ul li {
+div#nav.wrappernav.ltr {
     float: left;
+}
+div#nav.wrappernav.rtl {
+    float: right;
 }
 div#nav ul li a, #subnavigation ul li a {
     display: run-in;
@@ -208,6 +212,8 @@ div#nav li.lang {
 div#nav li.lang:hover > ul {
     visibility: visible;
     opacity: 1;
+    width: 80px;
+    padding-right: 5px;
 }
 div#nav ul.lang {
     position: absolute;
@@ -224,6 +230,18 @@ div#nav ul.lang:hover {
 div#nav ul.lang li {
     float: none;
     font-size: larger;
+}
+.ltr, .ltr li {
+    float: left;
+    list-style: none;
+}
+li:not(:first-child) {
+    padding-right: 8px;
+    padding-left: 8px;
+}
+.rtl, .rtl li {
+    float: right;
+    list-style: none;
 }
 
 /* Alphabet Navigation
@@ -242,6 +260,18 @@ div#alphanav ul li {
     font-size: larger;
     font-family: sans-serif;
     font-weight: bold;
+}
+div#header.rtl h1 {
+    margin-right: 40px;
+}
+div#header.rtl button {
+    float: right;
+}
+div#header.ltr h1 {
+    margin-left: 40px;
+}
+div#header.ltr button {
+    float: left;
 }
 div#alphanav ul li:after {
     content: " |";
@@ -264,6 +294,18 @@ button.navIcon {
     display: none;
 }
 
+div#header.rtl h1 {
+    margin-right: 40px;
+}
+div#header.rtl button {
+    float: right;
+}
+div#header.ltr h1 {
+    margin-left: 40px;
+}
+div#header.ltr button {
+    float: left;
+}
 div#header::after {
     content: "";
     clear: both;
@@ -293,7 +335,6 @@ div#nav::after {
         list-style: none;
         min-width: unset;
         width: 200px;
-        height: 32px;
         margin: 0;
         padding: 0;
     }
@@ -301,20 +342,35 @@ div#nav::after {
         float: unset;
         display: unset
     }
+    li:first-child {
+        padding-right: 8px;
+        padding-left: 8px;
+    }
 
     /* Start with hidden menu options */
     /* .nav li:not(:first-child) {display: none;} */
     .nav li {display: none;}
     .nav ul {display: none;}
 
+    button.navIcon.rtl {
+        text-align:right;
+    }
+    button.navIcon.ltr {
+        text-align:left;
+    }
     button.navIcon {
         display: block;
-        float: left;
         font-size:2.9em;
         line-height: 80px;
         border: 0px;
         color: #7D5925;
         background: url(../images/Web_Mainz_Mid.png) #FFF2C6 repeat;
+    }
+    h1#SiteTitle.ltr  {
+        float: left;
+    }
+    h1#SiteTitle.rlt  {
+        float: right;
     }
 
     .nav.responsive {position: relative; display: block; z-index: 100;}
@@ -324,10 +380,15 @@ div#nav::after {
         top: 0;
         margin-right: 10px;
     }
+    .nav.rtl.responsive li.lang {
+        text-align: right;
+    }
+    .nav.ltr.responsive li.lang {
+        text-align: left;
+    }
     .nav.responsive li {
         display: block;
         height:1.4em;
-        text-align: left;
         background-color: #D8C19F;
         /* required by IE */
         float: left;
@@ -348,7 +409,7 @@ div#nav::after {
     }
     .lang > .lang {
         top: 0;
-        left: 100%;
+        /* left: 100%; */
         margin-top: -6px;
         margin-left: -1px;
         -webkit-border-radius: 0 6px 6px 6px;
@@ -698,14 +759,25 @@ div#families table.fixed_subtables table.eventlist th:last-child {
 div#families .infolist h4 {
     text-align: left;
 }
+table.relationships.ltr tr th, table.infolist.ltr tr th, table.primobjlist.ltr tr th, table.eventlist.ltr tr th {
+    text-align: left;
+}
+table.relationships.rtl tr th, table.infolist.rtl tr th, table.primobjlist.rtl tr th, table.eventlist.rtl tr th {
+    text-align: right;
+}
 
 /* SubSection : Gallery
 -----------------------------------------------------------------*/
 #gallery {
     background-color: green;
 }
-#gallery .gallerycell {
+#gallery .gallerycell.ltr {
     float: left;
+}
+#gallery .gallerycell.rtl {
+    float: right;
+}
+#gallery .gallerycell {
     width: 130px;
     height: 150px;
     text-align: center;
@@ -934,6 +1006,12 @@ div#map_canvas {
 
 /* Calendar Styles
 =================================================================*/
+.dropmenu.rtl li {
+    text-align: right;
+}
+.dropmenu.ltr li {
+    text-align: left;
+}
 table.calendar {
     table-layout: fixed;
     empty-cells: show;
@@ -1095,7 +1173,7 @@ body#fullyearlinked #YearGlance tbody td.highlight .date:hover {
     background: url(../images/Web_Mainz_Bkgd.png) black repeat;
 }
 h4 button.icon {
-    width: 0.9em;
+    width: 1.9em;
     border: 0px solid;
     padding: 0;
     opacity: 1;

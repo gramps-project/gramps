@@ -318,6 +318,7 @@ class NavWebReport(Report):
         self.languages = None
         self.default_lang = None
         self.the_title = None
+        self.dir = "ltr"
 
     def write_report(self):
         """
@@ -570,7 +571,7 @@ class NavWebReport(Report):
 
             # build calendar for the current year
             if self.usecal:
-                self.calendar = CalendarPage(self, None, None)
+                self.calendar = CalendarPage(self, the_lang, None)
                 self.calendar.display_pages(the_lang, the_title)
 
             # build classes StatisticsPage
