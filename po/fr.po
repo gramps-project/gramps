@@ -43,7 +43,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-24 22:33+0100\n"
+"POT-Creation-Date: 2023-08-26 17:41+0100\n"
 "PO-Revision-Date: 2023-08-26 16:16+0000\n"
 "Last-Translator: Patrice Legoux <patrice.legoux.perso@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
@@ -2471,9 +2471,6 @@ msgstr "{short_month} {year}"
 #. Translators: If there is no special inflection for
 #. "from <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "from" in ENGLISH!!! ENGLISH!!!
-#. Translators: If there is no special inflection for
-#. "after <Month>" in your language, DON'T translate this.
-#. Otherwise, translate to "after" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:413
 #: ../gramps/gen/datehandler/_datedisplay.py:499
 msgctxt "from-date"
@@ -2484,9 +2481,6 @@ msgstr ""
 #. Translators: If there is no special inflection for
 #. "to <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "to" in ENGLISH!!! ENGLISH!!!
-#. Translators: If there is no special inflection for
-#. "after <Month>" in your language, DON'T translate this.
-#. Otherwise, translate to "after" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:420
 #: ../gramps/gen/datehandler/_datedisplay.py:504
 msgctxt "to-date"
@@ -33520,8 +33514,8 @@ msgstr "Sélectionner un fichier kml pour ajouter des lieux"
 #: ../gramps/plugins/lib/maps/geography.py:1146
 msgid "You will need to edit each place manually to add place type, ...\n"
 msgstr ""
-"Vous devrez modifier chaque lieu manuellement pour ajouter un type de lieu..."
-"\n"
+"Vous devrez modifier chaque lieu manuellement pour ajouter un type de "
+"lieu...\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1150
 #, python-brace-format
@@ -41603,8 +41597,8 @@ msgid ""
 "any?). Clicking on a place&#8217;s name in the Reference section will take "
 "you to that place&#8217;s page."
 msgstr ""
-"Cette page carte représente l'individu et ses descendants avec leurs évè"
-"nements/lieux. Si vous passez le curseur de votre souris au-dessus du "
+"Cette page carte représente l'individu et ses descendants avec leurs "
+"évènements/lieux. Si vous passez le curseur de votre souris au-dessus du "
 "marqueur vous obtiendrez le nom du lieu. Les marqueurs et la liste de "
 "référence sont triés par date (si elle existe). Cliquez sur un nom du lieu "
 "dans la section référence pour accéder la page du lieu."
