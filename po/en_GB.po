@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-24 22:33+0100\n"
-"PO-Revision-Date: 2023-08-03 16:25+0000\n"
+"PO-Revision-Date: 2023-08-26 16:16+0000\n"
 "Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/en_GB/>\n"
@@ -49,7 +49,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.0.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -2347,7 +2347,7 @@ msgstr "{short_month} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:499
 msgctxt "from-date"
 msgid ""
-msgstr "from"
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "to <Month>" in your language, DON'T translate this.
@@ -2359,7 +2359,7 @@ msgstr "from"
 #: ../gramps/gen/datehandler/_datedisplay.py:504
 msgctxt "to-date"
 msgid ""
-msgstr "to"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:423
 #, python-brace-format
@@ -2372,7 +2372,7 @@ msgstr "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
 #: ../gramps/gen/datehandler/_datedisplay.py:444
 msgctxt "between-date"
 msgid ""
-msgstr "between"
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "and <Month>" in your language, DON'T translate this.
@@ -2380,7 +2380,7 @@ msgstr "between"
 #: ../gramps/gen/datehandler/_datedisplay.py:451
 msgctxt "and-date"
 msgid ""
-msgstr "and"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:454
 #, python-brace-format
@@ -2395,7 +2395,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:489
 msgctxt "before-date"
 msgid ""
-msgstr "before"
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "after <Month>" in your language, DON'T translate this.
@@ -2403,7 +2403,7 @@ msgstr "before"
 #: ../gramps/gen/datehandler/_datedisplay.py:494
 msgctxt "after-date"
 msgid ""
-msgstr "after"
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "about <Month>" in your language, DON'T translate this.
@@ -2411,7 +2411,7 @@ msgstr "after"
 #: ../gramps/gen/datehandler/_datedisplay.py:509
 msgctxt "about-date"
 msgid ""
-msgstr "about"
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "estimated <Month>" in your language, DON'T translate this.
@@ -2419,7 +2419,7 @@ msgstr "about"
 #: ../gramps/gen/datehandler/_datedisplay.py:514
 msgctxt "estimated-date"
 msgid ""
-msgstr "estimated"
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "calculated <Month>" in your language, DON'T translate this.
@@ -2427,7 +2427,7 @@ msgstr "estimated"
 #: ../gramps/gen/datehandler/_datedisplay.py:519
 msgctxt "calculated-date"
 msgid ""
-msgstr "calculated"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:539
 #, python-brace-format
@@ -7180,18 +7180,15 @@ msgid "unknown"
 msgstr "unknown"
 
 #: ../gramps/gen/lib/date.py:298
-#, fuzzy, python-format
-#| msgid "greater than"
+#, python-format
 msgid "greater than %s years"
-msgstr "greater than"
+msgstr "greater than %s years"
 
 #: ../gramps/gen/lib/date.py:303 ../gramps/gen/lib/date.py:334
 #: ../gramps/gen/lib/date.py:336 ../gramps/gen/lib/date.py:342
 #: ../gramps/gen/lib/date.py:369
-#, fuzzy
-#| msgid "greater than"
 msgid "more than"
-msgstr "greater than"
+msgstr "more than"
 
 #: ../gramps/gen/lib/date.py:305 ../gramps/gen/lib/date.py:323
 #: ../gramps/gen/lib/date.py:327 ../gramps/gen/lib/date.py:331
@@ -7220,14 +7217,12 @@ msgid "and"
 msgstr "and"
 
 #: ../gramps/gen/lib/date.py:329 ../gramps/gen/lib/date.py:349
-#, fuzzy
-#| msgid "less than 1"
 msgid "less than about"
-msgstr "less than 1"
+msgstr "less than about"
 
 #: ../gramps/gen/lib/date.py:340 ../gramps/gen/lib/date.py:347
 msgid "more than about"
-msgstr ""
+msgstr "more than about"
 
 #: ../gramps/gen/lib/date.py:456 ../gramps/gen/lib/date.py:463
 #, python-brace-format
@@ -7252,7 +7247,7 @@ msgstr[1] "{number_of} days"
 
 #: ../gramps/gen/lib/date.py:489
 msgid "0 days"
-msgstr ""
+msgstr "0 days"
 
 #: ../gramps/gen/lib/date.py:764
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:76
@@ -9333,10 +9328,8 @@ msgid "Expert"
 msgstr "Expert"
 
 #: ../gramps/gen/plug/_pluginreg.py:116
-#, fuzzy
-#| msgid "Quick View"
 msgid "Quick view"
-msgstr "Quick View"
+msgstr "Quick view"
 
 #: ../gramps/gen/plug/_pluginreg.py:117
 msgid "Tool"
@@ -9351,16 +9344,12 @@ msgid "Exporter"
 msgstr "Exporter"
 
 #: ../gramps/gen/plug/_pluginreg.py:120
-#, fuzzy
-#| msgid "Doc creator"
 msgid "Document creator"
-msgstr "Doc creator"
+msgstr "Document creator"
 
 #: ../gramps/gen/plug/_pluginreg.py:121
-#, fuzzy
-#| msgid "Plugin lib"
 msgid "Plugin library"
-msgstr "Plugin lib"
+msgstr "Plugin library"
 
 #: ../gramps/gen/plug/_pluginreg.py:122
 msgid "Map service"
@@ -9373,10 +9362,8 @@ msgid "View"
 msgstr "View"
 
 #: ../gramps/gen/plug/_pluginreg.py:124
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Relationship calculator"
-msgstr "Relationship Calculator"
+msgstr "Relationship calculator"
 
 #: ../gramps/gen/plug/_pluginreg.py:125 ../gramps/gen/plug/_pluginreg.py:513
 #: ../gramps/gui/glade/grampletpane.glade:156
@@ -10194,10 +10181,8 @@ msgid "The basic style used for the endnotes reference notes display."
 msgstr "The basic style used for the endnotes reference notes display."
 
 #: ../gramps/gen/plug/report/endnotes.py:163
-#, fuzzy
-#| msgid "Include notes"
 msgid "Endnotes"
-msgstr "Include notes"
+msgstr "Endnotes"
 
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/gen/plug/report/endnotes.py:181
@@ -10568,16 +10553,12 @@ msgid "spouse"
 msgstr "spouse"
 
 #: ../gramps/gen/relationship.py:2468
-#, fuzzy
-#| msgid "husband"
 msgid "ex-husband"
-msgstr "husband"
+msgstr "ex-husband"
 
 #: ../gramps/gen/relationship.py:2470
-#, fuzzy
-#| msgid "wife"
 msgid "ex-wife"
-msgstr "wife"
+msgstr "ex-wife"
 
 #: ../gramps/gen/relationship.py:2472
 msgctxt "gender unknown"
@@ -11363,7 +11344,7 @@ msgstr "Spanish"
 
 #: ../gramps/gen/utils/win32locale.py:59
 msgid "Farsi"
-msgstr ""
+msgstr "Farsi"
 
 #: ../gramps/gen/utils/win32locale.py:60
 msgid "Finnish"
@@ -11379,7 +11360,7 @@ msgstr "Gaelic"
 
 #: ../gramps/gen/utils/win32locale.py:64
 msgid "Galician"
-msgstr ""
+msgstr "Galician"
 
 #: ../gramps/gen/utils/win32locale.py:65
 msgid "Hebrew"
@@ -12174,22 +12155,16 @@ msgid "Calendar on input"
 msgstr "Calendar on input"
 
 #: ../gramps/gui/configure.py:1602
-#, fuzzy
-#| msgid "on the previous day"
 msgid "On the previous day"
-msgstr "on the previous day"
+msgstr "On the previous day"
 
 #: ../gramps/gui/configure.py:1603
-#, fuzzy
-#| msgid "on the next day"
 msgid "On the next day"
-msgstr "on the next day"
+msgstr "On the next day"
 
 #: ../gramps/gui/configure.py:1604
-#, fuzzy
-#| msgid "only on leap years"
 msgid "Only on leap years"
-msgstr "only on leap years"
+msgstr "Only on leap years"
 
 #: ../gramps/gui/configure.py:1611
 msgid ""
@@ -18781,10 +18756,8 @@ msgstr "Requires"
 
 #: ../gramps/gui/plug/_windows.py:263 ../gramps/gui/plug/_windows.py:395
 #: ../gramps/gui/plug/_windows.py:594
-#, fuzzy
-#| msgid "Updated"
 msgid "Update"
-msgstr "Updated"
+msgstr "Update"
 
 #: ../gramps/gui/plug/_windows.py:286
 msgid "Module installation failed"
@@ -18807,40 +18780,28 @@ msgid "Filters"
 msgstr "Filters"
 
 #: ../gramps/gui/plug/_windows.py:392
-#, fuzzy
-#| msgid "Addons"
 msgid "All addons"
-msgstr "Addons"
+msgstr "All addons"
 
 #: ../gramps/gui/plug/_windows.py:393 ../gramps/gui/plug/_windows.py:588
-#, fuzzy
-#| msgid "installed"
 msgid "Uninstalled"
-msgstr "installed"
+msgstr "Uninstalled"
 
 #: ../gramps/gui/plug/_windows.py:394 ../gramps/gui/plug/_windows.py:591
-#, fuzzy
-#| msgid "installed"
 msgid "Installed"
-msgstr "installed"
+msgstr "Installed"
 
 #: ../gramps/gui/plug/_windows.py:407
-#, fuzzy
-#| msgid "All files"
 msgid "All types"
-msgstr "All files"
+msgstr "All types"
 
 #: ../gramps/gui/plug/_windows.py:415
-#, fuzzy
-#| msgid "Audience"
 msgid "All audiences"
-msgstr "Audience"
+msgstr "All audiences"
 
 #: ../gramps/gui/plug/_windows.py:422
-#, fuzzy
-#| msgid " state"
 msgid "All statuses"
-msgstr " state"
+msgstr "All statuses"
 
 #: ../gramps/gui/plug/_windows.py:443
 msgid "Settings"
@@ -18851,10 +18812,8 @@ msgid "Projects"
 msgstr "Projects"
 
 #: ../gramps/gui/plug/_windows.py:489 ../gramps/gui/plug/_windows.py:599
-#, fuzzy
-#| msgid "Projects"
 msgid "All projects"
-msgstr "Projects"
+msgstr "All projects"
 
 #: ../gramps/gui/plug/_windows.py:501
 msgid "Loading..."
@@ -18931,14 +18890,12 @@ msgid "Project name"
 msgstr "Project name"
 
 #: ../gramps/gui/plug/_windows.py:886
-#, fuzzy
-#| msgid "Restore to defaults"
 msgid "Restore project defaults"
-msgstr "Restore to defaults"
+msgstr "Restore project defaults"
 
 #: ../gramps/gui/plug/_windows.py:887
 msgid "Are you sure?"
-msgstr ""
+msgstr "Are you sure?"
 
 #: ../gramps/gui/plug/_windows.py:911
 msgid "Checking Addons Failed"
@@ -19142,12 +19099,8 @@ msgstr[0] "{number_of} addon was installed."
 msgstr[1] "{number_of} addons were installed."
 
 #: ../gramps/gui/plug/_windows.py:2224
-#, fuzzy
-#| msgid ""
-#| "If you have installed a 'Gramps View', you will need to restart Gramps."
 msgid "If you have installed a 'View', you will need to restart Gramps."
-msgstr ""
-"If you have installed a 'Gramps View', you will need to restart Gramps."
+msgstr "If you have installed a 'View', you will need to restart Gramps."
 
 #: ../gramps/gui/plug/_windows.py:2232
 msgid "No addons were installed."
@@ -20156,10 +20109,8 @@ msgid "Would you like to run the Check and Repair tool?"
 msgstr "Would you like to run the Check and Repair tool?"
 
 #: ../gramps/gui/viewmanager.py:1286 ../gramps/gui/viewmanager.py:1904
-#, fuzzy
-#| msgid "Please, wait before closing gramps"
 msgid "Please wait for backup to complete."
-msgstr "Please, wait before closing gramps"
+msgstr "Please wait for backup to complete."
 
 #: ../gramps/gui/viewmanager.py:1288 ../gramps/gui/viewmanager.py:1292
 msgid "Autobackup..."
@@ -22219,14 +22170,12 @@ msgid "Flip names for generations 2, 3 and 4 i.e. those found in circles"
 msgstr "Flip names for generations 2, 3 and 4 i.e. those found in circles"
 
 #: ../gramps/plugins/drawreport/fanchart.py:854
-#, fuzzy
-#| msgid "The title of the calendar"
 msgid "Exclude the title of the chart"
-msgstr "The title of the calendar"
+msgstr "Exclude the title of the chart"
 
 #: ../gramps/plugins/drawreport/fanchart.py:855
 msgid "Exclude the title to make more room for the chart"
-msgstr ""
+msgstr "Exclude the title to make more room for the chart"
 
 #: ../gramps/plugins/drawreport/fanchart.py:910
 #, python-format
@@ -31200,10 +31149,9 @@ msgstr "Couple with biggest age difference"
 
 #. Translators: used in French+Russian, ignore otherwise
 #: ../gramps/plugins/lib/librecords.py:656
-#, fuzzy, python-format
-#| msgid "%(name1)s and %(name2)s"
+#, python-format
 msgid "\"%(callname)s\" (%(firstname)s)"
-msgstr "%(name1)s and %(name2)s"
+msgstr "\"%(callname)s\" (%(firstname)s)"
 
 #: ../gramps/plugins/lib/libtreebase.py:778
 msgid "Top Left"
@@ -37641,7 +37589,7 @@ msgstr "%(spouse)s and %(person)s"
 #: ../gramps/plugins/webreport/webcal.py:2315
 #, python-format
 msgid "%s old"
-msgstr ""
+msgstr "%s old"
 
 #: ../gramps/plugins/webreport/calendar.py:1447
 #: ../gramps/plugins/webreport/webcal.py:2331
@@ -37658,12 +37606,12 @@ msgstr "death"
 #: ../gramps/plugins/webreport/webcal.py:2338
 #, python-format
 msgid "%(couple)s, <em>wedding</em>"
-msgstr ""
+msgstr "%(couple)s, <em>wedding</em>"
 
 #: ../gramps/plugins/webreport/calendar.py:1466
 #: ../gramps/plugins/webreport/webcal.py:2347
 msgid "Until"
-msgstr ""
+msgstr "Until"
 
 #: ../gramps/plugins/webreport/calendar.py:1476
 #: ../gramps/plugins/webreport/webcal.py:2357
@@ -38568,34 +38516,24 @@ msgstr ""
 "pages..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2686
-#, fuzzy
-#| msgid "Google maps API key"
 msgid "Stamen maps API key"
-msgstr "Google maps API key"
+msgstr "Stamen maps API key"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2689
-#, fuzzy
-#| msgid ""
-#| "The API key used for the Google maps.\n"
-#| "This key is mandatory and must be valid"
 msgid ""
 "The API key used for the Stamen maps.\n"
 "This key is mandatory and must be valid"
 msgstr ""
-"The API key used for the Google maps.\n"
+"The API key used for the Stamen maps.\n"
 "This key is mandatory and must be valid"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2704
-#, fuzzy
-#| msgid ""
-#| "Copy and paste this value in your browser.\n"
-#| "The Google maps service must be selected."
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Stamen maps service must be selected."
 msgstr ""
 "Copy and paste this value in your browser.\n"
-"The Google maps service must be selected."
+"The Stamen maps service must be selected."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2721
 #, python-format
