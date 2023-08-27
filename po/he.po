@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-24 22:33+0100\n"
-"PO-Revision-Date: 2023-08-26 13:43+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2023-08-26 16:16+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -315,7 +315,7 @@ msgid ""
 msgstr ""
 "<b>עריכת עצמים<br/></b>ברוב המקרים הקשה כפולה על: שם, מקור, מקום או רשומת "
 "מדיה, תקפיץ חלון לעריכת העצם. לתשומת לב, התוצאה עשויה להיות תלויה בהקשר. "
-"לדוגמה, במצג משפחה, הקשה על הורה או צאצא, תשפעל את עורך קשרי־המשפחה."
+"לדוגמה, במצג משפחה, הקשה על הורה או צאצא, תקרא לעורך קשרי־המשפחה."
 
 #: ../data/tips.xml:8
 msgid ""
@@ -334,8 +334,8 @@ msgid ""
 "family can be set by using drag and drop. This order is preserved even when "
 "they do not have birth dates."
 msgstr ""
-"<b>סידור צאצאים במשפחה<br/></b>את סדר ילודת הצאצאים במשפחה ניתן להגדיר "
-"באמצעות גרירה ושחרור. סדר זה ישמר גם אם אין להם תאריכי לידה."
+"<b>סידור צאצאי משפחה<br/></b>ניתן להגדיר את סדר הצאצאים במשפחה על ידי גרירה "
+"ושחרור. הסדר יישמר גם אם הם חסרי תאריך לידה."
 
 #: ../data/tips.xml:12
 msgid ""
@@ -37785,12 +37785,12 @@ msgstr "האם לכלול עמודת הורים"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2517
 msgid "Include half and/or step-siblings on the individual pages"
-msgstr "הכללת אַחָאִים למחצה ו/או אַחָאִים חורגים בעמוד האישי"
+msgstr "הכללת אַחָאִים למחצה ו/או אַחָאִים שלובים בעמוד האישי"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2521
 msgid ""
 "Whether to include half and/or step-siblings with the parents and siblings"
-msgstr "האם לכלול אַחָאִים למחצה ו/או אַחָאִים חורגים עם ההורים והצאצאים"
+msgstr "האם לכלול אַחָאִים למחצה ו/או אַחָאִים שלובים לרבות ההורים והצאצאים"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2536
 msgid "Include family pages"
