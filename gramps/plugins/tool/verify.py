@@ -43,6 +43,7 @@ options are defined (and read in) is not done the way it would be now.
 
 import os
 import pickle
+import statistics
 from hashlib import md5
 
 # ------------------------------------------------------------------------
@@ -162,10 +163,7 @@ def get_date_from_event_type(db, person, event_type, estimate=False):
     for event_ref in person.get_event_ref_list():
         event = find_event(db, event_ref.ref)
         if event:
-            if (
-                event_ref.get_role() != EventRoleType.PRIMARY
-                and event.get_type() == EventType.BURIAL
-            ):
+            if event_ref.get_role() != EventRoleType.PRIMARY:
                 continue
             if event.get_type() == event_type:
                 date_obj = event.get_date_object()
@@ -179,20 +177,15 @@ def get_date_from_event_type(db, person, event_type, estimate=False):
 
 def get_bapt_date(db, person, estimate=False):
     """get a person's baptism date"""
-    return get_date_from_event_type(db, person, EventType.BAPTISM, estimate)
+    bapt_date = get_date_from_event_type(db, person, EventType.BAPTISM, estimate)
+    if bapt_date == 0:
+        return get_date_from_event_type(db, person, EventType.CHRISTEN, estimate)
+    return bapt_date
 
 
 def get_bury_date(db, person, estimate=False):
     """get a person's burial date"""
-    # check role on burial event
-    for event_ref in person.get_event_ref_list():
-        event = find_event(db, event_ref.ref)
-        if (
-            event
-            and event.get_type() == EventType.BURIAL
-            and event_ref.get_role() == EventRoleType.PRIMARY
-        ):
-            return get_date_from_event_type(db, person, EventType.BURIAL, estimate)
+    return get_date_from_event_type(db, person, EventType.BURIAL, estimate)
 
 
 def get_birth_date(db, person, estimate=False):
@@ -293,6 +286,21 @@ def get_marriage_date(db, family):
     for event_ref in family.get_event_ref_list():
         event = find_event(db, event_ref.ref)
         if event.get_type() == EventType.MARRIAGE and (
+            event_ref.get_role() == EventRoleType.FAMILY
+            or event_ref.get_role() == EventRoleType.PRIMARY
+        ):
+            date_obj = event.get_date_object()
+            return date_obj.get_sort_value()
+    return 0
+
+
+def get_divorce_date(db, family):
+    """get a family's divorce date"""
+    if not family:
+        return 0
+    for event_ref in family.get_event_ref_list():
+        event = find_event(db, event_ref.ref)
+        if event.get_type() == EventType.DIVORCE and (
             event_ref.get_role() == EventRoleType.FAMILY
             or event_ref.get_role() == EventRoleType.PRIMARY
         ):
@@ -473,6 +481,11 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
                 BirthEqualsDeath(self.db, person),
                 BirthEqualsMarriage(self.db, person),
                 DeathEqualsMarriage(self.db, person),
+                BaptTooLate(self.db, person),
+                BuryTooLate(self.db, person),
+                FamilyOrderIncorrect(self.db, person, estimate_age),
+                PersonHasEventsOfTypeUnknown(self.db, person),
+                PersonHasEventsInWrongOrder(self.db, person, estimate_age)
             ]
 
             for rule in rule_list:
@@ -504,6 +517,9 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
                 LargeChildrenSpan(self.db, family, cbspan, estimate_age),
                 LargeChildrenAgeDiff(self.db, family, cspace, estimate_age),
                 MarriedRelation(self.db, family),
+                ChildrenOrderIncorrect(self.db, family, estimate_age),
+                FamilyHasEventsOfTypeUnknown(self.db, family),
+                FamilyHasEventsInWrongOrder(self.db, family, estimate_age)
             ]
 
             for rule in rule_list:
@@ -2160,7 +2176,7 @@ class BirthEqualsDeath(PersonRule):
 
     def get_message(self):
         """return the rule's error message"""
-        return _("Birth equals death")
+        return _("Birth date equals death date")
 
 
 class BirthEqualsMarriage(PersonRule):
@@ -2181,7 +2197,7 @@ class BirthEqualsMarriage(PersonRule):
 
     def get_message(self):
         """return the rule's error message"""
-        return _("Birth equals marriage")
+        return _("Birth date equals marriage date")
 
 
 class DeathEqualsMarriage(PersonRule):
@@ -2202,4 +2218,271 @@ class DeathEqualsMarriage(PersonRule):
 
     def get_message(self):
         """return the rule's error message"""
-        return _("Death equals marriage")
+        return _("Death date equals marriage date")
+
+class BaptTooLate(PersonRule):
+    """test if a person's baptism date is too late considering family tradition"""
+
+    ID = 36
+    SEVERITY = Rule.WARNING
+
+    def broken(self):
+        parents = self.obj.get_parent_family_handle_list()
+        if len(parents) != 1:
+            # only check if the person has exactly one parent family
+            return False
+
+        family = find_family(self.db, parents[0])
+        if not family:
+            # family not found?
+            return False
+
+        children = family.get_child_ref_list()
+        if len(children) <= 1:
+            # only one child? nothing to compare with...
+            return False
+
+        birth_date = get_birth_date(self.db, self.obj, False)
+        bapt_date = get_bapt_date(self.db, self.obj, False)
+        birth_ok = birth_date > 0 if birth_date is not None else False
+        bapt_ok = bapt_date > 0 if bapt_date is not None else False
+        if not birth_ok or not bapt_ok or bapt_date < birth_date:
+            # return on invalid or incomplete data of the test subject
+            return False
+        birth_bapt_distance = bapt_date - birth_date
+
+        child_birth_bapt_distances = []
+        for childref in children:
+            if int(childref.get_mother_relation()) == ChildRefType.BIRTH:
+                child = find_person(self.db, childref.ref)
+                if self.obj.get_gramps_id() == child.get_gramps_id():
+                    continue
+                birth_date = get_birth_date(self.db, child, False)
+                bapt_date = get_bapt_date(self.db, child, False)
+                birth_ok = birth_date > 0 if birth_date is not None else False
+                bapt_ok = bapt_date > 0 if bapt_date is not None else False
+                if birth_ok and bapt_ok and bapt_date >= birth_date:
+                    # only collect valid and complete data
+                    child_birth_bapt_distances.append(bapt_date - birth_date)
+
+        if len(child_birth_bapt_distances) == 0:
+            # only continue if we have collected some distances
+            return False
+
+        median_birth_bapt_distance = statistics.median(child_birth_bapt_distances)
+
+        # TODO: make this a parameter? "baptism distance grace period in days"
+        if birth_bapt_distance > median_birth_bapt_distance + 120:
+            return True
+
+        return False
+
+    def get_message(self):
+        """return the rule's error message"""
+        return _("Baptism too late according to family tradition")
+
+class BuryTooLate(PersonRule):
+    """test if a person's burial date is too late"""
+
+    ID = 37
+    SEVERITY = Rule.WARNING
+
+    def broken(self):
+        death_date = get_death_date(self.db, self.obj, False)
+        bury_date = get_bury_date(self.db, self.obj, False)
+        death_ok = death_date > 0 if death_date is not None else False
+        bury_ok = bury_date > 0 if bury_date is not None else False
+        if not death_ok or not bury_ok or bury_date < death_date:
+            return False
+
+        death_bury_distance = bury_date - death_date
+        # TODO: make this a parameter? "Maximum number of days between death and burial"
+        if death_bury_distance > 14:
+            return True
+
+        return False
+
+    def get_message(self):
+        """return the rule's error message"""
+        return _("Burial too late")
+
+class ChildrenOrderIncorrect(FamilyRule):
+    """test if children are ordered incorrectly within a family"""
+
+    ID = 38
+    SEVERITY = Rule.ERROR
+
+    def __init__(self, db, obj, est):
+        """initialize the rule"""
+        FamilyRule.__init__(self, db, obj)
+        self.est = est
+
+    def _get_params(self):
+        """return the rule's parameters"""
+        return (self.est,)
+
+    def broken(self):
+        children = self.obj.get_child_ref_list()
+        if len(children) <= 1:
+            # only one child? nothing to do...
+            return False
+
+        prev_birth_date = 0
+        for childref in children:
+            if int(childref.get_mother_relation()) == ChildRefType.BIRTH:
+                child = find_person(self.db, childref.ref)
+                birth_date = get_birth_date(self.db, child, self.est)
+                birth_ok = birth_date > 0 if birth_date is not None else False
+                if birth_ok and birth_date < prev_birth_date:
+                    return True
+                prev_birth_date = birth_date
+
+        return False
+
+    def get_message(self):
+        return _("Children are not in chronological order")
+
+class FamilyOrderIncorrect(PersonRule):
+    """test if Families of a person ordered incorrectly"""
+
+    ID = 39
+    SEVERITY = Rule.WARNING
+
+    def __init__(self, db, obj, est):
+        """initialize the rule"""
+        PersonRule.__init__(self, db, obj)
+        self.est = est
+
+    def _get_params(self):
+        """return the rule's parameters"""
+        return (self.est,)
+
+    def broken(self):
+        families = self.obj.get_family_handle_list()
+        if len(families) < 2:
+            # only check if the person has more than one families
+            return False
+
+        prev_compare_date = 0
+        for fhandle in families:
+            family = find_family(self.db, fhandle)
+            if not family:
+                # family not found?
+                continue
+
+            compare_date = 0
+            # first try with marriage date for comparison
+            marr_date = get_marriage_date(self.db, family)
+            marr_ok = marr_date > 0 if marr_date is not None else False
+            if marr_ok:
+                compare_date = marr_date
+            else:
+                # if there is no, take the divorce date
+                div_date = get_divorce_date(self.db, family)
+                div_ok = div_date > 0 if div_date is not None else False
+                if div_ok:
+                    compare_date = div_date
+                else:
+                    # if there is no, check for the birth date of the oldest child
+                    for childref in family.get_child_ref_list():
+                        if int(childref.get_mother_relation()) == ChildRefType.BIRTH:
+                            child = find_person(self.db, childref.ref)
+                            birth_date = get_birth_date(self.db, child, self.est)
+                            birth_ok = birth_date > 0 if birth_date is not None else False
+                            if ( birth_ok
+                                 and birth_date < compare_date or compare_date == 0
+                            ):
+                                compare_date = birth_date
+            if compare_date != 0 and compare_date < prev_compare_date:
+                return True
+            prev_compare_date = compare_date
+        return False
+
+    def get_message(self):
+        return _("Families are not in chronological order")
+
+class FamilyHasEventsOfTypeUnknown(FamilyRule):
+    """test if the family has events of role Unknown"""
+
+    ID = 40
+    SEVERITY = Rule.ERROR
+
+    def broken(self):
+        for event_ref in self.obj.get_event_ref_list():
+            event = find_event(self.db, event_ref.ref)
+            if event and event_ref.get_role() == EventRoleType.UNKNOWN:
+                return True
+        return False
+
+    def get_message(self):
+        return _("Family has events of role Unknown")
+
+class PersonHasEventsOfTypeUnknown(PersonRule):
+    """test if the Person has events of role Unknown"""
+
+    ID = 41
+    SEVERITY = Rule.ERROR
+
+    def broken(self):
+        for event_ref in self.obj.get_event_ref_list():
+            event = find_event(self.db, event_ref.ref)
+            if event and event_ref.get_role() == EventRoleType.UNKNOWN:
+                return True
+        return False
+
+    def get_message(self):
+        return _("Person has events of role Unknown")
+
+class FamilyHasEventsInWrongOrder(FamilyRule):
+    """test if the family has events in wrong order"""
+
+    ID = 42
+    SEVERITY = Rule.ERROR
+
+    def __init__(self, db, obj, est):
+        """initialize the rule"""
+        FamilyRule.__init__(self, db, obj)
+        self.est = est
+
+    def _get_params(self):
+        """return the rule's parameters"""
+        return (self.est,)
+
+    def broken(self):
+        prev_date = 0
+        for event_ref in self.obj.get_event_ref_list():
+            event_date = get_date_from_event_handle(self.db, event_ref.ref, self.est)
+            if prev_date > event_date > 0:
+                return True
+            prev_date = event_date
+        return False
+
+    def get_message(self):
+        return _("Family events are not in chronological order")
+
+class PersonHasEventsInWrongOrder(PersonRule):
+    """test if the person has events in wrong order"""
+
+    ID = 43
+    SEVERITY = Rule.ERROR
+
+    def __init__(self, db, obj, est):
+        """initialize the rule"""
+        PersonRule.__init__(self, db, obj)
+        self.est = est
+
+    def _get_params(self):
+        """return the rule's parameters"""
+        return (self.est,)
+
+    def broken(self):
+        prev_date = 0
+        for event_ref in self.obj.get_event_ref_list():
+            event_date = get_date_from_event_handle(self.db, event_ref.ref, self.est)
+            if prev_date > event_date > 0:
+                return True
+            prev_date = event_date
+        return False
+
+    def get_message(self):
+        return _("Person events are not in chronological order")
