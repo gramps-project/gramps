@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-26 17:41+0100\n"
-"PO-Revision-Date: 2023-08-26 16:16+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2023-08-27 15:43+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -4607,13 +4607,13 @@ msgstr "שליפת משפחות שלמספר צאצאים שם התואם לבי
 
 #: ../gramps/gen/filters/rules/family/_regexpfathername.py:47
 msgid "Families with father matching the <regex_name>"
-msgstr "משפחות עם אב התואם ל <שם_ביטוי רגיל>"
+msgstr "משפחות עם אב שתואם לביטוי <שם_ביטוי רגיל>"
 
 #: ../gramps/gen/filters/rules/family/_regexpfathername.py:49
 msgid ""
 "Matches families whose father has a name matching a specified regular "
 "expression"
-msgstr "שליפת משפחות ששם האב תואם לביטוי רגיל שצוין"
+msgstr "שליפת משפחות בהן שם האב תואם לביטוי רגיל שצוין"
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:49
 msgid "Families with Id containing <text>"
@@ -4625,13 +4625,13 @@ msgstr "שליפת משפחות שמזהה גרמפס שלהם תאום לביט
 
 #: ../gramps/gen/filters/rules/family/_regexpmothername.py:47
 msgid "Families with mother matching the <regex_name>"
-msgstr "משפחות עם אם התואמת ל<שם_ביטוי רגיל>"
+msgstr "משפחות עם אם שתואמת לביטוי <שם_ביטוי רגיל>"
 
 #: ../gramps/gen/filters/rules/family/_regexpmothername.py:49
 msgid ""
 "Matches families whose mother has a name matching a specified regular "
 "expression"
-msgstr "שליפת משפחות ששם האם תואם לביטוי רגיל שצוין"
+msgstr "שליפת משפחות בהן שם האם תואם לביטוי רגיל שצוין"
 
 #: ../gramps/gen/filters/rules/family/_searchchildname.py:47
 msgid "Families with any child matching the <name>"
@@ -4891,7 +4891,7 @@ msgstr "הערות המכילות <מלל>"
 
 #: ../gramps/gen/filters/rules/note/_matchesregexpof.py:47
 msgid "Matches notes that contain a substring or match a regular expression"
-msgstr "שליפת הערות המכילות מחרוזת משנה או שליפת ביטוי רגיל"
+msgstr "שליפת הערות שמכילות מחרוזת משנה או תואמות לביטוי רגיל"
 
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:46
 msgid "Notes containing <substring>"
@@ -5340,8 +5340,8 @@ msgid ""
 "Soundex Match of people with a specified name. First name, Surname, Call "
 "name, and Nickname are searched in primary and alternate names."
 msgstr ""
-"התאמת סאונדאקס לאנשים עם שם שצוין. חיפוש מתבצע בשמות ראשיים וחלופיים, "
-"ובשמות; פרטיים, משפחה, ופניה"
+"התאמת סאונדאקס לאנשים בשם מסויים. חיפוש בסוגי שמות ראשיים וחלופיים, ובשמות "
+"פרטיים, משפחה, ופניה."
 
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:47
 msgid "People with <count> sources"
@@ -5767,7 +5767,7 @@ msgstr "אנשים בעלי שם התואמים ל<מלל>"
 msgid ""
 "Matches people's names containing a substring or matching a regular "
 "expression"
-msgstr "שליפת שמות אנשים המכילים מחרוזת משנה או התואמים לביטוי רגיל"
+msgstr "שליפת שמות אנשים שמכילים מחרוזת משנה או התואמים לביטוי רגיל"
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:48
 msgid "Relationship path between <persons>"
@@ -11943,7 +11943,7 @@ msgstr "עריכה"
 
 #: ../gramps/gui/configure.py:1421
 msgid "Automate Place format"
-msgstr "תסדיר מקום אוטומטית"
+msgstr "איטמוט תסדיר מקום"
 
 #: ../gramps/gui/configure.py:1428
 msgid "Enables automatic place title generation using specified format."
@@ -12556,7 +12556,7 @@ msgstr "לשונית"
 
 #: ../gramps/gui/csvdialect.py:82
 msgid "Choose your dialect"
-msgstr "נא לבחור ניב"
+msgstr "נא לבחור תסדיר"
 
 #: ../gramps/gui/csvdialect.py:85
 msgid ""
@@ -15942,12 +15942,12 @@ msgid ""
 "Note: several predefined attributes refer to values present in the GEDCOM "
 "standard."
 msgstr ""
-"התכונה בה יעשה שימוש. לדוגמה: גובה (לאדם), מזג אוויר ביום מסויים "
-"(לאירוע),... \n"
-"ניתן להשתמש באפשרות זו לאחסן גזירי מידע שנאסף קישורם למקורות האופן תקין.  "
-"ב'תכונות', ניתן להשתמש לאנשים, משפחות, אירועים ומדיה.\n"
+"שם התכונה בה יעשה שימוש. לדוגמה: גובה (לאנשים), מזג אוויר ביום מסויים "
+"(לאירועים),... \n"
+"ניתן להשתמש באפשרות זו לאחסן גזירי מידע שנאסף וקישורם למקורות באופן תקין.  "
+"ב'תכונות', ניתן להשתמש עבור אנשים, משפחות, אירועים ומדיה.\n"
 " \n"
-"הערה: כמה תכונות מוגדרות מראש, מתייחסות לערכים קיימים בתקן הג'דקום."
+"הערה: מספר תכונות שהוגדרו מראש, מתייחסות לשדות ערכים בתקן GEDCOM."
 
 #: ../gramps/gui/glade/editchildref.glade:97
 msgid "Relationship to _Mother:"
@@ -16004,7 +16004,7 @@ msgid ""
 "log/registry."
 msgstr ""
 "תאריך הרשומה בעצם המקור אליו נעשתה ההפניה, לדוגמה התאריך בו פקדו בבית מסויים "
-"ממפקד אוכלוסין , או התאריך בו עעשה הרישום ביומן/רשומות לידה."
+"ממפקד אוכלוסין , או התאריך בו בוצע הרישום ביומן/רשומות לידה."
 
 #: ../gramps/gui/glade/editcitation.glade:201
 msgid ""
@@ -17950,7 +17950,7 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Gdk,‏ Gtk,‏ Pango או PangoCairo typelib אינן מותקנות.\n"
+"החבליות, Gdk,‏ Gtk,‏ Pango או PangoCairo typelib לא מותקנות.\n"
 "יש להתקין Gnome Introspection, ואת pygobject בגרסה 3.12 ומעלה.\n"
 "לאחר מכן להתקין את introspection data עבור Gdk,‏ Gtk,‏ Pango ו־PangoCairo\n"
 "\n"
@@ -20061,7 +20061,7 @@ msgstr "עמודות"
 
 #: ../gramps/gui/views/listview.py:1457
 msgid "CSV Dialect"
-msgstr "עגת CSV"
+msgstr "תסדיר CSV"
 
 #: ../gramps/gui/views/navigationview.py:247
 #, python-format
