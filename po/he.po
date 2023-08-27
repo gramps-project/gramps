@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-24 22:33+0100\n"
+"POT-Creation-Date: 2023-08-26 17:41+0100\n"
 "PO-Revision-Date: 2023-08-26 16:16+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
@@ -447,8 +447,8 @@ msgid ""
 "Utilities &gt; Relationship Calculator...\". The exact relationship as well "
 "as all common ancestors are reported."
 msgstr ""
-"<b>מחשבון קשרי־משפחה<br/></b> כדי לבדוק אם שני אנשים במסד הנתונים קשורים ("
-"קרבת דם, לא נישואין) ניתן להשתמש בכלי מתפריט 'כלים > עזרים > מחשבון קשר־"
+"<b>מחשבון קשרי־משפחה<br/></b> כדי לבדוק אם שני אנשים במסד הנתונים קשורים "
+"(קרבת דם, לא נישואין) ניתן להשתמש בכלי מתפריט 'כלים > עזרים > מחשבון קשר־"
 "משפחה...'. מחשבון קשרי־המשפחה ידווח על מערכת היחסים המדויקת וגם על כל האבות "
 "הקדמונים המשותפים."
 
@@ -2267,9 +2267,6 @@ msgstr "{short_month} {year}"
 #. Translators: If there is no special inflection for
 #. "from <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "from" in ENGLISH!!! ENGLISH!!!
-#. Translators: If there is no special inflection for
-#. "after <Month>" in your language, DON'T translate this.
-#. Otherwise, translate to "after" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:413
 #: ../gramps/gen/datehandler/_datedisplay.py:499
 msgctxt "from-date"
@@ -2279,9 +2276,6 @@ msgstr "from"
 #. Translators: If there is no special inflection for
 #. "to <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "to" in ENGLISH!!! ENGLISH!!!
-#. Translators: If there is no special inflection for
-#. "after <Month>" in your language, DON'T translate this.
-#. Otherwise, translate to "after" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:420
 #: ../gramps/gen/datehandler/_datedisplay.py:504
 msgctxt "to-date"
@@ -3107,8 +3101,8 @@ msgstr ""
 "\n"
 "מומלץ בחום לגבות את אילן־היוחסין.\n"
 "\n"
-"אם אילן־היוחסין טרם גובה, יש לאתחל את גרמפס בגרסה הקודמת "
-"ו%(wiki_backup_html_start)לגבות%(html_end)s) את אילן־היוחסין."
+"אם אילן־היוחסין טרם גובה, יש לאתחל את גרמפס בגרסה הקודמת ו"
+"%(wiki_backup_html_start)לגבות%(html_end)s) את אילן־היוחסין."
 
 #: ../gramps/gen/db/generic.py:196 ../gramps/gen/db/generic.py:246
 #: ../gramps/gen/db/generic.py:2157
@@ -24256,8 +24250,8 @@ msgstr ""
 "כעת ניתן להתחיל להזין את נתוני ה'משפחה הראשונה', זה נעשה על ידי הזנת נתוני "
 "ה'אדם' הראשון.\n"
 "\n"
-"ממצג 'אנשים', מהתפריט, לחיצה על 'הוספה', לאחר מכן 'אדם' (או שימוש בסמל ה־[+])"
-" תפתח את חלון הזנת פרטי 'אדם'. הזנת המידע הבסיסי ושמירת הרשומה תייצר את "
+"ממצג 'אנשים', מהתפריט, לחיצה על 'הוספה', לאחר מכן 'אדם' (או שימוש בסמל ה־"
+"[+]) תפתח את חלון הזנת פרטי 'אדם'. הזנת המידע הבסיסי ושמירת הרשומה תייצר את "
 "נקודת המוצא לאילן־היוחסין. להרחבת הנתונים יש לבחור ברשומת 'אדם' זה ומעבר "
 "למצג קשרי־משפחה.\n"
 "\n"
