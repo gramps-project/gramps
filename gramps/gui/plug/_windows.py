@@ -289,7 +289,7 @@ class AddonRow(Gtk.ListBoxRow):
                 )
                 return
 
-        if not self.req.check(addon):
+        if not self.req.check_addon(addon):
             InfoDialog(
                 _("Module installation failed"),
                 _("Gramps was unable to install the required modules"),
