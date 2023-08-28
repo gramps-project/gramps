@@ -179,7 +179,7 @@ def write_endnotes(
         for ref, key, text in citation[1]:
             # Translators: needed for French, ignore otherwise
             doc.start_paragraph("Endnotes-Ref", trans_text("%s:") % key)
-            doc.write_text(key, links=links)
+            doc.write_text(text, links=links)
             doc.end_paragraph()
 
             if printnotes:
