@@ -289,6 +289,14 @@ class AddonRow(Gtk.ListBoxRow):
                 )
                 return
 
+        if not self.req.check(addon):
+            InfoDialog(
+                _("Module installation failed"),
+                _("Gramps was unable to install the required modules"),
+                parent=self.window,
+            )
+            return
+
         # Install addon
         path = addon["_u"] + "/download/" + addon["z"]
         load_addon_file(path)
