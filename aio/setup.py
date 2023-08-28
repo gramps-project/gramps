@@ -101,7 +101,7 @@ EXCLUDES = [
     "sip",
     "lib2to3",
     "PIL.ImageQt",
-    "pip",
+    # "pip",
     "distlib",
 ]
 
