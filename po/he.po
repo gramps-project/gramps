@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-26 17:41+0100\n"
 "PO-Revision-Date: 2023-08-28 13:18+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -12293,7 +12293,7 @@ msgstr "הגדרות מסד־נתונים"
 
 #: ../gramps/gui/configure.py:2203
 msgid "Database backend"
-msgstr "שרת מסד־נתונים"
+msgstr "מנגנון מסד־נתונים"
 
 #: ../gramps/gui/configure.py:2211
 msgid ""
@@ -12483,7 +12483,7 @@ msgstr "נא לבחור מחיצת מסד־נתונים"
 
 #: ../gramps/gui/configure.py:2528 ../gramps/gui/viewmanager.py:1942
 msgid "Select backup directory"
-msgstr "נא לבחור מחיצת גיבוי"
+msgstr "נא לבחור תיקיית גיבוי"
 
 #: ../gramps/gui/configure.py:2603
 msgid ""
@@ -12492,7 +12492,7 @@ msgid ""
 "If not checked, you can use the lower panel to customize the symbols "
 "yourself."
 msgstr ""
-"אם תיבת הסימון סומנה, ייעשה שימוש בסמלים גנאלוגיים תקניים (סמל 'פטירה' נתון "
+"אם תיבת הסימון סומנה, ייעשה שימוש בסמלי חקר־יוחסין תקניים (סמל 'פטירה' נתון "
 "לבחירת משתמש).\n"
 "אם לא סומנה, הלוח התחתון משמש להתאמת הסמלים באופן אישי."
 
@@ -12501,8 +12501,8 @@ msgid ""
 "This can be useful if you want to add phonetic in a note to show how to "
 "pronounce a name or if you mix multiple languages like greek and russian."
 msgstr ""
-"עשוי להיות שימושי במידה ומעוניינים להוסיף פונטיקה בהערות לאופן הגית שם או, "
-"במידה ומעורבות מספר שפות כמו יוונית ורוסית."
+"עשוי להיות שימושי אם מעוניינים להוסיף פונטיקה בהערות לאופן הגיית שם או, אם "
+"מעורבות מספר שפות כמו יוונית ורוסית."
 
 #: ../gramps/gui/configure.py:2616
 msgid "Use symbols"
@@ -12779,7 +12779,7 @@ msgstr "סוג מסד־נתונים"
 #: ../gramps/gui/dbman.py:540
 #, python-format
 msgid "Break the lock on the '%s' database?"
-msgstr "לבטל את הנעילה על מסד־הנתונים '%s'?"
+msgstr "לשחרר את הנעילה על מסד־הנתונים '%s'?"
 
 #: ../gramps/gui/dbman.py:542
 msgid ""
@@ -17781,7 +17781,7 @@ msgstr "לא _לבחור דבר"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "Books..."
-msgstr "ספרים..."
+msgstr "ספרים…"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "Configure the active view"
@@ -17805,7 +17805,7 @@ msgstr "רשימות־_דיוור של גרמפס"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "Make Backup..."
-msgstr "יצירת גיבוי..."
+msgstr "יצירת גיבוי…"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "Manage databases"
@@ -18739,7 +18739,7 @@ msgstr "ריענון רשימת תוספים"
 #: ../gramps/gui/plug/_windows.py:1207 ../gramps/gui/plug/_windows.py:1212
 #: ../gramps/gui/plug/_windows.py:1350
 msgid "Reading gramps-project.org..."
-msgstr "קריאת drnpx-project.org..."
+msgstr "gramps-project.org נקרא…"
 
 #: ../gramps/gui/plug/_windows.py:1230
 msgid "Checking addon..."
@@ -31600,7 +31600,7 @@ msgstr "הפנית קישור"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:244
 msgid "Display link references for a note"
-msgstr "הצגת קישור הפניות להערה"
+msgstr "הצגת הפניות קישור להערה"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:266
 msgid ""
