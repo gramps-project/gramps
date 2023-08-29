@@ -398,7 +398,7 @@ class AddonManager(ManagedWindow):
         self.addon_combo = Gtk.ComboBoxText()
         self.addon_combo.set_entry_text_column(0)
         self.addon_combo.append_text(_("All addons"))
-        self.addon_combo.append_text(_("Uninstalled"))
+        self.addon_combo.append_text(_("Not installed"))
         self.addon_combo.append_text(_("Installed"))
         self.addon_combo.append_text(_("Update"))
         self.addon_combo.set_active(0)
@@ -593,7 +593,7 @@ class AddonManager(ManagedWindow):
         audience_iter = self.audience_combo.get_active_iter()
         status_iter = self.status_combo.get_active_iter()
 
-        if addon_text == _("Uninstalled"):
+        if addon_text == _("Not installed"):
             if "_v" in row.addon:
                 return False
         if addon_text == _("Installed"):
