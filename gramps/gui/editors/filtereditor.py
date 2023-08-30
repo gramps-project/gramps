@@ -903,6 +903,7 @@ class EditFilter(ManagedWindow):
 
         objectlist = self.get_widget("rule_list")
         self.rule_list = PersistentTreeView(uistate, "filt_rule")
+        self.rule_list.set_vexpand(True)
         scrolledwindow = self.get_widget("scrolledwindow1")
         scrolledwindow.remove(objectlist)
         scrolledwindow.add(self.rule_list)
