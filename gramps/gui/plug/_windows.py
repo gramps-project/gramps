@@ -203,8 +203,18 @@ class AddonRow(Gtk.ListBoxRow):
         context = self.get_style_context()
         context.add_class("addon-row")
 
-        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        vbox.set_spacing(6)
+        self.vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        self.vbox.set_spacing(6)
+        self.__build_gui(self.vbox, self.addon, self.req)
+        self.add(self.vbox)
+        self.show_all()
+
+    def __build_gui(self, vbox, addon, req):
+        """
+        Build the GUI for this addon row.
+        """
+        for child in vbox.get_children():
+            vbox.remove(child)
 
         text = escape(addon["n"])
         title = Gtk.Label()
@@ -265,9 +275,7 @@ class AddonRow(Gtk.ListBoxRow):
             bb.pack_end(b4, False, False, 0)
 
         vbox.pack_start(bb, False, False, 0)
-
-        self.add(vbox)
-        self.show_all()
+        vbox.show_all()
 
     def __on_install_clicked(self, button, addon):
         """
@@ -301,7 +309,13 @@ class AddonRow(Gtk.ListBoxRow):
         path = addon["_u"] + "/download/" + addon["z"]
         load_addon_file(path)
         self.manager.install_addon(addon["i"])
-        self.manager.refresh()
+
+        # Refresh this row
+        pmgr = GuiPluginManager.get_instance()
+        plugin = pmgr.get_plugin(addon["i"])
+        if plugin:
+            self.addon["_v"] = plugin.version
+        self.__build_gui(self.vbox, self.addon, self.req)
 
     def __on_wiki_clicked(self, button, url):
         """
