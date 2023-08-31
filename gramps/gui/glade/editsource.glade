@@ -208,12 +208,12 @@
                     <property name="spacing">12</property>
                     <child>
                       <object class="UndoableEntry" id="gid">
-                        <property name="width_request">75</property>
+                        <property name="width_request">175</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">A unique ID to identify the source</property>
                         <property name="invisible_char">●</property>
-                        <property name="width_chars">6</property>
+                        <property name="width_chars">12</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>

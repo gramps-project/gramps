@@ -627,12 +627,12 @@ Indicate that the surname consists of different parts. Every surname has its own
                         </child>
                         <child>
                           <object class="UndoableEntry" id="gid">
-                            <property name="width_request">75</property>
+                            <property name="width_request">130</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="tooltip_text" translatable="yes">A unique ID for the person.</property>
                             <property name="invisible_char">●</property>
-                            <property name="width_chars">6</property>
+                            <property name="width_chars">10</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>

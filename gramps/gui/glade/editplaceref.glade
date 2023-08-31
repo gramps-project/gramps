@@ -490,12 +490,12 @@ You can set these values via the Geography View by searching the place, or via a
                         <property name="spacing">6</property>
                         <child>
                           <object class="UndoableEntry" id="gid">
-                            <property name="width_request">75</property>
+                            <property name="width_request">200</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="tooltip_text" translatable="yes">A unique ID to identify the place</property>
                             <property name="invisible_char">●</property>
-                            <property name="width_chars">6</property>
+                            <property name="width_chars">15</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
