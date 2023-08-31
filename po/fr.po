@@ -43,7 +43,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-26 17:41+0100\n"
+"POT-Creation-Date: 2023-08-29 23:01+0100\n"
 "PO-Revision-Date: 2023-08-26 20:29+0000\n"
 "Last-Translator: Jean-Marc <m.balthazar@posteo.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
@@ -1652,7 +1652,7 @@ msgstr "Erreur dans l'analyse des arguments"
 
 #: ../gramps/cli/clidbman.py:73 ../gramps/cli/clidbman.py:172
 #: ../gramps/cli/clidbman.py:174 ../gramps/gui/clipboard.py:201
-#: ../gramps/gui/clipboard.py:202 ../gramps/gui/plug/_windows.py:1452
+#: ../gramps/gui/clipboard.py:202 ../gramps/gui/plug/_windows.py:1459
 msgid "Unavailable"
 msgstr "Non disponible"
 
@@ -1698,8 +1698,8 @@ msgstr "Arbre familial « %s » :"
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/cli/clidbman.py:222 ../gramps/gen/plug/report/utils.py:182
 #: ../gramps/gui/editors/editattribute.py:140
-#: ../gramps/gui/editors/editname.py:344 ../gramps/gui/plug/_windows.py:1657
-#: ../gramps/gui/plug/_windows.py:2101
+#: ../gramps/gui/editors/editname.py:341 ../gramps/gui/plug/_windows.py:1664
+#: ../gramps/gui/plug/_windows.py:2108
 #: ../gramps/plugins/gramplet/whatsnext.py:495
 #: ../gramps/plugins/textreport/birthdayreport.py:213
 #: ../gramps/plugins/textreport/birthdayreport.py:218
@@ -1777,7 +1777,7 @@ msgstr ""
 "\n"
 
 #: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2281
-#: ../gramps/gui/plug/_windows.py:722
+#: ../gramps/gui/plug/_windows.py:729
 msgid "Never"
 msgstr "Jamais"
 
@@ -7273,8 +7273,8 @@ msgstr "Notes"
 #: ../gramps/gui/glade/editmedia.glade:254
 #: ../gramps/gui/glade/editmediaref.glade:582
 #: ../gramps/gui/glade/editmediaref.glade:592
-#: ../gramps/gui/glade/editname.glade:571
-#: ../gramps/gui/glade/editname.glade:581
+#: ../gramps/gui/glade/editname.glade:572
+#: ../gramps/gui/glade/editname.glade:582
 #: ../gramps/gui/glade/editplacename.glade:132
 #: ../gramps/gui/glade/editplacename.glade:142
 #: ../gramps/gui/selectors/selectevent.py:69
@@ -7467,8 +7467,8 @@ msgstr "Rang ou état"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:68
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:113
 #: ../gramps/gui/glade/rule.glade:931 ../gramps/gui/glade/styleeditor.glade:278
-#: ../gramps/gui/plug/_windows.py:1018 ../gramps/gui/plug/_windows.py:1133
-#: ../gramps/gui/plug/_windows.py:1595 ../gramps/gui/plug/_windows.py:2088
+#: ../gramps/gui/plug/_windows.py:1025 ../gramps/gui/plug/_windows.py:1140
+#: ../gramps/gui/plug/_windows.py:1602 ../gramps/gui/plug/_windows.py:2095
 #: ../gramps/gui/selectors/selectevent.py:71
 #: ../gramps/plugins/gramplet/coordinates.py:100
 #: ../gramps/plugins/gramplet/events.py:103
@@ -8751,8 +8751,8 @@ msgstr "Union civile"
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:118
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:114
 #: ../gramps/gui/merge/mergeperson.py:273 ../gramps/gui/plug/_windows.py:220
-#: ../gramps/gui/plug/_windows.py:1007 ../gramps/gui/plug/_windows.py:1130
-#: ../gramps/gui/plug/_windows.py:2086
+#: ../gramps/gui/plug/_windows.py:1014 ../gramps/gui/plug/_windows.py:1137
+#: ../gramps/gui/plug/_windows.py:2093
 #: ../gramps/gui/plug/report/_bookdialog.py:398
 #: ../gramps/gui/plug/report/_bookdialog.py:402
 #: ../gramps/gui/selectors/selectevent.py:67
@@ -8898,8 +8898,8 @@ msgstr "Temple"
 #: ../gramps/gen/lib/ldsord.py:206 ../gramps/gui/dbman.py:419
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:54
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:64
-#: ../gramps/gui/plug/_windows.py:224 ../gramps/gui/plug/_windows.py:1011
-#: ../gramps/gui/plug/_windows.py:1073
+#: ../gramps/gui/plug/_windows.py:224 ../gramps/gui/plug/_windows.py:1018
+#: ../gramps/gui/plug/_windows.py:1080
 #: ../gramps/plugins/quickview/ageondate.py:54
 #: ../gramps/plugins/textreport/indivcomplete.py:531
 #: ../gramps/plugins/textreport/indivcomplete.py:736
@@ -8909,7 +8909,7 @@ msgid "Status"
 msgstr "État"
 
 #: ../gramps/gen/lib/location.py:89 ../gramps/gen/lib/nameorigintype.py:88
-#: ../gramps/gui/clipboard.py:331 ../gramps/gui/plug/_windows.py:1600
+#: ../gramps/gui/clipboard.py:331 ../gramps/gui/plug/_windows.py:1607
 msgid "Location"
 msgstr "Emplacement"
 
@@ -8957,14 +8957,14 @@ msgstr "Région"
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:64
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:61
 #: ../gramps/gui/editors/editfamily.py:139
-#: ../gramps/gui/editors/editname.py:344
+#: ../gramps/gui/editors/editname.py:341
 #: ../gramps/gui/editors/filtereditor.py:912
 #: ../gramps/gui/editors/filtereditor.py:1092
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:158
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:117
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:113
-#: ../gramps/gui/plug/_guioptions.py:1185 ../gramps/gui/plug/_windows.py:1014
-#: ../gramps/gui/plug/_windows.py:2087
+#: ../gramps/gui/plug/_guioptions.py:1185 ../gramps/gui/plug/_windows.py:1021
+#: ../gramps/gui/plug/_windows.py:2094
 #: ../gramps/gui/plug/report/_bookdialog.py:398
 #: ../gramps/gui/selectors/selectperson.py:99
 #: ../gramps/gui/selectors/selectplace.py:68
@@ -9221,12 +9221,12 @@ msgstr "Format"
 #: ../gramps/gui/glade/editeventref.glade:601
 #: ../gramps/gui/glade/editmediaref.glade:342
 #: ../gramps/gui/glade/editmediaref.glade:756
-#: ../gramps/gui/glade/editname.glade:671
+#: ../gramps/gui/glade/editname.glade:672
 #: ../gramps/gui/glade/editperson.glade:382
 #: ../gramps/gui/glade/editplaceref.glade:161
 #: ../gramps/gui/glade/editplaceref.glade:665
 #: ../gramps/gui/glade/editreporef.glade:225
-#: ../gramps/gui/glade/editreporef.glade:445 ../gramps/gui/plug/_windows.py:686
+#: ../gramps/gui/glade/editreporef.glade:445 ../gramps/gui/plug/_windows.py:693
 #: ../gramps/plugins/tool/verify.glade:406
 msgid "General"
 msgstr "Général"
@@ -9908,7 +9908,7 @@ msgid "Priority"
 msgstr "Priorité"
 
 #: ../gramps/gen/lib/url.py:90 ../gramps/gui/clipboard.py:428
-#: ../gramps/gui/plug/_windows.py:796
+#: ../gramps/gui/plug/_windows.py:803
 msgid "Url"
 msgstr "URL"
 
@@ -12515,8 +12515,8 @@ msgstr "Édition de l'affichage des noms"
 #: ../gramps/gui/glade/plugins.glade:22 ../gramps/gui/glade/rule.glade:24
 #: ../gramps/gui/glade/rule.glade:1024 ../gramps/gui/glade/tipofday.glade:117
 #: ../gramps/gui/glade/updateaddons.glade:25 ../gramps/gui/grampsgui.py:58
-#: ../gramps/gui/plug/_windows.py:356 ../gramps/gui/plug/_windows.py:984
-#: ../gramps/gui/plug/_windows.py:1663 ../gramps/gui/plug/_windows.py:1723
+#: ../gramps/gui/plug/_windows.py:364 ../gramps/gui/plug/_windows.py:991
+#: ../gramps/gui/plug/_windows.py:1670 ../gramps/gui/plug/_windows.py:1730
 #: ../gramps/gui/plug/quick/_textbufdoc.py:71 ../gramps/gui/undohistory.py:88
 #: ../gramps/gui/viewmanager.py:1801 ../gramps/gui/views/bookmarks.py:316
 #: ../gramps/gui/views/tags.py:523 ../gramps/gui/widgets/grampletbar.py:720
@@ -12621,8 +12621,8 @@ msgstr "Définition de format invalide ou incomplète."
 #: ../gramps/gui/configure.py:1633 ../gramps/gui/configure.py:1638
 #: ../gramps/gui/configure.py:1659 ../gramps/gui/configure.py:1675
 #: ../gramps/gui/configure.py:2203 ../gramps/gui/configure.py:2292
-#: ../gramps/gui/plug/_windows.py:732 ../gramps/gui/plug/_windows.py:752
-#: ../gramps/gui/plug/_windows.py:788 ../gramps/gui/plug/_windows.py:796
+#: ../gramps/gui/plug/_windows.py:739 ../gramps/gui/plug/_windows.py:759
+#: ../gramps/gui/plug/_windows.py:795 ../gramps/gui/plug/_windows.py:803
 #: ../gramps/gui/views/navigationview.py:351
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:110
 #, python-format
@@ -12670,7 +12670,7 @@ msgstr "%s : "
 #: ../gramps/gui/glade/reorder.glade:54 ../gramps/gui/glade/rule.glade:41
 #: ../gramps/gui/glade/rule.glade:351 ../gramps/gui/glade/rule.glade:781
 #: ../gramps/gui/grampsgui.py:58 ../gramps/gui/logger/_errorview.py:190
-#: ../gramps/gui/plug/_windows.py:357
+#: ../gramps/gui/plug/_windows.py:365
 #: ../gramps/gui/plug/report/_reportdialog.py:167
 #: ../gramps/gui/undohistory.py:84 ../gramps/gui/views/bookmarks.py:317
 #: ../gramps/gui/views/tags.py:524 ../gramps/gui/views/tags.py:745
@@ -12703,7 +12703,7 @@ msgstr "Code lieu"
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 # /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
-#: ../gramps/gui/configure.py:734 ../gramps/gui/plug/_windows.py:1598
+#: ../gramps/gui/configure.py:734 ../gramps/gui/plug/_windows.py:1605
 #: ../gramps/plugins/view/repoview.py:96
 msgid "Email"
 msgstr "Adresse électronique"
@@ -12993,7 +12993,7 @@ msgstr "Afficher les options"
 #: ../gramps/gui/glade/editperson.glade:12
 #: ../gramps/gui/glade/editperson.glade:516 ../gramps/gui/glade/rule.glade:463
 #: ../gramps/gui/glade/styleeditor.glade:1903
-#: ../gramps/gui/plug/_windows.py:1037 ../gramps/gui/plug/_windows.py:1096
+#: ../gramps/gui/plug/_windows.py:1044 ../gramps/gui/plug/_windows.py:1103
 #: ../gramps/plugins/gramplet/ancestor.py:122
 #: ../gramps/plugins/gramplet/descendant.py:119
 msgid "Edit"
@@ -13609,8 +13609,8 @@ msgstr "Sélectionner un répertoire media"
 #: ../gramps/gui/glade/rule.glade:747 ../gramps/gui/glade/styleeditor.glade:86
 #: ../gramps/gui/glade/styleeditor.glade:1737
 #: ../gramps/gui/logger/_errorview.py:188 ../gramps/gui/plug/_guioptions.py:84
-#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:806
-#: ../gramps/gui/plug/_windows.py:1374
+#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:813
+#: ../gramps/gui/plug/_windows.py:1381
 #: ../gramps/gui/plug/report/_fileentry.py:68
 #: ../gramps/gui/plug/report/_reportdialog.py:170 ../gramps/gui/utils.py:265
 #: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1250
@@ -13917,7 +13917,7 @@ msgstr "Information sur la base de données"
 #: ../gramps/gui/glade/reorder.glade:38 ../gramps/gui/glade/rule.glade:333
 #: ../gramps/gui/glade/rule.glade:764 ../gramps/gui/glade/styleeditor.glade:103
 #: ../gramps/gui/glade/styleeditor.glade:1754
-#: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:806
+#: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:813
 #: ../gramps/gui/plug/report/_reportdialog.py:173 ../gramps/gui/utils.py:279
 #: ../gramps/gui/viewmanager.py:1802 ../gramps/gui/views/tags.py:747
 #: ../gramps/plugins/tool/check.py:828 ../gramps/plugins/tool/patchnames.py:152
@@ -14285,7 +14285,7 @@ msgstr "Outils"
 msgid "Open Addon Manager"
 msgstr "Gestionnaire de greffons"
 
-#: ../gramps/gui/displaystate.py:424 ../gramps/gui/plug/_windows.py:440
+#: ../gramps/gui/displaystate.py:424 ../gramps/gui/plug/_windows.py:448
 msgid "Addons"
 msgstr "Greffons"
 
@@ -14881,14 +14881,14 @@ msgid "Set as default name"
 msgstr "Définir comme nom par défaut"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
-#: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:888
+#: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:895
 #: ../gramps/gui/viewmanager.py:1134 ../gramps/gui/views/tags.py:590
 #: ../gramps/plugins/quickview/all_relations.py:365
 msgid "Yes"
 msgstr "Oui"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:59
-#: ../gramps/gui/plug/_guioptions.py:1266 ../gramps/gui/plug/_windows.py:889
+#: ../gramps/gui/plug/_guioptions.py:1266 ../gramps/gui/plug/_windows.py:896
 #: ../gramps/gui/viewmanager.py:1135 ../gramps/gui/views/tags.py:591
 #: ../gramps/plugins/quickview/all_relations.py:371
 msgid "No"
@@ -15424,7 +15424,7 @@ msgstr "Éditeur de la référence à un évènement"
 
 #: ../gramps/gui/editors/editeventref.py:109
 #: ../gramps/gui/editors/editmediaref.py:130
-#: ../gramps/gui/editors/editname.py:146
+#: ../gramps/gui/editors/editname.py:139
 #: ../gramps/gui/editors/editplaceref.py:91
 #: ../gramps/gui/editors/editreporef.py:80
 msgid "_General"
@@ -15835,31 +15835,31 @@ msgctxt "Y coordinate"
 msgid "Y"
 msgstr "Y"
 
-#: ../gramps/gui/editors/editname.py:123 ../gramps/gui/editors/editname.py:347
+#: ../gramps/gui/editors/editname.py:123 ../gramps/gui/editors/editname.py:344
 msgid "Name Editor"
 msgstr "Éditeur de nom"
 
 # manuel wiki
-#: ../gramps/gui/editors/editname.py:173
+#: ../gramps/gui/editors/editname.py:170
 msgctxt "manual"
 msgid "Name_Editor"
 msgstr "Éditeur de nom"
 
 # call name = prénom dans le context !
-#: ../gramps/gui/editors/editname.py:187
+#: ../gramps/gui/editors/editname.py:184
 #: ../gramps/gui/editors/editperson.py:342
 msgid "Call name must be the given name that is normally used."
 msgstr "Le prénom usuel est la partie du prénom utilisée habituellement."
 
-#: ../gramps/gui/editors/editname.py:346
+#: ../gramps/gui/editors/editname.py:343
 msgid "New Name"
 msgstr "Nouveau nom"
 
-#: ../gramps/gui/editors/editname.py:415
+#: ../gramps/gui/editors/editname.py:412
 msgid "Break global name grouping?"
 msgstr "Défaire le groupement du nom ?"
 
-#: ../gramps/gui/editors/editname.py:417
+#: ../gramps/gui/editors/editname.py:414
 #, python-format
 msgid ""
 "All people with the name of %(surname)s will no longer be grouped with the "
@@ -15868,19 +15868,19 @@ msgstr ""
 "Tous les individus portant le nom %(surname)s ne seront plus groupés avec le "
 "nom %(group_name)s."
 
-#: ../gramps/gui/editors/editname.py:421
+#: ../gramps/gui/editors/editname.py:418
 msgid "Continue"
 msgstr "Continuer"
 
-#: ../gramps/gui/editors/editname.py:422
+#: ../gramps/gui/editors/editname.py:419
 msgid "Return to Name Editor"
 msgstr "Retourner à l'éditeur de nom"
 
-#: ../gramps/gui/editors/editname.py:449
+#: ../gramps/gui/editors/editname.py:446
 msgid "Group all people with the same name?"
 msgstr "Regrouper tous les individus ayant le même nom ?"
 
-#: ../gramps/gui/editors/editname.py:451
+#: ../gramps/gui/editors/editname.py:448
 #, python-format
 msgid ""
 "You have the choice of grouping all people with the name of %(surname)s with "
@@ -15889,11 +15889,11 @@ msgstr ""
 "Vous pouvez choisir de regrouper tous les individus du nom de %(surname)s "
 "avec le nom de %(group_name)s ou juste d'afficher ce nom particulier."
 
-#: ../gramps/gui/editors/editname.py:456
+#: ../gramps/gui/editors/editname.py:453
 msgid "Group all"
 msgstr "Tout grouper"
 
-#: ../gramps/gui/editors/editname.py:457
+#: ../gramps/gui/editors/editname.py:454
 msgid "Group this name only"
 msgstr "Grouper ce nom seulement"
 
@@ -17309,7 +17309,7 @@ msgstr "Vie privée"
 #: ../gramps/gui/glade/editldsord.glade:146
 #: ../gramps/gui/glade/editmedia.glade:235
 #: ../gramps/gui/glade/editmediaref.glade:573
-#: ../gramps/gui/glade/editname.glade:562
+#: ../gramps/gui/glade/editname.glade:563
 #: ../gramps/gui/glade/editplacename.glade:123
 #: ../gramps/plugins/importer/importprogen.glade:486
 msgid "Invoke date editor"
@@ -18009,12 +18009,12 @@ msgid "Given Name(s)"
 msgstr "Prénom(s)"
 
 # trunk
-#: ../gramps/gui/glade/editname.glade:384
+#: ../gramps/gui/glade/editname.glade:385
 msgid "_Family Nick Name:"
 msgstr "Nom-d_it :"
 
 # trunk
-#: ../gramps/gui/glade/editname.glade:398
+#: ../gramps/gui/glade/editname.glade:399
 msgid ""
 "A non official name given to a family to distinguish them of people with the "
 "same family name. Often referred to as eg. Farm name."
@@ -18022,24 +18022,24 @@ msgstr ""
 "Un nom de famille non officiel pour distinguer les individus porteurs du "
 "même nom de famille. Souvent une référence à un nom de ferme, par exemple."
 
-#: ../gramps/gui/glade/editname.glade:424
+#: ../gramps/gui/glade/editname.glade:425
 msgid "Family Names "
 msgstr "Noms de famille "
 
-#: ../gramps/gui/glade/editname.glade:462
+#: ../gramps/gui/glade/editname.glade:463
 msgid "G_roup as:"
 msgstr "G_rouper comme :"
 
-#: ../gramps/gui/glade/editname.glade:476
+#: ../gramps/gui/glade/editname.glade:477
 msgid "_Sort as:"
 msgstr "Trier _comme :"
 
-#: ../gramps/gui/glade/editname.glade:490
+#: ../gramps/gui/glade/editname.glade:491
 msgid "_Display as:"
 msgstr "Affic_her comme :"
 
 # trunk
-#: ../gramps/gui/glade/editname.glade:503
+#: ../gramps/gui/glade/editname.glade:504
 msgid ""
 "People are displayed according to the name format given in the Preferences "
 "(the default).\n"
@@ -18051,12 +18051,12 @@ msgstr ""
 "C'est là que pouvez être certain(e) qu'une personne est affichée d'après un "
 "format choisi (les formats supplémentaires sont possibles)."
 
-#: ../gramps/gui/glade/editname.glade:524
+#: ../gramps/gui/glade/editname.glade:525
 msgid "Dat_e:"
 msgstr "_Date :"
 
 # trunk
-#: ../gramps/gui/glade/editname.glade:538
+#: ../gramps/gui/glade/editname.glade:539
 msgid ""
 "People are sorted according to the name format given in the Preferences (the "
 "default).\n"
@@ -18069,7 +18069,7 @@ msgstr ""
 "format personnel (les formats supplémentaires sont possibles)."
 
 # trunk
-#: ../gramps/gui/glade/editname.glade:601
+#: ../gramps/gui/glade/editname.glade:602
 msgid ""
 "The Person Tree view groups people under the primary surname. You can "
 "override this by setting here a group value. \n"
@@ -18082,12 +18082,12 @@ msgstr ""
 "individu ou toutes les personnes avec \n"
 "ce nom de famille spécifique."
 
-#: ../gramps/gui/glade/editname.glade:615
+#: ../gramps/gui/glade/editname.glade:616
 msgid "O_verride"
 msgstr "Imp_oser"
 
 # trunk
-#: ../gramps/gui/glade/editname.glade:641
+#: ../gramps/gui/glade/editname.glade:642
 msgid ""
 "A Date associated with this name. Eg. for a Married Name, date the name is "
 "first used or marriage date."
@@ -18628,7 +18628,7 @@ msgid "_Merge and close"
 msgstr "_Fusionner puis fermer"
 
 #: ../gramps/gui/glade/mergedata.glade:173
-#: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:2080
+#: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:2087
 #: ../gramps/plugins/tool/changenames.py:226
 #: ../gramps/plugins/tool/patchnames.py:454
 msgid "Select"
@@ -19404,7 +19404,7 @@ msgid "Install Selected _Addons"
 msgstr "Installer les g_reffons sélectionnés"
 
 #: ../gramps/gui/glade/updateaddons.glade:72
-#: ../gramps/gui/plug/_windows.py:2057
+#: ../gramps/gui/plug/_windows.py:2064
 msgid "Available Gramps Updates for Addons"
 msgstr "Mises à jour disponibles pour les greffons Gramps"
 
@@ -20165,7 +20165,7 @@ msgid "Save As"
 msgstr "Enregistrer sous"
 
 # master
-#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:1374
+#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:1381
 #: ../gramps/gui/plug/report/_bookdialog.py:651
 #: ../gramps/gui/plug/report/_fileentry.py:68
 msgid "_Open"
@@ -20184,7 +20184,7 @@ msgstr "Projet"
 msgid "Audience"
 msgstr "Public"
 
-#: ../gramps/gui/plug/_windows.py:226 ../gramps/gui/plug/_windows.py:1596
+#: ../gramps/gui/plug/_windows.py:226 ../gramps/gui/plug/_windows.py:1603
 msgid "Version"
 msgstr "Version"
 
@@ -20205,375 +20205,383 @@ msgstr "Wiki"
 msgid "Requires"
 msgstr "A besoin"
 
-#: ../gramps/gui/plug/_windows.py:263 ../gramps/gui/plug/_windows.py:395
-#: ../gramps/gui/plug/_windows.py:594
+#: ../gramps/gui/plug/_windows.py:263 ../gramps/gui/plug/_windows.py:403
+#: ../gramps/gui/plug/_windows.py:602
 msgid "Update"
 msgstr "Mettre à jour"
 
-#: ../gramps/gui/plug/_windows.py:286
+#: ../gramps/gui/plug/_windows.py:286 ../gramps/gui/plug/_windows.py:294
 msgid "Module installation failed"
 msgstr "L'installation du module a échoué"
 
-#: ../gramps/gui/plug/_windows.py:311
+#: ../gramps/gui/plug/_windows.py:295
+#, fuzzy
+#| msgid "Allow Gramps to install required python modules"
+msgid "Gramps was unable to install the required modules"
+msgstr "Permettre à Gramps d'installer les modules python requis"
+
+#: ../gramps/gui/plug/_windows.py:319
 msgid "Requirements"
 msgstr "Exigences"
 
-#: ../gramps/gui/plug/_windows.py:347
+#: ../gramps/gui/plug/_windows.py:355
 msgid "Addon Manager"
 msgstr "Gestionnaire de greffon"
 
-#: ../gramps/gui/plug/_windows.py:355 ../gramps/plugins/gramplet/leak.py:114
+#: ../gramps/gui/plug/_windows.py:363 ../gramps/plugins/gramplet/leak.py:114
 msgid "Refresh"
 msgstr "Actualiser"
 
-#: ../gramps/gui/plug/_windows.py:386
+#: ../gramps/gui/plug/_windows.py:394
 msgid "Filters"
 msgstr "Filtres"
 
-#: ../gramps/gui/plug/_windows.py:392
+#: ../gramps/gui/plug/_windows.py:400
 msgid "All addons"
 msgstr "Tous les greffons"
 
-#: ../gramps/gui/plug/_windows.py:393 ../gramps/gui/plug/_windows.py:588
-msgid "Uninstalled"
-msgstr "Désinstallé"
+#: ../gramps/gui/plug/_windows.py:401 ../gramps/gui/plug/_windows.py:596
+#, fuzzy
+#| msgid "installed"
+msgid "Not installed"
+msgstr "installé"
 
-#: ../gramps/gui/plug/_windows.py:394 ../gramps/gui/plug/_windows.py:591
+#: ../gramps/gui/plug/_windows.py:402 ../gramps/gui/plug/_windows.py:599
 msgid "Installed"
 msgstr "Installé"
 
-#: ../gramps/gui/plug/_windows.py:407
+#: ../gramps/gui/plug/_windows.py:415
 msgid "All types"
 msgstr "Tout type"
 
-#: ../gramps/gui/plug/_windows.py:415
+#: ../gramps/gui/plug/_windows.py:423
 msgid "All audiences"
 msgstr "Tout public"
 
 # province (Canada, Belgique)
-#: ../gramps/gui/plug/_windows.py:422
+#: ../gramps/gui/plug/_windows.py:430
 msgid "All statuses"
 msgstr "Tout statut"
 
 # master
-#: ../gramps/gui/plug/_windows.py:443
+#: ../gramps/gui/plug/_windows.py:451
 msgid "Settings"
 msgstr "Configuration"
 
-#: ../gramps/gui/plug/_windows.py:446
+#: ../gramps/gui/plug/_windows.py:454
 msgid "Projects"
 msgstr "Projets"
 
-#: ../gramps/gui/plug/_windows.py:489 ../gramps/gui/plug/_windows.py:599
+#: ../gramps/gui/plug/_windows.py:497 ../gramps/gui/plug/_windows.py:607
 msgid "All projects"
 msgstr "Tous les projets"
 
 # Substantif (GNOME fr)
-#: ../gramps/gui/plug/_windows.py:501
+#: ../gramps/gui/plug/_windows.py:509
 msgid "Loading..."
 msgstr "Chargement…"
 
-#: ../gramps/gui/plug/_windows.py:545
+#: ../gramps/gui/plug/_windows.py:553
 msgid "No matching addons found."
 msgstr "Aucun greffon correspondant trouvé"
 
-#: ../gramps/gui/plug/_windows.py:700
+#: ../gramps/gui/plug/_windows.py:707
 msgid "Allow Gramps to install required python modules"
 msgstr "Permettre à Gramps d'installer les modules python requis"
 
-#: ../gramps/gui/plug/_windows.py:707
+#: ../gramps/gui/plug/_windows.py:714
 #: ../gramps/plugins/webreport/basepage.py:1899
 #: ../gramps/plugins/webreport/basepage.py:1964
 msgid "Updates"
 msgstr "Mises à jour"
 
-#: ../gramps/gui/plug/_windows.py:723
+#: ../gramps/gui/plug/_windows.py:730
 msgid "Once a month"
 msgstr "Une fois par mois"
 
-#: ../gramps/gui/plug/_windows.py:724
+#: ../gramps/gui/plug/_windows.py:731
 msgid "Once a week"
 msgstr "Une fois par semaine"
 
-#: ../gramps/gui/plug/_windows.py:725
+#: ../gramps/gui/plug/_windows.py:732
 msgid "Once a day"
 msgstr "Une fois par jour"
 
-#: ../gramps/gui/plug/_windows.py:726
+#: ../gramps/gui/plug/_windows.py:733
 msgid "Always"
 msgstr "Toujours"
 
 # master
-#: ../gramps/gui/plug/_windows.py:732
+#: ../gramps/gui/plug/_windows.py:739
 msgid "Check for addon updates"
 msgstr "Vérification des mises à jour"
 
-#: ../gramps/gui/plug/_windows.py:739
+#: ../gramps/gui/plug/_windows.py:746
 msgid "Updated addons only"
 msgstr "Seulement les greffons mis à jour"
 
-#: ../gramps/gui/plug/_windows.py:740
+#: ../gramps/gui/plug/_windows.py:747
 msgid "New addons only"
 msgstr "Seulement les nouveaux greffons"
 
-#: ../gramps/gui/plug/_windows.py:741
+#: ../gramps/gui/plug/_windows.py:748
 msgid "New and updated addons"
 msgstr "Les greffons mis à jour et les nouveaux"
 
-#: ../gramps/gui/plug/_windows.py:752
+#: ../gramps/gui/plug/_windows.py:759
 msgid "What to check"
 msgstr "Vérifier"
 
-#: ../gramps/gui/plug/_windows.py:758
+#: ../gramps/gui/plug/_windows.py:765
 msgid "Do not ask about previously notified addons"
 msgstr "Ne plus demander pour les greffons notifiés précédemment"
 
 # master
-#: ../gramps/gui/plug/_windows.py:765
+#: ../gramps/gui/plug/_windows.py:772
 msgid "Check for updated addons now"
 msgstr "Vérifier les mises à jour"
 
-#: ../gramps/gui/plug/_windows.py:778
+#: ../gramps/gui/plug/_windows.py:785
 msgid "New Project"
 msgstr "Nouveau projet"
 
-#: ../gramps/gui/plug/_windows.py:780
+#: ../gramps/gui/plug/_windows.py:787
 msgid "Edit Project"
 msgstr "Éditeur de projet"
 
-#: ../gramps/gui/plug/_windows.py:788
+#: ../gramps/gui/plug/_windows.py:795
 msgid "Project name"
 msgstr "Nom du projet"
 
 # trunk
-#: ../gramps/gui/plug/_windows.py:886
+#: ../gramps/gui/plug/_windows.py:893
 msgid "Restore project defaults"
 msgstr "Restaurer les valeurs par défaut du projet"
 
-#: ../gramps/gui/plug/_windows.py:887
+#: ../gramps/gui/plug/_windows.py:894
 msgid "Are you sure?"
 msgstr "Etes-vous certain(e) ?"
 
 # Substantif (GNOME fr)
-#: ../gramps/gui/plug/_windows.py:911
+#: ../gramps/gui/plug/_windows.py:918
 msgid "Checking Addons Failed"
 msgstr "La vérification des greffons a échoué"
 
-#: ../gramps/gui/plug/_windows.py:913
+#: ../gramps/gui/plug/_windows.py:920
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr "Le dépôt des greffons semble inaccessible. Essayez un peu plus tard."
 
-#: ../gramps/gui/plug/_windows.py:928
+#: ../gramps/gui/plug/_windows.py:935
 msgid "There are no available addons of this type"
 msgstr "Il n'y a pas de greffon de ce type disponible"
 
-#: ../gramps/gui/plug/_windows.py:929
+#: ../gramps/gui/plug/_windows.py:936
 msgid "' and '"
 msgstr "» et «"
 
-#: ../gramps/gui/plug/_windows.py:929
+#: ../gramps/gui/plug/_windows.py:936
 #, python-format
 msgid "Checked for '%s'"
 msgstr "Vérifié pour « %s »"
 
-#: ../gramps/gui/plug/_windows.py:935
+#: ../gramps/gui/plug/_windows.py:942
 msgid "new"
 msgstr "Nouveaux"
 
-#: ../gramps/gui/plug/_windows.py:935
+#: ../gramps/gui/plug/_windows.py:942
 msgid "update"
 msgstr "Mis à jour"
 
-#: ../gramps/gui/plug/_windows.py:970
+#: ../gramps/gui/plug/_windows.py:977
 msgid "Hidden"
 msgstr "Masqué"
 
-#: ../gramps/gui/plug/_windows.py:971
+#: ../gramps/gui/plug/_windows.py:978
 msgid "Visible"
 msgstr "Visible"
 
-#: ../gramps/gui/plug/_windows.py:976
+#: ../gramps/gui/plug/_windows.py:983
 msgid "Plugin Manager"
 msgstr "Gestionnaire de greffons"
 
-#: ../gramps/gui/plug/_windows.py:1028 ../gramps/gui/plug/_windows.py:1086
+#: ../gramps/gui/plug/_windows.py:1035 ../gramps/gui/plug/_windows.py:1093
 msgid "Info"
 msgstr "Infos"
 
-#: ../gramps/gui/plug/_windows.py:1031 ../gramps/gui/plug/_windows.py:1089
+#: ../gramps/gui/plug/_windows.py:1038 ../gramps/gui/plug/_windows.py:1096
 msgid "Hide/Unhide"
 msgstr "Masquer/Afficher"
 
-#: ../gramps/gui/plug/_windows.py:1040 ../gramps/gui/plug/_windows.py:1099
+#: ../gramps/gui/plug/_windows.py:1047 ../gramps/gui/plug/_windows.py:1106
 msgid "Load"
 msgstr "Charger"
 
-#: ../gramps/gui/plug/_windows.py:1046
+#: ../gramps/gui/plug/_windows.py:1053
 msgid "Registered Plugins"
 msgstr "Greffons enregistrés"
 
-#: ../gramps/gui/plug/_windows.py:1065
+#: ../gramps/gui/plug/_windows.py:1072
 msgid "Loaded"
 msgstr "Chargé"
 
-#: ../gramps/gui/plug/_windows.py:1069
+#: ../gramps/gui/plug/_windows.py:1076
 #: ../gramps/plugins/importer/importprogen.glade:431
 #: ../gramps/plugins/importer/importprogen.glade:1126
 msgid "File"
 msgstr "Fichier"
 
-#: ../gramps/gui/plug/_windows.py:1076
+#: ../gramps/gui/plug/_windows.py:1083
 msgid "Message"
 msgstr "Message"
 
 # Substantif (GNOME fr)
-#: ../gramps/gui/plug/_windows.py:1105
+#: ../gramps/gui/plug/_windows.py:1112
 msgid "Loaded Plugins"
 msgstr "Greffons chargés"
 
-#: ../gramps/gui/plug/_windows.py:1127
+#: ../gramps/gui/plug/_windows.py:1134
 msgid "Addon Name"
 msgstr "Nom du greffon ajouté"
 
-#: ../gramps/gui/plug/_windows.py:1139
+#: ../gramps/gui/plug/_windows.py:1146
 msgid "Path to Addon:"
 msgstr "Chemin vers le greffon :"
 
 # bouton
-#: ../gramps/gui/plug/_windows.py:1159
+#: ../gramps/gui/plug/_windows.py:1166
 msgid "Install Addon"
 msgstr "Installer le greffon"
 
 # bouton
-#: ../gramps/gui/plug/_windows.py:1162
+#: ../gramps/gui/plug/_windows.py:1169
 msgid "Install All Addons"
 msgstr "Tout installer"
 
 # bouton
-#: ../gramps/gui/plug/_windows.py:1165
+#: ../gramps/gui/plug/_windows.py:1172
 msgid "Refresh Addon List"
 msgstr "Actualiser la liste"
 
-#: ../gramps/gui/plug/_windows.py:1178
+#: ../gramps/gui/plug/_windows.py:1185
 msgid "Reload"
 msgstr "Recharger"
 
 # bouton
-#: ../gramps/gui/plug/_windows.py:1206
+#: ../gramps/gui/plug/_windows.py:1213
 msgid "Refreshing Addon List"
 msgstr "Actualisation de la liste"
 
-#: ../gramps/gui/plug/_windows.py:1207 ../gramps/gui/plug/_windows.py:1212
-#: ../gramps/gui/plug/_windows.py:1350
+#: ../gramps/gui/plug/_windows.py:1214 ../gramps/gui/plug/_windows.py:1219
+#: ../gramps/gui/plug/_windows.py:1357
 msgid "Reading gramps-project.org..."
 msgstr "Lecture depuis gramps-project.org..."
 
 # Substantif (GNOME fr)
-#: ../gramps/gui/plug/_windows.py:1230
+#: ../gramps/gui/plug/_windows.py:1237
 msgid "Checking addon..."
 msgstr "Vérification du greffon..."
 
-#: ../gramps/gui/plug/_windows.py:1238
+#: ../gramps/gui/plug/_windows.py:1245
 msgid "Unknown Help URL"
 msgstr "URL d'aide inconnue"
 
-#: ../gramps/gui/plug/_windows.py:1249
+#: ../gramps/gui/plug/_windows.py:1256
 msgid "Unknown URL"
 msgstr "URL inconnue"
 
 # bouton
-#: ../gramps/gui/plug/_windows.py:1314
+#: ../gramps/gui/plug/_windows.py:1321
 msgid "Install all Addons"
 msgstr "Tout installer"
 
 # Substantif (GNOME fr)
-#: ../gramps/gui/plug/_windows.py:1315
+#: ../gramps/gui/plug/_windows.py:1322
 msgid "Installing..."
 msgstr "Installation..."
 
 # bouton
-#: ../gramps/gui/plug/_windows.py:1348
+#: ../gramps/gui/plug/_windows.py:1355
 msgid "Installing Addon"
 msgstr "Installation du greffon"
 
-#: ../gramps/gui/plug/_windows.py:1371
+#: ../gramps/gui/plug/_windows.py:1378
 msgid "Load Addon"
 msgstr "Chargement du greffon"
 
-#: ../gramps/gui/plug/_windows.py:1463
+#: ../gramps/gui/plug/_windows.py:1470
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:261
 msgid "Fail"
 msgstr "Échec"
 
-#: ../gramps/gui/plug/_windows.py:1486 ../gramps/gui/widgets/grampletbar.py:612
+#: ../gramps/gui/plug/_windows.py:1493 ../gramps/gui/widgets/grampletbar.py:612
 msgid "OK"
 msgstr "OK"
 
-#: ../gramps/gui/plug/_windows.py:1594
+#: ../gramps/gui/plug/_windows.py:1601
 msgid "Plugin name"
 msgstr "Nom du greffon"
 
-#: ../gramps/gui/plug/_windows.py:1597
+#: ../gramps/gui/plug/_windows.py:1604
 msgid "Authors"
 msgstr "Auteurs"
 
-#: ../gramps/gui/plug/_windows.py:1599
+#: ../gramps/gui/plug/_windows.py:1606
 #: ../gramps/gui/plug/report/_reportdialog.py:481
 msgid "Filename"
 msgstr "Nom de fichier"
 
-#: ../gramps/gui/plug/_windows.py:1602
+#: ../gramps/gui/plug/_windows.py:1609
 msgid "Detailed Info"
 msgstr "Information détaillée"
 
-#: ../gramps/gui/plug/_windows.py:1657
+#: ../gramps/gui/plug/_windows.py:1664
 msgid "Plugin Error"
 msgstr "Erreur de greffon"
 
 # master
-#: ../gramps/gui/plug/_windows.py:1726
+#: ../gramps/gui/plug/_windows.py:1733
 msgid "_Execute"
 msgstr "_Exécuter"
 
-#: ../gramps/gui/plug/_windows.py:2024
+#: ../gramps/gui/plug/_windows.py:2031
 #: ../gramps/plugins/importer/importprogen.py:478
 #: ../gramps/plugins/tool/ownereditor.py:171
 #: ../gramps/plugins/tool/reorderids.py:249
 msgid "Main window"
 msgstr "Fenêtre principale"
 
-#: ../gramps/gui/plug/_windows.py:2162
+#: ../gramps/gui/plug/_windows.py:2169
 msgid "Downloading and installing selected addons..."
 msgstr "Téléchargement et installation des greffons sélectionnés..."
 
 # master
-#: ../gramps/gui/plug/_windows.py:2205
+#: ../gramps/gui/plug/_windows.py:2212
 msgid "Installation Errors"
 msgstr "Erreur d'installation"
 
 # master
-#: ../gramps/gui/plug/_windows.py:2206
+#: ../gramps/gui/plug/_windows.py:2213
 msgid "The following addons had errors: "
 msgstr "Les greffons suivants comportent des erreurs : "
 
-#: ../gramps/gui/plug/_windows.py:2214 ../gramps/gui/plug/_windows.py:2231
+#: ../gramps/gui/plug/_windows.py:2221 ../gramps/gui/plug/_windows.py:2238
 msgid "Done downloading and installing addons"
 msgstr "Greffons téléchargés et installés"
 
 # trunk
-#: ../gramps/gui/plug/_windows.py:2219
+#: ../gramps/gui/plug/_windows.py:2226
 #, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
 msgstr[0] "{number_of} greffon a été installé."
 msgstr[1] "{number_of} greffons ont été installés."
 
-#: ../gramps/gui/plug/_windows.py:2224
+#: ../gramps/gui/plug/_windows.py:2231
 msgid "If you have installed a 'View', you will need to restart Gramps."
 msgstr ""
 "Si vous avez installé une « Vue », vous aurez besoin de redémarrer Gramps."
 
-#: ../gramps/gui/plug/_windows.py:2232
+#: ../gramps/gui/plug/_windows.py:2239
 msgid "No addons were installed."
 msgstr "Aucun greffon n'a été installé."
 
@@ -42041,6 +42049,9 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:230
 msgid "No style sheet"
 msgstr "Aucune feuille de style"
+
+#~ msgid "Uninstalled"
+#~ msgstr "Désinstallé"
 
 #~ msgid ""
 #~ "If you want to use a specific map provider, You can set the following "

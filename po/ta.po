@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-26 17:41+0100\n"
+"POT-Creation-Date: 2023-08-29 23:01+0100\n"
 "PO-Revision-Date: 2021-06-04 21:08+0000\n"
 "Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/gramps-project/"
@@ -1168,7 +1168,7 @@ msgstr ""
 
 #: ../gramps/cli/clidbman.py:73 ../gramps/cli/clidbman.py:172
 #: ../gramps/cli/clidbman.py:174 ../gramps/gui/clipboard.py:201
-#: ../gramps/gui/clipboard.py:202 ../gramps/gui/plug/_windows.py:1452
+#: ../gramps/gui/clipboard.py:202 ../gramps/gui/plug/_windows.py:1459
 #, fuzzy
 msgid "Unavailable"
 msgstr "உதவி கிடைக்கவில்லை"
@@ -1213,8 +1213,8 @@ msgstr "குடும்ப நிகழ்வு:"
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/cli/clidbman.py:222 ../gramps/gen/plug/report/utils.py:182
 #: ../gramps/gui/editors/editattribute.py:140
-#: ../gramps/gui/editors/editname.py:344 ../gramps/gui/plug/_windows.py:1657
-#: ../gramps/gui/plug/_windows.py:2101
+#: ../gramps/gui/editors/editname.py:341 ../gramps/gui/plug/_windows.py:1664
+#: ../gramps/gui/plug/_windows.py:2108
 #: ../gramps/plugins/gramplet/whatsnext.py:495
 #: ../gramps/plugins/textreport/birthdayreport.py:213
 #: ../gramps/plugins/textreport/birthdayreport.py:218
@@ -1281,7 +1281,7 @@ msgid ""
 msgstr ""
 
 #: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2281
-#: ../gramps/gui/plug/_windows.py:722
+#: ../gramps/gui/plug/_windows.py:729
 msgid "Never"
 msgstr ""
 
@@ -6420,8 +6420,8 @@ msgstr "குறிப்புகள்"
 #: ../gramps/gui/glade/editmedia.glade:254
 #: ../gramps/gui/glade/editmediaref.glade:582
 #: ../gramps/gui/glade/editmediaref.glade:592
-#: ../gramps/gui/glade/editname.glade:571
-#: ../gramps/gui/glade/editname.glade:581
+#: ../gramps/gui/glade/editname.glade:572
+#: ../gramps/gui/glade/editname.glade:582
 #: ../gramps/gui/glade/editplacename.glade:132
 #: ../gramps/gui/glade/editplacename.glade:142
 #: ../gramps/gui/selectors/selectevent.py:69
@@ -6604,8 +6604,8 @@ msgstr "குலம்"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:68
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:113
 #: ../gramps/gui/glade/rule.glade:931 ../gramps/gui/glade/styleeditor.glade:278
-#: ../gramps/gui/plug/_windows.py:1018 ../gramps/gui/plug/_windows.py:1133
-#: ../gramps/gui/plug/_windows.py:1595 ../gramps/gui/plug/_windows.py:2088
+#: ../gramps/gui/plug/_windows.py:1025 ../gramps/gui/plug/_windows.py:1140
+#: ../gramps/gui/plug/_windows.py:1602 ../gramps/gui/plug/_windows.py:2095
 #: ../gramps/gui/selectors/selectevent.py:71
 #: ../gramps/plugins/gramplet/coordinates.py:100
 #: ../gramps/plugins/gramplet/events.py:103
@@ -7882,8 +7882,8 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:118
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:114
 #: ../gramps/gui/merge/mergeperson.py:273 ../gramps/gui/plug/_windows.py:220
-#: ../gramps/gui/plug/_windows.py:1007 ../gramps/gui/plug/_windows.py:1130
-#: ../gramps/gui/plug/_windows.py:2086
+#: ../gramps/gui/plug/_windows.py:1014 ../gramps/gui/plug/_windows.py:1137
+#: ../gramps/gui/plug/_windows.py:2093
 #: ../gramps/gui/plug/report/_bookdialog.py:398
 #: ../gramps/gui/plug/report/_bookdialog.py:402
 #: ../gramps/gui/selectors/selectevent.py:67
@@ -8029,8 +8029,8 @@ msgstr ""
 #: ../gramps/gen/lib/ldsord.py:206 ../gramps/gui/dbman.py:419
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:54
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:64
-#: ../gramps/gui/plug/_windows.py:224 ../gramps/gui/plug/_windows.py:1011
-#: ../gramps/gui/plug/_windows.py:1073
+#: ../gramps/gui/plug/_windows.py:224 ../gramps/gui/plug/_windows.py:1018
+#: ../gramps/gui/plug/_windows.py:1080
 #: ../gramps/plugins/quickview/ageondate.py:54
 #: ../gramps/plugins/textreport/indivcomplete.py:531
 #: ../gramps/plugins/textreport/indivcomplete.py:736
@@ -8041,7 +8041,7 @@ msgid "Status"
 msgstr "மாநிலம்"
 
 #: ../gramps/gen/lib/location.py:89 ../gramps/gen/lib/nameorigintype.py:88
-#: ../gramps/gui/clipboard.py:331 ../gramps/gui/plug/_windows.py:1600
+#: ../gramps/gui/clipboard.py:331 ../gramps/gui/plug/_windows.py:1607
 msgid "Location"
 msgstr ""
 
@@ -8087,14 +8087,14 @@ msgstr "மதம்"
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:64
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:61
 #: ../gramps/gui/editors/editfamily.py:139
-#: ../gramps/gui/editors/editname.py:344
+#: ../gramps/gui/editors/editname.py:341
 #: ../gramps/gui/editors/filtereditor.py:912
 #: ../gramps/gui/editors/filtereditor.py:1092
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:158
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:117
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:113
-#: ../gramps/gui/plug/_guioptions.py:1185 ../gramps/gui/plug/_windows.py:1014
-#: ../gramps/gui/plug/_windows.py:2087
+#: ../gramps/gui/plug/_guioptions.py:1185 ../gramps/gui/plug/_windows.py:1021
+#: ../gramps/gui/plug/_windows.py:2094
 #: ../gramps/gui/plug/report/_bookdialog.py:398
 #: ../gramps/gui/selectors/selectperson.py:99
 #: ../gramps/gui/selectors/selectplace.py:68
@@ -8344,12 +8344,12 @@ msgstr "இயல்பான"
 #: ../gramps/gui/glade/editeventref.glade:601
 #: ../gramps/gui/glade/editmediaref.glade:342
 #: ../gramps/gui/glade/editmediaref.glade:756
-#: ../gramps/gui/glade/editname.glade:671
+#: ../gramps/gui/glade/editname.glade:672
 #: ../gramps/gui/glade/editperson.glade:382
 #: ../gramps/gui/glade/editplaceref.glade:161
 #: ../gramps/gui/glade/editplaceref.glade:665
 #: ../gramps/gui/glade/editreporef.glade:225
-#: ../gramps/gui/glade/editreporef.glade:445 ../gramps/gui/plug/_windows.py:686
+#: ../gramps/gui/glade/editreporef.glade:445 ../gramps/gui/plug/_windows.py:693
 #: ../gramps/plugins/tool/verify.glade:406
 msgid "General"
 msgstr "பொது"
@@ -9029,7 +9029,7 @@ msgid "Priority"
 msgstr ""
 
 #: ../gramps/gen/lib/url.py:90 ../gramps/gui/clipboard.py:428
-#: ../gramps/gui/plug/_windows.py:796
+#: ../gramps/gui/plug/_windows.py:803
 msgid "Url"
 msgstr ""
 
@@ -11585,8 +11585,8 @@ msgstr "பெயர் திருத்தி"
 #: ../gramps/gui/glade/plugins.glade:22 ../gramps/gui/glade/rule.glade:24
 #: ../gramps/gui/glade/rule.glade:1024 ../gramps/gui/glade/tipofday.glade:117
 #: ../gramps/gui/glade/updateaddons.glade:25 ../gramps/gui/grampsgui.py:58
-#: ../gramps/gui/plug/_windows.py:356 ../gramps/gui/plug/_windows.py:984
-#: ../gramps/gui/plug/_windows.py:1663 ../gramps/gui/plug/_windows.py:1723
+#: ../gramps/gui/plug/_windows.py:364 ../gramps/gui/plug/_windows.py:991
+#: ../gramps/gui/plug/_windows.py:1670 ../gramps/gui/plug/_windows.py:1730
 #: ../gramps/gui/plug/quick/_textbufdoc.py:71 ../gramps/gui/undohistory.py:88
 #: ../gramps/gui/viewmanager.py:1801 ../gramps/gui/views/bookmarks.py:316
 #: ../gramps/gui/views/tags.py:523 ../gramps/gui/widgets/grampletbar.py:720
@@ -11650,8 +11650,8 @@ msgstr ""
 #: ../gramps/gui/configure.py:1633 ../gramps/gui/configure.py:1638
 #: ../gramps/gui/configure.py:1659 ../gramps/gui/configure.py:1675
 #: ../gramps/gui/configure.py:2203 ../gramps/gui/configure.py:2292
-#: ../gramps/gui/plug/_windows.py:732 ../gramps/gui/plug/_windows.py:752
-#: ../gramps/gui/plug/_windows.py:788 ../gramps/gui/plug/_windows.py:796
+#: ../gramps/gui/plug/_windows.py:739 ../gramps/gui/plug/_windows.py:759
+#: ../gramps/gui/plug/_windows.py:795 ../gramps/gui/plug/_windows.py:803
 #: ../gramps/gui/views/navigationview.py:351
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:110
 #, python-format
@@ -11699,7 +11699,7 @@ msgstr ""
 #: ../gramps/gui/glade/reorder.glade:54 ../gramps/gui/glade/rule.glade:41
 #: ../gramps/gui/glade/rule.glade:351 ../gramps/gui/glade/rule.glade:781
 #: ../gramps/gui/grampsgui.py:58 ../gramps/gui/logger/_errorview.py:190
-#: ../gramps/gui/plug/_windows.py:357
+#: ../gramps/gui/plug/_windows.py:365
 #: ../gramps/gui/plug/report/_reportdialog.py:167
 #: ../gramps/gui/undohistory.py:84 ../gramps/gui/views/bookmarks.py:317
 #: ../gramps/gui/views/tags.py:524 ../gramps/gui/views/tags.py:745
@@ -11726,7 +11726,7 @@ msgstr "மாவட்டம்"
 msgid "ZIP/Postal Code"
 msgstr ""
 
-#: ../gramps/gui/configure.py:734 ../gramps/gui/plug/_windows.py:1598
+#: ../gramps/gui/configure.py:734 ../gramps/gui/plug/_windows.py:1605
 #: ../gramps/plugins/view/repoview.py:96
 #, fuzzy
 msgid "Email"
@@ -11981,7 +11981,7 @@ msgstr "காண்பி"
 #: ../gramps/gui/glade/editperson.glade:12
 #: ../gramps/gui/glade/editperson.glade:516 ../gramps/gui/glade/rule.glade:463
 #: ../gramps/gui/glade/styleeditor.glade:1903
-#: ../gramps/gui/plug/_windows.py:1037 ../gramps/gui/plug/_windows.py:1096
+#: ../gramps/gui/plug/_windows.py:1044 ../gramps/gui/plug/_windows.py:1103
 #: ../gramps/plugins/gramplet/ancestor.py:122
 #: ../gramps/plugins/gramplet/descendant.py:119
 msgid "Edit"
@@ -12511,8 +12511,8 @@ msgstr "ஒரு ஊடகப் பொருளை தேர்தெடு"
 #: ../gramps/gui/glade/rule.glade:747 ../gramps/gui/glade/styleeditor.glade:86
 #: ../gramps/gui/glade/styleeditor.glade:1737
 #: ../gramps/gui/logger/_errorview.py:188 ../gramps/gui/plug/_guioptions.py:84
-#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:806
-#: ../gramps/gui/plug/_windows.py:1374
+#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:813
+#: ../gramps/gui/plug/_windows.py:1381
 #: ../gramps/gui/plug/report/_fileentry.py:68
 #: ../gramps/gui/plug/report/_reportdialog.py:170 ../gramps/gui/utils.py:265
 #: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1250
@@ -12796,7 +12796,7 @@ msgstr "மூலத் தகவல்"
 #: ../gramps/gui/glade/reorder.glade:38 ../gramps/gui/glade/rule.glade:333
 #: ../gramps/gui/glade/rule.glade:764 ../gramps/gui/glade/styleeditor.glade:103
 #: ../gramps/gui/glade/styleeditor.glade:1754
-#: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:806
+#: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:813
 #: ../gramps/gui/plug/report/_reportdialog.py:173 ../gramps/gui/utils.py:279
 #: ../gramps/gui/viewmanager.py:1802 ../gramps/gui/views/tags.py:747
 #: ../gramps/plugins/tool/check.py:828 ../gramps/plugins/tool/patchnames.py:152
@@ -13104,7 +13104,7 @@ msgstr ""
 msgid "Open Addon Manager"
 msgstr "இயற்பெயர்:"
 
-#: ../gramps/gui/displaystate.py:424 ../gramps/gui/plug/_windows.py:440
+#: ../gramps/gui/displaystate.py:424 ../gramps/gui/plug/_windows.py:448
 #, fuzzy
 msgid "Addons"
 msgstr "நிரல் பெயர்"
@@ -13678,14 +13678,14 @@ msgid "Set as default name"
 msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
-#: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:888
+#: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:895
 #: ../gramps/gui/viewmanager.py:1134 ../gramps/gui/views/tags.py:590
 #: ../gramps/plugins/quickview/all_relations.py:365
 msgid "Yes"
 msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:59
-#: ../gramps/gui/plug/_guioptions.py:1266 ../gramps/gui/plug/_windows.py:889
+#: ../gramps/gui/plug/_guioptions.py:1266 ../gramps/gui/plug/_windows.py:896
 #: ../gramps/gui/viewmanager.py:1135 ../gramps/gui/views/tags.py:591
 #: ../gramps/plugins/quickview/all_relations.py:371
 #, fuzzy
@@ -14223,7 +14223,7 @@ msgstr "சுட்டு திருத்தி"
 
 #: ../gramps/gui/editors/editeventref.py:109
 #: ../gramps/gui/editors/editmediaref.py:130
-#: ../gramps/gui/editors/editname.py:146
+#: ../gramps/gui/editors/editname.py:139
 #: ../gramps/gui/editors/editplaceref.py:91
 #: ../gramps/gui/editors/editreporef.py:80
 #, fuzzy
@@ -14627,62 +14627,62 @@ msgctxt "Y coordinate"
 msgid "Y"
 msgstr ""
 
-#: ../gramps/gui/editors/editname.py:123 ../gramps/gui/editors/editname.py:347
+#: ../gramps/gui/editors/editname.py:123 ../gramps/gui/editors/editname.py:344
 msgid "Name Editor"
 msgstr "பெயர் திருத்தி"
 
-#: ../gramps/gui/editors/editname.py:173
+#: ../gramps/gui/editors/editname.py:170
 #, fuzzy
 msgctxt "manual"
 msgid "Name_Editor"
 msgstr "பெயர் திருத்தி"
 
-#: ../gramps/gui/editors/editname.py:187
+#: ../gramps/gui/editors/editname.py:184
 #: ../gramps/gui/editors/editperson.py:342
 msgid "Call name must be the given name that is normally used."
 msgstr ""
 
-#: ../gramps/gui/editors/editname.py:346
+#: ../gramps/gui/editors/editname.py:343
 msgid "New Name"
 msgstr "புதிய பெயர்"
 
-#: ../gramps/gui/editors/editname.py:415
+#: ../gramps/gui/editors/editname.py:412
 msgid "Break global name grouping?"
 msgstr ""
 
-#: ../gramps/gui/editors/editname.py:417
+#: ../gramps/gui/editors/editname.py:414
 #, python-format
 msgid ""
 "All people with the name of %(surname)s will no longer be grouped with the "
 "name of %(group_name)s."
 msgstr ""
 
-#: ../gramps/gui/editors/editname.py:421
+#: ../gramps/gui/editors/editname.py:418
 #, fuzzy
 msgid "Continue"
 msgstr "சேமிப்பதை தொடரவும்"
 
-#: ../gramps/gui/editors/editname.py:422
+#: ../gramps/gui/editors/editname.py:419
 #, fuzzy
 msgid "Return to Name Editor"
 msgstr "உரையாடலுக்கு திரும்பு"
 
-#: ../gramps/gui/editors/editname.py:449
+#: ../gramps/gui/editors/editname.py:446
 msgid "Group all people with the same name?"
 msgstr "ஒரே பெயர் கொண்ட அனைவரையும் தொகுக்க வேண்டுமா?"
 
-#: ../gramps/gui/editors/editname.py:451
+#: ../gramps/gui/editors/editname.py:448
 #, python-format
 msgid ""
 "You have the choice of grouping all people with the name of %(surname)s with "
 "the name of %(group_name)s, or just mapping this particular name."
 msgstr ""
 
-#: ../gramps/gui/editors/editname.py:456
+#: ../gramps/gui/editors/editname.py:453
 msgid "Group all"
 msgstr ""
 
-#: ../gramps/gui/editors/editname.py:457
+#: ../gramps/gui/editors/editname.py:454
 msgid "Group this name only"
 msgstr ""
 
@@ -16055,7 +16055,7 @@ msgstr ""
 #: ../gramps/gui/glade/editldsord.glade:146
 #: ../gramps/gui/glade/editmedia.glade:235
 #: ../gramps/gui/glade/editmediaref.glade:573
-#: ../gramps/gui/glade/editname.glade:562
+#: ../gramps/gui/glade/editname.glade:563
 #: ../gramps/gui/glade/editplacename.glade:123
 #: ../gramps/plugins/importer/importprogen.glade:486
 msgid "Invoke date editor"
@@ -16665,35 +16665,35 @@ msgstr ""
 msgid "Given Name(s)"
 msgstr "இயற்பெயர்:"
 
-#: ../gramps/gui/glade/editname.glade:384
+#: ../gramps/gui/glade/editname.glade:385
 #, fuzzy
 msgid "_Family Nick Name:"
 msgstr "குடும்பப் பெயர்:"
 
-#: ../gramps/gui/glade/editname.glade:398
+#: ../gramps/gui/glade/editname.glade:399
 msgid ""
 "A non official name given to a family to distinguish them of people with the "
 "same family name. Often referred to as eg. Farm name."
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:424
+#: ../gramps/gui/glade/editname.glade:425
 #, fuzzy
 msgid "Family Names "
 msgstr "குடும்பப் பெயர்:"
 
-#: ../gramps/gui/glade/editname.glade:462
+#: ../gramps/gui/glade/editname.glade:463
 msgid "G_roup as:"
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:476
+#: ../gramps/gui/glade/editname.glade:477
 msgid "_Sort as:"
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:490
+#: ../gramps/gui/glade/editname.glade:491
 msgid "_Display as:"
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:503
+#: ../gramps/gui/glade/editname.glade:504
 msgid ""
 "People are displayed according to the name format given in the Preferences "
 "(the default).\n"
@@ -16701,11 +16701,11 @@ msgid ""
 "format (extra formats can be set in the Preferences)."
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:524
+#: ../gramps/gui/glade/editname.glade:525
 msgid "Dat_e:"
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:538
+#: ../gramps/gui/glade/editname.glade:539
 msgid ""
 "People are sorted according to the name format given in the Preferences (the "
 "default).\n"
@@ -16713,7 +16713,7 @@ msgid ""
 "format (extra formats can be set in the Preferences)."
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:601
+#: ../gramps/gui/glade/editname.glade:602
 msgid ""
 "The Person Tree view groups people under the primary surname. You can "
 "override this by setting here a group value. \n"
@@ -16721,11 +16721,11 @@ msgid ""
 "this specific primary surname."
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:615
+#: ../gramps/gui/glade/editname.glade:616
 msgid "O_verride"
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:641
+#: ../gramps/gui/glade/editname.glade:642
 msgid ""
 "A Date associated with this name. Eg. for a Married Name, date the name is "
 "first used or marriage date."
@@ -17180,7 +17180,7 @@ msgid "_Merge and close"
 msgstr ""
 
 #: ../gramps/gui/glade/mergedata.glade:173
-#: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:2080
+#: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:2087
 #: ../gramps/plugins/tool/changenames.py:226
 #: ../gramps/plugins/tool/patchnames.py:454
 msgid "Select"
@@ -17877,7 +17877,7 @@ msgid "Install Selected _Addons"
 msgstr ""
 
 #: ../gramps/gui/glade/updateaddons.glade:72
-#: ../gramps/gui/plug/_windows.py:2057
+#: ../gramps/gui/plug/_windows.py:2064
 msgid "Available Gramps Updates for Addons"
 msgstr ""
 
@@ -18551,7 +18551,7 @@ msgstr "%s க்கான நிகழ்வு திருத்தி"
 msgid "Save As"
 msgstr "இப்படி சேமி"
 
-#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:1374
+#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:1381
 #: ../gramps/gui/plug/report/_bookdialog.py:651
 #: ../gramps/gui/plug/report/_fileentry.py:68
 #, fuzzy
@@ -18572,7 +18572,7 @@ msgstr "ஊடகப் பொருள்"
 msgid "Audience"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:226 ../gramps/gui/plug/_windows.py:1596
+#: ../gramps/gui/plug/_windows.py:226 ../gramps/gui/plug/_windows.py:1603
 #, fuzzy
 msgid "Version"
 msgstr "பதிப்பு:"
@@ -18595,390 +18595,394 @@ msgstr ""
 msgid "Requires"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:263 ../gramps/gui/plug/_windows.py:395
-#: ../gramps/gui/plug/_windows.py:594
+#: ../gramps/gui/plug/_windows.py:263 ../gramps/gui/plug/_windows.py:403
+#: ../gramps/gui/plug/_windows.py:602
 #, fuzzy
 msgid "Update"
 msgstr "தேதிகள்"
 
-#: ../gramps/gui/plug/_windows.py:286
+#: ../gramps/gui/plug/_windows.py:286 ../gramps/gui/plug/_windows.py:294
 #, fuzzy
 msgid "Module installation failed"
 msgstr "சேமித்தல் தோல்வியுற்றது"
 
-#: ../gramps/gui/plug/_windows.py:311
+#: ../gramps/gui/plug/_windows.py:295
+msgid "Gramps was unable to install the required modules"
+msgstr ""
+
+#: ../gramps/gui/plug/_windows.py:319
 #, fuzzy
 #| msgid "Retirement"
 msgid "Requirements"
 msgstr "ஓய்வு"
 
-#: ../gramps/gui/plug/_windows.py:347
+#: ../gramps/gui/plug/_windows.py:355
 #, fuzzy
 msgid "Addon Manager"
 msgstr "நிரல் பெயர்"
 
-#: ../gramps/gui/plug/_windows.py:355 ../gramps/plugins/gramplet/leak.py:114
+#: ../gramps/gui/plug/_windows.py:363 ../gramps/plugins/gramplet/leak.py:114
 msgid "Refresh"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:386
+#: ../gramps/gui/plug/_windows.py:394
 #, fuzzy
 #| msgid "Filter"
 msgid "Filters"
 msgstr "வடிப்பான்"
 
-#: ../gramps/gui/plug/_windows.py:392
+#: ../gramps/gui/plug/_windows.py:400
 #, fuzzy
 msgid "All addons"
 msgstr "நிரல் பெயர்"
 
-#: ../gramps/gui/plug/_windows.py:393 ../gramps/gui/plug/_windows.py:588
+#: ../gramps/gui/plug/_windows.py:401 ../gramps/gui/plug/_windows.py:596
 #, fuzzy
-msgid "Uninstalled"
+msgid "Not installed"
 msgstr "ஏற்றுகிறது..."
 
-#: ../gramps/gui/plug/_windows.py:394 ../gramps/gui/plug/_windows.py:591
+#: ../gramps/gui/plug/_windows.py:402 ../gramps/gui/plug/_windows.py:599
 #, fuzzy
 msgid "Installed"
 msgstr "ஏற்றுகிறது..."
 
-#: ../gramps/gui/plug/_windows.py:407
+#: ../gramps/gui/plug/_windows.py:415
 #, fuzzy
 #| msgid "All files"
 msgid "All types"
 msgstr "எல்லா கோப்புகளும்"
 
-#: ../gramps/gui/plug/_windows.py:415
+#: ../gramps/gui/plug/_windows.py:423
 #, fuzzy
 #| msgid "All files"
 msgid "All audiences"
 msgstr "எல்லா கோப்புகளும்"
 
-#: ../gramps/gui/plug/_windows.py:422
+#: ../gramps/gui/plug/_windows.py:430
 #, fuzzy
 msgid "All statuses"
 msgstr "மாநிலம்"
 
-#: ../gramps/gui/plug/_windows.py:443
+#: ../gramps/gui/plug/_windows.py:451
 #, fuzzy
 msgid "Settings"
 msgstr "தாள் தேர்வுகள்"
 
-#: ../gramps/gui/plug/_windows.py:446
+#: ../gramps/gui/plug/_windows.py:454
 msgid "Projects"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:489 ../gramps/gui/plug/_windows.py:599
+#: ../gramps/gui/plug/_windows.py:497 ../gramps/gui/plug/_windows.py:607
 #, fuzzy
 msgid "All projects"
 msgstr "நிகழ்வுகள்"
 
-#: ../gramps/gui/plug/_windows.py:501
+#: ../gramps/gui/plug/_windows.py:509
 msgid "Loading..."
 msgstr "ஏற்றுகிறது..."
 
-#: ../gramps/gui/plug/_windows.py:545
+#: ../gramps/gui/plug/_windows.py:553
 msgid "No matching addons found."
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:700
+#: ../gramps/gui/plug/_windows.py:707
 msgid "Allow Gramps to install required python modules"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:707
+#: ../gramps/gui/plug/_windows.py:714
 #: ../gramps/plugins/webreport/basepage.py:1899
 #: ../gramps/plugins/webreport/basepage.py:1964
 #, fuzzy
 msgid "Updates"
 msgstr "தேதிகள்"
 
-#: ../gramps/gui/plug/_windows.py:723
+#: ../gramps/gui/plug/_windows.py:730
 msgid "Once a month"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:724
+#: ../gramps/gui/plug/_windows.py:731
 msgid "Once a week"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:725
+#: ../gramps/gui/plug/_windows.py:732
 msgid "Once a day"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:726
+#: ../gramps/gui/plug/_windows.py:733
 msgid "Always"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:732
+#: ../gramps/gui/plug/_windows.py:739
 msgid "Check for addon updates"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:739
+#: ../gramps/gui/plug/_windows.py:746
 msgid "Updated addons only"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:740
+#: ../gramps/gui/plug/_windows.py:747
 msgid "New addons only"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:741
+#: ../gramps/gui/plug/_windows.py:748
 msgid "New and updated addons"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:752
+#: ../gramps/gui/plug/_windows.py:759
 msgid "What to check"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:758
+#: ../gramps/gui/plug/_windows.py:765
 msgid "Do not ask about previously notified addons"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:765
+#: ../gramps/gui/plug/_windows.py:772
 msgid "Check for updated addons now"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:778
+#: ../gramps/gui/plug/_windows.py:785
 #, fuzzy
 #| msgid "New Person"
 msgid "New Project"
 msgstr "புதிய நபர்"
 
-#: ../gramps/gui/plug/_windows.py:780
+#: ../gramps/gui/plug/_windows.py:787
 #, fuzzy
 #| msgid "Edit Person"
 msgid "Edit Project"
 msgstr "நபரை திருத்து"
 
-#: ../gramps/gui/plug/_windows.py:788
+#: ../gramps/gui/plug/_windows.py:795
 #, fuzzy
 msgid "Project name"
 msgstr "நபரைத் தேர்ந்தெடு"
 
-#: ../gramps/gui/plug/_windows.py:886
+#: ../gramps/gui/plug/_windows.py:893
 #, fuzzy
 msgid "Restore project defaults"
 msgstr "உரையாடலுக்கு திரும்பு"
 
-#: ../gramps/gui/plug/_windows.py:887
+#: ../gramps/gui/plug/_windows.py:894
 msgid "Are you sure?"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:911
+#: ../gramps/gui/plug/_windows.py:918
 msgid "Checking Addons Failed"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:913
+#: ../gramps/gui/plug/_windows.py:920
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:928
+#: ../gramps/gui/plug/_windows.py:935
 msgid "There are no available addons of this type"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:929
+#: ../gramps/gui/plug/_windows.py:936
 #, fuzzy
 msgid "' and '"
 msgstr "%s மற்றும் %s"
 
-#: ../gramps/gui/plug/_windows.py:929
+#: ../gramps/gui/plug/_windows.py:936
 #, python-format
 msgid "Checked for '%s'"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:935
+#: ../gramps/gui/plug/_windows.py:942
 msgid "new"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:935
+#: ../gramps/gui/plug/_windows.py:942
 msgid "update"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:970
+#: ../gramps/gui/plug/_windows.py:977
 msgid "Hidden"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:971
+#: ../gramps/gui/plug/_windows.py:978
 msgid "Visible"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:976
+#: ../gramps/gui/plug/_windows.py:983
 msgid "Plugin Manager"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1028 ../gramps/gui/plug/_windows.py:1086
+#: ../gramps/gui/plug/_windows.py:1035 ../gramps/gui/plug/_windows.py:1093
 msgid "Info"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1031 ../gramps/gui/plug/_windows.py:1089
+#: ../gramps/gui/plug/_windows.py:1038 ../gramps/gui/plug/_windows.py:1096
 msgid "Hide/Unhide"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1040 ../gramps/gui/plug/_windows.py:1099
+#: ../gramps/gui/plug/_windows.py:1047 ../gramps/gui/plug/_windows.py:1106
 msgid "Load"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1046
+#: ../gramps/gui/plug/_windows.py:1053
 msgid "Registered Plugins"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1065
+#: ../gramps/gui/plug/_windows.py:1072
 msgid "Loaded"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1069
+#: ../gramps/gui/plug/_windows.py:1076
 #: ../gramps/plugins/importer/importprogen.glade:431
 #: ../gramps/plugins/importer/importprogen.glade:1126
 #, fuzzy
 msgid "File"
 msgstr "கோப்பு:"
 
-#: ../gramps/gui/plug/_windows.py:1076
+#: ../gramps/gui/plug/_windows.py:1083
 msgid "Message"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1105
+#: ../gramps/gui/plug/_windows.py:1112
 msgid "Loaded Plugins"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1127
+#: ../gramps/gui/plug/_windows.py:1134
 #, fuzzy
 msgid "Addon Name"
 msgstr "நிரல் பெயர்"
 
-#: ../gramps/gui/plug/_windows.py:1139
+#: ../gramps/gui/plug/_windows.py:1146
 msgid "Path to Addon:"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1159
+#: ../gramps/gui/plug/_windows.py:1166
 msgid "Install Addon"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1162
+#: ../gramps/gui/plug/_windows.py:1169
 msgid "Install All Addons"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1165
+#: ../gramps/gui/plug/_windows.py:1172
 msgid "Refresh Addon List"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1178
+#: ../gramps/gui/plug/_windows.py:1185
 msgid "Reload"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1206
+#: ../gramps/gui/plug/_windows.py:1213
 msgid "Refreshing Addon List"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1207 ../gramps/gui/plug/_windows.py:1212
-#: ../gramps/gui/plug/_windows.py:1350
+#: ../gramps/gui/plug/_windows.py:1214 ../gramps/gui/plug/_windows.py:1219
+#: ../gramps/gui/plug/_windows.py:1357
 msgid "Reading gramps-project.org..."
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1230
+#: ../gramps/gui/plug/_windows.py:1237
 msgid "Checking addon..."
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1238
+#: ../gramps/gui/plug/_windows.py:1245
 #, fuzzy
 msgid "Unknown Help URL"
 msgstr "தெரியாத"
 
-#: ../gramps/gui/plug/_windows.py:1249
+#: ../gramps/gui/plug/_windows.py:1256
 #, fuzzy
 msgid "Unknown URL"
 msgstr "தெரியாத"
 
-#: ../gramps/gui/plug/_windows.py:1314
+#: ../gramps/gui/plug/_windows.py:1321
 msgid "Install all Addons"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1315
+#: ../gramps/gui/plug/_windows.py:1322
 #, fuzzy
 msgid "Installing..."
 msgstr "ஏற்றுகிறது..."
 
-#: ../gramps/gui/plug/_windows.py:1348
+#: ../gramps/gui/plug/_windows.py:1355
 msgid "Installing Addon"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1371
+#: ../gramps/gui/plug/_windows.py:1378
 msgid "Load Addon"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1463
+#: ../gramps/gui/plug/_windows.py:1470
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:261
 msgid "Fail"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1486 ../gramps/gui/widgets/grampletbar.py:612
+#: ../gramps/gui/plug/_windows.py:1493 ../gramps/gui/widgets/grampletbar.py:612
 msgid "OK"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1594
+#: ../gramps/gui/plug/_windows.py:1601
 #, fuzzy
 msgid "Plugin name"
 msgstr "இயற்பெயர்:"
 
-#: ../gramps/gui/plug/_windows.py:1597
+#: ../gramps/gui/plug/_windows.py:1604
 #, fuzzy
 msgid "Authors"
 msgstr "எழுத்தாளர்"
 
-#: ../gramps/gui/plug/_windows.py:1599
+#: ../gramps/gui/plug/_windows.py:1606
 #: ../gramps/gui/plug/report/_reportdialog.py:481
 msgid "Filename"
 msgstr "கோப்பு பெயர்"
 
-#: ../gramps/gui/plug/_windows.py:1602
+#: ../gramps/gui/plug/_windows.py:1609
 msgid "Detailed Info"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1657
+#: ../gramps/gui/plug/_windows.py:1664
 msgid "Plugin Error"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1726
+#: ../gramps/gui/plug/_windows.py:1733
 msgid "_Execute"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:2024
+#: ../gramps/gui/plug/_windows.py:2031
 #: ../gramps/plugins/importer/importprogen.py:478
 #: ../gramps/plugins/tool/ownereditor.py:171
 #: ../gramps/plugins/tool/reorderids.py:249
 msgid "Main window"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:2162
+#: ../gramps/gui/plug/_windows.py:2169
 msgid "Downloading and installing selected addons..."
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:2205
+#: ../gramps/gui/plug/_windows.py:2212
 #, fuzzy
 msgid "Installation Errors"
 msgstr "அமைப்பு/நிறுவல் பிழை"
 
-#: ../gramps/gui/plug/_windows.py:2206
+#: ../gramps/gui/plug/_windows.py:2213
 #, fuzzy
 msgid "The following addons had errors: "
 msgstr ""
 "\tகீழ்கண்ட இடங்கள் முயற்சிக்கப்பட்டன:\n"
 "\t\t"
 
-#: ../gramps/gui/plug/_windows.py:2214 ../gramps/gui/plug/_windows.py:2231
+#: ../gramps/gui/plug/_windows.py:2221 ../gramps/gui/plug/_windows.py:2238
 msgid "Done downloading and installing addons"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:2219
+#: ../gramps/gui/plug/_windows.py:2226
 #, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../gramps/gui/plug/_windows.py:2224
+#: ../gramps/gui/plug/_windows.py:2231
 msgid "If you have installed a 'View', you will need to restart Gramps."
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:2232
+#: ../gramps/gui/plug/_windows.py:2239
 msgid "No addons were installed."
 msgstr ""
 
