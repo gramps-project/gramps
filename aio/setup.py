@@ -134,6 +134,7 @@ MISSING_DLL = [
     "gspawn-win64-helper.exe",
     "libgeocode-glib-0.dll",
     "gdbus.exe",
+    "pip.exe",
 ]
 BIN_EXCLUDES = ["Qt5Core.dll", "gdiplus.dll", "gdiplus"]
 
@@ -181,6 +182,7 @@ ADWAITA = [
     "16x16",
     "32x32",
     "cursors",
+    "scalable",
 ]
 for adw in ADWAITA:
     INCLUDE_FILES.append(
