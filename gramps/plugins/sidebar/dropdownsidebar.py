@@ -29,6 +29,7 @@
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk
+from gi.repository import Gdk
 
 # -------------------------------------------------------------------------
 #
@@ -139,7 +140,9 @@ class DropdownSidebar(BaseSidebar):
             menuitem.connect("activate", self.cb_menu_clicked, cat_num, item[0])
             menuitem.show()
             self.menu.append(menuitem)
-        self.menu.popup(None, None, cb_menu_position, button, 0, 0)
+        self.menu.popup_at_widget(
+            button, Gdk.Gravity.SOUTH_WEST, Gdk.Gravity.NORTH_WEST, None
+        )
 
     def cb_menu_clicked(self, menuitem, cat_num, view_num):
         """
@@ -211,22 +214,3 @@ class DropdownSidebar(BaseSidebar):
         if self.viewmanager.notebook.get_current_page() != page_no:
             self.viewmanager.notebook.set_current_page(page_no)
         self.__handlers_unblock()
-
-
-def cb_menu_position(*args):
-    """
-    Determine the position of the popup menu.
-    """
-    # takes two argument: menu, button
-    if len(args) == 2:
-        menu = args[0]
-        button = args[1]
-    # broken introspection can't handle MenuPositionFunc annotations corectly
-    else:
-        menu = args[0]
-        button = args[3]
-    ret_val, x_pos, y_pos = button.get_window().get_origin()
-    x_pos += button.get_allocation().x
-    y_pos += button.get_allocation().y + button.get_allocation().height
-
-    return (x_pos, y_pos, False)

@@ -291,7 +291,7 @@ class Tags(DbGUIElement):
         popup_menu.attach_to_widget(button, None)
         popup_menu.show_all()
         popup_menu.popup_at_widget(
-            button, Gdk.Gravity.SOUTH, Gdk.Gravity.NORTH_WEST, None
+            button, Gdk.Gravity.SOUTH_WEST, Gdk.Gravity.NORTH_WEST, None
         )
 
     def cb_organize_tags(self, *action):
@@ -364,26 +364,6 @@ class Tags(DbGUIElement):
                 status.heartbeat()
                 view.remove_tag(trans, object_handle, tag_handle)
         status.end()
-
-
-def cb_menu_position(*args):
-    """
-    Determine the position of the popup menu.
-    """
-    # takes two argument: menu, button
-    if len(args) == 2:
-        menu = args[0]
-        button = args[1]
-    # broken introspection can't handle MenuPositionFunc annotations corectly
-    else:
-        menu = args[0]
-        button = args[3]
-
-    ret_val, x_pos, y_pos = button.get_window().get_origin()
-    x_pos += button.get_allocation().x
-    y_pos += button.get_allocation().y + button.get_allocation().height
-
-    return (x_pos, y_pos, False)
 
 
 def make_callback(func, tag_handle):

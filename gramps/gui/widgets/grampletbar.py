@@ -48,6 +48,7 @@ import configparser
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk
+from gi.repository import Gdk
 
 # -------------------------------------------------------------------------
 #
@@ -566,7 +567,9 @@ class GrampletBar(Gtk.Notebook):
         menu.append(rg_menu)
 
         menu.show_all()
-        menu.popup(None, None, cb_menu_position, button, 0, 0)
+        menu.popup_at_widget(
+            button, Gdk.Gravity.SOUTH_WEST, Gdk.Gravity.NORTH_WEST, None
+        )
 
     def __create_submenu(self, main_menu, gramplet_list, callback_func):
         """
@@ -829,22 +832,3 @@ class TabLabel(Gtk.Box):
             self.closebtn.show()
         else:
             self.closebtn.hide()
-
-
-def cb_menu_position(*args):
-    """
-    Determine the position of the popup menu.
-    """
-    # takes two argument: menu, button
-    if len(args) == 2:
-        menu = args[0]
-        button = args[1]
-    # broken introspection can't handle MenuPositionFunc annotations corectly
-    else:
-        menu = args[0]
-        button = args[3]
-    ret_val, x_pos, y_pos = button.get_window().get_origin()
-    x_pos += button.get_allocation().x
-    y_pos += button.get_allocation().y + button.get_allocation().height
-
-    return (x_pos, y_pos, False)
