@@ -31,7 +31,8 @@ import os
 from html import escape
 import threading
 import sys
-import subprocess
+import pip
+import importlib
 
 # -------------------------------------------------------------------------
 #
@@ -87,7 +88,7 @@ from gramps.gen.plug.utils import get_all_addons, available_updates
 from ..display import display_help, display_url
 from gramps.gui.widgets import BasicLabel, SimpleButton
 from gramps.gen.utils.requirements import Requirements
-from gramps.gen.const import USER_PLUGINS
+from gramps.gen.const import USER_PLUGINS, LIB_PATH
 
 
 def display_message(message):
@@ -283,12 +284,8 @@ class AddonRow(Gtk.ListBoxRow):
         """
         # Install required modules
         for package in self.req.install(addon):
-            try:
-                subprocess.check_output(
-                    [sys.executable, "-m", "pip", "install", package],
-                    stderr=subprocess.STDOUT,
-                )
-            except subprocess.CalledProcessError as err:
+            result = pip.main(["install", "--target", LIB_PATH, package])
+            if result != 0:
                 button.set_sensitive(False)
                 InfoDialog(
                     _("Module installation failed"),
@@ -296,6 +293,12 @@ class AddonRow(Gtk.ListBoxRow):
                     parent=self.window,
                 )
                 return
+
+            location = os.path.join(LIB_PATH, package, "__init__.py")
+            spec = importlib.util.spec_from_file_location(package, location)
+            module = importlib.util.module_from_spec(spec)
+            sys.modules[spec.name] = module
+            spec.loader.exec_module(module)
 
         if not self.req.check_addon(addon):
             InfoDialog(

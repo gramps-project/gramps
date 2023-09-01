@@ -157,6 +157,10 @@ USER_DIRLIST = (
     USER_CSS,
 )
 
+LIB_PATH = os.path.join(USER_PLUGINS, "lib")
+if LIB_PATH not in sys.path:
+    sys.path.append(LIB_PATH)
+
 
 # -------------------------------------------------------------------------
 #
