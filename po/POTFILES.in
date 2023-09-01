@@ -580,7 +580,7 @@ gramps/gui/widgets/styledtextbuffer.py
 gramps/gui/widgets/styledtexteditor.py
 gramps/gui/widgets/validatedmaskedentry.py
 gramps/plugins/cite/cite.gpr.py
-gramps/plugins/cite/default.py
+gramps/plugins/cite/legacy.py
 gramps/plugins/db/bsddb/bsddb.gpr.py
 gramps/plugins/db/dbapi/sqlite.gpr.py
 gramps/plugins/db/dbapi/sqlite.py

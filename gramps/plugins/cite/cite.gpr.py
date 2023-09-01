@@ -31,13 +31,13 @@ MODULE_VERSION = "5.2"
 
 register(
     CITE,
-    id="cite-default",
-    name=_("Default"),
-    description=_("Default citation formatter"),
+    id="cite-legacy",
+    name=_("Legacy"),
+    description=_("Legacy citation formatter"),
     version="1.0",
     gramps_target_version=MODULE_VERSION,
     status=STABLE,
-    fname="default.py",
+    fname="legacy.py",
     authors=["The Gramps project"],
     authors_email=["http://gramps-project.org"],
 )
