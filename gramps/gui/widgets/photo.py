@@ -93,7 +93,7 @@ class Photo(Gtk.EventBox):
                     widget,
                     lambda obj: self.uistate.set_active(self.handle, "Media"),
                 )
-                self.menu.popup(None, None, None, None, event.button, event.time)
+                self.menu.popup_at_pointer(event)
                 return True
         return False
 

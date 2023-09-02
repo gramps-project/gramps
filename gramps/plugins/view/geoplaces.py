@@ -546,7 +546,7 @@ class GeoPlaces(GeoGraphyView):
         bookm.show()
         bookm.connect("activate", self.add_bookmark_from_popup, hdle)
         itemoption.append(bookm)
-        menu.popup(None, None, None, None, event.button, event.time)
+        menu.popup_at_pointer(event)
         return 1
 
     def add_specific_menu(self, menu, event, lat, lon):

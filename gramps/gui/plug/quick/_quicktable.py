@@ -93,12 +93,7 @@ class QuickTable(SimpleTable):
         except:
             self.track = []
         index = None
-        button_code = None
-        event_time = None
-        func = None
         if type(event) == bool:  # enter
-            button_code = 3
-            event_time = 0
             selection = treeview.get_selection()
             store, paths = selection.get_selected_rows()
             tpath = paths[0] if len(paths) > 0 else None
@@ -106,19 +101,10 @@ class QuickTable(SimpleTable):
             if node:
                 treeview.grab_focus()
                 index = store.get_value(node, 0)
-                # FIXME: make popup come where cursor is
-                # rectangle = treeview.get_visible_rect()
-                # column = treeview.get_column(0)
-                # rectangle = treeview.get_cell_area("0:0",
-                # x, y = rectangle.x, rectangle.y
-                # func = lambda menu: (x, y, True)
         elif event.button == 3:
-            button_code = 3
-            event_time = event.time
             x = int(event.x)
             y = int(event.y)
             path_info = treeview.get_path_at_pos(x, y)
-            func = None
             if path_info is not None:
                 path, col, cellx, celly = path_info
                 selection = treeview.get_selection()
@@ -130,8 +116,6 @@ class QuickTable(SimpleTable):
                     treeview.set_cursor(path, col, 0)
                 if store and node:
                     index = store.get_value(node, 0)  # index Below,
-        # you need index, treeview, path, button_code,
-        # func, and event_time
         if index is not None:
             if self._link[index]:
                 objclass, handle = self._link[index]
@@ -189,7 +173,7 @@ class QuickTable(SimpleTable):
                     popup.append(menu_item)
                     menu_item.show()
             # Show the popup menu:
-            popup.popup(None, None, func, None, button_code, event_time)
+            popup.popup_at_pointer(event)
             return True
         return False
 

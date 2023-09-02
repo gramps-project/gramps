@@ -163,7 +163,7 @@ class GeoEvents(Gramplet, DbGUIElement):
         add_item.show()
         menu.append(add_item)
         menu.show()
-        menu.popup(None, None, None, None, event.button, event.time)
+        menu.popup_at_pointer(event)
 
     def edit_place(self, menuitem, treeview):
         """

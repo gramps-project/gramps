@@ -1567,7 +1567,7 @@ class MultiTreeView(PersistentTreeView):
                     popup.append(menu_item)
                     menu_item.show()
             if popup.get_children():  # Show the popup menu:
-                popup.popup(None, None, None, None, 3, event.time)
+                popup.popup_at_pointer(event)
             return True
         elif event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS and event.button == 1:
             model, paths = self.get_selection().get_selected_rows()

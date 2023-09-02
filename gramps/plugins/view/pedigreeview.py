@@ -1549,7 +1549,7 @@ class PedigreeView(NavigationView):
         self.menu.set_reserve_toggle_size(False)
         self.add_nav_portion_to_menu(self.menu, None)
         self.add_settings_to_menu(self.menu)
-        self.menu.popup(None, None, None, None, 0, event.time)
+        self.menu.popup_at_pointer(event)
         return True
 
     def cb_bg_button_press(self, widget, event):
@@ -1691,7 +1691,7 @@ class PedigreeView(NavigationView):
                         "activate", self.cb_childmenu_changed, child_handle
                     )
                     menuitem.show()
-                self.my_menu.popup(None, None, None, None, 0, 0)
+                self.my_menu.popup_at_pointer(None)
             return 1
         return 0
 
@@ -1854,7 +1854,7 @@ class PedigreeView(NavigationView):
         # Add history-based navigation
         self.add_nav_portion_to_menu(self.menu, None)
         self.add_settings_to_menu(self.menu)
-        self.menu.popup(None, None, None, None, 0, event.time)
+        self.menu.popup_at_pointer(event)
         return 1
 
     def cb_build_full_nav_menu(self, obj, event, person_handle, family_handle):
@@ -2095,7 +2095,7 @@ class PedigreeView(NavigationView):
         # Add history-based navigation
         self.add_nav_portion_to_menu(self.menu, person_handle)
         self.add_settings_to_menu(self.menu)
-        self.menu.popup(None, None, None, None, 0, event.time)
+        self.menu.popup_at_pointer(event)
         return 1
 
     def cb_build_relation_nav_menu(self, obj, event, family_handle):
@@ -2127,7 +2127,7 @@ class PedigreeView(NavigationView):
         # Add history-based navigation
         self.add_nav_portion_to_menu(self.menu, None)
         self.add_settings_to_menu(self.menu)
-        self.menu.popup(None, None, None, None, 0, event.time)
+        self.menu.popup_at_pointer(event)
         return 1
 
     def cb_update_show_tags(self, client, cnxn_id, entry, data):

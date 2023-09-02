@@ -738,7 +738,7 @@ class EditPerson(EditPrimary):
         add_menuitem(
             menu, _("Edit Object Properties"), photo, self._popup_change_description
         )
-        menu.popup(None, None, None, None, event.button, event.time)
+        menu.popup_at_pointer(event)
 
     def _popup_view_photo(self, obj):
         """

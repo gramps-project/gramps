@@ -664,7 +664,7 @@ class BookSelector(ManagedWindow):
             item.set_sensitive(sensitivity)
             item.show()
             self.menu1.append(item)
-        self.menu1.popup(None, None, None, None, event.button, event.time)
+        self.menu1.popup_at_pointer(event)
 
     def build_avail_context_menu(self, event):
         """Builds the menu with the single Add option."""
@@ -687,7 +687,7 @@ class BookSelector(ManagedWindow):
             item.set_sensitive(sensitivity)
             item.show()
             self.menu2.append(item)
-        self.menu2.popup(None, None, None, None, event.button, event.time)
+        self.menu2.popup_at_pointer(event)
 
     def on_close_clicked(self, obj):
         """

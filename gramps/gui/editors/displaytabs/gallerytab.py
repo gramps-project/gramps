@@ -183,7 +183,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                 item.set_sensitive(False)
             item.show()
             self.menu.append(item)
-        self.menu.popup(None, None, None, None, event.button, event.time)
+        self.menu.popup_at_pointer(event)
 
     def get_icon_name(self):
         return "gramps-media"
