@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-29 23:01+0100\n"
-"PO-Revision-Date: 2023-08-31 08:54+0000\n"
+"PO-Revision-Date: 2023-09-02 13:22+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -3303,7 +3303,7 @@ msgstr "Anzahl der Notizen"
 
 #: ../gramps/gen/db/generic.py:2558
 msgid "Number of tags"
-msgstr "Anzahl der Markierungen"
+msgstr "Anzahl der Etiketten"
 
 #: ../gramps/gen/db/generic.py:2559
 msgid "Schema version"
@@ -4138,15 +4138,15 @@ msgstr ""
 #: ../gramps/gen/filters/rules/source/_hastag.py:51
 #: ../gramps/gui/editors/filtereditor.py:617
 msgid "Tag:"
-msgstr "Schlagwort:"
+msgstr "Etikett:"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:52
 msgid "Citations with the <tag>"
-msgstr "Fundstellen mit dem <Schlagwort>"
+msgstr "Fundstellen mit dem <Etikett>"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:53
 msgid "Matches citations with the particular tag"
-msgstr "Passt auf Fundstellen mit dem jeweiligen Schlagwort"
+msgstr "Passt auf Fundstellen mit dem jeweiligen Etikett"
 
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:47
 msgid "Citations matching the <filter>"
@@ -4387,11 +4387,11 @@ msgstr "Passt auf Ereignisse mit einer bestimmten Anzahl verknüpfter Quellen"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:52
 msgid "Events with the <tag>"
-msgstr "Ereignisse mit dem <Schlagwort>"
+msgstr "Ereignisse mit dem <Etikett>"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:53
 msgid "Matches events with the particular tag"
-msgstr "Passt auf Ereignisse mit dem angegebenen Schlagwort"
+msgstr "Passt auf Ereignisse mit dem angegebenen Etikett"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:48
 msgid "Events with the particular type"
@@ -4703,11 +4703,11 @@ msgstr "Passt auf Familien, die eine bestimmte Quelle haben"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:52
 msgid "Families with the <tag>"
-msgstr "Familien mit dem <Schlagwort>"
+msgstr "Familien mit dem <Etikett>"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:53
 msgid "Matches families with the particular tag"
-msgstr "Passt auf Familien mit dem entsprechenden Schlagwort"
+msgstr "Passt auf Familien mit dem entsprechenden Etikett"
 
 #: ../gramps/gen/filters/rules/family/_hastwins.py:47
 msgid "Families with twins"
@@ -4985,11 +4985,11 @@ msgstr "Passt auf Medien, die eine bestimmte Quelle haben"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:52
 msgid "Media objects with the <tag>"
-msgstr "Medienobjekt mit dem <Schlagwort>"
+msgstr "Medienobjekt mit dem <Etikett>"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:53
 msgid "Matches media objects with the particular tag"
-msgstr "Passt auf Medienobjekte mit einem bestimmten Schlagwort"
+msgstr "Passt auf Medienobjekte mit einem bestimmten Etikett"
 
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:46
 msgid "Media objects matching the <filter>"
@@ -5081,11 +5081,11 @@ msgstr "Passt auf Notizen mit einer bestimmten Anzahl von Referenzen"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:52
 msgid "Notes with the <tag>"
-msgstr "Notizen mit dem <Schlagwort>"
+msgstr "Notizen mit dem <Etikett>"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:53
 msgid "Matches notes with the particular tag"
-msgstr "Passt auf Notizen mit dem bestimmten Schlagwort"
+msgstr "Passt auf Notizen mit dem bestimmten Etikett"
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:48
 msgid "Notes with the particular type"
@@ -5605,11 +5605,11 @@ msgstr "Passt auf Personen, die eine bestimmte Quelle haben"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:52
 msgid "People with the <tag>"
-msgstr "Personen mit dem <Schlagwort>"
+msgstr "Personen mit dem <Etikett>"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:53
 msgid "Matches people with the particular tag"
-msgstr "Passt auf Personen mit einem bestimmten Schlagwort"
+msgstr "Passt auf Personen mit einem bestimmten Etikett"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:49
 #: ../gramps/gui/editors/filtereditor.py:609
@@ -6258,11 +6258,11 @@ msgstr "Passt auf Orte, die eine bestimmte Quelle haben"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:52
 msgid "Places with the <tag>"
-msgstr "Orte mit dem <Schlagwort>"
+msgstr "Orte mit dem <Etikett>"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:53
 msgid "Matches places with the particular tag"
-msgstr "Passt auf Orte mit einem bestimmten Schlagwort"
+msgstr "Passt auf Orte mit einem bestimmten Etikett"
 
 #: ../gramps/gen/filters/rules/place/_hastitle.py:51
 msgid "Places matching a title"
@@ -6485,11 +6485,11 @@ msgstr "Passt auf Aufbewahrungsorte mit bestimmten Parametern"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:52
 msgid "Repositories with the <tag>"
-msgstr "Aufbewahrungsorte mit dem <Schlagwort>"
+msgstr "Aufbewahrungsorte mit dem <Etikett>"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:53
 msgid "Matches repositories with the particular tag"
-msgstr "Passt auf Aufbewahrungsorte mit einem bestimmten Schlagwort"
+msgstr "Passt auf Aufbewahrungsorte mit einem bestimmten Etikett"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:46
 msgid "Repositories matching the <filter>"
@@ -6639,11 +6639,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:52
 msgid "Sources with the <tag>"
-msgstr "Quellen mit dem <Schlagwort>"
+msgstr "Quellen mit dem <Etikett>"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:53
 msgid "Matches sources with the particular tag"
-msgstr "Passt auf Quellen mit dem bestimmten Schlagwort"
+msgstr "Passt auf Quellen mit dem bestimmten Etikett"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:46
 msgid "Sources matching the <filter>"
@@ -7336,7 +7336,7 @@ msgstr "Letzte Änderung"
 #: ../gramps/plugins/webreport/repository.py:285
 #: ../gramps/plugins/webreport/source.py:306
 msgid "Tags"
-msgstr "Schlagwörter"
+msgstr "Etiketten"
 
 #: ../gramps/gen/lib/date.py:290 ../gramps/gen/lib/date.py:450
 #: ../gramps/gen/mime/_pythonmime.py:52 ../gramps/gen/mime/_pythonmime.py:61
@@ -9258,7 +9258,7 @@ msgstr "Gestaltete Textmarkierungen"
 #: ../gramps/plugins/textreport/tagreport.py:920
 #: ../gramps/plugins/textreport/tagreport.py:924
 msgid "Tag"
-msgstr "Schlagwort"
+msgstr "Etikett"
 
 #: ../gramps/gen/lib/styledtexttag.py:117
 msgid "Ranges"
@@ -10510,7 +10510,7 @@ msgstr "Einbeziehen"
 
 #: ../gramps/gen/plug/report/stdoptions.py:372
 msgid "Whether to include tags"
-msgstr "Ob Schlagwörter einbezogen werden sollen"
+msgstr "Ob Etiketten einbezogen werden sollen"
 
 #: ../gramps/gen/plug/report/stdoptions.py:397
 msgid "Share an existing line"
@@ -12770,19 +12770,18 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2345
 msgid "Tag Records"
-msgstr "Schlagwort Datensätze"
+msgstr "Etikett Datensätze"
 
 #: ../gramps/gui/configure.py:2367
 msgid "Add tag on import"
-msgstr "Schlagwort beim Import hinzufügen"
+msgstr "Etikett beim Import hinzufügen"
 
 #: ../gramps/gui/configure.py:2374
 msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
 msgstr ""
-"Das angegebene Schlagwort wird beim Import zu allen Datensätzen "
-"hinzugefügt.\n"
+"Das angegebene Etikett wird beim Import zu allen Datensätzen hinzugefügt.\n"
 "Leeren um auf Standardwert zu setzen."
 
 #: ../gramps/gui/configure.py:2383
@@ -15452,12 +15451,12 @@ msgstr "Quelle bearbeiten (%s)"
 #: ../gramps/gui/editors/edittaglist.py:49
 msgctxt "manual"
 msgid "Tag_selection_dialog"
-msgstr "Schlagwortauswahldialog"
+msgstr "Etikettauswahldialog"
 
 #: ../gramps/gui/editors/edittaglist.py:72
 #: ../gramps/gui/editors/edittaglist.py:130
 msgid "Tag selection"
-msgstr "Schlagwortauswahl"
+msgstr "Etikettauswahl"
 
 #: ../gramps/gui/editors/editurl.py:48
 msgctxt "manual"
@@ -16239,7 +16238,7 @@ msgstr ""
 #: ../gramps/plugins/tool/removespaces.glade:115
 #: ../gramps/plugins/tool/removespaces.glade:172
 msgid "label"
-msgstr "Etikett"
+msgstr "Bezeichnung"
 
 #: ../gramps/gui/glade/dialog.glade:841
 msgid "Close _without saving"
@@ -16548,7 +16547,7 @@ msgstr "Eine eindeutige ID zur Identifizierung der Fundstelle"
 #: ../gramps/gui/glade/editrepository.glade:234
 #: ../gramps/gui/glade/editsource.glade:229
 msgid "Tags:"
-msgstr "Schlagwörter:"
+msgstr "Etiketten:"
 
 #: ../gramps/gui/glade/editdate.glade:140
 msgid "Calenda_r:"
@@ -16759,12 +16758,12 @@ msgstr ""
 #: ../gramps/gui/glade/editnote.glade:248
 #: ../gramps/gui/glade/editperson.glade:650
 msgid "_Tags:"
-msgstr "Schlagwör_ter:"
+msgstr "Etike_tten:"
 
 #: ../gramps/gui/glade/editfamily.glade:764
 #: ../gramps/gui/widgets/monitoredwidgets.py:864
 msgid "Edit the tag list"
-msgstr "Schlagwortliste bearbeiten"
+msgstr "Etikettenliste bearbeiten"
 
 #: ../gramps/gui/glade/editldsord.glade:180
 msgid "Ordinance:"
@@ -17723,7 +17722,7 @@ msgid ""
 "families will be combined."
 msgstr ""
 "Ereignisse, HLT-_Ord, Medienobjekte, Attribute, Notizen, Quellen und "
-"Schlagwörter beider Familien werden kombiniert."
+"Etiketten beider Familien werden kombiniert."
 
 #: ../gramps/gui/glade/mergemedia.glade:97
 msgid ""
@@ -17744,7 +17743,7 @@ msgstr "Objekt 2"
 #: ../gramps/gui/glade/mergemedia.glade:455
 msgid "Attributes, sources, notes and tags of both objects will be combined."
 msgstr ""
-"Attribute, Quellen, Notizen und Schlagwörter der beiden Objekte werden "
+"Attribute, Quellen, Notizen und Etiketten der beiden Objekte werden "
 "kombiniert."
 
 #: ../gramps/gui/glade/mergenote.glade:97
@@ -17797,7 +17796,7 @@ msgid ""
 "of both persons will be combined."
 msgstr ""
 "Ereignisse, Medienobjekte, Adressen, Attribute, URLs, Notizen, Quellen und "
-"Schlagwörter der beiden Personen werden kombiniert."
+"Etiketten der beiden Personen werden kombiniert."
 
 #: ../gramps/gui/glade/mergeperson.glade:500
 msgid "Context Information"
@@ -20772,102 +20771,102 @@ msgstr "Ausgewählte Zeilen markieren"
 
 #: ../gramps/gui/views/tags.py:96
 msgid "New Tag..."
-msgstr "Neues Schlagwort..."
+msgstr "Neues Etikett..."
 
 #: ../gramps/gui/views/tags.py:96
 msgid "Organize Tags..."
-msgstr "Schlagworte organisieren...."
+msgstr "Etiketten organisieren...."
 
 #: ../gramps/gui/views/tags.py:115
 msgctxt "manual"
 msgid "Organize_Tags_Window"
-msgstr "Schlagwörter_Organisieren_Fenster"
+msgstr "Etiketten_Organisieren_Fenster"
 
 #: ../gramps/gui/views/tags.py:116
 msgctxt "manual"
 msgid "New_Tag_dialog"
-msgstr "Neues_Schlagwort_Dialog"
+msgstr "Neues_Etikett_Dialog"
 
 #: ../gramps/gui/views/tags.py:257
 #, python-format
 msgid "Add tag '%s'"
-msgstr "Schlagwort hinzufügen '%s'"
+msgstr "Etikett hinzufügen '%s'"
 
 #: ../gramps/gui/views/tags.py:265
 #, python-format
 msgid "Remove tag '%s'"
-msgstr "Schlagwort entfernen '%s'"
+msgstr "Etikett entfernen '%s'"
 
 #: ../gramps/gui/views/tags.py:328
 msgid "Adding Tags"
-msgstr "Schlagwörter hinzufügen"
+msgstr "Etiketten hinzufügen"
 
 #: ../gramps/gui/views/tags.py:334 ../gramps/gui/views/tags.py:361
 #, python-format
 msgid "Tag Selection (%s)"
-msgstr "Schlagwortauswahl (%s)"
+msgstr "Etikettauswahl (%s)"
 
 #: ../gramps/gui/views/tags.py:355 ../gramps/gui/views/tags.py:620
 msgid "Removing Tags"
-msgstr "Entferne Schlagwörter"
+msgstr "Entferne Etiketten"
 
 #: ../gramps/gui/views/tags.py:414 ../gramps/gui/views/tags.py:424
 #: ../gramps/gui/views/tags.py:490
 msgid "Organize Tags"
-msgstr "Schlagwörter organisieren"
+msgstr "Etiketten organisieren"
 
 #: ../gramps/gui/views/tags.py:442
 msgid "Change Tag Priority"
-msgstr "Markierungspriorität ändern"
+msgstr "Etikettpriorität ändern"
 
 #: ../gramps/gui/views/tags.py:585
 #, python-format
 msgid "Remove tag '%s'?"
-msgstr "Schlagwort entfernen '%s'?"
+msgstr "Etikett entfernen '%s'?"
 
 #: ../gramps/gui/views/tags.py:587
 msgid ""
 "The tag definition will be removed.  The tag will be also removed from all "
 "objects in the database."
 msgstr ""
-"Die Schlagwortdefinition wird entfernt. Das Schlagwort wird auch von allen "
+"Die Etikettdefinition wird entfernt. Das Etikett wird auch von allen "
 "Objekten in der Datenbank entfernt."
 
 #: ../gramps/gui/views/tags.py:626
 #, python-format
 msgid "Delete Tag (%s)"
-msgstr "Schlagwort löschen (%s)"
+msgstr "Etikett löschen (%s)"
 
 #: ../gramps/gui/views/tags.py:653
 #, python-format
 msgid "Tag: %s"
-msgstr "Schlagwort: %s"
+msgstr "Etikett: %s"
 
 #: ../gramps/gui/views/tags.py:655
 msgid "New Tag"
-msgstr "Neues Schlagwort"
+msgstr "Neues Etikett"
 
 #: ../gramps/gui/views/tags.py:704
 msgid "Cannot save tag"
-msgstr "Kann Schlagwort nicht speichern"
+msgstr "Kann Etikett nicht speichern"
 
 #: ../gramps/gui/views/tags.py:705
 msgid "The tag name cannot be empty"
-msgstr "Der Schlagwortname darf nicht leer sein"
+msgstr "Der Etikettname darf nicht leer sein"
 
 #: ../gramps/gui/views/tags.py:711
 #, python-format
 msgid "Add Tag (%s)"
-msgstr "Schlagwort hinzufügen (%s)"
+msgstr "Etikett hinzufügen (%s)"
 
 #: ../gramps/gui/views/tags.py:717
 #, python-format
 msgid "Edit Tag (%s)"
-msgstr "Schlagwort bearbeiten (%s)"
+msgstr "Etikett bearbeiten (%s)"
 
 #: ../gramps/gui/views/tags.py:732
 msgid "Tag Name:"
-msgstr "Schlagwortname:"
+msgstr "Etikettname:"
 
 #: ../gramps/gui/views/tags.py:739
 #, python-format
@@ -25117,17 +25116,16 @@ msgstr "Verzögerung, bevor die Nachkommen eines Vorfahren verarbeitet werden"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:76
 msgid "Tag to indicate that a person is complete"
-msgstr "Schlagwort, um anzuzeigen, dass eine Person vollständig ist"
+msgstr "Etikett, um anzuzeigen, dass eine Person vollständig ist"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:83
 msgid "Tag to indicate that a family is complete"
-msgstr "Schlagwort, um anzuzeigen, dass eine Familie vollständig ist"
+msgstr "Etikett, um anzuzeigen, dass eine Familie vollständig ist"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:89
 msgid "Tag to indicate that a person or family should be ignored"
 msgstr ""
-"Schlagwort, um anzuzeigen, dass eine Person oder Familie ignoriert werden "
-"sollte"
+"Etikett, um anzuzeigen, dass eine Person oder Familie ignoriert werden sollte"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:163
 msgid "No Home Person set."
@@ -26553,7 +26551,7 @@ msgid ""
 "Default Tagtext\n"
 "(out of Settings)."
 msgstr ""
-"Standard-Schlagworttext\n"
+"Standard-Etiketttext\n"
 "(aus den Einstellungen)."
 
 #: ../gramps/plugins/importer/importprogen.glade:443
@@ -26580,7 +26578,7 @@ msgid ""
 "to all Tag Text'."
 msgstr ""
 "Standardtext kopieren\n"
-"zu allen Schlagworttexten'."
+"zu allen Etiketttexten'."
 
 #: ../gramps/plugins/importer/importprogen.glade:1130
 msgid ""
@@ -26588,7 +26586,7 @@ msgid ""
 "to all sensitive Tag Text'."
 msgstr ""
 "Kopiere Standard-Dateiname\n"
-"auf alle sensiblen Schlagworttexte."
+"auf alle sensiblen Etiketttexte."
 
 #: ../gramps/plugins/importer/importprogen.glade:1149
 msgid ""
@@ -26596,7 +26594,7 @@ msgid ""
 "to all sensitive Tag Text'."
 msgstr ""
 "Kopiere Standard-Datum\n"
-"auf alle sensiblen Schlagworttexte."
+"auf alle sensiblen Etiketttexte."
 
 #: ../gramps/plugins/importer/importprogen.glade:1164
 msgid "  Objects"
@@ -26608,11 +26606,11 @@ msgid ""
 "all object tags."
 msgstr ""
 "Aktiviere/Deaktiviere\n"
-"alle Objekt Schlagwörter."
+"alle Objekt Etiketten."
 
 #: ../gramps/plugins/importer/importprogen.glade:1198
 msgid "Tag Text"
-msgstr "Schlagworttext"
+msgstr "Etiketttext"
 
 #: ../gramps/plugins/importer/importprogen.glade:1217
 msgid "Import Objects"
@@ -27252,7 +27250,7 @@ msgstr "Zeile ignoriert, da nicht verstanden"
 
 #: ../gramps/plugins/lib/libgedcom.py:3487
 msgid "Tag recognized but not supported"
-msgstr "Schlagwort erkannt, aber nicht unterstützt"
+msgstr "Tag erkannt, aber nicht unterstützt"
 
 #: ../gramps/plugins/lib/libgedcom.py:3523
 msgid "Skipped subordinate line"
@@ -27328,7 +27326,7 @@ msgstr "GEDCOM-Daten"
 
 #: ../gramps/plugins/lib/libgedcom.py:3987
 msgid "Unknown tag"
-msgstr "Unbekanntes Schlagwort"
+msgstr "Unbekanntes Tag"
 
 #: ../gramps/plugins/lib/libgedcom.py:3989
 #: ../gramps/plugins/lib/libgedcom.py:4003
@@ -27628,23 +27626,23 @@ msgstr "%(date)s %(time)s"
 
 #: ../gramps/plugins/lib/libmetadata.py:120
 msgid "Descriptive Tags"
-msgstr "Beschreibende Schlagworte"
+msgstr "Beschreibende Etiketten"
 
 #: ../gramps/plugins/lib/libmetadata.py:121
 msgid "Date and Time Tags"
-msgstr "Datum- und Uhrzeit-Schlagworte"
+msgstr "Datum- und Uhrzeit-Etiketten"
 
 #: ../gramps/plugins/lib/libmetadata.py:122
 msgid "People Tags"
-msgstr "Personen Schlagworte"
+msgstr "Personen Etiketten"
 
 #: ../gramps/plugins/lib/libmetadata.py:123
 msgid "Event Tags"
-msgstr "Ereignis Schlagworte"
+msgstr "Ereignis Etiketten"
 
 #: ../gramps/plugins/lib/libmetadata.py:124
 msgid "Image Tags"
-msgstr "Bild Schlagworte"
+msgstr "Bild Etiketten"
 
 #: ../gramps/plugins/lib/libmetadata.py:125
 msgid "Camera Information"
@@ -27652,19 +27650,19 @@ msgstr "Kamerainformationen"
 
 #: ../gramps/plugins/lib/libmetadata.py:126
 msgid "Location Tags"
-msgstr "Ort Schlagworte"
+msgstr "Ort Etiketten"
 
 #: ../gramps/plugins/lib/libmetadata.py:127
 msgid "Advanced Tags"
-msgstr "Erweiterte Schlagworte"
+msgstr "Erweiterte Etiketten"
 
 #: ../gramps/plugins/lib/libmetadata.py:128
 msgid "Rights Tags"
-msgstr "Rechte Schlagworte"
+msgstr "Rechte Etiketten"
 
 #: ../gramps/plugins/lib/libmetadata.py:129
 msgid "Keyword Tags"
-msgstr "Stichwort Schlagworte"
+msgstr "Schlüsselwort Etiketten"
 
 #: ../gramps/plugins/lib/libmetadata.py:228
 msgid "Namespace"
@@ -27672,7 +27670,7 @@ msgstr "Namensraum"
 
 #: ../gramps/plugins/lib/libmetadata.py:229
 msgid "Label"
-msgstr "Etikett"
+msgstr "Bezeichnung"
 
 #: ../gramps/plugins/lib/libmetadata.py:230
 msgid " "
@@ -33828,11 +33826,11 @@ msgstr "Ob Quellen zitiert werden sollen."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1180
 msgid "Include Tags"
-msgstr "Schlagwörter einbeziehen"
+msgstr "Etiketten einbeziehen"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1181
 msgid "Whether to include tags."
-msgstr "Ob Schlagwörter einbezogen werden sollen."
+msgstr "Ob Etiketten einbezogen werden sollen."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1184
 msgid "Include Attributes"
@@ -34249,18 +34247,18 @@ msgstr "Das Format, das für Überschriften der dritten Ebene verwendet wird."
 #: ../gramps/plugins/textreport/tagreport.py:114
 #: ../gramps/plugins/textreport/textplugins.gpr.py:261
 msgid "Tag Report"
-msgstr "Schlagwortbericht"
+msgstr "Etikettenbericht"
 
 #: ../gramps/plugins/textreport/tagreport.py:115
 msgid "You must first create a tag before running this report."
 msgstr ""
-"Du musst zuerst ein Schlagwort erstellen, bevor du diesen Bericht ausführen "
+"Du musst zuerst ein Etikett erstellen, bevor du diesen Bericht ausführen "
 "kannst."
 
 #: ../gramps/plugins/textreport/tagreport.py:125
 #, python-format
 msgid "Tag Report for %s Items"
-msgstr "Schlagwortbericht für %s Objekte"
+msgstr "Etikettenbericht für %s Objekte"
 
 #: ../gramps/plugins/textreport/tagreport.py:681
 msgid "Email Address"
@@ -34273,7 +34271,7 @@ msgstr "Informationen zur Veröffentlichung"
 
 #: ../gramps/plugins/textreport/tagreport.py:927
 msgid "The tag to use for the report"
-msgstr "Das für den Bericht zu verwendende Schlagwort"
+msgstr "Das für den Bericht zu verwendende Etikett"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:38
 msgid "Ahnentafel Report"
@@ -34347,7 +34345,7 @@ msgstr ""
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:262
 msgid "Produces a list of people with a specified tag"
-msgstr "Erzeugt eine Liste von Personen mit einem bestimmten Schlagwort"
+msgstr "Erzeugt eine Liste von Personen mit einem bestimmten Etikett"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:284
 msgid "Number of Ancestors Report"
@@ -34689,7 +34687,7 @@ msgstr "Aktualisieren von Prüfsummen auf Medien"
 
 #: ../gramps/plugins/tool/check.py:2155
 msgid "Looking for tag reference problems"
-msgstr "Suche nach Schlagwortreferenzproblemen"
+msgstr "Suche nach Etikettreferenzproblemen"
 
 #: ../gramps/plugins/tool/check.py:2299
 msgid "Looking for media source reference problems"
@@ -34896,10 +34894,8 @@ msgstr[1] "{quantity} Notizobjekte wurden referenziert, aber nicht gefunden\n"
 #, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
-msgstr[0] ""
-"{quantity} Schlagwortobjekt wurde referenziert, aber nicht gefunden\n"
-msgstr[1] ""
-"{quantity} Schlagwortobjekte wurden referenziert, aber nicht gefunden\n"
+msgstr[0] "{quantity} Etikettobjekt wurde referenziert, aber nicht gefunden\n"
+msgstr[1] "{quantity} Etikettobjekte wurden referenziert, aber nicht gefunden\n"
 
 #: ../gramps/plugins/tool/check.py:3009
 #, python-brace-format
@@ -35470,7 +35466,7 @@ msgstr[1] "{number_of} Fundstellen zusammengeführt"
 
 #: ../gramps/plugins/tool/notrelated.glade:162
 msgid "_Tag"
-msgstr "Schlagwor_t"
+msgstr "Etiket_t"
 
 #: ../gramps/plugins/tool/notrelated.py:61
 msgctxt "manual"
@@ -35495,8 +35491,8 @@ msgstr "Jeder in der Datenbank ist verwandt mit %s"
 #, python-brace-format
 msgid "Setting tag for {number_of} person"
 msgid_plural "Setting tag for {number_of} people"
-msgstr[0] "Setze Schlagwort für {number_of} Person"
-msgstr[1] "Setze Schlagwort für {number_of} Personen"
+msgstr[0] "Setze Etikett für {number_of} Person"
+msgstr[1] "Setze Etikett für {number_of} Personen"
 
 #: ../gramps/plugins/tool/notrelated.py:303
 #, python-brace-format
@@ -37557,7 +37553,7 @@ msgstr "Unbekannte Personen anzeigen"
 
 #: ../gramps/plugins/view/pedigreeview.py:2254
 msgid "Show tags"
-msgstr "Schlagwörter anzeigen"
+msgstr "Etiketten anzeigen"
 
 #: ../gramps/plugins/view/pedigreeview.py:2258
 msgid "Tree style"
