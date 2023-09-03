@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-29 23:01+0100\n"
-"PO-Revision-Date: 2023-08-25 18:38+0000\n"
+"PO-Revision-Date: 2023-09-02 13:22+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -2210,7 +2210,7 @@ msgstr "{long_month.forms[D]} {year}"
 #, python-brace-format
 msgctxt "estimated"
 msgid "{long_month} {year}"
-msgstr "{long_month.forms[D]} {year}"
+msgstr "{long_month.forms[P]} {year}"
 
 #. Translators: If "calculated <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2488,7 +2488,7 @@ msgstr "P=november|D=novembra|T=novembri|O=novembrom"
 #: ../gramps/gen/datehandler/_datestrings.py:101
 msgctxt "localized lexeme inflections"
 msgid "December"
-msgstr "P=december|D=decembra|T=decembei|O=decembrom"
+msgstr "P=december|D=decembra|T=decembri|O=decembrom"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -18803,10 +18803,8 @@ msgid "Module installation failed"
 msgstr "Inštalácia modulu zlyhala"
 
 #: ../gramps/gui/plug/_windows.py:295
-#, fuzzy
-#| msgid "Allow Gramps to install required python modules"
 msgid "Gramps was unable to install the required modules"
-msgstr "Povoliť Gramps nainštalovať požadované moduly pythonu"
+msgstr "Programu Gramps sa nepodarilo nainštalovať požadované moduly"
 
 #: ../gramps/gui/plug/_windows.py:319
 msgid "Requirements"
@@ -18829,10 +18827,8 @@ msgid "All addons"
 msgstr "Všetky doplnky"
 
 #: ../gramps/gui/plug/_windows.py:401 ../gramps/gui/plug/_windows.py:596
-#, fuzzy
-#| msgid "installed"
 msgid "Not installed"
-msgstr "nainštalovaný"
+msgstr "Nenainštalovaný"
 
 #: ../gramps/gui/plug/_windows.py:402 ../gramps/gui/plug/_windows.py:599
 msgid "Installed"
@@ -22230,10 +22226,8 @@ msgstr ""
 "Obrátiť mená pre generácie 2, 3 a 4, t. j. tie, ktoré sa nachádzajú v kruhoch"
 
 #: ../gramps/plugins/drawreport/fanchart.py:854
-#, fuzzy
-#| msgid "The title of the calendar"
 msgid "Exclude the title of the chart"
-msgstr "Názov kalendára"
+msgstr "Vynechať názov diagramu"
 
 #: ../gramps/plugins/drawreport/fanchart.py:855
 msgid "Exclude the title to make more room for the chart"
