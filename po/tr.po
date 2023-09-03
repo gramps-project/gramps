@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-29 23:01+0100\n"
-"PO-Revision-Date: 2023-08-25 18:38+0000\n"
+"PO-Revision-Date: 2023-09-03 11:53+0000\n"
 "Last-Translator: Bora Atıcı <boratici.acc@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
@@ -18781,10 +18781,8 @@ msgid "Module installation failed"
 msgstr "Modül yükleme başarısız oldu"
 
 #: ../gramps/gui/plug/_windows.py:295
-#, fuzzy
-#| msgid "Allow Gramps to install required python modules"
 msgid "Gramps was unable to install the required modules"
-msgstr "Gramps'in gerekli python modüllerini yüklemesine izin ver"
+msgstr "Gramps gerekli modülleri yükleyemedi"
 
 #: ../gramps/gui/plug/_windows.py:319
 msgid "Requirements"
@@ -18807,10 +18805,8 @@ msgid "All addons"
 msgstr "Tüm eklentiler"
 
 #: ../gramps/gui/plug/_windows.py:401 ../gramps/gui/plug/_windows.py:596
-#, fuzzy
-#| msgid "installed"
 msgid "Not installed"
-msgstr "yüklendi"
+msgstr "Yüklü değil"
 
 #: ../gramps/gui/plug/_windows.py:402 ../gramps/gui/plug/_windows.py:599
 msgid "Installed"
