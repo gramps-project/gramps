@@ -63,6 +63,7 @@ mkdir /mingw64/share/enchant/voikko
 cd /mingw64/share/enchant/voikko
 wget https://www.puimula.org/htp/testing/voikko-snapshot-v5/dict.zip
 unzip dict.zip
+rm dict.zip
 
 cd D:/a/gramps/gramps/aio
 
