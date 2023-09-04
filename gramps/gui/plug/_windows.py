@@ -799,7 +799,7 @@ class AddonManager(ManagedWindow):
             title = _("New Project")
         else:
             title = _("Edit Project")
-        dialog = Gtk.Dialog(title=title, transient_for=self.window)
+        dialog = Gtk.Dialog(title=title, transient_for=self.window, default_width=600)
         dialog.set_border_width(6)
         dialog.vbox.set_spacing(6)
 
@@ -814,7 +814,7 @@ class AddonManager(ManagedWindow):
         name.set_text(row.project[0])
         name.set_activates_default(True)
         grid.attach(name, 1, 0, 1, 1)
-        label = Gtk.Label(label=_("%s: ") % _("Url"))
+        label = Gtk.Label(label=_("%s: ") % _("URL"))
         label.set_halign(Gtk.Align.END)
         grid.attach(label, 0, 1, 1, 1)
         url = Gtk.Entry()
