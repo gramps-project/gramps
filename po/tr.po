@@ -26514,12 +26514,12 @@ msgid ""
 "'Unknown' objects are referenced by note %(unknown)s."
 msgstr ""
 "\n"
-"İçe aktarılan dosya bağımsız değildi.\n"
-"Bunu düzeltmek için %(new)d nesne oluşturuldu ve\n"
-"tipleme özellikleri 'Bilinmeyen' olarak ayarlandı.\n"
-"Kategori başına döküm şu şekilde gösterilmektedir:\n"
-"parantez içindeki sayı. mümkünse bunlar\n"
-"'Bilinmeyen' nesnelere %(unknown)s notu ile başvurulur."
+"İçe aktarılan dosya gerekli her şeyi içermiyordu. \n"
+"Bunu düzeltmek için %(new)d nesne oluşturuldu ve \n"
+"bunların yazma niteliği 'Bilinmeyen' olarak ayarlandı. \n"
+"Kategorilere göre dağılım parantez içindeki sayıyla \n"
+"gösterilmektedir. Mümkün olduğunda bu 'Bilinmeyen' \n"
+"nesnelere %(unknown)s notu ile başvurulur."
 
 #: ../gramps/plugins/importer/importxml.py:387
 msgid ""
@@ -26887,11 +26887,11 @@ msgid ""
 "referenced by note %(unknown)s.\n"
 msgstr ""
 "\n"
-"İçe aktarılan dosya bağımsız değil. Bunu düzeltmek\n"
-"için %(new)d nesne oluşturuldu ve tipleme\n"
-"özellikleri 'Bilinmeyen' olarak ayarlandı. Mümkün\n"
-"olduğunda bu 'Bilinmeyen' nesneler %(unknown)s\n"
-"notuyla başvurulmuştur.\n"
+"İçe aktarılan dosya gerekli her şeyi içermiyordu. \n"
+"Bunu düzeltmek için %(new)d nesne oluşturuldu ve \n"
+"bunların yazma niteliği 'Bilinmeyen' olarak ayarlandı. \n"
+"Mümkün olduğunda bu 'Bilinmeyen' nesnelere \n"
+"%(unknown)s notu ile başvurulur.\n"
 
 #: ../gramps/plugins/lib/libgedcom.py:3868
 #, python-format
@@ -39300,7 +39300,6 @@ msgstr "Stil sayfası yok"
 #~ msgstr "Nerede kontrol edilsin"
 
 #, fuzzy
-#~| msgid "Plugin lib"
 #~ msgid "Plugins"
 #~ msgstr "Eklenti kitaplığı"
 
@@ -39329,8 +39328,6 @@ msgstr "Stil sayfası yok"
 #~ msgstr "Gtk sürümünüz çok eski."
 
 #, fuzzy
-#~| msgctxt "localized lexeme inflections"
-#~| msgid "January"
 #~ msgctxt "localized lexeme inflections"
 #~ msgid "|January"
 #~ msgstr "Ocak"
@@ -39521,12 +39518,10 @@ msgstr "Stil sayfası yok"
 #~ msgstr "Genel"
 
 #, fuzzy
-#~| msgid "Common"
 #~ msgid "Name|Common"
 #~ msgstr "Genel"
 
 #, fuzzy
-#~| msgid "suffix"
 #~ msgid "locale_suffix|"
 #~ msgstr "sonek"
 
