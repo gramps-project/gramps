@@ -29,7 +29,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-29 23:01+0100\n"
-"PO-Revision-Date: 2023-08-31 08:54+0000\n"
+"PO-Revision-Date: 2023-09-05 17:49+0000\n"
 "Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -130,11 +130,11 @@ msgstr "Shavuot"
 
 #: ../data/holidays.xml:368
 msgid "Rosh Ha'Shana"
-msgstr "Rosh Ha'Shana"
+msgstr "Rosh hashana"
 
 #: ../data/holidays.xml:369
 msgid "Rosh Ha'Shana 2"
-msgstr "Rosh Ha'Shana 2"
+msgstr "Rosh hashana 2"
 
 #: ../data/holidays.xml:370
 msgid "Yom Kippur"
@@ -2677,12 +2677,12 @@ msgstr "Svensk"
 #: ../gramps/gen/datehandler/_datestrings.py:163
 msgctxt "Hebrew month lexeme"
 msgid "Tishri"
-msgstr "Tishri"
+msgstr "Tischri"
 
 #: ../gramps/gen/datehandler/_datestrings.py:164
 msgctxt "Hebrew month lexeme"
 msgid "Heshvan"
-msgstr "Heshvan"
+msgstr "Cheschvan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:165
 msgctxt "Hebrew month lexeme"
@@ -2697,7 +2697,7 @@ msgstr "Tevet"
 #: ../gramps/gen/datehandler/_datestrings.py:167
 msgctxt "Hebrew month lexeme"
 msgid "Shevat"
-msgstr "Shevat"
+msgstr "Schevat"
 
 #: ../gramps/gen/datehandler/_datestrings.py:168
 msgctxt "Hebrew month lexeme"
@@ -2717,7 +2717,7 @@ msgstr "Nisan"
 #: ../gramps/gen/datehandler/_datestrings.py:171
 msgctxt "Hebrew month lexeme"
 msgid "Iyyar"
-msgstr "Iyyar"
+msgstr "Ijar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:172
 msgctxt "Hebrew month lexeme"
@@ -2825,22 +2825,22 @@ msgstr "Safar"
 #: ../gramps/gen/datehandler/_datestrings.py:207
 msgctxt "Islamic month lexeme"
 msgid "Rabi`al-Awwal"
-msgstr "Rabi`al-Awwal"
+msgstr "Rabi' al-awwal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:208
 msgctxt "Islamic month lexeme"
 msgid "Rabi`ath-Thani"
-msgstr "Rabi`ath-Thani"
+msgstr "Rabi' al-akhir"
 
 #: ../gramps/gen/datehandler/_datestrings.py:209
 msgctxt "Islamic month lexeme"
 msgid "Jumada l-Ula"
-msgstr "Jumada l-Ula"
+msgstr "Jumada al-awwal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:210
 msgctxt "Islamic month lexeme"
 msgid "Jumada t-Tania"
-msgstr "Jumada t-Tania"
+msgstr "Jumada al-akhira"
 
 #: ../gramps/gen/datehandler/_datestrings.py:211
 msgctxt "Islamic month lexeme"
@@ -2865,12 +2865,12 @@ msgstr "Shawwal"
 #: ../gramps/gen/datehandler/_datestrings.py:215
 msgctxt "Islamic month lexeme"
 msgid "Dhu l-Qa`da"
-msgstr "Dhu l-Qa`da"
+msgstr "Dhu al-qa'da"
 
 #: ../gramps/gen/datehandler/_datestrings.py:216
 msgctxt "Islamic month lexeme"
 msgid "Dhu l-Hijja"
-msgstr "Dhu l-Hijja"
+msgstr "Dhu al-hijja"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
