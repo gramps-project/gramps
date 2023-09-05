@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-26 17:41+0100\n"
-"PO-Revision-Date: 2023-08-29 22:02+0000\n"
+"PO-Revision-Date: 2023-09-05 17:49+0000\n"
 "Last-Translator: Michał Stojek <stojex@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/pl/>\n"
@@ -18329,7 +18329,7 @@ msgstr "Zarządca pluginów"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Preferences..."
-msgstr "_Ustawienia..."
+msgstr "_Preferencje..."
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Quit"
