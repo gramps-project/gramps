@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-05 23:59+0100\n"
 "PO-Revision-Date: 2023-09-07 16:57+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -9800,7 +9800,7 @@ msgstr "קטן"
 #: ../gramps/plugins/graph/gvrelgraph.py:1082
 #: ../gramps/plugins/importer/importprogen.py:513
 msgid "Normal"
-msgstr "בדיוק"
+msgstr "סדיר"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:124
 #: ../gramps/plugins/graph/gvfamilylines.py:321
@@ -14545,7 +14545,7 @@ msgstr "עורך_שמות"
 #: ../gramps/gui/editors/editname.py:184
 #: ../gramps/gui/editors/editperson.py:342
 msgid "Call name must be the given name that is normally used."
-msgstr "'שם פניה' חייב להיות שמו הפרטי של אדם, בו הוא משתמש."
+msgstr "'שם פניה' חייב להיות שמו הפרטי של אדם, בו הוא משתמש באוםן סדיר."
 
 #: ../gramps/gui/editors/editname.py:343
 msgid "New Name"
@@ -16072,7 +16072,8 @@ msgstr "תחילת שנ_ה חדשה:  "
 
 #: ../gramps/gui/glade/editdate.glade:231
 msgid "Month-Day of first day of new year (e.g., \"1-1\", \"3-1\", \"3-25\")"
-msgstr "חודש-יום של היום הראשון בשנה חדשה (לדוגמה, \"1-1\", \"3-1\", \"3-25\")"
+msgstr ""
+"יום/חודש של 'היום הראשון' בשנה חדשה (לדוגמה, \"1/1\", \"1/3\", \"25/3\")"
 
 #: ../gramps/gui/glade/editdate.glade:261
 msgid "Q_uality"
@@ -16508,9 +16509,9 @@ msgid ""
 "call name is not part of Given name and will not be printed underlined in "
 "some reports."
 msgstr ""
-"חלק מהשם הפרטי (כאשר יש יותר משם אחד) בו שמשמשים בדרך כלל לפנות לאדם. אם רקע "
-"השדה צבוע באדום, משמע ש'שם פניה' לא חלק מהשם הפרטי ולכן לא יודפס מודגש בקו "
-"תחתון במספר דוחות ."
+"כאשר לאדם יותר משם פרטי אחד (דוד־חיים, רבקה־חייה), אותו חלק מהשם הפרטי בו "
+"נוהגים לפנות אליו בדרך כלל. אם רקע שדה השם צבוע אדום, משמע ש'שם פניה' לא "
+"נכלל ב'שם הפרטי' ולכן גם לא יודפס מודגש בקו תחתון במקצת הדוחות."
 
 #: ../gramps/gui/glade/editname.glade:291
 #: ../gramps/gui/glade/editperson.glade:211
