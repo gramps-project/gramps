@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-05 23:59+0100\n"
-"PO-Revision-Date: 2023-08-30 04:43+0000\n"
+"PO-Revision-Date: 2023-09-07 01:07+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -20530,16 +20530,12 @@ msgid "'%s' is not a valid date value"
 msgstr "'%s' הוא לא ערך תקין של תאריך"
 
 #: ../gramps/plugins/cite/cite.gpr.py:35
-#, fuzzy
-#| msgid "Legal"
 msgid "Legacy"
-msgstr "חוקי"
+msgstr "מיושן"
 
 #: ../gramps/plugins/cite/cite.gpr.py:36
-#, fuzzy
-#| msgid "Default citation formatter"
 msgid "Legacy citation formatter"
-msgstr "מתבנת מובאות ברירת־מחדל"
+msgstr "מתבנת מובאות מיושן"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:27
 msgid "BSDDB"
@@ -37465,10 +37461,8 @@ msgid "Check it if you want to open/close a section"
 msgstr "סימון לפתיחת/סגירת מקטע"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
-#, fuzzy
-#| msgid "Extra pages"
 msgid "Extra Pages"
-msgstr "עמוד נוסף"
+msgstr "עמודים נוספים"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2209
 msgid "Extra page name"
@@ -38078,10 +38072,8 @@ msgid "Translations"
 msgstr "תרגומים"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2797
-#, fuzzy
-#| msgid "second language"
 msgid "Second language"
-msgstr "שפה שניה"
+msgstr "שפה שנייה"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2802
 msgid "Site name for your second language"
@@ -38104,8 +38096,6 @@ msgid "Enter a title in the respective language"
 msgstr "הזנת כותרת בשפה המתאימה"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2806
-#, fuzzy
-#| msgid "third language"
 msgid "Third language"
 msgstr "שפה שלישית"
 
@@ -38114,8 +38104,6 @@ msgid "Site name for your third language"
 msgstr "שם אתר לשפה השלישית"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2815
-#, fuzzy
-#| msgid "fourth language"
 msgid "Fourth language"
 msgstr "שפה רביעית"
 
@@ -38124,8 +38112,6 @@ msgid "Site name for your fourth language"
 msgstr "שם אתר לשפה הרביעית"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2824
-#, fuzzy
-#| msgid "fifth language"
 msgid "Fifth language"
 msgstr "שפה חמישית"
 
@@ -38134,8 +38120,6 @@ msgid "Site name for your fifth language"
 msgstr "שם אתר לשפה החמישית"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2833
-#, fuzzy
-#| msgid "sixth language"
 msgid "Sixth language"
 msgstr "שפה שישית"
 
