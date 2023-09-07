@@ -569,6 +569,7 @@ gramps/plugins/rel/rel_de.py
 gramps/plugins/rel/rel_es.py
 gramps/plugins/rel/rel_fi.py
 gramps/plugins/rel/rel_fr.py
+gramps/plugins/rel/rel_he.py
 gramps/plugins/rel/rel_hr.py
 gramps/plugins/rel/rel_hu.py
 gramps/plugins/rel/rel_is.py
