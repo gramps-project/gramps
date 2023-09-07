@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-05 23:59+0100\n"
-"PO-Revision-Date: 2023-08-31 08:54+0000\n"
+"PO-Revision-Date: 2023-09-07 01:07+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -21070,16 +21070,12 @@ msgid "'%s' is not a valid date value"
 msgstr "'%s' is geen geldige datumwaarde"
 
 #: ../gramps/plugins/cite/cite.gpr.py:35
-#, fuzzy
-#| msgid "Legal"
 msgid "Legacy"
-msgstr "Juridisch"
+msgstr "Verouderd"
 
 #: ../gramps/plugins/cite/cite.gpr.py:36
-#, fuzzy
-#| msgid "Default citation formatter"
 msgid "Legacy citation formatter"
-msgstr "Standaardopmaak voor citaten"
+msgstr "Verouderde standaardopmaak voor citaten"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:27
 msgid "BSDDB"
@@ -38424,8 +38420,6 @@ msgid "Check it if you want to open/close a section"
 msgstr "Controleer of u een sectie wilt openen/sluiten"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
-#, fuzzy
-#| msgid "Extra pages"
 msgid "Extra Pages"
 msgstr "Extra pagina's"
 
@@ -39055,10 +39049,8 @@ msgid "Translations"
 msgstr "Vertalingen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2797
-#, fuzzy
-#| msgid "second language"
 msgid "Second language"
-msgstr "tweede taal"
+msgstr "Tweede taal"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2802
 msgid "Site name for your second language"
@@ -39081,40 +39073,32 @@ msgid "Enter a title in the respective language"
 msgstr "Voer een titel in in de respectievelijke taal"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2806
-#, fuzzy
-#| msgid "third language"
 msgid "Third language"
-msgstr "derde taal"
+msgstr "Derde taal"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2811
 msgid "Site name for your third language"
 msgstr "De naam van de website in de derde taal"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2815
-#, fuzzy
-#| msgid "fourth language"
 msgid "Fourth language"
-msgstr "vierde taal"
+msgstr "Vierde taal"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2820
 msgid "Site name for your fourth language"
 msgstr "De naam van de website in de vierde taal"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2824
-#, fuzzy
-#| msgid "fifth language"
 msgid "Fifth language"
-msgstr "vijfde taal"
+msgstr "Vijfde taal"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2829
 msgid "Site name for your fifth language"
 msgstr "De naam van de website in de vijfde taal"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2833
-#, fuzzy
-#| msgid "sixth language"
 msgid "Sixth language"
-msgstr "zesde taal"
+msgstr "Zesde taal"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2838
 msgid "Site name for your sixth language"
