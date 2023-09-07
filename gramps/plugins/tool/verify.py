@@ -508,6 +508,10 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
         except AttributeError:  # VerifyResults.load_ignored was not run
             self.v_r.ignores = {}
 
+        self.track_ref_for_deletion("v_r")
+        self.track_ref_for_deletion("add_results")
+        self.track_ref_for_deletion("options")
+
         self.uistate.set_busy_cursor(True)
         self.uistate.progress.show()
         busy_cursor = Gdk.Cursor.new_for_display(
@@ -696,6 +700,7 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
             )
 
         clear_cache()
+        self.update = None  # Needed for garbage collection
 
 
 # -------------------------------------------------------------------------
@@ -777,6 +782,7 @@ class VerifyResults(ManagedWindow):
         self.img_renderer = Gtk.CellRendererPixbuf()
         self.bool_renderer = Gtk.CellRendererToggle()
         self.bool_renderer.connect("toggled", self.selection_toggled)
+        self.track_ref_for_deletion("bool_renderer")
 
         # Add ignore column
         ignore_column = Gtk.TreeViewColumn(
@@ -1323,6 +1329,7 @@ class Rule:
         name = self.get_name()
         gramps_id = self.get_id()
         msg = self.get_message()
+        self.get_message = None  # Needed for garbage collection
         return (msg, gramps_id, name, the_type, rule_id, severity, handle)
 
 
