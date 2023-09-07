@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-05 23:59+0100\n"
-"PO-Revision-Date: 2023-09-07 01:07+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2023-09-07 16:57+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -2371,13 +2371,13 @@ msgstr "{short_month} {day:d}, {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:727
 #, python-brace-format
 msgid "{day:d} {long_month} {year}"
-msgstr "{day:d} {long_month} {year}"
+msgstr "{day:d} ב{long_month} {year}"
 
 #. Translators: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:753
 #, python-brace-format
 msgid "{day:d} {short_month} {year}"
-msgstr "{day:d} {short_month} {year}"
+msgstr "{day:d} ב{short_month} {year}"
 
 #: ../gramps/gen/datehandler/_dateparser.py:507
 msgid "today"
@@ -2886,21 +2886,21 @@ msgstr "אחרי "
 #: ../gramps/gen/datehandler/_datestrings.py:249
 msgctxt "date modifier"
 msgid "about "
-msgstr "בקרוב "
+msgstr "קרוב ל"
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:255
 msgctxt "date modifier"
 msgid "from "
-msgstr "מ־ "
+msgstr "מ "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:258
 msgctxt "date modifier"
 msgid "to "
-msgstr "עד "
+msgstr "עד ל "
 
 #: ../gramps/gen/datehandler/_datestrings.py:263
 msgctxt "date quality"
