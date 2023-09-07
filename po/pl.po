@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-05 23:59+0100\n"
-"PO-Revision-Date: 2023-09-05 17:49+0000\n"
+"PO-Revision-Date: 2023-09-07 01:07+0000\n"
 "Last-Translator: Michał Stojek <stojex@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/pl/>\n"
@@ -18303,7 +18303,7 @@ msgstr "_Raporty"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Toolbar"
-msgstr "Pasek narzędziowy"
+msgstr "_Pasek narzędziowy"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Tools"
@@ -18917,9 +18917,8 @@ msgid "Module installation failed"
 msgstr "Instalacja modułu nie powiodła się"
 
 #: ../gramps/gui/plug/_windows.py:317
-#, fuzzy
 msgid "Gramps was unable to install the required modules"
-msgstr "Pozwól Grampsowi zainstalować wymagane moduły Pythona"
+msgstr "Gramps nie był w stanie zainstalować wymaganych modułów"
 
 #: ../gramps/gui/plug/_windows.py:347
 msgid "Requirements"
@@ -20273,11 +20272,8 @@ msgid "Would you like to run the Check and Repair tool?"
 msgstr "Czy chcesz uruchomić narzędzie Sprawdź i napraw?"
 
 #: ../gramps/gui/viewmanager.py:1286 ../gramps/gui/viewmanager.py:1904
-#, fuzzy
 msgid "Please wait for backup to complete."
-msgstr ""
-"Proszę czekać na kopię zapasową w toku.\n"
-"Gramps zamknie się po zakończeniu."
+msgstr "Poczekaj na zakończenie tworzenia kopii zapasowej."
 
 #: ../gramps/gui/viewmanager.py:1288 ../gramps/gui/viewmanager.py:1292
 msgid "Autobackup..."
@@ -22350,9 +22346,8 @@ msgid "Flip names for generations 2, 3 and 4 i.e. those found in circles"
 msgstr "Odwróć nazwy generacji 2, 3 i 4, czyli te, które znajdują się w kółku"
 
 #: ../gramps/plugins/drawreport/fanchart.py:854
-#, fuzzy
 msgid "Exclude the title of the chart"
-msgstr "Tytuł kalendarza"
+msgstr "Wyklucz tytuł wykresu"
 
 #: ../gramps/plugins/drawreport/fanchart.py:855
 msgid "Exclude the title to make more room for the chart"
@@ -38247,10 +38242,8 @@ msgid "Check it if you want to open/close a section"
 msgstr "Zaznacz, jeśli chcesz otworzyć/zamknąć sekcję"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
-#, fuzzy
-#| msgid "Extra pages"
 msgid "Extra Pages"
-msgstr "Dodatkowe strony"
+msgstr "Dodatkowe Strony"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2209
 msgid "Extra page name"
@@ -38872,10 +38865,8 @@ msgid "Translations"
 msgstr "Tłumaczenie"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2797
-#, fuzzy
-#| msgid "second language"
 msgid "Second language"
-msgstr "drugi język"
+msgstr "Drugi język"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2802
 msgid "Site name for your second language"
@@ -38898,40 +38889,32 @@ msgid "Enter a title in the respective language"
 msgstr "Wpisz tytuł w odpowiednim języku"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2806
-#, fuzzy
-#| msgid "third language"
 msgid "Third language"
-msgstr "trzeci język"
+msgstr "Trzeci język"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2811
 msgid "Site name for your third language"
 msgstr "Nazwa witryny dla trzeciego języka"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2815
-#, fuzzy
-#| msgid "fourth language"
 msgid "Fourth language"
-msgstr "czwarty język"
+msgstr "Czwarty język"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2820
 msgid "Site name for your fourth language"
 msgstr "Nazwa witryny dla czwartego języka"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2824
-#, fuzzy
-#| msgid "fifth language"
 msgid "Fifth language"
-msgstr "piąty język"
+msgstr "Piąty język"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2829
 msgid "Site name for your fifth language"
 msgstr "Nazwa witryny dla piątego języka"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2833
-#, fuzzy
-#| msgid "sixth language"
 msgid "Sixth language"
-msgstr "szósty język"
+msgstr "Szósty język"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2838
 msgid "Site name for your sixth language"
