@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-05 23:59+0100\n"
-"PO-Revision-Date: 2023-09-02 13:22+0000\n"
+"PO-Revision-Date: 2023-09-07 01:07+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -2394,7 +2394,7 @@ msgstr "{short_month} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:499
 msgctxt "from-date"
 msgid ""
-msgstr ""
+msgstr "from"
 
 #. Translators: If there is no special inflection for
 #. "to <Month>" in your language, DON'T translate this.
@@ -2403,7 +2403,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:504
 msgctxt "to-date"
 msgid ""
-msgstr ""
+msgstr "to"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:423
 #, python-brace-format
@@ -2416,7 +2416,7 @@ msgstr "{date_quality}von {date_start} bis {date_stop}{nonstd_calendar_and_ny}"
 #: ../gramps/gen/datehandler/_datedisplay.py:444
 msgctxt "between-date"
 msgid ""
-msgstr ""
+msgstr "between"
 
 #. Translators: If there is no special inflection for
 #. "and <Month>" in your language, DON'T translate this.
@@ -2424,7 +2424,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:451
 msgctxt "and-date"
 msgid ""
-msgstr ""
+msgstr "and"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:454
 #, python-brace-format
@@ -2439,7 +2439,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:489
 msgctxt "before-date"
 msgid ""
-msgstr ""
+msgstr "before"
 
 #. Translators: If there is no special inflection for
 #. "after <Month>" in your language, DON'T translate this.
@@ -2447,7 +2447,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:494
 msgctxt "after-date"
 msgid ""
-msgstr ""
+msgstr "after"
 
 #. Translators: If there is no special inflection for
 #. "about <Month>" in your language, DON'T translate this.
@@ -2455,7 +2455,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:509
 msgctxt "about-date"
 msgid ""
-msgstr ""
+msgstr "about"
 
 #. Translators: If there is no special inflection for
 #. "estimated <Month>" in your language, DON'T translate this.
@@ -2463,7 +2463,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:514
 msgctxt "estimated-date"
 msgid ""
-msgstr ""
+msgstr "estimated"
 
 #. Translators: If there is no special inflection for
 #. "calculated <Month>" in your language, DON'T translate this.
@@ -2471,7 +2471,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:519
 msgctxt "calculated-date"
 msgid ""
-msgstr ""
+msgstr "calculated"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:539
 #, python-brace-format
@@ -21174,16 +21174,12 @@ msgid "'%s' is not a valid date value"
 msgstr "'%s' ist kein gültiger Datumswert"
 
 #: ../gramps/plugins/cite/cite.gpr.py:35
-#, fuzzy
-#| msgid "Legal"
 msgid "Legacy"
-msgstr "Rechtliches"
+msgstr "Veraltet"
 
 #: ../gramps/plugins/cite/cite.gpr.py:36
-#, fuzzy
-#| msgid "Default citation formatter"
 msgid "Legacy citation formatter"
-msgstr "Standard-Fundstelleformatierer"
+msgstr "Veraltete-Fundstelleformatierung"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:27
 msgid "BSDDB"
@@ -38583,8 +38579,6 @@ msgid "Check it if you want to open/close a section"
 msgstr "Überprüfe, ob ein Abschnitt geöffnet oder geschlossen werden soll"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
-#, fuzzy
-#| msgid "Extra pages"
 msgid "Extra Pages"
 msgstr "Zusätzliche Seiten"
 
@@ -39224,10 +39218,8 @@ msgid "Translations"
 msgstr "Übersetzungen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2797
-#, fuzzy
-#| msgid "second language"
 msgid "Second language"
-msgstr "zweite Sprache"
+msgstr "Zweite Sprache"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2802
 msgid "Site name for your second language"
@@ -39250,40 +39242,32 @@ msgid "Enter a title in the respective language"
 msgstr "Gib einen Titel in der jeweiligen Sprache ein"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2806
-#, fuzzy
-#| msgid "third language"
 msgid "Third language"
-msgstr "dritte Sprache"
+msgstr "Dritte Sprache"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2811
 msgid "Site name for your third language"
 msgstr "Sitename für deine dritte Sprache"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2815
-#, fuzzy
-#| msgid "fourth language"
 msgid "Fourth language"
-msgstr "vierte Sprache"
+msgstr "Vierte Sprache"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2820
 msgid "Site name for your fourth language"
 msgstr "Sitename für deine vierte Sprache"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2824
-#, fuzzy
-#| msgid "fifth language"
 msgid "Fifth language"
-msgstr "fünfte Sprache"
+msgstr "Fünfte Sprache"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2829
 msgid "Site name for your fifth language"
 msgstr "Sitename für deine fünfte Sprache"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2833
-#, fuzzy
-#| msgid "sixth language"
 msgid "Sixth language"
-msgstr "sechste Sprache"
+msgstr "Sechste Sprache"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2838
 msgid "Site name for your sixth language"
