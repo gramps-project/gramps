@@ -47,7 +47,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-05 23:59+0100\n"
+"POT-Creation-Date: 2023-09-08 22:33+0100\n"
 "PO-Revision-Date: 2023-08-11 17:47+0000\n"
 "Last-Translator: Kaj Arne Mikkelsen <kmi@vgdata.dk>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/gramps-project/"
@@ -1668,7 +1668,7 @@ msgstr "Fejl under fortolkning af argumenter"
 
 #: ../gramps/cli/clidbman.py:73 ../gramps/cli/clidbman.py:172
 #: ../gramps/cli/clidbman.py:174 ../gramps/gui/clipboard.py:201
-#: ../gramps/gui/clipboard.py:202 ../gramps/gui/plug/_windows.py:1487
+#: ../gramps/gui/clipboard.py:202 ../gramps/gui/plug/_windows.py:1489
 msgid "Unavailable"
 msgstr "Ikke tilgængelig"
 
@@ -1713,8 +1713,8 @@ msgstr "Slægtsbog \"%s\":"
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/cli/clidbman.py:222 ../gramps/gen/plug/report/utils.py:182
 #: ../gramps/gui/editors/editattribute.py:140
-#: ../gramps/gui/editors/editname.py:341 ../gramps/gui/plug/_windows.py:1692
-#: ../gramps/gui/plug/_windows.py:2136
+#: ../gramps/gui/editors/editname.py:341 ../gramps/gui/plug/_windows.py:1694
+#: ../gramps/gui/plug/_windows.py:2138
 #: ../gramps/plugins/gramplet/whatsnext.py:495
 #: ../gramps/plugins/textreport/birthdayreport.py:213
 #: ../gramps/plugins/textreport/birthdayreport.py:218
@@ -1786,7 +1786,7 @@ msgstr ""
 "\n"
 
 #: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2293
-#: ../gramps/gui/plug/_windows.py:757
+#: ../gramps/gui/plug/_windows.py:759
 msgid "Never"
 msgstr "Aldrig"
 
@@ -2198,12 +2198,12 @@ msgstr "ukendt"
 msgid ":"
 msgstr ":"
 
-#: ../gramps/gen/datehandler/__init__.py:94
+#: ../gramps/gen/datehandler/__init__.py:95
 #, python-format
 msgid "Date parser for '%s' not available, using default"
 msgstr "Datofortolker for '%s' findes ikke, bruger standard"
 
-#: ../gramps/gen/datehandler/__init__.py:111
+#: ../gramps/gen/datehandler/__init__.py:112
 #, python-format
 msgid "Date displayer for '%s' not available, using default"
 msgstr "Datoviser for '%s' findes ikke, bruger standard"
@@ -6968,8 +6968,8 @@ msgstr "Kaste"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:68
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:113
 #: ../gramps/gui/glade/rule.glade:931 ../gramps/gui/glade/styleeditor.glade:278
-#: ../gramps/gui/plug/_windows.py:1053 ../gramps/gui/plug/_windows.py:1168
-#: ../gramps/gui/plug/_windows.py:1630 ../gramps/gui/plug/_windows.py:2123
+#: ../gramps/gui/plug/_windows.py:1055 ../gramps/gui/plug/_windows.py:1170
+#: ../gramps/gui/plug/_windows.py:1632 ../gramps/gui/plug/_windows.py:2125
 #: ../gramps/gui/selectors/selectevent.py:71
 #: ../gramps/plugins/gramplet/coordinates.py:100
 #: ../gramps/plugins/gramplet/events.py:103
@@ -8242,8 +8242,8 @@ msgstr "Borgerlig vielse"
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:118
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:114
 #: ../gramps/gui/merge/mergeperson.py:273 ../gramps/gui/plug/_windows.py:232
-#: ../gramps/gui/plug/_windows.py:1042 ../gramps/gui/plug/_windows.py:1165
-#: ../gramps/gui/plug/_windows.py:2121
+#: ../gramps/gui/plug/_windows.py:1044 ../gramps/gui/plug/_windows.py:1167
+#: ../gramps/gui/plug/_windows.py:2123
 #: ../gramps/gui/plug/report/_bookdialog.py:398
 #: ../gramps/gui/plug/report/_bookdialog.py:402
 #: ../gramps/gui/selectors/selectevent.py:67
@@ -8385,8 +8385,8 @@ msgstr "Tempel"
 #: ../gramps/gen/lib/ldsord.py:206 ../gramps/gui/dbman.py:419
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:54
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:64
-#: ../gramps/gui/plug/_windows.py:236 ../gramps/gui/plug/_windows.py:1046
-#: ../gramps/gui/plug/_windows.py:1108
+#: ../gramps/gui/plug/_windows.py:236 ../gramps/gui/plug/_windows.py:1048
+#: ../gramps/gui/plug/_windows.py:1110
 #: ../gramps/plugins/quickview/ageondate.py:54
 #: ../gramps/plugins/textreport/indivcomplete.py:531
 #: ../gramps/plugins/textreport/indivcomplete.py:736
@@ -8396,7 +8396,7 @@ msgid "Status"
 msgstr "Status"
 
 #: ../gramps/gen/lib/location.py:89 ../gramps/gen/lib/nameorigintype.py:88
-#: ../gramps/gui/clipboard.py:331 ../gramps/gui/plug/_windows.py:1635
+#: ../gramps/gui/clipboard.py:331 ../gramps/gui/plug/_windows.py:1637
 msgid "Location"
 msgstr "Sted"
 
@@ -8446,8 +8446,8 @@ msgstr "Område"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:158
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:117
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:113
-#: ../gramps/gui/plug/_guioptions.py:1185 ../gramps/gui/plug/_windows.py:1049
-#: ../gramps/gui/plug/_windows.py:2122
+#: ../gramps/gui/plug/_guioptions.py:1185 ../gramps/gui/plug/_windows.py:1051
+#: ../gramps/gui/plug/_windows.py:2124
 #: ../gramps/gui/plug/report/_bookdialog.py:398
 #: ../gramps/gui/selectors/selectperson.py:99
 #: ../gramps/gui/selectors/selectplace.py:68
@@ -8473,7 +8473,7 @@ msgstr "Område"
 #: ../gramps/plugins/tool/dumpgenderstats.py:101
 #: ../gramps/plugins/tool/notrelated.py:130
 #: ../gramps/plugins/tool/removeunused.py:224
-#: ../gramps/plugins/tool/verify.py:632 ../gramps/plugins/view/repoview.py:86
+#: ../gramps/plugins/tool/verify.py:821 ../gramps/plugins/view/repoview.py:86
 #: ../gramps/plugins/webreport/basepage.py:520
 #: ../gramps/plugins/webreport/person.py:421
 #: ../gramps/plugins/webreport/person.py:2284
@@ -8694,7 +8694,7 @@ msgstr "Format"
 #: ../gramps/gui/glade/editplaceref.glade:161
 #: ../gramps/gui/glade/editplaceref.glade:665
 #: ../gramps/gui/glade/editreporef.glade:225
-#: ../gramps/gui/glade/editreporef.glade:445 ../gramps/gui/plug/_windows.py:721
+#: ../gramps/gui/glade/editreporef.glade:445 ../gramps/gui/plug/_windows.py:723
 #: ../gramps/plugins/tool/verify.glade:406
 msgid "General"
 msgstr "Generelt"
@@ -11897,8 +11897,8 @@ msgstr "Vis navneredigering"
 #: ../gramps/gui/glade/plugins.glade:22 ../gramps/gui/glade/rule.glade:24
 #: ../gramps/gui/glade/rule.glade:1024 ../gramps/gui/glade/tipofday.glade:117
 #: ../gramps/gui/glade/updateaddons.glade:25 ../gramps/gui/grampsgui.py:58
-#: ../gramps/gui/plug/_windows.py:392 ../gramps/gui/plug/_windows.py:1019
-#: ../gramps/gui/plug/_windows.py:1698 ../gramps/gui/plug/_windows.py:1758
+#: ../gramps/gui/plug/_windows.py:392 ../gramps/gui/plug/_windows.py:1021
+#: ../gramps/gui/plug/_windows.py:1700 ../gramps/gui/plug/_windows.py:1760
 #: ../gramps/gui/plug/quick/_textbufdoc.py:71 ../gramps/gui/undohistory.py:88
 #: ../gramps/gui/viewmanager.py:1801 ../gramps/gui/views/bookmarks.py:316
 #: ../gramps/gui/views/tags.py:503 ../gramps/gui/widgets/grampletbar.py:718
@@ -11992,8 +11992,8 @@ msgstr "Ugyldig eller ufuldstændig definition på format."
 #: ../gramps/gui/configure.py:1639 ../gramps/gui/configure.py:1644
 #: ../gramps/gui/configure.py:1665 ../gramps/gui/configure.py:1681
 #: ../gramps/gui/configure.py:2215 ../gramps/gui/configure.py:2304
-#: ../gramps/gui/plug/_windows.py:767 ../gramps/gui/plug/_windows.py:787
-#: ../gramps/gui/plug/_windows.py:823 ../gramps/gui/plug/_windows.py:831
+#: ../gramps/gui/plug/_windows.py:769 ../gramps/gui/plug/_windows.py:789
+#: ../gramps/gui/plug/_windows.py:825 ../gramps/gui/plug/_windows.py:833
 #: ../gramps/gui/views/navigationview.py:351
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:110
 #, python-format
@@ -12066,7 +12066,7 @@ msgstr "Stat/amt"
 msgid "ZIP/Postal Code"
 msgstr "Postnummer"
 
-#: ../gramps/gui/configure.py:737 ../gramps/gui/plug/_windows.py:1633
+#: ../gramps/gui/configure.py:737 ../gramps/gui/plug/_windows.py:1635
 #: ../gramps/plugins/view/repoview.py:96
 msgid "Email"
 msgstr "E-post"
@@ -12317,7 +12317,7 @@ msgstr "Vis som"
 #: ../gramps/gui/glade/editperson.glade:12
 #: ../gramps/gui/glade/editperson.glade:516 ../gramps/gui/glade/rule.glade:463
 #: ../gramps/gui/glade/styleeditor.glade:1903
-#: ../gramps/gui/plug/_windows.py:1072 ../gramps/gui/plug/_windows.py:1131
+#: ../gramps/gui/plug/_windows.py:1074 ../gramps/gui/plug/_windows.py:1133
 #: ../gramps/plugins/gramplet/ancestor.py:122
 #: ../gramps/plugins/gramplet/descendant.py:119
 msgid "Edit"
@@ -12898,8 +12898,8 @@ msgstr "Vælg mappe til medieobjekter"
 #: ../gramps/gui/glade/rule.glade:747 ../gramps/gui/glade/styleeditor.glade:86
 #: ../gramps/gui/glade/styleeditor.glade:1737
 #: ../gramps/gui/logger/_errorview.py:188 ../gramps/gui/plug/_guioptions.py:84
-#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:841
-#: ../gramps/gui/plug/_windows.py:1409
+#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:843
+#: ../gramps/gui/plug/_windows.py:1411
 #: ../gramps/gui/plug/report/_fileentry.py:68
 #: ../gramps/gui/plug/report/_reportdialog.py:170 ../gramps/gui/utils.py:265
 #: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1250
@@ -13189,7 +13189,7 @@ msgstr "Database Information"
 #: ../gramps/gui/glade/reorder.glade:38 ../gramps/gui/glade/rule.glade:333
 #: ../gramps/gui/glade/rule.glade:764 ../gramps/gui/glade/styleeditor.glade:103
 #: ../gramps/gui/glade/styleeditor.glade:1754
-#: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:841
+#: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:843
 #: ../gramps/gui/plug/report/_reportdialog.py:173 ../gramps/gui/utils.py:279
 #: ../gramps/gui/viewmanager.py:1802 ../gramps/gui/views/tags.py:727
 #: ../gramps/plugins/tool/check.py:828 ../gramps/plugins/tool/patchnames.py:152
@@ -13770,7 +13770,7 @@ msgstr "Attri_butter"
 #: ../gramps/plugins/tool/notrelated.py:131
 #: ../gramps/plugins/tool/patchnames.py:457
 #: ../gramps/plugins/tool/removeunused.py:217
-#: ../gramps/plugins/tool/sortevents.py:62 ../gramps/plugins/tool/verify.py:622
+#: ../gramps/plugins/tool/sortevents.py:62 ../gramps/plugins/tool/verify.py:811
 #: ../gramps/plugins/view/citationlistview.py:101
 #: ../gramps/plugins/view/citationtreeview.py:96
 #: ../gramps/plugins/view/eventview.py:82
@@ -14104,14 +14104,14 @@ msgid "Set as default name"
 msgstr "Indstil som forvalgt navn"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
-#: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:923
+#: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:925
 #: ../gramps/gui/viewmanager.py:1134 ../gramps/gui/views/tags.py:570
 #: ../gramps/plugins/quickview/all_relations.py:365
 msgid "Yes"
 msgstr "Ja"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:59
-#: ../gramps/gui/plug/_guioptions.py:1266 ../gramps/gui/plug/_windows.py:924
+#: ../gramps/gui/plug/_guioptions.py:1266 ../gramps/gui/plug/_windows.py:926
 #: ../gramps/gui/viewmanager.py:1135 ../gramps/gui/views/tags.py:571
 #: ../gramps/plugins/quickview/all_relations.py:371
 msgid "No"
@@ -15975,7 +15975,7 @@ msgid "Within"
 msgstr "Indenfor"
 
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:116
-#: ../gramps/gui/plug/_windows.py:831
+#: ../gramps/gui/plug/_windows.py:833
 msgid "URL"
 msgstr "Webadresse"
 
@@ -17668,7 +17668,7 @@ msgid "_Merge and close"
 msgstr "Sa_mmenlæg og luk"
 
 #: ../gramps/gui/glade/mergedata.glade:173
-#: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:2115
+#: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:2117
 #: ../gramps/plugins/tool/changenames.py:226
 #: ../gramps/plugins/tool/patchnames.py:454
 msgid "Select"
@@ -17962,7 +17962,7 @@ msgstr "Udfør valgt handling"
 msgid "Run"
 msgstr "Kør"
 
-#: ../gramps/gui/glade/plugins.glade:139 ../gramps/gui/plug/_dialogs.py:313
+#: ../gramps/gui/glade/plugins.glade:139 ../gramps/gui/plug/_dialogs.py:312
 msgid "Select a report from those available on the left."
 msgstr "Vælg en rapport blandt de tilgængelige til venstre."
 
@@ -18343,7 +18343,7 @@ msgid "Install Selected _Addons"
 msgstr "Installér de valgte _tilføjelsesprogrammer"
 
 #: ../gramps/gui/glade/updateaddons.glade:72
-#: ../gramps/gui/plug/_windows.py:2092
+#: ../gramps/gui/plug/_windows.py:2094
 msgid "Available Gramps Updates for Addons"
 msgstr "Disponible Gramps-opdateringer af tilføjelsesprogrammer"
 
@@ -18969,7 +18969,7 @@ msgstr "Ægtefælle"
 msgid "No spouses or children found"
 msgstr "Fandt hverken ægtefæller eller børn"
 
-#: ../gramps/gui/merge/mergeperson.py:372 ../gramps/plugins/tool/verify.py:612
+#: ../gramps/gui/merge/mergeperson.py:372 ../gramps/plugins/tool/verify.py:801
 msgid "Warning"
 msgstr "Advarsel"
 
@@ -19004,31 +19004,31 @@ msgstr "Sammenflet_kilder"
 msgid "Merge Sources"
 msgstr "Sammenflet kilder"
 
-#: ../gramps/gui/plug/_dialogs.py:312
+#: ../gramps/gui/plug/_dialogs.py:311
 msgid "Report Selection"
 msgstr "Valg af rapport"
 
-#: ../gramps/gui/plug/_dialogs.py:314
+#: ../gramps/gui/plug/_dialogs.py:313
 msgid "_Generate"
 msgstr "_Generér"
 
-#: ../gramps/gui/plug/_dialogs.py:315
+#: ../gramps/gui/plug/_dialogs.py:314
 msgid "Generate selected report"
 msgstr "Dan den valgte rapport"
 
-#: ../gramps/gui/plug/_dialogs.py:346
+#: ../gramps/gui/plug/_dialogs.py:345
 msgid "Tool Selection"
 msgstr "Valg af værktøj"
 
-#: ../gramps/gui/plug/_dialogs.py:347
+#: ../gramps/gui/plug/_dialogs.py:346
 msgid "Select a tool from those available on the left."
 msgstr "Vælg et værktøj blandt de tilgængelige til venstre."
 
-#: ../gramps/gui/plug/_dialogs.py:348 ../gramps/plugins/tool/verify.glade:144
+#: ../gramps/gui/plug/_dialogs.py:347 ../gramps/plugins/tool/verify.glade:144
 msgid "_Run"
 msgstr "_Kør"
 
-#: ../gramps/gui/plug/_dialogs.py:349
+#: ../gramps/gui/plug/_dialogs.py:348
 msgid "Run selected tool"
 msgstr "Brug det valgte værktøj"
 
@@ -19081,7 +19081,7 @@ msgstr "Vælg farve på %s"
 msgid "Save As"
 msgstr "Gem Som"
 
-#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:1409
+#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:1411
 #: ../gramps/gui/plug/report/_bookdialog.py:651
 #: ../gramps/gui/plug/report/_fileentry.py:68
 msgid "_Open"
@@ -19104,7 +19104,7 @@ msgstr "Objekt"
 msgid "Audience"
 msgstr "Lyd"
 
-#: ../gramps/gui/plug/_windows.py:238 ../gramps/gui/plug/_windows.py:1631
+#: ../gramps/gui/plug/_windows.py:238 ../gramps/gui/plug/_windows.py:1633
 msgid "Version"
 msgstr "Version"
 
@@ -19129,7 +19129,7 @@ msgid "Requires"
 msgstr ""
 
 #: ../gramps/gui/plug/_windows.py:275 ../gramps/gui/plug/_windows.py:431
-#: ../gramps/gui/plug/_windows.py:630
+#: ../gramps/gui/plug/_windows.py:632
 #, fuzzy
 #| msgid "Updated"
 msgid "Update"
@@ -19173,13 +19173,13 @@ msgstr "Filter"
 msgid "All addons"
 msgstr "Navn på tilføjelsesprogram"
 
-#: ../gramps/gui/plug/_windows.py:429 ../gramps/gui/plug/_windows.py:624
+#: ../gramps/gui/plug/_windows.py:429 ../gramps/gui/plug/_windows.py:626
 #, fuzzy
 #| msgid "Unstable"
 msgid "Not installed"
 msgstr "Ustabil"
 
-#: ../gramps/gui/plug/_windows.py:430 ../gramps/gui/plug/_windows.py:627
+#: ../gramps/gui/plug/_windows.py:430 ../gramps/gui/plug/_windows.py:629
 #, fuzzy
 #| msgid "Unstable"
 msgid "Installed"
@@ -19213,308 +19213,308 @@ msgstr "Indstilling"
 msgid "Projects"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:525 ../gramps/gui/plug/_windows.py:635
+#: ../gramps/gui/plug/_windows.py:527 ../gramps/gui/plug/_windows.py:637
 #, fuzzy
 #| msgid "All Events"
 msgid "All projects"
 msgstr "Alle hændelser"
 
-#: ../gramps/gui/plug/_windows.py:537
+#: ../gramps/gui/plug/_windows.py:539
 msgid "Loading..."
 msgstr "Indlæser ..."
 
-#: ../gramps/gui/plug/_windows.py:581
+#: ../gramps/gui/plug/_windows.py:583
 #, fuzzy
 #| msgid "No matches found"
 msgid "No matching addons found."
 msgstr "Ingen passer"
 
-#: ../gramps/gui/plug/_windows.py:735
-msgid "Allow Gramps to install required python modules"
+#: ../gramps/gui/plug/_windows.py:737
+msgid "Allow Gramps to install required Python modules"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:742
+#: ../gramps/gui/plug/_windows.py:744
 #: ../gramps/plugins/webreport/basepage.py:1901
 #: ../gramps/plugins/webreport/basepage.py:1966
 #, fuzzy
 msgid "Updates"
 msgstr "Opdateret"
 
-#: ../gramps/gui/plug/_windows.py:758
+#: ../gramps/gui/plug/_windows.py:760
 msgid "Once a month"
 msgstr "En gang om måneden"
 
-#: ../gramps/gui/plug/_windows.py:759
+#: ../gramps/gui/plug/_windows.py:761
 msgid "Once a week"
 msgstr "En gang om ugen"
 
-#: ../gramps/gui/plug/_windows.py:760
+#: ../gramps/gui/plug/_windows.py:762
 msgid "Once a day"
 msgstr "En gang om dagen"
 
-#: ../gramps/gui/plug/_windows.py:761
+#: ../gramps/gui/plug/_windows.py:763
 msgid "Always"
 msgstr "Altid"
 
-#: ../gramps/gui/plug/_windows.py:767
+#: ../gramps/gui/plug/_windows.py:769
 msgid "Check for addon updates"
 msgstr "Kontrollér om der findes tilføjelses opdateringer"
 
-#: ../gramps/gui/plug/_windows.py:774
+#: ../gramps/gui/plug/_windows.py:776
 msgid "Updated addons only"
 msgstr "Kun opdaterede tilføjelsesprogrammer"
 
-#: ../gramps/gui/plug/_windows.py:775
+#: ../gramps/gui/plug/_windows.py:777
 msgid "New addons only"
 msgstr "Kun nye tilføjelsesprogrammer"
 
-#: ../gramps/gui/plug/_windows.py:776
+#: ../gramps/gui/plug/_windows.py:778
 msgid "New and updated addons"
 msgstr "Nye og opdaterede tilføjelsesprogrammer"
 
-#: ../gramps/gui/plug/_windows.py:787
+#: ../gramps/gui/plug/_windows.py:789
 msgid "What to check"
 msgstr "Hvad skal kontrolleres"
 
-#: ../gramps/gui/plug/_windows.py:793
+#: ../gramps/gui/plug/_windows.py:795
 msgid "Do not ask about previously notified addons"
 msgstr "Spørg ikke om tidligere anmeldte tilføjelsesprogrammer"
 
-#: ../gramps/gui/plug/_windows.py:800
+#: ../gramps/gui/plug/_windows.py:802
 msgid "Check for updated addons now"
 msgstr "Kontrollér om der findes opdateringer nu"
 
-#: ../gramps/gui/plug/_windows.py:813
+#: ../gramps/gui/plug/_windows.py:815
 #, fuzzy
 #| msgid "New Person"
 msgid "New Project"
 msgstr "Ny person"
 
-#: ../gramps/gui/plug/_windows.py:815
+#: ../gramps/gui/plug/_windows.py:817
 #, fuzzy
 #| msgid "Edit Person"
 msgid "Edit Project"
 msgstr "Redigér person"
 
-#: ../gramps/gui/plug/_windows.py:823
+#: ../gramps/gui/plug/_windows.py:825
 #, fuzzy
 #| msgid "Preferred name"
 msgid "Project name"
 msgstr "Foretrukket navn"
 
-#: ../gramps/gui/plug/_windows.py:921
+#: ../gramps/gui/plug/_windows.py:923
 #, fuzzy
 #| msgid "Restore to defaults"
 msgid "Restore project defaults"
 msgstr "Genopret standard"
 
-#: ../gramps/gui/plug/_windows.py:922
+#: ../gramps/gui/plug/_windows.py:924
 msgid "Are you sure?"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:946
+#: ../gramps/gui/plug/_windows.py:948
 msgid "Checking Addons Failed"
 msgstr "Kontrol af tilføjelsesprogrammer fejlede"
 
-#: ../gramps/gui/plug/_windows.py:948
+#: ../gramps/gui/plug/_windows.py:950
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr ""
 "Arkivet med tilføjelsesprogrammer ser ud til at være utilgængeligt. Prøv "
 "venligst igen senere."
 
-#: ../gramps/gui/plug/_windows.py:963
+#: ../gramps/gui/plug/_windows.py:965
 msgid "There are no available addons of this type"
 msgstr "Der er ingen tilgængelige tilføjelsesprogrammer af denne type"
 
-#: ../gramps/gui/plug/_windows.py:964
+#: ../gramps/gui/plug/_windows.py:966
 msgid "' and '"
 msgstr "' og '"
 
-#: ../gramps/gui/plug/_windows.py:964
+#: ../gramps/gui/plug/_windows.py:966
 #, python-format
 msgid "Checked for '%s'"
 msgstr "Kontrollerede for \"%s\""
 
-#: ../gramps/gui/plug/_windows.py:970
+#: ../gramps/gui/plug/_windows.py:972
 msgid "new"
 msgstr "ny"
 
-#: ../gramps/gui/plug/_windows.py:970
+#: ../gramps/gui/plug/_windows.py:972
 msgid "update"
 msgstr "opdatér"
 
-#: ../gramps/gui/plug/_windows.py:1005
+#: ../gramps/gui/plug/_windows.py:1007
 msgid "Hidden"
 msgstr "Skjult"
 
-#: ../gramps/gui/plug/_windows.py:1006
+#: ../gramps/gui/plug/_windows.py:1008
 msgid "Visible"
 msgstr "Synlig"
 
-#: ../gramps/gui/plug/_windows.py:1011
+#: ../gramps/gui/plug/_windows.py:1013
 msgid "Plugin Manager"
 msgstr "Udvidelsesmoduler"
 
-#: ../gramps/gui/plug/_windows.py:1063 ../gramps/gui/plug/_windows.py:1121
+#: ../gramps/gui/plug/_windows.py:1065 ../gramps/gui/plug/_windows.py:1123
 msgid "Info"
 msgstr "Info"
 
-#: ../gramps/gui/plug/_windows.py:1066 ../gramps/gui/plug/_windows.py:1124
+#: ../gramps/gui/plug/_windows.py:1068 ../gramps/gui/plug/_windows.py:1126
 msgid "Hide/Unhide"
 msgstr "Skjul/vis"
 
-#: ../gramps/gui/plug/_windows.py:1075 ../gramps/gui/plug/_windows.py:1134
+#: ../gramps/gui/plug/_windows.py:1077 ../gramps/gui/plug/_windows.py:1136
 msgid "Load"
 msgstr "Indlæs"
 
-#: ../gramps/gui/plug/_windows.py:1081
+#: ../gramps/gui/plug/_windows.py:1083
 msgid "Registered Plugins"
 msgstr "Registrerede udvidelsesmoduler"
 
-#: ../gramps/gui/plug/_windows.py:1100
+#: ../gramps/gui/plug/_windows.py:1102
 msgid "Loaded"
 msgstr "Indlæste"
 
-#: ../gramps/gui/plug/_windows.py:1104
+#: ../gramps/gui/plug/_windows.py:1106
 #: ../gramps/plugins/importer/importprogen.glade:431
 #: ../gramps/plugins/importer/importprogen.glade:1126
 msgid "File"
 msgstr "Fil"
 
-#: ../gramps/gui/plug/_windows.py:1111
+#: ../gramps/gui/plug/_windows.py:1113
 msgid "Message"
 msgstr "Besked"
 
-#: ../gramps/gui/plug/_windows.py:1140
+#: ../gramps/gui/plug/_windows.py:1142
 msgid "Loaded Plugins"
 msgstr "Indlæste udvidelsesmoduler"
 
-#: ../gramps/gui/plug/_windows.py:1162
+#: ../gramps/gui/plug/_windows.py:1164
 msgid "Addon Name"
 msgstr "Navn på tilføjelsesprogram"
 
-#: ../gramps/gui/plug/_windows.py:1174
+#: ../gramps/gui/plug/_windows.py:1176
 msgid "Path to Addon:"
 msgstr "Søgesti til tilføjelsesprogram:"
 
-#: ../gramps/gui/plug/_windows.py:1194
+#: ../gramps/gui/plug/_windows.py:1196
 msgid "Install Addon"
 msgstr "Installér tilføjelsesprogram"
 
-#: ../gramps/gui/plug/_windows.py:1197
+#: ../gramps/gui/plug/_windows.py:1199
 msgid "Install All Addons"
 msgstr "Installér alle tilføjelsesprogrammer"
 
-#: ../gramps/gui/plug/_windows.py:1200
+#: ../gramps/gui/plug/_windows.py:1202
 msgid "Refresh Addon List"
 msgstr "Genopfrisk liste over tilføjelsesprogrammer"
 
-#: ../gramps/gui/plug/_windows.py:1213
+#: ../gramps/gui/plug/_windows.py:1215
 msgid "Reload"
 msgstr "Genindlæs"
 
-#: ../gramps/gui/plug/_windows.py:1241
+#: ../gramps/gui/plug/_windows.py:1243
 msgid "Refreshing Addon List"
 msgstr "Genopfrisker liste over tilføjelsesprogrammer"
 
-#: ../gramps/gui/plug/_windows.py:1242 ../gramps/gui/plug/_windows.py:1247
-#: ../gramps/gui/plug/_windows.py:1385
+#: ../gramps/gui/plug/_windows.py:1244 ../gramps/gui/plug/_windows.py:1249
+#: ../gramps/gui/plug/_windows.py:1387
 msgid "Reading gramps-project.org..."
 msgstr "Læser gramps-project.org ..."
 
-#: ../gramps/gui/plug/_windows.py:1265
+#: ../gramps/gui/plug/_windows.py:1267
 msgid "Checking addon..."
 msgstr "Kontrollerer tilføjelsesprogram..."
 
-#: ../gramps/gui/plug/_windows.py:1273
+#: ../gramps/gui/plug/_windows.py:1275
 msgid "Unknown Help URL"
 msgstr "Ukendt webadresse til hjælp"
 
-#: ../gramps/gui/plug/_windows.py:1284
+#: ../gramps/gui/plug/_windows.py:1286
 msgid "Unknown URL"
 msgstr "Ukendt webadresse"
 
-#: ../gramps/gui/plug/_windows.py:1349
+#: ../gramps/gui/plug/_windows.py:1351
 msgid "Install all Addons"
 msgstr "Installerer alle tilføjelsesprogrammer"
 
-#: ../gramps/gui/plug/_windows.py:1350
+#: ../gramps/gui/plug/_windows.py:1352
 msgid "Installing..."
 msgstr "Installerer ..."
 
-#: ../gramps/gui/plug/_windows.py:1383
+#: ../gramps/gui/plug/_windows.py:1385
 msgid "Installing Addon"
 msgstr "Installerer tilføjelsesprogram"
 
-#: ../gramps/gui/plug/_windows.py:1406
+#: ../gramps/gui/plug/_windows.py:1408
 msgid "Load Addon"
 msgstr "Indlæs tilføjelsesprogram"
 
-#: ../gramps/gui/plug/_windows.py:1498
+#: ../gramps/gui/plug/_windows.py:1500
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:261
 msgid "Fail"
 msgstr "Fejl"
 
-#: ../gramps/gui/plug/_windows.py:1521 ../gramps/gui/widgets/grampletbar.py:610
+#: ../gramps/gui/plug/_windows.py:1523 ../gramps/gui/widgets/grampletbar.py:610
 msgid "OK"
 msgstr "OK"
 
-#: ../gramps/gui/plug/_windows.py:1629
+#: ../gramps/gui/plug/_windows.py:1631
 msgid "Plugin name"
 msgstr "Navn på udvidelsesmodul"
 
-#: ../gramps/gui/plug/_windows.py:1632
+#: ../gramps/gui/plug/_windows.py:1634
 msgid "Authors"
 msgstr "Ophavsmænd"
 
-#: ../gramps/gui/plug/_windows.py:1634
+#: ../gramps/gui/plug/_windows.py:1636
 #: ../gramps/gui/plug/report/_reportdialog.py:481
 msgid "Filename"
 msgstr "Filnavn"
 
-#: ../gramps/gui/plug/_windows.py:1637
+#: ../gramps/gui/plug/_windows.py:1639
 msgid "Detailed Info"
 msgstr "Detaljeret info"
 
-#: ../gramps/gui/plug/_windows.py:1692
+#: ../gramps/gui/plug/_windows.py:1694
 msgid "Plugin Error"
 msgstr "Fejl i udvidelsesmodul"
 
-#: ../gramps/gui/plug/_windows.py:1761
+#: ../gramps/gui/plug/_windows.py:1763
 msgid "_Execute"
 msgstr "_Udfør"
 
-#: ../gramps/gui/plug/_windows.py:2059
+#: ../gramps/gui/plug/_windows.py:2061
 #: ../gramps/plugins/importer/importprogen.py:478
 #: ../gramps/plugins/tool/ownereditor.py:171
 #: ../gramps/plugins/tool/reorderids.py:249
 msgid "Main window"
 msgstr "Hovedvindue"
 
-#: ../gramps/gui/plug/_windows.py:2197
+#: ../gramps/gui/plug/_windows.py:2199
 msgid "Downloading and installing selected addons..."
 msgstr "Henter og installerer de valgte tilføjelsesprogrammer ..."
 
-#: ../gramps/gui/plug/_windows.py:2240
+#: ../gramps/gui/plug/_windows.py:2242
 msgid "Installation Errors"
 msgstr "Installationsfejl"
 
-#: ../gramps/gui/plug/_windows.py:2241
+#: ../gramps/gui/plug/_windows.py:2243
 msgid "The following addons had errors: "
 msgstr "De følgende tillægsprogrammer havde fejl: "
 
-#: ../gramps/gui/plug/_windows.py:2249 ../gramps/gui/plug/_windows.py:2266
+#: ../gramps/gui/plug/_windows.py:2251 ../gramps/gui/plug/_windows.py:2268
 msgid "Done downloading and installing addons"
 msgstr "Færdig med at hente og installere tilføjelsesprogrammer"
 
-#: ../gramps/gui/plug/_windows.py:2254
+#: ../gramps/gui/plug/_windows.py:2256
 #, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
 msgstr[0] "{number_of} tilføjelsesprogrammer blev installeret."
 msgstr[1] "{number_of} tilføjelsesprogram blev installeret."
 
-#: ../gramps/gui/plug/_windows.py:2259
+#: ../gramps/gui/plug/_windows.py:2261
 #, fuzzy
 #| msgid ""
 #| "If you have installed a 'Gramps View', you will need to restart Gramps."
@@ -19523,7 +19523,7 @@ msgstr ""
 "Hvis du har installeret en 'Grampsoversigt', er det nødvendigt at genstarte "
 "Gramps."
 
-#: ../gramps/gui/plug/_windows.py:2267
+#: ../gramps/gui/plug/_windows.py:2269
 msgid "No addons were installed."
 msgstr "Ingen tilføjelsesprogrammer blev installeret."
 
@@ -32515,7 +32515,7 @@ msgstr "Ingen fødselsrelation til barn"
 
 #: ../gramps/plugins/quickview/lineage.py:169
 #: ../gramps/plugins/quickview/lineage.py:191
-#: ../gramps/plugins/tool/verify.py:1327
+#: ../gramps/plugins/tool/verify.py:1509
 msgid "Unknown gender"
 msgstr "Ukendt køn"
 
@@ -32794,17 +32794,18 @@ msgstr "Katalansk slægtskabsberegner"
 #: ../gramps/plugins/rel/relplugins.gpr.py:212
 #: ../gramps/plugins/rel/relplugins.gpr.py:242
 #: ../gramps/plugins/rel/relplugins.gpr.py:266
-#: ../gramps/plugins/rel/relplugins.gpr.py:279
-#: ../gramps/plugins/rel/relplugins.gpr.py:292
-#: ../gramps/plugins/rel/relplugins.gpr.py:305
-#: ../gramps/plugins/rel/relplugins.gpr.py:339
-#: ../gramps/plugins/rel/relplugins.gpr.py:373
-#: ../gramps/plugins/rel/relplugins.gpr.py:400
-#: ../gramps/plugins/rel/relplugins.gpr.py:430
-#: ../gramps/plugins/rel/relplugins.gpr.py:460
+#: ../gramps/plugins/rel/relplugins.gpr.py:290
+#: ../gramps/plugins/rel/relplugins.gpr.py:303
+#: ../gramps/plugins/rel/relplugins.gpr.py:316
+#: ../gramps/plugins/rel/relplugins.gpr.py:329
+#: ../gramps/plugins/rel/relplugins.gpr.py:363
+#: ../gramps/plugins/rel/relplugins.gpr.py:397
+#: ../gramps/plugins/rel/relplugins.gpr.py:424
+#: ../gramps/plugins/rel/relplugins.gpr.py:454
 #: ../gramps/plugins/rel/relplugins.gpr.py:484
-#: ../gramps/plugins/rel/relplugins.gpr.py:507
-#: ../gramps/plugins/rel/relplugins.gpr.py:560
+#: ../gramps/plugins/rel/relplugins.gpr.py:508
+#: ../gramps/plugins/rel/relplugins.gpr.py:531
+#: ../gramps/plugins/rel/relplugins.gpr.py:584
 msgid "Calculates relationships between people"
 msgstr "Beregner slægtskaber mellem personer"
 
@@ -32839,66 +32840,72 @@ msgid "French Relationship Calculator"
 msgstr "Fransk slægtskabsberegner"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:241
+#, fuzzy
+#| msgid "Relationship Calculator"
+msgid "Hebrew Relationship Calculator"
+msgstr "Slægtskabsberegning"
+
+#: ../gramps/plugins/rel/relplugins.gpr.py:265
 msgid "Croatian Relationship Calculator"
 msgstr "Kroatisk slægtskabsberegner"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:265
+#: ../gramps/plugins/rel/relplugins.gpr.py:289
 msgid "Hungarian Relationship Calculator"
 msgstr "Ungarsk slægtskabsberegner"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:278
+#: ../gramps/plugins/rel/relplugins.gpr.py:302
 msgid "Icelandic Relationship Calculator"
 msgstr "Islandsk slægtsskabsberegner"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:291
+#: ../gramps/plugins/rel/relplugins.gpr.py:315
 msgid "Italian Relationship Calculator"
 msgstr "Italiensk slægtskabsberegner"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:304
+#: ../gramps/plugins/rel/relplugins.gpr.py:328
 msgid "Dutch Relationship Calculator"
 msgstr "Hollandsk slægtskabsberegner"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:338
+#: ../gramps/plugins/rel/relplugins.gpr.py:362
 msgid "Norwegian Relationship Calculator"
 msgstr "Norsk slægtskabsberegner"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:372
+#: ../gramps/plugins/rel/relplugins.gpr.py:396
 msgid "Polish Relationship Calculator"
 msgstr "Polsk slægtskabsberegner"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:399
+#: ../gramps/plugins/rel/relplugins.gpr.py:423
 msgid "Portuguese Relationship Calculator"
 msgstr "Portugisisk slægtskabsberegner"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:429
+#: ../gramps/plugins/rel/relplugins.gpr.py:453
 msgid "Russian Relationship Calculator"
 msgstr "Russisk slægtskabsberegner"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:459
+#: ../gramps/plugins/rel/relplugins.gpr.py:483
 msgid "Slovak Relationship Calculator"
 msgstr "Slovakisk slægtskabsberegner"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:483
+#: ../gramps/plugins/rel/relplugins.gpr.py:507
 msgid "Slovenian Relationship Calculator"
 msgstr "Slovensk slægtskabsberegner"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:506
+#: ../gramps/plugins/rel/relplugins.gpr.py:530
 msgid "Swedish Relationship Calculator"
 msgstr "Svensk slægtskabsberegner"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:534
+#: ../gramps/plugins/rel/relplugins.gpr.py:558
 #, fuzzy
 #| msgid "Danish Relationship Calculator"
 msgid "Turkish Relationship Calculator"
 msgstr "Dansk slægtskabsberegner"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:535
+#: ../gramps/plugins/rel/relplugins.gpr.py:559
 #, fuzzy
 #| msgid "Calculates relationships between people"
 msgid "Calculates relationship between people"
 msgstr "Beregner slægtskaber mellem personer"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:559
+#: ../gramps/plugins/rel/relplugins.gpr.py:583
 msgid "Ukrainian Relationship Calculator"
 msgstr "Ukrainsk slægtskabsberegner"
 
@@ -35218,7 +35225,7 @@ msgstr "Find dubletter"
 
 #: ../gramps/plugins/tool/finddupes.py:147
 #: ../gramps/plugins/tool/mergecitations.py:170
-#: ../gramps/plugins/tool/verify.py:379
+#: ../gramps/plugins/tool/verify.py:481
 msgid "Tool settings"
 msgstr "Værktøjs-indstillinger"
 
@@ -35923,7 +35930,7 @@ msgstr "Objekter der ikke er i brug"
 
 # mærke?
 #: ../gramps/plugins/tool/removeunused.py:205
-#: ../gramps/plugins/tool/verify.py:600
+#: ../gramps/plugins/tool/verify.py:789
 msgid "Mark"
 msgstr "Markér"
 
@@ -36409,183 +36416,233 @@ msgstr "Største antal år _mellem børn"
 msgid "Maximum _span of years for all children"
 msgstr "Største års_interval mellem alle børn"
 
-#: ../gramps/plugins/tool/verify.glade:984 ../gramps/plugins/tool/verify.py:754
+#: ../gramps/plugins/tool/verify.glade:984 ../gramps/plugins/tool/verify.py:943
 msgid "_Hide marked"
 msgstr "_Gem markerede"
 
-#: ../gramps/plugins/tool/verify.py:90
+#: ../gramps/plugins/tool/verify.py:94
 msgctxt "manual"
 msgid "Verify_the_Data"
 msgstr "Verify_the_Data"
 
-#: ../gramps/plugins/tool/verify.py:318
+#: ../gramps/plugins/tool/verify.py:420
 msgid "Data Verify tool"
 msgstr "Værktøj til kontrol af data"
 
-#: ../gramps/plugins/tool/verify.py:342
+#: ../gramps/plugins/tool/verify.py:444
 #, python-format
 msgid "%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s"
 msgstr "%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s"
 
-#: ../gramps/plugins/tool/verify.py:539
+#: ../gramps/plugins/tool/verify.py:727
 msgid "Data Verification Results"
 msgstr "Resultat af verificering af data"
 
-#: ../gramps/plugins/tool/verify.py:751
+#: ../gramps/plugins/tool/verify.py:940
 msgid "_Show all"
 msgstr "Vi_s alle"
 
-#: ../gramps/plugins/tool/verify.py:1191
+#: ../gramps/plugins/tool/verify.py:1373
 msgid "Baptism before birth"
 msgstr "Dåb før fødsel"
 
-#: ../gramps/plugins/tool/verify.py:1210
+#: ../gramps/plugins/tool/verify.py:1392
 msgid "Death before baptism"
 msgstr "Død før dåb"
 
-#: ../gramps/plugins/tool/verify.py:1229
+#: ../gramps/plugins/tool/verify.py:1411
 msgid "Burial before birth"
 msgstr "Begravelse før fødsel"
 
-#: ../gramps/plugins/tool/verify.py:1248
+#: ../gramps/plugins/tool/verify.py:1430
 msgid "Burial before death"
 msgstr "Begravelse før død"
 
-#: ../gramps/plugins/tool/verify.py:1267
+#: ../gramps/plugins/tool/verify.py:1449
 msgid "Death before birth"
 msgstr "Død før fødsel"
 
-#: ../gramps/plugins/tool/verify.py:1286
+#: ../gramps/plugins/tool/verify.py:1468
 msgid "Burial before baptism"
 msgstr "Begravelse før dåb"
 
-#: ../gramps/plugins/tool/verify.py:1312
+#: ../gramps/plugins/tool/verify.py:1494
 msgid "Old age at death"
 msgstr "Høj alder ved død"
 
-#: ../gramps/plugins/tool/verify.py:1343
+#: ../gramps/plugins/tool/verify.py:1525
 msgid "Multiple parents"
 msgstr "Flere forældrepar"
 
-#: ../gramps/plugins/tool/verify.py:1368
+#: ../gramps/plugins/tool/verify.py:1550
 msgid "Married often"
 msgstr "Ofte gift"
 
-#: ../gramps/plugins/tool/verify.py:1395
+#: ../gramps/plugins/tool/verify.py:1577
 msgid "Old and unmarried"
 msgstr "Gammel og ugift"
 
-#: ../gramps/plugins/tool/verify.py:1428
+#: ../gramps/plugins/tool/verify.py:1610
 msgid "Too many children"
 msgstr "For mange børn"
 
-#: ../gramps/plugins/tool/verify.py:1447
+#: ../gramps/plugins/tool/verify.py:1629
 msgid "Same sex marriage"
 msgstr "Ægteskab mellem personer af samme køn"
 
-#: ../gramps/plugins/tool/verify.py:1463
+#: ../gramps/plugins/tool/verify.py:1645
 msgid "Female husband"
 msgstr "Mand af kvindekøn"
 
-#: ../gramps/plugins/tool/verify.py:1479
+#: ../gramps/plugins/tool/verify.py:1661
 msgid "Male wife"
 msgstr "Hustru af hankøn"
 
-#: ../gramps/plugins/tool/verify.py:1513
+#: ../gramps/plugins/tool/verify.py:1695
 msgid "Husband and wife with the same surname"
 msgstr "Ægtemand og hustru med samme efternavn"
 
-#: ../gramps/plugins/tool/verify.py:1545
+#: ../gramps/plugins/tool/verify.py:1727
 msgid "Large age difference between spouses"
 msgstr "Stor aldersforskel mellem ægtefæller"
 
-#: ../gramps/plugins/tool/verify.py:1586
+#: ../gramps/plugins/tool/verify.py:1768
 msgid "Marriage before birth"
 msgstr "Vielse før fødsel"
 
-#: ../gramps/plugins/tool/verify.py:1627
+#: ../gramps/plugins/tool/verify.py:1809
 msgid "Marriage after death"
 msgstr "Vielse efter død"
 
-#: ../gramps/plugins/tool/verify.py:1678
+#: ../gramps/plugins/tool/verify.py:1860
 msgid "Early marriage"
 msgstr "Tidlig vielse"
 
-#: ../gramps/plugins/tool/verify.py:1724
+#: ../gramps/plugins/tool/verify.py:1906
 msgid "Late marriage"
 msgstr "Sen vielse"
 
-#: ../gramps/plugins/tool/verify.py:1776
+#: ../gramps/plugins/tool/verify.py:1958
 msgid "Old father"
 msgstr "Gammel fader"
 
-#: ../gramps/plugins/tool/verify.py:1780
+#: ../gramps/plugins/tool/verify.py:1962
 msgid "Old mother"
 msgstr "Gammel moder"
 
-#: ../gramps/plugins/tool/verify.py:1832
+#: ../gramps/plugins/tool/verify.py:2014
 msgid "Young father"
 msgstr "Ung fader"
 
-#: ../gramps/plugins/tool/verify.py:1836
+#: ../gramps/plugins/tool/verify.py:2018
 msgid "Young mother"
 msgstr "Ung moder"
 
-#: ../gramps/plugins/tool/verify.py:1885
+#: ../gramps/plugins/tool/verify.py:2068
 msgid "Unborn father"
 msgstr "Ufødt fader"
 
-#: ../gramps/plugins/tool/verify.py:1889
+#: ../gramps/plugins/tool/verify.py:2072
 msgid "Unborn mother"
 msgstr "Ufødt moder"
 
-#: ../gramps/plugins/tool/verify.py:1946
+#: ../gramps/plugins/tool/verify.py:2130
 msgid "Dead father"
 msgstr "Død fader"
 
-#: ../gramps/plugins/tool/verify.py:1950
+#: ../gramps/plugins/tool/verify.py:2134
 msgid "Dead mother"
 msgstr "Død moder"
 
-#: ../gramps/plugins/tool/verify.py:1980
+#: ../gramps/plugins/tool/verify.py:2164
 msgid "Large year span for all children"
 msgstr "Stort interval i år mellem alle børn"
 
-#: ../gramps/plugins/tool/verify.py:2011
+#: ../gramps/plugins/tool/verify.py:2195
 msgid "Large age differences between children"
 msgstr "Stor aldersforskel mellem børn"
 
-#: ../gramps/plugins/tool/verify.py:2030
+#: ../gramps/plugins/tool/verify.py:2214
 msgid "Disconnected individual"
 msgstr "Slægtsløs person"
 
-#: ../gramps/plugins/tool/verify.py:2060
+#: ../gramps/plugins/tool/verify.py:2237
 msgid "Invalid birth date"
 msgstr "Ugyldig fødselsdato"
 
-#: ../gramps/plugins/tool/verify.py:2090
+#: ../gramps/plugins/tool/verify.py:2260
 msgid "Invalid death date"
 msgstr "Ugyldig dødsdato"
 
-#: ../gramps/plugins/tool/verify.py:2113
+#: ../gramps/plugins/tool/verify.py:2280
 msgid "Marriage date but not married"
 msgstr "Vielsesdato, men ikke viet"
 
-#: ../gramps/plugins/tool/verify.py:2144
+#: ../gramps/plugins/tool/verify.py:2311
 msgid "Old age but no death"
 msgstr "Høj alder, men ikke død"
 
-#: ../gramps/plugins/tool/verify.py:2163
-msgid "Birth equals death"
+#: ../gramps/plugins/tool/verify.py:2330
+#, fuzzy
+#| msgid "Birth equals death"
+msgid "Birth date equals death date"
 msgstr "Fødselsdatoer samme som dødsdato"
 
-#: ../gramps/plugins/tool/verify.py:2184
-msgid "Birth equals marriage"
+#: ../gramps/plugins/tool/verify.py:2351
+#, fuzzy
+#| msgid "Birth equals marriage"
+msgid "Birth date equals marriage date"
 msgstr "Fødselsdato er samme som vielsesdato"
 
-#: ../gramps/plugins/tool/verify.py:2205
-msgid "Death equals marriage"
+#: ../gramps/plugins/tool/verify.py:2372
+#, fuzzy
+#| msgid "Death equals marriage"
+msgid "Death date equals marriage date"
 msgstr "Dødsdatro er samme som vielsesdato"
+
+#: ../gramps/plugins/tool/verify.py:2433
+msgid "Baptism too late according to family tradition"
+msgstr ""
+
+#: ../gramps/plugins/tool/verify.py:2458
+#, fuzzy
+#| msgid "Burial date"
+msgid "Burial too late"
+msgstr "Begravelsesdato"
+
+#: ../gramps/plugins/tool/verify.py:2495
+#, fuzzy
+#| msgid "Whether to sort events into chronological order."
+msgid "Children are not in chronological order"
+msgstr "Vælg om hændelser skal sorteres i kronologisk rækkefølge."
+
+#: ../gramps/plugins/tool/verify.py:2559
+#, fuzzy
+#| msgid "Whether to sort events into chronological order."
+msgid "Families are not in chronological order"
+msgstr "Vælg om hændelser skal sorteres i kronologisk rækkefølge."
+
+#: ../gramps/plugins/tool/verify.py:2572
+msgid "Family has events with role Unknown"
+msgstr ""
+
+#: ../gramps/plugins/tool/verify.py:2585
+#, fuzzy
+#| msgid "Personal events of the children"
+msgid "Person has events with role Unknown"
+msgstr "Personlige hændelser for børnene"
+
+#: ../gramps/plugins/tool/verify.py:2598
+#, fuzzy
+#| msgid "Whether to sort events into chronological order."
+msgid "Family events are not in chronological order"
+msgstr "Vælg om hændelser skal sorteres i kronologisk rækkefølge."
+
+#: ../gramps/plugins/tool/verify.py:2611
+#, fuzzy
+#| msgid "Whether to sort events into chronological order."
+msgid "Person events are not in chronological order"
+msgstr "Vælg om hændelser skal sorteres i kronologisk rækkefølge."
 
 #: ../gramps/plugins/view/citationlistview.py:107
 msgid "Source: Title"

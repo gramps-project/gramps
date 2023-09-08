@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps-5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-05 23:59+0100\n"
+"POT-Creation-Date: 2023-09-08 22:33+0100\n"
 "PO-Revision-Date: 2021-06-04 21:07+0000\n"
 "Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/gramps-project/"
@@ -1586,7 +1586,7 @@ msgstr "فشل بتفسير الوسائط"
 
 #: ../gramps/cli/clidbman.py:73 ../gramps/cli/clidbman.py:172
 #: ../gramps/cli/clidbman.py:174 ../gramps/gui/clipboard.py:201
-#: ../gramps/gui/clipboard.py:202 ../gramps/gui/plug/_windows.py:1487
+#: ../gramps/gui/clipboard.py:202 ../gramps/gui/plug/_windows.py:1489
 msgid "Unavailable"
 msgstr "غير متوفر"
 
@@ -1632,8 +1632,8 @@ msgstr "شجرة العائلة \"%s\":"
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/cli/clidbman.py:222 ../gramps/gen/plug/report/utils.py:182
 #: ../gramps/gui/editors/editattribute.py:140
-#: ../gramps/gui/editors/editname.py:341 ../gramps/gui/plug/_windows.py:1692
-#: ../gramps/gui/plug/_windows.py:2136
+#: ../gramps/gui/editors/editname.py:341 ../gramps/gui/plug/_windows.py:1694
+#: ../gramps/gui/plug/_windows.py:2138
 #: ../gramps/plugins/gramplet/whatsnext.py:495
 #: ../gramps/plugins/textreport/birthdayreport.py:213
 #: ../gramps/plugins/textreport/birthdayreport.py:218
@@ -1698,7 +1698,7 @@ msgid ""
 msgstr ""
 
 #: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2293
-#: ../gramps/gui/plug/_windows.py:757
+#: ../gramps/gui/plug/_windows.py:759
 msgid "Never"
 msgstr "أبداً"
 
@@ -2122,12 +2122,12 @@ msgstr "اسم"
 msgid ":"
 msgstr ":"
 
-#: ../gramps/gen/datehandler/__init__.py:94
+#: ../gramps/gen/datehandler/__init__.py:95
 #, python-format
 msgid "Date parser for '%s' not available, using default"
 msgstr ""
 
-#: ../gramps/gen/datehandler/__init__.py:111
+#: ../gramps/gen/datehandler/__init__.py:112
 #, python-format
 msgid "Date displayer for '%s' not available, using default"
 msgstr ""
@@ -6874,8 +6874,8 @@ msgstr "طائفة"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:68
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:113
 #: ../gramps/gui/glade/rule.glade:931 ../gramps/gui/glade/styleeditor.glade:278
-#: ../gramps/gui/plug/_windows.py:1053 ../gramps/gui/plug/_windows.py:1168
-#: ../gramps/gui/plug/_windows.py:1630 ../gramps/gui/plug/_windows.py:2123
+#: ../gramps/gui/plug/_windows.py:1055 ../gramps/gui/plug/_windows.py:1170
+#: ../gramps/gui/plug/_windows.py:1632 ../gramps/gui/plug/_windows.py:2125
 #: ../gramps/gui/selectors/selectevent.py:71
 #: ../gramps/plugins/gramplet/coordinates.py:100
 #: ../gramps/plugins/gramplet/events.py:103
@@ -8173,8 +8173,8 @@ msgstr "زواج مثلي"
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:118
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:114
 #: ../gramps/gui/merge/mergeperson.py:273 ../gramps/gui/plug/_windows.py:232
-#: ../gramps/gui/plug/_windows.py:1042 ../gramps/gui/plug/_windows.py:1165
-#: ../gramps/gui/plug/_windows.py:2121
+#: ../gramps/gui/plug/_windows.py:1044 ../gramps/gui/plug/_windows.py:1167
+#: ../gramps/gui/plug/_windows.py:2123
 #: ../gramps/gui/plug/report/_bookdialog.py:398
 #: ../gramps/gui/plug/report/_bookdialog.py:402
 #: ../gramps/gui/selectors/selectevent.py:67
@@ -8322,8 +8322,8 @@ msgstr "معبد"
 #: ../gramps/gen/lib/ldsord.py:206 ../gramps/gui/dbman.py:419
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:54
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:64
-#: ../gramps/gui/plug/_windows.py:236 ../gramps/gui/plug/_windows.py:1046
-#: ../gramps/gui/plug/_windows.py:1108
+#: ../gramps/gui/plug/_windows.py:236 ../gramps/gui/plug/_windows.py:1048
+#: ../gramps/gui/plug/_windows.py:1110
 #: ../gramps/plugins/quickview/ageondate.py:54
 #: ../gramps/plugins/textreport/indivcomplete.py:531
 #: ../gramps/plugins/textreport/indivcomplete.py:736
@@ -8333,7 +8333,7 @@ msgid "Status"
 msgstr "حالة"
 
 #: ../gramps/gen/lib/location.py:89 ../gramps/gen/lib/nameorigintype.py:88
-#: ../gramps/gui/clipboard.py:331 ../gramps/gui/plug/_windows.py:1635
+#: ../gramps/gui/clipboard.py:331 ../gramps/gui/plug/_windows.py:1637
 msgid "Location"
 msgstr "موقع"
 
@@ -8384,8 +8384,8 @@ msgstr "دين"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:158
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:117
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:113
-#: ../gramps/gui/plug/_guioptions.py:1185 ../gramps/gui/plug/_windows.py:1049
-#: ../gramps/gui/plug/_windows.py:2122
+#: ../gramps/gui/plug/_guioptions.py:1185 ../gramps/gui/plug/_windows.py:1051
+#: ../gramps/gui/plug/_windows.py:2124
 #: ../gramps/gui/plug/report/_bookdialog.py:398
 #: ../gramps/gui/selectors/selectperson.py:99
 #: ../gramps/gui/selectors/selectplace.py:68
@@ -8411,7 +8411,7 @@ msgstr "دين"
 #: ../gramps/plugins/tool/dumpgenderstats.py:101
 #: ../gramps/plugins/tool/notrelated.py:130
 #: ../gramps/plugins/tool/removeunused.py:224
-#: ../gramps/plugins/tool/verify.py:632 ../gramps/plugins/view/repoview.py:86
+#: ../gramps/plugins/tool/verify.py:821 ../gramps/plugins/view/repoview.py:86
 #: ../gramps/plugins/webreport/basepage.py:520
 #: ../gramps/plugins/webreport/person.py:421
 #: ../gramps/plugins/webreport/person.py:2284
@@ -8644,7 +8644,7 @@ msgstr "صيغة"
 #: ../gramps/gui/glade/editplaceref.glade:161
 #: ../gramps/gui/glade/editplaceref.glade:665
 #: ../gramps/gui/glade/editreporef.glade:225
-#: ../gramps/gui/glade/editreporef.glade:445 ../gramps/gui/plug/_windows.py:721
+#: ../gramps/gui/glade/editreporef.glade:445 ../gramps/gui/plug/_windows.py:723
 #: ../gramps/plugins/tool/verify.glade:406
 msgid "General"
 msgstr "عامّ"
@@ -11910,8 +11910,8 @@ msgstr "عرض محرر الاسم"
 #: ../gramps/gui/glade/plugins.glade:22 ../gramps/gui/glade/rule.glade:24
 #: ../gramps/gui/glade/rule.glade:1024 ../gramps/gui/glade/tipofday.glade:117
 #: ../gramps/gui/glade/updateaddons.glade:25 ../gramps/gui/grampsgui.py:58
-#: ../gramps/gui/plug/_windows.py:392 ../gramps/gui/plug/_windows.py:1019
-#: ../gramps/gui/plug/_windows.py:1698 ../gramps/gui/plug/_windows.py:1758
+#: ../gramps/gui/plug/_windows.py:392 ../gramps/gui/plug/_windows.py:1021
+#: ../gramps/gui/plug/_windows.py:1700 ../gramps/gui/plug/_windows.py:1760
 #: ../gramps/gui/plug/quick/_textbufdoc.py:71 ../gramps/gui/undohistory.py:88
 #: ../gramps/gui/viewmanager.py:1801 ../gramps/gui/views/bookmarks.py:316
 #: ../gramps/gui/views/tags.py:503 ../gramps/gui/widgets/grampletbar.py:718
@@ -11976,8 +11976,8 @@ msgstr "تعريف صيغة غير مكتملة أو خاطئة."
 #: ../gramps/gui/configure.py:1639 ../gramps/gui/configure.py:1644
 #: ../gramps/gui/configure.py:1665 ../gramps/gui/configure.py:1681
 #: ../gramps/gui/configure.py:2215 ../gramps/gui/configure.py:2304
-#: ../gramps/gui/plug/_windows.py:767 ../gramps/gui/plug/_windows.py:787
-#: ../gramps/gui/plug/_windows.py:823 ../gramps/gui/plug/_windows.py:831
+#: ../gramps/gui/plug/_windows.py:769 ../gramps/gui/plug/_windows.py:789
+#: ../gramps/gui/plug/_windows.py:825 ../gramps/gui/plug/_windows.py:833
 #: ../gramps/gui/views/navigationview.py:351
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:110
 #, python-format
@@ -12050,7 +12050,7 @@ msgstr "ولاية/مقاطعة"
 msgid "ZIP/Postal Code"
 msgstr "رمز البريدي"
 
-#: ../gramps/gui/configure.py:737 ../gramps/gui/plug/_windows.py:1633
+#: ../gramps/gui/configure.py:737 ../gramps/gui/plug/_windows.py:1635
 #: ../gramps/plugins/view/repoview.py:96
 msgid "Email"
 msgstr "بريد إلكتروني"
@@ -12323,7 +12323,7 @@ msgstr "_عرض كـ:"
 #: ../gramps/gui/glade/editperson.glade:12
 #: ../gramps/gui/glade/editperson.glade:516 ../gramps/gui/glade/rule.glade:463
 #: ../gramps/gui/glade/styleeditor.glade:1903
-#: ../gramps/gui/plug/_windows.py:1072 ../gramps/gui/plug/_windows.py:1131
+#: ../gramps/gui/plug/_windows.py:1074 ../gramps/gui/plug/_windows.py:1133
 #: ../gramps/plugins/gramplet/ancestor.py:122
 #: ../gramps/plugins/gramplet/descendant.py:119
 msgid "Edit"
@@ -12874,8 +12874,8 @@ msgstr "تحديد مجلد الوسائط"
 #: ../gramps/gui/glade/rule.glade:747 ../gramps/gui/glade/styleeditor.glade:86
 #: ../gramps/gui/glade/styleeditor.glade:1737
 #: ../gramps/gui/logger/_errorview.py:188 ../gramps/gui/plug/_guioptions.py:84
-#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:841
-#: ../gramps/gui/plug/_windows.py:1409
+#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:843
+#: ../gramps/gui/plug/_windows.py:1411
 #: ../gramps/gui/plug/report/_fileentry.py:68
 #: ../gramps/gui/plug/report/_reportdialog.py:170 ../gramps/gui/utils.py:265
 #: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1250
@@ -13161,7 +13161,7 @@ msgstr "لا توجد معلومات عن التاريخ"
 #: ../gramps/gui/glade/reorder.glade:38 ../gramps/gui/glade/rule.glade:333
 #: ../gramps/gui/glade/rule.glade:764 ../gramps/gui/glade/styleeditor.glade:103
 #: ../gramps/gui/glade/styleeditor.glade:1754
-#: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:841
+#: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:843
 #: ../gramps/gui/plug/report/_reportdialog.py:173 ../gramps/gui/utils.py:279
 #: ../gramps/gui/viewmanager.py:1802 ../gramps/gui/views/tags.py:727
 #: ../gramps/plugins/tool/check.py:828 ../gramps/plugins/tool/patchnames.py:152
@@ -13710,7 +13710,7 @@ msgstr "م_يزات"
 #: ../gramps/plugins/tool/notrelated.py:131
 #: ../gramps/plugins/tool/patchnames.py:457
 #: ../gramps/plugins/tool/removeunused.py:217
-#: ../gramps/plugins/tool/sortevents.py:62 ../gramps/plugins/tool/verify.py:622
+#: ../gramps/plugins/tool/sortevents.py:62 ../gramps/plugins/tool/verify.py:811
 #: ../gramps/plugins/view/citationlistview.py:101
 #: ../gramps/plugins/view/citationtreeview.py:96
 #: ../gramps/plugins/view/eventview.py:82
@@ -14035,14 +14035,14 @@ msgid "Set as default name"
 msgstr "تخصيص كاسم إفتراضي"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
-#: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:923
+#: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:925
 #: ../gramps/gui/viewmanager.py:1134 ../gramps/gui/views/tags.py:570
 #: ../gramps/plugins/quickview/all_relations.py:365
 msgid "Yes"
 msgstr "نعم"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:59
-#: ../gramps/gui/plug/_guioptions.py:1266 ../gramps/gui/plug/_windows.py:924
+#: ../gramps/gui/plug/_guioptions.py:1266 ../gramps/gui/plug/_windows.py:926
 #: ../gramps/gui/viewmanager.py:1135 ../gramps/gui/views/tags.py:571
 #: ../gramps/plugins/quickview/all_relations.py:371
 msgid "No"
@@ -15900,7 +15900,7 @@ msgid "Within"
 msgstr "_مع:"
 
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:116
-#: ../gramps/gui/plug/_windows.py:831
+#: ../gramps/gui/plug/_windows.py:833
 msgid "URL"
 msgstr "رابط"
 
@@ -17457,7 +17457,7 @@ msgid "_Merge and close"
 msgstr "_دمج و إغلاق"
 
 #: ../gramps/gui/glade/mergedata.glade:173
-#: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:2115
+#: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:2117
 #: ../gramps/plugins/tool/changenames.py:226
 #: ../gramps/plugins/tool/patchnames.py:454
 msgid "Select"
@@ -17752,7 +17752,7 @@ msgid "Run"
 msgstr "تشغيل"
 
 # شك
-#: ../gramps/gui/glade/plugins.glade:139 ../gramps/gui/plug/_dialogs.py:313
+#: ../gramps/gui/glade/plugins.glade:139 ../gramps/gui/plug/_dialogs.py:312
 #, fuzzy
 msgid "Select a report from those available on the left."
 msgstr "تحديد تقرير من القائمة اليمنى."
@@ -18171,7 +18171,7 @@ msgid "Install Selected _Addons"
 msgstr ""
 
 #: ../gramps/gui/glade/updateaddons.glade:72
-#: ../gramps/gui/plug/_windows.py:2092
+#: ../gramps/gui/plug/_windows.py:2094
 msgid "Available Gramps Updates for Addons"
 msgstr "تحديثات متوفرة لإضافات غرميز"
 
@@ -18715,7 +18715,7 @@ msgstr "زوج"
 msgid "No spouses or children found"
 msgstr "لم يُعْثَر على أزواج أو أبناء"
 
-#: ../gramps/gui/merge/mergeperson.py:372 ../gramps/plugins/tool/verify.py:612
+#: ../gramps/gui/merge/mergeperson.py:372 ../gramps/plugins/tool/verify.py:801
 msgid "Warning"
 msgstr "تحذير"
 
@@ -18746,31 +18746,31 @@ msgstr "Merge_Sources"
 msgid "Merge Sources"
 msgstr "دمج مصادر"
 
-#: ../gramps/gui/plug/_dialogs.py:312
+#: ../gramps/gui/plug/_dialogs.py:311
 msgid "Report Selection"
 msgstr "تحديد التقرير"
 
-#: ../gramps/gui/plug/_dialogs.py:314
+#: ../gramps/gui/plug/_dialogs.py:313
 msgid "_Generate"
 msgstr "إ_نشاء"
 
-#: ../gramps/gui/plug/_dialogs.py:315
+#: ../gramps/gui/plug/_dialogs.py:314
 msgid "Generate selected report"
 msgstr "توليد التقرير المحدّد"
 
-#: ../gramps/gui/plug/_dialogs.py:346
+#: ../gramps/gui/plug/_dialogs.py:345
 msgid "Tool Selection"
 msgstr "تحديد الأداة"
 
-#: ../gramps/gui/plug/_dialogs.py:347
+#: ../gramps/gui/plug/_dialogs.py:346
 msgid "Select a tool from those available on the left."
 msgstr ""
 
-#: ../gramps/gui/plug/_dialogs.py:348 ../gramps/plugins/tool/verify.glade:144
+#: ../gramps/gui/plug/_dialogs.py:347 ../gramps/plugins/tool/verify.glade:144
 msgid "_Run"
 msgstr "_تشغيل"
 
-#: ../gramps/gui/plug/_dialogs.py:349
+#: ../gramps/gui/plug/_dialogs.py:348
 msgid "Run selected tool"
 msgstr "تشغيل الأداة المحدّدة"
 
@@ -18824,7 +18824,7 @@ msgstr "تحديد لون الخط"
 msgid "Save As"
 msgstr "حفظ باسم"
 
-#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:1409
+#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:1411
 #: ../gramps/gui/plug/report/_bookdialog.py:651
 #: ../gramps/gui/plug/report/_fileentry.py:68
 #, fuzzy
@@ -18847,7 +18847,7 @@ msgstr "حدّد كائن الوسائط المتعدّدة"
 msgid "Audience"
 msgstr "صوت"
 
-#: ../gramps/gui/plug/_windows.py:238 ../gramps/gui/plug/_windows.py:1631
+#: ../gramps/gui/plug/_windows.py:238 ../gramps/gui/plug/_windows.py:1633
 msgid "Version"
 msgstr "إصدار"
 
@@ -18871,7 +18871,7 @@ msgid "Requires"
 msgstr ""
 
 #: ../gramps/gui/plug/_windows.py:275 ../gramps/gui/plug/_windows.py:431
-#: ../gramps/gui/plug/_windows.py:630
+#: ../gramps/gui/plug/_windows.py:632
 #, fuzzy
 #| msgid "Updated"
 msgid "Update"
@@ -18916,13 +18916,13 @@ msgstr "مُرشّح"
 msgid "All addons"
 msgstr "اسم الاضافة"
 
-#: ../gramps/gui/plug/_windows.py:429 ../gramps/gui/plug/_windows.py:624
+#: ../gramps/gui/plug/_windows.py:429 ../gramps/gui/plug/_windows.py:626
 #, fuzzy
 #| msgid "Unstable"
 msgid "Not installed"
 msgstr "غير مستقر"
 
-#: ../gramps/gui/plug/_windows.py:430 ../gramps/gui/plug/_windows.py:627
+#: ../gramps/gui/plug/_windows.py:430 ../gramps/gui/plug/_windows.py:629
 #, fuzzy
 #| msgid "Unstable"
 msgid "Installed"
@@ -18956,312 +18956,312 @@ msgstr "بدء"
 msgid "Projects"
 msgstr "حدّد كائن الوسائط المتعدّدة"
 
-#: ../gramps/gui/plug/_windows.py:525 ../gramps/gui/plug/_windows.py:635
+#: ../gramps/gui/plug/_windows.py:527 ../gramps/gui/plug/_windows.py:637
 #, fuzzy
 msgid "All projects"
 msgstr "حدّد كائن الوسائط المتعدّدة"
 
-#: ../gramps/gui/plug/_windows.py:537
+#: ../gramps/gui/plug/_windows.py:539
 msgid "Loading..."
 msgstr "تحميل..."
 
-#: ../gramps/gui/plug/_windows.py:581
+#: ../gramps/gui/plug/_windows.py:583
 #, fuzzy
 #| msgid "No matches found"
 msgid "No matching addons found."
 msgstr "لم يُعْثَر على أي شيء"
 
-#: ../gramps/gui/plug/_windows.py:735
-msgid "Allow Gramps to install required python modules"
+#: ../gramps/gui/plug/_windows.py:737
+msgid "Allow Gramps to install required Python modules"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:742
+#: ../gramps/gui/plug/_windows.py:744
 #: ../gramps/plugins/webreport/basepage.py:1901
 #: ../gramps/plugins/webreport/basepage.py:1966
 #, fuzzy
 msgid "Updates"
 msgstr "محدّث"
 
-#: ../gramps/gui/plug/_windows.py:758
+#: ../gramps/gui/plug/_windows.py:760
 msgid "Once a month"
 msgstr "مرة بالشهر"
 
-#: ../gramps/gui/plug/_windows.py:759
+#: ../gramps/gui/plug/_windows.py:761
 msgid "Once a week"
 msgstr "مرة بالأسبوع"
 
-#: ../gramps/gui/plug/_windows.py:760
+#: ../gramps/gui/plug/_windows.py:762
 msgid "Once a day"
 msgstr "مرة باليوم"
 
-#: ../gramps/gui/plug/_windows.py:761
+#: ../gramps/gui/plug/_windows.py:763
 msgid "Always"
 msgstr "دائماً"
 
-#: ../gramps/gui/plug/_windows.py:767
+#: ../gramps/gui/plug/_windows.py:769
 #, fuzzy
 msgid "Check for addon updates"
 msgstr "بحث عن تحديثات"
 
-#: ../gramps/gui/plug/_windows.py:774
+#: ../gramps/gui/plug/_windows.py:776
 msgid "Updated addons only"
 msgstr "الإضافات المحدّثة فقط"
 
-#: ../gramps/gui/plug/_windows.py:775
+#: ../gramps/gui/plug/_windows.py:777
 msgid "New addons only"
 msgstr "الإضافات الجديدة فقط"
 
-#: ../gramps/gui/plug/_windows.py:776
+#: ../gramps/gui/plug/_windows.py:778
 msgid "New and updated addons"
 msgstr "الإضافات المحدّثة و الجديدة"
 
-#: ../gramps/gui/plug/_windows.py:787
+#: ../gramps/gui/plug/_windows.py:789
 msgid "What to check"
 msgstr "ما الذي يراد البحث عنه"
 
-#: ../gramps/gui/plug/_windows.py:793
+#: ../gramps/gui/plug/_windows.py:795
 msgid "Do not ask about previously notified addons"
 msgstr "لا تسألن عن التنبيهات السابقة"
 
-#: ../gramps/gui/plug/_windows.py:800
+#: ../gramps/gui/plug/_windows.py:802
 #, fuzzy
 msgid "Check for updated addons now"
 msgstr "بحث عن تحديثات"
 
-#: ../gramps/gui/plug/_windows.py:813
+#: ../gramps/gui/plug/_windows.py:815
 #, fuzzy
 #| msgid "New Person"
 msgid "New Project"
 msgstr "شخص جديد"
 
-#: ../gramps/gui/plug/_windows.py:815
+#: ../gramps/gui/plug/_windows.py:817
 #, fuzzy
 #| msgid "Edit Person"
 msgid "Edit Project"
 msgstr "تحرير شخص"
 
-#: ../gramps/gui/plug/_windows.py:823
+#: ../gramps/gui/plug/_windows.py:825
 #, fuzzy
 #| msgid "Preferred name"
 msgid "Project name"
 msgstr "اسم مفضّل"
 
-#: ../gramps/gui/plug/_windows.py:921
+#: ../gramps/gui/plug/_windows.py:923
 #, fuzzy
 msgid "Restore project defaults"
 msgstr "هل تريد استعادة الافتراضيات؟"
 
-#: ../gramps/gui/plug/_windows.py:922
+#: ../gramps/gui/plug/_windows.py:924
 msgid "Are you sure?"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:946
+#: ../gramps/gui/plug/_windows.py:948
 msgid "Checking Addons Failed"
 msgstr "فشل بفحص الإضافات"
 
-#: ../gramps/gui/plug/_windows.py:948
+#: ../gramps/gui/plug/_windows.py:950
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr "مستودع الإضافات غير متوفر. قم بالمحالة لاحقاً."
 
-#: ../gramps/gui/plug/_windows.py:963
+#: ../gramps/gui/plug/_windows.py:965
 msgid "There are no available addons of this type"
 msgstr "لا توجد إضافات متوفرة من هذا النوع"
 
-#: ../gramps/gui/plug/_windows.py:964
+#: ../gramps/gui/plug/_windows.py:966
 msgid "' and '"
 msgstr "' و '"
 
-#: ../gramps/gui/plug/_windows.py:964
+#: ../gramps/gui/plug/_windows.py:966
 #, python-format
 msgid "Checked for '%s'"
 msgstr "بحث من أجل '%s'"
 
-#: ../gramps/gui/plug/_windows.py:970
+#: ../gramps/gui/plug/_windows.py:972
 msgid "new"
 msgstr "جديد"
 
-#: ../gramps/gui/plug/_windows.py:970
+#: ../gramps/gui/plug/_windows.py:972
 msgid "update"
 msgstr "تحديث"
 
-#: ../gramps/gui/plug/_windows.py:1005
+#: ../gramps/gui/plug/_windows.py:1007
 msgid "Hidden"
 msgstr "مخفي"
 
-#: ../gramps/gui/plug/_windows.py:1006
+#: ../gramps/gui/plug/_windows.py:1008
 msgid "Visible"
 msgstr "مرئي"
 
-#: ../gramps/gui/plug/_windows.py:1011
+#: ../gramps/gui/plug/_windows.py:1013
 msgid "Plugin Manager"
 msgstr "مدير الإضافات"
 
-#: ../gramps/gui/plug/_windows.py:1063 ../gramps/gui/plug/_windows.py:1121
+#: ../gramps/gui/plug/_windows.py:1065 ../gramps/gui/plug/_windows.py:1123
 msgid "Info"
 msgstr "معلومات"
 
-#: ../gramps/gui/plug/_windows.py:1066 ../gramps/gui/plug/_windows.py:1124
+#: ../gramps/gui/plug/_windows.py:1068 ../gramps/gui/plug/_windows.py:1126
 msgid "Hide/Unhide"
 msgstr "إخفاء/إظهار"
 
 # شك
-#: ../gramps/gui/plug/_windows.py:1075 ../gramps/gui/plug/_windows.py:1134
+#: ../gramps/gui/plug/_windows.py:1077 ../gramps/gui/plug/_windows.py:1136
 msgid "Load"
 msgstr "فتح"
 
-#: ../gramps/gui/plug/_windows.py:1081
+#: ../gramps/gui/plug/_windows.py:1083
 msgid "Registered Plugins"
 msgstr "إضافات مسجّلة"
 
-#: ../gramps/gui/plug/_windows.py:1100
+#: ../gramps/gui/plug/_windows.py:1102
 msgid "Loaded"
 msgstr "محمّلة"
 
-#: ../gramps/gui/plug/_windows.py:1104
+#: ../gramps/gui/plug/_windows.py:1106
 #: ../gramps/plugins/importer/importprogen.glade:431
 #: ../gramps/plugins/importer/importprogen.glade:1126
 msgid "File"
 msgstr "ملف"
 
-#: ../gramps/gui/plug/_windows.py:1111
+#: ../gramps/gui/plug/_windows.py:1113
 msgid "Message"
 msgstr "رسالة"
 
-#: ../gramps/gui/plug/_windows.py:1140
+#: ../gramps/gui/plug/_windows.py:1142
 msgid "Loaded Plugins"
 msgstr "إضافات محملة"
 
-#: ../gramps/gui/plug/_windows.py:1162
+#: ../gramps/gui/plug/_windows.py:1164
 msgid "Addon Name"
 msgstr "اسم الاضافة"
 
-#: ../gramps/gui/plug/_windows.py:1174
+#: ../gramps/gui/plug/_windows.py:1176
 msgid "Path to Addon:"
 msgstr "مسار الإضافة:"
 
-#: ../gramps/gui/plug/_windows.py:1194
+#: ../gramps/gui/plug/_windows.py:1196
 msgid "Install Addon"
 msgstr "تنصيب إضافة"
 
-#: ../gramps/gui/plug/_windows.py:1197
+#: ../gramps/gui/plug/_windows.py:1199
 msgid "Install All Addons"
 msgstr "تنصيب كل الإضافات"
 
-#: ../gramps/gui/plug/_windows.py:1200
+#: ../gramps/gui/plug/_windows.py:1202
 msgid "Refresh Addon List"
 msgstr "تحديث قائمة الإضافات"
 
-#: ../gramps/gui/plug/_windows.py:1213
+#: ../gramps/gui/plug/_windows.py:1215
 msgid "Reload"
 msgstr "إعادة تحميل"
 
-#: ../gramps/gui/plug/_windows.py:1241
+#: ../gramps/gui/plug/_windows.py:1243
 msgid "Refreshing Addon List"
 msgstr "جاري تحديث قائمة الإضافات"
 
-#: ../gramps/gui/plug/_windows.py:1242 ../gramps/gui/plug/_windows.py:1247
-#: ../gramps/gui/plug/_windows.py:1385
+#: ../gramps/gui/plug/_windows.py:1244 ../gramps/gui/plug/_windows.py:1249
+#: ../gramps/gui/plug/_windows.py:1387
 msgid "Reading gramps-project.org..."
 msgstr "قراءة من gramps-project.org..."
 
-#: ../gramps/gui/plug/_windows.py:1265
+#: ../gramps/gui/plug/_windows.py:1267
 msgid "Checking addon..."
 msgstr "فحص الإضافة..."
 
-#: ../gramps/gui/plug/_windows.py:1273
+#: ../gramps/gui/plug/_windows.py:1275
 msgid "Unknown Help URL"
 msgstr "رابط مساعدة مجهول"
 
-#: ../gramps/gui/plug/_windows.py:1284
+#: ../gramps/gui/plug/_windows.py:1286
 msgid "Unknown URL"
 msgstr "رابط مجهول"
 
-#: ../gramps/gui/plug/_windows.py:1349
+#: ../gramps/gui/plug/_windows.py:1351
 msgid "Install all Addons"
 msgstr "تنصيب كل الإضافات"
 
-#: ../gramps/gui/plug/_windows.py:1350
+#: ../gramps/gui/plug/_windows.py:1352
 msgid "Installing..."
 msgstr "تنصيب..."
 
-#: ../gramps/gui/plug/_windows.py:1383
+#: ../gramps/gui/plug/_windows.py:1385
 msgid "Installing Addon"
 msgstr "تنصيب الإضافة"
 
-#: ../gramps/gui/plug/_windows.py:1406
+#: ../gramps/gui/plug/_windows.py:1408
 msgid "Load Addon"
 msgstr "تحميل الإضافة"
 
-#: ../gramps/gui/plug/_windows.py:1498
+#: ../gramps/gui/plug/_windows.py:1500
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:261
 msgid "Fail"
 msgstr "فشل"
 
-#: ../gramps/gui/plug/_windows.py:1521 ../gramps/gui/widgets/grampletbar.py:610
+#: ../gramps/gui/plug/_windows.py:1523 ../gramps/gui/widgets/grampletbar.py:610
 msgid "OK"
 msgstr "موافق"
 
-#: ../gramps/gui/plug/_windows.py:1629
+#: ../gramps/gui/plug/_windows.py:1631
 msgid "Plugin name"
 msgstr "اسم الإضافة"
 
-#: ../gramps/gui/plug/_windows.py:1632
+#: ../gramps/gui/plug/_windows.py:1634
 msgid "Authors"
 msgstr "مؤلّفون"
 
-#: ../gramps/gui/plug/_windows.py:1634
+#: ../gramps/gui/plug/_windows.py:1636
 #: ../gramps/gui/plug/report/_reportdialog.py:481
 msgid "Filename"
 msgstr "اسم الملف"
 
-#: ../gramps/gui/plug/_windows.py:1637
+#: ../gramps/gui/plug/_windows.py:1639
 msgid "Detailed Info"
 msgstr "معلومات مفصّلة"
 
-#: ../gramps/gui/plug/_windows.py:1692
+#: ../gramps/gui/plug/_windows.py:1694
 msgid "Plugin Error"
 msgstr "خطأ في الإضافة"
 
-#: ../gramps/gui/plug/_windows.py:1761
+#: ../gramps/gui/plug/_windows.py:1763
 msgid "_Execute"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:2059
+#: ../gramps/gui/plug/_windows.py:2061
 #: ../gramps/plugins/importer/importprogen.py:478
 #: ../gramps/plugins/tool/ownereditor.py:171
 #: ../gramps/plugins/tool/reorderids.py:249
 msgid "Main window"
 msgstr "نافذة رئيسية"
 
-#: ../gramps/gui/plug/_windows.py:2197
+#: ../gramps/gui/plug/_windows.py:2199
 msgid "Downloading and installing selected addons..."
 msgstr "تحميل و تنصيب الإضافات المحدّدة..."
 
-#: ../gramps/gui/plug/_windows.py:2240
+#: ../gramps/gui/plug/_windows.py:2242
 #, fuzzy
 msgid "Installation Errors"
 msgstr "تنصيب الإضافة"
 
-#: ../gramps/gui/plug/_windows.py:2241
+#: ../gramps/gui/plug/_windows.py:2243
 #, fuzzy
 msgid "The following addons had errors: "
 msgstr "واجه غرمبز هذه الأخطاء:"
 
-#: ../gramps/gui/plug/_windows.py:2249 ../gramps/gui/plug/_windows.py:2266
+#: ../gramps/gui/plug/_windows.py:2251 ../gramps/gui/plug/_windows.py:2268
 msgid "Done downloading and installing addons"
 msgstr "إنتهاء تحميل و تنصيب الإضافات"
 
-#: ../gramps/gui/plug/_windows.py:2254
+#: ../gramps/gui/plug/_windows.py:2256
 #, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
 msgstr[0] "تم تنصيب {number_of} من الإضافات."
 
-#: ../gramps/gui/plug/_windows.py:2259
+#: ../gramps/gui/plug/_windows.py:2261
 msgid "If you have installed a 'View', you will need to restart Gramps."
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:2267
+#: ../gramps/gui/plug/_windows.py:2269
 msgid "No addons were installed."
 msgstr "لم يتم تنصيب أية إضافات."
 
@@ -31909,7 +31909,7 @@ msgstr "لا توجد قرابة بالميلاد مع الابن(ـة)"
 
 #: ../gramps/plugins/quickview/lineage.py:169
 #: ../gramps/plugins/quickview/lineage.py:191
-#: ../gramps/plugins/tool/verify.py:1327
+#: ../gramps/plugins/tool/verify.py:1509
 msgid "Unknown gender"
 msgstr "جنس مجهول"
 
@@ -32188,17 +32188,18 @@ msgstr "حاسبة القرابات الكاتلونية"
 #: ../gramps/plugins/rel/relplugins.gpr.py:212
 #: ../gramps/plugins/rel/relplugins.gpr.py:242
 #: ../gramps/plugins/rel/relplugins.gpr.py:266
-#: ../gramps/plugins/rel/relplugins.gpr.py:279
-#: ../gramps/plugins/rel/relplugins.gpr.py:292
-#: ../gramps/plugins/rel/relplugins.gpr.py:305
-#: ../gramps/plugins/rel/relplugins.gpr.py:339
-#: ../gramps/plugins/rel/relplugins.gpr.py:373
-#: ../gramps/plugins/rel/relplugins.gpr.py:400
-#: ../gramps/plugins/rel/relplugins.gpr.py:430
-#: ../gramps/plugins/rel/relplugins.gpr.py:460
+#: ../gramps/plugins/rel/relplugins.gpr.py:290
+#: ../gramps/plugins/rel/relplugins.gpr.py:303
+#: ../gramps/plugins/rel/relplugins.gpr.py:316
+#: ../gramps/plugins/rel/relplugins.gpr.py:329
+#: ../gramps/plugins/rel/relplugins.gpr.py:363
+#: ../gramps/plugins/rel/relplugins.gpr.py:397
+#: ../gramps/plugins/rel/relplugins.gpr.py:424
+#: ../gramps/plugins/rel/relplugins.gpr.py:454
 #: ../gramps/plugins/rel/relplugins.gpr.py:484
-#: ../gramps/plugins/rel/relplugins.gpr.py:507
-#: ../gramps/plugins/rel/relplugins.gpr.py:560
+#: ../gramps/plugins/rel/relplugins.gpr.py:508
+#: ../gramps/plugins/rel/relplugins.gpr.py:531
+#: ../gramps/plugins/rel/relplugins.gpr.py:584
 msgid "Calculates relationships between people"
 msgstr "حساب القرابات بين الأشخاص"
 
@@ -32233,67 +32234,73 @@ msgid "French Relationship Calculator"
 msgstr "حاسبة القرابات الفرنسية"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:241
+#, fuzzy
+#| msgid "Relationship Calculator"
+msgid "Hebrew Relationship Calculator"
+msgstr "حاسبة القرابات"
+
+#: ../gramps/plugins/rel/relplugins.gpr.py:265
 msgid "Croatian Relationship Calculator"
 msgstr "حاسبة القرابات الكرواتية"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:265
+#: ../gramps/plugins/rel/relplugins.gpr.py:289
 msgid "Hungarian Relationship Calculator"
 msgstr "حاسبة القرابات الهنغارية"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:278
+#: ../gramps/plugins/rel/relplugins.gpr.py:302
 #, fuzzy
 msgid "Icelandic Relationship Calculator"
 msgstr "حاسبة القرابات الايطالية"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:291
+#: ../gramps/plugins/rel/relplugins.gpr.py:315
 msgid "Italian Relationship Calculator"
 msgstr "حاسبة القرابات الايطالية"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:304
+#: ../gramps/plugins/rel/relplugins.gpr.py:328
 msgid "Dutch Relationship Calculator"
 msgstr "حاسبة القرابات الهولندية"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:338
+#: ../gramps/plugins/rel/relplugins.gpr.py:362
 msgid "Norwegian Relationship Calculator"
 msgstr "حاسبة القرابات النروجية"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:372
+#: ../gramps/plugins/rel/relplugins.gpr.py:396
 msgid "Polish Relationship Calculator"
 msgstr "حاسبة القرابات البولندية"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:399
+#: ../gramps/plugins/rel/relplugins.gpr.py:423
 msgid "Portuguese Relationship Calculator"
 msgstr "حاسبة القرابات البرتغالية"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:429
+#: ../gramps/plugins/rel/relplugins.gpr.py:453
 msgid "Russian Relationship Calculator"
 msgstr "حاسبة القرابات الروسية"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:459
+#: ../gramps/plugins/rel/relplugins.gpr.py:483
 msgid "Slovak Relationship Calculator"
 msgstr "حاسبة القرابات السلوفاكية"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:483
+#: ../gramps/plugins/rel/relplugins.gpr.py:507
 msgid "Slovenian Relationship Calculator"
 msgstr "حاسبة القرابات السلوفينية"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:506
+#: ../gramps/plugins/rel/relplugins.gpr.py:530
 msgid "Swedish Relationship Calculator"
 msgstr "حاسبة القرابات السويدية"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:534
+#: ../gramps/plugins/rel/relplugins.gpr.py:558
 #, fuzzy
 #| msgid "Danish Relationship Calculator"
 msgid "Turkish Relationship Calculator"
 msgstr "حاسبة القرابات الدنمركية"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:535
+#: ../gramps/plugins/rel/relplugins.gpr.py:559
 #, fuzzy
 #| msgid "Calculates relationships between people"
 msgid "Calculates relationship between people"
 msgstr "حساب القرابات بين الأشخاص"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:559
+#: ../gramps/plugins/rel/relplugins.gpr.py:583
 #, fuzzy
 msgid "Ukrainian Relationship Calculator"
 msgstr "حاسبة القرابات الكرواتية"
@@ -34626,7 +34633,7 @@ msgstr "أداة البحث عن التكرارات"
 
 #: ../gramps/plugins/tool/finddupes.py:147
 #: ../gramps/plugins/tool/mergecitations.py:170
-#: ../gramps/plugins/tool/verify.py:379
+#: ../gramps/plugins/tool/verify.py:481
 msgid "Tool settings"
 msgstr "إعدادات الأداة"
 
@@ -35278,7 +35285,7 @@ msgid "Unused Objects"
 msgstr "كائنات غير مستعملة"
 
 #: ../gramps/plugins/tool/removeunused.py:205
-#: ../gramps/plugins/tool/verify.py:600
+#: ../gramps/plugins/tool/verify.py:789
 msgid "Mark"
 msgstr "تحديد"
 
@@ -35747,191 +35754,233 @@ msgstr ""
 msgid "Maximum _span of years for all children"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.glade:984 ../gramps/plugins/tool/verify.py:754
+#: ../gramps/plugins/tool/verify.glade:984 ../gramps/plugins/tool/verify.py:943
 msgid "_Hide marked"
 msgstr "إ_خفاء المؤشّرة"
 
-#: ../gramps/plugins/tool/verify.py:90
+#: ../gramps/plugins/tool/verify.py:94
 msgctxt "manual"
 msgid "Verify_the_Data"
 msgstr "Verify_the_Data"
 
-#: ../gramps/plugins/tool/verify.py:318
+#: ../gramps/plugins/tool/verify.py:420
 #, fuzzy
 msgid "Data Verify tool"
 msgstr "أداة التحقق من قاعدة البيانات"
 
-#: ../gramps/plugins/tool/verify.py:342
+#: ../gramps/plugins/tool/verify.py:444
 #, python-format
 msgid "%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s"
 msgstr "%(severity)s: %(msg)s، %(type)s: %(gid)s، %(name)s"
 
-#: ../gramps/plugins/tool/verify.py:539
+#: ../gramps/plugins/tool/verify.py:727
 #, fuzzy
 msgid "Data Verification Results"
 msgstr "نتائج التحقق من قاعدة البيانات"
 
-#: ../gramps/plugins/tool/verify.py:751
+#: ../gramps/plugins/tool/verify.py:940
 msgid "_Show all"
 msgstr "_عرض الكل"
 
-#: ../gramps/plugins/tool/verify.py:1191
+#: ../gramps/plugins/tool/verify.py:1373
 msgid "Baptism before birth"
 msgstr "تعميد قبل الميلاد"
 
-#: ../gramps/plugins/tool/verify.py:1210
+#: ../gramps/plugins/tool/verify.py:1392
 msgid "Death before baptism"
 msgstr "ممات قبل التعميد"
 
-#: ../gramps/plugins/tool/verify.py:1229
+#: ../gramps/plugins/tool/verify.py:1411
 msgid "Burial before birth"
 msgstr "دفن قبل الميلاد"
 
-#: ../gramps/plugins/tool/verify.py:1248
+#: ../gramps/plugins/tool/verify.py:1430
 msgid "Burial before death"
 msgstr "دفن قبل الممات"
 
-#: ../gramps/plugins/tool/verify.py:1267
+#: ../gramps/plugins/tool/verify.py:1449
 msgid "Death before birth"
 msgstr "ممات قبل المليلاد"
 
-#: ../gramps/plugins/tool/verify.py:1286
+#: ../gramps/plugins/tool/verify.py:1468
 msgid "Burial before baptism"
 msgstr "دفن قبل التعميد"
 
-#: ../gramps/plugins/tool/verify.py:1312
+#: ../gramps/plugins/tool/verify.py:1494
 msgid "Old age at death"
 msgstr "كبير بالسن عند الممات"
 
-#: ../gramps/plugins/tool/verify.py:1343
+#: ../gramps/plugins/tool/verify.py:1525
 msgid "Multiple parents"
 msgstr "تعدّد بالآباء"
 
 # شك
-#: ../gramps/plugins/tool/verify.py:1368
+#: ../gramps/plugins/tool/verify.py:1550
 msgid "Married often"
 msgstr "متزوج كثيرا"
 
-#: ../gramps/plugins/tool/verify.py:1395
+#: ../gramps/plugins/tool/verify.py:1577
 msgid "Old and unmarried"
 msgstr "كبير بالسن غير متزوّج(ـة)"
 
-#: ../gramps/plugins/tool/verify.py:1428
+#: ../gramps/plugins/tool/verify.py:1610
 msgid "Too many children"
 msgstr "عدد كبير من الأبناء"
 
-#: ../gramps/plugins/tool/verify.py:1447
+#: ../gramps/plugins/tool/verify.py:1629
 msgid "Same sex marriage"
 msgstr "زواج مثلي"
 
 # شك
-#: ../gramps/plugins/tool/verify.py:1463
+#: ../gramps/plugins/tool/verify.py:1645
 msgid "Female husband"
 msgstr "زوج أنثى"
 
 # شك
-#: ../gramps/plugins/tool/verify.py:1479
+#: ../gramps/plugins/tool/verify.py:1661
 msgid "Male wife"
 msgstr "زوجة ذكر"
 
-#: ../gramps/plugins/tool/verify.py:1513
+#: ../gramps/plugins/tool/verify.py:1695
 msgid "Husband and wife with the same surname"
 msgstr "زوج و زوجة بنفس اسم العائلة"
 
-#: ../gramps/plugins/tool/verify.py:1545
+#: ../gramps/plugins/tool/verify.py:1727
 msgid "Large age difference between spouses"
 msgstr "فرق كبير بالسن بين الأزواج"
 
-#: ../gramps/plugins/tool/verify.py:1586
+#: ../gramps/plugins/tool/verify.py:1768
 msgid "Marriage before birth"
 msgstr "زواج قبل الميلاد"
 
-#: ../gramps/plugins/tool/verify.py:1627
+#: ../gramps/plugins/tool/verify.py:1809
 msgid "Marriage after death"
 msgstr "زواج بعد الممات"
 
-#: ../gramps/plugins/tool/verify.py:1678
+#: ../gramps/plugins/tool/verify.py:1860
 msgid "Early marriage"
 msgstr "زواج مبكّر"
 
-#: ../gramps/plugins/tool/verify.py:1724
+#: ../gramps/plugins/tool/verify.py:1906
 msgid "Late marriage"
 msgstr "زواج متأخّر"
 
-#: ../gramps/plugins/tool/verify.py:1776
+#: ../gramps/plugins/tool/verify.py:1958
 msgid "Old father"
 msgstr "أب مسنّ"
 
-#: ../gramps/plugins/tool/verify.py:1780
+#: ../gramps/plugins/tool/verify.py:1962
 msgid "Old mother"
 msgstr "أم مسنّة"
 
-#: ../gramps/plugins/tool/verify.py:1832
+#: ../gramps/plugins/tool/verify.py:2014
 msgid "Young father"
 msgstr "أب شاب"
 
-#: ../gramps/plugins/tool/verify.py:1836
+#: ../gramps/plugins/tool/verify.py:2018
 msgid "Young mother"
 msgstr "أم شابة"
 
-#: ../gramps/plugins/tool/verify.py:1885
+#: ../gramps/plugins/tool/verify.py:2068
 msgid "Unborn father"
 msgstr "أب غير مولود"
 
-#: ../gramps/plugins/tool/verify.py:1889
+#: ../gramps/plugins/tool/verify.py:2072
 msgid "Unborn mother"
 msgstr "أم غير مولودة"
 
-#: ../gramps/plugins/tool/verify.py:1946
+#: ../gramps/plugins/tool/verify.py:2130
 msgid "Dead father"
 msgstr "أب ميت"
 
-#: ../gramps/plugins/tool/verify.py:1950
+#: ../gramps/plugins/tool/verify.py:2134
 msgid "Dead mother"
 msgstr "أم ميتة"
 
-#: ../gramps/plugins/tool/verify.py:1980
+#: ../gramps/plugins/tool/verify.py:2164
 msgid "Large year span for all children"
 msgstr "مدى سنوات كبير لكل الأبناء"
 
-#: ../gramps/plugins/tool/verify.py:2011
+#: ../gramps/plugins/tool/verify.py:2195
 msgid "Large age differences between children"
 msgstr "فرق كبير بالسن بين الأبناء"
 
-#: ../gramps/plugins/tool/verify.py:2030
+#: ../gramps/plugins/tool/verify.py:2214
 msgid "Disconnected individual"
 msgstr "أفراد منقطعين"
 
-#: ../gramps/plugins/tool/verify.py:2060
+#: ../gramps/plugins/tool/verify.py:2237
 msgid "Invalid birth date"
 msgstr "تاريخ ميلاد خاطئ"
 
-#: ../gramps/plugins/tool/verify.py:2090
+#: ../gramps/plugins/tool/verify.py:2260
 msgid "Invalid death date"
 msgstr "تاريخ ممات خاطئ"
 
-#: ../gramps/plugins/tool/verify.py:2113
+#: ../gramps/plugins/tool/verify.py:2280
 msgid "Marriage date but not married"
 msgstr "تاريخ للزواج لكن بدون زواج"
 
-#: ../gramps/plugins/tool/verify.py:2144
+#: ../gramps/plugins/tool/verify.py:2311
 msgid "Old age but no death"
 msgstr "عمر كبير لكن دون ممات"
 
-#: ../gramps/plugins/tool/verify.py:2163
+#: ../gramps/plugins/tool/verify.py:2330
 #, fuzzy
-msgid "Birth equals death"
+msgid "Birth date equals death date"
 msgstr "تاريخ الميلاد"
 
-#: ../gramps/plugins/tool/verify.py:2184
+#: ../gramps/plugins/tool/verify.py:2351
 #, fuzzy
-msgid "Birth equals marriage"
+msgid "Birth date equals marriage date"
 msgstr "أقصر فترة زواج"
 
-#: ../gramps/plugins/tool/verify.py:2205
+#: ../gramps/plugins/tool/verify.py:2372
 #, fuzzy
-msgid "Death equals marriage"
+msgid "Death date equals marriage date"
 msgstr "زواج متأخّر"
+
+#: ../gramps/plugins/tool/verify.py:2433
+msgid "Baptism too late according to family tradition"
+msgstr ""
+
+#: ../gramps/plugins/tool/verify.py:2458
+#, fuzzy
+#| msgid "Burial date"
+msgid "Burial too late"
+msgstr "تاريخ الدفن"
+
+#: ../gramps/plugins/tool/verify.py:2495
+msgid "Children are not in chronological order"
+msgstr ""
+
+#: ../gramps/plugins/tool/verify.py:2559
+#, fuzzy
+#| msgid "List events chronologically"
+msgid "Families are not in chronological order"
+msgstr "قائمة الأحداث مرتبة زمنياً"
+
+#: ../gramps/plugins/tool/verify.py:2572
+msgid "Family has events with role Unknown"
+msgstr ""
+
+#: ../gramps/plugins/tool/verify.py:2585
+#, fuzzy
+#| msgid "Personal events of the children"
+msgid "Person has events with role Unknown"
+msgstr "أحداث شخصية للأبناء"
+
+#: ../gramps/plugins/tool/verify.py:2598
+#, fuzzy
+#| msgid "List events chronologically"
+msgid "Family events are not in chronological order"
+msgstr "قائمة الأحداث مرتبة زمنياً"
+
+#: ../gramps/plugins/tool/verify.py:2611
+#, fuzzy
+#| msgid "List events chronologically"
+msgid "Person events are not in chronological order"
+msgstr "قائمة الأحداث مرتبة زمنياً"
 
 #: ../gramps/plugins/view/citationlistview.py:107
 msgid "Source: Title"

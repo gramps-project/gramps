@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-05 23:59+0100\n"
+"POT-Creation-Date: 2023-09-08 22:33+0100\n"
 "PO-Revision-Date: 2003-03-03 09:54+0100\n"
 "Last-Translator: Radu Bogdan Mare <bogdan_mare@web.de>\n"
 "Language-Team: romanian <ro@li.org>\n"
@@ -1188,7 +1188,7 @@ msgstr "Eroare la salvarea stilurilor de paginare"
 
 #: ../gramps/cli/clidbman.py:73 ../gramps/cli/clidbman.py:172
 #: ../gramps/cli/clidbman.py:174 ../gramps/gui/clipboard.py:201
-#: ../gramps/gui/clipboard.py:202 ../gramps/gui/plug/_windows.py:1487
+#: ../gramps/gui/clipboard.py:202 ../gramps/gui/plug/_windows.py:1489
 msgid "Unavailable"
 msgstr ""
 
@@ -1232,8 +1232,8 @@ msgstr "Index Arbore de Familie"
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/cli/clidbman.py:222 ../gramps/gen/plug/report/utils.py:182
 #: ../gramps/gui/editors/editattribute.py:140
-#: ../gramps/gui/editors/editname.py:341 ../gramps/gui/plug/_windows.py:1692
-#: ../gramps/gui/plug/_windows.py:2136
+#: ../gramps/gui/editors/editname.py:341 ../gramps/gui/plug/_windows.py:1694
+#: ../gramps/gui/plug/_windows.py:2138
 #: ../gramps/plugins/gramplet/whatsnext.py:495
 #: ../gramps/plugins/textreport/birthdayreport.py:213
 #: ../gramps/plugins/textreport/birthdayreport.py:218
@@ -1300,7 +1300,7 @@ msgid ""
 msgstr ""
 
 #: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2293
-#: ../gramps/gui/plug/_windows.py:757
+#: ../gramps/gui/plug/_windows.py:759
 #, fuzzy
 msgid "Never"
 msgstr "_Revenire"
@@ -1720,12 +1720,12 @@ msgstr "Prenume"
 msgid ":"
 msgstr ""
 
-#: ../gramps/gen/datehandler/__init__.py:94
+#: ../gramps/gen/datehandler/__init__.py:95
 #, python-format
 msgid "Date parser for '%s' not available, using default"
 msgstr ""
 
-#: ../gramps/gen/datehandler/__init__.py:111
+#: ../gramps/gen/datehandler/__init__.py:112
 #, python-format
 msgid "Date displayer for '%s' not available, using default"
 msgstr ""
@@ -6841,8 +6841,8 @@ msgstr "Castă"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:68
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:113
 #: ../gramps/gui/glade/rule.glade:931 ../gramps/gui/glade/styleeditor.glade:278
-#: ../gramps/gui/plug/_windows.py:1053 ../gramps/gui/plug/_windows.py:1168
-#: ../gramps/gui/plug/_windows.py:1630 ../gramps/gui/plug/_windows.py:2123
+#: ../gramps/gui/plug/_windows.py:1055 ../gramps/gui/plug/_windows.py:1170
+#: ../gramps/gui/plug/_windows.py:1632 ../gramps/gui/plug/_windows.py:2125
 #: ../gramps/gui/selectors/selectevent.py:71
 #: ../gramps/plugins/gramplet/coordinates.py:100
 #: ../gramps/plugins/gramplet/events.py:103
@@ -8179,8 +8179,8 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:118
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:114
 #: ../gramps/gui/merge/mergeperson.py:273 ../gramps/gui/plug/_windows.py:232
-#: ../gramps/gui/plug/_windows.py:1042 ../gramps/gui/plug/_windows.py:1165
-#: ../gramps/gui/plug/_windows.py:2121
+#: ../gramps/gui/plug/_windows.py:1044 ../gramps/gui/plug/_windows.py:1167
+#: ../gramps/gui/plug/_windows.py:2123
 #: ../gramps/gui/plug/report/_bookdialog.py:398
 #: ../gramps/gui/plug/report/_bookdialog.py:402
 #: ../gramps/gui/selectors/selectevent.py:67
@@ -8334,8 +8334,8 @@ msgstr "Templu"
 #: ../gramps/gen/lib/ldsord.py:206 ../gramps/gui/dbman.py:419
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:54
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:64
-#: ../gramps/gui/plug/_windows.py:236 ../gramps/gui/plug/_windows.py:1046
-#: ../gramps/gui/plug/_windows.py:1108
+#: ../gramps/gui/plug/_windows.py:236 ../gramps/gui/plug/_windows.py:1048
+#: ../gramps/gui/plug/_windows.py:1110
 #: ../gramps/plugins/quickview/ageondate.py:54
 #: ../gramps/plugins/textreport/indivcomplete.py:531
 #: ../gramps/plugins/textreport/indivcomplete.py:736
@@ -8346,7 +8346,7 @@ msgid "Status"
 msgstr "Status"
 
 #: ../gramps/gen/lib/location.py:89 ../gramps/gen/lib/nameorigintype.py:88
-#: ../gramps/gui/clipboard.py:331 ../gramps/gui/plug/_windows.py:1635
+#: ../gramps/gui/clipboard.py:331 ../gramps/gui/plug/_windows.py:1637
 #, fuzzy
 msgid "Location"
 msgstr "Educaţie"
@@ -8401,8 +8401,8 @@ msgstr "Religie"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:158
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:117
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:113
-#: ../gramps/gui/plug/_guioptions.py:1185 ../gramps/gui/plug/_windows.py:1049
-#: ../gramps/gui/plug/_windows.py:2122
+#: ../gramps/gui/plug/_guioptions.py:1185 ../gramps/gui/plug/_windows.py:1051
+#: ../gramps/gui/plug/_windows.py:2124
 #: ../gramps/gui/plug/report/_bookdialog.py:398
 #: ../gramps/gui/selectors/selectperson.py:99
 #: ../gramps/gui/selectors/selectplace.py:68
@@ -8428,7 +8428,7 @@ msgstr "Religie"
 #: ../gramps/plugins/tool/dumpgenderstats.py:101
 #: ../gramps/plugins/tool/notrelated.py:130
 #: ../gramps/plugins/tool/removeunused.py:224
-#: ../gramps/plugins/tool/verify.py:632 ../gramps/plugins/view/repoview.py:86
+#: ../gramps/plugins/tool/verify.py:821 ../gramps/plugins/view/repoview.py:86
 #: ../gramps/plugins/webreport/basepage.py:520
 #: ../gramps/plugins/webreport/person.py:421
 #: ../gramps/plugins/webreport/person.py:2284
@@ -8665,7 +8665,7 @@ msgstr "Format"
 #: ../gramps/gui/glade/editplaceref.glade:161
 #: ../gramps/gui/glade/editplaceref.glade:665
 #: ../gramps/gui/glade/editreporef.glade:225
-#: ../gramps/gui/glade/editreporef.glade:445 ../gramps/gui/plug/_windows.py:721
+#: ../gramps/gui/glade/editreporef.glade:445 ../gramps/gui/plug/_windows.py:723
 #: ../gramps/plugins/tool/verify.glade:406
 msgid "General"
 msgstr "General"
@@ -12036,8 +12036,8 @@ msgstr "Editor Localităţi"
 #: ../gramps/gui/glade/plugins.glade:22 ../gramps/gui/glade/rule.glade:24
 #: ../gramps/gui/glade/rule.glade:1024 ../gramps/gui/glade/tipofday.glade:117
 #: ../gramps/gui/glade/updateaddons.glade:25 ../gramps/gui/grampsgui.py:58
-#: ../gramps/gui/plug/_windows.py:392 ../gramps/gui/plug/_windows.py:1019
-#: ../gramps/gui/plug/_windows.py:1698 ../gramps/gui/plug/_windows.py:1758
+#: ../gramps/gui/plug/_windows.py:392 ../gramps/gui/plug/_windows.py:1021
+#: ../gramps/gui/plug/_windows.py:1700 ../gramps/gui/plug/_windows.py:1760
 #: ../gramps/gui/plug/quick/_textbufdoc.py:71 ../gramps/gui/undohistory.py:88
 #: ../gramps/gui/viewmanager.py:1801 ../gramps/gui/views/bookmarks.py:316
 #: ../gramps/gui/views/tags.py:503 ../gramps/gui/widgets/grampletbar.py:718
@@ -12102,8 +12102,8 @@ msgstr ""
 #: ../gramps/gui/configure.py:1639 ../gramps/gui/configure.py:1644
 #: ../gramps/gui/configure.py:1665 ../gramps/gui/configure.py:1681
 #: ../gramps/gui/configure.py:2215 ../gramps/gui/configure.py:2304
-#: ../gramps/gui/plug/_windows.py:767 ../gramps/gui/plug/_windows.py:787
-#: ../gramps/gui/plug/_windows.py:823 ../gramps/gui/plug/_windows.py:831
+#: ../gramps/gui/plug/_windows.py:769 ../gramps/gui/plug/_windows.py:789
+#: ../gramps/gui/plug/_windows.py:825 ../gramps/gui/plug/_windows.py:833
 #: ../gramps/gui/views/navigationview.py:351
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:110
 #, python-format
@@ -12178,7 +12178,7 @@ msgstr "Regiune"
 msgid "ZIP/Postal Code"
 msgstr "Cod Poştal"
 
-#: ../gramps/gui/configure.py:737 ../gramps/gui/plug/_windows.py:1633
+#: ../gramps/gui/configure.py:737 ../gramps/gui/plug/_windows.py:1635
 #: ../gramps/plugins/view/repoview.py:96
 #, fuzzy
 msgid "Email"
@@ -12450,7 +12450,7 @@ msgstr "Formate Afişare"
 #: ../gramps/gui/glade/editperson.glade:12
 #: ../gramps/gui/glade/editperson.glade:516 ../gramps/gui/glade/rule.glade:463
 #: ../gramps/gui/glade/styleeditor.glade:1903
-#: ../gramps/gui/plug/_windows.py:1072 ../gramps/gui/plug/_windows.py:1131
+#: ../gramps/gui/plug/_windows.py:1074 ../gramps/gui/plug/_windows.py:1133
 #: ../gramps/plugins/gramplet/ancestor.py:122
 #: ../gramps/plugins/gramplet/descendant.py:119
 msgid "Edit"
@@ -12989,8 +12989,8 @@ msgstr "Selectează Obiect Multimedia"
 #: ../gramps/gui/glade/rule.glade:747 ../gramps/gui/glade/styleeditor.glade:86
 #: ../gramps/gui/glade/styleeditor.glade:1737
 #: ../gramps/gui/logger/_errorview.py:188 ../gramps/gui/plug/_guioptions.py:84
-#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:841
-#: ../gramps/gui/plug/_windows.py:1409
+#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:843
+#: ../gramps/gui/plug/_windows.py:1411
 #: ../gramps/gui/plug/report/_fileentry.py:68
 #: ../gramps/gui/plug/report/_reportdialog.py:170 ../gramps/gui/utils.py:265
 #: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1250
@@ -13279,7 +13279,7 @@ msgstr "Informaţii"
 #: ../gramps/gui/glade/reorder.glade:38 ../gramps/gui/glade/rule.glade:333
 #: ../gramps/gui/glade/rule.glade:764 ../gramps/gui/glade/styleeditor.glade:103
 #: ../gramps/gui/glade/styleeditor.glade:1754
-#: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:841
+#: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:843
 #: ../gramps/gui/plug/report/_reportdialog.py:173 ../gramps/gui/utils.py:279
 #: ../gramps/gui/viewmanager.py:1802 ../gramps/gui/views/tags.py:727
 #: ../gramps/plugins/tool/check.py:828 ../gramps/plugins/tool/patchnames.py:152
@@ -13837,7 +13837,7 @@ msgstr "Atribute"
 #: ../gramps/plugins/tool/notrelated.py:131
 #: ../gramps/plugins/tool/patchnames.py:457
 #: ../gramps/plugins/tool/removeunused.py:217
-#: ../gramps/plugins/tool/sortevents.py:62 ../gramps/plugins/tool/verify.py:622
+#: ../gramps/plugins/tool/sortevents.py:62 ../gramps/plugins/tool/verify.py:811
 #: ../gramps/plugins/view/citationlistview.py:101
 #: ../gramps/plugins/view/citationtreeview.py:96
 #: ../gramps/plugins/view/eventview.py:82
@@ -14194,14 +14194,14 @@ msgid "Set as default name"
 msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
-#: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:923
+#: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:925
 #: ../gramps/gui/viewmanager.py:1134 ../gramps/gui/views/tags.py:570
 #: ../gramps/plugins/quickview/all_relations.py:365
 msgid "Yes"
 msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:59
-#: ../gramps/gui/plug/_guioptions.py:1266 ../gramps/gui/plug/_windows.py:924
+#: ../gramps/gui/plug/_guioptions.py:1266 ../gramps/gui/plug/_windows.py:926
 #: ../gramps/gui/viewmanager.py:1135 ../gramps/gui/views/tags.py:571
 #: ../gramps/plugins/quickview/all_relations.py:371
 #, fuzzy
@@ -16207,7 +16207,7 @@ msgid "Within"
 msgstr "A Noua"
 
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:116
-#: ../gramps/gui/plug/_windows.py:831
+#: ../gramps/gui/plug/_windows.py:833
 msgid "URL"
 msgstr ""
 
@@ -17856,7 +17856,7 @@ msgid "_Merge and close"
 msgstr "Uneşte şi Închide"
 
 #: ../gramps/gui/glade/mergedata.glade:173
-#: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:2115
+#: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:2117
 #: ../gramps/plugins/tool/changenames.py:226
 #: ../gramps/plugins/tool/patchnames.py:454
 #, fuzzy
@@ -18152,7 +18152,7 @@ msgstr "Selectare Raport"
 msgid "Run"
 msgstr ""
 
-#: ../gramps/gui/glade/plugins.glade:139 ../gramps/gui/plug/_dialogs.py:313
+#: ../gramps/gui/glade/plugins.glade:139 ../gramps/gui/plug/_dialogs.py:312
 msgid "Select a report from those available on the left."
 msgstr "Selectaţi un raport din cele disponibile în stânga"
 
@@ -18599,7 +18599,7 @@ msgid "Install Selected _Addons"
 msgstr "Şterge evenimentul selectat"
 
 #: ../gramps/gui/glade/updateaddons.glade:72
-#: ../gramps/gui/plug/_windows.py:2092
+#: ../gramps/gui/plug/_windows.py:2094
 msgid "Available Gramps Updates for Addons"
 msgstr ""
 
@@ -19187,7 +19187,7 @@ msgstr "Soţ(ie)"
 msgid "No spouses or children found"
 msgstr "Nu am găsit erori"
 
-#: ../gramps/gui/merge/mergeperson.py:372 ../gramps/plugins/tool/verify.py:612
+#: ../gramps/gui/merge/mergeperson.py:372 ../gramps/plugins/tool/verify.py:801
 msgid "Warning"
 msgstr "Avertisment"
 
@@ -19222,34 +19222,34 @@ msgstr "Surse"
 msgid "Merge Sources"
 msgstr "Surse"
 
-#: ../gramps/gui/plug/_dialogs.py:312
+#: ../gramps/gui/plug/_dialogs.py:311
 msgid "Report Selection"
 msgstr "Selectare Raport"
 
-#: ../gramps/gui/plug/_dialogs.py:314
+#: ../gramps/gui/plug/_dialogs.py:313
 #, fuzzy
 msgid "_Generate"
 msgstr "General"
 
-#: ../gramps/gui/plug/_dialogs.py:315
+#: ../gramps/gui/plug/_dialogs.py:314
 #, fuzzy
 msgid "Generate selected report"
 msgstr "Generează rapoarte"
 
-#: ../gramps/gui/plug/_dialogs.py:346
+#: ../gramps/gui/plug/_dialogs.py:345
 msgid "Tool Selection"
 msgstr "Selectare Unealtă"
 
-#: ../gramps/gui/plug/_dialogs.py:347
+#: ../gramps/gui/plug/_dialogs.py:346
 #, fuzzy
 msgid "Select a tool from those available on the left."
 msgstr "Selectaţi un raport din cele disponibile în stânga"
 
-#: ../gramps/gui/plug/_dialogs.py:348 ../gramps/plugins/tool/verify.glade:144
+#: ../gramps/gui/plug/_dialogs.py:347 ../gramps/plugins/tool/verify.glade:144
 msgid "_Run"
 msgstr ""
 
-#: ../gramps/gui/plug/_dialogs.py:349
+#: ../gramps/gui/plug/_dialogs.py:348
 #, fuzzy
 msgid "Run selected tool"
 msgstr "Foloseşte o unealtă"
@@ -19310,7 +19310,7 @@ msgstr "Selectaţi o imagine"
 msgid "Save As"
 msgstr "Salvează Ca"
 
-#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:1409
+#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:1411
 #: ../gramps/gui/plug/report/_bookdialog.py:651
 #: ../gramps/gui/plug/report/_fileentry.py:68
 #, fuzzy
@@ -19331,7 +19331,7 @@ msgstr "Toţi"
 msgid "Audience"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:238 ../gramps/gui/plug/_windows.py:1631
+#: ../gramps/gui/plug/_windows.py:238 ../gramps/gui/plug/_windows.py:1633
 #, fuzzy
 msgid "Version"
 msgstr "Versiunea"
@@ -19355,7 +19355,7 @@ msgid "Requires"
 msgstr ""
 
 #: ../gramps/gui/plug/_windows.py:275 ../gramps/gui/plug/_windows.py:431
-#: ../gramps/gui/plug/_windows.py:630
+#: ../gramps/gui/plug/_windows.py:632
 #, fuzzy
 msgid "Update"
 msgstr "Data"
@@ -19396,12 +19396,12 @@ msgstr "Filtru"
 msgid "All addons"
 msgstr "Modifică Nota"
 
-#: ../gramps/gui/plug/_windows.py:429 ../gramps/gui/plug/_windows.py:624
+#: ../gramps/gui/plug/_windows.py:429 ../gramps/gui/plug/_windows.py:626
 #, fuzzy
 msgid "Not installed"
 msgstr "Stat"
 
-#: ../gramps/gui/plug/_windows.py:430 ../gramps/gui/plug/_windows.py:627
+#: ../gramps/gui/plug/_windows.py:430 ../gramps/gui/plug/_windows.py:629
 #, fuzzy
 msgid "Installed"
 msgstr "Stat"
@@ -19431,316 +19431,316 @@ msgstr "Calificativ"
 msgid "Projects"
 msgstr "Toţi"
 
-#: ../gramps/gui/plug/_windows.py:525 ../gramps/gui/plug/_windows.py:635
+#: ../gramps/gui/plug/_windows.py:527 ../gramps/gui/plug/_windows.py:637
 #, fuzzy
 msgid "All projects"
 msgstr "Toţi"
 
-#: ../gramps/gui/plug/_windows.py:537
+#: ../gramps/gui/plug/_windows.py:539
 #, fuzzy
 msgid "Loading..."
 msgstr "Încarc %s..."
 
-#: ../gramps/gui/plug/_windows.py:581
+#: ../gramps/gui/plug/_windows.py:583
 #, fuzzy
 msgid "No matching addons found."
 msgstr "Căutare fără rezultat"
 
-#: ../gramps/gui/plug/_windows.py:735
-msgid "Allow Gramps to install required python modules"
+#: ../gramps/gui/plug/_windows.py:737
+msgid "Allow Gramps to install required Python modules"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:742
+#: ../gramps/gui/plug/_windows.py:744
 #: ../gramps/plugins/webreport/basepage.py:1901
 #: ../gramps/plugins/webreport/basepage.py:1966
 #, fuzzy
 msgid "Updates"
 msgstr "Data"
 
-#: ../gramps/gui/plug/_windows.py:758
+#: ../gramps/gui/plug/_windows.py:760
 #, fuzzy
 msgid "Once a month"
 msgstr "Data Deces"
 
-#: ../gramps/gui/plug/_windows.py:759
+#: ../gramps/gui/plug/_windows.py:761
 msgid "Once a week"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:760
+#: ../gramps/gui/plug/_windows.py:762
 msgid "Once a day"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:761
+#: ../gramps/gui/plug/_windows.py:763
 msgid "Always"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:767
+#: ../gramps/gui/plug/_windows.py:769
 #, fuzzy
 msgid "Check for addon updates"
 msgstr "Locul Decesului"
 
-#: ../gramps/gui/plug/_windows.py:774
+#: ../gramps/gui/plug/_windows.py:776
 msgid "Updated addons only"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:775
+#: ../gramps/gui/plug/_windows.py:777
 msgid "New addons only"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:776
+#: ../gramps/gui/plug/_windows.py:778
 msgid "New and updated addons"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:787
+#: ../gramps/gui/plug/_windows.py:789
 msgid "What to check"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:793
+#: ../gramps/gui/plug/_windows.py:795
 msgid "Do not ask about previously notified addons"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:800
+#: ../gramps/gui/plug/_windows.py:802
 #, fuzzy
 msgid "Check for updated addons now"
 msgstr "Locul Decesului"
 
-#: ../gramps/gui/plug/_windows.py:813
+#: ../gramps/gui/plug/_windows.py:815
 #, fuzzy
 msgid "New Project"
 msgstr "Adaugă Persoană"
 
-#: ../gramps/gui/plug/_windows.py:815
+#: ../gramps/gui/plug/_windows.py:817
 #, fuzzy
 msgid "Edit Project"
 msgstr "Prima Persoană"
 
-#: ../gramps/gui/plug/_windows.py:823
+#: ../gramps/gui/plug/_windows.py:825
 #, fuzzy
 msgid "Project name"
 msgstr "<b>Nume Preferat</b>"
 
-#: ../gramps/gui/plug/_windows.py:921
+#: ../gramps/gui/plug/_windows.py:923
 #, fuzzy
 msgid "Restore project defaults"
 msgstr "Adaugă un nou filtru"
 
-#: ../gramps/gui/plug/_windows.py:922
+#: ../gramps/gui/plug/_windows.py:924
 msgid "Are you sure?"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:946
+#: ../gramps/gui/plug/_windows.py:948
 #, fuzzy
 msgid "Checking Addons Failed"
 msgstr "Arată familiile ca noduri"
 
-#: ../gramps/gui/plug/_windows.py:948
+#: ../gramps/gui/plug/_windows.py:950
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:963
+#: ../gramps/gui/plug/_windows.py:965
 msgid "There are no available addons of this type"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:964
+#: ../gramps/gui/plug/_windows.py:966
 #, fuzzy
 msgid "' and '"
 msgstr "şi el"
 
-#: ../gramps/gui/plug/_windows.py:964
+#: ../gramps/gui/plug/_windows.py:966
 #, python-format
 msgid "Checked for '%s'"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:970
+#: ../gramps/gui/plug/_windows.py:972
 msgid "new"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:970
+#: ../gramps/gui/plug/_windows.py:972
 #, fuzzy
 msgid "update"
 msgstr "Data"
 
-#: ../gramps/gui/plug/_windows.py:1005
+#: ../gramps/gui/plug/_windows.py:1007
 msgid "Hidden"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1006
+#: ../gramps/gui/plug/_windows.py:1008
 msgid "Visible"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1011
+#: ../gramps/gui/plug/_windows.py:1013
 msgid "Plugin Manager"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1063 ../gramps/gui/plug/_windows.py:1121
+#: ../gramps/gui/plug/_windows.py:1065 ../gramps/gui/plug/_windows.py:1123
 msgid "Info"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1066 ../gramps/gui/plug/_windows.py:1124
+#: ../gramps/gui/plug/_windows.py:1068 ../gramps/gui/plug/_windows.py:1126
 msgid "Hide/Unhide"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1075 ../gramps/gui/plug/_windows.py:1134
+#: ../gramps/gui/plug/_windows.py:1077 ../gramps/gui/plug/_windows.py:1136
 #, fuzzy
 msgid "Load"
 msgstr "Şablon"
 
-#: ../gramps/gui/plug/_windows.py:1081
+#: ../gramps/gui/plug/_windows.py:1083
 #, fuzzy
 msgid "Registered Plugins"
 msgstr "Reîncarcă Module"
 
-#: ../gramps/gui/plug/_windows.py:1100
+#: ../gramps/gui/plug/_windows.py:1102
 msgid "Loaded"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1104
+#: ../gramps/gui/plug/_windows.py:1106
 #: ../gramps/plugins/importer/importprogen.glade:431
 #: ../gramps/plugins/importer/importprogen.glade:1126
 #, fuzzy
 msgid "File"
 msgstr "_Fişier"
 
-#: ../gramps/gui/plug/_windows.py:1111
+#: ../gramps/gui/plug/_windows.py:1113
 #, fuzzy
 msgid "Message"
 msgstr "Uneşte"
 
-#: ../gramps/gui/plug/_windows.py:1140
+#: ../gramps/gui/plug/_windows.py:1142
 #, fuzzy
 msgid "Loaded Plugins"
 msgstr "Reîncarcă Module"
 
-#: ../gramps/gui/plug/_windows.py:1162
+#: ../gramps/gui/plug/_windows.py:1164
 #, fuzzy
 msgid "Addon Name"
 msgstr "Modifică Nota"
 
-#: ../gramps/gui/plug/_windows.py:1174
+#: ../gramps/gui/plug/_windows.py:1176
 msgid "Path to Addon:"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1194
+#: ../gramps/gui/plug/_windows.py:1196
 msgid "Install Addon"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1197
+#: ../gramps/gui/plug/_windows.py:1199
 msgid "Install All Addons"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1200
+#: ../gramps/gui/plug/_windows.py:1202
 msgid "Refresh Addon List"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1213
+#: ../gramps/gui/plug/_windows.py:1215
 #, fuzzy
 msgid "Reload"
 msgstr "Şablon"
 
-#: ../gramps/gui/plug/_windows.py:1241
+#: ../gramps/gui/plug/_windows.py:1243
 msgid "Refreshing Addon List"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1242 ../gramps/gui/plug/_windows.py:1247
-#: ../gramps/gui/plug/_windows.py:1385
+#: ../gramps/gui/plug/_windows.py:1244 ../gramps/gui/plug/_windows.py:1249
+#: ../gramps/gui/plug/_windows.py:1387
 msgid "Reading gramps-project.org..."
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1265
+#: ../gramps/gui/plug/_windows.py:1267
 msgid "Checking addon..."
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1273
+#: ../gramps/gui/plug/_windows.py:1275
 #, fuzzy
 msgid "Unknown Help URL"
 msgstr "Necunoscut"
 
-#: ../gramps/gui/plug/_windows.py:1284
+#: ../gramps/gui/plug/_windows.py:1286
 #, fuzzy
 msgid "Unknown URL"
 msgstr "Necunoscut"
 
-#: ../gramps/gui/plug/_windows.py:1349
+#: ../gramps/gui/plug/_windows.py:1351
 msgid "Install all Addons"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1350
+#: ../gramps/gui/plug/_windows.py:1352
 #, fuzzy
 msgid "Installing..."
 msgstr "autosalvez..."
 
-#: ../gramps/gui/plug/_windows.py:1383
+#: ../gramps/gui/plug/_windows.py:1385
 msgid "Installing Addon"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1406
+#: ../gramps/gui/plug/_windows.py:1408
 msgid "Load Addon"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1498
+#: ../gramps/gui/plug/_windows.py:1500
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:261
 #, fuzzy
 msgid "Fail"
 msgstr "Familie"
 
-#: ../gramps/gui/plug/_windows.py:1521 ../gramps/gui/widgets/grampletbar.py:610
+#: ../gramps/gui/plug/_windows.py:1523 ../gramps/gui/widgets/grampletbar.py:610
 #, fuzzy
 msgid "OK"
 msgstr "O"
 
-#: ../gramps/gui/plug/_windows.py:1629
+#: ../gramps/gui/plug/_windows.py:1631
 #, fuzzy
 msgid "Plugin name"
 msgstr "_Arată statutul modulelor"
 
-#: ../gramps/gui/plug/_windows.py:1632
+#: ../gramps/gui/plug/_windows.py:1634
 #, fuzzy
 msgid "Authors"
 msgstr "Autor"
 
-#: ../gramps/gui/plug/_windows.py:1634
+#: ../gramps/gui/plug/_windows.py:1636
 #: ../gramps/gui/plug/report/_reportdialog.py:481
 msgid "Filename"
 msgstr "Nume Fişier"
 
-#: ../gramps/gui/plug/_windows.py:1637
+#: ../gramps/gui/plug/_windows.py:1639
 #, fuzzy
 msgid "Detailed Info"
 msgstr "Selectare Raport"
 
-#: ../gramps/gui/plug/_windows.py:1692
+#: ../gramps/gui/plug/_windows.py:1694
 msgid "Plugin Error"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:1761
+#: ../gramps/gui/plug/_windows.py:1763
 msgid "_Execute"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:2059
+#: ../gramps/gui/plug/_windows.py:2061
 #: ../gramps/plugins/importer/importprogen.py:478
 #: ../gramps/plugins/tool/ownereditor.py:171
 #: ../gramps/plugins/tool/reorderids.py:249
 msgid "Main window"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:2197
+#: ../gramps/gui/plug/_windows.py:2199
 msgid "Downloading and installing selected addons..."
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:2240
+#: ../gramps/gui/plug/_windows.py:2242
 msgid "Installation Errors"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:2241
+#: ../gramps/gui/plug/_windows.py:2243
 #, fuzzy
 msgid "The following addons had errors: "
 msgstr "Următoarele module nu au putut fi încărcate"
 
-#: ../gramps/gui/plug/_windows.py:2249 ../gramps/gui/plug/_windows.py:2266
+#: ../gramps/gui/plug/_windows.py:2251 ../gramps/gui/plug/_windows.py:2268
 msgid "Done downloading and installing addons"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:2254
+#: ../gramps/gui/plug/_windows.py:2256
 #, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
@@ -19748,11 +19748,11 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: ../gramps/gui/plug/_windows.py:2259
+#: ../gramps/gui/plug/_windows.py:2261
 msgid "If you have installed a 'View', you will need to restart Gramps."
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:2267
+#: ../gramps/gui/plug/_windows.py:2269
 msgid "No addons were installed."
 msgstr ""
 
@@ -32809,7 +32809,7 @@ msgstr "Relaţia mamei cu copilul"
 
 #: ../gramps/plugins/quickview/lineage.py:169
 #: ../gramps/plugins/quickview/lineage.py:191
-#: ../gramps/plugins/tool/verify.py:1327
+#: ../gramps/plugins/tool/verify.py:1509
 #, fuzzy
 msgid "Unknown gender"
 msgstr "Necunoscut"
@@ -33118,17 +33118,18 @@ msgstr "Calculator legături"
 #: ../gramps/plugins/rel/relplugins.gpr.py:212
 #: ../gramps/plugins/rel/relplugins.gpr.py:242
 #: ../gramps/plugins/rel/relplugins.gpr.py:266
-#: ../gramps/plugins/rel/relplugins.gpr.py:279
-#: ../gramps/plugins/rel/relplugins.gpr.py:292
-#: ../gramps/plugins/rel/relplugins.gpr.py:305
-#: ../gramps/plugins/rel/relplugins.gpr.py:339
-#: ../gramps/plugins/rel/relplugins.gpr.py:373
-#: ../gramps/plugins/rel/relplugins.gpr.py:400
-#: ../gramps/plugins/rel/relplugins.gpr.py:430
-#: ../gramps/plugins/rel/relplugins.gpr.py:460
+#: ../gramps/plugins/rel/relplugins.gpr.py:290
+#: ../gramps/plugins/rel/relplugins.gpr.py:303
+#: ../gramps/plugins/rel/relplugins.gpr.py:316
+#: ../gramps/plugins/rel/relplugins.gpr.py:329
+#: ../gramps/plugins/rel/relplugins.gpr.py:363
+#: ../gramps/plugins/rel/relplugins.gpr.py:397
+#: ../gramps/plugins/rel/relplugins.gpr.py:424
+#: ../gramps/plugins/rel/relplugins.gpr.py:454
 #: ../gramps/plugins/rel/relplugins.gpr.py:484
-#: ../gramps/plugins/rel/relplugins.gpr.py:507
-#: ../gramps/plugins/rel/relplugins.gpr.py:560
+#: ../gramps/plugins/rel/relplugins.gpr.py:508
+#: ../gramps/plugins/rel/relplugins.gpr.py:531
+#: ../gramps/plugins/rel/relplugins.gpr.py:584
 #, fuzzy
 msgid "Calculates relationships between people"
 msgstr "Calculeaza legătura între două persoane"
@@ -33170,75 +33171,80 @@ msgstr "Calculator legături"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:241
 #, fuzzy
-msgid "Croatian Relationship Calculator"
+msgid "Hebrew Relationship Calculator"
 msgstr "Calculator legături"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:265
 #, fuzzy
+msgid "Croatian Relationship Calculator"
+msgstr "Calculator legături"
+
+#: ../gramps/plugins/rel/relplugins.gpr.py:289
+#, fuzzy
 msgid "Hungarian Relationship Calculator"
 msgstr "Calculator legături"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:278
+#: ../gramps/plugins/rel/relplugins.gpr.py:302
 #, fuzzy
 msgid "Icelandic Relationship Calculator"
 msgstr "Calculator legături"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:291
+#: ../gramps/plugins/rel/relplugins.gpr.py:315
 #, fuzzy
 msgid "Italian Relationship Calculator"
 msgstr "Calculator legături"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:304
+#: ../gramps/plugins/rel/relplugins.gpr.py:328
 #, fuzzy
 msgid "Dutch Relationship Calculator"
 msgstr "Calculator legături"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:338
+#: ../gramps/plugins/rel/relplugins.gpr.py:362
 #, fuzzy
 msgid "Norwegian Relationship Calculator"
 msgstr "Calculator legături"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:372
+#: ../gramps/plugins/rel/relplugins.gpr.py:396
 #, fuzzy
 msgid "Polish Relationship Calculator"
 msgstr "Calculator legături"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:399
+#: ../gramps/plugins/rel/relplugins.gpr.py:423
 #, fuzzy
 msgid "Portuguese Relationship Calculator"
 msgstr "Calculator legături"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:429
+#: ../gramps/plugins/rel/relplugins.gpr.py:453
 #, fuzzy
 msgid "Russian Relationship Calculator"
 msgstr "Calculator legături"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:459
+#: ../gramps/plugins/rel/relplugins.gpr.py:483
 #, fuzzy
 msgid "Slovak Relationship Calculator"
 msgstr "Calculator legături"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:483
+#: ../gramps/plugins/rel/relplugins.gpr.py:507
 #, fuzzy
 msgid "Slovenian Relationship Calculator"
 msgstr "Calculator legături"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:506
+#: ../gramps/plugins/rel/relplugins.gpr.py:530
 #, fuzzy
 msgid "Swedish Relationship Calculator"
 msgstr "Calculator legături"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:534
+#: ../gramps/plugins/rel/relplugins.gpr.py:558
 #, fuzzy
 msgid "Turkish Relationship Calculator"
 msgstr "Calculator legături"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:535
+#: ../gramps/plugins/rel/relplugins.gpr.py:559
 #, fuzzy
 msgid "Calculates relationship between people"
 msgstr "Calculeaza legătura între două persoane"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:559
+#: ../gramps/plugins/rel/relplugins.gpr.py:583
 #, fuzzy
 msgid "Ukrainian Relationship Calculator"
 msgstr "Calculator legături"
@@ -35725,7 +35731,7 @@ msgstr "Caută Localitate"
 
 #: ../gramps/plugins/tool/finddupes.py:147
 #: ../gramps/plugins/tool/mergecitations.py:170
-#: ../gramps/plugins/tool/verify.py:379
+#: ../gramps/plugins/tool/verify.py:481
 #, fuzzy
 msgid "Tool settings"
 msgstr "Selectare Unealtă"
@@ -36433,7 +36439,7 @@ msgid "Unused Objects"
 msgstr "Obiecte Multimedia"
 
 #: ../gramps/plugins/tool/removeunused.py:205
-#: ../gramps/plugins/tool/verify.py:600
+#: ../gramps/plugins/tool/verify.py:789
 #, fuzzy
 msgid "Mark"
 msgstr "Martie"
@@ -36954,214 +36960,249 @@ msgstr "Numărul maxim de ani între copii"
 msgid "Maximum _span of years for all children"
 msgstr "Întinderea maximă pe ani a copiilor"
 
-#: ../gramps/plugins/tool/verify.glade:984 ../gramps/plugins/tool/verify.py:754
+#: ../gramps/plugins/tool/verify.glade:984 ../gramps/plugins/tool/verify.py:943
 msgid "_Hide marked"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:90
+#: ../gramps/plugins/tool/verify.py:94
 #, fuzzy
 msgctxt "manual"
 msgid "Verify_the_Data"
 msgstr "Verifică baza de date"
 
-#: ../gramps/plugins/tool/verify.py:318
+#: ../gramps/plugins/tool/verify.py:420
 #, fuzzy
 msgid "Data Verify tool"
 msgstr "Verifică Baza de Date"
 
-#: ../gramps/plugins/tool/verify.py:342
+#: ../gramps/plugins/tool/verify.py:444
 #, python-format
 msgid "%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:539
+#: ../gramps/plugins/tool/verify.py:727
 #, fuzzy
 msgid "Data Verification Results"
 msgstr "Verifică Baza de Date"
 
-#: ../gramps/plugins/tool/verify.py:751
+#: ../gramps/plugins/tool/verify.py:940
 #, fuzzy
 msgid "_Show all"
 msgstr "Arată toate persoanele"
 
-#: ../gramps/plugins/tool/verify.py:1191
+#: ../gramps/plugins/tool/verify.py:1373
 #, fuzzy
 msgid "Baptism before birth"
 msgstr "Are naşterea"
 
-#: ../gramps/plugins/tool/verify.py:1210
+#: ../gramps/plugins/tool/verify.py:1392
 msgid "Death before baptism"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1229
+#: ../gramps/plugins/tool/verify.py:1411
 msgid "Burial before birth"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1248
+#: ../gramps/plugins/tool/verify.py:1430
 msgid "Burial before death"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1267
+#: ../gramps/plugins/tool/verify.py:1449
 #, fuzzy
 msgid "Death before birth"
 msgstr "Are naşterea"
 
-#: ../gramps/plugins/tool/verify.py:1286
+#: ../gramps/plugins/tool/verify.py:1468
 msgid "Burial before baptism"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1312
+#: ../gramps/plugins/tool/verify.py:1494
 #, fuzzy
 msgid "Old age at death"
 msgstr "Deces Alternativ"
 
-#: ../gramps/plugins/tool/verify.py:1343
+#: ../gramps/plugins/tool/verify.py:1525
 #, fuzzy
 msgid "Multiple parents"
 msgstr "Părinţi Alternativi"
 
-#: ../gramps/plugins/tool/verify.py:1368
+#: ../gramps/plugins/tool/verify.py:1550
 #, fuzzy
 msgid "Married often"
 msgstr "Nume Căsătorie"
 
-#: ../gramps/plugins/tool/verify.py:1395
+#: ../gramps/plugins/tool/verify.py:1577
 #, fuzzy
 msgid "Old and unmarried"
 msgstr "Necăsătorit(ă)"
 
-#: ../gramps/plugins/tool/verify.py:1428
+#: ../gramps/plugins/tool/verify.py:1610
 #, fuzzy
 msgid "Too many children"
 msgstr "Afişează copii"
 
-#: ../gramps/plugins/tool/verify.py:1447
+#: ../gramps/plugins/tool/verify.py:1629
 #, fuzzy
 msgid "Same sex marriage"
 msgstr "Căsătorie"
 
-#: ../gramps/plugins/tool/verify.py:1463
+#: ../gramps/plugins/tool/verify.py:1645
 #, fuzzy
 msgid "Female husband"
 msgstr "Soţ"
 
-#: ../gramps/plugins/tool/verify.py:1479
+#: ../gramps/plugins/tool/verify.py:1661
 #, fuzzy
 msgid "Male wife"
 msgstr "Soţie"
 
-#: ../gramps/plugins/tool/verify.py:1513
+#: ../gramps/plugins/tool/verify.py:1695
 msgid "Husband and wife with the same surname"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1545
+#: ../gramps/plugins/tool/verify.py:1727
 msgid "Large age difference between spouses"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1586
+#: ../gramps/plugins/tool/verify.py:1768
 #, fuzzy
 msgid "Marriage before birth"
 msgstr "Contract Căsătorie"
 
-#: ../gramps/plugins/tool/verify.py:1627
+#: ../gramps/plugins/tool/verify.py:1809
 #, fuzzy
 msgid "Marriage after death"
 msgstr "Contract Căsătorie"
 
-#: ../gramps/plugins/tool/verify.py:1678
+#: ../gramps/plugins/tool/verify.py:1860
 #, fuzzy
 msgid "Early marriage"
 msgstr "Căsătorie"
 
-#: ../gramps/plugins/tool/verify.py:1724
+#: ../gramps/plugins/tool/verify.py:1906
 #, fuzzy
 msgid "Late marriage"
 msgstr "Căsătorie"
 
-#: ../gramps/plugins/tool/verify.py:1776
+#: ../gramps/plugins/tool/verify.py:1958
 #, fuzzy
 msgid "Old father"
 msgstr "Altele"
 
-#: ../gramps/plugins/tool/verify.py:1780
+#: ../gramps/plugins/tool/verify.py:1962
 #, fuzzy
 msgid "Old mother"
 msgstr "Altele"
 
-#: ../gramps/plugins/tool/verify.py:1832
+#: ../gramps/plugins/tool/verify.py:2014
 msgid "Young father"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1836
+#: ../gramps/plugins/tool/verify.py:2018
 msgid "Young mother"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1885
+#: ../gramps/plugins/tool/verify.py:2068
 msgid "Unborn father"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1889
+#: ../gramps/plugins/tool/verify.py:2072
 msgid "Unborn mother"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1946
+#: ../gramps/plugins/tool/verify.py:2130
 #, fuzzy
 msgid "Dead father"
 msgstr "Data Deces"
 
-#: ../gramps/plugins/tool/verify.py:1950
+#: ../gramps/plugins/tool/verify.py:2134
 #, fuzzy
 msgid "Dead mother"
 msgstr "Data Deces"
 
-#: ../gramps/plugins/tool/verify.py:1980
+#: ../gramps/plugins/tool/verify.py:2164
 #, fuzzy
 msgid "Large year span for all children"
 msgstr "Întinderea maximă pe ani a copiilor"
 
-#: ../gramps/plugins/tool/verify.py:2011
+#: ../gramps/plugins/tool/verify.py:2195
 #, fuzzy
 msgid "Large age differences between children"
 msgstr "Numărul maxim de ani între copii"
 
-#: ../gramps/plugins/tool/verify.py:2030
+#: ../gramps/plugins/tool/verify.py:2214
 #, fuzzy
 msgid "Disconnected individual"
 msgstr "Persoane fără legături"
 
-#: ../gramps/plugins/tool/verify.py:2060
+#: ../gramps/plugins/tool/verify.py:2237
 #, fuzzy
 msgid "Invalid birth date"
 msgstr "Persoane fără dată de naştere"
 
-#: ../gramps/plugins/tool/verify.py:2090
+#: ../gramps/plugins/tool/verify.py:2260
 #, fuzzy
 msgid "Invalid death date"
 msgstr "Acesta nu e un nume valid pentru fişier."
 
-#: ../gramps/plugins/tool/verify.py:2113
+#: ../gramps/plugins/tool/verify.py:2280
 msgid "Marriage date but not married"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:2144
+#: ../gramps/plugins/tool/verify.py:2311
 #, fuzzy
 msgid "Old age but no death"
 msgstr "Deces Alternativ"
 
-#: ../gramps/plugins/tool/verify.py:2163
+#: ../gramps/plugins/tool/verify.py:2330
 #, fuzzy
-msgid "Birth equals death"
+msgid "Birth date equals death date"
 msgstr "Data Naşterii"
 
-#: ../gramps/plugins/tool/verify.py:2184
+#: ../gramps/plugins/tool/verify.py:2351
 #, fuzzy
-msgid "Birth equals marriage"
+msgid "Birth date equals marriage date"
 msgstr "Căsătorie"
 
-#: ../gramps/plugins/tool/verify.py:2205
+#: ../gramps/plugins/tool/verify.py:2372
 #, fuzzy
-msgid "Death equals marriage"
+msgid "Death date equals marriage date"
 msgstr "Căsătorie"
+
+#: ../gramps/plugins/tool/verify.py:2433
+msgid "Baptism too late according to family tradition"
+msgstr ""
+
+#: ../gramps/plugins/tool/verify.py:2458
+#, fuzzy
+msgid "Burial too late"
+msgstr "Înmormântare"
+
+#: ../gramps/plugins/tool/verify.py:2495
+msgid "Children are not in chronological order"
+msgstr ""
+
+#: ../gramps/plugins/tool/verify.py:2559
+msgid "Families are not in chronological order"
+msgstr ""
+
+#: ../gramps/plugins/tool/verify.py:2572
+msgid "Family has events with role Unknown"
+msgstr ""
+
+#: ../gramps/plugins/tool/verify.py:2585
+#, fuzzy
+msgid "Person has events with role Unknown"
+msgstr "Persoane cu copii"
+
+#: ../gramps/plugins/tool/verify.py:2598
+msgid "Family events are not in chronological order"
+msgstr ""
+
+#: ../gramps/plugins/tool/verify.py:2611
+#, fuzzy
+msgid "Person events are not in chronological order"
+msgstr "Persoane cu copii"
 
 #: ../gramps/plugins/view/citationlistview.py:107
 #, fuzzy
