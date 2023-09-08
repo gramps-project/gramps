@@ -260,11 +260,10 @@ class PluginDialog(ManagedWindow):
             return
 
         if pdata.ptype == REPORT:
-            active_handle = self.uistate.get_active("Person")
             report(
                 self.state,
                 self.uistate,
-                self.state.db.get_person_from_handle(active_handle),
+                self.uistate.get_active("Person"),
                 getattr(mod, pdata.reportclass),
                 getattr(mod, pdata.optionclass),
                 pdata.name,
