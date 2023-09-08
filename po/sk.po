@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-05 23:59+0100\n"
+"POT-Creation-Date: 2023-09-08 22:33+0100\n"
 "PO-Revision-Date: 2023-09-07 16:57+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
@@ -1554,7 +1554,7 @@ msgstr "Chyba pri spracovaní argumentov"
 
 #: ../gramps/cli/clidbman.py:73 ../gramps/cli/clidbman.py:172
 #: ../gramps/cli/clidbman.py:174 ../gramps/gui/clipboard.py:201
-#: ../gramps/gui/clipboard.py:202 ../gramps/gui/plug/_windows.py:1487
+#: ../gramps/gui/clipboard.py:202 ../gramps/gui/plug/_windows.py:1489
 msgid "Unavailable"
 msgstr "Nedostupné"
 
@@ -1599,8 +1599,8 @@ msgstr "Rodinný strom \"%s\":"
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/cli/clidbman.py:222 ../gramps/gen/plug/report/utils.py:182
 #: ../gramps/gui/editors/editattribute.py:140
-#: ../gramps/gui/editors/editname.py:341 ../gramps/gui/plug/_windows.py:1692
-#: ../gramps/gui/plug/_windows.py:2136
+#: ../gramps/gui/editors/editname.py:341 ../gramps/gui/plug/_windows.py:1694
+#: ../gramps/gui/plug/_windows.py:2138
 #: ../gramps/plugins/gramplet/whatsnext.py:495
 #: ../gramps/plugins/textreport/birthdayreport.py:213
 #: ../gramps/plugins/textreport/birthdayreport.py:218
@@ -1672,7 +1672,7 @@ msgstr ""
 "\n"
 
 #: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2293
-#: ../gramps/gui/plug/_windows.py:757
+#: ../gramps/gui/plug/_windows.py:759
 msgid "Never"
 msgstr "Nikdy"
 
@@ -2085,12 +2085,12 @@ msgstr "žiadne"
 msgid ":"
 msgstr ":"
 
-#: ../gramps/gen/datehandler/__init__.py:94
+#: ../gramps/gen/datehandler/__init__.py:95
 #, python-format
 msgid "Date parser for '%s' not available, using default"
 msgstr "Vyhodnocovanie dátumu pre '%s' nie je dostupné, použije sa predvolené"
 
-#: ../gramps/gen/datehandler/__init__.py:111
+#: ../gramps/gen/datehandler/__init__.py:112
 #, python-format
 msgid "Date displayer for '%s' not available, using default"
 msgstr "Zobrazovanie dátumu pre '%s' nie je dostupné, použije sa predvolené"
@@ -6863,8 +6863,8 @@ msgstr "Kasta"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:68
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:113
 #: ../gramps/gui/glade/rule.glade:931 ../gramps/gui/glade/styleeditor.glade:278
-#: ../gramps/gui/plug/_windows.py:1053 ../gramps/gui/plug/_windows.py:1168
-#: ../gramps/gui/plug/_windows.py:1630 ../gramps/gui/plug/_windows.py:2123
+#: ../gramps/gui/plug/_windows.py:1055 ../gramps/gui/plug/_windows.py:1170
+#: ../gramps/gui/plug/_windows.py:1632 ../gramps/gui/plug/_windows.py:2125
 #: ../gramps/gui/selectors/selectevent.py:71
 #: ../gramps/plugins/gramplet/coordinates.py:100
 #: ../gramps/plugins/gramplet/events.py:103
@@ -8114,8 +8114,8 @@ msgstr "Registrované partnerstvo"
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:118
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:114
 #: ../gramps/gui/merge/mergeperson.py:273 ../gramps/gui/plug/_windows.py:232
-#: ../gramps/gui/plug/_windows.py:1042 ../gramps/gui/plug/_windows.py:1165
-#: ../gramps/gui/plug/_windows.py:2121
+#: ../gramps/gui/plug/_windows.py:1044 ../gramps/gui/plug/_windows.py:1167
+#: ../gramps/gui/plug/_windows.py:2123
 #: ../gramps/gui/plug/report/_bookdialog.py:398
 #: ../gramps/gui/plug/report/_bookdialog.py:402
 #: ../gramps/gui/selectors/selectevent.py:67
@@ -8256,8 +8256,8 @@ msgstr "Chrám"
 #: ../gramps/gen/lib/ldsord.py:206 ../gramps/gui/dbman.py:419
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:54
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:64
-#: ../gramps/gui/plug/_windows.py:236 ../gramps/gui/plug/_windows.py:1046
-#: ../gramps/gui/plug/_windows.py:1108
+#: ../gramps/gui/plug/_windows.py:236 ../gramps/gui/plug/_windows.py:1048
+#: ../gramps/gui/plug/_windows.py:1110
 #: ../gramps/plugins/quickview/ageondate.py:54
 #: ../gramps/plugins/textreport/indivcomplete.py:531
 #: ../gramps/plugins/textreport/indivcomplete.py:736
@@ -8267,7 +8267,7 @@ msgid "Status"
 msgstr "Stav"
 
 #: ../gramps/gen/lib/location.py:89 ../gramps/gen/lib/nameorigintype.py:88
-#: ../gramps/gui/clipboard.py:331 ../gramps/gui/plug/_windows.py:1635
+#: ../gramps/gui/clipboard.py:331 ../gramps/gui/plug/_windows.py:1637
 msgid "Location"
 msgstr "Poloha"
 
@@ -8317,8 +8317,8 @@ msgstr "Región"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:158
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:117
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:113
-#: ../gramps/gui/plug/_guioptions.py:1185 ../gramps/gui/plug/_windows.py:1049
-#: ../gramps/gui/plug/_windows.py:2122
+#: ../gramps/gui/plug/_guioptions.py:1185 ../gramps/gui/plug/_windows.py:1051
+#: ../gramps/gui/plug/_windows.py:2124
 #: ../gramps/gui/plug/report/_bookdialog.py:398
 #: ../gramps/gui/selectors/selectperson.py:99
 #: ../gramps/gui/selectors/selectplace.py:68
@@ -8344,7 +8344,7 @@ msgstr "Región"
 #: ../gramps/plugins/tool/dumpgenderstats.py:101
 #: ../gramps/plugins/tool/notrelated.py:130
 #: ../gramps/plugins/tool/removeunused.py:224
-#: ../gramps/plugins/tool/verify.py:632 ../gramps/plugins/view/repoview.py:86
+#: ../gramps/plugins/tool/verify.py:821 ../gramps/plugins/view/repoview.py:86
 #: ../gramps/plugins/webreport/basepage.py:520
 #: ../gramps/plugins/webreport/person.py:421
 #: ../gramps/plugins/webreport/person.py:2284
@@ -8565,7 +8565,7 @@ msgstr "Formát"
 #: ../gramps/gui/glade/editplaceref.glade:161
 #: ../gramps/gui/glade/editplaceref.glade:665
 #: ../gramps/gui/glade/editreporef.glade:225
-#: ../gramps/gui/glade/editreporef.glade:445 ../gramps/gui/plug/_windows.py:721
+#: ../gramps/gui/glade/editreporef.glade:445 ../gramps/gui/plug/_windows.py:723
 #: ../gramps/plugins/tool/verify.glade:406
 msgid "General"
 msgstr "Všeobecné"
@@ -11709,8 +11709,8 @@ msgstr "Zobraziť Editor mien"
 #: ../gramps/gui/glade/plugins.glade:22 ../gramps/gui/glade/rule.glade:24
 #: ../gramps/gui/glade/rule.glade:1024 ../gramps/gui/glade/tipofday.glade:117
 #: ../gramps/gui/glade/updateaddons.glade:25 ../gramps/gui/grampsgui.py:58
-#: ../gramps/gui/plug/_windows.py:392 ../gramps/gui/plug/_windows.py:1019
-#: ../gramps/gui/plug/_windows.py:1698 ../gramps/gui/plug/_windows.py:1758
+#: ../gramps/gui/plug/_windows.py:392 ../gramps/gui/plug/_windows.py:1021
+#: ../gramps/gui/plug/_windows.py:1700 ../gramps/gui/plug/_windows.py:1760
 #: ../gramps/gui/plug/quick/_textbufdoc.py:71 ../gramps/gui/undohistory.py:88
 #: ../gramps/gui/viewmanager.py:1801 ../gramps/gui/views/bookmarks.py:316
 #: ../gramps/gui/views/tags.py:503 ../gramps/gui/widgets/grampletbar.py:718
@@ -11801,8 +11801,8 @@ msgstr "Neplatná alebo neúplná definícia formátu."
 #: ../gramps/gui/configure.py:1639 ../gramps/gui/configure.py:1644
 #: ../gramps/gui/configure.py:1665 ../gramps/gui/configure.py:1681
 #: ../gramps/gui/configure.py:2215 ../gramps/gui/configure.py:2304
-#: ../gramps/gui/plug/_windows.py:767 ../gramps/gui/plug/_windows.py:787
-#: ../gramps/gui/plug/_windows.py:823 ../gramps/gui/plug/_windows.py:831
+#: ../gramps/gui/plug/_windows.py:769 ../gramps/gui/plug/_windows.py:789
+#: ../gramps/gui/plug/_windows.py:825 ../gramps/gui/plug/_windows.py:833
 #: ../gramps/gui/views/navigationview.py:351
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:110
 #, python-format
@@ -11875,7 +11875,7 @@ msgstr "Kraj/Okres"
 msgid "ZIP/Postal Code"
 msgstr "PSČ/poštové smerovacie číslo"
 
-#: ../gramps/gui/configure.py:737 ../gramps/gui/plug/_windows.py:1633
+#: ../gramps/gui/configure.py:737 ../gramps/gui/plug/_windows.py:1635
 #: ../gramps/plugins/view/repoview.py:96
 msgid "Email"
 msgstr "E-mail"
@@ -12121,7 +12121,7 @@ msgstr "Možnosti zobrazenia"
 #: ../gramps/gui/glade/editperson.glade:12
 #: ../gramps/gui/glade/editperson.glade:516 ../gramps/gui/glade/rule.glade:463
 #: ../gramps/gui/glade/styleeditor.glade:1903
-#: ../gramps/gui/plug/_windows.py:1072 ../gramps/gui/plug/_windows.py:1131
+#: ../gramps/gui/plug/_windows.py:1074 ../gramps/gui/plug/_windows.py:1133
 #: ../gramps/plugins/gramplet/ancestor.py:122
 #: ../gramps/plugins/gramplet/descendant.py:119
 msgid "Edit"
@@ -12661,8 +12661,8 @@ msgstr "Vybrať adresár pre médiá"
 #: ../gramps/gui/glade/rule.glade:747 ../gramps/gui/glade/styleeditor.glade:86
 #: ../gramps/gui/glade/styleeditor.glade:1737
 #: ../gramps/gui/logger/_errorview.py:188 ../gramps/gui/plug/_guioptions.py:84
-#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:841
-#: ../gramps/gui/plug/_windows.py:1409
+#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:843
+#: ../gramps/gui/plug/_windows.py:1411
 #: ../gramps/gui/plug/report/_fileentry.py:68
 #: ../gramps/gui/plug/report/_reportdialog.py:170 ../gramps/gui/utils.py:265
 #: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1250
@@ -12955,7 +12955,7 @@ msgstr "Informácie o databáze"
 #: ../gramps/gui/glade/reorder.glade:38 ../gramps/gui/glade/rule.glade:333
 #: ../gramps/gui/glade/rule.glade:764 ../gramps/gui/glade/styleeditor.glade:103
 #: ../gramps/gui/glade/styleeditor.glade:1754
-#: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:841
+#: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:843
 #: ../gramps/gui/plug/report/_reportdialog.py:173 ../gramps/gui/utils.py:279
 #: ../gramps/gui/viewmanager.py:1802 ../gramps/gui/views/tags.py:727
 #: ../gramps/plugins/tool/check.py:828 ../gramps/plugins/tool/patchnames.py:152
@@ -13520,7 +13520,7 @@ msgstr "_Atribúty"
 #: ../gramps/plugins/tool/notrelated.py:131
 #: ../gramps/plugins/tool/patchnames.py:457
 #: ../gramps/plugins/tool/removeunused.py:217
-#: ../gramps/plugins/tool/sortevents.py:62 ../gramps/plugins/tool/verify.py:622
+#: ../gramps/plugins/tool/sortevents.py:62 ../gramps/plugins/tool/verify.py:811
 #: ../gramps/plugins/view/citationlistview.py:101
 #: ../gramps/plugins/view/citationtreeview.py:96
 #: ../gramps/plugins/view/eventview.py:82
@@ -13851,14 +13851,14 @@ msgid "Set as default name"
 msgstr "Nastaviť ako predvolené meno"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
-#: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:923
+#: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:925
 #: ../gramps/gui/viewmanager.py:1134 ../gramps/gui/views/tags.py:570
 #: ../gramps/plugins/quickview/all_relations.py:365
 msgid "Yes"
 msgstr "Áno"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:59
-#: ../gramps/gui/plug/_guioptions.py:1266 ../gramps/gui/plug/_windows.py:924
+#: ../gramps/gui/plug/_guioptions.py:1266 ../gramps/gui/plug/_windows.py:926
 #: ../gramps/gui/viewmanager.py:1135 ../gramps/gui/views/tags.py:571
 #: ../gramps/plugins/quickview/all_relations.py:371
 msgid "No"
@@ -15703,7 +15703,7 @@ msgid "Within"
 msgstr "Vzdialenosť"
 
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:116
-#: ../gramps/gui/plug/_windows.py:831
+#: ../gramps/gui/plug/_windows.py:833
 msgid "URL"
 msgstr "URL"
 
@@ -17364,7 +17364,7 @@ msgid "_Merge and close"
 msgstr "_Zlúčiť a zatvoriť"
 
 #: ../gramps/gui/glade/mergedata.glade:173
-#: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:2115
+#: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:2117
 #: ../gramps/plugins/tool/changenames.py:226
 #: ../gramps/plugins/tool/patchnames.py:454
 msgid "Select"
@@ -17653,7 +17653,7 @@ msgstr "Vykonať vybranú akciu"
 msgid "Run"
 msgstr "Spustiť"
 
-#: ../gramps/gui/glade/plugins.glade:139 ../gramps/gui/plug/_dialogs.py:313
+#: ../gramps/gui/glade/plugins.glade:139 ../gramps/gui/plug/_dialogs.py:312
 msgid "Select a report from those available on the left."
 msgstr "Vybrať zostavu z tých, ktoré sú dostupné vľavo."
 
@@ -18034,7 +18034,7 @@ msgid "Install Selected _Addons"
 msgstr "Inštalovať vybrané _Doplnky"
 
 #: ../gramps/gui/glade/updateaddons.glade:72
-#: ../gramps/gui/plug/_windows.py:2092
+#: ../gramps/gui/plug/_windows.py:2094
 msgid "Available Gramps Updates for Addons"
 msgstr "Dostupné aktualizácie Gramps pre Doplnky"
 
@@ -18639,7 +18639,7 @@ msgstr "Manžel/-ka"
 msgid "No spouses or children found"
 msgstr "Manžel/-ka ani deti nezistené"
 
-#: ../gramps/gui/merge/mergeperson.py:372 ../gramps/plugins/tool/verify.py:612
+#: ../gramps/gui/merge/mergeperson.py:372 ../gramps/plugins/tool/verify.py:801
 msgid "Warning"
 msgstr "Varovanie"
 
@@ -18674,31 +18674,31 @@ msgstr "Zlúčenie_zdrojov"
 msgid "Merge Sources"
 msgstr "Zlúčiť zdroje"
 
-#: ../gramps/gui/plug/_dialogs.py:312
+#: ../gramps/gui/plug/_dialogs.py:311
 msgid "Report Selection"
 msgstr "Výber zostavy"
 
-#: ../gramps/gui/plug/_dialogs.py:314
+#: ../gramps/gui/plug/_dialogs.py:313
 msgid "_Generate"
 msgstr "_Generovať"
 
-#: ../gramps/gui/plug/_dialogs.py:315
+#: ../gramps/gui/plug/_dialogs.py:314
 msgid "Generate selected report"
 msgstr "Generovať vybranú zostavu"
 
-#: ../gramps/gui/plug/_dialogs.py:346
+#: ../gramps/gui/plug/_dialogs.py:345
 msgid "Tool Selection"
 msgstr "Výber nástroja"
 
-#: ../gramps/gui/plug/_dialogs.py:347
+#: ../gramps/gui/plug/_dialogs.py:346
 msgid "Select a tool from those available on the left."
 msgstr "Vyberte nástroj z dostupných nástrojov vľavo."
 
-#: ../gramps/gui/plug/_dialogs.py:348 ../gramps/plugins/tool/verify.glade:144
+#: ../gramps/gui/plug/_dialogs.py:347 ../gramps/plugins/tool/verify.glade:144
 msgid "_Run"
 msgstr "_Spustiť"
 
-#: ../gramps/gui/plug/_dialogs.py:349
+#: ../gramps/gui/plug/_dialogs.py:348
 msgid "Run selected tool"
 msgstr "Spustiť vybraný nástroj"
 
@@ -18751,7 +18751,7 @@ msgstr "Vybrať farbu pre %s"
 msgid "Save As"
 msgstr "Uložiť ako"
 
-#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:1409
+#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:1411
 #: ../gramps/gui/plug/report/_bookdialog.py:651
 #: ../gramps/gui/plug/report/_fileentry.py:68
 msgid "_Open"
@@ -18770,7 +18770,7 @@ msgstr "Projekt"
 msgid "Audience"
 msgstr "Audiencia"
 
-#: ../gramps/gui/plug/_windows.py:238 ../gramps/gui/plug/_windows.py:1631
+#: ../gramps/gui/plug/_windows.py:238 ../gramps/gui/plug/_windows.py:1633
 msgid "Version"
 msgstr "Verzia"
 
@@ -18791,7 +18791,7 @@ msgid "Requires"
 msgstr "Vyžaduje"
 
 #: ../gramps/gui/plug/_windows.py:275 ../gramps/gui/plug/_windows.py:431
-#: ../gramps/gui/plug/_windows.py:630
+#: ../gramps/gui/plug/_windows.py:632
 #, fuzzy
 #| msgid "Updated"
 msgid "Update"
@@ -18825,11 +18825,11 @@ msgstr "Filtre"
 msgid "All addons"
 msgstr "Všetky doplnky"
 
-#: ../gramps/gui/plug/_windows.py:429 ../gramps/gui/plug/_windows.py:624
+#: ../gramps/gui/plug/_windows.py:429 ../gramps/gui/plug/_windows.py:626
 msgid "Not installed"
 msgstr "Nenainštalovaný"
 
-#: ../gramps/gui/plug/_windows.py:430 ../gramps/gui/plug/_windows.py:627
+#: ../gramps/gui/plug/_windows.py:430 ../gramps/gui/plug/_windows.py:629
 msgid "Installed"
 msgstr "Nainštalovaný"
 
@@ -18853,286 +18853,288 @@ msgstr "Nastavenia"
 msgid "Projects"
 msgstr "Projekty"
 
-#: ../gramps/gui/plug/_windows.py:525 ../gramps/gui/plug/_windows.py:635
+#: ../gramps/gui/plug/_windows.py:527 ../gramps/gui/plug/_windows.py:637
 msgid "All projects"
 msgstr "Všetky projekty"
 
-#: ../gramps/gui/plug/_windows.py:537
+#: ../gramps/gui/plug/_windows.py:539
 msgid "Loading..."
 msgstr "Nahrávam..."
 
-#: ../gramps/gui/plug/_windows.py:581
+#: ../gramps/gui/plug/_windows.py:583
 msgid "No matching addons found."
 msgstr "Nenájdené žiadne vhodné doplnky."
 
-#: ../gramps/gui/plug/_windows.py:735
-msgid "Allow Gramps to install required python modules"
+#: ../gramps/gui/plug/_windows.py:737
+#, fuzzy
+#| msgid "Allow Gramps to install required python modules"
+msgid "Allow Gramps to install required Python modules"
 msgstr "Povoliť Gramps nainštalovať požadované moduly pythonu"
 
-#: ../gramps/gui/plug/_windows.py:742
+#: ../gramps/gui/plug/_windows.py:744
 #: ../gramps/plugins/webreport/basepage.py:1901
 #: ../gramps/plugins/webreport/basepage.py:1966
 msgid "Updates"
 msgstr "Aktualizácie"
 
-#: ../gramps/gui/plug/_windows.py:758
+#: ../gramps/gui/plug/_windows.py:760
 msgid "Once a month"
 msgstr "Raz za mesiac"
 
-#: ../gramps/gui/plug/_windows.py:759
+#: ../gramps/gui/plug/_windows.py:761
 msgid "Once a week"
 msgstr "Raz za týždeň"
 
-#: ../gramps/gui/plug/_windows.py:760
+#: ../gramps/gui/plug/_windows.py:762
 msgid "Once a day"
 msgstr "Raz za deň"
 
-#: ../gramps/gui/plug/_windows.py:761
+#: ../gramps/gui/plug/_windows.py:763
 msgid "Always"
 msgstr "Vždy"
 
-#: ../gramps/gui/plug/_windows.py:767
+#: ../gramps/gui/plug/_windows.py:769
 msgid "Check for addon updates"
 msgstr "Kontrolovať aktualizácie doplnkov"
 
-#: ../gramps/gui/plug/_windows.py:774
+#: ../gramps/gui/plug/_windows.py:776
 msgid "Updated addons only"
 msgstr "Len aktualizované doplnky"
 
-#: ../gramps/gui/plug/_windows.py:775
+#: ../gramps/gui/plug/_windows.py:777
 msgid "New addons only"
 msgstr "Len nové doplnky"
 
-#: ../gramps/gui/plug/_windows.py:776
+#: ../gramps/gui/plug/_windows.py:778
 msgid "New and updated addons"
 msgstr "Nové a aktualizované doplnky"
 
-#: ../gramps/gui/plug/_windows.py:787
+#: ../gramps/gui/plug/_windows.py:789
 msgid "What to check"
 msgstr "Čo treba skontrolovať"
 
-#: ../gramps/gui/plug/_windows.py:793
+#: ../gramps/gui/plug/_windows.py:795
 msgid "Do not ask about previously notified addons"
 msgstr "Nepýtať sa na predtým oznámené doplnky"
 
-#: ../gramps/gui/plug/_windows.py:800
+#: ../gramps/gui/plug/_windows.py:802
 msgid "Check for updated addons now"
 msgstr "Skontrolovať aktualizácie doplnkov teraz"
 
-#: ../gramps/gui/plug/_windows.py:813
+#: ../gramps/gui/plug/_windows.py:815
 msgid "New Project"
 msgstr "Nový projekt"
 
-#: ../gramps/gui/plug/_windows.py:815
+#: ../gramps/gui/plug/_windows.py:817
 msgid "Edit Project"
 msgstr "Upraviť projekt"
 
-#: ../gramps/gui/plug/_windows.py:823
+#: ../gramps/gui/plug/_windows.py:825
 msgid "Project name"
 msgstr "Názov projektu"
 
-#: ../gramps/gui/plug/_windows.py:921
+#: ../gramps/gui/plug/_windows.py:923
 msgid "Restore project defaults"
 msgstr "Obnoviť predvolené nastavenia projektu"
 
-#: ../gramps/gui/plug/_windows.py:922
+#: ../gramps/gui/plug/_windows.py:924
 msgid "Are you sure?"
 msgstr "Ste ai istí?"
 
-#: ../gramps/gui/plug/_windows.py:946
+#: ../gramps/gui/plug/_windows.py:948
 msgid "Checking Addons Failed"
 msgstr "Kontrola doplnkov zlyhala"
 
-#: ../gramps/gui/plug/_windows.py:948
+#: ../gramps/gui/plug/_windows.py:950
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr "Zdá sa, že archív doplnkov nie je dostupný. Skúste to prosím neskôr."
 
-#: ../gramps/gui/plug/_windows.py:963
+#: ../gramps/gui/plug/_windows.py:965
 msgid "There are no available addons of this type"
 msgstr "Nie sú dostupné žiadne doplnky tohto typu"
 
-#: ../gramps/gui/plug/_windows.py:964
+#: ../gramps/gui/plug/_windows.py:966
 msgid "' and '"
 msgstr "' a '"
 
-#: ../gramps/gui/plug/_windows.py:964
+#: ../gramps/gui/plug/_windows.py:966
 #, python-format
 msgid "Checked for '%s'"
 msgstr "Skontrolované na '%s'"
 
-#: ../gramps/gui/plug/_windows.py:970
+#: ../gramps/gui/plug/_windows.py:972
 msgid "new"
 msgstr "nový"
 
-#: ../gramps/gui/plug/_windows.py:970
+#: ../gramps/gui/plug/_windows.py:972
 msgid "update"
 msgstr "aktualizovať"
 
-#: ../gramps/gui/plug/_windows.py:1005
+#: ../gramps/gui/plug/_windows.py:1007
 msgid "Hidden"
 msgstr "Skrytý"
 
-#: ../gramps/gui/plug/_windows.py:1006
+#: ../gramps/gui/plug/_windows.py:1008
 msgid "Visible"
 msgstr "Viditeľný"
 
-#: ../gramps/gui/plug/_windows.py:1011
+#: ../gramps/gui/plug/_windows.py:1013
 msgid "Plugin Manager"
 msgstr "Správca zásuvných modulov"
 
-#: ../gramps/gui/plug/_windows.py:1063 ../gramps/gui/plug/_windows.py:1121
+#: ../gramps/gui/plug/_windows.py:1065 ../gramps/gui/plug/_windows.py:1123
 msgid "Info"
 msgstr "Info"
 
-#: ../gramps/gui/plug/_windows.py:1066 ../gramps/gui/plug/_windows.py:1124
+#: ../gramps/gui/plug/_windows.py:1068 ../gramps/gui/plug/_windows.py:1126
 msgid "Hide/Unhide"
 msgstr "Skryť /Odkryť"
 
-#: ../gramps/gui/plug/_windows.py:1075 ../gramps/gui/plug/_windows.py:1134
+#: ../gramps/gui/plug/_windows.py:1077 ../gramps/gui/plug/_windows.py:1136
 msgid "Load"
 msgstr "Načítať"
 
-#: ../gramps/gui/plug/_windows.py:1081
+#: ../gramps/gui/plug/_windows.py:1083
 msgid "Registered Plugins"
 msgstr "Registrované zásuvné moduly"
 
-#: ../gramps/gui/plug/_windows.py:1100
+#: ../gramps/gui/plug/_windows.py:1102
 msgid "Loaded"
 msgstr "Načítané"
 
-#: ../gramps/gui/plug/_windows.py:1104
+#: ../gramps/gui/plug/_windows.py:1106
 #: ../gramps/plugins/importer/importprogen.glade:431
 #: ../gramps/plugins/importer/importprogen.glade:1126
 msgid "File"
 msgstr "Súbor"
 
-#: ../gramps/gui/plug/_windows.py:1111
+#: ../gramps/gui/plug/_windows.py:1113
 msgid "Message"
 msgstr "Oznámenie"
 
-#: ../gramps/gui/plug/_windows.py:1140
+#: ../gramps/gui/plug/_windows.py:1142
 msgid "Loaded Plugins"
 msgstr "Načítané zásuvné moduly"
 
-#: ../gramps/gui/plug/_windows.py:1162
+#: ../gramps/gui/plug/_windows.py:1164
 msgid "Addon Name"
 msgstr "Názov doplnku"
 
-#: ../gramps/gui/plug/_windows.py:1174
+#: ../gramps/gui/plug/_windows.py:1176
 msgid "Path to Addon:"
 msgstr "Cesta k doplnku:"
 
-#: ../gramps/gui/plug/_windows.py:1194
+#: ../gramps/gui/plug/_windows.py:1196
 msgid "Install Addon"
 msgstr "Inštalovať Doplnok"
 
-#: ../gramps/gui/plug/_windows.py:1197
+#: ../gramps/gui/plug/_windows.py:1199
 msgid "Install All Addons"
 msgstr "Inštalovať všetky doplnky"
 
-#: ../gramps/gui/plug/_windows.py:1200
+#: ../gramps/gui/plug/_windows.py:1202
 msgid "Refresh Addon List"
 msgstr "Obnoviť zoznam doplnkov"
 
-#: ../gramps/gui/plug/_windows.py:1213
+#: ../gramps/gui/plug/_windows.py:1215
 msgid "Reload"
 msgstr "Znovu načítať"
 
-#: ../gramps/gui/plug/_windows.py:1241
+#: ../gramps/gui/plug/_windows.py:1243
 msgid "Refreshing Addon List"
 msgstr "Obnovenie zoznamu doplnkov"
 
-#: ../gramps/gui/plug/_windows.py:1242 ../gramps/gui/plug/_windows.py:1247
-#: ../gramps/gui/plug/_windows.py:1385
+#: ../gramps/gui/plug/_windows.py:1244 ../gramps/gui/plug/_windows.py:1249
+#: ../gramps/gui/plug/_windows.py:1387
 msgid "Reading gramps-project.org..."
 msgstr "Čítanie gramps-project.org..."
 
-#: ../gramps/gui/plug/_windows.py:1265
+#: ../gramps/gui/plug/_windows.py:1267
 msgid "Checking addon..."
 msgstr "Kontrola doplnku..."
 
-#: ../gramps/gui/plug/_windows.py:1273
+#: ../gramps/gui/plug/_windows.py:1275
 msgid "Unknown Help URL"
 msgstr "Neznáma URL pre Pomoc"
 
-#: ../gramps/gui/plug/_windows.py:1284
+#: ../gramps/gui/plug/_windows.py:1286
 msgid "Unknown URL"
 msgstr "Neznáma URL"
 
-#: ../gramps/gui/plug/_windows.py:1349
+#: ../gramps/gui/plug/_windows.py:1351
 msgid "Install all Addons"
 msgstr "Inštalovať všetky doplnky"
 
-#: ../gramps/gui/plug/_windows.py:1350
+#: ../gramps/gui/plug/_windows.py:1352
 msgid "Installing..."
 msgstr "Inštalácia..."
 
-#: ../gramps/gui/plug/_windows.py:1383
+#: ../gramps/gui/plug/_windows.py:1385
 msgid "Installing Addon"
 msgstr "Inštalácia doplnku"
 
-#: ../gramps/gui/plug/_windows.py:1406
+#: ../gramps/gui/plug/_windows.py:1408
 msgid "Load Addon"
 msgstr "Načítať doplnok"
 
-#: ../gramps/gui/plug/_windows.py:1498
+#: ../gramps/gui/plug/_windows.py:1500
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:261
 msgid "Fail"
 msgstr "Zlyhanie"
 
-#: ../gramps/gui/plug/_windows.py:1521 ../gramps/gui/widgets/grampletbar.py:610
+#: ../gramps/gui/plug/_windows.py:1523 ../gramps/gui/widgets/grampletbar.py:610
 msgid "OK"
 msgstr "OK"
 
-#: ../gramps/gui/plug/_windows.py:1629
+#: ../gramps/gui/plug/_windows.py:1631
 msgid "Plugin name"
 msgstr "Názov zásuvného modulu"
 
-#: ../gramps/gui/plug/_windows.py:1632
+#: ../gramps/gui/plug/_windows.py:1634
 msgid "Authors"
 msgstr "Autori"
 
-#: ../gramps/gui/plug/_windows.py:1634
+#: ../gramps/gui/plug/_windows.py:1636
 #: ../gramps/gui/plug/report/_reportdialog.py:481
 msgid "Filename"
 msgstr "Názov súboru"
 
-#: ../gramps/gui/plug/_windows.py:1637
+#: ../gramps/gui/plug/_windows.py:1639
 msgid "Detailed Info"
 msgstr "Podrobné info"
 
-#: ../gramps/gui/plug/_windows.py:1692
+#: ../gramps/gui/plug/_windows.py:1694
 msgid "Plugin Error"
 msgstr "Chyba zásuvného modulu"
 
-#: ../gramps/gui/plug/_windows.py:1761
+#: ../gramps/gui/plug/_windows.py:1763
 msgid "_Execute"
 msgstr "_Vykonať"
 
-#: ../gramps/gui/plug/_windows.py:2059
+#: ../gramps/gui/plug/_windows.py:2061
 #: ../gramps/plugins/importer/importprogen.py:478
 #: ../gramps/plugins/tool/ownereditor.py:171
 #: ../gramps/plugins/tool/reorderids.py:249
 msgid "Main window"
 msgstr "Hlavné okno"
 
-#: ../gramps/gui/plug/_windows.py:2197
+#: ../gramps/gui/plug/_windows.py:2199
 msgid "Downloading and installing selected addons..."
 msgstr "Sťahovanie a inštalácia vybraných doplnkov..."
 
-#: ../gramps/gui/plug/_windows.py:2240
+#: ../gramps/gui/plug/_windows.py:2242
 msgid "Installation Errors"
 msgstr "Chyby inštalácie"
 
-#: ../gramps/gui/plug/_windows.py:2241
+#: ../gramps/gui/plug/_windows.py:2243
 msgid "The following addons had errors: "
 msgstr "Nasledujúce doplnky mali chyby: "
 
-#: ../gramps/gui/plug/_windows.py:2249 ../gramps/gui/plug/_windows.py:2266
+#: ../gramps/gui/plug/_windows.py:2251 ../gramps/gui/plug/_windows.py:2268
 msgid "Done downloading and installing addons"
 msgstr "Sťahovanie a inštalácia doplnkov dokončená"
 
-#: ../gramps/gui/plug/_windows.py:2254
+#: ../gramps/gui/plug/_windows.py:2256
 #, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
@@ -19140,11 +19142,11 @@ msgstr[0] "{number_of} doplnok bol nainštalovaný."
 msgstr[1] "{number_of} doplnky boli nainštalované."
 msgstr[2] "{number_of} doplnkov bolo nainštalovaných."
 
-#: ../gramps/gui/plug/_windows.py:2259
+#: ../gramps/gui/plug/_windows.py:2261
 msgid "If you have installed a 'View', you will need to restart Gramps."
 msgstr "Ak ste nainštalovali 'Pohľad', musíte reštartovať program Gramps."
 
-#: ../gramps/gui/plug/_windows.py:2267
+#: ../gramps/gui/plug/_windows.py:2269
 msgid "No addons were installed."
 msgstr "Neboli nainštalované žiadne doplnky."
 
@@ -31968,7 +31970,7 @@ msgstr "Žiadny rodný vzťah k dieťaťu"
 
 #: ../gramps/plugins/quickview/lineage.py:169
 #: ../gramps/plugins/quickview/lineage.py:191
-#: ../gramps/plugins/tool/verify.py:1327
+#: ../gramps/plugins/tool/verify.py:1509
 msgid "Unknown gender"
 msgstr "Neznáme pohlavie"
 
@@ -32250,17 +32252,18 @@ msgstr "Kalkulátor vzťahov katalánsky"
 #: ../gramps/plugins/rel/relplugins.gpr.py:212
 #: ../gramps/plugins/rel/relplugins.gpr.py:242
 #: ../gramps/plugins/rel/relplugins.gpr.py:266
-#: ../gramps/plugins/rel/relplugins.gpr.py:279
-#: ../gramps/plugins/rel/relplugins.gpr.py:292
-#: ../gramps/plugins/rel/relplugins.gpr.py:305
-#: ../gramps/plugins/rel/relplugins.gpr.py:339
-#: ../gramps/plugins/rel/relplugins.gpr.py:373
-#: ../gramps/plugins/rel/relplugins.gpr.py:400
-#: ../gramps/plugins/rel/relplugins.gpr.py:430
-#: ../gramps/plugins/rel/relplugins.gpr.py:460
+#: ../gramps/plugins/rel/relplugins.gpr.py:290
+#: ../gramps/plugins/rel/relplugins.gpr.py:303
+#: ../gramps/plugins/rel/relplugins.gpr.py:316
+#: ../gramps/plugins/rel/relplugins.gpr.py:329
+#: ../gramps/plugins/rel/relplugins.gpr.py:363
+#: ../gramps/plugins/rel/relplugins.gpr.py:397
+#: ../gramps/plugins/rel/relplugins.gpr.py:424
+#: ../gramps/plugins/rel/relplugins.gpr.py:454
 #: ../gramps/plugins/rel/relplugins.gpr.py:484
-#: ../gramps/plugins/rel/relplugins.gpr.py:507
-#: ../gramps/plugins/rel/relplugins.gpr.py:560
+#: ../gramps/plugins/rel/relplugins.gpr.py:508
+#: ../gramps/plugins/rel/relplugins.gpr.py:531
+#: ../gramps/plugins/rel/relplugins.gpr.py:584
 msgid "Calculates relationships between people"
 msgstr "Vypočítava vzťahy medzi ľuďmi"
 
@@ -32293,62 +32296,68 @@ msgid "French Relationship Calculator"
 msgstr "Kalkulátor vzťahov francúzsky"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:241
+#, fuzzy
+#| msgid "Relationship Calculator"
+msgid "Hebrew Relationship Calculator"
+msgstr "Kalkulátor vzťahov"
+
+#: ../gramps/plugins/rel/relplugins.gpr.py:265
 msgid "Croatian Relationship Calculator"
 msgstr "Kalkulátor vzťahov chorvátsky"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:265
+#: ../gramps/plugins/rel/relplugins.gpr.py:289
 msgid "Hungarian Relationship Calculator"
 msgstr "Kalkulátor vzťahov maďarský"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:278
+#: ../gramps/plugins/rel/relplugins.gpr.py:302
 msgid "Icelandic Relationship Calculator"
 msgstr "Kalkulátor vzťahov islandský"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:291
+#: ../gramps/plugins/rel/relplugins.gpr.py:315
 msgid "Italian Relationship Calculator"
 msgstr "Kalkulátor vzťahov taliansky"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:304
+#: ../gramps/plugins/rel/relplugins.gpr.py:328
 msgid "Dutch Relationship Calculator"
 msgstr "Kalkulátor vzťahov holandský"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:338
+#: ../gramps/plugins/rel/relplugins.gpr.py:362
 msgid "Norwegian Relationship Calculator"
 msgstr "Kalkulátor vzťahov nórsky"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:372
+#: ../gramps/plugins/rel/relplugins.gpr.py:396
 msgid "Polish Relationship Calculator"
 msgstr "Kalkulátor vzťahov poľský"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:399
+#: ../gramps/plugins/rel/relplugins.gpr.py:423
 msgid "Portuguese Relationship Calculator"
 msgstr "Kalkulátor vzťahov portugalský"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:429
+#: ../gramps/plugins/rel/relplugins.gpr.py:453
 msgid "Russian Relationship Calculator"
 msgstr "Kalkulátor vzťahov ruský"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:459
+#: ../gramps/plugins/rel/relplugins.gpr.py:483
 msgid "Slovak Relationship Calculator"
 msgstr "Kalkulátor vzťahov slovenský"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:483
+#: ../gramps/plugins/rel/relplugins.gpr.py:507
 msgid "Slovenian Relationship Calculator"
 msgstr "Kalkulátor vzťahov slovinský"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:506
+#: ../gramps/plugins/rel/relplugins.gpr.py:530
 msgid "Swedish Relationship Calculator"
 msgstr "Kalkulátor vzťahov švédsky"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:534
+#: ../gramps/plugins/rel/relplugins.gpr.py:558
 msgid "Turkish Relationship Calculator"
 msgstr "Kalkulátor vzťahov turecký"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:535
+#: ../gramps/plugins/rel/relplugins.gpr.py:559
 msgid "Calculates relationship between people"
 msgstr "Vypočítava vzťah medzi ľuďmi"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:559
+#: ../gramps/plugins/rel/relplugins.gpr.py:583
 msgid "Ukrainian Relationship Calculator"
 msgstr "Kalkulátor vzťahov ukrajinský"
 
@@ -34672,7 +34681,7 @@ msgstr "Nástroj Hľadanie duplicít"
 
 #: ../gramps/plugins/tool/finddupes.py:147
 #: ../gramps/plugins/tool/mergecitations.py:170
-#: ../gramps/plugins/tool/verify.py:379
+#: ../gramps/plugins/tool/verify.py:481
 msgid "Tool settings"
 msgstr "Nastavenia nástroja"
 
@@ -35376,7 +35385,7 @@ msgid "Unused Objects"
 msgstr "Nepoužité objekty"
 
 #: ../gramps/plugins/tool/removeunused.py:205
-#: ../gramps/plugins/tool/verify.py:600
+#: ../gramps/plugins/tool/verify.py:789
 msgid "Mark"
 msgstr "Označiť"
 
@@ -35840,183 +35849,233 @@ msgstr "Najvyšší počet rokov _medzi deťmi"
 msgid "Maximum _span of years for all children"
 msgstr "Najvyššie _rozpätie rokov pre všetky deti"
 
-#: ../gramps/plugins/tool/verify.glade:984 ../gramps/plugins/tool/verify.py:754
+#: ../gramps/plugins/tool/verify.glade:984 ../gramps/plugins/tool/verify.py:943
 msgid "_Hide marked"
 msgstr "_Skryť označené"
 
-#: ../gramps/plugins/tool/verify.py:90
+#: ../gramps/plugins/tool/verify.py:94
 msgctxt "manual"
 msgid "Verify_the_Data"
 msgstr "Overovanie_údajov"
 
-#: ../gramps/plugins/tool/verify.py:318
+#: ../gramps/plugins/tool/verify.py:420
 msgid "Data Verify tool"
 msgstr "nástroj Overenie údajov"
 
-#: ../gramps/plugins/tool/verify.py:342
+#: ../gramps/plugins/tool/verify.py:444
 #, python-format
 msgid "%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s"
 msgstr "%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s"
 
-#: ../gramps/plugins/tool/verify.py:539
+#: ../gramps/plugins/tool/verify.py:727
 msgid "Data Verification Results"
 msgstr "Výsledky overovania údajov"
 
-#: ../gramps/plugins/tool/verify.py:751
+#: ../gramps/plugins/tool/verify.py:940
 msgid "_Show all"
 msgstr "_Zobraziť všetko"
 
-#: ../gramps/plugins/tool/verify.py:1191
+#: ../gramps/plugins/tool/verify.py:1373
 msgid "Baptism before birth"
 msgstr "Krst pred narodením"
 
-#: ../gramps/plugins/tool/verify.py:1210
+#: ../gramps/plugins/tool/verify.py:1392
 msgid "Death before baptism"
 msgstr "Úmrtie pred krstom"
 
-#: ../gramps/plugins/tool/verify.py:1229
+#: ../gramps/plugins/tool/verify.py:1411
 msgid "Burial before birth"
 msgstr "Pochovanie pred narodením"
 
-#: ../gramps/plugins/tool/verify.py:1248
+#: ../gramps/plugins/tool/verify.py:1430
 msgid "Burial before death"
 msgstr "Pochovanie pred úmrtím"
 
-#: ../gramps/plugins/tool/verify.py:1267
+#: ../gramps/plugins/tool/verify.py:1449
 msgid "Death before birth"
 msgstr "Úmrtie pred narodením"
 
-#: ../gramps/plugins/tool/verify.py:1286
+#: ../gramps/plugins/tool/verify.py:1468
 msgid "Burial before baptism"
 msgstr "Pochovanie pred krstom"
 
-#: ../gramps/plugins/tool/verify.py:1312
+#: ../gramps/plugins/tool/verify.py:1494
 msgid "Old age at death"
 msgstr "Vysoký vek pri úmrtí"
 
-#: ../gramps/plugins/tool/verify.py:1343
+#: ../gramps/plugins/tool/verify.py:1525
 msgid "Multiple parents"
 msgstr "Viacerí rodičia"
 
-#: ../gramps/plugins/tool/verify.py:1368
+#: ../gramps/plugins/tool/verify.py:1550
 msgid "Married often"
 msgstr "Časté sobáše"
 
-#: ../gramps/plugins/tool/verify.py:1395
+#: ../gramps/plugins/tool/verify.py:1577
 msgid "Old and unmarried"
 msgstr "Starý/á a bez sobáša"
 
-#: ../gramps/plugins/tool/verify.py:1428
+#: ../gramps/plugins/tool/verify.py:1610
 msgid "Too many children"
 msgstr "Príliš veľa detí"
 
-#: ../gramps/plugins/tool/verify.py:1447
+#: ../gramps/plugins/tool/verify.py:1629
 msgid "Same sex marriage"
 msgstr "Manželstvo rovnakého pohlavia"
 
-#: ../gramps/plugins/tool/verify.py:1463
+#: ../gramps/plugins/tool/verify.py:1645
 msgid "Female husband"
 msgstr "Manžel ženského pohlavia"
 
-#: ../gramps/plugins/tool/verify.py:1479
+#: ../gramps/plugins/tool/verify.py:1661
 msgid "Male wife"
 msgstr "Manželka mužského pohlavia"
 
-#: ../gramps/plugins/tool/verify.py:1513
+#: ../gramps/plugins/tool/verify.py:1695
 msgid "Husband and wife with the same surname"
 msgstr "Manžel a manželka s rovnakým priezviskom"
 
-#: ../gramps/plugins/tool/verify.py:1545
+#: ../gramps/plugins/tool/verify.py:1727
 msgid "Large age difference between spouses"
 msgstr "Veľký vekový rozdiel medzi manželmi"
 
-#: ../gramps/plugins/tool/verify.py:1586
+#: ../gramps/plugins/tool/verify.py:1768
 msgid "Marriage before birth"
 msgstr "Manželstvo pred narodením"
 
-#: ../gramps/plugins/tool/verify.py:1627
+#: ../gramps/plugins/tool/verify.py:1809
 msgid "Marriage after death"
 msgstr "Manželstvo po úmrtí"
 
-#: ../gramps/plugins/tool/verify.py:1678
+#: ../gramps/plugins/tool/verify.py:1860
 msgid "Early marriage"
 msgstr "Skoré manželstvo"
 
-#: ../gramps/plugins/tool/verify.py:1724
+#: ../gramps/plugins/tool/verify.py:1906
 msgid "Late marriage"
 msgstr "Neskoré manželstvo"
 
-#: ../gramps/plugins/tool/verify.py:1776
+#: ../gramps/plugins/tool/verify.py:1958
 msgid "Old father"
 msgstr "Vysoký vek otca"
 
-#: ../gramps/plugins/tool/verify.py:1780
+#: ../gramps/plugins/tool/verify.py:1962
 msgid "Old mother"
 msgstr "Vysoký vek matky"
 
-#: ../gramps/plugins/tool/verify.py:1832
+#: ../gramps/plugins/tool/verify.py:2014
 msgid "Young father"
 msgstr "Nízky vek otca"
 
-#: ../gramps/plugins/tool/verify.py:1836
+#: ../gramps/plugins/tool/verify.py:2018
 msgid "Young mother"
 msgstr "Nízky vek matky"
 
-#: ../gramps/plugins/tool/verify.py:1885
+#: ../gramps/plugins/tool/verify.py:2068
 msgid "Unborn father"
 msgstr "Nenarodený otec"
 
-#: ../gramps/plugins/tool/verify.py:1889
+#: ../gramps/plugins/tool/verify.py:2072
 msgid "Unborn mother"
 msgstr "Nenarodená matka"
 
-#: ../gramps/plugins/tool/verify.py:1946
+#: ../gramps/plugins/tool/verify.py:2130
 msgid "Dead father"
 msgstr "Mŕtvy otec"
 
-#: ../gramps/plugins/tool/verify.py:1950
+#: ../gramps/plugins/tool/verify.py:2134
 msgid "Dead mother"
 msgstr "Mŕtva matka"
 
-#: ../gramps/plugins/tool/verify.py:1980
+#: ../gramps/plugins/tool/verify.py:2164
 msgid "Large year span for all children"
 msgstr "Veľké časové rozpätie pre všetky deti"
 
-#: ../gramps/plugins/tool/verify.py:2011
+#: ../gramps/plugins/tool/verify.py:2195
 msgid "Large age differences between children"
 msgstr "Veľký vekový rozdiel medzi deťmi"
 
-#: ../gramps/plugins/tool/verify.py:2030
+#: ../gramps/plugins/tool/verify.py:2214
 msgid "Disconnected individual"
 msgstr "Nepripojený jedinec"
 
-#: ../gramps/plugins/tool/verify.py:2060
+#: ../gramps/plugins/tool/verify.py:2237
 msgid "Invalid birth date"
 msgstr "Neplatný dátum narodenia"
 
-#: ../gramps/plugins/tool/verify.py:2090
+#: ../gramps/plugins/tool/verify.py:2260
 msgid "Invalid death date"
 msgstr "Neplatný dátum úmrtia"
 
-#: ../gramps/plugins/tool/verify.py:2113
+#: ../gramps/plugins/tool/verify.py:2280
 msgid "Marriage date but not married"
 msgstr "Dátum sobáša, ale nie je zosobášený/á"
 
-#: ../gramps/plugins/tool/verify.py:2144
+#: ../gramps/plugins/tool/verify.py:2311
 msgid "Old age but no death"
 msgstr "Vysoký vek, ale živý"
 
-#: ../gramps/plugins/tool/verify.py:2163
-msgid "Birth equals death"
+#: ../gramps/plugins/tool/verify.py:2330
+#, fuzzy
+#| msgid "Birth equals death"
+msgid "Birth date equals death date"
 msgstr "Narodenie sa rovná úmrtiu"
 
-#: ../gramps/plugins/tool/verify.py:2184
-msgid "Birth equals marriage"
+#: ../gramps/plugins/tool/verify.py:2351
+#, fuzzy
+#| msgid "Birth equals marriage"
+msgid "Birth date equals marriage date"
 msgstr "Narodenie sa rovná sobášu"
 
-#: ../gramps/plugins/tool/verify.py:2205
-msgid "Death equals marriage"
+#: ../gramps/plugins/tool/verify.py:2372
+#, fuzzy
+#| msgid "Death equals marriage"
+msgid "Death date equals marriage date"
 msgstr "Úmrtie sa rovná sobášu"
+
+#: ../gramps/plugins/tool/verify.py:2433
+msgid "Baptism too late according to family tradition"
+msgstr ""
+
+#: ../gramps/plugins/tool/verify.py:2458
+#, fuzzy
+#| msgid "Burial date"
+msgid "Burial too late"
+msgstr "Dátum pochovania"
+
+#: ../gramps/plugins/tool/verify.py:2495
+#, fuzzy
+#| msgid "Whether to sort events into chronological order."
+msgid "Children are not in chronological order"
+msgstr "Či sa majú udalosti zoradiť chronologicky."
+
+#: ../gramps/plugins/tool/verify.py:2559
+#, fuzzy
+#| msgid "Whether to sort events into chronological order."
+msgid "Families are not in chronological order"
+msgstr "Či sa majú udalosti zoradiť chronologicky."
+
+#: ../gramps/plugins/tool/verify.py:2572
+msgid "Family has events with role Unknown"
+msgstr ""
+
+#: ../gramps/plugins/tool/verify.py:2585
+#, fuzzy
+#| msgid "Personal events of the children"
+msgid "Person has events with role Unknown"
+msgstr "Osobné udalosti detí"
+
+#: ../gramps/plugins/tool/verify.py:2598
+#, fuzzy
+#| msgid "Whether to sort events into chronological order."
+msgid "Family events are not in chronological order"
+msgstr "Či sa majú udalosti zoradiť chronologicky."
+
+#: ../gramps/plugins/tool/verify.py:2611
+#, fuzzy
+#| msgid "Whether to sort events into chronological order."
+msgid "Person events are not in chronological order"
+msgstr "Či sa majú udalosti zoradiť chronologicky."
 
 #: ../gramps/plugins/view/citationlistview.py:107
 msgid "Source: Title"
