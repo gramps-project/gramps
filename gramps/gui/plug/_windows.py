@@ -732,7 +732,7 @@ class AddonManager(ManagedWindow):
 
         row = 1
         install = Gtk.CheckButton()
-        install.set_label(_("Allow Gramps to install required python modules"))
+        install.set_label(_("Allow Gramps to install required Python modules"))
         active = config.get("behavior.addons-allow-install")
         install.set_active(active)
         install.connect("toggled", self.install_changed)
