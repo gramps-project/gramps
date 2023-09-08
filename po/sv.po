@@ -29,7 +29,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-05 23:59+0100\n"
-"PO-Revision-Date: 2023-09-07 01:07+0000\n"
+"PO-Revision-Date: 2023-09-08 21:34+0000\n"
 "Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -20844,11 +20844,11 @@ msgstr "'%s' är inte ett giltigt datumvärde"
 
 #: ../gramps/plugins/cite/cite.gpr.py:35
 msgid "Legacy"
-msgstr "Arv"
+msgstr "Utfasad"
 
 #: ../gramps/plugins/cite/cite.gpr.py:36
 msgid "Legacy citation formatter"
-msgstr "Äldre formaterare för citat"
+msgstr "Föråldrad formaterare för citat"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:27
 msgid "BSDDB"
