@@ -473,13 +473,13 @@ class AddonManager(ManagedWindow):
         sw.add(self.lb)
         vbox.pack_start(sw, True, True, 0)
 
-        book.append_page(vbox, Gtk.Label(_("Addons")))
+        book.append_page(vbox, Gtk.Label(label=_("Addons")))
 
         grid = self.create_settings_panel()
-        book.append_page(grid, Gtk.Label(_("Settings")))
+        book.append_page(grid, Gtk.Label(label=_("Settings")))
 
         grid = self.create_projects_panel()
-        book.append_page(grid, Gtk.Label(_("Projects")))
+        book.append_page(grid, Gtk.Label(label=_("Projects")))
 
         for project in self.projects:
             self.project_list.add(ProjectRow(self, project))
@@ -569,7 +569,7 @@ class AddonManager(ManagedWindow):
         """
         A placeholder label if no addons are listed.
         """
-        label = Gtk.Label('<span size="larger" weight="bold">%s</span>' % text)
+        label = Gtk.Label(label='<span size="larger" weight="bold">%s</span>' % text)
         label.set_use_markup(True)
         label.show()
         self.lb.set_placeholder(label)
