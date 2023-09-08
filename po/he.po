@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-05 23:59+0100\n"
-"PO-Revision-Date: 2023-09-07 16:57+0000\n"
+"PO-Revision-Date: 2023-09-08 21:34+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -6091,7 +6091,8 @@ msgstr "לא ניתן להשתמש במסנן 'בתוך אזור'"
 msgid ""
 "The place you selected contains bad coordinates. Please, run the tool 'clean "
 "input data'"
-msgstr "המקום שנבחר מכיל קורדנ‏אטות שגויות. נא להריץ את כלי 'ניקוי הזנת נתונים'"
+msgstr ""
+"המקום שנבחר מכיל נקודות־ציות שגויות. נא להריץ את כלי 'ניקוי הזנת נתונים'"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:46
 msgid "Every repository"
@@ -7069,7 +7070,7 @@ msgstr "בין"
 #: ../gramps/plugins/view/relview.py:1213
 #: ../gramps/plugins/webreport/basepage.py:3568
 msgid "and"
-msgstr "ו־"
+msgstr "ו"
 
 #: ../gramps/gen/lib/date.py:329 ../gramps/gen/lib/date.py:349
 msgid "less than about"
@@ -12554,7 +12555,7 @@ msgstr "לשונית"
 
 #: ../gramps/gui/csvdialect.py:82
 msgid "Choose your dialect"
-msgstr "נא לבחור תסדיר"
+msgstr "בחירת תסדיר"
 
 #: ../gramps/gui/csvdialect.py:85
 msgid ""
@@ -12685,8 +12686,8 @@ msgid ""
 "This file incorrectly identifies its character set, so it cannot be "
 "accurately imported. Please fix the encoding, and import again"
 msgstr ""
-"הקובץ אינו מזהה נכון את ערכת תווים, לכן לא ניתן לייבא אותו בצורה מדויקת. נא "
-"לתקן את הקידוד ובצוע היבוא שנית"
+"ערכת תוי הקובץ אינום מזוהים תקין , לכן לא ניתן ליבא אותו בצורה מדויקת. נא "
+"לתקן את הקידוד וליבוא שנית"
 
 #: ../gramps/gui/dbman.py:99
 #, python-format
@@ -18656,7 +18657,7 @@ msgstr "' ו־ '"
 #: ../gramps/gui/plug/_windows.py:964
 #, python-format
 msgid "Checked for '%s'"
-msgstr "נבדק ל־'%s'"
+msgstr "בדיקת '%s'"
 
 #: ../gramps/gui/plug/_windows.py:970
 msgid "new"
