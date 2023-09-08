@@ -498,7 +498,9 @@ class AddonManager(ManagedWindow):
         """
         Display the Addon Manager help page.
         """
-        display_help("Addon_Manager")
+        display_help(
+            "Gramps_5.2_Wiki_Manual_-_Navigation", "Using_the_Addon_Manager..."
+        )
 
     def __create_filter_combo(self, store, default):
         """
