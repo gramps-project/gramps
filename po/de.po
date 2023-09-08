@@ -17,13 +17,14 @@
 # nautilusx <translate@disroot.org>, 2021, 2023.
 # Andreas Abraham <andreas.abraham@gmx.de>, 2021.
 # RiseT <twilite505-4bf24909@yahoo.com>, 2022.
+# Oliver Lehmann <lehmann@ans-netz.de>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-05 23:59+0100\n"
 "PO-Revision-Date: 2023-09-08 21:34+0000\n"
-"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
+"Last-Translator: Oliver Lehmann <lehmann@ans-netz.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
 "Language: de\n"
@@ -24428,7 +24429,7 @@ msgstr "Gramplet zeigt die Ereignisse für die ganze Familie"
 
 #: ../gramps/plugins/gramplet/leak.py:102
 msgid "Referrer"
-msgstr "Referrer"
+msgstr "Nutzer"
 
 #: ../gramps/plugins/gramplet/leak.py:106
 msgid "Uncollected object"
