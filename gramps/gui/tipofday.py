@@ -104,7 +104,6 @@ class TipOfDay(ManagedWindow):
         # Must be first
         text = text.replace(" > ", " &gt; ")
         # Replace standalone > char
-        text = text.replace('"', "&quot;")  # quotes
         return text
 
     def next_tip_cb(self, dummy=None):
