@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-08 22:33+0100\n"
-"PO-Revision-Date: 2023-09-07 16:57+0000\n"
+"PO-Revision-Date: 2023-09-09 05:40+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -36066,16 +36066,12 @@ msgid "Person has events with role Unknown"
 msgstr "Osobné udalosti detí"
 
 #: ../gramps/plugins/tool/verify.py:2598
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Family events are not in chronological order"
-msgstr "Či sa majú udalosti zoradiť chronologicky."
+msgstr "Udalosti rodín nie sú chronologicky zoradené"
 
 #: ../gramps/plugins/tool/verify.py:2611
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Person events are not in chronological order"
-msgstr "Či sa majú udalosti zoradiť chronologicky."
+msgstr "Udalosti osôb nie sú chronologicky zoradené"
 
 #: ../gramps/plugins/view/citationlistview.py:107
 msgid "Source: Title"
