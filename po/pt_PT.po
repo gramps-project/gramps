@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-08 22:33+0100\n"
-"PO-Revision-Date: 2023-09-06 04:53+0000\n"
+"PO-Revision-Date: 2023-09-09 05:40+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@gmx.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -18942,8 +18942,6 @@ msgid "No matching addons found."
 msgstr "Nenhuma extensão encontrada."
 
 #: ../gramps/gui/plug/_windows.py:737
-#, fuzzy
-#| msgid "Allow Gramps to install required python modules"
 msgid "Allow Gramps to install required Python modules"
 msgstr "Permitir ao Gramps a instalação dos módulos Python requeridos"
 
@@ -32476,10 +32474,8 @@ msgid "French Relationship Calculator"
 msgstr "Calculadora de parentesco francesa"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:241
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Hebrew Relationship Calculator"
-msgstr "Calculadora de parentesco"
+msgstr "Calculadora de parentescos hebraicos"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:265
 msgid "Croatian Relationship Calculator"
@@ -36175,66 +36171,48 @@ msgid "Old age but no death"
 msgstr "Idade avançada sem óbito"
 
 #: ../gramps/plugins/tool/verify.py:2330
-#, fuzzy
-#| msgid "Birth equals death"
 msgid "Birth date equals death date"
 msgstr "Nascimento igual ao óbito"
 
 #: ../gramps/plugins/tool/verify.py:2351
-#, fuzzy
-#| msgid "Birth equals marriage"
 msgid "Birth date equals marriage date"
 msgstr "Nascimento igual ao casamento"
 
 #: ../gramps/plugins/tool/verify.py:2372
-#, fuzzy
-#| msgid "Death equals marriage"
 msgid "Death date equals marriage date"
 msgstr "Óbito igual ao casamento"
 
 #: ../gramps/plugins/tool/verify.py:2433
 msgid "Baptism too late according to family tradition"
-msgstr ""
+msgstr "Baptismo tardio de acordo com a tradição familiar"
 
 #: ../gramps/plugins/tool/verify.py:2458
-#, fuzzy
-#| msgid "Burial date"
 msgid "Burial too late"
-msgstr "Data de funeral"
+msgstr "Funeral tardio"
 
 #: ../gramps/plugins/tool/verify.py:2495
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Children are not in chronological order"
-msgstr "Se deve ordenar os eventos por ordem cronológica."
+msgstr "Os filhos não estão em ordem cronológica"
 
 #: ../gramps/plugins/tool/verify.py:2559
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Families are not in chronological order"
-msgstr "Se deve ordenar os eventos por ordem cronológica."
+msgstr "As famílias não estão em ordem cronológica"
 
 #: ../gramps/plugins/tool/verify.py:2572
 msgid "Family has events with role Unknown"
-msgstr ""
+msgstr "A família tem eventos com papel desconhecido"
 
 #: ../gramps/plugins/tool/verify.py:2585
-#, fuzzy
-#| msgid "Personal events of the children"
 msgid "Person has events with role Unknown"
-msgstr "Eventos individuais dos filhos"
+msgstr "O indivíduo tem eventos com papel desconhecido"
 
 #: ../gramps/plugins/tool/verify.py:2598
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Family events are not in chronological order"
-msgstr "Se deve ordenar os eventos por ordem cronológica."
+msgstr "Os eventos da família não estão em ordem cronológica"
 
 #: ../gramps/plugins/tool/verify.py:2611
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Person events are not in chronological order"
-msgstr "Se deve ordenar os eventos por ordem cronológica."
+msgstr "Os eventos do indivíduo não estão em ordem cronológica"
 
 #: ../gramps/plugins/view/citationlistview.py:107
 msgid "Source: Title"
