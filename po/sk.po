@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-08 22:33+0100\n"
-"PO-Revision-Date: 2023-09-09 05:40+0000\n"
+"PO-Revision-Date: 2023-09-09 08:20+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -7757,10 +7757,8 @@ msgid "Alternate Marriage"
 msgstr "Ďalšie manželstvo"
 
 #: ../gramps/gen/lib/eventtype.py:236
-#, fuzzy
-#| msgid "Stillborn"
 msgid "Stillbirth"
-msgstr "Mŕtvonarodené"
+msgstr "Mŕtvorodenie"
 
 #: ../gramps/gen/lib/eventtype.py:240
 #: ../gramps/plugins/drawreport/ancestortree.py:71
@@ -9890,10 +9888,8 @@ msgid "GivenNicknameSurname"
 msgstr "Daná prezývka Priezvisko"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:78
-#, fuzzy
-#| msgid "Automatic"
 msgid "Auto"
-msgstr "Automaticky"
+msgstr "Auto"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:79
 msgid "Call Name Only"
@@ -12178,10 +12174,8 @@ msgid "Calendar on input"
 msgstr "Kalendár na vstupe"
 
 #: ../gramps/gui/configure.py:1608
-#, fuzzy
-#| msgid "Shows previous page"
 msgid "On the previous day"
-msgstr "Zobrazí predchádzajúcu stranu"
+msgstr "V predchádzajúci deň"
 
 #: ../gramps/gui/configure.py:1609
 #, fuzzy
@@ -32296,10 +32290,8 @@ msgid "French Relationship Calculator"
 msgstr "Kalkulátor vzťahov francúzsky"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:241
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Hebrew Relationship Calculator"
-msgstr "Kalkulátor vzťahov"
+msgstr "Hebrejský kalkulátor vzťahov"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:265
 msgid "Croatian Relationship Calculator"
@@ -36016,54 +36008,40 @@ msgid "Old age but no death"
 msgstr "Vysoký vek, ale živý"
 
 #: ../gramps/plugins/tool/verify.py:2330
-#, fuzzy
-#| msgid "Birth equals death"
 msgid "Birth date equals death date"
-msgstr "Narodenie sa rovná úmrtiu"
+msgstr "Dátum narodenia sa rovná dátumu úmrtia"
 
 #: ../gramps/plugins/tool/verify.py:2351
-#, fuzzy
-#| msgid "Birth equals marriage"
 msgid "Birth date equals marriage date"
-msgstr "Narodenie sa rovná sobášu"
+msgstr "Dátum narodenia sa rovná dátumu sobáša"
 
 #: ../gramps/plugins/tool/verify.py:2372
-#, fuzzy
-#| msgid "Death equals marriage"
 msgid "Death date equals marriage date"
-msgstr "Úmrtie sa rovná sobášu"
+msgstr "Dátum úmrtia sa rovná dátumu sobáša"
 
 #: ../gramps/plugins/tool/verify.py:2433
 msgid "Baptism too late according to family tradition"
 msgstr ""
 
 #: ../gramps/plugins/tool/verify.py:2458
-#, fuzzy
-#| msgid "Burial date"
 msgid "Burial too late"
-msgstr "Dátum pochovania"
+msgstr "Pochovanie príliš neskoro"
 
 #: ../gramps/plugins/tool/verify.py:2495
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Children are not in chronological order"
-msgstr "Či sa majú udalosti zoradiť chronologicky."
+msgstr "Deti nie sú v chronologickom poradí"
 
 #: ../gramps/plugins/tool/verify.py:2559
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Families are not in chronological order"
-msgstr "Či sa majú udalosti zoradiť chronologicky."
+msgstr "Rodiny nie sú v chronologickom poradí"
 
 #: ../gramps/plugins/tool/verify.py:2572
 msgid "Family has events with role Unknown"
-msgstr ""
+msgstr "Rodina má udalosti s rolou Neznáme"
 
 #: ../gramps/plugins/tool/verify.py:2585
-#, fuzzy
-#| msgid "Personal events of the children"
 msgid "Person has events with role Unknown"
-msgstr "Osobné udalosti detí"
+msgstr "Osoba má udalosti s rolou Neznáme"
 
 #: ../gramps/plugins/tool/verify.py:2598
 msgid "Family events are not in chronological order"
