@@ -73,9 +73,24 @@ class Requirements:
         """
         if module_spec in self.gi_list:
             return True
+
+        if "," in module_spec[1]:
+            for version in module_spec[1].split(","):
+                if self._test_gi(module_spec[0], version.strip()):
+                    self.gi_list.append(module_spec)
+                    return True
+        else:
+            if self._test_gi(*module_spec):
+                self.gi_list.append(module_spec)
+                return True
+        return False
+
+    def _test_gi(self, module, version):
+        """
+        Test to see if a particular version of a module is available.
+        """
         try:
-            gi.require_version(*module_spec)
-            self.gi_list.append(module_spec)
+            gi.require_version(module, version)
             return True
         except ValueError:
             return False
