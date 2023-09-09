@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-08 22:33+0100\n"
-"PO-Revision-Date: 2023-09-09 08:20+0000\n"
+"PO-Revision-Date: 2023-09-09 11:49+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -624,10 +624,10 @@ msgid ""
 "intuitive but the manual is full of information that will make your time "
 "spent on genealogy more productive."
 msgstr ""
-"<b>Lue käyttöohjetta</b><br/>Älä unohda lukea Grampsin käyttöohjetta "
-"\"Ohjeet &gt; Käyttöohje\". Kehittäjät ovat työskennelleet ahkerasti "
-"tehdäkseen useimmat toiminnot helppotajuisiksi, mutta käyttöohje on täynnä "
-"tietoa, jolla saat sukututkimukseen varaamasi ajan tuottavammaksi."
+"<b>Lue käyttöohjetta</b><br/>Älä unohda lukea Grampsin käyttöohjetta \"Ohjeet"
+" &gt; Käyttöohje\". Kehittäjät ovat työskennelleet ahkerasti tehdäkseen "
+"useimmat toiminnot helppotajuisiksi, mutta käyttöohje on täynnä tietoa, "
+"jolla saat sukututkimukseen varaamasi ajan tuottavammaksi."
 
 #: ../data/tips.xml:54
 msgid ""
@@ -36106,54 +36106,40 @@ msgid "Birth date equals marriage date"
 msgstr "Syntymäaika on sama kuin avioliittopäivä"
 
 #: ../gramps/plugins/tool/verify.py:2372
-#, fuzzy
-#| msgid "Death equals marriage"
 msgid "Death date equals marriage date"
-msgstr "Kuolema on sama kuin avioliitto"
+msgstr "Kuolinpäivä on sama kuin avioliittopäivä"
 
 #: ../gramps/plugins/tool/verify.py:2433
 msgid "Baptism too late according to family tradition"
 msgstr "Kaste liian myöhään perheperinteen mukaan"
 
 #: ../gramps/plugins/tool/verify.py:2458
-#, fuzzy
-#| msgid "Burial date"
 msgid "Burial too late"
-msgstr "Kuolinpäivä"
+msgstr "Hautaus liian myöhään"
 
 #: ../gramps/plugins/tool/verify.py:2495
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Children are not in chronological order"
-msgstr "Lajitellaanko tapahtumat aikajärjestykseen."
+msgstr "Lapset eivät ole aikajärjestyksessä"
 
 #: ../gramps/plugins/tool/verify.py:2559
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Families are not in chronological order"
-msgstr "Lajitellaanko tapahtumat aikajärjestykseen."
+msgstr "Perheet eivät ole aikajärjestyksessä"
 
 #: ../gramps/plugins/tool/verify.py:2572
 msgid "Family has events with role Unknown"
 msgstr "Perheellä on tapahtumia, joiden rooli on tuntematon"
 
 #: ../gramps/plugins/tool/verify.py:2585
-#, fuzzy
-#| msgid "Personal events of the children"
 msgid "Person has events with role Unknown"
-msgstr "Lasten henkilökohtaiset tapahtumat"
+msgstr "Henkilöllä on tapahtumia, joiden rooli on tuntematon"
 
 #: ../gramps/plugins/tool/verify.py:2598
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Family events are not in chronological order"
-msgstr "Lajitellaanko tapahtumat aikajärjestykseen."
+msgstr "Perhetapahtumat eivät ole aikajärjestyksessä"
 
 #: ../gramps/plugins/tool/verify.py:2611
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Person events are not in chronological order"
-msgstr "Lajitellaanko tapahtumat aikajärjestykseen."
+msgstr "Henkilötapahtumat eivät ole aikajärjestyksessä"
 
 #: ../gramps/plugins/view/citationlistview.py:107
 msgid "Source: Title"
