@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-08 22:33+0100\n"
-"PO-Revision-Date: 2023-09-09 05:40+0000\n"
+"PO-Revision-Date: 2023-09-09 08:20+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -18781,7 +18781,7 @@ msgstr "כשל"
 
 #: ../gramps/gui/plug/_windows.py:1523 ../gramps/gui/widgets/grampletbar.py:610
 msgid "OK"
-msgstr "אישור"
+msgstr "&#9745;"
 
 #: ../gramps/gui/plug/_windows.py:1631
 msgid "Plugin name"
