@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-08 22:33+0100\n"
-"PO-Revision-Date: 2023-09-09 08:20+0000\n"
+"PO-Revision-Date: 2023-09-09 16:22+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -390,7 +390,7 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>איתור אנשים<br/></b>כברירת מחדל, כל שם משפחה בתצוגת 'אנשים' מופיע פעם אחת "
+"<b>איתור אנשים<br/></b>כברירת מחדל, כל שם משפחה במצג 'אנשים' מופיע פעם אחת "
 "בלבד. בהקשה על החץ משמאל לשם, הרשימה תורחב וכל האנשים בשם משפחה זה יוצגו. "
 "לאיתור שם משפחה מרשימה ארוכה, נא להתחיל להקליד את שם המשפחה (לא שם פרטי) . "
 "הסמן ימוקם על שם המשפחה הראשון ברשימה שתואם את האותיות שהוזנו."
@@ -400,7 +400,7 @@ msgid ""
 "<b>The Family View</b><br/>The Family View is used to display a typical "
 "family unit as two parents and their children."
 msgstr ""
-"<b>מצג משפחה<br/></b>תצוגת המשפחה משמשת להצגת יחידה משפחתית טיפוסית, בת שני "
+"<b>מצג משפחה<br/></b>מצג משפחה משמש להצגת יחידה משפחתית טיפוסית, בת זוג "
 "הורים וצאצאיהם."
 
 #: ../data/tips.xml:22
@@ -478,9 +478,9 @@ msgid ""
 "Each separate view can also be configured under \"View &gt; Configure View..."
 "\"."
 msgstr ""
-"<b>הגדרת העדפות<br/></b>ניתן לשנות מספר הגדרות מתפריט 'עריכה > העדפות...' "
-"כגון הנתיב לקובצי המדיה, וכן התאמת היבטים רבים נוספים של גרמפס. ניתן גם "
-"להגדיר כל מצג בנפרד מתפריט 'תצוגה > תצור תצוגה...'."
+"<b>הגדרת העדפות<br/></b> מתפריט 'עריכה > העדפות...' מאפשר שינוי מספר הגדרות "
+"כמו, הנתיב לקובצי המדיה, וכן, התאמת היבטים רבים נוספים של גרמפס. ניתן גם "
+"להגדיר כל מצג בנפרד מתפריט 'מצג > תצור מצג...'."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -2040,7 +2040,7 @@ msgstr "מנתח התאריך ל '%s' אינו זמין, שימוש ברירת �
 #: ../gramps/gen/datehandler/__init__.py:112
 #, python-format
 msgid "Date displayer for '%s' not available, using default"
-msgstr "תצוגת התאריך ל '%s' אינה זמינה, שימוש ברירת המחדל"
+msgstr "מצג תאריך ל '%s' לא זמין, שימוש ברירת המחדל"
 
 #. Translators: Numeric year, month, day
 #: ../gramps/gen/datehandler/_datedisplay.py:74
@@ -15475,8 +15475,8 @@ msgid ""
 "This resets the filter parameters to empty state.  The 'Find' button should "
 "be used to actually update the view to its defaults."
 msgstr ""
-"אפוס משתני הסינון למצב ריק. נא להשתמש בלחצן 'מציא' כדי לעדכן את התצוגה "
-"לברירת המחדל."
+"אפוס משתני הסינון ל'מצב ריק'. לעדכון המצג לברירת המחדל, נא להשתמש בלחצן ה "
+"'חיפוש'."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:91
 msgid "Reset"
@@ -17786,7 +17786,7 @@ msgstr "ספרים…"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "Configure the active view"
-msgstr "תצור התצוגה הפעילה"
+msgstr "תצור המצג הפעיל"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "Connect to a recent database"
@@ -18026,7 +18026,7 @@ msgid ""
 msgstr ""
 "\n"
 "גרמפס לא הצליח לאתחל. נא לדווח על תקל.\n"
-"יתכן וזה עקב שגיאה במצג (צד ג׳) בהפעלה.\n"
+"יתכן כי נגרם כתוצה משגיאת אתחול מצג (צד ג׳).\n"
 "על מנת להשתמש במצג אחר, נא לא לטעון אילן־יוחסין, לשנות תצוגה ורק אז לטעון את "
 "אילן־היוחסין הרצוי.\n"
 "ניתן גם לשנות באופן ידני את מצג האתחול בקובץ gramps.ini\n"
@@ -19019,7 +19019,7 @@ msgstr[1] "{number_of} אנשים"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:185
 msgid "Click to see preview of unfiltered data"
-msgstr "נא להקיש לצפיה בתצוגה מקדימה של מידע לא מסונן"
+msgstr "הקשה לתצוגה מקדימה של מידע 'לא מסונן'"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:197
 msgid "_Do not include records marked private"
@@ -19032,7 +19032,7 @@ msgstr "שינוי סדר"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:218
 msgid "Calculate Previews"
-msgstr "חישוב תצוגה מקדימה"
+msgstr "תצוגה מקדימה חישוב"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:303
 msgid "_Person Filter"
@@ -19040,7 +19040,7 @@ msgstr "_מסנן אנשים"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:321
 msgid "Click to see preview after person filter"
-msgstr "נא להקיש לתצוגה מקדימה של תוצאות סינון 'אדם'"
+msgstr "הקשה לתצוגה מקדימה של מסנן 'אדם'"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:326
 msgid "_Note Filter"
@@ -19048,7 +19048,7 @@ msgstr "_מסנן הערות"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:344
 msgid "Click to see preview after note filter"
-msgstr "נא להקיש לתצוגה מקדימה של תוצאות סינון 'הערות'"
+msgstr "הקשה לתצוגה מקדימה של מסנן 'הערות'"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:347
 msgid "Privacy Filter"
@@ -19056,7 +19056,7 @@ msgstr "מסנן פרטיות"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:355
 msgid "Click to see preview after privacy filter"
-msgstr "נא להקיש לתצוגה מקדימה של מסנן 'פרטיות'"
+msgstr "הקשה לתצוגה מקדימה שלמסנן 'פרטיות'"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:358
 msgid "Living Filter"
@@ -19064,7 +19064,7 @@ msgstr "מסנן בחיים"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:367
 msgid "Click to see preview after living filter"
-msgstr "נא להקיש לתצוגה מקדימה של תוצאות סינון 'חיים'"
+msgstr "הקשה לתצוגה מקדימה של מסנן 'בחיים'"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:371
 msgid "Reference Filter"
@@ -19072,7 +19072,7 @@ msgstr "מסנן הפניה"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:379
 msgid "Click to see preview after reference filter"
-msgstr "נא להקיש לתצוגה מקדימה של מסנן הפניה"
+msgstr "הקשה לתצוגה מקדימה של מסנן 'הפניות'"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:430
 msgid "Hide order"
@@ -19852,7 +19852,7 @@ msgstr "שגיאה בשמירת מידע גיבוי"
 
 #: ../gramps/gui/viewmanager.py:1590
 msgid "Failed Loading View"
-msgstr "כשל בטעינת התצוגה"
+msgstr "כשל בטעינת מצג"
 
 #: ../gramps/gui/viewmanager.py:1592
 #, python-format
@@ -20127,7 +20127,7 @@ msgstr "%(cat)s - %(view)s"
 #: ../gramps/gui/views/pageview.py:660
 #, python-format
 msgid "Configure %s View"
-msgstr "קביעת תצורת תצוגת %s"
+msgstr "תצור מצג %s"
 
 #: ../gramps/gui/views/pageview.py:678
 #, python-format
@@ -20666,11 +20666,11 @@ msgstr "חילול מסמכים בתסדיר גרפיקה וקטורית הני�
 
 #: ../gramps/plugins/docgen/gtkprint.glade:6
 msgid "Print Preview"
-msgstr "תצוגה מקדימה להדפסה"
+msgstr "תצוגת הדפסה מקדימה"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:26
 msgid "Closes print preview window"
-msgstr "סגירת חלון תצוגה מקדימה הדפסה"
+msgstr "סגירת חלון תצוגת הדפסה מקדימה"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:41
 msgid "Prints the current file"
@@ -21125,7 +21125,7 @@ msgid ""
 "Display Format"
 msgstr ""
 "נישואין\n"
-"תסדיר תצוגה"
+"תסדיר מצג"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1008
 #: ../gramps/plugins/drawreport/descendtree.py:1735
@@ -21507,7 +21507,7 @@ msgstr "מספרי ימים בלוח-השנה"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:785
 msgid "Daily text display"
-msgstr "תצוגת מלל יומית"
+msgstr "מצג מלל יומי"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:787
 msgid "Holiday text display"
@@ -21657,11 +21657,11 @@ msgid ""
 "Display Format"
 msgstr ""
 "צאצא\n"
-"תסדיר תצוגה"
+"תסדיר מצג"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1711
 msgid "Display format for a descendant."
-msgstr "תסדיר לתצוגת צאצאים."
+msgstr "תסדיר מצג צאצאים."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1722
 msgid ""
@@ -21673,7 +21673,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/descendtree.py:1724
 msgid "Display format for a spouse."
-msgstr "תסדיר תצוגה לבן זוג."
+msgstr "תסדיר מצג בן זוג."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1766
 msgid "inter-box Y scale factor"
@@ -23164,7 +23164,7 @@ msgstr "גרמפלט להצגת פרטי מקום"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:420
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:428
 msgid "Media Preview"
-msgstr "תצוגה מקדימה מדיה"
+msgstr "תצוגת מדיה מקדימה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:421
 msgid "Gramplet showing a preview of a media object"
@@ -24384,7 +24384,7 @@ msgstr "Example.gramps"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:57
 msgid "Minimum number of items to display"
-msgstr "מספר פריטים מזערי לתצוגה"
+msgstr "מספר פריטים מזערי שיוצגו"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:63
 msgid "Descendant generations per ancestor generation"
@@ -30486,7 +30486,7 @@ msgstr "אספקת התשתית הנדרשת למצג רשימות מקומות.
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:296
 msgid "Provides variable substitution on display lines."
-msgstr "אספקת החלפת שונות בקווי תצוגה."
+msgstr "אפשור החלפת משתנים במצג קווים."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:315
 msgid ""
@@ -31856,7 +31856,7 @@ msgstr "סרגל צד סוגי־אב"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:36
 msgid "A sidebar to allow the selection of view categories"
-msgstr "סרגל צד שמאפשר בחירת קטגוריות תצוגה"
+msgstr "סרגל צד שמאפשר בחירת סוג־אב מצג"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:44
 msgid "Category"
@@ -32063,7 +32063,7 @@ msgstr "סגנון מלל כותרת"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:749
 msgid "Data text display"
-msgstr "תצוגת מלל נתונים"
+msgstr "מצג מלל נתונים"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:754
 msgid "Day text style"
@@ -33458,7 +33458,7 @@ msgstr "שינוי רישיות"
 #: ../gramps/plugins/tool/eventcmp.py:311
 #: ../gramps/plugins/tool/patchnames.py:477
 msgid "Building display"
-msgstr "בנית תצוגה"
+msgstr "בנית מצג"
 
 #: ../gramps/plugins/tool/changetypes.glade:91
 msgid ""
@@ -34792,7 +34792,7 @@ msgstr "הי_פוך בחירה"
 #: ../gramps/plugins/tool/removeunused.glade:344
 #: ../gramps/plugins/tool/verify.glade:904
 msgid "Double-click on a row to view/edit data"
-msgstr "נא להקיש כפולה על השורה לתצוגת/עריכת נתונים"
+msgstr "הקשה כפולה על שורה להצגת/עריכת נתונים"
 
 #: ../gramps/plugins/tool/removeunused.py:72
 msgid "Unused Objects"
@@ -36201,7 +36201,7 @@ msgstr "כל המקומות הידועים"
 
 #: ../gramps/plugins/view/geography.gpr.py:200
 msgid "A view showing all places of the database."
-msgstr "תצוגת כל המקומות בעץ המשפחה."
+msgstr "הצגת כל המקומות בעץ המשפחה."
 
 #: ../gramps/plugins/view/geography.gpr.py:216
 msgid "All places related to Events"
@@ -36209,7 +36209,7 @@ msgstr "כל המקומות הקשורים לאירוע"
 
 #: ../gramps/plugins/view/geography.gpr.py:217
 msgid "A view showing all the event places of the database."
-msgstr "תצוגת כל האירועים בעץ המשפחה."
+msgstr "הצגת כל האירועים בעץ המשפחה."
 
 #: ../gramps/plugins/view/geomoves.py:210
 msgid "Descendants of the active person."
@@ -36528,15 +36528,15 @@ msgstr "גודל עץ"
 
 #: ../gramps/plugins/view/personlistview.py:61
 msgid "Person View"
-msgstr "תצוגת אדם"
+msgstr "מצג 'אדם'"
 
 #: ../gramps/plugins/view/persontreeview.py:73
 msgid "People Tree View"
-msgstr "תצוגת עץ אנשים"
+msgstr "מצג 'עץ' אנשים"
 
 #: ../gramps/plugins/view/placelistview.py:54
 msgid "Place View"
-msgstr "תצוגת מוקם"
+msgstr "מצג מוקם"
 
 #: ../gramps/plugins/view/placetreeview.py:62
 msgid "Place Tree View"
