@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-08 22:33+0100\n"
-"PO-Revision-Date: 2023-09-07 01:07+0000\n"
+"PO-Revision-Date: 2023-09-09 08:20+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -18955,8 +18955,6 @@ msgid "No matching addons found."
 msgstr "Vastaavia laajennuksia ei löytynyt."
 
 #: ../gramps/gui/plug/_windows.py:737
-#, fuzzy
-#| msgid "Allow Gramps to install required python modules"
 msgid "Allow Gramps to install required Python modules"
 msgstr "Salli Grampsin asentaa tarvittavat python-moduulit"
 
@@ -32415,10 +32413,8 @@ msgid "French Relationship Calculator"
 msgstr "Ranskalaisten suhdelaskin"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:241
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Hebrew Relationship Calculator"
-msgstr "Suhdelaskin"
+msgstr "Heprealainen suhdelaskin"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:265
 msgid "Croatian Relationship Calculator"
@@ -36102,16 +36098,12 @@ msgid "Old age but no death"
 msgstr "Korkea ikä mutta ei kuollut"
 
 #: ../gramps/plugins/tool/verify.py:2330
-#, fuzzy
-#| msgid "Birth equals death"
 msgid "Birth date equals death date"
-msgstr "Syntymä on sama kuin kuolema"
+msgstr "Syntymäaika on sama kuin kuolinpäivä"
 
 #: ../gramps/plugins/tool/verify.py:2351
-#, fuzzy
-#| msgid "Birth equals marriage"
 msgid "Birth date equals marriage date"
-msgstr "Syntymä on sama kuin avioliitto"
+msgstr "Syntymäaika on sama kuin avioliittopäivä"
 
 #: ../gramps/plugins/tool/verify.py:2372
 #, fuzzy
@@ -36121,7 +36113,7 @@ msgstr "Kuolema on sama kuin avioliitto"
 
 #: ../gramps/plugins/tool/verify.py:2433
 msgid "Baptism too late according to family tradition"
-msgstr ""
+msgstr "Kaste liian myöhään perheperinteen mukaan"
 
 #: ../gramps/plugins/tool/verify.py:2458
 #, fuzzy
@@ -36143,7 +36135,7 @@ msgstr "Lajitellaanko tapahtumat aikajärjestykseen."
 
 #: ../gramps/plugins/tool/verify.py:2572
 msgid "Family has events with role Unknown"
-msgstr ""
+msgstr "Perheellä on tapahtumia, joiden rooli on tuntematon"
 
 #: ../gramps/plugins/tool/verify.py:2585
 #, fuzzy
