@@ -428,7 +428,7 @@ class AddonManager(ManagedWindow):
         self.addon_combo.append_text(_("All addons"))
         self.addon_combo.append_text(_("Not installed"))
         self.addon_combo.append_text(_("Installed"))
-        self.addon_combo.append_text(_("Update"))
+        self.addon_combo.append_text(_("Updates"))
         self.addon_combo.set_active(0)
         self.addon_combo.connect("changed", self.__combo_changed)
         hbox.pack_start(self.addon_combo, False, False, 0)
@@ -629,7 +629,7 @@ class AddonManager(ManagedWindow):
         if addon_text == _("Installed"):
             if "_v" not in row.addon:
                 return False
-        if addon_text == _("Update"):
+        if addon_text == _("Updates"):
             if "_v" not in row.addon:
                 return False
             if row.addon["v"] == row.addon["_v"]:
@@ -741,7 +741,7 @@ class AddonManager(ManagedWindow):
         grid.attach(install, 1, row, 1, 1)
 
         heading2 = Gtk.Label()
-        text = _("Updates")
+        text = _("Scheduled update checks")
         heading2.set_text('<span weight="bold">%s</span>' % text)
         heading2.set_use_markup(True)
         heading2.set_halign(Gtk.Align.START)
