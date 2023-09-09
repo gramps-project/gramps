@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-08 22:33+0100\n"
-"PO-Revision-Date: 2023-09-08 21:34+0000\n"
+"PO-Revision-Date: 2023-09-09 05:40+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -18565,10 +18565,8 @@ msgid "No matching addons found."
 msgstr "לא נמצאו תוספים מתאימים."
 
 #: ../gramps/gui/plug/_windows.py:737
-#, fuzzy
-#| msgid "Allow Gramps to install required python modules"
 msgid "Allow Gramps to install required Python modules"
-msgstr "לאפשר לגרמפס להתקין פירקני פייתון נדרשים"
+msgstr "לאפשר לגרמפס להתקין פרקני פייתון נדרשים"
 
 #: ../gramps/gui/plug/_windows.py:744
 #: ../gramps/plugins/webreport/basepage.py:1901
@@ -31785,10 +31783,8 @@ msgid "French Relationship Calculator"
 msgstr "מחשבון קשרי־משפחה צרפתי"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:241
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Hebrew Relationship Calculator"
-msgstr "מחשבון קשרי־משפחה"
+msgstr "מחשבון קשרי־משפחה ישראלי"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:265
 msgid "Croatian Relationship Calculator"
@@ -35428,66 +35424,48 @@ msgid "Old age but no death"
 msgstr "גיל מבוגר אך ללא פטירה"
 
 #: ../gramps/plugins/tool/verify.py:2330
-#, fuzzy
-#| msgid "Birth equals death"
 msgid "Birth date equals death date"
 msgstr "תאריך הלידה שווה לתאריך הפטירה"
 
 #: ../gramps/plugins/tool/verify.py:2351
-#, fuzzy
-#| msgid "Birth equals marriage"
 msgid "Birth date equals marriage date"
-msgstr "תאריך הלידה שווה לתאריך נישואין"
+msgstr "תאריך הלידה שווה לתאריך הנישואין"
 
 #: ../gramps/plugins/tool/verify.py:2372
-#, fuzzy
-#| msgid "Death equals marriage"
 msgid "Death date equals marriage date"
-msgstr "נישואין זהים לפטירה"
+msgstr "תאריך הפטירה שווה לתאריך הנישואין"
 
 #: ../gramps/plugins/tool/verify.py:2433
 msgid "Baptism too late according to family tradition"
-msgstr ""
+msgstr "ההטבלה מאוחרת מדי לפי המסורת המשפחתית"
 
 #: ../gramps/plugins/tool/verify.py:2458
-#, fuzzy
-#| msgid "Burial date"
 msgid "Burial too late"
-msgstr "תאריך קבורה"
+msgstr "תאריך הקבורה מאוחר מדי"
 
 #: ../gramps/plugins/tool/verify.py:2495
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Children are not in chronological order"
-msgstr "האם למיין אירועים בסדר כרונולוגי."
+msgstr "הילדים אינם בסדר כרונולוגי"
 
 #: ../gramps/plugins/tool/verify.py:2559
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Families are not in chronological order"
-msgstr "האם למיין אירועים בסדר כרונולוגי."
+msgstr "המשפחות אינן בסדר כרונולוגי"
 
 #: ../gramps/plugins/tool/verify.py:2572
 msgid "Family has events with role Unknown"
-msgstr ""
+msgstr "למשפחה יש אירועים עם תפקיד לא ידוע"
 
 #: ../gramps/plugins/tool/verify.py:2585
-#, fuzzy
-#| msgid "Personal events of the children"
 msgid "Person has events with role Unknown"
-msgstr "אירועים אישים של הצאצאים"
+msgstr "לאדם יש אירועים עם תפקיד לא ידוע"
 
 #: ../gramps/plugins/tool/verify.py:2598
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Family events are not in chronological order"
-msgstr "האם למיין אירועים בסדר כרונולוגי."
+msgstr "אירועי המשפחה אינם בסדר כרונולוגי"
 
 #: ../gramps/plugins/tool/verify.py:2611
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Person events are not in chronological order"
-msgstr "האם למיין אירועים בסדר כרונולוגי."
+msgstr "אירועי האדם אינם בסדר כרונולוגי"
 
 #: ../gramps/plugins/view/citationlistview.py:107
 msgid "Source: Title"
