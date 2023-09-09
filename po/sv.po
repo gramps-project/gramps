@@ -24,13 +24,14 @@
 # Pär Ekholm <pehlm@pekholm.org>, 2018, 2019, 2020.
 # Pär Ekholm <par.ekholm@pekholm.org>, 2021.
 # Pär Ekholm <github1@m.pekholm.org>, 2022, 2023.
+# Luna Jernberg <droidbittin@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-08 22:33+0100\n"
-"PO-Revision-Date: 2023-09-08 21:34+0000\n"
-"Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
+"PO-Revision-Date: 2023-09-09 05:40+0000\n"
+"Last-Translator: Luna Jernberg <droidbittin@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
 "Language: sv\n"
@@ -18851,10 +18852,8 @@ msgid "No matching addons found."
 msgstr "Inga matchande tillägg hittades."
 
 #: ../gramps/gui/plug/_windows.py:737
-#, fuzzy
-#| msgid "Allow Gramps to install required python modules"
 msgid "Allow Gramps to install required Python modules"
-msgstr "Tillåt Gramps att installera nödvändiga python-moduler"
+msgstr "Tillåt Gramps att installera nödvändiga Python-moduler"
 
 #: ../gramps/gui/plug/_windows.py:744
 #: ../gramps/plugins/webreport/basepage.py:1901
@@ -32254,10 +32253,8 @@ msgid "French Relationship Calculator"
 msgstr "Fransk släktskapsberäknare"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:241
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Hebrew Relationship Calculator"
-msgstr "Släktskapsberäknare"
+msgstr "Hebreisk släktskapsberäknare"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:265
 msgid "Croatian Relationship Calculator"
@@ -35928,66 +35925,48 @@ msgid "Old age but no death"
 msgstr "Hög ålder men ej död"
 
 #: ../gramps/plugins/tool/verify.py:2330
-#, fuzzy
-#| msgid "Birth equals death"
 msgid "Birth date equals death date"
-msgstr "Födelse är lika med döden"
+msgstr "Födelsedatum är lika med dödsdatum"
 
 #: ../gramps/plugins/tool/verify.py:2351
-#, fuzzy
-#| msgid "Birth equals marriage"
 msgid "Birth date equals marriage date"
-msgstr "Födelse är lika med giftermål"
+msgstr "Födelsedatum är lika med äktenskapsdatum"
 
 #: ../gramps/plugins/tool/verify.py:2372
-#, fuzzy
-#| msgid "Death equals marriage"
 msgid "Death date equals marriage date"
-msgstr "Död är lika med giftermål"
+msgstr "Dödsdatum är lika med äktenskapsdatum"
 
 #: ../gramps/plugins/tool/verify.py:2433
 msgid "Baptism too late according to family tradition"
-msgstr ""
+msgstr "Dop för sent enligt familjetradition"
 
 #: ../gramps/plugins/tool/verify.py:2458
-#, fuzzy
-#| msgid "Burial date"
 msgid "Burial too late"
-msgstr "Begravningdatum"
+msgstr "Begravning för sent"
 
 #: ../gramps/plugins/tool/verify.py:2495
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Children are not in chronological order"
-msgstr "Huruvida sortera händelser kronologiskt."
+msgstr "Barn är inte i kronologisk ordning"
 
 #: ../gramps/plugins/tool/verify.py:2559
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Families are not in chronological order"
-msgstr "Huruvida sortera händelser kronologiskt."
+msgstr "Familjer är inte i kronologisk ordning"
 
 #: ../gramps/plugins/tool/verify.py:2572
 msgid "Family has events with role Unknown"
-msgstr ""
+msgstr "Familjen har händelser med roll Okänd"
 
 #: ../gramps/plugins/tool/verify.py:2585
-#, fuzzy
-#| msgid "Personal events of the children"
 msgid "Person has events with role Unknown"
-msgstr "Personliga händelser för barnen"
+msgstr "Person har händelser med roll Okänd"
 
 #: ../gramps/plugins/tool/verify.py:2598
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Family events are not in chronological order"
-msgstr "Huruvida sortera händelser kronologiskt."
+msgstr "Familjehändelser är inte i kronologisk ordning"
 
 #: ../gramps/plugins/tool/verify.py:2611
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Person events are not in chronological order"
-msgstr "Huruvida sortera händelser kronologiskt."
+msgstr "Personhändelser är inte i kronologisk ordning"
 
 #: ../gramps/plugins/view/citationlistview.py:107
 msgid "Source: Title"
