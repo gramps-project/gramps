@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-09-09 16:22+0000\n"
+"PO-Revision-Date: 2023-09-10 04:58+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -3885,7 +3885,7 @@ msgstr "מובאות עם הערות המכילות <מחרוזת משנה>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py:47
 msgid "Matches citations whose notes contain text matching a substring"
-msgstr "שליפת מובאות שההערות שלהן מכילות מלל התואם למחרוזת משנה"
+msgstr "שליפת מובאות שההערות שלהן מכילות מלל שתואם למחרוזת משנה"
 
 #: ../gramps/gen/filters/rules/citation/_hasnoteregexp.py:43
 msgid "Citations having notes containing <text>"
@@ -3894,7 +3894,7 @@ msgstr "מובאות עם הערות המכילות <מלל>"
 #: ../gramps/gen/filters/rules/citation/_hasnoteregexp.py:45
 msgid ""
 "Matches citations whose notes contain text matching a regular expression"
-msgstr "שליפת מובאות שההערות שלהן מכילות מלל התואם לביטוי רגיל"
+msgstr "שליפת מובאות שההערות שלהן מכילות מלל שתואם לביטוי סדיר"
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:45
 msgid "Citations with a reference count of <count>"
@@ -3977,7 +3977,7 @@ msgstr "מובאות עם הערות מקור המכילות <מלל>"
 msgid ""
 "Matches citations whose source notes contain a substring or match a regular "
 "expression"
-msgstr "שליפת מובאות שהערות המקור שלהן מכילות מחרוזת משנה או ביטוי רגיל"
+msgstr "שליפת מובאות שהערות המקור שלהן מכילות מחרוזת משנה או ביטוי סדיר"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:51
 #: ../gramps/gen/filters/rules/event/_hastag.py:51
@@ -4026,7 +4026,7 @@ msgstr "שם מסנן מאגר:"
 msgid ""
 "Citations with a source with a repository reference matching the <repository "
 "filter>"
-msgstr "מובאות עם מקור והפניה למאגר, התואמים ל<מסנן מאגר>"
+msgstr "מובאות עם מקור והפניה למאגר, שתואמים ל<מסנן מאגר>"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:54
 msgid ""
@@ -4036,30 +4036,30 @@ msgstr "שליפת מובאות עם מקורות עם הפנית מאגר שת�
 
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:51
 msgid "Citations with source matching the <source filter>"
-msgstr "מובאות עם מקורות התואמים ל<מסנן מקור>"
+msgstr "מובאות עם מקורות שתואמים ל<מסנן מקור>"
 
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:53
 msgid ""
 "Matches citations with sources that match the specified source filter name"
-msgstr "שליפת מובאות עם מקורות התואמים לשם מסנן מקור שצוין"
+msgstr "שליפת מובאות עם מקורות שתואמים לשם מסנן מקור שצוין"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:50
 msgid "Citations with Id containing <text>"
-msgstr "מובאות עם מזהה המכיל <מלל>"
+msgstr "מובאות עם מזהה שמכיל <מלל>"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:52
 msgid "Matches citations whose Gramps ID matches the regular expression"
-msgstr "שליפת מובאות שמזהה גרמפס שלהן תואם לביטוי רגולרי"
+msgstr "שליפת מובאות שמזהה גרמפס שלהן תואם לביטוי סדיר"
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:50
 msgid "Citations with Source Id containing <text>"
-msgstr "מובאות עם מזהה מקור המכיל <מלל>"
+msgstr "מובאות עם מזהה מקור שמכיל <מלל>"
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:52
 msgid ""
 "Matches citations whose source has a Gramps ID that matches the regular "
 "expression"
-msgstr "שליפת מובאות שלמקור שלהן מזהה גרמפס התואם לביטוי רגולרי"
+msgstr "שליפת מובאות שלמקור שלהן מזהה גרמפס שתואם לביטוי סדיר"
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:46
 msgid "Every event"
@@ -4193,7 +4193,7 @@ msgstr "אירועים עם הערות המכילות < מחרוזת משנה>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotematchingsubstringof.py:45
 msgid "Matches events whose notes contain text matching a substring"
-msgstr "שליפת אירועים שההערות שלהם מכילות מלל התואם למחרוזת משנה"
+msgstr "שליפת אירועים שההערות שלהם מכילות מלל שתואם למחרוזת משנה"
 
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:42
 msgid "Events having notes containing <text>"
@@ -4201,7 +4201,7 @@ msgstr "אירועים עם הערות המכילות <מלל>"
 
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:44
 msgid "Matches events whose notes contain text matching a regular expression"
-msgstr "שליפת אירועים שההערות שלהם מכילות מלל התואם לביטוי רגיל"
+msgstr "שליפת אירועים שההערות שלהם מכילות מלל שתואם לביטוי סדיר"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:44
 msgid "Events with a reference count of <count>"
@@ -4237,11 +4237,11 @@ msgstr "שליפת אירועים מסוג מסוים "
 
 #: ../gramps/gen/filters/rules/event/_matchesfilter.py:46
 msgid "Events matching the <filter>"
-msgstr "אירועים התואמים ל<מסנן>"
+msgstr "אירועים שתואמים ל<מסנן>"
 
 #: ../gramps/gen/filters/rules/event/_matchesfilter.py:47
 msgid "Matches events matched by the specified filter name"
-msgstr "שליפת אירועים התואמים לשם המסנן שצוין"
+msgstr "שליפת אירועים שתואמים לשם המסנן שצוין"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:52
 #: ../gramps/gui/editors/filtereditor.py:613
@@ -4255,11 +4255,11 @@ msgstr "שם מסנן אנשים:"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:53
 msgid "Events of persons matching the <person filter>"
-msgstr "אירועי אנשים התואמים את <מסנן אנשים>"
+msgstr "אירועי אנשים שתואמים את <מסנן אנשים>"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:55
 msgid "Matches events of persons matched by the specified person filter name"
-msgstr "שליפת אירועי אנשים התואמים לשם מסנן אנשים שצוין"
+msgstr "שליפת אירועי אנשים שתואמים לשם מסנן אנשים שצוין"
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:51
 #: ../gramps/gui/editors/filtereditor.py:576
@@ -4268,13 +4268,13 @@ msgstr "שם מסנן מקום:"
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:52
 msgid "Events of places matching the <place filter>"
-msgstr "אירועים של מקומות התואמים את ה <מסנן מקום>"
+msgstr "אירועים של מקומות שתואמים את ה <מסנן מקום>"
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:54
 msgid ""
 "Matches events that occurred at places that match the specified place filter "
 "name"
-msgstr "שליפת אירועים שהתרחשו במקומות התואמים לשם מסנן מקום שצוין"
+msgstr "שליפת אירועים שהתרחשו במקומות שתואמים לשם מסנן מקום שצוין"
 
 #: ../gramps/gen/filters/rules/event/_matchessourceconfidence.py:47
 msgid "Events with at least one direct source >= <confidence level>"
@@ -4286,15 +4286,15 @@ msgstr "שליפת אירועים עם מקור ישיר אחד לפחות בר�
 
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:51
 msgid "Events with source matching the <source filter>"
-msgstr "אירועים עם מקורות התואמים ל<מסנן מקור>"
+msgstr "אירועים עם מקורות שתואמים ל<מסנן מקור>"
 
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:53
 msgid "Matches events with sources that match the specified source filter name"
-msgstr "שליפת אירועים בעלי מקורות התואמים לשם מסנן מקור שצוין"
+msgstr "שליפת אירועים בעלי מקורות שתואמים לשם מסנן מקור שצוין"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:49
 msgid "Events with Id containing <text>"
-msgstr "אירועים עם מזהה המכיל <מלל>"
+msgstr "אירועים עם מזהה שמכיל <מלל>"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:50
 msgid "Matches events whose Gramps ID matches the regular expression"
@@ -4329,11 +4329,11 @@ msgstr "מזהה אנשים:"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:48
 msgid "Families having child with Id containing <text>"
-msgstr "משפחות עם מזהה צאצא המכיל <מלל>"
+msgstr "משפחות עם מזהה צאצא שמכיל <מלל>"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:49
 msgid "Matches families where child has a specified Gramps ID"
-msgstr "שליפת משפחות של צאצא מזהה גרמפס שצוין"
+msgstr "שליפת משפחות של צאצא עם מזהה גרמפס שצוין"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:50
 #: ../gramps/gen/filters/rules/family/_childhasnameof.py:49
@@ -4361,7 +4361,7 @@ msgstr "שליפת משפחות שהוגדרו כ'פרטי'"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:48
 msgid "Families having father with Id containing <text>"
-msgstr "משפחות עם מזהה אב המכיל <מלל>"
+msgstr "משפחות עם מזהה אב שמכיל <מלל>"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:49
 msgid "Matches families whose father has a specified Gramps ID"
@@ -4467,7 +4467,7 @@ msgstr "משפחות עם הערות המכילות < מחרוזת משנה>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotematchingsubstringof.py:45
 msgid "Matches families whose notes contain text matching a substring"
-msgstr "שליפת משפחות שההערות שלהם מכילות מלל התואם למחרוזת משנה"
+msgstr "שליפת משפחות שההערות שלהם מכילות מלל שתואם למחרוזת משנה"
 
 #: ../gramps/gen/filters/rules/family/_hasnoteregexp.py:42
 msgid "Families having notes containing <text>"
@@ -4475,7 +4475,7 @@ msgstr "משפחות עם הערות המכילות <מלל>"
 
 #: ../gramps/gen/filters/rules/family/_hasnoteregexp.py:44
 msgid "Matches families whose notes contain text matching a regular expression"
-msgstr "שליפת משפחות שההערות שלהם מכילות מלל התואמים לביטוי רגיל"
+msgstr "שליפת משפחות שההערות שלהם מכילות מלל שתואמים לביטוי סדיר"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:44
 msgid "Families with a reference count of <count>"
@@ -4572,7 +4572,7 @@ msgstr "משפחות התואמות ל <מסנן>"
 
 #: ../gramps/gen/filters/rules/family/_matchesfilter.py:47
 msgid "Matches families matched by the specified filter name"
-msgstr "שליפת משפחות התואמים לשם מסנן שצוין"
+msgstr "שליפת משפחות שתואמים לשם מסנן שצוין"
 
 #: ../gramps/gen/filters/rules/family/_matchessourceconfidence.py:46
 msgid "Families with at least one direct source >= <confidence level>"
@@ -4609,27 +4609,27 @@ msgstr "שליפת משפחות בעלי אם עם שם (חלקי) שצוין"
 
 #: ../gramps/gen/filters/rules/family/_regexpchildname.py:47
 msgid "Families with child matching the <regex_name>"
-msgstr "משפחות עם צאצא התואם לשם <שם_ביטוי רגיל>"
+msgstr "משפחות עם צאצא שתואם לשם <שם_ביטוי סדיר>"
 
 #: ../gramps/gen/filters/rules/family/_regexpchildname.py:49
 msgid ""
 "Matches families where some child has a name that matches a specified "
 "regular expression"
-msgstr "שליפת משפחות שלמספר צאצאים שם התואם לביטוי רגיל שצוין"
+msgstr "שליפת משפחות שלמספר צאצאים שם שתואם לביטוי סדיר מסוים"
 
 #: ../gramps/gen/filters/rules/family/_regexpfathername.py:47
 msgid "Families with father matching the <regex_name>"
-msgstr "משפחות עם אב שתואם לביטוי <שם_ביטוי רגיל>"
+msgstr "משפחות עם אב שתואם לביטוי <שם_ביטוי סדיר>"
 
 #: ../gramps/gen/filters/rules/family/_regexpfathername.py:49
 msgid ""
 "Matches families whose father has a name matching a specified regular "
 "expression"
-msgstr "שליפת משפחות בהן שם האב תואם לביטוי רגיל שצוין"
+msgstr "שליפת משפחות בהן שם האב תואם לביטוי סדיר שצוין"
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:49
 msgid "Families with Id containing <text>"
-msgstr "משפחות עם מזהה המכיל <מלל>"
+msgstr "משפחות עם מזהה שמכיל <מלל>"
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:51
 msgid "Matches families whose Gramps ID matches the regular expression"
@@ -4637,17 +4637,17 @@ msgstr "שליפת משפחות שמזהה גרמפס שלהם תאום לביט
 
 #: ../gramps/gen/filters/rules/family/_regexpmothername.py:47
 msgid "Families with mother matching the <regex_name>"
-msgstr "משפחות עם אם שתואמת לביטוי <שם_ביטוי רגיל>"
+msgstr "משפחות עם אם שתואמת לביטוי <שם_ביטוי סדיר>"
 
 #: ../gramps/gen/filters/rules/family/_regexpmothername.py:49
 msgid ""
 "Matches families whose mother has a name matching a specified regular "
 "expression"
-msgstr "שליפת משפחות בהן שם האם תואם לביטוי רגיל שצוין"
+msgstr "שליפת משפחות בהן שם האם תואם לביטוי סדיר שצוין"
 
 #: ../gramps/gen/filters/rules/family/_searchchildname.py:47
 msgid "Families with any child matching the <name>"
-msgstr "משפחות עם צאצא כלשהו התואם ל<שם>"
+msgstr "משפחות עם צאצא כלשהו שתואם ל<שם>"
 
 #: ../gramps/gen/filters/rules/family/_searchchildname.py:49
 msgid "Matches families where any child has a specified (partial) name"
@@ -4655,7 +4655,7 @@ msgstr "שליפת משפחות, בהן מופיע צאצא כלשהו בשם (�
 
 #: ../gramps/gen/filters/rules/family/_searchfathername.py:47
 msgid "Families with father matching the <name>"
-msgstr "משפחות עם אב התואם ל<שם>"
+msgstr "משפחות עם אב שתואם ל<שם>"
 
 #: ../gramps/gen/filters/rules/family/_searchmothername.py:47
 msgid "Families with mother matching the <name>"
@@ -4705,7 +4705,7 @@ msgstr "שליפת מדיה בעלת מובאה עם ערך מסוים"
 
 #: ../gramps/gen/filters/rules/media/_hasidof.py:46
 msgid "Media object with <Id>"
-msgstr "אוב‎ייקט מדיה עם <מזהה>"
+msgstr "עצם מדיה עם <מזהה>"
 
 #: ../gramps/gen/filters/rules/media/_hasidof.py:47
 msgid "Matches a media object with a specified Gramps ID"
@@ -4747,7 +4747,7 @@ msgstr "אובייטי מדיה עם הערות המכילות < מחרוזת מ
 
 #: ../gramps/gen/filters/rules/media/_hasnotematchingsubstringof.py:46
 msgid "Matches media objects whose notes contain text matching a substring"
-msgstr "שליפת עצמי מדיה שההערות שלהם מכילות מלל התואם למחרוזת משנה"
+msgstr "שליפת עצמי מדיה שההערות שלהם מכילות מלל שתואם למחרוזת משנה"
 
 #: ../gramps/gen/filters/rules/media/_hasnoteregexp.py:42
 msgid "Media objects having notes containing <text>"
@@ -4756,7 +4756,7 @@ msgstr "עצמי מדיה עם הערות המכילות <מלל>"
 #: ../gramps/gen/filters/rules/media/_hasnoteregexp.py:44
 msgid ""
 "Matches media objects whose notes contain text matching a regular expression"
-msgstr "שליפת עצמי מדיה שההערות שלהם מכילות מלל שתואם לביטוי רגולרי"
+msgstr "שליפת עצמי מדיה שההערות שלהם מכילות מלל שתואם לביטוי סדיר"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:44
 msgid "Media objects with a reference count of <count>"
@@ -4796,7 +4796,7 @@ msgstr "עצמי מדיה שתואמים ל<מסנן>"
 
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:47
 msgid "Matches media objects matched by the specified filter name"
-msgstr "שליפת עצמי מדיה התואמים לשם המסנן שצוין"
+msgstr "שליפת עצמי מדיה שתואמים לשם המסנן שצוין"
 
 #: ../gramps/gen/filters/rules/media/_matchessourceconfidence.py:46
 msgid "Media with a direct source >= <confidence level>"
@@ -4903,7 +4903,7 @@ msgstr "הערות המכילות <מלל>"
 
 #: ../gramps/gen/filters/rules/note/_matchesregexpof.py:47
 msgid "Matches notes that contain a substring or match a regular expression"
-msgstr "שליפת הערות שמכילות מחרוזת משנה או תואמות לביטוי רגיל"
+msgstr "שליפת הערות שמכילות מחרוזת משנה או תואמות לביטוי סדיר"
 
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:46
 msgid "Notes containing <substring>"
@@ -4911,7 +4911,7 @@ msgstr "הערות המכילות < מחרוזת משנה>"
 
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:47
 msgid "Matches notes that contain text which matches a substring"
-msgstr "שליפת הערות שההערות שלהם מכילות מלל התואם למחרוזת משנה"
+msgstr "שליפת הערות שההערות שלהם מכילות מלל שתואם למחרוזת משנה"
 
 #: ../gramps/gen/filters/rules/note/_noteprivate.py:44
 msgid "Notes marked private"
@@ -4923,7 +4923,7 @@ msgstr "שליפת הערות המוגדרות כ'פרטי'"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:49
 msgid "Notes with Id containing <text>"
-msgstr "הערות עם מזהה המכיל <מלל>"
+msgstr "הערות עם מזהה שמכיל <מלל>"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:50
 msgid "Matches notes whose Gramps ID matches the regular expression"
@@ -4943,7 +4943,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:133
 msgid "Relationship path between <person> and people matching <filter>"
-msgstr "נתיב קשרי־משפחה בין <אדם> ואנשים התואמים ל<מסנן>"
+msgstr "נתיב קשרי־משפחה בין <אדם> ואנשים שתואמים ל<מסנן>"
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:134
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:48
@@ -5282,7 +5282,7 @@ msgstr "אנשים עם הערות המכילות < מחרוזת משנה>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotematchingsubstringof.py:45
 msgid "Matches people whose notes contain text matching a substring"
-msgstr "שליפת אנשים עם הערות המכילות מלל התואם למחרוזת משנה"
+msgstr "שליפת אנשים עם הערות המכילות מלל שתואם למחרוזת משנה"
 
 #: ../gramps/gen/filters/rules/person/_hasnoteregexp.py:42
 msgid "People having notes containing <text>"
@@ -5290,7 +5290,7 @@ msgstr "אנשים עם הערות המכילות <מלל>"
 
 #: ../gramps/gen/filters/rules/person/_hasnoteregexp.py:44
 msgid "Matches people whose notes contain text matching a regular expression"
-msgstr "שליפת אנשים שההערות שלהם מכילות מלל התואמים לביטוי רגיל"
+msgstr "שליפת אנשים שההערות שלהם מכילות מלל שתואמים לביטוי סדיר"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:47
 msgid "People who are neither male nor female"
@@ -5390,7 +5390,7 @@ msgstr "אנשים עם רשומות המכילות < מחרוזת משנה>"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:51
 msgid "Matches people whose records contain text matching a substring"
-msgstr "שליפת אנשים שהרשומות שלהם מכילות מלל התואם ל מחרוזת משנה"
+msgstr "שליפת אנשים שהרשומות שלהם מכילות מלל שתואם ל מחרוזת משנה"
 
 #: ../gramps/gen/filters/rules/person/_hasunknowngender.py:47
 msgid "People with unknown gender"
@@ -5491,7 +5491,7 @@ msgstr "חברי צאצאי משפחה של <משפחה>"
 msgid ""
 "Matches people that are descendants or the spouse of anybody matched by a "
 "filter"
-msgstr "שליפת אנשים שהם צאצאים או בני זוג של כל אחד התואם לְמסנן"
+msgstr "שליפת אנשים שהם צאצאים או בני זוג של כל אחד שתואם לְמסנן"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:48
 msgid "Descendants of <person>"
@@ -5507,7 +5507,7 @@ msgstr "שליפת צאצאים של <מסנן>"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantoffiltermatch.py:52
 msgid "Matches people that are descendants of anybody matched by a filter"
-msgstr "שליפת אנשים שהם צאצאים של כל אחד התואם למסנן"
+msgstr "שליפת אנשים שהם צאצאים של כל אחד שתואם למסנן"
 
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:49
 msgid "Duplicated ancestors of <person>"
@@ -5661,19 +5661,19 @@ msgstr "שם מסנן אירוע:"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:54
 msgid "Persons with events matching the <event filter>"
-msgstr "אנשים עם אירועים התואמים ל<מסנן אירוע>"
+msgstr "אנשים עם אירועים שתואמים ל<מסנן אירוע>"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:56
 msgid "Matches persons who have events that match a certain event filter"
-msgstr "שליפת אנשים עם אירועים התואמים למסנן אירועים מסוים"
+msgstr "שליפת אנשים עם אירועים שתואמים למסנן אירועים מסוים"
 
 #: ../gramps/gen/filters/rules/person/_matchesfilter.py:46
 msgid "People matching the <filter>"
-msgstr "אנשים התואמים ל <מסנן>"
+msgstr "אנשים שתואמים ל <מסנן>"
 
 #: ../gramps/gen/filters/rules/person/_matchesfilter.py:47
 msgid "Matches people matched by the specified filter name"
-msgstr "שליפת אנשים התואמים לשם המסנן שצוין"
+msgstr "שליפת אנשים שתואמים לשם המסנן שצוין"
 
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:46
 msgid "Persons with at least one direct source >= <confidence level>"
@@ -5765,7 +5765,7 @@ msgstr "שליפת אנשים ללא סימון פטירה שאינם מבוגר
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:48
 msgid "People with Id containing <text>"
-msgstr "אנשים עם מזהה המכיל <מלל>"
+msgstr "אנשים עם מזהה שמכיל <מלל>"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:49
 msgid "Matches people whose Gramps ID matches the regular expression"
@@ -5773,13 +5773,13 @@ msgstr "שליפת אנשים שמזהה גרמפס שלהם תאום לביטו
 
 #: ../gramps/gen/filters/rules/person/_regexpname.py:48
 msgid "People with a name matching <text>"
-msgstr "אנשים בעלי שם התואמים ל<מלל>"
+msgstr "אנשים בעלי שם שתואמים ל<מלל>"
 
 #: ../gramps/gen/filters/rules/person/_regexpname.py:50
 msgid ""
 "Matches people's names containing a substring or matching a regular "
 "expression"
-msgstr "שליפת שמות אנשים שמכילים מחרוזת משנה או התואמים לביטוי רגיל"
+msgstr "שליפת שמות אנשים שמכילים מחרוזת משנה או שתואמים לביטוי סדיר"
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:48
 msgid "Relationship path between <persons>"
@@ -5807,7 +5807,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_searchname.py:48
 msgid "People matching the <name>"
-msgstr "אנשים התואמים ל<שם>"
+msgstr "אנשים שתואמים ל<שם>"
 
 #: ../gramps/gen/filters/rules/place/_allplaces.py:46
 msgid "Every place"
@@ -5883,7 +5883,7 @@ msgstr "מקום עם <מזהה>"
 
 #: ../gramps/gen/filters/rules/place/_hasidof.py:47
 msgid "Matches a place with a specified Gramps ID"
-msgstr "שליפת מקום בעל מזהה גרמפס שצוין"
+msgstr "שליפת מקום עם מזהה גרמפס שצוין"
 
 #: ../gramps/gen/filters/rules/place/_hasnolatorlon.py:49
 msgid "Places with no latitude or longitude given"
@@ -5913,7 +5913,7 @@ msgstr "מקומות עם הערות המכילות < מחרוזת משנה>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotematchingsubstringof.py:45
 msgid "Matches places whose notes contain text matching a substring"
-msgstr "שליפת מקומות שההערות שלהם מכילות מלל התואם למחרוזת משנה"
+msgstr "שליפת מקומות שההערות שלהם מכילות מלל שתואם למחרוזת משנה"
 
 #: ../gramps/gen/filters/rules/place/_hasnoteregexp.py:42
 msgid "Places having notes containing <text>"
@@ -5921,7 +5921,7 @@ msgstr "מקומות עם הערות המכילות <מלל>"
 
 #: ../gramps/gen/filters/rules/place/_hasnoteregexp.py:44
 msgid "Matches places whose notes contain text matching a regular expression"
-msgstr "שליפת שמות אנשים שההערות שלהם מכילות מלל התואם לביטוי רגיל"
+msgstr "שליפת שמות אנשים שההערות שלהם מכילות מלל שתואם לביטוי סדיר"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:52
 msgid "Street:"
@@ -5929,7 +5929,7 @@ msgstr "רחוב:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:53
 msgid "Locality:"
-msgstr "שכונה:"
+msgstr "מקומיות:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:54
 msgid "City:"
@@ -6042,21 +6042,21 @@ msgstr "שליפת מקומות מוכלים בתוך מקום מסוים"
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:52
 msgid "Places of events matching the <event filter>"
-msgstr "מקומות אירועים התואמים ל <מסנן אירוע>"
+msgstr "מקומות אירועים שתואמים ל <מסנן אירוע>"
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:54
 msgid ""
 "Matches places where events happened that match the specified event filter "
 "name"
-msgstr "שליפת מקומות בהם אירועים התרחשו התואמים לשם מסנן אירועים מסוים"
+msgstr "שליפת מקומות בהם אירועים התרחשו שתואמים לשם מסנן אירועים מסוים"
 
 #: ../gramps/gen/filters/rules/place/_matchesfilter.py:46
 msgid "Places matching the <filter>"
-msgstr "מקומות התואמים ל <מסנן>"
+msgstr "מקומות שתואמים ל <מסנן>"
 
 #: ../gramps/gen/filters/rules/place/_matchesfilter.py:47
 msgid "Matches places matched by the specified filter name"
-msgstr "שליפת מקומות התואמים לשם המסנן שצוין"
+msgstr "שליפת מקומות שתואמים לשם המסנן שצוין"
 
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:46
 msgid "Place with a direct source >= <confidence level>"
@@ -6076,7 +6076,7 @@ msgstr "שליפת מקומות שהוגדרו כ'פרטי'"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:49
 msgid "Places with Id containing <text>"
-msgstr "מקומות עם מזהה המכיל <מלל>"
+msgstr "מקומות עם מזהה שמכיל <מלל>"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:50
 msgid "Matches places whose Gramps ID matches the regular expression"
@@ -6152,7 +6152,7 @@ msgstr "מאגרים עם הערות המכילות < מחרוזת משנה>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:46
 msgid "Matches repositories whose notes contain text matching a substring"
-msgstr "שליפת מאגרים שההערות שלהם מכילות מלל התואם למחרוזת משנה"
+msgstr "שליפת מאגרים שההערות שלהם מכילות מלל שתואם למחרוזת משנה"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:42
 msgid "Repositories having notes containing <text>"
@@ -6161,7 +6161,7 @@ msgstr "מאגרים עם הערות המכילות <מלל>"
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:44
 msgid ""
 "Matches repositories whose notes contain text matching a regular expression"
-msgstr "שליפת מאגרים שההערות שלהם מכילות מלל התואמים לביטוי רגיל"
+msgstr "שליפת מאגרים שההערות שלהם מכילות מלל שתואמים לביטוי סדיר"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:44
 msgid "Repositories with a reference count of <count>"
@@ -6189,7 +6189,7 @@ msgstr "מען URL:"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:53
 msgid "Repositories matching parameters"
-msgstr "מאגרים התואמים למשתנים"
+msgstr "מאגרים שתואמים למשתנים"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:54
 msgid "Matches Repositories with particular parameters"
@@ -6205,11 +6205,11 @@ msgstr "שליפת מאגרי מידע מתוייגים בתג מסוים"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:46
 msgid "Repositories matching the <filter>"
-msgstr "מאגרים התואמים ל<מסנן>"
+msgstr "מאגרים שתואמים ל<מסנן>"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:47
 msgid "Matches repositories matched by the specified filter name"
-msgstr "שליפת מאגרים התואמים לשם מסנן שצוין"
+msgstr "שליפת מאגרים שתואמים לשם מסנן שצוין"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:45
 msgid "Repositories with name containing <text>"
@@ -6297,7 +6297,7 @@ msgstr "מקורות עם הערות המכילות < מחרוזת משנה>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotematchingsubstringof.py:45
 msgid "Matches sources whose notes contain text matching a substring"
-msgstr "שליפת מקורות שההערות שלהם מכילות מלל התואמים למחרוזת משנה"
+msgstr "שליפת מקורות שההערות שלהם מכילות מלל שתואמים למחרוזת משנה"
 
 #: ../gramps/gen/filters/rules/source/_hasnoteregexp.py:42
 msgid "Sources having notes containing <text>"
@@ -6305,7 +6305,7 @@ msgstr "מקומות עם הערות המכילות <מלל>"
 
 #: ../gramps/gen/filters/rules/source/_hasnoteregexp.py:44
 msgid "Matches sources whose notes contain text matching a regular expression"
-msgstr "שליפת מקורות שההערות שלהם מכילות מלל התואמים לביטוי רגיל"
+msgstr "שליפת מקורות שההערות שלהם מכילות מלל שתואמים לביטוי סדיר"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:44
 msgid "Sources with a reference count of <count>"
@@ -6349,11 +6349,11 @@ msgstr "מקורות שתואמים ל<מסנן>"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:47
 msgid "Matches sources matched by the specified filter name"
-msgstr "שליפת מקורות התואמים לשם מסנן שצוין"
+msgstr "שליפת מקורות שתואמים לשם מסנן שצוין"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:46
 msgid "Sources with repository reference matching the <repository filter>"
-msgstr "מקורות עם הפניות למאגר, התואמים ל <מסנן מאגר>"
+msgstr "מקורות עם הפניות למאגר, שתואמים ל <מסנן מאגר>"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:48
 msgid ""
@@ -6607,7 +6607,7 @@ msgstr "רחוב"
 #: ../gramps/plugins/webreport/basepage.py:3207
 #: ../gramps/plugins/webreport/basepage.py:3285
 msgid "Locality"
-msgstr "שכונה"
+msgstr "מקומיות"
 
 #: ../gramps/gen/lib/address.py:123 ../gramps/gen/lib/location.py:94
 #: ../gramps/gen/lib/placetype.py:69 ../gramps/gui/configure.py:714
@@ -12829,7 +12829,7 @@ msgstr "לא ניתן לשנות את שם עץ המשפחה."
 
 #: ../gramps/gui/dbman.py:669
 msgid "Family Tree already exists, choose a unique name."
-msgstr "אילן־היוחסין כבר קיים, נא לבחור שם יחידאי."
+msgstr "אילן־יוחסין קיים כבר, נא לבחור שם יחידי."
 
 #: ../gramps/gui/dbman.py:723
 msgid "Extracting archive..."
@@ -15104,11 +15104,11 @@ msgstr "שימוש במתאר אות במדויק"
 
 #: ../gramps/gui/editors/filtereditor.py:611
 msgid "Regular-Expression matching:"
-msgstr "התאמות ביטוי רגיל (RegEx):"
+msgstr "התאמות ביטוי סדיר (RegEx):"
 
 #: ../gramps/gui/editors/filtereditor.py:612
 msgid "Use regular expression"
-msgstr "שימוש בביטוי רגולרי"
+msgstr "שימוש בביטוי סדיר"
 
 #: ../gramps/gui/editors/filtereditor.py:614
 msgid "Also family events where person is spouse"
@@ -15925,11 +15925,11 @@ msgstr "התאריך שבו הכתובת חוקית."
 #: ../gramps/gui/glade/editlocation.glade:314
 #: ../gramps/plugins/tool/ownereditor.glade:358
 msgid "_Locality:"
-msgstr "_ישוב:"
+msgstr "_מקומיות:"
 
 #: ../gramps/gui/glade/editaddress.glade:374
 msgid "The locality of the address"
-msgstr "הישוב של הכתובת"
+msgstr "המקומיות של הכתובת"
 
 #: ../gramps/gui/glade/editattribute.glade:93
 msgid "_Attribute:"
@@ -16055,7 +16055,7 @@ msgstr "מ_זהה יחודי:"
 
 #: ../gramps/gui/glade/editcitation.glade:240
 msgid "A unique ID to identify the citation"
-msgstr "מזהה יחידאי למובאה"
+msgstr "מזהה יחידי למובאה"
 
 #: ../gramps/gui/glade/editcitation.glade:360
 #: ../gramps/gui/glade/editevent.glade:390
@@ -16185,7 +16185,7 @@ msgstr ""
 #: ../gramps/gui/glade/editevent.glade:375
 #: ../gramps/gui/glade/editeventref.glade:451
 msgid "A unique ID to identify the event"
-msgstr "מזהה יחידאי לאירוע"
+msgstr "מזהה יחידי לאירוע"
 
 #: ../gramps/gui/glade/editeventref.glade:85
 #: ../gramps/gui/glade/editplaceref.glade:86
@@ -16248,7 +16248,7 @@ msgstr "מידע קשר־משפחה"
 
 #: ../gramps/gui/glade/editfamily.glade:683
 msgid "A unique ID for the family"
-msgstr "מזהה יחידאי למשפחה"
+msgstr "מזהה יחידי למשפחה"
 
 #: ../gramps/gui/glade/editfamily.glade:698
 #: ../gramps/gui/glade/editname.glade:102
@@ -16402,7 +16402,7 @@ msgstr "תיקיה"
 
 #: ../gramps/gui/glade/editmedia.glade:302
 msgid "A unique ID to identify the Media object."
-msgstr "מזהה יחידאי לפריט המדיה."
+msgstr "מזהה יחידי לפריט המדיה."
 
 #: ../gramps/gui/glade/editmedia.glade:346
 msgid ""
@@ -16635,7 +16635,7 @@ msgstr "סוג לסיווג ההערה."
 
 #: ../gramps/gui/glade/editnote.glade:179
 msgid "A unique ID to identify the note."
-msgstr "מזהה יחידאי להערה."
+msgstr "מזהה יחידי להערה."
 
 #: ../gramps/gui/glade/editnote.glade:190
 msgid "_Preformatted"
@@ -16719,7 +16719,7 @@ msgstr "מ_גדר:"
 
 #: ../gramps/gui/glade/editperson.glade:633
 msgid "A unique ID for the person."
-msgstr "מזהה יחידאי לאדם."
+msgstr "מזהה יחיד לאדם."
 
 #: ../gramps/gui/glade/editpersonref.glade:97
 msgid "_Person:"
@@ -16823,7 +16823,7 @@ msgstr ""
 #: ../gramps/gui/glade/editplace.glade:267
 #: ../gramps/gui/glade/editplaceref.glade:496
 msgid "A unique ID to identify the place"
-msgstr "מזהה יחידאי למקום"
+msgstr "מזהה יחידי למקום"
 
 #: ../gramps/gui/glade/editplace.glade:295
 #: ../gramps/gui/glade/editplaceref.glade:524
@@ -16935,7 +16935,7 @@ msgstr ""
 #: ../gramps/gui/glade/editreporef.glade:370
 #: ../gramps/gui/glade/editrepository.glade:179
 msgid "A unique ID to identify the repository."
-msgstr "מזהה יחידאי למאגר מידע."
+msgstr "מזהה יחיד למאגר מידע."
 
 #: ../gramps/gui/glade/editreporef.glade:424
 #: ../gramps/gui/glade/editrepository.glade:144
@@ -16976,7 +16976,7 @@ msgstr "_קיצור:"
 
 #: ../gramps/gui/glade/editsource.glade:214
 msgid "A unique ID to identify the source"
-msgstr "מזהה יחידאי למקור"
+msgstr "מזהה יחידי למקור"
 
 #: ../gramps/gui/glade/editurl.glade:96
 msgid "_Web address:"
@@ -22945,17 +22945,17 @@ msgstr "אין אילן־יוחסין טעון."
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:156
 msgid "Total unique given names"
-msgstr "סך־כל השמות הפרטיים היחידאיים"
+msgstr "סך־כל מספר שמות פרטיים יחדים"
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:158
 msgid "Total given names showing"
-msgstr "סך־כל השמות הפרטיים שמוצגים"
+msgstr "סך־כל מספר שמות פרטיים מוצגים"
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:159
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:187
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:116
 msgid "Total people"
-msgstr "סך־כל האנשים"
+msgstr "סך־כל מספר אנשים"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:49
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:57
@@ -24060,7 +24060,7 @@ msgstr "מידע משפחתי"
 #: ../gramps/plugins/gramplet/statsgramplet.py:191
 #: ../gramps/plugins/webreport/statistics.py:152
 msgid "Unique surnames"
-msgstr "שמות משפחה יחידאיים"
+msgstr "שמות משפחה יחידים"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:194
 #: ../gramps/plugins/importer/importxml.py:353
@@ -24076,12 +24076,12 @@ msgstr "אנשים עם עצמי מדיה"
 #: ../gramps/plugins/gramplet/statsgramplet.py:204
 #: ../gramps/plugins/webreport/statistics.py:160
 msgid "Total number of media object references"
-msgstr "סך־כל הפניות לעצמי מדיה"
+msgstr "סך־כל מספר הפניות לעצמי מדיה"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:211
 #: ../gramps/plugins/webreport/statistics.py:167
 msgid "Number of unique media objects"
-msgstr "מספר עצמי מדיה יחידאיים"
+msgstr "מספר עצמי מדיה יחידים"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:217
 #: ../gramps/plugins/webreport/statistics.py:172
@@ -24120,11 +24120,11 @@ msgstr "גודל גופן מרבי"
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:184
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:114
 msgid "Total unique surnames"
-msgstr "סך־כל שמות המשפחה היחידאיים"
+msgstr "סך־כל מספר שמות משפחה יחידים"
 
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:186
 msgid "Total surnames showing"
-msgstr "סך־כל שמות המשפחה שמוצגים"
+msgstr "סך־כל שמות משפחה מוצגים"
 
 #: ../gramps/plugins/gramplet/todo.py:63
 #: ../gramps/plugins/gramplet/todogramplet.py:63
@@ -31309,7 +31309,7 @@ msgstr "אנשים מנותקים"
 #: ../gramps/plugins/quickview/filterbyname.py:69
 msgctxt "Filtering_on"
 msgid "unique surnames"
-msgstr "שמות משפחה יחידאיים"
+msgstr "שמות משפחה יחידים"
 
 #: ../gramps/plugins/quickview/filterbyname.py:70
 msgctxt "Filtering_on"
@@ -31324,7 +31324,7 @@ msgstr "הפניות מדיה"
 #: ../gramps/plugins/quickview/filterbyname.py:72
 msgctxt "Filtering_on"
 msgid "unique media"
-msgstr "מדיה יחידאית"
+msgstr "מדיה יחידית"
 
 #: ../gramps/plugins/quickview/filterbyname.py:73
 msgctxt "Filtering_on"
@@ -31403,7 +31403,7 @@ msgstr "מדיה"
 
 #: ../gramps/plugins/quickview/filterbyname.py:498
 msgid "Unique Media"
-msgstr "מדיה יחידאית"
+msgstr "מדיה יחידית"
 
 #: ../gramps/plugins/quickview/filterbyname.py:505
 msgid "Missing Media"
@@ -31694,7 +31694,7 @@ msgstr "שליפת אנשים עם שם משפחה זהה"
 
 #: ../gramps/plugins/quickview/samesurnames.py:73
 msgid "People matching the <given>"
-msgstr "אנשים התואמים ל<פרטי>"
+msgstr "אנשים שתואמים ל<פרטי>"
 
 #: ../gramps/plugins/quickview/samesurnames.py:74
 msgid "Matches people with same given name"
@@ -32973,8 +32973,8 @@ msgid ""
 "Total ancestors in generations %(second_generation)d to %(last_generation)d "
 "is %(count)d. %(percent)s"
 msgstr ""
-"סך־כל האבות הקדמונים בדורות %(second_generation)d עד %(last_generation)d הוא "
-"%(count)d. %(percent)s"
+"סך־כל מספר אבות קדמונים מדור %(second_generation)d עד %(last_generation)d "
+"הוא %(count)d. %(percent)s"
 
 #: ../gramps/plugins/textreport/placereport.py:136
 #: ../gramps/plugins/textreport/placereport.py:151
@@ -33175,7 +33175,7 @@ msgstr "אנשים מנותקים: %d"
 #: ../gramps/plugins/textreport/summary.py:221
 #, python-format
 msgid "Unique surnames: %d"
-msgstr "שמות משפחה יחידאיים: %d"
+msgstr "שמות משפחה יחידים: %d"
 
 #: ../gramps/plugins/textreport/summary.py:225
 #, python-format
@@ -33235,12 +33235,12 @@ msgstr "מספר מאגרים: %d"
 #: ../gramps/plugins/textreport/summary.py:342
 #, python-format
 msgid "Number of unique media objects: %d"
-msgstr "מספר עצמי מדיה יחידאיים: %d"
+msgstr "מספר עצמי מדיה יחידים: %d"
 
 #: ../gramps/plugins/textreport/summary.py:346
 #, python-format
 msgid "Total size of media objects: %s MB"
-msgstr "סך־כל נפח עצמי המדיה: %s MB"
+msgstr "סך־כל נפח עצמי מדיה: %s MB"
 
 #: ../gramps/plugins/textreport/summary.py:364
 msgid "Note Information"
