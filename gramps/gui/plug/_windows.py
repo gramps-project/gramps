@@ -305,11 +305,8 @@ class AddonRow(Gtk.ListBoxRow):
                 )
                 return
 
-            location = os.path.join(LIB_PATH, package, "__init__.py")
-            spec = importlib.util.spec_from_file_location(package, location)
-            module = importlib.util.module_from_spec(spec)
-            sys.modules[spec.name] = module
-            spec.loader.exec_module(module)
+        # Invalidate the caches to ensure that the new modules will be found.
+        importlib.invalidate_caches()
 
         if not self.req.check_addon(addon):
             InfoDialog(
