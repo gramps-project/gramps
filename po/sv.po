@@ -30,7 +30,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-09-09 08:20+0000\n"
+"PO-Revision-Date: 2023-09-10 07:30+0000\n"
 "Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -431,12 +431,6 @@ msgstr ""
 "två föräldrar och deras barn."
 
 #: ../data/tips.xml:22
-#, fuzzy
-#| msgid ""
-#| "<b>Changing the Active Person</b><br/>Changing the Active Person in views "
-#| "is easy. In the Relationship view just click on anyone. In the Ancestry "
-#| "View doubleclick on the person or right click to select any of their "
-#| "spouses, siblings, children or parents."
 msgid ""
 "<b>Changing the Active Person</b><br/>Changing the Active Person in views is "
 "easy. In the Relationship view just click on anyone. In the Pedigree View "
@@ -444,7 +438,7 @@ msgid ""
 "siblings, children or parents."
 msgstr ""
 "<b>Ändra aktiv person</b><br/>Att ändra aktiv person i vyer är enkelt. I "
-"Släktskapsvyn klickar du bara på någon. I Antavelvyn dubbelklicka på "
+"Släktskapsvyn klickar du bara på någon. I Stamtavelvyn dubbelklicka på "
 "personen eller högerklicka för att välja make, syskon, barn eller föräldrar."
 
 #: ../data/tips.xml:24
@@ -801,21 +795,15 @@ msgstr ""
 "olika slag. Det namn som önskas dras till lämplig namnsektion."
 
 #: ../data/tips.xml:76
-#, fuzzy
-#| msgid ""
-#| "<b>Ancestor View</b><br/>The Ancestry View displays a traditional "
-#| "pedigree chart. Hold the mouse over an individual to see more information "
-#| "about them or right click on an individual to access other family members "
-#| "and settings. Play with the settings to see the different options."
 msgid ""
 "<b>Pedigree View</b><br/>The Pedigree View displays a traditional pedigree "
 "chart. Hold the mouse over an individual to see more information about them "
 "or right click on an individual to access other family members and settings. "
 "Play with the settings to see the different options."
 msgstr ""
-"<b>Antavelsvyn</b><br/>Antavelsvyn visar en traditionell antavla. Håll musen "
-"över personerna för att se mer information om dem eller högerklicka på en "
-"person för att få tillgång till andra familjemedlemmar och inställningar "
+"<b>Stamtavelsvyn</b><br/>Stamtavelsvyn visar en traditionell stamtavla. Håll "
+"musen över personerna för att se mer information om dem eller högerklicka på "
+"en person för att få tillgång till andra familjemedlemmar och inställningar "
 "Prova med olika inställningar för ett se de olika valmöjligheterna."
 
 #: ../data/tips.xml:78
@@ -18874,7 +18862,7 @@ msgstr "Tillåt Gramps att installera nödvändiga Python-moduler"
 
 #: ../gramps/gui/plug/_windows.py:744
 msgid "Scheduled update checks"
-msgstr ""
+msgstr "Schemalagda uppdateringskontroller"
 
 #: ../gramps/gui/plug/_windows.py:760
 msgid "Once a month"
