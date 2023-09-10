@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-08 22:33+0100\n"
-"PO-Revision-Date: 2023-09-09 11:49+0000\n"
+"PO-Revision-Date: 2023-09-09 18:49+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -430,7 +430,7 @@ msgid ""
 "siblings, children or parents."
 msgstr ""
 "<b>Aktiivisen henkilön vaihtaminen</b><br/>Aktiivisen henkilön vaihtaminen "
-"näkymässä on helppoa. Suhteet-näkymässä napsautetaan vain ketä tahansa "
+"näkymässä on helppoa. Suhteet näkymässä napsautetaan vain ketä tahansa "
 "henkilöä. Kaaviot näkymässä kaksoisnapsautetaan henkilöä tai napsautetaan "
 "hiiren kakkospainikkeella henkilöä ja valitaan kuka tahansa puolisoista, "
 "sisaruksista, lapsista tai vanhemmista."
@@ -624,10 +624,10 @@ msgid ""
 "intuitive but the manual is full of information that will make your time "
 "spent on genealogy more productive."
 msgstr ""
-"<b>Lue käyttöohjetta</b><br/>Älä unohda lukea Grampsin käyttöohjetta \"Ohjeet"
-" &gt; Käyttöohje\". Kehittäjät ovat työskennelleet ahkerasti tehdäkseen "
-"useimmat toiminnot helppotajuisiksi, mutta käyttöohje on täynnä tietoa, "
-"jolla saat sukututkimukseen varaamasi ajan tuottavammaksi."
+"<b>Lue käyttöohjetta</b><br/>Älä unohda lukea Grampsin käyttöohjetta "
+"\"Ohjeet &gt; Käyttöohje\". Kehittäjät ovat työskennelleet ahkerasti "
+"tehdäkseen useimmat toiminnot helppotajuisiksi, mutta käyttöohje on täynnä "
+"tietoa, jolla saat sukututkimukseen varaamasi ajan tuottavammaksi."
 
 #: ../data/tips.xml:54
 msgid ""
@@ -18180,7 +18180,7 @@ msgid "Open _Recent"
 msgstr "V_iimeksi avattu"
 
 #: ../gramps/gui/grampsgui.py:58 ../gramps/gui/tipofday.py:67
-#: ../gramps/gui/tipofday.py:124
+#: ../gramps/gui/tipofday.py:124 ../gramps/gui/tipofday.py:123
 msgid "Tip of the Day"
 msgstr "Päivän vinkki"
 
@@ -18961,6 +18961,7 @@ msgstr "Salli Grampsin asentaa tarvittavat python-moduulit"
 #: ../gramps/gui/plug/_windows.py:744
 #: ../gramps/plugins/webreport/basepage.py:1901
 #: ../gramps/plugins/webreport/basepage.py:1966
+#: ../gramps/gui/plug/_windows.py:431 ../gramps/gui/plug/_windows.py:632
 msgid "Updates"
 msgstr "Päivitykset"
 
@@ -39374,6 +39375,36 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:230
 msgid "No style sheet"
 msgstr "Ei tyylitiedostoa"
+
+#: ../data/tips.xml:22
+msgid ""
+"<b>Changing the Active Person</b><br/>Changing the Active Person in views is "
+"easy. In the Relationship view just click on anyone. In the Pedigree View "
+"doubleclick on the person or right click to select any of their spouses, "
+"siblings, children or parents."
+msgstr ""
+"<b>Aktiivisen henkilön vaihtaminen</b><br/>Aktiivisen henkilön vaihtaminen "
+"näkymässä on helppoa. Suhteet-näkymässä napsautetaan vain ketä tahansa "
+"henkilöä. Kaaviot näkymässä kaksoisnapsautetaan henkilöä tai napsautetaan "
+"hiiren kakkospainikkeella henkilöä ja valitaan kuka tahansa puolisoista, "
+"sisaruksista, lapsista tai vanhemmista."
+
+#: ../data/tips.xml:76
+msgid ""
+"<b>Pedigree View</b><br/>The Pedigree View displays a traditional pedigree "
+"chart. Hold the mouse over an individual to see more information about them "
+"or right click on an individual to access other family members and settings. "
+"Play with the settings to see the different options."
+msgstr ""
+"<b>Kaaviot näkymä</b><br/>Kaaviot näkymä näyttää sukupuukaavioita. Pidä "
+"hiirtä henkilön nimen yllä nähdäksesi hänestä enemmän tietoja. "
+"Napsauttamalla henkilöä hiiren kakkospainikkeella saat valikon, jossa voit "
+"nopeasti siirtyä henkilön puolisoon, sisarukseen, lapseen tai vanhempaan. "
+"Muokkaa asetuksia nähdäksesi eri vaihtoehdot."
+
+#: ../gramps/gui/plug/_windows.py:744
+msgid "Scheduled update checks"
+msgstr "Ajastetut päivitystarkastukset"
 
 #~ msgid "Uninstalled"
 #~ msgstr "Asennus poistettu"
