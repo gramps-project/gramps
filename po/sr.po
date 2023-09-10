@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-08 22:33+0100\n"
+"POT-Creation-Date: 2023-09-09 22:31+0100\n"
 "PO-Revision-Date: 2023-05-18 18:50+0000\n"
 "Last-Translator: Medic Momcilo <momcilo@medic.rs>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/gramps-project/"
@@ -411,9 +411,15 @@ msgstr ""
 "породичне јединице као два родитеља са својом децом."
 
 #: ../data/tips.xml:22
+#, fuzzy
+#| msgid ""
+#| "<b>Changing the Active Person</b><br/>Changing the Active Person in views "
+#| "is easy. In the Relationship view just click on anyone. In the Ancestry "
+#| "View doubleclick on the person or right click to select any of their "
+#| "spouses, siblings, children or parents."
 msgid ""
 "<b>Changing the Active Person</b><br/>Changing the Active Person in views is "
-"easy. In the Relationship view just click on anyone. In the Ancestry View "
+"easy. In the Relationship view just click on anyone. In the Pedigree View "
 "doubleclick on the person or right click to select any of their spouses, "
 "siblings, children or parents."
 msgstr ""
@@ -775,8 +781,14 @@ msgstr ""
 "жељеног имена."
 
 #: ../data/tips.xml:76
+#, fuzzy
+#| msgid ""
+#| "<b>Ancestor View</b><br/>The Ancestry View displays a traditional "
+#| "pedigree chart. Hold the mouse over an individual to see more information "
+#| "about them or right click on an individual to access other family members "
+#| "and settings. Play with the settings to see the different options."
 msgid ""
-"<b>Ancestor View</b><br/>The Ancestry View displays a traditional pedigree "
+"<b>Pedigree View</b><br/>The Pedigree View displays a traditional pedigree "
 "chart. Hold the mouse over an individual to see more information about them "
 "or right click on an individual to access other family members and settings. "
 "Play with the settings to see the different options."
@@ -18309,7 +18321,7 @@ msgid "Open _Recent"
 msgstr "Отвори _скорашње"
 
 #: ../gramps/gui/grampsgui.py:58 ../gramps/gui/tipofday.py:67
-#: ../gramps/gui/tipofday.py:124
+#: ../gramps/gui/tipofday.py:123
 msgid "Tip of the Day"
 msgstr "Савет дана"
 
@@ -19010,8 +19022,7 @@ msgstr ""
 msgid "Requires"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:275 ../gramps/gui/plug/_windows.py:431
-#: ../gramps/gui/plug/_windows.py:632
+#: ../gramps/gui/plug/_windows.py:275
 #, fuzzy
 #| msgid "Updated"
 msgid "Update"
@@ -19067,6 +19078,13 @@ msgstr "Непостојано"
 msgid "Installed"
 msgstr "Непостојано"
 
+#: ../gramps/gui/plug/_windows.py:431 ../gramps/gui/plug/_windows.py:632
+#: ../gramps/plugins/webreport/basepage.py:1901
+#: ../gramps/plugins/webreport/basepage.py:1966
+#, fuzzy
+msgid "Updates"
+msgstr "Освежено"
+
 #: ../gramps/gui/plug/_windows.py:443
 #, fuzzy
 #| msgid "All files"
@@ -19115,11 +19133,8 @@ msgid "Allow Gramps to install required Python modules"
 msgstr ""
 
 #: ../gramps/gui/plug/_windows.py:744
-#: ../gramps/plugins/webreport/basepage.py:1901
-#: ../gramps/plugins/webreport/basepage.py:1966
-#, fuzzy
-msgid "Updates"
-msgstr "Освежено"
+msgid "Scheduled update checks"
+msgstr ""
 
 #: ../gramps/gui/plug/_windows.py:760
 msgid "Once a month"
