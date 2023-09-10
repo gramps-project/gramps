@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-09-07 01:07+0000\n"
+"PO-Revision-Date: 2023-09-10 07:30+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -425,23 +425,17 @@ msgstr ""
 "gezin weer te geven als twee ouders en hun kinderen."
 
 #: ../data/tips.xml:22
-#, fuzzy
-#| msgid ""
-#| "<b>Changing the Active Person</b><br/>Changing the Active Person in views "
-#| "is easy. In the Relationship view just click on anyone. In the Ancestry "
-#| "View doubleclick on the person or right click to select any of their "
-#| "spouses, siblings, children or parents."
 msgid ""
 "<b>Changing the Active Person</b><br/>Changing the Active Person in views is "
 "easy. In the Relationship view just click on anyone. In the Pedigree View "
 "doubleclick on the person or right click to select any of their spouses, "
 "siblings, children or parents."
 msgstr ""
-"<b>De Actieve persoon wisselen</b><br/>Het veranderen van de actieve persoon "
-"in weergaven is eenvoudig. Klik in de gezinnenweergave op iemand. Klik "
-"daarna met de rechtermuisknop op de persoon om de actieve persoon in te "
-"stellen. Dubbeklik op de persoon om een van hun echtgenoten, broers en "
-"zussen, kinderen of ouders te selecteren."
+"<b>De Actieve persoon wisselen</b><br/>Het wijzigen van de actieve persoon "
+"in weergaven is eenvoudig. Klik in de relatieweergave gewoon op iemand. "
+"Dubbelklik in de stamboomweergave op de persoon of klik met de "
+"rechtermuisknop om een van hun echtgenoten, broers en zussen, kinderen of "
+"ouders te selecteren."
 
 #: ../data/tips.xml:24
 msgid ""
@@ -809,23 +803,17 @@ msgstr ""
 "instellen door deze naar het gedeelte 'Voorkeursnaam' te slepen."
 
 #: ../data/tips.xml:76
-#, fuzzy
-#| msgid ""
-#| "<b>Ancestor View</b><br/>The Ancestry View displays a traditional "
-#| "pedigree chart. Hold the mouse over an individual to see more information "
-#| "about them or right click on an individual to access other family members "
-#| "and settings. Play with the settings to see the different options."
 msgid ""
 "<b>Pedigree View</b><br/>The Pedigree View displays a traditional pedigree "
 "chart. Hold the mouse over an individual to see more information about them "
 "or right click on an individual to access other family members and settings. "
 "Play with the settings to see the different options."
 msgstr ""
-"<b>Voorouderweergave</b><br/>De Kwartierstaat grafiek toont een traditionele "
-"stamboom. Houd de muis op een persoon om meer informatie te verkrijgen of "
-"klik met de rechtermuisknop op een persoon om toegang te krijgen tot andere "
-"familieleden en instellingen. Speel met de instellingen om de verschillende "
-"opties te bekijken."
+"<b>Kwartierstaat</b><br/>Pedigree View geeft een traditionele "
+"stamboomgrafiek weer. Houd de muis boven een persoon om meer informatie te "
+"zien of klik met de rechtermuisknop op een persoon om toegang te krijgen tot "
+"andere gezinsleden en instellingen. Speel met de instellingen om de "
+"verschillende opties te zien."
 
 #: ../data/tips.xml:78
 msgid ""
@@ -19081,14 +19069,12 @@ msgid "No matching addons found."
 msgstr "Geen overeenkomstige uitbreidingen gevonden."
 
 #: ../gramps/gui/plug/_windows.py:737
-#, fuzzy
-#| msgid "Allow Gramps to install required python modules"
 msgid "Allow Gramps to install required Python modules"
-msgstr "Laat Gramps de vereiste python-modules installeren"
+msgstr "Laat Gramps de vereiste Python-modules installeren"
 
 #: ../gramps/gui/plug/_windows.py:744
 msgid "Scheduled update checks"
-msgstr ""
+msgstr "Geplande updatecontroles"
 
 #: ../gramps/gui/plug/_windows.py:760
 msgid "Once a month"
@@ -32652,10 +32638,8 @@ msgid "French Relationship Calculator"
 msgstr "Franse Relatiecalculator"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:241
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Hebrew Relationship Calculator"
-msgstr "Relatiecalculator"
+msgstr "Hebreeuwse relatiecalculator"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:265
 msgid "Croatian Relationship Calculator"
@@ -36367,66 +36351,48 @@ msgid "Old age but no death"
 msgstr "Oude leeftijd maar niet overleden"
 
 #: ../gramps/plugins/tool/verify.py:2330
-#, fuzzy
-#| msgid "Birth equals death"
 msgid "Birth date equals death date"
-msgstr "Geboorte is gelijk aan overlijden"
+msgstr "Geboortedatum is gelijk aan overlijdensdatum"
 
 #: ../gramps/plugins/tool/verify.py:2351
-#, fuzzy
-#| msgid "Birth equals marriage"
 msgid "Birth date equals marriage date"
-msgstr "Geboorte is gelijk aan huwelijk"
+msgstr "Geboortedatum is gelijk aan huwelijksdatum"
 
 #: ../gramps/plugins/tool/verify.py:2372
-#, fuzzy
-#| msgid "Death equals marriage"
 msgid "Death date equals marriage date"
-msgstr "Overlijden is gelijk aan huwelijk"
+msgstr "Overlijdensdatum is gelijk aan huwelijksdatum"
 
 #: ../gramps/plugins/tool/verify.py:2433
 msgid "Baptism too late according to family tradition"
-msgstr ""
+msgstr "Doop te laat volgens familietraditie"
 
 #: ../gramps/plugins/tool/verify.py:2458
-#, fuzzy
-#| msgid "Burial date"
 msgid "Burial too late"
-msgstr "Begrafenisdatum"
+msgstr "Te laat begraven"
 
 #: ../gramps/plugins/tool/verify.py:2495
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Children are not in chronological order"
-msgstr "Of gebeurtenissen in chronologische volgorde moeten worden gesorteerd."
+msgstr "Kinderen staan niet in chronologische volgorde"
 
 #: ../gramps/plugins/tool/verify.py:2559
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Families are not in chronological order"
-msgstr "Of gebeurtenissen in chronologische volgorde moeten worden gesorteerd."
+msgstr "Gezinnen staan niet in chronologische volgorde"
 
 #: ../gramps/plugins/tool/verify.py:2572
 msgid "Family has events with role Unknown"
-msgstr ""
+msgstr "Gezin heeft gebeurtenissen met rol Onbekend"
 
 #: ../gramps/plugins/tool/verify.py:2585
-#, fuzzy
-#| msgid "Personal events of the children"
 msgid "Person has events with role Unknown"
-msgstr "Persoonlijke gebeurtenissen van de kinderen"
+msgstr "Persoon heeft gebeurtenissen met rol Onbekend"
 
 #: ../gramps/plugins/tool/verify.py:2598
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Family events are not in chronological order"
-msgstr "Of gebeurtenissen in chronologische volgorde moeten worden gesorteerd."
+msgstr "Familiegebeurtenissen zijn niet in chronologische volgorde"
 
 #: ../gramps/plugins/tool/verify.py:2611
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Person events are not in chronological order"
-msgstr "Of gebeurtenissen in chronologische volgorde moeten worden gesorteerd."
+msgstr "Persoonsgebeurtenissen zijn niet in chronologische volgorde"
 
 #: ../gramps/plugins/view/citationlistview.py:107
 msgid "Source: Title"
