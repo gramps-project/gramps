@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-09-09 05:40+0000\n"
+"PO-Revision-Date: 2023-09-10 04:58+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -433,12 +433,6 @@ msgstr ""
 "typische Familie anzuzeigen, nämlich die Eltern und ihre Kinder."
 
 #: ../data/tips.xml:22
-#, fuzzy
-#| msgid ""
-#| "<b>Changing the Active Person</b><br/>Changing the Active Person in views "
-#| "is easy. In the Relationship view just click on anyone. In the Ancestry "
-#| "View doubleclick on the person or right click to select any of their "
-#| "spouses, siblings, children or parents."
 msgid ""
 "<b>Changing the Active Person</b><br/>Changing the Active Person in views is "
 "easy. In the Relationship view just click on anyone. In the Pedigree View "
@@ -447,8 +441,9 @@ msgid ""
 msgstr ""
 "<b>Die aktive Person wechseln</b><br/>Die aktive Person in Ansichten zu "
 "ändern ist einfach. In der Beziehungenansicht klicke einfach auf "
-"irgendjemanden. In der Ahnentafelansicht klick doppelt auf die Person oder "
-"klicke rechts, um einen Partner, Geschwister, Kind oder Elternteil zu wählen."
+"irgendjemanden. Doppelklick auf die Person in der Stammbaumansicht oder "
+"Rechtsklick, um einen ihrer Ehepartner, Geschwister, Kinder oder Eltern "
+"auszuwählen."
 
 #: ../data/tips.xml:24
 msgid ""
@@ -820,19 +815,13 @@ msgstr ""
 "festlegen, indem du ihn in den Bereich \"Bevorzugter Name\" ziehst."
 
 #: ../data/tips.xml:76
-#, fuzzy
-#| msgid ""
-#| "<b>Ancestor View</b><br/>The Ancestry View displays a traditional "
-#| "pedigree chart. Hold the mouse over an individual to see more information "
-#| "about them or right click on an individual to access other family members "
-#| "and settings. Play with the settings to see the different options."
 msgid ""
 "<b>Pedigree View</b><br/>The Pedigree View displays a traditional pedigree "
 "chart. Hold the mouse over an individual to see more information about them "
 "or right click on an individual to access other family members and settings. "
 "Play with the settings to see the different options."
 msgstr ""
-"<b>Ahnentafelansicht</b><br/>Die Ahnentafelansicht zeigt dir eine "
+"<b>Stammbaumansicht</b><br/>Die Stammbaumansicht zeigt dir eine "
 "traditionelle Ahnentafel. Wenn du die Maus über eine Person hältst, siehst "
 "du mehr Informationen über sie, oder klicke mit der rechten Maustaste auf "
 "eine Person, um auf andere Familienmitglieder oder Einstellungen "
@@ -19175,14 +19164,12 @@ msgid "No matching addons found."
 msgstr "Keine passenden Erweiterungen gefunden."
 
 #: ../gramps/gui/plug/_windows.py:737
-#, fuzzy
-#| msgid "Allow Gramps to install required python modules"
 msgid "Allow Gramps to install required Python modules"
 msgstr "Gramps die Installation benötigter Python-Module gestatten"
 
 #: ../gramps/gui/plug/_windows.py:744
 msgid "Scheduled update checks"
-msgstr ""
+msgstr "Zeitgesteuerte Aktualisierungsprüfungen"
 
 #: ../gramps/gui/plug/_windows.py:760
 msgid "Once a month"
@@ -32781,10 +32768,8 @@ msgid "French Relationship Calculator"
 msgstr "Französischer Beziehungsrechner"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:241
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Hebrew Relationship Calculator"
-msgstr "Beziehungsrechner"
+msgstr "Hebräischer Beziehungsrechner"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:265
 msgid "Croatian Relationship Calculator"
@@ -36520,70 +36505,48 @@ msgid "Old age but no death"
 msgstr "Hohes Alter, aber kein Tod"
 
 #: ../gramps/plugins/tool/verify.py:2330
-#, fuzzy
-#| msgid "Birth equals death"
 msgid "Birth date equals death date"
-msgstr "Geburt ist gleich Tod"
+msgstr "Geburtsdatum ist gleich Sterbedatum"
 
 #: ../gramps/plugins/tool/verify.py:2351
-#, fuzzy
-#| msgid "Birth equals marriage"
 msgid "Birth date equals marriage date"
-msgstr "Geburt ist gleich Heirat"
+msgstr "Geburtsdatum ist gleich Heiratsdatum"
 
 #: ../gramps/plugins/tool/verify.py:2372
-#, fuzzy
-#| msgid "Death equals marriage"
 msgid "Death date equals marriage date"
-msgstr "Tod ist gleich Heirat"
+msgstr "Todesdatum ist gleich Heiratsdatum"
 
 #: ../gramps/plugins/tool/verify.py:2433
 msgid "Baptism too late according to family tradition"
-msgstr ""
+msgstr "Taufe nach Familientradition zu spät"
 
 #: ../gramps/plugins/tool/verify.py:2458
-#, fuzzy
-#| msgid "Burial date"
 msgid "Burial too late"
-msgstr "Bestattungsdatum"
+msgstr "Beerdigung zu spät"
 
 #: ../gramps/plugins/tool/verify.py:2495
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Children are not in chronological order"
-msgstr ""
-"Ob die Ereignisse in chronologischer Reihenfolge sortiert werden sollen."
+msgstr "Kinder sind nicht in chronologischer Reihenfolge"
 
 #: ../gramps/plugins/tool/verify.py:2559
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Families are not in chronological order"
-msgstr ""
-"Ob die Ereignisse in chronologischer Reihenfolge sortiert werden sollen."
+msgstr "Die Familien sind nicht in chronologischer Reihenfolge"
 
 #: ../gramps/plugins/tool/verify.py:2572
 msgid "Family has events with role Unknown"
-msgstr ""
+msgstr "Familie hat Ereignisse mit Rolle Unbekannt"
 
 #: ../gramps/plugins/tool/verify.py:2585
-#, fuzzy
-#| msgid "Personal events of the children"
 msgid "Person has events with role Unknown"
-msgstr "Persönliche Ereignisse der Kinder"
+msgstr "Person hat Ereignisse mit der Rolle Unbekannt"
 
 #: ../gramps/plugins/tool/verify.py:2598
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Family events are not in chronological order"
-msgstr ""
-"Ob die Ereignisse in chronologischer Reihenfolge sortiert werden sollen."
+msgstr "Die Familienereignisse sind nicht in chronologischer Reihenfolge"
 
 #: ../gramps/plugins/tool/verify.py:2611
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Person events are not in chronological order"
-msgstr ""
-"Ob die Ereignisse in chronologischer Reihenfolge sortiert werden sollen."
+msgstr "Personenereignisse sind nicht in chronologischer Reihenfolge"
 
 #: ../gramps/plugins/view/citationlistview.py:107
 msgid "Source: Title"
