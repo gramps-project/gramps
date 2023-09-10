@@ -24,7 +24,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
 "PO-Revision-Date: 2023-09-10 04:58+0000\n"
-"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
+"Last-Translator: Oliver Lehmann <lehmann@ans-netz.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
 "Language: de\n"
@@ -10475,7 +10475,7 @@ msgstr "Wie man mit lebenden Personen umgeht"
 
 #: ../gramps/gen/plug/report/stdoptions.py:228
 msgid "Years from death to consider living"
-msgstr "Jahre nach dem Tod, um als lebend zu betrachten"
+msgstr "Jahre nach dem Tod, um als lebend zu gelten"
 
 #: ../gramps/gen/plug/report/stdoptions.py:230
 msgid "Whether to restrict data on recently-dead people"
