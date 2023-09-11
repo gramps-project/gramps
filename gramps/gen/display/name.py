@@ -360,6 +360,21 @@ def _raw_single_surname(raw_surn_data_list):
     return " ".join(result.split()).strip()
 
 
+def _raw_brief_given(firstname, call):
+    """method for the 'b' symbol: brief given names
+    The first given name is presented in full with the rest initialed.
+    If provided the call name is presented in full instead of the first given name
+    """
+    given_names = firstname.split(" ")
+    full_name = call or given_names[0]
+    try:
+        new_name = [n[0] + "." if n != full_name else full_name for n in given_names]
+    except IndexError:
+        new_name = ""
+
+    return " ".join(new_name)
+
+
 def cleanup_name(namestring):
     """Remove too long white space due to missing name parts,
     so "a   b" becomes "a b" and "a , b" becomes "a, b"
@@ -654,16 +669,16 @@ class NameDisplay:
         """
 
         # we need the names of each of the variables or methods that are
-        # called to fill in each format flag.
+        # cailed to fill in each format flag.
         # Dictionary is "code": ("expression", "keyword", "i18n-keyword")
         d = {
             "t": ("raw_data[_TITLE]", "title", _("title", "Person")),
             "f": ("raw_data[_FIRSTNAME]", "given", _("given")),
-            "b": ("raw_data[_FIRSTNAME].split(' ')[0] + ' ' + " +
-                "''.join([word[0] +'.' for word in ('. ' +" +
-                " raw_data[_FIRSTNAME]).split()][2:])",
+            "b": (
+                "_raw_brief_given(raw_data[_FIRSTNAME], raw_data[_CALL])",
                 "brief",
-                _("brief")),
+                _("brief"),
+            ),
             "l": (
                 "_raw_full_surname(raw_data[_SURNAME_LIST])",
                 "surname",
@@ -796,10 +811,11 @@ class NameDisplay:
         d = {
             "t": ("title", "title", _("title", "Person")),
             "f": ("first", "given", _("given")),
-            "b": ("first.split(' ')[0] + ' ' + ''.join([word[0] +'.' " +
-                "for word in ('. ' + first).split()][2:])",
+            "b": (
+                "_raw_brief_given(first, call)",
                 "brief",
-                _("brief")),
+                _("brief"),
+            ),
             "l": ("_raw_full_surname(raw_surname_list)", "surname", _("surname")),
             "s": ("suffix", "suffix", _("suffix")),
             "c": ("call", "call", _("call", "Name")),
