@@ -133,7 +133,7 @@ class DisplayNameEditor(ManagedWindow):
   <b>Title</b>   - title (Dr., Mrs.)           <b>Suffix</b>   - suffix (Jr., Sr.)
   <b>Call</b>    - call name                   <b>Nickname</b> - nick name
   <b>Initials</b>- first letters of given      <b>Common</b>   - nick name, call, or first of given
-  <b>Prefix</b>  - all prefixes (von, de)
+  <b>Prefix</b>  - all prefixes (von, de)      <b>Brief</b>    - first given name and rest initialed
 Surnames:
   <b>Rest</b>      - non primary surnames    <b>Notpatronymic</b>- all surnames, except pa/matronymic &amp; primary
   <b>Familynick</b>- family nick name        <b>Rawsurnames</b>  - surnames (no prefixes and connectors)

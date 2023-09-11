@@ -30,6 +30,7 @@ Specific symbols for parts of a name are defined:
     ======  ===============================================================
     't'     title
     'f'     given (first names)
+    'b'     brief given name (first name plus initials)
     'l'     full surname (lastname)
     'c'     callname
     'x'     nick name, call, or otherwise first first name (common name)
@@ -628,6 +629,7 @@ class NameDisplay:
         Specific symbols for parts of a name are defined (keywords given):
         't' : title = title
         'f' : given = given (first names)
+        'b' : brief = given name (first name plus initials)
         'l' : surname = full surname (lastname)
         'c' : call = callname
         'x' : common = nick name, call, otherwise first first name (common name)
@@ -657,6 +659,11 @@ class NameDisplay:
         d = {
             "t": ("raw_data[_TITLE]", "title", _("title", "Person")),
             "f": ("raw_data[_FIRSTNAME]", "given", _("given")),
+            "b": ("raw_data[_FIRSTNAME].split(' ')[0] + ' ' + " +
+                "''.join([word[0] +'.' for word in ('. ' +" +
+                " raw_data[_FIRSTNAME]).split()][2:])",
+                "brief",
+                _("brief")),
             "l": (
                 "_raw_full_surname(raw_data[_SURNAME_LIST])",
                 "surname",
@@ -760,6 +767,7 @@ class NameDisplay:
         Specific symbols for parts of a name are defined (keywords given):
         't' : title = title
         'f' : given = given (first names)
+        'b' : brief = given name (first name plus initials)
         'l' : surname = full surname (lastname)
         'c' : call = callname
         'x' : common = nick name, call, or otherwise first first name (common name)
@@ -788,6 +796,10 @@ class NameDisplay:
         d = {
             "t": ("title", "title", _("title", "Person")),
             "f": ("first", "given", _("given")),
+            "b": ("first.split(' ')[0] + ' ' + ''.join([word[0] +'.' " +
+                "for word in ('. ' + first).split()][2:])",
+                "brief",
+                _("brief")),
             "l": ("_raw_full_surname(raw_surname_list)", "surname", _("surname")),
             "s": ("suffix", "suffix", _("suffix")),
             "c": ("call", "call", _("call", "Name")),
@@ -900,6 +912,7 @@ class NameDisplay:
         The following substitutions are made:
         '%t' : title
         '%f' : given (first names)
+        '%b' : brief given name (first name plus initials)
         '%l' : full surname (lastname)
         '%c' : callname
         '%x' : nick name, call, or otherwise first first name (common name)
