@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-09-10 07:30+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2023-09-12 11:02+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -12038,7 +12038,7 @@ msgstr "ניחוש שם משפחה"
 
 #: ../gramps/gui/configure.py:1681
 msgid "Default family relationship"
-msgstr "קשר־משפחה משפחתי ברירת מחדל"
+msgstr "קשר־משפחתי ברירת מחדל"
 
 #: ../gramps/gui/configure.py:1688
 msgid "Hide LDS tab in person and family editors"
