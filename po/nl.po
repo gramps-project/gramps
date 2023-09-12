@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-09-10 07:30+0000\n"
+"PO-Revision-Date: 2023-09-12 11:02+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -433,9 +433,9 @@ msgid ""
 msgstr ""
 "<b>De Actieve persoon wisselen</b><br/>Het wijzigen van de actieve persoon "
 "in weergaven is eenvoudig. Klik in de relatieweergave gewoon op iemand. "
-"Dubbelklik in de stamboomweergave op de persoon of klik met de "
-"rechtermuisknop om een van hun echtgenoten, broers en zussen, kinderen of "
-"ouders te selecteren."
+"Dubbelklik in de kwartierstaat op de persoon of klik met de rechtermuisknop "
+"om een van hun echtgenoten, broers en zussen, kinderen of ouders te "
+"selecteren."
 
 #: ../data/tips.xml:24
 msgid ""
@@ -809,7 +809,7 @@ msgid ""
 "or right click on an individual to access other family members and settings. "
 "Play with the settings to see the different options."
 msgstr ""
-"<b>Kwartierstaat</b><br/>Pedigree View geeft een traditionele "
+"<b>Kwartierstaat</b><br/>De kwartierstaat geeft een traditionele "
 "stamboomgrafiek weer. Houd de muis boven een persoon om meer informatie te "
 "zien of klik met de rechtermuisknop op een persoon om toegang te krijgen tot "
 "andere gezinsleden en instellingen. Speel met de instellingen om de "
@@ -23631,7 +23631,7 @@ msgstr "Gramplet dat alle voornamen als tekstwolk toont"
 #: ../gramps/plugins/view/view.gpr.py:135
 #: ../gramps/plugins/webreport/person.py:1681
 msgid "Pedigree"
-msgstr "Kwartierstaat"
+msgstr "Stamboom"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:234
 msgid "Gramplet showing an active item Quick View"
@@ -37422,7 +37422,7 @@ msgstr "Links <-> Rechts"
 
 #: ../gramps/plugins/view/pedigreeview.py:1832
 msgid "About Pedigree View"
-msgstr "Over de stamboomweergave"
+msgstr "Over de kwartierstaat"
 
 #: ../gramps/plugins/view/pedigreeview.py:2046
 #: ../gramps/plugins/view/relview.py:411
