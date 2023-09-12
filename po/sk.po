@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-09-09 16:22+0000\n"
+"PO-Revision-Date: 2023-09-12 11:02+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -415,12 +415,6 @@ msgstr ""
 "ako dvaja rodičia a ich deti."
 
 #: ../data/tips.xml:22
-#, fuzzy
-#| msgid ""
-#| "<b>Changing the Active Person</b><br/>Changing the Active Person in views "
-#| "is easy. In the Relationship view just click on anyone. In the Ancestry "
-#| "View doubleclick on the person or right click to select any of their "
-#| "spouses, siblings, children or parents."
 msgid ""
 "<b>Changing the Active Person</b><br/>Changing the Active Person in views is "
 "easy. In the Relationship view just click on anyone. In the Pedigree View "
@@ -428,7 +422,7 @@ msgid ""
 "siblings, children or parents."
 msgstr ""
 "<b>Zmena aktívnej osoby</b><br/>Zmena aktívnej osoby v pohľadoch je ľahká. V "
-"pohľade Vzťahy kliknutím na ľubovoľnú osobu. V pohľade Predkovia kliknite na "
+"pohľade Vzťahy kliknutím na ľubovoľnú osobu. V pohľade Rodokmeň kliknite na "
 "osobu dvakrát, alebo zvoľte pravým tlačidlom hocikoho z ich manželov, "
 "súrodencov, detí alebo rodičov."
 
@@ -780,23 +774,17 @@ msgstr ""
 "časti Uprednostňované meno."
 
 #: ../data/tips.xml:76
-#, fuzzy
-#| msgid ""
-#| "<b>Ancestor View</b><br/>The Ancestry View displays a traditional "
-#| "pedigree chart. Hold the mouse over an individual to see more information "
-#| "about them or right click on an individual to access other family members "
-#| "and settings. Play with the settings to see the different options."
 msgid ""
 "<b>Pedigree View</b><br/>The Pedigree View displays a traditional pedigree "
 "chart. Hold the mouse over an individual to see more information about them "
 "or right click on an individual to access other family members and settings. "
 "Play with the settings to see the different options."
 msgstr ""
-"<b>Pohľad na predkov</b><br/>Pohľad Predkovia zobrazuje tradičný diagram "
-"rodinného stromu. Podržaním myši nad jednotlivcom zobrazíte ďalšie "
-"informácie o ňom alebo kliknutím pravým tlačidlom myši na jednotlivca "
-"získate prístup k ďalším členom rodiny a nastaveniam. Pohrajte sa s "
-"nastaveniami, aby ste videli rôzne možnosti."
+"<b>Pohľad Rodokmeň</b><br/>Pohľad Rodokmeň zobrazuje tradičný rodokmeňový "
+"diagram. Podržaním myši nad jednotlivcom zobrazíte ďalšie informácie o ňom "
+"alebo kliknutím pravým tlačidlom myši na jednotlivca získate prístup k "
+"ďalším členom rodiny a nastaveniam. Pohrajte sa s nastaveniami, aby ste "
+"videli rôzne možnosti."
 
 #: ../data/tips.xml:78
 msgid ""
@@ -2050,7 +2038,7 @@ msgstr "Importované %Y/%m/%d %H:%M:%S"
 
 #: ../gramps/gen/config.py:314
 msgid "Missing Given Name"
-msgstr "Chýbajúce dané meno"
+msgstr "Chýbajúce dané (krstné) meno"
 
 #: ../gramps/gen/config.py:315
 msgid "Missing Record"
@@ -3330,7 +3318,7 @@ msgstr "Prednastavený formát (definovaný v predvoľbách Gramps)"
 
 #: ../gramps/gen/display/name.py:415
 msgid "Surname, Given Suffix"
-msgstr "Priezvisko, Dané Prípona"
+msgstr "Priezvisko, Dané (krstné) Prípona"
 
 #: ../gramps/gen/display/name.py:416 ../gramps/gen/utils/keyword.py:57
 #: ../gramps/gui/configure.py:1086 ../gramps/gui/configure.py:1087
@@ -3347,11 +3335,11 @@ msgstr "Dané"
 
 #: ../gramps/gen/display/name.py:417
 msgid "Given Surname Suffix"
-msgstr "Dané Priezvisko Prípona"
+msgstr "Dané (krstné) Priezvisko Prípona"
 
 #: ../gramps/gen/display/name.py:422
 msgid "Main Surnames, Given Patronymic Suffix Prefix"
-msgstr "Hlavné priezviská, Dané Patronymické Prípona Predpona"
+msgstr "Hlavné priezviská, Dané (krstné) Patronymické Prípona Predpona"
 
 #: ../gramps/gen/display/name.py:427
 msgid "Patronymic, Given"
@@ -9883,21 +9871,19 @@ msgstr "Skrátený"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:71
 msgid "Given Nickname Surname"
-msgstr "Daná prezývka Priezvisko"
+msgstr "Dané (krstné) Prezývka Priezvisko"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:72
 msgid "Surname Given Nickname"
-msgstr "Priezvisko Daná prezývka"
+msgstr "Priezvisko Dané (krstné) Prezývka"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:73
 msgid "Surname, Given Nickname"
-msgstr "Priezvisko, Daná prezývka"
+msgstr "Priezvisko, Dané (krstné) Prezývka"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:74
-#, fuzzy
-#| msgid "Given Nickname Surname"
 msgid "GivenNicknameSurname"
-msgstr "Daná prezývka Priezvisko"
+msgstr "Dané (krstné)PrezývkaPriezvisko"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:78
 msgid "Auto"
@@ -9909,7 +9895,7 @@ msgstr "Iba používané meno"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:80
 msgid "Whole Given Name"
-msgstr "Celé krstné meno"
+msgstr "Celé dané (krstné) meno"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:85
 msgid "Above"
@@ -10038,8 +10024,9 @@ msgid ""
 "Select the portion of the given name to be marked as preferred. Auto sets "
 "the call name if one exists, otherwise the whole given name."
 msgstr ""
-"Vyberte časť krstného mena, ktorá sa má označiť ako preferovaná. Automaticky "
-"sa nastaví používané meno, ak existuje, inak sa použije celé krstné meno."
+"Vyberte časť daného (krstného) mena, ktorá sa má označiť ako preferovaná. "
+"Automaticky sa nastaví používané meno, ak existuje, inak sa použije celé "
+"dané (krstné) meno."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:225
 msgid "Position of marriage information."
@@ -11765,8 +11752,8 @@ msgstr ""
 "  <b>Titul</b>   - titul (Dr., Mrs.)     <b>Prípona</b>   - prípona (Jr., "
 "Sr.)\n"
 "  <b>Používané</b>    - používané meno       <b>Prezývka</b> - prezývka\n"
-"  <b>Iniciály</b>- prvé písmená daného mena      <b>Bežné</b>   - prezývka, "
-"používané alebo prvé z daných mien\n"
+"  <b>Iniciály</b>- prvé písmená daného (krstného) mena      <b>Bežné</b>   - "
+"prezývka, používané alebo prvé z daných mien\n"
 "  <b>Predpona</b>  - všetky predpony (von, de)\n"
 "Priezviská:\n"
 "  <b>Ostatné</b>      - nepôvodné priezviská    <b>Nepatronymické</b>- "
@@ -12190,10 +12177,8 @@ msgid "On the previous day"
 msgstr "V predchádzajúci deň"
 
 #: ../gramps/gui/configure.py:1609
-#, fuzzy
-#| msgid "Shows the next page"
 msgid "On the next day"
-msgstr "Zobrazí nasledujúcu stranu"
+msgstr "Na nasledujúci deň"
 
 #: ../gramps/gui/configure.py:1610
 msgid "Only on leap years"
@@ -12262,7 +12247,7 @@ msgstr "Chýbajúce priezvisko"
 
 #: ../gramps/gui/configure.py:1739
 msgid "Missing given name"
-msgstr "Chýbajúce dané (krstné) meno"
+msgstr "Chýbajúce dané meno"
 
 #: ../gramps/gui/configure.py:1746
 msgid "Missing record"
@@ -12758,11 +12743,9 @@ msgstr ""
 "Bude viditeľný len vtedy, ak vaše písmo obsahuje tento glyf."
 
 #: ../gramps/gui/csvdialect.py:63
-#, fuzzy
-#| msgid "Tag"
 msgctxt "character"
 msgid "Tab"
-msgstr "Značka"
+msgstr "Tab"
 
 #: ../gramps/gui/csvdialect.py:82
 msgid "Choose your dialect"
@@ -15858,7 +15841,7 @@ msgid ""
 "  <b>%y</b> - Patronymic       <b>%Y</b> - PATRONYMIC</tt>"
 msgstr ""
 "Používajú sa tieto konvencie:\n"
-"<tt>  <b>%f</b> - Dané (krstné) meno       <b>%F</b> - DANÉ MENO\n"
+"<tt>  <b>%f</b> - Dané (krstné) meno       <b>%F</b> - DANÉ (krstné) MENO\n"
 "  <b>%l</b> - Priezvisko          <b>%L</b> - PRIEZVISKO\n"
 "  <b>%t</b> - Titul            <b>%T</b> - TITUL\n"
 "  <b>%p</b> - Predpona           <b>%P</b> - PREDPONA\n"
@@ -18797,10 +18780,8 @@ msgid "Requires"
 msgstr "Vyžaduje"
 
 #: ../gramps/gui/plug/_windows.py:275
-#, fuzzy
-#| msgid "Updated"
 msgid "Update"
-msgstr "Aktualizované"
+msgstr "Aktualizácia"
 
 #: ../gramps/gui/plug/_windows.py:302 ../gramps/gui/plug/_windows.py:316
 msgid "Module installation failed"
@@ -18877,14 +18858,12 @@ msgid "No matching addons found."
 msgstr "Nenájdené žiadne vhodné doplnky."
 
 #: ../gramps/gui/plug/_windows.py:737
-#, fuzzy
-#| msgid "Allow Gramps to install required python modules"
 msgid "Allow Gramps to install required Python modules"
-msgstr "Povoliť Gramps nainštalovať požadované moduly pythonu"
+msgstr "Povoliť Gramps nainštalovať požadované moduly Pythonu"
 
 #: ../gramps/gui/plug/_windows.py:744
 msgid "Scheduled update checks"
-msgstr ""
+msgstr "Plánované kontroly aktualizácie"
 
 #: ../gramps/gui/plug/_windows.py:760
 msgid "Once a month"
@@ -18948,7 +18927,7 @@ msgstr "Obnoviť predvolené nastavenia projektu"
 
 #: ../gramps/gui/plug/_windows.py:924
 msgid "Are you sure?"
-msgstr "Ste ai istí?"
+msgstr "Ste si istí?"
 
 #: ../gramps/gui/plug/_windows.py:948
 msgid "Checking Addons Failed"
@@ -20866,16 +20845,12 @@ msgid "'%s' is not a valid date value"
 msgstr "'%s' nie je platná hodnota dátumu"
 
 #: ../gramps/plugins/cite/cite.gpr.py:35
-#, fuzzy
-#| msgid "Legal"
 msgid "Legacy"
-msgstr "Právne"
+msgstr "Dedičstvo"
 
 #: ../gramps/plugins/cite/cite.gpr.py:36
-#, fuzzy
-#| msgid "Default citation formatter"
 msgid "Legacy citation formatter"
-msgstr "Predvolený formátovač citácií"
+msgstr "Formátovač citácií dedičstva"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:27
 msgid "BSDDB"
@@ -22632,7 +22607,6 @@ msgid "Comma _Separated Values Spreadsheet (CSV)"
 msgstr "Čiarkou _oddelené hodnoty tabuľky (CSV)"
 
 #: ../gramps/plugins/export/export.gpr.py:38
-#, fuzzy
 msgid ""
 "CSV is a common spreadsheet format.\n"
 "You can change this behavior in the 'Configure active view' of any list-"
@@ -23283,7 +23257,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:56
 msgid "Double-click given name for details"
-msgstr "Dvakrát kliknite na dané meno pre podrobnosti"
+msgstr "Dvakrát kliknite na dané (krstné) meno pre podrobnosti"
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:58
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:51
@@ -27275,10 +27249,8 @@ msgid "Event Tags"
 msgstr "Značky udalostí"
 
 #: ../gramps/plugins/lib/libmetadata.py:124
-#, fuzzy
-#| msgid "Images"
 msgid "Image Tags"
-msgstr "Obrázky"
+msgstr "Značky obrázkov"
 
 #: ../gramps/plugins/lib/libmetadata.py:125
 msgid "Camera Information"
@@ -27293,20 +27265,16 @@ msgid "Advanced Tags"
 msgstr "Pokročilé značky"
 
 #: ../gramps/plugins/lib/libmetadata.py:128
-#, fuzzy
-#| msgid "Edit Tags"
 msgid "Rights Tags"
-msgstr "Editovať značky"
+msgstr "Právne značky"
 
 #: ../gramps/plugins/lib/libmetadata.py:129
 msgid "Keyword Tags"
 msgstr "Kľúčové značky"
 
 #: ../gramps/plugins/lib/libmetadata.py:228
-#, fuzzy
-#| msgid "Namesake"
 msgid "Namespace"
-msgstr "Menovec"
+msgstr "Menný priestor"
 
 #: ../gramps/plugins/lib/libmetadata.py:229
 msgid "Label"
@@ -31375,10 +31343,9 @@ msgid "Select tile cache directory for offline mode"
 msgstr "Vyberte adresár vyrovnávacej pamäte dlaždíc pre režim offline"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:143
-#, fuzzy, python-format
-#| msgid "Can't create tiles cache directory %s"
+#, python-format
 msgid "Can't create tile cache directory %s"
-msgstr "Nie je možné vytvoriť adresár vyrovnávacej pamäte dlaždíc %s"
+msgstr "Nie je možné vytvoriť adresár vyrovnávacej pamäte dlaždice %s"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:149
 #, python-format
@@ -32142,7 +32109,7 @@ msgstr "Zobrazí ľudí s rovnakým priezviskom ako osoba."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:303
 msgid "Same Given Names"
-msgstr "Rovnaké dané mená"
+msgstr "Rovnaké dané (krstné) mená"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:304
 #: ../gramps/plugins/quickview/quickview.gpr.py:319
@@ -32151,7 +32118,7 @@ msgstr "Zobrazí ľudí s rovnakým daným (krstným) menom ako osoba."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:318
 msgid "Same Given Names - stand-alone"
-msgstr "Rovnaké dané mená - samostatné"
+msgstr "Rovnaké dané (krstné) mená - samostatne"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:339
 msgid "Display a person's siblings."
@@ -32202,7 +32169,7 @@ msgstr "Porovnáva ľudí s rovnakým daným (krstným) menom"
 
 #: ../gramps/plugins/quickview/samesurnames.py:100
 msgid "People with incomplete given names"
-msgstr "Ľudia s neúplnými danými menami"
+msgstr "Ľudia s neúplnými danými (krstnými) menami"
 
 #: ../gramps/plugins/quickview/samesurnames.py:101
 msgid "Matches people with firstname missing"
@@ -36036,7 +36003,7 @@ msgstr "Dátum úmrtia sa rovná dátumu sobáša"
 
 #: ../gramps/plugins/tool/verify.py:2433
 msgid "Baptism too late according to family tradition"
-msgstr ""
+msgstr "Príliš neskorý krst vzhľadom k rodinnej tradícii"
 
 #: ../gramps/plugins/tool/verify.py:2458
 msgid "Burial too late"
@@ -37083,7 +37050,7 @@ msgstr "Vľavo <-> Vpravo"
 
 #: ../gramps/plugins/view/pedigreeview.py:1832
 msgid "About Pedigree View"
-msgstr "Pohľad na rodokmeň"
+msgstr "O pohľade Rodokmeň"
 
 #: ../gramps/plugins/view/pedigreeview.py:2046
 #: ../gramps/plugins/view/relview.py:411
@@ -38119,10 +38086,8 @@ msgid "Check it if you want to open/close a section"
 msgstr "Začiarknite, ak chcete otvoriť/zatvoriť sekciu"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
-#, fuzzy
-#| msgid "Extra pages"
 msgid "Extra Pages"
-msgstr "Stránky navyše"
+msgstr "Doplnkové strany"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2209
 msgid "Extra page name"

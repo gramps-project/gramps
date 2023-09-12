@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-09-09 16:22+0000\n"
+"PO-Revision-Date: 2023-09-12 11:02+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -3094,14 +3094,14 @@ msgstr "kolem "
 #: ../gramps/gen/datehandler/_datestrings.py:255
 msgctxt "date modifier"
 msgid "from "
-msgstr ""
+msgstr "od "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:258
 msgctxt "date modifier"
 msgid "to "
-msgstr ""
+msgstr "do "
 
 #: ../gramps/gen/datehandler/_datestrings.py:263
 msgctxt "date quality"
@@ -7457,7 +7457,7 @@ msgstr "rozsah"
 
 #: ../gramps/gen/lib/date.py:2003
 msgid "from"
-msgstr ""
+msgstr "od"
 
 #: ../gramps/gen/lib/date.py:2004
 #, fuzzy
@@ -9275,7 +9275,7 @@ msgstr "Odkaz"
 #: ../gramps/gen/lib/styledtexttagtype.py:75
 #: ../gramps/gui/widgets/styledtexteditor.py:84
 msgid "Strikethrough"
-msgstr ""
+msgstr "Přeškrtnuté"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:76
 #: ../gramps/gui/widgets/styledtexteditor.py:84
@@ -9447,11 +9447,11 @@ msgstr "Nestabilní"
 
 #: ../gramps/gen/plug/_pluginreg.py:66
 msgid "Experimental"
-msgstr ""
+msgstr "Experimentální"
 
 #: ../gramps/gen/plug/_pluginreg.py:67
 msgid "Beta"
-msgstr ""
+msgstr "Beta"
 
 #: ../gramps/gen/plug/_pluginreg.py:68
 msgid "Stable"
@@ -9459,11 +9459,11 @@ msgstr "Stabilní"
 
 #: ../gramps/gen/plug/_pluginreg.py:76
 msgid "Developer"
-msgstr ""
+msgstr "Vývojář"
 
 #: ../gramps/gen/plug/_pluginreg.py:76
 msgid "Expert"
-msgstr ""
+msgstr "Expert"
 
 #: ../gramps/gen/plug/_pluginreg.py:116
 #, fuzzy
@@ -10006,22 +10006,16 @@ msgid "Short"
 msgstr "Zkrácený"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:71
-#, fuzzy
-#| msgid "Finding Surnames"
 msgid "Given Nickname Surname"
-msgstr "Hledají se příjmení"
+msgstr "Křestní jméno Přezdívka Příjmení"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:72
-#, fuzzy
-#| msgid "Same Given Names"
 msgid "Surname Given Nickname"
-msgstr "Stejná křestní jména"
+msgstr "Příjmení Křestní jméno Přezdívka"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:73
-#, fuzzy
-#| msgid "Same Given Names"
 msgid "Surname, Given Nickname"
-msgstr "Stejná křestní jména"
+msgstr "Příjmení, Křestní jméno Přezdívka"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:74
 #, fuzzy
@@ -10155,8 +10149,6 @@ msgid "Detail of information to be shown in a node."
 msgstr "Úroveň detailu informací o uzlu."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:203
-#, fuzzy
-#| msgid "Name format"
 msgid "Name Format"
 msgstr "Formát jména"
 
@@ -11165,23 +11157,23 @@ msgstr "%(west_longitude)s Z"
 
 #: ../gramps/gen/utils/place.py:83
 msgid "DEG"
-msgstr ""
+msgstr "DEG"
 
 #: ../gramps/gen/utils/place.py:85
 msgid "DEG-:"
-msgstr ""
+msgstr "DEG-:"
 
 #: ../gramps/gen/utils/place.py:87
 msgid "D.D4"
-msgstr ""
+msgstr "D.D4"
 
 #: ../gramps/gen/utils/place.py:89
 msgid "D.D8"
-msgstr ""
+msgstr "D.D8"
 
 #: ../gramps/gen/utils/place.py:91
 msgid "RT90"
-msgstr ""
+msgstr "RT90"
 
 #: ../gramps/gen/utils/place.py:99
 #, fuzzy
@@ -11191,27 +11183,27 @@ msgstr "Odstranit zvolenou citaci"
 
 #: ../gramps/gen/utils/place.py:100
 msgid "Degree, minutes, seconds notation with :"
-msgstr ""
+msgstr "Zápis stupňů, minut a sekund pomocí :"
 
 #: ../gramps/gen/utils/place.py:101
 msgid "Degree notation, 4 decimals"
-msgstr ""
+msgstr "Zápis stupňů, 4 desetinná místa"
 
 #: ../gramps/gen/utils/place.py:102
 msgid "Degree notation, 8 decimals (precision like ISO-DMS)"
-msgstr ""
+msgstr "Zápis stupňů, 8 desetinných míst (přesnost jako ISO-DMS)"
 
 #: ../gramps/gen/utils/place.py:103
 msgid "Output format for the Swedish coordinate system RT90"
-msgstr ""
+msgstr "Výstupní formát pro švédský souřadnicový systém RT90"
 
 #: ../gramps/gen/utils/requirements.py:143
 msgid "Python modules"
-msgstr ""
+msgstr "Moduly jazyka Python"
 
 #: ../gramps/gen/utils/requirements.py:150
 msgid "GObject introspection modules"
-msgstr ""
+msgstr "Introspekční moduly GObject"
 
 #: ../gramps/gen/utils/requirements.py:157
 #, fuzzy
@@ -11514,7 +11506,7 @@ msgstr "Španělština"
 
 #: ../gramps/gen/utils/win32locale.py:59
 msgid "Farsi"
-msgstr ""
+msgstr "Perština"
 
 #: ../gramps/gen/utils/win32locale.py:60
 msgid "Finnish"
@@ -11530,7 +11522,7 @@ msgstr "Gaelština"
 
 #: ../gramps/gen/utils/win32locale.py:64
 msgid "Galician"
-msgstr ""
+msgstr "Galicijština"
 
 #: ../gramps/gen/utils/win32locale.py:65
 msgid "Hebrew"
@@ -11678,7 +11670,7 @@ msgstr "'Ghostscript' není nainstalovaný"
 
 #: ../gramps/grampsapp.py:401
 msgid "Installed but does not supply version"
-msgstr ""
+msgstr "Nainstalován, ale neposkytuje verzi"
 
 #: ../gramps/grampsapp.py:422
 #, fuzzy
@@ -12106,7 +12098,7 @@ msgstr "Barvy osob ženského pohlaví"
 
 #: ../gramps/gui/configure.py:907
 msgid "Colors for people who are neither male nor female"
-msgstr ""
+msgstr "Barvy pro osoby, které nejsou ani muži, ani ženy"
 
 #: ../gramps/gui/configure.py:908
 msgid "Colors for Unknown persons"
@@ -12366,13 +12358,15 @@ msgstr "Zobrazí další stránku"
 
 #: ../gramps/gui/configure.py:1610
 msgid "Only on leap years"
-msgstr ""
+msgstr "Pouze v přestupných letech"
 
 #: ../gramps/gui/configure.py:1617
 msgid ""
 "For non leap years, anniversaries are displayed on either February 28, March "
 "1 or not at all in Gregorian calendars"
 msgstr ""
+"V nepřestupných letech se výročí zobrazují buď 28. února, 1. března, nebo se "
+"v gregoriánských kalendářích nezobrazují vůbec"
 
 #: ../gramps/gui/configure.py:1621
 #, fuzzy
@@ -12942,7 +12936,7 @@ msgstr ""
 
 #: ../gramps/gui/csvdialect.py:114
 msgid "Delimiter:"
-msgstr ""
+msgstr "Oddělovač:"
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:124
 msgid "Undo history warning"
@@ -14430,7 +14424,7 @@ msgstr "Mezi"
 
 #: ../gramps/gui/editors/editdate.py:82
 msgid "From"
-msgstr ""
+msgstr "Od"
 
 #: ../gramps/gui/editors/editdate.py:83
 #, fuzzy
@@ -18986,7 +18980,7 @@ msgstr "Nestabilní"
 
 #: ../gramps/gui/plug/_windows.py:265
 msgid "Wiki"
-msgstr ""
+msgstr "Wiki"
 
 #: ../gramps/gui/plug/_windows.py:270
 #, fuzzy
@@ -19082,7 +19076,7 @@ msgstr "Nastavení"
 
 #: ../gramps/gui/plug/_windows.py:482
 msgid "Projects"
-msgstr ""
+msgstr "Projekty"
 
 #: ../gramps/gui/plug/_windows.py:527 ../gramps/gui/plug/_windows.py:637
 #, fuzzy
@@ -19106,7 +19100,7 @@ msgstr ""
 
 #: ../gramps/gui/plug/_windows.py:744
 msgid "Scheduled update checks"
-msgstr ""
+msgstr "Plánované kontroly aktualizace"
 
 #: ../gramps/gui/plug/_windows.py:760
 msgid "Once a month"
@@ -19178,7 +19172,7 @@ msgstr "Obnovit výchozí nastavení"
 
 #: ../gramps/gui/plug/_windows.py:924
 msgid "Are you sure?"
-msgstr ""
+msgstr "Jste si jistí?"
 
 #: ../gramps/gui/plug/_windows.py:948
 msgid "Checking Addons Failed"
@@ -20642,7 +20636,7 @@ msgstr "Sloupce"
 
 #: ../gramps/gui/views/listview.py:1457
 msgid "CSV Dialect"
-msgstr ""
+msgstr "Dialekt CSV"
 
 #: ../gramps/gui/views/navigationview.py:247
 #, python-format
@@ -21438,7 +21432,7 @@ msgstr "Tiskne se strom..."
 #: ../gramps/plugins/textreport/kinshipreport.py:368
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:218
 msgid "Center Person"
-msgstr "Výchozí osoba"
+msgstr "Ústřední osoba"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:841
 msgid "The center person for the tree"
@@ -21952,7 +21946,7 @@ msgstr "Vyberte filtr pro omezení osob, které se objeví v kalendáři"
 #: ../gramps/plugins/textreport/kinshipreport.py:369
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:219
 msgid "The center person for the report"
-msgstr "Výchozí osoba pro sestavu"
+msgstr "Ústřední osoba pro sestavu"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:612
 #: ../gramps/plugins/textreport/birthdayreport.py:575
@@ -22431,7 +22425,7 @@ msgstr "půlkruh"
 
 #: ../gramps/plugins/drawreport/fanchart.py:808
 msgid "overhang"
-msgstr ""
+msgstr "přesah"
 
 #: ../gramps/plugins/drawreport/fanchart.py:809
 msgid "quarter circle"
@@ -22715,7 +22709,7 @@ msgstr "Filtrovat osobu"
 #: ../gramps/plugins/textreport/birthdayreport.py:567
 #: ../gramps/plugins/textreport/indivcomplete.py:1106
 msgid "The center person for the filter."
-msgstr "Výchozí osoba filtru."
+msgstr "Ústřední osoba filtru."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1137
 msgid "Sort chart items by"
@@ -22853,7 +22847,7 @@ msgstr "Určí které osoby budou zahrnuty do sestavy"
 #: ../gramps/plugins/webreport/narrativeweb.py:2086
 #: ../gramps/plugins/webreport/webcal.py:1857
 msgid "The center person for the filter"
-msgstr "Výchozí osoba filtru"
+msgstr "Ústřední osoba filtru"
 
 #: ../gramps/plugins/drawreport/timeline.py:438
 #: ../gramps/plugins/tool/sortevents.py:189
@@ -27575,10 +27569,8 @@ msgid "Keyword Tags"
 msgstr "Nový štítek"
 
 #: ../gramps/plugins/lib/libmetadata.py:228
-#, fuzzy
-#| msgid "Namesake"
 msgid "Namespace"
-msgstr "Jmenovec"
+msgstr "Jmenný prostor"
 
 #: ../gramps/plugins/lib/libmetadata.py:229
 msgid "Label"
@@ -36318,7 +36310,7 @@ msgstr "Rodiny nejsou v chronologickém pořadí"
 
 #: ../gramps/plugins/tool/verify.py:2572
 msgid "Family has events with role Unknown"
-msgstr ""
+msgstr "Rodina má události s rolí Neznámé"
 
 #: ../gramps/plugins/tool/verify.py:2585
 msgid "Person has events with role Unknown"
@@ -38883,6 +38875,8 @@ msgid ""
 "Copy and paste this value in your browser.\n"
 "The Google maps service must be selected."
 msgstr ""
+"Zkopírujte a vložte tuto hodnotu do prohlížeče.\n"
+"Musí být vybrána služba mapy Google."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2673
 msgid "Toner"
@@ -38923,6 +38917,8 @@ msgid ""
 "Copy and paste this value in your browser.\n"
 "The Stamen maps service must be selected."
 msgstr ""
+"Zkopírujte a vložte tuto hodnotu do prohlížeče.\n"
+"Musí být vybrána služba mapy Stamen."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2722
 #, python-format
@@ -38936,7 +38932,7 @@ msgstr "poslední"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2725
 msgid "openlayers version to use"
-msgstr ""
+msgstr "verze openlayers k použití"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2730
 msgid ""
@@ -38946,6 +38942,11 @@ msgid ""
 "openlayers_version.\n"
 "See OLDER VERSIONS in https://openlayers.org/"
 msgstr ""
+"Tuto možnost byste měli použít pouze v případě, že na svých webových "
+"stránkách nevidíte mapy OpenStreetMap nebo Stamen.\n"
+"Hodnotu můžete změnit v zadaném souboru. Název možnosti, kterou je třeba "
+"změnit, je openlayers_version.\n"
+"Viz OLDER VERSIONS na adrese https://openlayers.org/"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2747
 msgid "Other inclusion (CMS, web calendar, PHP)"
@@ -39179,7 +39180,7 @@ msgstr "Nejsou sourozenci"
 
 #: ../gramps/plugins/webreport/person.py:2238
 msgid "Relation to the center person"
-msgstr "Vztah k výchozí osobě"
+msgstr "Vztah k ústřední osobě"
 
 #: ../gramps/plugins/webreport/person.py:2283
 msgid "Relation to main person"
@@ -39256,7 +39257,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/source.py:177
 msgctxt "Source Name"
 msgid "Name"
-msgstr "Název pramene"
+msgstr "Název"
 
 #: ../gramps/plugins/webreport/source.py:295
 msgid "Publication information"
