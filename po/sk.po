@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-09-12 11:02+0000\n"
+"PO-Revision-Date: 2023-09-13 13:58+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -8733,11 +8733,11 @@ msgstr "Alternatívne mená"
 
 #: ../gramps/gen/lib/person.py:204
 msgid "Death reference index"
-msgstr "Referenčný index úmrtí"
+msgstr "Referenčný register úmrtí"
 
 #: ../gramps/gen/lib/person.py:208
 msgid "Birth reference index"
-msgstr "Referenčný index narodení"
+msgstr "Referenčný register narodení"
 
 #: ../gramps/gen/lib/person.py:213
 msgid "Event references"
@@ -9395,7 +9395,7 @@ msgstr "Pravidlo"
 
 #: ../gramps/gen/plug/_pluginreg.py:129
 msgid "Thumbnailer"
-msgstr "Generátor náhľadov"
+msgstr "Generátor miniatúr"
 
 #: ../gramps/gen/plug/_pluginreg.py:130 ../gramps/gui/configure.py:1644
 msgid "Citation formatter"
@@ -12461,7 +12461,7 @@ msgstr ""
 "<u>&lt;u&gt;Podčiarknuté&lt;/u&gt;</u>\n"
 "\n"
 "Napríklad: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n"
-"zobrazí <u><b>Podčiarknutý tučný datum</b></u>.\n"
+"zobrazí <u><b>Podčiarknutý tučný dátum</b></u>.\n"
 
 #: ../gramps/gui/configure.py:2145
 msgid "Multiple surname box height"
@@ -21225,19 +21225,19 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:875
 msgid "Show Index"
-msgstr "Zobraziť index"
+msgstr "Zobraziť register"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:876
 msgid "Display index of each person"
-msgstr "Zobrazenie indexu každej osoby"
+msgstr "Zobrazenie registra každej osoby"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:880
 msgid "Start Index"
-msgstr "Spustiť index"
+msgstr "Spustiť register"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:881
 msgid "The start index"
-msgstr "Východiskový index"
+msgstr "Východiskový register"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:897
 #: ../gramps/plugins/drawreport/descendtree.py:1629
@@ -28437,8 +28437,8 @@ msgid ""
 "This person was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"Táto osoba bola pokrstená dňa %(baptism_date)s v %(baptism_place)s"
-"%(endnotes)s."
+"Táto osoba bola birmovaná dňa %(baptism_date)s v "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:703
 #, python-format
@@ -28474,7 +28474,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:717
 #, python-format
 msgid "This person was baptized on %(baptism_date)s%(endnotes)s."
-msgstr "Táto osoba bola pokrstená dňa %(baptism_date)s%(endnotes)s."
+msgstr "Táto osoba bola birmovaná dňa %(baptism_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:719
 #, python-format
@@ -28522,7 +28522,7 @@ msgstr ""
 msgid ""
 "This person was baptized in %(month_year)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"Táto osoba bola pokrstená v %(month_year)s v %(baptism_place)s%(endnotes)s."
+"Táto osoba bola birmovaná v %(month_year)s v %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:743
 #, python-format
@@ -28556,9 +28556,9 @@ msgstr ""
 "%(unknown_gender_name)s bol/a pokrstený/á v %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:757
-#, fuzzy, python-format
+#, python-format
 msgid "This person was baptized in %(month_year)s%(endnotes)s."
-msgstr "Táto osoba bola pokrstená v %(month_year)s%(endnotes)s."
+msgstr "Táto osoba bola birmovaná v %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:759
 #, python-format
@@ -28607,7 +28607,7 @@ msgstr ""
 msgid ""
 "This person was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"Táto osoba bola pokrstená %(modified_date)s v %(baptism_place)s%(endnotes)s."
+"Táto osoba bola birmovaná %(modified_date)s v %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:783
 #, python-format
@@ -28643,7 +28643,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:797
 #, python-format
 msgid "This person was baptized %(modified_date)s%(endnotes)s."
-msgstr "Táto osoba bola pokrstená %(modified_date)s%(endnotes)s."
+msgstr "Táto osoba bola birmovaná %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:799
 #, python-format
@@ -28679,7 +28679,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:813
 #, python-format
 msgid "This person was baptized in %(baptism_place)s%(endnotes)s."
-msgstr "Táto osoba bola pokrstená v %(baptism_place)s%(endnotes)s."
+msgstr "Táto osoba bola birmovaná v %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:815
 #, python-format
@@ -28714,7 +28714,7 @@ msgstr "%(unknown_gender_name)s bol/a pokrstený/á%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:829
 #, python-format
 msgid "This person was baptized%(endnotes)s."
-msgstr "Táto osoba bola pokrstená%(endnotes)s."
+msgstr "Táto osoba bola birmovaná%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:831
 #, python-format
@@ -29160,7 +29160,7 @@ msgstr "Je potomkom osoby %(father)s."
 #: ../gramps/plugins/lib/libnarrate.py:1050
 #, python-format
 msgid "This person was the child of %(father)s."
-msgstr "Táto osoba bola potomkom osoby %(father)s."
+msgstr "Táto osoba bola potomkom %(father)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1052
 #, python-format
@@ -33899,10 +33899,8 @@ msgstr "Zobrazí stav odkazov v poznámkach"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:35
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:36
-#, fuzzy
-#| msgid "Thumbnail"
 msgid "Gnome Thumbnailer"
-msgstr "Náhľad"
+msgstr "Gnome Thumbnailer"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:49
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:50
@@ -35679,11 +35677,11 @@ msgstr ""
 
 #: ../gramps/plugins/tool/tools.gpr.py:288
 msgid "Rebuild Secondary Indexes"
-msgstr "Zostaviť sekundárne registre"
+msgstr "Znovu zostaviť sekundárne registre"
 
 #: ../gramps/plugins/tool/tools.gpr.py:289
 msgid "Rebuilds secondary indexes"
-msgstr "Zostaví sekundárne registre"
+msgstr "Znovu zostaví sekundárne registre"
 
 #: ../gramps/plugins/tool/tools.gpr.py:311
 msgid "Rebuild Reference Maps"
@@ -37550,7 +37548,7 @@ msgstr "Domov"
 #: ../gramps/plugins/webreport/basepage.py:2072
 #: ../gramps/plugins/webreport/thumbnail.py:118
 msgid "Thumbnails"
-msgstr "Náhľady"
+msgstr "Miniatúry"
 
 #: ../gramps/plugins/webreport/basepage.py:1898
 #: ../gramps/plugins/webreport/basepage.py:2078
@@ -38299,7 +38297,7 @@ msgid ""
 msgstr ""
 "Táto voľba vám umožňuje vytvoriť iba miniatúry obrázkov namiesto obrázkov v "
 "plnej veľkosti na stránke médií. To vám umožní mať oveľa menšiu celkovú "
-"veľkosť nahrávania na vašu webhostingovú stránku."
+"veľkosť nahrávaného obsahu na vašu webhostingovú stránku."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2404
 msgid "Create the thumbnail index"
@@ -38916,7 +38914,7 @@ msgid ""
 "their title. Clicking on a place&#8217;s title will take you to that "
 "place&#8217;s page."
 msgstr ""
-"Táto stránka obsahuje registrr všetkých miest v databáze, zoradených podľa "
+"Táto stránka obsahuje register všetkých miest v databáze, zoradených podľa "
 "ich názvu. Kliknutím na názov miesta sa dostanete na túto stránku miesta."
 
 #: ../gramps/plugins/webreport/place.py:327
