@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-06-27 13:52+0000\n"
+"PO-Revision-Date: 2023-09-14 14:47+0800\n"
 "Last-Translator: 快乐的老鼠宝宝 <keaitianxinmail@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/zh_Hans/>\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.18.1\n"
+"X-Generator: Poedit 3.0\n"
 "X-Poedit-Bookmarks: 6522,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -9331,7 +9331,7 @@ msgstr "不稳定版"
 
 #: ../gramps/gen/plug/_pluginreg.py:66
 msgid "Experimental"
-msgstr ""
+msgstr "实验"
 
 #: ../gramps/gen/plug/_pluginreg.py:67
 msgid "Beta"
@@ -9343,11 +9343,11 @@ msgstr "稳定版"
 
 #: ../gramps/gen/plug/_pluginreg.py:76
 msgid "Developer"
-msgstr ""
+msgstr "开发人员"
 
 #: ../gramps/gen/plug/_pluginreg.py:76
 msgid "Expert"
-msgstr ""
+msgstr "专家"
 
 #: ../gramps/gen/plug/_pluginreg.py:116
 #, fuzzy
@@ -18824,7 +18824,7 @@ msgstr "删除失败"
 
 #: ../gramps/gui/plug/_windows.py:317
 msgid "Gramps was unable to install the required modules"
-msgstr ""
+msgstr "Gramps 无法安装所需模块"
 
 #: ../gramps/gui/plug/_windows.py:347
 #, fuzzy
@@ -18921,11 +18921,11 @@ msgstr "未找到匹配"
 
 #: ../gramps/gui/plug/_windows.py:737
 msgid "Allow Gramps to install required Python modules"
-msgstr ""
+msgstr "允许 Gramps 安装所需 Python 模块"
 
 #: ../gramps/gui/plug/_windows.py:744
 msgid "Scheduled update checks"
-msgstr ""
+msgstr "定期检查更新"
 
 #: ../gramps/gui/plug/_windows.py:760
 msgid "Once a month"
@@ -18997,7 +18997,7 @@ msgstr "恢复为默认值"
 
 #: ../gramps/gui/plug/_windows.py:924
 msgid "Are you sure?"
-msgstr ""
+msgstr "您确定吗？"
 
 #: ../gramps/gui/plug/_windows.py:948
 msgid "Checking Addons Failed"
@@ -22285,12 +22285,12 @@ msgstr "日历的标题"
 
 #: ../gramps/plugins/drawreport/fanchart.py:855
 msgid "Exclude the title to make more room for the chart"
-msgstr ""
+msgstr "去掉标题，给图形留出更多空间"
 
 #: ../gramps/plugins/drawreport/fanchart.py:910
 #, python-format
 msgid "The style used for the text display of generation \"%d\""
-msgstr ""
+msgstr "用于第 ”%d” 代文字显示的样式"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:330
 msgid "Item count"
@@ -22670,6 +22670,8 @@ msgid ""
 "You can change this behavior in the 'Configure active view' of any list-"
 "based view"
 msgstr ""
+"CSV 是常见的电子表格文件格式。\n"
+"您可在任何基于列表样式的视图中，通过修改“活动视图配置”选项修改此行为"
 
 #: ../gramps/plugins/export/export.gpr.py:49
 msgid "CSV spreadsheet options"
@@ -38426,10 +38428,8 @@ msgid "in %(inipth)s (%(val)s)"
 msgstr "于 %(month_year)s 去世，(终年 %(age)s 岁)。"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2723
-#, fuzzy
-#| msgid "Dates"
 msgid "latest"
-msgstr "日期"
+msgstr "最近"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2725
 msgid "openlayers version to use"
@@ -38449,9 +38449,8 @@ msgid "Other inclusion (CMS, web calendar, PHP)"
 msgstr "要包括网络日历吗"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2751
-#, fuzzy
 msgid "Do we include these pages in a CMS web?"
-msgstr "要在 CMS 网页中添加这些页面吗？"
+msgstr "要在 CMS 网页中包括这些页面吗？"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2758
 msgid "URI"
@@ -38463,9 +38462,8 @@ msgid "Where do you place your website? default = /NAVWEB"
 msgstr "您存放网站内容的目录是哪里？默认为 /NAVWEB"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2768
-#, fuzzy
 msgid "Include the news and updates page"
-msgstr "包含统计页面"
+msgstr "包含新闻和更新页面"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2769
 #, fuzzy
@@ -38491,14 +38489,12 @@ msgid "How many updates do you want to see max"
 msgstr "你想看到的最大更新量是多少"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2794
-#, fuzzy
 msgid "Translations"
 msgstr "翻译"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2797
-#, fuzzy
 msgid "Second language"
-msgstr "第二日期"
+msgstr "第二种语言"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2802
 msgid "Site name for your second language"
@@ -38509,7 +38505,6 @@ msgstr "你的第二语言的网站名称"
 #: ../gramps/plugins/webreport/narrativeweb.py:2820
 #: ../gramps/plugins/webreport/narrativeweb.py:2829
 #: ../gramps/plugins/webreport/narrativeweb.py:2838
-#, fuzzy
 msgid "This site title"
 msgstr "网站标题"
 
@@ -38522,45 +38517,40 @@ msgid "Enter a title in the respective language"
 msgstr "用相应的语言输入一个标题"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2806
-#, fuzzy
 msgid "Third language"
-msgstr "语言"
+msgstr "第三种语言"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2811
 msgid "Site name for your third language"
 msgstr "你的第三语言的网站名称"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2815
-#, fuzzy
 msgid "Fourth language"
-msgstr "语言"
+msgstr "第四种语言"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2820
 msgid "Site name for your fourth language"
 msgstr "你的第四语言的网站名称"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2824
-#, fuzzy
 msgid "Fifth language"
-msgstr "语言"
+msgstr "第五种语言"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2829
 msgid "Site name for your fifth language"
 msgstr "你的第五种语言的网站名称"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2833
-#, fuzzy
 msgid "Sixth language"
-msgstr "语言"
+msgstr "第六种语言"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2838
 msgid "Site name for your sixth language"
 msgstr "你的第六语言的网站名称"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3071
-#, fuzzy
 msgid "Calendar Options"
-msgstr "纸张选项"
+msgstr "日历选项"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3077
 msgid "Do we include the web calendar ?"
@@ -38805,10 +38795,9 @@ msgid "Number of People"
 msgstr "人数"
 
 #: ../gramps/plugins/webreport/surnamelist.py:301
-#, fuzzy, python-format
-#| msgid "Surnames beginning with letter %s"
+#, python-format
 msgid "Surnames beginning with letter '%s' %s"
-msgstr "以字母 %s 开头的姓"
+msgstr "以字母 ‘%s’ %s 开头的姓"
 
 #: ../gramps/plugins/webreport/thumbnail.py:125
 #, fuzzy
@@ -38827,9 +38816,8 @@ msgstr ""
 "据库中所有媒体对象的索引。点击缩略图可转至该图像所在的页面。"
 
 #: ../gramps/plugins/webreport/updates.py:88
-#, fuzzy
 msgid "New and updated objects"
-msgstr "新插件和更新的插件"
+msgstr "新插件和有更新的插件"
 
 #: ../gramps/plugins/webreport/updates.py:99
 #, python-format
