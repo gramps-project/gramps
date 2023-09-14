@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-09-12 11:02+0000\n"
+"PO-Revision-Date: 2023-09-13 13:58+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -7083,21 +7083,21 @@ msgstr "קירוב מעודן"
 #, python-brace-format
 msgid "{number_of} year"
 msgid_plural "{number_of} years"
-msgstr[0] "{number_of} שנה"
+msgstr[0] "שנה {number_of}"
 msgstr[1] "{number_of} שנים"
 
 #: ../gramps/gen/lib/date.py:472
 #, python-brace-format
 msgid "{number_of} month"
 msgid_plural "{number_of} months"
-msgstr[0] "{number_of} חודש"
+msgstr[0] "חודש {number_of}"
 msgstr[1] "{number_of} חודשים"
 
 #: ../gramps/gen/lib/date.py:483
 #, python-brace-format
 msgid "{number_of} day"
 msgid_plural "{number_of} days"
-msgstr[0] "{number_of} יום"
+msgstr[0] "יום {number_of}"
 msgstr[1] "{number_of} ימים"
 
 #: ../gramps/gen/lib/date.py:489
@@ -18837,7 +18837,7 @@ msgstr "הורדת והתקנת תוספים הסתיימה"
 #, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
-msgstr[0] "{number_of} תוסף הותקן."
+msgstr[0] "תוסף {number_of} הותקן."
 msgstr[1] "{number_of}‏ תוספים הותקנו."
 
 #: ../gramps/gui/plug/_windows.py:2261
@@ -19016,7 +19016,7 @@ msgstr "עץ משפחת לא מסונן:"
 #, python-brace-format
 msgid "{number_of} Person"
 msgid_plural "{number_of} People"
-msgstr[0] "{number_of} אדם"
+msgstr[0] "אדם {number_of}"
 msgstr[1] "{number_of} אנשים"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:185
@@ -23878,8 +23878,8 @@ msgstr "לחיצה כפולה להצגת כל הדורות"
 #, python-brace-format
 msgid " have {number_of} individual\n"
 msgid_plural " have {number_of} individuals\n"
-msgstr[0] " יש {number_of} איש\n"
-msgstr[1] " יש {number_of} אנשים\n"
+msgstr[0] " קיים פרט {number_of}\n"
+msgstr[1] " קיימים {number_of} פרטים\n"
 
 #: ../gramps/plugins/gramplet/persondetails.py:274
 #, python-format
@@ -24839,7 +24839,7 @@ msgstr "התקנת רשימת בעלי עניין:"
 #, python-brace-format
 msgid "{number_of} child"
 msgid_plural "{number_of} children"
-msgstr[0] "{number_of} צאצא"
+msgstr[0] "צאצא {number_of}"
 msgstr[1] "{number_of} צאצאים"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:1130
@@ -31706,7 +31706,7 @@ msgstr "אנשים שחולקים את שם המשפחה '%s'"
 msgid "There is {number_of} person with a matching name, or alternate name.\n"
 msgid_plural ""
 "There are {number_of} people with a matching name, or alternate name.\n"
-msgstr[0] "קיים אדם {number_of} בעל שם תואם, או שם חליפי.\n"
+msgstr[0] "קיים אדם {number_of} עם שם תואם, או שם חליפי.\n"
 msgstr[1] "קיימים {number_of} אנשים עם שם תואם, או שם חליפי.\n"
 
 #: ../gramps/plugins/quickview/samesurnames.py:177
@@ -33499,7 +33499,7 @@ msgstr "אף רשומת אירוע לא סוגלה."
 #, python-brace-format
 msgid "{number_of} event record was modified."
 msgid_plural "{number_of} event records were modified."
-msgstr[0] "{number_of} רשומת אירוע הוסגלה."
+msgstr[0] "רשומת אירוע {number_of} הוסגלה."
 msgstr[1] "{number_of} רשומות אירוע הסגלו."
 
 #: ../gramps/plugins/tool/check.py:134 ../gramps/plugins/tool/check.py:313
@@ -34465,8 +34465,8 @@ msgstr[1] "הגדרת תג ל {number_of} אנשים"
 #, python-brace-format
 msgid "Finding relationships between {number_of} person"
 msgid_plural "Finding relationships between {number_of} people"
-msgstr[0] "מציאת קשרי־משפחה אדם {number_of}מציאת {number_of} קשרי־משפחה אנשים"
-msgstr[1] ""
+msgstr[0] "מציאת קשרי־משפחה בין אדם {number_of}"
+msgstr[1] "מציאת קשרי־משפחה בין {number_of} אנשים"
 
 #: ../gramps/plugins/tool/notrelated.py:394
 #, python-brace-format
@@ -34480,7 +34480,7 @@ msgstr[1] "איתור {number_of} אנשים"
 msgid "Looking up the name of {number_of} person"
 msgid_plural "Looking up the names of {number_of} people"
 msgstr[0] "איתור שם של אדם {number_of}"
-msgstr[1] "חיפוש שם של {number_of} אנשים"
+msgstr[1] "איתור שם של {number_of} אנשים"
 
 #: ../gramps/plugins/tool/ownereditor.glade:10
 msgid "Copy from DB to Preferences"
