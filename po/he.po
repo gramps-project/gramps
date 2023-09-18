@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
 "PO-Revision-Date: 2023-09-18 12:34+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -30437,7 +30437,7 @@ msgstr "ספריה שתשמש את קיירו לחילול מסמכים."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:56
 msgid "Provides GEDCOM processing functionality"
-msgstr "אספקת פונקציונליות לעיבוד קובצי GEDCOM"
+msgstr "אספקת יכולת לעיבוד קובצי GEDCOM"
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:74
 msgid "Provides recursive routines for reports"
