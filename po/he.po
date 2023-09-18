@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-09-14 14:53+0000\n"
+"PO-Revision-Date: 2023-09-18 12:34+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.0.1-dev\n"
+"X-Generator: Weblate 5.0.2\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -490,10 +490,10 @@ msgid ""
 "your family tree to members of the family via email. If you're ready to make "
 "a website for your family tree then there's a report for that as well."
 msgstr ""
-"<b>דוחות גרמפס<br/></b>גרמפס מציע מגוון רחב של דוחות. דוחות ותרשימים חזותיים "
-"נועדו להציג בקלות קשרי־משפחה מורכבים. דו־שיח 'דוחות מילוליים' מתפריט הדוחות, "
-"שימושי במיוחד לשיתוף תוצאות אילן־היוחסין עם בני המשפחה באמצעות דוא״ל. לייצר "
-"אתר מרשתת מאילן־היוחסין, ניתן להגיע מאותו תפריט, \"אתר מרשתת\"."
+"<b>דוחות גרמפס<br/></b>גרמפס מציע מגוון דוחות רחב. תרשימים ודוחות חזותיים "
+"ממחישים קשרי־משפחה מורכבים בקלות רבה. 'דוחות המלל' שימושיים במיוחד לשיתוף "
+"אילן־היוחסין עם בני משפחה נוספים באמצעות דוא״ל. ליצירת אתר מרשתת מאילן־"
+"היוחסין ולשתפו עם בני משפחה נוספים, ובכן, גם לכך קיים דוח מובנה."
 
 #: ../data/tips.xml:36
 msgid ""
@@ -11472,7 +11472,7 @@ msgstr "ייצירת מסננן מה%s שנבחר..."
 #: ../gramps/gui/columnorder.py:94
 #, python-format
 msgid "Tree View: first column \"%s\" cannot be changed"
-msgstr "מצג עץ: לא ניתן לשנות את העמודה הראשונה \"%s\""
+msgstr "מצג עץ: העמודה הראשונה \"%s\" לא ניתנת לשינוי"
 
 #: ../gramps/gui/columnorder.py:102
 msgid "Drag and drop the columns to change the order"
@@ -16595,8 +16595,8 @@ msgid ""
 "You will be asked if you want to group this person only, or all people with "
 "this specific primary surname."
 msgstr ""
-"מצג 'עץ אנשים' מקבץ אנשים עם אותו שם משפחה ראשי. ניתן לעקוף זאת על־ידי הגדרת "
-"ערך קבוצה.\n"
+"מצג 'אנשים' (בתצוגת עץ) מקבץ אנשים בעלי שם משפחה ראשי זהה. ניתן לעקוף זאת על־"
+"ידי הגדרת 'ערך קבוצה'.\n"
 "המערכת תישאל האם לקבץ אדם זה בלבד, או את כל האנשים בעלי שם משפחה ראשי מסויים "
 "זה."
 
@@ -22865,7 +22865,7 @@ msgid ""
 " 10. %(gramps_FAQ_html_start)s%(faq_section)sHow can I make a website with "
 "Gramps and my tree?%(html_end)s\n"
 msgstr ""
-" 10. %(gramps_FAQ_html_start)s%(faq_section)sכיצד ניתן לייצר אתר מרשתת "
+" 10. %(gramps_FAQ_html_start)s%(faq_section)sכיצד ניתן ליצור אתר מרשתת "
 "באמצעות גרמפס ואילן־היוחסין שלי?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:197
@@ -24228,7 +24228,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:169
 msgid "Start with Genealogy and Gramps"
-msgstr "‪להתחיל עם גנאלוגיה וגרמפס"
+msgstr "‪להתחיל עם חקר־יוחסין וגרמפס"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:173
 msgid "Enter your first Family"
@@ -24373,16 +24373,16 @@ msgid ""
 msgstr ""
 "מעונינים לראות את גרמפס בפעולה? צורו וייבאו את מסד־נתוני ההדגמה.\n"
 "\n"
-"ייצירת אילן־יוחסין חדש כמתואר לעיל. מומלץ לכנות את אילן־היוחסין \"דוגמה\".\n"
+"יצירת אילן־יוחסין חדש כמתואר לעיל. מומלץ לקרוא לו \"דוגמה\".\n"
 "\n"
-"ייבוא קובץ Gramps example.gramps.\n"
+"יבוא קובץ גרמפס להדגמה example.gramps.\n"
 "\n"
-"כעת נותר רק לעקוב אחר ההוראות למיקום הקובץ המאוחסן בתוכנת גרמפס.\n"
+"כעת נותר רק לעקוב בתוכנת גרמפס, אחר ההוראות למיקום אחסון הקובץ.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:266
 msgid "Example.gramps"
-msgstr "Example.gramps"
+msgstr "קובץ ‏Example.gramps ‏"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:57
 msgid "Minimum number of items to display"
@@ -25712,11 +25712,11 @@ msgid ""
 "example this version), create a new empty database and import the Gramps XML "
 "into that version. Please refer to:%(gramps_wiki_migrate_two_to_three_url)s"
 msgstr ""
-"גרסה זו של מסד־נתונים לאו תומך בגרס גרמפס הנוכחית. נא לאתחל את גרמפס בגרסה "
-"ישנה יותר במהדורה ‎3.0.x ולייבא את מסד־הנתונים לגרסה זו. נא לייצא עותק של מסד־"
-"הנתונים לקובץ XML (אילן־יוחסין). לאחר מכן, יש לשדרג את גרמפס לגרסה העדכנית "
-"ביותר (לדוגמה גרסה זו), לייצר מסד־נתונים ריק ולייבא אליו את קובץ ה־XML שנוצר "
-"קודם. למידע נוסף: %(gramps_wiki_migrate_two_to_three_url)s"
+"גרסת מסד־נתונים זה, לא תומכת בגרמפס בגרסתו הנוכחית. נא לאתחל גרסה ישנה יותר "
+"של גרמפס מהדורה ‎,3.0.x ולייבא את מסד־הנתונים לגרסה זו. בשלב הבא, יש לייצא "
+"עותק של מסד־הנתונים לקובץ XML (אילן־יוחסין). לאחר מכן, לשדרג את גרמפס לגרסה "
+"העדכנית ביותר (לדוגמה גרסה זו), לייצר מסד־נתונים ריק, ולייבא אליו את קובץ ה־"
+"XML שנוצר קודם. למידע נוסף: %(gramps_wiki_migrate_two_to_three_url)s"
 
 #: ../gramps/plugins/importer/importprogen.glade:49
 #: ../gramps/plugins/importer/importprogen.glade:70
@@ -26158,10 +26158,11 @@ msgid ""
 "or, if not set, relative to the user's directory."
 msgstr ""
 "\n"
-"יובאו עצמי מדיה עם נתיבים יחסיים.\n"
-"נתיבים אלה נחשבים יחסיים למחיצת\n"
-"המדיה אותה ניתן להגדיר בהעדפות,\n"
-"או, אם לא הוגדרה מחיצת מדיה, הם יהיו יחסיים למחיצת המשתמש."
+"עצמי מדיה יובאו עם 'נתיבים יחסיים'.\n"
+"הנתיבים הללו הם 'יחסיים' כלפי 'מחיצת\n"
+"המדיה' שהוגדרה בהעדפות,\n"
+"אם לא הוגדרה 'מחיצת מדיה', ה'יחסיות' היא\n"
+"כלפי 'מחיצת המשתמש'."
 
 #: ../gramps/plugins/importer/importxml.py:399
 msgid ""
@@ -36534,7 +36535,7 @@ msgstr "מצג 'אדם'"
 
 #: ../gramps/plugins/view/persontreeview.py:73
 msgid "People Tree View"
-msgstr "מצג 'עץ' אנשים"
+msgstr "מצג־עץ אנשים"
 
 #: ../gramps/plugins/view/placelistview.py:54
 msgid "Place View"
@@ -36853,15 +36854,15 @@ msgstr "אנשים מקובצים"
 
 #: ../gramps/plugins/view/view.gpr.py:202
 msgid "The view showing all people in the Family Tree grouped per family name"
-msgstr "מצג כל האנשים בעץ המשפחה מקובצים לפי שם משפחה"
+msgstr "מצג כל האנשים באילן־היוחסין מקובצים לפי שם משפחה"
 
 #: ../gramps/plugins/view/view.gpr.py:220
 msgid "The view showing all people in the Family Tree in a flat list"
-msgstr "מצג כל האנשים בעץ המשפחה ברשימה שטוחה"
+msgstr "מצג כל האנשים באילן־היוחסין ברשימה שטוחה"
 
 #: ../gramps/plugins/view/view.gpr.py:236
 msgid "The view showing all the places of the Family Tree"
-msgstr "מצג כל המקומות בעץ המשפחה"
+msgstr "מצג כל המקומות באילן־היוחסין"
 
 #: ../gramps/plugins/view/view.gpr.py:251
 msgid "Place Tree"
@@ -37344,7 +37345,7 @@ msgstr "עמוד מצג תמונות ממוזערות..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1409
 msgid "Creating statistics page..."
-msgstr "יצירת עמודי סטטיסטיקה..."
+msgstr "יצירת עמוד סטטיסטיקה..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1417
 msgid "Creating updates page..."
