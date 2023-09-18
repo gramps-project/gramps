@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-08 22:33+0100\n"
-"PO-Revision-Date: 2023-09-09 21:37+0000\n"
+"PO-Revision-Date: 2023-09-18 12:34+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -17,9 +17,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.0.1-dev\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 5.0.2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
 
@@ -5162,7 +5162,7 @@ msgstr "Pronalazi osobe sa citatom određenih vrijednosti"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:48
 msgid "People with a common ancestor with <person>"
-msgstr "Osobe sa zajedničkim pretkom sa <osobom>"
+msgstr "Osobe sa zajedničkim pretkom s <osobom>"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:49
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:54
@@ -20823,14 +20823,12 @@ msgid "'%s' is not a valid date value"
 msgstr "„%s” nije ispravna vrijednost za datum"
 
 #: ../gramps/plugins/cite/cite.gpr.py:35
-#, fuzzy
 msgid "Legacy"
-msgstr "Pravno"
+msgstr "Zastarjelo"
 
 #: ../gramps/plugins/cite/cite.gpr.py:36
-#, fuzzy
 msgid "Legacy citation formatter"
-msgstr "Standardno formatiranje citata"
+msgstr "Zastarjelo formatiranje citata"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:27
 msgid "BSDDB"
@@ -22198,7 +22196,7 @@ msgstr "Isključi naslov dijagrama"
 
 #: ../gramps/plugins/drawreport/fanchart.py:855
 msgid "Exclude the title to make more room for the chart"
-msgstr ""
+msgstr "Isključi naslov kako bi dijagram imao više mjesta"
 
 #: ../gramps/plugins/drawreport/fanchart.py:910
 #, python-format
@@ -35995,27 +35993,24 @@ msgid "Birth date equals death date"
 msgstr "Datum rođenja je jednak datumu smrti"
 
 #: ../gramps/plugins/tool/verify.py:2351
-#, fuzzy
 msgid "Birth date equals marriage date"
-msgstr "Rođenje i brak su jednaki"
+msgstr "Datum rođenja je jednak datumu braka"
 
 #: ../gramps/plugins/tool/verify.py:2372
-#, fuzzy
 msgid "Death date equals marriage date"
-msgstr "Smrt i brak su jednaki"
+msgstr "Datum smrti je jednak datumu braka"
 
 #: ../gramps/plugins/tool/verify.py:2433
 msgid "Baptism too late according to family tradition"
-msgstr ""
+msgstr "Prekasno krštenje prema obiteljskoj tradiciji"
 
 #: ../gramps/plugins/tool/verify.py:2458
-#, fuzzy
 msgid "Burial too late"
-msgstr "Datum pokopa"
+msgstr "Prekasni pokop"
 
 #: ../gramps/plugins/tool/verify.py:2495
 msgid "Children are not in chronological order"
-msgstr "Djeca nisu kronološki raspoređeni"
+msgstr "Djeca nisu kronološki raspoređena"
 
 #: ../gramps/plugins/tool/verify.py:2559
 msgid "Families are not in chronological order"
@@ -36023,12 +36018,11 @@ msgstr "Obitelji nisu kronološki raspoređene"
 
 #: ../gramps/plugins/tool/verify.py:2572
 msgid "Family has events with role Unknown"
-msgstr ""
+msgstr "Obitelj ima događaje s ulogom „Nepoznato”"
 
 #: ../gramps/plugins/tool/verify.py:2585
-#, fuzzy
 msgid "Person has events with role Unknown"
-msgstr "Osobni događaji djece"
+msgstr "Osoba ima događaje s ulogom „Nepoznato”"
 
 #: ../gramps/plugins/tool/verify.py:2598
 msgid "Family events are not in chronological order"
@@ -36040,7 +36034,7 @@ msgstr "Događaji osobe nisu kronološki raspoređeni"
 
 #: ../gramps/plugins/view/citationlistview.py:107
 msgid "Source: Title"
-msgstr "Izvor: naziv"
+msgstr "Izvor: naslov"
 
 #: ../gramps/plugins/view/citationlistview.py:108
 msgid "Source: ID"
@@ -38088,13 +38082,12 @@ msgid "Check it if you want to open/close a section"
 msgstr "Označi, ako želiš otvoriti/zatvoriti odjeljak"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
-#, fuzzy
 msgid "Extra Pages"
 msgstr "Dodatne stranice"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2209
 msgid "Extra page name"
-msgstr "Naziv dodatne stranice"
+msgstr "Ime dodatne stranice"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2211
 msgid "Your extra page name like it is shown in the menubar"
@@ -39272,35 +39265,32 @@ msgid "No style sheet"
 msgstr "Bez stilskog predloška"
 
 #: ../data/tips.xml:22
-#, fuzzy
 msgid ""
 "<b>Changing the Active Person</b><br/>Changing the Active Person in views is "
 "easy. In the Relationship view just click on anyone. In the Pedigree View "
 "doubleclick on the person or right click to select any of their spouses, "
 "siblings, children or parents."
 msgstr ""
-"<b>Zamjena aktivne osobe</b><br/>Zamijeniti aktivnu osobu u pogledima je "
+"<b>Mijenjanje aktivne osobe</b><br/>Mijenjanje aktivne osobe u pogledima je "
 "jednostavno. U pogledu „Srodstva” pritisni mišem na bilo koga. U pogledu "
-"„Dijagram predaka” pritisni dvaput na osobu ili pritisni desni gumb miša za "
-"biranje supružnika, brata, sestre, djece ili roditelja te osobe."
+"„Porijeklo” pritisni dvaput na osobu ili pritisni desni gumb miša za biranje "
+"supružnika, brata, sestre, djece ili roditelja."
 
 #: ../data/tips.xml:76
-#, fuzzy
 msgid ""
 "<b>Pedigree View</b><br/>The Pedigree View displays a traditional pedigree "
 "chart. Hold the mouse over an individual to see more information about them "
 "or right click on an individual to access other family members and settings. "
 "Play with the settings to see the different options."
 msgstr ""
-"<b>Pogled „Dijagram predaka”</b><br/>Pogled „Dijagram predaka” prikazuje "
-"tradicionalni dijagram porijekla. Zadrži miša iznad osobe za prikaz dodatnih "
-"podataka ili pritiskom desnog gumba miša na nju, otvori skočni izbornik za "
-"brzi odabir njezinih supružnika, braće, sestara i djece. Za razne prikaze "
-"ovog pogleda, podesi opcije u postavkama."
+"<b>Pogled „Porijeklo”</b><br/>Pogled „Porijeklo” prikazuje tradicionalni "
+"dijagram predaka. Zadrži miša iznad osobe za prikaz dodatnih podataka ili "
+"pritiskom desnog gumba miša na nju, otvori skočni izbornik za brzo biranje "
+"supružnika, braće, sestara i djece. Isprobaj razne opcije u postavkama."
 
 #: ../gramps/gui/plug/_windows.py:744
 msgid "Scheduled update checks"
-msgstr ""
+msgstr "Terminirano traženje novih verzija"
 
 #~ msgid "Html options"
 #~ msgstr "Html opcije"
