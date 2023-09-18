@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-09-13 13:58+0000\n"
+"PO-Revision-Date: 2023-09-18 12:34+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.0.1-dev\n"
+"X-Generator: Weblate 5.0.2\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -7758,7 +7758,7 @@ msgstr "Ďalšie manželstvo"
 
 #: ../gramps/gen/lib/eventtype.py:236
 msgid "Stillbirth"
-msgstr "Mŕtvorodenie"
+msgstr "Pôrod mŕtveho dieťaťa"
 
 #: ../gramps/gen/lib/eventtype.py:240
 #: ../gramps/plugins/drawreport/ancestortree.py:71
@@ -11126,7 +11126,7 @@ msgstr "Zákonný alebo podľa zvykového práva vzťah medzi manželom a manže
 
 #: ../gramps/gen/utils/string.py:76
 msgid "No legal or common-law relationship between man and woman"
-msgstr "Nezákonný alebo podľa zvykového práva vzťah medzi mužom a ženou"
+msgstr "Nezákonný alebo vzťah podľa zvykového práva medzi mužom a ženou"
 
 #: ../gramps/gen/utils/string.py:79
 msgid "An established relationship between members of the same sex"
@@ -11168,7 +11168,7 @@ msgstr "Muž"
 
 #: ../gramps/gen/utils/symbols.py:86
 msgid "Asexuality, sexless, genderless"
-msgstr "Bezpohlavnosť, impotencia, bezpohlavný"
+msgstr "Asexualita, bez pohlavia, bez rodu"
 
 #: ../gramps/gen/utils/symbols.py:87
 msgid "Transgender, hermaphrodite (in entomology)"
@@ -12449,7 +12449,7 @@ msgid ""
 "For example: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n"
 "will display <u><b>Underlined bold date</b></u>.\n"
 msgstr ""
-"Výhodné označenia sú:\n"
+"Vhodné zvýraznenia sú:\n"
 "<b>&lt;b&gt;Tučné&lt;/b&gt;</b>\n"
 "<big>&lt;big&gt;Relatívne zväčší písmo&lt;/big&gt;</big>\n"
 "<i>&lt;i&gt;Kurzíva&lt;/i&gt;</i>\n"
@@ -20784,7 +20784,7 @@ msgid ""
 "Command-Click to follow link"
 msgstr ""
 "\n"
-"Príkaz-Kliknúť nasledovať spojenie"
+"Príkaz-Kliknutím nasledovať odkaz"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:473
 msgid ""
@@ -20808,11 +20808,11 @@ msgstr "_Poslať e-mail ..."
 
 #: ../gramps/gui/widgets/styledtexteditor.py:548
 msgid "Copy _E-mail Address"
-msgstr "Kopírovať _e-mail adresu"
+msgstr "Kopírovať _e-mailovú adresu"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:551
 msgid "_Open Link"
-msgstr "_Otvoriť spojenie"
+msgstr "_Otvoriť odkaz"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:553
 msgid "Copy _Link Address"
@@ -20820,7 +20820,7 @@ msgstr "Kopírovať _adresu odkazu"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:557
 msgid "_Edit Link"
-msgstr "_Upraviť spojenie"
+msgstr "_Upraviť odkaz"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:828
 msgid "Select font color"
@@ -20845,12 +20845,13 @@ msgid "'%s' is not a valid date value"
 msgstr "'%s' nie je platná hodnota dátumu"
 
 #: ../gramps/plugins/cite/cite.gpr.py:35
+#, fuzzy
 msgid "Legacy"
 msgstr "Dedičstvo"
 
 #: ../gramps/plugins/cite/cite.gpr.py:36
 msgid "Legacy citation formatter"
-msgstr "Formátovač citácií dedičstva"
+msgstr "Starší formátovač citácií"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:27
 msgid "BSDDB"
