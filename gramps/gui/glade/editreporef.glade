@@ -111,6 +111,7 @@
               <object class="GtkNotebook" id="notebook_ref">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="vexpand">True</property>
                 <property name="border_width">6</property>
                 <child>
                   <object class="GtkGrid" id="table70">
