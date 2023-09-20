@@ -78,7 +78,7 @@ class CitationSidebarFilter(SidebarFilter):
         for conf_value in sorted(conf_strings.keys()):
             model.append((_(conf_strings[conf_value]),))
         self.filter_conf.set_model(model)
-        self.filter_conf.set_active(Citation.CONF_NORMAL)
+        self.filter_conf.set_active(Citation.CONF_VERY_LOW)
 
         self.filter_note = Gtk.Entry()
 
@@ -142,7 +142,7 @@ class CitationSidebarFilter(SidebarFilter):
         self.filter_id.set_text("")
         self.filter_page.set_text("")
         self.filter_date.set_text("")
-        self.filter_conf.set_active(Citation.CONF_NORMAL)
+        self.filter_conf.set_active(Citation.CONF_VERY_LOW)
         self.filter_note.set_text("")
         self.tag.set_active(0)
         self.generic.set_active(0)
