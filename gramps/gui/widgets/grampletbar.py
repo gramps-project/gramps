@@ -746,7 +746,7 @@ class DetachedWindow(ManagedWindow):
         elif response == Gtk.ResponseType.HELP:
             # translated name:
             if self.gramplet.help_url:
-                if self.gramplet.help_url.startswith("http://"):
+                if self.gramplet.help_url.startswith(("http://", "https://")):
                     display_url(self.gramplet.help_url)
                 else:
                     display_help(self.gramplet.help_url)
