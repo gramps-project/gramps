@@ -3523,7 +3523,7 @@ class BasePage:
             else:
                 if self.reference_sort:
                     role = obj[2]  # name
-                elif len(obj[2].split("-")) > 1:
+                elif len(obj[2].split(":")) > 1:
                     dummy_cal, role = obj[2].split(":")  # date in ISO format
                     # dummy_cal is the original calendar. remove it.
                     if len(role.split(" ")) == 2:
