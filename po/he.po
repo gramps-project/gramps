@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-09-29 14:57+0000\n"
+"PO-Revision-Date: 2023-09-30 16:00+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -3211,7 +3211,7 @@ msgstr "%(n1)6d  קשרי־משפחה  עודכנו עם %(n2)6d מובאות ב
 #, python-format
 msgid ""
 "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr "%(n1)6d  מקורות       עודכנו תוך %(n2)6d מובאות ב־%(n3)6d שניות\n"
+msgstr "%(n1)6d  מקורות       עודכנו עם %(n2)6d מובאות ב־%(n3)6d שניות\n"
 
 #: ../gramps/gen/db/upgrade.py:1173
 msgid "Number of new objects upgraded:\n"
@@ -3981,7 +3981,7 @@ msgstr "תג:"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:52
 msgid "Citations with the <tag>"
-msgstr "מובאות מתוייגות עם <תג>"
+msgstr "מובאות שמתויגות ב<תג>"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:53
 msgid "Matches citations with the particular tag"
@@ -4208,11 +4208,11 @@ msgstr "שליפת אירועים בעלי מספר מסוים של מקורות
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:52
 msgid "Events with the <tag>"
-msgstr "אירועים מתוייגים עם <תג>"
+msgstr "אירועים שמתויגים ב<תג>"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:53
 msgid "Matches events with the particular tag"
-msgstr "שליפת אירועים מתוייגים בתג מסוים"
+msgstr "שליפת אירועים שמתויגים בתג מסוים"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:48
 msgid "Events with the particular type"
@@ -4505,11 +4505,11 @@ msgstr "שליפת משפחות בעלות מקור מסוים"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:52
 msgid "Families with the <tag>"
-msgstr "משפחות מתוייגות עם <תג>"
+msgstr "משפחות שמתויגות ב<תג>"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:53
 msgid "Matches families with the particular tag"
-msgstr "שליפת משפחות מתוייגות בתג מסוים"
+msgstr "שליפת משפחות שמתויגות בתג מסוים"
 
 #: ../gramps/gen/filters/rules/family/_hastwins.py:47
 msgid "Families with twins"
