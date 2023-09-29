@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-09-25 09:00+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"PO-Revision-Date: 2023-09-29 14:57+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -3205,7 +3205,7 @@ msgstr "%(n1)6d  מקומות          עודכנו תוך %(n2)6d מובאות 
 #, python-format
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr "%(n1)6d  קשרי־משפחה  עודכנו תוך %(n2)6d מובאות ב־%(n3)6d שניות\n"
+msgstr "%(n1)6d  קשרי־משפחה  עודכנו עם %(n2)6d מובאות ב־%(n3)6d שניות\n"
 
 #: ../gramps/gen/db/upgrade.py:608
 #, python-format
