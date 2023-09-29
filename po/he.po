@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-09-18 12:34+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2023-09-25 09:00+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.0.2\n"
+"X-Generator: Weblate 5.1-dev\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -5025,11 +5025,11 @@ msgstr "שליפת אנשים עם שם חלופי"
 
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:51
 msgid "People with <count> associations"
-msgstr "אנשים בעלי <מונה> שיוכים"
+msgstr "אנשים להם <מונה> תסמיכים"
 
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:52
 msgid "Matches people with a certain number of associations"
-msgstr "שליפת אנשים עם מספר מסוים של שיוכים"
+msgstr "שליפת אנשים להם מספר תסמיכים מסוים"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:46
 #: ../gramps/gui/editors/filtereditor.py:114
@@ -8464,7 +8464,7 @@ msgstr "הערת כתובת"
 
 #: ../gramps/gen/lib/notetype.py:94
 msgid "Association Note"
-msgstr "הערת שיוך"
+msgstr "הערת תסמיך"
 
 #: ../gramps/gen/lib/notetype.py:95
 msgid "LDS Note"
@@ -8637,7 +8637,7 @@ msgstr "מובאות אדם"
 #: ../gramps/gen/lib/personref.py:117
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:68
 msgid "Association"
-msgstr "שיוך"
+msgstr "תסמיך"
 
 #: ../gramps/gen/lib/place.py:152 ../gramps/plugins/export/exportcsv.py:312
 #: ../gramps/plugins/gramplet/coordinates.py:106
@@ -13733,27 +13733,27 @@ msgstr "לא ניתן לשנות אירועי משפחה מתוך עורך אד�
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:56
 msgid "Create and add a new association"
-msgstr "יצירת והוספת שיוך חדש"
+msgstr "יצירת והוספת תסמיך חדש"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:57
 msgid "Remove the existing association"
-msgstr "הסרת השיוך הקיים"
+msgstr "הסרת התסמיך הקיים"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:58
 msgid "Edit the selected association"
-msgstr "עריכת השיוך שנבחר"
+msgstr "עריכת התסמיך שנבחר"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:59
 msgid "Move the selected association upwards"
-msgstr "העברת השיוך שנבחר מעלה"
+msgstr "העברת התסמיך שנבחר מעלה"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:60
 msgid "Move the selected association downwards"
-msgstr "העברת השיוך שנבחר מטה"
+msgstr "העברת התסמיך שנבחר מטה"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:81
 msgid "_Associations"
-msgstr "_שיוכים"
+msgstr "תסמיכים"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:149
 #: ../gramps/plugins/lib/libprogen.py:1602
@@ -16714,7 +16714,7 @@ msgstr "א_דם:"
 
 #: ../gramps/gui/glade/editpersonref.glade:112
 msgid "_Association:"
-msgstr "_שיוך:"
+msgstr "_תסמיך:"
 
 #: ../gramps/gui/glade/editpersonref.glade:126
 msgid ""
@@ -16724,7 +16724,7 @@ msgid ""
 "occasions. Events can be shared between people, each indicating their role "
 "in the event."
 msgstr ""
-"תיאור השיוך, לדוגמה. הסנדק, חבר, ...\n"
+"תיאור התסמיך. לדוגמה, סנדק, חבר, עד, ...\n"
 "\n"
 "הערה: ניתן להשתמש באירועים במקום קשרי־משפחה שקשרים למסגרות זמן או נסיבות "
 "מסויימות. ניתן לשתף אירועים בין אנשים ולציין את תפקידו של ה'אדם'באירוע."
@@ -16733,12 +16733,12 @@ msgstr ""
 msgid ""
 "Use the select button to choose a person that has an association to the "
 "edited person."
-msgstr "נא להשתמש בכפתור 'בחירה' על מנת לבחור אדם עם שיוך לאדם שבעריכה."
+msgstr "נא להשתמש בלחצן 'בחירה' לבחור אדם עם תסמיך לאדם ששבעריכה כעת."
 
 #: ../gramps/gui/glade/editpersonref.glade:163
 #: ../gramps/gui/glade/editpersonref.glade:229
 msgid "Select a person that has an association to the edited person."
-msgstr "נא לבחור אדם עם שיוך לאדם שבעריכה."
+msgstr "נא לבחור אדם עם תסמיך לאדם שבעריכה."
 
 #: ../gramps/gui/glade/editplace.glade:108
 #: ../gramps/gui/glade/editplaceref.glade:229
@@ -32788,7 +32788,7 @@ msgstr "הורים חליפיים"
 #: ../gramps/plugins/textreport/indivcomplete.py:468
 #: ../gramps/plugins/webreport/person.py:1556
 msgid "Associations"
-msgstr "שיוכים"
+msgstr "תסמיכים"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:613
 msgid "Images"
