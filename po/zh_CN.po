@@ -13,13 +13,14 @@
 # 张子涵 <zhangzihanzhangzihan@live.com>, 2023.
 # linluoxue <linluomoxue@foxmail.com>, 2023.
 # 快乐的老鼠宝宝 <keaitianxinmail@qq.com>, 2023.
+# Tian Shixiong <tiansworld@fedoraproject.org>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-09-14 14:47+0800\n"
-"Last-Translator: 快乐的老鼠宝宝 <keaitianxinmail@qq.com>\n"
+"PO-Revision-Date: 2023-09-27 14:01+0000\n"
+"Last-Translator: Tian Shixiong <tiansworld@fedoraproject.org>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -27,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Weblate 5.1-dev\n"
 "X-Poedit-Bookmarks: 6522,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -2959,14 +2960,14 @@ msgstr "大约 "
 #: ../gramps/gen/datehandler/_datestrings.py:255
 msgctxt "date modifier"
 msgid "from "
-msgstr ""
+msgstr "从 "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:258
 msgctxt "date modifier"
 msgid "to "
-msgstr ""
+msgstr "到 "
 
 #: ../gramps/gen/datehandler/_datestrings.py:263
 msgctxt "date quality"
@@ -3158,6 +3159,17 @@ msgid ""
 "start your previous version of Gramps and %(wiki_backup_html_start)smake a "
 "backup%(html_end)s of your Family Tree."
 msgstr ""
+"您尝试载入的家族树基于 %(dbtype)s 数据库，这已经不被支持。\n"
+"因此如果不做升级处理，您将无法载入此家族树。\n"
+"\n"
+"如果您进行了升级，那么您将无法使用先前版本的 Gramps，即使您之后%(wiki_manual_"
+"backup_html_start)备份%(html_end)s或%(wiki_manual_export_html_start)s导出%(ht"
+"ml_end)s了您升级后的家族树也无法使用。\n"
+"\n"
+"强烈建议您先备份家族树。\n"
+"\n"
+"如果您尚未备份过您的家族树，那您应先启动先前版本的 "
+"Gramps，然后对家族树进行%(wiki_backup_html_start)s备份%(html_end)s。"
 
 #: ../gramps/gen/db/generic.py:196 ../gramps/gen/db/generic.py:246
 #: ../gramps/gen/db/generic.py:2157
@@ -10047,10 +10059,12 @@ msgid "Preferred Name"
 msgstr "首选姓名"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:214
+#, fuzzy
 msgid ""
 "Select the portion of the given name to be marked as preferred. Auto sets "
 "the call name if one exists, otherwise the whole given name."
-msgstr ""
+msgstr "选择名字中标记为优先使用的部分。如果有 call "
+"name，则自动将其设为优先部分，否则使用完整的名字。"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:225
 msgid "Position of marriage information."
@@ -10303,7 +10317,7 @@ msgstr "包含健在人员全名，但移除数据"
 #: ../gramps/gen/plug/report/stdoptions.py:215
 msgctxt "'living people'"
 msgid "Given names replaced, and data removed"
-msgstr ""
+msgstr "名字已被替换，数据已被删除"
 
 #: ../gramps/gen/plug/report/stdoptions.py:219
 msgctxt "'living people'"
@@ -11095,7 +11109,7 @@ msgstr ""
 
 #: ../gramps/gen/utils/requirements.py:143
 msgid "Python modules"
-msgstr ""
+msgstr "Python 模块"
 
 #: ../gramps/gen/utils/requirements.py:150
 msgid "GObject introspection modules"
@@ -11380,7 +11394,7 @@ msgstr "德语"
 
 #: ../gramps/gen/utils/win32locale.py:52
 msgid "German (Austria)"
-msgstr ""
+msgstr "德语（奥地利）"
 
 #: ../gramps/gen/utils/win32locale.py:53
 msgid "Greek"
@@ -11562,11 +11576,11 @@ msgstr "未找到"
 
 #: ../gramps/grampsapp.py:365
 msgid "not found because exiv2 is not installed"
-msgstr ""
+msgstr "未找到，因为 exiv2 没有安装"
 
 #: ../gramps/grampsapp.py:401
 msgid "Installed but does not supply version"
-msgstr ""
+msgstr "已安装，但没有提供版本"
 
 #: ../gramps/grampsapp.py:422
 #, fuzzy
@@ -11632,7 +11646,7 @@ msgstr ""
 "十分感谢！\n"
 "YH Tan, 2014\n"
 "霍东灵 Anthony Fok <foka@debian.org>, 2015\n"
-"Shixiong Tian <tiansworld@fedoraproject.org>, 2020, 2021\n"
+"Shixiong Tian <tiansworld@fedoraproject.org>, 2020, 2021,2022,2023\n"
 "快乐的老鼠宝宝 LaoshuBaby <laoshubaby@protonmail.com>, 2022, 2023"
 
 #: ../gramps/gui/aboutdialog.py:155
@@ -12001,7 +12015,7 @@ msgstr "女性成员的颜色"
 
 #: ../gramps/gui/configure.py:907
 msgid "Colors for people who are neither male nor female"
-msgstr ""
+msgstr "非男也非女的成员颜色标记"
 
 #: ../gramps/gui/configure.py:908
 msgid "Colors for Unknown persons"
@@ -12258,7 +12272,7 @@ msgstr "显示下一页"
 
 #: ../gramps/gui/configure.py:1610
 msgid "Only on leap years"
-msgstr ""
+msgstr "仅在闰年"
 
 #: ../gramps/gui/configure.py:1617
 msgid ""
@@ -12475,27 +12489,27 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2040
 msgid "Show Clipboard icon on toolbar"
-msgstr ""
+msgstr "工具栏上显示剪贴板"
 
 #: ../gramps/gui/configure.py:2045
 msgid "Show or hide the Clipboard icon on the toolbar."
-msgstr ""
+msgstr "在工具栏上显示或隐藏剪贴板。"
 
 #: ../gramps/gui/configure.py:2053
 msgid "Show Reports icon on toolbar"
-msgstr ""
+msgstr "在工具栏上显示报告图标"
 
 #: ../gramps/gui/configure.py:2058
 msgid "Show or hide the Reports icon on the toolbar."
-msgstr ""
+msgstr "在工具栏上显示或隐藏报告图标。"
 
 #: ../gramps/gui/configure.py:2066
 msgid "Show Tools icon on toolbar"
-msgstr ""
+msgstr "在工具栏上显示工具图标"
 
 #: ../gramps/gui/configure.py:2071
 msgid "Show or hide the Tools icon on the toolbar."
-msgstr ""
+msgstr "在工具栏上显示或隐藏工具图标。"
 
 #: ../gramps/gui/configure.py:2079
 msgid "Show Addons icon on toolbar"
@@ -12507,11 +12521,11 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2092
 msgid "Show Preferences icon on toolbar"
-msgstr ""
+msgstr "在工具栏上显示偏好设置图标"
 
 #: ../gramps/gui/configure.py:2097
 msgid "Show or hide the Preferences icon on the toolbar."
-msgstr ""
+msgstr "在工具栏上显示或隐藏偏好设置图标。"
 
 #: ../gramps/gui/configure.py:2105
 msgid "Show close button in gramplet bar tabs"
@@ -12867,7 +12881,7 @@ msgstr ""
 
 #: ../gramps/gui/csvdialect.py:114
 msgid "Delimiter:"
-msgstr ""
+msgstr "分隔符："
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:124
 msgid "Undo history warning"
@@ -18802,7 +18816,7 @@ msgstr "不稳定版"
 
 #: ../gramps/gui/plug/_windows.py:265
 msgid "Wiki"
-msgstr ""
+msgstr "维基"
 
 #: ../gramps/gui/plug/_windows.py:270
 #, fuzzy
@@ -24688,6 +24702,11 @@ msgid ""
 "under the \"Family Trees\" menu to import the GEDCOM data.\n"
 "\n"
 msgstr ""
+"要导入来自其他程序的家族树，需先从其他程序创建 GEDCOM（或其他文件）文件。\n"
+"\n"
+"当您在 Gramps 建立了新的数据库文件后，在“家族树”菜单下选择“导入”，便可导入 "
+"GEDCOM 数据。\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:218
 #, fuzzy
@@ -24739,6 +24758,9 @@ msgid ""
 "available to you. Many more are available to download and install.\n"
 "\n"
 msgstr ""
+"Gramps 中有很多加载项或者叫 Gramplet 的小工具可助您输入数据及可视化家族树。这"
+"些工具很多可直接使用。另外一些需要下载并安装才可使用。\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:255
 #, fuzzy
@@ -24747,6 +24769,7 @@ msgid "Example Database"
 msgstr "整个数据库"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:258
+#, fuzzy
 msgid ""
 "Want to see Gramps in use. Create and Import the Example database.\n"
 "\n"
@@ -24759,6 +24782,15 @@ msgid ""
 "program.\n"
 "\n"
 msgstr ""
+"如果想看看 Gramps 使用时的样子，可以创建并导入示例数据库。\n"
+"\n"
+"按照以下方式创建新家族树。建议您将此家族树命名为：“示例”。\n"
+"\n"
+"导入示例文件 example.gramps。\n"
+"\n"
+"Follow the instructions for the location of the file stored with the Gramps "
+"program.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:266
 msgid "Example.gramps"
@@ -26240,13 +26272,13 @@ msgstr ""
 msgid ""
 "Use original Person\n"
 "Identifier as Gramps ID."
-msgstr ""
+msgstr "将原先的人员识别符用作 Gramps ID。"
 
 #: ../gramps/plugins/importer/importprogen.glade:1349
 msgid ""
 "Use original Family\n"
 "Identifier as Gramps ID."
-msgstr ""
+msgstr "将原先的家庭识别符用作 Gramps ID。"
 
 #: ../gramps/plugins/importer/importprogen.glade:1369
 msgid "Identifier"
@@ -31315,7 +31347,7 @@ msgstr "请在链接前改正此项"
 
 #: ../gramps/plugins/lib/maps/placeselection.py:326
 msgid "you have a wrong longitude for:"
-msgstr ""
+msgstr "此处经度有误："
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:57
 msgid "Denmark"
@@ -35065,7 +35097,7 @@ msgstr ""
 #: ../gramps/plugins/tool/removespaces.py:288
 #: ../gramps/plugins/tool/removespaces.py:300
 msgid "leading and/or trailing spaces"
-msgstr ""
+msgstr "开头及/或末尾的空格"
 
 #: ../gramps/plugins/tool/removespaces.py:285
 #: ../gramps/plugins/tool/removespaces.py:297
@@ -35075,8 +35107,9 @@ msgstr "无效格式"
 
 #: ../gramps/plugins/tool/removespaces.py:291
 #: ../gramps/plugins/tool/removespaces.py:303
+#, fuzzy
 msgid "comma instead of dot"
-msgstr ""
+msgstr ", 代替 ."
 
 #: ../gramps/plugins/tool/removespaces.py:294
 #: ../gramps/plugins/tool/removespaces.py:306
@@ -37363,7 +37396,7 @@ msgstr "向后"
 
 #: ../gramps/plugins/webreport/basepage.py:2577
 msgid "Other media: videos, pdfs..."
-msgstr ""
+msgstr "其他媒体文件：视频，PDF 文件等"
 
 #: ../gramps/plugins/webreport/basepage.py:2751
 msgid " [Click to Go]"
@@ -38374,6 +38407,8 @@ msgid ""
 "Copy and paste this value in your browser.\n"
 "The Google maps service must be selected."
 msgstr ""
+"将此值复制并粘贴到浏览器中。\n"
+"必须选择谷歌地图。"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2673
 msgid "Toner"
@@ -38419,6 +38454,8 @@ msgid ""
 "Copy and paste this value in your browser.\n"
 "The Stamen maps service must be selected."
 msgstr ""
+"将此值复制并粘贴到浏览器中。\n"
+"必须选择 Stamen 地图。"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2722
 #, fuzzy, python-format
@@ -38433,7 +38470,7 @@ msgstr "最近"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2725
 msgid "openlayers version to use"
-msgstr ""
+msgstr "要使用的 openlayers 版本"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2730
 msgid ""
