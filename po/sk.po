@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-09-18 12:34+0000\n"
+"PO-Revision-Date: 2023-09-20 21:00+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.0.2\n"
+"X-Generator: Weblate 5.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -12174,7 +12174,7 @@ msgstr "Kalendár na vstupe"
 
 #: ../gramps/gui/configure.py:1608
 msgid "On the previous day"
-msgstr "V predchádzajúci deň"
+msgstr "Na predchádzajúci deň"
 
 #: ../gramps/gui/configure.py:1609
 msgid "On the next day"
@@ -24540,7 +24540,7 @@ msgid ""
 "\n"
 msgstr ""
 "V poštových konferenciách a na diskusnom fóre je k dispozícii aktívna "
-"komunita používateľov, ktorí sa môžu podeliť o nápady a techniky.\n"
+"komunita používateľov, ktorí sa môžu podeliť o nápady a postupy.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:141
@@ -27263,7 +27263,7 @@ msgstr "Značky miest"
 
 #: ../gramps/plugins/lib/libmetadata.py:127
 msgid "Advanced Tags"
-msgstr "Pokročilé značky"
+msgstr "Rozšírené značky"
 
 #: ../gramps/plugins/lib/libmetadata.py:128
 msgid "Rights Tags"

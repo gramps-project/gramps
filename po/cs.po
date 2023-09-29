@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-09-18 12:34+0000\n"
+"PO-Revision-Date: 2023-09-25 09:00+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -49,7 +49,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.0.2\n"
+"X-Generator: Weblate 5.1-dev\n"
 "X-Poedit-Bookmarks: 2035,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -530,13 +530,6 @@ msgstr ""
 "přidejte SoundEx Gramplet."
 
 #: ../data/tips.xml:32
-#, fuzzy
-#| msgid ""
-#| "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
-#| "modify a number of settings, such as the path to your media files, and "
-#| "allows you to adjust many aspects of the Gramps presentation to your "
-#| "needs. Each separate view can also be configured under \"View &gt; "
-#| "Configure View...\""
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
@@ -548,7 +541,7 @@ msgstr ""
 "umožní změnit celou řadu nastavení (jako cesta k souborům objektů médií) a "
 "umožní vám přizpůsobit mnoho aspektů chování Gramps vašim potřebám. Každý "
 "samostatný pohled může být také přizpůsoben prostřednictvím \"Zobrazit &gt; "
-"Nastavit pohled...\""
+"Nastavit pohled...\"."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -7500,10 +7493,8 @@ msgid "Informant"
 msgstr "Dotazovaný"
 
 #: ../gramps/gen/lib/eventroletype.py:65
-#, fuzzy
-#| msgid "parent2"
 msgid "Godparent"
-msgstr "rodič2"
+msgstr "Kmotr(a)"
 
 #: ../gramps/gen/lib/eventtype.py:144
 msgid "Life Events"
@@ -9376,11 +9367,11 @@ msgstr "Nástroj"
 
 #: ../gramps/gen/plug/_pluginreg.py:118
 msgid "Importer"
-msgstr "Import"
+msgstr "Importér"
 
 #: ../gramps/gen/plug/_pluginreg.py:119
 msgid "Exporter"
-msgstr "Export"
+msgstr "Exportér"
 
 #: ../gramps/gen/plug/_pluginreg.py:120
 msgid "Document creator"
@@ -11059,10 +11050,8 @@ msgid "RT90"
 msgstr "RT90"
 
 #: ../gramps/gen/utils/place.py:99
-#, fuzzy
-#| msgid "Delete the selected citation"
 msgid "Degree, minutes, seconds notation"
-msgstr "Odstranit zvolenou citaci"
+msgstr "Zápis stupňů, minut a sekund"
 
 #: ../gramps/gen/utils/place.py:100
 msgid "Degree, minutes, seconds notation with :"
@@ -12172,10 +12161,8 @@ msgid "Consider single pa/matronymic as surname"
 msgstr "Považovat jediné jméno po otci/matce za příjmení"
 
 #: ../gramps/gui/configure.py:1541
-#, fuzzy
-#| msgid "Date format"
 msgid "Date format *"
-msgstr "Formát data"
+msgstr "Formát data *"
 
 #: ../gramps/gui/configure.py:1549
 msgid "Years"
@@ -12230,10 +12217,8 @@ msgstr ""
 "v gregoriánských kalendářích nezobrazují vůbec"
 
 #: ../gramps/gui/configure.py:1621
-#, fuzzy
-#| msgid "Include death anniversaries"
 msgid "Show leap day anniversaries"
-msgstr "Zahrnout výročí úmrtí"
+msgstr "Zobrazit přestupná výročí"
 
 #: ../gramps/gui/configure.py:1628
 msgid "Active person's name and ID"
@@ -12418,43 +12403,43 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2040
 msgid "Show Clipboard icon on toolbar"
-msgstr ""
+msgstr "Zobrazit ikonu schránky v nástrojové liště"
 
 #: ../gramps/gui/configure.py:2045
 msgid "Show or hide the Clipboard icon on the toolbar."
-msgstr ""
+msgstr "Zobrazit nebo skrýt ikonu schránky v nástrojové liště."
 
 #: ../gramps/gui/configure.py:2053
 msgid "Show Reports icon on toolbar"
-msgstr ""
+msgstr "Zobrazit ikonu sestav v nástrojové liště"
 
 #: ../gramps/gui/configure.py:2058
 msgid "Show or hide the Reports icon on the toolbar."
-msgstr ""
+msgstr "Zobrazit nebo skrýt ikonu sestav v nástrojové liště."
 
 #: ../gramps/gui/configure.py:2066
 msgid "Show Tools icon on toolbar"
-msgstr ""
+msgstr "Zobrazit ikonu nástrojů v nástrojové liště"
 
 #: ../gramps/gui/configure.py:2071
 msgid "Show or hide the Tools icon on the toolbar."
-msgstr ""
+msgstr "Zobrazit nebo skrýt ikonu nástrojů v nástrojové liště."
 
 #: ../gramps/gui/configure.py:2079
 msgid "Show Addons icon on toolbar"
-msgstr ""
+msgstr "Zobrazit ikonu rozšíření v nástrojové liště"
 
 #: ../gramps/gui/configure.py:2084
 msgid "Show or hide the Addons icon on the toolbar."
-msgstr ""
+msgstr "Zobrazit nebo skrýt ikonu rozšíření v nástrojové liště."
 
 #: ../gramps/gui/configure.py:2092
 msgid "Show Preferences icon on toolbar"
-msgstr ""
+msgstr "Zobrazit ikonu předvoleb v nástrojové liště"
 
 #: ../gramps/gui/configure.py:2097
 msgid "Show or hide the Preferences icon on the toolbar."
-msgstr ""
+msgstr "Zobrazit nebo skrýt ikonu předvoleb v nástrojové liště."
 
 #: ../gramps/gui/configure.py:2105
 msgid "Show close button in gramplet bar tabs"
@@ -12874,10 +12859,8 @@ msgid "Import Family Tree"
 msgstr "Importovat rodokmen"
 
 #: ../gramps/gui/dbloader.py:408
-#, fuzzy
-#| msgid "All files"
 msgid "All supported files"
-msgstr "Všechny soubory"
+msgstr "Všechny podporované soubory"
 
 #: ../gramps/gui/dbloader.py:463
 #, python-format
@@ -13311,20 +13294,16 @@ msgid "Tools"
 msgstr "Nástroje"
 
 #: ../gramps/gui/displaystate.py:423
-#, fuzzy
-#| msgid "Plugin Manager"
 msgid "Open Addon Manager"
-msgstr "Správce zásuvných modulů"
+msgstr "Otevřít správce rozšíření"
 
 #: ../gramps/gui/displaystate.py:424 ../gramps/gui/plug/_windows.py:476
 msgid "Addons"
 msgstr "Rozšíření"
 
 #: ../gramps/gui/displaystate.py:429
-#, fuzzy
-#| msgid "Preferences"
 msgid "Open Preferences"
-msgstr "Předvolby"
+msgstr "Otevřít předvolby"
 
 #: ../gramps/gui/displaystate.py:450
 #: ../gramps/plugins/gramplet/persondetails.py:181
@@ -14288,10 +14267,8 @@ msgid "From"
 msgstr "Od"
 
 #: ../gramps/gui/editors/editdate.py:83
-#, fuzzy
-#| msgid "Top"
 msgid "To"
-msgstr "Nahoře"
+msgstr "Do"
 
 #: ../gramps/gui/editors/editdate.py:84
 msgid "Span"
@@ -15449,10 +15426,8 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:96
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:89
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:73
-#, fuzzy
-#| msgid "Case sensitive:"
 msgid "Case sensitive"
-msgstr "Rozlišování velikosti písmen:"
+msgstr "Rozlišování velikosti písmen"
 
 #: ../gramps/gui/editors/filtereditor.py:688
 msgid "Rule Name"
@@ -15504,28 +15479,20 @@ msgid "Delete Filter"
 msgstr "Odstranit filtr"
 
 #: ../gramps/gui/editors/objectentries.py:306
-#, fuzzy
-#| msgid "To select a place, use drag-and-drop or use the buttons"
 msgid "To select a person, use drag-and-drop or use the buttons"
-msgstr "Pro výběr místa použijte drag-and-drop nebo tlačítka"
+msgstr "Pro výběr osoby použijte drag-and-drop nebo tlačítka"
 
 #: ../gramps/gui/editors/objectentries.py:308
-#, fuzzy
-#| msgid "No place given, click button to select one"
 msgid "No person given, click button to select one"
-msgstr "Nebylo zvoleno žádné místo. Pro volbu klikněte na tlačítko"
+msgstr "Nebyla zvolena žádná osoba. Pro volbu klikněte na tlačítko"
 
 #: ../gramps/gui/editors/objectentries.py:309
-#, fuzzy
-#| msgid "Edit Person"
 msgid "Edit person"
 msgstr "Upravit osobu"
 
 #: ../gramps/gui/editors/objectentries.py:310
-#, fuzzy
-#| msgid "Select an existing place"
 msgid "Select an existing person"
-msgstr "Vybrat existující místo"
+msgstr "Vybrat existující osobu"
 
 #: ../gramps/gui/editors/objectentries.py:311
 #: ../gramps/plugins/lib/libpersonview.py:144
@@ -15533,10 +15500,8 @@ msgid "Add a new person"
 msgstr "Přidat novou osobu"
 
 #: ../gramps/gui/editors/objectentries.py:312
-#, fuzzy
-#| msgid "Remove version"
 msgid "Remove person"
-msgstr "Odstranit verzi"
+msgstr "Odstranit osobu"
 
 #: ../gramps/gui/editors/objectentries.py:375
 msgid "To select a place, use drag-and-drop or use the buttons"
@@ -17134,10 +17099,8 @@ msgstr "Kód asociovaný s tímto místem. Např. zkratka názvu země nebo PSČ
 
 #: ../gramps/gui/glade/editplace.glade:380
 #: ../gramps/gui/glade/editplaceref.glade:397
-#, fuzzy
-#| msgid "What type of place this is. Eg 'Country', 'City', ... ."
 msgid "What type of place this is. Eg 'Country', 'City', ..."
-msgstr "O jaký druh místa se jedná. Např. 'stát'. 'město', ... ."
+msgstr "O jaký druh místa se jedná. Např. 'stát'. 'město', ..."
 
 #: ../gramps/gui/glade/editplace.glade:443
 #: ../gramps/gui/glade/editplaceref.glade:599
@@ -18070,7 +18033,7 @@ msgstr "_Vpřed"
 
 #: ../gramps/gui/glade/updateaddons.glade:41
 msgid "Install Selected _Addons"
-msgstr "Instalov_at zvolené rozšíření"
+msgstr "Instalovat zvolené _Rozšíření"
 
 #: ../gramps/gui/glade/updateaddons.glade:72
 #: ../gramps/gui/plug/_windows.py:2094
@@ -18078,15 +18041,6 @@ msgid "Available Gramps Updates for Addons"
 msgstr "Dostupné aktualizace rozšíření Gramps"
 
 #: ../gramps/gui/glade/updateaddons.glade:89
-#, fuzzy
-#| msgid ""
-#| "Gramps comes with a core set of plugins which provide all of the "
-#| "necessary features. However, you can extend this functionality with "
-#| "additional Addons. These addons provide reports, listings, views, "
-#| "gramplets, and more. Here you can select among the available extra "
-#| "addons, they will be retrieved from the internet off of the Gramps "
-#| "website, and installed locally on your computer. If you close this dialog "
-#| "now, you can install addons later from the menu under Edit -> Preferences."
 msgid ""
 "Gramps comes with a core set of plugins which provide all of the necessary "
 "features. However, you can extend this functionality with additional Addons. "
@@ -18102,7 +18056,7 @@ msgstr ""
 "gramplety a další vlastnosti. Zde si můžete vybrat mezi dalšími dostupnými "
 "rozšířeními, které budou získány z Internetu z webu Gramps a instalovány "
 "lokálně na vašem počítači. Pokud nyní zavřete tento dialog, můžete rozšíření "
-"instalovat později využitím nabídky Úpravy -> Předvolby."
+"instalovat později využitím nabídky Úpravy -> Správce rozšíření."
 
 #: ../gramps/gui/glade/updateaddons.glade:105
 msgid "_Select All"
@@ -18166,10 +18120,8 @@ msgid "_About"
 msgstr "_O programu"
 
 #: ../gramps/gui/grampsgui.py:58
-#, fuzzy
-#| msgid "Add Partner..."
 msgid "_Addon Manager..."
-msgstr "Přidat partnera..."
+msgstr "_Správce rozšíření..."
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Bookmarks"
@@ -18635,10 +18587,8 @@ msgstr "%(key)s:\t%(value)s"
 #: ../gramps/gui/merge/mergeperson.py:65
 #: ../gramps/gui/views/treemodels/peoplemodel.py:109
 #: ../gramps/plugins/webreport/person.py:539
-#, fuzzy
-#| msgid "Mother"
 msgid "other"
-msgstr "Matka"
+msgstr "jiné"
 
 #: ../gramps/gui/merge/mergeperson.py:103
 msgid "Merge People"
@@ -18812,10 +18762,8 @@ msgid "Style Editor"
 msgstr "Editor stylů"
 
 #: ../gramps/gui/plug/_windows.py:230
-#, fuzzy
-#| msgid "Object"
 msgid "Project"
-msgstr "Objekt"
+msgstr "Projekt"
 
 #: ../gramps/gui/plug/_windows.py:234
 #, fuzzy
@@ -18828,82 +18776,60 @@ msgid "Version"
 msgstr "Verze"
 
 #: ../gramps/gui/plug/_windows.py:241
-#, fuzzy
-#| msgid "Data version"
 msgid "Installed version"
-msgstr "Verze dat"
+msgstr "Nainstalovaná verze"
 
 #: ../gramps/gui/plug/_windows.py:259 ../gramps/gui/plug/_windows.py:260
-#, fuzzy
-#| msgid "Unstable"
 msgid "Install"
-msgstr "Nestabilní"
+msgstr "Instalovat"
 
 #: ../gramps/gui/plug/_windows.py:265
 msgid "Wiki"
 msgstr "Wiki"
 
 #: ../gramps/gui/plug/_windows.py:270
-#, fuzzy
-#| msgid "* Requires Restart"
 msgid "Requires"
-msgstr "* Vyžaduje restart"
+msgstr "Vyžaduje"
 
 #: ../gramps/gui/plug/_windows.py:275
-#, fuzzy
-#| msgid "Updated"
 msgid "Update"
-msgstr "Aktualizováno"
+msgstr "Aktualizace"
 
 #: ../gramps/gui/plug/_windows.py:302 ../gramps/gui/plug/_windows.py:316
-#, fuzzy
-#| msgid "Deletion failed"
 msgid "Module installation failed"
-msgstr "Operace mazání selhala"
+msgstr "Instalace modulu selhala"
 
 #: ../gramps/gui/plug/_windows.py:317
 msgid "Gramps was unable to install the required modules"
-msgstr ""
+msgstr "Gramps se nepodařilo nainstalovat požadované moduly"
 
 #: ../gramps/gui/plug/_windows.py:347
-#, fuzzy
-#| msgid "Retirement"
 msgid "Requirements"
-msgstr "Odchod do důchodu"
+msgstr "Požadavky"
 
 #: ../gramps/gui/plug/_windows.py:383
-#, fuzzy
-#| msgid "Addon Name"
 msgid "Addon Manager"
-msgstr "Název rozšíření"
+msgstr "Správce rozšíření"
 
 #: ../gramps/gui/plug/_windows.py:391 ../gramps/plugins/gramplet/leak.py:114
 msgid "Refresh"
 msgstr "Aktualizovat"
 
 #: ../gramps/gui/plug/_windows.py:422
-#, fuzzy
-#| msgid "Filter"
 msgid "Filters"
-msgstr "Filtr"
+msgstr "Filtry"
 
 #: ../gramps/gui/plug/_windows.py:428
-#, fuzzy
-#| msgid "Addons"
 msgid "All addons"
-msgstr "Rozšíření"
+msgstr "Všechna rozšíření"
 
 #: ../gramps/gui/plug/_windows.py:429 ../gramps/gui/plug/_windows.py:626
-#, fuzzy
-#| msgid "Unstable"
 msgid "Not installed"
-msgstr "Nestabilní"
+msgstr "Nenainstalované"
 
 #: ../gramps/gui/plug/_windows.py:430 ../gramps/gui/plug/_windows.py:629
-#, fuzzy
-#| msgid "Unstable"
 msgid "Installed"
-msgstr "Nestabilní"
+msgstr "Instalované"
 
 #: ../gramps/gui/plug/_windows.py:431 ../gramps/gui/plug/_windows.py:632
 #: ../gramps/plugins/webreport/basepage.py:1901
@@ -18912,10 +18838,8 @@ msgid "Updates"
 msgstr "Aktualizace"
 
 #: ../gramps/gui/plug/_windows.py:443
-#, fuzzy
-#| msgid "Film type"
 msgid "All types"
-msgstr "Typ filmu"
+msgstr "Všechny typy"
 
 #: ../gramps/gui/plug/_windows.py:451
 #, fuzzy
@@ -18930,8 +18854,6 @@ msgid "All statuses"
 msgstr " kraj"
 
 #: ../gramps/gui/plug/_windows.py:479
-#, fuzzy
-#| msgid "Setting"
 msgid "Settings"
 msgstr "Nastavení"
 
@@ -18940,20 +18862,16 @@ msgid "Projects"
 msgstr "Projekty"
 
 #: ../gramps/gui/plug/_windows.py:527 ../gramps/gui/plug/_windows.py:637
-#, fuzzy
-#| msgid "All Events"
 msgid "All projects"
-msgstr "Všechny události"
+msgstr "Všechny projekty"
 
 #: ../gramps/gui/plug/_windows.py:539
 msgid "Loading..."
 msgstr "Nahrává se..."
 
 #: ../gramps/gui/plug/_windows.py:583
-#, fuzzy
-#| msgid "No matches found"
 msgid "No matching addons found."
-msgstr "Nebyly nalezeny shody"
+msgstr "Nebyly nalezeny vhodná rozšíření"
 
 #: ../gramps/gui/plug/_windows.py:737
 msgid "Allow Gramps to install required Python modules"
@@ -19008,28 +18926,20 @@ msgid "Check for updated addons now"
 msgstr "Zkontrolovat aktualizace rozšiření nyní"
 
 #: ../gramps/gui/plug/_windows.py:815
-#, fuzzy
-#| msgid "New Person"
 msgid "New Project"
-msgstr "Nová osoba"
+msgstr "Nový projekt"
 
 #: ../gramps/gui/plug/_windows.py:817
-#, fuzzy
-#| msgid "Edit Person"
 msgid "Edit Project"
-msgstr "Upravit osobu"
+msgstr "Upravit projekt"
 
 #: ../gramps/gui/plug/_windows.py:825
-#, fuzzy
-#| msgid "Preferred name"
 msgid "Project name"
-msgstr "Preferované jméno"
+msgstr "Název projektu"
 
 #: ../gramps/gui/plug/_windows.py:923
-#, fuzzy
-#| msgid "Restore to defaults"
 msgid "Restore project defaults"
-msgstr "Obnovit výchozí nastavení"
+msgstr "Obnovit výchozí nastavení projektu"
 
 #: ../gramps/gui/plug/_windows.py:924
 msgid "Are you sure?"
@@ -19237,12 +19147,8 @@ msgstr[1] "{number_of} rozšíření byla instalována."
 msgstr[2] "{number_of} rozšíření bylo instalováno."
 
 #: ../gramps/gui/plug/_windows.py:2261
-#, fuzzy
-#| msgid ""
-#| "If you have installed a 'Gramps View', you will need to restart Gramps."
 msgid "If you have installed a 'View', you will need to restart Gramps."
-msgstr ""
-"Pokud jste nainstalovali 'Pohled Gramps', budete muset Gramps restartovat."
+msgstr "Pokud jste nainstalovali 'Pohled', budete muset Gramps restartovat."
 
 #: ../gramps/gui/plug/_windows.py:2269
 msgid "No addons were installed."
@@ -19315,18 +19221,11 @@ msgstr ""
 "Složka:\t%(folder)s"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:485
-#, fuzzy
-#| msgid "=format"
 msgctxt "name"
 msgid "format"
-msgstr "=formát"
+msgstr "formát"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:498
-#, fuzzy
-#| msgid ""
-#| "The selected file and folder to save to cannot be created or found.\n"
-#| "\n"
-#| "Press Back to return and select a valid filename."
 msgid ""
 "The selected file and folder to save cannot be created or found.\n"
 "\n"
@@ -20093,14 +19992,8 @@ msgid "Select_Source_selector"
 msgstr "Výběr pramene"
 
 #: ../gramps/gui/spell.py:66
-#, fuzzy
-#| msgid ""
-#| "You have no installed dictionaries. Either install one or disable spell "
-#| "checking"
 msgid "You have no installed dictionaries."
-msgstr ""
-"Nemáte instalované žádné slovníky. Buď nějaké nainstalujte nebo vypněte "
-"kontrolu pravopisu"
+msgstr "Nemáte instalované žádné slovníky."
 
 #: ../gramps/gui/spell.py:87
 msgid "Off"
@@ -20265,10 +20158,8 @@ msgid "Would you like to run the Check and Repair tool?"
 msgstr "Přejete si spustit nástroj Kontrola a Oprava?"
 
 #: ../gramps/gui/viewmanager.py:1286 ../gramps/gui/viewmanager.py:1904
-#, fuzzy
-#| msgid "Please, correct this before linking"
 msgid "Please wait for backup to complete."
-msgstr "Před připojením prosím opravte"
+msgstr "Počkejte na dokončení zálohování."
 
 #: ../gramps/gui/viewmanager.py:1288 ../gramps/gui/viewmanager.py:1292
 msgid "Autobackup..."
@@ -21347,26 +21238,20 @@ msgid ""
 msgstr "Zda odstranit jakékoli další mezery u osob které jsou neznámé"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:875
-#, fuzzy
-#| msgid "Show dates"
 msgid "Show Index"
-msgstr "Zobrazit data"
+msgstr "Zobrazit index"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:876
-#, fuzzy
-#| msgid "Display Tip of the Day"
 msgid "Display index of each person"
-msgstr "Zobrazit tip dne"
+msgstr "Zobrazit index každé osoby"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:880
-#, fuzzy
-#| msgid "Starting"
 msgid "Start Index"
-msgstr "Spouští se"
+msgstr "Spustit index"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:881
 msgid "The start index"
-msgstr ""
+msgstr "Úvodní index"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:897
 #: ../gramps/plugins/drawreport/descendtree.py:1629
@@ -21756,15 +21641,12 @@ msgstr[1] "{person}, {age}"
 msgstr[2] "{person}, {age}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:519
-#, fuzzy, python-format
-#| msgid ""
-#| "%(spouse)s and\n"
-#| " %(person)s, wedding"
+#, python-format
 msgid ""
 "%(wife)s and\n"
 " %(person)s, wedding"
 msgstr ""
-"%(spouse)s a\n"
+"%(wife)s a\n"
 " %(person)s, sňatek"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:532
@@ -22372,7 +22254,7 @@ msgstr "Počet položek"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:334
 msgid "All"
-msgstr "Vše"
+msgstr "Všechna"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:335
 #: ../gramps/plugins/drawreport/statisticschart.py:502
@@ -23858,10 +23740,8 @@ msgid "Gramplet showing the notes for a media object"
 msgstr "Gramplet zobrazující poznámky objektu médií"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:840
-#, fuzzy
-#| msgid "Gramplet showing uncollected objects"
 msgid "Gramplet showing the selected note"
-msgstr "Gramplet zobrazující nesebrané objekty"
+msgstr "Gramplet zobrazující vybranou poznámku"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:854
 msgid "Person Citations"
@@ -24714,10 +24594,8 @@ msgid "Start with Genealogy and Gramps"
 msgstr "Začít se genealogií a Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:173
-#, fuzzy
-#| msgid "Every family"
 msgid "Enter your first Family"
-msgstr "Každá rodina"
+msgstr "Zadejte svou první rodinu"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:176
 msgid ""
@@ -24811,19 +24689,10 @@ msgstr "Pohled Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:244
 #: ../gramps/plugins/gramplet/welcomegramplet.py:253
-#, fuzzy
-#| msgid "Add a gramplet"
 msgid "Addons and \"Gramplets\""
-msgstr "Přidat gramplet"
+msgstr "Rozšíření a \"Gramplety\""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:247
-#, fuzzy
-#| msgid ""
-#| "There many Addons or \"Gramplets\" that are available to assist you in "
-#| "data entry and visualizing your family tree. Many of these tools are "
-#| "already available to you. Many more are available to download and "
-#| "install.\n"
-#| "\n"
 msgid ""
 "There are many Addons or \"Gramplets\" that are available to assist you in "
 "data entry and visualizing your family tree. Many of these tools are already "
@@ -24865,10 +24734,8 @@ msgstr ""
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:266
-#, fuzzy
-#| msgid "Example"
 msgid "Example.gramps"
-msgstr "Příklad"
+msgstr "Příklad.gramps"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:57
 msgid "Minimum number of items to display"
@@ -25270,10 +25137,8 @@ msgstr "Barva použitá pro zobrazení žen."
 #: ../gramps/plugins/graph/gvfamilylines.py:347
 #: ../gramps/plugins/graph/gvhourglass.py:512
 #: ../gramps/plugins/graph/gvrelgraph.py:1055
-#, fuzzy
-#| msgid "The color to use to display women."
 msgid "The color to use to display people who are neither men nor women."
-msgstr "Barva použitá pro zobrazení žen."
+msgstr "Barva použitá pro zobrazení osob, které nejsou ani muži, ani ženy."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:352
 #: ../gramps/plugins/graph/gvhourglass.py:517
@@ -25589,20 +25454,16 @@ msgid "Families will show up as ellipses, linked to parents and children."
 msgstr "Rodiny budou zobrazeny jako elipsy spojené s rodiči a dětmi."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1081
-#, fuzzy
-#| msgid "Event groups"
 msgid "Parent grouping"
-msgstr "Skupiny událostí"
+msgstr "Seskupování rodičů"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1083
 msgid "Parents together"
 msgstr "Rodiče spolu"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1084
-#, fuzzy
-#| msgid "Parent Notes"
 msgid "Parents offset"
-msgstr "Záznamy rodičů"
+msgstr "Odsazení rodičů"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1087
 msgid ""
@@ -26653,15 +26514,7 @@ msgid "Number of new objects imported:"
 msgstr "Počet nově importovaných objektů:"
 
 #: ../gramps/plugins/importer/importxml.py:375
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "The imported file was not self-contained.\n"
-#| "To correct for that, %(new)d objects were created and\n"
-#| "their typifying attribute was set to 'Unknown'.\n"
-#| "The breakdown per category is depicted by the\n"
-#| "number in parentheses. Where possible these\n"
-#| "'Unknown' objects are referenced by note %(unknown)s.\n"
+#, python-format
 msgid ""
 "\n"
 "The imported file was not self-contained.\n"
@@ -26677,16 +26530,9 @@ msgstr ""
 "jejich typizační atribut byl nastaven na hodnotu 'Neznámý'.\n"
 "Jejich počet v každé kategorii je indikován\n"
 "číslem v závorce. Kde je to možné, jsou tyto\n"
-"'Neznámé' objekty odkazovány poznámkou %(unknown)s.\n"
+"'Neznámé' objekty odkazovány poznámkou %(unknown)s."
 
 #: ../gramps/plugins/importer/importxml.py:387
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Media objects with relative paths have been\n"
-#| "imported. These paths are considered relative to\n"
-#| "the media directory you can set in the preferences,\n"
-#| "or, if not set, relative to the user's directory.\n"
 msgid ""
 "\n"
 "Media objects with relative paths have been\n"
@@ -26698,7 +26544,7 @@ msgstr ""
 "Objekty médií s relativní cestou byly importovány.\n"
 "Tyto cesty jsou brány jako relativní k adresáři médií,\n"
 "který je možné nastavit v Předvolbách, nebo pokud\n"
-"není nastaven k domovskému adresáři uživatele.\n"
+"není nastaven k domovskému adresáři uživatele."
 
 #: ../gramps/plugins/importer/importxml.py:399
 msgid ""
@@ -27382,28 +27228,20 @@ msgid "Date and Time Tags"
 msgstr "Štítky data a času"
 
 #: ../gramps/plugins/lib/libmetadata.py:122
-#, fuzzy
-#| msgid "People"
 msgid "People Tags"
-msgstr "Osoby"
+msgstr "Štítky osob"
 
 #: ../gramps/plugins/lib/libmetadata.py:123
-#, fuzzy
-#| msgid "Events"
 msgid "Event Tags"
-msgstr "Události"
+msgstr "ŠtÍtky událostí"
 
 #: ../gramps/plugins/lib/libmetadata.py:124
-#, fuzzy
-#| msgid "Images"
 msgid "Image Tags"
-msgstr "Obrázky"
+msgstr "Štítky obrázků"
 
 #: ../gramps/plugins/lib/libmetadata.py:125
-#, fuzzy
-#| msgid "Place format"
 msgid "Camera Information"
-msgstr "Formát místa"
+msgstr "Informace o fotoaparátu"
 
 #: ../gramps/plugins/lib/libmetadata.py:126
 #, fuzzy
@@ -27412,10 +27250,8 @@ msgid "Location Tags"
 msgstr "Polohy"
 
 #: ../gramps/plugins/lib/libmetadata.py:127
-#, fuzzy
-#| msgid "Advanced"
 msgid "Advanced Tags"
-msgstr "Pokročilé"
+msgstr "Rozšířené štítky"
 
 #: ../gramps/plugins/lib/libmetadata.py:128
 #, fuzzy
@@ -27424,10 +27260,8 @@ msgid "Rights Tags"
 msgstr "Upravit štítky"
 
 #: ../gramps/plugins/lib/libmetadata.py:129
-#, fuzzy
-#| msgid "New Tag"
 msgid "Keyword Tags"
-msgstr "Nový štítek"
+msgstr "Klíčové štítky"
 
 #: ../gramps/plugins/lib/libmetadata.py:228
 msgid "Namespace"
@@ -31318,10 +31152,8 @@ msgid "Bottom Right"
 msgstr "Vpravo dole"
 
 #: ../gramps/plugins/lib/maps/geography.py:162
-#, fuzzy
-#| msgid "File date"
 msgid "Tile path"
-msgstr "Datum souboru"
+msgstr "Cesta k dlaždicím"
 
 #: ../gramps/plugins/lib/maps/geography.py:164
 #, python-format
@@ -31448,11 +31280,6 @@ msgid "Where to save the tiles for offline mode."
 msgstr "Kde budou uloženy dlaždice pro offline režim."
 
 #: ../gramps/plugins/lib/maps/geography.py:1431
-#, fuzzy
-#| msgid ""
-#| "If you have no more space in your file system. You can remove all tiles "
-#| "placed in the above path.\n"
-#| "Be careful! If you have no internet, you'll get no map."
 msgid ""
 "If you have no more space in your file system, you can remove all tiles "
 "placed in the above path.\n"
@@ -31495,20 +31322,7 @@ msgid "Can't create tile cache directory %s"
 msgstr "Nemohu vytvořit adresář keše dlaždic %s"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:149
-#, fuzzy, python-format
-#| msgid ""
-#| "You must verify and change the tiles cache\n"
-#| "...\n"
-#| "[geography]\n"
-#| "...\n"
-#| "path='bad/path'\n"
-#| "...\n"
-#| "in the gramps.ini file :\n"
-#| "%s\n"
-#| "\n"
-#| "Before to change the gramps.ini file, you need to close gramps\n"
-#| "\n"
-#| "The next errors will be normal"
+#, python-format
 msgid ""
 "You must verify and change the tile cache\n"
 "...\n"
@@ -31532,9 +31346,9 @@ msgstr ""
 "v souboru gramps.ini:\n"
 "%s\n"
 "\n"
-"Před změnou souboru gramps.ini musíte zavřít gramps\n"
+"Před změnou souboru gramps.ini musíte zavřít Gramps\n"
 "\n"
-"Další chyby budou normální"
+"Následující chyby se očekávají"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:194
 #: ../gramps/plugins/lib/maps/osmgps.py:261
@@ -33862,10 +33676,8 @@ msgid "Number of citations: %d"
 msgstr "Počet citací: %d"
 
 #: ../gramps/plugins/textreport/summary.py:303
-#, fuzzy
-#| msgid "Relationship Information"
 msgid "Repository Information"
-msgstr "Informace o vztahu"
+msgstr "Informace o archivu"
 
 #: ../gramps/plugins/textreport/summary.py:308
 #, python-format
