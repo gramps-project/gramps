@@ -2940,6 +2940,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_TEXT: self.__citation_data_text,
             TOKEN_RNOTE: self.__citation_data_note,
             TOKEN_NOTE: self.__citation_data_note,
+            TOKEN_WWW: self.__citation_data_text, # Not legal GEDCOM, used by Ancestry
         }
         self.func_list.append(self.citation_data_tbl)
 
