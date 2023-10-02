@@ -896,7 +896,8 @@ class BasePage:
 
         trow2 = Html("tr")
         # get event source references
-        srcrefs = self.get_citation_links(event.get_citation_list()) or "&nbsp;"
+        srcrefs = self.get_citation_links(event.get_citation_list() +
+                                          event_ref.get_citation_list()) or "&nbsp;"
         trow += Html("td", srcrefs, class_="ColumnSources", rowspan=2)
 
         # get event notes

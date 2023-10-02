@@ -180,7 +180,7 @@ class NavWebReport(Report):
 
         stdoptions.run_private_data_option(self, menu)
         stdoptions.run_living_people_option(self, menu)
-        self.database = CacheProxyDb(self.database)
+        self.database = CacheProxyDb(database)
         self._db = self.database
 
         filters_option = menu.get_option_by_name("filter")
@@ -723,6 +723,8 @@ class NavWebReport(Report):
 
                         for citation_handle in event.get_citation_list():
                             self._add_citation(citation_handle, Person, person_handle)
+                        for citation_handle in evt_ref.get_citation_list():
+                            self._add_citation(citation_handle, Person, person_handle)
 
             ############### Families section ##############
             # Tell the families tab to display this individuals families
@@ -750,6 +752,10 @@ class NavWebReport(Report):
                                             place_handle, Person, person_handle, event
                                         )
                                     for cite_hdl in event.get_citation_list():
+                                        self._add_citation(
+                                            cite_hdl, Person, person_handle
+                                        )
+                                    for cite_hdl in evt_ref.get_citation_list():
                                         self._add_citation(
                                             cite_hdl, Person, person_handle
                                         )
