@@ -912,13 +912,12 @@ class BasePage:
         # cached original
         attrlist.extend(event_ref.get_attribute_list())
         for attr in attrlist:
-            htmllist.extend(
-                Html(
-                    "p",
-                    self._("%(str1)s: %(str2)s")
-                    % {"str1": Html("b", attr.get_type()), "str2": attr.get_value()},
-                )
-            )
+            attrrefs = self.get_citation_links(attr.get_citation_list())
+            attrdesc = (self._("%(str1)s: %(str2)s")
+                % {"str1": Html("b", attr.get_type()), "str2": attr.get_value()})
+            attr_row = (Html("tr") + Html("td", "&nbsp")
+                        + Html("td", attrdesc, colspan=3) + Html("td", attrrefs))
+            htmllist.extend(attr_row)
 
             # also output notes attached to the attributes
             notelist = attr.get_note_list()

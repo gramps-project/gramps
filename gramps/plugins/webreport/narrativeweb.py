@@ -725,6 +725,9 @@ class NavWebReport(Report):
                             self._add_citation(citation_handle, Person, person_handle)
                         for citation_handle in evt_ref.get_citation_list():
                             self._add_citation(citation_handle, Person, person_handle)
+                        for attr in evt_ref.get_attribute_list():
+                            for citation_handle in attr.get_citation_list():
+                                self._add_citation(citation_handle, Event, evt_ref.ref)
 
             ############### Families section ##############
             # Tell the families tab to display this individuals families
