@@ -8,13 +8,14 @@
 # Milan <mobrcian@hotmail.com>, 2021, 2022, 2023.
 # Jose Riha <jose1711@gmail.com>, 2022.
 # Jano Svitok <jan.svitok@gmail.com>, 2022.
+# Milan Šalka <salka.milan@googlemail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-09-20 21:00+0000\n"
-"Last-Translator: Milan <mobrcian@hotmail.com>\n"
+"PO-Revision-Date: 2023-10-06 05:58+0000\n"
+"Last-Translator: Milan Šalka <salka.milan@googlemail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
 "Language: sk\n"
@@ -2140,7 +2141,7 @@ msgstr "{long_month} {year}"
 #, python-brace-format
 msgctxt "from"
 msgid "{long_month} {year}"
-msgstr "{long_month.forms[D]} {year}"
+msgstr "{long_month.forms[P]} {year}"
 
 #. Translators: If "to <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2150,7 +2151,7 @@ msgstr "{long_month.forms[D]} {year}"
 #, python-brace-format
 msgctxt "to"
 msgid "{long_month} {year}"
-msgstr "{long_month.forms[D]} {year}"
+msgstr "{long_month.forms[P]} {year}"
 
 #. Translators: If "between <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2160,7 +2161,7 @@ msgstr "{long_month.forms[D]} {year}"
 #, python-brace-format
 msgctxt "between"
 msgid "{long_month} {year}"
-msgstr "{long_month.forms[O]} {year}"
+msgstr "{long_month.forms[P]} {year}"
 
 #. Translators: If "and <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2170,7 +2171,7 @@ msgstr "{long_month.forms[O]} {year}"
 #, python-brace-format
 msgctxt "and"
 msgid "{long_month} {year}"
-msgstr "{long_month.forms[O]} {year}"
+msgstr "{long_month.forms[P]} {year}"
 
 #. Translators: If "before <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2180,7 +2181,7 @@ msgstr "{long_month.forms[O]} {year}"
 #, python-brace-format
 msgctxt "before"
 msgid "{long_month} {year}"
-msgstr "{long_month.forms[O]} {year}"
+msgstr "{long_month.forms[P]} {year}"
 
 #. Translators: If "after <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2190,7 +2191,7 @@ msgstr "{long_month.forms[O]} {year}"
 #, python-brace-format
 msgctxt "after"
 msgid "{long_month} {year}"
-msgstr "{long_month.forms[T]} {year}"
+msgstr "{long_month} {year}"
 
 #. Translators: If "about <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2200,7 +2201,7 @@ msgstr "{long_month.forms[T]} {year}"
 #, python-brace-format
 msgctxt "about"
 msgid "{long_month} {year}"
-msgstr "{long_month.forms[D]} {year}"
+msgstr "{long_month} {year}"
 
 #. Translators: If "estimated <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -20845,7 +20846,6 @@ msgid "'%s' is not a valid date value"
 msgstr "'%s' nie je platná hodnota dátumu"
 
 #: ../gramps/plugins/cite/cite.gpr.py:35
-#, fuzzy
 msgid "Legacy"
 msgstr "Dedičstvo"
 
