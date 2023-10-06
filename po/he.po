@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
 "PO-Revision-Date: 2023-10-06 15:33+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -690,7 +690,7 @@ msgstr ""
 "<b>אז מה מהות השם?<br/></b>השם 'גרמפס' הוצע על־ידי אביו של מפתח המערכת "
 "המקורי , דון אלנגהם ומצציג באנגלית את ראשי התיבות <i>תכנית מערכת לניהול "
 "וניתוח יוחסין</i> (Genealogical Research and Analysis Management Program "
-"Syste).למערכת תכונות חקר יוחסין מלאות, המאפשרת אחסון, עריכה וחקר נתוני "
+"System).למערכת תכונות חקר יוחסין מלאות, המאפשרת אחסון, עריכה וחקר נתוני "
 "יוחסין. מסד־הנתונים של גרמפס הוא כל כך חזק שחלק מהמשתמשים מנהלים אילנות "
 "יוחסין המכילים מאות אלפי רשומות אדם."
 
@@ -4217,7 +4217,7 @@ msgstr "שליפת אירועים שמתויגים בתג מסוים"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:48
 msgid "Events with the particular type"
-msgstr "אירועים בעלי סוג מסיום"
+msgstr "אירועים מסוג מסוים"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:49
 msgid "Matches events with the particular type "
@@ -4867,7 +4867,7 @@ msgstr "הערות שמתויגות ב<תג>"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:53
 msgid "Matches notes with the particular tag"
-msgstr "שליפת הערות מתויגות בג מסוים"
+msgstr "שליפת הערות שמתויגות בתג מסוים"
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:48
 msgid "Notes with the particular type"
