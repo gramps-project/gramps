@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-10-06 07:49+0000\n"
+"PO-Revision-Date: 2023-10-06 08:11+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -687,11 +687,12 @@ msgid ""
 "genealogical data. The Gramps database back end is so robust that some users "
 "are managing genealogies containing hundreds of thousands of people."
 msgstr ""
-"<b>אז מה מהות השם?<br/></b>השם 'גרמפס' הוצע למפתח המקורי של המערכת, דון "
-"אלנגהם, על־ידי אביו. השם מייצג את ראשי התיבות (באנגלית) של תוכנית מערכת "
-"לניהול וניתוח יוחסין. זוהי מערכת בעלת תכונות חקר יוחסין מלאות המאפשרת אחסון, "
-"עריכה וחקר נתוני יוחסין. מסד־הנתונים של גרמפס הוא כל כך חזק שחלק מהמשתמשים "
-"מנהלים אילנות יוחסין המכילים מאות אלפי אנשים."
+"<b>אז מה מהות השם?<br/></b>השם 'גרמפס' הוצע על־ידי אביו של מפתח המערכת "
+"המקורי , דון אלנגהם ומצציג באנגלית את ראשי התיבות <i>תכנית מערכת לניהול "
+"וניתוח יוחסין</i> (Genealogical Research and Analysis Management Program "
+"Syste).למערכת תכונות חקר יוחסין מלאות, המאפשרת אחסון, עריכה וחקר נתוני "
+"יוחסין. מסד־הנתונים של גרמפס הוא כל כך חזק שחלק מהמשתמשים מנהלים אילנות "
+"יוחסין המכילים מאות אלפי רשומות אדם."
 
 #: ../data/tips.xml:68
 msgid ""
@@ -1304,37 +1305,37 @@ msgstr ""
 "אפשרויות יישום\n"
 " פתיחת אילן־יוחסין\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tO, --open=FAMILY_TREE-\n"
 " שם משתמש מסד־נתונים\t\t\t\t\t\t\t\t\t\t\t\t U, --username=USERNAME-\n"
-" ססמת מסד־נתונים\t\t\t\t\t\t\t\t\t\t\t\t\t\t P, --password=PASSWORD-\n"
-" יצירת אילן־יוחסין בפתיחה, במידה וחדש\t\t\t\t\t\t\t\t C, --"
-"create=FAMILY_TREE-\n"
+" ססמת מסד־נתונים\t\t\t\t\t\t\t\t\t\t\t\t\t\tP, --password=PASSWORD-\n"
+" יצירת אילן־יוחסין בפתיחה, במידה וחדש\t\t\t\t\t\t\t\t C, "
+"--create=FAMILY_TREE-\n"
 " ייבוא קובץ\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ti, --import=FILENAME-\n"
-" ייצוא קובץ \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t e, --export=FILENAME-\n"
-" הסרת אילנות־יוחסין תואמים (שימוש בביטויים רגילים)\t\t\tr, --"
-"remove=FAMILY_TREE_PATTERN-\n"
-" הגדרת תסדיר אילן־יוחסין \t\t\t\t\t\t\t\t\t\t\t\t\t\t f, --format=FORMAT-\n"
-" הגדרת פעולה\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t a, --action=ACTION-\n"
+" ייצוא קובץ \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\te, --export=FILENAME-\n"
+" הסרת אילנות־יוחסין תואמים (שימוש בביטויים סדירים)\t\t\tr, "
+"--remove=FAMILY_TREE_PATTERN-\n"
+" הגדרת תסדיר אילן־יוחסין \t\t\t\t\t\t\t\t\t\t\t\t\t\tf, --format=FORMAT-\n"
+" הגדרת פעולה\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ta, --action=ACTION-\n"
 " הגדרת אפשרויות\t\t\t\t\t\t\t\t\t\t\t\t\tp,--options=OPTIONS_STRING-\n"
 " אפשור יומני ניפוי־תקלים \t\t\t\t\t\t\t\t\t\t\t\td, --debug=LOGGER_NAME-\n"
 " רשימת אילנות־יוחסין\t\t\t\t\t\t\t\t\t\t\t\t\tl [FAMILY_TREE_PATTERN ...]-\n"
-" רשימת אילנות־יוחסין מפורטת \t\t\t\t\t\t\t\t\t\t\tL "
-"[FAMILY_TREE_PATTERN ...]-\n"
+" רשימת אילנות־יוחסין מפורטת \t\t\t\t\t\t\t\t\t\t\tL [FAMILY_TREE_PATTERN "
+"...]-\n"
 " רשימת אילנות־יוחסין, מופרדים בתו 'טבלר' \t\t\t\t\t\t\t\tt "
 "[FAMILY_TREE_PATTERN...]-\n"
-" אילוץ ביטול נעילת אילן־יוחסין\t\t\t\t\t\t\t\t\t\t\t\t\t\tu, --force-"
-"unlock-\n"
+" אילוץ ביטול נעילת אילן־יוחסין\t\t\t\t\t\t\t\t\t\t\t\t\t\tu, --force-unlock-"
+"\n"
 " הצגת הגדרות תצורה\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t-s, --show-\n"
-" קביעת הגדרות תצורה ואיתחול גרמפס\t\t\t\t\t\tc, --config=[config.setting [: "
-"value]]-\n"
+" קביעת הגדרות תצורה ואיתחול גרמפס\t\t\t\t\t\t      c, --config=["
+"config.setting [: value]]-\n"
 " ויתור על בקשת אפשור פעולות מסוכנות (מצב שורת פקודה בלבד)\t\t\t\t\t\t\t\ty, "
 "--yes-\n"
-" דיכוי פלט חיווי התקדמות (מצב שורת פקודה בלבד)\t\t\t\t\t\t\t\t\t\t q, --"
-"quiet-\n"
-" פלט גרסת חבילה\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tv, --version-\n"
-" איתחול ב'מצב בטוח' \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t S, --safe-\n"
+" דיכוי פלט חיווי התקדמות (מצב שורת פקודה בלבד)\t\t\t\t\t\t\t\t\t\tq, --quiet-"
+"\n"
+" פלט גרסת חבילה\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    v, --version-\n"
+" איתחול ב'מצב בטוח' \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t          S, --safe-\n"
 "    (שימוש זמני בהגדרות ברירת מחדל)\n"
 " החזרת כל ההגדרות לברירת המחדל;\t\t\t\t\t\t\t\t\t\t\tD, --default=[APXFE]-\n"
-" \tללא תוספים\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t A-\n"
-" \tהחזרת 'העדפות' לברירת מחדל\t\t\t\t\t\t\t\t\t\t\t\t P-\n"
+" \tללא תוספים\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tA-\n"
+" \tהחזרת 'העדפות' לברירת מחדל\t\t\t\t\t\t\t\t\t\t\t\tP-\n"
 " \tללא ספרים, דוחות והגדרות כלים יוחזרו לברירת מחדל \t\t\t\t\t\t\tX-\n"
 " \tללא מסננים\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tF-\n"
 " \tחזרה לכול הגדרות ברירת המחדל, או ללא הגדרות כלל\t\t\t\t\t\tE-\n"
@@ -4285,7 +4286,7 @@ msgstr "אירועים עם מזהה שמכיל <מלל>"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:50
 msgid "Matches events whose Gramps ID matches the regular expression"
-msgstr "שליפת אירועים שמזהה גרמפס שלהם תאום לביטוי הרגיל"
+msgstr "שליפת אירועים שמזהה גרמפס שלהם תאום לביטוי הסדיר"
 
 #: ../gramps/gen/filters/rules/family/_allfamilies.py:46
 #: ../gramps/gen/plug/report/utils.py:409
@@ -4612,7 +4613,7 @@ msgstr "משפחות עם אב שתואם לביטוי <שם_ביטוי סדיר
 msgid ""
 "Matches families whose father has a name matching a specified regular "
 "expression"
-msgstr "שליפת משפחות בהן שם האב תואם לביטוי סדיר שצוין"
+msgstr "שליפת משפחות בהן שם האב תואם לביטוי סדיר מסוים"
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:49
 msgid "Families with Id containing <text>"
@@ -4630,7 +4631,7 @@ msgstr "משפחות עם אם שתואמת לביטוי <שם_ביטוי סדי
 msgid ""
 "Matches families whose mother has a name matching a specified regular "
 "expression"
-msgstr "שליפת משפחות בהן שם האם תואם לביטוי סדיר שצוין"
+msgstr "שליפת משפחות בהן שם האם תואם לביטוי סדיר מסוים"
 
 #: ../gramps/gen/filters/rules/family/_searchchildname.py:47
 msgid "Families with any child matching the <name>"
@@ -4807,7 +4808,7 @@ msgstr "עצמי מדיה עם מזהה המכיל <מלל>"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:51
 msgid "Matches media objects whose Gramps ID matches the regular expression"
-msgstr "שליפת עצמי מדיה שמזהה גרמפס שלהם תאום לביטוי הרגיל"
+msgstr "שליפת עצמי מדיה שמזהה גרמפס שלהם תאום לביטוי המסוים"
 
 #: ../gramps/gen/filters/rules/note/_allnotes.py:46
 msgid "Every note"
@@ -4914,7 +4915,7 @@ msgstr "הערות עם מזהה שמכיל <מלל>"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:50
 msgid "Matches notes whose Gramps ID matches the regular expression"
-msgstr "שליפת הערות שמזהה גרמפס שלהם תאום לביטוי הרגיל"
+msgstr "שליפת הערות שמזהה גרמפס שלהם תאום לביטוי הסדיר"
 
 #: ../gramps/gen/filters/rules/person/_changedsince.py:49
 msgid "Persons changed after <date time>"
@@ -5756,7 +5757,7 @@ msgstr "אנשים עם מזהה שמכיל <מלל>"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:49
 msgid "Matches people whose Gramps ID matches the regular expression"
-msgstr "שליפת אנשים שמזהה גרמפס שלהם תאום לביטוי הרגיל"
+msgstr "שליפת אנשים שמזהה גרמפס שלהם תאום לביטוי הסדיר"
 
 #: ../gramps/gen/filters/rules/person/_regexpname.py:48
 msgid "People with a name matching <text>"
@@ -6067,7 +6068,7 @@ msgstr "מקומות עם מזהה שמכיל <מלל>"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:50
 msgid "Matches places whose Gramps ID matches the regular expression"
-msgstr "שליפת מקומות שמזהה גרמפס שלהם תאום לביטוי הרגיל"
+msgstr "שליפת מקומות שמזהה גרמפס שלהם תאום לביטוי הסדיר"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:58
 #: ../gramps/gui/editors/filtereditor.py:634
@@ -15131,7 +15132,7 @@ msgstr "מיילים"
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:88
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:72
 msgid "Use regular expressions"
-msgstr "שימוש בביטוים רגילים"
+msgstr "שימוש בביטוים סדירים"
 
 #: ../gramps/gui/editors/filtereditor.py:652
 msgid ""
@@ -15146,7 +15147,7 @@ msgid ""
 "^\tA caret will match the start of a line.\n"
 "$\tA dollar sign will match the end of a line."
 msgstr ""
-"פענוח תוכן שדות מחרוזות כביטויים רגילים:\n"
+"פענוח תוכן שדות מחרוזות כביטויים סדירים:\n"
 ". נקודה עשרונית, תתאים לכול תו.\n"
 "? סימן שאלה, יתאים לאפס, או לחזרה אחת של התו הקודם או הקבוצה הקודמת.\n"
 "* כוכבית, תתאים לאפס, או יותר חזרות.\n"
@@ -33466,8 +33467,8 @@ msgid ""
 "This tool will rename all events of one type to a different type. Once "
 "completed, this cannot be undone by the regular Undo function."
 msgstr ""
-"כלי זה ישנה שמות האירועים מסוג אחד לסוג אחר. לאחר השלמת הפעולה, לא ניתן יהיה "
-"להסיג את תוצאותיה באמצעות פעולת ההסגה הרגילה."
+"כלי זה ישנה שמות כל האירועים מסוג אחד לסוג אחר. לאחר השלמת הפעולה, לא ניתן "
+"יהיה להסיג את תוצאותיה באמצעות פעולת ההסגה הרגילה."
 
 #: ../gramps/plugins/tool/changetypes.glade:112
 msgid "Original event type:"
