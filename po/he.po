@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
 "PO-Revision-Date: 2023-10-06 08:11+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -4193,7 +4193,7 @@ msgstr "שליפת אירועים שההערות שלהם מכילות מלל ש
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:44
 msgid "Events with a reference count of <count>"
-msgstr "אירועים עם מונה הפניות <מונה>"
+msgstr "אירועים עם מונה הפניות על סך <מונה>"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:45
 msgid "Matches events with a certain reference count"
