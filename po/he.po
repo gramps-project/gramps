@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-10-06 05:58+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2023-10-06 07:33+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -10258,7 +10258,7 @@ msgstr "אם לא ידועה"
 #: ../gramps/gen/plug/report/utils.py:392 ../gramps/gui/plug/_guioptions.py:911
 #, python-format
 msgid "%(father_name)s and %(mother_name)s (%(family_id)s)"
-msgstr "%(father_name)s ו־%(mother_name)s (%(family_id)s)"
+msgstr "%(father_name)s ו%(mother_name)s (%(family_id)s)"
 
 #: ../gramps/gen/plug/report/utils.py:400
 msgid "FAMILY"
@@ -10611,7 +10611,7 @@ msgstr "%s, ..."
 #: ../gramps/gen/utils/db.py:547 ../gramps/plugins/lib/librecords.py:408
 #, python-format
 msgid "%(father)s and %(mother)s"
-msgstr "%(father)s ו־%(mother)s"
+msgstr "%(father)s ו%(mother)s"
 
 #: ../gramps/gen/utils/grampslocale.py:767
 msgid "the person"
@@ -14427,7 +14427,7 @@ msgstr "עורך תקנות מורמוניות"
 #: ../gramps/gui/editors/editldsord.py:311
 #, python-format
 msgid "%(father)s and %(mother)s [%(gramps_id)s]"
-msgstr "%(father)s ו־%(mother)s [%(gramps_id)s]"
+msgstr "%(father)s ו%(mother)s [%(gramps_id)s]"
 
 #: ../gramps/gui/editors/editldsord.py:317
 #, python-format
@@ -16665,7 +16665,7 @@ msgstr ""
 "שימוש במספר שמות משפחה\n"
 "מצביע על כך ששם המשפחה מורכב מחלקים שונים. לכל שם משפחה יש קידומת משלו "
 "וקישור אפשרי לשם המשפחה הבא. לדוגמה, שם המשפחה \"אלמוני־ראובני\" ניתן לאחסון "
-"בתור \"אלמוני\", שעבר בירושה מהאב, המקף (־), ו־\"ראובני\", שעבר בירושה מהאם."
+"בתור \"אלמוני\", שעבר בירושה מהאב, המקף (־), ו\"ראובני\", שעבר בירושה מהאם."
 
 #: ../gramps/gui/glade/editperson.glade:399
 msgid "Set person as private data"
@@ -18654,7 +18654,7 @@ msgstr "אין תוספים זמינים מסוג זה"
 
 #: ../gramps/gui/plug/_windows.py:966
 msgid "' and '"
-msgstr "' ו־ '"
+msgstr "' ו '"
 
 #: ../gramps/gui/plug/_windows.py:966
 #, python-format
@@ -21317,7 +21317,7 @@ msgid ""
 " %(person)s, wedding"
 msgstr ""
 "חתונת %(wife)s\n"
-" ו־%(person)s"
+" ו%(person)s"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:532
 #, python-brace-format
@@ -21328,11 +21328,10 @@ msgid_plural ""
 "{wife} and\n"
 " {person}, {nyears}"
 msgstr[0] ""
-"{wife} ו־\n"
+"{wife} ו\n"
+"{person}, {nyears}{wife} ו\n"
 "{person}, {nyears}"
 msgstr[1] ""
-"{wife} ו־\n"
-"{person}, {nyears}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:602
 #: ../gramps/plugins/webreport/webcal.py:1851
@@ -21537,18 +21536,18 @@ msgstr "מלל בתחתית, שורה 3"
 #: ../gramps/plugins/drawreport/descendtree.py:173
 #, python-format
 msgid "Descendant Chart for %(person)s and %(father1)s, %(mother1)s"
-msgstr "תרשים צאצאי %(person)s ו־%(father1)s, %(mother1)s"
+msgstr "תרשים צאצאי %(person)s ו%(father1)s, %(mother1)s"
 
 #: ../gramps/plugins/drawreport/descendtree.py:182
 #, python-format
 msgid "Descendant Chart for %(person)s, %(father1)s and %(mother1)s"
-msgstr "תרשים צאצאי %(person)s, %(father1)s ו־%(mother1)s"
+msgstr "תרשים צאצאי %(person)s, %(father1)s ו%(mother1)s"
 
 #: ../gramps/plugins/drawreport/descendtree.py:191
 #, python-format
 msgid ""
 "Descendant Chart for %(father1)s, %(father2)s and %(mother1)s, %(mother2)s"
-msgstr "תרשים צאצאי %(father1)s, %(father2)s ו־%(mother1)s, %(mother2)s"
+msgstr "תרשים צאצאי %(father1)s, %(father2)s ו%(mother1)s, %(mother2)s"
 
 #: ../gramps/plugins/drawreport/descendtree.py:201
 #, python-format
@@ -21558,7 +21557,7 @@ msgstr "תרשים צאצאי %(person)s"
 #: ../gramps/plugins/drawreport/descendtree.py:203
 #, python-format
 msgid "Descendant Chart for %(father)s and %(mother)s"
-msgstr "תרשים צאצאי %(father)s ו־%(mother)s"
+msgstr "תרשים צאצאי %(father)s ו%(mother)s"
 
 #: ../gramps/plugins/drawreport/descendtree.py:235
 msgid "Descendant Graph"
@@ -21572,7 +21571,7 @@ msgstr "תרשים משפחמה של %(person)s"
 #: ../gramps/plugins/drawreport/descendtree.py:366
 #, python-format
 msgid "Family Chart for %(father1)s and %(mother1)s"
-msgstr "תרשים משפחה של %(father1)s ו־%(mother1)s"
+msgstr "תרשים משפחה של %(father1)s ו%(mother1)s"
 
 #: ../gramps/plugins/drawreport/descendtree.py:396
 #, python-format
@@ -21885,7 +21884,7 @@ msgstr "היפוך שמות שנמצאים בחצי התחתון של המניפ
 
 #: ../gramps/plugins/drawreport/fanchart.py:850
 msgid "Flip names for generations 2, 3 and 4 i.e. those found in circles"
-msgstr "היפוך שמות דורות 2, 3 ו־4 כלומר אלו שנמצאים במעגלים הללו"
+msgstr "היפוך שמות דורות 2, 3 ו4 כלומר אלו שנמצאים במעגלים הללו"
 
 #: ../gramps/plugins/drawreport/fanchart.py:854
 msgid "Exclude the title of the chart"
@@ -24456,7 +24455,7 @@ msgstr "(אדם לא ידוע)"
 #: ../gramps/plugins/gramplet/whatsnext.py:464
 #, python-format
 msgid "%(name1)s and %(name2)s"
-msgstr "%(name1)s ו־%(name2)s"
+msgstr "%(name1)s ו%(name2)s"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:434
 msgid "marriage event missing"
@@ -26159,9 +26158,10 @@ msgid ""
 msgstr ""
 "\n"
 "יובאו עצמי מדיה עם נתיבים יחסיים.\n"
-"נתיבים אלה נחשבים יחסיים לתיקיית\n"
-"המדיה אותה ניתן להגדיר בהעדפות,\n"
-"או, אם לא הוגדרה תיקיית מדיה, הם יהיו יחסיים למחיצת המשתמש."
+"הנתיבים 'יחסיים' כלפי 'מחיצת המדיה'\n"
+"אותה ניתן להגדיר בתפריט העדפות,\n"
+"אם לא הוגדרה 'מחיצת מדיה',\n"
+"הם יהיו יחסיים למחיצת המשתמש."
 
 #: ../gramps/plugins/importer/importxml.py:399
 msgid ""
@@ -26883,32 +26883,32 @@ msgstr " . "
 #: ../gramps/plugins/lib/libnarrate.py:111
 #, python-format
 msgid "%(unknown_gender_name)s was born on %(birth_date)s in %(birth_place)s."
-msgstr "%(unknown_gender_name)s לידה ב־%(birth_date)s ב־%(birth_place)s."
+msgstr "%(unknown_gender_name)s לידה ב%(birth_date)s ב־%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:113
 #, python-format
 msgid "%(male_name)s was born on %(birth_date)s in %(birth_place)s."
-msgstr "%(male_name)s לידה ב־%(birth_date)s ב־%(birth_place)s."
+msgstr "%(male_name)s לידה ב%(birth_date)s ב־%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:115
 #, python-format
 msgid "%(female_name)s was born on %(birth_date)s in %(birth_place)s."
-msgstr "%(female_name)s לידה ב־%(birth_date)s ב־%(birth_place)s."
+msgstr "%(female_name)s לידה ב%(birth_date)s ב־%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:119
 #, python-format
 msgid "This person was born on %(birth_date)s in %(birth_place)s."
-msgstr "אדם זה לידה ב־%(birth_date)s ב־%(birth_place)s."
+msgstr "אדם זה לידה ב%(birth_date)s ב־%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:120
 #, python-format
 msgid "He was born on %(birth_date)s in %(birth_place)s."
-msgstr "לידה ב־%(birth_date)s ב־%(birth_place)s."
+msgstr "לידה ב%(birth_date)s ב־%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:121
 #, python-format
 msgid "She was born on %(birth_date)s in %(birth_place)s."
-msgstr "לידה ב־%(birth_date)s ב־%(birth_place)s."
+msgstr "לידה ב%(birth_date)s ב־%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:123
 #, python-format
@@ -26918,214 +26918,214 @@ msgstr "נולד ב־%(birth_date)s ב־%(birth_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:129
 #, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(unknown_gender_name)s לידה ב־%(modified_date)s ב־%(birth_place)s."
+msgstr "%(unknown_gender_name)s לידה ב%(modified_date)s ב־%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:131
 #, python-format
 msgid "%(male_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(male_name)s לידה ב־%(modified_date)s ב־%(birth_place)s."
+msgstr "%(male_name)s לידה ב%(modified_date)s ב־%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:133
 #, python-format
 msgid "%(female_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(female_name)s לידה ב־%(modified_date)s ב־%(birth_place)s."
+msgstr "%(female_name)s לידה ב%(modified_date)s ב־%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:137
 #, python-format
 msgid "This person was born %(modified_date)s in %(birth_place)s."
-msgstr "לידה ב־%(modified_date)s ב־%(birth_place)s."
+msgstr "לידה ב%(modified_date)s ב־%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:138
 #, python-format
 msgid "He was born %(modified_date)s in %(birth_place)s."
-msgstr "לידה ב־%(modified_date)s ב־%(birth_place)s."
+msgstr "לידה ב%(modified_date)s ב־%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:139
 #, python-format
 msgid "She was born %(modified_date)s in %(birth_place)s."
-msgstr "לידה ב־%(modified_date)s ב־%(birth_place)s."
+msgstr "לידה ב%(modified_date)s ב־%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:141
 #, python-format
 msgid "Born %(modified_date)s in %(birth_place)s."
-msgstr "לידה ב־%(modified_date)s ב־%(birth_place)s."
+msgstr "לידה ב%(modified_date)s ב־%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:146
 #, python-format
 msgid "%(unknown_gender_name)s was born on %(birth_date)s."
-msgstr "%(unknown_gender_name)s לידה ב־%(birth_date)s."
+msgstr "%(unknown_gender_name)s לידה ב%(birth_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:147
 #, python-format
 msgid "%(male_name)s was born on %(birth_date)s."
-msgstr "‮%(male_name)s לידה ב־%(birth_date)s."
+msgstr "‮%(male_name)s לידה ב%(birth_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:148
 #, python-format
 msgid "%(female_name)s was born on %(birth_date)s."
-msgstr "%(female_name)s לידה ב־%(birth_date)s."
+msgstr "%(female_name)s לידה ב%(birth_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:151
 #, python-format
 msgid "This person was born on %(birth_date)s."
-msgstr "לידה ב־%(birth_date)s."
+msgstr "לידה ב%(birth_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:152
 #, python-format
 msgid "He was born on %(birth_date)s."
-msgstr "לידה ב־%(birth_date)s."
+msgstr "לידה ב%(birth_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:153
 #, python-format
 msgid "She was born on %(birth_date)s."
-msgstr "‮לידה ב־%(birth_date)s."
+msgstr "‮לידה ב%(birth_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:155
 #: ../gramps/plugins/webreport/calendar.py:1429
 #: ../gramps/plugins/webreport/webcal.py:2314
 #, python-format
 msgid "Born %(birth_date)s."
-msgstr "לידה ב־%(birth_date)s."
+msgstr "לידה ב%(birth_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:160
 #, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s."
-msgstr "%(unknown_gender_name)s לידה ב־%(modified_date)s."
+msgstr "%(unknown_gender_name)s לידה ב%(modified_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:161
 #, python-format
 msgid "%(male_name)s was born %(modified_date)s."
-msgstr "%(male_name)s לידה ב־%(modified_date)s."
+msgstr "%(male_name)s לידה ב%(modified_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:162
 #, python-format
 msgid "%(female_name)s was born %(modified_date)s."
-msgstr "%(female_name)s לידה ב־%(modified_date)s."
+msgstr "%(female_name)s לידה ב%(modified_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:165
 #, python-format
 msgid "This person was born %(modified_date)s."
-msgstr "לידה ב־%(modified_date)s."
+msgstr "לידה ב%(modified_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:166
 #, python-format
 msgid "He was born %(modified_date)s."
-msgstr "לידה ב־%(modified_date)s."
+msgstr "לידה ב%(modified_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:167
 #, python-format
 msgid "She was born %(modified_date)s."
-msgstr "לידה ב־%(modified_date)s."
+msgstr "לידה ב%(modified_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:169
 #, python-format
 msgid "Born %(modified_date)s."
-msgstr "לידה ב־%(modified_date)s."
+msgstr "לידה ב%(modified_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:175
 #, python-format
 msgid "%(unknown_gender_name)s was born in %(month_year)s in %(birth_place)s."
-msgstr "%(unknown_gender_name)s לידה ב־%(month_year)s ב־%(birth_place)s."
+msgstr "%(unknown_gender_name)s לידה ב%(month_year)s ב־%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:177
 #, python-format
 msgid "%(male_name)s was born in %(month_year)s in %(birth_place)s."
-msgstr "%(male_name)s לידה ב־%(month_year)s ב־%(birth_place)s."
+msgstr "%(male_name)s לידה ב%(month_year)s ב־%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:179
 #, python-format
 msgid "%(female_name)s was born in %(month_year)s in %(birth_place)s."
-msgstr "%(female_name)s לידה ב־%(month_year)s ב־%(birth_place)s."
+msgstr "%(female_name)s לידה ב%(month_year)s ב־%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:183
 #, python-format
 msgid "This person was born in %(month_year)s in %(birth_place)s."
-msgstr "לידה ב־%(month_year)s ב־%(birth_place)s."
+msgstr "לידה ב%(month_year)s ב־%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:184
 #, python-format
 msgid "He was born in %(month_year)s in %(birth_place)s."
-msgstr "לידה ב־%(month_year)s ב־%(birth_place)s."
+msgstr "לידה ב%(month_year)s ב־%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:185
 #, python-format
 msgid "She was born in %(month_year)s in %(birth_place)s."
-msgstr "לידה ב־%(month_year)s ב־%(birth_place)s."
+msgstr "לידה ב%(month_year)s ב־%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:187
 #, python-format
 msgid "Born %(month_year)s in %(birth_place)s."
-msgstr "לידה ב־%(month_year)s ב־%(birth_place)s."
+msgstr "לידה ב%(month_year)s ב־%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:192
 #, python-format
 msgid "%(unknown_gender_name)s was born in %(month_year)s."
-msgstr "%(unknown_gender_name)s לידה ב־%(month_year)s."
+msgstr "%(unknown_gender_name)s לידה ב%(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:193
 #, python-format
 msgid "%(male_name)s was born in %(month_year)s."
-msgstr "%(male_name)s לידה ב־%(month_year)s."
+msgstr "%(male_name)s לידה ב%(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:194
 #, python-format
 msgid "%(female_name)s was born in %(month_year)s."
-msgstr "%(female_name)s לידה ב־%(month_year)s."
+msgstr "%(female_name)s לידה ב%(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:197
 #, python-format
 msgid "This person was born in %(month_year)s."
-msgstr "לידה ב־%(month_year)s."
+msgstr "לידה ב%(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:198
 #, python-format
 msgid "He was born in %(month_year)s."
-msgstr "לידה ב־%(month_year)s."
+msgstr "לידה ב%(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:199
 #, python-format
 msgid "She was born in %(month_year)s."
-msgstr "לידה ב־%(month_year)s."
+msgstr "לידה ב%(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:201
 #, python-format
 msgid "Born %(month_year)s."
-msgstr "לידה ב־%(month_year)s."
+msgstr "לידה ב%(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:206
 #, python-format
 msgid "%(unknown_gender_name)s was born in %(birth_place)s."
-msgstr "%(unknown_gender_name)s לידה ב־%(birth_place)s."
+msgstr "%(unknown_gender_name)s לידה ב%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:207
 #, python-format
 msgid "%(male_name)s was born in %(birth_place)s."
-msgstr "%(male_name)s לידה ב־%(birth_place)s."
+msgstr "%(male_name)s לידה ב%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:208
 #, python-format
 msgid "%(female_name)s was born in %(birth_place)s."
-msgstr "%(female_name)s לידה ב־%(birth_place)s."
+msgstr "%(female_name)s לידה ב%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:211
 #, python-format
 msgid "This person was born in %(birth_place)s."
-msgstr "לידה ב־%(birth_place)s."
+msgstr "לידה ב%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:212
 #, python-format
 msgid "He was born in %(birth_place)s."
-msgstr "לידה ב־%(birth_place)s."
+msgstr "לידה ב%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:213
 #, python-format
 msgid "She was born in %(birth_place)s."
-msgstr "לידה ב־%(birth_place)s."
+msgstr "לידה ב%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:215
 #, python-format
 msgid "Born in %(birth_place)s."
-msgstr "לידה ב־%(birth_place)s."
+msgstr "לידה ב%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:226
 #, python-format
@@ -28612,7 +28612,7 @@ msgstr "הוטבל %(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:1009
 #, python-format
 msgid "%(male_name)s is the child of %(father)s and %(mother)s."
-msgstr "%(male_name)s צאצא של %(father)s ו־%(mother)s."
+msgstr "%(male_name)s צאצא של %(father)s ו%(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1010
 #, python-format
@@ -28622,67 +28622,67 @@ msgstr "%(male_name)s צאצא של %(father)s and %(mother)s."
 #: ../gramps/plugins/lib/libnarrate.py:1013
 #, python-format
 msgid "This person is the child of %(father)s and %(mother)s."
-msgstr "צאצא של %(father)s ו־%(mother)s."
+msgstr "צאצא של %(father)s ו%(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1014
 #, python-format
 msgid "This person was the child of %(father)s and %(mother)s."
-msgstr "צאצא של %(father)s ו־%(mother)s."
+msgstr "צאצא של %(father)s ו%(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1016
 #, python-format
 msgid "Child of %(father)s and %(mother)s."
-msgstr "צאצא של %(father)s ו־%(mother)s."
+msgstr "צאצא של %(father)s ו%(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1020
 #, python-format
 msgid "%(male_name)s is the son of %(father)s and %(mother)s."
-msgstr "‫‫%(male_name)s צאצא של %(father)s ו־%(mother)s."
+msgstr "‫‫%(male_name)s צאצא של %(father)s ו%(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1021
 #, python-format
 msgid "%(male_name)s was the son of %(father)s and %(mother)s."
-msgstr "%(male_name)s צאצא של %(father)s ו־%(mother)s."
+msgstr "%(male_name)s צאצא של %(father)s ו%(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1024
 #, python-format
 msgid "He is the son of %(father)s and %(mother)s."
-msgstr "צאצא של %(father)s ו־%(mother)s."
+msgstr "צאצא של %(father)s ו%(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1025
 #, python-format
 msgid "He was the son of %(father)s and %(mother)s."
-msgstr "צאצא של %(father)s ו־%(mother)s."
+msgstr "צאצא של %(father)s ו%(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1027
 #, python-format
 msgid "Son of %(father)s and %(mother)s."
-msgstr "צאצא של %(father)s ו־%(mother)s."
+msgstr "צאצא של %(father)s ו%(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1031
 #, python-format
 msgid "%(female_name)s is the daughter of %(father)s and %(mother)s."
-msgstr "%(female_name)s צאצא של %(father)s ו־%(mother)s."
+msgstr "%(female_name)s צאצא של %(father)s ו%(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1032
 #, python-format
 msgid "%(female_name)s was the daughter of %(father)s and %(mother)s."
-msgstr "%(female_name)s צאצא של %(father)s ו־%(mother)s."
+msgstr "%(female_name)s צאצא של %(father)s ו%(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1035
 #, python-format
 msgid "She is the daughter of %(father)s and %(mother)s."
-msgstr "צאצא של %(father)s ו־%(mother)s."
+msgstr "צאצא של %(father)s ו%(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1036
 #, python-format
 msgid "She was the daughter of %(father)s and %(mother)s."
-msgstr "צאצא של %(father)s ו־%(mother)s."
+msgstr "צאצא של %(father)s ו%(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1038
 #, python-format
 msgid "Daughter of %(father)s and %(mother)s."
-msgstr "צאצא של %(father)s ו־%(mother)s."
+msgstr "צאצא של %(father)s ו%(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1045
 #, python-format
@@ -31110,7 +31110,7 @@ msgstr "לא נבחר אדם בית."
 #: ../gramps/plugins/tool/relcalc.py:209
 #, python-format
 msgid "%(person)s and %(active_person)s are the same person."
-msgstr "%(person)s ו־%(active_person)s הם אותו אדם."
+msgstr "%(person)s ו%(active_person)s הם אותו אדם."
 
 #: ../gramps/plugins/quickview/all_relations.py:94
 #: ../gramps/plugins/tool/relcalc.py:222
@@ -31121,12 +31121,12 @@ msgstr "%(person)s הוא %(relationship)s של %(active_person)s."
 #: ../gramps/plugins/quickview/all_relations.py:114
 #, python-format
 msgid "%(person)s and %(active_person)s are not directly related."
-msgstr "%(person)s ו־%(active_person)s לא קשורים באופן ישיר."
+msgstr "%(person)s ו%(active_person)s לא קשורים באופן ישיר."
 
 #: ../gramps/plugins/quickview/all_relations.py:165
 #, python-format
 msgid "%(person)s and %(active_person)s have following in-law relations:"
-msgstr "ל%(person)s ו־%(active_person)s יש את הקשרים הבאים:"
+msgstr "ל%(person)s ו%(active_person)s יש את הקשרים הבאים:"
 
 #: ../gramps/plugins/quickview/all_relations.py:237
 #, python-format
@@ -31977,11 +31977,10 @@ msgid_plural ""
 "⚭ {year}{spouse}{deadtxt2} and\n"
 " {person}{deadtxt1}, {nyears}"
 msgstr[0] ""
-"⚭ {year}{spouse}{deadtxt2} ו־\n"
+"⚭ {year}{spouse}{deadtxt2} ו\n"
+"{person}{deadtxt1}, {nyears}⚭ {year}{spouse}{deadtxt2} ו\n"
 "{person}{deadtxt1}, {nyears}"
 msgstr[1] ""
-"⚭ {year}{spouse}{deadtxt2} ו־\n"
-"{person}{deadtxt1}, {nyears}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:522
 #, python-brace-format
@@ -32264,14 +32263,14 @@ msgstr "; "
 #: ../gramps/plugins/textreport/detdescendantreport.py:708
 #, python-format
 msgid "Children of %(mother_name)s and %(father_name)s"
-msgstr "צאצא של %(mother_name)s ו־%(father_name)s"
+msgstr "צאצא של %(mother_name)s ו%(father_name)s"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:718
 #: ../gramps/plugins/textreport/detdescendantreport.py:819
 #: ../gramps/plugins/textreport/detdescendantreport.py:838
 #, python-format
 msgid "More about %(mother_name)s and %(father_name)s:"
-msgstr "עוד על %(mother_name)s ו־%(father_name)s:"
+msgstr "עוד על %(mother_name)s ו%(father_name)s:"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:774
 #: ../gramps/plugins/textreport/detdescendantreport.py:647
@@ -32553,7 +32552,7 @@ msgstr "הפניה: %(number)s. %(name)s"
 #: ../gramps/plugins/textreport/detdescendantreport.py:795
 #, python-format
 msgid "Notes for %(mother_name)s and %(father_name)s:"
-msgstr "הערות עבור %(mother_name)s ו־%(father_name)s:"
+msgstr "הערות עבור %(mother_name)s ו%(father_name)s:"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1060
 msgid "Record (Modified Register) numbering"
@@ -32997,7 +32996,7 @@ msgstr "סוג האירוע"
 #: ../gramps/plugins/textreport/placereport.py:290
 #, python-format
 msgid "%(persons)s and %(name)s (%(id)s)"
-msgstr "%(persons)s ו־%(name)s (%(id)s)"
+msgstr "%(persons)s ו%(name)s (%(id)s)"
 
 #: ../gramps/plugins/textreport/placereport.py:322
 msgid "People associated with this place"
@@ -33006,7 +33005,7 @@ msgstr "אנשים המשויכים למקום זה"
 #: ../gramps/plugins/textreport/placereport.py:363
 #, python-format
 msgid "%(father)s (%(father_id)s) and %(mother)s (%(mother_id)s)"
-msgstr "%(father)s (%(father_id)s) ו־%(mother)s (%(mother_id)s)"
+msgstr "%(father)s (%(father_id)s) ו%(mother)s (%(mother_id)s)"
 
 #: ../gramps/plugins/textreport/placereport.py:479
 msgid "Select using filter"
@@ -34666,7 +34665,7 @@ msgstr "כלי חישוב קשר־משפחה"
 #: ../gramps/plugins/tool/relcalc.py:215
 #, python-format
 msgid "%(person)s and %(active_person)s are not related."
-msgstr "%(person)s ו־%(active_person)s לא קשורים."
+msgstr "%(person)s ו%(active_person)s לא קשורים."
 
 #: ../gramps/plugins/tool/relcalc.py:234
 #, python-format
@@ -34676,7 +34675,7 @@ msgstr "האב הקדמון המשותף להם הוא %s."
 #: ../gramps/plugins/tool/relcalc.py:241
 #, python-format
 msgid "Their common ancestors are %(ancestor1)s and %(ancestor2)s."
-msgstr "אבות קדמונים משותפים להם הם %(ancestor1)s ו־%(ancestor2)s."
+msgstr "אבות קדמונים משותפים להם הם %(ancestor1)s ו%(ancestor2)s."
 
 #: ../gramps/plugins/tool/relcalc.py:245
 msgid "Their common ancestors are: "
@@ -36035,7 +36034,7 @@ msgstr "גאו־סגירה-משפחה"
 #: ../gramps/plugins/view/geofamily.py:361
 #, python-format
 msgid "%(gramps_id)s : %(father)s and %(mother)s"
-msgstr "%(gramps_id)s : %(father)s ו־%(mother)s"
+msgstr "%(gramps_id)s : %(father)s ו%(mother)s"
 
 #: ../gramps/plugins/view/geofamclose.py:355
 #, python-format
@@ -37109,7 +37108,7 @@ msgstr "יום אחד השנה"
 #: ../gramps/plugins/webreport/webcal.py:1640
 #, python-format
 msgid "%(spouse)s and %(person)s"
-msgstr "%(spouse)s ו־%(person)s"
+msgstr "%(spouse)s ו%(person)s"
 
 #: ../gramps/plugins/webreport/calendar.py:1430
 #: ../gramps/plugins/webreport/webcal.py:2315
@@ -37322,7 +37321,7 @@ msgstr "בניית רשימה של עצמים אחרים…"
 #: ../gramps/plugins/webreport/narrativeweb.py:909
 #, python-format
 msgid "Family of %(husband)s and %(spouse)s"
-msgstr "משפחה של %(husband)s ו־%(spouse)s"
+msgstr "משפחה של %(husband)s ו%(spouse)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:916
 #: ../gramps/plugins/webreport/narrativeweb.py:920
