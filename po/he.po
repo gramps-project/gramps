@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-10-06 15:33+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2023-10-06 15:54+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -4772,11 +4772,11 @@ msgstr "שליפת פריטי מדיה לו מקור מסוים"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:52
 msgid "Media objects with the <tag>"
-msgstr "עצמי מדיה מתוייגים בתג <תג>"
+msgstr "עצמי מדיה מתויגים בתג <תג>"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:53
 msgid "Matches media objects with the particular tag"
-msgstr "שליפת עצמי מדיה מתוייגים בתג מסוים"
+msgstr "שליפת עצמי מדיה מתויגים בתג מסוים"
 
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:46
 msgid "Media objects matching the <filter>"
@@ -4867,7 +4867,7 @@ msgstr "הערות שמתויגות ב<תג>"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:53
 msgid "Matches notes with the particular tag"
-msgstr "שליפת הערות שמתויגות בתג מסוים"
+msgstr "שליפת הערות מתויגות בתג מסוים"
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:48
 msgid "Notes with the particular type"
@@ -5361,11 +5361,11 @@ msgstr "שליפת אנשים עם מקור מסוים"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:52
 msgid "People with the <tag>"
-msgstr "אנשים מתוייגים עם <תג>"
+msgstr "אנשים מתויגים עם <תג>"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:53
 msgid "Matches people with the particular tag"
-msgstr "שליפת אנשים מתוייגים בתג מסוים"
+msgstr "שליפת אנשים מתויגים בתג מסוים"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:49
 #: ../gramps/gui/editors/filtereditor.py:609
@@ -5973,7 +5973,7 @@ msgstr "מקומות שמתויגים ב<תג>"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:53
 msgid "Matches places with the particular tag"
-msgstr "שליפת מקומות מתוייגים בתג מסוים"
+msgstr "שליפת מקומות מתויגים בתג מסוים"
 
 #: ../gramps/gen/filters/rules/place/_hastitle.py:51
 msgid "Places matching a title"
@@ -6185,11 +6185,11 @@ msgstr "שליפת מאגרים עם משתנים מסוימים"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:52
 msgid "Repositories with the <tag>"
-msgstr "מאגרי מידע מתוייגים עם <תג>"
+msgstr "מאגרי מידע מתויגים עם <תג>"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:53
 msgid "Matches repositories with the particular tag"
-msgstr "שליפת מאגרי מידע מתוייגים בתג מסוים"
+msgstr "שליפת מאגרי מידע מתויגים בתג מסוים"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:46
 msgid "Repositories matching the <filter>"
@@ -6325,11 +6325,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:52
 msgid "Sources with the <tag>"
-msgstr "מקורות מתוייגים עם <תג>"
+msgstr "מקורות מתויגים עם <תג>"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:53
 msgid "Matches sources with the particular tag"
-msgstr "שליפת מקורות מתוייגים בתג מסוים"
+msgstr "שליפת מקורות מתויגים בתג מסוים"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:46
 msgid "Sources matching the <filter>"
