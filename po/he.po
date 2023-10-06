@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
 "PO-Revision-Date: 2023-10-06 07:49+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -4462,7 +4462,7 @@ msgstr "משפחות עם הערות המכילות <מלל>"
 
 #: ../gramps/gen/filters/rules/family/_hasnoteregexp.py:44
 msgid "Matches families whose notes contain text matching a regular expression"
-msgstr "שליפת משפחות שההערות שלהן מכילות מלל שתואם לביטוי רגולרי"
+msgstr "שליפת משפחות שההערות שלהן מכילות מלל שתואם לביטוי סדיר"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:44
 msgid "Families with a reference count of <count>"
