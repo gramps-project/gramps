@@ -59,8 +59,8 @@ class DateParserZH_CN(DateParser):
         "以前": Date.MOD_BEFORE,
         "以后": Date.MOD_AFTER,
         "大约": Date.MOD_ABOUT,
-        "from": Date.MOD_FROM,
-        "to": Date.MOD_TO,
+        "从": Date.MOD_FROM,
+        "到": Date.MOD_TO,
     }
 
     month_to_int = DateParser.month_to_int
