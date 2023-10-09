@@ -539,8 +539,8 @@ def sort_places(dbase, handle_list, rlocale=glocale):
         else:
             continue
         place = dbase.get_place_from_handle(hdle)
-        pname = _pd.display(dbase, place)
-        apname = _pd.display_event(dbase, event)
+        pname = _pd.display(dbase, place, fmt=0)
+        apname = _pd.display_event(dbase, event, fmt=0)
 
         pname_sub[pname].append(hdle)
         pname_sub[apname].append((hdle, pname, cname, sname))

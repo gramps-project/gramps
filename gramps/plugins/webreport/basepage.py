@@ -949,7 +949,7 @@ class BasePage:
             data[3] == place_handle and data[4] == event_date for data in place_lat_long
         )
         if not found:
-            placetitle = _pd.display(self.r_db, place)
+            placetitle = _pd.display(self.r_db, place, fmt=0)
             latitude = place.get_latitude()
             longitude = place.get_longitude()
             if latitude and longitude:
@@ -1085,7 +1085,7 @@ class BasePage:
 
         place_hyper = None
         if place:
-            place_name = _pd.display(self.r_db, place, evt.get_date_object())
+            place_name = _pd.display(self.r_db, place, evt.get_date_object(), fmt=0)
             place_hyper = self.place_link(place_handle, place_name, uplink=uplink)
 
         evt_desc = evt.get_description()
@@ -1157,7 +1157,7 @@ class BasePage:
                 if place_handle:
                     place = self.r_db.get_place_from_handle(place_handle)
                     if place:
-                        place_title = _pd.display(self.r_db, place)
+                        place_title = _pd.display(self.r_db, place, fmt=0)
                         place_hyper = self.place_link(
                             place_handle,
                             place_title,
@@ -2307,7 +2307,7 @@ class BasePage:
                 _linkurl = self.report.build_url_fname_html(_obj.handle, "evt", True)
             elif classname == "Place":
                 _obj = self.r_db.get_place_from_handle(newhandle)
-                _name = _pd.display(self.r_db, _obj)
+                _name = _pd.display(self.r_db, _obj, fmt=0)
                 if not _name:
                     _name = self._("Unknown")
                 _linkurl = self.report.build_url_fname_html(newhandle, "plc", True)

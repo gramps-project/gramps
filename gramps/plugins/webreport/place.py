@@ -149,7 +149,7 @@ class PlacePages(BasePage):
                             p_fname += self.ext
                             plc_dict = (p_fname, place_name, place.gramps_id, None)
                             self.report.obj_dict[Place][place_ref] = plc_dict
-                            p_name = _pd.display(self.r_db, place)
+                            p_name = _pd.display(self.r_db, place, fmt=0)
                             cplace_name = p_name.split()[-1]
                             if len(place_name.split()) > 1:
                                 splace_name = place_name.split()[-2]
@@ -430,7 +430,7 @@ class PlacePages(BasePage):
         BasePage.__init__(self, report, the_lang, the_title, place.get_gramps_id())
         self.bibli = Bibliography()
         ldatec = place.get_change_time()
-        apname = _pd.display(self.r_db, place)
+        apname = _pd.display(self.r_db, place, fmt=0)
 
         # if place_name:  # != apname: # store only the primary named page
         output_file, sio = self.report.create_file(place_handle, "plc")
