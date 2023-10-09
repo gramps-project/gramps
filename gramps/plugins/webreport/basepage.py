@@ -1085,7 +1085,7 @@ class BasePage:
 
         place_hyper = None
         if place:
-            place_name = _pd.display(self.r_db, place, evt.get_date_object(), fmt=0)
+            place_name = _pd.display(self.r_db, place, evt.get_date_object())
             place_hyper = self.place_link(place_handle, place_name, uplink=uplink)
 
         evt_desc = evt.get_description()
@@ -2307,7 +2307,7 @@ class BasePage:
                 _linkurl = self.report.build_url_fname_html(_obj.handle, "evt", True)
             elif classname == "Place":
                 _obj = self.r_db.get_place_from_handle(newhandle)
-                _name = _pd.display(self.r_db, _obj, fmt=0)
+                _name = _pd.display(self.r_db, _obj)
                 if not _name:
                     _name = self._("Unknown")
                 _linkurl = self.report.build_url_fname_html(newhandle, "plc", True)
