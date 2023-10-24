@@ -7,13 +7,14 @@
 # Copyright (C) 2001-2007, 2008 Free Software Foundation, Inc.
 # Boril Gourinov <boril.gourinov@gmail.com>, 2007, 2008, 2009, 2010.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
+# Taz Petrov <ev_ko@abv.bg>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.2.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2021-06-04 21:07+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2023-10-26 11:01+0000\n"
+"Last-Translator: Taz Petrov <ev_ko@abv.bg>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/bg/>\n"
 "Language: bg\n"
@@ -21,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 5.1.1\n"
 "X-Poedit-Language: Bulgarian\n"
 "X-Poedit-Country: BULGARIA\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -42,90 +43,84 @@ msgid "Catalonia"
 msgstr "Каталунски"
 
 #: ../data/holidays.xml:101
-#, fuzzy
 msgid "Chile"
-msgstr "Дете"
+msgstr "Чили"
 
 #: ../data/holidays.xml:124
 msgid "China"
 msgstr "Ниянджа"
 
 #: ../data/holidays.xml:127
-#, fuzzy
 msgid "Croatia"
-msgstr "Хърватски"
+msgstr "Хърватска"
 
 #: ../data/holidays.xml:143
-#, fuzzy
 msgid "Czech Republic"
-msgstr "Френски републикански"
+msgstr "Чешка Република"
 
 #: ../data/holidays.xml:158
 msgid "England"
-msgstr ""
+msgstr "Англия"
 
 #: ../data/holidays.xml:188
 msgid "Finland"
-msgstr ""
+msgstr "Финландия"
 
 #: ../data/holidays.xml:282
 msgid "France"
 msgstr "Франция"
 
 #: ../data/holidays.xml:318
-#, fuzzy
 msgid "Germany"
-msgstr "Немски"
+msgstr "Германия"
 
 #: ../data/holidays.xml:335
 msgid "Japan"
-msgstr ""
+msgstr "Япония"
 
 #: ../data/holidays.xml:358
-#, fuzzy
 msgid "Jewish Holidays"
-msgstr "Празник"
+msgstr "Еврейски празник"
 
 #: ../data/holidays.xml:359
 msgid "Purim"
 msgstr ""
 
 #: ../data/holidays.xml:360
-#, fuzzy
 msgid "Passover"
-msgstr "Парола:"
+msgstr "Парола"
 
 #: ../data/holidays.xml:361
 msgid "2 of Passover"
-msgstr ""
+msgstr "2-ра Парола"
 
 #: ../data/holidays.xml:362
 msgid "3 of Passover"
-msgstr ""
+msgstr "3-та Парола"
 
 #: ../data/holidays.xml:363
 msgid "4 of Passover"
-msgstr ""
+msgstr "4-та Парола"
 
 #: ../data/holidays.xml:364
 msgid "5 of Passover"
-msgstr ""
+msgstr "5-та Парола"
 
 #: ../data/holidays.xml:365
 msgid "6 of Passover"
-msgstr ""
+msgstr "6-та Парола"
 
 #: ../data/holidays.xml:366
 msgid "7 of Passover"
-msgstr ""
+msgstr "7-ма Парола"
 
 #: ../data/holidays.xml:367
 msgid "Shavuot"
-msgstr ""
+msgstr "Еврейски празник Шавуот"
 
 #: ../data/holidays.xml:368
 msgid "Rosh Ha'Shana"
-msgstr ""
+msgstr "Еврейски празник Рош ха Шана"
 
 #: ../data/holidays.xml:369
 msgid "Rosh Ha'Shana 2"
@@ -200,24 +195,20 @@ msgid "8 of Hanuka"
 msgstr ""
 
 #: ../data/holidays.xml:388
-#, fuzzy
-#| msgid "Italic"
 msgid "Italy"
-msgstr "Курсив"
+msgstr "Италия"
 
 #: ../data/holidays.xml:402
-#, fuzzy
 msgid "New Zealand"
-msgstr "Ново събитие"
+msgstr "Нова Зеландия"
 
 #: ../data/holidays.xml:418
 msgid "Russia"
 msgstr "Руска"
 
 #: ../data/holidays.xml:434
-#, fuzzy
 msgid "Serbia"
-msgstr "Сръбски"
+msgstr "Сърбия"
 
 #: ../data/holidays.xml:449
 #, fuzzy
@@ -225,24 +216,20 @@ msgid "Serbia (Latin)"
 msgstr "Сръбски"
 
 #: ../data/holidays.xml:464
-#, fuzzy
 msgid "Slovakia"
-msgstr "Словашки"
+msgstr "Словакия"
 
 #: ../data/holidays.xml:481 ../gramps/plugins/mapservices/eniroswedenmap.py:49
 msgid "Sweden"
 msgstr "Шведски"
 
 #: ../data/holidays.xml:508
-#, fuzzy
-#| msgid "Turkish"
 msgid "Turkey"
-msgstr "Турски"
+msgstr "Турция"
 
 #: ../data/holidays.xml:536
-#, fuzzy
 msgid "Ukraine"
-msgstr "Украински"
+msgstr "Украйна"
 
 #: ../data/holidays.xml:563
 msgid "United States of America"
@@ -267,6 +254,8 @@ msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
 msgstr ""
+"Gramps е генеалогична програма, която е едновременно интуитивна за любители "
+"и пълна с функции за професионални генеалози."
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:8
 msgid ""
@@ -274,12 +263,16 @@ msgid ""
 "individual as well as the complex relationships between various people, "
 "places and events."
 msgstr ""
+"Той ви дава възможност да записвате многото детайли от живота на индивида, "
+"както и сложните взаимоотношения между различни хора, места и събития."
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:9
 msgid ""
 "All of your research is kept organized, searchable and as precise as you "
 "need it to be."
 msgstr ""
+"Всички ваши изследвания се поддържат организирани, с възможност за търсене и "
+"толкова точни, колкото е необходимо."
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:12
 #, fuzzy
@@ -293,7 +286,7 @@ msgstr "Генеалогична система Gramps"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:12
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
-msgstr ""
+msgstr "Генеалогия; Семейна история; Изследване; Родословно дърво; GEDCOM;"
 
 #: ../data/org.gramps_project.Gramps.xml.in:6
 msgid "Gramps database"
@@ -8324,7 +8317,7 @@ msgstr "Деца"
 #: ../gramps/plugins/webreport/person.py:1941
 #: ../gramps/plugins/webreport/updates.py:120
 msgid "Events"
-msgstr "Събития"
+msgstr "Събитие"
 
 #: ../gramps/gen/lib/family.py:194 ../gramps/gen/lib/person.py:248
 #, fuzzy
@@ -26697,7 +26690,7 @@ msgstr "дата"
 
 #: ../gramps/plugins/importer/importcsv.py:368
 msgid "place"
-msgstr "място"
+msgstr "Място"
 
 #: ../gramps/plugins/importer/importcsv.py:369
 #, fuzzy
