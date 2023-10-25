@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-09-25 09:00+0000\n"
+"PO-Revision-Date: 2023-10-26 11:01+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -49,7 +49,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.1-dev\n"
+"X-Generator: Weblate 5.1.1\n"
 "X-Poedit-Bookmarks: 2035,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -12779,6 +12779,8 @@ msgid ""
 "Changes are immediate.\n"
 "This is used when exporting views in CSV format."
 msgstr ""
+"Změny jsou okamžité.\n"
+"Používá se při exportu pohledů do formátu CSV."
 
 #: ../gramps/gui/csvdialect.py:114
 msgid "Delimiter:"
@@ -18875,7 +18877,7 @@ msgstr "Nebyly nalezeny vhodná rozšíření"
 
 #: ../gramps/gui/plug/_windows.py:737
 msgid "Allow Gramps to install required Python modules"
-msgstr ""
+msgstr "Povolit Gramps nainstalovat požadované moduly Pythonu"
 
 #: ../gramps/gui/plug/_windows.py:744
 msgid "Scheduled update checks"
@@ -31163,6 +31165,10 @@ msgid ""
 "Trying to create a new one failed.\n"
 "Configure the view for the tile path and restart gramps."
 msgstr ""
+"Adresář s dlaždicemi již neexistuje:\n"
+"%s\n"
+"Pokus o vytvoření nového se nezdařil.\n"
+"Nakonfigurujte zobrazení pro cestu k dlaždicím a restartujte Gramps."
 
 #: ../gramps/plugins/lib/maps/geography.py:397
 msgid "Remove cross hair"
