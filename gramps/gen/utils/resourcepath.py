@@ -74,7 +74,7 @@ class ResourcePath:
         package_path = os.path.abspath(
             os.path.join(os.path.dirname(__file__), "..", "..", "..")
         )
-        installed = not os.path.exists(os.path.join(package_path, ".git"))
+        installed = not os.path.exists(os.path.join(package_path, "data"))
         if installed:
             test_path = os.path.join("gramps", "authors.xml")
         else:
@@ -96,6 +96,9 @@ class ResourcePath:
             elif tail == "python":
                 # Home installation scheme
                 base_path, tail = os.path.split(head)
+            elif tail.startswith("gramps-") and tail.endswith(".egg"):
+                # egg installation scheme
+                base_path = package_path
             if base_path is not None:
                 resource_path = os.path.join(base_path, "share")
             else:
