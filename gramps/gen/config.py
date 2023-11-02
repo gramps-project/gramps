@@ -331,6 +331,7 @@ register("preferences.last-views", [])
 register("preferences.family-relation-type", 3)  # UNKNOWN
 register("preferences.age-display-precision", 1)
 register("preferences.age-after-death", True)
+register("preferences.age-rounded-year", True)
 register("preferences.cite-plugin", "cite-legacy")
 
 register("colors.scheme", 0)

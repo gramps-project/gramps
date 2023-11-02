@@ -1565,6 +1565,17 @@ class GrampsPreferences(ConfigureDialog):
         grid.attach(obox, 2, row, 2, 1)
 
         row += 1
+        # Display rounded year
+        self.add_checkbox(
+            grid,
+            _("Round the year"),
+            row,
+            "preferences.age-rounded-year",
+            start=2,
+            stop=3,
+        )
+
+        row += 1
         # Display ages for events after death
         self.add_checkbox(
             grid,

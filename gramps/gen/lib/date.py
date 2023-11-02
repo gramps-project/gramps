@@ -457,7 +457,9 @@ class Span:
             ).format(number_of=diff_tuple[0])
             detail += 1
         if self.precision == detail:
-            if diff_tuple[1] >= 6:  # round up years
+            if diff_tuple[1] >= 6 and config.get(
+                "preferences.age-rounded-year"
+            ):  # round up years
                 # Translators: leave all/any {...} untranslated
                 retval = ngettext(
                     "{number_of} year", "{number_of} years", diff_tuple[0] + 1
