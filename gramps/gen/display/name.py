@@ -372,6 +372,8 @@ def cleanup_name(namestring):
             result += val
         else:
             result += " " + val
+
+    result = result.replace(" - ", "-")
     return result
 
 
