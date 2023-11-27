@@ -195,7 +195,7 @@ class GeneWebParser:
     def __init__(self, dbase, file):
         self.db = dbase
         if file:  # Unit tests can create the parser w/o underlying file
-            self.f = open(file, "rUb")
+            self.f = open(file, "rb")
             self.filename = file
             self.encoding = "iso-8859-1"
             self.gwplus = False
