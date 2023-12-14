@@ -430,7 +430,7 @@ def show_settings():
 
             # print("xx rcs -V : " + os.system("rcs --version"))
             _RCS_FOUND = str(subprocess.check_output(["rcs", "--version"]))
-            version = re.compile(".*GNU RCS\) ([0-9]+\.[0-9]+\.[0-9]+).*")
+            version = re.compile(r".*GNU RCS\) ([0-9]+\.[0-9]+\.[0-9]+).*")
             rcs_ver = version.findall(_RCS_FOUND)[0]
     except Exception:
         rcs_ver = _("not found")
