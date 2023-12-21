@@ -179,7 +179,7 @@ class GrampsAboutDialog(Gtk.AboutDialog):
             + distro
         ) % (
             ellipses(str(VERSION)),
-            ellipses(str(sys.version).replace("\n", "")),
+            ellipses(platform.python_version()),
             BSDDB_STR,
             ellipses(get_env_var("LANG", "")),
             ellipses(platform.system()),
