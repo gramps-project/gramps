@@ -15,7 +15,7 @@
 
 <tip number="8"><b>Inverted Filtering</b><br/>Filters can easily be reversed by using the 'invert' option &quot;Return values that do not match the filter rules&quot;. For instance, by inverting the 'People with children' filter you can select all people without children.</tip>
 
-<tip number="9"><b>Locating People</b><br/>By default, each surname in the People View is listed only once. By clicking on the arrow to the left of a name, the list will expand to show all individuals with that last name. To locate any Family Name from a long list, select a Family Name (not a person) and start typing. The view will jump to the first Family Name matching the letters you enter.</tip>
+<tip number="9"><b>Locating People</b><br/>In the Grouped People View, each surname is listed only once. By clicking on the arrow to the left of a name, the list will expand to show all individuals with that last name. To locate any Family Name from a long list, select a Family Name (not a person) and start typing. The view will jump to the first Family Name matching the letters you enter.</tip>
 
 <tip number="10"><b>The Family View</b><br/>The Family View is used to display a typical family unit as two parents and their children.</tip>
 
