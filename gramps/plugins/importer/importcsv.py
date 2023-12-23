@@ -212,6 +212,7 @@ class CSVParser:
                 _("Call"),
                 _("call"),
             ),
+            "tag": ("tag", _("tag"), _("Tag")),
             "title": ("title", _("title"), _("title", "Person or Place")),
             "prefix": ("prefix", _("prefix"), _("Prefix")),
             "suffix": ("suffix", _("suffix"), _("Suffix")),
@@ -637,6 +638,9 @@ class CSVParser:
                 mar_ref.set_role(EventRoleType(EventRoleType.FAMILY))
                 family.add_event_ref(mar_ref)
                 self.db.commit_family(family, self.trans)
+            if tag is not None:
+                marriage.add_tag(tag)
+                self.db.commit_event(marriage, self.trans)
             # only add note to event:
             # append notes, if previous notes
             if note:
@@ -719,6 +723,8 @@ class CSVParser:
             # add, if new
             dummy_new, source = self.get_or_create_source(source)
             self.find_and_set_citation(child, source)
+        if tag is not None:
+            family.add_tag(tag)
         # put note on child
         if note:
             # append notes, if previous notes
@@ -749,8 +755,9 @@ class CSVParser:
     def _parse_person(self, line_number, row, col):
         "Parse the content of a Person line."
         surname = rd(line_number, row, col, "surname")
-        firstname = rd(line_number, row, col, "firstname", "")
+        firstname = rd(line_number, row, col, "firstname")
         callname = rd(line_number, row, col, "callname")
+        tag = rd(line_number, row, col, "tag")
         title = rd(line_number, row, col, "title")
         prefix = rd(line_number, row, col, "prefix")
         suffix = rd(line_number, row, col, "suffix")
@@ -800,9 +807,11 @@ class CSVParser:
             person = self.create_person()
             name = Name()
             name.set_type(NameType(NameType.BIRTH))
-            name.set_first_name(firstname)
+            if firstname is not None:
+                name.set_first_name(firstname)
             surname_obj = Surname()
-            surname_obj.set_surname(surname)
+            if surname is not None:
+                surname_obj.set_surname(surname)
             name.add_surname(surname_obj)
             person.set_primary_name(name)
         else:
@@ -864,6 +873,8 @@ class CSVParser:
             else:
                 gender = Person.UNKNOWN
             person.set_gender(gender)
+        if tag is not None:
+            person.add_tag(tag)
         #########################################################
         # add if new, replace if different
         # Birth:
@@ -1048,6 +1059,8 @@ class CSVParser:
                 self.storeup("place", place_id, place)
         if place_title is not None:
             place.title = place_title
+        if tag is not None:
+            place.add_tag(tag)
         if place_name is not None:
             place.name = PlaceName(value=place_name)
         if place_type_str is not None:
@@ -1128,7 +1141,7 @@ class CSVParser:
             family.set_mother_handle(wife.get_handle())
             wife.add_family_handle(family.get_handle())
         if husband and wife:
-            family.set_relationship(FamilyRelType.MARRIED)
+            family.set_relationship(config.get("preferences.family-relation-type"))
         self.db.add_family(family, self.trans)
         if husband:
             self.db.commit_person(husband, self.trans)
