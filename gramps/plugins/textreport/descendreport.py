@@ -247,6 +247,7 @@ class Printinfo:
         numbering,
         showmarriage,
         showdivorce,
+        showlifespan,
         name_display,
         rlocale,
         want_ids,
@@ -260,6 +261,7 @@ class Printinfo:
         # variables
         self.showmarriage = showmarriage
         self.showdivorce = showdivorce
+        self.showlifespan = showlifespan
         self.want_ids = want_ids
         self._ = rlocale.translation.sgettext  # needed for English
         self._get_date = rlocale.get_date
@@ -286,15 +288,17 @@ class Printinfo:
 
     def dump_string(self, person, family=None):
         """generate a descriptive string for a person"""
-        string = self.__date_place(get_birth_or_fallback(self.database, person))
+        string = ""
 
-        tmp = self.__date_place(get_death_or_fallback(self.database, person))
-        if string and tmp:
-            string += self._(", ")  # Arabic OK
-        string += tmp
+        if self.showlifespan:
+            string += self.__date_place(get_birth_or_fallback(self.database, person))
+            tmp = self.__date_place(get_death_or_fallback(self.database, person))
+            if string and tmp:
+                string += self._(", ")  # Arabic OK
+            string += tmp
 
-        if string:
-            string = " (" + string + ")"
+            if string:
+                string = " (" + string + ")"
 
         if family and self.showmarriage:
             tmp = self.__date_place(get_marriage_or_fallback(self.database, family))
@@ -495,6 +499,7 @@ class DescendantReport(Report):
 
         marrs = menu.get_option_by_name("marrs").get_value()
         divs = menu.get_option_by_name("divs").get_value()
+        lifespan = menu.get_option_by_name("lifespan").get_value()
 
         stdoptions.run_name_format_option(self, menu)
 
@@ -506,6 +511,7 @@ class DescendantReport(Report):
             obj,
             marrs,
             divs,
+            lifespan,
             self._name_display,
             self._locale,
             self.want_ids,
@@ -586,6 +592,12 @@ class DescendantOptions(MenuReportOptions):
         divs = BooleanOption(_("Show divorce info"), False)
         divs.set_help(_("Whether to show divorce information in the report."))
         menu.add_option(category_name, "divs", divs)
+
+        lifespan = BooleanOption(_("Show birth and death info"), True)
+        lifespan.set_help(
+            _("Whether to show birth and death information in the report.")
+        )
+        menu.add_option(category_name, "lifespan", lifespan)
 
         dups = BooleanOption(_("Show duplicate trees"), True)
         dups.set_help(_("Whether to show duplicate Family Trees in the report."))
