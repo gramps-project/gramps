@@ -62,15 +62,15 @@ OPTIONS
     If the **-f** option is not given for any *FILE*, the format of that file
     is guessed according to its extension or MIME type.
 
-    Formats available for export are **gramps-xml** (guessed if *FILE* ends
+    Formats available for export are **gramps** (guessed if *FILE* ends
     with `.gramps`), **gedcom** (guessed if *FILE* ends with `.ged`), or any
     file export available through the Gramps plugin system.
 
-    Formats available for import are **gramps-xml**, **gedcom**, **gramps-pkg**
+    Formats available for import are **gramps**, **gedcom**, **gramps-pkg**
     (guessed if *FILE* ends with `.gpkg`), and **geneweb** (guessed if *FILE*
     ends with `.gw`).
 
-    Formats available for export are **gramps-xml**, **gedcom**,
+    Formats available for export are **gramps**, **gedcom**,
     **gramps-pkg**, **wft** (guessed if *FILE* ends with `.wft`),
     **geneweb**.
 
@@ -104,7 +104,7 @@ OPTIONS
 
 **-e**, **--export**\ =\ *FILE*
     Export data into *FILE*.
-    For **gramps-xml**, **gedcom**, **wft**, **gramps-pkg**, and **geneweb**,
+    For **gramps**, **gedcom**, **wft**, **gramps-pkg**, and **geneweb**,
     the *FILE* is the name of the resulting file.
 
     When more than one output file is given,
@@ -221,7 +221,7 @@ To explicitly specify the formats in the above example, append filenames with
 appropriate **-f** options::
 
     gramps -i file1.ged -f gedcom -i file2.tgz -f gramps-pkg \
-    -i ~/db3.gramps -f gramps-xml -i file4.wft -f wft -a check
+    -i ~/db3.gramps -f gramps -i file4.wft -f wft -a check
 
 To record the database resulting from all imports, supply a **-e** flag (use
 **-f** if the filename does not allow gramps to guess the format)::
