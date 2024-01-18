@@ -113,7 +113,7 @@ and then check the resulting database for errors, one may type:
 gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps -i file4.wft -a tool -p name=check.
 
 2. To explicitly specify the formats in the above example, append filenames with appropriate -f options:
-gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~/db3.gramps -f gramps-xml -i file4.wft -f wft -a tool -p name=check.
+gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~/db3.gramps -f gramps -i file4.wft -f wft -a tool -p name=check.
 
 3. To record the database resulting from all imports, supply -e flag
 (use -f if the filename does not allow Gramps to guess the format):
@@ -138,7 +138,7 @@ To find out details of a particular option, use show=option_name , e.g. name=tim
 To learn about available report names, use name=show string.
 
 9. To convert a Family Tree on the fly to a .gramps xml file:
-gramps -O 'Family Tree 1' -e output.gramps -f gramps-xml
+gramps -O 'Family Tree 1' -e output.gramps -f gramps
 
 10. To generate a web site into an other locale (in german):
 LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Family Tree 1' -a report -p name=navwebpage,target=/../de
