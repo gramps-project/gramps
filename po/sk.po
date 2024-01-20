@@ -5,7 +5,7 @@
 #
 # LDS terms consulted with slovak-based LDS Church (www.mormoni.sk)
 # Nick Hall <nick-h@gramps-project.org>, 2021.
-# Milan <mobrcian@hotmail.com>, 2021, 2022, 2023.
+# Milan <mobrcian@hotmail.com>, 2021, 2022, 2023, 2024.
 # Jose Riha <jose1711@gmail.com>, 2022.
 # Jano Svitok <jan.svitok@gmail.com>, 2022.
 # Milan Šalka <salka.milan@googlemail.com>, 2023.
@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-10-26 11:02+0000\n"
+"PO-Revision-Date: 2024-01-08 16:06+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.1.1\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -3332,7 +3332,7 @@ msgstr "Priezvisko, Dané (krstné) Prípona"
 #: ../gramps/plugins/export/exportcsv.py:421
 #: ../gramps/plugins/importer/importcsv.py:203
 msgid "Given"
-msgstr "Dané"
+msgstr "Dané (krstné)"
 
 #: ../gramps/gen/display/name.py:417
 msgid "Given Surname Suffix"
@@ -3344,7 +3344,7 @@ msgstr "Hlavné priezviská, Dané (krstné) Patronymické Prípona Predpona"
 
 #: ../gramps/gen/display/name.py:427
 msgid "Patronymic, Given"
-msgstr "Patronymické, Dané"
+msgstr "Patronymické, Dané (krstné)"
 
 #: ../gramps/gen/display/name.py:658 ../gramps/gen/display/name.py:789
 msgctxt "Person"
@@ -5674,8 +5674,8 @@ msgid ""
 "Matches ancestors of the people on the bookmark list not more than N "
 "generations away"
 msgstr ""
-"Porovnáva predkov ľudí na zozname záložiek, ktorí nie sú vzdialení viac ako "
-"N generácií"
+"Porovnáva predkov ľudí v zozname záložiek, ktorí nie sú vzdialení viac ako N "
+"generácií"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:49
 msgid "Ancestors of the Home Person not more than <N> generations away"
@@ -10855,7 +10855,7 @@ msgstr "Titul"
 
 #: ../gramps/gen/utils/keyword.py:57
 msgid "GIVEN"
-msgstr "DANÉ"
+msgstr "DANÉ (krstné)"
 
 #: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:1091
 #: ../gramps/gui/configure.py:1098 ../gramps/gui/configure.py:1099
@@ -11205,7 +11205,7 @@ msgstr "Krst"
 
 #: ../gramps/gen/utils/symbols.py:96 ../gramps/gui/configure.py:2765
 msgid "Engaged"
-msgstr "Zasnúbení"
+msgstr "Zasnúbenie"
 
 #: ../gramps/gen/utils/symbols.py:99
 msgid "Unmarried partnership"
@@ -11213,7 +11213,7 @@ msgstr "Nezosobášené partnerstvo"
 
 #: ../gramps/gen/utils/symbols.py:100 ../gramps/gui/configure.py:2771
 msgid "Buried"
-msgstr "Pochovaný/-á"
+msgstr "Pochovanie"
 
 #: ../gramps/gen/utils/symbols.py:101 ../gramps/gui/configure.py:2772
 msgid "Cremated/Funeral urn"
@@ -12175,11 +12175,11 @@ msgstr "Kalendár na vstupe"
 
 #: ../gramps/gui/configure.py:1608
 msgid "On the previous day"
-msgstr "Na predchádzajúci deň"
+msgstr "V predchádzajúcom dni"
 
 #: ../gramps/gui/configure.py:1609
 msgid "On the next day"
-msgstr "Na nasledujúci deň"
+msgstr "V nasledujúcom dni"
 
 #: ../gramps/gui/configure.py:1610
 msgid "Only on leap years"
@@ -12248,7 +12248,7 @@ msgstr "Chýbajúce priezvisko"
 
 #: ../gramps/gui/configure.py:1739
 msgid "Missing given name"
-msgstr "Chýbajúce dané meno"
+msgstr "Chýbajúce dané (krstné) meno"
 
 #: ../gramps/gui/configure.py:1746
 msgid "Missing record"
@@ -12381,11 +12381,11 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2040
 msgid "Show Clipboard icon on toolbar"
-msgstr "Zobraziť ikonu Schránky na paneli nástrojov"
+msgstr "Zobraziť ikonu Schránka na paneli nástrojov"
 
 #: ../gramps/gui/configure.py:2045
 msgid "Show or hide the Clipboard icon on the toolbar."
-msgstr "Zobraziť alebo skryť ikonu Schránky na paneli nástrojov."
+msgstr "Zobraziť alebo skryť ikonu Schránka na paneli nástrojov."
 
 #: ../gramps/gui/configure.py:2053
 msgid "Show Reports icon on toolbar"
@@ -12602,7 +12602,7 @@ msgstr "Pridať predvolený zdroj pri importe GEDCOM"
 
 #: ../gramps/gui/configure.py:2414 ../gramps/gui/dbloader.py:400
 msgid "Import"
-msgstr "Importovať"
+msgstr "Import"
 
 #: ../gramps/gui/configure.py:2483
 msgid "Select media directory"
@@ -12727,7 +12727,7 @@ msgstr "Partner"
 
 #: ../gramps/gui/configure.py:2770
 msgid "Killed"
-msgstr "Zabitý"
+msgstr "Zabitie"
 
 #: ../gramps/gui/configure.py:2774
 msgid "Default genealogy symbols replacement"
@@ -16724,7 +16724,7 @@ msgstr "Identifikácia typu mena, napr. Rodné meno, Manželské meno."
 #: ../gramps/gui/glade/editname.glade:192
 #: ../gramps/gui/glade/editperson.glade:134
 msgid "_Given:"
-msgstr "_Dané:"
+msgstr "_Dané (krstné):"
 
 #: ../gramps/gui/glade/editname.glade:207
 #: ../gramps/gui/glade/editperson.glade:197
@@ -32162,7 +32162,7 @@ msgstr "Porovnáva ľudí s rovnakým posledným menom"
 
 #: ../gramps/plugins/quickview/samesurnames.py:73
 msgid "People matching the <given>"
-msgstr "Ľudia zodpovedajúci menu <dané>"
+msgstr "Ľudia zodpovedajúci menu <dané (krstné)>"
 
 #: ../gramps/plugins/quickview/samesurnames.py:74
 msgid "Matches people with same given name"
