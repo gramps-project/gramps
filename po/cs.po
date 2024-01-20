@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-10-26 11:01+0000\n"
+"PO-Revision-Date: 2023-11-21 13:04+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -49,7 +49,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.1.1\n"
+"X-Generator: Weblate 5.2\n"
 "X-Poedit-Bookmarks: 2035,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -6992,8 +6992,6 @@ msgid "None"
 msgstr "Žádný"
 
 #: ../gramps/gen/lib/childreftype.py:70
-#, fuzzy
-#| msgid "Birth"
 msgctxt "relationship"
 msgid "Birth"
 msgstr "Narození"
@@ -8600,8 +8598,9 @@ msgid "Transcript"
 msgstr "Přepis"
 
 #: ../gramps/gen/lib/notetype.py:81
+#, fuzzy
 msgid "Source text"
-msgstr "Pramen"
+msgstr "Pramen text"
 
 #: ../gramps/gen/lib/notetype.py:83 ../gramps/gen/plug/_pluginreg.py:115
 #: ../gramps/gui/logger/_errorview.py:189
@@ -12196,13 +12195,13 @@ msgstr "Kalendář na vstupu"
 #, fuzzy
 #| msgid "Shows previous page"
 msgid "On the previous day"
-msgstr "Zobrazit předchozí stránku"
+msgstr "Předchozí den"
 
 #: ../gramps/gui/configure.py:1609
 #, fuzzy
 #| msgid "Shows the next page"
 msgid "On the next day"
-msgstr "Zobrazí další stránku"
+msgstr "Následující den"
 
 #: ../gramps/gui/configure.py:1610
 msgid "Only on leap years"
@@ -12769,10 +12768,8 @@ msgid "Tab"
 msgstr "Štítek"
 
 #: ../gramps/gui/csvdialect.py:82
-#, fuzzy
-#| msgid "Check your installation."
 msgid "Choose your dialect"
-msgstr "Zkontrolujte svoji instalaci."
+msgstr "Zvolte si dialekt"
 
 #: ../gramps/gui/csvdialect.py:85
 msgid ""
@@ -14982,13 +14979,11 @@ msgstr "_Muž"
 
 #: ../gramps/gui/editors/editperson.py:1238
 msgid "_Female"
-msgstr "Ž_ena"
+msgstr "_Žena"
 
 #: ../gramps/gui/editors/editperson.py:1239
-#, fuzzy
-#| msgid "Other"
 msgid "_Other"
-msgstr "Jiný"
+msgstr "_Jiné"
 
 #: ../gramps/gui/editors/editperson.py:1240
 msgid "_Unknown"
@@ -15390,15 +15385,6 @@ msgid "Use regular expressions"
 msgstr "Použít regulární výrazy"
 
 #: ../gramps/gui/editors/filtereditor.py:652
-#, fuzzy
-#| msgid ""
-#| "Interpret the contents of string fields as regular expressions.\n"
-#| "A decimal point will match any character. A question mark will match zero "
-#| "or one occurences of the previous character or group. An asterisk will "
-#| "match zero or more occurences. A plus sign will match one or more "
-#| "occurences. Use parentheses to group expressions. Specify alternatives "
-#| "using a vertical bar. A caret will match the start of a line. A dollar "
-#| "sign will match the end of a line."
 msgid ""
 "Interpret the contents of string fields as regular expressions:\n"
 ".\tA decimal point will match any character.\n"
@@ -15411,12 +15397,16 @@ msgid ""
 "^\tA caret will match the start of a line.\n"
 "$\tA dollar sign will match the end of a line."
 msgstr ""
-"Interpretovat obsah řetězce jako regulární výraz.\n"
-"Znaku tečka vyhovuje jakýkoli znak. Otazník opovídá žádnému nebo jednom "
-"výskytu předchozího znaku nebo skupiny. Hvězdička odpovídá žádnému nebo více "
-"výskytů. Znaménko plus odpovídá jednomu nebo více výskytům. Skupinu znaků "
-"uzavřete do hranaté závorky. Alternativy jsou odděleny svislou čárou. "
-"Stříška znamená začátek řídku. Dolar odpovídá konci řádku."
+"Interpretovat obsah řetězce jako regulární výraz:\n"
+".\tZnaku tečka vyhovuje jakýkoli znak.\n"
+"?\tOtazník odpovídá žádnému nebo jednomu výskytu předchozího znaku nebo "
+"skupiny.\n"
+"*\tHvězdička odpovídá žádnému nebo více výskytům.\n"
+"+\tZnaménko plus odpovídá jednomu nebo více výskytům.\n"
+"()\tPro seskupení výrazů použijte závorky.\n"
+"|\tUrčete alternativy pomocí svislé čáry.\n"
+"^\tZnak stříšky odpovídá začátku řádku.\n"
+"$\tZnak dolaru odpovídá konci řádku."
 
 #: ../gramps/gui/editors/filtereditor.py:668
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:86
@@ -18090,7 +18080,7 @@ msgstr "Domovská _stránka Gramps"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "Gramps _Mailing Lists"
-msgstr "Diskuzní skupiny Gra_mps"
+msgstr "Gramps _Diskuzní skupiny"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "Make Backup..."
@@ -18850,10 +18840,8 @@ msgid "All audiences"
 msgstr "Zvuk"
 
 #: ../gramps/gui/plug/_windows.py:458
-#, fuzzy
-#| msgid " state"
 msgid "All statuses"
-msgstr " kraj"
+msgstr "Všechny statusy"
 
 #: ../gramps/gui/plug/_windows.py:479
 msgid "Settings"
@@ -18873,7 +18861,7 @@ msgstr "Nahrává se..."
 
 #: ../gramps/gui/plug/_windows.py:583
 msgid "No matching addons found."
-msgstr "Nebyly nalezeny vhodná rozšíření"
+msgstr "Nebyly nalezeny vhodná rozšíření."
 
 #: ../gramps/gui/plug/_windows.py:737
 msgid "Allow Gramps to install required Python modules"
@@ -19198,14 +19186,11 @@ msgstr ""
 
 #: ../gramps/gui/plug/export/_exportassistant.py:467
 #: ../gramps/gui/plug/export/_exportassistant.py:491
-#, fuzzy
-#| msgid ""
-#| "Press Apply to proceed, Cancel to abort, or Back to revisit your options."
 msgid ""
 "Press Cancel to abort, Back to revisit your options, or Apply to proceed"
 msgstr ""
-"Stiskněte Budiž pro pokračování, Storno pro zrušení, nebo Zpět pro kontrolu "
-"vašich nastavení."
+"Stisknutím Zrušit přerušíte akci, stisknutím Zpět se vrátíte k možnostem "
+"kontroly vašich nastavení nebo stisknutím Použít pokračujete."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:481
 #, python-format
@@ -21652,13 +21637,7 @@ msgstr ""
 " %(person)s, sňatek"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:532
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "{spouse} and\n"
-#| " {person}, {nyears}"
-#| msgid_plural ""
-#| "{spouse} and\n"
-#| " {person}, {nyears}"
+#, python-brace-format
 msgid ""
 "{wife} and\n"
 " {person}, {nyears}"
@@ -21666,13 +21645,13 @@ msgid_plural ""
 "{wife} and\n"
 " {person}, {nyears}"
 msgstr[0] ""
-"{spouse} a\n"
+"{wife} and\n"
 " {person}, {nyears}"
 msgstr[1] ""
-"{spouse} a\n"
+"{wife} and\n"
 " {person}, {nyears}"
 msgstr[2] ""
-"{spouse} a\n"
+"{wife} and\n"
 " {person}, {nyears}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:602
@@ -22177,12 +22156,10 @@ msgid "quarter circle"
 msgstr "čtvrt kruhu"
 
 #: ../gramps/plugins/drawreport/fanchart.py:812
-#, fuzzy
-#| msgid "The form of the graph: full circle, half circle, or quarter circle."
 msgid ""
 "The form of the graph: full circle, half circle, half circle with overhang "
 "or quarter circle."
-msgstr "Forma grafu: celý kruh, půlkruh, nebo čtvrt kruhu."
+msgstr "Forma grafu: celý kruh, půlkruh, půlkruh s přesahem nebo čtvrt kruhu."
 
 #: ../gramps/plugins/drawreport/fanchart.py:820
 msgid "generation dependent"
@@ -22226,24 +22203,21 @@ msgid ""
 msgstr "V editoru stylů můžete přizpůsobit písmo a barvu pro každou generaci"
 
 #: ../gramps/plugins/drawreport/fanchart.py:847
-#, fuzzy
-#| msgid "Flip name on the left of the fan"
 msgid "Flip names that are on the bottom half of the fan"
-msgstr "Obrátit jméno na levé straně vějíře"
+msgstr "Obrátit jména, která jsou ve spodní polovině vějíře"
 
 #: ../gramps/plugins/drawreport/fanchart.py:850
 msgid "Flip names for generations 2, 3 and 4 i.e. those found in circles"
 msgstr ""
+"Obrátit jména pro generace 2, 3 a 4, tj. ty, které se nacházejí v kruzích"
 
 #: ../gramps/plugins/drawreport/fanchart.py:854
-#, fuzzy
-#| msgid "The title of the calendar"
 msgid "Exclude the title of the chart"
-msgstr "Název kalendáře"
+msgstr "Vyloučit název grafu"
 
 #: ../gramps/plugins/drawreport/fanchart.py:855
 msgid "Exclude the title to make more room for the chart"
-msgstr ""
+msgstr "Vyloučením názvu získáte více místa pro graf"
 
 #: ../gramps/plugins/drawreport/fanchart.py:910
 #, python-format
@@ -22628,6 +22602,9 @@ msgid ""
 "You can change this behavior in the 'Configure active view' of any list-"
 "based view"
 msgstr ""
+"CSV je běžný formát tabulkového procesoru.\n"
+"Toto chování můžete změnit v \"Nastavit aktivní pohled\" jakéhokoli pohledu "
+"založeného na seznamu"
 
 #: ../gramps/plugins/export/export.gpr.py:49
 msgid "CSV spreadsheet options"
@@ -24548,6 +24525,9 @@ msgid ""
 "Discourse forum to share ideas and techniques.\n"
 "\n"
 msgstr ""
+"V diskusních konferencích a na diskusním fóru je k dispozici aktivní "
+"komunita uživatelů, kteří sdílejí nápady a techniky.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:141
 msgid "Gramps online manual"
@@ -24566,14 +24546,6 @@ msgid "Getting Started"
 msgstr "Začínáme"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:157
-#, fuzzy
-#| msgid ""
-#| "The first thing you must do is to create a new Family Tree. To create a "
-#| "new Family Tree (sometimes called 'database') select \"Family Trees\" "
-#| "from the menu, pick \"Manage Family Trees\", press \"New\" and name your "
-#| "Family Tree. For more details, please read the information at the links "
-#| "above\n"
-#| "\n"
 msgid ""
 "The first time Gramps is started all of the Views are blank. There are very "
 "few menu options. A Family Tree is needed for any activity to happen.\n"
@@ -24585,10 +24557,12 @@ msgid ""
 "more details, please read the information at the links below.\n"
 "\n"
 msgstr ""
-"První věc, kterou musíte udělat, je vytvoření nového rodokmenu. Rodokmen "
-"(někdy zvaný též 'databáze') vytvoříte volbou \"Rodokmeny\" z nabídky, "
-"zvolte \"Spravovat Rodokmeny\", stiskněte \"Nový\" a pojmenujte svůj "
-"rodokmen. Pro více informací navštivte odkazy výše\n"
+"První věc, kterou musíte udělat po spuštění Gramps, je vytvoření nového "
+"rodokmenu. Rodokmen (někdy zvaný též 'databáze') vytvoříte volbou \"Rodokmeny"
+"\" z nabídky, zvolte \"Spravovat Rodokmeny\", stiskněte \"Nový\" a "
+"pojmenujte svůj rodokmen. . \"Načíst rodokmen\", aby byl rodokmen aktivní a "
+"připravený přijímat data, zadejte první rodinu nebo importujte rodokmen. Pro "
+"více informací si přečtěte informace na níže uvedených odkazech.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:169
@@ -24627,16 +24601,12 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:201
-#, fuzzy
-#| msgid "Open an existing database"
 msgid "Entering and editing data (brief)"
-msgstr "Otevřít existující databázi"
+msgstr "Zadávání a úprava údajů (stručně)"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:207
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Importing a Family Tree"
-msgstr "Importovat rodokmen"
+msgstr "Importování rodokmenu"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:210
 msgid ""
@@ -24684,10 +24654,8 @@ msgstr ""
 "stránky a nechat je vznášet nad Gramps."
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:240
-#, fuzzy
-#| msgid "Gramps View"
 msgid "Gramps View Categories"
-msgstr "Pohled Gramps"
+msgstr "Pohled kategorie Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:244
 #: ../gramps/plugins/gramplet/welcomegramplet.py:253
@@ -24707,10 +24675,8 @@ msgstr ""
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:255
-#, fuzzy
-#| msgid "Entire Database"
 msgid "Example Database"
-msgstr "Celá databáze"
+msgstr "Ukázka databáze"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:258
 msgid ""
@@ -25814,7 +25780,7 @@ msgstr "ohraničeno"
 
 #: ../gramps/plugins/importer/importcsv.py:379
 msgid "enclosed_by"
-msgstr "ohraničeno"
+msgstr "ohraničeno_"
 
 #: ../gramps/plugins/importer/importcsv.py:420
 #, python-format
@@ -26371,16 +26337,13 @@ msgid "vCard import"
 msgstr "importovat vCard"
 
 #: ../gramps/plugins/importer/importvcard.py:274
-#, fuzzy
-#| msgid "VCARD import report: No errors detected"
 msgid "vCard import report: No errors detected"
-msgstr "VCARD import report: Nebyly detekovány chyby"
+msgstr "Správa importu vCARD: Nebyly detekovány chyby"
 
 #: ../gramps/plugins/importer/importvcard.py:277
-#, fuzzy, python-format
-#| msgid "VCARD import report: %s errors detected\n"
+#, python-format
 msgid "vCard import report: %s errors detected\n"
-msgstr "VCARD import report: %s detekovaných chyb\n"
+msgstr "Správa importu vCARD: %s detekovaných chyb\n"
 
 #: ../gramps/plugins/importer/importvcard.py:342
 #, python-format
@@ -26388,50 +26351,36 @@ msgid "Token >%(token)s< unknown. line skipped: %(line)s"
 msgstr "Token >%(token)s< je neznámý. řádek: %(line)s vynechán"
 
 #: ../gramps/plugins/importer/importvcard.py:359
-#, fuzzy
-#| msgid ""
-#| "BEGIN property not properly closed by END property, Gramps can't cope "
-#| "with nested VCards."
 msgid ""
 "BEGIN property not properly closed by END property, Gramps can't cope with "
 "nested vCards."
 msgstr ""
 "BEGIN direktiva není správně ukončena direktivou END. Gramps nezvládá práci "
-"s vnořenými VCard."
+"s vnořenými vCard."
 
 #: ../gramps/plugins/importer/importvcard.py:373
-#, fuzzy, python-format
-#| msgid "Import of VCards version %s is not supported by Gramps."
+#, python-format
 msgid "Import of vCards version %s is not supported by Gramps."
-msgstr "Import VCard verze %s není podporován Gramps."
+msgstr "Import vCard verze %s není podporován Gramps."
 
 #: ../gramps/plugins/importer/importvcard.py:396
-#, fuzzy
-#| msgid ""
-#| "VCard is malformed missing the compulsory N property, so there is no "
-#| "name; skip it."
 msgid ""
 "The vCard is malformed. It is missing the compulsory N property, so there is "
 "no name; skip it."
 msgstr ""
-"VCard je chybný, chybí povinná direktiva N. Není jméno, bude vynecháno."
+"Zápis vCard je chybný. Chybí povinná direktiva N. Není jméno, bude vynecháno."
 
 #: ../gramps/plugins/importer/importvcard.py:405
-#, fuzzy
-#| msgid ""
-#| "VCard is malformed missing the compulsory FN property, get name from N "
-#| "alone."
 msgid ""
 "The vCard is malformed. It is missing the compulsory FN property, get name "
 "from N alone."
 msgstr ""
-"VCard je chybný, chybí povinná direktiva FN. Jméno bude získáno pouze z N."
+"Zápis vCard je chybný. Chybí povinná direktiva FN. Jméno bude získáno pouze "
+"z N."
 
 #: ../gramps/plugins/importer/importvcard.py:413
-#, fuzzy
-#| msgid "VCard is malformed wrong number of name components."
 msgid "The vCard is malformed. Wrong number of name components."
-msgstr "VCard je chybný, nesprávný počet částí jména."
+msgstr "Zápis vCard je chybný. Nesprávný počet částí jména."
 
 #: ../gramps/plugins/importer/importvcard.py:574
 #, python-brace-format
@@ -26959,7 +26908,7 @@ msgstr "Vynechaný název souboru"
 #: ../gramps/plugins/lib/libgedcom.py:7271
 #, python-format
 msgid "Could not import %s"
-msgstr "Nemohu importovat %s"
+msgstr "Nebylo možné importovat %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:5947
 #: ../gramps/plugins/lib/libgedcom.py:7356
@@ -28108,7 +28057,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:551
 #, python-format
 msgid "Buried %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Byl pohřben %(burial_date)s v %(burial_place)s%(endnotes)s."
+msgstr "Pohřben %(burial_date)s v %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:556
 #, python-format
@@ -31238,7 +31187,7 @@ msgstr "Vybrat kml soubor použitý pro přidání míst"
 
 #: ../gramps/plugins/lib/maps/geography.py:1146
 msgid "You will need to edit each place manually to add place type, ...\n"
-msgstr ""
+msgstr "Každé místo musíte upravit ručně, abyste přidali typ místa, ...\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1150
 #, python-brace-format
@@ -31322,10 +31271,9 @@ msgid "Select tile cache directory for offline mode"
 msgstr "Zvolte adresář uložení dlaždic pro offline režim"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:143
-#, fuzzy, python-format
-#| msgid "Can't create tiles cache directory %s"
+#, python-format
 msgid "Can't create tile cache directory %s"
-msgstr "Nemohu vytvořit adresář keše dlaždic %s"
+msgstr "Nemohu vytvořit adresář keše dlaždice %s"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:149
 #, python-format
@@ -33869,10 +33817,8 @@ msgstr "Zobrazuje stav odkazů v poznámkách"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:35
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:36
-#, fuzzy
-#| msgid "Thumbnail"
 msgid "Gnome Thumbnailer"
-msgstr "Náhled"
+msgstr "Gnome Thumbnailer"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:49
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:50
@@ -35973,7 +35919,7 @@ msgstr "Datum úmrtí je rovno datu sňatku"
 
 #: ../gramps/plugins/tool/verify.py:2433
 msgid "Baptism too late according to family tradition"
-msgstr ""
+msgstr "Příliš pozdní křest vzhledem k rodinné tradici"
 
 #: ../gramps/plugins/tool/verify.py:2458
 msgid "Burial too late"
@@ -36001,7 +35947,7 @@ msgstr "Události rodin nejsou v chronologickém pořadí"
 
 #: ../gramps/plugins/tool/verify.py:2611
 msgid "Person events are not in chronological order"
-msgstr "Události osob nejsou v chronologickém pořadí."
+msgstr "Události osob nejsou v chronologickém pořadí"
 
 #: ../gramps/plugins/view/citationlistview.py:107
 msgid "Source: Title"
@@ -38050,8 +37996,6 @@ msgid "Check it if you want to open/close a section"
 msgstr "Zaškrtněte, pokud chcete otevřít/zavřít sekci"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
-#, fuzzy
-#| msgid "Extra pages"
 msgid "Extra Pages"
 msgstr "Dodatečné stránky"
 
@@ -38863,7 +38807,7 @@ msgstr "Vztah k ústřední osobě"
 
 #: ../gramps/plugins/webreport/person.py:2283
 msgid "Relation to main person"
-msgstr "Vztah k výchozí osobě"
+msgstr "Vztah k hlavní osobě"
 
 #: ../gramps/plugins/webreport/person.py:2288
 msgid "Relation within this family (if not by birth)"
