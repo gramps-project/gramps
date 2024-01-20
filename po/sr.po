@@ -4,13 +4,13 @@
 # Мирослав Николић <miroslavnikolic@rocketmail.com>, 2013—2014.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # Kristijan Fremen Velkovski <me@krisfremen.com>, 2022.
-# Medic Momcilo <momcilo@medic.rs>, 2023.
+# Medic Momcilo <momcilo@medic.rs>, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-05-18 18:50+0000\n"
+"PO-Revision-Date: 2024-01-10 23:06+0000\n"
 "Last-Translator: Medic Momcilo <momcilo@medic.rs>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sr/>\n"
@@ -18,9 +18,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.18-dev\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -411,12 +411,6 @@ msgstr ""
 "породичне јединице као два родитеља са својом децом."
 
 #: ../data/tips.xml:22
-#, fuzzy
-#| msgid ""
-#| "<b>Changing the Active Person</b><br/>Changing the Active Person in views "
-#| "is easy. In the Relationship view just click on anyone. In the Ancestry "
-#| "View doubleclick on the person or right click to select any of their "
-#| "spouses, siblings, children or parents."
 msgid ""
 "<b>Changing the Active Person</b><br/>Changing the Active Person in views is "
 "easy. In the Relationship view just click on anyone. In the Pedigree View "
@@ -424,7 +418,7 @@ msgid ""
 "siblings, children or parents."
 msgstr ""
 "<b>Промена активне особе</b><br/>Промена активне особе у прегледима је лака. "
-"У прегледу сродства само кликните на некога. У прегледу предака двапут "
+"У прегледу сродства само кликните на некога. У прегледу родослова двапут "
 "кликните на особу или десним тастером да изаберете неког од њихових "
 "супружника, рођака, деце или родитеља."
 
@@ -781,21 +775,15 @@ msgstr ""
 "жељеног имена."
 
 #: ../data/tips.xml:76
-#, fuzzy
-#| msgid ""
-#| "<b>Ancestor View</b><br/>The Ancestry View displays a traditional "
-#| "pedigree chart. Hold the mouse over an individual to see more information "
-#| "about them or right click on an individual to access other family members "
-#| "and settings. Play with the settings to see the different options."
 msgid ""
 "<b>Pedigree View</b><br/>The Pedigree View displays a traditional pedigree "
 "chart. Hold the mouse over an individual to see more information about them "
 "or right click on an individual to access other family members and settings. "
 "Play with the settings to see the different options."
 msgstr ""
-"<b>Преглед порекла</b><br/>Преглед порекла приказује традиционални график "
-"порекла. Држите миша изнад неког појединца да видите више података о њему "
-"или кликните десним тастером миша на појединца да приступите другим "
+"<b>Преглед родослова</b><br/>Преглед родослова приказује традиционални "
+"график порекла. Држите миша изнад неког појединца да видите више података о "
+"њему или кликните десним тастером миша на појединца да приступите другим "
 "члановима породице и подешавањима. Играјте се подешавањима да видите "
 "различите могућности."
 
@@ -1310,7 +1298,6 @@ msgid "Unknown action: %s."
 msgstr "Непозната радња: %s."
 
 #: ../gramps/cli/argparser.py:67
-#, fuzzy
 msgid ""
 "\n"
 "Usage: gramps [OPTION...]\n"
@@ -1366,29 +1353,44 @@ msgstr ""
 "\n"
 "Опције програма\n"
 "  -O, --open=ПОРОДИЧНО_СТАБЛО            Отвара породично стабло\n"
+"  -U, --username=КОРИСНИК                Корисничко име базе података\n"
+"  -P, --password=ЛОЗИНКА                 Лозинка корисника базе података\n"
 "  -C, --create=ПОРОДИЧНО_СТАБЛО          Ствара при отварању ако је ново "
 "породично стабло\n"
 "  -i, --import=НАЗИВ_ДАТОТЕКЕ            Увози датотеку\n"
 "  -e, --export=НАЗИВ_ДАТОТЕКЕ            Извози датотеку\n"
+"  -r, --remove=ШАБЛОН_ПОРОДИЧНОГ_СТАБЛА  Уклони породично стабло/стабла ("
+"употребом регуларних израза)\n"
 "  -f, --format=ЗАПИС                     Наводи запис породичног стабла\n"
 "  -a, --action=РАДЊА                     Наводи радњу\n"
 "  -p, --options=НИСКА_ОПЦИЈА             Наводи ОПЦИЈЕ\n"
 "  -d, --debug=НАЗИВ_ЗАПИСНИЧАРА          Укључује дневнике прочишћавања\n"
-"  -l                                     Исписује породична стабла\n"
-"  -L                                     Исписује породична стабла у "
-"детаљима\n"
-"  -t                                     Исписује породична стабла, "
-"ограничена табулатором\n"
+"  -l [ШАБЛОН_ПОРОДИЧНОГ_СТАБЛА...]       Списак породичних стабала\n"
+"  -L [ШАБЛОН_ПОРОДИЧНОГ_СТАБЛА...]       Детаљан списак породичних стабла\n"
+"  -t [ШАБЛОН_ПОРОДИЧНОГ_СТАБЛА...]       Списак породичних стабала, "
+"одвојених табулатором\n"
 "  -u, --force-unlock                     Приморава откључавање породичног "
 "стабла\n"
 "  -s, --show                             Приказује подешавања\n"
 "  -c, --config=[подешавање[:вредност]]   Поставља подешавања и покреће "
 "Дедовника\n"
-"  -y, --yes                              Не тражи потврђивање опасних радњи "
-"(само у режиму конзоле)\n"
+"  -y, --yes                              Не тражи потврђивање опасних радњи ("
+"само у режиму конзоле)\n"
 "  -q, --quiet                            Потискује излаз приказивања "
 "напредовања (само у режиму конзоле)\n"
 "  -v, --version                          Приказује издања\n"
+"  -S, --safe                             Покренути Дедовник у 'Безбедном "
+"режиму'\n"
+"                                          (привременом употребом "
+"подразумеваних подешавања)\n"
+"  -D, --default=[APXFE]                  Поврати подешавања на подразумеване "
+"вредности;\n"
+"                 A - додаци су очишћени\n"
+"                 P - Подешавања на подразумеване вредности\n"
+"                 X - Књиге су очишћене, подешавања извештаја и алата враћене "
+"на подразумеване вредности\n"
+"                 F - филтери су очишћени\n"
+"                 E - Све је враћено на подразумеване вредности или очишћено\n"
 
 #: ../gramps/cli/argparser.py:108
 msgid ""
@@ -2070,16 +2072,14 @@ msgid "January"
 msgstr "Јануар"
 
 #: ../gramps/gen/const.py:288
-#, fuzzy
 msgctxt "surname"
 msgid "none"
-msgstr "презиме није познато"
+msgstr "без"
 
 #: ../gramps/gen/const.py:289
-#, fuzzy
 msgctxt "given-name"
 msgid "none"
-msgstr "име"
+msgstr "без"
 
 #: ../gramps/gen/const.py:293 ../gramps/plugins/gramplet/todo.py:208
 #: ../gramps/plugins/webreport/basepage.py:227
@@ -2231,7 +2231,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:244
 #, python-brace-format
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "from <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -2380,10 +2380,9 @@ msgstr ""
 #. "after <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "after" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:494
-#, fuzzy
 msgctxt "after-date"
 msgid ""
-msgstr "од"
+msgstr "after"
 
 #. Translators: If there is no special inflection for
 #. "about <Month>" in your language, DON'T translate this.
@@ -3000,38 +2999,32 @@ msgid "Saturday"
 msgstr "Субота"
 
 #: ../gramps/gen/datehandler/_datestrings.py:282
-#, fuzzy
 msgid "Sun"
-msgstr "Покрени"
+msgstr "Нед"
 
 #: ../gramps/gen/datehandler/_datestrings.py:283
-#, fuzzy
 msgid "Mon"
-msgstr "Човек"
+msgstr "Пон"
 
 #: ../gramps/gen/datehandler/_datestrings.py:284
-#, fuzzy
 msgid "Tue"
-msgstr "Тачно"
+msgstr "Уто"
 
 #: ../gramps/gen/datehandler/_datestrings.py:285
-#, fuzzy
 msgid "Wed"
-msgstr "црвена"
+msgstr "Сре"
 
 #: ../gramps/gen/datehandler/_datestrings.py:286
 msgid "Thu"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:287
-#, fuzzy
 msgid "Fri"
-msgstr "Петак"
+msgstr "Пет"
 
 #: ../gramps/gen/datehandler/_datestrings.py:288
-#, fuzzy
 msgid "Sat"
-msgstr "Држава"
+msgstr "Суб"
 
 #: ../gramps/gen/db/base.py:1823 ../gramps/gui/widgets/fanchart.py:2315
 msgid "Add child to family"
@@ -3073,7 +3066,7 @@ msgstr ""
 "између различитих издања шеме."
 
 #: ../gramps/gen/db/exceptions.py:127
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Python version is not supported by this version of Gramps.\n"
 "\n"
@@ -3083,7 +3076,7 @@ msgid ""
 "Please upgrade to the corresponding version or use XML for porting data "
 "between different Python versions."
 msgstr ""
-"Ово издање Дедовника не подржава издање шеме.\n"
+"Ово издање Дедовника не подржава издање Питона.\n"
 "\n"
 "Ово породично стабло је издања %(tree_vers)s шеме, а ово издање Дедовника "
 "подржава издања од %(min_vers)s до %(max_vers)s\n"
@@ -3140,7 +3133,7 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/db/exceptions.py:213
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Family Tree you are trying to load is in the %(dbtype)s database, which "
 "is no longer supported.\n"
@@ -3157,23 +3150,23 @@ msgid ""
 "start your previous version of Gramps and %(wiki_backup_html_start)smake a "
 "backup%(html_end)s of your Family Tree."
 msgstr ""
-"Породично стабло које покушавате да учитате је издања %(oldschema)s записа "
-"шеме. Ово издање Дедовника користи издање %(newschema)s шеме. С тога не "
-"можете учитати ово породично стабло без надограђивања издања шеме породичног "
-"стабла.\n"
+"Породично стабло које покушавате да учитате је издања %(dbtype)s записа "
+"шеме, које није више подржано.\n"
+"С тога не можете учитати ово породично стабло без надограђивања издања шеме "
+"породичног стабла.\n"
 "\n"
 "Ако надоградите онда нећете моћи да користите претходно издање Дедовника, "
-"чак и ако након тога направите %(wiki_manual_backup_html_start)sрезерву"
-"%(html_end)s ило %(wiki_manual_export_html_start)sизвезете%(html_end)s ваше "
-"надограђено породично стабло.\n"
+"чак и ако након тога направите "
+"%(wiki_manual_backup_html_start)sрезерву%(html_end)s ило "
+"%(wiki_manual_export_html_start)sизвезете%(html_end)s ваше надограђено "
+"породично стабло.\n"
 "\n"
 "Надограђивање је тежак задатак који би могао неповратно да оштети ваше "
 "породично стабло ако је прекинут или не успе.\n"
 "\n"
 "Ако већ нисте направили резерву вашег породичног стабла, онда треба да "
-"покренете ваше %(bold_start)sстаро%(bold_end)s издање Дедовника и да "
-"%(wiki_backup_html_start)sнаправите резерву%(html_end)s вашег породичног "
-"стабла."
+"покренете ваше старо издање Дедовника и да %(wiki_backup_html_start)"
+"sнаправите резерву%(html_end)s вашег породичног стабла."
 
 #: ../gramps/gen/db/generic.py:196 ../gramps/gen/db/generic.py:246
 #: ../gramps/gen/db/generic.py:2157
@@ -3236,14 +3229,12 @@ msgid "Number of notes"
 msgstr "Број белешки"
 
 #: ../gramps/gen/db/generic.py:2558
-#, fuzzy
 msgid "Number of tags"
-msgstr "Број бракова"
+msgstr "Број ознака"
 
 #: ../gramps/gen/db/generic.py:2559
-#, fuzzy
 msgid "Schema version"
-msgstr "Уклони издање"
+msgstr "Верзија шеме"
 
 #: ../gramps/gen/db/upgrade.py:584
 #, python-format
@@ -3460,9 +3451,8 @@ msgid "Error in '%s' file: cannot load."
 msgstr "Грешка у датотеци „%s“: не могу је учитати."
 
 #: ../gramps/gen/display/place.py:75 ../gramps/gen/plug/docgen/treedoc.py:65
-#, fuzzy
 msgid "Full"
-msgstr "Пуно име"
+msgstr "Потпуно"
 
 #: ../gramps/gen/filters/_filterparser.py:130
 #, python-format
@@ -3897,14 +3887,12 @@ msgid "Value:"
 msgstr "Вредност:"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:48
-#, fuzzy
 msgid "Citations with the attribute <attribute>"
-msgstr "Догађаји са особином <особина>"
+msgstr "Цитати са особином <особина>"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:49
-#, fuzzy
 msgid "Matches citations with the attribute of a particular value"
-msgstr "Упоредите медијске предмете са особином нарочите вредности"
+msgstr "Упоредите цитате са особином нарочите вредности"
 
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:50
 #: ../gramps/gen/filters/rules/event/_hascitation.py:50
@@ -11174,11 +11162,9 @@ msgstr "непознато"
 
 #: ../gramps/gen/utils/string.py:53 ../gramps/gui/editors/editperson.py:366
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:112
-#, fuzzy
-#| msgid "Mother"
 msgctxt "gender"
 msgid "other"
-msgstr "Мајка"
+msgstr "друго"
 
 #: ../gramps/gen/utils/string.py:58
 msgid "Invalid"
@@ -12883,10 +12869,8 @@ msgid "Tab"
 msgstr "Ознака"
 
 #: ../gramps/gui/csvdialect.py:82
-#, fuzzy
-#| msgid "Check your installation."
 msgid "Choose your dialect"
-msgstr "Проверите вашу инсталацију."
+msgstr "Одаберите ваш дијалект"
 
 #: ../gramps/gui/csvdialect.py:85
 msgid ""
@@ -13547,7 +13531,7 @@ msgstr "Не могу да пронађем достављени назив да
 #: ../gramps/gui/editors/addmedia.py:171
 #, python-format
 msgid "Cannot import %s"
-msgstr "Не могу да увезем „%s“"
+msgstr "Не могу да увезем %s"
 
 #: ../gramps/gui/editors/addmedia.py:173
 #, python-format
@@ -15187,20 +15171,22 @@ msgstr "Ново место"
 #: ../gramps/gui/editors/editplace.py:268
 #: ../gramps/gui/editors/editplaceref.py:239
 #: ../gramps/plugins/webreport/basepage.py:3171
-#, fuzzy
 msgid ""
 "Invalid latitude\n"
 "(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
-msgstr "Неисправна географска ширина (синтакса: 18\\u00b09'"
+msgstr ""
+"Неисправна географска ширина\n"
+"(синтакса: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:276
 #: ../gramps/gui/editors/editplaceref.py:247
 #: ../gramps/plugins/webreport/basepage.py:3192
-#, fuzzy
 msgid ""
 "Invalid longitude\n"
 "(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
-msgstr "Неисправна географска дужина (синтакса: 18\\u00b09'"
+msgstr ""
+"Неисправна географска дужина\n"
+"(синтакса: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:289
 #: ../gramps/plugins/lib/maps/geography.py:991
@@ -15550,15 +15536,6 @@ msgid "Use regular expressions"
 msgstr "Користи регуларне изразе"
 
 #: ../gramps/gui/editors/filtereditor.py:652
-#, fuzzy
-#| msgid ""
-#| "Interpret the contents of string fields as regular expressions.\n"
-#| "A decimal point will match any character. A question mark will match zero "
-#| "or one occurences of the previous character or group. An asterisk will "
-#| "match zero or more occurences. A plus sign will match one or more "
-#| "occurences. Use parentheses to group expressions. Specify alternatives "
-#| "using a vertical bar. A caret will match the start of a line. A dollar "
-#| "sign will match the end of a line."
 msgid ""
 "Interpret the contents of string fields as regular expressions:\n"
 ".\tA decimal point will match any character.\n"
@@ -15571,13 +15548,16 @@ msgid ""
 "^\tA caret will match the start of a line.\n"
 "$\tA dollar sign will match the end of a line."
 msgstr ""
-"Тумачи садржаје поља ниске као регуларне изразе.\n"
-"Децимална тачка ће одговарати било ком знаку. Знак питања ће одговарати нули "
-"или једном појављивању претходног знака или групе. Звездица ће одговарати "
-"нули или неколико појављивања. Знак плуса ће одговарати једном или више "
-"појављивања. Користите заграде да групишете изразе. Наведите заменске "
-"користећи усправну цртицу. Капица ће одговарати почетку реда. Знак долара ће "
-"одговарати крају реда."
+"Тумачи садржаје поља ниске као регуларне изразе:\n"
+".\tДецимална тачка ће одговарати било ком знаку.\n"
+"?\tЗнак питања ће одговарати нули или једном појављивању претходног знака "
+"или групе.\n"
+"*\tЗвездица ће одговарати нули или неколико појављивања.\n"
+"+\tЗнак плуса ће одговарати једном или више појављивања.\n"
+"()\tКористите заграде да групишете изразе.\n"
+"|\tНаведите заменске користећи усправну цртицу.\n"
+"^\tКапица ће одговарати почетку реда.\n"
+"$\tЗнак долара ће одговарати крају реда."
 
 #: ../gramps/gui/editors/filtereditor.py:668
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:86
@@ -15589,10 +15569,8 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:96
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:89
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:73
-#, fuzzy
-#| msgid "Case sensitive:"
 msgid "Case sensitive"
-msgstr "Величина слова:"
+msgstr "Осетљивост на велика и мала слова"
 
 #: ../gramps/gui/editors/filtereditor.py:688
 msgid "Rule Name"
@@ -16590,7 +16568,7 @@ msgstr "Прикажи уређивач датума"
 #: ../gramps/gui/glade/editevent.glade:163
 #: ../gramps/gui/glade/editeventref.glade:253
 msgid "De_scription:"
-msgstr "_Опис:"
+msgstr "Опи_с:"
 
 #: ../gramps/gui/glade/editevent.glade:177
 msgid ""
@@ -19098,10 +19076,8 @@ msgid "All audiences"
 msgstr "Аудио"
 
 #: ../gramps/gui/plug/_windows.py:458
-#, fuzzy
-#| msgid " state"
 msgid "All statuses"
-msgstr " држава"
+msgstr "Сви статуси"
 
 #: ../gramps/gui/plug/_windows.py:479
 #, fuzzy
@@ -19123,10 +19099,8 @@ msgid "Loading..."
 msgstr "Учитавам..."
 
 #: ../gramps/gui/plug/_windows.py:583
-#, fuzzy
-#| msgid "No matches found"
 msgid "No matching addons found."
-msgstr "Нема поклапања"
+msgstr "Нема резултата претраге додатака."
 
 #: ../gramps/gui/plug/_windows.py:737
 msgid "Allow Gramps to install required Python modules"
@@ -20281,13 +20255,8 @@ msgid "Select_Source_selector"
 msgstr "Споји_напомене"
 
 #: ../gramps/gui/spell.py:66
-#, fuzzy
-#| msgid ""
-#| "You have no installed dictionaries. Either install one or disable spell "
-#| "checking"
 msgid "You have no installed dictionaries."
-msgstr ""
-"Немате инсталираних речника. Инсталирајте неки или искључите проверу писања"
+msgstr "Немате инсталираних речника."
 
 #: ../gramps/gui/spell.py:87
 msgid "Off"
@@ -21507,7 +21476,7 @@ msgid ""
 "Whether to only display the center person or all of his/her siblings too"
 msgstr ""
 "Да ли да прикаже само средишњу особу или такође и све његове/њене браћу и "
-"сестре."
+"сестре"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:853
 #: ../gramps/plugins/drawreport/descendtree.py:1583
@@ -21959,25 +21928,16 @@ msgstr[1] "{person}, {age}"
 msgstr[2] "{person}, {age}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:519
-#, fuzzy, python-format
-#| msgid ""
-#| "%(spouse)s and\n"
-#| " %(person)s, wedding"
+#, python-format
 msgid ""
 "%(wife)s and\n"
 " %(person)s, wedding"
 msgstr ""
-"%(spouse)s и\n"
+"%(wife)s и\n"
 " %(person)s, венчање"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:532
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "{spouse} and\n"
-#| " {person}, {nyears}"
-#| msgid_plural ""
-#| "{spouse} and\n"
-#| " {person}, {nyears}"
+#, python-brace-format
 msgid ""
 "{wife} and\n"
 " {person}, {nyears}"
@@ -21985,13 +21945,13 @@ msgid_plural ""
 "{wife} and\n"
 " {person}, {nyears}"
 msgstr[0] ""
-"{spouse} и\n"
+"{wife} и\n"
 " {person}, {nyears}"
 msgstr[1] ""
-"{spouse} и\n"
+"{wife} и\n"
 " {person}, {nyears}"
 msgstr[2] ""
-"{spouse} и\n"
+"{wife} и\n"
 " {person}, {nyears}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:602
@@ -22579,11 +22539,8 @@ msgid "Item count"
 msgstr "Број ставки"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:334
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "all"
 msgid "All"
-msgstr "све"
+msgstr "Сви"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:335
 #: ../gramps/plugins/drawreport/statisticschart.py:502
@@ -24939,14 +24896,6 @@ msgid "Getting Started"
 msgstr "Започните"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:157
-#, fuzzy
-#| msgid ""
-#| "The first thing you must do is to create a new Family Tree. To create a "
-#| "new Family Tree (sometimes called 'database') select \"Family Trees\" "
-#| "from the menu, pick \"Manage Family Trees\", press \"New\" and name your "
-#| "Family Tree. For more details, please read the information at the links "
-#| "above\n"
-#| "\n"
 msgid ""
 "The first time Gramps is started all of the Views are blank. There are very "
 "few menu options. A Family Tree is needed for any activity to happen.\n"
@@ -24958,11 +24907,16 @@ msgid ""
 "more details, please read the information at the links below.\n"
 "\n"
 msgstr ""
-"Прва ствар коју требате урадити је да направите ново породично стабло. Да "
-"направите ново породично стабло (које се понекад зове „база података“) из "
+"Први пут када покренете Дедовник сви прегледи су празни. Постоји веома мало "
+"опција. Породично стабло је неопходно да би могло бити било каквих "
+"активности.\n"
+"\n"
+"Да направите ново породично стабло (које се понекад зове „база података“) из "
 "изборника изаберите „Породична стабла —> Управљај породичним стаблима —> "
-"Ново“, и именујте ваше породично стабло. За више појединости, прочитајте "
-"податке на вези испод\n"
+"Ново“, и именујте ваше породично стабло. „Учитајте породично стабло“ да га "
+"учините активним и спремним да прими податке уносом ваше прве породице, или "
+"увозом породичног стабла. За више појединости, прочитајте податке на везама "
+"изнад.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:169
@@ -26336,7 +26290,7 @@ msgstr "Неисправна ГЕДКОМ датотека"
 #: ../gramps/plugins/importer/importgedcom.py:147
 #, python-format
 msgid "%s could not be imported"
-msgstr "Не могу да увезем „%s“"
+msgstr "%s није било могуће увести"
 
 #: ../gramps/plugins/importer/importgedcom.py:165
 msgid "Error reading GEDCOM file"
@@ -26548,11 +26502,12 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:49
 #: ../gramps/plugins/importer/importprogen.glade:70
-#, fuzzy
 msgid ""
 "Source reference\n"
 "(out of Settings)"
-msgstr "Напомена упуте извора"
+msgstr ""
+"Референца извора\n"
+"(изван Подешавања)"
 
 #: ../gramps/plugins/importer/importprogen.glade:124
 msgid ""
@@ -27140,9 +27095,8 @@ msgid "Destination"
 msgstr "Одредиште"
 
 #: ../gramps/plugins/lib/libgedcom.py:739
-#, fuzzy
 msgid "DNA"
-msgstr "ДНС"
+msgstr "ДНК"
 
 #: ../gramps/plugins/lib/libgedcom.py:740
 #, fuzzy
@@ -27679,10 +27633,8 @@ msgid "Label"
 msgstr "натпис"
 
 #: ../gramps/plugins/lib/libmetadata.py:230
-#, fuzzy
-#| msgid ", "
 msgid " "
-msgstr ", "
+msgstr " "
 
 #: ../gramps/plugins/lib/libnarrate.py:111
 #, python-format
@@ -30467,300 +30419,315 @@ msgid "She also had an unmarried relationship with %(spouse)s%(endnotes)s."
 msgstr "Она је такође имала ванбрачну заједницу са %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1485
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
-msgstr "Такође се удала за %(spouse)s %(date)s у %(place)s%(endnotes)s."
+msgstr "Такође се удала за %(spouse)s %(partial_date)s у %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1488
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
-msgstr "Такође се удала за %(spouse)s %(date)s у %(place)s%(endnotes)s."
+msgstr "Такође се удала за %(spouse)s %(full_date)s у %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1491
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
-msgstr "Такође се удала за %(spouse)s %(date)s у %(place)s%(endnotes)s."
+msgstr ""
+"Такође се удала за %(spouse)s %(modified_date)s у %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1496
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "He had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
-msgstr "Такође се оженио са %(spouse)s %(date)s у %(place)s%(endnotes)s."
+msgstr ""
+"Такође се оженио са %(spouse)s %(partial_date)s у %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1499
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "He had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
-msgstr "Такође се оженио са %(spouse)s %(date)s у %(place)s%(endnotes)s."
+msgstr "Такође се оженио са %(spouse)s %(full_date)s у %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1502
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "He had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
-msgstr "Такође се оженио са %(spouse)s %(date)s у %(place)s%(endnotes)s."
+msgstr ""
+"Такође се оженио са %(spouse)s %(modified_date)s у %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1507
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "She had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
-msgstr "Такође се удала за %(spouse)s %(date)s у %(place)s%(endnotes)s."
+msgstr "Удала се за %(spouse)s %(partial_date)s у %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1510
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "She had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
-msgstr "Такође се удала за %(spouse)s %(date)s у %(place)s%(endnotes)s."
+msgstr "Удала се за %(spouse)s %(full_date)s у %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1513
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "She had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
-msgstr "Такође се удала за %(spouse)s %(date)s у %(place)s%(endnotes)s."
+msgstr "Удала се за %(spouse)s %(modified_date)s у %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1517
-#, fuzzy, python-format
+#, python-format
 msgid "Relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Такође се оженио са %(spouse)s %(date)s у %(place)s%(endnotes)s."
+msgstr "Оженио се са %(spouse)s %(partial_date)s у %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1518
-#, fuzzy, python-format
+#, python-format
 msgid "Relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Такође се оженио са %(spouse)s %(date)s у %(place)s%(endnotes)s."
+msgstr "Оженио се са %(spouse)s %(full_date)s у %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1519
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Такође се оженио са %(spouse)s %(date)s у %(place)s%(endnotes)s."
+msgstr "Оженио се са %(spouse)s %(modified_date)s у %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1526
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
-msgstr "Такође се удала за %(spouse)s %(date)s у %(place)s%(endnotes)s."
+msgstr ""
+"Ова је особа имала везу са %(spouse)s %(partial_date)s у "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1529
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
-msgstr "Такође се удала за %(spouse)s %(date)s у %(place)s%(endnotes)s."
+msgstr ""
+"Ова је особа имала везу са %(spouse)s %(full_date)s у %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1532
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
-msgstr "Такође се удала за %(spouse)s %(date)s у %(place)s%(endnotes)s."
+msgstr ""
+"Ова је особа имала везу са %(spouse)s %(modified_date)s у "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1537
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "He also had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
-msgstr "Такође се оженио са %(spouse)s %(date)s у %(place)s%(endnotes)s."
+msgstr ""
+"Он се такође оженио са %(spouse)s %(partial_date)s у %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1540
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "He also had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
-msgstr "Такође се оженио са %(spouse)s %(date)s у %(place)s%(endnotes)s."
+msgstr ""
+"Он се такође оженио са %(spouse)s %(full_date)s у %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1543
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "He also had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
-msgstr "Такође се оженио са %(spouse)s %(date)s у %(place)s%(endnotes)s."
+msgstr ""
+"Он се такође оженио са %(spouse)s %(modified_date)s у %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1548
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "She also had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
-msgstr "Такође се удала за %(spouse)s %(date)s у %(place)s%(endnotes)s."
+msgstr ""
+"Она се такође удала за %(spouse)s %(partial_date)s у %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1551
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "She also had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
-msgstr "Такође се удала за %(spouse)s %(date)s у %(place)s%(endnotes)s."
+msgstr ""
+"Она се такође удала за %(spouse)s %(full_date)s у %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1554
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "She also had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
-msgstr "Такође се удала за %(spouse)s %(date)s у %(place)s%(endnotes)s."
+msgstr ""
+"Она се такође удала за %(spouse)s %(modified_date)s у %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1559
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Also relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Такође се оженио са %(spouse)s %(date)s у %(place)s%(endnotes)s."
+msgstr "Такође веза са %(spouse)s %(partial_date)s у %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1561
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Also relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Такође се оженио са %(spouse)s %(date)s у %(place)s%(endnotes)s."
+msgstr "Такође веза са %(spouse)s %(full_date)s у %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1563
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Also relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Такође се оженио са %(spouse)s %(date)s у %(place)s%(endnotes)s."
+msgstr "Такође веза са %(spouse)s %(modified_date)s у %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1571
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person had a relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
-msgstr "Такође се удала за %(spouse)s у %(place)s%(endnotes)s."
+msgstr "Такође се удала за %(spouse)s у %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1574
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Такође се удала за %(spouse)s у %(place)s%(endnotes)s."
+msgstr "Такође се удала за %(spouse)s у %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1577
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Такође се оженио са %(spouse)s %(date)s%(endnotes)s."
+msgstr "Такође се оженио са %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1581
-#, fuzzy, python-format
+#, python-format
 msgid "He had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Такође се оженио са %(spouse)s у %(place)s%(endnotes)s."
+msgstr "Такође се оженио са %(spouse)s у %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1582
-#, fuzzy, python-format
+#, python-format
 msgid "He had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Такође се оженио са %(spouse)s %(date)s%(endnotes)s."
+msgstr "Такође се оженио са %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1583
-#, fuzzy, python-format
+#, python-format
 msgid "He had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Такође се оженио са %(spouse)s %(date)s%(endnotes)s."
+msgstr "Он се оженио са %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1586
-#, fuzzy, python-format
+#, python-format
 msgid "She had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Такође се удала за %(spouse)s у %(place)s%(endnotes)s."
+msgstr "Она се удала за %(spouse)s у %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1587
-#, fuzzy, python-format
+#, python-format
 msgid "She had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Такође се удала за %(spouse)s у %(place)s%(endnotes)s."
+msgstr "Она се удала за %(spouse)s у %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1588
-#, fuzzy, python-format
+#, python-format
 msgid "She had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Била је у вези са %(spouse)s."
+msgstr "Била је у вези са %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1591
-#, fuzzy, python-format
+#, python-format
 msgid "Relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "Такође се оженио са %(spouse)s %(date)s%(endnotes)s."
+msgstr "Такође се оженио са %(spouse)s %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1592
-#, fuzzy, python-format
+#, python-format
 msgid "Relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr "Такође се оженио са %(spouse)s %(date)s%(endnotes)s."
+msgstr "Веза са %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1593
-#, fuzzy, python-format
+#, python-format
 msgid "Relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Такође се оженио са %(spouse)s %(date)s%(endnotes)s."
+msgstr "Веза са %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1600
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
-msgstr "Такође се удала за %(spouse)s у %(place)s%(endnotes)s."
+msgstr "Такође се удала за %(spouse)s %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1603
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
-msgstr "Такође се удала за %(spouse)s у %(place)s%(endnotes)s."
+msgstr "Такође се удала за %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1606
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
-msgstr "Такође се оженио са %(spouse)s %(date)s%(endnotes)s."
+msgstr ""
+"Ова особа је такође имала везу са %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1611
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "He also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Такође се оженио са %(spouse)s у %(place)s%(endnotes)s."
+msgstr "Он се такође оженио са %(spouse)s %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1613
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Такође се оженио са %(spouse)s %(date)s%(endnotes)s."
+msgstr "Он се такође оженио са %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1614
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "He also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Такође се оженио са %(spouse)s %(date)s%(endnotes)s."
+msgstr "Он се такође оженио са %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1618
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "She also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Такође се удала за %(spouse)s у %(place)s%(endnotes)s."
+msgstr "Она се такође удала за %(spouse)s %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1620
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "She also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Такође је била у вези са %(spouse)s."
+msgstr "Такође је била у вези са %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1621
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "She also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Такође је била у вези са %(spouse)s."
+msgstr "Такође је била у вези са %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1624
-#, fuzzy, python-format
+#, python-format
 msgid "Also relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "Такође се оженио са %(spouse)s %(date)s%(endnotes)s."
+msgstr "Такође веза са %(spouse)s %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1625
-#, fuzzy, python-format
+#, python-format
 msgid "Also relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr "Такође се оженио са %(spouse)s %(date)s%(endnotes)s."
+msgstr "Такође веза са %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1626
-#, fuzzy, python-format
+#, python-format
 msgid "Also relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Такође се оженио са %(spouse)s %(date)s%(endnotes)s."
+msgstr "Такође веза са %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1632
 #, fuzzy, python-format
@@ -30805,44 +30772,44 @@ msgid "Also relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Такође се оженио са %(spouse)s у %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1655
-#, fuzzy, python-format
+#, python-format
 msgid "This person had a relationship with %(spouse)s%(endnotes)s."
-msgstr "Такође је била у вези са %(spouse)s."
+msgstr "Такође је била у вези са %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1656
-#, fuzzy, python-format
+#, python-format
 msgid "He had a relationship with %(spouse)s%(endnotes)s."
-msgstr "Био је у вези са %(spouse)s."
+msgstr "Био је у вези са %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1657
-#, fuzzy, python-format
+#, python-format
 msgid "She had a relationship with %(spouse)s%(endnotes)s."
-msgstr "Била је у вези са %(spouse)s."
+msgstr "Била је у вези са %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1658
-#, fuzzy, python-format
+#, python-format
 msgid "Relationship with %(spouse)s%(endnotes)s."
-msgstr "Био је у вези са %(spouse)s."
+msgstr "Веза са %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1663
-#, fuzzy, python-format
+#, python-format
 msgid "This person also had a relationship with %(spouse)s%(endnotes)s."
-msgstr "Такође је била у вези са %(spouse)s."
+msgstr "Ова је особа такође била у вези са %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1665
-#, fuzzy, python-format
+#, python-format
 msgid "He also had a relationship with %(spouse)s%(endnotes)s."
-msgstr "Такође је био у вези са %(spouse)s."
+msgstr "Такође је био у вези са %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1666
-#, fuzzy, python-format
+#, python-format
 msgid "She also had a relationship with %(spouse)s%(endnotes)s."
-msgstr "Такође је била у вези са %(spouse)s."
+msgstr "Она је такође била у вези са %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1667
-#, fuzzy, python-format
+#, python-format
 msgid "Also relationship with %(spouse)s%(endnotes)s."
-msgstr "Такође је био у вези са %(spouse)s."
+msgstr "Такође у вези са %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libpersonview.py:108
 msgid "Number of Parents"
@@ -31335,9 +31302,9 @@ msgid "Field '%(fldname)s' not found"
 msgstr "Нисам нашао поље „%(fldname)s“"
 
 #: ../gramps/plugins/lib/libprogen.py:565
-#, fuzzy, python-format
+#, python-format
 msgid "Not a (right) DEF file: %(dname)s"
-msgstr "Не могу да нађем ДЕФ датотеку: %(deffname)s"
+msgstr "Није (исправна) ДЕФ датотека: %(dname)s"
 
 #: ../gramps/plugins/lib/libprogen.py:573
 #: ../gramps/plugins/lib/libprogen.py:796
@@ -31526,9 +31493,9 @@ msgstr "Највећа разлика у годинама рођака"
 
 #. Translators: used in French+Russian, ignore otherwise
 #: ../gramps/plugins/lib/librecords.py:656
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(callname)s\" (%(firstname)s)"
-msgstr "%(name1)s и %(name2)s"
+msgstr "%(callname)s %(firstname)s"
 
 #: ../gramps/plugins/lib/libtreebase.py:778
 msgid "Top Left"
@@ -32807,12 +32774,12 @@ msgid "* %(person)s, birth %(relation)s"
 msgstr "%(person)s, рођена%(relation)s"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:379
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "* {year}{person}{dead}, {age}{relation}"
 msgid_plural "* {year}{person}{dead}, {age}{relation}"
-msgstr[0] "{person}, {age}{relation}"
-msgstr[1] "{person}, {age}{relation}"
-msgstr[2] "{person}, {age}{relation}"
+msgstr[0] "* {year}{person}{dead}, {age}{relation}"
+msgstr[1] "* {year}{person}{dead}, {age}{relation}"
+msgstr[2] "* {year}{person}{dead}, {age}{relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:462
 #, fuzzy, python-format
@@ -32824,7 +32791,7 @@ msgstr ""
 " %(person)s, венчање"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:470
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 "⚭ {year}{spouse}{deadtxt2} and\n"
 " {person}{deadtxt1}, {nyears}"
@@ -32832,14 +32799,14 @@ msgid_plural ""
 "⚭ {year}{spouse}{deadtxt2} and\n"
 " {person}{deadtxt1}, {nyears}"
 msgstr[0] ""
-"{spouse} и\n"
-" {person}, {nyears}"
+"⚭ {year}{spouse}{deadtxt2} и\n"
+" {person}{deadtxt1}, {nyears}"
 msgstr[1] ""
-"{spouse} и\n"
-" {person}, {nyears}"
+"⚭ {year}{spouse}{deadtxt2} и\n"
+" {person}{deadtxt1}, {nyears}"
 msgstr[2] ""
-"{spouse} и\n"
-" {person}, {nyears}"
+"⚭ {year}{spouse}{deadtxt2} и\n"
+" {person}{deadtxt1}, {nyears}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:522
 #, python-brace-format
@@ -32847,12 +32814,12 @@ msgid "✝ {person}, death {relation}"
 msgstr "✝ {person}, смрт {relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:527
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "✝ {year}{person}, {age}{relation}"
 msgid_plural "✝ {year}{person}, {age}{relation}"
-msgstr[0] "{person}, {age}{relation}"
-msgstr[1] "{person}, {age}{relation}"
-msgstr[2] "{person}, {age}{relation}"
+msgstr[0] "✝ {year}{person}, {age}{relation}"
+msgstr[1] "✝ {year}{person}, {age}{relation}"
+msgstr[2] "✝ {year}{person}, {age}{relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:562
 #: ../gramps/plugins/textreport/familygroup.py:724
@@ -33109,9 +33076,9 @@ msgid "%s, "
 msgstr "%s, "
 
 #: ../gramps/plugins/textreport/detancestralreport.py:503
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_role)s at %(event_name)s of %(primary_person)s: %(event_text)s"
-msgstr "%(event_name)s: %(event_text)s"
+msgstr "%(event_role)s на %(event_name)s %(primary_person)s: %(event_text)s"
 
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/plugins/textreport/detancestralreport.py:523
@@ -34079,9 +34046,9 @@ msgid "Place Information"
 msgstr "Облик папира"
 
 #: ../gramps/plugins/textreport/summary.py:266
-#, fuzzy, python-format
+#, python-format
 msgid "Number of places: %d"
-msgstr "Број особа"
+msgstr "Број места: %d"
 
 #: ../gramps/plugins/textreport/summary.py:275
 #, fuzzy
@@ -34090,9 +34057,9 @@ msgid "Source Information"
 msgstr "Дељени подаци"
 
 #: ../gramps/plugins/textreport/summary.py:280
-#, fuzzy, python-format
+#, python-format
 msgid "Number of sources: %d"
-msgstr "Број презимена"
+msgstr "Број извора: %d"
 
 #: ../gramps/plugins/textreport/summary.py:289
 #, fuzzy
@@ -34667,13 +34634,13 @@ msgstr[1] "Пронашао сам {quantity} удвојене везе супр
 msgstr[2] "Пронашао сам {quantity} удвојених веза супружника/породице\n"
 
 #: ../gramps/plugins/tool/check.py:2795
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} family with no parents or children found, removed.\n"
 msgid_plural ""
 "{quantity} families with no parents or children found, removed.\n"
-msgstr[0] "Нађох 1 породицу без родитеља или деце, и уклоних је.\n"
-msgstr[1] "Нађох 1 породицу без родитеља или деце, и уклоних је.\n"
-msgstr[2] "Нађох 1 породицу без родитеља или деце, и уклоних је.\n"
+msgstr[0] "Нађох {quantity} породицу без родитеља или деце, и уклоних је.\n"
+msgstr[1] "Нађох {quantity} породица без родитеља или деце, и уклоних их.\n"
+msgstr[2] "Нађох {quantity} породица без родитеља или деце, и уклоних их.\n"
 
 #: ../gramps/plugins/tool/check.py:2809
 #, python-brace-format
@@ -35648,14 +35615,14 @@ msgid "Clean input data"
 msgstr ""
 
 #: ../gramps/plugins/tool/removespaces.py:114
-#, fuzzy
 msgid ""
 "Search leading and/or trailing spaces for persons and places. Search comma "
 "or bad sign in coordinates fields.\n"
 "Double click on a row to edit its content."
 msgstr ""
-"Претражите читаву базу података, тражећи цитате који имају исти волумен/"
-"страницу, датум и поверљивост."
+"Претражите размаке пре или после имена особа или места. Потражите запете или "
+"лоше ознаке у пољима координата.\n"
+"Дуплим кликом на ред можете уређивати његов садржај."
 
 #: ../gramps/plugins/tool/removespaces.py:125
 #, fuzzy
@@ -36433,16 +36400,12 @@ msgid "Burial too late"
 msgstr "Датум сахране"
 
 #: ../gramps/plugins/tool/verify.py:2495
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Children are not in chronological order"
-msgstr "Да ли да поређа догађаје хронолошким редом."
+msgstr "Деца нису поређана хронолошки"
 
 #: ../gramps/plugins/tool/verify.py:2559
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Families are not in chronological order"
-msgstr "Да ли да поређа догађаје хронолошким редом."
+msgstr "Породице нису поређане хронолошки"
 
 #: ../gramps/plugins/tool/verify.py:2572
 msgid "Family has events with role Unknown"
@@ -36455,16 +36418,12 @@ msgid "Person has events with role Unknown"
 msgstr "Лични догађаји деце"
 
 #: ../gramps/plugins/tool/verify.py:2598
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Family events are not in chronological order"
-msgstr "Да ли да поређа догађаје хронолошким редом."
+msgstr "Догађаји у породици нису поређани хронолошки"
 
 #: ../gramps/plugins/tool/verify.py:2611
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Person events are not in chronological order"
-msgstr "Да ли да поређа догађаје хронолошким редом."
+msgstr "Лични догађаји нису поређани хронолошки"
 
 #: ../gramps/plugins/view/citationlistview.py:107
 msgid "Source: Title"
@@ -37939,16 +37898,14 @@ msgid "State/ Province"
 msgstr "Држава/ Покрајина"
 
 #: ../gramps/plugins/webreport/basepage.py:1522
-#, fuzzy, python-format
+#, python-format
 msgid "Generated by %(gramps_home_html_start)sGramps%(html_end)s %(version)s"
-msgstr ""
-"Направљено %(gramps_home_html_start)sДедовником%(html_end)s %(version)s "
-"%(date)s"
+msgstr "Направљено %(gramps_home_html_start)sДедовником%(html_end)s %(version)s"
 
 #: ../gramps/plugins/webreport/basepage.py:1534
-#, fuzzy, python-format
+#, python-format
 msgid "Last change was the %(date)s"
-msgstr "Места измењена након <датума времена>"
+msgstr "Последња измена је била %(date)s"
 
 #: ../gramps/plugins/webreport/basepage.py:1536
 #, python-format
@@ -38289,13 +38246,13 @@ msgid "Below unused media objects"
 msgstr "Број јединствених медијских предмета"
 
 #: ../gramps/plugins/webreport/media.py:442
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(strong1_strt)s%(page_number)d%(strong_end)s of %(strong2_strt)s"
 "%(total_pages)d%(strong_end)s"
 msgstr ""
-"%(strong1_start)s%(page_number)d%(strong_end)s од %(strong2_start)s"
-"%(total_pages)d%(strong_end)s"
+"%(strong1_strt)s%(page_number)d%(strong_end)s од "
+"%(strong2_strt)s%(total_pages)d%(strong_end)s"
 
 #: ../gramps/plugins/webreport/media.py:456
 msgid "The file has been moved or deleted."
@@ -38381,9 +38338,9 @@ msgid "Creating address book pages ..."
 msgstr "Правим странице адресара..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1937
-#, fuzzy, python-format
+#, python-format
 msgid "Narrative Website Report for the %s language"
-msgstr "Извештај приповедачког веб сајта"
+msgstr "Извештај приповедачког веб сајта за %s језик"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1939
 #, fuzzy
@@ -38792,9 +38749,9 @@ msgid "The number of download files to include in the download page"
 msgstr "Број генерација за укључивање у стабло"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2453
-#, fuzzy, python-format
+#, python-format
 msgid "Download Filename #%c"
-msgstr "Назив датотеке преузимања"
+msgstr "Преузми датотеку #%c"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2455
 msgid "File to be used for downloading of database"
@@ -38805,9 +38762,9 @@ msgid "Description for download"
 msgstr "Опис преузимања"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2460
-#, fuzzy, python-format
+#, python-format
 msgid "Family Tree #%c"
-msgstr "Породично стабло"
+msgstr "Породично стабло #%c"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2462
 msgid "Give a description for this file."
@@ -39040,12 +38997,12 @@ msgid "Google maps API key"
 msgstr "Гуглове карте"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2650
-#, fuzzy
-#| msgid "The API key used for the Google maps"
 msgid ""
 "The API key used for the Google maps.\n"
 "This key is mandatory and must be valid"
-msgstr "АПИ кључ коришћен за Гугл мапе"
+msgstr ""
+"АПИ кључ коришћен за Гугл мапе.\n"
+"Овај кључ је обавезан и мора бити исправан"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2662
 #: ../gramps/plugins/webreport/narrativeweb.py:2702
@@ -39092,12 +39049,12 @@ msgid "Stamen maps API key"
 msgstr "Гуглове карте"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2690
-#, fuzzy
-#| msgid "The API key used for the Google maps"
 msgid ""
 "The API key used for the Stamen maps.\n"
 "This key is mandatory and must be valid"
-msgstr "АПИ кључ коришћен за Гугл мапе"
+msgstr ""
+"АПИ кључ коришћен за Стамен мапе.\n"
+"Овај кључ је обавезан и мора бити исправан"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2705
 msgid ""
@@ -39106,11 +39063,10 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2722
-#, fuzzy, python-format
-#| msgid "Died %(month_year)s (%(age)s)."
+#, python-format
 msgctxt "val"
 msgid "in %(inipth)s (%(val)s)"
-msgstr "Умро/ла је %(month_year)s (%(age)s)."
+msgstr "у %(inipth)s (%(val)s)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2723
 #, fuzzy
@@ -39500,10 +39456,9 @@ msgid "Number of People"
 msgstr "Број особа"
 
 #: ../gramps/plugins/webreport/surnamelist.py:301
-#, fuzzy, python-format
-#| msgid "Surnames beginning with letter %s"
+#, python-format
 msgid "Surnames beginning with letter '%s' %s"
-msgstr "Презимена која почињу на слово %s"
+msgstr "Презимена која почињу на слово '%s' %s"
 
 #: ../gramps/plugins/webreport/thumbnail.py:125
 #, fuzzy
@@ -39523,9 +39478,8 @@ msgstr ""
 "страницу те слике."
 
 #: ../gramps/plugins/webreport/updates.py:88
-#, fuzzy
 msgid "New and updated objects"
-msgstr "Нове и освежене додатке"
+msgstr "Нови и освежени објекти"
 
 #: ../gramps/plugins/webreport/updates.py:99
 #, python-format
