@@ -39,13 +39,14 @@
 # jmichault <jmt.2000@free.fr>, 2023.
 # Nick Hall <nick-h@gramps-project.org>, 2023.
 # Patrice Legoux <patrice.legoux.perso@gmail.com>, 2023.
+# Jacob Wagner <doubleujacob@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-08-26 20:29+0000\n"
-"Last-Translator: Jean-Marc <m.balthazar@posteo.net>\n"
+"PO-Revision-Date: 2024-01-13 00:06+0000\n"
+"Last-Translator: Jacob Wagner <doubleujacob@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -53,7 +54,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Weblate 5.0.1-dev\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -41661,7 +41662,7 @@ msgid "Creating individual pages"
 msgstr "Création des pages pour l'individu"
 
 #: ../gramps/plugins/webreport/person.py:222
-#, fuzzy, python-format
+#, python-format
 msgctxt "letter"
 msgid "Surnames %(surname)s beginning with letter %(letter)s"
 msgstr "Noms de famille %(surname)s commençant par la lettre %(letter)s"
@@ -41779,9 +41780,8 @@ msgstr "Nom"
 # province (Canada, Belgique)
 #: ../gramps/plugins/webreport/place.py:328
 #: ../gramps/plugins/webreport/place.py:340
-#, fuzzy
 msgid "State/Province"
-msgstr "Région/Province"
+msgstr "État/Province"
 
 #: ../gramps/plugins/webreport/place.py:567
 msgid "Place Map"
@@ -41804,7 +41804,6 @@ msgstr ""
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 #: ../gramps/plugins/webreport/repository.py:177
-#, fuzzy
 msgctxt "Repository"
 msgid "Name"
 msgstr "Nom"
@@ -41872,9 +41871,9 @@ msgid "Number of People"
 msgstr "Nombre d'individus"
 
 #: ../gramps/plugins/webreport/surnamelist.py:301
-#, fuzzy, python-format
+#, python-format
 msgid "Surnames beginning with letter '%s' %s"
-msgstr "Noms de famille commençant par la lettre %s"
+msgstr "Noms de famille commençant par la lettre ' %s' %s"
 
 #: ../gramps/plugins/webreport/thumbnail.py:125
 msgid ""
