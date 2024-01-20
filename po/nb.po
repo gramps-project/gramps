@@ -11,23 +11,23 @@
 # Allan Nordhøy <epost@anotheragency.no>, 2021, 2022, 2023.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # Mihle <MihleGaming@gmail.com>, 2021, 2022, 2023.
-# Para <ahh-produktivitet@tutanota.com>, 2022.
+# Para <ahh-produktivitet@tutanota.com>, 2022, 2023.
 # Mikal Thunold-Olsen <mikal@thunold-olsen.no>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-08-03 16:25+0000\n"
-"Last-Translator: Mihle <MihleGaming@gmail.com>\n"
-"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/nb_NO/>\n"
+"PO-Revision-Date: 2023-12-06 09:04+0000\n"
+"Last-Translator: Para <ahh-produktivitet@tutanota.com>\n"
+"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/nb_NO/>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.3-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -104,7 +104,7 @@ msgstr "4. jødiske påskedag"
 
 #: ../data/holidays.xml:364
 msgid "5 of Passover"
-msgstr "5. i Passover"
+msgstr "5. jødiske påskedag"
 
 #: ../data/holidays.xml:365
 msgid "6 of Passover"
@@ -136,27 +136,27 @@ msgstr "Løvhyttefesten"
 
 #: ../data/holidays.xml:372
 msgid "2 of Sukot"
-msgstr "Andre dags løvhyttefest"
+msgstr "2. dags løvhyttefest"
 
 #: ../data/holidays.xml:373
 msgid "3 of Sukot"
-msgstr "Tredje dags løvhyttefest"
+msgstr "3. dags løvhyttefest"
 
 #: ../data/holidays.xml:374
 msgid "4 of Sukot"
-msgstr "Fjerde dags løvhyttefest"
+msgstr "4. dags løvhyttefest"
 
 #: ../data/holidays.xml:375
 msgid "5 of Sukot"
-msgstr "Femte dags løvhyttefest"
+msgstr "5. dags løvhyttefest"
 
 #: ../data/holidays.xml:376
 msgid "6 of Sukot"
-msgstr "Sjette dags løvhyttefest"
+msgstr "6. dags løvhyttefest"
 
 #: ../data/holidays.xml:377
 msgid "7 of Sukot"
-msgstr "Syvende dags løvhyttefest"
+msgstr "7. dags løvhyttefest"
 
 #: ../data/holidays.xml:378
 msgid "Simhat Tora"
@@ -168,31 +168,31 @@ msgstr "Hanukka"
 
 #: ../data/holidays.xml:380
 msgid "2 of Hanuka"
-msgstr "Andre dags hanukka"
+msgstr "2. dags hanukka"
 
 #: ../data/holidays.xml:381
 msgid "3 of Hanuka"
-msgstr "Tredje dags hanukka"
+msgstr "3. dags hanukka"
 
 #: ../data/holidays.xml:382
 msgid "4 of Hanuka"
-msgstr "Fjerde dags hanukka"
+msgstr "4. dags hanukka"
 
 #: ../data/holidays.xml:383
 msgid "5 of Hanuka"
-msgstr "Femte dags hanukka"
+msgstr "5. dags hanukka"
 
 #: ../data/holidays.xml:384
 msgid "6 of Hanuka"
-msgstr "Sjette dags hanukka"
+msgstr "6. dags hanukka"
 
 #: ../data/holidays.xml:385
 msgid "7 of Hanuka"
-msgstr "Syvende dags hanukka"
+msgstr "7. dags hanukka"
 
 #: ../data/holidays.xml:386
 msgid "8 of Hanuka"
-msgstr "Åttende dags hanukka"
+msgstr "8. dags hanukka"
 
 #: ../data/holidays.xml:388
 msgid "Italy"
@@ -268,8 +268,8 @@ msgid ""
 "All of your research is kept organized, searchable and as precise as you "
 "need it to be."
 msgstr ""
-"Alt av slektsforskningsdata blir organisert og er søkbare nettopp så bra som "
-"du vil det skal være."
+"All slektsforskningen din holdes organisert, søkbart og så presist som du "
+"selv ønsker."
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:12
 msgid "Gramps Development Team"
@@ -281,7 +281,7 @@ msgstr "Slektsforskersystem"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:12
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
-msgstr "slektsforskning;Familiehistorie;Forskning;Slektstre;GEDCOM;"
+msgstr "Slektsforskning;Familiehistorie;Forskning;Slektstre;GEDCOM;"
 
 #: ../data/org.gramps_project.Gramps.xml.in:6
 msgid "Gramps database"
@@ -289,11 +289,11 @@ msgstr "Gramps-database"
 
 #: ../data/org.gramps_project.Gramps.xml.in:10
 msgid "Gramps package"
-msgstr "Grampspakke"
+msgstr "Gramps-pakke"
 
 #: ../data/org.gramps_project.Gramps.xml.in:14
 msgid "Gramps XML database"
-msgstr "Gramps XML-database"
+msgstr "Gramps-XML-database"
 
 #: ../data/org.gramps_project.Gramps.xml.in:22
 msgid "GeneWeb source file"
@@ -306,9 +306,9 @@ msgid ""
 "the level of confidence in a date and even choose between seven different "
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
-"<b>Arbeide med datoer</b><br/>Et oråde med datoer kan angis ved å bruke "
+"<b>Arbeide med datoer</b><br/>Et område med datoer kan angis ved å bruke "
 "formatet \"mellom 4. januar 2000 og 20. mars 2003\". Du kan også indikere "
-"troverdighetsnivå i en dato og til og med velge blant sju ulike kalendre. "
+"troverdighetsnivået i en dato og til og med velge blant sju ulike kalendre. "
 "Prøv knappen ved siden av datofeltet i Hendelsesbehandleren."
 
 #: ../data/tips.xml:6
@@ -320,8 +320,8 @@ msgid ""
 msgstr ""
 "<b>Endre objekter</b><br/>I de fleste tilfeller vil du få frem et "
 "redigeringsvindu ved å dobbeltklikke på navn, kilde, sted eller objektet. "
-"Husk at resultatet kan være avhengig av sammenhengen. For eksempel, i "
-"familievisning, når man klikker på en forelder eller et barn, vil du få opp "
+"Husk at resultatet kan være avhengig av sammenhengen. Eksempelvis vil man i "
+"familievisningen - når man klikker på en forelder eller et barn - få opp "
 "relasjonsredigeringsvinduet."
 
 #: ../data/tips.xml:8
@@ -331,10 +331,11 @@ msgid ""
 "Actually you can add any type of file like this, useful for scans of "
 "documents and other digital sources."
 msgstr ""
-"<b>Legge til bilder</b><br/>Et bilde kan legges til vilkårlig galleri- eller "
-"mediavisning, ved å dra og slippe fra en filbehandler eller nettleser. Du "
-"kan faktisk legge til hvilken som helst type fil på denne måten. Dette kan "
-"være nyttig for skannede dokumenter og andre digitale kilder."
+"<b>Legge til bilder</b><br/>Et bilde kan legges til ethvert galleri eller "
+"til mediavisningen ved å dra og slippe bildefilen fra en filbehandler eller "
+"nettleser. Du kan faktisk legge til hvilken som helst type fil på denne "
+"måten. Dette kan være nyttig for skannede dokumenter og andre digitale "
+"kilder."
 
 #: ../data/tips.xml:10
 msgid ""
@@ -343,8 +344,8 @@ msgid ""
 "they do not have birth dates."
 msgstr ""
 "<b>Sortering av barn i en familie</b><br/>Fødselsrekkefølgen i en familie "
-"kan settes ved dra og slipp. Denne sorteringen bevares selv om de ikke har "
-"fødselsdatoer."
+"kan bestemmes ved å dra og slippe. Denne sorteringen bevares selv om de ikke "
+"har fødselsdatoer."
 
 #: ../data/tips.xml:12
 msgid ""
@@ -406,7 +407,7 @@ msgstr ""
 "<b>Finn personer</b><br/>Som standard i Personvisningen listes etternavn kun "
 "én gang. Ved å klikke på pilen til venstre for etternavnet vil listen utvide "
 "seg og vise alle personene med dette etternavnet. For å finne et vilkårlig "
-"Slektsnavn fra en lang liste kan du velge et slektsnavn (ikke en person) og "
+"slektsnavn fra en lang liste kan du velge et slektsnavn (ikke en person) og "
 "begynne å skrive. Da vil markøren hoppe til det første slektsnavnet som "
 "samsvarer med de bokstavene du skriver inn."
 
@@ -8651,10 +8652,8 @@ msgid "Research"
 msgstr "Forskning"
 
 #: ../gramps/gen/lib/notetype.py:79
-#, fuzzy
-#| msgid "Analyzing names"
 msgid "Analysis"
-msgstr "Analyserer navn"
+msgstr "Analyse"
 
 #: ../gramps/gen/lib/notetype.py:80
 msgid "Transcript"
@@ -9419,8 +9418,6 @@ msgid "Expert"
 msgstr "Ekspert"
 
 #: ../gramps/gen/plug/_pluginreg.py:116
-#, fuzzy
-#| msgid "Quick View"
 msgid "Quick view"
 msgstr "Snarrapport"
 
@@ -9437,16 +9434,12 @@ msgid "Exporter"
 msgstr "Eksporter"
 
 #: ../gramps/gen/plug/_pluginreg.py:120
-#, fuzzy
-#| msgid "Doc creator"
 msgid "Document creator"
 msgstr "Dokumentskaper"
 
 #: ../gramps/gen/plug/_pluginreg.py:121
-#, fuzzy
-#| msgid "Plugin lib"
 msgid "Plugin library"
-msgstr "Programtilleggbibliotek"
+msgstr "Programtilleggsbibliotek"
 
 #: ../gramps/gen/plug/_pluginreg.py:122
 msgid "Map service"
@@ -9470,7 +9463,7 @@ msgstr "Relasjonsberegning"
 #: ../gramps/gui/widgets/grampletpane.py:246
 #: ../gramps/gui/widgets/grampletpane.py:1005
 msgid "Gramplet"
-msgstr "Gramplet"
+msgstr "Smågramps"
 
 #: ../gramps/gen/plug/_pluginreg.py:126
 msgid "Sidebar"
@@ -9485,10 +9478,8 @@ msgid "Thumbnailer"
 msgstr "Miniatyrbilder"
 
 #: ../gramps/gen/plug/_pluginreg.py:130 ../gramps/gui/configure.py:1644
-#, fuzzy
-#| msgid "Citation Information"
 msgid "Citation formatter"
-msgstr "Sitatinformasjon"
+msgstr "Sitatformateringsverktøy"
 
 #: ../gramps/gen/plug/_pluginreg.py:617
 #: ../gramps/plugins/gramplet/faqgramplet.py:176
@@ -9511,8 +9502,8 @@ msgid ""
 "WARNING: Plugin %(plugin_name)s has no translation for any of your "
 "configured languages, using US English instead"
 msgstr ""
-"ADVARSEL: Programtillegg %(plugin_name)s har ingen transaksjon for noen av "
-"dine angitte språk, bruker amerikansk engelsk istedet"
+"ADVARSEL: Programtillegget %(plugin_name)s er ikke oversatt til noen dine "
+"angitte språk. Amerikansk engelsk blir brukt istedet"
 
 #: ../gramps/gen/plug/_pluginreg.py:1419
 #, python-format
@@ -9521,9 +9512,9 @@ msgid ""
 "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s"
 "\" which is invalid for Gramps \"%(gramps_version)s\"."
 msgstr ""
-"FEIL: Programtilleggfil %(filename)s er for versjon "
-"\"%(gramps_target_version)s\" som er ugyldig for Gramps \"%(gramps_version)s"
-"\"."
+"FEIL: Programtilleggsfilen %(filename)s har versjonen \""
+"%(gramps_target_version)s\", som er ugyldig for Gramps \"%(gramps_version)s\""
+"."
 
 #: ../gramps/gen/plug/_pluginreg.py:1451
 #, python-format
@@ -9963,39 +9954,31 @@ msgstr "Kort"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:71
 msgid "Given Nickname Surname"
-msgstr "Gitt Kallenavn Etternavn"
+msgstr "Fornavn Kallenavn Etternavn"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:72
 msgid "Surname Given Nickname"
-msgstr "Etternavn For Kallenavn"
+msgstr "Etternavn Fornavn Kallenavn"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:73
-#, fuzzy
-#| msgid "Surname Given Nickname"
 msgid "Surname, Given Nickname"
-msgstr "Etternavn For Kallenavn"
+msgstr "Etternavn, Fornavn Kallenavn"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:74
-#, fuzzy
-#| msgid "Given Nickname Surname"
 msgid "GivenNicknameSurname"
-msgstr "Gitt Kallenavn Etternavn"
+msgstr "FornavnKallenavnEtternavn"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:78
 msgid "Auto"
-msgstr ""
+msgstr "Auto"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:79
-#, fuzzy
-#| msgid "Call Name"
 msgid "Call Name Only"
-msgstr "Tiltalsnavn"
+msgstr "Kun tiltalsnavn"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:80
-#, fuzzy
-#| msgid "Given Name"
 msgid "Whole Given Name"
-msgstr "Fornavn"
+msgstr "Hele fornavnet"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:85
 msgid "Above"
@@ -10124,6 +10107,8 @@ msgid ""
 "Select the portion of the given name to be marked as preferred. Auto sets "
 "the call name if one exists, otherwise the whole given name."
 msgstr ""
+"Velg delen av fornavnet som skal merkes som foretrukket. Auto angir "
+"tiltalelsesnavnet hvis det finnes, ellers hele fornavnet."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:225
 msgid "Position of marriage information."
@@ -11129,26 +11114,24 @@ msgid "RT90"
 msgstr "RT90"
 
 #: ../gramps/gen/utils/place.py:99
-#, fuzzy
-#| msgid "Delete the selected citation"
 msgid "Degree, minutes, seconds notation"
-msgstr "Slett den valgte siteringen"
+msgstr "Notasjon med grader, bueminutter og buesekunder"
 
 #: ../gramps/gen/utils/place.py:100
 msgid "Degree, minutes, seconds notation with :"
-msgstr ""
+msgstr "Notasjon med grader, bueminutter og buesekunder, med :"
 
 #: ../gramps/gen/utils/place.py:101
 msgid "Degree notation, 4 decimals"
-msgstr ""
+msgstr "Gradsnotasjon, 4 desimaler"
 
 #: ../gramps/gen/utils/place.py:102
 msgid "Degree notation, 8 decimals (precision like ISO-DMS)"
-msgstr ""
+msgstr "Gradnotasjon, 8 desimaler (presisjon som ISO-DMS)"
 
 #: ../gramps/gen/utils/place.py:103
 msgid "Output format for the Swedish coordinate system RT90"
-msgstr ""
+msgstr "Utdataformat for det svenske koordinatsystemet RT90"
 
 #: ../gramps/gen/utils/requirements.py:143
 msgid "Python modules"
@@ -11156,13 +11139,11 @@ msgstr "Python moduler"
 
 #: ../gramps/gen/utils/requirements.py:150
 msgid "GObject introspection modules"
-msgstr ""
+msgstr "GObject introspeksjonsmoduler"
 
 #: ../gramps/gen/utils/requirements.py:157
-#, fuzzy
-#| msgid "_Execute"
 msgid "Executables"
-msgstr "_Utfør"
+msgstr "Kjørbare elementer"
 
 #: ../gramps/gen/utils/string.py:50 ../gramps/gui/editors/editperson.py:364
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:110
@@ -11459,7 +11440,7 @@ msgstr "spansk"
 
 #: ../gramps/gen/utils/win32locale.py:59
 msgid "Farsi"
-msgstr ""
+msgstr "Farsi"
 
 #: ../gramps/gen/utils/win32locale.py:60
 msgid "Finnish"
@@ -11475,7 +11456,7 @@ msgstr "gælisk"
 
 #: ../gramps/gen/utils/win32locale.py:64
 msgid "Galician"
-msgstr ""
+msgstr "Galisisk"
 
 #: ../gramps/gen/utils/win32locale.py:65
 msgid "Hebrew"
@@ -11729,10 +11710,8 @@ msgstr "Utklippstavle"
 
 #: ../gramps/gui/clipboard.py:1380 ../gramps/gui/configure.py:219
 #: ../gramps/gui/editors/filtereditor.py:1237 ../gramps/gui/views/tags.py:397
-#, fuzzy
-#| msgid "Change is not immediate"
 msgid "Any changes are saved immediately"
-msgstr "Endringer er ikke øyeblikkelige"
+msgstr "Eventuelle endringer lagres umiddelbart"
 
 #: ../gramps/gui/clipboard.py:1522 ../gramps/gui/plug/quick/_quicktable.py:138
 #, python-format
@@ -12138,7 +12117,7 @@ msgstr ""
 #: ../gramps/gui/configure.py:1047
 msgid "Show plugin status dialog on plugin load error"
 msgstr ""
-"Vis status dialogboks for programtillegg når innlasting av programtillegg "
+"Vis statusdialogboks for programtillegg når innlasting av programtillegg "
 "feiler"
 
 #: ../gramps/gui/configure.py:1053
@@ -12276,34 +12255,28 @@ msgid "Calendar on input"
 msgstr "Kalender på oppføring"
 
 #: ../gramps/gui/configure.py:1608
-#, fuzzy
-#| msgid "on the previous day"
 msgid "On the previous day"
-msgstr "på dagen før"
+msgstr "På dagen før"
 
 #: ../gramps/gui/configure.py:1609
-#, fuzzy
-#| msgid "on the next day"
 msgid "On the next day"
-msgstr "på den neste dagen"
+msgstr "På den neste dagen"
 
 #: ../gramps/gui/configure.py:1610
-#, fuzzy
-#| msgid "only on leap years"
 msgid "Only on leap years"
-msgstr "kun i skuddår"
+msgstr "Kun i skuddår"
 
 #: ../gramps/gui/configure.py:1617
 msgid ""
 "For non leap years, anniversaries are displayed on either February 28, March "
 "1 or not at all in Gregorian calendars"
 msgstr ""
+"For ikke-skuddår vises merkedager enten 28. februar, 1. mars eller ikke i "
+"det hele tatt i gregorianske kalendere"
 
 #: ../gramps/gui/configure.py:1621
-#, fuzzy
-#| msgid "Include death anniversaries"
 msgid "Show leap day anniversaries"
-msgstr "Inkluder dødsjubileum"
+msgstr "Vis skuddagsjubileer"
 
 #: ../gramps/gui/configure.py:1628
 msgid "Active person's name and ID"
@@ -12512,16 +12485,12 @@ msgid "Show or hide the Tools icon on the toolbar."
 msgstr "Vis eller skjul ikon for Verktøy i verktøylinjen."
 
 #: ../gramps/gui/configure.py:2079
-#, fuzzy
-#| msgid "Show Tools icon on toolbar"
 msgid "Show Addons icon on toolbar"
-msgstr "Vis ikon for Verktøy i verktøylinjen"
+msgstr "Vis ikon for programtillegg i verktøylinjen"
 
 #: ../gramps/gui/configure.py:2084
-#, fuzzy
-#| msgid "Show or hide the Tools icon on the toolbar."
 msgid "Show or hide the Addons icon on the toolbar."
-msgstr "Vis eller skjul ikon for Verktøy i verktøylinjen."
+msgstr "Vis eller skjul ikon for programtillegg i verktøylinjen."
 
 #: ../gramps/gui/configure.py:2092
 msgid "Show Preferences icon on toolbar"
@@ -12537,7 +12506,7 @@ msgstr "Vis lukkeknapp i Smågrampslinja"
 
 #: ../gramps/gui/configure.py:2111
 msgid "Show close button to simplify removing gramplets from bars."
-msgstr "Vis lukkeknappen for å forenkle fjerning av gramplets fra linjer."
+msgstr "Vis lukkeknappen for å forenkle fjerning av smågramps fra linjer."
 
 #: ../gramps/gui/configure.py:2118
 msgid "Markup for invalid date format"
@@ -13395,10 +13364,8 @@ msgid "Tools"
 msgstr "Verktøy"
 
 #: ../gramps/gui/displaystate.py:423
-#, fuzzy
-#| msgid "Open Plugin Manager"
 msgid "Open Addon Manager"
-msgstr "Åpne Tilleggsbehandler"
+msgstr "Åpne tilleggsbehandleren"
 
 #: ../gramps/gui/displaystate.py:424 ../gramps/gui/plug/_windows.py:476
 msgid "Addons"
@@ -18154,7 +18121,7 @@ msgstr "_Frem"
 
 #: ../gramps/gui/glade/updateaddons.glade:41
 msgid "Install Selected _Addons"
-msgstr "Installere valgte _Tillegg"
+msgstr "Installere valgte _programtillegg"
 
 #: ../gramps/gui/glade/updateaddons.glade:72
 #: ../gramps/gui/plug/_windows.py:2094
@@ -18162,15 +18129,6 @@ msgid "Available Gramps Updates for Addons"
 msgstr "Oppdateringer for programtillegg i Gramps er tilgjengelig"
 
 #: ../gramps/gui/glade/updateaddons.glade:89
-#, fuzzy
-#| msgid ""
-#| "Gramps comes with a core set of plugins which provide all of the "
-#| "necessary features. However, you can extend this functionality with "
-#| "additional Addons. These addons provide reports, listings, views, "
-#| "gramplets, and more. Here you can select among the available extra "
-#| "addons, they will be retrieved from the internet off of the Gramps "
-#| "website, and installed locally on your computer. If you close this dialog "
-#| "now, you can install addons later from the menu under Edit -> Preferences."
 msgid ""
 "Gramps comes with a core set of plugins which provide all of the necessary "
 "features. However, you can extend this functionality with additional Addons. "
@@ -18181,13 +18139,13 @@ msgid ""
 "under Edit -> Addon Manager."
 msgstr ""
 "Gramps kommer med et sett med forhåndsinstallerte programtillegg som tilbyr "
-"alle de nødvendige mulighetene. Du kan utvide denne funksjonaliteten med "
-"flere programtillegg. Disse programtilleggene gir flere rapporter, "
-"utlistinger, visningstyper, Smågramps med mer. Her kan du velge blant de "
+"alle nødvendige funksjoner. Du kan utvide denne funksjonaliteten med flere "
+"tredjeparts programtillegg. Disse programtilleggene gir flere rapporter, "
+"utlistinger, visningstyper, smågramps med mer. Her kan du velge blant de "
 "ulike tilgjengelige ekstra programtilleggene. De vil bli lastet ned fra "
 "Gramps sin hjemmeside på Internett og installert lokalt på din datamaskin. "
 "Hvis du lukker dette vinduet nå kan du installere programtillegg senere ved "
-"å gå på menyen under Redigere -> Innstillinger."
+"å gå til menyen under Hjelp -> Behandler for programtillegg."
 
 #: ../gramps/gui/glade/updateaddons.glade:105
 msgid "_Select All"
@@ -18251,10 +18209,8 @@ msgid "_About"
 msgstr "O_m"
 
 #: ../gramps/gui/grampsgui.py:58
-#, fuzzy
-#| msgid "Add Partner..."
 msgid "_Addon Manager..."
-msgstr "Legg til partner..."
+msgstr "_Tilleggsbehandler..."
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Bookmarks"
@@ -18277,9 +18233,8 @@ msgid "_FAQ"
 msgstr "O_SS"
 
 #: ../gramps/gui/grampsgui.py:58
-#, fuzzy
 msgid "_Family Trees"
-msgstr "_Slektstre"
+msgstr "_Slektstrær"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Go"
@@ -18927,20 +18882,16 @@ msgid "Requires"
 msgstr "Krever"
 
 #: ../gramps/gui/plug/_windows.py:275
-#, fuzzy
-#| msgid "Updated"
 msgid "Update"
-msgstr "Oppdatert"
+msgstr "Oppdater"
 
 #: ../gramps/gui/plug/_windows.py:302 ../gramps/gui/plug/_windows.py:316
-#, fuzzy
-#| msgid "Deletion failed"
 msgid "Module installation failed"
-msgstr "Sletting feilet"
+msgstr "Modulinstallasjon mislyktes"
 
 #: ../gramps/gui/plug/_windows.py:317
 msgid "Gramps was unable to install the required modules"
-msgstr ""
+msgstr "Gramps kunne ikke installere de nødvendige modulene"
 
 #: ../gramps/gui/plug/_windows.py:347
 #, fuzzy
@@ -18949,38 +18900,28 @@ msgid "Requirements"
 msgstr "Krav"
 
 #: ../gramps/gui/plug/_windows.py:383
-#, fuzzy
-#| msgid "Addon Name"
 msgid "Addon Manager"
-msgstr "Navn på Programtillegg"
+msgstr "Behandler for tillegg"
 
 #: ../gramps/gui/plug/_windows.py:391 ../gramps/plugins/gramplet/leak.py:114
 msgid "Refresh"
 msgstr "Oppdatere"
 
 #: ../gramps/gui/plug/_windows.py:422
-#, fuzzy
-#| msgid "Filter"
 msgid "Filters"
-msgstr "Filter"
+msgstr "Filtre"
 
 #: ../gramps/gui/plug/_windows.py:428
-#, fuzzy
-#| msgid "Addons"
 msgid "All addons"
-msgstr "Programtillegg"
+msgstr "Alle programtillegg"
 
 #: ../gramps/gui/plug/_windows.py:429 ../gramps/gui/plug/_windows.py:626
-#, fuzzy
-#| msgid "installed"
 msgid "Not installed"
-msgstr "installert"
+msgstr "Ikke installert"
 
 #: ../gramps/gui/plug/_windows.py:430 ../gramps/gui/plug/_windows.py:629
-#, fuzzy
-#| msgid "installed"
 msgid "Installed"
-msgstr "installert"
+msgstr "Installert"
 
 #: ../gramps/gui/plug/_windows.py:431 ../gramps/gui/plug/_windows.py:632
 #: ../gramps/plugins/webreport/basepage.py:1901
@@ -18989,22 +18930,16 @@ msgid "Updates"
 msgstr "Oppdateringer"
 
 #: ../gramps/gui/plug/_windows.py:443
-#, fuzzy
-#| msgid "All files"
 msgid "All types"
-msgstr "Alle filer"
+msgstr "Alle typer"
 
 #: ../gramps/gui/plug/_windows.py:451
-#, fuzzy
-#| msgid "Audience"
 msgid "All audiences"
-msgstr "Publikum"
+msgstr "Alle målgrupper"
 
 #: ../gramps/gui/plug/_windows.py:458
-#, fuzzy
-#| msgid " state"
 msgid "All statuses"
-msgstr " stat"
+msgstr "Alle statuser"
 
 #: ../gramps/gui/plug/_windows.py:479
 msgid "Settings"
@@ -19015,28 +18950,24 @@ msgid "Projects"
 msgstr "Prosjekter"
 
 #: ../gramps/gui/plug/_windows.py:527 ../gramps/gui/plug/_windows.py:637
-#, fuzzy
-#| msgid "Projects"
 msgid "All projects"
-msgstr "Prosjekter"
+msgstr "Alle prosjekter"
 
 #: ../gramps/gui/plug/_windows.py:539
 msgid "Loading..."
 msgstr "Laster inn..."
 
 #: ../gramps/gui/plug/_windows.py:583
-#, fuzzy
-#| msgid "No matches found"
 msgid "No matching addons found."
-msgstr "Ingen treff funnet."
+msgstr "Ingen matchende programtillegg funnet."
 
 #: ../gramps/gui/plug/_windows.py:737
 msgid "Allow Gramps to install required Python modules"
-msgstr ""
+msgstr "Tillat Gramps å installere nødvendige Python-moduler"
 
 #: ../gramps/gui/plug/_windows.py:744
 msgid "Scheduled update checks"
-msgstr ""
+msgstr "Planlagte oppdateringskontroller"
 
 #: ../gramps/gui/plug/_windows.py:760
 msgid "Once a month"
@@ -19060,11 +18991,11 @@ msgstr "Søk etter oppdateringer for programtillegg"
 
 #: ../gramps/gui/plug/_windows.py:776
 msgid "Updated addons only"
-msgstr "Bare oppdatere programtilleggene"
+msgstr "Kun oppdatere programtilleggene"
 
 #: ../gramps/gui/plug/_windows.py:777
 msgid "New addons only"
-msgstr "Bare nye programtillegg"
+msgstr "Kun nye programtillegg"
 
 #: ../gramps/gui/plug/_windows.py:778
 msgid "New and updated addons"
@@ -19084,31 +19015,27 @@ msgstr "Søk etter oppdateringer for programtillegg nå"
 
 #: ../gramps/gui/plug/_windows.py:815
 msgid "New Project"
-msgstr "New Project"
+msgstr "Nytt prosjekt"
 
 #: ../gramps/gui/plug/_windows.py:817
 msgid "Edit Project"
 msgstr "Rediger Prosject"
 
 #: ../gramps/gui/plug/_windows.py:825
-#, fuzzy
-#| msgid "Preferred name"
 msgid "Project name"
-msgstr "Foretrukket navn"
+msgstr "Prosjektnavn"
 
 #: ../gramps/gui/plug/_windows.py:923
-#, fuzzy
-#| msgid "Restore to defaults"
 msgid "Restore project defaults"
-msgstr "Gjenopprett til standard"
+msgstr "Gjenopprett prosjektetstandardinnstillinger"
 
 #: ../gramps/gui/plug/_windows.py:924
 msgid "Are you sure?"
-msgstr ""
+msgstr "Er du sikker?"
 
 #: ../gramps/gui/plug/_windows.py:948
 msgid "Checking Addons Failed"
-msgstr "Sjekking av tillegg feilet"
+msgstr "Sjekking av programtillegg feilet"
 
 #: ../gramps/gui/plug/_windows.py:950
 msgid "The addon repository appears to be unavailable. Please try again later."
@@ -19180,7 +19107,7 @@ msgstr "Beskjed"
 
 #: ../gramps/gui/plug/_windows.py:1142
 msgid "Loaded Plugins"
-msgstr "Lastede Programtillegg"
+msgstr "Lastede programtillegg"
 
 #: ../gramps/gui/plug/_windows.py:1164
 msgid "Addon Name"
@@ -19196,7 +19123,7 @@ msgstr "Installere tillegg"
 
 #: ../gramps/gui/plug/_windows.py:1199
 msgid "Install All Addons"
-msgstr "Installere alle tillegg"
+msgstr "Installere alle programtillegg"
 
 #: ../gramps/gui/plug/_windows.py:1202
 msgid "Refresh Addon List"
@@ -19229,7 +19156,7 @@ msgstr "Ukjent URL"
 
 #: ../gramps/gui/plug/_windows.py:1351
 msgid "Install all Addons"
-msgstr "Installere alle tillegg"
+msgstr "Installere alle programtillegg"
 
 #: ../gramps/gui/plug/_windows.py:1352
 msgid "Installing..."
@@ -19271,7 +19198,7 @@ msgstr "Detaljert informasjon"
 
 #: ../gramps/gui/plug/_windows.py:1694
 msgid "Plugin Error"
-msgstr "Feil for programtillegg"
+msgstr "Programtilleggsfeil"
 
 #: ../gramps/gui/plug/_windows.py:1763
 msgid "_Execute"
@@ -20272,7 +20199,7 @@ msgstr "Ingen Slektsdatabase"
 
 #: ../gramps/gui/viewmanager.py:612
 msgid "Registering plugins..."
-msgstr "Programtillegg for registrering..."
+msgstr "Registrerer programtillegg..."
 
 #: ../gramps/gui/viewmanager.py:619
 msgid "Ready"
@@ -20328,10 +20255,8 @@ msgid "Would you like to run the Check and Repair tool?"
 msgstr "VIl du kjøre Kontroller og Reparer verktøyet?"
 
 #: ../gramps/gui/viewmanager.py:1286 ../gramps/gui/viewmanager.py:1904
-#, fuzzy
-#| msgid "Please, correct this before linking"
 msgid "Please wait for backup to complete."
-msgstr "Fiks dette før du lenker"
+msgstr "Vent til sikkerhetskopieringen er fullført."
 
 #: ../gramps/gui/viewmanager.py:1288 ../gramps/gui/viewmanager.py:1292
 msgid "Autobackup..."
@@ -20368,7 +20293,7 @@ msgstr ""
 "(%(firstauthoremail)s).\n"
 "\n"
 "Hvis du ikke vil at Gramps skal laste inn denne visningen igjen kan du "
-"skjule det ved å bruke behandleren for Programtillegg fra Hjelp-menyen."
+"skjule det ved å bruke \"Behandler for programtillegg\" fra Hjelp-menyen."
 
 #: ../gramps/gui/viewmanager.py:1701
 msgid "Failed Loading Plugin"
@@ -20397,7 +20322,7 @@ msgstr ""
 "(%(firstauthoremail)s).\n"
 "\n"
 "Hvis du ikke vil at Gramps skal laste inn dette programtillegget igjen kan "
-"du skjule det ved å bruke behandleren for Programtillegg fra Hjelp-menyen."
+"du skjule det ved å bruke \"Behandler for programtillegg\" fra Hjelp-menyen."
 
 #: ../gramps/gui/viewmanager.py:1799
 msgid "Gramps XML Backup"
@@ -20833,7 +20758,7 @@ msgstr "Fjern en smågramps"
 
 #: ../gramps/gui/widgets/grampletbar.py:549
 msgid "Restore default gramplets"
-msgstr "Hent inn igjen standard smågrampsene"
+msgstr "Gjenopprett standardsmågramps"
 
 #: ../gramps/gui/widgets/grampletbar.py:559
 msgid "Gramplet Bar Help"
@@ -20841,7 +20766,7 @@ msgstr "Grampsrad Hjelp"
 
 #: ../gramps/gui/widgets/grampletbar.py:564
 msgid "About Gramplets"
-msgstr "Om Gramplets"
+msgstr "Om smågramps"
 
 #: ../gramps/gui/widgets/grampletbar.py:605
 msgid "Restore to defaults?"
@@ -20852,8 +20777,8 @@ msgid ""
 "The gramplet bar will be restored to contain its default gramplets.  This "
 "action cannot be undone."
 msgstr ""
-"Grampslinja vil bli gjenopprettet til standard smågramps. Dette valget kan "
-"ikke angres."
+"Smågrampslinja vil bli gjenopprettet til å inneholde standardsmågramps. "
+"Dette valget kan ikke angres."
 
 #: ../gramps/gui/widgets/grampletpane.py:837
 msgid "Drag Properties Button to move and click it for setup"
@@ -21034,10 +20959,8 @@ msgid "Legacy"
 msgstr "Lovlig"
 
 #: ../gramps/plugins/cite/cite.gpr.py:36
-#, fuzzy
-#| msgid "Publication Information"
 msgid "Legacy citation formatter"
-msgstr "Publikasjonsinformasjon"
+msgstr "Eldre sitatformateringsprogram"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:27
 msgid "BSDDB"
@@ -22403,14 +22326,12 @@ msgid "Flip names for generations 2, 3 and 4 i.e. those found in circles"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/fanchart.py:854
-#, fuzzy
-#| msgid "The title of the calendar"
 msgid "Exclude the title of the chart"
-msgstr "Tittel på kalenderen"
+msgstr "Utelat tittelen på diagrammet"
 
 #: ../gramps/plugins/drawreport/fanchart.py:855
 msgid "Exclude the title to make more room for the chart"
-msgstr ""
+msgstr "Utelat tittelen for å gi mer plass til diagrammet"
 
 #: ../gramps/plugins/drawreport/fanchart.py:910
 #, python-format
@@ -24875,13 +24796,13 @@ msgid ""
 "and detach the gramplet to float above Gramps."
 msgstr ""
 "Du er for øyeblikket i \"Instrumentpanelet\" hvor du kan legge til dine egne "
-"Smågramps. Du kan også legge til Smågramps til andre visninger ved å legge "
+"smågramps. Du kan også legge til smågramps til andre visninger ved å legge "
 "til en sidemeny og/eller bunnmeny og høyreklikke til høyre for flippen.\n"
 "\n"
 "Du kan klikke på ikon for oppsett i verktøylinja for å legge til flere "
 "kolonner, mens ved å høyreklikke på bakgrunnen gir mulighet for å legge til "
-"Smågramps. Du kan også dra Egenskapikonet for å flytte Smågrampsen på denne "
-"siden og frikoble Smågrampsen til å flyte over Gramps."
+"smågramps. Du kan også dra egenskapikonet for å flytte smågrampsen på denne "
+"siden og frikoble smågrampsen til å flyte over Gramps."
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:240
 msgid "Gramps View Categories"
@@ -24890,7 +24811,7 @@ msgstr "Gramps Vis Kategorier"
 #: ../gramps/plugins/gramplet/welcomegramplet.py:244
 #: ../gramps/plugins/gramplet/welcomegramplet.py:253
 msgid "Addons and \"Gramplets\""
-msgstr "Tillegg og smågramps"
+msgstr "Programtillegg og smågramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:247
 msgid ""
@@ -24899,10 +24820,10 @@ msgid ""
 "available to you. Many more are available to download and install.\n"
 "\n"
 msgstr ""
-"Det er mange tillegg eller \"Gramplets\" som er tilgjengelige for å hjelpe "
-"deg med å legge inn data og visualisere slektstreet ditt. Mange av disse "
-"verktøyene er allerede tilgjengelige for deg. Mange flere er tilgjengelige "
-"for nedlasting og installasjon.\n"
+"Det er mange programtillegg eller smågramps som er tilgjengelige for å "
+"hjelpe deg med å legge inn data og visualisere slektstreet ditt. Mange av "
+"disse verktøyene er allerede tilgjengelige for deg. Mange flere er "
+"tilgjengelige for nedlasting og installasjon.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:255
@@ -25500,14 +25421,12 @@ msgid "Show Sosa / Sosa-Stradonitz / Ahnentafel number."
 msgstr "Vis Sosa/Sosa-Stradonitz/Ahnentafel -tall."
 
 #: ../gramps/plugins/graph/gvhourglass.py:540
-#, fuzzy
-#| msgid "Show all events"
 msgid "Show symbols for events"
-msgstr "Vis alle hendelser"
+msgstr "Vis symboler for hendelser"
 
 #: ../gramps/plugins/graph/gvhourglass.py:542
 msgid "Show genealogical symbols for birth, marriage and death events."
-msgstr ""
+msgstr "Vis genealogiske symboler for fødsels-, ekteskaps- og dødshendelser."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:226
 #: ../gramps/plugins/textreport/indivcomplete.py:860
@@ -26958,7 +26877,7 @@ msgstr "Mål"
 
 #: ../gramps/plugins/lib/libgedcom.py:739
 msgid "DNA"
-msgstr "DNA"
+msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:740
 msgid "Cause of Death"
@@ -28345,7 +28264,7 @@ msgstr "Begravet %(burial_date)s%(endnotes)s."
 msgid ""
 "%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s ble begravet %(month_year)s i %(burial_place)s%(endnotes)s\t."
+"%(male_name)s ble begravet %(month_year)s i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:575
 #, python-format
@@ -36161,44 +36080,32 @@ msgid "Old age but no death"
 msgstr "Høy alder, men ingen død"
 
 #: ../gramps/plugins/tool/verify.py:2330
-#, fuzzy
-#| msgid "Birth equals death"
 msgid "Birth date equals death date"
-msgstr "Fødsel er lik som død"
+msgstr "Fødselsdato er lik dødsdato"
 
 #: ../gramps/plugins/tool/verify.py:2351
-#, fuzzy
-#| msgid "Birth equals marriage"
 msgid "Birth date equals marriage date"
-msgstr "Fødsel er lik ekteskap"
+msgstr "Fødselsdato er lik ekteskapsdato"
 
 #: ../gramps/plugins/tool/verify.py:2372
-#, fuzzy
-#| msgid "Death equals marriage"
 msgid "Death date equals marriage date"
-msgstr "Død er lik som ekteskap"
+msgstr "Dødsdato er lik ekteskapsdato"
 
 #: ../gramps/plugins/tool/verify.py:2433
 msgid "Baptism too late according to family tradition"
 msgstr ""
 
 #: ../gramps/plugins/tool/verify.py:2458
-#, fuzzy
-#| msgid "Burial date"
 msgid "Burial too late"
-msgstr "Begravelsesdato"
+msgstr "Begravelse for sent"
 
 #: ../gramps/plugins/tool/verify.py:2495
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Children are not in chronological order"
-msgstr "Om hendelser skal sorteres i kronologisk rekkefølge."
+msgstr "Barna er ikke i kronologisk rekkefølge"
 
 #: ../gramps/plugins/tool/verify.py:2559
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Families are not in chronological order"
-msgstr "Om hendelser skal sorteres i kronologisk rekkefølge."
+msgstr "Familier er ikke i kronologisk rekkefølge"
 
 #: ../gramps/plugins/tool/verify.py:2572
 msgid "Family has events with role Unknown"
@@ -36211,16 +36118,12 @@ msgid "Person has events with role Unknown"
 msgstr "Personhendelser med barn"
 
 #: ../gramps/plugins/tool/verify.py:2598
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Family events are not in chronological order"
-msgstr "Om hendelser skal sorteres i kronologisk rekkefølge."
+msgstr "Familiehendelser er ikke i kronologisk rekkefølge"
 
 #: ../gramps/plugins/tool/verify.py:2611
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Person events are not in chronological order"
-msgstr "Om hendelser skal sorteres i kronologisk rekkefølge."
+msgstr "Personhendelser er ikke i kronologisk rekkefølge"
 
 #: ../gramps/plugins/view/citationlistview.py:107
 msgid "Source: Title"
@@ -37319,9 +37222,8 @@ msgid "Relationships"
 msgstr "Slektskap"
 
 #: ../gramps/plugins/view/relview.py:390
-#, fuzzy
 msgid "Organize Bookmarks..."
-msgstr "Organisere bokmerker..."
+msgstr "Organiser bokmerker..."
 
 #: ../gramps/plugins/view/relview.py:411
 msgid "Add Existing Parents..."
@@ -37573,7 +37475,7 @@ msgstr "Visningen viser alle familiene"
 
 #: ../gramps/plugins/view/view.gpr.py:72
 msgid "The view showing Gramplets"
-msgstr "Visningen gjør det mulig å se alle Smågrampsene"
+msgstr "Visningen gjør det mulig å se alle smågrampsene"
 
 #: ../gramps/plugins/view/view.gpr.py:88
 msgid "The view showing all the media objects"
@@ -37903,7 +37805,7 @@ msgstr "%(couple)s, <em>bryllup</em>"
 #: ../gramps/plugins/webreport/calendar.py:1466
 #: ../gramps/plugins/webreport/webcal.py:2347
 msgid "Until"
-msgstr ""
+msgstr "Fram til"
 
 #: ../gramps/plugins/webreport/calendar.py:1476
 #: ../gramps/plugins/webreport/webcal.py:2357
@@ -38768,16 +38670,16 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2662
 #: ../gramps/plugins/webreport/narrativeweb.py:2702
-#, fuzzy
-#| msgid "Google maps API key"
 msgid "How to get the API key"
-msgstr "GoogleKart API"
+msgstr "Hvordan få tak i API-nøkkelen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2665
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Google maps service must be selected."
 msgstr ""
+"Kopier og lim inn denne verdien i nettleseren din.\n"
+"Google maps-tjenesten må velges."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2673
 msgid "Toner"
@@ -38802,10 +38704,8 @@ msgid ""
 msgstr "Velgi de innstillingene du vil ha for Stamen map Familiekartsidene..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2687
-#, fuzzy
-#| msgid "Google maps API key"
 msgid "Stamen maps API key"
-msgstr "GoogleKart API"
+msgstr "Stamen maps API-nøkkel"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2690
 #, fuzzy
@@ -38824,6 +38724,8 @@ msgid ""
 "Copy and paste this value in your browser.\n"
 "The Stamen maps service must be selected."
 msgstr ""
+"Kopier og lim inn denne verdien i nettleseren din.\n"
+"Tjenesten Stamen maps må velges."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2722
 #, python-format
