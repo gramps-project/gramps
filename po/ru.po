@@ -20,22 +20,23 @@
 # Dmitriy Q <krotesk@mail.ru>, 2023.
 # Nick Hall <nick-h@gramps-project.org>, 2023.
 # Vlad Arkhipov <vlad@arkhipov.ru>, 2023.
+# OIS <mistresssilvara@hotmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-08-23 11:52+0000\n"
-"Last-Translator: Vlad Arkhipov <vlad@arkhipov.ru>\n"
+"PO-Revision-Date: 2023-12-11 22:53+0000\n"
+"Last-Translator: OIS <mistresssilvara@hotmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.0-dev\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 5.3-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -428,12 +429,6 @@ msgstr ""
 "ячейки - двое родителей и их дети."
 
 #: ../data/tips.xml:22
-#, fuzzy
-#| msgid ""
-#| "<b>Changing the Active Person</b><br/>Changing the Active Person in views "
-#| "is easy. In the Relationship view just click on anyone. In the Ancestry "
-#| "View doubleclick on the person or right click to select any of their "
-#| "spouses, siblings, children or parents."
 msgid ""
 "<b>Changing the Active Person</b><br/>Changing the Active Person in views is "
 "easy. In the Relationship view just click on anyone. In the Pedigree View "
@@ -803,12 +798,6 @@ msgstr ""
 "его в секцию «Предпочитаемое имя»."
 
 #: ../data/tips.xml:76
-#, fuzzy
-#| msgid ""
-#| "<b>Ancestor View</b><br/>The Ancestry View displays a traditional "
-#| "pedigree chart. Hold the mouse over an individual to see more information "
-#| "about them or right click on an individual to access other family members "
-#| "and settings. Play with the settings to see the different options."
 msgid ""
 "<b>Pedigree View</b><br/>The Pedigree View displays a traditional pedigree "
 "chart. Hold the mouse over an individual to see more information about them "
@@ -9408,8 +9397,6 @@ msgid "Expert"
 msgstr "Эксперт"
 
 #: ../gramps/gen/plug/_pluginreg.py:116
-#, fuzzy
-#| msgid "Quick View"
 msgid "Quick view"
 msgstr "Быстрый просмотр"
 
@@ -9426,14 +9413,10 @@ msgid "Exporter"
 msgstr "Экспорт"
 
 #: ../gramps/gen/plug/_pluginreg.py:120
-#, fuzzy
-#| msgid "Doc creator"
 msgid "Document creator"
 msgstr "Генератор документов"
 
 #: ../gramps/gen/plug/_pluginreg.py:121
-#, fuzzy
-#| msgid "Plugin lib"
 msgid "Plugin library"
 msgstr "Библиотека Модулей расширения"
 
@@ -9448,8 +9431,6 @@ msgid "View"
 msgstr "Посмотреть"
 
 #: ../gramps/gen/plug/_pluginreg.py:124
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Relationship calculator"
 msgstr "Определение родственных отношений"
 
@@ -18896,20 +18877,16 @@ msgid "Requires"
 msgstr "Требуются"
 
 #: ../gramps/gui/plug/_windows.py:275
-#, fuzzy
-#| msgid "Updated"
 msgid "Update"
-msgstr "Обновлено"
+msgstr "Обновить"
 
 #: ../gramps/gui/plug/_windows.py:302 ../gramps/gui/plug/_windows.py:316
 msgid "Module installation failed"
 msgstr "Установка модуля завершилась неудачно"
 
 #: ../gramps/gui/plug/_windows.py:317
-#, fuzzy
-#| msgid "Allow Gramps to install required python modules"
 msgid "Gramps was unable to install the required modules"
-msgstr "Разрешить Gramps устанавливать необходимые модули Python"
+msgstr "Gramps не удалось установить необходимые модули"
 
 #: ../gramps/gui/plug/_windows.py:347
 msgid "Requirements"
@@ -18928,22 +18905,16 @@ msgid "Filters"
 msgstr "Фильтры"
 
 #: ../gramps/gui/plug/_windows.py:428
-#, fuzzy
-#| msgid "Addons"
 msgid "All addons"
-msgstr "Дополнения"
+msgstr "Все дополнения"
 
 #: ../gramps/gui/plug/_windows.py:429 ../gramps/gui/plug/_windows.py:626
-#, fuzzy
-#| msgid "installed"
 msgid "Not installed"
-msgstr "установлено"
+msgstr "Не установленные"
 
 #: ../gramps/gui/plug/_windows.py:430 ../gramps/gui/plug/_windows.py:629
-#, fuzzy
-#| msgid "installed"
 msgid "Installed"
-msgstr "установлено"
+msgstr "Установленные"
 
 #: ../gramps/gui/plug/_windows.py:431 ../gramps/gui/plug/_windows.py:632
 #: ../gramps/plugins/webreport/basepage.py:1901
@@ -18952,20 +18923,14 @@ msgid "Updates"
 msgstr "Обновления"
 
 #: ../gramps/gui/plug/_windows.py:443
-#, fuzzy
-#| msgid "All files"
 msgid "All types"
-msgstr "Все файлы"
+msgstr "Все типы"
 
 #: ../gramps/gui/plug/_windows.py:451
-#, fuzzy
-#| msgid "Audience"
 msgid "All audiences"
-msgstr "Зрители"
+msgstr "Все зрители"
 
 #: ../gramps/gui/plug/_windows.py:458
-#, fuzzy
-#| msgid " state"
 msgid "All statuses"
 msgstr "Все статусы"
 
@@ -18978,10 +18943,8 @@ msgid "Projects"
 msgstr "Проекты"
 
 #: ../gramps/gui/plug/_windows.py:527 ../gramps/gui/plug/_windows.py:637
-#, fuzzy
-#| msgid "Projects"
 msgid "All projects"
-msgstr "Проекты"
+msgstr "Все проекты"
 
 #: ../gramps/gui/plug/_windows.py:539
 msgid "Loading..."
@@ -18992,14 +18955,12 @@ msgid "No matching addons found."
 msgstr "Подходящих дополнений не найдено."
 
 #: ../gramps/gui/plug/_windows.py:737
-#, fuzzy
-#| msgid "Allow Gramps to install required python modules"
 msgid "Allow Gramps to install required Python modules"
 msgstr "Разрешить Gramps устанавливать необходимые модули Python"
 
 #: ../gramps/gui/plug/_windows.py:744
 msgid "Scheduled update checks"
-msgstr ""
+msgstr "Запланированные проверки обновлений"
 
 #: ../gramps/gui/plug/_windows.py:760
 msgid "Once a month"
@@ -19058,13 +19019,10 @@ msgid "Project name"
 msgstr "Название Проекта"
 
 #: ../gramps/gui/plug/_windows.py:923
-#, fuzzy
-#| msgid "Restore to defaults"
 msgid "Restore project defaults"
-msgstr "Восстановить цвета по умолчанию"
+msgstr "Восстановить значения по умолчанию для проекта"
 
 #: ../gramps/gui/plug/_windows.py:924
-#, fuzzy
 msgid "Are you sure?"
 msgstr "Вы уверены?"
 
@@ -19272,11 +19230,8 @@ msgstr[1] "{number_of} дополнения было установлено."
 msgstr[2] "{number_of} дополнений было установлено."
 
 #: ../gramps/gui/plug/_windows.py:2261
-#, fuzzy
-#| msgid ""
-#| "If you have installed a 'Gramps View', you will need to restart Gramps."
 msgid "If you have installed a 'View', you will need to restart Gramps."
-msgstr "Если был установлен Вид Gramps необходимо перезапустить программу."
+msgstr "Если был установлен Вид, то необходимо перезапустить программу."
 
 #: ../gramps/gui/plug/_windows.py:2269
 msgid "No addons were installed."
@@ -20288,14 +20243,8 @@ msgid "Would you like to run the Check and Repair tool?"
 msgstr "Хотите запустить инструмент «Проверка и исправление»?"
 
 #: ../gramps/gui/viewmanager.py:1286 ../gramps/gui/viewmanager.py:1904
-#, fuzzy
-#| msgid ""
-#| "Please wait for backup in progress.\n"
-#| "Gramps will close when complete."
 msgid "Please wait for backup to complete."
-msgstr ""
-"Подождите, пока идёт резервное копирование.\n"
-"Gramps закроется по его завершении."
+msgstr "Подождите завершения резервного копирования."
 
 #: ../gramps/gui/viewmanager.py:1288 ../gramps/gui/viewmanager.py:1292
 msgid "Autobackup..."
@@ -20995,16 +20944,12 @@ msgid "'%s' is not a valid date value"
 msgstr "'%s' не является корректной датой"
 
 #: ../gramps/plugins/cite/cite.gpr.py:35
-#, fuzzy
-#| msgid "Legal"
 msgid "Legacy"
-msgstr "Правовое"
+msgstr "Legacy"
 
 #: ../gramps/plugins/cite/cite.gpr.py:36
-#, fuzzy
-#| msgid "Publication Information"
 msgid "Legacy citation formatter"
-msgstr "Информация о публикации"
+msgstr "Формат цитат как в Legacy"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:27
 msgid "BSDDB"
@@ -22372,14 +22317,12 @@ msgstr ""
 "кругах"
 
 #: ../gramps/plugins/drawreport/fanchart.py:854
-#, fuzzy
-#| msgid "The title of the calendar"
 msgid "Exclude the title of the chart"
-msgstr "Заголовок для календаря"
+msgstr "Убрать заголовок графика"
 
 #: ../gramps/plugins/drawreport/fanchart.py:855
 msgid "Exclude the title to make more room for the chart"
-msgstr ""
+msgstr "Опустить заголовок чтобы освободить место для графика"
 
 #: ../gramps/plugins/drawreport/fanchart.py:910
 #, python-format
@@ -32624,10 +32567,8 @@ msgid "French Relationship Calculator"
 msgstr "Французский калькулятор отношений"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:241
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Hebrew Relationship Calculator"
-msgstr "Определение родственных отношений"
+msgstr "Еврейские родственные отношения"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:265
 msgid "Croatian Relationship Calculator"
@@ -36341,73 +36282,55 @@ msgstr "Неверная дата смерти"
 
 #: ../gramps/plugins/tool/verify.py:2280
 msgid "Marriage date but not married"
-msgstr "Указанна дата брака, но в браке не состоят"
+msgstr "Указана дата брака, но в браке не состоят"
 
 #: ../gramps/plugins/tool/verify.py:2311
 msgid "Old age but no death"
 msgstr "Большой возраст без указания смерти"
 
 #: ../gramps/plugins/tool/verify.py:2330
-#, fuzzy
-#| msgid "Birth equals death"
 msgid "Birth date equals death date"
-msgstr "Рождение совпадает со смертью"
+msgstr "Дата рождения совпадает со датой смерти"
 
 #: ../gramps/plugins/tool/verify.py:2351
-#, fuzzy
-#| msgid "Birth equals marriage"
 msgid "Birth date equals marriage date"
-msgstr "Рождение совпадает с браком"
+msgstr "Дата рождения совпадает с датой брака"
 
 #: ../gramps/plugins/tool/verify.py:2372
-#, fuzzy
-#| msgid "Death equals marriage"
 msgid "Death date equals marriage date"
-msgstr "Смерть совпадает с браком"
+msgstr "Дата смерти совпадает с датой брака"
 
 #: ../gramps/plugins/tool/verify.py:2433
 msgid "Baptism too late according to family tradition"
-msgstr ""
+msgstr "Крещение слишклм поздно для семейных традиций"
 
 #: ../gramps/plugins/tool/verify.py:2458
-#, fuzzy
-#| msgid "Burial date"
 msgid "Burial too late"
-msgstr "Дата захоронения"
+msgstr "Дата захоронения слишком велика"
 
 #: ../gramps/plugins/tool/verify.py:2495
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Children are not in chronological order"
-msgstr "Располагать ли события в хронологическом порядке."
+msgstr "Дети не в хронологическом порядке"
 
 #: ../gramps/plugins/tool/verify.py:2559
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Families are not in chronological order"
-msgstr "Располагать ли события в хронологическом порядке."
+msgstr "Семьи не в хронологическом порядке"
 
 #: ../gramps/plugins/tool/verify.py:2572
 msgid "Family has events with role Unknown"
-msgstr ""
+msgstr "У семьи есть события с неизвестной ролью"
 
 #: ../gramps/plugins/tool/verify.py:2585
-#, fuzzy
-#| msgid "Personal events of the children"
 msgid "Person has events with role Unknown"
-msgstr "Личные события детей"
+msgstr "У лиц есть события с неизвестной ролью"
 
 #: ../gramps/plugins/tool/verify.py:2598
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Family events are not in chronological order"
-msgstr "Располагать ли события в хронологическом порядке."
+msgstr "Семейные события не в хронологическом порядке"
 
 #: ../gramps/plugins/tool/verify.py:2611
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Person events are not in chronological order"
-msgstr "Располагать ли события в хронологическом порядке."
+msgstr "Личные события не в хронологическом порядке"
 
 #: ../gramps/plugins/view/citationlistview.py:107
 msgid "Source: Title"
@@ -38467,8 +38390,6 @@ msgid "Check it if you want to open/close a section"
 msgstr "Установите флажок, если Вы хотите открыть/закрыть раздел"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
-#, fuzzy
-#| msgid "Extra pages"
 msgid "Extra Pages"
 msgstr "Дополнительные страницы"
 
@@ -39003,34 +38924,24 @@ msgid ""
 msgstr "Выберите, какие настройки Вы хотите иметь для страниц карт Stamen..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2687
-#, fuzzy
-#| msgid "Google maps API key"
 msgid "Stamen maps API key"
-msgstr "Ключ для API карт Google"
+msgstr "Ключ для API карт Stamen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2690
-#, fuzzy
-#| msgid ""
-#| "The API key used for the Google maps.\n"
-#| "This key is mandatory and must be valid"
 msgid ""
 "The API key used for the Stamen maps.\n"
 "This key is mandatory and must be valid"
 msgstr ""
-"Ключ, используемый для API карт Google.\n"
+"Ключ, используемый для API карт Stamen.\n"
 "Этот ключ обязателен и он должен быть действующим"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2705
-#, fuzzy
-#| msgid ""
-#| "Copy and paste this value in your browser.\n"
-#| "The Google maps service must be selected."
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Stamen maps service must be selected."
 msgstr ""
 "Скопируйте и вставьте это значение в свой браузер.\n"
-"Перед этим надо выбрать сервис Карты Google."
+"Перед этим надо выбрать сервис Stamen Maps."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2722
 #, python-format
@@ -39105,8 +39016,6 @@ msgid "Translations"
 msgstr "Переводы"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2797
-#, fuzzy
-#| msgid "second language"
 msgid "Second language"
 msgstr "Второй язык"
 
@@ -39131,40 +39040,32 @@ msgid "Enter a title in the respective language"
 msgstr "Введите название на соответствующем языке"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2806
-#, fuzzy
-#| msgid "third language"
 msgid "Third language"
-msgstr "третий язык"
+msgstr "Третий язык"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2811
 msgid "Site name for your third language"
 msgstr "Название сайта для Вашего третьего языка"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2815
-#, fuzzy
-#| msgid "fourth language"
 msgid "Fourth language"
-msgstr "четвёртый язык"
+msgstr "Четвёртый язык"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2820
 msgid "Site name for your fourth language"
 msgstr "Название сайта для Вашего четвертого языка"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2824
-#, fuzzy
-#| msgid "fifth language"
 msgid "Fifth language"
-msgstr "пятый язык"
+msgstr "Пятый язык"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2829
 msgid "Site name for your fifth language"
 msgstr "Название сайта для Вашего пятого языка"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2833
-#, fuzzy
-#| msgid "sixth language"
 msgid "Sixth language"
-msgstr "шестой язык"
+msgstr "Шестой язык"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2838
 msgid "Site name for your sixth language"
