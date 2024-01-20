@@ -9,13 +9,14 @@
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2022.
 # Jyri-Petteri Paloposki <jyri-petteri.paloposki@iki.fi>, 2022.
 # Oskari Lavinto <olavinto@protonmail.com>, 2023.
+# A <ogloppi@mailbox.org>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-08 22:33+0100\n"
-"PO-Revision-Date: 2023-09-25 09:00+0000\n"
-"Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
+"PO-Revision-Date: 2023-11-05 14:35+0000\n"
+"Last-Translator: A <ogloppi@mailbox.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
 "Language: fi\n"
@@ -23,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.1-dev\n"
+"X-Generator: Weblate 5.2-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../Gramps/gramps\n"
@@ -60,7 +61,7 @@ msgstr "Tšekin tasavalta"
 
 #: ../data/holidays.xml:158
 msgid "England"
-msgstr "Iso-Britania"
+msgstr "Yhdistynyt kuningaskunta"
 
 #: ../data/holidays.xml:188
 msgid "Finland"
