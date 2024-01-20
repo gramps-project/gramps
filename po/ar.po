@@ -5,13 +5,14 @@
 # Muhammad Bashir Al-Noimi <mbnoimi@gmail.com>, 2013.
 # Munzir Taha (منذر طه) <munzirtaha@gmail.com>, 2014.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
+# Sulaiman A <67igltrpe@mozmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps-5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2021-06-04 21:07+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2023-10-28 04:14+0000\n"
+"Last-Translator: Sulaiman A <67igltrpe@mozmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ar/>\n"
 "Language: ar\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 5.2-dev\n"
 "X-Poedit-Language: Arabic\n"
 "X-Language: ar\n"
 "X-Source-Language: C\n"
@@ -120,83 +121,83 @@ msgstr "عيد الفصح"
 
 #: ../data/holidays.xml:367
 msgid "Shavuot"
-msgstr ""
+msgstr "عيد الأسابيع"
 
 #: ../data/holidays.xml:368
 msgid "Rosh Ha'Shana"
-msgstr ""
+msgstr "روش هاشناه"
 
 #: ../data/holidays.xml:369
 msgid "Rosh Ha'Shana 2"
-msgstr ""
+msgstr "روش هاشناه 2"
 
 #: ../data/holidays.xml:370
 msgid "Yom Kippur"
-msgstr ""
+msgstr "يوم الغفران"
 
 #: ../data/holidays.xml:371
 msgid "Sukot"
-msgstr ""
+msgstr "عيد العرش"
 
 #: ../data/holidays.xml:372
 msgid "2 of Sukot"
-msgstr ""
+msgstr "ثاني عيد العرش"
 
 #: ../data/holidays.xml:373
 msgid "3 of Sukot"
-msgstr ""
+msgstr "ثالث عيد العرش"
 
 #: ../data/holidays.xml:374
 msgid "4 of Sukot"
-msgstr ""
+msgstr "رابع عيد العرش"
 
 #: ../data/holidays.xml:375
 msgid "5 of Sukot"
-msgstr ""
+msgstr "خامس عيد العرش"
 
 #: ../data/holidays.xml:376
 msgid "6 of Sukot"
-msgstr ""
+msgstr "سادس عيد العرش"
 
 #: ../data/holidays.xml:377
 msgid "7 of Sukot"
-msgstr ""
+msgstr "سابع عيد العرش"
 
 #: ../data/holidays.xml:378
 msgid "Simhat Tora"
-msgstr ""
+msgstr "سمحات توراه"
 
 #: ../data/holidays.xml:379
 msgid "Hanuka"
-msgstr ""
+msgstr "هانوكا"
 
 #: ../data/holidays.xml:380
 msgid "2 of Hanuka"
-msgstr ""
+msgstr "ثاني الهانوكا"
 
 #: ../data/holidays.xml:381
 msgid "3 of Hanuka"
-msgstr ""
+msgstr "ثالث الهانوكا"
 
 #: ../data/holidays.xml:382
 msgid "4 of Hanuka"
-msgstr ""
+msgstr "رابع الهانوكا"
 
 #: ../data/holidays.xml:383
 msgid "5 of Hanuka"
-msgstr ""
+msgstr "خامس الهانوكا"
 
 #: ../data/holidays.xml:384
 msgid "6 of Hanuka"
-msgstr ""
+msgstr "سادس الهانوكا"
 
 #: ../data/holidays.xml:385
 msgid "7 of Hanuka"
-msgstr ""
+msgstr "سابع الهانوكا"
 
 #: ../data/holidays.xml:386
 msgid "8 of Hanuka"
-msgstr ""
+msgstr "ثامن الهانوكا"
 
 #: ../data/holidays.xml:388
 #, fuzzy
@@ -255,7 +256,7 @@ msgstr "غرمبز"
 #: ../data/org.gramps_project.Gramps.desktop.in:6
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
-msgstr ""
+msgstr "إدارة معلومات الأنساب، وإجراء البحوث والتحليلات في الأنساب"
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:7
 #: ../gramps/gen/const.py:255
