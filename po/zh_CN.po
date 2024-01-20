@@ -13,13 +13,13 @@
 # 张子涵 <zhangzihanzhangzihan@live.com>, 2023.
 # linluoxue <linluomoxue@foxmail.com>, 2023.
 # 快乐的老鼠宝宝 <keaitianxinmail@qq.com>, 2023.
-# Tian Shixiong <tiansworld@fedoraproject.org>, 2023.
+# Tian Shixiong <tiansworld@fedoraproject.org>, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-09-27 14:01+0000\n"
+"PO-Revision-Date: 2024-01-01 20:08+0000\n"
 "Last-Translator: Tian Shixiong <tiansworld@fedoraproject.org>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/zh_Hans/>\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.1-dev\n"
+"X-Generator: Weblate 5.4-dev\n"
 "X-Poedit-Bookmarks: 6522,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -26173,6 +26173,8 @@ msgid ""
 "Citation confidence level\n"
 "(Very low - very high)."
 msgstr ""
+"引用可信度级别\n"
+"（非常低 - 非常高）。"
 
 #: ../gramps/plugins/importer/importprogen.glade:308
 msgid ""
@@ -26241,6 +26243,8 @@ msgid ""
 "Enable/Disable\n"
 "all object tags."
 msgstr ""
+"启用/禁用\n"
+"所有对象标签。"
 
 #: ../gramps/plugins/importer/importprogen.glade:1198
 msgid "Tag Text"
@@ -26255,18 +26259,24 @@ msgid ""
 "Enable/Disable\n"
 "Person import."
 msgstr ""
+"启用/禁用\n"
+"成员导入。"
 
 #: ../gramps/plugins/importer/importprogen.glade:1260
 msgid ""
 "Enable/Disable\n"
 "Family import."
 msgstr ""
+"启用/停用\n"
+"家庭导入。"
 
 #: ../gramps/plugins/importer/importprogen.glade:1279
 msgid ""
 "Enable/Disable\n"
 "Child import."
 msgstr ""
+"启用/停用\n"
+"子女导入。"
 
 #: ../gramps/plugins/importer/importprogen.glade:1330
 msgid ""
@@ -26926,7 +26936,7 @@ msgstr "顶层"
 #: ../gramps/plugins/lib/libgedcom.py:4103
 #, python-format
 msgid "INDI (individual) Gramps ID %s"
-msgstr ""
+msgstr "个人 Gramps ID %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:4230
 msgid "Empty Alias <NAME PERSONAL> ignored"
@@ -31249,7 +31259,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/maps/geography.py:1441
 msgid "Zoom used when centering"
-msgstr ""
+msgstr "居中时使用缩放"
 
 #: ../gramps/plugins/lib/maps/geography.py:1448
 msgid "The maximum number of places to show"
@@ -31321,16 +31331,21 @@ msgid ""
 "In the following table you may have :\n"
 " - a green row related to a selected place."
 msgstr ""
+"\n"
+"在以下表格中您可能会看到：\n"
+"  -绿色行代表选中的地点。"
 
 #: ../gramps/plugins/lib/maps/placeselection.py:134
 msgid ""
 "\n"
 " - a red row related to a geocoding result."
 msgstr ""
+"\n"
+" -红色行代表相应的坐标值"
 
 #: ../gramps/plugins/lib/maps/placeselection.py:178
 msgid "The green values in the row correspond to the current place values."
-msgstr ""
+msgstr "行内绿色的值代表当前地点的值。"
 
 #: ../gramps/plugins/lib/maps/placeselection.py:244
 msgid "New place with empty fields"
@@ -33211,7 +33226,7 @@ msgstr "点击名字激活人员"
 msgid ""
 "Whether the title should be the name of the person, or 'Complete Individual "
 "Report'"
-msgstr ""
+msgstr "将标题设定为成员的名字，还是使用“个人完整报告”作为标题"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1150
 msgid "Include Notes"
@@ -33421,7 +33436,7 @@ msgstr "置为中心"
 
 #: ../gramps/plugins/textreport/placereport.py:493
 msgid "If report is event or person centered"
-msgstr ""
+msgstr "报告是否以事件或成员为中心"
 
 #: ../gramps/plugins/textreport/recordsreport.py:195
 #, python-format
@@ -35201,11 +35216,11 @@ msgstr "在用的 ID 数量。"
 
 #: ../gramps/plugins/tool/reorderids.glade:1437
 msgid " Quantity"
-msgstr ""
+msgstr " 数量"
 
 #: ../gramps/plugins/tool/reorderids.glade:1451
 msgid "Actual / Upcoming ID format."
-msgstr ""
+msgstr "实际及后续的 ID 格式。"
 
 #: ../gramps/plugins/tool/reorderids.glade:1464
 msgid "Change"
