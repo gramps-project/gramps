@@ -48,4 +48,5 @@ editor_rule_list = [
     ChangedSince,
     MatchesNameSubstringOf,
     HasTag,
+    HasRepo,
 ]
