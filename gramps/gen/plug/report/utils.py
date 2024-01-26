@@ -218,7 +218,7 @@ def find_marriage(database, family):
 # Indexing function
 #
 # -------------------------------------------------------------------------
-def get_person_mark(dbase, person):
+def get_person_mark(dbase, person, name=None):
     """
     Return a IndexMark that can be used to index a person in a report
 
@@ -228,7 +228,8 @@ def get_person_mark(dbase, person):
     if not person:
         return None
 
-    name = person.get_primary_name().get_name()
+    if name is None:
+        name = person.get_primary_name().get_name()
     birth = " "
     death = " "
     key = ""
