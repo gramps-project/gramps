@@ -621,9 +621,11 @@ class CalendarPage(BasePage):
                                         unordered += Html(
                                             "li",
                                             text,
-                                            inline=False
-                                            if (event == "Anniversary")
-                                            else True,
+                                            inline=(
+                                                False
+                                                if (event == "Anniversary")
+                                                else True
+                                            ),
                                         )
                             # no events for this day
                             else:

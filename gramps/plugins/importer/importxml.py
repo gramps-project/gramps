@@ -298,9 +298,9 @@ class ImportInfo:
         while obj is an object of which information will be extracted
         """
         if category == "merge-candidate":
-            self.data_mergecandidate[self.key2data[key]][
-                obj.handle
-            ] = self._extract_mergeinfo(key, obj, sec_obj)
+            self.data_mergecandidate[self.key2data[key]][obj.handle] = (
+                self._extract_mergeinfo(key, obj, sec_obj)
+            )
         elif category == "new-object":
             self.data_newobject[self.key2data[key]] += 1
         elif category == "unknown-object":

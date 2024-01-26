@@ -1601,9 +1601,9 @@ class ViewManager(CLIManager):
                     % {
                         "name": pdata.name,
                         "gramps_bugtracker_url": URL_BUGHOME,
-                        "firstauthoremail": pdata.authors_email[0]
-                        if pdata.authors_email
-                        else "...",
+                        "firstauthoremail": (
+                            pdata.authors_email[0] if pdata.authors_email else "..."
+                        ),
                         "error_msg": lasterror,
                     },
                     parent=self.uistate.window,
@@ -1712,9 +1712,9 @@ def run_plugin(pdata, dbstate, uistate):
             % {
                 "name": pdata.name,
                 "gramps_bugtracker_url": URL_BUGHOME,
-                "firstauthoremail": pdata.authors_email[0]
-                if pdata.authors_email
-                else "...",
+                "firstauthoremail": (
+                    pdata.authors_email[0] if pdata.authors_email else "..."
+                ),
                 "error_msg": error_msg,
             },
             parent=uistate.window,

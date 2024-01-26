@@ -124,7 +124,6 @@ class CustomText(Report):
 #
 # ------------------------------------------------------------------------
 class CustomTextOptions(MenuReportOptions):
-
     """
     Defines options and provides handling interface.
     """

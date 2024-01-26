@@ -88,7 +88,7 @@ coord_formats = (
     # format #3 'D.D8'      degree notation, 8 decimals (precision like ISO-DMS)
     _T_("D.D8"),
     # format #4 'RT90'      Output format for the Swedish coordinate system RT90
-    _T_("RT90")
+    _T_("RT90"),
     # output display not implemented for the following formats:
     # 'ISO-D'     ISO 6709 degree notation i.e. ±DD.DDDD±DDD.DDDD
     # 'ISO-DM'    ISO 6709 degree, minutes notation

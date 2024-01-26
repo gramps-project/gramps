@@ -85,7 +85,6 @@ class AlphabeticalIndex(Report):
 #
 # ------------------------------------------------------------------------
 class AlphabeticalIndexOptions(MenuReportOptions):
-
     """
     Defines options and provides handling interface.
     """

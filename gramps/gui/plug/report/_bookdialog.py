@@ -300,7 +300,6 @@ class BookListDisplay:
 #
 # ------------------------------------------------------------------------
 class BookOptions(ReportOptions):
-
     """
     Defines options and provides handling interface.
     """
@@ -830,7 +829,6 @@ class BookSelector(ManagedWindow):
 #
 # ------------------------------------------------------------------------
 class BookItemDialog(ReportDialog):
-
     """
     This class overrides the interface methods common for different reports
     in a way specific for this report. This is a book item dialog.

@@ -997,11 +997,7 @@ class EditFilter(ManagedWindow):
         op = (
             "and"
             if val == 0
-            else "or"
-            if val == 1
-            else "one"
-            if val == 2
-            else "sequence"
+            else "or" if val == 1 else "one" if val == 2 else "sequence"
         )
         self.logical.set_active(val)
         self.filter.set_logical_op(op)

@@ -1075,9 +1075,9 @@ class ClipboardListView:
 
     def register_wrapper_class(self, wrapper_class):
         for drop_target in wrapper_class.DROP_TARGETS:
-            self._target_type_to_wrapper_class_map[
-                drop_target.drag_type
-            ] = wrapper_class
+            self._target_type_to_wrapper_class_map[drop_target.drag_type] = (
+                wrapper_class
+            )
 
     # Methods for rendering the cells.
 

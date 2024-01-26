@@ -280,7 +280,6 @@ class AncestorReport(Report):
 #
 # ------------------------------------------------------------------------
 class AncestorOptions(MenuReportOptions):
-
     """
     Defines options and provides handling interface.
     """

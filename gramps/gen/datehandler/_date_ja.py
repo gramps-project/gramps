@@ -249,7 +249,11 @@ class DateDisplayJA(DateDisplay):
                 else:
                     value = "%s年%s" % (year, self.short_months[date_val[1]])
             else:
-                value = "%s年%s%s日" % (year, self.short_months[date_val[1]], date_val[0])
+                value = "%s年%s%s日" % (
+                    year,
+                    self.short_months[date_val[1]],
+                    date_val[0],
+                )
 
         elif self.format == 3:
             # 1999年十二月31日
@@ -259,7 +263,11 @@ class DateDisplayJA(DateDisplay):
                 else:
                     value = "%s年%s" % (year, self.long_months[date_val[1]])
             else:
-                value = "%s年%s%s日" % (year, self.long_months[date_val[1]], date_val[0])
+                value = "%s年%s%s日" % (
+                    year,
+                    self.long_months[date_val[1]],
+                    date_val[0],
+                )
 
         else:
             return self.display_iso(date_val)
@@ -279,5 +287,7 @@ class DateDisplayJA(DateDisplay):
 # -------------------------------------------------------------------------
 
 register_datehandler(
-    ("ja_JP", "ja", "japanese", "Japanese", ("%Y年%m月%d日",)), DateParserJA, DateDisplayJA
+    ("ja_JP", "ja", "japanese", "Japanese", ("%Y年%m月%d日",)),
+    DateParserJA,
+    DateDisplayJA,
 )

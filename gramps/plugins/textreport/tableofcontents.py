@@ -84,7 +84,6 @@ class TableOfContents(Report):
 #
 # ------------------------------------------------------------------------
 class TableOfContentsOptions(MenuReportOptions):
-
     """
     Defines options and provides handling interface.
     """

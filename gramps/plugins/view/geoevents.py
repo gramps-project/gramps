@@ -307,12 +307,16 @@ class GeoEvents(GeoGraphyView):
                                 if hdle:
                                     mother = dbstate.db.get_person_from_handle(hdle)
                                 descr2 = ("%(father)s - %(mother)s") % {
-                                    "father": _nd.display(father)
-                                    if father is not None
-                                    else "?",
-                                    "mother": _nd.display(mother)
-                                    if mother is not None
-                                    else "?",
+                                    "father": (
+                                        _nd.display(father)
+                                        if father is not None
+                                        else "?"
+                                    ),
+                                    "mother": (
+                                        _nd.display(mother)
+                                        if mother is not None
+                                        else "?"
+                                    ),
                                 }
                         else:
                             descr2 = _("incomplete or unreferenced event ?")

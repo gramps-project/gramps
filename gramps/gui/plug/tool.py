@@ -351,7 +351,6 @@ class ToolOptionHandler(OptionHandler):
 #
 # ------------------------------------------------------------------------
 class ToolOptions(Options):
-
     """
     Defines options and provides handling interface.
 

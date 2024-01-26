@@ -78,9 +78,9 @@ class User(user.UserBase):
         if auto_accept:
             self.prompt = yes
         if quiet:
-            self.begin_progress = (
-                self.end_progress
-            ) = self.step_progress = self._default_callback = yes
+            self.begin_progress = self.end_progress = self.step_progress = (
+                self._default_callback
+            ) = yes
 
     def begin_progress(self, title, message, steps):
         """

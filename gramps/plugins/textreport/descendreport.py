@@ -537,7 +537,6 @@ class DescendantReport(Report):
 #
 # ------------------------------------------------------------------------
 class DescendantOptions(MenuReportOptions):
-
     """
     Defines options and provides handling interface.
     """
