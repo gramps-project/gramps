@@ -208,7 +208,7 @@ def merge(in_file, out_file, option, po_dir="po"):
     """
     if not os.path.exists(out_file) and os.path.exists(in_file):
         cmd = ["msgfmt", option, "--template", in_file, "-d", po_dir, "-o", out_file]
-        if subprocess.call(cmd, env={"GETTEXTDATADIR": po_dir}) != 0:
+        if subprocess.call(cmd, env={**os.environ, "GETTEXTDATADIR": po_dir}) != 0:
             msg = "ERROR: %s was not merged into the translation files!\n" % out_file
             raise SystemExit(msg)
         _LOG.info("Compiling %s >> %s", in_file, out_file)
