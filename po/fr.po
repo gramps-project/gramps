@@ -40,13 +40,14 @@
 # Nick Hall <nick-h@gramps-project.org>, 2023.
 # Patrice Legoux <patrice.legoux.perso@gmail.com>, 2023.
 # Jacob Wagner <doubleujacob@gmail.com>, 2024.
+# Boris Dauriac <dauriacboris+gramps@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2024-01-13 00:06+0000\n"
-"Last-Translator: Jacob Wagner <doubleujacob@gmail.com>\n"
+"PO-Revision-Date: 2024-01-27 21:01+0000\n"
+"Last-Translator: Boris Dauriac <dauriacboris+gramps@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -1039,7 +1040,7 @@ msgid ""
 "\"Help &gt; Gramps Mailing Lists\"."
 msgstr ""
 "<b>Les annonces Gramps</b><br/>Vous voulez être alerté(e) par la sortie des "
-"dernières versions de Gramps ? Rejoignez-nous sur la liste gramps-annonce "
+"dernières versions de Gramps ? Rejoignez-nous sur la liste gramps-annonce "
 "via « Aide &gt; Listes de diffusion de Gramps »."
 
 #: ../data/tips.xml:108
@@ -8119,7 +8120,7 @@ msgstr "Déclarant"
 #: ../gramps/gen/lib/eventroletype.py:65
 #, fuzzy
 msgid "Godparent"
-msgstr "parent2"
+msgstr "Parrain"
 
 #: ../gramps/gen/lib/eventtype.py:144
 msgid "Life Events"
@@ -13197,13 +13198,11 @@ msgstr "Limites des calculs"
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1874
-#, fuzzy
 msgid "Date 'about' year range: (date ± #)"
 msgstr "Nb. d'années avant et après les dates « vers »"
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1882
-#, fuzzy
 msgid "Date 'after' year range:  (date + #)"
 msgstr "Nb. d'années après les dates « après »"
 
@@ -13698,7 +13697,6 @@ msgid "Partner"
 msgstr "Conjoint"
 
 #: ../gramps/gui/configure.py:2770
-#, fuzzy
 msgid "Killed"
 msgstr "Tué"
 
@@ -20310,7 +20308,7 @@ msgstr "Permettre à Gramps d'installer les modules python requis"
 
 #: ../gramps/gui/plug/_windows.py:744
 msgid "Scheduled update checks"
-msgstr ""
+msgstr "Contrôles de mise à jour programmés"
 
 #: ../gramps/gui/plug/_windows.py:760
 msgid "Once a month"
@@ -22396,13 +22394,13 @@ msgstr "« %s » n'est pas une date valide"
 #, fuzzy
 #| msgid "Legal"
 msgid "Legacy"
-msgstr "Juridique"
+msgstr "Défaut"
 
 #: ../gramps/plugins/cite/cite.gpr.py:36
 #, fuzzy
 #| msgid "Default citation formatter"
 msgid "Legacy citation formatter"
-msgstr "Formateur de citation par défaut"
+msgstr "Ancien formateur de citation"
 
 # master
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:27
@@ -26293,7 +26291,6 @@ msgid "Ask questions on gramps-users mailing list"
 msgstr "Poser des questions sur la liste de diffusion gramps-users"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:150
-#, fuzzy
 msgid "Gramps Discourse Forum"
 msgstr "Forum Discourse de Gramps"
 
@@ -28411,7 +28408,7 @@ msgstr "Nombre de nouveaux objets importés :"
 
 # trunk
 #: ../gramps/plugins/importer/importxml.py:375
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "The imported file was not self-contained.\n"
@@ -29247,7 +29244,7 @@ msgstr "Étiquettes emplacements"
 #: ../gramps/plugins/lib/libmetadata.py:127
 #, fuzzy
 msgid "Advanced Tags"
-msgstr "Avancé"
+msgstr "Étiquettes Avancé"
 
 #: ../gramps/plugins/lib/libmetadata.py:128
 msgid "Rights Tags"
@@ -33468,7 +33465,7 @@ msgid ""
 "Trying to create a new one failed.\n"
 "Configure the view for the tile path and restart gramps."
 msgstr ""
-"Le répertoire des tuiles n'existe plus :\n"
+"Le répertoire des tuiles n'existe plus :\n"
 "%s\n"
 "La tentative d'en créer un nouveau a échoué.\n"
 "Configurez la vue indiquant le chemin des tuiles et redémarrez Gramps."
@@ -34590,10 +34587,8 @@ msgid "French Relationship Calculator"
 msgstr "Calcul relationnel français"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:241
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Hebrew Relationship Calculator"
-msgstr "Calcul relationnel"
+msgstr "Calcul relationnel hébreux"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:265
 msgid "Croatian Relationship Calculator"
@@ -35502,7 +35497,7 @@ msgstr "Le style utilisé pour les sous-titres."
 #: ../gramps/plugins/textreport/familygroup.py:415
 #, fuzzy, python-format
 msgid "Relationship: %s"
-msgstr "Relation : %s"
+msgstr "Relation : %s"
 
 #: ../gramps/plugins/textreport/familygroup.py:516
 msgctxt "acronym for male"
@@ -36042,7 +36037,7 @@ msgstr "Femmes : %d"
 #: ../gramps/plugins/textreport/summary.py:199
 #, fuzzy, python-format
 msgid "Individuals with other gender: %d"
-msgstr "Individus d'un autre sexe : %d"
+msgstr "Individus d'un autre sexe : %d"
 
 #: ../gramps/plugins/textreport/summary.py:203
 #, python-format
@@ -36950,7 +36945,7 @@ msgstr "Toutes les tables de références ont été reconstruites."
 #: ../gramps/plugins/tool/check.py:3069
 #, fuzzy, python-format
 msgid "%d bad Note Links were fixed;\n"
-msgstr "%d liens incorrects de Notes ont été corrigées ;\n"
+msgstr "%d liens incorrects de Notes ont été corrigées ;\n"
 
 #: ../gramps/plugins/tool/check.py:3099
 msgid "Integrity Check Results"
@@ -38650,48 +38645,42 @@ msgid "Death date equals marriage date"
 msgstr "Date de décès identique à la date de mariage"
 
 #: ../gramps/plugins/tool/verify.py:2433
+#, fuzzy
 msgid "Baptism too late according to family tradition"
-msgstr ""
+msgstr "Baptême trop tard selon les traditions familiales"
 
 #: ../gramps/plugins/tool/verify.py:2458
 #, fuzzy
 #| msgid "Burial date"
 msgid "Burial too late"
-msgstr "Date de l'inhumation"
+msgstr "Date de l'inhumation trop tardive"
 
 #: ../gramps/plugins/tool/verify.py:2495
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Children are not in chronological order"
-msgstr "Trier ou non les évènements dans l'ordre chronologique."
+msgstr "Les enfants se sont pas dans l'ordre chronologique."
 
 #: ../gramps/plugins/tool/verify.py:2559
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Families are not in chronological order"
-msgstr "Trier ou non les évènements dans l'ordre chronologique."
+msgstr "Les familles ne sont pas dans l'ordre chronologique."
 
 #: ../gramps/plugins/tool/verify.py:2572
+#, fuzzy
 msgid "Family has events with role Unknown"
-msgstr ""
+msgstr "La famille a un évènement avec un role Inconnu"
 
 #: ../gramps/plugins/tool/verify.py:2585
 #, fuzzy
 #| msgid "Personal events of the children"
 msgid "Person has events with role Unknown"
-msgstr "Évènements individuels des enfants"
+msgstr "L'individu a des événements avec un role inconnu"
 
 #: ../gramps/plugins/tool/verify.py:2598
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Family events are not in chronological order"
-msgstr "Trier ou non les évènements dans l'ordre chronologique."
+msgstr "Les évènements de la famille ne sont pas dans l'ordre chronologique."
 
 #: ../gramps/plugins/tool/verify.py:2611
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Person events are not in chronological order"
-msgstr "Trier ou non les évènements dans l'ordre chronologique."
+msgstr "Les évènements de l'individu ne sont pas dans l'ordre chronologique."
 
 # trunk
 #: ../gramps/plugins/view/citationlistview.py:107
@@ -41487,7 +41476,7 @@ msgstr "Autres inclusions (CMS, calendrier internet, PHP)"
 #: ../gramps/plugins/webreport/narrativeweb.py:2751
 #, fuzzy
 msgid "Do we include these pages in a CMS web?"
-msgstr "Doit-on inclure ces pages dans un CMS web ?"
+msgstr "Doit-on inclure ces pages dans un CMS web ?"
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:2758
@@ -41498,7 +41487,7 @@ msgstr "URI"
 #: ../gramps/plugins/webreport/narrativeweb.py:2760
 #, fuzzy
 msgid "Where do you place your website? default = /NAVWEB"
-msgstr "Où doit-on générer le site web ? Par défaut = /NAVWEB"
+msgstr "Où doit-on générer le site web ? Par défaut = /NAVWEB"
 
 # Substantif (GNOME fr)
 #: ../gramps/plugins/webreport/narrativeweb.py:2768
@@ -41518,7 +41507,7 @@ msgstr "Durée en jours de l'historique"
 #, fuzzy
 msgid "You want to see the last updates on how many days?"
 msgstr ""
-"Sur combien de jours souhaitez-vous voir l'historique des mises à jour ?"
+"Sur combien de jours souhaitez-vous voir l'historique des mises à jour ?"
 
 # trunk
 #: ../gramps/plugins/webreport/narrativeweb.py:2780
@@ -41535,10 +41524,8 @@ msgstr "Traduction"
 
 # trunk
 #: ../gramps/plugins/webreport/narrativeweb.py:2797
-#, fuzzy
-#| msgid "second language"
 msgid "Second language"
-msgstr "deuxième langue"
+msgstr "Deuxième langue"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2802
 #, fuzzy
@@ -41586,10 +41573,8 @@ msgstr "Nom du site pour une quatrième langue"
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:2824
-#, fuzzy
-#| msgid "fifth language"
 msgid "Fifth language"
-msgstr "cinquième langue"
+msgstr "Cinquième langue"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2829
 msgid "Site name for your fifth language"
@@ -41597,10 +41582,8 @@ msgstr "Nom du site pour une cinquième langue"
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:2833
-#, fuzzy
-#| msgid "sixth language"
 msgid "Sixth language"
-msgstr "sixième langue"
+msgstr "Sixième langue"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2838
 msgid "Site name for your sixth language"
@@ -41614,7 +41597,7 @@ msgstr "Options du calendrier"
 #: ../gramps/plugins/webreport/narrativeweb.py:3077
 #, fuzzy
 msgid "Do we include the web calendar ?"
-msgstr "Doit-on inclure le calendrier internet ?"
+msgstr "Doit-on inclure le calendrier internet ?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3079
 #, python-format
