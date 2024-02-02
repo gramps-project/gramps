@@ -11,15 +11,15 @@
 # WaldiS <sto@tutanota.de>, 2021, 2022, 2023.
 # Michał Stojek <stojex@gmail.com>, 2022, 2023.
 # Kamil K <kamil030201@gmail.com>, 2022.
-# Jurek <jurrer1234@gmail.com>, 2023.
+# Jurek <jurrer1234@gmail.com>, 2023, 2024.
 # Milan <mobrcian@hotmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:31+0100\n"
-"PO-Revision-Date: 2023-11-03 05:01+0000\n"
-"Last-Translator: Milan <mobrcian@hotmail.com>\n"
+"PO-Revision-Date: 2024-02-02 16:01+0000\n"
+"Last-Translator: Jurek <jurrer1234@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/pl/>\n"
 "Language: pl\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.2-dev\n"
+"X-Generator: Weblate 5.4-dev\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ~/.poedit/a\n"
 
@@ -8644,7 +8644,7 @@ msgstr "Ogólne"
 
 #: ../gramps/gen/lib/notetype.py:78
 msgid "Research"
-msgstr "Informacje o badaczu"
+msgstr "Badania"
 
 #: ../gramps/gen/lib/notetype.py:79
 msgid "Analysis"
