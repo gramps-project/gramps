@@ -8190,6 +8190,10 @@ class GedcomParser(UpdateCallback):
             +1 RIN <AUTOMATED_RECORD_ID>  {0:1}
             +1 NOTE <NOTE_STRUCTURE> {0:m}
         """
+        if not self.use_def_src:
+            # no place to put data, so call it not recognized
+            self.__not_recognized(line, state)
+            return
         while True:
             line = self.__get_next_line()
             msg = ""
@@ -8209,11 +8213,12 @@ class GedcomParser(UpdateCallback):
                 msg = _("Submission: Ordinance process flag")
             elif line.token == TOKEN_NOTE or line.token == TOKEN_RNOTE:
                 self.__parse_note(line, self.def_src, state)
+                self.dbase.commit_source(self.def_src, self.trans)
             else:
                 self.__not_recognized(line, state)
                 continue
 
-            if self.use_def_src and msg != "":
+            if msg != "":
                 sattr = SrcAttribute()
                 sattr.set_type(msg)
                 sattr.set_value(line.data)
