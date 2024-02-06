@@ -830,6 +830,7 @@ def sanitize_event_ref(db, event_ref):
 
     new_ref.set_reference_handle(event_ref.get_reference_handle())
     new_ref.set_role(event_ref.get_role())
+    copy_citation_ref_list(db, event_ref, new_ref)
     copy_notes(db, event_ref, new_ref)
     copy_attributes(db, event_ref, new_ref)
 
