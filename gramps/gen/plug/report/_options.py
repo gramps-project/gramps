@@ -835,7 +835,6 @@ class OptionHandler(_options.OptionHandler):
 #
 # ------------------------------------------------------------------------
 class ReportOptions(_options.Options):
-
     """
     Defines options and provides handling interface.
 

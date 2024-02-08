@@ -439,7 +439,6 @@ class PlaceReport(Report):
 #
 # ------------------------------------------------------------------------
 class PlaceOptions(MenuReportOptions):
-
     """
     Defines options and provides handling interface.
     """

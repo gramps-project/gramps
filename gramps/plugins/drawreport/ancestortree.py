@@ -815,7 +815,6 @@ class AncestorTree(Report):
 #
 # ------------------------------------------------------------------------
 class AncestorTreeOptions(MenuReportOptions):
-
     """
     Defines options and provides handling interface.
     """

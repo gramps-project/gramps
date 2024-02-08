@@ -16,7 +16,7 @@ if getattr(sys, "frozen", False):
     environ["G_ENABLE_DIAGNOSTIC"] = "0"
     environ["G_PARAM_DEPRECATED"] = "0"
     environ["GRAMPS_RESOURCES"] = join(aio, "share")
-    environ["PATH"] = aio + ";" + aio + "\lib;" + environ["PATH"]
+    environ["PATH"] = aio + ";" + aio + "\\lib;" + environ["PATH"]
 
 
 def close():

@@ -2,6 +2,7 @@
  Use with:
  python3 setup.py build_exe --no-compress -O1
 """
+
 import sys
 import os
 import site
@@ -47,10 +48,7 @@ FULL_VERSION = ".".join(map(str, VERSION_TUPLE)) + VERSION_QUALIFIER
 NORMALIZED_VERSION = normalize(FULL_VERSION)
 
 VERSION = ".".join(map(str, VERSION_TUPLE)) + "." + str(VQ.get(VERSION_QUALIFIER, 99))
-COPYRIGHT = "Copyright 2020, Gramps developers.  GNU General Public License"
-# Prepare a temporay directory
-TEMP_DIR = tempfile.TemporaryDirectory()
-atexit.register(TEMP_DIR.cleanup)
+COPYRIGHT = "Copyright 2023, Gramps developers.  GNU General Public License"
 BASE_DIR = os.path.split(sys.prefix)[1]
 SETUP_DIR = os.path.dirname(os.path.realpath(__file__))
 SETUP_FILES = [
@@ -107,10 +105,6 @@ EXCLUDES = [
 
 REPLACE_PATHS = [
     ("*", "AIO/"),
-    (
-        site.getsitepackages()[0] + "cx_freeze-5.0-py3.6-mingw.egg/cx_Freeze",
-        "cx_Freeze/",
-    ),
 ]
 MISSING_DLL = [
     "libgtk-3-0.dll",
@@ -145,6 +139,7 @@ INCLUDE_FILES.append((lib23_path, "lib/lib2to3"))
 import pip
 
 libpip_path = dirname(pip.__file__)
+pip_path = os.path.join(libpip_path, "__main__.py")
 INCLUDE_FILES.append((libpip_path, "lib/pip"))
 import distlib
 
@@ -181,6 +176,7 @@ ADWAITA = [
     "16x16",
     "32x32",
     "cursors",
+    "scalable",
 ]
 for adw in ADWAITA:
     INCLUDE_FILES.append(
@@ -217,6 +213,9 @@ EXECUTABLES = [
         target_name="grampsd.exe",
         icon="grampsd.ico",
         copyright=COPYRIGHT,
+    ),
+    cx_Freeze.Executable(
+        pip_path, base="Console", target_name="pip.exe", icon="grampsc.ico"
     ),
 ]
 BUILD_EXE_OPTIONS = {

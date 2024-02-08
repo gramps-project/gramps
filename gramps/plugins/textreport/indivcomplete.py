@@ -227,7 +227,8 @@ class IndivCompleteReport(Report):
             ignore = _("%(str1)s, %(str2)s") % {"str1": "", "str2": ""}
             column_2 = self.combine("%(str1)s, %(str2)s", "%s", description, place_name)
 
-        endnotes = self._cite_endnote(event, prior=place_endnote)
+        event_ref_endnotes = self._cite_endnote(event_ref, prior=place_endnote)
+        endnotes = self._cite_endnote(event, prior=event_ref_endnotes)
 
         self.doc.start_row()
         self.write_cell(column_1)

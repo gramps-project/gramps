@@ -1533,7 +1533,6 @@ class DescendTree(Report):
 #
 # ------------------------------------------------------------------------
 class DescendTreeOptions(MenuReportOptions):
-
     """
     Defines options and provides handling interface.
     """

@@ -54,9 +54,9 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     </dependencies>
   </distutils>
  <distutils id="gramps" supports-non-srcdir-builds="no">
-    <branch module="gramps-project/gramps/archive/v5.2.0-beta1.tar.gz"
-	    repo="github-tarball" version="5.2.0-beta1"
-            checkoutdir="gramps-gramps-5.2.0-beta1" />
+    <branch module="gramps-project/gramps/archive/v5.2.0-beta2.tar.gz"
+	    repo="github-tarball" version="5.2.0-beta2"
+            checkoutdir="gramps-gramps-5.2.0-beta2" />
     <dependencies>
       <dep package="meta-gramps-modules"/>
     </dependencies>

@@ -237,7 +237,7 @@ Section /o "es_ES" d_es
 		File "..\share\enchant\hunspell\es_ES.*"
 SectionEnd
 Section /o "fi_FI" d_fi
-	SetOutPath "$INSTDIR\share\enchant\voikko\"
+	SetOutPath "$LocalAppdata\voikko\"
 		File /r "..\share\enchant\voikko"
 SectionEnd
 Section /o "fr_FR" d_fr

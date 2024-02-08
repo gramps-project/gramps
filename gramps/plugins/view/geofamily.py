@@ -557,7 +557,7 @@ class GeoFamily(GeoGraphyView):
         add_item.show()
         menu.append(add_item)
         self.add_event_bubble_message(event, lat, lon, prevmark, add_item)
-        menu.popup(None, None, None, None, event.button, event.time)
+        menu.popup_at_pointer(event)
         return 1
 
     def add_specific_menu(self, menu, event, lat, lon):

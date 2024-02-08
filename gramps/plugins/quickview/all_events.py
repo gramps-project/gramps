@@ -81,7 +81,7 @@ def run_fam(database, document, family):
     stab = QuickTable(sdb)
 
     # get the family events
-    event_list = [(_("Family"), x) for x in sdb.events(family)]
+    event_list = [(family, x) for x in sdb.events(family)]
 
     # get the events of father and mother
     # fathername = sdb.first_name(sdb.father(family))

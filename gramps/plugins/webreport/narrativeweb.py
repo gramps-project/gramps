@@ -318,6 +318,7 @@ class NavWebReport(Report):
         self.languages = None
         self.default_lang = None
         self.the_title = None
+        self.dir = "ltr"
 
     def write_report(self):
         """
@@ -570,7 +571,7 @@ class NavWebReport(Report):
 
             # build calendar for the current year
             if self.usecal:
-                self.calendar = CalendarPage(self, None, None)
+                self.calendar = CalendarPage(self, the_lang, None)
                 self.calendar.display_pages(the_lang, the_title)
 
             # build classes StatisticsPage
@@ -722,6 +723,11 @@ class NavWebReport(Report):
 
                         for citation_handle in event.get_citation_list():
                             self._add_citation(citation_handle, Person, person_handle)
+                        for citation_handle in evt_ref.get_citation_list():
+                            self._add_citation(citation_handle, Person, person_handle)
+                        for attr in evt_ref.get_attribute_list():
+                            for citation_handle in attr.get_citation_list():
+                                self._add_citation(citation_handle, Event, evt_ref.ref)
 
             ############### Families section ##############
             # Tell the families tab to display this individuals families
@@ -749,6 +755,10 @@ class NavWebReport(Report):
                                             place_handle, Person, person_handle, event
                                         )
                                     for cite_hdl in event.get_citation_list():
+                                        self._add_citation(
+                                            cite_hdl, Person, person_handle
+                                        )
+                                    for cite_hdl in evt_ref.get_citation_list():
                                         self._add_citation(
                                             cite_hdl, Person, person_handle
                                         )
@@ -2116,7 +2126,7 @@ class NavWebOptions(MenuReportOptions):
 
         @param: menu -- The menu for which we add options
         """
-        category_name = _("Html options")
+        category_name = _("HTML Options")
         addopt = partial(menu.add_option, category_name)
 
         self.__ext = EnumeratedListOption(_("File extension"), ".html")
@@ -2202,7 +2212,7 @@ class NavWebOptions(MenuReportOptions):
 
         @param: menu -- The menu for which we add options
         """
-        category_name = _("Extra pages")
+        category_name = _("Extra Pages")
         addopt = partial(menu.add_option, category_name)
         default_path_name = config.get("paths.website-extra-page-name")
         self.__extra_page_name = StringOption(_("Extra page name"), default_path_name)
@@ -2793,7 +2803,7 @@ class NavWebOptions(MenuReportOptions):
         category_name = _("Translations")
         addopt = partial(menu.add_option, category_name)
 
-        mess = _("second language")
+        mess = _("Second language")
         self.__lang_2 = stdoptions.add_extra_localization_option(
             menu, category_name, mess, "lang2"
         )
@@ -2802,7 +2812,7 @@ class NavWebOptions(MenuReportOptions):
         )
         self.__titl_2.set_help(_("Enter a title in the respective language"))
         addopt("title2", self.__titl_2)
-        mess = _("third language")
+        mess = _("Third language")
         self.__lang_3 = stdoptions.add_extra_localization_option(
             menu, category_name, mess, "lang3"
         )
@@ -2811,7 +2821,7 @@ class NavWebOptions(MenuReportOptions):
         )
         self.__titl_3.set_help(_("Enter a title in the respective language"))
         addopt("title3", self.__titl_3)
-        mess = _("fourth language")
+        mess = _("Fourth language")
         self.__lang_4 = stdoptions.add_extra_localization_option(
             menu, category_name, mess, "lang4"
         )
@@ -2820,7 +2830,7 @@ class NavWebOptions(MenuReportOptions):
         )
         self.__titl_4.set_help(_("Enter a title in the respective language"))
         addopt("title4", self.__titl_4)
-        mess = _("fifth language")
+        mess = _("Fifth language")
         self.__lang_5 = stdoptions.add_extra_localization_option(
             menu, category_name, mess, "lang5"
         )
@@ -2829,7 +2839,7 @@ class NavWebOptions(MenuReportOptions):
         )
         self.__titl_5.set_help(_("Enter a title in the respective language"))
         addopt("title5", self.__titl_5)
-        mess = _("sixth language")
+        mess = _("Sixth language")
         self.__lang_6 = stdoptions.add_extra_localization_option(
             menu, category_name, mess, "lang6"
         )

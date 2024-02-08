@@ -828,7 +828,6 @@ class DetAncestorReport(Report):
 #
 # ------------------------------------------------------------------------
 class DetAncestorOptions(MenuReportOptions):
-
     """
     Defines options and provides handling interface.
     """

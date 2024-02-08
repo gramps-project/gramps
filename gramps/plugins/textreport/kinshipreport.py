@@ -343,7 +343,6 @@ class KinshipReport(Report):
 #
 # ------------------------------------------------------------------------
 class KinshipOptions(MenuReportOptions):
-
     """
     Defines options and provides handling interface.
     """

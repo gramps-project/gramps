@@ -41,7 +41,7 @@ register(
     status=STABLE,
     fname="ageondate.py",
     authors=["Douglas Blank"],
-    authors_email=["dblank@cs.brynmawr.edu"],
+    authors_email=["doug.blank@gmail.com"],
     category=CATEGORY_QR_DATE,
     runfunc="run",
 )
@@ -62,7 +62,7 @@ register(
     status=STABLE,
     fname="attributematch.py",
     authors=["Douglas Blank"],
-    authors_email=["dblank@cs.brynmawr.edu"],
+    authors_email=["doug.blank@gmail.com"],
     category=CATEGORY_QR_MISC,
     runfunc="run",
 )
@@ -141,7 +141,7 @@ register(
     status=STABLE,
     fname="filterbyname.py",
     authors=["Douglas Blank"],
-    authors_email=["dblank@cs.brynmawr.edu"],
+    authors_email=["doug.blank@gmail.com"],
     category=CATEGORY_QR_MISC,
     runfunc="run",
 )
@@ -198,7 +198,7 @@ register(
     status=STABLE,
     fname="onthisday.py",
     authors=["Douglas Blank"],
-    authors_email=["dblank@cs.brynmawr.edu"],
+    authors_email=["doug.blank@gmail.com"],
     category=CATEGORY_QR_EVENT,
     runfunc="run",
 )
@@ -232,7 +232,7 @@ for category, item, trans in refitems:
         status=STABLE,
         fname="references.py",
         authors=["Douglas Blank"],
-        authors_email=["dblank@cs.brynmawr.edu"],
+        authors_email=["doug.blank@gmail.com"],
         category=category,
         runfunc="run_%s" % item,
     )
@@ -292,7 +292,7 @@ register(
     status=STABLE,
     fname="samesurnames.py",
     authors=["Douglas Blank"],
-    authors_email=["dblank@cs.brynmawr.edu"],
+    authors_email=["doug.blank@gmail.com"],
     category=CATEGORY_QR_PERSON,
     runfunc="run",
 )
@@ -307,7 +307,7 @@ register(
     status=STABLE,
     fname="samesurnames.py",
     authors=["Douglas Blank"],
-    authors_email=["dblank@cs.brynmawr.edu"],
+    authors_email=["doug.blank@gmail.com"],
     category=CATEGORY_QR_PERSON,
     runfunc="run_given",
 )
@@ -322,7 +322,7 @@ register(
     status=STABLE,
     fname="samesurnames.py",
     authors=["Douglas Blank"],
-    authors_email=["dblank@cs.brynmawr.edu"],
+    authors_email=["doug.blank@gmail.com"],
     category=CATEGORY_QR_MISC,
     runfunc="run_given",
 )

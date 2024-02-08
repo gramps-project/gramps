@@ -15,11 +15,11 @@
 
 <tip number="8"><b>Inverted Filtering</b><br/>Filters can easily be reversed by using the 'invert' option &quot;Return values that do not match the filter rules&quot;. For instance, by inverting the 'People with children' filter you can select all people without children.</tip>
 
-<tip number="9"><b>Locating People</b><br/>By default, each surname in the People View is listed only once. By clicking on the arrow to the left of a name, the list will expand to show all individuals with that last name. To locate any Family Name from a long list, select a Family Name (not a person) and start typing. The view will jump to the first Family Name matching the letters you enter.</tip>
+<tip number="9"><b>Locating People</b><br/>In the Grouped People View, each surname is listed only once. By clicking on the arrow to the left of a name, the list will expand to show all individuals with that last name. To locate any Family Name from a long list, select a Family Name (not a person) and start typing. The view will jump to the first Family Name matching the letters you enter.</tip>
 
 <tip number="10"><b>The Family View</b><br/>The Family View is used to display a typical family unit as two parents and their children.</tip>
 
-<tip number="11"><b>Changing the Active Person</b><br/>Changing the Active Person in views is easy. In the Relationship view just click on anyone. In the Ancestry View doubleclick on the person or right click to select any of their spouses, siblings, children or parents.</tip>
+<tip number="11"><b>Changing the Active Person</b><br/>Changing the Active Person in views is easy. In the Relationship view just click on anyone. In the Pedigree View doubleclick on the person or right click to select any of their spouses, siblings, children or parents.</tip>
 
 <tip number="12"><b>Who Was Born When?</b><br/>Under &quot;Tools &gt; Analysis and exploration &gt; Compare Individual Events...&quot; you can compare the data of individuals in your database. This is useful, say, if you wish to list the birth dates of everyone in your database. You can use a custom filter to narrow the results.</tip>
 
@@ -73,7 +73,7 @@
 
 <tip number="39"><b>Managing Names</b><br/>It is easy to manage people with several names in Gramps. In the Person Editor select the Names tab. You can add names of different types and set the preferred name by dragging it to the Preferred Name section.</tip>
 
-<tip number="40"><b>Ancestor View</b><br/>The Ancestry View displays a traditional pedigree chart. Hold the mouse over an individual to see more information about them or right click on an individual to access other family members and settings. Play with the settings to see the different options.</tip>
+<tip number="40"><b>Pedigree View</b><br/>The Pedigree View displays a traditional pedigree chart. Hold the mouse over an individual to see more information about them or right click on an individual to access other family members and settings. Play with the settings to see the different options.</tip>
 
 <tip number="41"><b>Managing Sources</b><br/>The Sources View shows a list of all sources in a single window. From here you can edit your sources, merge duplicates and see which individuals reference each source. You can use filters to group your sources.</tip>
 

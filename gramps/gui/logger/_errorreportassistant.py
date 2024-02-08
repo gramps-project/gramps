@@ -213,7 +213,7 @@ class ErrorReportAssistant(ManagedWindow, Gtk.Assistant):
             "cairo version  : %s"
             % (
                 str(VERSION),
-                str(sys.version).replace("\n", ""),
+                platform.python_version(),
                 BSDDB_STR,
                 sqlite,
                 get_env_var("LANG", ""),

@@ -43,14 +43,15 @@ from .utils import open_file_with_default_application as run_file
 # completely, or first part, so pt_BR if Brazilian portugeze wiki manual, and
 # nl for Dutch (nl_BE, nl_NL language code)
 MANUALS = {
-    "nl": "/nl",
-    "fr": "/fr",
-    "sq": "/sq",
-    "mk": "/mk",
     "de": "/de",
     "fi": "/fi",
+    "fr": "/fr",
+    "he": "/he",
+    "mk": "/mk",
+    "nl": "/nl",
     "ru": "/ru",
     "sk": "/sk",
+    "sq": "/sq",
 }
 
 # first, determine language code, so nl_BE --> wiki /nl

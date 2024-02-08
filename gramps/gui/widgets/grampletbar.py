@@ -48,6 +48,7 @@ import configparser
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk
+from gi.repository import Gdk
 
 # -------------------------------------------------------------------------
 #
@@ -57,7 +58,7 @@ from gi.repository import Gtk
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
-from gramps.gen.const import URL_MANUAL_PAGE, URL_WIKISTRING, VERSION_DIR
+from gramps.gen.const import URL_MANUAL_PAGE, VERSION_DIR
 from gramps.gen.config import config
 from gramps.gen.constfunc import win
 from gramps.gen.utils.configmanager import clean_up
@@ -81,13 +82,8 @@ from ..dialog import QuestionDialog
 # Constants
 #
 # -------------------------------------------------------------------------
-WIKI_HELP_PAGE = URL_WIKISTRING + URL_MANUAL_PAGE + "_-_Gramplets"
-WIKI_HELP_GRAMPLETBAR = (
-    URL_WIKISTRING + URL_MANUAL_PAGE + "_-_Main_Window#Bottombar_and_Sidebar"
-)
-WIKI_HELP_ABOUT_GRAMPLETS = (
-    URL_WIKISTRING + URL_MANUAL_PAGE + "_-_Gramplets#What_is_a_Gramplet.3F"
-)
+WIKI_HELP_PAGE = URL_MANUAL_PAGE + "_-_Gramplets"
+MAIN_HELP_PAGE = URL_MANUAL_PAGE + "_-_Main_Window"
 NL = "\n"
 
 
@@ -571,7 +567,9 @@ class GrampletBar(Gtk.Notebook):
         menu.append(rg_menu)
 
         menu.show_all()
-        menu.popup(None, None, cb_menu_position, button, 0, 0)
+        menu.popup_at_widget(
+            button, Gdk.Gravity.SOUTH_WEST, Gdk.Gravity.NORTH_WEST, None
+        )
 
     def __create_submenu(self, main_menu, gramplet_list, callback_func):
         """
@@ -642,11 +640,11 @@ class GrampletBar(Gtk.Notebook):
 
     def on_help_grampletbar_clicked(self, dummy):
         """Button: Display the relevant portion of Gramps manual"""
-        display_url(WIKI_HELP_GRAMPLETBAR)
+        display_help(MAIN_HELP_PAGE, "Bottombar_and_Sidebar")
 
     def on_help_gramplets_clicked(self, dummy):
         """Button: Display the relevant portion of Gramps manual"""
-        display_url(WIKI_HELP_ABOUT_GRAMPLETS)
+        display_help(WIKI_HELP_PAGE, "What_is_a_Gramplet?")
 
 
 # -------------------------------------------------------------------------
@@ -748,7 +746,7 @@ class DetachedWindow(ManagedWindow):
         elif response == Gtk.ResponseType.HELP:
             # translated name:
             if self.gramplet.help_url:
-                if self.gramplet.help_url.startswith("http://"):
+                if self.gramplet.help_url.startswith(("http://", "https://")):
                     display_url(self.gramplet.help_url)
                 else:
                     display_help(self.gramplet.help_url)
@@ -834,22 +832,3 @@ class TabLabel(Gtk.Box):
             self.closebtn.show()
         else:
             self.closebtn.hide()
-
-
-def cb_menu_position(*args):
-    """
-    Determine the position of the popup menu.
-    """
-    # takes two argument: menu, button
-    if len(args) == 2:
-        menu = args[0]
-        button = args[1]
-    # broken introspection can't handle MenuPositionFunc annotations corectly
-    else:
-        menu = args[0]
-        button = args[3]
-    ret_val, x_pos, y_pos = button.get_window().get_origin()
-    x_pos += button.get_allocation().x
-    y_pos += button.get_allocation().y + button.get_allocation().height
-
-    return (x_pos, y_pos, False)

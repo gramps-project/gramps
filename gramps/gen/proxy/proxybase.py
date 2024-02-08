@@ -163,17 +163,11 @@ class ProxyDbBase(DbReadBase):
 
     # Define default predicates for each object type
 
-    include_person = (
-        include_family
-    ) = (
-        include_event
-    ) = (
-        include_source
-    ) = (
+    include_person = include_family = include_event = include_source = (
         include_citation
-    ) = (
-        include_place
-    ) = include_media = include_repository = include_note = include_tag = None
+    ) = include_place = include_media = include_repository = include_note = (
+        include_tag
+    ) = None
 
     def get_person_cursor(self):
         return ProxyCursor(self.get_raw_person_data, self.get_person_handles)

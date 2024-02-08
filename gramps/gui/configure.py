@@ -690,7 +690,10 @@ class GrampsPreferences(ConfigureDialog):
         """
         Add the Researcher tab to the preferences.
         """
+        scroll_window = Gtk.ScrolledWindow()
+        scroll_window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         grid = self.create_grid()
+        scroll_window.add(grid)
 
         label = self.add_text(
             grid, _("Researcher"), 0, line_wrap=True, bold=True, start=0, stop=7
@@ -748,13 +751,16 @@ class GrampsPreferences(ConfigureDialog):
         )
         label.set_margin_top(10)
 
-        return _("Researcher"), grid
+        return _("Researcher"), scroll_window
 
     def add_idformats_panel(self, configdialog):
         """
         Add the ID prefix tab to the preferences.
         """
+        scroll_window = Gtk.ScrolledWindow()
+        scroll_window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         grid = self.create_grid()
+        scroll_window.add(grid)
 
         label = self.add_text(
             grid, _("ID Formats"), 0, line_wrap=True, bold=True, start=0, stop=7
@@ -858,7 +864,7 @@ class GrampsPreferences(ConfigureDialog):
         )
         label.set_margin_top(10)
 
-        return _("ID Formats"), grid
+        return _("ID Formats"), scroll_window
 
     def add_color_panel(self, configdialog):
         """
@@ -1559,6 +1565,17 @@ class GrampsPreferences(ConfigureDialog):
         grid.attach(obox, 2, row, 2, 1)
 
         row += 1
+        # Display rounded year
+        self.add_checkbox(
+            grid,
+            _("Round the year"),
+            row,
+            "preferences.age-rounded-year",
+            start=2,
+            stop=3,
+        )
+
+        row += 1
         # Display ages for events after death
         self.add_checkbox(
             grid,
@@ -1934,7 +1951,10 @@ class GrampsPreferences(ConfigureDialog):
         """
         Config tab with 'General' Gramps settings.
         """
+        scroll_window = Gtk.ScrolledWindow()
+        scroll_window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         grid = self.create_grid()
+        scroll_window.add(grid)
 
         label = self.add_text(
             grid,
@@ -2157,7 +2177,7 @@ class GrampsPreferences(ConfigureDialog):
         )
         label.set_margin_top(10)
 
-        return _("General"), grid
+        return _("General"), scroll_window
 
     def database_backend_changed(self, obj):
         """
@@ -2192,7 +2212,10 @@ class GrampsPreferences(ConfigureDialog):
         """
         Config tab for family tree, backup and Media path settings.
         """
+        scroll_window = Gtk.ScrolledWindow()
+        scroll_window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         grid = self.create_grid()
+        scroll_window.add(grid)
 
         label = self.add_text(
             grid, _("Database Setting"), 0, line_wrap=True, bold=True, start=0, stop=7
@@ -2333,7 +2356,7 @@ class GrampsPreferences(ConfigureDialog):
         )
         label.set_margin_top(10)
 
-        return _("Family Tree"), grid
+        return _("Family Tree"), scroll_window
 
     def add_import_panel(self, configdialog):
         """

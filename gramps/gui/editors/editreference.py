@@ -128,6 +128,17 @@ class EditReference(ManagedWindow, DbGUIElement):
 
     def define_expander(self, expander):
         expander.set_expanded(True)
+        expander.connect("activate", self.__on_expand)
+
+    def __on_expand(self, expander):
+        """
+        Sets the packing of the expander widget to depend on whether or not
+        it is expanded.
+        """
+        state = not expander.get_expanded()
+        parent = expander.get_parent()
+        parent.set_child_packing(expander, state, state, 0, Gtk.PackType.START)
+        expander.set_vexpand(state)
 
     def _post_init(self):
         """

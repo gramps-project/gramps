@@ -78,9 +78,9 @@ class User(user.UserBase):
         if auto_accept:
             self.prompt = yes
         if quiet:
-            self.begin_progress = (
-                self.end_progress
-            ) = self.step_progress = self._default_callback = yes
+            self.begin_progress = self.end_progress = self.step_progress = (
+                self._default_callback
+            ) = yes
 
     def begin_progress(self, title, message, steps):
         """
@@ -96,31 +96,35 @@ class User(user.UserBase):
         :type steps: int
         :returns: none
         """
-        self._fileout.write(message)
         self.steps = steps
         self.current_step = 0
-        if self.steps == 0:
-            self._fileout.write(_SPINNER[self.current_step])
-        else:
-            self._fileout.write("00%")
+        self.display_progress()
+        self._fileout.write(message)
 
     def step_progress(self):
         """
         Advance the progress meter.
         """
         self.current_step += 1
-        if self.steps == 0:
-            self.current_step %= 4
-            self._fileout.write("\r  %s  " % _SPINNER[self.current_step])
-        else:
-            percent = int((float(self.current_step) / self.steps) * 100)
-            self._fileout.write("\r%02d%%" % percent)
+        self.display_progress()
 
     def end_progress(self):
         """
         Stop showing the progress indicator to the user.
         """
-        self._fileout.write("\r100%\n")
+        self.display_progress(end=True)
+
+    def display_progress(self, end=False):
+        if end:
+            self.steps = self.current_step = 1
+        if self.steps == 0:
+            self.current_step %= 4
+            self._fileout.write("\r  %s  " % _SPINNER[self.current_step])
+        else:
+            percent = int((float(self.current_step) / self.steps) * 100)
+            self._fileout.write("\r%3d%% " % percent)
+        if end:
+            self._fileout.write("\n")
 
     def prompt(
         self,

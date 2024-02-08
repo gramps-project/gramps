@@ -614,7 +614,7 @@ class GeoPerson(GeoGraphyView):
         center.connect("activate", self.center_here, event, lat, lon, prevmark)
         itemoption.append(center)
         menu.show()
-        menu.popup(None, None, None, None, event.button, event.time)
+        menu.popup_at_pointer(event)
         return 1
 
     def add_specific_menu(self, menu, event, lat, lon):

@@ -45,6 +45,7 @@ gramps/gen/datehandler/_date_el.py
 gramps/gen/datehandler/_date_es.py
 gramps/gen/datehandler/_date_fi.py
 gramps/gen/datehandler/_date_fr.py
+gramps/gen/datehandler/_date_he.py
 gramps/gen/datehandler/_date_hr.py
 gramps/gen/datehandler/_date_hu.py
 gramps/gen/datehandler/_date_is.py
@@ -568,6 +569,7 @@ gramps/plugins/rel/rel_de.py
 gramps/plugins/rel/rel_es.py
 gramps/plugins/rel/rel_fi.py
 gramps/plugins/rel/rel_fr.py
+gramps/plugins/rel/rel_he.py
 gramps/plugins/rel/rel_hr.py
 gramps/plugins/rel/rel_hu.py
 gramps/plugins/rel/rel_is.py

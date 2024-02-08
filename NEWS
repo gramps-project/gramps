@@ -1,3 +1,62 @@
+2023-08-25
+Version 5.2.0-beta2
+* Updated translations: ca, cs, da, de, en_GB, es, fi, he, hr, it, nb, nl, pl,
+  pt_BR, pt_PT, ru, sk, sv, tr, uk.
+* Add option to exclude fan chart title.
+* Prevent fan chart title being overwritten by the chart. Fixes #12926.
+* No longer state that Gramps will close in the backup message. Fixes #12984.
+* Clean up some Gdk Screen deprecations.
+* Fix Gedcom import tagging a note with an undefined tag handle. Fixes #12985.
+* Fix crash when printing notes during endnote creation. Fixes #12983.
+* Fix `trans_text` keyword in `xgettext`. Fixes #12982.
+* Fix vertical expansion of family tree manager list.
+* Fix error 404 with openstreetmap map service.
+* Restrict access to Stamen maps. Fixes #12971.
+* Track column width settings for all editor tabs separately.
+  Fixes #12945, #12970.
+* Add support for Hebrew prefixes.
+* Add Farsi and Galician to Microsoft Windows Locale list.
+* Add a scrolled window to the preferences data tab. Fixes #12968.
+* Addon Manager:
+  * Rename "Upgrade" to "Update".
+  * Fix addon settings bug.
+  * Add installation status filter.
+  * Add project up, down and restore buttons.
+  * Add help button.
+* Fix error when deleting a surname. Fixes #11744, #12626, #12629, #12963.
+* Fix glocale problems on Windows.
+* Fix system locale detection on MS Windows.
+* Add Windows AIO workflow.
+* Fixes for the Windows AIO build:
+  * Convert packages from python3 to python.
+  * Replace `share.tgz` with downloaded files.
+  * Add missing dictionaries.
+  * Add missing D-Bus executable.
+  * Use newly available bsddb3 package.
+* Improved organization of the Addon Manager filter lists. Fixes #12958.
+  * Update the plugin type names and sort them alphabetically.
+  * Swap the order of "Expert" and "Developer" in the audience list.
+  * Reverse the order of the status list.
+* Include event reference citations and notes in Gedcom export.
+* Better URLs for gramplet bar help. Fixes #12957.
+* Tidy up strings in preferences.
+* Fix spelling mistake in Pro-Gen importer.
+* Improve Addon Manager search. Fixes #12955.
+* Check for Windows executables in addon requirements. Fixes #12954.
+* Do not strip checksum of media object in private proxy.
+* Update po snippet generation to output msgctxt.
+* Save column sizes before a rebuild. Save column sizes as floats rather than
+  integers. Fixes #12943.
+* Set default column size in list views to sensible defaults.  Fixes #12944.
+* String improvements.
+* Update authors file.
+* Fix changes reverted by mistake.  This restores a couple of autobackup
+  intervals and removes bsddb from the list of backends.
+* Fix bottombar not saving size. Fixes #12941.
+* Fix incorrect genealogical symbols. Fixes #12937.
+* Mac: Use tarball for osm-gps-map instead of git repository.
+* Changes for Black integration.
+
 2023-08-01
 Version 5.2.0-beta1
 * Highlights

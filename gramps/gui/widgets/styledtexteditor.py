@@ -629,7 +629,7 @@ class StyledTextEditor(Gtk.TextView):
             ("UNDERLINE", self._on_toggle_action_activate, "<PRIMARY>u", False),
             ("STRIKETHROUGH", self._on_toggle_action_activate, "<PRIMARY>s", False),
             ("SUPERSCRIPT", self._on_toggle_action_activate, "<PRIMARY>p", False),
-            ("SUBSCRIPT", self._on_toggle_action_activate, "<PRIMARY>c", False),
+            ("SUBSCRIPT", self._on_toggle_action_activate, "<PRIMARY>r", False),
             ("FONTCOLOR", self._on_action_activate),
             ("HIGHLIGHT", self._on_action_activate),
             ("LINK", self._on_link_activate),

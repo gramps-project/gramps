@@ -299,8 +299,8 @@ class Navigator:
             button.grab_focus()
             button.set_active(True)
 
-            self.menu.popup(
-                None, None, cb_menu_position, button, event.button, event.time
+            self.menu.popup_at_widget(
+                button, Gdk.Gravity.SOUTH_WEST, Gdk.Gravity.NORTH_WEST, None
             )
 
     def cb_menu_activate(self, menu, index):
@@ -339,25 +339,6 @@ class Navigator:
 # Functions
 #
 # -------------------------------------------------------------------------
-def cb_menu_position(*args):
-    """
-    Determine the position of the popup menu.
-    """
-    # takes two argument: menu, button
-    if len(args) == 2:
-        menu = args[0]
-        button = args[1]
-    # broken introspection can't handle MenuPositionFunc annotations corectly
-    else:
-        menu = args[0]
-        button = args[3]
-    ret_val, x_pos, y_pos = button.get_window().get_origin()
-    x_pos += button.get_allocation().x
-    y_pos += button.get_allocation().y + button.get_allocation().height
-
-    return (x_pos, y_pos, False)
-
-
 def cb_menu_deactivate(menu, button):
     """
     Called when the popup menu disappears.

@@ -696,7 +696,6 @@ class FamilyGroup(Report):
 #
 # ------------------------------------------------------------------------
 class FamilyGroupOptions(MenuReportOptions):
-
     """
     Defines options and provides handling interface.
     """

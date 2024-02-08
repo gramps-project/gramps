@@ -63,7 +63,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
     Derives from the EmbeddedList class.
     """
 
-    _HANDLE_COL = 9  # Column number from CitationRefModel
+    _HANDLE_COL = 10  # Column number from CitationRefModel
     _DND_TYPE = DdTargets.CITATION_LINK
     _DND_EXTRA = DdTargets.SOURCE_LINK
 
@@ -83,11 +83,12 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         (_("Author"), 1, 200, TEXT_COL, -1, None),
         (_("Date"), 8, 180, MARKUP_COL, -1, None),
         (_("Publisher"), 3, 200, TEXT_COL, -1, None),
-        (_("Confidence Level"), 4, 120, TEXT_COL, -1, None),
+        (_("Confidence"), 9, 120, MARKUP_COL, -1, None),
         (_("Page"), 5, 100, TEXT_COL, -1, None),
         (_("ID"), 6, 80, TEXT_COL, -1, None),
         (_("Private"), 7, 30, ICON_COL, -1, "gramps-lock"),
         (_("Sorted date"), 8, 80, TEXT_COL, -1, None),
+        (_("Sorted confidence"), 9, 120, TEXT_COL, -1, None),
     ]
 
     def __init__(self, dbstate, uistate, track, data, config_key, callertitle=None):

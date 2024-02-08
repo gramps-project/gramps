@@ -130,7 +130,7 @@ class Descendant(Gramplet):
             item.show()
             menu.append(item)
         self.menu = menu
-        self.menu.popup(None, None, None, None, event.button, event.time)
+        self.menu.popup_at_pointer(event)
 
     def on_copy_all(self, treeview):
         """

@@ -903,6 +903,7 @@ class EditFilter(ManagedWindow):
 
         objectlist = self.get_widget("rule_list")
         self.rule_list = PersistentTreeView(uistate, "filt_rule")
+        self.rule_list.set_vexpand(True)
         scrolledwindow = self.get_widget("scrolledwindow1")
         scrolledwindow.remove(objectlist)
         scrolledwindow.add(self.rule_list)
@@ -996,11 +997,7 @@ class EditFilter(ManagedWindow):
         op = (
             "and"
             if val == 0
-            else "or"
-            if val == 1
-            else "one"
-            if val == 2
-            else "sequence"
+            else "or" if val == 1 else "one" if val == 2 else "sequence"
         )
         self.logical.set_active(val)
         self.filter.set_logical_op(op)

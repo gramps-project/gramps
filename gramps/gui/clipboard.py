@@ -1075,9 +1075,9 @@ class ClipboardListView:
 
     def register_wrapper_class(self, wrapper_class):
         for drop_target in wrapper_class.DROP_TARGETS:
-            self._target_type_to_wrapper_class_map[
-                drop_target.drag_type
-            ] = wrapper_class
+            self._target_type_to_wrapper_class_map[drop_target.drag_type] = (
+                wrapper_class
+            )
 
     # Methods for rendering the cells.
 
@@ -1567,7 +1567,7 @@ class MultiTreeView(PersistentTreeView):
                     popup.append(menu_item)
                     menu_item.show()
             if popup.get_children():  # Show the popup menu:
-                popup.popup(None, None, None, None, 3, event.time)
+                popup.popup_at_pointer(event)
             return True
         elif event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS and event.button == 1:
             model, paths = self.get_selection().get_selected_rows()

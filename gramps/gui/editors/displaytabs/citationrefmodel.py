@@ -39,7 +39,9 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 class CitationRefModel(Gtk.ListStore):
     def __init__(self, citation_list, db):
-        Gtk.ListStore.__init__(self, str, str, str, str, str, str, str, bool, str, str)
+        Gtk.ListStore.__init__(
+            self, str, str, str, str, str, str, str, bool, str, int, str
+        )
         self.db = db
         dbgsfh = self.db.get_source_from_handle
         for handle in citation_list:
@@ -57,6 +59,7 @@ class CitationRefModel(Gtk.ListStore):
                     citation.gramps_id,
                     citation.get_privacy(),
                     self.column_sort_date(citation),
+                    self.column_sort_confidence(citation),
                     handle,
                 ]
             )
@@ -74,3 +77,7 @@ class CitationRefModel(Gtk.ListStore):
             return "%09d" % date.get_sort_value()
         else:
             return ""
+
+    def column_sort_confidence(self, citation):
+        confidence = citation.get_confidence_level()
+        return confidence

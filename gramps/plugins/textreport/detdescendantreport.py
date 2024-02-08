@@ -1020,7 +1020,6 @@ class DetDescendantReport(Report):
 #
 # ------------------------------------------------------------------------
 class DetDescendantOptions(MenuReportOptions):
-
     """
     Defines options and provides handling interface.
     """

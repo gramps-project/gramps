@@ -199,7 +199,7 @@ class EmbeddedList(ButtonTab):
                 item.set_sensitive(False)
             item.show()
             menu.append(item)
-        menu.popup(None, None, None, None, event.button, event.time)
+        menu.popup_at_pointer(event)
         return True
 
     def find_index(self, obj):

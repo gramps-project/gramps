@@ -32,6 +32,7 @@ from html import escape
 import threading
 import sys
 import subprocess
+import importlib
 
 # -------------------------------------------------------------------------
 #
@@ -87,7 +88,8 @@ from gramps.gen.plug.utils import get_all_addons, available_updates
 from ..display import display_help, display_url
 from gramps.gui.widgets import BasicLabel, SimpleButton
 from gramps.gen.utils.requirements import Requirements
-from gramps.gen.const import USER_PLUGINS
+from gramps.gen.const import USER_PLUGINS, LIB_PATH
+from gramps.gen.constfunc import win
 
 
 def display_message(message):
@@ -203,8 +205,18 @@ class AddonRow(Gtk.ListBoxRow):
         context = self.get_style_context()
         context.add_class("addon-row")
 
-        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        vbox.set_spacing(6)
+        self.vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        self.vbox.set_spacing(6)
+        self.__build_gui(self.vbox, self.addon, self.req)
+        self.add(self.vbox)
+        self.show_all()
+
+    def __build_gui(self, vbox, addon, req):
+        """
+        Build the GUI for this addon row.
+        """
+        for child in vbox.get_children():
+            vbox.remove(child)
 
         text = escape(addon["n"])
         title = Gtk.Label()
@@ -265,9 +277,7 @@ class AddonRow(Gtk.ListBoxRow):
             bb.pack_end(b4, False, False, 0)
 
         vbox.pack_start(bb, False, False, 0)
-
-        self.add(vbox)
-        self.show_all()
+        vbox.show_all()
 
     def __on_install_clicked(self, button, addon):
         """
@@ -277,7 +287,13 @@ class AddonRow(Gtk.ListBoxRow):
         for package in self.req.install(addon):
             try:
                 subprocess.check_output(
-                    [sys.executable, "-m", "pip", "install", package],
+                    [
+                        "pip.exe" if win() else "pip",
+                        "install",
+                        "--target",
+                        LIB_PATH,
+                        package,
+                    ],
                     stderr=subprocess.STDOUT,
                 )
             except subprocess.CalledProcessError as err:
@@ -289,11 +305,28 @@ class AddonRow(Gtk.ListBoxRow):
                 )
                 return
 
+        # Invalidate the caches to ensure that the new modules will be found.
+        importlib.invalidate_caches()
+
+        if not self.req.check_addon(addon):
+            InfoDialog(
+                _("Module installation failed"),
+                _("Gramps was unable to install the required modules"),
+                parent=self.window,
+            )
+            return
+
         # Install addon
         path = addon["_u"] + "/download/" + addon["z"]
         load_addon_file(path)
         self.manager.install_addon(addon["i"])
-        self.manager.refresh()
+
+        # Refresh this row
+        pmgr = GuiPluginManager.get_instance()
+        plugin = pmgr.get_plugin(addon["i"])
+        if plugin:
+            self.addon["_v"] = plugin.version
+        self.__build_gui(self.vbox, self.addon, self.req)
 
     def __on_wiki_clicked(self, button, url):
         """
@@ -390,9 +423,9 @@ class AddonManager(ManagedWindow):
         self.addon_combo = Gtk.ComboBoxText()
         self.addon_combo.set_entry_text_column(0)
         self.addon_combo.append_text(_("All addons"))
-        self.addon_combo.append_text(_("Uninstalled"))
+        self.addon_combo.append_text(_("Not installed"))
         self.addon_combo.append_text(_("Installed"))
-        self.addon_combo.append_text(_("Update"))
+        self.addon_combo.append_text(_("Updates"))
         self.addon_combo.set_active(0)
         self.addon_combo.connect("changed", self.__combo_changed)
         hbox.pack_start(self.addon_combo, False, False, 0)
@@ -437,13 +470,13 @@ class AddonManager(ManagedWindow):
         sw.add(self.lb)
         vbox.pack_start(sw, True, True, 0)
 
-        book.append_page(vbox, Gtk.Label(_("Addons")))
+        book.append_page(vbox, Gtk.Label(label=_("Addons")))
 
         grid = self.create_settings_panel()
-        book.append_page(grid, Gtk.Label(_("Settings")))
+        book.append_page(grid, Gtk.Label(label=_("Settings")))
 
         grid = self.create_projects_panel()
-        book.append_page(grid, Gtk.Label(_("Projects")))
+        book.append_page(grid, Gtk.Label(label=_("Projects")))
 
         for project in self.projects:
             self.project_list.add(ProjectRow(self, project))
@@ -462,7 +495,9 @@ class AddonManager(ManagedWindow):
         """
         Display the Addon Manager help page.
         """
-        display_help("Addon_Manager")
+        display_help(
+            "Gramps_5.2_Wiki_Manual_-_Navigation", "Using_the_Addon_Manager..."
+        )
 
     def __create_filter_combo(self, store, default):
         """
@@ -531,7 +566,7 @@ class AddonManager(ManagedWindow):
         """
         A placeholder label if no addons are listed.
         """
-        label = Gtk.Label('<span size="larger" weight="bold">%s</span>' % text)
+        label = Gtk.Label(label='<span size="larger" weight="bold">%s</span>' % text)
         label.set_use_markup(True)
         label.show()
         self.lb.set_placeholder(label)
@@ -585,13 +620,13 @@ class AddonManager(ManagedWindow):
         audience_iter = self.audience_combo.get_active_iter()
         status_iter = self.status_combo.get_active_iter()
 
-        if addon_text == _("Uninstalled"):
+        if addon_text == _("Not installed"):
             if "_v" in row.addon:
                 return False
         if addon_text == _("Installed"):
             if "_v" not in row.addon:
                 return False
-        if addon_text == _("Update"):
+        if addon_text == _("Updates"):
             if "_v" not in row.addon:
                 return False
             if row.addon["v"] == row.addon["_v"]:
@@ -648,7 +683,6 @@ class AddonManager(ManagedWindow):
         self.project_list.set_selection_mode(Gtk.SelectionMode.SINGLE)
         self.project_list.connect("row-activated", self.__edit_project)
         self.project_list.connect("row-selected", self.__project_selected)
-        self.project_list.set_margin_start(6)
 
         sw = Gtk.ScrolledWindow()
         sw.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
@@ -697,14 +731,14 @@ class AddonManager(ManagedWindow):
 
         row = 1
         install = Gtk.CheckButton()
-        install.set_label(_("Allow Gramps to install required python modules"))
+        install.set_label(_("Allow Gramps to install required Python modules"))
         active = config.get("behavior.addons-allow-install")
         install.set_active(active)
         install.connect("toggled", self.install_changed)
         grid.attach(install, 1, row, 1, 1)
 
         heading2 = Gtk.Label()
-        text = _("Updates")
+        text = _("Scheduled update checks")
         heading2.set_text('<span weight="bold">%s</span>' % text)
         heading2.set_use_markup(True)
         heading2.set_halign(Gtk.Align.START)
@@ -778,7 +812,7 @@ class AddonManager(ManagedWindow):
             title = _("New Project")
         else:
             title = _("Edit Project")
-        dialog = Gtk.Dialog(title=title, transient_for=self.window)
+        dialog = Gtk.Dialog(title=title, transient_for=self.window, default_width=600)
         dialog.set_border_width(6)
         dialog.vbox.set_spacing(6)
 
@@ -793,7 +827,7 @@ class AddonManager(ManagedWindow):
         name.set_text(row.project[0])
         name.set_activates_default(True)
         grid.attach(name, 1, 0, 1, 1)
-        label = Gtk.Label(label=_("%s: ") % _("Url"))
+        label = Gtk.Label(label=_("%s: ") % _("URL"))
         label.set_halign(Gtk.Align.END)
         grid.attach(label, 0, 1, 1, 1)
         url = Gtk.Entry()

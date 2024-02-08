@@ -45,12 +45,12 @@ class ResourcePath:
     The package path will be one of the following:
 
     <prefix>/lib/pythonX.Y/site-packages
-    <prefix>\Lib\site-packages
+    <prefix>\\Lib\\site-packages
 
     <home>/lib/python
 
     <userbase>/lib/pythonX.Y/site-packages
-    <userbase>\PythonXY\site-packages
+    <userbase>\\PythonXY\\site-packages
 
     Where <prefix>, <home> and <userbase> are the resource paths used in the
     Prefix, Home and User installation schemes.

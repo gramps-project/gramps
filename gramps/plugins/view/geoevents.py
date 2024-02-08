@@ -307,12 +307,16 @@ class GeoEvents(GeoGraphyView):
                                 if hdle:
                                     mother = dbstate.db.get_person_from_handle(hdle)
                                 descr2 = ("%(father)s - %(mother)s") % {
-                                    "father": _nd.display(father)
-                                    if father is not None
-                                    else "?",
-                                    "mother": _nd.display(mother)
-                                    if mother is not None
-                                    else "?",
+                                    "father": (
+                                        _nd.display(father)
+                                        if father is not None
+                                        else "?"
+                                    ),
+                                    "mother": (
+                                        _nd.display(mother)
+                                        if mother is not None
+                                        else "?"
+                                    ),
                                 }
                         else:
                             descr2 = _("incomplete or unreferenced event ?")
@@ -456,7 +460,7 @@ class GeoEvents(GeoGraphyView):
         bookm.show()
         bookm.connect("activate", self.add_bookmark_from_popup, hdle)
         itemoption.append(bookm)
-        menu.popup(None, None, None, None, event.button, event.time)
+        menu.popup_at_pointer(event)
         return 1
 
     def add_specific_menu(self, menu, event, lat, lon):

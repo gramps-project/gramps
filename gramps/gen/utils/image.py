@@ -182,31 +182,12 @@ def image_size(source):
     from gi.repository import GLib
 
     try:
-        import re
-        import magic
+        # For performance reasons, we'll try to get image size from imagesize.
+        import imagesize
 
-        # For performance reasons, we'll try to get image size from magic.
-        # This avoid to load the image in memory. This is a real improvement
-        # when we have many big images.
-        # Used in odfdoc, rtfdoc and webreport and tested with png, gif, jpeg,
-        # bmp, tiff
-        #
-        #            file size     with magic  without (Gdk)   ratio
-        # example 1 :     256k        0.00080        0.00575       7
-        # example 2 :      21M        0.00171        0.55860     326
-        img = magic.from_file(source)
-        found = img.find("TIFF")
-        if found == 0:
-            width = re.search("width=(\d+)", img).groups()
-            height = re.search("height=(\d+)", img).groups()
-            return (int(width[0]), int(height[0]))
-        found = img.find("precision")
-        if found > 0:
-            img = img[found:]
-        size = re.search("(\d+)\s*x\s*(\d+)", img).groups()
-        return (int(size[0]), int(size[1]))
+        return imagesize.get(source)
     except (ImportError, FileNotFoundError):
-        # python-magic is not installed or the file does not exist.
+        # python-imagesize is not installed or the file does not exist.
         # So Trying to get image size with Gdk.
         try:
             img = GdkPixbuf.Pixbuf.new_from_file(source)

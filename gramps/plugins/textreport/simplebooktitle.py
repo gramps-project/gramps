@@ -126,7 +126,6 @@ class SimpleBookTitle(Report):
 #
 # ------------------------------------------------------------------------
 class SimpleBookTitleOptions(MenuReportOptions):
-
     """
     Defines options and provides handling interface.
     """

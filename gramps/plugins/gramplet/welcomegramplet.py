@@ -102,6 +102,8 @@ class WelcomeGramplet(Gramplet):
         self.texteditor = StyledTextEditor()
         self.texteditor.set_editable(False)
         self.texteditor.set_wrap_mode(Gtk.WrapMode.WORD)
+        self.texteditor.set_left_margin(6)
+        self.texteditor.set_right_margin(6)
         scrolledwindow.add(self.texteditor)
 
         self.display_text()

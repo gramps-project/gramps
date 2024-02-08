@@ -459,7 +459,6 @@ class OptionHandler:
 #
 # ------------------------------------------------------------------------
 class Options:
-
     """
     Defines options and provides handling interface.
 

@@ -73,6 +73,12 @@ The following packages are **STRONGLY RECOMMENDED** to be installed:
 
   Used by Graphviz reports to help create PDF files.
 
+* **python-imagesize**
+
+ Provides better image processing performance. If this module is not available,
+ we continue to use Gdk. This provides a real improvement when we need to
+ process many big images.
+
 The following packages are optional:
 ------------------------------------
 * **gspell**
@@ -120,24 +126,6 @@ The following packages are optional:
 
  Python bindings of fontconfig are required for displaying
  genealogical symbols
-
-* **magic**
-
- Python magic bindings required to have better performances with image
- processing.
- If this module is not available, we continue to use Gdk.
- This avoid to load the image in memory. This is a real improvement
- when we have many big images.
- Used in odfdoc, rtfdoc and webreport and tested with png, gif, jpeg, bmp, tiff
- #
- #            file size     with magic  without (Gdk)   ratio
- # example 1 :     256k        0.00080        0.00575       7
- # example 2 :      21M        0.00171        0.55860     326
-
- Debian, Ubuntu, ... : python3-magic
- Fedora, Redhat, ... : python3-magic
- openSUSE            : python-magic
- ArchLinux           : python-magic
 
 Optional packages required by Third-party Addons
 ------------------------------------------------

@@ -235,6 +235,30 @@ plg.lang_list = [
     "Français_France",
 ]
 
+# he
+plg = newplugin()
+plg.id = "relcalc_he"
+plg.name = _("Hebrew Relationship Calculator")
+plg.description = _("Calculates relationships between people")
+plg.version = "1.0"
+plg.gramps_target_version = MODULE_VERSION
+plg.status = STABLE
+plg.fname = "rel_he.py"
+plg.ptype = RELCALC
+plg.relcalcclass = "RelationshipCalculator"
+plg.lang_list = [
+    "עברית",
+    "Ivrit",
+    "hebrew",
+    "Hebrew",
+    "hr",
+    "HR",
+    "he_IL",
+    "he_IL.UTF-8",
+    "he_IL.utf-8",
+    "Hebrew_Israel",
+]
+
 # hr
 plg = newplugin()
 plg.id = "relcalc_hr"

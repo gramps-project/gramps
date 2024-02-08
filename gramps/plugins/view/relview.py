@@ -1512,7 +1512,7 @@ class RelationshipView(NavigationView):
             self.my_menu = Gtk.Menu()
             self.my_menu.set_reserve_toggle_size(False)
             self.my_menu.append(self.build_menu_item(handle))
-            self.my_menu.popup(None, None, None, None, event.button, event.time)
+            self.my_menu.popup_at_pointer(event)
 
     def build_menu_item(self, handle):
         person = self.dbstate.db.get_person_from_handle(handle)

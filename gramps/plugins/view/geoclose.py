@@ -691,7 +691,7 @@ class GeoClose(GeoGraphyView):
                     )
                     itemoption.append(center)
                     menu.show()
-                    menu.popup(None, None, None, None, event.button, event.time)
+                    menu.popup_at_pointer(event)
         return 0
 
     def add_specific_menu(self, menu, event, lat, lon):

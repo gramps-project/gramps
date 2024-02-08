@@ -55,8 +55,8 @@ class DateParserCZ(DateParser):
         "před": Date.MOD_BEFORE,
         "kolem": Date.MOD_ABOUT,
         "po": Date.MOD_AFTER,
-        "from": Date.MOD_FROM,
-        "to": Date.MOD_TO,
+        "od": Date.MOD_FROM,
+        "do": Date.MOD_TO,
     }
 
     quality_to_int = {
