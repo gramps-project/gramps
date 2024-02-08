@@ -173,6 +173,26 @@ class TestUser_progress(unittest.TestCase):
             self.user.step_progress()
         self.user.end_progress()
 
+    def test_progress_percent(self):
+        self.user.begin_progress("Foo", "Bar", 20)
+        self.user._fileout.write.assert_called_with("Bar")
+        for i in range(20):
+            self.user.step_progress()
+            pct = (i + 1) * 5
+            self.user._fileout.write.assert_called_with("\r{:3d}% ".format(pct))
+        self.user.end_progress()
+        self.user._fileout.write.assert_called_with("\n")
+
+    def test_progress_spinner(self):
+        self.user.begin_progress("Foo", "Bar", 0)
+        self.user._fileout.write.assert_called_with("Bar")
+        for i in range(5):
+            self.user.step_progress()
+            spn = user._SPINNER[(i + 1) % 4]
+            self.user._fileout.write.assert_called_with("\r  {}  ".format(spn))
+        self.user.end_progress()
+        self.user._fileout.write.assert_called_with("\n")
+
 
 if __name__ == "__main__":
     unittest.main()
