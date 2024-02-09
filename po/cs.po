@@ -4,7 +4,7 @@
 # Jiří Pejchal <jiri.pejchal@gmail.com>, 2005
 # Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006 - 2020, 2021, 2022.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
-# Milan <mobrcian@hotmail.com>, 2021, 2022, 2023.
+# Milan <mobrcian@hotmail.com>, 2021, 2022, 2023, 2024.
 #
 # Common terms and translations:
 # ancestor        předek
@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2023-11-21 13:04+0000\n"
+"PO-Revision-Date: 2024-02-09 07:47+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -48,8 +48,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.2\n"
+"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
+"X-Generator: Weblate 5.4-dev\n"
 "X-Poedit-Bookmarks: 2035,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -23351,12 +23351,14 @@ msgid "Total people"
 msgstr "Celkem osob"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:30
+#, fuzzy
 msgid "Gramps_5.2_Wiki_Manual_-_Gramplets#Gramplet_List"
-msgstr ""
+msgstr "Gramps_5.2_Wiki_Manual_-_Gramplets#Gramplet_List"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:31
+#, fuzzy
 msgid "Gramps_5.2_Wiki_Manual_-_Tools#Debug"
-msgstr ""
+msgstr "Gramps_5.2_Wiki_Manual_-_Tools#Debug"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:51
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:59
