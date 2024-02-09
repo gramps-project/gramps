@@ -1,3 +1,137 @@
+2024-02-09
+Version 5.2.0-rc1
+* Updated translations: ar, bg, cs, da, de, de_AT, en_GB, es, fi, fr, he, hr,
+  mk, nb, nl, pl, pt_PT, ru, sk, sr, sv, tr, uk, zh_CN.
+* Add Hebrew relationship calculator.
+* Add Hebrew date handler.
+* Refine Hebrew About modifiers in date parser.
+* Add Hebrew to the list of user manual translations.
+* Update copyright dates.
+* Windows AIO:
+  * Improve AIO build script to run without modifications. The build script
+    required modification before first use to set the full path to the local
+    aio directory. Second change is to use the `-N` option in wget to avoid
+    downloading a file if the timestamp hasn't changed on the server. Third
+    change is to avoid the script from asking for interactive input on second
+    and subsequent runs.
+  * Add pip.exe and Adwaita scalable icons to Windows AIO.
+  * Fix up Windows AIO for pip, and Finnish spell check.
+  * Ignore AIO build artifacts in .gitignore file.
+* Addon Manager:
+  * Invalidate caches after new python modules are installed. This ensures that
+    any new python modules installed will be found by the python import
+    mechanism.
+  * Allow multiple versions in gi requirements. Enhances the `requires_gi`
+    property in gpr files to allow mutiple versions of a GObject introspection
+    module.  e.g. requires_gi=[("GooCanvas", "2.0,3.0")]
+  * Update a couple of strings to clarify the Addon Manager UI. Fixes #13019.
+  * Fix Addon Manager help link. Fixes #13018.
+  * Capitalize "python" in the Addon Manager settings. Fixes #13016.
+  * Fix addon prerequisites install.
+  * Make the Addon Manager available without a tree loaded.
+  * Change "url" to "URL" in the project editor.
+  * Set default project editor window width to 600.
+  * Refresh row in Addon Manager after an addon is installed. When an addon is
+    installed there is no need to refresh the addon listing. We just need to
+    update the row. This also keeps the user in the same place in the list.
+    Fixes #13001.
+  * Rename "Uninstalled" to "Not installed".
+  * Add an extra requirements check after installing modules.
+* Verify tool:
+  * Convert the Data Verify tool to display results in a tree.
+  * Add 8 more data verify rules.
+  * Fix some garbage collection issues.
+  * Performance enhancements.
+  * Also fixed a small amount of easy pylint issues.
+* Fix invalid escape sequences by doubling backslashes, or making the strings
+  raw, as is commonly done for regexes.
+* Make subprocess inherit environment variables in setup script. The PATH
+  environment variable got unset for that subprocess, thus not being able to
+  find msgfmt.
+* Fix command line progress output. The text was partly overwritten whenever
+  the percent value was updated. Add unit tests.
+* Added HasRepo rule to rule list. Fixes #13097.
+* Fix references to gramps-xml file format in man pages.  Change -f gramps-xml
+  to -f gramps Fixes #9723.
+* Update and fix CSV import. See discussion on the discourse forum:
+  https://gramps.discourse.group/t/how-can-people-be-deleted-according-to-a-list/4511/13?u=dsblank
+* Fix gramps example media source.
+* Clarify the Tip of the Day text to indicate that it applies specifically to
+  "Grouped People View", not the flat People View.  Fixes #12897.
+* Report simpler Python version string in About and Error dialogs.
+* Fix DeprecationWarning for invalid escape sequence. Change to use raw string.
+* Fix invalid file mode error with Python 3.11.
+* Fix hyphenated surnames in name displayer. Strip spaces around a hyphen,
+  so for example, "Smith - Jones" is cleaned up to become "Smith-Jones".
+  Fixes #13086.
+* Add year rounding option to preferences. Fixes #12422.
+* Fix context menu in all family events quick view screen. Fixes #12759.
+* Added option to display birth and death info in descendant report.
+  Implements #12758.
+* Update Doug Blank's email address.
+* Add new event reference citations to the private proxy.
+* New citations not included on the Narrative Web. Fixes #13046
+* Add event reference citations to the complete individual report. Fixes #13035.
+* Fix display of gramplet help URLs that start with "https://". A help_url
+  starting with either "http://" or "https://" should be used as the full url
+  to be displayed in the browser.  Fixes #13039.
+* Fix bug in narrative web when the role name contains a dash. Not enough values
+  to unpack in sort_by_role. Fixes #13042.
+* Make the narrative web support both LTR and RTL layouts. Fixes #12960.
+* Minor string changes to narrative web report options.
+* Sort Confidence column in source citation tabs. The "Confidence level" is
+  sorted by confidence label instead of the internal value. The
+  "Confidence level" text is too wide and replaced by "Confidence".
+  Fixes #13036.
+* Fix imports test for new note added to database.
+* Fix GEDCOM import for SUBN record containing note. Fixes #13024, #12152.
+* Use imagesize rather than magic.
+* Reformat code using the latest stable version of black.
+* Fix sizing of shared information in the reference editors. Sets the packing
+  of the expander widget to depend on whether or not it is expanded.
+  Fixes #13030.
+* Fix crash when displaying settings in context menu popup of the pedigree view.
+  A separator menu item was being added twice.  Fixes #13029.
+* Add help_url to built-in gramplet plugin data. Link Gramplets to new wiki
+  landing anchor of lookup table which shows which Gramplets work in which
+  categories.
+* Add right and left margins to the welcome gramplet. Add some white space
+  between the left/right text box borders and the text glyphs. See:
+  https://gramps.discourse.group/t/what-can-i-do-to-help-fix-unpadded-text-gramplets/2293/2
+* Rename "Ancestor View" to "Pedigree View" in Tip of the Day. Fixes #13023.
+* Fix translated Tip of the Day entries with quote characters. When extracting
+  strings from the `tips.xml` file, xgettext removes the escape sequence for
+  the quote character (&quot;) so we don't need to add it back before we obtain
+  the translated string.  Fixes #12325.
+* Fix a few deprecation warnings Issue #13021.
+* Fix report dialog error when no active person selected. Running a report from
+  the reports dialog with no active person selected caused an error.
+  Fixes #13020.
+* Rename citation formatter from "Default" to "Legacy".
+* Update width of Gramps ID fields in editors. These fields appeared wider in
+  earlier Gtk versions. Fixes #12999.
+* Replace remaining Gtk.Menu.popup calls The `popup` method is deprecated. The
+  remaining calls to `popup` are replaced by `popup_at_pointer`.
+* Fix positioning of popups relative to widgets. Replace `popup` with
+  `popup_at_widget` and remove old positioning functions. Fixes #13008.
+* Change the subscript key binding in the note editor. Use <PRIMARY>r for
+  subscript. The standard keyboard shortcut for copy is <PRIMARY>c.
+  Fixes #13002.
+* Set filter editor rule list to expand.
+* Fix display of help links in gramplet bars. Use `display_help` rather than
+  `display_url` to display manual pages.
+* Add more scrollbars to the Preferences dialog.
+* Fix bug in endnotes citations.
+* Fix bug when deleting a row from a filtered flat list view. Fixes #12995.
+* Fix sizing of the surname table in the name editor. The columns were slightly
+  too large requiring a scrollbar with the default dialog size and column
+  widths.  Fixes #12994.
+* Add missing cite and thumbnailer plugin directories to build script.
+* Include javascript files in installation. Fixes #12991.
+* Fix black margin in project list with scrollbar. Fixes #12993.
+* Package Gramps-5.2.0-beta2 on macOS.
+* Fix translator date inflection comments.
+
 2023-08-25
 Version 5.2.0-beta2
 * Updated translations: ca, cs, da, de, en_GB, es, fi, he, hr, it, nb, nl, pl,
