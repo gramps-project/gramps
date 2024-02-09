@@ -14,13 +14,14 @@
 # linluoxue <linluomoxue@foxmail.com>, 2023.
 # 快乐的老鼠宝宝 <keaitianxinmail@qq.com>, 2023.
 # Tian Shixiong <tiansworld@fedoraproject.org>, 2023, 2024.
+# Nick Hall <nick-h@gramps-project.org>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-01-01 20:08+0000\n"
-"Last-Translator: Tian Shixiong <tiansworld@fedoraproject.org>\n"
+"PO-Revision-Date: 2024-02-09 15:43+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -3207,7 +3208,7 @@ msgstr ""
 "%(settings_file)s"
 
 #: ../gramps/gen/db/exceptions.py:213
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "The Family Tree you are trying to load is in the %(dbtype)s database, which "
 "is no longer supported.\n"
@@ -3227,15 +3228,14 @@ msgstr ""
 "您尝试载入的家族树基于 %(dbtype)s 数据库，这已经不被支持。\n"
 "因此如果不做升级处理，您将无法载入此家族树。\n"
 "\n"
-"如果您进行了升级，那么您将无法使用先前版本的 Gramps，即使您之"
-"后%(wiki_manual_backup_html_start)备份%(html_end)s"
-"或%(wiki_manual_export_html_start)s导出%(html_end)s了您升级后的家族树也无法使"
-"用。\n"
+"如果您进行了升级，那么您将无法使用先前版本的 Gramps，即使您之后%(wiki_manual_"
+"backup_html_start)s备份%(html_end)s或%(wiki_manual_export_html_start)s导出%(h"
+"tml_end)s了您升级后的家族树也无法使用。\n"
 "\n"
 "强烈建议您先备份家族树。\n"
 "\n"
-"如果您尚未备份过您的家族树，那您应先启动先前版本的 Gramps，然后对家族树进"
-"行%(wiki_backup_html_start)s备份%(html_end)s。"
+"如果您尚未备份过您的家族树，那您应先启动先前版本的 "
+"Gramps，然后对家族树进行%(wiki_backup_html_start)s备份%(html_end)s。"
 
 #: ../gramps/gen/db/generic.py:196 ../gramps/gen/db/generic.py:246
 #: ../gramps/gen/db/generic.py:2157
