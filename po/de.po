@@ -8,7 +8,7 @@
 # Sebastian Vöcking <voeck@web.de>, 2005.
 # Martin Hawlisch <martin@hawlisch.de>, 2005, 2006.
 # Alex Roitman <shura@gramps-project.org>, 2006.
-# Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
+# Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024.
 # Alois Pöttker <alois.poettker@gmx.de>, 2017.
 # Allan Nordhøy <epost@anotheragency.no>, 2021.
 # R. B. <weblate@macdefender.org>, 2021.
@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2023-11-21 13:04+0000\n"
+"PO-Revision-Date: 2024-02-09 15:43+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -32,7 +32,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.2\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -408,14 +408,6 @@ msgstr ""
 "Kindern\" invertierst, kannst du alle Personen ohne Kinder anzeigen lassen."
 
 #: ../data/tips.xml:18
-#, fuzzy
-#| msgid ""
-#| "<b>Locating People</b><br/>By default, each surname in the People View is "
-#| "listed only once. By clicking on the arrow to the left of a name, the "
-#| "list will expand to show all individuals with that last name. To locate "
-#| "any Family Name from a long list, select a Family Name (not a person) and "
-#| "start typing. The view will jump to the first Family Name matching the "
-#| "letters you enter."
 msgid ""
 "<b>Locating People</b><br/>In the Grouped People View, each surname is "
 "listed only once. By clicking on the arrow to the left of a name, the list "
@@ -424,10 +416,10 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>Personen finden</b><br/>In der Standardeinstellung wird jeder Nachname in "
-"der Personenansicht nur einmal aufgeführt. Wenn du auf den Pfeil links neben "
-"einem Namen klickst, wird die Liste erweitert und zeigt alle Personen mit "
-"diesem Nachnamen an. Um einen beliebigen Nachnamen aus einer langen Liste zu "
+"<b>Personen finden</b><br/>In der gruppierten Personenansicht wird jeder "
+"Nachname nur einmal aufgeführt. Wenn du auf den Pfeil links neben einem "
+"Namen klickst, wird die Liste erweitert und zeigt alle Personen mit diesem "
+"Nachnamen an. Um einen beliebigen Nachnamen aus einer langen Liste zu "
 "finden, wähle einen Nachnamen (nicht eine Person) aus und beginne zu tippen. "
 "Die Ansicht springt zum ersten Familiennamen, der den von dir eingegebenen "
 "Buchstaben entspricht."
@@ -1463,63 +1455,6 @@ msgstr ""
 "                 E - Alles wir auf Standard gesetzt oder gelöscht\n"
 
 #: ../gramps/cli/argparser.py:108
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Example of usage of Gramps command line interface\n"
-#| "\n"
-#| "1. To import four databases (whose formats can be determined from their "
-#| "names)\n"
-#| "and then check the resulting database for errors, one may type:\n"
-#| "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps -i file4.wft -a tool -p "
-#| "name=check.\n"
-#| "\n"
-#| "2. To explicitly specify the formats in the above example, append "
-#| "filenames with appropriate -f options:\n"
-#| "gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~/db3.gramps "
-#| "-f gramps-xml -i file4.wft -f wft -a tool -p name=check.\n"
-#| "\n"
-#| "3. To record the database resulting from all imports, supply -e flag\n"
-#| "(use -f if the filename does not allow Gramps to guess the format):\n"
-#| "gramps -i file1.ged -i file2.gpkg -e ~/new-package -f gramps-pkg\n"
-#| "\n"
-#| "4. To save any error messages of the above example into files outfile and "
-#| "errfile, run:\n"
-#| "gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile "
-#| "2>errfile\n"
-#| "\n"
-#| "5. To import three databases and start interactive Gramps session with "
-#| "the result:\n"
-#| "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps\n"
-#| "\n"
-#| "6. To open a database and, based on that data, generate timeline report "
-#| "in PDF format\n"
-#| "putting the output into the my_timeline.pdf file:\n"
-#| "gramps -O 'Family Tree 1' -a report -p name=timeline,off=pdf,"
-#| "of=my_timeline.pdf\n"
-#| "\n"
-#| "7. To generate a summary of a database:\n"
-#| "gramps -O 'Family Tree 1' -a report -p name=summary\n"
-#| "\n"
-#| "8. Listing report options\n"
-#| "Use the name=timeline,show=all to find out about all available options "
-#| "for the timeline report.\n"
-#| "To find out details of a particular option, use show=option_name , e.g. "
-#| "name=timeline,show=off string.\n"
-#| "To learn about available report names, use name=show string.\n"
-#| "\n"
-#| "9. To convert a Family Tree on the fly to a .gramps xml file:\n"
-#| "gramps -O 'Family Tree 1' -e output.gramps -f gramps-xml\n"
-#| "\n"
-#| "10. To generate a web site into an other locale (in german):\n"
-#| "LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Family Tree 1' -a report -p "
-#| "name=navwebpage,target=/../de\n"
-#| "\n"
-#| "11. Finally, to start normal interactive session type:\n"
-#| "gramps\n"
-#| "\n"
-#| "Note: These examples are for bash shell.\n"
-#| "Syntax may be different for other shells and for Windows.\n"
 msgid ""
 "\n"
 "Example of usage of Gramps command line interface\n"
@@ -1588,7 +1523,7 @@ msgstr ""
 "2. Um das Format im obigen Beispiel explizit anzugeben, erweitere die "
 "Dateinamen mit der passenden -f Option:\n"
 "gramps -i Datei1.ged -f gedcom -i Datei2.gpkg -f gramps-pkg -i ~/db3.gramps -"
-"f gramps-xml -i Datei4.wft -f wft -a check\n"
+"f gramps -i Datei4.wft -f wft -a check\n"
 "\n"
 "3. Zum Aufzeichnen der Datenbank, die aus allen Importen resultiert, "
 "verwende das -e Flag\n"
@@ -1608,8 +1543,8 @@ msgstr ""
 "6. Eine Datenbank öffnen und anhand ihrer Daten einen Zeitlinienbericht als "
 "PDF-Dokument\n"
 "der meine_zeitlinie.pdf Datei:\n"
-"gramps -O 'Stammbaum 1' -a report -p name=timeline,off=pdf,"
-"of=meine_zeitlinie.pdf\n"
+"gramps -O 'Stammbaum 1' -a report -p name=timeline,off=pdf,of=meine_zeitlinie"
+".pdf\n"
 "\n"
 "7. Um eine Zusammenfassung der Datenbank zu erstellen, verwende:\n"
 "gramps -O 'Stammbaum 1' -a report -p name=summary\n"
@@ -1617,13 +1552,13 @@ msgstr ""
 "8. Berichtsoptionen listen\n"
 "Verwende name=timeline,show=all um alle Optionen für den Zeitlinienbericht "
 "zu erhalten.\n"
-"Um Details zu einer bestimmten Option zu erhalten, verwende "
-"show=Optionsname , z.B.. name=timeline,show=off string.\n"
+"Um Details zu einer bestimmten Option zu erhalten, verwende show=Optionsname "
+", z.B.. name=timeline,show=off string.\n"
 "Um die verfügbaren Berichtsnamen zu sehen, verwende name=show string.\n"
 "\n"
-"9. Um einen Stammbaum schnell in eine Gramps XML Datei umzuwandeln, "
-"verwende:\n"
-"gramps -O 'Stammbaum 1' -e Ausgabe.gramps -f gramps-xml\n"
+"9. Um einen Stammbaum schnell in eine Gramps XML Datei umzuwandeln, verwende:"
+"\n"
+"gramps -O 'Stammbaum 1' -e Ausgabe.gramps -f gramps\n"
 "\n"
 "10. Um einen Webauftritt in einer anderen Sprache zu erstellen (in deutsch), "
 "verwende:\n"
@@ -12422,10 +12357,8 @@ msgid "Age display precision *"
 msgstr "Genauigkeit der Altersanzeige *"
 
 #: ../gramps/gui/configure.py:1571
-#, fuzzy
-#| msgid "Rounded corners"
 msgid "Round the year"
-msgstr "Abgerundete Ecken"
+msgstr "Das ganze Jahr über"
 
 #: ../gramps/gui/configure.py:1582
 msgid "Display ages for events after death *"
@@ -13914,10 +13847,8 @@ msgid "Sorted date"
 msgstr "Sortiertes Datum"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:91
-#, fuzzy
-#| msgid "Ignore Confidence"
 msgid "Sorted confidence"
-msgstr "Vertrauen ignorieren"
+msgstr "Sortiertes Vertrauen"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:102
 msgid "_Source Citations"
@@ -23720,11 +23651,11 @@ msgstr "Personen insgesamt"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:30
 msgid "Gramps_5.2_Wiki_Manual_-_Gramplets#Gramplet_List"
-msgstr ""
+msgstr "De:Gramps_5.2_Wiki_Handbuch_-_Gramplets#Gramplet-Liste"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:31
 msgid "Gramps_5.2_Wiki_Manual_-_Tools#Debug"
-msgstr ""
+msgstr "De:Gramps_5.2_Wiki_Handbuch_-_Werkzeuge#Fehlersuche"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:51
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:59
@@ -26065,8 +25996,6 @@ msgid "call"
 msgstr "Rufname"
 
 #: ../gramps/plugins/importer/importcsv.py:218
-#, fuzzy
-#| msgid "Tag"
 msgid "tag"
 msgstr "Etikett"
 
@@ -33246,16 +33175,12 @@ msgid "Whether to show divorce information in the report."
 msgstr "Ob Informationen zur Scheidung im Bericht angezeigt werden sollen."
 
 #: ../gramps/plugins/textreport/descendreport.py:596
-#, fuzzy
-#| msgid "Show divorce info"
 msgid "Show birth and death info"
-msgstr "Scheidungsinformationen anzeigen"
+msgstr "Geburts- und Sterbedaten anzeigen"
 
 #: ../gramps/plugins/textreport/descendreport.py:598
-#, fuzzy
-#| msgid "Whether to show divorce information in the report."
 msgid "Whether to show birth and death information in the report."
-msgstr "Ob Informationen zur Scheidung im Bericht angezeigt werden sollen."
+msgstr "Ob Geburts- und Todesinformationen im Bericht angezeigt werden sollen."
 
 #: ../gramps/plugins/textreport/descendreport.py:602
 msgid "Show duplicate trees"
