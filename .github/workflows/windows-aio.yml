@@ -30,7 +30,7 @@ jobs:
         shell: msys2 {0}
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: msys2/setup-msys2@v2
       with:
         msystem: MINGW64
@@ -39,7 +39,7 @@ jobs:
       run: |
         cd aio
         ./build.sh
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: GrampsAIO
         path: D:\a\gramps\gramps\aio\mingw64\src\GrampsAIO-*.exe
