@@ -87,7 +87,6 @@ PACKAGES = [
     "compileall",
     "graphviz",
     "pydotplus",
-    "pygraphviz",
     "pydot",
 ]
 EXCLUDES = [
