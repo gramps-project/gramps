@@ -219,8 +219,6 @@ Section /o "en_AU" d_enau
 SectionEnd
 Section "en_GB" d_engb
 	SectionIn RO
-	SetOutPath "$INSTDIR\share\enchant\"
-		File "..\share\enchant\enchant.ordering"
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
 		File "..\share\enchant\hunspell\en_GB.*"
 SectionEnd
