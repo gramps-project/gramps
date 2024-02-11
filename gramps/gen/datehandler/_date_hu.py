@@ -194,8 +194,8 @@ class DateParserHU(DateParser):
         "előtt": Date.MOD_BEFORE,
         "körül": Date.MOD_ABOUT,
         "után": Date.MOD_AFTER,
-        "from": Date.MOD_FROM,
-        "to": Date.MOD_TO,
+        "-tól": Date.MOD_FROM,
+        "-ig": Date.MOD_TO,
     }
 
     quality_to_int = {
