@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-02-09 07:47+0000\n"
+"PO-Revision-Date: 2024-02-10 21:13+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -7062,11 +7062,9 @@ msgid "Birth"
 msgstr "Narození"
 
 #: ../gramps/gen/lib/childreftype.py:71
-#, fuzzy
-#| msgid "Adopted"
 msgctxt "relationship"
 msgid "Adopted"
-msgstr "Adoptován(a)"
+msgstr "Adoptovaný"
 
 #: ../gramps/gen/lib/childreftype.py:72
 msgid "Stepchild"
@@ -8663,9 +8661,8 @@ msgid "Transcript"
 msgstr "Přepis"
 
 #: ../gramps/gen/lib/notetype.py:81
-#, fuzzy
 msgid "Source text"
-msgstr "Pramen text"
+msgstr "Zdrojový text"
 
 #: ../gramps/gen/lib/notetype.py:83 ../gramps/gen/plug/_pluginreg.py:115
 #: ../gramps/gui/logger/_errorview.py:189
@@ -9477,10 +9474,8 @@ msgid "Rule"
 msgstr "Pravidlo"
 
 #: ../gramps/gen/plug/_pluginreg.py:129
-#, fuzzy
-#| msgid "Thumbnail"
 msgid "Thumbnailer"
-msgstr "Náhled"
+msgstr "Thumbnailer"
 
 #: ../gramps/gen/plug/_pluginreg.py:130 ../gramps/gui/configure.py:1655
 msgid "Citation formatter"
@@ -9970,10 +9965,8 @@ msgid "GivenNicknameSurname"
 msgstr "KřestníPřezdívkaPříjmení"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:78
-#, fuzzy
-#| msgid "Automatic"
 msgid "Auto"
-msgstr "Automaticky"
+msgstr "Auto"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:79
 msgid "Call Name Only"
@@ -11144,10 +11137,8 @@ msgid "GObject introspection modules"
 msgstr "Introspekční moduly GObject"
 
 #: ../gramps/gen/utils/requirements.py:172
-#, fuzzy
-#| msgid "_Execute"
 msgid "Executables"
-msgstr "_Spustit"
+msgstr "Spustitelné soubory"
 
 #: ../gramps/gen/utils/string.py:50 ../gramps/gui/editors/editperson.py:364
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:110
@@ -12208,10 +12199,8 @@ msgid "Edit"
 msgstr "Upravit"
 
 #: ../gramps/gui/configure.py:1427
-#, fuzzy
-#| msgid "Place format"
 msgid "Automate Place format"
-msgstr "Formát místa"
+msgstr "Automatizovat formát místa"
 
 #: ../gramps/gui/configure.py:1434
 msgid "Enables automatic place title generation using specified format."
@@ -12247,10 +12236,8 @@ msgid "Age display precision *"
 msgstr "Přesnost zobrazení věku *"
 
 #: ../gramps/gui/configure.py:1571
-#, fuzzy
-#| msgid "Rounded corners"
 msgid "Round the year"
-msgstr "Zaoblené rohy"
+msgstr "Zaokrouhlit rok"
 
 #: ../gramps/gui/configure.py:1582
 msgid "Display ages for events after death *"
@@ -12265,14 +12252,10 @@ msgid "Calendar on input"
 msgstr "Kalendář na vstupu"
 
 #: ../gramps/gui/configure.py:1619
-#, fuzzy
-#| msgid "Shows previous page"
 msgid "On the previous day"
 msgstr "Předchozí den"
 
 #: ../gramps/gui/configure.py:1620
-#, fuzzy
-#| msgid "Shows the next page"
 msgid "On the next day"
 msgstr "Následující den"
 
@@ -12834,11 +12817,9 @@ msgstr ""
 "Bude viditelné pouze v případě kdy váš font danou značku obsahuje."
 
 #: ../gramps/gui/csvdialect.py:63
-#, fuzzy
-#| msgid "Tag"
 msgctxt "character"
 msgid "Tab"
-msgstr "Štítek"
+msgstr "Tabulátor"
 
 #: ../gramps/gui/csvdialect.py:82
 msgid "Choose your dialect"
@@ -13525,10 +13506,8 @@ msgid "Move the selected address downwards"
 msgstr "Posunout vybranou adresu níže"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:79
-#, fuzzy
-#| msgid "Postal Code"
 msgid "Postal"
-msgstr "PSČ"
+msgstr "Poštovní"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:92
 msgid "_Addresses"
@@ -13719,10 +13698,8 @@ msgid "Sorted date"
 msgstr "Tříděné datum"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:91
-#, fuzzy
-#| msgid "Ignore Confidence"
 msgid "Sorted confidence"
-msgstr "Ignorovat důvěrnost"
+msgstr "Podle důvěrnosti"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:102
 msgid "_Source Citations"
@@ -18832,10 +18809,8 @@ msgid "Project"
 msgstr "Projekt"
 
 #: ../gramps/gui/plug/_windows.py:234
-#, fuzzy
-#| msgid "Audio"
 msgid "Audience"
-msgstr "Zvuk"
+msgstr "Publikum"
 
 #: ../gramps/gui/plug/_windows.py:238 ../gramps/gui/plug/_windows.py:1630
 msgid "Version"
@@ -18908,10 +18883,8 @@ msgid "All types"
 msgstr "Všechny typy"
 
 #: ../gramps/gui/plug/_windows.py:448
-#, fuzzy
-#| msgid "Audio"
 msgid "All audiences"
-msgstr "Zvuk"
+msgstr "Všechna publika"
 
 #: ../gramps/gui/plug/_windows.py:455
 msgid "All statuses"
@@ -20919,15 +20892,12 @@ msgid "'%s' is not a valid date value"
 msgstr "'%s' není platná hodnota pro datum"
 
 #: ../gramps/plugins/cite/cite.gpr.py:35
-#, fuzzy
-#| msgid "Legal"
 msgid "Legacy"
-msgstr "Právní"
+msgstr "Starší"
 
 #: ../gramps/plugins/cite/cite.gpr.py:36
-#, fuzzy
 msgid "Legacy citation formatter"
-msgstr "Formát jména"
+msgstr "Starší formátovač citací"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:27
 msgid "BSDDB"
@@ -25623,10 +25593,8 @@ msgid "call"
 msgstr "volání"
 
 #: ../gramps/plugins/importer/importcsv.py:218
-#, fuzzy
-#| msgid "Tag"
 msgid "tag"
-msgstr "Štítek"
+msgstr "štítek"
 
 #: ../gramps/plugins/importer/importcsv.py:219
 msgid "title"
@@ -27289,20 +27257,16 @@ msgid "Camera Information"
 msgstr "Informace o fotoaparátu"
 
 #: ../gramps/plugins/lib/libmetadata.py:126
-#, fuzzy
-#| msgid "Locations"
 msgid "Location Tags"
-msgstr "Polohy"
+msgstr "Štítky míst"
 
 #: ../gramps/plugins/lib/libmetadata.py:127
 msgid "Advanced Tags"
 msgstr "Rozšířené štítky"
 
 #: ../gramps/plugins/lib/libmetadata.py:128
-#, fuzzy
-#| msgid "Edit Tags"
 msgid "Rights Tags"
-msgstr "Upravit štítky"
+msgstr "Právní štítky"
 
 #: ../gramps/plugins/lib/libmetadata.py:129
 msgid "Keyword Tags"
@@ -32688,16 +32652,12 @@ msgid "Whether to show divorce information in the report."
 msgstr "Zda zahrnout informace o rozvodu do sestavy."
 
 #: ../gramps/plugins/textreport/descendreport.py:596
-#, fuzzy
-#| msgid "Show divorce info"
 msgid "Show birth and death info"
-msgstr "Zobrazit informace o rozvodu"
+msgstr "Zobrazit informace o narození a úmrtí"
 
 #: ../gramps/plugins/textreport/descendreport.py:598
-#, fuzzy
-#| msgid "Whether to show divorce information in the report."
 msgid "Whether to show birth and death information in the report."
-msgstr "Zda zahrnout informace o rozvodu do sestavy."
+msgstr "Zda zahrnout informace o narození a úmrtí do sestavy."
 
 #: ../gramps/plugins/textreport/descendreport.py:602
 msgid "Show duplicate trees"
