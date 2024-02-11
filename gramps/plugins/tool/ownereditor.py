@@ -5,6 +5,7 @@
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2010       Nick Hall
+# Copyright (C) 2022       Christopher Horn
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,28 +26,27 @@
 
 # -------------------------------------------------------------------------
 #
-# gnome/gtk
+# Gramps modules
 #
 # -------------------------------------------------------------------------
-from gi.repository import Gtk
-
-# -------------------------------------------------------------------------
-#
-# gramps modules
-#
-# -------------------------------------------------------------------------
-from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gen.config import config
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.errors import WindowActiveError
+from gramps.gen.lib import Person
 from gramps.gen.utils.config import get_researcher
+from gramps.gui.dialog import QuestionDialog
 from gramps.gui.display import display_help
-from gramps.gui.widgets import MonitoredEntry
+from gramps.gui.editors import EditPerson
+from gramps.gui.glade import Glade
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.plug import tool
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gui.selectors import SelectorFactory
+from gramps.gui.utils import is_right_click
+from gramps.gui.widgets import MonitoredEntry
 
 _ = glocale.translation.sgettext
-from gramps.gui.glade import Glade
-from gramps.gui.utils import is_right_click
 
 # -------------------------------------------------------------------------
 #
@@ -58,7 +58,7 @@ WIKI_HELP_SEC = _("Edit_Database_Owner_Information", "manual")
 
 # -------------------------------------------------------------------------
 #
-# constants
+# Constants
 #
 # -------------------------------------------------------------------------
 config_keys = (
@@ -91,45 +91,49 @@ class OwnerEditor(tool.Tool, ManagedWindow):
         uistate = user.uistate
         ManagedWindow.__init__(self, uistate, [], self.__class__)
         tool.Tool.__init__(self, dbstate, options_class, name)
-
+        self.dbstate = dbstate
+        self.person = self.db.get_researcher_person()
         self.display()
 
     def display(self):
+        """
+        Display the edit dialog.
+        """
         # get the main window from glade
-        topDialog = Glade()
+        top_dialog = Glade()
 
         # set gramps style title for the window
-        window = topDialog.toplevel
+        window = top_dialog.toplevel
         self.set_window(
-            window, topDialog.get_object("title"), _("Database Owner Editor")
+            window, top_dialog.get_object("title"), _("Database Owner Editor")
         )
         self.setup_configs("interface.ownereditor", 500, 400)
 
         # move help button to the left side
-        action_area = topDialog.get_object("action_area")
-        help_button = topDialog.get_object("help_button")
+        action_area = top_dialog.get_object("action_area")
+        help_button = top_dialog.get_object("help_button")
         action_area.set_child_secondary(help_button, True)
 
         # connect signals
-        topDialog.connect_signals(
+        top_dialog.connect_signals(
             {
+                "on_select_button_clicked": self.on_select_button_clicked,
+                "on_add_button_clicked": self.on_add_button_clicked,
+                "on_remove_button_clicked": self.on_remove_button_clicked,
                 "on_ok_button_clicked": self.on_ok_button_clicked,
                 "on_cancel_button_clicked": self.close,
-                "on_help_button_clicked": self.on_help_button_clicked,
+                "on_help_button_clicked": on_help_button_clicked,
                 "on_eventbox_button_press_event": self.on_button_press_event,
                 "on_menu_activate": self.on_menu_activate,
             }
         )
 
         # fetch the popup menu
-        self.menu = topDialog.get_object("popup_menu")
+        self.menu = top_dialog.get_object("popup_menu")
         self.track_ref_for_deletion("menu")
-
-        # topDialog.connect_signals({"on_menu_activate": self.on_menu_activate})
 
         # get current db owner and attach it to the entries of the window
         self.owner = self.db.get_researcher()
-
         self.entries = []
         entry = [
             ("name", self.owner.set_name, self.owner.get_name),
@@ -146,43 +150,142 @@ class OwnerEditor(tool.Tool, ManagedWindow):
         for name, set_fn, get_fn in entry:
             self.entries.append(
                 MonitoredEntry(
-                    topDialog.get_object(name), set_fn, get_fn, self.db.readonly
+                    top_dialog.get_object(name),
+                    set_fn,
+                    get_fn,
+                    self.db.readonly,
                 )
             )
+
+        self.person_label = top_dialog.get_object("person_name")
+        self.render_person()
+
         # ok, let's see what we've done
         self.show()
 
-    def on_ok_button_clicked(self, obj):
-        """Update the current db's owner information from editor"""
+    def render_person(self):
+        """
+        Render person name and gramps id.
+        """
+        if self.person:
+            name = "%s [%s]" % (
+                name_displayer.display(self.person),
+                self.person.gramps_id,
+            )
+            self.person_label.set_label(name.strip())
+        else:
+            self.person_label.set_label("")
+
+    def on_select_button_clicked(self, _cb_obj):
+        """
+        Select a person.
+        """
+        person_selector = SelectorFactory("Person")
+        selector = person_selector(
+            self.dbstate, self.uistate, self.track, _("Select Researcher")
+        )
+        person = selector.run()
+        if person:
+            self.person = person
+            self.render_person()
+
+    def on_add_button_clicked(self, _cb_obj):
+        """
+        Launch new person editor.
+        """
+        try:
+            EditPerson(
+                self.dbstate,
+                self.uistate,
+                self.track,
+                Person(),
+                self.add_person,
+            )
+        except WindowActiveError:
+            pass
+
+    def on_remove_button_clicked(self, _cb_obj):
+        """
+        Verify the remove.
+        """
+        if self.person:
+            QuestionDialog(
+                _("Remove researcher association to %s?")
+                % name_displayer.display(self.person),
+                _(
+                    "Removing the association only removes the reference "
+                    "between the researcher and a person in the database, "
+                    "it does not delete either."
+                ),
+                _("Remove Association"),
+                self.remove_association,
+                parent=self.window,
+            )
+
+    def remove_association(self):
+        """
+        Remove the association.
+        """
+        self.person = ""
+        self.render_person()
+
+    def add_person(self, person):
+        """
+        Save person for update.
+        """
+        self.person = person
+        self.render_person()
+
+    def on_ok_button_clicked(self, _cb_obj):
+        """
+        Update the current db's owner information from editor.
+        """
         self.db.set_researcher(self.owner)
+        if self.person:
+            self.db.set_researcher_handle(self.person.handle)
+        else:
+            self.db.set_researcher_handle("")
         self.menu.destroy()
         self.close()
 
-    def on_help_button_clicked(self, obj):
-        """Display the relevant portion of Gramps manual"""
-        display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
-
-    def on_button_press_event(self, obj, event):
-        """Shows popup-menu for db <-> preferences copying"""
+    def on_button_press_event(self, _cb_obj, event):
+        """
+        Shows popup-menu for db <-> preferences copying.
+        """
         if is_right_click(event):
             self.menu.popup_at_pointer(event)
 
     def build_menu_names(self, obj):
+        """
+        Return the menu names.
+        """
         return (_("Main window"), _("Edit database owner information"))
 
     def on_menu_activate(self, menuitem):
-        """Copies the owner information from/to the preferences"""
+        """
+        Copies the owner information from/to the preferences.
+        """
         if menuitem.props.name == "copy_from_preferences_to_db":
             self.owner.set_from(get_researcher())
             for entry in self.entries:
                 entry.update()
 
         elif menuitem.props.name == "copy_from_db_to_preferences":
-            for i in range(len(config_keys)):
-                config.set(config_keys[i], self.owner.get()[i])
+            for index, config_key in enumerate(config_keys):
+                config.set(config_key, self.owner.get()[index])
 
     def clean_up(self):
+        """
+        Cleanup.
+        """
         self.menu.destroy()
+
+
+def on_help_button_clicked(_cb_obj):
+    """
+    Display the relevant portion of Gramps manual.
+    """
+    display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
 
 # -------------------------------------------------------------------------
@@ -191,7 +294,9 @@ class OwnerEditor(tool.Tool, ManagedWindow):
 #
 # -------------------------------------------------------------------------
 class OwnerEditorOptions(tool.ToolOptions):
-    """Defines options and provides handling interface."""
+    """
+    Defines options and provides handling interface.
+    """
 
     def __init__(self, name, person_id=None):
         tool.ToolOptions.__init__(self, name, person_id)

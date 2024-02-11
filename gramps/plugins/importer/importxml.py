@@ -88,12 +88,12 @@ from gramps.gen.lib import (
     StyledTextTag,
     StyledTextTagType,
     Surname,
+    Tree,
     Tag,
+    Tree,
     Url,
 )
 from gramps.gen.db import DbTxn
-
-# from gramps.gen.db.write import CLASS_TO_KEY_MAP
 from gramps.gen.errors import GrampsImportError
 from gramps.gen.utils.id import create_id
 from gramps.gen.utils.db import family_name
@@ -117,8 +117,6 @@ from gramps.gen.db.dbconst import (
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.version import VERSION
 from gramps.gen.config import config
-
-# import gramps.plugins.lib.libgrampsxml
 from gramps.plugins.lib import libgrampsxml
 from gramps.gen.plug.utils import version_str_to_tup
 from gramps.plugins.lib.libplaceimport import PlaceImport
@@ -601,16 +599,12 @@ class GrampsParser(UpdateCallback):
         self.place_map = {}
         self.place_import = PlaceImport(self.db)
 
-        self.resname = ""
-        self.resaddr = ""
-        self.reslocality = ""
-        self.rescity = ""
-        self.resstate = ""
-        self.rescon = ""
-        self.respos = ""
-        self.resphone = ""
-        self.resemail = ""
-
+        self.tree = Tree()
+        self.in_tree = False
+        self.tree_change = 0
+        self.owner = Researcher()
+        self.owner_change = 0
+        self.owner_handle = ""
         self.mediapath = ""
 
         self.pmap = {}
@@ -632,7 +626,6 @@ class GrampsParser(UpdateCallback):
         self.surname = None
         self.surnamepat = None
         self.home = None
-        self.owner = Researcher()
         self.func_list = [None] * 50
         self.func_index = 0
         self.func = None
@@ -759,7 +752,7 @@ class GrampsParser(UpdateCallback):
             "pos": (self.start_pos, None),
             "postal": (None, self.stop_postal),
             "range": (self.start_range, None),
-            "researcher": (None, self.stop_research),
+            "researcher": (self.start_research, None),
             "resname": (None, self.stop_resname),
             "resaddr": (None, self.stop_resaddr),
             "reslocality": (None, self.stop_reslocality),
@@ -790,6 +783,10 @@ class GrampsParser(UpdateCallback):
             "repository": (self.start_repo, self.stop_repo),
             "reporef": (self.start_reporef, self.stop_reporef),
             "rname": (None, self.stop_rname),
+            "tree": (self.start_tree, self.stop_tree),
+            "copyright": (None, self.stop_tree_copyright),
+            "license": (None, self.stop_tree_license),
+            "contributors": (None, self.stop_tree_contributors),
         }
         self.grampsuri = re.compile(
             r"^gramps://(?P<object_class>[A-Z][a-z]+)/" r"handle/(?P<handle>\w+)$"
@@ -1070,7 +1067,12 @@ class GrampsParser(UpdateCallback):
             # If the database was originally empty we update the researcher from
             # the XML (or initialised to no researcher)
             if self.import_researcher:
-                self.db.set_researcher(self.owner)
+                self.db.set_researcher(self.owner, quiet=True)
+                self.db.set_researcher_change(self.owner_change)
+                self.db.set_researcher_handle(self.owner_handle, quiet=True)
+                self.db.set_tree(self.tree, quiet=True)
+                self.db.set_tree_change(self.tree_change)
+
             if self.home is not None:
                 person = self.db.get_person_from_handle(self.home)
                 self.db.set_default_person_handle(person.handle)
@@ -3055,7 +3057,10 @@ class GrampsParser(UpdateCallback):
         self.person = None
 
     def stop_description(self, tag):
-        self.event.set_description(tag)
+        if self.in_tree:
+            self.tree.set_description(tag)
+        else:
+            self.event.set_description(tag)
 
     def stop_cause(self, tag):
         # The old event's cause is now an attribute
@@ -3291,43 +3296,54 @@ class GrampsParser(UpdateCallback):
         self.db.commit_note(self.note, self.trans, self.note.get_change_time())
         self.note = None
 
-    def stop_research(self, tag):
-        self.owner.set_name(self.resname)
-        self.owner.set_address(self.resaddr)
-        self.owner.set_locality(self.reslocality)
-        self.owner.set_city(self.rescity)
-        self.owner.set_state(self.resstate)
-        self.owner.set_country(self.rescon)
-        self.owner.set_postal_code(self.respos)
-        self.owner.set_phone(self.resphone)
-        self.owner.set_email(self.resemail)
+    def start_tree(self, attrs):
+        self.tree.set_name(self.db.get_dbname())
+        self.tree_change = int(attrs.get('change', self.change))
+        self.in_tree = True
+
+    def stop_tree_copyright(self, tag):
+        self.tree.set_copyright(tag)
+
+    def stop_tree_license(self, tag):
+        self.tree.set_license(tag)
+
+    def stop_tree_contributors(self, tag):
+        self.tree.set_contributors(tag)
+
+    def stop_tree(self, tag):
+        self.in_tree = False
+
+    def start_research(self, attrs):
+        self.owner_change = int(attrs.get('change', self.change))
+        if 'handle' in attrs:
+            self.owner_handle = attrs['handle'].replace('_', '')
 
     def stop_resname(self, tag):
-        self.resname = tag
+        self.owner.set_name(tag)
 
     def stop_resaddr(self, tag):
-        self.resaddr = tag
+        self.owner.set_address(tag)
 
     def stop_reslocality(self, tag):
-        self.reslocality = tag
+        self.owner.set_locality(tag)
 
     def stop_rescity(self, tag):
-        self.rescity = tag
+        self.owner.set_city(tag)
 
     def stop_resstate(self, tag):
-        self.resstate = tag
+        self.owner.set_state(tag)
 
     def stop_rescountry(self, tag):
-        self.rescon = tag
+        self.owner.set_country(tag)
 
     def stop_respostal(self, tag):
-        self.respos = tag
+        self.owner.set_postal_code(tag)
 
     def stop_resphone(self, tag):
-        self.resphone = tag
+        self.owner.set_phone(tag)
 
     def stop_resemail(self, tag):
-        self.resemail = tag
+        self.owner.set_email(tag)
 
     def stop_mediapath(self, tag):
         self.mediapath = tag

@@ -70,6 +70,8 @@ class BaseMergeCheck(unittest.TestCase):
         <database xmlns="http://gramps-project.org/xml/%s/">
         <header>
         <created date="%04d-%02d-%02d" version="%s"/>
+        <provenance>\n    </provenance>
+        <tree>\n    </tree>
         <researcher>\n    </researcher>
         </header>
         """ % (

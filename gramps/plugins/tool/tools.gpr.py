@@ -230,6 +230,28 @@ register(
 
 # ------------------------------------------------------------------------
 #
+# Edit Tree Information
+#
+#------------------------------------------------------------------------
+
+register(TOOL,
+id = 'edittree',
+name = _("Edit Tree Information"),
+description = _("Enabled editing of tree information."),
+version = '1.0',
+gramps_target_version = MODULE_VERSION,
+status = STABLE,
+fname = 'edittree.py',
+authors = ["Zsolt Foldvari", "Christopher Horn"],
+authors_email = ["zfoldvar@users.sourceforge.net"],
+category = TOOL_DBPROC,
+toolclass = 'TreeEditor',
+optionclass = 'TreeEditorOptions',
+tool_modes = [TOOL_MODE_GUI]
+  )
+
+#------------------------------------------------------------------------
+#
 # Edit Database Owner Information
 #
 # ------------------------------------------------------------------------

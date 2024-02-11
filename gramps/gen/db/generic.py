@@ -74,21 +74,22 @@ from ..updatecallback import UpdateCallback
 from .bookmarks import DbBookmarks
 
 from ..utils.id import create_id
-from ..lib.researcher import Researcher
 from ..lib import (
-    Tag,
-    Media,
-    Person,
-    Family,
-    Source,
     Citation,
     Event,
+    Family,
+    GenderStats,
+    Media,
+    NameOriginType,
+    Note,
+    Person,
     Place,
     Repository,
-    Note,
-    NameOriginType,
+    Researcher,
+    Source,
+    Tag,
+    Tree
 )
-from ..lib.genderstats import GenderStats
 from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
 
@@ -352,7 +353,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             "tag",
         ]
         for op, signal in zip(
-            ["add", "update", "delete", "rebuild"], [(list,), (list,), (list,), None]
+            ["add", "update", "delete", "rebuild"],
+            [(list,), (list,), (list,), None],
         )
     )
 
@@ -367,6 +369,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     # 4. Signal for change in person group name, parameters are
     __signals__["person-groupname-rebuild"] = (str, str)
+
+    # 5. Signal for change in tree metadata
+    __signals__["tree-data-changed"] = None
+
+    # 6. Signal for change in either researcher metadata or handle
+    __signals__["researcher-changed"] = None
 
     __callback_map = {}
 
@@ -589,6 +597,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.surname_list = []
         self.genderStats = GenderStats()  # can pass in loaded stats as dict
         self.owner = Researcher()
+        self.owner_change = 0
+        self.tree = Tree()
+        self.tree_change = 0
+        self.db_last_transaction = 0.0
         if directory:
             self.load(directory)
 
@@ -653,6 +665,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # Load metadata
         self.name_formats = self._get_metadata("name_formats")
         self.owner = self._get_metadata("researcher", default=Researcher())
+        self.owner_change = self._get_metadata("researcher_change", default=0)
+        self.tree = self._get_metadata("tree", default=Tree())
+        self.tree_change = self._get_metadata("tree_change", default=0)
+        self.db_last_transaction = self._get_metadata(
+            "db_last_transaction", default=0.0
+        )
 
         # Load bookmarks
         self.bookmarks.load(self._get_metadata("bookmarks"))
@@ -712,6 +730,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.nmap_index = self._get_metadata("nmap_index", 0)
 
         self.db_is_open = True
+        self.refresh_cached_tree_name()
 
         # Check on db version to see if we need upgrade or too new
         dbversion = int(self._get_metadata("version", default="0"))
@@ -721,13 +740,27 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         if not self.readonly and dbversion < self.VERSION[0]:
             LOG.debug(
-                "Schema upgrade required from %s to %s", dbversion, self.VERSION[0]
+                "Schema upgrade required from %s to %s",
+                dbversion,
+                self.VERSION[0],
             )
             if force_schema_upgrade:
                 self._gramps_upgrade(dbversion, directory, callback)
             else:
                 self.close()
                 raise DbUpgradeRequiredError(dbversion, self.VERSION[0])
+
+    def _create_undo_manager(self):
+        """
+        Create the undo manager.
+        """
+        return DbGenericUndo(self, self.undolog)
+
+    def refresh_cached_tree_name(self):
+        name = self.get_dbname()
+        if self.tree.get_name() != name:
+            self.tree.set_name(name)
+            self._save_tree()
 
     def _create_undo_manager(self):
         """
@@ -754,8 +787,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 Path(filename).touch()
 
                 # Save metadata
+                self.refresh_cached_tree_name()
                 self._set_metadata("name_formats", self.name_formats)
-                self._set_metadata("researcher", self.owner)
 
                 # Bookmarks
                 self._set_metadata("bookmarks", self.bookmarks.get())
@@ -827,7 +860,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         In DbGeneric, the database is in a text file at the path
         """
         name = None
-        if self._directory:
+        if self._directory and self._directory != ":memory:":
             filepath = os.path.join(self._directory, "name.txt")
             try:
                 with open(filepath, "r", encoding="utf8") as name_file:
@@ -1056,7 +1089,16 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.nid2user_format = self.__id2user_format(self.note_prefix)
 
     def set_prefixes(
-        self, person, media, family, source, citation, place, event, repository, note
+        self,
+        person,
+        media,
+        family,
+        source,
+        citation,
+        place,
+        event,
+        repository,
+        note,
     ):
         self.set_person_id_prefix(person)
         self.set_media_id_prefix(media)
@@ -1815,22 +1857,38 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def add_person(self, person, trans, set_gid=True):
         return self._add_base(
-            person, trans, set_gid, self.find_next_person_gramps_id, self.commit_person
+            person,
+            trans,
+            set_gid,
+            self.find_next_person_gramps_id,
+            self.commit_person,
         )
 
     def add_family(self, family, trans, set_gid=True):
         return self._add_base(
-            family, trans, set_gid, self.find_next_family_gramps_id, self.commit_family
+            family,
+            trans,
+            set_gid,
+            self.find_next_family_gramps_id,
+            self.commit_family,
         )
 
     def add_event(self, event, trans, set_gid=True):
         return self._add_base(
-            event, trans, set_gid, self.find_next_event_gramps_id, self.commit_event
+            event,
+            trans,
+            set_gid,
+            self.find_next_event_gramps_id,
+            self.commit_event,
         )
 
     def add_place(self, place, trans, set_gid=True):
         return self._add_base(
-            place, trans, set_gid, self.find_next_place_gramps_id, self.commit_place
+            place,
+            trans,
+            set_gid,
+            self.find_next_place_gramps_id,
+            self.commit_place,
         )
 
     def add_repository(self, repository, trans, set_gid=True):
@@ -1844,7 +1902,11 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def add_source(self, source, trans, set_gid=True):
         return self._add_base(
-            source, trans, set_gid, self.find_next_source_gramps_id, self.commit_source
+            source,
+            trans,
+            set_gid,
+            self.find_next_source_gramps_id,
+            self.commit_source,
         )
 
     def add_citation(self, citation, trans, set_gid=True):
@@ -1858,12 +1920,20 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def add_media(self, media, trans, set_gid=True):
         return self._add_base(
-            media, trans, set_gid, self.find_next_media_gramps_id, self.commit_media
+            media,
+            trans,
+            set_gid,
+            self.find_next_media_gramps_id,
+            self.commit_media,
         )
 
     def add_note(self, note, trans, set_gid=True):
         return self._add_base(
-            note, trans, set_gid, self.find_next_note_gramps_id, self.commit_note
+            note,
+            trans,
+            set_gid,
+            self.find_next_note_gramps_id,
+            self.commit_note,
         )
 
     def add_tag(self, tag, trans):
@@ -2150,6 +2220,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         Post-transaction commit processing
         """
+        self.db_last_transaction = time.time()
+        self._set_metadata("db_last_transaction", self.db_last_transaction)
+
         # Reset callbacks if necessary
         if transaction.batch or not len(transaction):
             return
@@ -2483,11 +2556,54 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def save_gender_stats(self, gstats):
         raise NotImplementedError
 
+    def get_last_transaction_time(self):
+        return self.db_last_transaction
+
+    def get_tree(self):
+        return self.tree
+
+    def set_tree(self, tree, quiet=False):
+        self.tree = tree
+        self._save_tree(quiet)
+
+    def _save_tree(self, quiet=False):
+        self._set_metadata("tree", self.tree)
+        self.set_tree_change()
+        if not quiet:
+            self.emit("tree-data-changed")
+
+    def set_tree_change(self, change=int(time.time())):
+        self.tree_change = change
+        self._set_metadata("tree_change", change)
+
     def get_researcher(self):
         return self.owner
 
-    def set_researcher(self, owner):
+    def set_researcher(self, owner, quiet=False):
         self.owner.set_from(owner)
+        self._set_metadata("researcher", self.owner)
+        self.set_researcher_change()
+        if not quiet:
+            self.emit("researcher-changed")
+
+    def set_researcher_change(self, change=int(time.time())):
+        self.researcher_change = change
+        self._set_metadata("researcher_change", change)
+
+    def get_researcher_handle(self):
+        return self._get_metadata("researcher_handle", default=None)
+
+    def get_researcher_person(self):
+        handle = self.get_researcher_handle()
+        try:
+            return self.get_person_from_handle(handle)
+        except HandleError:
+            return None
+
+    def set_researcher_handle(self, handle, quiet=False):
+        self._set_metadata("researcher_handle", handle)
+        if not quiet:
+            self.emit("researcher-changed")
 
     def request_rebuild(self):
         self.emit("person-rebuild")
@@ -2572,7 +2688,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 for surname in person.primary_name.surname_list
                 if (
                     int(surname.origintype)
-                    not in [NameOriginType.PATRONYMIC, NameOriginType.MATRONYMIC]
+                    not in [
+                        NameOriginType.PATRONYMIC,
+                        NameOriginType.MATRONYMIC,
+                    ]
                 )
             ]
             order_by = " ".join(order_by_list)

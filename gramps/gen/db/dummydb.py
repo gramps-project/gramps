@@ -1614,3 +1614,31 @@ class DummyDb(
         A name for this database on this computer.
         """
         return ""
+
+    def get_last_transaction_time(self):
+        """
+        Timestamp of last database transaction.
+        """
+        if not self.db_is_open:
+            LOG.debug("database is closed")
+
+    def get_tree(self):
+        """
+        Return the tree information.
+        """
+        if not self.db_is_open:
+            LOG.debug("database is closed")
+
+    def get_researcher_handle(self):
+        """
+        Return the researcher handle.
+        """
+        if not self.db_is_open:
+            LOG.debug("database is closed")
+
+    def get_researcher_person(self):
+        """
+        Return the researcher person object.
+        """
+        if not self.db_is_open:
+            LOG.debug("database is closed")

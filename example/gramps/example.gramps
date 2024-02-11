@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.1//EN"
-"http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
-<database xmlns="http://gramps-project.org/xml/1.7.1/">
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.2//EN"
+"http://gramps-project.org/xml/1.7.2/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.7.2/">
   <header>
-    <created date="2017-08-08" version="5.1.0"/>
-    <researcher>
+    <created date="2023-07-31" version="5.2.0"/>
+    <provenance>
+      <database-id>64c83c93</database-id>
+      <last-transaction-timestamp>1690844342.4027495</last-transaction-timestamp>
+    </provenance>
+    <tree change="1690843977">
+      <name>example_gramps</name>
+      <copyright>2001-2006 Donald Allingham, 2007-2023 The Gramps Developers</copyright>
+      <license>Creative Commons Attribution-ShareAlike 2.5</license>
+      <description>An example tree for use in producing documentation and with a lot of additional test data to help facilitate unit tests.</description>
+      <contributors>Donald Allingham, The Gramps Developers</contributors>
+    </tree>
+    <researcher change="0">
       <resname>Alex Roitman,,,</resname>
     </researcher>
     <mediapath>{GRAMPS_RESOURCES}/example/gramps</mediapath>

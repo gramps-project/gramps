@@ -60,6 +60,7 @@ from .tag import Tag
 # These are actually metadata
 from .genderstats import GenderStats
 from .researcher import Researcher
+from .tree import Tree
 
 # Type classes
 from .grampstype import GrampsType

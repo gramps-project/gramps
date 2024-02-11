@@ -29,21 +29,25 @@ Researcher information for Gramps.
 #
 # -------------------------------------------------------------------------
 from .locationbase import LocationBase
+from ..const import GRAMPS_LOCALE as glocale
+
+_ = glocale.translation.gettext
 
 
 # -------------------------------------------------------------------------
 #
-#
+# Researcher class
 #
 # -------------------------------------------------------------------------
 class Researcher(LocationBase):
-    """Contains the information about the owner of the database."""
+    """
+    Contains the information about the owner of the database.
+    """
 
     def __init__(self, source=None):
         """
         Initialize the Researcher object, copying from the source if provided.
         """
-
         LocationBase.__init__(self, source)
         if source:
             self.name = source.name
@@ -60,41 +64,81 @@ class Researcher(LocationBase):
         """
         return (LocationBase.serialize(self), self.name, self.addr, self.email)
 
+    @classmethod
+    def get_schema(cls):
+        """
+        Returns the JSON Schema for this class.
+
+        :returns: Returns a dict containing the schema.
+        :rtype: dict
+        """
+        return {
+            "type": "object",
+            "title": _("Researcher"),
+            "properties": {
+                "_class": {"enum": [cls.__name__]},
+                "name": {"type": "string", "title": _("Name")},
+                "address": {"type": "string", "title": _("Address")},
+                "email": {"type": "string", "title": _("Email")},
+                "street": {"type": "string", "title": _("Street")},
+                "locality": {"type": "string", "title": _("Locality")},
+                "city": {"type": "string", "title": _("City")},
+                "county": {"type": "string", "title": _("County")},
+                "state": {"type": "string", "title": _("State")},
+                "country": {"type": "string", "title": _("Country")},
+                "postal": {"type": "string", "title": _("Postal Code")},
+                "phone": {"type": "string", "title": _("Phone")},
+            },
+        }
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
         """
         (location, self.name, self.addr, self.email) = data
         LocationBase.unserialize(self, location)
-
         return self
 
     def set_name(self, data):
-        """Set the database owner's name."""
+        """
+        Set the database owner's name.
+        """
         self.name = data
 
     def get_name(self):
-        """Return the database owner's name."""
+        """
+        Return the database owner's name.
+        """
         return self.name
 
     def set_address(self, data):
-        """Set the database owner's address."""
+        """
+        Set the database owner's address.
+        """
         self.addr = data
 
     def get_address(self):
-        """Return the database owner's address."""
+        """
+        Return the database owner's address.
+        """
         return self.addr
 
     def set_email(self, data):
-        """Set the database owner's email."""
+        """
+        Set the database owner's email.
+        """
         self.email = data
 
     def get_email(self):
-        """Return the database owner's email."""
+        """
+        Return the database owner's email.
+        """
         return self.email
 
     def set_from(self, other_researcher):
-        """Set all attributes from another instance."""
+        """
+        Set all attributes from another instance.
+        """
         self.street = other_researcher.street
         self.locality = other_researcher.locality
         self.city = other_researcher.city
@@ -109,6 +153,9 @@ class Researcher(LocationBase):
         self.email = other_researcher.email
 
     def get(self):
+        """
+        Return all the attributes as a list.
+        """
         return [
             getattr(self, value)
             for value in [
@@ -125,6 +172,9 @@ class Researcher(LocationBase):
         ]
 
     def is_empty(self):
+        """
+        Check if nothing has been set in the object.
+        """
         for attr in [
             "name",
             "addr",
