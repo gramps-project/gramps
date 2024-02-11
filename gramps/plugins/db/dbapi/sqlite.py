@@ -25,22 +25,22 @@ Backend for SQLite database.
 
 # -------------------------------------------------------------------------
 #
-# standard python modules
+# Python modules
 #
 # -------------------------------------------------------------------------
-import sqlite3
+import logging
 import os
 import re
-import logging
+import sqlite3
 
 # -------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from gramps.plugins.db.dbapi.dbapi import DBAPI
-from gramps.gen.db.dbconst import ARRAYSIZE
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.db.dbconst import ARRAYSIZE
+from gramps.plugins.db.dbapi.dbapi import DBAPI
 
 _ = glocale.translation.gettext
 
@@ -53,6 +53,10 @@ sqlite3.paramstyle = "qmark"
 #
 # -------------------------------------------------------------------------
 class SQLite(DBAPI):
+    """
+    SQLite interface.
+    """
+
     def get_summary(self):
         """
         Return a dictionary of information about this database backend.
@@ -183,7 +187,7 @@ class Connection:
         self.execute(
             "SELECT COUNT(*) "
             "FROM sqlite_master "
-            "WHERE type='table' AND name='%s';" % table
+            f"WHERE type='table' AND name='{table}';"
         )
         return self.fetchone()[0] != 0
 
@@ -207,6 +211,10 @@ class Connection:
 #
 # -------------------------------------------------------------------------
 class Cursor:
+    """
+    Exposes access to a SQLite cursor as an iterator
+    """
+
     def __init__(self, connection):
         self.__connection = connection
 
