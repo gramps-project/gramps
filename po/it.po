@@ -60,13 +60,14 @@
 # Luigi Toscano <luigi.toscano@tiscali.it>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023.
 # Gianluca Boiano <morf3089@gmail.com>, 2021.
 # Alessandro Combatti <combatti.alessandro@gmail.com>, 2022.
+# Mauro Piccotti <mauro.piccotti@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2023-08-24 21:35+0000\n"
-"Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
+"PO-Revision-Date: 2024-02-10 21:14+0000\n"
+"Last-Translator: Mauro Piccotti <mauro.piccotti@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/it/>\n"
 "Language: it\n"
@@ -74,7 +75,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -446,14 +447,6 @@ msgstr ""
 "«Persone con figli» saranno selezionate tutte le persone senza figli."
 
 #: ../data/tips.xml:18
-#, fuzzy
-#| msgid ""
-#| "<b>Locating People</b><br/>By default, each surname in the People View is "
-#| "listed only once. By clicking on the arrow to the left of a name, the "
-#| "list will expand to show all individuals with that last name. To locate "
-#| "any Family Name from a long list, select a Family Name (not a person) and "
-#| "start typing. The view will jump to the first Family Name matching the "
-#| "letters you enter."
 msgid ""
 "<b>Locating People</b><br/>In the Grouped People View, each surname is "
 "listed only once. By clicking on the arrow to the left of a name, the list "
@@ -462,8 +455,8 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>Individuare le persone</b><br/>Di base, ogni cognome nella vista persone "
-"è elencato una sola volta. Facendo clic sulla freccia a sinistra di un nome, "
+"<b>Individuare le persone</b><br/>Nella vista persone, ogni cognome è "
+"elencato una sola volta. Facendo clic sulla freccia a sinistra di un nome, "
 "la lista si espande per mostrare tutte le persone con quel cognome. Per "
 "individuare un qualsiasi nome di famiglia da un elenco lungo, basta "
 "selezionare un nome di famiglia (non una persona) e iniziare a digitare. La "
