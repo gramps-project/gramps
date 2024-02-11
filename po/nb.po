@@ -12,22 +12,22 @@
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # Mihle <MihleGaming@gmail.com>, 2021, 2022, 2023.
 # Para <ahh-produktivitet@tutanota.com>, 2022, 2023.
-# Mikal Thunold-Olsen <mikal@thunold-olsen.no>, 2023.
+# Mikal Thunold-Olsen <mikal@thunold-olsen.no>, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2023-12-06 09:04+0000\n"
-"Last-Translator: Para <ahh-produktivitet@tutanota.com>\n"
-"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/nb_NO/>\n"
+"PO-Revision-Date: 2024-02-11 22:02+0000\n"
+"Last-Translator: Mikal Thunold-Olsen <mikal@thunold-olsen.no>\n"
+"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/nb_NO/>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.3-dev\n"
+"X-Generator: Weblate 5.4-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -396,14 +396,6 @@ msgstr ""
 "personer uten barn."
 
 #: ../data/tips.xml:18
-#, fuzzy
-#| msgid ""
-#| "<b>Locating People</b><br/>By default, each surname in the People View is "
-#| "listed only once. By clicking on the arrow to the left of a name, the "
-#| "list will expand to show all individuals with that last name. To locate "
-#| "any Family Name from a long list, select a Family Name (not a person) and "
-#| "start typing. The view will jump to the first Family Name matching the "
-#| "letters you enter."
 msgid ""
 "<b>Locating People</b><br/>In the Grouped People View, each surname is "
 "listed only once. By clicking on the arrow to the left of a name, the list "
@@ -412,12 +404,13 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>Finn personer</b><br/>Som standard i Personvisningen listes etternavn kun "
-"én gang. Ved å klikke på pilen til venstre for etternavnet vil listen utvide "
-"seg og vise alle personene med dette etternavnet. For å finne et vilkårlig "
-"slektsnavn fra en lang liste kan du velge et slektsnavn (ikke en person) og "
-"begynne å skrive. Da vil markøren hoppe til det første slektsnavnet som "
-"samsvarer med de bokstavene du skriver inn."
+"<b>Finn personer</b><br/> i grupperte personer visningen, der hvert "
+"etternavn kun vises en gang . Ved å klikke på pilen til venstre for "
+"etternavnet vil listen utvide seg og vise alle personene med dette "
+"etternavnet. For å finne et vilkårlig slektsnavn fra en lang liste kan du "
+"velge et slektsnavn (ikke en person) og begynne å skrive. Da vil markøren "
+"hoppe til det første slektsnavnet som samsvarer med de bokstavene du skriver "
+"inn."
 
 #: ../data/tips.xml:20
 msgid ""
@@ -428,12 +421,6 @@ msgstr ""
 "familie som to foreldre og deres barn."
 
 #: ../data/tips.xml:22
-#, fuzzy
-#| msgid ""
-#| "<b>Changing the Active Person</b><br/>Changing the Active Person in views "
-#| "is easy. In the Relationship view just click on anyone. In the Ancestry "
-#| "View doubleclick on the person or right click to select any of their "
-#| "spouses, siblings, children or parents."
 msgid ""
 "<b>Changing the Active Person</b><br/>Changing the Active Person in views is "
 "easy. In the Relationship view just click on anyone. In the Pedigree View "
@@ -800,12 +787,6 @@ msgstr ""
 "trekke det til delen for Foretrukket navn."
 
 #: ../data/tips.xml:76
-#, fuzzy
-#| msgid ""
-#| "<b>Ancestor View</b><br/>The Ancestry View displays a traditional "
-#| "pedigree chart. Hold the mouse over an individual to see more information "
-#| "about them or right click on an individual to access other family members "
-#| "and settings. Play with the settings to see the different options."
 msgid ""
 "<b>Pedigree View</b><br/>The Pedigree View displays a traditional pedigree "
 "chart. Hold the mouse over an individual to see more information about them "
@@ -1427,7 +1408,6 @@ msgstr ""
 "                 E - Alt er satt til standard eller slettet\n"
 
 #: ../gramps/cli/argparser.py:108
-#, fuzzy
 msgid ""
 "\n"
 "Example of usage of Gramps command line interface\n"
@@ -1506,8 +1486,8 @@ msgstr ""
 "\n"
 "4. For å lagre alle feilmeldinger som måtte komme i eksempelet over til en "
 "fil kan man skrive:\n"
-"gramps -i fil1.ged -i fil2.dpkg -e ~/new-package -f gramps-pkg >utfil "
-"2>feilfil\n"
+"gramps -i fil1.ged -i fil2.dpkg -e ~/new-package -f gramps-pkg >utfil 2>"
+"feilfil\n"
 "\n"
 "5. For å importere tre databaser og deretter starte Gramps på vanlig måte "
 "med den resulterende databasen:\n"
@@ -1515,8 +1495,8 @@ msgstr ""
 "\n"
 "6. For å åpne en database og lage en tidslinjerapport som en PDF-fil\n"
 "putter resultatet inn i min_tidslinje.pdf:\n"
-"gramps -O 'Navn på database' -a report -p name=timeline,off=pdf,"
-"of=min_tidslinje.pdf\n"
+"gramps -O 'Navn på database' -a report -p "
+"name=timeline,off=pdf,of=min_tidslinje.pdf\n"
 "\n"
 "7. For å lage et sammendrag av databasen:\n"
 "gramps -O 'Navn på databasen' -a report -p name=summary\n"
@@ -9463,8 +9443,6 @@ msgid "View"
 msgstr "Vis"
 
 #: ../gramps/gen/plug/_pluginreg.py:124
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Relationship calculator"
 msgstr "Relasjonsberegning"
 
@@ -9940,16 +9918,14 @@ msgid "Graphviz File"
 msgstr "Graphviz-fil"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:82
-#, fuzzy
 msgctxt "paper size"
 msgid "Letter"
-msgstr "papirformat"
+msgstr "Brev"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:84
-#, fuzzy
 msgctxt "paper size"
 msgid "Legal"
-msgstr "papirformat"
+msgstr "Juridisk"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:86
 msgid "Custom Size"
@@ -12124,7 +12100,7 @@ msgstr "Skjul advarsel om manglende forsker når det eksporteres til GEDCOM"
 
 #: ../gramps/gui/configure.py:1039
 msgid "Suppress tooltip warnings about data being saved immediately"
-msgstr ""
+msgstr "Undertrykke verktøytipsadvarsler om at data lagres umiddelbart"
 
 #: ../gramps/gui/configure.py:1047
 msgid "Show plugin status dialog on plugin load error"
@@ -12255,10 +12231,8 @@ msgid "Age display precision *"
 msgstr "Nøyaktighet på aldersvisning *"
 
 #: ../gramps/gui/configure.py:1571
-#, fuzzy
-#| msgid "Rounded corners"
 msgid "Round the year"
-msgstr "Avrundede hjørner"
+msgstr "Rundt året"
 
 #: ../gramps/gui/configure.py:1582
 msgid "Display ages for events after death *"
@@ -13734,10 +13708,8 @@ msgid "Sorted date"
 msgstr "Sotert dato"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:91
-#, fuzzy
-#| msgid "Ignore Confidence"
 msgid "Sorted confidence"
-msgstr "Ignorere troverdighet"
+msgstr "Sortert troverdighet"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:102
 msgid "_Source Citations"
@@ -18913,8 +18885,6 @@ msgid "Gramps was unable to install the required modules"
 msgstr "Gramps kunne ikke installere de nødvendige modulene"
 
 #: ../gramps/gui/plug/_windows.py:344
-#, fuzzy
-#| msgid "Retirement"
 msgid "Requirements"
 msgstr "Krav"
 
@@ -19254,12 +19224,8 @@ msgstr[0] "{number_of} programtillegg ble installert."
 msgstr[1] "{number_of} programtillegg ble installert."
 
 #: ../gramps/gui/plug/_windows.py:2258
-#, fuzzy
-#| msgid ""
-#| "If you have installed a 'Gramps View', you will need to restart Gramps."
 msgid "If you have installed a 'View', you will need to restart Gramps."
-msgstr ""
-"Hvis du har installert en «Gramps View», vil du måtte starte Gramps på nytt."
+msgstr "Hvis du har installert en «View», vil du måtte starte Gramps på nytt."
 
 #: ../gramps/gui/plug/_windows.py:2266
 msgid "No addons were installed."
@@ -20972,10 +20938,8 @@ msgid "'%s' is not a valid date value"
 msgstr "'%s' er ikke en gyldig dato"
 
 #: ../gramps/plugins/cite/cite.gpr.py:35
-#, fuzzy
-#| msgid "Legal"
 msgid "Legacy"
-msgstr "Lovlig"
+msgstr "Arv"
 
 #: ../gramps/plugins/cite/cite.gpr.py:36
 msgid "Legacy citation formatter"
@@ -22335,14 +22299,12 @@ msgstr ""
 "Du kan selv definere skrifttyper og farger for hver generasjon i stileditoren"
 
 #: ../gramps/plugins/drawreport/fanchart.py:847
-#, fuzzy
-#| msgid "Flip name on the left of the fan"
 msgid "Flip names that are on the bottom half of the fan"
-msgstr "Snu navnet ti lvenstre for vifta"
+msgstr "Vend navn som er på nedre halvdel av viften"
 
 #: ../gramps/plugins/drawreport/fanchart.py:850
 msgid "Flip names for generations 2, 3 and 4 i.e. those found in circles"
-msgstr ""
+msgstr "Vend navn for generasjon 2, 3 og 4, det vil si de som finnes i sirkler"
 
 #: ../gramps/plugins/drawreport/fanchart.py:854
 msgid "Exclude the title of the chart"
@@ -23421,11 +23383,11 @@ msgstr "Totalt antall personer"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:30
 msgid "Gramps_5.2_Wiki_Manual_-_Gramplets#Gramplet_List"
-msgstr ""
+msgstr "Gramps_5.2_Wiki_Manual_-_Gramplets#Gramplet_List"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:31
 msgid "Gramps_5.2_Wiki_Manual_-_Tools#Debug"
-msgstr ""
+msgstr "Gramps_5.2_Wiki_Manual_-_Tools#Debug"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:51
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:59
@@ -25730,8 +25692,6 @@ msgid "call"
 msgstr "tiltalsnavn"
 
 #: ../gramps/plugins/importer/importcsv.py:218
-#, fuzzy
-#| msgid "Tag"
 msgid "tag"
 msgstr "Etikett"
 
@@ -26914,7 +26874,7 @@ msgstr "Mål"
 
 #: ../gramps/plugins/lib/libgedcom.py:739
 msgid "DNA"
-msgstr ""
+msgstr "DNA"
 
 #: ../gramps/plugins/lib/libgedcom.py:740
 msgid "Cause of Death"
@@ -32440,10 +32400,8 @@ msgid "French Relationship Calculator"
 msgstr "Fransk relasjonsberegning"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:241
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Hebrew Relationship Calculator"
-msgstr "Relasjonsberegning"
+msgstr "Jødisk relasjonsberegning"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:265
 msgid "Croatian Relationship Calculator"
@@ -32837,16 +32795,12 @@ msgid "Whether to show divorce information in the report."
 msgstr "Om skilsmisseinformasjon skal være med i rapporten."
 
 #: ../gramps/plugins/textreport/descendreport.py:596
-#, fuzzy
-#| msgid "Show divorce info"
 msgid "Show birth and death info"
-msgstr "Vis skilsmissedata"
+msgstr "Vis informasjon om fødsel og død"
 
 #: ../gramps/plugins/textreport/descendreport.py:598
-#, fuzzy
-#| msgid "Whether to show divorce information in the report."
 msgid "Whether to show birth and death information in the report."
-msgstr "Om skilsmisseinformasjon skal være med i rapporten."
+msgstr "Om fødsels- og dødsinformasjon skal vises i rapporten."
 
 #: ../gramps/plugins/textreport/descendreport.py:602
 msgid "Show duplicate trees"
@@ -34062,7 +34016,7 @@ msgstr "Lager en alfabetisk indeks for bokrapporter."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:418
 msgid "Records Report"
-msgstr "Rapport over poster"
+msgstr "Rapport over rekord"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:440
 msgid "Note Link Report"
@@ -36142,7 +36096,7 @@ msgstr "Dødsdato er lik ekteskapsdato"
 
 #: ../gramps/plugins/tool/verify.py:2433
 msgid "Baptism too late according to family tradition"
-msgstr ""
+msgstr "Dåp for sent ifølge familietradisjonen"
 
 #: ../gramps/plugins/tool/verify.py:2458
 msgid "Burial too late"
@@ -36158,13 +36112,11 @@ msgstr "Familier er ikke i kronologisk rekkefølge"
 
 #: ../gramps/plugins/tool/verify.py:2572
 msgid "Family has events with role Unknown"
-msgstr ""
+msgstr "Familie har hendelser med rolle Ukjent"
 
 #: ../gramps/plugins/tool/verify.py:2585
-#, fuzzy
-#| msgid "Personal events of the children"
 msgid "Person has events with role Unknown"
-msgstr "Personhendelser med barn"
+msgstr "Person har hendelser med rolle Ukjent"
 
 #: ../gramps/plugins/tool/verify.py:2598
 msgid "Family events are not in chronological order"
@@ -38224,8 +38176,6 @@ msgid "Check it if you want to open/close a section"
 msgstr "Kryss av hvis du vil åpne/lukke en seksjon"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2215
-#, fuzzy
-#| msgid "Extra pages"
 msgid "Extra Pages"
 msgstr "Ekstra sider"
 
@@ -38757,15 +38707,11 @@ msgid "Stamen maps API key"
 msgstr "Stamen maps API-nøkkel"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2699
-#, fuzzy
-#| msgid ""
-#| "The API key used for the Google maps.\n"
-#| "This key is mandatory and must be valid"
 msgid ""
 "The API key used for the Stamen maps.\n"
 "This key is mandatory and must be valid"
 msgstr ""
-"API-nøkkelen som ble brukt for Google Kart.\n"
+"API-nøkkelen som ble brukt for Stamen kart.\n"
 "Denne nøkkelen er obligatorisk og må være gyldig"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2714
@@ -38849,8 +38795,6 @@ msgid "Translations"
 msgstr "Oversettelser"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2806
-#, fuzzy
-#| msgid "second language"
 msgid "Second language"
 msgstr "Sekundærspråk"
 
@@ -38875,8 +38819,6 @@ msgid "Enter a title in the respective language"
 msgstr "Skriv inn en tittel i det respektive språket"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2815
-#, fuzzy
-#| msgid "third language"
 msgid "Third language"
 msgstr "tredje språk"
 
@@ -38885,8 +38827,6 @@ msgid "Site name for your third language"
 msgstr "Sidenavn for ditt tredjespråk"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2824
-#, fuzzy
-#| msgid "fourth language"
 msgid "Fourth language"
 msgstr "fjerde språk"
 
@@ -38895,8 +38835,6 @@ msgid "Site name for your fourth language"
 msgstr "Sidenavn for ditt fjerdespråk"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2833
-#, fuzzy
-#| msgid "fifth language"
 msgid "Fifth language"
 msgstr "femte språk"
 
@@ -38905,8 +38843,6 @@ msgid "Site name for your fifth language"
 msgstr "Sidenavn for ditt femtespråk"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2842
-#, fuzzy
-#| msgid "sixth language"
 msgid "Sixth language"
 msgstr "sjette språk"
 
