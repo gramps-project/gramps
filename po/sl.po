@@ -3,7 +3,7 @@
 # Copyright (c) 2007 gramps-project
 # Bernard Banko <beernarrd at gmail.com>, 2007-2020.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
-# beernarrd <beernarrd@gmail.com>, 2021, 2023.
+# beernarrd <beernarrd@gmail.com>, 2021, 2023, 2024.
 # Igor Kriznar <ikriznar@gmail.com>, 2022.
 # Milan <mobrcian@hotmail.com>, 2022.
 # Gregor Anželj <gregor.anzelj@gmail.com>, 2023.
@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2023-05-08 17:51+0000\n"
+"PO-Revision-Date: 2024-02-10 21:14+0000\n"
 "Last-Translator: beernarrd <beernarrd@gmail.com>\n"
 "Language-Team: Slovenian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sl/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
-"X-Generator: Weblate 4.18-dev\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -389,14 +389,6 @@ msgstr ""
 "obrnete filter 'Osebe z otroki' bodo prikazane vse osebe brez otrok."
 
 #: ../data/tips.xml:18
-#, fuzzy
-#| msgid ""
-#| "<b>Locating People</b><br/>By default, each surname in the People View is "
-#| "listed only once. By clicking on the arrow to the left of a name, the "
-#| "list will expand to show all individuals with that last name. To locate "
-#| "any Family Name from a long list, select a Family Name (not a person) and "
-#| "start typing. The view will jump to the first Family Name matching the "
-#| "letters you enter."
 msgid ""
 "<b>Locating People</b><br/>In the Grouped People View, each surname is "
 "listed only once. By clicking on the arrow to the left of a name, the list "
@@ -405,12 +397,11 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>Iskanje oseb</b><br/>Po privzetih nastavitvah je v pogledu Osebe vsak "
-"priimek naveden le enkrat. S klikom na puščico na levi strani priimka se "
-"seznam razširi tako, da se pojavijo vse osebe s tem priimkom. Za iskanje "
-"poljubnega priimka na dolgem seznamu izberite poljubni priimek (ne osebe pod "
-"njim) in začnite tipkati. Pogled bo skočil na prvi priimek, ki se ujema z "
-"vtipkanimi črkami."
+"<b>Iskanje oseb</b><br/>V pogledu Združene Osebe je vsak priimek naveden le "
+"enkrat. S klikom na puščico na levi strani priimka se seznam razširi tako, "
+"da se pojavijo vse osebe s tem priimkom. Za iskanje poljubnega priimka na "
+"dolgem seznamu izberite poljubni priimek (ne osebe pod njim) in začnite "
+"tipkati. Pogled bo skočil na prvi priimek, ki se ujema z vtipkanimi črkami."
 
 #: ../data/tips.xml:20
 msgid ""
@@ -421,12 +412,6 @@ msgstr ""
 "celice; staršev, zakoncev in otrok posamezne osebe."
 
 #: ../data/tips.xml:22
-#, fuzzy
-#| msgid ""
-#| "<b>Changing the Active Person</b><br/>Changing the Active Person in views "
-#| "is easy. In the Relationship view just click on anyone. In the Ancestry "
-#| "View doubleclick on the person or right click to select any of their "
-#| "spouses, siblings, children or parents."
 msgid ""
 "<b>Changing the Active Person</b><br/>Changing the Active Person in views is "
 "easy. In the Relationship view just click on anyone. In the Pedigree View "
@@ -547,7 +532,6 @@ msgstr ""
 "njim pridržite miško za nekaj trenutkov in prikazala se bo razlaga."
 
 #: ../data/tips.xml:40
-#, fuzzy
 msgid ""
 "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
 "occurred, Gramps allows you to enter a wide range of date formats based on a "
@@ -555,26 +539,24 @@ msgid ""
 "birth date in Gramps. Click the \"Invoke date editor\" button next to the "
 "date field. See the Gramps Manual to learn more."
 msgstr ""
-"<b>Negotovi glede kakšnega datuma?</b><br/>Če za kakšen dogodek (rojstvo ali "
-"smrt) ne veste natančnega datuma, vam Gramps omogoča vnos širokega izbora "
-"oblik datumov, ki so osnovani na ugibanju ali oceni. Na primer, &quot;okrog "
-"1908&quot; je veljavna oblika rojstnega datuma v programu Gramps. Kliknite "
-"na gumb Datum, ki se nahaja poleg vnosnega polja. Podrobnosti si preberite v "
-"Priročniku programa Gramps."
+"<b>Negotovi glede kakšnega datuma?</b><br/>Če za kakšen dogodek ne veste "
+"natančnega datuma, vam Gramps omogoča širokega izbor možnih oblik datumov, "
+"ki so osnovani na ugibanju ali oceni. Na primer, „okrog 1908“ je veljavna "
+"oblika rojstnega datuma v programu Gramps. Kliknite na gumb Datum, ki se "
+"nahaja poleg vnosnega polja. Podrobnosti si preberite v Priročniku programa "
+"Gramps."
 
 #: ../data/tips.xml:42
-#, fuzzy
 msgid ""
 "<b>Duplicate Entries</b><br/>The tool \"Tools &gt; Family Tree Processing "
 "&gt; Find Possible Duplicate People...\" allows you to locate (and merge) "
 "entries of the same person entered more than once in the database."
 msgstr ""
-"<b>Podvojeni vnosi</b><br/>S pomočjo Orodja - Izračuni v zbirki - Najdi "
-"morebitne podvojitve lahko poiščete (in združite) morebitne večkratne vnose "
+"<b>Podvojeni vnosi</b><br/>S pomočjo „Orodja - Izračuni v zbirki - Najdi "
+"morebitne podvojitve“ lahko poiščete (in združite) morebitne večkratne vnose "
 "za isto osebo v zbirki."
 
 #: ../data/tips.xml:44
-#, fuzzy
 msgid ""
 "<b>Merging Entries</b><br/>The function \"Edit &gt; Merge...\" allows you to "
 "combine separately listed people into one. Select the second entry by "
@@ -583,12 +565,12 @@ msgid ""
 "differing names for one individual. Merging is available in all list views "
 "for all primary object types."
 msgstr ""
-"<b>Združevanje vnosov</b><br/>Funkcija Uredi - Primerjaj in združi ... vam "
+"<b>Združevanje vnosov</b><br/>Funkcija „Uredi - Primerjaj in združi ...“ vam "
 "omogoča združitev ločeno navedenih oseb. Drugi vnos izberite tako, da ob "
 "kliku pridržite tipko Ctrl. Združevanje je zelo uporabno za spajanje dveh "
 "zbirk podatkov, ki imata nekaj skupnih ljudi, ali pa za združevanje napačno "
-"vnesenih različnih imen za iste osebe. Enako velja poglede Kraji, Viri in "
-"Nahajališča."
+"vnesenih različnih imen za iste osebe. Enako velja za vse poglede v načinu "
+"spiska."
 
 #: ../data/tips.xml:46
 #, fuzzy
