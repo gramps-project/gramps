@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-02-09 15:43+0000\n"
+"PO-Revision-Date: 2024-02-11 22:02+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -7702,7 +7702,7 @@ msgstr "Rechtliches"
 #: ../gramps/plugins/webreport/addressbooklist.py:119
 #: ../gramps/plugins/webreport/basepage.py:3476
 msgid "Residence"
-msgstr "Aufenthalt"
+msgstr "Wohnort"
 
 #: ../gramps/gen/lib/eventtype.py:183 ../gramps/gui/glade/mergedata.glade:523
 #: ../gramps/gui/glade/mergedata.glade:610
@@ -8103,7 +8103,7 @@ msgstr "rel."
 #: ../gramps/gen/lib/eventtype.py:274
 msgctxt "Residence abbreviation"
 msgid "res."
-msgstr "Wohn."
+msgstr "Wohnort"
 
 #: ../gramps/gen/lib/eventtype.py:275
 msgctxt "Retirement abbreviation"
@@ -23540,7 +23540,7 @@ msgid ""
 "residence and an address?%(html_end)s\n"
 msgstr ""
 "  7. %(gramps_FAQ_html_start)s%(faq_section)sWas ist der Unterschied "
-"zwischen einem Wohnsitz und einer Adresse?%(html_end)s\n"
+"zwischen einem Wohnort und einer Adresse?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:155
 msgid "Media Files"
@@ -23916,7 +23916,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:521
 msgid "Person Residence"
-msgstr "Person Wohnsitz"
+msgstr "Person Wohnort"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:522
 msgid "Gramplet showing residence events for a person"
@@ -37277,7 +37277,7 @@ msgstr ""
 
 #: ../gramps/plugins/view/geography.gpr.py:134
 msgid "Every residence or move for a person and any descendants"
-msgstr "Jeder Wohnsitz oder Umzug einer Person und ihrer Nachkommen"
+msgstr "Jeder Wohnort oder Umzug einer Person und ihrer Nachkommen"
 
 #: ../gramps/plugins/view/geography.gpr.py:136
 msgid ""
@@ -39053,9 +39053,8 @@ msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and "
 "website addresses and personal address/ residence events."
 msgstr ""
-"Ob Adressbuchseiten hinzugefügt werden sollen oder nicht, die E-Mail- und "
-"Website-Adressen sowie persönliche Adressen und Ereignisse am Wohnort "
-"enthalten können."
+"Hinzufügen von Adressbuchseiten, die E-Mail- und Website-Adressen sowie "
+"persönliche Adressen und Wohnsitzereignisse enthalten können oder nicht."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2585
 msgid "Include the statistics page"
