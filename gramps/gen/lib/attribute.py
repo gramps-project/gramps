@@ -30,13 +30,13 @@ Attribute class for Gramps.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .secondaryobj import SecondaryObject
-from .privacybase import PrivacyBase
-from .citationbase import CitationBase
-from .notebase import NoteBase
-from .attrtype import AttributeType
-from .const import IDENTICAL, EQUAL, DIFFERENT
 from ..const import GRAMPS_LOCALE as glocale
+from .attrtype import AttributeType
+from .citationbase import CitationBase
+from .const import DIFFERENT, EQUAL, IDENTICAL
+from .notebase import NoteBase
+from .privacybase import PrivacyBase
+from .secondaryobj import SecondaryObject
 
 _ = glocale.translation.gettext
 
@@ -150,11 +150,9 @@ class AttributeRoot(SecondaryObject, PrivacyBase):
         """
         if self.type != other.type or self.value != other.value:
             return DIFFERENT
-        else:
-            if self.is_equal(other):
-                return IDENTICAL
-            else:
-                return EQUAL
+        if self.is_equal(other):
+            return IDENTICAL
+        return EQUAL
 
     def merge(self, acquisition):
         """
@@ -190,6 +188,10 @@ class AttributeRoot(SecondaryObject, PrivacyBase):
 #
 # -------------------------------------------------------------------------
 class Attribute(AttributeRoot, CitationBase, NoteBase):
+    """
+    An attribute class that supports citation and note annotations.
+    """
+
     def __init__(self, source=None):
         """
         Create a new Attribute object, copying from the source if provided.

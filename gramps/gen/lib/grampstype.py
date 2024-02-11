@@ -37,7 +37,7 @@ _UNKNOWN = _("Unknown")
 
 # -------------------------------------------------------------------------
 #
-# GrampsTypeMeta class
+# GrampsTypeMeta
 #
 # -------------------------------------------------------------------------
 class GrampsTypeMeta(type):
@@ -55,15 +55,12 @@ class GrampsTypeMeta(type):
             columns.
             """
             if blacklist:
-                return dict(
-                    [
-                        (item[key_col], item[data_col])
-                        for item in data
-                        if item[0] not in blacklist
-                    ]
-                )
-            else:
-                return dict([(item[key_col], item[data_col]) for item in data])
+                return {
+                    item[key_col]: item[data_col]
+                    for item in data
+                    if item[0] not in blacklist
+                }
+            return {item[key_col]: item[data_col] for item in data}
 
         # Call superclass initialization
         type.__init__(cls, name, bases, namespace)
@@ -78,10 +75,10 @@ class GrampsTypeMeta(type):
 
 # -------------------------------------------------------------------------
 #
-# GrampsType class
+# GrampsType
 #
 # -------------------------------------------------------------------------
-class GrampsType(object, metaclass=GrampsTypeMeta):
+class GrampsType(metaclass=GrampsTypeMeta):
     """Base class for all Gramps object types.
 
     :cvar _DATAMAP:
@@ -207,10 +204,9 @@ class GrampsType(object, metaclass=GrampsTypeMeta):
         """
         if self.__value == self._CUSTOM:
             return self.__string
-        elif self.__value in self._I2EMAP:
+        if self.__value in self._I2EMAP:
             return self._I2EMAP[self.__value]
-        else:
-            return _UNKNOWN
+        return _UNKNOWN
 
     def serialize(self):
         """Convert the object to a serialized tuple of data."""
@@ -243,8 +239,7 @@ class GrampsType(object, metaclass=GrampsTypeMeta):
     def __str__(self):
         if self.__value == self._CUSTOM:
             return self.__string
-        else:
-            return self._I2SMAP.get(self.__value, _UNKNOWN)
+        return self._I2SMAP.get(self.__value, _UNKNOWN)
 
     def __int__(self):
         return self.__value
@@ -269,12 +264,15 @@ class GrampsType(object, metaclass=GrampsTypeMeta):
         ]
 
     def is_custom(self):
+        """Return true if custom type."""
         return self.__value == self._CUSTOM
 
     def is_default(self):
+        """Return true if default type."""
         return self.__value == self._DEFAULT
 
     def get_custom(self):
+        """Return custom type."""
         return self._CUSTOM
 
     def get_menu(self):
@@ -290,23 +288,20 @@ class GrampsType(object, metaclass=GrampsTypeMeta):
     def __eq__(self, value):
         if isinstance(value, int):
             return self.__value == value
-        elif isinstance(value, str):
+        if isinstance(value, str):
             if self.__value == self._CUSTOM:
                 return self.__string == value
-            else:
-                return self._I2SMAP.get(self.__value) == value
-        elif isinstance(value, tuple):
+            return self._I2SMAP.get(self.__value) == value
+        if isinstance(value, tuple):
             if self.__value == self._CUSTOM:
                 return (self.__value, self.__string) == value
-            else:
-                return self.__value == value[0]
-        else:
-            if value.value == self._CUSTOM and self.__value == self._CUSTOM:
-                return self.__string == value.string
-            elif value.value != self._CUSTOM and self.__value != self._CUSTOM:
-                return self.__value == value.value
-            else:
-                return False
+            return self.__value == value[0]
+
+        if value.value == self._CUSTOM and self.__value == self._CUSTOM:
+            return self.__string == value.string
+        if self._CUSTOM not in [value.value, self.__value]:
+            return self.__value == value.value
+        return False
 
     def __ne__(self, value):
         return not self.__eq__(value)

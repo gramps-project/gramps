@@ -33,7 +33,7 @@ from .person import Person
 
 # -------------------------------------------------------------------------
 #
-#
+# GenderStats
 #
 # -------------------------------------------------------------------------
 class GenderStats:
@@ -52,13 +52,22 @@ class GenderStats:
             self.stats = stats
 
     def save_stats(self):
+        """
+        Return the stats for saving.
+        """
         return self.stats
 
     def clear_stats(self):
+        """
+        Clear the stats.
+        """
         self.stats = {}
         return self.stats
 
     def name_stats(self, name):
+        """
+        Return stats for a name.
+        """
         if name in self.stats:
             return self.stats[name]
         return (0, 0, 0)
@@ -74,6 +83,9 @@ class GenderStats:
         self._set_stats(keyname, gender)
 
     def count_person(self, person, undo=0):
+        """
+        Add a person to the stats.
+        """
         if not person:
             return
         # Let the Person do their own counting later
@@ -94,23 +106,26 @@ class GenderStats:
 
         if gender == Person.MALE:
             male += increment
-            if male < 0:
-                male = 0
+            male = max(male, 0)
         elif gender == Person.FEMALE:
             female += increment
-            if female < 0:
-                female = 0
+            female = max(female, 0)
         elif gender in (Person.UNKNOWN, Person.OTHER):
             unknown += increment
-            if unknown < 0:
-                unknown = 0
+            unknown = max(unknown, 0)
 
         self.stats[keyname] = (male, female, unknown)
 
     def uncount_person(self, person):
+        """
+        Remove person from stats.
+        """
         return self.count_person(person, undo=1)
 
     def guess_gender(self, name):
+        """
+        Attempt to guess gender of person given a name.
+        """
         name = _get_key_from_name(name)
         if not name or name not in self.stats:
             return Person.UNKNOWN

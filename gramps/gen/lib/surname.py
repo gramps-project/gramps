@@ -29,17 +29,17 @@ Surname class for Gramps.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .secondaryobj import SecondaryObject
-from .nameorigintype import NameOriginType
-from .const import IDENTICAL, EQUAL, DIFFERENT
 from ..const import GRAMPS_LOCALE as glocale
+from .const import DIFFERENT, EQUAL, IDENTICAL
+from .nameorigintype import NameOriginType
+from .secondaryobj import SecondaryObject
 
 _ = glocale.translation.gettext
 
 
 # -------------------------------------------------------------------------
 #
-# Personal Name
+# Surname
 #
 # -------------------------------------------------------------------------
 class Surname(SecondaryObject):
@@ -112,7 +112,13 @@ class Surname(SecondaryObject):
         """
         Convert a serialized tuple of data to an object.
         """
-        (self.surname, self.prefix, self.primary, origin_type, self.connector) = data
+        (
+            self.surname,
+            self.prefix,
+            self.primary,
+            origin_type,
+            self.connector,
+        ) = data
         self.origintype = NameOriginType(origin_type)
         return self
 
@@ -141,11 +147,9 @@ class Surname(SecondaryObject):
             or self.primary != other.primary
         ):
             return DIFFERENT
-        else:
-            if self.is_equal(other):
-                return IDENTICAL
-            else:
-                return EQUAL
+        if self.is_equal(other):
+            return IDENTICAL
+        return EQUAL
 
     def merge(self, acquisition):
         """
@@ -156,7 +160,6 @@ class Surname(SecondaryObject):
         :param acquisition: The surname to merge with the present surname.
         :type acquisition: Surname
         """
-        pass
 
     def get_surname(self):
         """

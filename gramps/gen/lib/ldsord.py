@@ -38,21 +38,21 @@ from warnings import warn
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .secondaryobj import SecondaryObject
+from ..const import GRAMPS_LOCALE as glocale
 from .citationbase import CitationBase
-from .notebase import NoteBase
+from .const import DIFFERENT, EQUAL, IDENTICAL
 from .datebase import DateBase
+from .notebase import NoteBase
 from .placebase import PlaceBase
 from .privacybase import PrivacyBase
-from .const import IDENTICAL, EQUAL, DIFFERENT
-from ..const import GRAMPS_LOCALE as glocale
+from .secondaryobj import SecondaryObject
 
 _ = glocale.translation.gettext
 
 
 # -------------------------------------------------------------------------
 #
-# LDS Ordinance class
+# LdsOrd
 #
 # -------------------------------------------------------------------------
 class LdsOrd(SecondaryObject, CitationBase, NoteBase, DateBase, PlaceBase, PrivacyBase):
@@ -178,6 +178,7 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase, DateBase, PlaceBase, Priva
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
+        # pylint: disable=import-outside-toplevel
         from .date import Date
 
         return {
@@ -282,11 +283,9 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase, DateBase, PlaceBase, Priva
             or self.famc != other.famc
         ):
             return DIFFERENT
-        else:
-            if self.is_equal(other):
-                return IDENTICAL
-            else:
-                return EQUAL
+        if self.is_equal(other):
+            return IDENTICAL
+        return EQUAL
 
     def merge(self, acquisition):
         """
@@ -357,8 +356,7 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase, DateBase, PlaceBase, Priva
             or self.place
         ):
             return False
-        else:
-            return True
+        return True
 
     def are_equal(self, other):
         """Return 1 if the specified ordinance is the same as the instance."""

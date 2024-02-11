@@ -28,17 +28,17 @@ Place name class for Gramps
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .secondaryobj import SecondaryObject
-from .datebase import DateBase
-from .const import IDENTICAL, EQUAL, DIFFERENT
 from ..const import GRAMPS_LOCALE as glocale
+from .const import DIFFERENT, EQUAL, IDENTICAL
+from .datebase import DateBase
+from .secondaryobj import SecondaryObject
 
 _ = glocale.translation.gettext
 
 
 # -------------------------------------------------------------------------
 #
-# Place Name
+# PlaceName
 #
 # -------------------------------------------------------------------------
 class PlaceName(SecondaryObject, DateBase):
@@ -59,11 +59,11 @@ class PlaceName(SecondaryObject, DateBase):
         else:
             self.value = ""
             self.lang = ""
-        for key in kwargs:
+        for key, value in kwargs.items():
             if key in ["value", "lang"]:
-                setattr(self, key, kwargs[key])
+                setattr(self, key, value)
             else:
-                raise AttributeError("PlaceName does not have property '%s'" % key)
+                raise AttributeError(f"PlaceName does not have property '{key}'")
 
     def serialize(self):
         """
@@ -87,6 +87,7 @@ class PlaceName(SecondaryObject, DateBase):
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
+        # pylint: disable=import-outside-toplevel
         from .date import Date
 
         return {
@@ -178,11 +179,9 @@ class PlaceName(SecondaryObject, DateBase):
             or self.lang != other.lang
         ):
             return DIFFERENT
-        else:
-            if self.is_equal(other):
-                return IDENTICAL
-            else:
-                return EQUAL
+        if self.is_equal(other):
+            return IDENTICAL
+        return EQUAL
 
     def __eq__(self, other):
         return self.is_equal(other)

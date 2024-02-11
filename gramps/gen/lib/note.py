@@ -29,19 +29,19 @@ Note class for Gramps.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .primaryobj import BasicPrimaryObject
-from .tagbase import TagBase
+from ..const import GRAMPS_LOCALE as glocale
 from .notetype import NoteType
+from .primaryobj import BasicPrimaryObject
 from .styledtext import StyledText
 from .styledtexttagtype import StyledTextTagType
-from ..const import GRAMPS_LOCALE as glocale
+from .tagbase import TagBase
 
 _ = glocale.translation.gettext
 
 
 # -------------------------------------------------------------------------
 #
-# Class for notes used throughout the majority of Gramps objects
+# Note
 #
 # -------------------------------------------------------------------------
 class Note(BasicPrimaryObject):
@@ -121,7 +121,11 @@ class Note(BasicPrimaryObject):
             "title": _("Note"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "handle": {"type": "string", "maxLength": 50, "title": _("Handle")},
+                "handle": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "title": _("Handle"),
+                },
                 "gramps_id": {"type": "string", "title": _("Gramps ID")},
                 "text": StyledText.get_schema(),
                 "format": {"type": "integer", "title": _("Format")},
@@ -180,8 +184,7 @@ class Note(BasicPrimaryObject):
         for dom, obj, prop, hndl in self.get_links():
             if dom != "gramps" or prop != "handle":
                 continue
-            else:
-                reflist.append((obj, hndl))
+            reflist.append((obj, hndl))
         reflist.extend(self.get_referenced_tag_handles())
         return reflist
 
@@ -309,13 +312,13 @@ class Note(BasicPrimaryObject):
         """
         self.text = self.text + text
 
-    def set_format(self, format):
+    def set_format(self, note_format):
         """Set the format of the note to the passed value.
 
         :param format: The value can either indicate Flowed or Preformatted.
         :type format: int
         """
-        self.format = format
+        self.format = note_format
 
     def get_format(self):
         """Return the format of the note.

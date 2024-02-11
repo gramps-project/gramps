@@ -27,7 +27,7 @@ Citation object for Gramps.
 
 # -------------------------------------------------------------------------
 #
-# standard python modules
+# Python modules
 #
 # -------------------------------------------------------------------------
 import logging
@@ -37,14 +37,14 @@ import logging
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .primaryobj import PrimaryObject
-from .mediabase import MediaBase
-from .notebase import NoteBase
-from .datebase import DateBase
-from .tagbase import TagBase
+from ..const import GRAMPS_LOCALE as glocale
 from .attrbase import SrcAttributeBase
 from .citationbase import IndirectCitationBase
-from ..const import GRAMPS_LOCALE as glocale
+from .datebase import DateBase
+from .mediabase import MediaBase
+from .notebase import NoteBase
+from .primaryobj import PrimaryObject
+from .tagbase import TagBase
 
 _ = glocale.translation.gettext
 
@@ -53,11 +53,16 @@ LOG = logging.getLogger(".citation")
 
 # -------------------------------------------------------------------------
 #
-# Citation class
+# Citation
 #
 # -------------------------------------------------------------------------
 class Citation(
-    MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase, DateBase, PrimaryObject
+    MediaBase,
+    NoteBase,
+    SrcAttributeBase,
+    IndirectCitationBase,
+    DateBase,
+    PrimaryObject,
 ):
     """
     A record of a citation of a source of information.
@@ -92,16 +97,21 @@ class Citation(
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
-        from .srcattribute import SrcAttribute
-        from .mediaref import MediaRef
+        # pylint: disable=import-outside-toplevel
         from .date import Date
+        from .mediaref import MediaRef
+        from .srcattribute import SrcAttribute
 
         return {
             "type": "object",
             "title": _("Citation"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "handle": {"type": "string", "maxLength": 50, "title": _("Handle")},
+                "handle": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "title": _("Handle"),
+                },
                 "gramps_id": {"type": "string", "title": _("Gramps ID")},
                 "date": {
                     "oneOf": [{"type": "null"}, Date.get_schema()],
@@ -205,9 +215,9 @@ class Citation(
         """
         if classname == "Note":
             return handle in [ref.ref for ref in self.note_list]
-        elif classname == "Media":
+        if classname == "Media":
             return handle in [ref.ref for ref in self.media_list]
-        elif classname == "Source":
+        if classname == "Source":
             return handle == self.get_reference_handle()
         return False
 
@@ -337,7 +347,9 @@ class Citation(
         return self.page
 
     def set_reference_handle(self, val):
+        """Set the source handle."""
         self.source_handle = val
 
     def get_reference_handle(self):
+        """Get the source handle."""
         return self.source_handle

@@ -26,7 +26,7 @@ PrivacyBase Object class for Gramps.
 
 # -------------------------------------------------------------------------
 #
-# PrivacyBase Object
+# PrivacyBase
 #
 # -------------------------------------------------------------------------
 class PrivacyBase:

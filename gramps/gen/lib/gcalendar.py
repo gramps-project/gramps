@@ -133,7 +133,7 @@ def _tishri1(metonic_year, molad_day, molad_halakim):
 
     # Apply rule 1 after the others because it can cause an additional
     # delay of one day
-    if dow == _HBR_WEDNESDAY or dow == _HBR_FRIDAY or dow == _HBR_SUNDAY:
+    if dow in [_HBR_WEDNESDAY, _HBR_FRIDAY, _HBR_SUNDAY]:
         tishri1 += 1
 
     return tishri1
@@ -185,28 +185,30 @@ def _molad_of_metonic_cycle(metonic_cycle):
     Start with the time of the first molad after creation.
     """
 
-    r1 = _HBR_NEW_MOON_OF_CREATION
+    var_r1 = _HBR_NEW_MOON_OF_CREATION
 
     # Calculate metonic_cycle * HALAKIM_PER_METONIC_CYCLE.  The upper 32
     # bits of the result will be in r2 and the lower 16 bits will be
     # in r1.
 
-    r1 = r1 + (metonic_cycle * (_HBR_HALAKIM_PER_METONIC_CYCLE & 0xFFFF))
-    r2 = r1 >> 16
-    r2 = r2 + (metonic_cycle * ((_HBR_HALAKIM_PER_METONIC_CYCLE >> 16) & 0xFFFF))
+    var_r1 = var_r1 + (metonic_cycle * (_HBR_HALAKIM_PER_METONIC_CYCLE & 0xFFFF))
+    var_r2 = var_r1 >> 16
+    var_r2 = var_r2 + (
+        metonic_cycle * ((_HBR_HALAKIM_PER_METONIC_CYCLE >> 16) & 0xFFFF)
+    )
 
     # Calculate r2r1 / HALAKIM_PER_DAY.  The remainder will be in r1, the
     # upper 16 bits of the quotient will be in d2 and the lower 16 bits
     # will be in d1.
 
-    d2 = r2 // _HBR_HALAKIM_PER_DAY
-    r2 -= d2 * _HBR_HALAKIM_PER_DAY
-    r1 = (r2 << 16) | (r1 & 0xFFFF)
-    d1 = r1 // _HBR_HALAKIM_PER_DAY
-    r1 -= d1 * _HBR_HALAKIM_PER_DAY
+    var_d2 = var_r2 // _HBR_HALAKIM_PER_DAY
+    var_r2 -= var_d2 * _HBR_HALAKIM_PER_DAY
+    var_r1 = (var_r2 << 16) | (var_r1 & 0xFFFF)
+    var_d1 = var_r1 // _HBR_HALAKIM_PER_DAY
+    var_r1 -= var_d1 * _HBR_HALAKIM_PER_DAY
 
-    molad_day = (d2 << 16) | d1
-    molad_halakim = r1
+    molad_day = (var_d2 << 16) | var_d1
+    molad_halakim = var_r1
 
     return (molad_day, molad_halakim)
 
@@ -233,7 +235,7 @@ def _start_of_year(year):
 def hebrew_sdn(year, month, day):
     """Convert a Jewish calendar date to an SDN number."""
 
-    if month == 1 or month == 2:
+    if month in [1, 2]:
         # It is Tishri or Heshvan - don't need the year length.
         (
             metonic_cycle,
@@ -268,11 +270,11 @@ def hebrew_sdn(year, month, day):
 
         year_length = tishri1_after - tishri1
 
-        if year_length == 355 or year_length == 385:
+        if year_length in [355, 385]:
             sdn = tishri1 + day + 59
         else:
             sdn = tishri1 + day + 58
-    elif month == 4 or month == 5 or month == 6:
+    elif month in [4, 5, 6]:
         # It is Tevet, Shevat or Adar I - don't need the year length
 
         (
@@ -377,42 +379,42 @@ def hebrew_ymd(sdn):
                 month = 8
                 day = input_day - tishri1 + 178
             return (year, month, day)
-        else:
-            if _HBR_MONTHS_PER_YEAR[(year - 1) % 19] == 13:
-                month = 7
-                day = input_day - tishri1 + 207
-                if day > 0:
-                    return (year, month, day)
-                month -= 1
-                day += 30
-                if day > 0:
-                    return (year, month, day)
-                month -= 1
-                day += 30
-            else:
-                month = 6
-                day = input_day - tishri1 + 207
-                if day > 0:
-                    return (year, month, day)
-                month -= 1
-                day += 30
 
+        if _HBR_MONTHS_PER_YEAR[(year - 1) % 19] == 13:
+            month = 7
+            day = input_day - tishri1 + 207
             if day > 0:
                 return (year, month, day)
             month -= 1
-            day += 29
+            day += 30
             if day > 0:
                 return (year, month, day)
+            month -= 1
+            day += 30
+        else:
+            month = 6
+            day = input_day - tishri1 + 207
+            if day > 0:
+                return (year, month, day)
+            month -= 1
+            day += 30
 
-            # We need the length of the year to figure this out, so find
-            # Tishri 1 of this year
-            tishri1_after = tishri1
-            (metonic_cycle, metonic_year, day1, halakim) = _tishri_molad(day1 - 365)
-            tishri1 = _tishri1(metonic_year, day1, halakim)
+        if day > 0:
+            return (year, month, day)
+        month -= 1
+        day += 29
+        if day > 0:
+            return (year, month, day)
+
+        # We need the length of the year to figure this out, so find
+        # Tishri 1 of this year
+        tishri1_after = tishri1
+        (metonic_cycle, metonic_year, day1, halakim) = _tishri_molad(day1 - 365)
+        tishri1 = _tishri1(metonic_year, day1, halakim)
 
     year_length = tishri1_after - tishri1
     day = input_day - tishri1 - 29
-    if year_length == 355 or year_length == 385:
+    if year_length in [355, 385]:
         # Heshvan has 30 days
         if day <= 30:
             month = 2
@@ -536,7 +538,8 @@ def gregorian_ymd(sdn):
 
 
 def _check_republican_period(sdn, restrict_period):
-    # French Republican calendar wasn't in use before 22.9.1792 or after 1.1.1806
+    # French Republican calendar wasn't in use before 22.9.1792 or
+    # after 1.1.1806
     if restrict_period and (sdn < 2375840 or sdn > 2380688):
         raise ValueError("Outside of the French Republican period")
 
@@ -574,14 +577,14 @@ def persian_sdn(year, month, day):
     epyear = 474 + epbase % 2820
 
     if month <= 7:
-        v1 = (month - 1) * 31
+        var1 = (month - 1) * 31
     else:
-        v1 = ((month - 1) * 30) + 6
-    v2 = ((epyear * 682) - 110) // 2816
-    v3 = (epyear - 1) * 365 + day
-    v4 = (epbase // 2820) * 1029983
+        var1 = ((month - 1) * 30) + 6
+    var2 = ((epyear * 682) - 110) // 2816
+    var3 = (epyear - 1) * 365 + day
+    var4 = (epbase // 2820) * 1029983
 
-    return int(math.ceil(v1 + v2 + v3 + v4 + _PRS_EPOCH - 1))
+    return int(math.ceil(var1 + var2 + var3 + var4 + _PRS_EPOCH - 1))
 
 
 def persian_ymd(sdn):
@@ -614,11 +617,11 @@ def persian_ymd(sdn):
 
 def islamic_sdn(year, month, day):
     """Convert an Islamic date to an SDN number."""
-    v1 = math.ceil(29.5 * (month - 1))
-    v2 = (year - 1) * 354
-    v3 = math.floor((3 + (11 * year)) // 30)
+    var1 = math.ceil(29.5 * (month - 1))
+    var2 = (year - 1) * 354
+    var3 = math.floor((3 + (11 * year)) // 30)
 
-    return int(math.ceil((day + v1 + v2 + v3 + _ISM_EPOCH) - 1))
+    return int(math.ceil((day + var1 + var2 + var3 + _ISM_EPOCH) - 1))
 
 
 def islamic_ymd(sdn):
@@ -637,10 +640,9 @@ def swedish_sdn(year, month, day):
     if (1700, 3, 1) <= datum <= (1712, 2, 30):
         return julian_sdn(year, month, day) - 1
     # Gregorian Calendar (1753-03-01)
-    elif (1753, 3, 1) <= datum:
+    if (1753, 3, 1) <= datum:
         return gregorian_sdn(year, month, day)
-    else:
-        return julian_sdn(year, month, day)
+    return julian_sdn(year, month, day)
 
 
 def swedish_ymd(sdn):
@@ -648,10 +650,9 @@ def swedish_ymd(sdn):
     if sdn == 2346425:
         return (1712, 2, 30)
     # Swedish Calendar
-    elif 2342042 <= sdn < 2346425:
+    if 2342042 <= sdn < 2346425:
         return julian_ymd(sdn + 1)
     # Gregorian Calendar (1753-03-01)
-    elif sdn >= 2361390:
+    if sdn >= 2361390:
         return gregorian_ymd(sdn)
-    else:
-        return julian_ymd(sdn)
+    return julian_ymd(sdn)

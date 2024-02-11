@@ -31,27 +31,29 @@ Media Reference class for Gramps.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .secondaryobj import SecondaryObject
-from .privacybase import PrivacyBase
-from .citationbase import CitationBase
-from .notebase import NoteBase
-from .refbase import RefBase
-from .attrbase import AttributeBase
-from .const import IDENTICAL, EQUAL, DIFFERENT
 from ..const import GRAMPS_LOCALE as glocale
+from .attrbase import AttributeBase
+from .citationbase import CitationBase
+from .const import DIFFERENT, EQUAL, IDENTICAL
+from .notebase import NoteBase
+from .privacybase import PrivacyBase
+from .refbase import RefBase
+from .secondaryobj import SecondaryObject
 
 _ = glocale.translation.gettext
 
 
 # -------------------------------------------------------------------------
 #
-# Media References for Person/Place/Source
+# MediaRef
 #
 # -------------------------------------------------------------------------
 class MediaRef(
     SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase, AttributeBase
 ):
-    """Media reference class."""
+    """
+    Media reference class.
+    """
 
     def __init__(self, source=None):
         PrivacyBase.__init__(self, source)
@@ -86,6 +88,7 @@ class MediaRef(
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
+        # pylint: disable=import-outside-toplevel
         from .attribute import Attribute
 
         return {
@@ -109,7 +112,11 @@ class MediaRef(
                     "title": _("Attributes"),
                     "items": Attribute.get_schema(),
                 },
-                "ref": {"type": "string", "title": _("Handle"), "maxLength": 50},
+                "ref": {
+                    "type": "string",
+                    "title": _("Handle"),
+                    "maxLength": 50,
+                },
                 "rect": {
                     "oneOf": [
                         {"type": "null"},
@@ -129,7 +136,14 @@ class MediaRef(
         """
         Convert a serialized tuple of data to an object.
         """
-        (privacy, citation_list, note_list, attribute_list, ref, self.rect) = data
+        (
+            privacy,
+            citation_list,
+            note_list,
+            attribute_list,
+            ref,
+            self.rect,
+        ) = data
         PrivacyBase.unserialize(self, privacy)
         CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
@@ -203,11 +217,9 @@ class MediaRef(
         """
         if self.ref != other.ref or self.rect != other.rect:
             return DIFFERENT
-        else:
-            if self.is_equal(other):
-                return IDENTICAL
-            else:
-                return EQUAL
+        if self.is_equal(other):
+            return IDENTICAL
+        return EQUAL
 
     def merge(self, acquisition):
         """
