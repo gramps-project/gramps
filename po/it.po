@@ -57,7 +57,7 @@
 #
 # Marco Molteni <molter@gufi.org>, 2001-2002;.
 # Lorenzo Cappelletti <lorenzo.cappelletti@email.it>, 2003.
-# Luigi Toscano <luigi.toscano@tiscali.it>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023.
+# Luigi Toscano <luigi.toscano@tiscali.it>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2024.
 # Gianluca Boiano <morf3089@gmail.com>, 2021.
 # Alessandro Combatti <combatti.alessandro@gmail.com>, 2022.
 # Mauro Piccotti <mauro.piccotti@gmail.com>, 2024.
@@ -66,8 +66,8 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-02-10 21:14+0000\n"
-"Last-Translator: Mauro Piccotti <mauro.piccotti@gmail.com>\n"
+"PO-Revision-Date: 2024-02-11 22:02+0000\n"
+"Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/it/>\n"
 "Language: it\n"
@@ -455,10 +455,10 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>Individuare le persone</b><br/>Nella vista persone, ogni cognome è "
-"elencato una sola volta. Facendo clic sulla freccia a sinistra di un nome, "
-"la lista si espande per mostrare tutte le persone con quel cognome. Per "
-"individuare un qualsiasi nome di famiglia da un elenco lungo, basta "
+"<b>Individuare le persone</b><br/>Nella vista persone raggruppate, ogni "
+"cognome è elencato una sola volta. Facendo clic sulla freccia a sinistra di "
+"un nome, la lista si espande per mostrare tutte le persone con quel cognome. "
+"Per individuare un qualsiasi nome di famiglia da un elenco lungo, basta "
 "selezionare un nome di famiglia (non una persona) e iniziare a digitare. La "
 "vista passerà al primo nome di famiglia corrispondente alle lettere inserite."
 
@@ -471,12 +471,6 @@ msgstr ""
 "unità familiare composta da due genitori e i loro figli."
 
 #: ../data/tips.xml:22
-#, fuzzy
-#| msgid ""
-#| "<b>Changing the Active Person</b><br/>Changing the Active Person in views "
-#| "is easy. In the Relationship view just click on anyone. In the Ancestry "
-#| "View doubleclick on the person or right click to select any of their "
-#| "spouses, siblings, children or parents."
 msgid ""
 "<b>Changing the Active Person</b><br/>Changing the Active Person in views is "
 "easy. In the Relationship view just click on anyone. In the Pedigree View "
@@ -485,7 +479,7 @@ msgid ""
 msgstr ""
 "<b>Cambiare la persona attiva</b><br/>È facile cambiare la persona attiva "
 "nelle viste. Nella vista relazioni basta fare clic su qualcuno. Nella vista "
-"ascendenza, doppio clic su una persona o clic con il pulsante destro per "
+"genealogia, doppio clic su una persona o clic con il pulsante destro per "
 "selezionarne coniugi, fratelli, figli o genitori."
 
 #: ../data/tips.xml:24
@@ -856,22 +850,16 @@ msgstr ""
 "trascinandolo nella sezione Nome preferito."
 
 #: ../data/tips.xml:76
-#, fuzzy
-#| msgid ""
-#| "<b>Ancestor View</b><br/>The Ancestry View displays a traditional "
-#| "pedigree chart. Hold the mouse over an individual to see more information "
-#| "about them or right click on an individual to access other family members "
-#| "and settings. Play with the settings to see the different options."
 msgid ""
 "<b>Pedigree View</b><br/>The Pedigree View displays a traditional pedigree "
 "chart. Hold the mouse over an individual to see more information about them "
 "or right click on an individual to access other family members and settings. "
 "Play with the settings to see the different options."
 msgstr ""
-"<b>Vista ascendenza</b><br/>La vista ascendenza mostra il tradizionale "
-"grafico dell'ascendenza. Tenendo il mouse su una persona si possono vedere "
-"ulteriori informazioni su di essa, oppure facendo clic col pulsante destro "
-"su una persona è possibile accedere ad altri membri della famiglia ed alle "
+"<b>Vista genealogia</b><br/>La vista genealogia mostra un classico grafico "
+"genealogico. Tenendo il mouse su una persona si possono vedere ulteriori "
+"informazioni su di essa, oppure facendo clic col pulsante destro su una "
+"persona è possibile accedere ad altri membri della famiglia ed alle "
 "impostazioni. Giocando con le impostazioni si possono vedere le varie "
 "opzioni."
 
@@ -5756,11 +5744,11 @@ msgstr "Estrae le persone figlie di qualcuno corrispondente ad un filtro"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
 msgid "Home Person"
-msgstr "Persona predefinita"
+msgstr "Persona principale"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:48
 msgid "Matches the Home Person"
-msgstr "Estrae la persona predefinita"
+msgstr "Estrae la persona principale"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:52
 msgid "Descendant family members of <person>"
@@ -5871,12 +5859,12 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:49
 msgid "Ancestors of the Home Person not more than <N> generations away"
-msgstr "Ascendenti da non più di <N> generazioni della persona predefinita"
+msgstr "Ascendenti da non più di <N> generazioni della persona principale"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:52
 msgid "Matches ancestors of the Home Person not more than N generations away"
 msgstr ""
-"Estrae gli ascendenti da non più di N generazioni della persona predefinita"
+"Estrae gli ascendenti da non più di N generazioni della persona principale"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:48
 msgid "Descendants of <person> not more than <N> generations away"
@@ -12350,10 +12338,8 @@ msgid "Age display precision *"
 msgstr "Precisione età visualizzata *"
 
 #: ../gramps/gui/configure.py:1571
-#, fuzzy
-#| msgid "Rounded corners"
 msgid "Round the year"
-msgstr "Bordi arrotondati"
+msgstr "Arrotonda l'anno"
 
 #: ../gramps/gui/configure.py:1582
 msgid "Display ages for events after death *"
@@ -12754,6 +12740,10 @@ msgid ""
 "not a global setting. Each family tree is able to have a unique relative "
 "media path that is stored with the database."
 msgstr ""
+"Il percorso relativo di base degli oggetti multimediali è specifico "
+"all'albero genealogico attivo. Non è un'impostazione globale. Ogni albero "
+"genealogico può avere un percorso relativo degli oggetti multimediali, che "
+"viene memorizzato nel database."
 
 #: ../gramps/gui/configure.py:2368
 msgid "Tag Records"
@@ -19100,14 +19090,12 @@ msgid "No matching addons found."
 msgstr "Nessun componente aggiuntivo corrispondente trovato."
 
 #: ../gramps/gui/plug/_windows.py:734
-#, fuzzy
-#| msgid "Allow Gramps to install required python modules"
 msgid "Allow Gramps to install required Python modules"
-msgstr "Permettere a Gramps di installare i moduli python richiesti"
+msgstr "Permettere a Gramps di installare i moduli Python richiesti"
 
 #: ../gramps/gui/plug/_windows.py:741
 msgid "Scheduled update checks"
-msgstr ""
+msgstr "Verifiche programmate degli aggiornamenti"
 
 #: ../gramps/gui/plug/_windows.py:757
 msgid "Once a month"
@@ -20676,6 +20664,10 @@ msgid ""
 "person you want as 'Home Person', then confirm your choice via the menu Edit "
 "-> Set Home Person."
 msgstr ""
+"È necessario impostare una «persona principale» a cui andare. Selezionare la "
+"vista delle persone, selezionare la persona che si desidera come «persona "
+"principale», quindi confermare la scelta tramite il menu Modifica -> Imposta "
+"persona principale."
 
 #: ../gramps/gui/views/navigationview.py:339
 #: ../gramps/gui/views/navigationview.py:344
@@ -21124,16 +21116,12 @@ msgid "'%s' is not a valid date value"
 msgstr "«%s» non è un valore valido per una data"
 
 #: ../gramps/plugins/cite/cite.gpr.py:35
-#, fuzzy
-#| msgid "Legal"
 msgid "Legacy"
-msgstr "Legale"
+msgstr "Legacy"
 
 #: ../gramps/plugins/cite/cite.gpr.py:36
-#, fuzzy
-#| msgid "Default citation formatter"
 msgid "Legacy citation formatter"
-msgstr "Formattatore predefinito citazioni"
+msgstr "Formattatore citazioni legacy"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:27
 msgid "BSDDB"
@@ -22491,14 +22479,12 @@ msgstr ""
 "cerchi"
 
 #: ../gramps/plugins/drawreport/fanchart.py:854
-#, fuzzy
-#| msgid "The title of the calendar"
 msgid "Exclude the title of the chart"
-msgstr "Il titolo del calendario"
+msgstr "Esclude il titolo del grafico"
 
 #: ../gramps/plugins/drawreport/fanchart.py:855
 msgid "Exclude the title to make more room for the chart"
-msgstr ""
+msgstr "Esclude il titolo per fare più spazio al grafico"
 
 #: ../gramps/plugins/drawreport/fanchart.py:910
 #, python-format
@@ -23687,7 +23673,7 @@ msgstr "Gramplet che mostra tutti i nomi come una «nuvola» di testo"
 #: ../gramps/plugins/view/view.gpr.py:135
 #: ../gramps/plugins/webreport/person.py:1681
 msgid "Pedigree"
-msgstr "Ascendenza"
+msgstr "Genealogia"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:247
 msgid "Gramplet showing an active item Quick View"
@@ -24933,6 +24919,12 @@ msgid ""
 "under the \"Family Trees\" menu to import the GEDCOM data.\n"
 "\n"
 msgstr ""
+"Per importare un albero genealogico da un altro programma, creare per prima "
+"cosa un file GEDCOM (o altro tipo di dati) dal programma precedente.\n"
+"\n"
+"Dopo aver creato un nuovo file di database Gramps, usare l'opzione «Importa» "
+"dal menu «Alberi genealogici» per importare i dati GEDCOM.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:220
 msgid "Import from another genealogy program"
@@ -25004,6 +24996,16 @@ msgid ""
 "program.\n"
 "\n"
 msgstr ""
+"Si vuole vedere Gramps in funzione. Crea e importa il database di esempio.\n"
+"\n"
+"Crea un nuovo albero genealogico come descritto di sopra. Suggerisci "
+"\"ESEMPIO\" come nome per l'albero.\n"
+"\n"
+"Importa il file di Gramps example.gramps.\n"
+"\n"
+"Segui le istruzioni per la posizione del file memorizzato con il programma "
+"Gramps.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:268
 msgid "Example.gramps"
@@ -25763,6 +25765,14 @@ msgid ""
 "however they will be offset from each other.  This will tend to make graphs "
 "with many people in a generation more square."
 msgstr ""
+"Nella configurazione «Normale» i genitori saranno posizionati in modo che la "
+"maggior parte delle righe sia corta.\n"
+"L'impostazione «Genitori insieme» può aiutare a posizionare gli sposi "
+"vicini, ma con grafici non semplici porterà a righe più lunghe e grafici più "
+"larghi.\n"
+"L'impostazione «Genitori separati» cercherà pure di posizionare gli sposi "
+"vicini, tuttavia saranno sfalsati tra loro.  Questo farà sì che i grafici "
+"con molte persone in una generazione tenderanno ad essere più quadrati."
 
 #: ../gramps/plugins/importer/import.gpr.py:38
 msgid "Import data from CSV files"
@@ -25857,10 +25867,8 @@ msgid "call"
 msgstr "pseudonimo"
 
 #: ../gramps/plugins/importer/importcsv.py:218
-#, fuzzy
-#| msgid "Tag"
 msgid "tag"
-msgstr "Etichette"
+msgstr "etichetta"
 
 #: ../gramps/plugins/importer/importcsv.py:219
 msgid "title"
@@ -26226,7 +26234,7 @@ msgstr "Smobilitazione militare"
 
 #: ../gramps/plugins/importer/importgeneweb.py:122
 msgid "Dotation"
-msgstr ""
+msgstr "Investitura (LDS)"
 
 #: ../gramps/plugins/importer/importgeneweb.py:123
 #: ../gramps/plugins/lib/libgedcom.py:742
@@ -26407,6 +26415,8 @@ msgid ""
 "Source attribute text\n"
 "(Text, import Filename & (System-)Date)."
 msgstr ""
+"Testo dell'attributo della fonte\n"
+"(testo, nome file da importare e data (di sistema))."
 
 #: ../gramps/plugins/importer/importprogen.glade:190
 #: ../gramps/plugins/importer/importprogen.glade:207
@@ -26426,12 +26436,16 @@ msgid ""
 "Citation volume/page text\n"
 "(Text & (System-)Date)."
 msgstr ""
+"Testo del volume/pagine della citazione\n"
+"(testo e data (di sistema))."
 
 #: ../gramps/plugins/importer/importprogen.glade:341
 msgid ""
 "Citation attribute text\n"
 "(Text, import Filename & (System-)Date)."
 msgstr ""
+"Testo dell'attributo della citazione\n"
+"(testo, nome file da importare e data (di sistema))."
 
 #: ../gramps/plugins/importer/importprogen.glade:362
 msgid "Import Text"
@@ -26442,6 +26456,8 @@ msgid ""
 "Default Tagtext\n"
 "(out of Settings)."
 msgstr ""
+"Testo etichetta predefinito\n"
+"(fuori dalle impostazioni)."
 
 #: ../gramps/plugins/importer/importprogen.glade:443
 msgid "Import Filename."
@@ -26466,18 +26482,24 @@ msgid ""
 "Copy Default Text\n"
 "to all Tag Text'."
 msgstr ""
+"Copia il testo predefinito\n"
+"in tutti i testi delle etichette."
 
 #: ../gramps/plugins/importer/importprogen.glade:1130
 msgid ""
 "Copy Default Filename\n"
 "to all sensitive Tag Text'."
 msgstr ""
+"Copia il nome di file predefinito\n"
+"in tutti i testi delle etichette sensibili."
 
 #: ../gramps/plugins/importer/importprogen.glade:1149
 msgid ""
 "Copy Default Date\n"
 "to all sensitive Tag Text'."
 msgstr ""
+"Copia la data predefinita\n"
+"in tutti i testi delle etichette sensibili."
 
 #: ../gramps/plugins/importer/importprogen.glade:1164
 msgid "  Objects"
@@ -26488,6 +26510,8 @@ msgid ""
 "Enable/Disable\n"
 "all object tags."
 msgstr ""
+"Abilita/disabilita\n"
+"tutte le etichette degli oggetti."
 
 #: ../gramps/plugins/importer/importprogen.glade:1198
 msgid "Tag Text"
@@ -27062,7 +27086,7 @@ msgstr "Altezza"
 
 #: ../gramps/plugins/lib/libgedcom.py:746
 msgid "Initiatory (LDS)"
-msgstr ""
+msgstr "Iniziatorie (LDS)"
 
 #: ../gramps/plugins/lib/libgedcom.py:747
 msgid "Military ID"
@@ -27193,7 +27217,7 @@ msgstr "Elemento ADDR ignorato «%s»"
 
 #: ../gramps/plugins/lib/libgedcom.py:3888
 msgid "TRLR (trailer)"
-msgstr ""
+msgstr "TRLR (trailer)"
 
 #: ../gramps/plugins/lib/libgedcom.py:3917
 msgid "(Submitter):"
@@ -31173,7 +31197,7 @@ msgstr "_Imposta persona principale"
 #: ../gramps/plugins/view/pedigreeview.py:733
 #: ../gramps/plugins/view/relview.py:455
 msgid "Go to the home person"
-msgstr "Va alla persona predefinita"
+msgstr "Va alla persona principale"
 
 #: ../gramps/plugins/lib/libpersonview.py:289
 #: ../gramps/plugins/lib/libplaceview.py:363
@@ -32722,10 +32746,8 @@ msgid "French Relationship Calculator"
 msgstr "Calcolatrice relazioni francese"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:241
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Hebrew Relationship Calculator"
-msgstr "Calcolatrice relazioni"
+msgstr "Calcolatrice relazioni ebraica"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:265
 msgid "Croatian Relationship Calculator"
@@ -33120,16 +33142,12 @@ msgid "Whether to show divorce information in the report."
 msgstr "Indica se includere le informazioni sui divorzi nel resoconto."
 
 #: ../gramps/plugins/textreport/descendreport.py:596
-#, fuzzy
-#| msgid "Add birth and death events"
 msgid "Show birth and death info"
-msgstr "Aggiunge eventi di tipo nascita e decesso"
+msgstr "Mostra informazioni di tipo nascita e decesso"
 
 #: ../gramps/plugins/textreport/descendreport.py:598
-#, fuzzy
-#| msgid "Whether to show divorce information in the report."
 msgid "Whether to show birth and death information in the report."
-msgstr "Indica se includere le informazioni sui divorzi nel resoconto."
+msgstr "Indica se includere le informazioni su nascite e decessi nel resoconto."
 
 #: ../gramps/plugins/textreport/descendreport.py:602
 msgid "Show duplicate trees"
@@ -35347,8 +35365,8 @@ msgid ""
 "that is not set, it prepends user's directory."
 msgstr ""
 "Questo strumento permette la conversione dei percorsi relativi di file "
-"multimediali in percorsi assoluti. Svolge il suo compito facendo precedereal "
-"percorso relativo il percorso base specificato nelle preferenze o, se non "
+"multimediali in percorsi assoluti. Svolge il suo compito facendo precedere "
+"al percorso relativo il percorso base specificato nelle preferenze o, se non "
 "impostato, la directory personale dell'utente."
 
 #: ../gramps/plugins/tool/mediamanager.py:636
@@ -36459,66 +36477,48 @@ msgid "Old age but no death"
 msgstr "Età avanzata ma niente decesso"
 
 #: ../gramps/plugins/tool/verify.py:2330
-#, fuzzy
-#| msgid "Birth equals death"
 msgid "Birth date equals death date"
-msgstr "Nascita pari al decesso"
+msgstr "Data di nascita pari alla data di decesso"
 
 #: ../gramps/plugins/tool/verify.py:2351
-#, fuzzy
-#| msgid "Birth equals marriage"
 msgid "Birth date equals marriage date"
-msgstr "Nascita pari al matrimonio"
+msgstr "Dati di nascita pari alla data di matrimonio"
 
 #: ../gramps/plugins/tool/verify.py:2372
-#, fuzzy
-#| msgid "Death equals marriage"
 msgid "Death date equals marriage date"
-msgstr "Decesso pari al matrimonio"
+msgstr "Data del decesso pari alla data del matrimonio"
 
 #: ../gramps/plugins/tool/verify.py:2433
 msgid "Baptism too late according to family tradition"
-msgstr ""
+msgstr "Battesimo troppo tardivo in base alla tradizione familiare"
 
 #: ../gramps/plugins/tool/verify.py:2458
-#, fuzzy
-#| msgid "Burial date"
 msgid "Burial too late"
-msgstr "Data di sepoltura"
+msgstr "Sepoltura troppo tardiva"
 
 #: ../gramps/plugins/tool/verify.py:2495
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Children are not in chronological order"
-msgstr "Indica se ordinare gli eventi in ordine cronologico."
+msgstr "I figli non sono in ordine cronologico"
 
 #: ../gramps/plugins/tool/verify.py:2559
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Families are not in chronological order"
-msgstr "Indica se ordinare gli eventi in ordine cronologico."
+msgstr "Le famiglie non sono in ordine cronologico"
 
 #: ../gramps/plugins/tool/verify.py:2572
 msgid "Family has events with role Unknown"
-msgstr ""
+msgstr "La famiglia ha eventi con ruolo sconosciuto"
 
 #: ../gramps/plugins/tool/verify.py:2585
-#, fuzzy
-#| msgid "Personal events of the children"
 msgid "Person has events with role Unknown"
-msgstr "Eventi personali dei figli"
+msgstr "La persona ha eventi con ruolo sconosciuto"
 
 #: ../gramps/plugins/tool/verify.py:2598
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Family events are not in chronological order"
-msgstr "Indica se ordinare gli eventi in ordine cronologico."
+msgstr "Gli eventi familiari non sono in ordine cronologico"
 
 #: ../gramps/plugins/tool/verify.py:2611
-#, fuzzy
-#| msgid "Whether to sort events into chronological order."
 msgid "Person events are not in chronological order"
-msgstr "Indica se ordinare gli eventi in ordine cronologico."
+msgstr "Gli eventi personali non sono in ordine cronologico"
 
 #: ../gramps/plugins/view/citationlistview.py:107
 msgid "Source: Title"
@@ -37548,7 +37548,7 @@ msgstr "Sinistra <-> destra"
 
 #: ../gramps/plugins/view/pedigreeview.py:1831
 msgid "About Pedigree View"
-msgstr "Informazioni sulla vista ascendenza"
+msgstr "Informazioni sulla vista genealogia"
 
 #: ../gramps/plugins/view/pedigreeview.py:2045
 #: ../gramps/plugins/view/relview.py:411
@@ -37895,7 +37895,8 @@ msgstr "La vista che mostra tutte le relazioni della persona selezionata"
 
 #: ../gramps/plugins/view/view.gpr.py:136
 msgid "The view showing an ancestor pedigree of the selected person"
-msgstr "La vista che mostra gli ascendenti della persona selezionata"
+msgstr ""
+"La vista che mostra la genealogia degli ascendenti della persona selezionata"
 
 #: ../gramps/plugins/view/view.gpr.py:143
 #: ../gramps/plugins/view/view.gpr.py:153
@@ -38588,8 +38589,6 @@ msgid "Check it if you want to open/close a section"
 msgstr "Selezionare se si desidera aprire/chiudere una sezione"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2215
-#, fuzzy
-#| msgid "Extra pages"
 msgid "Extra Pages"
 msgstr "Pagine extra"
 
@@ -39134,21 +39133,15 @@ msgstr ""
 "Selezionare quale opzione abilitare per le pagine delle mappe Stamen..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2696
-#, fuzzy
-#| msgid "Google maps API key"
 msgid "Stamen maps API key"
-msgstr "Chiave per API di Google Maps"
+msgstr "Chiave per API delle mappe di Stamen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2699
-#, fuzzy
-#| msgid ""
-#| "The API key used for the Google maps.\n"
-#| "This key is mandatory and must be valid"
 msgid ""
 "The API key used for the Stamen maps.\n"
 "This key is mandatory and must be valid"
 msgstr ""
-"La chiave per le API usata per Google maps.\n"
+"La chiave per le API usata per le mappe Stamen.\n"
 "Questa chiave è obbligatoria e deve essere valida"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2714
@@ -39232,10 +39225,8 @@ msgid "Translations"
 msgstr "Traduzioni"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2806
-#, fuzzy
-#| msgid "second language"
 msgid "Second language"
-msgstr "seconda lingua"
+msgstr "Seconda lingua"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2811
 msgid "Site name for your second language"
@@ -39258,40 +39249,32 @@ msgid "Enter a title in the respective language"
 msgstr "Inserire un titolo nella rispettiva lingua"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2815
-#, fuzzy
-#| msgid "third language"
 msgid "Third language"
-msgstr "terza lingua"
+msgstr "Terza lingua"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2820
 msgid "Site name for your third language"
 msgstr "Nome del sito per la terza lingua"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2824
-#, fuzzy
-#| msgid "fourth language"
 msgid "Fourth language"
-msgstr "quarta lingua"
+msgstr "Quarta lingua"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2829
 msgid "Site name for your fourth language"
 msgstr "Nome del sito per la quarta lingua"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2833
-#, fuzzy
-#| msgid "fifth language"
 msgid "Fifth language"
-msgstr "quinta lingua"
+msgstr "Quinta lingua"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2838
 msgid "Site name for your fifth language"
 msgstr "Nome del sito per la quinta lingua"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2842
-#, fuzzy
-#| msgid "sixth language"
 msgid "Sixth language"
-msgstr "sesta lingua"
+msgstr "Sesta lingua"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2847
 msgid "Site name for your sixth language"
