@@ -15,13 +15,14 @@
 # 快乐的老鼠宝宝 <keaitianxinmail@qq.com>, 2023.
 # Tian Shixiong <tiansworld@fedoraproject.org>, 2023, 2024.
 # Nick Hall <nick-h@gramps-project.org>, 2024.
+# 快乐的老鼠宝宝 <laoshubaby@protonmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-02-09 15:43+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2024-02-11 22:02+0000\n"
+"Last-Translator: 快乐的老鼠宝宝 <laoshubaby@protonmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -7261,9 +7262,9 @@ msgid "unknown"
 msgstr "未知"
 
 #: ../gramps/gen/lib/date.py:298
-#, fuzzy, python-format
+#, python-format
 msgid "greater than %s years"
-msgstr "少于 1"
+msgstr "大于 %s 年"
 
 #: ../gramps/gen/lib/date.py:303 ../gramps/gen/lib/date.py:334
 #: ../gramps/gen/lib/date.py:336 ../gramps/gen/lib/date.py:342
@@ -15566,10 +15567,8 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:96
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:89
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:73
-#, fuzzy
-#| msgid "Case sensitive:"
 msgid "Case sensitive"
-msgstr "区分大小写："
+msgstr "区分大小写"
 
 #: ../gramps/gui/editors/filtereditor.py:688
 msgid "Rule Name"
@@ -18976,10 +18975,8 @@ msgid "All audiences"
 msgstr "证据"
 
 #: ../gramps/gui/plug/_windows.py:455
-#, fuzzy
-#| msgid " state"
 msgid "All statuses"
-msgstr " 状态"
+msgstr "所有状态"
 
 #: ../gramps/gui/plug/_windows.py:476
 #, fuzzy
@@ -21774,25 +21771,16 @@ msgid_plural "{person}, {age}"
 msgstr[0] "{person}, {age}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:519
-#, fuzzy, python-format
-#| msgid ""
-#| "%(spouse)s and\n"
-#| " %(person)s, wedding"
+#, python-format
 msgid ""
 "%(wife)s and\n"
 " %(person)s, wedding"
 msgstr ""
-"%(spouse)s 和\n"
+"%(wife)s 和\n"
 " %(person)s, 婚礼"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:532
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "{spouse} and\n"
-#| " {person}, {nyears}"
-#| msgid_plural ""
-#| "{spouse} and\n"
-#| " {person}, {nyears}"
+#, python-brace-format
 msgid ""
 "{wife} and\n"
 " {person}, {nyears}"
@@ -21800,7 +21788,7 @@ msgid_plural ""
 "{wife} and\n"
 " {person}, {nyears}"
 msgstr[0] ""
-"{spouse} 和\n"
+"{wife} 和\n"
 " {person}, {nyears}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:602
@@ -22388,7 +22376,7 @@ msgstr "栏目计数"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:334
 msgid "All"
-msgstr "所有"
+msgstr "全部"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:335
 #: ../gramps/plugins/drawreport/statisticschart.py:502
@@ -27315,10 +27303,8 @@ msgid "%(date)s %(time)s"
 msgstr "%(date)s %(time)s"
 
 #: ../gramps/plugins/lib/libmetadata.py:120
-#, fuzzy
-#| msgid "Description: "
 msgid "Descriptive Tags"
-msgstr "描述："
+msgstr "描述性标签"
 
 #: ../gramps/plugins/lib/libmetadata.py:121
 #, fuzzy
@@ -27387,10 +27373,8 @@ msgid "Label"
 msgstr "标签"
 
 #: ../gramps/plugins/lib/libmetadata.py:230
-#, fuzzy
-#| msgid ", "
 msgid " "
-msgstr ", "
+msgstr " "
 
 #: ../gramps/plugins/lib/libnarrate.py:111
 #, python-format
@@ -31426,8 +31410,8 @@ msgid ""
 " - a green row related to a selected place."
 msgstr ""
 "\n"
-"在以下表格中您可能会看到：\n"
-"  -绿色行代表选中的地点。"
+"在以下表格中您可能会见到 :\n"
+" - 绿色行代表选中的地点。"
 
 #: ../gramps/plugins/lib/maps/placeselection.py:134
 msgid ""
