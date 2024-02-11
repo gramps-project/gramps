@@ -32,7 +32,7 @@
 # Mathieu MD <mathieu.md@gmail.com>, 2012.
 # Christophe <khrys63@gmail.com>, 2018, 2022.
 # Gil da Costa <gdacosta@sommier-colas.fr>, 2019.
-# Jean-Marc <m.balthazar@posteo.net>, 2021, 2023.
+# Jean-Marc <m.balthazar@posteo.net>, 2021, 2023, 2024.
 # msansm1 <ronanbarbot@dizalch.fr>, 2021.
 # Translator <kvb@tuta.io>, 2022.
 # Olivier Berten <olivier.berten@gmail.com>, 2023.
@@ -46,8 +46,8 @@ msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-01-27 21:01+0000\n"
-"Last-Translator: Boris Dauriac <dauriacboris+gramps@gmail.com>\n"
+"PO-Revision-Date: 2024-02-10 21:13+0000\n"
+"Last-Translator: Jean-Marc <m.balthazar@posteo.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -436,14 +436,6 @@ msgstr ""
 
 # Substantif (GNOME fr)
 #: ../data/tips.xml:18
-#, fuzzy
-#| msgid ""
-#| "<b>Locating People</b><br/>By default, each surname in the People View is "
-#| "listed only once. By clicking on the arrow to the left of a name, the "
-#| "list will expand to show all individuals with that last name. To locate "
-#| "any Family Name from a long list, select a Family Name (not a person) and "
-#| "start typing. The view will jump to the first Family Name matching the "
-#| "letters you enter."
 msgid ""
 "<b>Locating People</b><br/>In the Grouped People View, each surname is "
 "listed only once. By clicking on the arrow to the left of a name, the list "
@@ -452,9 +444,9 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>Localisation des individus</b><br/>Par défaut, chaque nom de famille dans "
-"la vue Individus est listé une seule fois. Cliquez sur la flèche à la gauche "
-"du nom pour dérouler la liste et afficher tous les individus avec le même "
+"<b>Localisation des individus</b><br/>Chaque nom de famille dans la vue "
+"Individus est listé une seule fois. Cliquez sur la flèche à la gauche du nom "
+"pour dérouler la liste et afficher tous les individus avec le même "
 "patronyme. Pour retrouver un nom de famille dans une longue liste, "
 "sélectionnez un nom de famille (pas une personne) et commencez par saisir. "
 "La vue trouvera automatiquement les premiers noms de famille qui "
@@ -1041,13 +1033,12 @@ msgstr ""
 "nombreux rapports, surtout pour l'impression."
 
 #: ../data/tips.xml:106
-#, fuzzy
 msgid ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
 "\"Help &gt; Gramps Mailing Lists\"."
 msgstr ""
-"<b>Les annonces Gramps</b><br/>Vous voulez être alerté(e) par la sortie des "
+"<b>Les annonces Gramps</b><br/>Vous voulez être alerté(e) à la sortie des "
 "dernières versions de Gramps ? Rejoignez-nous sur la liste gramps-annonce "
 "via « Aide &gt; Listes de diffusion de Gramps »."
 
@@ -1505,63 +1496,6 @@ msgstr ""
 
 # master
 #: ../gramps/cli/argparser.py:108
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Example of usage of Gramps command line interface\n"
-#| "\n"
-#| "1. To import four databases (whose formats can be determined from their "
-#| "names)\n"
-#| "and then check the resulting database for errors, one may type:\n"
-#| "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps -i file4.wft -a tool -p "
-#| "name=check.\n"
-#| "\n"
-#| "2. To explicitly specify the formats in the above example, append "
-#| "filenames with appropriate -f options:\n"
-#| "gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~/db3.gramps "
-#| "-f gramps-xml -i file4.wft -f wft -a tool -p name=check.\n"
-#| "\n"
-#| "3. To record the database resulting from all imports, supply -e flag\n"
-#| "(use -f if the filename does not allow Gramps to guess the format):\n"
-#| "gramps -i file1.ged -i file2.gpkg -e ~/new-package -f gramps-pkg\n"
-#| "\n"
-#| "4. To save any error messages of the above example into files outfile and "
-#| "errfile, run:\n"
-#| "gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile "
-#| "2>errfile\n"
-#| "\n"
-#| "5. To import three databases and start interactive Gramps session with "
-#| "the result:\n"
-#| "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps\n"
-#| "\n"
-#| "6. To open a database and, based on that data, generate timeline report "
-#| "in PDF format\n"
-#| "putting the output into the my_timeline.pdf file:\n"
-#| "gramps -O 'Family Tree 1' -a report -p name=timeline,off=pdf,"
-#| "of=my_timeline.pdf\n"
-#| "\n"
-#| "7. To generate a summary of a database:\n"
-#| "gramps -O 'Family Tree 1' -a report -p name=summary\n"
-#| "\n"
-#| "8. Listing report options\n"
-#| "Use the name=timeline,show=all to find out about all available options "
-#| "for the timeline report.\n"
-#| "To find out details of a particular option, use show=option_name , e.g. "
-#| "name=timeline,show=off string.\n"
-#| "To learn about available report names, use name=show string.\n"
-#| "\n"
-#| "9. To convert a Family Tree on the fly to a .gramps xml file:\n"
-#| "gramps -O 'Family Tree 1' -e output.gramps -f gramps-xml\n"
-#| "\n"
-#| "10. To generate a web site into an other locale (in german):\n"
-#| "LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Family Tree 1' -a report -p "
-#| "name=navwebpage,target=/../de\n"
-#| "\n"
-#| "11. Finally, to start normal interactive session type:\n"
-#| "gramps\n"
-#| "\n"
-#| "Note: These examples are for bash shell.\n"
-#| "Syntax may be different for other shells and for Windows.\n"
 msgid ""
 "\n"
 "Example of usage of Gramps command line interface\n"
@@ -1623,57 +1557,57 @@ msgstr ""
 "Exemples d'utilisation de l'interface en ligne de commande Gramps\n"
 "\n"
 "1. Importer quatre bases de données (dont les formats sont déterminés depuis "
-"leurs noms) puis vérifier les bases résultantes, on peut faire :\n"
+"leurs noms) puis vérifier les bases résultantes, on peut faire :\n"
 "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps -i file4.wft -a tool -p "
 "name=check\n"
 "\n"
 "2. Spécifier explicitement les formats dans l'exemple précédent, ajouter "
-"l'option -f après les noms de fichier :\n"
+"l'option -f après les noms de fichier :\n"
 "gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~/db3.gramps -f "
-"gramps-xml -i file4.wft -f wft -a tool -p name=check\n"
+"gramps -i file4.wft -f wft -a tool -p name=check\n"
 "\n"
 "3. Enregistrer les bases de données résultantes des importations, utilisez "
 "l'option -e (préférez -f si le nom du fichier ne permet pas à Gramps de "
-"deviner le format) :\n"
+"deviner le format) :\n"
 "gramps -i file1.ged -i file2.gpkg -e ~/nouveau-paquet -f gramps-pkg\n"
 "\n"
 "4. Enregistrer tout message d'erreur de l'exemple précédent dans "
-"fichier_sortie et fichier_erreurs, lancez :\n"
+"fichier_sortie et fichier_erreurs, lancez :\n"
 "gramps -i file1.ged -i file2.dpkg -e ~/nouveau-paquet -f gramps-pkg "
 ">fichier_sortie 2>fichier_erreurs\n"
 "\n"
 "5. Importer trois bases de données et débuter une session interactive de "
-"Gramps avec le résultat :\n"
+"Gramps avec le résultat :\n"
 "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps\n"
 "\n"
 "6. Ouvrir une base de données et, basé sur ces données, générer le rapport "
-"graphique temporel au format PDF dont le fichier de sortie sera fil_du_temps."
-"pdf :\n"
+"graphique temporel au format PDF dont le fichier de sortie sera "
+"fil_du_temps.pdf :\n"
 "gramps -O 'Family Tree 1' -a report -p name=timeline,off=pdf,of=fil_du_temps."
 "pdf\n"
 "\n"
-"7. Générer un résumé de la base de données « Arbre de famille 1 » :\n"
+"7. Générer un résumé de la base de données « Arbre de famille 1 » :\n"
 "gramps -O 'Arbre de famille 1' -a report -p name=summary\n"
 "\n"
-"8. Lister les options d'un rapport :\n"
+"8. Lister les options d'un rapport :\n"
 "- Utiliser name=timeline,show=all pour trouver toutes les options "
 "disponibles du rapport graphique temporel.\n"
 "- Pour obtenir les détails d'une option particulière, utiliser "
-"show=option_name, par exemple : name=timeline,show=off.\n"
+"show=option_name, par exemple : name=timeline,show=off.\n"
 "- Pour en savoir plus sur les noms de rapport disponibles, utilisez la "
 "chaîne name=show.\n"
 "\n"
-"9. Convertir un arbre familial vers un fichier XML .gramps :\n"
-"gramps -O 'Family Tree 1' -e output.gramps -f gramps-xml\n"
+"9. Convertir un arbre familial vers un fichier XML .gramps :\n"
+"gramps -O 'Family Tree 1' -e output.gramps -f gramps\n"
 "\n"
-"10. Générer un site web dans une autre langue (par exemple en allemand) :\n"
+"10. Générer un site web dans une autre langue (par exemple en allemand) :\n"
 "LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Arbre de famille 1' -a report -p "
 "name=navwebpage,target=/../de\n"
 "\n"
-"11. Enfin, pour démarrer une session interactive normale, saisissez :\n"
+"11. Enfin, pour démarrer une session interactive normale, saisissez :\n"
 "gramps\n"
 "\n"
-"Note : ces exemples sont pour le shell bash.\n"
+"Note : ces exemples sont pour le shell bash.\n"
 "La syntaxe peut être différente pour les autres shells ou sous Windows.\n"
 
 #: ../gramps/cli/argparser.py:281
@@ -14372,7 +14306,6 @@ msgid "Addons"
 msgstr "Greffons"
 
 #: ../gramps/gui/displaystate.py:429
-#, fuzzy
 msgid "Open Preferences"
 msgstr "Ouvrir les préférences"
 
@@ -14534,7 +14467,6 @@ msgstr "Déplacer l'adresse sélectionnée vers le bas"
 
 # Utilisation d'un terme général (Code lieu) car le code postal ne sert à rien en généalogie.
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:79
-#, fuzzy
 msgid "Postal"
 msgstr "Code lieu"
 
@@ -16137,7 +16069,6 @@ msgid "_Female"
 msgstr "_Féminin"
 
 #: ../gramps/gui/editors/editperson.py:1239
-#, fuzzy
 msgid "_Other"
 msgstr "_Autre"
 
@@ -20299,10 +20230,8 @@ msgid "Module installation failed"
 msgstr "L'installation du module a échoué"
 
 #: ../gramps/gui/plug/_windows.py:314
-#, fuzzy
-#| msgid "Allow Gramps to install required python modules"
 msgid "Gramps was unable to install the required modules"
-msgstr "Permettre à Gramps d'installer les modules python requis"
+msgstr "Gramps n'a pas pu installer les modules nécessaires"
 
 #: ../gramps/gui/plug/_windows.py:344
 msgid "Requirements"
@@ -20325,10 +20254,8 @@ msgid "All addons"
 msgstr "Tous les greffons"
 
 #: ../gramps/gui/plug/_windows.py:426 ../gramps/gui/plug/_windows.py:623
-#, fuzzy
-#| msgid "installed"
 msgid "Not installed"
-msgstr "installé"
+msgstr "Non installé"
 
 #: ../gramps/gui/plug/_windows.py:427 ../gramps/gui/plug/_windows.py:626
 msgid "Installed"
@@ -20376,10 +20303,8 @@ msgid "No matching addons found."
 msgstr "Aucun greffon correspondant trouvé"
 
 #: ../gramps/gui/plug/_windows.py:734
-#, fuzzy
-#| msgid "Allow Gramps to install required python modules"
 msgid "Allow Gramps to install required Python modules"
-msgstr "Permettre à Gramps d'installer les modules python requis"
+msgstr "Permettre à Gramps d'installer les modules python nécessaires"
 
 #: ../gramps/gui/plug/_windows.py:741
 msgid "Scheduled update checks"
@@ -26476,15 +26401,13 @@ msgstr ""
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:203
-#, fuzzy
 msgid "Entering and editing data (brief)"
 msgstr "Saisie et édition de données (bref)"
 
 # master
 #: ../gramps/plugins/gramplet/welcomegramplet.py:209
-#, fuzzy
 msgid "Importing a Family Tree"
-msgstr "Importation d'un arbre"
+msgstr "Importation d'un arbre généalogique"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:212
 msgid ""
@@ -27509,10 +27432,8 @@ msgid "call"
 msgstr "usuel"
 
 #: ../gramps/plugins/importer/importcsv.py:218
-#, fuzzy
-#| msgid "Tag"
 msgid "tag"
-msgstr "Étiquette"
+msgstr "étiquette"
 
 # master
 #: ../gramps/plugins/importer/importcsv.py:219
@@ -35109,16 +35030,13 @@ msgid "Whether to show divorce information in the report."
 msgstr "Inclure ou non les informations sur le divorce dans le rapport."
 
 #: ../gramps/plugins/textreport/descendreport.py:596
-#, fuzzy
-#| msgid "Show divorce info"
 msgid "Show birth and death info"
-msgstr "Afficher les données du divorce"
+msgstr "Afficher les informations de naissance et de décès"
 
 #: ../gramps/plugins/textreport/descendreport.py:598
-#, fuzzy
-#| msgid "Whether to show divorce information in the report."
 msgid "Whether to show birth and death information in the report."
-msgstr "Inclure ou non les informations sur le divorce dans le rapport."
+msgstr ""
+"Inclure ou non les informations de naissance et de décès dans le rapport."
 
 # trunk
 #: ../gramps/plugins/textreport/descendreport.py:602
@@ -35600,7 +35518,7 @@ msgstr "Le style utilisé pour les sous-titres."
 
 # trunk
 #: ../gramps/plugins/textreport/familygroup.py:415
-#, fuzzy, python-format
+#, python-format
 msgid "Relationship: %s"
 msgstr "Relation : %s"
 
@@ -35615,7 +35533,6 @@ msgid "F"
 msgstr "F"
 
 #: ../gramps/plugins/textreport/familygroup.py:520
-#, fuzzy
 msgctxt "acronym for other"
 msgid "X"
 msgstr "X"
@@ -36140,7 +36057,7 @@ msgid "Females: %d"
 msgstr "Femmes : %d"
 
 #: ../gramps/plugins/textreport/summary.py:199
-#, fuzzy, python-format
+#, python-format
 msgid "Individuals with other gender: %d"
 msgstr "Individus d'un autre sexe : %d"
 
@@ -36182,9 +36099,8 @@ msgstr "Nombre de familles : %d"
 
 # trunk
 #: ../gramps/plugins/textreport/summary.py:247
-#, fuzzy
 msgid "Event Information"
-msgstr "Informations sur l'événement"
+msgstr "Informations sur l'évènement"
 
 # master
 #: ../gramps/plugins/textreport/summary.py:252
@@ -37048,7 +36964,7 @@ msgid "All reference maps have been rebuilt."
 msgstr "Toutes les tables de références ont été reconstruites."
 
 #: ../gramps/plugins/tool/check.py:3069
-#, fuzzy, python-format
+#, python-format
 msgid "%d bad Note Links were fixed;\n"
 msgstr "%d liens incorrects de Notes ont été corrigées ;\n"
 
@@ -38076,11 +37992,10 @@ msgstr "Modifier"
 
 # master
 #: ../gramps/plugins/tool/reorderids.glade:1469
-#, fuzzy
 msgid "Enable ID reordering with Start / Step sequence."
 msgstr ""
 "Activer la réorganisation des identifiants\n"
-"avec séquence de Démarrage / Etape."
+"avec séquence de Démarrage / Étape."
 
 # master
 #: ../gramps/plugins/tool/reorderids.glade:1481
@@ -38444,7 +38359,6 @@ msgstr "Réorganise les identifiants Gramps en fonction des règles par défaut.
 # nom de l'outil
 #: ../gramps/plugins/tool/tools.gpr.py:426
 #: ../gramps/plugins/tool/tools.gpr.py:427
-#, fuzzy
 msgid "Sort events"
 msgstr "Trier les évènements"
 
@@ -38730,33 +38644,24 @@ msgstr "Âge avancé mais pas de décès"
 
 # https://gramps-project.org/bugs/view.php?id=11286
 #: ../gramps/plugins/tool/verify.py:2330
-#, fuzzy
-#| msgid "Birth equals death"
 msgid "Birth date equals death date"
 msgstr "Date de naissance identique à la date de décès"
 
 # https://gramps-project.org/bugs/view.php?id=11286
 #: ../gramps/plugins/tool/verify.py:2351
-#, fuzzy
-#| msgid "Birth equals marriage"
 msgid "Birth date equals marriage date"
 msgstr "Date de naissance identique à la date de mariage"
 
 # https://gramps-project.org/bugs/view.php?id=11286
 #: ../gramps/plugins/tool/verify.py:2372
-#, fuzzy
-#| msgid "Death equals marriage"
 msgid "Death date equals marriage date"
 msgstr "Date de décès identique à la date de mariage"
 
 #: ../gramps/plugins/tool/verify.py:2433
-#, fuzzy
 msgid "Baptism too late according to family tradition"
 msgstr "Baptême trop tard selon les traditions familiales"
 
 #: ../gramps/plugins/tool/verify.py:2458
-#, fuzzy
-#| msgid "Burial date"
 msgid "Burial too late"
 msgstr "Date de l'inhumation trop tardive"
 
@@ -38769,15 +38674,12 @@ msgid "Families are not in chronological order"
 msgstr "Les familles ne sont pas dans l'ordre chronologique."
 
 #: ../gramps/plugins/tool/verify.py:2572
-#, fuzzy
 msgid "Family has events with role Unknown"
-msgstr "La famille a un évènement avec un role Inconnu"
+msgstr "La famille a un évènement avec un rôle Inconnu"
 
 #: ../gramps/plugins/tool/verify.py:2585
-#, fuzzy
-#| msgid "Personal events of the children"
 msgid "Person has events with role Unknown"
-msgstr "L'individu a des événements avec un role inconnu"
+msgstr "L'individu a des évènements avec un rôle inconnu"
 
 #: ../gramps/plugins/tool/verify.py:2598
 msgid "Family events are not in chronological order"
@@ -40807,7 +40709,6 @@ msgid "Website title"
 msgstr "Titre du site Web"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2084
-#, fuzzy
 msgid "The title of the website"
 msgstr "Le titre du site web"
 
@@ -40940,8 +40841,6 @@ msgstr "Cochez-le si vous souhaitez ouvrir/fermer une section"
 
 # https://gramps-project.org/bugs/view.php?id=11286
 #: ../gramps/plugins/webreport/narrativeweb.py:2215
-#, fuzzy
-#| msgid "Extra pages"
 msgid "Extra Pages"
 msgstr "Pages supplémentaires"
 
@@ -41295,7 +41194,6 @@ msgid "Include half and/or step-siblings on the individual pages"
 msgstr "Inclure les demi-frères et demi-sœurs sur la page de l'individu"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2531
-#, fuzzy
 msgid ""
 "Whether to include half and/or step-siblings with the parents and siblings"
 msgstr ""
@@ -41323,7 +41221,6 @@ msgid "Include place pages"
 msgstr "Inclure les pages de lieu"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2555
-#, fuzzy
 msgid "Whether or not to include the place pages."
 msgstr "Inclure ou non les pages des lieux."
 
