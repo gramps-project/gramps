@@ -1610,7 +1610,7 @@ class GedcomWriter(UpdateCallback):
         country = location.get(PlaceType.COUNTRY)
         postal_code = place.get_code()
 
-        if street or locality or city or state or postal_code or country:
+        if street:
             self._writeln(level, "ADDR", street)
             if street:
                 self._writeln(level + 1, "ADR1", street)
@@ -1652,14 +1652,7 @@ class GedcomWriter(UpdateCallback):
         @param addr: The location or address
         @type addr: [a super-type of] LocationBase
         """
-        if (
-            addr.get_street()
-            or addr.get_locality()
-            or addr.get_city()
-            or addr.get_state()
-            or addr.get_postal_code()
-            or addr.get_country()
-        ):
+        if addr.get_street():
             self._writeln(level, "ADDR", addr.get_street())
             if addr.get_locality():
                 self._writeln(level + 1, "CONT", addr.get_locality())
@@ -1672,8 +1665,7 @@ class GedcomWriter(UpdateCallback):
             if addr.get_country():
                 self._writeln(level + 1, "CONT", addr.get_country())
 
-            if addr.get_street():
-                self._writeln(level + 1, "ADR1", addr.get_street())
+            self._writeln(level + 1, "ADR1", addr.get_street())
             if addr.get_locality():
                 self._writeln(level + 1, "ADR2", addr.get_locality())
             if addr.get_city():
