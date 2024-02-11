@@ -48,27 +48,27 @@ methods should be changed to generate exceptions. Possibly by globally changing
 
 # -------------------------------------------------------------------------
 #
-# Python libraries
+# Python modules
 #
 # -------------------------------------------------------------------------
-import logging
 import inspect
+import logging
 from abc import ABCMeta
-from types import FunctionType
 from functools import wraps
+from types import FunctionType
 
 # -------------------------------------------------------------------------
 #
-# Gramps libraries
+# Gramps modules
 #
 # -------------------------------------------------------------------------
+from ..const import GRAMPS_LOCALE as glocale
+from ..errors import HandleError
+from ..lib import Researcher
+from ..utils.callback import Callback
 from .base import DbReadBase
 from .bookmarks import DbBookmarks
 from .dbconst import DBLOGNAME
-from ..errors import HandleError
-from ..utils.callback import Callback
-from ..lib import Researcher
-from ..const import GRAMPS_LOCALE as glocale
 
 LOG = logging.getLogger(DBLOGNAME)
 
@@ -142,8 +142,6 @@ class M_A_M_B(ABCMeta, MetaClass):
     See recipe: http://code.activestate.com/recipes/204197-solving-the-
     metaclass-conflict/
     """
-
-    pass
 
 
 # -------------------------------------------------------------------------
@@ -254,7 +252,6 @@ class DummyDb(
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return None
 
     def find_next_event_gramps_id(self):
         """
@@ -351,7 +348,6 @@ class DummyDb(
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return None
 
     def get_default_person(self):
         """
@@ -359,7 +355,6 @@ class DummyDb(
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return None
 
     def get_event_bookmarks(self):
         """
@@ -377,7 +372,7 @@ class DummyDb(
             LOG.debug("database is closed")
         return []
 
-    def get_event_from_gramps_id(self, val):
+    def get_event_from_gramps_id(self, gramps_id):
         """
         Find an Event in the database from the passed Gramps ID.
 
@@ -385,8 +380,7 @@ class DummyDb(
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        LOG.warning("gramps_id %s does not exist in the dummy database", val)
-        return None
+        LOG.warning("gramps_id %s does not exist in the dummy database", gramps_id)
 
     def get_event_from_handle(self, handle):
         """
@@ -397,7 +391,6 @@ class DummyDb(
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        return None
 
     def get_event_handles(self):
         """
@@ -467,7 +460,7 @@ class DummyDb(
             LOG.debug("database is closed")
         return []
 
-    def get_family_from_gramps_id(self, val):
+    def get_family_from_gramps_id(self, gramps_id):
         """
         Find a Family in the database from the passed Gramps ID.
 
@@ -476,8 +469,7 @@ class DummyDb(
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        LOG.warning("gramps_id %s does not exist in the dummy database", val)
-        return None
+        LOG.warning("gramps_id %s does not exist in the dummy database", gramps_id)
 
     def get_family_from_handle(self, handle):
         """
@@ -488,7 +480,7 @@ class DummyDb(
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError("Handle %s not found" % handle)
+        raise HandleError(f"Handle {handle} not found")
 
     def get_family_handles(self, sort_handles=False, locale=glocale):
         """
@@ -610,7 +602,7 @@ class DummyDb(
             LOG.debug("database is closed")
         return []
 
-    def get_note_from_gramps_id(self, val):
+    def get_note_from_gramps_id(self, gramps_id):
         """
         Find a Note in the database from the passed Gramps ID.
 
@@ -618,8 +610,7 @@ class DummyDb(
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        LOG.warning("gramps_id %s does not exist in the dummy database", val)
-        return None
+        LOG.warning("gramps_id %s does not exist in the dummy database", gramps_id)
 
     def get_note_from_handle(self, handle):
         """
@@ -630,7 +621,7 @@ class DummyDb(
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError("Handle %s not found" % handle)
+        raise HandleError(f"Handle {handle} not found")
 
     def get_note_handles(self):
         """
@@ -730,7 +721,7 @@ class DummyDb(
             LOG.debug("database is closed")
         return 0
 
-    def get_media_from_gramps_id(self, val):
+    def get_media_from_gramps_id(self, gramps_id):
         """
         Find a Media in the database from the passed Gramps ID.
 
@@ -738,8 +729,7 @@ class DummyDb(
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        LOG.warning("gramps_id %s does not exist in the dummy database", val)
-        return None
+        LOG.warning("gramps_id %s does not exist in the dummy database", gramps_id)
 
     def get_media_from_handle(self, handle):
         """
@@ -750,7 +740,7 @@ class DummyDb(
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError("Handle %s not found" % handle)
+        raise HandleError(f"Handle {handle} not found")
 
     def get_person_attribute_types(self):
         """
@@ -777,7 +767,7 @@ class DummyDb(
             LOG.debug("database is closed")
         return []
 
-    def get_person_from_gramps_id(self, val):
+    def get_person_from_gramps_id(self, gramps_id):
         """
         Find a Person in the database from the passed Gramps ID.
 
@@ -785,8 +775,7 @@ class DummyDb(
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        LOG.warning("gramps_id %s does not exist in the dummy database", val)
-        return None
+        LOG.warning("gramps_id %s does not exist in the dummy database", gramps_id)
 
     def get_person_from_handle(self, handle):
         """
@@ -797,7 +786,7 @@ class DummyDb(
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError("Handle %s not found" % handle)
+        raise HandleError(f"Handle {handle} not found")
 
     def get_person_handles(self, sort_handles=False, locale=glocale):
         """
@@ -838,7 +827,7 @@ class DummyDb(
             LOG.debug("database is closed")
         return []
 
-    def get_place_from_gramps_id(self, val):
+    def get_place_from_gramps_id(self, gramps_id):
         """
         Find a Place in the database from the passed Gramps ID.
 
@@ -846,8 +835,7 @@ class DummyDb(
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        LOG.warning("gramps_id %s does not exist in the dummy database", val)
-        return None
+        LOG.warning("gramps_id %s does not exist in the dummy database", gramps_id)
 
     def get_place_from_handle(self, handle):
         """
@@ -858,7 +846,7 @@ class DummyDb(
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError("Handle %s not found" % handle)
+        raise HandleError(f"Handle {handle} not found")
 
     def get_place_handles(self, sort_handles=False, locale=glocale):
         """
@@ -881,7 +869,7 @@ class DummyDb(
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError("Handle %s not found" % handle)
+        raise HandleError(f"Handle {handle} not found")
 
     def get_raw_family_data(self, handle):
         """
@@ -890,7 +878,7 @@ class DummyDb(
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError("Handle %s not found" % handle)
+        raise HandleError(f"Handle {handle} not found")
 
     def get_raw_note_data(self, handle):
         """
@@ -899,7 +887,7 @@ class DummyDb(
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError("Handle %s not found" % handle)
+        raise HandleError(f"Handle {handle} not found")
 
     def get_raw_media_data(self, handle):
         """
@@ -908,7 +896,7 @@ class DummyDb(
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError("Handle %s not found" % handle)
+        raise HandleError(f"Handle {handle} not found")
 
     def get_raw_person_data(self, handle):
         """
@@ -917,7 +905,7 @@ class DummyDb(
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError("Handle %s not found" % handle)
+        raise HandleError(f"Handle {handle} not found")
 
     def get_raw_place_data(self, handle):
         """
@@ -926,7 +914,7 @@ class DummyDb(
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError("Handle %s not found" % handle)
+        raise HandleError(f"Handle {handle} not found")
 
     def get_raw_repository_data(self, handle):
         """
@@ -935,7 +923,7 @@ class DummyDb(
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError("Handle %s not found" % handle)
+        raise HandleError(f"Handle {handle} not found")
 
     def get_raw_source_data(self, handle):
         """
@@ -944,7 +932,7 @@ class DummyDb(
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError("Handle %s not found" % handle)
+        raise HandleError(f"Handle {handle} not found")
 
     def get_raw_citation_data(self, handle):
         """
@@ -953,7 +941,7 @@ class DummyDb(
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError("Handle %s not found" % handle)
+        raise HandleError(f"Handle {handle} not found")
 
     def get_raw_tag_data(self, handle):
         """
@@ -962,7 +950,7 @@ class DummyDb(
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError("Handle %s not found" % handle)
+        raise HandleError(f"Handle {handle} not found")
 
     def get_repo_bookmarks(self):
         """
@@ -980,7 +968,7 @@ class DummyDb(
             LOG.debug("database is closed")
         return []
 
-    def get_repository_from_gramps_id(self, val):
+    def get_repository_from_gramps_id(self, gramps_id):
         """
         Find a Repository in the database from the passed Gramps ID.
 
@@ -988,8 +976,7 @@ class DummyDb(
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        LOG.warning("gramps_id %s does not exist in the dummy database", val)
-        return None
+        LOG.warning("gramps_id %s does not exist in the dummy database", gramps_id)
 
     def get_repository_from_handle(self, handle):
         """
@@ -1000,7 +987,7 @@ class DummyDb(
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError("Handle %s not found" % handle)
+        raise HandleError(f"Handle {handle} not found")
 
     def get_repository_handles(self):
         """
@@ -1051,7 +1038,7 @@ class DummyDb(
             LOG.debug("database is closed")
         return []
 
-    def get_source_from_gramps_id(self, val):
+    def get_source_from_gramps_id(self, gramps_id):
         """
         Find a Source in the database from the passed Gramps ID.
 
@@ -1059,8 +1046,7 @@ class DummyDb(
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        LOG.warning("gramps_id %s does not exist in the dummy database", val)
-        return None
+        LOG.warning("gramps_id %s does not exist in the dummy database", gramps_id)
 
     def get_source_from_handle(self, handle):
         """
@@ -1071,7 +1057,7 @@ class DummyDb(
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError("Handle %s not found" % handle)
+        raise HandleError(f"Handle {handle} not found")
 
     def get_source_handles(self, sort_handles=False, locale=glocale):
         """
@@ -1112,7 +1098,7 @@ class DummyDb(
             LOG.debug("database is closed")
         return []
 
-    def get_citation_from_gramps_id(self, val):
+    def get_citation_from_gramps_id(self, gramps_id):
         """
         Find a Citation in the database from the passed Gramps ID.
 
@@ -1120,8 +1106,7 @@ class DummyDb(
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        LOG.warning("gramps_id %s does not exist in the dummy database", val)
-        return None
+        LOG.warning("gramps_id %s does not exist in the dummy database", gramps_id)
 
     def get_citation_from_handle(self, handle):
         """
@@ -1132,7 +1117,7 @@ class DummyDb(
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError("Handle %s not found" % handle)
+        raise HandleError(f"Handle {handle} not found")
 
     def get_citation_handles(self, sort_handles=False, locale=glocale):
         """
@@ -1173,7 +1158,7 @@ class DummyDb(
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError("Handle %s not found" % handle)
+        raise HandleError(f"Handle {handle} not found")
 
     def get_tag_from_name(self, val):
         """
@@ -1184,7 +1169,6 @@ class DummyDb(
         if not self.db_is_open:
             LOG.debug("database is closed")
         LOG.warning("tag name %s does not exist in the dummy database", val)
-        return None
 
     def get_tag_handles(self, sort_handles=False, locale=glocale):
         """
@@ -1458,7 +1442,7 @@ class DummyDb(
 
     def load(
         self,
-        name,
+        directory,
         callback=None,
         mode=None,
         force_schema_upgrade=False,
@@ -1589,7 +1573,7 @@ class DummyDb(
         """
         LOG.warning("database is readonly")
 
-    def set_mediapath(self, path):
+    def set_mediapath(self, mediapath):
         """
         Set the default media path for database.
         """

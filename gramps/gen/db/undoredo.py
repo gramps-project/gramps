@@ -16,17 +16,26 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#
+
+"""
+Base class for undo/redo functionality.
+"""
+
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Python modules
 #
 # -------------------------------------------------------------------------
-from abc import ABCMeta, abstractmethod
 import time
+from abc import ABCMeta, abstractmethod
 from collections import deque
 
 
+# -------------------------------------------------------------------------
+#
+# DbUndo class
+#
+# -------------------------------------------------------------------------
 class DbUndo(metaclass=ABCMeta):
     """
     Base class for the Gramps undo/redo manager.  Needs to be subclassed
@@ -130,7 +139,6 @@ class DbUndo(metaclass=ABCMeta):
         """
         Post-transaction commit processing.
         """
-        pass
 
     def undo(self, update_history=True):
         """

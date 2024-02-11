@@ -27,37 +27,33 @@ from this class.
 
 # -------------------------------------------------------------------------
 #
-# Python libraries
+# Python modules
 #
 # -------------------------------------------------------------------------
-import re
-import time
-from operator import itemgetter
 import logging
 
 # -------------------------------------------------------------------------
 #
-# Gramps libraries
+# Gramps modules
 #
 # -------------------------------------------------------------------------
-from ..db.dbconst import DBLOGNAME
 from ..const import GRAMPS_LOCALE as glocale
+from ..db.dbconst import DBLOGNAME
+from ..lib.childref import ChildRef
+from ..lib.childreftype import ChildRefType
+from .exceptions import DbTransactionCancel
+from .txn import DbTxn
 
 _ = glocale.translation.gettext
-from ..lib.childreftype import ChildRefType
-from ..lib.childref import ChildRef
-from .txn import DbTxn
-from .exceptions import DbTransactionCancel, DbException
 
 _LOG = logging.getLogger(DBLOGNAME)
 
+
 # -------------------------------------------------------------------------
 #
-# Gramps libraries
+# DbReadBase class
 #
 # -------------------------------------------------------------------------
-
-
 class DbReadBase:
     """
     Gramps database object. This object is a base class for all
@@ -377,7 +373,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_citation_from_gramps_id(self, val):
+    def get_citation_from_gramps_id(self, gramps_id):
         """
         Find a Citation in the database from the passed Gramps ID.
 
@@ -388,7 +384,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_event_from_gramps_id(self, val):
+    def get_event_from_gramps_id(self, gramps_id):
         """
         Find an Event in the database from the passed Gramps ID.
 
@@ -399,7 +395,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_family_from_gramps_id(self, val):
+    def get_family_from_gramps_id(self, gramps_id):
         """
         Find a Family in the database from the passed Gramps ID.
 
@@ -410,7 +406,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_media_from_gramps_id(self, val):
+    def get_media_from_gramps_id(self, gramps_id):
         """
         Find a Media in the database from the passed Gramps ID.
 
@@ -421,7 +417,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_note_from_gramps_id(self, val):
+    def get_note_from_gramps_id(self, gramps_id):
         """
         Find a Note in the database from the passed Gramps ID.
 
@@ -432,7 +428,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_person_from_gramps_id(self, val):
+    def get_person_from_gramps_id(self, gramps_id):
         """
         Find a Person in the database from the passed Gramps ID.
 
@@ -443,7 +439,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_place_from_gramps_id(self, val):
+    def get_place_from_gramps_id(self, gramps_id):
         """
         Find a Place in the database from the passed Gramps ID.
 
@@ -454,7 +450,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_repository_from_gramps_id(self, val):
+    def get_repository_from_gramps_id(self, gramps_id):
         """
         Find a Repository in the database from the passed Gramps ID.
 
@@ -465,7 +461,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_source_from_gramps_id(self, val):
+    def get_source_from_gramps_id(self, gramps_id):
         """
         Find a Source in the database from the passed Gramps ID.
 
@@ -1267,7 +1263,7 @@ class DbReadBase:
 
     def load(
         self,
-        name,
+        directory,
         callback,
         mode=None,
         force_schema_upgrade=False,
@@ -1400,7 +1396,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def set_mediapath(self, path):
+    def set_mediapath(self, mediapath):
         """
         Set the default media path for database.
         """
@@ -1469,6 +1465,11 @@ class DbReadBase:
         return getattr(self, fmt % tuple([arg.lower() for arg in args]), None)
 
 
+# -------------------------------------------------------------------------
+#
+# DbWriteBase class
+#
+# -------------------------------------------------------------------------
 class DbWriteBase(DbReadBase):
     """
     Gramps database object. This object is a base class for all
@@ -1485,7 +1486,7 @@ class DbWriteBase(DbReadBase):
         """
         DbReadBase.__init__(self)
 
-    def add_citation(self, event, transaction, set_gid=True):
+    def add_citation(self, citation, transaction, set_gid=True):
         """
         Add an Citation to the database, assigning internal IDs if they have
         not already been defined.
@@ -1512,7 +1513,7 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def add_media(self, obj, transaction, set_gid=True):
+    def add_media(self, media, transaction, set_gid=True):
         """
         Add a Media to the database, assigning internal IDs if they have
         not already been defined.
@@ -1521,7 +1522,7 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def add_note(self, obj, transaction, set_gid=True):
+    def add_note(self, note, transaction, set_gid=True):
         """
         Add a Note to the database, assigning internal IDs if they have
         not already been defined.
@@ -1548,7 +1549,7 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def add_repository(self, obj, transaction, set_gid=True):
+    def add_repository(self, repository, transaction, set_gid=True):
         """
         Add a Repository to the database, assigning internal IDs if they have
         not already been defined.
@@ -1579,7 +1580,7 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def commit_citation(self, event, transaction, change_time=None):
+    def commit_citation(self, citation, transaction, change_time=None):
         """
         Commit the specified Event to the database, storing the changes as
         part of the transaction.
@@ -1600,7 +1601,7 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def commit_media(self, obj, transaction, change_time=None):
+    def commit_media(self, media, transaction, change_time=None):
         """
         Commit the specified Media to the database, storing the changes
         as part of the transaction.
@@ -1820,9 +1821,9 @@ class DbWriteBase(DbReadBase):
         child.add_parent_family_handle(family.handle)
 
         if trans is None:
-            with DbTxn(_("Add child to family"), self) as trans:
-                self.commit_family(family, trans)
-                self.commit_person(child, trans)
+            with DbTxn(_("Add child to family"), self) as transaction:
+                self.commit_family(family, transaction)
+                self.commit_person(child, transaction)
         else:
             self.commit_family(family, trans)
             self.commit_person(child, trans)
@@ -1833,8 +1834,10 @@ class DbWriteBase(DbReadBase):
         it becomes empty.
         """
         if trans is None:
-            with DbTxn(_("Remove child from family"), self) as trans:
-                self.__remove_child_from_family(person_handle, family_handle, trans)
+            with DbTxn(_("Remove child from family"), self) as transaction:
+                self.__remove_child_from_family(
+                    person_handle, family_handle, transaction
+                )
         else:
             self.__remove_child_from_family(person_handle, family_handle, trans)
             trans.set_description(_("Remove child from family"))
@@ -1916,8 +1919,8 @@ class DbWriteBase(DbReadBase):
         Remove a family and its relationships.
         """
         if trans is None:
-            with DbTxn(_("Remove Family"), self) as trans:
-                self.__remove_family_relationships(family_handle, trans)
+            with DbTxn(_("Remove Family"), self) as transaction:
+                self.__remove_family_relationships(family_handle, transaction)
         else:
             self.__remove_family_relationships(family_handle, trans)
             trans.set_description(_("Remove Family"))
@@ -1939,11 +1942,11 @@ class DbWriteBase(DbReadBase):
         deleting the family if it becomes empty.
         """
         if trans is None:
-            with DbTxn("", self) as trans:
+            with DbTxn("", self) as transaction:
                 msg = self.__remove_parent_from_family(
-                    person_handle, family_handle, trans
+                    person_handle, family_handle, transaction
                 )
-                trans.set_description(msg)
+                transaction.set_description(msg)
         else:
             msg = self.__remove_parent_from_family(person_handle, family_handle, trans)
             trans.set_description(msg)
