@@ -664,6 +664,32 @@ def get_source_and_citation_referents(source_handle, db):
     return the_lists
 
 
+def get_event_person_referents(event_handle, db):
+    """
+    Find persons that refer to the event object.
+
+    This function finds all primary objects that refer
+    to the given event handle in a given database.
+    """
+    _primaries = ("Person",)
+
+    lists = get_referents(event_handle, db, _primaries)
+    return [x for xs in lists for x in xs]
+
+
+def get_event_family_referents(event_handle, db):
+    """
+    Find families that refer to the event object.
+
+    This function finds all primary objects that refer
+    to the given event handle in a given database.
+    """
+    _primaries = ("Family",)
+
+    lists = get_referents(event_handle, db, _primaries)
+    return [x for xs in lists for x in xs]
+
+
 def get_media_referents(media_handle, db):
     """
     Find objects that refer the media object.
