@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-02-11 22:02+0000\n"
+"PO-Revision-Date: 2024-02-12 23:02+0000\n"
 "Last-Translator: 快乐的老鼠宝宝 <laoshubaby@protonmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/zh_Hans/>\n"
@@ -83,7 +83,7 @@ msgstr "日本"
 
 #: ../data/holidays.xml:358
 msgid "Jewish Holidays"
-msgstr "犹太人节日"
+msgstr "犹太节日"
 
 #: ../data/holidays.xml:359
 msgid "Purim"
@@ -95,108 +95,107 @@ msgstr "逾越节"
 
 #: ../data/holidays.xml:361
 msgid "2 of Passover"
-msgstr "逾越节第二天"
+msgstr "逾越节（第二日）"
 
 #: ../data/holidays.xml:362
 msgid "3 of Passover"
-msgstr "逾越节第三天"
+msgstr "逾越节（第三日）"
 
 #: ../data/holidays.xml:363
 msgid "4 of Passover"
-msgstr "逾越节第四天"
+msgstr "逾越节（第四日）"
 
 #: ../data/holidays.xml:364
 msgid "5 of Passover"
-msgstr "逾越节第五天"
+msgstr "逾越节（第五日）"
 
 #: ../data/holidays.xml:365
 msgid "6 of Passover"
-msgstr "逾越节第六天"
+msgstr "逾越节（第六日）"
 
 #: ../data/holidays.xml:366
 msgid "7 of Passover"
-msgstr "逾越节第七天"
+msgstr "逾越节（第七日）"
 
 #: ../data/holidays.xml:367
 msgid "Shavuot"
-msgstr "(犹太教)五旬节"
+msgstr "五旬节"
 
 #: ../data/holidays.xml:368
 msgid "Rosh Ha'Shana"
-msgstr "犹太教的新年"
+msgstr "犹太新年"
 
 #: ../data/holidays.xml:369
 msgid "Rosh Ha'Shana 2"
-msgstr ""
+msgstr "犹太新年（第二日）"
 
 #: ../data/holidays.xml:370
 msgid "Yom Kippur"
-msgstr "『犹太教』赎罪日"
+msgstr "赎罪日"
 
 #: ../data/holidays.xml:371
 msgid "Sukot"
-msgstr ""
+msgstr "住棚节"
 
 #: ../data/holidays.xml:372
 msgid "2 of Sukot"
-msgstr "Sukot 第二天"
+msgstr "住棚节（第二日）"
 
 #: ../data/holidays.xml:373
 msgid "3 of Sukot"
-msgstr "Sukot 第三天"
+msgstr "住棚节（第三日）"
 
 #: ../data/holidays.xml:374
 msgid "4 of Sukot"
-msgstr "Sukot 第四天"
+msgstr "住棚节（第四日）"
 
 #: ../data/holidays.xml:375
 msgid "5 of Sukot"
-msgstr "Sukot 第五天"
+msgstr "住棚节（第五日）"
 
 #: ../data/holidays.xml:376
 msgid "6 of Sukot"
-msgstr "Sukot 第六天"
+msgstr "住棚节（第六日）"
 
 #: ../data/holidays.xml:377
 msgid "7 of Sukot"
-msgstr "Sukot 第七天"
+msgstr "住棚节（第七日）"
 
 #: ../data/holidays.xml:378
 msgid "Simhat Tora"
-msgstr ""
-"(犹太教)庆法节(在犹太历每年7月23日, 庆祝一年会堂诵经结束, 新的一年更始)"
+msgstr "妥拉节/庆法节"
 
 #: ../data/holidays.xml:379
 msgid "Hanuka"
-msgstr "(犹太教的)献殿节"
+msgstr "光明节/献殿节"
 
 #: ../data/holidays.xml:380
 msgid "2 of Hanuka"
-msgstr "Hanuka 第二天"
+msgstr "光明节（第二日）"
 
 #: ../data/holidays.xml:381
 msgid "3 of Hanuka"
-msgstr "Hanuka 第三天"
+msgstr "光明节（第三日）"
 
 #: ../data/holidays.xml:382
 msgid "4 of Hanuka"
-msgstr "Hanuka 第四天"
+msgstr "光明节（第四日）"
 
 #: ../data/holidays.xml:383
 msgid "5 of Hanuka"
-msgstr "Hanuka 第五天"
+msgstr "光明节（第五日）"
 
 #: ../data/holidays.xml:384
 msgid "6 of Hanuka"
-msgstr "Hanuka 第六天"
+msgstr "光明节（第六日）"
 
 #: ../data/holidays.xml:385
 msgid "7 of Hanuka"
-msgstr "Hanuka 第七天"
+msgstr "光明节（第七日）"
 
 #: ../data/holidays.xml:386
 msgid "8 of Hanuka"
-msgstr "Hanuka 第八天"
+msgstr "光明节（第八日）"
 
 #: ../data/holidays.xml:388
 msgid "Italy"
@@ -390,14 +389,6 @@ msgstr ""
 "的成员。"
 
 #: ../data/tips.xml:18
-#, fuzzy
-#| msgid ""
-#| "<b>Locating People</b><br/>By default, each surname in the People View is "
-#| "listed only once. By clicking on the arrow to the left of a name, the "
-#| "list will expand to show all individuals with that last name. To locate "
-#| "any Family Name from a long list, select a Family Name (not a person) and "
-#| "start typing. The view will jump to the first Family Name matching the "
-#| "letters you enter."
 msgid ""
 "<b>Locating People</b><br/>In the Grouped People View, each surname is "
 "listed only once. By clicking on the arrow to the left of a name, the list "
@@ -406,10 +397,10 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>定位成员</b><br/>默认情况下，每个族姓在成员列表中只列一次。点击左边名字的"
-"箭头，列表会自动展开，并显示所有的该姓的成员。在很长的列表中定位家庭成员，可"
-"以选择家族姓（不是成员）然后开始输入。视图会跳到第一个家庭成员的名字符合您输"
-"入的字符的位置。"
+"<b>定位成员</b><br/>在分组人员视图中，每个族姓在成员列表中只列一次。点击左边"
+"名字的箭头，列表会自动展开，并显示所有的该姓的成员。在很长的列表中定位家庭成"
+"员，可以选择家族姓（不是成员）然后开始输入。视图会跳到第一个家庭成员的名字符"
+"合您输入的字符的位置。"
 
 #: ../data/tips.xml:20
 msgid ""
@@ -420,12 +411,6 @@ msgstr ""
 "女。"
 
 #: ../data/tips.xml:22
-#, fuzzy
-#| msgid ""
-#| "<b>Changing the Active Person</b><br/>Changing the Active Person in views "
-#| "is easy. In the Relationship view just click on anyone. In the Ancestry "
-#| "View doubleclick on the person or right click to select any of their "
-#| "spouses, siblings, children or parents."
 msgid ""
 "<b>Changing the Active Person</b><br/>Changing the Active Person in views is "
 "easy. In the Relationship view just click on anyone. In the Pedigree View "
@@ -433,7 +418,7 @@ msgid ""
 "siblings, children or parents."
 msgstr ""
 "<b>变更活跃人员</b><br/>在视图中变更活跃人员非常容易。在关系视图中仅仅需要点"
-"击要设为活跃的人即可。在前辈视图中双击人员或者右键点击选择他们的配偶、兄弟姐"
+"击要设为活跃的人即可。在谱系视图中双击人员或者右键点击选择他们的配偶、兄弟姐"
 "妹、子女或者父母之一即可将其设为活跃。"
 
 #: ../data/tips.xml:24
@@ -491,7 +476,6 @@ msgstr ""
 "氏的 SoundEx 编码，请加载 SoundEx Gramplet。"
 
 #: ../data/tips.xml:32
-#, fuzzy
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
@@ -499,9 +483,10 @@ msgid ""
 "Each separate view can also be configured under \"View &gt; Configure View..."
 "\"."
 msgstr ""
-"<b>设置您的首选项</b><br/>&quot;编辑 &gt; 首选项...&quot; 允许您修改若干设"
-"置，比如您媒体文件的路径，并允许您根据您的需要，调整很多方面 Gramps 的显示。"
-"每种分别的视图可以在 &quot;查看 &gt; 配置视图...&quot; 中配置"
+"<b>设置您的首选项</b><br/>&quot;编辑 &gt; 首选项...&quot; "
+"允许您修改若干设置，比如您媒体文件的路径，并允许您根据您的需要，调整很多方面 "
+"Gramps 的显示。每种分别的视图可以在 &quot;视图 &gt; 配置视图...&quot; "
+"中配置。"
 
 #: ../data/tips.xml:34
 msgid ""
@@ -764,19 +749,13 @@ msgstr ""
 "设置为首选的名字。"
 
 #: ../data/tips.xml:76
-#, fuzzy
-#| msgid ""
-#| "<b>Ancestor View</b><br/>The Ancestry View displays a traditional "
-#| "pedigree chart. Hold the mouse over an individual to see more information "
-#| "about them or right click on an individual to access other family members "
-#| "and settings. Play with the settings to see the different options."
 msgid ""
 "<b>Pedigree View</b><br/>The Pedigree View displays a traditional pedigree "
 "chart. Hold the mouse over an individual to see more information about them "
 "or right click on an individual to access other family members and settings. "
 "Play with the settings to see the different options."
 msgstr ""
-"<b>家世视图</b><br/>家世视图显示了一个传统的家世表。悬浮鼠标在个体成员上方，"
+"<b>谱系视图</b><br/>谱系视图显示了一个传统的谱系图。悬浮鼠标在个体成员上方，"
 "可以查看更加详细的信息，或者右键调出菜单快速浏览其他家庭成员和设置。尝试设置"
 "了解不同的选项。"
 
@@ -957,9 +936,9 @@ msgid ""
 "time looking through thousands of records hoping for a trail when you have "
 "other unexplored leads."
 msgstr ""
-"<b>为您的研究订立方向</b><br/>从您知道的到您所不知的。总是在作出猜测前记录下"
-"所知的事情。通常手边的事实标示了不同的研究方向。当您有一个未探索的方向时，千"
-"万不要在为一个小的轨迹而搜索数千条记录，从而浪费时间，"
+"<b>为您的研究订立方向</b><br/>从您知道的到您所不知的。务必在作出猜测前记录下"
+"所知的事情。通常手边的事实标示了不同的研究方向。当您试图深入一个未探索的方向"
+"时，千万不要为一条微小的细节而搜索数千条记录，从而浪费时间。"
 
 #: ../data/tips.xml:112
 msgid ""
@@ -984,18 +963,14 @@ msgstr ""
 "然后重启 Gramps。"
 
 #: ../data/tips.xml:116
-#, fuzzy
-#| msgid ""
-#| "<b>Gramps Translators</b><br/>Gramps has been designed so that new "
-#| "translations can easily be added with little development effort. If you "
-#| "are interested in participating please email gramps-devel@lists.sf.net"
 msgid ""
 "<b>Gramps Translators</b><br/>Gramps has been designed so that new "
 "translations can easily be added with little development effort. If you are "
 "interested in participating please email gramps-devel@lists.sf.net."
 msgstr ""
-"<b>Gramps 翻译人员</b><br/>Gramps 的设计使得只需很少的开发精力便可引入新的翻"
-"译。如果您有兴趣参与，请发邮件到 gramps-devel@lists.sf.net"
+"<b>Gramps 翻译人员</b><br/>Gramps "
+"的设计使得只需很少的开发精力便可引入新的翻译。如果您有兴趣参与，请发邮件到 "
+"gramps-devel@lists.sf.net 。"
 
 #: ../data/tips.xml:118
 msgid ""
@@ -2964,22 +2939,22 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:229
 msgctxt "Persian month lexeme"
 msgid "Mordad"
-msgstr "Mordad"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:230
 msgctxt "Persian month lexeme"
 msgid "Shahrivar"
-msgstr "Shahrivar"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:231
 msgctxt "Persian month lexeme"
 msgid "Mehr"
-msgstr "Mehr"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:232
 msgctxt "Persian month lexeme"
 msgid "Aban"
-msgstr "Aban"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:233
 msgctxt "Persian month lexeme"
@@ -3179,19 +3154,18 @@ msgid ""
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 msgstr ""
 "您要加载的家族树使用了 schema %(oldschema)s 版格式。本版 Gramps 使用 schema "
-"%(newschema)s。因此如不对您的家族树 schema 版本进行升级，您将无法载入家族"
-"树。\n"
+"%(newschema)s。因此如不对您的家族树 schema 版本进行升级，您将无法载入家族树。"
 "\n"
-"如果您进行升级，即便是随后%(wiki_manual_backup_html_start)s备份%(html_end)s"
-"或%(wiki_manual_export_html_start)s导出%(html_end)s了升级过的家族树，您也将无"
-"法使用之前版本的 Gramps 打开它。\n"
 "\n"
-"升级是件有一定难度的任务，如果过程被打断或失败则会对家族树造成不可挽回的损"
-"坏。\n"
+"如果您进行升级，即便是随后%(wiki_manual_backup_html_start)s备份%(html_end)s或"
+"%(wiki_manual_export_html_start)s导出%(html_end)s了升级过的家族树，"
+"您也将无法使用之前版本的 Gramps 打开它。\n"
 "\n"
-"如果您还没有创建家庭树的备份，那您现在应该启动%(bold_start)s旧版"
-"的%(bold_end)s Gramps 然后%(wiki_backup_html_start)s备份%(html_end)s您的家族"
-"树。"
+"升级是件有一定难度的任务，如果过程被打断或失败则会对家族树造成不可挽回的损坏"
+"。\n"
+"\n"
+"如果您还没有创建家族树的备份，那您现在应该启动%(bold_start)s旧版的%(bold_end)"
+"s Gramps 然后%(wiki_backup_html_start)s备份%(html_end)s您的家族树。"
 
 #: ../gramps/gen/db/exceptions.py:195
 #, python-format
@@ -3209,7 +3183,7 @@ msgstr ""
 "%(settings_file)s"
 
 #: ../gramps/gen/db/exceptions.py:213
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Family Tree you are trying to load is in the %(dbtype)s database, which "
 "is no longer supported.\n"
@@ -3229,14 +3203,14 @@ msgstr ""
 "您尝试载入的家族树基于 %(dbtype)s 数据库，这已经不被支持。\n"
 "因此如果不做升级处理，您将无法载入此家族树。\n"
 "\n"
-"如果您进行了升级，那么您将无法使用先前版本的 Gramps，即使您之后%(wiki_manual_"
-"backup_html_start)s备份%(html_end)s或%(wiki_manual_export_html_start)s导出%(h"
+"如果您进行了升级，那么您将无法使用先前版本的 Gramps，即使您随后%(wiki_manual_"
+"export_html_start)s备份%(html_end)s或%(wiki_manual_export_html_start)s导出%(h"
 "tml_end)s了您升级后的家族树也无法使用。\n"
 "\n"
 "强烈建议您先备份家族树。\n"
 "\n"
 "如果您尚未备份过您的家族树，那您应先启动先前版本的 "
-"Gramps，然后对家族树进行%(wiki_backup_html_start)s备份%(html_end)s。"
+"Gramps，然后对家族树创建%(wiki_backup_html_start)s备份%(html_end)s。"
 
 #: ../gramps/gen/db/generic.py:196 ../gramps/gen/db/generic.py:246
 #: ../gramps/gen/db/generic.py:2157
@@ -3311,7 +3285,7 @@ msgstr "Schema 版本"
 #, python-format
 msgid ""
 "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
+msgstr "%(n1)6d  人员        与 %(n2)6d 引用于 %(n3)6d 秒内已升级\n"
 
 #: ../gramps/gen/db/upgrade.py:588
 #, python-format
@@ -3365,7 +3339,7 @@ msgstr ""
 "\n"
 "\n"
 "你可能想运行\n"
-"工具 -> 家庭树处理 -> 合并\n"
+"工具 -> 家族树处理 -> 合并\n"
 "以便合并包含类似信息的引文\n"
 "信息"
 
@@ -4839,9 +4813,8 @@ msgstr "修改于 <date time> 之后的媒体对象"
 msgid ""
 "Matches media objects changed after a specified date:time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date:time is given."
-msgstr ""
-"符合 修改于特定日期:时间 (yyyy-mm-dd hh:mm:ss) 之后 或者 某个范围内的（如果给"
-"出了第二个日期：时间）媒体对象"
+msgstr "匹配 修改于特定日期:时间 (yyyy-mm-dd hh:mm:ss) 之后 或者 某个范围内（"
+"如果给出了第二个 日期:时间 ）的媒体对象。"
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:46
 #: ../gramps/gui/editors/filtereditor.py:117
@@ -5009,9 +4982,8 @@ msgstr "笔记，在<date time> 之后修改的"
 msgid ""
 "Matches note records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
-msgstr ""
-"符合 修改于特定日期-时间(yyyy-mm-dd hh:mm:ss) 之后 或者 在某个范围内（如果给"
-"出了第二个日期-时间）的笔记记录"
+msgstr "匹配 修改于特定日期-时间(yyyy-mm-dd hh:mm:ss) 之后 或者 "
+"在某个范围内（如果给出了第二个日期-时间）的笔记记录。"
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:46
 msgid "Note with <Id>"
@@ -5168,7 +5140,7 @@ msgstr "断开成员"
 msgid ""
 "Matches people that have no family relationships to any other person in the "
 "database"
-msgstr "匹配成员，与数据库中其他人没有任何家庭关系。"
+msgstr "匹配与数据库中其他人没有任何家庭关系的成员"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:46
 #: ../gramps/gen/plug/_pluginreg.py:76
@@ -5733,7 +5705,7 @@ msgstr "<person> 的祖先 不超过 <N> 代"
 msgid ""
 "Matches people that are ancestors of a specified person not more than N "
 "generations away"
-msgstr "匹配特定人员，其祖先不超过 N 代。"
+msgstr "匹配特定人员，其祖先不超过 N 代"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofbookmarked.py:54
 msgid "Ancestors of bookmarked people not more than <N> generations away"
@@ -5977,7 +5949,7 @@ msgstr "<person>的关系路径"
 msgid ""
 "Matches the ancestors of two persons back to a common ancestor, producing "
 "the relationship path between two persons."
-msgstr "匹配 两个可以追述到一个共同祖先的成员，并生成两个人的关系表"
+msgstr "匹配两个具有可追述到共同祖先的成员的祖先，并生成两个人的关系路径。"
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetweenbookmarks.py:53
 msgid "Relationship path between bookmarked persons"
@@ -6449,9 +6421,8 @@ msgstr "修改于<date time> 之后的来源"
 msgid ""
 "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
-msgstr ""
-"匹配 修改于特定日期-时间 (yyyy-mm-dd hh:mm:ss)之后或者在某个范围之内的（如果"
-"给出了第二个日期-时间）的来源"
+msgstr "匹配 修改于特定日期-时间 (yyyy-mm-dd "
+"hh:mm:ss)之后或者在某个范围之内的（如果给出了第二个日期-时间）的来源。"
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:47
 msgid "Source attribute:"
@@ -7024,7 +6995,7 @@ msgstr "子女参照信息"
 #: ../gramps/gen/lib/reporef.py:107 ../gramps/gen/lib/src.py:106
 #: ../gramps/gen/lib/tag.py:112
 msgid "Handle"
-msgstr ""
+msgstr "处理"
 
 #: ../gramps/gen/lib/childreftype.py:69 ../gramps/gen/plug/docgen/treedoc.py:91
 #: ../gramps/gui/configure.py:93
@@ -7339,7 +7310,7 @@ msgstr "日历"
 
 #: ../gramps/gen/lib/date.py:767
 msgid "Modifier"
-msgstr ""
+msgstr "修饰符"
 
 #: ../gramps/gen/lib/date.py:768
 #, fuzzy
@@ -7411,7 +7382,7 @@ msgstr "范围"
 
 #: ../gramps/gen/lib/date.py:2005
 msgid "from"
-msgstr ""
+msgstr "从"
 
 #: ../gramps/gen/lib/date.py:2006
 #, fuzzy
@@ -8050,7 +8021,7 @@ msgstr "婚姻预告"
 #: ../gramps/gen/lib/eventtype.py:281
 msgctxt "Alternate Marriage abbreviation"
 msgid "alt.mar."
-msgstr ""
+msgstr "替代婚姻"
 
 #: ../gramps/gen/lib/eventtype.py:282
 msgctxt "Engagement abbreviation"
@@ -8065,20 +8036,17 @@ msgstr "离婚"
 #: ../gramps/gen/lib/eventtype.py:284
 msgctxt "Divorce Filing abbreviation"
 msgid "div.f."
-msgstr "离婚文书"
+msgstr "离婚出愿"
 
 #: ../gramps/gen/lib/eventtype.py:285
 msgctxt "Annulment abbreviation"
 msgid "annul."
-msgstr "婚姻无效"
+msgstr "退婚"
 
 #: ../gramps/gen/lib/eventtype.py:286
-#, fuzzy
-#| msgctxt "Will abbreviation"
-#| msgid "will."
 msgctxt "Stillbirth abbreviation"
 msgid "still."
-msgstr "遗嘱"
+msgstr "夭胎"
 
 #: ../gramps/gen/lib/family.py:163
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:61
@@ -8254,7 +8222,7 @@ msgstr "<No Status>"
 
 #: ../gramps/gen/lib/ldsord.py:103
 msgid "Born in Covenant"
-msgstr ""
+msgstr "生于圣约"
 
 #: ../gramps/gen/lib/ldsord.py:104
 msgid "Canceled"
@@ -8870,7 +8838,7 @@ msgstr "地址"
 
 #: ../gramps/gen/lib/person.py:243
 msgid "Urls"
-msgstr "Urls"
+msgstr "网址"
 
 #: ../gramps/gen/lib/person.py:270
 msgid "Person references"
@@ -8943,7 +8911,7 @@ msgstr "其他位置"
 
 #: ../gramps/gen/lib/place.py:175 ../gramps/gen/lib/repo.py:114
 msgid "URLs"
-msgstr "URLs"
+msgstr "网址"
 
 #: ../gramps/gen/lib/placename.py:94 ../gramps/gui/clipboard.py:594
 #: ../gramps/gui/editors/editplacename.py:301
@@ -9928,7 +9896,7 @@ msgstr "JPEG image"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:1220
 msgid "GIF image"
-msgstr "GIF image"
+msgstr "GIF 图像"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:1230
 msgid "PNG image"
@@ -10392,7 +10360,7 @@ msgstr "名字已被替换，数据已被删除"
 #: ../gramps/gen/plug/report/stdoptions.py:219
 msgctxt "'living people'"
 msgid "Complete names replaced, and data removed"
-msgstr ""
+msgstr "替换完整名称并删除数据"
 
 #: ../gramps/gen/plug/report/stdoptions.py:222
 msgctxt "'living people'"
@@ -11163,7 +11131,7 @@ msgstr "删除所选引用"
 
 #: ../gramps/gen/utils/place.py:100
 msgid "Degree, minutes, seconds notation with :"
-msgstr ""
+msgstr "度、分、秒表示法："
 
 #: ../gramps/gen/utils/place.py:101
 msgid "Degree notation, 4 decimals"
@@ -11319,7 +11287,7 @@ msgstr "变性人"
 
 #: ../gramps/gen/utils/symbols.py:92
 msgid "Neuter"
-msgstr ""
+msgstr "中性"
 
 #: ../gramps/gen/utils/symbols.py:93
 msgid "Illegitimate"
@@ -11353,7 +11321,7 @@ msgstr "收藏"
 
 #: ../gramps/gen/utils/symbols.py:103
 msgid "Extinct"
-msgstr ""
+msgstr "过世的"
 
 #: ../gramps/gen/utils/symbols.py:109
 msgid "Nothing"
@@ -11361,15 +11329,15 @@ msgstr "无"
 
 #: ../gramps/gen/utils/symbols.py:111
 msgid "Skull and crossbones"
-msgstr ""
+msgstr "骷髅和交叉骨"
 
 #: ../gramps/gen/utils/symbols.py:112
 msgid "Ankh"
-msgstr ""
+msgstr "生命之符（安可）"
 
 #: ../gramps/gen/utils/symbols.py:113
 msgid "Orthodox cross"
-msgstr ""
+msgstr "东正教十字架"
 
 #: ../gramps/gen/utils/symbols.py:114
 msgid "Chi rho"
@@ -11488,7 +11456,7 @@ msgstr "西班牙语"
 
 #: ../gramps/gen/utils/win32locale.py:59
 msgid "Farsi"
-msgstr ""
+msgstr "波斯语"
 
 #: ../gramps/gen/utils/win32locale.py:60
 msgid "Finnish"
@@ -11584,7 +11552,7 @@ msgstr "斯洛文尼亚语"
 
 #: ../gramps/gen/utils/win32locale.py:85
 msgid "Albanian"
-msgstr "阿尔巴尼亚人"
+msgstr "阿尔巴尼亚语"
 
 #: ../gramps/gen/utils/win32locale.py:86
 msgid "Serbian"
@@ -11596,7 +11564,7 @@ msgstr "瑞典语"
 
 #: ../gramps/gen/utils/win32locale.py:89
 msgid "Tamil"
-msgstr "坦米尔语"
+msgstr "泰米尔语"
 
 #: ../gramps/gen/utils/win32locale.py:90
 msgid "Turkish"
@@ -11650,13 +11618,11 @@ msgstr "未找到，因为 exiv2 没有安装"
 
 #: ../gramps/grampsapp.py:401
 msgid "Installed but does not supply version"
-msgstr "已安装，但没有提供版本"
+msgstr "已安装，但非支持版本"
 
 #: ../gramps/grampsapp.py:422
-#, fuzzy
-#| msgid "Unstable"
 msgid "installed"
-msgstr "不稳定版"
+msgstr "已安装"
 
 #: ../gramps/grampsapp.py:605 ../gramps/grampsapp.py:614
 #: ../gramps/grampsapp.py:669
@@ -11688,11 +11654,11 @@ msgid ""
 "Creative Commons Attribution-ShareAlike 2.5\n"
 "license."
 msgstr ""
-"Gramps的许多艺术作品要么来自于\n"
-"探戈项目或从探戈项目中衍生出来的。\n"
-"项目。这些艺术作品是根据\n"
-"知识共享 署名-相同方式共享 2.5\n"
-"许可。"
+"很多 Gramps 的艺术作品来自Tango 项目\n"
+"或者从 Tango 项目衍伸而来。\n"
+"这些艺术作品是基于\n"
+"Creative Commons Attribution-ShareAlike 2.5\n"
+"许可协议发布的。"
 
 #: ../gramps/gui/aboutdialog.py:135
 msgid "Gramps Homepage"
@@ -12282,7 +12248,7 @@ msgstr "启用使用指定格式的自动地点标题生成。"
 
 #: ../gramps/gui/configure.py:1511
 msgid "Custom name display options are unique to each family tree."
-msgstr "自定义姓名显示选项对每个家庭树来说都是独一无二的。"
+msgstr "自定义姓名显示选项对每个家族树来说都是独一无二的。"
 
 #: ../gramps/gui/configure.py:1523
 msgid "Consider single pa/matronymic as surname"
@@ -12515,7 +12481,7 @@ msgstr "移除 Family Tree"
 msgid ""
 "Don't open dialog to choose family tree to load on startup, just load last "
 "used."
-msgstr "程序启动时不要提示选择要加载的家庭树，直接加载上次使用的家庭树。"
+msgstr "程序启动时不要提示选择要加载的家族树，直接加载上次使用的家族树。"
 
 #: ../gramps/gui/configure.py:1997
 msgid "Remember last view displayed"
@@ -12711,7 +12677,7 @@ msgstr "退出时备份"
 
 #: ../gramps/gui/configure.py:2297
 msgid "Backup Your family tree on exit to Backup path specified above."
-msgstr "退出程序时将您的家庭树备份到上方设定的备份路径下。"
+msgstr "退出程序时将您的家族树备份到上方设定的备份路径下。"
 
 #: ../gramps/gui/configure.py:2305
 msgid "Every 15 minutes"
@@ -12995,7 +12961,7 @@ msgid ""
 "please upgrade my Family Tree"
 msgstr ""
 "我已经做了备份，\n"
-"请升级我的家庭树"
+"请升级我的家族树"
 
 #: ../gramps/gui/dbloader.py:226 ../gramps/gui/glade/dialog.glade:701
 #: ../gramps/gui/plug/report/_bookdialog.py:258
@@ -13267,7 +13233,7 @@ msgstr "转换数据库 '%s' 吗？"
 #, python-format
 msgid ""
 "Do you wish to convert this family tree into a %(database_type)s database?"
-msgstr "您想将此家庭树转换成 %(database_type)s 数据库类型吗？"
+msgstr "您想将此家族树转换成 %(database_type)s 数据库类型吗？"
 
 #: ../gramps/gui/dbman.py:845
 msgid "Convert"
@@ -18429,7 +18395,7 @@ msgstr ""
 "\n"
 "Gramps 启动失败。请上报此问题。\n"
 "这可能是由启动时（第三方）视图中的错误造成的。\n"
-"要使用其他视图，先不要加载家庭树，更改视图后再加载家庭树。\n"
+"要使用其他视图，先不要加载家族树，更改视图后再加载家族树。\n"
 "您还可以通过修改 gramps.ini 文件中的 last-view 参数\n"
 "来手动修改启动视图。\n"
 
@@ -20236,7 +20202,7 @@ msgstr "无法打开新引用编辑器"
 
 #: ../gramps/gui/viewmanager.py:382 ../gramps/gui/viewmanager.py:1168
 msgid "No Family Tree"
-msgstr "无家庭树"
+msgstr "无家族树"
 
 #: ../gramps/gui/viewmanager.py:612
 msgid "Registering plugins..."
@@ -20520,7 +20486,7 @@ msgstr "条目"
 
 #: ../gramps/gui/views/listview.py:1457
 msgid "CSV Dialect"
-msgstr ""
+msgstr "CSV方言"
 
 #: ../gramps/gui/views/navigationview.py:247
 #, python-format
@@ -21437,17 +21403,17 @@ msgstr "不要缩放家族树"
 #: ../gramps/plugins/drawreport/ancestortree.py:912
 #: ../gramps/plugins/drawreport/descendtree.py:1649
 msgid "Scale tree to fit page width only"
-msgstr "缩放家庭树以适合页面宽度"
+msgstr "缩放家族树以适合页面宽度"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:913
 #: ../gramps/plugins/drawreport/descendtree.py:1650
 msgid "Scale tree to fit the size of the page"
-msgstr "缩放家庭树以适合页面尺寸"
+msgstr "缩放家族树以适合页面尺寸"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:914
 #: ../gramps/plugins/drawreport/descendtree.py:1651
 msgid "Whether to scale the tree to fit a specific paper size"
-msgstr "是否缩放家庭树以适合特定纸张尺寸"
+msgstr "是否缩放家族树以适合特定纸张尺寸"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:921
 #: ../gramps/plugins/drawreport/descendtree.py:1658
@@ -21456,7 +21422,7 @@ msgid ""
 "\n"
 "Note: Overrides options in the 'Paper Option' tab"
 msgstr ""
-"调整页面大小以适应家庭树大小\n"
+"调整页面大小以适应家族树大小\n"
 "\n"
 "注意：这会让“纸张选项”下的选项无效"
 
@@ -21478,19 +21444,19 @@ msgid ""
 "With 'Scale tree to fit the size of the page' the page\n"
 "  is resized to remove any gap in either height or width"
 msgstr ""
-"是否根据家庭树的尺寸来调整\n"
+"是否根据家族树的尺寸来调整\n"
 "页面尺寸。注意：这样会让\n"
 "页面的尺寸不标准。\n"
 "\n"
 "选择此选项后，会有以下结果：\n"
 "\n"
-"如果选择“不缩放家庭树”，那么页面\n"
-"的尺寸会调整为家庭树的高度/宽度大小\n"
+"如果选择“不缩放家族树”，那么页面\n"
+"的尺寸会调整为家族树的高度/宽度大小\n"
 "\n"
-"选择”缩放家庭树以适应页面宽度“，页面\n"
-"高度将调整为家庭树的高度\n"
+"选择”缩放家族树以适应页面宽度“，页面\n"
+"高度将调整为家族树的高度\n"
 "\n"
-"选择”缩放家庭树以适应页面大小“，页面\n"
+"选择”缩放家族树以适应页面大小“，页面\n"
 "会调整并删除宽度和高度上的任何间隙"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:950
@@ -21762,7 +21728,7 @@ msgstr "读取数据库..."
 #: ../gramps/plugins/drawreport/calendarreport.py:418
 #, python-format
 msgid "%(person)s, birth"
-msgstr "%(person)s, birth"
+msgstr "%(person)s 的生日"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:425
 #, python-brace-format
@@ -22072,7 +22038,7 @@ msgstr "视图将显示所选成员的父母，兄弟和姐妹"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1606
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
-msgstr "如果可能，是否将人员上移，可让家庭树变小"
+msgstr "如果可能，是否将人员上移，可让家族树变小"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1612
 msgid "Bold direct descendants"
@@ -22552,7 +22518,7 @@ msgstr "保存图表..."
 #: ../gramps/plugins/drawreport/statisticschart.py:1074
 #, python-format
 msgid "%s (persons):"
-msgstr "%s (persons):"
+msgstr "%s （人员）："
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1127
 #: ../gramps/plugins/textreport/recordsreport.py:237
@@ -22606,7 +22572,7 @@ msgstr "之前出生的人员"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1153
 msgid "Birth year until which to include people"
-msgstr "Birth year until which to include people"
+msgstr "包含人员的出生年份"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1156
 msgid "Include people without known birth years"
@@ -22910,7 +22876,7 @@ msgstr ""
 #: ../gramps/plugins/export/exportcsv.py:393
 #, python-brace-format
 msgid "CSV export doesn't support non-primary surnames, {count} dropped"
-msgstr ""
+msgstr "CSV 导出不支持非主要姓氏，已删除 {count} 个"
 
 #: ../gramps/plugins/export/exportcsv.py:429
 msgid "Birth source"
@@ -22998,7 +22964,7 @@ msgstr "万维网"
 
 #: ../gramps/plugins/export/exportgedcom.py:1525
 msgid "Writing media"
-msgstr ""
+msgstr "写媒体中"
 
 #: ../gramps/plugins/export/exportgedcom.py:1706
 msgid "GEDCOM Export failed"
@@ -23041,7 +23007,7 @@ msgid ""
 "will compute the ages for everyone in your Family Tree on that date. You can "
 "then sort by the age column, and double-click the row to view or edit."
 msgstr ""
-"在以下输入框输入有效的日期（如 YYYY-MM-DD）并点击“运行”。这会计算家庭树中所有"
+"在以下输入框输入有效的日期（如 YYYY-MM-DD）并点击“运行”。这会计算家族树中所有"
 "在此日期出生的人的年龄。然后您可以年龄排序，双击对应的行可查看或编辑。"
 
 #: ../gramps/plugins/gramplet/agestats.py:84
@@ -23073,7 +23039,7 @@ msgstr "父亲－子女 年龄差异分布"
 #: ../gramps/plugins/gramplet/agestats.py:179
 #: ../gramps/plugins/gramplet/agestats.py:187
 msgid "Diff"
-msgstr "Diff"
+msgstr "差异"
 
 #: ../gramps/plugins/gramplet/agestats.py:186
 msgid "Mother - Child Age Diff Distribution"
@@ -23546,7 +23512,7 @@ msgstr "Gramplet 显示本部分的活跃度"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:299
 msgid "Gramplet showing summary data of the Family Tree"
-msgstr "显示家庭树摘要数据的 Gramplet 控件"
+msgstr "显示家族树摘要数据的 Gramplet 控件"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:314
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:321
@@ -23598,7 +23564,7 @@ msgstr "欢迎使用 Gramps！"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:378
 msgid "What's Next"
-msgstr ""
+msgstr "接下来是什么"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:379
 msgid "Gramplet suggesting items to research"
@@ -24712,12 +24678,12 @@ msgid ""
 "\n"
 msgstr ""
 "第一次启动Gramps时，所有的视图都是空白。菜单选项非常少。任何活动都需要一个家"
-"庭树来进行。\n"
+"族树来进行。\n"
 "\n"
-"要创建一个新的家庭树（有时称为 \"数据库\"），从菜单中选择 \"家庭树\"，选择 "
-"\"管理家庭树\"，按 \"新建 \"并命名你的家庭树。\"加载家庭树\"，通过输入你的第"
-"一个家庭，或导入一个家庭树，使家庭树活跃起来，准备接受数据。更多细节，请阅读"
-"以下链接的信息。\n"
+"要创建一个新的家族树（有时称为“数据库”），从菜单中选择“家族树”，选择“管理家族"
+"树”，按“新建”并命名你的家族树。“加载家族树”通过输入你的第一个家庭或导入一个家"
+"族树，使家族树处于活动状态并准备好接受数据。更多细节，请阅读以下链接的信息。"
+"\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:171
@@ -24756,6 +24722,22 @@ msgid ""
 "in Gramps. The flexibility allows you to choose which fits your work style.\n"
 "\n"
 msgstr ""
+"您现在要开始进入您的第一个家庭，从第一个人开始。\n"
+"\n"
+"切换到“人物”视图，从菜单中单击“添加”，然后单击“人物”（或使用 [+] 图标）将弹出"
+"输入人物的窗口。输入基本信息并保存记录为您提供了一个起点。选择此人的记录，然"
+"后切换到“关系”视图。\n"
+"\n"
+"有了这个第一人称，所有菜单选项和图标功能都变得可用。花一些时间将鼠标移到图标"
+"上。当您的光标经过某个图标时，会出现一条消息，告诉您该图标的功能。对于任何编"
+"辑窗口都是如此。将鼠标光标移到某个项目上会告诉您它将做什么。\n"
+"\n"
+"您现在可以通过添加父母、配偶和孩子来创建家庭。开始后，您将能够向人员和家庭添"
+"加事件。您可以提供来源和引文来为您的条目提供文档。\n"
+"\n"
+"当您开始使用 Gramps 时，您会发现可以从所有不同的视图中输入信息。 Gramps "
+"中的大多数活动都有多种方式进行。灵活性使您可以选择适合您的工作风格。\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:203
 #, fuzzy
@@ -25639,7 +25621,7 @@ msgstr "Gramps XML 家族树"
 msgid ""
 "The Gramps XML format is a text version of a Family Tree. It is read-write "
 "compatible with the present Gramps database format."
-msgstr "Gramps XML 是家庭树的文本格式。它与现有的 Gramps 数据库格式读写兼容。"
+msgstr "Gramps XML 是家族树的文本格式。它与现有的 Gramps 数据库格式读写兼容。"
 
 #: ../gramps/plugins/importer/import.gpr.py:138
 msgid "Gramps 2.x database"
@@ -26060,7 +26042,7 @@ msgstr "版本"
 #: ../gramps/plugins/importer/importgeneweb.py:105
 #: ../gramps/plugins/importer/importgeneweb.py:117
 msgid "Award"
-msgstr ""
+msgstr "奖项"
 
 #: ../gramps/plugins/importer/importgeneweb.py:111
 msgid "Change Name"
@@ -26069,11 +26051,11 @@ msgstr "修改名称"
 #: ../gramps/plugins/importer/importgeneweb.py:112
 #: ../gramps/plugins/lib/libgedcom.py:736
 msgid "Circumcision"
-msgstr ""
+msgstr "割礼"
 
 #: ../gramps/plugins/importer/importgeneweb.py:116
 msgid "Military Demobilisation"
-msgstr ""
+msgstr "复员"
 
 #: ../gramps/plugins/importer/importgeneweb.py:122
 #, fuzzy
@@ -26100,7 +26082,7 @@ msgstr "住院"
 
 #: ../gramps/plugins/importer/importgeneweb.py:129
 msgid "Illness"
-msgstr ""
+msgstr "疾病"
 
 #: ../gramps/plugins/importer/importgeneweb.py:131
 msgid "List Passenger"
@@ -26113,7 +26095,7 @@ msgstr "服兵役"
 
 #: ../gramps/plugins/importer/importgeneweb.py:133
 msgid "Militaty Mobilisation"
-msgstr ""
+msgstr "服役"
 
 #: ../gramps/plugins/importer/importgeneweb.py:134
 #, fuzzy
@@ -26364,13 +26346,17 @@ msgstr ""
 msgid ""
 "Use original Person\n"
 "Identifier as Gramps ID."
-msgstr "将原先的人员识别符用作 Gramps ID。"
+msgstr ""
+"将原先的人员识别符\n"
+"用作 Gramps ID。"
 
 #: ../gramps/plugins/importer/importprogen.glade:1349
 msgid ""
 "Use original Family\n"
 "Identifier as Gramps ID."
-msgstr "将原先的家庭识别符用作 Gramps ID。"
+msgstr ""
+"将原先的家庭识别符\n"
+"用作 Gramps ID。"
 
 #: ../gramps/plugins/importer/importprogen.glade:1369
 msgid "Identifier"
@@ -26844,7 +26830,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:737
 msgid "Common Law Marriage"
-msgstr ""
+msgstr "普通法婚姻"
 
 #: ../gramps/plugins/lib/libgedcom.py:738
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:327
@@ -26908,7 +26894,7 @@ msgstr "忽略的行 "
 #: ../gramps/plugins/lib/libgedcom.py:1876
 #, python-format
 msgid "Illegal character%s"
-msgstr ""
+msgstr "非法字符%s"
 
 #: ../gramps/plugins/lib/libgedcom.py:2164
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
@@ -26985,6 +26971,12 @@ msgid ""
 "Where possible these 'Unknown' objects are \n"
 "referenced by note %(unknown)s.\n"
 msgstr ""
+"\n"
+"导入的文件不是独立的。\n"
+"为了纠正这个问题，创建了 %（新）d 个对象并\n"
+"他们的典型属性被设置为“未知”。\n"
+"在可能的情况下，这些“未知”物体是\n"
+"由注释 %(未知)s 引用。\n"
 
 #: ../gramps/plugins/lib/libgedcom.py:3868
 #, python-format
@@ -31202,7 +31194,7 @@ msgstr "右下"
 
 #: ../gramps/plugins/lib/maps/geography.py:162
 msgid "Tile path"
-msgstr ""
+msgstr "瓦片路径"
 
 #: ../gramps/plugins/lib/maps/geography.py:164
 #, python-format
@@ -31212,6 +31204,10 @@ msgid ""
 "Trying to create a new one failed.\n"
 "Configure the view for the tile path and restart gramps."
 msgstr ""
+"瓦片文件夹不存在：\n"
+"%s\n"
+"尝试创建一个新的文件夹失败。\n"
+"请配置视图中的瓦片路径并重启Gramps。"
 
 #: ../gramps/plugins/lib/maps/geography.py:397
 msgid "Remove cross hair"
@@ -31253,12 +31249,12 @@ msgstr "用 => 代替 %(map)s"
 #: ../gramps/plugins/lib/maps/geography.py:447
 #, python-format
 msgid "Reload all visible tiles for '%(map)s'."
-msgstr ""
+msgstr "重新加载'%(map)s'的所有可见瓦片。"
 
 #: ../gramps/plugins/lib/maps/geography.py:453
 #, python-format
 msgid "Clear the '%(map)s' tiles cache."
-msgstr ""
+msgstr "清空'%(map)s'的瓦片缓存。"
 
 #: ../gramps/plugins/lib/maps/geography.py:995
 #: ../gramps/plugins/view/geoclose.py:687
@@ -31281,7 +31277,7 @@ msgstr "选择要添加地点的 kml 文件"
 
 #: ../gramps/plugins/lib/maps/geography.py:1146
 msgid "You will need to edit each place manually to add place type, ...\n"
-msgstr ""
+msgstr "您需要手动编辑每个地点以添加地点类型，...\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1150
 #, python-brace-format
@@ -31318,7 +31314,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/maps/geography.py:1399
 msgid "Nothing for this view."
-msgstr ""
+msgstr "这个视图什么都没有。"
 
 #: ../gramps/plugins/lib/maps/geography.py:1400
 msgid "Specific parameters"
@@ -31383,6 +31379,18 @@ msgid ""
 "\n"
 "The following errors are expected"
 msgstr ""
+"您必须验证并更改切片缓存\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"在 gramps.ini 文件中：\n"
+"%s\n"
+"\n"
+"在更改gramps.ini文件之前，需要关闭Gramps\n"
+"\n"
+"预计会出现以下错误"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:194
 #: ../gramps/plugins/lib/maps/osmgps.py:261
@@ -31431,7 +31439,7 @@ msgstr "新建空白字段的地点"
 
 #: ../gramps/plugins/lib/maps/placeselection.py:316
 msgid "you have a wrong latitude for:"
-msgstr ""
+msgstr "您的纬度错误："
 
 #: ../gramps/plugins/lib/maps/placeselection.py:318
 #: ../gramps/plugins/lib/maps/placeselection.py:328
@@ -32682,11 +32690,11 @@ msgstr "是否在报告中显示离婚信息。"
 
 #: ../gramps/plugins/textreport/descendreport.py:602
 msgid "Show duplicate trees"
-msgstr "显示重复家庭树"
+msgstr "显示重复的家族树"
 
 #: ../gramps/plugins/textreport/descendreport.py:603
 msgid "Whether to show duplicate Family Trees in the report."
-msgstr "是否在报告中显示重复的家庭树。"
+msgstr "是否在报告中显示重复的家族树。"
 
 #: ../gramps/plugins/textreport/descendreport.py:645
 #, python-format
@@ -35287,14 +35295,8 @@ msgid "Enable ID reordering."
 msgstr "开启 ID 重新排序。"
 
 #: ../gramps/plugins/tool/reorderids.glade:1420
-#, fuzzy
-#| msgid ""
-#| "List next ID available\n"
-#| "(maynot be continuous)."
 msgid "List next ID available (may not be continuous)."
-msgstr ""
-"列出随后可用的 ID\n"
-"（可能并不连续）。"
+msgstr "列出随后可用的 ID（可能并不连续）。"
 
 #: ../gramps/plugins/tool/reorderids.glade:1423
 msgid "  Actual"
@@ -35343,14 +35345,8 @@ msgid "Keep"
 msgstr "保留"
 
 #: ../gramps/plugins/tool/reorderids.glade:1521
-#, fuzzy
-#| msgid ""
-#| "Keep IDs with alternate\n"
-#| "prefixes untouched."
 msgid "Keep IDs with alternate prefixes untouched."
-msgstr ""
-"以其他前缀开头的\n"
-"ID 保留不动。"
+msgstr "以备选前缀开头的ID保留不动。"
 
 #: ../gramps/plugins/tool/reorderids.py:65
 msgctxt "manual"
@@ -36972,9 +36968,8 @@ msgid "Left <-> Right"
 msgstr "左 <-> 右"
 
 #: ../gramps/plugins/view/pedigreeview.py:1831
-#, fuzzy
 msgid "About Pedigree View"
-msgstr "谱系视图"
+msgstr "关于谱系视图"
 
 #: ../gramps/plugins/view/pedigreeview.py:2045
 #: ../gramps/plugins/view/relview.py:411
@@ -37317,7 +37312,7 @@ msgstr "视图显示的是所选成员的所有关系"
 
 #: ../gramps/plugins/view/view.gpr.py:136
 msgid "The view showing an ancestor pedigree of the selected person"
-msgstr "视图显示所选成员的祖先图谱"
+msgstr "视图显示所选成员的祖先谱系"
 
 #: ../gramps/plugins/view/view.gpr.py:143
 #: ../gramps/plugins/view/view.gpr.py:153
@@ -38493,12 +38488,12 @@ msgid "Google maps API key"
 msgstr "谷歌地图 API 密钥"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2659
-#, fuzzy
-#| msgid "The API key used for the Google maps"
 msgid ""
 "The API key used for the Google maps.\n"
 "This key is mandatory and must be valid"
-msgstr "用于谷歌地图的 API 密钥"
+msgstr ""
+"用于谷歌地图的 API 密钥。\n"
+"该密钥是强制性要求的并且必须是有效的"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2671
 #: ../gramps/plugins/webreport/narrativeweb.py:2711
@@ -38547,12 +38542,12 @@ msgid "Stamen maps API key"
 msgstr "谷歌地图 API 密钥"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2699
-#, fuzzy
-#| msgid "The API key used for the Google maps"
 msgid ""
 "The API key used for the Stamen maps.\n"
 "This key is mandatory and must be valid"
-msgstr "用于谷歌地图的 API 密钥"
+msgstr ""
+"用于Stamen地图的 API 密钥。\n"
+"该密钥是强制性要求的并且必须是有效的"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2714
 msgid ""
