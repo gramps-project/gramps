@@ -62,8 +62,8 @@ class DateParserIT(DateParser):
         "ca.": Date.MOD_ABOUT,
         "ca": Date.MOD_ABOUT,
         "c.": Date.MOD_ABOUT,
-        "from": Date.MOD_FROM,
-        "to": Date.MOD_TO,
+        "da": Date.MOD_FROM,
+        "a": Date.MOD_TO,
     }
 
     calendar_to_int = {
