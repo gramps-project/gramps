@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-02-11 22:03+0000\n"
+"PO-Revision-Date: 2024-02-12 23:02+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
 "Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/de_AT/>\n"
@@ -68,7 +68,7 @@ msgstr "Kroatien"
 
 #: ../data/holidays.xml:143
 msgid "Czech Republic"
-msgstr "Tschechische Republik"
+msgstr "Tschechien"
 
 #: ../data/holidays.xml:158
 msgid "England"
@@ -11920,36 +11920,38 @@ msgid ""
 "<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
 msgstr ""
 "Die folgenden Schlüsselwörter werden durch den entsprechenden Namensteil "
-"ersetzt:<tt>  \n"
+"ersetzt:<tt>\n"
 "  <b>Vorname</b>      - Vorname  <b>Nachname</b>      - Nachnamen (mit "
 "Präfix und Verbindungen)\n"
-"  <b>Titel</b>      - Titel (Dr., Mrs.)       <b>Zusatz</b>       - "
-"Namenszusatz (Jr., Sr., vulgo …)\n"
+"  <b>Titel</b>      - Titel (Dr., Mrs.)       <b>Suffix</b>       - Suffix ("
+"Jr., Sr.)\n"
 "  <b>Rufname</b>       - Rufname              <b>Spitzname</b>     - "
 "Spitzname\n"
 "  <b>Initialen</b>   - erste Buchstabe der Vornamen  <b>Üblich</b>       - "
-"Spitzname, sonst erster Vorname\n"
-"  <b>Primär, Primär[Prä] oder [Nach] oder [Verb]</b>- voller primärer "
-"Nachname, Präfix, nur Nachname, Verbindung\n"
-"  <b>Patronymikon oder [Prä] oder [Nach] oder [Verb]</b> - voller Pa-/"
-"Matronymikon Nachname, Präfix, nur Nachname, Verbindung \n"
-"  <b>Familienspitzname</b> - Familienspitzname        <b>Präfix</b>       - "
-"alle Präfixes (von, de)\n"
+"Spitzname sonst erster Vorname\n"
+"Nachnamen:\n"
 "  <b>Rest</b>       - nicht primäre Nachnamen    <b>Kein Patronymikon</b>- "
-"alle Nachnamen außer pa-/matronymic &amp; primär\n"
-"  <b>unbearbeitete Nachnamen</b>- Nachnamen (keine Präfixe und "
-"Verbindungen)\n"
+"alle Nachnamen außer pa/matronymic &amp; primär\n"
+"  <b>Familienspitzname</b> - Familienspitzname        <b>Präfix</b>       - "
+"alle Präfixes (von, de)  \n"
+"  <b>Primär, Primär[Prä] oder [Nach] oder [Verb]</b>- voller primärer "
+"Nachname, Präfix, nur Nachname, Verbindung   \n"
+"  <b>Patronymikon oder [Prä] oder [Nach] oder [Verb]</b> - voller Pa/"
+"Matronymikon Nachname, Präfix, nur Nachname, Verbindung \n"
+"  <b>unbearbeitete Nachnamen</b>- Nachnamen (keine Präfixe und Verbindungen)"
+"\n"
 "</tt>\n"
 "GROSSGESCHRIEBENE Schlüsselwörter erzwingen Großschreibung. Zusätzliche "
-"Klammern und Kommas werden entfernt. Der übrige Text erscheint unverändert.\n"
+"Klammern und Beistriche werden entfernt. Anderer Text erscheint buchstäblich."
 "\n"
-"<b>Beispiele</b>: 'Dr. Edwin Jose von der Smith und Weston Wilson Sr "
-"(\"Ed\") - Underhills'\n"
-"     <i>Edwin Jose</i> ist der Vorname, <i>von der</i> ist das Präfix, "
-"<i>Smith</i> und <i>Weston</i> Nachnamen, \n"
-"     <i>und</i> eine Verbindung, <i>Wilson</i> Patronymikon Nachname,\n"
-"     <i>Dr.</i> Titel, <i>Sr</i> Zusatz, <i>Ed</i> Spitzname, <i>Underhills</"
-"i> Familienspitzname, <i>Jose</i> Rufname.\n"
+"\n"
+"<b>Beispiele</b>: 'Dr. Edwin Jose von der Smith und Weston Wilson Sr (\"Ed\")"
+" - Underhills'\n"
+"      <i>Edwin Jose</i> ist der Vorname, <i>von der</i> ist das Präfix, "
+"<i>Smith</i> und <i>Weston</i> Nachnamen, <i>und</i> eine Verbindung, "
+"<i>Wilson</i> Patronymikon Nachname,\n"
+"      <i>Dr.</i> Titel, <i>Sr</i> Suffix, <i>Ed</i> Spitzname, "
+"<i>Underhills</i> Familienspitzname, <i>Jose</i> Rufname.\n"
 
 #: ../gramps/gui/configure.py:162
 msgid " Name Editor"
@@ -21084,7 +21086,7 @@ msgid ""
 "Command-Click to follow link"
 msgstr ""
 "\n"
-"Kommando-Klicken, um Link zu folgen"
+"Command+Klick, um Link zu folgen"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:473
 msgid ""
@@ -22901,11 +22903,11 @@ msgstr "Der Stil, der für die Abschnittsüberschriften verwendet wird."
 #: ../gramps/plugins/export/export.gpr.py:35
 #: ../gramps/plugins/importer/import.gpr.py:37
 msgid "Comma Separated Values Spreadsheet (CSV)"
-msgstr "Durch Komma getrennte Wertetabelle (CSV)"
+msgstr "Tabelle mit durch Beistriche getrennten Werten (CSV)"
 
 #: ../gramps/plugins/export/export.gpr.py:36
 msgid "Comma _Separated Values Spreadsheet (CSV)"
-msgstr "Durch _Komma getrennte Werte Tabelle (CSV)"
+msgstr "Tabelle mit durch Bei_striche getrennten Werten (CSV)"
 
 #: ../gramps/plugins/export/export.gpr.py:38
 msgid ""
@@ -35692,9 +35694,9 @@ msgid ""
 "or bad sign in coordinates fields.\n"
 "Double click on a row to edit its content."
 msgstr ""
-"Führende und/oder nachfolgende Leerzeichen bei Personen und Orten suchen. "
-"Nach Kommas oder ungültigen Zeichen in Koordinatenfeldern suchen.\n"
-"Klicke doppelt auf eine Zeile, um deren Inhalt zu bearbeiten."
+"Suche nach führenden und/oder nachgestellten Leerzeichen für Personen und "
+"Orte. Suche nach Beistrich oder falschem Vorzeichen in Koordinatenfeldern.\n"
+"Doppelklicke auf eine Zeile, um deren Inhalt zu bearbeiten."
 
 #: ../gramps/plugins/tool/removespaces.py:125
 msgid "Looking for possible fields with leading or trailing spaces"
@@ -35736,7 +35738,7 @@ msgstr "ungültiges Format"
 #: ../gramps/plugins/tool/removespaces.py:291
 #: ../gramps/plugins/tool/removespaces.py:303
 msgid "comma instead of dot"
-msgstr "Komma anstatt Punkt"
+msgstr "Beistrich statt Punkt"
 
 #: ../gramps/plugins/tool/removespaces.py:294
 #: ../gramps/plugins/tool/removespaces.py:306
@@ -36187,8 +36189,9 @@ msgid ""
 "Searches the entire database, looking for trailing or leading spaces for "
 "places and people. Search comma in coordinates fields in places."
 msgstr ""
-"Durchsucht die gesamte Datenbank nach angehängten oder führenden Leerzeichen "
-"bei Orten und Personen. Suche Kommas in Koordinatenfeldern von Orten."
+"Durchsucht die gesamte Datenbank nach nachgestellten oder führenden "
+"Leerzeichen für Orte und Personen. Suche nach Beistrichen in "
+"Koordinatenfeldern in Orten."
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:69
 msgid "Dump Gender Statistics"
@@ -38624,7 +38627,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2308
 msgid "Page Generation"
-msgstr "Seiten Generation"
+msgstr "Erstellen der Seiten"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2311
 msgid "Home page note"
@@ -38660,7 +38663,7 @@ msgstr "Ein Bild, das als Einleitung verwendet wird"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2327
 msgid "Publisher contact note"
-msgstr "Kontakt-Notiz des Herausgebers"
+msgstr "Kontaktnotiz zum Herausgeber"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2330
 msgid ""
@@ -38669,12 +38672,12 @@ msgid ""
 "no contact page will be created"
 msgstr ""
 "Eine Notiz, die als Kontakt zum Herausgeber verwendet wird.\n"
-"Wenn keine Herausgeber Informationen angegeben sind,\n"
+"Wenn keine Herausgeberinformationen angegeben werden,\n"
 "wird keine Kontaktseite erstellt"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2337
 msgid "Publisher contact image"
-msgstr "Bild für Kontakt mit dem Herausgeber"
+msgstr "Kontaktbild zum Herausgeber"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2340
 msgid ""
@@ -38683,24 +38686,25 @@ msgid ""
 "no contact page will be created"
 msgstr ""
 "Ein Bild, das als Kontakt zum Herausgeber verwendet wird.\n"
-"Wenn keine Herausgeber Informationen angegeben sind,\n"
+"Wenn keine Herausgeberinformationen angegeben werden,\n"
 "wird keine Kontaktseite erstellt"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2347
 msgid "HTML user header"
-msgstr "HTML Kopfzeile"
+msgstr "HTML-Kopfzeile"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2349
 msgid "A note to be used as the page header or a PHP code to insert."
-msgstr "Eine Notiz, die als Kopfzeile oder als PHP-Code eingefügt wird."
+msgstr ""
+"Eine Notiz, die als Kopfzeile der Seite oder als PHP-Code eingefügt wird."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2353
 msgid "HTML user footer"
-msgstr "HTML Fußzeile"
+msgstr "HTML-Fußzeile"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2354
 msgid "A note to be used as the page footer"
-msgstr "Eine Notiz, die als Fußzeile benutzt wird"
+msgstr "Eine Notiz, die als Fußzeile der Seite verwendet wird"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2359
 msgid "PHP user session"
@@ -38711,12 +38715,12 @@ msgid ""
 "A note to use for starting the php session.\n"
 "This option will be available only if the .php file extension is selected."
 msgstr ""
-"Ein Hinweis um die PHP-Session zu starten.\n"
+"Eine Notiz, die beim Start PHP-Session verwendet wird.\n"
 "Diese Option ist nur verfügbar, wenn die Dateiendung .php ausgewählt wurde."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2375
 msgid "Images Generation"
-msgstr "Bilder Erstellung"
+msgstr "Erstellen von Bildern"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2378
 msgid "Include images and media objects"
@@ -38732,7 +38736,7 @@ msgstr "Erstellt ein Abbildungsverzeichnis"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2385
 msgid "This option allows you to create the images index"
-msgstr "Diese Option ermöglicht das Erstellen eines Abbildungsindex"
+msgstr "Diese Option ermöglicht das Erstellen eines Abbildungsverzeichnisses"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2391
 msgid "Include unused images and media objects"
@@ -38752,10 +38756,9 @@ msgid ""
 "sized images on the Media Page. This will allow you to have a much smaller "
 "total upload size to your web hosting site."
 msgstr ""
-"Diese Option gibt dir die Möglichkeit, keine voll auflösenden Bilder wie auf "
-"der Medienseite, sondern nur Bilder in Miniaturgröße zu erstellen. Dadurch "
-"ist die Datenmenge, die du auf deinen Webspace hochladen musst, erheblich "
-"kleiner."
+"Mit dieser Option kannst du nur Miniaturbilder anstelle der Bilder in voller "
+"Größe auf der Medienseite erstellen. Dadurch kann die Gesamtgröße des "
+"Hochladens auf deine Webhosting-Website deutlich reduziert werden."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2413
 msgid "Create the thumbnail index"
@@ -38813,7 +38816,7 @@ msgstr "Stammbaum #%c"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2471
 msgid "Give a description for this file."
-msgstr "Gib eine Beschreibung für die Datei."
+msgstr "Gib eine Beschreibung für die Datei an."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2483
 #: ../gramps/plugins/webreport/webcal.py:2049
@@ -38823,7 +38826,7 @@ msgstr "Erweiterte Optionen"
 #: ../gramps/plugins/webreport/narrativeweb.py:2487
 #: ../gramps/plugins/webreport/webcal.py:2052
 msgid "Character set encoding"
-msgstr "Codierung der Zeichensetzung"
+msgstr "Zeichensatzkodierung"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2491
 #: ../gramps/plugins/webreport/webcal.py:2056
@@ -38887,7 +38890,7 @@ msgstr "Familienseiten einfügen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2547
 msgid "Whether or not to include family pages."
-msgstr "Ob Familienseiten eingefügt werden."
+msgstr "Ob Familienseiten eingefügt werden oder nicht."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2550
 msgid "Include event pages"
@@ -38895,8 +38898,7 @@ msgstr "Ereignisseiten einfügen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2551
 msgid "Add a complete events list and relevant pages or not"
-msgstr ""
-"Eine komplette Ereignisliste und entsprechende Seiten aufnehmen oder nicht"
+msgstr "Eine komplette Ereignisliste und relevante Seiten aufnehmen oder nicht"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2554
 msgid "Include place pages"
@@ -38904,7 +38906,7 @@ msgstr "Ortsseiten einfügen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2555
 msgid "Whether or not to include the place pages."
-msgstr "Ob Ortsseiten eingefügt werden."
+msgstr "Ob Ortsseiten eingefügt werden oder nicht."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2558
 msgid "Include unused place pages"
@@ -38912,7 +38914,7 @@ msgstr "Ungenutzte Ortsseiten einfügen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2559
 msgid "Whether or not to include the unused place pages."
-msgstr "Ob ungenutzte Ortsseiten eingefügt werden."
+msgstr "Ob Seiten für ungenutzte Orte eingefügt werden oder nicht."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2562
 msgid "Include source pages"
@@ -38920,7 +38922,7 @@ msgstr "Quellenseiten einfügen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2563
 msgid "Whether or not to include the source pages."
-msgstr "Ob die Quellenseiten eingefügt werden."
+msgstr "Ob die Quellenseiten eingefügt werden oder nicht."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2566
 msgid "Include repository pages"
@@ -38928,15 +38930,15 @@ msgstr "Aufbewahrungsorte-Seiten einfügen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2567
 msgid "Whether or not to include the repository pages."
-msgstr "Ob Aufbewahrungsorte-Seiten eingefügt werden."
+msgstr "Ob Aufbewahrungsorte-Seiten eingefügt werden oder nicht."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2570
 msgid "Include GENDEX file (/gendex.txt)"
-msgstr "GENDEX-Datei (/gendex.txt) einfügen"
+msgstr "GENDEX-Datei einfügen (/gendex.txt)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2571
 msgid "Whether to include a GENDEX file or not"
-msgstr "Ob eine GENDEX-Datei eingefügt wird"
+msgstr "Ob eine GENDEX-Datei eingefügt wird oder nicht"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2574
 msgid "Include address book pages"
@@ -38947,8 +38949,8 @@ msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and "
 "website addresses and personal address/ residence events."
 msgstr ""
-"Ob Adressbuchseiten hinzugefügt werden, die Email-, Webseiten und "
-"persönliche Adress-/Wohnortsereignisse beinhalten."
+"Ob Adressbuchseiten hinzugefügt werden, die Email-, Website-Adressen und "
+"persönliche Adress-/Wohnortsereignisse beinhalten können."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2585
 msgid "Include the statistics page"
@@ -38956,11 +38958,11 @@ msgstr "Statistikseite einfügen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2586
 msgid "Whether or not to add statistics page"
-msgstr "Ob eine Statistikseite aufgenommen wird"
+msgstr "Ob eine Statistikseite hinzugefügt wird oder nicht"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2595
 msgid "Place Map Options"
-msgstr "Ortekarteoptionen"
+msgstr "Ortekartenoptionen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2600
 msgid "Stamen Map"
@@ -38993,7 +38995,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/narrativeweb.py:2625
 msgid "Include Family Map Pages with all places shown on the map"
 msgstr ""
-"Familien-Kartenseiten einfügen mit allen Orten, die auf der Karte angezeigt "
+"Familienkartenseiten einfügen mit allen Orten, die auf der Karte angezeigt "
 "werden"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2629
@@ -39011,7 +39013,7 @@ msgstr "Familienverknüpfungen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2640
 msgid "Drop"
-msgstr "Abbrechen"
+msgstr "Ablegen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2641
 msgid "Markers"
@@ -39019,7 +39021,7 @@ msgstr "Markierungen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2644
 msgid "Google/ FamilyMap Option"
-msgstr "Google/ Familienkarte-Option"
+msgstr "Google-/Familienkarte-Option"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2650
 msgid ""
@@ -39029,7 +39031,7 @@ msgstr "Wähle die Option für die Google Maps-Familienkartenseiten…"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2656
 msgid "Google maps API key"
-msgstr "GoogleMaps API-Schlüssel"
+msgstr "Google Maps API-Schlüssel"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2659
 msgid ""
@@ -39058,7 +39060,7 @@ msgstr "Toner"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2683
 msgid "Terrain"
-msgstr "Gelände"
+msgstr "Boden"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2684
 msgid "WaterColor"
@@ -39102,7 +39104,7 @@ msgstr "in %(inipth)s (%(val)s)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2732
 msgid "latest"
-msgstr "spätestens"
+msgstr "neueste"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2734
 msgid "openlayers version to use"
@@ -39239,12 +39241,12 @@ msgstr "Ob ein Kalender für das Jahr %s eingefügt wird"
 #: ../gramps/plugins/webreport/narrativeweb.py:3115
 #: ../gramps/plugins/webreport/webcal.py:2060
 msgid "Create one day event pages for Year At A Glance calendar"
-msgstr "Erstelle Ein-Tages-Ereignisseiten für den Jahresüberblick-Kalender"
+msgstr "Erstelle Ereignisseiten pro Tag für den Jahresüberblickkalender"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3117
 #: ../gramps/plugins/webreport/webcal.py:2062
 msgid "Whether to create one day pages or not"
-msgstr "Legt fest, ob Ein-Tag-Seiten erstellt werden oder nicht"
+msgstr "Ob Seiten pro Tag erstellt werden oder nicht"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3121
 #: ../gramps/plugins/webreport/webcal.py:2066
@@ -39259,7 +39261,7 @@ msgstr "Jahrestage im Kalender einfügen"
 #: ../gramps/plugins/webreport/narrativeweb.py:3138
 #: ../gramps/plugins/webreport/webcal.py:2085
 msgid "Show data only after year"
-msgstr "Zeige Daten nur nach Jahr"
+msgstr "Zeige nur Daten nach dem Jahr"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3145
 #: ../gramps/plugins/webreport/webcal.py:2092
@@ -39269,11 +39271,11 @@ msgid ""
 msgstr ""
 "Daten nur nach diesem Jahr anzeigen. Standard ist das aktuelle Jahr - "
 "\"Höchstalter wahrscheinlich lebend\", das im Tab \"Datumseinstellungen\" "
-"definiert ist."
+"festgelegt wurde."
 
 #: ../gramps/plugins/webreport/person.py:168
 msgid "Creating individual pages"
-msgstr "Erstelle Personenseiten"
+msgstr "Erstelle Seiten zu Person"
 
 #: ../gramps/plugins/webreport/person.py:222
 #, python-format
@@ -39287,15 +39289,15 @@ msgid ""
 "by their last names. Selecting the person&#8217;s name will take you to that "
 "person&#8217;s individual page."
 msgstr ""
-"Diese Seite enthält einen Index aller Personen in der Datenbank, die nach "
-"Nachnamen sortiert sind . Das Auswählen des Personennamens wird dich zur "
-"eigenen Seite der Person bringen."
+"Diese Seite listet alle Personen in der Datenbank sortiert nach Nachnamen "
+"auf . Durch Auswählen des Namens einer Person gelangst du zur Seite der "
+"Person."
 
 #: ../gramps/plugins/webreport/person.py:472
 #: ../gramps/plugins/webreport/surname.py:101
 #: ../gramps/plugins/webreport/surnamelist.py:325
 msgid "<absent>"
-msgstr "<fehlt>"
+msgstr "<geht ab>"
 
 #: ../gramps/plugins/webreport/person.py:1010
 #, python-format
@@ -39310,11 +39312,11 @@ msgid ""
 "any?). Clicking on a place&#8217;s name in the Reference section will take "
 "you to that place&#8217;s page."
 msgstr ""
-"Diese Kartenseite stellt die Person mit ihren Nachkommen und all ihren "
-"Ereignissen/Orten dar. Wenn du die Maus über eine Markierung fährst, wird "
-"der Name des Ortes angezeigt. Die Markierungen und Referenzliste sind nach "
-"Datum sortiert (falls vorhanden). Klicke auf einen Ortsnamen im "
-"Referenzbereich und du gelangst zur Seite des Ortes."
+"Diese Kartenseite stellt diese Person mit ihren Nachkommen und all ihren "
+"Ereignissen/Orten dar. Wenn du mit der Maus über die Markierung fährst, wird "
+"der Ortsname angezeigt. Die Markierungen und Referenzliste sind nach Datum "
+"sortiert (falls vorhanden?). Wenn du auf den Namen eines Ortes in der "
+"Referenzliste klickst, gelangst du auf die Seite dieses Ortes."
 
 #: ../gramps/plugins/webreport/person.py:1068
 msgid "Place Title"
@@ -39346,7 +39348,7 @@ msgstr "Stiefmutter"
 
 #: ../gramps/plugins/webreport/person.py:2097
 msgid "Not siblings"
-msgstr "Keine Geschwister"
+msgstr "Nicht Geschwister"
 
 #: ../gramps/plugins/webreport/person.py:2238
 msgid "Relation to the center person"
@@ -39358,16 +39360,16 @@ msgstr "Beziehung zur Hauptperson"
 
 #: ../gramps/plugins/webreport/person.py:2288
 msgid "Relation within this family (if not by birth)"
-msgstr "Beziehung innerhalb dieser Familie (wenn nicht durch Geburt)"
+msgstr "Beziehung innerhalb dieser Familie (falls nicht durch Geburt)"
 
 #: ../gramps/plugins/webreport/place.py:131
 msgid "Creating place pages"
-msgstr "Erstelle Ortsseiten"
+msgstr "Erstelle Seiten zu Ort"
 
 #: ../gramps/plugins/webreport/place.py:223
 #, python-format
 msgid "Places beginning with letter %s"
-msgstr "Orte mit dem Buchstaben %s"
+msgstr "Orte mit Anfangsbuchstabe %s"
 
 #: ../gramps/plugins/webreport/place.py:283
 msgid ""
@@ -39375,9 +39377,8 @@ msgid ""
 "their title. Clicking on a place&#8217;s title will take you to that "
 "place&#8217;s page."
 msgstr ""
-"Diese Seite enthält einen Index mit allen Orten in der Datenbank, die nach "
-"ihrem Titel sortiert sind. Wenn du auf den Ortstitel klickst, gelangst du "
-"zur Seite des Ortes."
+"Diese Seite listet alle Orte in der Datenbank sortiert nach Titel auf. Wenn "
+"du auf den Titel des Ortes klickst, gelangst du zur Seite des Ortes."
 
 #: ../gramps/plugins/webreport/place.py:327
 #: ../gramps/plugins/webreport/place.py:339
@@ -39396,7 +39397,7 @@ msgstr "Ortskarte"
 
 #: ../gramps/plugins/webreport/repository.py:107
 msgid "Creating repository pages"
-msgstr "Erstelle Aufbewahrungsort-Seiten"
+msgstr "Erstelle Seiten zu Aufbewahrungsort"
 
 #: ../gramps/plugins/webreport/repository.py:155
 msgid ""
@@ -39404,9 +39405,9 @@ msgid ""
 "by their title. Clicking on a repositories&#8217;s title will take you to "
 "that repositories&#8217;s page."
 msgstr ""
-"Diese Seite enthält einen Index aller Aufbewahrungsorte in der Datenbank, "
-"die nach Titel sortiert sind. Durch Klicken auf den Titel des "
-"Aufbewahrungsort gelangst du zur Seite des Aufbewahrungsort."
+"Diese Seite listet alle Aufbewahrungsorte in der Datenbank sortiert nach "
+"Titel auf. Durch Klicken auf den Titel des Aufbewahrungsortes gelangst du "
+"zur Seite des Aufbewahrungsortes."
 
 #: ../gramps/plugins/webreport/repository.py:177
 msgctxt "Repository"
@@ -39415,7 +39416,7 @@ msgstr "Name"
 
 #: ../gramps/plugins/webreport/source.py:107
 msgid "Creating source pages"
-msgstr "Erstelle Ereignisseiten"
+msgstr "Erstelle Seiten zu Quelle"
 
 #: ../gramps/plugins/webreport/source.py:156
 msgid ""
@@ -39423,9 +39424,8 @@ msgid ""
 "their title. Clicking on a source&#8217;s title will take you to that "
 "source&#8217;s page."
 msgstr ""
-"Diese Seite enthält einen Index aller Quellen in der Datenbank, die nach "
-"Titel sortiert sind. Durch Klicken auf den Titel der Quelle gelangst du zur "
-"Seite der Quelle."
+"Diese Seite listet alle Quellen in der Datenbank sortiert nach ihrem Titel "
+"auf. Durch Klicken auf den Titel der Quelle gelangst du zur Seite der Quelle."
 
 #: ../gramps/plugins/webreport/source.py:177
 msgctxt "Source Name"
@@ -39442,7 +39442,7 @@ msgstr "Datenbankübersicht"
 
 #: ../gramps/plugins/webreport/statistics.py:226
 msgid "Narrative web content report for"
-msgstr "Erzählende Website Inhalt Bericht für"
+msgstr "Erzählender Webinhalte-Bericht für"
 
 #: ../gramps/plugins/webreport/surname.py:128
 #, python-format
@@ -39451,9 +39451,9 @@ msgid ""
 "surname of %s. Selecting the person&#8217;s name will take you to that "
 "person&#8217;s individual page."
 msgstr ""
-"Diese Seite enthält einen Index von allen in der Datenbank vorkommenden "
-"Personen, die den Nachnamen %s tragen. Durch das Wählen des Personennamens "
-"gelangst du zur Seite der Person."
+"Diese Seite listet alle in der Datenbank vorkommenden Personen auf, die den "
+"Nachnamen %s tragen. Durch Klick auf den Namen einer Person gelangst du zu "
+"deren Seite."
 
 #: ../gramps/plugins/webreport/surnamelist.py:114
 msgid "Surnames by person count"
@@ -39465,12 +39465,12 @@ msgid ""
 "link will lead to a list of individuals in the database with this same "
 "surname."
 msgstr ""
-"Diese Seite enthält alle Nachnamen in der Datenbank. Die Links führen zu "
-"einer Liste der Personen in der Datenbank mit diesem Nachnamen."
+"Diese Seite listet alle Nachnamen in der Datenbank auf. Jeder Link führt zu "
+"einer Liste von Personen in der Datenbank mit demselben Nachnamen."
 
 #: ../gramps/plugins/webreport/surnamelist.py:192
 msgid "Number of People"
-msgstr "Personenzahl"
+msgstr "Anzahl der Personen"
 
 #: ../gramps/plugins/webreport/surnamelist.py:301
 #, python-format
@@ -39484,14 +39484,13 @@ msgid ""
 "this database. Clicking on a thumbnail will take you to that image&#8217;s "
 "page."
 msgstr ""
-"Diese Seite zeigt eine indizierte Liste aller Medienobjekte dieser Datenbank "
-"an. Sie ist nach Medientitel sortiert. Es gibt eine Übersicht aller "
-"Medienobjekte in dieser Datenbank. Ein Klick auf ein Miniaturbild öffnet die "
-"Bilderseite."
+"Diese Seite listet alle Medienobjekte dieser Datenbank auf. Sie ist nach "
+"Medientitel sortiert. Es gibt eine Übersicht aller Medienobjekte in dieser "
+"Datenbank. Ein Klick auf ein Miniaturbild öffnet die Seite zum Bild."
 
 #: ../gramps/plugins/webreport/updates.py:88
 msgid "New and updated objects"
-msgstr "Neue und aktualisierte Objekte"
+msgstr "Neue und geänderte Objekte"
 
 #: ../gramps/plugins/webreport/updates.py:99
 #, python-format
@@ -39500,8 +39499,8 @@ msgid ""
 "This page contains the last updated objects in the database in the last "
 "%(days)d days and for a maximum of %(nb)d objects per object type."
 msgstr ""
-"Diese Seite enthält die zuletzt geänderten Objekte in der Datenbank in den "
-"letzten %(days)d Tagen und für maximal %(nb)d Objekte pro Objektart."
+"Diese Seite enthält die zuletzt geänderten Objekte in der Datenbank der "
+"letzten %(days)d Tage und für maximal %(nb)d Objekte pro Objektart."
 
 #. Translators: This is the email subject line in the Web Calendar
 #: ../gramps/plugins/webreport/webcal.py:1671
@@ -39511,7 +39510,7 @@ msgstr "WebCal"
 #: ../gramps/plugins/webreport/webcal.py:1680
 #, python-format
 msgid "Generated by %(gramps_home_html_start)sGramps%(html_end)s on %(date)s"
-msgstr "Erstellt mit %(gramps_home_html_start)sGramps%(html_end)s am %(date)s"
+msgstr "Erstellt von %(gramps_home_html_start)sGramps%(html_end)s am %(date)s"
 
 #: ../gramps/plugins/webreport/webcal.py:1847
 msgid "Calendar Title"
@@ -39543,15 +39542,15 @@ msgstr "Ob der Kalender für mehrere Jahre erstellt wird oder nicht."
 
 #: ../gramps/plugins/webreport/webcal.py:1937
 msgid "Start Year for the Calendar(s)"
-msgstr "Startjahr de(s/r) Kalender"
+msgstr "Kalender-Anfangsjahr"
 
 #: ../gramps/plugins/webreport/webcal.py:1940
 msgid "Enter the starting year for the calendars between 1900 - 3000"
-msgstr "Gib ein Kalender-Startjahr zwischen 1900 und 3000 ein"
+msgstr "Gib ein Kalender-Anfangsjahr zwischen 1900 und 3000 ein"
 
 #: ../gramps/plugins/webreport/webcal.py:1945
 msgid "End Year for the Calendar(s)"
-msgstr "Endjahr de(s/r) Kalender"
+msgstr "Kalender-Endjahr"
 
 #: ../gramps/plugins/webreport/webcal.py:1948
 msgid "Enter the ending year for the calendars between 1900 - 3000."
@@ -39563,7 +39562,7 @@ msgstr "Feiertage werden für das ausgewählte Land eingefügt"
 
 #: ../gramps/plugins/webreport/webcal.py:1992
 msgid "Jan - Jun Notes"
-msgstr "Jän. – Jun. Notizen"
+msgstr "Notizen Jän. – Jun."
 
 #: ../gramps/plugins/webreport/webcal.py:1994
 msgid "January Note"
@@ -39615,7 +39614,7 @@ msgstr "Die Notiz für den Monat Juni"
 
 #: ../gramps/plugins/webreport/webcal.py:2018
 msgid "Jul - Dec Notes"
-msgstr "Jul. – Dez. Notizen"
+msgstr "Notizen Jul. – Dez."
 
 #: ../gramps/plugins/webreport/webcal.py:2020
 msgid "July Note"
@@ -39687,7 +39686,7 @@ msgstr "Erzählende Website"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:37
 msgid "Produces web (HTML) pages for individuals, or a set of individuals"
-msgstr "Generiert Webseiten (HTML) für Personen oder eine Gruppe von Personen"
+msgstr "Erstellt Webseiten (HTML) für Personen oder eine Gruppe von Personen"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:61
 msgid "Produces web (HTML) calendars."
@@ -39695,11 +39694,11 @@ msgstr "Erstellt Web-Kalender (HTML)."
 
 #: ../gramps/plugins/webstuff/webstuff.gpr.py:38
 msgid "Webstuff"
-msgstr "Webkram"
+msgstr "Graffl aus dem Netz"
 
 #: ../gramps/plugins/webstuff/webstuff.gpr.py:39
 msgid "Provides a collection of resources for the web"
-msgstr "Liefert eine Sammlung von Hilfsmitteln für das Web"
+msgstr "Bietet eine Sammlung von Ressourcen für das Web"
 
 #. Translators: Basic Ash style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:63
@@ -39712,7 +39711,7 @@ msgstr "Zypresse einfach"
 
 #: ../gramps/plugins/webstuff/webstuff.py:88
 msgid "Basic-Lilac"
-msgstr "Lila einfach"
+msgstr "Flieder einfach"
 
 #: ../gramps/plugins/webstuff/webstuff.py:98
 msgid "Basic-Peach"
@@ -39720,7 +39719,7 @@ msgstr "Pfirsich einfach"
 
 #: ../gramps/plugins/webstuff/webstuff.py:108
 msgid "Basic-Spruce"
-msgstr "Tannengrün einfach"
+msgstr "Fichte einfach"
 
 #: ../gramps/plugins/webstuff/webstuff.py:118
 msgid "Mainz"
