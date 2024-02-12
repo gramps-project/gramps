@@ -66,7 +66,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-02-11 22:02+0000\n"
+"PO-Revision-Date: 2024-02-12 23:02+0000\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/it/>\n"
@@ -1487,63 +1487,6 @@ msgstr ""
 "                 E - ogni cosa è impostata al valore predefinito o azzerata\n"
 
 #: ../gramps/cli/argparser.py:108
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Example of usage of Gramps command line interface\n"
-#| "\n"
-#| "1. To import four databases (whose formats can be determined from their "
-#| "names)\n"
-#| "and then check the resulting database for errors, one may type:\n"
-#| "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps -i file4.wft -a tool -p "
-#| "name=check.\n"
-#| "\n"
-#| "2. To explicitly specify the formats in the above example, append "
-#| "filenames with appropriate -f options:\n"
-#| "gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~/db3.gramps "
-#| "-f gramps-xml -i file4.wft -f wft -a tool -p name=check.\n"
-#| "\n"
-#| "3. To record the database resulting from all imports, supply -e flag\n"
-#| "(use -f if the filename does not allow Gramps to guess the format):\n"
-#| "gramps -i file1.ged -i file2.gpkg -e ~/new-package -f gramps-pkg\n"
-#| "\n"
-#| "4. To save any error messages of the above example into files outfile and "
-#| "errfile, run:\n"
-#| "gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile "
-#| "2>errfile\n"
-#| "\n"
-#| "5. To import three databases and start interactive Gramps session with "
-#| "the result:\n"
-#| "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps\n"
-#| "\n"
-#| "6. To open a database and, based on that data, generate timeline report "
-#| "in PDF format\n"
-#| "putting the output into the my_timeline.pdf file:\n"
-#| "gramps -O 'Family Tree 1' -a report -p name=timeline,off=pdf,"
-#| "of=my_timeline.pdf\n"
-#| "\n"
-#| "7. To generate a summary of a database:\n"
-#| "gramps -O 'Family Tree 1' -a report -p name=summary\n"
-#| "\n"
-#| "8. Listing report options\n"
-#| "Use the name=timeline,show=all to find out about all available options "
-#| "for the timeline report.\n"
-#| "To find out details of a particular option, use show=option_name , e.g. "
-#| "name=timeline,show=off string.\n"
-#| "To learn about available report names, use name=show string.\n"
-#| "\n"
-#| "9. To convert a Family Tree on the fly to a .gramps xml file:\n"
-#| "gramps -O 'Family Tree 1' -e output.gramps -f gramps-xml\n"
-#| "\n"
-#| "10. To generate a web site into an other locale (in german):\n"
-#| "LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Family Tree 1' -a report -p "
-#| "name=navwebpage,target=/../de\n"
-#| "\n"
-#| "11. Finally, to start normal interactive session type:\n"
-#| "gramps\n"
-#| "\n"
-#| "Note: These examples are for bash shell.\n"
-#| "Syntax may be different for other shells and for Windows.\n"
 msgid ""
 "\n"
 "Example of usage of Gramps command line interface\n"
@@ -1614,8 +1557,7 @@ msgstr ""
 "2. Per specificare esplicitamente i formati nell'esempio sovrastante, "
 "appendere i nomi di file cone le opportune opzioni -f:\n"
 "gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~/db3.gramps -f "
-"gramps-xml -i file4.wft -f wft -a tool -p name=check.\n"
-"\n"
+"gramps -i file4.wft -f wft -a tool -p name=check.\n"
 "\n"
 "3. Per registrare il database risultante da tutte le importazioni, fornire "
 "l'opzione -e\n"
@@ -1625,15 +1567,16 @@ msgstr ""
 "\n"
 "4. Per salvare ogni messaggio di errore dell'esempio sovrastante nei file "
 "outtfile e errfile, eseguire:\n"
-"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile "
-"2>errfile\n"
+"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile 2>"
+"errfile\n"
 "\n"
 "5. Per importare tre database e iniziare una sessione interattiva di Gramps "
 "con il risultato:\n"
 "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps\n"
 "\n"
 "6. Per aprire un database e, in base a quei dati, generare un resoconto "
-"temporale in formato PDF in un file my_timeline.pdf:\n"
+"temporale in formato PDF\n"
+"inserendo l'output nel file chiamato my_timeline.pdf:\n"
 "gramps -O 'Family Tree 1' -a report -p name=timeline,off=pdf,of=my_timeline."
 "pdf\n"
 "\n"
@@ -1648,7 +1591,7 @@ msgstr ""
 "Per imporarre i nomi dei resoconti disponibili, usare la stringa name=show.\n"
 "\n"
 "9. Per convertire al volo un albero genealogico in un file .gramps XML:\n"
-"gramps -O 'Family Tree 1' -e output.gramps -f gramps-xml\n"
+"gramps -O 'Family Tree 1' -e output.gramps -f gramps\n"
 "\n"
 "10. Per generare un sito web in un altro locale (in tedesco):\n"
 "LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Family Tree 1' -a report -p "
@@ -3108,14 +3051,14 @@ msgstr "circa il "
 #: ../gramps/gen/datehandler/_datestrings.py:255
 msgctxt "date modifier"
 msgid "from "
-msgstr ""
+msgstr "da "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:258
 msgctxt "date modifier"
 msgid "to "
-msgstr ""
+msgstr "a "
 
 #: ../gramps/gen/datehandler/_datestrings.py:263
 msgctxt "date quality"
@@ -3262,6 +3205,25 @@ msgid ""
 "start your %(bold_start)sold%(bold_end)s version of Gramps and "
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 msgstr ""
+"L'albergo genealogico che si tenta di caricare usa il formato avente schema "
+"di versione %(oldschema)s. Questa versione di Gramps usa lo schema di "
+"versione %(newschema)s. Quindi non è possibile caricare questo albero "
+"genealogico senza aggiornare la versione dello schema dell'albero "
+"genealogico.\n"
+"\n"
+"In caso di aggiornamento non sarà possibile la versione precedente di "
+"Gramps, anche se si effettua una %(wiki_manual_backup_html_start)scopia di "
+"sicurezza%(html_end)s o si "
+"%(wiki_manual_export_html_start)sesporta%(html_end)s l'albero genealogico "
+"aggiornato.\n"
+"\n"
+"L'aggiornamento è un processo difficile che potrebbe rovinare "
+"irrimediabilmente l'albergo genealogico se viene interrotto o non riesce.\n"
+"\n"
+"Se non è stata ancora effettuata una copia di sicurezza dell'albero "
+"genealogico, si dovrebbe avviare la %(bold_start)svecchia%(bold_end)s "
+"versione di Gramps ed %(wiki_backup_html_start)seffettuare una copia di "
+"sicurezza%(html_end)s dell'albero genealogico."
 
 #: ../gramps/gen/db/exceptions.py:195
 #, python-format
@@ -8362,11 +8324,11 @@ msgstr "<Nessuno stato>"
 
 #: ../gramps/gen/lib/ldsord.py:103
 msgid "Born in Covenant"
-msgstr ""
+msgstr "Nato/a nell'alleanza"
 
 #: ../gramps/gen/lib/ldsord.py:104
 msgid "Canceled"
-msgstr ""
+msgstr "Annullato"
 
 #: ../gramps/gen/lib/ldsord.py:105
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:136
@@ -8382,22 +8344,20 @@ msgid "Child"
 msgstr "Figlio/a"
 
 #: ../gramps/gen/lib/ldsord.py:106
-#, fuzzy
 msgid "Cleared"
-msgstr "Pulito"
+msgstr "Approvato"
 
 #: ../gramps/gen/lib/ldsord.py:107
-#, fuzzy
 msgid "Completed"
-msgstr "Finito"
+msgstr "Completato/a"
 
 #: ../gramps/gen/lib/ldsord.py:108
 msgid "Do not seal"
-msgstr ""
+msgstr "Non suggellare"
 
 #: ../gramps/gen/lib/ldsord.py:109
 msgid "Infant"
-msgstr ""
+msgstr "Neonato/a"
 
 #: ../gramps/gen/lib/ldsord.py:110
 msgid "Pre-1970"
@@ -8409,20 +8369,19 @@ msgstr "Qualificato"
 
 #: ../gramps/gen/lib/ldsord.py:112
 msgid "Do not seal/Cancel"
-msgstr ""
+msgstr "Non suggellare/annulla"
 
 #: ../gramps/gen/lib/ldsord.py:113
 msgid "Stillborn"
 msgstr "Nato/a morto/a"
 
 #: ../gramps/gen/lib/ldsord.py:114
-#, fuzzy
 msgid "Submitted"
-msgstr "Inviato"
+msgstr "Presentato"
 
 #: ../gramps/gen/lib/ldsord.py:115
 msgid "Uncleared"
-msgstr ""
+msgstr "Non approvato"
 
 #: ../gramps/gen/lib/ldsord.py:185 ../gramps/gui/editors/editldsord.py:337
 #: ../gramps/gui/editors/editldsord.py:485
@@ -13068,9 +13027,8 @@ msgid "%s_-_Manage_Family_Trees"
 msgstr "%s_-_Gestione_alberi_genealogici"
 
 #: ../gramps/gui/dbman.py:100
-#, fuzzy
 msgid "Family_Trees_manager_window"
-msgstr "Nome albero genealogico"
+msgstr ""
 
 #: ../gramps/gui/dbman.py:114 ../gramps/gui/glade/dbman.glade:354
 msgid "_Archive"
@@ -13443,20 +13401,16 @@ msgid "Tools"
 msgstr "Strumenti"
 
 #: ../gramps/gui/displaystate.py:423
-#, fuzzy
-#| msgid "Plugin Manager"
 msgid "Open Addon Manager"
-msgstr "Gestore plugin"
+msgstr "Apri il gestore dei componenti aggiuntivi"
 
 #: ../gramps/gui/displaystate.py:424 ../gramps/gui/plug/_windows.py:473
 msgid "Addons"
 msgstr "Componenti aggiuntivi"
 
 #: ../gramps/gui/displaystate.py:429
-#, fuzzy
-#| msgid "Preferences"
 msgid "Open Preferences"
-msgstr "Preferenze"
+msgstr "Apri le preferenze"
 
 #: ../gramps/gui/displaystate.py:450
 #: ../gramps/plugins/gramplet/persondetails.py:181
@@ -13801,10 +13755,8 @@ msgid "Sorted date"
 msgstr "Data ordinata"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:91
-#, fuzzy
-#| msgid "Ignore Confidence"
 msgid "Sorted confidence"
-msgstr "Ignora confidenza"
+msgstr "Confidenza ordinata"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:102
 msgid "_Source Citations"
@@ -19016,10 +18968,8 @@ msgid "Module installation failed"
 msgstr "Installazione del modulo non riuscita"
 
 #: ../gramps/gui/plug/_windows.py:314
-#, fuzzy
-#| msgid "Allow Gramps to install required python modules"
 msgid "Gramps was unable to install the required modules"
-msgstr "Permettere a Gramps di installare i moduli python richiesti"
+msgstr "Gramps non è riuscito a installare i moduli richiesti"
 
 #: ../gramps/gui/plug/_windows.py:344
 msgid "Requirements"
@@ -19042,10 +18992,8 @@ msgid "All addons"
 msgstr "Tutti i componenti aggiuntivi"
 
 #: ../gramps/gui/plug/_windows.py:426 ../gramps/gui/plug/_windows.py:623
-#, fuzzy
-#| msgid "installed"
 msgid "Not installed"
-msgstr "installato"
+msgstr "Non installato"
 
 #: ../gramps/gui/plug/_windows.py:427 ../gramps/gui/plug/_windows.py:626
 msgid "Installed"
@@ -20296,7 +20244,7 @@ msgstr "Apertura database"
 
 #: ../gramps/gui/undohistory.py:238
 msgid "History cleared"
-msgstr "Cancellazione cronologia"
+msgstr "Cronologia cancellata"
 
 #: ../gramps/gui/utils.py:317
 msgid "Canceling..."
@@ -20332,6 +20280,13 @@ msgid ""
 "To edit the citation, close the source editor and open an editor for the "
 "citation alone"
 msgstr ""
+"Impossibile aprire adesso un nuovo editor delle citazione. O la citazione è "
+"già in corso di modifica, o la fonte associata è già in corso di modifica, e "
+"aprire l'editore delle citazioni (che permette anche la modifica della fonte)"
+" creerebbe dell'ambiguità aprendo due editor sulla stessa fonte.\n"
+"\n"
+"Per modificare la citazione, chiudere l'editore della fonte e aprire solo un "
+"editor per la citazione"
 
 #: ../gramps/gui/utils.py:815
 msgid "Cannot open new citation editor"
@@ -20399,14 +20354,8 @@ msgid "Would you like to run the Check and Repair tool?"
 msgstr "Eseguire lo strumento Controlla e ripara database?"
 
 #: ../gramps/gui/viewmanager.py:1286 ../gramps/gui/viewmanager.py:1904
-#, fuzzy
-#| msgid ""
-#| "Please wait for backup in progress.\n"
-#| "Gramps will close when complete."
 msgid "Please wait for backup to complete."
-msgstr ""
-"Attendere, la copia di sicurezza è in corso.\n"
-"Gramps si chiuderà al completamento dell'operazione."
+msgstr "Attendere il completamente della copia di sicurezza."
 
 #: ../gramps/gui/viewmanager.py:1288 ../gramps/gui/viewmanager.py:1292
 msgid "Autobackup..."
@@ -27454,9 +27403,8 @@ msgid "Submission: Generations of descendants"
 msgstr "Contributo: generazioni di discendenti"
 
 #: ../gramps/plugins/lib/libgedcom.py:8213
-#, fuzzy
 msgid "Submission: Ordinance process flag"
-msgstr "Contributo: segnalazione del processo dell'ordinanza"
+msgstr "Presentazione: segnalazione del processo dell'ordinanza"
 
 #: ../gramps/plugins/lib/libgedcom.py:8474
 msgid "Invalid temple code"
