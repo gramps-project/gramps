@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-02-11 22:02+0000\n"
+"PO-Revision-Date: 2024-02-12 23:02+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -15841,7 +15841,7 @@ msgstr "_Finden"
 #: ../gramps/gui/filters/_searchbar.py:60
 #: ../gramps/gui/glade/clipboard.glade:54 ../gramps/gui/undohistory.py:87
 msgid "_Clear"
-msgstr "_Leeren"
+msgstr "_Löschen"
 
 #: ../gramps/gui/filters/_searchbar.py:109
 #, python-format
@@ -20353,11 +20353,11 @@ msgstr "Löschen bestätigen"
 
 #: ../gramps/gui/undohistory.py:197
 msgid "Are you sure you want to clear the Undo history?"
-msgstr "Möchtest du den Bearbeitungsverlauf wirklich leeren?"
+msgstr "Möchtest du den Bearbeitungsverlauf wirklich löschen?"
 
 #: ../gramps/gui/undohistory.py:198 ../gramps/plugins/gramplet/eval.py:83
 msgid "Clear"
-msgstr "Leeren"
+msgstr "Löschen"
 
 #: ../gramps/gui/undohistory.py:236
 msgid "Database opened"
@@ -31740,7 +31740,7 @@ msgstr "Lade alle sichtbaren Kacheln für '%(map)s' neu."
 #: ../gramps/plugins/lib/maps/geography.py:453
 #, python-format
 msgid "Clear the '%(map)s' tiles cache."
-msgstr "Leert den '%(map)s'-Kachel-Cache."
+msgstr "Löscht den '%(map)s'-Kachel-Cache."
 
 #: ../gramps/plugins/lib/maps/geography.py:995
 #: ../gramps/plugins/view/geoclose.py:687
