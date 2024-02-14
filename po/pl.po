@@ -8,7 +8,7 @@
 # Łukasz Rymarczyk <yenidai(at)poczta(dot)onet(dot)pl>, 2008,2009.
 # Krystian Safjan <ksafjan@gmail.com>, 2020.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
-# WaldiS <sto@tutanota.de>, 2021, 2022, 2023.
+# WaldiS <sto@tutanota.de>, 2021, 2022, 2023, 2024.
 # Michał Stojek <stojex@gmail.com>, 2022, 2023.
 # Kamil K <kamil030201@gmail.com>, 2022.
 # Jurek <jurrer1234@gmail.com>, 2023, 2024.
@@ -18,16 +18,16 @@ msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-02-02 16:01+0000\n"
-"Last-Translator: Jurek <jurrer1234@gmail.com>\n"
+"PO-Revision-Date: 2024-02-14 00:02+0000\n"
+"Last-Translator: WaldiS <sto@tutanota.de>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
 "X-Generator: Weblate 5.4-dev\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ~/.poedit/a\n"
@@ -401,14 +401,6 @@ msgstr ""
 "odwracając filtr „Osoby z dziećmi”, możesz wybrać wszystkie osoby bez dzieci."
 
 #: ../data/tips.xml:18
-#, fuzzy
-#| msgid ""
-#| "<b>Locating People</b><br/>By default, each surname in the People View is "
-#| "listed only once. By clicking on the arrow to the left of a name, the "
-#| "list will expand to show all individuals with that last name. To locate "
-#| "any Family Name from a long list, select a Family Name (not a person) and "
-#| "start typing. The view will jump to the first Family Name matching the "
-#| "letters you enter."
 msgid ""
 "<b>Locating People</b><br/>In the Grouped People View, each surname is "
 "listed only once. By clicking on the arrow to the left of a name, the list "
@@ -417,13 +409,12 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>Wyszukiwanie osób</b><br/>Domyślnie, każde nazwisko w widoku ludzi jest "
-"wyświetlane tylko raz. Klikając na strzałkę po lewej stronie nazwiska, albo "
-"na samo nazwisko, lista rozwinie się w tym miejscu pokazując osoby, które "
-"noszą to nazwisko. Aby zlokalizować osobę o danym nazwisku rodowym na "
-"długiej liście, wybierz nazwisko rodowe (nie osoby) i zacznij pisać. Widok "
-"przeskoczy do pierwszego osoby noszącej nazwisko rodowe zaczynające się od "
-"wpisanych przez Ciebie liter."
+"<b>Wyszukiwanie osób</b><br/>W widoku zgrupowanych osób każde nazwisko jest "
+"wyświetlane tylko raz. Kliknięcie strzałki po lewej stronie nazwiska "
+"spowoduje rozwinięcie listy i wyświetlenie wszystkich osób o tym nazwisku. "
+"Aby znaleźć dowolne nazwisko z długiej listy, wybierz nazwisko (nie osobę) i "
+"zacznij wpisywać. Widok przeskoczy do pierwszego nazwiska rodziny pasującego "
+"do wprowadzonych liter."
 
 #: ../data/tips.xml:20
 msgid ""
@@ -12261,10 +12252,8 @@ msgid "Age display precision *"
 msgstr "Precyzja wyświetlania wieku *"
 
 #: ../gramps/gui/configure.py:1571
-#, fuzzy
-#| msgid "Rounded corners"
 msgid "Round the year"
-msgstr "Zaokrąglone narożniki"
+msgstr "Cały rok"
 
 #: ../gramps/gui/configure.py:1582
 msgid "Display ages for events after death *"
@@ -13745,10 +13734,8 @@ msgid "Sorted date"
 msgstr "Sortowana data"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:91
-#, fuzzy
-#| msgid "Ignore Confidence"
 msgid "Sorted confidence"
-msgstr "Ignoruj ufność"
+msgstr "Posortowana pewność"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:102
 msgid "_Source Citations"
@@ -25768,10 +25755,8 @@ msgid "call"
 msgstr "używane imię"
 
 #: ../gramps/plugins/importer/importcsv.py:218
-#, fuzzy
-#| msgid "Tag"
 msgid "tag"
-msgstr "Tag"
+msgstr "tag"
 
 #: ../gramps/plugins/importer/importcsv.py:219
 msgid "title"
@@ -26189,9 +26174,8 @@ msgid "Sold property"
 msgstr "Sprzedana nieruchomość"
 
 #: ../gramps/plugins/importer/importgeneweb.py:154
-#, fuzzy
 msgid "No mention"
-msgstr "Brak opisu"
+msgstr "Brak wzmianki"
 
 #: ../gramps/plugins/importer/importgeneweb.py:157
 msgid "Separated"
@@ -32860,16 +32844,14 @@ msgid "Whether to show divorce information in the report."
 msgstr "Określa, czy dołączać informacje o rozwodach do raportu."
 
 #: ../gramps/plugins/textreport/descendreport.py:596
-#, fuzzy
-#| msgid "Add birth and death events"
 msgid "Show birth and death info"
-msgstr "Dodaj zdarzenia narodzin i zgonu"
+msgstr "Pokaż informacje o narodzinach i śmierci"
 
 #: ../gramps/plugins/textreport/descendreport.py:598
-#, fuzzy
-#| msgid "Whether to show divorce information in the report."
 msgid "Whether to show birth and death information in the report."
-msgstr "Określa, czy dołączać informacje o rozwodach do raportu."
+msgstr ""
+"Określa, czy w raporcie mają być wyświetlane informacje o narodzinach i "
+"zgonach."
 
 #: ../gramps/plugins/textreport/descendreport.py:602
 msgid "Show duplicate trees"
