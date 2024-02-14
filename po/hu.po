@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.1.X\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-02-11 22:02+0000\n"
+"PO-Revision-Date: 2024-02-14 00:02+0000\n"
 "Last-Translator: Lajos Nemeséri <nemeseril@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hu/>\n"
@@ -2765,62 +2765,62 @@ msgstr "elúl"
 #: ../gramps/gen/datehandler/_datestrings.py:184
 msgctxt "French month lexeme"
 msgid "Vendémiaire"
-msgstr "Vendémiaire"
+msgstr "Szüret hava"
 
 #: ../gramps/gen/datehandler/_datestrings.py:185
 msgctxt "French month lexeme"
 msgid "Brumaire"
-msgstr "Brumaire"
+msgstr "Köd hava"
 
 #: ../gramps/gen/datehandler/_datestrings.py:186
 msgctxt "French month lexeme"
 msgid "Frimaire"
-msgstr "Frimaire"
+msgstr "Dér hava"
 
 #: ../gramps/gen/datehandler/_datestrings.py:187
 msgctxt "French month lexeme"
 msgid "Nivôse"
-msgstr "Nivôse"
+msgstr "Hó hava"
 
 #: ../gramps/gen/datehandler/_datestrings.py:188
 msgctxt "French month lexeme"
 msgid "Pluviôse"
-msgstr "Pluviôse"
+msgstr "Eső hava"
 
 #: ../gramps/gen/datehandler/_datestrings.py:189
 msgctxt "French month lexeme"
 msgid "Ventôse"
-msgstr "Ventôse"
+msgstr "Szél hava"
 
 #: ../gramps/gen/datehandler/_datestrings.py:190
 msgctxt "French month lexeme"
 msgid "Germinal"
-msgstr "Germinal"
+msgstr "Sarjadás hava"
 
 #: ../gramps/gen/datehandler/_datestrings.py:191
 msgctxt "French month lexeme"
 msgid "Floréal"
-msgstr "Floréal"
+msgstr "Virágzás hava"
 
 #: ../gramps/gen/datehandler/_datestrings.py:192
 msgctxt "French month lexeme"
 msgid "Prairial"
-msgstr "Prairial"
+msgstr "Rét hava"
 
 #: ../gramps/gen/datehandler/_datestrings.py:193
 msgctxt "French month lexeme"
 msgid "Messidor"
-msgstr "Messidor"
+msgstr "Aratás hónapja"
 
 #: ../gramps/gen/datehandler/_datestrings.py:194
 msgctxt "French month lexeme"
 msgid "Thermidor"
-msgstr "Thermidor"
+msgstr "Hőség hónapja"
 
 #: ../gramps/gen/datehandler/_datestrings.py:195
 msgctxt "French month lexeme"
 msgid "Fructidor"
-msgstr "Fructidor"
+msgstr "Gyümölcs hava"
 
 #: ../gramps/gen/datehandler/_datestrings.py:196
 msgctxt "French month lexeme"
@@ -12801,7 +12801,7 @@ msgstr ""
 #: ../gramps/gui/csvdialect.py:63
 msgctxt "character"
 msgid "Tab"
-msgstr "Címke"
+msgstr "Fül"
 
 #: ../gramps/gui/csvdialect.py:82
 msgid "Choose your dialect"
@@ -22281,10 +22281,8 @@ msgid "Flip names for generations 2, 3 and 4 i.e. those found in circles"
 msgstr "A körben található 2., 3. és 4. generáció neveinek megfordítása"
 
 #: ../gramps/plugins/drawreport/fanchart.py:854
-#, fuzzy
-#| msgid "The title of the calendar"
 msgid "Exclude the title of the chart"
-msgstr "A naptár címe"
+msgstr "A diagram címének kizárása"
 
 #: ../gramps/plugins/drawreport/fanchart.py:855
 msgid "Exclude the title to make more room for the chart"
@@ -23803,10 +23801,8 @@ msgid "Gramplet showing the notes for a media object"
 msgstr "Egy média objektum jegyzeteit mutató gramplet"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:890
-#, fuzzy
-#| msgid "Gramplet showing uncollected objects"
 msgid "Gramplet showing the selected note"
-msgstr "Nem összegyűjtött objektumokat mutató gramplet"
+msgstr "A kiválasztott bejegyzést mutató gramplet"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:905
 msgid "Person Citations"
@@ -24437,10 +24433,8 @@ msgstr "Személyek száma"
 #: ../gramps/plugins/gramplet/statsgramplet.py:157
 #: ../gramps/plugins/webreport/statistics.py:134
 #: ../gramps/plugins/webreport/statistics.py:244
-#, fuzzy
-#| msgid "Individuals with unknown gender"
 msgid "Individuals with other gender"
-msgstr "Személyek ismeretlen nemmel"
+msgstr "Személyek egyéb nemmel"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:164
 #: ../gramps/plugins/webreport/statistics.py:139
@@ -24658,10 +24652,8 @@ msgid "Start with Genealogy and Gramps"
 msgstr "Kezdje a származáskutatással és a Gramps-szal"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:175
-#, fuzzy
-#| msgid "Every family"
 msgid "Enter your first Family"
-msgstr "Minden család"
+msgstr "Vigye be első családját"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:178
 msgid ""
@@ -24716,16 +24708,12 @@ msgstr ""
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:203
-#, fuzzy
-#| msgid "Open an existing database"
 msgid "Entering and editing data (brief)"
-msgstr "Jelenlegi adatbázis megnyitása"
+msgstr "Adatok bevitele és szerkesztése (gyors)"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:209
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Importing a Family Tree"
-msgstr "Családfa importálása"
+msgstr "Egy családfa importálása"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:212
 msgid ""
@@ -24744,11 +24732,8 @@ msgstr ""
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:220
-#, fuzzy
-#| msgctxt "manual"
-#| msgid "Import_from_another_genealogy_program"
 msgid "Import from another genealogy program"
-msgstr "Más_származástani_programból_importálás"
+msgstr "Importálás más származástani programból"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:226
 msgid "Dashboard View"
@@ -24775,26 +24760,15 @@ msgstr ""
 "grampletet, úsztatva a Gramps felett."
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:242
-#, fuzzy
-#| msgid "Gramps View"
 msgid "Gramps View Categories"
-msgstr "Gramps nézet"
+msgstr "Gramps nézet kategóriák"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:246
 #: ../gramps/plugins/gramplet/welcomegramplet.py:255
-#, fuzzy
-#| msgid "Add a gramplet"
 msgid "Addons and \"Gramplets\""
-msgstr "Gramplet hozzáadása"
+msgstr "Beépülők és \"Grampletek\""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:249
-#, fuzzy
-#| msgid ""
-#| "There many Addons or \"Gramplets\" that are available to assist you in "
-#| "data entry and visualizing your family tree. Many of these tools are "
-#| "already available to you. Many more are available to download and "
-#| "install.\n"
-#| "\n"
 msgid ""
 "There are many Addons or \"Gramplets\" that are available to assist you in "
 "data entry and visualizing your family tree. Many of these tools are already "
@@ -24802,15 +24776,13 @@ msgid ""
 "\n"
 msgstr ""
 "Számos olyan kiegészítő vagy \"Gramplet\" áll rendelkezésre, amely segít az "
-"adatbevitelben és a családfa megjelenítésében. Ezek közül az eszközök közül "
-"sok már elérhető az Ön számára. Sok más is letölthető és telepíthető.\n"
+"adatbevitelben és a családfa megjelenítésében. Ezen eszközök közül számos "
+"már elérhető az Ön számára. Sok más is letölthető és telepíthető.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:257
-#, fuzzy
-#| msgid "Entire Database"
 msgid "Example Database"
-msgstr "Teljes adatbázis"
+msgstr "Példa adatbázis"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:260
 msgid ""
@@ -24838,10 +24810,8 @@ msgstr ""
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:268
-#, fuzzy
-#| msgid "Example"
 msgid "Example.gramps"
-msgstr "Példa"
+msgstr "Példa.gramps"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:57
 msgid "Minimum number of items to display"
@@ -25248,10 +25218,8 @@ msgstr "Nőket mutató szín."
 #: ../gramps/plugins/graph/gvfamilylines.py:347
 #: ../gramps/plugins/graph/gvhourglass.py:512
 #: ../gramps/plugins/graph/gvrelgraph.py:1055
-#, fuzzy
-#| msgid "The color to use to display women."
 msgid "The color to use to display people who are neither men nor women."
-msgstr "Nőket mutató szín."
+msgstr "Se nem nőket, se nem férfiakat mutató szín."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:352
 #: ../gramps/plugins/graph/gvhourglass.py:517
@@ -25408,20 +25376,12 @@ msgid "Ahnentafel number visible"
 msgstr "Látható leszármazási szám"
 
 #: ../gramps/plugins/graph/gvhourglass.py:536
-#, fuzzy
-#| msgid ""
-#| "Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
-#| "informations."
 msgid "Show Sosa / Sosa-Stradonitz / Ahnentafel number."
-msgstr ""
-"Mindenki más információi alatt a Sosa / Sosa-Stradonitz / Leszármazási szám "
-"mutatása."
+msgstr "Sosa / Sosa-Stradonitz / Leszármazási szám mutatása."
 
 #: ../gramps/plugins/graph/gvhourglass.py:540
-#, fuzzy
-#| msgid "Show all events"
 msgid "Show symbols for events"
-msgstr "Összes esemény mutatása"
+msgstr "Esemény-szimbólumok mutatása"
 
 #: ../gramps/plugins/graph/gvhourglass.py:542
 msgid "Show genealogical symbols for birth, marriage and death events."
@@ -25582,22 +25542,16 @@ msgstr ""
 "A családok a gyermekekre és szülőkre hivatkozó ellipszisként jelennek meg."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1081
-#, fuzzy
-#| msgid "Event groups"
 msgid "Parent grouping"
-msgstr "Eseménycsoportok"
+msgstr "Szülő-csoportosítás"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1083
-#, fuzzy
-#| msgid "Parent Notes"
 msgid "Parents together"
-msgstr "Szülő jegyzetek"
+msgstr "Szülők együtt"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1084
-#, fuzzy
-#| msgid "Parent Notes"
 msgid "Parents offset"
-msgstr "Szülő jegyzetek"
+msgstr "Szülők beszámítása"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1087
 msgid ""
@@ -25708,10 +25662,8 @@ msgid "call"
 msgstr "hívás"
 
 #: ../gramps/plugins/importer/importcsv.py:218
-#, fuzzy
-#| msgid "Tag"
 msgid "tag"
-msgstr "Címke"
+msgstr "fül"
 
 #: ../gramps/plugins/importer/importcsv.py:219
 msgid "title"
@@ -25800,7 +25752,7 @@ msgstr "személy"
 
 #: ../gramps/plugins/importer/importcsv.py:296
 msgid "occupationdescr"
-msgstr "occupationdescr"
+msgstr "foglalkozasleir"
 
 #: ../gramps/plugins/importer/importcsv.py:297
 msgid "Occupation description"
@@ -25808,7 +25760,7 @@ msgstr "Foglalkozás leírás"
 
 #: ../gramps/plugins/importer/importcsv.py:301
 msgid "occupationdate"
-msgstr "occupationdate"
+msgstr "foglalkozasdatum"
 
 #: ../gramps/plugins/importer/importcsv.py:302
 msgid "Occupation date"
@@ -25816,7 +25768,7 @@ msgstr "Foglalkozás dátuma"
 
 #: ../gramps/plugins/importer/importcsv.py:306
 msgid "occupationplace"
-msgstr "occupationplace"
+msgstr "foglalkozashely"
 
 #: ../gramps/plugins/importer/importcsv.py:307
 msgid "Occupation place"
@@ -25824,7 +25776,7 @@ msgstr "Foglalkozás helye"
 
 #: ../gramps/plugins/importer/importcsv.py:311
 msgid "occupationplace_id"
-msgstr "occupationplace_id"
+msgstr "foglalkozashely_id"
 
 #: ../gramps/plugins/importer/importcsv.py:312
 msgid "Occupation place id"
@@ -25832,7 +25784,7 @@ msgstr "Foglalkozás hely azonosító"
 
 #: ../gramps/plugins/importer/importcsv.py:316
 msgid "occupationsource"
-msgstr "occupationsource"
+msgstr "foglalkozasforras"
 
 #: ../gramps/plugins/importer/importcsv.py:317
 msgid "Occupation source"
@@ -25844,11 +25796,11 @@ msgstr "lakhely dátum"
 
 #: ../gramps/plugins/importer/importcsv.py:319
 msgid "residencedate"
-msgstr "residencedate"
+msgstr "lakohelydatum"
 
 #: ../gramps/plugins/importer/importcsv.py:322
 msgid "residenceplace"
-msgstr "residenceplace"
+msgstr "lakohelyhely"
 
 #: ../gramps/plugins/importer/importcsv.py:323
 msgid "residence place"
@@ -25856,7 +25808,7 @@ msgstr "lakhely hely"
 
 #: ../gramps/plugins/importer/importcsv.py:327
 msgid "residenceplace_id"
-msgstr "residenceplace_id"
+msgstr "lakohelyhely_id"
 
 #: ../gramps/plugins/importer/importcsv.py:328
 msgid "residence place id"
@@ -25864,7 +25816,7 @@ msgstr "lakhely helyének azonosítója"
 
 #: ../gramps/plugins/importer/importcsv.py:332
 msgid "residencesource"
-msgstr "residencesource"
+msgstr "lakohelyforras"
 
 #: ../gramps/plugins/importer/importcsv.py:333
 msgid "residence source"
@@ -25876,11 +25828,11 @@ msgstr "jellemző típus"
 
 #: ../gramps/plugins/importer/importcsv.py:335
 msgid "attributetype"
-msgstr "attributetype"
+msgstr "tulajdonsagtipus"
 
 #: ../gramps/plugins/importer/importcsv.py:338
 msgid "attributevalue"
-msgstr "attributevalue"
+msgstr "tulajdonsagertek"
 
 #: ../gramps/plugins/importer/importcsv.py:339
 msgid "attribute value"
@@ -25888,7 +25840,7 @@ msgstr "jellemző érték"
 
 #: ../gramps/plugins/importer/importcsv.py:343
 msgid "attributesource"
-msgstr "attributesource"
+msgstr "tulajdonsagforras"
 
 #: ../gramps/plugins/importer/importcsv.py:344
 msgid "attribute source"
@@ -26446,10 +26398,6 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1548
 #: ../gramps/plugins/importer/importprogen.glade:1595
-#, fuzzy
-#| msgid ""
-#| "Use death information\n"
-#| "as death cause event."
 msgid ""
 "Use death information\n"
 "as cause of death event."
@@ -26524,16 +26472,13 @@ msgid "vCard import"
 msgstr "vCard import"
 
 #: ../gramps/plugins/importer/importvcard.py:274
-#, fuzzy
-#| msgid "VCARD import report: No errors detected"
 msgid "vCard import report: No errors detected"
-msgstr "VCARD import jelentés: Nincs hiba"
+msgstr "vCard import jelentés: Nincs hiba"
 
 #: ../gramps/plugins/importer/importvcard.py:277
-#, fuzzy, python-format
-#| msgid "VCARD import report: %s errors detected\n"
+#, python-format
 msgid "vCard import report: %s errors detected\n"
-msgstr "VCARD import jelentés: %s hiba történt\n"
+msgstr "vCard import jelentés: %s hiba történt\n"
 
 #: ../gramps/plugins/importer/importvcard.py:342
 #, python-format
@@ -26541,52 +26486,37 @@ msgid "Token >%(token)s< unknown. line skipped: %(line)s"
 msgstr "A >%(token)s< token ismeretlen. Átugrott sor: %(line)s"
 
 #: ../gramps/plugins/importer/importvcard.py:359
-#, fuzzy
-#| msgid ""
-#| "BEGIN property not properly closed by END property, Gramps can't cope "
-#| "with nested VCards."
 msgid ""
 "BEGIN property not properly closed by END property, Gramps can't cope with "
 "nested vCards."
 msgstr ""
 "A BEGIN tulajdonság nem megfelelően zárt az END tulajdonsággal, a Gramps nem "
-"tud megbirkózni a beágyazott VCards-al."
+"tud megbirkózni a beágyazott vCards-al."
 
 #: ../gramps/plugins/importer/importvcard.py:373
-#, fuzzy, python-format
-#| msgid "Import of VCards version %s is not supported by Gramps."
+#, python-format
 msgid "Import of vCards version %s is not supported by Gramps."
-msgstr "A vCard %s változatának importját a Gramps nem támogatotja."
+msgstr "A vCard %s változatának importját a Gramps nem támogatja."
 
 #: ../gramps/plugins/importer/importvcard.py:396
-#, fuzzy
-#| msgid ""
-#| "VCard is malformed missing the compulsory N property, so there is no "
-#| "name; skip it."
 msgid ""
 "The vCard is malformed. It is missing the compulsory N property, so there is "
 "no name; skip it."
 msgstr ""
-"A VCard a kötelező N tulajdonság hiánya miatt deformált, így nincs név; "
+"A vCard adat torz. Hiányzik a kötelező N tulajdonság, így nincs név; "
 "átugorva."
 
 #: ../gramps/plugins/importer/importvcard.py:405
-#, fuzzy
-#| msgid ""
-#| "VCard is malformed missing the compulsory FN property, get name from N "
-#| "alone."
 msgid ""
 "The vCard is malformed. It is missing the compulsory FN property, get name "
 "from N alone."
 msgstr ""
-"A VCard a kötelező FN tulajdonság hiánya miatt deformált, a nevet csak az N-"
-"ből vesszük."
+"A vCard adat torz. Hiányzik a kötelező FN tulajdonság, a nevet csak az N-ből "
+"vesszük."
 
 #: ../gramps/plugins/importer/importvcard.py:413
-#, fuzzy
-#| msgid "VCard is malformed wrong number of name components."
 msgid "The vCard is malformed. Wrong number of name components."
-msgstr "A VCard a nevek rész rossz száma miatt deformált."
+msgstr "A vCard adat torz. Hibás szám a név részben."
 
 #: ../gramps/plugins/importer/importvcard.py:574
 #, python-brace-format
@@ -27385,70 +27315,48 @@ msgid "Descriptive Tags"
 msgstr "Leírás címkék"
 
 #: ../gramps/plugins/lib/libmetadata.py:121
-#, fuzzy
-#| msgid "Styled Text Tags"
 msgid "Date and Time Tags"
-msgstr "Formázott Szöveg Fül"
+msgstr "Dátum és Idő Fülek"
 
 #: ../gramps/plugins/lib/libmetadata.py:122
-#, fuzzy
-#| msgid "People"
 msgid "People Tags"
-msgstr "Emberek"
+msgstr "Ember-fülek"
 
 #: ../gramps/plugins/lib/libmetadata.py:123
-#, fuzzy
-#| msgid "Events"
 msgid "Event Tags"
-msgstr "Események"
+msgstr "Esemény-fülek"
 
 #: ../gramps/plugins/lib/libmetadata.py:124
-#, fuzzy
-#| msgid "Images"
 msgid "Image Tags"
-msgstr "Képek"
+msgstr "Kép-fülek"
 
 #: ../gramps/plugins/lib/libmetadata.py:125
-#, fuzzy
-#| msgid "Place format"
 msgid "Camera Information"
-msgstr "Hely formátuma"
+msgstr "Kamera Információ"
 
 #: ../gramps/plugins/lib/libmetadata.py:126
-#, fuzzy
-#| msgid "Locations"
 msgid "Location Tags"
-msgstr "Koordináták"
+msgstr "Hely-fülek"
 
 #: ../gramps/plugins/lib/libmetadata.py:127
-#, fuzzy
-#| msgid "Advanced"
 msgid "Advanced Tags"
-msgstr "Haladó"
+msgstr "Haladó fülek"
 
 #: ../gramps/plugins/lib/libmetadata.py:128
-#, fuzzy
-#| msgid "Edit Tags"
 msgid "Rights Tags"
-msgstr "Címkék szerkesztése"
+msgstr "Jog-fülek"
 
 #: ../gramps/plugins/lib/libmetadata.py:129
-#, fuzzy
-#| msgid "New Tag"
 msgid "Keyword Tags"
-msgstr "Új címke"
+msgstr "Kulcsszó-fülek"
 
 #: ../gramps/plugins/lib/libmetadata.py:228
-#, fuzzy
-#| msgid "Namesake"
 msgid "Namespace"
-msgstr "Névrokon"
+msgstr "Névtér"
 
 #: ../gramps/plugins/lib/libmetadata.py:229
-#, fuzzy
-#| msgid "label"
 msgid "Label"
-msgstr "címke"
+msgstr "Címke"
 
 #: ../gramps/plugins/lib/libmetadata.py:230
 msgid " "
@@ -31573,10 +31481,8 @@ msgstr[0] "Önnek {places_nb} helye van a szerkesztésre."
 msgstr[1] "Önnek {places_nb} helye van a szerkesztésre."
 
 #: ../gramps/plugins/lib/maps/geography.py:1155
-#, fuzzy
-#| msgid "You have at least two places with the same title."
 msgid "You have more than 5 places in this kml file."
-msgstr "Minimum két helyszíne van azonos megnevezéssel."
+msgstr "Önnek ötnél több helye van ebben a kml fájlban."
 
 #: ../gramps/plugins/lib/maps/geography.py:1224
 msgid "You have at least two places with the same title."
@@ -31612,19 +31518,14 @@ msgid "Where to save the tiles for offline mode."
 msgstr "Hova mentse a csempéket offline módhoz."
 
 #: ../gramps/plugins/lib/maps/geography.py:1431
-#, fuzzy
-#| msgid ""
-#| "If you have no more space in your file system. You can remove all tiles "
-#| "placed in the above path.\n"
-#| "Be careful! If you have no internet, you'll get no map."
 msgid ""
 "If you have no more space in your file system, you can remove all tiles "
 "placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
 "Ha nincs több hely a fájlrendszerében, akkor eltávolíthatja az összes "
-"csempét\n"
-"a fenti útvonalból. Legyen óvatos! Ha nincs internet kapcsolata, nem lesz "
+"csempét a\n"
+"fenti útvonalból. Legyen óvatos! Ha nincs internet kapcsolata, nem lesz "
 "térképe sem."
 
 #: ../gramps/plugins/lib/maps/geography.py:1441
@@ -31654,26 +31555,12 @@ msgid "Select tile cache directory for offline mode"
 msgstr "Válassza ki a gyorsítótár könyvtárat offline módhoz"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:143
-#, fuzzy, python-format
-#| msgid "Can't create tiles cache directory %s"
+#, python-format
 msgid "Can't create tile cache directory %s"
-msgstr "A csempék rejtett %s könyvtára nem létrehozható"
+msgstr "A térkép-csempe %s gyorsítótár-könyvtára nem létrehozható"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:149
-#, fuzzy, python-format
-#| msgid ""
-#| "You must verify and change the tiles cache\n"
-#| "...\n"
-#| "[geography]\n"
-#| "...\n"
-#| "path='bad/path'\n"
-#| "...\n"
-#| "in the gramps.ini file :\n"
-#| "%s\n"
-#| "\n"
-#| "Before to change the gramps.ini file, you need to close gramps\n"
-#| "\n"
-#| "The next errors will be normal"
+#, python-format
 msgid ""
 "You must verify and change the tile cache\n"
 "...\n"
@@ -31688,7 +31575,7 @@ msgid ""
 "\n"
 "The following errors are expected"
 msgstr ""
-"A csempék gyorsítótárát ellenőriznie és változtatnia kell\n"
+"A térképcsempék gyorsítótárát ellenőriznie és változtatnia kell\n"
 "…\n"
 "[geography]\n"
 "...\n"
@@ -31699,7 +31586,7 @@ msgstr ""
 "\n"
 "A gramps.ini fájl változtatása előtt be kell zárnia a Grampsot\n"
 "\n"
-"Az ezt követő hibák normálisak"
+"Ezt követően a következő hibák várhatóak"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:194
 #: ../gramps/plugins/lib/maps/osmgps.py:261
@@ -31808,7 +31695,7 @@ msgstr "A kartor.eniro.se-n nyílik meg"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:55
 msgid "GoogleMaps"
-msgstr "GoogleMaps"
+msgstr "Google Térkép"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:56
 msgid "Open on maps.google.com"
@@ -32072,12 +31959,9 @@ msgid "females"
 msgstr "nők"
 
 #: ../gramps/plugins/quickview/filterbyname.py:62
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "people with unknown gender"
 msgctxt "Filtering_on"
 msgid "people with other gender"
-msgstr "ismeretlen nemű emberek"
+msgstr "egyéb nemű emberek"
 
 #: ../gramps/plugins/quickview/filterbyname.py:63
 msgctxt "Filtering_on"
@@ -32578,10 +32462,8 @@ msgid "German Relationship Calculator"
 msgstr "Német rokonság számoló"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:133
-#, fuzzy
-#| msgid "Russian Relationship Calculator"
 msgid "Austrian Relationship Calculator"
-msgstr "Orosz rokonság számoló"
+msgstr "Osztrák rokonság számoló"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:157
 msgid "Spanish Relationship Calculator"
@@ -32596,10 +32478,8 @@ msgid "French Relationship Calculator"
 msgstr "Francia rokonság számoló"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:241
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Hebrew Relationship Calculator"
-msgstr "Kapcsolat meghatározó"
+msgstr "Zsidó kapcsolat-számoló"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:265
 msgid "Croatian Relationship Calculator"
@@ -32650,16 +32530,12 @@ msgid "Swedish Relationship Calculator"
 msgstr "Svéd rokonság számoló"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:558
-#, fuzzy
-#| msgid "Danish Relationship Calculator"
 msgid "Turkish Relationship Calculator"
-msgstr "Dán rokonság számoló"
+msgstr "Török kapcsolat-számoló"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:559
-#, fuzzy
-#| msgid "Calculates relationships between people"
 msgid "Calculates relationship between people"
-msgstr "Emberek közötti rokonságot számol"
+msgstr "Emberek közötti kapcsolatot számol"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:583
 msgid "Ukrainian Relationship Calculator"
@@ -32765,10 +32641,9 @@ msgid "Relationships shown are to %s"
 msgstr "A mutatott kapcsolatok vonatkoznak: %s"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:372
-#, fuzzy, python-format
-#| msgid "* %(person)s, birth%(relation)s"
+#, python-format
 msgid "* %(person)s, birth %(relation)s"
-msgstr "* %(person)s, születés%(relation)s"
+msgstr "* %(person)s, születés %(relation)s"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:379
 #, python-brace-format
@@ -32998,16 +32873,12 @@ msgid "Whether to show divorce information in the report."
 msgstr "Legyen-e válási információ mutatva az összegzőben."
 
 #: ../gramps/plugins/textreport/descendreport.py:596
-#, fuzzy
-#| msgid "Show divorce info"
 msgid "Show birth and death info"
-msgstr "Válási információ mutatása"
+msgstr "Születési és halálozási információ mutatása"
 
 #: ../gramps/plugins/textreport/descendreport.py:598
-#, fuzzy
-#| msgid "Whether to show divorce information in the report."
 msgid "Whether to show birth and death information in the report."
-msgstr "Legyen-e válási információ mutatva az összegzőben."
+msgstr "Legyen-e születési és halálozási információ mutatva az összegzőben."
 
 #: ../gramps/plugins/textreport/descendreport.py:602
 msgid "Show duplicate trees"
@@ -33969,10 +33840,9 @@ msgid "Females: %d"
 msgstr "Nők: %d"
 
 #: ../gramps/plugins/textreport/summary.py:199
-#, fuzzy, python-format
-#| msgid "Individuals with unknown gender: %d"
+#, python-format
 msgid "Individuals with other gender: %d"
-msgstr "Ismeretlen nemű személyek: %d"
+msgstr "Egyéb nemű személyek: %d"
 
 #: ../gramps/plugins/textreport/summary.py:203
 #, python-format
@@ -34010,10 +33880,8 @@ msgid "Number of families: %d"
 msgstr "Családok száma: %d"
 
 #: ../gramps/plugins/textreport/summary.py:247
-#, fuzzy
-#| msgid "Context Information"
 msgid "Event Information"
-msgstr "Információ összefüggés"
+msgstr "Esemény információ"
 
 #: ../gramps/plugins/textreport/summary.py:252
 #, python-format
@@ -34021,10 +33889,8 @@ msgid "Number of events: %d"
 msgstr "Események száma: %d"
 
 #: ../gramps/plugins/textreport/summary.py:261
-#, fuzzy
-#| msgid "Place format"
 msgid "Place Information"
-msgstr "Hely formátuma"
+msgstr "Hely információ"
 
 #: ../gramps/plugins/textreport/summary.py:266
 #, python-format
@@ -34032,10 +33898,8 @@ msgid "Number of places: %d"
 msgstr "Helyek száma. %d"
 
 #: ../gramps/plugins/textreport/summary.py:275
-#, fuzzy
-#| msgid "Shared Information"
 msgid "Source Information"
-msgstr "Megosztott információ"
+msgstr "Forrás információ"
 
 #: ../gramps/plugins/textreport/summary.py:280
 #, python-format
@@ -34043,10 +33907,8 @@ msgid "Number of sources: %d"
 msgstr "Források száma. %d"
 
 #: ../gramps/plugins/textreport/summary.py:289
-#, fuzzy
-#| msgid "Publication Information"
 msgid "Citation Information"
-msgstr "Kiadvány információ"
+msgstr "Idézet információ"
 
 #: ../gramps/plugins/textreport/summary.py:294
 #, python-format
@@ -34054,10 +33916,8 @@ msgid "Number of citations: %d"
 msgstr "Idézetek száma: %d"
 
 #: ../gramps/plugins/textreport/summary.py:303
-#, fuzzy
-#| msgid "Relationship Information"
 msgid "Repository Information"
-msgstr "Kapcsolatinformáció"
+msgstr "Tároló információ"
 
 #: ../gramps/plugins/textreport/summary.py:308
 #, python-format
@@ -34075,10 +33935,8 @@ msgid "Total size of media objects: %s MB"
 msgstr "A médiaobjektumok teljes mérete: %s MB"
 
 #: ../gramps/plugins/textreport/summary.py:364
-#, fuzzy
-#| msgid "No Date Information"
 msgid "Note Information"
-msgstr "Nincs dátum információ"
+msgstr "Megjegyzés információ"
 
 #: ../gramps/plugins/textreport/summary.py:369
 #, python-format
@@ -34247,17 +34105,13 @@ msgstr "A feljegyzések hivatkozásainak mutatása"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:35
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:36
-#, fuzzy
-#| msgid "Thumbnail"
 msgid "Gnome Thumbnailer"
-msgstr "Bélyegkép"
+msgstr "Gnome bélyegkép-készítő"
 
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:49
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:50
-#, fuzzy
-#| msgid "Thumbnail"
 msgid "Image Thumbnailer"
-msgstr "Bélyegkép"
+msgstr "Kép bélyegkép-készítő"
 
 #: ../gramps/plugins/tool/changenames.glade:34
 msgid ""
@@ -36043,10 +35897,8 @@ msgstr ""
 
 #: ../gramps/plugins/tool/tools.gpr.py:426
 #: ../gramps/plugins/tool/tools.gpr.py:427
-#, fuzzy
-#| msgid "Sorts events"
 msgid "Sort events"
-msgstr "Eseményeket válogat"
+msgstr "Eseményeket rendez"
 
 #: ../gramps/plugins/tool/tools.gpr.py:449
 msgid "Verify the Data"
@@ -36318,32 +36170,24 @@ msgid "Old age but no death"
 msgstr "Öreg korú, de nem halott"
 
 #: ../gramps/plugins/tool/verify.py:2330
-#, fuzzy
-#| msgid "Birth equals death"
 msgid "Birth date equals death date"
-msgstr "Születés egyenlő halál"
+msgstr "A születési dátum egyezik a halálozásival"
 
 #: ../gramps/plugins/tool/verify.py:2351
-#, fuzzy
-#| msgid "Birth equals marriage"
 msgid "Birth date equals marriage date"
-msgstr "Születés egyenlő házasság"
+msgstr "A születési dátum egyezik a házasságival"
 
 #: ../gramps/plugins/tool/verify.py:2372
-#, fuzzy
-#| msgid "Death equals marriage"
 msgid "Death date equals marriage date"
-msgstr "Halál egyenlő házasság"
+msgstr "A halálozási dátum egyezik a házasságival"
 
 #: ../gramps/plugins/tool/verify.py:2433
 msgid "Baptism too late according to family tradition"
 msgstr "A családi hagyományokhoz képest túl késői keresztelés"
 
 #: ../gramps/plugins/tool/verify.py:2458
-#, fuzzy
-#| msgid "Burial date"
 msgid "Burial too late"
-msgstr "Temetés dátuma"
+msgstr "A temetés túl késői"
 
 #: ../gramps/plugins/tool/verify.py:2495
 msgid "Children are not in chronological order"
@@ -36358,10 +36202,8 @@ msgid "Family has events with role Unknown"
 msgstr "A családnak Ismeretlen szereppel vannak eseményei"
 
 #: ../gramps/plugins/tool/verify.py:2585
-#, fuzzy
-#| msgid "Personal events of the children"
 msgid "Person has events with role Unknown"
-msgstr "Gyermekek személyes eseményei"
+msgstr "A személynek ismeretlen szerepű eseményei vannak"
 
 #: ../gramps/plugins/tool/verify.py:2598
 msgid "Family events are not in chronological order"
@@ -37125,18 +36967,15 @@ msgid "A view showing all the event places of the database."
 msgstr "A nézet az adatbázis összes eseményhelyszínét mutatja."
 
 #: ../gramps/plugins/view/geomoves.py:210
-#, fuzzy
-#| msgid "Descendance of the active person."
 msgid "Descendants of the active person."
-msgstr "Az aktív személy leszármazása."
+msgstr "Az aktív személy leszármazottai."
 
 #: ../gramps/plugins/view/geomoves.py:244
 msgid "GeoMoves"
 msgstr "GeoMoves"
 
 #: ../gramps/plugins/view/geomoves.py:602
-#, fuzzy, python-format
-#| msgid "All descendance for %s"
+#, python-format
 msgid "All descendants for %s"
 msgstr "%s minden leszármazottja"
 
@@ -38430,10 +38269,8 @@ msgid "Check it if you want to open/close a section"
 msgstr "Ellenőrizze, ha kinyitni/bezárni akarja a szakaszt"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2215
-#, fuzzy
-#| msgid "Extra pages"
 msgid "Extra Pages"
-msgstr "Többlet lap"
+msgstr "Többlet lapok"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2218
 msgid "Extra page name"
@@ -38793,16 +38630,12 @@ msgid "Whether or not to include the place pages."
 msgstr "Legyenek-e benne hely oldalak, vagy sem."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2558
-#, fuzzy
-#| msgid "Include place pages"
 msgid "Include unused place pages"
-msgstr "Helyek oldalaival együtt"
+msgstr "Nem használt hely oldalakkal együtt"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2559
-#, fuzzy
-#| msgid "Whether or not to include the place pages."
 msgid "Whether or not to include the unused place pages."
-msgstr "Legyenek-e benne hely oldalak, vagy sem."
+msgstr "Legyenek-e benne nem használt hely oldalak, vagy sem."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2562
 msgid "Include source pages"
@@ -38930,10 +38763,8 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2671
 #: ../gramps/plugins/webreport/narrativeweb.py:2711
-#, fuzzy
-#| msgid "Google maps API key"
 msgid "How to get the API key"
-msgstr "Google térkép API kulcs"
+msgstr "Hogyan kapjuk meg az API kulcsot"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2674
 msgid ""
@@ -38945,11 +38776,11 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2682
 msgid "Toner"
-msgstr "Toner"
+msgstr "Festékkazetta"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2683
 msgid "Terrain"
-msgstr "Terrain"
+msgstr "Terep"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2684
 msgid "WaterColor"
@@ -38966,10 +38797,8 @@ msgid ""
 msgstr "Válassza ki, milyen opciókat szeretne a Stamen Térkép lapokhoz…"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2696
-#, fuzzy
-#| msgid "Google maps API key"
 msgid "Stamen maps API key"
-msgstr "Google térkép API kulcs"
+msgstr "Stamen térkép API kulcs"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2699
 msgid ""
@@ -38994,10 +38823,8 @@ msgid "in %(inipth)s (%(val)s)"
 msgstr "%(inipth)s (%(val)s)-ban"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2732
-#, fuzzy
-#| msgid "Dates"
 msgid "latest"
-msgstr "Dátumok"
+msgstr "legutolsó"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2734
 msgid "openlayers version to use"
@@ -39062,10 +38889,8 @@ msgid "Translations"
 msgstr "Fordítások"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2806
-#, fuzzy
-#| msgid "second language"
 msgid "Second language"
-msgstr "második nyelv"
+msgstr "Második nyelv"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2811
 msgid "Site name for your second language"
@@ -39088,40 +38913,32 @@ msgid "Enter a title in the respective language"
 msgstr "A cím megadása a megfelelő nyelven"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2815
-#, fuzzy
-#| msgid "third language"
 msgid "Third language"
-msgstr "harmadik nyelv"
+msgstr "Harmadik nyelv"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2820
 msgid "Site name for your third language"
 msgstr "A webhely neve a harmadik nyelvhez"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2824
-#, fuzzy
-#| msgid "fourth language"
 msgid "Fourth language"
-msgstr "negyedik nyelv"
+msgstr "Negyedik nyelv"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2829
 msgid "Site name for your fourth language"
 msgstr "A webhely neve a negyedik nyelvhez"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2833
-#, fuzzy
-#| msgid "fifth language"
 msgid "Fifth language"
-msgstr "ötödik nyelv"
+msgstr "Ötödik nyelv"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2838
 msgid "Site name for your fifth language"
 msgstr "A webhely neve az ötödik nyelvhez"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2842
-#, fuzzy
-#| msgid "sixth language"
 msgid "Sixth language"
-msgstr "hatodik nyelv"
+msgstr "Hatodik nyelv"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2847
 msgid "Site name for your sixth language"
@@ -39205,13 +39022,6 @@ msgid "Tracking %s"
 msgstr "%s követése"
 
 #: ../gramps/plugins/webreport/person.py:1016
-#, fuzzy
-#| msgid ""
-#| "This map page represents that person and any descendants with all of "
-#| "their event/ places. If you place your mouse over the marker it will "
-#| "display the place name. The markers and the Reference list are sorted in "
-#| "date order (if any?). Clicking on a place&#8217;s name in the Reference "
-#| "section will take you to that place&#8217;s page."
 msgid ""
 "This map page represents that person and any descendants with all of their "
 "event/places. If you place your mouse over the marker it will display the "
@@ -39221,8 +39031,8 @@ msgid ""
 msgstr ""
 "Ez a térképoldal a személy és őseinek összes eseményének/helyszínének helyét "
 "mutatja. Ha az egérmutatót a jelölő fölé viszi, akkor a helyszín neve "
-"megjelenik. A jelölők és a Hivatkozási lista dátum sorrendben jelenik meg "
-"(ha van bármilyen). A Hivatkozás részben a helyszín nevére kattintva a "
+"megjelenik. A jelölők és a Hivatkozási lista dátum sorrendben jelenik meg ("
+"ha van bármilyen). A Hivatkozás részben a helyszín nevére kattintva a "
 "helyszín oldalára kerülünk."
 
 #: ../gramps/plugins/webreport/person.py:1068
@@ -39290,8 +39100,6 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/place.py:327
 #: ../gramps/plugins/webreport/place.py:339
-#, fuzzy
-#| msgid "Name"
 msgctxt "Place Name"
 msgid "Name"
 msgstr "Név"
@@ -39319,8 +39127,6 @@ msgstr ""
 "címük szerint. Kiválasztva egy tároló címét a tároló oldalára jutunk."
 
 #: ../gramps/plugins/webreport/repository.py:177
-#, fuzzy
-#| msgid "Name"
 msgctxt "Repository"
 msgid "Name"
 msgstr "Név"
@@ -39390,21 +39196,15 @@ msgid "Surnames beginning with letter '%s' %s"
 msgstr "'%s' %s betűvel kezdődő vezetéknevek"
 
 #: ../gramps/plugins/webreport/thumbnail.py:125
-#, fuzzy
-#| msgid ""
-#| "This page displays a indexed list of all the media objects in this "
-#| "database.  It is sorted by media title.  There is an index of all the "
-#| "media objects in this database.  Clicking on a thumbnail will take you to "
-#| "that image&#8217;s page."
 msgid ""
 "This page displays a indexed list of all the media objects in this database. "
 "It is sorted by media title. There is an index of all the media objects in "
 "this database. Clicking on a thumbnail will take you to that image&#8217;s "
 "page."
 msgstr ""
-"Ez az oldal az adatbázisban található összes média objektum listáját "
-"tartalmazza címük szerint. Ez az adatbázisban levő média objektum egy "
-"indexe. A bélyegképre kattintva a kép oldalára jutunk."
+"Ez az oldal az adatbázisban található összes média objektum indexelt "
+"listáját mutatja. A lista név szerint rendezett. Az adatbázis minden média "
+"objektumának van egy indexe. A bélyegképre kattintva a kép oldalára jutunk."
 
 #: ../gramps/plugins/webreport/updates.py:88
 msgid "New and updated objects"
