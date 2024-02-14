@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-02-12 23:02+0000\n"
+"PO-Revision-Date: 2024-02-14 00:02+0000\n"
 "Last-Translator: Para <ahh-produktivitet@tutanota.com>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/nb_NO/>\n"
@@ -375,13 +375,13 @@ msgid ""
 msgstr ""
 "<b>Filtrering av personer</b><br/>I personvisningen, kan du filtrere "
 "personer etter flere kriterier. For å definere et nytt filter, gå til "
-"\"Rediger &gt; Personfilter\". Der kan du navngi filteret og legge til og "
-"kombinere regler basert på mange forhåndsdefinerte regler. For eksempel kan "
-"du definere et filter til å finne alle adopterte personer i familietreet. "
-"Nevnte personer uten fødselsdato kan også bli filtrert. For å få frem "
-"resultatene må du lagre filteret. Velg så dette filteret i filterfeltet i "
-"sidefeltet og klikk på Finn-knappen. Hvis sidefeltet ikke er synlig, velg "
-"Vis &gt; Sidefelt."
+"\"Rediger &gt; Personfilterbehandler\". Der kan du navngi filteret og legge "
+"til og kombinere regler basert på mange forhåndsdefinerte regler. For "
+"eksempel kan du definere et filter til å finne alle adopterte personer i "
+"familietreet. Nevnte personer uten fødselsdato kan også bli filtrert. For å "
+"få frem resultatene må du lagre filteret. Velg så dette filteret i "
+"filterfeltet i sidefeltet og klikk på Finn-knappen. Hvis sidefeltet ikke er "
+"synlig, velg Vis &gt; Sidefelt."
 
 #: ../data/tips.xml:16
 msgid ""
@@ -454,7 +454,7 @@ msgid ""
 "finding duplicate people, interactive descendant browser, and many others. "
 "All tools can be accessed through the \"Tools\" menu."
 msgstr ""
-"<b>Gramps Verktøy</b><br/>Gramps kommer med et rikt utvalg av verktøy. Disse "
+"<b>Gramps-verktøy</b><br/>Gramps kommer med et rikt utvalg av verktøy. Disse "
 "verktøyene lar deg gjøre operasjoner som å kontrollere databasen for feil og "
 "inkonsistens, så vel som analyse og utforskningsverktøy, som "
 "hendelsessammenligning, finn dobbeloppførte personer, interaktiv "
@@ -577,11 +577,12 @@ msgid ""
 "for all primary object types."
 msgstr ""
 "<b>Flett sammen oppføringer</b><br/>Funksjonen \"Rediger &gt; Sammenlign og "
-"slå sammen...\" lar deg slå sammen separate listede personer til en. Hold "
-"nede CTRL-tasten og klikk på to personer. Dette er nyttig om du kombinerer "
-"to databaser der samme person går igjen i begge databasene, eller om du har "
-"skrevet inn samme person flere ganger i databasen og med forskjellige "
-"skrivemåter. Dette fungerer også for steder, kilder og oppbevaringssteder."
+"flett sammen...\" lar deg flette sammen separate listede personer til en. "
+"Hold nede CTRL-tasten og klikk på to personer. Dette er nyttig om du "
+"kombinerer to databaser der samme person går igjen i begge databasene, eller "
+"om du har skrevet inn samme person flere ganger i databasen og med "
+"forskjellige skrivemåter. Dette fungerer også for steder, kilder og "
+"oppbevaringssteder."
 
 #: ../data/tips.xml:46
 msgid ""
@@ -1295,7 +1296,7 @@ msgstr "Ukjent verktøynavn."
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
-"Verktøynavner ikke angitt. Vennligst bruk en av "
+"Verktøynavn er ikke angitt. Vennligst bruk en av "
 "%(donottranslate)s=verktøynavn."
 
 #: ../gramps/cli/arghandler.py:753
@@ -7598,7 +7599,7 @@ msgstr "Reise"
 
 #: ../gramps/gen/lib/eventtype.py:181
 msgid "Legal"
-msgstr "Lovlig"
+msgstr "Juridisk"
 
 #: ../gramps/gen/lib/eventtype.py:182 ../gramps/gen/lib/eventtype.py:223
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:529
@@ -12494,7 +12495,7 @@ msgstr "Vis eller skjul ikon for Innstillinger i verktøylinjen."
 
 #: ../gramps/gui/configure.py:2116
 msgid "Show close button in gramplet bar tabs"
-msgstr "Vis lukkeknapp i Smågrampslinja"
+msgstr "Vis lukkeknapp i Smågramps-linja"
 
 #: ../gramps/gui/configure.py:2122
 msgid "Show close button to simplify removing gramplets from bars."
@@ -18393,8 +18394,9 @@ msgid ""
 "by changing the last-view parameter.\n"
 msgstr ""
 "\n"
-"Gramps klarte ikke å starte. Vennligst rapporter en feil om dette.\n"
-"Dette kan være på grunn av ei feil i en tredjepartsvisning ved oppstart.\n"
+"Gramps klarte ikke å starte. Vennligst send en feilrapport om denne "
+"hendelsen.\n"
+"Dette kan være på grunn av en feil i en tredjepartsvisning ved oppstart.\n"
 "For å bruke en annen visning må du starte Gramps, ikke åpne slektsdatabasen "
 "din, endre visning og deretter åpne slektsdatabasen din.\n"
 "Du kan også endre standardvisning manuelt i fila gramps.ini \n"
@@ -20713,7 +20715,7 @@ msgstr "Legg til et barn til familien"
 
 #: ../gramps/gui/widgets/grampletbar.py:137
 msgid "Gramplet Bar Menu"
-msgstr "Grampsradmeny"
+msgstr "Smågrampsradmeny"
 
 #: ../gramps/gui/widgets/grampletbar.py:228
 #: ../gramps/gui/widgets/grampletpane.py:1222
@@ -20722,7 +20724,7 @@ msgstr "Smågramps uten navn"
 
 #: ../gramps/gui/widgets/grampletbar.py:400
 msgid "Gramplet Bar"
-msgstr "Grampsrad"
+msgstr "Smågrampsrad"
 
 #: ../gramps/gui/widgets/grampletbar.py:403
 msgid ""
@@ -20735,7 +20737,7 @@ msgstr ""
 #: ../gramps/gui/widgets/grampletbar.py:529
 #: ../gramps/gui/widgets/grampletpane.py:1496
 msgid "Add a gramplet"
-msgstr "Legge til en smågramps"
+msgstr "Legg til en smågramps"
 
 #: ../gramps/gui/widgets/grampletbar.py:539
 msgid "Remove a gramplet"
@@ -20747,7 +20749,7 @@ msgstr "Gjenopprett standardsmågramps"
 
 #: ../gramps/gui/widgets/grampletbar.py:559
 msgid "Gramplet Bar Help"
-msgstr "Grampsrad Hjelp"
+msgstr "Smågrampsradhjelp"
 
 #: ../gramps/gui/widgets/grampletbar.py:564
 msgid "About Gramplets"
@@ -20762,7 +20764,7 @@ msgid ""
 "The gramplet bar will be restored to contain its default gramplets.  This "
 "action cannot be undone."
 msgstr ""
-"Smågrampslinja vil bli gjenopprettet til å inneholde standardsmågramps. "
+"Smågrampslinja vil bli gjenopprettet til å inneholde standardsmågramps.   "
 "Dette valget kan ikke angres."
 
 #: ../gramps/gui/widgets/grampletpane.py:837
@@ -20779,7 +20781,7 @@ msgstr "Smågramps uten navn"
 
 #: ../gramps/gui/widgets/grampletpane.py:1496
 msgid "Restore a gramplet"
-msgstr "Hent inn igjen en smågramps"
+msgstr "Gjenopprett en smågramps"
 
 #: ../gramps/gui/widgets/grampletpane.py:1637
 msgid "Number of Columns"
@@ -23499,7 +23501,7 @@ msgstr "Stamtavle"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:247
 msgid "Gramplet showing an active item Quick View"
-msgstr "Smågramps som viser en Kortvisning av elementer"
+msgstr "Smågramps som gir en hurtigvisning av et aktivt element"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:264
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:270
@@ -23548,7 +23550,7 @@ msgstr "Å gjøre"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:331
 msgid "Gramplet for displaying a To Do list"
-msgstr "Smågramps som viser listen over ting som må gjøres"
+msgstr "Smågramps som viser en liste over gjøremål"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:347
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:353
@@ -23621,7 +23623,7 @@ msgstr "Forhåndsvisning av media"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:446
 msgid "Gramplet showing a preview of a media object"
-msgstr "Smågramps som viser forhåndsvisning av et mediaobjekt"
+msgstr "Smågramps som gir en forhåndsvisning av et mediaobjekt"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:478
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:486
@@ -23999,7 +24001,7 @@ msgstr "Familiefilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1178
 msgid "Gramplet providing a family filter"
-msgstr "Smågramps som også har familiefilter"
+msgstr "Smågramps som også har et familiefilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1193
 msgid "Event Filter"
@@ -24015,7 +24017,7 @@ msgstr "Kildefilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1210
 msgid "Gramplet providing a source filter"
-msgstr "Smågramps som også har et hendelsesfilter"
+msgstr "Smågramps som også har et kildefilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1225
 msgid "Citation Filter"
@@ -24023,7 +24025,7 @@ msgstr "Siteringsfilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1226
 msgid "Gramplet providing a citation filter"
-msgstr "Smågramps som har siteringsfilter"
+msgstr "Smågramps som også har et siteringsfilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1241
 msgid "Place Filter"
@@ -24031,7 +24033,7 @@ msgstr "Stedsfilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1242
 msgid "Gramplet providing a place filter"
-msgstr "Smågramps som også har filter for steder"
+msgstr "Smågramps som også har et stedsfilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1257
 msgid "Media Filter"
@@ -24039,7 +24041,7 @@ msgstr "Mediafilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1258
 msgid "Gramplet providing a media filter"
-msgstr "Smågramps som også har mediafilter"
+msgstr "Smågramps som også har et mediafilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1273
 msgid "Repository Filter"
@@ -24047,7 +24049,7 @@ msgstr "Oppbevaringsstedsfiltre"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1274
 msgid "Gramplet providing a repository filter"
-msgstr "Smågramps som også har filter for oppbevaringssted"
+msgstr "Smågramps som også har et oppbevaringsstedsfilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1289
 msgid "Note Filter"
@@ -24074,7 +24076,7 @@ msgstr "Person der noe må gjøres"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1324
 msgid "Gramplet showing the To Do notes for a person"
-msgstr "Smågramps som viser notatene der noe må gjøres for en person"
+msgstr "Smågramps som viser gjøremålsnotatene for en person"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1339
 msgid "Event To Do"
@@ -24082,7 +24084,7 @@ msgstr "Hendelse der noe må gjøres"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1340
 msgid "Gramplet showing the To Do notes for an event"
-msgstr "Smågramps som viser notatene der noe må gjøres for en hendelse"
+msgstr "Smågramps som viser gjøremålsnotatene for en hendelse"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1355
 msgid "Family To Do"
@@ -24090,7 +24092,7 @@ msgstr "Familie der noe må gjøres"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1356
 msgid "Gramplet showing the To Do notes for a family"
-msgstr "Smågramps som viser notatene der noe må gjøres for en familie"
+msgstr "Smågramps som viser gjøremålsnotatene for en familie"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1371
 msgid "Place To Do"
@@ -24098,7 +24100,7 @@ msgstr "Sted der noe må gjøres"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1372
 msgid "Gramplet showing the To Do notes for a place"
-msgstr "Smågramps som viser notatene der noe må gjøres for et sted"
+msgstr "Smågramps som viser gjøremålsnotatene for et sted"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1387
 msgid "Source To Do"
@@ -24106,7 +24108,7 @@ msgstr "Kilde der noe må gjøres"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1388
 msgid "Gramplet showing the To Do notes for a source"
-msgstr "Smågramps som viser notatene der noe må gjøres for en kilde"
+msgstr "Smågramps som viser gjøremålsnotatene for en kilde"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1403
 msgid "Citation To Do"
@@ -24114,7 +24116,7 @@ msgstr "Sitering der noe må gjøres"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1404
 msgid "Gramplet showing the To Do notes for a citation"
-msgstr "Smågramps som viser notatene der noe må gjøres for en sitering"
+msgstr "Smågramps som viser gjøremålsnotatene for en sitering"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1419
 msgid "Repository To Do"
@@ -24122,7 +24124,7 @@ msgstr "Oppbevaringssted der noe må gjøres"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1420
 msgid "Gramplet showing the To Do notes for a repository"
-msgstr "Smågramps som viser notatene der noe må gjøres for et oppbevaringssted"
+msgstr "Smågramps som viser gjøremålsnotatene for et oppbevaringssted"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1435
 msgid "Media To Do"
@@ -24130,7 +24132,7 @@ msgstr "Medie der noe må gjøres"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1436
 msgid "Gramplet showing the To Do notes for a media object"
-msgstr "Smågramps som viser notatene der noe må gjøres for et mediaobjekt"
+msgstr "Smågramps som viser gjøremålsnotatene for et mediaobjekt"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1481
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1489
@@ -24177,7 +24179,7 @@ msgstr "Geografiske koordinater for Familiehendelser"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1545
 msgid "Gramplet showing the events for all the family"
-msgstr "Smågramps som viser hendelsene for alle familiene"
+msgstr "Smågramps som viser hendelsene for hele familien"
 
 #: ../gramps/plugins/gramplet/leak.py:102
 msgid "Referrer"
@@ -24579,12 +24581,12 @@ msgstr "Neste notat for Å gjøre"
 #: ../gramps/plugins/gramplet/todo.py:71
 #: ../gramps/plugins/gramplet/todogramplet.py:71
 msgid "Edit the selected To Do note"
-msgstr "Rediger det valgte notatet der noe må gjøres"
+msgstr "Rediger det valgte gjøremålsnotatet"
 
 #: ../gramps/plugins/gramplet/todo.py:75
 #: ../gramps/plugins/gramplet/todogramplet.py:75
 msgid "Add a new To Do note"
-msgstr "Legg til en nytt notat der noe må gjøres"
+msgstr "Legg til et nytt gjøremålsnotat"
 
 #: ../gramps/plugins/gramplet/todo.py:207
 msgid "First select the object to which you want to attach a note"
@@ -30989,7 +30991,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libplaceview.py:354
 msgid "Place Filter Editor"
-msgstr "Lage stedsfilter"
+msgstr "Stedsfilterbehandler"
 
 #: ../gramps/plugins/lib/libplaceview.py:447
 msgid "_Look up with Map Service"
@@ -36313,7 +36315,7 @@ msgstr "Flett sammen de valgte hendelsene"
 
 #: ../gramps/plugins/view/eventview.py:254
 msgid "Event Filter Editor"
-msgstr "Lage hendelsesfilter"
+msgstr "Hendelsesfilterbehandler"
 
 #: ../gramps/plugins/view/eventview.py:431
 msgid "Cannot merge event objects."
@@ -36351,7 +36353,7 @@ msgstr "Flett sammen de valgte familiene"
 
 #: ../gramps/plugins/view/familyview.py:211
 msgid "Family Filter Editor"
-msgstr "Familiebehandler"
+msgstr "Familiefilterbehandler"
 
 #: ../gramps/plugins/view/familyview.py:303
 msgid "Make Father Active Person"
@@ -37034,7 +37036,7 @@ msgstr "Flett sammen de valgte mediaobjektene"
 
 #: ../gramps/plugins/view/mediaview.py:318
 msgid "Media Filter Editor"
-msgstr "Behandler for mediafiltre"
+msgstr "Mediafilterbehandler"
 
 #: ../gramps/plugins/view/mediaview.py:410
 msgid "View in the default viewer"
@@ -37064,7 +37066,7 @@ msgstr "Flett sammen de valgte notatene"
 
 #: ../gramps/plugins/view/noteview.py:199
 msgid "Note Filter Editor"
-msgstr "Editor for notatfilter"
+msgstr "Notatfilterbehandler"
 
 #: ../gramps/plugins/view/noteview.py:365
 msgid "Cannot merge notes."
@@ -37421,7 +37423,7 @@ msgstr "Flett sammen de valgte oppbevaringsstedene"
 
 #: ../gramps/plugins/view/repoview.py:236
 msgid "Repository Filter Editor"
-msgstr "Filter for Oppbevaringsstedsbehandler"
+msgstr "Oppbevaringsstedsfilterbehandler"
 
 #: ../gramps/plugins/view/repoview.py:395
 msgid "Cannot merge repositories."
@@ -37451,7 +37453,7 @@ msgstr "Flett sammen de valgte kildene"
 
 #: ../gramps/plugins/view/sourceview.py:208
 msgid "Source Filter Editor"
-msgstr "Filter for Kildebehandler"
+msgstr "Kildefilterbehandler"
 
 #: ../gramps/plugins/view/sourceview.py:359
 msgid "Cannot merge sources."
