@@ -33,15 +33,15 @@
 # unrecognized -> unrecognised
 #
 # Copyright (C)
-# Nick Hall <nick-h@gramps-project.org>, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
+# Nick Hall <nick-h@gramps-project.org>, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024.
 # Andi Chandler <andi@gowling.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2023-11-17 00:05+0000\n"
-"Last-Translator: Andi Chandler <andi@gowling.com>\n"
+"PO-Revision-Date: 2024-02-14 00:02+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/en_GB/>\n"
 "Language: en_GB\n"
@@ -49,7 +49,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.2\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -417,14 +417,6 @@ msgstr ""
 "people without children."
 
 #: ../data/tips.xml:18
-#, fuzzy
-#| msgid ""
-#| "<b>Locating People</b><br/>By default, each surname in the People View is "
-#| "listed only once. By clicking on the arrow to the left of a name, the "
-#| "list will expand to show all individuals with that last name. To locate "
-#| "any Family Name from a long list, select a Family Name (not a person) and "
-#| "start typing. The view will jump to the first Family Name matching the "
-#| "letters you enter."
 msgid ""
 "<b>Locating People</b><br/>In the Grouped People View, each surname is "
 "listed only once. By clicking on the arrow to the left of a name, the list "
@@ -433,7 +425,7 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>Locating People</b><br/>By default, each surname in the People View is "
+"<b>Locating People</b><br/>In the Grouped People View, each surname is "
 "listed only once. By clicking on the arrow to the left of a name, the list "
 "will expand to show all individuals with that last name. To locate any "
 "Family Name from a long list, select a Family Name (not a person) and start "
@@ -1417,63 +1409,6 @@ msgstr ""
 "                 E - Everything is set to default or cleared\n"
 
 #: ../gramps/cli/argparser.py:108
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Example of usage of Gramps command line interface\n"
-#| "\n"
-#| "1. To import four databases (whose formats can be determined from their "
-#| "names)\n"
-#| "and then check the resulting database for errors, one may type:\n"
-#| "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps -i file4.wft -a tool -p "
-#| "name=check.\n"
-#| "\n"
-#| "2. To explicitly specify the formats in the above example, append "
-#| "filenames with appropriate -f options:\n"
-#| "gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~/db3.gramps "
-#| "-f gramps-xml -i file4.wft -f wft -a tool -p name=check.\n"
-#| "\n"
-#| "3. To record the database resulting from all imports, supply -e flag\n"
-#| "(use -f if the filename does not allow Gramps to guess the format):\n"
-#| "gramps -i file1.ged -i file2.gpkg -e ~/new-package -f gramps-pkg\n"
-#| "\n"
-#| "4. To save any error messages of the above example into files outfile and "
-#| "errfile, run:\n"
-#| "gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile "
-#| "2>errfile\n"
-#| "\n"
-#| "5. To import three databases and start interactive Gramps session with "
-#| "the result:\n"
-#| "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps\n"
-#| "\n"
-#| "6. To open a database and, based on that data, generate timeline report "
-#| "in PDF format\n"
-#| "putting the output into the my_timeline.pdf file:\n"
-#| "gramps -O 'Family Tree 1' -a report -p name=timeline,off=pdf,"
-#| "of=my_timeline.pdf\n"
-#| "\n"
-#| "7. To generate a summary of a database:\n"
-#| "gramps -O 'Family Tree 1' -a report -p name=summary\n"
-#| "\n"
-#| "8. Listing report options\n"
-#| "Use the name=timeline,show=all to find out about all available options "
-#| "for the timeline report.\n"
-#| "To find out details of a particular option, use show=option_name , e.g. "
-#| "name=timeline,show=off string.\n"
-#| "To learn about available report names, use name=show string.\n"
-#| "\n"
-#| "9. To convert a Family Tree on the fly to a .gramps xml file:\n"
-#| "gramps -O 'Family Tree 1' -e output.gramps -f gramps-xml\n"
-#| "\n"
-#| "10. To generate a web site into an other locale (in german):\n"
-#| "LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Family Tree 1' -a report -p "
-#| "name=navwebpage,target=/../de\n"
-#| "\n"
-#| "11. Finally, to start normal interactive session type:\n"
-#| "gramps\n"
-#| "\n"
-#| "Note: These examples are for bash shell.\n"
-#| "Syntax may be different for other shells and for Windows.\n"
 msgid ""
 "\n"
 "Example of usage of Gramps command line interface\n"
@@ -1543,7 +1478,7 @@ msgstr ""
 "2. To explicitly specify the formats in the above example, append filenames "
 "with appropriate -f options:\n"
 "gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~/db3.gramps -f "
-"gramps-xml -i file4.wft -f wft -a tool -p name=check.\n"
+"gramps -i file4.wft -f wft -a tool -p name=check.\n"
 "\n"
 "3. To record the database resulting from all imports, supply -e flag\n"
 "(use -f if the filename does not allow Gramps to guess the format):\n"
@@ -1551,8 +1486,8 @@ msgstr ""
 "\n"
 "4. To save any error messages of the above example into files outfile and "
 "errfile, run:\n"
-"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile "
-"2>errfile\n"
+"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile 2>"
+"errfile\n"
 "\n"
 "5. To import three databases and start interactive Gramps session with the "
 "result:\n"
@@ -1575,7 +1510,7 @@ msgstr ""
 "To learn about available report names, use name=show string.\n"
 "\n"
 "9. To convert a Family Tree on the fly to a .gramps xml file:\n"
-"gramps -O 'Family Tree 1' -e output.gramps -f gramps-xml\n"
+"gramps -O 'Family Tree 1' -e output.gramps -f gramps\n"
 "\n"
 "10. To generate a web site into an other locale (in german):\n"
 "LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Family Tree 1' -a report -p "
@@ -12203,10 +12138,8 @@ msgid "Age display precision *"
 msgstr "Age display precision *"
 
 #: ../gramps/gui/configure.py:1571
-#, fuzzy
-#| msgid "Rounded corners"
 msgid "Round the year"
-msgstr "Rounded corners"
+msgstr "Round the year"
 
 #: ../gramps/gui/configure.py:1582
 msgid "Display ages for events after death *"
@@ -13671,10 +13604,8 @@ msgid "Sorted date"
 msgstr "Sorted date"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:91
-#, fuzzy
-#| msgid "Ignore Confidence"
 msgid "Sorted confidence"
-msgstr "Ignore Confidence"
+msgstr "Sorted confidence"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:102
 msgid "_Source Citations"
@@ -23320,11 +23251,11 @@ msgstr "Total people"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:30
 msgid "Gramps_5.2_Wiki_Manual_-_Gramplets#Gramplet_List"
-msgstr ""
+msgstr "Gramps_5.2_Wiki_Manual_-_Gramplets#Gramplet_List"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:31
 msgid "Gramps_5.2_Wiki_Manual_-_Tools#Debug"
-msgstr ""
+msgstr "Gramps_5.2_Wiki_Manual_-_Tools#Debug"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:51
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:59
@@ -25619,10 +25550,8 @@ msgid "call"
 msgstr "call"
 
 #: ../gramps/plugins/importer/importcsv.py:218
-#, fuzzy
-#| msgid "Tag"
 msgid "tag"
-msgstr "Tag"
+msgstr "tag"
 
 #: ../gramps/plugins/importer/importcsv.py:219
 msgid "title"
@@ -32752,16 +32681,12 @@ msgid "Whether to show divorce information in the report."
 msgstr "Whether to show divorce information in the report."
 
 #: ../gramps/plugins/textreport/descendreport.py:596
-#, fuzzy
-#| msgid "Show divorce info"
 msgid "Show birth and death info"
-msgstr "Show divorce info"
+msgstr "Show birth and death info"
 
 #: ../gramps/plugins/textreport/descendreport.py:598
-#, fuzzy
-#| msgid "Whether to show divorce information in the report."
 msgid "Whether to show birth and death information in the report."
-msgstr "Whether to show divorce information in the report."
+msgstr "Whether to show birth and death information in the report."
 
 #: ../gramps/plugins/textreport/descendreport.py:602
 msgid "Show duplicate trees"
