@@ -7,7 +7,7 @@
 # Copyright (C) 2020 Juan Saavedra <jcsaaver@gmail.com>
 #
 #
-# Juan Saavedra <jcsaaver@gmail.com>, 2021, 2023.
+# Juan Saavedra <jcsaaver@gmail.com>, 2021, 2023, 2024.
 # Allan Nordhøy <epost@anotheragency.no>, 2021.
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2021.
 # S <sendoasojo@gmail.com>, 2021.
@@ -23,8 +23,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-02-10 21:15+0000\n"
-"Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
+"PO-Revision-Date: 2024-02-16 22:02+0000\n"
+"Last-Translator: Juan Saavedra <jcsaaver@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
 "Language: es\n"
@@ -32,7 +32,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.4\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -11042,7 +11042,7 @@ msgid ""
 "impaired."
 msgstr ""
 "ADVERTENCIA: no se pudo cargar el módulo PIL.  El recorte de imágenes en los "
-"archivos de reporte no quedara bien hecho."
+"archivos de reporte no quedará bien hecho."
 
 #: ../gramps/gen/utils/keyword.py:56
 msgctxt "Person"
@@ -12434,7 +12434,7 @@ msgid ""
 "Input Options"
 msgstr ""
 "\n"
-"Opciones del reporte"
+"Opciones de entrada"
 
 #: ../gramps/gui/configure.py:1676
 msgid "Surname guessing"
@@ -17922,7 +17922,7 @@ msgstr "Ejecutar"
 
 #: ../gramps/gui/glade/plugins.glade:139 ../gramps/gui/plug/_dialogs.py:312
 msgid "Select a report from those available on the left."
-msgstr "Seleccione un reporte de aquellos disponibles a la izquierda."
+msgstr "Seleccione un reporte de los disponibles a la izquierda."
 
 #: ../gramps/gui/glade/plugins.glade:160
 msgid "Status:"
