@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-02-11 22:02+0000\n"
+"PO-Revision-Date: 2024-02-19 09:06+0000\n"
 "Last-Translator: Andrey Serbovets <serbovets.translation@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/uk/>\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.4\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -8771,7 +8771,7 @@ msgstr "Об’єднано Gramps ID"
 
 #: ../gramps/gen/lib/personref.py:102 ../gramps/gui/clipboard.py:685
 msgid "Person ref"
-msgstr "Лінк на особину"
+msgstr "Покликання на особу"
 
 #: ../gramps/gen/lib/personref.py:117
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:68
@@ -10519,9 +10519,9 @@ msgid ""
 "Family Tree reaches back more than the maximum %d generations searched.\n"
 "It is possible that relationships have been missed"
 msgstr ""
-"Сімейне Дерево сягає глибше в минуле, ніж максимальна кількість поколінь "
-"%d , в якій проводиться пошук.\n"
-"Можливо, деякі відносини були пропущені"
+"Сімейне дерево сягає в минуле глибше, ніж максимальна кількість поколінь (%d)"
+", серед яких виконується пошук.\n"
+"Імовірно, результати не враховують деякі відносини"
 
 #: ../gramps/gen/relationship.py:1574
 msgid "Relationship loop detected:"
@@ -10530,7 +10530,7 @@ msgstr "Виявлено замкнене коло відносин:"
 #: ../gramps/gen/relationship.py:1577
 #, python-format
 msgid "Person %(person)s connects to himself via %(relation)s"
-msgstr "Особина %(person)s пов'язана сама з собою через %(relation)s"
+msgstr "Особа «%(person)s» пов'язана сама із собою через %(relation)s"
 
 #: ../gramps/gen/relationship.py:1905
 msgid "undefined"
@@ -13285,7 +13285,7 @@ msgstr "Відкрити параметри"
 #: ../gramps/gui/displaystate.py:450
 #: ../gramps/plugins/gramplet/persondetails.py:181
 msgid "No active person"
-msgstr "Не вибрано особини"
+msgstr "Особу не вибрано"
 
 #: ../gramps/gui/displaystate.py:451
 msgid "No active family"
