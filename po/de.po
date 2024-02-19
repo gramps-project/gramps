@@ -18,13 +18,14 @@
 # Andreas Abraham <andreas.abraham@gmx.de>, 2021.
 # RiseT <twilite505-4bf24909@yahoo.com>, 2022.
 # Oliver Lehmann <lehmann@ans-netz.de>, 2023.
+# Christoph Eder <christoph.eder@phsalzburg.at>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-02-12 23:02+0000\n"
-"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
+"PO-Revision-Date: 2024-02-19 09:06+0000\n"
+"Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
 "Language: de\n"
@@ -32,7 +33,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.4\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -4042,8 +4043,8 @@ msgstr "Fundstellen, deren Notizen den <Text> enthalten"
 msgid ""
 "Matches citations whose notes contain text matching a regular expression"
 msgstr ""
-"Passt auf Fundstellen, deren Notizen einen Text entsprechend eines regulären "
-"Ausdrucks enthalten"
+"Passt auf Fundstellen, deren Notizen einen Text entsprechend einem regulären "
+"Ausdruck enthalten"
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:45
 msgid "Citations with a reference count of <count>"
@@ -4127,8 +4128,8 @@ msgid ""
 "Matches citations whose source notes contain a substring or match a regular "
 "expression"
 msgstr ""
-"Passt auf Fundstellen, deren Quellennotizen einen Text entsprechend eines "
-"regulären Ausdrucks enthalten"
+"Passt auf Fundstellen, deren Quellennotizen einen Text entsprechend einem "
+"regulären Ausdruck enthalten"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:51
 #: ../gramps/gen/filters/rules/event/_hastag.py:51
@@ -4369,8 +4370,8 @@ msgstr "Ereignisse mit Notizen, die <Text> enthalten"
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:44
 msgid "Matches events whose notes contain text matching a regular expression"
 msgstr ""
-"Passt auf Ereignisse, deren Notizen einen Text entsprechend eines regulären "
-"Ausdrucks enthalten"
+"Passt auf Ereignisse, deren Notizen einen Text entsprechend einem regulären "
+"Ausdruck enthalten"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:44
 msgid "Events with a reference count of <count>"
