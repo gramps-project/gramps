@@ -558,6 +558,7 @@ class AddonManager(ManagedWindow):
         )
         pdata = self.__preg.get_plugin(addon_id)
         self.__pmgr.load_plugin(pdata)
+        self.__pmgr.emit("plugins-reloaded")
 
     def build_menu_names(self, obj):
         return (self.title, self.title)
