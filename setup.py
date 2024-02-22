@@ -487,7 +487,6 @@ setup(
         "Natural Language :: Finnish",
         "Natural Language :: French",
         "Natural Language :: German",
-        "Natural Language :: German (Austrian)",
         "Natural Language :: Greek",
         "Natural Language :: Hebrew",
         "Natural Language :: Hungarian",
