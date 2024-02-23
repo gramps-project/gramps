@@ -1,3 +1,16 @@
+2024-02-23
+Version 5.2.0
+* Updated translations: ca, cs, da, de, de_AT, en_GB, es, fr, hr, hu, id, it,
+  nb nl pl sk sl sv tr uk zh_CN.
+* Update development status to production.
+* Remove the Trove classifier "Natural Language :: German(Austrian)".
+* Emit a "plugins-reloaded" signal when a new addon is installed. This ensures
+  that the user interface will be updated to include the new addon.
+  Fixes #13021.
+* Fix Windows AIO build.
+* Update GitHub actions to latest versions. Some actions are deprecated.
+* Package Gramps 5.2.0-rc1 on macOS.
+
 2024-02-09
 Version 5.2.0-rc1
 * Updated translations: ar, bg, cs, da, de, de_AT, en_GB, es, fi, fr, he, hr,
