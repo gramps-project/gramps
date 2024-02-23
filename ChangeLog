@@ -7,11 +7,6 @@
 	* po/zh_CN.po: Translated using Weblate (Chinese (Simplified)) Currently translated at 90.9% (6474 of 7115 strings) Translation: Gramps/Program Translate-URL:
 	https://hosted.weblate.org/projects/gramps-project/gramps/zh_Hans/
 
-2024-02-23  Marco Ciampa <ciampix@posteo.net>
-
-	* po/it.po: Translated using Weblate (Italian) Currently translated at 98.3% (7000 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/it/
-
 2024-02-22  Nick Hall <nick-h@gramps-project.org>
 
 	* setup.py: Remove the Trove classifier "Natural Language ::
