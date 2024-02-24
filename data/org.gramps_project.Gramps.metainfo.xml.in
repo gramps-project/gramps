@@ -9,29 +9,41 @@
     <p>All of your research is kept organized, searchable and as precise as you need it to be.</p>
   </description>
 
-  <developer_name>Gramps Development Team</developer_name>
+  <developer id="org.gramps_project">
+    <name>Gramps Development Team</name>
+  </developer>
   <project_license>GPL-2.0-or-later</project_license>
   <metadata_license>CC0-1.0</metadata_license>
 
   <url type="homepage">https://gramps-project.org/</url>
   <url type="bugtracker">https://gramps-project.org/bugs/</url>
+  <url type="faq">https://gramps-project.org/wiki/index.php?title=FAQ</url>
   <url type="help">https://gramps-project.org/wiki/index.php?title=Main_page</url>
+  <url type="donation">https://gramps-project.org/blog/contribute/</url>
   <url type="translate">https://www.gramps-project.org/wiki/index.php?title=Translating_Gramps</url>
+  <url type="contact">https://gramps-project.org/blog/contact/</url>
+  <url type="vcs-browser">https://github.com/gramps-project/gramps</url>
+  <url type="contribute">https://gramps-project.org/blog/contribute/</url>
 
   <screenshots>
     <screenshot>
+      <caption>Pedigree</caption>
       <image width="1226" height="740">https://www.gramps-project.org/wiki/images/5/5f/AppData1.png</image>
     </screenshot>
     <screenshot>
+      <caption>Descendant Fan</caption>
       <image width="1226" height="740">https://www.gramps-project.org/wiki/images/6/68/AppData2.png</image>
     </screenshot>
     <screenshot type="default">
+      <caption>People</caption>
       <image width="1226" height="740">https://www.gramps-project.org/wiki/images/e/e9/AppData3.png</image>
     </screenshot>
     <screenshot>
+      <caption>Relationships</caption>
       <image width="1226" height="740">https://www.gramps-project.org/wiki/images/6/68/AppData4.png</image>
     </screenshot>
     <screenshot>
+      <caption>Person</caption>
       <image width="1226" height="740">https://www.gramps-project.org/wiki/images/5/50/AppData5.png</image>
     </screenshot>
   </screenshots>
