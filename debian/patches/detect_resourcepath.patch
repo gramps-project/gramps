@@ -1,0 +1,35 @@
+Description: detect resourcepath
+ This patch allow detection of resourcepath when building debian package.
+ In this case .git directory doesn't exists, so we must detect that
+ gramps is not installed by testing another path.
+ .
+ gramps (5.2.0-rc1) unstable; urgency=medium
+ .
+   * New release
+Author: Ross Gammon <rossgammon@debian.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout https://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: (upstream|backport|vendor|other), (<patch-url>|commit:<commit-id>)
+Bug: <upstream-bugtracker-url>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: (no|not-needed|<patch-forwarded-url>)
+Applied-Upstream: <version>, (<commit-url>|commit:<commid-id>)
+Reviewed-By: <name and email of someone who approved/reviewed the patch>
+Last-Update: 2023-11-02
+
+--- gramps-5.2.0.orig/gramps/gen/utils/resourcepath.py
++++ gramps-5.2.0/gramps/gen/utils/resourcepath.py
+@@ -74,7 +74,7 @@ class ResourcePath:
+         package_path = os.path.abspath(
+             os.path.join(os.path.dirname(__file__), "..", "..", "..")
+         )
+-        installed = not os.path.exists(os.path.join(package_path, ".git"))
++        installed = not os.path.exists(os.path.join(package_path, "data"))
+         if installed:
+             test_path = os.path.join("gramps", "authors.xml")
+         else:

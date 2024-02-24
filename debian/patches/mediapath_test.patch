@@ -1,0 +1,35 @@
+Description: disable one of the tests for mediapath
+ This patch disable one of the tests for mediapath.
+ This test fails because gramps tests does not create .gramps directory.
+ This is without consequence for final build.
+ .
+ gramps (5.2.0-rc1) unstable; urgency=medium
+ .
+   * New release
+Author: Ross Gammon <rossgammon@debian.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout https://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: (upstream|backport|vendor|other), (<patch-url>|commit:<commit-id>)
+Bug: <upstream-bugtracker-url>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: (no|not-needed|<patch-forwarded-url>)
+Applied-Upstream: <version>, (<commit-url>|commit:<commid-id>)
+Reviewed-By: <name and email of someone who approved/reviewed the patch>
+Last-Update: 2023-11-02
+
+--- gramps-5.2.0.orig/gramps/gen/utils/test/file_test.py
++++ gramps-5.2.0/gramps/gen/utils/test/file_test.py
+@@ -70,7 +70,7 @@ class FileTest(unittest.TestCase):
+                 media_path(db),
+                 os.path.normcase(os.path.normpath(os.path.abspath(USER_PICTURES))),
+             )
+-            self.assertTrue(os.path.exists(media_path(db)))
++            # self.assertTrue(os.path.exists(media_path(db)))
+ 
+             # Test with absolute db.mediapath
+             db.set_mediapath(os.path.abspath(USER_HOME) + "/test_abs")
