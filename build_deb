@@ -1,0 +1,9 @@
+rm -rf dist
+python3 setup.py sdist
+cd dist
+tar zxf gramps-5.2.0.tar.gz
+mv gramps-5.2.0.tar.gz gramps_5.2.0.orig.tar.gz
+cd gramps-5.2.0
+export LANG=en_US.utf8
+debuild
+# result : dist/gramps_5.2.0-1_all.deb
