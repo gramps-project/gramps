@@ -11,9 +11,10 @@
     <property name="default-height">600</property>
     <signal name="delete-event" handler="on_window_delete_event" swapped="no"/>
     <child>
-      <object class="GtkVBox" id="vbox1">
+      <object class="GtkBox" id="vbox1">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
+        <property name="orientation">vertical</property>
         <child>
           <object class="GtkToolbar" id="toolbar">
             <property name="visible">True</property>
@@ -137,9 +138,10 @@
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <child>
-                  <object class="GtkHBox" id="hbox1">
+                  <object class="GtkBox" id="hbox1">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="orientation">horizontal</property>
                     <property name="spacing">6</property>
                     <child>
                       <object class="GtkEntry" id="entry">
