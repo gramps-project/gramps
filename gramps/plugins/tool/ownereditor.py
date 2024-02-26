@@ -46,7 +46,6 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.sgettext
 from gramps.gui.glade import Glade
-from gramps.gui.utils import is_right_click
 
 # -------------------------------------------------------------------------
 #
@@ -116,16 +115,9 @@ class OwnerEditor(tool.Tool, ManagedWindow):
                 "on_ok_button_clicked": self.on_ok_button_clicked,
                 "on_cancel_button_clicked": self.close,
                 "on_help_button_clicked": self.on_help_button_clicked,
-                "on_eventbox_button_press_event": self.on_button_press_event,
-                "on_menu_activate": self.on_menu_activate,
+                "on_copy_clicked": self.on_copy_clicked,
             }
         )
-
-        # fetch the popup menu
-        self.menu = topDialog.get_object("popup_menu")
-        self.track_ref_for_deletion("menu")
-
-        # topDialog.connect_signals({"on_menu_activate": self.on_menu_activate})
 
         # get current db owner and attach it to the entries of the window
         self.owner = self.db.get_researcher()
@@ -155,34 +147,25 @@ class OwnerEditor(tool.Tool, ManagedWindow):
     def on_ok_button_clicked(self, obj):
         """Update the current db's owner information from editor"""
         self.db.set_researcher(self.owner)
-        self.menu.destroy()
         self.close()
 
     def on_help_button_clicked(self, obj):
         """Display the relevant portion of Gramps manual"""
         display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
-    def on_button_press_event(self, obj, event):
-        """Shows popup-menu for db <-> preferences copying"""
-        if is_right_click(event):
-            self.menu.popup_at_pointer(event)
-
     def build_menu_names(self, obj):
         return (_("Main window"), _("Edit database owner information"))
 
-    def on_menu_activate(self, menuitem):
+    def on_copy_clicked(self, button):
         """Copies the owner information from/to the preferences"""
-        if menuitem.props.name == "copy_from_preferences_to_db":
+        if button.props.name == "copy_from_preferences_to_db":
             self.owner.set_from(get_researcher())
             for entry in self.entries:
                 entry.update()
 
-        elif menuitem.props.name == "copy_from_db_to_preferences":
-            for i in range(len(config_keys)):
-                config.set(config_keys[i], self.owner.get()[i])
-
-    def clean_up(self):
-        self.menu.destroy()
+        elif button.props.name == "copy_from_db_to_preferences":
+            for key, value in zip(config_keys, self.owner.get()):
+                config.set(key, value)
 
 
 # -------------------------------------------------------------------------
