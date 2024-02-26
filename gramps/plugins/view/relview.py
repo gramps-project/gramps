@@ -975,8 +975,8 @@ class RelationshipView(NavigationView):
                     False, self.expand_collapse_press, (person, family.handle)
                 )
         else:
-            arrow = Gtk.Arrow(
-                arrow_type=Gtk.ArrowType.RIGHT, shadow_type=Gtk.ShadowType.OUT
+            arrow = Gtk.Image.new_from_icon_name(
+                "pan-end-symbolic", Gtk.IconSize.BUTTON
             )
         hbox.pack_start(arrow, False, True, 0)
         hbox.pack_start(label, True, True, 0)

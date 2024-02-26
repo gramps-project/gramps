@@ -87,13 +87,13 @@ class ExpandCollapseArrow(Gtk.EventBox):
         """
         Gtk.EventBox.__init__(self)
         if collapsed:
-            self.arrow = Gtk.Arrow(
-                arrow_type=Gtk.ArrowType.RIGHT, shadow_type=Gtk.ShadowType.OUT
+            self.arrow = Gtk.Image.new_from_icon_name(
+                "pan-end-symbolic", Gtk.IconSize.BUTTON
             )
             self.set_tooltip_text(_("Expand this section"))
         else:
-            self.arrow = Gtk.Arrow(
-                arrow_type=Gtk.ArrowType.DOWN, shadow_type=Gtk.ShadowType.OUT
+            self.arrow = Gtk.Image.new_from_icon_name(
+                "pan-down-symbolic", Gtk.IconSize.BUTTON
             )
             self.set_tooltip_text(_("Collapse this section"))
         self.add(self.arrow)
