@@ -48,7 +48,8 @@ import configparser
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk
-from gi.repository import Gdk
+from gi.repository import Gio
+from gi.repository import GLib
 
 # -------------------------------------------------------------------------
 #
@@ -74,7 +75,6 @@ from .grampletpane import (
     GuiGramplet,
 )
 from .undoablebuffer import UndoableBuffer
-from ..utils import is_right_click
 from ..dialog import QuestionDialog
 
 # -------------------------------------------------------------------------
@@ -122,21 +122,29 @@ class GrampletBar(Gtk.Notebook):
         self.set_show_border(False)
         self.set_scrollable(True)
 
-        book_button = Gtk.Button()
-        # Arrow is too small unless in a box
-        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        arrow = Gtk.Arrow(
-            arrow_type=Gtk.ArrowType.DOWN, shadow_type=Gtk.ShadowType.NONE
+        menu_button = Gtk.MenuButton(
+            direction=Gtk.ArrowType.DOWN,
+            relief=Gtk.ReliefStyle.NONE,
+            tooltip_text=_("Gramplet Bar Menu"),
+            use_popover=False,
         )
-        arrow.show()
-        box.add(arrow)
-        box.show()
-        book_button.add(box)
-        book_button.set_relief(Gtk.ReliefStyle.NONE)
-        book_button.connect("clicked", self.__button_clicked)
-        book_button.set_property("tooltip-text", _("Gramplet Bar Menu"))
-        book_button.show()
-        self.set_action_widget(book_button, Gtk.PackType.END)
+        menu_button.show()
+        self.set_action_widget(menu_button, Gtk.PackType.END)
+        action_group = Gio.SimpleActionGroup()
+        action_group.add_action_entries(
+            [
+                ("add", self.__add_clicked, "s"),
+                ("remove", self.__remove_clicked, "s"),
+                ("restore", self.__restore_clicked),
+                ("help", self.on_help_grampletbar_clicked),
+                ("about", self.on_help_gramplets_clicked),
+            ],
+            None,
+        )
+        menu_button.insert_action_group("menu", action_group)
+        self.menu = Gio.Menu()
+        menu_button.set_menu_model(self.menu)
+        self.__refresh_menu()
 
         self.connect("page-added", self.__page_added)
         self.connect("page-removed", self.__page_removed)
@@ -493,6 +501,7 @@ class GrampletBar(Gtk.Notebook):
         if gramplet in self.detached_gramplets:
             self.detached_gramplets.remove(gramplet)
             self.reorder_child(gramplet, gramplet.page)
+        self.__refresh_menu()
 
     def __page_removed(self, notebook, unused, page_num):
         """
@@ -501,6 +510,7 @@ class GrampletBar(Gtk.Notebook):
         if self.get_n_pages() == 0:
             self.empty = True
             self.__create_empty_tab()
+        self.__refresh_menu()
 
     def __create_window(self, grampletbar, gramplet, x_pos, y_pos):
         """
@@ -519,85 +529,65 @@ class GrampletBar(Gtk.Notebook):
         gramplet.detached_window.close()
         gramplet.detached_window = None
 
-    def __button_clicked(self, button):
+    def __refresh_menu(self):
         """
         Called when the drop-down button is clicked.
         """
-        self.menu = Gtk.Menu()
         menu = self.menu
+        menu.remove_all()
 
-        ag_menu = Gtk.MenuItem(label=_("Add a gramplet"))
         nav_type = self.pageview.navigation_type()
         skip = self.all_gramplets()
         gramplet_list = GET_GRAMPLET_LIST(nav_type, skip)
         gramplet_list.sort()
-        self.__create_submenu(ag_menu, gramplet_list, self.__add_clicked)
-        ag_menu.show()
-        menu.append(ag_menu)
+        ag_menu = self.__create_submenu(gramplet_list, "add")
+        menu.append_submenu(label=_("Add a gramplet"), submenu=ag_menu)
 
         if not (self.empty or config.get("interface.grampletbar-close")):
-            rg_menu = Gtk.MenuItem(label=_("Remove a gramplet"))
             gramplet_list = [
                 (gramplet.title, gramplet.gname)
                 for gramplet in self.get_children() + self.detached_gramplets
             ]
             gramplet_list.sort()
-            self.__create_submenu(rg_menu, gramplet_list, self.__remove_clicked)
-            rg_menu.show()
-            menu.append(rg_menu)
+            rg_menu = self.__create_submenu(gramplet_list, "remove")
+            menu.append_submenu(label=_("Remove a gramplet"), submenu=rg_menu)
 
-        rd_menu = Gtk.MenuItem(label=_("Restore default gramplets"))
-        rd_menu.connect("activate", self.__restore_clicked)
-        rd_menu.show()
-        menu.append(rd_menu)
-
-        # Separator.
-        rs_menu = Gtk.SeparatorMenuItem()
-        rs_menu.show()
-        menu.append(rs_menu)
-
-        rh_menu = Gtk.MenuItem(label=_("Gramplet Bar Help"))
-        rh_menu.connect("activate", self.on_help_grampletbar_clicked)
-        rh_menu.show()
-        menu.append(rh_menu)
-
-        rg_menu = Gtk.MenuItem(label=_("About Gramplets"))
-        rg_menu.connect("activate", self.on_help_gramplets_clicked)
-        rg_menu.show()
-        menu.append(rg_menu)
-
-        menu.show_all()
-        menu.popup_at_widget(
-            button, Gdk.Gravity.SOUTH_WEST, Gdk.Gravity.NORTH_WEST, None
+        menu.append(
+            label=_("Restore default gramplets"), detailed_action="menu.restore"
         )
 
-    def __create_submenu(self, main_menu, gramplet_list, callback_func):
+        section = Gio.Menu()
+        section.append(label=_("Gramplet Bar Help"), detailed_action="menu.help")
+        section.append(label=_("About Gramplets"), detailed_action="menu.about")
+        menu.append_section(label=None, section=section)
+
+    def __create_submenu(self, gramplet_list, action_name):
         """
         Create a submenu of the context menu.
         """
-        if main_menu:
-            submenu = main_menu.get_submenu()
-            submenu = Gtk.Menu()
-            for entry in gramplet_list:
-                item = Gtk.MenuItem(label=entry[0])
-                item.connect("activate", callback_func, entry[1])
-                item.show()
-                submenu.append(item)
-            main_menu.set_submenu(submenu)
+        submenu = Gio.Menu()
+        for entry in gramplet_list:
+            submenu.append(
+                label=entry[0],
+                detailed_action=f"menu.{action_name}({entry[1]!r})",
+            )
+        return submenu
 
-    def __add_clicked(self, menu, gname):
+    def __add_clicked(self, action, parameter, data):
         """
         Called when a gramplet is added from the context menu.
         """
+        gname = parameter.get_string()
         self.add_gramplet(gname)
 
-    def __remove_clicked(self, menu, gname):
+    def __remove_clicked(self, action, parameter, data):
         """
         Called when a gramplet is removed from the context menu.
         """
+        gname = parameter.get_string()
         self.remove_gramplet(gname)
 
-    def __restore_clicked(self, menu):
+    def __restore_clicked(self, action, parameter, data):
         """
         Called when restore defaults is clicked from the context menu.
         """
@@ -638,11 +628,11 @@ class GrampletBar(Gtk.Notebook):
 
         return gramplet_panel
 
-    def on_help_grampletbar_clicked(self, dummy):
+    def on_help_grampletbar_clicked(self, action, parameter, data):
         """Button: Display the relevant portion of Gramps manual"""
         display_help(MAIN_HELP_PAGE, "Bottombar_and_Sidebar")
 
-    def on_help_gramplets_clicked(self, dummy):
+    def on_help_gramplets_clicked(self, action, parameter, data):
         """Button: Display the relevant portion of Gramps manual"""
         display_help(WIKI_HELP_PAGE, "What_is_a_Gramplet?")
 
