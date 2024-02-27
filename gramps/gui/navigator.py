@@ -94,9 +94,6 @@ class Navigator:
         self.top = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 
         frame = Gtk.Frame()
-        hbox = Gtk.Box()
-        hbox.show()
-        frame.add(hbox)
         frame.show()
 
         self.select_button = Gtk.ToggleButton()
@@ -112,13 +109,7 @@ class Navigator:
 
         self.select_button.connect("button_press_event", self.__menu_button_pressed)
 
-        # close_button = Gtk.Button()
-        # img = Gtk.Image.new_from_icon_name('window-close', Gtk.IconSize.MENU)
-        # close_button.set_image(img)
-        # close_button.set_relief(Gtk.ReliefStyle.NONE)
-        # close_button.connect('clicked', self.cb_close_clicked)
-        hbox.pack_start(self.select_button, False, True, 0)
-        # hbox.pack_end(close_button, False, True, 0)
+        frame.add(self.select_button)
 
         self.top.pack_end(frame, False, True, 0)
 
@@ -325,13 +316,6 @@ class Navigator:
         if self.active_view is not None:
             self.pages[index][1].view_changed(self.active_cat, self.active_view)
         self.title_label.set_text(self.pages[index][0])
-
-    def cb_close_clicked(self, button):
-        """
-        Called when the sidebar is closed.
-        """
-        uimanager = self.viewmanager.uimanager
-        uimanager.get_action("/MenuBar/ViewMenu/Navigator").activate()
 
 
 # -------------------------------------------------------------------------
