@@ -45,7 +45,7 @@ from .uimanager import ActionGroup
 # Constants
 #
 # -------------------------------------------------------------------------
-UICATEGORY = """      <section id="ViewsInCatagory">
+UICATEGORY = """      <section id="ViewsInCategory">
         %s
       </section>
     """
@@ -131,7 +131,7 @@ class Navigator:
         """
         menuitem = """
             <item>
-              <attribute name="action">win.ViewInCatagory</attribute>
+              <attribute name="action">win.ViewInCategory</attribute>
               <attribute name="label" translatable="yes">%s</attribute>
               <attribute name="target">%d %d</attribute>
             </item>
@@ -139,7 +139,7 @@ class Navigator:
         baritem = """
             <child>
               <object class="GtkToggleToolButton" id="bar%d">
-                <property name="action-name">win.ViewInCatagory</property>
+                <property name="action-name">win.ViewInCategory</property>
                 <property name="action-target">'%d %d'</property>
                 <property name="icon-name">%s</property>
                 <property name="tooltip_text" translatable="yes">%s</property>
@@ -178,7 +178,7 @@ class Navigator:
                 if view_num < 9:
                     accel = "<PRIMARY><ALT>%d" % ((view_num % 9) + 1)
                     self.viewmanager.uimanager.app.set_accels_for_action(
-                        "win.ViewInCatagory('%d %d')" % (cat_num, view_num), [accel]
+                        "win.ViewInCategory('%d %d')" % (cat_num, view_num), [accel]
                     )
                 uimenuitems += menuitem % (page[0].name, cat_num, view_num)
 
@@ -258,7 +258,7 @@ class Navigator:
 
         if cat_num in self.ui_category:
             action = (
-                "ViewInCatagory",
+                "ViewInCategory",
                 self.cb_view_clicked,
                 "",
                 str(cat_num) + " " + str(view_num),
