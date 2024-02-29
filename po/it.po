@@ -66,7 +66,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-02-20 10:02+0000\n"
+"PO-Revision-Date: 2024-02-24 15:02+0000\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/it/>\n"
@@ -9687,7 +9687,7 @@ msgstr "Impossibile creare %s"
 #: ../gramps/plugins/importer/importprogen.glade:380
 #: ../gramps/plugins/webreport/webcal.py:531
 msgid "Default"
-msgstr "Predefinita"
+msgstr "Predefinito"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:71
 msgid "PostScript / Helvetica"
@@ -18394,7 +18394,7 @@ msgstr "Gestore dei componenti _aggiuntivi..."
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Bookmarks"
-msgstr "_Segnalibri"
+msgstr "Segnali_bri"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Configure..."
@@ -31405,8 +31405,8 @@ msgid ""
 "Attempt to see selected locations with a Map Service (OpenstreetMap, Google "
 "Maps, ...)"
 msgstr ""
-"Cerca di visualizzare i luoghi selezionati con un servizio di mappe "
-"(OpenstreetMap, Google Maps, ...)"
+"Cerca di visualizzare i luoghi selezionati con un servizio di mappe ("
+"OpenstreetMap, Google Maps, ...)"
 
 #: ../gramps/plugins/lib/libplaceview.py:500
 msgid "Select a Map Service"
