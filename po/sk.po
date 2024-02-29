@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-02-10 21:14+0000\n"
+"PO-Revision-Date: 2024-02-28 17:01+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -7739,7 +7739,7 @@ msgstr "Ohlášky"
 
 #: ../gramps/gen/lib/eventtype.py:231
 msgid "Engagement"
-msgstr "Zásnuby"
+msgstr "Zasnúbenie"
 
 #: ../gramps/gen/lib/eventtype.py:232 ../gramps/gen/utils/symbols.py:98
 #: ../gramps/gui/configure.py:2779 ../gramps/plugins/webreport/family.py:318
@@ -7981,7 +7981,7 @@ msgstr "ďal.manž."
 #: ../gramps/gen/lib/eventtype.py:282
 msgctxt "Engagement abbreviation"
 msgid "engd."
-msgstr "zásn."
+msgstr "zasn."
 
 #: ../gramps/gen/lib/eventtype.py:283
 msgctxt "Divorce abbreviation"
@@ -11208,7 +11208,7 @@ msgstr "Krst"
 
 #: ../gramps/gen/utils/symbols.py:96 ../gramps/gui/configure.py:2776
 msgid "Engaged"
-msgstr "Zasnúbenie"
+msgstr "Zasnúbení"
 
 #: ../gramps/gen/utils/symbols.py:99
 msgid "Unmarried partnership"
