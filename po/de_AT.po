@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-02-21 15:02+0000\n"
+"PO-Revision-Date: 2024-02-29 20:02+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
 "Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/de_AT/>\n"
@@ -3178,18 +3178,18 @@ msgid ""
 "start your %(bold_start)sold%(bold_end)s version of Gramps and "
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 msgstr ""
-"Der Stammbaum, den du versuchst zu laden, befindet sich im Schema Version "
-"%(oldschema)s-Format. Diese Gramps-Version verwendet Python-Version "
-"%(newschema)s. Daher kannst du diesen Stammbaum nicht laden, ohne vorher die "
-"Schemaversion des Stammbaumes zu aktualisieren.\n"
+"Der Stammbaum, den du versuchst zu laden, befindet sich im Format der "
+"Schemaversion %(oldschema)s. Diese Gramps-Version verwendet die "
+"Schemaversion %(newschema)s. Daher kannst du diesen Stammbaum nicht laden, "
+"ohne vorher die Schemaversion des Stammbaumes zu aktualisieren.\n"
 "\n"
 "Wenn du aktualisierst, kannst du anschließend die vorhergehende Version von "
 "Gramps nicht mehr verwenden, auch wenn du hinterher deinen aktualisierten "
-"Stammbaum%(wiki_manual_backup_html_start)ssicherst%(html_end)s oder "
-"%(wiki_manual_export_html_start)sexportierst%(html_end)s .\n"
+"Stammbaum %(wiki_manual_backup_html_start)ssicherst%(html_end)s oder "
+"%(wiki_manual_export_html_start)s exportierst%(html_end)s .\n"
 "\n"
-"Aktualisieren ist ein schwieriger Vorgang, der deinen Stammbaum irreparabel "
-"beschädigen kann, wenn er unterbrochen wird oder fehlschlägt.\n"
+"Die Aktualisierung ist ein schwieriger Vorgang, der deinen Stammbaum "
+"irreparabel beschädigen kann, wenn er unterbrochen wird oder fehlschlägt.\n"
 "\n"
 "Wenn du nicht bereits ein Backup deines Stammbaum erstellt hast, solltest du "
 "deine %(bold_start)salte%(bold_end)s Gramps-Version starten und "
@@ -7771,7 +7771,7 @@ msgstr "Kindstaufe"
 
 #: ../gramps/gen/lib/eventtype.py:204 ../gramps/gen/lib/ldsord.py:96
 msgid "Confirmation"
-msgstr "Konfirmation/Firmung"
+msgstr "Firmung/Konfirmation"
 
 #: ../gramps/gen/lib/eventtype.py:205
 msgid "Cremation"
@@ -11440,7 +11440,7 @@ msgstr "Lateinisches Kreuz"
 
 #: ../gramps/gen/utils/symbols.py:122
 msgid "Shadowed White Latin cross"
-msgstr "Schattiertes hohles lateinisches Kreuz"
+msgstr "Schattiertes weißes Lateinisches Kreuz"
 
 #: ../gramps/gen/utils/symbols.py:123
 msgid "Maltese cross"
@@ -11721,11 +11721,11 @@ msgid ""
 "Creative Commons Attribution-ShareAlike 2.5\n"
 "license."
 msgstr ""
-"Viele der Gramps-Grafiken sind entweder aus\n"
-"dem Tango-Projekt oder abgeleitet aus dem Tango-\n"
+"Viele der Gramps-Grafiken stammen entweder aus\n"
+"dem Tango-Projekt oder sind abgeleitet aus dem Tango-\n"
 "Projekt. Diese Grafiken sind veröffentlicht unter der\n"
-"Creative Commons Namensnennung-Weitergabe unter gleichen Bedingungen 2.5\n"
-"Lizenz veröffentlicht."
+"Creative Commons Attribution-ShareAlike 2.5\n"
+"Lizenz."
 
 #: ../gramps/gui/aboutdialog.py:135
 msgid "Gramps Homepage"
@@ -11738,7 +11738,7 @@ msgstr "Mitwirkung von"
 #. Translators: Translate this to your name in your native language
 #: ../gramps/gui/aboutdialog.py:144
 msgid "translator-credits"
-msgstr "Mirko Leonhäuser"
+msgstr "Christoph Eder"
 
 #: ../gramps/gui/aboutdialog.py:155
 #, python-format
@@ -23663,7 +23663,7 @@ msgstr ""
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:165
 #: ../gramps/plugins/view/view.gpr.py:168
 msgid "Descendant Fan"
-msgstr "Nachfahrefächer"
+msgstr "Nachfahrenfächer"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:175
 #: ../gramps/plugins/view/fanchart2wayview.py:84
@@ -33142,7 +33142,7 @@ msgstr "Der Stil, der für die Anzeige der Ehepartner-Ebene %d verwendet wird."
 #: ../gramps/plugins/textreport/detancestralreport.py:229
 #, python-format
 msgid "Ancestral Report for %s"
-msgstr "Ahnenbericht für %s"
+msgstr "Vorfahrenbericht für %s"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:299
 #: ../gramps/plugins/textreport/detdescendantreport.py:929
@@ -33272,7 +33272,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/detancestralreport.py:905
 #: ../gramps/plugins/textreport/detdescendantreport.py:1117
 msgid "Compute death age"
-msgstr "Alter bei Tot berechnen"
+msgstr "Alter bei Tod berechnen"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:906
 #: ../gramps/plugins/textreport/detdescendantreport.py:1118
@@ -36160,7 +36160,7 @@ msgstr "Ereignisse sortieren"
 
 #: ../gramps/plugins/tool/tools.gpr.py:449
 msgid "Verify the Data"
-msgstr "Die Daten überprüfen"
+msgstr "Daten überprüfen"
 
 #: ../gramps/plugins/tool/tools.gpr.py:450
 msgid "Verifies the data against user-defined tests"
