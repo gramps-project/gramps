@@ -3,13 +3,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # Jacque Fresco <aidter@use.startmail.com>, 2021.
 # Dale Athanasias <dalegrind@hotmail.com>, 2021.
+# OscarBrownbread <brian.tuffy@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps genealogy project.\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2021-06-07 12:32+0000\n"
-"Last-Translator: Dale Athanasias <dalegrind@hotmail.com>\n"
+"PO-Revision-Date: 2024-02-29 20:02+0000\n"
+"Last-Translator: OscarBrownbread <brian.tuffy@gmail.com>\n"
 "Language-Team: Irish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ga/>\n"
 "Language: ga\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n==2 ? 1 : 2;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #: ../data/holidays.xml:3
 #, fuzzy
@@ -30,13 +31,12 @@ msgid "Canada"
 msgstr "Ceanada"
 
 #: ../data/holidays.xml:84
-#, fuzzy
 msgid "Catalonia"
-msgstr "Catalóinis"
+msgstr "an Chatalóin"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
-msgstr ""
+msgstr "an tSile"
 
 #: ../data/holidays.xml:124
 #, fuzzy
@@ -44,21 +44,20 @@ msgid "China"
 msgstr "An tSín"
 
 #: ../data/holidays.xml:127
-#, fuzzy
 msgid "Croatia"
-msgstr "Cróitis"
+msgstr "An Chróit"
 
 #: ../data/holidays.xml:143
 msgid "Czech Republic"
-msgstr ""
+msgstr "Poblacht na Seice"
 
 #: ../data/holidays.xml:158
 msgid "England"
-msgstr ""
+msgstr "Sasana"
 
 #: ../data/holidays.xml:188
 msgid "Finland"
-msgstr ""
+msgstr "An Fhionlainn"
 
 #: ../data/holidays.xml:282
 #, fuzzy
@@ -66,9 +65,8 @@ msgid "France"
 msgstr "An Fhrainc"
 
 #: ../data/holidays.xml:318
-#, fuzzy
 msgid "Germany"
-msgstr "Gearmáinis"
+msgstr "An Ghearmáin"
 
 #: ../data/holidays.xml:335
 msgid "Japan"
