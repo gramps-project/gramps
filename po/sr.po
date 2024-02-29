@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-01-10 23:06+0000\n"
+"PO-Revision-Date: 2024-02-29 20:02+0000\n"
 "Last-Translator: Medic Momcilo <momcilo@medic.rs>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sr/>\n"
@@ -18,9 +18,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -13028,9 +13028,8 @@ msgid "Password: "
 msgstr "Лозинка: "
 
 #: ../gramps/gui/dbloader.py:387
-#, fuzzy
 msgid "Import Family Tree"
-msgstr "Дедовник: Увези породично стабло"
+msgstr "Увези породично стабло"
 
 #: ../gramps/gui/dbloader.py:408
 #, fuzzy
@@ -18303,15 +18302,6 @@ msgid "Available Gramps Updates for Addons"
 msgstr "Доступна су Дедовникова освежења за додатке"
 
 #: ../gramps/gui/glade/updateaddons.glade:89
-#, fuzzy
-#| msgid ""
-#| "Gramps comes with a core set of plugins which provide all of the "
-#| "necessary features. However, you can extend this functionality with "
-#| "additional Addons. These addons provide reports, listings, views, "
-#| "gramplets, and more. Here you can select among the available extra "
-#| "addons, they will be retrieved from the internet off of the Gramps "
-#| "website, and installed locally on your computer. If you close this dialog "
-#| "now, you can install addons later from the menu under Edit -> Preferences."
 msgid ""
 "Gramps comes with a core set of plugins which provide all of the necessary "
 "features. However, you can extend this functionality with additional Addons. "
@@ -18327,7 +18317,7 @@ msgstr ""
 "и још много тога. Овде можете изабрати између доступних додатних додатака, "
 "биће преузети са Интернета ван веб сајта Дедовника, и инсталирани локално на "
 "рачунару. Ако сада затворите ово прозорче, можете инсталирати додатке "
-"касније из изборника „Уређивање —> Поставке“."
+"касније из изборника „Уређивање —> Управник додацима“."
 
 #: ../gramps/gui/glade/updateaddons.glade:105
 msgid "_Select All"
@@ -25050,9 +25040,8 @@ msgid "Entering and editing data (brief)"
 msgstr "Отворите постојећу базу података"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:209
-#, fuzzy
 msgid "Importing a Family Tree"
-msgstr "Дедовник: Увези породично стабло"
+msgstr "Увоз породичног стабла"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:212
 msgid ""
@@ -31740,17 +31729,12 @@ msgid "Where to save the tiles for offline mode."
 msgstr "Где ће сачувати плочице за ванмрежни режим."
 
 #: ../gramps/plugins/lib/maps/geography.py:1431
-#, fuzzy
-#| msgid ""
-#| "If you have no more space in your file system. You can remove all tiles "
-#| "placed in the above path.\n"
-#| "Be careful! If you have no internet, you'll get no map."
 msgid ""
 "If you have no more space in your file system, you can remove all tiles "
 "placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
-"Ако немате више простора на вашем систему датотека. Можете уклонити све "
+"Ако немате више простора на вашем систему датотека, можете уклонити све "
 "плочице смештене у горњој путањи.\n"
 "Будите пажљиви! Ако немате интернет, нећете добавити карте."
 
