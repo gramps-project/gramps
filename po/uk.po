@@ -10,13 +10,14 @@
 # Milan <mobrcian@hotmail.com>, 2022.
 # Dan <denqwerta@gmail.com>, 2022.
 # Andrey Serbovets <serbovets.translation@gmail.com>, 2023, 2024.
+# Andrii Serbovets <serbovets.translation@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-02-19 09:06+0000\n"
-"Last-Translator: Andrey Serbovets <serbovets.translation@gmail.com>\n"
+"PO-Revision-Date: 2024-02-29 20:02+0000\n"
+"Last-Translator: Andrii Serbovets <serbovets.translation@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/uk/>\n"
 "Language: uk\n"
@@ -25,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.5-dev\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -91,31 +92,31 @@ msgstr "Песах"
 
 #: ../data/holidays.xml:361
 msgid "2 of Passover"
-msgstr "2 день Песаха"
+msgstr "2-й день Песаха"
 
 #: ../data/holidays.xml:362
 msgid "3 of Passover"
-msgstr "3 день Песаха"
+msgstr "3-й день Песаха"
 
 #: ../data/holidays.xml:363
 msgid "4 of Passover"
-msgstr "4 день Песаха"
+msgstr "4-й день Песаха"
 
 #: ../data/holidays.xml:364
 msgid "5 of Passover"
-msgstr "5 день Песаха"
+msgstr "5-й день Песаха"
 
 #: ../data/holidays.xml:365
 msgid "6 of Passover"
-msgstr "6 день Песаха"
+msgstr "6-й день Песаха"
 
 #: ../data/holidays.xml:366
 msgid "7 of Passover"
-msgstr "7 день Песаха"
+msgstr "7-й день Песаха"
 
 #: ../data/holidays.xml:367
 msgid "Shavuot"
-msgstr "Шаувот"
+msgstr "Шавуот"
 
 #: ../data/holidays.xml:368
 msgid "Rosh Ha'Shana"
@@ -11731,37 +11732,37 @@ msgid ""
 "     <i>Dr.</i>: Title, <i>Sr</i>: Suffix, <i>Ed</i>: Nickname, "
 "<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
 msgstr ""
-"Наступні ключові слова замінено відповідними частинами імені:\n"
-"<tt>  \n"
-"  <b>Given</b>      - ім'я (first name) <b>Surname</b>      - прізвища (with "
-"prefix and connectors)\n"
-"  <b>Title</b>      - титул (Др., Міс.)       <b>Suffix</b>       - суфікс "
-"(Jr., Sr.)\n"
-"  <b>Call</b>       - щоденне ім'я               <b>Nickname</b>     - "
-"прізвисько\n"
-"  <b>Initials</b>   - перші букви Імені  <b>Common</b>       - прізвисько, в "
-"іншому випадку перше з імен\n"
-"  <b>Prefix</b>  - всі префікси (von, de)\n"
-"Surnames:\n"
-"  <b>Rest</b>      - non primary surnames    <b>Notpatronymic</b>- all "
-"surnames, except pa/matronymic &amp; primary\n"
-"  <b>Familynick</b>- family nick name        <b>Rawsurnames</b>  - surnames "
-"(no prefixes and connectors)\n"
-"  <b>Primary, Primary[pre] or [sur] or [con]</b>- full primary surname, "
-"prefix, surname only, connector   \n"
-"  <b>Patronymic, or [pre] or [sur] or [con]</b> - full pa/matronymic "
-"surname, prefix, surname only, connector \n"
-"</tt>\n"
-"UPPERCASE keyword forces uppercase. Extra parentheses, commas are removed. "
-"Other text appears literally.\n"
+"Наведені нижче ключові слова будуть замінені відповідними складниками "
+"імені:<tt>\n"
+"  <b>Given</b>      — ім'я; <b>Surname</b>      — прізвище (з фамільними і "
+"єднальними частками);\n"
+"  <b>Title</b>      — титул (д-р., пані);       <b>Suffix</b>       — суфікс "
+"(Мол., Ст.);\n"
+"  <b>Call</b>       — щоденне ім'я;               <b>Nickname</b>     — "
+"прізвисько;\n"
+"  <b>Initials</b>   — ініціали;  <b>Common</b>       — прізвисько чи перше "
+"ім'я;\n"
+"  <b>Prefix</b>  — усі фамільні частки (фон, де).\n"
+"Прізвища:\n"
+"  <b>Rest</b>      — другорядні прізвища;    <b>Notpatronymic</b>— усі "
+"прізвища, за винятком прізвища по матері і основного;\n"
+"  <b>Familynick</b>— родинне прізвисько;        <b>Rawsurnames</b>  — "
+"прізвища (без фамільних і єднальних часток);\n"
+"  <b>Primary, Primary[pre] або [sur] або [con]</b>— повне основне прізвище, "
+"фамільна частка, лише прізвище, єднальна частка;   \n"
+"  <b>Patronymic, або Patronymic[pre] або [sur] або [con]</b> - повне "
+"прізвище по батькові/матері, фамільна частка, лише прізвище, єднальна частка."
 "\n"
-"<b>Example</b>: 'Др. Мирослав Василь von der Smith та Weston Wilson Sr "
-"(\"Ed\") - Underhills'\n"
-"     <i>Мирослав Василь</i> є ім'ям, <i>von der</i> є префіксом, <i>Smith</"
-"i> та <i>Weston</i> прізвища, \n"
-"     <i>та</i> сполучник, <i>Wilson</i> патронімічне прізвище, <i>Др.</i> "
-"титул, <i>Sr</i> суфікс, <i>Мірко</i> прізвисько, \n"
-"     <i>Вілсонові</i> прізвисько сім'ї, <i>Василь</i> щоденне ім'я.\n"
+"</tt>\n"
+"Якщо ввести ключові слова ВЕЛИКИМИ БУКВАМИ, значення будуть також "
+"підставлені великими буквами.\n"
+"\n"
+"<b>Приклад</b>: «д-р. Едвін Хосе фон дер Сміт і Вестон Вілсон Ст. («Ед») — "
+"Андергілли.\n"
+"     <i>Едвін Хосе</i> — Given, <i>фон дер</i> — Prefix, <i>Сміт</i> і "
+"<i>Вестон</i> — Primary,  <i>і</i> — [con], <i>Вілсон</i> — Patronymic,\n"
+"     <i>д-р.</i> — Title, <i>Ст.</i> — Suffix, <i>Ев</i> — Nickname, "
+"<i>Андергілли</i> — Familynick, <i>Хосе</i> — Call.\n"
 
 #: ../gramps/gui/configure.py:162
 msgid " Name Editor"
@@ -15980,7 +15981,7 @@ msgstr ""
 #: ../gramps/plugins/tool/removespaces.glade:115
 #: ../gramps/plugins/tool/removespaces.glade:172
 msgid "label"
-msgstr "мітка"
+msgstr "позначка"
 
 #: ../gramps/gui/glade/dialog.glade:841
 msgid "Close _without saving"
@@ -16754,19 +16755,19 @@ msgstr ""
 #: ../gramps/gui/glade/editperson.glade:211
 msgid "A title used to refer to the person, such as 'Dr.' or 'Rev.'"
 msgstr ""
-"Титул, що використовується при звертанні до особи. Наприклад,'др.' або 'о.'"
+"Титул, що використовують, звертаючись до особи. Наприклад, «д-р.» або «о.»"
 
 #: ../gramps/gui/glade/editname.glade:304
 #: ../gramps/gui/glade/editperson.glade:225
 msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
-msgstr "Суфікс імені, наприклад \"Jr.\", або \"III\""
+msgstr "Необов'язковий суфікс імені, наприклад \"Мол.\", або \"III\""
 
 #: ../gramps/gui/glade/editname.glade:317
 #: ../gramps/gui/glade/editperson.glade:259
 msgid ""
 "A descriptive name given in place of or in addition to the official given "
 "name."
-msgstr "Описове ім'я, що дається замість, або в додаток до офіційного імені."
+msgstr "Описове ім'я, яке дають замість, або на додачу до офіційного імені."
 
 #: ../gramps/gui/glade/editname.glade:333
 msgid "Given Name(s)"
@@ -21630,13 +21631,13 @@ msgid_plural ""
 " {person}, {nyears}"
 msgstr[0] ""
 "{wife} та\n"
-" {person}, {nyears}"
+" {person}, {nyears} рік"
 msgstr[1] ""
 "{wife} та\n"
-" {person}, {nyears}"
+" {person}, {nyears} роки"
 msgstr[2] ""
 "{wife} та\n"
-" {person}, {nyears}"
+" {person}, {nyears} років"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:602
 #: ../gramps/plugins/webreport/webcal.py:1853
@@ -22602,19 +22603,19 @@ msgstr "Параметри CSV-таблиці"
 
 #: ../gramps/plugins/export/export.gpr.py:60
 msgid "Web Family Tree"
-msgstr "Web Family Tree"
+msgstr "Вебдерево родини"
 
 #: ../gramps/plugins/export/export.gpr.py:61
 msgid "_Web Family Tree"
-msgstr "_Web Family Tree"
+msgstr "_Вебдерево родини"
 
 #: ../gramps/plugins/export/export.gpr.py:62
 msgid "Web Family Tree format"
-msgstr "Формат Web Family Tree"
+msgstr "Формат вебдерева родини"
 
 #: ../gramps/plugins/export/export.gpr.py:70
 msgid "Web Family Tree export options"
-msgstr "Web Family Tree параметри експорту"
+msgstr "Параметри експорту вебдерева родини"
 
 #: ../gramps/plugins/export/export.gpr.py:81
 #: ../gramps/plugins/importer/import.gpr.py:55
@@ -22649,29 +22650,31 @@ msgstr "_GeneWeb"
 
 #: ../gramps/plugins/export/export.gpr.py:107
 msgid "GeneWeb is a web based genealogy program."
-msgstr "GeneWeb - це генеалогічна веб-програма."
+msgstr "GeneWeb — це генеалогічна вебпрограма."
 
 #: ../gramps/plugins/export/export.gpr.py:115
 msgid "GeneWeb export options"
-msgstr "параметри експорту GeneWeb"
+msgstr "Параметри експорту GeneWeb"
 
 #: ../gramps/plugins/export/export.gpr.py:126
 msgid "Gramps XML Package (family tree and media)"
-msgstr "Пакунок Gramps XML (сімейне дерево та медіа)"
+msgstr "Пакунок Gramps XML (родинне дерево й медіафайли)"
 
 #: ../gramps/plugins/export/export.gpr.py:127
 msgid "Gra_mps XML Package (family tree and media)"
-msgstr "Пакунок Gramps XML (сімейне дерево та медіа)"
+msgstr "Пакунок Gra_mps XML (родинне дерево й медіафайли)"
 
 #: ../gramps/plugins/export/export.gpr.py:129
 msgid ""
 "Gramps package is an archived XML family tree together with the media object "
 "files."
-msgstr "Пакунок Gramps - це стиснуте XML сімейне дерево з усіма медіа файлами."
+msgstr ""
+"Пакунок Gramps — це стиснуте сімейне дерево в форматі XML зі всіма "
+"медіафайлами."
 
 #: ../gramps/plugins/export/export.gpr.py:139
 msgid "Gramps package export options"
-msgstr "Пакунок Gramps параметри експорту"
+msgstr "Параметри експорту пакунку Gramps"
 
 #: ../gramps/plugins/export/export.gpr.py:150
 msgid "Gramps XML (family tree)"
@@ -24026,7 +24029,7 @@ msgstr "SoundEx"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1482
 msgid "Gramplet to generate SoundEx codes"
-msgstr "Ґрамплет генерую коди SoundEx"
+msgstr "Ґрамплет для генерування кодів SoundEx"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1496
 msgid "Place Enclosed By"
@@ -24694,22 +24697,15 @@ msgid "Addons and \"Gramplets\""
 msgstr "Додатки і ґрамплети"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:249
-#, fuzzy
-#| msgid ""
-#| "There many Addons or \"Gramplets\" that are available to assist you in "
-#| "data entry and visualizing your family tree. Many of these tools are "
-#| "already available to you. Many more are available to download and "
-#| "install.\n"
-#| "\n"
 msgid ""
 "There are many Addons or \"Gramplets\" that are available to assist you in "
 "data entry and visualizing your family tree. Many of these tools are already "
 "available to you. Many more are available to download and install.\n"
 "\n"
 msgstr ""
-"Існує багато Доповнень або \"Ґрамплетів\", які допоможуть вам у введенні "
-"даних і візуалізації вашого сімейного дерева. Багато з цих інструментів уже "
-"доступні для вас. Багато інших доступні для завантаження та встановлення.\n"
+"Gramps має багато додатків, або «ґрамплетів», які дають змогу спростити "
+"введення даних і візуалізувати сімейне дерево. Багато з них постачаються "
+"разом із застосунком, і багато інших можна завантажити і встановити окремо.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:257
@@ -25147,10 +25143,8 @@ msgstr "Колір, яким позначати жінок."
 #: ../gramps/plugins/graph/gvfamilylines.py:347
 #: ../gramps/plugins/graph/gvhourglass.py:512
 #: ../gramps/plugins/graph/gvrelgraph.py:1055
-#, fuzzy
-#| msgid "The color to use to display women."
 msgid "The color to use to display people who are neither men nor women."
-msgstr "Колір, яким позначати жінок."
+msgstr "Колір, яким треба позначити тих, хто не є ні чоловіком, ні жінкою."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:352
 #: ../gramps/plugins/graph/gvhourglass.py:517
@@ -25588,10 +25582,8 @@ msgid "call"
 msgstr "щоденне ім'я"
 
 #: ../gramps/plugins/importer/importcsv.py:218
-#, fuzzy
-#| msgid "Tag"
 msgid "tag"
-msgstr "Мітка"
+msgstr "мітка"
 
 #: ../gramps/plugins/importer/importcsv.py:219
 msgid "title"
@@ -26395,19 +26387,16 @@ msgstr "Рядок %(line)5d: %(prob)s\n"
 
 #: ../gramps/plugins/importer/importvcard.py:261
 msgid "vCard import"
-msgstr "Імпорт CSV"
+msgstr "Імпорт vCard"
 
 #: ../gramps/plugins/importer/importvcard.py:274
-#, fuzzy
-#| msgid "VCARD import report: No errors detected"
 msgid "vCard import report: No errors detected"
-msgstr "VCARD звіт імпорту: Помилок не виявлено"
+msgstr "Звіт імпорту vCARD: Помилок не виявлено"
 
 #: ../gramps/plugins/importer/importvcard.py:277
-#, fuzzy, python-format
-#| msgid "VCARD import report: %s errors detected\n"
+#, python-format
 msgid "vCard import report: %s errors detected\n"
-msgstr "VCARD звіт імпорту: %s помилок виявлено\n"
+msgstr "Звіт імпорту vCARD: виявлено %s помилок\n"
 
 #: ../gramps/plugins/importer/importvcard.py:342
 #, python-format
@@ -26415,52 +26404,39 @@ msgid "Token >%(token)s< unknown. line skipped: %(line)s"
 msgstr "Токен >%(token)s< невідомо. Рядок пропущено: %(line)s"
 
 #: ../gramps/plugins/importer/importvcard.py:359
-#, fuzzy
-#| msgid ""
-#| "BEGIN property not properly closed by END property, Gramps can't cope "
-#| "with nested VCards."
 msgid ""
 "BEGIN property not properly closed by END property, Gramps can't cope with "
 "nested vCards."
 msgstr ""
-"Властивість BEGIN неправильно закрита властивістю END, Gramps не може "
-"впоратися із вкладеними картками VC."
+"Властивість BEGIN неправильно закрита властивістю END, Gramps не працює зі "
+"вкладеними картками vCards."
 
 #: ../gramps/plugins/importer/importvcard.py:373
-#, fuzzy, python-format
-#| msgid "Import of VCards version %s is not supported by Gramps."
+#, python-format
 msgid "Import of vCards version %s is not supported by Gramps."
-msgstr "Імпорт з %s версії VCards не підтримується цією версією Gramps."
+msgstr "Ця версія Gramps не підтримує імпорт карток vCards версії %s."
 
 #: ../gramps/plugins/importer/importvcard.py:396
-#, fuzzy
-#| msgid ""
-#| "VCard is malformed missing the compulsory N property, so there is no "
-#| "name; skip it."
 msgid ""
 "The vCard is malformed. It is missing the compulsory N property, so there is "
 "no name; skip it."
 msgstr ""
-"Недійсний запис у VCard, відсутній обов'язковий параметр N, як наслідок - "
-"немає імені; буде пропущено."
+"Неправильний формат картки vCard: у ній немає обов'язкового поля N і, як "
+"наслідок, — імені. Пропускаємо її."
 
 #: ../gramps/plugins/importer/importvcard.py:405
-#, fuzzy
-#| msgid ""
-#| "VCard is malformed missing the compulsory FN property, get name from N "
-#| "alone."
 msgid ""
 "The vCard is malformed. It is missing the compulsory FN property, get name "
 "from N alone."
 msgstr ""
-"Недійсний запис у VCard, відсутній обов'язковий параметр FN, ім'я буде "
-"отримано лише з N."
+"Неправильний формат картки vCard: у ній немає обов'язкового поля FN, тож "
+"ім'я буде взяте з поля N."
 
 #: ../gramps/plugins/importer/importvcard.py:413
-#, fuzzy
-#| msgid "VCard is malformed wrong number of name components."
 msgid "The vCard is malformed. Wrong number of name components."
-msgstr "Неправильна кількість складників імені в VCard."
+msgstr ""
+"Неправильний формат картки vCard: вона містить неправильну кількість полів "
+"імені."
 
 #: ../gramps/plugins/importer/importvcard.py:574
 #, python-brace-format
@@ -27255,80 +27231,56 @@ msgid "%(date)s %(time)s"
 msgstr "%(date)s %(time)s"
 
 #: ../gramps/plugins/lib/libmetadata.py:120
-#, fuzzy
 msgid "Descriptive Tags"
-msgstr "Опис:"
+msgstr "Описові мітки"
 
 #: ../gramps/plugins/lib/libmetadata.py:121
-#, fuzzy
-#| msgid "Styled Text Tags"
 msgid "Date and Time Tags"
-msgstr "Стилізований текст теґів"
+msgstr "Мітки дати й часу"
 
 #: ../gramps/plugins/lib/libmetadata.py:122
-#, fuzzy
-#| msgid "People"
 msgid "People Tags"
-msgstr "Особи"
+msgstr "Мітки осіб"
 
 #: ../gramps/plugins/lib/libmetadata.py:123
-#, fuzzy
-#| msgid "Events"
 msgid "Event Tags"
-msgstr "Події"
+msgstr "Мітки подій"
 
 #: ../gramps/plugins/lib/libmetadata.py:124
-#, fuzzy
-#| msgid "Images"
 msgid "Image Tags"
-msgstr "Зображення"
+msgstr "Мітки зображень"
 
 #: ../gramps/plugins/lib/libmetadata.py:125
-#, fuzzy
-#| msgid "Place Information"
 msgid "Camera Information"
-msgstr "Відомості про місце"
+msgstr "Відомості про камеру"
 
 #: ../gramps/plugins/lib/libmetadata.py:126
-#, fuzzy
-#| msgid "Locations"
 msgid "Location Tags"
-msgstr "Розташування"
+msgstr "Мітки розташування"
 
 #: ../gramps/plugins/lib/libmetadata.py:127
-#, fuzzy
-#| msgid "Advanced"
 msgid "Advanced Tags"
-msgstr "Розширені параметри"
+msgstr "Розширені мітки"
 
 #: ../gramps/plugins/lib/libmetadata.py:128
-#, fuzzy
-#| msgid "Edit Tags"
 msgid "Rights Tags"
-msgstr "Редагувати Мітки"
+msgstr "Мітки щодо прав використання"
 
 #: ../gramps/plugins/lib/libmetadata.py:129
-#, fuzzy
-#| msgid "Keywords"
 msgid "Keyword Tags"
-msgstr "Ключові слова"
+msgstr "Мітки ключових слів"
 
 #: ../gramps/plugins/lib/libmetadata.py:228
-#, fuzzy
-#| msgid "Namesake"
 msgid "Namespace"
-msgstr "Тезка"
+msgstr "Простір імен"
 
 #: ../gramps/plugins/lib/libmetadata.py:229
-#, fuzzy
-#| msgid "label"
 msgid "Label"
-msgstr "мітка"
+msgstr "Позначка"
 
 #: ../gramps/plugins/lib/libmetadata.py:230
-#, fuzzy
 msgid " "
-msgstr ", "
+msgstr " "
 
 #: ../gramps/plugins/lib/libnarrate.py:111
 #, python-format
@@ -27639,7 +27591,7 @@ msgstr "Він помер %(death_date)s в %(death_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:253
 #, python-format
 msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "Він помер %(death_date)s в %(death_place)s у віці %(age)s."
+msgstr "Він помер %(death_date)s в %(death_place)s у віці %(age)s років."
 
 #: ../gramps/plugins/lib/libnarrate.py:256
 #, python-format
@@ -31436,19 +31388,15 @@ msgid "Where to save the tiles for offline mode."
 msgstr "Де зберігати заголовки для режиму поза мережею."
 
 #: ../gramps/plugins/lib/maps/geography.py:1431
-#, fuzzy
-#| msgid ""
-#| "If you have no more space in your file system. You can remove all tiles "
-#| "placed in the above path.\n"
-#| "Be careful! If you have no internet, you'll get no map."
 msgid ""
 "If you have no more space in your file system, you can remove all tiles "
 "placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
-"Якщо у Вашій файловій системі більше нема місця, Ви можете видалити всі "
-"сегменти мапи, вставленої в шлях вгорі.\n"
-"Будьте обережні! Якщо у Вас немає Інтернету - Ви не отримаєте мапи."
+"Якщо у вашій файловій не залишилося вільного місця, можна видалити всі "
+"фрагменти мапи, що містяться за вказаним вгорі шляхом.\n"
+"Зауважте, що в такому разі ви не матимете доступу до мапи за відсутності "
+"з'єднання з інтернетом."
 
 #: ../gramps/plugins/lib/maps/geography.py:1441
 msgid "Zoom used when centering"
@@ -31474,29 +31422,15 @@ msgstr "Мапа"
 
 #: ../gramps/plugins/lib/maps/geography.py:1530
 msgid "Select tile cache directory for offline mode"
-msgstr "Вкажіть каталог кешування для режиму поза мережею"
+msgstr "Укажіть каталог кешування для режиму поза мережею"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:143
-#, fuzzy, python-format
-#| msgid "Can't create tiles cache directory %s"
+#, python-format
 msgid "Can't create tile cache directory %s"
-msgstr "Не можу створити каталог для кешу сегментів: %s"
+msgstr "Не вдалося створити каталог для кешування мапи «%s»"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:149
-#, fuzzy, python-format
-#| msgid ""
-#| "You must verify and change the tiles cache\n"
-#| "...\n"
-#| "[geography]\n"
-#| "...\n"
-#| "path='bad/path'\n"
-#| "...\n"
-#| "in the gramps.ini file :\n"
-#| "%s\n"
-#| "\n"
-#| "Before to change the gramps.ini file, you need to close gramps\n"
-#| "\n"
-#| "The next errors will be normal"
+#, python-format
 msgid ""
 "You must verify and change the tile cache\n"
 "...\n"
@@ -31511,7 +31445,8 @@ msgid ""
 "\n"
 "The following errors are expected"
 msgstr ""
-"Ви повинні перевірити і змінити кеш тайлів\n"
+"Перевірте наявність і доступність каталогу кешування мапи та за потреби "
+"змініть його\n"
 "...\n"
 "[geography]\n"
 "...\n"
@@ -31520,9 +31455,9 @@ msgstr ""
 "в файлі gramps.ini:\n"
 "%s\n"
 "\n"
-"Перед зміною файлу gramps.ini Ви повинні закрити Gramps\n"
+"Закрийте Gramps, перш ніж редагувати файл gramps.ini\n"
 "\n"
-"Отримання наступних помилок - це нормально"
+"Можливо виникнення наступних помилок"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:194
 #: ../gramps/plugins/lib/maps/osmgps.py:261
@@ -31894,12 +31829,9 @@ msgid "females"
 msgstr "жінки"
 
 #: ../gramps/plugins/quickview/filterbyname.py:62
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "people with unknown gender"
 msgctxt "Filtering_on"
 msgid "people with other gender"
-msgstr "особи з невідомою статтю"
+msgstr "особи іншої статі"
 
 #: ../gramps/plugins/quickview/filterbyname.py:63
 msgctxt "Filtering_on"
@@ -32417,10 +32349,8 @@ msgid "French Relationship Calculator"
 msgstr "Французький калькулятор відносин"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:241
-#, fuzzy
-#| msgid "Relationship Calculator"
 msgid "Hebrew Relationship Calculator"
-msgstr "Калькулятор відносин"
+msgstr "Калькулятор відносин (єврейський)"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:265
 msgid "Croatian Relationship Calculator"
@@ -38714,7 +38644,7 @@ msgid ""
 "This key is mandatory and must be valid"
 msgstr ""
 "Ключ API для Google Maps.\n"
-"Потрібен обов'язково і має бути дійсним."
+"Потрібен обов'язково і має бути дійсним"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2671
 #: ../gramps/plugins/webreport/narrativeweb.py:2711
@@ -38761,7 +38691,7 @@ msgid ""
 "This key is mandatory and must be valid"
 msgstr ""
 "Ключ API для Stamen Maps.\n"
-"Потрібен обов'язково і має бути дійсним."
+"Потрібен обов'язково і має бути дійсним"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2714
 msgid ""
