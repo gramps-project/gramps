@@ -29,7 +29,7 @@
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk
-from gi.repository import Gdk
+from gi.repository import Gio
 
 # -------------------------------------------------------------------------
 #
@@ -73,6 +73,15 @@ class DropdownSidebar(BaseSidebar):
 
         grid.show_all()
 
+        action_group = Gio.SimpleActionGroup()
+        action_group.add_action_entries(
+            [
+                ("select", self.__menu_selected, "(ii)"),
+            ],
+            None,
+        )
+        self.window.insert_action_group("sidebar", action_group)
+
     def get_top(self):
         """
         Return the top container widget for the GUI.
@@ -106,13 +115,6 @@ class DropdownSidebar(BaseSidebar):
         for idx, button in enumerate(self.buttons):
             button.handler_unblock(self.button_handlers[idx])
 
-    def cb_view_clicked(self, radioaction, current, cat_num):
-        """
-        Called when a button causes a view change.
-        """
-        view_num = radioaction.get_current_value()
-        self.viewmanager.goto_page(cat_num, view_num)
-
     def __category_clicked(self, button, cat_num):
         """
         Called when a category button is clicked.
@@ -122,32 +124,25 @@ class DropdownSidebar(BaseSidebar):
         button.set_active(True)
         self.viewmanager.goto_page(cat_num, None)
 
-    def __view_clicked(self, button, cat_num):
+    def __make_menu(self, cat_num):
         """
         Called when a view drop-down arrow is clicked.
         """
-        self.menu = Gtk.Menu()
-        self.menu.set_reserve_toggle_size(False)
-        for item in self.views[cat_num]:
-            menuitem = Gtk.MenuItem()
-            hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
-            label = Gtk.Label(label=item[1])
-            image = Gtk.Image.new_from_icon_name(item[2], Gtk.IconSize.MENU)
-            hbox.pack_start(image, False, False, 3)
-            hbox.pack_start(label, False, False, 3)
-            hbox.show_all()
-            menuitem.add(hbox)
-            menuitem.connect("activate", self.cb_menu_clicked, cat_num, item[0])
-            menuitem.show()
-            self.menu.append(menuitem)
-        self.menu.popup_at_widget(
-            button, Gdk.Gravity.SOUTH_WEST, Gdk.Gravity.NORTH_WEST, None
-        )
+        menu = Gio.Menu()
+        for view_num, label, icon in self.views[cat_num]:
+            menuitem = Gio.MenuItem.new(
+                label=label, detailed_action=f"sidebar.select(({cat_num}, {view_num}))"
+            )
+            menuitem.set_icon(Gio.ThemedIcon.new(iconname=icon))
+            menu.append_item(menuitem)
+        return menu
 
-    def cb_menu_clicked(self, menuitem, cat_num, view_num):
+    def __menu_selected(self, action, parameter, data):
         """
         Called when a view is selected from a drop-down menu.
         """
+        cat_num = parameter.get_child_value(0).get_int32()
+        view_num = parameter.get_child_value(1).get_int32()
         self.viewmanager.goto_page(cat_num, view_num)
 
     def __make_category(self, grid, use_text, cat_num, cat_name, cat_icon):
@@ -161,15 +156,13 @@ class DropdownSidebar(BaseSidebar):
 
         # create the drop-down button to display views
         if len(self.views[cat_num]) > 1:
-            dropdown = Gtk.Button()
+            dropdown = Gtk.MenuButton(use_popover=False)
             dropdown.set_relief(Gtk.ReliefStyle.NONE)
-            arrow = Gtk.Arrow(
-                arrow_type=Gtk.ArrowType.DOWN, shadow_type=Gtk.ShadowType.NONE
-            )
-            dropdown.add(arrow)
-            dropdown.connect("clicked", self.__view_clicked, cat_num)
             dropdown.set_tooltip_text(_("Click to select a view"))
+            menu = self.__make_menu(cat_num)
+            dropdown.set_menu_model(menu)
             grid.attach(dropdown, 1, cat_num, 1, 1)
+            dropdown.set_align_widget(grid)
 
         # add the tooltip
         button.set_tooltip_text(cat_name)
