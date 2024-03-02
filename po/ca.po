@@ -1,5 +1,4 @@
 # Catalan translation for Gramps
-# $Id: ca.po 22700 2013-07-21 06:57:33Z vassilii $
 # This file is distributed under the same license as the Gramps package.
 # translation of ca.po to Català
 # TRADUCCIÓ AL CATALÀ DE GRAMPS
