@@ -29,6 +29,7 @@ manage pages in the main Gramps window.
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk
+from gi.repository import GObject
 
 # -------------------------------------------------------------------------
 #
@@ -82,7 +83,8 @@ class Navigator:
 
     def __init__(self, viewmanager):
         self.viewmanager = viewmanager
-        self.pages = []
+        self.pages = {}
+        self._active_page = None
         self.active_cat = None
         self.active_view = None
 
@@ -91,19 +93,23 @@ class Navigator:
         self.merge_ids = []
 
         self.top = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        self.top.show()
 
         self.select_button = Gtk.ComboBoxText()
-        self.select_button.connect("changed", self.cb_select_changed)
         self.select_button.show()
         self.top.pack_end(self.select_button, False, True, 0)
 
-        self.notebook = Gtk.Notebook()
-        self.notebook.show()
-        self.notebook.set_show_tabs(False)
-        self.notebook.set_show_border(False)
-        self.notebook.connect("switch_page", self.cb_switch_page)
-        self.top.show()
-        self.top.pack_start(self.notebook, True, True, 0)
+        self.stack = Gtk.Stack(homogeneous=False)
+        self.stack.show()
+        self.stack.connect("notify::visible-child-name", self.cb_switch_page)
+        self.top.pack_start(self.stack, True, True, 0)
+
+        self.select_button.bind_property(
+            "active-id",
+            self.stack,
+            "visible-child-name",
+            GObject.BindingFlags.BIDIRECTIONAL,
+        )
 
     def load_plugins(self, dbstate, uistate):
         """
@@ -203,19 +209,17 @@ class Navigator:
         """
         Add a page to the sidebar for a plugin.
         """
-        self.pages.append((title, sidebar))
+        self.pages[title] = sidebar
         page = sidebar.get_top()
-        # hide for now so notebook is only size of active page
-        page.get_child().hide()
-        index = self.notebook.append_page(page, Gtk.Label(label=title))
+        self.stack.add_named(page, title)
 
         if order == START:
             self.select_button.prepend(id=title, text=title)
-            self.select_button.set_active(index)
+            self.select_button.set_active_id(title)
         else:
             self.select_button.append(id=title, text=title)
 
-        if self.notebook.get_n_pages() == 2:
+        if len(self.stack.get_children()) == 2:
             self.select_button.show_all()
 
     def view_changed(self, cat_num, view_num):
@@ -247,8 +251,8 @@ class Navigator:
 
         # Call the view_changed method for the active sidebar
         try:
-            sidebar = self.pages[self.notebook.get_current_page()][1]
-        except IndexError:
+            sidebar = self.pages[self.stack.get_visible_child_name()]
+        except KeyError:
             return
         sidebar.view_changed(cat_num, view_num)
 
@@ -259,24 +263,20 @@ class Navigator:
         cat_num, view_num = value.get_string().split()
         self.viewmanager.goto_page(int(cat_num), int(view_num))
 
-    def cb_select_changed(self, combo):
-        """
-        Called when an item in the combo box is selected.
-        """
-        self.notebook.set_current_page(combo.get_active())
-
-    def cb_switch_page(self, notebook, unused, index):
+    def cb_switch_page(self, stack, pspec):
         """
         Called when the user has switched to a new sidebar plugin page.
         """
-        old_page = notebook.get_current_page()
-        if old_page != -1:
-            self.pages[old_page][1].inactive()
-            # hide so notebook is only size of active page
-            notebook.get_nth_page(old_page).get_child().hide()
+        old_page = self._active_page
+        if old_page is not None:
+            self.pages[old_page].inactive()
 
-        self.pages[index][1].active(self.active_cat, self.active_view)
-        notebook.get_nth_page(index).get_child().show()
-        notebook.queue_resize()
+        title = stack.get_visible_child_name()
+        if title is None:
+            # May happen during the time that the widgets have been created, but the
+            # pages haven't been added.
+            return
+        self.pages[title].active(self.active_cat, self.active_view)
         if self.active_view is not None:
-            self.pages[index][1].view_changed(self.active_cat, self.active_view)
+            self.pages[title].view_changed(self.active_cat, self.active_view)
+        self._active_page = title
