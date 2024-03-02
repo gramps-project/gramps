@@ -29,7 +29,6 @@ manage pages in the main Gramps window.
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk
-from gi.repository import Gdk
 
 # -------------------------------------------------------------------------
 #
@@ -93,29 +92,10 @@ class Navigator:
 
         self.top = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 
-        frame = Gtk.Frame()
-        frame.show()
-
-        self.select_button = Gtk.ToggleButton()
-        self.select_button.set_relief(Gtk.ReliefStyle.NONE)
-        select_hbox = Gtk.Box()
-        self.title_label = Gtk.Label(label="")
-        arrow = Gtk.Arrow(
-            arrow_type=Gtk.ArrowType.DOWN, shadow_type=Gtk.ShadowType.NONE
-        )
-        select_hbox.pack_start(self.title_label, False, True, 0)
-        select_hbox.pack_end(arrow, False, True, 0)
-        self.select_button.add(select_hbox)
-
-        self.select_button.connect("button_press_event", self.__menu_button_pressed)
-
-        frame.add(self.select_button)
-
-        self.top.pack_end(frame, False, True, 0)
-
-        self.menu = Gtk.Menu()
-        self.menu.show()
-        self.menu.connect("deactivate", cb_menu_deactivate, self.select_button)
+        self.select_button = Gtk.ComboBoxText()
+        self.select_button.connect("changed", self.cb_select_changed)
+        self.select_button.show()
+        self.top.pack_end(self.select_button, False, True, 0)
 
         self.notebook = Gtk.Notebook()
         self.notebook.show()
@@ -229,14 +209,11 @@ class Navigator:
         page.get_child().hide()
         index = self.notebook.append_page(page, Gtk.Label(label=title))
 
-        menu_item = Gtk.MenuItem(label=title)
         if order == START:
-            self.menu.prepend(menu_item)
-            self.notebook.set_current_page(index)
+            self.select_button.prepend(id=title, text=title)
+            self.select_button.set_active(index)
         else:
-            self.menu.append(menu_item)
-        menu_item.connect("activate", self.cb_menu_activate, index)
-        menu_item.show()
+            self.select_button.append(id=title, text=title)
 
         if self.notebook.get_n_pages() == 2:
             self.select_button.show_all()
@@ -282,23 +259,11 @@ class Navigator:
         cat_num, view_num = value.get_string().split()
         self.viewmanager.goto_page(int(cat_num), int(view_num))
 
-    def __menu_button_pressed(self, button, event):
+    def cb_select_changed(self, combo):
         """
-        Called when the button to select a sidebar page is pressed.
+        Called when an item in the combo box is selected.
         """
-        if event.button == 1 and event.type == Gdk.EventType.BUTTON_PRESS:
-            button.grab_focus()
-            button.set_active(True)
-
-            self.menu.popup_at_widget(
-                button, Gdk.Gravity.SOUTH_WEST, Gdk.Gravity.NORTH_WEST, None
-            )
-
-    def cb_menu_activate(self, menu, index):
-        """
-        Called when an item in the popup menu is selected.
-        """
-        self.notebook.set_current_page(index)
+        self.notebook.set_current_page(combo.get_active())
 
     def cb_switch_page(self, notebook, unused, index):
         """
@@ -315,16 +280,3 @@ class Navigator:
         notebook.queue_resize()
         if self.active_view is not None:
             self.pages[index][1].view_changed(self.active_cat, self.active_view)
-        self.title_label.set_text(self.pages[index][0])
-
-
-# -------------------------------------------------------------------------
-#
-# Functions
-#
-# -------------------------------------------------------------------------
-def cb_menu_deactivate(menu, button):
-    """
-    Called when the popup menu disappears.
-    """
-    button.set_active(False)
