@@ -18,8 +18,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-# $Id: _date_hr.py 22672 2013-07-13 18:01:08Z paul-franklin $
-#
 
 # Croatian version 2008 by Josip
 # Croatian version 2018 by Milo

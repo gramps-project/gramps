@@ -17,7 +17,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-# $Id: navigator.py 20492 2012-10-02 21:08:19Z nick-h $
 
 """
 A module that provides pluggable sidebars.  These provide an interface to
