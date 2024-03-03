@@ -2742,7 +2742,7 @@ class GrampsPreferences(ConfigureDialog):
         self.set_substitution_symbol("utf8.engaged-symbol", "o")
         self.set_substitution_symbol("utf8.divorce-symbol", "o|o")
         self.set_substitution_symbol("utf8.partner-symbol", "o-o")
-        self.set_substitution_symbol("utf8.dead-symbol", "✝")
+        self.set_substitution_symbol("utf8.dead-symbol", "+")
         self.set_substitution_symbol("utf8.buried-symbol", "[]")
         self.set_substitution_symbol("utf8.cremated-symbol", "⚱")
         self.set_substitution_symbol("utf8.killed-symbol", "x")
