@@ -192,47 +192,31 @@ def draw_marker(ctx, x01, y01, size, color):
     width = 48.0 * size
     height = width / 2
     color = Gdk.color_parse(color)
-    ctx.set_source_rgba(
-        float(color.red / 65535.0),
-        float(color.green / 65535.0),
-        float(color.blue / 65535.0),
-        1.0,
-    )  # transparency
+    fill_color = (
+        color.red / 65535.0,
+        color.green / 65535.0,
+        color.blue / 65535.0,
+        1.0,  # transparency
+    )
+    stroke_color = (1.0, 0.0, 0.0, 0.5)
+
+    ctx.move_to(x01, y01)
+    ctx.line_to(x01 + width / 6, y01 - height * 2)
+    ctx.line_to(x01 - width / 6, y01 - height * 2)
+    ctx.close_path()
     ctx.set_line_width(2.0)
-    ctx.move_to(x01, y01)
-    ctx.line_to((x01 + (height / 3)), (y01 - height * 2))
-    ctx.line_to((x01 - (height / 3)), (y01 - height * 2))
-    ctx.fill()
-    ctx.set_source_rgba(1.0, 0.0, 0.0, 0.5)
-    ctx.move_to(x01, y01)
-    ctx.line_to((x01 + (height / 3)), (y01 - height * 2))
-    ctx.line_to((x01 - (height / 3)), (y01 - height * 2))
-    ctx.line_to(x01, y01)
-    ctx.stroke()
-    ctx.save()
-    ctx.translate(x01 + width / 4 - (width / 4), y01 - height * 2 - (width / 4))
-    ctx.scale(width / 2.0, height / 2.0)
-    ctx.arc(0.0, 0.0, 1.0, 0.0, 2 * PI)
+    ctx.set_source_rgba(*fill_color)
     ctx.fill_preserve()
-    ctx.set_source_rgba(1.0, 0.0, 0.0, 0.5)
-    ctx.set_line_width(2.0)
+    ctx.set_source_rgba(*stroke_color)
+    ctx.stroke()
+
+    ctx.save()
+    ctx.translate(x01, y01 - height * 2 - width / 4)
+    ctx.scale(width / 2, height / 2)
     ctx.arc(0.0, 0.0, 1.0, 0.0, 2 * PI)
     ctx.restore()
-    ctx.stroke()
-    ctx.save()
-    ctx.set_source_rgba(
-        float(color.red / 65535.0),
-        float(color.green / 65535.0),
-        float(color.blue / 65535.0),
-        1.0,
-    )  # transparency
-    # ctx.translate(x01 + width/4 - 12.0 , y01 - height*2 - 12.0)
-    ctx.translate(x01 + width / 4 - (width / 4), y01 - height * 2 - (width / 4))
-    ctx.scale(width / 2.0, height / 2.0)
-    ctx.arc(0.0, 0.0, 1.0, 0.0, 2 * PI)
-    ctx.fill_preserve()
-    ctx.set_source_rgba(1.0, 0.0, 0.0, 0.5)
     ctx.set_line_width(2.0)
-    ctx.arc(0.0, 0.0, 1.0, 0.0, 2 * PI)
-    ctx.restore()
+    ctx.set_source_rgba(*fill_color)
+    ctx.fill_preserve()
+    ctx.set_source_rgba(*stroke_color)
     ctx.stroke()
