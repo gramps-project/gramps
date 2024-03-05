@@ -577,22 +577,8 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         ctx.line_to(radiusin * math.cos(stop_rad), radiusin * math.sin(stop_rad))
         ctx.arc_negative(0, 0, radiusin, stop_rad, start_rad)
         ctx.close_path()
-        ##path = ctx.copy_path() # not working correct
         ctx.set_source_rgba(color[0], color[1], color[2], color[3])
-        ctx.fill()
-        # and again for the border
-        ctx.move_to(radiusout * math.cos(start_rad), radiusout * math.sin(start_rad))
-        ctx.arc(0, 0, radiusout, start_rad, stop_rad)
-        if (start_rad - stop_rad) % (2 * math.pi) > 1e-5:
-            radial_motion_type = ctx.line_to
-        else:
-            radial_motion_type = ctx.move_to
-        radial_motion_type(radiusin * math.cos(stop_rad), radiusin * math.sin(stop_rad))
-        ctx.arc_negative(0, 0, radiusin, stop_rad, start_rad)
-        radial_motion_type(
-            radiusout * math.cos(start_rad), radiusout * math.sin(start_rad)
-        )
-        ##ctx.append_path(path) # not working correct
+        ctx.fill_preserve()
         ctx.set_source_rgb(0, 0, 0)  # black
         if thick:
             ctx.set_line_width(3)
@@ -618,24 +604,16 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         ctx.line_to(rmax * math.cos(thetamax), rmax * math.sin(thetamax))
         ctx.arc_negative(0, 0, rmax, thetamax, thetamin)
         ctx.close_path()
-        ##path = ctx.copy_path() # not working correct
-        ctx.set_source_rgb(0, 0, 0)  # black
-        ctx.set_line_width(1)
-        ctx.stroke()
-        # now again to fill
         if person:
             red, green, blue, alpha = self.background_box(person, -1, userdata)
         else:
             red = green = blue = 255
             alpha = 1
-        ctx.move_to(rmin * math.cos(thetamin), rmin * math.sin(thetamin))
-        ctx.arc(0, 0, rmin, thetamin, thetamax)
-        ctx.line_to(rmax * math.cos(thetamax), rmax * math.sin(thetamax))
-        ctx.arc_negative(0, 0, rmax, thetamax, thetamin)
-        ctx.close_path()
-        ##ctx.append_path(path) # not working correct
         ctx.set_source_rgba(red / 255.0, green / 255.0, blue / 255.0, alpha)
-        ctx.fill()
+        ctx.fill_preserve()
+        ctx.set_source_rgb(0, 0, 0)  # black
+        ctx.set_line_width(1)
+        ctx.stroke()
 
     def draw_person(
         self,
