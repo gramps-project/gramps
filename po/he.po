@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Gramps package.
 # Copyright (C) 2009
 # First Translator: Igal Shapira <igal.shapira@gmail.com>, 2009, 2010, 2011.
-# Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>, 2019, 2021, 2022, 2023.
+# Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>, 2019, 2021, 2022, 2023, 2024.
 # Nick Hall <nick-h@gramps-project.org>, 2021, 2023, 2024.
 # Omer I.S. <omeritzicschwartz@gmail.com>, 2021, 2022, 2023.
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2023.
@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-02-09 15:43+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2024-03-11 20:26+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -245,7 +245,7 @@ msgid ""
 "feature-complete for professional genealogists."
 msgstr ""
 "גרמפס הוא מיזם פתוח תוכנת חקר־יוחסין שמיועדת לחוקרי־יוחסין (גנאולוגים) "
-"חובבים ומקצוענים כאחד, זאת בזכות התכונות הרבות שלה וממשק המשתמש הנוח."
+"חובבים ומקצוענים כאחד, זאת בזכות התכונות הרבות שלה ומbשק המשתמש הנוח."
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:8
 msgid ""
@@ -275,9 +275,9 @@ msgstr "מערכת חקר יוחסין"
 #: ../data/org.gramps_project.Gramps.desktop.in:12
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
 msgstr ""
-"חקר־יוחסין;חקר יוחסין;גנאלוגיה;גינאולוגיה;גיניאולוגיה;היסטוריה משפחתית;מחקר;"
-"אילן־יוחסין;אילן יוחסין;ג'דקום;GEDCOM;יוחסין;משפחה;עץ־יוחסין;עץ יוחסין; קשר "
-"משפחתי; ג׳דקום;"
+"חקר־יוחסין;חקר יוחסין;גנאלוגיה;גינאולוגיה;גיניאולוגיה;היסטוריה "
+"משפחתית;מחקר;אילן־יוחסין;אילן יוחסין;ג'דקום;GEDCOM;יוחסין;משפחה;עץ־יוחסין;עץ "
+"יוחסין; קשר משפחתי; ג׳דקום;"
 
 #: ../data/org.gramps_project.Gramps.xml.in:6
 msgid "Gramps database"
@@ -302,9 +302,10 @@ msgid ""
 "the level of confidence in a date and even choose between seven different "
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
-"‎‏‏‏‏<b>עבודה עם תאריכים<br/></b>ניתן לקבוע טווח תאריכים תוך שימוש בתסדיר&lsquo;"
-"בין 4 בינואר 2000 ל־20 במרץ 2003&rsquo;. בעזרת הלחצן שלצד שדה התאריך בעורך "
-"האירועים, ניתן גם לציין רמת ודאות תאריך, וגם לבחור בין שבעה לוחות־שנה שונים."
+"‎‏‏‏‏<b>עבודה עם תאריכים<br/></b>ניתן לקבוע טווח תאריכים תוך שימוש "
+"בתסדיר&lsquo;בין 4 בינואר 2000 ל־20 במרץ 2003&rsquo;. בעזרת הלחצן שלצד שדה "
+"התאריך בעורך האירועים, ניתן גם לציין רמת ודאות תאריך, וגם לבחור בין שבעה "
+"לוחות־שנה שונים."
 
 #: ../data/tips.xml:6
 msgid ""
@@ -382,14 +383,6 @@ msgstr ""
 "המסנן 'אנשים עם צאצאים' ניתן לבחור את כל ה'אנשים ללא צאצאים'."
 
 #: ../data/tips.xml:18
-#, fuzzy
-#| msgid ""
-#| "<b>Locating People</b><br/>By default, each surname in the People View is "
-#| "listed only once. By clicking on the arrow to the left of a name, the "
-#| "list will expand to show all individuals with that last name. To locate "
-#| "any Family Name from a long list, select a Family Name (not a person) and "
-#| "start typing. The view will jump to the first Family Name matching the "
-#| "letters you enter."
 msgid ""
 "<b>Locating People</b><br/>In the Grouped People View, each surname is "
 "listed only once. By clicking on the arrow to the left of a name, the list "
@@ -398,10 +391,10 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>איתור אנשים<br/></b>כברירת מחדל, כל שם משפחה במצג 'אנשים' מופיע פעם אחת "
-"בלבד. בהקשה על החץ משמאל לשם, הרשימה תורחב וכל האנשים בשם משפחה זה יוצגו. "
-"לאיתור שם משפחה מרשימה ארוכה, נא להתחיל להקליד את שם המשפחה (לא שם פרטי) . "
-"הסמן ימוקם על שם המשפחה הראשון ברשימה שתואם את האותיות שהוזנו."
+"<b>איתור אנשים<br/></b>כל שם משפחה במצג 'אנשים' מופיע פעם אחת בלבד. בהקשה על "
+"החץ משמאל לשם, הרשימה תורחב וכל האנשים בשם משפחה זה יוצגו. לאיתור שם משפחה "
+"מרשימה ארוכה, נא להתחיל להקליד את שם המשפחה (לא שם פרטי) . הסמן ימוקם על שם "
+"המשפחה הראשון ברשימה שתואם את האותיות שהוזנו."
 
 #: ../data/tips.xml:20
 msgid ""
@@ -418,9 +411,9 @@ msgid ""
 "doubleclick on the person or right click to select any of their spouses, "
 "siblings, children or parents."
 msgstr ""
-"<b>שינוי האדם הפעיל<br/></b>קל מאוד לשנות את האדם הפעיל במצג. הקשה כפולה "
-"במצג 'קשרי־משפחה' על אדם כל שהוא. במצג 'שושלת' הקשה כפולה על האדם או הקשת "
-"עכבר ימנית לבחירת אחד מבני המשפחה, בני זוגם, אַחָאִים, צאצאים או הורים."
+"<b>שינוי האדם הפעיל<br/></b>שינוי האדם הפעיל במצגים היא פעולה פשוטה מאוד. "
+"הקשה כפולה על אדם כל שהוא במצג 'משפחה' . במצג 'אנשים', הקשה כפולה על האדם או "
+"הקשת עכבר ימנית לבחירת אחד מבני המשפחה, בני זוגם, אַחָאִים, צאצאים או הורים."
 
 #: ../data/tips.xml:24
 msgid ""
@@ -638,9 +631,9 @@ msgid ""
 "Show All checkbutton."
 msgstr ""
 "<b>תיבת סימון הצגת־הכול<br/></b>בעת הוספת אדם קיים כזוגאי, רשימת האנשים "
-"שתוצג, תסונן כך שרק אנשים שעשויים להתאים לתפקיד לְמַעֲשֶׂה (בהתבסס על תאריכים "
-"במסד הנתונים) יופיעו. אם גרמפס פספס, ניתן לעקוף את המסנן על־ידי סימון "
-"תיבת־הסימון 'הצגת־הכול'."
+"שתוצג תסונן כך שרק אלו שעשויים להתאים ל'תפקיד' לְמַעֲשֶׂה יופיעו (בהתבסס על "
+"תאריכים במסד הנתונים). אם גרמפס פספס, ניתן לעקוף את המסנן על־ידי סימון תיבת־"
+"הסימון 'הצגת־הכול'."
 
 #: ../data/tips.xml:60
 msgid ""
@@ -1349,63 +1342,6 @@ msgstr ""
 " \tחזרה לכול הגדרות ברירת המחדל, או ללא הגדרות כלל\t\t\t\t\t\tE-\n"
 
 #: ../gramps/cli/argparser.py:108
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Example of usage of Gramps command line interface\n"
-#| "\n"
-#| "1. To import four databases (whose formats can be determined from their "
-#| "names)\n"
-#| "and then check the resulting database for errors, one may type:\n"
-#| "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps -i file4.wft -a tool -p "
-#| "name=check.\n"
-#| "\n"
-#| "2. To explicitly specify the formats in the above example, append "
-#| "filenames with appropriate -f options:\n"
-#| "gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~/db3.gramps "
-#| "-f gramps-xml -i file4.wft -f wft -a tool -p name=check.\n"
-#| "\n"
-#| "3. To record the database resulting from all imports, supply -e flag\n"
-#| "(use -f if the filename does not allow Gramps to guess the format):\n"
-#| "gramps -i file1.ged -i file2.gpkg -e ~/new-package -f gramps-pkg\n"
-#| "\n"
-#| "4. To save any error messages of the above example into files outfile and "
-#| "errfile, run:\n"
-#| "gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile "
-#| "2>errfile\n"
-#| "\n"
-#| "5. To import three databases and start interactive Gramps session with "
-#| "the result:\n"
-#| "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps\n"
-#| "\n"
-#| "6. To open a database and, based on that data, generate timeline report "
-#| "in PDF format\n"
-#| "putting the output into the my_timeline.pdf file:\n"
-#| "gramps -O 'Family Tree 1' -a report -p name=timeline,off=pdf,"
-#| "of=my_timeline.pdf\n"
-#| "\n"
-#| "7. To generate a summary of a database:\n"
-#| "gramps -O 'Family Tree 1' -a report -p name=summary\n"
-#| "\n"
-#| "8. Listing report options\n"
-#| "Use the name=timeline,show=all to find out about all available options "
-#| "for the timeline report.\n"
-#| "To find out details of a particular option, use show=option_name , e.g. "
-#| "name=timeline,show=off string.\n"
-#| "To learn about available report names, use name=show string.\n"
-#| "\n"
-#| "9. To convert a Family Tree on the fly to a .gramps xml file:\n"
-#| "gramps -O 'Family Tree 1' -e output.gramps -f gramps-xml\n"
-#| "\n"
-#| "10. To generate a web site into an other locale (in german):\n"
-#| "LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Family Tree 1' -a report -p "
-#| "name=navwebpage,target=/../de\n"
-#| "\n"
-#| "11. Finally, to start normal interactive session type:\n"
-#| "gramps\n"
-#| "\n"
-#| "Note: These examples are for bash shell.\n"
-#| "Syntax may be different for other shells and for Windows.\n"
 msgid ""
 "\n"
 "Example of usage of Gramps command line interface\n"
@@ -1474,15 +1410,15 @@ msgstr ""
 "2. להגדרת תסדיר מפורשת בדוגמה לעיל, ניתן להוסיף לפקודה שמות קבצים בלווית "
 "אפשרות 'f-' המתאימה:\n"
 "gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~ / db3.gramps -"
-"f gramps-xml -i file4.wft -f wft -a tool -p name = check.\n"
+"f gramps -i file4.wft -f wft -a tool -p name = check.\n"
 "\n"
 "3. לרישום רשומות תוצאת היבוא למסד הנתונים, ניתן להשתמש דגל 'e-'\n"
 "(נא להשתמש ב־f אם שם הקובץ לא מאפשר לגרמפס לנחש את התבנית):\n"
 "gramps -i file1.ged -i file2.gpkg -e ~/new-package -f gramps-pkg\n"
 "\n"
 "4. לשמירת הודעות שגיאה מהדוגמה שלעיל בקבצים outfile ו־errfile, נא להריץ:\n"
-"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile "
-"2>errfile\n"
+"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile 2>"
+"errfile\n"
 "\n"
 "5. ליבוא שלושה מסדי נתונים ואתחול שיח גרמפס הִדּוּדִי עם התוצאה:\n"
 "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps\n"
@@ -1496,14 +1432,14 @@ msgstr ""
 "gramps -O 'Family Tree 1' -a report -p name=summary\n"
 "\n"
 "8. להצגת רשימת אפשרויות דוח\n"
-"נא להשתמש ב־name=timeline,show=all להצגת כל האפשרויות הזמינות לדוח ציר "
-"הזמן.\n"
+"נא להשתמש ב־name=timeline,show=all להצגת כל האפשרויות הזמינות לדוח ציר הזמן."
+"\n"
 "כדי לברר פרטים על אפשרות מסוימת, נא להשתמש ב־show=option_name , e.g. "
 "name=timeline,show=off string.\n"
 "למידע על שמות דוחות זמינים, נא להשתמש name=show string.\n"
 "\n"
 "9. להמרת אילן־יוחסין בחטף לקובץ .gramps xml:\n"
-"gramps -O 'Family Tree 1' -e output.gramps -f gramps-xml\n"
+"gramps -O 'Family Tree 1' -e output.gramps -f gramps\n"
 "\n"
 "10.ליצירת אתר מרשתת בסביבה מקומית אחרת (בגרמנית):\n"
 "LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Family Tree 1' -a report -p "
@@ -4299,7 +4235,7 @@ msgstr "שליפת אירועים שתואמים לשם המסנן שצוין"
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:52
 #: ../gramps/gui/editors/filtereditor.py:613
 msgid "Include Family events:"
-msgstr "הכללת אירועי משפחה:"
+msgstr "לכלול אירועי משפחה:"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:52
 #: ../gramps/gui/editors/filtereditor.py:566
@@ -4696,7 +4632,7 @@ msgstr "משפחות עם אם שתואמת לביטוי <שם_ביטוי סדי
 msgid ""
 "Matches families whose mother has a name matching a specified regular "
 "expression"
-msgstr "בהן שם האם תואם לביטוי סדיר מסוים"
+msgstr "שליפת משפחות בהן שם האם תואם לביטוי סדיר מסוים"
 
 #: ../gramps/gen/filters/rules/family/_searchchildname.py:47
 msgid "Families with any child matching the <name>"
@@ -4920,7 +4856,7 @@ msgstr "שליפת הערות בהן מופיעים משתנים מסוימים"
 
 #: ../gramps/gen/filters/rules/note/_hasreferencecountof.py:44
 msgid "Notes with a reference count of <count>"
-msgstr "הערות עם  <מונה> הפניות"
+msgstr "הערות עם <מונה> הפניות"
 
 #: ../gramps/gen/filters/rules/note/_hasreferencecountof.py:45
 msgid "Matches notes with a certain reference count"
@@ -4991,8 +4927,8 @@ msgid ""
 "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"שליפת רשומות אדם שהשתנו לאחר תאריך–שעה, או בטווח שצוינו (yyyy-mm-dd hh:mm:"
-"ss), ככול שצויין צמד 'תאריך–שעה' נוסף."
+"שליפת רשומות אדם שהשתנו לאחר תאריך–שעה, או בטווח שצוין (yyyy-mm-dd hh:mm:ss)"
+", ככול שצמד 'תאריך–שעה' נוסף צויין."
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:133
 msgid "Relationship path between <person> and people matching <filter>"
@@ -5013,9 +4949,9 @@ msgid ""
 "between the specified person and the target people.  Each path is not "
 "necessarily the shortest path."
 msgstr ""
-"חיפוש במסד הנתונים, החל באדם מסויים, ושליפת כל האנשים שבין אותו אדם מסויים, "
-"לקבוצת אנשי יעד שהוגדרה במסנן.  הפעולה תיצור קבוצת נתיבי קשרי־משפחה (כולל "
-"מחותנים) בין האדם המסויים לבין אנשי היעד.  כל נתיב שיתקבל אינו בהכרח הנתיב "
+"חיפוש במסד הנתונים, החל באדם מסוים, ושליפת כל האנשים מאותו אדם מסויים, "
+"לקבוצת אנשי יעד שהוגדרה במסנן.   הפעולה תיצור קבוצת נתיבי קשרי־משפחה (כולל "
+"מחותנים) בין האדם המסויים לבין אנשי היעד.   כל נתיב שיתקבל אינו בהכרח הנתיב "
 "הקצר ביותר."
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:155
@@ -5534,7 +5470,7 @@ msgstr "מסנני צאצאים"
 msgid ""
 "Matches people that are descendants or the spouse of a descendant of a "
 "specified person"
-msgstr "שליפת אנשים שהם צאצאים או בני זוג של הצאצאים של אדם שצוין"
+msgstr "שליפת אנשים שהם צאצאים או זוגאי צאצאים של אותו אדם שצוין"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:49
 msgid "Descendant family members of <filter> match"
@@ -5544,7 +5480,7 @@ msgstr "חברי צאצאי משפחה של <משפחה>"
 msgid ""
 "Matches people that are descendants or the spouse of anybody matched by a "
 "filter"
-msgstr "שליפת אנשים שהם צאצאים או בני זוג של כל אחד שתואם לְמסנן"
+msgstr "שליפת אנשים שהם צאצאים או זוגאים של אלו שתואמים לְמסנן"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:48
 msgid "Descendants of <person>"
@@ -5692,7 +5628,7 @@ msgstr "שליפת אַחָאִים של כל מי שתואם למסנן"
 
 #: ../gramps/gen/filters/rules/person/_isspouseoffiltermatch.py:49
 msgid "Spouses of <filter> match"
-msgstr "התאמת בני(נות) זוג של <מסנן>"
+msgstr "התאמת זוגאי של <מסנן>"
 
 #: ../gramps/gen/filters/rules/person/_isspouseoffiltermatch.py:50
 msgid "Matches people married to anybody matching a filter"
@@ -5754,7 +5690,7 @@ msgstr "אנשים עם ריבוי רשומות נישואין"
 
 #: ../gramps/gen/filters/rules/person/_multiplemarriages.py:45
 msgid "Matches people who have more than one spouse"
-msgstr "שליפת אנשים עם יותר מבן(ת) זוג אחד"
+msgstr "שליפת אנשים עם יותר מזוגאי אחד"
 
 #: ../gramps/gen/filters/rules/person/_nevermarried.py:44
 msgid "People with no marriage records"
@@ -5762,7 +5698,7 @@ msgstr "אנשים ללא רשומות נישואין"
 
 #: ../gramps/gen/filters/rules/person/_nevermarried.py:45
 msgid "Matches people who have no spouse"
-msgstr "שליפת אנשים ללא בני זוג"
+msgstr "שליפת אנשים ללא זוגאי"
 
 #: ../gramps/gen/filters/rules/person/_nobirthdate.py:44
 msgid "People without a known birth date"
@@ -8076,7 +8012,7 @@ msgstr "החתמת הורים"
 
 #: ../gramps/gen/lib/ldsord.py:98
 msgid "Sealed to Spouse"
-msgstr "החתמת בני זוג"
+msgstr "החתמת זוגאי"
 
 #: ../gramps/gen/lib/ldsord.py:102
 msgid "<No Status>"
@@ -9182,7 +9118,8 @@ msgid ""
 "Spouses cannot be merged. To merge these people, you must first break the "
 "relationship between them."
 msgstr ""
-"לא ניתן למזג בני זוג. על מנת למזג אותם יש צורך לבטל את קשרי־המשפחה ביניהם."
+"לא ניתן למזג זוגאים. על מנת לאפשר למזג אותם מדרש לבטל תחילה את קשרי־המשפחה "
+"ביניהם."
 
 #: ../gramps/gen/merge/mergepersonquery.py:136
 msgid "Merge Person"
@@ -10153,7 +10090,7 @@ msgstr "תסדיר שם"
 
 #: ../gramps/gen/plug/report/stdoptions.py:129
 msgid "Include data marked private"
-msgstr "הכללת נתונים המסומנים כפרטיים"
+msgstr "לכלול נתונים המסומנים כפרטיים"
 
 #: ../gramps/gen/plug/report/stdoptions.py:130
 msgid "Whether to include private data"
@@ -10458,7 +10395,7 @@ msgstr "רעיה"
 #: ../gramps/gen/relationship.py:2465
 msgctxt "gender unknown"
 msgid "spouse"
-msgstr "בן זוג"
+msgstr "זוגאי"
 
 #: ../gramps/gen/relationship.py:2468
 msgid "ex-husband"
@@ -10471,7 +10408,7 @@ msgstr "רעיה לשעבר"
 #: ../gramps/gen/relationship.py:2472
 msgctxt "gender unknown"
 msgid "ex-spouse"
-msgstr "בן זוג לשעבר"
+msgstr "זוגאי לשעבר"
 
 #: ../gramps/gen/relationship.py:2475
 msgctxt "male,unmarried"
@@ -10596,15 +10533,15 @@ msgstr "תאריך הקשור לפטירת האַחָאִי"
 
 #: ../gramps/gen/utils/alive.py:285 ../gramps/gen/utils/alive.py:316
 msgid "a spouse's birth-related date, "
-msgstr "תאריך המתייחס לבני זוג, "
+msgstr "תאריך לידה בהקשר לזוגאי, "
 
 #: ../gramps/gen/utils/alive.py:298 ../gramps/gen/utils/alive.py:329
 msgid "a spouse's death-related date, "
-msgstr "תאריך שקשור לפטירת בן זוג, "
+msgstr "תאריך פטירה בהקשר לזוגאי, "
 
 #: ../gramps/gen/utils/alive.py:358
 msgid "event with spouse"
-msgstr "אירוע עם בן זוג"
+msgstr "אירוע עם זוגאי"
 
 #: ../gramps/gen/utils/alive.py:389
 msgid "descendant birth date"
@@ -12044,10 +11981,8 @@ msgid "Age display precision *"
 msgstr "דיוק מצג גיל *"
 
 #: ../gramps/gui/configure.py:1571
-#, fuzzy
-#| msgid "Rounded corners"
 msgid "Round the year"
-msgstr "פינות מעוגלות"
+msgstr "עיגול השנה"
 
 #: ../gramps/gui/configure.py:1582
 msgid "Display ages for events after death *"
@@ -13495,10 +13430,8 @@ msgid "Sorted date"
 msgstr "תאריך ממוין"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:91
-#, fuzzy
-#| msgid "Ignore Confidence"
 msgid "Sorted confidence"
-msgstr "להתעלם מוודאות"
+msgstr "וודאות מסווגת"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:102
 msgid "_Source Citations"
@@ -14801,7 +14734,7 @@ msgstr "צוין מגדר לא ידוע"
 msgid ""
 "The gender of the person is currently unknown. Usually, this is a mistake. "
 "Please specify the gender."
-msgstr "מגדר האדם לא ידוע. בדרך כלל, מדובר בטעות. נא להזין מגדר."
+msgstr "מגדר האדם לא ידוע. לרוב זו טעות. נא להזין מגדר."
 
 #: ../gramps/gui/editors/editperson.py:1237
 msgid "_Male"
@@ -15158,7 +15091,7 @@ msgstr "שם מסנן משפחה:"
 
 #: ../gramps/gui/editors/filtereditor.py:608
 msgid "Include selected Gramps ID"
-msgstr "הכללת מזהי גרמפס שנבחרו"
+msgstr "לכלול מזהי גרמפס שנבחרו"
 
 #: ../gramps/gui/editors/filtereditor.py:610
 msgid "Use exact case of letters"
@@ -15174,11 +15107,11 @@ msgstr "שימוש בביטוי סדיר"
 
 #: ../gramps/gui/editors/filtereditor.py:614
 msgid "Also family events where person is spouse"
-msgstr "לרבות אירועי משפחה שם 'אדם' הוא בן־הזוג"
+msgstr "לרבות אירועי משפחה בו 'אדם' הוא זוגאי"
 
 #: ../gramps/gui/editors/filtereditor.py:616
 msgid "Only include primary participants"
-msgstr "הכללת משתתפים עיקריים בלבד"
+msgstr "לכלול משתתפים עיקריים בלבד"
 
 #: ../gramps/gui/editors/filtereditor.py:635
 #: ../gramps/gui/widgets/placewithin.py:76
@@ -16018,10 +15951,10 @@ msgid ""
 msgstr ""
 "שם התכונה בה יעשה שימוש. לדוגמה: גובה (לאנשים), מזג אוויר ביום מסוים "
 "(לאירועים),... \n"
-"ניתן להשתמש באפשרות זו לאחסון גזירי מידע שנאספו וקישורם למקורות באופן תקין.  "
-"ב'תכונות', ניתן להשתמש עבור אנשים, משפחות, אירועים ומדיה.\n"
+"ניתן להשתמש באפשרות זו לאחסון גזירי מידע שנאספו וקישורם למקורות באופן תקין. "
+"ניתן להשתמש ב'תכונות' עבור, אנשים, משפחות, אירועים ומדיה.\n"
 " \n"
-"הערה: מספר תכונות שהוגדרו מראש, מתייחסות לשדות ערכים בתקן GEDCOM."
+"הערה: מספר תכונות מודגרות מראש, מתייחסות לשדות ערכים קיימים בתקן GEDCOM."
 
 #: ../gramps/gui/glade/editchildref.glade:97
 msgid "Relationship to _Mother:"
@@ -16538,7 +16471,7 @@ msgstr "סוג עצם מדיה כפי שמופיע במחשב, לדוגמה, ת�
 
 #: ../gramps/gui/glade/editmediaref.glade:650
 msgid "Select a file"
-msgstr "נא לבחור קובץ"
+msgstr "בחירת קובץ"
 
 #: ../gramps/gui/glade/editmediaref.glade:771
 msgid "Shared Information"
@@ -18399,7 +18332,7 @@ msgstr "לא נמצאו הורים"
 #: ../gramps/plugins/textreport/kinshipreport.py:139
 #: ../gramps/plugins/view/pedigreeview.py:1893
 msgid "Spouses"
-msgstr "בני זוג"
+msgstr "זוגאים"
 
 #: ../gramps/gui/merge/mergeperson.py:270
 #: ../gramps/gui/selectors/selectperson.py:106
@@ -18409,11 +18342,11 @@ msgstr "בני זוג"
 #: ../gramps/plugins/textreport/familygroup.py:581
 #: ../gramps/plugins/view/relview.py:1655
 msgid "Spouse"
-msgstr "בני זוג"
+msgstr "זוגאי"
 
 #: ../gramps/gui/merge/mergeperson.py:288
 msgid "No spouses or children found"
-msgstr "לא נמצאו צאצאים או בני זוג"
+msgstr "לא נמצאו צאצאים או זוגאים"
 
 #: ../gramps/gui/merge/mergeperson.py:372 ../gramps/plugins/tool/verify.py:801
 msgid "Warning"
@@ -18933,7 +18866,7 @@ msgstr "שמירת נתונים"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:234
 msgid "Choose the output format"
-msgstr "נא לבחור סוג הקובץ לייצוא"
+msgstr "בחירת תסדיר פלט"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:247
 msgid "Export options"
@@ -18941,7 +18874,7 @@ msgstr "אפשרויות ייצוא"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:324
 msgid "Select save file"
-msgstr "נא לבחור קובץ לשמירה"
+msgstr "בחירה בשמירת קובץ"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:370
 #: ../gramps/plugins/tool/mediamanager.py:109
@@ -18999,7 +18932,7 @@ msgid ""
 msgstr ""
 "הקובץ והתיקייה שנבחרו לשמירה, לא נמצאו או שלא ניתן ליצור אותם.\n"
 "\n"
-"נא ללחוץ על \"חזרה\" כדי לחזור ולבחור שם קובץ תקין."
+"נא ללחוץ על 'חזרה' כדי לחזור ולבחור שם קובץ תקין."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:527
 msgid "Your data has been saved"
@@ -19186,11 +19119,11 @@ msgstr "נא לבחור במסנן אחר לעריכה"
 #: ../gramps/gui/plug/export/_exportoptions.py:762
 #: ../gramps/gui/plug/export/_exportoptions.py:787
 msgid "Include all selected people"
-msgstr "הכללת כל האנשים שנבחרו"
+msgstr "לכלול כל האנשים שנבחרו"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:776
 msgid "Include all selected notes"
-msgstr "הכללת כל ההערות שנבחרו"
+msgstr "לכלול כל ההערות שנבחרו"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:788
 msgid "Replace given names of living people"
@@ -19206,7 +19139,7 @@ msgstr "לא לכלול אנשים חיים"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:799
 msgid "Include all selected records"
-msgstr "הכללת כל הרשומות שנבחרו"
+msgstr "לכלול כל הרשומות שנבחרו"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:800
 msgid "Do not include records not linked to a selected person"
@@ -20940,7 +20873,7 @@ msgstr "האדם המרכזי לעץ"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:843
 msgid "Include siblings of the center person"
-msgstr "הכללת אַחָאִים של האדם המרכזי"
+msgstr "לכלול אַחָאִים של האדם המרכזי"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:846
 msgid ""
@@ -21014,7 +20947,7 @@ msgstr "לא לכלול כותרת"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:898
 msgid "Include Report Title"
-msgstr "הכללת כותרת דוח"
+msgstr "לכלול כותרת דוח"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:899
 #: ../gramps/plugins/drawreport/descendtree.py:1635
@@ -21024,7 +20957,7 @@ msgstr "נא לבחור כותרת עבור הדוח"
 #: ../gramps/plugins/drawreport/ancestortree.py:902
 #: ../gramps/plugins/drawreport/descendtree.py:1639
 msgid "Include a border"
-msgstr "הכללת גבול"
+msgstr "לכלול גבול"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:903
 #: ../gramps/plugins/drawreport/descendtree.py:1640
@@ -21034,7 +20967,7 @@ msgstr "האם להדפיס מסגרת לדוח."
 #: ../gramps/plugins/drawreport/ancestortree.py:906
 #: ../gramps/plugins/drawreport/descendtree.py:1643
 msgid "Include Page Numbers"
-msgstr "הכללת מספרי עמוד"
+msgstr "לכלול מספרי עמוד"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:907
 msgid "Whether to print page numbers on each page."
@@ -21112,7 +21045,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/ancestortree.py:950
 #: ../gramps/plugins/drawreport/descendtree.py:1687
 msgid "Include Blank Pages"
-msgstr "הכללת עמודים ריקים"
+msgstr "לכלול עמודים ריקים"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:951
 #: ../gramps/plugins/drawreport/descendtree.py:1688
@@ -21189,7 +21122,7 @@ msgstr "תסדיר מצג האדם המרכזי"
 #: ../gramps/plugins/drawreport/ancestortree.py:999
 #: ../gramps/plugins/drawreport/descendtree.py:1726
 msgid "Include Marriage box"
-msgstr "הכללת תיבת נישואין"
+msgstr "לכלול תיבת נישואין"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1001
 #: ../gramps/plugins/drawreport/descendtree.py:1728
@@ -21236,7 +21169,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/ancestortree.py:1028
 #: ../gramps/plugins/drawreport/descendtree.py:1747
 msgid "Include a note"
-msgstr "הכללת הערות"
+msgstr "לכלול הערות"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1029
 #: ../gramps/plugins/drawreport/descendtree.py:1748
@@ -21396,7 +21329,7 @@ msgstr ""
 " ו%(person)s"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:532
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 "{wife} and\n"
 " {person}, {nyears}"
@@ -21460,13 +21393,13 @@ msgstr "שורת מלל שלישית בתחתית לוח-השנה"
 #: ../gramps/plugins/webreport/narrativeweb.py:3132
 #: ../gramps/plugins/webreport/webcal.py:1913
 msgid "Include only living people"
-msgstr "הכללת רק אנשים חיים"
+msgstr "לכלול רק אנשים חיים"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:637
 #: ../gramps/plugins/webreport/narrativeweb.py:3133
 #: ../gramps/plugins/webreport/webcal.py:1914
 msgid "Include only living people in the calendar"
-msgstr "הכללת אנשים חיים בלבד בלוח-השנה"
+msgstr "לכלול אנשים חיים בלבד בלוח-השנה"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:643
 #: ../gramps/plugins/textreport/birthdayreport.py:615
@@ -21544,7 +21477,7 @@ msgstr "נא לבחור את הצגת שם המשפחה לנשים נשואות"
 #: ../gramps/plugins/webreport/narrativeweb.py:3120
 #: ../gramps/plugins/webreport/webcal.py:2065
 msgid "Include birthdays"
-msgstr "הכללת ימי הולדת"
+msgstr "לכלול ימי הולדת"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:685
 #: ../gramps/plugins/textreport/birthdayreport.py:646
@@ -21556,7 +21489,7 @@ msgstr "האם לכלול ימי הולדת"
 #: ../gramps/plugins/webreport/narrativeweb.py:3124
 #: ../gramps/plugins/webreport/webcal.py:2069
 msgid "Include anniversaries"
-msgstr "הכללת ימי שנה"
+msgstr "לכלול ימי שנה"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:689
 #: ../gramps/plugins/textreport/birthdayreport.py:650
@@ -21567,13 +21500,13 @@ msgstr "האם לכלול ימי נישואין"
 #: ../gramps/plugins/webreport/narrativeweb.py:3128
 #: ../gramps/plugins/webreport/webcal.py:2073
 msgid "Include death dates"
-msgstr "הכללת תאריכי פטירה"
+msgstr "לכלול תאריכי פטירה"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:693
 #: ../gramps/plugins/webreport/narrativeweb.py:3129
 #: ../gramps/plugins/webreport/webcal.py:2074
 msgid "Include death anniversaries in the calendar"
-msgstr "הכללת ימי שנה לפטירה בלוח-השנה"
+msgstr "לכלול ימי שנה לפטירה בלוח-השנה"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:776
 msgid "Title text and background color"
@@ -21675,11 +21608,11 @@ msgstr "המשפחה המרכזית עבור הדוח"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1586
 msgid "Level of Spouses"
-msgstr "רמת בני זוג"
+msgstr "רמת זוגאים"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1589
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
-msgstr "0=ללא בן זוג, 1=הכללת בן זוג, 2=הכללת בני זוג של בני הזוג, וכן הלאה"
+msgstr "0=ללא זוגאי, 1=לכלול זוגאים, 2=לכלול זוגאים של בני הזוג, וכן הלאה"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1596
 msgid "Start with the parent(s) of the selected first"
@@ -21704,11 +21637,11 @@ msgstr "האם להדגיש אנשים שהם צאצאים ישירים (לא ח
 
 #: ../gramps/plugins/drawreport/descendtree.py:1621
 msgid "Indent Spouses"
-msgstr "הסטת בני זוג פנימה"
+msgstr "הסטת זוגאי פנימה"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1622
 msgid "Whether to indent the spouses in the tree."
-msgstr "האם להסיט את בני הזוג פנימה באילן."
+msgstr "האם להסיט את הזוגאי פנימה באילן."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1630
 #: ../gramps/plugins/drawreport/descendtree.py:1802
@@ -21751,7 +21684,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/descendtree.py:1723
 msgid "Display format for a spouse."
-msgstr "תסדיר מצג בן זוג."
+msgstr "תסדיר מצג זוגאי."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1765
 msgid "inter-box Y scale factor"
@@ -21771,7 +21704,7 @@ msgstr "הסגנון לתיבת נישואין."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1869
 msgid "The style for the spouse box."
-msgstr "הסגנון לתיבת בן(ת) הזוג."
+msgstr "הסגנון לתיבת הזוגאים."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1876
 msgid "The style for the direct descendant box."
@@ -22216,7 +22149,7 @@ msgstr "שנת הלידה שעד אליה יכללו אנשים"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1156
 msgid "Include people without known birth years"
-msgstr "הכללת אנשים ללא שנת לידה ידוע"
+msgstr "לכלול אנשים ללא שנת לידה ידוע"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1157
 msgid "Whether to include people without known birth years."
@@ -22242,7 +22175,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1176
 msgid "Include counts of missing information"
-msgstr "הכללת מונה למידע חסר"
+msgstr "לכלול מונה למידע חסר"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1180
 msgid ""
@@ -22490,22 +22423,22 @@ msgstr "אפשרויות ייצוא כקובץ vCard"
 
 #: ../gramps/plugins/export/exportcsv.py:147
 msgid "Include people"
-msgstr "הכללת אנשים"
+msgstr "לכלול אנשים"
 
 #: ../gramps/plugins/export/exportcsv.py:148
 msgid "Include marriages"
-msgstr "הכללת נישואין"
+msgstr "לכלול נישואין"
 
 #: ../gramps/plugins/export/exportcsv.py:149
 #: ../gramps/plugins/textreport/detancestralreport.py:921
 #: ../gramps/plugins/textreport/detdescendantreport.py:1129
 msgid "Include children"
-msgstr "הכללת צאצאים"
+msgstr "לכלול צאצאים"
 
 #: ../gramps/plugins/export/exportcsv.py:150
 #: ../gramps/plugins/graph/gvfamilylines.py:284
 msgid "Include places"
-msgstr "הכללת מקומות"
+msgstr "לכלול מקומות"
 
 #: ../gramps/plugins/export/exportcsv.py:151
 msgid "Translate headers"
@@ -22845,7 +22778,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:72
 msgid "Editing Spouses"
-msgstr "עריכת בני זוג"
+msgstr "עריכת זוגאים"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:77
 #, python-format
@@ -22853,8 +22786,8 @@ msgid ""
 "  1. %(gramps_FAQ_html_start)s%(faq_section)sHow do I change the order of "
 "spouses?%(html_end)s\n"
 msgstr ""
-"  1. %(gramps_FAQ_html_start)s%(faq_section)sכיצד לשנות את סדר בני/בנות הזוג?"
-"%(html_end)s\n"
+"  1. %(gramps_FAQ_html_start)s%(faq_section)sכיצד לשנות את סדר "
+"זוגאים?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:86
 #, python-format
@@ -22862,8 +22795,8 @@ msgid ""
 "  2. %(gramps_FAQ_html_start)s%(faq_section)sHow do I add an additional "
 "spouse?%(html_end)s\n"
 msgstr ""
-"  2. %(gramps_FAQ_html_start)s%(faq_section)sכיצד להוסיף בן זוג נוסף?"
-"%(html_end)s\n"
+"  2. %(gramps_FAQ_html_start)s%(faq_section)sכיצד להוסיף זוגאי "
+"נוסף?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:95
 #, python-format
@@ -22871,7 +22804,7 @@ msgid ""
 "  3. %(gramps_FAQ_html_start)s%(faq_section)sHow do I remove a spouse?"
 "%(html_end)s\n"
 msgstr ""
-"  ‏3. %(gramps_FAQ_html_start)s%(faq_section)sכיצד להסיר בן זוג?%(html_end)s\n"
+"  ‏3. %(gramps_FAQ_html_start)s%(faq_section)sכיצד להסיר זוגאי?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:102
 msgid "Backups and Updates"
@@ -23026,11 +22959,11 @@ msgstr "סך־כל מספר אנשים"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:30
 msgid "Gramps_5.2_Wiki_Manual_-_Gramplets#Gramplet_List"
-msgstr ""
+msgstr "Gramps_5.2_Wiki_Manual_-_Gramplets/he#Gramplet_List"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:31
 msgid "Gramps_5.2_Wiki_Manual_-_Tools#Debug"
-msgstr ""
+msgstr "Gramps_5.2_Wiki_Manual_-_Tools/he#ניפוי תקלים"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:51
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:59
@@ -24572,7 +24505,7 @@ msgstr "מקום לא ידוע"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:502
 msgid "spouse missing"
-msgstr "בן זוג חסר"
+msgstr "זוגאי חסר"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:505
 msgid "father missing"
@@ -24732,7 +24665,7 @@ msgid ""
 "Subgraphs can help Graphviz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
 msgstr ""
-"תרשימי משנה יכולים לעזור ל\"גרף־וויז\" למקם בני זוג יחד, אבל בתרשימים לא "
+"תרשימי משנה יכולים לעזור ל\"גרף־ויז\" למקם בני זוג יחד, אבל בתרשימים לא "
 "שגרתיים הדבר יביא לקווים ארוכים יותר ותרשימים גדולים יותר."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:226
@@ -24759,7 +24692,7 @@ msgstr "האם להגביל מספר אָבוֹת קַדמוֹנִים."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:244
 msgid "The maximum number of ancestors to include."
-msgstr "הכללת מספר מרבי של הורים."
+msgstr "לכלול מספר מרבי של הורים."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:248
 msgid "Limit the number of descendants"
@@ -24775,7 +24708,7 @@ msgstr "המספר המרבי של דורות צאצאים שיכללו."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:267
 msgid "Include dates"
-msgstr "הכללת תאריכים"
+msgstr "לכלול תאריכים"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:269
 msgid "Whether to include dates for people and families."
@@ -24808,7 +24741,7 @@ msgstr "האם לכלול את מספר הצאצאים למשפחות עם יו�
 #: ../gramps/plugins/graph/gvfamilylines.py:303
 #: ../gramps/plugins/graph/gvrelgraph.py:1004
 msgid "Include thumbnail images of people"
-msgstr "הכללת תמונה ממוזערת לאנשים"
+msgstr "לכלול תמונה ממוזערת לאנשים"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:306
 msgid "Whether to include thumbnail images of people."
@@ -25063,31 +24996,31 @@ msgstr "לא לכלול תאריכים או מקומות כלל"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:950
 msgid "Include (birth, marriage, death) dates, but no places"
-msgstr "הכללת תאריכי (לידה, נישואין, פטירה) אך לא מקום"
+msgstr "לכלול תאריכי (לידה, נישואין, פטירה) אך לא מקום"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:953
 msgid "Include (birth, marriage, death) dates, and places"
-msgstr "הכללת תאריכי (לידה, נישואין, פטירה) ומקום"
+msgstr "לכלול תאריכי (לידה, נישואין, פטירה) ומקום"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:956
 msgid "Include (birth, marriage, death) dates, and places if no dates"
-msgstr "הכללת תאריכי (לידה, נישואין, פטירה) ומקום אם אין תאריכים"
+msgstr "לכלול תאריכי (לידה, נישואין, פטירה) ומקום אם אין תאריכים"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:959
 msgid "Include (birth, marriage, death) years, but no places"
-msgstr "הכללת שנת (לידה, נישואין, פטירה) אך לא מקום"
+msgstr "לכלול שנת (לידה, נישואין, פטירה) אך לא מקום"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:962
 msgid "Include (birth, marriage, death) years, and places"
-msgstr "הכללת שנת (לידה, נישואין, פטירה) ומקום"
+msgstr "לכלול שנת (לידה, נישואין, פטירה) ומקום"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:965
 msgid "Include (birth, marriage, death) places, but no dates"
-msgstr "הכללת מקום (לידה, נישואין, פטירה) אך לא תאריכים"
+msgstr "לכלול מקום (לידה, נישואין, פטירה) אך לא תאריכים"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:968
 msgid "Include (birth, marriage, death) dates and places on same line"
-msgstr "הכללת תאריכי (לידה, נישואין, פטירה) ומקום באותה שורה"
+msgstr "לכלול תאריכי (לידה, נישואין, פטירה) ומקום באותה שורה"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:970
 msgid "Whether to include dates and/or places"
@@ -25104,7 +25037,7 @@ msgstr "הצגת צומתי משפחה גם אט הפלט מכיל בן משפח
 
 #: ../gramps/plugins/graph/gvrelgraph.py:982
 msgid "Include URLs"
-msgstr "הכללת מעני url"
+msgstr "לכלול מעני url"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:985
 msgid ""
@@ -25112,14 +25045,14 @@ msgid ""
 "generated that contain active links to the files generated by the 'Narrated "
 "Web Site' report."
 msgstr ""
-"הכללת מען URL בכול צומת בתרשים כך שיכילו קישורים פעילים לקבצים שנוצרו על־ידי "
+"לכלול מען URL בכול צומת בתרשים כך שיכילו קישורים פעילים לקבצים שנוצרו על־ידי "
 "דוח 'אתר מרשתת מילולי'."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:995
 #: ../gramps/plugins/textreport/birthdayreport.py:657
 #: ../gramps/plugins/textreport/indivcomplete.py:1194
 msgid "Include relationship to center person"
-msgstr "הכללת קשרי־משפחה לאדם המרכזי"
+msgstr "לכלול קשרי־משפחה לאדם המרכזי"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:998
 msgid "Whether to show every person's relationship to the center person"
@@ -25135,7 +25068,7 @@ msgstr "מיקום תמונה ממוזערת"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1019
 msgid "Include occupation"
-msgstr "הכללת מקצוע"
+msgstr "לכלול מקצוע"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1020
 msgid "Do not include any occupation"
@@ -25143,11 +25076,11 @@ msgstr "לא לכלול מקצועות כלל"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1021
 msgid "Include description of most recent occupation"
-msgstr "הכללת תאור המקצוע האחרון"
+msgstr "לכלול תאור המקצוע האחרון"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1023
 msgid "Include date, description and place of all occupations"
-msgstr "הכללת התאריך, התיאור והמקום של כל המקצועות"
+msgstr "לכלול התאריך, התיאור והמקום של כל המקצועות"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1025
 msgid "Whether to include the last occupation"
@@ -25155,7 +25088,7 @@ msgstr "האם לכלול מקצוע אחרון"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1030
 msgid "Include relationship debugging numbers also"
-msgstr "הכללת מספרי ניפוי תקלים קשרי־משפחה"
+msgstr "לכלול מספרי ניפוי תקלים קשרי־משפחה"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1034
 msgid ""
@@ -25297,8 +25230,6 @@ msgid "call"
 msgstr "מכונה בשם"
 
 #: ../gramps/plugins/importer/importcsv.py:218
-#, fuzzy
-#| msgid "Tag"
 msgid "tag"
 msgstr "תג"
 
@@ -26252,8 +26183,8 @@ msgid ""
 "or, if not set, relative to the user's directory."
 msgstr ""
 "\n"
-"יובאו עצמי מדיה עם נתיבים יחסיים.\n"
-"הנתיבים 'יחסיים' כלפי 'מחיצת המדיה'\n"
+"עצמי מדיה עם נתיבים יחסיים\n"
+"יובאו. הנתיבים 'יחסיים' כלפי 'מחיצת המדיה'\n"
 "אותה ניתן להגדיר בתפריט העדפות,\n"
 "אם לא הוגדרה 'מחיצת מדיה',\n"
 "הם יהיו יחסיים למחיצת המשתמש."
@@ -26993,7 +26924,7 @@ msgstr "%(female_name)s לידה ב%(birth_date)s ב־%(birth_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:119
 #, python-format
 msgid "This person was born on %(birth_date)s in %(birth_place)s."
-msgstr "אדם זה לידה ב%(birth_date)s ב־%(birth_place)s."
+msgstr "לידה ב%(birth_date)s ב־%(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:120
 #, python-format
@@ -27819,7 +27750,7 @@ msgstr "%(female_name)s קבורה ביום %(burial_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:561
 #, python-format
 msgid "She was buried on %(burial_date)s%(endnotes)s."
-msgstr "קבורה ביום %(burial_date)s%(endnotes)s."
+msgstr "קבורה ב%(burial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:564
 #, python-format
@@ -27829,7 +27760,7 @@ msgstr "%(unknown_gender_name)s קבורה ביום %(burial_date)s%(endnotes)s.
 #: ../gramps/plugins/lib/libnarrate.py:565
 #, python-format
 msgid "This person was buried on %(burial_date)s%(endnotes)s."
-msgstr "קבורה ביום %(burial_date)s%(endnotes)s."
+msgstr "קבורה ב־ %(burial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:567
 #, python-format
@@ -27936,7 +27867,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:619
 #, python-format
 msgid "She was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "קבורה ביום %(modified_date)s ב־%(burial_place)s%(endnotes)s."
+msgstr "קבורה ב%(modified_date)s ב־%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:623
 #, python-format
@@ -28103,7 +28034,7 @@ msgstr ""
 msgid ""
 "This person was baptized on %(baptism_date)s in "
 "%(baptism_place)s%(endnotes)s."
-msgstr "אדם זה הטבלה ב־%(baptism_date)s ב־%(baptism_place)s%(endnotes)s."
+msgstr "הטבלה ב־%(baptism_date)s ב־%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:703
 #, python-format
@@ -28138,7 +28069,7 @@ msgstr "%(unknown_gender_name)s הטבלה ב־%(baptism_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:717
 #, python-format
 msgid "This person was baptized on %(baptism_date)s%(endnotes)s."
-msgstr "אדם זה הטבלה ב־%(baptism_date)s%(endnotes)s."
+msgstr "טבלה ב־%(baptism_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:719
 #, python-format
@@ -28183,7 +28114,7 @@ msgstr ""
 #, python-format
 msgid ""
 "This person was baptized in %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr "אדם זה הטבלה ב־%(month_year)s ב־%(baptism_place)s%(endnotes)s."
+msgstr "הטבלה ב־%(month_year)s ב־%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:743
 #, python-format
@@ -28218,7 +28149,7 @@ msgstr "%(unknown_gender_name)s הטבלה ב־%(month_year)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:757
 #, python-format
 msgid "This person was baptized in %(month_year)s%(endnotes)s."
-msgstr "אדם זה הטבלה ב־%(month_year)s%(endnotes)s."
+msgstr "הטבלה ב־%(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:759
 #, python-format
@@ -28263,7 +28194,7 @@ msgstr ""
 #, python-format
 msgid ""
 "This person was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "הטבלה %(modified_date)s ב־%(baptism_place)s%(endnotes)s."
+msgstr "הטבלה ב־ %(modified_date)s ב־%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:783
 #, python-format
@@ -28333,7 +28264,7 @@ msgstr "%(unknown_gender_name)s הטבלה ב־%(baptism_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:813
 #, python-format
 msgid "This person was baptized in %(baptism_place)s%(endnotes)s."
-msgstr "אדם זה הטבלה ב־%(baptism_place)s%(endnotes)s."
+msgstr "טבלה ב־%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:815
 #, python-format
@@ -28368,7 +28299,7 @@ msgstr "%(unknown_gender_name)s הטבלה %(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:829
 #, python-format
 msgid "This person was baptized%(endnotes)s."
-msgstr "אדם זה הטבלה %(endnotes)s."
+msgstr "הטבלה %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:831
 #, python-format
@@ -28421,8 +28352,7 @@ msgstr ""
 msgid ""
 "This person was christened on %(christening_date)s in "
 "%(christening_place)s%(endnotes)s."
-msgstr ""
-"אדם זה התנצר ב־%(christening_date)s ב־%(christening_place)s%(endnotes)s."
+msgstr "התנצרות ב־%(christening_date)s ב־%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:865
 #, python-format
@@ -28458,7 +28388,7 @@ msgstr "%(unknown_gender_name)s הטבלה ב־%(christening_date)s%(endnotes)s.
 #: ../gramps/plugins/lib/libnarrate.py:882
 #, python-format
 msgid "This person was christened on %(christening_date)s%(endnotes)s."
-msgstr "אדם זה הטבלה ב־%(christening_date)s%(endnotes)s."
+msgstr "הטבלה ב־%(christening_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:884
 #, python-format
@@ -28507,7 +28437,7 @@ msgstr ""
 msgid ""
 "This person was christened in %(month_year)s in "
 "%(christening_place)s%(endnotes)s."
-msgstr "אדם זה הטבלה ב־%(month_year)s ב־%(christening_place)s%(endnotes)s."
+msgstr "הטבלה ב־%(month_year)s ב־%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:908
 #, python-format
@@ -28542,7 +28472,7 @@ msgstr "%(unknown_gender_name)s הטבלה ב־%(month_year)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:922
 #, python-format
 msgid "This person was christened in %(month_year)s%(endnotes)s."
-msgstr "אדם זה הטבלה ב־%(month_year)s%(endnotes)s."
+msgstr "הטבלה ב־%(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:924
 #, python-format
@@ -28662,7 +28592,7 @@ msgstr "%(unknown_gender_name)s הטבלה ב־%(christening_place)s%(endnotes)s
 #: ../gramps/plugins/lib/libnarrate.py:980
 #, python-format
 msgid "This person was christened in %(christening_place)s%(endnotes)s."
-msgstr "אדם זה הטבלה ב־%(christening_place)s%(endnotes)s."
+msgstr "הטבלה ב־%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:982
 #, python-format
@@ -28697,7 +28627,7 @@ msgstr "%(unknown_gender_name)s הטבלה %(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:996
 #, python-format
 msgid "This person was christened%(endnotes)s."
-msgstr "אדם זה הטבלה %(endnotes)s."
+msgstr "הטבלה %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:998
 #, python-format
@@ -28862,17 +28792,17 @@ msgstr "%(male_name)s הוא צאצא של %(mother)s."
 #: ../gramps/plugins/lib/libnarrate.py:1082
 #, python-format
 msgid "%(male_name)s was the child of %(mother)s."
-msgstr "%(male_name)s היה צאצא של %(mother)s."
+msgstr "%(male_name)s צאצא של %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1085
 #, python-format
 msgid "This person is the child of %(mother)s."
-msgstr "אדם זה הוא צאצא של %(mother)s."
+msgstr "צאצא של %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1086
 #, python-format
 msgid "This person was the child of %(mother)s."
-msgstr "אדם זה היה צאצא של %(mother)s."
+msgstr "צאצא של %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1088
 #, python-format
@@ -28887,7 +28817,7 @@ msgstr "%(male_name)s הוא בנה של %(mother)s."
 #: ../gramps/plugins/lib/libnarrate.py:1093
 #, python-format
 msgid "%(male_name)s was the son of %(mother)s."
-msgstr "%(male_name)s היה בנה של %(mother)s."
+msgstr "%(male_name)s צאצא של %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1096
 #, python-format
@@ -28897,7 +28827,7 @@ msgstr "הוא בנה של %(mother)s."
 #: ../gramps/plugins/lib/libnarrate.py:1097
 #, python-format
 msgid "He was the son of %(mother)s."
-msgstr "בן של %(mother)s."
+msgstr "צאצא של %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1099
 #, python-format
@@ -28912,7 +28842,7 @@ msgstr "%(female_name)s היא בתה של %(mother)s."
 #: ../gramps/plugins/lib/libnarrate.py:1104
 #, python-format
 msgid "%(female_name)s was the daughter of %(mother)s."
-msgstr "%(female_name)s הייתה הבת של %(mother)s."
+msgstr "%(female_name)s צאצא של %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1107
 #, python-format
@@ -28922,7 +28852,7 @@ msgstr "היא בתה של %(mother)s."
 #: ../gramps/plugins/lib/libnarrate.py:1108
 #, python-format
 msgid "She was the daughter of %(mother)s."
-msgstr "בת של %(mother)s."
+msgstr "צאצא של %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1110
 #, python-format
@@ -28933,13 +28863,13 @@ msgstr "בת של %(mother)s."
 #, python-format
 msgid ""
 "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "אדם זה נישא ל־־%(spouse)s ב־%(partial_date)s ב־%(place)s%(endnotes)s."
+msgstr "נישא ל־%(spouse)s ב־%(partial_date)s ב־%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1124
 #, python-format
 msgid ""
 "This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "אדם זה נישא ל־%(spouse)s ב־%(full_date)s ב־%(place)s%(endnotes)s."
+msgstr "נישא ל־%(spouse)s ב־%(full_date)s ב־%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1125
 #, python-format
@@ -28955,7 +28885,7 @@ msgstr "הוא נישא ל־%(spouse)s ב־%(partial_date)s ב־%(place)s%(endno
 #: ../gramps/plugins/lib/libnarrate.py:1129
 #, python-format
 msgid "He married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "הוא נישא ל־%(spouse)s ב־%(full_date)s ב־%(place)s%(endnotes)s."
+msgstr "נישא ל־%(spouse)s ב־%(full_date)s ב־%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1130
 #, python-format
@@ -28965,17 +28895,17 @@ msgstr "נישא ל־%(spouse)s %(modified_date)s ב־%(place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:1133
 #, python-format
 msgid "She married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "היא נישאה ל־%(spouse)s ב־%(partial_date)s ב־%(place)s%(endnotes)s."
+msgstr "נישאה ל־%(spouse)s ב־%(partial_date)s ב־%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1134
 #, python-format
 msgid "She married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "היא נישאה ל־%(spouse)s ב־%(full_date)s ב־%(place)s%(endnotes)s."
+msgstr "נישאה ל־%(spouse)s ב־%(full_date)s ב־%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1135
 #, python-format
 msgid "She married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "היא נישאה ל־%(spouse)s %(modified_date)s ב־%(place)s%(endnotes)s."
+msgstr "נישאה ל־%(spouse)s %(modified_date)s ב־%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1138
 #, python-format
@@ -28997,14 +28927,14 @@ msgstr "נישא ל־%(spouse)s %(modified_date)s ב־%(place)s%(endnotes)s."
 msgid ""
 "This person also married %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
-msgstr "אדם זה נישאגם ל־%(spouse)s ב־%(partial_date)s ב־%(place)s%(endnotes)s."
+msgstr "נישא גם ל־%(spouse)s ב־%(partial_date)s ב־%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1150
 #, python-format
 msgid ""
 "This person also married %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
-msgstr "אדם זה נישא גם ל־%(spouse)s ב־%(full_date)s ב־%(place)s%(endnotes)s."
+msgstr "נישא גם ל־%(spouse)s ב־%(full_date)s ב־%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1153
 #, python-format
@@ -29017,12 +28947,12 @@ msgstr "נישא גם ל־%(spouse)s %(modified_date)s ב־%(place)s%(endnotes)s
 #, python-format
 msgid ""
 "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "הוא נישא גם ל־%(spouse)s ב־%(partial_date)sב %(place)s%(endnotes)s."
+msgstr "נישא גם ל־%(spouse)s ב־%(partial_date)sב %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1158
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "הוא נישא גם ל־%(spouse)s ב־%(full_date)s ב־%(place)s%(endnotes)s."
+msgstr "נישא גם ל־%(spouse)s ב־%(full_date)s ב־%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1159
 #, python-format
@@ -29063,12 +28993,12 @@ msgstr "נישא גם %(spouse)s %(modified_date)s ב־%(place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:1175
 #, python-format
 msgid "This person married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "אדם זה נישא ל־ %(spouse)s ב־%(partial_date)s%(endnotes)s."
+msgstr "נישא ל־%(spouse)s ב־%(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1176
 #, python-format
 msgid "This person married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "אדם זה נישא ל־ %(spouse)s ב־%(full_date)s%(endnotes)s."
+msgstr "נישא ל־ %(spouse)s ב־%(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1177
 #, python-format
@@ -29083,7 +29013,7 @@ msgstr "הוא נישא ל־%(spouse)s ב־%(partial_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:1181
 #, python-format
 msgid "He married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "הוא נישא ל־%(spouse)s ב־%(full_date)s%(endnotes)s."
+msgstr "נישא ל־%(spouse)s ב־%(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1182
 #, python-format
@@ -29093,12 +29023,12 @@ msgstr "נישא ל־%(spouse)s %(modified_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:1185
 #, python-format
 msgid "She married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "היא נישאה ל־%(spouse)s ב־%(partial_date)s%(endnotes)s."
+msgstr "נישאה ל־%(spouse)s ב־%(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1186
 #, python-format
 msgid "She married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "היא נישאה ל־%(spouse)s ב־%(full_date)s%(endnotes)s."
+msgstr "נישאה ל־%(spouse)s ב־%(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1187
 #, python-format
@@ -29123,12 +29053,12 @@ msgstr "נישואין %(spouse)s %(modified_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:1198
 #, python-format
 msgid "This person also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "אדם זה נישאגם ל־%(spouse)s ב־%(partial_date)s%(endnotes)s."
+msgstr "נישא גם ל־%(spouse)s ב־%(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1199
 #, python-format
 msgid "This person also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "אדם זה נישאגם ל־%(spouse)s ב־%(full_date)s%(endnotes)s."
+msgstr "נישא גם ל־%(spouse)s ב־%(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1200
 #, python-format
@@ -29138,7 +29068,7 @@ msgstr "נישא גם ל־%(spouse)s %(modified_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:1203
 #, python-format
 msgid "He also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "הוא נישא גם ל־%(spouse)s ב־%(partial_date)s%(endnotes)s."
+msgstr "נישא גם ל־%(spouse)s ב־%(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1204
 #, python-format
@@ -29158,7 +29088,7 @@ msgstr "נישאה גם ל־%(spouse)s ב־%(partial_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:1209
 #, python-format
 msgid "She also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "נישאה גם ל־%(spouse)s ב־%(full_date)s%(endnotes)s."
+msgstr "‮נישאה גם ל־%(spouse)s ב־%(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1210
 #, python-format
@@ -29168,32 +29098,32 @@ msgstr "נישאה גם ל־%(spouse)s %(modified_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:1213
 #, python-format
 msgid "Also married %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "נישא גם %(spouse)s %(partial_date)s%(endnotes)s."
+msgstr "נישא גם ל־%(spouse)s %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1214
 #, python-format
 msgid "Also married %(spouse)s %(full_date)s%(endnotes)s."
-msgstr "נישא גם %(spouse)s %(full_date)s%(endnotes)s."
+msgstr "נישא גם ל־%(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1215
 #, python-format
 msgid "Also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "נישא גם %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "נישא גם ל־ %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1220
 #, python-format
 msgid "This person married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "אדם זה נישא ל־ %(spouse)s ב־%(place)s%(endnotes)s."
+msgstr "נישא ל־%(spouse)s ב־%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1221
 #, python-format
 msgid "He married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "הוא נישא ל־%(spouse)s ב־%(place)s%(endnotes)s."
+msgstr "נישא ל־%(spouse)s ב־%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1222
 #, python-format
 msgid "She married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "היא נישאה ל־%(spouse)s ב־%(place)s%(endnotes)s."
+msgstr "נישאה ל־%(spouse)s ב־%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1223
 #, python-format
@@ -29203,12 +29133,12 @@ msgstr "נישואין %(spouse)s ב־%(place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:1227
 #, python-format
 msgid "This person also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "אדם זה נישאגם ל־%(spouse)s ב־%(place)s%(endnotes)s."
+msgstr "נישא גם ל־%(spouse)s ב־%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1228
 #, python-format
 msgid "He also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "הוא נישא גם ל־%(spouse)s ב־%(place)s%(endnotes)s."
+msgstr "נישא גם ל־%(spouse)s ב־%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1229
 #, python-format
@@ -29223,7 +29153,7 @@ msgstr "נישא גם %(spouse)s ב־%(place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:1234
 #, python-format
 msgid "This person married %(spouse)s%(endnotes)s."
-msgstr "אדם זה נישא ל־ %(spouse)s%(endnotes)s."
+msgstr "נישא ל־%(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1235
 #, python-format
@@ -29243,7 +29173,7 @@ msgstr "נישואין %(spouse)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:1241
 #, python-format
 msgid "This person also married %(spouse)s%(endnotes)s."
-msgstr "אדם זה נישאגם ל־%(spouse)s%(endnotes)s."
+msgstr "נישא גם ל־%(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1242
 #, python-format
@@ -30094,7 +30024,7 @@ msgstr "מערכת יחסים עם %(spouse)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:1663
 #, python-format
 msgid "This person also had a relationship with %(spouse)s%(endnotes)s."
-msgstr "אדם זה היה גם במערכת יחסים עם %(spouse)s%(endnotes)s."
+msgstr "במערכת יחסים גם עם %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1665
 #, python-format
@@ -32064,7 +31994,7 @@ msgstr ""
 " ‏%(person)s, נישואי"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:470
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 "⚭ {year}{spouse}{deadtxt2} and\n"
 " {person}{deadtxt1}, {nyears}"
@@ -32118,7 +32048,7 @@ msgstr "שורת מלל שלישית בתחתית הדוח"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:598
 msgid "Include only living people in the report"
-msgstr "הכללת אנשים חיים בלבד בדוח"
+msgstr "לכלול אנשים חיים בלבד בדוח"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:603
 msgid "Dead Symbol"
@@ -32143,7 +32073,7 @@ msgstr "שנת דוח"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:653
 msgid "Include death anniversaries"
-msgstr "הכללת ימי שנה לפטירה"
+msgstr "לכלול ימי שנה לפטירה"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:654
 msgid "Whether to include anniversaries of death"
@@ -32275,16 +32205,12 @@ msgid "Whether to show divorce information in the report."
 msgstr "האם להציג מידע על גירושין בדוח."
 
 #: ../gramps/plugins/textreport/descendreport.py:596
-#, fuzzy
-#| msgid "Show divorce info"
 msgid "Show birth and death info"
-msgstr "הצגת מידע גירושין"
+msgstr "הצגת מידע על לידה ופטירה"
 
 #: ../gramps/plugins/textreport/descendreport.py:598
-#, fuzzy
-#| msgid "Whether to show divorce information in the report."
 msgid "Whether to show birth and death information in the report."
-msgstr "האם להציג מידע על גירושין בדוח."
+msgstr "האם להציג מידע על לידה ופטירה בדוח."
 
 #: ../gramps/plugins/textreport/descendreport.py:602
 msgid "Show duplicate trees"
@@ -32468,7 +32394,7 @@ msgstr "האם ליצר רשימת צאצאים."
 #: ../gramps/plugins/textreport/detancestralreport.py:925
 #: ../gramps/plugins/textreport/detdescendantreport.py:1133
 msgid "Include spouses of children"
-msgstr "הכללת בני זוג צאצאים"
+msgstr "לכלול בני זוג צאצאים"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:926
 #: ../gramps/plugins/textreport/detdescendantreport.py:1134
@@ -32478,7 +32404,7 @@ msgstr "האם להציג בני זוג של הצאצאים."
 #: ../gramps/plugins/textreport/detancestralreport.py:929
 #: ../gramps/plugins/textreport/detdescendantreport.py:1145
 msgid "Include events"
-msgstr "הכללת אירועים"
+msgstr "לכלול אירועים"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:930
 #: ../gramps/plugins/textreport/detdescendantreport.py:1146
@@ -32487,7 +32413,7 @@ msgstr "האם לכלול אירועים."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:933
 msgid "Include other events"
-msgstr "הכללת אירועים אחרים"
+msgstr "לכלול אירועים אחרים"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:935
 msgid "Whether to include other events people participated in."
@@ -32496,7 +32422,7 @@ msgstr "האם לכלול אירועים אחרים בהם אנשים לקחו �
 #: ../gramps/plugins/textreport/detancestralreport.py:939
 #: ../gramps/plugins/textreport/detdescendantreport.py:1149
 msgid "Include descendant reference in child list"
-msgstr "הכללת הפנית צאצא ברשימת הצאצאים"
+msgstr "לכלול הפנית צאצא ברשימת הצאצאים"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:940
 #: ../gramps/plugins/textreport/detdescendantreport.py:1150
@@ -32507,7 +32433,7 @@ msgstr "האם להוסיף הפניה לצאצא ברשימת הצאצאים."
 #: ../gramps/plugins/textreport/detdescendantreport.py:1153
 #: ../gramps/plugins/textreport/indivcomplete.py:1171
 msgid "Include Photo/Images from Gallery"
-msgstr "הכללת תמונה/צילום מהגלריה"
+msgstr "לכלול תמונה/צילום מהגלריה"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:944
 #: ../gramps/plugins/textreport/detdescendantreport.py:1154
@@ -32525,7 +32451,7 @@ msgstr "לכלול (2)"
 #: ../gramps/plugins/textreport/detancestralreport.py:949
 #: ../gramps/plugins/textreport/detdescendantreport.py:1159
 msgid "Include notes"
-msgstr "הכללת הערות"
+msgstr "לכלול הערות"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:950
 #: ../gramps/plugins/textreport/detdescendantreport.py:1160
@@ -32535,7 +32461,7 @@ msgstr "האם לכלול הערות."
 #: ../gramps/plugins/textreport/detancestralreport.py:953
 #: ../gramps/plugins/textreport/detdescendantreport.py:1163
 msgid "Include sources"
-msgstr "הכללת מקורות"
+msgstr "לכלול מקורות"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:954
 #: ../gramps/plugins/textreport/detdescendantreport.py:1164
@@ -32546,7 +32472,7 @@ msgstr "נאם לכלול הפניות למקורות."
 #: ../gramps/plugins/textreport/detdescendantreport.py:1167
 #: ../gramps/plugins/textreport/indivcomplete.py:1160
 msgid "Include sources notes"
-msgstr "הכללת מקורות הערות"
+msgstr "לכלול מקורות הערות"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:960
 #: ../gramps/plugins/textreport/detdescendantreport.py:1170
@@ -32561,7 +32487,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/detancestralreport.py:966
 #: ../gramps/plugins/textreport/detdescendantreport.py:1176
 msgid "Include attributes"
-msgstr "הכללת תכונות"
+msgstr "לכלול תכונות"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:967
 #: ../gramps/plugins/textreport/detdescendantreport.py:1177
@@ -32573,7 +32499,7 @@ msgstr "האם לכלול תכונות."
 #: ../gramps/plugins/textreport/detancestralreport.py:970
 #: ../gramps/plugins/textreport/detdescendantreport.py:1180
 msgid "Include addresses"
-msgstr "הכללת כתובות"
+msgstr "לכלול כתובות"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:971
 #: ../gramps/plugins/textreport/detdescendantreport.py:1181
@@ -32583,7 +32509,7 @@ msgstr "האם לכלול כתובות."
 #: ../gramps/plugins/textreport/detancestralreport.py:974
 #: ../gramps/plugins/textreport/detdescendantreport.py:1184
 msgid "Include alternative names"
-msgstr "הכללת שמות חלופיים"
+msgstr "לכלול שמות חלופיים"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:975
 #: ../gramps/plugins/textreport/detdescendantreport.py:1185
@@ -32685,15 +32611,15 @@ msgstr "כיצד אנשים מאורגנים בדוח"
 #: ../gramps/plugins/textreport/detdescendantreport.py:1137
 #: ../gramps/plugins/textreport/kinshipreport.py:379
 msgid "Include spouses"
-msgstr "הכללת בני זוג"
+msgstr "לכלול בני זוג"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1138
 msgid "Whether to include detailed spouse information."
-msgstr "האם הכללת מידע מפורט על בני זוג."
+msgstr "האם לכלול מידע מפורט על בני זוג."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1141
 msgid "Include spouse reference"
-msgstr "הכללת הפנית בני זוג"
+msgstr "לכלול הפנית בני זוג"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1142
 msgid "Whether to include reference to spouse."
@@ -32701,7 +32627,7 @@ msgstr "האם לכלול הפניות לבני זוג."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1189
 msgid "Include sign of succession ('+') in child-list"
-msgstr "הכללת סימון של המשכיות ('+') ברשימת הצאצאים"
+msgstr "לכלול סימון של המשכיות ('+') ברשימת הצאצאים"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1193
 msgid ""
@@ -32713,7 +32639,7 @@ msgstr ""
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1200
 msgid "Include path to start-person"
-msgstr "הכללת נתיב לאדם המרכזי"
+msgstr "לכלול נתיב לאדם המרכזי"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1203
 msgid ""
@@ -32930,7 +32856,7 @@ msgstr "האם על הכותרת להיות שם האדם, או 'דיווח אי
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1151
 msgid "Include Notes"
-msgstr "הכללת הערות"
+msgstr "לכלול הערות"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1152
 msgid "Whether to include Person and Family Notes."
@@ -32938,7 +32864,7 @@ msgstr "האם לכלול הערות אדם ומשפחה."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1155
 msgid "Include Source Information"
-msgstr "הכללת מידע על מקור"
+msgstr "לכלול מידע על מקור"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1156
 msgid "Whether to cite sources."
@@ -32954,11 +32880,11 @@ msgstr "האם לכלול תגים."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1185
 msgid "Include Attributes"
-msgstr "הכללת תכונות"
+msgstr "לכלול תכונות"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1189
 msgid "Include Census Events"
-msgstr "הכללת אירועי מפקד"
+msgstr "לכלול אירועי מפקד"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1190
 msgid "Whether to include Census Events."
@@ -33014,7 +32940,7 @@ msgstr "האם לכלול בני זוג"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:383
 msgid "Include cousins"
-msgstr "הכללת בני דודים"
+msgstr "לכלול בני דודים"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:384
 msgid "Whether to include cousins"
@@ -33022,7 +32948,7 @@ msgstr "האם לכלול בני דודים"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:387
 msgid "Include aunts/uncles/nephews/nieces"
-msgstr "הכללת דודים/דורות/אחיינים/אחייניות"
+msgstr "לכלול דודים/דורות/אחיינים/אחייניות"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:388
 msgid "Whether to include aunts/uncles/nephews/nieces"
@@ -33162,7 +33088,7 @@ msgstr "החלפת שם פרטי בשם פניה"
 
 #: ../gramps/plugins/textreport/recordsreport.py:257
 msgid "Underline call name in first names / add call name to first name"
-msgstr "סימון שם פניה שהוא חלק משם פרטי בקו תחתון  / הוספת שם פניה לשם פרטי"
+msgstr "סימון שם פניה שהוא חלק משם פרטי בקו תחתון / הוספת שם פניה לשם פרטי"
 
 #: ../gramps/plugins/textreport/recordsreport.py:265
 msgid "Footer text"
@@ -33834,7 +33760,7 @@ msgstr "צאצאים לא קיים"
 #: ../gramps/plugins/tool/check.py:2731
 #, python-format
 msgid "%(person)s was removed from the family of %(family)s\n"
-msgstr "%(person)s הוסר ממשפחת %(family)s\n"
+msgstr "%(person)s הסרה ממשפחת %(family)s\n"
 
 #: ../gramps/plugins/tool/check.py:2739
 #, python-brace-format
@@ -33850,7 +33776,7 @@ msgstr "אדם לא קיים"
 #: ../gramps/plugins/tool/check.py:2759 ../gramps/plugins/tool/check.py:2787
 #, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
-msgstr "%(person)s שוחזר למשפחת %(family)s\n"
+msgstr "%(person)s שחזור למשפחת %(family)s\n"
 
 #: ../gramps/plugins/tool/check.py:2767
 #, python-brace-format
@@ -35035,7 +34961,7 @@ msgstr "הגדרת סדר מיון"
 
 #: ../gramps/plugins/tool/sortevents.py:201
 msgid "Include family events"
-msgstr "הכללת אירועי משפחה"
+msgstr "לכלול אירועי משפחה"
 
 #: ../gramps/plugins/tool/sortevents.py:202
 msgid "Sort family events of the person"
@@ -36564,7 +36490,7 @@ msgstr "מעבר לאם"
 
 #: ../gramps/plugins/view/pedigreeview.py:1731
 msgid "A person was found to be his/her own ancestor."
-msgstr "האדם הוא אב קדמון שלה/שלו."
+msgstr "האדם שנמצא היא אב קדמון שלה/שלו."
 
 #: ../gramps/plugins/view/pedigreeview.py:1773
 msgid "Pre_vious"
@@ -37299,7 +37225,7 @@ msgid ""
 "ID will open a page for that event."
 msgstr ""
 "העמוד מכיל מפתח של כל האירועים במסד הנתונים, ממוינים לפי סוג ותאריך (ככול "
-"שאחד מאלו קיים). הקשה על מזהה אירוע&8217;  גרמפס תפתח עמוד לאירוע זה."
+"שאחד מאלו קיים). הקשה על מזהה אירוע&8217; גרמפס תפתח עמוד לאירוע זה."
 
 #: ../gramps/plugins/webreport/event.py:312
 #: ../gramps/plugins/webreport/family.py:314
@@ -37507,7 +37433,7 @@ msgstr "הצגת קשרי־המשפחה בין האדם הנוכחי והאדם 
 msgid ""
 "For each person page, show the relationship between this person and the "
 "active person."
-msgstr "הצגת קשרי־משפחה בין אדם ו'האדם הפעיל' בכל עמוד ה'אדם' ."
+msgstr "הצגת קשרי־משפחה בין אדם ו'האדם הפעיל' בכל עמוד ה'אדם'."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2132
 #: ../gramps/plugins/webreport/webcal.py:1865
@@ -37578,7 +37504,7 @@ msgstr "קביעת פריסת ברירת המחדל למקטע 'הפניות מ�
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2190
 msgid "Include ancestor's tree"
-msgstr "הכללת עץ אָבוֹת קַדמוֹנִים"
+msgstr "לכלול עץ אָבוֹת קַדמוֹנִים"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2192
 msgid "Whether to include an ancestor graph on each individual page"
@@ -37676,14 +37602,14 @@ msgstr "מספר הדורות שיכללו בתרשים אָבוֹת קַדמו�
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2291
 msgid "Include narrative notes just after name, gender"
-msgstr "הכללת הערות מלל מיד לאחר שם, מגדר"
+msgstr "לכלול הערות מלל מיד לאחר שם, מגדר"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2295
 msgid ""
 "Include narrative notes just after name, gender and age at death (default) "
 "or include them just before attributes."
 msgstr ""
-"הכללת הערות מלל מיד לאחר שם, מגדר וגיל בפטירה (בירית מחדל) או להכליל אותם "
+"לכלול הערות מלל מיד לאחר שם, מגדר וגיל בפטירה (בירית מחדל) או להכליל אותם "
 "לפני תכונות."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2308
@@ -37784,7 +37710,7 @@ msgstr "חילול תמונות"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2378
 msgid "Include images and media objects"
-msgstr "הכללת תמונות ועצמי מדיה"
+msgstr "לכלול תמונות ועצמי מדיה"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2379
 msgid "Whether to include a gallery of media objects"
@@ -37800,7 +37726,7 @@ msgstr "אפשור יצירת מפתח תמונות"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2391
 msgid "Include unused images and media objects"
-msgstr "הכללת תמונות ועצמי מדיה שאינם בשימוש"
+msgstr "לכלול תמונות ועצמי מדיה שאינם בשימוש"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2394
 msgid "Whether to include unused or unreferenced media objects"
@@ -37839,7 +37765,7 @@ msgstr "אפשור קביעת הרוחב תמונה המרבי בעמוד המד
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2443
 msgid "Include download page"
-msgstr "הכללת עמוד הורדות"
+msgstr "לכלול עמוד הורדות"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2444
 msgid "Whether to include a database download option"
@@ -37892,15 +37818,15 @@ msgstr "סוג הקידוד שימש בעמודי המרשתת"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2495
 msgid "Include link to active person on every page"
-msgstr "הכללת קישור לאדם הפעיל בכל עמוד"
+msgstr "לכלול קישור לאדם הפעיל בכל עמוד"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2498
 msgid "Include a link to the active person (if they have a webpage)"
-msgstr "הכללת קישור לאדם הפעיל בכל עמוד (אם יש לו עמוד בית)"
+msgstr "לכלול קישור לאדם הפעיל בכל עמוד (אם יש לו עמוד בית)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2503
 msgid "Include a column for birth dates on the index pages"
-msgstr "הכללת עמודת תאריך לידה בעמוד המפתח"
+msgstr "לכלול עמודת תאריך לידה בעמוד המפתח"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2505
 msgid "Whether to include a birth column"
@@ -37908,7 +37834,7 @@ msgstr "האם לכלול עמודת לידה"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2509
 msgid "Include a column for death dates on the index pages"
-msgstr "הכללת עמודת תאריך פטירה בעמוד המפתח"
+msgstr "לכלול עמודת תאריך פטירה בעמוד המפתח"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2511
 msgid "Whether to include a death column"
@@ -37916,7 +37842,7 @@ msgstr "האם לכלול עמודת פטירה"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2515
 msgid "Include a column for partners on the index pages"
-msgstr "הכללת עמודת בני זוג בעמוד המפתח"
+msgstr "לכלול עמודת בני זוג בעמוד המפתח"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2517
 msgid "Whether to include a partners column"
@@ -37924,7 +37850,7 @@ msgstr "האם לכלול עמודת בני זוג"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2521
 msgid "Include a column for parents on the index pages"
-msgstr "הכללת עמודת הורים בעמוד המפתח"
+msgstr "לכלול עמודת הורים בעמוד המפתח"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2523
 msgid "Whether to include a parents column"
@@ -37932,7 +37858,7 @@ msgstr "האם לכלול עמודת הורים"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2527
 msgid "Include half and/or step-siblings on the individual pages"
-msgstr "הכללת אַחָאִים למחצה ו/או אַחָאִים שלובים בעמוד האישי"
+msgstr "לכלול אַחָאִים למחצה ו/או אַחָאִים שלובים בעמוד האישי"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2531
 msgid ""
@@ -37941,7 +37867,7 @@ msgstr "האם לכלול אַחָאִים למחצה ו/או אַחָאִים �
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2546
 msgid "Include family pages"
-msgstr "הכללת דפי משפחה"
+msgstr "לכלול דפי משפחה"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2547
 msgid "Whether or not to include family pages."
@@ -37949,7 +37875,7 @@ msgstr "האם לכלול עמודי משפחה."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2550
 msgid "Include event pages"
-msgstr "הכללת עמודי אירוע"
+msgstr "לכלול עמודי אירוע"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2551
 msgid "Add a complete events list and relevant pages or not"
@@ -37957,7 +37883,7 @@ msgstr "הוספת רשימת אירועים מלאה ודפים מן העיני
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2554
 msgid "Include place pages"
-msgstr "הכללת עמודי מקום"
+msgstr "לכלול עמודי מקום"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2555
 msgid "Whether or not to include the place pages."
@@ -37965,7 +37891,7 @@ msgstr "האם לכלול עמודי מקום."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2558
 msgid "Include unused place pages"
-msgstr "הכללת עמודי 'מקומות שאינם בשימוש'"
+msgstr "לכלול עמודי 'מקומות שאינם בשימוש'"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2559
 msgid "Whether or not to include the unused place pages."
@@ -37973,7 +37899,7 @@ msgstr "האם לכלול עמודי 'מקומות שאינם בשימוש'."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2562
 msgid "Include source pages"
-msgstr "הכללת עמודי מקור"
+msgstr "לכלול עמודי מקור"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2563
 msgid "Whether or not to include the source pages."
@@ -37981,7 +37907,7 @@ msgstr "האם לכלול עמודי מקור."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2566
 msgid "Include repository pages"
-msgstr "הכללת עמודי מאגר"
+msgstr "לכלול עמודי מאגר"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2567
 msgid "Whether or not to include the repository pages."
@@ -37989,7 +37915,7 @@ msgstr "האם לכלול עמודי מאגר."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2570
 msgid "Include GENDEX file (/gendex.txt)"
-msgstr "הכללת קובץ GENDEX (/gendex.txt)"
+msgstr "לכלול קובץ GENDEX (/gendex.txt)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2571
 msgid "Whether to include a GENDEX file or not"
@@ -37997,7 +37923,7 @@ msgstr "האם לכלול קובץ GENDEX או לא"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2574
 msgid "Include address book pages"
-msgstr "הכללת עמודי ספר כתובות"
+msgstr "לכלול עמודי ספר כתובות"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2577
 msgid ""
@@ -38009,7 +37935,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2585
 msgid "Include the statistics page"
-msgstr "הכללת עמוד הסטטיסטיקה"
+msgstr "לכלול עמוד הסטטיסטיקה"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2586
 msgid "Whether or not to add statistics page"
@@ -38038,7 +37964,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2613
 msgid "Include Place map on Place Pages"
-msgstr "הכללת מפת מקום בעמודי המקום"
+msgstr "לכלול מפת מקום בעמודי המקום"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2617
 msgid ""
@@ -38048,7 +37974,7 @@ msgstr "האם לכלול מפת מקום בעמודי 'מקם', כאשר קו �
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2625
 msgid "Include Family Map Pages with all places shown on the map"
-msgstr "הכללת עמוד מפת משפחה בו מוצגים כל המקומות על המפה"
+msgstr "לכלול עמוד מפת משפחה בו מוצגים כל המקומות על המפה"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2629
 msgid ""
@@ -38193,7 +38119,7 @@ msgstr "היכן ממוקם אתר המרשתת? ברירת מחדל =/NAVWEB"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2777
 msgid "Include the news and updates page"
-msgstr "הכללת עמוד חדשות ועדכונים"
+msgstr "לכלול עמוד חדשות ועדכונים"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2778
 msgid "Whether to include a page with the last updates"
@@ -38301,12 +38227,12 @@ msgstr "האם ליצור עמודי אירוע לכל יום"
 #: ../gramps/plugins/webreport/narrativeweb.py:3121
 #: ../gramps/plugins/webreport/webcal.py:2066
 msgid "Include birthdays in the calendar"
-msgstr "הכללת ימי הולדת בלוח-השנה"
+msgstr "לכלול ימי הולדת בלוח-השנה"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3125
 #: ../gramps/plugins/webreport/webcal.py:2070
 msgid "Include anniversaries in the calendar"
-msgstr "הכללת ימי שנה בלוח-השנה"
+msgstr "לכלול ימי שנה בלוח-השנה"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3138
 #: ../gramps/plugins/webreport/webcal.py:2085
