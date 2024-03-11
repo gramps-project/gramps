@@ -41,13 +41,14 @@
 # Patrice Legoux <patrice.legoux.perso@gmail.com>, 2023.
 # Jacob Wagner <doubleujacob@gmail.com>, 2024.
 # Boris Dauriac <dauriacboris+gramps@gmail.com>, 2024.
+# Emmanuel Vallois <emmanuel@vallois.name>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-02-10 21:13+0000\n"
-"Last-Translator: Jean-Marc <m.balthazar@posteo.net>\n"
+"PO-Revision-Date: 2024-03-07 04:01+0000\n"
+"Last-Translator: Emmanuel Vallois <emmanuel@vallois.name>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -55,7 +56,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -28789,12 +28790,12 @@ msgstr "Ligne ignorée car non comprise"
 # limite à 32 caractères !
 #: ../gramps/plugins/lib/libgedcom.py:3487
 msgid "Tag recognized but not supported"
-msgstr "Reconnu mais non pris en charge (TAG)"
+msgstr "Balise reconnue mais non prise en charge"
 
 # trunk
 #: ../gramps/plugins/lib/libgedcom.py:3523
 msgid "Skipped subordinate line"
-msgstr "Ligne suivante ignorée"
+msgstr "Ligne subordonnée ignorée"
 
 # trunk
 #: ../gramps/plugins/lib/libgedcom.py:3560
@@ -28851,12 +28852,12 @@ msgstr ""
 #: ../gramps/plugins/lib/libgedcom.py:3868
 #, python-format
 msgid "ADDR element ignored '%s'"
-msgstr "« %s » ignoré par ADDR"
+msgstr "élément d’ADDR ignoré « %s »"
 
 # trunk
 #: ../gramps/plugins/lib/libgedcom.py:3888
 msgid "TRLR (trailer)"
-msgstr "TRLR (trailer-piste)"
+msgstr "TRLR (fin de fichier)"
 
 # master
 #: ../gramps/plugins/lib/libgedcom.py:3917
@@ -28902,7 +28903,7 @@ msgstr "FAM (famille) Gramps ID %s"
 #: ../gramps/plugins/lib/libgedcom.py:5846
 #: ../gramps/plugins/lib/libgedcom.py:7216
 msgid "Filename omitted"
-msgstr "Nom de fichier ignoré"
+msgstr "Nom de fichier omis"
 
 #: ../gramps/plugins/lib/libgedcom.py:5881
 #: ../gramps/plugins/lib/libgedcom.py:7271
@@ -28920,11 +28921,11 @@ msgstr "Type de medium"
 #: ../gramps/plugins/lib/libgedcom.py:5971
 #: ../gramps/plugins/lib/libgedcom.py:7260
 msgid "Multiple FILE in a single OBJE ignored"
-msgstr "Fichier (FILE) multiple dans un OBJE ignoré"
+msgstr "FILE (fichier) multiple dans un seul OBJE ignoré"
 
 #: ../gramps/plugins/lib/libgedcom.py:6111
 msgid "A second PLAC ignored"
-msgstr "Un deuxième lieu (PLAC) est ignoré"
+msgstr "Un deuxième PLAC (lieu) ignoré"
 
 #: ../gramps/plugins/lib/libgedcom.py:6249
 msgid "Detail"
@@ -28932,7 +28933,7 @@ msgstr "Détail"
 
 #: ../gramps/plugins/lib/libgedcom.py:6265
 msgid "Location already populated; ADDR ignored"
-msgstr "L'emplacement existe déjà ; ADDR est ignoré"
+msgstr "L'emplacement existe déjà ; ADDR ignoré"
 
 # trunk
 #: ../gramps/plugins/lib/libgedcom.py:6667
@@ -28978,7 +28979,7 @@ msgstr "REPO (dépôt) Gramps ID %s"
 #: ../gramps/plugins/lib/libgedcom.py:7514
 #: ../gramps/plugins/lib/libgedcom.py:8536
 msgid "Only one phone number supported"
-msgstr "Uniquement un numéro de téléphone supporté"
+msgstr "Seulement un numéro de téléphone supporté"
 
 # trunk
 #: ../gramps/plugins/lib/libgedcom.py:7699
@@ -28988,7 +28989,7 @@ msgstr "HEAD (en-tête)"
 # trunk
 #: ../gramps/plugins/lib/libgedcom.py:7720
 msgid "Approved system identification"
-msgstr "Système d'identification approuvé"
+msgstr "Identification du système approuvé"
 
 # trunk
 #: ../gramps/plugins/lib/libgedcom.py:7731
@@ -29009,7 +29010,7 @@ msgstr "Numéro de version du logiciel source"
 #: ../gramps/plugins/lib/libgedcom.py:7779
 #, python-format
 msgid "Business that produced the product: %s"
-msgstr "Entreprise produisant : %s"
+msgstr "Entreprise qui a créé le logiciel : %s"
 
 # trunk
 #: ../gramps/plugins/lib/libgedcom.py:7800
@@ -29019,12 +29020,12 @@ msgstr "Nom de la source des données"
 # trunk
 #: ../gramps/plugins/lib/libgedcom.py:7816
 msgid "Copyright of source data"
-msgstr "Droit à la copie des données"
+msgstr "Copyright de la source des données"
 
 # trunk
 #: ../gramps/plugins/lib/libgedcom.py:7833
 msgid "Publication date of source data"
-msgstr "Date de publication des données"
+msgstr "Date de publication de la source des données"
 
 # trunk
 #: ../gramps/plugins/lib/libgedcom.py:7847
@@ -29060,12 +29061,12 @@ msgstr "Recherche des évènements sans nom."
 # trunk
 #: ../gramps/plugins/lib/libgedcom.py:7950
 msgid "Character set"
-msgstr "Encodage du caractère"
+msgstr "Jeu de caractères"
 
 # trunk
 #: ../gramps/plugins/lib/libgedcom.py:7955
 msgid "Character set and version"
-msgstr "Encodage du caractère et la version"
+msgstr "Jeu de caractères et version"
 
 # trunk
 #: ../gramps/plugins/lib/libgedcom.py:7972
@@ -29224,18 +29225,17 @@ msgstr "%(date)s %(time)s"
 
 #: ../gramps/plugins/lib/libmetadata.py:120
 msgid "Descriptive Tags"
-msgstr "Propriétés Description"
+msgstr "Étiquettes descriptives"
 
 # master
 #: ../gramps/plugins/lib/libmetadata.py:121
 msgid "Date and Time Tags"
-msgstr "Propriétés Date et Heure"
+msgstr "Étiquettes de date et heure"
 
 # Liste d'individus dans plugins/view/view.gpr.py:152
 #: ../gramps/plugins/lib/libmetadata.py:122
-#, fuzzy
 msgid "People Tags"
-msgstr "Propriétés Individus"
+msgstr "Étiquettes d’individus"
 
 #: ../gramps/plugins/lib/libmetadata.py:123
 msgid "Event Tags"
@@ -29250,23 +29250,21 @@ msgid "Camera Information"
 msgstr "Informations sur l'appareil photographique"
 
 #: ../gramps/plugins/lib/libmetadata.py:126
-#, fuzzy
 msgid "Location Tags"
-msgstr "Étiquettes emplacements"
+msgstr "Étiquettes de lieu"
 
 # trunk
 #: ../gramps/plugins/lib/libmetadata.py:127
-#, fuzzy
 msgid "Advanced Tags"
-msgstr "Étiquettes Avancé"
+msgstr "Étiquettes avancées"
 
 #: ../gramps/plugins/lib/libmetadata.py:128
 msgid "Rights Tags"
-msgstr "Propriétés Droits"
+msgstr "Étiquettes de droits"
 
 #: ../gramps/plugins/lib/libmetadata.py:129
 msgid "Keyword Tags"
-msgstr "Propriétés Mot-clé"
+msgstr "Étiquettes mot-clé"
 
 # master
 #: ../gramps/plugins/lib/libmetadata.py:228
