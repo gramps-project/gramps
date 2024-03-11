@@ -486,6 +486,19 @@ class NavigationView(PageView):
                     return True
         return super(NavigationView, self).key_press_handler(widget, event)
 
+    def button_press_handler(self, widget, event):
+        """
+        Handle forward and backward buttons, or pass it on.
+        """
+        if self.active:
+            if event.button == 8:
+                self.back_clicked()
+                return True
+            elif event.button == 9:
+                self.fwd_clicked()
+                return True
+        return super(NavigationView, self).button_press_handler(widget, event)
+
     def call_copy(self):
         """
         Navigation specific copy (control+c) hander. If the
