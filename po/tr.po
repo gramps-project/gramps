@@ -9,15 +9,15 @@
 # Brtc <boratici@gmail.com>, 2021.
 # Bora <boratici@gmail.com>, 2021, 2022.
 # Bora Atıcı <boratici@gmail.com>, 2022.
-# Bora Atıcı <boratici.acc@gmail.com>, 2022, 2023.
+# Bora Atıcı <boratici.acc@gmail.com>, 2022, 2023, 2024.
 # Nick Hall <nick-h@gramps-project.org>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-02-11 22:02+0000\n"
-"Last-Translator: Osman Öz <osmanoz05@hotmail.com>\n"
+"PO-Revision-Date: 2024-03-03 13:01+0000\n"
+"Last-Translator: Bora Atıcı <boratici.acc@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
 "Language: tr\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Language: tr\n"
 "X-Source-Language: C\n"
@@ -31597,7 +31597,7 @@ msgstr "kartor.eniro.se'de açılır"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:55
 msgid "GoogleMaps"
-msgstr "GoogleMaps"
+msgstr "Google Haritalar"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:56
 msgid "Open on maps.google.com"
