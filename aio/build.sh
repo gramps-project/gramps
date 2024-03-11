@@ -4,7 +4,40 @@
 #
 # install prerequisites
 ## prerequisites in msys packages
-pacman -S --needed --noconfirm mingw-w64-x86_64-python mingw-w64-x86_64-python-pip mingw-w64-x86_64-gexiv2 mingw-w64-x86_64-ghostscript mingw-w64-x86_64-python-cairo mingw-w64-x86_64-python-gobject mingw-w64-x86_64-python-icu mingw-w64-x86_64-iso-codes mingw-w64-x86_64-hunspell mingw-w64-x86_64-enchant perl-XML-Parser intltool mingw-w64-x86_64-python-lxml mingw-w64-x86_64-python-jsonschema mingw-w64-x86_64-gspell mingw-w64-x86_64-geocode-glib mingw-w64-x86_64-python-pillow git mingw-w64-x86_64-graphviz mingw-w64-x86_64-goocanvas mingw-w64-x86_64-osm-gps-map base-devel subversion mingw-w64-x86_64-python-graphviz mingw-w64-x86_64-osm-gps-map mingw-w64-x86_64-nsis mingw-w64-x86_64-python-cx-freeze  mingw-w64-x86_64-python-requests mingw-w64-x86_64-adwaita-icon-theme mingw-w64-x86_64-python-networkx mingw-w64-x86_64-python-psycopg2 upx mingw-w64-x86_64-python-packaging unzip mingw-w64-x86_64-python-nose mingw-w64-x86_64-python-wheel
+pacman -S --needed --noconfirm \
+    base-devel \
+    git \
+    mingw-w64-x86_64-adwaita-icon-theme \
+    mingw-w64-x86_64-enchant \
+    mingw-w64-x86_64-geocode-glib \
+    mingw-w64-x86_64-gexiv2 \
+    mingw-w64-x86_64-ghostscript \
+    mingw-w64-x86_64-goocanvas \
+    mingw-w64-x86_64-graphviz \
+    mingw-w64-x86_64-gspell \
+    mingw-w64-x86_64-hunspell \
+    mingw-w64-x86_64-iso-codes \
+    mingw-w64-x86_64-nsis \
+    mingw-w64-x86_64-osm-gps-map \
+    mingw-w64-x86_64-python \
+    mingw-w64-x86_64-python-cairo \
+    mingw-w64-x86_64-python-cx-freeze \
+    mingw-w64-x86_64-python-gobject \
+    mingw-w64-x86_64-python-graphviz \
+    mingw-w64-x86_64-python-icu \
+    mingw-w64-x86_64-python-jsonschema \
+    mingw-w64-x86_64-python-lxml \
+    mingw-w64-x86_64-python-networkx \
+    mingw-w64-x86_64-python-nose \
+    mingw-w64-x86_64-python-packaging \
+    mingw-w64-x86_64-python-pillow \
+    mingw-w64-x86_64-python-pip \
+    mingw-w64-x86_64-python-psycopg2 \
+    mingw-w64-x86_64-python-requests \
+    mingw-w64-x86_64-python-wheel \
+    perl-XML-Parser \
+    unzip \
+    upx
 pacman -S --needed --noconfirm mingw-w64-x86_64-toolchain
 
 wget -N https://github.com/bpisoj/MINGW-packages/releases/download/v5.0/mingw-w64-x86_64-db-6.0.30-1-any.pkg.tar.xz
