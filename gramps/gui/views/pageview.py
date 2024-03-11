@@ -130,6 +130,7 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         self.dbstate.connect("no-database", self.disable_action_group)
         self.dbstate.connect("database-changed", self.enable_action_group)
         self.uistate.window.connect("key-press-event", self.key_press_handler)
+        self.uistate.window.connect("button-press-event", self.button_press_handler)
 
         self.model = None
         self.selection = None
@@ -261,6 +262,13 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         A general keypress handler. Override if you want to handle
         special control characters, like control+c (copy) or control+v
         (paste).
+        """
+        return False
+
+    def button_press_handler(self, widget, event):
+        """
+        A general button press handler. Override if you want to handle
+        special buttons, like forward or backward.
         """
         return False
 
