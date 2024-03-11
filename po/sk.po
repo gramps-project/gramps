@@ -8,14 +8,14 @@
 # Milan <mobrcian@hotmail.com>, 2021, 2022, 2023, 2024.
 # Jose Riha <jose1711@gmail.com>, 2022.
 # Jano Svitok <jan.svitok@gmail.com>, 2022.
-# Milan Šalka <salka.milan@googlemail.com>, 2023.
+# Milan Šalka <salka.milan@googlemail.com>, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-02-28 17:01+0000\n"
-"Last-Translator: Milan <mobrcian@hotmail.com>\n"
+"PO-Revision-Date: 2024-03-11 20:26+0000\n"
+"Last-Translator: Milan Šalka <salka.milan@googlemail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
 "Language: sk\n"
@@ -7739,7 +7739,7 @@ msgstr "Ohlášky"
 
 #: ../gramps/gen/lib/eventtype.py:231
 msgid "Engagement"
-msgstr "Zasnúbenie"
+msgstr "Zapojenie"
 
 #: ../gramps/gen/lib/eventtype.py:232 ../gramps/gen/utils/symbols.py:98
 #: ../gramps/gui/configure.py:2779 ../gramps/plugins/webreport/family.py:318
