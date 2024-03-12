@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-03-12 11:05+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"PO-Revision-Date: 2024-03-12 11:11+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -36366,7 +36366,7 @@ msgstr "ניתן לסגל ערך זה באפשרות הגאוגרפיה."
 
 #: ../gramps/plugins/view/geoplaces.py:493
 msgid "In this case, it may take time to show all markers."
-msgstr "במקרה זה, עשוי לֶאֱרוֹך זמן מה להצגת כל הסמנים."
+msgstr "במקרה זה, הצגת הסמנים עלולה לארוך זמן מה."
 
 #: ../gramps/plugins/view/geoplaces.py:522
 #: ../gramps/plugins/view/geoplaces.py:545
@@ -36439,8 +36439,8 @@ msgid ""
 "Exactly two notes must be selected to perform a merge. A second note can be "
 "selected by holding down the control key while clicking on the desired note."
 msgstr ""
-"לבצע מיזוג ,נא לבחור בדיוק בשתי הערות. ניתן לבחור בהערה השניה על־ידי החזקת "
-"מקש הבקרה ובה בעת הקשה על ההערה הרצויה."
+"לביצוע מיזוג, נא לבחור בדיוק בשתי הערות. ניתן לבחור בהערה השנייה על־ידי "
+"החזקת מקש Ctrl תוך הקשה על ההערה הרצויה."
 
 # ל.=לידה
 #: ../gramps/plugins/view/pedigreeview.py:87
@@ -36569,7 +36569,7 @@ msgstr "מצג־עץ אנשים"
 
 #: ../gramps/plugins/view/placelistview.py:54
 msgid "Place View"
-msgstr "מצג מוקם"
+msgstr "מצג מקום"
 
 #: ../gramps/plugins/view/placetreeview.py:62
 msgid "Place Tree View"
@@ -36857,7 +36857,7 @@ msgstr "מצג כל קשרי־משפחה של האדם שנבחר"
 
 #: ../gramps/plugins/view/view.gpr.py:136
 msgid "The view showing an ancestor pedigree of the selected person"
-msgstr "מצג שושלת האָבוֹת קַדמוֹנִים של האדם שנבחר"
+msgstr "מצג שושלת האָבוֹת הקַדמוֹנִים של האדם שנבחר"
 
 #: ../gramps/plugins/view/view.gpr.py:143
 #: ../gramps/plugins/view/view.gpr.py:153
@@ -36937,7 +36937,7 @@ msgid ""
 "Links. Selecting the person&#8217;s name will take you to their individual "
 "Address Book page."
 msgstr ""
-"עמוד זה מכיל את מיפתח כל האנשים במסד הנתונים, ממוינים לפי שמות משפחה, עם אחד "
+"עמוד זה מכיל את מפתח כל האנשים במסד הנתונים, ממוינים לפי שמות משפחה, עם אחד "
 "מהפרטים הבאים: כתובת, מגורים או קישורי מרשתת. בחירה בשם האדם תפתח את עמוד "
 "רשימת הכתובות האישית שלהם."
 
@@ -37129,12 +37129,12 @@ msgid ""
 "shows all the events for that date, if there are any.\n"
 msgstr ""
 "לוח־שנה זה מנגיש את כל הנתונים ב'מבט חטוף', דחוס בעמוד אחד. הקשה על תאריך "
-"תעביר לעמוד שיציג את כל האירועים לתאריך הזה, ככול שכאלו קיימים.\n"
+"תעביר לעמוד שיציג את כל האירועים לתאריך זה, ככול שכאלו קיימים.\n"
 
 #: ../gramps/plugins/webreport/calendar.py:845
 #: ../gramps/plugins/webreport/webcal.py:1267
 msgid "One Day Within A Year"
-msgstr "יום אחד השנה"
+msgstr "יום אחד בשנה"
 
 #: ../gramps/plugins/webreport/calendar.py:1192
 #: ../gramps/plugins/webreport/webcal.py:1642
