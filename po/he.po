@@ -5,14 +5,14 @@
 # Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>, 2019, 2021, 2022, 2023, 2024.
 # Nick Hall <nick-h@gramps-project.org>, 2021, 2023, 2024.
 # Omer I.S. <omeritzicschwartz@gmail.com>, 2021, 2022, 2023.
-# Yaron Shahrabani <sh.yaron@gmail.com>, 2023.
+# Yaron Shahrabani <sh.yaron@gmail.com>, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
 "PO-Revision-Date: 2024-03-12 08:56+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -4632,7 +4632,7 @@ msgstr "משפחות עם אם שתואמת לביטוי <שם_ביטוי סדי
 msgid ""
 "Matches families whose mother has a name matching a specified regular "
 "expression"
-msgstr "שליפת משפחות בהן שם האם תואם לביטוי סדיר מסוים"
+msgstr "מאתר משפחות בהן שם האם עונה על ביטוי רגולרי מסוים"
 
 #: ../gramps/gen/filters/rules/family/_searchchildname.py:47
 msgid "Families with any child matching the <name>"
