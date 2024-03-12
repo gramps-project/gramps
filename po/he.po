@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-03-12 10:48+0000\n"
+"PO-Revision-Date: 2024-03-12 10:49+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -37767,7 +37767,7 @@ msgstr "לכלול עמוד הורדות"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2444
 msgid "Whether to include a database download option"
-msgstr "האם לכלול אופציה להוריד את מסד־הנתונים"
+msgstr "האם לכלול אפשרות להוריד את מסד־הנתונים"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2449
 msgid "How many downloads"
@@ -37953,12 +37953,12 @@ msgstr "גוגל"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2603
 msgid "Map Service"
-msgstr "שרות מפות"
+msgstr "שירות מפות"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2607
 msgid "Choose your choice of map service for creating the Place Map Pages."
 msgstr ""
-"נא לבחור בשירות מפות כדי לייצר עמודי מפה למקומות המופיעים באילן־היוחסין."
+"נא לבחור בשירות מפות על מנת ליצור עמודי מפה למקומות המופיעים באילן־היוחסין."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2613
 msgid "Include Place map on Place Pages"
