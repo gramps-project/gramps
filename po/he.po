@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-03-12 09:41+0000\n"
+"PO-Revision-Date: 2024-03-12 09:56+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -464,11 +464,11 @@ msgid ""
 msgstr ""
 "<b>סאונד־אקס יכולה לסייע בחקר־יוחסיןי<br/></b>אופן ההתמודדות עם השונויות "
 "באיות שמות היא בעיה שהעסיקה את חוקרי־היוחסין שנים רבות, סאונד־אקס פותרת "
-"סוגיה ארוכת שנים זו. גרמפלט סאונד־אקס, מחולל דפוס מפושט וזהה לשמות "
-"במסד־הנתונים שנשמעים דומה לשם המשפחה שנבחר. הכרות עם קוד סאונד־אקס לשמות "
-"משפחה, מועילה מאוד בחקר קובצי מפקד אוכלוסין (בצורת מיקרופיש) בספריות או "
-"מכוני מחקר אחרים. לצפיה בקוד סאונד־אקס שמות המשפחה במסד הנתונים, נא להתקין "
-"את גרמפלט סאונד־אקס."
+"סוגיה ארוכת שנים זו. גרמפלט סאונד־אקס, מחולל דפוס מפושט וזהה לשמות במסד־"
+"הנתונים שנשמעים דומה לשם המשפחה שנבחר. הכרות עם קוד סאונד־אקס לשמות משפחה, "
+"מועילה מאוד בחקר קבצי מפקד אוכלוסין (בצורת מיקרופיש) בספריות או מכוני מחקר "
+"אחרים. לצפיה בקוד סאונד־אקס שמות המשפחה במסד הנתונים, נא להתקין את גרמפלט "
+"סאונד־אקס."
 
 #: ../data/tips.xml:32
 msgid ""
@@ -808,7 +808,7 @@ msgstr ""
 "<b>תסדיר קובץ GEDCOM<br/></b>גרמפס מאפשרת לייבא ולייצא תסדיר GEDCOM. התעשייה "
 "מספקת תמיכה נרחבת לתקן GEDCOM גרסה 5.5, כך שניתן להחליף מידע בין גרמפס "
 "ואנשים אחרים המשתמשים בתוכנות חקר־יוחסין אחרות. מסננים מובנים הופכים את יבוא "
-"ויצוא קובצי ה־GEDCOM למשימה פשוטה."
+"ויצוא קבצי ה־GEDCOM למשימה פשוטה."
 
 #: ../data/tips.xml:88
 msgid ""
@@ -820,7 +820,7 @@ msgid ""
 "information is ever lost when exporting and importing."
 msgstr ""
 "<b>חבילתגרמפס XML<br/></b>ניתן לייצא את אילן־היוחסין כחבילת XML של גרמפס. "
-"זהו קובץ דחוס המכיל את נתוני אילן־היוחסין ואת כל קובצי המדיה המחוברים למסד "
+"זהו קובץ דחוס המכיל את נתוני אילן־היוחסין ואת כל קבצי המדיה המחוברים למסד "
 "הנתונים (תמונות לדוגמה). הקובץ נייד לחלוטין ולכן הוא שימושי לגיבויים או "
 "שיתוף עם משתמשי גרמפס אחרים. לשימוש בתסדיר ג׳דקום יתרון מרכזי שאין אובדן "
 "מידע בעת ייצוא או ייבוא."
@@ -831,9 +831,9 @@ msgid ""
 "Tree (WFT) format. This format allows a family tree to be displayed online "
 "using a single file, instead of many html files."
 msgstr ""
-"<b>תסדיר אילן־יוחסין מרשתת<br/></b>ניתן לייצא נתונים מגרמפס לתסדיר "
-"אילן־יוחסין (WFT) מרשתת. תסדיר זה מאפשר מצג מקוון של אילן־היוחסין באמצעות "
-"קובץ יחיד במקום קובצי html רבים."
+"<b>תסדיר אילן־יוחסין מרשתת<br/></b>ניתן לייצא נתונים מגרמפס לתסדיר אילן־"
+"יוחסין (WFT) מרשתת. תסדיר זה מאפשר מצג מקוון של אילן־היוחסין באמצעות קובץ "
+"יחיד במקום קבצי html רבים."
 
 #: ../data/tips.xml:92
 msgid ""
@@ -10335,12 +10335,12 @@ msgstr "'%s' רשום"
 #: ../gramps/gen/recentfiles.py:191
 #, python-brace-format
 msgid "Unable to save list of recent DBs file {fname}: {error}"
-msgstr "לא ניתן לשמור רשימת קובצי מסדי־נתונים אחרונים {fname}: {error}"
+msgstr "לא ניתן לשמור רשימת קבצי מסדי־נתונים אחרונים {fname}: {error}"
 
 #: ../gramps/gen/recentfiles.py:250
 #, python-brace-format
 msgid "Unable to open list of recent DBs file {fname}: {error}"
-msgstr "לא ניתן לפתוח רשימת קובצי מסדי־נתונים אחרונים {fname}: {error}"
+msgstr "לא ניתן לפתוח רשימת קבצי מסדי־נתונים אחרונים {fname}: {error}"
 
 #: ../gramps/gen/recentfiles.py:257
 #, python-brace-format
@@ -13471,7 +13471,7 @@ msgstr "הסרת האירוע המשפחתי שנבחר"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:67
 msgid "Edit the selected family event or edit person"
-msgstr "עריכת האירוע המשפחתי שנבחר או האדם"
+msgstr "עריכת האירוע המשפחתי שנבחר או עריכת אדם"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:68
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:60
@@ -15708,7 +15708,7 @@ msgstr "נא לבחור חלופה לקובץ החסר"
 
 #: ../gramps/gui/glade/dialog.glade:366
 msgid "_Use this selection for all missing media files"
-msgstr "_שימוש בבחירה זו לכל קובצי המדיה החסרים"
+msgstr "_שימוש בבחירה זו לכל קבצי המדיה החסרים"
 
 #: ../gramps/gui/glade/dialog.glade:370
 msgid ""
