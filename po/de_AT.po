@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-03-08 12:01+0000\n"
+"PO-Revision-Date: 2024-03-12 08:56+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
 "Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/de_AT/>\n"
@@ -11309,8 +11309,8 @@ msgid ""
 "The data can only be recovered by Undo operation or by quitting with "
 "abandoning changes."
 msgstr ""
-"Wiederherstellung der Daten nur durch 'Rückgängig Strg+z' oder durch "
-"'Änderungen verwerfen und beenden' möglich."
+"Die Daten können nur durch die Rückgängig-Funktion oder durch Abbrechen "
+"wiederhergestellt werden."
 
 #: ../gramps/gen/utils/symbols.py:84
 #: ../gramps/plugins/graph/gvfamilylines.py:95
@@ -20612,7 +20612,7 @@ msgstr "{type} [{gid}] löschen?"
 
 #: ../gramps/gui/views/listview.py:634 ../gramps/gui/views/listview.py:720
 msgid "Deleting item will remove it from the database."
-msgstr "Das Löschen des Elementes wird es aus der Datenbank ganz entfernen."
+msgstr "Das Löschen eines Elements entfernt es aus der Datenbank."
 
 #: ../gramps/gui/views/listview.py:669
 #: ../gramps/plugins/gramplet/givennamegramplet.py:73
