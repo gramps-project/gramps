@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
 "PO-Revision-Date: 2024-03-12 11:05+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -37248,7 +37248,7 @@ msgid ""
 "name will take you to their family/ relationship&#8217;s page."
 msgstr ""
 "עמוד זה מכיל מפתח של כל המשפחות/קשרי־המשפחה במסד הנתונים, ממוינים לפי שם "
-"משפחה. הקשה על שם של אדם תוביל לעמוד המשפחה/קשר־משפחה."
+"משפחה. הקשה על שם של אדם תוביל לעמוד המשפחה/קשר־משפחתי."
 
 #: ../gramps/plugins/webreport/family.py:558
 #, python-format
