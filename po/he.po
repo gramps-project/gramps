@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-03-12 09:20+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"PO-Revision-Date: 2024-03-12 09:41+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -4776,7 +4776,7 @@ msgstr "עצמי מדיה מתויגים בתג <תג>"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:53
 msgid "Matches media objects with the particular tag"
-msgstr "איתור עצמי מדיה שמתויגים בתג מסוים"
+msgstr "שליפת עצמי מדיה שמתויגים בתג מסוים"
 
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:46
 msgid "Media objects matching the <filter>"
@@ -4926,8 +4926,8 @@ msgid ""
 "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"איתור רשומות אדם שהשתנו לאחר תאריך–שעה, או בטווח שצוין (yyyy-mm-dd hh:mm:"
-"ss), ככול שצמד 'תאריך–שעה' נוסף צויין."
+"שליפת רשומות אדם שהשתנו לאחר תאריך–שעה שצוינו (yyyy-mm-dd hh:mm:ss) או "
+"בטווח, אם צוין צמד תאריך–שעה נוסף."
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:133
 msgid "Relationship path between <person> and people matching <filter>"
@@ -4938,7 +4938,7 @@ msgstr "נתיב קשרי־משפחה בין <אדם> ואנשיםשעונים �
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:49
 #: ../gramps/gen/filters/rules/person/_relationshippathbetweenbookmarks.py:54
 msgid "Relationship filters"
-msgstr "מסנני קשר־משפחה"
+msgstr "מסנני קשרי־משפחה"
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:136
 msgid ""
@@ -4948,9 +4948,9 @@ msgid ""
 "between the specified person and the target people.  Each path is not "
 "necessarily the shortest path."
 msgstr ""
-"חיפוש במסד הנתונים, החל באדם מסוים, ואיתור כל האנשים מאותו אדם מסויים, "
-"לקבוצת אנשי יעד שהוגדרה במסנן.   הפעולה תיצור קבוצת נתיבי קשרי־משפחה (כולל "
-"מחותנים) בין האדם המסויים לבין אנשי היעד.   כל נתיב שיתקבל אינו בהכרח הנתיב "
+"חיפוש במסד הנתונים, החל באדם מסוים, ושליפת כל האנשים שבין אותו אדם מסוים "
+"לקבוצת אנשי יעד שהוגדרה במסנן. הפעולה תייצר קבוצת נתיבי קשרי־גומלין (כולל "
+"מחותנים) בין האדם המסוים לבין אנשי היעד.  כל נתיב שיתקבל אינו בהכרח הנתיב "
 "הקצר ביותר."
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:155
@@ -4981,7 +4981,7 @@ msgstr "אנשים מנותקים"
 msgid ""
 "Matches people that have no family relationships to any other person in the "
 "database"
-msgstr "איתור אנשים ללא קשרי־משפחה משפחתיים לכול אדם אחר במסד הנתונים"
+msgstr "שליפת אנשים ללא קשרי־משפחה משפחתיים לכל אדם אחר במסד הנתונים"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:46
 #: ../gramps/gen/plug/_pluginreg.py:76
@@ -5040,7 +5040,7 @@ msgstr "תכונה אישית:"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:47
 msgid "People with the personal <attribute>"
-msgstr "אנשים עם תכונה אישית <תכונה>"
+msgstr "אנשים בעלי <תכונה> אישית"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:49
 msgid "Matches people with the personal attribute of a particular value"
@@ -5064,7 +5064,7 @@ msgstr "איתור אנשים עם מובאה עם ערך מסוים"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:48
 msgid "People with a common ancestor with <person>"
-msgstr "אנשים עם אב־קדמן משותף <אדם>"
+msgstr "אנשים בעלי אב קדמון משותף עם <אדם>"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:49
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:54
@@ -5084,7 +5084,7 @@ msgstr "איתור אנשים עם אב קדמון משותף לאדם שצוי�
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:50
 msgid "People with a common ancestor with <filter> match"
-msgstr "איתור אנשים עם אב קדמן משותף <מסנן>"
+msgstr "שליפת אנשים עם אב קדמון משותף <מסנן>"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:52
 msgid ""
@@ -5116,7 +5116,7 @@ msgstr "תפקיד עקרי:"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:58
 msgid "People with the personal <event>"
-msgstr "אנשים עם אירוע אישי <אירוע>"
+msgstr "אנשים עם <אירוע> אישי"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:59
 msgid "Matches people with a personal event of a particular value"
@@ -5340,7 +5340,7 @@ msgid ""
 "Soundex Match of people with a specified name. First name, Surname, Call "
 "name, and Nickname are searched in primary and alternate names."
 msgstr ""
-"התאמת סאונדאקס לאנשים בשם מסויים. חיפוש בסוגי שמות ראשיים וחלופיים, ובשמות "
+"התאמת סאונד־אקס לאנשים בשם מסויים. חיפוש בסוגי שמות ראשיים וחלופיים, ובשמות "
 "פרטיים, משפחה, ופניה."
 
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:47
@@ -5361,11 +5361,11 @@ msgstr "איתור אנשים עם מקור מסוים"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:52
 msgid "People with the <tag>"
-msgstr "אנשים מתויגים עם <תג>"
+msgstr "אנשים שמתויגים ב<תג>"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:53
 msgid "Matches people with the particular tag"
-msgstr "איתור אנשים מתויגים בתג מסוים"
+msgstr "שליפת אנשים שמתויגים בתג מסוים"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:49
 #: ../gramps/gui/editors/filtereditor.py:609
@@ -5499,7 +5499,7 @@ msgstr "איתור אנשים שהם צאצאים של כל אחד שתואם ל
 
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:49
 msgid "Duplicated ancestors of <person>"
-msgstr "אָבוֹת קַדמוֹנִים כפולים של <אדם>"
+msgstr "אבות קדמונים כפולים של <אדם>"
 
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:52
 msgid "Matches people that are ancestors twice or more of a specified person"
@@ -5611,7 +5611,7 @@ msgstr "איתור הורים של מישהם התומים למסנן"
 
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:47
 msgid "People related to <Person>"
-msgstr "אנשים מקורבים ל<אדם>"
+msgstr "אנשים שמקורבים ל<אדם>"
 
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:49
 msgid "Matches people related to a specified person"
@@ -5670,7 +5670,7 @@ msgstr "הורים להם מקור ישיר אחד לפחות >= <רמת ודא�
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:48
 msgid ""
 "Matches persons with at least one direct source with confidence level(s)"
-msgstr "איתור אנשים להםמקור ישיר אחד לפחות ברמת ודאות"
+msgstr "שליפת אנשים להם מקור ישיר אחד לפחות ברמת ודאות"
 
 #: ../gramps/gen/filters/rules/person/_missingparent.py:45
 msgid "People missing parents"
@@ -5790,8 +5790,8 @@ msgid ""
 "Matches the ancestors of bookmarked individuals back to common ancestors, "
 "producing the relationship path(s) between bookmarked persons."
 msgstr ""
-"איתור אבות קדמונים של פרטים המסומנים בסימניה לאבות קדמונים משותפים, תוך "
-"יצירת נתיב(ים) קשרי־משפחה בין האנשים המסומנים בסימניה."
+"שליפת אבות קדמונים של פרטים המסומנים בסימנייה לאבות קדמונים משותפים, תוך "
+"יצירת נתיב(י) קשרי־משפחה בין האנשים המסומנים בסימנייה."
 
 #: ../gramps/gen/filters/rules/person/_searchname.py:48
 msgid "People matching the <name>"
@@ -5973,7 +5973,7 @@ msgstr "מקומות שמתויגים ב<תג>"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:53
 msgid "Matches places with the particular tag"
-msgstr "איתור מקומות מתויגים בתג מסוים"
+msgstr "שליפת מקומות שמתויגים בתג מסוים"
 
 #: ../gramps/gen/filters/rules/place/_hastitle.py:51
 msgid "Places matching a title"
@@ -6185,11 +6185,11 @@ msgstr "איתור מאגרים עם משתנים מסוימים"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:52
 msgid "Repositories with the <tag>"
-msgstr "מאגרי מידע מתויגים עם <תג>"
+msgstr "מאגרי מידע שמתויגים ב<תג>"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:53
 msgid "Matches repositories with the particular tag"
-msgstr "איתור מאגרי מידע מתויגים בתג מסוים"
+msgstr "שליפת מאגרי מידע שמתויגים בתג מסוים"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:46
 msgid "Repositories matching the <filter>"
@@ -6313,23 +6313,23 @@ msgstr "איתור מקורות להם מספר מסוים של פריטים ב�
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:46
 msgid "Sources with repository reference containing <text> in \"Call Number\""
-msgstr "מקורות עם הפנית מאגר, שמכילות <מלל> ב'מספר הפניה'"
+msgstr "מקורות עם הפניית מאגר, שמכילות <מלל> ב'מספר הפניה'"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:48
 msgid ""
 "Matches sources with a repository reference\n"
 "containing a substring in \"Call Number\""
 msgstr ""
-"איתור מקורות עם הפנית מאגר\n"
-"שמכילות מחרוזת משנה ב'מספר פניה'"
+"שליפת מקורות עם הפניית מאגר\n"
+"שמכילות מחרוזת משנה ב'מספר פנייה'"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:52
 msgid "Sources with the <tag>"
-msgstr "מקורות מתויגים עם <תג>"
+msgstr "מקורות שמתויגים ב<תג>"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:53
 msgid "Matches sources with the particular tag"
-msgstr "איתור מקורות מתויגים בתג מסוים"
+msgstr "שליפת מקורות שמתויגים בתג מסוים"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:46
 msgid "Sources matching the <filter>"
@@ -8259,7 +8259,7 @@ msgstr "הצגה כ"
 
 #: ../gramps/gen/lib/name.py:195 ../gramps/plugins/importer/importcsv.py:211
 msgid "Call name"
-msgstr "שם פניה"
+msgstr "שם פנייה"
 
 #: ../gramps/gen/lib/name.py:196
 msgid "Nick name"
@@ -8784,7 +8784,7 @@ msgstr "הפניות מאגר"
 #: ../gramps/gen/lib/reporef.py:108
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:69
 msgid "Call Number"
-msgstr "מספר פניה"
+msgstr "מספר פנייה"
 
 #: ../gramps/gen/lib/repotype.py:55
 msgid "Library"
@@ -9500,7 +9500,7 @@ msgid ""
 msgstr ""
 "Graphviz יכול ליצור תרשימים גדולים מאוד על־ידי פיזור התרשים על פני מערך "
 "עמודים מלבני. פעולה זו שולטת במספר העמודים במערך במאוזן. תקף רק עבור מסמכי "
-"dot ו־pdf באמצעות גרף־וויז."
+"dot ו־pdf באמצעות גוסט־סקריפט."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:195
 msgid "Number of Vertical Pages"
@@ -9619,7 +9619,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:306
 msgid "Note to add to the graph"
-msgstr "הערה שתתוסף לתרשים"
+msgstr "הערה שתתווסף לתרשים"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:307
 msgid "This text will be added to the graph."
@@ -9931,7 +9931,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:293
 msgid "Note to add to the tree"
-msgstr "הערה שתתוסף לאילן־היוחסין"
+msgstr "הערה שתתווסף לאילן־היוחסין"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:294
 msgid "This text will be added to the tree."
@@ -10352,12 +10352,12 @@ msgid ""
 msgstr ""
 "שגיאת ניתוח רשימת מסדי־הנתונים האחרונים מהקובץ {fname}: {error}.\n"
 "זה עשוי להצביע על נזק לקבצים.\n"
-"במידה ואין חשש לבעיה בקבצים האחרים, נא למחוק אותו ולאתחל את גרמפס."
+"אם אין חשש לבעיה בקבצים האחרים, נא למחוק אותו ולאתחל את גרמפס."
 
 #: ../gramps/gen/relationship.py:1416
 #: ../gramps/plugins/view/pedigreeview.py:1730
 msgid "Relationship loop detected"
-msgstr "זוהה קשר־משפחה מעגלי"
+msgstr "זוהה קשר־משפחתי מעגלי"
 
 #: ../gramps/gen/relationship.py:1491
 #, python-format
@@ -10370,7 +10370,7 @@ msgstr ""
 
 #: ../gramps/gen/relationship.py:1574
 msgid "Relationship loop detected:"
-msgstr "זוהה קשר־משפחה מעגלי:"
+msgstr "זוהה קשר־משפחתי מעגלי:"
 
 #: ../gramps/gen/relationship.py:1577
 #, python-format
@@ -10504,7 +10504,7 @@ msgstr "בן זוג לשעבר"
 msgid ""
 "Family relationship translator not available for language '%s'. Using "
 "'english' instead."
-msgstr "תרגמון קשרי־משפחה לא זמין בשפה ה'%s'.במקום זאת יעשה שימוש ב'אנגלית'."
+msgstr "מתרגם קשרי־משפחה לא זמין בשפה ה'%s'.במקום זאת יעשה שימוש ב'אנגלית'."
 
 #: ../gramps/gen/utils/alive.py:153 ../gramps/plugins/importer/importcsv.py:279
 msgid "death date"
@@ -10561,7 +10561,7 @@ msgstr "תאריך פטירה של צאצא"
 #: ../gramps/gen/utils/alive.py:452
 #, python-format
 msgid "Database error: loop in %s's descendants"
-msgstr "שגיאת מסד־נתונים: לולאה ב־%s's צאצאים"
+msgstr "שגיאת מסד־נתונים: לולאה בצאצאים של %s"
 
 #: ../gramps/gen/utils/alive.py:487 ../gramps/gen/utils/alive.py:558
 msgid "ancestor birth date"
@@ -11471,7 +11471,7 @@ msgstr "הפיכת %s לפעיל"
 #, python-format
 msgctxt "the object"
 msgid "Create Filter from %s selected..."
-msgstr "ייצירת מסננן מה%s שנבחר..."
+msgstr "יצירת מסנן מה%s שנבחר..."
 
 #: ../gramps/gui/columnorder.py:94
 #, python-format
@@ -11949,7 +11949,7 @@ msgstr "איטמוט תסדיר מקום"
 
 #: ../gramps/gui/configure.py:1434
 msgid "Enables automatic place title generation using specified format."
-msgstr "לאפשר איטמוט חילול כותרת מקום תוך שימוש בתסדיר מסויים."
+msgstr "לאפשר איטמוט חילול כותרת מקום תוך שימוש בתסדיר מוגדר."
 
 #: ../gramps/gui/configure.py:1511
 msgid "Custom name display options are unique to each family tree."
@@ -12026,7 +12026,7 @@ msgstr "שם ומזהה האדם הפעיל"
 #: ../gramps/gui/configure.py:1639
 #: ../gramps/plugins/textreport/indivcomplete.py:395
 msgid "Relationship to home person"
-msgstr "קשר־משפחה לאדם הבית"
+msgstr "קשר־משפחתי לאדם הבית"
 
 #: ../gramps/gui/configure.py:1650
 msgid "Status bar"
@@ -12399,7 +12399,7 @@ msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
 msgstr ""
-"בפעולת ייבוא תג שצויין יתווסף לכל הרשומות.\n"
+"בפעולת ייבוא תג שצוין יתווסף לכל הרשומות.\n"
 "נא לנקות הגדרת ערכי ברירת מחדל."
 
 #: ../gramps/gui/configure.py:2406
@@ -12663,8 +12663,8 @@ msgid ""
 msgstr ""
 "סוג קובץ '%s' לא מוכר.\n"
 "\n"
-"סוגי קבצים מותרים הם: מסד־נתונים גרמפס, חבילת גרמפס, ג'דקום, גרמפס XML "
-"ואחרים."
+"סוגי קבצים מותרים הם: מסד־נתונים גרמפס, חבילת גרמפס, ג׳דקום/GEDCOM, גרמפס "
+"XML ואחרים."
 
 #: ../gramps/gui/dbloader.py:489 ../gramps/gui/dbloader.py:497
 #: ../gramps/plugins/webreport/download.py:182
@@ -12795,9 +12795,9 @@ msgid ""
 "the database and you break the lock, you may corrupt the database."
 msgstr ""
 "גרמפס חושב שמישהו אחר עורך כעת, באופן פעיל, את מסד־הנתונים. לא ניתן לערוך את "
-"מסד־הנתונים כשהוא נעול. במידה ואף אחד אחר לא עורך את מסד־הנתונים כעת, ניתן "
-"לבטל בבטחה את הנעילה. עם זאת, אם מישהו אחר אכן עורך את מסד־הנתונים והנעילה "
-"תבוטל, מסד־הנתונים עלול להפגם."
+"מסד־הנתונים כשהוא נעול. אם אף אחד אחר לא עורך את מסד־הנתונים כעת, ניתן לבטל "
+"בבטחה את הנעילה. עם זאת, אם מישהו אחר אכן עורך את מסד־הנתונים והנעילה תבוטל, "
+"מסד־הנתונים עלול להיפגע."
 
 #: ../gramps/gui/dbman.py:549
 msgid "Break lock"
@@ -13471,7 +13471,7 @@ msgstr "הסרת האירוע המשפחתי שנבחר"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:67
 msgid "Edit the selected family event or edit person"
-msgstr "עריכת האירוע משפחתי שנבחר או האדם"
+msgstr "עריכת האירוע המשפחתי שנבחר או האדם"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:68
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:60
