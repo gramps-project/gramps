@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
 "PO-Revision-Date: 2024-03-12 09:41+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -5499,7 +5499,7 @@ msgstr "איתור אנשים שהם צאצאים של כל אחד שתואם ל
 
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:49
 msgid "Duplicated ancestors of <person>"
-msgstr "אבות קדמונים כפולים של <אדם>"
+msgstr "אבות קדמונים משוכפלים של <אדם>"
 
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:52
 msgid "Matches people that are ancestors twice or more of a specified person"
@@ -5767,7 +5767,7 @@ msgstr "אנשים בעלי שם שתואם ל<מלל>"
 msgid ""
 "Matches people's names containing a substring or matching a regular "
 "expression"
-msgstr "איתור שמות אנשים שמכילים מחרוזת משנה או שתואמים לביטוי סדיר"
+msgstr "איתור שמות אנשים שמכילים מחרוזת משנה או תואמים לביטוי סדיר"
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:48
 msgid "Relationship path between <persons>"
@@ -9642,7 +9642,7 @@ msgstr "גודל הערה"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:317
 msgid "The size of note text, in points."
-msgstr "גודל ההערה בנקודות."
+msgstr "גודל אותיות ההערה בנקודות."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:1160
 msgid "PDF (Ghostscript)"
@@ -9939,7 +9939,7 @@ msgstr "מלל זה יתווסף לאילן־היוחסין."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:309
 msgid "The size of note text."
-msgstr "גודל מלל ההערה."
+msgstr "גודל אותיות ההערה."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:833
 msgid "PDF"
@@ -11199,7 +11199,7 @@ msgstr "גאלית"
 
 #: ../gramps/gen/utils/win32locale.py:64
 msgid "Galician"
-msgstr "גליצאית"
+msgstr "גליציאנית"
 
 #: ../gramps/gen/utils/win32locale.py:65
 msgid "Hebrew"
@@ -12627,7 +12627,7 @@ msgstr "כל הקבצים"
 
 #: ../gramps/gui/dbloader.py:318
 msgid "Automatically detected"
-msgstr "זוהי אוטומטי"
+msgstr "זיהוי אוטומטי"
 
 #: ../gramps/gui/dbloader.py:327
 msgid "Select file _type:"
