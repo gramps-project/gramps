@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
 "PO-Revision-Date: 2024-03-12 09:56+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -14552,7 +14552,7 @@ msgstr "עורך_שמות"
 #: ../gramps/gui/editors/editname.py:184
 #: ../gramps/gui/editors/editperson.py:342
 msgid "Call name must be the given name that is normally used."
-msgstr "'שם פניה' חייב להיות שמו הפרטי של אדם, בו הוא משתמש באוםן סדיר."
+msgstr "'שם פנייה' חייב להיות שמו הפרטי של אדם, בו הוא משתמש באופן סדיר."
 
 #: ../gramps/gui/editors/editname.py:343
 msgid "New Name"
@@ -14606,7 +14606,7 @@ msgstr "עריכת_מידע_הערות"
 #: ../gramps/gui/editors/editnote.py:175
 #, python-format
 msgid "Note: %(id)s - %(context)s"
-msgstr "הערה: %(id)s - %(context)s"
+msgstr "הערה: %(id)s‏ - %(context)s"
 
 #: ../gramps/gui/editors/editnote.py:180
 #: ../gramps/plugins/webreport/basepage.py:803
@@ -15437,7 +15437,7 @@ msgstr "משתתפים"
 #: ../gramps/plugins/view/familyview.py:85
 #: ../gramps/plugins/webreport/person.py:1575
 msgid "Relationship"
-msgstr "קשר־משפחה"
+msgstr "קשר־משפחתי"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:109
 msgid "any"
@@ -15716,8 +15716,8 @@ msgid ""
 "treated according to the currently selected option. No further dialogs will "
 "be presented for any missing media files."
 msgstr ""
-"סימון כפתור־רדיו זו, יגרום לכך שכל קבצי המדיה שחסרים, יטופלו באופן אוטומטי "
-"בהתאם לאפשרות הנוכחית שנבחרה. לא יוצגו תיבות דו־שיח נוספות עבור קבצי מדיה "
+"סימון כפתור־רדיו זה, יגרום לכך שכל קובצי המדיה שחסרים, יטופלו באופן אוטומטי "
+"בהתאם לאפשרות הנוכחית שנבחרה. לא יוצגו תיבות דו־שיח נוספות עבור קובצי מדיה "
 "חסרים."
 
 #: ../gramps/gui/glade/dialog.glade:422
