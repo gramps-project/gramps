@@ -89,6 +89,7 @@ from gramps.gen.plug.menu import (
     MediaOption,
     DestinationOption,
 )
+from gramps.gen.plug import BasePluginManager
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
@@ -127,6 +128,15 @@ from gramps.plugins.webreport.introduction import IntroductionPage
 from gramps.plugins.webreport.addressbook import AddressBookPage
 from gramps.plugins.webreport.addressbooklist import AddressBookListPage
 from gramps.plugins.webreport.calendar import CalendarPage
+from gramps.plugins.webreport.heatmap import HeatmapPage
+from gramps.plugins.webreport.multiselect import (
+    MultiSelectEvents,
+    HeatmapEventsScrolled,
+    MultiSelectSurnames,
+    HeatmapSurnamesScrolled,
+    MultiSelectTags,
+    HeatmapTagsScrolled,
+)
 
 from gramps.plugins.webreport.common import (
     get_gendex_data,
@@ -249,6 +259,7 @@ class NavWebReport(Report):
         self.use_contact = self.opts["contactnote"] or self.opts["contactimg"]
         self.inc_stats = self.opts["inc_stats"]
         self.inc_updates = self.opts["updates"]
+        self.inc_heatmaps = self.opts["heatmaps"]
         self.create_unused_media = self.opts["unused"]
 
         # Do we need to include this in a CMS?
@@ -267,6 +278,9 @@ class NavWebReport(Report):
 
         # Do we need to include news and updates page?
         self.inc_updates = self.options["updates"]
+
+        # Do we need to include heatmap pages?
+        self.inc_heatmaps = self.options["heatmaps"]
 
         # either include the gender graphics or not?
         self.ancestortree = self.options["ancestortree"]
@@ -586,6 +600,10 @@ class NavWebReport(Report):
             # build classes Updates
             if self.inc_updates:
                 self.updates_preview_page()
+
+            # build Heatmaps
+            if self.inc_heatmaps:
+                self.heatmap_pages(self.filter.get_name(self.rlocale))
 
         # copy all of the necessary files
         self.copy_narrated_files()
@@ -1444,6 +1462,12 @@ class NavWebReport(Report):
         with self.user.progress(pgr_title, _("Creating updates page..."), 1):
             UpdatesPage(self, self.the_lang, self.the_title)
 
+    def heatmap_pages(self, filter):
+        """
+        creates the statistics preview page
+        """
+        HeatmapPage(self, self.the_lang, self.the_title, filter)
+
     def addressbook_pages(self, ind_list):
         """
         Create a webpage with a list of address availability for each person
@@ -2019,6 +2043,7 @@ class NavWebOptions(MenuReportOptions):
         self.__css = None
         self.__gallery = None
         self.__updates = None
+        self.__heatmaps = None
         self.__maxdays = None
         self.__maxupdates = None
         self.__unused = None
@@ -2068,6 +2093,7 @@ class NavWebOptions(MenuReportOptions):
         self.__add_advanced_options(menu)
         self.__add_advanced_options_2(menu)
         self.__add_place_map_options(menu)
+        self.__add_heatmap_options(menu)
         self.__add_others_options(menu)
         self.__add_translations(menu)
         self.__add_calendar_options(menu)
@@ -3176,6 +3202,45 @@ class NavWebOptions(MenuReportOptions):
             )
         )
         menu.add_option(category_name, "after_year", self.__after_year)
+
+    def __add_heatmap_options(self, menu):
+        """
+        Options on the "Heatmap Options" tab.
+        """
+        pmgr = BasePluginManager.get_instance()
+        pmgr.register_option(MultiSelectEvents, HeatmapEventsScrolled)
+        pmgr.register_option(MultiSelectSurnames, HeatmapSurnamesScrolled)
+        pmgr.register_option(MultiSelectTags, HeatmapTagsScrolled)
+
+        category_name = _("HeatMap Options")
+        addopt = partial(menu.add_option, category_name)
+
+        self.__heatmaps = BooleanOption(_("Include heatmap pages"), True)
+        self.__heatmaps.set_help(_("Whether to include heatmap pages for events"))
+        addopt("heatmaps", self.__heatmaps)
+
+        # -------------------
+        # HeatMap options
+        # -------------------
+        radius = NumberOption(_("Point size"), 8, 1, 50)
+        radius.set_help(_("Set the size of the heatmap points.\nDefault: 8"))
+        menu.add_option(category_name, "radius", radius)
+
+        blur = NumberOption(_("Blur"), 15, 1, 50)
+        blur.set_help(_("Set the blur size.\nDefault: 15"))
+        menu.add_option(category_name, "blur", blur)
+
+        zoom = NumberOption(_("Zoom"), 4, 1, 15)
+        menu.add_option(category_name, "start_zoom", zoom)
+
+        selected_evts = MultiSelectEvents(_("Events"), [])
+        menu.add_option(category_name, "selected_evts", selected_evts)
+
+        selected_surnames = MultiSelectSurnames(_("Surnames"), [])
+        menu.add_option(category_name, "selected_surnames", selected_surnames)
+
+        selected_tags = MultiSelectTags(_("Tags"), [])
+        menu.add_option(category_name, "selected_tags", selected_tags)
 
     def __usecal_changed(self):
         """

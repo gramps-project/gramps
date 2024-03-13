@@ -888,6 +888,7 @@ class PersonPages(BasePage):
         number_markers = len(place_lat_long)
         if number_markers > 1:
             for latitude, longitude, placetitle, handle, event in place_lat_long:
+                latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
                 xwidth.append(latitude)
                 yheight.append(longitude)
             xwidth.sort()
@@ -903,9 +904,7 @@ class PersonPages(BasePage):
             miny, maxy = Decimal(miny), Decimal(maxy)
             midy_ = str(Decimal((miny + maxy) / 2))
 
-            midx_, midy_ = conv_lat_lon(
-                midx_, midy_, coord_formats[self.report.options["coord_format"]]
-            )
+            midx_, midy_ = conv_lat_lon(midx_, midy_, "D.D8")
 
             # get the integer span of latitude and longitude
             dummy_spanx = int(maxx - minx)
@@ -1204,9 +1203,26 @@ class PersonPages(BasePage):
                 # we are using OpenStreetMap
                 elif self.mapservice == "OpenStreetMap":
                     if midy_ is None:
-                        jsc += OSM_MARKERS % (tracelife, longitude, latitude, 10)
+                        latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
+                        jsc += OSM_MARKERS % (
+                            "markers",
+                            tracelife,
+                            longitude,
+                            latitude,
+                            10,
+                            0,
+                            0,
+                        )
                     else:
-                        jsc += OSM_MARKERS % (tracelife, midy_, midx_, zoomlevel)
+                        jsc += OSM_MARKERS % (
+                            "markers",
+                            tracelife,
+                            midy_,
+                            midx_,
+                            zoomlevel,
+                            0,
+                            0,
+                        )
                     jsc += OPENLAYER
                 # we are using StamenMap
                 elif self.mapservice == "StamenMap":

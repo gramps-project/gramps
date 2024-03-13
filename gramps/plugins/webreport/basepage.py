@@ -256,7 +256,7 @@ class BasePage:
     def sort_by_event_date(self, handle):
         """Used to sort events by date."""
         event = self.r_db.get_event_from_handle(handle.ref)
-        date = event.get_date_object()
+        date = event.get_date_object().to_calendar("gregorian")
         # we need to remove abt, bef, aft, ...
         if date.get_year() > 0:
             if len(str(date).split(" ")) > 1:
@@ -2057,6 +2057,7 @@ class BasePage:
             ("families", self._("Families"), self.report.inc_families),
             ("events", self._("Events"), self.report.inc_events),
             ("places", self._("Places"), self.report.inc_places),
+            ("heatmaps", self._("Heatmaps"), self.report.inc_heatmaps),
             ("sources", self._("Sources"), self.report.inc_sources),
             ("repositories", self._("Repositories"), inc_repos),
             (
@@ -2129,6 +2130,9 @@ class BasePage:
                             check_cs = True
                     elif nav_text == self._("Places"):
                         if "plc" in self.report.cur_fname:
+                            check_cs = True
+                    elif nav_text == self._("Heatmap"):
+                        if "heat" in self.report.cur_fname:
                             check_cs = True
                     elif nav_text == self._("Events"):
                         if "evt" in self.report.cur_fname:
@@ -3311,6 +3315,26 @@ class BasePage:
                 document_link += Html("br") + (Html("span", name, inline=True))
             thumbnail += document_link
         return thumbnail
+
+    def heatmap_link(self, name, uplink=False):
+        """
+        Returns a hyperlink for heatmap link
+
+        @param: name   -- repository title
+        @param: uplink -- If True, then "../../../" is inserted in front of
+                          the result.
+        """
+        url = self.report.build_url_fname_html(name, "heat", uplink)
+
+        hyper = Html(
+            "a",
+            html_escape(self._(name)),
+            href=url.replace(" ", ""),
+            title=html_escape(self._(name)),
+        )
+
+        # return hyperlink to its callers
+        return hyper
 
     def place_link(self, handle, name, gid=None, uplink=False):
         """
