@@ -443,13 +443,13 @@ class HourGlassOptions(MenuReportOptions):
         pid.set_help(_("The Center person for the graph"))
         menu.add_option(category_name, "pid", pid)
 
-        max_gen_d = NumberOption(_("Max Descendant Generations"), 10, 1, 15)
+        max_gen_d = NumberOption(_("Max Descendant Generations"), 10, 0, 15)
         max_gen_d.set_help(
             _("The number of generations of descendants to " "include in the graph")
         )
         menu.add_option(category_name, "maxdescend", max_gen_d)
 
-        max_gen_a = NumberOption(_("Max Ancestor Generations"), 10, 1, 15)
+        max_gen_a = NumberOption(_("Max Ancestor Generations"), 10, 0, 15)
         max_gen_a.set_help(
             _("The number of generations of ancestors to " "include in the graph")
         )
