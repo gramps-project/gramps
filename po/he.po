@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-03-13 12:02+0000\n"
+"PO-Revision-Date: 2024-03-15 09:02+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -12152,7 +12152,7 @@ msgstr "הצגת מידע שימושי באתחול גרמפס."
 
 #: ../gramps/gui/configure.py:1983
 msgid "Remember last Family Tree"
-msgstr "לזכור את אילן־היוחסין האחרון שהיה בשימוש"
+msgstr "זכירת אילן־יוחסין אחרון שהיה בשימוש"
 
 #: ../gramps/gui/configure.py:1989
 msgid ""
@@ -12163,15 +12163,15 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1997
 msgid "Remember last view displayed"
-msgstr "לזכור את המצג האחרון שהיה בשימוש"
+msgstr "זכירת מצג אחרון שהיה בשימוש"
 
 #: ../gramps/gui/configure.py:2002
 msgid "Remember last view displayed and open it next time."
-msgstr "לזכור את המצג האחרון ולפתוח אותו בפעם הבאה."
+msgstr "זכירת מצג אחרון ופתיחתו בפעם הבאה."
 
 #: ../gramps/gui/configure.py:2007
 msgid "Enable spell checker"
-msgstr "לאפשר בדיקת איות"
+msgstr "אפשור בדיקת איות"
 
 #: ../gramps/gui/configure.py:2012
 msgid "Enable the spelling checker for notes."
