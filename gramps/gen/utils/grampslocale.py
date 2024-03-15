@@ -677,7 +677,7 @@ class GrampsLocale:
 
         Assumes path/filename = path/locale/LANG/LC_MESSAGES/addon.mo.
         """
-        gramps_translator = self._get_translation()
+        gramps_translator = self._get_translation(languages=languages)
 
         path = self.localedir
         if filename:
