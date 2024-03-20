@@ -1285,7 +1285,7 @@ class GeoGraphyView(OsmGps, NavigationView):
                 # parent[1] : state
                 # parent[2] : town
                 # parent[3] : name
-                value = PlaceSelection.untag_text(parent[2], 1)
+                value = self.select_fct.untag_text(parent[2], 1)
                 plname = PlaceName()
                 plname.set_value(value)
                 handle = self.place_exists(value)
@@ -1294,7 +1294,7 @@ class GeoGraphyView(OsmGps, NavigationView):
                     placeref = PlaceRef()
                     placeref.ref = handle
                     new_place.add_placeref(placeref)
-                    value = PlaceSelection.untag_text(parent[3], 1)
+                    value = self.select_fct.untag_text(parent[3], 1)
                     plname.set_value(value)
                 new_place.set_name(plname)
             else:
