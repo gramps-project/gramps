@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-03-15 09:02+0000\n"
+"PO-Revision-Date: 2024-03-20 00:01+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -302,9 +302,10 @@ msgid ""
 "the level of confidence in a date and even choose between seven different "
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
-"‎‏‏‏‏<b>עבודה עם תאריכים<br/></b>ניתן לקבוע טווח תאריכים תוך שימוש בתסדיר&lsquo;"
-"בין 4 בינואר 2000 ל־20 במרץ 2003&rsquo;. בעזרת הלחצן שלצד שדה התאריך בעורך "
-"האירועים, ניתן גם לציין רמת ודאות תאריך, וגם לבחור בין שבעה לוחות־שנה שונים."
+"‎‏‏‏‏<b>עבודה עם תאריכים</b><br/>ניתן לקבוע לאירוע טווח תאריכים תוך שימוש "
+"בתסדיר &lsquo;בין 4 בינואר 2000 ל־20 במרץ 2003&rsquo;. ניתן גם לציין רמת "
+"ודאות לתאריך, ולבחור בין שבעה לוחות־שנה שונים. כל זאת נעשה באמצעות הלחצן "
+"שלצד שדה התאריך בעורך האירועים."
 
 #: ../data/tips.xml:6
 msgid ""
@@ -390,10 +391,10 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>איתור אנשים<br/></b>כל שם משפחה במצג 'אנשים' מופיע פעם אחת בלבד. בהקשה על "
-"החץ משמאל לשם, הרשימה תורחב וכל האנשים בשם משפחה זה יוצגו. לאיתור שם משפחה "
-"מרשימה ארוכה, נא להתחיל להקליד את שם המשפחה (לא שם פרטי) . הסמן ימוקם על שם "
-"המשפחה הראשון ברשימה שתואם את האותיות שהוזנו."
+"<b>איתור אנשים<br/></b>כל שם משפחה במצג 'אנשים' מופיע פעם אחת בלבד. עם הקשה "
+"על החץ שמשמאל לשם, הרשימה תורחב וכול האנשים עם שם משפחה זה יוצגו. לאיתור שם "
+"משפחה מתוך רשימה ארוכה, אפשר להתחיל להקליד את שם המשפחה (לא שם פרטי) . הסמן "
+"ימוקם על שם המשפחה הראשון ברשימה שתואם את האותיות שהוזנו."
 
 #: ../data/tips.xml:20
 msgid ""
@@ -5278,7 +5279,7 @@ msgstr "אנשים עם הערות המכילות <מלל>"
 
 #: ../gramps/gen/filters/rules/person/_hasnoteregexp.py:44
 msgid "Matches people whose notes contain text matching a regular expression"
-msgstr "איתור אנשים שההערות שלהם מכילות מלל שתואם לביטוי סדיר"
+msgstr "איתור אנשים להם הערות שמכילות מלל שתואם לביטוי סדיר"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:47
 msgid "People who are neither male nor female"
@@ -10412,7 +10413,7 @@ msgstr "זוגאי לשעבר"
 #: ../gramps/gen/relationship.py:2475
 msgctxt "male,unmarried"
 msgid "partner"
-msgstr "בן זוג"
+msgstr "זוגאי"
 
 #: ../gramps/gen/relationship.py:2477
 msgctxt "female,unmarried"
@@ -10422,12 +10423,12 @@ msgstr "בת זוג"
 #: ../gramps/gen/relationship.py:2479
 msgctxt "gender unknown,unmarried"
 msgid "partner"
-msgstr "בן זוג"
+msgstr "זוגאי"
 
 #: ../gramps/gen/relationship.py:2482
 msgctxt "male,unmarried"
 msgid "ex-partner"
-msgstr "בן זוג לשעבר"
+msgstr "זוגאי לשעבר"
 
 #: ../gramps/gen/relationship.py:2484
 msgctxt "female,unmarried"
@@ -10437,12 +10438,12 @@ msgstr "בת זוג לשעבר"
 #: ../gramps/gen/relationship.py:2486
 msgctxt "gender unknown,unmarried"
 msgid "ex-partner"
-msgstr "בן זוג לשעבר"
+msgstr "זוגאי לשעבר"
 
 #: ../gramps/gen/relationship.py:2489
 msgctxt "male,civil union"
 msgid "partner"
-msgstr "בן זוג"
+msgstr "זוגאי"
 
 #: ../gramps/gen/relationship.py:2491
 msgctxt "female,civil union"
@@ -10452,12 +10453,12 @@ msgstr "בת זוג"
 #: ../gramps/gen/relationship.py:2493
 msgctxt "gender unknown,civil union"
 msgid "partner"
-msgstr "בן זוג"
+msgstr "זוגאי"
 
 #: ../gramps/gen/relationship.py:2496
 msgctxt "male,civil union"
 msgid "former partner"
-msgstr "בן זוג לשעבר"
+msgstr "זוגאי לשעבר"
 
 #: ../gramps/gen/relationship.py:2498
 msgctxt "female,civil union"
@@ -10467,12 +10468,12 @@ msgstr "בת זוג לשעבר"
 #: ../gramps/gen/relationship.py:2500
 msgctxt "gender unknown,civil union"
 msgid "former partner"
-msgstr "בן זוג לשעבר"
+msgstr "זוגאי לשעבר"
 
 #: ../gramps/gen/relationship.py:2503
 msgctxt "male,unknown relation"
 msgid "partner"
-msgstr "בן זוג"
+msgstr "זוגאי"
 
 #: ../gramps/gen/relationship.py:2505
 msgctxt "female,unknown relation"
@@ -10482,22 +10483,22 @@ msgstr "בת זוג"
 #: ../gramps/gen/relationship.py:2507
 msgctxt "gender unknown,unknown relation"
 msgid "partner"
-msgstr "בן זוג"
+msgstr "זוגאי"
 
 #: ../gramps/gen/relationship.py:2512
 msgctxt "male,unknown relation"
 msgid "former partner"
-msgstr "בן זוג לשעבר"
+msgstr "זוגאי לשעבר"
 
 #: ../gramps/gen/relationship.py:2514
 msgctxt "female,unknown relation"
 msgid "former partner"
-msgstr "בן זוג לשעבר"
+msgstr "זוגאי לשעבר"
 
 #: ../gramps/gen/relationship.py:2516
 msgctxt "gender unknown,unknown relation"
 msgid "former partner"
-msgstr "בן זוג לשעבר"
+msgstr "זוגאי לשעבר"
 
 #: ../gramps/gen/relationship.py:2623
 #, python-format
@@ -12525,7 +12526,7 @@ msgstr "סמלי חקר־יוחסין"
 #: ../gramps/gui/configure.py:2694 ../gramps/gui/glade/editfamily.glade:144
 #: ../gramps/gui/glade/editfamily.glade:398
 msgid "Death:"
-msgstr "מוות:"
+msgstr "פטירה:"
 
 #: ../gramps/gui/configure.py:2778
 #: ../gramps/plugins/quickview/all_relations.py:345
@@ -12535,7 +12536,7 @@ msgstr "מוות:"
 #: ../gramps/plugins/webreport/person.py:435
 #: ../gramps/plugins/webreport/surname.py:162
 msgid "Partner"
-msgstr "בן זוג"
+msgstr "זוגאי"
 
 #: ../gramps/gui/configure.py:2781
 msgid "Killed"
@@ -22351,7 +22352,7 @@ msgstr "אפשרויות ייצוא כקובץ GeneWeb"
 
 #: ../gramps/plugins/export/export.gpr.py:126
 msgid "Gramps XML Package (family tree and media)"
-msgstr "חבילת גרמפס XML (אילן־יוחסין ומדיה)"
+msgstr "גרמפס XML (אילן־יוחסין ומדיה)"
 
 #: ../gramps/plugins/export/export.gpr.py:127
 msgid "Gra_mps XML Package (family tree and media)"
@@ -22361,7 +22362,7 @@ msgstr "חבילת גרא_מפס XML (אילן־יוחסין ומדיה)"
 msgid ""
 "Gramps package is an archived XML family tree together with the media object "
 "files."
-msgstr "חבילת גרמפס היא אילן־יוחסין ב־XML בצירוף קבצי עצמי מדיה."
+msgstr "חבילת גרמפס היא אילן־יוחסין בתסדיר ארכיון XML בצירוף קבצי עצמי מדיה."
 
 #: ../gramps/plugins/export/export.gpr.py:139
 msgid "Gramps package export options"
@@ -23951,7 +23952,7 @@ msgstr "%(count)d. %(relation)s: "
 #: ../gramps/plugins/gramplet/relativegramplet.py:101
 #, python-format
 msgid "%d. Partner: Not known"
-msgstr "%d. בן זוג: לא ידוע"
+msgstr "%d. זוגאי: לא ידוע"
 
 #: ../gramps/plugins/gramplet/relativegramplet.py:116
 msgid "Parents:"
@@ -24172,8 +24173,8 @@ msgid ""
 "powerful features.\n"
 "\n"
 msgstr ""
-"גרמפס היא חבילת תוכנה המיועדת לחקר יוחסין. למרות הדמיון לתכנות אחרות מסוגה, "
-"גרמפס מציע תכונות ייחודיות ורבות עוצמה.\n"
+"גרמפס הוא חבילת תוכנה המיועדת לחקר יוחסין. למרות הדמיון לתכנות אחרות מסוגה, "
+"גרמפס מציע תכונות ייחודיות ורבות עצמה.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:125
@@ -25147,15 +25148,15 @@ msgstr "ייבוא נתונים מקובץ GeneWeb"
 
 #: ../gramps/plugins/importer/import.gpr.py:94
 msgid "Gramps package (portable XML)"
-msgstr "חבילת גרמפס (XML נייד)"
+msgstr "חבילת גרמפס (XML מתנייד)"
 
 #: ../gramps/plugins/importer/import.gpr.py:96
 msgid ""
 "Import data from a Gramps package (an archived XML Family Tree together with "
 "the media object files)."
 msgstr ""
-"ייבוא נתונים מחבילת 'גרמפס' (אילן־יוחסין מאוחסן בארכיון בתסדיר XML, בלווית "
-"כל קבצי עצמי המדיה)."
+"ייבוא נתונים מחבילת 'גרמפס' (אילן־יוחסין מאוחסן בארכיון בתסדיר XML, בלוית כל "
+"קובצי עצמי המדיה)."
 
 #: ../gramps/plugins/importer/import.gpr.py:115
 msgid "Gramps XML Family Tree"
@@ -32770,7 +32771,7 @@ msgstr "תאריכי קרובים"
 
 #: ../gramps/plugins/textreport/familygroup.py:800
 msgid "Whether to include dates for relatives (father, mother, spouse)."
-msgstr "האם לכלול תאריכים לקרובים (אב, אם, בן זוג)."
+msgstr "האם לכלול תאריכים לקרובים (אב, אם, זוגאי)."
 
 #: ../gramps/plugins/textreport/familygroup.py:804
 msgid "Children Marriages"
@@ -32902,7 +32903,7 @@ msgstr "בדיקה באם נדרש מקטע נפרד."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1279
 msgid "The style used for the spouse's name."
-msgstr "הסגנון שמשמש לשם בן(ת) הזוג."
+msgstr "הסגנון שמשמש לשם הזוגאי."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1298
 #: ../gramps/plugins/textreport/notelinkreport.py:227
@@ -33764,8 +33765,8 @@ msgstr "%(person)s הסרה ממשפחת %(family)s\n"
 #, python-brace-format
 msgid "{quantity} broken spouse/family link was fixed\n"
 msgid_plural "{quantity} broken spouse/family links were fixed\n"
-msgstr[0] "קישור בן/ת זוג/משפחה פגום {quantity} תוקן.\n"
-msgstr[1] "{quantity} קישורי בן/ת זוג/משפחה פגומים תוקנו.\n"
+msgstr[0] "קישור זוגאי/משפחה פגום {quantity} תוקן.\n"
+msgstr[1] "{quantity} קישורי זוגאים/משפחות פגומים תוקנו.\n"
 
 #: ../gramps/plugins/tool/check.py:2748 ../gramps/plugins/tool/check.py:2776
 msgid "Non existing person"
