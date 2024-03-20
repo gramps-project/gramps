@@ -13,13 +13,14 @@
 # Kamil K <kamil030201@gmail.com>, 2022.
 # Jurek <jurrer1234@gmail.com>, 2023, 2024.
 # Milan <mobrcian@hotmail.com>, 2023.
+# Michał Moczulski <michalmoczulski1a@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-02-14 00:02+0000\n"
-"Last-Translator: WaldiS <sto@tutanota.de>\n"
+"PO-Revision-Date: 2024-03-20 00:01+0000\n"
+"Last-Translator: Michał Moczulski <michalmoczulski1a@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/pl/>\n"
 "Language: pl\n"
@@ -28,7 +29,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ~/.poedit/a\n"
 
@@ -38127,7 +38128,7 @@ msgstr "Konstruowanie listy innych obiektów..."
 #: ../gramps/plugins/webreport/narrativeweb.py:918
 #, python-format
 msgid "Family of %(husband)s and %(spouse)s"
-msgstr "Rodzina %(husband)s i%(spouse)s"
+msgstr "Rodzina %(husband)s i %(spouse)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:925
 #: ../gramps/plugins/webreport/narrativeweb.py:929
