@@ -10,7 +10,7 @@
 # Espen Berg <espenbe@gmail.com>, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2015, 2016.
 # Allan Nordhøy <epost@anotheragency.no>, 2021, 2022, 2023.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
-# Mihle <MihleGaming@gmail.com>, 2021, 2022, 2023.
+# Mihle <MihleGaming@gmail.com>, 2021, 2022, 2023, 2024.
 # Para <ahh-produktivitet@tutanota.com>, 2022, 2023, 2024.
 # Mikal Thunold-Olsen <mikal@thunold-olsen.no>, 2023, 2024.
 msgid ""
@@ -18,8 +18,8 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 22:07+0000\n"
-"PO-Revision-Date: 2024-02-14 00:02+0000\n"
-"Last-Translator: Para <ahh-produktivitet@tutanota.com>\n"
+"PO-Revision-Date: 2024-03-18 10:01+0000\n"
+"Last-Translator: Mihle <MihleGaming@gmail.com>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/nb_NO/>\n"
 "Language: nb\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -37217,7 +37217,7 @@ msgstr "Slå sammen hele denne gruppen"
 
 #: ../gramps/plugins/view/placetreeview.py:86
 msgid "Expand this Entire Group"
-msgstr "Utvide dette denne gruppen"
+msgstr "Utvide hele denne gruppen"
 
 #: ../gramps/plugins/view/relview.py:148 ../gramps/plugins/view/view.gpr.py:119
 #: ../gramps/plugins/view/view.gpr.py:127
