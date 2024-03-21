@@ -182,4 +182,4 @@ def tick_cross(value):
     """
     Return a tick for True or a cross for False
     """
-    return "\u2714" if value else "\u2718"
+    return "\N{CHECK MARK}" if value else "\N{CROSS MARK}"
