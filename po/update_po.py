@@ -370,7 +370,7 @@ def extract_xml():
         "../data/holidays.xml",
         "../data/tips.xml",
         "../data/org.gramps_project.Gramps.xml.in",
-        "../data/org.gramps_project.Gramps.appdata.xml.in",
+        "../data/org.gramps_project.Gramps.metainfo.xml.in",
         "../data/org.gramps_project.Gramps.desktop.in",
     ]:
         os.system(

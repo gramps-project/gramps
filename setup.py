@@ -189,7 +189,7 @@ def build_intl(build_cmd):
     merge_files = (
         ("org.gramps_project.Gramps.desktop", "share/applications", "--desktop"),
         ("org.gramps_project.Gramps.xml", "share/mime/packages", "--xml"),
-        ("org.gramps_project.Gramps.appdata.xml", "share/metainfo", "--xml"),
+        ("org.gramps_project.Gramps.metainfo.xml", "share/metainfo", "--xml"),
     )
 
     for filename, target, option in merge_files:
