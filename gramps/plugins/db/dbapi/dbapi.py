@@ -1103,7 +1103,7 @@ class DBAPI(DbGeneric):
         """
         Create secondary columns.
         """
-        LOG.info("Creating secondary columns...")
+        LOG.debug("Creating secondary columns...")
         for cls in (
             Person,
             Family,
