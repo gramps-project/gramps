@@ -92,13 +92,12 @@ The following packages are optional:
  https://gramps-project.org/wiki/index.php?title=Gramps_5.1_Wiki_Manual_-_Manage_Family_Trees#Archiving_a_Family_Tree
  Only rcs is needed, NO python bindings are required.
 
-* **PIL**
+* **Pillow**
 
- Python Image Library (PILLOW) is needed to crop
+ The friendly Python Image Library fork is needed to crop
  images and also to convert non-JPG images to
  JPG so as to include them in LaTeX output.
- (For Python3 a different source may be needed,
- python-imaging or python-pillow or python3-pillow).
+ The package name is usually python-pillow or python3-pillow.
 
 * **GExiv2**
 
@@ -135,7 +134,7 @@ For more information about Addons see:  https://gramps-project.org/wiki/index.ph
 
 Prerequistes required for the following Addons to work:
 
-* **Family Sheet** - Requires: PIL (Python Imaging Library) or PILLOW.
+* **Family Sheet** - Requires: Pillow
 ( https://gramps-project.org/wiki/index.php?title=Family_Sheet )
 
 * **Graph View** - Requires: PyGoocanvas and Goocanvas (python-pygoocanvas, gir1.2-goocanvas-2.0).
