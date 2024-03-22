@@ -315,7 +315,7 @@ class DetAncestorReport(Report):
         name = self._nd.display(person)
         if not name:
             name = self._("Unknown")
-        mark = utils.get_person_mark(self._db, person)
+        mark = utils.get_person_mark(self._db, person, name)
 
         self.doc.start_bold()
         self.doc.write_text(name, mark)
@@ -559,14 +559,14 @@ class DetAncestorReport(Report):
             if mother_handle:
                 mother = self._db.get_person_from_handle(mother_handle)
                 mother_name = self._nd.display_name(mother.get_primary_name())
-                mother_mark = utils.get_person_mark(self._db, mother)
+                mother_mark = utils.get_person_mark(self._db, mother, mother_name)
             else:
                 mother_name = ""
                 mother_mark = ""
             if father_handle:
                 father = self._db.get_person_from_handle(father_handle)
                 father_name = self._nd.display_name(father.get_primary_name())
-                father_mark = utils.get_person_mark(self._db, father)
+                father_mark = utils.get_person_mark(self._db, father, father_name)
             else:
                 father_name = ""
                 father_mark = ""
@@ -589,7 +589,8 @@ class DetAncestorReport(Report):
             spouse_handle = utils.find_spouse(person, family)
             if spouse_handle:
                 spouse = self._db.get_person_from_handle(spouse_handle)
-                spouse_mark = utils.get_person_mark(self._db, spouse)
+                spouse_name = self._nd.display_name(spouse.get_primary_name())
+                spouse_mark = utils.get_person_mark(self._db, spouse, spouse_name)
             else:
                 spouse_mark = None
 
@@ -642,7 +643,7 @@ class DetAncestorReport(Report):
             child_name = self._nd.display(child)
             if not child_name:
                 child_name = self._("Unknown")
-            child_mark = utils.get_person_mark(self._db, child)
+            child_mark = utils.get_person_mark(self._db, child, child_name)
 
             if self.childref and self.prev_gen_handles.get(child_handle):
                 value = int(self.prev_gen_handles.get(child_handle))
