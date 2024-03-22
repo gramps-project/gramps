@@ -133,7 +133,7 @@ class Tag(TableObject):
         :returns: True if the Tag is empty
         :rtype: bool
         """
-        return self.__name != ""
+        return not self.__name
 
     def are_equal(self, other):
         """
