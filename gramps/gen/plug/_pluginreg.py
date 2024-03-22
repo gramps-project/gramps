@@ -1431,7 +1431,7 @@ class PluginRegister:
                 if not self.__req.check_plugin(plugin):
                     rmlist.append(ind)
                     continue
-                if not plugin.status == STABLE and self.stable_only:
+                if plugin.status == UNSTABLE and self.stable_only:
                     rmlist.append(ind)
                     continue
                 if (
