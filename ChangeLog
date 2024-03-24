@@ -1,245 +1,350 @@
-2024-02-23  Nick Hall <nick-h@gramps-project.org>
+2024-03-24  Nick Hall <nick-h@gramps-project.org>
 
-	* docs/conf.py, setup.py: Update development status to production
+	* po/gramps.pot: Update gramps.pot
 
-2024-02-23  Nick Hall <nick-h@gramps-project.org>
+2024-03-24  Nick Hall <nick-h@gramps-project.org>
 
-	* po/zh_CN.po: Translated using Weblate (Chinese (Simplified)) Currently translated at 90.9% (6474 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/zh_Hans/
+	* gramps/gui/plug/_windows.py: Fix error when installing an addon
+	that will not be registered Some addons are removed from the plugin registration lists. These
+	include addons that don't meet their prerequisite requirements and
+	also developer tools and unstable addons when not running in
+	developer mode.  In the current design we don't store the installation status of
+	these addons, so this fix just presents an error dialog to the user.  A better long-term solution would be to register the addons, but
+	flag them as inactive.  This way we could easily detect if that they
+	were installed and disable the install button.  Fixes #13233.
 
-2024-02-23  Marco Ciampa <ciampix@posteo.net>
+2024-03-24  Avi Markovitz <avi.markovitz@gmail.com>
 
-	* po/it.po: Translated using Weblate (Italian) Currently translated at 98.3% (7000 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/it/
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
 
-2024-02-22  Nick Hall <nick-h@gramps-project.org>
+2024-03-24  Matti Niemel� <matti.u.niemela@gmail.com>
 
-	* setup.py: Remove the Trove classifier "Natural Language ::
-	German(Austrian)" This is not valid in PyPI.  See: https://pypi.org/classifiers
+	* po/fi.po: Translated using Weblate (Finnish) Currently translated at 99.9% (7112 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fi/
 
-2024-02-19  Nick Hall <nick-h@gramps-project.org>
+2024-03-22  Nick Hall <nick-h@gramps-project.org>
 
-	* gramps/gui/plug/_windows.py: Emit a "plugins-reloaded" signal when
-	a new addon is installed This ensures that the user interface will be updated to include the
-	new addon.  Fixes #13021.
+	* gramps/gen/plug/_pluginreg.py: Allow experimental and beta plugins
+	to be registered Fixes #13232.
 
-2024-02-10  Nick Hall <nick-h@gramps-project.org>
+2024-03-22  Nick Hall <nick-h@gramps-project.org>
 
-	* aio/build.sh, aio/grampsaio64.nsi.template: Fix Windows AIO build
+	* README.md: Tidy up the README file
 
-2024-02-21  Christoph Eder <christoph.eder@phsalzburg.at>
+2024-03-04  Elliott Sales de Andrade <quantum.analyst@gmail.com>
 
-	* po/de_AT.po: Translated using Weblate (German (Austria)) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/de_AT/
+	* gramps/gui/widgets/fanchart.py,
+	gramps/gui/widgets/fanchart2way.py,
+	gramps/gui/widgets/fanchartdesc.py: Fix fan charts on HiDPI screens Most DrawingArea-based widgets are fine, but the fan charts use a
+	backing image surface that is blitted when needed. On HiDPI
+	displays, this image surface is normal size, and thus everything
+	ends up blurry when scaled up.  Instead the backing surface should be scaled to match the display,
+	and also re-created if the display scale changes (e.g., if display
+	settings change, or the window is moved between displays with
+	different settings.)
 
-2024-02-21  Stephan Paternotte <stephan@paternottes.net>
+2024-03-22  Nick Hall <nick-h@gramps-project.org>
 
-	* po/nl.po: Translated using Weblate (Dutch) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/nl/
+	* README.md: Replace PIL with Pillow in the README Issue #10016.
 
-2024-02-21  Luigi Toscano <luigi.toscano@tiscali.it>
+2024-03-22  Nick Hall <nick-h@gramps-project.org>
 
-	* po/it.po: Translated using Weblate (Italian) Currently translated at 98.3% (7000 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/it/
+	* gramps/gen/lib/tag.py: Fix the Tag.is_empty() method The `Tag.is_empty()` method was returning the inverse of the
+	expected value.  Fixes #12579.
 
-2024-02-21  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+2024-03-20  SNoiraud <Serge.Noiraud@free.fr>
 
-	* po/de.po: Translated using Weblate (German) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/de/ Translated using Weblate (German) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/de/
+	* gramps/plugins/lib/maps/geography.py: Cannot create Place with
+	coordinates via Geography Fixes #13228
 
-2024-02-19  Andrey Serbovets <serbovets.translation@gmail.com>
+2024-03-16  Nick Hall <nick-h@gramps-project.org>
 
-	* po/uk.po: Translated using Weblate (Ukrainian) Currently translated at 99.6% (7087 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/uk/
+	* gramps/gen/utils/location.py: Fix place title when place names use
+	open spans The function to determine the latest date for a place had not been
+	updated for open spans resulting in "?" being incorrectly displayed
+	as the place title.  Fixes #13222.
 
-2024-02-19  Milo Ivir <mail@milotype.de>
+2024-03-15  Nick Hall <nick-h@gramps-project.org>
 
-	* po/hr.po: Translated using Weblate (Croatian) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/hr/
+	* gramps/gen/utils/grampslocale.py: Fix the addon translator
+	language for core translations Pass the languages list to the core translator. This gives better
+	translations when creating the addon listings.  Fixes #13221.
 
-2024-02-19  Christoph Eder <christoph.eder@phsalzburg.at>
+2024-03-15  Nick Hall <nick-h@gramps-project.org>
 
-	* po/de.po: Translated using Weblate (German) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/de/
+	* aio/grampsaio64.nsi.template: Update AIO minimum Windows version
+	requirement to 8.1 64-bit The MSYS2 build environment dropped support for Windows 7 and 8.0 on
+	15th Jan 2023.
+	https://www.msys2.org/news/#2023-01-15-dropping-support-for-windows-7-and-80
 
-2024-02-18  Andika Triwidada <andika@gmail.com>
+2024-03-09  Nick Hall <nick-h@gramps-project.org>
 
-	* po/id.po: Translated using Weblate (Indonesian) Currently translated at 3.0% (217 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/id/
+	* gramps/plugins/db/dbapi/dbapi.py: Prevent unwanted output in unit
+	test logs Change info message into a debug message.
 
-2024-02-18  Christoph Eder <christoph.eder@phsalzburg.at>
+2024-03-09  Nick Hall <nick-h@gramps-project.org>
 
-	* po/de_AT.po: Translated using Weblate (German (Austria)) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/de_AT/ Translated using Weblate (German (Austria)) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/de_AT/
+	* gramps/plugins/importer/importgedcom.py,
+	gramps/plugins/importer/importprogen.py: Fix unit tests when run
+	with Python 3.12 When running in command line mode, the Gedcom and ProGen importers
+	were being run before the `gi.require_version` method, causing Gtk
+	4.0 to be incorrectly loaded. This caused some unit tests to fail.  Fixes #13212.
 
-2024-02-18  Juan Saavedra <jcsaaver@gmail.com>
+2024-03-03  GaryGriffin <genealogy@garygriffin.net>
 
-	* po/es.po: Translated using Weblate (Spanish) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/es/
+	* gramps/gui/configure.py: Revert Death fallback symbol from Latin
+	Cross to + Revert the use of Latin Cross as the fallback dead symbol as this is
+	not valid on Mac. Changing to '+' instead of Latin Cross.
 
-2024-02-14  WaldiS <sto@tutanota.de>
+2024-03-03  GaryGriffin <genealogy@garygriffin.net>
+
+	* gramps/gen/utils/requirements.py: Addon Manager Requirements mark
+	symbols on Mac Change the cross mark and check mark symbols used in the Addon
+	Manager Requirements screen to be valid characters on Mac.  Fixes #13194.
+
+2024-03-02  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gui/editors/displaytabs/citationrefmodel.py: Fix display of
+	invalid dates in editor citation tabs Fixes #13192.
+
+2024-03-21  Nick Hall <nick-h@gramps-project.org>
+
+	* po/its/appdata.its, po/its/appdata.loc, po/its/metainfo.its,
+	po/its/metainfo.loc: Include metainfo rather than appdata 'its'
+	files
+
+2024-02-24  Alexander Wilms <Alexander-Wilms@users.noreply.github.com>
+
+	* data/org.gramps_project.Gramps.metainfo.xml.in: Update AppStream
+	MetaInfo file to conform to latest spec
+
+2024-02-25  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gen/filters/rules/_hastextmatchingregexpof.py,
+	gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.p
+	y, gramps/gen/filters/rules/person/_hasgallery.py,
+	gramps/gen/filters/rules/person/_hastextmatchingregexpof.py: Fix
+	filter rules missing the use_case parameter Fixes #13187.
+
+2024-03-10  Andr� Apitzsch <git@apitzsch.eu>
+
+	* data/{org.gramps_project.Gramps.appdata.xml.in =>
+	org.gramps_project.Gramps.metainfo.xml.in}, po/POTFILES.in,
+	po/update_po.py, setup.py: Rename metadata file to follow spec See
+
+	https://www.freedesktop.org/software/appstream/docs/chap-Metadata.html#spec-component-location
+
+2024-03-10  Andr� Apitzsch <git@apitzsch.eu>
+
+	* data/org.gramps_project.Gramps.appdata.xml.in: Add release
+	information to appdata
+
+2024-03-20  Michał Moczulski <michalmoczulski1a@gmail.com>
 
 	* po/pl.po: Translated using Weblate (Polish) Currently translated at 99.4% (7076 of 7115 strings) Translation: Gramps/Program Translate-URL:
 	https://hosted.weblate.org/projects/gramps-project/gramps/pl/
 
-2024-02-14  Para <ahh-produktivitet@tutanota.com>
+2024-03-20  Mihle <MihleGaming@gmail.com>
 
 	* po/nb.po: Translated using Weblate (Norwegian Bokmål) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
 	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/
 
-2024-02-14  Lajos Nemes�ri <nemeseril@gmail.com>
+2024-03-20  Avi Markovitz <avi.markovitz@gmail.com>
 
-	* po/hu.po: Translated using Weblate (Hungarian) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/hu/
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
 
-2024-02-14  Nick Hall <nick-h@gramps-project.org>
+2024-03-14  Avi Markovitz <avi.markovitz@gmail.com>
 
-	* po/en_GB.po: Translated using Weblate (English (United Kingdom)) Currently translated at 99.8% (7106 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/en_GB/
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
 
-2024-02-12  Nick Hall <nick-h@gramps-project.org>
+2024-03-12  Avi Markovitz <avi.markovitz@gmail.com>
 
-	* gramps/gen/datehandler/_date_it.py: Fix date modifiers for it
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
 
-2024-02-13  Christoph Eder <christoph.eder@phsalzburg.at>
+2024-03-12  Yaron Shahrabani <sh.yaron@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2024-03-12  Avi Markovitz <avi.markovitz@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2024-03-12  Avi Markovitz <avi.markovitz@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2024-03-12  Yaron Shahrabani <sh.yaron@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2024-03-12  Avi Markovitz <avi.markovitz@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2024-03-12  Yaron Shahrabani <sh.yaron@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2024-03-12  Avi Markovitz <avi.markovitz@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2024-03-12  Yaron Shahrabani <sh.yaron@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2024-03-12  Avi Markovitz <avi.markovitz@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2024-03-12  Yaron Shahrabani <sh.yaron@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2024-03-12  Yaron Shahrabani <sh.yaron@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2024-03-12  Avi Markovitz <avi.markovitz@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2024-03-12  Yaron Shahrabani <sh.yaron@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2024-03-12  Avi Markovitz <avi.markovitz@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2024-03-12  Avi Markovitz <avi.markovitz@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2024-03-12  Yaron Shahrabani <sh.yaron@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2024-03-12  Avi Markovitz <avi.markovitz@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2024-03-12  Christoph Eder <christoph.eder@phsalzburg.at>
 
 	* po/de_AT.po: Translated using Weblate (German (Austria)) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
 	https://hosted.weblate.org/projects/gramps-project/gramps/de_AT/
 
-2024-02-13  快乐的老鼠宝宝 <laoshubaby@protonmail.com>
+2024-03-12  Milan <mobrcian@hotmail.com>
 
-	* po/zh_CN.po: Translated using Weblate (Chinese (Simplified)) Currently translated at 90.9% (6474 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/zh_Hans/
+	* po/sk.po: Translated using Weblate (Slovak) Currently translated at 99.9% (7113 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/
 
-2024-02-13  Para <ahh-produktivitet@tutanota.com>
+2024-03-12  Yaron Shahrabani <sh.yaron@gmail.com>
 
-	* po/nb.po: Translated using Weblate (Norwegian Bokmål) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
 
-2024-02-13  Luigi Toscano <luigi.toscano@tiscali.it>
+2024-03-12  Avi Markovitz <avi.markovitz@gmail.com>
 
-	* po/it.po: Translated using Weblate (Italian) Currently translated at 98.2% (6992 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/it/
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
 
-2024-02-13  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+2024-03-11  Milan Šalka <salka.milan@googlemail.com>
 
-	* po/de.po: Translated using Weblate (German) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/de/
+	* po/sk.po: Translated using Weblate (Slovak) Currently translated at 99.9% (7113 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/
 
-2024-02-11  Nick Hall <nick-h@gramps-project.org>
+2024-03-11  Christoph Eder <christoph.eder@phsalzburg.at>
 
-	* gramps/gen/datehandler/_date_hu.py: Fix date modifiers for hu
+	* po/de_AT.po: Translated using Weblate (German (Austria)) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/de_AT/
 
-2024-02-11  快乐的老鼠宝宝 <laoshubaby@protonmail.com>
+2024-03-11  Emmanuel Vallois <emmanuel@vallois.name>
 
-	* po/zh_CN.po: Translated using Weblate (Chinese (Simplified)) Currently translated at 90.3% (6428 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/zh_Hans/
+	* po/fr.po: Translated using Weblate (French) Currently translated at 99.2% (7061 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fr/
 
-2024-02-11  Osman �z <osmanoz05@hotmail.com>
+2024-03-11  Bora Atıcı <boratici.acc@gmail.com>
 
 	* po/tr.po: Translated using Weblate (Turkish) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
 	https://hosted.weblate.org/projects/gramps-project/gramps/tr/
 
-2024-02-11  P�r Ekholm <github1@m.pekholm.org>
+2024-03-11  Avi Markovitz <avi.markovitz@gmail.com>
 
-	* po/sv.po: Translated using Weblate (Swedish) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/sv/
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
 
-2024-02-11  Stephan Paternotte <stephan@paternottes.net>
+2024-02-29  Tian Shixiong <tiansworld@fedoraproject.org>
 
-	* po/nl.po: Translated using Weblate (Dutch) Currently translated at 99.9% (7113 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/nl/
+	* po/zh_CN.po: Translated using Weblate (Chinese (Simplified)) Currently translated at 91.0% (6475 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/zh_Hans/
 
-2024-02-11  Mikal Thunold-Olsen <mikal@thunold-olsen.no>
+2024-02-29  Medic Momcilo <momcilo@medic.rs>
 
-	* po/nb.po: Translated using Weblate (Norwegian Bokmål) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/
+	* po/sr.po: Translated using Weblate (Serbian) Currently translated at 80.2% (5710 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sr/
 
-2024-02-11  Luigi Toscano <luigi.toscano@tiscali.it>
+2024-02-29  OscarBrownbread <brian.tuffy@gmail.com>
 
-	* po/it.po: Translated using Weblate (Italian) Currently translated at 97.9% (6971 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/it/
+	* po/ga.po: Translated using Weblate (Irish) Currently translated at 0.2% (20 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ga/
 
-2024-02-11  Lajos Nemes�ri <nemeseril@gmail.com>
+2024-02-29  Milan <mobrcian@hotmail.com>
 
-	* po/hu.po: Translated using Weblate (Hungarian) Currently translated at 98.8% (7033 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/hu/
+	* po/sk.po: Translated using Weblate (Slovak) Currently translated at 99.9% (7113 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/
 
-2024-02-11  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-	* po/de.po: Translated using Weblate (German) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/de/
-
-2024-02-11  Kaj Arne Mikkelsen <kmi@vgdata.dk>
-
-	* po/da.po: Translated using Weblate (Danish) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/da/
-
-2024-02-11  jcreusand <joan.creusandreu@gmail.com>
-
-	* po/ca.po: Translated using Weblate (Catalan) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/ca/
-
-2024-02-11  gallegonovato <fran-carro@hotmail.es>
-
-	* po/es.po: Translated using Weblate (Spanish) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/es/
-
-2024-02-11  Christoph Eder <christoph.eder@phsalzburg.at>
+2024-02-29  Christoph Eder <christoph.eder@phsalzburg.at>
 
 	* po/de_AT.po: Translated using Weblate (German (Austria)) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
 	https://hosted.weblate.org/projects/gramps-project/gramps/de_AT/ Translated using Weblate (German (Austria)) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/de_AT/ Translated using Weblate (German (Austria)) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
 	https://hosted.weblate.org/projects/gramps-project/gramps/de_AT/
 
-2024-02-11  Andrey Serbovets <serbovets.translation@gmail.com>
+2024-02-29  Andrii Serbovets <serbovets.translation@gmail.com>
 
-	* po/uk.po: Translated using Weblate (Ukrainian) Currently translated at 99.6% (7087 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/uk/ Translated using Weblate (Ukrainian) Currently translated at 99.3% (7067 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	* po/uk.po: Translated using Weblate (Ukrainian) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/uk/ Translated using Weblate (Ukrainian) Currently translated at 100.0% (7115 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/uk/ Translated using Weblate (Ukrainian) Currently translated at 99.7% (7094 of 7115 strings) Translation: Gramps/Program Translate-URL:
 	https://hosted.weblate.org/projects/gramps-project/gramps/uk/
 
-2024-02-11  beernarrd <beernarrd@gmail.com>
+2024-02-29  Luigi Toscano <luigi.toscano@tiscali.it>
 
-	* po/sl.po: Translated using Weblate (Slovenian) Currently translated at 94.3% (6714 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/sl/
-
-2024-02-11  Mauro Piccotti <mauro.piccotti@gmail.com>
-
-	* po/it.po: Translated using Weblate (Italian) Currently translated at 97.3% (6923 of 7115 strings) Translation: Gramps/Program Translate-URL:
+	* po/it.po: Translated using Weblate (Italian) Currently translated at 98.3% (7000 of 7115 strings) Translation: Gramps/Program Translate-URL:
 	https://hosted.weblate.org/projects/gramps-project/gramps/it/
 
-2024-02-11  Jean-Marc <m.balthazar@posteo.net>
+2024-02-23  John Ralls <jralls@ceridwen.us>
 
-	* po/fr.po: Translated using Weblate (French) Currently translated at 99.1% (7058 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/fr/
+	* mac/Info.plist, mac/gramps.modules: Package Gramps 5.2.0 on macOS.
 
-2024-02-11  Jaime Marqu�nez Ferr�ndiz <jaime.marquinez.ferrandiz@fastmail.net>
+2024-02-23  Nick Hall <nick-h@gramps-project.org>
 
-	* po/es.po: Translated using Weblate (Spanish) Currently translated at 99.9% (7113 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/es/
-
-2024-02-11  Milan <mobrcian@hotmail.com>
-
-	* po/cs.po, po/sk.po: Translated using Weblate (Slovak) Currently translated at 99.9% (7113 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/sk/ Translated using Weblate (Czech) Currently translated at 99.8% (7101 of 7115 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/cs/
-
-2024-02-10  Nick Hall <nick-h@gramps-project.org>
-
-	* .github/workflows/black.yml, .github/workflows/gramps-ci.yml,
-	.github/workflows/windows-aio.yml: Update GitHub actions to latest
-	versions Some actions are deprecated.  See:
-
-	https://github.blog/changelog/2023-09-22-github-actions-transitioning-from-node-16-to-node-20/
-
-2024-02-09  John Ralls <jralls@ceridwen.us>
-
-	* mac/Info.plist, mac/gramps.modules: Package Gramps 5.2.0-rc1 on
-	macOS.
-
-2024-02-09  Nick Hall <nick-h@gramps-project.org>
-
-	* 5.2.0
+	* Bump to 5.2.1
 
