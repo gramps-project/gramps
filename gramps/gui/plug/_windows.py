@@ -557,6 +557,13 @@ class AddonManager(ManagedWindow):
             USER_PLUGINS, self.dbstate, self.uistate, load_on_reg=True
         )
         pdata = self.__preg.get_plugin(addon_id)
+        if pdata is None:
+            OkDialog(
+                _("Addon Registration Failed"),
+                _("The addon will be unavailable in your current configuration."),
+                parent=self.window,
+            )
+            return
         self.__pmgr.load_plugin(pdata)
         self.__pmgr.emit("plugins-reloaded")
 
