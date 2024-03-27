@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-08 22:07+0000\n"
+"POT-Creation-Date: 2024-03-24 22:29+0000\n"
 "PO-Revision-Date: 2024-02-29 20:02+0000\n"
 "Last-Translator: Tian Shixiong <tiansworld@fedoraproject.org>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -237,18 +237,28 @@ msgstr "乌克兰"
 msgid "United States of America"
 msgstr "美国"
 
-#: ../data/org.gramps_project.Gramps.appdata.xml.in:4
 #: ../data/org.gramps_project.Gramps.desktop.in:3
+#: ../data/org.gramps_project.Gramps.metainfo.xml.in:4
 msgid "Gramps"
 msgstr "Gramps"
 
-#: ../data/org.gramps_project.Gramps.appdata.xml.in:5
+#: ../data/org.gramps_project.Gramps.desktop.in:4
+msgid "Genealogy System"
+msgstr "家谱系统"
+
 #: ../data/org.gramps_project.Gramps.desktop.in:6
+#: ../data/org.gramps_project.Gramps.metainfo.xml.in:5
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
 msgstr "管理家谱信息，进行家谱搜索和分析"
 
-#: ../data/org.gramps_project.Gramps.appdata.xml.in:7
+#: ../data/org.gramps_project.Gramps.desktop.in:12
+msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
+msgstr ""
+"Genealogy;家谱;族谱;宗谱;Family History;家族史;Research;研究;Family Tree;家族"
+"树;家庭树;GEDCOM;"
+
+#: ../data/org.gramps_project.Gramps.metainfo.xml.in:7
 #: ../gramps/gen/const.py:255
 msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
@@ -257,7 +267,7 @@ msgstr ""
 "Gramps 是一款简单易用，功能全面的系谱学程序，适合爱好者及系谱学研究人员的使"
 "用。"
 
-#: ../data/org.gramps_project.Gramps.appdata.xml.in:8
+#: ../data/org.gramps_project.Gramps.metainfo.xml.in:8
 msgid ""
 "It gives you the ability to record the many details of the life of an "
 "individual as well as the complex relationships between various people, "
@@ -266,25 +276,90 @@ msgstr ""
 "它能让您记录个人生活的方方面面，同时也可记录多人、多地间及多个事件间的复杂关"
 "系。"
 
-#: ../data/org.gramps_project.Gramps.appdata.xml.in:9
+#: ../data/org.gramps_project.Gramps.metainfo.xml.in:9
 msgid ""
 "All of your research is kept organized, searchable and as precise as you "
 "need it to be."
 msgstr "您的研究内容会被准确而有条不紊的保存起来，方便搜索。"
 
-#: ../data/org.gramps_project.Gramps.appdata.xml.in:12
+#: ../data/org.gramps_project.Gramps.metainfo.xml.in:13
 msgid "Gramps Development Team"
 msgstr "Gramps 开发团队"
 
-#: ../data/org.gramps_project.Gramps.desktop.in:4
-msgid "Genealogy System"
-msgstr "家谱系统"
+#: ../data/org.gramps_project.Gramps.metainfo.xml.in:30
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:227
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:233
+#: ../gramps/plugins/view/pedigreeview.py:565
+#: ../gramps/plugins/view/view.gpr.py:135
+#: ../gramps/plugins/webreport/person.py:1681
+msgid "Pedigree"
+msgstr "谱系"
 
-#: ../data/org.gramps_project.Gramps.desktop.in:12
-msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
-msgstr ""
-"Genealogy;家谱;族谱;宗谱;Family History;家族史;Research;研究;Family Tree;家族"
-"树;家庭树;GEDCOM;"
+#: ../data/org.gramps_project.Gramps.metainfo.xml.in:34
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:165
+#: ../gramps/plugins/view/view.gpr.py:168
+msgid "Descendant Fan"
+msgstr "后代扇形图"
+
+#: ../data/org.gramps_project.Gramps.metainfo.xml.in:38
+#: ../gramps/plugins/importer/importxml.py:349
+#: ../gramps/plugins/quickview/filterbyname.py:96
+#: ../gramps/plugins/quickview/filterbyname.py:161
+#: ../gramps/plugins/textreport/tagreport.py:156
+#: ../gramps/plugins/view/view.gpr.py:210
+#: ../gramps/plugins/view/view.gpr.py:219
+#: ../gramps/plugins/view/view.gpr.py:227
+#: ../gramps/plugins/webreport/updates.py:106
+msgid "People"
+msgstr "成员"
+
+#: ../data/org.gramps_project.Gramps.metainfo.xml.in:42
+#: ../gramps/plugins/view/relview.py:148 ../gramps/plugins/view/view.gpr.py:119
+#: ../gramps/plugins/view/view.gpr.py:127
+msgid "Relationships"
+msgstr "关系"
+
+#: ../data/org.gramps_project.Gramps.metainfo.xml.in:46
+#: ../gramps/gen/lib/person.py:185 ../gramps/gui/clipboard.py:723
+#: ../gramps/gui/configure.py:773 ../gramps/gui/editors/editlink.py:100
+#: ../gramps/gui/editors/filtereditor.py:309
+#: ../gramps/gui/glade/editpersonref.glade:181
+#: ../gramps/gui/glade/editpersonref.glade:247 ../gramps/gui/grampsgui.py:58
+#: ../gramps/plugins/export/exportcsv.py:419
+#: ../gramps/plugins/gramplet/quickviewgramplet.py:120
+#: ../gramps/plugins/importer/importcsv.py:293
+#: ../gramps/plugins/importer/importprogen.glade:667
+#: ../gramps/plugins/importer/importprogen.glade:1237
+#: ../gramps/plugins/importer/importprogen.glade:1326
+#: ../gramps/plugins/quickview/ageondate.py:54
+#: ../gramps/plugins/quickview/attributematch.py:36
+#: ../gramps/plugins/quickview/filterbyname.py:238
+#: ../gramps/plugins/quickview/filterbyname.py:317
+#: ../gramps/plugins/quickview/filterbyname.py:365
+#: ../gramps/plugins/quickview/filterbyname.py:376
+#: ../gramps/plugins/quickview/filterbyname.py:387
+#: ../gramps/plugins/quickview/filterbyname.py:398
+#: ../gramps/plugins/quickview/filterbyname.py:438
+#: ../gramps/plugins/quickview/filterbyname.py:451
+#: ../gramps/plugins/quickview/filterbyname.py:482
+#: ../gramps/plugins/quickview/filterbyname.py:490
+#: ../gramps/plugins/quickview/filterbyname.py:526
+#: ../gramps/plugins/quickview/quickview.gpr.py:213
+#: ../gramps/plugins/quickview/references.py:89
+#: ../gramps/plugins/quickview/samesurnames.py:129
+#: ../gramps/plugins/quickview/samesurnames.py:179
+#: ../gramps/plugins/textreport/placereport.py:243
+#: ../gramps/plugins/textreport/placereport.py:327
+#: ../gramps/plugins/textreport/placereport.py:491
+#: ../gramps/plugins/tool/dateparserdisplaytest.py:268
+#: ../gramps/plugins/tool/eventcmp.py:260
+#: ../gramps/plugins/tool/removespaces.py:138
+#: ../gramps/plugins/tool/reorderids.glade:761
+#: ../gramps/plugins/webreport/event.py:316
+#: ../gramps/plugins/webreport/family.py:315
+#: ../gramps/plugins/webreport/person.py:1574
+msgid "Person"
+msgstr "成员"
 
 #: ../data/org.gramps_project.Gramps.xml.in:6
 msgid "Gramps database"
@@ -483,10 +558,9 @@ msgid ""
 "Each separate view can also be configured under \"View &gt; Configure View..."
 "\"."
 msgstr ""
-"<b>设置您的首选项</b><br/>&quot;编辑 &gt; 首选项...&quot; "
-"允许您修改若干设置，比如您媒体文件的路径，并允许您根据您的需要，调整很多方面 "
-"Gramps 的显示。每种分别的视图可以在 &quot;视图 &gt; 配置视图...&quot; "
-"中配置。"
+"<b>设置您的首选项</b><br/>&quot;编辑 &gt; 首选项...&quot; 允许您修改若干设"
+"置，比如您媒体文件的路径，并允许您根据您的需要，调整很多方面 Gramps 的显示。"
+"每种分别的视图可以在 &quot;视图 &gt; 配置视图...&quot; 中配置。"
 
 #: ../data/tips.xml:34
 msgid ""
@@ -968,9 +1042,8 @@ msgid ""
 "translations can easily be added with little development effort. If you are "
 "interested in participating please email gramps-devel@lists.sf.net."
 msgstr ""
-"<b>Gramps 翻译人员</b><br/>Gramps "
-"的设计使得只需很少的开发精力便可引入新的翻译。如果您有兴趣参与，请发邮件到 "
-"gramps-devel@lists.sf.net 。"
+"<b>Gramps 翻译人员</b><br/>Gramps 的设计使得只需很少的开发精力便可引入新的翻"
+"译。如果您有兴趣参与，请发邮件到 gramps-devel@lists.sf.net 。"
 
 #: ../data/tips.xml:118
 msgid ""
@@ -1589,7 +1662,7 @@ msgstr "解析参数错误"
 
 #: ../gramps/cli/clidbman.py:73 ../gramps/cli/clidbman.py:172
 #: ../gramps/cli/clidbman.py:174 ../gramps/gui/clipboard.py:201
-#: ../gramps/gui/clipboard.py:202 ../gramps/gui/plug/_windows.py:1486
+#: ../gramps/gui/clipboard.py:202 ../gramps/gui/plug/_windows.py:1494
 msgid "Unavailable"
 msgstr "无效"
 
@@ -1634,8 +1707,8 @@ msgstr "家族树 \"%s\"："
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/cli/clidbman.py:222 ../gramps/gen/plug/report/utils.py:182
 #: ../gramps/gui/editors/editattribute.py:140
-#: ../gramps/gui/editors/editname.py:341 ../gramps/gui/plug/_windows.py:1691
-#: ../gramps/gui/plug/_windows.py:2135
+#: ../gramps/gui/editors/editname.py:341 ../gramps/gui/plug/_windows.py:1699
+#: ../gramps/gui/plug/_windows.py:2143
 #: ../gramps/plugins/gramplet/whatsnext.py:495
 #: ../gramps/plugins/textreport/birthdayreport.py:213
 #: ../gramps/plugins/textreport/birthdayreport.py:218
@@ -1707,7 +1780,7 @@ msgstr ""
 "\n"
 
 #: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2304
-#: ../gramps/gui/plug/_windows.py:756
+#: ../gramps/gui/plug/_windows.py:764
 msgid "Never"
 msgstr "从不"
 
@@ -3077,7 +3150,7 @@ msgstr "星期五"
 msgid "Sat"
 msgstr "星期六"
 
-#: ../gramps/gen/db/base.py:1823 ../gramps/gui/widgets/fanchart.py:2315
+#: ../gramps/gen/db/base.py:1823 ../gramps/gui/widgets/fanchart.py:2333
 msgid "Add child to family"
 msgstr "添加孩子到家庭"
 
@@ -3154,18 +3227,19 @@ msgid ""
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 msgstr ""
 "您要加载的家族树使用了 schema %(oldschema)s 版格式。本版 Gramps 使用 schema "
-"%(newschema)s。因此如不对您的家族树 schema 版本进行升级，您将无法载入家族树。"
+"%(newschema)s。因此如不对您的家族树 schema 版本进行升级，您将无法载入家族"
+"树。\n"
 "\n"
+"如果您进行升级，即便是随后%(wiki_manual_backup_html_start)s备份%(html_end)s"
+"或%(wiki_manual_export_html_start)s导出%(html_end)s了升级过的家族树，您也将无"
+"法使用之前版本的 Gramps 打开它。\n"
 "\n"
-"如果您进行升级，即便是随后%(wiki_manual_backup_html_start)s备份%(html_end)s或"
-"%(wiki_manual_export_html_start)s导出%(html_end)s了升级过的家族树，"
-"您也将无法使用之前版本的 Gramps 打开它。\n"
+"升级是件有一定难度的任务，如果过程被打断或失败则会对家族树造成不可挽回的损"
+"坏。\n"
 "\n"
-"升级是件有一定难度的任务，如果过程被打断或失败则会对家族树造成不可挽回的损坏"
-"。\n"
-"\n"
-"如果您还没有创建家族树的备份，那您现在应该启动%(bold_start)s旧版的%(bold_end)"
-"s Gramps 然后%(wiki_backup_html_start)s备份%(html_end)s您的家族树。"
+"如果您还没有创建家族树的备份，那您现在应该启动%(bold_start)s旧版"
+"的%(bold_end)s Gramps 然后%(wiki_backup_html_start)s备份%(html_end)s您的家族"
+"树。"
 
 #: ../gramps/gen/db/exceptions.py:195
 #, python-format
@@ -3203,14 +3277,15 @@ msgstr ""
 "您尝试载入的家族树基于 %(dbtype)s 数据库，这已经不被支持。\n"
 "因此如果不做升级处理，您将无法载入此家族树。\n"
 "\n"
-"如果您进行了升级，那么您将无法使用先前版本的 Gramps，即使您随后%(wiki_manual_"
-"backup_html_start)s备份%(html_end)s或%(wiki_manual_export_html_start)s导出%(h"
-"tml_end)s了您升级后的家族树也无法使用。\n"
+"如果您进行了升级，那么您将无法使用先前版本的 Gramps，即使您随"
+"后%(wiki_manual_backup_html_start)s备份%(html_end)s"
+"或%(wiki_manual_export_html_start)s导出%(html_end)s了您升级后的家族树也无法使"
+"用。\n"
 "\n"
 "强烈建议您先备份家族树。\n"
 "\n"
-"如果您尚未备份过您的家族树，那您应先启动先前版本的 "
-"Gramps，然后对家族树创建%(wiki_backup_html_start)s备份%(html_end)s。"
+"如果您尚未备份过您的家族树，那您应先启动先前版本的 Gramps，然后对家族树创"
+"建%(wiki_backup_html_start)s备份%(html_end)s。"
 
 #: ../gramps/gen/db/generic.py:196 ../gramps/gen/db/generic.py:246
 #: ../gramps/gen/db/generic.py:2157
@@ -4813,8 +4888,9 @@ msgstr "修改于 <date time> 之后的媒体对象"
 msgid ""
 "Matches media objects changed after a specified date:time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date:time is given."
-msgstr "匹配 修改于特定日期:时间 (yyyy-mm-dd hh:mm:ss) 之后 或者 某个范围内（"
-"如果给出了第二个 日期:时间 ）的媒体对象。"
+msgstr ""
+"匹配 修改于特定日期:时间 (yyyy-mm-dd hh:mm:ss) 之后 或者 某个范围内（如果给出"
+"了第二个 日期:时间 ）的媒体对象。"
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:46
 #: ../gramps/gui/editors/filtereditor.py:117
@@ -4982,8 +5058,9 @@ msgstr "笔记，在<date time> 之后修改的"
 msgid ""
 "Matches note records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
-msgstr "匹配 修改于特定日期-时间(yyyy-mm-dd hh:mm:ss) 之后 或者 "
-"在某个范围内（如果给出了第二个日期-时间）的笔记记录。"
+msgstr ""
+"匹配 修改于特定日期-时间(yyyy-mm-dd hh:mm:ss) 之后 或者 在某个范围内（如果给"
+"出了第二个日期-时间）的笔记记录。"
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:46
 msgid "Note with <Id>"
@@ -6421,8 +6498,9 @@ msgstr "修改于<date time> 之后的来源"
 msgid ""
 "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
-msgstr "匹配 修改于特定日期-时间 (yyyy-mm-dd "
-"hh:mm:ss)之后或者在某个范围之内的（如果给出了第二个日期-时间）的来源。"
+msgstr ""
+"匹配 修改于特定日期-时间 (yyyy-mm-dd hh:mm:ss)之后或者在某个范围之内的（如果"
+"给出了第二个日期-时间）的来源。"
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:47
 msgid "Source attribute:"
@@ -6902,8 +6980,8 @@ msgstr "种姓，阶级"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:68
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:113
 #: ../gramps/gui/glade/rule.glade:931 ../gramps/gui/glade/styleeditor.glade:278
-#: ../gramps/gui/plug/_windows.py:1052 ../gramps/gui/plug/_windows.py:1167
-#: ../gramps/gui/plug/_windows.py:1629 ../gramps/gui/plug/_windows.py:2122
+#: ../gramps/gui/plug/_windows.py:1060 ../gramps/gui/plug/_windows.py:1175
+#: ../gramps/gui/plug/_windows.py:1637 ../gramps/gui/plug/_windows.py:2130
 #: ../gramps/gui/selectors/selectevent.py:71
 #: ../gramps/plugins/gramplet/coordinates.py:100
 #: ../gramps/plugins/gramplet/events.py:103
@@ -8092,7 +8170,7 @@ msgstr "父亲"
 msgid "Mother"
 msgstr "母亲"
 
-#: ../gramps/gen/lib/family.py:173 ../gramps/gui/widgets/fanchart.py:2196
+#: ../gramps/gen/lib/family.py:173 ../gramps/gui/widgets/fanchart.py:2214
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:993
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1009
 #: ../gramps/plugins/textreport/familygroup.py:657
@@ -8159,8 +8237,8 @@ msgstr "民事结合"
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:118
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:114
 #: ../gramps/gui/merge/mergeperson.py:273 ../gramps/gui/plug/_windows.py:232
-#: ../gramps/gui/plug/_windows.py:1041 ../gramps/gui/plug/_windows.py:1164
-#: ../gramps/gui/plug/_windows.py:2120
+#: ../gramps/gui/plug/_windows.py:1049 ../gramps/gui/plug/_windows.py:1172
+#: ../gramps/gui/plug/_windows.py:2128
 #: ../gramps/gui/plug/report/_bookdialog.py:397
 #: ../gramps/gui/plug/report/_bookdialog.py:401
 #: ../gramps/gui/selectors/selectevent.py:67
@@ -8303,8 +8381,8 @@ msgstr "圣殿"
 #: ../gramps/gen/lib/ldsord.py:206 ../gramps/gui/dbman.py:419
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:54
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:64
-#: ../gramps/gui/plug/_windows.py:236 ../gramps/gui/plug/_windows.py:1045
-#: ../gramps/gui/plug/_windows.py:1107
+#: ../gramps/gui/plug/_windows.py:236 ../gramps/gui/plug/_windows.py:1053
+#: ../gramps/gui/plug/_windows.py:1115
 #: ../gramps/plugins/quickview/ageondate.py:54
 #: ../gramps/plugins/textreport/indivcomplete.py:532
 #: ../gramps/plugins/textreport/indivcomplete.py:737
@@ -8314,7 +8392,7 @@ msgid "Status"
 msgstr "状态"
 
 #: ../gramps/gen/lib/location.py:89 ../gramps/gen/lib/nameorigintype.py:88
-#: ../gramps/gui/clipboard.py:331 ../gramps/gui/plug/_windows.py:1634
+#: ../gramps/gui/clipboard.py:331 ../gramps/gui/plug/_windows.py:1642
 msgid "Location"
 msgstr "位置"
 
@@ -8364,8 +8442,8 @@ msgstr "地区 (Region)"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:158
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:117
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:113
-#: ../gramps/gui/plug/_guioptions.py:1185 ../gramps/gui/plug/_windows.py:1048
-#: ../gramps/gui/plug/_windows.py:2121
+#: ../gramps/gui/plug/_guioptions.py:1185 ../gramps/gui/plug/_windows.py:1056
+#: ../gramps/gui/plug/_windows.py:2129
 #: ../gramps/gui/plug/report/_bookdialog.py:397
 #: ../gramps/gui/selectors/selectperson.py:99
 #: ../gramps/gui/selectors/selectplace.py:68
@@ -8620,7 +8698,7 @@ msgstr "格式"
 #: ../gramps/gui/glade/editplaceref.glade:162
 #: ../gramps/gui/glade/editplaceref.glade:667
 #: ../gramps/gui/glade/editreporef.glade:226
-#: ../gramps/gui/glade/editreporef.glade:446 ../gramps/gui/plug/_windows.py:720
+#: ../gramps/gui/glade/editreporef.glade:446 ../gramps/gui/plug/_windows.py:728
 #: ../gramps/plugins/tool/verify.glade:406
 msgid "General"
 msgstr "一般"
@@ -8730,47 +8808,6 @@ msgstr "媒体参照笔记"
 #: ../gramps/gen/lib/notetype.py:106
 msgid "Child Reference Note"
 msgstr "孩子参照笔记"
-
-#: ../gramps/gen/lib/person.py:185 ../gramps/gui/clipboard.py:723
-#: ../gramps/gui/configure.py:773 ../gramps/gui/editors/editlink.py:100
-#: ../gramps/gui/editors/filtereditor.py:309
-#: ../gramps/gui/glade/editpersonref.glade:181
-#: ../gramps/gui/glade/editpersonref.glade:247 ../gramps/gui/grampsgui.py:58
-#: ../gramps/plugins/export/exportcsv.py:419
-#: ../gramps/plugins/gramplet/quickviewgramplet.py:120
-#: ../gramps/plugins/importer/importcsv.py:293
-#: ../gramps/plugins/importer/importprogen.glade:667
-#: ../gramps/plugins/importer/importprogen.glade:1237
-#: ../gramps/plugins/importer/importprogen.glade:1326
-#: ../gramps/plugins/quickview/ageondate.py:54
-#: ../gramps/plugins/quickview/attributematch.py:36
-#: ../gramps/plugins/quickview/filterbyname.py:238
-#: ../gramps/plugins/quickview/filterbyname.py:317
-#: ../gramps/plugins/quickview/filterbyname.py:365
-#: ../gramps/plugins/quickview/filterbyname.py:376
-#: ../gramps/plugins/quickview/filterbyname.py:387
-#: ../gramps/plugins/quickview/filterbyname.py:398
-#: ../gramps/plugins/quickview/filterbyname.py:438
-#: ../gramps/plugins/quickview/filterbyname.py:451
-#: ../gramps/plugins/quickview/filterbyname.py:482
-#: ../gramps/plugins/quickview/filterbyname.py:490
-#: ../gramps/plugins/quickview/filterbyname.py:526
-#: ../gramps/plugins/quickview/quickview.gpr.py:213
-#: ../gramps/plugins/quickview/references.py:89
-#: ../gramps/plugins/quickview/samesurnames.py:129
-#: ../gramps/plugins/quickview/samesurnames.py:179
-#: ../gramps/plugins/textreport/placereport.py:243
-#: ../gramps/plugins/textreport/placereport.py:327
-#: ../gramps/plugins/textreport/placereport.py:491
-#: ../gramps/plugins/tool/dateparserdisplaytest.py:268
-#: ../gramps/plugins/tool/eventcmp.py:260
-#: ../gramps/plugins/tool/removespaces.py:138
-#: ../gramps/plugins/tool/reorderids.glade:761
-#: ../gramps/plugins/webreport/event.py:316
-#: ../gramps/plugins/webreport/family.py:315
-#: ../gramps/plugins/webreport/person.py:1574
-msgid "Person"
-msgstr "成员"
 
 #: ../gramps/gen/lib/person.py:194 ../gramps/gui/editors/editfamily.py:140
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:160
@@ -10041,7 +10078,7 @@ msgstr "小"
 #: ../gramps/gui/editors/editcitation.py:240
 #: ../gramps/plugins/graph/gvfamilylines.py:320
 #: ../gramps/plugins/graph/gvrelgraph.py:1082
-#: ../gramps/plugins/importer/importprogen.py:513
+#: ../gramps/plugins/importer/importprogen.py:516
 msgid "Normal"
 msgstr "正常"
 
@@ -11196,24 +11233,24 @@ msgid "Invalid"
 msgstr "无效"
 
 #: ../gramps/gen/utils/string.py:62 ../gramps/gui/editors/editcitation.py:242
-#: ../gramps/plugins/importer/importprogen.py:515
+#: ../gramps/plugins/importer/importprogen.py:518
 msgid "Very High"
 msgstr "很高"
 
 #: ../gramps/gen/utils/string.py:63 ../gramps/gui/editors/editcitation.py:241
-#: ../gramps/plugins/importer/importprogen.py:514
+#: ../gramps/plugins/importer/importprogen.py:517
 #: ../gramps/plugins/tool/finddupes.py:63
 msgid "High"
 msgstr "高"
 
 #: ../gramps/gen/utils/string.py:65 ../gramps/gui/editors/editcitation.py:239
-#: ../gramps/plugins/importer/importprogen.py:512
+#: ../gramps/plugins/importer/importprogen.py:515
 #: ../gramps/plugins/tool/finddupes.py:61
 msgid "Low"
 msgstr "低"
 
 #: ../gramps/gen/utils/string.py:66 ../gramps/gui/editors/editcitation.py:238
-#: ../gramps/plugins/importer/importprogen.py:511
+#: ../gramps/plugins/importer/importprogen.py:514
 msgid "Very Low"
 msgstr "很低"
 
@@ -11817,8 +11854,8 @@ msgstr "显示名称编辑器"
 #: ../gramps/gui/glade/plugins.glade:22 ../gramps/gui/glade/rule.glade:24
 #: ../gramps/gui/glade/rule.glade:1024 ../gramps/gui/glade/tipofday.glade:117
 #: ../gramps/gui/glade/updateaddons.glade:25 ../gramps/gui/grampsgui.py:58
-#: ../gramps/gui/plug/_windows.py:389 ../gramps/gui/plug/_windows.py:1018
-#: ../gramps/gui/plug/_windows.py:1697 ../gramps/gui/plug/_windows.py:1757
+#: ../gramps/gui/plug/_windows.py:389 ../gramps/gui/plug/_windows.py:1026
+#: ../gramps/gui/plug/_windows.py:1705 ../gramps/gui/plug/_windows.py:1765
 #: ../gramps/gui/plug/quick/_textbufdoc.py:71 ../gramps/gui/undohistory.py:88
 #: ../gramps/gui/viewmanager.py:1801 ../gramps/gui/views/bookmarks.py:316
 #: ../gramps/gui/views/tags.py:503 ../gramps/gui/widgets/grampletbar.py:718
@@ -11909,8 +11946,8 @@ msgstr "无效的或不完整的格式定义。"
 #: ../gramps/gui/configure.py:1650 ../gramps/gui/configure.py:1655
 #: ../gramps/gui/configure.py:1676 ../gramps/gui/configure.py:1692
 #: ../gramps/gui/configure.py:2226 ../gramps/gui/configure.py:2315
-#: ../gramps/gui/plug/_windows.py:766 ../gramps/gui/plug/_windows.py:786
-#: ../gramps/gui/plug/_windows.py:822 ../gramps/gui/plug/_windows.py:830
+#: ../gramps/gui/plug/_windows.py:774 ../gramps/gui/plug/_windows.py:794
+#: ../gramps/gui/plug/_windows.py:830 ../gramps/gui/plug/_windows.py:838
 #: ../gramps/gui/views/navigationview.py:351
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:110
 #, python-format
@@ -11983,7 +12020,7 @@ msgstr "县/郡"
 msgid "ZIP/Postal Code"
 msgstr "邮编"
 
-#: ../gramps/gui/configure.py:737 ../gramps/gui/plug/_windows.py:1632
+#: ../gramps/gui/configure.py:737 ../gramps/gui/plug/_windows.py:1640
 #: ../gramps/plugins/view/repoview.py:96
 msgid "Email"
 msgstr "电子邮件"
@@ -12185,8 +12222,8 @@ msgstr "例"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:127
 #: ../gramps/gui/editors/editfamily.py:221 ../gramps/gui/grampsgui.py:58
 #: ../gramps/gui/plug/report/_bookdialog.py:677 ../gramps/gui/views/tags.py:495
-#: ../gramps/gui/widgets/fanchart.py:2266
-#: ../gramps/gui/widgets/fanchart.py:2308
+#: ../gramps/gui/widgets/fanchart.py:2284
+#: ../gramps/gui/widgets/fanchart.py:2326
 #: ../gramps/plugins/view/pedigreeview.py:1843
 msgid "_Add"
 msgstr "添加(_A)"
@@ -12201,7 +12238,7 @@ msgstr "添加(_A)"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:128
 #: ../gramps/gui/glade/editlink.glade:222 ../gramps/gui/grampsgui.py:58
 #: ../gramps/gui/plug/report/_bookdialog.py:651 ../gramps/gui/views/tags.py:496
-#: ../gramps/gui/widgets/fanchart.py:2054
+#: ../gramps/gui/widgets/fanchart.py:2072
 #: ../gramps/plugins/view/pedigreeview.py:1877
 #: ../gramps/plugins/view/pedigreeview.py:2109
 msgid "_Edit"
@@ -12230,7 +12267,7 @@ msgstr "显示(_D)"
 #: ../gramps/gui/glade/editperson.glade:12
 #: ../gramps/gui/glade/editperson.glade:516 ../gramps/gui/glade/rule.glade:463
 #: ../gramps/gui/glade/styleeditor.glade:1903
-#: ../gramps/gui/plug/_windows.py:1071 ../gramps/gui/plug/_windows.py:1130
+#: ../gramps/gui/plug/_windows.py:1079 ../gramps/gui/plug/_windows.py:1138
 #: ../gramps/plugins/gramplet/ancestor.py:122
 #: ../gramps/plugins/gramplet/descendant.py:119
 msgid "Edit"
@@ -12815,8 +12852,8 @@ msgstr "选择媒体目录"
 #: ../gramps/gui/glade/rule.glade:747 ../gramps/gui/glade/styleeditor.glade:86
 #: ../gramps/gui/glade/styleeditor.glade:1737
 #: ../gramps/gui/logger/_errorview.py:188 ../gramps/gui/plug/_guioptions.py:84
-#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:840
-#: ../gramps/gui/plug/_windows.py:1408
+#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:848
+#: ../gramps/gui/plug/_windows.py:1416
 #: ../gramps/gui/plug/report/_fileentry.py:68
 #: ../gramps/gui/plug/report/_reportdialog.py:170 ../gramps/gui/utils.py:265
 #: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1250
@@ -13106,7 +13143,7 @@ msgstr "数据库信息"
 #: ../gramps/gui/glade/reorder.glade:38 ../gramps/gui/glade/rule.glade:333
 #: ../gramps/gui/glade/rule.glade:764 ../gramps/gui/glade/styleeditor.glade:103
 #: ../gramps/gui/glade/styleeditor.glade:1754
-#: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:840
+#: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:848
 #: ../gramps/gui/plug/report/_reportdialog.py:173 ../gramps/gui/utils.py:279
 #: ../gramps/gui/viewmanager.py:1802 ../gramps/gui/views/tags.py:727
 #: ../gramps/plugins/tool/check.py:828 ../gramps/plugins/tool/patchnames.py:152
@@ -14001,14 +14038,14 @@ msgid "Set as default name"
 msgstr "设为默认名称"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
-#: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:922
+#: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:930
 #: ../gramps/gui/viewmanager.py:1134 ../gramps/gui/views/tags.py:570
 #: ../gramps/plugins/quickview/all_relations.py:365
 msgid "Yes"
 msgstr "是"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:59
-#: ../gramps/gui/plug/_guioptions.py:1266 ../gramps/gui/plug/_windows.py:923
+#: ../gramps/gui/plug/_guioptions.py:1266 ../gramps/gui/plug/_windows.py:931
 #: ../gramps/gui/viewmanager.py:1135 ../gramps/gui/views/tags.py:571
 #: ../gramps/plugins/quickview/all_relations.py:371
 msgid "No"
@@ -15839,7 +15876,7 @@ msgid "Within"
 msgstr "使用(_W)"
 
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:116
-#: ../gramps/gui/plug/_windows.py:830
+#: ../gramps/gui/plug/_windows.py:838
 msgid "URL"
 msgstr "URL"
 
@@ -17443,7 +17480,7 @@ msgid "_Merge and close"
 msgstr "合并且关闭(_M)"
 
 #: ../gramps/gui/glade/mergedata.glade:173
-#: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:2114
+#: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:2122
 #: ../gramps/plugins/tool/changenames.py:226
 #: ../gramps/plugins/tool/patchnames.py:454
 msgid "Select"
@@ -18110,7 +18147,7 @@ msgid "Install Selected _Addons"
 msgstr "安装所选的插件"
 
 #: ../gramps/gui/glade/updateaddons.glade:72
-#: ../gramps/gui/plug/_windows.py:2091
+#: ../gramps/gui/plug/_windows.py:2099
 msgid "Available Gramps Updates for Addons"
 msgstr "可获取的Gramps 插件更新"
 
@@ -18663,7 +18700,7 @@ msgid "Merge People"
 msgstr "合并成员"
 
 #: ../gramps/gui/merge/mergeperson.py:242
-#: ../gramps/gui/widgets/fanchart.py:2232
+#: ../gramps/gui/widgets/fanchart.py:2250
 #: ../gramps/plugins/quickview/all_relations.py:364
 #: ../gramps/plugins/tool/notrelated.py:132
 #: ../gramps/plugins/view/pedigreeview.py:2007
@@ -18686,7 +18723,7 @@ msgid "No parents found"
 msgstr "未找到父母"
 
 #: ../gramps/gui/merge/mergeperson.py:257
-#: ../gramps/gui/widgets/fanchart.py:2095
+#: ../gramps/gui/widgets/fanchart.py:2113
 #: ../gramps/plugins/textreport/kinshipreport.py:139
 #: ../gramps/plugins/view/pedigreeview.py:1893
 msgid "Spouses"
@@ -18817,7 +18854,7 @@ msgstr "为 %s 选择颜色"
 msgid "Save As"
 msgstr "保存为"
 
-#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:1408
+#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:1416
 #: ../gramps/gui/plug/report/_bookdialog.py:650
 #: ../gramps/gui/plug/report/_fileentry.py:68
 msgid "_Open"
@@ -18840,7 +18877,7 @@ msgstr "每个对象"
 msgid "Audience"
 msgstr "证据"
 
-#: ../gramps/gui/plug/_windows.py:238 ../gramps/gui/plug/_windows.py:1630
+#: ../gramps/gui/plug/_windows.py:238 ../gramps/gui/plug/_windows.py:1638
 msgid "Version"
 msgstr "版本"
 
@@ -18909,19 +18946,19 @@ msgstr "筛查器"
 msgid "All addons"
 msgstr "插件名称"
 
-#: ../gramps/gui/plug/_windows.py:426 ../gramps/gui/plug/_windows.py:623
+#: ../gramps/gui/plug/_windows.py:426 ../gramps/gui/plug/_windows.py:631
 #, fuzzy
 #| msgid "Unstable"
 msgid "Not installed"
 msgstr "不稳定版"
 
-#: ../gramps/gui/plug/_windows.py:427 ../gramps/gui/plug/_windows.py:626
+#: ../gramps/gui/plug/_windows.py:427 ../gramps/gui/plug/_windows.py:634
 #, fuzzy
 #| msgid "Unstable"
 msgid "Installed"
 msgstr "不稳定版"
 
-#: ../gramps/gui/plug/_windows.py:428 ../gramps/gui/plug/_windows.py:629
+#: ../gramps/gui/plug/_windows.py:428 ../gramps/gui/plug/_windows.py:637
 #: ../gramps/plugins/webreport/basepage.py:1911
 #: ../gramps/plugins/webreport/basepage.py:1976
 #, fuzzy
@@ -18956,7 +18993,7 @@ msgstr "设置"
 msgid "Projects"
 msgstr "每个对象"
 
-#: ../gramps/gui/plug/_windows.py:524 ../gramps/gui/plug/_windows.py:634
+#: ../gramps/gui/plug/_windows.py:524 ../gramps/gui/plug/_windows.py:642
 #, fuzzy
 #| msgid "Every object"
 msgid "All projects"
@@ -18966,299 +19003,309 @@ msgstr "每个对象"
 msgid "Loading..."
 msgstr "载入..."
 
-#: ../gramps/gui/plug/_windows.py:580
+#: ../gramps/gui/plug/_windows.py:562
+#, fuzzy
+#| msgid "Operation failed"
+msgid "Addon Registration Failed"
+msgstr "操作失败"
+
+#: ../gramps/gui/plug/_windows.py:563
+msgid "The addon will be unavailable in your current configuration."
+msgstr ""
+
+#: ../gramps/gui/plug/_windows.py:588
 #, fuzzy
 #| msgid "No matches found"
 msgid "No matching addons found."
 msgstr "未找到匹配"
 
-#: ../gramps/gui/plug/_windows.py:734
+#: ../gramps/gui/plug/_windows.py:742
 msgid "Allow Gramps to install required Python modules"
 msgstr "允许 Gramps 安装所需 Python 模块"
 
-#: ../gramps/gui/plug/_windows.py:741
+#: ../gramps/gui/plug/_windows.py:749
 msgid "Scheduled update checks"
 msgstr "定期检查更新"
 
-#: ../gramps/gui/plug/_windows.py:757
+#: ../gramps/gui/plug/_windows.py:765
 msgid "Once a month"
 msgstr "每月一次"
 
-#: ../gramps/gui/plug/_windows.py:758
+#: ../gramps/gui/plug/_windows.py:766
 msgid "Once a week"
 msgstr "每周一次"
 
-#: ../gramps/gui/plug/_windows.py:759
+#: ../gramps/gui/plug/_windows.py:767
 msgid "Once a day"
 msgstr "每天一次"
 
-#: ../gramps/gui/plug/_windows.py:760
+#: ../gramps/gui/plug/_windows.py:768
 msgid "Always"
 msgstr "经常的"
 
-#: ../gramps/gui/plug/_windows.py:766
+#: ../gramps/gui/plug/_windows.py:774
 msgid "Check for addon updates"
 msgstr "检查附件组件更新"
 
-#: ../gramps/gui/plug/_windows.py:773
+#: ../gramps/gui/plug/_windows.py:781
 msgid "Updated addons only"
 msgstr "仅更新插件"
 
-#: ../gramps/gui/plug/_windows.py:774
+#: ../gramps/gui/plug/_windows.py:782
 msgid "New addons only"
 msgstr "仅新插件"
 
-#: ../gramps/gui/plug/_windows.py:775
+#: ../gramps/gui/plug/_windows.py:783
 msgid "New and updated addons"
 msgstr "新插件和更新的插件"
 
-#: ../gramps/gui/plug/_windows.py:786
+#: ../gramps/gui/plug/_windows.py:794
 msgid "What to check"
 msgstr "检查什么"
 
-#: ../gramps/gui/plug/_windows.py:792
+#: ../gramps/gui/plug/_windows.py:800
 msgid "Do not ask about previously notified addons"
 msgstr "不再询问已通知过的插件"
 
-#: ../gramps/gui/plug/_windows.py:799
+#: ../gramps/gui/plug/_windows.py:807
 msgid "Check for updated addons now"
 msgstr "检查更新的附件组件"
 
-#: ../gramps/gui/plug/_windows.py:812
+#: ../gramps/gui/plug/_windows.py:820
 #, fuzzy
 #| msgid "New Person"
 msgid "New Project"
 msgstr "新人"
 
-#: ../gramps/gui/plug/_windows.py:814
+#: ../gramps/gui/plug/_windows.py:822
 #, fuzzy
 #| msgid "Edit Person"
 msgid "Edit Project"
 msgstr "编辑此人"
 
-#: ../gramps/gui/plug/_windows.py:822
+#: ../gramps/gui/plug/_windows.py:830
 #, fuzzy
 #| msgid "Preferred name"
 msgid "Project name"
 msgstr "首选姓名"
 
-#: ../gramps/gui/plug/_windows.py:920
+#: ../gramps/gui/plug/_windows.py:928
 #, fuzzy
 #| msgid "Restore to defaults"
 msgid "Restore project defaults"
 msgstr "恢复为默认值"
 
-#: ../gramps/gui/plug/_windows.py:921
+#: ../gramps/gui/plug/_windows.py:929
 msgid "Are you sure?"
 msgstr "您确定吗？"
 
-#: ../gramps/gui/plug/_windows.py:945
+#: ../gramps/gui/plug/_windows.py:953
 msgid "Checking Addons Failed"
 msgstr "检查附加组件失败"
 
-#: ../gramps/gui/plug/_windows.py:947
+#: ../gramps/gui/plug/_windows.py:955
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr "加载项软件库好像不可用。请稍后再试。"
 
-#: ../gramps/gui/plug/_windows.py:962
+#: ../gramps/gui/plug/_windows.py:970
 msgid "There are no available addons of this type"
 msgstr "暂无此种有效的插件"
 
-#: ../gramps/gui/plug/_windows.py:963
+#: ../gramps/gui/plug/_windows.py:971
 msgid "' and '"
 msgstr "'和'"
 
-#: ../gramps/gui/plug/_windows.py:963
+#: ../gramps/gui/plug/_windows.py:971
 #, python-format
 msgid "Checked for '%s'"
 msgstr "查找 '%s'"
 
-#: ../gramps/gui/plug/_windows.py:969
+#: ../gramps/gui/plug/_windows.py:977
 msgid "new"
 msgstr "新"
 
-#: ../gramps/gui/plug/_windows.py:969
+#: ../gramps/gui/plug/_windows.py:977
 msgid "update"
 msgstr "更新"
 
-#: ../gramps/gui/plug/_windows.py:1004
+#: ../gramps/gui/plug/_windows.py:1012
 msgid "Hidden"
 msgstr "隐藏"
 
-#: ../gramps/gui/plug/_windows.py:1005
+#: ../gramps/gui/plug/_windows.py:1013
 msgid "Visible"
 msgstr "可见"
 
-#: ../gramps/gui/plug/_windows.py:1010
+#: ../gramps/gui/plug/_windows.py:1018
 msgid "Plugin Manager"
 msgstr "插件管理器"
 
-#: ../gramps/gui/plug/_windows.py:1062 ../gramps/gui/plug/_windows.py:1120
+#: ../gramps/gui/plug/_windows.py:1070 ../gramps/gui/plug/_windows.py:1128
 msgid "Info"
 msgstr "信息"
 
-#: ../gramps/gui/plug/_windows.py:1065 ../gramps/gui/plug/_windows.py:1123
+#: ../gramps/gui/plug/_windows.py:1073 ../gramps/gui/plug/_windows.py:1131
 msgid "Hide/Unhide"
 msgstr "隐藏/不隐藏"
 
-#: ../gramps/gui/plug/_windows.py:1074 ../gramps/gui/plug/_windows.py:1133
+#: ../gramps/gui/plug/_windows.py:1082 ../gramps/gui/plug/_windows.py:1141
 msgid "Load"
 msgstr "载入"
 
-#: ../gramps/gui/plug/_windows.py:1080
+#: ../gramps/gui/plug/_windows.py:1088
 msgid "Registered Plugins"
 msgstr "注册的插件."
 
-#: ../gramps/gui/plug/_windows.py:1099
+#: ../gramps/gui/plug/_windows.py:1107
 msgid "Loaded"
 msgstr "已载入"
 
-#: ../gramps/gui/plug/_windows.py:1103
+#: ../gramps/gui/plug/_windows.py:1111
 #: ../gramps/plugins/importer/importprogen.glade:431
 #: ../gramps/plugins/importer/importprogen.glade:1126
 msgid "File"
 msgstr "文件"
 
-#: ../gramps/gui/plug/_windows.py:1110
+#: ../gramps/gui/plug/_windows.py:1118
 msgid "Message"
 msgstr "信息"
 
-#: ../gramps/gui/plug/_windows.py:1139
+#: ../gramps/gui/plug/_windows.py:1147
 msgid "Loaded Plugins"
 msgstr "载入的插件"
 
-#: ../gramps/gui/plug/_windows.py:1161
+#: ../gramps/gui/plug/_windows.py:1169
 msgid "Addon Name"
 msgstr "插件名称"
 
-#: ../gramps/gui/plug/_windows.py:1173
+#: ../gramps/gui/plug/_windows.py:1181
 msgid "Path to Addon:"
 msgstr "插件路径："
 
-#: ../gramps/gui/plug/_windows.py:1193
+#: ../gramps/gui/plug/_windows.py:1201
 msgid "Install Addon"
 msgstr "安装插件"
 
-#: ../gramps/gui/plug/_windows.py:1196
+#: ../gramps/gui/plug/_windows.py:1204
 msgid "Install All Addons"
 msgstr "安装所有的插件"
 
-#: ../gramps/gui/plug/_windows.py:1199
+#: ../gramps/gui/plug/_windows.py:1207
 msgid "Refresh Addon List"
 msgstr "刷新插件列表"
 
-#: ../gramps/gui/plug/_windows.py:1212
+#: ../gramps/gui/plug/_windows.py:1220
 msgid "Reload"
 msgstr "重新载入"
 
-#: ../gramps/gui/plug/_windows.py:1240
+#: ../gramps/gui/plug/_windows.py:1248
 msgid "Refreshing Addon List"
 msgstr "刷新插件列表"
 
-#: ../gramps/gui/plug/_windows.py:1241 ../gramps/gui/plug/_windows.py:1246
-#: ../gramps/gui/plug/_windows.py:1384
+#: ../gramps/gui/plug/_windows.py:1249 ../gramps/gui/plug/_windows.py:1254
+#: ../gramps/gui/plug/_windows.py:1392
 msgid "Reading gramps-project.org..."
 msgstr "读取 gramps-project.org..."
 
-#: ../gramps/gui/plug/_windows.py:1264
+#: ../gramps/gui/plug/_windows.py:1272
 msgid "Checking addon..."
 msgstr "检查附件..."
 
-#: ../gramps/gui/plug/_windows.py:1272
+#: ../gramps/gui/plug/_windows.py:1280
 msgid "Unknown Help URL"
 msgstr "未知帮助URL"
 
-#: ../gramps/gui/plug/_windows.py:1283
+#: ../gramps/gui/plug/_windows.py:1291
 msgid "Unknown URL"
 msgstr "未知 URL"
 
-#: ../gramps/gui/plug/_windows.py:1348
+#: ../gramps/gui/plug/_windows.py:1356
 msgid "Install all Addons"
 msgstr "安装所有插件"
 
-#: ../gramps/gui/plug/_windows.py:1349
+#: ../gramps/gui/plug/_windows.py:1357
 msgid "Installing..."
 msgstr "安装..."
 
-#: ../gramps/gui/plug/_windows.py:1382
+#: ../gramps/gui/plug/_windows.py:1390
 msgid "Installing Addon"
 msgstr "安装插件"
 
-#: ../gramps/gui/plug/_windows.py:1405
+#: ../gramps/gui/plug/_windows.py:1413
 msgid "Load Addon"
 msgstr "载入插件"
 
-#: ../gramps/gui/plug/_windows.py:1497
+#: ../gramps/gui/plug/_windows.py:1505
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:261
 msgid "Fail"
 msgstr "失败"
 
-#: ../gramps/gui/plug/_windows.py:1520 ../gramps/gui/widgets/grampletbar.py:610
+#: ../gramps/gui/plug/_windows.py:1528 ../gramps/gui/widgets/grampletbar.py:610
 msgid "OK"
 msgstr "确认"
 
-#: ../gramps/gui/plug/_windows.py:1628
+#: ../gramps/gui/plug/_windows.py:1636
 msgid "Plugin name"
 msgstr "插件名称"
 
-#: ../gramps/gui/plug/_windows.py:1631
+#: ../gramps/gui/plug/_windows.py:1639
 msgid "Authors"
 msgstr "作者"
 
-#: ../gramps/gui/plug/_windows.py:1633
+#: ../gramps/gui/plug/_windows.py:1641
 #: ../gramps/gui/plug/report/_reportdialog.py:481
 msgid "Filename"
 msgstr "文件名"
 
-#: ../gramps/gui/plug/_windows.py:1636
+#: ../gramps/gui/plug/_windows.py:1644
 msgid "Detailed Info"
 msgstr "详细信息"
 
-#: ../gramps/gui/plug/_windows.py:1691
+#: ../gramps/gui/plug/_windows.py:1699
 msgid "Plugin Error"
 msgstr "插件错误"
 
-#: ../gramps/gui/plug/_windows.py:1760
+#: ../gramps/gui/plug/_windows.py:1768
 msgid "_Execute"
 msgstr "执行(_E)"
 
-#: ../gramps/gui/plug/_windows.py:2058
-#: ../gramps/plugins/importer/importprogen.py:478
+#: ../gramps/gui/plug/_windows.py:2066
+#: ../gramps/plugins/importer/importprogen.py:481
 #: ../gramps/plugins/tool/ownereditor.py:171
 #: ../gramps/plugins/tool/reorderids.py:249
 msgid "Main window"
 msgstr "主窗口"
 
-#: ../gramps/gui/plug/_windows.py:2196
+#: ../gramps/gui/plug/_windows.py:2204
 msgid "Downloading and installing selected addons..."
 msgstr "正在下载和安装所选加载项..."
 
-#: ../gramps/gui/plug/_windows.py:2239
+#: ../gramps/gui/plug/_windows.py:2247
 msgid "Installation Errors"
 msgstr "安装错误"
 
-#: ../gramps/gui/plug/_windows.py:2240
+#: ../gramps/gui/plug/_windows.py:2248
 msgid "The following addons had errors: "
 msgstr "以下插件出错： "
 
-#: ../gramps/gui/plug/_windows.py:2248 ../gramps/gui/plug/_windows.py:2265
+#: ../gramps/gui/plug/_windows.py:2256 ../gramps/gui/plug/_windows.py:2273
 msgid "Done downloading and installing addons"
 msgstr "下载和安装插件完毕"
 
-#: ../gramps/gui/plug/_windows.py:2253
+#: ../gramps/gui/plug/_windows.py:2261
 #, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
 msgstr[0] "已安装 {number_of} 个插件。"
 
-#: ../gramps/gui/plug/_windows.py:2258
+#: ../gramps/gui/plug/_windows.py:2266
 #, fuzzy
 #| msgid ""
 #| "If you have installed a 'Gramps View', you will need to restart Gramps."
 msgid "If you have installed a 'View', you will need to restart Gramps."
 msgstr "如果您安装了“Gramps 视图”类插件，您需要重启 Gramps。"
 
-#: ../gramps/gui/plug/_windows.py:2266
+#: ../gramps/gui/plug/_windows.py:2274
 msgid "No addons were installed."
 msgstr "无插件被安装"
 
@@ -20241,7 +20288,7 @@ msgid "View failed to load. Check error output."
 msgstr "视图加载失败。检查错误输出。"
 
 #: ../gramps/gui/viewmanager.py:1050
-#: ../gramps/plugins/importer/importprogen.py:214
+#: ../gramps/plugins/importer/importprogen.py:217
 msgid "Import Statistics"
 msgstr "导入统计"
 
@@ -20684,43 +20731,43 @@ msgstr "展开本段"
 msgid "Collapse this section"
 msgstr "关闭此部分"
 
-#: ../gramps/gui/widgets/fanchart.py:2062
+#: ../gramps/gui/widgets/fanchart.py:2080
 #: ../gramps/plugins/view/relview.py:1024
 msgid "Edit family"
 msgstr "编辑家庭"
 
-#: ../gramps/gui/widgets/fanchart.py:2078
+#: ../gramps/gui/widgets/fanchart.py:2096
 #: ../gramps/plugins/view/relview.py:1025
 msgid "Reorder families"
 msgstr "重排家庭"
 
-#: ../gramps/gui/widgets/fanchart.py:2084
+#: ../gramps/gui/widgets/fanchart.py:2102
 #: ../gramps/plugins/view/pedigreeview.py:1882
 #: ../gramps/plugins/view/pedigreeview.py:2114
 msgid "_Copy"
 msgstr "复制(_C)"
 
-#: ../gramps/gui/widgets/fanchart.py:2129
+#: ../gramps/gui/widgets/fanchart.py:2147
 #: ../gramps/plugins/quickview/quickview.gpr.py:338
 #: ../gramps/plugins/view/pedigreeview.py:1927
 #: ../gramps/plugins/view/relview.py:1126
 msgid "Siblings"
 msgstr "兄弟姐妹"
 
-#: ../gramps/gui/widgets/fanchart.py:2275
+#: ../gramps/gui/widgets/fanchart.py:2293
 #: ../gramps/plugins/view/pedigreeview.py:2057
 msgid "Related"
 msgstr "相关的"
 
-#: ../gramps/gui/widgets/fanchart.py:2322
+#: ../gramps/gui/widgets/fanchart.py:2340
 msgid "Add partner to person"
 msgstr "为人员添加伴侣"
 
-#: ../gramps/gui/widgets/fanchart.py:2330
+#: ../gramps/gui/widgets/fanchart.py:2348
 msgid "Add a person"
 msgstr "新增一个人员"
 
-#: ../gramps/gui/widgets/fanchart.py:2418
+#: ../gramps/gui/widgets/fanchart.py:2436
 #: ../gramps/plugins/view/relview.py:1816
 msgid "Add Child to Family"
 msgstr "为家庭添加子女"
@@ -23441,11 +23488,6 @@ msgstr "后代扇形图"
 msgid "Gramplet showing active person's direct descendants as a fanchart"
 msgstr "将当前人员的后代以扇形图显示的 Gramplet 控件"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:165
-#: ../gramps/plugins/view/view.gpr.py:168
-msgid "Descendant Fan"
-msgstr "后代扇形图"
-
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:175
 #: ../gramps/plugins/view/fanchart2wayview.py:84
 msgid "2-Way Fan Chart"
@@ -23479,14 +23521,6 @@ msgstr "名字云图"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:212
 msgid "Gramplet showing all given names as a text cloud"
 msgstr "Gramplet 以文字云图显示所有名字"
-
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:227
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:233
-#: ../gramps/plugins/view/pedigreeview.py:565
-#: ../gramps/plugins/view/view.gpr.py:135
-#: ../gramps/plugins/webreport/person.py:1681
-msgid "Pedigree"
-msgstr "谱系"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:247
 msgid "Gramplet showing an active item Quick View"
@@ -24682,8 +24716,8 @@ msgstr ""
 "\n"
 "要创建一个新的家族树（有时称为“数据库”），从菜单中选择“家族树”，选择“管理家族"
 "树”，按“新建”并命名你的家族树。“加载家族树”通过输入你的第一个家庭或导入一个家"
-"族树，使家族树处于活动状态并准备好接受数据。更多细节，请阅读以下链接的信息。"
-"\n"
+"族树，使家族树处于活动状态并准备好接受数据。更多细节，请阅读以下链接的信"
+"息。\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:171
@@ -24735,8 +24769,8 @@ msgstr ""
 "您现在可以通过添加父母、配偶和孩子来创建家庭。开始后，您将能够向人员和家庭添"
 "加事件。您可以提供来源和引文来为您的条目提供文档。\n"
 "\n"
-"当您开始使用 Gramps 时，您会发现可以从所有不同的视图中输入信息。 Gramps "
-"中的大多数活动都有多种方式进行。灵活性使您可以选择适合您的工作风格。\n"
+"当您开始使用 Gramps 时，您会发现可以从所有不同的视图中输入信息。 Gramps 中的"
+"大多数活动都有多种方式进行。灵活性使您可以选择适合您的工作风格。\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:203
@@ -25647,8 +25681,8 @@ msgid "Bad references"
 msgstr "首选项"
 
 #: ../gramps/plugins/importer/importcsv.py:159
-#: ../gramps/plugins/importer/importgedcom.py:142
-#: ../gramps/plugins/importer/importgedcom.py:158
+#: ../gramps/plugins/importer/importgedcom.py:143
+#: ../gramps/plugins/importer/importgedcom.py:159
 #: ../gramps/plugins/importer/importgeneweb.py:177
 #: ../gramps/plugins/importer/importgeneweb.py:183
 #: ../gramps/plugins/importer/importvcard.py:84
@@ -25658,17 +25692,17 @@ msgid "%s could not be opened\n"
 msgstr "%s 无法打开\n"
 
 #: ../gramps/plugins/importer/importcsv.py:161
-#: ../gramps/plugins/importer/importgedcom.py:169
+#: ../gramps/plugins/importer/importgedcom.py:170
 #: ../gramps/plugins/importer/importgeneweb.py:186
-#: ../gramps/plugins/importer/importprogen.py:216
+#: ../gramps/plugins/importer/importprogen.py:219
 #: ../gramps/plugins/importer/importvcard.py:91
 msgid "Results"
 msgstr "结果"
 
 #: ../gramps/plugins/importer/importcsv.py:161
-#: ../gramps/plugins/importer/importgedcom.py:169
+#: ../gramps/plugins/importer/importgedcom.py:170
 #: ../gramps/plugins/importer/importgeneweb.py:186
-#: ../gramps/plugins/importer/importprogen.py:216
+#: ../gramps/plugins/importer/importprogen.py:219
 #: ../gramps/plugins/importer/importvcard.py:91
 msgid "done"
 msgstr "完成"
@@ -26010,16 +26044,16 @@ msgstr ""
 msgid "Encoding: "
 msgstr "编码： "
 
-#: ../gramps/plugins/importer/importgedcom.py:146
+#: ../gramps/plugins/importer/importgedcom.py:147
 msgid "Invalid GEDCOM file"
 msgstr "无效的 GEDCOM 文件"
 
-#: ../gramps/plugins/importer/importgedcom.py:147
+#: ../gramps/plugins/importer/importgedcom.py:148
 #, python-format
 msgid "%s could not be imported"
 msgstr "%s 无法导入"
 
-#: ../gramps/plugins/importer/importgedcom.py:165
+#: ../gramps/plugins/importer/importgedcom.py:166
 msgid "Error reading GEDCOM file"
 msgstr "读取 GEDCOM 文件错误"
 
@@ -26186,7 +26220,7 @@ msgstr ""
 "体管理工具中的选项“替换路径中的子字符串”来为您的媒体对象设置正确的路径。"
 
 #: ../gramps/plugins/importer/importgrdb.py:65
-#: ../gramps/plugins/importer/importprogen.py:208
+#: ../gramps/plugins/importer/importprogen.py:211
 #: ../gramps/plugins/importer/importxml.py:521
 #: ../gramps/plugins/importer/importxml.py:524
 #, python-format
@@ -26450,24 +26484,24 @@ msgstr "选项"
 msgid "_Ok"
 msgstr "确认(_O)"
 
-#: ../gramps/plugins/importer/importprogen.py:68
+#: ../gramps/plugins/importer/importprogen.py:71
 msgctxt "manual"
 msgid "Import_from_another_genealogy_program"
 msgstr "Import_from_another_genealogy_program"
 
-#: ../gramps/plugins/importer/importprogen.py:134
+#: ../gramps/plugins/importer/importprogen.py:137
 #, python-format
 msgid "Import from Pro-Gen (%s)"
 msgstr "从 Pro-Gen (%s) 导入"
 
-#: ../gramps/plugins/importer/importprogen.py:205
+#: ../gramps/plugins/importer/importprogen.py:208
 #: ../gramps/plugins/lib/libprogen.py:566
 #: ../gramps/plugins/lib/libprogen.py:591
 msgid "Pro-Gen data error"
 msgstr "Pro-Gen 数据错误"
 
-#: ../gramps/plugins/importer/importprogen.py:478
-#: ../gramps/plugins/importer/importprogen.py:486
+#: ../gramps/plugins/importer/importprogen.py:481
+#: ../gramps/plugins/importer/importprogen.py:489
 msgid "Import Pro-Gen"
 msgstr "导入 Pro-Gen"
 
@@ -26573,17 +26607,6 @@ msgstr "  {id1} - {text} with {id2}"
 #, python-brace-format
 msgid "  {obj} {id1} with {id2}"
 msgstr ""
-
-#: ../gramps/plugins/importer/importxml.py:349
-#: ../gramps/plugins/quickview/filterbyname.py:96
-#: ../gramps/plugins/quickview/filterbyname.py:161
-#: ../gramps/plugins/textreport/tagreport.py:156
-#: ../gramps/plugins/view/view.gpr.py:210
-#: ../gramps/plugins/view/view.gpr.py:219
-#: ../gramps/plugins/view/view.gpr.py:227
-#: ../gramps/plugins/webreport/updates.py:106
-msgid "People"
-msgstr "成员"
 
 #: ../gramps/plugins/importer/importxml.py:351
 #: ../gramps/plugins/quickview/filterbyname.py:128
@@ -37037,11 +37060,6 @@ msgstr "合拢全部组"
 #: ../gramps/plugins/view/placetreeview.py:86
 msgid "Expand this Entire Group"
 msgstr "展开全部组"
-
-#: ../gramps/plugins/view/relview.py:148 ../gramps/plugins/view/view.gpr.py:119
-#: ../gramps/plugins/view/view.gpr.py:127
-msgid "Relationships"
-msgstr "关系"
 
 #: ../gramps/plugins/view/relview.py:390
 msgid "Organize Bookmarks..."

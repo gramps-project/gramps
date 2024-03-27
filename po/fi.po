@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-08 22:07+0000\n"
+"POT-Creation-Date: 2024-03-24 22:29+0000\n"
 "PO-Revision-Date: 2024-03-24 21:09+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
@@ -237,18 +237,26 @@ msgstr "Ukraina"
 msgid "United States of America"
 msgstr "Yhdysvallat"
 
-#: ../data/org.gramps_project.Gramps.appdata.xml.in:4
 #: ../data/org.gramps_project.Gramps.desktop.in:3
+#: ../data/org.gramps_project.Gramps.metainfo.xml.in:4
 msgid "Gramps"
 msgstr "Gramps"
 
-#: ../data/org.gramps_project.Gramps.appdata.xml.in:5
+#: ../data/org.gramps_project.Gramps.desktop.in:4
+msgid "Genealogy System"
+msgstr "Sukututkimusjärjestelmä"
+
 #: ../data/org.gramps_project.Gramps.desktop.in:6
+#: ../data/org.gramps_project.Gramps.metainfo.xml.in:5
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
 msgstr "Hallinnoi sukutietoja, tee sukututkimusta ja analysoi sukutietoja"
 
-#: ../data/org.gramps_project.Gramps.appdata.xml.in:7
+#: ../data/org.gramps_project.Gramps.desktop.in:12
+msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
+msgstr "Sukututkimus;Suvun tarina;Tutkimus;Sukupuu;GEDCOM;"
+
+#: ../data/org.gramps_project.Gramps.metainfo.xml.in:7
 #: ../gramps/gen/const.py:255
 msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
@@ -257,7 +265,7 @@ msgstr ""
 "Gramps on sukututkimusohjelma, joka on harrastelijalle helppo käyttää ja "
 "jossa on ammattitutkijan tarvitsemat ominaisuudet."
 
-#: ../data/org.gramps_project.Gramps.appdata.xml.in:8
+#: ../data/org.gramps_project.Gramps.metainfo.xml.in:8
 msgid ""
 "It gives you the ability to record the many details of the life of an "
 "individual as well as the complex relationships between various people, "
@@ -266,7 +274,7 @@ msgstr ""
 "Sen avulla voit tallentaa henkilön elämänkaaren monia tapahtumia kuten myös "
 "monimutkaisia suhteita henkilöiden, paikkojen ja tapahtumien välillä."
 
-#: ../data/org.gramps_project.Gramps.appdata.xml.in:9
+#: ../data/org.gramps_project.Gramps.metainfo.xml.in:9
 msgid ""
 "All of your research is kept organized, searchable and as precise as you "
 "need it to be."
@@ -274,17 +282,84 @@ msgstr ""
 "Kaikki tutkimuksesi pidetään juuri niin hallittuna, haettavissa ja tarkkana "
 "kuin sinulle on tarpeen."
 
-#: ../data/org.gramps_project.Gramps.appdata.xml.in:12
+#: ../data/org.gramps_project.Gramps.metainfo.xml.in:13
 msgid "Gramps Development Team"
 msgstr "Gramps-kehitystiimi"
 
-#: ../data/org.gramps_project.Gramps.desktop.in:4
-msgid "Genealogy System"
-msgstr "Sukututkimusjärjestelmä"
+#: ../data/org.gramps_project.Gramps.metainfo.xml.in:30
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:227
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:233
+#: ../gramps/plugins/view/pedigreeview.py:565
+#: ../gramps/plugins/view/view.gpr.py:135
+#: ../gramps/plugins/webreport/person.py:1681
+msgid "Pedigree"
+msgstr "Sukupuu"
 
-#: ../data/org.gramps_project.Gramps.desktop.in:12
-msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
-msgstr "Sukututkimus;Suvun tarina;Tutkimus;Sukupuu;GEDCOM;"
+#: ../data/org.gramps_project.Gramps.metainfo.xml.in:34
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:165
+#: ../gramps/plugins/view/view.gpr.py:168
+msgid "Descendant Fan"
+msgstr "Jälkeläisviuhka"
+
+#: ../data/org.gramps_project.Gramps.metainfo.xml.in:38
+#: ../gramps/plugins/importer/importxml.py:349
+#: ../gramps/plugins/quickview/filterbyname.py:96
+#: ../gramps/plugins/quickview/filterbyname.py:161
+#: ../gramps/plugins/textreport/tagreport.py:156
+#: ../gramps/plugins/view/view.gpr.py:210
+#: ../gramps/plugins/view/view.gpr.py:219
+#: ../gramps/plugins/view/view.gpr.py:227
+#: ../gramps/plugins/webreport/updates.py:106
+msgid "People"
+msgstr "Henkilöt"
+
+#: ../data/org.gramps_project.Gramps.metainfo.xml.in:42
+#: ../gramps/plugins/view/relview.py:148 ../gramps/plugins/view/view.gpr.py:119
+#: ../gramps/plugins/view/view.gpr.py:127
+msgid "Relationships"
+msgstr "Suhteet"
+
+#: ../data/org.gramps_project.Gramps.metainfo.xml.in:46
+#: ../gramps/gen/lib/person.py:185 ../gramps/gui/clipboard.py:723
+#: ../gramps/gui/configure.py:773 ../gramps/gui/editors/editlink.py:100
+#: ../gramps/gui/editors/filtereditor.py:309
+#: ../gramps/gui/glade/editpersonref.glade:181
+#: ../gramps/gui/glade/editpersonref.glade:247 ../gramps/gui/grampsgui.py:58
+#: ../gramps/plugins/export/exportcsv.py:419
+#: ../gramps/plugins/gramplet/quickviewgramplet.py:120
+#: ../gramps/plugins/importer/importcsv.py:293
+#: ../gramps/plugins/importer/importprogen.glade:667
+#: ../gramps/plugins/importer/importprogen.glade:1237
+#: ../gramps/plugins/importer/importprogen.glade:1326
+#: ../gramps/plugins/quickview/ageondate.py:54
+#: ../gramps/plugins/quickview/attributematch.py:36
+#: ../gramps/plugins/quickview/filterbyname.py:238
+#: ../gramps/plugins/quickview/filterbyname.py:317
+#: ../gramps/plugins/quickview/filterbyname.py:365
+#: ../gramps/plugins/quickview/filterbyname.py:376
+#: ../gramps/plugins/quickview/filterbyname.py:387
+#: ../gramps/plugins/quickview/filterbyname.py:398
+#: ../gramps/plugins/quickview/filterbyname.py:438
+#: ../gramps/plugins/quickview/filterbyname.py:451
+#: ../gramps/plugins/quickview/filterbyname.py:482
+#: ../gramps/plugins/quickview/filterbyname.py:490
+#: ../gramps/plugins/quickview/filterbyname.py:526
+#: ../gramps/plugins/quickview/quickview.gpr.py:213
+#: ../gramps/plugins/quickview/references.py:89
+#: ../gramps/plugins/quickview/samesurnames.py:129
+#: ../gramps/plugins/quickview/samesurnames.py:179
+#: ../gramps/plugins/textreport/placereport.py:243
+#: ../gramps/plugins/textreport/placereport.py:327
+#: ../gramps/plugins/textreport/placereport.py:491
+#: ../gramps/plugins/tool/dateparserdisplaytest.py:268
+#: ../gramps/plugins/tool/eventcmp.py:260
+#: ../gramps/plugins/tool/removespaces.py:138
+#: ../gramps/plugins/tool/reorderids.glade:761
+#: ../gramps/plugins/webreport/event.py:316
+#: ../gramps/plugins/webreport/family.py:315
+#: ../gramps/plugins/webreport/person.py:1574
+msgid "Person"
+msgstr "Henkilö"
 
 #: ../data/org.gramps_project.Gramps.xml.in:6
 msgid "Gramps database"
@@ -1478,8 +1553,8 @@ msgstr ""
 "\n"
 "4. Virheilmoitusten tallentamiseksi yo. esimerkissä tulostiedostoon(outfile) "
 "ja virhelokiin (errfile), aja:\n"
-"Gramps -i file1.ged -i file2.dpkg -e ~/new-package -f Gramps-pkg >outfile 2>"
-"errfile\n"
+"Gramps -i file1.ged -i file2.dpkg -e ~/new-package -f Gramps-pkg >outfile "
+"2>errfile\n"
 "\n"
 "5. Tuodaksesi kolme tietokantaa ja käynnistääksesi interaktiivinen Gramps "
 "istunnon tuloksella:\n"
@@ -1499,19 +1574,19 @@ msgstr ""
 "olevat timelime raportin optiot.\n"
 "Löytääksesi tietyn option yksityiskohdat käytä näytä=option_nimi, esim. "
 "nimi=timeline,näytä=off string.\n"
-"Käytettävissä olevien raporttien nimet saa selville, käytä name=show string."
-"\n"
+"Käytettävissä olevien raporttien nimet saa selville, käytä name=show "
+"string.\n"
 "\n"
 "9. Sukupuun muunto lennosta Gramps xml muotoiseksi tiedostoksi:\n"
 "gramps -O 'Family Tree 1' -e output.gramps -f gramps\n"
 "\n"
-"10. Tuottaaksesi nettisivuston paikallisasetuksilla (local) (esim. saksaksi):"
-"\n"
+"10. Tuottaaksesi nettisivuston paikallisasetuksilla (local) (esim. "
+"saksaksi):\n"
 "LANGUAGE=de_DE; LANG=de_DE.UTF-8 Gramps -O 'Family Tree 1' -a report -p "
 "name=navwebpage,target=/../de\n"
 "\n"
-"11. Lopulta, avataksesi Grampsin normaaliin interaktiiviseen tilaan kirjoita:"
-"\n"
+"11. Lopulta, avataksesi Grampsin normaaliin interaktiiviseen tilaan "
+"kirjoita:\n"
 "gramps\n"
 "\n"
 "Huomaa: Nämä esimerkit pätevät Linuxin oletuskomentotulkkiin.\n"
@@ -1570,7 +1645,7 @@ msgstr "Virhe argumenttien jäsentämisessä"
 
 #: ../gramps/cli/clidbman.py:73 ../gramps/cli/clidbman.py:172
 #: ../gramps/cli/clidbman.py:174 ../gramps/gui/clipboard.py:201
-#: ../gramps/gui/clipboard.py:202 ../gramps/gui/plug/_windows.py:1486
+#: ../gramps/gui/clipboard.py:202 ../gramps/gui/plug/_windows.py:1494
 msgid "Unavailable"
 msgstr "Ei saatavilla"
 
@@ -1615,8 +1690,8 @@ msgstr "Sukupuu \"%s\":"
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/cli/clidbman.py:222 ../gramps/gen/plug/report/utils.py:182
 #: ../gramps/gui/editors/editattribute.py:140
-#: ../gramps/gui/editors/editname.py:341 ../gramps/gui/plug/_windows.py:1691
-#: ../gramps/gui/plug/_windows.py:2135
+#: ../gramps/gui/editors/editname.py:341 ../gramps/gui/plug/_windows.py:1699
+#: ../gramps/gui/plug/_windows.py:2143
 #: ../gramps/plugins/gramplet/whatsnext.py:495
 #: ../gramps/plugins/textreport/birthdayreport.py:213
 #: ../gramps/plugins/textreport/birthdayreport.py:218
@@ -1688,7 +1763,7 @@ msgstr ""
 "\n"
 
 #: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2304
-#: ../gramps/gui/plug/_windows.py:756
+#: ../gramps/gui/plug/_windows.py:764
 msgid "Never"
 msgstr "Ei koskaan"
 
@@ -3086,7 +3161,7 @@ msgstr "Fri"
 msgid "Sat"
 msgstr "Sat"
 
-#: ../gramps/gen/db/base.py:1823 ../gramps/gui/widgets/fanchart.py:2315
+#: ../gramps/gen/db/base.py:1823 ../gramps/gui/widgets/fanchart.py:2333
 msgid "Add child to family"
 msgstr "Lisää perheeseen lapsi"
 
@@ -6942,8 +7017,8 @@ msgstr "Kasti"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:68
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:113
 #: ../gramps/gui/glade/rule.glade:931 ../gramps/gui/glade/styleeditor.glade:278
-#: ../gramps/gui/plug/_windows.py:1052 ../gramps/gui/plug/_windows.py:1167
-#: ../gramps/gui/plug/_windows.py:1629 ../gramps/gui/plug/_windows.py:2122
+#: ../gramps/gui/plug/_windows.py:1060 ../gramps/gui/plug/_windows.py:1175
+#: ../gramps/gui/plug/_windows.py:1637 ../gramps/gui/plug/_windows.py:2130
 #: ../gramps/gui/selectors/selectevent.py:71
 #: ../gramps/plugins/gramplet/coordinates.py:100
 #: ../gramps/plugins/gramplet/events.py:103
@@ -8120,7 +8195,7 @@ msgstr "Isä"
 msgid "Mother"
 msgstr "Äiti"
 
-#: ../gramps/gen/lib/family.py:173 ../gramps/gui/widgets/fanchart.py:2196
+#: ../gramps/gen/lib/family.py:173 ../gramps/gui/widgets/fanchart.py:2214
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:993
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1009
 #: ../gramps/plugins/textreport/familygroup.py:657
@@ -8187,8 +8262,8 @@ msgstr "Rekisteröity parisuhde"
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:118
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:114
 #: ../gramps/gui/merge/mergeperson.py:273 ../gramps/gui/plug/_windows.py:232
-#: ../gramps/gui/plug/_windows.py:1041 ../gramps/gui/plug/_windows.py:1164
-#: ../gramps/gui/plug/_windows.py:2120
+#: ../gramps/gui/plug/_windows.py:1049 ../gramps/gui/plug/_windows.py:1172
+#: ../gramps/gui/plug/_windows.py:2128
 #: ../gramps/gui/plug/report/_bookdialog.py:397
 #: ../gramps/gui/plug/report/_bookdialog.py:401
 #: ../gramps/gui/selectors/selectevent.py:67
@@ -8329,8 +8404,8 @@ msgstr "Temppeli"
 #: ../gramps/gen/lib/ldsord.py:206 ../gramps/gui/dbman.py:419
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:54
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:64
-#: ../gramps/gui/plug/_windows.py:236 ../gramps/gui/plug/_windows.py:1045
-#: ../gramps/gui/plug/_windows.py:1107
+#: ../gramps/gui/plug/_windows.py:236 ../gramps/gui/plug/_windows.py:1053
+#: ../gramps/gui/plug/_windows.py:1115
 #: ../gramps/plugins/quickview/ageondate.py:54
 #: ../gramps/plugins/textreport/indivcomplete.py:532
 #: ../gramps/plugins/textreport/indivcomplete.py:737
@@ -8340,7 +8415,7 @@ msgid "Status"
 msgstr "Tila"
 
 #: ../gramps/gen/lib/location.py:89 ../gramps/gen/lib/nameorigintype.py:88
-#: ../gramps/gui/clipboard.py:331 ../gramps/gui/plug/_windows.py:1634
+#: ../gramps/gui/clipboard.py:331 ../gramps/gui/plug/_windows.py:1642
 msgid "Location"
 msgstr "Sijainti"
 
@@ -8390,8 +8465,8 @@ msgstr "Seutukunta"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:158
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:117
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:113
-#: ../gramps/gui/plug/_guioptions.py:1185 ../gramps/gui/plug/_windows.py:1048
-#: ../gramps/gui/plug/_windows.py:2121
+#: ../gramps/gui/plug/_guioptions.py:1185 ../gramps/gui/plug/_windows.py:1056
+#: ../gramps/gui/plug/_windows.py:2129
 #: ../gramps/gui/plug/report/_bookdialog.py:397
 #: ../gramps/gui/selectors/selectperson.py:99
 #: ../gramps/gui/selectors/selectplace.py:68
@@ -8638,7 +8713,7 @@ msgstr "Muotoilu"
 #: ../gramps/gui/glade/editplaceref.glade:162
 #: ../gramps/gui/glade/editplaceref.glade:667
 #: ../gramps/gui/glade/editreporef.glade:226
-#: ../gramps/gui/glade/editreporef.glade:446 ../gramps/gui/plug/_windows.py:720
+#: ../gramps/gui/glade/editreporef.glade:446 ../gramps/gui/plug/_windows.py:728
 #: ../gramps/plugins/tool/verify.glade:406
 msgid "General"
 msgstr "Yleistä"
@@ -8747,47 +8822,6 @@ msgstr "Mediaviitteen lisätietoja"
 #: ../gramps/gen/lib/notetype.py:106
 msgid "Child Reference Note"
 msgstr "Lapsiviitteen lisätietoja"
-
-#: ../gramps/gen/lib/person.py:185 ../gramps/gui/clipboard.py:723
-#: ../gramps/gui/configure.py:773 ../gramps/gui/editors/editlink.py:100
-#: ../gramps/gui/editors/filtereditor.py:309
-#: ../gramps/gui/glade/editpersonref.glade:181
-#: ../gramps/gui/glade/editpersonref.glade:247 ../gramps/gui/grampsgui.py:58
-#: ../gramps/plugins/export/exportcsv.py:419
-#: ../gramps/plugins/gramplet/quickviewgramplet.py:120
-#: ../gramps/plugins/importer/importcsv.py:293
-#: ../gramps/plugins/importer/importprogen.glade:667
-#: ../gramps/plugins/importer/importprogen.glade:1237
-#: ../gramps/plugins/importer/importprogen.glade:1326
-#: ../gramps/plugins/quickview/ageondate.py:54
-#: ../gramps/plugins/quickview/attributematch.py:36
-#: ../gramps/plugins/quickview/filterbyname.py:238
-#: ../gramps/plugins/quickview/filterbyname.py:317
-#: ../gramps/plugins/quickview/filterbyname.py:365
-#: ../gramps/plugins/quickview/filterbyname.py:376
-#: ../gramps/plugins/quickview/filterbyname.py:387
-#: ../gramps/plugins/quickview/filterbyname.py:398
-#: ../gramps/plugins/quickview/filterbyname.py:438
-#: ../gramps/plugins/quickview/filterbyname.py:451
-#: ../gramps/plugins/quickview/filterbyname.py:482
-#: ../gramps/plugins/quickview/filterbyname.py:490
-#: ../gramps/plugins/quickview/filterbyname.py:526
-#: ../gramps/plugins/quickview/quickview.gpr.py:213
-#: ../gramps/plugins/quickview/references.py:89
-#: ../gramps/plugins/quickview/samesurnames.py:129
-#: ../gramps/plugins/quickview/samesurnames.py:179
-#: ../gramps/plugins/textreport/placereport.py:243
-#: ../gramps/plugins/textreport/placereport.py:327
-#: ../gramps/plugins/textreport/placereport.py:491
-#: ../gramps/plugins/tool/dateparserdisplaytest.py:268
-#: ../gramps/plugins/tool/eventcmp.py:260
-#: ../gramps/plugins/tool/removespaces.py:138
-#: ../gramps/plugins/tool/reorderids.glade:761
-#: ../gramps/plugins/webreport/event.py:316
-#: ../gramps/plugins/webreport/family.py:315
-#: ../gramps/plugins/webreport/person.py:1574
-msgid "Person"
-msgstr "Henkilö"
 
 #: ../gramps/gen/lib/person.py:194 ../gramps/gui/editors/editfamily.py:140
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:160
@@ -10048,7 +10082,7 @@ msgstr "Pieni"
 #: ../gramps/gui/editors/editcitation.py:240
 #: ../gramps/plugins/graph/gvfamilylines.py:320
 #: ../gramps/plugins/graph/gvrelgraph.py:1082
-#: ../gramps/plugins/importer/importprogen.py:513
+#: ../gramps/plugins/importer/importprogen.py:516
 msgid "Normal"
 msgstr "Normaali"
 
@@ -11181,24 +11215,24 @@ msgid "Invalid"
 msgstr "Virheellinen"
 
 #: ../gramps/gen/utils/string.py:62 ../gramps/gui/editors/editcitation.py:242
-#: ../gramps/plugins/importer/importprogen.py:515
+#: ../gramps/plugins/importer/importprogen.py:518
 msgid "Very High"
 msgstr "Erittäin korkea"
 
 #: ../gramps/gen/utils/string.py:63 ../gramps/gui/editors/editcitation.py:241
-#: ../gramps/plugins/importer/importprogen.py:514
+#: ../gramps/plugins/importer/importprogen.py:517
 #: ../gramps/plugins/tool/finddupes.py:63
 msgid "High"
 msgstr "Korkea"
 
 #: ../gramps/gen/utils/string.py:65 ../gramps/gui/editors/editcitation.py:239
-#: ../gramps/plugins/importer/importprogen.py:512
+#: ../gramps/plugins/importer/importprogen.py:515
 #: ../gramps/plugins/tool/finddupes.py:61
 msgid "Low"
 msgstr "Matala"
 
 #: ../gramps/gen/utils/string.py:66 ../gramps/gui/editors/editcitation.py:238
-#: ../gramps/plugins/importer/importprogen.py:511
+#: ../gramps/plugins/importer/importprogen.py:514
 msgid "Very Low"
 msgstr "Erittäin matala"
 
@@ -11790,8 +11824,8 @@ msgstr "Näytä nimimuokkain"
 #: ../gramps/gui/glade/plugins.glade:22 ../gramps/gui/glade/rule.glade:24
 #: ../gramps/gui/glade/rule.glade:1024 ../gramps/gui/glade/tipofday.glade:117
 #: ../gramps/gui/glade/updateaddons.glade:25 ../gramps/gui/grampsgui.py:58
-#: ../gramps/gui/plug/_windows.py:389 ../gramps/gui/plug/_windows.py:1018
-#: ../gramps/gui/plug/_windows.py:1697 ../gramps/gui/plug/_windows.py:1757
+#: ../gramps/gui/plug/_windows.py:389 ../gramps/gui/plug/_windows.py:1026
+#: ../gramps/gui/plug/_windows.py:1705 ../gramps/gui/plug/_windows.py:1765
 #: ../gramps/gui/plug/quick/_textbufdoc.py:71 ../gramps/gui/undohistory.py:88
 #: ../gramps/gui/viewmanager.py:1801 ../gramps/gui/views/bookmarks.py:316
 #: ../gramps/gui/views/tags.py:503 ../gramps/gui/widgets/grampletbar.py:718
@@ -11883,8 +11917,8 @@ msgstr "Viallinen tai puutteellinen muotoilumääritelmä."
 #: ../gramps/gui/configure.py:1650 ../gramps/gui/configure.py:1655
 #: ../gramps/gui/configure.py:1676 ../gramps/gui/configure.py:1692
 #: ../gramps/gui/configure.py:2226 ../gramps/gui/configure.py:2315
-#: ../gramps/gui/plug/_windows.py:766 ../gramps/gui/plug/_windows.py:786
-#: ../gramps/gui/plug/_windows.py:822 ../gramps/gui/plug/_windows.py:830
+#: ../gramps/gui/plug/_windows.py:774 ../gramps/gui/plug/_windows.py:794
+#: ../gramps/gui/plug/_windows.py:830 ../gramps/gui/plug/_windows.py:838
 #: ../gramps/gui/views/navigationview.py:351
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:110
 #, python-format
@@ -11957,7 +11991,7 @@ msgstr "Lääni tai osavaltio"
 msgid "ZIP/Postal Code"
 msgstr "Postinumero"
 
-#: ../gramps/gui/configure.py:737 ../gramps/gui/plug/_windows.py:1632
+#: ../gramps/gui/configure.py:737 ../gramps/gui/plug/_windows.py:1640
 #: ../gramps/plugins/view/repoview.py:96
 msgid "Email"
 msgstr "Sähköposti"
@@ -12160,8 +12194,8 @@ msgstr "Esimerkki"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:127
 #: ../gramps/gui/editors/editfamily.py:221 ../gramps/gui/grampsgui.py:58
 #: ../gramps/gui/plug/report/_bookdialog.py:677 ../gramps/gui/views/tags.py:495
-#: ../gramps/gui/widgets/fanchart.py:2266
-#: ../gramps/gui/widgets/fanchart.py:2308
+#: ../gramps/gui/widgets/fanchart.py:2284
+#: ../gramps/gui/widgets/fanchart.py:2326
 #: ../gramps/plugins/view/pedigreeview.py:1843
 msgid "_Add"
 msgstr "_Lisää"
@@ -12176,7 +12210,7 @@ msgstr "_Lisää"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:128
 #: ../gramps/gui/glade/editlink.glade:222 ../gramps/gui/grampsgui.py:58
 #: ../gramps/gui/plug/report/_bookdialog.py:651 ../gramps/gui/views/tags.py:496
-#: ../gramps/gui/widgets/fanchart.py:2054
+#: ../gramps/gui/widgets/fanchart.py:2072
 #: ../gramps/plugins/view/pedigreeview.py:1877
 #: ../gramps/plugins/view/pedigreeview.py:2109
 msgid "_Edit"
@@ -12205,7 +12239,7 @@ msgstr "Näytön asetukset"
 #: ../gramps/gui/glade/editperson.glade:12
 #: ../gramps/gui/glade/editperson.glade:516 ../gramps/gui/glade/rule.glade:463
 #: ../gramps/gui/glade/styleeditor.glade:1903
-#: ../gramps/gui/plug/_windows.py:1071 ../gramps/gui/plug/_windows.py:1130
+#: ../gramps/gui/plug/_windows.py:1079 ../gramps/gui/plug/_windows.py:1138
 #: ../gramps/plugins/gramplet/ancestor.py:122
 #: ../gramps/plugins/gramplet/descendant.py:119
 msgid "Edit"
@@ -12750,8 +12784,8 @@ msgstr "Valitse mediatiedostojen hakemisto"
 #: ../gramps/gui/glade/rule.glade:747 ../gramps/gui/glade/styleeditor.glade:86
 #: ../gramps/gui/glade/styleeditor.glade:1737
 #: ../gramps/gui/logger/_errorview.py:188 ../gramps/gui/plug/_guioptions.py:84
-#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:840
-#: ../gramps/gui/plug/_windows.py:1408
+#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:848
+#: ../gramps/gui/plug/_windows.py:1416
 #: ../gramps/gui/plug/report/_fileentry.py:68
 #: ../gramps/gui/plug/report/_reportdialog.py:170 ../gramps/gui/utils.py:265
 #: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1250
@@ -13042,7 +13076,7 @@ msgstr "Tietokannan tiedot"
 #: ../gramps/gui/glade/reorder.glade:38 ../gramps/gui/glade/rule.glade:333
 #: ../gramps/gui/glade/rule.glade:764 ../gramps/gui/glade/styleeditor.glade:103
 #: ../gramps/gui/glade/styleeditor.glade:1754
-#: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:840
+#: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:848
 #: ../gramps/gui/plug/report/_reportdialog.py:173 ../gramps/gui/utils.py:279
 #: ../gramps/gui/viewmanager.py:1802 ../gramps/gui/views/tags.py:727
 #: ../gramps/plugins/tool/check.py:828 ../gramps/plugins/tool/patchnames.py:152
@@ -13932,14 +13966,14 @@ msgid "Set as default name"
 msgstr "Aseta oletusnimeksi"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
-#: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:922
+#: ../gramps/gui/plug/_guioptions.py:1268 ../gramps/gui/plug/_windows.py:930
 #: ../gramps/gui/viewmanager.py:1134 ../gramps/gui/views/tags.py:570
 #: ../gramps/plugins/quickview/all_relations.py:365
 msgid "Yes"
 msgstr "Kyllä"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:59
-#: ../gramps/gui/plug/_guioptions.py:1266 ../gramps/gui/plug/_windows.py:923
+#: ../gramps/gui/plug/_guioptions.py:1266 ../gramps/gui/plug/_windows.py:931
 #: ../gramps/gui/viewmanager.py:1135 ../gramps/gui/views/tags.py:571
 #: ../gramps/plugins/quickview/all_relations.py:371
 msgid "No"
@@ -15797,7 +15831,7 @@ msgid "Within"
 msgstr "Sisällä"
 
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:116
-#: ../gramps/gui/plug/_windows.py:830
+#: ../gramps/gui/plug/_windows.py:838
 msgid "URL"
 msgstr "URL"
 
@@ -17451,7 +17485,7 @@ msgid "_Merge and close"
 msgstr "_Sulauta ja sulje"
 
 #: ../gramps/gui/glade/mergedata.glade:173
-#: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:2114
+#: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:2122
 #: ../gramps/plugins/tool/changenames.py:226
 #: ../gramps/plugins/tool/patchnames.py:454
 msgid "Select"
@@ -18121,7 +18155,7 @@ msgid "Install Selected _Addons"
 msgstr "Asenna laajennukset"
 
 #: ../gramps/gui/glade/updateaddons.glade:72
-#: ../gramps/gui/plug/_windows.py:2091
+#: ../gramps/gui/plug/_windows.py:2099
 msgid "Available Gramps Updates for Addons"
 msgstr "Saatavilla olevat laajennuksien päivitykset Grampsiin"
 
@@ -18692,7 +18726,7 @@ msgid "Merge People"
 msgstr "Sulauta henkilöt"
 
 #: ../gramps/gui/merge/mergeperson.py:242
-#: ../gramps/gui/widgets/fanchart.py:2232
+#: ../gramps/gui/widgets/fanchart.py:2250
 #: ../gramps/plugins/quickview/all_relations.py:364
 #: ../gramps/plugins/tool/notrelated.py:132
 #: ../gramps/plugins/view/pedigreeview.py:2007
@@ -18715,7 +18749,7 @@ msgid "No parents found"
 msgstr "Vanhempia ei löytynyt"
 
 #: ../gramps/gui/merge/mergeperson.py:257
-#: ../gramps/gui/widgets/fanchart.py:2095
+#: ../gramps/gui/widgets/fanchart.py:2113
 #: ../gramps/plugins/textreport/kinshipreport.py:139
 #: ../gramps/plugins/view/pedigreeview.py:1893
 msgid "Spouses"
@@ -18850,7 +18884,7 @@ msgstr "Valitse väri %s varten"
 msgid "Save As"
 msgstr "Tallenna nimellä"
 
-#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:1408
+#: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:1416
 #: ../gramps/gui/plug/report/_bookdialog.py:650
 #: ../gramps/gui/plug/report/_fileentry.py:68
 msgid "_Open"
@@ -18869,7 +18903,7 @@ msgstr "Projekti"
 msgid "Audience"
 msgstr "Audienssi"
 
-#: ../gramps/gui/plug/_windows.py:238 ../gramps/gui/plug/_windows.py:1630
+#: ../gramps/gui/plug/_windows.py:238 ../gramps/gui/plug/_windows.py:1638
 msgid "Version"
 msgstr "Versio"
 
@@ -18921,15 +18955,15 @@ msgstr "Suotimet"
 msgid "All addons"
 msgstr "Laajennukset"
 
-#: ../gramps/gui/plug/_windows.py:426 ../gramps/gui/plug/_windows.py:623
+#: ../gramps/gui/plug/_windows.py:426 ../gramps/gui/plug/_windows.py:631
 msgid "Not installed"
 msgstr "Ei asennettu"
 
-#: ../gramps/gui/plug/_windows.py:427 ../gramps/gui/plug/_windows.py:626
+#: ../gramps/gui/plug/_windows.py:427 ../gramps/gui/plug/_windows.py:634
 msgid "Installed"
 msgstr "Asennettu"
 
-#: ../gramps/gui/plug/_windows.py:428 ../gramps/gui/plug/_windows.py:629
+#: ../gramps/gui/plug/_windows.py:428 ../gramps/gui/plug/_windows.py:637
 #: ../gramps/plugins/webreport/basepage.py:1911
 #: ../gramps/plugins/webreport/basepage.py:1976
 msgid "Updates"
@@ -18955,7 +18989,7 @@ msgstr "Asetukset"
 msgid "Projects"
 msgstr "Projektit"
 
-#: ../gramps/gui/plug/_windows.py:524 ../gramps/gui/plug/_windows.py:634
+#: ../gramps/gui/plug/_windows.py:524 ../gramps/gui/plug/_windows.py:642
 msgid "All projects"
 msgstr "Projektit"
 
@@ -18963,289 +18997,299 @@ msgstr "Projektit"
 msgid "Loading..."
 msgstr "Ladataan..."
 
-#: ../gramps/gui/plug/_windows.py:580
+#: ../gramps/gui/plug/_windows.py:562
+#, fuzzy
+#| msgid "Operation failed"
+msgid "Addon Registration Failed"
+msgstr "Toiminto epäonnistui"
+
+#: ../gramps/gui/plug/_windows.py:563
+msgid "The addon will be unavailable in your current configuration."
+msgstr ""
+
+#: ../gramps/gui/plug/_windows.py:588
 msgid "No matching addons found."
 msgstr "Vastaavia laajennuksia ei löytynyt."
 
-#: ../gramps/gui/plug/_windows.py:734
+#: ../gramps/gui/plug/_windows.py:742
 msgid "Allow Gramps to install required Python modules"
 msgstr "Salli Grampsin asentaa tarvittavat python-moduulit"
 
-#: ../gramps/gui/plug/_windows.py:741
+#: ../gramps/gui/plug/_windows.py:749
 msgid "Scheduled update checks"
 msgstr "Ajastetut päivitystarkastukset"
 
-#: ../gramps/gui/plug/_windows.py:757
+#: ../gramps/gui/plug/_windows.py:765
 msgid "Once a month"
 msgstr "Kuukausittain"
 
-#: ../gramps/gui/plug/_windows.py:758
+#: ../gramps/gui/plug/_windows.py:766
 msgid "Once a week"
 msgstr "Viikoittain"
 
-#: ../gramps/gui/plug/_windows.py:759
+#: ../gramps/gui/plug/_windows.py:767
 msgid "Once a day"
 msgstr "Päivittäin"
 
-#: ../gramps/gui/plug/_windows.py:760
+#: ../gramps/gui/plug/_windows.py:768
 msgid "Always"
 msgstr "Aina"
 
-#: ../gramps/gui/plug/_windows.py:766
+#: ../gramps/gui/plug/_windows.py:774
 msgid "Check for addon updates"
 msgstr "Laajennusten päivityksien tarkistus"
 
-#: ../gramps/gui/plug/_windows.py:773
+#: ../gramps/gui/plug/_windows.py:781
 msgid "Updated addons only"
 msgstr "Vain päivitetyt laajennukset"
 
-#: ../gramps/gui/plug/_windows.py:774
+#: ../gramps/gui/plug/_windows.py:782
 msgid "New addons only"
 msgstr "Vain uudet laajennukset"
 
-#: ../gramps/gui/plug/_windows.py:775
+#: ../gramps/gui/plug/_windows.py:783
 msgid "New and updated addons"
 msgstr "Uudet ja päivitetyt laajennukset"
 
-#: ../gramps/gui/plug/_windows.py:786
+#: ../gramps/gui/plug/_windows.py:794
 msgid "What to check"
 msgstr "Mitä tarkistetaan"
 
-#: ../gramps/gui/plug/_windows.py:792
+#: ../gramps/gui/plug/_windows.py:800
 msgid "Do not ask about previously notified addons"
 msgstr "Älä kysy aikaisemmin ilmoitetuista laajennuksista"
 
-#: ../gramps/gui/plug/_windows.py:799
+#: ../gramps/gui/plug/_windows.py:807
 msgid "Check for updated addons now"
 msgstr "Tarkista laajennusten päivitykset nyt"
 
-#: ../gramps/gui/plug/_windows.py:812
+#: ../gramps/gui/plug/_windows.py:820
 msgid "New Project"
 msgstr "Uusi projekti"
 
-#: ../gramps/gui/plug/_windows.py:814
+#: ../gramps/gui/plug/_windows.py:822
 msgid "Edit Project"
 msgstr "Muokkaa projektia"
 
-#: ../gramps/gui/plug/_windows.py:822
+#: ../gramps/gui/plug/_windows.py:830
 msgid "Project name"
 msgstr "Projektin nimi"
 
-#: ../gramps/gui/plug/_windows.py:920
+#: ../gramps/gui/plug/_windows.py:928
 msgid "Restore project defaults"
 msgstr "Palauta oletusasetukset"
 
-#: ../gramps/gui/plug/_windows.py:921
+#: ../gramps/gui/plug/_windows.py:929
 msgid "Are you sure?"
 msgstr "Oletko varma?"
 
-#: ../gramps/gui/plug/_windows.py:945
+#: ../gramps/gui/plug/_windows.py:953
 msgid "Checking Addons Failed"
 msgstr "Laajennusten tarkistus epäonnistui"
 
-#: ../gramps/gui/plug/_windows.py:947
+#: ../gramps/gui/plug/_windows.py:955
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr "Laajennukset eivät näytä olevan saatavilla. Yritä myöhemmin."
 
-#: ../gramps/gui/plug/_windows.py:962
+#: ../gramps/gui/plug/_windows.py:970
 msgid "There are no available addons of this type"
 msgstr "Tämäntyyppisiä laajennuksia ei ole saatavilla"
 
-#: ../gramps/gui/plug/_windows.py:963
+#: ../gramps/gui/plug/_windows.py:971
 msgid "' and '"
 msgstr "' ja '"
 
-#: ../gramps/gui/plug/_windows.py:963
+#: ../gramps/gui/plug/_windows.py:971
 #, python-format
 msgid "Checked for '%s'"
 msgstr "Tarkistettu '%s'"
 
-#: ../gramps/gui/plug/_windows.py:969
+#: ../gramps/gui/plug/_windows.py:977
 msgid "new"
 msgstr "uusi"
 
-#: ../gramps/gui/plug/_windows.py:969
+#: ../gramps/gui/plug/_windows.py:977
 msgid "update"
 msgstr "päivitä"
 
-#: ../gramps/gui/plug/_windows.py:1004
+#: ../gramps/gui/plug/_windows.py:1012
 msgid "Hidden"
 msgstr "Piilotettu"
 
-#: ../gramps/gui/plug/_windows.py:1005
+#: ../gramps/gui/plug/_windows.py:1013
 msgid "Visible"
 msgstr "Näkyvä"
 
-#: ../gramps/gui/plug/_windows.py:1010
+#: ../gramps/gui/plug/_windows.py:1018
 msgid "Plugin Manager"
 msgstr "Laajennusten hallinta"
 
-#: ../gramps/gui/plug/_windows.py:1062 ../gramps/gui/plug/_windows.py:1120
+#: ../gramps/gui/plug/_windows.py:1070 ../gramps/gui/plug/_windows.py:1128
 msgid "Info"
 msgstr "Info"
 
-#: ../gramps/gui/plug/_windows.py:1065 ../gramps/gui/plug/_windows.py:1123
+#: ../gramps/gui/plug/_windows.py:1073 ../gramps/gui/plug/_windows.py:1131
 msgid "Hide/Unhide"
 msgstr "Piilotettu/Näkyvä"
 
-#: ../gramps/gui/plug/_windows.py:1074 ../gramps/gui/plug/_windows.py:1133
+#: ../gramps/gui/plug/_windows.py:1082 ../gramps/gui/plug/_windows.py:1141
 msgid "Load"
 msgstr "Lataa"
 
-#: ../gramps/gui/plug/_windows.py:1080
+#: ../gramps/gui/plug/_windows.py:1088
 msgid "Registered Plugins"
 msgstr "Rekisteröidyt laajennukset"
 
-#: ../gramps/gui/plug/_windows.py:1099
+#: ../gramps/gui/plug/_windows.py:1107
 msgid "Loaded"
 msgstr "Ladattu"
 
-#: ../gramps/gui/plug/_windows.py:1103
+#: ../gramps/gui/plug/_windows.py:1111
 #: ../gramps/plugins/importer/importprogen.glade:431
 #: ../gramps/plugins/importer/importprogen.glade:1126
 msgid "File"
 msgstr "Tiedosto"
 
-#: ../gramps/gui/plug/_windows.py:1110
+#: ../gramps/gui/plug/_windows.py:1118
 msgid "Message"
 msgstr "Viesti"
 
-#: ../gramps/gui/plug/_windows.py:1139
+#: ../gramps/gui/plug/_windows.py:1147
 msgid "Loaded Plugins"
 msgstr "Ladatut laajennukset"
 
-#: ../gramps/gui/plug/_windows.py:1161
+#: ../gramps/gui/plug/_windows.py:1169
 msgid "Addon Name"
 msgstr "Laajennuksen nimi"
 
-#: ../gramps/gui/plug/_windows.py:1173
+#: ../gramps/gui/plug/_windows.py:1181
 msgid "Path to Addon:"
 msgstr "Laajennuksen polku:"
 
-#: ../gramps/gui/plug/_windows.py:1193
+#: ../gramps/gui/plug/_windows.py:1201
 msgid "Install Addon"
 msgstr "Asenna laajennus"
 
-#: ../gramps/gui/plug/_windows.py:1196
+#: ../gramps/gui/plug/_windows.py:1204
 msgid "Install All Addons"
 msgstr "Asenna kaikki laajennukset"
 
-#: ../gramps/gui/plug/_windows.py:1199
+#: ../gramps/gui/plug/_windows.py:1207
 msgid "Refresh Addon List"
 msgstr "Päivitä laajennusluettelo"
 
-#: ../gramps/gui/plug/_windows.py:1212
+#: ../gramps/gui/plug/_windows.py:1220
 msgid "Reload"
 msgstr "Lataa uudelleen"
 
-#: ../gramps/gui/plug/_windows.py:1240
+#: ../gramps/gui/plug/_windows.py:1248
 msgid "Refreshing Addon List"
 msgstr "Päivitän laajennusluettelon"
 
-#: ../gramps/gui/plug/_windows.py:1241 ../gramps/gui/plug/_windows.py:1246
-#: ../gramps/gui/plug/_windows.py:1384
+#: ../gramps/gui/plug/_windows.py:1249 ../gramps/gui/plug/_windows.py:1254
+#: ../gramps/gui/plug/_windows.py:1392
 msgid "Reading gramps-project.org..."
 msgstr "Luen Gramps-project.org..."
 
-#: ../gramps/gui/plug/_windows.py:1264
+#: ../gramps/gui/plug/_windows.py:1272
 msgid "Checking addon..."
 msgstr "Tarkastetaan laajennuksia..."
 
-#: ../gramps/gui/plug/_windows.py:1272
+#: ../gramps/gui/plug/_windows.py:1280
 msgid "Unknown Help URL"
 msgstr "Tuntematon HELP nettiosoite"
 
-#: ../gramps/gui/plug/_windows.py:1283
+#: ../gramps/gui/plug/_windows.py:1291
 msgid "Unknown URL"
 msgstr "Tuntematon nettiosoite"
 
-#: ../gramps/gui/plug/_windows.py:1348
+#: ../gramps/gui/plug/_windows.py:1356
 msgid "Install all Addons"
 msgstr "Asenna laajennukset"
 
-#: ../gramps/gui/plug/_windows.py:1349
+#: ../gramps/gui/plug/_windows.py:1357
 msgid "Installing..."
 msgstr "Asennetaan..."
 
-#: ../gramps/gui/plug/_windows.py:1382
+#: ../gramps/gui/plug/_windows.py:1390
 msgid "Installing Addon"
 msgstr "Asennetaan laajennukset"
 
-#: ../gramps/gui/plug/_windows.py:1405
+#: ../gramps/gui/plug/_windows.py:1413
 msgid "Load Addon"
 msgstr "Lataa laajennukset"
 
-#: ../gramps/gui/plug/_windows.py:1497
+#: ../gramps/gui/plug/_windows.py:1505
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:261
 msgid "Fail"
 msgstr "Epäonnistuminen"
 
-#: ../gramps/gui/plug/_windows.py:1520 ../gramps/gui/widgets/grampletbar.py:610
+#: ../gramps/gui/plug/_windows.py:1528 ../gramps/gui/widgets/grampletbar.py:610
 msgid "OK"
 msgstr "OK"
 
-#: ../gramps/gui/plug/_windows.py:1628
+#: ../gramps/gui/plug/_windows.py:1636
 msgid "Plugin name"
 msgstr "Laajennuksen nimi"
 
-#: ../gramps/gui/plug/_windows.py:1631
+#: ../gramps/gui/plug/_windows.py:1639
 msgid "Authors"
 msgstr "Tekijät"
 
-#: ../gramps/gui/plug/_windows.py:1633
+#: ../gramps/gui/plug/_windows.py:1641
 #: ../gramps/gui/plug/report/_reportdialog.py:481
 msgid "Filename"
 msgstr "Tiedostonimi"
 
-#: ../gramps/gui/plug/_windows.py:1636
+#: ../gramps/gui/plug/_windows.py:1644
 msgid "Detailed Info"
 msgstr "Lisätietoja"
 
-#: ../gramps/gui/plug/_windows.py:1691
+#: ../gramps/gui/plug/_windows.py:1699
 msgid "Plugin Error"
 msgstr "Virhe laajennuksessa"
 
-#: ../gramps/gui/plug/_windows.py:1760
+#: ../gramps/gui/plug/_windows.py:1768
 msgid "_Execute"
 msgstr "_Suorita"
 
-#: ../gramps/gui/plug/_windows.py:2058
-#: ../gramps/plugins/importer/importprogen.py:478
+#: ../gramps/gui/plug/_windows.py:2066
+#: ../gramps/plugins/importer/importprogen.py:481
 #: ../gramps/plugins/tool/ownereditor.py:171
 #: ../gramps/plugins/tool/reorderids.py:249
 msgid "Main window"
 msgstr "Pääikkuna"
 
-#: ../gramps/gui/plug/_windows.py:2196
+#: ../gramps/gui/plug/_windows.py:2204
 msgid "Downloading and installing selected addons..."
 msgstr "Ladataan ja asennetaan valittuja laajennuksia..."
 
-#: ../gramps/gui/plug/_windows.py:2239
+#: ../gramps/gui/plug/_windows.py:2247
 msgid "Installation Errors"
 msgstr "Asennusvirheet"
 
-#: ../gramps/gui/plug/_windows.py:2240
+#: ../gramps/gui/plug/_windows.py:2248
 msgid "The following addons had errors: "
 msgstr "Seuraavissa laajennuksissa oli virheitä: "
 
-#: ../gramps/gui/plug/_windows.py:2248 ../gramps/gui/plug/_windows.py:2265
+#: ../gramps/gui/plug/_windows.py:2256 ../gramps/gui/plug/_windows.py:2273
 msgid "Done downloading and installing addons"
 msgstr "Laajennusten lataus ja asennus suoritettu"
 
-#: ../gramps/gui/plug/_windows.py:2253
+#: ../gramps/gui/plug/_windows.py:2261
 #, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
 msgstr[0] "{number_of} laajennus asennettu."
 msgstr[1] "{number_of} laajennusta asennettu."
 
-#: ../gramps/gui/plug/_windows.py:2258
+#: ../gramps/gui/plug/_windows.py:2266
 msgid "If you have installed a 'View', you will need to restart Gramps."
 msgstr ""
 "Jos olet asentanut \"Gramps-näkymän\", sinun on käynnistettävä Gramps "
 "uudelleen."
 
-#: ../gramps/gui/plug/_windows.py:2266
+#: ../gramps/gui/plug/_windows.py:2274
 msgid "No addons were installed."
 msgstr "Laajennuksia ei asennettu."
 
@@ -20246,7 +20290,7 @@ msgid "View failed to load. Check error output."
 msgstr "Näkymän lataus epäonnistui. Tarkista virheyhteenveto."
 
 #: ../gramps/gui/viewmanager.py:1050
-#: ../gramps/plugins/importer/importprogen.py:214
+#: ../gramps/plugins/importer/importprogen.py:217
 msgid "Import Statistics"
 msgstr "Tuontitilastot"
 
@@ -20696,43 +20740,43 @@ msgstr "Laajenna tätä osaa"
 msgid "Collapse this section"
 msgstr "Supista tätä osaa"
 
-#: ../gramps/gui/widgets/fanchart.py:2062
+#: ../gramps/gui/widgets/fanchart.py:2080
 #: ../gramps/plugins/view/relview.py:1024
 msgid "Edit family"
 msgstr "Muokkaa perhettä"
 
-#: ../gramps/gui/widgets/fanchart.py:2078
+#: ../gramps/gui/widgets/fanchart.py:2096
 #: ../gramps/plugins/view/relview.py:1025
 msgid "Reorder families"
 msgstr "Järjestä perheet uudelleen"
 
-#: ../gramps/gui/widgets/fanchart.py:2084
+#: ../gramps/gui/widgets/fanchart.py:2102
 #: ../gramps/plugins/view/pedigreeview.py:1882
 #: ../gramps/plugins/view/pedigreeview.py:2114
 msgid "_Copy"
 msgstr "_Kopioi"
 
-#: ../gramps/gui/widgets/fanchart.py:2129
+#: ../gramps/gui/widgets/fanchart.py:2147
 #: ../gramps/plugins/quickview/quickview.gpr.py:338
 #: ../gramps/plugins/view/pedigreeview.py:1927
 #: ../gramps/plugins/view/relview.py:1126
 msgid "Siblings"
 msgstr "Sisarukset"
 
-#: ../gramps/gui/widgets/fanchart.py:2275
+#: ../gramps/gui/widgets/fanchart.py:2293
 #: ../gramps/plugins/view/pedigreeview.py:2057
 msgid "Related"
 msgstr "Sukua"
 
-#: ../gramps/gui/widgets/fanchart.py:2322
+#: ../gramps/gui/widgets/fanchart.py:2340
 msgid "Add partner to person"
 msgstr "Lisää kumppani henkilölle"
 
-#: ../gramps/gui/widgets/fanchart.py:2330
+#: ../gramps/gui/widgets/fanchart.py:2348
 msgid "Add a person"
 msgstr "Lisää henkilö"
 
-#: ../gramps/gui/widgets/fanchart.py:2418
+#: ../gramps/gui/widgets/fanchart.py:2436
 #: ../gramps/plugins/view/relview.py:1816
 msgid "Add Child to Family"
 msgstr "Lisää perheeseen lapsi"
@@ -23474,11 +23518,6 @@ msgstr "Jälkeläisviuhkakaavio"
 msgid "Gramplet showing active person's direct descendants as a fanchart"
 msgstr "Gramplet näyttää viuhkakaaviona aktiivisen henkilön jälkeläiset"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:165
-#: ../gramps/plugins/view/view.gpr.py:168
-msgid "Descendant Fan"
-msgstr "Jälkeläisviuhka"
-
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:175
 #: ../gramps/plugins/view/fanchart2wayview.py:84
 msgid "2-Way Fan Chart"
@@ -23514,14 +23553,6 @@ msgstr "Etunimipilvi"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:212
 msgid "Gramplet showing all given names as a text cloud"
 msgstr "Gramplet näyttää kaikki etunimet pilvikaaviona"
-
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:227
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:233
-#: ../gramps/plugins/view/pedigreeview.py:565
-#: ../gramps/plugins/view/view.gpr.py:135
-#: ../gramps/plugins/webreport/person.py:1681
-msgid "Pedigree"
-msgstr "Sukupuu"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:247
 msgid "Gramplet showing an active item Quick View"
@@ -25685,8 +25716,8 @@ msgid "Bad references"
 msgstr "Väärät viitteet"
 
 #: ../gramps/plugins/importer/importcsv.py:159
-#: ../gramps/plugins/importer/importgedcom.py:142
-#: ../gramps/plugins/importer/importgedcom.py:158
+#: ../gramps/plugins/importer/importgedcom.py:143
+#: ../gramps/plugins/importer/importgedcom.py:159
 #: ../gramps/plugins/importer/importgeneweb.py:177
 #: ../gramps/plugins/importer/importgeneweb.py:183
 #: ../gramps/plugins/importer/importvcard.py:84
@@ -25696,17 +25727,17 @@ msgid "%s could not be opened\n"
 msgstr "Ei voitu avata %s\n"
 
 #: ../gramps/plugins/importer/importcsv.py:161
-#: ../gramps/plugins/importer/importgedcom.py:169
+#: ../gramps/plugins/importer/importgedcom.py:170
 #: ../gramps/plugins/importer/importgeneweb.py:186
-#: ../gramps/plugins/importer/importprogen.py:216
+#: ../gramps/plugins/importer/importprogen.py:219
 #: ../gramps/plugins/importer/importvcard.py:91
 msgid "Results"
 msgstr "Tulokset"
 
 #: ../gramps/plugins/importer/importcsv.py:161
-#: ../gramps/plugins/importer/importgedcom.py:169
+#: ../gramps/plugins/importer/importgedcom.py:170
 #: ../gramps/plugins/importer/importgeneweb.py:186
-#: ../gramps/plugins/importer/importprogen.py:216
+#: ../gramps/plugins/importer/importprogen.py:219
 #: ../gramps/plugins/importer/importvcard.py:91
 msgid "done"
 msgstr "valmis"
@@ -26040,16 +26071,16 @@ msgstr ""
 msgid "Encoding: "
 msgstr "Koodaus: "
 
-#: ../gramps/plugins/importer/importgedcom.py:146
+#: ../gramps/plugins/importer/importgedcom.py:147
 msgid "Invalid GEDCOM file"
 msgstr "Kelvoton GEDCOM-tiedosto"
 
-#: ../gramps/plugins/importer/importgedcom.py:147
+#: ../gramps/plugins/importer/importgedcom.py:148
 #, python-format
 msgid "%s could not be imported"
 msgstr "Tiedoston %s tuonti ei onnistunut"
 
-#: ../gramps/plugins/importer/importgedcom.py:165
+#: ../gramps/plugins/importer/importgedcom.py:166
 msgid "Error reading GEDCOM file"
 msgstr "GEDCOM-tiedoston luku epäonnistui"
 
@@ -26216,7 +26247,7 @@ msgstr ""
 "polussa' -toimintoa, jolla asetat mediatiedostoillesi oikean polun."
 
 #: ../gramps/plugins/importer/importgrdb.py:65
-#: ../gramps/plugins/importer/importprogen.py:208
+#: ../gramps/plugins/importer/importprogen.py:211
 #: ../gramps/plugins/importer/importxml.py:521
 #: ../gramps/plugins/importer/importxml.py:524
 #, python-format
@@ -26496,24 +26527,24 @@ msgstr "Valinnat"
 msgid "_Ok"
 msgstr "_Ok"
 
-#: ../gramps/plugins/importer/importprogen.py:68
+#: ../gramps/plugins/importer/importprogen.py:71
 msgctxt "manual"
 msgid "Import_from_another_genealogy_program"
 msgstr "Tuonti_toisesta_sukuohjelmasta"
 
-#: ../gramps/plugins/importer/importprogen.py:134
+#: ../gramps/plugins/importer/importprogen.py:137
 #, python-format
 msgid "Import from Pro-Gen (%s)"
 msgstr "Tuo Pro-Gen-ohjelmasta (%s)"
 
-#: ../gramps/plugins/importer/importprogen.py:205
+#: ../gramps/plugins/importer/importprogen.py:208
 #: ../gramps/plugins/lib/libprogen.py:566
 #: ../gramps/plugins/lib/libprogen.py:591
 msgid "Pro-Gen data error"
 msgstr "Pro-Gen-tietovirhe"
 
-#: ../gramps/plugins/importer/importprogen.py:478
-#: ../gramps/plugins/importer/importprogen.py:486
+#: ../gramps/plugins/importer/importprogen.py:481
+#: ../gramps/plugins/importer/importprogen.py:489
 msgid "Import Pro-Gen"
 msgstr "Pro-Gen-tuonti"
 
@@ -26620,17 +26651,6 @@ msgstr "  {id1} - {text} ja {id2}"
 #, python-brace-format
 msgid "  {obj} {id1} with {id2}"
 msgstr "  {obj} {id1} ja {id2}"
-
-#: ../gramps/plugins/importer/importxml.py:349
-#: ../gramps/plugins/quickview/filterbyname.py:96
-#: ../gramps/plugins/quickview/filterbyname.py:161
-#: ../gramps/plugins/textreport/tagreport.py:156
-#: ../gramps/plugins/view/view.gpr.py:210
-#: ../gramps/plugins/view/view.gpr.py:219
-#: ../gramps/plugins/view/view.gpr.py:227
-#: ../gramps/plugins/webreport/updates.py:106
-msgid "People"
-msgstr "Henkilöt"
 
 #: ../gramps/plugins/importer/importxml.py:351
 #: ../gramps/plugins/quickview/filterbyname.py:128
@@ -37257,11 +37277,6 @@ msgstr "Pienennä tätä osaa"
 #: ../gramps/plugins/view/placetreeview.py:86
 msgid "Expand this Entire Group"
 msgstr "Laajenna tätä osaa"
-
-#: ../gramps/plugins/view/relview.py:148 ../gramps/plugins/view/view.gpr.py:119
-#: ../gramps/plugins/view/view.gpr.py:127
-msgid "Relationships"
-msgstr "Suhteet"
 
 #: ../gramps/plugins/view/relview.py:390
 msgid "Organize Bookmarks..."
