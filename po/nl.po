@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-02-20 10:02+0000\n"
+"PO-Revision-Date: 2024-03-26 00:02+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -19104,14 +19104,12 @@ msgid "Loading..."
 msgstr "Laden…"
 
 #: ../gramps/gui/plug/_windows.py:562
-#, fuzzy
-#| msgid "Operation failed"
 msgid "Addon Registration Failed"
-msgstr "Bewerking mislukt"
+msgstr "Registratie uitbreiding mislukt"
 
 #: ../gramps/gui/plug/_windows.py:563
 msgid "The addon will be unavailable in your current configuration."
-msgstr ""
+msgstr "De uitbreiding is niet beschikbaar in uw huidige configuratie."
 
 #: ../gramps/gui/plug/_windows.py:588
 msgid "No matching addons found."
