@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-02-10 21:13+0000\n"
+"PO-Revision-Date: 2024-03-26 00:02+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -49,7 +49,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 "X-Poedit-Bookmarks: 2035,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -18941,14 +18941,12 @@ msgid "Loading..."
 msgstr "Nahrává se..."
 
 #: ../gramps/gui/plug/_windows.py:562
-#, fuzzy
-#| msgid "Operation failed"
 msgid "Addon Registration Failed"
-msgstr "Operace selhala"
+msgstr "Registrace doplňku selhala"
 
 #: ../gramps/gui/plug/_windows.py:563
 msgid "The addon will be unavailable in your current configuration."
-msgstr ""
+msgstr "Doplněk nebude ve vaší aktuální konfiguraci k dispozici."
 
 #: ../gramps/gui/plug/_windows.py:588
 msgid "No matching addons found."
