@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-02-21 15:01+0000\n"
+"PO-Revision-Date: 2024-03-27 09:01+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -19201,14 +19201,13 @@ msgid "Loading..."
 msgstr "Laden..."
 
 #: ../gramps/gui/plug/_windows.py:562
-#, fuzzy
-#| msgid "Operation failed"
 msgid "Addon Registration Failed"
-msgstr "Operation fehlgeschlagen"
+msgstr "Zusatzmodul-Registrierung fehlgeschlagen"
 
 #: ../gramps/gui/plug/_windows.py:563
 msgid "The addon will be unavailable in your current configuration."
 msgstr ""
+"Das Zusatzmodul wird in deiner aktuellen Konfiguration nicht verfügbar sein."
 
 #: ../gramps/gui/plug/_windows.py:588
 msgid "No matching addons found."
