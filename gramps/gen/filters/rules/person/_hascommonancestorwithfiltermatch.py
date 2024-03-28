@@ -53,8 +53,8 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
     )
     category = _("Ancestral filters")
 
-    def __init__(self, list, use_regex=False):
-        HasCommonAncestorWith.__init__(self, list, use_regex)
+    def __init__(self, list, use_regex=False, use_case=False):
+        HasCommonAncestorWith.__init__(self, list, use_regex, use_case)
         self.ancestor_cache = {}
 
     def prepare(self, db, user):

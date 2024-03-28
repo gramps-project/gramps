@@ -19,17 +19,35 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+
+# -------------------------------------------------------------------------
+#
+# Python
+#
+# -------------------------------------------------------------------------
+from html import escape
+
+
 # -------------------------------------------------------------------------
 #
 # GTK libraries
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk
+from gramps.gen.config import config
 from gramps.gen.utils.string import conf_strings
 from gramps.gen.datehandler import get_date, get_date_valid
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
+
+
+# -------------------------------------------------------------------------
+#
+# Globals
+#
+# -------------------------------------------------------------------------
+invalid_date_format = config.get("preferences.invalid-date-format")
 
 
 # -------------------------------------------------------------------------

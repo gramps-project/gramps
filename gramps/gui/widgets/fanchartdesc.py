@@ -491,7 +491,11 @@ class FanChartDescWidget(FanChartBaseWidget):
             self.set_size_request(max(size_w, size_w_a), max(size_h, size_h_a))
             size_w = self.get_allocated_width()
             size_h = self.get_allocated_height()
-            self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, size_w, size_h)
+            scale_factor = self.get_scale_factor()
+            self.surface = cairo.ImageSurface(
+                cairo.FORMAT_ARGB32, size_w * scale_factor, size_h * scale_factor
+            )
+            self.surface.set_device_scale(scale_factor, scale_factor)
             ctx = cairo.Context(self.surface)
             self.center_xy = self.center_xy_from_delta()
             ctx.translate(*self.center_xy)

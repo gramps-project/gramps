@@ -39,7 +39,6 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
 from gramps.gen.errors import DbError, GedcomError
-from gramps.gui.glade import Glade
 from gramps.plugins.lib.libmixin import DbMixin
 from gramps.plugins.lib import libgedcom
 from gramps.gen.utils.libformatting import ImportInfo
@@ -98,6 +97,8 @@ def importData(database, filename, user):
         return
 
     if not gramps and ansel and user.uistate:
+        from gramps.gui.glade import Glade
+
         top = Glade()
         code = top.get_object("codeset")
         code.set_active(0)

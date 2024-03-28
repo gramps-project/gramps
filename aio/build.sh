@@ -14,7 +14,8 @@ pacman -S --needed --noconfirm  mingw-w64-x86_64-python-bsddb3
 
 ## prerequisites in pip packages
 python -m pip install --upgrade pip
-pip install --upgrade pydot pydotplus requests asyncio pygraphviz
+pip install --upgrade pydot pydotplus requests asyncio
+SETUPTOOLS_USE_DISTUTILS=stdlib pip install pygraphviz
 
 ## download dictionaries
 mkdir -p /mingw64/share/enchant/hunspell

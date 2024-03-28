@@ -165,6 +165,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         self.set_can_focus(True)
         self.connect("key-press-event", self.on_key_press)
 
+        self.connect("notify::scale-factor", self.on_notify_scale_factor)
         self.connect("draw", self.on_draw)
         self.add_events(
             Gdk.EventMask.BUTTON_PRESS_MASK
@@ -294,6 +295,19 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         Get the in and out radius for descendant generation
         """
         raise NotImplementedError
+
+    def on_notify_scale_factor(self, obj, pspec):
+        """
+        Callback to redraw the fanchart if the display's scale factor changes.
+        """
+        if not self.surface:
+            return
+        existing_scale = self.surface.get_device_scale()
+        if self.get_scale_factor() == existing_scale[0] == existing_scale[1]:
+            return
+        self.surface = None
+        self.draw()
+        self.queue_draw()
 
     def on_draw(self, widget, ctx, scale=1.0):
         """
@@ -1676,7 +1690,11 @@ class FanChartWidget(FanChartBaseWidget):
             self.set_size_request(max(size_w, size_w_a), max(size_h, size_h_a))
             size_w = self.get_allocated_width()
             size_h = self.get_allocated_height()
-            self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, size_w, size_h)
+            scale_factor = self.get_scale_factor()
+            self.surface = cairo.ImageSurface(
+                cairo.FORMAT_ARGB32, size_w * scale_factor, size_h * scale_factor
+            )
+            self.surface.set_device_scale(scale_factor, scale_factor)
             ctx = cairo.Context(self.surface)
             self.center_xy = self.center_xy_from_delta()
             ctx.translate(*self.center_xy)

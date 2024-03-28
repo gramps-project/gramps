@@ -219,8 +219,6 @@ Section /o "en_AU" d_enau
 SectionEnd
 Section "en_GB" d_engb
 	SectionIn RO
-	SetOutPath "$INSTDIR\share\enchant\"
-		File "..\share\enchant\enchant.ordering"
 	SetOutPath "$INSTDIR\share\enchant\hunspell\"
 		File "..\share\enchant\hunspell\en_GB.*"
 SectionEnd
@@ -720,8 +718,8 @@ Function .onInit
     Quit
   ${EndIf}
 
-  ${If} ${AtMostWinXP}
-    MessageBox MB_OK "Windows Vista and above required"
+  ${If} ${AtMostWin8}
+    MessageBox MB_OK "Windows 8.1 and above required"
     Quit
   ${EndIf}
   ;StrCpy $LANGUAGE ${LANG_FRENCH}
