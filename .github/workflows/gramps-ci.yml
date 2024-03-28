@@ -19,7 +19,11 @@
 
 name: Gramps CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ maintenance/gramps52 ]
+  pull_request:
+    branches: [ maintenance/gramps52 ]
 
 jobs:
   build:
