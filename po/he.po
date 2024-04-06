@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-03-27 09:01+0000\n"
+"PO-Revision-Date: 2024-04-03 07:45+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -1806,8 +1806,8 @@ msgid ""
 "be repaired from the Family Tree Manager. Select the database and click on "
 "the Repair button"
 msgstr ""
-"גרמפס זיהה בעיה במסד הנתונים הבסיסי. ניתן לתקן זאת מדו־שיח מנהל "
-"אילן־היוחסין. נא לבחור את מסד־הנתונים ולהקיש על 'תיקון'"
+"גרמפס זיהה בעיה בבסיס מסד־הנתונים. ניתן לתקן זאת מדו־שיח מנהל אילן־היוחסין. "
+"נא לבחור את מסד־הנתונים ולהקיש על 'תיקון'"
 
 #: ../gramps/cli/grampscli.py:159 ../gramps/gui/dbloader.py:165
 msgid "Read only database"
@@ -11736,7 +11736,7 @@ msgstr "דואר אלקטרוני"
 msgid ""
 "Enter information about yourself so people can contact you when you "
 "distribute your Family Tree."
-msgstr "מידע אישי, כדי שאנשים יוכלו ליצור קשר לאחר הפצת אילן־היוחסין."
+msgstr "מידע אישי, ליצירת קשר לאחר הפצת אילן־היוחסין."
 
 #: ../gramps/gui/configure.py:766 ../gramps/gui/configure.py:867
 msgid "ID Formats"
@@ -15370,7 +15370,7 @@ msgstr "לבחירת הערה, נא להשתמש בגרירה ושחרר או ב
 #: ../gramps/gui/editors/objectentries.py:588
 #: ../gramps/gui/plug/_guioptions.py:1021
 msgid "No note given, click button to select one"
-msgstr "לא סופקה הערה, נא להקיש על הלחצן לבחירת הערה"
+msgstr "לא הוזנה הערה, נא להקיש על הלחצן לבחירת הערה"
 
 #: ../gramps/gui/editors/objectentries.py:590
 #: ../gramps/gui/plug/_guioptions.py:996
@@ -16496,7 +16496,7 @@ msgstr "<b>הערה:</b> כל שינוי מידע בעצם מדיה משותף, 
 
 #: ../gramps/gui/glade/editmediaref.glade:488
 msgid "Double click image to view in an external viewer"
-msgstr "נא להקיש כפולה על תמונה להצגה במציג פנימי"
+msgstr "להצגה במשקף פנימי, נא להקיש כפולה על תמונה"
 
 #: ../gramps/gui/glade/editmediaref.glade:533
 msgid "Type of media object as indicated by the computer, eg Image, Video, ..."
@@ -16693,7 +16693,7 @@ msgstr "_חיבה:"
 
 #: ../gramps/gui/glade/editperson.glade:335
 msgid "Click on a table cell to edit."
-msgstr "נא להקיש על תא בטבלה לעריכה."
+msgstr "לעריכה, נא להקיש על תא בטבלה."
 
 #: ../gramps/gui/glade/editperson.glade:355
 msgid ""
@@ -17046,7 +17046,7 @@ msgstr "נתוק"
 
 #: ../gramps/gui/glade/grampletpane.glade:96
 msgid "Click to expand/collapse"
-msgstr "נא להקיש להרחיבה/לכווץ"
+msgstr "הקשה להרחבה/כווץ"
 
 #: ../gramps/gui/glade/grampletpane.glade:129
 msgid "Click to delete gramplet from view"
@@ -18606,14 +18606,12 @@ msgid "Loading..."
 msgstr "מתבצעת טעינה..."
 
 #: ../gramps/gui/plug/_windows.py:562
-#, fuzzy
-#| msgid "Operation failed"
 msgid "Addon Registration Failed"
-msgstr "הפעולה כשלה"
+msgstr "רישום תוסף כשל"
 
 #: ../gramps/gui/plug/_windows.py:563
 msgid "The addon will be unavailable in your current configuration."
-msgstr ""
+msgstr "התוסף לא יהיה זמין בתצורה הנוכחית."
 
 #: ../gramps/gui/plug/_windows.py:588
 msgid "No matching addons found."
@@ -31768,7 +31766,7 @@ msgstr "אַחָאִי"
 
 #: ../gramps/plugins/quickview/siblings.py:66
 msgid "self"
-msgstr "עצמי"
+msgstr "האדם"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:35
 msgid "Catalan Relationship Calculator"
@@ -34292,15 +34290,15 @@ msgstr ""
 "הכלי מאפשר בצוע פעולות אצווה על עצמי מדיה המאוחסנים בגרמפס. חייבת להתבצע "
 "הבחנה חשובה בין עצם מדיה של גרמפס לבין הקובץ שלו.\n"
 "\n"
-"עצם המדיה 'בגרמפס' הוא אוסף נתונים על אודות קובץ עצם המדיה עצמו: שם הקובץ "
-"ו/או הנתיב שלו, התיאור שלו, המזהה שלו, ההערות, ההפניות למקור וכדומה. נתונים "
+"עצם המדיה 'בגרמפס' הוא אוסף נתונים על קובץ עצם המדיה עצמו: שם הקובץ ו/או "
+"הנתיב שלו, התיאור שלו, המזהה שלו, ההערות, ההפניות למקור וכדומה. נתונים "
 "אלה%(bold_start)sלא כוללים את קובץ המדיה עצמו%(bold_end)s.\n"
 "\n"
 "קבצים שמכילים תמונה, קול, סרט וכדומה, מאוחסנים למעשה בנפרד, בכונן הקשיח. "
-"קבצים אלה אינם מנוהלים על־ידי גרמפס ואינם משובצים במסד הנתונים של גרמפס. "
-"מסד־הנתונים של גרמפס מאחסן רק את שמות הקבצים והנתיב אליהם.\n"
+"קבצים אלה אינם מנוהלים על־ידי גרמפס ואינם משובצים במסד הנתונים של גרמפס. מסד־"
+"הנתונים של גרמפס מאחסן רק את שמות הקבצים והנתיב אליהם.\n"
 "\n"
-"הכלי מאפשר לשנות רשומות בתוך מסד־נתונים גרמפס בלבד. כך שאם נדרש להעביר או "
+"הכלי מאפשר לשנות רשומות בתוך מסד־נתוני גרמפס בלבד. כך שאם נדרש להעביר או "
 "לשנות את שמות הקבצים עצמם, יש לעשות באופן עצמאי, מחוץ לגרמפס. לאחר מכן ניתן "
 "לכוונן את הנתיבים באמצעות כלי זה באופן שעצמי המדיה בגרמפס יאחסנו את מיקומי "
 "קבצי המדיה הנכונים."
