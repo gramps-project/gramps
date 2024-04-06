@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-04-03 07:45+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"PO-Revision-Date: 2024-04-03 07:47+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -6395,8 +6395,8 @@ msgid ""
 "Matches sources with a repository reference\n"
 "containing a substring in \"Call Number\""
 msgstr ""
-"איתור מקורות עם הפניית מאגר\n"
-"שמכילות מחרוזת משנה ב'מספר פנייה'"
+"שליפת מקורות עם הפניית מאגר\n"
+"שמכילות מחרוזת משנה ב'מספר פניה'"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:52
 msgid "Sources with the <tag>"
@@ -9676,7 +9676,7 @@ msgstr "גודל הערה"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:317
 msgid "The size of note text, in points."
-msgstr "גודל אותיות ההערה בנקודות."
+msgstr "גודל כתב ההערה בנקודות."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:1160
 msgid "PDF (Ghostscript)"
@@ -9973,7 +9973,7 @@ msgstr "מלל זה יתווסף לאילן־היוחסין."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:309
 msgid "The size of note text."
-msgstr "גודל אותיות ההערה."
+msgstr "גודל כתב ההערה."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:833
 msgid "PDF"
@@ -15902,7 +15902,7 @@ msgid ""
 msgstr ""
 "כתובת דואר.\n"
 "\n"
-"הערה: ניתן להשתמש ב באירוע מגורים למידע כתובות מגורים למטרת חקר־יוחסין."
+"הערה: ניתן להשתמש באירוע מגורים למידע כתובות מגורים למטרת חקר־יוחסין."
 
 #: ../gramps/gui/glade/editaddress.glade:290
 #: ../gramps/gui/glade/editattribute.glade:146
@@ -16043,7 +16043,7 @@ msgid ""
 "house was visited during a census, or the date an entry was made in a birth "
 "log/registry."
 msgstr ""
-"תאריך הרשומה בעצם המקור אליו נעשתה ההפניה, לדוגמה התאריך בו פקדו בבית מסויים "
+"תאריך הרשומה בעצם המקור אליו בוצעה ההפניה, לדוגמה התאריך בו פקדו בבית מסוים "
 "ממפקד אוכלוסין , או התאריך בו בוצע הרישום ביומן/רשומות לידה."
 
 #: ../gramps/gui/glade/editcitation.glade:201
@@ -17875,7 +17875,7 @@ msgstr "על _אודות"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Addon Manager..."
-msgstr "_מנהל תוספים..."
+msgstr "_מנהל תוספים…"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Bookmarks"
@@ -17992,7 +17992,7 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"החבליות, Gdk,‏ Gtk,‏ Pango או PangoCairo typelib לא מותקנות.\n"
+"החבילות Gdk,‏ Gtk,‏ Pango או PangoCairo typelib לא מותקנות.\n"
 "יש להתקין Gnome Introspection, ואת pygobject בגרסה 3.12 ומעלה.\n"
 "לאחר מכן להתקין את introspection data עבור Gdk,‏ Gtk,‏ Pango ו־PangoCairo\n"
 "\n"
@@ -18404,7 +18404,7 @@ msgstr "מיזוג_מקומות"
 #: ../gramps/gui/merge/mergerepository.py:45
 msgctxt "manual"
 msgid "Merge_Repositories"
-msgstr "מיזוג_קשרי־משפחה"
+msgstr "מיזוג_מאגרי־נתונים"
 
 #: ../gramps/gui/merge/mergesource.py:46
 msgctxt "manual"
@@ -18655,7 +18655,7 @@ msgstr "תוספים חדשים בלבד"
 
 #: ../gramps/gui/plug/_windows.py:783
 msgid "New and updated addons"
-msgstr "תוספים חדשים ועדכונים"
+msgstr "תוספים חדשים ועדכניים"
 
 #: ../gramps/gui/plug/_windows.py:794
 msgid "What to check"
@@ -18663,7 +18663,7 @@ msgstr "מה לבדוק"
 
 #: ../gramps/gui/plug/_windows.py:800
 msgid "Do not ask about previously notified addons"
-msgstr "לא לבדוק תוספים שכבר נבדקו בעבר"
+msgstr "לא לבדוק תוספים שדווחו בעבר"
 
 #: ../gramps/gui/plug/_windows.py:807
 msgid "Check for updated addons now"
@@ -18790,7 +18790,7 @@ msgstr "טעינה מחדש"
 
 #: ../gramps/gui/plug/_windows.py:1248
 msgid "Refreshing Addon List"
-msgstr "ריענון רשימת תוספים"
+msgstr "רשימת תוספים מתרעננת"
 
 #: ../gramps/gui/plug/_windows.py:1249 ../gramps/gui/plug/_windows.py:1254
 #: ../gramps/gui/plug/_windows.py:1392
@@ -18799,7 +18799,7 @@ msgstr "gramps-project.org נקרא…"
 
 #: ../gramps/gui/plug/_windows.py:1272
 msgid "Checking addon..."
-msgstr "בדיקת תוסף..."
+msgstr "תוסף נבדק…"
 
 #: ../gramps/gui/plug/_windows.py:1280
 msgid "Unknown Help URL"
@@ -18868,7 +18868,7 @@ msgstr "חלון ראשי"
 
 #: ../gramps/gui/plug/_windows.py:2204
 msgid "Downloading and installing selected addons..."
-msgstr "הורדת והתקנת תוספים שנבחרו..."
+msgstr "הורדת והתקנת תוספים שנבחרו…"
 
 #: ../gramps/gui/plug/_windows.py:2247
 msgid "Installation Errors"
@@ -18991,7 +18991,7 @@ msgstr ""
 "עותק של המידע נשמר בהצלחה. ניתן ללחוץ על לחצן 'סגירה' כדי להמשיך.\n"
 "\n"
 "הערה: מסד־הנתונים שפתוח כעת בחלון גרמפס, אינו הקובץ שנשמר זה עתה. עריכות "
-"עתידיות במסד־הנתונים הפתוח לא ישפיע עוד על העותק שנוצרזה מכבר. "
+"עתידיות במסד־הנתונים הפתוח לא תשפענה עוד על העותק שנוצר זה מכבר. "
 
 #: ../gramps/gui/plug/export/_exportassistant.py:539
 #, python-format
@@ -24312,9 +24312,9 @@ msgstr ""
 "כעת ניתן להתחיל להזין את נתוני ה'משפחה הראשונה', זה נעשה על ידי הזנת נתוני "
 "ה'אדם' הראשון.\n"
 "\n"
-"ממצג 'אנשים', מהתפריט, לחיצה על 'הוספה', לאחר מכן 'אדם' (או שימוש בסמל ה־[+])"
-" תפתח את חלון הזנת פרטי 'אדם'. הזנת המידע הבסיסי ושמירת הרשומה תייצר את "
-"נקודת המוצא לאילן־היוחסין. להרחבת הנתונים יש לבחור ברשומת 'אדם' זה ומעבר "
+"ממצג 'אנשים', מהתפריט, לחיצה על 'הוספה', לאחר מכן 'אדם' (או שימוש בסמל "
+"ה־[+]) תפתח את חלון הזנת פרטי 'אדם'. הזנת המידע הבסיסי ושמירת הרשומה תייצר "
+"את נקודת המוצא לאילן־היוחסין. להרחבת הנתונים יש לבחור ברשומת 'אדם' זה ומעבר "
 "למצג קשרי־משפחה.\n"
 "\n"
 "עם הקמת רשומת אדם ראשונה זו, כל אפשרויות התפריט ותפקודי הסמלים יהפכו "
@@ -24571,7 +24571,7 @@ msgstr "יצירת תרשים שעון חול תוך שימוש ב־גראפוו
 #: ../gramps/plugins/graph/graphplugins.gpr.py:82
 #: ../gramps/plugins/graph/gvrelgraph.py:225
 msgid "Relationship Graph"
-msgstr "תרשים קשר־משפחה"
+msgstr "תרשים קשרי־משפחה"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:83
 msgid "Produces relationship graphs using Graphviz."
@@ -25116,7 +25116,7 @@ msgstr "האם לכלול מקצוע אחרון"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1030
 msgid "Include relationship debugging numbers also"
-msgstr "לכלול מספרי ניפוי תקלים קשרי־משפחה"
+msgstr "הכללת מספרי ניפוי תקלי קשרי־משפחה"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1034
 msgid ""
@@ -25195,8 +25195,8 @@ msgid ""
 "The Gramps XML format is a text version of a Family Tree. It is read-write "
 "compatible with the present Gramps database format."
 msgstr ""
-"תסדיר XML גרמפס הוא אילן־יוחסן בגרסה מילולית. הקובץ תואם קריאה-כתיבה לתסדיר "
-"מסד־הנתונים הנוכחי של גרמפס."
+"תסדיר XML גרמפס הוא גרסת מלל של אילן היוחסין. הקובץ תואם קריאה-כתיבה לתסדיר "
+"מסד הנתונים הנוכחי של גרמפס."
 
 #: ../gramps/plugins/importer/import.gpr.py:138
 msgid "Gramps 2.x database"
@@ -25765,8 +25765,8 @@ msgid ""
 "example this version), create a new empty database and import the Gramps XML "
 "into that version. Please refer to:%(gramps_wiki_migrate_two_to_three_url)s"
 msgstr ""
-"גרסת מסד־נתונים זה, לא תומכת בגרמפס בגרסתו הנוכחית. נא לאתחל גרסה ישנה יותר "
-"של גרמפס מהדורה ‎,3.0.x ולייבא את מסד־הנתונים לגרסה זו. בשלב הבא, יש לייצא "
+"גרסת מסד־נתונים זו, לא תומכת בגרמפס בגרסתו הנוכחית. נא להעלות גרסה ישנה יותר "
+"של גרמפס מסדרת ‎,3.0.x ולייבא את מסד־הנתונים לגרסה זו. בשלב הבא, יש לייצא "
 "עותק של מסד־הנתונים לקובץ XML (אילן־יוחסין). לאחר מכן, לשדרג את גרמפס לגרסה "
 "העדכנית ביותר (לדוגמה גרסה זו), לייצר מסד־נתונים ריק, ולייבא אליו את קובץ "
 "ה־XML שנוצר קודם. למידע נוסף: %(gramps_wiki_migrate_two_to_three_url)s"
@@ -34295,8 +34295,8 @@ msgstr ""
 "אלה%(bold_start)sלא כוללים את קובץ המדיה עצמו%(bold_end)s.\n"
 "\n"
 "קבצים שמכילים תמונה, קול, סרט וכדומה, מאוחסנים למעשה בנפרד, בכונן הקשיח. "
-"קבצים אלה אינם מנוהלים על־ידי גרמפס ואינם משובצים במסד הנתונים של גרמפס. מסד־"
-"הנתונים של גרמפס מאחסן רק את שמות הקבצים והנתיב אליהם.\n"
+"קבצים אלה אינם מנוהלים על־ידי גרמפס ואינם משובצים במסד הנתונים של גרמפס. "
+"מסד־הנתונים של גרמפס מאחסן רק את שמות הקבצים והנתיב אליהם.\n"
 "\n"
 "הכלי מאפשר לשנות רשומות בתוך מסד־נתוני גרמפס בלבד. כך שאם נדרש להעביר או "
 "לשנות את שמות הקבצים עצמם, יש לעשות באופן עצמאי, מחוץ לגרמפס. לאחר מכן ניתן "
