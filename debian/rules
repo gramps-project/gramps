@@ -4,13 +4,14 @@
 #export DH_VERBOSE=1
 #export DH_OPTIONS=-v
 export PYBUILD_NAME=gramps
-export PYBUILD_INSTALL_ARGS_python3=--resourcepath=/usr/share --force
+export PYBUILD_INSTALL_ARGS_python3=
 
 %:
 	dh $@ --with python3 --buildsystem=pybuild
 
 # Override auto test to enable nose tests
 override_dh_auto_test:
+	mkdir -p $(CURDIR)/build/.gramps; \
 	HOME=$(CURDIR)/build \
 	nosetests3 -vv \
 	--exclude=TestcaseGenerator \
