@@ -425,6 +425,9 @@ data_files_gui.append(("share/icons/hicolor/scalable/mimetypes", MIME_SC))
 
 data_files = data_files_core + data_files_gui
 
+with open("README.md", "r") as f:
+    readme_text = f.read()
+
 # -------------------------------------------------------------------------
 #
 # Setup
@@ -432,15 +435,9 @@ data_files = data_files_core + data_files_gui
 # -------------------------------------------------------------------------
 setup(
     name="gramps",
-    description=(
-        "Gramps (Genealogical Research and Analysis Management " "Programming System)"
-    ),
-    long_description=(
-        "Gramps (Genealogical Research and Analysis "
-        "Management Programming System) is a full featured "
-        "genealogy program supporting a Python based plugin "
-        "system."
-    ),
+    description="Gramps (Genealogical Research and Analysis Management Programming System)",
+    long_description=readme_text,
+    long_description_content_type="text/markdown",
     version=VERSION,
     author="Donald N. Allingham",
     author_email="don@gramps-project.org",

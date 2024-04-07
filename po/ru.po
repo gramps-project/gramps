@@ -16,7 +16,7 @@
 # Artem <Localizer_in_Russian@protonmail.com>, 2021.
 # Viktor <xasertop@gmail.com>, 2022.
 # PKEv <pkev@yandex.ru>, 2022.
-# Павел Жуков <papazukko@gmail.com>, 2023.
+# Павел Жуков <papazukko@gmail.com>, 2023, 2024.
 # Dmitriy Q <krotesk@mail.ru>, 2023.
 # Nick Hall <nick-h@gramps-project.org>, 2023.
 # Vlad Arkhipov <vlad@arkhipov.ru>, 2023.
@@ -26,17 +26,17 @@ msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2023-12-11 22:53+0000\n"
-"Last-Translator: OIS <mistresssilvara@hotmail.com>\n"
+"PO-Revision-Date: 2024-04-05 14:01+0000\n"
+"Last-Translator: Павел Жуков <papazukko@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.3-dev\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -19067,7 +19067,7 @@ msgstr "Операция не удалась"
 
 #: ../gramps/gui/plug/_windows.py:563
 msgid "The addon will be unavailable in your current configuration."
-msgstr ""
+msgstr "Дополнение будет недоступно в вашей текущей конфигурации."
 
 #: ../gramps/gui/plug/_windows.py:588
 msgid "No matching addons found."

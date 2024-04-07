@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-03-27 09:01+0000\n"
+"PO-Revision-Date: 2024-04-06 12:09+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -1806,8 +1806,8 @@ msgid ""
 "be repaired from the Family Tree Manager. Select the database and click on "
 "the Repair button"
 msgstr ""
-"גרמפס זיהה בעיה במסד הנתונים הבסיסי. ניתן לתקן זאת מדו־שיח מנהל "
-"אילן־היוחסין. נא לבחור את מסד־הנתונים ולהקיש על 'תיקון'"
+"גרמפס זיהה בעיה בבסיס מסד־הנתונים. ניתן לתקן זאת מדו־שיח מנהל אילן־היוחסין. "
+"נא לבחור את מסד־הנתונים ולהקיש על 'תיקון'"
 
 #: ../gramps/cli/grampscli.py:159 ../gramps/gui/dbloader.py:165
 msgid "Read only database"
@@ -2382,8 +2382,7 @@ msgstr "and"
 #, python-brace-format
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
-msgstr ""
-"{date_quality}בין {date_start} לבין {date_stop}{nonstd_calendar_and_ny}"
+msgstr "{date_quality}בין {date_start} ל־ {date_stop}{nonstd_calendar_and_ny}"
 
 #. Translators: If there is no special inflection for
 #. "before <Month>" in your language, DON'T translate this.
@@ -4855,7 +4854,7 @@ msgstr "איתור עצמי מדיה שמתויגים בתג מסוים"
 
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:46
 msgid "Media objects matching the <filter>"
-msgstr "עצמי מדיהשעונים על <מסנן>"
+msgstr "עצמי מדיה שעונים על <מסנן>"
 
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:47
 msgid "Matches media objects matched by the specified filter name"
@@ -6396,7 +6395,7 @@ msgid ""
 "containing a substring in \"Call Number\""
 msgstr ""
 "איתור מקורות עם הפניית מאגר\n"
-"שמכילות מחרוזת משנה ב'מספר פנייה'"
+"שמכילות מחרוזת משנה ב'מספר פניה'"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:52
 msgid "Sources with the <tag>"
@@ -7146,7 +7145,7 @@ msgstr "בין"
 #: ../gramps/plugins/view/relview.py:1213
 #: ../gramps/plugins/webreport/basepage.py:3578
 msgid "and"
-msgstr "ו"
+msgstr "ו־"
 
 #: ../gramps/gen/lib/date.py:329 ../gramps/gen/lib/date.py:349
 msgid "less than about"
@@ -9568,7 +9567,7 @@ msgstr "קוי חיבור"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:222
 msgid "How the lines between objects will be drawn."
-msgstr "כיצד ישורטטו הקווים בין העצמים."
+msgstr "אופן שרטוט הקווים בין העצמים."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:225
 msgid "Alternate line attachment"
@@ -9676,7 +9675,7 @@ msgstr "גודל הערה"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:317
 msgid "The size of note text, in points."
-msgstr "גודל אותיות ההערה בנקודות."
+msgstr "גודל מלל ההערה בנקודות."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:1160
 msgid "PDF (Ghostscript)"
@@ -9973,7 +9972,7 @@ msgstr "מלל זה יתווסף לאילן־היוחסין."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:309
 msgid "The size of note text."
-msgstr "גודל אותיות ההערה."
+msgstr "גודל מלל ההערה."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:833
 msgid "PDF"
@@ -11736,7 +11735,7 @@ msgstr "דואר אלקטרוני"
 msgid ""
 "Enter information about yourself so people can contact you when you "
 "distribute your Family Tree."
-msgstr "מידע אישי, כדי שאנשים יוכלו ליצור קשר לאחר הפצת אילן־היוחסין."
+msgstr "מידע אישי, ליצירת קשר לאחר הפצת אילן־היוחסין."
 
 #: ../gramps/gui/configure.py:766 ../gramps/gui/configure.py:867
 msgid "ID Formats"
@@ -15370,7 +15369,7 @@ msgstr "לבחירת הערה, נא להשתמש בגרירה ושחרר או ב
 #: ../gramps/gui/editors/objectentries.py:588
 #: ../gramps/gui/plug/_guioptions.py:1021
 msgid "No note given, click button to select one"
-msgstr "לא סופקה הערה, נא להקיש על הלחצן לבחירת הערה"
+msgstr "לא הוזנה הערה, נא להקיש על הלחצן לבחירת הערה"
 
 #: ../gramps/gui/editors/objectentries.py:590
 #: ../gramps/gui/plug/_guioptions.py:996
@@ -15902,7 +15901,7 @@ msgid ""
 msgstr ""
 "כתובת דואר.\n"
 "\n"
-"הערה: ניתן להשתמש ב באירוע מגורים למידע כתובות מגורים למטרת חקר־יוחסין."
+"הערה: ניתן להשתמש באירוע מגורים למידע כתובות מגורים למטרת חקר־יוחסין."
 
 #: ../gramps/gui/glade/editaddress.glade:290
 #: ../gramps/gui/glade/editattribute.glade:146
@@ -16043,8 +16042,8 @@ msgid ""
 "house was visited during a census, or the date an entry was made in a birth "
 "log/registry."
 msgstr ""
-"תאריך הרשומה בעצם המקור אליו נעשתה ההפניה, לדוגמה התאריך בו פקדו בבית מסויים "
-"ממפקד אוכלוסין , או התאריך בו בוצע הרישום ביומן/רשומות לידה."
+"תאריך הרשומה בעצם המקור אליו מפנים, לדוגמה התאריך בו פקדו בבית מסוים במפקד "
+"אוכלוסין , או התאריך בו בוצע הרישום ביומן/רשומות לידה."
 
 #: ../gramps/gui/glade/editcitation.glade:201
 msgid ""
@@ -16496,7 +16495,7 @@ msgstr "<b>הערה:</b> כל שינוי מידע בעצם מדיה משותף, 
 
 #: ../gramps/gui/glade/editmediaref.glade:488
 msgid "Double click image to view in an external viewer"
-msgstr "נא להקיש כפולה על תמונה להצגה במציג פנימי"
+msgstr "להצגה במשקף פנימי, נא להקיש כפולה על תמונה"
 
 #: ../gramps/gui/glade/editmediaref.glade:533
 msgid "Type of media object as indicated by the computer, eg Image, Video, ..."
@@ -16693,7 +16692,7 @@ msgstr "_חיבה:"
 
 #: ../gramps/gui/glade/editperson.glade:335
 msgid "Click on a table cell to edit."
-msgstr "נא להקיש על תא בטבלה לעריכה."
+msgstr "לעריכה, נא להקיש על תא בטבלה."
 
 #: ../gramps/gui/glade/editperson.glade:355
 msgid ""
@@ -17046,7 +17045,7 @@ msgstr "נתוק"
 
 #: ../gramps/gui/glade/grampletpane.glade:96
 msgid "Click to expand/collapse"
-msgstr "נא להקיש להרחיבה/לכווץ"
+msgstr "הקשה להרחבה/כווץ"
 
 #: ../gramps/gui/glade/grampletpane.glade:129
 msgid "Click to delete gramplet from view"
@@ -17875,7 +17874,7 @@ msgstr "על _אודות"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Addon Manager..."
-msgstr "_מנהל תוספים..."
+msgstr "_מנהל תוספים…"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Bookmarks"
@@ -17992,7 +17991,7 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"החבליות, Gdk,‏ Gtk,‏ Pango או PangoCairo typelib לא מותקנות.\n"
+"חבילות Gdk,‏ Gtk,‏ Pango או PangoCairo typelib לא מותקנות.\n"
 "יש להתקין Gnome Introspection, ואת pygobject בגרסה 3.12 ומעלה.\n"
 "לאחר מכן להתקין את introspection data עבור Gdk,‏ Gtk,‏ Pango ו־PangoCairo\n"
 "\n"
@@ -18404,7 +18403,7 @@ msgstr "מיזוג_מקומות"
 #: ../gramps/gui/merge/mergerepository.py:45
 msgctxt "manual"
 msgid "Merge_Repositories"
-msgstr "מיזוג_קשרי־משפחה"
+msgstr "מיזוג_מאגרי־נתונים"
 
 #: ../gramps/gui/merge/mergesource.py:46
 msgctxt "manual"
@@ -18606,14 +18605,12 @@ msgid "Loading..."
 msgstr "מתבצעת טעינה..."
 
 #: ../gramps/gui/plug/_windows.py:562
-#, fuzzy
-#| msgid "Operation failed"
 msgid "Addon Registration Failed"
-msgstr "הפעולה כשלה"
+msgstr "רישום תוסף כשל"
 
 #: ../gramps/gui/plug/_windows.py:563
 msgid "The addon will be unavailable in your current configuration."
-msgstr ""
+msgstr "התוסף לא יהיה זמין בתצורה הנוכחית."
 
 #: ../gramps/gui/plug/_windows.py:588
 msgid "No matching addons found."
@@ -18657,7 +18654,7 @@ msgstr "תוספים חדשים בלבד"
 
 #: ../gramps/gui/plug/_windows.py:783
 msgid "New and updated addons"
-msgstr "תוספים חדשים ועדכונים"
+msgstr "תוספים חדשים ועדכניים"
 
 #: ../gramps/gui/plug/_windows.py:794
 msgid "What to check"
@@ -18665,7 +18662,7 @@ msgstr "מה לבדוק"
 
 #: ../gramps/gui/plug/_windows.py:800
 msgid "Do not ask about previously notified addons"
-msgstr "לא לבדוק תוספים שכבר נבדקו בעבר"
+msgstr "לא לשאול על תוספים שדווחו בעבר"
 
 #: ../gramps/gui/plug/_windows.py:807
 msgid "Check for updated addons now"
@@ -18792,7 +18789,7 @@ msgstr "טעינה מחדש"
 
 #: ../gramps/gui/plug/_windows.py:1248
 msgid "Refreshing Addon List"
-msgstr "ריענון רשימת תוספים"
+msgstr "רשימת תוספים מתרעננת"
 
 #: ../gramps/gui/plug/_windows.py:1249 ../gramps/gui/plug/_windows.py:1254
 #: ../gramps/gui/plug/_windows.py:1392
@@ -18801,7 +18798,7 @@ msgstr "gramps-project.org נקרא…"
 
 #: ../gramps/gui/plug/_windows.py:1272
 msgid "Checking addon..."
-msgstr "בדיקת תוסף..."
+msgstr "תוסף נבדק…"
 
 #: ../gramps/gui/plug/_windows.py:1280
 msgid "Unknown Help URL"
@@ -18870,7 +18867,7 @@ msgstr "חלון ראשי"
 
 #: ../gramps/gui/plug/_windows.py:2204
 msgid "Downloading and installing selected addons..."
-msgstr "הורדת והתקנת תוספים שנבחרו..."
+msgstr "הורדת והתקנת תוספים שנבחרו…"
 
 #: ../gramps/gui/plug/_windows.py:2247
 msgid "Installation Errors"
@@ -18993,7 +18990,7 @@ msgstr ""
 "עותק של המידע נשמר בהצלחה. ניתן ללחוץ על לחצן 'סגירה' כדי להמשיך.\n"
 "\n"
 "הערה: מסד־הנתונים שפתוח כעת בחלון גרמפס, אינו הקובץ שנשמר זה עתה. עריכות "
-"עתידיות במסד־הנתונים הפתוח לא ישפיע עוד על העותק שנוצרזה מכבר. "
+"עתידיות במסד־הנתונים הפתוח לא תשפענה עוד על העותק שנוצר זה מכבר. "
 
 #: ../gramps/gui/plug/export/_exportassistant.py:539
 #, python-format
@@ -19012,9 +19009,9 @@ msgid ""
 "Note: your currently opened database is safe. It was only a copy of your "
 "data that failed to save."
 msgstr ""
-"אירעה שגיאה בעת שמירת הנתונים. ניתן לנסות להריץ את היצוא מחדש.\n"
+"אירעה שגיאה בעת שמירת הנתונים. ניתן לנסות לייצא שוב.\n"
 "\n"
-"הערה: מסד־הנתונים שפתוח כעת בטוח. אך יצירת עותק לנתונים כשלה."
+"הערה: מסד־הנתונים שפתוח כעת בטוח. רק שמירת עותק לנתונים כשלה."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:562
 msgid ""
@@ -22208,7 +22205,7 @@ msgstr "נא לבחור המגדר שיכלל בסטטיסטיקה."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1166
 msgid "Max. items for a pie"
-msgstr "מספר מרבי של עצמים בעוגה"
+msgstr "מספר מרבי של עצמים בתרשים עוגה"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1169
 msgid ""
@@ -24314,9 +24311,9 @@ msgstr ""
 "כעת ניתן להתחיל להזין את נתוני ה'משפחה הראשונה', זה נעשה על ידי הזנת נתוני "
 "ה'אדם' הראשון.\n"
 "\n"
-"ממצג 'אנשים', מהתפריט, לחיצה על 'הוספה', לאחר מכן 'אדם' (או שימוש בסמל ה־[+])"
-" תפתח את חלון הזנת פרטי 'אדם'. הזנת המידע הבסיסי ושמירת הרשומה תייצר את "
-"נקודת המוצא לאילן־היוחסין. להרחבת הנתונים יש לבחור ברשומת 'אדם' זה ומעבר "
+"ממצג 'אנשים', מהתפריט, לחיצה על 'הוספה', לאחר מכן 'אדם' (או שימוש בסמל "
+"ה־[+]) תפתח את חלון הזנת פרטי 'אדם'. הזנת המידע הבסיסי ושמירת הרשומה תייצר "
+"את נקודת המוצא לאילן־היוחסין. להרחבת הנתונים יש לבחור ברשומת 'אדם' זה ומעבר "
 "למצג קשרי־משפחה.\n"
 "\n"
 "עם הקמת רשומת אדם ראשונה זו, כל אפשרויות התפריט ותפקודי הסמלים יהפכו "
@@ -24422,13 +24419,14 @@ msgid ""
 "program.\n"
 "\n"
 msgstr ""
-"מעונינים לראות את גרמפס בפעולה? צורו וייבאו את מסד־נתוני ההדגמה.\n"
+"כיצד ניתן לראות את גרמפס בפעולה? על ידי יצירת אילן־יוחסין וייבאו מסד־נתוני "
+"ההדגמה.\n"
 "\n"
-"יצירת אילן־יוחסין חדש כמתואר לעיל. מומלץ לקרוא לו \"דוגמה\".\n"
+"יצירת אילן־יוחסין חדש כמתואר לעיל. מומלץ לקרוא לו בשם \"דוגמה\".\n"
 "\n"
-"יבוא קובץ גרמפס להדגמה example.gramps.\n"
+"ייבוא קובץ גרמפס להדגמה example.gramps.\n"
 "\n"
-"כעת נותר רק לעקוב בתוכנת גרמפס, אחר ההוראות למיקום אחסון הקובץ.\n"
+"כעת נותר רק לעקוב אחר ההוראות למיקום אחסון הקובץ, באמצעות תוכנת גרמפס.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:268
@@ -24573,11 +24571,11 @@ msgstr "יצירת תרשים שעון חול תוך שימוש ב־גראפוו
 #: ../gramps/plugins/graph/graphplugins.gpr.py:82
 #: ../gramps/plugins/graph/gvrelgraph.py:225
 msgid "Relationship Graph"
-msgstr "תרשים קשר־משפחה"
+msgstr "תרשים קשרי־משפחה"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:83
 msgid "Produces relationship graphs using Graphviz."
-msgstr "יצירת תרשים קשרי־משפחה בעזרת גראפויז."
+msgstr "יצירת תרשים קשרי־משפחה בעזרת גרפויז."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:81
 #: ../gramps/plugins/graph/gvhourglass.py:67
@@ -25118,7 +25116,7 @@ msgstr "האם לכלול מקצוע אחרון"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1030
 msgid "Include relationship debugging numbers also"
-msgstr "לכלול מספרי ניפוי תקלים קשרי־משפחה"
+msgstr "הכללת גם מספרי ניפוי תקלי קשרי־משפחה"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1034
 msgid ""
@@ -25197,8 +25195,8 @@ msgid ""
 "The Gramps XML format is a text version of a Family Tree. It is read-write "
 "compatible with the present Gramps database format."
 msgstr ""
-"תסדיר XML גרמפס הוא אילן־יוחסן בגרסה מילולית. הקובץ תואם קריאה-כתיבה לתסדיר "
-"מסד־הנתונים הנוכחי של גרמפס."
+"גרמפס בתסדיר XML הוא גרסת מלל של אילן היוחסין. הקובץ תואם קריאה–כתיבה לתסדיר "
+"מסד הנתונים הנוכחי של גרמפס."
 
 #: ../gramps/plugins/importer/import.gpr.py:138
 msgid "Gramps 2.x database"
@@ -25767,11 +25765,12 @@ msgid ""
 "example this version), create a new empty database and import the Gramps XML "
 "into that version. Please refer to:%(gramps_wiki_migrate_two_to_three_url)s"
 msgstr ""
-"גרסת מסד־נתונים זה, לא תומכת בגרמפס בגרסתו הנוכחית. נא לאתחל גרסה ישנה יותר "
-"של גרמפס מהדורה ‎,3.0.x ולייבא את מסד־הנתונים לגרסה זו. בשלב הבא, יש לייצא "
-"עותק של מסד־הנתונים לקובץ XML (אילן־יוחסין). לאחר מכן, לשדרג את גרמפס לגרסה "
-"העדכנית ביותר (לדוגמה גרסה זו), לייצר מסד־נתונים ריק, ולייבא אליו את קובץ "
-"ה־XML שנוצר קודם. למידע נוסף: %(gramps_wiki_migrate_two_to_three_url)s"
+"גרסת מסד־נתונים זו, לא תומכת בתוכנת גרמפס בגרסה הנוכחית. נא לאתחל עם גרסה "
+"ישנה יותר של גרמפס מסדרת ‎,3.0.x ולייבא את מסד־הנתונים לגרסה זו. בשלב הבא, "
+"יש לייצא עותק של מסד־הנתונים לקובץ XML (אילן־יוחסין). לאחר מכן, לשדרג את "
+"תוכנת גרמפס לגרסה העדכנית ביותר (לדוגמה גרסה זו), לייצר אילן־יוחסין ריק, "
+"ולייבא אליו את קובץ ה־XML שנוצר קודם. למידע נוסף: "
+"%(gramps_wiki_migrate_two_to_three_url)s"
 
 #: ../gramps/plugins/importer/importprogen.glade:49
 #: ../gramps/plugins/importer/importprogen.glade:70
@@ -31768,7 +31767,7 @@ msgstr "אַחָאִי"
 
 #: ../gramps/plugins/quickview/siblings.py:66
 msgid "self"
-msgstr "עצמי"
+msgstr "האדם"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:35
 msgid "Catalan Relationship Calculator"
@@ -34292,15 +34291,15 @@ msgstr ""
 "הכלי מאפשר בצוע פעולות אצווה על עצמי מדיה המאוחסנים בגרמפס. חייבת להתבצע "
 "הבחנה חשובה בין עצם מדיה של גרמפס לבין הקובץ שלו.\n"
 "\n"
-"עצם המדיה 'בגרמפס' הוא אוסף נתונים על אודות קובץ עצם המדיה עצמו: שם הקובץ "
-"ו/או הנתיב שלו, התיאור שלו, המזהה שלו, ההערות, ההפניות למקור וכדומה. נתונים "
+"עצם המדיה 'בגרמפס' הוא אוסף נתונים על קובץ עצם המדיה עצמו: שם הקובץ ו/או "
+"הנתיב שלו, התיאור שלו, המזהה שלו, ההערות, ההפניות למקור וכדומה. נתונים "
 "אלה%(bold_start)sלא כוללים את קובץ המדיה עצמו%(bold_end)s.\n"
 "\n"
 "קבצים שמכילים תמונה, קול, סרט וכדומה, מאוחסנים למעשה בנפרד, בכונן הקשיח. "
 "קבצים אלה אינם מנוהלים על־ידי גרמפס ואינם משובצים במסד הנתונים של גרמפס. "
 "מסד־הנתונים של גרמפס מאחסן רק את שמות הקבצים והנתיב אליהם.\n"
 "\n"
-"הכלי מאפשר לשנות רשומות בתוך מסד־נתונים גרמפס בלבד. כך שאם נדרש להעביר או "
+"הכלי מאפשר לשנות רשומות בתוך מסד־נתוני גרמפס בלבד. כך שאם נדרש להעביר או "
 "לשנות את שמות הקבצים עצמם, יש לעשות באופן עצמאי, מחוץ לגרמפס. לאחר מכן ניתן "
 "לכוונן את הנתיבים באמצעות כלי זה באופן שעצמי המדיה בגרמפס יאחסנו את מיקומי "
 "קבצי המדיה הנכונים."

@@ -900,8 +900,12 @@ class NavWebReport(Report):
         """
         self.rlocale = self.set_locale(self.the_lang)
         self._ = self.rlocale.translation.sgettext
-        husband_handle = family.get_father_handle()
-        spouse_handle = family.get_mother_handle()
+        if isinstance(family, Family):
+            husband_handle = family.get_father_handle()
+            spouse_handle = family.get_mother_handle()
+        else:
+            # B13207
+            husband_handle = spouse_handle = None
 
         if husband_handle:
             husband = self._db.get_person_from_handle(husband_handle)

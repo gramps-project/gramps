@@ -31,10 +31,10 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-03-12 08:56+0000\n"
+"PO-Revision-Date: 2024-04-01 18:01+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
-"Language-Team: German (Austria) <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/de_AT/>\n"
+"Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/de_AT/>\n"
 "Language: de_AT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -11433,7 +11433,7 @@ msgstr "Nichts"
 
 #: ../gramps/gen/utils/symbols.py:111
 msgid "Skull and crossbones"
-msgstr "Totenkopf und gekreuzte Knochen"
+msgstr "Totenkopf"
 
 #: ../gramps/gen/utils/symbols.py:112
 msgid "Ankh"
@@ -11441,7 +11441,7 @@ msgstr "Anch"
 
 #: ../gramps/gen/utils/symbols.py:113
 msgid "Orthodox cross"
-msgstr "Russisch-orthodoxes Kreuz"
+msgstr "Orthodoxes Kreuz"
 
 #: ../gramps/gen/utils/symbols.py:114
 msgid "Chi rho"
@@ -11469,7 +11469,7 @@ msgstr "Ostsyrisches Kreuz"
 
 #: ../gramps/gen/utils/symbols.py:120
 msgid "Heavy Greek cross"
-msgstr "Schweres griechisches Kreuz"
+msgstr "Dickes griechisches Kreuz"
 
 #: ../gramps/gen/utils/symbols.py:121
 msgid "Latin cross"
@@ -11477,11 +11477,11 @@ msgstr "Lateinisches Kreuz"
 
 #: ../gramps/gen/utils/symbols.py:122
 msgid "Shadowed White Latin cross"
-msgstr "Schattiertes weißes Lateinisches Kreuz"
+msgstr "Schattiertes weißes lateinisches Kreuz"
 
 #: ../gramps/gen/utils/symbols.py:123
 msgid "Maltese cross"
-msgstr "Tatzenkreuz (bzw. Malteserkreuz)"
+msgstr "Malteserkreuz"
 
 #: ../gramps/gen/utils/symbols.py:124
 msgid "Star of David"
@@ -19167,14 +19167,13 @@ msgid "Loading..."
 msgstr "Lade..."
 
 #: ../gramps/gui/plug/_windows.py:562
-#, fuzzy
-#| msgid "Operation failed"
 msgid "Addon Registration Failed"
-msgstr "Aktion fehlgeschlagen"
+msgstr "Zusatzmodul-Registrierung fehlgeschlagen"
 
 #: ../gramps/gui/plug/_windows.py:563
 msgid "The addon will be unavailable in your current configuration."
 msgstr ""
+"Das Zusatzmodul wird in deiner aktuellen Konfiguration nicht verfügbar sein."
 
 #: ../gramps/gui/plug/_windows.py:588
 msgid "No matching addons found."
@@ -21125,7 +21124,7 @@ msgid ""
 "Command-Click to follow link"
 msgstr ""
 "\n"
-"Command+Klick, um Link zu folgen"
+"Command+Klick um Link zu folgen"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:473
 msgid ""
@@ -21133,7 +21132,7 @@ msgid ""
 "Ctrl-Click to follow link"
 msgstr ""
 "\n"
-"Strg+Klicke um Link zu folgen"
+"Strg+Klick um Link zu folgen"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:530
 msgid "Spellcheck"
@@ -24969,7 +24968,7 @@ msgstr ""
 "Du möchtest nun mit der Eingabe deiner ersten Familie beginnen und das "
 "beginnt mit der ersten Person.\n"
 "\n"
-"Wechsele zur Ansicht \"Personen\" und klicke im Menü auf \"Hinzufügen\" und "
+"Wechsle zur Ansicht \"Personen\" und klicke im Menü auf \"Hinzufügen\" und "
 "dann auf \"Person\" (oder verwende das [+]-Symbol), um das Fenster zur "
 "Eingabe einer Person aufzurufen. Wenn du die grundlegenden Informationen "
 "eingibst und den Eintrag speicherst, hast du einen Ausgangspunkt. Wähle den "
@@ -24979,8 +24978,8 @@ msgstr ""
 "verfügbar. Fahre mit der Maus über die Symbole. Wenn dein Mauszeiger über "
 "ein Symbol fährt, erscheint eine Meldung, die dir die Funktion des Symbols "
 "erklärt. Das Gleiche gilt für alle Bearbeitungsfenster. Wenn du den "
-"Mauszeiger über ein Element bewegst, wird dir gesagt, welche Funktion es "
-"hat.\n"
+"Mauszeiger über ein Element bewegst, wird dir gesagt, welche Funktion es hat."
+"\n"
 "\n"
 "Du kannst nun Familien erstellen, indem du Eltern, einen Ehepartner und "
 "Kinder hinzufügst. Sobald du damit begonnen hast, kannst du Ereignisse zu "
@@ -31799,7 +31798,7 @@ msgid ""
 "or we use the characters from the keyboard."
 msgstr ""
 "Verwende den Ziffernblock für Tastenkürzel:\n"
-"Entweder + und - vom Ziffernblock verwenden \n"
+"Entweder + und - vom Ziffernblock verwenden\n"
 "oder die entsprechenden Zeichen auf der Tastatur."
 
 #: ../gramps/plugins/lib/maps/geography.py:1494
@@ -33564,7 +33563,7 @@ msgstr "Ob Referenzen zum Ehepartner eingefügt werden."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1189
 msgid "Include sign of succession ('+') in child-list"
-msgstr "Nachkommenzeichen ('+') in Kinderliste einfügen"
+msgstr "Zeichen für Nachkommen ('+') in Kinderliste einfügen"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1193
 msgid ""
@@ -34489,7 +34488,7 @@ msgstr "Datenbank überprüfen"
 
 #: ../gramps/plugins/tool/check.py:135
 msgid "Looking for cross table duplicates"
-msgstr "Suche nach tabellenübergreifenden Duplikaten"
+msgstr "Suche nach Kreuztabellenduplikaten"
 
 #: ../gramps/plugins/tool/check.py:196
 msgid ""
@@ -34499,12 +34498,11 @@ msgid ""
 "tree. The rest of the checking is skipped, the Check and\n"
 "Repair tool should be run anew on this new Family Tree."
 msgstr ""
-"Dein Stammbaum enthält doppelte Verweise in Kreuztabellen.\n"
+"Dein Stammbaum enthält doppelte Kreuztabellen-Handles.\n"
 " Dies ist schlecht und kann durch Erstellen eines Backups deines Stammbaums\n"
 "und Importieren dieses Backups in einen leeren Stammbaum repariert werden.\n"
-"Der restliche Test wurde abgebrochen, das Überprüfen und Reparieren-"
-"Werkzeug\n"
-"sollte auf dem neuen Stammbaum erneut ausgeführt werden."
+"Der Rest der Überprüfung wird übersprungen, das Werkzeug Datenbank prüfen\n"
+"und reparieren sollte für den neuen Stammbaum erneut ausgeführt werden."
 
 #: ../gramps/plugins/tool/check.py:208
 msgid "Check Integrity"
@@ -39167,7 +39165,7 @@ msgstr "Ob eine Seite mit den letzten Änderungen eingefügt wird"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2782
 msgid "Max days for updates"
-msgstr "Max. Tage für letzte Änderungen"
+msgstr "Max. Tage für Änderungen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2784
 msgid "You want to see the last updates on how many days?"
@@ -39175,12 +39173,11 @@ msgstr "Wieviele Tage soll die Anzeige der letzten Änderungen zurückgehen?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2789
 msgid "Max number of updates per object to show"
-msgstr ""
-"Max. Anzahl der letzten Änderungen pro Objekt, die angezeigt werden sollen"
+msgstr "Max. Anzahl der Änderungen pro Objekt, die angezeigt werden sollen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2791
 msgid "How many updates do you want to see max"
-msgstr "Wie viele letzte Änderungen maximal angezeigt werden sollen"
+msgstr "Wie viele Änderungen maximal angezeigt werden sollen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2803
 msgid "Translations"
