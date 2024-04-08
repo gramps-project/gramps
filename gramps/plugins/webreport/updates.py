@@ -293,8 +293,12 @@ class UpdatesPage(BasePage):
 
         def sort_on_change(handle):
             """sort records based on the last change time"""
-            obj = fct(handle)
-            timestamp = obj.get_change_time()
+            try:
+                obj = fct(handle)
+                timestamp = obj.get_change_time()
+            except exception:
+                print("In sort :", handle, " not found for", object_type)
+                timestamp = 0
             return timestamp
 
         if object_type == Person:
@@ -323,7 +327,11 @@ class UpdatesPage(BasePage):
             for handle in obj_list:
                 date = obj = None
                 name = ""
-                obj = fct(handle)
+                try:
+                    obj = fct(handle)
+                except exception:
+                    print("Handle not found:", handle, " not found for", object_type)
+                    continue
                 if object_type == Person:
                     name = fct_link(handle)
                 elif object_type == Family:
