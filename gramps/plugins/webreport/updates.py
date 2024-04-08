@@ -309,13 +309,13 @@ class UpdatesPage(BasePage):
             fct = self.report.database.get_place_from_handle
             fct_link = self.place_link
         elif object_type == Source:
-            fct = self.report.database.get_place_from_handle
+            fct = self.report.database.get_source_from_handle
             fct_link = self.source_link
         elif object_type == Repository:
-            fct = self.report.database.get_place_from_handle
+            fct = self.report.database.get_repository_from_handle
             fct_link = self.repository_link
         elif object_type == Media:
-            fct = self.report.database.get_place_from_handle
+            fct = self.report.database.get_media_from_handle
         obj_list = sorted(
             self.report.obj_dict[object_type], key=sort_on_change, reverse=True
         )
