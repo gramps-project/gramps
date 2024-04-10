@@ -81,7 +81,7 @@ class Citation(
         DateBase.__init__(self)  #  2
         self.source_handle = None  #  5
         self.page = ""  #  3
-        self.confidence = Citation.CONF_NORMAL  #  4
+        self.confidence = Citation.CONF_VERY_LOW  #  4
         SrcAttributeBase.__init__(self)  #  8
 
     @classmethod
