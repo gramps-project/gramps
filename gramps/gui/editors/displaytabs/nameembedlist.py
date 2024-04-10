@@ -130,7 +130,7 @@ class NameEmbedList(GroupEmbeddedList):
                 (True, _("_Add"), self.add_button_clicked),
                 (False, _("_Edit"), self.edit_button_clicked),
                 (True, _("_Remove"), self.del_button_clicked),
-                (True, _("Set as default name"), self.name_button_clicked),
+                (True, _("Set as Preferred name"), self.name_button_clicked),
             ]
         else:
             return [
