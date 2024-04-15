@@ -107,6 +107,25 @@ class LocationBase:
             self.phone,
         ]
 
+    def get_address_lines(self):
+        """
+        Return a list of non-empty address lines for the Location suitable for
+        producing a formatted address.
+
+        :returns: A list of address lines for the Location.
+        :rtype: list
+        """
+        addr_lines = [
+            self.street,
+            self.locality,
+            self.city,
+            self.county,
+            self.state,
+            self.postal,
+            self.country,
+        ]
+        return [line for line in addr_lines if line]
+
     def set_street(self, val):
         """Set the street portion of the Location."""
         self.street = val

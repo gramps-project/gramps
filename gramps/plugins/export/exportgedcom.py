@@ -1598,33 +1598,6 @@ class GedcomWriter(UpdateCallback):
             self._writeln(level + 1, "MAP")
             self._writeln(level + 2, "LATI", latitude)
             self._writeln(level + 2, "LONG", longitude)
-
-        # The Gedcom standard shows that an optional address structure can
-        # be written out in the event detail.
-        # http://homepages.rootsweb.com/~pmcbride/gedcom/55gcch2.htm#EVENT_DETAIL
-        location = get_main_location(self.dbase, place)
-        street = location.get(PlaceType.STREET)
-        locality = location.get(PlaceType.LOCALITY)
-        city = location.get(PlaceType.CITY)
-        state = location.get(PlaceType.STATE)
-        country = location.get(PlaceType.COUNTRY)
-        postal_code = place.get_code()
-
-        if street or locality or city or state or postal_code or country:
-            self._writeln(level, "ADDR", street)
-            if street:
-                self._writeln(level + 1, "ADR1", street)
-            if locality:
-                self._writeln(level + 1, "ADR2", locality)
-            if city:
-                self._writeln(level + 1, "CITY", city)
-            if state:
-                self._writeln(level + 1, "STAE", state)
-            if postal_code:
-                self._writeln(level + 1, "POST", postal_code)
-            if country:
-                self._writeln(level + 1, "CTRY", country)
-
         self._note_references(place.get_note_list(), level + 1)
 
     def __write_addr(self, level, addr):
@@ -1652,25 +1625,11 @@ class GedcomWriter(UpdateCallback):
         @param addr: The location or address
         @type addr: [a super-type of] LocationBase
         """
-        if (
-            addr.get_street()
-            or addr.get_locality()
-            or addr.get_city()
-            or addr.get_state()
-            or addr.get_postal_code()
-            or addr.get_country()
-        ):
-            self._writeln(level, "ADDR", addr.get_street())
-            if addr.get_locality():
-                self._writeln(level + 1, "CONT", addr.get_locality())
-            if addr.get_city():
-                self._writeln(level + 1, "CONT", addr.get_city())
-            if addr.get_state():
-                self._writeln(level + 1, "CONT", addr.get_state())
-            if addr.get_postal_code():
-                self._writeln(level + 1, "CONT", addr.get_postal_code())
-            if addr.get_country():
-                self._writeln(level + 1, "CONT", addr.get_country())
+        addr_lines = addr.get_address_lines()
+        if addr_lines:
+            self._writeln(level, "ADDR", addr_lines[0])
+            for line in addr_lines[1:]:
+                self._writeln(level + 1, "CONT", line)
 
             if addr.get_street():
                 self._writeln(level + 1, "ADR1", addr.get_street())
