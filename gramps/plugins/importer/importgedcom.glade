@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.20.0 -->
+<!-- Generated with glade 3.40.0 -->
 <interface>
-  <requires lib="gtk+" version="3.10"/>
+  <requires lib="gtk+" version="3.24"/>
   <object class="GtkListStore" id="model1">
     <columns>
       <!-- column-name gchararray -->
@@ -26,30 +26,30 @@
     </data>
   </object>
   <object class="GtkDialog" id="importgedcom">
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <property name="title" translatable="yes">Gramps - GEDCOM Encoding</property>
-    <property name="window_position">center-on-parent</property>
-    <property name="default_width">300</property>
-    <property name="default_height">100</property>
-    <property name="type_hint">dialog</property>
+    <property name="window-position">center-on-parent</property>
+    <property name="default-width">300</property>
+    <property name="default-height">100</property>
+    <property name="type-hint">dialog</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox1">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="dialog-action_area1">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="okbutton1">
                 <property name="label">gtk-ok</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">False</property>
+                <property name="use-stock">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -61,19 +61,19 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="pack_type">end</property>
+            <property name="pack-type">end</property>
             <property name="position">0</property>
           </packing>
         </child>
         <child>
           <object class="GtkBox" id="vbox6">
-            <property name="orientation">vertical</property>
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
+            <property name="orientation">vertical</property>
             <child>
               <object class="GtkLabel" id="label17">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="label" translatable="yes">GEDCOM Encoding</property>
                 <attributes>
                   <attribute name="weight" value="bold"/>
@@ -89,11 +89,11 @@
             <child>
               <object class="GtkLabel" id="label18">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_left">6</property>
-                <property name="margin_right">6</property>
-                <property name="margin_top">6</property>
-                <property name="margin_bottom">6</property>
+                <property name="can-focus">False</property>
+                <property name="margin-left">6</property>
+                <property name="margin-right">6</property>
+                <property name="margin-top">6</property>
+                <property name="margin-bottom">6</property>
                 <property name="label" translatable="yes">This GEDCOM file has identified itself as using ANSEL encoding. Sometimes, this is in error. If the imported data contains unusual characters, undo the import, and override the character set by selecting a different encoding below.</property>
                 <property name="wrap">True</property>
               </object>
@@ -105,23 +105,21 @@
             </child>
             <child>
               <object class="GtkBox" id="hbox1">
-                <property name="orientation">horizontal</property>
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="border_width">6</property>
+                <property name="can-focus">False</property>
+                <property name="border-width">6</property>
                 <property name="spacing">6</property>
                 <child>
                   <placeholder/>
                 </child>
                 <child>
                   <object class="GtkBox" id="hbox2">
-                    <property name="orientation">horizontal</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <child>
                       <object class="GtkLabel" id="label19">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">Encoding: </property>
                       </object>
                       <packing>
@@ -133,7 +131,7 @@
                     <child>
                       <object class="GtkComboBox" id="codeset">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="model">model1</property>
                         <child>
                           <object class="GtkCellRendererText" id="renderer1"/>

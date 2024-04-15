@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.16.1 -->
+<!-- Generated with glade 3.40.0 -->
 <interface>
-  <requires lib="gtk+" version="3.10"/>
+  <requires lib="gtk+" version="3.24"/>
   <object class="GtkDialog" id="removeunused">
-    <property name="can_focus">False</property>
-    <property name="type_hint">dialog</property>
+    <property name="can-focus">False</property>
+    <property name="type-hint">dialog</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox2">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="dialog-action_area2">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="remove_button">
                 <property name="label">gtk-delete</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                <property name="use_stock">True</property>
+                <property name="use-stock">True</property>
                 <signal name="clicked" handler="on_remove_button_clicked" swapped="no"/>
               </object>
               <packing>
@@ -35,12 +35,12 @@
             <child>
               <object class="GtkButton" id="closebutton1">
                 <property name="label">gtk-close</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">False</property>
+                <property name="use-stock">True</property>
                 <signal name="clicked" handler="destroy_passed_object" swapped="no"/>
               </object>
               <packing>
@@ -53,21 +53,21 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="pack_type">end</property>
+            <property name="pack-type">end</property>
             <property name="position">0</property>
           </packing>
         </child>
         <child>
           <object class="GtkBox" id="vbox5">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="border_width">6</property>
+            <property name="can-focus">False</property>
+            <property name="border-width">6</property>
             <property name="orientation">vertical</property>
             <property name="spacing">6</property>
             <child>
               <object class="GtkLabel" id="title">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -79,25 +79,25 @@
             <child>
               <object class="GtkBox" id="hbox1">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <child>
                   <object class="GtkButtonBox" id="vbuttonbox1">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                     <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkCheckButton" id="events_box">
                         <property name="label" translatable="yes">Search for events</property>
-                        <property name="use_action_appearance">False</property>
+                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">False</property>
                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                         <property name="halign">start</property>
                         <property name="xalign">0.5</property>
-                        <property name="draw_indicator">True</property>
+                        <property name="draw-indicator">True</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -108,14 +108,14 @@
                     <child>
                       <object class="GtkCheckButton" id="sources_box">
                         <property name="label" translatable="yes">Search for sources</property>
-                        <property name="use_action_appearance">False</property>
+                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">False</property>
                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                         <property name="halign">start</property>
                         <property name="xalign">0.5</property>
-                        <property name="draw_indicator">True</property>
+                        <property name="draw-indicator">True</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -127,10 +127,10 @@
                       <object class="GtkCheckButton" id="citations_box">
                         <property name="label" translatable="yes">Search for citations</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">False</property>
                         <property name="xalign">0</property>
-                        <property name="draw_indicator">True</property>
+                        <property name="draw-indicator">True</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -141,14 +141,14 @@
                     <child>
                       <object class="GtkCheckButton" id="places_box">
                         <property name="label" translatable="yes">Search for places</property>
-                        <property name="use_action_appearance">False</property>
+                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">False</property>
                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                         <property name="halign">start</property>
                         <property name="xalign">0.5</property>
-                        <property name="draw_indicator">True</property>
+                        <property name="draw-indicator">True</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -159,14 +159,14 @@
                     <child>
                       <object class="GtkCheckButton" id="media_box">
                         <property name="label" translatable="yes">Search for media</property>
-                        <property name="use_action_appearance">False</property>
+                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">False</property>
                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                         <property name="halign">start</property>
                         <property name="xalign">0.5</property>
-                        <property name="draw_indicator">True</property>
+                        <property name="draw-indicator">True</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -177,14 +177,14 @@
                     <child>
                       <object class="GtkCheckButton" id="repos_box">
                         <property name="label" translatable="yes">Search for repositories</property>
-                        <property name="use_action_appearance">False</property>
+                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">False</property>
                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                         <property name="halign">start</property>
                         <property name="xalign">0.5</property>
-                        <property name="draw_indicator">True</property>
+                        <property name="draw-indicator">True</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -195,14 +195,14 @@
                     <child>
                       <object class="GtkCheckButton" id="notes_box">
                         <property name="label" translatable="yes">Search for notes</property>
-                        <property name="use_action_appearance">False</property>
+                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">False</property>
                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                         <property name="halign">start</property>
                         <property name="xalign">0.5</property>
-                        <property name="draw_indicator">True</property>
+                        <property name="draw-indicator">True</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -220,17 +220,17 @@
                 <child>
                   <object class="GtkButtonBox" id="hbuttonbox1">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                     <child>
                       <object class="GtkButton" id="find_button">
                         <property name="label">gtk-find</property>
-                        <property name="use_action_appearance">False</property>
+                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                        <property name="use_stock">True</property>
+                        <property name="use-stock">True</property>
                         <signal name="clicked" handler="on_find_button_clicked" swapped="no"/>
                       </object>
                       <packing>
@@ -255,14 +255,14 @@
             </child>
             <child>
               <object class="GtkScrolledWindow" id="scrolledwindow4">
-                <property name="height_request">150</property>
+                <property name="height-request">150</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="shadow_type">in</property>
+                <property name="can-focus">True</property>
+                <property name="shadow-type">in</property>
                 <child>
                   <object class="GtkTreeView" id="warn_tree">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
+                    <property name="can-focus">True</property>
                     <child internal-child="selection">
                       <object class="GtkTreeSelection" id="treeview-selection1"/>
                     </child>
@@ -279,18 +279,18 @@
             <child>
               <object class="GtkButtonBox" id="hbuttonbox2">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="spacing">6</property>
-                <property name="layout_style">spread</property>
+                <property name="layout-style">spread</property>
                 <child>
                   <object class="GtkButton" id="mark_button">
                     <property name="label" translatable="yes">_Mark all</property>
-                    <property name="use_action_appearance">False</property>
+                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="can_default">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="use_underline">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="can-default">True</property>
+                    <property name="receives-default">False</property>
+                    <property name="use-underline">True</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -301,12 +301,12 @@
                 <child>
                   <object class="GtkButton" id="unmark_button">
                     <property name="label" translatable="yes">_Unmark all</property>
-                    <property name="use_action_appearance">False</property>
+                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="can_default">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="use_underline">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="can-default">True</property>
+                    <property name="receives-default">False</property>
+                    <property name="use-underline">True</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -317,12 +317,12 @@
                 <child>
                   <object class="GtkButton" id="invert_button">
                     <property name="label" translatable="yes">In_vert marks</property>
-                    <property name="use_action_appearance">False</property>
+                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="can_default">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="use_underline">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="can-default">True</property>
+                    <property name="receives-default">False</property>
+                    <property name="use-underline">True</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -340,7 +340,7 @@
             <child>
               <object class="GtkLabel" id="dc_label">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Double-click on a row to view/edit data</property>
                 <attributes>
                   <attribute name="weight" value="bold"/>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.3 -->
+<!-- Generated with glade 3.40.0 -->
 <interface>
-  <requires lib="gtk+" version="3.10"/>
+  <requires lib="gtk+" version="3.24"/>
   <object class="GtkListStore" id="liststore1">
     <columns>
       <!-- column-name gchararray1 -->
@@ -9,29 +9,29 @@
     </columns>
   </object>
   <object class="GtkDialog" id="finddupes">
-    <property name="can_focus">False</property>
-    <property name="type_hint">dialog</property>
+    <property name="can-focus">False</property>
+    <property name="type-hint">dialog</property>
     <signal name="delete-event" handler="on_delete_merge_event" swapped="no"/>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox4">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <property name="spacing">8</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="dialog-action_area4">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="button12">
                 <property name="label">gtk-cancel</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">False</property>
+                <property name="use-stock">True</property>
                 <signal name="clicked" handler="destroy_passed_object" object="finddupes" swapped="yes"/>
               </object>
               <packing>
@@ -43,12 +43,12 @@
             <child>
               <object class="GtkButton" id="button10">
                 <property name="label">gtk-ok</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">False</property>
+                <property name="use-stock">True</property>
                 <signal name="clicked" handler="on_merge_ok_clicked" object="finddupes" swapped="yes"/>
               </object>
               <packing>
@@ -60,12 +60,12 @@
             <child>
               <object class="GtkButton" id="button14">
                 <property name="label">gtk-help</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">False</property>
+                <property name="use-stock">True</property>
                 <signal name="clicked" handler="on_help_clicked" swapped="no"/>
               </object>
               <packing>
@@ -78,21 +78,21 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="pack_type">end</property>
+            <property name="pack-type">end</property>
             <property name="position">0</property>
           </packing>
         </child>
         <child>
           <object class="GtkBox" id="vbox6">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="border_width">6</property>
+            <property name="can-focus">False</property>
+            <property name="border-width">6</property>
             <property name="orientation">vertical</property>
             <property name="spacing">6</property>
             <child>
               <object class="GtkLabel" id="title2">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="justify">center</property>
               </object>
               <packing>
@@ -103,16 +103,17 @@
               </packing>
             </child>
             <child>
+              <!-- n-columns=3 n-rows=4 -->
               <object class="GtkGrid" id="table1">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="border_width">12</property>
-                <property name="row_spacing">6</property>
-                <property name="column_spacing">12</property>
+                <property name="can-focus">False</property>
+                <property name="border-width">12</property>
+                <property name="row-spacing">6</property>
+                <property name="column-spacing">12</property>
                 <child>
                   <object class="GtkLabel" id="label62">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">Match Threshold</property>
                     <attributes>
@@ -120,14 +121,14 @@
                     </attributes>
                   </object>
                   <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">0</property>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">0</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkLabel" id="label63">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">Options</property>
                     <attributes>
@@ -135,35 +136,35 @@
                     </attributes>
                   </object>
                   <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">2</property>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">2</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="soundex">
                     <property name="label" translatable="yes">Use soundex codes</property>
-                    <property name="use_action_appearance">False</property>
+                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">False</property>
                     <property name="halign">center</property>
-                    <property name="margin_left">12</property>
+                    <property name="margin-left">12</property>
                     <property name="hexpand">True</property>
-                    <property name="use_underline">True</property>
+                    <property name="use-underline">True</property>
                     <property name="xalign">0.5</property>
                     <property name="active">True</property>
-                    <property name="draw_indicator">True</property>
+                    <property name="draw-indicator">True</property>
                   </object>
                   <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">3</property>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">3</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkComboBox" id="menu">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_left">12</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-left">12</property>
                     <property name="hexpand">True</property>
                     <property name="model">liststore1</property>
                     <child>
@@ -174,9 +175,33 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">1</property>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">1</property>
                   </packing>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
                 </child>
               </object>
               <packing>
@@ -201,31 +226,31 @@
     </action-widgets>
   </object>
   <object class="GtkDialog" id="mergelist">
-    <property name="can_focus">False</property>
-    <property name="default_width">500</property>
-    <property name="default_height">350</property>
-    <property name="type_hint">dialog</property>
+    <property name="can-focus">False</property>
+    <property name="default-width">500</property>
+    <property name="default-height">350</property>
+    <property name="type-hint">dialog</property>
     <signal name="delete-event" handler="on_delete_show_event" swapped="no"/>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox3">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <property name="spacing">8</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="dialog-action_area3">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="button9">
                 <property name="label">gtk-close</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">False</property>
+                <property name="use-stock">True</property>
                 <signal name="clicked" handler="destroy_passed_object" object="mergelist" swapped="yes"/>
               </object>
               <packing>
@@ -237,12 +262,12 @@
             <child>
               <object class="GtkButton" id="button7">
                 <property name="label" translatable="yes">Co_mpare</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">False</property>
-                <property name="use_underline">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">False</property>
+                <property name="use-underline">True</property>
                 <signal name="clicked" handler="on_do_merge_clicked" swapped="no"/>
               </object>
               <packing>
@@ -254,12 +279,12 @@
             <child>
               <object class="GtkButton" id="button13">
                 <property name="label">gtk-help</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">False</property>
+                <property name="use-stock">True</property>
                 <signal name="clicked" handler="on_help_show_clicked" swapped="no"/>
               </object>
               <packing>
@@ -272,23 +297,23 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="pack_type">end</property>
+            <property name="pack-type">end</property>
             <property name="position">0</property>
           </packing>
         </child>
         <child>
           <object class="GtkBox" id="vbox5">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="border_width">6</property>
+            <property name="can-focus">False</property>
+            <property name="border-width">6</property>
             <property name="orientation">vertical</property>
             <property name="spacing">12</property>
             <child>
               <object class="GtkLabel" id="title1">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_top">6</property>
-                <property name="margin_bottom">6</property>
+                <property name="can-focus">False</property>
+                <property name="margin-top">6</property>
+                <property name="margin-bottom">6</property>
                 <property name="justify">center</property>
               </object>
               <packing>
@@ -300,14 +325,14 @@
             <child>
               <object class="GtkScrolledWindow" id="scrolledwindow3">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="hexpand">True</property>
                 <property name="vexpand">True</property>
-                <property name="shadow_type">in</property>
+                <property name="shadow-type">in</property>
                 <child>
                   <object class="GtkTreeView" id="mlist">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
+                    <property name="can-focus">True</property>
                     <child internal-child="selection">
                       <object class="GtkTreeSelection" id="treeview-selection1"/>
                     </child>

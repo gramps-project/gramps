@@ -1,119 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.3 -->
+<!-- Generated with glade 3.40.0 -->
 <interface>
-  <requires lib="gtk+" version="3.10"/>
+  <requires lib="gtk+" version="3.24"/>
   <object class="GtkAdjustment" id="adjustment1">
     <property name="upper">100</property>
     <property name="value">25</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="adjustment10">
     <property name="upper">150</property>
     <property name="value">99</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="adjustment11">
     <property name="upper">100</property>
     <property name="value">30</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="adjustment12">
     <property name="upper">100</property>
     <property name="value">3</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="adjustment13">
     <property name="upper">150</property>
     <property name="value">50</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="adjustment14">
     <property name="upper">100</property>
     <property name="value">17</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="adjustment15">
     <property name="upper">150</property>
     <property name="value">90</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="adjustment2">
     <property name="upper">100</property>
     <property name="value">8</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="adjustment3">
     <property name="upper">100</property>
     <property name="value">30</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="adjustment4">
     <property name="upper">100</property>
     <property name="value">18</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="adjustment5">
     <property name="upper">150</property>
     <property name="value">65</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="adjustment6">
     <property name="upper">100</property>
     <property name="value">15</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="adjustment7">
     <property name="upper">100</property>
     <property name="value">12</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="adjustment8">
     <property name="upper">100</property>
     <property name="value">48</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="adjustment9">
     <property name="upper">100</property>
     <property name="value">17</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
   </object>
   <object class="GtkDialog" id="verify">
-    <property name="can_focus">False</property>
-    <property name="type_hint">dialog</property>
+    <property name="can-focus">False</property>
+    <property name="type-hint">dialog</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox1">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="dialog-action_area1">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="helpbutton1">
                 <property name="label">gtk-help</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">False</property>
+                <property name="use-stock">True</property>
                 <signal name="clicked" handler="on_help_clicked" swapped="no"/>
               </object>
               <packing>
@@ -125,12 +125,12 @@
             <child>
               <object class="GtkButton" id="button5">
                 <property name="label">gtk-close</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">False</property>
+                <property name="use-stock">True</property>
                 <signal name="clicked" handler="destroy_passed_object" object="verify" swapped="yes"/>
               </object>
               <packing>
@@ -142,12 +142,12 @@
             <child>
               <object class="GtkButton" id="button4">
                 <property name="label" translatable="yes">_Run</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">False</property>
-                <property name="use_underline">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">False</property>
+                <property name="use-underline">True</property>
                 <signal name="clicked" handler="on_verify_ok_clicked" object="verify" swapped="yes"/>
               </object>
               <packing>
@@ -160,21 +160,21 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="pack_type">end</property>
+            <property name="pack-type">end</property>
             <property name="position">0</property>
           </packing>
         </child>
         <child>
           <object class="GtkBox" id="vbox6">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkLabel" id="title">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_top">6</property>
-                <property name="margin_bottom">6</property>
+                <property name="can-focus">False</property>
+                <property name="margin-top">6</property>
+                <property name="margin-bottom">6</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -185,210 +185,235 @@
             <child>
               <object class="GtkNotebook" id="notebook1">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
+                <property name="can-focus">True</property>
                 <child>
+                  <!-- n-columns=3 n-rows=8 -->
                   <object class="GtkGrid" id="table8">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="border_width">12</property>
-                    <property name="row_spacing">6</property>
-                    <property name="column_spacing">6</property>
+                    <property name="can-focus">False</property>
+                    <property name="border-width">12</property>
+                    <property name="row-spacing">6</property>
+                    <property name="column-spacing">6</property>
                     <child>
                       <object class="GtkSpinButton" id="oldage">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
+                        <property name="can-focus">True</property>
                         <property name="adjustment">adjustment15</property>
-                        <property name="climb_rate">1</property>
+                        <property name="climb-rate">1</property>
                         <property name="numeric">True</property>
                       </object>
                       <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">0</property>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">0</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label1">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="hexpand">True</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
+                        <property name="hexpand">True</property>
                         <property name="label" translatable="yes">Maximum _age</property>
-                        <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">oldage</property>
+                        <property name="use-underline">True</property>
+                        <property name="mnemonic-widget">oldage</property>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">0</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">0</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label3">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="hexpand">True</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
+                        <property name="hexpand">True</property>
                         <property name="label" translatable="yes">Mi_nimum age to marry</property>
-                        <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">yngmar</property>
+                        <property name="use-underline">True</property>
+                        <property name="mnemonic-widget">yngmar</property>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">1</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">1</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkSpinButton" id="yngmar">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
+                        <property name="can-focus">True</property>
                         <property name="adjustment">adjustment14</property>
-                        <property name="climb_rate">1</property>
+                        <property name="climb-rate">1</property>
                       </object>
                       <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">1</property>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">1</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label11">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="hexpand">True</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
+                        <property name="hexpand">True</property>
                         <property name="label" translatable="yes">Ma_ximum age to marry</property>
-                        <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">oldmar</property>
+                        <property name="use-underline">True</property>
+                        <property name="mnemonic-widget">oldmar</property>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">2</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">2</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkSpinButton" id="oldmar">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
+                        <property name="can-focus">True</property>
                         <property name="adjustment">adjustment13</property>
-                        <property name="climb_rate">1</property>
+                        <property name="climb-rate">1</property>
                       </object>
                       <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">2</property>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">2</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label4">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="hexpand">True</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
+                        <property name="hexpand">True</property>
                         <property name="label" translatable="yes">Maximum number of _spouses for a person</property>
-                        <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">wedder</property>
+                        <property name="use-underline">True</property>
+                        <property name="mnemonic-widget">wedder</property>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">3</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">3</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkSpinButton" id="wedder">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
+                        <property name="can-focus">True</property>
                         <property name="adjustment">adjustment12</property>
-                        <property name="climb_rate">1</property>
+                        <property name="climb-rate">1</property>
                       </object>
                       <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">3</property>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">3</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkSpinButton" id="lngwdw">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
+                        <property name="can-focus">True</property>
                         <property name="adjustment">adjustment11</property>
-                        <property name="climb_rate">1</property>
+                        <property name="climb-rate">1</property>
                       </object>
                       <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">4</property>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">4</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label5">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="hexpand">True</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
+                        <property name="hexpand">True</property>
                         <property name="label" translatable="yes">Maximum number of consecutive years of _widowhood before next marriage</property>
-                        <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">lngwdw</property>
+                        <property name="use-underline">True</property>
+                        <property name="mnemonic-widget">lngwdw</property>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">4</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">4</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label26">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="hexpand">True</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
+                        <property name="hexpand">True</property>
                         <property name="label" translatable="yes">Maximum age for an _unmarried person</property>
-                        <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">oldunm</property>
+                        <property name="use-underline">True</property>
+                        <property name="mnemonic-widget">oldunm</property>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">5</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">5</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkSpinButton" id="oldunm">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
+                        <property name="can-focus">True</property>
                         <property name="adjustment">adjustment10</property>
-                        <property name="climb_rate">1</property>
+                        <property name="climb-rate">1</property>
                       </object>
                       <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">5</property>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">5</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkCheckButton" id="estimate_age">
                         <property name="label" translatable="yes">_Estimate missing or inexact dates</property>
-                        <property name="use_action_appearance">False</property>
+                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="hexpand">True</property>
-                        <property name="use_underline">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="draw_indicator">True</property>
+                        <property name="hexpand">True</property>
+                        <property name="use-underline">True</property>
+                        <property name="draw-indicator">True</property>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">6</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">6</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkCheckButton" id="invdate">
                         <property name="label" translatable="yes">_Identify invalid dates</property>
-                        <property name="use_action_appearance">False</property>
+                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="hexpand">True</property>
-                        <property name="use_underline">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="draw_indicator">True</property>
+                        <property name="hexpand">True</property>
+                        <property name="use-underline">True</property>
+                        <property name="draw-indicator">True</property>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">7</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">7</property>
                       </packing>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
                     </child>
                     <child>
                       <placeholder/>
@@ -401,7 +426,7 @@
                 <child type="tab">
                   <object class="GtkLabel" id="label24">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">General</property>
                     <attributes>
@@ -409,108 +434,118 @@
                     </attributes>
                   </object>
                   <packing>
-                    <property name="tab_fill">False</property>
+                    <property name="tab-fill">False</property>
                   </packing>
                 </child>
                 <child>
+                  <!-- n-columns=3 n-rows=3 -->
                   <object class="GtkGrid" id="table6">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="border_width">12</property>
-                    <property name="row_spacing">6</property>
-                    <property name="column_spacing">6</property>
+                    <property name="can-focus">False</property>
+                    <property name="border-width">12</property>
+                    <property name="row-spacing">6</property>
+                    <property name="column-spacing">6</property>
                     <child>
                       <object class="GtkLabel" id="label7">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="hexpand">True</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin_left">2</property>
-                        <property name="margin_right">2</property>
-                        <property name="margin_top">2</property>
-                        <property name="margin_bottom">2</property>
+                        <property name="margin-left">2</property>
+                        <property name="margin-right">2</property>
+                        <property name="margin-top">2</property>
+                        <property name="margin-bottom">2</property>
+                        <property name="hexpand">True</property>
                         <property name="label" translatable="yes">Mi_nimum age to bear a child</property>
-                        <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">yngmom</property>
+                        <property name="use-underline">True</property>
+                        <property name="mnemonic-widget">yngmom</property>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">0</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">0</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label8">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="hexpand">True</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin_left">2</property>
-                        <property name="margin_right">2</property>
-                        <property name="margin_top">2</property>
-                        <property name="margin_bottom">2</property>
+                        <property name="margin-left">2</property>
+                        <property name="margin-right">2</property>
+                        <property name="margin-top">2</property>
+                        <property name="margin-bottom">2</property>
+                        <property name="hexpand">True</property>
                         <property name="label" translatable="yes">Ma_ximum age to bear a child</property>
-                        <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">oldmom</property>
+                        <property name="use-underline">True</property>
+                        <property name="mnemonic-widget">oldmom</property>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">1</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">1</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label12">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="hexpand">True</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin_left">2</property>
-                        <property name="margin_right">2</property>
-                        <property name="margin_top">2</property>
-                        <property name="margin_bottom">2</property>
+                        <property name="margin-left">2</property>
+                        <property name="margin-right">2</property>
+                        <property name="margin-top">2</property>
+                        <property name="margin-bottom">2</property>
+                        <property name="hexpand">True</property>
                         <property name="label" translatable="yes">Maximum number of chil_dren</property>
-                        <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">mxchildmom</property>
+                        <property name="use-underline">True</property>
+                        <property name="mnemonic-widget">mxchildmom</property>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">2</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">2</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkSpinButton" id="yngmom">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
+                        <property name="can-focus">True</property>
                         <property name="adjustment">adjustment9</property>
-                        <property name="climb_rate">1</property>
+                        <property name="climb-rate">1</property>
                       </object>
                       <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">0</property>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">0</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkSpinButton" id="oldmom">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
+                        <property name="can-focus">True</property>
                         <property name="adjustment">adjustment8</property>
-                        <property name="climb_rate">1</property>
+                        <property name="climb-rate">1</property>
                       </object>
                       <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">1</property>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">1</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkSpinButton" id="mxchildmom">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
+                        <property name="can-focus">True</property>
                         <property name="adjustment">adjustment7</property>
-                        <property name="climb_rate">1</property>
+                        <property name="climb-rate">1</property>
                       </object>
                       <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">2</property>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">2</property>
                       </packing>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
                     </child>
                   </object>
                   <packing>
@@ -520,7 +555,7 @@
                 <child type="tab">
                   <object class="GtkLabel" id="label19">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">Women</property>
                     <attributes>
@@ -529,108 +564,118 @@
                   </object>
                   <packing>
                     <property name="position">1</property>
-                    <property name="tab_fill">False</property>
+                    <property name="tab-fill">False</property>
                   </packing>
                 </child>
                 <child>
+                  <!-- n-columns=3 n-rows=3 -->
                   <object class="GtkGrid" id="table7">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="border_width">12</property>
-                    <property name="row_spacing">6</property>
-                    <property name="column_spacing">6</property>
+                    <property name="can-focus">False</property>
+                    <property name="border-width">12</property>
+                    <property name="row-spacing">6</property>
+                    <property name="column-spacing">6</property>
                     <child>
                       <object class="GtkLabel" id="label9">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="hexpand">True</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin_left">2</property>
-                        <property name="margin_right">2</property>
-                        <property name="margin_top">2</property>
-                        <property name="margin_bottom">2</property>
+                        <property name="margin-left">2</property>
+                        <property name="margin-right">2</property>
+                        <property name="margin-top">2</property>
+                        <property name="margin-bottom">2</property>
+                        <property name="hexpand">True</property>
                         <property name="label" translatable="yes">Mi_nimum age to father a child</property>
-                        <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">yngdad</property>
+                        <property name="use-underline">True</property>
+                        <property name="mnemonic-widget">yngdad</property>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">0</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">0</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label10">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="hexpand">True</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin_left">2</property>
-                        <property name="margin_right">2</property>
-                        <property name="margin_top">2</property>
-                        <property name="margin_bottom">2</property>
+                        <property name="margin-left">2</property>
+                        <property name="margin-right">2</property>
+                        <property name="margin-top">2</property>
+                        <property name="margin-bottom">2</property>
+                        <property name="hexpand">True</property>
                         <property name="label" translatable="yes">Ma_ximum age to father a child</property>
-                        <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">olddad</property>
+                        <property name="use-underline">True</property>
+                        <property name="mnemonic-widget">olddad</property>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">1</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">1</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label13">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="hexpand">True</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin_left">2</property>
-                        <property name="margin_right">2</property>
-                        <property name="margin_top">2</property>
-                        <property name="margin_bottom">2</property>
+                        <property name="margin-left">2</property>
+                        <property name="margin-right">2</property>
+                        <property name="margin-top">2</property>
+                        <property name="margin-bottom">2</property>
+                        <property name="hexpand">True</property>
                         <property name="label" translatable="yes">Maximum number of chil_dren</property>
-                        <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">mxchilddad</property>
+                        <property name="use-underline">True</property>
+                        <property name="mnemonic-widget">mxchilddad</property>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">2</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">2</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkSpinButton" id="mxchilddad">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
+                        <property name="can-focus">True</property>
                         <property name="adjustment">adjustment6</property>
-                        <property name="climb_rate">1</property>
+                        <property name="climb-rate">1</property>
                       </object>
                       <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">2</property>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">2</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkSpinButton" id="olddad">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
+                        <property name="can-focus">True</property>
                         <property name="adjustment">adjustment5</property>
-                        <property name="climb_rate">1</property>
+                        <property name="climb-rate">1</property>
                       </object>
                       <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">1</property>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">1</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkSpinButton" id="yngdad">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
+                        <property name="can-focus">True</property>
                         <property name="adjustment">adjustment4</property>
-                        <property name="climb_rate">1</property>
+                        <property name="climb-rate">1</property>
                       </object>
                       <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">0</property>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">0</property>
                       </packing>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
                     </child>
                   </object>
                   <packing>
@@ -640,7 +685,7 @@
                 <child type="tab">
                   <object class="GtkLabel" id="label20">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">Men</property>
                     <attributes>
@@ -649,96 +694,106 @@
                   </object>
                   <packing>
                     <property name="position">2</property>
-                    <property name="tab_fill">False</property>
+                    <property name="tab-fill">False</property>
                   </packing>
                 </child>
                 <child>
+                  <!-- n-columns=3 n-rows=3 -->
                   <object class="GtkGrid" id="table9">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="border_width">12</property>
-                    <property name="row_spacing">6</property>
-                    <property name="column_spacing">6</property>
+                    <property name="can-focus">False</property>
+                    <property name="border-width">12</property>
+                    <property name="row-spacing">6</property>
+                    <property name="column-spacing">6</property>
                     <child>
                       <object class="GtkSpinButton" id="hwdif">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
+                        <property name="can-focus">True</property>
                         <property name="adjustment">adjustment3</property>
-                        <property name="climb_rate">1</property>
+                        <property name="climb-rate">1</property>
                       </object>
                       <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">0</property>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">0</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkSpinButton" id="cspace">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
+                        <property name="can-focus">True</property>
                         <property name="adjustment">adjustment2</property>
-                        <property name="climb_rate">1</property>
+                        <property name="climb-rate">1</property>
                       </object>
                       <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">1</property>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">1</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkSpinButton" id="cbspan">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
+                        <property name="can-focus">True</property>
                         <property name="adjustment">adjustment1</property>
-                        <property name="climb_rate">1</property>
+                        <property name="climb-rate">1</property>
                       </object>
                       <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">2</property>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">2</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label2">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="hexpand">True</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
+                        <property name="hexpand">True</property>
                         <property name="label" translatable="yes">Maximum husband-wife age _difference</property>
-                        <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">hwdif</property>
+                        <property name="use-underline">True</property>
+                        <property name="mnemonic-widget">hwdif</property>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">0</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">0</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label6">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="hexpand">True</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
+                        <property name="hexpand">True</property>
                         <property name="label" translatable="yes">Maximum number of years _between children</property>
-                        <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">cspace</property>
+                        <property name="use-underline">True</property>
+                        <property name="mnemonic-widget">cspace</property>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">1</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">1</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label14">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="hexpand">True</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
+                        <property name="hexpand">True</property>
                         <property name="label" translatable="yes">Maximum _span of years for all children</property>
-                        <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">cbspan</property>
+                        <property name="use-underline">True</property>
+                        <property name="mnemonic-widget">cbspan</property>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">2</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">2</property>
                       </packing>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
                     </child>
                   </object>
                   <packing>
@@ -748,7 +803,7 @@
                 <child type="tab">
                   <object class="GtkLabel" id="label25">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">Families</property>
                     <attributes>
@@ -757,7 +812,7 @@
                   </object>
                   <packing>
                     <property name="position">3</property>
-                    <property name="tab_fill">False</property>
+                    <property name="tab-fill">False</property>
                   </packing>
                 </child>
               </object>
@@ -783,27 +838,27 @@
     </action-widgets>
   </object>
   <object class="GtkDialog" id="verify_result">
-    <property name="can_focus">False</property>
-    <property name="type_hint">dialog</property>
+    <property name="can-focus">False</property>
+    <property name="type-hint">dialog</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox2">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="dialog-action_area2">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="closebutton1">
                 <property name="label">gtk-close</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">False</property>
+                <property name="use-stock">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -815,21 +870,21 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="pack_type">end</property>
+            <property name="pack-type">end</property>
             <property name="position">0</property>
           </packing>
         </child>
         <child>
           <object class="GtkBox" id="vbox5">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="border_width">6</property>
+            <property name="can-focus">False</property>
+            <property name="border-width">6</property>
             <property name="orientation">vertical</property>
             <property name="spacing">6</property>
             <child>
               <object class="GtkLabel" id="title2">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -841,17 +896,17 @@
             <child>
               <object class="GtkBox" id="hbox1">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <child>
                   <object class="GtkScrolledWindow" id="scrolledwindow4">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
+                    <property name="can-focus">True</property>
                     <property name="hexpand">True</property>
                     <property name="vexpand">True</property>
                     <child>
                       <object class="GtkTreeView" id="warn_tree">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
+                        <property name="can-focus">True</property>
                         <child internal-child="selection">
                           <object class="GtkTreeSelection" id="treeview-selection1"/>
                         </child>
@@ -867,7 +922,7 @@
                 <child>
                   <object class="GtkBox" id="vbox7">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <property name="spacing">6</property>
                     <child>
@@ -900,7 +955,7 @@
             <child>
               <object class="GtkLabel" id="label27">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Double-click on a row to view/edit data</property>
                 <attributes>
                   <attribute name="weight" value="bold"/>
@@ -915,24 +970,24 @@
             <child>
               <object class="GtkBox" id="hbox2">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="border_width">6</property>
+                <property name="can-focus">False</property>
+                <property name="border-width">6</property>
                 <property name="spacing">18</property>
                 <child>
                   <object class="GtkButtonBox" id="hbuttonbox2">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="spacing">6</property>
-                    <property name="layout_style">start</property>
+                    <property name="layout-style">start</property>
                     <child>
                       <object class="GtkButton" id="mark_all">
                         <property name="label" translatable="yes">_Mark all</property>
-                        <property name="use_action_appearance">False</property>
+                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="can_default">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="use_underline">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="can-default">True</property>
+                        <property name="receives-default">False</property>
+                        <property name="use-underline">True</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -943,12 +998,12 @@
                     <child>
                       <object class="GtkButton" id="unmark_all">
                         <property name="label" translatable="yes">_Unmark all</property>
-                        <property name="use_action_appearance">False</property>
+                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="can_default">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="use_underline">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="can-default">True</property>
+                        <property name="receives-default">False</property>
+                        <property name="use-underline">True</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -959,12 +1014,12 @@
                     <child>
                       <object class="GtkButton" id="invert_all">
                         <property name="label" translatable="yes">In_vert marks</property>
-                        <property name="use_action_appearance">False</property>
+                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="can_default">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="use_underline">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="can-default">True</property>
+                        <property name="receives-default">False</property>
+                        <property name="use-underline">True</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -982,11 +1037,11 @@
                 <child>
                   <object class="GtkToggleButton" id="hide_button">
                     <property name="label" translatable="yes">_Hide marked</property>
-                    <property name="use_action_appearance">False</property>
+                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="use_underline">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">False</property>
+                    <property name="use-underline">True</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
