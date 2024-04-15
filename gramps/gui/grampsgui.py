@@ -215,7 +215,7 @@ UIDEFAULT = (
           <attribute name="label" translatable="yes">F_ull Screen</attribute>
         </item>
       </section>
-      <section id="ViewsInCatagory">
+      <section id="ViewsInCategory">
       </section>
     </submenu>
     <submenu id="m5" groups='RO'>
