@@ -1,89 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.3 -->
+<!-- Generated with glade 3.40.0 -->
 <interface>
-  <requires lib="gtk+" version="3.10"/>
+  <requires lib="gtk+" version="3.24"/>
   <object class="GtkWindow" id="tipofday">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <property name="hexpand">True</property>
     <property name="vexpand">True</property>
-    <property name="border_width">8</property>
+    <property name="border-width">8</property>
     <property name="title">window1</property>
     <property name="gravity">center</property>
     <child>
       <object class="GtkBox" id="vbox126">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <child>
+          <!-- n-columns=3 n-rows=3 -->
           <object class="GtkGrid" id="grid1">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="valign">start</property>
             <child>
               <object class="GtkCheckButton" id="usetips">
                 <property name="label" translatable="yes">_Display on startup</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">False</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">False</property>
                 <property name="halign">center</property>
                 <property name="valign">start</property>
-                <property name="use_underline">True</property>
+                <property name="use-underline">True</property>
                 <property name="active">True</property>
-                <property name="draw_indicator">True</property>
+                <property name="draw-indicator">True</property>
               </object>
               <packing>
-                <property name="left_attach">0</property>
-                <property name="top_attach">2</property>
+                <property name="left-attach">0</property>
+                <property name="top-attach">2</property>
                 <property name="width">2</property>
               </packing>
             </child>
             <child>
               <object class="GtkLabel" id="title">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="halign">center</property>
-                <property name="use_markup">True</property>
+                <property name="use-markup">True</property>
                 <property name="wrap">True</property>
               </object>
               <packing>
-                <property name="left_attach">0</property>
-                <property name="top_attach">0</property>
+                <property name="left-attach">0</property>
+                <property name="top-attach">0</property>
                 <property name="width">2</property>
               </packing>
             </child>
             <child>
               <object class="GtkLabel" id="tip">
-                <property name="width_request">300</property>
+                <property name="width-request">300</property>
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="halign">start</property>
                 <property name="valign">start</property>
-                <property name="margin_left">6</property>
-                <property name="margin_right">6</property>
-                <property name="margin_top">6</property>
-                <property name="margin_bottom">6</property>
+                <property name="margin-left">6</property>
+                <property name="margin-right">6</property>
+                <property name="margin-top">6</property>
+                <property name="margin-bottom">6</property>
                 <property name="hexpand">True</property>
                 <property name="vexpand">True</property>
                 <property name="wrap">True</property>
               </object>
               <packing>
-                <property name="left_attach">1</property>
-                <property name="top_attach">1</property>
+                <property name="left-attach">1</property>
+                <property name="top-attach">1</property>
               </packing>
             </child>
             <child>
               <object class="GtkImage" id="image">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="valign">start</property>
                 <property name="vexpand">True</property>
-                <property name="icon_name">image-missing</property>
+                <property name="icon-name">image-missing</property>
               </object>
               <packing>
-                <property name="left_attach">0</property>
-                <property name="top_attach">1</property>
+                <property name="left-attach">0</property>
+                <property name="top-attach">1</property>
               </packing>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
             </child>
           </object>
           <packing>
@@ -95,16 +105,16 @@
         <child>
           <object class="GtkButtonBox" id="hbuttonbox47">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="next">
                 <property name="label" translatable="yes">_Forward</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_underline">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -116,10 +126,10 @@
               <object class="GtkButton" id="close">
                 <property name="label" translatable="yes">_Close</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_underline">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>

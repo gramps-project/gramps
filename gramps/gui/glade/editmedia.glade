@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.3 -->
+<!-- Generated with glade 3.40.0 -->
 <interface>
-  <requires lib="gtk+" version="3.10"/>
+  <requires lib="gtk+" version="3.24"/>
   <requires lib="grampswidgets" version="0.0"/>
   <object class="GtkDialog" id="editmedia">
-    <property name="can_focus">False</property>
-    <property name="type_hint">dialog</property>
+    <property name="can-focus">False</property>
+    <property name="type-hint">dialog</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox7">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <property name="spacing">8</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="dialog-action_area7">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="button91">
                 <property name="label" translatable="yes">_Cancel</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_underline">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -36,13 +36,13 @@
             <child>
               <object class="GtkButton" id="ok">
                 <property name="label" translatable="yes">_OK</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="has_default">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_underline">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="has-default">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -53,12 +53,12 @@
             <child>
               <object class="GtkButton" id="button102">
                 <property name="label" translatable="yes">_Help</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_underline">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -70,108 +70,109 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="pack_type">end</property>
+            <property name="pack-type">end</property>
             <property name="position">0</property>
           </packing>
         </child>
         <child>
           <object class="GtkBox" id="vbox">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="border_width">12</property>
+            <property name="can-focus">False</property>
+            <property name="border-width">12</property>
             <property name="orientation">vertical</property>
             <property name="spacing">6</property>
             <child>
+              <!-- n-columns=4 n-rows=5 -->
               <object class="GtkGrid" id="table8">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="border_width">12</property>
-                <property name="row_spacing">4</property>
-                <property name="column_spacing">5</property>
+                <property name="can-focus">False</property>
+                <property name="border-width">12</property>
+                <property name="row-spacing">4</property>
+                <property name="column-spacing">5</property>
                 <child>
                   <object class="GtkLabel" id="label181">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">_ID:</property>
-                    <property name="use_underline">True</property>
+                    <property name="use-underline">True</property>
                     <property name="justify">center</property>
-                    <property name="mnemonic_widget">gid</property>
+                    <property name="mnemonic-widget">gid</property>
                   </object>
                   <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">1</property>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">1</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkLabel" id="label148">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">_Title:</property>
-                    <property name="use_underline">True</property>
-                    <property name="mnemonic_widget">description</property>
+                    <property name="use-underline">True</property>
+                    <property name="mnemonic-widget">description</property>
                   </object>
                   <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">0</property>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">0</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkLabel" id="label422">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">_Date:</property>
-                    <property name="use_underline">True</property>
-                    <property name="mnemonic_widget">date_entry</property>
+                    <property name="use-underline">True</property>
+                    <property name="mnemonic-widget">date_entry</property>
                   </object>
                   <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">2</property>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">2</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkLabel" id="path_label">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">_Path:</property>
-                    <property name="use_underline">True</property>
+                    <property name="use-underline">True</property>
                     <property name="justify">center</property>
-                    <property name="mnemonic_widget">path</property>
+                    <property name="mnemonic-widget">path</property>
                   </object>
                   <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">3</property>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">3</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkLabel" id="type">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="justify">center</property>
                   </object>
                   <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">4</property>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">4</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkFrame" id="frame7">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label_xalign">0</property>
+                    <property name="can-focus">False</property>
+                    <property name="label-xalign">0</property>
                     <child>
                       <object class="GtkEventBox" id="eventbox">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <child>
                           <object class="GtkImage" id="pixmap">
-                            <property name="width_request">100</property>
-                            <property name="height_request">100</property>
+                            <property name="width-request">100</property>
+                            <property name="height-request">100</property>
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <child internal-child="accessible">
                               <object class="AtkObject" id="pixmap-atkobject">
                                 <property name="AtkObject::accessible-description" translatable="yes">Image preview</property>
@@ -184,7 +185,7 @@
                     <child type="label">
                       <object class="GtkLabel" id="label188">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">Preview</property>
                         <attributes>
                           <attribute name="weight" value="bold"/>
@@ -193,52 +194,52 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">0</property>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">0</property>
                     <property name="height">4</property>
                   </packing>
                 </child>
                 <child>
                   <object class="UndoableEntry" id="path">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes">Path of the media object on your computer.
+                    <property name="can-focus">True</property>
+                    <property name="tooltip-text" translatable="yes">Path of the media object on your computer.
 Gramps does not store the media internally, it only stores the path! Set the 'Relative Path' in the Preferences to avoid retyping the common base directory where all your media is stored. The 'Media Manager' tool can help managing paths of a collection of media objects.</property>
                     <property name="hexpand">True</property>
-                    <property name="invisible_char">●</property>
+                    <property name="invisible-char">●</property>
                   </object>
                   <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">3</property>
+                    <property name="left-attach">2</property>
+                    <property name="top-attach">3</property>
                   </packing>
                 </child>
                 <child>
                   <object class="UndoableEntry" id="description">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes">Descriptive title for this media object.</property>
+                    <property name="can-focus">True</property>
+                    <property name="tooltip-text" translatable="yes">Descriptive title for this media object.</property>
                     <property name="hexpand">True</property>
-                    <property name="invisible_char">●</property>
+                    <property name="invisible-char">●</property>
                   </object>
                   <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">0</property>
+                    <property name="left-attach">2</property>
+                    <property name="top-attach">0</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkButton" id="date_edit">
-                    <property name="use_action_appearance">False</property>
+                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="has_tooltip">True</property>
-                    <property name="tooltip_text" translatable="yes">Invoke date editor</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="has-tooltip">True</property>
+                    <property name="tooltip-text" translatable="yes">Invoke date editor</property>
                     <property name="relief">none</property>
                     <child>
                       <object class="GtkImage" id="image2264">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="icon_name">gramps-date</property>
+                        <property name="can-focus">False</property>
+                        <property name="icon-name">gramps-date</property>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="image2264-atkobject">
                             <property name="AtkObject::accessible-description" translatable="yes">Date</property>
@@ -257,23 +258,23 @@ Gramps does not store the media internally, it only stores the path! Set the 'Re
                     <accelerator key="d" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                   </object>
                   <packing>
-                    <property name="left_attach">3</property>
-                    <property name="top_attach">2</property>
+                    <property name="left-attach">3</property>
+                    <property name="top-attach">2</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkButton" id="file_select">
-                    <property name="use_action_appearance">False</property>
+                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="tooltip_text" translatable="yes">Open File Browser to select a media file on your computer.</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">Open File Browser to select a media file on your computer.</property>
                     <property name="relief">none</property>
                     <child>
                       <object class="GtkImage" id="image2673">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="icon_name">document-open</property>
+                        <property name="can-focus">False</property>
+                        <property name="icon-name">document-open</property>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="image2673-atkobject">
                             <property name="AtkObject::accessible-description" translatable="yes">Folder</property>
@@ -291,35 +292,35 @@ Gramps does not store the media internally, it only stores the path! Set the 'Re
                     </child>
                   </object>
                   <packing>
-                    <property name="left_attach">3</property>
-                    <property name="top_attach">3</property>
+                    <property name="left-attach">3</property>
+                    <property name="top-attach">3</property>
                   </packing>
                 </child>
                 <child>
                   <object class="UndoableEntry" id="gid">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes">A unique ID to identify the Media object.</property>
+                    <property name="can-focus">True</property>
+                    <property name="tooltip-text" translatable="yes">A unique ID to identify the Media object.</property>
                     <property name="hexpand">True</property>
-                    <property name="invisible_char">●</property>
+                    <property name="invisible-char">●</property>
                   </object>
                   <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">1</property>
+                    <property name="left-attach">2</property>
+                    <property name="top-attach">1</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkToggleButton" id="private">
-                    <property name="use_action_appearance">False</property>
+                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
                     <property name="relief">none</property>
                     <child>
                       <object class="GtkImage" id="image2708">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="icon_name">dialog-password</property>
+                        <property name="can-focus">False</property>
+                        <property name="icon-name">dialog-password</property>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="image2708-atkobject">
                             <property name="AtkObject::accessible-description" translatable="yes">Privacy</property>
@@ -335,45 +336,45 @@ Gramps does not store the media internally, it only stores the path! Set the 'Re
                     <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                   </object>
                   <packing>
-                    <property name="left_attach">3</property>
-                    <property name="top_attach">1</property>
+                    <property name="left-attach">3</property>
+                    <property name="top-attach">1</property>
                   </packing>
                 </child>
                 <child>
                   <object class="ValidatableMaskedEntry" id="date_entry">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes">A date associated with the media, eg., for a picture the date it is taken.</property>
+                    <property name="can-focus">True</property>
+                    <property name="tooltip-text" translatable="yes">A date associated with the media, eg., for a picture the date it is taken.</property>
                     <property name="hexpand">True</property>
-                    <property name="invisible_char">●</property>
+                    <property name="invisible-char">●</property>
                   </object>
                   <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">2</property>
+                    <property name="left-attach">2</property>
+                    <property name="top-attach">2</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkLabel" id="label1">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">_Tags:</property>
-                    <property name="use_underline">True</property>
-                    <property name="mnemonic_widget">tag_button</property>
+                    <property name="use-underline">True</property>
+                    <property name="mnemonic-widget">tag_button</property>
                   </object>
                   <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">4</property>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">4</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkBox" id="hbox1">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <child>
                       <object class="GtkLabel" id="tag_label">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="hexpand">True</property>
                       </object>
                       <packing>
@@ -384,10 +385,10 @@ Gramps does not store the media internally, it only stores the path! Set the 'Re
                     </child>
                     <child>
                       <object class="GtkButton" id="tag_button">
-                        <property name="use_action_appearance">False</property>
+                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
                         <accessibility>
                           <relation type="labelled-by" target="label1"/>
                         </accessibility>
@@ -405,8 +406,8 @@ Gramps does not store the media internally, it only stores the path! Set the 'Re
                     </child>
                   </object>
                   <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">4</property>
+                    <property name="left-attach">2</property>
+                    <property name="top-attach">4</property>
                     <property name="width">2</property>
                   </packing>
                 </child>
