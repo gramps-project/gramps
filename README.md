@@ -120,6 +120,10 @@ The following packages are optional:
  Python bindings of fontconfig are required for displaying
  genealogical symbols
 
+* [**pycountry**](https://pypi.org/project/pycountry/)
+
+ Used to validate ISO language codes.
+
 
 Optional packages required by Third-party Addons
 ------------------------------------------------
