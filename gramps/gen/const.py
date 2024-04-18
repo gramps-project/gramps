@@ -114,15 +114,16 @@ if "SAFEMODE" in os.environ:
         USER_HOME = get_env_var("HOME")
     HOME_DIR = get_env_var("SAFEMODE")
 
-
-if os.path.exists(HOME_DIR) or "GRAMPSHOME" in os.environ or "SAFEMODE" in os.environ:
+USER_DATA = os.path.join(GLib.get_user_data_dir(), "gramps")
+USER_CONFIG = os.path.join(GLib.get_user_config_dir(), "gramps")
+USER_CACHE = os.path.join(GLib.get_user_cache_dir(), "gramps")
+if os.path.exists(USER_DATA) and os.path.exists(USER_CONFIG):
+    # Use existing XDG-based directory layout
+    pass
+elif os.path.exists(HOME_DIR) or "GRAMPSHOME" in os.environ or "SAFEMODE" in os.environ:
     USER_DATA = HOME_DIR
     USER_CONFIG = HOME_DIR
     USER_CACHE = HOME_DIR
-else:
-    USER_DATA = os.path.join(GLib.get_user_data_dir(), "gramps")
-    USER_CONFIG = os.path.join(GLib.get_user_config_dir(), "gramps")
-    USER_CACHE = os.path.join(GLib.get_user_cache_dir(), "gramps")
 
 USER_PICTURES = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES)
 if not USER_PICTURES:
