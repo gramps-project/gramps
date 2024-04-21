@@ -112,6 +112,8 @@ class UndoableStyledBuffer(StyledTextBuffer):
             self.not_undoable_action = oldflag
 
     def on_tag_insert_undoable(self, buffer, tag, start, end):
+        if tag.get_property("name") == "hyperlink":
+            return
         if not self.undo_in_progress:
             self._empty_redo_stack()
         if self.not_undoable_action:
