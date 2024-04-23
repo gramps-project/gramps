@@ -24,19 +24,25 @@
 
 # -------------------------------------------------------------------------
 #
-# Gramps modules
+# Python modules
 #
 # -------------------------------------------------------------------------
 from copy import copy
-from .styledtexttag import StyledTextTag
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .styledtexttag import StyledTextTag
 
 _ = glocale.translation.gettext
 
 
 # -------------------------------------------------------------------------
 #
-# StyledText class
+# StyledText
 #
 # -------------------------------------------------------------------------
 class StyledText:
@@ -124,11 +130,10 @@ class StyledText:
             return self.__class__(
                 "".join([self._string, other.string]), self._tags + other.tags
             )
-        elif isinstance(other, str):
+        if isinstance(other, str):
             # tags remain the same, only text becomes longer
             return self.__class__("".join([self._string, other]), self._tags)
-        else:
-            return self.__class__("".join([self._string, str(other)]), self._tags)
+        return self.__class__("".join([self._string, str(other)]), self._tags)
 
     def __eq__(self, other):
         return self._string == other.string and self._tags == other.tags

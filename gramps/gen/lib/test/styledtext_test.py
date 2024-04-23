@@ -22,6 +22,7 @@
 
 import unittest
 from copy import deepcopy
+
 from ..styledtext import StyledText
 from ..styledtexttag import StyledTextTag
 from ..styledtexttagtype import StyledTextTagType

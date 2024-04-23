@@ -23,58 +23,56 @@
 import unittest
 
 from .. import (
-    Person,
-    Surname,
-    Name,
-    NameType,
-    Family,
-    FamilyRelType,
-    Event,
-    EventType,
-    Source,
-    Place,
-    PlaceName,
+    Address,
+    Attribute,
+    AttributeType,
+    ChildRef,
+    ChildRefType,
     Citation,
     Date,
-    Repository,
-    RepositoryType,
+    Event,
+    EventRef,
+    EventRoleType,
+    EventType,
+    Family,
+    FamilyRelType,
+    LdsOrd,
     Media,
+    MediaRef,
+    Name,
+    NameType,
     Note,
     NoteType,
+    Person,
+    PersonRef,
+    Place,
+    PlaceName,
+    PlaceType,
+    RepoRef,
+    Repository,
+    RepositoryType,
+    Source,
+    SrcAttribute,
+    SrcAttributeType,
     StyledText,
     StyledTextTag,
     StyledTextTagType,
+    Surname,
     Tag,
-    ChildRef,
-    ChildRefType,
-    Attribute,
-    MediaRef,
-    AttributeType,
     Url,
     UrlType,
-    Address,
-    EventRef,
-    EventRoleType,
-    RepoRef,
-    FamilyRelType,
-    LdsOrd,
-    MediaRef,
-    PersonRef,
-    PlaceType,
-    SrcAttribute,
-    SrcAttributeType,
 )
-from ..privacybase import PrivacyBase
-from ..urlbase import UrlBase
 from ..addressbase import AddressBase
 from ..attrbase import AttributeBase
+from ..citationbase import CitationBase
+from ..const import DIFFERENT, EQUAL, IDENTICAL
 from ..ldsordbase import LdsOrdBase
 from ..mediabase import MediaBase
 from ..notebase import NoteBase
-from ..citationbase import CitationBase
+from ..privacybase import PrivacyBase
 from ..surnamebase import SurnameBase
 from ..tagbase import TagBase
-from ..const import IDENTICAL, EQUAL, DIFFERENT
+from ..urlbase import UrlBase
 
 
 class PrivacyBaseTest:
@@ -968,7 +966,11 @@ class MediaBaseCheck(unittest.TestCase):
 
 
 class MediaCheck(
-    unittest.TestCase, PrivacyBaseTest, AttrBaseTest, NoteBaseTest, CitationBaseTest
+    unittest.TestCase,
+    PrivacyBaseTest,
+    AttrBaseTest,
+    NoteBaseTest,
+    CitationBaseTest,
 ):
     def setUp(self):
         self.phoenix = Media()
@@ -978,7 +980,11 @@ class MediaCheck(
 
 
 class MediaRefCheck(
-    unittest.TestCase, PrivacyBaseTest, AttrBaseTest, CitationBaseTest, NoteBaseTest
+    unittest.TestCase,
+    PrivacyBaseTest,
+    AttrBaseTest,
+    CitationBaseTest,
+    NoteBaseTest,
 ):
     def setUp(self):
         self.phoenix = MediaRef()
@@ -1079,7 +1085,8 @@ class NoteCheck(unittest.TestCase, PrivacyBaseTest):
         self.phoenix.add_tag("t1234")
         tag_list = self.phoenix.get_referenced_handles()
         self.assertEqual(
-            tag_list, [("Event", "e0000"), ("Person", "i0001"), ("Tag", "t1234")]
+            tag_list,
+            [("Event", "e0000"), ("Person", "i0001"), ("Tag", "t1234")],
         )
         self.assertFalse(self.phoenix.has_handle_reference("Event", "e0001"))
 

@@ -27,12 +27,17 @@ Provide the different child reference types.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .grampstype import GrampsType
 from ..const import GRAMPS_LOCALE as glocale
+from .grampstype import GrampsType
 
 _ = glocale.translation.gettext
 
 
+# -------------------------------------------------------------------------
+#
+# ChildRefType
+#
+# -------------------------------------------------------------------------
 class ChildRefType(GrampsType):
     """
     Provide the different ChildRef types.

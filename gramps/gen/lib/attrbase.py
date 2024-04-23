@@ -29,13 +29,13 @@ AttributeRootBase class for Gramps.
 #
 # -------------------------------------------------------------------------
 from .attribute import Attribute, AttributeRoot
+from .const import EQUAL, IDENTICAL
 from .srcattribute import SrcAttribute
-from .const import IDENTICAL, EQUAL
 
 
 # -------------------------------------------------------------------------
 #
-# AttributeRootBase class
+# AttributeRootBase
 #
 # -------------------------------------------------------------------------
 class AttributeRootBase:
@@ -104,8 +104,7 @@ class AttributeRootBase:
         if attribute in self.attribute_list:
             self.attribute_list.remove(attribute)
             return True
-        else:
-            return False
+        return False
 
     def get_attribute_list(self):
         """
@@ -142,16 +141,34 @@ class AttributeRootBase:
                 equi = attr.is_equivalent(addendum)
                 if equi == IDENTICAL:
                     break
-                elif equi == EQUAL:
+                if equi == EQUAL:
                     attr.merge(addendum)
                     break
             else:
                 self.attribute_list.append(addendum)
 
 
+# -------------------------------------------------------------------------
+#
+# AttributeBase
+#
+# -------------------------------------------------------------------------
 class AttributeBase(AttributeRootBase):
+    """
+    Base class for an Attribute list.
+    """
+
     _CLASS = Attribute
 
 
+# -------------------------------------------------------------------------
+#
+# SrcAttributeBase
+#
+# -------------------------------------------------------------------------
 class SrcAttributeBase(AttributeRootBase):
+    """
+    Base class for a SrcAttribute list.
+    """
+
     _CLASS = SrcAttribute

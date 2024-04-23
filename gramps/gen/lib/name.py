@@ -31,23 +31,23 @@ Name class for Gramps.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .secondaryobj import SecondaryObject
-from .privacybase import PrivacyBase
-from .citationbase import CitationBase
-from .notebase import NoteBase
-from .datebase import DateBase
-from .surnamebase import SurnameBase
-from .nametype import NameType
-from .const import IDENTICAL, EQUAL, DIFFERENT
-from .date import Date
 from ..const import GRAMPS_LOCALE as glocale
+from .citationbase import CitationBase
+from .const import DIFFERENT, EQUAL, IDENTICAL
+from .date import Date
+from .datebase import DateBase
+from .nametype import NameType
+from .notebase import NoteBase
+from .privacybase import PrivacyBase
+from .secondaryobj import SecondaryObject
+from .surnamebase import SurnameBase
 
 _ = glocale.translation.gettext
 
 
 # -------------------------------------------------------------------------
 #
-# Personal Name
+# Name
 #
 # -------------------------------------------------------------------------
 class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase, DateBase):
@@ -158,6 +158,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase, Da
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
+        # pylint: disable=import-outside-toplevel
         from .surname import Surname
 
         return {
@@ -318,11 +319,9 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase, Da
             or SurnameBase.serialize(self) != SurnameBase.serialize(other)
         ):
             return DIFFERENT
-        else:
-            if self.is_equal(other):
-                return IDENTICAL
-            else:
-                return EQUAL
+        if self.is_equal(other):
+            return IDENTICAL
+        return EQUAL
 
     def merge(self, acquisition):
         """
@@ -368,8 +367,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase, Da
         """
         if self.group_as:
             return self.group_as
-        else:
-            return self.get_primary_surname().get_surname()
+        return self.get_primary_surname().get_surname()
 
     def set_sort_as(self, value):
         """
@@ -507,9 +505,8 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase, Da
                 "first": first,
                 "suffix": self.suffix,
             }
-        else:
-            # Translators: needed for Arabic, ignore otherwise
-            return _("%(str1)s, %(str2)s") % {"str1": surname, "str2": first}
+        # Translators: needed for Arabic, ignore otherwise
+        return _("%(str1)s, %(str2)s") % {"str1": surname, "str2": first}
 
     def get_upper_name(self):
         """
@@ -525,9 +522,8 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase, Da
                 "first": first,
                 "suffix": self.suffix,
             }
-        else:
-            # Translators: needed for Arabic, ignore otherwise
-            return _("%(str1)s, %(str2)s") % {"str1": surname, "str2": first}
+        # Translators: needed for Arabic, ignore otherwise
+        return _("%(str1)s, %(str2)s") % {"str1": surname, "str2": first}
 
     def get_regular_name(self):
         """
@@ -537,14 +533,13 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase, Da
         first = self.first_name
         surname = self.get_surname()
         if self.suffix == "":
-            return "%s %s" % (first, surname)
-        else:
-            # Translators: needed for Arabic, ignore otherwise
-            return _("%(first)s %(surname)s, %(suffix)s") % {
-                "surname": surname,
-                "first": first,
-                "suffix": self.suffix,
-            }
+            return f"{first} {surname}"
+        # Translators: needed for Arabic, ignore otherwise
+        return _("%(first)s %(surname)s, %(suffix)s") % {
+            "surname": surname,
+            "first": first,
+            "suffix": self.suffix,
+        }
 
     def get_gedcom_parts(self):
         """
@@ -573,6 +568,5 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase, Da
         surname = self.get_surname().replace("/", "?")
         suffix = self.suffix
         if suffix == "":
-            return "%s /%s/" % (firstname, surname)
-        else:
-            return "%s /%s/ %s" % (firstname, surname, suffix)
+            return f"{firstname} /{surname}/"
+        return f"{firstname} /{surname}/ {suffix}"

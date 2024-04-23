@@ -36,6 +36,11 @@ from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 
+# -------------------------------------------------------------------------
+#
+# MarkerType
+#
+# -------------------------------------------------------------------------
 class MarkerType(GrampsType):
     """
     Class for handling data markers.

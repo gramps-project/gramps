@@ -20,25 +20,25 @@
 
 """ Unittest for to_json, from_json """
 
-import unittest
 import os
+import unittest
 
+from ...const import DATA_DIR
+from ...db.utils import import_as_dict
+from ...user import User
 from .. import (
-    Person,
-    Family,
-    Event,
-    Source,
-    Place,
     Citation,
-    Repository,
+    Event,
+    Family,
     Media,
     Note,
+    Person,
+    Place,
+    Repository,
+    Source,
     Tag,
 )
-from ..serialize import to_json, from_json
-from ...db.utils import import_as_dict
-from ...const import DATA_DIR
-from ...user import User
+from ..serialize import from_json, to_json
 
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")

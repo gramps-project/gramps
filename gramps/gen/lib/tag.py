@@ -28,15 +28,15 @@ Tag object for Gramps.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .tableobj import TableObject
 from ..const import GRAMPS_LOCALE as glocale
+from .tableobj import TableObject
 
 _ = glocale.translation.gettext
 
 
 # -------------------------------------------------------------------------
 #
-# Tag class
+# Tag
 #
 # -------------------------------------------------------------------------
 class Tag(TableObject):
@@ -82,7 +82,13 @@ class Tag(TableObject):
                   be considered persistent.
         :rtype: tuple
         """
-        return (self.handle, self.__name, self.__color, self.__priority, self.change)
+        return (
+            self.handle,
+            self.__name,
+            self.__color,
+            self.__priority,
+            self.change,
+        )
 
     def unserialize(self, data):
         """
@@ -93,7 +99,13 @@ class Tag(TableObject):
                      object
         :type data: tuple
         """
-        (self.handle, self.__name, self.__color, self.__priority, self.change) = data
+        (
+            self.handle,
+            self.__name,
+            self.__color,
+            self.__priority,
+            self.change,
+        ) = data
         return self
 
     @classmethod
@@ -109,10 +121,22 @@ class Tag(TableObject):
             "title": _("Tag"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "handle": {"type": "string", "maxLength": 50, "title": _("Handle")},
+                "handle": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "title": _("Handle"),
+                },
                 "name": {"type": "string", "title": _("Name")},
-                "color": {"type": "string", "maxLength": 13, "title": _("Color")},
-                "priority": {"type": "integer", "minimum": 0, "title": _("Priority")},
+                "color": {
+                    "type": "string",
+                    "maxLength": 13,
+                    "title": _("Color"),
+                },
+                "priority": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "title": _("Priority"),
+                },
                 "change": {"type": "integer", "title": _("Last changed")},
             },
         }

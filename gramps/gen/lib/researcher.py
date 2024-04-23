@@ -33,11 +33,13 @@ from .locationbase import LocationBase
 
 # -------------------------------------------------------------------------
 #
-#
+# Researcher
 #
 # -------------------------------------------------------------------------
 class Researcher(LocationBase):
-    """Contains the information about the owner of the database."""
+    """
+    Contains the information about the owner of the database.
+    """
 
     def __init__(self, source=None):
         """
@@ -109,6 +111,9 @@ class Researcher(LocationBase):
         self.email = other_researcher.email
 
     def get(self):
+        """
+        Return attributes about the researcher.
+        """
         return [
             getattr(self, value)
             for value in [
@@ -125,6 +130,9 @@ class Researcher(LocationBase):
         ]
 
     def is_empty(self):
+        """
+        Check and return true if object empty.
+        """
         for attr in [
             "name",
             "addr",

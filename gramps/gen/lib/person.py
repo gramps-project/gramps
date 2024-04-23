@@ -30,35 +30,36 @@ Person object for Gramps.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .primaryobj import PrimaryObject
-from .citationbase import CitationBase
-from .notebase import NoteBase
-from .mediabase import MediaBase
-from .attrbase import AttributeBase
-from .addressbase import AddressBase
-from .ldsordbase import LdsOrdBase
-from .urlbase import UrlBase
-from .tagbase import TagBase
-from .name import Name
-from .eventref import EventRef
-from .personref import PersonRef
-from .attrtype import AttributeType
-from .eventroletype import EventRoleType
-from .attribute import Attribute
-from .const import IDENTICAL, EQUAL, DIFFERENT
 from ..const import GRAMPS_LOCALE as glocale
+from .addressbase import AddressBase
+from .attrbase import AttributeBase
+from .attribute import Attribute
+from .attrtype import AttributeType
+from .citationbase import CitationBase
+from .const import DIFFERENT, EQUAL, IDENTICAL
+from .eventbase import EventBase
+from .eventref import EventRef
+from .ldsordbase import LdsOrdBase
+from .mediabase import MediaBase
+from .name import Name
+from .notebase import NoteBase
+from .personref import PersonRef
+from .primaryobj import PrimaryObject
+from .tagbase import TagBase
+from .urlbase import UrlBase
 
 _ = glocale.translation.gettext
 
 
 # -------------------------------------------------------------------------
 #
-# Person class
+# Person
 #
 # -------------------------------------------------------------------------
 class Person(
     CitationBase,
     NoteBase,
+    EventBase,
     AttributeBase,
     MediaBase,
     AddressBase,
@@ -99,12 +100,12 @@ class Person(
         CitationBase.__init__(self)
         NoteBase.__init__(self)
         MediaBase.__init__(self)
+        EventBase.__init__(self)
         AttributeBase.__init__(self)
         AddressBase.__init__(self)
         UrlBase.__init__(self)
         LdsOrdBase.__init__(self)
         self.primary_name = Name()
-        self.event_ref_list = []
         self.family_list = []
         self.parent_family_list = []
         self.alternate_names = []
@@ -151,7 +152,7 @@ class Person(
             [name.serialize() for name in self.alternate_names],  #  4
             self.death_ref_index,  #  5
             self.birth_ref_index,  #  6
-            [er.serialize() for er in self.event_ref_list],  #  7
+            EventBase.serialize(self),  #  7
             self.family_list,  #  8
             self.parent_family_list,  #  9
             MediaBase.serialize(self),  # 10
@@ -175,10 +176,11 @@ class Person(
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
-        from .mediaref import MediaRef
+        # pylint: disable=import-outside-toplevel
         from .address import Address
-        from .url import Url
         from .ldsord import LdsOrd
+        from .mediaref import MediaRef
+        from .url import Url
 
         return {
             "type": "object",
@@ -308,8 +310,8 @@ class Person(
         self.primary_name = Name()
         self.primary_name.unserialize(primary_name)
         self.alternate_names = [Name().unserialize(name) for name in alternate_names]
-        self.event_ref_list = [EventRef().unserialize(er) for er in event_ref_list]
         self.person_ref_list = [PersonRef().unserialize(pr) for pr in person_ref_list]
+        EventBase.unserialize(self, event_ref_list)
         MediaBase.unserialize(self, media_list)
         LdsOrdBase.unserialize(self, lds_ord_list)
         AddressBase.unserialize(self, address_list)
@@ -334,17 +336,17 @@ class Person(
         :rtype: bool
         """
         if classname == "Event":
-            return any(ref.ref == handle for ref in self.event_ref_list)
-        elif classname == "Person":
+            return self._has_event_reference(handle)
+        if classname == "Person":
             return any(ref.ref == handle for ref in self.person_ref_list)
-        elif classname == "Family":
+        if classname == "Family":
             return any(
                 ref == handle
                 for ref in self.family_list
                 + self.parent_family_list
                 + [ordinance.famc for ordinance in self.lds_ord_list]
             )
-        elif classname == "Place":
+        if classname == "Place":
             return any(ordinance.place == handle for ordinance in self.lds_ord_list)
         return False
 
@@ -407,7 +409,7 @@ class Person(
             if new_handle in refs_list:
                 new_ref = self.event_ref_list[refs_list.index(new_handle)]
             n_replace = refs_list.count(old_handle)
-            for ix_replace in range(n_replace):
+            for _ in range(n_replace):
                 idx = refs_list.index(old_handle)
                 self.event_ref_list[idx].ref = new_handle
                 refs_list[idx] = new_handle
@@ -437,7 +439,7 @@ class Person(
             if new_handle in refs_list:
                 new_ref = self.person_ref_list[refs_list.index(new_handle)]
             n_replace = refs_list.count(old_handle)
-            for ix_replace in range(n_replace):
+            for _ in range(n_replace):
                 idx = refs_list.index(old_handle)
                 self.person_ref_list[idx].ref = new_handle
                 refs_list[idx] = new_handle
@@ -451,22 +453,22 @@ class Person(
                         refs_list.pop(idx)
         elif classname == "Family":
             while old_handle in self.family_list:
-                ix = self.family_list.index(old_handle)
-                self.family_list[ix] = new_handle
+                idx = self.family_list.index(old_handle)
+                self.family_list[idx] = new_handle
             while old_handle in self.parent_family_list:
-                ix = self.parent_family_list.index(old_handle)
-                self.parent_family_list[ix] = new_handle
+                idx = self.parent_family_list.index(old_handle)
+                self.parent_family_list[idx] = new_handle
             handle_list = [ordinance.famc for ordinance in self.lds_ord_list]
             while old_handle in handle_list:
-                ix = handle_list.index(old_handle)
-                self.lds_ord_list[ix].famc = new_handle
-                handle_list[ix] = ""
+                idx = handle_list.index(old_handle)
+                self.lds_ord_list[idx].famc = new_handle
+                handle_list[idx] = ""
         elif classname == "Place":
             handle_list = [ordinance.place for ordinance in self.lds_ord_list]
             while old_handle in handle_list:
-                ix = handle_list.index(old_handle)
-                self.lds_ord_list[ix].place = new_handle
-                handle_list[ix] = ""
+                idx = handle_list.index(old_handle)
+                self.lds_ord_list[idx].place = new_handle
+                handle_list[idx] = ""
 
     def get_text_data_list(self):
         """
@@ -663,7 +665,7 @@ class Person(
                 equi = name.is_equivalent(addendum)
                 if equi == IDENTICAL:
                     break
-                elif equi == EQUAL:
+                if equi == EQUAL:
                     name.merge(addendum)
                     break
             else:
@@ -679,6 +681,12 @@ class Person(
         self.alternate_names.append(name)
 
     def get_nick_name(self):
+        """
+        Return the person nick name if available.
+
+        :returns: Returns the nick name
+        :rtype: str
+        """
         for name in [self.get_primary_name()] + self.get_alternate_names():
             if name.get_nick_name():
                 return name.get_nick_name()
@@ -786,8 +794,7 @@ class Person(
 
         if 0 <= self.birth_ref_index < len(self.event_ref_list):
             return self.event_ref_list[self.birth_ref_index]
-        else:
-            return None
+        return None
 
     def get_death_ref(self):
         """
@@ -803,65 +810,7 @@ class Person(
 
         if 0 <= self.death_ref_index < len(self.event_ref_list):
             return self.event_ref_list[self.death_ref_index]
-        else:
-            return None
-
-    def add_event_ref(self, event_ref):
-        """
-        Add the :class:`~.eventref.EventRef` to the Person instance's
-        :class:`~.eventref.EventRef` list.
-
-        This is accomplished by assigning the :class:`~.eventref.EventRef` of a
-        valid :class:`~.event.Event` in the current database.
-
-        :param event_ref: the :class:`~.eventref.EventRef` to be added to the
-                          Person's :class:`~.eventref.EventRef` list.
-        :type event_ref: EventRef
-        """
-        if event_ref and not isinstance(event_ref, EventRef):
-            raise ValueError("Expecting EventRef instance")
-
-        # check whether we already have this ref in the list
-        if not any(event_ref.is_equal(ref) for ref in self.event_ref_list):
-            self.event_ref_list.append(event_ref)
-
-    def get_event_ref_list(self):
-        """
-        Return the list of :class:`~.eventref.EventRef` objects associated with
-        :class:`~.event.Event` instances.
-
-        :returns: Returns the list of :class:`~.eventref.EventRef` objects
-                  associated with the Person instance.
-        :rtype: list
-        """
-        return self.event_ref_list
-
-    def get_primary_event_ref_list(self):
-        """
-        Return the list of :class:`~.eventref.EventRef` objects associated with
-        :class:`~.event.Event` instances that have been marked as primary
-        events.
-
-        :returns: Returns generator of :class:`~.eventref.EventRef` objects
-                  associated with the Person instance.
-        :rtype: generator
-        """
-        return (
-            ref
-            for ref in self.event_ref_list
-            if ref.get_role() == EventRoleType.PRIMARY
-        )
-
-    def set_event_ref_list(self, event_ref_list):
-        """
-        Set the Person instance's :class:`~.eventref.EventRef` list to the
-        passed list.
-
-        :param event_ref_list: List of valid :class:`~.eventref.EventRef`
-                               objects.
-        :type event_ref_list: list
-        """
-        self.event_ref_list = event_ref_list
+        return None
 
     def _merge_event_ref_list(self, acquisition):
         """
@@ -877,7 +826,7 @@ class Person(
                 equi = eventref.is_equivalent(addendum)
                 if equi == IDENTICAL:
                     break
-                elif equi == EQUAL:
+                if equi == EQUAL:
                     eventref.merge(addendum)
                     break
             else:
@@ -932,8 +881,7 @@ class Person(
             self.family_list.remove(family_handle)
             self.family_list = [family_handle] + self.family_list
             return True
-        else:
-            return False
+        return False
 
     def get_family_handle_list(self):
         """
@@ -983,8 +931,7 @@ class Person(
         if family_handle in self.family_list:
             self.family_list.remove(family_handle)
             return True
-        else:
-            return False
+        return False
 
     def get_parent_family_handle_list(self):
         """
@@ -1029,7 +976,7 @@ class Person(
         :type family_handle: str
         """
         if not isinstance(family_handle, str):
-            raise ValueError("Expecting handle, obtained %s" % str(family_handle))
+            raise ValueError(f"Expecting handle, obtained {family_handle}")
         if family_handle not in self.parent_family_list:
             self.parent_family_list.append(family_handle)
 
@@ -1060,8 +1007,7 @@ class Person(
         if family_handle in self.parent_family_list:
             self.parent_family_list.remove(family_handle)
             return True
-        else:
-            return False
+        return False
 
     def set_main_parent_family_handle(self, family_handle):
         """
@@ -1082,8 +1028,7 @@ class Person(
             self.parent_family_list.remove(family_handle)
             self.parent_family_list = [family_handle] + self.parent_family_list
             return True
-        else:
-            return False
+        return False
 
     def get_main_parents_family_handle(self):
         """
@@ -1096,8 +1041,7 @@ class Person(
         """
         if self.parent_family_list:
             return self.parent_family_list[0]
-        else:
-            return None
+        return None
 
     def add_person_ref(self, person_ref):
         """
@@ -1146,7 +1090,7 @@ class Person(
                 equi = personref.is_equivalent(addendum)
                 if equi == IDENTICAL:
                     break
-                elif equi == EQUAL:
+                if equi == EQUAL:
                     personref.merge(addendum)
                     break
             else:

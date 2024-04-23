@@ -25,33 +25,26 @@ Table Object class for Gramps.
 
 # -------------------------------------------------------------------------
 #
-# Standard Python modules
+# Python modules
 #
 # -------------------------------------------------------------------------
-from abc import abstractmethod
 import time
+from abc import abstractmethod
 
 # -------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .baseobj import BaseObject
-from ..errors import HandleError
-
-# -------------------------------------------------------------------------
-#
-# Localized constants
-#
-# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .baseobj import BaseObject
 
 CODESET = glocale.encoding
 
 
 # -------------------------------------------------------------------------
 #
-# Table Object class
+# TableObject
 #
 # -------------------------------------------------------------------------
 class TableObject(BaseObject):
@@ -129,8 +122,7 @@ class TableObject(BaseObject):
         """
         if self.change:
             return str(time.strftime("%x %X", time.localtime(self.change)), CODESET)
-        else:
-            return ""
+        return ""
 
     def set_handle(self, handle):
         """

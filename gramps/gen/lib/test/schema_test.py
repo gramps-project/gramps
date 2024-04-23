@@ -20,27 +20,28 @@
 
 """ Unittest for JSON schema """
 
+import json
 import os
 import unittest
-import json
+
 import jsonschema
 
+from ...const import DATA_DIR
+from ...db.utils import import_as_dict
+from ...user import User
 from .. import (
-    Person,
-    Family,
+    Citation,
     Event,
+    Family,
+    Media,
+    Note,
+    Person,
     Place,
     Repository,
     Source,
-    Citation,
-    Media,
-    Note,
     Tag,
 )
 from ..serialize import to_json
-from ...db.utils import import_as_dict
-from ...const import DATA_DIR
-from ...user import User
 
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
