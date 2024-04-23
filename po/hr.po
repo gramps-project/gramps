@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-04-05 14:01+0000\n"
+"PO-Revision-Date: 2024-04-19 08:05+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -12200,7 +12200,7 @@ msgstr "Točnost prikaza starosti *"
 
 #: ../gramps/gui/configure.py:1571
 msgid "Round the year"
-msgstr "Zaokruži godinu"
+msgstr "Zaokruži dob"
 
 #: ../gramps/gui/configure.py:1582
 msgid "Display ages for events after death *"
