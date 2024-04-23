@@ -17,8 +17,8 @@ msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-04-02 08:45+0000\n"
-"Last-Translator: Bora Atıcı <boratici.acc@gmail.com>\n"
+"PO-Revision-Date: 2024-04-22 10:07+0000\n"
+"Last-Translator: Oğuz Ersen <oguz@ersen.moe>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
 "Language: tr\n"
@@ -15890,7 +15890,7 @@ msgstr "Örnek:"
 
 #: ../gramps/gui/glade/dbman.glade:7
 msgid "Revision comment - Gramps"
-msgstr "Revizyon yorumu - Gramps"
+msgstr "Değişiklik yorumu - Gramps"
 
 #: ../gramps/gui/glade/dbman.glade:59
 msgid "Version description"
@@ -19881,7 +19881,7 @@ msgstr "Soyağacı Onarımı"
 
 #: ../gramps/gui/plug/tool.py:71
 msgid "Revision Control"
-msgstr "Sürüm Kontrolü"
+msgstr "Değişiklik Denetimi"
 
 #: ../gramps/gui/plug/tool.py:72
 msgid "Utilities"
