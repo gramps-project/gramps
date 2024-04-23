@@ -30,6 +30,7 @@ Utility functions that depend on GUI components or for GUI components
 import os
 import sys
 import threading
+from urllib.parse import urljoin, quote as urlquote
 
 # gtk is not included here, because this file is currently imported
 # by code that needs to run without the DISPLAY variable (eg, in
@@ -506,7 +507,8 @@ def open_file_with_default_application(path, uistate):
         return
 
     if not norm_path.startswith("file://"):
-        norm_path = "file://" + norm_path
+        norm_path = urljoin("file://", urlquote(norm_path))
+
     try:
         Gio.AppInfo.launch_default_for_uri(norm_path)
     except GLib.Error as error:
