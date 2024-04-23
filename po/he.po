@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-04-06 12:09+0000\n"
+"PO-Revision-Date: 2024-04-19 08:05+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -4552,7 +4552,7 @@ msgstr "איתור משפחות להן מונה הפניות מסוים"
 #: ../gramps/gui/editors/filtereditor.py:118
 #: ../gramps/gui/editors/filtereditor.py:594
 msgid "Relationship type:"
-msgstr "סוג קשר־משפחה:"
+msgstr "סוג קשר־קרבה:"
 
 #: ../gramps/gen/filters/rules/family/_hasreltype.py:48
 msgid "Families with the relationship type"
@@ -5376,7 +5376,7 @@ msgstr "אנשים עם <קשרי־משפחה>"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:53
 msgid "Matches people with a particular relationship"
-msgstr "איתור אנשים עם קשר־משפחה מסוים"
+msgstr "איתור אנשים עם קשר־קרבה מסוים"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:54
 #: ../gramps/gen/filters/rules/person/_havealtfamilies.py:47
@@ -10981,23 +10981,23 @@ msgstr "נמוך מאוד"
 
 #: ../gramps/gen/utils/string.py:73
 msgid "A legal or common-law relationship between a husband and wife"
-msgstr "קשר־משפחה חוקי, או על פי המשפט המקובל, בין איש ואישה"
+msgstr "קשר־קרבה חוקי, או על פי המשפט המקובל, בין איש ואישה"
 
 #: ../gramps/gen/utils/string.py:76
 msgid "No legal or common-law relationship between man and woman"
-msgstr "אין קשר־משפחה חוקי או על פי המשפט המקובל, בין בעל ואישה"
+msgstr "אין קשר־קרבה חוקי או על פי המשפט המקובל, בין בעל ואישה"
 
 #: ../gramps/gen/utils/string.py:79
 msgid "An established relationship between members of the same sex"
-msgstr "קשר־משפחה ממוסד בין אנשים מאותו מגדר"
+msgstr "קשר־קרבה ממוסד בין אנשים מאותו מגדר"
 
 #: ../gramps/gen/utils/string.py:81
 msgid "Unknown relationship between a man and woman"
-msgstr "קשר־משפחה לא ידוע בין גבר לאישה"
+msgstr "קשר־קרבה לא ידוע בין גבר לאישה"
 
 #: ../gramps/gen/utils/string.py:82
 msgid "An unspecified relationship between a man and woman"
-msgstr "קשר־משפחה לא מוגדר בין גבר לאישה"
+msgstr "קשר־קרבה לא מוגדר בין גבר לאישה"
 
 #: ../gramps/gen/utils/string.py:86
 msgid ""
@@ -15990,11 +15990,11 @@ msgstr ""
 
 #: ../gramps/gui/glade/editchildref.glade:97
 msgid "Relationship to _Mother:"
-msgstr "קשר־משפחה ל_אם:"
+msgstr "קשר־קרבה ל_אם:"
 
 #: ../gramps/gui/glade/editchildref.glade:130
 msgid "Relationship to _Father:"
-msgstr "קשר־משפחה _לאב:"
+msgstr "קשר־קרבה _לאב:"
 
 #: ../gramps/gui/glade/editchildref.glade:195
 msgid "Name Child:"
