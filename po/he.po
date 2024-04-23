@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
 "PO-Revision-Date: 2024-04-19 08:05+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -16271,7 +16271,7 @@ msgstr "סמן 'רשומה פרטית'"
 
 #: ../gramps/gui/glade/editfamily.glade:653
 msgid "Relationship Information"
-msgstr "מידע קשר־משפחה"
+msgstr "מידע על קשר־משפחה"
 
 #: ../gramps/gui/glade/editfamily.glade:683
 msgid "A unique ID for the family"
