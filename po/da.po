@@ -48,7 +48,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-02-11 22:02+0000\n"
+"PO-Revision-Date: 2024-04-18 08:33+0000\n"
 "Last-Translator: Kaj Arne Mikkelsen <kmi@vgdata.dk>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/da/>\n"
@@ -57,7 +57,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -18977,14 +18977,12 @@ msgid "Loading..."
 msgstr "Indlæser ..."
 
 #: ../gramps/gui/plug/_windows.py:562
-#, fuzzy
-#| msgid "Operation failed"
 msgid "Addon Registration Failed"
-msgstr "Handlingen mislykkedes"
+msgstr "Registrering af tillæg mislykkedes"
 
 #: ../gramps/gui/plug/_windows.py:563
 msgid "The addon will be unavailable in your current configuration."
-msgstr ""
+msgstr "Tillægget vil ikke være tilgængelig i din nuværende configuration."
 
 #: ../gramps/gui/plug/_windows.py:588
 msgid "No matching addons found."
