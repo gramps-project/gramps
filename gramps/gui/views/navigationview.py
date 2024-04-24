@@ -382,6 +382,8 @@ class NavigationView(PageView):
         Move forward one object in the history.
         """
         hobj = self.get_history()
+        if hobj.lock:
+            return
         hobj.lock = True
         if not hobj.at_end():
             hobj.forward()
@@ -395,6 +397,8 @@ class NavigationView(PageView):
         Move backward one object in the history.
         """
         hobj = self.get_history()
+        if hobj.lock:
+            return
         hobj.lock = True
         if not hobj.at_front():
             hobj.back()
