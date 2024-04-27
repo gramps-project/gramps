@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-04-27 08:15+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2024-04-27 08:34+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -5414,7 +5414,7 @@ msgid ""
 "Soundex Match of people with a specified name. First name, Surname, Call "
 "name, and Nickname are searched in primary and alternate names."
 msgstr ""
-"התאמת סאונד־אקס לאנשים בשם מסויים. חיפוש בסוגי שמות ראשיים וחלופיים, ובשמות "
+"התאמת סאונד־אקס לאנשים בשם מסוים. חיפוש בסוגי שמות ראשיים וחלופיים, ובשמות "
 "פרטיים, משפחה, ופניה."
 
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:47
@@ -6335,7 +6335,7 @@ msgstr "מקורות עם <מונה> פרטי מדיה"
 
 #: ../gramps/gen/filters/rules/source/_hasgallery.py:48
 msgid "Matches sources with a certain number of items in the gallery"
-msgstr "איתור מקורות להם מספר פריטי גלריה מסויים"
+msgstr "איתור מקורות להם מספר פריטי גלריה מסוים"
 
 #: ../gramps/gen/filters/rules/source/_hasidof.py:46
 msgid "Source with <Id>"
@@ -16637,7 +16637,7 @@ msgid ""
 msgstr ""
 "מצג 'אנשים' (בתצוגת עץ) מקבץ אנשים בעלי שם משפחה ראשי זהה. ניתן לעקוף זאת "
 "על־ידי הגדרת 'ערך קבוצה'.\n"
-"המערכת תישאל האם לקבץ אדם זה בלבד, או את כל האנשים בעלי שם משפחה ראשי מסויים "
+"המערכת תישאל האם לקבץ אדם זה בלבד, או את כל האנשים בעלי שם משפחה ראשי מסוים "
 "זה."
 
 #: ../gramps/gui/glade/editname.glade:616
@@ -16764,10 +16764,10 @@ msgid ""
 "occasions. Events can be shared between people, each indicating their role "
 "in the event."
 msgstr ""
-"תיאור השיוך, לדוגמה. הסנדק, חבר, ...\n"
+"תיאור התסמיך, לדוגמה. סנדק, חבר, ...\n"
 "\n"
-"הערה: ניתן להשתמש באירועים במקום קשרי־משפחה שקשרים למסגרות זמן או נסיבות "
-"מסוימות. ניתן לשתף אירועים בין אנשים ולציין את תפקידו של ה'אדם' באירוע."
+"הערה: ניתן להשתמש באירועים במקום קשרי־קרבה שקשורים למסגרות זמן או נסיבות "
+"מסוימות, לשתף אירועים בין אנשים ולציין את תפקידו של ה'אדם' באירוע."
 
 #: ../gramps/gui/glade/editpersonref.glade:146
 msgid ""
@@ -16812,8 +16812,8 @@ msgstr ""
 "קו רוחב (מיקום מעל קו המשווה) של המקום בערכים עשרוניים או מעלות.\n"
 "לדוגמה, ערכים חוקיים יהיו 12.0154, 50 ° 52 ′ 21.92 \"N, N50 ° 52 ′ 21.92\" "
 "או 50:52:21.92\n"
-"ניתן להגדיר ערכים אלה ממצג 'גאוגרפיה' על־ידי חיפוש מקום, או באמצעות שירות "
-"מפה ממצג 'מקום'."
+"ניתן להגדיר ערכים אלה ממצג 'גאוגרפיה' על־ידי חיפוש מקום, או באמצעות שרות מפה "
+"ממצג 'מקום'."
 
 #: ../gramps/gui/glade/editplace.glade:194
 #: ../gramps/gui/glade/editplaceref.glade:477
@@ -16829,8 +16829,8 @@ msgstr ""
 "במעלות.\n"
 "לדוגמה, ערכים חוקיים יהיו: 124.3647-, E124 ° 52 ′ 21.92, ‏124°52′21.92″E, או "
 "124:52:21.92\n"
-"ניתן להגדיר ערכים אלה ממצג 'גאוגרפיה' על־ידי חיפוש מקום, או באמצעות שירות "
-"מפה ממצג 'מקום'."
+"ניתן להגדיר ערכים אלה ממצג 'גאוגרפיה' על־ידי חיפוש מקום, או באמצעות שרות מפה "
+"ממצג 'מקום'."
 
 #: ../gramps/gui/glade/editplace.glade:215
 #: ../gramps/gui/glade/editplaceref.glade:353
@@ -16838,7 +16838,7 @@ msgid ""
 "or use copy/paste from your favorite map provider (format : latitude,"
 "longitude) in the following field:"
 msgstr ""
-"או, העתקת/הדבקת נקודות־הציון מספק שירות המפות המועדף (בתסדיר: קו רוחב, קו "
+"או, העתקת/הדבקת נקודות־הציון מספק שרות המפות המועדף (בתסדיר: קו רוחב, קו "
 "אורך) לתוך השדה הבא:"
 
 #: ../gramps/gui/glade/editplace.glade:240
@@ -16956,7 +16956,7 @@ msgid ""
 "reflected in the repository itself, for all items that reference the "
 "repository."
 msgstr ""
-"<b>הערה:</b> כל שינוי מידע במאגריםמשותפים ישתקף במאגר עצמו ובכול הפריטים "
+"<b>הערה:</b> כל שינוי מידע במאגריםמשותפים ישתקף במאגר עצמו ובכל הפריטים "
 "שמפנים למאגר."
 
 #: ../gramps/gui/glade/editreporef.glade:371
@@ -18039,7 +18039,7 @@ msgid ""
 "typically located in /usr/share/doc/gramps.\n"
 msgstr ""
 "תרגומי GTK לשפה הנוכחית (%(language)s) חסרים.\n"
-"‏%(bold_start)s גרמפס%(bold_end)s ימשיך בכול זאת.\n"
+"‏%(bold_start)s גרמפס%(bold_end)s ימשיך בכל זאת.\n"
 "‏ממשק המשתמש יקרוס ככול הנראה כתוצאה מכך, במיוחד עבור שפות RTL!\n"
 "\n"
 "נא לעיין בתיעוד גרמפס README לקבלת דרישות קדם להתקנה,\n"
@@ -19605,7 +19605,7 @@ msgid ""
 "If you think you may want to revert running this tool, please stop here and "
 "backup your database."
 msgstr ""
-"התקדמות עם כלי זה תמחק את כל היסטורית ההסגות בשיח זה. במיוחד, לא ניתן יהיה "
+"התקדמות עם כלי זה תמחק את כל היסטוריית ההסגות בשיח זה. במיוחד, לא ניתן יהיה "
 "להסיג עוד את השינויים שנעשו באמצעות כלי זה או כל שינוי שנעשה טרם השימוש בו.\n"
 "\n"
 "נא לגבות את מסד־הנתונים תחילה, למקרה שתידרש הסגת תוצאות ריצת כלי זה ."
@@ -19772,7 +19772,7 @@ msgstr "אישור מחיקה"
 
 #: ../gramps/gui/undohistory.py:197
 msgid "Are you sure you want to clear the Undo history?"
-msgstr "האם לסלקהיסטורית הסגות?"
+msgstr "האם לסלקהיסטוריית הסגות?"
 
 #: ../gramps/gui/undohistory.py:198 ../gramps/plugins/gramplet/eval.py:83
 msgid "Clear"
@@ -22865,7 +22865,7 @@ msgid ""
 "  5. %(gramps_FAQ_html_start)s%(faq_section)sIs it necessary to update "
 "Gramps every time an update is released?%(html_end)s\n"
 msgstr ""
-"  5. %(gramps_FAQ_html_start)s%(faq_section)sהאם הכרחי לעדכן את גרמפס בכול "
+"  5. %(gramps_FAQ_html_start)s%(faq_section)sהאם הכרחי לעדכן את גרמפס בכל "
 "גרסה שמשוחררת?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:124
@@ -24447,7 +24447,7 @@ msgstr "משך ההשהיה לפני עיבוד צאצאי אב קדמון"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:76
 msgid "Tag to indicate that a person is complete"
-msgstr "תג שמצביע על השלמת מחקר לאדם מסויים"
+msgstr "תג שמצביע על השלמת מחקר לאדם מסוים"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:83
 msgid "Tag to indicate that a family is complete"
@@ -25073,7 +25073,7 @@ msgid ""
 "generated that contain active links to the files generated by the 'Narrated "
 "Web Site' report."
 msgstr ""
-"לכלול מען URL בכול צומת בתרשים כך שיכילו קישורים פעילים לקבצים שנוצרו על־ידי "
+"לכלול מען URL בכל צומת בתרשים כך שיכילו קישורים פעילים לקבצים שנוצרו על־ידי "
 "דוח 'אתר מרשתת מילולי'."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:995
@@ -30406,7 +30406,7 @@ msgstr "מיזוג המקומות שנבחרו"
 
 #: ../gramps/plugins/lib/libplaceview.py:256
 msgid "No map service is available."
-msgstr "אין שירות מפות זמין."
+msgstr "אין שרות מפות זמין."
 
 #: ../gramps/plugins/lib/libplaceview.py:257
 msgid "Check your installation."
@@ -30430,19 +30430,18 @@ msgstr "עורך מסנני מקום"
 
 #: ../gramps/plugins/lib/libplaceview.py:447
 msgid "_Look up with Map Service"
-msgstr "_איתור באמצעות שירות מפות"
+msgstr "_איתור באמצעות שרות מפות"
 
 #: ../gramps/plugins/lib/libplaceview.py:500
 msgid ""
 "Attempt to see selected locations with a Map Service (OpenstreetMap, Google "
 "Maps, ...)"
 msgstr ""
-"ניסיון להצגת מיקומים שנבחרו באמצעות שירות מפות (OpenstreetMap, מפות "
-"גוגל, ...)"
+"ניסיון להצגת מיקומים שנבחרו באמצעות שרות מפות (OpenstreetMap, מפות גוגל, ...)"
 
 #: ../gramps/plugins/lib/libplaceview.py:500
 msgid "Select a Map Service"
-msgstr "נא לבחור שירות מפות"
+msgstr "נא לבחור שרות מפות"
 
 #: ../gramps/plugins/lib/libplaceview.py:542
 msgid "Cannot delete place."
@@ -35222,8 +35221,8 @@ msgid ""
 "Searches the entire database, looking for citations that have the same "
 "Volume/Page, Date and Confidence."
 msgstr ""
-"חיפוש בכול רשומות מסד־הנתונים לאיתור מובאות עם ערך כרך/עמוד, תאריך ורמת "
-"ודאות זהים."
+"חיפוש בכל רשומות מסד־הנתונים לאיתור מובאות עם ערך כרך/עמוד, תאריך ורמת ודאות "
+"זהים."
 
 #: ../gramps/plugins/tool/tools.gpr.py:499
 msgid "Searches the entire database, looking for a possible loop."
