@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-04-27 10:00+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"PO-Revision-Date: 2024-04-27 10:36+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -25204,7 +25204,7 @@ msgstr "מסד נתונים גרמפס 2‎.x"
 
 #: ../gramps/plugins/importer/import.gpr.py:139
 msgid "Import data from Gramps 2.x database files"
-msgstr "יבוא נתונים מקובץ מסד־נתונים גרמפס 2‎.x"
+msgstr "ייבוא נתונים מקובץ מסד־נתונים גרמפס 2‎.x"
 
 #: ../gramps/plugins/importer/import.gpr.py:156
 msgid "Pro-Gen"
@@ -26186,11 +26186,11 @@ msgid ""
 msgstr ""
 "\n"
 "הקובץ שיובא לא היה שלם.\n"
-"לפעולת תיקן, נוצרו %(new)d עצמים\n"
+"לפעולת תיקון, נוצרו %(new)d עצמים\n"
 "שסיווג התכונה שלהם נקבע כ'לא ידוע'.\n"
 "התפלגות לסוגי־אב מתוארת על־ידי\n"
-"המספר בסוגריים. \n"
-"עצמים 'לא ידועים' אלו מפנים להערה %(unknown)s ככל שמתאפשר."
+"המספר בסוגריים. עצמים 'לא ידועים' אלו\n"
+"מפנים להערה %(unknown)s ככל שמתאפשר."
 
 #: ../gramps/plugins/importer/importxml.py:387
 msgid ""
@@ -26309,14 +26309,14 @@ msgid ""
 "  %(gramps_wiki_xml_url)s\n"
 "for more info."
 msgstr ""
-"קובץ .gramps ליבוא, נוצר בגרסת גרמפס %(oldgramps)s, בעוד שגרסה עדכנית "
-"יותר%(newgramps)s, מותקנת כעת.\n"
+"קובץ ה־‎.gramps המיועד לייבוא נוצר בגרסה %(oldgramps)s של גרמפס, בעוד שהגרסה "
+"שלך עדכנית יותר %(newgramps)s.\n"
 "\n"
-"לאחר היבוא, נא לוודא שכל הנתונים יובאו כראוי. במידה ונתגלו בעיות, נא לדוח על "
-"תקל ולהשתמש בינתיים בגרסת גרמפס ישנה יותר לייבוא הקובץ בגרסת  XML  "
-"%(xmlversion)s.\n"
-"נא לעיין ב־\n"
-"%(gramps_wiki_xml_url)s\n"
+"נא לוודא שלאחר הייבוא הכול יובא כראוי. אם צצות תקלות, נא לדווח על תקל "
+"ולהשתמש בגרסה ישנה יותר של גרמפס לבינתיים כדי לייבא את הקובץ הזה שהוא בתסדיר "
+"xml בגרסה %(xmlversion)s.\n"
+"ניתן לעיין בכתובת\n"
+"  %(gramps_wiki_xml_url)s\n"
 "למידע נוסף."
 
 #: ../gramps/plugins/importer/importxml.py:1196
@@ -26503,7 +26503,7 @@ msgstr "השורה אינה מובנת"
 
 #: ../gramps/plugins/lib/libgedcom.py:3487
 msgid "Tag recognized but not supported"
-msgstr "תג זוהה אך לא ניתמך"
+msgstr "תג זוהה אך לא נתמך"
 
 #: ../gramps/plugins/lib/libgedcom.py:3523
 msgid "Skipped subordinate line"
@@ -30469,7 +30469,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libplaceview.py:580
 msgid "Merging these places would create a cycle in the place hierarchy."
-msgstr "מיזוג מקומות אלו ייצר הפניה מעגלית במדרג המקומות."
+msgstr "מיזוג מקומות אלו ייצור הפנייה מעגלית במדרג המקומות."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:37
 msgid "Provides a library for using Cairo to generate documents."
