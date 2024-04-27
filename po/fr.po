@@ -42,13 +42,14 @@
 # Jacob Wagner <doubleujacob@gmail.com>, 2024.
 # Boris Dauriac <dauriacboris+gramps@gmail.com>, 2024.
 # Emmanuel Vallois <emmanuel@vallois.name>, 2024.
+# n4n5 <email.n4n5@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-04-22 10:07+0000\n"
-"Last-Translator: Jean-Marc <m.balthazar@posteo.net>\n"
+"PO-Revision-Date: 2024-04-25 20:07+0000\n"
+"Last-Translator: n4n5 <email.n4n5@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -56,7 +57,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.5.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -8198,9 +8199,8 @@ msgid "Informant"
 msgstr "Déclarant"
 
 #: ../gramps/gen/lib/eventroletype.py:65
-#, fuzzy
 msgid "Godparent"
-msgstr "Parrain"
+msgstr "parrain, marraine"
 
 #: ../gramps/gen/lib/eventtype.py:144
 msgid "Life Events"
