@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-04-27 08:34+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"PO-Revision-Date: 2024-04-27 09:38+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -16956,7 +16956,7 @@ msgid ""
 "reflected in the repository itself, for all items that reference the "
 "repository."
 msgstr ""
-"<b>הערה:</b> כל שינוי מידע במאגריםמשותפים ישתקף במאגר עצמו ובכל הפריטים "
+"<b>הערה:</b> כל שינוי מידע במאגרים משותפים ישתקף במאגר עצמו ובכל הפריטים "
 "שמפנים למאגר."
 
 #: ../gramps/gui/glade/editreporef.glade:371
@@ -17443,7 +17443,7 @@ msgstr "העברת הורה מטה"
 
 #: ../gramps/gui/glade/reorder.glade:205
 msgid "Family relationships"
-msgstr "קשרי־קרבה משפחה"
+msgstr "קשרים משפחתיים"
 
 #: ../gramps/gui/glade/reorder.glade:267
 msgid "Move family up"
@@ -17804,16 +17804,16 @@ msgid ""
 "If you close this dialog now, you can install addons later from the menu "
 "under Edit -> Addon Manager."
 msgstr ""
-"חבלת גרמפס כוללת בתוכה את ערכת הליבה ומתקעים שמספקים את כל התכונות הדרושות. "
+"חבילת גרמפס כוללת בתוכה את ערכת הליבה ומתקעים שמספקים את כל התכונות הדרושות. "
 "בנוסף, ניתן להרחיב את יכולות המערכת מעבר לכך, על־ידי תוספים נוספים. תוספים "
 "אלו כוללים, דוחות, רישומות, מצגים, גרמפלטים, ועוד. מכאן ניתן לבחור בין כלל "
 "התוספים הזמינים, אלו, יאוחזרו מהמרשתת מאתר נפרד לאתר גרמפס, ויותקנו באופן "
 "מקומי במחשב. ניתן לסגור תיבת דו־שיח זו כעת ולהתקין תוספים מתפריט 'העדפות "
-"&lt; מנהל תוספים' ."
+"&gt; מנהל תוספים' ."
 
 #: ../gramps/gui/glade/updateaddons.glade:105
 msgid "_Select All"
-msgstr "_בחירת הכל"
+msgstr "_בחירה בהכול"
 
 #: ../gramps/gui/glade/updateaddons.glade:120
 msgid "Select _None"
@@ -17862,7 +17862,7 @@ msgstr "עצה יומית"
 
 #: ../gramps/gui/grampsgui.py:58 ../gramps/gui/undohistory.py:74
 msgid "Undo History"
-msgstr "היסטורית הסגות"
+msgstr "היסטוריית הסגות"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Abandon Changes and Quit"
@@ -19009,9 +19009,9 @@ msgid ""
 "Note: your currently opened database is safe. It was only a copy of your "
 "data that failed to save."
 msgstr ""
-"אירעה שגיאה בעת שמירת הנתונים. ניתן לנסות לייצא שוב.\n"
+"אירעה שגיאה בעת שמירת הנתונים. ניתן לנסות להריץ את הייצוא מחדש.\n"
 "\n"
-"הערה: מסד־הנתונים שפתוח כעת בטוח. רק שמירת עותק לנתונים כשלה."
+"הערה: מסד־הנתונים שפתוח כעת בטוח. אך יצירת עותק לנתונים כשלה."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:562
 msgid ""
@@ -20191,11 +20191,11 @@ msgstr "שורות שנבחרו לפי תג"
 
 #: ../gramps/gui/views/tags.py:96
 msgid "New Tag..."
-msgstr "תג חדש..."
+msgstr "תג חדש…"
 
 #: ../gramps/gui/views/tags.py:96
 msgid "Organize Tags..."
-msgstr "ניהול תגים..."
+msgstr "ניהול תגים…"
 
 #: ../gramps/gui/views/tags.py:115
 msgctxt "manual"
@@ -20242,13 +20242,13 @@ msgstr "שינוי תעדוף תגים"
 #: ../gramps/gui/views/tags.py:565
 #, python-format
 msgid "Remove tag '%s'?"
-msgstr "הסרת תג '%s'?"
+msgstr "להסיר את התג '%s'?"
 
 #: ../gramps/gui/views/tags.py:567
 msgid ""
 "The tag definition will be removed.  The tag will be also removed from all "
 "objects in the database."
-msgstr "הגדרת התג תוסר.   גם התג יוסר מכול הרשומות במסד הנתונים."
+msgstr "הגדרת התג תוסר.   גם התג יוסר מכל הרשומות במסד הנתונים."
 
 #: ../gramps/gui/views/tags.py:606
 #, python-format
@@ -21080,7 +21080,7 @@ msgstr ""
 "  גודל העמוד ישתנה לפי 'גובה' אילן־היוחסין\n"
 "\n"
 "עם אפשרות 'שינוי גודל אילן־היוחסין להתאמה לגודל העמוד' \n"
-" גודל העמוד ישתנה כך שכול פער ב'גובה' או ב'רוחב' העמוד יוסר"
+" גודל העמוד ישתנה כך שכל פער ב'גובה' או ב'רוחב' העמוד יוסר"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:950
 #: ../gramps/plugins/drawreport/descendtree.py:1687
@@ -25162,8 +25162,8 @@ msgid ""
 msgstr ""
 "בהגדרה ה'תקנית', הורים יאותרו כזוגות כדי לשמור את מרבית הקווים קצרים.\n"
 "ההגדרה 'הורים יחד' תסייע למקם בני־זוג בסמיכות, אבל התרשימים לא יהיו ברורים "
-"מאליהם, התוצאה תתקבל עם קווים ארוכים יותר ותרשימום גדולים יותר.\n"
-"הגדרת 'הזחת הורים', תנסה למקם בני זוג בסמיכות, אך הם יוזחו זו מזה. הגדרה זו "
+"מאליהם, התוצאה תתקבל עם קווים ארוכים יותר ותרשימים גדולים יותר.\n"
+"הגדרת 'הזחת הורים', תנסה למקם בני זוג בסמיכות, אך הם יוזחו זה מזה. הגדרה זו "
 "נוטה להפוך תרשימים בעלי מספר רב של פרטים בדור, ל'מרובעים' יותר."
 
 #: ../gramps/plugins/importer/import.gpr.py:38
