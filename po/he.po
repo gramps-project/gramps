@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-04-27 10:36+0000\n"
+"PO-Revision-Date: 2024-04-28 11:07+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -30469,7 +30469,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libplaceview.py:580
 msgid "Merging these places would create a cycle in the place hierarchy."
-msgstr "מיזוג מקומות אלו ייצור הפנייה מעגלית במדרג המקומות."
+msgstr "מיזוג מקומות אלו ייצור הפניה מעגלית במדרג המקומות."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:37
 msgid "Provides a library for using Cairo to generate documents."
