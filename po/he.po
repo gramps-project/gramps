@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
 "PO-Revision-Date: 2024-04-27 10:36+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -882,8 +882,8 @@ msgid ""
 msgstr ""
 "<b>תסדיר קובץ GEDCOM<br/></b>גרמפס מאפשרת לייבא ולייצא תסדיר GEDCOM. התעשייה "
 "מספקת תמיכה נרחבת לתקן GEDCOM גרסה 5.5, כך שניתן להחליף מידע בין גרמפס "
-"ואנשים אחרים המשתמשים בתוכנות חקר־יוחסין אחרות. מסננים מובנים הופכים את יבוא "
-"ויצוא קבצי ה־GEDCOM למשימה פשוטה."
+"ואנשים אחרים המשתמשים בתוכנות חקר־יוחסין אחרות. מסננים מובנים הופכים את "
+"ייבוא ויצוא קבצי ה־GEDCOM למשימה פשוטה."
 
 #: ../data/tips.xml:88
 msgid ""
@@ -11880,7 +11880,7 @@ msgstr "דיכוי אזהרה בעת ביטול שינויים שטרם נשמר
 
 #: ../gramps/gui/configure.py:1031
 msgid "Suppress warning about missing researcher when exporting to GEDCOM"
-msgstr "דיכוי אזהרה בעת יצוא לג'דקום, לגבי חוקר חסר"
+msgstr "דיכוי אזהרה בעת ייצוא לג'דקום, לגבי חוקר חסר"
 
 #: ../gramps/gui/configure.py:1039
 msgid "Suppress tooltip warnings about data being saved immediately"
@@ -16556,7 +16556,7 @@ msgstr ""
 #: ../gramps/gui/glade/editname.glade:291
 #: ../gramps/gui/glade/editperson.glade:211
 msgid "A title used to refer to the person, such as 'Dr.' or 'Rev.'"
-msgstr "הפנייה לאדם זה, כגון: 'ד״ר', 'רבי', 'כומר'"
+msgstr "הפניה לאדם זה, כגון: 'ד״ר', 'רבי', 'כומר'"
 
 #: ../gramps/gui/glade/editname.glade:304
 #: ../gramps/gui/glade/editperson.glade:225
@@ -22442,7 +22442,7 @@ msgstr "vCalendar משמש בתכנות לוח־שנה ו־ PIM רבות."
 
 #: ../gramps/plugins/export/export.gpr.py:185
 msgid "vCalendar export options"
-msgstr "אפשרויות יצוא vCalendar"
+msgstr "אפשרויות ייצוא vCalendar"
 
 #: ../gramps/plugins/export/export.gpr.py:196
 #: ../gramps/plugins/importer/import.gpr.py:174
@@ -25183,8 +25183,8 @@ msgid ""
 "Import data from a Gramps package (an archived XML Family Tree together with "
 "the media object files)."
 msgstr ""
-"ייבוא נתונים מחבילת 'גרמפס' (אילן־יוחסין מאוחסן בארכיון בתבנית XML, בלווית "
-"כל קובצי עצמי המדיה)."
+"ייבוא נתונים מחבילת 'גרמפס' (אילן־יוחסין מאוחסן בארכיון בתסדיר XML, בלוית כל "
+"קובצי עצמי המדיה)."
 
 #: ../gramps/plugins/importer/import.gpr.py:115
 msgid "Gramps XML Family Tree"
@@ -25795,7 +25795,7 @@ msgid ""
 "(Text, import Filename & (System-)Date)."
 msgstr ""
 "תכונות מלל מקור\n"
-"(מלל, יבוא שם קובץ ותאריך (מערכת))."
+"(מלל, ייבוא שם קובץ ותאריך (מערכת))."
 
 #: ../gramps/plugins/importer/importprogen.glade:190
 #: ../gramps/plugins/importer/importprogen.glade:207
@@ -25824,7 +25824,7 @@ msgid ""
 "(Text, import Filename & (System-)Date)."
 msgstr ""
 "מלל תכונות מובאה\n"
-"(מלל, יבוא שם קובץ ותאריך (מערכת))."
+"(מלל, ייבוא שם קובץ ותאריך (מערכת))."
 
 #: ../gramps/plugins/importer/importprogen.glade:362
 msgid "Import Text"
@@ -26061,12 +26061,12 @@ msgstr "ייבוא מקובץ vCard"
 
 #: ../gramps/plugins/importer/importvcard.py:274
 msgid "vCard import report: No errors detected"
-msgstr "דוח יבוא vCard: לא זוהו שגיאות"
+msgstr "דוח ייבוא vCard: לא זוהו שגיאות"
 
 #: ../gramps/plugins/importer/importvcard.py:277
 #, python-format
 msgid "vCard import report: %s errors detected\n"
-msgstr "דוח יבוא vCard: זוהו %s שגיאות\n"
+msgstr "דוח ייבוא vCard: זוהו %s שגיאות\n"
 
 #: ../gramps/plugins/importer/importvcard.py:342
 #, python-format
@@ -26488,12 +26488,12 @@ msgstr "ייבוא מקובץ GEDCOM"
 
 #: ../gramps/plugins/lib/libgedcom.py:3132
 msgid "GEDCOM import report: No errors detected"
-msgstr "דוח יבוא ג'דקום: לא זוהו שגיאות"
+msgstr "דוח ייבוא ג'דקום: לא זוהו שגיאות"
 
 #: ../gramps/plugins/lib/libgedcom.py:3135
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
-msgstr "דוח יבוא ג'דקום: זוהו %s שגיאות"
+msgstr "דוח ייבוא ג'דקום: זוהו %s שגיאות"
 
 #: ../gramps/plugins/lib/libgedcom.py:3461
 #: ../gramps/plugins/lib/libgedcom.py:3485
