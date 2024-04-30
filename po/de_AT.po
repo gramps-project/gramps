@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-04-01 18:01+0000\n"
+"PO-Revision-Date: 2024-05-01 08:07+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
 "Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/de_AT/>\n"
@@ -40,7 +40,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.5.3-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -8494,7 +8494,7 @@ msgstr "Standort"
 #: ../gramps/gen/lib/location.py:100 ../gramps/gen/lib/placetype.py:70
 #: ../gramps/plugins/view/geoplaces.py:627
 msgid "Parish"
-msgstr "Pfarre"
+msgstr "Gemeinde"
 
 #: ../gramps/gen/lib/markertype.py:55
 #: ../gramps/gui/logger/_errorreportassistant.py:784
@@ -9064,7 +9064,7 @@ msgstr "Viertel"
 
 #: ../gramps/gen/lib/placetype.py:77 ../gramps/plugins/view/geoplaces.py:625
 msgid "District"
-msgstr "Kreis"
+msgstr "Distrikt"
 
 #: ../gramps/gen/lib/placetype.py:78 ../gramps/plugins/view/geoplaces.py:606
 msgid "Borough"
@@ -9072,7 +9072,7 @@ msgstr "Borough"
 
 #: ../gramps/gen/lib/placetype.py:79 ../gramps/plugins/view/geoplaces.py:631
 msgid "Municipality"
-msgstr "Gemeinde"
+msgstr "Munizipalität"
 
 #: ../gramps/gen/lib/placetype.py:80 ../gramps/plugins/view/geoplaces.py:629
 msgid "Town"
@@ -16305,7 +16305,7 @@ msgstr "_Ort:"
 
 #: ../gramps/gui/glade/editaddress.glade:137
 msgid "The town or city of the address"
-msgstr "Das Dorf oder die Stadt der Adresse"
+msgstr "Der Ort oder die Stadt der Adresse"
 
 #: ../gramps/gui/glade/editaddress.glade:151
 #: ../gramps/plugins/tool/ownereditor.glade:192
@@ -16807,7 +16807,7 @@ msgstr "_Linkart:"
 
 #: ../gramps/gui/glade/editlocation.glade:107
 msgid "The town or city where the place is."
-msgstr "Die Kleinstadt oder Stadt, in der sich der Ort befindet."
+msgstr "Der Ort oder die Stadt, in der sich der Ort befindet."
 
 #: ../gramps/gui/glade/editlocation.glade:121
 msgid "S_treet:"
@@ -16822,8 +16822,8 @@ msgid ""
 "Lowest clergical division of this place. Typically used for church sources "
 "that only mention the parish."
 msgstr ""
-"Niedrigste geistliche Abteilung für diese Lokation. Meistens für "
-"Kirchenquellen verwendet, die nur die Gemeinde angeben."
+"Unterste kirchliche Gliederung des Ortes. Wird in der Regel für kirchliche "
+"Quellen verwendet, in denen nur die Pfarre bzw. Gemeinde erwähnt wird."
 
 #: ../gramps/gui/glade/editlocation.glade:164
 msgid "Co_unty:"
@@ -16832,8 +16832,8 @@ msgstr "Be_zirk:"
 #: ../gramps/gui/glade/editlocation.glade:178
 msgid "Third level of place division. Eg., in the USA a county."
 msgstr ""
-"Dritte Stufe einer Lokationsaufteilung: z.B. in Österreich der Bezirk, in "
-"den USA das County."
+"Dritte Ebene der Ortseinteilung. Z.B. in den USA ein County, in Österreich "
+"ein Bezirk."
 
 #: ../gramps/gui/glade/editlocation.glade:192
 msgid "_State:"
@@ -16844,22 +16844,20 @@ msgid ""
 "Second level of place division, eg., in the USA a state, in Germany a "
 "Bundesland."
 msgstr ""
-"Zweite Stufe einer Lokationsaufteilung: z.B. in Österreich das Bundesland, "
-"in den USA der Staat."
+"Zweite Ebene der Ortseinteilung. Z.B. in den USA ein Staat, in Österreich "
+"ein Bundesland."
 
 #: ../gramps/gui/glade/editlocation.glade:234
 msgid "The country where the place is."
-msgstr "Das Land, in dem sich die Lokation befindet."
+msgstr "Das Land, in dem sich der Ort befindet."
 
 #: ../gramps/gui/glade/editlocation.glade:299
 msgid "Lowest level of a place division: eg the street name."
-msgstr "Niedrigste Stufe einer Lokationsaufteilung: z.B. der Straßenname."
+msgstr "Niedrigste Ebene einer Ortseinteilung. Z.B. der Straßenname."
 
 #: ../gramps/gui/glade/editlocation.glade:327
 msgid "A district within, or a settlement near to, a town or city."
-msgstr ""
-"Ein Bereich in, oder eine Siedlung in der Nähe von einer Kleinstadt oder "
-"einer Stadt."
+msgstr "Ein Bereich innerhalb oder eine Siedlung in der Nähe einer Stadt."
 
 #: ../gramps/gui/glade/editmedia.glade:139
 #: ../gramps/gui/glade/editmediaref.glade:379
@@ -16908,8 +16906,7 @@ msgstr "Eine eindeutige ID zum Identifizieren des Medienobjekts."
 msgid ""
 "A date associated with the media, eg., for a picture the date it is taken."
 msgstr ""
-"Ein Datum, welches mit dem Medium in Verbindung steht, z.B. für ein Bild das "
-"Aufnahmedatum."
+"Ein mit dem Medium verbundenes Datum, z. B. bei einem Bild das Aufnahmedatum."
 
 #: ../gramps/gui/glade/editmediaref.glade:119
 msgid "_Corner 2:  X"
@@ -16970,8 +16967,8 @@ msgid ""
 "<b>Note:</b> Any changes in the shared media object information will be "
 "reflected in the media object itself."
 msgstr ""
-"<b>Anmerkung:</b> Jede Änderung an geteilten Medienobjektinformationen "
-"ändert auch das Medienobjekt selbst."
+"<b>Anmerkung:</b> Alle Änderungen an geteilten Medienobjektinformationen "
+"beeinflussen auch das Medienobjekt selbst."
 
 #: ../gramps/gui/glade/editmediaref.glade:488
 msgid "Double click image to view in an external viewer"
@@ -31911,7 +31908,7 @@ msgstr "Dänemark"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:87
 msgid " parish"
-msgstr " Pfarre"
+msgstr " Gemeinde"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:93
 msgid " state"
@@ -31940,7 +31937,7 @@ msgid ""
 "Latitude and longitude,\n"
 "or street and city needed"
 msgstr ""
-"Die geografische Breite und Länge\n"
+"Breitengrad und Längengrad\n"
 "oder Straße und Stadt benötigt"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:35
