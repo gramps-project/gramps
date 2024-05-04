@@ -29,13 +29,13 @@ Provide the base classes for GRAMPS' DataView classes
 # python modules
 #
 # ----------------------------------------------------------------
+from __future__ import annotations
 from abc import abstractmethod
 import os
 import pickle
 from time import perf_counter
 import logging
 from collections import deque
-from typing import List, Optional, Tuple
 
 LOG = logging.getLogger(".gui.listview")
 
@@ -94,7 +94,7 @@ ICON = 3
 #
 # ----------------------------------------------------------------
 class ListView(NavigationView):
-    COLUMNS: List[Tuple[str, int, Optional[str]]] = []
+    COLUMNS: list[tuple[str, int, str | None]] = []
     # listview config settings that are always present related to the columns
     CONFIGSETTINGS = (
         ("columns.visible", []),

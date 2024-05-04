@@ -32,9 +32,9 @@ date parsing class. The default base class provides parsing for English.
 # Python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
 import re
 import calendar
-from typing import Dict, Set
 
 # -------------------------------------------------------------------------
 #
@@ -225,7 +225,7 @@ class DateParser:
     }
 
     # seeded with __init_prefix_tables
-    month_to_int: Dict[str, int]
+    month_to_int: dict[str, int]
     swedish_to_int = month_to_int = {}
     """
     Map Gregorian month names and their prefixes, wherever unambiguous,
@@ -252,7 +252,7 @@ class DateParser:
     }
     # in some languages some of above listed modifiers are after the date,
     # in that case the subclass should put them into this dictionary instead
-    modifier_after_to_int: Dict[str, int] = {}
+    modifier_after_to_int: dict[str, int] = {}
 
     hebrew_to_int = {
         "tishri": 1,
@@ -342,13 +342,13 @@ class DateParser:
     }
 
     # seeded with __init_prefix_tables
-    persian_to_int: Dict[str, int] = {}
+    persian_to_int: dict[str, int] = {}
 
     bce = ["B.C.E.", "B.C.E", "BCE", "B.C.", "B.C", "BC"]
     # (overridden if a locale-specific date parser exists)
 
     # seeded with __init_prefix_tables
-    calendar_to_int: Dict[str, int] = {}
+    calendar_to_int: dict[str, int] = {}
     # (probably overridden if a locale-specific date parser exists)
 
     newyear_to_int = {
@@ -377,7 +377,7 @@ class DateParser:
     # for "today".
     # We also secretly support "$T" like in some reports.
 
-    _langs: Set[str] = set()
+    _langs: set[str] = set()
 
     def __init_prefix_tables(self):
         ds = self._ds = DateStrings(self._locale)

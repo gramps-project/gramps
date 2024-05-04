@@ -27,9 +27,10 @@ Provide the base class for GRAMPS' DataView classes
 # python modules
 #
 # ----------------------------------------------------------------
+from __future__ import annotations
 from abc import ABCMeta, abstractmethod
 import logging
-from typing import Any, Tuple
+from typing import Any
 
 _LOG = logging.getLogger(".pageview")
 
@@ -92,7 +93,7 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
       placed behind the same button in the sidebar
     """
 
-    CONFIGSETTINGS: Tuple[Tuple[str, Any], ...] = tuple()
+    CONFIGSETTINGS: tuple[tuple[str, Any], ...] = tuple()
 
     def __init__(self, title, pdata, dbstate, uistate):
         self.title = title
