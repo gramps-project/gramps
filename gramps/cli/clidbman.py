@@ -31,11 +31,11 @@ creating, and deleting of databases.
 # Standard python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
 import re
 import os
 import sys
 import time
-from typing import Dict, Optional
 from urllib.parse import urlparse
 from urllib.request import urlopen, url2pathname
 import tempfile
@@ -115,7 +115,7 @@ class CLIDbManager:
     ICON_LOCK = 2
     ICON_OPEN = 3
 
-    ICON_MAP: Dict[int, Optional[str]] = {
+    ICON_MAP: dict[int, str | None] = {
         ICON_NONE: None,
         ICON_RECOVERY: None,
         ICON_LOCK: None,
