@@ -46,6 +46,7 @@ methods should be changed to generate exceptions. Possibly by globally changing
 'LOG.debug' to 'raise DbException'.
 """
 
+
 # -------------------------------------------------------------------------
 #
 # Python modules
@@ -56,6 +57,8 @@ import logging
 from abc import ABCMeta
 from functools import wraps
 from types import FunctionType
+from typing import Any, Dict
+
 
 # -------------------------------------------------------------------------
 #
@@ -115,7 +118,7 @@ def wrapper(method):
 
 class MetaClass(type):
     """
-    transform class by wrapping it with a diagnostic wrapper (if __debig__ is
+    transform class by wrapping it with a diagnostic wrapper (if __debug__ is
     not set
     """
 
@@ -149,23 +152,17 @@ class M_A_M_B(ABCMeta, MetaClass):
 # class DummyDb
 #
 # -------------------------------------------------------------------------
-class DummyDb(
-    M_A_M_B(
-        "NewBaseClass",
-        (
-            DbReadBase,
-            Callback,
-            object,
-        ),
-        {},
-    )
-):
+class DummyDbMeta(M_A_M_B):
+    pass
+
+
+class DummyDb(DbReadBase, Callback, object, metaclass=DummyDbMeta):
     """
     Gramps database object. This object is a dummy database class that is always
     empty and is read-only.
     """
 
-    __signals__ = {}
+    __signals__: Dict[str, Any] = {}
 
     def __init__(self):
         """

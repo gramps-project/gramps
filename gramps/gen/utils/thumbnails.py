@@ -23,6 +23,7 @@
 Handles generation and access to thumbnails used in Gramps.
 """
 
+
 # -------------------------------------------------------------------------
 #
 # Standard python modules
@@ -31,6 +32,7 @@ Handles generation and access to thumbnails used in Gramps.
 import os
 import logging
 from hashlib import md5
+from typing import List
 
 # -------------------------------------------------------------------------
 #
@@ -60,8 +62,8 @@ from gramps.gen.const import (
     SIZE_NORMAL,
     SIZE_LARGE,
 )
-from gramps.gen.plug import BasePluginManager, START
 from gramps.gen.mime import get_type
+from gramps.gen.plug import BasePluginManager, START, Thumbnailer
 
 # -------------------------------------------------------------------------
 #
@@ -70,7 +72,7 @@ from gramps.gen.mime import get_type
 # -------------------------------------------------------------------------
 LOG = logging.getLogger(".thumbnail")
 
-THUMBNAILERS = []
+THUMBNAILERS: List[Thumbnailer] = []
 
 
 def get_thumbnailers():

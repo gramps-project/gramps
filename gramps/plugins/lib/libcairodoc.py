@@ -39,6 +39,8 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from math import radians
 import re
+from typing import List
+
 
 # ------------------------------------------------------------------------
 #
@@ -312,7 +314,7 @@ class GtkDocBaseElement:
     """
 
     _type = "BASE"
-    _allowed_children = []
+    _allowed_children: List[str] = []
 
     def __init__(self, style=None):
         self._parent = None
@@ -444,7 +446,7 @@ class GtkDocPagebreak(GtkDocBaseElement):
     """Implement a page break."""
 
     _type = "PAGEBREAK"
-    _allowed_children = []
+    _allowed_children: List[str] = []
 
     def divide(self, layout, width, height, dpi_x, dpi_y):
         return (None, None), 0
@@ -454,7 +456,7 @@ class GtkDocTableOfContents(GtkDocBaseElement):
     """Implement a table of contents."""
 
     _type = "TOC"
-    _allowed_children = []
+    _allowed_children: List[str] = []
 
     def divide(self, layout, width, height, dpi_x, dpi_y):
         return (self, None), 0
@@ -467,7 +469,7 @@ class GtkDocAlphabeticalIndex(GtkDocBaseElement):
     """Implement an alphabetical index."""
 
     _type = "INDEX"
-    _allowed_children = []
+    _allowed_children: List[str] = []
 
     def divide(self, layout, width, height, dpi_x, dpi_y):
         return (self, None), 0
@@ -480,7 +482,7 @@ class GtkDocParagraph(GtkDocBaseElement):
     """Paragraph."""
 
     _type = "PARAGRAPH"
-    _allowed_children = []
+    _allowed_children: List[str] = []
 
     # line spacing is not defined in ParagraphStyle
     spacingfractionfont = 0.2
@@ -1076,7 +1078,7 @@ class GtkDocPicture(GtkDocBaseElement):
     """Implement an image."""
 
     _type = "IMAGE"
-    _allowed_children = []
+    _allowed_children: List[str] = []
 
     def __init__(self, style, filename, width, height, crop=None):
         GtkDocBaseElement.__init__(self, style)
@@ -1207,7 +1209,7 @@ class GtkDocLine(GtkDocBaseElement):
     """Implement a line."""
 
     _type = "LINE"
-    _allowed_children = []
+    _allowed_children: List[str] = []
 
     def __init__(self, style, x1, y1, x2, y2):
         GtkDocBaseElement.__init__(self, style)
@@ -1238,7 +1240,7 @@ class GtkDocPolygon(GtkDocBaseElement):
     """Implement a line."""
 
     _type = "POLYGON"
-    _allowed_children = []
+    _allowed_children: List[str] = []
 
     def __init__(self, style, path):
         GtkDocBaseElement.__init__(self, style)
@@ -1273,7 +1275,7 @@ class GtkDocBox(GtkDocBaseElement):
     """Implement a box with optional shadow around it."""
 
     _type = "BOX"
-    _allowed_children = []
+    _allowed_children: List[str] = []
 
     def __init__(self, style, x, y, width, height):
         GtkDocBaseElement.__init__(self, style)
@@ -1323,7 +1325,7 @@ class GtkDocText(GtkDocBaseElement):
     """Implement a text on graphical reports."""
 
     _type = "TEXT"
-    _allowed_children = []
+    _allowed_children: List[str] = []
 
     # line spacing is not defined in ParagraphStyle
     spacingfractionfont = 0.2

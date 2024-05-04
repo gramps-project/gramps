@@ -23,4 +23,6 @@ The gen module provides packages that are common to all gramps
 interfaces (gui, cli and web).
 """
 
-__all__ = []
+from typing import List
+
+__all__: List[str] = []

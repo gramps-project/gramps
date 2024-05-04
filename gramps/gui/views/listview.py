@@ -35,6 +35,7 @@ import pickle
 from time import perf_counter
 import logging
 from collections import deque
+from typing import List, Optional, Tuple
 
 LOG = logging.getLogger(".gui.listview")
 
@@ -93,7 +94,7 @@ ICON = 3
 #
 # ----------------------------------------------------------------
 class ListView(NavigationView):
-    COLUMNS = []
+    COLUMNS: List[Tuple[str, int, Optional[str]]] = []
     # listview config settings that are always present related to the columns
     CONFIGSETTINGS = (
         ("columns.visible", []),
@@ -104,7 +105,7 @@ class ListView(NavigationView):
     EDIT_MSG = ""
     DEL_MSG = ""
     MERGE_MSG = ""
-    FILTER_TYPE = None  # Set in inheriting class
+    FILTER_TYPE = ""  # Set in inheriting class
     QR_CATEGORY = -1
 
     def __init__(

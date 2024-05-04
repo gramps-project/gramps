@@ -21,7 +21,6 @@ name: Gramps CI
 
 on:
   push:
-    branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -66,6 +65,10 @@ jobs:
     - name: Build
       run: |
         python3 setup.py build
+    - name: Run mypy static type checker
+      run: |
+        python3 -m pip install mypy
+        mypy gramps test --ignore-missing-imports --exclude '.*gpr\.py$'
     - name: Run unit test suite
       run: |
         export GDK_BACKEND=-

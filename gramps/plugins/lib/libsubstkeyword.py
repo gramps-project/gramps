@@ -33,6 +33,8 @@ Will return a value such as:
 Mary Smith was born on 3/28/1923.
 """
 
+from typing import Tuple
+
 # ------------------------------------------------------------------------
 #
 # Gramps modules
@@ -1324,7 +1326,7 @@ if __name__ == "__main__":
 
     from gramps.gen.lib.date import Date
 
-    y_or_n = ()
+    y_or_n: Tuple[int, ...] = ()
     date_to_test = Date()
 
     def date_set():

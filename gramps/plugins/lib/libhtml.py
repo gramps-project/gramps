@@ -353,7 +353,7 @@ class Html(list):
                 self[len(self) :] = ["</%s>" % tag]  # add it on the end
 
     #
-    def __add(self, value):
+    def __add(self, value) -> "Html":
         """
         Helper function for +, +=, operators and append() and extend()
         methods
@@ -374,8 +374,11 @@ class Html(list):
         self[index:index] = value
         return self
 
-    #
-    __iadd__ = __add__ = __add
+    def __iadd__(self, value):
+        return self.__add(value)
+
+    def __add__(self, value):
+        return self.__add(value)
 
     #
     def append(self, value):

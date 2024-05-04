@@ -29,6 +29,7 @@ Base class for filter rules.
 #
 # -------------------------------------------------------------------------
 import re
+from typing import List
 
 from ...errors import FilterError
 from ...const import GRAMPS_LOCALE as glocale
@@ -53,7 +54,7 @@ LOG = logging.getLogger(".")
 class Rule:
     """Base rule class."""
 
-    labels = []
+    labels: List[str] = []
     name = ""
     category = _("Miscellaneous filters")
     description = _("No description")
