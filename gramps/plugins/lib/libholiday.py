@@ -27,11 +27,11 @@
 # python modules
 #
 # ------------------------------------------------------------------------
+from __future__ import annotations
 from xml.parsers import expat
 import datetime
 import math
 import os
-from typing import List
 
 # ------------------------------------------------------------------------
 #
@@ -189,8 +189,8 @@ class HolidayTable:
     countries and years.
     """
 
-    __holiday_files: List[str] = []
-    __countries: List[str] = []
+    __holiday_files: list[str] = []
+    __countries: list[str] = []
 
     def __init__(self):
         """

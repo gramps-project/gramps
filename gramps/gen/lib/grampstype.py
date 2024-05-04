@@ -29,7 +29,8 @@ Base type for all gramps types.
 # Python modules
 #
 # ---------------------------------------------------------------
-from typing import Any, Dict, List, Optional, Tuple
+from __future__ import annotations
+from typing import Any
 
 # -------------------------------------------------------------------------
 #
@@ -115,13 +116,13 @@ class GrampsType(metaclass=GrampsTypeMeta):
     _CUSTOM = 0
     _DEFAULT = 0
 
-    _DATAMAP: List[Tuple[int, str, str]] = []
-    _BLACKLIST: Optional[List[int]] = None
-    _I2SMAP: Dict[int, int] = {}
-    _S2IMAP: Dict[int, int] = {}
-    _I2EMAP: Dict[int, int] = {}
-    _E2IMAP: Dict[int, int] = {}
-    _MENU: List[List[Any]] = []
+    _DATAMAP: list[tuple[int, str, str]] = []
+    _BLACKLIST: list[int] | None = None
+    _I2SMAP: dict[int, int] = {}
+    _S2IMAP: dict[int, int] = {}
+    _I2EMAP: dict[int, int] = {}
+    _E2IMAP: dict[int, int] = {}
+    _MENU: list[list[Any]] = []
     __slots__ = ("__value", "__string")
 
     def __getstate__(self):

@@ -32,9 +32,10 @@
 # python modules
 #
 # ------------------------------------------------------------------------
+from __future__ import annotations
 from abc import ABCMeta, abstractmethod
 import os
-from typing import Any, Dict, List
+from typing import Any
 
 # -------------------------------------------------------------------------------
 #
@@ -71,7 +72,7 @@ class BaseFormatComboBox(Gtk.ComboBox):
     Combo box base class for graph-based report format choices.
     """
 
-    FORMATS: List[Dict[str, Any]] = []
+    FORMATS: list[dict[str, Any]] = []
 
     def set(self, active=None):
         """initialize the Graphviz choices"""

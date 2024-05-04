@@ -24,7 +24,7 @@
 # Python modules
 #
 # -------------------------------------------------------------------------
-from typing import List
+from __future__ import annotations
 
 # -------------------------------------------------------------------------
 #
@@ -47,7 +47,7 @@ from xml.sax import make_parser, handler, SAXParseException
 # Constants
 #
 # -------------------------------------------------------------------------
-paper_sizes: List[PaperSize] = []
+paper_sizes: list[PaperSize] = []
 
 
 # -------------------------------------------------------------------------

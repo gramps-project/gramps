@@ -27,11 +27,11 @@ This module is used to share variables, enums and functions between all modules
 
 """
 
+from __future__ import annotations
 from collections import defaultdict
 from hashlib import md5
 import re
 import logging
-from typing import List, Type, Union
 from xml.sax.saxutils import escape
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -397,7 +397,7 @@ CSS = PLUGMAN.process_plugin_data("WEBSTUFF")
 
 # _NAME_COL = 3
 
-_WRONGMEDIAPATH: List[List[str]] = []
+_WRONGMEDIAPATH: list[list[str]] = []
 
 _HTML_DBL_QUOTES = re.compile(r'([^"]*) " ([^"]*) " (.*)', re.VERBOSE)
 _HTML_SNG_QUOTES = re.compile(r"([^']*) ' ([^']*) ' (.*)", re.VERBOSE)

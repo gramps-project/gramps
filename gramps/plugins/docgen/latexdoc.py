@@ -35,11 +35,11 @@
 # Python modules
 #
 # ------------------------------------------------------------------------
+from __future__ import annotations
 from bisect import bisect
 import re
 import os
 import logging
-from typing import List
 
 try:
     from PIL import Image
@@ -698,7 +698,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
     pict_in_table = False
     pict_width = 0
     pict_height = 0
-    textmem: List[str] = []
+    textmem: list[str] = []
     in_title = True
 
     #   ---------------------------------------------------------------

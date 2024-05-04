@@ -28,6 +28,7 @@ Gramps generic database handler
 # Python modules
 #
 # ------------------------------------------------------------------------
+from __future__ import annotations
 import bisect
 import logging
 import os
@@ -36,7 +37,7 @@ import random
 import re
 import time
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any
 
 # ------------------------------------------------------------------------
 #
@@ -357,7 +358,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     A Gramps Database Backend. This replicates the grampsdb functions.
     """
 
-    __signals__: Dict[str, Any] = dict(
+    __signals__: dict[str, Any] = dict(
         (obj + "-" + op, signal)
         for obj in [
             "person",

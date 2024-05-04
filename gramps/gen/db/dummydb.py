@@ -52,12 +52,13 @@ methods should be changed to generate exceptions. Possibly by globally changing
 # Python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
 import inspect
 import logging
 from abc import ABCMeta
 from functools import wraps
 from types import FunctionType
-from typing import Any, Dict
+from typing import Any
 
 
 # -------------------------------------------------------------------------
@@ -162,7 +163,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=DummyDbMeta):
     empty and is read-only.
     """
 
-    __signals__: Dict[str, Any] = {}
+    __signals__: dict[str, Any] = {}
 
     def __init__(self):
         """

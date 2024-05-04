@@ -31,6 +31,7 @@ localized tasks.
 # Python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
 import datetime
 
 # -------------------------------------------------------------------------
@@ -39,7 +40,6 @@ import datetime
 #
 # -------------------------------------------------------------------------
 import logging
-from typing import Tuple
 
 log = logging.getLogger(".DateDisplay")
 
@@ -70,7 +70,7 @@ class DateDisplay:
     Base date display class.
     """
 
-    formats: Tuple[str, ...] = (
+    formats: tuple[str, ...] = (
         # format 0 - must always be ISO
         # Translators: Numeric year, month, day
         _T_("YYYY-MM-DD (ISO)"),
