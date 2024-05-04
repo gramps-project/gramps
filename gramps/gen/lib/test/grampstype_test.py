@@ -21,6 +21,7 @@
 """ unittest for grampstype """
 
 import unittest
+from typing import List, Optional
 
 from ..grampstype import GrampsType
 
@@ -42,7 +43,7 @@ class GT0(GrampsType):
 # A migration utility might instantiate several of these with
 #   varying blacklist-specs
 class GT1(GT0):
-    _BLACKLIST = BLIST
+    _BLACKLIST: Optional[List[int]] = BLIST
 
 
 class GT2(GT1):

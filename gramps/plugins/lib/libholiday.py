@@ -21,6 +21,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
+
 # ------------------------------------------------------------------------
 #
 # python modules
@@ -30,6 +31,7 @@ from xml.parsers import expat
 import datetime
 import math
 import os
+from typing import List
 
 # ------------------------------------------------------------------------
 #
@@ -187,8 +189,8 @@ class HolidayTable:
     countries and years.
     """
 
-    __holiday_files = []
-    __countries = []
+    __holiday_files: List[str] = []
+    __countries: List[str] = []
 
     def __init__(self):
         """

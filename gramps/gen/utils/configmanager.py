@@ -37,6 +37,7 @@ import logging
 import os
 import sys
 import time
+from typing import Dict
 
 # ---------------------------------------------------------------
 #
@@ -74,7 +75,7 @@ class ConfigManager:
     settings are stored.
     """
 
-    PLUGINS = {}
+    PLUGINS: Dict[str, "ConfigManager"] = {}
 
     def __init__(self, filename=None, plugins=None):
         """

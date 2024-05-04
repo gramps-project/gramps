@@ -23,6 +23,7 @@
 """
 This module is the base class for all geography view module
 """
+
 # -------------------------------------------------------------------------
 #
 # Python modules
@@ -32,6 +33,8 @@ import os
 import re
 import time
 import logging
+from typing import Any, Tuple
+
 import gi
 
 # -------------------------------------------------------------------------
@@ -42,6 +45,7 @@ import gi
 from gi.repository import GLib
 from gi.repository import Gtk
 from gi.repository import OsmGpsMap as osmgpsmap
+
 
 # -------------------------------------------------------------------------
 #
@@ -116,7 +120,7 @@ class GeoGraphyView(OsmGps, NavigationView):
     """
 
     # settings in the config file
-    CONFIGSETTINGS = (
+    CONFIGSETTINGS: Tuple[Tuple[str, Any], ...] = (
         ("geography.path", constants.GEOGRAPHY_PATH),
         ("geography.zoom", 10),
         ("geography.zoom_when_center", 12),

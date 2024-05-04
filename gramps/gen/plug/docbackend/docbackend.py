@@ -26,6 +26,8 @@
 # Python modules
 #
 # ------------------------------------------------------------------------
+from typing import Dict, List
+
 from ...const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
@@ -96,12 +98,12 @@ class DocBackend:
     SUPERSCRIPT = 7
     LINK = 8
 
-    SUPPORTED_MARKUP = []
+    SUPPORTED_MARKUP: List[int] = []
 
     ESCAPE_FUNC = lambda: noescape
     # Map between styletypes and internally used values. This map is needed
-    # to make TextDoc officially independant of gen.lib.styledtexttag
-    STYLETYPE_MAP = {}
+    # to make TextDoc officially independent of gen.lib.styledtexttag
+    STYLETYPE_MAP: Dict[int, int] = {}
     CLASSMAP = None
 
     # STYLETAGTABLE to store markup for write_markup associated with style tags

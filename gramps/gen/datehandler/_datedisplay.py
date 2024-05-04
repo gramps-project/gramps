@@ -39,8 +39,10 @@ import datetime
 #
 # -------------------------------------------------------------------------
 import logging
+from typing import Tuple
 
 log = logging.getLogger(".DateDisplay")
+
 
 # -------------------------------------------------------------------------
 #
@@ -68,7 +70,7 @@ class DateDisplay:
     Base date display class.
     """
 
-    formats = (
+    formats: Tuple[str, ...] = (
         # format 0 - must always be ISO
         # Translators: Numeric year, month, day
         _T_("YYYY-MM-DD (ISO)"),

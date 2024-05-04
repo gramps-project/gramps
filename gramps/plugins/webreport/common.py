@@ -31,6 +31,7 @@ from collections import defaultdict
 from hashlib import md5
 import re
 import logging
+from typing import List, Type, Union
 from xml.sax.saxutils import escape
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -396,7 +397,7 @@ CSS = PLUGMAN.process_plugin_data("WEBSTUFF")
 
 # _NAME_COL = 3
 
-_WRONGMEDIAPATH = []
+_WRONGMEDIAPATH: List[List[str]] = []
 
 _HTML_DBL_QUOTES = re.compile(r'([^"]*) " ([^"]*) " (.*)', re.VERBOSE)
 _HTML_SNG_QUOTES = re.compile(r"([^']*) ' ([^']*) ' (.*)", re.VERBOSE)
@@ -646,7 +647,7 @@ if HAVE_ALPHABETICINDEX:
                     super().addLabels(loc)
 
 else:
-    AlphabeticIndex = localAlphabeticIndex
+    AlphabeticIndex = localAlphabeticIndex  # type: ignore
 
 
 def alphabet_navigation(sorted_alpha_index, rlocale=glocale, rtl=False):

@@ -27,6 +27,8 @@ Reports/Graphical Reports/Familial Tree
 Reports/Graphical Reports/Personal Tree
 """
 
+from typing import Any, Dict
+
 # ------------------------------------------------------------------------
 #
 # Gramps modules
@@ -1251,7 +1253,7 @@ class GuiConnect:
       get the value from a GUI variable
     """
 
-    __shared_state = {}
+    __shared_state: Dict[str, Any] = {}
 
     def __init__(self):  # We are BORG!
         self.__dict__ = self.__shared_state
