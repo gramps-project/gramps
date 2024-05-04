@@ -27,6 +27,7 @@
 # Python modules
 #
 # ------------------------------------------------------------------------
+from __future__ import annotations
 from xml.sax.saxutils import escape
 import os.path
 
@@ -76,7 +77,7 @@ class OdfBackend(DocBackend):
     Implementation for open document format docs
     """
 
-    STYLETAG_TO_PROPERTY = {}
+    STYLETAG_TO_PROPERTY: dict[int, str] = {}
 
     # overwrite base class attributes, they become static var of CairoDoc
     SUPPORTED_MARKUP = [
@@ -114,7 +115,8 @@ class OdfBackend(DocBackend):
         ),
     }
 
-    ESCAPE_FUNC = lambda x: _escape
+    def ESCAPE_FUNC(x):
+        return _escape
 
     def __init__(self, filename=None):
         """

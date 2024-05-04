@@ -31,6 +31,7 @@ Provides constants for other modules
 #
 # -------------------------------------------------------------------------
 import os
+import random
 import sys
 import uuid
 
@@ -409,3 +410,6 @@ EXPANDED = 2
 
 TYPE_BOX_NORMAL = 0
 TYPE_BOX_FAMILY = 1
+
+# instance of random.Random that can be used for predictable unit tests
+TEST_RANDOM = random.Random()

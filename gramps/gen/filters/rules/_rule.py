@@ -28,6 +28,7 @@ Base class for filter rules.
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
 import re
 
 from ...errors import FilterError
@@ -53,7 +54,7 @@ LOG = logging.getLogger(".")
 class Rule:
     """Base rule class."""
 
-    labels = []
+    labels: list[str] = []
     name = ""
     category = _("Miscellaneous filters")
     description = _("No description")

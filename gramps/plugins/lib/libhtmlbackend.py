@@ -195,7 +195,8 @@ class HtmlBackend(DocBackend):
         DocBackend.SUBSCRIPT: ("<sub>", "</sub>"),
     }
 
-    ESCAPE_FUNC = lambda self: escape
+    def ESCAPE_FUNC(self):
+        return escape
 
     def __init__(self, filename=None):
         """

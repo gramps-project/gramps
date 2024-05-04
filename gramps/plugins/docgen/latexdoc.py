@@ -35,6 +35,7 @@
 # Python modules
 #
 # ------------------------------------------------------------------------
+from __future__ import annotations
 from bisect import bisect
 import re
 import os
@@ -615,7 +616,8 @@ class LaTeXBackend(DocBackend):
         DocBackend.STRIKETHROUGH: ("\\sout{", "}"),
     }
 
-    ESCAPE_FUNC = lambda x: latexescape
+    def ESCAPE_FUNC(x):
+        return latexescape
 
     def setescape(self, preformatted=False):
         """
@@ -627,7 +629,7 @@ class LaTeXBackend(DocBackend):
         else:
             LaTeXBackend.ESCAPE_FUNC = lambda x: latexescapeverbatim
 
-    def _create_xmltag(self, type, value):
+    def _create_xmltag(self, tagtype, value):
         r"""
         overwrites the method in DocBackend.
         creates the latex tags needed for non bool style types we support:
@@ -636,9 +638,9 @@ class LaTeXBackend(DocBackend):
                                      : very basic, in mono in the font face
                                         then we use {\ttfamily }
         """
-        if type not in self.SUPPORTED_MARKUP:
+        if tagtype not in self.SUPPORTED_MARKUP:
             return None
-        elif type == DocBackend.FONTSIZE:
+        elif tagtype == DocBackend.FONTSIZE:
             # translate size in point to something LaTeX can work with
             fontsize = map_font_size(value)
             if fontsize:
@@ -646,7 +648,7 @@ class LaTeXBackend(DocBackend):
             else:
                 return ("", "")
 
-        elif type == DocBackend.FONTFACE:
+        elif tagtype == DocBackend.FONTFACE:
             if "MONO" in value.upper():
                 return ("{\\ttfamily ", "}")
             elif "ROMAN" in value.upper():
@@ -701,7 +703,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
     pict_in_table = False
     pict_width = 0
     pict_height = 0
-    textmem = []
+    textmem: list[str] = []
     in_title = True
 
     #   ---------------------------------------------------------------

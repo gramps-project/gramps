@@ -31,6 +31,7 @@ Base type for all gramps types.
 # -------------------------------------------------------------------------
 from __future__ import annotations
 from functools import singledispatchmethod
+from typing import Any
 
 # -------------------------------------------------------------------------
 #
@@ -106,13 +107,13 @@ class GrampsType(metaclass=GrampsTypeMeta):
     _CUSTOM = 0
     _DEFAULT = 0
 
-    _DATAMAP = []
-    _BLACKLIST = None
-    _I2SMAP = {}
-    _S2IMAP = {}
-    _I2EMAP = {}
-    _E2IMAP = {}
-    _MENU = []
+    _DATAMAP: list[tuple[int, str, str]] = []
+    _BLACKLIST: list[int] | None = None
+    _I2SMAP: dict[int, str] = {}
+    _S2IMAP: dict[str, int] = {}
+    _I2EMAP: dict[int, str] = {}
+    _E2IMAP: dict[str, int] = {}
+    _MENU: list[list[Any]] = []
     __slots__ = ("__value", "__string")
 
     def __getstate__(self):
@@ -351,4 +352,4 @@ class GrampsType(metaclass=GrampsTypeMeta):
     string = property(__str__, __set_str, None, "Returns or sets string value")
 
 
-GrampsType.set.register(GrampsType, GrampsType._GrampsType__set_instance)
+GrampsType.set.register(GrampsType, GrampsType._GrampsType__set_instance)  # type: ignore[attr-defined]

@@ -83,7 +83,7 @@ class CSVTab(TabbedDoc):
 
 
 if __name__ == "__main__":
-    file = CSVTab(2, 3)
+    file = CSVTab(3)
     file.open("test.csv")
     file.start_page()
     for i in [("one", "two", "three"), ('fo"ur', "fi,ve", "six")]:

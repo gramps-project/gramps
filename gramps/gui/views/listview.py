@@ -29,6 +29,7 @@ Provide the base classes for GRAMPS' DataView classes
 # python modules
 #
 # ----------------------------------------------------------------
+from __future__ import annotations
 from abc import abstractmethod
 import os
 import pickle
@@ -93,7 +94,7 @@ ICON = 3
 #
 # ----------------------------------------------------------------
 class ListView(NavigationView):
-    COLUMNS = []
+    COLUMNS: list[tuple[str, int, str | None]] = []
     # listview config settings that are always present related to the columns
     CONFIGSETTINGS = (
         ("columns.visible", []),
@@ -104,7 +105,7 @@ class ListView(NavigationView):
     EDIT_MSG = ""
     DEL_MSG = ""
     MERGE_MSG = ""
-    FILTER_TYPE = None  # Set in inheriting class
+    FILTER_TYPE = ""  # Set in inheriting class
     QR_CATEGORY = -1
 
     def __init__(
