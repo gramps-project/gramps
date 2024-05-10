@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-05-05 10:38+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"PO-Revision-Date: 2024-05-05 10:40+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -30824,7 +30824,7 @@ msgstr "נא לבחור קובץ kml המשמש להוספת מקומות"
 
 #: ../gramps/plugins/lib/maps/geography.py:1146
 msgid "You will need to edit each place manually to add place type, ...\n"
-msgstr "הוספת סוג מקום,כרוכה בעריכה ידנית של כל מקום ומקום, ...\n"
+msgstr "תידרש עריכת כל מקום באופן ידני על מנת להוסיף סוג מקום, …\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1150
 #, python-brace-format
@@ -31851,7 +31851,7 @@ msgstr "מחשבון קשרי־קרבה הולנדי"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:362
 msgid "Norwegian Relationship Calculator"
-msgstr "מחשבון קשרי־קרבה נורבגי"
+msgstr "מחשבון קשרי־משפחה נורווגי"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:396
 msgid "Polish Relationship Calculator"
@@ -33100,7 +33100,7 @@ msgstr "לא להשתמש בשם פניה"
 
 #: ../gramps/plugins/textreport/recordsreport.py:253
 msgid "Replace first names with call name"
-msgstr "החלפת שם פרטי בשם פניה"
+msgstr "החלפת שם פרטי בשם פנייה"
 
 #: ../gramps/plugins/textreport/recordsreport.py:257
 msgid "Underline call name in first names / add call name to first name"
@@ -33548,8 +33548,8 @@ msgstr "אף רשומת אירוע לא סוגלה."
 #, python-brace-format
 msgid "{number_of} event record was modified."
 msgid_plural "{number_of} event records were modified."
-msgstr[0] "רשומת אירוע {number_of} הוסגלה."
-msgstr[1] "{number_of} רשומות אירוע הסגלו."
+msgstr[0] "רשומת אירוע {number_of} נערכה."
+msgstr[1] "{number_of} רשומות אירוע נערכו."
 
 #: ../gramps/plugins/tool/check.py:134 ../gramps/plugins/tool/check.py:313
 msgid "Checking Database"
@@ -33589,7 +33589,7 @@ msgid ""
 "Objects referenced by this note were referenced but missing so that is why "
 "they have been created when you ran Check and Repair on %s."
 msgstr ""
-"חסרים עצמים אליהם מפנה הערה זו , לכן הם נוצרו שוב בעקבות הפעת בדיקה ותיקון "
+"חסרים עצמים אליהם מפנה הערה זו, לכן הם נוצרו שוב בעקבות הפעלת בדיקה ותיקון "
 "ב־%s."
 
 #: ../gramps/plugins/tool/check.py:344
@@ -33925,15 +33925,15 @@ msgstr[1] "{quantity} מקורות מקושרים אך לא נמצאו\n"
 #, python-brace-format
 msgid "{quantity} note object was referenced but not found\n"
 msgid_plural "{quantity} note objects were referenced, but not found\n"
-msgstr[0] "{quantity} עצם הערה עם הפניות, לא נמצא\n"
-msgstr[1] "{quantity} עצמי הערה עם הופנוית, לא נמצאו\n"
+msgstr[0] "בוצעה הפניה לעצם הערה {quantity}, אך הוא לא נמצא\n"
+msgstr[1] "בוצעה הפניה ל־{quantity} עצמי הערה, אך הם לא נמצאו\n"
 
 #: ../gramps/plugins/tool/check.py:2989 ../gramps/plugins/tool/check.py:2999
 #, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
-msgstr[0] "הפניה לעצם תג {quantity} אך לא נמצא\n"
-msgstr[1] "הפניה ל־{quantity} עצמי תג אך לא נמצאו\n"
+msgstr[0] "בוצעה הפניה לעצם תג {quantity} אך לא נמצא\n"
+msgstr[1] "בוצעה הפניה ל־{quantity} עצמי תג אך לא נמצאו\n"
 
 #: ../gramps/plugins/tool/check.py:3009
 #, python-brace-format
@@ -34508,7 +34508,7 @@ msgstr "כל האנשים במסד הנתונים קשורים ל־%s"
 msgid "Setting tag for {number_of} person"
 msgid_plural "Setting tag for {number_of} people"
 msgstr[0] "הגדרת תג לאדם {number_of}"
-msgstr[1] "הגדרת תג ל {number_of} אנשים"
+msgstr[1] "הגדרת תג ל־{number_of} אנשים"
 
 #: ../gramps/plugins/tool/notrelated.py:303
 #, python-brace-format
@@ -34602,13 +34602,13 @@ msgid ""
 msgstr ""
 "להלן רשימת כינויים, כותרות, קידומות ושמות משפחה מורכבים שגרמפס יכול לחלץ "
 "מאילן־היוחסין.\n"
-"אם קבלת השינויים, גרמפס תשנה את הערכים שנבחרו.\n"
+"עם קבלת השינויים, גרמפס תשנה את הערכים שנבחרו.\n"
 "\n"
 "שמות משפחה מורכבים מוצגים כרשימות של [קידומת, שם משפחה, מחבר].\n"
 "לדוגמה, עם ברירות המחדל, השם 'דה מאסקרנאס דא סילבה אי לאנקסטר' יוצג כ:\n"
 "       [דה, מאסקרנאס]-[דא, סילבה, אי]-[,לנקסטרה]\n"
 "\n"
-"נא להריץ את הכלי מספר פעמים כדי לתקן שמות בעלי מידע מרובה שניתן לחילוץ."
+"נא להריץ את הכלי מספר פעמים כדי לתקן שמות בעלי מידע מרובה שניתן לחלץ."
 
 #: ../gramps/plugins/tool/patchnames.py:64
 msgctxt "manual"
@@ -35121,7 +35121,7 @@ msgid ""
 "that can be applied to the database to find similar events"
 msgstr ""
 "סיוע בניתוח נתונים על־ידי מתן אפשרות לפיתוח מסננים מותאמים אישית אותם ניתן "
-"להחיל על מסד־הנתונים לצורך אתור אירועים דומים"
+"להחיל על מסד־הנתונים לצורך איתור אירועים דומים"
 
 #: ../gramps/plugins/tool/tools.gpr.py:144
 msgid "Extracts event descriptions from the event data"
@@ -36045,9 +36045,9 @@ msgid ""
 "with coordinates. You can use the history to navigate on the map. You can "
 "use filtering."
 msgstr ""
-"הקשת עכבר ימנית על נקודה במפה ובחירת 'הצגת כל האירועים' כדי להציג את כל "
-"האירועים הידועים עבור נקודות־ציון. ניתן להשתמש בהיסטוריה לנווט במפה. ניתן "
-"להשתמש בסינון."
+"הקשת עכבר ימנית על נקודה במפה ובחירת 'הצגת כל האירועים' תציג את כל האירועים "
+"הידועים עבור נקודות־ציון. ניתן להשתמש בהיסטוריה לניווט במפה. וגם להשתמש "
+"בסינון."
 
 #: ../gramps/plugins/view/geoevents.py:427
 #: ../gramps/plugins/view/geoevents.py:459
@@ -37202,8 +37202,7 @@ msgid ""
 msgstr ""
 "עמוד זה נועד למשתמש או יוצר אתר אילן־יוחסין / אתר מילולי זה, שנועד לשתף מספר "
 "קבצים שקשורים עם בני המשפחה.  ניתן להקיש על הקבצים שמפורטים להלן כדי להורידם "
-"למחשב. על עמוד ההורדות והקבצים חלים אותם זכויות יוצרים כמו על שאר עמדי אתר "
-"המרשתת."
+"למחשב. על עמוד ההורדות והקבצים חלים אותם זכויות יוצרים כמו על שאר עמודי האתר."
 
 #: ../gramps/plugins/webreport/download.py:128
 msgid "File Name"
