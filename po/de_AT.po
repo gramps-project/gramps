@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-05-01 08:07+0000\n"
+"PO-Revision-Date: 2024-05-06 11:07+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
 "Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/de_AT/>\n"
@@ -40,7 +40,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5.3-dev\n"
+"X-Generator: Weblate 5.5.3\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -274,7 +274,7 @@ msgid ""
 "feature-complete for professional genealogists."
 msgstr ""
 "Gramps ist ein Programm für die Ahnenforschung, das zugleich intuitiv für "
-"Anfänger und allumfassend für Berufsgenealogen ist."
+"Anfänger und umfangreich für Berufsgenealogen ist."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:8
 msgid ""
@@ -9415,11 +9415,11 @@ msgstr "Suche…"
 
 #: ../gramps/gen/merge/mergecitationquery.py:73
 msgid "Merge Citation"
-msgstr "Zusammenführen von Fundstellen"
+msgstr "Fundstellen zusammenführen"
 
 #: ../gramps/gen/merge/mergeeventquery.py:62
 msgid "Merge Event Objects"
-msgstr "Zusammenführen von Ereignisobjekten"
+msgstr "Ereignisobjekte zusammenführen"
 
 #: ../gramps/gen/merge/mergefamilyquery.py:94
 msgid "A parent should be a father or mother."
@@ -9441,16 +9441,16 @@ msgstr ""
 
 #: ../gramps/gen/merge/mergefamilyquery.py:150
 msgid "Merge Family"
-msgstr "Zusammenführen von Familien"
+msgstr "Familien zusammenführen"
 
 #: ../gramps/gen/merge/mergemediaquery.py:62
 #: ../gramps/gui/merge/mergemedia.py:70
 msgid "Merge Media Objects"
-msgstr "Zusammenführen von Medienobjekten"
+msgstr "Medienobjekte zusammenführen"
 
 #: ../gramps/gen/merge/mergenotequery.py:70 ../gramps/gui/merge/mergenote.py:68
 msgid "Merge Notes"
-msgstr "Zusammenführen von Notizen"
+msgstr "Notizen zusammenführen"
 
 #: ../gramps/gen/merge/mergepersonquery.py:56
 msgid ""
@@ -9462,21 +9462,21 @@ msgstr ""
 
 #: ../gramps/gen/merge/mergepersonquery.py:136
 msgid "Merge Person"
-msgstr "Zusammenführen von Personen"
+msgstr "Personen zusammenführen"
 
 #: ../gramps/gen/merge/mergeplacequery.py:63
 #: ../gramps/gui/merge/mergeplace.py:79
 msgid "Merge Places"
-msgstr "Zusammenführen von Orten"
+msgstr "Orte zusammenführen"
 
 #: ../gramps/gen/merge/mergerepositoryquery.py:62
 #: ../gramps/gui/merge/mergerepository.py:71
 msgid "Merge Repositories"
-msgstr "Zusammenführen von Aufbewahrungsorten"
+msgstr "Aufbewahrungsorte zusammenführen"
 
 #: ../gramps/gen/merge/mergesourcequery.py:64
 msgid "Merge Source"
-msgstr "Zusammenführen von Quellen"
+msgstr "Quelle zusammenführen"
 
 #: ../gramps/gen/plug/_gramplet.py:347
 #, python-format
@@ -13478,7 +13478,7 @@ msgstr "Datenbank kann nicht geladen werden"
 
 #: ../gramps/gui/displaystate.py:410
 msgid "Open the Clipboard dialog"
-msgstr "Öffnet den Zwischenablagedialog"
+msgstr "Dialogfeld Zwischenablage öffnen"
 
 #: ../gramps/gui/displaystate.py:411 ../gramps/gui/grampsgui.py:58
 msgid "Clip_board"
@@ -13486,7 +13486,7 @@ msgstr "Zwischena_blage"
 
 #: ../gramps/gui/displaystate.py:416
 msgid "Open the reports dialog"
-msgstr "Öffnet den Berichtsdialog"
+msgstr "Berichtsdialog öffnen"
 
 #: ../gramps/gui/displaystate.py:417
 msgid "Reports"
@@ -13494,7 +13494,7 @@ msgstr "Berichte"
 
 #: ../gramps/gui/displaystate.py:419
 msgid "Open the tools dialog"
-msgstr "Öffnet den Werkzeugdialog"
+msgstr "Werkzeugdialog öffnen"
 
 #: ../gramps/gui/displaystate.py:419
 msgid "Tools"
@@ -13656,11 +13656,11 @@ msgstr "Die gewählte Adresse bearbeiten"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:66
 msgid "Move the selected address upwards"
-msgstr "Gewählte Adresse nach oben verschieben"
+msgstr "Ausgewählte Adresse hinauf schieben"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:67
 msgid "Move the selected address downwards"
-msgstr "Gewählte Adresse nach unten verschieben"
+msgstr "Ausgewählte Adresse hinab schieben"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:79
 msgid "Postal"
@@ -13688,12 +13688,12 @@ msgstr "Gewähltes Attribut bearbeiten"
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:56
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:56
 msgid "Move the selected attribute upwards"
-msgstr "Gewähltes Attribut nach oben verschieben"
+msgstr "Ausgewähltes Attribut hinauf schieben"
 
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:57
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:57
 msgid "Move the selected attribute downwards"
-msgstr "Gewähltes Attribut nach unten verschieben"
+msgstr "Ausgewähltes Attribut hinab schieben"
 
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:82
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:81
@@ -13806,11 +13806,11 @@ msgstr "Springe zu"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:76
 msgid "Move Up"
-msgstr "Nach oben verschieben"
+msgstr "Hinauf schieben"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:77
 msgid "Move Down"
-msgstr "Nach unten verschieben"
+msgstr "Hinab schieben"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:78
 msgid "Move Left"
@@ -13839,11 +13839,11 @@ msgstr "Bestehende Fundstelle oder Quelle hinzufügen"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:75
 msgid "Move the selected citation upwards"
-msgstr "Gewählte Fundstelle nach oben verschieben"
+msgstr "Ausgewählte Fundstelle hinauf schieben"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:76
 msgid "Move the selected citation downwards"
-msgstr "Gewählte Fundstelle nach unten verschieben"
+msgstr "Ausgewählte Fundstelle hinab schieben"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:85
 #: ../gramps/plugins/gramplet/citations.py:107
@@ -13907,11 +13907,11 @@ msgstr "Bestehendes Ereignis teilen"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:69
 msgid "Move the selected event upwards"
-msgstr "Gewähltes Ereignis nach oben verschieben"
+msgstr "Ausgewähltes Ereignis hinauf schieben"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:70
 msgid "Move the selected event downwards"
-msgstr "Gewähltes Ereignis nach unten verschieben"
+msgstr "Ausgewähltes Ereignis hinab schieben"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:95
 #: ../gramps/plugins/gramplet/events.py:110
@@ -13983,7 +13983,7 @@ msgstr "_Medien aktivieren"
 #: ../gramps/gui/editors/editperson.py:1090
 #: ../gramps/plugins/textreport/indivcomplete.py:625
 msgid "Non existing media found in the Gallery"
-msgstr "Nicht existierende Medien in der Galerie gefunden"
+msgstr "Nicht vorhandene Medien in der Galerie gefunden"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:332
 msgid ""
@@ -13994,7 +13994,7 @@ msgid ""
 "To edit this media reference, you need to close the media object."
 msgstr ""
 "Diese Medienreferenz kann im Moment nicht bearbeitet werden. Entweder wird "
-"das zugehörige Medienobjekt schon bearbeitet, oder eine andere "
+"das zugehörige Medienobjekt bereits bearbeitet, oder eine andere "
 "Medienreferenz, die mit demselben Medienobjekt verbunden ist, wird gerade "
 "bearbeitet.\n"
 "\n"
@@ -14020,11 +14020,11 @@ msgstr "Ausgewählten HLT-Ritus bearbeiten"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:55
 msgid "Move the selected LDS ordinance upwards"
-msgstr "Gewählten HLT-Ritus nach oben verschieben"
+msgstr "Ausgewählten HLT-Ritus hinauf schieben"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:56
 msgid "Move the selected LDS ordinance downwards"
-msgstr "Gewählten HLT-Ritus nach unten verschieben"
+msgstr "Ausgewählten HLT-Ritus hinab schieben"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:78
 msgid "_LDS"
@@ -14048,11 +14048,11 @@ msgstr "Gewählten Namen bearbeiten"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:67
 msgid "Move the selected name upwards"
-msgstr "Gewählten Namen nach oben verschieben"
+msgstr "Ausgewählten Namen hinauf schieben"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:68
 msgid "Move the selected name downwards"
-msgstr "Gewählten Namen nach unten verschieben"
+msgstr "Gewählten Namen hinab schieben"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:78
 #: ../gramps/gui/views/treemodels/peoplemodel.py:660
@@ -14112,11 +14112,11 @@ msgstr "Existierende Notiz hinzufügen"
 
 #: ../gramps/gui/editors/displaytabs/notetab.py:72
 msgid "Move the selected note upwards"
-msgstr "Ausgewählte Notiz nach oben verschieben"
+msgstr "Ausgewählte Notiz hinauf schieben"
 
 #: ../gramps/gui/editors/displaytabs/notetab.py:73
 msgid "Move the selected note downwards"
-msgstr "Ausgewählte Notiz nach unten verschieben"
+msgstr "Ausgewählte Notiz hinab schieben"
 
 #: ../gramps/gui/editors/displaytabs/notetab.py:80
 #: ../gramps/gui/glade/addmedia.glade:136
@@ -14156,14 +14156,13 @@ msgstr "Bearbeite das ausgewählte persönliche Ereignis oder die Familie"
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:61
 msgid "Move the selected event upwards or change family order"
 msgstr ""
-"Verschiebe das ausgewählte Ereignis nach oben oder ändere die "
-"Familienreihenfolge"
+"Ausgewähltes Ereignis hinauf schieben oder Reihenfolge der Familie ändern"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:62
 msgid "Move the selected event downwards or change family order"
 msgstr ""
-"Verschiebe das ausgewählte Ereignis nach unten oder ändere die "
-"Familienreihenfolge"
+"Ausgewähltes Ereignis hinab schieben oder ändere Reihenfolge der Familie "
+"ändern"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:145
 msgid "Cannot change Family"
@@ -14187,11 +14186,11 @@ msgstr "Ausgewählte Verbindung bearbeiten"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:59
 msgid "Move the selected association upwards"
-msgstr "Ausgewählte Verbindung nach oben verschieben"
+msgstr "Ausgewählte Verbindung hinauf schieben"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:60
 msgid "Move the selected association downwards"
-msgstr "Ausgewählte Verbindung nach unten verschieben"
+msgstr "Ausgewählte Verbindung hinab schieben"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:81
 msgid "_Associations"
@@ -14216,11 +14215,11 @@ msgstr "Ausgewählten Ortsnamen bearbeiten"
 
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:57
 msgid "Move the selected place name upwards"
-msgstr "Ausgewählten Ortsnamen nach oben verschieben"
+msgstr "Ausgewählten Ortsnamen hinauf schieben"
 
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:58
 msgid "Move the selected place name downwards"
-msgstr "Ausgewählten Ortsnamen nach unten verschieben"
+msgstr "Ausgewählten Ortsnamen hinab schieben"
 
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:76
 #: ../gramps/plugins/gramplet/placedetails.py:159
@@ -14261,11 +14260,11 @@ msgstr "Bestehenden Aufbewahrungsort hinzufügen"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:60
 msgid "Move the selected repository upwards"
-msgstr "Ausgewählten Aufbewahrungsort nach oben verschieben"
+msgstr "Ausgewählten Aufbewahrungsort hinauf schieben"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:61
 msgid "Move the selected repository downwards"
-msgstr "Ausgewählten Aufbewahrungsort nach unten verschieben"
+msgstr "Ausgewählten Aufbewahrungsort hinab schieben"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:81
 msgid "_Repositories"
@@ -14301,11 +14300,11 @@ msgstr "Ausgewählten Nachnamen bearbeiten"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:72
 msgid "Move the selected surname upwards"
-msgstr "Ausgewählten Nachnamen nach oben verschieben"
+msgstr "Ausgewählten Nachnamen hinauf schieben"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:73
 msgid "Move the selected surname downwards"
-msgstr "Ausgewählten Nachnamen nach unten verschieben"
+msgstr "Ausgewählten Nachnamen hinab schieben"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:83
 #: ../gramps/plugins/lib/libgedcom.py:751
@@ -14334,11 +14333,11 @@ msgstr "Ausgewählte Webadresse bearbeiten"
 
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:58
 msgid "Move the selected web address upwards"
-msgstr "Ausgewählte Webadresse nach oben verschieben"
+msgstr "Ausgewählte Webadresse hinauf schieben"
 
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:59
 msgid "Move the selected web address downwards"
-msgstr "Ausgewählte Webadresse nach unten verschieben"
+msgstr "Ausgewählte Webadresse hinab schieben"
 
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:60
 msgid "Jump to the selected web address"
@@ -14628,11 +14627,11 @@ msgstr "Vorhandene Person als Kind der Familie hinzufügen"
 
 #: ../gramps/gui/editors/editfamily.py:131
 msgid "Move the child up in the children list"
-msgstr "Kind in der Kinderliste nach oben verschieben"
+msgstr "Kind in der Kinderliste hinauf schieben"
 
 #: ../gramps/gui/editors/editfamily.py:132
 msgid "Move the child down in the children list"
-msgstr "Kind in der Kinderliste nach unten verschieben"
+msgstr "Kind in der Kinderliste hinab schieben"
 
 #: ../gramps/gui/editors/editfamily.py:137
 msgid "#"
@@ -16030,11 +16029,11 @@ msgstr "Den gewählten Artikel aus dem Buch entfernen"
 
 #: ../gramps/gui/glade/book.glade:372
 msgid "Move current selection one step up in the book"
-msgstr "Die aktuelle Auswahl im Buch einen Schritt nach oben schieben"
+msgstr "Aktuelle Auswahl im Buch einen Schritt hinauf schieben"
 
 #: ../gramps/gui/glade/book.glade:394
 msgid "Move current selection one step down in the book"
-msgstr "Die aktuelle Auswahl im Buch einen Schritt nach unten schieben"
+msgstr "Aktuelle Auswahl im Buch einen Schritt abwärts schieben"
 
 #: ../gramps/gui/glade/book.glade:416
 msgid "Configure currently selected item"
@@ -16891,7 +16890,7 @@ msgstr "Beschreibender Name für dieses Medienobjekt."
 #: ../gramps/gui/glade/editmedia.glade:270
 msgid "Open File Browser to select a media file on your computer."
 msgstr ""
-"Öffnet Dateibrowser, um eine Mediendatei auf deinem Computer zu wählen."
+"Dateibrowser öffnen, um eine Mediendatei auf deinem Computer auszuwählen."
 
 #: ../gramps/gui/glade/editmedia.glade:279
 #: ../gramps/gui/glade/editmediaref.glade:660
@@ -17961,7 +17960,7 @@ msgstr "Pfeil Oben"
 
 #: ../gramps/gui/glade/reorder.glade:124
 msgid "Move parent up"
-msgstr "Eltern nach oben verschieben"
+msgstr "Eltern hinauf schieben"
 
 #: ../gramps/gui/glade/reorder.glade:147 ../gramps/gui/glade/reorder.glade:290
 msgid "Arrow bottom"
@@ -17969,7 +17968,7 @@ msgstr "Pfeil Unten"
 
 #: ../gramps/gui/glade/reorder.glade:154
 msgid "Move parent down"
-msgstr "Eltern nach unten verschieben"
+msgstr "Eltern hinab schieben"
 
 #: ../gramps/gui/glade/reorder.glade:205
 msgid "Family relationships"
@@ -17977,11 +17976,11 @@ msgstr "Familienbeziehungen"
 
 #: ../gramps/gui/glade/reorder.glade:267
 msgid "Move family up"
-msgstr "Familie nach oben verschieben"
+msgstr "Familie hinauf schieben"
 
 #: ../gramps/gui/glade/reorder.glade:297
 msgid "Move family down"
-msgstr "Familie nach unten verschieben"
+msgstr "Familie hinab schieben"
 
 #: ../gramps/gui/glade/rule.glade:122
 msgid "Add a new filter"
@@ -18828,7 +18827,7 @@ msgstr "Fundstellen_zusammenf.C3.BChren"
 #: ../gramps/gui/merge/mergecitation.py:72
 #: ../gramps/plugins/tool/tools.gpr.py:472
 msgid "Merge Citations"
-msgstr "Zusammenführen von Fundstellen"
+msgstr "Fundstellen zusammenführen"
 
 #: ../gramps/gui/merge/mergeevent.py:46
 msgctxt "manual"
@@ -18837,7 +18836,7 @@ msgstr "Ereignisse_zusammenf.C3.BChren"
 
 #: ../gramps/gui/merge/mergeevent.py:69
 msgid "Merge Events"
-msgstr "Zusammenführen von Ereignissen"
+msgstr "Ereignisse zusammenführen"
 
 #: ../gramps/gui/merge/mergefamily.py:47
 msgctxt "manual"
@@ -18846,7 +18845,7 @@ msgstr "Familien_zusammenf.C3.BChren"
 
 #: ../gramps/gui/merge/mergefamily.py:72
 msgid "Merge Families"
-msgstr "Zusammenführen von Familien"
+msgstr "Familien zusammenführen"
 
 #: ../gramps/gui/merge/mergefamily.py:226
 #: ../gramps/gui/merge/mergeperson.py:386
@@ -18891,7 +18890,7 @@ msgstr "andere"
 
 #: ../gramps/gui/merge/mergeperson.py:103
 msgid "Merge People"
-msgstr "Zusammenführen von Personen"
+msgstr "Personen zusammenführen"
 
 #: ../gramps/gui/merge/mergeperson.py:242
 #: ../gramps/gui/widgets/fanchart.py:2250
@@ -18971,7 +18970,7 @@ msgstr "Quellen_zusammenf.C3.BChren"
 
 #: ../gramps/gui/merge/mergesource.py:69
 msgid "Merge Sources"
-msgstr "Zusammenführen von Quellen"
+msgstr "Quellen zusammenführen"
 
 #: ../gramps/gui/plug/_dialogs.py:311
 msgid "Report Selection"
@@ -19575,11 +19574,11 @@ msgid ""
 "Note: your currently opened database is safe. It was only a copy of your "
 "data that failed to save."
 msgstr ""
-"Beim Speichern deiner Daten trat ein Fehler auf. Bitte gehe zurück und "
-"versuche es noch einmal.\n"
+"Beim Speichern deiner Daten ist ein Fehler aufgetreten. Du kannst versuchen, "
+"den Export erneut zu starten.\n"
 "\n"
-"Anmerkung: Deine momentan geöffnete Datenbank ist sicher. Nur die Kopie "
-"deiner Daten konnte nicht gespeichert werden."
+"Hinweis: Deine aktuell geöffnete Datenbank ist sicher. Nur eine Kopie deiner "
+"Daten konnte nicht gespeichert werden."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:562
 msgid ""
@@ -19853,14 +19852,13 @@ msgid ""
 "Therefore, the central person for each item is being set to the active "
 "person of the currently opened database."
 msgstr ""
-"Dieses Buch wurde beim Erstellen auf die erstellende Datenbank %s "
-"referenziert.\n"
+"Dieses Buch wurde mit den Verweisen auf die Datenbank %s erstellt.\n"
 "\n"
-"Die im Buch gespeicherten Referenzen auf die Hauptperson sind in DIESER "
-"Datenbank ungültig.\n"
+" Dadurch werden Verweise auf die im Buch gespeicherte zentrale Person "
+"ungültig.\n"
 "\n"
-"Deswegen wurde die Hauptperson für jeden Artikel auf die aktive Person "
-"dieser geöffneten Datenbank gesetzt."
+"Daher wird die zentrale Person für jeden Artikel auf die aktive Person der "
+"aktuell geöffneten Datenbank gesetzt."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:577
 msgid "No selected book item"
@@ -20413,7 +20411,7 @@ msgstr ""
 
 #: ../gramps/gui/utils.py:815
 msgid "Cannot open new citation editor"
-msgstr "Editor für neue Fundstellen kann nicht geöffnet werden"
+msgstr "Neuer Fundstelleneditor kann nicht geöffnet werden"
 
 #: ../gramps/gui/viewmanager.py:382 ../gramps/gui/viewmanager.py:1168
 msgid "No Family Tree"
@@ -20968,7 +20966,7 @@ msgid ""
 "Select the down arrow on the right corner for adding, removing or restoring "
 "gramplets."
 msgstr ""
-"Wähle den nach unten zeigenden Pfeil in der rechten Ecke zum Hinzufügen, "
+"Wähle den herab zeigenden Pfeil in der rechten Ecke zum Hinzufügen, "
 "Entfernen oder Wiederherstellen von Gramplets."
 
 #: ../gramps/gui/widgets/grampletbar.py:529
@@ -22273,8 +22271,8 @@ msgstr "Zeigt die Eltern, Brüder und Schwestern der gewählten Person an."
 #: ../gramps/plugins/drawreport/descendtree.py:1606
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
 msgstr ""
-"Ob Personen, wo immer möglich nach oben verschoben werden, um einen "
-"schmaleren Baum zu erhalten"
+"Personen nach Möglichkeit hinauf schieben um einen schmaleren Baum zu "
+"erhalten"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1612
 msgid "Bold direct descendants"
@@ -26961,10 +26959,10 @@ msgid ""
 "Copy the files to a correct directory or change the media path in the "
 "Preferences."
 msgstr ""
-"Die geöffnete Datei hat den Medienpfad %s, er steht im Widerspruch zum "
-"Medienpfad des Stammbaum, in den du importieren willst. Der original Pfad "
-"wurde beibehalten. Kopiere die Dateien in das korrekte Verzeichnis oder "
-"ändere den Medienpfad der Datenbank in den Einstellungen."
+"Die geöffnete Datei hat den Medienpfad %s, der mit dem Medienpfad des "
+"Stammbaums, in den du importierst, in Konflikt steht. Der ursprüngliche "
+"Medienpfad wurde beibehalten. Kopiere die Dateien in ein korrektes "
+"Verzeichnis oder ändere den Medienpfad in den Voreinstellungen."
 
 #: ../gramps/plugins/importer/importxml.py:1151
 msgid ""
@@ -30977,7 +30975,7 @@ msgstr "Ausgewählte Person löschen"
 
 #: ../gramps/plugins/lib/libpersonview.py:147
 msgid "Merge the selected persons"
-msgstr "Die ausgewählten Personen zusammenführen"
+msgstr "Ausgewählte Personen zusammenführen"
 
 #: ../gramps/plugins/lib/libpersonview.py:213
 #: ../gramps/plugins/lib/libplaceview.py:298
@@ -31293,7 +31291,7 @@ msgstr "Ausgewählten Ort löschen"
 
 #: ../gramps/plugins/lib/libplaceview.py:120
 msgid "Merge the selected places"
-msgstr "Zusammenführen der ausgewählten Orte"
+msgstr "Ausgewählte Orte zusammenführen"
 
 #: ../gramps/plugins/lib/libplaceview.py:256
 msgid "No map service is available."
@@ -31365,7 +31363,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libplaceview.py:580
 msgid "Merging these places would create a cycle in the place hierarchy."
 msgstr ""
-"Das Zusammenführen dieser Orte würde eine Schleife in der Ortshierachie "
+"Das Zusammenführen dieser Orte würde eine Schleife in der Ortehierachie "
 "erzeugen."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:37
@@ -35160,7 +35158,7 @@ msgstr "Kandidaten zum Zusammenfügen"
 
 #: ../gramps/plugins/tool/finddupes.py:588
 msgid "Merge persons"
-msgstr "Zusammenführen von Personen"
+msgstr "Personen zusammenführen"
 
 #: ../gramps/plugins/tool/findloop.py:59
 msgctxt "manual"
@@ -36543,7 +36541,7 @@ msgstr "Gewählte Fundstelle löschen"
 
 #: ../gramps/plugins/view/citationlistview.py:147
 msgid "Merge the selected citations"
-msgstr "Zusammenführen der ausgewählten Fundstellen"
+msgstr "Ausgewählte Fundstellen zusammenführen"
 
 #: ../gramps/plugins/view/citationlistview.py:161
 msgid "Citation View"
@@ -36606,7 +36604,7 @@ msgstr "Die gewählte Fundstelle oder Quelle löschen"
 
 #: ../gramps/plugins/view/citationtreeview.py:139
 msgid "Merge the selected citations or selected sources"
-msgstr "Zusammenführen der gewählten Fundstellen oder Quellen"
+msgstr "Ausgewählte Fundstellen oder Quellen zusammenführen"
 
 #: ../gramps/plugins/view/citationtreeview.py:157
 msgid "Citation Tree View"
@@ -36681,7 +36679,7 @@ msgstr "Gewähltes Ereignis löschen"
 
 #: ../gramps/plugins/view/eventview.py:116
 msgid "Merge the selected events"
-msgstr "Zusammenführen der ausgewählten Ereignisse"
+msgstr "Ausgewählte Ereignisse zusammenführen"
 
 #: ../gramps/plugins/view/eventview.py:254
 msgid "Event Filter Editor"
@@ -36720,7 +36718,7 @@ msgstr "Gewählte Familie löschen"
 
 #: ../gramps/plugins/view/familyview.py:113
 msgid "Merge the selected families"
-msgstr "Zusammenführen der ausgewählten Familien"
+msgstr "Ausgewählte Familien zusammenführen"
 
 #: ../gramps/plugins/view/familyview.py:211
 msgid "Family Filter Editor"
@@ -37409,7 +37407,7 @@ msgstr "Das ausgewählte Medienobjekt löschen"
 
 #: ../gramps/plugins/view/mediaview.py:131
 msgid "Merge the selected media objects"
-msgstr "Zusammenführen der ausgewählten Medienobjekte"
+msgstr "Ausgewählte Medienobjekte zusammenführen"
 
 #: ../gramps/plugins/view/mediaview.py:318
 msgid "Media Filter Editor"
@@ -37439,7 +37437,7 @@ msgstr "Gewählte Notiz löschen"
 
 #: ../gramps/plugins/view/noteview.py:99
 msgid "Merge the selected notes"
-msgstr "Zusammenführen der ausgewählten Notizen"
+msgstr "Ausgewählte Notizen zusammenführen"
 
 #: ../gramps/plugins/view/noteview.py:199
 msgid "Note Filter Editor"
@@ -37792,7 +37790,7 @@ msgstr "Gewählten Aufbewahrungsort löschen"
 
 #: ../gramps/plugins/view/repoview.py:142
 msgid "Merge the selected repositories"
-msgstr "Zusammenführen der ausgewählten Aufbewahrungsorte"
+msgstr "Ausgewählte Aufbewahrungsort zusammenführen"
 
 #: ../gramps/plugins/view/repoview.py:236
 msgid "Repository Filter Editor"
@@ -37823,7 +37821,7 @@ msgstr "Die gewählte Quelle löschen"
 
 #: ../gramps/plugins/view/sourceview.py:114
 msgid "Merge the selected sources"
-msgstr "Zusammenführen der ausgewählten Quellen"
+msgstr "Ausgewählte Quellen zusammenführen"
 
 #: ../gramps/plugins/view/sourceview.py:208
 msgid "Source Filter Editor"
@@ -38008,7 +38006,7 @@ msgstr "Sehbehindert"
 
 #: ../gramps/plugins/webreport/basepage.py:1851
 msgid "Go to top"
-msgstr "Springe nach oben"
+msgstr "Springe hinauf"
 
 #: ../gramps/plugins/webreport/basepage.py:1886
 #: ../gramps/plugins/webreport/basepage.py:1944
