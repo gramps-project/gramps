@@ -11,22 +11,22 @@
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # Kristijan Fremen Velkovski <me@krisfremen.com>, 2022, 2023.
 # AND <andrejdam@protonmail.com>, 2023.
-# "Kristijan \"Fremen\" Velkovski" <me@krisfremen.com>, 2023.
+# "Kristijan \"Fremen\" Velkovski" <me@krisfremen.com>, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2023-10-22 00:01+0000\n"
+"PO-Revision-Date: 2024-05-10 06:59+0000\n"
 "Last-Translator: \"Kristijan \\\"Fremen\\\" Velkovski\" <me@krisfremen.com>\n"
-"Language-Team: Macedonian <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/mk/>\n"
+"Language-Team: Macedonian <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/mk/>\n"
 "Language: mk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
-"X-Generator: Weblate 5.1\n"
+"X-Generator: Weblate 5.5.4-rc\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -442,7 +442,6 @@ msgstr ""
 
 # избори=presets
 #: ../data/tips.xml:14
-#, fuzzy
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit &gt; Person "
@@ -453,26 +452,29 @@ msgid ""
 "filter in the Filter field on Sidebar, then click Find button. If the "
 "Sidebar is not visible, select View &gt; Sidebar."
 msgstr ""
-"<b>Филтрирање лица</b>: Во погледот Лица, можете да „филтрирате“ поединци, "
-"засновано на многу стандарди. Одете до филтерот (веднаш десно до иконата "
-"Лица) и изберете едно од дузината различни избори. На пример, сите посвоени "
-"лица во семејното стебло можат да бидат пронајдени. Лица без споменат датум "
-"на раѓање, исто така, можат да бидат исфилтрирани. За да ги добиете "
-"резултатите кликнете Примени. Ако наредбите за филтрирање не се видливи, "
-"овозможете ги со избирање <b>Поглед &gt; Филтер</b>."
+"<b>Филтрирање луѓе</b><br/>Во Приказот Луѓе, можете да „филтрирате“ поединци "
+"врз основа на многу критериуми. За да дефинирате нов филтер, одете во „Уреди "
+"&gt; Уредувач на филтер за лица“. Таму можете да го именувате вашиот филтер "
+"и да додавате и комбинирате правила користејќи ги многуте претходно "
+"поставени правила. На пример, можете да дефинирате филтер за да ги најдете "
+"сите посвоени луѓе во семејното стебло. Може да се филтрираат и луѓе без "
+"споменат датум на раѓање. За да ги добиете резултатите, зачувајте го вашиот "
+"филтер. Потоа изберете го овој филтер во полето Филтер на страничната лента, "
+"а потоа кликнете на копчето Најди. Ако страничната лента не е видлива, "
+"изберете Прикажи &gt; Странична лента."
 
 # inverted!?!?
 #: ../data/tips.xml:16
-#, fuzzy
 msgid ""
 "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
 "'invert' option \"Return values that do not match the filter rules\". For "
 "instance, by inverting the 'People with children' filter you can select all "
 "people without children."
 msgstr ""
-"<b>Превртено филтрирање</b>: Филтрите можат лесно да бидат свртени со "
-"употреба на изборот „превртено“. На пример, со превртување на филтерот „Лица "
-"со деца“ можете да ги изберете сите лица без деца."
+"<b>Инвертирано филтрирање</b><br/>Филтрите лесно може да се поништат со "
+"користење на опцијата „инвертирај“ „Врати вредности што не се совпаѓаат со "
+"правилата на филтерот“. На пример, со инвертирање на филтерот „Луѓе со деца“ "
+"можете да ги изберете сите луѓе без деца."
 
 #: ../data/tips.xml:18
 #, fuzzy
@@ -32938,10 +32940,9 @@ msgid "There are %d people with a matching attribute name.\n"
 msgstr ""
 
 #: ../gramps/plugins/quickview/filterbyname.py:43
-#, fuzzy
 msgctxt "Filtering_on"
 msgid "all"
-msgstr "Филтрирање"
+msgstr "сите"
 
 #: ../gramps/plugins/quickview/filterbyname.py:44
 #, fuzzy
