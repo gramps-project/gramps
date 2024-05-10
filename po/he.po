@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-04-28 11:07+0000\n"
+"PO-Revision-Date: 2024-05-05 10:38+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.5.1\n"
+"X-Generator: Weblate 5.5.3\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -16967,7 +16967,7 @@ msgstr "מזהה יחיד למאגר מידע."
 #: ../gramps/gui/glade/editreporef.glade:425
 #: ../gramps/gui/glade/editrepository.glade:144
 msgid "Type of repository, eg., 'Library', 'Album', ..."
-msgstr "סוג מאגר, לדוגמה, 'ספריה', 'אלבום', ..."
+msgstr "סוג מאגר, לדוגמה, 'ספרייה', 'אלבום', ..."
 
 #: ../gramps/gui/glade/editsource.glade:112
 msgid "_Author:"
@@ -30473,7 +30473,7 @@ msgstr "מיזוג מקומות אלו ייצור הפניה מעגלית במד
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:37
 msgid "Provides a library for using Cairo to generate documents."
-msgstr "ספריה שתשמש את קיירו לחילול מסמכים."
+msgstr "ספרייה שתשמש את קיירו לחילול מסמכים."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:56
 msgid "Provides GEDCOM processing functionality"
