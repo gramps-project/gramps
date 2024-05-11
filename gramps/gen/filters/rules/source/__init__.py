@@ -25,6 +25,7 @@ Package providing filter rules for Gramps.
 """
 
 from .._hassourcebase import HasSourceBase as HasSource
+from .._hassourcebase import HasSourceBase
 
 from ._allsources import AllSources
 from ._hasattribute import HasAttribute
