@@ -167,6 +167,7 @@ class SidebarFilter(DbGUIElement):
         t2 = time.perf_counter()
         msg = _("Elapsed time: %.2fs") % (t2 - t1)
         self.msg_label.set_text(msg)
+        self.msg_label.get_style_context().remove_class("error")
         self.uistate.set_busy_cursor(False)
 
     def clicked_func(self):
@@ -373,7 +374,8 @@ class SidebarFilter(DbGUIElement):
             if isinstance(rule, gramps.gen.filters.rules.place.WithinArea):
                 if rule.list[0] is None:  # No active place
                     msg = _("You should select a place when using the 'Within' rule")
-                    self.msg_label.set_markup("<span color='red'>" + msg + "</span>")
+                    self.msg_label.set_text(msg)
+                    self.msg_label.get_style_context().add_class("error")
                     return False
         return True
 
@@ -381,9 +383,8 @@ class SidebarFilter(DbGUIElement):
         self.filterdb = gramps.gen.filters.CustomFilters
         the_filter = self.get_filter()
         if the_filter is None:
-            self.msg_label.set_markup(
-                "<span color='red'>" + _("Supply at least one value") + "</span>"
-            )
+            self.msg_label.set_text(_("Supply at least one value"))
+            self.msg_label.get_style_context().add_class("error")
             return
 
         if not self.filter_is_ok():
