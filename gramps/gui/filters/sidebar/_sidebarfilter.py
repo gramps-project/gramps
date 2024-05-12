@@ -398,8 +398,8 @@ class SidebarFilter(DbGUIElement):
                 rule.list[2] = str(rule.list[2])
             new_rules.append(rule)
         the_filter.flist = new_rules
-        comment = "Created by Filter gramplet on " + time.strftime(
-            "%Y-%m-%d", time.localtime(time.time())
+        comment = _("Created by Filter gramplet on {today}").format(
+            today=time.strftime("%Y-%m-%d", time.localtime())
         )
         the_filter.set_comment(comment)
 
