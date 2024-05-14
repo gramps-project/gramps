@@ -45,6 +45,7 @@ from . import BaseDoc, PAPER_PORTRAIT
 from ..menu import NumberOption, TextOption, EnumeratedListOption
 from ...constfunc import win
 from ...config import config
+from ...errors import ReportError
 from ...const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
@@ -815,7 +816,14 @@ class TreePdfDoc(TreeDocBase):
             else:
                 proc = Popen(args, stdin=PIPE, stdout=PIPE, stderr=PIPE)
             proc.communicate(input=self._tex.getvalue().encode("utf-8"))
-            shutil.copy(os.path.join(tmpdir, basename), self._filename)
+
+            temp_output_file = os.path.join(tmpdir, basename)
+            if os.path.isfile(temp_output_file):
+                shutil.copy(temp_output_file, self._filename)
+            else:
+                raise ReportError(
+                    _("Empty report"), _("Could not create %s") % self._filename
+                )
 
 
 # ------------------------------------------------------------------------------
