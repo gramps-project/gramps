@@ -492,7 +492,7 @@ class StyledTextBuffer(UndoableBuffer):
         start, end = self._get_selection()
         tags = self._get_tag_from_range(start.get_offset(), end.get_offset())
         for tag_name, tag_data in tags.items():
-            if tag_name.startswith(str(style)):
+            if tag_name is not None and tag_name.startswith(str(style)):
                 for start, end in tag_data:
                     self.remove_tag_by_name(
                         tag_name,
