@@ -24,15 +24,13 @@
 Package providing filter rules for Gramps.
 """
 
-from .._haseventbase import HasEventBase as HasEvent
-from .._haseventbase import HasEventBase
-
 from ._hastype import HasType
 from ._allevents import AllEvents
 from ._hasgallery import HasGallery
 from ._hasidof import HasIdOf
 from ._regexpidof import RegExpIdOf
 from ._hascitation import HasCitation
+from ._hasevent import HasEvent
 from ._hasnote import HasNote
 from ._hasnoteregexp import HasNoteRegexp
 from ._hasnotematchingsubstringof import HasNoteMatchingSubstringOf
