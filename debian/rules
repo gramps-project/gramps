@@ -33,7 +33,5 @@ override_dh_auto_install:
 
 # Fix clean target
 override_dh_clean:
-	rm -rf data/tips.xml
-	rm -rf gramps/plugins/lib/holidays.xml
 	rm -rf po/.intltool-merge-cache
 	dh_clean
