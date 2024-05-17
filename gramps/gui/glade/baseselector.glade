@@ -126,7 +126,6 @@
                 <property name="no-show-all">True</property>
                 <property name="halign">center</property>
                 <property name="use-underline">True</property>
-                <property name="xalign">0.5</property>
                 <property name="draw-indicator">True</property>
               </object>
               <packing>
