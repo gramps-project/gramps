@@ -74,7 +74,6 @@
                 <property name="height-request">1</property>
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="double-buffered">False</property>
                 <property name="justify">center</property>
                 <property name="ellipsize">start</property>
               </object>

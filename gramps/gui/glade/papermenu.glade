@@ -35,7 +35,7 @@
               <object class="GtkGrid" id="format_grid">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="margin-left">12</property>
+                <property name="margin-start">12</property>
                 <property name="border-width">6</property>
                 <property name="row-spacing">6</property>
                 <property name="column-spacing">6</property>
@@ -192,7 +192,7 @@
               <object class="GtkGrid" id="table3">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="margin-left">12</property>
+                <property name="margin-start">12</property>
                 <property name="border-width">6</property>
                 <property name="row-spacing">6</property>
                 <property name="column-spacing">6</property>

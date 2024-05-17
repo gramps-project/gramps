@@ -128,8 +128,8 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin-left">3</property>
-                        <property name="margin-right">3</property>
+                        <property name="margin-start">3</property>
+                        <property name="margin-end">3</property>
                         <property name="margin-top">3</property>
                         <property name="margin-bottom">3</property>
                         <property name="label" translatable="yes">_Given:</property>
@@ -191,8 +191,8 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin-left">3</property>
-                        <property name="margin-right">3</property>
+                        <property name="margin-start">3</property>
+                        <property name="margin-end">3</property>
                         <property name="margin-top">3</property>
                         <property name="margin-bottom">3</property>
                         <property name="label" translatable="yes">T_itle:</property>
@@ -241,8 +241,8 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin-left">3</property>
-                        <property name="margin-right">3</property>
+                        <property name="margin-start">3</property>
+                        <property name="margin-end">3</property>
                         <property name="label" translatable="yes">_Nick:</property>
                         <property name="use-underline">True</property>
                         <property name="mnemonic-widget">nickname</property>
@@ -444,8 +444,8 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-left">6</property>
-                            <property name="margin-right">6</property>
+                            <property name="margin-start">6</property>
+                            <property name="margin-end">6</property>
                             <property name="margin-top">3</property>
                             <property name="margin-bottom">3</property>
                             <property name="label" translatable="yes">_Surname:</property>
@@ -581,8 +581,8 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-left">6</property>
-                            <property name="margin-right">6</property>
+                            <property name="margin-start">6</property>
+                            <property name="margin-end">6</property>
                             <property name="label" translatable="yes">G_ender:</property>
                             <property name="use-underline">True</property>
                             <property name="mnemonic-widget">gender</property>
@@ -646,8 +646,8 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-left">6</property>
-                            <property name="margin-right">6</property>
+                            <property name="margin-start">6</property>
+                            <property name="margin-end">6</property>
                             <property name="label" translatable="yes">_Tags:</property>
                             <property name="use-underline">True</property>
                             <property name="mnemonic-widget">tag_button</property>
@@ -721,8 +721,8 @@ Indicate that the surname consists of different parts. Every surname has its own
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin-left">3</property>
-                        <property name="margin-right">3</property>
+                        <property name="margin-start">3</property>
+                        <property name="margin-end">3</property>
                         <property name="margin-top">3</property>
                         <property name="margin-bottom">3</property>
                         <property name="label" translatable="yes">_Type:</property>
@@ -740,8 +740,8 @@ Indicate that the surname consists of different parts. Every surname has its own
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin-left">3</property>
-                        <property name="margin-right">3</property>
+                        <property name="margin-start">3</property>
+                        <property name="margin-end">3</property>
                         <property name="margin-top">3</property>
                         <property name="margin-bottom">3</property>
                         <property name="hexpand">True</property>
