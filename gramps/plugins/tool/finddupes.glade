@@ -151,7 +151,6 @@
                     <property name="margin-start">12</property>
                     <property name="hexpand">True</property>
                     <property name="use-underline">True</property>
-                    <property name="xalign">0.5</property>
                     <property name="active">True</property>
                     <property name="draw-indicator">True</property>
                   </object>
