@@ -415,7 +415,7 @@
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
-                        <property name="margin-right">1</property>
+                        <property name="margin-end">1</property>
                         <property name="image-position">right</property>
                       </object>
                       <packing>
