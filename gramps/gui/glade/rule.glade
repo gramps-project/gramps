@@ -915,7 +915,6 @@
                         <property name="label" translatable="yes">No rule selected</property>
                         <property name="wrap">True</property>
                         <property name="width-chars">40</property>
-                        <property name="xalign">0</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -951,7 +950,6 @@
                         <property name="label" translatable="yes">No description</property>
                         <property name="wrap">True</property>
                         <property name="width-chars">40</property>
-                        <property name="xalign">0</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>

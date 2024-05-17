@@ -136,7 +136,6 @@
 (out of Settings)</property>
                     <property name="halign">start</property>
                     <property name="resize-mode">queue</property>
-                    <property name="xalign">0</property>
                     <property name="draw-indicator">True</property>
                     <signal name="toggled" handler="on_source_button_toggled" swapped="no"/>
                   </object>
@@ -244,7 +243,6 @@
                     <property name="receives-default">False</property>
                     <property name="tooltip-text" translatable="yes">Citation reference.</property>
                     <property name="halign">start</property>
-                    <property name="xalign">0</property>
                     <property name="draw-indicator">True</property>
                     <signal name="toggled" handler="on_citation_button_toggled" swapped="no"/>
                   </object>
@@ -587,7 +585,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_object_button_toggled" swapped="no"/>
                       </object>
@@ -602,7 +599,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_object_button_toggled" swapped="no"/>
                       </object>
@@ -617,7 +613,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_object_button_toggled" swapped="no"/>
                       </object>
@@ -632,7 +627,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_object_button_toggled" swapped="no"/>
                       </object>
@@ -647,7 +641,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_object_button_toggled" swapped="no"/>
                       </object>
@@ -662,7 +655,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_object_button_toggled" swapped="no"/>
                       </object>
@@ -677,7 +669,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_object_button_toggled" swapped="no"/>
                       </object>
@@ -869,7 +860,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_fname_button_toggled" swapped="no"/>
                       </object>
@@ -884,7 +874,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_fname_button_toggled" swapped="no"/>
                       </object>
@@ -899,7 +888,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_fname_button_toggled" swapped="no"/>
                       </object>
@@ -914,7 +902,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_fname_button_toggled" swapped="no"/>
                       </object>
@@ -929,7 +916,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_fname_button_toggled" swapped="no"/>
                       </object>
@@ -944,7 +930,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_fname_button_toggled" swapped="no"/>
                       </object>
@@ -959,7 +944,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_fname_button_toggled" swapped="no"/>
                       </object>
@@ -974,7 +958,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_date_button_toggled" swapped="no"/>
                       </object>
@@ -989,7 +972,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_date_button_toggled" swapped="no"/>
                       </object>
@@ -1004,7 +986,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_date_button_toggled" swapped="no"/>
                       </object>
@@ -1019,7 +1000,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_date_button_toggled" swapped="no"/>
                       </object>
@@ -1034,7 +1014,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_date_button_toggled" swapped="no"/>
                       </object>
@@ -1049,7 +1028,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_date_button_toggled" swapped="no"/>
                       </object>
@@ -1064,7 +1042,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="halign">center</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_date_button_toggled" swapped="no"/>
                       </object>
@@ -1205,7 +1182,7 @@ all object tags.</property>
                         <property name="receives-default">False</property>
                         <property name="tooltip-text" translatable="yes">Enable/Disable
 Person import.</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_primobj_button_toggled" swapped="no"/>
                       </object>
@@ -1222,7 +1199,7 @@ Person import.</property>
                         <property name="receives-default">False</property>
                         <property name="tooltip-text" translatable="yes">Enable/Disable
 Family import.</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_primobj_button_toggled" swapped="no"/>
                       </object>
@@ -1239,7 +1216,7 @@ Family import.</property>
                         <property name="receives-default">False</property>
                         <property name="tooltip-text" translatable="yes">Enable/Disable
 Child import.</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_primobj_button_toggled" swapped="no"/>
                       </object>
@@ -1308,7 +1285,6 @@ Child import.</property>
                         <property name="tooltip-text" translatable="yes">Use original Person
 Identifier as Gramps ID.</property>
                         <property name="halign">start</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                       </object>
                       <packing>
@@ -1325,7 +1301,6 @@ Identifier as Gramps ID.</property>
                         <property name="tooltip-text" translatable="yes">Use original Family
 Identifier as Gramps ID.</property>
                         <property name="halign">start</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                       </object>
                       <packing>
@@ -1438,7 +1413,6 @@ Identifier as Gramps ID.</property>
                         <property name="tooltip-text" translatable="yes">Store birth date in
 event description.</property>
                         <property name="halign">start</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                       </object>
                       <packing>
@@ -1456,7 +1430,6 @@ event description.</property>
                         <property name="tooltip-text" translatable="yes">Store death date in
 event description.</property>
                         <property name="halign">start</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                       </object>
                       <packing>
@@ -1487,7 +1460,6 @@ event description.</property>
                         <property name="tooltip-text" translatable="yes">Store REFN number
 in event description.</property>
                         <property name="halign">start</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                       </object>
                       <packing>
@@ -1503,7 +1475,6 @@ in event description.</property>
                         <property name="tooltip-text" translatable="yes">Use death information
 as cause of death event.</property>
                         <property name="halign">start</property>
-                        <property name="xalign">0</property>
                         <property name="draw-indicator">True</property>
                       </object>
                       <packing>
@@ -1561,7 +1532,7 @@ as cause of death event.</property>
                         <property name="receives-default">False</property>
                         <property name="tooltip-text" translatable="yes">Change name of male
 to e.g. wifes name.</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_surname_button_toggled" swapped="no"/>
                       </object>
@@ -1578,7 +1549,7 @@ to e.g. wifes name.</property>
                         <property name="receives-default">False</property>
                         <property name="tooltip-text" translatable="yes">Change name of female
 to e.g. husbands name.</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="draw-indicator">True</property>
                         <signal name="toggled" handler="on_surname_button_toggled" swapped="no"/>
                       </object>
