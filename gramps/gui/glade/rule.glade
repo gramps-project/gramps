@@ -251,8 +251,8 @@
               <object class="GtkLabel" id="label30">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="margin-left">6</property>
-                <property name="margin-right">6</property>
+                <property name="margin-start">6</property>
+                <property name="margin-end">6</property>
                 <property name="label" translatable="yes">Note: changes take effect only after this window is closed</property>
                 <attributes>
                   <attribute name="style" value="italic"/>
@@ -564,8 +564,8 @@
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="halign">start</property>
-                    <property name="margin-left">6</property>
-                    <property name="margin-right">6</property>
+                    <property name="margin-start">6</property>
+                    <property name="margin-end">6</property>
                     <property name="label" translatable="yes">Co_mment:</property>
                     <property name="use-underline">True</property>
                     <property name="mnemonic-widget">comment</property>
@@ -579,7 +579,7 @@
                   <object class="GtkScrolledWindow" id="scrolledwindow1">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="margin-left">6</property>
+                    <property name="margin-start">6</property>
                     <property name="shadow-type">in</property>
                     <child>
                       <object class="PersistentTreeView" id="rule_list">
@@ -607,7 +607,7 @@
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
                     <property name="halign">center</property>
-                    <property name="margin-left">6</property>
+                    <property name="margin-start">6</property>
                     <property name="use-underline">True</property>
                     <property name="draw-indicator">True</property>
                   </object>
@@ -621,7 +621,7 @@
                   <object class="GtkComboBox" id="rule_apply">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="margin-left">6</property>
+                    <property name="margin-start">6</property>
                     <property name="model">model1</property>
                     <child>
                       <object class="GtkCellRendererText" id="renderer1"/>
@@ -652,8 +652,8 @@
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="halign">start</property>
-                    <property name="margin-left">6</property>
-                    <property name="margin-right">6</property>
+                    <property name="margin-start">6</property>
+                    <property name="margin-end">6</property>
                     <property name="label" translatable="yes">_Name:</property>
                     <property name="use-underline">True</property>
                     <property name="mnemonic-widget">filter_name</property>
@@ -910,8 +910,8 @@
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
                         <property name="valign">start</property>
-                        <property name="margin-left">12</property>
-                        <property name="margin-right">12</property>
+                        <property name="margin-start">12</property>
+                        <property name="margin-end">12</property>
                         <property name="label" translatable="yes">No rule selected</property>
                         <property name="wrap">True</property>
                         <property name="width-chars">40</property>
@@ -946,8 +946,8 @@
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
                         <property name="valign">start</property>
-                        <property name="margin-left">12</property>
-                        <property name="margin-right">12</property>
+                        <property name="margin-start">12</property>
+                        <property name="margin-end">12</property>
                         <property name="label" translatable="yes">No description</property>
                         <property name="wrap">True</property>
                         <property name="width-chars">40</property>
