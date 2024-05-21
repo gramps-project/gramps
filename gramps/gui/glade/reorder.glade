@@ -172,7 +172,7 @@
               <object class="GtkScrolledWindow" id="scrolledwindow86">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <property name="margin-left">6</property>
+                <property name="margin-start">6</property>
                 <property name="hexpand">True</property>
                 <property name="vexpand">True</property>
                 <property name="shadow-type">in</property>
@@ -210,7 +210,7 @@
               <object class="GtkScrolledWindow" id="scrolledwindow87">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <property name="margin-left">6</property>
+                <property name="margin-start">6</property>
                 <property name="hexpand">True</property>
                 <property name="vexpand">True</property>
                 <property name="shadow-type">in</property>

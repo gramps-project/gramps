@@ -190,7 +190,7 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin-left">12</property>
+                        <property name="margin-start">12</property>
                         <property name="hexpand">True</property>
                       </object>
                     </child>
