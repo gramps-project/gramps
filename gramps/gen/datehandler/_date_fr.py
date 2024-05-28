@@ -56,8 +56,6 @@ class DateParserFR(DateParser):
     converted, the text string is assigned.
     """
 
-    month_to_int = DateParser.month_to_int
-
     modifier_to_int = {
         "avant": Date.MOD_BEFORE,
         "av.": Date.MOD_BEFORE,
@@ -110,8 +108,6 @@ class DateParserFR(DateParser):
         can be coded after DateParser.init_strings(self) call, that way they
         override stuff from this method. See DateParserRU() as an example.
         """
-        DateParser.init_strings(self)
-
         DateParser.calendar_to_int.update(
             {
                 "révolutionnaire": Date.CAL_FRENCH,
@@ -188,6 +184,8 @@ class DateParserFR(DateParser):
                 "christmond": 12,
             }
         )
+
+        DateParser.init_strings(self)
 
         # This self._numeric is different from the base
         # avoid bug gregorian / french calendar conversion (+/-10 days)
