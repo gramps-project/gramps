@@ -35,7 +35,7 @@ import sys
 import unittest
 from optparse import OptionParser
 
-from .test import test_util as tu
+from ..test import test_util as tu
 
 gramps_root = tu.path_append_parent()
 
