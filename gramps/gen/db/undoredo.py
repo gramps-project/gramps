@@ -61,21 +61,6 @@ class DbUndo(metaclass=ABCMeta):
         self.redoq.clear()
         self.undo_history_timestamp = time.time()
 
-    def __enter__(self, value):
-        """
-        Context manager method to establish the context
-        """
-        self.open(value)
-        return self
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        """
-        Context manager method to finish the context
-        """
-        if exc_type is None:
-            self.close()
-        return exc_type is None
-
     @abstractmethod
     def open(self, value):
         """
