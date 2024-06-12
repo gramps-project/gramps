@@ -55,7 +55,7 @@ class GtkHandlerTest(unittest.TestCase):
         l.addHandler(gtkh)
 
         l.info("An info message")
-        l.warn("A warn message")
+        l.warning("A warn message")
         l.debug("A debug message")
         log_message = "Debug message"
 
