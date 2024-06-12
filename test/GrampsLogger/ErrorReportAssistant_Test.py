@@ -68,7 +68,7 @@ class ErrorReportAssistantTest(TestCaseBase):
 
 
 def testSuite():
-    suite = unittest.makeSuite(ErrorReportAssistantTest, "test")
+    suite = unittest.TestLoader().loadTestsFromTestCase(ErrorReportAssistantTest)
     return suite
 
 

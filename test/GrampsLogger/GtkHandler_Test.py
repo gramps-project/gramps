@@ -71,7 +71,7 @@ class GtkHandlerTest(unittest.TestCase):
 
 
 def testSuite():
-    suite = unittest.makeSuite(GtkHandlerTest, "test")
+    suite = unittest.TestLoader().loadTestsFromTestCase(GtkHandlerTest)
     return suite
 
 
