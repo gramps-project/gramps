@@ -625,10 +625,13 @@ class CSVParser:
         ):
             # Just adding a note or tag to a marriage event
             marriage = self.lookup("event", marriage_ref)
+            if marriage is None:
+                LOG.warning("no marriage found for ref %s" % marriage_ref)
+                return
             if tag:
                 self.add_tag(marriage, tag)
             if note:
-                self.add_note(NoteType.MARRIAGE, marriage, note)
+                self.add_note(NoteType.EVENT, marriage, note)
             self.db.commit_event(marriage, self.trans)
             return
 
@@ -678,7 +681,7 @@ class CSVParser:
             if tag:
                 self.add_tag(marriage, tag)
             if note:
-                self.add_note(NoteType.MARRIAGE, marriage, note)
+                self.add_note(NoteType.EVENT, marriage, note)
             self.db.commit_event(marriage, self.trans)
 
         self.db.commit_family(family, self.trans)
@@ -1346,9 +1349,9 @@ class CSVParser:
             self.db.add_note(new_note, self.trans)
             obj.add_note(new_note.handle)
 
-        if note_type == NoteType.Person:
+        if note_type == NoteType.PERSON:
             self.db.commit_person(obj, self.trans)
-        elif note_type == NoteType.Event:
+        elif note_type == NoteType.EVENT:
             self.db.commit_event(obj, self.trans)
-        elif note_type == NoteType.Family:
+        elif note_type == NoteType.FAMILY:
             self.db.commit_family(obj, self.trans)
