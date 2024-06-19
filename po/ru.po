@@ -12,7 +12,7 @@
 # Egor Reentov <egor.gramps@gmail.com>, 2011-2013.
 # Ivan Komaritsyn <vantu5z@mail.ru>, 2015-2020.
 # Roman <https://gramps-project.org/wiki/index.php/User:Roman>, 2020
-# Stanislav <bsv999@mail.ru>, 2021, 2022, 2023.
+# Stanislav <bsv999@mail.ru>, 2021, 2022, 2023, 2024.
 # Artem <Localizer_in_Russian@protonmail.com>, 2021.
 # Viktor <xasertop@gmail.com>, 2022.
 # PKEv <pkev@yandex.ru>, 2022.
@@ -26,8 +26,8 @@ msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-04-05 14:01+0000\n"
-"Last-Translator: Павел Жуков <papazukko@gmail.com>\n"
+"PO-Revision-Date: 2024-06-10 17:09+0000\n"
+"Last-Translator: Stanislav <bsv999@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
 "Language: ru\n"
@@ -36,7 +36,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -9529,7 +9529,7 @@ msgstr "Картографический сервис"
 #: ../gramps/plugins/view/mediaview.py:410
 #: ../gramps/plugins/view/mediaview.py:426
 msgid "View"
-msgstr "Посмотреть"
+msgstr "Вид"
 
 #: ../gramps/gen/plug/_pluginreg.py:124
 msgid "Relationship calculator"
@@ -23510,12 +23510,14 @@ msgid "Total people"
 msgstr "Количество человек"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:30
+#, fuzzy
 msgid "Gramps_5.2_Wiki_Manual_-_Gramplets#Gramplet_List"
-msgstr ""
+msgstr "Gramps_5.2_Wiki_Manual_-_Gramplets#Gramplet_List"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:31
+#, fuzzy
 msgid "Gramps_5.2_Wiki_Manual_-_Tools#Debug"
-msgstr ""
+msgstr "Gramps_5.2_Wiki_Manual_-_Tools#Debug"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:51
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:59
