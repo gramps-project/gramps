@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-05-06 11:07+0000\n"
+"PO-Revision-Date: 2024-06-19 19:09+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
 "Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/de_AT/>\n"
@@ -40,7 +40,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5.3\n"
+"X-Generator: Weblate 5.6-rc\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -19614,7 +19614,7 @@ msgstr "Fehler beim Exportieren ihres Stammbaum"
 #: ../gramps/gui/plug/export/_exportassistant.py:637
 #: ../gramps/gui/plug/export/_exportassistant.py:673
 msgid "Please wait while your data is selected and exported"
-msgstr "Bitte warten, während deine Daten ausgewählt und exportiert werden"
+msgstr "Bitte warte, während deine Daten ausgewählt und exportiert werden"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:76
 msgid "Selecting Preview Data"
@@ -38796,7 +38796,7 @@ msgstr "Downloadseite einfügen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2444
 msgid "Whether to include a database download option"
-msgstr "Ob eine Download-Option für die Datenbank eingefügt wird"
+msgstr "Ob eine Option zum Download der Datenbank eingefügt wird"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2449
 msgid "How many downloads"
@@ -38916,7 +38916,7 @@ msgstr "Ortsseiten einfügen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2555
 msgid "Whether or not to include the place pages."
-msgstr "Ob Ortsseiten eingefügt werden oder nicht."
+msgstr "Ob Orte-Seiten eingefügt werden oder nicht."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2558
 msgid "Include unused place pages"
