@@ -9,13 +9,14 @@
 # Yin Hoe TAN <astyh83@gmail.com> 2014.
 # Anthony Fok (霍東靈) <foka@debian.org>, 2015.
 # Jacque Fresco <aidter@use.startmail.com>, 2021.
+# hugoalh <hugoalh@users.noreply.hosted.weblate.org>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2021-06-02 22:58+0000\n"
-"Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
+"PO-Revision-Date: 2024-06-07 18:11+0000\n"
+"Last-Translator: hugoalh <hugoalh@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -23,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -117,7 +118,7 @@ msgstr "(猶太教)五旬節"
 
 #: ../data/holidays.xml:368
 msgid "Rosh Ha'Shana"
-msgstr " 猶太教的新年"
+msgstr "猶太教的新年"
 
 #: ../data/holidays.xml:369
 msgid "Rosh Ha'Shana 2"
@@ -606,9 +607,8 @@ msgstr ""
 msgid ""
 "<b>What's That For?</b><br/>Unsure what a button does? Simply hold the mouse "
 "over a button and a tooltip will appear."
-msgstr ""
-"<b>這是作什麼用的？</b><br/>不確定按鈕是作什麼的?很簡單, 把滑鼠懸停按鈕上方，"
-"提示視窗就會出現."
+msgstr "<b>這是作什麼用的？</b><br/>不確定按鈕是作什麼的？很簡單, "
+"把滑鼠懸停按鈕上方，提示視窗就會出現."
 
 #: ../data/tips.xml:40
 #, fuzzy
@@ -619,10 +619,11 @@ msgid ""
 "birth date in Gramps. Click the \"Invoke date editor\" button next to the "
 "date field. See the Gramps Manual to learn more."
 msgstr ""
-"<b>您不能確認的日期?</b><br/>如果您不能確認一個事件發生的日期（比如出生和死亡"
-"日期），Gramps 允許您基於猜測或推測填寫一個範圍的日期。例如：&quot;大約 "
-"1908&quot; 在 Gramps 屬於有效的出生日期輸入。參考 Gramps 手冊瞭解關於日期輸入"
-"選項的完整說明。"
+"<b>您不能確認的日期？</b><br/"
+">如果您不能確認一個事件發生的日期（比如出生和死亡日期），Gramps "
+"允許您基於猜測或推測填寫一個範圍的日期。例如：&quot;大約 1908&quot; 在 "
+"Gramps 屬於有效的出生日期輸入。參考 Gramps "
+"手冊瞭解關於日期輸入選項的完整說明。"
 
 #: ../data/tips.xml:42
 #, fuzzy
@@ -1271,9 +1272,8 @@ msgid "Error opening the file."
 msgstr "開啟檔案出錯。"
 
 #: ../gramps/cli/arghandler.py:537 ../gramps/cli/arghandler.py:564
-#, fuzzy
 msgid "Exiting..."
-msgstr "選擇... "
+msgstr "正在退出…"
 
 #: ../gramps/cli/arghandler.py:541
 #, python-format
@@ -1288,7 +1288,7 @@ msgstr "操作成功完成."
 #: ../gramps/cli/arghandler.py:576
 #, python-format
 msgid "  Info: %s"
-msgstr "  資訊: %s"
+msgstr "  資訊：%s"
 
 #: ../gramps/cli/arghandler.py:576
 msgid "Database is locked, cannot open it!"
@@ -1620,11 +1620,13 @@ msgid "Remove family tree warning"
 msgstr "移除家族樹"
 
 #: ../gramps/cli/clidbman.py:467
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Are you sure you want to remove the family tree named\n"
 "\"%s\"?"
-msgstr "是否確認重新選擇資料?"
+msgstr ""
+"你確定你要移除名稱為\n"
+"「%s」的家族樹嗎？"
 
 #: ../gramps/cli/clidbman.py:479 ../gramps/gui/dbman.py:791
 #, fuzzy
@@ -1780,7 +1782,7 @@ msgstr "無法開啟資料庫"
 #: ../gramps/gui/dbloader.py:461
 #, python-format
 msgid "Could not open file: %s"
-msgstr "無法開啟檔案: %s"
+msgstr "無法開啟檔案：%s"
 
 #: ../gramps/cli/grampscli.py:260
 msgid "Could not load a recent Family Tree."
@@ -1808,7 +1810,7 @@ msgstr "遇到錯誤：%s"
 #: ../gramps/cli/grampscli.py:350 ../gramps/cli/grampscli.py:357
 #, python-format
 msgid "  Details: %s"
-msgstr "  詳細內容: %s"
+msgstr "  詳細內容：%s"
 
 #: ../gramps/cli/grampscli.py:355
 #, python-format
@@ -1929,7 +1931,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/descendreport.py:311
 #: ../gramps/plugins/textreport/placereport.py:203
 msgid ", "
-msgstr "​"
+msgstr " "
 
 #: ../gramps/cli/plug/__init__.py:503 ../gramps/cli/plug/__init__.py:608
 #: ../gramps/cli/plug/__init__.py:691
@@ -6876,7 +6878,7 @@ msgstr "值"
 #: ../gramps/plugins/textreport/indivcomplete.py:88
 #: ../gramps/plugins/view/geoplaces.py:598
 msgid "Custom"
-msgstr "定製"
+msgstr "自訂"
 
 #: ../gramps/gen/lib/attrtype.py:67
 msgid "Caste"
@@ -7077,7 +7079,7 @@ msgstr "引用"
 #: ../gramps/plugins/webreport/repository.py:264
 #: ../gramps/plugins/webreport/source.py:292
 msgid "Gramps ID"
-msgstr "Gramps ID編號: "
+msgstr "Gramps ID"
 
 #: ../gramps/gen/lib/citation.py:110
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:87
@@ -7340,16 +7342,14 @@ msgid "estimated"
 msgstr "推測的"
 
 #: ../gramps/gen/lib/date.py:1976
-#, fuzzy
 msgctxt "date-quality"
 msgid "none"
-msgstr "據估計 "
+msgstr "無"
 
 #: ../gramps/gen/lib/date.py:2000
-#, fuzzy
 msgctxt "date-modifier"
 msgid "none"
-msgstr "以前 "
+msgstr "無"
 
 #: ../gramps/gen/lib/date.py:2001 ../gramps/plugins/lib/libsubstkeyword.py:317
 #: ../gramps/plugins/webreport/basepage.py:3584
@@ -7828,7 +7828,7 @@ msgstr "未知"
 #: ../gramps/gen/lib/eventtype.py:244
 msgctxt "Custom abbreviation"
 msgid "cust."
-msgstr "自定義"
+msgstr "自訂"
 
 #: ../gramps/gen/lib/eventtype.py:245
 msgctxt "Adopted abbreviation"
@@ -7858,7 +7858,7 @@ msgstr "猶太女孩成人禮"
 #: ../gramps/gen/lib/eventtype.py:250
 msgctxt "Blessing abbreviation"
 msgid "bles."
-msgstr "祈佑"
+msgstr "祝福"
 
 #: ../gramps/gen/lib/eventtype.py:251
 msgctxt "Burial abbreviation"
@@ -7883,7 +7883,7 @@ msgstr "洗禮儀式"
 #: ../gramps/gen/lib/eventtype.py:255
 msgctxt "Confirmation abbreviation"
 msgid "conf."
-msgstr "堅振/堅信禮"
+msgstr "堅振／堅信禮"
 
 #: ../gramps/gen/lib/eventtype.py:256
 msgctxt "Cremation abbreviation"
@@ -7913,7 +7913,7 @@ msgstr "遷出"
 #: ../gramps/gen/lib/eventtype.py:261
 msgctxt "First Communion abbreviation"
 msgid "f.comm."
-msgstr "初領聖體/聖餐"
+msgstr "初領聖體／聖餐"
 
 #: ../gramps/gen/lib/eventtype.py:262
 msgctxt "Immigration abbreviation"
@@ -8660,10 +8660,9 @@ msgid "To Do"
 msgstr ""
 
 #: ../gramps/gen/lib/notetype.py:86
-#, fuzzy
 msgctxt "notetype"
 msgid "Link"
-msgstr "筆記類型："
+msgstr "連結"
 
 #: ../gramps/gen/lib/notetype.py:90
 msgid "Person Note"
@@ -9264,9 +9263,8 @@ msgid "Family Tree Differences"
 msgstr "顯示 %s 的索引"
 
 #: ../gramps/gen/merge/diff.py:111
-#, fuzzy
 msgid "Searching..."
-msgstr "選擇... "
+msgstr "正在搜尋…"
 
 #: ../gramps/gen/merge/mergecitationquery.py:73
 msgid "Merge Citation"
@@ -9486,7 +9484,7 @@ msgstr "錯誤：錯誤的 python 檔案 %(filename)s 在註冊檔案 %(regfile)
 #, python-format
 msgid ""
 "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
-msgstr "錯誤: Python 檔案 %(filename)s 在註冊的檔案 %(regfile)s 中不存在"
+msgstr "錯誤：Python 檔案 %(filename)s 在註冊的檔案 %(regfile)s 中不存在"
 
 #: ../gramps/gen/plug/docbackend/docbackend.py:136
 msgid "Close file first"
@@ -9555,7 +9553,7 @@ msgstr "無法建立 %s"
 #: ../gramps/plugins/importer/importprogen.glade:380
 #: ../gramps/plugins/webreport/webcal.py:531
 msgid "Default"
-msgstr "預設的"
+msgstr "預設"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:71
 msgid "PostScript / Helvetica"
@@ -9948,9 +9946,8 @@ msgid "Above"
 msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:86
-#, fuzzy
 msgid "Below"
-msgstr "以下(_W)："
+msgstr "下方"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:87
 #, fuzzy
@@ -10827,7 +10824,7 @@ msgstr "先輩相關死亡日期"
 #: ../gramps/gen/utils/alive.py:626
 #, fuzzy, python-format
 msgid "Database error: loop in %s's ancestors"
-msgstr "資料庫錯誤: %s 被定義為 他/她自己的祖先"
+msgstr "資料庫錯誤：%s 被定義為 他/她自己的祖先"
 
 #: ../gramps/gen/utils/alive.py:684
 msgid "no evidence"
@@ -11732,7 +11729,7 @@ msgstr "無效的"
 #: ../gramps/gui/clipboard.py:504
 #, python-format
 msgid "Volume/Page: %(pag)s -- %(sourcetext)s"
-msgstr "卷/頁: %(pag)s -- %(sourcetext)s"
+msgstr "卷/頁：%(pag)s -- %(sourcetext)s"
 
 #: ../gramps/gui/clipboard.py:542
 msgid "Event ref"
@@ -11930,9 +11927,9 @@ msgstr "無效的或不完整的格式定義。"
 #: ../gramps/gui/plug/_windows.py:830 ../gramps/gui/plug/_windows.py:838
 #: ../gramps/gui/views/navigationview.py:351
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:110
-#, fuzzy, python-format
+#, python-format
 msgid "%s: "
-msgstr "   %s: %s"
+msgstr "%s: "
 
 #: ../gramps/gui/configure.py:673 ../gramps/gui/editors/edittaglist.py:121
 #: ../gramps/gui/glade/addmedia.glade:55
@@ -12150,9 +12147,9 @@ msgid "Background for Home Person"
 msgstr "與家庭成員的關係："
 
 #: ../gramps/gui/configure.py:969 ../gramps/gui/configure.py:2789
-#, fuzzy, python-format
+#, python-format
 msgid "<b>%s</b>"
-msgstr "<b>備註</b>"
+msgstr "<b>%s</b>"
 
 #: ../gramps/gui/configure.py:982
 msgid "Colors"
@@ -12209,7 +12206,7 @@ msgstr "本格式已經存在。"
 
 #: ../gramps/gui/configure.py:1263
 msgid "Example"
-msgstr "例："
+msgstr "例子"
 
 #: ../gramps/gui/configure.py:1281
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:171
@@ -12738,9 +12735,8 @@ msgid "Every day"
 msgstr "每個家庭"
 
 #: ../gramps/gui/configure.py:2315
-#, fuzzy
 msgid "Autobackup"
-msgstr "自動備份..."
+msgstr "自動備份"
 
 #: ../gramps/gui/configure.py:2322
 #, fuzzy
@@ -12973,9 +12969,8 @@ msgid "_Stop"
 msgstr "停止(_S)"
 
 #: ../gramps/gui/dbloader.py:220
-#, fuzzy
 msgid "Are you sure you want to upgrade this Family Tree?"
-msgstr "是否確認重新選擇資料?"
+msgstr "你確定你要升級此家族樹嗎？"
 
 #: ../gramps/gui/dbloader.py:223
 msgid ""
@@ -13007,14 +13002,12 @@ msgid "Login"
 msgstr ""
 
 #: ../gramps/gui/dbloader.py:349
-#, fuzzy
 msgid "Username: "
-msgstr "使用者名："
+msgstr "使用者名稱： "
 
 #: ../gramps/gui/dbloader.py:354
-#, fuzzy
 msgid "Password: "
-msgstr "密碼："
+msgstr "密碼： "
 
 #: ../gramps/gui/dbloader.py:387
 #, fuzzy
@@ -13059,7 +13052,7 @@ msgstr "不能建立檔案"
 #: ../gramps/gui/dbloader.py:538
 #, python-format
 msgid "Could not import file: %s"
-msgstr "無法匯入檔案: %s"
+msgstr "無法匯入檔案：%s"
 
 #: ../gramps/gui/dbloader.py:540
 msgid ""
@@ -14905,7 +14898,7 @@ msgstr "媒體管理器(_M)..."
 #: ../gramps/gui/editors/editmediaref.py:433
 #, python-format
 msgid "Media: %s"
-msgstr "媒體: %s"
+msgstr "媒體：%s"
 
 #: ../gramps/gui/editors/editmedia.py:111
 #: ../gramps/gui/editors/editmediaref.py:435
@@ -14996,7 +14989,7 @@ msgstr "新名稱"
 
 #: ../gramps/gui/editors/editname.py:412
 msgid "Break global name grouping?"
-msgstr "是否斷開全局組命名?"
+msgstr "是否斷開全局組命名？"
 
 #: ../gramps/gui/editors/editname.py:414
 #, python-format
@@ -15015,7 +15008,7 @@ msgstr "返回名稱編輯器"
 
 #: ../gramps/gui/editors/editname.py:446
 msgid "Group all people with the same name?"
-msgstr "是否將同名的人分組?"
+msgstr "是否將同名的人分組？"
 
 #: ../gramps/gui/editors/editname.py:448
 #, python-format
@@ -15043,7 +15036,7 @@ msgstr "編輯關於事件的資訊"
 #: ../gramps/gui/editors/editnote.py:175
 #, python-format
 msgid "Note: %(id)s - %(context)s"
-msgstr "註釋: %(id)s - %(context)s"
+msgstr "註釋：%(id)s - %(context)s"
 
 #: ../gramps/gui/editors/editnote.py:180
 #: ../gramps/plugins/webreport/basepage.py:803
@@ -15091,12 +15084,12 @@ msgstr "添加註解"
 #: ../gramps/gui/editors/editperson.py:176
 #, python-format
 msgid "Person: %(name)s"
-msgstr "成員: %(name)s"
+msgstr "成員：%(name)s"
 
 #: ../gramps/gui/editors/editperson.py:180
 #, python-format
 msgid "New Person: %(name)s"
-msgstr "新人: %(name)s"
+msgstr "新人：%(name)s"
 
 #: ../gramps/gui/editors/editperson.py:182
 msgid "New Person"
@@ -15335,7 +15328,7 @@ msgstr "新增地點(_A)"
 
 #: ../gramps/gui/editors/editprimary.py:250
 msgid "Save Changes?"
-msgstr "是否儲存修改?"
+msgstr "是否儲存修改？"
 
 #: ../gramps/gui/editors/editprimary.py:252
 msgid "If you close without saving, the changes you have made will be lost"
@@ -15667,7 +15660,7 @@ msgstr "定製篩選編輯器"
 
 #: ../gramps/gui/editors/filtereditor.py:1336
 msgid "Delete Filter?"
-msgstr "刪除篩查器?"
+msgstr "刪除篩查器？"
 
 #: ../gramps/gui/editors/filtereditor.py:1338
 #, fuzzy
@@ -15863,9 +15856,8 @@ msgstr "正在更新顯示...."
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:113
 #: ../gramps/gui/glade/editcitation.glade:263
-#, fuzzy
 msgid "Source:"
-msgstr "來源"
+msgstr "來源："
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:118
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:98
@@ -15927,9 +15919,9 @@ msgstr "出生日期"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:164
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:169
-#, fuzzy, python-format
+#, python-format
 msgid "example: \"%(msg1)s\" or \"%(msg2)s\""
-msgstr "例子: \"%s\" 或 \"%s\""
+msgstr "例子：「%(msg1)s」或「%(msg2)s」"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:167
 #: ../gramps/plugins/export/exportcsv.py:433
@@ -18149,9 +18141,8 @@ msgid "pt"
 msgstr ""
 
 #: ../gramps/gui/glade/styleeditor.glade:1621
-#, fuzzy
 msgid "Spacing:"
-msgstr "<b>間距</b>"
+msgstr "間距："
 
 #: ../gramps/gui/glade/styleeditor.glade:1643
 msgid "Draw shadow"
@@ -18892,7 +18883,7 @@ msgstr "選擇一個不同的家庭"
 #: ../gramps/gui/plug/_guioptions.py:1261
 #, python-format
 msgid "Also include %s?"
-msgstr "也包含 %s ?"
+msgstr "也包含 %s ？"
 
 #: ../gramps/gui/plug/_guioptions.py:1264
 #: ../gramps/gui/selectors/selectperson.py:92
@@ -19480,7 +19471,7 @@ msgstr ""
 #: ../gramps/gui/plug/export/_exportassistant.py:539
 #, python-format
 msgid "Filename: %s"
-msgstr "檔名: %s"
+msgstr "檔名：%s"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:542
 msgid "Saving failed"
@@ -19537,7 +19528,7 @@ msgstr "選擇預覽資料"
 #: ../gramps/gui/plug/export/_exportoptions.py:76
 #: ../gramps/gui/plug/export/_exportoptions.py:79
 msgid "Selecting..."
-msgstr "選擇... "
+msgstr "正在選擇…"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:176
 #, fuzzy
@@ -19710,9 +19701,8 @@ msgid "Available Books"
 msgstr "可選擇的書冊"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:255
-#, fuzzy
 msgid "Discard Unsaved Changes"
-msgstr "是否儲存修改?"
+msgstr "放棄未儲存的變更"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:256
 msgid "You have made changes which have not been saved."
@@ -19778,9 +19768,8 @@ msgstr ""
 "因此，每個條目的重要人員在現在開啟的資料庫中，被設為啟用的人員."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:577
-#, fuzzy
 msgid "No selected book item"
-msgstr "是否移除所選欄目?"
+msgstr "沒有已選擇的書目"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:578
 #, fuzzy
@@ -20279,7 +20268,7 @@ msgstr "刪除確認"
 
 #: ../gramps/gui/undohistory.py:197
 msgid "Are you sure you want to clear the Undo history?"
-msgstr "是否確認清空恢復歷史?"
+msgstr "是否確認清空恢復歷史？"
 
 #: ../gramps/gui/undohistory.py:198 ../gramps/plugins/gramplet/eval.py:83
 msgid "Clear"
@@ -20345,7 +20334,7 @@ msgstr "準備就緒"
 
 #: ../gramps/gui/viewmanager.py:673
 msgid "Abort changes?"
-msgstr "退出修改?"
+msgstr "退出修改？"
 
 #: ../gramps/gui/viewmanager.py:675
 #, fuzzy
@@ -20578,7 +20567,7 @@ msgstr "欄目現在正在被使用，刪除它將會從資料庫中移除所有
 #: ../gramps/plugins/view/familyview.py:410
 #, python-format
 msgid "Delete %s?"
-msgstr "是否刪除 %s ?"
+msgstr "是否刪除 %s ？"
 
 #: ../gramps/gui/views/listview.py:762
 msgid "Column clicked, sorting..."
@@ -20635,7 +20624,7 @@ msgstr "依據 Gramps ID 編號跳轉"
 #: ../gramps/gui/views/navigationview.py:369
 #, python-format
 msgid "Error: %s is not a valid Gramps ID"
-msgstr "錯誤: %s 不是有效的 GRAMPS ID 編號"
+msgstr "錯誤：%s 不是有效的 GRAMPS ID 編號"
 
 #: ../gramps/gui/views/pageview.py:107
 msgid "_Bottombar"
@@ -22495,7 +22484,7 @@ msgstr "欄目計數"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:334
 msgid "All"
-msgstr "所有"
+msgstr "全部"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:335
 #: ../gramps/plugins/drawreport/statisticschart.py:502
@@ -23199,7 +23188,7 @@ msgstr "父親－子女 年齡差異分佈"
 #: ../gramps/plugins/gramplet/agestats.py:179
 #: ../gramps/plugins/gramplet/agestats.py:187
 msgid "Diff"
-msgstr "Diff"
+msgstr "差異"
 
 #: ../gramps/plugins/gramplet/agestats.py:186
 msgid "Mother - Child Age Diff Distribution"
@@ -23725,7 +23714,7 @@ msgstr "歡迎使用 Gramps！"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:378
 #, fuzzy
 msgid "What's Next"
-msgstr "下一項?"
+msgstr "下一項？"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:379
 msgid "Gramplet suggesting items to research"
@@ -23733,7 +23722,7 @@ msgstr "Gramplet 建議項目搜尋"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:385
 msgid "What's Next?"
-msgstr "下一項?"
+msgstr "下一項？"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:397
 #, fuzzy
@@ -24368,9 +24357,8 @@ msgstr "Gramplet為成員顯示媒體物件"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1481
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1489
-#, fuzzy
 msgid "SoundEx"
-msgstr "SoundEx 程式碼："
+msgstr "SoundEx"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1482
 #, fuzzy
@@ -24583,9 +24571,9 @@ msgid "%(date)s - %(place)s."
 msgstr "%(date)s 在 %(place)s. "
 
 #: ../gramps/plugins/gramplet/persondetails.py:276
-#, fuzzy, python-format
+#, python-format
 msgid "%(date)s."
-msgstr "%(date)s"
+msgstr "%(date)s。"
 
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:79
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:118
@@ -24627,7 +24615,7 @@ msgstr "%(person)s, birth%(relation)s"
 #: ../gramps/plugins/gramplet/relativegramplet.py:101
 #, python-format
 msgid "%d. Partner: Not known"
-msgstr "%d. 伴侶: 未知"
+msgstr "%d. 伴侶：未知"
 
 #: ../gramps/plugins/gramplet/relativegramplet.py:116
 msgid "Parents:"
@@ -24637,13 +24625,13 @@ msgstr "父母："
 #: ../gramps/plugins/gramplet/relativegramplet.py:132
 #, python-format
 msgid "   %d.a Mother: "
-msgstr "   %d.a 母親: "
+msgstr "   %d.a 母親： "
 
 #: ../gramps/plugins/gramplet/relativegramplet.py:139
 #: ../gramps/plugins/gramplet/relativegramplet.py:143
 #, python-format
 msgid "   %d.b Father: "
-msgstr "   %d.b 父親: "
+msgstr "   %d.b 父親： "
 
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:49
 msgid ""
@@ -25111,7 +25099,7 @@ msgstr "出生事件缺失"
 #: ../gramps/plugins/gramplet/whatsnext.py:475
 #, python-format
 msgid ": %(list)s\n"
-msgstr ": %(list)s\n"
+msgstr "：%(list)s\n"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:389
 msgid "person not complete"
@@ -25920,9 +25908,8 @@ msgstr "結果"
 #: ../gramps/plugins/importer/importgeneweb.py:186
 #: ../gramps/plugins/importer/importprogen.py:219
 #: ../gramps/plugins/importer/importvcard.py:91
-#, fuzzy
 msgid "done"
-msgstr "完成!\n"
+msgstr "完成"
 
 #: ../gramps/plugins/importer/importcsv.py:204
 msgid "given name"
@@ -26222,9 +26209,9 @@ msgid "enclosed_by"
 msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:424
-#, fuzzy, python-format
+#, python-format
 msgid "format error: line %(line)d: %(zero)s"
-msgstr "格式錯誤: 檔案 %(fname)s , 行 %(line)d: %(zero)s"
+msgstr "格式錯誤：行 %(line)d：%(zero)s"
 
 #: ../gramps/plugins/importer/importcsv.py:520
 msgid "CSV Import"
@@ -26241,10 +26228,10 @@ msgstr "匯入 CSV"
 #: ../gramps/plugins/importer/importcsv.py:539
 #: ../gramps/plugins/importer/importgeneweb.py:302
 #: ../gramps/plugins/importer/importvcard.py:268
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Import Complete: {number_of} second"
 msgid_plural "Import Complete: {number_of} seconds"
-msgstr[0] "匯入完成: %d 秒"
+msgstr[0] "匯入完成：{number_of} 秒"
 
 #: ../gramps/plugins/importer/importcsv.py:561
 #, fuzzy
@@ -26289,7 +26276,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importgedcom.glade:125
 msgid "Encoding: "
-msgstr "編碼："
+msgstr "編碼： "
 
 #: ../gramps/plugins/importer/importgedcom.py:147
 msgid "Invalid GEDCOM file"
@@ -26588,9 +26575,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1164
-#, fuzzy
 msgid "  Objects"
-msgstr "目標"
+msgstr "  物件"
 
 #: ../gramps/plugins/importer/importprogen.glade:1168
 msgid ""
@@ -26748,9 +26734,9 @@ msgid "Import Pro-Gen"
 msgstr "從 Pro-Gen 匯入"
 
 #: ../gramps/plugins/importer/importvcard.py:247
-#, fuzzy, python-format
+#, python-format
 msgid "Line %(line)5d: %(prob)s\n"
-msgstr "格式錯誤: 檔案 %(fname)s , 行 %(line)d: %(zero)s"
+msgstr "行 %(line)5d：%(prob)s\n"
 
 #: ../gramps/plugins/importer/importvcard.py:261
 msgid "vCard import"
@@ -27013,7 +26999,7 @@ msgstr "舊 XML 檔案"
 #: ../gramps/plugins/importer/importxml.py:2923
 #, python-format
 msgid "Witness name: %s"
-msgstr "目擊者姓名: %s"
+msgstr "目擊者姓名：%s"
 
 #: ../gramps/plugins/importer/importxml.py:1442
 #, fuzzy
@@ -27056,7 +27042,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importxml.py:2792
 #, python-format
 msgid "Witness comment: %s"
-msgstr "目擊者評論: %s"
+msgstr "目擊者評論：%s"
 
 #: ../gramps/plugins/importer/importxml.py:3475
 #, python-format
@@ -27102,9 +27088,8 @@ msgid "Destination"
 msgstr "目標資料夾"
 
 #: ../gramps/plugins/lib/libgedcom.py:739
-#, fuzzy
 msgid "DNA"
-msgstr "DNS"
+msgstr "DNA"
 
 #: ../gramps/plugins/lib/libgedcom.py:740
 msgid "Cause of Death"
@@ -27121,9 +27106,8 @@ msgid "Eye Color"
 msgstr "顏色"
 
 #: ../gramps/plugins/lib/libgedcom.py:745
-#, fuzzy
 msgid "Height"
-msgstr "高度："
+msgstr "高度"
 
 #: ../gramps/plugins/lib/libgedcom.py:746
 msgid "Initiatory (LDS)"
@@ -27144,9 +27128,8 @@ msgid "Namesake"
 msgstr "姓名(_N)"
 
 #: ../gramps/plugins/lib/libgedcom.py:750
-#, fuzzy
 msgid "Ordinance"
-msgstr "教儀："
+msgstr "教儀"
 
 #: ../gramps/plugins/lib/libgedcom.py:752
 #, fuzzy
@@ -27161,7 +27144,7 @@ msgstr "右"
 #: ../gramps/plugins/lib/libgedcom.py:1018
 #, fuzzy
 msgid "Line ignored "
-msgstr "行 %d: 空註釋被忽略."
+msgstr "行 %d：空註釋被忽略. "
 
 #: ../gramps/plugins/lib/libgedcom.py:1876
 #, python-format
@@ -27255,9 +27238,8 @@ msgid "TRLR (trailer)"
 msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:3917
-#, fuzzy
 msgid "(Submitter):"
-msgstr "提交"
+msgstr "（提交者）："
 
 #: ../gramps/plugins/lib/libgedcom.py:3942
 #: ../gramps/plugins/lib/libgedcom.py:7781
@@ -27470,9 +27452,8 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:8087
 #: ../gramps/plugins/lib/libgedcom.py:8131
-#, fuzzy
 msgid "Empty note ignored"
-msgstr "行 %d: 空註釋被忽略."
+msgstr "空白註釋已忽略"
 
 #: ../gramps/plugins/lib/libgedcom.py:8148
 #, fuzzy, python-format
@@ -27641,10 +27622,8 @@ msgid "Label"
 msgstr ""
 
 #: ../gramps/plugins/lib/libmetadata.py:230
-#, fuzzy
-#| msgid ", "
 msgid " "
-msgstr "​"
+msgstr " "
 
 #: ../gramps/plugins/lib/libnarrate.py:111
 #, python-format
@@ -31548,9 +31527,9 @@ msgid "Field '%(fldname)s' not found"
 msgstr "域 '%(fldname)s' 無法找到"
 
 #: ../gramps/plugins/lib/libprogen.py:565
-#, fuzzy, python-format
+#, python-format
 msgid "Not a (right) DEF file: %(dname)s"
-msgstr "無法找到 DEF 檔案: %(deffname)s"
+msgstr "不是（正確的）DEF 檔案：%(dname)s"
 
 #: ../gramps/plugins/lib/libprogen.py:573
 #: ../gramps/plugins/lib/libprogen.py:796
@@ -31572,9 +31551,8 @@ msgid "Pro-Gen import"
 msgstr "Pro-Gen 匯入"
 
 #: ../gramps/plugins/lib/libprogen.py:615
-#, fuzzy
 msgid "Saving."
-msgstr "選擇... "
+msgstr "正在儲存。"
 
 #: ../gramps/plugins/lib/libprogen.py:995
 #, fuzzy
@@ -31584,12 +31562,12 @@ msgstr "Pro-Gen 匯入"
 #: ../gramps/plugins/lib/libprogen.py:1239
 #, fuzzy, python-format
 msgid "Date did not match: '%(text)s' (%(msg)s)"
-msgstr "日期不匹配: '%(text)s' (%(msg)s)"
+msgstr "日期不匹配：'%(text)s' (%(msg)s)"
 
 #: ../gramps/plugins/lib/libprogen.py:1255
 #, fuzzy, python-format
 msgid "Time: %s"
-msgstr "健在: %s"
+msgstr "健在：%s"
 
 #: ../gramps/plugins/lib/libprogen.py:1313
 #, fuzzy
@@ -31621,9 +31599,8 @@ msgid "Civil union"
 msgstr "女，同性戀已婚｜同居密友"
 
 #: ../gramps/plugins/lib/libprogen.py:1977
-#, fuzzy
 msgid "Wedding"
-msgstr "留空(_P)："
+msgstr "婚禮"
 
 #: ../gramps/plugins/lib/libprogen.py:2019
 msgid "future"
@@ -32078,13 +32055,13 @@ msgstr "人們可能仍在世並且他們的年齡在 %s"
 #: ../gramps/plugins/quickview/ageondate.py:68
 #, python-format
 msgid "Alive: %s"
-msgstr "健在: %s"
+msgstr "健在：%s"
 
 #: ../gramps/plugins/quickview/ageondate.py:74
 #: ../gramps/plugins/quickview/ageondate.py:77
 #, python-format
 msgid "Deceased: %s"
-msgstr "已故: %s"
+msgstr "已故：%s"
 
 #: ../gramps/plugins/quickview/ageondate.py:83
 #, python-format
@@ -32217,10 +32194,9 @@ msgid "There are %d people with a matching attribute name.\n"
 msgstr "有%d 人符合屬性名稱.\n"
 
 #: ../gramps/plugins/quickview/filterbyname.py:43
-#, fuzzy
 msgctxt "Filtering_on"
 msgid "all"
-msgstr "基於男性成員篩選"
+msgstr "全部"
 
 #: ../gramps/plugins/quickview/filterbyname.py:44
 #, fuzzy
@@ -32519,7 +32495,7 @@ msgstr "女性直接後裔"
 #: ../gramps/plugins/quickview/lineage.py:134
 #: ../gramps/plugins/quickview/lineage.py:235
 msgid "ERROR : Too many levels in the tree (perhaps a loop?)."
-msgstr "錯誤：家族樹包含太多的級別(可能是一個迴圈?)。"
+msgstr "錯誤：家族樹包含太多的級別(可能是一個迴圈？)。"
 
 #: ../gramps/plugins/quickview/lineage.py:165
 msgid "No birth relation with child"
@@ -33331,12 +33307,12 @@ msgstr "%s 的註釋"
 #: ../gramps/plugins/textreport/detdescendantreport.py:998
 #, python-format
 msgid "%(type)s: %(value)s%(endnotes)s"
-msgstr "%(type)s: %(value)s%(endnotes)s"
+msgstr "%(type)s：%(value)s%(endnotes)s"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:432
 #: ../gramps/plugins/textreport/detdescendantreport.py:976
 msgid "Address: "
-msgstr "地址："
+msgstr "地址： "
 
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/plugins/textreport/detancestralreport.py:441
@@ -33346,9 +33322,9 @@ msgid "%s, "
 msgstr "%s, "
 
 #: ../gramps/plugins/textreport/detancestralreport.py:503
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_role)s at %(event_name)s of %(primary_person)s: %(event_text)s"
-msgstr "%(event_name)s: %(event_text)s"
+msgstr "%(primary_person)s 在 %(event_name)s 中的 %(event_role)s：%(event_text)s"
 
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/plugins/textreport/detancestralreport.py:523
@@ -34255,43 +34231,43 @@ msgstr "資料庫統計報告"
 #: ../gramps/plugins/textreport/summary.py:187
 #, python-format
 msgid "Number of individuals: %d"
-msgstr "家族成員的數量: %d"
+msgstr "家族成員的數量：%d"
 
 #: ../gramps/plugins/textreport/summary.py:191
 #, python-format
 msgid "Males: %d"
-msgstr "男性: %d"
+msgstr "男性：%d"
 
 #: ../gramps/plugins/textreport/summary.py:195
 #, python-format
 msgid "Females: %d"
-msgstr "女性: %d"
+msgstr "女性：%d"
 
 #: ../gramps/plugins/textreport/summary.py:199
 #, fuzzy, python-format
 #| msgid "Individuals with unknown gender: %d"
 msgid "Individuals with other gender: %d"
-msgstr "未知性別的個人: %d"
+msgstr "未知性別的個人：%d"
 
 #: ../gramps/plugins/textreport/summary.py:203
 #, python-format
 msgid "Individuals with unknown gender: %d"
-msgstr "未知性別的個人: %d"
+msgstr "未知性別的個人：%d"
 
 #: ../gramps/plugins/textreport/summary.py:207
 #, fuzzy, python-format
 msgid "Incomplete names: %d"
-msgstr "個人（不完整名稱）: %d"
+msgstr "個人（不完整名稱）：%d"
 
 #: ../gramps/plugins/textreport/summary.py:212
 #, python-format
 msgid "Individuals missing birth dates: %d"
-msgstr "缺少出生日期資訊的個人: %d"
+msgstr "缺少出生日期資訊的個人：%d"
 
 #: ../gramps/plugins/textreport/summary.py:217
 #, python-format
 msgid "Disconnected individuals: %d"
-msgstr "斷開連線的個人: %d"
+msgstr "斷開連線的個人：%d"
 
 #: ../gramps/plugins/textreport/summary.py:221
 #, python-format
@@ -34301,7 +34277,7 @@ msgstr "獨有的姓:%d"
 #: ../gramps/plugins/textreport/summary.py:225
 #, python-format
 msgid "Individuals with media objects: %d"
-msgstr "個人（有媒體物件）: %d"
+msgstr "個人（有媒體物件）：%d"
 
 #: ../gramps/plugins/textreport/summary.py:238
 #, python-format
@@ -34365,7 +34341,7 @@ msgstr "搜尋文庫"
 #: ../gramps/plugins/textreport/summary.py:342
 #, python-format
 msgid "Number of unique media objects: %d"
-msgstr "獨立媒體物件的數量: %d"
+msgstr "獨立媒體物件的數量：%d"
 
 #: ../gramps/plugins/textreport/summary.py:346
 #, python-format
@@ -35279,7 +35255,7 @@ msgstr "尋找複製的人員"
 
 #: ../gramps/plugins/tool/finddupes.py:210
 msgid "Pass 1: Building preliminary lists"
-msgstr "第一步: 建立基礎列表"
+msgstr "第一步：建立基礎列表"
 
 #: ../gramps/plugins/tool/finddupes.py:227
 msgid "Pass 2: Calculating potential matches"
@@ -35430,7 +35406,7 @@ msgid ""
 msgstr ""
 "即將採取以下操作:\n"
 "\n"
-"操作: \t%s"
+"操作：\t%s"
 
 #: ../gramps/plugins/tool/mediamanager.py:509
 msgid "Replace _substrings in the path"
@@ -35470,7 +35446,7 @@ msgstr ""
 "\n"
 "操作:\t%(title)s\n"
 "取代:\t\t%(src_fname)s\n"
-"取代為: \t\t%(dest_fname)s"
+"取代為：\t\t%(dest_fname)s"
 
 #: ../gramps/plugins/tool/mediamanager.py:599
 msgid "Convert paths from relative to _absolute"
@@ -35823,7 +35799,7 @@ msgstr "他們共同的先輩是「%(ancestor1)s」和「%(ancestor2)s」。"
 
 #: ../gramps/plugins/tool/relcalc.py:245
 msgid "Their common ancestors are: "
-msgstr "共同的先輩是: "
+msgstr "共同的先輩是： "
 
 #: ../gramps/plugins/tool/removespaces.py:56
 msgctxt "manual"
@@ -38128,10 +38104,8 @@ msgid ""
 "by their surname, with one of the following: Address, Residence, or Web "
 "Links. Selecting the person&#8217;s name will take you to their individual "
 "Address Book page."
-msgstr ""
-"本頁包含資料庫中所有個體成員的索引，按照名字排列. 選擇成員，依照按照名字會將"
-"您指向他的個人頁面.選擇成員&#8217;s  姓名會指引您到他們的地址簿#8217;s 中的個"
-"人地址目錄頁面。"
+msgstr "本頁包含資料庫中所有個體成員的索引，按姓氏排序，並包含以下內容之一：地址、住"
+"址或網頁連結。選擇成員的姓名將帶你進入其個人通訊錄頁面。"
 
 #: ../gramps/plugins/webreport/addressbooklist.py:117
 msgid "Full Name"
@@ -38440,14 +38414,12 @@ msgid "Families beginning with letter "
 msgstr "事件類型以字母開始"
 
 #: ../gramps/plugins/webreport/family.py:254
-#, fuzzy
 msgid ""
 "This page contains an index of all the families/ relationships in the "
 "database, sorted by their family name/ surname. Clicking on a person&#8217;s "
 "name will take you to their family/ relationship&#8217;s page."
-msgstr ""
-"本頁包含資料庫中所有地點的索引，按照名稱排列. 選擇地點&#8217;s 按照名稱會將您"
-"引向&#8217;s 的頁面."
+msgstr "本頁包含資料庫中所有家庭或關係的索引，按家族名稱或姓氏排序。點擊成員的姓名將"
+"帶你進入其家人／關係頁面。"
 
 #: ../gramps/plugins/webreport/family.py:558
 #, fuzzy, python-format
@@ -38528,7 +38500,7 @@ msgstr "%(current)s 和 %(parent)s 都不是目錄"
 #: ../gramps/plugins/webreport/narrativeweb.py:384
 #, python-format
 msgid "Could not create the directory: %s"
-msgstr "無法建立目錄: %s"
+msgstr "無法建立目錄：%s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:393
 msgid "Invalid file name"
@@ -39596,9 +39568,8 @@ msgid ""
 "This page contains an index of all the places in the database, sorted by "
 "their title. Clicking on a place&#8217;s title will take you to that "
 "place&#8217;s page."
-msgstr ""
-"本頁包含資料庫中所有地點的索引，按照名稱排列。選擇地點&#8217;s 按照名稱會將您"
-"引向&#8217;s 的頁面。"
+msgstr "本頁包含資料庫中所有地點的索引，按名稱排序。點擊地點名稱將帶你進入其地點頁面"
+"。"
 
 #: ../gramps/plugins/webreport/place.py:327
 #: ../gramps/plugins/webreport/place.py:339
