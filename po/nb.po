@@ -18,8 +18,8 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-03-26 00:02+0000\n"
-"Last-Translator: Mihle <MihleGaming@gmail.com>\n"
+"PO-Revision-Date: 2024-05-15 20:01+0000\n"
+"Last-Translator: Mikal Thunold-Olsen <mikal@thunold-olsen.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/nb_NO/>\n"
 "Language: nb\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.6-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -18983,14 +18983,12 @@ msgid "Loading..."
 msgstr "Laster inn..."
 
 #: ../gramps/gui/plug/_windows.py:562
-#, fuzzy
-#| msgid "Operation failed"
 msgid "Addon Registration Failed"
-msgstr "Operasjon feilet"
+msgstr "Registrering av tillegg feilet"
 
 #: ../gramps/gui/plug/_windows.py:563
 msgid "The addon will be unavailable in your current configuration."
-msgstr ""
+msgstr "Tillegget er utilgjengelig i din nåværende konfigurasjon."
 
 #: ../gramps/gui/plug/_windows.py:588
 msgid "No matching addons found."
