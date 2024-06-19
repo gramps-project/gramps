@@ -18,13 +18,14 @@
 # Óscar Fernández Díaz <oscfdezdz@users.noreply.hosted.weblate.org>, 2023.
 # gallegonovato <fran-carro@hotmail.es>, 2023, 2024.
 # Jaime Marquínez Ferrándiz <jaime.marquinez.ferrandiz@fastmail.net>, 2024.
+# Diego Pedraza <zegeridp@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-03-26 00:02+0000\n"
-"Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
+"PO-Revision-Date: 2024-05-19 22:01+0000\n"
+"Last-Translator: Diego Pedraza <zegeridp@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
 "Language: es\n"
@@ -32,7 +33,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -9109,7 +9110,7 @@ msgstr "Distrito"
 
 #: ../gramps/gen/lib/placetype.py:79 ../gramps/plugins/view/geoplaces.py:631
 msgid "Municipality"
-msgstr "Municipalidad"
+msgstr "Municipio"
 
 #: ../gramps/gen/lib/placetype.py:80 ../gramps/plugins/view/geoplaces.py:629
 msgid "Town"
