@@ -9,13 +9,14 @@
 # Yin Hoe TAN <astyh83@gmail.com> 2014.
 # Anthony Fok (霍東靈) <foka@debian.org>, 2015.
 # Abel Cheung <abelcheung@gmail.com>, 2023.
+# hugoalh <hugoalh@users.noreply.hosted.weblate.org>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2023-04-11 06:47+0000\n"
-"Last-Translator: Abel Cheung <abelcheung@gmail.com>\n"
+"PO-Revision-Date: 2024-06-02 10:09+0000\n"
+"Last-Translator: hugoalh <hugoalh@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/"
 "projects/gramps-project/gramps/zh_Hant_HK/>\n"
 "Language: zh_HK\n"
@@ -23,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -117,7 +118,7 @@ msgstr "(猶太教)五旬節"
 
 #: ../data/holidays.xml:368
 msgid "Rosh Ha'Shana"
-msgstr " 猶太教的新年"
+msgstr "猶太教的新年"
 
 #: ../data/holidays.xml:369
 msgid "Rosh Ha'Shana 2"
@@ -12377,12 +12378,12 @@ msgid "Status bar"
 msgstr "狀態列"
 
 #: ../gramps/gui/configure.py:1662
-#, fuzzy
-#| msgid "Report Options"
 msgid ""
 "\n"
 "Input Options"
-msgstr "報告選項"
+msgstr ""
+"\n"
+"輸入選項"
 
 #: ../gramps/gui/configure.py:1676
 msgid "Surname guessing"
@@ -12669,11 +12670,12 @@ msgid "Database backend"
 msgstr "開啟的資料庫"
 
 #: ../gramps/gui/configure.py:2234
-#, fuzzy
 msgid ""
 "\n"
 "Database Location"
-msgstr "相關資訊"
+msgstr ""
+"\n"
+"資料庫位置"
 
 #: ../gramps/gui/configure.py:2245
 msgid "Host"
@@ -12691,11 +12693,12 @@ msgid "Database path"
 msgstr "修復資料庫"
 
 #: ../gramps/gui/configure.py:2269
-#, fuzzy
 msgid ""
 "\n"
 "Backup Management"
-msgstr "備份被取消"
+msgstr ""
+"\n"
+"備份管理"
 
 #: ../gramps/gui/configure.py:2282
 #, fuzzy
@@ -12742,12 +12745,12 @@ msgid "Autobackup"
 msgstr "自動備份..."
 
 #: ../gramps/gui/configure.py:2322
-#, fuzzy
-#| msgid "Family Tree Database path"
 msgid ""
 "\n"
 "Family Tree's Media path"
-msgstr "家族樹資料庫路徑"
+msgstr ""
+"\n"
+"家族樹媒體路徑"
 
 #: ../gramps/gui/configure.py:2335
 #, fuzzy
