@@ -13,13 +13,14 @@
 # Niko Strijbol <strijbol.niko@gmail.com>, 2022.
 # Stephan Paternotte <s.paternotte@outlook.com>, 2022.
 # Stephan Paternotte <stephan@paternottes.net>, 2023, 2024.
+# Ailean Riepsaame-Duffy <aileanr@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-03-26 00:02+0000\n"
-"Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
+"PO-Revision-Date: 2024-06-16 08:09+0000\n"
+"Last-Translator: Ailean Riepsaame-Duffy <aileanr@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
 "Language: nl\n"
@@ -27,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -2790,12 +2791,12 @@ msgstr "Tisjri"
 #: ../gramps/gen/datehandler/_datestrings.py:164
 msgctxt "Hebrew month lexeme"
 msgid "Heshvan"
-msgstr "Heshvan"
+msgstr "Chesjvan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:165
 msgctxt "Hebrew month lexeme"
 msgid "Kislev"
-msgstr "Kislev"
+msgstr "Kislew"
 
 #: ../gramps/gen/datehandler/_datestrings.py:166
 msgctxt "Hebrew month lexeme"
@@ -2805,17 +2806,17 @@ msgstr "Tevet"
 #: ../gramps/gen/datehandler/_datestrings.py:167
 msgctxt "Hebrew month lexeme"
 msgid "Shevat"
-msgstr "Shevat"
+msgstr "Sjevat"
 
 #: ../gramps/gen/datehandler/_datestrings.py:168
 msgctxt "Hebrew month lexeme"
 msgid "AdarI"
-msgstr "AdarI"
+msgstr "Adar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:169
 msgctxt "Hebrew month lexeme"
 msgid "AdarII"
-msgstr "AdarII"
+msgstr "Adar 2"
 
 #: ../gramps/gen/datehandler/_datestrings.py:170
 msgctxt "Hebrew month lexeme"
@@ -2825,7 +2826,7 @@ msgstr "Nisan"
 #: ../gramps/gen/datehandler/_datestrings.py:171
 msgctxt "Hebrew month lexeme"
 msgid "Iyyar"
-msgstr "Iyyar"
+msgstr "Iar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:172
 msgctxt "Hebrew month lexeme"
@@ -2835,7 +2836,7 @@ msgstr "Sivan"
 #: ../gramps/gen/datehandler/_datestrings.py:173
 msgctxt "Hebrew month lexeme"
 msgid "Tammuz"
-msgstr "Tammuz"
+msgstr "Tammoez"
 
 #: ../gramps/gen/datehandler/_datestrings.py:174
 msgctxt "Hebrew month lexeme"
@@ -2845,7 +2846,7 @@ msgstr "Av"
 #: ../gramps/gen/datehandler/_datestrings.py:175
 msgctxt "Hebrew month lexeme"
 msgid "Elul"
-msgstr "Elul"
+msgstr "Eloel"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2854,62 +2855,62 @@ msgstr "Elul"
 #: ../gramps/gen/datehandler/_datestrings.py:184
 msgctxt "French month lexeme"
 msgid "Vendémiaire"
-msgstr "Vendémiaire"
+msgstr "Wijnmaand"
 
 #: ../gramps/gen/datehandler/_datestrings.py:185
 msgctxt "French month lexeme"
 msgid "Brumaire"
-msgstr "Brumaire"
+msgstr "Mistmaand"
 
 #: ../gramps/gen/datehandler/_datestrings.py:186
 msgctxt "French month lexeme"
 msgid "Frimaire"
-msgstr "Frimaire"
+msgstr "Koudemaand"
 
 #: ../gramps/gen/datehandler/_datestrings.py:187
 msgctxt "French month lexeme"
 msgid "Nivôse"
-msgstr "Nivôse"
+msgstr "Sneeuwmaand"
 
 #: ../gramps/gen/datehandler/_datestrings.py:188
 msgctxt "French month lexeme"
 msgid "Pluviôse"
-msgstr "Pluviôse"
+msgstr "Regenmaand"
 
 #: ../gramps/gen/datehandler/_datestrings.py:189
 msgctxt "French month lexeme"
 msgid "Ventôse"
-msgstr "Ventôse"
+msgstr "Windmaand"
 
 #: ../gramps/gen/datehandler/_datestrings.py:190
 msgctxt "French month lexeme"
 msgid "Germinal"
-msgstr "Germinal"
+msgstr "Kiemmaand"
 
 #: ../gramps/gen/datehandler/_datestrings.py:191
 msgctxt "French month lexeme"
 msgid "Floréal"
-msgstr "Floréal"
+msgstr "Bloemmaand"
 
 #: ../gramps/gen/datehandler/_datestrings.py:192
 msgctxt "French month lexeme"
 msgid "Prairial"
-msgstr "Prairial"
+msgstr "Weidemaand"
 
 #: ../gramps/gen/datehandler/_datestrings.py:193
 msgctxt "French month lexeme"
 msgid "Messidor"
-msgstr "Messidor"
+msgstr "Oogstmaand"
 
 #: ../gramps/gen/datehandler/_datestrings.py:194
 msgctxt "French month lexeme"
 msgid "Thermidor"
-msgstr "Thermidor"
+msgstr "Hittemaand"
 
 #: ../gramps/gen/datehandler/_datestrings.py:195
 msgctxt "French month lexeme"
 msgid "Fructidor"
-msgstr "Fructidor"
+msgstr "Fruitmaand"
 
 #: ../gramps/gen/datehandler/_datestrings.py:196
 msgctxt "French month lexeme"
@@ -7812,7 +7813,7 @@ msgstr "Volkstelling"
 
 #: ../gramps/gen/lib/eventtype.py:203
 msgid "Christening"
-msgstr "Doopnaam (chr)"
+msgstr "Doop"
 
 #: ../gramps/gen/lib/eventtype.py:204 ../gramps/gen/lib/ldsord.py:96
 msgid "Confirmation"
@@ -8028,7 +8029,7 @@ msgstr "vlkt."
 #: ../gramps/gen/lib/eventtype.py:254
 msgctxt "Christening abbreviation"
 msgid "chr."
-msgstr "chr."
+msgstr "doo."
 
 #: ../gramps/gen/lib/eventtype.py:255
 msgctxt "Confirmation abbreviation"
