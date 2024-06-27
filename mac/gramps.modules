@@ -115,6 +115,51 @@
     </dependencies>
  </distutils>
 
+ <!--Note the leading ; in autogen-template. It's there on purpose in case the user has set nice_build so that the nice prepended to the command doesn't eat the cd. -->
+  <autotools id="berkeleydb" autogen-sh="configure"
+	     supports-non-srcdir-builds="no"  makeargs="-C build_unix"
+	     autogen-template="cd .;cd build_unix; ../dist/%(autogen-sh)s --prefix %(prefix)s  %(autogenargs)s"
+	     makeinstallargs="-C build_unix install">
+
+    <branch module="berkeley-db/db-4.8.30.NC.tar.gz" version="4.8.30"
+        repo="oracle"
+            hash="sha256:12edc0df75bf9abd7f82f821795bcee50f42cb2e5f76a6a281b85732798364ef" >
+      <patch file="berkeleydb-4.8-atomic.patch" strip='1'/>
+      <patch file="berkeleydb-4.8-mutex.patch" strip='1'/>
+    </branch>
+  </autotools>
+
+  <!-- For out-of-source-tree builds (i.e., builddir is defined either
+       in .jhbuildrc-custom or passed as an option on the
+       command-line, the normal berkeleydb module will build in its
+       srcdir/build_unix directory. If you want to build it in the
+       build directory with most of the other modules, use this module
+       instead. -->
+  <autotools id="berkeleydb-nonsrctree" autogen-sh="configure"
+         autogen-template="%(srcdir)s/dist/%(autogen-sh)s --prefix %(prefix)s  %(autogenargs)s" >
+
+    <branch module="berkeley-db/db-4.8.30.NC.tar.gz" version="4.8.30"
+            repo="oracle"
+            hash="sha256:12edc0df75bf9abd7f82f821795bcee50f42cb2e5f76a6a281b85732798364ef">
+      <patch file="berkeleydb-4.8-atomic.patch" strip='1'/>
+      <patch file="berkeleydb-4.8-mutex.patch" strip='1'/>
+    </branch>
+  </autotools>
+
+
+  <distutils id="pybsddb">
+    <branch repo="pymodules" version="6.2.9"
+            module="f0/24/92034482656945fc6ceb10551222b43a0ff8d0c87e15839120487820067e/bsddb3-6.2.9.tar.gz"
+            hash="sha256:70d05ec8dc568f42e70fc919a442e0daadc2a905a1cfb7ca77f549d49d6e7801" />
+    <dependencies>
+      <dep package="python3"/>
+    </dependencies>
+    <after>
+      <dep package="berkeleydb"/>
+      <dep package="berkeleydb-nonsrctree"/>
+    </after>
+  </distutils>
+
   <distutils id='pyfontconfig'>
     <branch repo='pymodules' version="0.5.1"
             module="e6/01/a28b0160f82ca5e946e315251c797f07c74e5c5a53f2a9e706eebc680191/Python-fontconfig-0.5.1.tar.gz"
@@ -145,6 +190,7 @@
       <dep package="pygobject3"/>
       <dep package='pyicu'/>
       <dep package="pillow"/>
+      <dep package="pybsddb"/>
     </dependencies>
   </metamodule>
 

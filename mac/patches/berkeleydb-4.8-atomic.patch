@@ -1,0 +1,40 @@
+--- a/dist/configure	2010-04-12 13:25:23.000000000 -0700
++++ b/dist/configure	2021-04-11 11:27:32.000000000 -0700
+@@ -19158,7 +19158,7 @@
+ 	# x86_64/gcc: FreeBSD, NetBSD, BSD/OS, Linux
+ 	cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+-
++#include <stdlib.h>
+ int
+ main ()
+ {
+@@ -20197,7 +20197,7 @@
+ if test "$db_cv_atomic" = no; then
+ 	cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+-
++#include <stdlib.h>
+ int
+ main ()
+ {
+--- a/dbinc/atomic.h	2013-03-12 14:07:22.000000000 -0400
++++ b/dbinc/atomic.h	2013-03-12 14:06:35.000000000 -0400
+@@ -144,7 +144,7 @@
+ #define	atomic_inc(env, p)	__atomic_inc(p)
+ #define	atomic_dec(env, p)	__atomic_dec(p)
+ #define	atomic_compare_exchange(env, p, o, n)	\
+-	__atomic_compare_exchange((p), (o), (n))
++	__atomic_compare_exchange_db((p), (o), (n))
+ static inline int __atomic_inc(db_atomic_t *p)
+ {
+ 	int	temp;
+@@ -176,7 +176,7 @@
+  * http://gcc.gnu.org/onlinedocs/gcc-4.1.0/gcc/Atomic-Builtins.html
+  * which configure could be changed to use.
+  */
+-static inline int __atomic_compare_exchange(
++static inline int __atomic_compare_exchange_db(
+ 	db_atomic_t *p, atomic_value_t oldval, atomic_value_t newval)
+ {
+ 	atomic_value_t was;
