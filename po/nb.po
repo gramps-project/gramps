@@ -13,13 +13,15 @@
 # Mihle <MihleGaming@gmail.com>, 2021, 2022, 2023, 2024.
 # Para <ahh-produktivitet@tutanota.com>, 2022, 2023, 2024.
 # Mikal Thunold-Olsen <mikal@thunold-olsen.no>, 2023, 2024.
+# Harald <haraldh@users.noreply.hosted.weblate.org>, 2024.
+# Harald Herreros <haraldh@users.noreply.hosted.weblate.org>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-05-15 20:01+0000\n"
-"Last-Translator: Mikal Thunold-Olsen <mikal@thunold-olsen.no>\n"
+"PO-Revision-Date: 2024-07-01 20:47+0000\n"
+"Last-Translator: Harald Herreros <haraldh@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/nb_NO/>\n"
 "Language: nb\n"
@@ -27,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -160,7 +162,7 @@ msgstr "7. dags løvhyttefest"
 
 #: ../data/holidays.xml:378
 msgid "Simhat Tora"
-msgstr "Simhàt Torá"
+msgstr "Simhat Tora"
 
 #: ../data/holidays.xml:379
 msgid "Hanuka"
@@ -200,7 +202,7 @@ msgstr "Italia"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
-msgstr "Ny-Zealand"
+msgstr "New Zealand"
 
 #: ../data/holidays.xml:418
 msgid "Russia"
@@ -247,7 +249,7 @@ msgstr "Slektsforskersystem"
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:5
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
-msgstr "Håndtere slektsforskerinformasjon, utføre slektsforskning og analyse"
+msgstr "Behandle slektsinformasjon, utfør slektsforskning og analyse"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:12
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
@@ -276,12 +278,11 @@ msgid ""
 "All of your research is kept organized, searchable and as precise as you "
 "need it to be."
 msgstr ""
-"All slektsforskningen din holdes organisert, søkbart og så presist som du "
-"selv ønsker."
+"All din forskning holdes organisert, søkbar og så presis som du selv ønsker."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:13
 msgid "Gramps Development Team"
-msgstr "Gramps-utviklingslaget"
+msgstr "Gramps utviklingsteam"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:30
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:227
@@ -296,7 +297,7 @@ msgstr "Stamtavle"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:165
 #: ../gramps/plugins/view/view.gpr.py:168
 msgid "Descendant Fan"
-msgstr "Viftetable for etterkommere"
+msgstr "Etterkommer-vifte"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:38
 #: ../gramps/plugins/importer/importxml.py:349
@@ -368,11 +369,11 @@ msgstr "Gramps-pakke"
 
 #: ../data/org.gramps_project.Gramps.xml.in:14
 msgid "Gramps XML database"
-msgstr "Gramps-XML-database"
+msgstr "Gramps XML-database"
 
 #: ../data/org.gramps_project.Gramps.xml.in:22
 msgid "GeneWeb source file"
-msgstr "GenWeb-kildefil"
+msgstr "GeneWeb-kildefil"
 
 #: ../data/tips.xml:4
 msgid ""
@@ -381,10 +382,10 @@ msgid ""
 "the level of confidence in a date and even choose between seven different "
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
-"<b>Arbeide med datoer</b><br/>Et område med datoer kan angis ved å bruke "
+"<b>Arbeid med datoer</b><br/>Et område med datoer kan angis ved å bruke "
 "formatet \"mellom 4. januar 2000 og 20. mars 2003\". Du kan også indikere "
-"troverdighetsnivået i en dato og til og med velge blant sju ulike kalendre. "
-"Prøv knappen ved siden av datofeltet i Hendelsesbehandleren."
+"troverdighetsnivået for en dato og til og med velge blant sju ulike "
+"kalendre. Prøv knappen ved siden av datofeltet i Hendelsesbehandleren."
 
 #: ../data/tips.xml:6
 msgid ""
@@ -393,11 +394,11 @@ msgid ""
 "Note that the result can be dependent on context. For example, in the Family "
 "View clicking on a parent or child will bring up the Relationship Editor."
 msgstr ""
-"<b>Endre objekter</b><br/>I de fleste tilfeller vil du få frem et "
-"redigeringsvindu ved å dobbeltklikke på navn, kilde, sted eller objektet. "
-"Husk at resultatet kan være avhengig av sammenhengen. Eksempelvis vil man i "
-"familievisningen - når man klikker på en forelder eller et barn - få opp "
-"relasjonsredigeringsvinduet."
+"<b>Redigere objekter</b><br/>I de fleste tilfeller vil du få frem et "
+"redigeringsvindu ved å dobbeltklikke på navn, kilde eller mediaoppføring. "
+"Merk at resultatet kan variere avhengig av konteksten. Hvis du for eksempel "
+"klikker på en forelder eller et barn i familievisningen, får du opp "
+"relasjonsredigering."
 
 #: ../data/tips.xml:8
 msgid ""
@@ -407,10 +408,9 @@ msgid ""
 "documents and other digital sources."
 msgstr ""
 "<b>Legge til bilder</b><br/>Et bilde kan legges til ethvert galleri eller "
-"til mediavisningen ved å dra og slippe bildefilen fra en filbehandler eller "
-"nettleser. Du kan faktisk legge til hvilken som helst type fil på denne "
-"måten. Dette kan være nyttig for skannede dokumenter og andre digitale "
-"kilder."
+"til mediavisningen ved å dra og slippe det fra en filbehandler eller "
+"nettleser. Du kan faktisk legge til filer av alle typer på denne måten, noe "
+"som kan være praktisk for skannede dokumenter og andre digitale kilder."
 
 #: ../data/tips.xml:10
 msgid ""
@@ -418,9 +418,9 @@ msgid ""
 "family can be set by using drag and drop. This order is preserved even when "
 "they do not have birth dates."
 msgstr ""
-"<b>Sortering av barn i en familie</b><br/>Fødselsrekkefølgen i en familie "
-"kan bestemmes ved å dra og slippe. Denne sorteringen bevares selv om de ikke "
-"har fødselsdatoer."
+"<b>Sortering av barn i en familie</b><br/>Fødselsrekkefølgen til barn i en "
+"familie kan bestemmes ved å dra og slippe. Denne sorteringen bevares selv om "
+"de mangler fødselsdatoer."
 
 #: ../data/tips.xml:12
 msgid ""
@@ -431,11 +431,12 @@ msgid ""
 "you will get to hear some great stories. Don't forget to record the "
 "conversations!"
 msgstr ""
-"<b>Snakk med slektninger før det er for sent</b><br/>Dine eldste slektninger "
-"kan være din beste kilde til informasjon. De vet vanligvis ting om familien "
-"som ikke har blitt skrevet ned. Det kan hende de forteller deg tips om "
-"personer, som en dag kan lede deg inn i et nytt spor i din slektsforskning. "
-"Du vil i alle fall få noen flotte historier. Ikke glem å ta opp samtalene!"
+"<b>Snakk med slektninger før det er for sent</b><br/>De eldste i slekten kan "
+"ofte være dine viktigste informasjonskilder. De vet vanligvis ting om "
+"familien som ikke har blitt skrevet ned. Det kan hende de har verdifulle "
+"biter av informasjon om personer, som en dag kan lede deg inn i et nytt spor "
+"i din slektsforskning. Du vil i alle fall få noen flotte historier. Ikke "
+"glem å ta opp samtalene!"
 
 #: ../data/tips.xml:14
 msgid ""
@@ -479,13 +480,12 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>Finn personer</b><br/> i grupperte personer visningen, der hvert "
-"etternavn kun vises en gang . Ved å klikke på pilen til venstre for "
-"etternavnet vil listen utvide seg og vise alle personene med dette "
-"etternavnet. For å finne et vilkårlig slektsnavn fra en lang liste kan du "
-"velge et slektsnavn (ikke en person) og begynne å skrive. Da vil markøren "
-"hoppe til det første slektsnavnet som samsvarer med de bokstavene du skriver "
-"inn."
+"<b>Finn personer</b><br/> I visningen for grupperte personer er hvert "
+"etternavn listet kun én gang . Ved å klikke på pilen til venstre for et "
+"navn, vil listen utvide seg for å vise alle individer med det etternavnet. "
+"For å finne et slektsnavn fra en lang liste, velg et slektsnavn (ikke en "
+"person) og begynne å skrive. Visningen vil da hoppe til det første "
+"slektsnavnet som samsvarer med bokstavene du skriver inn."
 
 #: ../data/tips.xml:20
 msgid ""
@@ -504,8 +504,8 @@ msgid ""
 msgstr ""
 "<b>Endre aktiv person</b><br/>Å endre aktiv person i visningene er enkelt. I "
 "visningen for slektskap kan du klikke på hvem som helst. I "
-"stamtavlevisningen dobbeltklikker du på en person eller høyreklikker for å "
-"velge en av dens partnere, søsken, barn eller foreldre."
+"stamtavlevisningen dobbeltklikker du på personen eller høyreklikker for å "
+"velge blant vedkommendes ektefeller, søsken, barn eller foreldre."
 
 #: ../data/tips.xml:24
 msgid ""
@@ -515,11 +515,11 @@ msgid ""
 "of everyone in your database. You can use a custom filter to narrow the "
 "results."
 msgstr ""
-"<b>Hvem ble født når?</b><br/>Under \"Verktøy &gt; Analysere og utforske "
-"&gt; Sammenligne enkelthendelser...\" kan du sammenligne data for personer i "
-"din database. Hvis du vil kan du for eksempel få en liste over alle "
-"fødselsdatoer for alle i din database. Du kan bruke filtre for å spisse "
-"resultatene."
+"<b>Hvem ble født når?</b><br/>Under \"Verktøy &gt; Analyse og utforsking &gt;"
+" Sammenligne enkelthendelser...\" kan du sammenligne opplysninger om "
+"enkeltpersoner i databasen din. Dette er nyttig for eksempel hvis du ønsker "
+"å liste opp fødselsdatoene til alle i databasen din. Du kan bruke et "
+"tilpasset filter for å snevre inn resultatene."
 
 #: ../data/tips.xml:26
 msgid ""
@@ -529,12 +529,11 @@ msgid ""
 "finding duplicate people, interactive descendant browser, and many others. "
 "All tools can be accessed through the \"Tools\" menu."
 msgstr ""
-"<b>Gramps-verktøy</b><br/>Gramps kommer med et rikt utvalg av verktøy. Disse "
-"verktøyene lar deg gjøre operasjoner som å kontrollere databasen for feil og "
-"inkonsistens, så vel som analyse og utforskningsverktøy, som "
-"hendelsessammenligning, finn dobbeloppførte personer, interaktiv "
-"etterkommerutforsker og mange andre verktøy. Du finner alle verktøy under "
-"menyen \"Verktøy\"."
+"<b>Gramps-verktøy</b><br/>Gramps tilbyr et rikt utvalg av verktøy. Disse lar "
+"deg kontrollere databasen for feil og konsistens. Det er utforsking- og "
+"analyseverktøy for å sammenligne hendelser, finne dupliserte personer, "
+"interaktiv etterkommerutforsker og mange andre verktøy. Alle verktøyene "
+"finnes under menyen \"Verktøy\"."
 
 #: ../data/tips.xml:28
 msgid ""
@@ -575,9 +574,9 @@ msgid ""
 "\"."
 msgstr ""
 "<b>Angi dine innstillinger</b><br/>\"Rediger &gt; Innstillinger...\" lar deg "
-"endre mange innstillinger, f.eks. sti til mediakatalogen eller hvordan "
-"Gramps skal se ut for å gjøre det mest mulig brukervennlig for deg. Hver "
-"visning kan også settes opp under \"Vis &gt; Innstillinger for visning...\"."
+"endre mange innstillinger, f.eks. sti til mediafilene eller hvordan Gramps "
+"skal se ut for å gjøre det mest mulig brukervennlig for deg. Hver visning "
+"kan også settes opp under \"Vis &gt; Konfigurere...\"."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -666,10 +665,10 @@ msgid ""
 "configured to the way you like it. Have a look to the right of the top "
 "toolbar or under the \"View\" menu."
 msgstr ""
-"<b>Organisere visningene</b><br/>Mange visninger kan presentere dine data "
-"som hierarkiske trær eller som enkle lister. Hver visning kan også settes "
-"opp slik du selv vil. Se til høyre for den øverste verktøylinja eller under "
-"menyen \"Vis\"."
+"<b>Organisere visningene</b><br/> Flere av visningene kan vise opplysningene "
+"dine enten som hierarkiske trær eller som enkle lister. Hver visning kan "
+"også tilpasses slik du ønsker. Se til høyre for den øverste verktøylinja "
+"eller under menyen \"Vis\"."
 
 #: ../data/tips.xml:48
 msgid ""
@@ -680,7 +679,7 @@ msgid ""
 msgstr ""
 "<b>Navigere frem og tilbake</b><br/>Gramps vedlikeholder en liste over "
 "tidligere aktive objekter som Personer og Hendelser. Du kan flytte deg "
-"fremover og bakover gjennom lista ved å bruke \"Gå &gt; Fremover\" og \"Gå "
+"fremover og bakover gjennom listen ved å bruke \"Gå &gt; Fremover\" og \"Gå "
 "&gt; Tilbake\" eller bruk piltastene."
 
 #: ../data/tips.xml:50
@@ -700,10 +699,11 @@ msgid ""
 "intuitive but the manual is full of information that will make your time "
 "spent on genealogy more productive."
 msgstr ""
-"<b>Les brukermanualen</b><br/>Ikke glem å lese brukermanualen til Gramps, "
-"\"Hjelp &gt; Brukermanual\". Utviklerne har jobbet hardt for å gjøre de "
-"fleste operasjoner intuitive, men manualen er full av informasjon som vil "
-"gjøre den tiden du bruker på slektsforskning mer effektiv."
+"<b>Les brukermanualen</b><br/>Glem ikke å lese brukermanualen til Gramps "
+"under \"Hjelp &gt; Brukermanual\". Utviklerne har lagt ned stor innsats for "
+"å gjøre de fleste operasjoner intuitive, men manualen er inneholder mye "
+"informasjon som vil gjøre den tiden du bruker på slektsforskning mer "
+"effektiv."
 
 #: ../data/tips.xml:54
 msgid ""
@@ -738,11 +738,11 @@ msgid ""
 "is wrong in making this choice, you can override the filter by checking the "
 "Show All checkbutton."
 msgstr ""
-"<b>Vis alle</b><br/>Når man legger til en ektefelle eller et barn, er lista "
-"over personer som vises filtrert til å vise bare personer som realistisk "
-"sett kan passe i rollen (basert på datoer i databasen). I tilfelle Gramps "
-"har tatt feil med dette valget kan du overstyre filteret ved å krysse av for "
-"Vis alle."
+"<b>Vis alle</b><br/>Når du legger til en eksisterende person som ektefelle, "
+"filtreres listen over personer som vises til å vise bare personer som "
+"realistisk sett kan passe rollen (basert på datoer i databasen). I tilfelle "
+"Gramps tar feil med dette valget vil du kunne overstyre filteret ved å "
+"krysse av for Vis alle."
 
 #: ../data/tips.xml:60
 msgid ""
@@ -816,10 +816,11 @@ msgid ""
 "also bookmark most of the other objects."
 msgstr ""
 "<b>Bokmerke individer</b><br/>Bokmerkemenyen på toppen av vinduet er stedet "
-"for å lagre navn på personer du bruker ofte. Ved å velge et bokmerke vil "
-"gjøre den personen til aktiv person. For å bokmerke noen må personen først "
-"gjøres aktiv for så å gå til \"Bokmerker &gt; Legg til bokmerke\" eller "
-"trykke CTRL+D. Du kan også bokmerke de fleste av de andre objektene."
+"for å lagre navn på personer du bruker ofte. Ved å velge et bokmerke blir "
+"den valgte personen den aktive personen. For å bokmerke noen må personen "
+"først gjøres aktiv, deretter gå til \"Bokmerker &gt; Legg til bokmerke\" "
+"eller trykke CTRL+D. Du kan også legge til bokmerker for de fleste andre "
+"objektene."
 
 #: ../data/tips.xml:70
 msgid ""
@@ -846,9 +847,9 @@ msgid ""
 msgstr ""
 "<b>Lister Hendelser</b><br/>Hendelser legges til ved å bruke "
 "redigeringsvinduet som åpnes med \"Person &gt; Redigere Person\". Det er en "
-"lang liste med forhåndsdefinerte hendelsestyper. Du kan legge til egne "
-"hendelsestyper ved å skrive inn i tekstfeltet. Disse vil da bli lagt til i "
-"lista, men de vil ikke bli oversatt til andre språk."
+"lang liste med forhåndsdefinerte hendelsestyper. Du kan legge til dine egne "
+"hendelsestyper ved å skrive i tekstfeltet. Disse vil da bli lagt til i "
+"listen, men de vil ikke bli oversatt til andre språk."
 
 #: ../data/tips.xml:74
 msgid ""
@@ -858,7 +859,7 @@ msgid ""
 "Name section."
 msgstr ""
 "<b>Håndtere navn</b><br/>Det er enkelt å håndtere personer med flere navn i "
-"Gramps. I personbehandleren velger du fliken &quot;Navn&quot;. Her kan du "
+"Gramps. I personbehandleren velger du fanen &quot;Navn&quot;. Her kan du "
 "legge til flere ulike navnevarianter og sette det foretrukne navnet ved å "
 "trekke det til delen for Foretrukket navn."
 
@@ -883,9 +884,9 @@ msgid ""
 "your sources."
 msgstr ""
 "<b>Håndtere kilder</b><br/>Kildevisningen viser en liste med alle kildene i "
-"et eget vindu. Dobbelklikk på hver enkelt for å redigere, legge til notater, "
-"og se hvilke personer som refererer til kilden. Du kan bruke filtre for å "
-"gruppere kildene dine."
+"et eget vindu. Herfra kan du redigere kildene, flette sammen duplikater og "
+"se hvilke personer som refererer til hver kilde. Du kan bruke filtre for å "
+"gruppere kildene."
 
 #: ../data/tips.xml:80
 msgid ""
@@ -893,9 +894,9 @@ msgid ""
 "database. The list can be sorted by a number of different criteria, such as "
 "City, County or State."
 msgstr ""
-"<b>Håndtere stedsnavn</b><br/>Stedsvisningen viser lista over alle stedene i "
-"databasen. Lista kan sorteres på de forskjellige feltene, slik som by, fylke "
-"eller land."
+"<b>Håndtere stedsnavn</b><br/>Stedsvisningen viser en liste over alle "
+"stedene i databasen. Listen kan sorteres på forskjellige kriterier slik som "
+"by, fylke eller land."
 
 #: ../data/tips.xml:82
 msgid ""
@@ -942,12 +943,12 @@ msgid ""
 "other Gramps users. This format has the key advantage over GEDCOM that no "
 "information is ever lost when exporting and importing."
 msgstr ""
-"<b>Gramps XML-pakke</b><br/>Du kan eksportere databasen dine til en Gramps "
-"XML-pakke som er en komprimert fil som inneholder dine slektsdata og alle "
-"andre filer brukt av databasen (f.eks. bilder). Denne fila er fullstendig "
-"portabel så den er fint brukbar som sikkerhetskopi eller til deling med "
-"andre Grampsbrukere. Dette formatet har den fordelen over GEDCOM med at "
-"ingen informasjon blir borte ved eksport eller import."
+"<b>Gramps XML-pakke</b><br/>Du kan eksportere slektstreet ditt som en Gramps "
+"XML-pakke. Dette er en komprimert fil som inneholder dine slektsdata og alle "
+"mediafilene som er koblet til databasen (f.eks. bilder). Denne filen er "
+"fullstendig portabel som er nyttig for sikkerhetskopiering eller deling med "
+"andre Gramps-brukere. Dette formatet har den fordelen over GEDCOM med at "
+"ingen informasjon går tapt ved eksport og import."
 
 #: ../data/tips.xml:90
 msgid ""
@@ -1011,11 +1012,11 @@ msgid ""
 "source."
 msgstr ""
 "<b>Beholde gode data</b><br/>Vær nøyaktig når du samler slektsinformasjon. "
-"Ikke gjør antagelser når du samler primær informasjon, skriv det nøyaktig "
-"som du ser det (vær kildetro). Skriv tekst i parenteser for å indikere "
-"tillegg, sletting, eller kommentarer. Bruk av det latinske &quot;sic&quot; "
-"er anbefalt for å bekrefte nøyaktig gjengiving av hva som kan se ut som en "
-"feil i en kilde."
+"Unngå antagelser ved innsamling av primærinformasjon; skriv det nøyaktig som "
+"du observerer det. Bruk parentes for å markere tilføyelser, slettinger, "
+"eller kommentarer. Det anbefales å bruke det latinske uttrykket "
+"&quot;sic&quot; for å bekrefte nøyaktig gjengivelse av hva som kan se ut som "
+"feil i kilder."
 
 #: ../data/tips.xml:102
 msgid ""
@@ -1024,10 +1025,10 @@ msgid ""
 "Tools\". This is the best way for advanced users to experiment and create "
 "new functionality."
 msgstr ""
-"<b>Ekstra rapporter og verktøy</b><br/>Ekstra rapporter og verktøy kan "
-"legges til i Gramps med systemet \"Tillegg\". Se dem under \"Hjelp &gt; "
-"Ekstra rapporter/verktøy\". Dette er den beste måten for avanserte brukere å "
-"eksperimentere og lage ny funksjonalitet."
+"<b>Ekstra rapporter og verktøy</b><br/>Du kan utvide Gramps med ekstra "
+"rapporter og verktøy med \"Tilleggsbehandleren\". Se dem under \"Hjelp &gt; "
+"Ekstra rapporter/verktøy\". Dette gir avanserte brukere den ideelle "
+"muligheten til å eksperimentere og lage ny funksjonalitet."
 
 #: ../data/tips.xml:104
 msgid ""
@@ -1037,9 +1038,9 @@ msgid ""
 "printed."
 msgstr ""
 "<b>Bokrapport</b><br/>Bokrapporten under \"Rapporter &gt; Bøker &gt; "
-"Bokrapport...\" lar brukere samle en mengde rapporter i ett enkelt dokument. "
-"Denne rapporten er enklere å distribuere enn flere rapporter, spesielt når "
-"den skal skrives ut."
+"Bokrapport...\" lar deg samle forskjellige rapporter i ett dokument. Det er "
+"enklere å distribuere denne enkeltrapporten enn flere separate rapporter, "
+"spesielt når den skal skrives ut."
 
 #: ../data/tips.xml:106
 msgid ""
@@ -1047,9 +1048,9 @@ msgid ""
 "version of Gramps is released? Join the Gramps-announce mailing list at "
 "\"Help &gt; Gramps Mailing Lists\"."
 msgstr ""
-"<b>Gramps kunngjøringer</b><br/>Interessert i å bli informert om når en ny "
-"versjon av Gramps blir lansert? Meld deg på e-postlisten for Gramps-"
-"kunngjøringer fra \"Hjelp &gt; Gramps E-postlister\"."
+"<b>Gramps kunngjøringer</b><br/>Ønsker du å få varsling ved lansering av nye "
+"versjoner av Gramps? Registrer deg for Gramps-kunngjøringer via \"Hjelp &gt; "
+"Gramps e-postlister\"."
 
 #: ../data/tips.xml:108
 msgid ""
@@ -1084,8 +1085,8 @@ msgid ""
 "happened, and how descendants might have been shaped by the events they went "
 "through. Narratives go a long way in making your family history come alive."
 msgstr ""
-"<b>'Hvordan og hvorforæ i sin slektsforskning</b><br/> Slektsforskning "
-"dreier seg ikke bare om datoer og navn. Det handler om mennesker. Vær derfor "
+"<b>'Hvordan og hvorfor i din slektsforskning</b><br/> Slektsforskning dreier "
+"seg ikke bare om datoer og navn. Det handler om mennesker. Vær derfor "
 "beskrivende, og ta med hvorfor tingene skjedde og hvordan etterkommerne kan "
 "ha blitt formet av hendelsene de gikk gjennom. Små historier bidrar til at "
 "din slektshistorie blir levende."
@@ -1189,7 +1190,7 @@ msgid ""
 "The '-C' option cannot be used."
 msgstr ""
 "Feil: Slektsdatabasen '%s' finnes allerede.\n"
-"Opsjonen '-C' kan ikke brukes."
+"Valget '-C' kan ikke brukes."
 
 #: ../gramps/cli/arghandler.py:248
 #, python-format
@@ -1199,18 +1200,18 @@ msgid ""
 "Tree instead."
 msgstr ""
 "Feil: Slektsdatabasen \"%s\" finnes ikke.\n"
-"Hvis fila er GEDCOM, Gramps-xml eller grdb, bruk opsjonen -i for å importere "
-"til en slektsdatabase istedet."
+"Hvis formatet er GEDCOM, Gramps-xml eller grdb, bruk valget -i for å "
+"importere til en slektsdatabase i stedet."
 
 #: ../gramps/cli/arghandler.py:264
 #, python-format
 msgid "Error: Import file %s not found."
-msgstr "Feil: Fila %s som skal importeres finnes ikke."
+msgstr "Feil: Importfilen %s ble ikke funnet."
 
 #: ../gramps/cli/arghandler.py:284
 #, python-format
 msgid "Error: Unrecognized type: \"%(format)s\" for import file: %(filename)s"
-msgstr "Feil: Ukjent filtype: \"%(format)s\" for importert fil %(filename)s"
+msgstr "Feil: Ukjent filtype: \"%(format)s\" for importfil %(filename)s"
 
 #: ../gramps/cli/arghandler.py:307
 #, python-format
@@ -1240,7 +1241,7 @@ msgstr "nei"
 #: ../gramps/cli/arghandler.py:320
 #, python-format
 msgid "Will overwrite the existing file: %s"
-msgstr "Vil overskrive den eksisterende fila: %s"
+msgstr "Vil overskrive den eksisterende filen: %s"
 
 #: ../gramps/cli/arghandler.py:339
 #, python-format
@@ -1288,7 +1289,7 @@ msgstr "Utfører handling: %s."
 #: ../gramps/cli/arghandler.py:480 ../gramps/gen/plug/report/stdoptions.py:338
 #, python-format
 msgid "Using options string: %s"
-msgstr "Bruker opsjonsstreng: %s"
+msgstr "Bruker valgstreng: %s"
 
 #: ../gramps/cli/arghandler.py:485
 #, python-format
@@ -1305,7 +1306,7 @@ msgstr "Vellykket opprettelse av en tom slektsdatabase"
 
 #: ../gramps/cli/arghandler.py:536 ../gramps/cli/arghandler.py:563
 msgid "Error opening the file."
-msgstr "Feil ved åpning av fila."
+msgstr "Feil ved åpning av filen."
 
 #: ../gramps/cli/arghandler.py:537 ../gramps/cli/arghandler.py:564
 msgid "Exiting..."
@@ -1327,15 +1328,15 @@ msgstr "  Informasjon: %s"
 
 #: ../gramps/cli/arghandler.py:576
 msgid "Database is locked, cannot open it!"
-msgstr "Databasen er låst. kan ikke åpne den!"
+msgstr "Databasen er låst, kan ikke åpne den!"
 
 #: ../gramps/cli/arghandler.py:581
 msgid "Database needs recovery, cannot open it!"
-msgstr "Databasen må gjenopprettes. Kan ikke åpne den!"
+msgstr "Databasen må gjenopprettes, kan ikke åpne den!"
 
 #: ../gramps/cli/arghandler.py:584
 msgid "Database backend unavailable, cannot open it!"
-msgstr "Databasen er ikke tilgjengelig. Kan ikke åpne den!"
+msgstr "Databasen er ikke tilgjengelig, kan ikke åpne den!"
 
 #: ../gramps/cli/arghandler.py:635 ../gramps/cli/arghandler.py:692
 #: ../gramps/cli/arghandler.py:740
@@ -1351,7 +1352,7 @@ msgstr "Ukjent rapportnavn."
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr ""
 "Rapportnavn ble ikke angitt. Vennligst bruk en av "
-"%(donottranslate)s=rapportnavn"
+"%(donottranslate)s=reportname"
 
 #: ../gramps/cli/arghandler.py:671 ../gramps/cli/arghandler.py:723
 #: ../gramps/cli/arghandler.py:760
@@ -1371,8 +1372,7 @@ msgstr "Ukjent verktøynavn."
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
-"Verktøynavn er ikke angitt. Vennligst bruk en av "
-"%(donottranslate)s=verktøynavn."
+"Verktøynavn er ikke angitt. Vennligst bruk en av %(donottranslate)s=toolname."
 
 #: ../gramps/cli/arghandler.py:753
 msgid "Unknown book name."
@@ -1382,7 +1382,7 @@ msgstr "Ukjent boknavn."
 #, python-format
 msgid "Book name not given. Please use one of %(donottranslate)s=bookname."
 msgstr ""
-"Boknavn er ikke angitt. Vennligst bruk en av %(donottranslate)s=boknavn."
+"Boknavn er ikke angitt. Vennligst bruk en av %(donottranslate)s=bookname."
 
 #: ../gramps/cli/arghandler.py:765
 #, python-format
@@ -1542,28 +1542,28 @@ msgid ""
 "Syntax may be different for other shells and for Windows.\n"
 msgstr ""
 "\n"
-"Eksempel på bruk av Gramps fra kommandolinja\n"
+"Eksempel på bruk av Gramps fra kommandolinjen\n"
 "\n"
 "1. For å importere fire databaser (hvor filformatet kan hentes fra "
 "filnavnene)\n"
-"og så kontrollere den resulterende databasen kan man skrive:\n"
+"og så kontrollere den resulterende databasen for feil, kan man skrive:\n"
 "gramps -i fil1.ged -i fil2.gpkg -i ~/db3.gramps -i fil4.wft -a tool -p "
 "name=check.\n"
 "\n"
-"2. For å eksplisitt spesifisere formatene i eksempelet over kan man legge "
-"til passende opsjoner, -f, til filnavnene:\n"
+"2. Legg til valget -f til filnavnene for å eksplisitt spesifisere formatene "
+"i eksempelet ovenfor:\n"
 "gramps -i fil1.ged -f gedcom -i fil2.gpkg -f gramps-pkg -i ~/db3.gramps -f "
 "gramps-xml -i fil4.wft -f wft -a tool -p name=check.\n"
 "\n"
 "3. For å lagre resultatdatabasen fra alle importeringene kan man legge til "
 "flagget -e\n"
-"(bruk -f hvis filnavnet ikke gjør at Gramps klarer å gjette filformat):\n"
+"(bruk -f hvis filnavnet gjør at Gramps ikke klarer å gjette formatet):\n"
 "gramps -i fil1.ged -i fil2.gpkg -e ~/ny-pakke -f gramps-pkg\n"
 "\n"
-"4. For å lagre alle feilmeldinger som måtte komme i eksempelet over til en "
-"fil kan man skrive:\n"
-"gramps -i fil1.ged -i fil2.dpkg -e ~/new-package -f gramps-pkg >utfil "
-"2>feilfil\n"
+"4. For å lagre eventuelle feilmeldinger i eksempelet over til en fil kan man "
+"skrive:\n"
+"gramps -i fil1.ged -i fil2.dpkg -e ~/new-package -f gramps-pkg >utfil 2>"
+"feilfil\n"
 "\n"
 "5. For å importere tre databaser og deretter starte Gramps på vanlig måte "
 "med den resulterende databasen:\n"
@@ -1571,18 +1571,18 @@ msgstr ""
 "\n"
 "6. For å åpne en database og lage en tidslinjerapport som en PDF-fil\n"
 "putter resultatet inn i min_tidslinje.pdf:\n"
-"gramps -O 'Navn på database' -a report -p name=timeline,off=pdf,"
-"of=min_tidslinje.pdf\n"
+"gramps -O 'Navn på database' -a report -p "
+"name=timeline,off=pdf,of=min_tidslinje.pdf\n"
 "\n"
 "7. For å lage et sammendrag av databasen:\n"
 "gramps -O 'Navn på databasen' -a report -p name=summary\n"
 "\n"
-"8. Skrive ut rapportopsjoner\n"
-"Bruk name=timeline,show=all for å få se alle tilgjengelige opsjoner for "
+"8. Viser rapportvalg\n"
+"Bruk name=timeline,show=all for å vise alle tilgjengelige valg for "
 "tidslinjerapporten.\n"
-"For å se detaljene om hver opsjon kan man skrive show=opsjonsnavn, f.eks. "
+"For å vise detaljer for et bestemt valg kan man skrive show=valgnavn, f.eks. "
 "name=timeline,show=off\n"
-"For å lære mer om de tilgjengelige rapportnavnene kan du bruke name=show.\n"
+"For å lære mer om tilgjengelige rapportnavn kan du bruke name=show.\n"
 "\n"
 "9. For å konvertere en database til en gramps xml-fil:\n"
 "gramps -O 'Navn på databasen' -e utfil.gramps -f gramps-xml\n"
@@ -1594,7 +1594,7 @@ msgstr ""
 "11. Til slutt, for å starte Gramps på vanlig måte, skriv:\n"
 "gramps\n"
 "\n"
-"Merk: disse eksemlpene er for bashskall.\n"
+"Merk: Disse eksemplene er for bash-skall.\n"
 "Syntaksen kan være forskjellig for andre skall og for Windows.\n"
 
 #: ../gramps/cli/argparser.py:281
@@ -1760,10 +1760,10 @@ msgid ""
 "\n"
 msgstr ""
 "\n"
-"FEIL: Feil databasesti i Redigermenyen->Innstillinger.\n"
+"FEIL: Feil databasesti i menyen Rediger->Innstillinger.\n"
 "Åpne innstillingene og angi riktig databasesti.\n"
 "\n"
-"Detaljer: Kunne ikke lage databasekatalog:\n"
+"Detaljer: Kunne ikke lage databasemappen:\n"
 "    %s\n"
 "\n"
 
@@ -1889,7 +1889,7 @@ msgstr "Skrivebeskyttet database"
 #: ../gramps/cli/grampscli.py:160 ../gramps/gui/dbloader.py:166
 #: ../gramps/gui/dbloader.py:510
 msgid "You do not have write access to the selected file."
-msgstr "Du har ikke skrivetilgang til den valgte fila."
+msgstr "Du har ikke skrivetilgang til den valgte filen."
 
 #: ../gramps/cli/grampscli.py:198 ../gramps/gui/dbloader.py:238
 #: ../gramps/gui/dbloader.py:241 ../gramps/gui/dbloader.py:244
@@ -1900,7 +1900,7 @@ msgstr "Kan ikke åpne databasen"
 #: ../gramps/gui/dbloader.py:461
 #, python-format
 msgid "Could not open file: %s"
-msgstr "Kunne ikke åpne fila: %s"
+msgstr "Kunne ikke åpne filen: %s"
 
 #: ../gramps/cli/grampscli.py:260
 msgid "Could not load a recent Family Tree."
@@ -1919,8 +1919,7 @@ msgid ""
 "Use the --force-unlock option if you are sure that the database is not in "
 "use."
 msgstr ""
-"Bruk opsjonen --force-unlock hvis du er sikker på at databasen ikke er i "
-"bruk."
+"Bruk valget --force-unlock hvis du er sikker på at databasen ikke er i bruk."
 
 #: ../gramps/cli/grampscli.py:348
 #, python-format
@@ -2078,7 +2077,7 @@ msgstr "Ignorerer ukjent valg: %s"
 
 #: ../gramps/cli/plug/__init__.py:679
 msgid "   Available options:"
-msgstr "   Tilgjengelige opsjoner:"
+msgstr "   Tilgjengelige valg:"
 
 #: ../gramps/cli/plug/__init__.py:687
 msgid "(no help available)"
@@ -2094,8 +2093,8 @@ msgid ""
 "option '%(optionname)s' not valid. Use '%(donottranslate)s' to see all valid "
 "options."
 msgstr ""
-"Opsjon '%(optionname)s' er ikke gyldig. Bruk '%(donottranslate)s' for å se "
-"alle gyldige opsjoner."
+"valg '%(optionname)s' er ikke gyldig. Bruk '%(donottranslate)s' for å se "
+"alle gyldige valg."
 
 #: ../gramps/cli/plug/__init__.py:730
 msgid "Failed to write report. "
@@ -2205,7 +2204,7 @@ msgstr "Numerisk"
 #. Translators: Full month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:83
 msgid "Month Day, Year"
-msgstr "Måned, Dag, År"
+msgstr "Måned Dag, År"
 
 #. Translators: Abbreviated month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:85
@@ -2465,7 +2464,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:489
 msgctxt "before-date"
 msgid ""
-msgstr "før"
+msgstr "before"
 
 #. Translators: If there is no special inflection for
 #. "after <Month>" in your language, DON'T translate this.
@@ -2473,7 +2472,7 @@ msgstr "før"
 #: ../gramps/gen/datehandler/_datedisplay.py:494
 msgctxt "after-date"
 msgid ""
-msgstr "etter"
+msgstr "after"
 
 #. Translators: If there is no special inflection for
 #. "about <Month>" in your language, DON'T translate this.
@@ -2481,7 +2480,7 @@ msgstr "etter"
 #: ../gramps/gen/datehandler/_datedisplay.py:509
 msgctxt "about-date"
 msgid ""
-msgstr "om"
+msgstr "about"
 
 #. Translators: If there is no special inflection for
 #. "estimated <Month>" in your language, DON'T translate this.
@@ -2497,7 +2496,7 @@ msgstr "estimated"
 #: ../gramps/gen/datehandler/_datedisplay.py:519
 msgctxt "calculated-date"
 msgid ""
-msgstr "beregnet til"
+msgstr "calculated"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:539
 #, python-brace-format
@@ -2535,57 +2534,57 @@ msgstr "i dag"
 #: ../gramps/gen/datehandler/_datestrings.py:91
 msgctxt "localized lexeme inflections"
 msgid "February"
-msgstr "Februar"
+msgstr "februar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:92
 msgctxt "localized lexeme inflections"
 msgid "March"
-msgstr "Mars"
+msgstr "mars"
 
 #: ../gramps/gen/datehandler/_datestrings.py:93
 msgctxt "localized lexeme inflections"
 msgid "April"
-msgstr "April"
+msgstr "april"
 
 #: ../gramps/gen/datehandler/_datestrings.py:94
 msgctxt "localized lexeme inflections"
 msgid "May"
-msgstr "Mai"
+msgstr "mai"
 
 #: ../gramps/gen/datehandler/_datestrings.py:95
 msgctxt "localized lexeme inflections"
 msgid "June"
-msgstr "Juni"
+msgstr "juni"
 
 #: ../gramps/gen/datehandler/_datestrings.py:96
 msgctxt "localized lexeme inflections"
 msgid "July"
-msgstr "Juli"
+msgstr "juli"
 
 #: ../gramps/gen/datehandler/_datestrings.py:97
 msgctxt "localized lexeme inflections"
 msgid "August"
-msgstr "August"
+msgstr "august"
 
 #: ../gramps/gen/datehandler/_datestrings.py:98
 msgctxt "localized lexeme inflections"
 msgid "September"
-msgstr "September"
+msgstr "september"
 
 #: ../gramps/gen/datehandler/_datestrings.py:99
 msgctxt "localized lexeme inflections"
 msgid "October"
-msgstr "Oktober"
+msgstr "oktober"
 
 #: ../gramps/gen/datehandler/_datestrings.py:100
 msgctxt "localized lexeme inflections"
 msgid "November"
-msgstr "November"
+msgstr "november"
 
 #: ../gramps/gen/datehandler/_datestrings.py:101
 msgctxt "localized lexeme inflections"
 msgid "December"
-msgstr "Desember"
+msgstr "desember"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2594,62 +2593,62 @@ msgstr "Desember"
 #: ../gramps/gen/datehandler/_datestrings.py:110
 msgctxt "localized lexeme inflections - short month form"
 msgid "Jan"
-msgstr "Jan"
+msgstr "jan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:111
 msgctxt "localized lexeme inflections - short month form"
 msgid "Feb"
-msgstr "Feb"
+msgstr "feb"
 
 #: ../gramps/gen/datehandler/_datestrings.py:112
 msgctxt "localized lexeme inflections - short month form"
 msgid "Mar"
-msgstr "Mar"
+msgstr "mar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:113
 msgctxt "localized lexeme inflections - short month form"
 msgid "Apr"
-msgstr "Apr"
+msgstr "apr"
 
 #: ../gramps/gen/datehandler/_datestrings.py:114
 msgctxt "localized lexeme inflections - short month form"
 msgid "May"
-msgstr "Mai"
+msgstr "mai"
 
 #: ../gramps/gen/datehandler/_datestrings.py:115
 msgctxt "localized lexeme inflections - short month form"
 msgid "Jun"
-msgstr "Jun"
+msgstr "jun"
 
 #: ../gramps/gen/datehandler/_datestrings.py:116
 msgctxt "localized lexeme inflections - short month form"
 msgid "Jul"
-msgstr "Jul"
+msgstr "jul"
 
 #: ../gramps/gen/datehandler/_datestrings.py:117
 msgctxt "localized lexeme inflections - short month form"
 msgid "Aug"
-msgstr "Aug"
+msgstr "aug"
 
 #: ../gramps/gen/datehandler/_datestrings.py:118
 msgctxt "localized lexeme inflections - short month form"
 msgid "Sep"
-msgstr "Sep"
+msgstr "sep"
 
 #: ../gramps/gen/datehandler/_datestrings.py:119
 msgctxt "localized lexeme inflections - short month form"
 msgid "Oct"
-msgstr "Okt"
+msgstr "okt"
 
 #: ../gramps/gen/datehandler/_datestrings.py:120
 msgctxt "localized lexeme inflections - short month form"
 msgid "Nov"
-msgstr "Nov"
+msgstr "nov"
 
 #: ../gramps/gen/datehandler/_datestrings.py:121
 msgctxt "localized lexeme inflections - short month form"
 msgid "Dec"
-msgstr "Des"
+msgstr "des"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -3148,13 +3147,13 @@ msgid ""
 "Please upgrade to the corresponding version or use XML for porting data "
 "between different schema versions."
 msgstr ""
-"Databaseversjonen er ikke støttet av denne versjonen av Gramps.\n"
+"Skjemaversjonen er ikke støttet av denne versjonen av Gramps.\n"
 "\n"
-"Denne slektsdatabasen har databaseversjon %(tree_vers)s, og denne versjonen "
-"av Gramps støtter versjonene fra %(min_vers)s til %(max_vers)s\n"
+"Dette slektstreet har skjemaversjon %(tree_vers)s, og denne versjonen av "
+"Gramps støtter versjonene fra %(min_vers)s til %(max_vers)s\n"
 "\n"
-"Vennligst oppgrader til den korresponderende versjonen, eller bruk XML for å "
-"flytte data mellom de forskjellige databaseversjonene."
+"Vennligst oppgrader til tilsvarende versjon, eller bruk XML for å flytte "
+"data mellom de forskjellige skjemaversjonene."
 
 #: ../gramps/gen/db/exceptions.py:127
 #, python-format
@@ -3226,7 +3225,7 @@ msgstr ""
 "Databasekobling feilet.\n"
 "\n"
 "%(message)s\n"
-"Vennligst kontroller fila med tilkoblingsinnstillinger:\n"
+"Vennligst kontroller filen med tilkoblingsinnstillinger:\n"
 "%(settings_file)s"
 
 #: ../gramps/gen/db/exceptions.py:213
@@ -3540,11 +3539,11 @@ msgstr "råetternavn"
 
 #: ../gramps/gen/display/name.py:740 ../gramps/gen/display/name.py:862
 msgid "nickname"
-msgstr "økenavn"
+msgstr "kallenavn"
 
 #: ../gramps/gen/display/name.py:741 ../gramps/gen/display/name.py:863
 msgid "familynick"
-msgstr "familieøkenavn"
+msgstr "familie-kallenavn"
 
 #: ../gramps/gen/display/name.py:1300
 #, python-format
@@ -3558,7 +3557,7 @@ msgstr "FEIL, Redigere navneformat i Innstillingene"
 #: ../gramps/gen/display/place.py:74 ../gramps/gen/plug/utils.py:394
 #, python-format
 msgid "Error in '%s' file: cannot load."
-msgstr "Feil i fila '%s': kan ikke laste."
+msgstr "Feil i '%s': filen kan ikke lastes."
 
 #: ../gramps/gen/display/place.py:75 ../gramps/gen/plug/docgen/treedoc.py:65
 msgid "Full"
@@ -4755,7 +4754,7 @@ msgstr "Bokmerkede familier"
 
 #: ../gramps/gen/filters/rules/family/_isbookmarked.py:48
 msgid "Matches the families on the bookmark list"
-msgstr "Samsvarer med familier i bokmerkelista"
+msgstr "Samsvarer med familier i bokmerkelisten"
 
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:48
 msgid "Descendant families of <family>"
@@ -4999,7 +4998,7 @@ msgstr "Mediaobjekt med <etikett>"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:53
 msgid "Matches media objects with the particular tag"
-msgstr "Finner medieobjekter med den bestemte etiketten"
+msgstr "Finner mediaobjekter med den bestemte etiketten"
 
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:46
 msgid "Media objects matching the <filter>"
@@ -5424,7 +5423,7 @@ msgstr "Tiltalsnavn:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:54
 msgid "Nick Name:"
-msgstr "Økenavn:"
+msgstr "Kallenavn:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:55
 msgid "Prefix:"
@@ -5446,7 +5445,7 @@ msgstr "Avstamningsnavn:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:59
 msgid "Family Nick Name:"
-msgstr "Familieøkenavn:"
+msgstr "Familie-kallenavn:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:61
 msgid "People with the <name>"
@@ -5487,11 +5486,11 @@ msgstr "Samsvarer med personer med en navnetype"
 
 #: ../gramps/gen/filters/rules/person/_hasnickname.py:47
 msgid "People with a nickname"
-msgstr "Personer med et økenavn"
+msgstr "Personer med et kallenavn"
 
 #: ../gramps/gen/filters/rules/person/_hasnickname.py:48
 msgid "Matches people with a nickname"
-msgstr "Samsvarer med personer med et økenavn"
+msgstr "Samsvarer med personer med et kallenavn"
 
 #: ../gramps/gen/filters/rules/person/_hasnote.py:47
 msgid "People having <count> notes"
@@ -5582,7 +5581,7 @@ msgid ""
 "name, and Nickname are searched in primary and alternate names."
 msgstr ""
 "Soundex samsvarer med personer med et bestemt navn. Det søkes i primære og "
-"alternative Fornavn, Etternavn, Tiltalsnavn og Klengenavn."
+"alternative Fornavn, Etternavn, Tiltalsnavn og Kallenavn."
 
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:47
 msgid "People with <count> sources"
@@ -5802,7 +5801,7 @@ msgid ""
 "Matches ancestors of the people on the bookmark list not more than N "
 "generations away"
 msgstr ""
-"Samsvarer med aner av personer i bokmerkelista, ikke mer en N generasjoner "
+"Samsvarer med aner av personer i bokmerkelisten, ikke mer enn N generasjoner "
 "unna"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:49
@@ -5918,7 +5917,7 @@ msgstr "Personer med hendelser som samsvarer med <event filter>"
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:56
 msgid "Matches persons who have events that match a certain event filter"
 msgstr ""
-"Samsvarer med personer som har hendelser som samsvarer med et angitt "
+"Matcher personer som har hendelser som samsvarer med et bestemt "
 "hendelsesfilter"
 
 #: ../gramps/gen/filters/rules/person/_matchesfilter.py:46
@@ -6609,7 +6608,7 @@ msgstr ""
 msgid "Sources with repository reference containing <text> in \"Call Number\""
 msgstr ""
 "Kilder med henvisning til oppbevaringssted som inneholder <tekst> i "
-"\"Henvisningsnummer\""
+"\"Arkivreferanse\""
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:48
 msgid ""
@@ -6617,7 +6616,7 @@ msgid ""
 "containing a substring in \"Call Number\""
 msgstr ""
 "Matcher kilder med henvisning til oppbevaringssted\n"
-"som inneholder en delstreng i \"Henvisningsnummer\""
+"som inneholder en delstreng i \"Arkivreferanse\""
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:52
 msgid "Sources with the <tag>"
@@ -7833,7 +7832,7 @@ msgstr "Prestevielse"
 
 #: ../gramps/gen/lib/eventtype.py:220
 msgid "Probate"
-msgstr "Testamentstadfeste"
+msgstr "Skifte"
 
 #: ../gramps/gen/lib/eventtype.py:221
 msgid "Property"
@@ -7842,7 +7841,7 @@ msgstr "Eiendom"
 #: ../gramps/gen/lib/eventtype.py:222
 #: ../gramps/plugins/gramplet/persondetails.py:173
 msgid "Religion"
-msgstr "Relgion"
+msgstr "Religion"
 
 #: ../gramps/gen/lib/eventtype.py:224
 msgid "Retirement"
@@ -8438,7 +8437,7 @@ msgstr "Sjekksum"
 
 #: ../gramps/gen/lib/mediaref.py:93 ../gramps/gui/clipboard.py:667
 msgid "Media ref"
-msgstr "Mediereferanse"
+msgstr "Mediareferanse"
 
 #: ../gramps/gen/lib/mediaref.py:123 ../gramps/gen/lib/placetype.py:74
 #: ../gramps/plugins/view/geoplaces.py:620
@@ -8564,11 +8563,11 @@ msgstr "Tiltalsnavn"
 
 #: ../gramps/gen/lib/name.py:196
 msgid "Nick name"
-msgstr "Økenavn"
+msgstr "Kallenavn"
 
 #: ../gramps/gen/lib/name.py:197
 msgid "Family nick name"
-msgstr "Familieøkenavn"
+msgstr "Familie-kallenavn"
 
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/lib/name.py:505 ../gramps/gen/lib/name.py:523
@@ -8629,7 +8628,7 @@ msgstr "Føydalt"
 
 #: ../gramps/gen/lib/nameorigintype.py:84
 msgid "Pseudonym"
-msgstr "Pesvdonym"
+msgstr "Pseudonym"
 
 #: ../gramps/gen/lib/nameorigintype.py:85
 msgid "Patrilineal"
@@ -9003,7 +9002,7 @@ msgstr "Tettsted"
 
 #: ../gramps/gen/lib/placetype.py:81 ../gramps/plugins/view/geoplaces.py:607
 msgid "Village"
-msgstr "Lansby"
+msgstr "Landsby"
 
 #: ../gramps/gen/lib/placetype.py:82 ../gramps/plugins/view/geoplaces.py:608
 msgid "Hamlet"
@@ -9044,7 +9043,7 @@ msgstr "Referanse til oppbevaringssted"
 #: ../gramps/gen/lib/reporef.py:108
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:69
 msgid "Call Number"
-msgstr "Henvisningsnummer"
+msgstr "Arkivreferanse"
 
 #: ../gramps/gen/lib/repotype.py:55
 msgid "Library"
@@ -9416,8 +9415,8 @@ msgid ""
 "Option '%(opt_name)s' is present in %(file)s\n"
 "  but is not known to the module.  Ignoring..."
 msgstr ""
-"Opsjonen '%(opt_name)s finnes i %(file)s\n"
-" men er ikke kjent for modulen. Overser..."
+"Valg '%(opt_name)s finnes i %(file)s\n"
+" men er ikke kjent for modulen. Ignorerer..."
 
 #: ../gramps/gen/plug/_pluginreg.py:65
 msgid "Unstable"
@@ -9526,8 +9525,8 @@ msgid ""
 "WARNING: Plugin %(plugin_name)s has no translation for any of your "
 "configured languages, using US English instead"
 msgstr ""
-"ADVARSEL: Programtillegget %(plugin_name)s er ikke oversatt til noen dine "
-"angitte språk. Amerikansk engelsk blir brukt istedet"
+"ADVARSEL: Programtillegget %(plugin_name)s er ikke oversatt til noen av de "
+"angitte språkene. Amerikansk engelsk blir brukt i stedet"
 
 #: ../gramps/gen/plug/_pluginreg.py:1419
 #, python-format
@@ -9554,7 +9553,7 @@ msgstr "FEIL: Pythonfil %(filename)s i registerfil %(regfile)s finnes ikke"
 
 #: ../gramps/gen/plug/docbackend/docbackend.py:136
 msgid "Close file first"
-msgstr "Lukk fila først"
+msgstr "Lukk filen først"
 
 #: ../gramps/gen/plug/docbackend/docbackend.py:146
 msgid "No filename given"
@@ -9563,7 +9562,7 @@ msgstr "Ingen filnavn angitt"
 #: ../gramps/gen/plug/docbackend/docbackend.py:149
 #, python-format
 msgid "File %s already open, close it first."
-msgstr "Fila %s er allerede åpen. Lukk den først."
+msgstr "Filen %s er allerede åpen, lukk den først."
 
 #: ../gramps/gen/plug/docbackend/docbackend.py:155
 #: ../gramps/gen/plug/docbackend/docbackend.py:158
@@ -10100,7 +10099,7 @@ msgstr "Ekstra enorm"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:193
 msgid "Node Options"
-msgstr "Knutepunktopsjoner"
+msgstr "Punktvalg"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:196
 msgid "Node detail"
@@ -10169,7 +10168,7 @@ msgstr "Nodefarge."
 #: ../gramps/plugins/drawreport/ancestortree.py:837
 #: ../gramps/plugins/drawreport/descendtree.py:1571
 msgid "Tree Options"
-msgstr "Treopsjoner"
+msgstr "Trevalg"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:262
 msgid "Timeflow"
@@ -10228,7 +10227,7 @@ msgstr "LaTeX-fil"
 #: ../gramps/gen/plug/menu/_enumeratedlist.py:148
 #, python-format
 msgid "Value '%(val)s' not found for option '%(opt)s'"
-msgstr "Verdi '%(val)s' ble ikke funnet for opsjon '%(opt)s'"
+msgstr "Verdi '%(val)s' ble ikke funnet for valg '%(opt)s'"
 
 #: ../gramps/gen/plug/menu/_enumeratedlist.py:151
 #: ../gramps/gen/plug/report/stdoptions.py:335
@@ -10473,7 +10472,7 @@ msgstr "Velg format for å vise koordinater"
 #: ../gramps/gen/plug/report/utils.py:179
 #: ../gramps/plugins/textreport/indivcomplete.py:947
 msgid "File does not exist"
-msgstr "Fila eksisterer ikke"
+msgstr "Filen eksisterer ikke"
 
 #: ../gramps/gen/plug/report/utils.py:181
 #: ../gramps/plugins/textreport/indivcomplete.py:944
@@ -10607,12 +10606,12 @@ msgstr "Registrerte ''%s"
 #: ../gramps/gen/recentfiles.py:191
 #, python-brace-format
 msgid "Unable to save list of recent DBs file {fname}: {error}"
-msgstr "Klarte ikke å lagre lista over siste databasefiler {fname}: {error}"
+msgstr "Kan ikke lagre listen over siste databasefiler {fname}: {error}"
 
 #: ../gramps/gen/recentfiles.py:250
 #, python-brace-format
 msgid "Unable to open list of recent DBs file {fname}: {error}"
-msgstr "Klarte ikke å åpne lista over siste databasefiler {fname}: {error}"
+msgstr "Klarte ikke å åpne listen over siste databasefiler {fname}: {error}"
 
 #: ../gramps/gen/recentfiles.py:257
 #, python-brace-format
@@ -10622,10 +10621,10 @@ msgid ""
 "If you're sure there is no problem with other files, delete it, and restart "
 "Gramps."
 msgstr ""
-"Klarte ikke å lese lista over siste databaser {fname}: {error}.\n"
+"Klarte ikke å lese listen over seneste DBs fra filen {fname}: {error}.\n"
 "Dette kan bety at det er noe galt med filene dine.\n"
-"Hvis du ikke er sikker på at det ikke er noe galt med andre filer, slett den "
-"og start Gramps på nytt."
+"Hvis du er sikker på at det ikke er noe galt med andre filer, slett filen og "
+"start Gramps på nytt."
 
 #: ../gramps/gen/relationship.py:1416
 #: ../gramps/plugins/view/pedigreeview.py:1730
@@ -10779,8 +10778,8 @@ msgid ""
 "Family relationship translator not available for language '%s'. Using "
 "'english' instead."
 msgstr ""
-"Slektskapskalkulator er ikke tilgjengelig for språk '%s'. Bruker 'engelsk' "
-"istedet."
+"Slektskapskalkulator er ikke tilgjengelig for språk '%s'. Bruker 'engelsk' i "
+"stedet."
 
 #: ../gramps/gen/utils/alive.py:153 ../gramps/plugins/importer/importcsv.py:279
 msgid "death date"
@@ -11086,15 +11085,15 @@ msgstr "FORSTAVELSE"
 
 #: ../gramps/gen/utils/keyword.py:74
 msgid "NICKNAME"
-msgstr "ØKENAVN"
+msgstr "KALLENAVN"
 
 #: ../gramps/gen/utils/keyword.py:75
 msgid "FAMILYNICK"
-msgstr "FAMILIEØKENAVN"
+msgstr "FAMILIE-KALLENAVN"
 
 #: ../gramps/gen/utils/keyword.py:75
 msgid "Familynick"
-msgstr "Familieøkenavn"
+msgstr "Familie-kallenavn"
 
 #: ../gramps/gen/utils/place.py:50
 #, python-format
@@ -11858,7 +11857,7 @@ msgstr ""
 "  <b>Tiltals</b>        - tiltalsnavn                 <b>Tiltalsnavn</"
 "b>       - tiltalsnavn\n"
 "  <b>Initialer</b>      - første bokstavene i Fornavn <b>Vanlig</"
-"b>            - økenavn, ellers første i Fornavn\n"
+"b>            - kallenavn, ellers første i Fornavn\n"
 "  <b>Forstavelse</b>- alle forstavelser (von, de)\n"
 "etternavn:\n"
 "  <b>Resten</b>         - ikkeprimære etternavn       <b>Ikke patronymikon</"
@@ -11873,8 +11872,8 @@ msgstr ""
 "STORE BOKSTAVER: nøkkelord krever store bokstaver. Ekstra parenteser, "
 "kommaer er fjernet. Annen tekst vises som den er.\n"
 "\n"
-"<b>Eksempel</b>: 'Dr. Edwin Jose von der Smith og Weston Wilson Sr (\"Ed\") "
-"- Underhaug'\n"
+"<b>Eksempel</b>: 'Dr. Edwin Jose von der Smith og Weston Wilson Sr (\"Ed\") -"
+" Underhaug'\n"
 "     <i>Edwin Jose</i> er fornavn, <i>von der</i> er forstavelse, <i>Smith</"
 "i> og <i>Weston</i> er etternavn, \n"
 "     <i>og</i> er en kobling, <i>Wilson</i> fars etternavn, <i>Dr.</i> "
@@ -12267,7 +12266,7 @@ msgstr "Nøyaktighet på aldersvisning *"
 
 #: ../gramps/gui/configure.py:1571
 msgid "Round the year"
-msgstr "Rundt året"
+msgstr "Avrund til nærmeste år"
 
 #: ../gramps/gui/configure.py:1582
 msgid "Display ages for events after death *"
@@ -12691,8 +12690,8 @@ msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
 msgstr ""
-"Angitt etikett vil bli lagt til ved import.\n"
-"Tøm for å angi forvalgsverdi."
+"Den angitte etiketten vil bli lagt til alle poster ved import.\n"
+"Tøm for å bruke standardverdi."
 
 #: ../gramps/gui/configure.py:2406
 msgid ""
@@ -12712,7 +12711,7 @@ msgstr "Import"
 
 #: ../gramps/gui/configure.py:2494
 msgid "Select media directory"
-msgstr "Velg mediakatalog"
+msgstr "Velg mediamappe"
 
 #: ../gramps/gui/configure.py:2498 ../gramps/gui/configure.py:2528
 #: ../gramps/gui/configure.py:2555 ../gramps/gui/dbloader.py:363
@@ -12777,11 +12776,11 @@ msgstr "_Avbryt"
 
 #: ../gramps/gui/configure.py:2523
 msgid "Select database directory"
-msgstr "Velg databasekatalog"
+msgstr "Velg databasemappe"
 
 #: ../gramps/gui/configure.py:2551 ../gramps/gui/viewmanager.py:1942
 msgid "Select backup directory"
-msgstr "Velg katalog for sikkerhetskopi"
+msgstr "Velg mappe for sikkerhetskopi"
 
 #: ../gramps/gui/configure.py:2626
 msgid ""
@@ -12800,9 +12799,8 @@ msgid ""
 "This can be useful if you want to add phonetic in a note to show how to "
 "pronounce a name or if you mix multiple languages like greek and russian."
 msgstr ""
-"Dette kan være nyttig hvis du ønsker å legge til fonetikk i en notis for å "
-"vise uttalen av et navn, eller hvis du blander forskjellige språk, som gresk "
-"og russisk."
+"Dette kan være nyttig hvis du vil legge til fonetikk i et notat for å vise "
+"uttalen av et navn, eller hvis du bruker blandet språk som gresk og russisk."
 
 #: ../gramps/gui/configure.py:2639
 msgid "Use symbols"
@@ -12969,11 +12967,11 @@ msgstr "Kan ikke åpne fil"
 
 #: ../gramps/gui/dbloader.py:490
 msgid "The selected file is a directory, not a file.\n"
-msgstr "Den valgte fila er en katalog, ikke en fil.\n"
+msgstr "Den valgte filen er en mappe, ikke en fil.\n"
 
 #: ../gramps/gui/dbloader.py:498
 msgid "You do not have read access to the selected file."
-msgstr "Du har ikke lesetilgang til den valgte fila."
+msgstr "Du har ikke lesetilgang til den valgte filen."
 
 #: ../gramps/gui/dbloader.py:509
 msgid "Cannot create file"
@@ -12989,8 +12987,8 @@ msgid ""
 "This file incorrectly identifies its character set, so it cannot be "
 "accurately imported. Please fix the encoding, and import again"
 msgstr ""
-"Denne fila sier den har en annen tegnkoding enn hva den har, så den kan ikke "
-"importeres helt feilfritt. Reparer tegnkodingen og importer igjen"
+"Filen sier den har en annen tegnkoding enn hva den har, den kan derfor ikke "
+"importeres korrekt. Rett opp i tegnkodingen og importer igjen"
 
 #: ../gramps/gui/dbman.py:99
 #, python-format
@@ -13255,30 +13253,28 @@ msgid ""
 "this is the case, you can disable the repair button by removing the file "
 "%(recover_file)s in the Family Tree directory."
 msgstr ""
-"Hvis du klikker %(bold_start)sFortsett%(bold_end)s vil Gramps prøve å "
-"rekonstruere slektsdatabasen din fra siste vellykkede sikkerhetskopi. Dette "
-"kan forårsake uønsket oppførsel på flere måter, så det anbefales sterkt at "
-"du lager en %(bold_start)ssikkerhetskopi%(bold_end)s av databasen først.\n"
-"Slektsdatabasen du har valgt er lagret på %(dirname)s.\n"
+"Hvis du klikker %(bold_start)sFortsett%(bold_end)s vil Gramps forsøke å "
+"gjenopprette databasen fra siste vellykkede sikkerhetskopi. Dette kan "
+"forårsake uønsket oppførsel på flere måter, så det anbefales sterkt at du "
+"lager en %(bold_start)ssikkerhetskopi%(bold_end)s av databasen først.\n"
+"Slektsdatabasen du har valgt er lagret i %(dirname)s.\n"
 "\n"
-"Før du begynner med reparasjonen må du være sikker på at slektsdatabsaen "
-"ikke kan åpnes mer siden databasemotoren i bakgrunnen da vil kunne bli "
-"rekonstruert fra feiltilstanden automatisk.\n"
+"Før du begynner med reparasjonen må du være sikker på at slektsdatabasen "
+"faktisk ikke lar seg åpne lengre, da den underliggende databasen i noen "
+"tilfeller kan reparere seg selv automatisk.\n"
 "\n"
-"%(bold_start)sDetaljer:%(bold_end)s å reparere en slektsdatabase er egentlig "
-"det samme som å bruke den siste sikkerhetskopien av denne databasen som "
-"Gramps lagret forrige gang den ble brukt. Hvis du har arbeidet i flere timer "
-"eller dager uten å lukke Gramps vil all denne informasjonen være tapt! Hvis "
-"rekonstruksjonen ikke fungerer vil hele databasen være tapt for alltid. "
-"Altså er det nødvendig med sikkerhetskopier. Hvis rekonstruksjonen feiler "
-"eller du mister for mye data under rekonstruksjonen kan du reparere den "
-"originale slektsdatabasen manuelt. Les om dette på nettsiden\n"
+"%(bold_start)sDetaljer:%(bold_end)s Ved reparasjon av slektsdatabasen brukes "
+"den siste sikkerhetskopen av slektstreet, som Gramps lagret ved forrige "
+"bruk. Hvis du har arbeidet i flere timer eller dager uten å lukke Gramps vil "
+"all denne informasjonen gå tapt! Hvis reparasjonen ikke fungerer vil hele "
+"databasen være tapt for alltid. Altså er det nødvendig med sikkerhetskopier. "
+"Hvis reparasjonen feiler eller du mister for mye data under reparasjonen kan "
+"du rette den originale slektsdatabasen manuelt. Les om dette på nettsiden\n"
 "%(gramps_wiki_recover_url)s\n"
 "Før du utfører en reparasjon må du forsøke å åpne slektsdatabasen på vanlig "
-"måte. Flere av feilene som dukker opp som automatisk kan repareres vil gjøre "
-"at knappen reparere blir tilgjengelig. I slike tilfeller kan du gjøre "
-"knappen utilgjengelig ved å fjerne fila %(recover_file)s i katalogen for "
-"slektsdatabasen."
+"måte. Flere av feilene som utløser reparasjonsknappen kan repareres "
+"automatisk. Hvis det er tilfellet kan du gjøre knappen utilgjengelig ved å "
+"fjerne filen %(recover_file)s i mappen for slektsdatabasen."
 
 #: ../gramps/gui/dbman.py:997
 msgid "Proceed, I have taken a backup"
@@ -13502,7 +13498,7 @@ msgstr "Import feilet"
 
 #: ../gramps/gui/editors/addmedia.py:161
 msgid "The filename supplied could not be found."
-msgstr "Fant ikke den angitte fila."
+msgstr "Fant ikke den angitte filen."
 
 #: ../gramps/gui/editors/addmedia.py:171
 #, python-format
@@ -13515,7 +13511,7 @@ msgid ""
 "Directory specified in preferences: Base path for relative media paths: %s "
 "does not exist. Change preferences or do not use relative path when importing"
 msgstr ""
-"Katalog som er angitt i innstillingene: Grunnstien for relative mediastier: "
+"Mappen som er angitt i innstillingene: Grunnstien for relative mediastier: "
 "%s eksisterer ikke. Endre innstillingene eller ikke bruk relativ sti ved "
 "import"
 
@@ -13528,7 +13524,7 @@ msgstr "Kan ikke vise %s"
 msgid ""
 "Gramps is not able to display the image file. This may be caused by a "
 "corrupt file."
-msgstr "Gramps kan ikke vise billedfila. Dette kan skyldes en ødelagt fil."
+msgstr "Gramps kan ikke vise bildefilen. Dette kan skyldes en ødelagt fil."
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:63
 msgid "Create and add a new address"
@@ -13860,7 +13856,7 @@ msgstr "_Vis"
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:161
 #: ../gramps/plugins/view/mediaview.py:426
 msgid "Open Containing _Folder"
-msgstr "Åpne innholdskatalog"
+msgstr "Åpne _innholdsmappe"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:169
 msgid "_Make Active Media"
@@ -14508,11 +14504,11 @@ msgstr ""
 
 #: ../gramps/gui/editors/editfamily.py:131
 msgid "Move the child up in the children list"
-msgstr "Flytt barnet oppover i barnelista"
+msgstr "Flytt barnet oppover i barnelisten"
 
 #: ../gramps/gui/editors/editfamily.py:132
 msgid "Move the child down in the children list"
-msgstr "Flytt barnet nedover i barnelista"
+msgstr "Flytt barnet nedover i barnelisten"
 
 #: ../gramps/gui/editors/editfamily.py:137
 msgid "#"
@@ -16039,7 +16035,7 @@ msgstr "_Behold henvisningen"
 
 #: ../gramps/gui/glade/dialog.glade:275
 msgid "Keep reference to the missing file"
-msgstr "Behold henvisningen til den savnede fila"
+msgstr "Behold henvisningen til den manglende filen"
 
 #: ../gramps/gui/glade/dialog.glade:286
 msgid "_Select File"
@@ -16047,7 +16043,7 @@ msgstr "_Velg en fil"
 
 #: ../gramps/gui/glade/dialog.glade:293
 msgid "Select replacement for the missing file"
-msgstr "Velg en erstatning for den savnede fila"
+msgstr "Velg en erstatning for den manglende filen"
 
 #: ../gramps/gui/glade/dialog.glade:366
 msgid "_Use this selection for all missing media files"
@@ -16746,7 +16742,7 @@ msgstr "ÅPne filbehandleren for å velge en mediafil på din datamaskin."
 #: ../gramps/gui/glade/editmedia.glade:279
 #: ../gramps/gui/glade/editmediaref.glade:660
 msgid "Folder"
-msgstr "Katalog"
+msgstr "Mappe"
 
 #: ../gramps/gui/glade/editmedia.glade:302
 msgid "A unique ID to identify the Media object."
@@ -16869,7 +16865,7 @@ msgstr "Personens fornavn"
 
 #: ../gramps/gui/glade/editname.glade:265
 msgid "_Nick Name:"
-msgstr "_Økenavn:"
+msgstr "_Kallenavn:"
 
 #: ../gramps/gui/glade/editname.glade:278
 #: ../gramps/gui/glade/editperson.glade:179
@@ -16899,7 +16895,7 @@ msgid ""
 "A descriptive name given in place of or in addition to the official given "
 "name."
 msgstr ""
-"Et beskrivende navn som brukes istedet for, eller i tillegg til, det "
+"Et beskrivende navn som brukes i stedet for eller i tillegg til det "
 "offisielle fornavnet."
 
 #: ../gramps/gui/glade/editname.glade:333
@@ -16908,7 +16904,7 @@ msgstr "Fornavn"
 
 #: ../gramps/gui/glade/editname.glade:385
 msgid "_Family Nick Name:"
-msgstr "_Familieøkenavn:"
+msgstr "_Familie-kallenavn:"
 
 #: ../gramps/gui/glade/editname.glade:399
 msgid ""
@@ -17023,7 +17019,7 @@ msgstr "T_iltals:"
 
 #: ../gramps/gui/glade/editperson.glade:245
 msgid "_Nick:"
-msgstr "_Økenavn:"
+msgstr "_Kallenavn:"
 
 #: ../gramps/gui/glade/editperson.glade:335
 msgid "Click on a table cell to edit."
@@ -17106,9 +17102,9 @@ msgid ""
 msgstr ""
 "Beskrivelse av relasjonen, f.eks. Gudfar, Venn, ...\n"
 "\n"
-"Merk: Bruk hendelser istedet for relasjoner som er knyttet til bestemte "
-"tidsrammer eller tilfeller. Hendelser kan deles mellom personer hvor hver "
-"deling indikerer deres rolle i hendelsen."
+"Merk: Bruk hendelser i stedet for relasjoner som er knyttet til bestemte "
+"tidsrom eller begivenheter. Hendelser kan deles mellom personer, hvor hver "
+"enkelts rolle i hendelsen kan angis."
 
 #: ../gramps/gui/glade/editpersonref.glade:146
 msgid ""
@@ -17274,7 +17270,7 @@ msgstr "_Medietype:"
 
 #: ../gramps/gui/glade/editreporef.glade:143
 msgid "Call n_umber:"
-msgstr "Telefo_nnummer:"
+msgstr "Arkiv_referanse:"
 
 #: ../gramps/gui/glade/editreporef.glade:157
 msgid "On what type of media this source is available in the repository."
@@ -18031,7 +18027,7 @@ msgstr "%"
 
 #: ../gramps/gui/glade/styleeditor.glade:1247
 msgid "Table options"
-msgstr "Tabellopsjoner"
+msgstr "Tabellvalg"
 
 #: ../gramps/gui/glade/styleeditor.glade:1303
 msgid "Padding:"
@@ -18047,7 +18043,7 @@ msgstr "Høyre"
 
 #: ../gramps/gui/glade/styleeditor.glade:1403
 msgid "Cell options"
-msgstr "Celleopsjoner"
+msgstr "Cellevalg"
 
 #: ../gramps/gui/glade/styleeditor.glade:1428
 msgid "Line"
@@ -18232,7 +18228,7 @@ msgstr "_Avslutt uten å lagre endringer"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_About"
-msgstr "O_m"
+msgstr "_Om"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Addon Manager..."
@@ -18272,7 +18268,7 @@ msgstr "_Importere..."
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Key Bindings"
-msgstr "_Tastekombinasjoner"
+msgstr "_Hurtigtaster"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Manage Family Trees..."
@@ -18406,8 +18402,9 @@ msgstr ""
 "På grunn av dette vil sannsynligvis det grafiske grensesnittet være ødelagt, "
 "spesielt for RTL-språk!\n"
 "\n"
-"Les README-fila til Gramps for å se hva som kreves før Gramps installeres.\n"
-"Fila er vanligvis å finne i /usr/share/doc/gramps.\n"
+"Les README-dokumentasjonen til Gramps for å se hva som kreves før Gramps "
+"installeres.\n"
+"Filen er vanligvis å finne i /usr/share/doc/gramps.\n"
 
 #: ../gramps/gui/grampsgui.py:616
 msgid "Error parsing arguments"
@@ -18430,10 +18427,10 @@ msgstr ""
 "\n"
 "Gramps klarte ikke å starte. Vennligst send en feilrapport om denne "
 "hendelsen.\n"
-"Dette kan være på grunn av en feil i en tredjepartsvisning ved oppstart.\n"
-"For å bruke en annen visning må du starte Gramps, ikke åpne slektsdatabasen "
-"din, endre visning og deretter åpne slektsdatabasen din.\n"
-"Du kan også endre standardvisning manuelt i fila gramps.ini \n"
+"Dette kan skyldes en feil i en (tredjeparts) visning ved oppstart.\n"
+"For å bruke en annen visning, ikke åpne slektsdatabasen din, endre visning "
+"og deretter åpne slektsdatabasen din.\n"
+"Du kan også endre standardvisning manuelt i filen gramps.ini \n"
 "ved å endre parameteren last-view.\n"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:106
@@ -18798,7 +18795,7 @@ msgstr "Valg av rapport"
 
 #: ../gramps/gui/plug/_dialogs.py:313
 msgid "_Generate"
-msgstr "La_g"
+msgstr "_Generer"
 
 #: ../gramps/gui/plug/_dialogs.py:314
 msgid "Generate selected report"
@@ -19052,7 +19049,7 @@ msgstr "Nytt prosjekt"
 
 #: ../gramps/gui/plug/_windows.py:822
 msgid "Edit Project"
-msgstr "Rediger Prosject"
+msgstr "Rediger Prosjekt"
 
 #: ../gramps/gui/plug/_windows.py:830
 msgid "Project name"
@@ -19060,7 +19057,7 @@ msgstr "Prosjektnavn"
 
 #: ../gramps/gui/plug/_windows.py:928
 msgid "Restore project defaults"
-msgstr "Gjenopprett prosjektetstandardinnstillinger"
+msgstr "Gjenopprett prosjektstandarder"
 
 #: ../gramps/gui/plug/_windows.py:929
 msgid "Are you sure?"
@@ -19289,7 +19286,7 @@ msgstr "Velg formatet å lagre i"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:247
 msgid "Export options"
-msgstr "Eksportopsjoner"
+msgstr "Eksportvalg"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:324
 msgid "Select save file"
@@ -19349,10 +19346,10 @@ msgid ""
 "\n"
 "Press Back to return and select a valid filename."
 msgstr ""
-"Den valgte filen og katalogen som skal lagres kan ikke opprettes eller ble "
-"funnet.\n"
+"Den valgte filen og mappen som skal lagres finnes ikke og kan ikke opprettes."
 "\n"
-"Klikk Tilbake for å gå tilbake og velge et gyldig filnavn."
+"\n"
+"Trykk Tilbake for å gå tilbake og velg et gyldig filnavn."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:527
 msgid "Your data has been saved"
@@ -19367,12 +19364,12 @@ msgid ""
 "you have just saved. Future editing of the currently opened database will "
 "not alter the copy you have just made. "
 msgstr ""
-"Kopien av dine data ble lagret riktig. Du kan trykke på Lukk-knappen nå for "
-"å fortsette.\n"
+"Kopien av dine data er lagret. Du kan trykke på Lukk-knappen nå for å "
+"fortsette.\n"
 "\n"
-"Merk: databasen som nå er åpen i ditt Gramps-vindu er IKKE fila du akkurat "
-"har lagret. Fremtidige endringer i den åpne databasen vil ikke endre kopien "
-"du akkurat har laget. "
+"Merk: databasen som er åpnet i Gramps-vinduet er IKKE filen du akkurat har "
+"lagret. Fremtidige endringer i den åpne databasen vil ikke endre kopien du "
+"akkurat har laget. "
 
 #: ../gramps/gui/plug/export/_exportassistant.py:539
 #, python-format
@@ -19410,16 +19407,16 @@ msgid ""
 "If you change your mind during this process, you can safely press the Cancel "
 "button at any time and your present database will still be intact."
 msgstr ""
-"Under vanlige omstendigheter trenger du ikke å lagre dine Gramps-data "
-"manuelt. Alle endringene du gjør blir umiddelbart lagret i databasen.\n"
+"Under normale omstendigheter krever ikke Gramps at du lagrer endringene "
+"manuelt. Alle endringer du gjør lagres umiddelbart i databasen.\n"
 "\n"
-"Du har også muligheten til å lagre en kopi av dine data i et annet format "
-"som er støttet av Gramps. På denne måten kan du lage en kopi av dine data (f."
-"eks. en sikkerhetskopi), eller du kan konvertere dem til et annet format som "
-"vil hjelpe deg med å flyttet dem over til et annet program.\n"
+"Denne prosessen vil hjelpe deg med å lagre en kopi av dataene dine i et av "
+"de flere formatene som støttes av Gramps. Dette kan gjøres for å lage en "
+"kopi av dataene dine (f.eks. en sikkerhetskopi), eller konvertere dataene "
+"til et format som lar deg overføre dem til et annet program.\n"
 "\n"
-"Hvis du ombestemmer deg mens denne prosessen pågår, kan du trykke &quot;"
-"Avbryt&quot;-knappen når som helst, og databasen vil fortsatt være intakt."
+"Hvis du ombestemmer deg under denne prosessen, kan du trygt trykke på Avbryt-"
+"knappen når som helst og din nåværende database vil fortsatt være intakt."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:629
 msgid "Error exporting your Family Tree"
@@ -19620,7 +19617,7 @@ msgstr "Fortsett"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:319
 msgid "Name of the book. MANDATORY"
-msgstr "Bokas navn. OBLIGATORISK"
+msgstr "Bokens navn. OBLIGATORISK"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:343
 msgid "Manage Books"
@@ -19665,13 +19662,13 @@ msgid ""
 "Therefore, the central person for each item is being set to the active "
 "person of the currently opened database."
 msgstr ""
-"Denne boka ble laget med referanser til databasen %s. \n"
+"Denne boken ble laget med referanser til databasen %s.\n"
 "\n"
 "Dette gjør at referansene til den sentrale person lagret i boken blir "
 "ugyldige.\n"
 "\n"
-"Derfor blir den sentrale personen for hvert emne til den aktive personen i "
-"den åpne databasen."
+"Derfor settes den sentrale personen for hvert element til den aktive "
+"personen i den åpne databasen."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:577
 msgid "No selected book item"
@@ -19703,7 +19700,7 @@ msgstr "Ingen elementer"
 #: ../gramps/gui/plug/report/_bookdialog.py:738
 #: ../gramps/gui/plug/report/_bookdialog.py:749
 msgid "This book has no items."
-msgstr "Denne boka har ingen elementer."
+msgstr "Denne boken har ingen elementer."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:755
 msgid "No book name"
@@ -19830,19 +19827,19 @@ msgid ""
 "\n"
 "Please select another directory or correct the permissions."
 msgstr ""
-"Du har ikke rettigheter til å skrive til katalogen %s\n"
+"Du har ikke rettigheter til å skrive til mappen %s\n"
 "\n"
-"Velg en annen katalog eller kontroller rettighetene."
+"Velg en annen mappe eller kontroller rettighetene."
 
 #: ../gramps/gui/plug/report/_reportdialog.py:526
 msgid "File already exists"
-msgstr "Fila finnes allerede"
+msgstr "Filen finnes allerede"
 
 #: ../gramps/gui/plug/report/_reportdialog.py:528
 msgid ""
 "You can choose to either overwrite the file, or change the selected filename."
 msgstr ""
-"Du kan enten velge å overskrive fila, eller å endre det valgte filnavnet."
+"Du kan enten velge å overskrive filen, eller å endre det valgte filnavnet."
 
 #: ../gramps/gui/plug/report/_reportdialog.py:531
 msgid "_Overwrite"
@@ -19876,9 +19873,9 @@ msgid ""
 "\n"
 "Please select another directory or create it."
 msgstr ""
-"Det finnes ingen katalog %s\n"
+"Det finnes ingen mappe %s\n"
 "\n"
-"Velg en annen katalog eller lag den."
+"Velg en annen mappe eller opprett den."
 
 #: ../gramps/gui/plug/report/_reportdialog.py:714
 #: ../gramps/gui/plug/tool.py:157 ../gramps/plugins/tool/relcalc.py:161
@@ -19967,7 +19964,7 @@ msgstr "Feilsøke"
 
 #: ../gramps/gui/plug/tool.py:68
 msgid "Analysis and Exploration"
-msgstr "Analyse og utforskning"
+msgstr "Analyse og utforsking"
 
 #: ../gramps/gui/plug/tool.py:69
 msgid "Family Tree Processing"
@@ -20198,7 +20195,7 @@ msgstr "Feil fra eksternt program"
 #: ../gramps/plugins/textreport/simplebooktitle.py:115
 #, python-format
 msgid "File %s does not exist"
-msgstr "Fila %s eksisterer ikke"
+msgstr "Filen %s eksisterer ikke"
 
 #: ../gramps/gui/utils.py:799
 msgid ""
@@ -20383,7 +20380,7 @@ msgstr "Fil for sikkerhetskopi finnes allerede! Overskriv?"
 #: ../gramps/gui/viewmanager.py:1889
 #, python-format
 msgid "The file '%s' exists."
-msgstr "Fila '%s' eksisterer."
+msgstr "Filen '%s' eksisterer."
 
 #: ../gramps/gui/viewmanager.py:1890
 msgid "Proceed and overwrite"
@@ -20437,7 +20434,7 @@ msgstr "Organisere bokmerker"
 
 #: ../gramps/gui/views/bookmarks.py:513
 msgid "Cannot bookmark this reference"
-msgstr "Klarte ikke å lage bokmerke for denne referansen"
+msgstr "Kan ikke bokmerke denne referansen"
 
 #: ../gramps/gui/views/listview.py:482
 msgid "Active object not visible"
@@ -21178,9 +21175,9 @@ msgid ""
 "that you consider using a different directory to store your generated web "
 "pages."
 msgstr ""
-"Det ser ut som om du har satt målkatalog til en katalog som brukes til "
-"datalagring. Dette kan lage problemer med filhåndteringen. Det anbefales at "
-"du vurderer å bruke en annen katalog for å lagre dine genererte nettsider."
+"Du ser ut til å ha satt målmappen til en mappe som brukes til datalagring. "
+"Dette kan skape problemer med filhåndteringen. Det anbefales at du vurderer "
+"å bruke en annen mappe for å lagre de genererte nettsidene dine."
 
 #: ../gramps/plugins/docgen/htmldoc.py:616
 #, python-format
@@ -21428,17 +21425,17 @@ msgstr "Ikke skalere treet"
 #: ../gramps/plugins/drawreport/ancestortree.py:912
 #: ../gramps/plugins/drawreport/descendtree.py:1649
 msgid "Scale tree to fit page width only"
-msgstr "Skalere treet slik at det passer i bredden"
+msgstr "Skalere treet for å kun tilpasses bredden"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:913
 #: ../gramps/plugins/drawreport/descendtree.py:1650
 msgid "Scale tree to fit the size of the page"
-msgstr "Skalere treet slik at det passer på en side"
+msgstr "Skalere treet slik at det passer på siden"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:914
 #: ../gramps/plugins/drawreport/descendtree.py:1651
 msgid "Whether to scale the tree to fit a specific paper size"
-msgstr "Om treet skal skaleres for å passe inn på en side"
+msgstr "Om treet skal skaleres for å passe til en bestemt papirstørrelse"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:921
 #: ../gramps/plugins/drawreport/descendtree.py:1658
@@ -21469,20 +21466,19 @@ msgid ""
 "With 'Scale tree to fit the size of the page' the page\n"
 "  is resized to remove any gap in either height or width"
 msgstr ""
-"Om siden skal endre størrelse for å passe størrelsen\n"
-"på treet.  Merk: siden vil ha en \n"
-"ustandardisert størrelse.\n"
+"Om siden skal tilpasses størrelsen til treet. \n"
+"Merk: siden vil få en ustandardisert størrelse.\n"
 "\n"
-"Om denne opsjonen er valgt vil følgende skje:\n"
+"Med dette alternativet valgt, vil følgende skje:\n"
 "\n"
-"Med opsjonen 'Ikke skalere treet' vil sidestørrelsen\n"
+"Med alternativet «Ikke skalere treet» vil sidestørrelsen\n"
 "  bli endret til høyden/bredden på treet\n"
 "\n"
-"Med 'Skalere treet for å tilpasses bredden' vil høyden\n"
-"  på siden bli endret til å høyden på treet\n"
+"Med «Skalere treet for å kun tilpasses bredden» vil høyden\n"
+"  på siden bli endret til høyden på treet\n"
 "\n"
-"Med 'Skalere treet for å tilpasses størrelsen på siden'\n"
-"  vil sidestørrelsen bli endret for å fjerne alle mellomrom\n"
+"Med «Skalere treet slik at det passer på siden» vil \n"
+"  sidestørrelsen bli endret for å fjerne alle mellomrom\n"
 "  enten i høyde eller bredde"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:950
@@ -22751,7 +22747,7 @@ msgstr ""
 
 #: ../gramps/plugins/export/export.gpr.py:49
 msgid "CSV spreadsheet options"
-msgstr "CSV regnearkopsjoner"
+msgstr "CSV regnearkvalg"
 
 #: ../gramps/plugins/export/export.gpr.py:60
 msgid "Web Family Tree"
@@ -22767,7 +22763,7 @@ msgstr "Web Family Tree-format"
 
 #: ../gramps/plugins/export/export.gpr.py:70
 msgid "Web Family Tree export options"
-msgstr "Eksportopsjoner for Web Family Tree"
+msgstr "Eksportvalg for Web Family Tree"
 
 #: ../gramps/plugins/export/export.gpr.py:81
 #: ../gramps/plugins/importer/import.gpr.py:55
@@ -22789,7 +22785,7 @@ msgstr ""
 
 #: ../gramps/plugins/export/export.gpr.py:94
 msgid "GEDCOM export options"
-msgstr "Eksportopsjoner for GEDCOM"
+msgstr "Eksportvalg for GEDCOM"
 
 #: ../gramps/plugins/export/export.gpr.py:105
 #: ../gramps/plugins/importer/import.gpr.py:76
@@ -22806,7 +22802,7 @@ msgstr "GeneWeb er et nettbasert slektsforskningsprogram."
 
 #: ../gramps/plugins/export/export.gpr.py:115
 msgid "GeneWeb export options"
-msgstr "Eksportopsjoner for GeneWeb"
+msgstr "Eksportvalg for GeneWeb"
 
 #: ../gramps/plugins/export/export.gpr.py:126
 msgid "Gramps XML Package (family tree and media)"
@@ -22824,7 +22820,7 @@ msgstr "Gramps-pakke er en arkivert XML-database sammen med mediaobjektfilene."
 
 #: ../gramps/plugins/export/export.gpr.py:139
 msgid "Gramps package export options"
-msgstr "Eksportopsjoner for Gramps-pakke"
+msgstr "Eksportvalg for Gramps-pakke"
 
 #: ../gramps/plugins/export/export.gpr.py:150
 msgid "Gramps XML (family tree)"
@@ -22844,7 +22840,7 @@ msgstr ""
 
 #: ../gramps/plugins/export/export.gpr.py:164
 msgid "Gramps XML export options"
-msgstr "Eksportopsjoner for Gramps XML"
+msgstr "Eksportvalg for Gramps XML"
 
 #: ../gramps/plugins/export/export.gpr.py:175
 msgid "vCalendar"
@@ -22861,7 +22857,7 @@ msgstr ""
 
 #: ../gramps/plugins/export/export.gpr.py:185
 msgid "vCalendar export options"
-msgstr "Eksportopsjoner for vCalendar"
+msgstr "Eksportvalg for vCalendar"
 
 #: ../gramps/plugins/export/export.gpr.py:196
 #: ../gramps/plugins/importer/import.gpr.py:174
@@ -22879,7 +22875,7 @@ msgstr ""
 
 #: ../gramps/plugins/export/export.gpr.py:206
 msgid "vCard export options"
-msgstr "Eksportopsjoner for vCard"
+msgstr "Eksportvalg for vCard"
 
 #: ../gramps/plugins/export/exportcsv.py:147
 msgid "Include people"
@@ -23024,16 +23020,16 @@ msgid ""
 "try again."
 msgstr ""
 "Databasen kan ikke lagres fordi du ikke har rettigheter til å skrive til "
-"katalogen. Vennligst kontroller at du har skrivetilgang til katalogen og "
-"prøv på nytt."
+"mappen. Vennligst kontroller at du har skrivetilgang til mappen og prøv på "
+"nytt."
 
 #: ../gramps/plugins/export/exportxml.py:177
 msgid ""
 "The database cannot be saved because you do not have permission to write to "
 "the file. Please make sure you have write access to the file and try again."
 msgstr ""
-"Databasen kan ikke lagres fordi du ikke har rettigheter til å skrive til "
-"fila. Vennligst kontroller at du har skrivetilgang til fila og prøv på nytt."
+"Databasen kan ikke lagres fordi du mangler rettigheter til å skrive til "
+"filen. Kontroller at du har skrivetilgang til filen og prøv igjen."
 
 #: ../gramps/plugins/gramplet/ageondategramplet.py:56
 msgid "Enter a date, click Run"
@@ -24619,7 +24615,7 @@ msgstr "Legg til et nytt gjøremålsnotat"
 
 #: ../gramps/plugins/gramplet/todo.py:207
 msgid "First select the object to which you want to attach a note"
-msgstr "Velg objektet du vil feste en notis til først"
+msgstr "Velg først objektet du vil feste et notat til"
 
 #: ../gramps/plugins/gramplet/todogramplet.py:151
 msgid "Unattached"
@@ -26035,9 +26031,10 @@ msgid ""
 "import, and override the character set by selecting a different encoding "
 "below."
 msgstr ""
-"Denne GEDCOM-fila har identifisert seg selv som en ANSEL-kodet fil. I blant "
-"er ikke dette riktig. Hvis importerte data inneholder uvanlige tegn kan du "
-"angre importen og overstyre tegnsettet ved å velge en annen tegnkoding under."
+"Denne GEDCOM-filen har identifisert seg selv som en ANSEL-kodet fil. Noen "
+"ganger er dette feil. Hvis importerte data inneholder uvanlige tegn kan du "
+"angre importen og overstyre tegnsettet ved å velge en annen tegnkoding "
+"nedenfor."
 
 #: ../gramps/plugins/importer/importgedcom.glade:125
 msgid "Encoding: "
@@ -26167,7 +26164,8 @@ msgstr "Mediemappe %s er skrivebeskyttet"
 #, python-format
 msgid ""
 "Media directory %s exists. Delete it first, then restart the import process"
-msgstr "Mediakatalog %s finnes. Slett den først og start deretter importen"
+msgstr ""
+"Mediamappen %s finnes. Slett den først, og start deretter importen på nytt"
 
 #: ../gramps/plugins/importer/importgpkg.py:98
 #, python-format
@@ -26232,12 +26230,12 @@ msgid ""
 "example this version), create a new empty database and import the Gramps XML "
 "into that version. Please refer to:%(gramps_wiki_migrate_two_to_three_url)s"
 msgstr ""
-"Versjonen av databasen støttes ikke av denne versjonen av Gramps. Du må "
-"bruke en eldre versjon av Gramps (3.0.x) og importere databasen din i den "
+"Databaseversjonen støttes ikke av denne versjonen av Gramps. Du bør bruke en "
+"eldre utgave av Gramps med versjon 3.0.x og importere databasen til den "
 "versjonen. Deretter må du eksportere en kopi av dine data til Gramps XML. Så "
-"oppgraderer du Gramps (for eksempel til denne versjonen) og lag en ny og tom "
-"slektsdatabase. Importere til slutt Gramps XML-fila i denne versjonen. Du "
-"henvises videre til: %(gramps_wiki_migrate_two_to_three_url)s"
+"oppgraderer du til seneste versjon av Gramps (for eksempel denne versjonen), "
+"oppretter en ny tom slektsdatabase og importerer Gramps XML-filen til den "
+"versjonen. Du henvises videre til: %(gramps_wiki_migrate_two_to_three_url)s"
 
 #: ../gramps/plugins/importer/importprogen.glade:49
 #: ../gramps/plugins/importer/importprogen.glade:70
@@ -26608,7 +26606,7 @@ msgstr "Feil ved lesing av %s"
 #: ../gramps/plugins/importer/importxml.py:220
 msgid "The file is probably either corrupt or not a valid Gramps database."
 msgstr ""
-"Fila er sannsynligvis enten ødelagt eller ikke en gyldig Gramps-database."
+"Filen er sannsynligvis enten ødelagt eller ikke en gyldig Gramps-database."
 
 #: ../gramps/plugins/importer/importxml.py:332
 #, python-brace-format
@@ -26673,10 +26671,10 @@ msgid ""
 "or, if not set, relative to the user's directory."
 msgstr ""
 "\n"
-"Mediaobjekt med relativ sti er blitt\n"
+"Mediaobjekter med relative stier har blitt\n"
 "importert. Disse stiene håndteres som relative til\n"
-"mediakatalogen du har angitt i innstillingene,\n"
-"eller, hvis angitt, relativt til hjemmekatalogen til brukeren."
+"mediamappen du har angitt i innstillingene,\n"
+"eller, hvis ikke angitt, relativt til hjem-mappen til brukeren."
 
 #: ../gramps/plugins/importer/importxml.py:399
 msgid ""
@@ -26691,7 +26689,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importxml.py:1734
 #: ../gramps/plugins/importer/importxml.py:2166
 msgid "The Gramps Xml you are trying to import is malformed."
-msgstr "Gramps XML-fila du prøver å importere er ødelagt."
+msgstr "Gramps XML-filen du prøver å importere er ødelagt."
 
 #: ../gramps/plugins/importer/importxml.py:906
 msgid "Attributes that link the data together are missing."
@@ -26713,10 +26711,9 @@ msgid ""
 "Copy the files to a correct directory or change the media path in the "
 "Preferences."
 msgstr ""
-"Den åpnede fila har mediasti %s, som er i konflikt med mediastien til det "
-"slektstreet du vil improtere til. Den opprinnelige mediastien er blitt "
-"ivaretatt. Kopier filen til en korrekt katalog eller endre mediastien i "
-"Innstillinger."
+"Den åpnede filen har mediasti %s, som er i konflikt med mediastien til "
+"slektstreet du importerer til. Den opprinnelige mediastien er beholdt. "
+"Kopier filene til en korrekt mappe eller endre mediastien i Innstillinger."
 
 #: ../gramps/plugins/importer/importxml.py:1151
 msgid ""
@@ -26725,10 +26722,10 @@ msgid ""
 "\n"
 "The file will not be imported."
 msgstr ""
-"Gramps-fila du skal til å importere inneholder ikke informasjon om hvilken "
-"versjon av Gramps den ble laget med.\n"
+"Gramps-filen du importerer inneholder ikke informasjon om hvilken versjon av "
+"Gramps den ble laget med.\n"
 "\n"
-"Fila blir ikke importert."
+"Filen blir ikke importert."
 
 #: ../gramps/plugins/importer/importxml.py:1155
 msgid "Import file misses Gramps version"
@@ -26741,9 +26738,9 @@ msgid ""
 "while you are running an older version %(older)s. The file will not be "
 "imported. Please upgrade to the latest version of Gramps and try again."
 msgstr ""
-".gramps-fila du importerer ble laget med Gramps versjon %(newer)s, men du "
-"kjører en eldre versjon %(older)s. Filen vil ikke bli importert. Vennligst "
-"oppgrader til siste versjon av Gramps og prøv på nytt."
+".gramps-filen du importerer ble laget med versjon %(newer)s av Gramps, mens "
+"du kjører en eldre versjon %(older)s. Filen vil ikke bli importert. "
+"Oppgrader til nyeste versjon av Gramps og prøv på nytt."
 
 #: ../gramps/plugins/importer/importxml.py:1167
 #, python-format
@@ -26757,18 +26754,18 @@ msgid ""
 "  %(gramps_wiki_xml_url)s\n"
 " for more info."
 msgstr ""
-"Den .gramps-fila du importerer ble laget med versjon %(oldgramps)s av "
-"Gramps, mens den versjonen du nå kjører er nyere versjon %(newgramps)s\n"
+".gramps-filen du importerer ble laget med versjon %(oldgramps)s av Gramps, "
+"mens du kjører en nyere versjon %(newgramps)s\n"
 "\n"
-"Fila kan ikke importeres. Bruk en eldre versjon av Gramps som støtter "
-"versjon %(xmlversion)s av XML-fila.\n"
+"Filen kan ikke importeres. Bruk en eldre versjon av Gramps som støtter "
+"versjon %(xmlversion)s av XML-filen.\n"
 "Se\n"
 "  %(gramps_wiki_xml_url)s\n"
 " for mer informasjon."
 
 #: ../gramps/plugins/importer/importxml.py:1179
 msgid "The file will not be imported"
-msgstr "Fila vil ikke bli importert"
+msgstr "Filen vil ikke bli importert"
 
 #: ../gramps/plugins/importer/importxml.py:1182
 #, python-format
@@ -26783,12 +26780,12 @@ msgid ""
 "  %(gramps_wiki_xml_url)s\n"
 "for more info."
 msgstr ""
-"Den .gramps-fila du importerer ble laget med versjon %(oldgramps)s av "
-"Gramps, men du kjører en mye nyere versjon %(newgramps)s.\n"
+".gramps-filen du importerer ble laget med versjon %(oldgramps)s av Gramps, "
+"mens du kjører en mye nyere versjon %(newgramps)s.\n"
 "\n"
-"Etter importen må du kontrollere at alt ble importert riktig. Hvis det er "
-"problemer, vær snill å rapportere feilen og bruk en eldre versjon av Gramps, "
-"som er %(xmlversion)s til å importere fila i mellomtiden.\n"
+"Etter importen må du kontrollere at alt ble importert riktig. I tilfelle "
+"problemer, vær snill å rapportere feilen og bruk en eldre versjon av Gramps "
+"i mellomtiden for å importere filen, som er versjon %(xmlversion)s av xml.\n"
 "Se\n"
 "  %(gramps_wiki_xml_url)s\n"
 "for  mer informasjon."
@@ -26951,7 +26948,7 @@ msgstr "Ugyldig tegn%s"
 
 #: ../gramps/plugins/lib/libgedcom.py:2164
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
-msgstr "GEDCOM-fila di er korrupt. Den ser ut til å ha blitt avkortet."
+msgstr "GEDCOM-filen er ødelagt. Den ser ut til å ha blitt avkortet."
 
 #: ../gramps/plugins/lib/libgedcom.py:2256
 #, python-format
@@ -27030,7 +27027,7 @@ msgid ""
 "referenced by note %(unknown)s.\n"
 msgstr ""
 "\n"
-"Den importerte fila var ikke komplett.\n"
+"Den importerte filen var ikke komplett.\n"
 "For å rette dette, ble det opprettet %(new)d objekter og\n"
 "deres typiske egenskaper ble satt til 'Ukjent'.\n"
 "Der det er mulig ble disse 'Ukjent'-objektene\n"
@@ -27206,7 +27203,7 @@ msgid ""
 "Import of GEDCOM file %(filename)s with DEST=%(by)s, could cause errors in "
 "the resulting database!"
 msgstr ""
-"Import av GEDCOM-fila %(filename)s med DEST=%(by)s kan medføre feil i den "
+"Import av GEDCOM-fil %(filename)s med DEST=%(by)s kan medføre feil i den "
 "resulterende databasen!"
 
 #: ../gramps/plugins/lib/libgedcom.py:7926
@@ -30867,7 +30864,7 @@ msgstr "R_edigere..."
 #: ../gramps/plugins/view/pedigreeview.py:724
 #: ../gramps/plugins/view/relview.py:411
 msgid "Person Filter Editor"
-msgstr "Lage personfilter"
+msgstr "Behandle personfilter"
 
 #: ../gramps/plugins/lib/libpersonview.py:275
 #: ../gramps/plugins/lib/libpersonview.py:385
@@ -31341,10 +31338,10 @@ msgid ""
 "Trying to create a new one failed.\n"
 "Configure the view for the tile path and restart gramps."
 msgstr ""
-"Tittelkatalogen eksisterer ikke lenger:\n"
+"Flismappen eksisterer ikke lenger:\n"
 "%s\n"
 "Forsøk på å opprette en ny mislyktes.\n"
-"Konfigurer visningen for tittelbanen og start gramps på nytt."
+"Konfigurer visningen for flisstien og start gramps på nytt."
 
 #: ../gramps/plugins/lib/maps/geography.py:397
 msgid "Remove cross hair"
@@ -31386,7 +31383,7 @@ msgstr "Erstatte '%(map)s' med =>"
 #: ../gramps/plugins/lib/maps/geography.py:447
 #, python-format
 msgid "Reload all visible tiles for '%(map)s'."
-msgstr "Gjeninnlast alle synlige flis for «%(map)s»."
+msgstr "Last inn alle synlige fliser på nytt for «%(map)s»."
 
 #: ../gramps/plugins/lib/maps/geography.py:453
 #, python-format
@@ -31458,7 +31455,7 @@ msgstr "Bestemte parametre"
 
 #: ../gramps/plugins/lib/maps/geography.py:1421
 msgid "Where to save the tiles for offline mode."
-msgstr "Om titlene for offline-modus skal lagres."
+msgstr "Velg hvor flisene skal lagres for offline-modus."
 
 #: ../gramps/plugins/lib/maps/geography.py:1431
 msgid ""
@@ -31466,9 +31463,9 @@ msgid ""
 "placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
-"Hvis du ikke har mer plass på filsystemet ditt kan du fjerne all titlene "
+"Hvis du ikke har mer plass på filsystemet ditt kan du fjerne alle flisene "
 "plassert i stien over.\n"
-"Vær forsiktig! Hvis du ikke er koblet til Internett, vil du ikke få noe kart."
+"Vær forsiktig! Hvis du ikke er koblet til Internett, får du ikke noe kart."
 
 #: ../gramps/plugins/lib/maps/geography.py:1441
 msgid "Zoom used when centering"
@@ -31494,12 +31491,12 @@ msgstr "Kartet"
 
 #: ../gramps/plugins/lib/maps/geography.py:1530
 msgid "Select tile cache directory for offline mode"
-msgstr "velg katalog for mellomlagring for offline-modus"
+msgstr "Velg mappe hvor fliser skal mellomlagres for offline-modus"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:143
 #, python-format
 msgid "Can't create tile cache directory %s"
-msgstr "Kan ikke opprette mellomlagerkatalog %s"
+msgstr "Kan ikke opprette mappe for mellomlagring av fliser %s"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:149
 #, python-format
@@ -31517,7 +31514,7 @@ msgid ""
 "\n"
 "The following errors are expected"
 msgstr ""
-"Du må bekrefte og endre tittelbufferen\n"
+"Du må bekrefte og endre flisbufferen\n"
 "...\n"
 "[geography]\n"
 "...\n"
@@ -31534,7 +31531,7 @@ msgstr ""
 #: ../gramps/plugins/lib/maps/osmgps.py:261
 #, python-format
 msgid "Can't create tiles cache directory for '%s'."
-msgstr "Kan ikke opprette mellomlagerkatalog for titler for '%s'."
+msgstr "Kan ikke opprette mappe for mellomlagring av fliser for '%s'."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:120
 #: ../gramps/plugins/lib/maps/placeselection.py:123
@@ -32291,7 +32288,7 @@ msgstr "Ingen referanser for denne %s"
 #: ../gramps/plugins/quickview/reporef.py:64
 #: ../gramps/plugins/webreport/basepage.py:3432
 msgid "Call number"
-msgstr "Henvisningsnummer"
+msgstr "Arkivreferanse"
 
 #: ../gramps/plugins/quickview/reporef.py:64
 msgid "Type of media"
@@ -32535,7 +32532,7 @@ msgstr "Indeks"
 #: ../gramps/plugins/textreport/alphabeticalindex.py:98
 #: ../gramps/plugins/textreport/tableofcontents.py:97
 msgid "Entire Book"
-msgstr "Hele boka"
+msgstr "Hele boken"
 
 #: ../gramps/plugins/textreport/ancestorreport.py:213
 #, python-format
@@ -33032,12 +33029,12 @@ msgstr "Hvorvidt andre hendelser der personer deltak skal tas med eller ikke."
 #: ../gramps/plugins/textreport/detancestralreport.py:939
 #: ../gramps/plugins/textreport/detdescendantreport.py:1149
 msgid "Include descendant reference in child list"
-msgstr "Ta med referanser til etterkommere i lista over barn"
+msgstr "Ta med referanser til etterkommere i listen over barn"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:940
 #: ../gramps/plugins/textreport/detdescendantreport.py:1150
 msgid "Whether to add descendant references in child list."
-msgstr "Legg til henvisning til etterkommere i lista over barn."
+msgstr "Legg til henvisning til etterkommere i listen over barn."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:943
 #: ../gramps/plugins/textreport/detdescendantreport.py:1153
@@ -33149,7 +33146,7 @@ msgstr "Erstatt manglende datoer med tomrom."
 #: ../gramps/plugins/textreport/detancestralreport.py:1019
 #: ../gramps/plugins/textreport/detdescendantreport.py:1250
 msgid "The style used for the children list title."
-msgstr "Stilen brukt på overskriften på lista over barn."
+msgstr "Stilen brukt på overskriften for listen over barn."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:1029
 #: ../gramps/plugins/textreport/detdescendantreport.py:1260
@@ -33237,14 +33234,14 @@ msgstr "Om referanser til ektefelle/partner skal tas med."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1189
 msgid "Include sign of succession ('+') in child-list"
-msgstr "Ta med tegn på at det finnes etterkommere ('+') i lista over barn"
+msgstr "Ta med tegn på at det finnes etterkommere ('+') i listen over barn"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1193
 msgid ""
 "Whether to include a sign ('+') before the descendant number in the child-"
 "list to indicate a child has succession."
 msgstr ""
-"Om et tegn ('+') skal tas med før etterkommernummeret i barnelista for å "
+"Om et tegn ('+') skal tas med før etterkommernummeret i barnelisten for å "
 "indikere at barnet har etterkommere."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1200
@@ -33490,7 +33487,7 @@ msgstr "Ta med Etiketter"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1182
 msgid "Whether to include tags."
-msgstr "Hvorvidt etiketter skal tas med eller ei."
+msgstr "Om etiketter skal inkluderes."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1185
 msgid "Include Attributes"
@@ -33720,7 +33717,7 @@ msgstr "Tittelen på boken"
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:146
 msgid "Title string for the book."
-msgstr "Tittel på boka."
+msgstr "Tittel på boken."
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:149
 msgid "Subtitle"
@@ -33732,7 +33729,7 @@ msgstr "Bokens undertittel"
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:150
 msgid "Subtitle string for the book."
-msgstr "Undertittel for boka."
+msgstr "Undertittel for boken."
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:155
 #, python-format
@@ -34028,7 +34025,7 @@ msgstr "Viser et sammendrag for denne databasen"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:375
 msgid "Produces a table of contents for book reports."
-msgstr "Lager en innholdsliste for bokrapporter."
+msgstr "Lager en innholdsfortegnelse for bokrapporter."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:397
 msgid "Produces an alphabetical index for book reports."
@@ -34241,12 +34238,12 @@ msgid ""
 "You may choose to either remove the reference from the database,\n"
 "keep the reference to the missing file, or select a new file."
 msgstr ""
-"Fila:\n"
+"Filen:\n"
 "%(file_name)s \n"
-"er referert til i databasen, men denne fila eksisterer ikke lenger.\n"
-"Fila kan være slettet eller blitt flyttet til en annen lokasjon.\n"
-"Du kan velge å fjerne referansen til fila fra databasen,\n"
-"beholde referansen til den savnede fila, eller velge en ny fil."
+"er referert til i databasen, men eksisterer ikke lenger.\n"
+"Filen kan ha blitt slettet eller flyttet til en annen plassering.\n"
+"Du kan velge å enten fjerne referansen fra databasen,\n"
+"beholde referansen til den manglende filen, eller velge en ny fil."
 
 #: ../gramps/plugins/tool/check.py:956
 msgid "Looking for empty people records"
@@ -34596,7 +34593,7 @@ msgstr "Alle referansekart er gjenoppbygget."
 #: ../gramps/plugins/tool/check.py:3069
 #, python-format
 msgid "%d bad Note Links were fixed;\n"
-msgstr "%d feilaktige notislenker ble fikset;\n"
+msgstr "%d ugyldige notatkoblinger ble rettet;\n"
 
 #: ../gramps/plugins/tool/check.py:3099
 msgid "Integrity Check Results"
@@ -34894,22 +34891,22 @@ msgid ""
 "media objects store the correct file locations."
 msgstr ""
 "Dette verktøyet tillater masseoperasjoner på medieobjekter som er lagret i "
-"Gramps. En viktig forskjell må synliggjøres mellom et Gramps-medieobjekt og "
-"filen det kommer fra.\n"
+"Gramps. Det må gjøres et viktig skille mellom et Gramps-medieobjekt og "
+"tilknyttet fil.\n"
 "\n"
-"Gramps-medieobjektet er en samling data om medieobjektets fil: filnavnet og/"
-"eller stien, beskrivelsen, ID-en, notater, kildereferanser osv. Disse "
-"dataene %(bold_start)sinkluderer ikke selve filen%(bold_end)s.\n"
+"Gramps-medieobjektet er en samling av data om medieobjektets fil: filnavnet "
+"og/eller stien, beskrivelsen, ID-en, notater, kildereferanser osv. Disse "
+"dataene %(bold_start)s inkluderer ikke selve filen%(bold_end)s.\n"
 "\n"
-"Filene som inneholder bilde, lyd, video osv, finnes som separate filer på "
-"din harddisk. Disse filene håndteres ikke av Gramps selv, og blir ikke "
-"importert i Gramps-databasen. Gramps-databasen lagrer bare filnavnet og "
-"stien.\n"
+"Filene som inneholder bilde, lyd, video osv. finnes som separate filer på "
+"lagringsenheten din. Disse filene styres ikke av Gramps og blir ikke "
+"importert i Gramps-databasen. Gramps-databasen lagrer bare stiene og "
+"filnavnene.\n"
 "\n"
-"Dette verktøyet lar deg bare endre poster i din Gramps-database. Hvis du "
-"ønsker å flytte eller døpe om filer, må du gjøre det manuelt utenfor Gramps. "
-"Deretter må du endre på filnavn og/eller sti ved å bruke dette verktøyet "
-"slik at medieobjektet inneholder korrekt filadresse."
+"Dette verktøyet lar deg bare endre postene i Gramps-databasen. Hvis du "
+"ønsker å flytte eller gi nytt navn til filene, må du gjøre det manuelt "
+"utenfor Gramps. Deretter kan du tilpasse stiene ved å bruke dette verktøyet "
+"slik at medieobjektene lagrer de riktige filplasseringene."
 
 #: ../gramps/plugins/tool/mediamanager.py:354
 msgid "Affected path"
@@ -34920,7 +34917,7 @@ msgid ""
 "Press Apply to proceed, Cancel to abort, or Back to revisit your options."
 msgstr ""
 "Klikk OK for å fortsette, Avbryt for å avbryte, eller Tilbake for å gå "
-"tilbake til opsjonene."
+"tilbake til valgene dine."
 
 #: ../gramps/plugins/tool/mediamanager.py:405
 msgid "Operation successfully finished"
@@ -34966,9 +34963,9 @@ msgid ""
 "with another substring. This can be useful when you move your media files "
 "from one directory to another"
 msgstr ""
-"Dette verktøyet tillater at man erstatter en delstreng i stien til et "
-"mediaobjekt med en annen delstreng. Dette kan være nyttig når du flytter "
-"dine mediafiler fra en katalog til en annen"
+"Dette verktøyet gjør det mulig å erstatte en spesifisert delstreng i stien "
+"til et mediaobjekt med en annen delstreng. Dette kan være nyttig når du "
+"flytter dine mediafiler fra en mappe til en annen"
 
 #: ../gramps/plugins/tool/mediamanager.py:518
 msgid "Replace substring settings"
@@ -35007,9 +35004,9 @@ msgid ""
 "does this by prepending the base path as given in the Preferences, or if "
 "that is not set, it prepends user's directory."
 msgstr ""
-"Dette verktøyet kan gjøre om fra relativ til absolutt sti. Det gjør dette "
-"ved å legge til grunnstien som angitt i Innstillinger. Hvis dette ikke er "
-"angitt legger den til din hjemmekatalog."
+"Dette verktøyet lar deg konvertere relative mediastier til absolutte. Det "
+"gjør dette ved å legge til grunnstien som angitt i Innstillinger. Hvis dette "
+"ikke er angitt legger den til brukerens hjemmemappe."
 
 #: ../gramps/plugins/tool/mediamanager.py:636
 msgid "Convert paths from absolute to r_elative"
@@ -35034,15 +35031,15 @@ msgstr "Alle bilder som ikke er i databasen"
 
 #: ../gramps/plugins/tool/mediamanager.py:677
 msgid "Check directories for images not included in database"
-msgstr "Kontrollere kataloger for bilder som ikke er i databasen"
+msgstr "Kontrollere mapper for bilder som ikke er i databasen"
 
 #: ../gramps/plugins/tool/mediamanager.py:679
 msgid ""
 "This tool adds images in directories that are referenced by existing images "
 "in the database."
 msgstr ""
-"Dette verktøyet legger til bilder i kataloger som er henvist til av bilder "
-"som allerede finnes i databasen."
+"Dette verktøyet legger til bilder i mapper som er henvist til av "
+"eksisterende bilder i databasen."
 
 #: ../gramps/plugins/tool/mergecitations.glade:144
 msgid "Don't merge if citation has notes"
@@ -35218,12 +35215,12 @@ msgid ""
 "Run this tool several times to correct names that have multiple information "
 "that can be extracted."
 msgstr ""
-"Under er en liste med økenavn, titler, forstavelser og koblede etternavn som "
-"Gramps kan hente ut fra din slektsdatabase.\n"
+"Under er en liste med kallenavn, titler, forstavelser og koblede etternavn "
+"som Gramps kan hente ut fra din slektsdatabase.\n"
 "Hvis du godtar endringene vil Gramps endre de postene du har valgt.\n"
 "\n"
-"Koblede etternavn er vist som en liste med [forstavelse, etternavn, "
-"kobling].\n"
+"Koblede etternavn er vist som en liste med [forstavelse, etternavn, kobling]."
+"\n"
 "F.eks. vil navnet \"de Mascarenhas da Silva e Lencastre\" bli vist som:\n"
 "       [de, Mascarenhas]-[da, Silva, e]-[,Lencastre]\n"
 "\n"
@@ -35265,7 +35262,7 @@ msgstr "Analyserer navn"
 
 #: ../gramps/plugins/tool/patchnames.py:415
 msgid "No titles, nicknames or prefixes were found"
-msgstr "Ingen titler, økenavn eller forstavelser ble funnet"
+msgstr "Ingen titler, kallenavn eller forstavelser ble funnet"
 
 #: ../gramps/plugins/tool/patchnames.py:466
 msgid "Current Name"
@@ -35523,7 +35520,7 @@ msgstr "Omsortering av startnummer."
 
 #: ../gramps/plugins/tool/reorderids.glade:1499
 msgid "Step"
-msgstr "Stebarn"
+msgstr "Trinn"
 
 #: ../gramps/plugins/tool/reorderids.glade:1504
 msgid "Reorder ID step width."
@@ -35584,7 +35581,7 @@ msgstr "Sorterer familiehendelser..."
 
 #: ../gramps/plugins/tool/sortevents.py:175
 msgid "Tool Options"
-msgstr "Verktøyopsjoner"
+msgstr "Verktøyvalg"
 
 #: ../gramps/plugins/tool/sortevents.py:178
 msgid "Select the people to sort"
@@ -36259,7 +36256,7 @@ msgstr "Flett sammen de valgte siteringene eller kildene"
 
 #: ../gramps/plugins/view/citationtreeview.py:157
 msgid "Citation Tree View"
-msgstr "Trevisning for siteringer"
+msgstr "Trevisning for kilder"
 
 #: ../gramps/plugins/view/citationtreeview.py:362
 #: ../gramps/plugins/view/citationtreeview.py:430
@@ -37223,11 +37220,11 @@ msgstr "Stamtavlevisning"
 
 #: ../gramps/plugins/view/placelistview.py:54
 msgid "Place View"
-msgstr "Stedsnavnvisning"
+msgstr "Stedsvisning"
 
 #: ../gramps/plugins/view/placetreeview.py:62
 msgid "Place Tree View"
-msgstr "Stedsnavnvisning"
+msgstr "Stedoversikt i trevisning"
 
 #: ../gramps/plugins/view/placetreeview.py:86
 msgid "Collapse this Entire Group"
@@ -37436,7 +37433,7 @@ msgstr "Flett sammen de valgte oppbevaringsstedene"
 
 #: ../gramps/plugins/view/repoview.py:236
 msgid "Repository Filter Editor"
-msgstr "Oppbevaringsstedsfilterbehandler"
+msgstr "Oppbevaringsstedsfiltre"
 
 #: ../gramps/plugins/view/repoview.py:395
 msgid "Cannot merge repositories."
@@ -37567,7 +37564,7 @@ msgstr "Visningen som viser alle siteringene"
 
 #: ../gramps/plugins/view/view.gpr.py:317
 msgid "Citation Tree"
-msgstr "Trevisning for siteringer"
+msgstr "Trevisning for kilder"
 
 #: ../gramps/plugins/view/view.gpr.py:318
 msgid "A view displaying citations and sources in a tree format."
@@ -37713,7 +37710,7 @@ msgstr "Familiekart"
 #: ../gramps/plugins/webreport/basepage.py:3219
 #: ../gramps/plugins/webreport/basepage.py:3297
 msgid "Church Parish"
-msgstr "Sogn"
+msgstr "Kirkesogn"
 
 #: ../gramps/plugins/webreport/basepage.py:3241
 msgid "Locations"
@@ -37962,7 +37959,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/media.py:456
 msgid "The file has been moved or deleted."
-msgstr "Fila har blitt flyttet eller slettet."
+msgstr "Filen har blitt flyttet eller slettet."
 
 #: ../gramps/plugins/webreport/media.py:631
 msgid "File Type"
@@ -37991,7 +37988,7 @@ msgstr "Ugyldig filnavn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:394
 msgid "The archive file must be a file, not a directory"
-msgstr "Arkivfilen må være en fil, ikke en katalog"
+msgstr "Arkivfilen må være en fil, ikke en mappe"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:595
 #, python-format
@@ -38061,7 +38058,7 @@ msgstr "Om nettsiden skal lagres i en arkivfil"
 #: ../gramps/plugins/webreport/narrativeweb.py:2078
 #: ../gramps/plugins/webreport/webcal.py:1843
 msgid "The destination directory for the web files"
-msgstr "Målkatalogen for nettsidene"
+msgstr "Målmappen for nettsidene"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2083
 msgid "My Family Tree"
@@ -38226,7 +38223,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2258
 msgid "Sort all children in birth order"
-msgstr "Sorter i alle barn fødselsrekkefølge"
+msgstr "Sorter alle barn i fødselsrekkefølge"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2260
 msgid "Whether to display children in birth order or in entry order."
@@ -38401,9 +38398,9 @@ msgid ""
 "sized images on the Media Page. This will allow you to have a much smaller "
 "total upload size to your web hosting site."
 msgstr ""
-"Denne opsjonen gir deg mulighet til å bare lage småbilder istedet for bilder "
-"i full størrelse på Mediasidene. Dette gjør at det tar mye mindre plass på "
-"nettsiden din og opplastingen går mye fortere."
+"Dette valget gir deg mulighet til å kun lage miniatyrbilder i stedet for "
+"bilder i full størrelse på mediesiden. Dette gjør at det tar mye mindre "
+"plass ved opplasting til webhotellet ditt."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2413
 msgid "Create the thumbnail index"
@@ -38971,7 +38968,7 @@ msgstr "Tiltalsnavn"
 
 #: ../gramps/plugins/webreport/person.py:1806
 msgid "Nick Name"
-msgstr "Økenavn"
+msgstr "Kallenavn"
 
 #: ../gramps/plugins/webreport/person.py:1863
 msgid "Age at Death"
