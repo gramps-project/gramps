@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-04-19 08:05+0000\n"
+"PO-Revision-Date: 2024-06-28 02:44+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
 
@@ -4143,7 +4143,7 @@ msgid ""
 "Citations with a source with a repository reference matching the <repository "
 "filter>"
 msgstr ""
-"Citati s izvorom, koji ima referencu na spremište koje odgovara <filtru "
+"Citati s izvorom koji ima referencu spremišta koje odgovara <filtru "
 "spremišta>"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:54
@@ -18962,7 +18962,7 @@ msgstr "Neuspjela provjera dodataka"
 
 #: ../gramps/gui/plug/_windows.py:955
 msgid "The addon repository appears to be unavailable. Please try again later."
-msgstr "Repozitorij dodataka nije dostupan. Pokušaj opet kasnije."
+msgstr "Spremište dodataka nije dostupno. Pokušaj opet kasnije."
 
 #: ../gramps/gui/plug/_windows.py:970
 msgid "There are no available addons of this type"
