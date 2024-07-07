@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.1.X\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-02-14 00:02+0000\n"
+"PO-Revision-Date: 2024-07-07 22:09+0000\n"
 "Last-Translator: Lajos Nemeséri <nemeseril@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hu/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -90,27 +90,27 @@ msgstr "Pészah"
 
 #: ../data/holidays.xml:361
 msgid "2 of Passover"
-msgstr "Pészah 2"
+msgstr "Pészah 2. nap"
 
 #: ../data/holidays.xml:362
 msgid "3 of Passover"
-msgstr "Pészah 3"
+msgstr "Pészah 3. nap"
 
 #: ../data/holidays.xml:363
 msgid "4 of Passover"
-msgstr "Pészah 4"
+msgstr "Pészah 4. nap"
 
 #: ../data/holidays.xml:364
 msgid "5 of Passover"
-msgstr "Pészah 5"
+msgstr "Pészah 5. nap"
 
 #: ../data/holidays.xml:365
 msgid "6 of Passover"
-msgstr "Pészah 6"
+msgstr "Pészah 6. nap"
 
 #: ../data/holidays.xml:366
 msgid "7 of Passover"
-msgstr "Pészah 7"
+msgstr "Pészah 7. nap"
 
 #: ../data/holidays.xml:367
 msgid "Shavuot"
@@ -166,31 +166,31 @@ msgstr "Hanukka"
 
 #: ../data/holidays.xml:380
 msgid "2 of Hanuka"
-msgstr "Hanukka 2"
+msgstr "Hanukka 2. nap"
 
 #: ../data/holidays.xml:381
 msgid "3 of Hanuka"
-msgstr "Hanukka 3"
+msgstr "Hanukka 3. nap"
 
 #: ../data/holidays.xml:382
 msgid "4 of Hanuka"
-msgstr "Hanukka 4"
+msgstr "Hanukka 4. nap"
 
 #: ../data/holidays.xml:383
 msgid "5 of Hanuka"
-msgstr "Hanukka 5"
+msgstr "Hanukka 5. nap"
 
 #: ../data/holidays.xml:384
 msgid "6 of Hanuka"
-msgstr "Hanukka 6"
+msgstr "Hanukka 6. nap"
 
 #: ../data/holidays.xml:385
 msgid "7 of Hanuka"
-msgstr "Hanukka 7"
+msgstr "Hanukka 7. nap"
 
 #: ../data/holidays.xml:386
 msgid "8 of Hanuka"
-msgstr "Hanukka 8"
+msgstr "Hanukka 8. nap"
 
 #: ../data/holidays.xml:388
 msgid "Italy"
@@ -277,7 +277,7 @@ msgid ""
 "All of your research is kept organized, searchable and as precise as you "
 "need it to be."
 msgstr ""
-"Minden kutatása szervezett, kereshető és olyan precíz lesz, ahogy annak "
+"Minden kutatása szervezett, kereshető és olyan precíz lesz, amilyennek "
 "lennie kell."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:13
@@ -297,7 +297,7 @@ msgstr "Családfa"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:165
 #: ../gramps/plugins/view/view.gpr.py:168
 msgid "Descendant Fan"
-msgstr "Leszármazott legyező"
+msgstr "Leszármazotti legyező"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:38
 #: ../gramps/plugins/importer/importxml.py:349
@@ -544,8 +544,8 @@ msgid ""
 "as all common ancestors are reported."
 msgstr ""
 "<b>Kapcsolatok meghatározása</b><br/>Két ember lehetséges rokonságának (vér "
-"szerinti, nem házassági) ellenőrzéséhez próbálja ki az „Eszközök -> "
-"Segédeszközök -> Kapcsolat meghatározás...” alatti eszközt. Az eszköz a "
+"szerinti, nem házassági) ellenőrzéséhez próbálja ki az „Eszközök &gt; "
+"Segédeszközök &gt; Kapcsolat meghatározás...” alatti eszközt. Az eszköz a "
 "pontos rokonsági fokot, valamint az összes közös őst megjeleníti."
 
 #: ../data/tips.xml:30
@@ -575,11 +575,11 @@ msgid ""
 "Each separate view can also be configured under \"View &gt; Configure View..."
 "\"."
 msgstr ""
-"<b>Az ön beállításainak alkalmazása</b><br/>A „Szerkesztés -> "
-"Beállítások...” menüpont lehetővé teszi számos beállítás módosítását (mint "
-"például a média fájlok útvonala), valamint megengedi az ön igényei szerint "
-"finomítani a Gramps megjelenését. Minden külön nézet szintén állítható itt: "
-"„Nézet -> Nézet beállítása...”."
+"<b>Az ön beállításainak alkalmazása</b><br/>A „Szerkesztés -> Beállítások...”"
+" menüpont lehetővé teszi számos beállítás módosítását (mint például a média "
+"fájlok útvonala), valamint megengedi az ön igényei szerint finomítani a "
+"Gramps megjelenését. Minden külön nézet szintén állítható itt: „Nézet &gt; "
+"Nézet beállítása...”."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -18960,14 +18960,12 @@ msgid "Loading..."
 msgstr "Betöltés..."
 
 #: ../gramps/gui/plug/_windows.py:562
-#, fuzzy
-#| msgid "Operation failed"
 msgid "Addon Registration Failed"
-msgstr "Sikertelen művelet"
+msgstr "Sikertelen kiegészítő regisztráció"
 
 #: ../gramps/gui/plug/_windows.py:563
 msgid "The addon will be unavailable in your current configuration."
-msgstr ""
+msgstr "A kiegészítő nem lesz elérhető a jelenlegi konfigurációban."
 
 #: ../gramps/gui/plug/_windows.py:588
 msgid "No matching addons found."
