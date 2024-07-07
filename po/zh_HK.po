@@ -10,13 +10,14 @@
 # Anthony Fok (霍東靈) <foka@debian.org>, 2015.
 # Abel Cheung <abelcheung@gmail.com>, 2023.
 # hugoalh <hugoalh@users.noreply.hosted.weblate.org>, 2024.
+# Ricky From Hong Kong <lamricky11@hotmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-06-02 10:09+0000\n"
-"Last-Translator: hugoalh <hugoalh@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2024-07-01 20:47+0000\n"
+"Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/"
 "projects/gramps-project/gramps/zh_Hant_HK/>\n"
 "Language: zh_HK\n"
@@ -24,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -780,12 +781,13 @@ msgid ""
 "genealogical data. The Gramps database back end is so robust that some users "
 "are managing genealogies containing hundreds of thousands of people."
 msgstr ""
-"<b>命名的內裏乾坤</b><br/>Gramps 這個名字是由原始開發者 Don Allingham 根據其"
-"父親建議而起的。Gramps 一詞在英語除了是「祖父」的簡稱外，它也可以語帶雙關地當"
-"作一個縮寫，解讀為 <i>Genealogical Research and Analysis Management Program "
-"System</i>，意即「家譜研考分析管理程式設計系統」。它是一套功能全面的族譜程"
-"式，允許您儲存、編輯和研究族譜資料。Gramps 資料庫後端非常穩健強大，一些使用者"
-"甚至使用它來管理含有幾十萬成員的族譜呢！"
+"<b>命名的內裡乾坤</b><br/>Gramps 這個名字是由原始開發者 Don Allingham "
+"根據其父親建議而起的。Gramps "
+"一詞在英語除了是「祖父」的簡稱外，它也可以語帶雙關地當作一個縮寫，解讀為 "
+"<i>Genealogical Research and Analysis Management Program System</i>，意即「家"
+"譜研考分析管理程式設計系統」。它是一套功能全面的族譜程式，允許您儲存、編輯和"
+"研究族譜資料。Gramps "
+"資料庫後端非常穩健強大，一些使用者甚至使用它來管理含有幾十萬成員的族譜。"
 
 #: ../data/tips.xml:68
 #, fuzzy
@@ -1282,9 +1284,8 @@ msgid "Importing: file %(filename)s, format %(format)s."
 msgstr ""
 
 #: ../gramps/cli/arghandler.py:561
-#, fuzzy
 msgid "Opened successfully!"
-msgstr "操作成功完成."
+msgstr "成功開啟！"
 
 #: ../gramps/cli/arghandler.py:576
 #, python-format
@@ -1293,16 +1294,15 @@ msgstr "  資訊: %s"
 
 #: ../gramps/cli/arghandler.py:576
 msgid "Database is locked, cannot open it!"
-msgstr "資料庫被鎖定，無法開啟"
+msgstr "資料庫被鎖定，無法開啟！"
 
 #: ../gramps/cli/arghandler.py:581
 msgid "Database needs recovery, cannot open it!"
 msgstr "需要恢復資料庫，無法開啟！"
 
 #: ../gramps/cli/arghandler.py:584
-#, fuzzy
 msgid "Database backend unavailable, cannot open it!"
-msgstr "資料庫被鎖定，無法開啟"
+msgstr "資料庫後台不能使用，無法開啟！"
 
 #: ../gramps/cli/arghandler.py:635 ../gramps/cli/arghandler.py:692
 #: ../gramps/cli/arghandler.py:740
@@ -1930,7 +1930,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/descendreport.py:311
 #: ../gramps/plugins/textreport/placereport.py:203
 msgid ", "
-msgstr "​"
+msgstr "， "
 
 #: ../gramps/cli/plug/__init__.py:503 ../gramps/cli/plug/__init__.py:608
 #: ../gramps/cli/plug/__init__.py:691
@@ -1968,7 +1968,7 @@ msgstr "無效的"
 #: ../gramps/cli/plug/__init__.py:699
 #, fuzzy
 msgid "   Available values are:"
-msgstr "有效條目選單"
+msgstr "   可用數值："
 
 #: ../gramps/cli/plug/__init__.py:712
 #, python-format
@@ -5721,7 +5721,7 @@ msgstr "匹配所有男性"
 
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationancestorof.py:48
 msgid "Ancestors of <person> at least <N> generations away"
-msgstr " <person> 的祖先最少有 <N> 代的記錄"
+msgstr "<person> 的祖先最少有 <N> 代的記錄"
 
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationancestorof.py:51
 msgid ""
@@ -9555,7 +9555,7 @@ msgstr "無法建立 %s"
 #: ../gramps/plugins/importer/importprogen.glade:380
 #: ../gramps/plugins/webreport/webcal.py:531
 msgid "Default"
-msgstr "預設的"
+msgstr "預設"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:71
 msgid "PostScript / Helvetica"
@@ -11876,38 +11876,38 @@ msgid ""
 "     <i>Dr.</i>: Title, <i>Sr</i>: Suffix, <i>Ed</i>: Nickname, "
 "<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
 msgstr ""
-"The following keywords are replaced with the appropriate name parts:\n"
-"<tt>  \n"
-"  <b>Given</b>      - given name (first name) <b>Surname</b>      - surnames "
-"(with prefix and connectors)\n"
-"  <b>Title</b>      - title (Dr., Mrs.)       <b>Suffix</b>       - suffix "
-"(Jr., Sr.)\n"
-"  <b>Call</b>       - call name               <b>Nickname</b>     - nick "
-"name\n"
-"  <b>Initials</b>   - first letters of Given  <b>Common</b>       - nick "
-"name, otherwise first of Given\n"
-"  <b>Primary</b>    - primary surname (main)  <b>Familynick</b>   - family "
-"nick name\n"
-"  <b>Patronymic</b> - father's surname        <b>Notpatronymic</b>- all "
-"surnames, except patronymic\n"
-"  <b>Prefix</b>     - all prefixes (von, de)  <b>Rawsurnames</b>  - surnames "
-"(no prefixes and connectors)\n"
-"  <b>Rest</b>       - non primary surnames\n"
+"The following keywords are replaced with the appropriate name parts:<tt>\n"
+"  <b>Given</b>   - given name (first name)     <b>Surname</b>  - surnames ("
+"with prefix and connectors)\n"
+"  <b>Title</b>   - title (Dr., Mrs.)           <b>Suffix</b>   - suffix ("
+"Jr., Sr.)\n"
+"  <b>Call</b>    - call name                   <b>Nickname</b> - nick name\n"
+"  <b>Initials</b>- first letters of given      <b>Common</b>   - nick name, "
+"call, or first of given\n"
+"  <b>Prefix</b>  - all prefixes (von, de)\n"
+"Surnames:\n"
+"  <b>Rest</b>      - non primary surnames    <b>Notpatronymic</b>- all "
+"surnames, except pa/matronymic &amp; primary\n"
+"  <b>Familynick</b>- family nick name        <b>Rawsurnames</b>  - surnames ("
+"no prefixes and connectors)\n"
+"  <b>Primary, Primary[pre] or [sur] or [con]</b>- full primary surname, "
+"prefix, surname only, connector\n"
+"  <b>Patronymic, or [pre] or [sur] or [con]</b> - full pa/matronymic "
+"surname, prefix, surname only, connector\n"
 "</tt>\n"
 "UPPERCASE keyword forces uppercase. Extra parentheses, commas are removed. "
 "Other text appears literally.\n"
 "\n"
-"<b>Example</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") "
-"- Underhills'\n"
-"     <i>Edwin Jose</i> is given name, <i>von der</i> is the prefix, "
-"<i>Smith</i> and <i>Weston</i> surnames, \n"
-"     <i>Wilson</i> patronymic surname, <i>Dr.</i> title, <i>Sr</i> suffix, "
-"<i>Ed</i> nick name, \n"
-"     <i>Underhills</i> family nick name, <i>Jose</i> callname.\n"
+"<b>Example</b>: Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") - "
+"Underhills\n"
+"     <i>Edwin Jose</i>: Given, <i>von der</i>: Prefix, <i>Smith</i> and "
+"<i>Weston</i>: Primary, <i>and</i>: [con], <i>Wilson</i>: Patronymic,\n"
+"     <i>Dr.</i>: Title, <i>Sr</i>: Suffix, <i>Ed</i>: Nickname, "
+"<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
 
 #: ../gramps/gui/configure.py:162
 msgid " Name Editor"
-msgstr "名稱編輯器"
+msgstr " 名稱編輯器"
 
 #: ../gramps/gui/configure.py:267 ../gramps/gui/configure.py:275
 #: ../gramps/gui/configure.py:1238
@@ -11930,9 +11930,9 @@ msgstr "無效的或不完整的格式定義。"
 #: ../gramps/gui/plug/_windows.py:830 ../gramps/gui/plug/_windows.py:838
 #: ../gramps/gui/views/navigationview.py:351
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:110
-#, fuzzy, python-format
+#, python-format
 msgid "%s: "
-msgstr "   %s: %s"
+msgstr "%s： "
 
 #: ../gramps/gui/configure.py:673 ../gramps/gui/editors/edittaglist.py:121
 #: ../gramps/gui/glade/addmedia.glade:55
@@ -12787,7 +12787,9 @@ msgstr ""
 msgid ""
 "\n"
 "Source GEDCOM import"
-msgstr "GEDCOM 檔案匯入"
+msgstr ""
+"\n"
+"GEDCOM 檔案匯入"
 
 #: ../gramps/gui/configure.py:2418
 msgid "Add default source on GEDCOM import"
@@ -13037,9 +13039,9 @@ msgid ""
 "Valid types are: Gramps database, Gramps XML, Gramps package, GEDCOM, and "
 "others."
 msgstr ""
-" Gramps 無法識別 \"%s\" 的檔案類型.\n"
+"Gramps 無法識別 \"%s\" 的檔案類型.\n"
 "\n"
-"有效檔案類型包括：Gramps 資料庫、Gramps XML、Gramps 包、GEDCOM，及其他。"
+"有效檔案類型包括：Gramps 資料庫、Gramps XML、Gramps 包、GEDCOM 等等。"
 
 #: ../gramps/gui/dbloader.py:489 ../gramps/gui/dbloader.py:497
 #: ../gramps/plugins/webreport/download.py:182
@@ -14935,7 +14937,7 @@ msgstr "無法儲存媒體物件，ID 編號已經存在。"
 #: ../gramps/gui/editors/editmedia.py:351
 #, fuzzy
 msgid "There is no media matching the current path value!"
-msgstr "共發現 %d位成員 匹配此姓名或者曾用名.\n"
+msgstr "共發現 %d位成員 匹配此姓名或者曾用名！"
 
 #: ../gramps/gui/editors/editmedia.py:353
 #, fuzzy, python-format
@@ -19036,10 +19038,8 @@ msgid "All audiences"
 msgstr "證據"
 
 #: ../gramps/gui/plug/_windows.py:455
-#, fuzzy
-#| msgid " state"
 msgid "All statuses"
-msgstr " 狀態"
+msgstr "所有狀態"
 
 #: ../gramps/gui/plug/_windows.py:476
 #, fuzzy
@@ -22132,7 +22132,7 @@ msgstr "%(person)s 的子孫圖表"
 #: ../gramps/plugins/drawreport/descendtree.py:203
 #, python-format
 msgid "Descendant Chart for %(father)s and %(mother)s"
-msgstr " %(father)s 和 %(mother)s 的後代圖表"
+msgstr "%(father)s 和 %(mother)s 的後代圖表"
 
 #: ../gramps/plugins/drawreport/descendtree.py:235
 #, fuzzy
@@ -22147,7 +22147,7 @@ msgstr "%(person)s 的家庭圖表"
 #: ../gramps/plugins/drawreport/descendtree.py:366
 #, python-format
 msgid "Family Chart for %(father1)s and %(mother1)s"
-msgstr " %(father1)s 和 %(mother1)s 的家庭圖表"
+msgstr "%(father1)s 和 %(mother1)s 的家庭圖表"
 
 #: ../gramps/plugins/drawreport/descendtree.py:396
 #, fuzzy, python-format
@@ -22497,7 +22497,7 @@ msgstr "欄目計數"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:334
 msgid "All"
-msgstr "所有"
+msgstr "全部"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:335
 #: ../gramps/plugins/drawreport/statisticschart.py:502
@@ -23022,7 +23022,7 @@ msgstr "包括子女"
 #: ../gramps/plugins/export/exportcsv.py:150
 #: ../gramps/plugins/graph/gvfamilylines.py:284
 msgid "Include places"
-msgstr " 包括地點"
+msgstr "包括地點"
 
 #: ../gramps/plugins/export/exportcsv.py:151
 msgid "Translate headers"
@@ -24440,7 +24440,7 @@ msgstr ""
 #: ../gramps/plugins/gramplet/leak.py:160
 #, python-format
 msgid "Referrers of %d"
-msgstr " %d 的索引"
+msgstr "%d 的索引"
 
 #: ../gramps/plugins/gramplet/leak.py:184
 #, python-format
@@ -24540,7 +24540,7 @@ msgstr "雙擊檢視當代中的人員"
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:275
 #, python-format
 msgid " has 1 of 1 individual (%(percent)s complete)\n"
-msgstr "有1名家族成員(%(percent)s complete)\n"
+msgstr " 有1名家族成員(%(percent)s complete)\n"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:281
 #: ../gramps/plugins/textreport/ancestorreport.py:232
@@ -26590,9 +26590,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1164
-#, fuzzy
 msgid "  Objects"
-msgstr "目標"
+msgstr "  物件"
 
 #: ../gramps/plugins/importer/importprogen.glade:1168
 msgid ""
@@ -26675,7 +26674,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1526
 msgid "REFN"
-msgstr ""
+msgstr "REFN標籤"
 
 #: ../gramps/plugins/importer/importprogen.glade:1530
 msgid ""
@@ -27104,9 +27103,8 @@ msgid "Destination"
 msgstr "目標資料夾"
 
 #: ../gramps/plugins/lib/libgedcom.py:739
-#, fuzzy
 msgid "DNA"
-msgstr "DNS"
+msgstr "DNA"
 
 #: ../gramps/plugins/lib/libgedcom.py:740
 msgid "Cause of Death"
@@ -27643,10 +27641,8 @@ msgid "Label"
 msgstr ""
 
 #: ../gramps/plugins/lib/libmetadata.py:230
-#, fuzzy
-#| msgid ", "
 msgid " "
-msgstr "​"
+msgstr " "
 
 #: ../gramps/plugins/lib/libnarrate.py:111
 #, python-format
@@ -27823,7 +27819,7 @@ msgstr "她 %(month_year)s年在 %(birth_place)s出生."
 #: ../gramps/plugins/lib/libnarrate.py:187
 #, python-format
 msgid "Born %(month_year)s in %(birth_place)s."
-msgstr " %(month_year)s 年生於 %(birth_place)s."
+msgstr "%(month_year)s 年生於 %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:192
 #, python-format
@@ -27858,7 +27854,7 @@ msgstr "她出生於 %(month_year)s."
 #: ../gramps/plugins/lib/libnarrate.py:201
 #, python-format
 msgid "Born %(month_year)s."
-msgstr " 出生於%(month_year)s年."
+msgstr "出生於%(month_year)s年。"
 
 #: ../gramps/plugins/lib/libnarrate.py:206
 #, python-format
@@ -28254,12 +28250,12 @@ msgstr "她卒於 %(month_year)s，%(death_place)s 生活了 %(age)d 天。"
 #: ../gramps/plugins/lib/libnarrate.py:417
 #, python-format
 msgid "Died %(month_year)s in %(death_place)s."
-msgstr " %(month_year)s 卒於 %(death_place)s."
+msgstr "%(month_year)s 卒於 %(death_place)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:418
-#, fuzzy, python-format
+#, python-format
 msgid "Died %(month_year)s in %(death_place)s (%(age)s)."
-msgstr " %(month_year)s 卒於 %(death_place)s (夭折於 %(age)d 天)."
+msgstr "%(month_year)s 卒於 %(death_place)s （終年%(age)s歲）。"
 
 #: ../gramps/plugins/lib/libnarrate.py:425
 #, python-format
@@ -28324,7 +28320,7 @@ msgstr "她卒於 %(month_year)s 生活了 %(age)d 天。"
 #: ../gramps/plugins/lib/libnarrate.py:452
 #, python-format
 msgid "Died %(month_year)s."
-msgstr " 卒於 %(month_year)s."
+msgstr "卒於 %(month_year)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:453
 #, fuzzy, python-format
@@ -28904,10 +28900,9 @@ msgstr ""
 "%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:743
-#, fuzzy, python-format
+#, python-format
 msgid "Baptized %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr ""
-" 接受洗禮日期是%(month_year)s 接受洗禮地點位於 %(baptism_place)s%(endnotes)s."
+msgstr "接受洗禮日期為%(month_year)s，地點位於 %(baptism_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:748
 #, fuzzy, python-format
@@ -29140,9 +29135,8 @@ msgstr ""
 msgid ""
 "She was christened on %(christening_date)s in "
 "%(christening_place)s%(endnotes)s."
-msgstr ""
-" 她受名洗禮日期%(christening_date)s 受名洗禮地點位"
-"於%(christening_place)s%(endnotes)s."
+msgstr "她受名洗禮日期為%(christening_date)s，地點位於%(christening_place)s%(endnotes"
+")s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:858
 #, python-format
@@ -29158,9 +29152,8 @@ msgstr ""
 msgid ""
 "This person was christened on %(christening_date)s in "
 "%(christening_place)s%(endnotes)s."
-msgstr ""
-" 此人受名洗禮日期是 %(christening_date)s 受名洗禮地點位於 "
-"%(christening_place)s%(endnotes)s."
+msgstr "此人受名洗禮日期為 %(christening_date)s，地點位於 "
+"%(christening_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:865
 #, python-format
@@ -29199,7 +29192,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:882
 #, python-format
 msgid "This person was christened on %(christening_date)s%(endnotes)s."
-msgstr " 此人受名洗禮日期是%(christening_date)s%(endnotes)s."
+msgstr "此人受名洗禮日期是%(christening_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:884
 #, python-format
@@ -29520,7 +29513,7 @@ msgstr "%(father)s 和 %(mother)s的兒子."
 #: ../gramps/plugins/lib/libnarrate.py:1031
 #, python-format
 msgid "%(female_name)s is the daughter of %(father)s and %(mother)s."
-msgstr " %(female_name)s 是 %(father)s 和 %(mother)s的女兒."
+msgstr "%(female_name)s 是 %(father)s 和 %(mother)s的女兒。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1032
 #, python-format
@@ -29590,7 +29583,7 @@ msgstr "他曾是 %(father)s 的兒子."
 #: ../gramps/plugins/lib/libnarrate.py:1063
 #, python-format
 msgid "Son of %(father)s."
-msgstr " %(father)s 的兒子."
+msgstr "%(father)s 的兒子。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1067
 #, python-format
@@ -33208,9 +33201,9 @@ msgid "sp. see %(reference)s: %(spouse)s"
 msgstr ""
 
 #: ../gramps/plugins/textreport/descendreport.py:420
-#, fuzzy, python-format
+#, python-format
 msgid "%s sp."
-msgstr "   配偶： "
+msgstr "%s名配偶。"
 
 #: ../gramps/plugins/textreport/descendreport.py:568
 #: ../gramps/plugins/textreport/detdescendantreport.py:1051
@@ -34960,10 +34953,10 @@ msgid_plural "{quantity} media objects were referenced, but not found\n"
 msgstr[0] "%(quantity)d 媒體物件被參照，但是無法找到 \n"
 
 #: ../gramps/plugins/tool/check.py:2879
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} missing media objects were kept\n"
-msgstr[0] " %(quantity)d 個媒體物件的參照被保留\n"
+msgstr[0] "已保留{quantity}個媒體物件的參照\n"
 
 #: ../gramps/plugins/tool/check.py:2889
 #, fuzzy, python-brace-format
@@ -35056,7 +35049,7 @@ msgid ""
 "   %(repo)d repository objects\n"
 "   %(note)d note objects\n"
 msgstr ""
-"  %(empty_obj)d  個空物件被移除:\n"
+"%(empty_obj)d  個空物件被移除:\n"
 "   %(person)d 個人員物件\n"
 "   %(family)d 家庭物件\n"
 "   %(event)d 事件物件\n"
@@ -36020,10 +36013,9 @@ msgid "Keep IDs with alternate prefixes untouched."
 msgstr ""
 
 #: ../gramps/plugins/tool/reorderids.py:65
-#, fuzzy
 msgctxt "manual"
 msgid "Reorder_Gramps_ID"
-msgstr "重新整理 Gramps ID 編號"
+msgstr "Reorder_Gramps_ID"
 
 #: ../gramps/plugins/tool/reorderids.py:249
 #: ../gramps/plugins/tool/reorderids.py:477
@@ -37128,14 +37120,14 @@ msgid "GeoClose"
 msgstr "關閉"
 
 #: ../gramps/plugins/view/geoclose.py:320
-#, fuzzy, python-format
+#, python-format
 msgid "Reference : %(name)s ( %(birth)s - %(death)s )"
-msgstr " (%(birth_date)s - %(death_date)s)"
+msgstr "參考：%(name)s（%(birth)s - %(death)s ）"
 
 #: ../gramps/plugins/view/geoclose.py:329
-#, fuzzy, python-format
+#, python-format
 msgid "The other : %(name)s ( %(birth)s - %(death)s )"
-msgstr " (%(birth_date)s - %(death_date)s)"
+msgstr "另一人：%(name)s（%(birth)s - %(death)s）"
 
 #: ../gramps/plugins/view/geoclose.py:337
 #, fuzzy
@@ -37845,27 +37837,27 @@ msgstr "移除此人相對這個家庭作為父母的關係"
 #, python-brace-format
 msgid " ({number_of} sibling)"
 msgid_plural " ({number_of} siblings)"
-msgstr[0] "（兄弟姊妹 {number_of} 人）"
+msgstr[0] " （兄弟姐妹 {number_of} 名）"
 
 #: ../gramps/plugins/view/relview.py:1090
 #: ../gramps/plugins/view/relview.py:1153
 msgid " (1 brother)"
-msgstr "（兄弟 1 人）"
+msgstr " （兄弟１名）"
 
 #: ../gramps/plugins/view/relview.py:1092
 #: ../gramps/plugins/view/relview.py:1155
 msgid " (1 sister)"
-msgstr "（姊妹 1 人）"
+msgstr " （姐妹１名）"
 
 #: ../gramps/plugins/view/relview.py:1094
 #: ../gramps/plugins/view/relview.py:1157
 msgid " (1 sibling)"
-msgstr "（兄弟姊妹 1 人）"
+msgstr " （兄弟姐妹1名）"
 
 #: ../gramps/plugins/view/relview.py:1096
 #: ../gramps/plugins/view/relview.py:1159
 msgid " (only child)"
-msgstr "（獨生子女）"
+msgstr " （獨生子女）"
 
 #: ../gramps/plugins/view/relview.py:1173
 #: ../gramps/plugins/view/relview.py:1703
@@ -37921,12 +37913,12 @@ msgstr "請運行檢查和修復資料庫工具"
 #, python-brace-format
 msgid " ({number_of} child)"
 msgid_plural " ({number_of} children)"
-msgstr[0] "（{number_of} 名子女）"
+msgstr[0] " （{number_of} 名子女）"
 
 #: ../gramps/plugins/view/relview.py:1642
 #: ../gramps/plugins/view/relview.py:1689
 msgid " (no children)"
-msgstr "（無兒無女）"
+msgstr " （無兒無女）"
 
 #: ../gramps/plugins/view/relview.py:1948
 msgid "Use shading"
@@ -38165,9 +38157,9 @@ msgid "Last change was the %(date)s"
 msgstr "地點變更時間為<date time >之後"
 
 #: ../gramps/plugins/webreport/basepage.py:1546
-#, fuzzy, python-format
+#, python-format
 msgid " on %(date)s"
-msgstr "%(date)s"
+msgstr " 在%(date)s"
 
 #: ../gramps/plugins/webreport/basepage.py:1573
 #: ../gramps/plugins/webreport/basepage.py:1578
@@ -38476,7 +38468,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/media.py:251
 msgctxt "Media "
 msgid " Name"
-msgstr "名稱"
+msgstr " 名稱"
 
 #: ../gramps/plugins/webreport/media.py:253
 msgid "Mime Type"
@@ -39105,9 +39097,8 @@ msgid "Add a complete events list and relevant pages or not"
 msgstr "新增一個完整的事件列表和相關的頁面或者沒有"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2554
-#, fuzzy
 msgid "Include place pages"
-msgstr " 包括地點"
+msgstr "包括地點頁"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2555
 #, fuzzy
@@ -39115,9 +39106,8 @@ msgid "Whether or not to include the place pages."
 msgstr "是否包含文庫頁面。"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2558
-#, fuzzy
 msgid "Include unused place pages"
-msgstr " 包括地點"
+msgstr "包括未用地點頁"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2559
 #, fuzzy
