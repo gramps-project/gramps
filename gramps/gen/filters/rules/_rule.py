@@ -28,8 +28,8 @@ Base class for filter rules.
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
 import re
-from typing import List
 
 from ...errors import FilterError
 from ...const import GRAMPS_LOCALE as glocale
