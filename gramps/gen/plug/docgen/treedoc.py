@@ -131,6 +131,7 @@ _NOTESIZE = [
 
 if win():
     _LATEX_FOUND = search_for("lualatex.exe")
+    CREATE_NO_WINDOW = 0x8000000
 else:
     _LATEX_FOUND = search_for("lualatex")
 
@@ -803,8 +804,18 @@ class TreePdfDoc(TreeDocBase):
 
         with tempfile.TemporaryDirectory() as tmpdir:
             basename = os.path.basename(self._filename)
-            args = ["lualatex", "-output-directory", tmpdir, "-jobname", basename[:-4]]
-            proc = Popen(args, stdin=PIPE, stdout=PIPE, stderr=PIPE)
+            args = ["lualatex", "--jobname", basename[:-4]]
+            if win():
+                proc = Popen(
+                    args,
+                    stdin=PIPE,
+                    stdout=PIPE,
+                    stderr=PIPE,
+                    cwd=tmpdir,
+                    creationflags=CREATE_NO_WINDOW,
+                )
+            else:
+                proc = Popen(args, stdin=PIPE, stdout=PIPE, stderr=PIPE, cwd=tmpdir)
             proc.communicate(input=self._tex.getvalue().encode("utf-8"))
 
             temp_output_file = os.path.join(tmpdir, basename)
