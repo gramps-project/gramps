@@ -20,12 +20,12 @@
 
 # test/GrampsLogger/GtkHandler_Test.py
 
+import os
 import unittest
 import logging
 import sys
 
 from gi.repository import Gtk
-import os
 
 log = logging.getLogger("Gramps.Tests.GrampsLogger")
 import gramps.gen.const as const
