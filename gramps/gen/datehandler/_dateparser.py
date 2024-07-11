@@ -225,8 +225,8 @@ class DateParser:
     }
 
     # seeded with __init_prefix_tables
-    month_to_int: dict[str, int] = {}
-    swedish_to_int: dict[str, int] = {}
+    month_to_int: dict[str, int]
+    swedish_to_int = month_to_int = {}
     """
     Map Gregorian month names and their prefixes, wherever unambiguous,
     to the relevant integer index (1..12).
