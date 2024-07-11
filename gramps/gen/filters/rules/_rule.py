@@ -54,7 +54,7 @@ LOG = logging.getLogger(".")
 class Rule:
     """Base rule class."""
 
-    labels: List[str] = []
+    labels: list[str] = []
     name = ""
     category = _("Miscellaneous filters")
     description = _("No description")
