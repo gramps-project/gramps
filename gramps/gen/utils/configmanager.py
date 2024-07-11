@@ -75,7 +75,7 @@ class ConfigManager:
     settings are stored.
     """
 
-    PLUGINS: dict[str, "ConfigManager"] = {}
+    PLUGINS: dict[str, ConfigManager] = {}
 
     def __init__(self, filename=None, plugins=None):
         """

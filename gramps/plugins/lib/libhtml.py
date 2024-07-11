@@ -30,6 +30,7 @@ This module exports the Html class
 # ------------------------------------------------------------------------
 # Python modules
 # ------------------------------------------------------------------------
+from __future__ import annotations
 
 # ------------------------------------------------------------------------
 #
@@ -353,7 +354,7 @@ class Html(list):
                 self[len(self) :] = ["</%s>" % tag]  # add it on the end
 
     #
-    def __add(self, value) -> "Html":
+    def __add(self, value) -> Html:
         """
         Helper function for +, +=, operators and append() and extend()
         methods
