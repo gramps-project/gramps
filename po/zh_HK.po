@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-07-01 20:47+0000\n"
+"PO-Revision-Date: 2024-07-10 09:09+0000\n"
 "Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/"
 "projects/gramps-project/gramps/zh_Hant_HK/>\n"
@@ -11706,9 +11706,9 @@ msgid "Distribution: %s"
 msgstr "描述："
 
 #: ../gramps/gui/aboutdialog.py:178
-#, fuzzy, python-format
+#, python-format
 msgid "OS: %s"
-msgstr ":%s\n"
+msgstr "作業系統：%s"
 
 #: ../gramps/gui/clipboard.py:73
 msgctxt "manual"
@@ -19359,10 +19359,10 @@ msgid "Done downloading and installing addons"
 msgstr "下載和安裝插件完畢"
 
 #: ../gramps/gui/plug/_windows.py:2261
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
-msgstr[0] "%d 個插件已經安裝"
+msgstr[0] "已安装 {number_of} 个插件。"
 
 #: ../gramps/gui/plug/_windows.py:2266
 #, fuzzy
@@ -19549,10 +19549,10 @@ msgstr "Smith 家族樹"
 #: ../gramps/gui/plug/export/_exportoptions.py:182
 #: ../gramps/gui/plug/export/_exportoptions.py:293
 #: ../gramps/gui/plug/export/_exportoptions.py:618
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{number_of} Person"
 msgid_plural "{number_of} People"
-msgstr[0] "成員數"
+msgstr[0] "{number_of}個成員"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:185
 msgid "Click to see preview of unfiltered data"
@@ -21887,13 +21887,7 @@ msgstr ""
 " %(person)s, 婚禮"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:532
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "{spouse} and\n"
-#| " {person}, {nyears}"
-#| msgid_plural ""
-#| "{spouse} and\n"
-#| " {person}, {nyears}"
+#, python-brace-format
 msgid ""
 "{wife} and\n"
 " {person}, {nyears}"
@@ -21901,7 +21895,7 @@ msgid_plural ""
 "{wife} and\n"
 " {person}, {nyears}"
 msgstr[0] ""
-"{spouse} 和\n"
+"{wife} 和\n"
 " {person}, {nyears}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:602
@@ -24557,13 +24551,12 @@ msgid "Double-click to see people in generation %d"
 msgstr "雙擊檢視第%d 代人員"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:293
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 " has {count_person} of {max_count_person} individuals ({percent} complete)\n"
 msgid_plural ""
 " has {count_person} of {max_count_person} individuals ({percent} complete)\n"
-msgstr[0] ""
-" 有 %(count_person)d 共 %(max_count_person)d 個體成員 (%(percent)s 完成)\n"
+msgstr[0] " 有 {count_person} 共 {max_count_person} 個體成員 （{percent} 完成）\n"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:305
 msgid "All generations"
@@ -24574,10 +24567,10 @@ msgid "Double-click to see all generations"
 msgstr "雙擊檢視所有後代"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:313
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid " have {number_of} individual\n"
 msgid_plural " have {number_of} individuals\n"
-msgstr[0] " 有 %d 位成員\n"
+msgstr[0] " 有 {number_of} 位成員\n"
 
 #: ../gramps/plugins/gramplet/persondetails.py:274
 #, fuzzy, python-format
@@ -25530,10 +25523,10 @@ msgid "Initial list of people of interest:"
 msgstr "有意向的成員"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:1057
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{number_of} child"
 msgid_plural "{number_of} children"
-msgstr[0] "子女數量"
+msgstr[0] "{number_of} 個子女"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:1130
 #, fuzzy, python-format
@@ -25922,9 +25915,8 @@ msgstr "結果"
 #: ../gramps/plugins/importer/importgeneweb.py:186
 #: ../gramps/plugins/importer/importprogen.py:219
 #: ../gramps/plugins/importer/importvcard.py:91
-#, fuzzy
 msgid "done"
-msgstr "完成!\n"
+msgstr "完成"
 
 #: ../gramps/plugins/importer/importcsv.py:204
 msgid "given name"
@@ -26243,10 +26235,10 @@ msgstr "匯入 CSV"
 #: ../gramps/plugins/importer/importcsv.py:539
 #: ../gramps/plugins/importer/importgeneweb.py:302
 #: ../gramps/plugins/importer/importvcard.py:268
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Import Complete: {number_of} second"
 msgid_plural "Import Complete: {number_of} seconds"
-msgstr[0] "匯入完成: %d 秒"
+msgstr[0] "匯入完成：{number_of} 秒"
 
 #: ../gramps/plugins/importer/importcsv.py:561
 #, fuzzy
@@ -26749,9 +26741,9 @@ msgid "Import Pro-Gen"
 msgstr "從 Pro-Gen 匯入"
 
 #: ../gramps/plugins/importer/importvcard.py:247
-#, fuzzy, python-format
+#, python-format
 msgid "Line %(line)5d: %(prob)s\n"
-msgstr "格式錯誤: 檔案 %(fname)s , 行 %(line)d: %(zero)s"
+msgstr "行 %(line)5d：%(prob)s\n"
 
 #: ../gramps/plugins/importer/importvcard.py:261
 msgid "vCard import"
@@ -26833,9 +26825,9 @@ msgid "The file is probably either corrupt or not a valid Gramps database."
 msgstr "檔案可能已經崩潰或者不是有效的Gramps 資料庫."
 
 #: ../gramps/plugins/importer/importxml.py:332
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "  {id1} - {text} with {id2}"
-msgstr "  %(id)s - %(text)s\n"
+msgstr "  {id1} - {text}（{id2}）"
 
 #: ../gramps/plugins/importer/importxml.py:340
 #, python-brace-format
@@ -26864,10 +26856,8 @@ msgid "Sources"
 msgstr "來源"
 
 #: ../gramps/plugins/importer/importxml.py:360
-#, fuzzy
-#| msgid "Number of new objects imported:\n"
 msgid "Number of new objects imported:"
-msgstr "已匯入的新物件的數量:\n"
+msgstr "已匯入的新物件的數量："
 
 #: ../gramps/plugins/importer/importxml.py:375
 #, python-format
@@ -26882,13 +26872,6 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/importer/importxml.py:387
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Media objects with relative paths have been\n"
-#| "imported. These paths are considered relative to\n"
-#| "the media directory you can set in the preferences,\n"
-#| "or, if not set, relative to the user's directory.\n"
 msgid ""
 "\n"
 "Media objects with relative paths have been\n"
@@ -26900,7 +26883,7 @@ msgstr ""
 "含有相對路徑的媒體物件已經被匯入\n"
 "這些路徑與媒體的目錄相關聯\n"
 "您可以在喜愛選項中設定，\n"
-"或者，如果不設定，則與使用者目錄相關聯.\n"
+"或者，如果不設定，則與使用者目錄相關聯。"
 
 #: ../gramps/plugins/importer/importxml.py:399
 msgid ""
@@ -32458,10 +32441,10 @@ msgid "Size in bytes"
 msgstr "位元組大小"
 
 #: ../gramps/plugins/quickview/filterbyname.py:542
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Filter matched {number_of} record."
 msgid_plural "Filter matched {number_of} records."
-msgstr[0] "篩查器發現 %d 條匹配的記錄."
+msgstr[0] "篩查器發現 {number_of} 條匹配的記錄。"
 
 #: ../gramps/plugins/quickview/lineage.py:53
 #, python-format
@@ -32759,11 +32742,11 @@ msgstr "同為「%s」姓的成員"
 
 #: ../gramps/plugins/quickview/samesurnames.py:152
 #: ../gramps/plugins/quickview/samesurnames.py:202
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "There is {number_of} person with a matching name, or alternate name.\n"
 msgid_plural ""
 "There are {number_of} people with a matching name, or alternate name.\n"
-msgstr[0] "共發現 %d位成員 匹配此姓名或者曾用名.\n"
+msgstr[0] "共發現 {number_of} 位成員匹配此姓名或者曾用名。\n"
 
 #: ../gramps/plugins/quickview/samesurnames.py:177
 #, python-format
@@ -33023,10 +33006,10 @@ msgid "* %(person)s, birth %(relation)s"
 msgstr "%(person)s, birth%(relation)s"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:379
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "* {year}{person}{dead}, {age}{relation}"
 msgid_plural "* {year}{person}{dead}, {age}{relation}"
-msgstr[0] "%(person)s, %(age)d%(relation)s"
+msgstr[0] "* {year}{person}{dead}, {age}{relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:462
 #, fuzzy, python-format
@@ -33038,7 +33021,7 @@ msgstr ""
 " %(person)s, 婚禮"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:470
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 "⚭ {year}{spouse}{deadtxt2} and\n"
 " {person}{deadtxt1}, {nyears}"
@@ -33046,19 +33029,19 @@ msgid_plural ""
 "⚭ {year}{spouse}{deadtxt2} and\n"
 " {person}{deadtxt1}, {nyears}"
 msgstr[0] ""
-"{spouse} 和\n"
-" {person}, {nyears}"
+"⚭ {year}{spouse}{deadtxt2} 和\n"
+" {person}{deadtxt1}, {nyears}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:522
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "✝ {person}, death {relation}"
-msgstr "%(person)s, %(age)d%(relation)s"
+msgstr "✝ {person}，去世 {relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:527
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "✝ {year}{person}, {age}{relation}"
 msgid_plural "✝ {year}{person}, {age}{relation}"
-msgstr[0] "%(person)s, %(age)d%(relation)s"
+msgstr[0] "✝ {year}{person}，{age}{relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:562
 #: ../gramps/plugins/textreport/familygroup.py:723
@@ -33921,7 +33904,7 @@ msgstr "是否按照年代順序排序事件"
 #: ../gramps/plugins/textreport/indivcomplete.py:1119
 #, fuzzy
 msgid "Use name of person as title"
-msgstr "點選名字啟用人員\n"
+msgstr "點選名字啟用人員"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1122
 msgid ""
@@ -34070,10 +34053,10 @@ msgid "Number of Ancestors for %s"
 msgstr "%s的祖先數目"
 
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:134
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Generation {number} has {count} individual. {percent}"
 msgid_plural "Generation {number} has {count} individuals. {percent}"
-msgstr[0] "第 %(generation)d 代，已記錄 %(count)d 位成員.佔 %(percent)s"
+msgstr[0] "第 {number} 代，已記錄 {count} 位成員。佔 {percent}"
 
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:177
 #, python-format
@@ -34648,10 +34631,10 @@ msgid "No event record was modified."
 msgstr "無事件記錄被更改."
 
 #: ../gramps/plugins/tool/changetypes.py:141
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{number_of} event record was modified."
 msgid_plural "{number_of} event records were modified."
-msgstr[0] "無事件記錄被更改."
+msgstr[0] "已更改 {number_of} 件事件記錄。"
 
 #: ../gramps/plugins/tool/check.py:134 ../gramps/plugins/tool/check.py:313
 msgid "Checking Database"
@@ -34868,10 +34851,10 @@ msgid "No errors were found: the database has passed internal checks."
 msgstr "資料已經通過內部檢查"
 
 #: ../gramps/plugins/tool/check.py:2711
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} broken child/family link was fixed\n"
 msgid_plural "{quantity} broken child/family links were fixed\n"
-msgstr[0] "%(quantity)d 位 斷開的子女/家庭 聯絡連線被修復\n"
+msgstr[0] "{quantity} 位斷開的子女／家庭聯絡連線被修復\n"
 
 #: ../gramps/plugins/tool/check.py:2720
 msgid "Non existing child"
@@ -34883,10 +34866,10 @@ msgid "%(person)s was removed from the family of %(family)s\n"
 msgstr "%(person)s 已被從 %(family)s家庭移除 \n"
 
 #: ../gramps/plugins/tool/check.py:2739
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} broken spouse/family link was fixed\n"
 msgid_plural "{quantity} broken spouse/family links were fixed\n"
-msgstr[0] "%(quantity)d 位破損的配偶/家庭連線被修復 \n"
+msgstr[0] "{quantity} 位破損的配偶／家庭連線被修復\n"
 
 #: ../gramps/plugins/tool/check.py:2748 ../gramps/plugins/tool/check.py:2776
 msgid "Non existing person"
@@ -34898,59 +34881,59 @@ msgid "%(person)s was restored to the family of %(family)s\n"
 msgstr "%(person)s 被修復到 %(family)s 家庭中 \n"
 
 #: ../gramps/plugins/tool/check.py:2767
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} duplicate spouse/family link was found\n"
 msgid_plural "{quantity} duplicate spouse/family links were found\n"
-msgstr[0] "%(quantity)d 重複的配偶/家庭連結被找到 \n"
+msgstr[0] "{quantity} 重複的配偶／家庭連結被找到\n"
 
 #: ../gramps/plugins/tool/check.py:2795
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} family with no parents or children found, removed.\n"
 msgid_plural ""
 "{quantity} families with no parents or children found, removed.\n"
-msgstr[0] "1 家庭未包含父母和孩子的家庭被找到，已刪除。\n"
+msgstr[0] "找到 {quantity} 未包含父母和孩子的家庭，並已刪除。\n"
 
 #: ../gramps/plugins/tool/check.py:2809
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} corrupted family relationship fixed\n"
 msgid_plural "{quantity} corrupted family relationships fixed\n"
-msgstr[0] "%d 家庭未包含父母和孩子，已被移除.\n"
+msgstr[0] "已修復 {quantity} 個存在問題的家庭關係\n"
 
 #: ../gramps/plugins/tool/check.py:2819
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} place alternate name fixed\n"
 msgid_plural "{quantity} place alternate names fixed\n"
-msgstr[0] "%(quantity)d 個無效的死亡時間名稱被修復 \n"
+msgstr[0] "已修復 {quantity} 個地點別名\n"
 
 #: ../gramps/plugins/tool/check.py:2829
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} person was referenced but not found\n"
 msgid_plural "{quantity} persons were referenced, but not found\n"
-msgstr[0] "%(quantity)d 個地點被參照，但是無法找到 \n"
+msgstr[0] "{quantity} 名個人被參照，但是無法找到\n"
 
 #: ../gramps/plugins/tool/check.py:2839
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} family was referenced but not found\n"
 msgid_plural "{quantity} families were referenced, but not found\n"
-msgstr[0] "%d 家庭未包含父母和孩子，已被移除.\n"
+msgstr[0] "{quantity} 個家庭被參照，但無法找到\n"
 
 #: ../gramps/plugins/tool/check.py:2849
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} date was corrected\n"
 msgid_plural "{quantity} dates were corrected\n"
-msgstr[0] "%d 家庭未包含父母和孩子，已被移除.\n"
+msgstr[0] "已更正 {quantity} 个日期\n"
 
 #: ../gramps/plugins/tool/check.py:2859
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
-msgstr[0] "%(quantity)d 個文庫被參照，但是無法找到 \n"
+msgstr[0] "嘗試參照 {quantity} 個文庫，但是無法找到\n"
 
 #: ../gramps/plugins/tool/check.py:2869 ../gramps/plugins/tool/check.py:2969
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} media object was referenced but not found\n"
 msgid_plural "{quantity} media objects were referenced, but not found\n"
-msgstr[0] "%(quantity)d 媒體物件被參照，但是無法找到 \n"
+msgstr[0] "嘗試參照 {quantity} 件媒體物件，但是無法找到\n"
 
 #: ../gramps/plugins/tool/check.py:2879
 #, python-brace-format
@@ -34959,82 +34942,82 @@ msgid_plural "References to {quantity} missing media objects were kept\n"
 msgstr[0] "已保留{quantity}個媒體物件的參照\n"
 
 #: ../gramps/plugins/tool/check.py:2889
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} missing media object was replaced\n"
 msgid_plural "{quantity} missing media objects were replaced\n"
-msgstr[0] "%(quantity)d 個缺失的媒體物件被替代 \n"
+msgstr[0] "已替代 {quantity} 個缺失的媒體物件\n"
 
 #: ../gramps/plugins/tool/check.py:2899
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} missing media object was removed\n"
 msgid_plural "{quantity} missing media objects were removed\n"
-msgstr[0] "%(quantity)d 個缺失的媒體物件被移除 \n"
+msgstr[0] "已移除 {quantity} 個缺失的媒體物件\n"
 
 #: ../gramps/plugins/tool/check.py:2909
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} event was referenced but not found\n"
 msgid_plural "{quantity} events were referenced, but not found\n"
-msgstr[0] "%(quantity)d 個地點被參照，但是無法找到 \n"
+msgstr[0] "嘗試參照 {quantity} 件事件，但是無法找到\n"
 
 #: ../gramps/plugins/tool/check.py:2919
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} invalid birth event name was fixed\n"
 msgid_plural "{quantity} invalid birth event names were fixed\n"
-msgstr[0] "%(quantity)d 個無效的出生時間名稱被修復 \n"
+msgstr[0] "已修復 {quantity} 個無效的出生時間名稱\n"
 
 #: ../gramps/plugins/tool/check.py:2929
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} invalid death event name was fixed\n"
 msgid_plural "{quantity} invalid death event names were fixed\n"
-msgstr[0] "%(quantity)d 個無效的死亡時間名稱被修復 \n"
+msgstr[0] "已修復 {quantity} 個無效的死亡事件名稱\n"
 
 #: ../gramps/plugins/tool/check.py:2939
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} place was referenced but not found\n"
 msgid_plural "{quantity} places were referenced, but not found\n"
-msgstr[0] "%(quantity)d 個地點被參照，但是無法找到 \n"
+msgstr[0] "嘗試參照 {quantity} 個地點，但是無法找到\n"
 
 #: ../gramps/plugins/tool/check.py:2949
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} citation was referenced but not found\n"
 msgid_plural "{quantity} citations were referenced, but not found\n"
-msgstr[0] "%(quantity)d 個地點被參照，但是無法找到 \n"
+msgstr[0] "嘗試參照 {quantity} 項引用，但是無法找到\n"
 
 #: ../gramps/plugins/tool/check.py:2959
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} source was referenced but not found\n"
 msgid_plural "{quantity} sources were referenced, but not found\n"
-msgstr[0] "%(quantity)d 個來源被參照，但是未找到 \n"
+msgstr[0] "嘗試參照 {quantity} 個來源，但無法找到\n"
 
 #: ../gramps/plugins/tool/check.py:2979
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} note object was referenced but not found\n"
 msgid_plural "{quantity} note objects were referenced, but not found\n"
-msgstr[0] "%(quantity)d 個筆記物件被參照但是未找到 \n"
+msgstr[0] "嘗試參照 {quantity} 個筆記物件，但無法找到\n"
 
 #: ../gramps/plugins/tool/check.py:2989 ../gramps/plugins/tool/check.py:2999
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
-msgstr[0] "%(quantity)d 個筆記物件被參照但是未找到 \n"
+msgstr[0] "嘗試參照 {quantity} 個標籤，但無法找到\n"
 
 #: ../gramps/plugins/tool/check.py:3009
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} invalid name format reference was removed\n"
 msgid_plural "{quantity} invalid name format references were removed\n"
-msgstr[0] "%(quantity)d 個無效的名字格式被參照被移除 \n"
+msgstr[0] "已移除 {quantity} 個無效的名字格式參照\n"
 
 #: ../gramps/plugins/tool/check.py:3019
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} invalid source citation was fixed\n"
 msgid_plural "{quantity} invalid source citations were fixed\n"
-msgstr[0] "%(quantity)d 個無效的出生時間名稱被修復 \n"
+msgstr[0] "已修復 {quantity} 個無效的來源引用\n"
 
 #: ../gramps/plugins/tool/check.py:3029
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} Duplicated Gramps ID fixed\n"
 msgid_plural "{quantity} Duplicated Gramps IDs fixed\n"
-msgstr[0] "%(quantity)d 個無效的死亡時間名稱被修復 \n"
+msgstr[0] "已修復 {quantity} 個重複Gramps ID\n"
 
 #: ../gramps/plugins/tool/check.py:3038
 #, python-format
@@ -35208,10 +35191,10 @@ msgid "Extract Event Description"
 msgstr "釋放時間描述"
 
 #: ../gramps/plugins/tool/eventnames.py:121
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} event description has been added"
 msgid_plural "{quantity} event descriptions have been added"
-msgstr[0] "%s 事件描述已被新增"
+msgstr[0] "已新增 {quantity} 事件描述"
 
 #: ../gramps/plugins/tool/eventnames.py:125
 msgid "Modifications made"
@@ -35592,28 +35575,28 @@ msgid "Everyone in the database is related to %s"
 msgstr "資料庫中所有人均和 %s 相關"
 
 #: ../gramps/plugins/tool/notrelated.py:260
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Setting tag for {number_of} person"
 msgid_plural "Setting tag for {number_of} people"
-msgstr[0] "設定%d 成員的標籤"
+msgstr[0] "正在設定 {number_of} 名成員的標籤"
 
 #: ../gramps/plugins/tool/notrelated.py:303
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Finding relationships between {number_of} person"
 msgid_plural "Finding relationships between {number_of} people"
-msgstr[0] "獲取 %d 個人的關係"
+msgstr[0] "正在尋找 {number_of} 人之間的關係"
 
 #: ../gramps/plugins/tool/notrelated.py:394
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Looking for {number_of} person"
 msgid_plural "Looking for {number_of} people"
-msgstr[0] "尋找 %d 個成員"
+msgstr[0] "正在尋找 {number_of} 名成員"
 
 #: ../gramps/plugins/tool/notrelated.py:421
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Looking up the name of {number_of} person"
 msgid_plural "Looking up the names of {number_of} people"
-msgstr[0] "獲取 %d 成員的姓名"
+msgstr[0] "正在尋找 {number_of} 名成員的姓名"
 
 #: ../gramps/plugins/tool/ownereditor.glade:10
 msgid "Copy from DB to Preferences"
@@ -37433,14 +37416,12 @@ msgid "Bookmark this person"
 msgstr "對話日誌"
 
 #: ../gramps/plugins/view/geomoves.py:781
-#, fuzzy
 msgid "The maximum number of generations.\n"
-msgstr "祖先的最大輩分數目"
+msgstr "祖先的最大輩分數目\n"
 
 #: ../gramps/plugins/view/geomoves.py:786
-#, fuzzy
 msgid "Time in milliseconds between drawing two generations.\n"
-msgstr "兩代間最小年差"
+msgstr "兩代間最小差，以微秒為單位。\n"
 
 #: ../gramps/plugins/view/geomoves.py:793
 msgid "The parameters for moves"
@@ -38362,10 +38343,10 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/calendar.py:1478
 #: ../gramps/plugins/webreport/webcal.py:2359
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{couple}, {years} year anniversary"
 msgid_plural "{couple}, {years} year anniversary"
-msgstr[0] "%(couple)s, <em>%(years)d</em> 年週年幾年"
+msgstr[0] "{couple}，{years} 週年紀念"
 
 #: ../gramps/plugins/webreport/download.py:102
 msgid ""
