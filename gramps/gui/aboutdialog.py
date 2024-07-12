@@ -194,9 +194,9 @@ class GrampsAboutDialog(Gtk.AboutDialog):
 class AuthorParser(handler.ContentHandler):
     """Parse the ``authors.xml`` file to show in the About dialog.
 
-    The ``authors.xml`` file has the same format as the one in the `svn2cl
-    <http://ch.tudelft.nl/~arthur/svn2cl/>`_ package, with an additional
-    ``title`` tag in the ``author`` element. For example::
+    The ``authors.xml`` file has the same format as the one in the `svn2cl`
+    package, with an additional ``title`` tag in the ``author`` element.
+    For example::
 
       <author uid="dallingham" title="author">
         Don Allingham &lt;<html:a href="mailto:don@gramps-project.org">don@gramps-project.org</html:a>&gt;
