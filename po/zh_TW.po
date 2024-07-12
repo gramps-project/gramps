@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-07-02 21:09+0000\n"
+"PO-Revision-Date: 2024-07-10 09:09+0000\n"
 "Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/zh_Hant/>\n"
@@ -32843,7 +32843,7 @@ msgstr "✝ {person}，去世 {relation}"
 #, python-brace-format
 msgid "✝ {year}{person}, {age}{relation}"
 msgid_plural "✝ {year}{person}, {age}{relation}"
-msgstr[0] "✝ {year}{person}, {age}{relation}"
+msgstr[0] "✝ {year}{person}，{age}{relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:562
 #: ../gramps/plugins/textreport/familygroup.py:723
@@ -34666,7 +34666,7 @@ msgstr "%(person)s 已被從 %(family)s家庭移除 \n"
 #, python-brace-format
 msgid "{quantity} broken spouse/family link was fixed\n"
 msgid_plural "{quantity} broken spouse/family links were fixed\n"
-msgstr[0] "{quantity} 位破損的配偶/家庭連線被修復\n"
+msgstr[0] "{quantity} 位破損的配偶／家庭連線被修復\n"
 
 #: ../gramps/plugins/tool/check.py:2748 ../gramps/plugins/tool/check.py:2776
 msgid "Non existing person"
@@ -34681,7 +34681,7 @@ msgstr "%(person)s 被修復到 %(family)s 家庭中 \n"
 #, python-brace-format
 msgid "{quantity} duplicate spouse/family link was found\n"
 msgid_plural "{quantity} duplicate spouse/family links were found\n"
-msgstr[0] "{quantity} 重複的配偶/家庭連結被找到\n"
+msgstr[0] "{quantity} 重複的配偶／家庭連結被找到\n"
 
 #: ../gramps/plugins/tool/check.py:2795
 #, python-brace-format
@@ -34724,13 +34724,13 @@ msgstr[0] "已更正 {quantity} 个日期\n"
 #, python-brace-format
 msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
-msgstr[0] "{quantity} 個文庫被參照，但是無法找到\n"
+msgstr[0] "嘗試參照 {quantity} 個文庫，但是無法找到\n"
 
 #: ../gramps/plugins/tool/check.py:2869 ../gramps/plugins/tool/check.py:2969
 #, python-brace-format
 msgid "{quantity} media object was referenced but not found\n"
 msgid_plural "{quantity} media objects were referenced, but not found\n"
-msgstr[0] "{quantity} 件媒體物件被參照，但是無法找到\n"
+msgstr[0] "嘗試參照 {quantity} 件媒體物件，但是無法找到\n"
 
 #: ../gramps/plugins/tool/check.py:2879
 #, python-brace-format
@@ -34742,7 +34742,7 @@ msgstr[0] "已保留{quantity}個媒體物件的參照\n"
 #, python-brace-format
 msgid "{quantity} missing media object was replaced\n"
 msgid_plural "{quantity} missing media objects were replaced\n"
-msgstr[0] "{quantity} 個缺失的媒體物件被替代\n"
+msgstr[0] "已替代 {quantity} 個缺失的媒體物件\n"
 
 #: ../gramps/plugins/tool/check.py:2899
 #, python-brace-format
@@ -34754,7 +34754,7 @@ msgstr[0] "已移除 {quantity} 個缺失的媒體物件\n"
 #, python-brace-format
 msgid "{quantity} event was referenced but not found\n"
 msgid_plural "{quantity} events were referenced, but not found\n"
-msgstr[0] "{quantity} 個事件被參照，但是無法找到\n"
+msgstr[0] "嘗試參照 {quantity} 件事件，但是無法找到\n"
 
 #: ../gramps/plugins/tool/check.py:2919
 #, python-brace-format
@@ -34772,31 +34772,31 @@ msgstr[0] "已修復 {quantity} 個無效的死亡事件名稱\n"
 #, python-brace-format
 msgid "{quantity} place was referenced but not found\n"
 msgid_plural "{quantity} places were referenced, but not found\n"
-msgstr[0] "{quantity} 個地點被參照，但是無法找到\n"
+msgstr[0] "嘗試參照 {quantity} 個地點，但是無法找到\n"
 
 #: ../gramps/plugins/tool/check.py:2949
 #, python-brace-format
 msgid "{quantity} citation was referenced but not found\n"
 msgid_plural "{quantity} citations were referenced, but not found\n"
-msgstr[0] "{quantity} 項引用被參照，但是無法找到\n"
+msgstr[0] "嘗試參照 {quantity} 項引用，但是無法找到\n"
 
 #: ../gramps/plugins/tool/check.py:2959
 #, python-brace-format
 msgid "{quantity} source was referenced but not found\n"
 msgid_plural "{quantity} sources were referenced, but not found\n"
-msgstr[0] "{quantity} 個來源被參照，但無法找到\n"
+msgstr[0] "嘗試參照 {quantity} 個來源，但無法找到\n"
 
 #: ../gramps/plugins/tool/check.py:2979
 #, python-brace-format
 msgid "{quantity} note object was referenced but not found\n"
 msgid_plural "{quantity} note objects were referenced, but not found\n"
-msgstr[0] "{quantity} 個筆記物件被參照，但無法找到\n"
+msgstr[0] "嘗試參照 {quantity} 個筆記物件，但無法找到\n"
 
 #: ../gramps/plugins/tool/check.py:2989 ../gramps/plugins/tool/check.py:2999
 #, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
-msgstr[0] "{quantity} 個筆記物件被參照，但無法找到\n"
+msgstr[0] "嘗試參照 {quantity} 個標籤，但無法找到\n"
 
 #: ../gramps/plugins/tool/check.py:3009
 #, python-brace-format
@@ -35371,7 +35371,7 @@ msgstr "資料庫中所有人均和 %s 相關"
 #, python-brace-format
 msgid "Setting tag for {number_of} person"
 msgid_plural "Setting tag for {number_of} people"
-msgstr[0] "正在設定 {number_of} 名個人的標籤"
+msgstr[0] "正在設定 {number_of} 名成員的標籤"
 
 #: ../gramps/plugins/tool/notrelated.py:303
 #, python-brace-format
@@ -35383,13 +35383,13 @@ msgstr[0] "正在尋找 {number_of} 人之間的關係"
 #, python-brace-format
 msgid "Looking for {number_of} person"
 msgid_plural "Looking for {number_of} people"
-msgstr[0] "正在尋找 {number_of} 人"
+msgstr[0] "正在尋找 {number_of} 名成員"
 
 #: ../gramps/plugins/tool/notrelated.py:421
 #, python-brace-format
 msgid "Looking up the name of {number_of} person"
 msgid_plural "Looking up the names of {number_of} people"
-msgstr[0] "正在尋找 {number_of} 人的姓名"
+msgstr[0] "正在尋找 {number_of} 名成員的姓名"
 
 #: ../gramps/plugins/tool/ownereditor.glade:10
 msgid "Copy from DB to Preferences"
