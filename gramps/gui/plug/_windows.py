@@ -460,6 +460,7 @@ class AddonManager(ManagedWindow):
         hbox.pack_start(self.status_combo, False, False, 0)
 
         clear = Gtk.Button.new_from_icon_name("edit-clear", Gtk.IconSize.BUTTON)
+        clear.set_tooltip_text(_("Reset addon filters to defaults"))
         clear.connect("clicked", self.__clear_filters)
         hbox.pack_start(clear, False, False, 0)
 
@@ -699,10 +700,15 @@ class AddonManager(ManagedWindow):
 
         hbox = Gtk.Box()
         add_btn = SimpleButton("list-add", self.__add_project)
+        add_btn.set_tooltip_text(_("Insert a project"))
         del_btn = SimpleButton("list-remove", self.__remove_project)
+        del_btn.set_tooltip_text(_("Remove the selected project"))
         up_btn = SimpleButton("go-up", self.__move_up)
+        up_btn.set_tooltip_text(_("Move project upwards in the list"))
         down_btn = SimpleButton("go-down", self.__move_down)
+        down_btn.set_tooltip_text(_("Move project downwards in the list"))
         restore_btn = SimpleButton("document-revert", self.__restore_defaults)
+        restore_btn.set_tooltip_text(_("Revert to the project defaults"))
         self.buttons = [add_btn, del_btn, up_btn, down_btn, restore_btn]
         for button in self.buttons:
             hbox.pack_start(button, False, False, 0)
@@ -740,6 +746,9 @@ class AddonManager(ManagedWindow):
         row = 1
         install = Gtk.CheckButton()
         install.set_label(_("Allow Gramps to install required Python modules"))
+        install.set_tooltip_text(
+            _("Where possible, try to install any missing prerequisite Python modules")
+        )
         active = config.get("behavior.addons-allow-install")
         install.set_active(active)
         install.connect("toggled", self.install_changed)
