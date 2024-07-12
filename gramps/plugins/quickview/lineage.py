@@ -55,9 +55,9 @@ def run_father(database, document, person):
     sd.paragraph(
         _(
             ""
-            "This report shows the father lineage, also called patronymic lineage"
+            "This report shows the father lineage, also called the patrilineal lineage"
             " or Y-line."
-            " People in this lineage all share the same Y-chromosome."
+            " People in this lineage all share the same Y-chromosomes."
         )
     )
     sd.paragraph("")
