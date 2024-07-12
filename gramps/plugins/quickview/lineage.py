@@ -89,7 +89,7 @@ def run_mother(database, document, person):
     sd.paragraph(
         _(
             ""
-            "This report shows the mother lineage, also called matronymic lineage "
+            "This report shows the mother lineage, also called the matrilineal lineage "
             "mtDNA lineage."
             " People in this lineage all share the same Mitochondrial DNA (mtDNA)."
         )
