@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-07-07 22:09+0000\n"
+"PO-Revision-Date: 2024-07-12 13:09+0000\n"
 "Last-Translator: Harald Herreros <haraldh@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/nb_NO/>\n"
@@ -466,10 +466,9 @@ msgid ""
 "instance, by inverting the 'People with children' filter you can select all "
 "people without children."
 msgstr ""
-"<b>Omvendt filtrering</b><br/>Filtre kan lett reverseres ved å bruke "
-"'Inverter'-valget \"Returner verdier som ikke samsvarer med filterreglene\". "
-"For eksempel, ved å invertere filteret 'Personer med barn' velger du alle "
-"personer uten barn."
+"<b>Omvendt filtrering</b><br/>Filtre kan lett snus ved å bruke valget «"
+"Returner verdier som ikke matcher med filterreglene». For eksempel, ved å "
+"snu filteret «Personer med barn» kan du velge alle personer uten barn."
 
 #: ../data/tips.xml:18
 msgid ""
@@ -480,12 +479,12 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>Finn personer</b><br/> I visningen for grupperte personer er hvert "
-"etternavn listet kun én gang . Ved å klikke på pilen til venstre for et "
-"navn, vil listen utvide seg for å vise alle individer med det etternavnet. "
-"For å finne et hvilket som helst slektsnavn fra en lang liste, velg et "
-"slektsnavn (ikke en person) og begynn å skrive. Visningen vil da hoppe til "
-"det første slektsnavnet som samsvarer med bokstavene du skriver inn."
+"<b>Finn personer</b><br/> I den grupperte personvisningen er hvert etternavn "
+"listet kun én gang. Ved å klikke på pilen til venstre for et navn, vil "
+"listen utvides for å vise alle personer med det etternavnet. For å finne et "
+"hvilket som helst slektsnavn fra en lang liste, velg et slektsnavn (ikke en "
+"person) og begynn å skrive. Visningen vil da hoppe til det første "
+"slektsnavnet som samsvarer med bokstavene du skriver inn."
 
 #: ../data/tips.xml:20
 msgid ""
@@ -515,11 +514,11 @@ msgid ""
 "of everyone in your database. You can use a custom filter to narrow the "
 "results."
 msgstr ""
-"<b>Hvem ble født når?</b><br/>Under \"Verktøy &gt; Analyse og utforsking &gt;"
-" Sammenligne enkelthendelser...\" kan du sammenligne opplysninger om "
+"<b>Hvem ble født når?</b><br/>Under \"Verktøy &gt; Analyse og utforskning "
+"&gt; Sammenligne enkelthendelser...\" kan du sammenligne opplysninger om "
 "enkeltpersoner i databasen din. Dette er nyttig for eksempel hvis du ønsker "
-"å liste opp fødselsdatoene til alle i databasen din. Du kan bruke et "
-"tilpasset filter for å snevre inn resultatene."
+"å liste fødselsdatoene til alle i databasen din. Du kan bruke et tilpasset "
+"filter for å avgrense resultatene."
 
 #: ../data/tips.xml:26
 msgid ""
@@ -955,9 +954,10 @@ msgid ""
 "Tree (WFT) format. This format allows a family tree to be displayed online "
 "using a single file, instead of many html files."
 msgstr ""
-"<b>Web Family Tree Format</b><br/>Gramps kan eksportere data til formatet "
-"Web Family Tree (WFT). Dette formatet tillater at et slektstre kan vises på "
-"en nettside ved å bruke en enkeltfil, i stedet for mange html-filer."
+"<b>Nettbasert slektstre-format</b><br/>Gramps kan eksportere data til Web "
+"Family Tree (WFT)-formatet. Dette formatet gjør det mulig å vise et "
+"slektstre på nettet ved hjelp av én enkelt fil, i stedet for mange HTML-"
+"filer."
 
 #: ../data/tips.xml:92
 msgid ""
@@ -1024,10 +1024,10 @@ msgid ""
 "Tools\". This is the best way for advanced users to experiment and create "
 "new functionality."
 msgstr ""
-"<b>Ekstra rapporter og verktøy</b><br/>Du kan utvide Gramps med ekstra "
-"rapporter og verktøy med \"Tilleggsbehandleren\". Se dem under \"Hjelp &gt; "
-"Ekstra rapporter/verktøy\". Dette gir avanserte brukere den ideelle "
-"muligheten til å eksperimentere og lage ny funksjonalitet."
+"<b>Ekstra rapporter og verktøy</b><br/>Ekstra rapporter og verktøy kan "
+"legges til i Gramps med utvidelser. Se dem under \"Hjelp &gt; Ekstra "
+"rapporter/verktøy\". Dette er den beste måten for avanserte brukere å "
+"eksperimentere og lage ny funksjonalitet."
 
 #: ../data/tips.xml:104
 msgid ""
@@ -1126,10 +1126,10 @@ msgid ""
 "person is the person who is selected when the database is opened or when the "
 "home button is pressed."
 msgstr ""
-"<b>Startpersonen</b><br/>Hvem som helst kan velges som \"startperson\" i "
-"Gramps. Bruk \"Rediger &gt; Angi som startperson\". Startpersonen er "
-"personen som blir satt i fokus når databasen blir åpnet, eller når man "
-"trykker på hjemknappen."
+"<b>Startpersonen</b><br/>Hvem som helst kan velges som startperson i Gramps. "
+"I personvisningen «Rediger &gt; Gjør til startperson». Startpersonen er den "
+"personen som er valgt når databasen åpnes, eller når man trykker på hjem-"
+"knappen."
 
 #: ../data/tips.xml:122
 msgid ""
@@ -1435,52 +1435,50 @@ msgid ""
 "                 E - Everything is set to default or cleared\n"
 msgstr ""
 "\n"
-"Bruk: gramps [OPTION...]\n"
-"  --load-modules=MODULE1,MODULE2,...     Dynamiske moduler som skal lastes\n"
+"Bruk: gramps [VALG...]\n"
+"  --load-modules=MODUL1,MODUL2,...       Dynamiske moduler som skal lastes\n"
 "\n"
-"Hjelp\n"
+"Hjelpevalg\n"
 "  -?, --help                             Vis denne hjelpeteksten\n"
 "  --usage                                Vis kort bruksmelding\n"
 "\n"
-"Programalternativer\n"
-"  -O, --open=SLEKTSTRE                 Åpne slektstre\n"
-"  -U, --username=BRUKERNAVN                Database brukernavn\n"
-"  -P, --password=PASSORD                Database passord\n"
-"  -C, --create=SLEKTSTRE               Opprett ved åpning hvis nytt "
+"Programvalg\n"
+"  -O, --open=SLEKTSTRE                   Åpne slektstre\n"
+"  -U, --username=BRUKERNAVN              Angi database brukernavn\n"
+"  -P, --password=PASSORD                 Angi databasepassord\n"
+"  -C, --create=SLEKTSTRE                 Opprett ved åpning hvis nytt "
 "slektstre\n"
-"  -i, --import=FILNAVN                  Importer fil\n"
-"  -e, --export=FILNAVN                  Eksporter fil\n"
-"  -r, --remove=SLEKTSTRE_MØNSTER       Fjern samsvarende Slektstre (bruk "
-"vanlige uttrykk)\n"
-"  -f, --format=FORMAT                    Angi filformat på slektsdatabasen\n"
-"  -a, --action=HANDLING                    Angi handling\n"
-"  -p, --options=OPTIONS_STRING           Angi alternativer\n"
-"  -d, --debug=LOGGENAVN                Aktivere feillogging\n"
-"  -l [SLEKTSTRE_MØNSTER...]            Liste over slektstre\n"
-"  -L [SLEKTSTRE_MØNSTER...]            Detaljert liste over slektstre\n"
-"  -t [SLEKTSTRE_MØNSTER...]            Liste over slektstre, etikett med "
-"skilletegn\n"
-"  -u, --force-unlock                    Fremtving opplåsning av et "
-"slektstre\n"
-"  -s, --show                             Vis konfigurasjonsinnstillinger \n"
-"  -c, --config=[config.setting[:value]]  Angi konfigurasjonsinnstillinger og "
-"start Gramps \n"
-"  -y, --yes                              Ikke be om å bekrefte farlige "
-"handlinger (ikke tilgjengelig i GUI)\n"
-"  -q, --quiet                            Undertrykk fremdriftsindikatoren "
-"(ikke tilgjengelig i GUI)\n"
-"  -v, --version                           Vis versjoner\n"
-"  -S, --safe                             Start Gramps i 'Sikker Modus'\n"
-"                                          (bruker midlertidig standard "
-"innstillinger)\n"
-"  -D, --default=[APXFE]                  Tilbakestill innstillingene til "
-"standard ;\n"
-"                 A - tillegg er slettet\n"
-"                 P -Innstillinger til standard\n"
-"                 X - Bøker slettes, rapporter og verktøyinnstillinger til "
-"standard\n"
-"                 F - Filtre er slettet\n"
-"                 E - Alt er satt til standard eller slettet\n"
+"  -i, --import=FILNAVN                   Importer fil\n"
+"  -e, --export=FILNAVN                   Eksporter fil\n"
+"  -r, --remove=SLEKTSTRE_MØNSTER         Fjern matchende slektstrær (bruk "
+"regulære uttrykk)\n"
+"  -f, --format=FORMAT                    Angi slektstreformat\n"
+"  -a, --action=HANDLING                  Angi handling\n"
+"  -p, --options=VALG_STRENG              Angi valg\n"
+"  -d, --debug=LOGGNAVN                Aktiver feillogging\n"
+"  -l [SLEKTSTRE_MØNSTER...]              List slektstrær\n"
+"  -L [SLEKTSTRE_MØNSTER...]              List slektstrær i detalj\n"
+"  -t [SLEKTSTRE_MØNSTER...]              List slektstrær, tabulatordelt\n"
+"  -u, --force-unlock                     Tving opplåsing av slektstre\n"
+"  -s, --show                             Vis konfigurasjonsinnstillinger\n"
+"  -c, --config=[config.setting[:value]]  Angi konfigurasjonsinnstilling(er) "
+"og start Gramps\n"
+"  -y, --yes                              Ikke spør om bekreftelse for "
+"farlige handlinger (kun tilgjengelig uten GUI)\n"
+"  -q, --quiet                            Undertrykk fremdriftsindikasjon ("
+"kun tilgjengelig uten GUI)\n"
+"  -v, --version                          Vis versjoner\n"
+"  -S, --safe                             Start Gramps i «sikker modus»\n"
+"                                          (bruk standardinnstillinger "
+"midlertidig)\n"
+"  -D, --default=[APXFE]                  Tilbakestill innstillinger til "
+"standard;\n"
+"                 A - utvidelser fjernes\n"
+"                 P - innstillinger tilbakestilles\n"
+"                 X - bøker fjernes, rapporter og verktøyinnstillinger "
+"tilbakestilles\n"
+"                 F - filtre fjernes\n"
+"                 E - alt tilbakestilles eller fjernes\n"
 
 #: ../gramps/cli/argparser.py:108
 msgid ""
@@ -5676,11 +5674,11 @@ msgstr "Samsvarer med barn av en person som er funnet med et filter"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
 msgid "Home Person"
-msgstr "Standardperson"
+msgstr "Startperson"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:48
 msgid "Matches the Home Person"
-msgstr "Samsvarer med standardpersonen"
+msgstr "Matcher startpersonen"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:52
 msgid "Descendant family members of <person>"
@@ -5793,12 +5791,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:49
 msgid "Ancestors of the Home Person not more than <N> generations away"
-msgstr "Aner til standardpersonen ikke mer enn <N> generasjoner unna"
+msgstr "Aner til startpersonen ikke mer enn <N> generasjoner unna"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:52
 msgid "Matches ancestors of the Home Person not more than N generations away"
-msgstr ""
-"Samsvarer med aner til standardpersonen ikke mer enn N generasjoner unna"
+msgstr "Matcher aner til startpersonen ikke mer enn <N> generasjoner unna"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:48
 msgid "Descendants of <person> not more than <N> generations away"
@@ -6283,11 +6280,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:51
 msgid "Places enclosed by another place"
-msgstr "Steder som er omsluttet av et annet sted"
+msgstr "Steder omsluttet av et annet sted"
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:52
 msgid "Matches a place enclosed by a particular place"
-msgstr "Samsvarer med et sted som er omsluttet av et bestemt sted"
+msgstr "Matcher et sted som er omsluttet av et bestemt sted"
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:52
 msgid "Places of events matching the <event filter>"
@@ -8397,7 +8394,7 @@ msgstr "Fullført"
 
 #: ../gramps/gen/lib/markertype.py:56 ../gramps/plugins/tool/notrelated.py:105
 msgid "ToDo"
-msgstr "Huskeliste"
+msgstr "Oppgaveliste"
 
 #: ../gramps/gen/lib/media.py:148
 msgid "MIME"
@@ -8712,7 +8709,7 @@ msgstr "HTML-kode"
 #: ../gramps/gen/lib/notetype.py:85
 msgctxt "notetype"
 msgid "To Do"
-msgstr "Huskeliste"
+msgstr "Oppgaveliste"
 
 #: ../gramps/gen/lib/notetype.py:86
 msgctxt "notetype"
@@ -9436,7 +9433,7 @@ msgstr "Dokumentskaper"
 
 #: ../gramps/gen/plug/_pluginreg.py:121
 msgid "Plugin library"
-msgstr "Programtilleggsbibliotek"
+msgstr "Utvidelsesbibliotek"
 
 #: ../gramps/gen/plug/_pluginreg.py:122
 msgid "Map service"
@@ -9489,7 +9486,7 @@ msgstr "Diverse"
 #: ../gramps/gen/plug/_pluginreg.py:1401
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
-msgstr "FEIL: Klarte ikke å lese registrering av programtillegg %(filename)s"
+msgstr "FEIL: Klarte ikke å lese registrering av utvidelse %(filename)s"
 
 #: ../gramps/gen/plug/_pluginreg.py:1370
 #, python-format
@@ -9497,8 +9494,8 @@ msgid ""
 "WARNING: Plugin %(plugin_name)s has no translation for any of your "
 "configured languages, using US English instead"
 msgstr ""
-"ADVARSEL: Programtillegget %(plugin_name)s er ikke oversatt til noen av de "
-"angitte språkene. Amerikansk engelsk blir brukt i stedet"
+"ADVARSEL: Utvidelsen %(plugin_name)s er ikke oversatt til noen av de valgte "
+"språkene dine. Amerikansk engelsk blir brukt i stedet"
 
 #: ../gramps/gen/plug/_pluginreg.py:1419
 #, python-format
@@ -9508,9 +9505,8 @@ msgid ""
 "\"%(gramps_target_version)s\" which is invalid for Gramps "
 "\"%(gramps_version)s\"."
 msgstr ""
-"FEIL: Programtilleggsfilen %(filename)s har versjonen "
-"\"%(gramps_target_version)s\", som er ugyldig for Gramps "
-"\"%(gramps_version)s\"."
+"FEIL: Utvidelsesfilen %(filename)s har versjonen «%(gramps_target_version)s»"
+", som er ugyldig for Gramps «%(gramps_version)s»."
 
 #: ../gramps/gen/plug/_pluginreg.py:1451
 #, python-format
@@ -12037,11 +12033,11 @@ msgstr "Bakgrunn for døde personer"
 
 #: ../gramps/gui/configure.py:915
 msgid "Border for Alive"
-msgstr "Kant for levende personer"
+msgstr "Kantlinje for levende"
 
 #: ../gramps/gui/configure.py:916
 msgid "Border for Dead"
-msgstr "Kant for død person"
+msgstr "Kantlinje for avdøde"
 
 #: ../gramps/gui/configure.py:941
 msgid "Default background"
@@ -12077,7 +12073,7 @@ msgstr "Kantlinje for skilte"
 
 #: ../gramps/gui/configure.py:950
 msgid "Background for Home Person"
-msgstr "Bakgrunn for hjemmeperson"
+msgstr "Bakgrunn for startperson"
 
 #: ../gramps/gui/configure.py:969 ../gramps/gui/configure.py:2789
 #, python-format
@@ -12110,9 +12106,7 @@ msgstr "Undertrykke verktøytipsadvarsler om at data lagres umiddelbart"
 
 #: ../gramps/gui/configure.py:1047
 msgid "Show plugin status dialog on plugin load error"
-msgstr ""
-"Vis statusdialogboks for programtillegg når innlasting av programtillegg "
-"feiler"
+msgstr "Vis statusvindu for utvidelser ved feil under lasting av utvidelser"
 
 #: ../gramps/gui/configure.py:1053
 msgid "Warnings"
@@ -12430,11 +12424,11 @@ msgstr "Husk siste visning og åpne den neste gang."
 
 #: ../gramps/gui/configure.py:2007
 msgid "Enable spell checker"
-msgstr "Skru på stavekontroll"
+msgstr "Slå på stavekontroll"
 
 #: ../gramps/gui/configure.py:2012
 msgid "Enable the spelling checker for notes."
-msgstr "Skru på stavekontroll for notater."
+msgstr "Slå på stavekontroll for notater."
 
 #: ../gramps/gui/configure.py:2023
 #, python-format
@@ -12484,11 +12478,11 @@ msgstr "Vis eller skjul ikon for Verktøy i verktøylinjen."
 
 #: ../gramps/gui/configure.py:2090
 msgid "Show Addons icon on toolbar"
-msgstr "Vis ikon for programtillegg i verktøylinjen"
+msgstr "Vis utvidelsesikonet på verktøylinjen"
 
 #: ../gramps/gui/configure.py:2095
 msgid "Show or hide the Addons icon on the toolbar."
-msgstr "Vis eller skjul ikon for programtillegg i verktøylinjen."
+msgstr "Vis eller skjul utvidelsesikonet på verktøylinjen."
 
 #: ../gramps/gui/configure.py:2103
 msgid "Show Preferences icon on toolbar"
@@ -12852,9 +12846,9 @@ msgid ""
 "If you think you may want to revert the import, please stop here and backup "
 "your database."
 msgstr ""
-"Ved å fortsette med importen vil du tømme angrehistorikken for denne "
-"sesjonen. Du vil ikke ha mulighet til å gå tilbake eller å angre endringer "
-"som er utført før importen.\n"
+"Ved å fortsette med importen vil du tømme angrehistorikken for denne økten. "
+"Du vil ikke ha mulighet til å gå tilbake eller å angre endringer som er "
+"utført før importen.\n"
 "\n"
 "Hvis du tror at du kanskje vil angre importen så STOPP her og lag en "
 "sikkerhetskopi av databasen din."
@@ -12912,7 +12906,7 @@ msgstr "Passord: "
 
 #: ../gramps/gui/dbloader.py:387
 msgid "Import Family Tree"
-msgstr "Importere slektsdatabase"
+msgstr "Importer slektstre"
 
 #: ../gramps/gui/dbloader.py:408
 msgid "All supported files"
@@ -13359,11 +13353,11 @@ msgstr "Verktøy"
 
 #: ../gramps/gui/displaystate.py:423
 msgid "Open Addon Manager"
-msgstr "Åpne tilleggsbehandleren"
+msgstr "Åpne utvidelsesbehandler"
 
 #: ../gramps/gui/displaystate.py:424 ../gramps/gui/plug/_windows.py:473
 msgid "Addons"
-msgstr "Programtillegg"
+msgstr "Utvidelser"
 
 #: ../gramps/gui/displaystate.py:429
 msgid "Open Preferences"
@@ -13482,7 +13476,7 @@ msgid ""
 "Directory specified in preferences: Base path for relative media paths: %s "
 "does not exist. Change preferences or do not use relative path when importing"
 msgstr ""
-"Mappen som er angitt i innstillingene: Grunnstien for relative mediastier: "
+"Mappen som er angitt i innstillingene: Standardsti for relative mediastier: "
 "%s eksisterer ikke. Endre innstillingene eller ikke bruk relativ sti ved "
 "import"
 
@@ -14080,7 +14074,7 @@ msgstr "Alternative navn"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1504
 #: ../gramps/plugins/webreport/basepage.py:3323
 msgid "Enclosed By"
-msgstr "Omgitt av"
+msgstr "Omsluttet av"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:215
 msgid "Place cycle detected"
@@ -14088,7 +14082,7 @@ msgstr "Oppdaget steder som henviser til seg selv"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:216
 msgid "The place you are adding is already enclosed by this place"
-msgstr "Stedet du oppretter er allerede omsluttet av dette stedet"
+msgstr "Stedet du legger til er allerede omsluttet av dette stedet"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:56
 msgid "Create and add a new repository"
@@ -14983,7 +14977,7 @@ msgstr "Gjør person aktiv"
 
 #: ../gramps/gui/editors/editperson.py:788
 msgid "Make Home Person"
-msgstr "Gjør til startperson"
+msgstr "Opprett startperson"
 
 #: ../gramps/gui/editors/editperson.py:909
 msgid "Problem changing the gender"
@@ -15481,7 +15475,7 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:89
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:73
 msgid "Case sensitive"
-msgstr "Skiller mellom store og små bokstaver"
+msgstr "Skill mellom store og små bokstaver"
 
 #: ../gramps/gui/editors/filtereditor.py:688
 msgid "Rule Name"
@@ -16694,11 +16688,11 @@ msgid ""
 "directory where all your media is stored. The 'Media Manager' tool can help "
 "managing paths of a collection of media objects."
 msgstr ""
-"Filbane for mediaobjektet på din datamaskin.\n"
-"Gramps lagrer ikke mediene internt, bare filbanen! Sett 'Relativ filbane' i "
-"innstillingsbildet for å slippe å skrive inn hele filbanen for hvor mediene "
-"dine er lagret. 'Mediahåndtereren' kan hjelpe med å håndtere filbanene for "
-"en samling av mediaobjekter."
+"Sti til mediaobjektet på datamaskinen din.\n"
+"Gramps lagrer ikke mediaene internt, kun stien lagres! Sett «Relativ sti» i "
+"innstillingene for å unngå å gjentatte ganger skrive inn hele filstien hvor "
+"all mediaene dine er lagret. Verktøyet «Mediabehandler» kan hjelpe med å "
+"håndtere stier for en samling av mediaobjekter."
 
 #: ../gramps/gui/glade/editmedia.glade:219
 #: ../gramps/gui/glade/editmediaref.glade:423
@@ -17231,8 +17225,8 @@ msgid ""
 "<b>Note:</b> Any changes in the enclosing place information will be "
 "reflected in the place itself, for places that it encloses."
 msgstr ""
-"<b>Merk:</b> Alle endringer for det omsluttende stedet vil bli vist for "
-"selve stedet, for alle steder det omslutter."
+"<b>Merk:</b> Endringer i informasjonen om det omsluttende stedet vil bli "
+"reflektert i selve stedet, i alle stedene det omslutter."
 
 #: ../gramps/gui/glade/editreporef.glade:128
 msgid "_Media Type:"
@@ -17846,7 +17840,7 @@ msgstr "Ko_mmentarer:"
 
 #: ../gramps/gui/glade/rule.glade:603
 msgid "Return values that do no_t match the filter rules"
-msgstr "Gir verdier som ikke _treffer filterreglene"
+msgstr "Re_turner verdier som ikke matcher med filterreglene"
 
 #: ../gramps/gui/glade/rule.glade:895
 msgid "Selected Rule"
@@ -17935,7 +17929,7 @@ msgstr "Under:"
 #: ../gramps/gui/glade/styleeditor.glade:1272
 #: ../gramps/plugins/drawreport/calendarreport.py:807
 msgid "Borders"
-msgstr "Rammer"
+msgstr "Kantlinjer"
 
 #: ../gramps/gui/glade/styleeditor.glade:856
 msgid "_Padding:"
@@ -18111,12 +18105,12 @@ msgstr "_Frem"
 
 #: ../gramps/gui/glade/updateaddons.glade:41
 msgid "Install Selected _Addons"
-msgstr "Installere valgte _programtillegg"
+msgstr "Installer valgte _utvidelser"
 
 #: ../gramps/gui/glade/updateaddons.glade:72
 #: ../gramps/gui/plug/_windows.py:2099
 msgid "Available Gramps Updates for Addons"
-msgstr "Oppdateringer for programtillegg i Gramps er tilgjengelig"
+msgstr "Tilgjengelige Gramps-oppdateringer for utvidelser"
 
 #: ../gramps/gui/glade/updateaddons.glade:89
 msgid ""
@@ -18128,14 +18122,14 @@ msgid ""
 "If you close this dialog now, you can install addons later from the menu "
 "under Edit -> Addon Manager."
 msgstr ""
-"Gramps kommer med et sett med forhåndsinstallerte programtillegg som tilbyr "
-"alle nødvendige funksjoner. Du kan utvide denne funksjonaliteten med flere "
-"tredjeparts programtillegg. Disse programtilleggene gir flere rapporter, "
-"utlistinger, visningstyper, smågramps med mer. Her kan du velge blant de "
-"ulike tilgjengelige ekstra programtilleggene. De vil bli lastet ned fra "
-"Gramps sin hjemmeside på Internett og installert lokalt på din datamaskin. "
-"Hvis du lukker dette vinduet nå kan du installere programtillegg senere ved "
-"å gå til menyen under Hjelp -> Behandler for programtillegg."
+"Gramps kommer med et grunnleggende sett av utvidelser som tilbyr alle "
+"nødvendige funksjoner. Du kan imidlertid utvide denne funksjonaliteten med "
+"ekstra utvidelser. Disse utvidelsene tilbyr rapporter, lister, visninger, "
+"gramplets og mer. Her kan du velge blant de tilgjengelige ekstra "
+"utvidelsene, de vil bli hentet fra internett fra Gramps-nettstedet og "
+"installert lokalt på datamaskinen din. Hvis du lukker denne dialogboksen nå, "
+"kan du installere utvidelser senere fra menyen under Hjelp -> "
+"Utvidelsesbehandler."
 
 #: ../gramps/gui/glade/updateaddons.glade:105
 msgid "_Select All"
@@ -18200,7 +18194,7 @@ msgstr "_Om"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Addon Manager..."
-msgstr "_Tilleggsbehandler..."
+msgstr "_Utvidelsesbehandler..."
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Bookmarks"
@@ -18248,7 +18242,7 @@ msgstr "_Navigatør"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Plugin Manager"
-msgstr "_Behandler for programtillegg"
+msgstr "_Utvidelsesbehandler"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "_Preferences..."
@@ -18892,7 +18886,7 @@ msgstr "Krav"
 
 #: ../gramps/gui/plug/_windows.py:380
 msgid "Addon Manager"
-msgstr "Behandler for tillegg"
+msgstr "Utvidelsesbehandler"
 
 #: ../gramps/gui/plug/_windows.py:388 ../gramps/plugins/gramplet/leak.py:114
 msgid "Refresh"
@@ -18904,7 +18898,7 @@ msgstr "Filtre"
 
 #: ../gramps/gui/plug/_windows.py:425
 msgid "All addons"
-msgstr "Alle programtillegg"
+msgstr "Alle utvidelser"
 
 #: ../gramps/gui/plug/_windows.py:426 ../gramps/gui/plug/_windows.py:631
 msgid "Not installed"
@@ -18950,15 +18944,15 @@ msgstr "Laster inn..."
 
 #: ../gramps/gui/plug/_windows.py:562
 msgid "Addon Registration Failed"
-msgstr "Registrering av tillegg feilet"
+msgstr "Registrering av utvidelse feilet"
 
 #: ../gramps/gui/plug/_windows.py:563
 msgid "The addon will be unavailable in your current configuration."
-msgstr "Tillegget er utilgjengelig i din nåværende konfigurasjon."
+msgstr "Utvidelsen vil være utilgjengelig i din nåværende konfigurasjon."
 
 #: ../gramps/gui/plug/_windows.py:588
 msgid "No matching addons found."
-msgstr "Ingen matchende programtillegg funnet."
+msgstr "Ingen matchende utvidelser funnet."
 
 #: ../gramps/gui/plug/_windows.py:742
 msgid "Allow Gramps to install required Python modules"
@@ -18986,19 +18980,19 @@ msgstr "Alltid"
 
 #: ../gramps/gui/plug/_windows.py:774
 msgid "Check for addon updates"
-msgstr "Søk etter oppdateringer for programtillegg"
+msgstr "Søk etter oppdateringer for utvidelser"
 
 #: ../gramps/gui/plug/_windows.py:781
 msgid "Updated addons only"
-msgstr "Kun oppdatere programtilleggene"
+msgstr "Kun oppdaterte utvidelser"
 
 #: ../gramps/gui/plug/_windows.py:782
 msgid "New addons only"
-msgstr "Kun nye programtillegg"
+msgstr "Kun nye utvidelser"
 
 #: ../gramps/gui/plug/_windows.py:783
 msgid "New and updated addons"
-msgstr "Nye og oppdaterte programtillegg"
+msgstr "Nye og oppdaterte utvidelser"
 
 #: ../gramps/gui/plug/_windows.py:794
 msgid "What to check"
@@ -19006,11 +19000,11 @@ msgstr "Hva som skal sjekkes"
 
 #: ../gramps/gui/plug/_windows.py:800
 msgid "Do not ask about previously notified addons"
-msgstr "Ikke spør om programmtillegg som allerede er nevnt"
+msgstr "Ikke spør om tidligere varslede utvidelser"
 
 #: ../gramps/gui/plug/_windows.py:807
 msgid "Check for updated addons now"
-msgstr "Søk etter oppdateringer for programtillegg nå"
+msgstr "Se etter oppdaterte utvidelser nå"
 
 #: ../gramps/gui/plug/_windows.py:820
 msgid "New Project"
@@ -19034,16 +19028,17 @@ msgstr "Er du sikker?"
 
 #: ../gramps/gui/plug/_windows.py:953
 msgid "Checking Addons Failed"
-msgstr "Sjekking av programtillegg feilet"
+msgstr "Kontroll av utvidelser feilet"
 
 #: ../gramps/gui/plug/_windows.py:955
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr ""
-"Biblioteket for programtillegg er ikke tilgjengelig. Prøv igjen senere."
+"Utvidelsesbiblioteket ser ut til å være utilgjengelig. Vennligst prøv igjen "
+"senere."
 
 #: ../gramps/gui/plug/_windows.py:970
 msgid "There are no available addons of this type"
-msgstr "Det er ingen tilgjengelige programtillegg av denne typen"
+msgstr "Det er ingen tilgjengelige utvidelser av denne typen"
 
 #: ../gramps/gui/plug/_windows.py:971
 msgid "' and '"
@@ -19072,7 +19067,7 @@ msgstr "Synlig"
 
 #: ../gramps/gui/plug/_windows.py:1018
 msgid "Plugin Manager"
-msgstr "Behandler for programtillegg"
+msgstr "Utvidelsesbehandler"
 
 #: ../gramps/gui/plug/_windows.py:1070 ../gramps/gui/plug/_windows.py:1128
 msgid "Info"
@@ -19088,7 +19083,7 @@ msgstr "Last"
 
 #: ../gramps/gui/plug/_windows.py:1088
 msgid "Registered Plugins"
-msgstr "Registrerte programtillegg"
+msgstr "Registrerte utvidelser"
 
 #: ../gramps/gui/plug/_windows.py:1107
 msgid "Loaded"
@@ -19106,27 +19101,27 @@ msgstr "Beskjed"
 
 #: ../gramps/gui/plug/_windows.py:1147
 msgid "Loaded Plugins"
-msgstr "Lastede programtillegg"
+msgstr "Lastede utvidelser"
 
 #: ../gramps/gui/plug/_windows.py:1169
 msgid "Addon Name"
-msgstr "Navn på Programtillegg"
+msgstr "Utvidelsesnavn"
 
 #: ../gramps/gui/plug/_windows.py:1181
 msgid "Path to Addon:"
-msgstr "Sti til Programtillegg:"
+msgstr "Sti til utvidelse:"
 
 #: ../gramps/gui/plug/_windows.py:1201
 msgid "Install Addon"
-msgstr "Installere tillegg"
+msgstr "Installer utvidelse"
 
 #: ../gramps/gui/plug/_windows.py:1204
 msgid "Install All Addons"
-msgstr "Installere alle programtillegg"
+msgstr "Installer alle utvidelser"
 
 #: ../gramps/gui/plug/_windows.py:1207
 msgid "Refresh Addon List"
-msgstr "Gjenoppbygg tilleggsliste"
+msgstr "Gjenoppfrisk utvidelseslisten"
 
 #: ../gramps/gui/plug/_windows.py:1220
 msgid "Reload"
@@ -19134,7 +19129,7 @@ msgstr "Last på nytt"
 
 #: ../gramps/gui/plug/_windows.py:1248
 msgid "Refreshing Addon List"
-msgstr "Gjenoppbygger tilleggsliste"
+msgstr "Gjenoppfrisker utvidelseslisten"
 
 #: ../gramps/gui/plug/_windows.py:1249 ../gramps/gui/plug/_windows.py:1254
 #: ../gramps/gui/plug/_windows.py:1392
@@ -19143,7 +19138,7 @@ msgstr "Leser gramps-project.org..."
 
 #: ../gramps/gui/plug/_windows.py:1272
 msgid "Checking addon..."
-msgstr "Sjekker tillegg..."
+msgstr "Kontrollerer utvidelser..."
 
 #: ../gramps/gui/plug/_windows.py:1280
 msgid "Unknown Help URL"
@@ -19155,7 +19150,7 @@ msgstr "Ukjent URL"
 
 #: ../gramps/gui/plug/_windows.py:1356
 msgid "Install all Addons"
-msgstr "Installere alle programtillegg"
+msgstr "Installer alle utvidelser"
 
 #: ../gramps/gui/plug/_windows.py:1357
 msgid "Installing..."
@@ -19163,11 +19158,11 @@ msgstr "Installerer..."
 
 #: ../gramps/gui/plug/_windows.py:1390
 msgid "Installing Addon"
-msgstr "Installerer tillegg"
+msgstr "Installerer utvidelsen"
 
 #: ../gramps/gui/plug/_windows.py:1413
 msgid "Load Addon"
-msgstr "Last inn programtillegg"
+msgstr "Last inn utvidelsen"
 
 #: ../gramps/gui/plug/_windows.py:1505
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:261
@@ -19180,7 +19175,7 @@ msgstr "OK"
 
 #: ../gramps/gui/plug/_windows.py:1636
 msgid "Plugin name"
-msgstr "Navn på programtillegg"
+msgstr "Utvidelsesnavn"
 
 #: ../gramps/gui/plug/_windows.py:1639
 msgid "Authors"
@@ -19197,7 +19192,7 @@ msgstr "Detaljert informasjon"
 
 #: ../gramps/gui/plug/_windows.py:1699
 msgid "Plugin Error"
-msgstr "Programtilleggsfeil"
+msgstr "Utvidelsesfeil"
 
 #: ../gramps/gui/plug/_windows.py:1768
 msgid "_Execute"
@@ -19212,7 +19207,7 @@ msgstr "Hovedvindu"
 
 #: ../gramps/gui/plug/_windows.py:2204
 msgid "Downloading and installing selected addons..."
-msgstr "Laster ned og installerer valgte programtillegg..."
+msgstr "Laster ned og installerer valgte utvidelser..."
 
 #: ../gramps/gui/plug/_windows.py:2247
 msgid "Installation Errors"
@@ -19631,13 +19626,12 @@ msgid ""
 "Therefore, the central person for each item is being set to the active "
 "person of the currently opened database."
 msgstr ""
-"Denne boken ble laget med referanser til databasen %s.\n"
+"Denne boken ble opprettet med referanser til databasen %s.\n"
 "\n"
-"Dette gjør at referansene til den sentrale person lagret i boken blir "
-"ugyldige.\n"
+"Dette gjør at referanser til fokuspersonen lagret i boken blir ugyldige.\n"
 "\n"
-"Derfor settes den sentrale personen for hvert element til den aktive "
-"personen i den åpne databasen."
+"Derfor blir fokuspersonen for hvert element satt til den aktive personen i "
+"den nåværende åpne databasen."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:577
 msgid "No selected book item"
@@ -19960,12 +19954,12 @@ msgid ""
 "If you think you may want to revert running this tool, please stop here and "
 "backup your database."
 msgstr ""
-"Ved å fortsette med dette verktøyet vil du tømme historikken for denne "
-"sesjonen. Du vil dermed ikke ha mulighet til å angre de endringene som blir "
+"Ved å fortsette med dette verktøyet vil du tømme angrehistorikken for denne "
+"økten. Du vil dermed ikke ha mulighet til å angre de endringene som blir "
 "utført av dette verktøyet, eller de endringene som ble gjort i forkant.\n"
 "\n"
 "Hvis du tror du kan komme til å angre på å ha kjørt dette verktøyet, bør du "
-"stanse her og lag en sikkerhetskopi av databasen din."
+"stanse her og lage en sikkerhetskopi av databasen din."
 
 #: ../gramps/gui/plug/tool.py:133
 msgid "_Proceed with the tool"
@@ -20194,7 +20188,7 @@ msgstr "Ingen Slektsdatabase"
 
 #: ../gramps/gui/viewmanager.py:612
 msgid "Registering plugins..."
-msgstr "Registrerer programtillegg..."
+msgstr "Registrerer utvidelser..."
 
 #: ../gramps/gui/viewmanager.py:619
 msgid "Ready"
@@ -20209,8 +20203,8 @@ msgid ""
 "Aborting changes will return the database to the state it was before you "
 "started this editing session."
 msgstr ""
-"Avbryt av endringene vil sette databasen tilbake til den tilstanden den var "
-"i før du begynte å utføre endringer i denne sesjonen."
+"Å avbryte endringene vil sette databasen tilbake til tilstanden den var i "
+"før du startet denne redigeringsøkten."
 
 #: ../gramps/gui/viewmanager.py:678
 msgid "Abort changes"
@@ -20225,8 +20219,8 @@ msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
 msgstr ""
-"Endringene kan ikke fullføres helt fordi antall endringer i denne sesjonen "
-"overskrider grensen."
+"Endringer kan ikke fullstendig avvises fordi antallet endringer gjort i "
+"denne økten overstiger grensen."
 
 #: ../gramps/gui/viewmanager.py:893
 msgid "View failed to load. Check error output."
@@ -20283,16 +20277,16 @@ msgstr ""
 "\n"
 "%(error_msg)s\n"
 "\n"
-"Hvis du ikke klarer å reparere feilen selv kan du sende en feilrapport på "
+"Hvis du ikke klarer å rette feilen selv kan du sende inn en feilrapport på "
 "%(gramps_bugtracker_url)s eller kontakte utvikleren av visningen "
 "(%(firstauthoremail)s).\n"
 "\n"
 "Hvis du ikke vil at Gramps skal laste inn denne visningen igjen kan du "
-"skjule det ved å bruke \"Behandler for programtillegg\" fra Hjelp-menyen."
+"skjule den ved å bruke utvidelsesbehandleren fra hjelp-menyen."
 
 #: ../gramps/gui/viewmanager.py:1701
 msgid "Failed Loading Plugin"
-msgstr "Lasting av programtillegg feilet"
+msgstr "Kunne ikke laste utvidelsen"
 
 #: ../gramps/gui/viewmanager.py:1703
 #, python-format
@@ -20308,16 +20302,16 @@ msgid ""
 "If you do not want Gramps to try and load this plugin again, you can hide it "
 "by using the Plugin Manager on the Help menu."
 msgstr ""
-"Programtillegget %(name)s ble ikke lastet inn og rapporterte en feil.\n"
+"Utvidelsen %(name)s ble ikke lastet inn og rapporterte en feil.\n"
 "\n"
 "%(error_msg)s\n"
 "\n"
-"Hvis du ikke klarer å fikse feilen selv kan du registrere en feilrapport på "
-"%(gramps_bugtracker_url)s eller kontakt utvikleren av programtillegget "
+"Hvis du ikke klarer å rette feilen selv kan du sende inn en feilrapport på "
+"%(gramps_bugtracker_url)s eller kontakte utvikleren av utvidelsen "
 "(%(firstauthoremail)s).\n"
 "\n"
-"Hvis du ikke vil at Gramps skal laste inn dette programtillegget igjen kan "
-"du skjule det ved å bruke \"Behandler for programtillegg\" fra Hjelp-menyen."
+"Hvis du ikke vil at Gramps skal laste inn denne utvidelsen igjen kan du "
+"skjule den ved å bruke utvidelsesbehandleren i fra hjelp-menyen."
 
 #: ../gramps/gui/viewmanager.py:1799
 msgid "Gramps XML Backup"
@@ -20504,8 +20498,9 @@ msgid ""
 "person you want as 'Home Person', then confirm your choice via the menu Edit "
 "-> Set Home Person."
 msgstr ""
-"Du må angi en startperson. Velg personvisningen, velg den personen du vil ha "
-"som startperson og bekreft dette valget i menyen Edit->Angi som startperson."
+"Du må angi en «startperson» å gå til. Velg personvisningen, velg personen du "
+"vil ha som «startperson» og bekreft valget ditt via menyen Rediger -> Gjør "
+"til startperson."
 
 #: ../gramps/gui/views/navigationview.py:339
 #: ../gramps/gui/views/navigationview.py:344
@@ -21110,19 +21105,19 @@ msgstr "Viser siste side"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:195
 msgid "Zooms to fit the page width"
-msgstr "Vis hele sidebredden"
+msgstr "Skalerer for å passe til sidebredden"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:210
 msgid "Zooms to fit the whole page"
-msgstr "Vis hele siden"
+msgstr "Skalerer for å passe til hele siden"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:225
 msgid "Zooms the page in"
-msgstr "Forstørrer siden"
+msgstr "Skalerer siden inn"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:240
 msgid "Zooms the page out"
-msgstr "Forminsker siden"
+msgstr "Skalerer siden ut"
 
 #: ../gramps/plugins/docgen/gtkprint.py:480
 #, python-format
@@ -21215,7 +21210,7 @@ msgstr "gul"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:363
 msgid "The color, if any, of the SVG background"
-msgstr "Fargen, hvis noen, til bakgrunnen for SVG"
+msgstr "Fargen, hvis noen, på SVG-bakgrunnen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:141
 msgid "Ancestor Graph"
@@ -21271,21 +21266,20 @@ msgstr "Skriver ut Treet..."
 #: ../gramps/plugins/textreport/kinshipreport.py:367
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:218
 msgid "Center Person"
-msgstr "Senterperson"
+msgstr "Fokusperson"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:840
 msgid "The center person for the tree"
-msgstr "Senterpersonen for dette treet"
+msgstr "Fokuspersonen for treet"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:843
 msgid "Include siblings of the center person"
-msgstr "Ta med søsken til senterpersonen"
+msgstr "Inkluder søsken av fokuspersonen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:846
 msgid ""
 "Whether to only display the center person or all of his/her siblings too"
-msgstr ""
-"Hvorvidt bare senterpersonen eller alle hans/hennes søsken også skal vises"
+msgstr "Om du vil vise kun fokuspersonen eller også alle hans/hennes søsken"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:852
 #: ../gramps/plugins/drawreport/descendtree.py:1582
@@ -21364,12 +21358,12 @@ msgstr "Velg en tittel for denne rapporten"
 #: ../gramps/plugins/drawreport/ancestortree.py:902
 #: ../gramps/plugins/drawreport/descendtree.py:1639
 msgid "Include a border"
-msgstr "Ta med en ramme"
+msgstr "Ta med en kantlinje"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:903
 #: ../gramps/plugins/drawreport/descendtree.py:1640
 msgid "Whether to make a border around the report."
-msgstr "Om det skal lages en ramme rundt rapporten."
+msgstr "Om det skal lages en kantlinje rundt rapporten."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:906
 #: ../gramps/plugins/drawreport/descendtree.py:1643
@@ -21511,7 +21505,7 @@ msgid ""
 "Center person uses\n"
 "which format"
 msgstr ""
-"Hovedperson bruker\n"
+"Fokusperson bruker\n"
 "hvilket format"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:994
@@ -21524,7 +21518,7 @@ msgstr "Bruk mødres visningsformat"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:996
 msgid "The display format for the center person"
-msgstr "Hvilket visningsformat som skal brukes for senterpersonen"
+msgstr "Visningsformat for fokuspersonen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:999
 #: ../gramps/plugins/drawreport/descendtree.py:1726
@@ -21767,7 +21761,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/kinshipreport.py:368
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:219
 msgid "The center person for the report"
-msgstr "Senterpersonen for denne rapporten"
+msgstr "Fokusperson for rapporten"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:612
 #: ../gramps/plugins/textreport/birthdayreport.py:575
@@ -22530,7 +22524,7 @@ msgstr "Filtrer person"
 #: ../gramps/plugins/textreport/birthdayreport.py:567
 #: ../gramps/plugins/textreport/indivcomplete.py:1107
 msgid "The center person for the filter."
-msgstr "Senterpersonen for filteret."
+msgstr "Fokusperson for filteret."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1137
 msgid "Sort chart items by"
@@ -22538,15 +22532,15 @@ msgstr "Sorter tavleelementer etter"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1140
 msgid "Select how the statistical data is sorted."
-msgstr "Velg hvordan de statistiske data skal bli sortert."
+msgstr "Velg hvordan de statistiske dataene skal sorteres."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1143
 msgid "Sort in reverse order"
-msgstr "Sorter i motsatt rekkefølge"
+msgstr "Sorter i omvendt rekkefølge"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1144
 msgid "Check to reverse the sorting order."
-msgstr "Kryss av for å reversere sorteringsrekkefølgen."
+msgstr "Kryss av for å snu sorteringsrekkefølgen."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1148
 msgid "People Born After"
@@ -22554,7 +22548,7 @@ msgstr "Personer født etter"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1149
 msgid "Birth year from which to include people."
-msgstr "Fødselsår for personene som skal være med."
+msgstr "Fra hvilket fødselsår for personer som skal inkluderes."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1152
 msgid "People Born Before"
@@ -22562,7 +22556,7 @@ msgstr "Personer født før"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1153
 msgid "Birth year until which to include people"
-msgstr "Fødselsår inntil når en person skal tas med"
+msgstr "Inntil hvilket fødselsår for personer som skal inkluderes"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1156
 msgid "Include people without known birth years"
@@ -22672,7 +22666,7 @@ msgstr "Beregner hvilke personer som skal tas med i rapporten"
 #: ../gramps/plugins/webreport/narrativeweb.py:2095
 #: ../gramps/plugins/webreport/webcal.py:1859
 msgid "The center person for the filter"
-msgstr "Senterpersonen for filteret"
+msgstr "Fokusperson for filteret"
 
 #: ../gramps/plugins/drawreport/timeline.py:438
 #: ../gramps/plugins/tool/sortevents.py:189
@@ -22718,11 +22712,11 @@ msgstr "CSV regnearkvalg"
 
 #: ../gramps/plugins/export/export.gpr.py:60
 msgid "Web Family Tree"
-msgstr "Web-Slektstre"
+msgstr "Web Family Tree"
 
 #: ../gramps/plugins/export/export.gpr.py:61
 msgid "_Web Family Tree"
-msgstr "_Web-Slektstree"
+msgstr "_Web Family Tree"
 
 #: ../gramps/plugins/export/export.gpr.py:62
 msgid "Web Family Tree format"
@@ -22819,8 +22813,7 @@ msgstr "vC_alendar"
 
 #: ../gramps/plugins/export/export.gpr.py:177
 msgid "vCalendar is used in many calendaring and PIM applications."
-msgstr ""
-"vCalendar brukes av mange kalendere og &quot;syvende sans&quot;-programmer."
+msgstr "vCalendar brukes i mange kalender- og PIM-programmer."
 
 #: ../gramps/plugins/export/export.gpr.py:185
 msgid "vCalendar export options"
@@ -22837,8 +22830,7 @@ msgstr "_vCard"
 
 #: ../gramps/plugins/export/export.gpr.py:198
 msgid "vCard is used in many addressbook and pim applications."
-msgstr ""
-"vCard brukes av mange adressebok og &quot;syvende sans&quot;-programmer."
+msgstr "vCard brukes i mange adressebok- og PIM-programmer."
 
 #: ../gramps/plugins/export/export.gpr.py:206
 msgid "vCard export options"
@@ -22869,7 +22861,7 @@ msgstr "Oversette overskrifter"
 
 #: ../gramps/plugins/export/exportcsv.py:314
 msgid "Enclosed_by"
-msgstr "Omgitt_av"
+msgstr "Omsluttet_av"
 
 #: ../gramps/plugins/export/exportcsv.py:393
 #, python-brace-format
@@ -23189,9 +23181,9 @@ msgid ""
 "Right-click for options\n"
 "Click and drag in open area to rotate"
 msgstr ""
-"Klikk for å utvide/trekke sammen\n"
+"Klikk for å utvide/trekke sammen personen\n"
 "Høyreklikk for å se valg\n"
-"Dra og slipp i åpent område for å rotere"
+"Klikk og dra i åpent område for å rotere"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:64
 #, python-format
@@ -23413,12 +23405,11 @@ msgstr "Alderstatistikk"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:67
 msgid "Gramplet showing graphs of various ages"
-msgstr "Smågramps som viser grafer for ulike aldre"
+msgstr "Gramplet som viser grafer over ulike aldre"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:85
 msgid "Gramplet showing calendar and events on specific dates in history"
-msgstr ""
-"Smågramps som viser kalender og hendelser på angitte datoer i historien"
+msgstr "Gramplet som viser kalender og hendelser på angitte datoer i historien"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:99
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:106
@@ -23454,7 +23445,7 @@ msgstr "Vifteformet etterkommertavle"
 msgid "Gramplet showing active person's direct descendants as a fanchart"
 msgstr ""
 "Gramplet som viser den aktive personens direkte etterkommere som en "
-"vifteformet tavle."
+"vifteformet tavle"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:175
 #: ../gramps/plugins/view/fanchart2wayview.py:84
@@ -23481,7 +23472,7 @@ msgstr "OSS"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:197
 msgid "Gramplet showing frequently asked questions"
-msgstr "Smågramås som viser ofte spurte spørsmål"
+msgstr "Gramplet som viser ofte stilte spørsmål"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:211
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:218
@@ -23490,7 +23481,7 @@ msgstr "Fornavnsky"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:212
 msgid "Gramplet showing all given names as a text cloud"
-msgstr "Smågramps som viser alle navn som en tekstsky"
+msgstr "Gramplet som viser alle fornavn som en ordsky"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:247
 msgid "Gramplet showing an active item Quick View"
@@ -23508,11 +23499,11 @@ msgstr "Smågramps som viser den aktive personens slektninger"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:282
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:289
 msgid "Session Log"
-msgstr "Sesjonslogg"
+msgstr "Øktlogg"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:283
 msgid "Gramplet showing all activity for this session"
-msgstr "Smågramps som viser aktiviteten for denne sesjonen"
+msgstr "Gramplet som viser all aktivitet for denne økten"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:299
 msgid "Gramplet showing summary data of the Family Tree"
@@ -23521,11 +23512,11 @@ msgstr "Smågramps som viser et sammendrag av slektsdatabasen"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:314
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:321
 msgid "Surname Cloud"
-msgstr "Etternavnstatistikk"
+msgstr "Etternavnsky"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:315
 msgid "Gramplet showing all surnames as a text cloud"
-msgstr "Smågramps som viser alle etternavn som en tekstsky"
+msgstr "Gramplet som viser alle etternavn som en ordsky"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:330
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:337
@@ -23539,11 +23530,11 @@ msgstr "Smågramps som viser alle etternavn som en tekstsky"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1443
 msgctxt "gramplet"
 msgid "To Do"
-msgstr "Å gjøre"
+msgstr "Oppgaveliste"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:331
 msgid "Gramplet for displaying a To Do list"
-msgstr "Smågramps som viser en liste over gjøremål"
+msgstr "Gramplet som viser en oppgaveliste"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:347
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:353
@@ -23764,7 +23755,7 @@ msgstr "Siteringsegenskaper"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:746
 msgid "Gramplet showing the attributes of a citation object"
-msgstr "Smågramps som viser egenskapene til et siteringsobjektet"
+msgstr "Gramplet som viser egenskapene til et siteringsobjekt"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:761
 msgid "Person Notes"
@@ -23916,7 +23907,7 @@ msgstr "Referanser"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1033
 msgid "Event References"
-msgstr "Hendelsesbehandler"
+msgstr "Hendelsesreferanser"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1034
 msgid "Gramplet showing the backlink references for an event"
@@ -23941,7 +23932,7 @@ msgstr "Smågramps som viser tilbakekoblinger for et sted"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1081
 #: ../gramps/plugins/webreport/basepage.py:2826
 msgid "Source References"
-msgstr "Kildehenvisning"
+msgstr "Kildereferanser"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1082
 msgid "Gramplet showing the backlink references for a source"
@@ -23974,7 +23965,7 @@ msgstr "Smågramps som viser tilbakekoblinger for et mediaobjekt"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1145
 msgid "Note References"
-msgstr "Notathenvisning"
+msgstr "Notatreferanser"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1146
 msgid "Gramplet showing the backlink references for a note"
@@ -23986,7 +23977,7 @@ msgstr "Personfilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1162
 msgid "Gramplet providing a person filter"
-msgstr "Smågramps som også har et personfilter"
+msgstr "Gramplet som tilbyr et personfilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1177
 msgid "Family Filter"
@@ -23994,7 +23985,7 @@ msgstr "Familiefilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1178
 msgid "Gramplet providing a family filter"
-msgstr "Smågramps som også har et familiefilter"
+msgstr "Gramplet som tilbyr et familiefilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1193
 msgid "Event Filter"
@@ -24002,7 +23993,7 @@ msgstr "Hendelsesfilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1194
 msgid "Gramplet providing an event filter"
-msgstr "Smågramps som også har et hendelsesfilter"
+msgstr "Gramplet som tilbyr et hendelsesfilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1209
 msgid "Source Filter"
@@ -24010,7 +24001,7 @@ msgstr "Kildefilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1210
 msgid "Gramplet providing a source filter"
-msgstr "Smågramps som også har et kildefilter"
+msgstr "Gramplet som tilbyr et kildefilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1225
 msgid "Citation Filter"
@@ -24018,7 +24009,7 @@ msgstr "Siteringsfilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1226
 msgid "Gramplet providing a citation filter"
-msgstr "Smågramps som også har et siteringsfilter"
+msgstr "Gramplet som tilbyr et siteringsfilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1241
 msgid "Place Filter"
@@ -24026,7 +24017,7 @@ msgstr "Stedsfilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1242
 msgid "Gramplet providing a place filter"
-msgstr "Smågramps som også har et stedsfilter"
+msgstr "Gramplet som tilbyr et stedsfilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1257
 msgid "Media Filter"
@@ -24034,7 +24025,7 @@ msgstr "Mediafilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1258
 msgid "Gramplet providing a media filter"
-msgstr "Smågramps som også har et mediafilter"
+msgstr "Gramplet som tilbyr et mediafilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1273
 msgid "Repository Filter"
@@ -24050,7 +24041,7 @@ msgstr "Notatfilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1290
 msgid "Gramplet providing a note filter"
-msgstr "Smågramps som også har et notatfilter"
+msgstr "Gramplet som tilbyr et notatfilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1305
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1316
@@ -24065,67 +24056,67 @@ msgstr "Viser noen interessante poster om personer og familier"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1323
 msgid "Person To Do"
-msgstr "Person der noe må gjøres"
+msgstr "Oppgaveliste for person"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1324
 msgid "Gramplet showing the To Do notes for a person"
-msgstr "Smågramps som viser gjøremålsnotatene for en person"
+msgstr "Gramplet som viser oppgavelisten for en person"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1339
 msgid "Event To Do"
-msgstr "Hendelse der noe må gjøres"
+msgstr "Oppgaveliste for hendelse"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1340
 msgid "Gramplet showing the To Do notes for an event"
-msgstr "Smågramps som viser gjøremålsnotatene for en hendelse"
+msgstr "Gramplet som viser oppgavelisten for en hendelse"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1355
 msgid "Family To Do"
-msgstr "Familie der noe må gjøres"
+msgstr "Oppgaveliste for familie"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1356
 msgid "Gramplet showing the To Do notes for a family"
-msgstr "Smågramps som viser gjøremålsnotatene for en familie"
+msgstr "Gramplet som viser oppgavelisten for en familie"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1371
 msgid "Place To Do"
-msgstr "Sted der noe må gjøres"
+msgstr "Oppgaveliste for sted"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1372
 msgid "Gramplet showing the To Do notes for a place"
-msgstr "Smågramps som viser gjøremålsnotatene for et sted"
+msgstr "Gramplet som viser oppgavelisten for et sted"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1387
 msgid "Source To Do"
-msgstr "Kilde der noe må gjøres"
+msgstr "Oppgaveliste for kilde"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1388
 msgid "Gramplet showing the To Do notes for a source"
-msgstr "Smågramps som viser gjøremålsnotatene for en kilde"
+msgstr "Gramplet som viser oppgavelisten for en kilde"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1403
 msgid "Citation To Do"
-msgstr "Sitering der noe må gjøres"
+msgstr "Oppgaveliste for sitering"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1404
 msgid "Gramplet showing the To Do notes for a citation"
-msgstr "Smågramps som viser gjøremålsnotatene for en sitering"
+msgstr "Gramplet som viser oppgavelisten for en sitering"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1419
 msgid "Repository To Do"
-msgstr "Arkivhuskeliste"
+msgstr "Oppgaveliste for arkiv"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1420
 msgid "Gramplet showing the To Do notes for a repository"
-msgstr "Gramplet som viser huskelistenotater for et arkiv"
+msgstr "Gramplet som viser oppgavelisten for et arkiv"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1435
 msgid "Media To Do"
-msgstr "Medie der noe må gjøres"
+msgstr "Oppgaveliste for medie"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1436
 msgid "Gramplet showing the To Do notes for a media object"
-msgstr "Smågramps som viser gjøremålsnotatene for et mediaobjekt"
+msgstr "Gramplet som viser oppgavelisten for et medieobjekt"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1481
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1489
@@ -24138,11 +24129,11 @@ msgstr "Smågramps for å lage SoundEx-koder"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1496
 msgid "Place Enclosed By"
-msgstr "Sted som er omsluttet av"
+msgstr "Sted omsluttet av"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1497
 msgid "Gramplet showing the places enclosed by the active place"
-msgstr "Smågramps som viser stedene som er omsluttet av det aktive stedet"
+msgstr "Gramplet som viser stedene omsluttet av det aktive stedet"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1512
 #: ../gramps/plugins/webreport/basepage.py:3361
@@ -24151,11 +24142,11 @@ msgstr "Sted omslutter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1513
 msgid "Gramplet showing the places that the active place encloses"
-msgstr "Smågramps som viser stedene det aktive stedet omslutter"
+msgstr "Gramplet som viser stedene det aktive stedet omslutter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1520
 msgid "Encloses"
-msgstr "Omsluttet av"
+msgstr "Omslutter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1528
 msgid "Geography coordinates for Person Events"
@@ -24168,7 +24159,7 @@ msgstr "Koordinater for hendelser"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1544
 msgid "Geography coordinates for Family Events"
-msgstr "Geografiske koordinater for Familiehendelser"
+msgstr "Geografiske koordinater for familiehendelser"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1545
 msgid "Gramplet showing the events for all the family"
@@ -24344,7 +24335,7 @@ msgstr "%(date)s."
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:140
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:157
 msgid "View Type"
-msgstr "Velg type"
+msgstr "Visningstype"
 
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:81
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:88
@@ -24395,7 +24386,7 @@ msgstr "   %d.a Mor: "
 #: ../gramps/plugins/gramplet/relativegramplet.py:143
 #, python-format
 msgid "   %d.b Father: "
-msgstr "   %d.b: Far: "
+msgstr "   %d.b Far: "
 
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:49
 msgid ""
@@ -24407,7 +24398,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:50
 msgid "Log for this Session"
-msgstr "Logge for denne sesjonen"
+msgstr "Logg for denne økten"
 
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:59
 msgid "Opened data base -----------\n"
@@ -24465,7 +24456,7 @@ msgstr "Antall personer"
 #: ../gramps/plugins/webreport/statistics.py:134
 #: ../gramps/plugins/webreport/statistics.py:244
 msgid "Individuals with other gender"
-msgstr "Individer med andre kjønn"
+msgstr "Personer med andre kjønn"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:164
 #: ../gramps/plugins/webreport/statistics.py:139
@@ -24564,22 +24555,22 @@ msgstr "Totalt antall etternavn som vises"
 #: ../gramps/plugins/gramplet/todo.py:63
 #: ../gramps/plugins/gramplet/todogramplet.py:63
 msgid "Previous To Do note"
-msgstr "Forrige notat for Å gjøre"
+msgstr "Forrige notat fra oppgavelisten"
 
 #: ../gramps/plugins/gramplet/todo.py:67
 #: ../gramps/plugins/gramplet/todogramplet.py:67
 msgid "Next To Do note"
-msgstr "Neste notat for Å gjøre"
+msgstr "Neste notat fra oppgavelisten"
 
 #: ../gramps/plugins/gramplet/todo.py:71
 #: ../gramps/plugins/gramplet/todogramplet.py:71
 msgid "Edit the selected To Do note"
-msgstr "Rediger det valgte gjøremålsnotatet"
+msgstr "Rediger det valgte notatet fra oppgavelisten"
 
 #: ../gramps/plugins/gramplet/todo.py:75
 #: ../gramps/plugins/gramplet/todogramplet.py:75
 msgid "Add a new To Do note"
-msgstr "Opprett et nytt notat i Huskelisten"
+msgstr "Opprett et nytt notat i oppgavelisten"
 
 #: ../gramps/plugins/gramplet/todo.py:207
 msgid "First select the object to which you want to attach a note"
@@ -24770,7 +24761,7 @@ msgstr "Importer fra et annet slektsforskningsprogram"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:226
 msgid "Dashboard View"
-msgstr "Oversiktspanel"
+msgstr "Dashbordvisning"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:229
 msgid ""
@@ -24783,14 +24774,14 @@ msgid ""
 "can also drag the Properties button to reposition the gramplet on this page, "
 "and detach the gramplet to float above Gramps."
 msgstr ""
-"Du leser for øyeblikket i «Oversiktspanelet» hvor du kan legge til dine egne "
-"smågramps. Du kan også legge til smågramps til andre visninger ved å legge "
-"til en sidemeny og/eller bunnmeny og høyreklikke til høyre for fanen.\n"
+"Du leser for øyeblikket i «Dashbord»-visningen hvor du kan legge til dine "
+"egne gramplets. Du kan også legge til gramplets til andre visninger ved å "
+"legge til en sidemeny og/eller bunnmeny og høyreklikke til høyre for fanen.\n"
 "\n"
 "Du kan klikke på konfigurasjonsikonet i verktøylinjen for å legge til flere "
 "kolonner, mens høyreklikk på bakgrunnen gir mulighet for å legge til "
-"smågramps. Du kan også dra egenskapikonet for å flytte smågrampsen på denne "
-"siden og frikoble smågrampsen til å flyte over Gramps."
+"gramplets. Du kan også dra egenskapikonet for å flytte en gramplet på denne "
+"siden, og frikoble en gramplet slik at den flyter over Gramps."
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:242
 msgid "Gramps View Categories"
@@ -24967,15 +24958,15 @@ msgstr ": %s\n"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:37
 msgid "Family Lines Graph"
-msgstr "Graf for Slektslinjer"
+msgstr "Graf for slektslinjer"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:38
 msgid "Produces family line graphs using Graphviz."
-msgstr "Lager en familielinjegraf ved å bruke Graphviz."
+msgstr "Lager en graf for slektslinjer ved å bruke Graphviz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:60
 msgid "Hourglass Graph"
-msgstr "Timeglasstavle"
+msgstr "Timeglassgraf"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:61
 msgid "Produces an hourglass graph using Graphviz."
@@ -25127,7 +25118,7 @@ msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:238
 msgid "Limit the number of ancestors"
-msgstr "Begrens antall foreldre"
+msgstr "Begrens antall aner"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:239
 msgid "Whether to limit the number of ancestors."
@@ -25155,7 +25146,7 @@ msgstr "Ta med datoer"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:269
 msgid "Whether to include dates for people and families."
-msgstr "Velge å ta med datoer for personer og familier."
+msgstr "Om datoer skal inkluderes for personer og familier."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:274
 msgid "Limit dates to years only"
@@ -25171,7 +25162,7 @@ msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:286
 msgid "Whether to include placenames for people and families."
-msgstr "Velge å ta med stedsnavn for personer og familier."
+msgstr "Om stedsnavn skal tas med for personer og familier."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:291
 msgid "Include the number of children"
@@ -25181,20 +25172,20 @@ msgstr "Ta med antall barn"
 msgid ""
 "Whether to include the number of children for families with more than 1 "
 "child."
-msgstr "Velge å ta med antall barn for familier med mer enn 1 barn."
+msgstr "Om antallet barn for familier med mer enn 1 barn skal tas med."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:303
 #: ../gramps/plugins/graph/gvrelgraph.py:1004
 msgid "Include thumbnail images of people"
-msgstr "Ta med bilde av personer"
+msgstr "Ta med miniatyrbilder av personer"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:306
 msgid "Whether to include thumbnail images of people."
-msgstr "Velge å ta med lite bilde av personer."
+msgstr "Om miniatyrbilder av personer skal tas med."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:311
 msgid "Thumbnail location"
-msgstr "Plassering av bilde"
+msgstr "Plassering av miniatyrbilde"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:312
 #: ../gramps/plugins/graph/gvrelgraph.py:1011
@@ -25209,15 +25200,15 @@ msgstr "Ved siden av navnet"
 #: ../gramps/plugins/graph/gvfamilylines.py:315
 #: ../gramps/plugins/graph/gvrelgraph.py:1014
 msgid "Where the thumbnail image should appear relative to the name"
-msgstr "Hvor bildet skal vises i forhold til navnet"
+msgstr "Hvor miniatyrbildet skal vises i forhold til navnet"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:319
 msgid "Thumbnail size"
-msgstr "Størrelse på småbilder"
+msgstr "Størrelse på miniatyrbilde"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:322
 msgid "Size of the thumbnail image"
-msgstr "Størrelse på småbilder"
+msgstr "Størrelse på miniatyrbildet"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:326
 msgid "Family Colors"
@@ -25266,7 +25257,7 @@ msgstr "Fargen som skal brukes for å vise familier."
 #: ../gramps/plugins/textreport/familygroup.py:690
 #: ../gramps/plugins/textreport/indivcomplete.py:857
 msgid "Empty report"
-msgstr "Tom rapporten"
+msgstr "Tom rapport"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:470
 #: ../gramps/plugins/textreport/familygroup.py:690
@@ -25280,7 +25271,7 @@ msgstr "Antall personer i databasen:"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:532
 msgid "Number of people of interest:"
-msgstr "Personer av interesse:"
+msgstr "Antall personer av interesse:"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:537
 msgid "Number of families in database:"
@@ -25342,7 +25333,7 @@ msgstr "Sentrer - Andre"
 
 #: ../gramps/plugins/graph/gvhourglass.py:443
 msgid "The Center person for the graph"
-msgstr "Senterpersonen for grafen"
+msgstr "Fokusperson for grafen"
 
 #: ../gramps/plugins/graph/gvhourglass.py:446
 #: ../gramps/plugins/textreport/kinshipreport.py:371
@@ -25396,16 +25387,16 @@ msgid ""
 "that fathers are always on the left branch and mothers are on the right "
 "branch."
 msgstr ""
-"Force Sosa/Sosa-Stradonitz/Ahnentafel-tilpasning for alle forfedre, slik at "
-"alle fedre er i venstre forgrening, og alle mødre i høyre."
+"Tving Sosa- / Sosa-Stradonitz- / Ahnentafel-layout for alle aner, slik at "
+"fedre alltid er på venstre gren og mødre er på høyre gren."
 
 #: ../gramps/plugins/graph/gvhourglass.py:533
 msgid "Ahnentafel number visible"
-msgstr "Ahnentafel -nummer synlig"
+msgstr "Ahnentafel-nummer synlig"
 
 #: ../gramps/plugins/graph/gvhourglass.py:536
 msgid "Show Sosa / Sosa-Stradonitz / Ahnentafel number."
-msgstr "Vis Sosa/Sosa-Stradonitz/Ahnentafel -tall."
+msgstr "Vis Sosa- / Sosa-Stradonitz- / Ahnentafel-nummer."
 
 #: ../gramps/plugins/graph/gvhourglass.py:540
 msgid "Show symbols for events"
@@ -25474,11 +25465,11 @@ msgstr "Inkluder fødsels-, ekteskaps- og dødsdatoer og steder på samme linje"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:970
 msgid "Whether to include dates and/or places"
-msgstr "hvorvidt datoer og/eller steder skal inkluderes"
+msgstr "Hvorvidt datoer og/eller steder skal inkluderes"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:973
 msgid "Show all family nodes"
-msgstr "Vis alle familie noder"
+msgstr "Vis alle familienoder"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:976
 msgid ""
@@ -25487,7 +25478,7 @@ msgstr "Vis familienoder selv om utdataen kun inneholder ett familiemedlem."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:982
 msgid "Include URLs"
-msgstr "Ta med Internettadresser"
+msgstr "Ta med internettadresser"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:985
 msgid ""
@@ -25503,19 +25494,19 @@ msgstr ""
 #: ../gramps/plugins/textreport/birthdayreport.py:657
 #: ../gramps/plugins/textreport/indivcomplete.py:1194
 msgid "Include relationship to center person"
-msgstr "Ta med slektskap til senterpersonen"
+msgstr "Ta med slektskap til fokuspersonen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:998
 msgid "Whether to show every person's relationship to the center person"
-msgstr "Visningen som viser alle slektsforholdene til den valgte personen"
+msgstr "Om du vil vise hver persons slektskap til fokuspersonen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1006
 msgid "Whether to include thumbnails of people."
-msgstr "Velge å ta med bilde av personer."
+msgstr "Om miniatyrbilder av personer skal tas med."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1010
 msgid "Thumbnail Location"
-msgstr "Plassering av bilde"
+msgstr "Plassering av miniatyrbilde"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1019
 msgid "Include occupation"
@@ -25572,7 +25563,7 @@ msgstr "Foreldre sammen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1084
 msgid "Parents offset"
-msgstr "Foreldreavstand"
+msgstr "Foreldre forskjøvet"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1087
 msgid ""
@@ -25583,15 +25574,14 @@ msgid ""
 "however they will be offset from each other.  This will tend to make graphs "
 "with many people in a generation more square."
 msgstr ""
-"I \"Normal\"-innstillingen vil foreldre bli lokalisert for å holde de fleste "
-"linjer korte.\n"
-"«Foreldre sammen»-innstillingen kan hjelpe med å plassere ektefeller ved "
-"siden av hverandre, men med ikke-trivielle grafer vil det resultere i lengre "
+"I «Normal»-innstillingen vil foreldre bli plassert slik at de fleste linjene "
+"holdes korte.\n"
+"Innstillingen «Foreldre sammen» kan hjelpe med å plassere ektefeller ved "
+"siden av hverandre, men i komplekse grafer vil dette resultere i lengre "
 "linjer og større grafer.\n"
-"Foreldrekompensasjonsinnstillingen vil også prøve å sette ektefeller i "
-"nærheten av hverandre, men de vil bli forskjøvet fra hverandre. Dette vil ha "
-"en tendens til å gjøre grafer med mange mennesker i en generasjon mer "
-"firkantede."
+"Innstillingen «Foreldre forskjøvet» vil også prøve å plassere ektefeller nær "
+"hverandre, men de vil være forskjøvet fra hverandre. Dette vil ha en tendens "
+"til å gjøre grafer med mange personer i en generasjon mer firkantede."
 
 #: ../gramps/plugins/importer/import.gpr.py:38
 msgid "Import data from CSV files"
@@ -25599,7 +25589,7 @@ msgstr "Importere data fra CSV-filer"
 
 #: ../gramps/plugins/importer/import.gpr.py:77
 msgid "Import data from GeneWeb files"
-msgstr "Importere data fra GenWeb-filer"
+msgstr "Importer data fra GeneWeb-filer"
 
 #: ../gramps/plugins/importer/import.gpr.py:94
 msgid "Gramps package (portable XML)"
@@ -25735,7 +25725,7 @@ msgstr "dåpsdato"
 
 #: ../gramps/plugins/importer/importcsv.py:255
 msgid "baptism source"
-msgstr "kilde for dåp"
+msgstr "dåpskilde"
 
 #: ../gramps/plugins/importer/importcsv.py:256
 msgid "burial place"
@@ -25831,15 +25821,15 @@ msgstr "bosted"
 
 #: ../gramps/plugins/importer/importcsv.py:327
 msgid "residenceplace_id"
-msgstr "bosted_id"
+msgstr "bosteds_ID"
 
 #: ../gramps/plugins/importer/importcsv.py:328
 msgid "residence place id"
-msgstr "steds-ID for bosted"
+msgstr "bosteds-ID"
 
 #: ../gramps/plugins/importer/importcsv.py:332
 msgid "residencesource"
-msgstr "bostedkilde"
+msgstr "bostedskilde"
 
 #: ../gramps/plugins/importer/importcsv.py:333
 msgid "residence source"
@@ -25847,27 +25837,27 @@ msgstr "bostedskilde"
 
 #: ../gramps/plugins/importer/importcsv.py:335
 msgid "attribute type"
-msgstr "egenskap type"
+msgstr "egenskapstype"
 
 #: ../gramps/plugins/importer/importcsv.py:335
 msgid "attributetype"
-msgstr "egenskaptype"
+msgstr "egenskapstype"
 
 #: ../gramps/plugins/importer/importcsv.py:338
 msgid "attributevalue"
-msgstr "egenskapverdi"
+msgstr "egenskapsverdi"
 
 #: ../gramps/plugins/importer/importcsv.py:339
 msgid "attribute value"
-msgstr "egenskap verdi"
+msgstr "egenskapsverdi"
 
 #: ../gramps/plugins/importer/importcsv.py:343
 msgid "attributesource"
-msgstr "egenskapkilde"
+msgstr "egenskapskilde"
 
 #: ../gramps/plugins/importer/importcsv.py:344
 msgid "attribute source"
-msgstr "egenskap kilde"
+msgstr "egenskapskilde"
 
 #: ../gramps/plugins/importer/importcsv.py:347
 msgid "child"
@@ -26097,7 +26087,7 @@ msgstr "SDH kobling til barn"
 
 #: ../gramps/plugins/importer/importgeneweb.py:147
 msgid "Sold property"
-msgstr "Solgt Eiendom"
+msgstr "Solgt eiendom"
 
 #: ../gramps/plugins/importer/importgeneweb.py:154
 msgid "No mention"
@@ -26119,7 +26109,7 @@ msgstr "ugyldig dato {date} i {gw_snippet}, håndterer dato som tekst."
 #: ../gramps/plugins/importer/importgpkg.py:76
 #, python-format
 msgid "Could not create media directory %s"
-msgstr "Klarte ikke å opprette mappa %s"
+msgstr "Klarte ikke å opprette mediemappen %s"
 
 #: ../gramps/plugins/importer/importgpkg.py:79
 #, python-format
@@ -26140,7 +26130,7 @@ msgstr "Feil ved uthenting til %s"
 
 #: ../gramps/plugins/importer/importgpkg.py:115
 msgid "Base path for relative media set"
-msgstr "Grunnsti for relative medier er angitt"
+msgstr "Standardsti for relative medier er angitt"
 
 #: ../gramps/plugins/importer/importgpkg.py:117
 #, python-format
@@ -26150,11 +26140,11 @@ msgid ""
 "media files to the new position, and using the media manager tool, option "
 "'Replace substring in the path' to set correct paths in your media objects."
 msgstr ""
-"Basismediebanen til dette slektstreet er satt til %s. Vurder å bruke en "
-"enklere sti. Du kan endre dette i innstillingene, mens du flytter "
-"mediefilene dine til den nye plasseringen, og bruker "
-"mediebehandlingsverktøyet med valget 'Erstatt delstreng i stien' for å angi "
-"riktige stier i medieobjektene dine."
+"Standardstien for media i dette slektstreet er satt til %s. Vurder å bruke "
+"en enklere sti. Du kan endre dette i innstillingene, ved å flytte "
+"mediefilene dine til den nye plasseringen og bruke verktøyet mediabehandler "
+"med valget «Erstatt delstreng i stien» for å sette riktige stier for "
+"mediaobjektene dine."
 
 #: ../gramps/plugins/importer/importgpkg.py:128
 msgid "Cannot set base media path"
@@ -26171,13 +26161,13 @@ msgid ""
 "tool, option 'Replace substring in the path' to set correct paths in your "
 "media objects."
 msgstr ""
-"Slektsdatabasen du importerte har allerede en basissti for media: "
-"%(orig_path)s. De importerte mediaobjektene derimot er angitt til å være "
-"relativt til %(path)s. Du kan endre mediastien i Innstillinger eller du kan "
-"konvertere de importerte filene til å ligge i den allerede angitte "
-"basisstien for media. Du kan gjøre dette ved å flytte dine media til en ny "
-"posisjon og bruke verktøyet 'Erstatte del av stien' for å sette korrekte "
-"stier til dine mediaobjekter."
+"Slektstreet du importerte til har allerede en standardsti for media: "
+"%(orig_path)s. De importerte mediaobjektene er derimot relative til stien "
+"%(path)s. Du kan endre mediastien i innstillingene, eller du kan konvertere "
+"de importerte filene til den eksisterende standardstien for media. Du kan "
+"gjøre dette ved å flytte mediafilene dine til den nye plasseringen og bruke "
+"verktøyet mediabehandler med valget «Erstatt delstreng i stien» for å sette "
+"riktige stier for mediaobjektene dine."
 
 #: ../gramps/plugins/importer/importgrdb.py:65
 #: ../gramps/plugins/importer/importprogen.py:211
@@ -26260,14 +26250,14 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:362
 msgid "Import Text"
-msgstr "Importer Tekst"
+msgstr "Importer tekst"
 
 #: ../gramps/plugins/importer/importprogen.glade:415
 msgid ""
 "Default Tagtext\n"
 "(out of Settings)."
 msgstr ""
-"Standard Etikett-tekst\n"
+"Standard etikettekst\n"
 "(fra innstillingene)."
 
 #: ../gramps/plugins/importer/importprogen.glade:443
@@ -26293,8 +26283,8 @@ msgid ""
 "Copy Default Text\n"
 "to all Tag Text'."
 msgstr ""
-"Kopier Standard Tekst\n"
-"til alle Etikett-Tekster."
+"Kopier standardtekst\n"
+"til alle etikettekster."
 
 #: ../gramps/plugins/importer/importprogen.glade:1130
 msgid ""
@@ -26321,7 +26311,7 @@ msgid ""
 "Enable/Disable\n"
 "all object tags."
 msgstr ""
-"Skru på/av\n"
+"Slå på/av\n"
 "alle objektetiketter."
 
 #: ../gramps/plugins/importer/importprogen.glade:1198
@@ -26337,7 +26327,7 @@ msgid ""
 "Enable/Disable\n"
 "Person import."
 msgstr ""
-"Skru på/av\n"
+"Slå på/av\n"
 "personimport."
 
 #: ../gramps/plugins/importer/importprogen.glade:1260
@@ -26345,7 +26335,7 @@ msgid ""
 "Enable/Disable\n"
 "Family import."
 msgstr ""
-"Skru på/av\n"
+"Slå på/av\n"
 "familieimport."
 
 #: ../gramps/plugins/importer/importprogen.glade:1279
@@ -26353,7 +26343,7 @@ msgid ""
 "Enable/Disable\n"
 "Child import."
 msgstr ""
-"Skru på/av\n"
+"Slå på/av\n"
 "barneimport."
 
 #: ../gramps/plugins/importer/importprogen.glade:1330
@@ -26378,7 +26368,7 @@ msgstr "Identifikator"
 
 #: ../gramps/plugins/importer/importprogen.glade:1400
 msgid "Name change"
-msgstr "Navne bytte"
+msgstr "Navnebytte"
 
 #: ../gramps/plugins/importer/importprogen.glade:1461
 msgid "Event date"
@@ -26493,12 +26483,12 @@ msgstr "vCard-import"
 
 #: ../gramps/plugins/importer/importvcard.py:274
 msgid "vCard import report: No errors detected"
-msgstr "VCARD importrapport: Ingen feil ble oppdaget"
+msgstr "vCard importrapport: Ingen feil ble oppdaget"
 
 #: ../gramps/plugins/importer/importvcard.py:277
 #, python-format
 msgid "vCard import report: %s errors detected\n"
-msgstr "VCARD importrapport: %s feil ble oppdaget\n"
+msgstr "vCard importrapport: %s feil ble oppdaget\n"
 
 #: ../gramps/plugins/importer/importvcard.py:342
 #, python-format
@@ -26516,7 +26506,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importvcard.py:373
 #, python-format
 msgid "Import of vCards version %s is not supported by Gramps."
-msgstr "Import av VCards versjon %s er ikke støttet av Gramps."
+msgstr "Import av vCard versjon %s er ikke støttet av Gramps."
 
 #: ../gramps/plugins/importer/importvcard.py:396
 msgid ""
@@ -26886,7 +26876,7 @@ msgstr "Militær ID"
 
 #: ../gramps/plugins/lib/libgedcom.py:748
 msgid "Mission (LDS)"
-msgstr "misjon (SDH)"
+msgstr "Misjon (SDH)"
 
 #: ../gramps/plugins/lib/libgedcom.py:749
 msgid "Namesake"
@@ -26948,7 +26938,7 @@ msgstr "Etikett ble gjenkjent, men er ikke støttet"
 
 #: ../gramps/plugins/lib/libgedcom.py:3523
 msgid "Skipped subordinate line"
-msgstr "hoppet over underordned(e) på linje"
+msgstr "Hoppet over underordnet linje"
 
 #: ../gramps/plugins/lib/libgedcom.py:3560
 msgid "Records not imported into "
@@ -27132,7 +27122,7 @@ msgstr "Navn på programvare"
 
 #: ../gramps/plugins/lib/libgedcom.py:7761
 msgid "Version number of software product"
-msgstr "Versjonsnummer tilprogramvaren"
+msgstr "Programvareproduktets versjonsnummer"
 
 #: ../gramps/plugins/lib/libgedcom.py:7779
 #, python-format
@@ -27617,7 +27607,7 @@ msgstr "Født i %(birth_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:226
 #, python-format
 msgid "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s."
-msgstr "%(unknown_gender_name)s døde %(death_date)s, %(death_place)s."
+msgstr "%(unknown_gender_name)s døde den %(death_date)s, i %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:228
 #, python-format
@@ -27625,13 +27615,13 @@ msgid ""
 "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age "
 "of %(age)s."
 msgstr ""
-"%(unknown_gender_name)s døde %(death_date)s i %(death_place)s, i en alder av "
-"%(age)s."
+"%(unknown_gender_name)s døde den %(death_date)s i %(death_place)s, i en "
+"alder av %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:232
 #, python-format
 msgid "%(male_name)s died on %(death_date)s in %(death_place)s."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s."
+msgstr "%(male_name)s døde den %(death_date)s, i %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:234
 #, python-format
@@ -27639,12 +27629,13 @@ msgid ""
 "%(male_name)s died on %(death_date)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
-"%(male_name)s døde %(death_date)s, %(death_place)s, i en alder av %(age)s."
+"%(male_name)s døde den %(death_date)s i %(death_place)s, i en alder av "
+"%(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:238
 #, python-format
 msgid "%(female_name)s died on %(death_date)s in %(death_place)s."
-msgstr "%(female_name)s døde %(death_date)s, %(death_place)s."
+msgstr "%(female_name)s døde den %(death_date)s, i %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:240
 #, python-format
@@ -27652,39 +27643,41 @@ msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
-"%(female_name)s døde %(death_date)s, %(death_place)s, i en alder av %(age)s."
+"%(female_name)s døde den %(death_date)s i %(death_place)s, i en alder av "
+"%(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:246
 #, python-format
 msgid "This person died on %(death_date)s in %(death_place)s."
-msgstr "Denne personen døde %(death_date)s, %(death_place)s."
+msgstr "Denne personen døde den %(death_date)s i %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:248
 #, python-format
 msgid ""
 "This person died on %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
-"Denne personen døde %(death_date)s, %(death_place)s, i en alder av %(age)s."
+"Denne personen døde den %(death_date)s i %(death_place)s, i en alder av "
+"%(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:252
 #, python-format
 msgid "He died on %(death_date)s in %(death_place)s."
-msgstr "Han døde %(death_date)s, %(death_place)s."
+msgstr "Han døde den %(death_date)s i %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:253
 #, python-format
 msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "Han døde %(death_date)s, %(death_place)s, i en alder av %(age)s."
+msgstr "Han døde den %(death_date)s i %(death_place)s, i en alder av %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:256
 #, python-format
 msgid "She died on %(death_date)s in %(death_place)s."
-msgstr "Hun døde %(death_date)s, %(death_place)s."
+msgstr "Hun døde den %(death_date)s i %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:257
 #, python-format
 msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "Hun døde %(death_date)s, %(death_place)s, i en alder av %(age)s."
+msgstr "Hun døde den %(death_date)s i %(death_place)s, i en alder av %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:261
 #: ../gramps/plugins/lib/libnarrate.py:304
@@ -27696,7 +27689,7 @@ msgstr "Døde %(death_date)s i %(death_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:305
 #, python-format
 msgid "Died %(death_date)s in %(death_place)s (%(age)s)."
-msgstr "Døde %(death_date)s i %(death_place)s (alder %(age)s)."
+msgstr "Døde %(death_date)s i %(death_place)s (%(age)s)."
 
 #: ../gramps/plugins/lib/libnarrate.py:269
 #, python-format
@@ -27709,64 +27702,64 @@ msgid ""
 "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
-"%(unknown_gender_name)s døde %(death_date)s, %(death_place)s, i en alder av "
+"%(unknown_gender_name)s døde %(death_date)s i %(death_place)s, i en alder av "
 "%(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:275
 #, python-format
 msgid "%(male_name)s died %(death_date)s in %(death_place)s."
-msgstr "%(male_name)s døde %(death_date)s, %(death_place)s."
+msgstr "%(male_name)s døde %(death_date)s i %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:277
 #, python-format
 msgid ""
 "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
-"%(male_name)s døde %(death_date)s, %(death_place)s, i en alder av %(age)s."
+"%(male_name)s døde %(death_date)s i %(death_place)s, i en alder av %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:281
 #, python-format
 msgid "%(female_name)s died %(death_date)s in %(death_place)s."
-msgstr "%(female_name)s døde %(death_date)s, %(death_place)s."
+msgstr "%(female_name)s døde %(death_date)s i %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:283
 #, python-format
 msgid ""
 "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
-"%(female_name)s døde %(death_date)s, %(death_place)s, i en alder av %(age)s."
+"%(female_name)s døde %(death_date)s i %(death_place)s, i en alder av %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:289
 #, python-format
 msgid "This person died %(death_date)s in %(death_place)s."
-msgstr "Denne personen døde %(death_date)s, %(death_place)s."
+msgstr "Denne personen døde %(death_date)s i %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:291
 #, python-format
 msgid ""
 "This person died %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
-"Denne personen døde %(death_date)s, %(death_place)s, i en alder av %(age)s."
+"Denne personen døde %(death_date)s i %(death_place)s, i en alder av %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:295
 #, python-format
 msgid "He died %(death_date)s in %(death_place)s."
-msgstr "Han døde %(death_date)s, %(death_place)s."
+msgstr "Han døde %(death_date)s i %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:296
 #, python-format
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "Han døde %(death_date)s, %(death_place)s, i en alder av %(age)s."
+msgstr "Han døde %(death_date)s i %(death_place)s, i en alder av %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:299
 #, python-format
 msgid "She died %(death_date)s in %(death_place)s."
-msgstr "Hun døde %(death_date)s, %(death_place)s."
+msgstr "Hun døde %(death_date)s i %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:300
 #, python-format
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "Hun døde %(death_date)s, %(death_place)s, i en alder av %(age)s."
+msgstr "Hun døde %(death_date)s i %(death_place)s, i en alder av %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:312
 #, python-format
@@ -27840,7 +27833,7 @@ msgstr "Døde %(death_date)s."
 #: ../gramps/plugins/lib/libnarrate.py:375
 #, python-format
 msgid "Died %(death_date)s (%(age)s)."
-msgstr "Døde %(death_date)s (alder %(age)s)."
+msgstr "Døde %(death_date)s (%(age)s)."
 
 #: ../gramps/plugins/lib/libnarrate.py:347
 #, python-format
@@ -27905,7 +27898,7 @@ msgstr "Hun døde %(death_date)s, i en alder av %(age)s."
 #: ../gramps/plugins/lib/libnarrate.py:382
 #, python-format
 msgid "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s."
-msgstr "%(unknown_gender_name)s døde %(month_year)s, %(death_place)s."
+msgstr "%(unknown_gender_name)s døde i %(month_year)s i %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:384
 #, python-format
@@ -27913,13 +27906,13 @@ msgid ""
 "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age "
 "of %(age)s."
 msgstr ""
-"%(unknown_gender_name)s døde %(month_year)s, %(death_place)s, i en alder av "
-"%(age)s."
+"%(unknown_gender_name)s døde i %(month_year)s i %(death_place)s, i en alder "
+"av %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:388
 #, python-format
 msgid "%(male_name)s died in %(month_year)s in %(death_place)s."
-msgstr "%(male_name)s døde %(month_year)s, %(death_place)s."
+msgstr "%(male_name)s døde i %(month_year)s i %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:390
 #, python-format
@@ -27927,12 +27920,12 @@ msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
-"%(male_name)s døde %(month_year)s, %(death_place)s, i en alder av %(age)s."
+"%(male_name)s døde i %(month_year)s i %(death_place)s, i en alder av %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:394
 #, python-format
 msgid "%(female_name)s died in %(month_year)s in %(death_place)s."
-msgstr "%(female_name)s døde %(month_year)s, %(death_place)s."
+msgstr "%(female_name)s døde i %(month_year)s i %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:396
 #, python-format
@@ -27940,39 +27933,41 @@ msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
-"%(female_name)s døde %(month_year)s, %(death_place)s, i en alder av %(age)s."
+"%(female_name)s døde i %(month_year)s i %(death_place)s, i en alder av "
+"%(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:402
 #, python-format
 msgid "This person died in %(month_year)s in %(death_place)s."
-msgstr "Denne personen døde %(month_year)s, %(death_place)s."
+msgstr "Denne personen døde i %(month_year)s i %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:404
 #, python-format
 msgid ""
 "This person died in %(month_year)s in %(death_place)s at the age of %(age)s."
 msgstr ""
-"Denne personen døde %(month_year)s, %(death_place)s, i en alder av %(age)s."
+"Denne personen døde i %(month_year)s i %(death_place)s, i en alder av "
+"%(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:408
 #, python-format
 msgid "He died in %(month_year)s in %(death_place)s."
-msgstr "Han døde %(month_year)s, %(death_place)s."
+msgstr "Han døde i %(month_year)s i %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:409
 #, python-format
 msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)s."
-msgstr "Han døde %(month_year)s, %(death_place)s, i en alder av %(age)s."
+msgstr "Han døde i %(month_year)s i %(death_place)s, i en alder av %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:412
 #, python-format
 msgid "She died in %(month_year)s in %(death_place)s."
-msgstr "Hun døde %(month_year)s, %(death_place)s."
+msgstr "Hun døde i %(month_year)s i %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:413
 #, python-format
 msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)s."
-msgstr "Hun døde %(month_year)s, %(death_place)s, i en alder av %(age)s."
+msgstr "Hun døde i %(month_year)s i %(death_place)s, i en alder av %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:417
 #, python-format
@@ -27982,7 +27977,7 @@ msgstr "Døde %(month_year)s i %(death_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:418
 #, python-format
 msgid "Died %(month_year)s in %(death_place)s (%(age)s)."
-msgstr "Døde %(month_year)s i %(death_place)s (alder %(age)s)."
+msgstr "Døde %(month_year)s i %(death_place)s (%(age)s)."
 
 #: ../gramps/plugins/lib/libnarrate.py:425
 #, python-format
@@ -28052,67 +28047,67 @@ msgstr "Døde %(month_year)s."
 #: ../gramps/plugins/lib/libnarrate.py:453
 #, python-format
 msgid "Died %(month_year)s (%(age)s)."
-msgstr "Døde %(month_year)s (alder%(age)s)."
+msgstr "Døde %(month_year)s (%(age)s)."
 
 #: ../gramps/plugins/lib/libnarrate.py:460
 #, python-format
 msgid "%(unknown_gender_name)s died in %(death_place)s."
-msgstr "%(unknown_gender_name)s døde %(death_place)s."
+msgstr "%(unknown_gender_name)s døde i %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:461
 #, python-format
 msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)s."
-msgstr "%(unknown_gender_name)s døde %(death_place)s, i en alder av %(age)s."
+msgstr "%(unknown_gender_name)s døde i %(death_place)s, i en alder av %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:464
 #, python-format
 msgid "%(male_name)s died in %(death_place)s."
-msgstr "%(male_name)s døde %(death_place)s."
+msgstr "%(male_name)s døde i %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:465
 #, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)s."
-msgstr "%(male_name)s døde %(death_place)s, i en alder av %(age)s."
+msgstr "%(male_name)s døde i %(death_place)s, i en alder av %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:468
 #, python-format
 msgid "%(female_name)s died in %(death_place)s."
-msgstr "%(female_name)s døde %(death_place)s."
+msgstr "%(female_name)s døde i %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:469
 #, python-format
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)s."
-msgstr "%(female_name)s døde %(death_place)s, i en alder av %(age)s."
+msgstr "%(female_name)s døde i %(death_place)s, i en alder av %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:474
 #, python-format
 msgid "This person died in %(death_place)s."
-msgstr "Denne personen døde %(death_place)s."
+msgstr "Denne personen døde i %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:475
 #, python-format
 msgid "This person died in %(death_place)s at the age of %(age)s."
-msgstr "Denne personen døde %(death_place)s, i en alder av %(age)s."
+msgstr "Denne personen døde i %(death_place)s, i en alder av %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:478
 #, python-format
 msgid "He died in %(death_place)s."
-msgstr "Han døde %(death_place)s."
+msgstr "Han døde i %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:479
 #, python-format
 msgid "He died in %(death_place)s at the age of %(age)s."
-msgstr "Han døde %(death_place)s, i en alder av %(age)s."
+msgstr "Han døde i %(death_place)s, i en alder av %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:482
 #, python-format
 msgid "She died in %(death_place)s."
-msgstr "Hun døde %(death_place)s."
+msgstr "Hun døde i %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:483
 #, python-format
 msgid "She died in %(death_place)s at the age of %(age)s."
-msgstr "Hun døde %(death_place)s, i en alder av %(age)s."
+msgstr "Hun døde i %(death_place)s, i en alder av %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:487
 #, python-format
@@ -28122,7 +28117,7 @@ msgstr "Døde i %(death_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:488
 #, python-format
 msgid "Died in %(death_place)s (%(age)s)."
-msgstr "Døde i %(death_place)s (alder %(age)s)."
+msgstr "Døde i %(death_place)s (%(age)s)."
 
 #: ../gramps/plugins/lib/libnarrate.py:496
 #, python-format
@@ -28152,7 +28147,7 @@ msgstr "Han døde i en alder av %(age)s."
 #: ../gramps/plugins/lib/libnarrate.py:518
 #, python-format
 msgid "She died at the age of %(age)s."
-msgstr "Han døde i en alder av %(age)s."
+msgstr "Hun døde i en alder av %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:523
 #, python-format
@@ -28351,8 +28346,8 @@ msgid ""
 "%(unknown_gender_name)s was buried %(modified_date)s in "
 "%(burial_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s ble begravet %(modified_date)s, "
-"i%(burial_place)s%(endnotes)s."
+"%(unknown_gender_name)s ble begravet %(modified_date)s i "
+"%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:625
 #, python-format
@@ -28404,32 +28399,32 @@ msgstr "Begravet %(modified_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:648
 #, python-format
 msgid "%(male_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr "%(male_name)s ble begravet %(burial_place)s%(endnotes)s."
+msgstr "%(male_name)s ble begravet i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:649
 #, python-format
 msgid "He was buried in %(burial_place)s%(endnotes)s."
-msgstr "Han ble begravet %(burial_place)s%(endnotes)s."
+msgstr "Han ble begravet i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:652
 #, python-format
 msgid "%(female_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr "%(female_name)s ble begravet %(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s ble begravet i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:653
 #, python-format
 msgid "She was buried in %(burial_place)s%(endnotes)s."
-msgstr "Hun ble begravet %(burial_place)s%(endnotes)s."
+msgstr "Hun ble begravet i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:656
 #, python-format
 msgid "%(unknown_gender_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s ble begravet %(burial_place)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s ble begravet i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:657
 #, python-format
 msgid "This person was buried in %(burial_place)s%(endnotes)s."
-msgstr "Denne personen ble begravet %(burial_place)s%(endnotes)s."
+msgstr "Denne personen ble begravet i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:659
 #, python-format
@@ -28444,7 +28439,7 @@ msgstr "%(male_name)s ble begravet%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:665
 #, python-format
 msgid "He was buried%(endnotes)s."
-msgstr "Han ble begravet %(endnotes)s."
+msgstr "Han ble begravet%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:668
 #, python-format
@@ -28454,17 +28449,17 @@ msgstr "%(female_name)s ble begravet%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:669
 #, python-format
 msgid "She was buried%(endnotes)s."
-msgstr "Hun ble begravet %(endnotes)s."
+msgstr "Hun ble begravet%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:672
 #, python-format
 msgid "%(unknown_gender_name)s was buried%(endnotes)s."
-msgstr "%(unknown_gender_name)s ble begravet %(endnotes)s."
+msgstr "%(unknown_gender_name)s ble begravet%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:673
 #, python-format
 msgid "This person was buried%(endnotes)s."
-msgstr "Denne personen ble begravet %(endnotes)s."
+msgstr "Denne personen ble begravet%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:675
 #, python-format
@@ -28512,7 +28507,7 @@ msgid ""
 "This person was baptized on %(baptism_date)s in "
 "%(baptism_place)s%(endnotes)s."
 msgstr ""
-"Denne personen ble døpt%(baptism_date)s i %(baptism_place)s%(endnotes)s."
+"Denne personen ble døpt %(baptism_date)s i %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:703
 #, python-format
@@ -28565,7 +28560,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:727
 #, python-format
 msgid "He was baptized in %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr "Han ble døpt i %(month_year)s, %(baptism_place)s%(endnotes)s."
+msgstr "Han ble døpt i %(month_year)s i %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:731
 #, python-format
@@ -28726,7 +28721,7 @@ msgstr "%(male_name)s ble døpt i %(baptism_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:805
 #, python-format
 msgid "He was baptized in %(baptism_place)s%(endnotes)s."
-msgstr "Han ble døpt %(baptism_place)s%(endnotes)s."
+msgstr "Han ble døpt i %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:808
 #, python-format
@@ -28736,7 +28731,7 @@ msgstr "%(female_name)s ble døpt i %(baptism_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:809
 #, python-format
 msgid "She was baptized in %(baptism_place)s%(endnotes)s."
-msgstr "Hun ble døpt %(baptism_place)s%(endnotes)s."
+msgstr "Hun ble døpt i %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:812
 #, python-format
@@ -28756,12 +28751,12 @@ msgstr "Døpt i %(baptism_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:820
 #, python-format
 msgid "%(male_name)s was baptized%(endnotes)s."
-msgstr "%(male_name)s ble døpt %(endnotes)s."
+msgstr "%(male_name)s ble døpt%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:821
 #, python-format
 msgid "He was baptized%(endnotes)s."
-msgstr "Han ble døpt %(endnotes)s."
+msgstr "Han ble døpt%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:824
 #, python-format
@@ -28928,7 +28923,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:908
 #, python-format
 msgid "Christened %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "Døpt%(month_year)s i %(christening_place)s%(endnotes)s."
+msgstr "Døpt %(month_year)s i %(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:913
 #, python-format
@@ -29020,32 +29015,32 @@ msgstr "Døpt %(modified_date)s i %(christening_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:953
 #, python-format
 msgid "%(male_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr "%(male_name)s ble døpt i %(modified_date)s%(endnotes)s."
+msgstr "%(male_name)s ble døpt %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:954
 #, python-format
 msgid "He was christened %(modified_date)s%(endnotes)s."
-msgstr "Han ble døpt i %(modified_date)s%(endnotes)s."
+msgstr "Han ble døpt %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:957
 #, python-format
 msgid "%(female_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr "%(female_name)s ble døpt i %(modified_date)s%(endnotes)s."
+msgstr "%(female_name)s ble døpt %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:958
 #, python-format
 msgid "She was christened %(modified_date)s%(endnotes)s."
-msgstr "Hun ble døpt i %(modified_date)s%(endnotes)s."
+msgstr "Hun ble døpt %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:961
 #, python-format
 msgid "%(unknown_gender_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s ble døpt i %(modified_date)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s ble døpt %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:962
 #, python-format
 msgid "This person was christened %(modified_date)s%(endnotes)s."
-msgstr "Denne personen ble døpt i %(modified_date)s%(endnotes)s."
+msgstr "Denne personen ble døpt %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:964
 #, python-format
@@ -29354,7 +29349,7 @@ msgstr "Datter til %(mother)s."
 msgid ""
 "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Denne personen giftet seg med %(spouse)s %(partial_date)s i "
+"Denne personen giftet seg med %(spouse)s i %(partial_date)s i "
 "%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1124
@@ -29377,7 +29372,7 @@ msgstr ""
 #, python-format
 msgid "He married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Han giftet seg med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
+"Han giftet seg med %(spouse)s i %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1129
 #, python-format
@@ -29394,7 +29389,7 @@ msgstr ""
 #, python-format
 msgid "She married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Hun giftet seg med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
+"Hun giftet seg med %(spouse)s i %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1134
 #, python-format
@@ -29428,7 +29423,7 @@ msgid ""
 "This person also married %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Denne personen giftet seg også med %(spouse)s, %(partial_date)s i %(place)s "
+"Denne personen giftet seg også med %(spouse)s i %(partial_date)s i %(place)s "
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1150
@@ -29437,7 +29432,7 @@ msgid ""
 "This person also married %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Denne personen giftet seg også med %(spouse)s, %(full_date)s i %(place)s "
+"Denne personen giftet seg også med %(spouse)s %(full_date)s i %(place)s "
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1153
@@ -29446,7 +29441,7 @@ msgid ""
 "This person also married %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Denne personen giftet seg også med %(spouse)s, %(modified_date)s i %(place)s "
+"Denne personen giftet seg også med %(spouse)s %(modified_date)s i %(place)s "
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1157
@@ -29454,20 +29449,21 @@ msgstr ""
 msgid ""
 "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Han giftet seg også med %(spouse)s, %(partial_date)s i %(place)s "
+"Han giftet seg også med %(spouse)s i %(partial_date)s i %(place)s "
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1158
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Han giftet seg også med %(spouse)s, %(full_date)s i %(place)s %(endnotes)s."
+"Han giftet seg også med %(spouse)s den %(full_date)s i %(place)s "
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1159
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Han giftet seg også med %(spouse)s, %(modified_date)s i %(place)s "
+"Han giftet seg også med %(spouse)s %(modified_date)s i %(place)s "
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1162
@@ -29494,7 +29490,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:1167
 #, python-format
 msgid "Also married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Også gift med %(spouse)s, %(partial_date)s i %(place)s %(endnotes)s."
+msgstr "Også gift med %(spouse)s i %(partial_date)s i %(place)s %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1168
 #, python-format
@@ -29579,29 +29575,28 @@ msgstr ""
 #, python-format
 msgid "This person also married %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
-"Denne personen giftet seg også med %(spouse)s, %(full_date)s %(endnotes)s."
+"Denne personen giftet seg også med %(spouse)s %(full_date)s %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1200
 #, python-format
 msgid "This person also married %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
-"Denne personen giftet seg også med %(spouse)s, %(modified_date)s "
-"%(endnotes)s."
+"Denne personen giftet seg også med %(spouse)s %(modified_date)s %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1203
 #, python-format
 msgid "He also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Han giftet seg også med %(spouse)s, %(partial_date)s %(endnotes)s."
+msgstr "Han giftet seg også med %(spouse)s i %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1204
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Han giftet seg også med %(spouse)s, %(full_date)s %(endnotes)s."
+msgstr "Han giftet seg også med %(spouse)s %(full_date)s %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1205
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Han giftet seg også med %(spouse)s, %(modified_date)s %(endnotes)s."
+msgstr "Han giftet seg også med %(spouse)s %(modified_date)s %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1208
 #, python-format
@@ -29720,7 +29715,7 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Denne personen hadde et ugift forold med %(spouse)s i %(partial_date)s i "
+"Denne personen hadde et ugift forhold med %(spouse)s i %(partial_date)s i "
 "%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1258
@@ -29729,7 +29724,7 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s on %(full_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
-"Denne personen hadde et ugift forhold med %(spouse)s på %(full_date)s i "
+"Denne personen hadde et ugift forhold med %(spouse)s den %(full_date)s i "
 "%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1261
@@ -29756,7 +29751,7 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Han hadde et ugift forhold med %(spouse)s på %(full_date)s i "
+"Han hadde et ugift forhold med %(spouse)s den %(full_date)s i "
 "%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1272
@@ -29783,7 +29778,7 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Hun hadde et ugift forhold med %(spouse)s på %(full_date)s i "
+"Hun hadde et ugift forhold med %(spouse)s den %(full_date)s i "
 "%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1283
@@ -29801,8 +29796,7 @@ msgstr ""
 msgid ""
 "Unmarried relationship with %(spouse)s %(partial_date)s in "
 "%(place)s%(endnotes)s."
-msgstr ""
-"Ugift forhold med %(spouse)s i %(partial_date)s i %(place)s%(endnotes)s."
+msgstr "Ugift forhold med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1291
 #: ../gramps/plugins/lib/libnarrate.py:1338
@@ -29810,7 +29804,7 @@ msgstr ""
 msgid ""
 "Unmarried relationship with %(spouse)s %(full_date)s in "
 "%(place)s%(endnotes)s."
-msgstr "Ugift forhold med %(spouse)s på %(full_date)s i %(place)s%(endnotes)s."
+msgstr "Ugift forhold med %(spouse)s den %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1294
 #: ../gramps/plugins/lib/libnarrate.py:1341
@@ -29836,8 +29830,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s on "
 "%(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Denne personen hadde også et ugift forhold med %(spouse)s på %(full_date)s i "
-"%(place)s%(endnotes)s."
+"Denne personen hadde også et ugift forhold med %(spouse)s den %(full_date)s "
+"i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1308
 #, python-format
@@ -29863,7 +29857,7 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Han hadde også et ugift forhold med %(spouse)s på %(full_date)s i "
+"Han hadde også et ugift forhold med %(spouse)s den %(full_date)s i "
 "%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1319
@@ -29890,7 +29884,7 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Hun hadde også et ugift forhold med %(spouse)s på %(full_date)s i "
+"Hun hadde også et ugift forhold med %(spouse)s den %(full_date)s i "
 "%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1330
@@ -29917,7 +29911,7 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s on "
 "%(full_date)s%(endnotes)s."
 msgstr ""
-"Denne personen hadde et ugift forhold med %(spouse)s på "
+"Denne personen hadde et ugift forhold med %(spouse)s den "
 "%(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1355
@@ -29943,7 +29937,7 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s on "
 "%(full_date)s%(endnotes)s."
 msgstr ""
-"Han hadde et ugift forhold med %(spouse)s på %(full_date)s%(endnotes)s."
+"Han hadde et ugift forhold med %(spouse)s den %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1366
 #, python-format
@@ -29967,7 +29961,7 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s on "
 "%(full_date)s%(endnotes)s."
 msgstr ""
-"Hun hadde et ugift forhold med %(spouse)s på %(full_date)s%(endnotes)s."
+"Hun hadde et ugift forhold med %(spouse)s den %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1377
 #, python-format
@@ -29980,12 +29974,12 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:1381
 #, python-format
 msgid "Unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "Ugift forhold med %(spouse)s i %(partial_date)s%(endnotes)s."
+msgstr "Ugift forhold med %(spouse)s %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1382
 #, python-format
 msgid "Unmarried relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr "Ugift forhold med %(spouse)s på %(full_date)s%(endnotes)s."
+msgstr "Ugift forhold med %(spouse)s den %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1383
 #, python-format
@@ -30007,7 +30001,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s on "
 "%(full_date)s%(endnotes)s."
 msgstr ""
-"Denne personen giftet seg også med %(spouse)s på %(full_date)s %(endnotes)s."
+"Denne personen hadde også et ugift forhold med %(spouse)s den %(full_date)s "
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1396
 #, python-format
@@ -30033,7 +30028,7 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s on "
 "%(full_date)s%(endnotes)s."
 msgstr ""
-"Han hadde også et ugift forhold med %(spouse)s på %(full_date)s%(endnotes)s."
+"Han hadde også et ugift forhold med %(spouse)s den %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1407
 #, python-format
@@ -30058,7 +30053,7 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s on "
 "%(full_date)s%(endnotes)s."
 msgstr ""
-"Hun hadde også et ugift forhold med %(spouse)s på %(full_date)s%(endnotes)s."
+"Hun hadde også et ugift forhold med %(spouse)s den %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1418
 #, python-format
@@ -30072,12 +30067,12 @@ msgstr ""
 #, python-format
 msgid ""
 "Also unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "Også et ugift forhold med %(spouse)s i %(partial_date)s%(endnotes)s."
+msgstr "Også et ugift forhold med %(spouse)s %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1423
 #, python-format
 msgid "Also unmarried relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr "Også et ugift forhold med %(spouse)s på %(full_date)s%(endnotes)s."
+msgstr "Også et ugift forhold med %(spouse)s den %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1424
 #, python-format
@@ -30188,7 +30183,7 @@ msgid ""
 "This person had a relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Denne personen hadde et forhold med %(spouse)s på %(full_date)s i "
+"Denne personen hadde et forhold med %(spouse)s den %(full_date)s i "
 "%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1491
@@ -30215,7 +30210,8 @@ msgid ""
 "He had a relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Han hadde et forhold med %(spouse)s på %(full_date)s i %(place)s%(endnotes)s."
+"Han hadde et forhold med %(spouse)s den %(full_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1502
 #, python-format
@@ -30241,7 +30237,8 @@ msgid ""
 "She had a relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Hun hadde et forhold med %(spouse)s på %(full_date)s i %(place)s%(endnotes)s."
+"Hun hadde et forhold med %(spouse)s den %(full_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1513
 #, python-format
@@ -30255,12 +30252,12 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:1517
 #, python-format
 msgid "Relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Forhold med %(spouse)s i %(partial_date)s i %(place)s%(endnotes)s."
+msgstr "Forhold med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1518
 #, python-format
 msgid "Relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Forhold med %(spouse)s på %(full_date)s i %(place)s%(endnotes)s."
+msgstr "Forhold med %(spouse)s den %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1519
 #, python-format
@@ -30283,7 +30280,7 @@ msgid ""
 "This person also had a relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Denne personen hadde også et forhold med %(spouse)s på %(full_date)s i "
+"Denne personen hadde også et forhold med %(spouse)s den %(full_date)s i "
 "%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1532
@@ -30310,7 +30307,7 @@ msgid ""
 "He also had a relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Han hadde også et forhold med %(spouse)s på %(full_date)s i "
+"Han hadde også et forhold med %(spouse)s den %(full_date)s i "
 "%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1543
@@ -30337,7 +30334,7 @@ msgid ""
 "She also had a relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Hun hadde også et forhold med %(spouse)s på %(full_date)s i "
+"Hun hadde også et forhold med %(spouse)s den %(full_date)s i "
 "%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1554
@@ -30354,14 +30351,14 @@ msgstr ""
 msgid ""
 "Also relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Også et forhold med %(spouse)s i %(partial_date)s i %(place)s%(endnotes)s."
+"Også et forhold med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1561
 #, python-format
 msgid ""
 "Also relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Også et forhold med %(spouse)s på %(full_date)s i %(place)s%(endnotes)s."
+"Også et forhold med %(spouse)s den %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1563
 #, python-format
@@ -30384,7 +30381,7 @@ msgstr ""
 msgid ""
 "This person had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
-"Denne personen hadde et forhold med %(spouse)s på %(full_date)s%(endnotes)s."
+"Denne personen hadde et forhold med %(spouse)s den %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1577
 #, python-format
@@ -30401,7 +30398,7 @@ msgstr "Han hadde et forhold med %(spouse)s i %(partial_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:1582
 #, python-format
 msgid "He had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Han hadde et forhold med %(spouse)s på %(full_date)s%(endnotes)s."
+msgstr "Han hadde et forhold med %(spouse)s den %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1583
 #, python-format
@@ -30416,7 +30413,7 @@ msgstr "Hun hadde et forhold med %(spouse)s i %(partial_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:1587
 #, python-format
 msgid "She had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Hun hadde et forhold med %(spouse)s på %(full_date)s%(endnotes)s."
+msgstr "Hun hadde et forhold med %(spouse)s den %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1588
 #, python-format
@@ -30426,12 +30423,12 @@ msgstr "Hun hadde et forhold med %(spouse)s %(modified_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:1591
 #, python-format
 msgid "Relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "Forhold med %(spouse)s i %(partial_date)s%(endnotes)s."
+msgstr "Forhold med %(spouse)s %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1592
 #, python-format
 msgid "Relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr "Forhold med %(spouse)s på %(full_date)s%(endnotes)s."
+msgstr "Forhold med %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1593
 #, python-format
@@ -30453,7 +30450,7 @@ msgid ""
 "This person also had a relationship with %(spouse)s on "
 "%(full_date)s%(endnotes)s."
 msgstr ""
-"Denne personen hadde også et forhold med %(spouse)s på "
+"Denne personen hadde også et forhold med %(spouse)s den "
 "%(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1606
@@ -30476,7 +30473,7 @@ msgstr ""
 #, python-format
 msgid ""
 "He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Han hadde også et forhold med %(spouse)s på %(full_date)s%(endnotes)s."
+msgstr "Han hadde også et forhold med %(spouse)s den %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1614
 #, python-format
@@ -30496,7 +30493,7 @@ msgstr ""
 #, python-format
 msgid ""
 "She also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Hun hadde også et forhold med %(spouse)s på %(full_date)s%(endnotes)s."
+msgstr "Hun hadde også et forhold med %(spouse)s den %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1621
 #, python-format
@@ -30508,12 +30505,12 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:1624
 #, python-format
 msgid "Also relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "Også et forhold med %(spouse)s i %(partial_date)s%(endnotes)s."
+msgstr "Også et forhold med %(spouse)s %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1625
 #, python-format
 msgid "Also relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr "Også et forhold med %(spouse)s på %(full_date)s%(endnotes)s."
+msgstr "Også et forhold med %(spouse)s den %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1626
 #, python-format
@@ -30610,7 +30607,7 @@ msgstr "Antall foreldre"
 
 #: ../gramps/plugins/lib/libpersonview.py:111
 msgid "Number of To Do Notes"
-msgstr "Antall notater for Å gjøre"
+msgstr "Antall oppgavelister"
 
 #: ../gramps/plugins/lib/libpersonview.py:114
 #: ../gramps/plugins/lib/libplaceview.py:95
@@ -30837,7 +30834,7 @@ msgstr "Behandle personfilter"
 #: ../gramps/plugins/lib/libpersonview.py:385
 #: ../gramps/plugins/view/pedigreeview.py:1785
 msgid "Set _Home Person"
-msgstr "Angi som startperson"
+msgstr "Gjør til start_person"
 
 #: ../gramps/plugins/lib/libpersonview.py:289
 #: ../gramps/plugins/view/fanchartview.py:186
@@ -30848,7 +30845,7 @@ msgstr "Angi som startperson"
 #: ../gramps/plugins/view/pedigreeview.py:733
 #: ../gramps/plugins/view/relview.py:455
 msgid "Go to the home person"
-msgstr "Gå til standardpersonen"
+msgstr "Gå til startpersonen"
 
 #: ../gramps/plugins/lib/libpersonview.py:289
 #: ../gramps/plugins/lib/libplaceview.py:363
@@ -31062,7 +31059,7 @@ msgstr "Gir grunnfunksjonalitet for karttjenester."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:205
 msgid "Provides Textual Narration."
-msgstr "Lager en tekstbasert rapport."
+msgstr "Tilbyr en fortellende tekst."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:223
 msgid "Manages an ODF file implementing DocBackend."
@@ -31070,15 +31067,15 @@ msgstr "Håndterer en ODF-fil gjennom DocBackend."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:241
 msgid "Provides the Base needed for the List People views."
-msgstr "Tilbyr grunnlaget for visningen for å liste personer."
+msgstr "Tilbyr grunnlaget som er nødvendig for personliste-visningene."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:259
 msgid "Provides common functionality for Pro-Gen import"
-msgstr "Gir felles funksjonalitet for Pro-Gen-import"
+msgstr "Tilbyr felles funksjonalitet for Pro-Gen-import"
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:278
 msgid "Provides the Base needed for the List Place views."
-msgstr "Tilbyr grunnlaget for visningen for å liste steder."
+msgstr "Tilbyr grunnlaget som er nødvendig for å liste steder."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:296
 msgid "Provides variable substitution on display lines."
@@ -31088,12 +31085,13 @@ msgstr "Tilbyr erstatning av variabler på visningslinjer."
 msgid ""
 "Provides the base needed for the ancestor and descendant graphical reports."
 msgstr ""
-"Tilbyr grunnlaget som behøves for de grafiske ane- og etterkommerrapportene."
+"Tilbyr grunnlaget som er nødvendig for de grafiske ane- og "
+"etterkommerrapportene."
 
 #: ../gramps/plugins/lib/libprogen.py:442
 #, python-format
 msgid "Field '%(fldname)s' not found"
-msgstr "Felt '%(fldname)s' ble ikke funnet"
+msgstr "Felt «%(fldname)s» ble ikke funnet"
 
 #: ../gramps/plugins/lib/libprogen.py:565
 #, python-format
@@ -31197,11 +31195,11 @@ msgstr "Person døde i høy alder"
 
 #: ../gramps/plugins/lib/librecords.py:70
 msgid "Person married at youngest age"
-msgstr "Person ble gift seg i ung alder"
+msgstr "Person giftet seg i ung alder"
 
 #: ../gramps/plugins/lib/librecords.py:71
 msgid "Person married at oldest age"
-msgstr "Person ble gift seg i høy alder"
+msgstr "Person giftet seg i høy alder"
 
 #: ../gramps/plugins/lib/librecords.py:72
 msgid "Person divorced at youngest age"
@@ -31257,11 +31255,11 @@ msgstr "Levende par som ble gift for lengst tid siden"
 
 #: ../gramps/plugins/lib/librecords.py:85
 msgid "Shortest past marriage"
-msgstr "Korteste ekteskap"
+msgstr "Korteste tidligere ekteskap"
 
 #: ../gramps/plugins/lib/librecords.py:86
 msgid "Longest past marriage"
-msgstr "Lengste ekteskap"
+msgstr "Lengste tidligere ekteskap"
 
 #: ../gramps/plugins/lib/librecords.py:87
 msgid "Couple with smallest age difference"
@@ -31320,11 +31318,11 @@ msgstr "Legg til hårkors"
 
 #: ../gramps/plugins/lib/maps/geography.py:405
 msgid "Unlock zoom and position"
-msgstr "Lås opp forstørrelse og posisjon"
+msgstr "Lås opp skalering og posisjon"
 
 #: ../gramps/plugins/lib/maps/geography.py:407
 msgid "Lock zoom and position"
-msgstr "Lås forstørrelse og posisjon"
+msgstr "Lås skalering og posisjon"
 
 #: ../gramps/plugins/lib/maps/geography.py:412
 msgid "Add place"
@@ -31345,7 +31343,7 @@ msgstr "Sentrer her"
 #: ../gramps/plugins/lib/maps/geography.py:434
 #, python-format
 msgid "Replace '%(map)s' by =>"
-msgstr "Erstatte '%(map)s' med =>"
+msgstr "Erstatt «%(map)s» med =>"
 
 #: ../gramps/plugins/lib/maps/geography.py:447
 #, python-format
@@ -31405,10 +31403,10 @@ msgid ""
 "\n"
 "%(bold_start)sI can't proceed with your request%(bold_end)s.\n"
 msgstr ""
-"Tittel til stedet er :\n"
+"Tittelen på stedene er:\n"
 "%(title)s\n"
-"De følgende stedene er liknende : %(gid)s\n"
-"Enten må du navne om stedet eller flette dem sammen.\n"
+"Følgende steder er like: %(gid)s\n"
+"Du bør enten gi stedene nye navn eller flette dem sammen.\n"
 "\n"
 "%(bold_start)sØnsket ditt kan ikke utføres%(bold_end)s.\n"
 
@@ -31436,7 +31434,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/maps/geography.py:1441
 msgid "Zoom used when centering"
-msgstr "Forstørr/forminsk ved sentrering"
+msgstr "Skalering brukes ved sentrering"
 
 #: ../gramps/plugins/lib/maps/geography.py:1448
 msgid "The maximum number of places to show"
@@ -32654,7 +32652,7 @@ msgstr "Om det skal inkluderes dødsjubileum"
 #: ../gramps/plugins/textreport/birthdayreport.py:659
 #: ../gramps/plugins/textreport/indivcomplete.py:1197
 msgid "Whether to include relationships to the center person"
-msgstr "Om slektskap til senterpersonen skal tas med"
+msgstr "Om slektskap til fokuspersonen skal tas med"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:743
 msgid "Title text style"
@@ -33747,7 +33745,7 @@ msgstr "Kvinner: %d"
 #: ../gramps/plugins/textreport/summary.py:199
 #, python-format
 msgid "Individuals with other gender: %d"
-msgstr "Individer med andre kjønn: %d"
+msgstr "Personer med andre kjønn: %d"
 
 #: ../gramps/plugins/textreport/summary.py:203
 #, python-format
@@ -34595,7 +34593,7 @@ msgstr "Genererer datoer"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:255
 msgid "Date Test Plugin"
-msgstr "Programtillegg for å teste datoer"
+msgstr "Utvidelse for datotesting"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:260
 msgid "Pass"
@@ -34718,7 +34716,7 @@ msgstr "Bruk soundex-koder"
 
 #: ../gramps/plugins/tool/finddupes.glade:239
 msgid "Co_mpare"
-msgstr "S_ammenlikne"
+msgstr "Sa_mmenligne"
 
 #: ../gramps/plugins/tool/finddupes.py:67
 msgctxt "manual"
@@ -34970,8 +34968,8 @@ msgid ""
 "that is not set, it prepends user's directory."
 msgstr ""
 "Dette verktøyet lar deg konvertere relative mediastier til absolutte. Det "
-"gjør dette ved å legge til grunnstien som angitt i Innstillinger. Hvis dette "
-"ikke er angitt legger den til brukerens hjemmemappe."
+"gjør dette ved å legge til standardstien som angitt i innstillingene. Hvis "
+"dette ikke er angitt legger den til brukerens mappe."
 
 #: ../gramps/plugins/tool/mediamanager.py:636
 msgid "Convert paths from absolute to r_elative"
@@ -34984,11 +34982,11 @@ msgid ""
 "Preferences, or if that is not set, user's directory. A relative path allows "
 "to tie the file location to a base path that can change to your needs."
 msgstr ""
-"Dette verktøyet kan gjøre om fra absolutt til relativ stinavn for dine "
-"media. Den relative stien er relativ vis-a-vis grunnstien som er oppgitt i "
-"egenskapene, eller hvis den ikke er satt, ditt hjemmeområdet. En relativ sti "
-"gir deg muligheten til å binde filplasseringen til en grunnsti som kan "
-"endres etter dine behov."
+"Dette verktøyet lar deg konvertere absolutte mediastier til relative stier. "
+"Den relative stien er relativ i forhold til standardstien som angitt i "
+"innstillingene eller hvis det ikke er angitt, brukerens mappe. En relativ "
+"sti gjør det mulig å knytte filplasseringen til en standardsti som kan "
+"endres etter behov."
 
 #: ../gramps/plugins/tool/mediamanager.py:676
 msgid "Add images not included in database"
@@ -35569,7 +35567,7 @@ msgstr "Sortere familiehendelsene for personen"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:126
 msgid "Generate_Testcases_for_Persons_and_Families"
-msgstr "Generere_Testtilfeller_for_Personer_og_Familier"
+msgstr "Generate_Testcases_for_Persons_and_Families"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:336
 #: ../gramps/plugins/tool/testcasegenerator.py:343
@@ -36274,7 +36272,7 @@ msgstr ""
 #: ../gramps/plugins/view/dashboardview.py:86
 #: ../gramps/plugins/view/view.gpr.py:71 ../gramps/plugins/view/view.gpr.py:79
 msgid "Dashboard"
-msgstr "Oversiktspanel"
+msgstr "Dashbord"
 
 #: ../gramps/plugins/view/eventview.py:113
 msgid "Add a new event"
@@ -36572,8 +36570,8 @@ msgid ""
 "Go to the person view and select the people you want to compare. Return to "
 "this view and use the history."
 msgstr ""
-"Gå til personvisningen og velg de personene du vil sammenlikne. Gå tilbake "
-"til denne visningen og bruk historien."
+"Gå til personvisningen og velg personene du vil sammenligne. Gå tilbake til "
+"denne visningen og bruk historikken."
 
 #: ../gramps/plugins/view/geoclose.py:409
 msgid "Select the person which will be our reference."
@@ -36698,8 +36696,8 @@ msgid ""
 "Go to the family view and select the families you want to compare. Return to "
 "this view and use the history."
 msgstr ""
-"Gå til familievisningen og velg de familiene du vil sammenlikne. Gå tilbake "
-"til denne visningen og bruk historien."
+"Gå til familievisningen og velg familiene du vil sammenligne. Gå tilbake til "
+"denne visningen og bruk historikken."
 
 #: ../gramps/plugins/view/geofamclose.py:724
 #: ../gramps/plugins/view/geofamily.py:417
@@ -37618,7 +37616,7 @@ msgstr "Hjem"
 #: ../gramps/plugins/webreport/basepage.py:2082
 #: ../gramps/plugins/webreport/thumbnail.py:118
 msgid "Thumbnails"
-msgstr "Småbilder"
+msgstr "Miniatyrbilder"
 
 #: ../gramps/plugins/webreport/basepage.py:1908
 #: ../gramps/plugins/webreport/basepage.py:2088
@@ -37943,7 +37941,7 @@ msgstr "Hverken %(current)s eller %(parent)s er mapper"
 #: ../gramps/plugins/webreport/narrativeweb.py:384
 #, python-format
 msgid "Could not create the directory: %s"
-msgstr "Klarte ikke å opprette mappa: %s"
+msgstr "Klarte ikke å opprette mappen: %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:393
 msgid "Invalid file name"
@@ -37987,7 +37985,7 @@ msgstr "Lager side over etternavn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1409
 msgid "Creating thumbnail preview page..."
-msgstr "Lager side til forhåndsvisning av småbilder..."
+msgstr "Oppretter forhåndsvisningsside for miniatyrbilder..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1418
 msgid "Creating statistics page..."
@@ -38353,7 +38351,7 @@ msgstr "Hvorvidt ubrukte mediaobjekt skal tas med eller ikke"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2399
 msgid "Create and only use thumbnail- sized images"
-msgstr "Lag og bare bruk småbilder"
+msgstr "Opprett og bruk kun miniatyrbilder"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2403
 msgid ""
@@ -38951,7 +38949,7 @@ msgstr "Ikke søsken"
 
 #: ../gramps/plugins/webreport/person.py:2238
 msgid "Relation to the center person"
-msgstr "Slektsforhold til startpersonen"
+msgstr "Slektsforhold til fokuspersonen"
 
 #: ../gramps/plugins/webreport/person.py:2283
 msgid "Relation to main person"
