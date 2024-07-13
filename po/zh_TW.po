@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 22:29+0000\n"
+"POT-Creation-Date: 2024-07-13 17:49+0100\n"
 "PO-Revision-Date: 2024-07-10 09:09+0000\n"
 "Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -574,9 +574,9 @@ msgid ""
 "Each separate view can also be configured under \"View &gt; Configure View..."
 "\"."
 msgstr ""
-"<b>設定您的首選項</b><br/>\"編輯&gt;選項...\" "
-"允許您修改若干設定，比如您媒體檔案的路徑，並允許您根據需要調整多項 Gramps "
-"的顯示設定。每種個不同的檢視都可以在 \"檢視&gt;設定檢視...\"中設定。"
+"<b>設定您的首選項</b><br/>\"編輯&gt;選項...\" 允許您修改若干設定，比如您媒體"
+"檔案的路徑，並允許您根據需要調整多項 Gramps 的顯示設定。每種個不同的檢視都可"
+"以在 \"檢視&gt;設定檢視...\"中設定。"
 
 #: ../data/tips.xml:34
 msgid ""
@@ -607,8 +607,9 @@ msgstr ""
 msgid ""
 "<b>What's That For?</b><br/>Unsure what a button does? Simply hold the mouse "
 "over a button and a tooltip will appear."
-msgstr "<b>這是作什麼用的？</b><br/>不確定按鈕是作什麼的？很簡單, "
-"把滑鼠懸停按鈕上方，提示視窗就會出現."
+msgstr ""
+"<b>這是作什麼用的？</b><br/>不確定按鈕是作什麼的？很簡單, 把滑鼠懸停按鈕上"
+"方，提示視窗就會出現."
 
 #: ../data/tips.xml:40
 #, fuzzy
@@ -619,11 +620,10 @@ msgid ""
 "birth date in Gramps. Click the \"Invoke date editor\" button next to the "
 "date field. See the Gramps Manual to learn more."
 msgstr ""
-"<b>您不能確認的日期？</b><br/"
-">如果您不能確認一個事件發生的日期（比如出生和死亡日期），Gramps "
-"允許您基於猜測或推測填寫一個範圍的日期。例如：&quot;大約 1908&quot; 在 "
-"Gramps 屬於有效的出生日期輸入。參考 Gramps "
-"手冊瞭解關於日期輸入選項的完整說明。"
+"<b>您不能確認的日期？</b><br/>如果您不能確認一個事件發生的日期（比如出生和死"
+"亡日期），Gramps 允許您基於猜測或推測填寫一個範圍的日期。例如：&quot;大約 "
+"1908&quot; 在 Gramps 屬於有效的出生日期輸入。參考 Gramps 手冊瞭解關於日期輸入"
+"選項的完整說明。"
 
 #: ../data/tips.xml:42
 #, fuzzy
@@ -780,13 +780,12 @@ msgid ""
 "genealogical data. The Gramps database back end is so robust that some users "
 "are managing genealogies containing hundreds of thousands of people."
 msgstr ""
-"<b>命名的內裡乾坤</b><br/>Gramps 這個名字是由原始開發者 Don Allingham "
-"根據其父親建議而起的。Gramps "
-"一詞在英語除了是「祖父」的簡稱外，它也可以語帶雙關地當作一個縮寫，解讀為 "
-"<i>Genealogical Research and Analysis Management Program System</i>，意即「家"
-"譜研考分析管理程式設計系統」。它是一套功能全面的族譜程式，允許您儲存、編輯和"
-"研究族譜資料。Gramps "
-"資料庫後端非常穩健強大，一些使用者甚至使用它來管理含有幾十萬成員的族譜。"
+"<b>命名的內裡乾坤</b><br/>Gramps 這個名字是由原始開發者 Don Allingham 根據其"
+"父親建議而起的。Gramps 一詞在英語除了是「祖父」的簡稱外，它也可以語帶雙關地當"
+"作一個縮寫，解讀為 <i>Genealogical Research and Analysis Management Program "
+"System</i>，意即「家譜研考分析管理程式設計系統」。它是一套功能全面的族譜程"
+"式，允許您儲存、編輯和研究族譜資料。Gramps 資料庫後端非常穩健強大，一些使用者"
+"甚至使用它來管理含有幾十萬成員的族譜。"
 
 #: ../data/tips.xml:68
 #, fuzzy
@@ -945,8 +944,8 @@ msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
 "is to use the Gramps bug tracking system at https://gramps-project.org/bugs/."
 msgstr ""
-"<b>彙報 Gramps 的錯誤</b><br/>彙報 Gramps 錯誤的最有效的方法，是使用 "
-"http://bugs.gramps-project.org/ 中的Gramps錯誤報告追蹤系統。"
+"<b>彙報 Gramps 的錯誤</b><br/>彙報 Gramps 錯誤的最有效的方法，是使用 http://"
+"bugs.gramps-project.org/ 中的Gramps錯誤報告追蹤系統。"
 
 #: ../data/tips.xml:96
 msgid ""
@@ -1409,23 +1408,23 @@ msgstr ""
 "  -a, --action=ACTION                    指定動作\n"
 "  -p, --options=OPTIONS_STRING           指定選項\n"
 "  -d, --debug=LOGGER_NAME                啟用偵錯日誌\n"
-"  -l [FAMILY_TREE_PATTERN...]                                     "
-"列表家族樹\n"
-"  -L [FAMILY_TREE_PATTERN...]                                     "
-"詳細列出家族樹\n"
-"  -t [FAMILY_TREE_PATTERN...]                                     "
-"列出家族樹，以跳格(Tab)分隔\n"
+"  -l [FAMILY_TREE_PATTERN...]                                     列表家族"
+"樹\n"
+"  -L [FAMILY_TREE_PATTERN...]                                     詳細列出家"
+"族樹\n"
+"  -t [FAMILY_TREE_PATTERN...]                                     列出家族"
+"樹，以跳格(Tab)分隔\n"
 "  -u, --force-unlock                     強制解鎖家族樹\n"
 "  -s, --show                             顯示配置參數\n"
 "  -c, --config=[config.setting[:value]]  設定配置參數並啟動 Gramps\n"
-"  -y, --yes                              "
-"不詢問確認，直接執行危險動作（限於非圖形介面模式）\n"
-"  -q, --quiet                            "
-"抑制進度指示輸出（僅限於非圖形介面模式）\n"
+"  -y, --yes                              不詢問確認，直接執行危險動作（限於非"
+"圖形介面模式）\n"
+"  -q, --quiet                            抑制進度指示輸出（僅限於非圖形介面模"
+"式）\n"
 "  -v, --version                          顯示版本資訊\n"
 "  -S, --safe                             Start Gramps in 'Safe mode'\n"
-"                                          (temporarily use default settings)"
-"\n"
+"                                          (temporarily use default "
+"settings)\n"
 "  -D, --default=[APXFE]                  Reset settings to default;\n"
 "                 A - addons are cleared\n"
 "                 P - Preferences to default\n"
@@ -1693,7 +1692,7 @@ msgstr "被 %s 鎖定"
 #: ../gramps/plugins/graph/gvhourglass.py:516
 #: ../gramps/plugins/graph/gvrelgraph.py:1059
 #: ../gramps/plugins/importer/importcsv.py:555
-#: ../gramps/plugins/importer/importcsv.py:1078
+#: ../gramps/plugins/importer/importcsv.py:1081
 #: ../gramps/plugins/lib/libprogen.py:1140
 #: ../gramps/plugins/lib/maps/geography.py:912
 #: ../gramps/plugins/lib/maps/geography.py:922
@@ -2345,7 +2344,8 @@ msgstr ""
 #, python-brace-format
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
-msgstr "{date_quality} 介於 {date_start} 與 {date_stop}{nonstd_calendar_and_ny} 之間"
+msgstr ""
+"{date_quality} 介於 {date_start} 與 {date_stop}{nonstd_calendar_and_ny} 之間"
 
 #. Translators: If there is no special inflection for
 #. "before <Month>" in your language, DON'T translate this.
@@ -3277,20 +3277,20 @@ msgid "Upgrade Statistics"
 msgstr "升級統計"
 
 #. Translators: needed for Arabic, ignore otherwise
-#: ../gramps/gen/display/name.py:413 ../gramps/plugins/lib/libtreebase.py:725
+#: ../gramps/gen/display/name.py:406 ../gramps/plugins/lib/libtreebase.py:725
 msgid ","
 msgstr ","
 
-#: ../gramps/gen/display/name.py:416
+#: ../gramps/gen/display/name.py:409
 msgid "Default format (defined by Gramps preferences)"
 msgstr "預設格式（由 Gramps 首選項定義）"
 
-#: ../gramps/gen/display/name.py:417
+#: ../gramps/gen/display/name.py:410
 #, fuzzy
 msgid "Surname, Given Suffix"
 msgstr "姓名"
 
-#: ../gramps/gen/display/name.py:418 ../gramps/gen/utils/keyword.py:57
+#: ../gramps/gen/display/name.py:411 ../gramps/gen/utils/keyword.py:57
 #: ../gramps/gui/configure.py:1086 ../gramps/gui/configure.py:1087
 #: ../gramps/gui/configure.py:1091 ../gramps/gui/configure.py:1092
 #: ../gramps/gui/configure.py:1094 ../gramps/gui/configure.py:1095
@@ -3303,127 +3303,127 @@ msgstr "姓名"
 msgid "Given"
 msgstr "名"
 
-#: ../gramps/gen/display/name.py:419
+#: ../gramps/gen/display/name.py:412
 #, fuzzy
 msgid "Given Surname Suffix"
 msgstr "繼承的姓"
 
-#: ../gramps/gen/display/name.py:424
+#: ../gramps/gen/display/name.py:417
 msgid "Main Surnames, Given Patronymic Suffix Prefix"
 msgstr ""
 
-#: ../gramps/gen/display/name.py:429
+#: ../gramps/gen/display/name.py:422
 msgid "Patronymic, Given"
 msgstr "取自父的，祖名"
 
-#: ../gramps/gen/display/name.py:660 ../gramps/gen/display/name.py:791
+#: ../gramps/gen/display/name.py:653 ../gramps/gen/display/name.py:784
 msgctxt "Person"
 msgid "title"
 msgstr "頭銜"
 
-#: ../gramps/gen/display/name.py:661 ../gramps/gen/display/name.py:792
+#: ../gramps/gen/display/name.py:654 ../gramps/gen/display/name.py:785
 #: ../gramps/plugins/importer/importcsv.py:205
 msgid "given"
 msgstr "名"
 
-#: ../gramps/gen/display/name.py:665 ../gramps/gen/display/name.py:793
+#: ../gramps/gen/display/name.py:658 ../gramps/gen/display/name.py:786
 #: ../gramps/plugins/importer/importcsv.py:197
 #: ../gramps/plugins/tool/removespaces.py:149
 msgid "surname"
 msgstr "姓"
 
-#: ../gramps/gen/display/name.py:667 ../gramps/gen/display/name.py:794
+#: ../gramps/gen/display/name.py:660 ../gramps/gen/display/name.py:787
 #: ../gramps/gui/editors/editperson.py:408
 #: ../gramps/plugins/importer/importcsv.py:221
 msgid "suffix"
 msgstr "字尾"
 
-#: ../gramps/gen/display/name.py:668 ../gramps/gen/display/name.py:795
+#: ../gramps/gen/display/name.py:661 ../gramps/gen/display/name.py:788
 msgctxt "Name"
 msgid "call"
 msgstr "稱呼"
 
-#: ../gramps/gen/display/name.py:672 ../gramps/gen/display/name.py:799
+#: ../gramps/gen/display/name.py:665 ../gramps/gen/display/name.py:792
 msgctxt "Name"
 msgid "common"
 msgstr "常用稱呼"
 
-#: ../gramps/gen/display/name.py:678 ../gramps/gen/display/name.py:804
+#: ../gramps/gen/display/name.py:671 ../gramps/gen/display/name.py:797
 msgid "initials"
 msgstr "稱謂"
 
-#: ../gramps/gen/display/name.py:683 ../gramps/gen/display/name.py:809
+#: ../gramps/gen/display/name.py:676 ../gramps/gen/display/name.py:802
 msgctxt "Name"
 msgid "primary"
 msgstr "主要的名稱"
 
-#: ../gramps/gen/display/name.py:688 ../gramps/gen/display/name.py:814
+#: ../gramps/gen/display/name.py:681 ../gramps/gen/display/name.py:807
 #, fuzzy
 msgid "primary[pre]"
 msgstr "主要的"
 
-#: ../gramps/gen/display/name.py:693 ../gramps/gen/display/name.py:819
+#: ../gramps/gen/display/name.py:686 ../gramps/gen/display/name.py:812
 #, fuzzy
 msgid "primary[sur]"
 msgstr "主要資訊來源"
 
-#: ../gramps/gen/display/name.py:698 ../gramps/gen/display/name.py:824
+#: ../gramps/gen/display/name.py:691 ../gramps/gen/display/name.py:817
 #, fuzzy
 msgid "primary[con]"
 msgstr "主要的"
 
-#: ../gramps/gen/display/name.py:703 ../gramps/gen/display/name.py:829
+#: ../gramps/gen/display/name.py:696 ../gramps/gen/display/name.py:822
 msgid "patronymic"
 msgstr "取自父的姓"
 
-#: ../gramps/gen/display/name.py:708 ../gramps/gen/display/name.py:834
+#: ../gramps/gen/display/name.py:701 ../gramps/gen/display/name.py:827
 #, fuzzy
 msgid "patronymic[pre]"
 msgstr "取自父的姓"
 
-#: ../gramps/gen/display/name.py:713 ../gramps/gen/display/name.py:839
+#: ../gramps/gen/display/name.py:706 ../gramps/gen/display/name.py:832
 #, fuzzy
 msgid "patronymic[sur]"
 msgstr "取自父的姓"
 
-#: ../gramps/gen/display/name.py:718 ../gramps/gen/display/name.py:844
+#: ../gramps/gen/display/name.py:711 ../gramps/gen/display/name.py:837
 #, fuzzy
 msgid "patronymic[con]"
 msgstr "取自父的姓"
 
-#: ../gramps/gen/display/name.py:723 ../gramps/gen/display/name.py:849
+#: ../gramps/gen/display/name.py:716 ../gramps/gen/display/name.py:842
 msgid "notpatronymic"
 msgstr "並非取自父的姓"
 
-#: ../gramps/gen/display/name.py:728 ../gramps/gen/display/name.py:854
+#: ../gramps/gen/display/name.py:721 ../gramps/gen/display/name.py:847
 msgctxt "Remaining names"
 msgid "rest"
 msgstr "其他姓名"
 
-#: ../gramps/gen/display/name.py:733 ../gramps/gen/display/name.py:856
+#: ../gramps/gen/display/name.py:726 ../gramps/gen/display/name.py:849
 #: ../gramps/gui/editors/editperson.py:432
 #: ../gramps/plugins/importer/importcsv.py:220
 msgid "prefix"
 msgstr "家族字首"
 
-#: ../gramps/gen/display/name.py:738 ../gramps/gen/display/name.py:860
+#: ../gramps/gen/display/name.py:731 ../gramps/gen/display/name.py:853
 msgid "rawsurnames"
 msgstr "原始姓"
 
-#: ../gramps/gen/display/name.py:740 ../gramps/gen/display/name.py:862
+#: ../gramps/gen/display/name.py:733 ../gramps/gen/display/name.py:855
 msgid "nickname"
 msgstr "暱稱"
 
-#: ../gramps/gen/display/name.py:741 ../gramps/gen/display/name.py:863
+#: ../gramps/gen/display/name.py:734 ../gramps/gen/display/name.py:856
 msgid "familynick"
 msgstr "家庭暱稱"
 
-#: ../gramps/gen/display/name.py:1300
+#: ../gramps/gen/display/name.py:1293
 #, python-format
 msgid "Wrong name format string %s"
 msgstr ""
 
-#: ../gramps/gen/display/name.py:1306
+#: ../gramps/gen/display/name.py:1299
 #, fuzzy
 msgid "ERROR, Edit Name format in Preferences"
 msgstr "尋找無效名稱格式"
@@ -3433,7 +3433,7 @@ msgstr "尋找無效名稱格式"
 msgid "Error in '%s' file: cannot load."
 msgstr "'%s' 檔案錯誤：無法讀取。"
 
-#: ../gramps/gen/display/place.py:75 ../gramps/gen/plug/docgen/treedoc.py:65
+#: ../gramps/gen/display/place.py:75 ../gramps/gen/plug/docgen/treedoc.py:66
 #, fuzzy
 msgid "Full"
 msgstr "全名"
@@ -3489,7 +3489,7 @@ msgstr "套用篩選器..."
 #: ../gramps/plugins/textreport/indivcomplete.py:1101
 #: ../gramps/plugins/textreport/recordsreport.py:236
 #: ../gramps/plugins/tool/sortevents.py:177
-#: ../gramps/plugins/webreport/narrativeweb.py:2087
+#: ../gramps/plugins/webreport/narrativeweb.py:2091
 #: ../gramps/plugins/webreport/webcal.py:1851
 msgid "Filter"
 msgstr "篩查器"
@@ -3848,8 +3848,9 @@ msgstr "成員在<date time>後更改的"
 msgid ""
 "Matches citation records changed after a specified date-time (yyyy-mm-dd hh:"
 "mm:ss) or in the range, if a second date-time is given."
-msgstr "匹配成員記錄修改於特定日期時間 (yyyy-mm-dd hh:mm:ss)之後 或者 "
-"在某個時間段內（如果給出第二個日期時間）。"
+msgstr ""
+"匹配成員記錄修改於特定日期時間 (yyyy-mm-dd hh:mm:ss)之後 或者 在某個時間段內"
+"（如果給出第二個日期時間）。"
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:45
 #, fuzzy
@@ -4155,8 +4156,9 @@ msgstr "事件修改於<date time>後"
 msgid ""
 "Matches event records changed after a specified date/time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date/time is given."
-msgstr "時間記錄修改於特定的日期/時間 (yyyy-mm-dd hh:mm:ss) "
-"之後，或者某個範圍內（如果給出了第二個日期/時間）。"
+msgstr ""
+"時間記錄修改於特定的日期/時間 (yyyy-mm-dd hh:mm:ss) 之後，或者某個範圍內（如"
+"果給出了第二個日期/時間）。"
 
 #: ../gramps/gen/filters/rules/event/_eventprivate.py:44
 msgid "Events marked private"
@@ -4777,8 +4779,9 @@ msgstr "修改於 <date time> 之後的媒體物件"
 msgid ""
 "Matches media objects changed after a specified date:time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date:time is given."
-msgstr "符合 修改於特定日期:時間 (yyyy-mm-dd hh:mm:ss) 之後 或者 "
-"某個範圍內的（如果給出了第二個日期：時間）媒體物件"
+msgstr ""
+"符合 修改於特定日期:時間 (yyyy-mm-dd hh:mm:ss) 之後 或者 某個範圍內的（如果給"
+"出了第二個日期：時間）媒體物件"
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:46
 #: ../gramps/gui/editors/filtereditor.py:117
@@ -4947,8 +4950,9 @@ msgstr "筆記，在<date time> 之後修改的"
 msgid ""
 "Matches note records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
-msgstr "符合 修改於特定日期-時間(yyyy-mm-dd hh:mm:ss) 之後 或者 "
-"在某個範圍內（如果給出了第二個日期-時間）的筆記記錄"
+msgstr ""
+"符合 修改於特定日期-時間(yyyy-mm-dd hh:mm:ss) 之後 或者 在某個範圍內（如果給"
+"出了第二個日期-時間）的筆記記錄"
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:46
 msgid "Note with <Id>"
@@ -5051,8 +5055,9 @@ msgstr "成員在<date time>後更改的"
 msgid ""
 "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
-msgstr "匹配成員記錄修改於特定日期時間 (yyyy-mm-dd hh:mm:ss)之後 或者 "
-"在某個時間段內（如果給出第二個日期時間）。"
+msgstr ""
+"匹配成員記錄修改於特定日期時間 (yyyy-mm-dd hh:mm:ss)之後 或者 在某個時間段內"
+"（如果給出第二個日期時間）。"
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:133
 msgid "Relationship path between <person> and people matching <filter>"
@@ -5945,8 +5950,9 @@ msgstr "地點變更時間為<date time >之後"
 msgid ""
 "Matches place records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
-msgstr "符合修改於特定日期-時間 (yyyy-mm-dd hh:mm:ss) 之後，或者 "
-"某個範圍內的（如果給出了第二個日期-時間）地點記錄。"
+msgstr ""
+"符合修改於特定日期-時間 (yyyy-mm-dd hh:mm:ss) 之後，或者 某個範圍內的（如果給"
+"出了第二個日期-時間）地點記錄。"
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:51
 #, fuzzy
@@ -6161,8 +6167,9 @@ msgid ""
 "Matches places with latitude or longitude positioned in a rectangle of given "
 "height and width (in degrees), and with middlepoint the given latitude and "
 "longitude."
-msgstr "符合 在給定高度和寬度的長方形內 "
-"包含經度和緯度位置的地點，並且給出經緯度的中點。"
+msgstr ""
+"符合 在給定高度和寬度的長方形內 包含經度和緯度位置的地點，並且給出經緯度的中"
+"點。"
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:51
 msgid "Places enclosed by another place"
@@ -6258,8 +6265,9 @@ msgstr "文庫，在 <date time> 之後修訂過的"
 msgid ""
 "Matches repository records changed after a specified date/time (yyyy-mm-dd "
 "hh:mm:ss) or in the range, if a second date/time is given."
-msgstr "符合 修改於特定日期/時間(yyyy-mm-dd hh:mm:ss) "
-"或者在某個範圍內（如果給出了第二個日期/時間）的文庫記錄。"
+msgstr ""
+"符合 修改於特定日期/時間(yyyy-mm-dd hh:mm:ss) 或者在某個範圍內（如果給出了第"
+"二個日期/時間）的文庫記錄。"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:47
 msgid "Repository attribute:"
@@ -6394,8 +6402,9 @@ msgstr "修改於<date time> 之後的來源"
 msgid ""
 "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
-msgstr "匹配 修改於特定日期-時間 (yyyy-mm-dd hh:mm:ss) "
-"之後或者在某個範圍之內的（如果給出了第二個日期-時間）的來源"
+msgstr ""
+"匹配 修改於特定日期-時間 (yyyy-mm-dd hh:mm:ss) 之後或者在某個範圍之內的（如果"
+"給出了第二個日期-時間）的來源"
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:47
 msgid "Source attribute:"
@@ -6948,7 +6957,7 @@ msgstr "年線"
 
 #: ../gramps/gen/lib/attrtype.py:81 ../gramps/gen/lib/eventtype.py:218
 #: ../gramps/gen/lib/nameorigintype.py:87
-#: ../gramps/gen/plug/docgen/treedoc.py:586
+#: ../gramps/gen/plug/docgen/treedoc.py:587
 #: ../gramps/plugins/gramplet/persondetails.py:171
 msgid "Occupation"
 msgstr "職業"
@@ -6968,7 +6977,7 @@ msgstr "子女參照資訊"
 msgid "Handle"
 msgstr ""
 
-#: ../gramps/gen/lib/childreftype.py:69 ../gramps/gen/plug/docgen/treedoc.py:91
+#: ../gramps/gen/lib/childreftype.py:69 ../gramps/gen/plug/docgen/treedoc.py:92
 #: ../gramps/gui/configure.py:93
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:234
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:197
@@ -7723,7 +7732,7 @@ msgstr "退休"
 msgid "Will"
 msgstr "遺囑"
 
-#: ../gramps/gen/lib/eventtype.py:226 ../gramps/gen/plug/docgen/treedoc.py:222
+#: ../gramps/gen/lib/eventtype.py:226 ../gramps/gen/plug/docgen/treedoc.py:223
 #: ../gramps/gen/utils/symbols.py:97 ../gramps/gui/configure.py:2777
 #: ../gramps/gui/merge/mergeperson.py:278
 #: ../gramps/plugins/export/exportcsv.py:577
@@ -8333,6 +8342,7 @@ msgstr "地區 (Region)"
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:66
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:64
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:61
+#: ../gramps/gui/editors/displaytabs/repoembedlist.py:68
 #: ../gramps/gui/editors/editfamily.py:139
 #: ../gramps/gui/editors/editname.py:341
 #: ../gramps/gui/editors/filtereditor.py:913
@@ -8403,7 +8413,6 @@ msgstr "字尾"
 #: ../gramps/gen/lib/name.py:190 ../gramps/gen/lib/place.py:151
 #: ../gramps/gen/lib/src.py:108 ../gramps/gui/clipboard.py:914
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:82
-#: ../gramps/gui/editors/displaytabs/repoembedlist.py:68
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:115
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:96
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:95
@@ -8541,7 +8550,7 @@ msgid "Married Name"
 msgstr "婚後名"
 
 #: ../gramps/gen/lib/note.py:121 ../gramps/gen/plug/docgen/graphdoc.py:303
-#: ../gramps/gen/plug/docgen/treedoc.py:290 ../gramps/gui/clipboard.py:387
+#: ../gramps/gen/plug/docgen/treedoc.py:291 ../gramps/gui/clipboard.py:387
 #: ../gramps/gui/configure.py:845 ../gramps/gui/editors/editlink.py:99
 #: ../gramps/gui/editors/editmedia.py:108
 #: ../gramps/gui/editors/editmedia.py:202
@@ -9201,7 +9210,7 @@ msgstr "主要的"
 msgid "%(first)s %(second)s"
 msgstr "%(first)s %(second)s"
 
-#: ../gramps/gen/lib/tag.py:114 ../gramps/gen/plug/docgen/treedoc.py:251
+#: ../gramps/gen/lib/tag.py:114 ../gramps/gen/plug/docgen/treedoc.py:252
 #: ../gramps/gui/glade/styleeditor.glade:400
 #: ../gramps/gui/glade/styleeditor.glade:1449
 #: ../gramps/gui/plug/_guioptions.py:1521 ../gramps/gui/views/tags.py:481
@@ -9476,6 +9485,7 @@ msgstr "檔案 %s 已開啟，請先關閉。"
 
 #: ../gramps/gen/plug/docbackend/docbackend.py:155
 #: ../gramps/gen/plug/docbackend/docbackend.py:158
+#: ../gramps/gen/plug/docgen/treedoc.py:826
 #: ../gramps/gen/utils/docgen/odstab.py:344
 #: ../gramps/gen/utils/docgen/odstab.py:346
 #: ../gramps/gen/utils/docgen/odstab.py:403
@@ -9489,8 +9499,8 @@ msgstr "檔案 %s 已開啟，請先關閉。"
 #: ../gramps/gen/utils/docgen/odstab.py:495
 #: ../gramps/gen/utils/docgen/odstab.py:498
 #: ../gramps/plugins/docgen/asciidoc.py:185
-#: ../gramps/plugins/docgen/cairodoc.py:209
-#: ../gramps/plugins/docgen/cairodoc.py:212
+#: ../gramps/plugins/docgen/cairodoc.py:210
+#: ../gramps/plugins/docgen/cairodoc.py:213
 #: ../gramps/plugins/docgen/odfdoc.py:1182
 #: ../gramps/plugins/docgen/odfdoc.py:1185
 #: ../gramps/plugins/docgen/rtfdoc.py:102
@@ -9517,8 +9527,8 @@ msgid "Could not create %s"
 msgstr "無法建立 %s"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:70
-#: ../gramps/gen/plug/docgen/treedoc.py:84
-#: ../gramps/gen/plug/docgen/treedoc.py:92
+#: ../gramps/gen/plug/docgen/treedoc.py:85
+#: ../gramps/gen/plug/docgen/treedoc.py:93
 #: ../gramps/gen/plug/report/stdoptions.py:64
 #: ../gramps/gen/plug/report/stdoptions.py:80
 #: ../gramps/gen/plug/report/stdoptions.py:95
@@ -9608,13 +9618,13 @@ msgid "Expand uniformly"
 msgstr ""
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:101
-#: ../gramps/gen/plug/docgen/treedoc.py:116
+#: ../gramps/gen/plug/docgen/treedoc.py:117
 #: ../gramps/gui/glade/styleeditor.glade:1374
 msgid "Bottom"
 msgstr "底部"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:101
-#: ../gramps/gen/plug/docgen/treedoc.py:116
+#: ../gramps/gen/plug/docgen/treedoc.py:117
 #: ../gramps/gui/glade/styleeditor.glade:1359
 msgid "Top"
 msgstr "頂部"
@@ -9796,17 +9806,17 @@ msgid "This text will be added to the graph."
 msgstr "文字將被新增到圖表。"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:310
-#: ../gramps/gen/plug/docgen/treedoc.py:299
+#: ../gramps/gen/plug/docgen/treedoc.py:300
 msgid "Note location"
 msgstr "註釋位置"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:313
-#: ../gramps/gen/plug/docgen/treedoc.py:302
+#: ../gramps/gen/plug/docgen/treedoc.py:303
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "是否在頁面的頂部或者底部顯示筆記."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:316
-#: ../gramps/gen/plug/docgen/treedoc.py:306
+#: ../gramps/gen/plug/docgen/treedoc.py:307
 msgid "Note size"
 msgstr "筆記大小"
 
@@ -9865,129 +9875,129 @@ msgstr ""
 msgid "Custom Size"
 msgstr "定製尺寸"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:66
+#: ../gramps/gen/plug/docgen/treedoc.py:67
 #: ../gramps/plugins/tool/finddupes.py:62
 msgid "Medium"
 msgstr "中等的"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:67
+#: ../gramps/gen/plug/docgen/treedoc.py:68
 msgid "Short"
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/treedoc.py:71
+#: ../gramps/gen/plug/docgen/treedoc.py:72
 #, fuzzy
 #| msgid "Given Name Cloud Gramplet"
 msgid "Given Nickname Surname"
 msgstr "名字 雲圖 Gramplet表"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:72
+#: ../gramps/gen/plug/docgen/treedoc.py:73
 #, fuzzy
 #| msgid "Same Given Names"
 msgid "Surname Given Nickname"
 msgstr "同名"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:73
+#: ../gramps/gen/plug/docgen/treedoc.py:74
 #, fuzzy
 #| msgid "Same Given Names"
 msgid "Surname, Given Nickname"
 msgstr "同名"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:74
+#: ../gramps/gen/plug/docgen/treedoc.py:75
 #, fuzzy
 #| msgid "Given Name Cloud Gramplet"
 msgid "GivenNicknameSurname"
 msgstr "名字 雲圖 Gramplet表"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:78
+#: ../gramps/gen/plug/docgen/treedoc.py:79
 #, fuzzy
 #| msgid "Automatic"
 msgid "Auto"
 msgstr "自動的"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:79
+#: ../gramps/gen/plug/docgen/treedoc.py:80
 #, fuzzy
 #| msgid "Call Name"
 msgid "Call Name Only"
 msgstr "稱呼"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:80
+#: ../gramps/gen/plug/docgen/treedoc.py:81
 #, fuzzy
 #| msgid "Given Name"
 msgid "Whole Given Name"
 msgstr "名"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:85
+#: ../gramps/gen/plug/docgen/treedoc.py:86
 msgid "Above"
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/treedoc.py:86
+#: ../gramps/gen/plug/docgen/treedoc.py:87
 msgid "Below"
 msgstr "下方"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:87
+#: ../gramps/gen/plug/docgen/treedoc.py:88
 #, fuzzy
 msgid "Not shown"
 msgstr "未找到父母"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:93 ../gramps/gui/configure.py:105
+#: ../gramps/gen/plug/docgen/treedoc.py:94 ../gramps/gui/configure.py:105
 #: ../gramps/gui/configure.py:187 ../gramps/gui/configure.py:2614
 #: ../gramps/gui/displaystate.py:430 ../gramps/gui/views/pageview.py:642
 msgid "Preferences"
 msgstr "首選項"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:97
+#: ../gramps/gen/plug/docgen/treedoc.py:98
 msgid "Down (↓)"
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/treedoc.py:98
+#: ../gramps/gen/plug/docgen/treedoc.py:99
 msgid "Up (↑)"
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/treedoc.py:99
+#: ../gramps/gen/plug/docgen/treedoc.py:100
 #, fuzzy
 msgid "Right (→)"
 msgstr "右"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:100
+#: ../gramps/gen/plug/docgen/treedoc.py:101
 msgid "Left (←)"
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/treedoc.py:104
+#: ../gramps/gen/plug/docgen/treedoc.py:105
 msgid "Perpendicular"
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/treedoc.py:106
+#: ../gramps/gen/plug/docgen/treedoc.py:107
 #, fuzzy
 msgid "Rounded"
 msgstr "未定義"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:110
+#: ../gramps/gen/plug/docgen/treedoc.py:111
 msgid "Swing"
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/treedoc.py:113
+#: ../gramps/gen/plug/docgen/treedoc.py:114
 msgid "Mesh"
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/treedoc.py:119
+#: ../gramps/gen/plug/docgen/treedoc.py:120
 msgid "Tiny"
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/treedoc.py:120
+#: ../gramps/gen/plug/docgen/treedoc.py:121
 #, fuzzy
 msgid "Script"
 msgstr "PostScript"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:121
+#: ../gramps/gen/plug/docgen/treedoc.py:122
 #, fuzzy
 msgid "Footnote"
 msgstr "腳註"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:122
+#: ../gramps/gen/plug/docgen/treedoc.py:123
 msgid "Small"
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/treedoc.py:123 ../gramps/gen/utils/string.py:64
+#: ../gramps/gen/plug/docgen/treedoc.py:124 ../gramps/gen/utils/string.py:64
 #: ../gramps/gui/editors/editcitation.py:240
 #: ../gramps/plugins/graph/gvfamilylines.py:320
 #: ../gramps/plugins/graph/gvrelgraph.py:1082
@@ -9995,127 +10005,127 @@ msgstr ""
 msgid "Normal"
 msgstr "正常"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:124
+#: ../gramps/gen/plug/docgen/treedoc.py:125
 #: ../gramps/plugins/graph/gvfamilylines.py:321
 msgid "Large"
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/treedoc.py:125
+#: ../gramps/gen/plug/docgen/treedoc.py:126
 #, fuzzy
 msgid "Very large"
 msgstr "每個地方"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:126
+#: ../gramps/gen/plug/docgen/treedoc.py:127
 #, fuzzy
 msgid "Extra large"
 msgstr "解壓地點資料"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:127
+#: ../gramps/gen/plug/docgen/treedoc.py:128
 msgid "Huge"
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/treedoc.py:128
+#: ../gramps/gen/plug/docgen/treedoc.py:129
 msgid "Extra huge"
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/treedoc.py:193
+#: ../gramps/gen/plug/docgen/treedoc.py:194
 #, fuzzy
 msgid "Node Options"
 msgstr "樹選項"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:196
+#: ../gramps/gen/plug/docgen/treedoc.py:197
 #, fuzzy
 msgid "Node detail"
 msgstr "顯示細節 %s"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:199
+#: ../gramps/gen/plug/docgen/treedoc.py:200
 msgid "Detail of information to be shown in a node."
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/treedoc.py:203
+#: ../gramps/gen/plug/docgen/treedoc.py:204
 #, fuzzy
 #| msgid "Name format"
 msgid "Name Format"
 msgstr "姓名格式"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:206
+#: ../gramps/gen/plug/docgen/treedoc.py:207
 #: ../gramps/gen/plug/report/stdoptions.py:99
 #: ../gramps/plugins/webreport/webcal.py:1908
 msgid "Select the format to display names"
 msgstr "選擇用於顯示姓名的格式"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:209
+#: ../gramps/gen/plug/docgen/treedoc.py:210
 #: ../gramps/gui/glade/editperson.glade:708
 msgid "Preferred Name"
 msgstr "首選姓名"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:214
+#: ../gramps/gen/plug/docgen/treedoc.py:215
 msgid ""
 "Select the portion of the given name to be marked as preferred. Auto sets "
 "the call name if one exists, otherwise the whole given name."
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/treedoc.py:225
+#: ../gramps/gen/plug/docgen/treedoc.py:226
 #, fuzzy
 msgid "Position of marriage information."
 msgstr "包含婚姻資訊"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:229
+#: ../gramps/gen/plug/docgen/treedoc.py:230
 #, fuzzy
 msgid "Node size"
 msgstr "筆記大小"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:232
+#: ../gramps/gen/plug/docgen/treedoc.py:233
 msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
 "the width, otherwise it is the height."
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/treedoc.py:240
+#: ../gramps/gen/plug/docgen/treedoc.py:241
 #, fuzzy
 msgid "Level size"
 msgstr "樹的尺寸"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:243
+#: ../gramps/gen/plug/docgen/treedoc.py:244
 msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
 "the height, otherwise it is the width."
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/treedoc.py:254
+#: ../gramps/gen/plug/docgen/treedoc.py:255
 #, fuzzy
 msgid "Node color."
 msgstr "性別"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:259
+#: ../gramps/gen/plug/docgen/treedoc.py:260
 #: ../gramps/plugins/drawreport/ancestortree.py:837
 #: ../gramps/plugins/drawreport/descendtree.py:1571
 msgid "Tree Options"
 msgstr "樹選項"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:262
+#: ../gramps/gen/plug/docgen/treedoc.py:263
 #, fuzzy
 msgid "Timeflow"
 msgstr "年線"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:265
+#: ../gramps/gen/plug/docgen/treedoc.py:266
 msgid "Direction that the graph will grow over time."
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/treedoc.py:269
+#: ../gramps/gen/plug/docgen/treedoc.py:270
 #, fuzzy
 msgid "Edge style"
 msgstr "樹類型"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:272
+#: ../gramps/gen/plug/docgen/treedoc.py:273
 msgid "Style of the edges between nodes."
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/treedoc.py:276
+#: ../gramps/gen/plug/docgen/treedoc.py:277
 msgid "Level distance"
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/treedoc.py:279
+#: ../gramps/gen/plug/docgen/treedoc.py:280
 #, fuzzy
 msgid ""
 "The minimum amount of free space, in mm, between levels.  For vertical "
@@ -10125,31 +10135,38 @@ msgstr ""
 "等級之間的最小間隔，以英寸為單位。分別對應為垂直圖表的行距，以及水平圖表的列"
 "距。"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:293
+#: ../gramps/gen/plug/docgen/treedoc.py:294
 #, fuzzy
 msgid "Note to add to the tree"
 msgstr "新增到影象的筆記"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:294
+#: ../gramps/gen/plug/docgen/treedoc.py:295
 #, fuzzy
 msgid "This text will be added to the tree."
 msgstr "文字將被新增到圖表。"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:309
+#: ../gramps/gen/plug/docgen/treedoc.py:310
 #, fuzzy
 msgid "The size of note text."
 msgstr "筆記文字尺寸，in points."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:833
+#: ../gramps/gen/plug/docgen/treedoc.py:826
+#: ../gramps/plugins/graph/gvfamilylines.py:470
+#: ../gramps/plugins/textreport/familygroup.py:690
+#: ../gramps/plugins/textreport/indivcomplete.py:857
+msgid "Empty report"
+msgstr ""
+
+#: ../gramps/gen/plug/docgen/treedoc.py:842
 msgid "PDF"
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/treedoc.py:843
+#: ../gramps/gen/plug/docgen/treedoc.py:852
 #, fuzzy
 msgid "Graph File for genealogytree"
 msgstr "通用筆記 Gramplet"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:852
+#: ../gramps/gen/plug/docgen/treedoc.py:861
 #, fuzzy
 msgid "LaTeX File"
 msgstr "LaTeX"
@@ -10367,7 +10384,7 @@ msgstr "不包含健在的成員"
 #: ../gramps/plugins/textreport/detdescendantreport.py:1127
 #: ../gramps/plugins/textreport/familygroup.py:760
 #: ../gramps/plugins/textreport/indivcomplete.py:1148
-#: ../gramps/plugins/webreport/narrativeweb.py:2543
+#: ../gramps/plugins/webreport/narrativeweb.py:2547
 msgid "Include"
 msgstr "包含"
 
@@ -11769,7 +11786,7 @@ msgstr "套用（_A）"
 #: ../gramps/gui/columnorder.py:142
 #: ../gramps/plugins/drawreport/ancestortree.py:970
 #: ../gramps/plugins/drawreport/descendtree.py:1705
-#: ../gramps/plugins/webreport/narrativeweb.py:2236
+#: ../gramps/plugins/webreport/narrativeweb.py:2240
 msgid "Display"
 msgstr "顯示"
 
@@ -11847,10 +11864,10 @@ msgid ""
 "<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
 msgstr ""
 "The following keywords are replaced with the appropriate name parts:<tt>\n"
-"  <b>Given</b>   - given name (first name)     <b>Surname</b>  - surnames ("
-"with prefix and connectors)\n"
-"  <b>Title</b>   - title (Dr., Mrs.)           <b>Suffix</b>   - suffix ("
-"Jr., Sr.)\n"
+"  <b>Given</b>   - given name (first name)     <b>Surname</b>  - surnames "
+"(with prefix and connectors)\n"
+"  <b>Title</b>   - title (Dr., Mrs.)           <b>Suffix</b>   - suffix "
+"(Jr., Sr.)\n"
 "  <b>Call</b>    - call name                   <b>Nickname</b> - nick name\n"
 "  <b>Initials</b>- first letters of given      <b>Common</b>   - nick name, "
 "call, or first of given\n"
@@ -11858,8 +11875,8 @@ msgstr ""
 "Surnames:\n"
 "  <b>Rest</b>      - non primary surnames    <b>Notpatronymic</b>- all "
 "surnames, except pa/matronymic &amp; primary\n"
-"  <b>Familynick</b>- family nick name        <b>Rawsurnames</b>  - surnames ("
-"no prefixes and connectors)\n"
+"  <b>Familynick</b>- family nick name        <b>Rawsurnames</b>  - surnames "
+"(no prefixes and connectors)\n"
 "  <b>Primary, Primary[pre] or [sur] or [con]</b>- full primary surname, "
 "prefix, surname only, connector\n"
 "  <b>Patronymic, or [pre] or [sur] or [con]</b> - full pa/matronymic "
@@ -12816,7 +12833,7 @@ msgstr "選擇媒體目錄"
 #: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:848
 #: ../gramps/gui/plug/_windows.py:1416
 #: ../gramps/gui/plug/report/_fileentry.py:68
-#: ../gramps/gui/plug/report/_reportdialog.py:170 ../gramps/gui/utils.py:265
+#: ../gramps/gui/plug/report/_reportdialog.py:170 ../gramps/gui/utils.py:266
 #: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1250
 #: ../gramps/gui/views/navigationview.py:357 ../gramps/gui/views/tags.py:726
 #: ../gramps/gui/widgets/progressdialog.py:440
@@ -13096,7 +13113,7 @@ msgstr "相關資訊"
 #: ../gramps/gui/glade/rule.glade:764 ../gramps/gui/glade/styleeditor.glade:103
 #: ../gramps/gui/glade/styleeditor.glade:1754
 #: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:848
-#: ../gramps/gui/plug/report/_reportdialog.py:173 ../gramps/gui/utils.py:279
+#: ../gramps/gui/plug/report/_reportdialog.py:173 ../gramps/gui/utils.py:280
 #: ../gramps/gui/viewmanager.py:1802 ../gramps/gui/views/tags.py:727
 #: ../gramps/plugins/tool/check.py:828 ../gramps/plugins/tool/patchnames.py:152
 #: ../gramps/plugins/tool/populatesources.py:99
@@ -13297,13 +13314,13 @@ msgid ""
 "%(recover_file)s in the Family Tree directory."
 msgstr ""
 "如果您點選了按鈕%(bold_start)s處理%(bold_end)s, Gramps 將會嘗試從最後一次正確"
-"的備份恢復您的家族樹。但是仍然有某些可能性會導致不希望的效果，因此請提前%(bol"
-"d_start)s備份%(bold_end)s家族樹。\n"
+"的備份恢復您的家族樹。但是仍然有某些可能性會導致不希望的效果，因此請提"
+"前%(bold_start)s備份%(bold_end)s家族樹。\n"
 "您現在的家族樹已經被儲存在%(dirname)s中。\n"
 "\n"
 "Before doing a repair, verify that the Family Tree can really no longer be "
-"opened, as the database back-end can recover from some errors automatically."
-"\n"
+"opened, as the database back-end can recover from some errors "
+"automatically.\n"
 "\n"
 "%(bold_start)sDetails:%(bold_end)s Repairing a Family Tree actually uses the "
 "last backup of the Family Tree, which Gramps stored on last use. If you have "
@@ -13312,8 +13329,8 @@ msgstr ""
 "will be lost forever, hence a backup is needed. If the repair fails, or too "
 "much information is lost, you can fix the original family tree manually. For "
 "details, see the webpage\n"
-"http://gramps-project.org/wiki/index.php?title="
-"Recover_corrupted_family_tree\n"
+"http://gramps-project.org/wiki/index.php?"
+"title=Recover_corrupted_family_tree\n"
 "Before doing a repair, try to open the family tree in the normal manner. "
 "Several errors that trigger the repair button can be fixed automatically. If "
 "this is the case, you can disable the repair button by removing the file "
@@ -13389,7 +13406,7 @@ msgstr ""
 "%s"
 
 #: ../gramps/gui/dialog.py:490 ../gramps/gui/dialog.py:603
-#: ../gramps/gui/utils.py:400
+#: ../gramps/gui/utils.py:401
 msgid "Attempt to force closing the dialog"
 msgstr "嘗試強制關閉對話方塊"
 
@@ -14388,8 +14405,8 @@ msgid ""
 "value is already used by '%(prim_object)s'. Please enter a different ID or "
 "leave blank to get the next available ID value."
 msgstr ""
-"您正嘗試使用現有存在的 Gramps ID 編號 %(id)s，這個號碼已經被 '%(prim_object)"
-"s' 佔用。請輸入不同的ID號或者留作空白獲取下一個可用的ID號。"
+"您正嘗試使用現有存在的 Gramps ID 編號 %(id)s，這個號碼已經被 "
+"'%(prim_object)s' 佔用。請輸入不同的ID號或者留作空白獲取下一個可用的ID號。"
 
 #: ../gramps/gui/editors/editcitation.py:388
 #, fuzzy, python-format
@@ -14976,8 +14993,9 @@ msgstr "是否將同名的人分組？"
 msgid ""
 "You have the choice of grouping all people with the name of %(surname)s with "
 "the name of %(group_name)s, or just mapping this particular name."
-msgstr "您可以選擇用組名 %(group_name)s 為所有以 %(surname)s "
-"為姓的人員分組，或分散顯示個別姓名。"
+msgstr ""
+"您可以選擇用組名 %(group_name)s 為所有以 %(surname)s 為姓的人員分組，或分散顯"
+"示個別姓名。"
 
 #: ../gramps/gui/editors/editname.py:453
 msgid "Group all"
@@ -18341,8 +18359,8 @@ msgid ""
 "Your version of gi (gnome-introspection) seems to be too old. You need a "
 "version which has the function 'require_version' to start Gramps"
 msgstr ""
-"您的 gi (gnome-introspection) 版本太舊。您需要具有 'require_version' "
-"函數的版本来啟動 Gramps"
+"您的 gi (gnome-introspection) 版本太舊。您需要具有 'require_version' 函數的版"
+"本来啟動 Gramps"
 
 #: ../gramps/gui/grampsgui.py:414
 #, fuzzy, python-format
@@ -19764,7 +19782,7 @@ msgid "Paper Options"
 msgstr "紙張選項"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:148
-#: ../gramps/plugins/webreport/narrativeweb.py:2129
+#: ../gramps/plugins/webreport/narrativeweb.py:2133
 msgid "HTML Options"
 msgstr "HTML 選項"
 
@@ -19832,7 +19850,7 @@ msgstr "風格"
 #: ../gramps/plugins/textreport/summary.py:395
 #: ../gramps/plugins/textreport/tableofcontents.py:101
 #: ../gramps/plugins/textreport/tagreport.py:912
-#: ../gramps/plugins/webreport/narrativeweb.py:2064
+#: ../gramps/plugins/webreport/narrativeweb.py:2068
 #: ../gramps/plugins/webreport/webcal.py:1835
 msgid "Report Options"
 msgstr "報告選項"
@@ -20214,29 +20232,29 @@ msgstr "開啟的資料庫"
 msgid "History cleared"
 msgstr "歷史記錄被清除"
 
-#: ../gramps/gui/utils.py:317
+#: ../gramps/gui/utils.py:318
 msgid "Canceling..."
 msgstr "取消中..."
 
-#: ../gramps/gui/utils.py:401
+#: ../gramps/gui/utils.py:402
 msgid "Please do not force closing this important dialog."
 msgstr "請不要強制關閉這個重要的對話方塊。"
 
-#: ../gramps/gui/utils.py:470
+#: ../gramps/gui/utils.py:471
 msgid "The external program failed to launch or experienced an error"
 msgstr ""
 
-#: ../gramps/gui/utils.py:480
+#: ../gramps/gui/utils.py:481
 msgid "Error from external program"
 msgstr ""
 
-#: ../gramps/gui/utils.py:497
+#: ../gramps/gui/utils.py:498
 #: ../gramps/plugins/textreport/simplebooktitle.py:115
 #, fuzzy, python-format
 msgid "File %s does not exist"
 msgstr "檔案不存在"
 
-#: ../gramps/gui/utils.py:799
+#: ../gramps/gui/utils.py:801
 msgid ""
 "Cannot open new citation editor at this time. Either the citation is already "
 "being edited, or the associated source is already being edited, and opening "
@@ -20247,7 +20265,7 @@ msgid ""
 "citation alone"
 msgstr ""
 
-#: ../gramps/gui/utils.py:815
+#: ../gramps/gui/utils.py:817
 msgid "Cannot open new citation editor"
 msgstr "無法開啟新引用編輯器"
 
@@ -21179,13 +21197,13 @@ msgid "of %d"
 msgstr "%d 的"
 
 #: ../gramps/plugins/docgen/htmldoc.py:306
-#: ../gramps/plugins/webreport/narrativeweb.py:1916
+#: ../gramps/plugins/webreport/narrativeweb.py:1920
 #: ../gramps/plugins/webreport/webcal.py:296
 msgid "Possible destination error"
 msgstr "可能目標檔案錯誤"
 
 #: ../gramps/plugins/docgen/htmldoc.py:308
-#: ../gramps/plugins/webreport/narrativeweb.py:1919
+#: ../gramps/plugins/webreport/narrativeweb.py:1923
 #: ../gramps/plugins/webreport/webcal.py:299
 msgid ""
 "You appear to have set your target directory to a directory used for data "
@@ -21860,13 +21878,13 @@ msgstr "日曆底部文字的第三行"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:636
 #: ../gramps/plugins/textreport/birthdayreport.py:597
-#: ../gramps/plugins/webreport/narrativeweb.py:3132
+#: ../gramps/plugins/webreport/narrativeweb.py:3136
 #: ../gramps/plugins/webreport/webcal.py:1913
 msgid "Include only living people"
 msgstr "僅包含健在人員"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:637
-#: ../gramps/plugins/webreport/narrativeweb.py:3133
+#: ../gramps/plugins/webreport/narrativeweb.py:3137
 #: ../gramps/plugins/webreport/webcal.py:1914
 msgid "Include only living people in the calendar"
 msgstr "在日曆中僅包含健在人員"
@@ -21896,55 +21914,55 @@ msgid "Select the country to see associated holidays"
 msgstr "選擇國家/地區以檢視相關假期"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:664
-#: ../gramps/plugins/webreport/narrativeweb.py:3093
+#: ../gramps/plugins/webreport/narrativeweb.py:3097
 #: ../gramps/plugins/webreport/webcal.py:1970
 msgid "First day of week"
 msgstr "每週第一天"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:670
-#: ../gramps/plugins/webreport/narrativeweb.py:3097
+#: ../gramps/plugins/webreport/narrativeweb.py:3101
 #: ../gramps/plugins/webreport/webcal.py:1973
 msgid "Select the first day of the week for the calendar"
 msgstr "選擇日曆中周的第一天"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:673
 #: ../gramps/plugins/textreport/birthdayreport.py:634
-#: ../gramps/plugins/webreport/narrativeweb.py:3101
+#: ../gramps/plugins/webreport/narrativeweb.py:3105
 #: ../gramps/plugins/webreport/webcal.py:1976
 msgid "Birthday surname"
 msgstr "生日姓"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:675
 #: ../gramps/plugins/textreport/birthdayreport.py:636
-#: ../gramps/plugins/webreport/narrativeweb.py:3104
+#: ../gramps/plugins/webreport/narrativeweb.py:3108
 #: ../gramps/plugins/webreport/webcal.py:1979
 msgid "Wives use husband's surname (from first family listed)"
 msgstr "妻隨夫姓（從列在第一位的家庭）"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:678
 #: ../gramps/plugins/textreport/birthdayreport.py:639
-#: ../gramps/plugins/webreport/narrativeweb.py:3107
+#: ../gramps/plugins/webreport/narrativeweb.py:3111
 #: ../gramps/plugins/webreport/webcal.py:1982
 msgid "Wives use husband's surname (from last family listed)"
 msgstr "妻隨夫姓"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:680
 #: ../gramps/plugins/textreport/birthdayreport.py:641
-#: ../gramps/plugins/webreport/narrativeweb.py:3109
+#: ../gramps/plugins/webreport/narrativeweb.py:3113
 #: ../gramps/plugins/webreport/webcal.py:1984
 msgid "Wives use their own surname"
 msgstr "妻子使用自己原姓"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:681
 #: ../gramps/plugins/textreport/birthdayreport.py:642
-#: ../gramps/plugins/webreport/narrativeweb.py:3110
+#: ../gramps/plugins/webreport/narrativeweb.py:3114
 #: ../gramps/plugins/webreport/webcal.py:1985
 msgid "Select married women's displayed surname"
 msgstr "選擇已婚婦女所顯示的姓氏"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:684
 #: ../gramps/plugins/textreport/birthdayreport.py:645
-#: ../gramps/plugins/webreport/narrativeweb.py:3120
+#: ../gramps/plugins/webreport/narrativeweb.py:3124
 #: ../gramps/plugins/webreport/webcal.py:2065
 msgid "Include birthdays"
 msgstr "包括生日"
@@ -21957,7 +21975,7 @@ msgstr "是否包含影象."
 
 #: ../gramps/plugins/drawreport/calendarreport.py:688
 #: ../gramps/plugins/textreport/birthdayreport.py:649
-#: ../gramps/plugins/webreport/narrativeweb.py:3124
+#: ../gramps/plugins/webreport/narrativeweb.py:3128
 #: ../gramps/plugins/webreport/webcal.py:2069
 msgid "Include anniversaries"
 msgstr "包含週年紀念"
@@ -21969,14 +21987,14 @@ msgid "Whether to include anniversaries"
 msgstr "是否包含影象."
 
 #: ../gramps/plugins/drawreport/calendarreport.py:692
-#: ../gramps/plugins/webreport/narrativeweb.py:3128
+#: ../gramps/plugins/webreport/narrativeweb.py:3132
 #: ../gramps/plugins/webreport/webcal.py:2073
 #, fuzzy
 msgid "Include death dates"
 msgstr "包含日期"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:693
-#: ../gramps/plugins/webreport/narrativeweb.py:3129
+#: ../gramps/plugins/webreport/narrativeweb.py:3133
 #: ../gramps/plugins/webreport/webcal.py:2074
 #, fuzzy
 msgid "Include death anniversaries in the calendar"
@@ -22596,7 +22614,7 @@ msgstr "決定何類成員應當包含在報告中。"
 #: ../gramps/plugins/textreport/indivcomplete.py:1106
 #: ../gramps/plugins/textreport/recordsreport.py:241
 #: ../gramps/plugins/tool/sortevents.py:182
-#: ../gramps/plugins/webreport/narrativeweb.py:2094
+#: ../gramps/plugins/webreport/narrativeweb.py:2098
 #: ../gramps/plugins/webreport/webcal.py:1858
 msgid "Filter Person"
 msgstr "篩選人員"
@@ -22745,7 +22763,7 @@ msgstr "決定何類人應當包含在報告中"
 #: ../gramps/plugins/drawreport/timeline.py:434
 #: ../gramps/plugins/textreport/recordsreport.py:242
 #: ../gramps/plugins/tool/sortevents.py:183
-#: ../gramps/plugins/webreport/narrativeweb.py:2095
+#: ../gramps/plugins/webreport/narrativeweb.py:2099
 #: ../gramps/plugins/webreport/webcal.py:1859
 msgid "The center person for the filter"
 msgstr "中心任務篩選器"
@@ -24468,7 +24486,8 @@ msgid ""
 " has {count_person} of {max_count_person} individuals ({percent} complete)\n"
 msgid_plural ""
 " has {count_person} of {max_count_person} individuals ({percent} complete)\n"
-msgstr[0] " 有 {count_person} 共 {max_count_person} 個體成員 （{percent} 完成）\n"
+msgstr[0] ""
+" 有 {count_person} 共 {max_count_person} 個體成員 （{percent} 完成）\n"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:305
 msgid "All generations"
@@ -25391,12 +25410,6 @@ msgstr "顯示家庭使用的顏色."
 #: ../gramps/plugins/graph/gvfamilylines.py:470
 #: ../gramps/plugins/textreport/familygroup.py:690
 #: ../gramps/plugins/textreport/indivcomplete.py:857
-msgid "Empty report"
-msgstr ""
-
-#: ../gramps/plugins/graph/gvfamilylines.py:470
-#: ../gramps/plugins/textreport/familygroup.py:690
-#: ../gramps/plugins/textreport/indivcomplete.py:857
 msgid "You did not specify anybody"
 msgstr ""
 
@@ -25634,7 +25647,8 @@ msgid ""
 "Include a URL in each graph node so that PDF and imagemap files can be "
 "generated that contain active links to the files generated by the 'Narrated "
 "Web Site' report."
-msgstr "每個曲線節點包含一個URL，因此PDF 和 點陣圖檔案可以被生成包含動態連結到由 "
+msgstr ""
+"每個曲線節點包含一個URL，因此PDF 和 點陣圖檔案可以被生成包含動態連結到由 "
 "'Narrated Web Site' 報告生成的檔案 ."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:995
@@ -26985,7 +26999,7 @@ msgstr "晚婚"
 
 #: ../gramps/plugins/lib/libgedcom.py:738
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:327
-#: ../gramps/plugins/webreport/narrativeweb.py:2075
+#: ../gramps/plugins/webreport/narrativeweb.py:2079
 #: ../gramps/plugins/webreport/webcal.py:1840
 msgid "Destination"
 msgstr "目標資料夾"
@@ -27780,7 +27794,8 @@ msgstr "%(unknown_gender_name)s在%(death_date)s卒於%(death_place)s。"
 msgid ""
 "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age "
 "of %(age)s."
-msgstr "%(unknown_gender_name)s在%(death_date)s卒於%(death_place)s，終年%(age)s歲。"
+msgstr ""
+"%(unknown_gender_name)s在%(death_date)s卒於%(death_place)s，終年%(age)s歲。"
 
 #: ../gramps/plugins/lib/libnarrate.py:232
 #, python-format
@@ -27859,7 +27874,8 @@ msgstr "%(unknown_gender_name)s在%(death_date)s卒於%(death_place)s。"
 msgid ""
 "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of "
 "%(age)s."
-msgstr "%(unknown_gender_name)s在%(death_date)s卒於%(death_place)s，終年%(age)s歲。"
+msgstr ""
+"%(unknown_gender_name)s在%(death_date)s卒於%(death_place)s，終年%(age)s歲。"
 
 #: ../gramps/plugins/lib/libnarrate.py:275
 #, python-format
@@ -28058,7 +28074,8 @@ msgstr "%(unknown_gender_name)s在%(month_year)s卒於%(death_place)s。"
 msgid ""
 "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age "
 "of %(age)s."
-msgstr "%(unknown_gender_name)s在%(month_year)s卒於%(death_place)s，終年%(age)s歲。"
+msgstr ""
+"%(unknown_gender_name)s在%(month_year)s卒於%(death_place)s，終年%(age)s歲。"
 
 #: ../gramps/plugins/lib/libnarrate.py:388
 #, python-format
@@ -28311,7 +28328,8 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:537
 #, python-format
 msgid "He was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr "他安葬時間是 %(burial_date)s安葬地點位於 %(burial_place)s%(endnotes)s。"
+msgstr ""
+"他安葬時間是 %(burial_date)s安葬地點位於 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:541
 #, python-format
@@ -28325,7 +28343,8 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:543
 #, python-format
 msgid "She was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr "她安葬時間是 %(burial_date)s 安葬地點位於 %(burial_place)s%(endnotes)s。"
+msgstr ""
+"她安葬時間是 %(burial_date)s 安葬地點位於 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:547
 #, python-format
@@ -28333,14 +28352,15 @@ msgid ""
 "%(unknown_gender_name)s was buried on %(burial_date)s in "
 "%(burial_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s 安葬時間是 %(burial_date)s "
-"安葬地點位於%(burial_place)s%(endnotes)s。"
+"%(unknown_gender_name)s 安葬時間是 %(burial_date)s 安葬地點位"
+"於%(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:549
 #, python-format
 msgid ""
 "This person was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr "此人安葬時間是 %(burial_date)s 安葬地點位於 %(burial_place)s%(endnotes)s。"
+msgstr ""
+"此人安葬時間是 %(burial_date)s 安葬地點位於 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:551
 #, python-format
@@ -28386,13 +28406,15 @@ msgstr "下葬時間是 %(burial_date)s%(endnotes)s。"
 #, python-format
 msgid ""
 "%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "%(male_name)s 下葬時間是 %(month_year)s 下葬地點位於 "
+msgstr ""
+"%(male_name)s 下葬時間是 %(month_year)s 下葬地點位於 "
 "%(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:575
 #, python-format
 msgid "He was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "他下葬時間是 %(month_year)s 安葬地點位於 %(burial_place)s%(endnotes)s。"
+msgstr ""
+"他下葬時間是 %(month_year)s 安葬地點位於 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:579
 #, python-format
@@ -28420,7 +28442,8 @@ msgstr ""
 #, python-format
 msgid ""
 "This person was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "此人下葬時間是%(month_year)s 安葬地點位於 %(burial_place)s%(endnotes)s。"
+msgstr ""
+"此人下葬時間是%(month_year)s 安葬地點位於 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:589
 #, python-format
@@ -28473,7 +28496,8 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:613
 #, python-format
 msgid "He was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "他修改後下葬時間是 %(modified_date)s 安葬地點位於 "
+msgstr ""
+"他修改後下葬時間是 %(modified_date)s 安葬地點位於 "
 "%(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:617
@@ -28487,7 +28511,8 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:619
 #, python-format
 msgid "She was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "她修改後下葬時間是%(modified_date)s 安葬地點位於 "
+msgstr ""
+"她修改後下葬時間是%(modified_date)s 安葬地點位於 "
 "%(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:623
@@ -28503,13 +28528,15 @@ msgstr ""
 #, python-format
 msgid ""
 "This person was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "此人修改後下葬時間是 %(modified_date)s 被安葬地點位於 "
+msgstr ""
+"此人修改後下葬時間是 %(modified_date)s 被安葬地點位於 "
 "%(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:627
 #, python-format
 msgid "Buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "被修改後下葬時間是%(modified_date)s 被安葬地點位於 "
+msgstr ""
+"被修改後下葬時間是%(modified_date)s 被安葬地點位於 "
 "%(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:632
@@ -28535,7 +28562,8 @@ msgstr "她修改後下葬時間是 %(modified_date)s%(endnotes)s。"
 #: ../gramps/plugins/lib/libnarrate.py:640
 #, python-format
 msgid "%(unknown_gender_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s 修改後下葬時間是 %(modified_date)s%(endnotes)s。"
+msgstr ""
+"%(unknown_gender_name)s 修改後下葬時間是 %(modified_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:641
 #, python-format
@@ -28994,8 +29022,9 @@ msgstr ""
 msgid ""
 "She was christened on %(christening_date)s in "
 "%(christening_place)s%(endnotes)s."
-msgstr "她受名洗禮日期為%(christening_date)s，地點位於%(christening_place)s%(endnotes"
-")s。"
+msgstr ""
+"她受名洗禮日期為%(christening_date)s，地點位"
+"於%(christening_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:858
 #, python-format
@@ -29011,7 +29040,8 @@ msgstr ""
 msgid ""
 "This person was christened on %(christening_date)s in "
 "%(christening_place)s%(endnotes)s."
-msgstr "此人受名洗禮日期為 %(christening_date)s，地點位於 "
+msgstr ""
+"此人受名洗禮日期為 %(christening_date)s，地點位於 "
 "%(christening_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:865
@@ -29556,7 +29586,8 @@ msgstr ""
 #, python-format
 msgid ""
 "This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "此人配偶是%(spouse)s 婚禮日期是 %(full_date)s 婚禮舉辦地點位於 "
+msgstr ""
+"此人配偶是%(spouse)s 婚禮日期是 %(full_date)s 婚禮舉辦地點位於 "
 "%(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1125
@@ -29571,8 +29602,8 @@ msgstr ""
 #, python-format
 msgid "He married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"他的配偶是 %(spouse)s舉辦婚禮的不完整的時間是 "
-"%(partial_date)s舉辦婚禮的地點位於%(place)s%(endnotes)s。"
+"他的配偶是 %(spouse)s舉辦婚禮的不完整的時間是 %(partial_date)s舉辦婚禮的地點"
+"位於%(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1129
 #, python-format
@@ -29585,40 +29616,42 @@ msgstr ""
 #, python-format
 msgid "He married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"他的配偶是 %(spouse)s 舉辦婚禮修改後的日期是%(modified_date)s "
-"舉辦婚禮的地點位於 %(place)s%(endnotes)s。"
+"他的配偶是 %(spouse)s 舉辦婚禮修改後的日期是%(modified_date)s 舉辦婚禮的地點"
+"位於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1133
 #, python-format
 msgid "She married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"她的配偶是 %(spouse)s舉辦婚禮的不完整的日期是 %(partial_date)s "
-"舉辦婚禮的地點位於%(place)s%(endnotes)s。"
+"她的配偶是 %(spouse)s舉辦婚禮的不完整的日期是 %(partial_date)s 舉辦婚禮的地點"
+"位於%(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1134
 #, python-format
 msgid "She married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "她的配偶是%(spouse)s 舉辦婚禮的日期是 %(full_date)s 舉辦婚禮的地點位於 "
+msgstr ""
+"她的配偶是%(spouse)s 舉辦婚禮的日期是 %(full_date)s 舉辦婚禮的地點位於 "
 "%(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1135
 #, python-format
 msgid "She married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"她的配偶是%(spouse)s 婚禮舉辦的修改後的日期是%(modified_date)s "
-"婚禮舉辦的地點位於 %(place)s%(endnotes)s。"
+"她的配偶是%(spouse)s 婚禮舉辦的修改後的日期是%(modified_date)s 婚禮舉辦的地點"
+"位於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1138
 #, python-format
 msgid "Married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"配偶是 %(spouse)s 婚禮舉辦的修改後的日期是%(partial_date)s "
-"婚禮舉辦的地點位於 %(place)s%(endnotes)s。"
+"配偶是 %(spouse)s 婚禮舉辦的修改後的日期是%(partial_date)s 婚禮舉辦的地點位"
+"於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1139
 #, python-format
 msgid "Married %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
-msgstr "配偶是%(spouse)s 婚禮舉辦日期是%(full_date)s 婚禮舉辦地點位於 "
+msgstr ""
+"配偶是%(spouse)s 婚禮舉辦日期是%(full_date)s 婚禮舉辦地點位於 "
 "%(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1140
@@ -29634,8 +29667,8 @@ msgid ""
 "This person also married %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"此人也迎娶過 %(spouse)s 婚禮舉辦的不完整的日期是 %(partial_date)s "
-"婚禮舉辦的地點位於%(place)s%(endnotes)s。"
+"此人也迎娶過 %(spouse)s 婚禮舉辦的不完整的日期是 %(partial_date)s 婚禮舉辦的"
+"地點位於%(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1150
 #, python-format
@@ -29652,62 +29685,65 @@ msgid ""
 "This person also married %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"此人也迎娶過%(spouse)s婚禮舉辦修改過的日期是 %(modified_date)s "
-"婚禮舉辦的地點位於 %(place)s%(endnotes)s。"
+"此人也迎娶過%(spouse)s婚禮舉辦修改過的日期是 %(modified_date)s 婚禮舉辦的地點"
+"位於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1157
 #, python-format
 msgid ""
 "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"他也迎娶過 %(spouse)s 婚禮舉辦的不完整記錄的日期是 %(partial_date)s "
-"婚禮舉辦的地點位於 %(place)s%(endnotes)s。"
+"他也迎娶過 %(spouse)s 婚禮舉辦的不完整記錄的日期是 %(partial_date)s 婚禮舉辦"
+"的地點位於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1158
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "他也迎娶過 %(spouse)s 婚禮舉辦的日期是 %(full_date)s "
-"婚禮舉辦的地點位於%(place)s%(endnotes)s。"
+msgstr ""
+"他也迎娶過 %(spouse)s 婚禮舉辦的日期是 %(full_date)s 婚禮舉辦的地點位"
+"於%(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1159
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"他也迎娶過%(spouse)s 婚禮舉辦的修改過的日期是%(modified_date)s "
-"婚禮舉辦的地點位於 %(place)s%(endnotes)s。"
+"他也迎娶過%(spouse)s 婚禮舉辦的修改過的日期是%(modified_date)s 婚禮舉辦的地點"
+"位於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1162
 #, python-format
 msgid ""
 "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"她也迎娶過%(spouse)s 婚禮舉辦的不完整記錄的日期是%(partial_date)s "
-"婚禮舉辦的地點位於 %(place)s%(endnotes)s。"
+"她也迎娶過%(spouse)s 婚禮舉辦的不完整記錄的日期是%(partial_date)s 婚禮舉辦的"
+"地點位於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1163
 #, python-format
 msgid "She also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "她也迎娶過 %(spouse)s 婚禮舉辦的日期是 %(full_date)s "
-"婚禮舉辦的地點位於%(place)s%(endnotes)s。"
+msgstr ""
+"她也迎娶過 %(spouse)s 婚禮舉辦的日期是 %(full_date)s 婚禮舉辦的地點位"
+"於%(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1164
 #, python-format
 msgid "She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"她也迎娶過 %(spouse)s婚禮舉辦的修改過的日期是 %(modified_date)s "
-"婚禮舉辦的地點位於 %(place)s%(endnotes)s。"
+"她也迎娶過 %(spouse)s婚禮舉辦的修改過的日期是 %(modified_date)s 婚禮舉辦的地"
+"點位於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1167
 #, python-format
 msgid "Also married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"也迎娶過 %(spouse)s 婚禮舉辦的不完整記錄的日期是%(partial_date)s "
-"婚禮舉辦的地點位於%(place)s%(endnotes)s。"
+"也迎娶過 %(spouse)s 婚禮舉辦的不完整記錄的日期是%(partial_date)s 婚禮舉辦的地"
+"點位於%(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1168
 #, python-format
 msgid "Also married %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
-msgstr "也迎娶過%(spouse)s婚禮舉辦日期是 %(full_date)s 婚禮舉辦地點位於 "
+msgstr ""
+"也迎娶過%(spouse)s婚禮舉辦日期是 %(full_date)s 婚禮舉辦地點位於 "
 "%(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1169
@@ -29720,8 +29756,9 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:1175
 #, python-format
 msgid "This person married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "此人迎娶了%(spouse)s "
-"婚禮舉行的不完整記錄的日期是%(partial_date)s%(endnotes)s。"
+msgstr ""
+"此人迎娶了%(spouse)s 婚禮舉行的不完整記錄的日期"
+"是%(partial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1176
 #, python-format
@@ -29731,12 +29768,14 @@ msgstr "此人迎娶了 %(spouse)s 婚禮舉辦日期是%(full_date)s%(endnotes)
 #: ../gramps/plugins/lib/libnarrate.py:1177
 #, python-format
 msgid "This person married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "此人迎娶了%(spouse)s 婚禮舉辦修改後的日期是%(modified_date)s%(endnotes)s。"
+msgstr ""
+"此人迎娶了%(spouse)s 婚禮舉辦修改後的日期是%(modified_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1180
 #, python-format
 msgid "He married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "他迎娶了 %(spouse)s 婚禮舉辦不完整的記錄的日期是 "
+msgstr ""
+"他迎娶了 %(spouse)s 婚禮舉辦不完整的記錄的日期是 "
 "%(partial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1181
@@ -29747,12 +29786,14 @@ msgstr "他迎娶了%(spouse)s 婚禮舉辦日期是 %(full_date)s%(endnotes)s�
 #: ../gramps/plugins/lib/libnarrate.py:1182
 #, python-format
 msgid "He married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "他迎娶了 %(spouse)s 婚禮舉辦修改後的日期是%(modified_date)s%(endnotes)s。"
+msgstr ""
+"他迎娶了 %(spouse)s 婚禮舉辦修改後的日期是%(modified_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1185
 #, python-format
 msgid "She married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "她嫁給了 %(spouse)s 婚禮舉辦不完整記錄的日期是 %(partial_date)s%(endnotes)s。"
+msgstr ""
+"她嫁給了 %(spouse)s 婚禮舉辦不完整記錄的日期是 %(partial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1186
 #, python-format
@@ -29762,12 +29803,14 @@ msgstr "她嫁給了%(spouse)s 婚禮舉辦的日期是 %(full_date)s%(endnotes)
 #: ../gramps/plugins/lib/libnarrate.py:1187
 #, python-format
 msgid "She married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "她嫁給了%(spouse)s 婚禮舉辦的修改後的日期是%(modified_date)s%(endnotes)s。"
+msgstr ""
+"她嫁給了%(spouse)s 婚禮舉辦的修改後的日期是%(modified_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1190
 #, python-format
 msgid "Married %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "迎娶了%(spouse)s 婚禮舉辦的不完整記錄的日期是%(partial_date)s%(endnotes)s。"
+msgstr ""
+"迎娶了%(spouse)s 婚禮舉辦的不完整記錄的日期是%(partial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1191
 #, python-format
@@ -29777,12 +29820,14 @@ msgstr "迎娶了 %(spouse)s 婚禮舉辦的日期是%(full_date)s%(endnotes)s�
 #: ../gramps/plugins/lib/libnarrate.py:1192
 #, python-format
 msgid "Married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "迎娶了%(spouse)s婚禮舉辦的修改後的日期是 %(modified_date)s%(endnotes)s。"
+msgstr ""
+"迎娶了%(spouse)s婚禮舉辦的修改後的日期是 %(modified_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1198
 #, python-format
 msgid "This person also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "此人也迎娶了%(spouse)s 婚禮舉辦的不完整的日期是 "
+msgstr ""
+"此人也迎娶了%(spouse)s 婚禮舉辦的不完整的日期是 "
 "%(partial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1199
@@ -29793,13 +29838,15 @@ msgstr "此人也迎娶了%(spouse)s 婚禮舉辦的日期是 %(full_date)s%(end
 #: ../gramps/plugins/lib/libnarrate.py:1200
 #, python-format
 msgid "This person also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "此人也迎娶了 %(spouse)s "
-"婚禮舉辦的修改後的日期是%(modified_date)s%(endnotes)s。"
+msgstr ""
+"此人也迎娶了 %(spouse)s 婚禮舉辦的修改後的日期"
+"是%(modified_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1203
 #, python-format
 msgid "He also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "他也曾娶過%(spouse)s 婚禮舉辦的不完整記錄的日期是 "
+msgstr ""
+"他也曾娶過%(spouse)s 婚禮舉辦的不完整記錄的日期是 "
 "%(partial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1204
@@ -29810,12 +29857,14 @@ msgstr "他也娶過%(spouse)s婚禮舉辦的日期是 %(full_date)s%(endnotes)s
 #: ../gramps/plugins/lib/libnarrate.py:1205
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "他也娶過 %(spouse)s 婚禮舉辦的不完整的日期是%(modified_date)s%(endnotes)s。"
+msgstr ""
+"他也娶過 %(spouse)s 婚禮舉辦的不完整的日期是%(modified_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1208
 #, python-format
 msgid "She also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "她也嫁給過%(spouse)s 婚禮舉辦的不完整的日期是 %(partial_date)s%(endnotes)s。"
+msgstr ""
+"她也嫁給過%(spouse)s 婚禮舉辦的不完整的日期是 %(partial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1209
 #, python-format
@@ -29825,13 +29874,15 @@ msgstr "她也曾嫁給過 %(spouse)s 婚禮舉辦的日期是 %(full_date)s%(en
 #: ../gramps/plugins/lib/libnarrate.py:1210
 #, python-format
 msgid "She also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "她也曾嫁給過%(spouse)s "
-"婚禮舉辦的修改後的日期是%(modified_date)s%(endnotes)s。"
+msgstr ""
+"她也曾嫁給過%(spouse)s 婚禮舉辦的修改後的日期"
+"是%(modified_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1213
 #, python-format
 msgid "Also married %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "也曾迎娶過 %(spouse)s 婚禮舉辦的不完整的日期是%(partial_date)s%(endnotes)s。"
+msgstr ""
+"也曾迎娶過 %(spouse)s 婚禮舉辦的不完整的日期是%(partial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1214
 #, python-format
@@ -29841,7 +29892,8 @@ msgstr "也曾迎娶過%(spouse)s婚禮舉辦的日期是 %(full_date)s%(endnote
 #: ../gramps/plugins/lib/libnarrate.py:1215
 #, python-format
 msgid "Also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "也曾迎娶過%(spouse)s 婚禮舉辦修改過的日期是%(modified_date)s%(endnotes)s。"
+msgstr ""
+"也曾迎娶過%(spouse)s 婚禮舉辦修改過的日期是%(modified_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1220
 #, python-format
@@ -29938,8 +29990,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s on %(full_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
-"此人處於未婚姻的狀態，同居人員為%(spouse)s 開始的日期是 %(full_date)s "
-"地點位於 %(place)s%(endnotes)s。"
+"此人處於未婚姻的狀態，同居人員為%(spouse)s 開始的日期是 %(full_date)s 地點位"
+"於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1261
 #, python-format
@@ -29964,7 +30016,8 @@ msgstr ""
 msgid ""
 "He had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
-msgstr "他開始未婚同居，同居人為%(spouse)s 開始日期是 %(full_date)s 地點位於 "
+msgstr ""
+"他開始未婚同居，同居人為%(spouse)s 開始日期是 %(full_date)s 地點位於 "
 "%(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1272
@@ -29973,8 +30026,8 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"他開始未婚同居，同居人為 %(spouse)s 開始的修改過的日期是%(modified_date)s "
-"地點位於 %(place)s%(endnotes)s。"
+"他開始未婚同居，同居人為 %(spouse)s 開始的修改過的日期是%(modified_date)s 地"
+"點位於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1277
 #, python-format
@@ -29982,15 +30035,16 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"她開始未婚同居，同住人是 %(spouse)s 開始的不完整記錄的日期是 %(partial_date)"
-"s 地點位於%(place)s%(endnotes)s。"
+"她開始未婚同居，同住人是 %(spouse)s 開始的不完整記錄的日期是 "
+"%(partial_date)s 地點位於%(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1280
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
-msgstr "她開始未婚同居，同住人是%(spouse)s 開始日期是 %(full_date)s 地點位於 "
+msgstr ""
+"她開始未婚同居，同住人是%(spouse)s 開始日期是 %(full_date)s 地點位於 "
 "%(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1283
@@ -29999,8 +30053,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"她開始未婚同居，同住人是 %(spouse)s開始的修改過的日期是 %(modified_date)s "
-"地點位於 %(place)s%(endnotes)s。"
+"她開始未婚同居，同住人是 %(spouse)s開始的修改過的日期是 %(modified_date)s 地"
+"點位於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1288
 #: ../gramps/plugins/lib/libnarrate.py:1335
@@ -30009,8 +30063,8 @@ msgid ""
 "Unmarried relationship with %(spouse)s %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"開始未婚同居，同居人為%(spouse)s 開始的不完整資訊的日期是 %(partial_date)s "
-"地點位於 %(place)s%(endnotes)s。"
+"開始未婚同居，同居人為%(spouse)s 開始的不完整資訊的日期是 %(partial_date)s 地"
+"點位於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1291
 #: ../gramps/plugins/lib/libnarrate.py:1338
@@ -30018,7 +30072,8 @@ msgstr ""
 msgid ""
 "Unmarried relationship with %(spouse)s %(full_date)s in "
 "%(place)s%(endnotes)s."
-msgstr "開始未婚同居，同居人為%(spouse)s 開始日期是 %(full_date)s 地點位於 "
+msgstr ""
+"開始未婚同居，同居人為%(spouse)s 開始日期是 %(full_date)s 地點位於 "
 "%(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1294
@@ -30028,8 +30083,8 @@ msgid ""
 "Unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"開始未婚同居，同居人為 %(spouse)s 開始的修改過的日期是%(modified_date)s "
-"地點位於 %(place)s%(endnotes)s。"
+"開始未婚同居，同居人為 %(spouse)s 開始的修改過的日期是%(modified_date)s 地點"
+"位於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1302
 #, python-format
@@ -30045,7 +30100,8 @@ msgstr ""
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s on "
 "%(full_date)s in %(place)s%(endnotes)s."
-msgstr "此人開始未婚同居，同居人為%(spouse)s 開始日期是 %(full_date)s 地點位於 "
+msgstr ""
+"此人開始未婚同居，同居人為%(spouse)s 開始日期是 %(full_date)s 地點位於 "
 "%(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1308
@@ -30063,15 +30119,16 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"他開始未婚同居，同住人是 %(spouse)s 開始的不完整記錄的日期是 %(partial_date)"
-"s 地點位於%(place)s%(endnotes)s。"
+"他開始未婚同居，同住人是 %(spouse)s 開始的不完整記錄的日期是 "
+"%(partial_date)s 地點位於%(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1316
 #, python-format
 msgid ""
 "He also had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
-msgstr "他開始未婚同居，同居人為%(spouse)s 開始日期是 %(full_date)s 地點位於 "
+msgstr ""
+"他開始未婚同居，同居人為%(spouse)s 開始日期是 %(full_date)s 地點位於 "
 "%(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1319
@@ -30080,8 +30137,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"他開始未婚同居，同居人為 %(spouse)s 開始的修改過的日期是%(modified_date)s "
-"地點位於 %(place)s%(endnotes)s。"
+"他開始未婚同居，同居人為 %(spouse)s 開始的修改過的日期是%(modified_date)s 地"
+"點位於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1324
 #, python-format
@@ -30089,15 +30146,16 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(partial_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
-"她開始未婚同居，同住人是 %(spouse)s 開始的不完整記錄的日期是 %(partial_date)"
-"s 地點位於%(place)s%(endnotes)s。"
+"她開始未婚同居，同住人是 %(spouse)s 開始的不完整記錄的日期是 "
+"%(partial_date)s 地點位於%(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1327
 #, python-format
 msgid ""
 "She also had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
-msgstr "她開始未婚同居，同居人為%(spouse)s 開始日期是 %(full_date)s 地點位於 "
+msgstr ""
+"她開始未婚同居，同居人為%(spouse)s 開始日期是 %(full_date)s 地點位於 "
 "%(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1330
@@ -30106,15 +30164,16 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"她開始未婚同居，同居人為 %(spouse)s 開始的修改過的日期是%(modified_date)s "
-"地點位於 %(place)s%(endnotes)s。"
+"她開始未婚同居，同居人為 %(spouse)s 開始的修改過的日期是%(modified_date)s 地"
+"點位於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1349
 #, python-format
 msgid ""
 "This person had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s%(endnotes)s."
-msgstr "此人未婚同居，同居人為 %(spouse)s 開始的不完整記錄的日期是 "
+msgstr ""
+"此人未婚同居，同居人為 %(spouse)s 開始的不完整記錄的日期是 "
 "%(partial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1352
@@ -30122,7 +30181,8 @@ msgstr "此人未婚同居，同居人為 %(spouse)s 開始的不完整記錄的
 msgid ""
 "This person had an unmarried relationship with %(spouse)s on "
 "%(full_date)s%(endnotes)s."
-msgstr "此人開始未婚同居，同居人為 %(spouse)s 開始的日期是 "
+msgstr ""
+"此人開始未婚同居，同居人為 %(spouse)s 開始的日期是 "
 "%(full_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1355
@@ -30130,15 +30190,17 @@ msgstr "此人開始未婚同居，同居人為 %(spouse)s 開始的日期是 "
 msgid ""
 "This person had an unmarried relationship with %(spouse)s "
 "%(modified_date)s%(endnotes)s."
-msgstr "此人開始未婚同居，同居人為 %(spouse)s "
-"開始的修改過的日期為%(modified_date)s%(endnotes)s。"
+msgstr ""
+"此人開始未婚同居，同居人為 %(spouse)s 開始的修改過的日期"
+"為%(modified_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1360
 #, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s%(endnotes)s."
-msgstr "他開始未婚同居，同居人為 %(spouse)s 開始的不完整記錄的日期是 "
+msgstr ""
+"他開始未婚同居，同居人為 %(spouse)s 開始的不完整記錄的日期是 "
 "%(partial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1363
@@ -30146,14 +30208,16 @@ msgstr "他開始未婚同居，同居人為 %(spouse)s 開始的不完整記錄
 msgid ""
 "He had an unmarried relationship with %(spouse)s on "
 "%(full_date)s%(endnotes)s."
-msgstr "他開始未婚同居，同居人為 %(spouse)s 開始的日期是 %(full_date)s%(endnotes)s。"
+msgstr ""
+"他開始未婚同居，同居人為 %(spouse)s 開始的日期是 %(full_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1366
 #, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s "
 "%(modified_date)s%(endnotes)s."
-msgstr "他開始未婚同居，同居人為 %(spouse)s開始的修改的日期是 "
+msgstr ""
+"他開始未婚同居，同居人為 %(spouse)s開始的修改的日期是 "
 "%(modified_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1371
@@ -30161,47 +30225,54 @@ msgstr "他開始未婚同居，同居人為 %(spouse)s開始的修改的日期�
 msgid ""
 "She had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s%(endnotes)s."
-msgstr "她開始未婚同居，同居人為 %(spouse)s "
-"開始的不完整記錄的日期是%(partial_date)s%(endnotes)s。"
+msgstr ""
+"她開始未婚同居，同居人為 %(spouse)s 開始的不完整記錄的日期"
+"是%(partial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1374
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s on "
 "%(full_date)s%(endnotes)s."
-msgstr "她開始未婚同居，同居人為 %(spouse)s 開始的日期為 %(full_date)s%(endnotes)s。"
+msgstr ""
+"她開始未婚同居，同居人為 %(spouse)s 開始的日期為 %(full_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1377
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s "
 "%(modified_date)s%(endnotes)s."
-msgstr "她開始未婚同居，同居人為%(spouse)s "
-"開始的修改的日期為%(modified_date)s%(endnotes)s。"
+msgstr ""
+"她開始未婚同居，同居人為%(spouse)s 開始的修改的日期"
+"為%(modified_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1381
 #, python-format
 msgid "Unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "未婚同居關係確立， 同居人為%(spouse)s "
-"開始的不完整記錄的日期為%(partial_date)s%(endnotes)s。"
+msgstr ""
+"未婚同居關係確立， 同居人為%(spouse)s 開始的不完整記錄的日期"
+"為%(partial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1382
 #, python-format
 msgid "Unmarried relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr "未婚同居關係確立，同居人為 %(spouse)s開始的日期為 %(full_date)s%(endnotes)s。"
+msgstr ""
+"未婚同居關係確立，同居人為 %(spouse)s開始的日期為 %(full_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1383
 #, python-format
 msgid "Unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "未婚同居關係確認，同居人為 %(spouse)s "
-"開始的修改後的日期為%(modified_date)s%(endnotes)s。"
+msgstr ""
+"未婚同居關係確認，同居人為 %(spouse)s 開始的修改後的日期"
+"為%(modified_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1390
 #, python-format
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s%(endnotes)s."
-msgstr "此人的未婚同居關係確立，同居人也是 %(spouse)s 開始的不完整記錄的日期為 "
+msgstr ""
+"此人的未婚同居關係確立，同居人也是 %(spouse)s 開始的不完整記錄的日期為 "
 "%(partial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1393
@@ -30209,7 +30280,8 @@ msgstr "此人的未婚同居關係確立，同居人也是 %(spouse)s 開始的
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s on "
 "%(full_date)s%(endnotes)s."
-msgstr "此人的未婚同居關係確立，同居人也是 %(spouse)s 開始的日期為 "
+msgstr ""
+"此人的未婚同居關係確立，同居人也是 %(spouse)s 開始的日期為 "
 "%(full_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1396
@@ -30217,7 +30289,8 @@ msgstr "此人的未婚同居關係確立，同居人也是 %(spouse)s 開始的
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s "
 "%(modified_date)s%(endnotes)s."
-msgstr "此人的未婚同居關係確立，同居人也是 %(spouse)s開始的修改後的日期為 "
+msgstr ""
+"此人的未婚同居關係確立，同居人也是 %(spouse)s開始的修改後的日期為 "
 "%(modified_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1401
@@ -30225,7 +30298,8 @@ msgstr "此人的未婚同居關係確立，同居人也是 %(spouse)s開始的�
 msgid ""
 "He also had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s%(endnotes)s."
-msgstr "他的未婚同居關係確認，同居人也是 %(spouse)s 開始的不完整記錄的日期為 "
+msgstr ""
+"他的未婚同居關係確認，同居人也是 %(spouse)s 開始的不完整記錄的日期為 "
 "%(partial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1404
@@ -30233,7 +30307,8 @@ msgstr "他的未婚同居關係確認，同居人也是 %(spouse)s 開始的不
 msgid ""
 "He also had an unmarried relationship with %(spouse)s on "
 "%(full_date)s%(endnotes)s."
-msgstr "他的未婚同居關係確認，同居人也是 %(spouse)s 開始的日期為 "
+msgstr ""
+"他的未婚同居關係確認，同居人也是 %(spouse)s 開始的日期為 "
 "%(full_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1407
@@ -30241,15 +30316,17 @@ msgstr "他的未婚同居關係確認，同居人也是 %(spouse)s 開始的日
 msgid ""
 "He also had an unmarried relationship with %(spouse)s "
 "%(modified_date)s%(endnotes)s."
-msgstr "他的未婚同居關係確認，同居人也是 %(spouse)s "
-"開始的修改後的日期為%(modified_date)s%(endnotes)s。"
+msgstr ""
+"他的未婚同居關係確認，同居人也是 %(spouse)s 開始的修改後的日期"
+"為%(modified_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1412
 #, python-format
 msgid ""
 "She also had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s%(endnotes)s."
-msgstr "她的未婚同居關係確認，同居人也是 %(spouse)s 開始的不完整的日期為 "
+msgstr ""
+"她的未婚同居關係確認，同居人也是 %(spouse)s 開始的不完整的日期為 "
 "%(partial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1415
@@ -30257,7 +30334,8 @@ msgstr "她的未婚同居關係確認，同居人也是 %(spouse)s 開始的不
 msgid ""
 "She also had an unmarried relationship with %(spouse)s on "
 "%(full_date)s%(endnotes)s."
-msgstr "她的未婚同居關係確認，同居人也是 %(spouse)s 開始的日期為 "
+msgstr ""
+"她的未婚同居關係確認，同居人也是 %(spouse)s 開始的日期為 "
 "%(full_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1418
@@ -30265,28 +30343,32 @@ msgstr "她的未婚同居關係確認，同居人也是 %(spouse)s 開始的日
 msgid ""
 "She also had an unmarried relationship with %(spouse)s "
 "%(modified_date)s%(endnotes)s."
-msgstr "她的未婚同居關係確認，同居人也是 %(spouse)s "
-"開始的修改後的日期為%(modified_date)s%(endnotes)s。"
+msgstr ""
+"她的未婚同居關係確認，同居人也是 %(spouse)s 開始的修改後的日期"
+"為%(modified_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1422
 #, python-format
 msgid ""
 "Also unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "未婚同居關係確認，同居人也是 %(spouse)s "
-"開始的不完整記錄的日期為%(partial_date)s%(endnotes)s。"
+msgstr ""
+"未婚同居關係確認，同居人也是 %(spouse)s 開始的不完整記錄的日期"
+"為%(partial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1423
 #, python-format
 msgid "Also unmarried relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr "未婚同居關係確認，同居人也是 %(spouse)s "
-"開始的日期為%(full_date)s%(endnotes)s。"
+msgstr ""
+"未婚同居關係確認，同居人也是 %(spouse)s 開始的日期"
+"為%(full_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1424
 #, python-format
 msgid ""
 "Also unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "未婚同居關係確認，同居人也是 %(spouse)s "
-"開始的修改後的日期為%(modified_date)s%(endnotes)s。"
+msgstr ""
+"未婚同居關係確認，同居人也是 %(spouse)s 開始的修改後的日期"
+"為%(modified_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1430
 #, python-format
@@ -30395,8 +30477,8 @@ msgid ""
 "This person had a relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"此人未婚同居關係確認，同居人為 %(spouse)s 開始日期為 %(full_date)s "
-"居住地點位於 %(place)s%(endnotes)s。"
+"此人未婚同居關係確認，同居人為 %(spouse)s 開始日期為 %(full_date)s 居住地點位"
+"於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1491
 #, python-format
@@ -30422,8 +30504,8 @@ msgid ""
 "He had a relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"他的未婚同居關係確認，同居人為 %(spouse)s 開始的日期為 %(full_date)s "
-"居住的地點位於 %(place)s%(endnotes)s。"
+"他的未婚同居關係確認，同居人為 %(spouse)s 開始的日期為 %(full_date)s 居住的地"
+"點位於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1502
 #, python-format
@@ -30431,8 +30513,8 @@ msgid ""
 "He had a relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"他的未婚同居關係確認，同居人為 %(spouse)s "
-"開始的修改後的日期為%(modified_date)s 居住地點位於 %(place)s%(endnotes)s。"
+"他的未婚同居關係確認，同居人為 %(spouse)s 開始的修改後的日期"
+"為%(modified_date)s 居住地點位於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1507
 #, python-format
@@ -30449,8 +30531,8 @@ msgid ""
 "She had a relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"她的未婚同居關係確認，同居人為 %(spouse)s 開始的日期為 %(full_date)s "
-"居住地點位於 %(place)s%(endnotes)s。"
+"她的未婚同居關係確認，同居人為 %(spouse)s 開始的日期為 %(full_date)s 居住地點"
+"位於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1513
 #, python-format
@@ -30458,15 +30540,15 @@ msgid ""
 "She had a relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"她的未婚同居關係確認，同居人為 %(spouse)s "
-"開始的修改後的日期為%(modified_date)s 居住地點位於 %(place)s%(endnotes)s。"
+"她的未婚同居關係確認，同居人為 %(spouse)s 開始的修改後的日期"
+"為%(modified_date)s 居住地點位於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1517
 #, python-format
 msgid "Relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"未婚同居關係確認，同居人為 %(spouse)s 開始的不完整記錄的日期為%(partial_date)"
-"s 居住地點位於 %(place)s%(endnotes)s。"
+"未婚同居關係確認，同居人為 %(spouse)s 開始的不完整記錄的日期"
+"為%(partial_date)s 居住地點位於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1518
 #, python-format
@@ -30480,8 +30562,8 @@ msgstr ""
 msgid ""
 "Relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"未婚同居關係確認，同居人為 %(spouse)s 開始的修改的日期為%(modified_date)s "
-"居住地點位於 %(place)s%(endnotes)s。"
+"未婚同居關係確認，同居人為 %(spouse)s 開始的修改的日期為%(modified_date)s 居"
+"住地點位於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1526
 #, python-format
@@ -30498,8 +30580,8 @@ msgid ""
 "This person also had a relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"此人未婚同居關係確認，同居人也是 %(spouse)s 開始日期為 %(full_date)s "
-"居住地點位於 %(place)s%(endnotes)s。"
+"此人未婚同居關係確認，同居人也是 %(spouse)s 開始日期為 %(full_date)s 居住地點"
+"位於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1532
 #, python-format
@@ -30516,9 +30598,8 @@ msgid ""
 "He also had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"他的未婚同居關係確認，同居人也是 %(spouse)s "
-"開始的不完整記錄的日期為%(partial_date)s 居住的地點位於 "
-"%(place)s%(endnotes)s。"
+"他的未婚同居關係確認，同居人也是 %(spouse)s 開始的不完整記錄的日期"
+"為%(partial_date)s 居住的地點位於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1540
 #, python-format
@@ -30526,8 +30607,8 @@ msgid ""
 "He also had a relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"他的未婚同居關係確認，同居人也是 %(spouse)s 開始的日期為 %(full_date)s "
-"居住的地點位於 %(place)s%(endnotes)s。"
+"他的未婚同居關係確認，同居人也是 %(spouse)s 開始的日期為 %(full_date)s 居住的"
+"地點位於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1543
 #, python-format
@@ -30544,9 +30625,8 @@ msgid ""
 "She also had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"她的未婚同居關係確認，同居人也是 %(spouse)s "
-"開始的不完整記錄的日期為%(partial_date)s 居住的地點位於 "
-"%(place)s%(endnotes)s。"
+"她的未婚同居關係確認，同居人也是 %(spouse)s 開始的不完整記錄的日期"
+"為%(partial_date)s 居住的地點位於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1551
 #, python-format
@@ -30554,8 +30634,8 @@ msgid ""
 "She also had a relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"她的未婚同居關係確認，同居人也是 %(spouse)s 開始的日期為 %(full_date)s "
-"居住地點位於 %(place)s%(endnotes)s。"
+"她的未婚同居關係確認，同居人也是 %(spouse)s 開始的日期為 %(full_date)s 居住地"
+"點位於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1554
 #, python-format
@@ -30563,25 +30643,24 @@ msgid ""
 "She also had a relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"她的未婚同居關係確認，同居人也是 %(spouse)s "
-"開始的修改後的日期為%(modified_date)s 居住地點位於 %(place)s%(endnotes)s。"
+"她的未婚同居關係確認，同居人也是 %(spouse)s 開始的修改後的日期"
+"為%(modified_date)s 居住地點位於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1559
 #, python-format
 msgid ""
 "Also relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"未婚同居關係確認，同居人也是 %(spouse)s "
-"開始的不完整記錄的日期為%(partial_date)s 居住的地點位於 "
-"%(place)s%(endnotes)s。"
+"未婚同居關係確認，同居人也是 %(spouse)s 開始的不完整記錄的日期"
+"為%(partial_date)s 居住的地點位於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1561
 #, python-format
 msgid ""
 "Also relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"未婚同居關係確認，同居人也是 %(spouse)s 開始的日期位於%(full_date)s "
-"居住的地點位於 %(place)s%(endnotes)s。"
+"未婚同居關係確認，同居人也是 %(spouse)s 開始的日期位於%(full_date)s 居住的地"
+"點位於 %(place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1563
 #, python-format
@@ -30596,83 +30675,96 @@ msgstr ""
 msgid ""
 "This person had a relationship with %(spouse)s in "
 "%(partial_date)s%(endnotes)s."
-msgstr "此人未婚同居關係確認，同居人為 %(spouse)s "
-"開始的不完整記錄的日期為%(partial_date)s%(endnotes)s。"
+msgstr ""
+"此人未婚同居關係確認，同居人為 %(spouse)s 開始的不完整記錄的日期"
+"為%(partial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1574
 #, python-format
 msgid ""
 "This person had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "此人未婚同居關係確認，同居人為 %(spouse)s "
-"開始的日期為%(full_date)s%(endnotes)s。"
+msgstr ""
+"此人未婚同居關係確認，同居人為 %(spouse)s 開始的日期"
+"為%(full_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1577
 #, python-format
 msgid ""
 "This person had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "此人的未婚同居關係確認，同居人為 %(spouse)s "
-"開始的修改後的日期為%(modified_date)s%(endnotes)s。"
+msgstr ""
+"此人的未婚同居關係確認，同居人為 %(spouse)s 開始的修改後的日期"
+"為%(modified_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1581
 #, python-format
 msgid "He had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "他的未婚同居關係確認，同居人為 %(spouse)s 開始的不完整記錄的日期為 "
+msgstr ""
+"他的未婚同居關係確認，同居人為 %(spouse)s 開始的不完整記錄的日期為 "
 "%(partial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1582
 #, python-format
 msgid "He had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "他的未婚同居關係確認，同居人為 %(spouse)s 開始的日期為 "
+msgstr ""
+"他的未婚同居關係確認，同居人為 %(spouse)s 開始的日期為 "
 "%(full_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1583
 #, python-format
 msgid "He had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "他的未婚同居關係確認，同居人為 %(spouse)s "
-"開始的修改後的日期為%(modified_date)s%(endnotes)s。"
+msgstr ""
+"他的未婚同居關係確認，同居人為 %(spouse)s 開始的修改後的日期"
+"為%(modified_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1586
 #, python-format
 msgid "She had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "她的未婚同居關係確認，同居人為 %(spouse)s 開始的不完整記錄的日期為 "
+msgstr ""
+"她的未婚同居關係確認，同居人為 %(spouse)s 開始的不完整記錄的日期為 "
 "%(partial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1587
 #, python-format
 msgid "She had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "她的未婚同居關係確認，同居人為 %(spouse)s 開始的日期為 "
+msgstr ""
+"她的未婚同居關係確認，同居人為 %(spouse)s 開始的日期為 "
 "%(full_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1588
 #, python-format
 msgid "She had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "她的未婚同居關係確認，同居人為 %(spouse)s "
-"開始的修改後的日期為%(modified_date)s%(endnotes)s。"
+msgstr ""
+"她的未婚同居關係確認，同居人為 %(spouse)s 開始的修改後的日期"
+"為%(modified_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1591
 #, python-format
 msgid "Relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "未婚同居關係確認，同居人為 %(spouse)s開始的不完整記錄的日期為 "
+msgstr ""
+"未婚同居關係確認，同居人為 %(spouse)s開始的不完整記錄的日期為 "
 "%(partial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1592
 #, python-format
 msgid "Relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr "未婚同居關係確認，同居人為 %(spouse)s 開始的日期為 "
+msgstr ""
+"未婚同居關係確認，同居人為 %(spouse)s 開始的日期為 "
 "%(full_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1593
 #, python-format
 msgid "Relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "未婚同居關係確認，同居人為 %(spouse)s "
-"開始的修改後的日期為%(modified_date)s%(endnotes)s。"
+msgstr ""
+"未婚同居關係確認，同居人為 %(spouse)s 開始的修改後的日期"
+"為%(modified_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1600
 #, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s in "
 "%(partial_date)s%(endnotes)s."
-msgstr "此人未婚同居關係確認，同居人也是 %(spouse)s 開始的不完整記錄的日期為 "
+msgstr ""
+"此人未婚同居關係確認，同居人也是 %(spouse)s 開始的不完整記錄的日期為 "
 "%(partial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1603
@@ -30680,7 +30772,8 @@ msgstr "此人未婚同居關係確認，同居人也是 %(spouse)s 開始的不
 msgid ""
 "This person also had a relationship with %(spouse)s on "
 "%(full_date)s%(endnotes)s."
-msgstr "此人未婚同居關係確認，同居人也是 %(spouse)s 開始的日期為 "
+msgstr ""
+"此人未婚同居關係確認，同居人也是 %(spouse)s 開始的日期為 "
 "%(full_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1606
@@ -30688,68 +30781,78 @@ msgstr "此人未婚同居關係確認，同居人也是 %(spouse)s 開始的日
 msgid ""
 "This person also had a relationship with %(spouse)s "
 "%(modified_date)s%(endnotes)s."
-msgstr "此人未婚同居關係確認，同居人也是 %(spouse)s "
-"開始的修改後的日期為%(modified_date)s%(endnotes)s。"
+msgstr ""
+"此人未婚同居關係確認，同居人也是 %(spouse)s 開始的修改後的日期"
+"為%(modified_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1611
 #, python-format
 msgid ""
 "He also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "他的未婚同居關係確認，同居人也是 %(spouse)s 開始的不完整記錄的日期為 "
+msgstr ""
+"他的未婚同居關係確認，同居人也是 %(spouse)s 開始的不完整記錄的日期為 "
 "%(partial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1613
 #, python-format
 msgid ""
 "He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "他的未婚同居關係確認，同居人也是 %(spouse)s 開始的日期為 "
+msgstr ""
+"他的未婚同居關係確認，同居人也是 %(spouse)s 開始的日期為 "
 "%(full_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1614
 #, python-format
 msgid ""
 "He also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "他的未婚同居關係確認，同居人也是 %(spouse)s "
-"開始的修改後的日期為%(modified_date)s%(endnotes)s。"
+msgstr ""
+"他的未婚同居關係確認，同居人也是 %(spouse)s 開始的修改後的日期"
+"為%(modified_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1618
 #, python-format
 msgid ""
 "She also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "她的未婚同居關係確認，同居人也是 %(spouse)s 開始的不完整記錄的日期為 "
+msgstr ""
+"她的未婚同居關係確認，同居人也是 %(spouse)s 開始的不完整記錄的日期為 "
 "%(partial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1620
 #, python-format
 msgid ""
 "She also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "她的未婚同居關係確認，同居人也是 %(spouse)s 開始的日期為 "
+msgstr ""
+"她的未婚同居關係確認，同居人也是 %(spouse)s 開始的日期為 "
 "%(full_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1621
 #, python-format
 msgid ""
 "She also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "她的未婚同居關係確認，同居人也是 %(spouse)s "
-"開始的修改後的日期為%(modified_date)s%(endnotes)s。"
+msgstr ""
+"她的未婚同居關係確認，同居人也是 %(spouse)s 開始的修改後的日期"
+"為%(modified_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1624
 #, python-format
 msgid "Also relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "未婚同居關係確認，同居人也是 %(spouse)s "
-"開始的不完整記錄的日期為%(partial_date)s%(endnotes)s。"
+msgstr ""
+"未婚同居關係確認，同居人也是 %(spouse)s 開始的不完整記錄的日期"
+"為%(partial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1625
 #, python-format
 msgid "Also relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr "未婚同居關係確認，同居人也是 %(spouse)s "
-"開始的日期為%(full_date)s%(endnotes)s。"
+msgstr ""
+"未婚同居關係確認，同居人也是 %(spouse)s 開始的日期"
+"為%(full_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1626
 #, python-format
 msgid "Also relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "未婚同居關係確認，同居人也是 %(spouse)s "
-"開始的修改後的日期為%(modified_date)s%(endnotes)s。"
+msgstr ""
+"未婚同居關係確認，同居人也是 %(spouse)s 開始的修改後的日期"
+"為%(modified_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1632
 #, python-format
@@ -31837,7 +31940,7 @@ msgid "Open on maps.google.com"
 msgstr "在 maps.google.com 上開啟地圖"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:75
-#: ../gramps/plugins/webreport/narrativeweb.py:2599
+#: ../gramps/plugins/webreport/narrativeweb.py:2603
 msgid "OpenStreetMap"
 msgstr "開放街圖"
 
@@ -32254,9 +32357,13 @@ msgid "Father lineage for %s"
 msgstr "%s 的父系血統"
 
 #: ../gramps/plugins/quickview/lineage.py:57
+#, fuzzy
+#| msgid ""
+#| "This report shows the father lineage, also called patronymic lineage or Y-"
+#| "line. People in this lineage all share the same Y-chromosome."
 msgid ""
-"This report shows the father lineage, also called patronymic lineage or Y-"
-"line. People in this lineage all share the same Y-chromosome."
+"This report shows the father lineage, also called the patrilineal lineage or "
+"Y-line. People in this lineage all share the same Y-chromosomes."
 msgstr ""
 "本報告顯示父親的後裔，即家族血統或者 Y－line.在本家族中的人都擁有Y-"
 "chromosone 染色體. "
@@ -32281,9 +32388,15 @@ msgid "Mother lineage for %s"
 msgstr "%s的母系血統"
 
 #: ../gramps/plugins/quickview/lineage.py:91
+#, fuzzy
+#| msgid ""
+#| "This report shows the mother lineage, also called matronymic lineage "
+#| "mtDNA lineage. People in this lineage all share the same Mitochondrial "
+#| "DNA (mtDNA)."
 msgid ""
-"This report shows the mother lineage, also called matronymic lineage mtDNA "
-"lineage. People in this lineage all share the same Mitochondrial DNA (mtDNA)."
+"This report shows the mother lineage, also called the matrilineal lineage "
+"mtDNA lineage. People in this lineage all share the same Mitochondrial DNA "
+"(mtDNA)."
 msgstr ""
 "本報告顯示了母系後裔，即母性的族裔，或者M－line. 在本家族中的成員都擁有相同的"
 "DNA（mtDNA）."
@@ -33127,7 +33240,8 @@ msgstr "%s, "
 #: ../gramps/plugins/textreport/detancestralreport.py:503
 #, python-format
 msgid "%(event_role)s at %(event_name)s of %(primary_person)s: %(event_text)s"
-msgstr "%(primary_person)s 在 %(event_name)s 中的 %(event_role)s：%(event_text)s"
+msgstr ""
+"%(primary_person)s 在 %(event_name)s 中的 %(event_role)s：%(event_text)s"
 
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/plugins/textreport/detancestralreport.py:523
@@ -37886,7 +38000,8 @@ msgid ""
 "by their surname, with one of the following: Address, Residence, or Web "
 "Links. Selecting the person&#8217;s name will take you to their individual "
 "Address Book page."
-msgstr "本頁包含資料庫中所有個體成員的索引，按姓氏排序，並包含以下內容之一：地址、住"
+msgstr ""
+"本頁包含資料庫中所有個體成員的索引，按姓氏排序，並包含以下內容之一：地址、住"
 "址或網頁連結。選擇成員的姓名將帶你進入其個人通訊錄頁面。"
 
 #: ../gramps/plugins/webreport/addressbooklist.py:117
@@ -37960,7 +38075,7 @@ msgstr "縮圖"
 #: ../gramps/plugins/webreport/basepage.py:1908
 #: ../gramps/plugins/webreport/basepage.py:2088
 #: ../gramps/plugins/webreport/download.py:94
-#: ../gramps/plugins/webreport/narrativeweb.py:2440
+#: ../gramps/plugins/webreport/narrativeweb.py:2444
 msgid "Download"
 msgstr "下載"
 
@@ -38199,7 +38314,8 @@ msgid ""
 "This page contains an index of all the families/ relationships in the "
 "database, sorted by their family name/ surname. Clicking on a person&#8217;s "
 "name will take you to their family/ relationship&#8217;s page."
-msgstr "本頁包含資料庫中所有家庭或關係的索引，按家族名稱或姓氏排序。點擊成員的姓名將"
+msgstr ""
+"本頁包含資料庫中所有家庭或關係的索引，按家族名稱或姓氏排序。點擊成員的姓名將"
 "帶你進入其家人／關係頁面。"
 
 #: ../gramps/plugins/webreport/family.py:558
@@ -38255,8 +38371,8 @@ msgid ""
 "%(strong1_strt)s%(page_number)d%(strong_end)s of "
 "%(strong2_strt)s%(total_pages)d%(strong_end)s"
 msgstr ""
-"%(strong1_strt)s第%(page_number)d頁%(strong_end)s，%(strong2_strt)s共%(total_"
-"pages)d頁%(strong_end)s"
+"%(strong1_strt)s第%(page_number)d頁%(strong_end)s，%(strong2_strt)s"
+"共%(total_pages)d頁%(strong_end)s"
 
 #: ../gramps/plugins/webreport/media.py:456
 msgid "The file has been moved or deleted."
@@ -38304,425 +38420,425 @@ msgstr "缺失媒體物件："
 msgid "Constructing list of other objects..."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:918
+#: ../gramps/plugins/webreport/narrativeweb.py:922
 #, fuzzy, python-format
 msgid "Family of %(husband)s and %(spouse)s"
 msgstr "%(father1)s 和 %(mother1)s 的家庭圖表"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:925
 #: ../gramps/plugins/webreport/narrativeweb.py:929
+#: ../gramps/plugins/webreport/narrativeweb.py:933
 #, fuzzy, python-format
 msgid "Family of %s"
 msgstr "家庭筆記"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1312
+#: ../gramps/plugins/webreport/narrativeweb.py:1316
 msgid "Creating GENDEX file"
 msgstr "建立 GENDEX 檔案"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1372
+#: ../gramps/plugins/webreport/narrativeweb.py:1376
 msgid "Creating surname pages"
 msgstr "建立姓氏頁面"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1409
+#: ../gramps/plugins/webreport/narrativeweb.py:1413
 msgid "Creating thumbnail preview page..."
 msgstr "建立縮圖預覽頁面..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1418
+#: ../gramps/plugins/webreport/narrativeweb.py:1422
 #, fuzzy
 msgid "Creating statistics page..."
 msgstr "建立媒體頁面"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1426
+#: ../gramps/plugins/webreport/narrativeweb.py:1430
 #, fuzzy
 msgid "Creating updates page..."
 msgstr "建立媒體頁面"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1466
+#: ../gramps/plugins/webreport/narrativeweb.py:1470
 msgid "Creating address book pages ..."
 msgstr "建立地址簿頁面..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1946
+#: ../gramps/plugins/webreport/narrativeweb.py:1950
 #, fuzzy, python-format
 msgid "Narrative Website Report for the %s language"
 msgstr "敘事網站報告"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1948
+#: ../gramps/plugins/webreport/narrativeweb.py:1952
 #, fuzzy
 msgid "Narrative Website Report"
 msgstr "敘事網站報告"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2067
+#: ../gramps/plugins/webreport/narrativeweb.py:2071
 #, fuzzy
 #| msgid "Store web pages in .tar.gz archive"
 msgid "Store website in .tar.gz archive"
 msgstr "以 .tar.gz 存檔網頁"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2068
+#: ../gramps/plugins/webreport/narrativeweb.py:2072
 #, fuzzy
 #| msgid "Whether to store the web pages in an archive file"
 msgid "Whether to store the website in an archive file"
 msgstr "是否以存檔檔案儲存網頁"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2078
+#: ../gramps/plugins/webreport/narrativeweb.py:2082
 #: ../gramps/plugins/webreport/webcal.py:1843
 msgid "The destination directory for the web files"
 msgstr "網頁檔案目標目錄"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2083
+#: ../gramps/plugins/webreport/narrativeweb.py:2087
 msgid "My Family Tree"
 msgstr "我的家族樹"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2083
+#: ../gramps/plugins/webreport/narrativeweb.py:2087
 #, fuzzy
 #| msgid "Web site title"
 msgid "Website title"
 msgstr "網站標題"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2084
+#: ../gramps/plugins/webreport/narrativeweb.py:2088
 #, fuzzy
 #| msgid "The title of the web site"
 msgid "The title of the website"
 msgstr "網站標題"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2089
+#: ../gramps/plugins/webreport/narrativeweb.py:2093
 #, fuzzy
 #| msgid "Select filter to restrict people that appear on web site"
 msgid "Select filter to restrict people that appear on the website"
 msgstr "選擇篩查器限制出現在日曆上的成員"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2101
+#: ../gramps/plugins/webreport/narrativeweb.py:2105
 #, fuzzy
 msgid "Show the relationship between the current person and the active person"
 msgstr "顯示所有個人和家主的關係."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2108
+#: ../gramps/plugins/webreport/narrativeweb.py:2112
 #, fuzzy
 msgid ""
 "For each person page, show the relationship between this person and the "
 "active person."
 msgstr "顯示所有個人和家主的關係."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2132
+#: ../gramps/plugins/webreport/narrativeweb.py:2136
 #: ../gramps/plugins/webreport/webcal.py:1865
 msgid "File extension"
 msgstr "副檔名"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2135
+#: ../gramps/plugins/webreport/narrativeweb.py:2139
 #: ../gramps/plugins/webreport/webcal.py:1868
 msgid "The extension to be used for the web files"
 msgstr "用於網頁檔案的副檔名"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2139
+#: ../gramps/plugins/webreport/narrativeweb.py:2143
 #: ../gramps/plugins/webreport/webcal.py:1871
 msgid "Copyright"
 msgstr "版權"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2142
+#: ../gramps/plugins/webreport/narrativeweb.py:2146
 #: ../gramps/plugins/webreport/webcal.py:1874
 msgid "The copyright to be used for the web files"
 msgstr "用於網頁檔案的版權"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2145
+#: ../gramps/plugins/webreport/narrativeweb.py:2149
 #: ../gramps/plugins/webreport/webcal.py:1884
 msgid "StyleSheet"
 msgstr "樣式表"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2151
+#: ../gramps/plugins/webreport/narrativeweb.py:2155
 #, fuzzy
 msgid "The default stylesheet to be used for the pages"
 msgstr "用於網頁的樣式表"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2156
+#: ../gramps/plugins/webreport/narrativeweb.py:2160
 #, fuzzy
 msgid "Horizontal -- Default"
 msgstr "水平(從右到左)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2157
+#: ../gramps/plugins/webreport/narrativeweb.py:2161
 msgid "Vertical   -- Left Side"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2158
+#: ../gramps/plugins/webreport/narrativeweb.py:2162
 msgid "Fade       -- WebKit Browsers Only"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2159
-#: ../gramps/plugins/webreport/narrativeweb.py:2175
+#: ../gramps/plugins/webreport/narrativeweb.py:2163
+#: ../gramps/plugins/webreport/narrativeweb.py:2179
 msgid "Drop-Down  -- WebKit Browsers Only"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2162
+#: ../gramps/plugins/webreport/narrativeweb.py:2166
 msgid "Navigation Menu Layout"
 msgstr "巡航選單佈局"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2167
+#: ../gramps/plugins/webreport/narrativeweb.py:2171
 msgid "Choose which layout for the Navigation Menus."
 msgstr "為巡航選單選擇佈局"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2174
+#: ../gramps/plugins/webreport/narrativeweb.py:2178
 msgid "Normal Outline Style"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2178
+#: ../gramps/plugins/webreport/narrativeweb.py:2182
 #, fuzzy
 msgid "Citation Referents Layout"
 msgstr "連結參考"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2184
+#: ../gramps/plugins/webreport/narrativeweb.py:2188
 msgid ""
 "Determine the default layout for the Source Page's Citation Referents section"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2190
+#: ../gramps/plugins/webreport/narrativeweb.py:2194
 msgid "Include ancestor's tree"
 msgstr "包含祖先樹"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2192
+#: ../gramps/plugins/webreport/narrativeweb.py:2196
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr "是否為每個頁面包含祖先圖表"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2197
+#: ../gramps/plugins/webreport/narrativeweb.py:2201
 #, fuzzy
 msgid "Add previous/next"
 msgstr "新增配偶"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2198
+#: ../gramps/plugins/webreport/narrativeweb.py:2202
 msgid "Add previous/next to the navigation bar."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2201
+#: ../gramps/plugins/webreport/narrativeweb.py:2205
 msgid "This is a secure site (HTTPS)"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2202
+#: ../gramps/plugins/webreport/narrativeweb.py:2206
 msgid "Whether to use http:// or https://"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2205
+#: ../gramps/plugins/webreport/narrativeweb.py:2209
 #, fuzzy
 msgid "Toggle sections"
 msgstr "篩選器選擇"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2206
+#: ../gramps/plugins/webreport/narrativeweb.py:2210
 msgid "Check it if you want to open/close a section"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2215
+#: ../gramps/plugins/webreport/narrativeweb.py:2219
 #, fuzzy
 msgid "Extra Pages"
 msgstr "解壓地點資料"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2218
+#: ../gramps/plugins/webreport/narrativeweb.py:2222
 #, fuzzy
 msgid "Extra page name"
 msgstr "解壓地點資料"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2220
+#: ../gramps/plugins/webreport/narrativeweb.py:2224
 msgid "Your extra page name like it is shown in the menubar"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2225
+#: ../gramps/plugins/webreport/narrativeweb.py:2229
 msgid "Your extra page path"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2226
+#: ../gramps/plugins/webreport/narrativeweb.py:2230
 msgid "Your extra page path without extension"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2241
+#: ../gramps/plugins/webreport/narrativeweb.py:2245
 msgid "Do we use multiple translations?"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2244
+#: ../gramps/plugins/webreport/narrativeweb.py:2248
 msgid ""
 "Whether to display the narrative web in multiple languages.\n"
 "See the translation tab to add new languages to the default one defined in "
 "the next field."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2258
+#: ../gramps/plugins/webreport/narrativeweb.py:2262
 msgid "Sort all children in birth order"
 msgstr "以出生順序排列子女"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2260
+#: ../gramps/plugins/webreport/narrativeweb.py:2264
 msgid "Whether to display children in birth order or in entry order."
 msgstr "是否以出生日期或者輸入日期排列顯示子女的順序。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2265
+#: ../gramps/plugins/webreport/narrativeweb.py:2269
 msgid "Do we display coordinates in the places list?"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2268
+#: ../gramps/plugins/webreport/narrativeweb.py:2272
 #, fuzzy
 msgid "Whether to display latitude/longitude in the places list."
 msgstr "是否包含文庫頁面。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2273
+#: ../gramps/plugins/webreport/narrativeweb.py:2277
 msgid "Sort places references either by date or by name"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2277
+#: ../gramps/plugins/webreport/narrativeweb.py:2281
 msgid "Sort the places references by date or by name. Not set means by date."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2283
+#: ../gramps/plugins/webreport/narrativeweb.py:2287
 msgid "Graph generations"
 msgstr "圖形後代"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2285
+#: ../gramps/plugins/webreport/narrativeweb.py:2289
 msgid "The number of generations to include in the ancestor graph"
 msgstr "祖先圖表中輩分的數量"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2291
+#: ../gramps/plugins/webreport/narrativeweb.py:2295
 msgid "Include narrative notes just after name, gender"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2295
+#: ../gramps/plugins/webreport/narrativeweb.py:2299
 msgid ""
 "Include narrative notes just after name, gender and age at death (default) "
 "or include them just before attributes."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2308
+#: ../gramps/plugins/webreport/narrativeweb.py:2312
 msgid "Page Generation"
 msgstr "輩分頁面"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2311
+#: ../gramps/plugins/webreport/narrativeweb.py:2315
 msgid "Home page note"
 msgstr "主頁註釋"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2312
+#: ../gramps/plugins/webreport/narrativeweb.py:2316
 msgid "A note to be used on the home page"
 msgstr "主頁中使用的註釋"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2315
+#: ../gramps/plugins/webreport/narrativeweb.py:2319
 msgid "Home page image"
 msgstr "主頁影象"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2316
+#: ../gramps/plugins/webreport/narrativeweb.py:2320
 msgid "An image to be used on the home page"
 msgstr "主頁中使用的一個影象"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2319
+#: ../gramps/plugins/webreport/narrativeweb.py:2323
 msgid "Introduction note"
 msgstr "介紹註釋"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2320
+#: ../gramps/plugins/webreport/narrativeweb.py:2324
 msgid "A note to be used as the introduction"
 msgstr "用於介紹的筆記"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2323
+#: ../gramps/plugins/webreport/narrativeweb.py:2327
 msgid "Introduction image"
 msgstr "介紹圖片"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2324
+#: ../gramps/plugins/webreport/narrativeweb.py:2328
 msgid "An image to be used as the introduction"
 msgstr "用於介紹的一個影象"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2327
+#: ../gramps/plugins/webreport/narrativeweb.py:2331
 msgid "Publisher contact note"
 msgstr "出版者聯絡筆記"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2330
+#: ../gramps/plugins/webreport/narrativeweb.py:2334
 msgid ""
 "A note to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
 "no contact page will be created"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2337
+#: ../gramps/plugins/webreport/narrativeweb.py:2341
 msgid "Publisher contact image"
 msgstr "出版者聯絡影象"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2340
+#: ../gramps/plugins/webreport/narrativeweb.py:2344
 msgid ""
 "An image to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
 "no contact page will be created"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2347
+#: ../gramps/plugins/webreport/narrativeweb.py:2351
 msgid "HTML user header"
 msgstr "HTML 使用者頁首"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2349
+#: ../gramps/plugins/webreport/narrativeweb.py:2353
 #, fuzzy
 msgid "A note to be used as the page header or a PHP code to insert."
 msgstr "用於頁首的筆記"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2353
+#: ../gramps/plugins/webreport/narrativeweb.py:2357
 msgid "HTML user footer"
 msgstr "HTML 使用者頁尾"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2354
+#: ../gramps/plugins/webreport/narrativeweb.py:2358
 msgid "A note to be used as the page footer"
 msgstr "用於頁尾的筆記"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2359
+#: ../gramps/plugins/webreport/narrativeweb.py:2363
 msgid "PHP user session"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2362
+#: ../gramps/plugins/webreport/narrativeweb.py:2366
 msgid ""
 "A note to use for starting the php session.\n"
 "This option will be available only if the .php file extension is selected."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2375
+#: ../gramps/plugins/webreport/narrativeweb.py:2379
 #, fuzzy
 msgid "Images Generation"
 msgstr "輩分頁面"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2378
+#: ../gramps/plugins/webreport/narrativeweb.py:2382
 msgid "Include images and media objects"
 msgstr "包含影象和媒體物件"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2379
+#: ../gramps/plugins/webreport/narrativeweb.py:2383
 msgid "Whether to include a gallery of media objects"
 msgstr "是否 包含媒體物件的相簿"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2383
+#: ../gramps/plugins/webreport/narrativeweb.py:2387
 msgid "Create the images index"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2385
+#: ../gramps/plugins/webreport/narrativeweb.py:2389
 msgid "This option allows you to create the images index"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2391
+#: ../gramps/plugins/webreport/narrativeweb.py:2395
 #, fuzzy
 msgid "Include unused images and media objects"
 msgstr "包含影象和媒體物件"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2394
+#: ../gramps/plugins/webreport/narrativeweb.py:2398
 #, fuzzy
 msgid "Whether to include unused or unreferenced media objects"
 msgstr "是否 包含媒體物件的相簿"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2399
+#: ../gramps/plugins/webreport/narrativeweb.py:2403
 msgid "Create and only use thumbnail- sized images"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2403
+#: ../gramps/plugins/webreport/narrativeweb.py:2407
 msgid ""
 "This option allows you to create only thumbnail images instead of the full-"
 "sized images on the Media Page. This will allow you to have a much smaller "
 "total upload size to your web hosting site."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2413
+#: ../gramps/plugins/webreport/narrativeweb.py:2417
 #, fuzzy
 msgid "Create the thumbnail index"
 msgstr "建立縮圖預覽頁面..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2416
+#: ../gramps/plugins/webreport/narrativeweb.py:2420
 msgid "This option allows you to create the thumbnail index"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2422
+#: ../gramps/plugins/webreport/narrativeweb.py:2426
 msgid "Max width of initial image"
 msgstr "初始影象的最大寬度"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2426
+#: ../gramps/plugins/webreport/narrativeweb.py:2430
 #, fuzzy
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
@@ -38730,107 +38846,107 @@ msgid ""
 msgstr ""
 "這將會允許您設定在媒體頁面上，顯示影象的最大尺寸。設定為0代表沒有限制。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2443
+#: ../gramps/plugins/webreport/narrativeweb.py:2447
 msgid "Include download page"
 msgstr "包含下載頁面"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2444
+#: ../gramps/plugins/webreport/narrativeweb.py:2448
 msgid "Whether to include a database download option"
 msgstr "是否包含資料庫下載選項"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2449
+#: ../gramps/plugins/webreport/narrativeweb.py:2453
 msgid "How many downloads"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2452
+#: ../gramps/plugins/webreport/narrativeweb.py:2456
 #, fuzzy
 msgid "The number of download files to include in the download page"
 msgstr "包含在樹中後代的數量"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2462
+#: ../gramps/plugins/webreport/narrativeweb.py:2466
 #, fuzzy, python-format
 msgid "Download Filename #%c"
 msgstr "下載檔名"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2464
+#: ../gramps/plugins/webreport/narrativeweb.py:2468
 msgid "File to be used for downloading of database"
 msgstr "用於下載資料庫的檔案"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2469
+#: ../gramps/plugins/webreport/narrativeweb.py:2473
 msgid "Description for download"
 msgstr "下載描述"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2469
+#: ../gramps/plugins/webreport/narrativeweb.py:2473
 #, fuzzy, python-format
 msgid "Family Tree #%c"
 msgstr "家族樹"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2471
+#: ../gramps/plugins/webreport/narrativeweb.py:2475
 msgid "Give a description for this file."
 msgstr "提供這個檔案的描述。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2483
+#: ../gramps/plugins/webreport/narrativeweb.py:2487
 #: ../gramps/plugins/webreport/webcal.py:2049
 msgid "Advanced Options"
 msgstr "高階選項"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2487
+#: ../gramps/plugins/webreport/narrativeweb.py:2491
 #: ../gramps/plugins/webreport/webcal.py:2052
 msgid "Character set encoding"
 msgstr "字元編碼"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2491
+#: ../gramps/plugins/webreport/narrativeweb.py:2495
 #: ../gramps/plugins/webreport/webcal.py:2056
 msgid "The encoding to be used for the web files"
 msgstr "用於網頁檔案的編碼"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2495
+#: ../gramps/plugins/webreport/narrativeweb.py:2499
 msgid "Include link to active person on every page"
 msgstr "每頁都包含與所啟用成員的連結"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2498
+#: ../gramps/plugins/webreport/narrativeweb.py:2502
 msgid "Include a link to the active person (if they have a webpage)"
 msgstr "每頁都包含與啟用成員的連結"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2503
+#: ../gramps/plugins/webreport/narrativeweb.py:2507
 msgid "Include a column for birth dates on the index pages"
 msgstr "在索引頁面中包含一個出生日期欄"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2505
+#: ../gramps/plugins/webreport/narrativeweb.py:2509
 msgid "Whether to include a birth column"
 msgstr "是否包含一個出生欄"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2509
+#: ../gramps/plugins/webreport/narrativeweb.py:2513
 msgid "Include a column for death dates on the index pages"
 msgstr "在索引頁面包含一個死亡日期欄"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2511
+#: ../gramps/plugins/webreport/narrativeweb.py:2515
 msgid "Whether to include a death column"
 msgstr "是否包含一個死亡的欄"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2515
+#: ../gramps/plugins/webreport/narrativeweb.py:2519
 msgid "Include a column for partners on the index pages"
 msgstr "在索引頁面包含一個伴侶欄"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2517
+#: ../gramps/plugins/webreport/narrativeweb.py:2521
 msgid "Whether to include a partners column"
 msgstr "是否包含一個伴侶欄"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2521
+#: ../gramps/plugins/webreport/narrativeweb.py:2525
 msgid "Include a column for parents on the index pages"
 msgstr "在索引頁面包含一個父母欄"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2523
+#: ../gramps/plugins/webreport/narrativeweb.py:2527
 msgid "Whether to include a parents column"
 msgstr "是否包含一個父母欄目"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2527
+#: ../gramps/plugins/webreport/narrativeweb.py:2531
 #, fuzzy
 #| msgid "Include half and/ or step-siblings on the individual pages"
 msgid "Include half and/or step-siblings on the individual pages"
 msgstr "包含半/繼表親 在單獨頁面"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2531
+#: ../gramps/plugins/webreport/narrativeweb.py:2535
 #, fuzzy
 #| msgid ""
 #| "Whether to include half and/ or step-siblings with the parents and "
@@ -38839,125 +38955,126 @@ msgid ""
 "Whether to include half and/or step-siblings with the parents and siblings"
 msgstr "是否包含半/繼表親，與父母和表親兄弟一起"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2546
+#: ../gramps/plugins/webreport/narrativeweb.py:2550
 msgid "Include family pages"
 msgstr "包括家庭頁面"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2547
+#: ../gramps/plugins/webreport/narrativeweb.py:2551
 msgid "Whether or not to include family pages."
 msgstr "是否包括家庭頁面。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2550
+#: ../gramps/plugins/webreport/narrativeweb.py:2554
 msgid "Include event pages"
 msgstr "包含事件頁面"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2551
+#: ../gramps/plugins/webreport/narrativeweb.py:2555
 msgid "Add a complete events list and relevant pages or not"
 msgstr "新增一個完整的事件列表和相關的頁面或者沒有"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2554
+#: ../gramps/plugins/webreport/narrativeweb.py:2558
 msgid "Include place pages"
 msgstr "包括地點頁"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2555
+#: ../gramps/plugins/webreport/narrativeweb.py:2559
 #, fuzzy
 msgid "Whether or not to include the place pages."
 msgstr "是否包含文庫頁面。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2558
+#: ../gramps/plugins/webreport/narrativeweb.py:2562
 msgid "Include unused place pages"
 msgstr "包括未用地點頁"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2559
+#: ../gramps/plugins/webreport/narrativeweb.py:2563
 #, fuzzy
 msgid "Whether or not to include the unused place pages."
 msgstr "是否包含文庫頁面。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2562
+#: ../gramps/plugins/webreport/narrativeweb.py:2566
 #, fuzzy
 msgid "Include source pages"
 msgstr "包含來源筆記"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2563
+#: ../gramps/plugins/webreport/narrativeweb.py:2567
 #, fuzzy
 msgid "Whether or not to include the source pages."
 msgstr "是否包含文庫頁面。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2566
+#: ../gramps/plugins/webreport/narrativeweb.py:2570
 msgid "Include repository pages"
 msgstr "包含文庫頁面"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2567
+#: ../gramps/plugins/webreport/narrativeweb.py:2571
 #, fuzzy
 #| msgid "Whether or not to include the Repository Pages."
 msgid "Whether or not to include the repository pages."
 msgstr "是否包含文庫頁面。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2570
+#: ../gramps/plugins/webreport/narrativeweb.py:2574
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "包含 GENDEX 檔案（/gendex.txt）"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2571
+#: ../gramps/plugins/webreport/narrativeweb.py:2575
 msgid "Whether to include a GENDEX file or not"
 msgstr "是否包含一個 GENDEX 檔案"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2574
+#: ../gramps/plugins/webreport/narrativeweb.py:2578
 msgid "Include address book pages"
 msgstr "包含地址簿頁面"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2577
+#: ../gramps/plugins/webreport/narrativeweb.py:2581
 msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and "
 "website addresses and personal address/ residence events."
-msgstr "是否新增地址目錄頁面，可以包含e-mail和網站地址 ，以及個人地址／居住事件。"
+msgstr ""
+"是否新增地址目錄頁面，可以包含e-mail和網站地址 ，以及個人地址／居住事件。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2585
+#: ../gramps/plugins/webreport/narrativeweb.py:2589
 #, fuzzy
 msgid "Include the statistics page"
 msgstr "建立媒體頁面"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2586
+#: ../gramps/plugins/webreport/narrativeweb.py:2590
 #, fuzzy
 msgid "Whether or not to add statistics page"
 msgstr "是否包括家庭頁面。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2595
+#: ../gramps/plugins/webreport/narrativeweb.py:2599
 msgid "Place Map Options"
 msgstr "地點地圖選項"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2600
+#: ../gramps/plugins/webreport/narrativeweb.py:2604
 #, fuzzy
 msgid "Stamen Map"
 msgstr "內容選項"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2601
+#: ../gramps/plugins/webreport/narrativeweb.py:2605
 msgid "Google"
 msgstr "Google"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2603
+#: ../gramps/plugins/webreport/narrativeweb.py:2607
 msgid "Map Service"
 msgstr "地圖服務"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2607
+#: ../gramps/plugins/webreport/narrativeweb.py:2611
 msgid "Choose your choice of map service for creating the Place Map Pages."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2613
+#: ../gramps/plugins/webreport/narrativeweb.py:2617
 msgid "Include Place map on Place Pages"
 msgstr "在地址頁面中包含地址地圖"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2617
+#: ../gramps/plugins/webreport/narrativeweb.py:2621
 msgid ""
 "Whether to include a place map on the Place Pages, where Latitude/ Longitude "
 "are available."
 msgstr "是否在地點頁面中包含一張地點地圖。經度/緯度有效"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2625
+#: ../gramps/plugins/webreport/narrativeweb.py:2629
 #, fuzzy
 msgid "Include Family Map Pages with all places shown on the map"
 msgstr "所有地圖中顯示的地點包含在單獨的頁面地圖中"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2629
+#: ../gramps/plugins/webreport/narrativeweb.py:2633
 msgid ""
 "Whether or not to add an individual page map showing all the places on this "
 "page. This will allow you to see how your family traveled around the country."
@@ -38965,114 +39082,114 @@ msgstr ""
 "是否新增一個單獨的頁面，顯示此頁面上所有的地點？這將允許您檢視您的家庭如何在"
 "國家內進行旅行的。 "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2639
+#: ../gramps/plugins/webreport/narrativeweb.py:2643
 #, fuzzy
 msgid "Family Links"
 msgstr "家庭線圖表"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2640
+#: ../gramps/plugins/webreport/narrativeweb.py:2644
 msgid "Drop"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2641
+#: ../gramps/plugins/webreport/narrativeweb.py:2645
 #, fuzzy
 msgid "Markers"
 msgstr "標記"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2644
+#: ../gramps/plugins/webreport/narrativeweb.py:2648
 #, fuzzy
 msgid "Google/ FamilyMap Option"
 msgstr "地點地圖選項"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2650
+#: ../gramps/plugins/webreport/narrativeweb.py:2654
 msgid ""
 "Select which option that you would like to have for the Google Maps family-"
 "map pages..."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2656
+#: ../gramps/plugins/webreport/narrativeweb.py:2660
 #, fuzzy
 msgid "Google maps API key"
 msgstr "Google 地圖"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2659
+#: ../gramps/plugins/webreport/narrativeweb.py:2663
 #, fuzzy
 msgid ""
 "The API key used for the Google maps.\n"
 "This key is mandatory and must be valid"
 msgstr "頁尾應用風格."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2671
-#: ../gramps/plugins/webreport/narrativeweb.py:2711
+#: ../gramps/plugins/webreport/narrativeweb.py:2675
+#: ../gramps/plugins/webreport/narrativeweb.py:2715
 #, fuzzy
 msgid "How to get the API key"
 msgstr "Google 地圖"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2674
+#: ../gramps/plugins/webreport/narrativeweb.py:2678
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Google maps service must be selected."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2682
+#: ../gramps/plugins/webreport/narrativeweb.py:2686
 msgid "Toner"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2683
+#: ../gramps/plugins/webreport/narrativeweb.py:2687
 msgid "Terrain"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2684
+#: ../gramps/plugins/webreport/narrativeweb.py:2688
 #, fuzzy
 msgid "WaterColor"
 msgstr "標記顏色"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2686
+#: ../gramps/plugins/webreport/narrativeweb.py:2690
 #, fuzzy
 msgid "Stamen Option"
 msgstr "內容選項"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2691
+#: ../gramps/plugins/webreport/narrativeweb.py:2695
 msgid ""
 "Select which option that you would like to have for the Stamen map map-"
 "pages..."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2696
+#: ../gramps/plugins/webreport/narrativeweb.py:2700
 #, fuzzy
 msgid "Stamen maps API key"
 msgstr "Google 地圖"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2699
+#: ../gramps/plugins/webreport/narrativeweb.py:2703
 #, fuzzy
 msgid ""
 "The API key used for the Stamen maps.\n"
 "This key is mandatory and must be valid"
 msgstr "頁尾應用風格."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2714
+#: ../gramps/plugins/webreport/narrativeweb.py:2718
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Stamen maps service must be selected."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2731
+#: ../gramps/plugins/webreport/narrativeweb.py:2735
 #, fuzzy, python-format
 msgctxt "val"
 msgid "in %(inipth)s (%(val)s)"
 msgstr "卒於 %(month_year)s (age %(age)d days)."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2732
+#: ../gramps/plugins/webreport/narrativeweb.py:2736
 #, fuzzy
 #| msgid "Dates"
 msgid "latest"
 msgstr "日期"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2734
+#: ../gramps/plugins/webreport/narrativeweb.py:2738
 msgid "openlayers version to use"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2739
+#: ../gramps/plugins/webreport/narrativeweb.py:2743
 msgid ""
 "You should use this option only if you can't see the maps in your website "
 "for OpenStreetMap or Stamen maps\n"
@@ -39081,160 +39198,160 @@ msgid ""
 "See OLDER VERSIONS in https://openlayers.org/"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2756
+#: ../gramps/plugins/webreport/narrativeweb.py:2760
 #, fuzzy
 msgid "Other inclusion (CMS, web calendar, PHP)"
 msgstr "日曆的標題"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2760
+#: ../gramps/plugins/webreport/narrativeweb.py:2764
 msgid "Do we include these pages in a CMS web?"
 msgstr "要在 CMS 網頁中包含這些頁面嗎？"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2767
+#: ../gramps/plugins/webreport/narrativeweb.py:2771
 #, fuzzy
 msgid "URI"
 msgstr "URL"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2769
+#: ../gramps/plugins/webreport/narrativeweb.py:2773
 msgid "Where do you place your website? default = /NAVWEB"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2777
+#: ../gramps/plugins/webreport/narrativeweb.py:2781
 #, fuzzy
 msgid "Include the news and updates page"
 msgstr "建立媒體頁面"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2778
+#: ../gramps/plugins/webreport/narrativeweb.py:2782
 #, fuzzy
 msgid "Whether to include a page with the last updates"
 msgstr "是否包含資料庫下載選項"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2782
+#: ../gramps/plugins/webreport/narrativeweb.py:2786
 #, fuzzy
 msgid "Max days for updates"
 msgstr "餅圖中最多項目"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2784
+#: ../gramps/plugins/webreport/narrativeweb.py:2788
 msgid "You want to see the last updates on how many days?"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2789
+#: ../gramps/plugins/webreport/narrativeweb.py:2793
 #, fuzzy
 msgid "Max number of updates per object to show"
 msgstr "祖先的最大輩分數目"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2791
+#: ../gramps/plugins/webreport/narrativeweb.py:2795
 msgid "How many updates do you want to see max"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2803
+#: ../gramps/plugins/webreport/narrativeweb.py:2807
 #, fuzzy
 msgid "Translations"
 msgstr "翻譯"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2806
+#: ../gramps/plugins/webreport/narrativeweb.py:2810
 #, fuzzy
 msgid "Second language"
 msgstr "<b>第二日期</b>"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2811
+#: ../gramps/plugins/webreport/narrativeweb.py:2815
 msgid "Site name for your second language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2811
-#: ../gramps/plugins/webreport/narrativeweb.py:2820
-#: ../gramps/plugins/webreport/narrativeweb.py:2829
-#: ../gramps/plugins/webreport/narrativeweb.py:2838
-#: ../gramps/plugins/webreport/narrativeweb.py:2847
+#: ../gramps/plugins/webreport/narrativeweb.py:2815
+#: ../gramps/plugins/webreport/narrativeweb.py:2824
+#: ../gramps/plugins/webreport/narrativeweb.py:2833
+#: ../gramps/plugins/webreport/narrativeweb.py:2842
+#: ../gramps/plugins/webreport/narrativeweb.py:2851
 #, fuzzy
 msgid "This site title"
 msgstr "網站標題"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2813
-#: ../gramps/plugins/webreport/narrativeweb.py:2822
-#: ../gramps/plugins/webreport/narrativeweb.py:2831
-#: ../gramps/plugins/webreport/narrativeweb.py:2840
-#: ../gramps/plugins/webreport/narrativeweb.py:2849
+#: ../gramps/plugins/webreport/narrativeweb.py:2817
+#: ../gramps/plugins/webreport/narrativeweb.py:2826
+#: ../gramps/plugins/webreport/narrativeweb.py:2835
+#: ../gramps/plugins/webreport/narrativeweb.py:2844
+#: ../gramps/plugins/webreport/narrativeweb.py:2853
 msgid "Enter a title in the respective language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2815
+#: ../gramps/plugins/webreport/narrativeweb.py:2819
 #, fuzzy
 msgid "Third language"
 msgstr "<b>第二日期</b>"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2820
+#: ../gramps/plugins/webreport/narrativeweb.py:2824
 msgid "Site name for your third language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2824
+#: ../gramps/plugins/webreport/narrativeweb.py:2828
 #, fuzzy
 msgid "Fourth language"
 msgstr "<b>第二日期</b>"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2829
+#: ../gramps/plugins/webreport/narrativeweb.py:2833
 msgid "Site name for your fourth language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2833
+#: ../gramps/plugins/webreport/narrativeweb.py:2837
 #, fuzzy
 msgid "Fifth language"
 msgstr "<b>第二日期</b>"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2838
+#: ../gramps/plugins/webreport/narrativeweb.py:2842
 msgid "Site name for your fifth language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2842
+#: ../gramps/plugins/webreport/narrativeweb.py:2846
 #, fuzzy
 msgid "Sixth language"
 msgstr "<b>第二日期</b>"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2847
+#: ../gramps/plugins/webreport/narrativeweb.py:2851
 msgid "Site name for your sixth language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3080
+#: ../gramps/plugins/webreport/narrativeweb.py:3084
 #, fuzzy
 msgid "Calendar Options"
 msgstr "紙張選項"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3086
+#: ../gramps/plugins/webreport/narrativeweb.py:3090
 msgid "Do we include the web calendar ?"
 msgstr "要包含網絡日曆嗎？"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3088
+#: ../gramps/plugins/webreport/narrativeweb.py:3092
 #, fuzzy, python-format
 msgid "Whether to include a calendar for year %s"
 msgstr "是否 包含媒體物件的相簿"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3115
+#: ../gramps/plugins/webreport/narrativeweb.py:3119
 #: ../gramps/plugins/webreport/webcal.py:2060
 msgid "Create one day event pages for Year At A Glance calendar"
 msgstr "在 Year At A Glance 日曆中建立一個天的日曆頁"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3117
+#: ../gramps/plugins/webreport/narrativeweb.py:3121
 #: ../gramps/plugins/webreport/webcal.py:2062
 msgid "Whether to create one day pages or not"
 msgstr "是否建立單日頁面"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3121
+#: ../gramps/plugins/webreport/narrativeweb.py:3125
 #: ../gramps/plugins/webreport/webcal.py:2066
 msgid "Include birthdays in the calendar"
 msgstr "在日曆中包含生日"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3125
+#: ../gramps/plugins/webreport/narrativeweb.py:3129
 #: ../gramps/plugins/webreport/webcal.py:2070
 msgid "Include anniversaries in the calendar"
 msgstr "在日曆中包含週年紀念日"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3138
+#: ../gramps/plugins/webreport/narrativeweb.py:3142
 #: ../gramps/plugins/webreport/webcal.py:2085
 #, fuzzy
 msgid "Show data only after year"
 msgstr "顯示所有輸入日期"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3145
+#: ../gramps/plugins/webreport/narrativeweb.py:3149
 #: ../gramps/plugins/webreport/webcal.py:2092
 msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
@@ -39341,8 +39458,9 @@ msgid ""
 "This page contains an index of all the places in the database, sorted by "
 "their title. Clicking on a place&#8217;s title will take you to that "
 "place&#8217;s page."
-msgstr "本頁包含資料庫中所有地點的索引，按名稱排序。點擊地點名稱將帶你進入其地點頁面"
-"。"
+msgstr ""
+"本頁包含資料庫中所有地點的索引，按名稱排序。點擊地點名稱將帶你進入其地點頁"
+"面。"
 
 #: ../gramps/plugins/webreport/place.py:327
 #: ../gramps/plugins/webreport/place.py:339
@@ -39419,8 +39537,9 @@ msgid ""
 "This page contains an index of all the individuals in the database with the "
 "surname of %s. Selecting the person&#8217;s name will take you to that "
 "person&#8217;s individual page."
-msgstr "本頁包含資料庫中所有姓氏為 %s "
-"的個人成員索引。點選人名時，會將你引導向該個人成員的頁面。"
+msgstr ""
+"本頁包含資料庫中所有姓氏為 %s 的個人成員索引。點選人名時，會將你引導向該個人"
+"成員的頁面。"
 
 #: ../gramps/plugins/webreport/surnamelist.py:114
 msgid "Surnames by person count"
