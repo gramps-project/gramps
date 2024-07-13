@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 22:29+0000\n"
+"POT-Creation-Date: 2024-07-13 17:49+0100\n"
 "PO-Revision-Date: 2024-06-07 18:11+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
@@ -1731,7 +1731,7 @@ msgstr "נעול על־ידי %s"
 #: ../gramps/plugins/graph/gvhourglass.py:516
 #: ../gramps/plugins/graph/gvrelgraph.py:1059
 #: ../gramps/plugins/importer/importcsv.py:555
-#: ../gramps/plugins/importer/importcsv.py:1078
+#: ../gramps/plugins/importer/importcsv.py:1081
 #: ../gramps/plugins/lib/libprogen.py:1140
 #: ../gramps/plugins/lib/maps/geography.py:912
 #: ../gramps/plugins/lib/maps/geography.py:922
@@ -3313,19 +3313,19 @@ msgid "Upgrade Statistics"
 msgstr "סטטיסטיקת שדרוג"
 
 #. Translators: needed for Arabic, ignore otherwise
-#: ../gramps/gen/display/name.py:413 ../gramps/plugins/lib/libtreebase.py:725
+#: ../gramps/gen/display/name.py:406 ../gramps/plugins/lib/libtreebase.py:725
 msgid ","
 msgstr ","
 
-#: ../gramps/gen/display/name.py:416
+#: ../gramps/gen/display/name.py:409
 msgid "Default format (defined by Gramps preferences)"
 msgstr "תסדיר ברירת המחדל (הוגדר על־ידי העדפות התוכנה)"
 
-#: ../gramps/gen/display/name.py:417
+#: ../gramps/gen/display/name.py:410
 msgid "Surname, Given Suffix"
 msgstr "סיומת שם משפחה, שם פרטי"
 
-#: ../gramps/gen/display/name.py:418 ../gramps/gen/utils/keyword.py:57
+#: ../gramps/gen/display/name.py:411 ../gramps/gen/utils/keyword.py:57
 #: ../gramps/gui/configure.py:1086 ../gramps/gui/configure.py:1087
 #: ../gramps/gui/configure.py:1091 ../gramps/gui/configure.py:1092
 #: ../gramps/gui/configure.py:1094 ../gramps/gui/configure.py:1095
@@ -3338,120 +3338,120 @@ msgstr "סיומת שם משפחה, שם פרטי"
 msgid "Given"
 msgstr "שם פרטי"
 
-#: ../gramps/gen/display/name.py:419
+#: ../gramps/gen/display/name.py:412
 msgid "Given Surname Suffix"
 msgstr "שם פרטי שם משפחה סיומת"
 
-#: ../gramps/gen/display/name.py:424
+#: ../gramps/gen/display/name.py:417
 msgid "Main Surnames, Given Patronymic Suffix Prefix"
 msgstr "שם משפחה עיקרי, סיומת/קידומת שם פטרונימי שניתן"
 
-#: ../gramps/gen/display/name.py:429
+#: ../gramps/gen/display/name.py:422
 msgid "Patronymic, Given"
 msgstr "נגזר משמו של האב, פרטי"
 
-#: ../gramps/gen/display/name.py:660 ../gramps/gen/display/name.py:791
+#: ../gramps/gen/display/name.py:653 ../gramps/gen/display/name.py:784
 msgctxt "Person"
 msgid "title"
 msgstr "תואר"
 
-#: ../gramps/gen/display/name.py:661 ../gramps/gen/display/name.py:792
+#: ../gramps/gen/display/name.py:654 ../gramps/gen/display/name.py:785
 #: ../gramps/plugins/importer/importcsv.py:205
 msgid "given"
 msgstr "שם פרטי"
 
-#: ../gramps/gen/display/name.py:665 ../gramps/gen/display/name.py:793
+#: ../gramps/gen/display/name.py:658 ../gramps/gen/display/name.py:786
 #: ../gramps/plugins/importer/importcsv.py:197
 #: ../gramps/plugins/tool/removespaces.py:149
 msgid "surname"
 msgstr "שם משפחה"
 
-#: ../gramps/gen/display/name.py:667 ../gramps/gen/display/name.py:794
+#: ../gramps/gen/display/name.py:660 ../gramps/gen/display/name.py:787
 #: ../gramps/gui/editors/editperson.py:408
 #: ../gramps/plugins/importer/importcsv.py:221
 msgid "suffix"
 msgstr "סיומת"
 
-#: ../gramps/gen/display/name.py:668 ../gramps/gen/display/name.py:795
+#: ../gramps/gen/display/name.py:661 ../gramps/gen/display/name.py:788
 msgctxt "Name"
 msgid "call"
 msgstr "שם פניה"
 
-#: ../gramps/gen/display/name.py:672 ../gramps/gen/display/name.py:799
+#: ../gramps/gen/display/name.py:665 ../gramps/gen/display/name.py:792
 msgctxt "Name"
 msgid "common"
 msgstr "נפוץ"
 
-#: ../gramps/gen/display/name.py:678 ../gramps/gen/display/name.py:804
+#: ../gramps/gen/display/name.py:671 ../gramps/gen/display/name.py:797
 msgid "initials"
 msgstr "ראשי תיבות"
 
-#: ../gramps/gen/display/name.py:683 ../gramps/gen/display/name.py:809
+#: ../gramps/gen/display/name.py:676 ../gramps/gen/display/name.py:802
 msgctxt "Name"
 msgid "primary"
 msgstr "עיקרי"
 
-#: ../gramps/gen/display/name.py:688 ../gramps/gen/display/name.py:814
+#: ../gramps/gen/display/name.py:681 ../gramps/gen/display/name.py:807
 msgid "primary[pre]"
 msgstr "עיקרי[עיק]"
 
-#: ../gramps/gen/display/name.py:693 ../gramps/gen/display/name.py:819
+#: ../gramps/gen/display/name.py:686 ../gramps/gen/display/name.py:812
 msgid "primary[sur]"
 msgstr "עיקרי[משפ]"
 
-#: ../gramps/gen/display/name.py:698 ../gramps/gen/display/name.py:824
+#: ../gramps/gen/display/name.py:691 ../gramps/gen/display/name.py:817
 msgid "primary[con]"
 msgstr "עקרי[קיש]"
 
-#: ../gramps/gen/display/name.py:703 ../gramps/gen/display/name.py:829
+#: ../gramps/gen/display/name.py:696 ../gramps/gen/display/name.py:822
 msgid "patronymic"
 msgstr "פטרונימי"
 
-#: ../gramps/gen/display/name.py:708 ../gramps/gen/display/name.py:834
+#: ../gramps/gen/display/name.py:701 ../gramps/gen/display/name.py:827
 msgid "patronymic[pre]"
 msgstr "פטרונימי[קיד]"
 
-#: ../gramps/gen/display/name.py:713 ../gramps/gen/display/name.py:839
+#: ../gramps/gen/display/name.py:706 ../gramps/gen/display/name.py:832
 msgid "patronymic[sur]"
 msgstr "פטרונימי[משפ]"
 
-#: ../gramps/gen/display/name.py:718 ../gramps/gen/display/name.py:844
+#: ../gramps/gen/display/name.py:711 ../gramps/gen/display/name.py:837
 msgid "patronymic[con]"
 msgstr "פטרונימי[קיש]"
 
-#: ../gramps/gen/display/name.py:723 ../gramps/gen/display/name.py:849
+#: ../gramps/gen/display/name.py:716 ../gramps/gen/display/name.py:842
 msgid "notpatronymic"
 msgstr "לא פטרונימי"
 
-#: ../gramps/gen/display/name.py:728 ../gramps/gen/display/name.py:854
+#: ../gramps/gen/display/name.py:721 ../gramps/gen/display/name.py:847
 msgctxt "Remaining names"
 msgid "rest"
 msgstr "שאר"
 
-#: ../gramps/gen/display/name.py:733 ../gramps/gen/display/name.py:856
+#: ../gramps/gen/display/name.py:726 ../gramps/gen/display/name.py:849
 #: ../gramps/gui/editors/editperson.py:432
 #: ../gramps/plugins/importer/importcsv.py:220
 msgid "prefix"
 msgstr "קידומת"
 
-#: ../gramps/gen/display/name.py:738 ../gramps/gen/display/name.py:860
+#: ../gramps/gen/display/name.py:731 ../gramps/gen/display/name.py:853
 msgid "rawsurnames"
 msgstr "שמות משפחה גולמיים"
 
-#: ../gramps/gen/display/name.py:740 ../gramps/gen/display/name.py:862
+#: ../gramps/gen/display/name.py:733 ../gramps/gen/display/name.py:855
 msgid "nickname"
 msgstr "כינוי"
 
-#: ../gramps/gen/display/name.py:741 ../gramps/gen/display/name.py:863
+#: ../gramps/gen/display/name.py:734 ../gramps/gen/display/name.py:856
 msgid "familynick"
 msgstr "כינוי משפחה"
 
-#: ../gramps/gen/display/name.py:1300
+#: ../gramps/gen/display/name.py:1293
 #, python-format
 msgid "Wrong name format string %s"
 msgstr "מחרוזת תסדיר שם %s שגויה"
 
-#: ../gramps/gen/display/name.py:1306
+#: ../gramps/gen/display/name.py:1299
 msgid "ERROR, Edit Name format in Preferences"
 msgstr "שגיאה, עריכת תסדיר שם בהעדפות"
 
@@ -3460,7 +3460,7 @@ msgstr "שגיאה, עריכת תסדיר שם בהעדפות"
 msgid "Error in '%s' file: cannot load."
 msgstr "שגיאה בקובץ '%s': לא ניתן לטעון."
 
-#: ../gramps/gen/display/place.py:75 ../gramps/gen/plug/docgen/treedoc.py:65
+#: ../gramps/gen/display/place.py:75 ../gramps/gen/plug/docgen/treedoc.py:66
 msgid "Full"
 msgstr "מלא"
 
@@ -3514,7 +3514,7 @@ msgstr "החלה..."
 #: ../gramps/plugins/textreport/indivcomplete.py:1101
 #: ../gramps/plugins/textreport/recordsreport.py:236
 #: ../gramps/plugins/tool/sortevents.py:177
-#: ../gramps/plugins/webreport/narrativeweb.py:2087
+#: ../gramps/plugins/webreport/narrativeweb.py:2091
 #: ../gramps/plugins/webreport/webcal.py:1851
 msgid "Filter"
 msgstr "מסנן"
@@ -6860,7 +6860,7 @@ msgstr "זמן"
 
 #: ../gramps/gen/lib/attrtype.py:81 ../gramps/gen/lib/eventtype.py:218
 #: ../gramps/gen/lib/nameorigintype.py:87
-#: ../gramps/gen/plug/docgen/treedoc.py:586
+#: ../gramps/gen/plug/docgen/treedoc.py:587
 #: ../gramps/plugins/gramplet/persondetails.py:171
 msgid "Occupation"
 msgstr "עיסוק"
@@ -6880,7 +6880,7 @@ msgstr "הפנית צאצא"
 msgid "Handle"
 msgstr "טיפול"
 
-#: ../gramps/gen/lib/childreftype.py:69 ../gramps/gen/plug/docgen/treedoc.py:91
+#: ../gramps/gen/lib/childreftype.py:69 ../gramps/gen/plug/docgen/treedoc.py:92
 #: ../gramps/gui/configure.py:93
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:234
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:197
@@ -7625,7 +7625,7 @@ msgstr "פרישה"
 msgid "Will"
 msgstr "צוואה"
 
-#: ../gramps/gen/lib/eventtype.py:226 ../gramps/gen/plug/docgen/treedoc.py:222
+#: ../gramps/gen/lib/eventtype.py:226 ../gramps/gen/plug/docgen/treedoc.py:223
 #: ../gramps/gen/utils/symbols.py:97 ../gramps/gui/configure.py:2777
 #: ../gramps/gui/merge/mergeperson.py:278
 #: ../gramps/plugins/export/exportcsv.py:577
@@ -8226,6 +8226,7 @@ msgstr "אזור"
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:66
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:64
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:61
+#: ../gramps/gui/editors/displaytabs/repoembedlist.py:68
 #: ../gramps/gui/editors/editfamily.py:139
 #: ../gramps/gui/editors/editname.py:341
 #: ../gramps/gui/editors/filtereditor.py:913
@@ -8296,7 +8297,6 @@ msgstr "סיומת"
 #: ../gramps/gen/lib/name.py:190 ../gramps/gen/lib/place.py:151
 #: ../gramps/gen/lib/src.py:108 ../gramps/gui/clipboard.py:914
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:82
-#: ../gramps/gui/editors/displaytabs/repoembedlist.py:68
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:115
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:96
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:95
@@ -8425,7 +8425,7 @@ msgid "Married Name"
 msgstr "שם בנישואין"
 
 #: ../gramps/gen/lib/note.py:121 ../gramps/gen/plug/docgen/graphdoc.py:303
-#: ../gramps/gen/plug/docgen/treedoc.py:290 ../gramps/gui/clipboard.py:387
+#: ../gramps/gen/plug/docgen/treedoc.py:291 ../gramps/gui/clipboard.py:387
 #: ../gramps/gui/configure.py:845 ../gramps/gui/editors/editlink.py:99
 #: ../gramps/gui/editors/editmedia.py:108
 #: ../gramps/gui/editors/editmedia.py:202
@@ -9070,7 +9070,7 @@ msgstr "עקרי"
 msgid "%(first)s %(second)s"
 msgstr "%(first)s %(second)s"
 
-#: ../gramps/gen/lib/tag.py:114 ../gramps/gen/plug/docgen/treedoc.py:251
+#: ../gramps/gen/lib/tag.py:114 ../gramps/gen/plug/docgen/treedoc.py:252
 #: ../gramps/gui/glade/styleeditor.glade:400
 #: ../gramps/gui/glade/styleeditor.glade:1449
 #: ../gramps/gui/plug/_guioptions.py:1521 ../gramps/gui/views/tags.py:481
@@ -9337,6 +9337,7 @@ msgstr "הקובץ %s כבר פתוח, סגרי אותו קודם."
 
 #: ../gramps/gen/plug/docbackend/docbackend.py:155
 #: ../gramps/gen/plug/docbackend/docbackend.py:158
+#: ../gramps/gen/plug/docgen/treedoc.py:826
 #: ../gramps/gen/utils/docgen/odstab.py:344
 #: ../gramps/gen/utils/docgen/odstab.py:346
 #: ../gramps/gen/utils/docgen/odstab.py:403
@@ -9350,8 +9351,8 @@ msgstr "הקובץ %s כבר פתוח, סגרי אותו קודם."
 #: ../gramps/gen/utils/docgen/odstab.py:495
 #: ../gramps/gen/utils/docgen/odstab.py:498
 #: ../gramps/plugins/docgen/asciidoc.py:185
-#: ../gramps/plugins/docgen/cairodoc.py:209
-#: ../gramps/plugins/docgen/cairodoc.py:212
+#: ../gramps/plugins/docgen/cairodoc.py:210
+#: ../gramps/plugins/docgen/cairodoc.py:213
 #: ../gramps/plugins/docgen/odfdoc.py:1182
 #: ../gramps/plugins/docgen/odfdoc.py:1185
 #: ../gramps/plugins/docgen/rtfdoc.py:102
@@ -9378,8 +9379,8 @@ msgid "Could not create %s"
 msgstr "לא היתן ליצור %s"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:70
-#: ../gramps/gen/plug/docgen/treedoc.py:84
-#: ../gramps/gen/plug/docgen/treedoc.py:92
+#: ../gramps/gen/plug/docgen/treedoc.py:85
+#: ../gramps/gen/plug/docgen/treedoc.py:93
 #: ../gramps/gen/plug/report/stdoptions.py:64
 #: ../gramps/gen/plug/report/stdoptions.py:80
 #: ../gramps/gen/plug/report/stdoptions.py:95
@@ -9464,13 +9465,13 @@ msgid "Expand uniformly"
 msgstr "הרחבה אחידה"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:101
-#: ../gramps/gen/plug/docgen/treedoc.py:116
+#: ../gramps/gen/plug/docgen/treedoc.py:117
 #: ../gramps/gui/glade/styleeditor.glade:1374
 msgid "Bottom"
 msgstr "מטה"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:101
-#: ../gramps/gen/plug/docgen/treedoc.py:116
+#: ../gramps/gen/plug/docgen/treedoc.py:117
 #: ../gramps/gui/glade/styleeditor.glade:1359
 msgid "Top"
 msgstr "מעלה"
@@ -9659,17 +9660,17 @@ msgid "This text will be added to the graph."
 msgstr "המלל יצורף לתרשים."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:310
-#: ../gramps/gen/plug/docgen/treedoc.py:299
+#: ../gramps/gen/plug/docgen/treedoc.py:300
 msgid "Note location"
 msgstr "מיקום הערה"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:313
-#: ../gramps/gen/plug/docgen/treedoc.py:302
+#: ../gramps/gen/plug/docgen/treedoc.py:303
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "האם להציג הערה בראש או בתחתית העמוד."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:316
-#: ../gramps/gen/plug/docgen/treedoc.py:306
+#: ../gramps/gen/plug/docgen/treedoc.py:307
 msgid "Note size"
 msgstr "גודל הערה"
 
@@ -9728,110 +9729,110 @@ msgstr "משפטי"
 msgid "Custom Size"
 msgstr "גודל מותאם אישית"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:66
+#: ../gramps/gen/plug/docgen/treedoc.py:67
 #: ../gramps/plugins/tool/finddupes.py:62
 msgid "Medium"
 msgstr "בינוני"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:67
+#: ../gramps/gen/plug/docgen/treedoc.py:68
 msgid "Short"
 msgstr "קצר"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:71
+#: ../gramps/gen/plug/docgen/treedoc.py:72
 msgid "Given Nickname Surname"
 msgstr "כינוי ניתן שם־משפחה"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:72
+#: ../gramps/gen/plug/docgen/treedoc.py:73
 msgid "Surname Given Nickname"
 msgstr "שם־משפחה כינוי ניתן"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:73
+#: ../gramps/gen/plug/docgen/treedoc.py:74
 msgid "Surname, Given Nickname"
 msgstr "שם־משפחה, כינוי"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:74
+#: ../gramps/gen/plug/docgen/treedoc.py:75
 msgid "GivenNicknameSurname"
 msgstr "כינוי שם־משפחה"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:78
+#: ../gramps/gen/plug/docgen/treedoc.py:79
 msgid "Auto"
 msgstr "אוטומטי"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:79
+#: ../gramps/gen/plug/docgen/treedoc.py:80
 msgid "Call Name Only"
 msgstr "שם פנייה בלבד"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:80
+#: ../gramps/gen/plug/docgen/treedoc.py:81
 msgid "Whole Given Name"
 msgstr "שם פרטי במלואו"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:85
+#: ../gramps/gen/plug/docgen/treedoc.py:86
 msgid "Above"
 msgstr "מעל"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:86
+#: ../gramps/gen/plug/docgen/treedoc.py:87
 msgid "Below"
 msgstr "מטה"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:87
+#: ../gramps/gen/plug/docgen/treedoc.py:88
 msgid "Not shown"
 msgstr "לא מוצג"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:93 ../gramps/gui/configure.py:105
+#: ../gramps/gen/plug/docgen/treedoc.py:94 ../gramps/gui/configure.py:105
 #: ../gramps/gui/configure.py:187 ../gramps/gui/configure.py:2614
 #: ../gramps/gui/displaystate.py:430 ../gramps/gui/views/pageview.py:642
 msgid "Preferences"
 msgstr "העדפות"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:97
+#: ../gramps/gen/plug/docgen/treedoc.py:98
 msgid "Down (↓)"
 msgstr "מטה (↓)"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:98
+#: ../gramps/gen/plug/docgen/treedoc.py:99
 msgid "Up (↑)"
 msgstr "מעלה (↑)"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:99
+#: ../gramps/gen/plug/docgen/treedoc.py:100
 msgid "Right (→)"
 msgstr "ימין (→)"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:100
+#: ../gramps/gen/plug/docgen/treedoc.py:101
 msgid "Left (←)"
 msgstr "שמאלה (←)"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:104
+#: ../gramps/gen/plug/docgen/treedoc.py:105
 msgid "Perpendicular"
 msgstr "ניצב"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:106
+#: ../gramps/gen/plug/docgen/treedoc.py:107
 msgid "Rounded"
 msgstr "מעוגל"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:110
+#: ../gramps/gen/plug/docgen/treedoc.py:111
 msgid "Swing"
 msgstr "נדנדה"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:113
+#: ../gramps/gen/plug/docgen/treedoc.py:114
 msgid "Mesh"
 msgstr "רשת"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:119
+#: ../gramps/gen/plug/docgen/treedoc.py:120
 msgid "Tiny"
 msgstr "זעיר"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:120
+#: ../gramps/gen/plug/docgen/treedoc.py:121
 msgid "Script"
 msgstr "תַּסְרִיט"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:121
+#: ../gramps/gen/plug/docgen/treedoc.py:122
 msgid "Footnote"
 msgstr "הערות שוליים"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:122
+#: ../gramps/gen/plug/docgen/treedoc.py:123
 msgid "Small"
 msgstr "קטן"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:123 ../gramps/gen/utils/string.py:64
+#: ../gramps/gen/plug/docgen/treedoc.py:124 ../gramps/gen/utils/string.py:64
 #: ../gramps/gui/editors/editcitation.py:240
 #: ../gramps/plugins/graph/gvfamilylines.py:320
 #: ../gramps/plugins/graph/gvrelgraph.py:1082
@@ -9839,55 +9840,55 @@ msgstr "קטן"
 msgid "Normal"
 msgstr "סדיר"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:124
+#: ../gramps/gen/plug/docgen/treedoc.py:125
 #: ../gramps/plugins/graph/gvfamilylines.py:321
 msgid "Large"
 msgstr "גדול"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:125
+#: ../gramps/gen/plug/docgen/treedoc.py:126
 msgid "Very large"
 msgstr "גדול מאוד"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:126
+#: ../gramps/gen/plug/docgen/treedoc.py:127
 msgid "Extra large"
 msgstr "גדול מאוד"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:127
+#: ../gramps/gen/plug/docgen/treedoc.py:128
 msgid "Huge"
 msgstr "ענק"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:128
+#: ../gramps/gen/plug/docgen/treedoc.py:129
 msgid "Extra huge"
 msgstr "עצום"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:193
+#: ../gramps/gen/plug/docgen/treedoc.py:194
 msgid "Node Options"
 msgstr "אפשרויות צֹמֶת"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:196
+#: ../gramps/gen/plug/docgen/treedoc.py:197
 msgid "Node detail"
 msgstr "פרטי צֹמֶת"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:199
+#: ../gramps/gen/plug/docgen/treedoc.py:200
 msgid "Detail of information to be shown in a node."
 msgstr "פרטי המידע שיוצג בצומת."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:203
+#: ../gramps/gen/plug/docgen/treedoc.py:204
 msgid "Name Format"
 msgstr "תסדיר שם"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:206
+#: ../gramps/gen/plug/docgen/treedoc.py:207
 #: ../gramps/gen/plug/report/stdoptions.py:99
 #: ../gramps/plugins/webreport/webcal.py:1908
 msgid "Select the format to display names"
 msgstr "נא לבחור תסדיר למצג שמות"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:209
+#: ../gramps/gen/plug/docgen/treedoc.py:210
 #: ../gramps/gui/glade/editperson.glade:708
 msgid "Preferred Name"
 msgstr "שם מועדף"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:214
+#: ../gramps/gen/plug/docgen/treedoc.py:215
 msgid ""
 "Select the portion of the given name to be marked as preferred. Auto sets "
 "the call name if one exists, otherwise the whole given name."
@@ -9895,15 +9896,15 @@ msgstr ""
 "בחירת חלק מהשם הפרטי שיסומן כמועדף. 'אוטומטי', מציב 'שם פניה' ככל שכזה קיים, "
 "אחרת יוצב 'השם הפרטי' במלואו."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:225
+#: ../gramps/gen/plug/docgen/treedoc.py:226
 msgid "Position of marriage information."
 msgstr "מידע על מיקום הנישואין."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:229
+#: ../gramps/gen/plug/docgen/treedoc.py:230
 msgid "Node size"
 msgstr "גודל צֹמֶת"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:232
+#: ../gramps/gen/plug/docgen/treedoc.py:233
 msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
 "the width, otherwise it is the height."
@@ -9911,11 +9912,11 @@ msgstr ""
 "ממד אחד של צומת, במילימטרים. אם זרימת הזמן היא למעלה או למטה אז זהו הגובה, "
 "אחרת זה הרוחב."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:240
+#: ../gramps/gen/plug/docgen/treedoc.py:241
 msgid "Level size"
 msgstr "גודל רמה"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:243
+#: ../gramps/gen/plug/docgen/treedoc.py:244
 msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
 "the height, otherwise it is the width."
@@ -9923,37 +9924,37 @@ msgstr ""
 "ממד אחד של צומת, במילימטרים. אם זרימת הזמן היא למעלה או למטה אז זהו הגובה, "
 "אחרת זה הרוחב."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:254
+#: ../gramps/gen/plug/docgen/treedoc.py:255
 msgid "Node color."
 msgstr "צבע צֹמֶת."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:259
+#: ../gramps/gen/plug/docgen/treedoc.py:260
 #: ../gramps/plugins/drawreport/ancestortree.py:837
 #: ../gramps/plugins/drawreport/descendtree.py:1571
 msgid "Tree Options"
 msgstr "אפשרויות עץ"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:262
+#: ../gramps/gen/plug/docgen/treedoc.py:263
 msgid "Timeflow"
 msgstr "תזרים זמן"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:265
+#: ../gramps/gen/plug/docgen/treedoc.py:266
 msgid "Direction that the graph will grow over time."
 msgstr "כיוון בו יתפתח התרשים עם הזמן."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:269
+#: ../gramps/gen/plug/docgen/treedoc.py:270
 msgid "Edge style"
 msgstr "סגנון גבול"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:272
+#: ../gramps/gen/plug/docgen/treedoc.py:273
 msgid "Style of the edges between nodes."
 msgstr "סגנון הקצוות בין צמתים."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:276
+#: ../gramps/gen/plug/docgen/treedoc.py:277
 msgid "Level distance"
 msgstr "מרחק רמות"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:279
+#: ../gramps/gen/plug/docgen/treedoc.py:280
 msgid ""
 "The minimum amount of free space, in mm, between levels.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
@@ -9962,27 +9963,34 @@ msgstr ""
 "גודל השטח המזערי הפנוי בין רמות, באינצ'ים.  עבור תרשימים אנכיים, תואם לריווח "
 "בין עמודות.  עבור תרשימים אופקיים, תואם לריווח בין שורות."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:293
+#: ../gramps/gen/plug/docgen/treedoc.py:294
 msgid "Note to add to the tree"
 msgstr "הערה שתתווסף לאילן־היוחסין"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:294
+#: ../gramps/gen/plug/docgen/treedoc.py:295
 msgid "This text will be added to the tree."
 msgstr "מלל זה יתווסף לאילן־היוחסין."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:309
+#: ../gramps/gen/plug/docgen/treedoc.py:310
 msgid "The size of note text."
 msgstr "גודל מלל ההערה."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:833
+#: ../gramps/gen/plug/docgen/treedoc.py:826
+#: ../gramps/plugins/graph/gvfamilylines.py:470
+#: ../gramps/plugins/textreport/familygroup.py:690
+#: ../gramps/plugins/textreport/indivcomplete.py:857
+msgid "Empty report"
+msgstr "דוח ריק"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:842
 msgid "PDF"
 msgstr "PDF"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:843
+#: ../gramps/gen/plug/docgen/treedoc.py:852
 msgid "Graph File for genealogytree"
 msgstr "קובץ תרשים עבור genealogytree"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:852
+#: ../gramps/gen/plug/docgen/treedoc.py:861
 msgid "LaTeX File"
 msgstr "קובץ LaTeX"
 
@@ -10191,7 +10199,7 @@ msgstr "לא לכלול"
 #: ../gramps/plugins/textreport/detdescendantreport.py:1127
 #: ../gramps/plugins/textreport/familygroup.py:760
 #: ../gramps/plugins/textreport/indivcomplete.py:1148
-#: ../gramps/plugins/webreport/narrativeweb.py:2543
+#: ../gramps/plugins/webreport/narrativeweb.py:2547
 msgid "Include"
 msgstr "לכלול"
 
@@ -11526,7 +11534,7 @@ msgstr "_החלה"
 #: ../gramps/gui/columnorder.py:142
 #: ../gramps/plugins/drawreport/ancestortree.py:970
 #: ../gramps/plugins/drawreport/descendtree.py:1705
-#: ../gramps/plugins/webreport/narrativeweb.py:2236
+#: ../gramps/plugins/webreport/narrativeweb.py:2240
 msgid "Display"
 msgstr "תצוגה"
 
@@ -12503,7 +12511,7 @@ msgstr "נא לבחור מחיצת מדיה"
 #: ../gramps/gui/plug/_guioptions.py:1757 ../gramps/gui/plug/_windows.py:848
 #: ../gramps/gui/plug/_windows.py:1416
 #: ../gramps/gui/plug/report/_fileentry.py:68
-#: ../gramps/gui/plug/report/_reportdialog.py:170 ../gramps/gui/utils.py:265
+#: ../gramps/gui/plug/report/_reportdialog.py:170 ../gramps/gui/utils.py:266
 #: ../gramps/gui/viewmanager.py:1947 ../gramps/gui/views/listview.py:1250
 #: ../gramps/gui/views/navigationview.py:357 ../gramps/gui/views/tags.py:726
 #: ../gramps/gui/widgets/progressdialog.py:440
@@ -12791,7 +12799,7 @@ msgstr "מידע מסד־נתונים"
 #: ../gramps/gui/glade/rule.glade:764 ../gramps/gui/glade/styleeditor.glade:103
 #: ../gramps/gui/glade/styleeditor.glade:1754
 #: ../gramps/gui/plug/_guioptions.py:84 ../gramps/gui/plug/_windows.py:848
-#: ../gramps/gui/plug/report/_reportdialog.py:173 ../gramps/gui/utils.py:279
+#: ../gramps/gui/plug/report/_reportdialog.py:173 ../gramps/gui/utils.py:280
 #: ../gramps/gui/viewmanager.py:1802 ../gramps/gui/views/tags.py:727
 #: ../gramps/plugins/tool/check.py:828 ../gramps/plugins/tool/patchnames.py:152
 #: ../gramps/plugins/tool/populatesources.py:99
@@ -13073,7 +13081,7 @@ msgstr ""
 "%s"
 
 #: ../gramps/gui/dialog.py:490 ../gramps/gui/dialog.py:603
-#: ../gramps/gui/utils.py:400
+#: ../gramps/gui/utils.py:401
 msgid "Attempt to force closing the dialog"
 msgstr "ניסיון לסגירה בכוח את תיבת דו־השיח"
 
@@ -19354,7 +19362,7 @@ msgid "Paper Options"
 msgstr "אפשרויות נייר"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:148
-#: ../gramps/plugins/webreport/narrativeweb.py:2129
+#: ../gramps/plugins/webreport/narrativeweb.py:2133
 msgid "HTML Options"
 msgstr "אפשרויות HTML"
 
@@ -19422,7 +19430,7 @@ msgstr "סגנון"
 #: ../gramps/plugins/textreport/summary.py:395
 #: ../gramps/plugins/textreport/tableofcontents.py:101
 #: ../gramps/plugins/textreport/tagreport.py:912
-#: ../gramps/plugins/webreport/narrativeweb.py:2064
+#: ../gramps/plugins/webreport/narrativeweb.py:2068
 #: ../gramps/plugins/webreport/webcal.py:1835
 msgid "Report Options"
 msgstr "אפשרויות דוח"
@@ -19786,29 +19794,29 @@ msgstr "מסד נתונים נפתח"
 msgid "History cleared"
 msgstr "היסטוריה נוקתה"
 
-#: ../gramps/gui/utils.py:317
+#: ../gramps/gui/utils.py:318
 msgid "Canceling..."
 msgstr "ביטול..."
 
-#: ../gramps/gui/utils.py:401
+#: ../gramps/gui/utils.py:402
 msgid "Please do not force closing this important dialog."
 msgstr "נא לא לסגור בכוח את תיבת דו־השיח יבוא."
 
-#: ../gramps/gui/utils.py:470
+#: ../gramps/gui/utils.py:471
 msgid "The external program failed to launch or experienced an error"
 msgstr "אתחול התכנית החיצונית כשל או חוותה שגיאה"
 
-#: ../gramps/gui/utils.py:480
+#: ../gramps/gui/utils.py:481
 msgid "Error from external program"
 msgstr "שגיאה מתכנית חיצונית"
 
-#: ../gramps/gui/utils.py:497
+#: ../gramps/gui/utils.py:498
 #: ../gramps/plugins/textreport/simplebooktitle.py:115
 #, python-format
 msgid "File %s does not exist"
 msgstr "הקובץ %s לא קיים"
 
-#: ../gramps/gui/utils.py:799
+#: ../gramps/gui/utils.py:801
 msgid ""
 "Cannot open new citation editor at this time. Either the citation is already "
 "being edited, or the associated source is already being edited, and opening "
@@ -19824,7 +19832,7 @@ msgstr ""
 "\n"
 "כדי לערוך את המובאה, יש לסגור את עורך המקור ולפתוח עורך עבור המובאה בלבד"
 
-#: ../gramps/gui/utils.py:815
+#: ../gramps/gui/utils.py:817
 msgid "Cannot open new citation editor"
 msgstr "לא ניתן לפתוח עורך מובאה חדש"
 
@@ -20765,13 +20773,13 @@ msgid "of %d"
 msgstr "של %d"
 
 #: ../gramps/plugins/docgen/htmldoc.py:306
-#: ../gramps/plugins/webreport/narrativeweb.py:1916
+#: ../gramps/plugins/webreport/narrativeweb.py:1920
 #: ../gramps/plugins/webreport/webcal.py:296
 msgid "Possible destination error"
 msgstr "שגיאת יעד אפשרית"
 
 #: ../gramps/plugins/docgen/htmldoc.py:308
-#: ../gramps/plugins/webreport/narrativeweb.py:1919
+#: ../gramps/plugins/webreport/narrativeweb.py:1923
 #: ../gramps/plugins/webreport/webcal.py:299
 msgid ""
 "You appear to have set your target directory to a directory used for data "
@@ -21430,13 +21438,13 @@ msgstr "שורת מלל שלישית בתחתית לוח-השנה"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:636
 #: ../gramps/plugins/textreport/birthdayreport.py:597
-#: ../gramps/plugins/webreport/narrativeweb.py:3132
+#: ../gramps/plugins/webreport/narrativeweb.py:3136
 #: ../gramps/plugins/webreport/webcal.py:1913
 msgid "Include only living people"
 msgstr "לכלול רק אנשים חיים"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:637
-#: ../gramps/plugins/webreport/narrativeweb.py:3133
+#: ../gramps/plugins/webreport/narrativeweb.py:3137
 #: ../gramps/plugins/webreport/webcal.py:1914
 msgid "Include only living people in the calendar"
 msgstr "לכלול אנשים חיים בלבד בלוח-השנה"
@@ -21466,55 +21474,55 @@ msgid "Select the country to see associated holidays"
 msgstr "נא לבחור מדינה להצגת החגים הנהוגים בה"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:664
-#: ../gramps/plugins/webreport/narrativeweb.py:3093
+#: ../gramps/plugins/webreport/narrativeweb.py:3097
 #: ../gramps/plugins/webreport/webcal.py:1970
 msgid "First day of week"
 msgstr "יום ראשון בשבוע"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:670
-#: ../gramps/plugins/webreport/narrativeweb.py:3097
+#: ../gramps/plugins/webreport/narrativeweb.py:3101
 #: ../gramps/plugins/webreport/webcal.py:1973
 msgid "Select the first day of the week for the calendar"
 msgstr "נא לבחור את היום הראשון בשבוע בלוח-השנה"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:673
 #: ../gramps/plugins/textreport/birthdayreport.py:634
-#: ../gramps/plugins/webreport/narrativeweb.py:3101
+#: ../gramps/plugins/webreport/narrativeweb.py:3105
 #: ../gramps/plugins/webreport/webcal.py:1976
 msgid "Birthday surname"
 msgstr "שם משפחה בימי ההולדת"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:675
 #: ../gramps/plugins/textreport/birthdayreport.py:636
-#: ../gramps/plugins/webreport/narrativeweb.py:3104
+#: ../gramps/plugins/webreport/narrativeweb.py:3108
 #: ../gramps/plugins/webreport/webcal.py:1979
 msgid "Wives use husband's surname (from first family listed)"
 msgstr "נשים משתמשות בשם המשפחה של הבעל (מהמשפחה הראשונה ברשימה)"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:678
 #: ../gramps/plugins/textreport/birthdayreport.py:639
-#: ../gramps/plugins/webreport/narrativeweb.py:3107
+#: ../gramps/plugins/webreport/narrativeweb.py:3111
 #: ../gramps/plugins/webreport/webcal.py:1982
 msgid "Wives use husband's surname (from last family listed)"
 msgstr "נשים משתמשות בשם המשפחה של הבעל (מהמשפחה האחרונה ברשימה)"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:680
 #: ../gramps/plugins/textreport/birthdayreport.py:641
-#: ../gramps/plugins/webreport/narrativeweb.py:3109
+#: ../gramps/plugins/webreport/narrativeweb.py:3113
 #: ../gramps/plugins/webreport/webcal.py:1984
 msgid "Wives use their own surname"
 msgstr "נשים משתמשות בשם המשפחה שלהן"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:681
 #: ../gramps/plugins/textreport/birthdayreport.py:642
-#: ../gramps/plugins/webreport/narrativeweb.py:3110
+#: ../gramps/plugins/webreport/narrativeweb.py:3114
 #: ../gramps/plugins/webreport/webcal.py:1985
 msgid "Select married women's displayed surname"
 msgstr "נא לבחור את הצגת שם המשפחה לנשים נשואות"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:684
 #: ../gramps/plugins/textreport/birthdayreport.py:645
-#: ../gramps/plugins/webreport/narrativeweb.py:3120
+#: ../gramps/plugins/webreport/narrativeweb.py:3124
 #: ../gramps/plugins/webreport/webcal.py:2065
 msgid "Include birthdays"
 msgstr "לכלול ימי הולדת"
@@ -21526,7 +21534,7 @@ msgstr "האם לכלול ימי הולדת"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:688
 #: ../gramps/plugins/textreport/birthdayreport.py:649
-#: ../gramps/plugins/webreport/narrativeweb.py:3124
+#: ../gramps/plugins/webreport/narrativeweb.py:3128
 #: ../gramps/plugins/webreport/webcal.py:2069
 msgid "Include anniversaries"
 msgstr "לכלול ימי שנה"
@@ -21537,13 +21545,13 @@ msgid "Whether to include anniversaries"
 msgstr "האם לכלול ימי נישואין"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:692
-#: ../gramps/plugins/webreport/narrativeweb.py:3128
+#: ../gramps/plugins/webreport/narrativeweb.py:3132
 #: ../gramps/plugins/webreport/webcal.py:2073
 msgid "Include death dates"
 msgstr "לכלול תאריכי פטירה"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:693
-#: ../gramps/plugins/webreport/narrativeweb.py:3129
+#: ../gramps/plugins/webreport/narrativeweb.py:3133
 #: ../gramps/plugins/webreport/webcal.py:2074
 msgid "Include death anniversaries in the calendar"
 msgstr "לכלול ימי שנה לפטירה בלוח-השנה"
@@ -22144,7 +22152,7 @@ msgstr "קובע אילו אנשים לכלול בדוח."
 #: ../gramps/plugins/textreport/indivcomplete.py:1106
 #: ../gramps/plugins/textreport/recordsreport.py:241
 #: ../gramps/plugins/tool/sortevents.py:182
-#: ../gramps/plugins/webreport/narrativeweb.py:2094
+#: ../gramps/plugins/webreport/narrativeweb.py:2098
 #: ../gramps/plugins/webreport/webcal.py:1858
 msgid "Filter Person"
 msgstr "מסנן אנשים"
@@ -22289,7 +22297,7 @@ msgstr "קובע אילו אנשים לכלול בדוח"
 #: ../gramps/plugins/drawreport/timeline.py:434
 #: ../gramps/plugins/textreport/recordsreport.py:242
 #: ../gramps/plugins/tool/sortevents.py:183
-#: ../gramps/plugins/webreport/narrativeweb.py:2095
+#: ../gramps/plugins/webreport/narrativeweb.py:2099
 #: ../gramps/plugins/webreport/webcal.py:1859
 msgid "The center person for the filter"
 msgstr "האדם המרכזי למסנן"
@@ -24847,12 +24855,6 @@ msgstr "הצבע למצג משפחות."
 #: ../gramps/plugins/graph/gvfamilylines.py:470
 #: ../gramps/plugins/textreport/familygroup.py:690
 #: ../gramps/plugins/textreport/indivcomplete.py:857
-msgid "Empty report"
-msgstr "דוח ריק"
-
-#: ../gramps/plugins/graph/gvfamilylines.py:470
-#: ../gramps/plugins/textreport/familygroup.py:690
-#: ../gramps/plugins/textreport/indivcomplete.py:857
 msgid "You did not specify anybody"
 msgstr "לא הוגדר אף אחד"
 
@@ -26410,7 +26412,7 @@ msgstr "נישואין על פי המשפט המקובל"
 
 #: ../gramps/plugins/lib/libgedcom.py:738
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:327
-#: ../gramps/plugins/webreport/narrativeweb.py:2075
+#: ../gramps/plugins/webreport/narrativeweb.py:2079
 #: ../gramps/plugins/webreport/webcal.py:1840
 msgid "Destination"
 msgstr "יעד"
@@ -31053,7 +31055,7 @@ msgid "Open on maps.google.com"
 msgstr "פתיחה באמצעות מפות גוגל maps.google.com"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:75
-#: ../gramps/plugins/webreport/narrativeweb.py:2599
+#: ../gramps/plugins/webreport/narrativeweb.py:2603
 msgid "OpenStreetMap"
 msgstr "מפות OpenStreet"
 
@@ -31454,9 +31456,13 @@ msgid "Father lineage for %s"
 msgstr "שושלת אב עבור %s"
 
 #: ../gramps/plugins/quickview/lineage.py:57
+#, fuzzy
+#| msgid ""
+#| "This report shows the father lineage, also called patronymic lineage or Y-"
+#| "line. People in this lineage all share the same Y-chromosome."
 msgid ""
-"This report shows the father lineage, also called patronymic lineage or Y-"
-"line. People in this lineage all share the same Y-chromosome."
+"This report shows the father lineage, also called the patrilineal lineage or "
+"Y-line. People in this lineage all share the same Y-chromosomes."
 msgstr ""
 "הדוח מציג את שושלת האב, המכונה גם שושלת הפטרונימית או Y-קו. אנשים בשושלת זו "
 "חולקים את אותו כרומוזום Y."
@@ -31481,9 +31487,15 @@ msgid "Mother lineage for %s"
 msgstr "שושלת האם עבור %s"
 
 #: ../gramps/plugins/quickview/lineage.py:91
+#, fuzzy
+#| msgid ""
+#| "This report shows the mother lineage, also called matronymic lineage "
+#| "mtDNA lineage. People in this lineage all share the same Mitochondrial "
+#| "DNA (mtDNA)."
 msgid ""
-"This report shows the mother lineage, also called matronymic lineage mtDNA "
-"lineage. People in this lineage all share the same Mitochondrial DNA (mtDNA)."
+"This report shows the mother lineage, also called the matrilineal lineage "
+"mtDNA lineage. People in this lineage all share the same Mitochondrial DNA "
+"(mtDNA)."
 msgstr ""
 "הדוח מציג את שושלת האם, מכונה גם שושלת מטרונימית קו־מטכונדרי. אנשי שושלת כזו "
 "חולקים כולם את אותו DNA מיטוכונדרי (mtDNA)."
@@ -34295,8 +34307,8 @@ msgstr ""
 "אלה%(bold_start)sלא כוללים את קובץ המדיה עצמו%(bold_end)s.\n"
 "\n"
 "קבצים שמכילים תמונה, קול, סרט וכדומה, מאוחסנים למעשה בנפרד בכונן הקשיח. "
-"קבצים אלה אינם מנוהלים על־ידי גרמפס ואינם משובצים במסד־הנתונים של גרמפס. מסד־"
-"הנתונים מאחסן רק את שמות הקבצים והנתיב אליהם.\n"
+"קבצים אלה אינם מנוהלים על־ידי גרמפס ואינם משובצים במסד־הנתונים של גרמפס. "
+"מסד־הנתונים מאחסן רק את שמות הקבצים והנתיב אליהם.\n"
 "\n"
 "הכלי מאפשר לשנות רשומות בתוך מסד־נתוני גרמפס בלבד. כך שאם נדרש להעביר או "
 "לשנות את שמות הקבצים עצמם, יש לעשות באופן עצמאי, מחוץ לגרמפס. לאחר מכן ניתן "
@@ -37024,7 +37036,7 @@ msgstr "תמונות ממוזערות"
 #: ../gramps/plugins/webreport/basepage.py:1908
 #: ../gramps/plugins/webreport/basepage.py:2088
 #: ../gramps/plugins/webreport/download.py:94
-#: ../gramps/plugins/webreport/narrativeweb.py:2440
+#: ../gramps/plugins/webreport/narrativeweb.py:2444
 msgid "Download"
 msgstr "הורדה"
 
@@ -37362,213 +37374,213 @@ msgstr "עצמי מדיה חסרים:"
 msgid "Constructing list of other objects..."
 msgstr "בניית רשימה של עצמים אחרים…"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:918
+#: ../gramps/plugins/webreport/narrativeweb.py:922
 #, python-format
 msgid "Family of %(husband)s and %(spouse)s"
 msgstr "משפחה של %(husband)s ו%(spouse)s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:925
 #: ../gramps/plugins/webreport/narrativeweb.py:929
+#: ../gramps/plugins/webreport/narrativeweb.py:933
 #, python-format
 msgid "Family of %s"
 msgstr "משפחה של %s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1312
+#: ../gramps/plugins/webreport/narrativeweb.py:1316
 msgid "Creating GENDEX file"
 msgstr "יצירת קובץ GENDEX"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1372
+#: ../gramps/plugins/webreport/narrativeweb.py:1376
 msgid "Creating surname pages"
 msgstr "יצירת עמודי שמות משפחה"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1409
+#: ../gramps/plugins/webreport/narrativeweb.py:1413
 msgid "Creating thumbnail preview page..."
 msgstr "עמוד מצג תמונות ממוזערות..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1418
+#: ../gramps/plugins/webreport/narrativeweb.py:1422
 msgid "Creating statistics page..."
 msgstr "יצירת עמוד סטטיסטיקה..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1426
+#: ../gramps/plugins/webreport/narrativeweb.py:1430
 msgid "Creating updates page..."
 msgstr "יצירת עמוד עדכונים..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1466
+#: ../gramps/plugins/webreport/narrativeweb.py:1470
 msgid "Creating address book pages ..."
 msgstr "יצירת עמודי ספר כתובות..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1946
+#: ../gramps/plugins/webreport/narrativeweb.py:1950
 #, python-format
 msgid "Narrative Website Report for the %s language"
 msgstr "דוח אתר מרשתת מילולי לשפה ה %s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1948
+#: ../gramps/plugins/webreport/narrativeweb.py:1952
 msgid "Narrative Website Report"
 msgstr "דוח אתר מרשתת מילולי"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2067
+#: ../gramps/plugins/webreport/narrativeweb.py:2071
 msgid "Store website in .tar.gz archive"
 msgstr "אחסון אתר מרשתת בקובץ .tar.gz"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2068
+#: ../gramps/plugins/webreport/narrativeweb.py:2072
 msgid "Whether to store the website in an archive file"
 msgstr "האם לאחסן את אתר המרשתת בקובץ ארכיב"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2078
+#: ../gramps/plugins/webreport/narrativeweb.py:2082
 #: ../gramps/plugins/webreport/webcal.py:1843
 msgid "The destination directory for the web files"
 msgstr "מחיצת היעד לקובצי המרשתת"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2083
+#: ../gramps/plugins/webreport/narrativeweb.py:2087
 msgid "My Family Tree"
 msgstr "אילן־היוחסין שלי"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2083
+#: ../gramps/plugins/webreport/narrativeweb.py:2087
 msgid "Website title"
 msgstr "כותרת אתר מרשתת"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2084
+#: ../gramps/plugins/webreport/narrativeweb.py:2088
 msgid "The title of the website"
 msgstr "כותרת אתר המרשתת"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2089
+#: ../gramps/plugins/webreport/narrativeweb.py:2093
 msgid "Select filter to restrict people that appear on the website"
 msgstr "נא לבחור מסנן על מנת להגביל את האנשים שיופיעו באתר המרשתת"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2101
+#: ../gramps/plugins/webreport/narrativeweb.py:2105
 msgid "Show the relationship between the current person and the active person"
 msgstr "הצגת קשרי־הקרבה בין האדם הנוכחי והאדם הפעיל"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2108
+#: ../gramps/plugins/webreport/narrativeweb.py:2112
 msgid ""
 "For each person page, show the relationship between this person and the "
 "active person."
 msgstr "הצגת קשרי־קרבה בין אדם ו'האדם הפעיל' בכל עמוד ה'אדם'."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2132
+#: ../gramps/plugins/webreport/narrativeweb.py:2136
 #: ../gramps/plugins/webreport/webcal.py:1865
 msgid "File extension"
 msgstr "סיומת קובץ"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2135
+#: ../gramps/plugins/webreport/narrativeweb.py:2139
 #: ../gramps/plugins/webreport/webcal.py:1868
 msgid "The extension to be used for the web files"
 msgstr "הסיומת שתשמש בקובצי עמודי המרשתת"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2139
+#: ../gramps/plugins/webreport/narrativeweb.py:2143
 #: ../gramps/plugins/webreport/webcal.py:1871
 msgid "Copyright"
 msgstr "זכויות יוצרים"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2142
+#: ../gramps/plugins/webreport/narrativeweb.py:2146
 #: ../gramps/plugins/webreport/webcal.py:1874
 msgid "The copyright to be used for the web files"
 msgstr "זכויות היוצרים לשימוש בקבצי המרשתת"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2145
+#: ../gramps/plugins/webreport/narrativeweb.py:2149
 #: ../gramps/plugins/webreport/webcal.py:1884
 msgid "StyleSheet"
 msgstr "גליון סגנון"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2151
+#: ../gramps/plugins/webreport/narrativeweb.py:2155
 msgid "The default stylesheet to be used for the pages"
 msgstr "גיליון סגנון ברירת המחדל שישמשו בעמודים"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2156
+#: ../gramps/plugins/webreport/narrativeweb.py:2160
 msgid "Horizontal -- Default"
 msgstr "אופקי -- ברירת מחדל"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2157
+#: ../gramps/plugins/webreport/narrativeweb.py:2161
 msgid "Vertical   -- Left Side"
 msgstr "אנכי  -- צד שמאל"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2158
+#: ../gramps/plugins/webreport/narrativeweb.py:2162
 msgid "Fade       -- WebKit Browsers Only"
 msgstr "עמעום    -- בדפדפני WebKit בלבד"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2159
-#: ../gramps/plugins/webreport/narrativeweb.py:2175
+#: ../gramps/plugins/webreport/narrativeweb.py:2163
+#: ../gramps/plugins/webreport/narrativeweb.py:2179
 msgid "Drop-Down  -- WebKit Browsers Only"
 msgstr "רשימה נפתחת  -- בדפדפני WebKit בלבד"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2162
+#: ../gramps/plugins/webreport/narrativeweb.py:2166
 msgid "Navigation Menu Layout"
 msgstr "פריסת תפריט ניווט"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2167
+#: ../gramps/plugins/webreport/narrativeweb.py:2171
 msgid "Choose which layout for the Navigation Menus."
 msgstr "נא לבחור הפריסה עבור תפריטי הניווט."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2174
+#: ../gramps/plugins/webreport/narrativeweb.py:2178
 msgid "Normal Outline Style"
 msgstr "סגנון מתאר תקני"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2178
+#: ../gramps/plugins/webreport/narrativeweb.py:2182
 msgid "Citation Referents Layout"
 msgstr "תסדיר הפניות מובאה"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2184
+#: ../gramps/plugins/webreport/narrativeweb.py:2188
 msgid ""
 "Determine the default layout for the Source Page's Citation Referents section"
 msgstr "קביעת פריסת ברירת המחדל למקטע 'הפניות מובאה' בעמוד המקור"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2190
+#: ../gramps/plugins/webreport/narrativeweb.py:2194
 msgid "Include ancestor's tree"
 msgstr "לכלול עץ אָבוֹת קַדמוֹנִים"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2192
+#: ../gramps/plugins/webreport/narrativeweb.py:2196
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr "האם לכלול את תרשים האבות הקדמונים לכל אדם"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2197
+#: ../gramps/plugins/webreport/narrativeweb.py:2201
 msgid "Add previous/next"
 msgstr "הוספת הקודם/הבא"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2198
+#: ../gramps/plugins/webreport/narrativeweb.py:2202
 msgid "Add previous/next to the navigation bar."
 msgstr "הוספת הקודם/הבא לסרגל הניווט."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2201
+#: ../gramps/plugins/webreport/narrativeweb.py:2205
 msgid "This is a secure site (HTTPS)"
 msgstr "זהו אתר מאובטח (HTTPS)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2202
+#: ../gramps/plugins/webreport/narrativeweb.py:2206
 msgid "Whether to use http:// or https://"
 msgstr "האם להשתמש ב־http‏:// או ‏‫https://"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2205
+#: ../gramps/plugins/webreport/narrativeweb.py:2209
 msgid "Toggle sections"
 msgstr "החלפת בחירות"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2206
+#: ../gramps/plugins/webreport/narrativeweb.py:2210
 msgid "Check it if you want to open/close a section"
 msgstr "סימון לפתיחת/סגירת מקטע"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2215
+#: ../gramps/plugins/webreport/narrativeweb.py:2219
 msgid "Extra Pages"
 msgstr "עמודים נוספים"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2218
+#: ../gramps/plugins/webreport/narrativeweb.py:2222
 msgid "Extra page name"
 msgstr "שם העמוד הנוסף"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2220
+#: ../gramps/plugins/webreport/narrativeweb.py:2224
 msgid "Your extra page name like it is shown in the menubar"
 msgstr "שם העמוד הנוסף כפי שמוצג בסרגל התפריט"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2225
+#: ../gramps/plugins/webreport/narrativeweb.py:2229
 msgid "Your extra page path"
 msgstr "נתיב לעמוד הנוסף"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2226
+#: ../gramps/plugins/webreport/narrativeweb.py:2230
 msgid "Your extra page path without extension"
 msgstr "נתיב לעמוד הנוסף ללא סיומת"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2241
+#: ../gramps/plugins/webreport/narrativeweb.py:2245
 msgid "Do we use multiple translations?"
 msgstr "האם אנו משתמשים בריבוי תרגומים?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2244
+#: ../gramps/plugins/webreport/narrativeweb.py:2248
 msgid ""
 "Whether to display the narrative web in multiple languages.\n"
 "See the translation tab to add new languages to the default one defined in "
@@ -37578,43 +37590,43 @@ msgstr ""
 "ראו את כרטיסיית התרגום כדי להוסיף שפות חדשות לשפת ברירת המחדל המוגדרת בשדה "
 "הבא."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2258
+#: ../gramps/plugins/webreport/narrativeweb.py:2262
 msgid "Sort all children in birth order"
 msgstr "מיון צאצאים לפי סדר לידתם"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2260
+#: ../gramps/plugins/webreport/narrativeweb.py:2264
 msgid "Whether to display children in birth order or in entry order."
 msgstr "הצגת צאצאים לפי סדר לידתם או לפי סדר ההזנה."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2265
+#: ../gramps/plugins/webreport/narrativeweb.py:2269
 msgid "Do we display coordinates in the places list?"
 msgstr "האם להציג קואורדינטות ברשימת המקומות?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2268
+#: ../gramps/plugins/webreport/narrativeweb.py:2272
 msgid "Whether to display latitude/longitude in the places list."
 msgstr "הצגת קווי אורך/רוחב ברשימת המקומות."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2273
+#: ../gramps/plugins/webreport/narrativeweb.py:2277
 msgid "Sort places references either by date or by name"
 msgstr "מיון הפניות מקום לפי תאריך או שם"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2277
+#: ../gramps/plugins/webreport/narrativeweb.py:2281
 msgid "Sort the places references by date or by name. Not set means by date."
 msgstr "מיון הפניות מקום לפי תאריך או שם. לא מוגדר משמע לפי תאריך."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2283
+#: ../gramps/plugins/webreport/narrativeweb.py:2287
 msgid "Graph generations"
 msgstr "דורות בתרשים"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2285
+#: ../gramps/plugins/webreport/narrativeweb.py:2289
 msgid "The number of generations to include in the ancestor graph"
 msgstr "מספר הדורות שיכללו בתרשים אָבוֹת קַדמוֹנִים"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2291
+#: ../gramps/plugins/webreport/narrativeweb.py:2295
 msgid "Include narrative notes just after name, gender"
 msgstr "לכלול הערות מלל מיד לאחר שם, מגדר"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2295
+#: ../gramps/plugins/webreport/narrativeweb.py:2299
 msgid ""
 "Include narrative notes just after name, gender and age at death (default) "
 "or include them just before attributes."
@@ -37622,47 +37634,47 @@ msgstr ""
 "לכלול הערות מלל מיד לאחר שם, מגדר וגיל בפטירה (בירית מחדל) או להכליל אותם "
 "לפני תכונות."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2308
+#: ../gramps/plugins/webreport/narrativeweb.py:2312
 msgid "Page Generation"
 msgstr "יצירת עמוד"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2311
+#: ../gramps/plugins/webreport/narrativeweb.py:2315
 msgid "Home page note"
 msgstr "הערת עמוד הבית"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2312
+#: ../gramps/plugins/webreport/narrativeweb.py:2316
 msgid "A note to be used on the home page"
 msgstr "הערה שתשמש בעמוד הבית"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2315
+#: ../gramps/plugins/webreport/narrativeweb.py:2319
 msgid "Home page image"
 msgstr "תמונות עמוד הבית"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2316
+#: ../gramps/plugins/webreport/narrativeweb.py:2320
 msgid "An image to be used on the home page"
 msgstr "תמונה לשימוש בעמוד הבית"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2319
+#: ../gramps/plugins/webreport/narrativeweb.py:2323
 msgid "Introduction note"
 msgstr "הערת פתיחה"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2320
+#: ../gramps/plugins/webreport/narrativeweb.py:2324
 msgid "A note to be used as the introduction"
 msgstr "הערה שתשמש כהקדמה"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2323
+#: ../gramps/plugins/webreport/narrativeweb.py:2327
 msgid "Introduction image"
 msgstr "תמונת פתיח"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2324
+#: ../gramps/plugins/webreport/narrativeweb.py:2328
 msgid "An image to be used as the introduction"
 msgstr "תמונה שתשמש כפתיח"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2327
+#: ../gramps/plugins/webreport/narrativeweb.py:2331
 msgid "Publisher contact note"
 msgstr "הערת המוציא לאור"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2330
+#: ../gramps/plugins/webreport/narrativeweb.py:2334
 msgid ""
 "A note to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -37672,11 +37684,11 @@ msgstr ""
 "אם אין מידע על המפרסם,\n"
 "לא ייווצר עמוד יצירת קשר"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2337
+#: ../gramps/plugins/webreport/narrativeweb.py:2341
 msgid "Publisher contact image"
 msgstr "תמונת קשר המוציא לאור"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2340
+#: ../gramps/plugins/webreport/narrativeweb.py:2344
 msgid ""
 "An image to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -37686,27 +37698,27 @@ msgstr ""
 "אם לא קיים מידע על מפרסם,\n"
 "לא ייווצר עמוד פרטי קשר"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2347
+#: ../gramps/plugins/webreport/narrativeweb.py:2351
 msgid "HTML user header"
 msgstr "כותרת עמוד HTML"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2349
+#: ../gramps/plugins/webreport/narrativeweb.py:2353
 msgid "A note to be used as the page header or a PHP code to insert."
 msgstr "הערה שתשמש ככותרת העמוד או כקוד PHP להכנסה."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2353
+#: ../gramps/plugins/webreport/narrativeweb.py:2357
 msgid "HTML user footer"
 msgstr "סיומת משתמש לעמוד HTML"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2354
+#: ../gramps/plugins/webreport/narrativeweb.py:2358
 msgid "A note to be used as the page footer"
 msgstr "הערה שתשמש בתחתית העמוד"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2359
+#: ../gramps/plugins/webreport/narrativeweb.py:2363
 msgid "PHP user session"
 msgstr "שיח משתמש PHP"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2362
+#: ../gramps/plugins/webreport/narrativeweb.py:2366
 msgid ""
 "A note to use for starting the php session.\n"
 "This option will be available only if the .php file extension is selected."
@@ -37714,39 +37726,39 @@ msgstr ""
 "הערה שתשמש באתחול שיח php.\n"
 "אפשרות זו תהיה זמינה רק אם נבחרה סיומת קובץ php.."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2375
+#: ../gramps/plugins/webreport/narrativeweb.py:2379
 msgid "Images Generation"
 msgstr "חילול תמונות"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2378
+#: ../gramps/plugins/webreport/narrativeweb.py:2382
 msgid "Include images and media objects"
 msgstr "לכלול תמונות ועצמי מדיה"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2379
+#: ../gramps/plugins/webreport/narrativeweb.py:2383
 msgid "Whether to include a gallery of media objects"
 msgstr "האם לכלול גלרית עצמי מדיה"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2383
+#: ../gramps/plugins/webreport/narrativeweb.py:2387
 msgid "Create the images index"
 msgstr "יצירת מפתוח תמונות"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2385
+#: ../gramps/plugins/webreport/narrativeweb.py:2389
 msgid "This option allows you to create the images index"
 msgstr "אפשור יצירת מפתח תמונות"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2391
+#: ../gramps/plugins/webreport/narrativeweb.py:2395
 msgid "Include unused images and media objects"
 msgstr "לכלול תמונות ועצמי מדיה שאינם בשימוש"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2394
+#: ../gramps/plugins/webreport/narrativeweb.py:2398
 msgid "Whether to include unused or unreferenced media objects"
 msgstr "האם לכלול עצמיי מדיה שאינם בשימוש או אינם מופנים"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2399
+#: ../gramps/plugins/webreport/narrativeweb.py:2403
 msgid "Create and only use thumbnail- sized images"
 msgstr "יצירה ושימוש רק בתמונות ממוזערות"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2403
+#: ../gramps/plugins/webreport/narrativeweb.py:2407
 msgid ""
 "This option allows you to create only thumbnail images instead of the full-"
 "sized images on the Media Page. This will allow you to have a much smaller "
@@ -37755,238 +37767,238 @@ msgstr ""
 "אפשרות יצירת תמונות ממוזערות בלבד, במקום תמונות בגודל מלא, בעמוד המדיה. "
 "מאפשר העלאת קבצים בנפח קטן יותר לאתר המרשתת המארח."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2413
+#: ../gramps/plugins/webreport/narrativeweb.py:2417
 msgid "Create the thumbnail index"
 msgstr "יצירת מפתוח תמונות ממוזערות"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2416
+#: ../gramps/plugins/webreport/narrativeweb.py:2420
 msgid "This option allows you to create the thumbnail index"
 msgstr "אפשור יצירת מפתח תמונות ממוזערות"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2422
+#: ../gramps/plugins/webreport/narrativeweb.py:2426
 msgid "Max width of initial image"
 msgstr "רוחב מרבי של תמונה ראשונית"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2426
+#: ../gramps/plugins/webreport/narrativeweb.py:2430
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
 "page."
 msgstr "אפשור קביעת הרוחב תמונה המרבי בעמוד המדיה."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2443
+#: ../gramps/plugins/webreport/narrativeweb.py:2447
 msgid "Include download page"
 msgstr "לכלול עמוד הורדות"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2444
+#: ../gramps/plugins/webreport/narrativeweb.py:2448
 msgid "Whether to include a database download option"
 msgstr "האם לכלול אפשרות להורדת מסד־נתונים"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2449
+#: ../gramps/plugins/webreport/narrativeweb.py:2453
 msgid "How many downloads"
 msgstr "מספר הורדות"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2452
+#: ../gramps/plugins/webreport/narrativeweb.py:2456
 msgid "The number of download files to include in the download page"
 msgstr "מספר הקבצים שהורדו שייכללו בעמוד ההורדה"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2462
+#: ../gramps/plugins/webreport/narrativeweb.py:2466
 #, python-format
 msgid "Download Filename #%c"
 msgstr "שם קובץ הורדה #%c"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2464
+#: ../gramps/plugins/webreport/narrativeweb.py:2468
 msgid "File to be used for downloading of database"
 msgstr "הקובץ לשימוש עבור הורדת מסד־הנתונים"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2469
+#: ../gramps/plugins/webreport/narrativeweb.py:2473
 msgid "Description for download"
 msgstr "תאור ההורדה"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2469
+#: ../gramps/plugins/webreport/narrativeweb.py:2473
 #, python-format
 msgid "Family Tree #%c"
 msgstr "אילן־יוחסין #%c"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2471
+#: ../gramps/plugins/webreport/narrativeweb.py:2475
 msgid "Give a description for this file."
 msgstr "הזנת תאור לקובץ זה."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2483
+#: ../gramps/plugins/webreport/narrativeweb.py:2487
 #: ../gramps/plugins/webreport/webcal.py:2049
 msgid "Advanced Options"
 msgstr "אפשרויות מתקדמות"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2487
+#: ../gramps/plugins/webreport/narrativeweb.py:2491
 #: ../gramps/plugins/webreport/webcal.py:2052
 msgid "Character set encoding"
 msgstr "קידוד תווים"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2491
+#: ../gramps/plugins/webreport/narrativeweb.py:2495
 #: ../gramps/plugins/webreport/webcal.py:2056
 msgid "The encoding to be used for the web files"
 msgstr "סוג הקידוד שימש בעמודי המרשתת"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2495
+#: ../gramps/plugins/webreport/narrativeweb.py:2499
 msgid "Include link to active person on every page"
 msgstr "לכלול קישור לאדם הפעיל בכל עמוד"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2498
+#: ../gramps/plugins/webreport/narrativeweb.py:2502
 msgid "Include a link to the active person (if they have a webpage)"
 msgstr "לכלול קישור לאדם הפעיל בכל עמוד (אם יש לו עמוד בית)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2503
+#: ../gramps/plugins/webreport/narrativeweb.py:2507
 msgid "Include a column for birth dates on the index pages"
 msgstr "לכלול עמודת תאריך לידה בעמוד המפתח"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2505
+#: ../gramps/plugins/webreport/narrativeweb.py:2509
 msgid "Whether to include a birth column"
 msgstr "האם לכלול עמודת לידה"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2509
+#: ../gramps/plugins/webreport/narrativeweb.py:2513
 msgid "Include a column for death dates on the index pages"
 msgstr "לכלול עמודת תאריך פטירה בעמוד המפתח"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2511
+#: ../gramps/plugins/webreport/narrativeweb.py:2515
 msgid "Whether to include a death column"
 msgstr "האם לכלול עמודת פטירה"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2515
+#: ../gramps/plugins/webreport/narrativeweb.py:2519
 msgid "Include a column for partners on the index pages"
 msgstr "לכלול עמודת בני זוג בעמוד המפתח"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2517
+#: ../gramps/plugins/webreport/narrativeweb.py:2521
 msgid "Whether to include a partners column"
 msgstr "האם לכלול עמודת בני זוג"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2521
+#: ../gramps/plugins/webreport/narrativeweb.py:2525
 msgid "Include a column for parents on the index pages"
 msgstr "לכלול עמודת הורים בעמוד המפתח"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2523
+#: ../gramps/plugins/webreport/narrativeweb.py:2527
 msgid "Whether to include a parents column"
 msgstr "האם לכלול עמודת הורים"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2527
+#: ../gramps/plugins/webreport/narrativeweb.py:2531
 msgid "Include half and/or step-siblings on the individual pages"
 msgstr "לכלול אַחָאִים למחצה ו/או אַחָאִים שלובים בעמוד האישי"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2531
+#: ../gramps/plugins/webreport/narrativeweb.py:2535
 msgid ""
 "Whether to include half and/or step-siblings with the parents and siblings"
 msgstr "האם לכלול אַחָאִים למחצה ו/או אַחָאִים שלובים לרבות ההורים והצאצאים"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2546
+#: ../gramps/plugins/webreport/narrativeweb.py:2550
 msgid "Include family pages"
 msgstr "לכלול דפי משפחה"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2547
+#: ../gramps/plugins/webreport/narrativeweb.py:2551
 msgid "Whether or not to include family pages."
 msgstr "האם לכלול עמודי משפחה."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2550
+#: ../gramps/plugins/webreport/narrativeweb.py:2554
 msgid "Include event pages"
 msgstr "לכלול עמודי אירוע"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2551
+#: ../gramps/plugins/webreport/narrativeweb.py:2555
 msgid "Add a complete events list and relevant pages or not"
 msgstr "הוספת רשימת אירועים מלאה ודפים מן העיניין או לא"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2554
+#: ../gramps/plugins/webreport/narrativeweb.py:2558
 msgid "Include place pages"
 msgstr "לכלול עמודי מקום"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2555
+#: ../gramps/plugins/webreport/narrativeweb.py:2559
 msgid "Whether or not to include the place pages."
 msgstr "האם לכלול עמודי מקום."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2558
+#: ../gramps/plugins/webreport/narrativeweb.py:2562
 msgid "Include unused place pages"
 msgstr "לכלול עמודי 'מקומות שאינם בשימוש'"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2559
+#: ../gramps/plugins/webreport/narrativeweb.py:2563
 msgid "Whether or not to include the unused place pages."
 msgstr "האם לכלול עמודי 'מקומות שאינם בשימוש'."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2562
+#: ../gramps/plugins/webreport/narrativeweb.py:2566
 msgid "Include source pages"
 msgstr "לכלול עמודי מקור"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2563
+#: ../gramps/plugins/webreport/narrativeweb.py:2567
 msgid "Whether or not to include the source pages."
 msgstr "האם לכלול עמודי מקור."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2566
+#: ../gramps/plugins/webreport/narrativeweb.py:2570
 msgid "Include repository pages"
 msgstr "לכלול עמודי מאגר"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2567
+#: ../gramps/plugins/webreport/narrativeweb.py:2571
 msgid "Whether or not to include the repository pages."
 msgstr "האם לכלול עמודי מאגר."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2570
+#: ../gramps/plugins/webreport/narrativeweb.py:2574
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "לכלול קובץ GENDEX (/gendex.txt)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2571
+#: ../gramps/plugins/webreport/narrativeweb.py:2575
 msgid "Whether to include a GENDEX file or not"
 msgstr "האם לכלול קובץ GENDEX או לא"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2574
+#: ../gramps/plugins/webreport/narrativeweb.py:2578
 msgid "Include address book pages"
 msgstr "לכלול עמודי ספר כתובות"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2577
+#: ../gramps/plugins/webreport/narrativeweb.py:2581
 msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and "
 "website addresses and personal address/ residence events."
 msgstr ""
-"האם לכלול עמוד ספר כתובות, הכולל דואר אלקטרוני, כתובת אתר מרשתת וכתבות/"
-"אירועי מגורים אישיים."
+"האם לכלול עמוד ספר כתובות, הכולל דואר אלקטרוני, כתובת אתר מרשתת "
+"וכתבות/אירועי מגורים אישיים."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2585
+#: ../gramps/plugins/webreport/narrativeweb.py:2589
 msgid "Include the statistics page"
 msgstr "לכלול עמוד הסטטיסטיקה"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2586
+#: ../gramps/plugins/webreport/narrativeweb.py:2590
 msgid "Whether or not to add statistics page"
 msgstr "האם לכלול עמוד סטטיסטיקה"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2595
+#: ../gramps/plugins/webreport/narrativeweb.py:2599
 msgid "Place Map Options"
 msgstr "אפשרויות מפת מקומות"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2600
+#: ../gramps/plugins/webreport/narrativeweb.py:2604
 msgid "Stamen Map"
 msgstr "סטאמן_מאפ"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2601
+#: ../gramps/plugins/webreport/narrativeweb.py:2605
 msgid "Google"
 msgstr "גוגל"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2603
+#: ../gramps/plugins/webreport/narrativeweb.py:2607
 msgid "Map Service"
 msgstr "שירות מפות"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2607
+#: ../gramps/plugins/webreport/narrativeweb.py:2611
 msgid "Choose your choice of map service for creating the Place Map Pages."
 msgstr ""
 "נא לבחור בשירות מפות על מנת ליצור עמודי מפה למקומות המופיעים באילן־היוחסין."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2613
+#: ../gramps/plugins/webreport/narrativeweb.py:2617
 msgid "Include Place map on Place Pages"
 msgstr "לכלול מפת מקום בעמודי המקום"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2617
+#: ../gramps/plugins/webreport/narrativeweb.py:2621
 msgid ""
 "Whether to include a place map on the Place Pages, where Latitude/ Longitude "
 "are available."
 msgstr "האם לכלול מפת מקום בעמודי 'מקום', כאשר קו רוחב/אורך זמינים."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2625
+#: ../gramps/plugins/webreport/narrativeweb.py:2629
 msgid "Include Family Map Pages with all places shown on the map"
 msgstr "לכלול עמוד מפת משפחה בו מוצגים כל המקומות על המפה"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2629
+#: ../gramps/plugins/webreport/narrativeweb.py:2633
 msgid ""
 "Whether or not to add an individual page map showing all the places on this "
 "page. This will allow you to see how your family traveled around the country."
@@ -37994,33 +38006,33 @@ msgstr ""
 "האם להוסיף עמוד מפה אישי שמציג את כל המקומות. מאפשר הצגת תנועת המשפחה ברחבי "
 "הארץ והעולם."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2639
+#: ../gramps/plugins/webreport/narrativeweb.py:2643
 msgid "Family Links"
 msgstr "קישורי משפחה"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2640
+#: ../gramps/plugins/webreport/narrativeweb.py:2644
 msgid "Drop"
 msgstr "השמטה"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2641
+#: ../gramps/plugins/webreport/narrativeweb.py:2645
 msgid "Markers"
 msgstr "סמנים"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2644
+#: ../gramps/plugins/webreport/narrativeweb.py:2648
 msgid "Google/ FamilyMap Option"
 msgstr "גוגל/ אפשרויות FamilyMap"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2650
+#: ../gramps/plugins/webreport/narrativeweb.py:2654
 msgid ""
 "Select which option that you would like to have for the Google Maps family-"
 "map pages..."
 msgstr "נא לבחור באפשרות הרצויה עבור עמודי מפה־משפחתית במפות גוגל ..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2656
+#: ../gramps/plugins/webreport/narrativeweb.py:2660
 msgid "Google maps API key"
 msgstr "מפתח API לגוגל מפות"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2659
+#: ../gramps/plugins/webreport/narrativeweb.py:2663
 msgid ""
 "The API key used for the Google maps.\n"
 "This key is mandatory and must be valid"
@@ -38028,12 +38040,12 @@ msgstr ""
 "מפתח ה־API שמשמש למפות גוגל.\n"
 "זהו מפתח חובה ועליו להיות בתוקף"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2671
-#: ../gramps/plugins/webreport/narrativeweb.py:2711
+#: ../gramps/plugins/webreport/narrativeweb.py:2675
+#: ../gramps/plugins/webreport/narrativeweb.py:2715
 msgid "How to get the API key"
 msgstr "כיצד לקבל מפתח API"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2674
+#: ../gramps/plugins/webreport/narrativeweb.py:2678
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Google maps service must be selected."
@@ -38041,33 +38053,33 @@ msgstr ""
 "נא להעתיק ולהדביק ערכים אלו בחיפוש הדפדפן.\n"
 "חובה לבחור בשירות המפות של Google."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2682
+#: ../gramps/plugins/webreport/narrativeweb.py:2686
 msgid "Toner"
 msgstr "מגוון"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2683
+#: ../gramps/plugins/webreport/narrativeweb.py:2687
 msgid "Terrain"
 msgstr "פְּנֵי הַקַרקַע"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2684
+#: ../gramps/plugins/webreport/narrativeweb.py:2688
 msgid "WaterColor"
 msgstr "צבע מים"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2686
+#: ../gramps/plugins/webreport/narrativeweb.py:2690
 msgid "Stamen Option"
 msgstr "אפשרויות סטאמן"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2691
+#: ../gramps/plugins/webreport/narrativeweb.py:2695
 msgid ""
 "Select which option that you would like to have for the Stamen map map-"
 "pages..."
 msgstr "נא לבחור באפשרות לעמודי מפת סטאמן_מאפ ..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2696
+#: ../gramps/plugins/webreport/narrativeweb.py:2700
 msgid "Stamen maps API key"
 msgstr "מפתח API למפות Stamen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2699
+#: ../gramps/plugins/webreport/narrativeweb.py:2703
 msgid ""
 "The API key used for the Stamen maps.\n"
 "This key is mandatory and must be valid"
@@ -38075,7 +38087,7 @@ msgstr ""
 "מפתח ה־API שמשמש למפות Stamen.\n"
 "זהו מפתח חובה ועליו להיות בתוקף"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2714
+#: ../gramps/plugins/webreport/narrativeweb.py:2718
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Stamen maps service must be selected."
@@ -38083,21 +38095,21 @@ msgstr ""
 "נא להעתיק ולהדביק ערך זה לדפדפן.\n"
 "חובה לבחור בשירות המפות של Stamen."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2731
+#: ../gramps/plugins/webreport/narrativeweb.py:2735
 #, python-format
 msgctxt "val"
 msgid "in %(inipth)s (%(val)s)"
 msgstr "ב־%(inipth)s (%(val)s)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2732
+#: ../gramps/plugins/webreport/narrativeweb.py:2736
 msgid "latest"
 msgstr "המאוחר יותר"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2734
+#: ../gramps/plugins/webreport/narrativeweb.py:2738
 msgid "openlayers version to use"
 msgstr "גרסת openlayers בה יעשה שימוש"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2739
+#: ../gramps/plugins/webreport/narrativeweb.py:2743
 msgid ""
 "You should use this option only if you can't see the maps in your website "
 "for OpenStreetMap or Stamen maps\n"
@@ -38111,145 +38123,145 @@ msgstr ""
 "openlayers_version.\n"
 "לגרסאות ישנות יותר נא לקרוא בעמוד https://openlayers.org/"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2756
+#: ../gramps/plugins/webreport/narrativeweb.py:2760
 msgid "Other inclusion (CMS, web calendar, PHP)"
 msgstr "הכללות אחרות (CMS, web calendar, PHP)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2760
+#: ../gramps/plugins/webreport/narrativeweb.py:2764
 msgid "Do we include these pages in a CMS web?"
 msgstr "האם לכלול עמודים אלו ברשת CMS?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2767
+#: ../gramps/plugins/webreport/narrativeweb.py:2771
 msgid "URI"
 msgstr "URI"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2769
+#: ../gramps/plugins/webreport/narrativeweb.py:2773
 msgid "Where do you place your website? default = /NAVWEB"
 msgstr "היכן ממוקם אתר המרשתת? ברירת מחדל =/NAVWEB"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2777
+#: ../gramps/plugins/webreport/narrativeweb.py:2781
 msgid "Include the news and updates page"
 msgstr "לכלול עמוד חדשות ועדכונים"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2778
+#: ../gramps/plugins/webreport/narrativeweb.py:2782
 msgid "Whether to include a page with the last updates"
 msgstr "האם לכלול עמוד אם עדכונים אחרונים"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2782
+#: ../gramps/plugins/webreport/narrativeweb.py:2786
 msgid "Max days for updates"
 msgstr "מספר ימים מרבי לעדכון"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2784
+#: ../gramps/plugins/webreport/narrativeweb.py:2788
 msgid "You want to see the last updates on how many days?"
 msgstr "לכמה ימים להציג עדכונים אחרונים?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2789
+#: ../gramps/plugins/webreport/narrativeweb.py:2793
 msgid "Max number of updates per object to show"
 msgstr "מספר מרבי של עדכונם לעמוד להצגה"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2791
+#: ../gramps/plugins/webreport/narrativeweb.py:2795
 msgid "How many updates do you want to see max"
 msgstr "מספר העדכונים המרבי להצגה"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2803
+#: ../gramps/plugins/webreport/narrativeweb.py:2807
 msgid "Translations"
 msgstr "תרגומים"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2806
+#: ../gramps/plugins/webreport/narrativeweb.py:2810
 msgid "Second language"
 msgstr "שפה שנייה"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2811
+#: ../gramps/plugins/webreport/narrativeweb.py:2815
 msgid "Site name for your second language"
 msgstr "שם אתר לשפה השניה"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2811
-#: ../gramps/plugins/webreport/narrativeweb.py:2820
-#: ../gramps/plugins/webreport/narrativeweb.py:2829
-#: ../gramps/plugins/webreport/narrativeweb.py:2838
-#: ../gramps/plugins/webreport/narrativeweb.py:2847
+#: ../gramps/plugins/webreport/narrativeweb.py:2815
+#: ../gramps/plugins/webreport/narrativeweb.py:2824
+#: ../gramps/plugins/webreport/narrativeweb.py:2833
+#: ../gramps/plugins/webreport/narrativeweb.py:2842
+#: ../gramps/plugins/webreport/narrativeweb.py:2851
 msgid "This site title"
 msgstr "כותרת אתר זה"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2813
-#: ../gramps/plugins/webreport/narrativeweb.py:2822
-#: ../gramps/plugins/webreport/narrativeweb.py:2831
-#: ../gramps/plugins/webreport/narrativeweb.py:2840
-#: ../gramps/plugins/webreport/narrativeweb.py:2849
+#: ../gramps/plugins/webreport/narrativeweb.py:2817
+#: ../gramps/plugins/webreport/narrativeweb.py:2826
+#: ../gramps/plugins/webreport/narrativeweb.py:2835
+#: ../gramps/plugins/webreport/narrativeweb.py:2844
+#: ../gramps/plugins/webreport/narrativeweb.py:2853
 msgid "Enter a title in the respective language"
 msgstr "הזנת כותרת בשפה המתאימה"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2815
+#: ../gramps/plugins/webreport/narrativeweb.py:2819
 msgid "Third language"
 msgstr "שפה שלישית"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2820
+#: ../gramps/plugins/webreport/narrativeweb.py:2824
 msgid "Site name for your third language"
 msgstr "שם אתר לשפה השלישית"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2824
+#: ../gramps/plugins/webreport/narrativeweb.py:2828
 msgid "Fourth language"
 msgstr "שפה רביעית"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2829
+#: ../gramps/plugins/webreport/narrativeweb.py:2833
 msgid "Site name for your fourth language"
 msgstr "שם אתר לשפה הרביעית"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2833
+#: ../gramps/plugins/webreport/narrativeweb.py:2837
 msgid "Fifth language"
 msgstr "שפה חמישית"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2838
+#: ../gramps/plugins/webreport/narrativeweb.py:2842
 msgid "Site name for your fifth language"
 msgstr "שם אתר לשפה החמישית"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2842
+#: ../gramps/plugins/webreport/narrativeweb.py:2846
 msgid "Sixth language"
 msgstr "שפה שישית"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2847
+#: ../gramps/plugins/webreport/narrativeweb.py:2851
 msgid "Site name for your sixth language"
 msgstr "שם אתר לשפה השישית"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3080
+#: ../gramps/plugins/webreport/narrativeweb.py:3084
 msgid "Calendar Options"
 msgstr "אפשרויות לוח־שנה"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3086
+#: ../gramps/plugins/webreport/narrativeweb.py:3090
 msgid "Do we include the web calendar ?"
 msgstr "האם לכלול לוח־שנה מרשתת?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3088
+#: ../gramps/plugins/webreport/narrativeweb.py:3092
 #, python-format
 msgid "Whether to include a calendar for year %s"
 msgstr "האם לכלול לוח־שנה לשנת %s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3115
+#: ../gramps/plugins/webreport/narrativeweb.py:3119
 #: ../gramps/plugins/webreport/webcal.py:2060
 msgid "Create one day event pages for Year At A Glance calendar"
 msgstr "יצירת עמודי אירוע בני יום אחד, במצג לוח־שנה 'שנה במבט חטוף'"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3117
+#: ../gramps/plugins/webreport/narrativeweb.py:3121
 #: ../gramps/plugins/webreport/webcal.py:2062
 msgid "Whether to create one day pages or not"
 msgstr "האם ליצור עמודי אירוע לכל יום"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3121
+#: ../gramps/plugins/webreport/narrativeweb.py:3125
 #: ../gramps/plugins/webreport/webcal.py:2066
 msgid "Include birthdays in the calendar"
 msgstr "לכלול ימי הולדת בלוח-השנה"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3125
+#: ../gramps/plugins/webreport/narrativeweb.py:3129
 #: ../gramps/plugins/webreport/webcal.py:2070
 msgid "Include anniversaries in the calendar"
 msgstr "לכלול ימי שנה בלוח-השנה"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3138
+#: ../gramps/plugins/webreport/narrativeweb.py:3142
 #: ../gramps/plugins/webreport/webcal.py:2085
 msgid "Show data only after year"
 msgstr "הצגת נתונים רק לאחר שנת"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3145
+#: ../gramps/plugins/webreport/narrativeweb.py:3149
 #: ../gramps/plugins/webreport/webcal.py:2092
 msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
