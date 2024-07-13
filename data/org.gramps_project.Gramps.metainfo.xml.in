@@ -58,6 +58,7 @@
   <content_rating type="oars-1.1" />
 
   <releases>
+    <release date="2024-07-13" version="5.2.3" />
     <release date="2024-04-06" version="5.2.2" />
     <release date="2024-03-24" version="5.2.1" />
     <release date="2024-02-23" version="5.2.0" />
