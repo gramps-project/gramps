@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-07-12 13:09+0000\n"
+"PO-Revision-Date: 2024-07-13 12:27+0000\n"
 "Last-Translator: Harald Herreros <haraldh@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/nb_NO/>\n"
@@ -436,7 +436,7 @@ msgstr ""
 "familien som ikke har blitt skrevet ned. Det kan hende de har verdifulle "
 "biter av informasjon om personer, som en dag kan lede deg inn i et nytt spor "
 "i din slektsforskning. Du vil i alle fall få noen flotte historier. Ikke "
-"glem å ta opp samtalene!"
+"glem å registrere samtalene!"
 
 #: ../data/tips.xml:14
 msgid ""
@@ -466,7 +466,7 @@ msgid ""
 "instance, by inverting the 'People with children' filter you can select all "
 "people without children."
 msgstr ""
-"<b>Omvendt filtrering</b><br/>Filtre kan lett snus ved å bruke valget «"
+"<b>Invertert filtrering</b><br/>Filtre kan lett snus ved å bruke valget «"
 "Returner verdier som ikke matcher med filterreglene». For eksempel, ved å "
 "snu filteret «Personer med barn» kan du velge alle personer uten barn."
 
@@ -966,10 +966,10 @@ msgid ""
 "individuals to a collection of web pages ready for upload to the World Wide "
 "Web."
 msgstr ""
-"<b>Lage en nettside for slektsdataene dine</b><br/>Du kan enkelt eksportere "
-"din slektsdatabase til en Internettside. Velg hele databasen, familielinjer, "
-"eller enkeltindivider for å lage en samling med nettsider som er klare for å "
-"legges ut på Internett."
+"<b>Lage et slektsforskningsnettsted</b><br/>Du kan enkelt eksportere "
+"slektstreet ditt til et nettsted. Velg hele databasen, slektslinjer eller "
+"utvalgte personer til en samling nettsider klare for å legges ut på "
+"internett."
 
 #: ../data/tips.xml:94
 msgid ""
@@ -8601,11 +8601,11 @@ msgstr "Pseudonym"
 
 #: ../gramps/gen/lib/nameorigintype.py:85
 msgid "Patrilineal"
-msgstr "Agnatisk linje"
+msgstr "Patrilineær"
 
 #: ../gramps/gen/lib/nameorigintype.py:86
 msgid "Matrilineal"
-msgstr "Kognatisk linje"
+msgstr "Matrilineær"
 
 #: ../gramps/gen/lib/nametype.py:49
 msgid "Also Known As"
@@ -9036,7 +9036,7 @@ msgstr "Album"
 
 #: ../gramps/gen/lib/repotype.py:60
 msgid "Web site"
-msgstr "Nettside"
+msgstr "Nettsted"
 
 #: ../gramps/gen/lib/repotype.py:61
 msgid "Bookstore"
@@ -9290,7 +9290,7 @@ msgstr "Hjemmeside"
 
 #: ../gramps/gen/lib/urltype.py:52
 msgid "Web Search"
-msgstr "Internettsøk"
+msgstr "Nettsøk"
 
 #: ../gramps/gen/lib/urltype.py:53
 msgid "FTP"
@@ -17325,7 +17325,7 @@ msgstr "_Beskrivelse:"
 
 #: ../gramps/gui/glade/editurl.glade:170
 msgid "Type of internet address, eg. E-mail, Web Page, ..."
-msgstr "Type internettadresse, f.eks. e-post, Internettside, ..."
+msgstr "Type internettadresse, f.eks. e-post, nettside, ..."
 
 #: ../gramps/gui/glade/editurl.glade:189
 msgid ""
@@ -19215,18 +19215,18 @@ msgstr "Installasjonsfeil"
 
 #: ../gramps/gui/plug/_windows.py:2248
 msgid "The following addons had errors: "
-msgstr "Følgende programtillegg hadde feil: "
+msgstr "Følgende utvidelser hadde feil: "
 
 #: ../gramps/gui/plug/_windows.py:2256 ../gramps/gui/plug/_windows.py:2273
 msgid "Done downloading and installing addons"
-msgstr "Ferdig med nedlasting og installasjon av programtillegg"
+msgstr "Nedlasting og installasjon av utvidelser er fullført"
 
 #: ../gramps/gui/plug/_windows.py:2261
 #, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
-msgstr[0] "{number_of} programtillegg ble installert."
-msgstr[1] "{number_of} programtillegg ble installert."
+msgstr[0] "{number_of} utvidelse ble installert."
+msgstr[1] "{number_of} utvidelser ble installert."
 
 #: ../gramps/gui/plug/_windows.py:2266
 msgid "If you have installed a 'View', you will need to restart Gramps."
@@ -19234,7 +19234,7 @@ msgstr "Hvis du har installert en «View», vil du måtte starte Gramps på nytt
 
 #: ../gramps/gui/plug/_windows.py:2274
 msgid "No addons were installed."
-msgstr "Ingen programtillegg ble installert."
+msgstr "Ingen utvidelser ble installert."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:126
 msgid "Export Assistant"
@@ -22136,7 +22136,7 @@ msgstr "Lager en grafisk anetavle"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:55
 msgid "Produces a graphical ancestral tree"
-msgstr "Lager en grafisk anetavle"
+msgstr "Lager et grafisk anetre"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:77
 msgid "Produces a graphical calendar"
@@ -24790,7 +24790,7 @@ msgstr "Gramps Vis Kategorier"
 #: ../gramps/plugins/gramplet/welcomegramplet.py:246
 #: ../gramps/plugins/gramplet/welcomegramplet.py:255
 msgid "Addons and \"Gramplets\""
-msgstr "Programtillegg og smågramps"
+msgstr "Utvidelser og «Gramplets»"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:249
 msgid ""
@@ -24799,10 +24799,10 @@ msgid ""
 "available to you. Many more are available to download and install.\n"
 "\n"
 msgstr ""
-"Det er mange programtillegg eller smågramps som er tilgjengelige for å "
-"hjelpe deg med å legge inn data og visualisere slektstreet ditt. Mange av "
-"disse verktøyene er allerede tilgjengelige for deg. Mange flere er "
-"tilgjengelige for nedlasting og installasjon.\n"
+"Det finnes mange utvidelser, eller «Gramplets», som kan hjelpe deg med "
+"dataregistrering og visualisering av slektstreet ditt. Mange av disse "
+"verktøyene er allerede tilgjengelige, og enda flere kan lastes ned og "
+"installeres.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:257
@@ -24962,7 +24962,7 @@ msgstr "Graf for slektslinjer"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:38
 msgid "Produces family line graphs using Graphviz."
-msgstr "Lager en graf for slektslinjer ved å bruke Graphviz."
+msgstr "Lager en graf for slektslinjer med Graphviz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:60
 msgid "Hourglass Graph"
@@ -24970,7 +24970,7 @@ msgstr "Timeglassgraf"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:61
 msgid "Produces an hourglass graph using Graphviz."
-msgstr "Lager en timeglassrapport med Graphviz."
+msgstr "Lager en timeglassgraf med Graphviz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:82
 #: ../gramps/plugins/graph/gvrelgraph.py:225
@@ -25002,22 +25002,22 @@ msgstr "Fargefyll"
 #: ../gramps/plugins/graph/gvfamilylines.py:87
 #: ../gramps/plugins/graph/gvrelgraph.py:89
 msgid "Descendants <- Ancestors"
-msgstr "Etterkommere <- forfedre"
+msgstr "Etterkommere <- Aner"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:88
 #: ../gramps/plugins/graph/gvrelgraph.py:90
 msgid "Descendants -> Ancestors"
-msgstr "Etterkommere -> forfedre"
+msgstr "Etterkommere -> Aner"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:89
 #: ../gramps/plugins/graph/gvrelgraph.py:91
 msgid "Descendants <-> Ancestors"
-msgstr "Etterkommere <-> forfedre"
+msgstr "Etterkommere <-> Aner"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:90
 #: ../gramps/plugins/graph/gvrelgraph.py:92
 msgid "Descendants - Ancestors"
-msgstr "Etterkommere - forfedre"
+msgstr "Etterkommere - Aner"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:97
 msgid "Both"
@@ -25486,9 +25486,8 @@ msgid ""
 "generated that contain active links to the files generated by the 'Narrated "
 "Web Site' report."
 msgstr ""
-"Ta med en URL ved hvert knutepunkt på grafen, slik at PDF- og "
-"bildekartfilene kan lages med aktive lenker til filene som lages av "
-"nettsiderapporten."
+"Ta med en URL i hver grafnode, slik at PDF- og bildekartfiler lages med "
+"aktive lenker til filene som lages med rapporten «fortellende nettsted»."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:995
 #: ../gramps/plugins/textreport/birthdayreport.py:657
@@ -31774,42 +31773,42 @@ msgstr "alle"
 #: ../gramps/plugins/quickview/filterbyname.py:44
 msgctxt "Filtering_on"
 msgid "Inverse Person"
-msgstr "omvendt person"
+msgstr "Invertert person"
 
 #: ../gramps/plugins/quickview/filterbyname.py:45
 msgctxt "Filtering_on"
 msgid "Inverse Family"
-msgstr "omvendt familier"
+msgstr "Invertert familie"
 
 #: ../gramps/plugins/quickview/filterbyname.py:46
 msgctxt "Filtering_on"
 msgid "Inverse Event"
-msgstr "omvendt hendelse"
+msgstr "Invertert hendelse"
 
 #: ../gramps/plugins/quickview/filterbyname.py:47
 msgctxt "Filtering_on"
 msgid "Inverse Place"
-msgstr "omvendt sted"
+msgstr "Invertert sted"
 
 #: ../gramps/plugins/quickview/filterbyname.py:48
 msgctxt "Filtering_on"
 msgid "Inverse Source"
-msgstr "invers kilde"
+msgstr "Invertert kilde"
 
 #: ../gramps/plugins/quickview/filterbyname.py:49
 msgctxt "Filtering_on"
 msgid "Inverse Repository"
-msgstr "Omvendt arkiv"
+msgstr "Invertert arkiv"
 
 #: ../gramps/plugins/quickview/filterbyname.py:50
 msgctxt "Filtering_on"
 msgid "Inverse Media"
-msgstr "Invers mediaobjekt"
+msgstr "Invertert mediaobjekt"
 
 #: ../gramps/plugins/quickview/filterbyname.py:51
 msgctxt "Filtering_on"
 msgid "Inverse Note"
-msgstr "invers notat"
+msgstr "Invertert notat"
 
 #: ../gramps/plugins/quickview/filterbyname.py:52
 msgctxt "Filtering_on"
@@ -31984,11 +31983,11 @@ msgstr "media"
 
 #: ../gramps/plugins/quickview/filterbyname.py:498
 msgid "Unique Media"
-msgstr "Unikt media"
+msgstr "Unike media"
 
 #: ../gramps/plugins/quickview/filterbyname.py:505
 msgid "Missing Media"
-msgstr "Mangler media"
+msgstr "Manglende media"
 
 #: ../gramps/plugins/quickview/filterbyname.py:515
 msgid "Size in bytes"
@@ -31998,13 +31997,13 @@ msgstr "Størrelse i byte"
 #, python-brace-format
 msgid "Filter matched {number_of} record."
 msgid_plural "Filter matched {number_of} records."
-msgstr[0] "Filter samsvarer med {number_of} post."
-msgstr[1] "Filter samsvarer med {number_of} poster."
+msgstr[0] "Filteret matchet {number_of} oppføring."
+msgstr[1] "Filteret matcher med {number_of} oppføringer."
 
 #: ../gramps/plugins/quickview/lineage.py:53
 #, python-format
 msgid "Father lineage for %s"
-msgstr "Agnatisk linje for %s"
+msgstr "Farslinje for %s"
 
 #: ../gramps/plugins/quickview/lineage.py:57
 msgid ""
@@ -32031,7 +32030,7 @@ msgstr "Direkte linje til mannlige etterkommere"
 #: ../gramps/plugins/quickview/lineage.py:87
 #, python-format
 msgid "Mother lineage for %s"
-msgstr "Kognatisk linje for %s"
+msgstr "Morslinje for %s"
 
 #: ../gramps/plugins/quickview/lineage.py:91
 msgid ""
@@ -32052,7 +32051,7 @@ msgstr "Direkte linje for kvinnelige etterkommere"
 #: ../gramps/plugins/quickview/lineage.py:134
 #: ../gramps/plugins/quickview/lineage.py:235
 msgid "ERROR : Too many levels in the tree (perhaps a loop?)."
-msgstr "FEIL: For mange nivå i treet (kanskje en evig løkke?)."
+msgstr "FEIL: For mange nivåer i treet (kanskje en løkke?)."
 
 #: ../gramps/plugins/quickview/lineage.py:165
 msgid "No birth relation with child"
@@ -32079,7 +32078,7 @@ msgstr "Ok"
 
 #: ../gramps/plugins/quickview/linkreferences.py:58
 msgid "Failed: missing object"
-msgstr "Feilet: Manglende mediaobjekter"
+msgstr "Feilet: manglende objekt"
 
 #: ../gramps/plugins/quickview/linkreferences.py:60
 #: ../gramps/plugins/textreport/notelinkreport.py:129
@@ -32163,19 +32162,19 @@ msgstr "Vis filtrert data"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:158
 msgid "Father lineage"
-msgstr "Agnatisk linje"
+msgstr "Farslinje"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:159
 msgid "Display father lineage"
-msgstr "Vis agnatisk linje"
+msgstr "Vis farslinje"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:173
 msgid "Mother lineage"
-msgstr "Kognatisk linje"
+msgstr "Morslinje"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:174
 msgid "Display mother lineage"
-msgstr "Vis kognatisk linje"
+msgstr "Vis morslinje"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:194
 msgid "On This Day"
@@ -32349,7 +32348,7 @@ msgstr "Katalansk relasjonsberegning"
 #: ../gramps/plugins/rel/relplugins.gpr.py:531
 #: ../gramps/plugins/rel/relplugins.gpr.py:584
 msgid "Calculates relationships between people"
-msgstr "Beregner relasjonener mellom to personer"
+msgstr "Beregner relasjoner mellom personer"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:49
 msgid "Czech Relationship Calculator"
@@ -32365,7 +32364,7 @@ msgstr "Tysk relasjonsberegning"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:133
 msgid "Austrian Relationship Calculator"
-msgstr "Østerriksk forholdskalkulator"
+msgstr "Østerriksk relasjonsberegning"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:157
 msgid "Spanish Relationship Calculator"
@@ -32381,7 +32380,7 @@ msgstr "Fransk relasjonsberegning"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:241
 msgid "Hebrew Relationship Calculator"
-msgstr "Jødisk relasjonsberegning"
+msgstr "Hebraisk relasjonsberegning"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:265
 msgid "Croatian Relationship Calculator"
@@ -32401,7 +32400,7 @@ msgstr "Italiensk relasjonsberegning"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:328
 msgid "Dutch Relationship Calculator"
-msgstr "Nederlansk relasjonsberegning"
+msgstr "Nederlandsk relasjonsberegning"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:362
 msgid "Norwegian Relationship Calculator"
@@ -32421,11 +32420,11 @@ msgstr "Russisk relasjonsberegning"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:483
 msgid "Slovak Relationship Calculator"
-msgstr "Slovakisk forholdskalkulator"
+msgstr "Slovakisk relasjonsberegning"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:507
 msgid "Slovenian Relationship Calculator"
-msgstr "Slovensk forholdskalkulator"
+msgstr "Slovensk relasjonsberegning"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:530
 msgid "Swedish Relationship Calculator"
@@ -32437,7 +32436,7 @@ msgstr "Tyrkisk forholdskalkulator"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:559
 msgid "Calculates relationship between people"
-msgstr "Beregner relasjon mellom to personer"
+msgstr "Beregner relasjonen mellom personer"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:583
 msgid "Ukrainian Relationship Calculator"
@@ -32445,7 +32444,7 @@ msgstr "Ukrainsk relasjonsberegning"
 
 #: ../gramps/plugins/sidebar/dropdownsidebar.py:171
 msgid "Click to select a view"
-msgstr "Klikk for å velge en visningen"
+msgstr "Klikk for å velge en visning"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:35
 msgid "Category Sidebar"
@@ -32622,7 +32621,7 @@ msgstr "Ta bare med levende personer i rapporten"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:603
 msgid "Dead Symbol"
-msgstr "Død Symbol"
+msgstr "Dødssymbol"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:604
 msgid "This will show after name to indicate that person is dead"
@@ -32630,7 +32629,7 @@ msgstr "Dette vil vise etter navn for å indikere at personen er død"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:611
 msgid "Show event year"
-msgstr "Vis hendelse år"
+msgstr "Vis hendelsesår"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:612
 msgid "Prints the year the event took place in the report"
@@ -32656,19 +32655,19 @@ msgstr "Om slektskap til fokuspersonen skal tas med"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:743
 msgid "Title text style"
-msgstr "Stil for titteltekst"
+msgstr "Tekststil for tittel"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:749
 msgid "Data text display"
-msgstr "Visning av daglig tekst"
+msgstr "Visning av tekstdata"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:754
 msgid "Day text style"
-msgstr "Stil for dagtekst"
+msgstr "Tekststil for dag"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:761
 msgid "Month text style"
-msgstr "Stil for månedstekst"
+msgstr "Tekststil for måned"
 
 #: ../gramps/plugins/textreport/custombooktext.py:94
 #: ../gramps/plugins/textreport/custombooktext.py:96
@@ -32703,7 +32702,7 @@ msgstr "Avsluttende tekst"
 #: ../gramps/plugins/textreport/custombooktext.py:149
 #: ../gramps/plugins/textreport/custombooktext.py:188
 msgid "Text to display at the bottom"
-msgstr "Tekst som skal vises på toppen"
+msgstr "Tekst som skal vises på bunnen"
 
 #: ../gramps/plugins/textreport/descendreport.py:338
 #: ../gramps/plugins/textreport/descendreport.py:346
@@ -32719,7 +32718,7 @@ msgstr "ef. se %(reference)s : %(spouse)s"
 #: ../gramps/plugins/textreport/descendreport.py:420
 #, python-format
 msgid "%s sp."
-msgstr "%s sp."
+msgstr "%s ef."
 
 #: ../gramps/plugins/textreport/descendreport.py:568
 #: ../gramps/plugins/textreport/detdescendantreport.py:1051
@@ -32940,11 +32939,11 @@ msgstr "Om en persons alder ved død skal beregnes."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:909
 msgid "Omit duplicate ancestors"
-msgstr "Utelat dobbelt oppførte forfedre"
+msgstr "Utelat dupliserte aner"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:910
 msgid "Whether to omit duplicate ancestors."
-msgstr "Utelat dobbekt oppførte aner."
+msgstr "Om du skal utelate dupliserte aner."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:913
 #: ../gramps/plugins/textreport/detdescendantreport.py:1121
@@ -33172,7 +33171,7 @@ msgstr "Vis personer etter generasjoner"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1070
 msgid "show people by lineage"
-msgstr "vis personer etter alder"
+msgstr "vis personer etter slektslinje"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1073
 msgid "How people are organized in the report"
@@ -33567,7 +33566,7 @@ msgid ""
 "Total ancestors in generations %(second_generation)d to %(last_generation)d "
 "is %(count)d. %(percent)s"
 msgstr ""
-"Totalt antall forfedre i generasjoner %(second_generation)d til "
+"Totalt antall aner i generasjonene %(second_generation)d til "
 "%(last_generation)d er %(count)d. %(percent)s"
 
 #: ../gramps/plugins/textreport/placereport.py:136
@@ -33896,7 +33895,7 @@ msgstr "Ahnentafelrapport"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:39
 msgid "Produces a textual ancestral report"
-msgstr "Lager en tekstbasert slektsrapport"
+msgstr "Lager en tekstbasert anerapport"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:61
 msgid "Produces a report of birthdays and anniversaries"
@@ -33920,7 +33919,7 @@ msgstr "Detaljert anerapport"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:127
 msgid "Produces a detailed ancestral report"
-msgstr "Lag en detaljert rapport over forfedre"
+msgstr "Lager en detaljert anerapport"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:148
 msgid "Detailed Descendant Report"
@@ -33960,7 +33959,7 @@ msgstr "Lager en tekstbasert slektskapsrapport for en angitt person"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:262
 msgid "Produces a list of people with a specified tag"
-msgstr "Lager en liste med personer med en bestemt etikett"
+msgstr "Lager en liste over personer med en bestemt etikett"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:284
 msgid "Number of Ancestors Report"
@@ -33968,7 +33967,7 @@ msgstr "Rapport over antall aner"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:285
 msgid "Counts number of ancestors of selected person"
-msgstr "Teller antall forfedre til den valgte person"
+msgstr "Teller antall aner til valgt person"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:307
 msgid "Produces a textual place report"
@@ -33980,7 +33979,7 @@ msgstr "Tittelside"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:330
 msgid "Produces a title page for book reports."
-msgstr "Lag en tittelside for bokrapporter."
+msgstr "Lager en tittelside for bokrapporter."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:352
 msgid "Provides a summary of the current database"
@@ -35071,7 +35070,7 @@ msgstr "Not_Related"
 #: ../gramps/plugins/tool/notrelated.py:80
 #, python-format
 msgid "Not related to \"%s\""
-msgstr "Ikke i slekt med \"%s\""
+msgstr "Ikke i slekt med «%s»"
 
 #: ../gramps/plugins/tool/notrelated.py:106
 msgid "NotRelated"
@@ -35311,7 +35310,7 @@ msgstr "Deres felles aner er %(ancestor1)s og %(ancestor2)s."
 
 #: ../gramps/plugins/tool/relcalc.py:245
 msgid "Their common ancestors are: "
-msgstr "Deres felles forfedre er: "
+msgstr "Deres felles aner er: "
 
 #: ../gramps/plugins/tool/removespaces.py:56
 msgctxt "manual"
@@ -37636,7 +37635,7 @@ msgstr "Kontakt"
 #: ../gramps/plugins/webreport/basepage.py:1982
 #: ../gramps/plugins/webreport/webplugins.gpr.py:60
 msgid "Web Calendar"
-msgstr "Internettkalender"
+msgstr "Nettkalender"
 
 #: ../gramps/plugins/webreport/basepage.py:2035
 #: ../gramps/plugins/webreport/media.py:440
@@ -37694,7 +37693,7 @@ msgstr "rundt"
 #: ../gramps/plugins/webreport/webcal.py:1192
 #: ../gramps/plugins/webreport/webcal.py:1418
 msgid "Web Calendar Report"
-msgstr "Internettkalenderrapport"
+msgstr "Nettkalenderrapport"
 
 #: ../gramps/plugins/webreport/calendar.py:232
 #: ../gramps/plugins/webreport/webcal.py:363
@@ -37713,7 +37712,7 @@ msgstr "Fullstendig oversikt over året"
 #: ../gramps/plugins/webreport/webcal.py:217
 #: ../gramps/plugins/webreport/webcal.py:708
 msgid "NarrativeWeb Home"
-msgstr "Fortellende nettsider"
+msgstr "Hjem for fortellende nettsted"
 
 #: ../gramps/plugins/webreport/calendar.py:686
 #: ../gramps/plugins/webreport/webcal.py:1109
@@ -37797,10 +37796,10 @@ msgid ""
 "download page and files have the same copyright as the remainder of these "
 "web pages."
 msgstr ""
-"Denne siden er for at brukeren/produsenten av denne slektsdatabasen skal "
-"kunne dele noen filer med deg som angår deres familie.  Hvis det er noen "
-"filer listet opp under her kan du klikke på dem for å laste dem ned. "
-"Nedlastingsiden har samme opphavsrett som resten av disse sidene."
+"Denne siden er for at brukeren/eieren av dette slektstreet/fortellende "
+"nettstedet skal kunne dele noen filer med deg som angår deres familie.  Hvis "
+"det er noen filer listet opp under her kan du klikke på dem for å laste dem "
+"ned. Nedlastingsiden har samme opphavsrett som resten av disse sidene."
 
 #: ../gramps/plugins/webreport/download.py:128
 msgid "File Name"
@@ -37903,7 +37902,7 @@ msgstr "Lager liste over mediaobjekter"
 
 #: ../gramps/plugins/webreport/media.py:268
 msgid "Narrated Web Site Report"
-msgstr "Fortellende nettsider"
+msgstr "Fortalt nettstedsrapport"
 
 #: ../gramps/plugins/webreport/media.py:310
 msgid "Below unused media objects"
@@ -38002,11 +38001,11 @@ msgstr "Lager adresseboksider..."
 #: ../gramps/plugins/webreport/narrativeweb.py:1946
 #, python-format
 msgid "Narrative Website Report for the %s language"
-msgstr "Nettside med Fortellingsrapport for språket %s"
+msgstr "Fortellende nettstedsrapport for %s språk"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1948
 msgid "Narrative Website Report"
-msgstr "Nettside med Fortellingsrapport"
+msgstr "Fortellende nettstedsrapport"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2067
 msgid "Store website in .tar.gz archive"
@@ -38027,7 +38026,7 @@ msgstr "Mitt slektstre"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2083
 msgid "Website title"
-msgstr "Nettsidetittel"
+msgstr "Nettstedstittel"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2084
 msgid "The title of the website"
@@ -39266,7 +39265,7 @@ msgstr "Notatet for desember måned"
 
 #: ../gramps/plugins/webreport/webcal.py:2077
 msgid "Link to Narrated Web Report"
-msgstr "Lenke til fortellende nettsiderapport"
+msgstr "Lenke til fortalt nettstedsrapport"
 
 #: ../gramps/plugins/webreport/webcal.py:2078
 msgid "Whether to link data to web report or not"
@@ -39278,11 +39277,11 @@ msgstr "Lenke prefiks"
 
 #: ../gramps/plugins/webreport/webcal.py:2104
 msgid "A Prefix on the links to take you to Narrated Web Report"
-msgstr "Et prefiks til lenkene som fører deg til fortellende nettsiderapport"
+msgstr "Et prefiks til lenkene som fører deg til fortalt nettstedsrapport"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:35
 msgid "Narrated Web Site"
-msgstr "Fortellende nettsider"
+msgstr "Fortalt nettsted"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:37
 msgid "Produces web (HTML) pages for individuals, or a set of individuals"
@@ -39290,7 +39289,7 @@ msgstr "Lager nettsider (HTML) for personer, eller for en gruppe med personer"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:61
 msgid "Produces web (HTML) calendars."
-msgstr "Lag internettkalendre (HTML)."
+msgstr "Lager nettkalendere (HTML)."
 
 #: ../gramps/plugins/webstuff/webstuff.gpr.py:38
 msgid "Webstuff"
