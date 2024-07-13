@@ -20,10 +20,10 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-07-13 12:27+0000\n"
+"PO-Revision-Date: 2024-07-13 17:10+0000\n"
 "Last-Translator: Harald Herreros <haraldh@users.noreply.hosted.weblate.org>\n"
-"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
-"gramps-project/gramps/nb_NO/>\n"
+"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/gramps-"
+"project/gramps/nb_NO/>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -466,8 +466,8 @@ msgid ""
 "instance, by inverting the 'People with children' filter you can select all "
 "people without children."
 msgstr ""
-"<b>Invertert filtrering</b><br/>Filtre kan lett snus ved å bruke valget «"
-"Returner verdier som ikke matcher med filterreglene». For eksempel, ved å "
+"<b>Invertert filtrering</b><br/>Filtre kan lett snus ved å bruke valget "
+"«Returner verdier som ikke matcher med filterreglene». For eksempel, ved å "
 "snu filteret «Personer med barn» kan du velge alle personer uten barn."
 
 #: ../data/tips.xml:18
@@ -601,8 +601,8 @@ msgid ""
 "between people."
 msgstr ""
 "<b>Opprette nye slektstrær</b><br/>En god måte å starte et nytt slektstre på "
-"er å legge inn alle familiemedlemmene i databasen ved å bruke Personvisning ("
-"bruk \"Rediger &gt; opprett...\" eller klikk på knappen for Opprett en ny "
+"er å legge inn alle familiemedlemmene i databasen ved å bruke Personvisning "
+"(bruk \"Rediger &gt; opprett...\" eller klikk på knappen for Opprett en ny "
 "person fra Personvisning). Bytt så til Familievisningen og opprett "
 "relasjoner mellom personene."
 
@@ -1013,9 +1013,9 @@ msgstr ""
 "<b>Beholde gode data</b><br/>Vær nøyaktig når du samler slektsinformasjon. "
 "Unngå antagelser ved innsamling av primærinformasjon; skriv det nøyaktig som "
 "du observerer det. Bruk parentes for å markere tilføyelser, slettinger, "
-"eller kommentarer. Det anbefales å bruke det latinske uttrykket "
-"&quot;sic&quot; for å bekrefte nøyaktig gjengivelse av hva som kan se ut som "
-"feil i kilder."
+"eller kommentarer. Det anbefales å bruke det latinske uttrykket &quot;"
+"sic&quot; for å bekrefte nøyaktig gjengivelse av hva som kan se ut som feil "
+"i kilder."
 
 #: ../data/tips.xml:102
 msgid ""
@@ -1465,8 +1465,8 @@ msgstr ""
 "og start Gramps\n"
 "  -y, --yes                              Ikke spør om bekreftelse for "
 "farlige handlinger (kun tilgjengelig uten GUI)\n"
-"  -q, --quiet                            Undertrykk fremdriftsindikasjon ("
-"kun tilgjengelig uten GUI)\n"
+"  -q, --quiet                            Undertrykk fremdriftsindikasjon "
+"(kun tilgjengelig uten GUI)\n"
 "  -v, --version                          Vis versjoner\n"
 "  -S, --safe                             Start Gramps i «sikker modus»\n"
 "                                          (bruk standardinnstillinger "
@@ -1559,8 +1559,8 @@ msgstr ""
 "\n"
 "4. For å lagre eventuelle feilmeldinger i eksempelet over til en fil kan man "
 "skrive:\n"
-"gramps -i fil1.ged -i fil2.dpkg -e ~/new-package -f gramps-pkg >utfil 2>"
-"feilfil\n"
+"gramps -i fil1.ged -i fil2.dpkg -e ~/new-package -f gramps-pkg >utfil "
+"2>feilfil\n"
 "\n"
 "5. For å importere tre databaser og deretter starte Gramps på vanlig måte "
 "med den resulterende databasen:\n"
@@ -1568,8 +1568,8 @@ msgstr ""
 "\n"
 "6. For å åpne en database og lage en tidslinjerapport som en PDF-fil\n"
 "putter resultatet inn i min_tidslinje.pdf:\n"
-"gramps -O 'Navn på database' -a report -p "
-"name=timeline,off=pdf,of=min_tidslinje.pdf\n"
+"gramps -O 'Navn på database' -a report -p name=timeline,off=pdf,"
+"of=min_tidslinje.pdf\n"
 "\n"
 "7. For å lage et sammendrag av databasen:\n"
 "gramps -O 'Navn på databasen' -a report -p name=summary\n"
@@ -1850,6 +1850,7 @@ msgstr "Låst av %s"
 #: ../gramps/plugins/webreport/basepage.py:2322
 #: ../gramps/plugins/webreport/basepage.py:2859
 #: ../gramps/plugins/webreport/basepage.py:3050
+#: ../gramps/plugins/importer/importcsv.py:1081
 msgid "Unknown"
 msgstr "Ukjent"
 
@@ -3333,40 +3334,40 @@ msgstr "Skjemaversjon"
 msgid ""
 "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d Personer           oppgradert med %(n2)6d siteringer i løpet av %(n3)"
-"6d sekunder\n"
+"%(n1)6d Personer           oppgradert med %(n2)6d siteringer i løpet av "
+"%(n3)6d sekunder\n"
 
 #: ../gramps/gen/db/upgrade.py:588
 #, python-format
 msgid ""
 "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d Familier           oppgradert med %(n2)6d siteringer i løpet av %(n3)"
-"6d sekunder\n"
+"%(n1)6d Familier           oppgradert med %(n2)6d siteringer i løpet av "
+"%(n3)6d sekunder\n"
 
 #: ../gramps/gen/db/upgrade.py:592
 #, python-format
 msgid ""
 "%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d Hendelser          oppgradert med %(n2)6d siteringer i løpet av %(n3)"
-"6d sekunder\n"
+"%(n1)6d Hendelser          oppgradert med %(n2)6d siteringer i løpet av "
+"%(n3)6d sekunder\n"
 
 #: ../gramps/gen/db/upgrade.py:596
 #, python-format
 msgid ""
 "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d Mediaobjekter      oppgradert med %(n2)6d siteringer i løpet av %(n3)"
-"6d sekunder\n"
+"%(n1)6d Mediaobjekter      oppgradert med %(n2)6d siteringer i løpet av "
+"%(n3)6d sekunder\n"
 
 #: ../gramps/gen/db/upgrade.py:600
 #, python-format
 msgid ""
 "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d Steder             oppgradert med %(n2)6d siteringer i løpet av %(n3)"
-"6d sekunder\n"
+"%(n1)6d Steder             oppgradert med %(n2)6d siteringer i løpet av "
+"%(n3)6d sekunder\n"
 
 #: ../gramps/gen/db/upgrade.py:604
 #, python-format
@@ -3409,14 +3410,15 @@ msgstr "Oppgraderingsstatistikk"
 
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/display/name.py:413 ../gramps/plugins/lib/libtreebase.py:725
+#: ../gramps/gen/display/name.py:406
 msgid ","
 msgstr ","
 
-#: ../gramps/gen/display/name.py:416
+#: ../gramps/gen/display/name.py:416 ../gramps/gen/display/name.py:409
 msgid "Default format (defined by Gramps preferences)"
 msgstr "Standard format (definert i Gramps-oppsettet)"
 
-#: ../gramps/gen/display/name.py:417
+#: ../gramps/gen/display/name.py:417 ../gramps/gen/display/name.py:410
 msgid "Surname, Given Suffix"
 msgstr "Etternavn, Fornavn Suffiks"
 
@@ -3430,95 +3432,113 @@ msgstr "Etternavn, Fornavn Suffiks"
 #: ../gramps/gui/configure.py:1103 ../gramps/gui/configure.py:1104
 #: ../gramps/plugins/export/exportcsv.py:421
 #: ../gramps/plugins/importer/importcsv.py:206
+#: ../gramps/gen/display/name.py:411
 msgid "Given"
 msgstr "Fornavn"
 
-#: ../gramps/gen/display/name.py:419
+#: ../gramps/gen/display/name.py:419 ../gramps/gen/display/name.py:412
 msgid "Given Surname Suffix"
 msgstr "Fornavn Etternavn Suffiks"
 
-#: ../gramps/gen/display/name.py:424
+#: ../gramps/gen/display/name.py:424 ../gramps/gen/display/name.py:417
 msgid "Main Surnames, Given Patronymic Suffix Prefix"
 msgstr "Hovedetternavn, Fornavn Patronym Suffiks Prefiks"
 
-#: ../gramps/gen/display/name.py:429
+#: ../gramps/gen/display/name.py:429 ../gramps/gen/display/name.py:422
 msgid "Patronymic, Given"
 msgstr "Patronymikon, Fornavn"
 
 #: ../gramps/gen/display/name.py:660 ../gramps/gen/display/name.py:791
+#: ../gramps/gen/display/name.py:653 ../gramps/gen/display/name.py:784
 msgctxt "Person"
 msgid "title"
 msgstr "Persontittel"
 
 #: ../gramps/gen/display/name.py:661 ../gramps/gen/display/name.py:792
 #: ../gramps/plugins/importer/importcsv.py:205
+#: ../gramps/gen/display/name.py:654 ../gramps/gen/display/name.py:785
 msgid "given"
 msgstr "fornavn"
 
 #: ../gramps/gen/display/name.py:665 ../gramps/gen/display/name.py:793
 #: ../gramps/plugins/importer/importcsv.py:197
-#: ../gramps/plugins/tool/removespaces.py:149
+#: ../gramps/plugins/tool/removespaces.py:149 ../gramps/gen/display/name.py:658
+#: ../gramps/gen/display/name.py:786
 msgid "surname"
 msgstr "etternavn"
 
 #: ../gramps/gen/display/name.py:667 ../gramps/gen/display/name.py:794
 #: ../gramps/gui/editors/editperson.py:408
 #: ../gramps/plugins/importer/importcsv.py:221
+#: ../gramps/gen/display/name.py:660 ../gramps/gen/display/name.py:787
 msgid "suffix"
 msgstr "suffiks"
 
 #: ../gramps/gen/display/name.py:668 ../gramps/gen/display/name.py:795
+#: ../gramps/gen/display/name.py:661 ../gramps/gen/display/name.py:788
 msgctxt "Name"
 msgid "call"
 msgstr "tiltalsnavn"
 
 #: ../gramps/gen/display/name.py:672 ../gramps/gen/display/name.py:799
+#: ../gramps/gen/display/name.py:665 ../gramps/gen/display/name.py:792
 msgctxt "Name"
 msgid "common"
 msgstr "vanlig navn"
 
 #: ../gramps/gen/display/name.py:678 ../gramps/gen/display/name.py:804
+#: ../gramps/gen/display/name.py:671 ../gramps/gen/display/name.py:797
 msgid "initials"
 msgstr "initialer"
 
 #: ../gramps/gen/display/name.py:683 ../gramps/gen/display/name.py:809
+#: ../gramps/gen/display/name.py:676 ../gramps/gen/display/name.py:802
 msgctxt "Name"
 msgid "primary"
 msgstr "primærnavn"
 
 #: ../gramps/gen/display/name.py:688 ../gramps/gen/display/name.py:814
+#: ../gramps/gen/display/name.py:681 ../gramps/gen/display/name.py:807
 msgid "primary[pre]"
 msgstr "primær[pri]"
 
 #: ../gramps/gen/display/name.py:693 ../gramps/gen/display/name.py:819
+#: ../gramps/gen/display/name.py:686 ../gramps/gen/display/name.py:812
 msgid "primary[sur]"
 msgstr "primær[etter]"
 
 #: ../gramps/gen/display/name.py:698 ../gramps/gen/display/name.py:824
+#: ../gramps/gen/display/name.py:691 ../gramps/gen/display/name.py:817
 msgid "primary[con]"
 msgstr "primær[bnd]"
 
 #: ../gramps/gen/display/name.py:703 ../gramps/gen/display/name.py:829
+#: ../gramps/gen/display/name.py:696 ../gramps/gen/display/name.py:822
 msgid "patronymic"
 msgstr "patronymikon"
 
 #: ../gramps/gen/display/name.py:708 ../gramps/gen/display/name.py:834
+#: ../gramps/gen/display/name.py:701 ../gramps/gen/display/name.py:827
 msgid "patronymic[pre]"
 msgstr "patronymikon[for]"
 
 #: ../gramps/gen/display/name.py:713 ../gramps/gen/display/name.py:839
+#: ../gramps/gen/display/name.py:706 ../gramps/gen/display/name.py:832
 msgid "patronymic[sur]"
 msgstr "patronymikon[etter]"
 
 #: ../gramps/gen/display/name.py:718 ../gramps/gen/display/name.py:844
+#: ../gramps/gen/display/name.py:711 ../gramps/gen/display/name.py:837
 msgid "patronymic[con]"
 msgstr "patronymikon[kob]"
 
 #: ../gramps/gen/display/name.py:723 ../gramps/gen/display/name.py:849
+#: ../gramps/gen/display/name.py:716 ../gramps/gen/display/name.py:842
 msgid "notpatronymic"
 msgstr "ikke patronymikon"
 
 #: ../gramps/gen/display/name.py:728 ../gramps/gen/display/name.py:854
+#: ../gramps/gen/display/name.py:721 ../gramps/gen/display/name.py:847
 msgctxt "Remaining names"
 msgid "rest"
 msgstr "Gjenstående navn"
@@ -3526,27 +3546,31 @@ msgstr "Gjenstående navn"
 #: ../gramps/gen/display/name.py:733 ../gramps/gen/display/name.py:856
 #: ../gramps/gui/editors/editperson.py:432
 #: ../gramps/plugins/importer/importcsv.py:220
+#: ../gramps/gen/display/name.py:726 ../gramps/gen/display/name.py:849
 msgid "prefix"
 msgstr "prefiks"
 
 #: ../gramps/gen/display/name.py:738 ../gramps/gen/display/name.py:860
+#: ../gramps/gen/display/name.py:731 ../gramps/gen/display/name.py:853
 msgid "rawsurnames"
 msgstr "råetternavn"
 
 #: ../gramps/gen/display/name.py:740 ../gramps/gen/display/name.py:862
+#: ../gramps/gen/display/name.py:733 ../gramps/gen/display/name.py:855
 msgid "nickname"
 msgstr "kallenavn"
 
 #: ../gramps/gen/display/name.py:741 ../gramps/gen/display/name.py:863
+#: ../gramps/gen/display/name.py:734 ../gramps/gen/display/name.py:856
 msgid "familynick"
 msgstr "familie-kallenavn"
 
-#: ../gramps/gen/display/name.py:1300
+#: ../gramps/gen/display/name.py:1300 ../gramps/gen/display/name.py:1293
 #, python-format
 msgid "Wrong name format string %s"
 msgstr "Feil navneformat %s"
 
-#: ../gramps/gen/display/name.py:1306
+#: ../gramps/gen/display/name.py:1306 ../gramps/gen/display/name.py:1299
 msgid "ERROR, Edit Name format in Preferences"
 msgstr "FEIL, Rediger navneformat i Innstillingene"
 
@@ -3556,6 +3580,7 @@ msgid "Error in '%s' file: cannot load."
 msgstr "Feil i '%s': filen kan ikke lastes."
 
 #: ../gramps/gen/display/place.py:75 ../gramps/gen/plug/docgen/treedoc.py:65
+#: ../gramps/gen/plug/docgen/treedoc.py:66
 msgid "Full"
 msgstr "Fullt"
 
@@ -3611,6 +3636,7 @@ msgstr "Bruker ..."
 #: ../gramps/plugins/tool/sortevents.py:177
 #: ../gramps/plugins/webreport/narrativeweb.py:2087
 #: ../gramps/plugins/webreport/webcal.py:1851
+#: ../gramps/plugins/webreport/narrativeweb.py:2091
 msgid "Filter"
 msgstr "Filter"
 
@@ -3919,7 +3945,8 @@ msgstr "Filterdefinisjonen inneholder en løkke."
 
 #: ../gramps/gen/filters/rules/_rule.py:104
 msgid "One rule references another which eventually references the first."
-msgstr "En regel refererer til en annen som til slutt refererer til den første."
+msgstr ""
+"En regel refererer til en annen som til slutt refererer til den første."
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:47
 msgid "Every citation"
@@ -4341,7 +4368,8 @@ msgstr "Hendelser med <antall> media"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:48
 msgid "Matches events with a certain number of items in the gallery"
-msgstr "Samsvarer med hendelser som har et bestemt antall elementer i galleriet"
+msgstr ""
+"Samsvarer med hendelser som har et bestemt antall elementer i galleriet"
 
 #: ../gramps/gen/filters/rules/event/_hasidof.py:46
 msgid "Event with <Id>"
@@ -5040,8 +5068,8 @@ msgid ""
 "Matches note records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Samsvarer med notater som er endret etter en angitt dato (yyyy-mm-dd "
-"hh:mm:ss) eller innenfor et tidsrom hvis to datoer er angitt."
+"Samsvarer med notater som er endret etter en angitt dato (yyyy-mm-dd hh:mm:"
+"ss) eller innenfor et tidsrom hvis to datoer er angitt."
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:46
 msgid "Note with <Id>"
@@ -5197,7 +5225,8 @@ msgstr "Slektsløse personer"
 msgid ""
 "Matches people that have no family relationships to any other person in the "
 "database"
-msgstr "Samsvarer med personer som ikke er beslektet med noen andre i databasen"
+msgstr ""
+"Samsvarer med personer som ikke er beslektet med noen andre i databasen"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:46
 #: ../gramps/gen/plug/_pluginreg.py:76
@@ -7057,6 +7086,7 @@ msgstr "Tid"
 #: ../gramps/gen/lib/nameorigintype.py:87
 #: ../gramps/gen/plug/docgen/treedoc.py:586
 #: ../gramps/plugins/gramplet/persondetails.py:171
+#: ../gramps/gen/plug/docgen/treedoc.py:587
 msgid "Occupation"
 msgstr "Yrke"
 
@@ -7088,7 +7118,7 @@ msgstr "Håndtere"
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:167
 #: ../gramps/gui/glade/editplaceformat.glade:185
 #: ../gramps/plugins/graph/gvfamilylines.py:94
-#: ../gramps/plugins/tool/check.py:2782
+#: ../gramps/plugins/tool/check.py:2782 ../gramps/gen/plug/docgen/treedoc.py:92
 msgid "None"
 msgstr "Ingen"
 
@@ -7829,6 +7859,7 @@ msgstr "Testamente"
 #: ../gramps/plugins/textreport/familygroup.py:423
 #: ../gramps/plugins/textreport/familygroup.py:617
 #: ../gramps/plugins/webreport/family.py:317
+#: ../gramps/gen/plug/docgen/treedoc.py:223
 msgid "Marriage"
 msgstr "Ekteskap"
 
@@ -8460,6 +8491,7 @@ msgstr "Region"
 #: ../gramps/plugins/webreport/person.py:421
 #: ../gramps/plugins/webreport/person.py:2284
 #: ../gramps/plugins/webreport/surname.py:148
+#: ../gramps/gui/editors/displaytabs/repoembedlist.py:68
 msgid "Name"
 msgstr "Navn"
 
@@ -8653,6 +8685,7 @@ msgstr "Navn som gift"
 #: ../gramps/plugins/tool/reorderids.glade:860
 #: ../gramps/plugins/webreport/basepage.py:812
 #: ../gramps/plugins/webreport/basepage.py:2674
+#: ../gramps/gen/plug/docgen/treedoc.py:291
 msgid "Note"
 msgstr "Notat"
 
@@ -8726,7 +8759,7 @@ msgstr "Navnenotat"
 
 #: ../gramps/gen/lib/notetype.py:92
 msgid "Attribute Note"
-msgstr "Attributtnotat"
+msgstr "Egenskapsnotat"
 
 #: ../gramps/gen/lib/notetype.py:93
 msgid "Address Note"
@@ -9269,6 +9302,7 @@ msgstr "%(first)s %(second)s"
 #: ../gramps/gui/glade/styleeditor.glade:400
 #: ../gramps/gui/glade/styleeditor.glade:1449
 #: ../gramps/gui/plug/_guioptions.py:1521 ../gramps/gui/views/tags.py:481
+#: ../gramps/gen/plug/docgen/treedoc.py:252
 msgid "Color"
 msgstr "Farge"
 
@@ -9505,8 +9539,8 @@ msgid ""
 "\"%(gramps_target_version)s\" which is invalid for Gramps "
 "\"%(gramps_version)s\"."
 msgstr ""
-"FEIL: Utvidelsesfilen %(filename)s har versjonen «%(gramps_target_version)s»"
-", som er ugyldig for Gramps «%(gramps_version)s»."
+"FEIL: Utvidelsesfilen %(filename)s har versjonen "
+"«%(gramps_target_version)s», som er ugyldig for Gramps «%(gramps_version)s»."
 
 #: ../gramps/gen/plug/_pluginreg.py:1451
 #, python-format
@@ -9570,6 +9604,9 @@ msgstr "Filen %s er allerede åpen, lukk den først."
 #: ../gramps/plugins/lib/libhtmlbackend.py:262
 #: ../gramps/plugins/lib/libhtmlbackend.py:265
 #: ../gramps/plugins/webreport/narrativeweb.py:401
+#: ../gramps/gen/plug/docgen/treedoc.py:826
+#: ../gramps/plugins/docgen/cairodoc.py:210
+#: ../gramps/plugins/docgen/cairodoc.py:213
 #, python-format
 msgid "Could not create %s"
 msgstr "Kunne ikke lage %s"
@@ -9585,6 +9622,8 @@ msgstr "Kunne ikke lage %s"
 #: ../gramps/gen/plug/report/stdoptions.py:412
 #: ../gramps/plugins/importer/importprogen.glade:380
 #: ../gramps/plugins/webreport/webcal.py:531
+#: ../gramps/gen/plug/docgen/treedoc.py:85
+#: ../gramps/gen/plug/docgen/treedoc.py:93
 msgid "Default"
 msgstr "Standard"
 
@@ -9663,12 +9702,14 @@ msgstr "Utvid uniformt"
 #: ../gramps/gen/plug/docgen/graphdoc.py:101
 #: ../gramps/gen/plug/docgen/treedoc.py:116
 #: ../gramps/gui/glade/styleeditor.glade:1374
+#: ../gramps/gen/plug/docgen/treedoc.py:117
 msgid "Bottom"
 msgstr "Nederst"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:101
 #: ../gramps/gen/plug/docgen/treedoc.py:116
 #: ../gramps/gui/glade/styleeditor.glade:1359
+#: ../gramps/gen/plug/docgen/treedoc.py:117
 msgid "Top"
 msgstr "Øverst"
 
@@ -9864,16 +9905,19 @@ msgstr "Denne teksten blir lagt til grafen."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:310
 #: ../gramps/gen/plug/docgen/treedoc.py:299
+#: ../gramps/gen/plug/docgen/treedoc.py:300
 msgid "Note location"
 msgstr "Notatplassering"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:313
 #: ../gramps/gen/plug/docgen/treedoc.py:302
+#: ../gramps/gen/plug/docgen/treedoc.py:303
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Om notatet skal vises øverst eller nederst på siden."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:316
 #: ../gramps/gen/plug/docgen/treedoc.py:306
+#: ../gramps/gen/plug/docgen/treedoc.py:307
 msgid "Note size"
 msgstr "Notatstørrelse"
 
@@ -9934,104 +9978,129 @@ msgstr "Tilpasset størrelse"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:66
 #: ../gramps/plugins/tool/finddupes.py:62
+#: ../gramps/gen/plug/docgen/treedoc.py:67
 msgid "Medium"
 msgstr "Medium"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:67
+#: ../gramps/gen/plug/docgen/treedoc.py:68
 msgid "Short"
 msgstr "Kort"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:71
+#: ../gramps/gen/plug/docgen/treedoc.py:72
 msgid "Given Nickname Surname"
 msgstr "Fornavn Kallenavn Etternavn"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:72
+#: ../gramps/gen/plug/docgen/treedoc.py:73
 msgid "Surname Given Nickname"
 msgstr "Etternavn Fornavn Kallenavn"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:73
+#: ../gramps/gen/plug/docgen/treedoc.py:74
 msgid "Surname, Given Nickname"
 msgstr "Etternavn, Fornavn Kallenavn"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:74
+#: ../gramps/gen/plug/docgen/treedoc.py:75
 msgid "GivenNicknameSurname"
 msgstr "FornavnKallenavnEtternavn"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:78
+#: ../gramps/gen/plug/docgen/treedoc.py:79
 msgid "Auto"
 msgstr "Auto"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:79
+#: ../gramps/gen/plug/docgen/treedoc.py:80
 msgid "Call Name Only"
 msgstr "Kun tiltalsnavn"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:80
+#: ../gramps/gen/plug/docgen/treedoc.py:81
 msgid "Whole Given Name"
 msgstr "Hele fornavnet"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:85
+#: ../gramps/gen/plug/docgen/treedoc.py:86
 msgid "Above"
 msgstr "Mer enn"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:86
+#: ../gramps/gen/plug/docgen/treedoc.py:87
 msgid "Below"
 msgstr "Mindre enn"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:87
+#: ../gramps/gen/plug/docgen/treedoc.py:88
 msgid "Not shown"
 msgstr "Ikke vist"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:93 ../gramps/gui/configure.py:105
 #: ../gramps/gui/configure.py:187 ../gramps/gui/configure.py:2614
 #: ../gramps/gui/displaystate.py:430 ../gramps/gui/views/pageview.py:642
+#: ../gramps/gen/plug/docgen/treedoc.py:94
 msgid "Preferences"
 msgstr "Innstillinger"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:97
+#: ../gramps/gen/plug/docgen/treedoc.py:98
 msgid "Down (↓)"
 msgstr "Ned (↓)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:98
+#: ../gramps/gen/plug/docgen/treedoc.py:99
 msgid "Up (↑)"
 msgstr "Opp (↑)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:99
+#: ../gramps/gen/plug/docgen/treedoc.py:100
 msgid "Right (→)"
 msgstr "Høyre (→)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:100
+#: ../gramps/gen/plug/docgen/treedoc.py:101
 msgid "Left (←)"
 msgstr "Venstre (←)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:104
+#: ../gramps/gen/plug/docgen/treedoc.py:105
 msgid "Perpendicular"
 msgstr "Vinkelrett"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:106
+#: ../gramps/gen/plug/docgen/treedoc.py:107
 msgid "Rounded"
 msgstr "Avrundet"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:110
+#: ../gramps/gen/plug/docgen/treedoc.py:111
 msgid "Swing"
 msgstr "Sving"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:113
+#: ../gramps/gen/plug/docgen/treedoc.py:114
 msgid "Mesh"
 msgstr "Nett"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:119
+#: ../gramps/gen/plug/docgen/treedoc.py:120
 msgid "Tiny"
 msgstr "Liten"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:120
+#: ../gramps/gen/plug/docgen/treedoc.py:121
 msgid "Script"
 msgstr "Skript"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:121
+#: ../gramps/gen/plug/docgen/treedoc.py:122
 msgid "Footnote"
 msgstr "Fotnote"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:122
+#: ../gramps/gen/plug/docgen/treedoc.py:123
 msgid "Small"
 msgstr "Liten"
 
@@ -10040,58 +10109,71 @@ msgstr "Liten"
 #: ../gramps/plugins/graph/gvfamilylines.py:320
 #: ../gramps/plugins/graph/gvrelgraph.py:1082
 #: ../gramps/plugins/importer/importprogen.py:516
+#: ../gramps/gen/plug/docgen/treedoc.py:124
 msgid "Normal"
 msgstr "Normal"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:124
 #: ../gramps/plugins/graph/gvfamilylines.py:321
+#: ../gramps/gen/plug/docgen/treedoc.py:125
 msgid "Large"
 msgstr "Stor"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:125
+#: ../gramps/gen/plug/docgen/treedoc.py:126
 msgid "Very large"
 msgstr "Veldig stor"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:126
+#: ../gramps/gen/plug/docgen/treedoc.py:127
 msgid "Extra large"
 msgstr "Ekstra stor"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:127
+#: ../gramps/gen/plug/docgen/treedoc.py:128
 msgid "Huge"
 msgstr "Enorm"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:128
+#: ../gramps/gen/plug/docgen/treedoc.py:129
 msgid "Extra huge"
 msgstr "Ekstra enorm"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:193
+#: ../gramps/gen/plug/docgen/treedoc.py:194
 msgid "Node Options"
 msgstr "Punktvalg"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:196
+#: ../gramps/gen/plug/docgen/treedoc.py:197
 msgid "Node detail"
 msgstr "Nodedetalj"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:199
+#: ../gramps/gen/plug/docgen/treedoc.py:200
 msgid "Detail of information to be shown in a node."
 msgstr "Informasjonsdetaljer for visning i en node."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:203
+#: ../gramps/gen/plug/docgen/treedoc.py:204
 msgid "Name Format"
 msgstr "Navneformat"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:206
 #: ../gramps/gen/plug/report/stdoptions.py:99
 #: ../gramps/plugins/webreport/webcal.py:1908
+#: ../gramps/gen/plug/docgen/treedoc.py:207
 msgid "Select the format to display names"
 msgstr "Velg format for å vise navn"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:209
 #: ../gramps/gui/glade/editperson.glade:708
+#: ../gramps/gen/plug/docgen/treedoc.py:210
 msgid "Preferred Name"
 msgstr "Foretrukket navn"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:214
+#: ../gramps/gen/plug/docgen/treedoc.py:215
 msgid ""
 "Select the portion of the given name to be marked as preferred. Auto sets "
 "the call name if one exists, otherwise the whole given name."
@@ -10100,14 +10182,17 @@ msgstr ""
 "tiltalelsesnavnet hvis det finnes, ellers hele fornavnet."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:225
+#: ../gramps/gen/plug/docgen/treedoc.py:226
 msgid "Position of marriage information."
 msgstr "Plassering av ekteskapsopplysninger."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:229
+#: ../gramps/gen/plug/docgen/treedoc.py:230
 msgid "Node size"
 msgstr "Nodestørrelse"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:232
+#: ../gramps/gen/plug/docgen/treedoc.py:233
 msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
 "the width, otherwise it is the height."
@@ -10116,10 +10201,12 @@ msgstr ""
 "dette bredden, ellers er det høyden."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:240
+#: ../gramps/gen/plug/docgen/treedoc.py:241
 msgid "Level size"
 msgstr "Nivåstørrelse"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:243
+#: ../gramps/gen/plug/docgen/treedoc.py:244
 msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
 "the height, otherwise it is the width."
@@ -10128,36 +10215,44 @@ msgstr ""
 "dette høyden, ellers er det bredden."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:254
+#: ../gramps/gen/plug/docgen/treedoc.py:255
 msgid "Node color."
 msgstr "Nodefarge."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:259
 #: ../gramps/plugins/drawreport/ancestortree.py:837
 #: ../gramps/plugins/drawreport/descendtree.py:1571
+#: ../gramps/gen/plug/docgen/treedoc.py:260
 msgid "Tree Options"
 msgstr "Trevalg"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:262
+#: ../gramps/gen/plug/docgen/treedoc.py:263
 msgid "Timeflow"
 msgstr "Tidsflyt"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:265
+#: ../gramps/gen/plug/docgen/treedoc.py:266
 msgid "Direction that the graph will grow over time."
 msgstr "Retningen som grafen vil vokse over tid."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:269
+#: ../gramps/gen/plug/docgen/treedoc.py:270
 msgid "Edge style"
 msgstr "Kantstil"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:272
+#: ../gramps/gen/plug/docgen/treedoc.py:273
 msgid "Style of the edges between nodes."
 msgstr "Kantstil mellom noder."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:276
+#: ../gramps/gen/plug/docgen/treedoc.py:277
 msgid "Level distance"
 msgstr "Nivåavstand"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:279
+#: ../gramps/gen/plug/docgen/treedoc.py:280
 msgid ""
 "The minimum amount of free space, in mm, between levels.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
@@ -10168,26 +10263,32 @@ msgstr ""
 "tilsvarer dette mellomrommet mellom kolonner."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:293
+#: ../gramps/gen/plug/docgen/treedoc.py:294
 msgid "Note to add to the tree"
 msgstr "Notat som legges til treet"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:294
+#: ../gramps/gen/plug/docgen/treedoc.py:295
 msgid "This text will be added to the tree."
 msgstr "Denne teksten blir lagt til treet."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:309
+#: ../gramps/gen/plug/docgen/treedoc.py:310
 msgid "The size of note text."
 msgstr "Notattekstens størrelse."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:833
+#: ../gramps/gen/plug/docgen/treedoc.py:842
 msgid "PDF"
 msgstr "PDF"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:843
+#: ../gramps/gen/plug/docgen/treedoc.py:852
 msgid "Graph File for genealogytree"
 msgstr "Diagramfilen for slektstre"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:852
+#: ../gramps/gen/plug/docgen/treedoc.py:861
 msgid "LaTeX File"
 msgstr "LaTeX-fil"
 
@@ -10249,23 +10350,24 @@ msgstr "Stilen som brukes til generasjons-overskriften."
 
 #: ../gramps/gen/plug/report/endnotes.py:72
 msgid "The basic style used for the endnotes source display."
-msgstr "Basisstilen som er brukt på sluttnotatet for kilder."
+msgstr "Standardstilen som brukes for visning av kildene i sluttnotene."
 
 #: ../gramps/gen/plug/report/endnotes.py:79
 msgid "The basic style used for the endnotes notes display."
-msgstr "Basisstilen som er brukt på sluttnotatet for notater."
+msgstr "Standardstilen som brukes for visning av notatene i sluttnotene."
 
 #: ../gramps/gen/plug/report/endnotes.py:87
 msgid "The basic style used for the endnotes reference display."
-msgstr "Basisstilen som er brukt på sluttnotatet for referanser."
+msgstr "Standardstilen som brukes for visning av henvisningene i sluttnotene."
 
 #: ../gramps/gen/plug/report/endnotes.py:96
 msgid "The basic style used for the endnotes reference notes display."
-msgstr "Basisstilen som er brukt på sluttnotatet for referanser."
+msgstr ""
+"Standardstilen som brukes for visning av henvisningsnotatene i sluttnotene."
 
 #: ../gramps/gen/plug/report/endnotes.py:163
 msgid "Endnotes"
-msgstr "Sluttnotat"
+msgstr "Sluttnoter"
 
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/gen/plug/report/endnotes.py:181
@@ -10397,12 +10499,13 @@ msgstr "Ikke ta med"
 #: ../gramps/plugins/textreport/familygroup.py:760
 #: ../gramps/plugins/textreport/indivcomplete.py:1148
 #: ../gramps/plugins/webreport/narrativeweb.py:2543
+#: ../gramps/plugins/webreport/narrativeweb.py:2547
 msgid "Include"
 msgstr "Ta med"
 
 #: ../gramps/gen/plug/report/stdoptions.py:372
 msgid "Whether to include tags"
-msgstr "Hvorvidt etiketter skal inkluderes eller ikke"
+msgstr "Om etiketter skal tas med"
 
 #: ../gramps/gen/plug/report/stdoptions.py:397
 msgid "Share an existing line"
@@ -11741,6 +11844,7 @@ msgstr "_Bruk"
 #: ../gramps/plugins/drawreport/ancestortree.py:970
 #: ../gramps/plugins/drawreport/descendtree.py:1705
 #: ../gramps/plugins/webreport/narrativeweb.py:2236
+#: ../gramps/plugins/webreport/narrativeweb.py:2240
 msgid "Display"
 msgstr "Vis"
 
@@ -11839,8 +11943,8 @@ msgstr ""
 "Nøkkelord i STORE BOKSTAVER fremtvinger store bokstaver. Ekstra parenteser "
 "og kommaer fjernes. Annen tekst vises som den er.\n"
 "\n"
-"<b>Eksempel</b>: 'Dr. Edwin Jose von der Smith og Weston Wilson Sr (\"Ed\") -"
-" Underhills'\n"
+"<b>Eksempel</b>: 'Dr. Edwin Jose von der Smith og Weston Wilson Sr (\"Ed\") "
+"- Underhills'\n"
 "     <i>Edwin Jose</i> er fornavn, <i>von der</i> er prefiks, <i>Smith</i> "
 "og <i>Weston</i> er etternavn, \n"
 "     <i>og</i> [kob], <i>Wilson</i> Patronym, <i>Dr.</i> tittel, <i>Sr</i> "
@@ -12573,7 +12677,7 @@ msgstr "Port"
 
 #: ../gramps/gui/configure.py:2258
 msgid "Database path"
-msgstr "Databasebane"
+msgstr "Databasesti"
 
 #: ../gramps/gui/configure.py:2269
 msgid ""
@@ -12626,11 +12730,11 @@ msgid ""
 "Family Tree's Media path"
 msgstr ""
 "\n"
-"Slektstre Media bane"
+"Slektstreets mediasti"
 
 #: ../gramps/gui/configure.py:2335
 msgid "Base media path"
-msgstr "Basis mediabane"
+msgstr "Standard mediasti"
 
 #: ../gramps/gui/configure.py:2347
 msgid ""
@@ -12638,9 +12742,9 @@ msgid ""
 "not a global setting. Each family tree is able to have a unique relative "
 "media path that is stored with the database."
 msgstr ""
-"Den grunnleggende relative mediebanen er spesifikk for det aktive "
-"slektstreet. Det er ikke en global innstilling. Hvert slektstre kan ha en "
-"unik relativ mediebane som er lagret med databasen."
+"Standard relativ mediasti er spesifikk for det aktive slektstreet. Det er "
+"ikke en global innstilling. Hvert slektstre kan ha en unik relativ mediasti "
+"som er lagret med databasen."
 
 #: ../gramps/gui/configure.py:2368
 msgid "Tag Records"
@@ -12735,7 +12839,7 @@ msgstr "Velg mediamappe"
 #: ../gramps/plugins/lib/maps/geography.py:1535
 #: ../gramps/plugins/tool/check.py:828 ../gramps/plugins/tool/eventcmp.py:410
 #: ../gramps/plugins/tool/populatesources.py:99
-#: ../gramps/plugins/tool/testcasegenerator.py:396
+#: ../gramps/plugins/tool/testcasegenerator.py:396 ../gramps/gui/utils.py:266
 msgid "_Cancel"
 msgstr "_Avbryt"
 
@@ -13021,7 +13125,7 @@ msgstr "Databaseinformasjon"
 #: ../gramps/gui/viewmanager.py:1802 ../gramps/gui/views/tags.py:727
 #: ../gramps/plugins/tool/check.py:828 ../gramps/plugins/tool/patchnames.py:152
 #: ../gramps/plugins/tool/populatesources.py:99
-#: ../gramps/plugins/tool/testcasegenerator.py:397
+#: ../gramps/plugins/tool/testcasegenerator.py:397 ../gramps/gui/utils.py:280
 msgid "_OK"
 msgstr "_OK"
 
@@ -13311,7 +13415,7 @@ msgstr ""
 "%s"
 
 #: ../gramps/gui/dialog.py:490 ../gramps/gui/dialog.py:603
-#: ../gramps/gui/utils.py:400
+#: ../gramps/gui/utils.py:400 ../gramps/gui/utils.py:401
 msgid "Attempt to force closing the dialog"
 msgstr "Forsøke å tvinge en lukking av dialogboksen"
 
@@ -14787,7 +14891,7 @@ msgstr "Kan ikke lagre mediaobjekt. ID finnes allerede."
 
 #: ../gramps/gui/editors/editmedia.py:351
 msgid "There is no media matching the current path value!"
-msgstr "Det er ingen media som samsvarer med den gjeldende filbanen!"
+msgstr "Ingen media matcher den nåværende filstien!"
 
 #: ../gramps/gui/editors/editmedia.py:353
 #, python-format
@@ -14795,8 +14899,8 @@ msgid ""
 "You have attempted to use the path with value '%(path)s'. This path does not "
 "exist! Please enter a different path"
 msgstr ""
-"Du har forsøkt å bruke filbanen med verdien '%(path)s'. Denne filbanen "
-"eksisterer ikke! Vennligst angi en annen filbane"
+"Du har forsøkt å bruke stiverdien «%(path)s». Denne stien eksisterer ikke! "
+"Vennligst angi en annen sti"
 
 #: ../gramps/gui/editors/editmedia.py:365
 #: ../gramps/gui/editors/editmediaref.py:585
@@ -16971,8 +17075,8 @@ msgid ""
 "Use monospace font to keep preformatting."
 msgstr ""
 "Er dette aktivert vil mellomrom i notatene dine bli bevart i rapportene. "
-"Dette kan brukes til å formattere utseendet med mellomrom f.eks. i tabeller."
-"\n"
+"Dette kan brukes til å formattere utseendet med mellomrom f.eks. i "
+"tabeller.\n"
 "Er denne ikke markert vil notater automatisk bli vasket i rapportene, noe "
 "som kan gi et bedre utseende på rapportene.\n"
 "Bruk skrifttyper med fast bredde for å beholde formattering."
@@ -19310,8 +19414,8 @@ msgid ""
 "\n"
 "Press Back to return and select a valid filename."
 msgstr ""
-"Den valgte filen og mappen som skal lagres finnes ikke og kan ikke opprettes."
-"\n"
+"Den valgte filen og mappen som skal lagres finnes ikke og kan ikke "
+"opprettes.\n"
 "\n"
 "Trykk Tilbake for å gå tilbake og velg et gyldig filnavn."
 
@@ -19702,6 +19806,7 @@ msgstr "Papirvalg"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:148
 #: ../gramps/plugins/webreport/narrativeweb.py:2129
+#: ../gramps/plugins/webreport/narrativeweb.py:2133
 msgid "HTML Options"
 msgstr "HTML-innstillinger"
 
@@ -19771,6 +19876,7 @@ msgstr "Stil"
 #: ../gramps/plugins/textreport/tagreport.py:912
 #: ../gramps/plugins/webreport/narrativeweb.py:2064
 #: ../gramps/plugins/webreport/webcal.py:1835
+#: ../gramps/plugins/webreport/narrativeweb.py:2068
 msgid "Report Options"
 msgstr "Innstillinger for rapporter"
 
@@ -20138,29 +20244,30 @@ msgstr "Databasen er åpnet"
 msgid "History cleared"
 msgstr "Historikk er tømt"
 
-#: ../gramps/gui/utils.py:317
+#: ../gramps/gui/utils.py:317 ../gramps/gui/utils.py:318
 msgid "Canceling..."
 msgstr "Avbryter..."
 
-#: ../gramps/gui/utils.py:401
+#: ../gramps/gui/utils.py:401 ../gramps/gui/utils.py:402
 msgid "Please do not force closing this important dialog."
 msgstr "Ikke tving en lukking av denne viktige dialogboksen."
 
-#: ../gramps/gui/utils.py:470
+#: ../gramps/gui/utils.py:470 ../gramps/gui/utils.py:471
 msgid "The external program failed to launch or experienced an error"
 msgstr "Det eksterne programmet kunne ikke kjøres eller opplevde en feil"
 
-#: ../gramps/gui/utils.py:480
+#: ../gramps/gui/utils.py:480 ../gramps/gui/utils.py:481
 msgid "Error from external program"
 msgstr "Feil fra eksternt program"
 
 #: ../gramps/gui/utils.py:497
 #: ../gramps/plugins/textreport/simplebooktitle.py:115
+#: ../gramps/gui/utils.py:498
 #, python-format
 msgid "File %s does not exist"
 msgstr "Filen %s eksisterer ikke"
 
-#: ../gramps/gui/utils.py:799
+#: ../gramps/gui/utils.py:799 ../gramps/gui/utils.py:801
 msgid ""
 "Cannot open new citation editor at this time. Either the citation is already "
 "being edited, or the associated source is already being edited, and opening "
@@ -20178,7 +20285,7 @@ msgstr ""
 "For å redigere siteringen må du lukke kildeeditoren og åpne en editor for "
 "siteringen alene"
 
-#: ../gramps/gui/utils.py:815
+#: ../gramps/gui/utils.py:815 ../gramps/gui/utils.py:817
 msgid "Cannot open new citation editor"
 msgstr "Kan ikke åpne ny siteringseditor"
 
@@ -21127,12 +21234,14 @@ msgstr "av %d"
 #: ../gramps/plugins/docgen/htmldoc.py:306
 #: ../gramps/plugins/webreport/narrativeweb.py:1916
 #: ../gramps/plugins/webreport/webcal.py:296
+#: ../gramps/plugins/webreport/narrativeweb.py:1920
 msgid "Possible destination error"
 msgstr "Mulig målfeil"
 
 #: ../gramps/plugins/docgen/htmldoc.py:308
 #: ../gramps/plugins/webreport/narrativeweb.py:1919
 #: ../gramps/plugins/webreport/webcal.py:299
+#: ../gramps/plugins/webreport/narrativeweb.py:1923
 msgid ""
 "You appear to have set your target directory to a directory used for data "
 "storage. This could create problems with file management. It is recommended "
@@ -21794,12 +21903,14 @@ msgstr "Tredje linje med tekst på bunn av kalenderen"
 #: ../gramps/plugins/textreport/birthdayreport.py:597
 #: ../gramps/plugins/webreport/narrativeweb.py:3132
 #: ../gramps/plugins/webreport/webcal.py:1913
+#: ../gramps/plugins/webreport/narrativeweb.py:3136
 msgid "Include only living people"
 msgstr "Ta bare med levende personer"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:637
 #: ../gramps/plugins/webreport/narrativeweb.py:3133
 #: ../gramps/plugins/webreport/webcal.py:1914
+#: ../gramps/plugins/webreport/narrativeweb.py:3137
 msgid "Include only living people in the calendar"
 msgstr "Ta bare med levende personer i kalenderen"
 
@@ -21830,12 +21941,14 @@ msgstr "Velg et land for å vise dets helligdager"
 #: ../gramps/plugins/drawreport/calendarreport.py:664
 #: ../gramps/plugins/webreport/narrativeweb.py:3093
 #: ../gramps/plugins/webreport/webcal.py:1970
+#: ../gramps/plugins/webreport/narrativeweb.py:3097
 msgid "First day of week"
 msgstr "Første ukedag"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:670
 #: ../gramps/plugins/webreport/narrativeweb.py:3097
 #: ../gramps/plugins/webreport/webcal.py:1973
+#: ../gramps/plugins/webreport/narrativeweb.py:3101
 msgid "Select the first day of the week for the calendar"
 msgstr "Velg første ukedag for kalenderen"
 
@@ -21843,6 +21956,7 @@ msgstr "Velg første ukedag for kalenderen"
 #: ../gramps/plugins/textreport/birthdayreport.py:634
 #: ../gramps/plugins/webreport/narrativeweb.py:3101
 #: ../gramps/plugins/webreport/webcal.py:1976
+#: ../gramps/plugins/webreport/narrativeweb.py:3105
 msgid "Birthday surname"
 msgstr "Etternavn ved fødsel"
 
@@ -21850,6 +21964,7 @@ msgstr "Etternavn ved fødsel"
 #: ../gramps/plugins/textreport/birthdayreport.py:636
 #: ../gramps/plugins/webreport/narrativeweb.py:3104
 #: ../gramps/plugins/webreport/webcal.py:1979
+#: ../gramps/plugins/webreport/narrativeweb.py:3108
 msgid "Wives use husband's surname (from first family listed)"
 msgstr "Hustruer bruker mannens etternavn (fra første familie som listes opp)"
 
@@ -21857,6 +21972,7 @@ msgstr "Hustruer bruker mannens etternavn (fra første familie som listes opp)"
 #: ../gramps/plugins/textreport/birthdayreport.py:639
 #: ../gramps/plugins/webreport/narrativeweb.py:3107
 #: ../gramps/plugins/webreport/webcal.py:1982
+#: ../gramps/plugins/webreport/narrativeweb.py:3111
 msgid "Wives use husband's surname (from last family listed)"
 msgstr "Hustruer bruker mannens etternavn (fra siste familie som listes opp)"
 
@@ -21864,6 +21980,7 @@ msgstr "Hustruer bruker mannens etternavn (fra siste familie som listes opp)"
 #: ../gramps/plugins/textreport/birthdayreport.py:641
 #: ../gramps/plugins/webreport/narrativeweb.py:3109
 #: ../gramps/plugins/webreport/webcal.py:1984
+#: ../gramps/plugins/webreport/narrativeweb.py:3113
 msgid "Wives use their own surname"
 msgstr "Hustruer bruker sitt eget etternavn"
 
@@ -21871,6 +21988,7 @@ msgstr "Hustruer bruker sitt eget etternavn"
 #: ../gramps/plugins/textreport/birthdayreport.py:642
 #: ../gramps/plugins/webreport/narrativeweb.py:3110
 #: ../gramps/plugins/webreport/webcal.py:1985
+#: ../gramps/plugins/webreport/narrativeweb.py:3114
 msgid "Select married women's displayed surname"
 msgstr "Velg gifte kvinners viste etternavn"
 
@@ -21878,35 +21996,39 @@ msgstr "Velg gifte kvinners viste etternavn"
 #: ../gramps/plugins/textreport/birthdayreport.py:645
 #: ../gramps/plugins/webreport/narrativeweb.py:3120
 #: ../gramps/plugins/webreport/webcal.py:2065
+#: ../gramps/plugins/webreport/narrativeweb.py:3124
 msgid "Include birthdays"
 msgstr "Ta med fødselsdager"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:685
 #: ../gramps/plugins/textreport/birthdayreport.py:646
 msgid "Whether to include birthdays"
-msgstr "Hvorvidt bursdager skal tas med eller ikke"
+msgstr "Om bursdager skal tas med"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:688
 #: ../gramps/plugins/textreport/birthdayreport.py:649
 #: ../gramps/plugins/webreport/narrativeweb.py:3124
 #: ../gramps/plugins/webreport/webcal.py:2069
+#: ../gramps/plugins/webreport/narrativeweb.py:3128
 msgid "Include anniversaries"
 msgstr "Ta med jubileer"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:689
 #: ../gramps/plugins/textreport/birthdayreport.py:650
 msgid "Whether to include anniversaries"
-msgstr "Om jubileer skal tas med eller ikke"
+msgstr "Om jubileer skal tas med"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:692
 #: ../gramps/plugins/webreport/narrativeweb.py:3128
 #: ../gramps/plugins/webreport/webcal.py:2073
+#: ../gramps/plugins/webreport/narrativeweb.py:3132
 msgid "Include death dates"
 msgstr "Inkluder dødsdatoer"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:693
 #: ../gramps/plugins/webreport/narrativeweb.py:3129
 #: ../gramps/plugins/webreport/webcal.py:2074
+#: ../gramps/plugins/webreport/narrativeweb.py:3133
 msgid "Include death anniversaries in the calendar"
 msgstr "Inkluder dødsjubileer i kalenderen"
 
@@ -22517,6 +22639,7 @@ msgstr "Beregner hvilke personer som skal tas med i rapporten."
 #: ../gramps/plugins/tool/sortevents.py:182
 #: ../gramps/plugins/webreport/narrativeweb.py:2094
 #: ../gramps/plugins/webreport/webcal.py:1858
+#: ../gramps/plugins/webreport/narrativeweb.py:2098
 msgid "Filter Person"
 msgstr "Filtrer person"
 
@@ -22594,8 +22717,7 @@ msgid ""
 "Whether to include counts of the number of people who lack the given "
 "information."
 msgstr ""
-"Hvorvidt man skal inkludere tellinger av antall personer som mangler den "
-"oppgitte informasjonen."
+"Om antallet for personer som mangler den angitte informasjonen skal tas med."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1215
 msgid "Charts 3"
@@ -22665,6 +22787,7 @@ msgstr "Beregner hvilke personer som skal tas med i rapporten"
 #: ../gramps/plugins/tool/sortevents.py:183
 #: ../gramps/plugins/webreport/narrativeweb.py:2095
 #: ../gramps/plugins/webreport/webcal.py:1859
+#: ../gramps/plugins/webreport/narrativeweb.py:2099
 msgid "The center person for the filter"
 msgstr "Fokusperson for filteret"
 
@@ -24711,8 +24834,8 @@ msgstr ""
 "Bytt til \"Personer\"-visningen og fra menyen klikker du på \"Opprett\" og "
 "deretter \"Person\" (eller bruker [+]-ikonet) for å få opp vinduet for å "
 "angi en person. Å legge inn grunnleggende informasjon og lagre posten gir "
-"deg et utgangspunkt. Velg denne personens post og bytt nå til \"Relasjoner\""
-"-visningen.\n"
+"deg et utgangspunkt. Velg denne personens post og bytt nå til \"Relasjoner\"-"
+"visningen.\n"
 "\n"
 "Med denne første personen har alle menyalternativer og ikonfunksjoner blitt "
 "tilgjengelige. Bruk litt tid på å flytte musen over ikonene. Når markøren "
@@ -25256,6 +25379,7 @@ msgstr "Fargen som skal brukes for å vise familier."
 #: ../gramps/plugins/graph/gvfamilylines.py:470
 #: ../gramps/plugins/textreport/familygroup.py:690
 #: ../gramps/plugins/textreport/indivcomplete.py:857
+#: ../gramps/gen/plug/docgen/treedoc.py:826
 msgid "Empty report"
 msgstr "Tom rapport"
 
@@ -25465,7 +25589,7 @@ msgstr "Inkluder fødsels-, ekteskaps- og dødsdatoer og steder på samme linje"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:970
 msgid "Whether to include dates and/or places"
-msgstr "Hvorvidt datoer og/eller steder skal inkluderes"
+msgstr "Om datoer og/eller steder skal tas med"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:973
 msgid "Show all family nodes"
@@ -26228,7 +26352,7 @@ msgid ""
 "Citation confidence level\n"
 "(Very low - very high)."
 msgstr ""
-"Kildehenvisningstroverdighet\n"
+"Troverdighetsnivå for kildehenvisning\n"
 "(Veldig lav - veldig høy)."
 
 #: ../gramps/plugins/importer/importprogen.glade:308
@@ -26611,12 +26735,12 @@ msgid ""
 "'Unknown' objects are referenced by note %(unknown)s."
 msgstr ""
 "\n"
-"Den importerte filen var ikke selvstendig.\n"
-"For å korrigere for det ble %(new)d objekter opprettet og\n"
-"deres attributt ble satt til \"Ukjent\".\n"
-"Fordelingen per kategori er avbildet av\n"
-"nummer i parentes. Der det er mulig disse\n"
-"'Ukjente' objektene refereres til med merknaden %(unknown)s."
+"Den importerte filen var ikke komplett.\n"
+"For å kompensere for dette ble %(new)d objekter\n"
+"opprettet, og deres egenskapstype ble satt til «Ukjent».\n"
+"Fordelingen per kategori ses av tallet i parentes.\n"
+"Der det er mulig, er disse «Ukjent»-objektene henvist til\n"
+"ved notatet %(unknown)s."
 
 #: ../gramps/plugins/importer/importxml.py:387
 msgid ""
@@ -26842,6 +26966,7 @@ msgstr "Ekteskap"
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:327
 #: ../gramps/plugins/webreport/narrativeweb.py:2075
 #: ../gramps/plugins/webreport/webcal.py:1840
+#: ../gramps/plugins/webreport/narrativeweb.py:2079
 msgid "Destination"
 msgstr "Mål"
 
@@ -29803,7 +29928,8 @@ msgstr "Ugift forhold med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 msgid ""
 "Unmarried relationship with %(spouse)s %(full_date)s in "
 "%(place)s%(endnotes)s."
-msgstr "Ugift forhold med %(spouse)s den %(full_date)s i %(place)s%(endnotes)s."
+msgstr ""
+"Ugift forhold med %(spouse)s den %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1294
 #: ../gramps/plugins/lib/libnarrate.py:1341
@@ -30472,7 +30598,8 @@ msgstr ""
 #, python-format
 msgid ""
 "He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Han hadde også et forhold med %(spouse)s den %(full_date)s%(endnotes)s."
+msgstr ""
+"Han hadde også et forhold med %(spouse)s den %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1614
 #, python-format
@@ -30492,7 +30619,8 @@ msgstr ""
 #, python-format
 msgid ""
 "She also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Hun hadde også et forhold med %(spouse)s den %(full_date)s%(endnotes)s."
+msgstr ""
+"Hun hadde også et forhold med %(spouse)s den %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1621
 #, python-format
@@ -31605,6 +31733,7 @@ msgstr "Åpner fra maps.google.com"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:75
 #: ../gramps/plugins/webreport/narrativeweb.py:2599
+#: ../gramps/plugins/webreport/narrativeweb.py:2603
 msgid "OpenStreetMap"
 msgstr "OpenStreetMap"
 
@@ -32958,7 +33087,7 @@ msgstr "Bruk tiltalsnavn som første navn."
 #: ../gramps/plugins/textreport/detancestralreport.py:922
 #: ../gramps/plugins/textreport/detdescendantreport.py:1130
 msgid "Whether to list children."
-msgstr "Liste opp barna."
+msgstr "Om barn skal listes."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:925
 #: ../gramps/plugins/textreport/detdescendantreport.py:1133
@@ -32978,7 +33107,7 @@ msgstr "Ta med hendelser"
 #: ../gramps/plugins/textreport/detancestralreport.py:930
 #: ../gramps/plugins/textreport/detdescendantreport.py:1146
 msgid "Whether to include events."
-msgstr "Ta med hendelser."
+msgstr "Om hendelser skal tas med."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:933
 msgid "Include other events"
@@ -32986,7 +33115,7 @@ msgstr "Ta med andre hendelser"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:935
 msgid "Whether to include other events people participated in."
-msgstr "Hvorvidt andre hendelser der personer deltak skal tas med eller ikke."
+msgstr "Om andre hendelser folk deltok i skal inkluderes."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:939
 #: ../gramps/plugins/textreport/detdescendantreport.py:1149
@@ -32996,7 +33125,7 @@ msgstr "Ta med referanser til etterkommere i listen over barn"
 #: ../gramps/plugins/textreport/detancestralreport.py:940
 #: ../gramps/plugins/textreport/detdescendantreport.py:1150
 msgid "Whether to add descendant references in child list."
-msgstr "Legg til henvisning til etterkommere i listen over barn."
+msgstr "Om referanser til etterkommere skal legges til i listen over barn."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:943
 #: ../gramps/plugins/textreport/detdescendantreport.py:1153
@@ -33008,7 +33137,7 @@ msgstr "Ta med foto/bilder fra galleriet"
 #: ../gramps/plugins/textreport/detdescendantreport.py:1154
 #: ../gramps/plugins/textreport/indivcomplete.py:1172
 msgid "Whether to include images."
-msgstr "Ta med bilder."
+msgstr "Om bilder skal tas med."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:947
 #: ../gramps/plugins/textreport/detdescendantreport.py:1157
@@ -33025,7 +33154,7 @@ msgstr "Ta med notater"
 #: ../gramps/plugins/textreport/detancestralreport.py:950
 #: ../gramps/plugins/textreport/detdescendantreport.py:1160
 msgid "Whether to include notes."
-msgstr "Ta med notater."
+msgstr "Om notater skal tas med."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:953
 #: ../gramps/plugins/textreport/detdescendantreport.py:1163
@@ -33035,7 +33164,7 @@ msgstr "Ta med kilder"
 #: ../gramps/plugins/textreport/detancestralreport.py:954
 #: ../gramps/plugins/textreport/detdescendantreport.py:1164
 msgid "Whether to include source references."
-msgstr "Ta med kildehenvisninger."
+msgstr "Om kildehenvisninger skal tas med."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:957
 #: ../gramps/plugins/textreport/detdescendantreport.py:1167
@@ -33050,20 +33179,20 @@ msgid ""
 "Whether to include source notes in the Endnotes section. Only works if "
 "Include sources is selected."
 msgstr ""
-"Om kildenotater skal inkluderes i sluttnotene. Fungerer bare hvis Ta med "
-"kilder er valgt."
+"Om kildehenvisninger skal inkluderes i sluttnoteseksjonen. Fungerer bare "
+"hvis det er valgt å ta med kilder."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:966
 #: ../gramps/plugins/textreport/detdescendantreport.py:1176
 msgid "Include attributes"
-msgstr "Ta med attributter"
+msgstr "Ta med egenskaper"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:967
 #: ../gramps/plugins/textreport/detdescendantreport.py:1177
 #: ../gramps/plugins/textreport/familygroup.py:780
 #: ../gramps/plugins/textreport/indivcomplete.py:1186
 msgid "Whether to include attributes."
-msgstr "Ta med egenskaper."
+msgstr "Om egenskaper skal tas med."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:970
 #: ../gramps/plugins/textreport/detdescendantreport.py:1180
@@ -33073,7 +33202,7 @@ msgstr "Ta med adresser"
 #: ../gramps/plugins/textreport/detancestralreport.py:971
 #: ../gramps/plugins/textreport/detdescendantreport.py:1181
 msgid "Whether to include addresses."
-msgstr "Ta med adresser."
+msgstr "Om adresser skal tas med."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:974
 #: ../gramps/plugins/textreport/detdescendantreport.py:1184
@@ -33083,7 +33212,7 @@ msgstr "Ta med alternative navn"
 #: ../gramps/plugins/textreport/detancestralreport.py:975
 #: ../gramps/plugins/textreport/detdescendantreport.py:1185
 msgid "Whether to include other names."
-msgstr "Ta med andre navn."
+msgstr "Om andre navn skal tas med."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:981
 #: ../gramps/plugins/textreport/detdescendantreport.py:1212
@@ -33093,7 +33222,7 @@ msgstr "Erstatt manglende steder med ______"
 #: ../gramps/plugins/textreport/detancestralreport.py:982
 #: ../gramps/plugins/textreport/detdescendantreport.py:1213
 msgid "Whether to replace missing Places with blanks."
-msgstr "Erstatt manglende stedsnavn med tomrom."
+msgstr "Om manglende stedsnavn skal erstattes med tomrom."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:985
 #: ../gramps/plugins/textreport/detdescendantreport.py:1216
@@ -33103,7 +33232,7 @@ msgstr "Erstatt manglende datoer med ______"
 #: ../gramps/plugins/textreport/detancestralreport.py:986
 #: ../gramps/plugins/textreport/detdescendantreport.py:1217
 msgid "Whether to replace missing Dates with blanks."
-msgstr "Erstatt manglende datoer med tomrom."
+msgstr "Om manglende datoer skal erstattes med tomrom."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:1019
 #: ../gramps/plugins/textreport/detdescendantreport.py:1250
@@ -33184,7 +33313,7 @@ msgstr "Ta med ektefeller"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1138
 msgid "Whether to include detailed spouse information."
-msgstr "Ta med detaljert informasjon om ektefeller."
+msgstr "Om detaljert informasjon om ektefeller skal tas med."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1141
 msgid "Include spouse reference"
@@ -33293,7 +33422,7 @@ msgstr "Ekteskap mellom foreldre"
 
 #: ../gramps/plugins/textreport/familygroup.py:764
 msgid "Whether to include marriage information for parents."
-msgstr "Ta med ekteskapsinformasjon for foreldrene."
+msgstr "Om ekteskapsinformasjon for foreldre skal tas med."
 
 #: ../gramps/plugins/textreport/familygroup.py:767
 msgid "Parent Events"
@@ -33301,7 +33430,7 @@ msgstr "Foreldrehendelser"
 
 #: ../gramps/plugins/textreport/familygroup.py:768
 msgid "Whether to include events for parents."
-msgstr "Ta med hendelser for foreldre."
+msgstr "Om hendelser for foreldre skal tas med."
 
 #: ../gramps/plugins/textreport/familygroup.py:771
 msgid "Parent Addresses"
@@ -33309,7 +33438,7 @@ msgstr "Foreldres adresser"
 
 #: ../gramps/plugins/textreport/familygroup.py:772
 msgid "Whether to include addresses for parents."
-msgstr "Ta med adresser for foreldre."
+msgstr "Om adresser for foreldre skal tas med."
 
 #: ../gramps/plugins/textreport/familygroup.py:775
 msgid "Parent Notes"
@@ -33317,11 +33446,11 @@ msgstr "Foreldrenotater"
 
 #: ../gramps/plugins/textreport/familygroup.py:776
 msgid "Whether to include notes for parents."
-msgstr "Ta med notater for foreldre."
+msgstr "Om notater for foreldre skal tas med."
 
 #: ../gramps/plugins/textreport/familygroup.py:779
 msgid "Parent Attributes"
-msgstr "Foreldreattributter"
+msgstr "Foreldreegenskaper"
 
 #: ../gramps/plugins/textreport/familygroup.py:783
 msgid "Alternate Parent Names"
@@ -33329,11 +33458,11 @@ msgstr "Alternative navn på foreldre"
 
 #: ../gramps/plugins/textreport/familygroup.py:784
 msgid "Whether to include alternate names for parents."
-msgstr "Ta med alternative navn for foreldrene."
+msgstr "Om alternative navn for foreldre skal tas med."
 
 #: ../gramps/plugins/textreport/familygroup.py:795
 msgid "Whether to include notes for families."
-msgstr "Hvorvidt notater for familier skal tas med eller ikke."
+msgstr "Om notater for familier skal tas med."
 
 #: ../gramps/plugins/textreport/familygroup.py:798
 msgid "Dates of Relatives"
@@ -33341,9 +33470,7 @@ msgstr "Datoer til slektninger"
 
 #: ../gramps/plugins/textreport/familygroup.py:800
 msgid "Whether to include dates for relatives (father, mother, spouse)."
-msgstr ""
-"Hvorvidt datoer for slektninger (far, mor, ektefelle) skal tas med eller "
-"ikke."
+msgstr "Om datoer for slektninger (far, mor, ektefelle) skal tas med."
 
 #: ../gramps/plugins/textreport/familygroup.py:804
 msgid "Children Marriages"
@@ -33351,7 +33478,7 @@ msgstr "Barns ekteskap"
 
 #: ../gramps/plugins/textreport/familygroup.py:805
 msgid "Whether to include marriage information for children."
-msgstr "Hvorvidtekteskapsinformasjon for barn skal tas med eller ikke."
+msgstr "Om ekteskapsinformasjon for barn skal tas med."
 
 #: ../gramps/plugins/textreport/familygroup.py:809
 msgid "Generation numbers (recursive only)"
@@ -33359,7 +33486,7 @@ msgstr "Generasjonsnumre (rekursivt)"
 
 #: ../gramps/plugins/textreport/familygroup.py:812
 msgid "Whether to include the generation on each report (recursive only)."
-msgstr "Ta med generasjonen på hver rapport (kun rekursivt)."
+msgstr "Om generasjonen skal tas med i hver rapport (kun rekursiv)."
 
 #: ../gramps/plugins/textreport/familygroup.py:816
 msgid "Print fields for missing information"
@@ -33367,7 +33494,7 @@ msgstr "Mangler informasjon"
 
 #: ../gramps/plugins/textreport/familygroup.py:817
 msgid "Whether to include fields for missing information."
-msgstr "Ta med felt for manglende informasjon."
+msgstr "Om felt for manglende informasjon skal tas med."
 
 #: ../gramps/plugins/textreport/familygroup.py:915
 msgid "The style used for the parent's name"
@@ -33433,7 +33560,7 @@ msgstr "Ta med notater"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1152
 msgid "Whether to include Person and Family Notes."
-msgstr "Hvorvidt person- og familienotater skal tas med eller ikke."
+msgstr "Om person- og familienotater skal tas med."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1155
 msgid "Include Source Information"
@@ -33441,7 +33568,7 @@ msgstr "Ta med kildeangivelser"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1156
 msgid "Whether to cite sources."
-msgstr "Henvise til kilder."
+msgstr "Om kilder skal siteres."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1181
 msgid "Include Tags"
@@ -33453,7 +33580,7 @@ msgstr "Om etiketter skal inkluderes."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1185
 msgid "Include Attributes"
-msgstr "Ta med attributter"
+msgstr "Ta med egenskaper"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1189
 msgid "Include Census Events"
@@ -33461,7 +33588,7 @@ msgstr "Ta med hendelser"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1190
 msgid "Whether to include Census Events."
-msgstr "Hvorvidt hendelser skal tas med eller ikke."
+msgstr "Om folketellingshendelser skal tas med."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1202
 msgid "Sections"
@@ -33484,7 +33611,7 @@ msgstr "Stil som brukes på ektefelles navn."
 #: ../gramps/plugins/textreport/placereport.py:590
 #: ../gramps/plugins/textreport/tagreport.py:997
 msgid "The basic style used for table headings."
-msgstr "Basisstilen for kolonneoverskrifter i tabeller."
+msgstr "Standardstilen for tabelloverskrifter."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1308
 msgid "The style used for image notes."
@@ -33509,7 +33636,7 @@ msgstr "Maksimalt antall generasjoner med aner"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:380
 msgid "Whether to include spouses"
-msgstr "Ta med ektefeller"
+msgstr "Om ektefeller skal tas med"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:383
 msgid "Include cousins"
@@ -33517,7 +33644,7 @@ msgstr "Ta med søskenbarn"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:384
 msgid "Whether to include cousins"
-msgstr "Hvorvidt søskenbarn skal tas med"
+msgstr "Om søskenbarn skal tas med"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:387
 msgid "Include aunts/uncles/nephews/nieces"
@@ -33525,7 +33652,7 @@ msgstr "Ta med tanter/unkler/nevøer/nieser"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:388
 msgid "Whether to include aunts/uncles/nephews/nieces"
-msgstr "Ta med tanter/unkler/nevøer/nieser"
+msgstr "Om tanter/onkler/nevøer/nieser skal tas med"
 
 #: ../gramps/plugins/textreport/notelinkreport.py:75
 #: ../gramps/plugins/textreport/notelinkreport.py:111
@@ -33847,7 +33974,7 @@ msgstr "Antall notater: %d"
 
 #: ../gramps/plugins/textreport/summary.py:399
 msgid "Whether to count private data"
-msgstr "Om private data skal tas med"
+msgstr "Om private data skal medregnes"
 
 #: ../gramps/plugins/textreport/tableofcontents.py:73
 #: ../gramps/plugins/textreport/textplugins.gpr.py:374
@@ -35017,11 +35144,11 @@ msgstr "Ignorere dato"
 
 #: ../gramps/plugins/tool/mergecitations.py:79
 msgid "Ignore Confidence"
-msgstr "Ignorere troverdighet"
+msgstr "Ignorer troverdighet"
 
 #: ../gramps/plugins/tool/mergecitations.py:80
 msgid "Ignore Date and Confidence"
-msgstr "Ignorere dato og troverdighet"
+msgstr "Ignorer dato og troverdighet"
 
 #: ../gramps/plugins/tool/mergecitations.py:84
 msgctxt "manual"
@@ -37621,6 +37748,7 @@ msgstr "Miniatyrbilder"
 #: ../gramps/plugins/webreport/basepage.py:2088
 #: ../gramps/plugins/webreport/download.py:94
 #: ../gramps/plugins/webreport/narrativeweb.py:2440
+#: ../gramps/plugins/webreport/narrativeweb.py:2444
 msgid "Download"
 msgstr "Last ned"
 
@@ -37964,83 +38092,102 @@ msgid "Constructing list of other objects..."
 msgstr "Lager liste over andre objekter..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:918
+#: ../gramps/plugins/webreport/narrativeweb.py:922
 #, python-format
 msgid "Family of %(husband)s and %(spouse)s"
 msgstr "Familie til %(husband)s og %(spouse)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:925
 #: ../gramps/plugins/webreport/narrativeweb.py:929
+#: ../gramps/plugins/webreport/narrativeweb.py:933
 #, python-format
 msgid "Family of %s"
 msgstr "Familie til %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1312
+#: ../gramps/plugins/webreport/narrativeweb.py:1316
 msgid "Creating GENDEX file"
 msgstr "Lager GENDEX-fil"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1372
+#: ../gramps/plugins/webreport/narrativeweb.py:1376
 msgid "Creating surname pages"
 msgstr "Lager side over etternavn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1409
+#: ../gramps/plugins/webreport/narrativeweb.py:1413
 msgid "Creating thumbnail preview page..."
 msgstr "Oppretter forhåndsvisningsside for miniatyrbilder..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1418
+#: ../gramps/plugins/webreport/narrativeweb.py:1422
 msgid "Creating statistics page..."
 msgstr "Lager statistikksider..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1426
+#: ../gramps/plugins/webreport/narrativeweb.py:1430
 msgid "Creating updates page..."
 msgstr "Oppretter oppdateringsside..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1466
+#: ../gramps/plugins/webreport/narrativeweb.py:1470
 msgid "Creating address book pages ..."
 msgstr "Lager adresseboksider..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1946
+#: ../gramps/plugins/webreport/narrativeweb.py:1950
 #, python-format
 msgid "Narrative Website Report for the %s language"
 msgstr "Fortellende nettstedsrapport for %s språk"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1948
+#: ../gramps/plugins/webreport/narrativeweb.py:1952
 msgid "Narrative Website Report"
 msgstr "Fortellende nettstedsrapport"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2067
+#: ../gramps/plugins/webreport/narrativeweb.py:2071
 msgid "Store website in .tar.gz archive"
 msgstr "Lagre nettside i .tar.gz-arkiv"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2068
+#: ../gramps/plugins/webreport/narrativeweb.py:2072
 msgid "Whether to store the website in an archive file"
 msgstr "Om nettsiden skal lagres i en arkivfil"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2078
 #: ../gramps/plugins/webreport/webcal.py:1843
+#: ../gramps/plugins/webreport/narrativeweb.py:2082
 msgid "The destination directory for the web files"
 msgstr "Målmappen for nettsidene"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2083
+#: ../gramps/plugins/webreport/narrativeweb.py:2087
 msgid "My Family Tree"
 msgstr "Mitt slektstre"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2083
+#: ../gramps/plugins/webreport/narrativeweb.py:2087
 msgid "Website title"
 msgstr "Nettstedstittel"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2084
+#: ../gramps/plugins/webreport/narrativeweb.py:2088
 msgid "The title of the website"
 msgstr "Tittelen på nettstedet"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2089
+#: ../gramps/plugins/webreport/narrativeweb.py:2093
 msgid "Select filter to restrict people that appear on the website"
 msgstr "Velg filter for å begrense antall personer som vises på nettsiden"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2101
+#: ../gramps/plugins/webreport/narrativeweb.py:2105
 msgid "Show the relationship between the current person and the active person"
 msgstr "Vis slektsforholdet mellom nåværende person og aktiv person"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2108
+#: ../gramps/plugins/webreport/narrativeweb.py:2112
 msgid ""
 "For each person page, show the relationship between this person and the "
 "active person."
@@ -38050,224 +38197,276 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2132
 #: ../gramps/plugins/webreport/webcal.py:1865
+#: ../gramps/plugins/webreport/narrativeweb.py:2136
 msgid "File extension"
 msgstr "Filetternavn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2135
 #: ../gramps/plugins/webreport/webcal.py:1868
+#: ../gramps/plugins/webreport/narrativeweb.py:2139
 msgid "The extension to be used for the web files"
 msgstr "Filendelsen som skal brukes på nettsidene"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2139
 #: ../gramps/plugins/webreport/webcal.py:1871
+#: ../gramps/plugins/webreport/narrativeweb.py:2143
 msgid "Copyright"
 msgstr "Opphavsrett"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2142
 #: ../gramps/plugins/webreport/webcal.py:1874
+#: ../gramps/plugins/webreport/narrativeweb.py:2146
 msgid "The copyright to be used for the web files"
 msgstr "Opphavsrett som skal brukes på nettsidene"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2145
 #: ../gramps/plugins/webreport/webcal.py:1884
+#: ../gramps/plugins/webreport/narrativeweb.py:2149
 msgid "StyleSheet"
 msgstr "Stilsett"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2151
+#: ../gramps/plugins/webreport/narrativeweb.py:2155
 msgid "The default stylesheet to be used for the pages"
 msgstr "Standard stilsett som skal brukes på sidene"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2156
+#: ../gramps/plugins/webreport/narrativeweb.py:2160
 msgid "Horizontal -- Default"
 msgstr "Horisontal -- Standard"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2157
+#: ../gramps/plugins/webreport/narrativeweb.py:2161
 msgid "Vertical   -- Left Side"
 msgstr "Vertikal   -- Venstre side"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2158
+#: ../gramps/plugins/webreport/narrativeweb.py:2162
 msgid "Fade       -- WebKit Browsers Only"
 msgstr "Fade       -- Bare for nettlesere som støtter WebKit"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2159
 #: ../gramps/plugins/webreport/narrativeweb.py:2175
+#: ../gramps/plugins/webreport/narrativeweb.py:2163
+#: ../gramps/plugins/webreport/narrativeweb.py:2179
 msgid "Drop-Down  -- WebKit Browsers Only"
 msgstr "Nedtrekk  -- Bare for nettlesere som støtter WebKit"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2162
+#: ../gramps/plugins/webreport/narrativeweb.py:2166
 msgid "Navigation Menu Layout"
 msgstr "Utseende på navigeringsmeny"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2167
+#: ../gramps/plugins/webreport/narrativeweb.py:2171
 msgid "Choose which layout for the Navigation Menus."
 msgstr "Velg hvilket utseende du vil ha på navigasjonsmenyene."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2174
+#: ../gramps/plugins/webreport/narrativeweb.py:2178
 msgid "Normal Outline Style"
 msgstr "Normalt utseende"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2178
+#: ../gramps/plugins/webreport/narrativeweb.py:2182
 msgid "Citation Referents Layout"
 msgstr "Utseende på siteringsreferanser"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2184
+#: ../gramps/plugins/webreport/narrativeweb.py:2188
 msgid ""
 "Determine the default layout for the Source Page's Citation Referents section"
 msgstr "Beregne utseendet for kildesidens avsnitt for siteringsreferanser"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2190
+#: ../gramps/plugins/webreport/narrativeweb.py:2194
 msgid "Include ancestor's tree"
 msgstr "Ta med anetavle"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2192
+#: ../gramps/plugins/webreport/narrativeweb.py:2196
 msgid "Whether to include an ancestor graph on each individual page"
-msgstr "Ta med en anetavle på hver personside"
+msgstr "Om en anetavle skal tas med på hver personside"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2197
+#: ../gramps/plugins/webreport/narrativeweb.py:2201
 msgid "Add previous/next"
 msgstr "Legg til forrige/neste"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2198
+#: ../gramps/plugins/webreport/narrativeweb.py:2202
 msgid "Add previous/next to the navigation bar."
 msgstr "Legg til forrige/neste til i navigasjonsfeltet."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2201
+#: ../gramps/plugins/webreport/narrativeweb.py:2205
 msgid "This is a secure site (HTTPS)"
 msgstr "Dette er en sikret side (HTTPS)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2202
+#: ../gramps/plugins/webreport/narrativeweb.py:2206
 msgid "Whether to use http:// or https://"
 msgstr "Om http:// eller https:// skal benyttes"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2205
+#: ../gramps/plugins/webreport/narrativeweb.py:2209
 msgid "Toggle sections"
 msgstr "Slå på seksjoner"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
+#: ../gramps/plugins/webreport/narrativeweb.py:2210
 msgid "Check it if you want to open/close a section"
 msgstr "Kryss av hvis du vil åpne/lukke en seksjon"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2215
+#: ../gramps/plugins/webreport/narrativeweb.py:2219
 msgid "Extra Pages"
 msgstr "Ekstra sider"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2218
+#: ../gramps/plugins/webreport/narrativeweb.py:2222
 msgid "Extra page name"
 msgstr "Navn på ekstra side"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2220
+#: ../gramps/plugins/webreport/narrativeweb.py:2224
 msgid "Your extra page name like it is shown in the menubar"
 msgstr "Navn på din ekstra side, slik vist i menyfeltet"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2225
+#: ../gramps/plugins/webreport/narrativeweb.py:2229
 msgid "Your extra page path"
 msgstr "Sti til din ekstra side"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2226
+#: ../gramps/plugins/webreport/narrativeweb.py:2230
 msgid "Your extra page path without extension"
 msgstr "Sti til din ekstra side, uten filendelse"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2241
+#: ../gramps/plugins/webreport/narrativeweb.py:2245
 msgid "Do we use multiple translations?"
 msgstr "Bruker vi flere oversettelser?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2244
+#: ../gramps/plugins/webreport/narrativeweb.py:2248
 msgid ""
 "Whether to display the narrative web in multiple languages.\n"
 "See the translation tab to add new languages to the default one defined in "
 "the next field."
 msgstr ""
-"Hvorvidt forteller-vev skal vises på flere språk.\n"
-"Sjekk oversettelsesfanen for å legge til nye språk til det som er forvalget "
-"som er definert i neste felt."
+"Om det fortellende nettstedet skal vises på flere språk.\n"
+"Se fanen for oversettelse for å legge til nye språk til standardspråket som "
+"er definert i neste felt."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2258
+#: ../gramps/plugins/webreport/narrativeweb.py:2262
 msgid "Sort all children in birth order"
 msgstr "Sorter alle barn i fødselsrekkefølge"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2260
+#: ../gramps/plugins/webreport/narrativeweb.py:2264
 msgid "Whether to display children in birth order or in entry order."
 msgstr ""
 "Om barn skal sorteres på fødselrekkefølge eller rekkefølge de ble registrert."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2265
+#: ../gramps/plugins/webreport/narrativeweb.py:2269
 msgid "Do we display coordinates in the places list?"
 msgstr "Viser vi koordinater i stedslisten?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2268
+#: ../gramps/plugins/webreport/narrativeweb.py:2272
 msgid "Whether to display latitude/longitude in the places list."
 msgstr "Om breddegrad/lengdegrad skal vises i stedslisten."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2273
+#: ../gramps/plugins/webreport/narrativeweb.py:2277
 msgid "Sort places references either by date or by name"
 msgstr "Sorter stedreferanser enten etter dato eller etter navn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2277
+#: ../gramps/plugins/webreport/narrativeweb.py:2281
 msgid "Sort the places references by date or by name. Not set means by date."
 msgstr ""
 "Sorter stedsreferansene etter dato eller navn. Ikke angitt betyr etter dato."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2283
+#: ../gramps/plugins/webreport/narrativeweb.py:2287
 msgid "Graph generations"
 msgstr "Generasjoner i anetavlen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2285
+#: ../gramps/plugins/webreport/narrativeweb.py:2289
 msgid "The number of generations to include in the ancestor graph"
 msgstr "Antall generasjoner som skal være med i anetavlen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2291
+#: ../gramps/plugins/webreport/narrativeweb.py:2295
 msgid "Include narrative notes just after name, gender"
-msgstr "Inkluder narrative notater like etter navn, kjønn"
+msgstr "Inkluder fortellende notater rett etter navn og kjønn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2295
+#: ../gramps/plugins/webreport/narrativeweb.py:2299
 msgid ""
 "Include narrative notes just after name, gender and age at death (default) "
 "or include them just before attributes."
 msgstr ""
-"Inkluder narrative notater like etter navn, kjønn og alder ved døden "
-"(standard) eller inkluder dem like før egenskaper."
+"Inkluder fortellende notater rett etter navn, kjønn og alder ved død "
+"(standard) eller inkluder dem rett før egenskaper."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2308
+#: ../gramps/plugins/webreport/narrativeweb.py:2312
 msgid "Page Generation"
 msgstr "Sidegenerering"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2311
+#: ../gramps/plugins/webreport/narrativeweb.py:2315
 msgid "Home page note"
 msgstr "Notat for Startside"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2312
+#: ../gramps/plugins/webreport/narrativeweb.py:2316
 msgid "A note to be used on the home page"
 msgstr "Et notat som skal brukes på startsiden"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2315
+#: ../gramps/plugins/webreport/narrativeweb.py:2319
 msgid "Home page image"
 msgstr "Bilde til Startside"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2316
+#: ../gramps/plugins/webreport/narrativeweb.py:2320
 msgid "An image to be used on the home page"
 msgstr "Et bilde som skal brukes på hjemmesiden"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2319
+#: ../gramps/plugins/webreport/narrativeweb.py:2323
 msgid "Introduction note"
 msgstr "Introduksjonsnotat"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2320
+#: ../gramps/plugins/webreport/narrativeweb.py:2324
 msgid "A note to be used as the introduction"
 msgstr "Et notat som skal brukes som introduksjonen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2323
+#: ../gramps/plugins/webreport/narrativeweb.py:2327
 msgid "Introduction image"
 msgstr "Introduksjonsbilde"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2324
+#: ../gramps/plugins/webreport/narrativeweb.py:2328
 msgid "An image to be used as the introduction"
 msgstr "Et bilde som skal brukes som introduksjonen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2327
+#: ../gramps/plugins/webreport/narrativeweb.py:2331
 msgid "Publisher contact note"
 msgstr "Utgivers kontaktnotat"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2330
+#: ../gramps/plugins/webreport/narrativeweb.py:2334
 msgid ""
 "A note to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -38278,10 +38477,12 @@ msgstr ""
 "vil det ikke bli laget en kontaktside"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2337
+#: ../gramps/plugins/webreport/narrativeweb.py:2341
 msgid "Publisher contact image"
 msgstr "Utgivers kontaktbilde"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2340
+#: ../gramps/plugins/webreport/narrativeweb.py:2344
 msgid ""
 "An image to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -38292,27 +38493,33 @@ msgstr ""
 "vil det ikke bli laget en kontaktside"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2347
+#: ../gramps/plugins/webreport/narrativeweb.py:2351
 msgid "HTML user header"
 msgstr "HTML-brukertopptekst"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2349
+#: ../gramps/plugins/webreport/narrativeweb.py:2353
 msgid "A note to be used as the page header or a PHP code to insert."
 msgstr ""
 "Et notat som skal brukes i toppteksten eller en PHP kode for sette inn."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2353
+#: ../gramps/plugins/webreport/narrativeweb.py:2357
 msgid "HTML user footer"
 msgstr "HTML-brukerbunntekst"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2354
+#: ../gramps/plugins/webreport/narrativeweb.py:2358
 msgid "A note to be used as the page footer"
 msgstr "Stil som blir brukt på bunnteksten"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2359
+#: ../gramps/plugins/webreport/narrativeweb.py:2363
 msgid "PHP user session"
 msgstr "PHP-brukerøkt"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2362
+#: ../gramps/plugins/webreport/narrativeweb.py:2366
 msgid ""
 "A note to use for starting the php session.\n"
 "This option will be available only if the .php file extension is selected."
@@ -38321,38 +38528,47 @@ msgstr ""
 "Dette alternativet vil bare være tilgjengelig hvis filtypen .php er valgt."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2375
+#: ../gramps/plugins/webreport/narrativeweb.py:2379
 msgid "Images Generation"
 msgstr "Lager bilder"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2378
+#: ../gramps/plugins/webreport/narrativeweb.py:2382
 msgid "Include images and media objects"
 msgstr "Ta med bilder og mediaobjekter"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2379
+#: ../gramps/plugins/webreport/narrativeweb.py:2383
 msgid "Whether to include a gallery of media objects"
-msgstr "Ta med et galleri av mediaobjekt"
+msgstr "Om et galleri av mediaobjekter skal tas med"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2383
+#: ../gramps/plugins/webreport/narrativeweb.py:2387
 msgid "Create the images index"
 msgstr "Opprett bildeindeksen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2385
+#: ../gramps/plugins/webreport/narrativeweb.py:2389
 msgid "This option allows you to create the images index"
 msgstr "Dette valget lar deg opprette bildeindeksen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2391
+#: ../gramps/plugins/webreport/narrativeweb.py:2395
 msgid "Include unused images and media objects"
 msgstr "Ta med ubrukte bilder og mediaobjekter"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2394
+#: ../gramps/plugins/webreport/narrativeweb.py:2398
 msgid "Whether to include unused or unreferenced media objects"
-msgstr "Hvorvidt ubrukte mediaobjekt skal tas med eller ikke"
+msgstr "Om ubrukte eller urefererte mediaobjekter skal tas med"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2399
+#: ../gramps/plugins/webreport/narrativeweb.py:2403
 msgid "Create and only use thumbnail- sized images"
 msgstr "Opprett og bruk kun miniatyrbilder"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2403
+#: ../gramps/plugins/webreport/narrativeweb.py:2407
 msgid ""
 "This option allows you to create only thumbnail images instead of the full-"
 "sized images on the Media Page. This will allow you to have a much smaller "
@@ -38363,187 +38579,231 @@ msgstr ""
 "plass ved opplasting til webhotellet ditt."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2413
+#: ../gramps/plugins/webreport/narrativeweb.py:2417
 msgid "Create the thumbnail index"
 msgstr "Opprett miniatyrbildeindeksen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2416
+#: ../gramps/plugins/webreport/narrativeweb.py:2420
 msgid "This option allows you to create the thumbnail index"
 msgstr "Dette valget lar deg opprette indeks for miniatyrbilder"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2422
+#: ../gramps/plugins/webreport/narrativeweb.py:2426
 msgid "Max width of initial image"
 msgstr "Største bredde på startbilde"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2426
+#: ../gramps/plugins/webreport/narrativeweb.py:2430
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
 "page."
 msgstr "Dette lar deg angi maksimal bredde på bildet som vises på mediesiden."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2443
+#: ../gramps/plugins/webreport/narrativeweb.py:2447
 msgid "Include download page"
 msgstr "Ta med nedlastningsside"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2444
+#: ../gramps/plugins/webreport/narrativeweb.py:2448
 msgid "Whether to include a database download option"
-msgstr "Ta med mulighet for å kunne laste ned databasen"
+msgstr "Om mulighet for å kunne laste ned databasen skal tas med"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2449
+#: ../gramps/plugins/webreport/narrativeweb.py:2453
 msgid "How many downloads"
 msgstr "Hvor mange nedlastinger"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2452
+#: ../gramps/plugins/webreport/narrativeweb.py:2456
 msgid "The number of download files to include in the download page"
 msgstr "Antall nedlastingsfiler som skal inkluderes på nedlastingssiden"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2462
+#: ../gramps/plugins/webreport/narrativeweb.py:2466
 #, python-format
 msgid "Download Filename #%c"
 msgstr "Last ned filnavn #%c"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2464
+#: ../gramps/plugins/webreport/narrativeweb.py:2468
 msgid "File to be used for downloading of database"
 msgstr "Fil som skal brukes for nedlasting av database"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2469
+#: ../gramps/plugins/webreport/narrativeweb.py:2473
 msgid "Description for download"
 msgstr "Beskrivelse for nedlasting"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2469
+#: ../gramps/plugins/webreport/narrativeweb.py:2473
 #, python-format
 msgid "Family Tree #%c"
 msgstr "Slektstre #%c"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2471
+#: ../gramps/plugins/webreport/narrativeweb.py:2475
 msgid "Give a description for this file."
 msgstr "Gi en beskrivelse av denne filen."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2483
 #: ../gramps/plugins/webreport/webcal.py:2049
+#: ../gramps/plugins/webreport/narrativeweb.py:2487
 msgid "Advanced Options"
 msgstr "Avanserte valg"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2487
 #: ../gramps/plugins/webreport/webcal.py:2052
+#: ../gramps/plugins/webreport/narrativeweb.py:2491
 msgid "Character set encoding"
 msgstr "Tegnsett"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2491
 #: ../gramps/plugins/webreport/webcal.py:2056
+#: ../gramps/plugins/webreport/narrativeweb.py:2495
 msgid "The encoding to be used for the web files"
 msgstr "Tegnsettet som skal brukes på nettsidene"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2495
+#: ../gramps/plugins/webreport/narrativeweb.py:2499
 msgid "Include link to active person on every page"
 msgstr "Ta med lenke til startperson på hver side"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2498
+#: ../gramps/plugins/webreport/narrativeweb.py:2502
 msgid "Include a link to the active person (if they have a webpage)"
 msgstr "Ta med lenke til startperson (hvis de har en nettside)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2503
+#: ../gramps/plugins/webreport/narrativeweb.py:2507
 msgid "Include a column for birth dates on the index pages"
 msgstr "Ta med en kolonne for fødselsdatoer på indekssidene"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2505
+#: ../gramps/plugins/webreport/narrativeweb.py:2509
 msgid "Whether to include a birth column"
-msgstr "Ta med en fødselskolonne"
+msgstr "Om en fødselskolonne skal tas med"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2509
+#: ../gramps/plugins/webreport/narrativeweb.py:2513
 msgid "Include a column for death dates on the index pages"
 msgstr "Ta med en kolonne for dødsdatoer på indekssidene"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2511
+#: ../gramps/plugins/webreport/narrativeweb.py:2515
 msgid "Whether to include a death column"
-msgstr "Ta med en dødskolonne"
+msgstr "Om en dødsfallskolonne skal tas med"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2515
+#: ../gramps/plugins/webreport/narrativeweb.py:2519
 msgid "Include a column for partners on the index pages"
 msgstr "Ta med en kolonne for partnere på indekssidene"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2517
+#: ../gramps/plugins/webreport/narrativeweb.py:2521
 msgid "Whether to include a partners column"
-msgstr "Ta med en kolonne over partnere"
+msgstr "Om en kolonne over partnere skal tas med"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2521
+#: ../gramps/plugins/webreport/narrativeweb.py:2525
 msgid "Include a column for parents on the index pages"
 msgstr "Ta med en kolonne for foreldre på indekssidene"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2523
+#: ../gramps/plugins/webreport/narrativeweb.py:2527
 msgid "Whether to include a parents column"
-msgstr "Ta med en kolonne over foreldre"
+msgstr "Om en kolonne over foreldre skal tas med"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2527
+#: ../gramps/plugins/webreport/narrativeweb.py:2531
 msgid "Include half and/or step-siblings on the individual pages"
 msgstr "Inkluder halv- og/eller stesøsken på personsidene"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2531
+#: ../gramps/plugins/webreport/narrativeweb.py:2535
 msgid ""
 "Whether to include half and/or step-siblings with the parents and siblings"
 msgstr "Om halv- og/eller stesøsken skal tas med sammen med foreldre og søsken"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2546
+#: ../gramps/plugins/webreport/narrativeweb.py:2550
 msgid "Include family pages"
 msgstr "Ta med familiesider"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2547
+#: ../gramps/plugins/webreport/narrativeweb.py:2551
 msgid "Whether or not to include family pages."
 msgstr "Om familiesider skal tas med eller ikke."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2550
+#: ../gramps/plugins/webreport/narrativeweb.py:2554
 msgid "Include event pages"
 msgstr "Ta med hendelsessider"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2551
+#: ../gramps/plugins/webreport/narrativeweb.py:2555
 msgid "Add a complete events list and relevant pages or not"
 msgstr ""
 "Legg til en fullstendig liste med hendelser og relevante sider eller ikke"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2554
+#: ../gramps/plugins/webreport/narrativeweb.py:2558
 msgid "Include place pages"
 msgstr "Inkluder stedsider"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2555
+#: ../gramps/plugins/webreport/narrativeweb.py:2559
 msgid "Whether or not to include the place pages."
 msgstr "Om du vil inkludere stedsidene eller ikke."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2558
+#: ../gramps/plugins/webreport/narrativeweb.py:2562
 msgid "Include unused place pages"
 msgstr "Inkluder ubrukte stedssider"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2559
+#: ../gramps/plugins/webreport/narrativeweb.py:2563
 msgid "Whether or not to include the unused place pages."
-msgstr "Hvorvidt de ubrukte stedssidene skal inkluderes eller ikke."
+msgstr "Om de ubrukte stedsidene skal tas med."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2562
+#: ../gramps/plugins/webreport/narrativeweb.py:2566
 msgid "Include source pages"
 msgstr "Inkluder kildesider"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2563
+#: ../gramps/plugins/webreport/narrativeweb.py:2567
 msgid "Whether or not to include the source pages."
 msgstr "Om kildesidene skal inkluderes eller ikke."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2566
+#: ../gramps/plugins/webreport/narrativeweb.py:2570
 msgid "Include repository pages"
 msgstr "Inkluder arkivsider"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2567
+#: ../gramps/plugins/webreport/narrativeweb.py:2571
 msgid "Whether or not to include the repository pages."
 msgstr "Om arkivsider skal inkluderes eller ikke."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2570
+#: ../gramps/plugins/webreport/narrativeweb.py:2574
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "Ta med GENDEX-fil (/gendex.txt)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2571
+#: ../gramps/plugins/webreport/narrativeweb.py:2575
 msgid "Whether to include a GENDEX file or not"
 msgstr "Om en GENDEX-fil skal tas med eller ikke"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2574
+#: ../gramps/plugins/webreport/narrativeweb.py:2578
 msgid "Include address book pages"
 msgstr "Ta med adresseboksider"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2577
+#: ../gramps/plugins/webreport/narrativeweb.py:2581
 msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and "
 "website addresses and personal address/ residence events."
@@ -38552,39 +38812,48 @@ msgstr ""
 "nettsideadresser og personadresser/ bostedshendelser."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2585
+#: ../gramps/plugins/webreport/narrativeweb.py:2589
 msgid "Include the statistics page"
 msgstr "Lager statistikksider"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2586
+#: ../gramps/plugins/webreport/narrativeweb.py:2590
 msgid "Whether or not to add statistics page"
 msgstr "Om statistikksider skal tas med"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2595
+#: ../gramps/plugins/webreport/narrativeweb.py:2599
 msgid "Place Map Options"
 msgstr "Innstillinger for Stedskart"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2600
+#: ../gramps/plugins/webreport/narrativeweb.py:2604
 msgid "Stamen Map"
 msgstr "Stamen Kart"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2601
+#: ../gramps/plugins/webreport/narrativeweb.py:2605
 msgid "Google"
 msgstr "Google"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2603
+#: ../gramps/plugins/webreport/narrativeweb.py:2607
 msgid "Map Service"
 msgstr "Karttjeneste"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2607
+#: ../gramps/plugins/webreport/narrativeweb.py:2611
 msgid "Choose your choice of map service for creating the Place Map Pages."
 msgstr ""
 "Angi ditt valg for karttjeneste når det skal lages sider for stedskart."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2613
+#: ../gramps/plugins/webreport/narrativeweb.py:2617
 msgid "Include Place map on Place Pages"
 msgstr "Ta med stedskart på stedssider"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2617
+#: ../gramps/plugins/webreport/narrativeweb.py:2621
 msgid ""
 "Whether to include a place map on the Place Pages, where Latitude/ Longitude "
 "are available."
@@ -38593,10 +38862,12 @@ msgstr ""
 "angitt."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2625
+#: ../gramps/plugins/webreport/narrativeweb.py:2629
 msgid "Include Family Map Pages with all places shown on the map"
 msgstr "Ta med familiekartsider der alle steder vises på et kart"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2629
+#: ../gramps/plugins/webreport/narrativeweb.py:2633
 msgid ""
 "Whether or not to add an individual page map showing all the places on this "
 "page. This will allow you to see how your family traveled around the country."
@@ -38606,32 +38877,39 @@ msgstr ""
 "eller flyttet rundt."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2639
+#: ../gramps/plugins/webreport/narrativeweb.py:2643
 msgid "Family Links"
 msgstr "Familielenker"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2640
+#: ../gramps/plugins/webreport/narrativeweb.py:2644
 msgid "Drop"
 msgstr "Slipp"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2641
+#: ../gramps/plugins/webreport/narrativeweb.py:2645
 msgid "Markers"
 msgstr "Markeringer"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2644
+#: ../gramps/plugins/webreport/narrativeweb.py:2648
 msgid "Google/ FamilyMap Option"
 msgstr "Google/ Familiekartinnstillinger"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2650
+#: ../gramps/plugins/webreport/narrativeweb.py:2654
 msgid ""
 "Select which option that you would like to have for the Google Maps family-"
 "map pages..."
 msgstr "Velg de innstillingene du vil ha for Google Maps familiekartsidene..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2656
+#: ../gramps/plugins/webreport/narrativeweb.py:2660
 msgid "Google maps API key"
 msgstr "GoogleKart API"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2659
+#: ../gramps/plugins/webreport/narrativeweb.py:2663
 msgid ""
 "The API key used for the Google maps.\n"
 "This key is mandatory and must be valid"
@@ -38641,10 +38919,13 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2671
 #: ../gramps/plugins/webreport/narrativeweb.py:2711
+#: ../gramps/plugins/webreport/narrativeweb.py:2675
+#: ../gramps/plugins/webreport/narrativeweb.py:2715
 msgid "How to get the API key"
 msgstr "Hvordan få tak i API-nøkkelen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2674
+#: ../gramps/plugins/webreport/narrativeweb.py:2678
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Google maps service must be selected."
@@ -38653,32 +38934,39 @@ msgstr ""
 "Google maps-tjenesten må velges."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2682
+#: ../gramps/plugins/webreport/narrativeweb.py:2686
 msgid "Toner"
 msgstr "Toner"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2683
+#: ../gramps/plugins/webreport/narrativeweb.py:2687
 msgid "Terrain"
 msgstr "Terreng"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2684
+#: ../gramps/plugins/webreport/narrativeweb.py:2688
 msgid "WaterColor"
 msgstr "Vannfarge"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2686
+#: ../gramps/plugins/webreport/narrativeweb.py:2690
 msgid "Stamen Option"
 msgstr "Stamen Innstillinger"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2691
+#: ../gramps/plugins/webreport/narrativeweb.py:2695
 msgid ""
 "Select which option that you would like to have for the Stamen map map-"
 "pages..."
 msgstr "Velgi de innstillingene du vil ha for Stamen map Familiekartsidene..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2696
+#: ../gramps/plugins/webreport/narrativeweb.py:2700
 msgid "Stamen maps API key"
 msgstr "Stamen maps API-nøkkel"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2699
+#: ../gramps/plugins/webreport/narrativeweb.py:2703
 msgid ""
 "The API key used for the Stamen maps.\n"
 "This key is mandatory and must be valid"
@@ -38687,6 +38975,7 @@ msgstr ""
 "Denne nøkkelen er obligatorisk og må være gyldig"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2714
+#: ../gramps/plugins/webreport/narrativeweb.py:2718
 msgid ""
 "Copy and paste this value in your browser.\n"
 "The Stamen maps service must be selected."
@@ -38695,20 +38984,24 @@ msgstr ""
 "Tjenesten Stamen maps må velges."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2731
+#: ../gramps/plugins/webreport/narrativeweb.py:2735
 #, python-format
 msgctxt "val"
 msgid "in %(inipth)s (%(val)s)"
 msgstr "i %(inipth)s (%(val)s)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2732
+#: ../gramps/plugins/webreport/narrativeweb.py:2736
 msgid "latest"
 msgstr "siste"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2734
+#: ../gramps/plugins/webreport/narrativeweb.py:2738
 msgid "openlayers version to use"
 msgstr "openlayers-versjon som må brukes"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2739
+#: ../gramps/plugins/webreport/narrativeweb.py:2743
 msgid ""
 "You should use this option only if you can't see the maps in your website "
 "for OpenStreetMap or Stamen maps\n"
@@ -38723,54 +39016,67 @@ msgstr ""
 "Se ELDRE VERSJONER på https://openlayers.org/"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2756
+#: ../gramps/plugins/webreport/narrativeweb.py:2760
 msgid "Other inclusion (CMS, web calendar, PHP)"
 msgstr "Annen inkludering (CMS, webkalender, PHP)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2760
+#: ../gramps/plugins/webreport/narrativeweb.py:2764
 msgid "Do we include these pages in a CMS web?"
 msgstr "Inkluderer vi disse sidene i et CMS -web?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2767
+#: ../gramps/plugins/webreport/narrativeweb.py:2771
 msgid "URI"
 msgstr "URI"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2769
+#: ../gramps/plugins/webreport/narrativeweb.py:2773
 msgid "Where do you place your website? default = /NAVWEB"
 msgstr "Hvor plasserer du nettstedet ditt? standard = /NAVWEB"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2777
+#: ../gramps/plugins/webreport/narrativeweb.py:2781
 msgid "Include the news and updates page"
 msgstr "Inkluder nyhets- og oppdateringssiden"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2778
+#: ../gramps/plugins/webreport/narrativeweb.py:2782
 msgid "Whether to include a page with the last updates"
 msgstr "Om du vil inkludere en side med de siste oppdateringene"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2782
+#: ../gramps/plugins/webreport/narrativeweb.py:2786
 msgid "Max days for updates"
 msgstr "Maksimalt antall dager for oppdateringer"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2784
+#: ../gramps/plugins/webreport/narrativeweb.py:2788
 msgid "You want to see the last updates on how many days?"
 msgstr "Vil du se de siste oppdateringene på hvor mange dager?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2789
+#: ../gramps/plugins/webreport/narrativeweb.py:2793
 msgid "Max number of updates per object to show"
 msgstr "Maks antall oppdateringer per objekt som skal vises"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2791
+#: ../gramps/plugins/webreport/narrativeweb.py:2795
 msgid "How many updates do you want to see max"
 msgstr "Hvor mange oppdateringer vil du se maks"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2803
+#: ../gramps/plugins/webreport/narrativeweb.py:2807
 msgid "Translations"
 msgstr "Oversettelser"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2806
+#: ../gramps/plugins/webreport/narrativeweb.py:2810
 msgid "Second language"
 msgstr "Sekundærspråk"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2811
+#: ../gramps/plugins/webreport/narrativeweb.py:2815
 msgid "Site name for your second language"
 msgstr "Sidenavn for ditt sekundærspråk"
 
@@ -38779,6 +39085,11 @@ msgstr "Sidenavn for ditt sekundærspråk"
 #: ../gramps/plugins/webreport/narrativeweb.py:2829
 #: ../gramps/plugins/webreport/narrativeweb.py:2838
 #: ../gramps/plugins/webreport/narrativeweb.py:2847
+#: ../gramps/plugins/webreport/narrativeweb.py:2815
+#: ../gramps/plugins/webreport/narrativeweb.py:2824
+#: ../gramps/plugins/webreport/narrativeweb.py:2833
+#: ../gramps/plugins/webreport/narrativeweb.py:2842
+#: ../gramps/plugins/webreport/narrativeweb.py:2851
 msgid "This site title"
 msgstr "Denne nettstedets tittel"
 
@@ -38787,81 +39098,103 @@ msgstr "Denne nettstedets tittel"
 #: ../gramps/plugins/webreport/narrativeweb.py:2831
 #: ../gramps/plugins/webreport/narrativeweb.py:2840
 #: ../gramps/plugins/webreport/narrativeweb.py:2849
+#: ../gramps/plugins/webreport/narrativeweb.py:2817
+#: ../gramps/plugins/webreport/narrativeweb.py:2826
+#: ../gramps/plugins/webreport/narrativeweb.py:2835
+#: ../gramps/plugins/webreport/narrativeweb.py:2844
+#: ../gramps/plugins/webreport/narrativeweb.py:2853
 msgid "Enter a title in the respective language"
 msgstr "Skriv inn en tittel i det respektive språket"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2815
+#: ../gramps/plugins/webreport/narrativeweb.py:2819
 msgid "Third language"
 msgstr "tredje språk"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2820
+#: ../gramps/plugins/webreport/narrativeweb.py:2824
 msgid "Site name for your third language"
 msgstr "Sidenavn for ditt tredjespråk"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2824
+#: ../gramps/plugins/webreport/narrativeweb.py:2828
 msgid "Fourth language"
 msgstr "fjerde språk"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2829
+#: ../gramps/plugins/webreport/narrativeweb.py:2833
 msgid "Site name for your fourth language"
 msgstr "Sidenavn for ditt fjerdespråk"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2833
+#: ../gramps/plugins/webreport/narrativeweb.py:2837
 msgid "Fifth language"
 msgstr "femte språk"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2838
+#: ../gramps/plugins/webreport/narrativeweb.py:2842
 msgid "Site name for your fifth language"
 msgstr "Sidenavn for ditt femtespråk"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2842
+#: ../gramps/plugins/webreport/narrativeweb.py:2846
 msgid "Sixth language"
 msgstr "sjette språk"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2847
+#: ../gramps/plugins/webreport/narrativeweb.py:2851
 msgid "Site name for your sixth language"
 msgstr "Sidenavn for ditt sjettespråk"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3080
+#: ../gramps/plugins/webreport/narrativeweb.py:3084
 msgid "Calendar Options"
 msgstr "Kalenderalternativer"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3086
+#: ../gramps/plugins/webreport/narrativeweb.py:3090
 msgid "Do we include the web calendar ?"
 msgstr "Skal vi ta med webkalenderen ?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3088
+#: ../gramps/plugins/webreport/narrativeweb.py:3092
 #, python-format
 msgid "Whether to include a calendar for year %s"
 msgstr "Hvorvidt kalender skal tas med for år %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3115
 #: ../gramps/plugins/webreport/webcal.py:2060
+#: ../gramps/plugins/webreport/narrativeweb.py:3119
 msgid "Create one day event pages for Year At A Glance calendar"
 msgstr "Lage sider for endagshendelser i årsoversiktkalender"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3117
 #: ../gramps/plugins/webreport/webcal.py:2062
+#: ../gramps/plugins/webreport/narrativeweb.py:3121
 msgid "Whether to create one day pages or not"
 msgstr "Om det skal lages endagsider eller ikke"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3121
 #: ../gramps/plugins/webreport/webcal.py:2066
+#: ../gramps/plugins/webreport/narrativeweb.py:3125
 msgid "Include birthdays in the calendar"
 msgstr "Ta med fødselsdager i kalenderen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3125
 #: ../gramps/plugins/webreport/webcal.py:2070
+#: ../gramps/plugins/webreport/narrativeweb.py:3129
 msgid "Include anniversaries in the calendar"
 msgstr "Ta med jubileer i kalenderen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3138
 #: ../gramps/plugins/webreport/webcal.py:2085
+#: ../gramps/plugins/webreport/narrativeweb.py:3142
 msgid "Show data only after year"
 msgstr "Vis data kun etter år"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3145
 #: ../gramps/plugins/webreport/webcal.py:2092
+#: ../gramps/plugins/webreport/narrativeweb.py:3149
 msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
 "probably alive' which is defined in the dates preference tab."
@@ -39039,7 +39372,7 @@ msgstr "Oversikt over Databasen"
 
 #: ../gramps/plugins/webreport/statistics.py:226
 msgid "Narrative web content report for"
-msgstr "Fortellende nettsider for"
+msgstr "Fortellende nettinnholdsrapport for"
 
 #: ../gramps/plugins/webreport/surname.py:128
 #, python-format
@@ -39333,11 +39666,29 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Ingen stilsett"
 
+#: ../gramps/plugins/quickview/lineage.py:57
+#, fuzzy
+msgid ""
+"This report shows the father lineage, also called the patrilineal lineage or "
+"Y-line. People in this lineage all share the same Y-chromosomes."
+msgstr ""
+"Denne rapporten viser farslinjen, også kalt patronymisk linje eller Y-linje. "
+"Personer langs denne linjen deler alle det samme Y-kromosomet."
+
+#: ../gramps/plugins/quickview/lineage.py:91
+#, fuzzy
+msgid ""
+"This report shows the mother lineage, also called the matrilineal lineage "
+"mtDNA lineage. People in this lineage all share the same Mitochondrial DNA "
+"(mtDNA)."
+msgstr ""
+"Denne rapporten viser morslinjen, også kalt matronymisk linje eller mtDNA-"
+"linje. Personene i denne linjen deler alle det samme mitokondrie-DNA (mtDNA)."
+
 #~ msgid "Html options"
 #~ msgstr "HTML-opsjoner"
 
 #, fuzzy
-#~| msgid "installed"
 #~ msgid "Uninstalled"
 #~ msgstr "installert"
 
@@ -39428,8 +39779,6 @@ msgstr "Ingen stilsett"
 #~ msgstr "Gtk-versjonen din er for gammel."
 
 #, fuzzy
-#~| msgctxt "localized lexeme inflections"
-#~| msgid "January"
 #~ msgctxt "localized lexeme inflections"
 #~ msgid "|January"
 #~ msgstr "Januar"
@@ -39622,12 +39971,10 @@ msgstr "Ingen stilsett"
 #~ msgstr "Vanlig"
 
 #, fuzzy
-#~| msgid "Common"
 #~ msgid "Name|Common"
 #~ msgstr "Vanlig"
 
 #, fuzzy
-#~| msgid "suffix"
 #~ msgid "locale_suffix|"
 #~ msgstr "etterstavelse"
 
