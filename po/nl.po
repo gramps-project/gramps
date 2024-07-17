@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-06-29 10:09+0000\n"
+"PO-Revision-Date: 2024-07-14 18:09+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -32302,16 +32302,12 @@ msgid "Father lineage for %s"
 msgstr "Familielijn langs vaderszijde voor %s"
 
 #: ../gramps/plugins/quickview/lineage.py:57
-#, fuzzy
-#| msgid ""
-#| "This report shows the father lineage, also called patronymic lineage or Y-"
-#| "line. People in this lineage all share the same Y-chromosome."
 msgid ""
 "This report shows the father lineage, also called the patrilineal lineage or "
 "Y-line. People in this lineage all share the same Y-chromosomes."
 msgstr ""
 "Dit verslag toont de vaderlijn, ook wel patroniemlijn of Y-lijn genoemd. "
-"Personen in deze lijn delen allemaal hetzelfde Y-chromosoom."
+"Personen in deze lijn delen allemaal dezelfde Y-chromosomen."
 
 #: ../gramps/plugins/quickview/lineage.py:65
 msgid "Name Father"
@@ -32333,19 +32329,14 @@ msgid "Mother lineage for %s"
 msgstr "Familielijn langs moederszijde voor %s"
 
 #: ../gramps/plugins/quickview/lineage.py:91
-#, fuzzy
-#| msgid ""
-#| "This report shows the mother lineage, also called matronymic lineage "
-#| "mtDNA lineage. People in this lineage all share the same Mitochondrial "
-#| "DNA (mtDNA)."
 msgid ""
 "This report shows the mother lineage, also called the matrilineal lineage "
 "mtDNA lineage. People in this lineage all share the same Mitochondrial DNA "
 "(mtDNA)."
 msgstr ""
-"Dit verslag toont de moederlijn, ook wel matronymische lijn mtDNA-lijn "
-"genoemd. Personen in deze afstamming delen allemaal hetzelfde mitochondriale "
-"DNA (mtDNA)."
+"Dit verslag toont de moederlijn, ook wel matroniemlijn mtDNA-lijn genoemd. "
+"Personen in deze afstamming delen allemaal hetzelfde mitochondriale DNA "
+"(mtDNA)."
 
 #: ../gramps/plugins/quickview/lineage.py:100
 msgid "Name Mother"
