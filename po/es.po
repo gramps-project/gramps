@@ -24,8 +24,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-05-19 22:01+0000\n"
-"Last-Translator: Diego Pedraza <zegeridp@gmail.com>\n"
+"PO-Revision-Date: 2024-07-14 18:09+0000\n"
+"Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
 "Language: es\n"
@@ -33,7 +33,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -32364,16 +32364,13 @@ msgid "Father lineage for %s"
 msgstr "Linaje paterno de %s"
 
 #: ../gramps/plugins/quickview/lineage.py:57
-#, fuzzy
-#| msgid ""
-#| "This report shows the father lineage, also called patronymic lineage or Y-"
-#| "line. People in this lineage all share the same Y-chromosome."
 msgid ""
 "This report shows the father lineage, also called the patrilineal lineage or "
 "Y-line. People in this lineage all share the same Y-chromosomes."
 msgstr ""
-"El reporte muestra el linaje agnaticio, también llamado patrilineal. Las "
-"personas de este linaje comparten el mismo cromosoma Y."
+"Este informe muestra el linaje paterno, también llamado linaje patrilineal o "
+"linaje Y. Todas las personas de este linaje comparten los mismos cromosomas "
+"Y."
 
 #: ../gramps/plugins/quickview/lineage.py:65
 msgid "Name Father"
@@ -32395,18 +32392,14 @@ msgid "Mother lineage for %s"
 msgstr "Linaje materno de %s"
 
 #: ../gramps/plugins/quickview/lineage.py:91
-#, fuzzy
-#| msgid ""
-#| "This report shows the mother lineage, also called matronymic lineage "
-#| "mtDNA lineage. People in this lineage all share the same Mitochondrial "
-#| "DNA (mtDNA)."
 msgid ""
 "This report shows the mother lineage, also called the matrilineal lineage "
 "mtDNA lineage. People in this lineage all share the same Mitochondrial DNA "
 "(mtDNA)."
 msgstr ""
-"El reporte muestra el linaje uterino, también llamado matrilineal. Las "
-"personas de este linaje comparten el mismo ADN mitocondrial."
+"Este informe muestra el linaje materno, también llamado linaje matrilineal "
+"linaje ADNmt. Todas las personas de este linaje comparten el mismo ADN "
+"mitocondrial (ADNmt)."
 
 #: ../gramps/plugins/quickview/lineage.py:100
 msgid "Name Mother"
