@@ -10,7 +10,7 @@
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # Milan <mobrcian@hotmail.com>, 2021.
 # Freek Olgers <freek@olgers.com>, 2022.
-# Niko Strijbol <strijbol.niko@gmail.com>, 2022.
+# Niko Strijbol <strijbol.niko@gmail.com>, 2022, 2024.
 # Stephan Paternotte <s.paternotte@outlook.com>, 2022.
 # Stephan Paternotte <stephan@paternottes.net>, 2023, 2024.
 # Ailean Riepsaame-Duffy <aileanr@gmail.com>, 2024.
@@ -19,8 +19,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-07-14 18:09+0000\n"
-"Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
+"PO-Revision-Date: 2024-07-17 13:09+0000\n"
+"Last-Translator: Niko Strijbol <strijbol.niko@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
 "Language: nl\n"
@@ -362,7 +362,7 @@ msgstr "Persoon"
 
 #: ../data/org.gramps_project.Gramps.xml.in:6
 msgid "Gramps database"
-msgstr "Gramps-gegevensbestand"
+msgstr "Gramps-databank"
 
 #: ../data/org.gramps_project.Gramps.xml.in:10
 msgid "Gramps package"
@@ -370,7 +370,7 @@ msgstr "Gramps-pakket"
 
 #: ../data/org.gramps_project.Gramps.xml.in:14
 msgid "Gramps XML database"
-msgstr "Gramps XML-gegevensbestand"
+msgstr "Gramps XML-databank"
 
 #: ../data/org.gramps_project.Gramps.xml.in:22
 msgid "GeneWeb source file"
@@ -552,7 +552,7 @@ msgid ""
 msgstr ""
 "<b>Verwantschap berekenen</b><br/>Probeer de tool onder &quot;Hulpmiddelen "
 "&gt; Gereedschap &gt; Relatiecalculator…&quot; om te controleren of twee "
-"personen in de database bloedverwant zijn (dus niet door huwelijk). De "
+"personen in de databank bloedverwant zijn (dus niet door huwelijk). De "
 "exacte relatie en alle gemeenschappelijke voorouders worden getoond."
 
 #: ../data/tips.xml:30
@@ -572,7 +572,7 @@ msgstr ""
 "Het kennen van de SoundEx-code voor een achternaam is erg handig voor het "
 "onderzoeken van volkstellingen in bestanden (microfiche) in een bibliotheek "
 "of een andere onderzoeksfaciliteit. Voeg de SoundEx Gramplet toe om de "
-"SoundEx-codes voor achternamen in uw database te bekijken."
+"SoundEx-codes voor achternamen in uw databank te bekijken."
 
 #: ../data/tips.xml:32
 msgid ""
@@ -646,9 +646,9 @@ msgid ""
 "&gt; Find Possible Duplicate People...\" allows you to locate (and merge) "
 "entries of the same person entered more than once in the database."
 msgstr ""
-"<b>Dubbele vermeldingen</b><br/>Met \"Hulpmiddelen &gt;Stamboom bewerken "
-"&gt; Mogelijk Dubbele Personen vinden…\" kunt u vermeldingen van dezelfde "
-"persoon die meer dan eens in de database zijn ingevoerd, lokaliseren (en "
+"<b>Dubbele vermeldingen</b><br/>Met \"Hulpmiddelen &gt;Stamboom bewerken &gt;"
+" Mogelijk Dubbele Personen vinden…\" kunt u vermeldingen van dezelfde "
+"persoon die meer dan eens in de databank zijn ingevoerd, lokaliseren (en "
 "samenvoegen)."
 
 #: ../data/tips.xml:44
@@ -663,7 +663,7 @@ msgstr ""
 "<b>Vermeldingen samenvoegen</b><br/>Met de functie \"Bewerken &gt; "
 "Samenvoegen…\" kunt u afzonderlijk vermelde personen combineren tot één. "
 "Selecteer de tweede persoon door de Ctrl-toets ingedrukt te houden terwijl u "
-"klikt. Dit is erg handig voor het combineren van twee databases met "
+"klikt. Dit is erg handig voor het combineren van twee databanken met "
 "gedeeltelijk dezelfde personen, of het combineren van foutief ingevoerde "
 "verschillende namen voor één persoon. Samenvoegen is beschikbaar in alle "
 "lijstweergaven voor alle primaire objecttypen."
@@ -751,7 +751,7 @@ msgstr ""
 "<b>Selectievakje 'Alles tonen'</b><br/>Wanneer u een bestaande persoon als "
 "echtgenoot toevoegt, wordt de lijst met getoonde personen gefilterd om "
 "alleen personen weer te geven die realistisch in de rol zouden kunnen passen "
-"(op basis van datums in de database). Als Gramps deze keuze niet goed maakt, "
+"(op basis van datums in de databank). Als Gramps deze keuze niet goed maakt, "
 "kunt u het filter negeren door de knop 'Alles tonen' aan te vinken."
 
 #: ../data/tips.xml:60
@@ -816,9 +816,9 @@ msgstr ""
 "van de oorspronkelijke ontwikkelaar, Don Allingham, voorgesteld. Het staat "
 "voor <i>Genealogical Research and Analysis Management Program System</i>. "
 "Het is een volledig genealogieprogramma waarmee u genealogische gegevens "
-"kunt opslaan, bewerken en onderzoeken. De back-end van de Gramps-database is "
-"zo robuust dat sommige gebruikers genealogieën beheren die honderdduizenden "
-"personen bevatten."
+"kunt opslaan, bewerken en onderzoeken. Het systeem achter de Gramps-databank "
+"is zo robuust dat sommige gebruikers genealogieën beheren die "
+"honderdduizenden personen bevatten."
 
 #: ../data/tips.xml:68
 msgid ""
@@ -910,7 +910,7 @@ msgid ""
 "City, County or State."
 msgstr ""
 "<b>Locaties beheren</b><br/>De Locatieweergave toont een lijst van alle "
-"plaatsen in de database. De lijst kan worden gesorteerd op een aantal "
+"plaatsen in de databank. De lijst kan worden gesorteerd op een aantal "
 "verschillende criteria, zoals stad, graafschap of staat."
 
 #: ../data/tips.xml:82
@@ -920,7 +920,7 @@ msgid ""
 "spreadsheets, documents, and more."
 msgstr ""
 "<b>Mediaweergave</b><br/>De Mediaweergave toont een lijst van alle media die "
-"in de database zijn ingevoerd. Dit kunnen grafische afbeeldingen, video's, "
+"in de databank zijn ingevoerd. Dit kunnen grafische afbeeldingen, video's, "
 "geluidsfragmenten, spreadsheets, documenten en meer zijn."
 
 #: ../data/tips.xml:84
@@ -962,7 +962,7 @@ msgid ""
 msgstr ""
 "<b>Het Gramps XML-pakket</b><br/>U kunt uw stamboom exporteren als een "
 "Gramps XML-pakket. Dit is een gecomprimeerd bestand met uw stamboomgegevens "
-"en alle mediabestanden die in de database zijn opgeslagen (bijvoorbeeld "
+"en alle mediabestanden die in de databank zijn opgeslagen (bijvoorbeeld "
 "afbeeldingen). Dit bestand is volledig uitwisselbaar, dus handig voor back-"
 "ups of om te delen met andere Gramps-gebruikers. Dit XML-formaat heeft als "
 "groot voordeel ten opzichte van GEDCOM dat er nooit informatie verloren gaat "
@@ -987,7 +987,7 @@ msgid ""
 "Web."
 msgstr ""
 "<b>Een genealogiewebsite maken</b><br/>U kunt uw stamboom eenvoudig "
-"exporteren naar een webpagina. Selecteer de volledige database, "
+"exporteren naar een webpagina. Selecteer de volledige databank, "
 "familielijnen of geselecteerde individuen voor een verzameling webpagina's "
 "die gereed zijn om te uploaden naar het World Wide Web."
 
@@ -1279,7 +1279,7 @@ msgstr "Fout: kan '%s' niet openen"
 
 #: ../gramps/cli/arghandler.py:422
 msgid "List of known Family Trees in your database path\n"
-msgstr "Lijst met bekende stambomen in uw databasepad\n"
+msgstr "Lijst met bekende stambomen in uw databankpad\n"
 
 #: ../gramps/cli/arghandler.py:434
 #, python-format
@@ -1352,15 +1352,16 @@ msgstr "  Info: %s"
 
 #: ../gramps/cli/arghandler.py:576
 msgid "Database is locked, cannot open it!"
-msgstr "De database is vergrendeld, kan deze niet openen!"
+msgstr "De databank is vergrendeld, kan deze niet openen!"
 
 #: ../gramps/cli/arghandler.py:581
 msgid "Database needs recovery, cannot open it!"
-msgstr "De database moet worden hersteld, kan deze niet openen!"
+msgstr "De databank moet worden hersteld, kan deze niet openen!"
 
 #: ../gramps/cli/arghandler.py:584
 msgid "Database backend unavailable, cannot open it!"
-msgstr "De database-backend is niet beschikbaar, kan deze niet openen!"
+msgstr ""
+"Het system achter de databank is niet beschikbaar, kan deze niet openen!"
 
 #: ../gramps/cli/arghandler.py:635 ../gramps/cli/arghandler.py:692
 #: ../gramps/cli/arghandler.py:740
@@ -1467,14 +1468,14 @@ msgstr ""
 "\n"
 "Application opties\n"
 "  -O, --open=FAMILY_TREE                 Open Stamboom\n"
-"  -U, --username=USERNAME                Database username\n"
-"  -P, --password=PASSWORD                Database password\n"
+"  -U, --username=USERNAME                Gebruikersnaam databank\n"
+"  -P, --password=PASSWORD                Wachtwoord databank\n"
 "  -C, --create=FAMILY_TREE               Maak nieuwe stamboom en open\n"
 "  -i, --import=FILENAME                  Import file\n"
 "  -e, --export=FILENAME                  Export file\n"
 "  -r, --remove=FAMILY_TREE_PATTERN       Verwijder bij elkaar passende "
 "Stambomen (gebruik regular expressions)\n"
-"  -f, --format=FORMAT                    Specificeer Stamboom formaat\n"
+"  -f, --format=FORMAT                    Specificeer formaat Stamboom\n"
 "  -a, --action=ACTION                    Specificeer acties\n"
 "  -p, --options=OPTIONS_STRING           Specificeer opties\n"
 "  -d, --debug=LOGGER_NAME                Schakel logboeken voor "
@@ -1566,9 +1567,9 @@ msgstr ""
 "\n"
 "Voorbeeld van het gebruik van de opdrachtregelinterface van Gramps\n"
 "\n"
-"1. Om vier databases te importeren (waarvan het formaat afgeleid kan worden "
+"1. Om vier databanken te importeren (waarvan het formaat afgeleid kan worden "
 "uit hun namen)\n"
-"en vervolgens de resulterende database te controleren op fouten, kan men "
+"en vervolgens de resulterende databank te controleren op fouten, kan men "
 "typen:\n"
 "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps -i file4.wft -a tool -p "
 "name=check.\n"
@@ -1578,28 +1579,28 @@ msgstr ""
 "gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~/db3.gramps -f "
 "gramps-xml -i file4.wft -f wft -a tool -p name=check.\n"
 "\n"
-"3. Geef de vlag -e op om de database op te slaan die het resultaat is van "
+"3. Geef de vlag -e op om de databank op te slaan die het resultaat is van "
 "alle invoer\n"
 "(gebruik -f als Gramps het bestandsformaat niet kan bepalen):\n"
 "gramps -i file1.ged -i file2.gpkg -e ~/new-package -f gramps-pkg\n"
 "\n"
 "4. Om eventuele foutmeldingen van het bovenstaande voorbeeld op te slaan in "
 "de bestanden outfile en errfile, voert u uit:\n"
-"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile "
-"2>errfile\n"
+"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile 2>"
+"errfile\n"
 "\n"
-"5. Om drie databases te importeren en een interactieve Gramps-sessie te "
+"5. Om drie databanken te importeren en een interactieve Gramps-sessie te "
 "starten met het resultaat:\n"
 "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps\n"
 "\n"
-"6. Om een database te openen en op basis van die gegevens een "
+"6. Om een databank te openen en op basis van die gegevens een "
 "tijdlijnverslag in PDF-indeling\n"
 "te genereren, waarbij de uitvoer in het bestand my_timeline.pdf wordt "
 "geplaatst:\n"
 "gramps -O 'Family Tree 1' -a report -p name=timeline,off=pdf,of=my_timeline."
 "pdf\n"
 "\n"
-"7. Om een samenvatting van een database te genereren:\n"
+"7. Om een samenvatting van een databank te genereren:\n"
 "gramps -O 'Family Tree 1' -a report -p name=summary\n"
 "\n"
 "8. Lijst met verslagopties\n"
@@ -1701,7 +1702,7 @@ msgstr "Pad"
 
 #: ../gramps/cli/clidbman.py:179 ../gramps/gen/plug/_pluginreg.py:127
 msgid "Database"
-msgstr "Database"
+msgstr "Databank"
 
 #: ../gramps/cli/clidbman.py:180 ../gramps/gui/dbman.py:434
 msgid "Last accessed"
@@ -1786,10 +1787,10 @@ msgid ""
 "\n"
 msgstr ""
 "\n"
-"FOUT: Verkeerd databasepad in menu Bewerken-> Voorkeuren.\n"
-"Open voorkeuren en stel het juiste databasepad in.\n"
+"FOUT: Verkeerd databankpad in menu Bewerken-> Voorkeuren.\n"
+"Open voorkeuren en stel het juiste databankpad in.\n"
 "\n"
-"Details: Kon de databasedirectory niet maken:\n"
+"Details: Kon de databankmap niet maken:\n"
 "    %s\n"
 "\n"
 
@@ -1895,7 +1896,7 @@ msgstr "FOUT: %s"
 #: ../gramps/cli/grampscli.py:107 ../gramps/cli/user.py:219
 #: ../gramps/gui/dialog.py:317
 msgid "Low level database corruption detected"
-msgstr "Op een laag niveau beschadiging van de database gedetecteerd"
+msgstr "Beschadiging van de databank op laag niveau gedetecteerd"
 
 #: ../gramps/cli/grampscli.py:110 ../gramps/cli/user.py:221
 #: ../gramps/gui/dialog.py:319
@@ -1910,7 +1911,7 @@ msgstr ""
 
 #: ../gramps/cli/grampscli.py:159 ../gramps/gui/dbloader.py:165
 msgid "Read only database"
-msgstr "Alleen-lezen database"
+msgstr "Alleen-lezen databank"
 
 #: ../gramps/cli/grampscli.py:160 ../gramps/gui/dbloader.py:166
 #: ../gramps/gui/dbloader.py:510
@@ -1920,7 +1921,7 @@ msgstr "U heeft geen schrijfrechten op het geselecteerde bestand."
 #: ../gramps/cli/grampscli.py:198 ../gramps/gui/dbloader.py:238
 #: ../gramps/gui/dbloader.py:241 ../gramps/gui/dbloader.py:244
 msgid "Cannot open database"
-msgstr "Kan database niet openen"
+msgstr "Kan databank niet openen"
 
 #: ../gramps/cli/grampscli.py:201 ../gramps/gui/dbloader.py:247
 #: ../gramps/gui/dbloader.py:461
@@ -1938,14 +1939,14 @@ msgstr "De stamboom bestaat niet omdat deze is verwijderd."
 
 #: ../gramps/cli/grampscli.py:267
 msgid "The database is locked."
-msgstr "De database is vergrendeld."
+msgstr "De databank is vergrendeld."
 
 #: ../gramps/cli/grampscli.py:269
 msgid ""
 "Use the --force-unlock option if you are sure that the database is not in "
 "use."
 msgstr ""
-"Gebruik de optie --force-unlock als u zeker weet dat de database niet in "
+"Gebruik de optie --force-unlock als u zeker weet dat de databank niet in "
 "gebruik is."
 
 #: ../gramps/cli/grampscli.py:348
@@ -2136,7 +2137,7 @@ msgstr "Kan '%s'-verslag niet maken."
 
 #: ../gramps/cli/user.py:241 ../gramps/gui/dialog.py:298
 msgid "Error detected in database"
-msgstr "Fout gedetecteerd in database"
+msgstr "Fout gedetecteerd in databank"
 
 #: ../gramps/cli/user.py:243 ../gramps/gui/dialog.py:300
 #, python-format
@@ -2148,8 +2149,8 @@ msgid ""
 "bug report at %(gramps_bugtracker_url)s\n"
 "\n"
 msgstr ""
-"Gramps heeft een fout in de database gedetecteerd. Dit kan meestal worden "
-"opgelost door het hulpmiddel \"Database controleren en repareren\" uit te "
+"Gramps heeft een fout in de databank gedetecteerd. Dit kan meestal worden "
+"opgelost door het hulpmiddel \"Databank controleren en repareren\" uit te "
 "voeren.\n"
 "\n"
 "Als dit probleem blijft bestaan na het uitvoeren van dit hulpmiddel, stuur "
@@ -3251,7 +3252,7 @@ msgid ""
 "Please check your connection settings file:\n"
 "%(settings_file)s"
 msgstr ""
-"Databaseverbinding mislukt.\n"
+"Databankverbinding mislukt.\n"
 "\n"
 "%(message)s\n"
 "Controleer uw bestand met verbindingsinstellingen:\n"
@@ -3275,21 +3276,21 @@ msgid ""
 "start your previous version of Gramps and %(wiki_backup_html_start)smake a "
 "backup%(html_end)s of your Family Tree."
 msgstr ""
-"De stamboom die u probeert te laden, bevindt zich in de %(dbtype)s database, "
+"De stamboom die u probeert te laden, bevindt zich in de %(dbtype)s-databank, "
 "die niet langer wordt ondersteund.\n"
 "Daarom kunt u deze stamboom niet laden zonder te upgraden.\n"
 "\n"
 "Als u een upgrade uitvoert kunt u de vorige versie van Gramps niet "
-"gebruiken, zelfs niet als u vervolgens een "
-"%(wiki_manual_backup_html_start)sback-up%(html_end)s maakt of een "
+"gebruiken, zelfs niet als u vervolgens een %(wiki_manual_backup_html_start"
+")sback-up%(html_end)s maakt of een "
 "%(wiki_manual_export_html_start)sexport%(html_end)s uitvoert van uw "
 "bijgewerkte stamboom.\n"
 "\n"
 "U wordt sterk aangeraden om een back-up van uw stamboom te maken.\n"
 "\n"
 "Als u nog geen back-up van uw stamboom heeft gemaakt, moet u uw vorige "
-"versie van Gramps starten en %(wiki_backup_html_start)seen back-"
-"up%(html_end)s van uw stamboom maken."
+"versie van Gramps starten en %(wiki_backup_html_start)seen back-up%(html_end)"
+"s van uw stamboom maken."
 
 #: ../gramps/gen/db/generic.py:196 ../gramps/gen/db/generic.py:246
 #: ../gramps/gen/db/generic.py:2157
@@ -3960,7 +3961,7 @@ msgstr "Elk citaat"
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:48
 msgid "Matches every citation in the database"
-msgstr "Komt overeen met elk citaat in de database"
+msgstr "Komt overeen met elk citaat in de databank"
 
 #: ../gramps/gen/filters/rules/citation/_changedsince.py:47
 #: ../gramps/gen/filters/rules/event/_changedsince.py:48
@@ -4273,7 +4274,7 @@ msgstr "Iedere gebeurtenis"
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:47
 msgid "Matches every event in the database"
-msgstr "Vindt alle gebeurtenissen in de database"
+msgstr "Vindt alle gebeurtenissen in de databank"
 
 #: ../gramps/gen/filters/rules/event/_changedsince.py:49
 msgid "Events changed after <date time>"
@@ -4529,7 +4530,7 @@ msgstr "Elk gezin"
 
 #: ../gramps/gen/filters/rules/family/_allfamilies.py:47
 msgid "Matches every family in the database"
-msgstr "Vindt alle gezinnen in de database"
+msgstr "Vindt alle gezinnen in de databank"
 
 #: ../gramps/gen/filters/rules/family/_changedsince.py:49
 msgid "Families changed after <date time>"
@@ -4907,7 +4908,7 @@ msgstr "Elk media-object"
 
 #: ../gramps/gen/filters/rules/media/_allmedia.py:47
 msgid "Matches every media object in the database"
-msgstr "Vindt elk media-object in de database"
+msgstr "Vindt elk media-object in de databank"
 
 #: ../gramps/gen/filters/rules/media/_changedsince.py:47
 msgid "Media objects changed after <date time>"
@@ -5075,7 +5076,7 @@ msgstr "Elke notitie"
 
 #: ../gramps/gen/filters/rules/note/_allnotes.py:47
 msgid "Matches every note in the database"
-msgstr "Vindt alle notities in de database"
+msgstr "Vindt alle notities in de databank"
 
 #: ../gramps/gen/filters/rules/note/_changedsince.py:49
 msgid "Notes changed after <date time>"
@@ -5213,7 +5214,7 @@ msgid ""
 "between the specified person and the target people.  Each path is not "
 "necessarily the shortest path."
 msgstr ""
-"Zoekt in de database vanaf een opgegeven persoon en retourneert iedereen "
+"Zoekt in de databank vanaf een opgegeven persoon en geeft iedereen terug "
 "tussen die persoon en een doelgroep die is gespecificeerd met een filter. "
 "Dit levert een reeks verwantschapspaden (huwelijk inbegrepen) op tussen de "
 "opgegeven persoon en de doelgroep. Elk pad is niet noodzakelijk het kortste "
@@ -5249,7 +5250,7 @@ msgid ""
 "database"
 msgstr ""
 "Vindt personen die geen familierelaties hebben met een andere persoon in de "
-"database"
+"databank"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:46
 #: ../gramps/gen/plug/_pluginreg.py:76
@@ -5258,7 +5259,7 @@ msgstr "Iedereen"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:48
 msgid "Matches everyone in the database"
-msgstr "Vindt iedereen in de database"
+msgstr "Vindt iedereen in de databank"
 
 #: ../gramps/gen/filters/rules/person/_familywithincompleteevent.py:44
 msgid "Families with incomplete events"
@@ -6122,7 +6123,7 @@ msgstr "Elke locatie"
 
 #: ../gramps/gen/filters/rules/place/_allplaces.py:47
 msgid "Matches every place in the database"
-msgstr "Vindt elke plaats in de database"
+msgstr "Vindt elke plaats in de databank"
 
 #: ../gramps/gen/filters/rules/place/_changedsince.py:49
 msgid "Places changed after <date time>"
@@ -6431,7 +6432,7 @@ msgstr "Elke bibliotheek"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:47
 msgid "Matches every repository in the database"
-msgstr "Vindt alle bibliotheken in de database"
+msgstr "Vindt alle bibliotheken in de databank"
 
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:49
 msgid "Repositories changed after <date time>"
@@ -6566,7 +6567,7 @@ msgstr "Elke bron"
 
 #: ../gramps/gen/filters/rules/source/_allsources.py:47
 msgid "Matches every source in the database"
-msgstr "Vindt elke bron in de database"
+msgstr "Vindt elke bron in de databank"
 
 #: ../gramps/gen/filters/rules/source/_changedsince.py:49
 msgid "Sources changed after <date time>"
@@ -10560,7 +10561,7 @@ msgstr "PERSOON"
 #: ../gramps/plugins/textreport/summary.py:389
 #: ../gramps/plugins/tool/eventcmp.py:162
 msgid "Entire Database"
-msgstr "Gehele database"
+msgstr "Gehele databank"
 
 #: ../gramps/gen/plug/report/utils.py:327
 #: ../gramps/gui/plug/export/_exportoptions.py:489
@@ -10902,7 +10903,7 @@ msgstr "aan overlijden gerelateerde datum van nakomeling"
 #: ../gramps/gen/utils/alive.py:452
 #, python-format
 msgid "Database error: loop in %s's descendants"
-msgstr "Databasefout: lus in de afstammelingen van %s"
+msgstr "Databankfout: lus in de afstammelingen van %s"
 
 #: ../gramps/gen/utils/alive.py:487 ../gramps/gen/utils/alive.py:558
 msgid "ancestor birth date"
@@ -10923,7 +10924,7 @@ msgstr "aan overlijden gerelateerde datum van voorouder"
 #: ../gramps/gen/utils/alive.py:626
 #, python-format
 msgid "Database error: loop in %s's ancestors"
-msgstr "Databasefout: lus in de voorouders van %s"
+msgstr "Databankfout: lus in de voorouders van %s"
 
 #: ../gramps/gen/utils/alive.py:684
 msgid "no evidence"
@@ -12074,8 +12075,8 @@ msgid ""
 msgstr ""
 "Standaard Gramps ID-indelingen die een lettervoorvoegsel bevatten, gevolgd "
 "door een numerieke tekenreeks. \"I%04d\" maakt ID's aan van I0000 tot I9999. "
-"Grote databases hebben mogelijk grotere ID's nodig. \"I%06d\" maakt ID's aan "
-"van I000000 tot I99999.\n"
+"Grote databanken hebben mogelijk grotere ID's nodig. \"I%06d\" maakt ID's "
+"aan van I000000 tot I99999.\n"
 
 #: ../gramps/gui/configure.py:877
 msgid "Colors used for boxes in the graphical views"
@@ -12661,11 +12662,11 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2221
 msgid "Database Setting"
-msgstr "Database-instellingen"
+msgstr "Databank-instellingen"
 
 #: ../gramps/gui/configure.py:2226
 msgid "Database backend"
-msgstr "Database backend"
+msgstr "System achter databank"
 
 #: ../gramps/gui/configure.py:2234
 msgid ""
@@ -12673,7 +12674,7 @@ msgid ""
 "Database Location"
 msgstr ""
 "\n"
-"Database-opslaglocatie"
+"Databanklocatie"
 
 #: ../gramps/gui/configure.py:2245
 msgid "Host"
@@ -12685,7 +12686,7 @@ msgstr "Poort"
 
 #: ../gramps/gui/configure.py:2258
 msgid "Database path"
-msgstr "Databasepad"
+msgstr "Databankpad"
 
 #: ../gramps/gui/configure.py:2269
 msgid ""
@@ -12753,7 +12754,7 @@ msgid ""
 msgstr ""
 "Het relatieve basismediapad is specifiek voor de actieve stamboom. Het is "
 "geen algemene instelling. Elke stamboom kan een uniek relatief mediapad "
-"hebben dat bij de database wordt opgeslagen."
+"hebben dat bij de databank wordt opgeslagen."
 
 #: ../gramps/gui/configure.py:2368
 msgid "Tag Records"
@@ -12854,7 +12855,7 @@ msgstr "_Annuleren"
 
 #: ../gramps/gui/configure.py:2523
 msgid "Select database directory"
-msgstr "Selecteer databasemap"
+msgstr "Selecteer databankmap"
 
 #: ../gramps/gui/configure.py:2551 ../gramps/gui/viewmanager.py:1942
 msgid "Select backup directory"
@@ -12965,7 +12966,7 @@ msgstr ""
 "terugdraaien.\n"
 "\n"
 "Als u denkt dat u de import wilt terugdraaien, stop dan hier en maak een "
-"back-up van uw database."
+"back-up van uw databank."
 
 #: ../gramps/gui/dbloader.py:124
 msgid "_Proceed with import"
@@ -13036,7 +13037,7 @@ msgid ""
 msgstr ""
 "Bestandstype \"%s\" is onbekend voor Gramps.\n"
 "\n"
-"Geldige typen zijn: Gramps-database, Gramps XML, Gramps-pakket, GEDCOM en "
+"Geldige typen zijn: Gramps-databank, Gramps XML, Gramps-pakket, GEDCOM en "
 "andere."
 
 #: ../gramps/gui/dbloader.py:489 ../gramps/gui/dbloader.py:497
@@ -13088,7 +13089,7 @@ msgstr "_Uitpakken"
 
 #: ../gramps/gui/dbman.py:121 ../gramps/gui/dbman.py:145
 msgid "Database Information"
-msgstr "Database-informatie"
+msgstr "Databank-informatie"
 
 #: ../gramps/gui/dbman.py:123 ../gramps/gui/editors/edittaglist.py:123
 #: ../gramps/gui/glade/addmedia.glade:38
@@ -13153,12 +13154,12 @@ msgstr "Naam stamboom"
 
 #: ../gramps/gui/dbman.py:426
 msgid "Database Type"
-msgstr "Database type"
+msgstr "Databanksoort"
 
 #: ../gramps/gui/dbman.py:540
 #, python-format
 msgid "Break the lock on the '%s' database?"
-msgstr "De vergrendeling op de '%s'-database opheffen?"
+msgstr "De vergrendeling op de databank '%s' opheffen?"
 
 #: ../gramps/gui/dbman.py:542
 msgid ""
@@ -13167,10 +13168,10 @@ msgid ""
 "database you may safely break the lock. However, if someone else is editing "
 "the database and you break the lock, you may corrupt the database."
 msgstr ""
-"Gramps meent dat iemand anders deze database actief aanpast. U kunt deze "
-"database niet aanpassen terwijl deze vergrendeld is. Als niemand de database "
+"Gramps meent dat iemand anders deze databank actief aanpast. U kunt deze "
+"databank niet aanpassen terwijl deze vergrendeld is. Als niemand de databank "
 "bewerkt, kunt u de vergrendeling veilig opheffen. Als echter iemand anders "
-"de database aanpast en u de vergrendeling verbreekt, kunt u de database "
+"de databank aanpast en u de vergrendeling verbreekt, kunt u de databank "
 "beschadigen."
 
 #: ../gramps/gui/dbman.py:549
@@ -13225,7 +13226,7 @@ msgstr "Stamboom verwijderen"
 #: ../gramps/gui/dbman.py:754
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
-msgstr "Verwijder de '%(revision)s'-versie van '%(database)s'"
+msgstr "Verwijder versie '%(revision)s' van '%(database)s'"
 
 #: ../gramps/gui/dbman.py:757
 msgid ""
@@ -13256,13 +13257,13 @@ msgstr ""
 #: ../gramps/gui/dbman.py:839
 #, python-format
 msgid "Convert the '%s' database?"
-msgstr "De '%s'-database converteren?"
+msgstr "De databank '%s' converteren?"
 
 #: ../gramps/gui/dbman.py:841
 #, python-format
 msgid ""
 "Do you wish to convert this family tree into a %(database_type)s database?"
-msgstr "Wilt u deze stamboom omzetten in een %(database_type)s database?"
+msgstr "Wilt u deze stamboom omzetten in een %(database_type)s -databank?"
 
 #: ../gramps/gui/dbman.py:845
 msgid "Convert"
@@ -13271,22 +13272,22 @@ msgstr "Converteren"
 #: ../gramps/gui/dbman.py:858
 #, python-format
 msgid "Opening the '%s' database"
-msgstr "De '%s'-database openen"
+msgstr "De databank '%s' openen"
 
 #: ../gramps/gui/dbman.py:860
 msgid "An attempt to convert the database failed. Perhaps it needs updating."
 msgstr ""
-"Een poging om de database te converteren is mislukt. Misschien moet het "
+"Een poging om de databank te converteren is mislukt. Misschien moet het "
 "worden bijgewerkt."
 
 #: ../gramps/gui/dbman.py:875 ../gramps/gui/dbman.py:902
 #, python-format
 msgid "Converting the '%s' database"
-msgstr "Converteren van de '%s'-database"
+msgstr "Converteren van de databank '%s'"
 
 #: ../gramps/gui/dbman.py:876
 msgid "An attempt to export the database failed."
-msgstr "Een poging om de database te exporteren is mislukt."
+msgstr "Een poging om de databank te exporteren is mislukt."
 
 #: ../gramps/gui/dbman.py:881
 msgid "Converting data..."
@@ -13299,7 +13300,7 @@ msgstr "(Omgezet #%d)"
 
 #: ../gramps/gui/dbman.py:903
 msgid "An attempt to import into the database failed."
-msgstr "Een poging om in de database te importeren is mislukt."
+msgstr "Een poging om in de databank te importeren is mislukt."
 
 #: ../gramps/gui/dbman.py:961
 msgid "Repair Family Tree?"
@@ -13333,13 +13334,13 @@ msgid ""
 msgstr ""
 "Als u op %(bold_start)sDoorgaan%(bold_end)s klikt, zal Gramps proberen uw "
 "stamboom te herstellen vanaf de laatste goede back-up. Er zijn verschillende "
-"manieren waarop dit ongewenste effecten kan veroorzaken, dus "
-"%(bold_start)sback-up%(bold_end)s eerst de stamboom.\n"
+"manieren waarop dit ongewenste effecten kan veroorzaken, dus %(bold_start"
+")sback-up%(bold_end)s eerst de stamboom.\n"
 "De geselecteerde stamboom wordt opgeslagen in %(dirname)s.\n"
 "\n"
 "Controleer voordat u een reparatie uitvoert of de stamboom echt niet meer "
-"kan worden geopend, omdat de database-backend automatisch kan herstellen van "
-"enkele fouten.\n"
+"kan worden geopend, omdat het systeem achter de databank automatisch kan "
+"herstellen van enkele fouten.\n"
 "\n"
 "%(bold_start)sDetails:%(bold_end)s Het herstellen van een stamboom gebruikt "
 "eigenlijk de laatste back-up van de stamboom, die Gramps bij het laatste "
@@ -13366,7 +13367,7 @@ msgstr "Stop"
 
 #: ../gramps/gui/dbman.py:1018
 msgid "Rebuilding database from backup files"
-msgstr "Database opnieuw opbouwen vanuit back-upbestanden"
+msgstr "Databank opnieuw opbouwen vanuit back-upbestanden"
 
 #: ../gramps/gui/dbman.py:1023
 msgid "Error restoring backup data"
@@ -13441,7 +13442,7 @@ msgstr ""
 
 #: ../gramps/gui/displaystate.py:287
 msgid "Cannot load database"
-msgstr "Kan database niet laden"
+msgstr "Kan databank niet laden"
 
 #: ../gramps/gui/displaystate.py:410
 msgid "Open the Clipboard dialog"
@@ -13555,7 +13556,7 @@ msgstr ""
 "5) Gegevens opslaan in een indeling die niet compatibel is met de officiële "
 "release.\n"
 "\n"
-"%(bold_start)sBACK-UP%(bold_end)s uw bestaande databases voordat u ze opent "
+"%(bold_start)sBACK-UP%(bold_end)s uw bestaande databanken voordat u ze opent "
 "met deze versie, en zorg ervoor dat u uw gegevens zo nu en dan naar XML "
 "exporteert."
 
@@ -14773,7 +14774,7 @@ msgid ""
 "will create a duplicate family. It is recommended that you cancel the "
 "editing of this window, and select the existing family"
 msgstr ""
-"Er bestaat al een gezin met deze ouders in de database. Als u dit opslaat, "
+"Er bestaat al een gezin met deze ouders in de databank. Als u dit opslaat, "
 "maakt u een dubbel gezin aan. Het wordt aanbevolen dat u het bewerken van "
 "dit venster annuleert en het bestaande gezin selecteert"
 
@@ -16131,7 +16132,7 @@ msgstr "Object _verwijderen"
 
 #: ../gramps/gui/glade/dialog.glade:259
 msgid "Remove object and all references to it from the database"
-msgstr "Verwijder object en alle verwijzingen ernaar uit de database"
+msgstr "Verwijder object en alle verwijzingen ernaar uit de databank"
 
 #: ../gramps/gui/glade/dialog.glade:270
 msgid "_Keep Reference"
@@ -18317,7 +18318,7 @@ msgstr "Configureer de actieve weergave"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "Connect to a recent database"
-msgstr "Maak verbinding met een recente database"
+msgstr "Verbinden met een recente databank"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "F_ull Screen"
@@ -18337,7 +18338,7 @@ msgstr "Backup maken..."
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "Manage databases"
-msgstr "Databases beheren"
+msgstr "Databanken beheren"
 
 #: ../gramps/gui/grampsgui.py:58
 msgid "Open _Recent"
@@ -19502,7 +19503,7 @@ msgstr ""
 "De kopie van uw gegevens is succesvol opgeslagen. U kunt nu op de knop "
 "Sluiten drukken om door te gaan.\n"
 "\n"
-"Let op: de database die momenteel is geopend in uw Gramps-venster is NIET "
+"Let op: de databank die momenteel is geopend in uw Gramps-venster is NIET "
 "het bestand dat u zojuist hebt opgeslagen. Een toekomstige aanpassing in de "
 "momenteel geopende database verandert niets aan de kopie die u zojuist hebt "
 "gemaakt. "
@@ -19527,7 +19528,7 @@ msgstr ""
 "Er is een fout opgetreden bij het opslaan van uw gegevens. U kunt proberen "
 "de export opnieuw te starten.\n"
 "\n"
-"Let op: uw momenteel geopende database is veilig. Het was slechts een kopie "
+"Let op: uw momenteel geopende databank is veilig. Het was slechts een kopie "
 "van uw gegevens die niet kon worden opgeslagen."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:562
@@ -19545,7 +19546,7 @@ msgid ""
 msgstr ""
 "Onder normale omstandigheden vereist Gramps niet dat u uw wijzigingen "
 "rechtstreeks opslaat. Alle wijzigingen die u aanbrengt, worden onmiddellijk "
-"opgeslagen in de database.\n"
+"opgeslagen in de databank.\n"
 "\n"
 "Dit proces helpt u een kopie van uw gegevens op te slaan in een van de "
 "verschillende formaten die door Gramps worden ondersteund. Dit kan worden "
@@ -19554,7 +19555,7 @@ msgstr ""
 "ander programma kunt overbrengen.\n"
 "\n"
 "Als u tijdens dit proces van gedachten verandert, kunt u op elk moment "
-"veilig op de knop Annuleren drukken en uw huidige database is dan nog steeds "
+"veilig op de knop Annuleren drukken en uw huidige databank is dan nog steeds "
 "intact."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:629
@@ -19791,7 +19792,7 @@ msgstr "Boek selectielijst"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:470
 msgid "Different database"
-msgstr "Andere database"
+msgstr "Andere databank"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:472
 #, python-format
@@ -19803,13 +19804,13 @@ msgid ""
 "Therefore, the central person for each item is being set to the active "
 "person of the currently opened database."
 msgstr ""
-"Dit boek is gemaakt met verwijzingen naar database %s.\n"
+"Dit boek is gemaakt met verwijzingen naar databank %s.\n"
 "\n"
 " Dit maakt verwijzingen naar de in het boek opgeslagen centrale persoon "
 "ongeldig.\n"
 "\n"
 "Daarom wordt de centrale persoon voor elk item ingesteld op de actieve "
-"persoon van de momenteel geopende database."
+"persoon van de momenteel geopende databank."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:577
 msgid "No selected book item"
@@ -20138,7 +20139,7 @@ msgstr ""
 "tool zijn aangebracht of eerdere wijzigingen niet ongedaan maken.\n"
 "\n"
 "Als u denkt dat u deze tool misschien wilt terugdraaien, stop dan hier en "
-"maak een back-up van uw database."
+"maak een back-up van uw databank."
 
 #: ../gramps/gui/plug/tool.py:133
 msgid "_Proceed with the tool"
@@ -20311,7 +20312,7 @@ msgstr "Wissen"
 
 #: ../gramps/gui/undohistory.py:236
 msgid "Database opened"
-msgstr "Database geopend"
+msgstr "Databank geopend"
 
 #: ../gramps/gui/undohistory.py:238
 msgid "History cleared"
@@ -20383,7 +20384,7 @@ msgid ""
 "Aborting changes will return the database to the state it was before you "
 "started this editing session."
 msgstr ""
-"Als u wijzigingen annuleert, wordt de database teruggezet in de staat waarin "
+"Als u wijzigingen annuleert, wordt de databank teruggezet in de staat waarin "
 "deze verkeerde voordat u deze bewerkingssessie startte."
 
 #: ../gramps/gui/viewmanager.py:678
@@ -20603,7 +20604,7 @@ msgstr "Verwijder {type} [{gid}]?"
 
 #: ../gramps/gui/views/listview.py:634 ../gramps/gui/views/listview.py:720
 msgid "Deleting item will remove it from the database."
-msgstr "Als u een item verwijdert wordt het uit de database verwijderd."
+msgstr "Als u een item verwijdert wordt het uit de databank verwijderd."
 
 #: ../gramps/gui/views/listview.py:669
 #: ../gramps/plugins/gramplet/givennamegramplet.py:73
@@ -20624,7 +20625,7 @@ msgid ""
 "database and from all other items that reference it."
 msgstr ""
 "Dit item wordt momenteel gebruikt. Als u het verwijdert, wordt het "
-"verwijderd uit de database en uit alle andere items die ernaar verwijzen."
+"verwijderd uit de databank en uit alle andere items die ernaar verwijzen."
 
 #: ../gramps/gui/views/listview.py:725
 #: ../gramps/plugins/lib/libpersonview.py:481
@@ -20787,7 +20788,7 @@ msgid ""
 "objects in the database."
 msgstr ""
 "De label-definitie wordt verwijderd. Het label wordt ook verwijderd uit alle "
-"objecten in de database."
+"objecten in de databank."
 
 #: ../gramps/gui/views/tags.py:606
 #, python-format
@@ -21142,7 +21143,7 @@ msgstr "BSDDB"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:28
 msgid "_BSDDB Database"
-msgstr "_BSDDB database"
+msgstr "_BSDDB databank"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:29
 msgid "Berkeley Software Distribution Database Backend"
@@ -21154,23 +21155,23 @@ msgstr "SQLite"
 
 #: ../gramps/plugins/db/dbapi/sqlite.gpr.py:29
 msgid "_SQLite Database"
-msgstr "_SQLite Database"
+msgstr "_SQLite databank"
 
 #: ../gramps/plugins/db/dbapi/sqlite.gpr.py:30
 msgid "SQLite Database"
-msgstr "SQLite Database"
+msgstr "SQLite databank"
 
 #: ../gramps/plugins/db/dbapi/sqlite.py:63
 msgid "Database version"
-msgstr "Database versie"
+msgstr "Databankversie"
 
 #: ../gramps/plugins/db/dbapi/sqlite.py:64
 msgid "Database module version"
-msgstr "Databasemodule versie"
+msgstr "Versie databankmodule"
 
 #: ../gramps/plugins/db/dbapi/sqlite.py:65
 msgid "Database module location"
-msgstr "Locatie databasemodule"
+msgstr "Locatie databankmodule"
 
 #: ../gramps/plugins/docgen/asciidoc.py:477
 msgid "Characters per line"
@@ -21424,7 +21425,7 @@ msgstr "Vooroudergrafiek voor %s"
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:92
 #, python-format
 msgid "Person %s is not in the Database"
-msgstr "Persoon %s staat niet in de database"
+msgstr "Persoon %s staat niet in de databank"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:648
 #: ../gramps/plugins/drawreport/ancestortree.py:740
@@ -21896,7 +21897,7 @@ msgstr "Maanden opmaken…"
 #: ../gramps/plugins/webreport/calendar.py:964
 #: ../gramps/plugins/webreport/webcal.py:1418
 msgid "Reading database..."
-msgstr "Database lezen…"
+msgstr "Databank lezen…"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:418
 #, python-format
@@ -22187,7 +22188,7 @@ msgstr "Neven en nichten grafiek voor %(names)s"
 #: ../gramps/plugins/drawreport/descendtree.py:807
 #, python-format
 msgid "Family %s is not in the Database"
-msgstr "Gezin %s staat niet in de database"
+msgstr "Gezin %s staat niet in de databank"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1574
 #: ../gramps/plugins/drawreport/descendtree.py:1578
@@ -22392,7 +22393,7 @@ msgstr "Statistiekdiagrammen"
 msgid "Produces statistical bar and pie charts of the people in the database"
 msgstr ""
 "Produceert statistische staaf- en cirkeldiagrammen van de personen in de "
-"database"
+"databank"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:223
 #: ../gramps/plugins/drawreport/timeline.py:285
@@ -23179,16 +23180,16 @@ msgid ""
 "the directory. Please make sure you have write access to the directory and "
 "try again."
 msgstr ""
-"De database kan niet worden opgeslagen omdat u geen toestemming heeft om "
-"naar de directory te schrijven. Zorg ervoor dat u schrijftoegang heeft tot "
-"de directory en probeer het opnieuw."
+"De databank kan niet worden opgeslagen omdat u geen toestemming heeft om "
+"naar de map te schrijven. Zorg ervoor dat u schrijftoegang heeft tot de map "
+"en probeer het opnieuw."
 
 #: ../gramps/plugins/export/exportxml.py:177
 msgid ""
 "The database cannot be saved because you do not have permission to write to "
 "the file. Please make sure you have write access to the file and try again."
 msgstr ""
-"De database kan niet worden opgeslagen omdat u geen toestemming heeft om "
+"De databank kan niet worden opgeslagen omdat u geen toestemming heeft om "
 "naar het bestand te schrijven. Zorg ervoor dat u schrijftoegang heeft tot "
 "het bestand en probeer het opnieuw."
 
@@ -24609,7 +24610,7 @@ msgstr "Log van deze sessie"
 
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:59
 msgid "Opened data base -----------\n"
-msgstr "Database geopend -----------\n"
+msgstr "Databank geopend -----------\n"
 
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:61
 msgid "Added"
@@ -24866,15 +24867,15 @@ msgid ""
 "\n"
 msgstr ""
 "Wanneer Gramps voor de eerste keer wordt gestart, zijn alle weergaven leeg. "
-"Er zijn maar weinig menu-opties. Voor elke activiteit is een stamboom "
-"nodig.\n"
+"Er zijn maar weinig menu-opties. Voor elke activiteit is een stamboom nodig."
 "\n"
-"Om een nieuwe stamboom ('database') aan te maken, selecteert u in het menu "
+"\n"
+"Om een nieuwe stamboom ('databank') aan te maken, selecteert u in het menu "
 "'Stambomen', kies vervolgens 'Stambomen beheren', druk op 'Nieuw' en geef u "
 "uw stamboom een naam. Gebruik \"Stamboom laden\" om de stamboom te activeren "
-"en klaar te maken om gegevens te accepteren, bijv. door een eerste "
-"familielid in te voeren of een hele stamboom te importeren. Lees de "
-"informatie op onderstaande koppelingen voor meer informatie.\n"
+"en klaar te maken om gegevens te accepteren, bv. door een eerste familielid "
+"in te voeren of een hele stamboom te importeren. Lees de informatie op "
+"onderstaande koppelingen voor meer informatie.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:171
@@ -24959,9 +24960,8 @@ msgstr ""
 "Om een stamboom uit een ander programma te importeren, maakt u eerst een "
 "GEDCOM-bestand (of andere opmaak) van het vorige programma.\n"
 "\n"
-"Nadat u een nieuw Gramps-databasebestand heeft gemaakt, gebruikt u onder het "
-"menu \"Stambomen\" de optie \"Importeren\" om de GEDCOM-gegevens te "
-"importeren.\n"
+"Nadat u een nieuwe Gramps-databank heeft gemaakt, gebruikt u onder het menu "
+"\"Stambomen\" de optie \"Importeren\" om de GEDCOM-gegevens te importeren.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:220
@@ -25018,7 +25018,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:257
 msgid "Example Database"
-msgstr "Voorbeelddatabase"
+msgstr "Voorbeelddatabank"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:260
 msgid ""
@@ -25033,7 +25033,7 @@ msgid ""
 "program.\n"
 "\n"
 msgstr ""
-"Wilt u Gramps in gebruik zien. Maak en importeer de voorbeelddatabase.\n"
+"Wilt u Gramps in gebruik zien. Maak en importeer de voorbeelddatabank.\n"
 "\n"
 "Maak een nieuwe stamboom zoals hierboven beschreven. Noem uw stamboom "
 "bijvoorbeeld \"VOORBEELD\".\n"
@@ -25482,7 +25482,7 @@ msgstr "U heeft niemand opgegeven"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:529
 msgid "Number of people in database:"
-msgstr "Aantal personen in database:"
+msgstr "Aantal personen in databank:"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:532
 msgid "Number of people of interest:"
@@ -25490,7 +25490,7 @@ msgstr "Aantal te onderzoeken personen:"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:537
 msgid "Number of families in database:"
-msgstr "Aantal gezinnen in database:"
+msgstr "Aantal gezinnen in databank:"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:542
 msgid "Number of families of interest:"
@@ -25845,16 +25845,16 @@ msgid ""
 "compatible with the present Gramps database format."
 msgstr ""
 "Het Gramps XML-formaat is een tekstversie van een stamboom. Het is "
-"compatibel met het huidige Gramps-databaseformaat voor zowel lezen als "
+"compatibel met het huidige Gramps-databankformaat voor zowel lezen als "
 "schrijven."
 
 #: ../gramps/plugins/importer/import.gpr.py:138
 msgid "Gramps 2.x database"
-msgstr "Gramps 2.x database"
+msgstr "Gramps 2.x databank"
 
 #: ../gramps/plugins/importer/import.gpr.py:139
 msgid "Import data from Gramps 2.x database files"
-msgstr "Importeer gegevens uit Gramps 2.x-databasebestanden"
+msgstr "Importeer gegevens uit Gramps 2.x-databankbestanden"
 
 #: ../gramps/plugins/importer/import.gpr.py:156
 msgid "Pro-Gen"
@@ -26420,11 +26420,11 @@ msgid ""
 "example this version), create a new empty database and import the Gramps XML "
 "into that version. Please refer to:%(gramps_wiki_migrate_two_to_three_url)s"
 msgstr ""
-"De databaseversie wordt niet ondersteund door deze versie van Gramps. "
-"Gebruik een oude kopie van Gramps op versie 3.0.x en importeer uw database "
+"De databankversie wordt niet ondersteund door deze versie van Gramps. "
+"Gebruik een oude kopie van Gramps op versie 3.0.x en importeer uw databank "
 "in die versie. Vervolgens moet u een kopie van uw gegevens exporteren naar "
 "Gramps XML (Stamboom). Vervolgens moet u upgraden naar de nieuwste versie "
-"van Gramps (bijvoorbeeld deze versie), een nieuwe lege database maken en de "
+"van Gramps (bijvoorbeeld deze versie), een nieuwe lege databank maken en de "
 "Gramps XML in die versie importeren. Raadpleeg: "
 "%(gramps_wiki_migrate_two_to_three_url)s"
 
@@ -26799,7 +26799,7 @@ msgstr "Fout bij het lezen van %s"
 #: ../gramps/plugins/importer/importxml.py:220
 msgid "The file is probably either corrupt or not a valid Gramps database."
 msgstr ""
-"Het bestand is waarschijnlijk beschadigd of is geen geldige Gramps-database."
+"Het bestand is waarschijnlijk beschadigd of is geen geldige Gramps-databank."
 
 #: ../gramps/plugins/importer/importxml.py:332
 #, python-brace-format
@@ -27402,7 +27402,7 @@ msgid ""
 "the resulting database!"
 msgstr ""
 "Importeren van GEDCOM-bestand %(filename)s met BEST=%(by)s, kan fouten "
-"veroorzaken in de resulterende database!"
+"veroorzaken in de resulterende databank!"
 
 #: ../gramps/plugins/lib/libgedcom.py:7926
 msgid "Look for nameless events."
@@ -31208,7 +31208,7 @@ msgstr "Vooruit"
 #: ../gramps/plugins/lib/libpersonview.py:486
 msgid "Deleting the person will remove the person from the database."
 msgstr ""
-"Als u de persoon verwijdert, wordt de persoon uit de database verwijderd."
+"Als u de persoon verwijdert, wordt de persoon uit de databank verwijderd."
 
 #: ../gramps/plugins/lib/libpersonview.py:492
 #, python-format
@@ -34038,7 +34038,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/summary.py:98
 #: ../gramps/plugins/textreport/textplugins.gpr.py:351
 msgid "Database Summary Report"
-msgstr "Database-overzichtsverslag"
+msgstr "Databank-overzichtsverslag"
 
 #: ../gramps/plugins/textreport/summary.py:187
 #, python-format
@@ -34298,7 +34298,7 @@ msgstr "Produceert een titelpagina voor boekverslagen."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:352
 msgid "Provides a summary of the current database"
-msgstr "Geeft een samenvatting van de huidige database"
+msgstr "Geeft een samenvatting van de huidige databank"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:375
 msgid "Produces a table of contents for book reports."
@@ -34429,7 +34429,7 @@ msgstr[1] "{number_of} gebeurtenisgegevens werden aangepast."
 
 #: ../gramps/plugins/tool/check.py:134 ../gramps/plugins/tool/check.py:313
 msgid "Checking Database"
-msgstr "Database controleren"
+msgstr "Databank controleren"
 
 #: ../gramps/plugins/tool/check.py:135
 msgid "Looking for cross table duplicates"
@@ -34518,9 +34518,9 @@ msgid ""
 msgstr ""
 "Het bestand:\n"
 "%(file_name)s\n"
-"wordt genoemd in de database, maar bestaat niet meer.\n"
+"wordt genoemd in de databank, maar bestaat niet meer.\n"
 "Het bestand is mogelijk verwijderd of verplaatst naar een andere locatie.\n"
-"U kunt ervoor kiezen om de verwijzing uit de database te verwijderen,\n"
+"U kunt ervoor kiezen om de verwijzing uit de databank te verwijderen,\n"
 "de verwijzing naar het ontbrekende bestand te behouden of een nieuw\n"
 "bestand te selecteren."
 
@@ -34635,12 +34635,12 @@ msgstr "Er zijn geen fouten gevonden"
 
 #: ../gramps/plugins/tool/check.py:2695
 msgid "The database has passed internal checks"
-msgstr "De database heeft de interne controles goed doorstaan"
+msgstr "De databank heeft de interne controles goed doorstaan"
 
 #: ../gramps/plugins/tool/check.py:2701
 msgid "No errors were found: the database has passed internal checks."
 msgstr ""
-"Er zijn geen fouten gevonden: de database heeft de interne controles goed "
+"Er zijn geen fouten gevonden: de databank heeft de interne controles goed "
 "doorstaan."
 
 #: ../gramps/plugins/tool/check.py:2711
@@ -34897,7 +34897,7 @@ msgid ""
 "This test will create many persons and events in the current database. Do "
 "you really want to run this test?"
 msgstr ""
-"Deze test zal veel personen en gebeurtenissen in de huidige database "
+"Deze test zal veel personen en gebeurtenissen in de huidige databank "
 "opleveren. Wilt u deze test echt uitvoeren?"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:75
@@ -35116,7 +35116,7 @@ msgstr "Vind_databaselus"
 #: ../gramps/plugins/tool/findloop.py:75
 #: ../gramps/plugins/tool/tools.gpr.py:498
 msgid "Find database loop"
-msgstr "Databaselus vinden"
+msgstr "Databanklus vinden"
 
 #: ../gramps/plugins/tool/findloop.py:97
 #: ../gramps/plugins/tool/notrelated.py:115
@@ -35186,10 +35186,10 @@ msgstr ""
 "\n"
 "De bestanden met afbeelding, geluid, video, enz. staan afzonderlijk op uw "
 "harde schijf. Deze bestanden worden niet beheerd door Gramps en zijn niet "
-"opgenomen in de Gramps-database. De Gramps-database slaat alleen het pad en "
+"opgenomen in de Gramps-databank. De Gramps-databank slaat alleen het pad en "
 "de bestandsnamen op.\n"
 "\n"
-"Met deze tool kunt u alleen de records in uw Gramps-database wijzigen. Als u "
+"Met deze tool kunt u alleen de records in uw Gramps-databank wijzigen. Als u "
 "de bestanden wilt verplaatsen of hernoemen, moet u dit zelf doen, buiten "
 "Gramps. Vervolgens kunt u met deze tool de paden aanpassen, zodat de media-"
 "objecten de juiste bestandslocaties opslaan."
@@ -35315,12 +35315,12 @@ msgstr ""
 
 #: ../gramps/plugins/tool/mediamanager.py:676
 msgid "Add images not included in database"
-msgstr "Voeg afbeeldingen toe die niet in de database zijn opgenomen"
+msgstr "Voeg afbeeldingen toe die niet in de databank zijn opgenomen"
 
 #: ../gramps/plugins/tool/mediamanager.py:677
 msgid "Check directories for images not included in database"
 msgstr ""
-"Mappen controleren op afbeeldingen die niet zijn opgenomen in de database"
+"Mappen controleren op afbeeldingen die niet zijn opgenomen in de databank"
 
 #: ../gramps/plugins/tool/mediamanager.py:679
 msgid ""
@@ -35328,7 +35328,7 @@ msgid ""
 "in the database."
 msgstr ""
 "Deze tool voegt afbeeldingen toe in mappen waarnaar wordt verwezen door "
-"bestaande afbeeldingen in de database."
+"bestaande afbeeldingen in de databank."
 
 #: ../gramps/plugins/tool/mergecitations.glade:144
 msgid "Don't merge if citation has notes"
@@ -35406,7 +35406,7 @@ msgstr "NietVerwant"
 #: ../gramps/plugins/tool/notrelated.py:177
 #, python-format
 msgid "Everyone in the database is related to %s"
-msgstr "Iedereen in de database is verwant met %s"
+msgstr "Iedereen in de databank is verwant met %s"
 
 #: ../gramps/plugins/tool/notrelated.py:260
 #, python-brace-format
@@ -35480,11 +35480,11 @@ msgstr "De_gegevens_van_de_database-eigenaar_bewerken"
 
 #: ../gramps/plugins/tool/ownereditor.py:104
 msgid "Database Owner Editor"
-msgstr "Database-eigenaar-bewerker"
+msgstr "Databank-eigenaar-bewerker"
 
 #: ../gramps/plugins/tool/ownereditor.py:171
 msgid "Edit database owner information"
-msgstr "De gegevens van de database-eigenaar bewerken"
+msgstr "De gegevens van de databank-eigenaar bewerken"
 
 #: ../gramps/plugins/tool/patchnames.glade:84
 msgid "_Accept and close"
@@ -35910,12 +35910,12 @@ msgid ""
 "Generate low level database errors\n"
 "Correction needs database reload"
 msgstr ""
-"Genereer laag-niveau databasefouten\n"
-"Om te herstellen de database herladen"
+"Genereer laag-niveau databankfouten\n"
+"Om te herstellen de databank herladen"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:357
 msgid "Generate database errors"
-msgstr "Genereer databasefouten"
+msgstr "Genereer databankfouten"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:361
 msgid "Generate dummy data"
@@ -35947,7 +35947,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/testcasegenerator.py:438
 msgid "Generating low level database errors"
-msgstr "Genereren van laag-niveau databasefouten"
+msgstr "Genereren van laag-niveau databankfouten"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:438
 #: ../gramps/plugins/tool/testcasegenerator.py:448
@@ -35957,7 +35957,7 @@ msgstr "Testgevallen genereren"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:448
 msgid "Generating database errors"
-msgstr "Databasefouten genereren"
+msgstr "Databankfouten genereren"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:455
 msgid "Generating families"
@@ -36005,7 +36005,7 @@ msgstr "Hoofdlettergebruik van familienamen repareren"
 msgid ""
 "Searches the entire database and attempts to fix capitalization of the names."
 msgstr ""
-"Doorzoekt de hele database en probeert het hoofdlettergebruik van de namen "
+"Doorzoekt de hele databank en probeert het hoofdlettergebruik van de namen "
 "te herstellen."
 
 #: ../gramps/plugins/tool/tools.gpr.py:66
@@ -36020,13 +36020,13 @@ msgstr ""
 
 #: ../gramps/plugins/tool/tools.gpr.py:91
 msgid "Check and Repair Database"
-msgstr "Database controleren en repareren"
+msgstr "Databank controleren en repareren"
 
 #: ../gramps/plugins/tool/tools.gpr.py:93
 msgid ""
 "Checks the database for integrity problems, fixing the problems that it can"
 msgstr ""
-"Controleert de database op integriteitsproblemen en lost deze zo mogelijk op"
+"Controleert de databank op integriteitsproblemen en lost deze zo mogelijk op"
 
 #: ../gramps/plugins/tool/tools.gpr.py:116
 msgid "Compare Individual Events"
@@ -36038,7 +36038,7 @@ msgid ""
 "that can be applied to the database to find similar events"
 msgstr ""
 "Helpt bij de analyse van gegevens door de ontwikkeling van aangepaste "
-"filters mogelijk te maken die op de database kunnen worden toegepast om "
+"filters mogelijk te maken die op de databank kunnen worden toegepast om "
 "vergelijkbare gebeurtenissen te vinden"
 
 #: ../gramps/plugins/tool/tools.gpr.py:144
@@ -36050,7 +36050,7 @@ msgid ""
 "Searches the entire database, looking for individual entries that may "
 "represent the same person."
 msgstr ""
-"Doorzoekt de hele database en zoekt naar individuele vermeldingen die "
+"Doorzoekt de hele databank en zoekt naar individuele vermeldingen die "
 "mogelijk dezelfde persoon vertegenwoordigen."
 
 #: ../gramps/plugins/tool/tools.gpr.py:193
@@ -36069,11 +36069,11 @@ msgstr ""
 
 #: ../gramps/plugins/tool/tools.gpr.py:240
 msgid "Edit Database Owner Information"
-msgstr "Gegevens van database-eigenaar bewerken"
+msgstr "Gegevens van databank-eigenaar bewerken"
 
 #: ../gramps/plugins/tool/tools.gpr.py:241
 msgid "Allow editing database owner information."
-msgstr "Bewerken van database-eigenaargegevens toestaan."
+msgstr "Bewerken van gegevens databank-eigenaar toestaan."
 
 #: ../gramps/plugins/tool/tools.gpr.py:263
 msgid "Extract Information from Names"
@@ -36122,7 +36122,7 @@ msgstr "Verwijder ongebruikte objecten"
 
 #: ../gramps/plugins/tool/tools.gpr.py:381
 msgid "Removes unused objects from the database"
-msgstr "Verwijdert ongebruikte objecten uit de database"
+msgstr "Verwijdert ongebruikte objecten uit de databank"
 
 #: ../gramps/plugins/tool/tools.gpr.py:404
 msgid "Reorders the Gramps IDs according to Gramps' default rules."
@@ -36147,19 +36147,19 @@ msgid ""
 "Searches the entire database, looking for citations that have the same "
 "Volume/Page, Date and Confidence."
 msgstr ""
-"Doorzoekt de hele database, op zoek naar citaten met dezelfde volume/pagina, "
+"Doorzoekt de hele databank, op zoek naar citaten met dezelfde volume/pagina, "
 "datum en betrouwbaarheid."
 
 #: ../gramps/plugins/tool/tools.gpr.py:499
 msgid "Searches the entire database, looking for a possible loop."
-msgstr "Doorzoekt de hele database, op zoek naar een mogelijke lus."
+msgstr "Doorzoekt de hele databank, op zoek naar een mogelijke lus."
 
 #: ../gramps/plugins/tool/tools.gpr.py:524
 msgid ""
 "Searches the entire database, looking for trailing or leading spaces for "
 "places and people. Search comma in coordinates fields in places."
 msgstr ""
-"Doorzoekt de hele database, op zoek naar volg- of voorloopspaties voor "
+"Doorzoekt de hele databank, op zoek naar volg- of voorloopspaties voor "
 "locaties en personen. Zoek komma's in coördinatenvelden op locaties."
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:69
@@ -37193,7 +37193,7 @@ msgstr "Alle bekende Locaties"
 
 #: ../gramps/plugins/view/geography.gpr.py:200
 msgid "A view showing all places of the database."
-msgstr "Een weergave van alle locaties in de database."
+msgstr "Een weergave van alle locaties in de databank."
 
 #: ../gramps/plugins/view/geography.gpr.py:216
 msgid "All places related to Events"
@@ -37201,7 +37201,7 @@ msgstr "Alle locaties gerelateerd aan gebeurtenissen"
 
 #: ../gramps/plugins/view/geography.gpr.py:217
 msgid "A view showing all the event places of the database."
-msgstr "Een weergave met alle gebeurtenislocaties in de database."
+msgstr "Een weergave met alle gebeurtenislocaties in de databank."
 
 #: ../gramps/plugins/view/geomoves.py:210
 msgid "Descendants of the active person."
@@ -37688,7 +37688,7 @@ msgstr "Verbroken gezin gedetecteerd"
 
 #: ../gramps/plugins/view/relview.py:1614
 msgid "Please run the Check and Repair Database tool"
-msgstr "Voer het hulpmiddel 'Database controleren en repareren' uit"
+msgstr "Voer het hulpmiddel 'Databank controleren en repareren' uit"
 
 #: ../gramps/plugins/view/relview.py:1639
 #: ../gramps/plugins/view/relview.py:1686
@@ -37898,7 +37898,7 @@ msgid ""
 "Links. Selecting the person&#8217;s name will take you to their individual "
 "Address Book page."
 msgstr ""
-"Deze pagina bevat een index van alle personen in de database, gesorteerd op "
+"Deze pagina bevat een index van alle personen in de databank, gesorteerd op "
 "hun achternaam, met een van de volgende: Adres, Woonplaats of Weblinks. Als "
 "u de naam van de persoon selecteert, gaat u naar de individuele "
 "adresboekpagina."
@@ -38187,7 +38187,7 @@ msgid ""
 "their type and date (if one is present). Clicking on an event&#8217;s Gramps "
 "ID will open a page for that event."
 msgstr ""
-"Deze pagina bevat een index van alle gebeurtenissen in de database, "
+"Deze pagina bevat een index van alle gebeurtenissen in de databank, "
 "gesorteerd op type en datum (indien aanwezig). Als u op de Gramps-ID van een "
 "gebeurtenis klikt, wordt een pagina voor dat gebeurtenis geopend."
 
@@ -38213,7 +38213,7 @@ msgid ""
 "database, sorted by their family name/ surname. Clicking on a person&#8217;s "
 "name will take you to their family/ relationship&#8217;s page."
 msgstr ""
-"Deze pagina bevat een index van alle families/relaties in de database, "
+"Deze pagina bevat een index van alle families/relaties in de databank, "
 "gesorteerd op hun familienaam/achternaam. Als u op de naam van een persoon "
 "klikt, gaat u naar de pagina van diens gezin/verwanten."
 
@@ -38237,7 +38237,7 @@ msgid ""
 "object&#8217;s page.  If you see media size dimensions above an image, click "
 "on the image to see the full sized version.  "
 msgstr ""
-"Deze pagina bevat een index van alle media-objecten in de database, "
+"Deze pagina bevat een index van alle media-objecten in de databank, "
 "gesorteerd op titel. Als u op de titel klikt, gaat u naar de pagina van dat "
 "media-object. Als u afmetingen boven een afbeelding ziet, klikt u op de "
 "afbeelding om de volledige versie te zien.  "
@@ -38752,7 +38752,7 @@ msgstr "Downloadpagina opnemen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2448
 msgid "Whether to include a database download option"
-msgstr "Of een database-downloadoptie moet worden opgenomen"
+msgstr "Of een databank-downloadoptie moet worden opgenomen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2453
 msgid "How many downloads"
@@ -38770,7 +38770,7 @@ msgstr "Bestandsnaam #%c downloaden"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2468
 msgid "File to be used for downloading of database"
-msgstr "Bestand dat moet worden gebruikt voor het downloaden van de database"
+msgstr "Bestand dat moet worden gebruikt voor het downloaden van de databank"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2473
 msgid "Description for download"
@@ -39257,7 +39257,7 @@ msgid ""
 "by their last names. Selecting the person&#8217;s name will take you to that "
 "person&#8217;s individual page."
 msgstr ""
-"Deze pagina bevat een index van alle personen in de database, gesorteerd op "
+"Deze pagina bevat een index van alle personen in de databank, gesorteerd op "
 "hun achternaam. Als u de naam van de persoon selecteert, gaat u naar de "
 "individuele pagina van die persoon."
 
@@ -39346,7 +39346,7 @@ msgid ""
 "their title. Clicking on a place&#8217;s title will take you to that "
 "place&#8217;s page."
 msgstr ""
-"Deze pagina bevat een index van alle locaties in de database, gesorteerd op "
+"Deze pagina bevat een index van alle locaties in de databank, gesorteerd op "
 "titel. Als u op de titel van een locatie klikt, gaat u naar de pagina van "
 "die locatie."
 
@@ -39375,7 +39375,7 @@ msgid ""
 "by their title. Clicking on a repositories&#8217;s title will take you to "
 "that repositories&#8217;s page."
 msgstr ""
-"Deze pagina bevat een index van alle bibliotheken in de database, gesorteerd "
+"Deze pagina bevat een index van alle bibliotheken in de databank, gesorteerd "
 "op titel. Als u op de titel van een bibliotheek klikt, gaat u naar de pagina "
 "van die bibliotheek."
 
@@ -39394,7 +39394,7 @@ msgid ""
 "their title. Clicking on a source&#8217;s title will take you to that "
 "source&#8217;s page."
 msgstr ""
-"Deze pagina bevat een index van alle bronnen in de database, gesorteerd op "
+"Deze pagina bevat een index van alle bronnen in de databank, gesorteerd op "
 "titel. Als u op de titel van een bron klikt, gaat u naar de pagina van die "
 "bron."
 
@@ -39409,7 +39409,7 @@ msgstr "Publicatie-informatie"
 
 #: ../gramps/plugins/webreport/statistics.py:117
 msgid "Database overview"
-msgstr "Database-overzicht"
+msgstr "Databank-overzicht"
 
 #: ../gramps/plugins/webreport/statistics.py:226
 msgid "Narrative web content report for"
@@ -39422,7 +39422,7 @@ msgid ""
 "surname of %s. Selecting the person&#8217;s name will take you to that "
 "person&#8217;s individual page."
 msgstr ""
-"Deze pagina bevat een index van alle personen in de database met de "
+"Deze pagina bevat een index van alle personen in de databank met de "
 "achternaam %s. Als u de naam van de persoon selecteert, gaat u naar de "
 "individuele pagina van die persoon."
 
@@ -39436,7 +39436,7 @@ msgid ""
 "link will lead to a list of individuals in the database with this same "
 "surname."
 msgstr ""
-"Deze pagina bevat een index van alle achternamen in de database. Het "
+"Deze pagina bevat een index van alle achternamen in de databank. Het "
 "selecteren van een link leidt tot een lijst met personen in de database met "
 "dezelfde achternaam."
 
@@ -39457,8 +39457,8 @@ msgid ""
 "page."
 msgstr ""
 "Deze pagina toont een geïndexeerde lijst van alle media-objecten in deze "
-"database. Het is gesorteerd op mediatitel. Er is een index van alle media-"
-"objecten in deze database. Als u op een miniatuurafbeelding klikt, gaat u "
+"databank. Het is gesorteerd op mediatitel. Er is een index van alle media-"
+"objecten in deze databank. Als u op een miniatuurafbeelding klikt, gaat u "
 "naar de pagina van die afbeelding."
 
 #: ../gramps/plugins/webreport/updates.py:88
@@ -39472,7 +39472,7 @@ msgid ""
 "This page contains the last updated objects in the database in the last "
 "%(days)d days and for a maximum of %(nb)d objects per object type."
 msgstr ""
-"Deze pagina bevat de jongste bijgewerkte objecten in de database over de "
+"Deze pagina bevat de jongste bijgewerkte objecten in de databank over de "
 "afgelopen %(days)d dagen en voor maximaal %(nb)d objecten per objecttype."
 
 #. Translators: This is the email subject line in the Web Calendar
