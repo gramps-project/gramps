@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-03-26 00:02+0000\n"
+"PO-Revision-Date: 2024-07-16 11:09+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -31938,16 +31938,12 @@ msgid "Father lineage for %s"
 msgstr "Otcovská línia pre %s"
 
 #: ../gramps/plugins/quickview/lineage.py:57
-#, fuzzy
-#| msgid ""
-#| "This report shows the father lineage, also called patronymic lineage or Y-"
-#| "line. People in this lineage all share the same Y-chromosome."
 msgid ""
 "This report shows the father lineage, also called the patrilineal lineage or "
 "Y-line. People in this lineage all share the same Y-chromosomes."
 msgstr ""
-"Táto správa zobrazí otcovskú líniu, nazývanú aj patronymická línia alebo "
-"línia Y. Všetci ľudia v tejto línii zdieľajú rovnaký chromozóm Y."
+"Táto správa zobrazí otcovskú líniu, nazývanú aj patrilineárna línia alebo "
+"línia Y. Všetci ľudia v tejto línii zdieľajú rovnaké chromozómy Y."
 
 #: ../gramps/plugins/quickview/lineage.py:65
 msgid "Name Father"
@@ -31969,18 +31965,13 @@ msgid "Mother lineage for %s"
 msgstr "Materská línia pre %s"
 
 #: ../gramps/plugins/quickview/lineage.py:91
-#, fuzzy
-#| msgid ""
-#| "This report shows the mother lineage, also called matronymic lineage "
-#| "mtDNA lineage. People in this lineage all share the same Mitochondrial "
-#| "DNA (mtDNA)."
 msgid ""
 "This report shows the mother lineage, also called the matrilineal lineage "
 "mtDNA lineage. People in this lineage all share the same Mitochondrial DNA "
 "(mtDNA)."
 msgstr ""
-"Táto správa zobrazí materskú líniu, nazývanú aj matronymická línia mtDNA. "
-"Ľudia v tejto línii zdieľajú rovnakú mitochondriálnu DNA (mtDNA)."
+"Táto správa zobrazí materskú líniu, nazývanú aj matrilineárna línia mtDNA. "
+"Všetci ľudia v tejto línii zdieľajú rovnakú mitochondriálnu DNA (mtDNA)."
 
 #: ../gramps/plugins/quickview/lineage.py:100
 msgid "Name Mother"
