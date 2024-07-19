@@ -7,10 +7,10 @@
 pacman -S --needed --noconfirm mingw-w64-x86_64-python mingw-w64-x86_64-python-pip mingw-w64-x86_64-gexiv2 mingw-w64-x86_64-ghostscript mingw-w64-x86_64-python-cairo mingw-w64-x86_64-python-gobject mingw-w64-x86_64-python-icu mingw-w64-x86_64-iso-codes mingw-w64-x86_64-hunspell mingw-w64-x86_64-enchant perl-XML-Parser intltool mingw-w64-x86_64-python-lxml mingw-w64-x86_64-python-jsonschema mingw-w64-x86_64-gspell mingw-w64-x86_64-geocode-glib mingw-w64-x86_64-python-pillow git mingw-w64-x86_64-graphviz mingw-w64-x86_64-goocanvas mingw-w64-x86_64-osm-gps-map base-devel subversion mingw-w64-x86_64-python-graphviz mingw-w64-x86_64-osm-gps-map mingw-w64-x86_64-nsis mingw-w64-x86_64-python-requests mingw-w64-x86_64-adwaita-icon-theme mingw-w64-x86_64-python-networkx mingw-w64-x86_64-python-psycopg2 upx mingw-w64-x86_64-python-packaging unzip mingw-w64-x86_64-python-nose mingw-w64-x86_64-python-wheel
 pacman -S --needed --noconfirm mingw-w64-x86_64-toolchain
 
-wget -N https://repo.msys2.org/mingw/mingw64/mingw-w64-x86_64-python-cx-freeze-6.15.9-1-any.pkg.tar.zst
+wget --no-verbose -N https://repo.msys2.org/mingw/mingw64/mingw-w64-x86_64-python-cx-freeze-6.15.9-1-any.pkg.tar.zst
 pacman -U --needed --noconfirm mingw-w64-x86_64-python-cx-freeze-6.15.9-1-any.pkg.tar.zst
 
-wget -N https://github.com/bpisoj/MINGW-packages/releases/download/v5.0/mingw-w64-x86_64-db-6.0.30-1-any.pkg.tar.xz
+wget --no-verbose -N https://github.com/bpisoj/MINGW-packages/releases/download/v5.0/mingw-w64-x86_64-db-6.0.30-1-any.pkg.tar.xz
 pacman -U --needed --noconfirm mingw-w64-x86_64-db-6.0.30-1-any.pkg.tar.xz
 
 pacman -S --needed --noconfirm  mingw-w64-x86_64-python-bsddb3
@@ -61,16 +61,16 @@ dicts=(
 for dict in "${dicts[@]}"; do
     dir=${dict%:*}
     lang=${dict#*:}
-    wget ${rootdir}${dir}/index.aff
+    wget --no-verbose ${rootdir}${dir}/index.aff
     mv index.aff ${lang}.aff
-    wget ${rootdir}${dir}/index.dic
+    wget --no-verbose ${rootdir}${dir}/index.dic
     mv index.dic ${lang}.dic
 done
 popd
 
 mkdir -p /mingw64/share/enchant/voikko
 pushd /mingw64/share/enchant/voikko
-wget -N https://www.puimula.org/htp/testing/voikko-snapshot-v5/dict.zip
+wget --no-verbose -N https://www.puimula.org/htp/testing/voikko-snapshot-v5/dict.zip
 unzip -o dict.zip
 rm dict.zip
 popd
