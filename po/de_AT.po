@@ -31,16 +31,16 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-06-19 19:09+0000\n"
+"PO-Revision-Date: 2024-07-20 03:09+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
-"Language-Team: German (Austria) <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/de_AT/>\n"
+"Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/de_AT/>\n"
 "Language: de_AT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6-rc\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -1970,7 +1970,7 @@ msgid ""
 "Use the --force-unlock option if you are sure that the database is not in "
 "use."
 msgstr ""
-"Verwende die Funktion --force-unlock wenn du dir sicher bist, dass die "
+"Verwende die Option --force-unlock wenn du dir sicher bist, dass die "
 "Datenbank aktuell nicht verwendet wird."
 
 #: ../gramps/cli/grampscli.py:348
@@ -32361,16 +32361,12 @@ msgid "Father lineage for %s"
 msgstr "Väterliche Abstammungslinie von %s"
 
 #: ../gramps/plugins/quickview/lineage.py:57
-#, fuzzy
-#| msgid ""
-#| "This report shows the father lineage, also called patronymic lineage or Y-"
-#| "line. People in this lineage all share the same Y-chromosome."
 msgid ""
 "This report shows the father lineage, also called the patrilineal lineage or "
 "Y-line. People in this lineage all share the same Y-chromosomes."
 msgstr ""
-"Dieser Bericht zeigt die väterliche Linie, auch patronymische oder Y-Linie "
-"genannt. Personen in dieser Linie haben alle das gleiche Y-Chromosom."
+"Dieser Bericht zeigt die väterliche Abstammungslinie, auch patrilineare oder "
+"Y-Linie genannt. Personen in dieser Linie haben alle das gleiche Y-Chromosom."
 
 #: ../gramps/plugins/quickview/lineage.py:65
 msgid "Name Father"
@@ -32392,19 +32388,14 @@ msgid "Mother lineage for %s"
 msgstr "Mütterliche Abstammungslinie von %s"
 
 #: ../gramps/plugins/quickview/lineage.py:91
-#, fuzzy
-#| msgid ""
-#| "This report shows the mother lineage, also called matronymic lineage "
-#| "mtDNA lineage. People in this lineage all share the same Mitochondrial "
-#| "DNA (mtDNA)."
 msgid ""
 "This report shows the mother lineage, also called the matrilineal lineage "
 "mtDNA lineage. People in this lineage all share the same Mitochondrial DNA "
 "(mtDNA)."
 msgstr ""
-"Dieser Bericht zeigt die mütterliche Linie, auch matronymische oder mtDNA-"
-"Linie genannt. Personen in dieser Linie haben alle die gleiche "
-"mitrochondriale DNA (mtDNA)."
+"Dieser Bericht zeigt die mütterliche Abstammungslinie, auch matrilineare "
+"oder mtDNA-Linie genannt. Personen in dieser Linie haben alle die gleiche "
+"mitochondriale DNA (mtDNA)."
 
 #: ../gramps/plugins/quickview/lineage.py:100
 msgid "Name Mother"
