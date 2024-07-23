@@ -2,249 +2,253 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Nick Hall <nick-h@gramps-project.org>, 2024.
+# Alexander Son <soneus72@snu.ac.kr>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-07-23 21:55+0000\n"
+"Last-Translator: Alexander Son <soneus72@snu.ac.kr>\n"
+"Language-Team: Korean <https://hosted.weblate.org/projects/gramps-project/"
+"gramps/ko/>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
-msgstr ""
+msgstr "불가리아"
 
 #: ../data/holidays.xml:52
 msgid "Canada"
-msgstr ""
+msgstr "캐나다"
 
 #: ../data/holidays.xml:84
 msgid "Catalonia"
-msgstr ""
+msgstr "카탈루냐"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
-msgstr ""
+msgstr "칠레"
 
 #: ../data/holidays.xml:124
 msgid "China"
-msgstr ""
+msgstr "중국"
 
 #: ../data/holidays.xml:127
 msgid "Croatia"
-msgstr ""
+msgstr "크로아티아"
 
 #: ../data/holidays.xml:143
 msgid "Czech Republic"
-msgstr ""
+msgstr "체코"
 
 #: ../data/holidays.xml:158
 msgid "England"
-msgstr ""
+msgstr "잉글랜드"
 
 #: ../data/holidays.xml:188
 msgid "Finland"
-msgstr ""
+msgstr "핀란드"
 
 #: ../data/holidays.xml:282
 msgid "France"
-msgstr ""
+msgstr "프랑스"
 
 #: ../data/holidays.xml:318
 msgid "Germany"
-msgstr ""
+msgstr "독일"
 
 #: ../data/holidays.xml:335
 msgid "Japan"
-msgstr ""
+msgstr "일본"
 
 #: ../data/holidays.xml:358
 msgid "Jewish Holidays"
-msgstr ""
+msgstr "유대교 절기"
 
 #: ../data/holidays.xml:359
 msgid "Purim"
-msgstr ""
+msgstr "부림절"
 
 #: ../data/holidays.xml:360
 msgid "Passover"
-msgstr ""
+msgstr "유월절"
 
 #: ../data/holidays.xml:361
 msgid "2 of Passover"
-msgstr ""
+msgstr "유월절 2일"
 
 #: ../data/holidays.xml:362
 msgid "3 of Passover"
-msgstr ""
+msgstr "유월절 3일"
 
 #: ../data/holidays.xml:363
 msgid "4 of Passover"
-msgstr ""
+msgstr "유월절 4일"
 
 #: ../data/holidays.xml:364
 msgid "5 of Passover"
-msgstr ""
+msgstr "유월절 5일"
 
 #: ../data/holidays.xml:365
 msgid "6 of Passover"
-msgstr ""
+msgstr "유월절 6일"
 
 #: ../data/holidays.xml:366
 msgid "7 of Passover"
-msgstr ""
+msgstr "유월절 7일"
 
 #: ../data/holidays.xml:367
 msgid "Shavuot"
-msgstr ""
+msgstr "칠칠절"
 
 #: ../data/holidays.xml:368
 msgid "Rosh Ha'Shana"
-msgstr ""
+msgstr "나팔절"
 
 #: ../data/holidays.xml:369
 msgid "Rosh Ha'Shana 2"
-msgstr ""
+msgstr "나팔절 2"
 
 #: ../data/holidays.xml:370
 msgid "Yom Kippur"
-msgstr ""
+msgstr "속죄일"
 
 #: ../data/holidays.xml:371
 msgid "Sukot"
-msgstr ""
+msgstr "초막절"
 
 #: ../data/holidays.xml:372
 msgid "2 of Sukot"
-msgstr ""
+msgstr "초막절 2일"
 
 #: ../data/holidays.xml:373
 msgid "3 of Sukot"
-msgstr ""
+msgstr "초막절 3일"
 
 #: ../data/holidays.xml:374
 msgid "4 of Sukot"
-msgstr ""
+msgstr "초막절 4일"
 
 #: ../data/holidays.xml:375
 msgid "5 of Sukot"
-msgstr ""
+msgstr "초막절 5일"
 
 #: ../data/holidays.xml:376
 msgid "6 of Sukot"
-msgstr ""
+msgstr "초막절 6일"
 
 #: ../data/holidays.xml:377
 msgid "7 of Sukot"
-msgstr ""
+msgstr "초막절 7일"
 
 #: ../data/holidays.xml:378
 msgid "Simhat Tora"
-msgstr ""
+msgstr "토라의 기쁨"
 
 #: ../data/holidays.xml:379
 msgid "Hanuka"
-msgstr ""
+msgstr "하누카"
 
 #: ../data/holidays.xml:380
 msgid "2 of Hanuka"
-msgstr ""
+msgstr "하누카 2일"
 
 #: ../data/holidays.xml:381
 msgid "3 of Hanuka"
-msgstr ""
+msgstr "하누카 3일"
 
 #: ../data/holidays.xml:382
 msgid "4 of Hanuka"
-msgstr ""
+msgstr "하누카 4일"
 
 #: ../data/holidays.xml:383
 msgid "5 of Hanuka"
-msgstr ""
+msgstr "하누카 5일"
 
 #: ../data/holidays.xml:384
 msgid "6 of Hanuka"
-msgstr ""
+msgstr "하누카 6일"
 
 #: ../data/holidays.xml:385
 msgid "7 of Hanuka"
-msgstr ""
+msgstr "하누카 7일"
 
 #: ../data/holidays.xml:386
 msgid "8 of Hanuka"
-msgstr ""
+msgstr "하누카 8일"
 
 #: ../data/holidays.xml:388
 msgid "Italy"
-msgstr ""
+msgstr "이탈리아"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
-msgstr ""
+msgstr "뉴질랜드"
 
 #: ../data/holidays.xml:418
 msgid "Russia"
-msgstr ""
+msgstr "러시아"
 
 #: ../data/holidays.xml:434
 msgid "Serbia"
-msgstr ""
+msgstr "세르비아"
 
 #: ../data/holidays.xml:449
 msgid "Serbia (Latin)"
-msgstr ""
+msgstr "세르비아(라틴)"
 
 #: ../data/holidays.xml:464
 msgid "Slovakia"
-msgstr ""
+msgstr "슬로바키아"
 
 #: ../data/holidays.xml:481 ../gramps/plugins/mapservices/eniroswedenmap.py:49
 msgid "Sweden"
-msgstr ""
+msgstr "스웨덴"
 
 #: ../data/holidays.xml:508
 msgid "Turkey"
-msgstr ""
+msgstr "터키"
 
 #: ../data/holidays.xml:536
 msgid "Ukraine"
-msgstr ""
+msgstr "우크라이나"
 
 #: ../data/holidays.xml:563
 msgid "United States of America"
-msgstr ""
+msgstr "미국"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:3
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:4
 msgid "Gramps"
-msgstr ""
+msgstr "그램프스"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:4
 msgid "Genealogy System"
-msgstr ""
+msgstr "족보"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:6
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:5
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
-msgstr ""
+msgstr "족보 정보 관리, 족보 연구 및 분석 수행"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:12
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
-msgstr ""
+msgstr "족보;계보;연구;가계도;GEDCOM;"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:7
 #: ../gramps/gen/const.py:255
 msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
-msgstr ""
+msgstr "그램프스는 초보자도 쓸 수 있을 정도로 직관적이면서 전문 연구자가 필요한 "
+"기능을 완벽하게 갖춘 족보 프로그램이다."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:8
 msgid ""
@@ -252,16 +256,19 @@ msgid ""
 "individual as well as the complex relationships between various people, "
 "places and events."
 msgstr ""
+"이 프로그램은 여러 다양한 사람, 장소와 사건 사이의 복잡한 관계도 나열하지만 "
+"개개인의 일생을 더 세밀하게 많이 기록할 수 있게 해 준다."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:9
 msgid ""
 "All of your research is kept organized, searchable and as precise as you "
 "need it to be."
-msgstr ""
+msgstr "귀하가 수행하는 연구는 정리 및 검색 가능할 것이고 또 요구만큼 정확하게 "
+"유지될 것이다."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:13
 msgid "Gramps Development Team"
-msgstr ""
+msgstr "그램프스 개발팀"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:30
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:227
@@ -270,7 +277,7 @@ msgstr ""
 #: ../gramps/plugins/view/view.gpr.py:135
 #: ../gramps/plugins/webreport/person.py:1681
 msgid "Pedigree"
-msgstr ""
+msgstr "유래"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:34
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:165
