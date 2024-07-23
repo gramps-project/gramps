@@ -48,8 +48,8 @@ msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-04-28 11:07+0000\n"
-"Last-Translator: Jean-Marc <m.balthazar@posteo.net>\n"
+"PO-Revision-Date: 2024-07-20 03:09+0000\n"
+"Last-Translator: Emmanuel Vallois <emmanuel@vallois.name>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -57,7 +57,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Weblate 5.5.1\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -6426,7 +6426,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_multiplemarriages.py:44
 msgid "People with multiple marriage records"
-msgstr "Individus ayant contractés plusieurs mariages"
+msgstr "Individus ayant contracté plusieurs mariages"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/person/_multiplemarriages.py:45
@@ -25728,12 +25728,12 @@ msgstr "Gramplet fournissant un filtre sur la note"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1316
 #: ../gramps/plugins/textreport/recordsreport.py:140
 msgid "Records"
-msgstr "Enregistrements"
+msgstr "Records"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1306
 #: ../gramps/plugins/textreport/textplugins.gpr.py:419
 msgid "Shows some interesting records about people and families"
-msgstr "Affiche des enregistrements intéressants sur les individus et familles"
+msgstr "Affiche des records intéressants sur les individus et familles"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1323
 msgid "Person To Do"
@@ -36353,7 +36353,7 @@ msgstr "Produit un index alphabétique pour les rapports livre."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:418
 msgid "Records Report"
-msgstr "Rapport d'enregistrements"
+msgstr "Rapport de records"
 
 # master
 #: ../gramps/plugins/textreport/textplugins.gpr.py:440
@@ -37329,10 +37329,10 @@ msgstr ""
 "Gramps. Une distinction importante doit être faite entre un objet medium de "
 "Gramps et son fichier.\n"
 "\n"
-"L'objet medium de Gramps est un ensemble de données sur un fichier medium : "
+"L'objet medium de Gramps est un ensemble de données sur un fichier medium : "
 "son nom de fichier et/ou son chemin, sa description, son identifiant, ses "
-"notes, ses références de source, etc. Ces données %(bold_start)sne sont pas "
-"comprises dans le fichier lui-même%(bold_end)s.\n"
+"notes, ses références de source, etc. Ces données %(bold_start)sn’incluent "
+"pas le fichier lui-même%(bold_end)s.\n"
 "\n"
 "Les fichiers contenant une image, du son, de la vidéo, etc. existent "
 "séparément sur votre disque dur. Ces fichiers ne sont pas gérés par Gramps "
