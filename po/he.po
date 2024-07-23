@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-06-07 18:11+0000\n"
+"PO-Revision-Date: 2024-07-23 21:55+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -12157,7 +12157,7 @@ msgstr "תאריך 'לפני', טווח שנים: (תאריך - #)"
 
 #: ../gramps/gui/configure.py:1909
 msgid "Maximum age probably alive"
-msgstr "גיל מרביל כנראה בחיים"
+msgstr "גיל מרבי ל'כנראה בחיים'"
 
 #: ../gramps/gui/configure.py:1917
 msgid "Maximum sibling age difference"
