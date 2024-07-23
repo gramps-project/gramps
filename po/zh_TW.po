@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-07-10 09:09+0000\n"
+"PO-Revision-Date: 2024-07-23 21:55+0000\n"
 "Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/zh_Hant/>\n"
@@ -27024,7 +27024,7 @@ msgstr "顏色"
 
 #: ../gramps/plugins/lib/libgedcom.py:745
 msgid "Height"
-msgstr "高度"
+msgstr "身高"
 
 #: ../gramps/plugins/lib/libgedcom.py:746
 msgid "Initiatory (LDS)"
