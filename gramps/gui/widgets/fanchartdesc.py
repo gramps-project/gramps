@@ -661,7 +661,7 @@ class FanChartDescWidget(FanChartBaseWidget):
         # find what person is in this position:
         selected = None
         if not (generation is None) and generation > 0:
-            selected = self.personpos_at_angle(generation, rads, btype)
+            selected = self.personpos_at_angle_btype(generation, rads, btype)
         elif generation == -2:
             for idx, (start, stop, dummy) in enumerate(self.angle[generation]):
                 if self.radian_in_bounds(start, raw_rads, stop):
@@ -693,7 +693,7 @@ class FanChartDescWidget(FanChartBaseWidget):
             self.draw_innerring(ctx, data[0], data[1], startangle, angleinc)
             startangle += angleinc
 
-    def personpos_at_angle(self, generation, rads, btype):
+    def personpos_at_angle_btype(self, generation, rads, btype):
         """
         returns the person in generation generation at angle.
         """

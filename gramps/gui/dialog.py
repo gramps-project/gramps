@@ -18,6 +18,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+
 # -------------------------------------------------------------------------
 #
 # Standard python modules
@@ -48,14 +49,16 @@ from gi.repository import GdkPixbuf
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
-from gramps.gen.const import ICON, URL_BUGHOME
+from gramps.gen.const import ICON as ICON_PATH, URL_BUGHOME
 from gramps.gen.config import config
 from gramps.gen.constfunc import is_quartz
 from .glade import Glade
+
 from .display import display_url
+from .glade import Glade
 
 try:
-    ICON = GdkPixbuf.Pixbuf.new_from_file(ICON)
+    ICON = GdkPixbuf.Pixbuf.new_from_file(ICON_PATH)
 except:
     ICON = None
 
@@ -678,5 +681,5 @@ if __name__ == "__main__":
     import sys
 
     # fall back to root logger for testing
-    _LOG = logging
+    _LOG = logging.getLogger()
     sys.exit(main(sys.argv))
