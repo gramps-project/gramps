@@ -41,7 +41,10 @@ pacman -S --needed --noconfirm \
     upx
 pacman -S --needed --noconfirm mingw-w64-x86_64-toolchain
 
-wget -N https://github.com/bpisoj/MINGW-packages/releases/download/v5.0/mingw-w64-x86_64-db-6.0.30-1-any.pkg.tar.xz
+wget --no-verbose -N https://repo.msys2.org/mingw/mingw64/mingw-w64-x86_64-python-cx-freeze-6.15.9-1-any.pkg.tar.zst
+pacman -U --needed --noconfirm mingw-w64-x86_64-python-cx-freeze-6.15.9-1-any.pkg.tar.zst
+
+wget --no-verbose -N https://github.com/bpisoj/MINGW-packages/releases/download/v5.0/mingw-w64-x86_64-db-6.0.30-1-any.pkg.tar.xz
 pacman -U --needed --noconfirm mingw-w64-x86_64-db-6.0.30-1-any.pkg.tar.xz
 
 pacman -S --needed --noconfirm  mingw-w64-x86_64-python-bsddb3
@@ -92,16 +95,16 @@ dicts=(
 for dict in "${dicts[@]}"; do
     dir=${dict%:*}
     lang=${dict#*:}
-    wget ${rootdir}${dir}/index.aff
+    wget --no-verbose ${rootdir}${dir}/index.aff
     mv index.aff ${lang}.aff
-    wget ${rootdir}${dir}/index.dic
+    wget --no-verbose ${rootdir}${dir}/index.dic
     mv index.dic ${lang}.dic
 done
 popd
 
 mkdir -p /mingw64/share/enchant/voikko
 pushd /mingw64/share/enchant/voikko
-wget -N https://www.puimula.org/htp/testing/voikko-snapshot-v5/dict.zip
+wget --no-verbose -N https://www.puimula.org/htp/testing/voikko-snapshot-v5/dict.zip
 unzip -o dict.zip
 rm dict.zip
 popd

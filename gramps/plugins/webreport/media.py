@@ -42,7 +42,6 @@ Classe:
 # ------------------------------------------------
 # python modules
 # ------------------------------------------------
-import gc
 import os
 import shutil
 import tempfile
@@ -150,7 +149,6 @@ class MediaPages(BasePage):
             total = len(sorted_media_handles)
             index = 1
             for handle in sorted_media_handles:
-                gc.collect()  # Reduce memory usage when there are many images.
                 if index == media_count:
                     next_ = None
                 elif index < total:
@@ -176,7 +174,6 @@ class MediaPages(BasePage):
             prev = sorted_media_handles[total_m - 1] if total_m > 0 else 0
             if total > 0:
                 for media_handle in self.unused_media_handles:
-                    gc.collect()  # Reduce memory usage when many images.
                     if index == media_count:
                         next_ = None
                     else:
@@ -318,7 +315,6 @@ class MediaPages(BasePage):
                         for media_handle in self.unused_media_handles:
                             gmfh = self.r_db.get_media_from_handle
                             media = gmfh(media_handle)
-                            gc.collect()  # Reduce memory usage when many images.
                             trow += Html("tr")
                             media_data_row = [
                                 [index, "ColumnRowLabel"],

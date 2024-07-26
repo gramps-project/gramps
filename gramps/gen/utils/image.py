@@ -186,8 +186,9 @@ def image_size(source):
         import imagesize
 
         return imagesize.get(source)
-    except (ImportError, FileNotFoundError):
-        # python-imagesize is not installed or the file does not exist.
+    except (ImportError, FileNotFoundError, ValueError):
+        # python-imagesize is not installed, the file does not exist, or
+        # the size cannot be determined by imagesize.
         # So Trying to get image size with Gdk.
         try:
             img = GdkPixbuf.Pixbuf.new_from_file(source)

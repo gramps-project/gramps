@@ -110,6 +110,7 @@ class CairoDocgen(libcairodoc.CairoDoc):
                 fontmap = PangoCairo.font_map_new()
                 fontmap.set_resolution(DPI)
                 pango_context = fontmap.create_context()
+                pango_context.set_round_glyph_positions(False)
                 options = cairo.FontOptions()
                 options.set_hint_metrics(cairo.HINT_METRICS_OFF)
                 if is_quartz():

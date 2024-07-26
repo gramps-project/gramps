@@ -161,12 +161,8 @@ def _raw_full_surname(raw_surn_data_list):
     """method for the 'l' symbol: full surnames"""
     result = ""
     for raw_surn_data in raw_surn_data_list:
-        result += "%s %s %s " % (
-            raw_surn_data[_PREFIX_IN_LIST],
-            raw_surn_data[_SURNAME_IN_LIST],
-            raw_surn_data[_CONNECTOR_IN_LIST],
-        )
-    return " ".join(result.split()).strip()
+        result += __format_raw_surname(raw_surn_data)
+    return result.strip()
 
 
 def _raw_primary_surname(raw_surn_data_list):
@@ -189,12 +185,7 @@ def _raw_primary_surname(raw_surn_data_list):
             ):
                 return ""
             else:
-                result = "%s %s %s" % (
-                    raw_surn_data[_PREFIX_IN_LIST],
-                    raw_surn_data[_SURNAME_IN_LIST],
-                    raw_surn_data[_CONNECTOR_IN_LIST],
-                )
-                return " ".join(result.split())
+                return __format_raw_surname(raw_surn_data).strip()
     return ""
 
 
@@ -265,12 +256,7 @@ def _raw_patro_surname(raw_surn_data_list):
             raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINPATRO
             or raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINMATRO
         ):
-            result = "%s %s %s" % (
-                raw_surn_data[_PREFIX_IN_LIST],
-                raw_surn_data[_SURNAME_IN_LIST],
-                raw_surn_data[_CONNECTOR_IN_LIST],
-            )
-            return " ".join(result.split())
+            return __format_raw_surname(raw_surn_data).strip()
     return ""
 
 
@@ -321,12 +307,8 @@ def _raw_nonpatro_surname(raw_surn_data_list):
             and raw_surn_data[_TYPE_IN_LIST][0] != _ORIGINPATRO
             and raw_surn_data[_TYPE_IN_LIST][0] != _ORIGINMATRO
         ):
-            result += "%s %s %s " % (
-                raw_surn_data[_PREFIX_IN_LIST],
-                raw_surn_data[_SURNAME_IN_LIST],
-                raw_surn_data[_CONNECTOR_IN_LIST],
-            )
-    return " ".join(result.split()).strip()
+            result += __format_raw_surname(raw_surn_data)
+    return result.strip()
 
 
 def _raw_nonprimary_surname(raw_surn_data_list):
@@ -334,13 +316,8 @@ def _raw_nonprimary_surname(raw_surn_data_list):
     result = ""
     for raw_surn_data in raw_surn_data_list:
         if not raw_surn_data[_PRIMARY_IN_LIST]:
-            result = "%s %s %s %s" % (
-                result,
-                raw_surn_data[_PREFIX_IN_LIST],
-                raw_surn_data[_SURNAME_IN_LIST],
-                raw_surn_data[_CONNECTOR_IN_LIST],
-            )
-    return " ".join(result.split())
+            result += __format_raw_surname(raw_surn_data)
+    return result.strip()
 
 
 def _raw_prefix_surname(raw_surn_data_list):
@@ -373,7 +350,23 @@ def cleanup_name(namestring):
         else:
             result += " " + val
 
-    result = result.replace(" - ", "-")
+    return result
+
+
+def __format_raw_surname(raw_surn_data):
+    """
+    Return a formatted string representing one surname part.
+
+    If the connector is a hyphen, don't pad it with spaces.
+    """
+    result = raw_surn_data[_PREFIX_IN_LIST]
+    if result:
+        result += " "
+    result += raw_surn_data[_SURNAME_IN_LIST]
+    if result and raw_surn_data[_CONNECTOR_IN_LIST] != "-":
+        result += " %s " % raw_surn_data[_CONNECTOR_IN_LIST]
+    else:
+        result += raw_surn_data[_CONNECTOR_IN_LIST]
     return result
 
 

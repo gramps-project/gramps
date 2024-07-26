@@ -293,8 +293,12 @@ class UpdatesPage(BasePage):
 
         def sort_on_change(handle):
             """sort records based on the last change time"""
-            obj = fct(handle)
-            timestamp = obj.get_change_time()
+            try:
+                obj = fct(handle)
+                timestamp = obj.get_change_time()
+            except exception:
+                print("In sort :", handle, " not found for", object_type)
+                timestamp = 0
             return timestamp
 
         if object_type == Person:
@@ -309,13 +313,13 @@ class UpdatesPage(BasePage):
             fct = self.report.database.get_place_from_handle
             fct_link = self.place_link
         elif object_type == Source:
-            fct = self.report.database.get_place_from_handle
+            fct = self.report.database.get_source_from_handle
             fct_link = self.source_link
         elif object_type == Repository:
-            fct = self.report.database.get_place_from_handle
+            fct = self.report.database.get_repository_from_handle
             fct_link = self.repository_link
         elif object_type == Media:
-            fct = self.report.database.get_place_from_handle
+            fct = self.report.database.get_media_from_handle
         obj_list = sorted(
             self.report.obj_dict[object_type], key=sort_on_change, reverse=True
         )
@@ -323,7 +327,11 @@ class UpdatesPage(BasePage):
             for handle in obj_list:
                 date = obj = None
                 name = ""
-                obj = fct(handle)
+                try:
+                    obj = fct(handle)
+                except exception:
+                    print("Handle not found:", handle, " not found for", object_type)
+                    continue
                 if object_type == Person:
                     name = fct_link(handle)
                 elif object_type == Family:

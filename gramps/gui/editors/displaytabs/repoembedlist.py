@@ -65,7 +65,7 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
         (_("ID"), 0, 75, TEXT_COL, -1, None),
-        (_("Title"), 1, 200, TEXT_COL, -1, None),
+        (_("Name"), 1, 200, TEXT_COL, -1, None),
         (_("Call Number"), 2, 125, TEXT_COL, -1, None),
         (_("Type"), 3, 100, TEXT_COL, -1, None),
         (_("Private"), 4, 30, ICON_COL, -1, "gramps-lock"),

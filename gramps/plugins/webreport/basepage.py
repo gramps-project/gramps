@@ -2430,7 +2430,7 @@ class BasePage:
             if "image" in mime_type:
                 self.max_img += 1
         photolist_ordered = []
-        for photoref in copy.copy(object_.get_media_list()):
+        for photoref in copy.copy(photolist):
             if photoref.ref in photolist_handles:
                 photo = photolist_handles[photoref.ref]
                 photolist_ordered.append(photo)

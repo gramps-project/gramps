@@ -123,8 +123,8 @@ class DateParserZH_TW(DateParser):
         This method compiles regular expression strings for matching dates.
         """
         DateParser.init_strings(self)
-        _span_1 = ["自"]
-        _span_2 = ["至"]
+        _span_1 = ["自", "從"]
+        _span_2 = ["至", "到"]
         _range_1 = ["介於"]
         _range_2 = ["與"]
         _range_3 = ["之間"]
