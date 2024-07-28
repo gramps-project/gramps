@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-07-23 21:55+0000\n"
+"PO-Revision-Date: 2024-07-26 03:09+0000\n"
 "Last-Translator: Alexander Son <soneus72@snu.ac.kr>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ko/>\n"
@@ -283,7 +283,7 @@ msgstr "유래"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:165
 #: ../gramps/plugins/view/view.gpr.py:168
 msgid "Descendant Fan"
-msgstr ""
+msgstr "후손 확산도"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:38
 #: ../gramps/plugins/importer/importxml.py:349
@@ -295,13 +295,13 @@ msgstr ""
 #: ../gramps/plugins/view/view.gpr.py:227
 #: ../gramps/plugins/webreport/updates.py:106
 msgid "People"
-msgstr ""
+msgstr "민족"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:42
 #: ../gramps/plugins/view/relview.py:148 ../gramps/plugins/view/view.gpr.py:119
 #: ../gramps/plugins/view/view.gpr.py:127
 msgid "Relationships"
-msgstr ""
+msgstr "관계"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:46
 #: ../gramps/gen/lib/person.py:185 ../gramps/gui/clipboard.py:723
@@ -343,23 +343,23 @@ msgstr ""
 #: ../gramps/plugins/webreport/family.py:315
 #: ../gramps/plugins/webreport/person.py:1574
 msgid "Person"
-msgstr ""
+msgstr "사람"
 
 #: ../data/org.gramps_project.Gramps.xml.in:6
 msgid "Gramps database"
-msgstr ""
+msgstr "그램프스 데이타베이스"
 
 #: ../data/org.gramps_project.Gramps.xml.in:10
 msgid "Gramps package"
-msgstr ""
+msgstr "그램프스 팩키지"
 
 #: ../data/org.gramps_project.Gramps.xml.in:14
 msgid "Gramps XML database"
-msgstr ""
+msgstr "그램프스 XML 데이타베이스"
 
 #: ../data/org.gramps_project.Gramps.xml.in:22
 msgid "GeneWeb source file"
-msgstr ""
+msgstr "젠웹 소스 파일"
 
 #: ../data/tips.xml:4
 msgid ""
@@ -368,6 +368,10 @@ msgid ""
 "the level of confidence in a date and even choose between seven different "
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
+"<b>날짜 작업</b><br/>\"2000년 1월 4일에서 2003년 3월 20일 사이\" 형식을 "
+"사용하여 날짜 범위를 제공할 수 있습니다. 날짜에 대한 신뢰 수준을 표시할 수도 "
+"있고 7가지 달력 중에서 선택할 수도 있습니다. 사건 편집기의 날짜 필드 옆에 "
+"있는 버튼을 사용해 보세요."
 
 #: ../data/tips.xml:6
 msgid ""
