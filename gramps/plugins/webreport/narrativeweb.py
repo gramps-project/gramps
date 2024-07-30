@@ -215,6 +215,9 @@ class NavWebReport(Report):
         # create an event pages or not?
         self.inc_events = self.options["inc_events"]
 
+        # Include other roles to an event?
+        self.inc_other_roles = self.options["inc_other_roles"]
+
         # create places pages or not?
         self.inc_places = self.options["inc_places"]
 
@@ -2554,6 +2557,10 @@ class NavWebOptions(MenuReportOptions):
         inc_events = BooleanOption(_("Include event pages"), False)
         inc_events.set_help(_("Add a complete events list and relevant pages or not"))
         addopt("inc_events", inc_events)
+
+        inc_other_roles = BooleanOption(_("Include other roles"), False)
+        inc_other_roles.set_help(_("Include persons with other roles to an event"))
+        addopt("inc_other_roles", inc_other_roles)
 
         inc_places = BooleanOption(_("Include place pages"), False)
         inc_places.set_help(_("Whether or not to include the place pages."))
