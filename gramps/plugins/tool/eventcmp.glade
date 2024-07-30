@@ -243,8 +243,8 @@
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="halign">end</property>
-                <property name="margin-left">5</property>
-                <property name="margin-right">5</property>
+                <property name="margin-start">5</property>
+                <property name="margin-end">5</property>
                 <property name="label" translatable="yes">_Filter:</property>
                 <property name="use-underline">True</property>
                 <property name="justify">center</property>

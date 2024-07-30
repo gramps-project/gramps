@@ -149,8 +149,8 @@
               <object class="GtkLabel" id="title1">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="margin-left">5</property>
-                <property name="margin-right">5</property>
+                <property name="margin-start">5</property>
+                <property name="margin-end">5</property>
                 <property name="margin-top">5</property>
                 <property name="margin-bottom">5</property>
                 <property name="use-markup">True</property>
@@ -319,7 +319,7 @@
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-left">12</property>
+                            <property name="margin-start">12</property>
                             <property name="use-underline">True</property>
                             <property name="draw-indicator">True</property>
                           </object>
@@ -336,7 +336,7 @@
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-left">12</property>
+                            <property name="margin-start">12</property>
                             <property name="use-underline">True</property>
                             <property name="draw-indicator">True</property>
                             <property name="group">roman</property>
@@ -368,7 +368,7 @@
                           <object class="GtkSpinButton" id="size">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
-                            <property name="margin-left">12</property>
+                            <property name="margin-start">12</property>
                             <property name="adjustment">adjustment7</property>
                             <property name="climb-rate">1</property>
                             <property name="numeric">True</property>
@@ -436,7 +436,7 @@
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-left">12</property>
+                            <property name="margin-start">12</property>
                             <property name="use-underline">True</property>
                             <property name="draw-indicator">True</property>
                           </object>
@@ -453,7 +453,7 @@
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-left">12</property>
+                            <property name="margin-start">12</property>
                             <property name="use-underline">True</property>
                             <property name="draw-indicator">True</property>
                           </object>
@@ -470,7 +470,7 @@
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-left">12</property>
+                            <property name="margin-start">12</property>
                             <property name="use-underline">True</property>
                             <property name="draw-indicator">True</property>
                           </object>
@@ -497,7 +497,7 @@
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
-                            <property name="margin-left">12</property>
+                            <property name="margin-start">12</property>
                           </object>
                           <packing>
                             <property name="left-attach">0</property>
@@ -634,7 +634,7 @@
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-left">12</property>
+                            <property name="margin-start">12</property>
                             <property name="label" translatable="yes">First li_ne:</property>
                             <property name="use-underline">True</property>
                             <property name="justify">center</property>
@@ -689,7 +689,7 @@
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-left">12</property>
+                            <property name="margin-start">12</property>
                             <property name="label" translatable="yes">R_ight:</property>
                             <property name="use-underline">True</property>
                             <property name="justify">center</property>
@@ -705,7 +705,7 @@
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-left">12</property>
+                            <property name="margin-start">12</property>
                             <property name="label" translatable="yes">L_eft:</property>
                             <property name="use-underline">True</property>
                             <property name="justify">center</property>
@@ -740,7 +740,7 @@
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-left">12</property>
+                            <property name="margin-start">12</property>
                             <property name="label" translatable="yes">Abo_ve:</property>
                             <property name="use-underline">True</property>
                             <property name="justify">center</property>
@@ -756,7 +756,7 @@
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-left">12</property>
+                            <property name="margin-start">12</property>
                             <property name="label" translatable="yes">Belo_w:</property>
                             <property name="use-underline">True</property>
                             <property name="justify">center</property>
@@ -887,7 +887,7 @@
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-left">12</property>
+                            <property name="margin-start">12</property>
                             <property name="label" translatable="yes">_Padding:</property>
                             <property name="use-underline">True</property>
                             <property name="justify">center</property>
@@ -958,7 +958,7 @@
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
-                            <property name="margin-left">12</property>
+                            <property name="margin-start">12</property>
                           </object>
                           <packing>
                             <property name="left-attach">0</property>
@@ -978,7 +978,7 @@
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">False</property>
                                 <property name="halign">center</property>
-                                <property name="margin-left">12</property>
+                                <property name="margin-start">12</property>
                                 <property name="use-underline">True</property>
                                 <property name="draw-indicator">True</property>
                               </object>
@@ -1062,7 +1062,7 @@
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">False</property>
                                 <property name="halign">center</property>
-                                <property name="margin-left">12</property>
+                                <property name="margin-start">12</property>
                                 <property name="use-underline">True</property>
                                 <property name="draw-indicator">True</property>
                               </object>
@@ -1224,7 +1224,7 @@
                           <object class="GtkBox" id="column_widths">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="margin-left">12</property>
+                            <property name="margin-start">12</property>
                             <property name="orientation">vertical</property>
                             <child>
                               <placeholder/>
@@ -1239,7 +1239,7 @@
                           <object class="GtkSpinButton" id="table_width">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
-                            <property name="margin-left">12</property>
+                            <property name="margin-start">12</property>
                             <property name="shadow-type">etched-out</property>
                             <property name="adjustment">adjustment8</property>
                             <property name="numeric">True</property>
@@ -1348,7 +1348,7 @@
                           <object class="GtkLabel" id="label29">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="margin-left">12</property>
+                            <property name="margin-start">12</property>
                             <property name="label" translatable="yes">Padding:</property>
                           </object>
                           <packing>
@@ -1379,7 +1379,7 @@
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">False</property>
                                 <property name="halign">start</property>
-                                <property name="margin-left">12</property>
+                                <property name="margin-start">12</property>
                                 <property name="draw-indicator">True</property>
                               </object>
                               <packing>
@@ -1514,7 +1514,7 @@
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-left">12</property>
+                            <property name="margin-start">12</property>
                             <property name="label" translatable="yes">Style:</property>
                           </object>
                           <packing>
@@ -1527,7 +1527,7 @@
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-left">12</property>
+                            <property name="margin-start">12</property>
                             <property name="label" translatable="yes">Width:</property>
                           </object>
                           <packing>
@@ -1540,7 +1540,7 @@
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-left">12</property>
+                            <property name="margin-start">12</property>
                             <property name="label" translatable="yes">Line:</property>
                           </object>
                           <packing>
@@ -1553,7 +1553,7 @@
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-left">12</property>
+                            <property name="margin-start">12</property>
                             <property name="label" translatable="yes">Fill:</property>
                           </object>
                           <packing>
@@ -1667,7 +1667,7 @@
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-left">12</property>
+                            <property name="margin-start">12</property>
                             <property name="label" translatable="yes">Spacing:</property>
                           </object>
                           <packing>

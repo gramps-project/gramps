@@ -115,7 +115,7 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="halign">start</property>
-                                <property name="margin-left">6</property>
+                                <property name="margin-start">6</property>
                                 <property name="label" translatable="yes">Name:</property>
                               </object>
                               <packing>
@@ -128,7 +128,7 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="halign">start</property>
-                                <property name="margin-left">6</property>
+                                <property name="margin-start">6</property>
                                 <property name="label" translatable="yes">Birth:</property>
                               </object>
                               <packing>
@@ -141,7 +141,7 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="halign">start</property>
-                                <property name="margin-left">6</property>
+                                <property name="margin-start">6</property>
                                 <property name="label" translatable="yes">Death:</property>
                               </object>
                               <packing>
@@ -382,7 +382,7 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="halign">start</property>
-                                <property name="margin-left">6</property>
+                                <property name="margin-start">6</property>
                                 <property name="label" translatable="yes">Name:</property>
                               </object>
                               <packing>
@@ -395,7 +395,7 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="halign">start</property>
-                                <property name="margin-left">6</property>
+                                <property name="margin-start">6</property>
                                 <property name="label" translatable="yes">Birth:</property>
                               </object>
                               <packing>
@@ -408,7 +408,7 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="halign">start</property>
-                                <property name="margin-left">6</property>
+                                <property name="margin-start">6</property>
                                 <property name="label" translatable="yes">Death:</property>
                               </object>
                               <packing>
@@ -693,7 +693,7 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin-left">6</property>
+                        <property name="margin-start">6</property>
                         <property name="label" translatable="yes">_ID:</property>
                         <property name="use-underline">True</property>
                         <property name="mnemonic-widget">gid</property>
@@ -756,7 +756,7 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin-left">6</property>
+                        <property name="margin-start">6</property>
                         <property name="label" translatable="yes">_Tags:</property>
                         <property name="use-underline">True</property>
                         <property name="mnemonic-widget">tag_button</property>
