@@ -69,6 +69,7 @@ _LOCALE_NAMES = {
     "is": ("Icelandic", "1252", _("Icelandic")),
     "it": ("Italian_Italy", "1252", _("Italian")),
     "ja": ("Japanese_Japan", "932", _("Japanese")),
+    "ko": ("Korean_Korea", "949", _("Korean")),
     "lt": ("Lithuanian_Lithuania", "1252", _("Lithuanian")),
     # Windows has no translation for Macedonian
     "mk": (None, None, _("Macedonian")),
