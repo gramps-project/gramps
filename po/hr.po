@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-06-28 02:44+0000\n"
+"PO-Revision-Date: 2024-07-30 19:16+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -31947,16 +31947,12 @@ msgid "Father lineage for %s"
 msgstr "Očeva loza za %s"
 
 #: ../gramps/plugins/quickview/lineage.py:57
-#, fuzzy
-#| msgid ""
-#| "This report shows the father lineage, also called patronymic lineage or Y-"
-#| "line. People in this lineage all share the same Y-chromosome."
 msgid ""
 "This report shows the father lineage, also called the patrilineal lineage or "
 "Y-line. People in this lineage all share the same Y-chromosomes."
 msgstr ""
-"Ovaj izvještaj prikazuje očevu lozu, tzv. patrilinearnu ili Y-liniju. Sve "
-"osobe u ovoj lozi dijele isti Y kromosom."
+"Ovaj izvještaj prikazuje očevu lozu, tzv. patrilinearnu ili Y-liniju. Osobe "
+"u ovoj lozi dijele isti Y kromosom."
 
 #: ../gramps/plugins/quickview/lineage.py:65
 msgid "Name Father"
@@ -31978,18 +31974,13 @@ msgid "Mother lineage for %s"
 msgstr "Majčina loza za %s"
 
 #: ../gramps/plugins/quickview/lineage.py:91
-#, fuzzy
-#| msgid ""
-#| "This report shows the mother lineage, also called matronymic lineage "
-#| "mtDNA lineage. People in this lineage all share the same Mitochondrial "
-#| "DNA (mtDNA)."
 msgid ""
 "This report shows the mother lineage, also called the matrilineal lineage "
 "mtDNA lineage. People in this lineage all share the same Mitochondrial DNA "
 "(mtDNA)."
 msgstr ""
 "Ovaj izvještaj prikazuje majčinu lozu, tzv. matrilinearnu ili mtDNK-liniju. "
-"Sve osobe u ovoj lozi dijele istu mitohondrijsku DNK (mtDNK)."
+"Osobe u ovoj lozi dijele istu mitohondrijsku DNK (mtDNK)."
 
 #: ../gramps/plugins/quickview/lineage.py:100
 msgid "Name Mother"
