@@ -13,7 +13,7 @@
 # S <sendoasojo@gmail.com>, 2021.
 # badlop <badlop@process-one.net>, 2021.
 # Mario Ruiz <marionetarh@gmail.com>, 2022.
-# Nick Hall <nick-h@gramps-project.org>, 2022.
+# Nick Hall <nick-h@gramps-project.org>, 2022, 2024.
 # Hilario Coronado <hilariofm60@gmail.com>, 2022, 2024.
 # Óscar Fernández Díaz <oscfdezdz@users.noreply.hosted.weblate.org>, 2023.
 # gallegonovato <fran-carro@hotmail.es>, 2023, 2024.
@@ -26,7 +26,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
 "PO-Revision-Date: 2024-08-01 18:10+0000\n"
-"Last-Translator: Hilario Coronado <hilariofm60@gmail.com>\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
 "Language: es\n"
@@ -11487,7 +11487,7 @@ msgstr "Anj"
 
 #: ../gramps/gen/utils/symbols.py:113
 msgid "Orthodox cross"
-msgstr "Cruz Ortodoja"
+msgstr "Cruz Ortodoxa"
 
 #: ../gramps/gen/utils/symbols.py:114
 msgid "Chi rho"
