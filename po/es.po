@@ -14,7 +14,7 @@
 # badlop <badlop@process-one.net>, 2021.
 # Mario Ruiz <marionetarh@gmail.com>, 2022.
 # Nick Hall <nick-h@gramps-project.org>, 2022.
-# Hilario Coronado <hilariofm60@gmail.com>, 2022.
+# Hilario Coronado <hilariofm60@gmail.com>, 2022, 2024.
 # Óscar Fernández Díaz <oscfdezdz@users.noreply.hosted.weblate.org>, 2023.
 # gallegonovato <fran-carro@hotmail.es>, 2023, 2024.
 # Jaime Marquínez Ferrándiz <jaime.marquinez.ferrandiz@fastmail.net>, 2024.
@@ -26,7 +26,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
 "PO-Revision-Date: 2024-08-01 18:10+0000\n"
-"Last-Translator: Jesús Martínez <weblate@jandemor.com>\n"
+"Last-Translator: Hilario Coronado <hilariofm60@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
 "Language: es\n"
@@ -102,23 +102,23 @@ msgstr "2 de Pésaj"
 
 #: ../data/holidays.xml:362
 msgid "3 of Passover"
-msgstr "3 de Pésaj"
+msgstr "3 de Pascua"
 
 #: ../data/holidays.xml:363
 msgid "4 of Passover"
-msgstr "4 de Pésaj"
+msgstr "4 de Pascua"
 
 #: ../data/holidays.xml:364
 msgid "5 of Passover"
-msgstr "5 de Pésaj"
+msgstr "5 de Pascua"
 
 #: ../data/holidays.xml:365
 msgid "6 of Passover"
-msgstr "6 de Pésaj"
+msgstr "6 de Pascua"
 
 #: ../data/holidays.xml:366
 msgid "7 of Passover"
-msgstr "7 de Pésaj"
+msgstr "7 de Pascua"
 
 #: ../data/holidays.xml:367
 msgid "Shavuot"
