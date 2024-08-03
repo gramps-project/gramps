@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-07-26 03:09+0000\n"
+"PO-Revision-Date: 2024-08-01 18:10+0000\n"
 "Last-Translator: Alexander Son <soneus72@snu.ac.kr>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ko/>\n"
@@ -226,7 +226,7 @@ msgstr "미국"
 #: ../data/org.gramps_project.Gramps.desktop.in:3
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:4
 msgid "Gramps"
-msgstr "그램프스"
+msgstr "그람프스"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:4
 msgid "Genealogy System"
@@ -7535,7 +7535,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/person.py:1941
 #: ../gramps/plugins/webreport/updates.py:120
 msgid "Events"
-msgstr ""
+msgstr "사건"
 
 #: ../gramps/gen/lib/family.py:194 ../gramps/gen/lib/person.py:248
 msgid "LDS ordinances"
@@ -8352,7 +8352,7 @@ msgstr ""
 #: ../gramps/plugins/quickview/filterbyname.py:347
 #: ../gramps/plugins/tool/reorderids.glade:835
 msgid "Repository"
-msgstr ""
+msgstr "저장소"
 
 #: ../gramps/gen/lib/reporef.py:99 ../gramps/gui/clipboard.py:524
 msgid "Repository ref"
@@ -8798,7 +8798,7 @@ msgstr ""
 #: ../gramps/gui/widgets/grampletpane.py:246
 #: ../gramps/gui/widgets/grampletpane.py:1005
 msgid "Gramplet"
-msgstr ""
+msgstr "그람플렛"
 
 #: ../gramps/gen/plug/_pluginreg.py:126
 msgid "Sidebar"
@@ -8926,7 +8926,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importprogen.glade:380
 #: ../gramps/plugins/webreport/webcal.py:531
 msgid "Default"
-msgstr ""
+msgstr "기본값"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:71
 msgid "PostScript / Helvetica"
@@ -24266,7 +24266,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:372
 msgid "place"
-msgstr ""
+msgstr "장소"
 
 #: ../gramps/plugins/importer/importcsv.py:373
 msgid "place id"
@@ -24714,7 +24714,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1526
 msgid "REFN"
-msgstr ""
+msgstr "REFN"
 
 #: ../gramps/plugins/importer/importprogen.glade:1530
 msgid ""
