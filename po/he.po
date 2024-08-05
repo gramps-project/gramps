@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-07-23 21:55+0000\n"
+"PO-Revision-Date: 2024-07-30 19:16+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -31456,15 +31456,11 @@ msgid "Father lineage for %s"
 msgstr "שושלת אב עבור %s"
 
 #: ../gramps/plugins/quickview/lineage.py:57
-#, fuzzy
-#| msgid ""
-#| "This report shows the father lineage, also called patronymic lineage or Y-"
-#| "line. People in this lineage all share the same Y-chromosome."
 msgid ""
 "This report shows the father lineage, also called the patrilineal lineage or "
 "Y-line. People in this lineage all share the same Y-chromosomes."
 msgstr ""
-"הדוח מציג את שושלת האב, המכונה גם שושלת הפטרונימית או Y-קו. אנשים בשושלת זו "
+"הדוח מציג את שושלת האב, המכונה גם שושלת פטרונימית או קו־Y. אנשים בשושלת זו "
 "חולקים את אותו כרומוזום Y."
 
 #: ../gramps/plugins/quickview/lineage.py:65
@@ -31487,18 +31483,13 @@ msgid "Mother lineage for %s"
 msgstr "שושלת האם עבור %s"
 
 #: ../gramps/plugins/quickview/lineage.py:91
-#, fuzzy
-#| msgid ""
-#| "This report shows the mother lineage, also called matronymic lineage "
-#| "mtDNA lineage. People in this lineage all share the same Mitochondrial "
-#| "DNA (mtDNA)."
 msgid ""
 "This report shows the mother lineage, also called the matrilineal lineage "
 "mtDNA lineage. People in this lineage all share the same Mitochondrial DNA "
 "(mtDNA)."
 msgstr ""
-"הדוח מציג את שושלת האם, מכונה גם שושלת מטרונימית קו־מטכונדרי. אנשי שושלת כזו "
-"חולקים כולם את אותו DNA מיטוכונדרי (mtDNA)."
+"הדוח מציג את שושלת האם, מכונה גם שושלת מטרונימית קו־מטכונדרי. אנשים בשושלת "
+"כזו חולקים כולם את אותו DNA מיטוכונדרי (mtDNA)."
 
 #: ../gramps/plugins/quickview/lineage.py:100
 msgid "Name Mother"
