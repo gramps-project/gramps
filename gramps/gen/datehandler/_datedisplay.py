@@ -82,11 +82,11 @@ class DateDisplay:
         # Translators: Full month name, day, year
         _T_("Month Day, Year"),
         # Translators: Abbreviated month name, day, year
-        _T_("MON DAY, YEAR"),
+        _T_("Mon Day, Year"),
         # Translators: Day, full month name, year
         _T_("Day Month Year"),
         # Translators: Day, abbreviated month name, year
-        _T_("DAY MON YEAR"),
+        _T_("Day Mon Year"),
     )
     """
     .. note:: Will be overridden if a locale-specific date displayer exists.
