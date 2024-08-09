@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-08-01 18:10+0000\n"
+"PO-Revision-Date: 2024-08-09 08:09+0000\n"
 "Last-Translator: Harald Herreros <h.herreros@proton.me>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/nb_NO/>\n"
@@ -7738,7 +7738,7 @@ msgstr "Emigrasjon"
 
 #: ../gramps/gen/lib/eventtype.py:210
 msgid "First Communion"
-msgstr "Første Kommunion"
+msgstr "Første nattverd"
 
 #: ../gramps/gen/lib/eventtype.py:211
 msgid "Immigration"
