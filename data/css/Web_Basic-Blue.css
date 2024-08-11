@@ -20,8 +20,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-# $Id: Web_Basic-Blue.css 15540 2010-06-07 16:32:00Z robhealey1 $
-#
+
 *************************************************
 GRAMPS Cascading Style Sheet
 Style Name: Basic Blue Stylesheet
@@ -227,6 +226,7 @@ div#header a {
     color: #FFF;
 }
 #SiteTitle {
+    width: 95%;
     margin:0;
     padding:.5em 0 0.5em 10px;
     font-size: 28px;
@@ -261,20 +261,21 @@ div#nav, #subnavigation {
 }
 div#nav ul, #subnavigation ul {
     list-style: none;
-    margin: 0px;
     padding-left: 15px;
 }
 #subnavigation ul {
     border-bottom: solid 1px #999;
 }
-div#nav ul li, #subnavigation ul li {
+div#nav.wrappernav.ltr {
     float: left;
+}
+div#nav.wrappernav.rtl {
+    float: right;
 }
 div#nav ul li a, #subnavigation ul li a {
     display: block;
     font-size: smaller;
     font-weight: bold;
-    padding: 5px;
     border-bottom: solid 1px #EEE;
 }
 div#nav ul li a:hover, #subnavigation ul li a:hover {
@@ -300,6 +301,8 @@ div#nav li.lang {
 div#nav li.lang:hover > ul {
     visibility: visible;
     opacity: 1;
+    width: 80px;
+    padding-right: 5px;
 }
 div#nav ul.lang {
     position: absolute;
@@ -380,6 +383,18 @@ button.navIcon {
     display: none;
 }
 
+div#header.rtl h1 {
+    margin-right: 40px;
+}
+div#header.rtl button {
+    float: right;
+}
+div#header.ltr h1 {
+    margin-left: 40px;
+}
+div#header.ltr button {
+    float: left;
+}
 div#header::after {
     content: "";
     clear: both;
@@ -390,6 +405,19 @@ div#header::after {
 ----------------------------------------------------- */
 #Updates table.list td.date {
     width: 20%;
+}
+
+.ltr, .ltr li {
+    float: left;
+    list-style: none;
+}
+li:not(:first-child) {
+    padding-right: 8px;
+    padding-left: 8px;
+}
+.rtl, .rtl li {
+    float: right;
+    list-style: none;
 }
 
 /* Alphabet Navigation
@@ -427,6 +455,19 @@ div#alphanav ul li a:hover {
     background-color: black;
     color: white;
 }
+div#header.rtl h1 {
+    margin-right: 40px;
+}
+div#header.rtl button {
+    float: right;
+}
+div#header.ltr h1 {
+    margin-left: 40px;
+}
+div#header.ltr button {
+    float: left;
+}
+
 
 div#nav::after {
     content: "";
@@ -451,7 +492,6 @@ div#nav::after {
         list-style: none;
         min-width: unset;
         width: 200px;
-        height: 32px;
         margin: 0;
         padding: 0;
     }
@@ -459,20 +499,36 @@ div#nav::after {
         float: unset;
         display: unset
     }
+    li:first-child {
+        padding-right: 8px;
+        padding-left: 8px;
+    }
 
     /* Start with hidden menu options */
     /* .nav li:not(:first-child) {display: none;} */
     .nav li {display: none;}
     .nav ul {display: none;}
 
+    button.navIcon.rtl {
+        text-align:right;
+    }
+    button.navIcon.ltr {
+        text-align:left;
+    }
+
     button.navIcon {
         display: block;
-        float: left;
         font-size:2.9em;
         line-height: 60px;
         border: 0px;
         color: #FFF;
         background-color: #00029D;
+    }
+    h1#SiteTitle.ltr  {
+        float: left;
+    }
+    h1#SiteTitle.rlt  {
+        float: right;
     }
 
     .nav.responsive {position: absolute; display: block; z-index: 100;}
@@ -481,14 +537,18 @@ div#nav::after {
         top: 0;
         margin-right: 10px;
     }
+    .nav.rtl.responsive li.lang {
+        text-align: right;
+    }
+    .nav.ltr.responsive li.lang {
+        text-align: left;
+    }
     .nav.responsive li {
         display: block;
-        text-align: left;
         background-color: #13A926;
         /* required by IE */
-        float: left;
         clear: both;
-        width: 200px;
+        width: 150px;
     }
 
     div#nav ul, #subnavigation ul {
@@ -503,7 +563,6 @@ div#nav::after {
     }
     .lang > .lang {
         top: 0;
-        left: 100%;
         margin-top: -6px;
         margin-left: -1px;
         -webkit-border-radius: 0 6px 6px 6px;
@@ -699,6 +758,13 @@ div.content table.tags {
     text-align: left;
     width: auto;
 }
+table.relationships.ltr tr th, table.infolist.ltr tr th, table.primobjlist.ltr tr th, table.eventlist.ltr tr th {
+    text-align: left;
+}
+table.relationships.rtl tr th, table.infolist.rtl tr th, table.primobjlist.rtl tr th, table.eventlist.rtl tr th {
+    text-align: right;
+}
+
 
 /* Places
 =================================================----- */
@@ -855,8 +921,13 @@ div#EventDetail table.eventlist tbody tr td.ColumnDate {
 #indivgallery {
     background-color: white;
 }
-#gallery .gallerycell {
+#gallery .gallerycell.ltr {
     float: left;
+}
+#gallery .gallerycell.rtl {
+    float: right;
+}
+#gallery .gallerycell {
     width: 130px;
     height: 150px;
     text-align: center;
@@ -1673,6 +1744,13 @@ div#pedigree {
     width: 100%
 }
 /* Calendar : General */
+.dropmenu.rtl li {
+    text-align: right;
+}
+.dropmenu.ltr li {
+    text-align: left;
+}
+
 .calendar {
     empty-cells:show;
     width:100%;
@@ -1900,7 +1978,7 @@ body#fullyearlinked #YearGlance tbody td:hover .date {
     border: 5px solid;
 }
 h4 button.icon {
-    width: 0.9em;
+    width: 1.9em;
     border: 0px solid;
     padding: 0;
     opacity: 1;

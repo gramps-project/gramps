@@ -22,26 +22,29 @@
 Provide merge capabilities for events.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ..lib import Person, Family, Note
 from ..db import DbTxn
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from ..errors import MergeError
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MergeEventQuery
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MergeEventQuery:
     """
     Create database query to merge two events.
     """
+
     def __init__(self, dbstate, phoenix, titanic):
         self.database = dbstate.db
         self.phoenix = phoenix
@@ -58,24 +61,20 @@ class MergeEventQuery:
 
         with DbTxn(_("Merge Event Objects"), self.database) as trans:
             self.database.commit_event(self.phoenix, trans)
-            for (class_name, handle) in self.database.find_backlink_handles(
-                    old_handle):
+            for class_name, handle in self.database.find_backlink_handles(old_handle):
                 if class_name == Person.__name__:
                     person = self.database.get_person_from_handle(handle)
-                    assert(person.has_handle_reference("Event", old_handle))
+                    assert person.has_handle_reference("Event", old_handle)
                     bri = person.birth_ref_index
                     dri = person.death_ref_index
-                    person.replace_handle_reference("Event", old_handle,
-                                                    new_handle)
-                    if person.birth_ref_index != bri and \
-                            person.birth_ref_index == -1:
+                    person.replace_handle_reference("Event", old_handle, new_handle)
+                    if person.birth_ref_index != bri and person.birth_ref_index == -1:
                         for index, ref in enumerate(person.get_event_ref_list()):
                             event = self.database.get_event_from_handle(ref.ref)
                             if event.type.is_birth() and ref.role.is_primary():
                                 person.birth_ref_index = index
                                 break
-                    if person.death_ref_index != dri and \
-                            person.death_ref_index == -1:
+                    if person.death_ref_index != dri and person.death_ref_index == -1:
                         for index, ref in enumerate(person.get_event_ref_list()):
                             event = self.database.get_event_from_handle(ref.ref)
                             if event.type.is_death() and ref.role.is_primary():
@@ -84,17 +83,17 @@ class MergeEventQuery:
                     self.database.commit_person(person, trans)
                 elif class_name == Family.__name__:
                     family = self.database.get_family_from_handle(handle)
-                    assert(family.has_handle_reference("Event", old_handle))
-                    family.replace_handle_reference("Event", old_handle,
-                                                    new_handle)
+                    assert family.has_handle_reference("Event", old_handle)
+                    family.replace_handle_reference("Event", old_handle, new_handle)
                     self.database.commit_family(family, trans)
                 elif class_name == Note.__name__:
                     note = self.database.get_note_from_handle(handle)
-                    assert(note.has_handle_reference('Event', old_handle))
-                    note.replace_handle_reference(
-                        'Event', old_handle, new_handle)
+                    assert note.has_handle_reference("Event", old_handle)
+                    note.replace_handle_reference("Event", old_handle, new_handle)
                     self.database.commit_note(note, trans)
                 else:
-                    raise MergeError("Encounter an object of type %s that has "
-                            "an event reference." % class_name)
+                    raise MergeError(
+                        "Encounter an object of type %s that has "
+                        "an event reference." % class_name
+                    )
             self.database.remove_event(old_handle, trans)

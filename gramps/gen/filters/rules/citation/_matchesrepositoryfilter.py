@@ -19,53 +19,59 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 LOG = logging.getLogger(".citation")
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import MatchesFilterBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # "Sources which reference a repository by selection"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MatchesRepositoryFilter(MatchesFilterBase):
     """Citations which have a source which references the selected repository"""
 
-    labels = [ _('Repository filter name:') ]
-    name = _('Citations with a source with a repository reference '
-                    'matching the <repository filter>')
-    description = _("Matches citations with sources with a repository "
-                    "reference that match a certain repository filter")
-    category = _('General filters')
+    labels = [_("Repository filter name:")]
+    name = _(
+        "Citations with a source with a repository reference "
+        "matching the <repository filter>"
+    )
+    description = _(
+        "Matches citations with sources with a repository "
+        "reference that match a certain repository filter"
+    )
+    category = _("General filters")
 
     # we want to have this filter show repository filters
-    namespace = 'Repository'
-
+    namespace = "Repository"
 
     def prepare(self, db, user):
         MatchesFilterBase.prepare(self, db, user)
         self.MRF_filt = self.find_filter()
 
     def apply(self, db, object):
-        if self.MRF_filt is None :
+        if self.MRF_filt is None:
             return False
 
         source_handle = object.source_handle
         source = db.get_source_from_handle(source_handle)
         repolist = [x.ref for x in source.get_reporef_list()]
         for repohandle in repolist:
-            #check if repo in repository filter
+            # check if repo in repository filter
             if self.MRF_filt.check(db, repohandle):
                 return True
         return False

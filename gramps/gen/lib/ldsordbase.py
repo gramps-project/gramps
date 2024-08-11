@@ -23,19 +23,20 @@
 LdsOrdBase class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+from .const import EQUAL, IDENTICAL
 from .ldsord import LdsOrd
-from .const import IDENTICAL, EQUAL
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# LdsOrdBase classes
+# LdsOrdBase
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class LdsOrdBase:
     """
     Base class for lds_ord-aware objects.
@@ -53,8 +54,7 @@ class LdsOrdBase:
         """
 
         if source:
-            self.lds_ord_list = [LdsOrd(lds_ord)
-                                 for lds_ord in source.lds_ord_list]
+            self.lds_ord_list = [LdsOrd(lds_ord) for lds_ord in source.lds_ord_list]
         else:
             self.lds_ord_list = []
 
@@ -99,8 +99,7 @@ class LdsOrdBase:
         if lds_ord in self.lds_ord_list:
             self.lds_ord_list.remove(lds_ord)
             return True
-        else:
-            return False
+        return False
 
     def get_lds_ord_list(self):
         """
@@ -137,7 +136,7 @@ class LdsOrdBase:
                 equi = ldsord.is_equivalent(addendum)
                 if equi == IDENTICAL:
                     break
-                elif equi == EQUAL:
+                if equi == EQUAL:
                     ldsord.merge(addendum)
                     break
             else:

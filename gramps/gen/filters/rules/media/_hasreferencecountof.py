@@ -18,27 +18,28 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._hasreferencecountbase import HasReferenceCountBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # "Media objects with a certain reference count"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasReferenceCountOf(HasReferenceCountBase):
     """Media objects with a reference count of <count>"""
 
-    name = _('Media objects with a reference count of <count>')
+    name = _("Media objects with a reference count of <count>")
     description = _("Matches media objects with a certain reference count")
-

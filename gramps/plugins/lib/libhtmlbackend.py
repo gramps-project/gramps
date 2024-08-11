@@ -21,38 +21,40 @@
 """Html and Html format management for the different reports
 """
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from xml.sax.saxutils import escape
 import os.path
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.plug.docbackend import DocBackend
 from gramps.plugins.lib.libhtml import Html, xml_lang
 from gramps.gen.errors import ReportError
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Functions
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
+
 
 def process_spaces(intext, format):
     """
@@ -69,17 +71,17 @@ def process_spaces(intext, format):
     Returns the processed text, and the number of significant
     (i.e. non-xml non-white-space) chars.
     """
-    NORMAL=1
-    SPACE=2
-    NBSP=3
-    XML=4
-    SPACEHOLD=5
+    NORMAL = 1
+    SPACE = 2
+    NBSP = 3
+    XML = 4
+    SPACEHOLD = 5
 
     sigcount = 0
     state = NORMAL
     outtext = ""
     if format == 1:
-    # Pre-formatted
+        # Pre-formatted
         for char in intext:
             if state == NORMAL:
                 if char == " ":
@@ -123,20 +125,20 @@ def process_spaces(intext, format):
                     outtext += " &nbsp;"
                     state = NORMAL
                 elif char == "<":
-                    outtext += " "+char
+                    outtext += " " + char
                     state = XML
                 else:
-                    outtext += " "+char
+                    outtext += " " + char
                     sigcount += 1
                     state = NORMAL
 
     else:
-    # format == 0 flowed
+        # format == 0 flowed
         for char in intext:
-            if char == '<' and state == NORMAL:
+            if char == "<" and state == NORMAL:
                 state = XML
                 outtext += char
-            elif char == '>' and state == XML:
+            elif char == ">" and state == XML:
                 state = NORMAL
                 outtext += char
             elif state == XML:
@@ -147,11 +149,13 @@ def process_spaces(intext, format):
 
     return [outtext, sigcount]
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # Document Backend class for html pages
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
+
 
 class HtmlBackend(DocBackend):
     """
@@ -161,31 +165,30 @@ class HtmlBackend(DocBackend):
     """
 
     STYLETAG_TO_PROPERTY = {
-        DocBackend.FONTCOLOR : 'color:%s;',
-        DocBackend.HIGHLIGHT : 'background-color:%s;',
-        DocBackend.FONTFACE  : "font-family:'%s';",
-        DocBackend.FONTSIZE  : 'font-size:%spx;',
+        DocBackend.FONTCOLOR: "color:%s;",
+        DocBackend.HIGHLIGHT: "background-color:%s;",
+        DocBackend.FONTFACE: "font-family:'%s';",
+        DocBackend.FONTSIZE: "font-size:%spx;",
     }
 
     # overwrite base class attributes, they become static var of CairoDoc
     SUPPORTED_MARKUP = [
-            DocBackend.BOLD,
-            DocBackend.ITALIC,
-            DocBackend.UNDERLINE,
-            DocBackend.FONTFACE,
-            DocBackend.FONTSIZE,
-            DocBackend.FONTCOLOR,
-            DocBackend.HIGHLIGHT,
-            DocBackend.SUPERSCRIPT,
-            DocBackend.LINK,
-            ]
+        DocBackend.BOLD,
+        DocBackend.ITALIC,
+        DocBackend.UNDERLINE,
+        DocBackend.FONTFACE,
+        DocBackend.FONTSIZE,
+        DocBackend.FONTCOLOR,
+        DocBackend.HIGHLIGHT,
+        DocBackend.SUPERSCRIPT,
+        DocBackend.LINK,
+    ]
 
     STYLETAG_MARKUP = {
-        DocBackend.BOLD        : ("<strong>", "</strong>"),
-        DocBackend.ITALIC      : ("<em>", "</em>"),
-        DocBackend.UNDERLINE   : ('<span style="text-decoration:underline;">',
-                                    "</span>"),
-        DocBackend.SUPERSCRIPT : ("<sup>", "</sup>"),
+        DocBackend.BOLD: ("<strong>", "</strong>"),
+        DocBackend.ITALIC: ("<em>", "</em>"),
+        DocBackend.UNDERLINE: ('<span style="text-decoration:underline;">', "</span>"),
+        DocBackend.SUPERSCRIPT: ("<sup>", "</sup>"),
     }
 
     ESCAPE_FUNC = lambda self: escape
@@ -212,25 +215,27 @@ class HtmlBackend(DocBackend):
         elif tagtype == DocBackend.LINK:
             return self.format_link(value)
         elif tagtype == DocBackend.FONTSIZE:
-            #size is in points
+            # size is in points
             value = str(value)
         elif tagtype == DocBackend.FONTFACE:
-            #fonts can have strange symbols in them, ' needs to be escaped
+            # fonts can have strange symbols in them, ' needs to be escaped
             value = value.replace("'", "\\'") if value else ""
-        return ('<span style="%s">' % (self.STYLETAG_TO_PROPERTY[tagtype] %
-                                       (value)),
-                '</span>')
+        return (
+            '<span style="%s">' % (self.STYLETAG_TO_PROPERTY[tagtype] % (value)),
+            "</span>",
+        )
 
     def _checkfilename(self):
         """
         Check to make sure filename satisfies the standards for this filetype
         """
-        fparts = os.path.basename(self._filename).split('.')
-        if not len(fparts) >= 2 and not (fparts[-1] == 'html' or
-                fparts[-1] == 'htm' or fparts[-1] == 'php'):
+        fparts = os.path.basename(self._filename).split(".")
+        if not len(fparts) >= 2 and not (
+            fparts[-1] == "html" or fparts[-1] == "htm" or fparts[-1] == "php"
+        ):
             self._filename = self._filename + ".htm"
-        fparts = os.path.basename(self._filename).split('.')
-        self._subdir = '.'.join(fparts[:-1])
+        fparts = os.path.basename(self._filename).split(".")
+        self._subdir = ".".join(fparts[:-1])
 
     def set_title(self, title):
         """
@@ -246,40 +251,35 @@ class HtmlBackend(DocBackend):
         try:
             DocBackend.open(self)
         except IOError as msg:
-            errmsg = "%s\n%s" % (_("Could not create %s") %
-                                 self._filename, msg)
+            errmsg = "%s\n%s" % (_("Could not create %s") % self._filename, msg)
             raise ReportError(errmsg)
         except:
-            raise ReportError(_("Could not create %s") %
-                                     self._filename)
+            raise ReportError(_("Could not create %s") % self._filename)
         if not os.path.isdir(self.datadirfull()):
             try:
                 os.mkdir(self.datadirfull())
             except IOError as msg:
-                errmsg = "%s\n%s" % (_("Could not create %s") %
-                                     self.datadirfull(), msg)
+                errmsg = "%s\n%s" % (_("Could not create %s") % self.datadirfull(), msg)
                 raise ReportError(errmsg)
             except:
-                raise ReportError(_("Could not create %s") %
-                                         self.datadirfull())
+                raise ReportError(_("Could not create %s") % self.datadirfull())
         self.html_page, self.html_header, self.html_body = Html.page(
-                        lang=xml_lang(), title=self.title)
+            lang=xml_lang(), title=self.title
+        )
 
     def __write(self, string):
-        """ a write to the file
-        """
-        DocBackend.write(self, string + '\n')
+        """a write to the file"""
+        DocBackend.write(self, string + "\n")
 
     def write(self, obj):
-        """ write to the html page. One can pass a html object, or a string
-        """
+        """write to the html page. One can pass a html object, or a string"""
         self.html_body += obj
 
     def close(self):
         """
         write out the html to the page
         """
-        self.html_page.write(self.__write, indent='  ')
+        self.html_page.write(self.__write, indent="  ")
         DocBackend.close(self)
 
     def datadir(self):
@@ -300,7 +300,7 @@ class HtmlBackend(DocBackend):
         """
         if value.startswith("gramps://"):
             if self.build_link:
-                obj_class, prop, handle = value[9:].split("/", 3)
+                obj_class, prop, handle = value[9:].split("/", 2)
                 if prop in ["handle", "gramps_id"]:
                     value = self.build_link(prop, handle, obj_class)
                     if not value:
@@ -309,6 +309,4 @@ class HtmlBackend(DocBackend):
                     return self.STYLETAG_MARKUP[DocBackend.UNDERLINE]
             else:
                 return self.STYLETAG_MARKUP[DocBackend.UNDERLINE]
-        return ('<a href="%s">' % self.ESCAPE_FUNC()(value),
-                '</a>')
-
+        return ('<a href="%s">' % self.ESCAPE_FUNC()(value), "</a>")

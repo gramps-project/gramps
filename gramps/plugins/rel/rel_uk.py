@@ -29,51 +29,88 @@
 Ukrainian-specific definitions of relationships
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 from gramps.gen.lib import Person
 import gramps.gen.relationship
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 
 # Relationship levels
 
 _level_name = [
     "",
-    "рідний(-на)", "двоюрідний(-на)", "троюрідний(-на)",
-    "чотириюрідний(-на)", "п'ятиюрідний(-на)", "шестиюрідний(-на)",
-    "семиюрідний(-на)", "восьмиюрідний(-на)", "дев'ятиюрідний(-на)",
-    "десятиюрідний(-на)", "одинадцятиюрідний(-на)",
-    "дванадцятиюрідний(-на)", "тринадцятиюрідний(-на)",
-    "чотирнадцятиюрідний(-на)", "п'ятнадцятиюрідний(-на)",
-    "шістнадцятиюрідний(-на)", "сімнадцятиюрідний(-на)",
-    "вісімнадцятиюрідний(-на)", "дев'ятнадцятиюрідний(-на)",
-    "двадцятиюрідний(-на)"
+    "рідний(-на)",
+    "двоюрідний(-на)",
+    "троюрідний(-на)",
+    "чотириюрідний(-на)",
+    "п'ятиюрідний(-на)",
+    "шестиюрідний(-на)",
+    "семиюрідний(-на)",
+    "восьмиюрідний(-на)",
+    "дев'ятиюрідний(-на)",
+    "десятиюрідний(-на)",
+    "одинадцятиюрідний(-на)",
+    "дванадцятиюрідний(-на)",
+    "тринадцятиюрідний(-на)",
+    "чотирнадцятиюрідний(-на)",
+    "п'ятнадцятиюрідний(-на)",
+    "шістнадцятиюрідний(-на)",
+    "сімнадцятиюрідний(-на)",
+    "вісімнадцятиюрідний(-на)",
+    "дев'ятнадцятиюрідний(-на)",
+    "двадцятиюрідний(-на)",
 ]
 _level_name_male = [
     "",
-    "рідний", "двоюрідний", "троюрідний",
-    "чотириюрідний", "п'ятиюрідний", "шестиюрідний",
-    "семиюрідний", "восьмиюрідний", "дев'ятиюрідний",
-    "десятиюрідний", "одинадцятиюрідний", "дванадцятиюрідний",
-    "тринадцятиюрідний", "чотирнадцятиюрідний", "п'ятнадцятиюрідний",
-    "шістнадцятиюрідний", "сімнадцятиюрідний", "вісімнадцятиюрідний",
-    "дев'ятнадцятиюрідний", "двадцятиюрідний"
+    "рідний",
+    "двоюрідний",
+    "троюрідний",
+    "чотириюрідний",
+    "п'ятиюрідний",
+    "шестиюрідний",
+    "семиюрідний",
+    "восьмиюрідний",
+    "дев'ятиюрідний",
+    "десятиюрідний",
+    "одинадцятиюрідний",
+    "дванадцятиюрідний",
+    "тринадцятиюрідний",
+    "чотирнадцятиюрідний",
+    "п'ятнадцятиюрідний",
+    "шістнадцятиюрідний",
+    "сімнадцятиюрідний",
+    "вісімнадцятиюрідний",
+    "дев'ятнадцятиюрідний",
+    "двадцятиюрідний",
 ]
 _level_name_female = [
     "",
-    "рідна", "двоюрідна", "троюрідна",
-    "чотириюріднa", "п'ятиюрідна", "шестиюрідна",
-    "семиюрідна", "восьмиюрідна", "дев'ятиюрідна",
-    "десятиюрідна", "одинадцятиюрідна", "дванадцятиюрідна",
-    "тринадцятиюрідна", "чотирнадцятиюрідна", "п'ятнадцятиюрідна",
-    "шістнадцятиюрідна", "сімнадцятиюрідна", "вісімнадцятиюрідна",
-    "дев'ятнадцятиюрідна", "двадцятиюрідна"
+    "рідна",
+    "двоюрідна",
+    "троюрідна",
+    "чотириюріднa",
+    "п'ятиюрідна",
+    "шестиюрідна",
+    "семиюрідна",
+    "восьмиюрідна",
+    "дев'ятиюрідна",
+    "десятиюрідна",
+    "одинадцятиюрідна",
+    "дванадцятиюрідна",
+    "тринадцятиюрідна",
+    "чотирнадцятиюрідна",
+    "п'ятнадцятиюрідна",
+    "шістнадцятиюрідна",
+    "сімнадцятиюрідна",
+    "вісімнадцятиюрідна",
+    "дев'ятнадцятиюрідна",
+    "двадцятиюрідна",
 ]
 
 _son_level = [
@@ -110,7 +147,7 @@ _mother_level = [
 
 _uncle_level = [
     "",
-    "брат", # not used, just for keep count
+    "брат",  # not used, just for keep count
     "дядько",
     "дід",
     "прадід",
@@ -119,7 +156,7 @@ _uncle_level = [
 
 _aunt_level = [
     "",
-    "сестра", # not used, just for keep count
+    "сестра",  # not used, just for keep count
     "тітка",
     "баба",
     "прабаба",
@@ -127,11 +164,12 @@ _aunt_level = [
 ]
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 #
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
 
 class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     """
@@ -141,7 +179,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     def __init__(self):
         gramps.gen.relationship.RelationshipCalculator.__init__(self)
 
-    def get_sword_distaff(self, level, reltocommon, gender = Person.UNKNOWN):
+    def get_sword_distaff(self, level, reltocommon, gender=Person.UNKNOWN):
         """
         Generate relationships 'by male line' or 'by female line',
         specific for Ukraine
@@ -150,10 +188,10 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             return ""
 
         # test the relation line
-        by_line = ''
+        by_line = ""
         for g in reltocommon:
-            if(by_line and by_line != g):
-                by_line = ''
+            if by_line and by_line != g:
+                by_line = ""
                 break
             by_line = g
 
@@ -172,30 +210,27 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         else:
             return ""
 
-
-    def get_son(self, level, inlaw=''):
+    def get_son(self, level, inlaw=""):
         """
         Provides information how much male descendant is related to this person
         """
         # Define if the person is natural relative or in law
-        if inlaw == '':
+        if inlaw == "":
             t_inlaw = ""
         else:
             t_inlaw = "названий "
 
         if level >= 0 and level < len(_son_level):
-            return t_inlaw +_son_level[level]
+            return t_inlaw + _son_level[level]
         else:
             return t_inlaw + "пра(пра)внук у %d поколінні" % (level + 1)
 
-
-
-    def get_daughter(self, level, inlaw=''):
+    def get_daughter(self, level, inlaw=""):
         """
         Provides information how much female descendant is related to this person
         """
         # Define if the person is natural relative or in law
-        if inlaw == '':
+        if inlaw == "":
             t_inlaw = ""
         else:
             t_inlaw = "названа "
@@ -205,13 +240,12 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         else:
             return t_inlaw + "пра(пра)внучка у %d поколінні" % (level + 1)
 
-
-    def get_child_unknown(self, level, inlaw=''):
+    def get_child_unknown(self, level, inlaw=""):
         """
         Provides information how much descendant of unknown gender is related to this person
         """
         # Define if the person is natural relative or in law
-        if inlaw == '':
+        if inlaw == "":
             t_inlaw = ""
         else:
             t_inlaw = "названий(на) "
@@ -221,13 +255,12 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         else:
             return t_inlaw + "пра(пра)внук(а) у %d поколінні" % (level + 1)
 
-
-    def get_father(self, level, reltocommon, inlaw=''):
+    def get_father(self, level, reltocommon, inlaw=""):
         """
         Provides information how much male ancestor (for example father)
         is related to the given person
         """
-        if inlaw == '':
+        if inlaw == "":
             t_inlaw = ""
         else:
             t_inlaw = "названий "
@@ -239,20 +272,25 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 return t_inlaw + _father_level[level]
             else:
                 # Grandfather, Greatgrandfather, Greatgreatgrandfather
-                return t_inlaw + _father_level[level] \
+                return (
+                    t_inlaw
+                    + _father_level[level]
                     + self.get_sword_distaff(level, reltocommon, Person.MALE)
+                )
         else:
             # For deep generations
-            return t_inlaw + "пра(пра)дід у %d поколінні" % (level + 1) \
-                    + self.get_sword_distaff(level, reltocommon, Person.MALE)
+            return (
+                t_inlaw
+                + "пра(пра)дід у %d поколінні" % (level + 1)
+                + self.get_sword_distaff(level, reltocommon, Person.MALE)
+            )
 
-
-    def get_mother(self, level, reltocommon, inlaw=''):
+    def get_mother(self, level, reltocommon, inlaw=""):
         """
         Provides information how much female ancestor (for example mother)
         is related to the given person
         """
-        if inlaw == '':
+        if inlaw == "":
             t_inlaw = ""
         else:
             t_inlaw = "названа "
@@ -265,21 +303,25 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
             else:
                 # Grandmother, Greatgrandmother, Greatgreatgrandmother
-                return t_inlaw + _mother_level[level] \
+                return (
+                    t_inlaw
+                    + _mother_level[level]
                     + self.get_sword_distaff(level, reltocommon, Person.FEMALE)
+                )
         else:
             # For deep generations
-            return t_inlaw + "пра(пра)баба у %d поколінні" % (level + 1) \
-                    + self.get_sword_distaff(level, reltocommon, Person.FEMALE)
+            return (
+                t_inlaw
+                + "пра(пра)баба у %d поколінні" % (level + 1)
+                + self.get_sword_distaff(level, reltocommon, Person.FEMALE)
+            )
 
-
-
-    def get_parent_unknown(self, level, reltocommon, inlaw=''):
+    def get_parent_unknown(self, level, reltocommon, inlaw=""):
         """
         Provides information how much an ancestor of unknown gender
         is related to the given person (unknown sex)
         """
-        if inlaw == '':
+        if inlaw == "":
             t_inlaw = ""
         else:
             t_inlaw = "названий "
@@ -287,11 +329,13 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         if level == 1:
             return t_inlaw + "батько/мати"
         else:
-            return t_inlaw + "пра(пра)- дід/баба у %d поколінні" % (level + 1) \
-                        + self.get_sword_distaff(level, reltocommon)
+            return (
+                t_inlaw
+                + "пра(пра)- дід/баба у %d поколінні" % (level + 1)
+                + self.get_sword_distaff(level, reltocommon)
+            )
 
-
-    def get_uncle(self, level, reltocommon, inlaw = ''):
+    def get_uncle(self, level, reltocommon, inlaw=""):
         """
         Return ancle generation name
         """
@@ -302,8 +346,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 if level == 2:
                     return _uncle_level[level] + " (стрийко)"
                 else:
-                    return "двоюрідний " + _uncle_level[level] \
-                        + " по батькові"
+                    return "двоюрідний " + _uncle_level[level] + " по батькові"
             else:
                 return "двоюрідний пра(пра)дід в %d поколінні по батькові" % (level)
         elif reltocommon[0] == self.REL_MOTHER:
@@ -312,8 +355,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 if level == 2:
                     return _uncle_level[level] + " (вуйко)"
                 else:
-                    return "двоюрідний " + _uncle_level[level] \
-                        + " по матері"
+                    return "двоюрідний " + _uncle_level[level] + " по матері"
             else:
                 return "двоюрідний пра(пра)дід в %d поколінні по матері" % (level)
         else:
@@ -322,8 +364,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             else:
                 return "двоюрідний пра(пра)дід в %d поколінні" % (level)
 
-
-    def get_aunt(self, level, reltocommon, inlaw = ''):
+    def get_aunt(self, level, reltocommon, inlaw=""):
         """
         Return aunt generation name
         """
@@ -334,30 +375,25 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 if level == 2:
                     return _aunt_level[level] + " (стрийна)"
                 else:
-                    return "двоюрідна " + _aunt_level[level] \
-                        + " по батькові"
+                    return "двоюрідна " + _aunt_level[level] + " по батькові"
             else:
-                return "двоюрідна пра(пра)баба в %d поколінні по батькові" \
-                        % (level)
+                return "двоюрідна пра(пра)баба в %d поколінні по батькові" % (level)
         elif reltocommon[0] == self.REL_MOTHER:
             # from Mother
             if level < len(_aunt_level):
                 if level == 2:
                     return _aunt_level[level] + " (вуйна)"
                 else:
-                    return "двоюрідна " + _aunt_level[level] \
-                        + " по матері"
+                    return "двоюрідна " + _aunt_level[level] + " по матері"
             else:
-                return "двоюрідна пра(пра)баба в %d поколінні по матері" \
-                        % (level)
+                return "двоюрідна пра(пра)баба в %d поколінні по матері" % (level)
         else:
             if level == 2:
                 return "тітка (стрийна/вуйна)"
             else:
                 return "двоюрідна пра(пра)баба в %d поколінні" % (level)
 
-
-    def get_uncle_aunt_unknown(self, level, reltocommon, inlaw = ''):
+    def get_uncle_aunt_unknown(self, level, reltocommon, inlaw=""):
         """
         Return uncle/aunt generation name when gender unknown
         """
@@ -367,175 +403,157 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             if level == 2:
                 return "дядько/тітка (стрийко)"
             else:
-                return "двоюрідний дід/баба в %d поколінні по батькові" \
-                        % (level)
+                return "двоюрідний дід/баба в %d поколінні по батькові" % (level)
         elif reltocommon[0] == self.REL_MOTHER:
             # from Mother
             if level == 2:
                 return "дядько/тітка (вуйко)"
             else:
-                return "двоюрідний дід/баба в %d поколінні по матері" \
-                        % (level)
+                return "двоюрідний дід/баба в %d поколінні по матері" % (level)
         else:
             if level == 2:
                 return "дядько/тітка"
             else:
                 return "двоюрідний дід/баба в %d поколінні" % (level)
 
-
-    def get_nephew(self, level, reltocommon, inlaw = ''):
+    def get_nephew(self, level, reltocommon, inlaw=""):
         """
         Return nephew generation name
         """
-        if inlaw == '':
+        if inlaw == "":
             t_inlaw = ""
         else:
             t_inlaw = "названий "
 
         if level == 2:
-            if reltocommon[0] == self.REL_FATHER :
+            if reltocommon[0] == self.REL_FATHER:
                 # Brother's son
                 return t_inlaw + "небіж (братанець)"
-            elif reltocommon[0] == self.REL_MOTHER :
-                 # Sister's son
-                 return t_inlaw + "небіж (сестринець)"
+            elif reltocommon[0] == self.REL_MOTHER:
+                # Sister's son
+                return t_inlaw + "небіж (сестринець)"
             else:
                 return t_inlaw + "небіж (братанець/сестринець)"
-        elif level >= 2 and level <=6:
-            if reltocommon[level-2] == self.REL_FATHER :
+        elif level >= 2 and level <= 6:
+            if reltocommon[level - 2] == self.REL_FATHER:
                 # Brother's son generation
-                if reltocommon[level-3] == self.REL_FATHER :
+                if reltocommon[level - 3] == self.REL_FATHER:
                     # Son of brother son
-                    return self.get_son((level - 2), inlaw) \
-                                + " небожа по брату"
-                elif reltocommon[level-3] == self.REL_MOTHER :
+                    return self.get_son((level - 2), inlaw) + " небожа по брату"
+                elif reltocommon[level - 3] == self.REL_MOTHER:
                     # Son of brother daughter
-                    return self.get_son((level - 2), inlaw) \
-                                + " небоги по брату"
+                    return self.get_son((level - 2), inlaw) + " небоги по брату"
                 else:
-                    return self.get_son((level - 2), inlaw) \
-                                + " небожа/небоги по брату"
-            elif reltocommon[level-2] == self.REL_MOTHER :
+                    return self.get_son((level - 2), inlaw) + " небожа/небоги по брату"
+            elif reltocommon[level - 2] == self.REL_MOTHER:
                 # Sister's son generation
-                if reltocommon[level-3] == self.REL_FATHER :
+                if reltocommon[level - 3] == self.REL_FATHER:
                     # Son of sister son
-                    return self.get_son((level - 2), inlaw) \
-                                + " небожа по сестрі"
-                elif reltocommon[level-3] == self.REL_MOTHER :
+                    return self.get_son((level - 2), inlaw) + " небожа по сестрі"
+                elif reltocommon[level - 3] == self.REL_MOTHER:
                     # Son of sister daughter
-                    return self.get_son((level - 2), inlaw) \
-                                + " небоги по сестрі"
+                    return self.get_son((level - 2), inlaw) + " небоги по сестрі"
                 else:
-                    return self.get_son((level - 2), inlaw) \
-                                + " небожа/небоги по сестрі"
+                    return self.get_son((level - 2), inlaw) + " небожа/небоги по сестрі"
             else:
                 return self.get_son((level - 2), inlaw) + " небожа/небоги"
         else:
-            if reltocommon[level-2] == self.REL_FATHER :
+            if reltocommon[level - 2] == self.REL_FATHER:
                 # Brother's son generation
-                return t_inlaw + "чоловічий нащадок у %d поколінні брата" \
-                                    % (level)
-            elif reltocommon[level-2] == self.REL_MOTHER :
-                 # Sister's son generation
-                 return t_inlaw + "чоловічий нащадок у %d поколінні сестри" \
-                                    % (level)
+                return t_inlaw + "чоловічий нащадок у %d поколінні брата" % (level)
+            elif reltocommon[level - 2] == self.REL_MOTHER:
+                # Sister's son generation
+                return t_inlaw + "чоловічий нащадок у %d поколінні сестри" % (level)
             else:
-                return t_inlaw + "чоловічий нащадок у %d поколінні брата/сестри" \
-                                    % (level)
+                return t_inlaw + "чоловічий нащадок у %d поколінні брата/сестри" % (
+                    level
+                )
 
-
-
-    def get_niece(self, level, reltocommon, inlaw = ''):
+    def get_niece(self, level, reltocommon, inlaw=""):
         """
         Return niece generation name
         """
-        if inlaw == '':
+        if inlaw == "":
             t_inlaw = ""
         else:
             t_inlaw = "названий "
 
         if level == 2:
-            if reltocommon[0] == self.REL_FATHER :
+            if reltocommon[0] == self.REL_FATHER:
                 # Brother's daughter
                 return t_inlaw + "небога (братанка)"
-            elif reltocommon[0] == self.REL_MOTHER :
-                 # Sister's daughter
-                 return t_inlaw + "небога (сестрениця)"
+            elif reltocommon[0] == self.REL_MOTHER:
+                # Sister's daughter
+                return t_inlaw + "небога (сестрениця)"
             else:
                 return t_inlaw + "небога (братанка/сестрениця)"
-        elif level >= 2 and level <=6:
-            if reltocommon[level-2] == self.REL_FATHER :
+        elif level >= 2 and level <= 6:
+            if reltocommon[level - 2] == self.REL_FATHER:
                 # Brother's daughter generation
-                if reltocommon[level-3] == self.REL_FATHER :
+                if reltocommon[level - 3] == self.REL_FATHER:
                     # daughter of brother son
-                    return self.get_daughter((level - 2), inlaw) \
-                                + " небожа по брату"
-                elif reltocommon[level-3] == self.REL_MOTHER :
+                    return self.get_daughter((level - 2), inlaw) + " небожа по брату"
+                elif reltocommon[level - 3] == self.REL_MOTHER:
                     # daughter of brother daughter
-                    return self.get_daughter((level - 2), inlaw) \
-                                + " небоги по брату"
+                    return self.get_daughter((level - 2), inlaw) + " небоги по брату"
                 else:
-                    return self.get_daughter((level - 2), inlaw) \
-                                + " небожа/небоги по брату"
-            elif reltocommon[level-2] == self.REL_MOTHER :
+                    return (
+                        self.get_daughter((level - 2), inlaw)
+                        + " небожа/небоги по брату"
+                    )
+            elif reltocommon[level - 2] == self.REL_MOTHER:
                 # Sister's daughter generation
-                if reltocommon[level-3] == self.REL_FATHER :
+                if reltocommon[level - 3] == self.REL_FATHER:
                     # daughter of sister son
-                    return self.get_daughter((level - 2), inlaw) \
-                                + " небожа по сестрі"
-                elif reltocommon[level-3] == self.REL_MOTHER :
+                    return self.get_daughter((level - 2), inlaw) + " небожа по сестрі"
+                elif reltocommon[level - 3] == self.REL_MOTHER:
                     # daughter of sister daughter
-                    return self.get_daughter((level - 2), inlaw) \
-                                + " небоги по сестрі"
+                    return self.get_daughter((level - 2), inlaw) + " небоги по сестрі"
                 else:
-                    return self.get_daughter((level - 2), inlaw) \
-                                + " небожа/небоги по сестрі"
+                    return (
+                        self.get_daughter((level - 2), inlaw)
+                        + " небожа/небоги по сестрі"
+                    )
             else:
                 return self.get_daughter(level, inlaw) + " небожа/небоги"
         else:
-            if reltocommon[level-2] == self.REL_FATHER :
+            if reltocommon[level - 2] == self.REL_FATHER:
                 # Brother's daughter generation
-                return t_inlaw + "жіночий нащадок у %d поколінні брата" \
-                                    % (level)
-            elif reltocommon[level-2] == self.REL_MOTHER :
-                 # Sister's daughter generation
-                 return t_inlaw + "жіночий нащадок у %d поколінні сестри" \
-                                    % (level)
+                return t_inlaw + "жіночий нащадок у %d поколінні брата" % (level)
+            elif reltocommon[level - 2] == self.REL_MOTHER:
+                # Sister's daughter generation
+                return t_inlaw + "жіночий нащадок у %d поколінні сестри" % (level)
             else:
-                return t_inlaw + "жіночий нащадок у %d поколінні брата/сестри" \
-                                    % (level)
+                return t_inlaw + "жіночий нащадок у %d поколінні брата/сестри" % (level)
 
-
-    def get_nephew_niece_unknown (self, level, reltocommon, inlaw = ''):
+    def get_nephew_niece_unknown(self, level, reltocommon, inlaw=""):
         """
         Return nephew/niece generation name when gender unknown
         """
-        if inlaw == '':
+        if inlaw == "":
             t_inlaw = ""
         else:
             t_inlaw = "названий "
 
-        if reltocommon[level-2] == self.REL_FATHER:
+        if reltocommon[level - 2] == self.REL_FATHER:
             # Brother's descendant
             return t_inlaw + "нащадок в %d поколінні брата" % (level)
-        elif (reltocommon[level-2] == self.REL_MOTHER):
+        elif reltocommon[level - 2] == self.REL_MOTHER:
             # Sister's descendant
             return t_inlaw + "нащадок в %d поколінні сестри" % (level)
-        else :
-            return t_inlaw + "нащадок в %d поколінні брата aбо сестри" \
-                                % (level)
-
+        else:
+            return t_inlaw + "нащадок в %d поколінні брата aбо сестри" % (level)
 
     def get_level(self, level, gender):
         """
         Return level name depend of gender
         """
-        if (gender == Person.MALE):
+        if gender == Person.MALE:
             if level < len(_level_name_male):
                 return _level_name_male[level]
             else:
                 return "%d-юрідний" % level
-        elif (gender == Person.FEMALE):
+        elif gender == Person.FEMALE:
             if level < len(_level_name_female):
                 return _level_name_female[level]
             else:
@@ -546,13 +564,18 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             else:
                 return "%d-юрідний(на)" % level
 
-
-
-
-    def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
-                                       reltocommon_a, reltocommon_b,
-                                       only_birth=True,
-                                       in_law_a=False, in_law_b=False):
+    def get_single_relationship_string(
+        self,
+        Ga,
+        Gb,
+        gender_a,
+        gender_b,
+        reltocommon_a,
+        reltocommon_b,
+        only_birth=True,
+        in_law_a=False,
+        in_law_b=False,
+    ):
         """
         Provide a string that describes the relationsip between a person, and
         another person. E.g. "grandparent" or "child".
@@ -589,20 +612,20 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         """
 
         if only_birth:
-            step = ''
+            step = ""
         else:
             step = self.STEP
 
-        if in_law_a or in_law_b :
+        if in_law_a or in_law_b:
             inlaw = self.INLAW
         else:
-            inlaw = ''
+            inlaw = ""
 
         t_inlaw = ""
 
         # b is the same person as a
         if Ga == Gb == 0:
-            rel_str = 'та сама особа'
+            rel_str = "та сама особа"
 
         elif Ga == 0:
             # b is son/descendant of a
@@ -622,7 +645,6 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             else:
                 rel_str = self.get_child_unknown(Gb, inlaw)
 
-
         elif Gb == 0:
             # b is parent/grand parent of a
 
@@ -640,7 +662,6 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
             else:
                 rel_str = self.get_parent_unknown(Ga, reltocommon_a, inlaw)
-
 
         elif Ga == Gb == 1:
             # Family, brother/sister
@@ -665,25 +686,24 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 rel_str = "брат/сестра"
 
         elif Gb == 1 and Ga > 1:
-             # b is aunt/uncle of a
+            # b is aunt/uncle of a
 
-            if (gender_b == Person.MALE):
+            if gender_b == Person.MALE:
                 rel_str = self.get_uncle(Ga, reltocommon_a, inlaw)
-            elif (gender_b == Person.FEMALE):
+            elif gender_b == Person.FEMALE:
                 rel_str = self.get_aunt(Ga, reltocommon_a, inlaw)
             else:
                 rel_str = self.get_uncle_aunt_unknown(Ga, reltocommon_a, inlaw)
 
-        elif Ga  == 1 and Gb > 1:
+        elif Ga == 1 and Gb > 1:
             # b is niece/nephew of a
 
-            if (gender_b == Person.MALE):
+            if gender_b == Person.MALE:
                 rel_str = self.get_nephew(Gb, reltocommon_b, inlaw)
-            elif (gender_b == Person.FEMALE):
+            elif gender_b == Person.FEMALE:
                 rel_str = self.get_niece(Gb, reltocommon_b, inlaw)
             else:
                 rel_str = self.get_nephew_niece_unknown(Gb, reltocommon_b, inlaw)
-
 
         elif Ga > 1 and Gb > 1:
             # b is (cousin/far aunt/far  uncle/far niece/far nephew) of a
@@ -691,80 +711,84 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             if Ga > Gb:
                 # b is far aunt/far  uncle of a
                 level = Ga - Gb + 1
-                if level >= 3:#it is right or???
+                if level >= 3:  # it is right or???
                     level_name = self.get_level(Gb + 1, gender_b)
                 else:
                     level_name = self.get_level(Gb, gender_b)
 
-
-                if (gender_b == Person.MALE):
-                     # b is far  uncle
-                    if inlaw != '':
+                if gender_b == Person.MALE:
+                    # b is far  uncle
+                    if inlaw != "":
                         t_inlaw = "названий "
                     if level < len(_uncle_level):
-                        rel_str = t_inlaw + "%s %s" \
-                            % (level_name, _uncle_level[level])
+                        rel_str = t_inlaw + "%s %s" % (level_name, _uncle_level[level])
                     else:
-                        rel_str = t_inlaw + "%s пра(пра)дід в %d поколінні" \
-                            % (level_name, (level))
-                elif (gender_b == Person.FEMALE):
-                     # b is far aunt
-                    if inlaw != '':
+                        rel_str = t_inlaw + "%s пра(пра)дід в %d поколінні" % (
+                            level_name,
+                            (level),
+                        )
+                elif gender_b == Person.FEMALE:
+                    # b is far aunt
+                    if inlaw != "":
                         t_inlaw = "названа "
                     if level < len(_aunt_level):
-                        rel_str = t_inlaw + "%s %s" \
-                            % (level_name, _aunt_level[level])
+                        rel_str = t_inlaw + "%s %s" % (level_name, _aunt_level[level])
                     else:
-                        rel_str = t_inlaw + "%s пра(пра)баба в %d поколінні" \
-                            % (level_name, (level))
+                        rel_str = t_inlaw + "%s пра(пра)баба в %d поколінні" % (
+                            level_name,
+                            (level),
+                        )
                 else:
-                    if inlaw != '':
+                    if inlaw != "":
                         t_inlaw = "названий(на) "
                     if level == 2:
                         rel_str = t_inlaw + "%s дядько/тітка" % level_name
                     else:
-                        rel_str = t_inlaw + "%s пра(пра)- дід/баба в %d поколінні" \
-                            % (level_name, (level))
+                        rel_str = t_inlaw + "%s пра(пра)- дід/баба в %d поколінні" % (
+                            level_name,
+                            (level),
+                        )
 
             elif Ga < Gb:
                 # b is far niece/far nephew of a
                 level_name = self.get_level(Ga, gender_b)
                 level = Gb - Ga + 1
 
-                if (gender_b == Person.MALE):
+                if gender_b == Person.MALE:
                     # b is far nephew
                     if level == 2:
                         rel_str = "%s небіж" % level_name
                     else:
-                        rel_str = "%s пра(пра)внук у %d поколінні" \
-                            % (level_name, level)
-                    #rel_str = "%s %s" % (level_name, self.get_nephew(level, reltocommon_b, inlaw))
-                elif (gender_b == Person.FEMALE):
+                        rel_str = "%s пра(пра)внук у %d поколінні" % (level_name, level)
+                    # rel_str = "%s %s" % (level_name, self.get_nephew(level, reltocommon_b, inlaw))
+                elif gender_b == Person.FEMALE:
                     # b is far niece
                     if level == 2:
                         rel_str = "%s небога" % level_name
                     else:
-                        rel_str = "%s пра(пра)внучка у %d поколінні" \
-                            % (level_name, level)
-                    #rel_str = "%s %s"  % (level_name, self.get_niece(level, reltocommon_b, inlaw))
+                        rel_str = "%s пра(пра)внучка у %d поколінні" % (
+                            level_name,
+                            level,
+                        )
+                    # rel_str = "%s %s"  % (level_name, self.get_niece(level, reltocommon_b, inlaw))
                 else:
                     rel_str = "%s пра(пра)внук(а) у %d поколінні" % level
-                    #rel_str = "%s %s" % (level_name, self.get_nephew_niece_unknown(level, reltocommon_b, inlaw))
+                    # rel_str = "%s %s" % (level_name, self.get_nephew_niece_unknown(level, reltocommon_b, inlaw))
 
-            else: #Gb == Ga
+            else:  # Gb == Ga
                 # b is cousin of a
                 level_name = self.get_level(Ga, gender_b)
 
-                if (gender_b == Person.MALE):
-                    if inlaw != '':
+                if gender_b == Person.MALE:
+                    if inlaw != "":
                         t_inlaw = "названий "
                     rel_str = t_inlaw + "%s брат" % level_name
-                elif (gender_b == Person.FEMALE):
-                    if inlaw != '':
+                elif gender_b == Person.FEMALE:
+                    if inlaw != "":
                         t_inlaw = "названа "
                     rel_str = t_inlaw + "%s сестра" % level_name
                 else:
-                    if inlaw != '':
+                    if inlaw != "":
                         t_inlaw = "названий(на) "
                     rel_str = t_inlaw + "%s брат/сестра" % level_name
 
@@ -774,67 +798,71 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
         return rel_str
 
-    def get_plural_relationship_string(self, Ga, Gb,
-                                       reltocommon_a='', reltocommon_b='',
-                                       only_birth=True,
-                                       in_law_a=False, in_law_b=False):
+    def get_plural_relationship_string(
+        self,
+        Ga,
+        Gb,
+        reltocommon_a="",
+        reltocommon_b="",
+        only_birth=True,
+        in_law_a=False,
+        in_law_b=False,
+    ):
         """
         Generate a text with information, how far away is a group of persons
         from a main person
         """
 
         if Ga == Gb == 0:
-            return 'та сама особа'
+            return "та сама особа"
         if 0 == Ga:
             # These are descendants
             if 1 == Gb:
-                return 'діти'
+                return "діти"
             if 2 == Gb:
-                return 'внуки'
+                return "внуки"
             if 3 == Gb:
-                return 'правнуки'
+                return "правнуки"
             if 4 == Gb:
-                return 'праправнуки'
-            return 'прапрапра(n)внуки'
+                return "праправнуки"
+            return "прапрапра(n)внуки"
         if 0 == Gb:
             # These are parents/grand parents
             if 1 == Ga:
-                return 'батьки'
+                return "батьки"
             if 2 == Ga:
-                return 'діди/баби'
+                return "діди/баби"
             if 3 == Ga:
-                return 'прадіди/прабаби'
+                return "прадіди/прабаби"
             if 4 == Ga:
-                return 'прапращури'
-            return 'прапрапра(n)щури'
+                return "прапращури"
+            return "прапрапра(n)щури"
         if 1 == Ga == Gb:
-            return 'батьки'
+            return "батьки"
         if 1 == Gb and Ga > 1:
-            return 'дядьки (вуйки, стрийки) і тітки'
+            return "дядьки (вуйки, стрийки) і тітки"
         if 1 < Gb and 1 == Ga:
-            return 'небожі по братові і сестрі'
+            return "небожі по братові і сестрі"
         if 1 < Ga and 1 < Gb:
-            return 'дальня родина'
-        return 'відносини невідомі'
+            return "дальня родина"
+        return "відносини невідомі"
 
-
-
-    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b,
-                                        in_law_a=False, in_law_b=False):
-
-        if in_law_a or in_law_b :
+    def get_sibling_relationship_string(
+        self, sib_type, gender_a, gender_b, in_law_a=False, in_law_b=False
+    ):
+        if in_law_a or in_law_b:
             inlaw = self.INLAW
         else:
-            inlaw = ''
+            inlaw = ""
 
         if sib_type == self.NORM_SIB:
             if not inlaw:
                 if gender_b == Person.MALE:
-                    rel_str = 'рідний брат'
+                    rel_str = "рідний брат"
                 elif gender_b == Person.FEMALE:
-                    rel_str = 'рідна сестра'
+                    rel_str = "рідна сестра"
                 else:
-                    rel_str = 'рідний(а) брат або сестра'
+                    rel_str = "рідний(а) брат або сестра"
             else:
                 if gender_b == Person.MALE:
                     rel_str = "названий брат"
@@ -845,11 +873,11 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         elif sib_type == self.UNKNOWN_SIB:
             if not inlaw:
                 if gender_b == Person.MALE:
-                    rel_str = 'брат'
+                    rel_str = "брат"
                 elif gender_b == Person.FEMALE:
-                    rel_str = 'сестра'
+                    rel_str = "сестра"
                 else:
-                    rel_str = 'брат або сестра'
+                    rel_str = "брат або сестра"
             else:
                 if gender_b == Person.MALE:
                     rel_str = "швагро"
@@ -858,26 +886,26 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 else:
                     rel_str = "швагро або братова"
         elif sib_type == self.HALF_SIB_FATHER:
-                if gender_b == Person.MALE:
-                    rel_str = "єдинокровний(напіврідний) брат"
-                elif gender_b == Person.FEMALE:
-                    rel_str = "єдинокровна(напіврідна) сестра"
-                else:
-                    rel_str = "напіврідний(а) брат/сестра"
+            if gender_b == Person.MALE:
+                rel_str = "єдинокровний(напіврідний) брат"
+            elif gender_b == Person.FEMALE:
+                rel_str = "єдинокровна(напіврідна) сестра"
+            else:
+                rel_str = "напіврідний(а) брат/сестра"
         elif sib_type == self.HALF_SIB_MOTHER:
-                if gender_b == Person.MALE:
-                    rel_str = "єдинокровний(напіврідний) брат"
-                elif gender_b == Person.FEMALE:
-                    rel_str = "єдинокровна(напіврідна) сестра"
-                else:
-                    rel_str = "напіврідний(а) брат/сестра"
+            if gender_b == Person.MALE:
+                rel_str = "єдинокровний(напіврідний) брат"
+            elif gender_b == Person.FEMALE:
+                rel_str = "єдинокровна(напіврідна) сестра"
+            else:
+                rel_str = "напіврідний(а) брат/сестра"
         elif sib_type == self.STEP_SIB:
-                if gender_b == Person.MALE:
-                    rel_str = "зведений брат"
-                elif gender_b == Person.FEMALE:
-                    rel_str = "зведена сестра"
-                else:
-                    rel_str = "зведений брат або сестра"
+            if gender_b == Person.MALE:
+                rel_str = "зведений брат"
+            elif gender_b == Person.FEMALE:
+                rel_str = "зведена сестра"
+            else:
+                rel_str = "зведений брат або сестра"
         else:
             rel_str = "невизначена ступінь родинних відносин"
         return rel_str
@@ -889,7 +917,6 @@ if __name__ == "__main__":
     #    export PYTHONPATH=/path/to/gramps/src
     #    python src/plugins/rel/rel_pl.py
 
-
     """
     TRANSLATORS, copy this if statement at the bottom of your
     rel_xx.py module, and test your work with:
@@ -898,12 +925,13 @@ if __name__ == "__main__":
     from gramps.gen.relationship import test
     import signal
     import sys
+
     # If someone go out
     def goodby(signal, frame):
-        print('No more Drink!')
+        print("No more Drink!")
         sys.exit(0)
+
     signal.signal(signal.SIGINT, goodby)
     # Run test
     RC = RelationshipCalculator()
     test(RC, True)
-

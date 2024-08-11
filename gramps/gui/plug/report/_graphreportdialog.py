@@ -26,28 +26,29 @@
 
 """base class for generating dialogs for graph-based reports """
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from abc import ABCMeta, abstractmethod
 import os
 
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 #
 # GTK+ modules
 #
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import GObject
 
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gramps.gen.config import config
 from gramps.gen.plug.report import CATEGORY_GRAPHVIZ
@@ -56,56 +57,59 @@ from ._papermenu import PaperFrame
 import gramps.gen.plug.docgen.graphdoc as graphdoc
 from gramps.gen.plug.menu import Menu
 
-#-------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------
 #
 # GraphvizFormatComboBox
 #
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 class BaseFormatComboBox(Gtk.ComboBox):
     """
     Combo box base class for graph-based report format choices.
     """
+
     FORMATS = []
 
     def set(self, active=None):
-        """ initialize the Graphviz choices """
+        """initialize the Graphviz choices"""
         store = Gtk.ListStore(GObject.TYPE_STRING)
         self.set_model(store)
         cell = Gtk.CellRendererText()
         self.pack_start(cell, True)
-        self.add_attribute(cell, 'text', 0)
+        self.add_attribute(cell, "text", 0)
 
         index = 0
         active_index = 0
         for item in self.FORMATS:
             name = item["descr"]
             store.append(row=[name])
-            if item['type'] == active:
+            if item["type"] == active:
                 active_index = index
             index += 1
         self.set_active(active_index)
 
     def get_label(self):
-        """ get the format description """
+        """get the format description"""
         return self.FORMATS[self.get_active()]["descr"]
 
     def get_reference(self):
-        """ get the format class """
+        """get the format class"""
         return self.FORMATS[self.get_active()]["class"]
 
     def get_ext(self):
-        """ get the format extension """
-        return '.%s' % self.FORMATS[self.get_active()]['ext']
+        """get the format extension"""
+        return ".%s" % self.FORMATS[self.get_active()]["ext"]
 
     def get_clname(self):
-        """ get the report's output format type"""
+        """get the report's output format type"""
         return self.FORMATS[self.get_active()]["type"]
 
-#-----------------------------------------------------------------------
+
+# -----------------------------------------------------------------------
 #
 # GraphReportDialog
 #
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 class GraphReportDialog(ReportDialog, metaclass=ABCMeta):
     """A base class of ReportDialog customized for graph-based reports."""
 
@@ -116,18 +120,16 @@ class GraphReportDialog(ReportDialog, metaclass=ABCMeta):
         self.category = self.get_category()
         self._goptions = self.get_options()
         self.dbname = dbstate.db.get_dbname()
-        ReportDialog.__init__(self, dbstate, uistate, opt,
-                              name, translated_name)
+        ReportDialog.__init__(self, dbstate, uistate, opt, name, translated_name)
 
-        self.doc = None # keep pylint happy
+        self.doc = None  # keep pylint happy
         self.format = None
         self.paper_label = None
 
     def init_options(self, option_class):
         try:
-            if issubclass(option_class, object):     # Old-style class
-                self.options = option_class(self.raw_name,
-                                            self.dbstate.get_database())
+            if issubclass(option_class, object):  # Old-style class
+                self.options = option_class(self.raw_name, self.dbstate.get_database())
         except TypeError:
             self.options = option_class
 
@@ -144,13 +146,13 @@ class GraphReportDialog(ReportDialog, metaclass=ABCMeta):
     def init_interface(self):
         ReportDialog.init_interface(self)
         self.doc_type_changed(self.format_menu)
-        self.notebook.set_current_page(1) # don't start on "Paper Options"
+        self.notebook.set_current_page(1)  # don't start on "Paper Options"
 
     def setup_format_frame(self):
         """Set up the format frame of the dialog."""
         self.make_doc_menu()
         self.format_menu.set(self.options.handler.get_format_name())
-        self.format_menu.connect('changed', self.doc_type_changed)
+        self.format_menu.connect("changed", self.doc_type_changed)
         label = Gtk.Label(label=_("%s:") % _("Output Format"))
         label.set_halign(Gtk.Align.START)
         self.grid.attach(label, 1, self.row, 1, 1)
@@ -158,10 +160,8 @@ class GraphReportDialog(ReportDialog, metaclass=ABCMeta):
         self.grid.attach(self.format_menu, 2, self.row, 2, 1)
         self.row += 1
 
-        self.open_with_app = Gtk.CheckButton(
-            label=_("Open with default viewer"))
-        self.open_with_app.set_active(
-            config.get('interface.open-with-default-viewer'))
+        self.open_with_app = Gtk.CheckButton(label=_("Open with default viewer"))
+        self.open_with_app.set_active(config.get("interface.open-with-default-viewer"))
         self.grid.attach(self.open_with_app, 2, self.row, 2, 1)
         self.row += 1
 
@@ -177,12 +177,12 @@ class GraphReportDialog(ReportDialog, metaclass=ABCMeta):
                     default_name = self.raw_name
                 else:
                     default_name = self.dbname + "_" + self.raw_name
-                base = "%s%s" % (default_name, ext) # "ext" already has a dot
+                base = "%s%s" % (default_name, ext)  # "ext" already has a dot
             spath = os.path.normpath(os.path.join(spath, base))
             self.target_fileentry.set_filename(spath)
 
     def setup_report_options_frame(self):
-        self.paper_label = Gtk.Label(label='<b>%s</b>' % _("Paper Options"))
+        self.paper_label = Gtk.Label(label="<b>%s</b>" % _("Paper Options"))
         self.paper_label.set_use_markup(True)
         handler = self.options.handler
         self.paper_frame = PaperFrame(
@@ -190,7 +190,8 @@ class GraphReportDialog(ReportDialog, metaclass=ABCMeta):
             handler.get_paper_name(),
             handler.get_orientation(),
             handler.get_margins(),
-            handler.get_custom_paper_size())
+            handler.get_custom_paper_size(),
+        )
         self.notebook.insert_page(self.paper_frame, self.paper_label, 0)
         self.paper_frame.show_all()
 
@@ -218,8 +219,7 @@ class GraphReportDialog(ReportDialog, metaclass=ABCMeta):
         self.target_fileentry.set_filename(fname)
 
     def make_document(self):
-        """Create a document of the type requested by the user.
-        """
+        """Create a document of the type requested by the user."""
         pstyle = self.paper_frame.get_paper_style()
 
         self.doc = self.format(self.options, pstyle)
@@ -239,24 +239,22 @@ class GraphReportDialog(ReportDialog, metaclass=ABCMeta):
         self.parse_format_frame()
         self.parse_user_options()
 
-        self.options.handler.set_paper_metric(
-            self.paper_frame.get_paper_metric())
-        self.options.handler.set_paper_name(
-            self.paper_frame.get_paper_name())
-        self.options.handler.set_orientation(
-            self.paper_frame.get_orientation())
-        self.options.handler.set_margins(
-            self.paper_frame.get_paper_margins())
+        self.options.handler.set_paper_metric(self.paper_frame.get_paper_metric())
+        self.options.handler.set_paper_name(self.paper_frame.get_paper_name())
+        self.options.handler.set_orientation(self.paper_frame.get_orientation())
+        self.options.handler.set_margins(self.paper_frame.get_paper_margins())
         self.options.handler.set_custom_paper_size(
-            self.paper_frame.get_custom_paper_size())
+            self.paper_frame.get_custom_paper_size()
+        )
 
         # Create the output document.
         self.make_document()
 
         # Save options
         self.options.handler.save_options()
-        config.set('interface.open-with-default-viewer',
-                   self.open_with_app.get_active())
+        config.set(
+            "interface.open-with-default-viewer", self.open_with_app.get_active()
+        )
 
     def parse_format_frame(self):
         """Parse the format frame of the dialog.  Save the user

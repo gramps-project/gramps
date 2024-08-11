@@ -26,35 +26,36 @@
 LDS Ordinance class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from warnings import warn
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .secondaryobj import SecondaryObject
+# -------------------------------------------------------------------------
+from ..const import GRAMPS_LOCALE as glocale
 from .citationbase import CitationBase
-from .notebase import NoteBase
+from .const import DIFFERENT, EQUAL, IDENTICAL
 from .datebase import DateBase
+from .notebase import NoteBase
 from .placebase import PlaceBase
 from .privacybase import PrivacyBase
-from .const import IDENTICAL, EQUAL, DIFFERENT
-from ..const import GRAMPS_LOCALE as glocale
+from .secondaryobj import SecondaryObject
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# LDS Ordinance class
+# LdsOrd
 #
-#-------------------------------------------------------------------------
-class LdsOrd(SecondaryObject, CitationBase, NoteBase,
-             DateBase, PlaceBase, PrivacyBase):
+# -------------------------------------------------------------------------
+class LdsOrd(SecondaryObject, CitationBase, NoteBase, DateBase, PlaceBase, PrivacyBase):
     """
     Class that contains information about LDS Ordinances.
 
@@ -71,7 +72,6 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
     CONFIRMATION = 4
 
     DEFAULT_TYPE = BAPTISM
-
 
     STATUS_NONE = 0
     STATUS_BIC = 1
@@ -90,13 +90,12 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
 
     DEFAULT_STATUS = STATUS_NONE
 
-
     _TYPE_MAP = [
-        (BAPTISM, _('Baptism'), 'baptism'),
-        (ENDOWMENT, _('Endowment'), 'endowment'),
-        (CONFIRMATION, _('Confirmation'), 'confirmation'),
-        (SEAL_TO_PARENTS, _('Sealed to Parents'), 'sealed_to_parents'),
-        (SEAL_TO_SPOUSE, _('Sealed to Spouse'), 'sealed_to_spouse'),
+        (BAPTISM, _("Baptism"), "baptism"),
+        (ENDOWMENT, _("Endowment"), "endowment"),
+        (CONFIRMATION, _("Confirmation"), "confirmation"),
+        (SEAL_TO_PARENTS, _("Sealed to Parents"), "sealed_to_parents"),
+        (SEAL_TO_SPOUSE, _("Sealed to Spouse"), "sealed_to_spouse"),
     ]
 
     _STATUS_MAP = [
@@ -114,7 +113,7 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
         (STATUS_STILLBORN, _("Stillborn"), "Stillborn"),
         (STATUS_SUBMITTED, _("Submitted"), "Submitted"),
         (STATUS_UNCLEARED, _("Uncleared"), "Uncleared"),
-        ]
+    ]
 
     def __init__(self, source=None):
         """Create a LDS Ordinance instance."""
@@ -139,18 +138,33 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
         """
         Convert the object to a serialized tuple of data.
         """
-        return (CitationBase.serialize(self),
-                NoteBase.serialize(self),
-                DateBase.serialize(self),
-                self.type, self.place,
-                self.famc, self.temple, self.status, self.private)
+        return (
+            CitationBase.serialize(self),
+            NoteBase.serialize(self),
+            DateBase.serialize(self),
+            self.type,
+            self.place,
+            self.famc,
+            self.temple,
+            self.status,
+            self.private,
+        )
 
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
         """
-        (citation_list, note_list, date, self.type, self.place,
-         self.famc, self.temple, self.status, self.private) = data
+        (
+            citation_list,
+            note_list,
+            date,
+            self.type,
+            self.place,
+            self.famc,
+            self.temple,
+            self.status,
+            self.private,
+        ) = data
         CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
         DateBase.unserialize(self, date)
@@ -164,35 +178,35 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
+        # pylint: disable=import-outside-toplevel
         from .date import Date
+
         return {
             "type": "object",
             "title": _("LDS Ordinance"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "citation_list": {"type": "array",
-                                  "title": _("Citations"),
-                                  "items": {"type": "string",
-                                            "maxLength": 50}},
-                "note_list": {"type": "array",
-                              "title": _("Notes"),
-                              "items": {"type": "string",
-                                        "maxLength": 50}},
-                "date": {"oneOf": [{"type": "null"}, Date.get_schema()],
-                         "title": _("Date")},
-                "type": {"type": "integer",
-                         "title": _("Type")},
-                "place": {"type": "string",
-                          "title": _("Place")},
-                "famc": {"type": ["null", "string"],
-                         "title": _("Family")},
-                "temple": {"type": "string",
-                           "title": _("Temple")},
-                "status": {"type": "integer",
-                           "title": _("Status")},
-                "private": {"type": "boolean",
-                            "title": _("Private")}
-            }
+                "citation_list": {
+                    "type": "array",
+                    "title": _("Citations"),
+                    "items": {"type": "string", "maxLength": 50},
+                },
+                "note_list": {
+                    "type": "array",
+                    "title": _("Notes"),
+                    "items": {"type": "string", "maxLength": 50},
+                },
+                "date": {
+                    "oneOf": [{"type": "null"}, Date.get_schema()],
+                    "title": _("Date"),
+                },
+                "type": {"type": "integer", "title": _("Type")},
+                "place": {"type": "string", "title": _("Place")},
+                "famc": {"type": ["null", "string"], "title": _("Family")},
+                "temple": {"type": "string", "title": _("Temple")},
+                "status": {"type": "integer", "title": _("Status")},
+                "private": {"type": "boolean", "title": _("Private")},
+            },
         }
 
     def get_text_data_list(self):
@@ -203,7 +217,7 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
         :rtype: list
         """
         return [self.temple]
-        #return [self.temple,self.get_date()]
+        # return [self.temple,self.get_date()]
 
     def get_text_data_child_list(self):
         """
@@ -232,12 +246,13 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        ret = self.get_referenced_note_handles() + \
-                self.get_referenced_citation_handles()
+        ret = (
+            self.get_referenced_note_handles() + self.get_referenced_citation_handles()
+        )
         if self.place:
-            ret += [('Place', self.place)]
+            ret += [("Place", self.place)]
         if self.famc:
-            ret += [('Family', self.famc)]
+            ret += [("Family", self.famc)]
         return ret
 
     def get_handle_referents(self):
@@ -260,17 +275,17 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
         :returns: Constant indicating degree of equivalence.
         :rtype: int
         """
-        if self.type != other.type or \
-            self.get_date_object() != other.get_date_object() or \
-            self.temple != other.temple or \
-            self.status != other.status or \
-            self.famc != other.famc:
+        if (
+            self.type != other.type
+            or self.get_date_object() != other.get_date_object()
+            or self.temple != other.temple
+            or self.status != other.status
+            or self.famc != other.famc
+        ):
             return DIFFERENT
-        else:
-            if self.is_equal(other):
-                return IDENTICAL
-            else:
-                return EQUAL
+        if self.is_equal(other):
+            return IDENTICAL
+        return EQUAL
 
     def merge(self, acquisition):
         """
@@ -333,14 +348,15 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
 
     def is_empty(self):
         """Return 1 if the ordinance is actually empty."""
-        if (self.famc or
-                (self.date and not self.date.is_empty()) or
-                self.temple or
-                self.status or
-                self.place):
+        if (
+            self.famc
+            or (self.date and not self.date.is_empty())
+            or self.temple
+            or self.status
+            or self.place
+        ):
             return False
-        else:
-            return True
+        return True
 
     def are_equal(self, other):
         """Return 1 if the specified ordinance is the same as the instance."""

@@ -51,6 +51,7 @@ from ._hasnickname import HasNickname
 from ._hasnote import HasNote
 from ._hasnotematchingsubstringof import HasNoteMatchingSubstringOf
 from ._hasnoteregexp import HasNoteRegexp
+from ._hasothergender import HasOtherGender
 from ._hasrelationship import HasRelationship
 from ._hassourcecount import HasSourceCount
 from ._hassourceof import HasSourceOf
@@ -72,19 +73,17 @@ from ._isdescendantof import IsDescendantOf
 from ._isdescendantoffiltermatch import IsDescendantOfFilterMatch
 from ._isduplicatedancestorof import IsDuplicatedAncestorOf
 from ._isfemale import IsFemale
-from ._islessthannthgenerationancestorof import \
-     IsLessThanNthGenerationAncestorOf
-from ._islessthannthgenerationancestorofbookmarked import \
-     IsLessThanNthGenerationAncestorOfBookmarked
-from ._islessthannthgenerationancestorofdefaultperson import \
-     IsLessThanNthGenerationAncestorOfDefaultPerson
-from ._islessthannthgenerationdescendantof import \
-     IsLessThanNthGenerationDescendantOf
+from ._islessthannthgenerationancestorof import IsLessThanNthGenerationAncestorOf
+from ._islessthannthgenerationancestorofbookmarked import (
+    IsLessThanNthGenerationAncestorOfBookmarked,
+)
+from ._islessthannthgenerationancestorofdefaultperson import (
+    IsLessThanNthGenerationAncestorOfDefaultPerson,
+)
+from ._islessthannthgenerationdescendantof import IsLessThanNthGenerationDescendantOf
 from ._ismale import IsMale
-from ._ismorethannthgenerationancestorof import \
-     IsMoreThanNthGenerationAncestorOf
-from ._ismorethannthgenerationdescendantof import \
-     IsMoreThanNthGenerationDescendantOf
+from ._ismorethannthgenerationancestorof import IsMoreThanNthGenerationAncestorOf
+from ._ismorethannthgenerationdescendantof import IsMoreThanNthGenerationDescendantOf
 from ._isparentoffiltermatch import IsParentOfFilterMatch
 from ._issiblingoffiltermatch import IsSiblingOfFilterMatch
 from ._isspouseoffiltermatch import IsSpouseOfFilterMatch
@@ -112,16 +111,17 @@ from ._changedsince import ChangedSince
 from ._isrelatedwith import IsRelatedWith
 from ._hassoundexname import HasSoundexName
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # This is used by Custom Filter Editor tool
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 editor_rule_list = [
     Everyone,
     IsFemale,
-    HasUnknownGender,
     IsMale,
+    HasOtherGender,
+    HasUnknownGender,
     IsDefaultPerson,
     IsBookmarked,
     HasAlternateName,
@@ -195,4 +195,3 @@ editor_rule_list = [
     IsRelatedWith,
     HasSoundexName,
 ]
-

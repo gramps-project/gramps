@@ -20,11 +20,11 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import time
 import logging
 from math import pi as PI
@@ -32,42 +32,45 @@ from gi.repository import GObject
 from gi.repository import Gdk
 
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Set up logging
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 _LOG = logging.getLogger("maps.markerlayer")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps Modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # osmGpsMap
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 try:
     import gi
-    gi.require_version('OsmGpsMap', '1.0')
+
+    gi.require_version("OsmGpsMap", "1.0")
     from gi.repository import OsmGpsMap as osmgpsmap
 except:
     raise
+
 
 class MarkerLayer(GObject.GObject, osmgpsmap.MapLayer):
     """
     This is the layer used to display the markers.
     """
+
     def __init__(self):
         """
         Initialize the layer
@@ -115,27 +118,28 @@ class MarkerLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         max_interval = self.max_value - self.nb_ref_by_places
         min_interval = self.nb_ref_by_places - self.min_value
-        if max_interval <= 0: # This to avoid divide by zero
+        if max_interval <= 0:  # This to avoid divide by zero
             max_interval = 0.01
-        if min_interval <= 0: # This to avoid divide by zero
+        if min_interval <= 0:  # This to avoid divide by zero
             min_interval = 0.01
-        _LOG.debug("%s", time.strftime("start drawing   : "
-                                       "%a %d %b %Y %H:%M:%S", time.gmtime()))
+        _LOG.debug(
+            "%s",
+            time.strftime("start drawing   : " "%a %d %b %Y %H:%M:%S", time.gmtime()),
+        )
         for marker in self.markers:
             # the icon size in 48, so the standard icon size is 0.6 * 48 = 28.8
             size = 0.6
             mark = float(marker[2])
             if mark > self.nb_ref_by_places or max_interval > 3:
                 # at maximum, we'll have an icon size = (0.6 + 0.2) * 48 = 38.4
-                size += (0.2 * ((mark - self.nb_ref_by_places)
-                                / max_interval))
+                size += 0.2 * ((mark - self.nb_ref_by_places) / max_interval)
             else:
                 # at minimum, we'll have an icon size = (0.6 - 0.2) * 48 = 19.2
-                size -= (0.2 * ((self.nb_ref_by_places - mark)
-                                / min_interval))
+                size -= 0.2 * ((self.nb_ref_by_places - mark) / min_interval)
 
-            conv_pt = osmgpsmap.MapPoint.new_degrees(float(marker[0][0]),
-                                                     float(marker[0][1]))
+            conv_pt = osmgpsmap.MapPoint.new_degrees(
+                float(marker[0][0]), float(marker[0][1])
+            )
             coord_x, coord_y = gpsmap.convert_geographic_to_screen(conv_pt)
             if marker[3] is None:
                 # We use the standard icons.
@@ -147,17 +151,18 @@ class MarkerLayer(GObject.GObject, osmgpsmap.MapLayer):
                 # coordinates. The tip of the pin which should be at the marker
                 # position is at 3/18 of the width and to the height of the
                 # image. So we shift the image position.
-                pos_y = - int(48 * size + 0.5) - 10
-                pos_x = - int((48 * size) / 6 + 0.5) - 10
+                pos_y = -int(48 * size + 0.5) - 10
+                pos_x = -int((48 * size) / 6 + 0.5) - 10
                 ctx.set_source_surface(marker[1], pos_x, pos_y)
                 ctx.paint()
                 ctx.restore()
             else:
                 # We use colored icons.
-                draw_marker(ctx, float(coord_x), float(coord_y),
-                            size, marker[3][1])
-        _LOG.debug("%s", time.strftime("end drawing     : "
-                                       "%a %d %b %Y %H:%M:%S", time.gmtime()))
+                draw_marker(ctx, float(coord_x), float(coord_y), size, marker[3][1])
+        _LOG.debug(
+            "%s",
+            time.strftime("end drawing     : " "%a %d %b %Y %H:%M:%S", time.gmtime()),
+        )
 
     def do_render(self, gpsmap):
         """
@@ -179,49 +184,39 @@ class MarkerLayer(GObject.GObject, osmgpsmap.MapLayer):
         dummy_evt = gdkeventbutton
         return False
 
+
 GObject.type_register(MarkerLayer)
+
 
 def draw_marker(ctx, x01, y01, size, color):
     width = 48.0 * size
     height = width / 2
     color = Gdk.color_parse(color)
-    ctx.set_source_rgba(float(color.red / 65535.0),
-                        float(color.green / 65535.0),
-                        float(color.blue / 65535.0),
-                        1.0) # transparency
-    ctx.set_line_width(2.0)
+    fill_color = (
+        color.red / 65535.0,
+        color.green / 65535.0,
+        color.blue / 65535.0,
+        1.0,  # transparency
+    )
+    stroke_color = (1.0, 0.0, 0.0, 0.5)
+
     ctx.move_to(x01, y01)
-    ctx.line_to((x01 + (height/3)), (y01 - height*2))
-    ctx.line_to((x01 - (height/3)), (y01 - height*2))
-    ctx.fill()
-    ctx.set_source_rgba(1.0, 0.0, 0.0, 0.5)
-    ctx.move_to(x01, y01)
-    ctx.line_to((x01 + (height/3)), (y01 - height*2))
-    ctx.line_to((x01 - (height/3)), (y01 - height*2))
-    ctx.line_to(x01, y01)
-    ctx.stroke()
-    ctx.save()
-    ctx.translate(x01 + width/4 - (width/4), y01 - height*2 - (width/4))
-    ctx.scale(width / 2., height / 2.)
-    ctx.arc(0., 0., 1., 0., 2 * PI)
-    ctx.fill_preserve()
-    ctx.set_source_rgba(1.0, 0.0, 0.0, 0.5)
+    ctx.line_to(x01 + width / 6, y01 - height * 2)
+    ctx.line_to(x01 - width / 6, y01 - height * 2)
+    ctx.close_path()
     ctx.set_line_width(2.0)
-    ctx.arc(0., 0., 1., 0., 2 * PI)
-    ctx.restore()
-    ctx.stroke()
-    ctx.save()
-    ctx.set_source_rgba(float(color.red / 65535.0),
-                        float(color.green / 65535.0),
-                        float(color.blue / 65535.0),
-                        1.0) # transparency
-    #ctx.translate(x01 + width/4 - 12.0 , y01 - height*2 - 12.0)
-    ctx.translate(x01 + width/4 - (width/4), y01 - height*2 - (width/4))
-    ctx.scale(width / 2., height / 2.)
-    ctx.arc(0., 0., 1., 0., 2 * PI)
+    ctx.set_source_rgba(*fill_color)
     ctx.fill_preserve()
-    ctx.set_source_rgba(1.0, 0.0, 0.0, 0.5)
-    ctx.set_line_width(2.0)
-    ctx.arc(0., 0., 1., 0., 2 * PI)
+    ctx.set_source_rgba(*stroke_color)
+    ctx.stroke()
+
+    ctx.save()
+    ctx.translate(x01, y01 - height * 2 - width / 4)
+    ctx.scale(width / 2, height / 2)
+    ctx.arc(0.0, 0.0, 1.0, 0.0, 2 * PI)
     ctx.restore()
+    ctx.set_line_width(2.0)
+    ctx.set_source_rgba(*fill_color)
+    ctx.fill_preserve()
+    ctx.set_source_rgba(*stroke_color)
     ctx.stroke()

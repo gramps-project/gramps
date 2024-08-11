@@ -21,38 +21,40 @@
 
 "Find possible leading and/or trailing spaces in places name and people"
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import GObject
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gui.plug import tool
-from gramps.gui.editors import (EditPlace, EditPerson)
+from gramps.gui.editors import EditPlace, EditPerson
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.utils import ProgressMeter
 from gramps.gui.display import display_help
 from gramps.gui.glade import Glade
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('Remove_leading_and_trailing_spaces', 'manual')
+# -------------------------------------------------------------------------
+WIKI_HELP_PAGE = "%s_-_Tools" % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _("Remove_leading_and_trailing_spaces", "manual")
+
 
 def validate_lat_lon(field):
     """
@@ -64,28 +66,29 @@ def validate_lat_lon(field):
     # em dash (u+2014)
     # horizontal bar (u+2015)
     """
-    for char in (',', '\u2010', '\u2011', '\u2012',
-                 '\u2013', '\u2014', '\u2015'):
+    for char in (",", "\u2010", "\u2011", "\u2012", "\u2013", "\u2014", "\u2015"):
         if field.find(char) != -1:
             return True
     return False
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # RemoveSpaces class
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class RemoveSpaces(ManagedWindow):
     """
     Find leading and trailing spaces in Place names and person names
     """
+
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
         dummy_opt = options_class
         dummy_nme = name
         dummy_cb = callback
 
-        self.title = _('Clean input data')
+        self.title = _("Clean input data")
         ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.dbstate = dbstate
         self.uistate = uistate
@@ -96,60 +99,62 @@ class RemoveSpaces(ManagedWindow):
 
         top_dialog = Glade()
 
-        top_dialog.connect_signals({
-            "destroy_passed_object" : self.close,
-            "on_help_clicked"       : self.on_help_clicked,
-            "on_delete_event"       : self.close,
-        })
+        top_dialog.connect_signals(
+            {
+                "destroy_passed_object": self.close,
+                "on_help_clicked": self.on_help_clicked,
+                "on_delete_event": self.close,
+            }
+        )
 
         window = top_dialog.toplevel
         title = top_dialog.get_object("title")
         self.set_window(window, title, self.title)
-        tip = _('Search leading and/or trailing spaces for persons'
-                ' and places. Search comma or bad sign in coordinates'
-                ' fields.\n'
-                'Double click on a row to edit its content.')
+        tip = _(
+            "Search leading and/or trailing spaces for persons"
+            " and places. Search comma or bad sign in coordinates"
+            " fields.\n"
+            "Double click on a row to edit its content."
+        )
         title.set_tooltip_text(tip)
 
         # start the progress indicator
-        self.progress = ProgressMeter(self.title, _('Starting'),
-                                      parent=uistate.window)
+        self.progress = ProgressMeter(self.title, _("Starting"), parent=uistate.window)
         steps = self.db.get_number_of_people() + self.db.get_number_of_places()
-        self.progress.set_pass(_('Looking for possible fields with leading or'
-                                 ' trailing spaces'), steps)
+        self.progress.set_pass(
+            _("Looking for possible fields with leading or" " trailing spaces"), steps
+        )
 
         self.model_1 = Gtk.ListStore(
-            GObject.TYPE_STRING,    # 0==handle
-            GObject.TYPE_STRING,    # 1==firstname
-            GObject.TYPE_STRING,    # 2==surname
-            GObject.TYPE_STRING,    # 3==alternate name
-            GObject.TYPE_STRING,    # 4==group_as
-            )
-        self.model_1.set_sort_column_id(
-            Gtk.TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID, 1)
+            GObject.TYPE_STRING,  # 0==handle
+            GObject.TYPE_STRING,  # 1==firstname
+            GObject.TYPE_STRING,  # 2==surname
+            GObject.TYPE_STRING,  # 3==alternate name
+            GObject.TYPE_STRING,  # 4==group_as
+        )
+        self.model_1.set_sort_column_id(Gtk.TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID, 1)
 
         self.label_1 = top_dialog.get_object("label_1")
-        self.label_1.set_text(_('Person'))
+        self.label_1.set_text(_("Person"))
         self.treeview_1 = top_dialog.get_object("treeview_1")
         self.treeview_1.set_model(self.model_1)
-        col1 = Gtk.TreeViewColumn(_('handle'),
-                                  Gtk.CellRendererText(), text=0)
+        col1 = Gtk.TreeViewColumn(_("handle"), Gtk.CellRendererText(), text=0)
         renderer1 = Gtk.CellRendererText()
-        renderer1.set_property('underline-set', True)
-        renderer1.set_property('underline', 2) # 2=double underline
-        col2 = Gtk.TreeViewColumn(_('firstname'), renderer1, text=1)
+        renderer1.set_property("underline-set", True)
+        renderer1.set_property("underline", 2)  # 2=double underline
+        col2 = Gtk.TreeViewColumn(_("firstname"), renderer1, text=1)
         renderer2 = Gtk.CellRendererText()
-        renderer2.set_property('underline-set', True)
-        renderer2.set_property('underline', 2) # 2=double underline
-        col3 = Gtk.TreeViewColumn(_('surname'), renderer2, text=2)
+        renderer2.set_property("underline-set", True)
+        renderer2.set_property("underline", 2)  # 2=double underline
+        col3 = Gtk.TreeViewColumn(_("surname"), renderer2, text=2)
         renderer3 = Gtk.CellRendererText()
-        renderer3.set_property('underline-set', True)
-        renderer3.set_property('underline', 2) # 2=double underline
-        col4 = Gtk.TreeViewColumn(_('alternate name'), renderer3, text=3)
+        renderer3.set_property("underline-set", True)
+        renderer3.set_property("underline", 2)  # 2=double underline
+        col4 = Gtk.TreeViewColumn(_("alternate name"), renderer3, text=3)
         renderer4 = Gtk.CellRendererText()
-        renderer4.set_property('underline-set', True)
-        renderer4.set_property('underline', 2) # 2=double underline
-        col5 = Gtk.TreeViewColumn(_('group as'), renderer4, text=4)
+        renderer4.set_property("underline-set", True)
+        renderer4.set_property("underline", 2)  # 2=double underline
+        col5 = Gtk.TreeViewColumn(_("group as"), renderer4, text=4)
         col1.set_resizable(True)
         col1.set_visible(False)
         col2.set_resizable(True)
@@ -167,37 +172,35 @@ class RemoveSpaces(ManagedWindow):
         self.treeview_1.append_column(col4)
         self.treeview_1.append_column(col5)
         self.treeselection = self.treeview_1.get_selection()
-        self.treeview_1.connect('row-activated', self.rowactivated_cb1)
+        self.treeview_1.connect("row-activated", self.rowactivated_cb1)
 
         self.model_2 = Gtk.ListStore(
-            GObject.TYPE_STRING,    # 0==handle
-            GObject.TYPE_STRING,    # 1==name
-            GObject.TYPE_STRING,    # 2==latitude
-            GObject.TYPE_STRING,    # 3==longitude
-            GObject.TYPE_STRING)    # 4==tooltip
-        self.model_2.set_sort_column_id(
-            Gtk.TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID, 1)
+            GObject.TYPE_STRING,  # 0==handle
+            GObject.TYPE_STRING,  # 1==name
+            GObject.TYPE_STRING,  # 2==latitude
+            GObject.TYPE_STRING,  # 3==longitude
+            GObject.TYPE_STRING,
+        )  # 4==tooltip
+        self.model_2.set_sort_column_id(Gtk.TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID, 1)
 
         self.label_2 = top_dialog.get_object("label_2")
-        self.label_2.set_text(_('Place'))
+        self.label_2.set_text(_("Place"))
         self.treeview_2 = top_dialog.get_object("treeview_2")
         self.treeview_2.set_model(self.model_2)
-        col1 = Gtk.TreeViewColumn(_('handle'),
-                                  Gtk.CellRendererText(), text=0)
+        col1 = Gtk.TreeViewColumn(_("handle"), Gtk.CellRendererText(), text=0)
         renderer5 = Gtk.CellRendererText()
-        renderer5.set_property('underline-set', True)
-        renderer5.set_property('underline', 2) # 2=double underline
-        col2 = Gtk.TreeViewColumn(_('name'), renderer5, text=1)
+        renderer5.set_property("underline-set", True)
+        renderer5.set_property("underline", 2)  # 2=double underline
+        col2 = Gtk.TreeViewColumn(_("name"), renderer5, text=1)
         renderer6 = Gtk.CellRendererText()
-        renderer6.set_property('underline-set', True)
-        renderer6.set_property('underline', 2) # 2=double underline
-        col3 = Gtk.TreeViewColumn(_('latitude'), renderer6, text=2)
+        renderer6.set_property("underline-set", True)
+        renderer6.set_property("underline", 2)  # 2=double underline
+        col3 = Gtk.TreeViewColumn(_("latitude"), renderer6, text=2)
         renderer7 = Gtk.CellRendererText()
-        renderer7.set_property('underline-set', True)
-        renderer7.set_property('underline', 2) # 2=double underline
-        col4 = Gtk.TreeViewColumn(_('longitude'), renderer7, text=3)
-        col5 = Gtk.TreeViewColumn(_('tooltip'),
-                                  Gtk.CellRendererText(), text=4)
+        renderer7.set_property("underline-set", True)
+        renderer7.set_property("underline", 2)  # 2=double underline
+        col4 = Gtk.TreeViewColumn(_("longitude"), renderer7, text=3)
+        col5 = Gtk.TreeViewColumn(_("tooltip"), Gtk.CellRendererText(), text=4)
         col1.set_resizable(True)
         col1.set_visible(False)
         col2.set_resizable(True)
@@ -216,7 +219,7 @@ class RemoveSpaces(ManagedWindow):
         self.treeview_2.append_column(col5)
         self.treeview_2.set_tooltip_column(4)
         self.treeselection = self.treeview_2.get_selection()
-        self.treeview_2.connect('row-activated', self.rowactivated_cb2)
+        self.treeview_2.connect("row-activated", self.rowactivated_cb2)
 
         self.places()
         self.people()
@@ -235,7 +238,7 @@ class RemoveSpaces(ManagedWindow):
         mess: text to add
         """
         if nll == 0:
-            self.tooltip = _("Name:", 'place')
+            self.tooltip = _("Name:", "place")
             self.tooltip += " "
             self.tooltip += mess
         elif nll == 1:
@@ -284,7 +287,7 @@ class RemoveSpaces(ManagedWindow):
             if plat != plat.strip():
                 self.add_text_to_tip(1, _("leading and/or trailing spaces"))
                 found = True
-            if plat.find(',') != -1:
+            if plat.find(",") != -1:
                 self.add_text_to_tip(1, _("comma instead of dot"))
                 found = True
             if validate_lat_lon(plat):
@@ -296,7 +299,7 @@ class RemoveSpaces(ManagedWindow):
             if plon != plon.strip():
                 self.add_text_to_tip(2, _("leading and/or trailing spaces"))
                 found = True
-            if plon.find(',') != -1:
+            if plon.find(",") != -1:
                 self.add_text_to_tip(2, _("comma instead of dot"))
                 found = True
             if validate_lat_lon(plat):
@@ -329,7 +332,7 @@ class RemoveSpaces(ManagedWindow):
                 if aname != sname and aname != aname.strip():
                     found = True
                     if paname != "":
-                        paname += ', '
+                        paname += ", "
                     paname += aname
             groupas = primary_name.group_as
             if groupas != groupas.strip():
@@ -382,15 +385,17 @@ class RemoveSpaces(ManagedWindow):
     def close(self, *obj):
         ManagedWindow.close(self, *obj)
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # RemoveSpacesOptions
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class RemoveSpacesOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
+
     def __init__(self, name, person_id=None):
-        """ Initialize the options class """
+        """Initialize the options class"""
         tool.ToolOptions.__init__(self, name, person_id)

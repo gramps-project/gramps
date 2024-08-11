@@ -7,7 +7,7 @@
     <researcher>
       <resname>Alex Roitman,,,</resname>
     </researcher>
-    <mediapath>{GRAMPS_RESOURCES}/doc/gramps/example/gramps</mediapath>
+    <mediapath>{GRAMPS_RESOURCES}/example/gramps</mediapath>
   </header>
   <name-formats>
     <format number="-1" name="SURNAME, Given (Common)" fmt_str="SURNAME, given (common)" active="1"/>
@@ -28352,6 +28352,7 @@
         <attribute type="Father Age" value="28">
           <citationref hlink="_c140d7c7bdc1fedb030"/>
         </attribute>
+        <citationref hlink="_c140d5e5dbf300411bf"/>
       </eventref>
       <eventref hlink="_a5af0ecb11f5ac3110e" role="Primary"/>
       <eventref hlink="_a5af0ecb12e29af8a5d" role="Primary"/>

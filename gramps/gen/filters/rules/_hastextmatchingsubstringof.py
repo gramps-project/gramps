@@ -18,34 +18,33 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # "HasTextMatchingSubstringOf"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasTextMatchingSubstringOf(Rule):
     """Rule that checks for string matches in any textual information."""
 
-    labels = [ 'Substring:',
-                    'Case sensitive:',
-                    'Regular-Expression matching:']
-    name = 'Objects with records containing <substring>'
-    description = "Matches objects whose records contain text " \
-                   "matching a substring"
-    category = _('General filters')
+    labels = ["Substring:", "Case sensitive:", "Regular-Expression matching:"]
+    name = "Objects with records containing <substring>"
+    description = "Matches objects whose records contain text " "matching a substring"
+    category = _("General filters")
 
     # FIXME: This needs to be written for an arbitrary object
     # if possible

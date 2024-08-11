@@ -19,63 +19,72 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-__all__ = ["MonitoredCheckbox", "MonitoredEntry",
-           "MonitoredEntryIndicator", "MonitoredSpinButton",
-           "MonitoredText", "MonitoredType", "MonitoredDataType",
-           "MonitoredMenu", "MonitoredStrMenu", "MonitoredDate",
-           "MonitoredComboSelectedEntry", "MonitoredTagList"]
+__all__ = [
+    "MonitoredCheckbox",
+    "MonitoredEntry",
+    "MonitoredEntryIndicator",
+    "MonitoredSpinButton",
+    "MonitoredText",
+    "MonitoredType",
+    "MonitoredDataType",
+    "MonitoredMenu",
+    "MonitoredStrMenu",
+    "MonitoredDate",
+    "MonitoredComboSelectedEntry",
+    "MonitoredTagList",
+]
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 _LOG = logging.getLogger(".widgets.monitoredwidgets")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import GObject
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import Pango
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from ..autocomp import StandardCustomSelector, fill_entry
 from gramps.gen.datehandler import displayer, parser
 from gramps.gen.lib.date import Date, NextYear
 from gramps.gen.errors import ValidationError
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # constants
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
 _RETURN = Gdk.keyval_from_name("Return")
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # MonitoredCheckbox class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MonitoredCheckbox:
-
-    def __init__(self, obj, button, set_val, get_val, on_toggle=None,
-                 readonly = False):
+    def __init__(self, obj, button, set_val, get_val, on_toggle=None, readonly=False):
         self.button = button
-        self.button.connect('toggled', self._on_toggle)
+        self.button.connect("toggled", self._on_toggle)
         self.on_toggle = on_toggle
         self.obj = obj
         self.set_val = set_val
@@ -88,6 +97,7 @@ class MonitoredCheckbox:
         if self.on_toggle:
             self.on_toggle(self.get_val())
 
+
 ##    def destroy(self):
 ##        """
 ##        Unset all elements that can prevent garbage collection
@@ -96,15 +106,16 @@ class MonitoredCheckbox:
 ##        self.get_val = None
 ##        self.obj = None
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MonitoredEntry class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MonitoredEntry:
-
-    def __init__(self, obj, set_val, get_val, read_only=False,
-                 autolist=None, changed=None):
+    def __init__(
+        self, obj, set_val, get_val, read_only=False, autolist=None, changed=None
+    ):
         self.obj = obj
         self.set_val = set_val
         self.get_val = get_val
@@ -112,20 +123,20 @@ class MonitoredEntry:
 
         if get_val():
             self.obj.set_text(get_val())
-        self.obj.connect('changed', self._on_change)
-        self.obj.connect('focus-out-event', self._on_quit)
+        self.obj.connect("changed", self._on_change)
+        self.obj.connect("focus-out-event", self._on_quit)
         self.obj.set_editable(not read_only)
 
         if autolist:
             fill_entry(obj, autolist)
 
-##    def destroy(self):
-##        """
-##        Unset all elements that can prevent garbage collection
-##        """
-##        self.set_val = None
-##        self.get_val = None
-##        self.obj = None
+    ##    def destroy(self):
+    ##        """
+    ##        Unset all elements that can prevent garbage collection
+    ##        """
+    ##        self.set_val = None
+    ##        self.get_val = None
+    ##        self.obj = None
 
     def reinit(self, set_val, get_val):
         self.set_val = set_val
@@ -163,36 +174,48 @@ class MonitoredEntry:
         if self.get_val() is not None:
             self.obj.set_text(self.get_val())
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MonitoredEntryIndicator class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MonitoredEntryIndicator(MonitoredEntry):
     """
     Show an Entry box with an indicator in it that disappears when
     entry becomes active
     """
-    def __init__(self, obj, set_val, get_val, indicator, read_only=False,
-                 autolist=None, changed=None):
-        MonitoredEntry.__init__(self, obj, set_val, get_val, read_only,
-                                autolist, changed)
+
+    def __init__(
+        self,
+        obj,
+        set_val,
+        get_val,
+        indicator,
+        read_only=False,
+        autolist=None,
+        changed=None,
+    ):
+        MonitoredEntry.__init__(
+            self, obj, set_val, get_val, read_only, autolist, changed
+        )
         self.obj.set_placeholder_text(indicator)
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # MonitoredSpinButton class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MonitoredSpinButton:
     """
     Class for signal handling of spinbuttons.
     (Code is a modified copy of :class:`MonitoredEntry`)
     """
 
-    def __init__(self, obj, set_val, get_val, read_only=False,
-                 autolist=None, changed=None):
+    def __init__(
+        self, obj, set_val, get_val, read_only=False, autolist=None, changed=None
+    ):
         """
         :param obj: widget to be monitored
         :type obj: Gtk.SpinButton
@@ -208,19 +231,19 @@ class MonitoredSpinButton:
 
         if get_val():
             self.obj.set_value(get_val())
-        self.obj.connect('value-changed', self._on_change)
+        self.obj.connect("value-changed", self._on_change)
         self.obj.set_editable(not read_only)
 
         if autolist:
-            fill_entry(obj,autolist)
+            fill_entry(obj, autolist)
 
-##    def destroy(self):
-##        """
-##        Unset all elements that can prevent garbage collection
-##        """
-##        self.set_val = None
-##        self.get_val = None
-##        self.obj = None
+    ##    def destroy(self):
+    ##        """
+    ##        Unset all elements that can prevent garbage collection
+    ##        """
+    ##        self.set_val = None
+    ##        self.get_val = None
+    ##        self.obj = None
 
     def reinit(self, set_val, get_val):
         """
@@ -311,13 +334,13 @@ class MonitoredSpinButton:
         if self.get_val():
             self.obj.set_value(self.get_val())
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MonitoredText class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MonitoredText:
-
     def __init__(self, obj, set_val, get_val, read_only=False):
         self.buf = obj.get_buffer()
         self.set_val = set_val
@@ -325,30 +348,31 @@ class MonitoredText:
 
         if get_val():
             self.buf.set_text(get_val())
-        self.buf.connect('changed', self.on_change)
+        self.buf.connect("changed", self.on_change)
         obj.set_editable(not read_only)
 
-##    def destroy(self):
-##        """
-##        Unset all elements that can prevent garbage collection
-##        """
-##        self.set_val = None
-##        self.get_val = None
-##        self.buf = None
+    ##    def destroy(self):
+    ##        """
+    ##        Unset all elements that can prevent garbage collection
+    ##        """
+    ##        self.set_val = None
+    ##        self.get_val = None
+    ##        self.buf = None
 
     def on_change(self, obj):
         s, e = self.buf.get_bounds()
         self.set_val(str(self.buf.get_text(s, e, False)))
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MonitoredType class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MonitoredType:
-
-    def __init__(self, obj, set_val, get_val, mapping, custom, readonly=False,
-                 custom_values=None):
+    def __init__(
+        self, obj, set_val, get_val, mapping, custom, readonly=False, custom_values=None
+    ):
         self.set_val = set_val
         self.get_val = get_val
 
@@ -361,19 +385,20 @@ class MonitoredType:
             default = None
 
         self.sel = StandardCustomSelector(
-            mapping, obj, custom, default, additional=custom_values)
+            mapping, obj, custom, default, additional=custom_values
+        )
 
         self.set_val(self.sel.get_values())
         self.obj.set_sensitive(not readonly)
-        self.obj.connect('changed', self.on_change)
+        self.obj.connect("changed", self.on_change)
 
-##    def destroy(self):
-##        """
-##        Unset all elements that can prevent garbage collection
-##        """
-##        self.set_val = None
-##        self.get_val = None
-##        self.obj = None
+    ##    def destroy(self):
+    ##        """
+    ##        Unset all elements that can prevent garbage collection
+    ##        """
+    ##        self.set_val = None
+    ##        self.get_val = None
+    ##        self.obj = None
 
     def reinit(self, set_val, get_val):
         self.set_val = set_val
@@ -387,16 +412,22 @@ class MonitoredType:
     def on_change(self, obj):
         self.set_val(self.sel.get_values())
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MonitoredDataType class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MonitoredDataType:
-
-
-    def __init__(self, obj, set_val, get_val, readonly=False,
-                 custom_values=None, ignore_values=None):
+    def __init__(
+        self,
+        obj,
+        set_val,
+        get_val,
+        readonly=False,
+        custom_values=None,
+        ignore_values=None,
+    ):
         """
         Constructor for the MonitoredDataType class.
 
@@ -429,7 +460,7 @@ class MonitoredDataType:
             default = None
 
         map = get_val().get_map().copy()
-        if ignore_values :
+        if ignore_values:
             for key in list(map.keys()):
                 if key in ignore_values and key not in (None, default):
                     del map[key]
@@ -440,19 +471,20 @@ class MonitoredDataType:
             get_val().get_custom(),
             default,
             additional=custom_values,
-            menu=get_val().get_menu())
+            menu=get_val().get_menu(),
+        )
 
         self.sel.set_values((int(get_val()), str(get_val())))
         self.obj.set_sensitive(not readonly)
-        self.obj.connect('changed', self.on_change)
+        self.obj.connect("changed", self.on_change)
 
-##    def destroy(self):
-##        """
-##        Unset all elements that can prevent garbage collection
-##        """
-##        self.set_val = None
-##        self.get_val = None
-##        self.obj = None
+    ##    def destroy(self):
+    ##        """
+    ##        Unset all elements that can prevent garbage collection
+    ##        """
+    ##        self.set_val = None
+    ##        self.get_val = None
+    ##        self.obj = None
 
     def reinit(self, set_val, get_val):
         self.set_val = set_val
@@ -463,7 +495,7 @@ class MonitoredDataType:
         if value[0] == self.get_val().get_custom():
             return value
         else:
-            return (value[0], '')
+            return (value[0], "")
 
     def update(self):
         val = self.get_val()
@@ -476,15 +508,14 @@ class MonitoredDataType:
         value = self.fix_value(self.sel.get_values())
         self.set_val(value)
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MonitoredMenu class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MonitoredMenu:
-
-    def __init__(self, obj, set_val, get_val, mapping,
-                 readonly=False, changed=None):
+    def __init__(self, obj, set_val, get_val, mapping, readonly=False, changed=None):
         self.set_val = set_val
         self.get_val = get_val
 
@@ -492,16 +523,16 @@ class MonitoredMenu:
         self.obj = obj
 
         self.change_menu(mapping)
-        self.obj.connect('changed', self.on_change)
+        self.obj.connect("changed", self.on_change)
         self.obj.set_sensitive(not readonly)
 
-##    def destroy(self):
-##        """
-##        Unset all elements that can prevent garbage collection
-##        """
-##        self.set_val = None
-##        self.get_val = None
-##        self.obj = None
+    ##    def destroy(self):
+    ##        """
+    ##        Unset all elements that can prevent garbage collection
+    ##        """
+    ##        self.set_val = None
+    ##        self.get_val = None
+    ##        self.obj = None
 
     def force(self, value):
         self.obj.set_active(value)
@@ -522,13 +553,13 @@ class MonitoredMenu:
         if self.changed:
             self.changed()
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MonitoredStrMenu class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MonitoredStrMenu:
-
     def __init__(self, obj, set_val, get_val, mapping, readonly=False):
         self.set_val = set_val
         self.get_val = get_val
@@ -542,9 +573,9 @@ class MonitoredStrMenu:
         if len(mapping) > 20:
             self.obj.set_wrap_width(3)
 
-        self.model.append(row=[''])
+        self.model.append(row=[""])
         index = 0
-        self.data = ['']
+        self.data = [""]
 
         default = get_val()
         active = 0
@@ -558,31 +589,33 @@ class MonitoredStrMenu:
 
         self.obj.set_model(self.model)
         self.obj.set_active(active)
-        self.obj.connect('changed', self.on_change)
+        self.obj.connect("changed", self.on_change)
         self.obj.set_sensitive(not readonly)
 
-##    def destroy(self):
-##        """
-##        Unset all elements that can prevent garbage collection
-##        """
-##        self.set_val = None
-##        self.get_val = None
-##        self.obj = None
-##        self.model = None
+    ##    def destroy(self):
+    ##        """
+    ##        Unset all elements that can prevent garbage collection
+    ##        """
+    ##        self.set_val = None
+    ##        self.get_val = None
+    ##        self.obj = None
+    ##        self.model = None
 
     def on_change(self, obj):
         self.set_val(self.data[obj.get_active()])
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MonitoredDate class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MonitoredDate:
     """
     Class that associates a pixmap with a text widget, providing visual
     feedback that indicates if the text widget contains a valid date.
     """
+
     def __init__(self, field, button, value, uistate, track, readonly=False):
         """
         Create a connection between the date_obj, text_obj and the pixmap_obj.
@@ -597,14 +630,14 @@ class MonitoredDate:
         self.button_obj = button
 
         image = Gtk.Image()
-        image.set_from_icon_name('gramps-date-edit', Gtk.IconSize.BUTTON)
+        image.set_from_icon_name("gramps-date-edit", Gtk.IconSize.BUTTON)
         self.button_obj.set_image(image)
         self.button_obj.set_relief(Gtk.ReliefStyle.NORMAL)
         self.pixmap_obj = self.button_obj.get_child()
 
-        self.text_obj.connect('validate', self.validate)
-        self.text_obj.connect('content-changed', self.set_date)
-        self.button_obj.connect('clicked', self.invoke_date_editor)
+        self.text_obj.connect("validate", self.validate)
+        self.text_obj.connect("content-changed", self.set_date)
+        self.button_obj.connect("clicked", self.invoke_date_editor)
 
         self.text_obj.set_text(displayer.display(self.date_obj))
         self.text_obj.validate()
@@ -625,10 +658,9 @@ class MonitoredDate:
         """
         # if text could not be parsed it is assumed invalid
         if self.date_obj.get_modifier() == Date.MOD_TEXTONLY:
-            return ValidationError(_('Bad Date'))
-        elif (self.date_obj.to_calendar(calendar_name=Date.CAL_GREGORIAN) >>
-              NextYear()):
-            return ValidationError(_('Date more than one year in the future'))
+            return ValidationError(_("Bad Date"))
+        elif self.date_obj.to_calendar(calendar_name=Date.CAL_GREGORIAN) >> NextYear():
+            return ValidationError(_("Date more than one year in the future"))
 
     def invoke_date_editor(self, obj):
         """
@@ -637,6 +669,7 @@ class MonitoredDate:
         date.
         """
         from ..editors import EditDate
+
         date_dialog = EditDate(self.date_obj, self.uistate, self.track)
         the_date = date_dialog.return_date
         self.update_after_editor(the_date)
@@ -651,18 +684,28 @@ class MonitoredDate:
             self.text_obj.set_text(displayer.display(date_obj))
             self.text_obj.validate()
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MonitoredComboSelectedEntry class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MonitoredComboSelectedEntry:
     """
     A MonitoredEntry driven by a Combobox to select what the entry field
     works upon
     """
-    def __init__(self, objcombo, objentry, textlist, set_val_list,
-                 get_val_list, default=0, read_only=False):
+
+    def __init__(
+        self,
+        objcombo,
+        objentry,
+        textlist,
+        set_val_list,
+        get_val_list,
+        default=0,
+        read_only=False,
+    ):
         """
         Create a MonitoredComboSelectedEntry
         Objcombo and objentry should be the gtk widgets to use
@@ -677,9 +720,10 @@ class MonitoredComboSelectedEntry:
         self.set_val_list = set_val_list
         self.get_val_list = get_val_list
 
-        #fill the combobox, set on a specific entry
-        self.mapping = dict([[i,x] for (i,x) in zip(list(range(len(textlist))),
-                                                    textlist)])
+        # fill the combobox, set on a specific entry
+        self.mapping = dict(
+            [[i, x] for (i, x) in zip(list(range(len(textlist))), textlist)]
+        )
 
         self.active_key = default
         self.active_index = 0
@@ -689,25 +733,25 @@ class MonitoredComboSelectedEntry:
         self.objcombo.set_model(self.store)
         cell = Gtk.CellRendererText()
         self.objcombo.pack_start(cell, True)
-        self.objcombo.add_attribute(cell, 'text', 1)
+        self.objcombo.add_attribute(cell, "text", 1)
         self.objcombo.set_active(self.active_index)
-        self.objcombo.connect('changed', self.on_combochange)
+        self.objcombo.connect("changed", self.on_combochange)
 
-        #fill the entrybox with required data
+        # fill the entrybox with required data
         self.entry_reinit()
-        self.objentry.connect('changed', self._on_change_entry)
+        self.objentry.connect("changed", self._on_change_entry)
 
-        #set correct editable
+        # set correct editable
         self.enable(not read_only)
 
-##    def destroy(self):
-##        """
-##        Unset all elements that can prevent garbage collection
-##        """
-##        self.set_val_list = None
-##        self.get_val_list = None
-##        self.objcombo = None
-##        self.objentry = None
+    ##    def destroy(self):
+    ##        """
+    ##        Unset all elements that can prevent garbage collection
+    ##        """
+    ##        self.set_val_list = None
+    ##        self.get_val_list = None
+    ##        self.objcombo = None
+    ##        self.objentry = None
 
     def __fill(self):
         """
@@ -740,8 +784,7 @@ class MonitoredComboSelectedEntry:
         callback for change on the combo, change active iter, update
         associated entrybox
         """
-        self.active_key = self.store.get_value(self.objcombo.get_active_iter(),
-                                               0)
+        self.active_key = self.store.get_value(self.objcombo.get_active_iter(), 0)
         self.entry_reinit()
 
     def reinit(self, set_val_list, get_val_list):
@@ -781,19 +824,21 @@ class MonitoredComboSelectedEntry:
         """
         self.entry_reinit()
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MonitoredTagList class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MonitoredTagList:
     """
     A MonitoredTagList consists of a label to display a list of tags and a
     button to invoke the tag editor.
     """
-    def __init__(self, label, button, set_list, get_list, db,
-                 uistate, track, readonly=False):
 
+    def __init__(
+        self, label, button, set_list, get_list, db, uistate, track, readonly=False
+    ):
         self.uistate = uistate
         self.track = track
         self.db = db
@@ -814,29 +859,29 @@ class MonitoredTagList:
         self.label.set_halign(Gtk.Align.START)
         self.label.set_ellipsize(Pango.EllipsizeMode.END)
         image = Gtk.Image()
-        image.set_from_icon_name('gramps-tag', Gtk.IconSize.MENU)
-        button.set_image (image)
-        button.set_tooltip_text(_('Edit the tag list'))
-        button.connect('button-press-event', self.cb_edit)
-        button.connect('key-press-event', self.cb_edit)
+        image.set_from_icon_name("gramps-tag", Gtk.IconSize.MENU)
+        button.set_image(image)
+        button.set_tooltip_text(_("Edit the tag list"))
+        button.connect("button-press-event", self.cb_edit)
+        button.connect("key-press-event", self.cb_edit)
         button.set_sensitive(not readonly)
 
         self._display()
 
-##    def destroy(self):
-##        """
-##        Unset all elements that can prevent garbage collection
-##        """
-##        self.uistate = None
-##        self.track = None
-##        self.db = None
-##        self.set_list = None
+    ##    def destroy(self):
+    ##        """
+    ##        Unset all elements that can prevent garbage collection
+    ##        """
+    ##        self.uistate = None
+    ##        self.track = None
+    ##        self.db = None
+    ##        self.set_list = None
 
     def _display(self):
         """
         Display the tag list.
         """
-        tag_text = ', '.join(item[1] for item in self.tag_list)
+        tag_text = ", ".join(item[1] for item in self.tag_list)
         self.label.set_text(tag_text)
         self.label.set_tooltip_text(tag_text)
 
@@ -844,12 +889,13 @@ class MonitoredTagList:
         """
         Invoke the tag editor.
         """
-        if (event.type == Gdk.EventType.BUTTON_PRESS or
-           (event.type == Gdk.EventType.KEY_PRESS and
-            event.keyval in (_RETURN, _KP_ENTER))):
+        if event.type == Gdk.EventType.BUTTON_PRESS or (
+            event.type == Gdk.EventType.KEY_PRESS
+            and event.keyval in (_RETURN, _KP_ENTER)
+        ):
             from ..editors import EditTagList
-            editor = EditTagList(self.tag_list, self.all_tags,
-                                 self.uistate, self.track)
+
+            editor = EditTagList(self.tag_list, self.all_tags, self.uistate, self.track)
             if editor.return_list is not None:
                 self.tag_list = editor.return_list
                 self._display()

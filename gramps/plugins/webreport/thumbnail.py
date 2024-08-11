@@ -39,34 +39,36 @@ Narrative Web Page generator.
 Classe:
     ThumbnailPreviewPage
 """
-#------------------------------------------------
+# ------------------------------------------------
 # python modules
-#------------------------------------------------
+# ------------------------------------------------
 from decimal import getcontext
 import logging
 
-#------------------------------------------------
+# ------------------------------------------------
 # Gramps module
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import Media
 from gramps.plugins.lib.libhtml import Html
 
-#------------------------------------------------
+# ------------------------------------------------
 # specific narrative web import
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
-from gramps.plugins.webreport.common import (FULLCLEAR, html_escape)
+from gramps.plugins.webreport.common import FULLCLEAR, html_escape
 
 _ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb")
 getcontext().prec = 8
+
 
 class ThumbnailPreviewPage(BasePage):
     """
     This class is responsible for displaying information about
     the Thumbnails page.
     """
+
     def __init__(self, report, the_lang, the_title, cb_progress):
         """
         @param: report      -- The instance of the main report class
@@ -76,8 +78,9 @@ class ThumbnailPreviewPage(BasePage):
         @param: cb_progress -- The step used for the progress bar.
         """
         BasePage.__init__(self, report, the_lang, the_title)
-        self.create_thumbs_only = report.options['create_thumbs_only']
-        self.create_thumbs_index = self.report.options['create_thumbs_index']
+        self.create_thumbs_only = report.options["create_thumbs_only"]
+        self.create_thumbs_index = self.report.options["create_thumbs_index"]
+
         # bug 8950 : it seems it's better to sort on desc + gid.
         def sort_by_desc_and_gid(obj):
             """
@@ -85,9 +88,10 @@ class ThumbnailPreviewPage(BasePage):
             """
             return (obj.desc, obj.gramps_id)
 
-        self.photo_keys = sorted(self.report.obj_dict[Media],
-                                 key=lambda x: sort_by_desc_and_gid(
-                                     self.r_db.get_media_from_handle(x)))
+        self.photo_keys = sorted(
+            self.report.obj_dict[Media],
+            key=lambda x: sort_by_desc_and_gid(self.r_db.get_media_from_handle(x)),
+        )
 
         if self.create_unused_media:
             # add unused media
@@ -101,8 +105,7 @@ class ThumbnailPreviewPage(BasePage):
             photo = self.r_db.get_media_from_handle(person_handle)
             if photo:
                 if photo.get_mime_type().startswith("image"):
-                    media_list.append((photo.get_description(), person_handle,
-                                       photo))
+                    media_list.append((photo.get_description(), person_handle, photo))
 
                     if self.create_thumbs_only:
                         self.copy_thumbnail(person_handle, photo)
@@ -118,13 +121,15 @@ class ThumbnailPreviewPage(BasePage):
         with Html("div", class_="content", id="Preview") as previewpage:
             outerwrapper += previewpage
 
-            msg = self._("This page displays a indexed list "
-                         "of all the media objects "
-                         "in this database. It is sorted by media title. "
-                         "There is an index "
-                         "of all the media objects in this database. "
-                         "Clicking on a thumbnail "
-                         "will take you to that image&#8217;s page.")
+            msg = self._(
+                "This page displays a indexed list "
+                "of all the media objects "
+                "in this database. It is sorted by media title. "
+                "There is an index "
+                "of all the media objects in this database. "
+                "Clicking on a thumbnail "
+                "will take you to that image&#8217;s page."
+            )
             previewpage += Html("p", msg, id="description")
 
         with Html("div", id="gallery") as gallery:
@@ -137,7 +142,7 @@ class ThumbnailPreviewPage(BasePage):
                 photo = media_list[indexpos][2]
 
                 # begin table cell and attach to table row(trow)...
-                gallerycell = Html("div", class_="gallerycell")
+                gallerycell = Html("div", class_="gallerycell " + self.dir)
                 gallery += gallerycell
 
                 # attach index number...
@@ -146,18 +151,17 @@ class ThumbnailPreviewPage(BasePage):
 
                 # attach anchor name to date cell in upper right
                 # corner of grid...
-                numberdiv += Html("a", index, name=index, title=index,
-                                  inline=True)
+                numberdiv += Html("a", index, name=index, title=index, inline=True)
 
                 # create thumbnail
-                (dummy_real_path,
-                 newpath) = self.report.prepare_copy_media(photo)
+                (dummy_real_path, newpath) = self.report.prepare_copy_media(photo)
                 newpath = self.report.build_url_fname(newpath, image=True)
                 newpathc = newpath
 
                 # attach thumbnail to list...
-                gallerycell += self.thumb_hyper_image(newpathc, "img",
-                                                      person_handle, ptitle)
+                gallerycell += self.thumb_hyper_image(
+                    newpathc, "img", person_handle, ptitle
+                )
 
                 index += 1
                 indexpos += 1
@@ -178,9 +182,11 @@ class ThumbnailPreviewPage(BasePage):
                     trow = Html("tr")
                     tbody += trow
 
-                    tcell1 = Html("td",
-                                  self.thumbnail_link(ptitle, index),
-                                  class_="ColumnRowLabel")
+                    tcell1 = Html(
+                        "td",
+                        self.thumbnail_link(ptitle, index),
+                        class_="ColumnRowLabel",
+                    )
                     tcell2 = Html("td", ptitle, class_="ColumnName")
                     trow += (tcell1, tcell2)
 
@@ -189,7 +195,6 @@ class ThumbnailPreviewPage(BasePage):
 
                     # increase index for row number...
                     index += 1
-
 
         # add body id element
         body.attr = 'id ="ThumbnailPreview"'
@@ -204,7 +209,6 @@ class ThumbnailPreviewPage(BasePage):
         if self.create_thumbs_index:
             self.xhtml_writer(thumbnailpage, output_file, sio, 0)
 
-
     def thumbnail_link(self, name, index):
         """
         creates a hyperlink for Thumbnail Preview Reference...
@@ -212,8 +216,7 @@ class ThumbnailPreviewPage(BasePage):
         @param: name    -- The image description
         @param: index   -- The image index
         """
-        return Html("a", index, title=html_escape(name),
-                    href="#%d" % index)
+        return Html("a", index, title=html_escape(name), href="#%d" % index)
 
     def thumb_hyper_image(self, thumbnail_url, subdir, fname, name):
         """
@@ -225,17 +228,15 @@ class ThumbnailPreviewPage(BasePage):
         @param: name         -- The image description
         """
         name = html_escape(name)
-        url = "/".join(self.report.build_subdirs(subdir,
-                                                 fname) + [fname]) + self.ext
+        url = "/".join(self.report.build_subdirs(subdir, fname) + [fname]) + self.ext
         with Html("div", class_="thumbnail") as thumbnail:
-                    #snapshot += thumbnail
+            # snapshot += thumbnail
 
             if not self.create_thumbs_only:
                 thumbnail_link = Html("a", href=url, title=name) + (
                     Html("img", src=thumbnail_url, alt=name)
                 )
             else:
-                thumbnail_link = Html("img", src=thumbnail_url,
-                                      alt=name)
+                thumbnail_link = Html("img", src=thumbnail_url, alt=name)
             thumbnail += thumbnail_link
         return thumbnail

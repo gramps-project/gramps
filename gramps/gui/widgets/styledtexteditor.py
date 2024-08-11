@@ -23,22 +23,24 @@
 
 __all__ = ["StyledTextEditor"]
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
 import logging
+
 _LOG = logging.getLogger(".widgets.styledtexteditor")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gtk
@@ -46,16 +48,20 @@ from gi.repository import Pango
 from gi.repository.Gio import SimpleActionGroup
 from gi.repository.GLib import Variant
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.lib import StyledTextTagType
-from .styledtextbuffer import (ALLOWED_STYLES,
-                                          MATCH_START, MATCH_END,
-                                          MATCH_FLAVOR, MATCH_STRING,
-                                          LinkTag)
+from .styledtextbuffer import (
+    ALLOWED_STYLES,
+    MATCH_START,
+    MATCH_END,
+    MATCH_FLAVOR,
+    MATCH_STRING,
+    LinkTag,
+)
 from .undoablestyledbuffer import UndoableStyledBuffer
 from ..spell import Spell
 from ..display import display_url
@@ -64,18 +70,18 @@ from gramps.gen.config import config
 from gramps.gen.constfunc import has_display, mac
 from ..uimanager import ActionGroup
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 if has_display():
     display = Gdk.Display.get_default()
     HAND_CURSOR = Gdk.Cursor.new_for_display(display, Gdk.CursorType.HAND2)
     REGULAR_CURSOR = Gdk.Cursor.new_for_display(display, Gdk.CursorType.XTERM)
 
 FORMAT_TOOLBAR = (
-    '''<?xml version="1.0" encoding="UTF-8"?>
+    """<?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <object class="GtkToolbar" id="ToolBar">
     <property name="hexpand">True</property>
@@ -108,6 +114,36 @@ FORMAT_TOOLBAR = (
         <property name="icon-name">format-text-underline</property>
         <property name="action-name">ste.UNDERLINE</property>
         <property name="tooltip_text" translatable="yes">Underline</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToggleToolButton">
+        <property name="icon-name">format-text-strikethrough</property>
+        <property name="action-name">ste.STRIKETHROUGH</property>
+        <property name="tooltip_text" translatable="yes">Strikethrough</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToggleToolButton" id="superscript">
+        <property name="icon-name">format-text-superscript</property>
+        <property name="action-name">ste.SUPERSCRIPT</property>
+        <property name="tooltip_text" translatable="yes">Superscript</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToggleToolButton" id="subscript">
+        <property name="icon-name">format-text-subscript</property>
+        <property name="action-name">ste.SUBSCRIPT</property>
+        <property name="tooltip_text" translatable="yes">Subscript</property>
       </object>
       <packing>
         <property name="homogeneous">False</property>
@@ -166,8 +202,8 @@ FORMAT_TOOLBAR = (
       <object class="GtkToolButton">
         <property name="icon-name">gramps-font-bgcolor</property>
         <property name="action-name">ste.HIGHLIGHT</property>
-        <property name="tooltip_text" translatable="yes">'''
-    '''Background Color</property>
+        <property name="tooltip_text" translatable="yes">"""
+    """Background Color</property>
         <property name="label" translatable="yes">Background Color</property>
       </object>
       <packing>
@@ -198,8 +234,8 @@ FORMAT_TOOLBAR = (
       <object class="GtkToolButton">
         <property name="icon-name">edit-clear</property>
         <property name="action-name">ste.CLEAR</property>
-        <property name="tooltip_text" translatable="yes">'''
-    '''Clear Markup</property>
+        <property name="tooltip_text" translatable="yes">"""
+    """Clear Markup</property>
         <property name="label" translatable="yes">Clear Markup</property>
       </object>
       <packing>
@@ -208,15 +244,37 @@ FORMAT_TOOLBAR = (
     </child>
   </object>
 </interface>
-''')
-FONT_SIZES = [8, 9, 10, 11, 12, 13, 14, 16, 18, 20, 22,
-              24, 26, 28, 32, 36, 40, 48, 56, 64, 72]
+"""
+)
+FONT_SIZES = [
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    32,
+    36,
+    40,
+    48,
+    56,
+    64,
+    72,
+]
 
 USERCHARS = r"-\w"
 PASSCHARS = r"-\w,?;.:/!%$^*&~\"#'"
 HOSTCHARS = r"-\w"
 PATHCHARS = r"-\w$.+!*(),;:@&=?/~#%"
-#SCHEME = "(news:|telnet:|nntp:|file:/|https?:|ftps?:|webcal:)"
+# SCHEME = "(news:|telnet:|nntp:|file:/|https?:|ftps?:|webcal:)"
 SCHEME = "(file:/|https?:|ftps?:|webcal:)"
 USER = "[" + USERCHARS + "]+(:[" + PASSCHARS + "]+)?"
 HOST = r"([-\w.]+|\[[0-9A-F:]+\])?"
@@ -224,9 +282,9 @@ URLPATH = "(/[" + PATHCHARS + "]*)?[^]'.:}> \t\r\n,\\\"]"
 
 (GENURL, HTTP, MAIL, LINK) = list(range(4))
 
+
 def find_parent_with_attr(self, attr="dbstate"):
-    """
-    """
+    """ """
     # Find a parent with attr:
     obj = self
     while obj:
@@ -235,11 +293,12 @@ def find_parent_with_attr(self, attr="dbstate"):
         obj = obj.get_parent()
     return obj
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # StyledTextEditor
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class StyledTextEditor(Gtk.TextView):
     """
     StyledTextEditor is an enhanced Gtk.TextView to edit :class:`.StyledText`.
@@ -275,20 +334,23 @@ class StyledTextEditor(Gtk.TextView):
     :type url_match: tuple or None
 
     """
-    __gtype_name__ = 'StyledTextEditor'
+
+    __gtype_name__ = "StyledTextEditor"
 
     __gsignals__ = {
-        'match-changed': (GObject.SignalFlags.RUN_FIRST,
-                          None, #return value
-                          (GObject.TYPE_PYOBJECT,)), # arguments
+        "match-changed": (
+            GObject.SignalFlags.RUN_FIRST,
+            None,  # return value
+            (GObject.TYPE_PYOBJECT,),
+        ),  # arguments
     }
 
     def __init__(self):
         """Setup initial instance variable values."""
         self.textbuffer = UndoableStyledBuffer()
-        self.undo_disabled = self.textbuffer.undo_disabled # see bug 7097
-        self.textbuffer.connect('style-changed', self._on_buffer_style_changed)
-        self.textbuffer.connect('changed', self._on_buffer_changed)
+        self.undo_disabled = self.textbuffer.undo_disabled  # see bug 7097
+        self.textbuffer.connect("style-changed", self._on_buffer_style_changed)
+        self.textbuffer.connect("changed", self._on_buffer_changed)
         self.undo_action = self.redo_action = None
         Gtk.TextView.__init__(self)
         self.set_buffer(self.textbuffer)
@@ -326,7 +388,7 @@ class StyledTextEditor(Gtk.TextView):
         """
         window = self.get_window(Gtk.TextWindowType.TEXT)
         start, end = self.textbuffer.get_bounds()
-        self.textbuffer.remove_tag_by_name('hyperlink', start, end)
+        self.textbuffer.remove_tag_by_name("hyperlink", start, end)
         if match and (match[MATCH_FLAVOR] in (GENURL, HTTP, MAIL)):
             start_offset = match[MATCH_START]
             end_offset = match[MATCH_END]
@@ -334,7 +396,7 @@ class StyledTextEditor(Gtk.TextView):
             start = self.textbuffer.get_iter_at_offset(start_offset)
             end = self.textbuffer.get_iter_at_offset(end_offset)
 
-            self.textbuffer.apply_tag_by_name('hyperlink', start, end)
+            self.textbuffer.apply_tag_by_name("hyperlink", start, end)
             window.set_cursor(HAND_CURSOR)
             self.url_match = match
         elif match and (match[MATCH_FLAVOR] in (LINK,)):
@@ -364,21 +426,26 @@ class StyledTextEditor(Gtk.TextView):
         regexp match at the new location. If match changes the
         'match-changed' signal is raised.
         """
-        x, y = self.window_to_buffer_coords(Gtk.TextWindowType.WIDGET,
-                                            int(event.x), int(event.y))
+        x, y = self.window_to_buffer_coords(
+            Gtk.TextWindowType.WIDGET, int(event.x), int(event.y)
+        )
         iter_at_location = self.get_iter_at_location(x, y)
         if isinstance(iter_at_location, tuple):
             iter_at_location = iter_at_location[1]
         self.match = self.textbuffer.match_check(iter_at_location.get_offset())
         tooltip = None
-        for tag in (tag for tag in iter_at_location.get_tags()
-                    if tag.get_property('name').startswith("link")):
+        for tag in (
+            tag
+            for tag in iter_at_location.get_tags()
+            if tag.get_property("name") is not None
+            and tag.get_property("name").startswith("link")
+        ):
             self.match = (x, y, LINK, tag.data, tag)
             tooltip = self.make_tooltip_from_link(tag)
             break
 
         if self.match != self.last_match:
-            self.emit('match-changed', self.match)
+            self.emit("match-changed", self.match)
 
         self.last_match = self.match
         # self.get_root_window().get_pointer()  # Doesn't seem to do anythhing!
@@ -390,30 +457,42 @@ class StyledTextEditor(Gtk.TextView):
         Return a string useful for a tooltip given a LinkTag object.
         """
         from gramps.gen.simple import SimpleAccess
+
         win_obj = find_parent_with_attr(self, attr="dbstate")
         display = link_tag.data
         if win_obj:
             simple_access = SimpleAccess(win_obj.dbstate.db)
             url = link_tag.data
             if url.startswith("gramps://"):
-                obj_class, prop, value = url[9:].split("/")
+                obj_class, prop, value = url[9:].split("/", 2)
                 display = simple_access.display(obj_class, prop, value) or url
-        return display + ((_("\nCommand-Click to follow link") if mac() else
-                           _("\nCtrl-Click to follow link"))
-                          if self.get_editable() else '')
+        return display + (
+            (
+                _("\nCommand-Click to follow link")
+                if mac()
+                else _("\nCtrl-Click to follow link")
+            )
+            if self.get_editable()
+            else ""
+        )
 
     def on_button_release_event(self, widget, event):
         """
         Copy selection to clipboard for left click if selection given
         """
-        if (event.type == Gdk.EventType.BUTTON_RELEASE and self.selclick and
-                event.button == 1):
+        if (
+            event.type == Gdk.EventType.BUTTON_RELEASE
+            and self.selclick
+            and event.button == 1
+        ):
             bounds = self.textbuffer.get_selection_bounds()
             if bounds:
-                clip = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(),
-                        Gdk.SELECTION_PRIMARY)
-                clip.set_text(str(self.textbuffer.get_text(bounds[0],
-                                                        bounds[1], True)), -1)
+                clip = Gtk.Clipboard.get_for_display(
+                    Gdk.Display.get_default(), Gdk.SELECTION_PRIMARY
+                )
+                clip.set_text(
+                    str(self.textbuffer.get_text(bounds[0], bounds[1], True)), -1
+                )
         return False
 
     def on_button_press_event(self, widget, event):
@@ -422,19 +501,20 @@ class StyledTextEditor(Gtk.TextView):
 
         Handles the <CTRL> + Left click over a URL match.
         """
-        self.selclick=False
-        if ((event.type == Gdk.EventType.BUTTON_PRESS) and
-            (event.button == 1) and (self.url_match) and
-            (match_primary_mask(event.get_state()) or
-             not self.get_editable())):
-
+        self.selclick = False
+        if (
+            (event.type == Gdk.EventType.BUTTON_PRESS)
+            and (event.button == 1)
+            and (self.url_match)
+            and (match_primary_mask(event.get_state()) or not self.get_editable())
+        ):
             flavor = self.url_match[MATCH_FLAVOR]
             url = self.url_match[MATCH_STRING]
             self._open_url_cb(None, url, flavor)
-        elif (event.type == Gdk.EventType.BUTTON_PRESS and event.button == 1):
-            #on release we will copy selected data to clipboard
+        elif event.type == Gdk.EventType.BUTTON_PRESS and event.button == 1:
+            # on release we will copy selected data to clipboard
             self.selclick = True
-        #propagate click
+        # propagate click
         return False
 
     def on_populate_popup(self, widget, menu):
@@ -447,13 +527,13 @@ class StyledTextEditor(Gtk.TextView):
         2. Insert extra menus depending on ULR match result.
         """
         # spell checker submenu
-        spell_menu = Gtk.MenuItem(label=_('Spellcheck'))
+        spell_menu = Gtk.MenuItem(label=_("Spellcheck"))
         spell_menu.set_submenu(self._create_spell_menu())
         spell_menu.show_all()
         menu.prepend(spell_menu)
 
         search_menu = Gtk.MenuItem(label=_("Search selection on web"))
-        search_menu.connect('activate', self.search_web)
+        search_menu.connect("activate", self.search_web)
         search_menu.show_all()
         menu.append(search_menu)
 
@@ -463,31 +543,33 @@ class StyledTextEditor(Gtk.TextView):
             url = self.url_match[MATCH_STRING]
 
             if flavor == MAIL:
-                open_menu = Gtk.MenuItem(label=_('_Send Mail To...'))
+                open_menu = Gtk.MenuItem(label=_("_Send Mail To..."))
                 open_menu.set_use_underline(True)
-                copy_menu = Gtk.MenuItem(label=_('Copy _E-mail Address'))
+                copy_menu = Gtk.MenuItem(label=_("Copy _E-mail Address"))
                 copy_menu.set_use_underline(True)
             else:
-                open_menu = Gtk.MenuItem(label=_('_Open Link'))
+                open_menu = Gtk.MenuItem(label=_("_Open Link"))
                 open_menu.set_use_underline(True)
-                copy_menu = Gtk.MenuItem(label=_('Copy _Link Address'))
+                copy_menu = Gtk.MenuItem(label=_("Copy _Link Address"))
                 copy_menu.set_use_underline(True)
 
             if flavor == LINK and self.get_editable():
-                edit_menu = Gtk.MenuItem(label=_('_Edit Link'))
+                edit_menu = Gtk.MenuItem(label=_("_Edit Link"))
                 edit_menu.set_use_underline(True)
-                edit_menu.connect('activate', self._edit_url_cb,
-                                  self.url_match[-1], # tag
-                                  )
+                edit_menu.connect(
+                    "activate",
+                    self._edit_url_cb,
+                    self.url_match[-1],  # tag
+                )
                 edit_menu.show()
                 menu.prepend(edit_menu)
 
-            copy_menu.connect('activate', self._copy_url_cb, url, flavor)
+            copy_menu.connect("activate", self._copy_url_cb, url, flavor)
             copy_menu.show()
 
             menu.prepend(copy_menu)
 
-            open_menu.connect('activate', self._open_url_cb, url, flavor)
+            open_menu.connect("activate", self._open_url_cb, url, flavor)
             open_menu.show()
             menu.prepend(open_menu)
 
@@ -497,10 +579,10 @@ class StyledTextEditor(Gtk.TextView):
         """
         selection = self.textbuffer.get_selection_bounds()
         if len(selection) > 0:
-            display_url(config.get("behavior.web-search-url") %
-                        {'text':
-                         self.textbuffer.get_text(selection[0],
-                                                  selection[1], True)})
+            display_url(
+                config.get("behavior.web-search-url")
+                % {"text": self.textbuffer.get_text(selection[0], selection[1], True)}
+            )
 
     def reset(self):
         """
@@ -514,13 +596,13 @@ class StyledTextEditor(Gtk.TextView):
 
     def _connect_signals(self):
         """Connect to several signals of the super class Gtk.TextView."""
-        self.connect('insert-at-cursor', self.on_insert_at_cursor)
-        self.connect('delete-from-cursor', self.on_delete_from_cursor)
-        self.connect('paste-clipboard', self.on_paste_clipboard)
-        self.connect('motion-notify-event', self.on_motion_notify_event)
-        self.connect('button-press-event', self.on_button_press_event)
-        self.connect('button-release-event', self.on_button_release_event)
-        self.connect('populate-popup', self.on_populate_popup)
+        self.connect("insert-at-cursor", self.on_insert_at_cursor)
+        self.connect("delete-from-cursor", self.on_delete_from_cursor)
+        self.connect("paste-clipboard", self.on_paste_clipboard)
+        self.connect("motion-notify-event", self.on_motion_notify_event)
+        self.connect("button-press-event", self.on_button_press_event)
+        self.connect("button-release-event", self.on_button_release_event)
+        self.connect("populate-popup", self.on_populate_popup)
 
     def create_toolbar(self, uimanager, window):
         """
@@ -534,27 +616,36 @@ class StyledTextEditor(Gtk.TextView):
         builder = Gtk.Builder()
         builder.set_translation_domain(glocale.get_localedomain())
         builder.add_from_string(FORMAT_TOOLBAR)
+
+        # fallback icons
+        icon_theme = Gtk.IconTheme().get_default()
+        icon_theme.connect("changed", self.__set_fallback_icons, builder)
+        self.__set_fallback_icons(icon_theme, builder)
+
         # define the actions...
         _actions = [
-            ('ITALIC', self._on_toggle_action_activate, '<PRIMARY>i', False),
-            ('BOLD', self._on_toggle_action_activate, '<PRIMARY>b', False),
-            ('UNDERLINE', self._on_toggle_action_activate, '<PRIMARY>u',
-             False),
-            ('FONTCOLOR', self._on_action_activate),
-            ('HIGHLIGHT', self._on_action_activate),
-            ('LINK', self._on_link_activate),
-            ('CLEAR', self._format_clear_cb),
-            ('STUndo', self.undo, '<primary>z'),
-            ('STRedo', self.redo, '<primary><shift>z'),
+            ("ITALIC", self._on_toggle_action_activate, "<PRIMARY>i", False),
+            ("BOLD", self._on_toggle_action_activate, "<PRIMARY>b", False),
+            ("UNDERLINE", self._on_toggle_action_activate, "<PRIMARY>u", False),
+            ("STRIKETHROUGH", self._on_toggle_action_activate, "<PRIMARY>s", False),
+            ("SUPERSCRIPT", self._on_toggle_action_activate, "<PRIMARY>p", False),
+            ("SUBSCRIPT", self._on_toggle_action_activate, "<PRIMARY>r", False),
+            ("FONTCOLOR", self._on_action_activate),
+            ("HIGHLIGHT", self._on_action_activate),
+            ("LINK", self._on_link_activate),
+            ("CLEAR", self._format_clear_cb),
+            ("STUndo", self.undo, "<primary>z"),
+            ("STRedo", self.redo, "<primary><shift>z"),
         ]
 
         # the following are done manually rather than using actions
         fonts = SystemFonts()
-        fontface = builder.get_object('Fontface')
+        fontface = builder.get_object("Fontface")
         fontface.init(fonts.get_system_fonts(), shortlist=True, validator=None)
         fontface.set_entry_editable(False)
-        fontface.connect('changed', make_cb(
-            self._on_valueaction_changed, StyledTextTagType.FONTFACE))
+        fontface.connect(
+            "changed", make_cb(self._on_valueaction_changed, StyledTextTagType.FONTFACE)
+        )
         # set initial value
         default = StyledTextTagType.STYLE_DEFAULT[StyledTextTagType.FONTFACE]
         self.fontface = fontface.get_child()
@@ -562,11 +653,12 @@ class StyledTextEditor(Gtk.TextView):
         fontface.show()
 
         items = FONT_SIZES
-        fontsize = builder.get_object('Fontsize')
+        fontsize = builder.get_object("Fontsize")
         fontsize.init(items, shortlist=False, validator=is_valid_fontsize)
         fontsize.set_entry_editable(True)
-        fontsize.connect('changed', make_cb(
-            self._on_valueaction_changed, StyledTextTagType.FONTSIZE))
+        fontsize.connect(
+            "changed", make_cb(self._on_valueaction_changed, StyledTextTagType.FONTSIZE)
+        )
         # set initial value
         default = StyledTextTagType.STYLE_DEFAULT[StyledTextTagType.FONTSIZE]
         self.fontsize = fontsize.get_child()
@@ -574,41 +666,65 @@ class StyledTextEditor(Gtk.TextView):
         fontsize.show()
 
         # create the action group and insert all the actions
-        self.action_group = ActionGroup('Format', _actions, 'ste')
+        self.action_group = ActionGroup("Format", _actions, "ste")
         act_grp = SimpleActionGroup()
-        window.insert_action_group('ste', act_grp)
+        window.insert_action_group("ste", act_grp)
         window.set_application(uimanager.app)
         uimanager.insert_action_group(self.action_group, act_grp)
 
         self.undo_action = uimanager.get_action(self.action_group, "STUndo")
         self.redo_action = uimanager.get_action(self.action_group, "STRedo")
         # allow undo/redo to see actions if editable.
-        self.textbuffer.connect('changed', self._on_buffer_changed)
+        self.textbuffer.connect("changed", self._on_buffer_changed)
         # undo/redo are initially greyed out, until something is changed
         self.undo_action.set_enabled(False)
         self.redo_action.set_enabled(False)
 
         # get the toolbar and set it's style
-        toolbar = builder.get_object('ToolBar')
+        toolbar = builder.get_object("ToolBar")
 
         return toolbar, self.action_group
+
+    def __set_fallback_icons(self, icon_theme, builder):
+        """
+        Set fallbacks for icons that are not available in the current theme.
+        """
+        fallbacks = (
+            ("superscript", "format-text-superscript", "go-up"),
+            ("subscript", "format-text-subscript", "go-down"),
+        )
+        for obj_name, primary, fallback in fallbacks:
+            tool_button = builder.get_object(obj_name)
+            icon = tool_button.get_child().get_child()
+            name = primary
+            if not icon_theme.has_icon(primary):
+                name = fallback
+            icon.set_from_icon_name(name, Gtk.IconSize.LARGE_TOOLBAR)
 
     def set_transient_parent(self, parent=None):
         self.transient_parent = parent
 
     def _init_url_match(self):
         """Setup regexp matching for URL match."""
-        self.textbuffer.create_tag('hyperlink',
-                                   underline=Pango.Underline.SINGLE,
-                                   foreground=self.linkcolor)
-        self.textbuffer.match_add(SCHEME + "//(" + USER + "@)?" +
-                                  HOST + "(:[0-9]+)?" +
-                                  URLPATH, GENURL)
-        self.textbuffer.match_add(r"(www\.|ftp\.)[" + HOSTCHARS + r"]*\.[" +
-                                  HOSTCHARS + ".]+" + "(:[0-9]+)?" +
-                                  URLPATH, HTTP)
-        self.textbuffer.match_add(r"(mailto:)?[\w][-.\w]*@[\w]"
-                                  r"[-\w]*(\.[\w][-.\w]*)+", MAIL)
+        self.textbuffer.create_tag(
+            "hyperlink", underline=Pango.Underline.SINGLE, foreground=self.linkcolor
+        )
+        self.textbuffer.match_add(
+            SCHEME + "//(" + USER + "@)?" + HOST + "(:[0-9]+)?" + URLPATH, GENURL
+        )
+        self.textbuffer.match_add(
+            r"(www\.|ftp\.)["
+            + HOSTCHARS
+            + r"]*\.["
+            + HOSTCHARS
+            + ".]+"
+            + "(:[0-9]+)?"
+            + URLPATH,
+            HTTP,
+        )
+        self.textbuffer.match_add(
+            r"(mailto:)?[\w][-.\w]*@[\w]" r"[-\w]*(\.[\w][-.\w]*)+", MAIL
+        )
 
     def _create_spell_menu(self):
         """
@@ -627,7 +743,7 @@ class StyledTextEditor(Gtk.TextView):
         for lang in self.spellcheck.get_all_spellchecks():
             menuitem = Gtk.RadioMenuItem(label=lang)
             menuitem.set_active(lang == active_spellcheck)
-            menuitem.connect('activate', self._spell_change_cb, lang)
+            menuitem.connect("activate", self._spell_change_cb, lang)
             menu.append(menuitem)
 
             if group is None:
@@ -641,7 +757,8 @@ class StyledTextEditor(Gtk.TextView):
         """
         Toggle a style.
 
-        Toggle styles are e.g. 'bold', 'italic', 'underline'.
+        Toggle styles are e.g. 'bold', 'italic', 'underline', 'strikethrough',
+                               'superscript' and 'subscript'.
         """
         action.set_state(value)
         if self._internal_style_change:
@@ -649,6 +766,15 @@ class StyledTextEditor(Gtk.TextView):
 
         style = action.get_name()
         value = value.get_boolean()
+
+        if value and style in ("SUPERSCRIPT", "SUBSCRIPT"):
+            if style == "SUPERSCRIPT":
+                toggle_off = "SUBSCRIPT"
+            else:
+                toggle_off = "SUPERSCRIPT"
+            action = self.uimanager.get_action(self.action_group, toggle_off)
+            action.change_state(Variant.new_boolean(False))
+
         _LOG.debug("applying style '%s' with value '%s'" % (style, str(value)))
         self.textbuffer.apply_style(getattr(StyledTextTagType, style), value)
 
@@ -660,14 +786,17 @@ class StyledTextEditor(Gtk.TextView):
         selection_bounds = self.textbuffer.get_selection_bounds()
         if selection_bounds:
             # Paste text to clipboards
-            text = str(self.textbuffer.get_text(selection_bounds[0],
-                                                selection_bounds[1], True))
-            clipboard = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(),
-                        Gdk.SELECTION_CLIPBOARD)
+            text = str(
+                self.textbuffer.get_text(selection_bounds[0], selection_bounds[1], True)
+            )
+            clipboard = Gtk.Clipboard.get_for_display(
+                Gdk.Display.get_default(), Gdk.SELECTION_CLIPBOARD
+            )
 
             clipboard.set_text(text, -1)
-            clipboard = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(),
-                        Gdk.SELECTION_PRIMARY)
+            clipboard = Gtk.Clipboard.get_for_display(
+                Gdk.Display.get_default(), Gdk.SELECTION_PRIMARY
+            )
             clipboard.set_text(text, -1)
             uri_dialog(self, None, self.setlink_callback)
 
@@ -678,14 +807,14 @@ class StyledTextEditor(Gtk.TextView):
         if uri:
             _LOG.debug("applying style 'link' with value '%s'" % uri)
             if not tag:
-                tag = LinkTag(self.textbuffer,
-                              data=uri,
-                              underline=Pango.Underline.SINGLE,
-                              foreground=self.linkcolor)
+                tag = LinkTag(
+                    self.textbuffer,
+                    data=uri,
+                    underline=Pango.Underline.SINGLE,
+                    foreground=self.linkcolor,
+                )
                 selection_bounds = self.textbuffer.get_selection_bounds()
-                self.textbuffer.apply_tag(tag,
-                                          selection_bounds[0],
-                                          selection_bounds[1])
+                self.textbuffer.apply_tag(tag, selection_bounds[0], selection_bounds[1])
             else:
                 tag.data = uri
 
@@ -696,12 +825,12 @@ class StyledTextEditor(Gtk.TextView):
 
         if style == StyledTextTagType.FONTCOLOR:
             color_dialog = Gtk.ColorChooserDialog(
-                title=_("Select font color"),
-                transient_for=self.transient_parent)
+                title=_("Select font color"), transient_for=self.transient_parent
+            )
         elif style == StyledTextTagType.HIGHLIGHT:
             color_dialog = Gtk.ColorChooserDialog(
-                title=_("Select background color"),
-                transient_for=self.transient_parent)
+                title=_("Select background color"), transient_for=self.transient_parent
+            )
         else:
             _LOG.debug("unknown style: '%d'" % style)
             return
@@ -713,14 +842,15 @@ class StyledTextEditor(Gtk.TextView):
 
         response = color_dialog.run()
         rgba = color_dialog.get_rgba()
-        value = '#%02x%02x%02x' % (int(rgba.red * 255),
-                                   int(rgba.green * 255),
-                                   int(rgba.blue * 255))
+        value = "#%02x%02x%02x" % (
+            int(rgba.red * 255),
+            int(rgba.green * 255),
+            int(rgba.blue * 255),
+        )
         color_dialog.destroy()
 
         if response == Gtk.ResponseType.OK:
-            _LOG.debug("applying style '%d' with value '%s'" %
-                       (style, str(value)))
+            _LOG.debug("applying style '%d' with value '%s'" % (style, str(value)))
             self.textbuffer.apply_style(style, value)
 
     def _on_valueaction_changed(self, obj, style):
@@ -731,18 +861,19 @@ class StyledTextEditor(Gtk.TextView):
         value = obj.get_active_data()
         try:
             value = StyledTextTagType.STYLE_TYPE[style](value)
-            _LOG.debug("applying style '%d' with value '%s'" %
-                       (style, str(value)))
+            _LOG.debug("applying style '%d' with value '%s'" % (style, str(value)))
             self.textbuffer.apply_style(style, value)
         except ValueError:
-            _LOG.debug("unable to convert '%s' to '%s'" %
-                       (value, StyledTextTagType.STYLE_TYPE[style]))
+            _LOG.debug(
+                "unable to convert '%s' to '%s'"
+                % (value, StyledTextTagType.STYLE_TYPE[style])
+            )
 
     def _format_clear_cb(self, action, value):
         """
         Remove all formats from the selection or from all.
 
-        Remove only our own tags without touching other ones (e.g. Gtk.Spell),
+        Remove only our own tags without touching other ones (e.g. Gspell),
         thus remove_all_tags() can not be used.
         """
         clear_anything = self.textbuffer.clear_selection()
@@ -751,14 +882,17 @@ class StyledTextEditor(Gtk.TextView):
                 self.textbuffer.remove_style(style)
 
             start, end = self.textbuffer.get_bounds()
-            tags = self.textbuffer._get_tag_from_range(start.get_offset(),
-                                                       end.get_offset())
+            tags = self.textbuffer._get_tag_from_range(
+                start.get_offset(), end.get_offset()
+            )
             for tag_name, tag_data in tags.items():
                 if tag_name.startswith("link"):
                     for start, end in tag_data:
-                        self.textbuffer.remove_tag_by_name(tag_name,
-                                      self.textbuffer.get_iter_at_offset(start),
-                                      self.textbuffer.get_iter_at_offset(end+1))
+                        self.textbuffer.remove_tag_by_name(
+                            tag_name,
+                            self.textbuffer.get_iter_at_offset(start),
+                            self.textbuffer.get_iter_at_offset(end + 1),
+                        )
 
     def _on_buffer_changed(self, buffer):
         """synchronize the undo/redo buttons with what is possible"""
@@ -770,16 +904,22 @@ class StyledTextEditor(Gtk.TextView):
         """Synchronize actions as the format changes at the buffer's cursor."""
         if not self.uimanager:
             return  # never initialized a toolbar, not editable
-        types = [StyledTextTagType.ITALIC, StyledTextTagType.BOLD,
-                 StyledTextTagType.UNDERLINE]
+        types = [
+            StyledTextTagType.ITALIC,
+            StyledTextTagType.BOLD,
+            StyledTextTagType.UNDERLINE,
+            StyledTextTagType.STRIKETHROUGH,
+            StyledTextTagType.SUPERSCRIPT,
+            StyledTextTagType.SUBSCRIPT,
+        ]
         self._internal_style_change = True
         for style, style_value in changed_styles.items():
             if style in types:
                 action = self.uimanager.get_action(
-                    self.action_group,
-                    StyledTextTagType(style).xml_str().upper())
+                    self.action_group, StyledTextTagType(style).xml_str().upper()
+                )
                 action.change_state(Variant.new_boolean(style_value))
-            elif (style == StyledTextTagType.FONTFACE):
+            elif style == StyledTextTagType.FONTFACE:
                 self.fontface.set_text(style_value)
             elif style == StyledTextTagType.FONTSIZE:
                 self.fontsize.set_text(str(style_value))
@@ -795,10 +935,10 @@ class StyledTextEditor(Gtk.TextView):
             return
 
         if flavor == HTTP:
-            url = 'http:' + url
+            url = "http:" + url
         elif flavor == MAIL:
-            if not url.startswith('mailto:'):
-                url = 'mailto:' + url
+            if not url.startswith("mailto:"):
+                url = "mailto:" + url
         elif flavor == GENURL:
             pass
         elif flavor == LINK:
@@ -809,12 +949,17 @@ class StyledTextEditor(Gtk.TextView):
                 win_obj = find_parent_with_attr(self, attr="dbstate")
                 if win_obj:
                     # Edit the object:
-                    obj_class, prop, value = url[9:].split("/")
+                    obj_class, prop, value = url[9:].split("/", 2)
                     from ..editors import EditObject
-                    EditObject(win_obj.dbstate,
-                               win_obj.uistate,
-                               win_obj.track,
-                               obj_class, prop, value)
+
+                    EditObject(
+                        win_obj.dbstate,
+                        win_obj.uistate,
+                        win_obj.track,
+                        obj_class,
+                        prop,
+                        value,
+                    )
                     return
         else:
             return
@@ -827,14 +972,15 @@ class StyledTextEditor(Gtk.TextView):
 
     def _copy_url_cb(self, menuitem, url, flavor):
         """Copy url to both useful selections."""
-        clipboard = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(),
-                        Gdk.SELECTION_CLIPBOARD)
+        clipboard = Gtk.Clipboard.get_for_display(
+            Gdk.Display.get_default(), Gdk.SELECTION_CLIPBOARD
+        )
         clipboard.set_text(url, -1)
 
-        clipboard = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(),
-                        Gdk.SELECTION_PRIMARY)
+        clipboard = Gtk.Clipboard.get_for_display(
+            Gdk.Display.get_default(), Gdk.SELECTION_PRIMARY
+        )
         clipboard.set_text(url, -1)
-
 
     def _edit_url_cb(self, menuitem, link_tag):
         """
@@ -844,14 +990,17 @@ class StyledTextEditor(Gtk.TextView):
         bounds = self.textbuffer.get_selection_bounds()
         if bounds:
             text = str(self.textbuffer.get_text(bounds[0], bounds[1], True))
-            clipboard = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(),
-                        Gdk.SELECTION_CLIPBOARD)
+            clipboard = Gtk.Clipboard.get_for_display(
+                Gdk.Display.get_default(), Gdk.SELECTION_CLIPBOARD
+            )
             clipboard.set_text(text, -1)
-            clipboard = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(),
-                        Gdk.SELECTION_PRIMARY)
+            clipboard = Gtk.Clipboard.get_for_display(
+                Gdk.Display.get_default(), Gdk.SELECTION_PRIMARY
+            )
             clipboard.set_text(text, -1)
-        uri_dialog(self, link_tag.data,
-                   lambda uri: self.setlink_callback(uri, link_tag))
+        uri_dialog(
+            self, link_tag.data, lambda uri: self.setlink_callback(uri, link_tag)
+        )
 
     # public methods
 
@@ -880,11 +1029,13 @@ class StyledTextEditor(Gtk.TextView):
 
     def redo(self, *obj):
         self.textbuffer.redo()
-#-------------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------------
 #
 # Module functions
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 
 def uri_dialog(self, uri, callback):
@@ -892,14 +1043,22 @@ def uri_dialog(self, uri, callback):
     Function to spawn the link editor.
     """
     from ..editors.editlink import EditLink
+
     obj = find_parent_with_attr(self, attr="dbstate")
     if obj:
         if uri is None:
             # make a default link
             uri = "http://"
             # Check in order for an open page:
-            for object_class in ["Person", "Place", "Event", "Family",
-                                 "Repository", "Source", "Media"]:
+            for object_class in [
+                "Person",
+                "Place",
+                "Event",
+                "Family",
+                "Repository",
+                "Source",
+                "Media",
+            ]:
                 handle = obj.uistate.get_active(object_class)
                 if handle:
                     uri = "gramps://%s/handle/%s" % (object_class, handle)

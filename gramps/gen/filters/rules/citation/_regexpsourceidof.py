@@ -19,40 +19,43 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._regexpidbase import RegExpIdBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasIdOf
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class RegExpSourceIdOf(RegExpIdBase):
     """
     Rule that checks for a citation  whose Gramps ID
     matches regular expression.
     """
 
-    name = _('Citations with Source Id containing <text>')
-    description = _("Matches citations whose source has a Gramps ID that "
-                    "matches the regular expression")
-    category = _('Source filters')
+    name = _("Citations with Source Id containing <text>")
+    description = _(
+        "Matches citations whose source has a Gramps ID that "
+        "matches the regular expression"
+    )
+    category = _("Source filters")
 
     def apply(self, dbase, citation):
-        source = dbase.get_source_from_handle(
-                                    citation.get_reference_handle())
+        source = dbase.get_source_from_handle(citation.get_reference_handle())
         if RegExpIdBase.apply(self, dbase, source):
             return True
         return False

@@ -16,23 +16,33 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+"""
+Base class for undo/redo functionality.
+"""
+
+# -------------------------------------------------------------------------
 #
-#-------------------------------------------------------------------------
+# Python modules
 #
-# Standard python modules
-#
-#-------------------------------------------------------------------------
-from abc import ABCMeta, abstractmethod
+# -------------------------------------------------------------------------
 import time
+from abc import ABCMeta, abstractmethod
 from collections import deque
 
+
+# -------------------------------------------------------------------------
+#
+# DbUndo class
+#
+# -------------------------------------------------------------------------
 class DbUndo(metaclass=ABCMeta):
     """
     Base class for the Gramps undo/redo manager.  Needs to be subclassed
     for use with a real backend.
     """
 
-    __slots__ = ('undodb', 'db', 'undo_history_timestamp', 'undoq', 'redoq')
+    __slots__ = ("undodb", "db", "undo_history_timestamp", "undoq", "redoq")
 
     def __init__(self, db):
         """
@@ -109,13 +119,11 @@ class DbUndo(metaclass=ABCMeta):
 
     @abstractmethod
     def _redo(self, update_history):
-        """
-        """
+        """ """
 
     @abstractmethod
     def _undo(self, update_history):
-        """
-        """
+        """ """
 
     def commit(self, txn, msg):
         """
@@ -125,6 +133,12 @@ class DbUndo(metaclass=ABCMeta):
         txn.set_description(msg)
         txn.timestamp = time.time()
         self.undoq.append(txn)
+        self._after_commit(txn)
+
+    def _after_commit(self, transaction):
+        """
+        Post-transaction commit processing.
+        """
 
     def undo(self, update_history=True):
         """
@@ -142,5 +156,5 @@ class DbUndo(metaclass=ABCMeta):
             return False
         return self._redo(update_history)
 
-    undo_count = property(lambda self:len(self.undoq))
-    redo_count = property(lambda self:len(self.redoq))
+    undo_count = property(lambda self: len(self.undoq))
+    redo_count = property(lambda self: len(self.redoq))

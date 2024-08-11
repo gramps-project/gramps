@@ -17,34 +17,37 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gdk
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.utils.thumbnails import get_thumbnail_image, SIZE_NORMAL, SIZE_LARGE
 from ..utils import is_right_click, open_file_with_default_application
 from ..widgets.menuitem import add_menuitem
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Photo class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Photo(Gtk.EventBox):
     """
     Displays an image and allows it to be viewed in an external image viewer.
     """
+
     def __init__(self, use_small_size=False):
         Gtk.EventBox.__init__(self)
         self.full_path = None
@@ -52,9 +55,11 @@ class Photo(Gtk.EventBox):
         self.handle = None
         self.photo = Gtk.Image()
         self.add(self.photo)
-        self.connect('button-press-event', self.handle_button_press)
-        tip = _('Double-click on the picture to view it in the default image '
-                'viewer application.')
+        self.connect("button-press-event", self.handle_button_press)
+        tip = _(
+            "Double-click on the picture to view it in the default image "
+            "viewer application."
+        )
         self.set_tooltip_text(tip)
         self.__size = SIZE_LARGE
         if use_small_size:
@@ -66,8 +71,7 @@ class Photo(Gtk.EventBox):
         """
         self.full_path = full_path
         if full_path:
-            pixbuf = get_thumbnail_image(full_path, mime_type, rectangle,
-                                         self.__size)
+            pixbuf = get_thumbnail_image(full_path, mime_type, rectangle, self.__size)
             self.photo.set_from_pixbuf(pixbuf)
             self.photo.show()
         else:
@@ -77,16 +81,19 @@ class Photo(Gtk.EventBox):
         """
         Display the image with the default external viewer.
         """
-        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
-                and event.button == 1):
+        if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS and event.button == 1:
             open_file_with_default_application(self.full_path, self.uistate)
             return True
         elif is_right_click(event):
             if self.handle and self.uistate:
                 self.menu = Gtk.Menu()
-                add_menuitem(self.menu, _("Make Active Media"), widget,
-                    lambda obj: self.uistate.set_active(self.handle, "Media"))
-                self.menu.popup(None, None, None, None, event.button, event.time)
+                add_menuitem(
+                    self.menu,
+                    _("Make Active Media"),
+                    widget,
+                    lambda obj: self.uistate.set_active(self.handle, "Media"),
+                )
+                self.menu.popup_at_pointer(event)
                 return True
         return False
 
@@ -108,4 +115,3 @@ class Photo(Gtk.EventBox):
             self.photo.show()
         else:
             self.photo.hide()
-

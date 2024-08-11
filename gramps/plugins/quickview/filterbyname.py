@@ -35,42 +35,46 @@ from gramps.gen.datehandler import get_date
 import os
 from collections import defaultdict
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
-ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 
-fname_map = {'all': _('all', 'Filtering_on'),
-             'Inverse Person': _('Inverse Person', 'Filtering_on'),
-             'Inverse Family': _('Inverse Family', 'Filtering_on'),
-             'Inverse Event': _('Inverse Event', 'Filtering_on'),
-             'Inverse Place': _('Inverse Place', 'Filtering_on'),
-             'Inverse Source': _('Inverse Source', 'Filtering_on'),
-             'Inverse Repository': _('Inverse Repository', 'Filtering_on'),
-             'Inverse Media': _('Inverse Media', 'Filtering_on'),
-             'Inverse Note': _('Inverse Note', 'Filtering_on'),
-             'all people': _('all people', 'Filtering_on'),
-             'all families': _('all families', 'Filtering_on'),
-             'all events': _('all events', 'Filtering_on'),
-             'all places': _('all places', 'Filtering_on'),
-             'all sources': _('all sources', 'Filtering_on'),
-             'all repositories': _('all repositories', 'Filtering_on'),
-             'all media': _('all media', 'Filtering_on'),
-             'all notes': _('all notes', 'Filtering_on'),
-             'males': _('males', 'Filtering_on'),
-             'females': _('females', 'Filtering_on'),
-             'people with unknown gender':
-                _('people with unknown gender', 'Filtering_on'),
-             'incomplete names':
-                _('incomplete names', 'Filtering_on'),
-             'people with missing birth dates':
-                _('people with missing birth dates', 'Filtering_on'),
-             'disconnected people': _('disconnected people', 'Filtering_on'),
-             'unique surnames': _('unique surnames', 'Filtering_on'),
-             'people with media': _('people with media', 'Filtering_on'),
-             'media references': _('media references', 'Filtering_on'),
-             'unique media': _('unique media', 'Filtering_on'),
-             'missing media': _('missing media', 'Filtering_on'),
-             'media by size': _('media by size', 'Filtering_on'),
-             'list of people': _('list of people', 'Filtering_on')}
+_ = glocale.translation.sgettext
+ngettext = glocale.translation.ngettext  # else "nearby" comments are ignored
+
+fname_map = {
+    "all": _("all", "Filtering_on"),
+    "Inverse Person": _("Inverse Person", "Filtering_on"),
+    "Inverse Family": _("Inverse Family", "Filtering_on"),
+    "Inverse Event": _("Inverse Event", "Filtering_on"),
+    "Inverse Place": _("Inverse Place", "Filtering_on"),
+    "Inverse Source": _("Inverse Source", "Filtering_on"),
+    "Inverse Repository": _("Inverse Repository", "Filtering_on"),
+    "Inverse Media": _("Inverse Media", "Filtering_on"),
+    "Inverse Note": _("Inverse Note", "Filtering_on"),
+    "all people": _("all people", "Filtering_on"),
+    "all families": _("all families", "Filtering_on"),
+    "all events": _("all events", "Filtering_on"),
+    "all places": _("all places", "Filtering_on"),
+    "all sources": _("all sources", "Filtering_on"),
+    "all repositories": _("all repositories", "Filtering_on"),
+    "all media": _("all media", "Filtering_on"),
+    "all notes": _("all notes", "Filtering_on"),
+    "males": _("males", "Filtering_on"),
+    "females": _("females", "Filtering_on"),
+    "people with other gender": _("people with other gender", "Filtering_on"),
+    "people with unknown gender": _("people with unknown gender", "Filtering_on"),
+    "incomplete names": _("incomplete names", "Filtering_on"),
+    "people with missing birth dates": _(
+        "people with missing birth dates", "Filtering_on"
+    ),
+    "disconnected people": _("disconnected people", "Filtering_on"),
+    "unique surnames": _("unique surnames", "Filtering_on"),
+    "people with media": _("people with media", "Filtering_on"),
+    "media references": _("media references", "Filtering_on"),
+    "unique media": _("unique media", "Filtering_on"),
+    "missing media": _("missing media", "Filtering_on"),
+    "media by size": _("media by size", "Filtering_on"),
+    "list of people": _("list of people", "Filtering_on"),
+}
+
 
 def run(database, document, filter_name, *args, **kwargs):
     """
@@ -81,86 +85,165 @@ def run(database, document, filter_name, *args, **kwargs):
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
     stab = QuickTable(sdb)
-    if (filter_name == 'all'):
+    if filter_name == "all":
         sdoc.title(_("Summary counts of current selection"))
         sdoc.paragraph("")
         sdoc.paragraph(_("Right-click row (or press ENTER) to see selected items."))
         sdoc.paragraph("")
         stab.columns(_("Object"), _("Count/Total"))
         if hasattr(database, "db"):
-            stab.row([_("People"), "Filter", "Person"],
-                     "%d/%d" % (len(database.get_person_handles()),
-                                len(database.db.get_person_handles())))
-            stab.row([_("Families"), "Filter", "Family"],
-                     "%d/%d" % (len(database.get_family_handles()),
-                                len(database.db.get_family_handles())))
-            stab.row([_("Events"), "Filter", "Event"],
-                     "%d/%d" % (len(database.get_event_handles()),
-                                len(database.db.get_event_handles())))
-            stab.row([_("Places"), "Filter", "Place"],
-                     "%d/%d" % (len(database.get_place_handles()),
-                                len(database.db.get_place_handles())))
-            stab.row([_("Sources"), "Filter", "Source"],
-                     "%d/%d" % (len(database.get_source_handles()),
-                                len(database.db.get_source_handles())))
-            stab.row([_("Repositories"), "Filter", "Repository"],
-                     "%d/%d" % (len(database.get_repository_handles()),
-                     len(database.db.get_repository_handles())))
-            stab.row([_("Media"), "Filter", "Media"],
-                     "%d/%d" % (len(database.get_media_handles()),
-                                len(database.db.get_media_handles())))
-            stab.row([_("Notes"), "Filter", "Note"],
-                     "%d/%d" % (len(database.get_note_handles()),
-                                len(database.db.get_note_handles())))
+            stab.row(
+                [_("People"), "Filter", "Person"],
+                "%d/%d"
+                % (
+                    len(database.get_person_handles()),
+                    len(database.db.get_person_handles()),
+                ),
+            )
+            stab.row(
+                [_("Families"), "Filter", "Family"],
+                "%d/%d"
+                % (
+                    len(database.get_family_handles()),
+                    len(database.db.get_family_handles()),
+                ),
+            )
+            stab.row(
+                [_("Events"), "Filter", "Event"],
+                "%d/%d"
+                % (
+                    len(database.get_event_handles()),
+                    len(database.db.get_event_handles()),
+                ),
+            )
+            stab.row(
+                [_("Places"), "Filter", "Place"],
+                "%d/%d"
+                % (
+                    len(database.get_place_handles()),
+                    len(database.db.get_place_handles()),
+                ),
+            )
+            stab.row(
+                [_("Sources"), "Filter", "Source"],
+                "%d/%d"
+                % (
+                    len(database.get_source_handles()),
+                    len(database.db.get_source_handles()),
+                ),
+            )
+            stab.row(
+                [_("Repositories"), "Filter", "Repository"],
+                "%d/%d"
+                % (
+                    len(database.get_repository_handles()),
+                    len(database.db.get_repository_handles()),
+                ),
+            )
+            stab.row(
+                [_("Media"), "Filter", "Media"],
+                "%d/%d"
+                % (
+                    len(database.get_media_handles()),
+                    len(database.db.get_media_handles()),
+                ),
+            )
+            stab.row(
+                [_("Notes"), "Filter", "Note"],
+                "%d/%d"
+                % (
+                    len(database.get_note_handles()),
+                    len(database.db.get_note_handles()),
+                ),
+            )
         else:
-            stab.row([_("People"), "Filter", "Person"],
-                     "%d/%d" % (len(database.get_person_handles()),
-                                len(database.basedb.get_person_handles())))
-            stab.row([_("Families"), "Filter", "Family"],
-                     "%d/%d" % (len(database.get_family_handles()),
-                                len(database.basedb.get_family_handles())))
-            stab.row([_("Events"), "Filter", "Event"],
-                     "%d/%d" % (len(database.get_event_handles()),
-                                len(database.basedb.get_event_handles())))
-            stab.row([_("Places"), "Filter", "Place"],
-                     "%d/%d" % (len(database.get_place_handles()),
-                                len(database.basedb.get_place_handles())))
-            stab.row([_("Sources"), "Filter", "Source"],
-                     "%d/%d" % (len(database.get_source_handles()),
-                                len(database.basedb.get_source_handles())))
-            stab.row([_("Repositories"), "Filter", "Repository"],
-                     "%d/%d" % (len(database.get_repository_handles()),
-                     len(database.basedb.get_repository_handles())))
-            stab.row([_("Media"), "Filter", "Media"],
-                     "%d/%d" % (len(database.get_media_handles()),
-                                len(database.basedb.get_media_handles())))
-            stab.row([_("Notes"), "Filter", "Note"],
-                     "%d/%d" % (len(database.get_note_handles()),
-                                len(database.basedb.get_note_handles())))
+            stab.row(
+                [_("People"), "Filter", "Person"],
+                "%d/%d"
+                % (
+                    len(database.get_person_handles()),
+                    len(database.basedb.get_person_handles()),
+                ),
+            )
+            stab.row(
+                [_("Families"), "Filter", "Family"],
+                "%d/%d"
+                % (
+                    len(database.get_family_handles()),
+                    len(database.basedb.get_family_handles()),
+                ),
+            )
+            stab.row(
+                [_("Events"), "Filter", "Event"],
+                "%d/%d"
+                % (
+                    len(database.get_event_handles()),
+                    len(database.basedb.get_event_handles()),
+                ),
+            )
+            stab.row(
+                [_("Places"), "Filter", "Place"],
+                "%d/%d"
+                % (
+                    len(database.get_place_handles()),
+                    len(database.basedb.get_place_handles()),
+                ),
+            )
+            stab.row(
+                [_("Sources"), "Filter", "Source"],
+                "%d/%d"
+                % (
+                    len(database.get_source_handles()),
+                    len(database.basedb.get_source_handles()),
+                ),
+            )
+            stab.row(
+                [_("Repositories"), "Filter", "Repository"],
+                "%d/%d"
+                % (
+                    len(database.get_repository_handles()),
+                    len(database.basedb.get_repository_handles()),
+                ),
+            )
+            stab.row(
+                [_("Media"), "Filter", "Media"],
+                "%d/%d"
+                % (
+                    len(database.get_media_handles()),
+                    len(database.basedb.get_media_handles()),
+                ),
+            )
+            stab.row(
+                [_("Notes"), "Filter", "Note"],
+                "%d/%d"
+                % (
+                    len(database.get_note_handles()),
+                    len(database.basedb.get_note_handles()),
+                ),
+            )
         sdoc.paragraph("")
         stab.write(sdoc)
         return
 
     # display the title
     if filter_name in fname_map:
-        sdoc.title(_("Filtering on %s") % fname_map[filter_name]) # listed above
+        sdoc.title(_("Filtering on %s") % fname_map[filter_name])  # listed above
     else:
         sdoc.title(_("Filtering on %s") % _(filter_name))
     sdoc.paragraph("")
     matches = 0
 
-    if (filter_name == 'Inverse Person'):
+    if filter_name == "Inverse Person":
         sdb.dbase = database.db
         stab.columns(_("Person"), _("Gramps ID"), _("Birth Date"))
         proxy_handles = set(database.iter_person_handles())
 
         for person in database.db.iter_people():
             if person.handle not in proxy_handles:
-                stab.row(person, person.gramps_id,
-                         sdb.birth_or_fallback(person))
+                stab.row(person, person.gramps_id, sdb.birth_or_fallback(person))
                 matches += 1
 
-    elif (filter_name == 'Inverse Family'):
+    elif filter_name == "Inverse Family":
         sdb.dbase = database.db
         stab.columns(_("Family"), _("Gramps ID"))
         proxy_handles = set(database.iter_family_handles())
@@ -170,7 +253,7 @@ def run(database, document, filter_name, *args, **kwargs):
                 stab.row(family, family.gramps_id)
                 matches += 1
 
-    elif (filter_name == 'Inverse Event'):
+    elif filter_name == "Inverse Event":
         sdb.dbase = database.db
         stab.columns(_("Event"), _("Gramps ID"))
         proxy_handles = set(database.iter_event_handles())
@@ -180,7 +263,7 @@ def run(database, document, filter_name, *args, **kwargs):
                 stab.row(event, event.gramps_id)
                 matches += 1
 
-    elif (filter_name == 'Inverse Place'):
+    elif filter_name == "Inverse Place":
         sdb.dbase = database.db
         stab.columns(_("Place"), _("Gramps ID"))
         proxy_handles = set(database.iter_place_handles())
@@ -190,7 +273,7 @@ def run(database, document, filter_name, *args, **kwargs):
                 stab.row(place, place.gramps_id)
                 matches += 1
 
-    elif (filter_name == 'Inverse Source'):
+    elif filter_name == "Inverse Source":
         sdb.dbase = database.db
         stab.columns(_("Source"), _("Gramps ID"))
         proxy_handles = set(database.iter_source_handles())
@@ -200,7 +283,7 @@ def run(database, document, filter_name, *args, **kwargs):
                 stab.row(source, source.gramps_id)
                 matches += 1
 
-    elif (filter_name == 'Inverse Repository'):
+    elif filter_name == "Inverse Repository":
         sdb.dbase = database.db
         stab.columns(_("Repository"), _("Gramps ID"))
         proxy_handles = set(database.iter_repository_handles())
@@ -210,7 +293,7 @@ def run(database, document, filter_name, *args, **kwargs):
                 stab.row(repository, repository.gramps_id)
                 matches += 1
 
-    elif (filter_name == 'Inverse Media'):
+    elif filter_name == "Inverse Media":
         sdb.dbase = database.db
         stab.columns(_("Media"), _("Gramps ID"))
         proxy_handles = set(database.iter_media_handles())
@@ -220,7 +303,7 @@ def run(database, document, filter_name, *args, **kwargs):
                 stab.row(media, media.gramps_id)
                 matches += 1
 
-    elif (filter_name == 'Inverse Note'):
+    elif filter_name == "Inverse Note":
         sdb.dbase = database.db
         stab.columns(_("Note"), _("Gramps ID"))
         proxy_handles = set(database.iter_note_handles())
@@ -230,99 +313,128 @@ def run(database, document, filter_name, *args, **kwargs):
                 stab.row(note, note.gramps_id)
                 matches += 1
 
-    elif (filter_name in ['all people', 'Person']):
+    elif filter_name in ["all people", "Person"]:
         stab.columns(_("Person"), _("Gramps ID"), _("Birth Date"))
         for person in database.iter_people():
             stab.row(person, person.gramps_id, sdb.birth_or_fallback(person))
             matches += 1
 
-    elif (filter_name in ['all families', 'Family']):
+    elif filter_name in ["all families", "Family"]:
         stab.columns(_("Family"), _("Gramps ID"))
         for family in database.iter_families():
             stab.row(family, family.gramps_id)
             matches += 1
 
-    elif (filter_name in ['all events', 'Event']):
+    elif filter_name in ["all events", "Event"]:
         stab.columns(_("Event"), _("Gramps ID"))
         for obj in database.iter_events():
             stab.row(obj, obj.gramps_id)
             matches += 1
 
-    elif (filter_name in ['all places', 'Place']):
+    elif filter_name in ["all places", "Place"]:
         stab.columns(_("Place"), _("Gramps ID"))
         for obj in database.iter_places():
             stab.row(obj, obj.gramps_id)
             matches += 1
 
-    elif (filter_name in ['all sources', 'Source']):
+    elif filter_name in ["all sources", "Source"]:
         stab.columns(_("Source"), _("Gramps ID"))
         for obj in database.iter_sources():
             stab.row(obj, obj.gramps_id)
             matches += 1
 
-    elif (filter_name in ['all repositories', 'Repository']):
+    elif filter_name in ["all repositories", "Repository"]:
         stab.columns(_("Repository"), _("Gramps ID"))
         for obj in database.iter_repositories():
             stab.row(obj, obj.gramps_id)
             matches += 1
 
-    elif (filter_name in ['all media', 'Media']):
+    elif filter_name in ["all media", "Media"]:
         stab.columns(_("Media"), _("Gramps ID"))
         for obj in database.iter_media():
             stab.row(obj, obj.gramps_id)
             matches += 1
 
-    elif (filter_name in ['all notes', 'Note']):
+    elif filter_name in ["all notes", "Note"]:
         stab.columns(_("Note"), _("Gramps ID"))
         for obj in database.iter_notes():
             stab.row(obj, obj.gramps_id)
             matches += 1
 
-    elif (filter_name == 'males'):
+    elif filter_name == "males":
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
         for person in database.iter_people():
             if person.gender == Person.MALE:
-                stab.row(person, sdb.birth_or_fallback(person),
-                         str(person.get_primary_name().get_type()))
+                stab.row(
+                    person,
+                    sdb.birth_or_fallback(person),
+                    str(person.get_primary_name().get_type()),
+                )
                 matches += 1
 
-    elif (filter_name == 'females'):
+    elif filter_name == "females":
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
         for person in database.iter_people():
             if person.gender == Person.FEMALE:
-                stab.row(person, sdb.birth_or_fallback(person),
-                         str(person.get_primary_name().get_type()))
+                stab.row(
+                    person,
+                    sdb.birth_or_fallback(person),
+                    str(person.get_primary_name().get_type()),
+                )
                 matches += 1
 
-    elif (filter_name == 'people with unknown gender'):
+    elif filter_name == "people with other gender":
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
         for person in database.iter_people():
-            if person.gender not in [Person.FEMALE, Person.MALE]:
-                stab.row(person, sdb.birth_or_fallback(person),
-                         str(person.get_primary_name().get_type()))
+            if person.gender == Person.OTHER:
+                stab.row(
+                    person,
+                    sdb.birth_or_fallback(person),
+                    str(person.get_primary_name().get_type()),
+                )
                 matches += 1
 
-    elif (filter_name == 'incomplete names'):
+    elif filter_name == "people with unknown gender":
+        stab.columns(_("Person"), _("Birth Date"), _("Name type"))
+        for person in database.iter_people():
+            if person.gender == Person.UNKNOWN:
+                stab.row(
+                    person,
+                    sdb.birth_or_fallback(person),
+                    str(person.get_primary_name().get_type()),
+                )
+                matches += 1
+
+    elif filter_name == "incomplete names":
         stab.columns(_("Name"), _("Birth Date"), _("Name type"))
         for person in database.iter_people():
             for name in [person.get_primary_name()] + person.get_alternate_names():
                 if name.get_first_name().strip() == "":
-                    stab.row([name.get_name(), "Person", person.handle], sdb.birth_or_fallback(person),
-                             str(name.get_type()))
+                    stab.row(
+                        [name.get_name(), "Person", person.handle],
+                        sdb.birth_or_fallback(person),
+                        str(name.get_type()),
+                    )
                     matches += 1
                 else:
                     if name.get_surname_list():
                         for surname in name.get_surname_list():
                             if surname.get_surname().strip() == "":
-                                stab.row([name.get_first_name(), "Person", person.handle], sdb.birth_or_fallback(person),
-                                         str(name.get_type()))
+                                stab.row(
+                                    [name.get_first_name(), "Person", person.handle],
+                                    sdb.birth_or_fallback(person),
+                                    str(name.get_type()),
+                                )
                                 matches += 1
                     else:
-                        stab.row([name.get_first_name(), "Person", person.handle], sdb.birth_or_fallback(person),
-                                 str(name.get_type()))
+                        stab.row(
+                            [name.get_first_name(), "Person", person.handle],
+                            sdb.birth_or_fallback(person),
+                            str(name.get_type()),
+                        )
                         matches += 1
 
-    elif (filter_name == 'people with missing birth dates'):
+    elif filter_name == "people with missing birth dates":
         stab.columns(_("Person"), _("Type"))
         for person in database.iter_people():
             birth_ref = person.get_birth_ref()
@@ -335,16 +447,20 @@ def run(database, document, filter_name, *args, **kwargs):
                 stab.row(person, _("missing birth event"))
                 matches += 1
 
-    elif (filter_name == 'disconnected people'):
+    elif filter_name == "disconnected people":
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
         for person in database.iter_people():
-            if ((not person.get_main_parents_family_handle()) and
-                (not len(person.get_family_handle_list()))):
-                stab.row(person, sdb.birth_or_fallback(person),
-                         str(person.get_primary_name().get_type()))
+            if (not person.get_main_parents_family_handle()) and (
+                not len(person.get_family_handle_list())
+            ):
+                stab.row(
+                    person,
+                    sdb.birth_or_fallback(person),
+                    str(person.get_primary_name().get_type()),
+                )
                 matches += 1
 
-    elif (filter_name == 'unique surnames'):
+    elif filter_name == "unique surnames":
         namelist = defaultdict(int)
         for person in database.iter_people():
             names = [person.get_primary_name()] + person.get_alternate_names()
@@ -355,13 +471,14 @@ def run(database, document, filter_name, *args, **kwargs):
         for name in sorted(namelist):
             stab.row(name, namelist[name])
             matches += 1
-        stab.set_callback("leftdouble",
-            lambda name: run_quick_report_by_name_direct("samesurnames",
-                                                         database,
-                                                         document,
-                                                         name))
+        stab.set_callback(
+            "leftdouble",
+            lambda name: run_quick_report_by_name_direct(
+                "samesurnames", database, document, name
+            ),
+        )
 
-    elif (filter_name == 'people with media'):
+    elif filter_name == "people with media":
         stab.columns(_("Person"), _("Media count"))
         for person in database.iter_people():
             length = len(person.get_media_list())
@@ -369,7 +486,7 @@ def run(database, document, filter_name, *args, **kwargs):
                 stab.row(person, str(length))
                 matches += 1
 
-    elif (filter_name == 'media references'):
+    elif filter_name == "media references":
         stab.columns(_("Person"), _("Reference"))
         for person in database.iter_people():
             medialist = person.get_media_list()
@@ -377,14 +494,14 @@ def run(database, document, filter_name, *args, **kwargs):
                 stab.row(person, _("media"))
                 matches += 1
 
-    elif (filter_name == 'unique media'):
+    elif filter_name == "unique media":
         stab.columns(_("Unique Media"))
         for photo in database.iter_media():
             fullname = media_path_full(database, photo.get_path())
             stab.row(fullname)
             matches += 1
 
-    elif (filter_name == 'missing media'):
+    elif filter_name == "missing media":
         stab.columns(_("Missing Media"))
         for photo in database.iter_media():
             fullname = media_path_full(database, photo.get_path())
@@ -394,7 +511,7 @@ def run(database, document, filter_name, *args, **kwargs):
                 stab.row(fullname)
                 matches += 1
 
-    elif (filter_name == 'media by size'):
+    elif filter_name == "media by size":
         stab.columns(_("Media"), _("Size in bytes"))
         for photo in database.iter_media():
             fullname = media_path_full(database, photo.get_path())
@@ -405,21 +522,28 @@ def run(database, document, filter_name, *args, **kwargs):
             except:
                 pass
 
-    elif (filter_name == 'list of people'):
+    elif filter_name == "list of people":
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
         handles = kwargs["handles"]
         for person_handle in handles:
             person = database.get_person_from_handle(person_handle)
-            stab.row(person, sdb.birth_or_fallback(person),
-                     str(person.get_primary_name().get_type()))
+            stab.row(
+                person,
+                sdb.birth_or_fallback(person),
+                str(person.get_primary_name().get_type()),
+            )
             matches += 1
 
     else:
         raise AttributeError("invalid filter name: '%s'" % filter_name)
     # Translators: leave all/any {...} untranslated
-    sdoc.paragraph(ngettext("Filter matched {number_of} record.",
-                            "Filter matched {number_of} records.", matches
-                           ).format(number_of=matches) )
+    sdoc.paragraph(
+        ngettext(
+            "Filter matched {number_of} record.",
+            "Filter matched {number_of} records.",
+            matches,
+        ).format(number_of=matches)
+    )
     sdoc.paragraph("")
     document.has_data = matches > 0
     if matches > 0:

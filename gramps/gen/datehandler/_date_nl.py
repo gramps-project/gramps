@@ -29,30 +29,30 @@
 Dutch-specific classes for parsing and displaying dates.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import re
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ..lib.date import Date
 from ._dateparser import DateParser
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Dutch parser
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class DateParserNL(DateParser):
-
     month_to_int = DateParser.month_to_int
     # Always add dutch and flemish name variants
     # no matter what the current locale is
@@ -63,7 +63,7 @@ class DateParserNL(DateParser):
     month_to_int["feber"] = 2
     month_to_int["februaris"] = 2
     month_to_int["merz"] = 3
-    #make sure on all distro mrt and maa are accepted
+    # make sure on all distro mrt and maa are accepted
     month_to_int["maa"] = 3
     month_to_int["mrt"] = 3
     month_to_int["aprilis"] = 4
@@ -83,74 +83,112 @@ class DateParserNL(DateParser):
     month_to_int["xbris"] = 12
 
     modifier_to_int = {
-        'voor'       : Date.MOD_BEFORE,
-        'na'         : Date.MOD_AFTER,
-        'ca.'        : Date.MOD_ABOUT,
-        'circa'      : Date.MOD_ABOUT,
-        'om'         : Date.MOD_ABOUT,
-        'omstreeks'  : Date.MOD_ABOUT,
-        'ongeveer'   : Date.MOD_ABOUT,
-        'rond'       : Date.MOD_ABOUT,
-        'tegen'      : Date.MOD_ABOUT,
-        }
+        "voor": Date.MOD_BEFORE,
+        "na": Date.MOD_AFTER,
+        "ca.": Date.MOD_ABOUT,
+        "circa": Date.MOD_ABOUT,
+        "om": Date.MOD_ABOUT,
+        "omstreeks": Date.MOD_ABOUT,
+        "ongeveer": Date.MOD_ABOUT,
+        "rond": Date.MOD_ABOUT,
+        "tegen": Date.MOD_ABOUT,
+        "van": Date.MOD_FROM,
+        "tot": Date.MOD_TO,
+    }
 
     calendar_to_int = {
-        'gregoriaans'         : Date.CAL_GREGORIAN,
-        'greg.'               : Date.CAL_GREGORIAN,
-        'juliaans'            : Date.CAL_JULIAN,
-        'jul.'                : Date.CAL_JULIAN,
-        'hebreeuws'           : Date.CAL_HEBREW,
-        'hebr.'               : Date.CAL_HEBREW,
-        'islamitisch'         : Date.CAL_ISLAMIC,
-        'isl.'                : Date.CAL_ISLAMIC,
-        'frans republiekeins' : Date.CAL_FRENCH,
-        'fran.'               : Date.CAL_FRENCH,
-        'persisch'            : Date.CAL_PERSIAN,
-        'zweeds'              : Date.CAL_SWEDISH,
-        'z'                   : Date.CAL_SWEDISH,
-        }
+        "gregoriaans": Date.CAL_GREGORIAN,
+        "greg.": Date.CAL_GREGORIAN,
+        "juliaans": Date.CAL_JULIAN,
+        "jul.": Date.CAL_JULIAN,
+        "hebreeuws": Date.CAL_HEBREW,
+        "hebr.": Date.CAL_HEBREW,
+        "islamitisch": Date.CAL_ISLAMIC,
+        "isl.": Date.CAL_ISLAMIC,
+        "frans republiekeins": Date.CAL_FRENCH,
+        "fran.": Date.CAL_FRENCH,
+        "persisch": Date.CAL_PERSIAN,
+        "zweeds": Date.CAL_SWEDISH,
+        "z": Date.CAL_SWEDISH,
+    }
 
     quality_to_int = {
-        'geschat'   : Date.QUAL_ESTIMATED,
-        'gesch.'    : Date.QUAL_ESTIMATED,
-        'berekend'  : Date.QUAL_CALCULATED,
-        'ber.'      : Date.QUAL_CALCULATED,
-        }
+        "geschat": Date.QUAL_ESTIMATED,
+        "gesch.": Date.QUAL_ESTIMATED,
+        "berekend": Date.QUAL_CALCULATED,
+        "ber.": Date.QUAL_CALCULATED,
+    }
 
     bce = ["voor onze tijdrekening", "voor Christus", "v. Chr."] + DateParser.bce
 
     def init_strings(self):
         DateParser.init_strings(self)
         self._span = re.compile(
-            r"(van)\s+(?P<start>.+)\s+(tot)\s+(?P<stop>.+)", re.IGNORECASE)
-        self._range = re.compile(r"tussen\s+(?P<start>.+)\s+en\s+(?P<stop>.+)",
-                                 re.IGNORECASE)
-        self._text2 = re.compile(r'(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?'
-                                 % self._mon_str, re.IGNORECASE)
-        self._jtext2 = re.compile(r'(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?'
-                                  % self._jmon_str, re.IGNORECASE)
+            r"(van)\s+(?P<start>.+)\s+(tot)\s+(?P<stop>.+)", re.IGNORECASE
+        )
+        self._range = re.compile(
+            r"tussen\s+(?P<start>.+)\s+en\s+(?P<stop>.+)", re.IGNORECASE
+        )
+        self._text2 = re.compile(
+            r"(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?" % self._mon_str, re.IGNORECASE
+        )
+        self._jtext2 = re.compile(
+            r"(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?" % self._jmon_str, re.IGNORECASE
+        )
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Dutch display
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class DateDisplayNL(DateDisplay):
     """
     Dutch language date display class.
     """
-    # TODO: Translate these month strings:
-    long_months = ( "", "januari", "februari", "maart", "april", "mei",
-                    "juni", "juli", "augustus", "september", "oktober",
-                    "november", "december" )
 
-    short_months = ( "", "jan", "feb", "mrt", "apr", "mei", "jun",
-                     "jul", "aug", "sep", "okt", "nov", "dec" )
+    # TODO: Translate these month strings:
+    long_months = (
+        "",
+        "januari",
+        "februari",
+        "maart",
+        "april",
+        "mei",
+        "juni",
+        "juli",
+        "augustus",
+        "september",
+        "oktober",
+        "november",
+        "december",
+    )
+
+    short_months = (
+        "",
+        "jan",
+        "feb",
+        "mrt",
+        "apr",
+        "mei",
+        "jun",
+        "jul",
+        "aug",
+        "sep",
+        "okt",
+        "nov",
+        "dec",
+    )
 
     calendar = (
-        "", "juliaans", "hebreeuws",
-        "frans republikeins", "persisch", "islamitisch",
-        "zweeds" )
+        "",
+        "juliaans",
+        "hebreeuws",
+        "frans republikeins",
+        "persisch",
+        "islamitisch",
+        "zweeds",
+    )
 
     _mod_str = ("", "voor ", "na ", "omstreeks ", "", "", "")
 
@@ -159,10 +197,14 @@ class DateDisplayNL(DateDisplay):
     _bce_str = "%s v. Chr."
 
     formats = (
-        "JJJJ-MM-DD (ISO)", "Numeriek DD/MM/JJJJ", "Maand Dag, Jaar",
-        "Mnd. Dag Jaar", "Dag Maand Jaar", "Dag Mnd. Jaar"
-        )
-        # this definition must agree with its "_display_gregorian" method
+        "JJJJ-MM-DD (ISO)",
+        "Numeriek DD/MM/JJJJ",
+        "Maand Dag, Jaar",
+        "Mnd. Dag Jaar",
+        "Dag Maand Jaar",
+        "Dag Mnd. Jaar",
+    )
+    # this definition must agree with its "_display_gregorian" method
 
     def _display_gregorian(self, date_val, **kwargs):
         """
@@ -180,10 +222,10 @@ class DateDisplayNL(DateDisplay):
                 if date_val[0] == date_val[1] == 0:
                     value = str(date_val[2])
                 else:
-                    value = self.dhformat.replace('%m', str(date_val[1]))
-                    value = value.replace('%d', str(date_val[0]))
-                    value = value.replace('%Y', str(abs(date_val[2])))
-                    value = value.replace('-', '/')
+                    value = self.dhformat.replace("%m", str(date_val[1]))
+                    value = value.replace("%d", str(date_val[0]))
+                    value = value.replace("%Y", str(abs(date_val[2])))
+                    value = value.replace("-", "/")
         elif self.format == 2:
             # month_name day, year
             if date_val[0] == 0:
@@ -192,8 +234,7 @@ class DateDisplayNL(DateDisplay):
                 else:
                     value = "%s %s" % (self.long_months[date_val[1]], year)
             else:
-                value = "%s %d, %s" % (self.long_months[date_val[1]],
-                                       date_val[0], year)
+                value = "%s %d, %s" % (self.long_months[date_val[1]], date_val[0], year)
         elif self.format == 3:
             # month_abbreviation day, year
             if date_val[0] == 0:
@@ -202,8 +243,11 @@ class DateDisplayNL(DateDisplay):
                 else:
                     value = "%s %s" % (self.short_months[date_val[1]], year)
             else:
-                value = "%s %d, %s" % (self.short_months[date_val[1]],
-                                       date_val[0], year)
+                value = "%s %d, %s" % (
+                    self.short_months[date_val[1]],
+                    date_val[0],
+                    year,
+                )
         elif self.format == 4:
             # day month_name year
             if date_val[0] == 0:
@@ -212,8 +256,7 @@ class DateDisplayNL(DateDisplay):
                 else:
                     value = "%s %s" % (self.long_months[date_val[1]], year)
             else:
-                value = "%d %s %s" % (date_val[0],
-                                      self.long_months[date_val[1]], year)
+                value = "%d %s %s" % (date_val[0], self.long_months[date_val[1]], year)
         else:
             # day month_abbreviation year
             if date_val[0] == 0:
@@ -222,8 +265,7 @@ class DateDisplayNL(DateDisplay):
                 else:
                     value = "%s %s" % (self.short_months[date_val[1]], year)
             else:
-                value = "%d %s %s" % (date_val[0],
-                                      self.short_months[date_val[1]], year)
+                value = "%d %s %s" % (date_val[0], self.short_months[date_val[1]], year)
         if date_val[2] < 0:
             return self._bce_str % value
         else:
@@ -249,25 +291,25 @@ class DateDisplayNL(DateDisplay):
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, 'van', d1,
-                                        'tot', d2, scal)
+            return "%s%s %s %s %s%s" % (qual_str, "van", d1, "tot", d2, scal)
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%stussen %s en %s%s" % (qual_str, d1, d2,
-                                            scal)
+            return "%stussen %s en %s%s" % (qual_str, d1, d2, scal)
         else:
             text = self.display_cal[date.get_calendar()](start)
             scal = self.format_extras(cal, newyear)
-            return "%s%s%s%s" % (qual_str, self._mod_str[mod], text,
-                                 scal)
+            return "%s%s%s%s" % (qual_str, self._mod_str[mod], text, scal)
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Register classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 register_datehandler(
-    ('nl_NL', 'dutch', 'Dutch', 'nl_BE', 'nl', ('%d-%m-%Y',)),
-    DateParserNL, DateDisplayNL)
+    ("nl_NL", "dutch", "Dutch", "nl_BE", "nl", ("%d-%m-%Y",)),
+    DateParserNL,
+    DateDisplayNL,
+)

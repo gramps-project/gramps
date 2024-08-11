@@ -22,11 +22,11 @@
 #
 # Written by Bora Atıcı <boratici.acc@gmail.com>, 2021
 #
-#--------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------
 #
 # Turkish relationship and kinship names
 #
-#--------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------
 # kan bağı(blood ties)
 # - haminne(parent's grandmother)
 # - dede(grandfather), nine(grandmother) -> babaanne(father's mother),
@@ -58,24 +58,24 @@
 # - dünür
 # - ebeveyn
 # and much more. It will be added with future updates.
-#--------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------
 """
 Turkish-specific classes for relationships.
 """
-#--------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#--------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------
 from operator import le
 from gramps.gen.lib import Person
 import gramps.gen.relationship
 
-#--------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------
 #
 # Shared constants
 #
-#--------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------
 _level_name = [
     "",
     "",
@@ -83,32 +83,54 @@ _level_name = [
     "üçüncü derece",
     "dördüncü derece",
     "beşinci derece",
-    "altıncı derece", "yedinci derece", "sekizinci derece", "dokuzuncu derece", "onuncu derece",
-    "on birinci", "on ikinci", "on üçüncü", "on dördüncü", "on beşinci",
-    "on altıncı", "on yedinci", "on sekizinci", "on dokuzuncu", "yirminci",
-    "yirmi birinci", "yirmi ikinci", "yirmi üçüncü", "yirmi dördüncü",
-    "yirmi beşinci", "yirmi altıncı", "yirmi yedinci", "yirmi sekizinci",
-    "yirmi dokuzuncu", "otuzuncu", "otuz birinci", "otuz ikinci",
-    "otuz üçüncü", "otuz dördüncü", "otuz beşinci", "otuz altıncı",
-    "otuz yedinci", "otuz sekizinci", "otuz dokuzuncu", "kırkıncı",
-    "kırk birinci"
+    "altıncı derece",
+    "yedinci derece",
+    "sekizinci derece",
+    "dokuzuncu derece",
+    "onuncu derece",
+    "on birinci",
+    "on ikinci",
+    "on üçüncü",
+    "on dördüncü",
+    "on beşinci",
+    "on altıncı",
+    "on yedinci",
+    "on sekizinci",
+    "on dokuzuncu",
+    "yirminci",
+    "yirmi birinci",
+    "yirmi ikinci",
+    "yirmi üçüncü",
+    "yirmi dördüncü",
+    "yirmi beşinci",
+    "yirmi altıncı",
+    "yirmi yedinci",
+    "yirmi sekizinci",
+    "yirmi dokuzuncu",
+    "otuzuncu",
+    "otuz birinci",
+    "otuz ikinci",
+    "otuz üçüncü",
+    "otuz dördüncü",
+    "otuz beşinci",
+    "otuz altıncı",
+    "otuz yedinci",
+    "otuz sekizinci",
+    "otuz dokuzuncu",
+    "kırkıncı",
+    "kırk birinci",
 ]
 
 _level_name_male = _level_name
 
 _level_name_female = _level_name
 
-#--------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------
 #
 # Relationship levels
 #
-#--------------------------------------------------------------------------------
-_parent_level = [
-    "",
-    "",
-    "ebeveynlerinin",
-    "büyük ebeveynlerinin"
-]
+# --------------------------------------------------------------------------------
+_parent_level = ["", "", "ebeveynlerinin", "büyük ebeveynlerinin"]
 
 _son_level = [
     "",
@@ -117,7 +139,7 @@ _son_level = [
     "torununun oğlu",
     "torununun torunu",
     "torununun torununun oğlu",
-    "torununun torununun torunu"
+    "torununun torununun torunu",
 ]
 
 _daughter_level = [
@@ -127,7 +149,7 @@ _daughter_level = [
     "torununun kızı",
     "torununun torunu",
     "torununun torununun kızı",
-    "torununun torununun torunu"
+    "torununun torununun torunu",
 ]
 
 _child_level = [
@@ -137,7 +159,7 @@ _child_level = [
     "torununun çocuğu",
     "torununun torunu",
     "torununun torununun çocuğu",
-    "torununun torununun torunu"
+    "torununun torununun torunu",
 ]
 
 _father_level = [
@@ -147,7 +169,7 @@ _father_level = [
     "büyük dedesi",
     "dedesinin dedesi",
     "dedesinin dedesinin babası",
-    "dedesinin dedesinin dedesi"
+    "dedesinin dedesinin dedesi",
 ]
 
 _mother_level = [
@@ -157,7 +179,7 @@ _mother_level = [
     "haminnesi",
     "büyük haminnesi",
     "ninesinin ninesinin annesi",
-    "ninesinin ninesinin ninesi"
+    "ninesinin ninesinin ninesi",
 ]
 
 _uncle_level = [
@@ -174,11 +196,11 @@ _aunt_level = [
     "büyük hala",
 ]
 
-#--------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------
 #
 # Relationship Classes
 #
-#--------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------
 
 
 class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
@@ -197,10 +219,10 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         if level <= 1:
             return ""
 
-        by_line = ''
+        by_line = ""
         for g in reltocommon:
-            if(by_line and by_line != g):
-                by_line = ''
+            if by_line and by_line != g:
+                by_line = ""
                 break
             by_line = g
 
@@ -219,12 +241,12 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         else:
             return ""
 
-    def get_son(self, level, inlaw=''):
+    def get_son(self, level, inlaw=""):
         """
         Provides information how much male descendant is related to this person
         """
         # Define if the person is natural relative or in law
-        if inlaw == '':
+        if inlaw == "":
             t_inlaw = ""
         else:
             t_inlaw = "kayın "
@@ -232,14 +254,14 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         if level >= 0 and level < len(_son_level):
             return t_inlaw + _son_level[level]
         # else:
-            # return t_inlaw + "%d" % (level + 1)
+        # return t_inlaw + "%d" % (level + 1)
 
-    def get_daughter(self, level, inlaw=''):
+    def get_daughter(self, level, inlaw=""):
         """
         Provides information how much female descendant is related to this person
         """
         # Define if the person is natural relative or in law
-        if inlaw == '':
+        if inlaw == "":
             t_inlaw = ""
         else:
             t_inlaw = "kayın "
@@ -247,14 +269,14 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         if level >= 0 and level < len(_daughter_level):
             return t_inlaw + _daughter_level[level]
         # else:
-            # return t_inlaw + "%d" % (level + 1)
+        # return t_inlaw + "%d" % (level + 1)
 
-    def get_child_unknown(self, level, inlaw=''):
+    def get_child_unknown(self, level, inlaw=""):
         """
         Provides information how much descendant of unknown gender is related to this person
         """
         # Define if the person is natural relative or in law
-        if inlaw == '':
+        if inlaw == "":
             t_inlaw = ""
         else:
             t_inlaw = "kayın "
@@ -262,14 +284,14 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         if level >= 0 and level < len(_child_level):
             return t_inlaw + _child_level[level]
         # else:
-            # return t_inlaw + "%d" % (level + 1)
+        # return t_inlaw + "%d" % (level + 1)
 
-    def get_father(self, level, reltocommon, inlaw=''):
+    def get_father(self, level, reltocommon, inlaw=""):
         """
         Provides information how much male ancestor (for example father)
         is related to the given person
         """
-        if inlaw == '':
+        if inlaw == "":
             t_inlaw = ""
         else:
             t_inlaw = "kayın "
@@ -281,17 +303,25 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 return t_inlaw + _father_level[level]
             else:
                 # Grandfather, Greatgrandfather, Greatgreatgrandfather
-                return t_inlaw + self.get_sword_distaff(level, reltocommon, Person.MALE) + _father_level[level]
+                return (
+                    t_inlaw
+                    + self.get_sword_distaff(level, reltocommon, Person.MALE)
+                    + _father_level[level]
+                )
         else:
             # For deep generations
-            return t_inlaw + "%s dedesi" % _level_name[level] + self.get_sword_distaff(level, reltocommon, Person.MALE)
+            return (
+                t_inlaw
+                + "%s dedesi" % _level_name[level]
+                + self.get_sword_distaff(level, reltocommon, Person.MALE)
+            )
 
-    def get_mother(self, level, reltocommon, inlaw=''):
+    def get_mother(self, level, reltocommon, inlaw=""):
         """
         Provides information how much female ancestor (for example mother)
         is related to the given person
         """
-        if inlaw == '':
+        if inlaw == "":
             t_inlaw = ""
         else:
             t_inlaw = "kayın "
@@ -304,18 +334,26 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
             else:
                 # Grandmother, Greatgrandmother, Greatgreatgrandmother
-                return t_inlaw + self.get_sword_distaff(level, reltocommon, Person.FEMALE) + _mother_level[level]
+                return (
+                    t_inlaw
+                    + self.get_sword_distaff(level, reltocommon, Person.FEMALE)
+                    + _mother_level[level]
+                )
         else:
             # For deep generations
             #
-            return t_inlaw + "%s ninesi" % _level_name[level] + self.get_sword_distaff(level, reltocommon, Person.FEMALE)
+            return (
+                t_inlaw
+                + "%s ninesi" % _level_name[level]
+                + self.get_sword_distaff(level, reltocommon, Person.FEMALE)
+            )
 
-    def get_parent_unknown(self, level, reltocommon, inlaw=''):
+    def get_parent_unknown(self, level, reltocommon, inlaw=""):
         """
         Provides information how much an ancestor of unknown gender
         is related to the given person (unknown sex)
         """
-        if inlaw == '':
+        if inlaw == "":
             t_inlaw = ""
         else:
             t_inlaw = "kayın "
@@ -323,9 +361,13 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         if level == 1:
             return t_inlaw + "babası/annesi"
         else:
-            return t_inlaw + "%s dedesi/ninesi" % _level_name[level] + self.get_sword_distaff(level, reltocommon)
+            return (
+                t_inlaw
+                + "%s dedesi/ninesi" % _level_name[level]
+                + self.get_sword_distaff(level, reltocommon)
+            )
 
-    def get_uncle(self, level, reltocommon, inlaw=''):
+    def get_uncle(self, level, reltocommon, inlaw=""):
         """
         Return uncle generation name
         """
@@ -339,7 +381,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 elif level == 4:
                     return "(baba tarafından) büyük büyük amcası"
             else:
-                return "(baba tarafından) " + (_level_name[level-1]) + " amcası"
+                return "(baba tarafından) " + (_level_name[level - 1]) + " amcası"
         elif reltocommon[0] == self.REL_MOTHER:
             # from Mother
             if level < len(_uncle_level):
@@ -350,14 +392,14 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 elif level == 4:
                     return "(anne tarafından) büyük büyük dayısı"
             else:
-                return "(anne tarafından) " + (_level_name[level-1]) + " dayısı"
+                return "(anne tarafından) " + (_level_name[level - 1]) + " dayısı"
         else:
             if level == 2:
                 return "amcası/dayısı"
             else:
-                return (_level_name[level-1]) + " amcası/dayısı"
+                return (_level_name[level - 1]) + " amcası/dayısı"
 
-    def get_aunt(self, level, reltocommon, inlaw=''):
+    def get_aunt(self, level, reltocommon, inlaw=""):
         """
         Return aunt generation name
         """
@@ -371,7 +413,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 elif level == 4:
                     return "(baba tarafından) büyük büyük halası"
             else:
-                return "(baba tarafından) %s halası" % _level_name[level-1]
+                return "(baba tarafından) %s halası" % _level_name[level - 1]
         elif reltocommon[0] == self.REL_MOTHER:
             # from Mother
             if level < len(_aunt_level):
@@ -382,14 +424,14 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 elif level == 4:
                     return "(anne tarafından) büyük büyük teyzesi"
             else:
-                return "(anne tarafından) %s teyzesi" % _level_name[level-1]
+                return "(anne tarafından) %s teyzesi" % _level_name[level - 1]
         else:
             if level == 2:
                 return "teyzesi/halası"
             else:
-                return "%s teyzesi/halası" % _level_name[level-1]
+                return "%s teyzesi/halası" % _level_name[level - 1]
 
-    def get_uncle_aunt_unknown(self, level, reltocommon, inlaw=''):
+    def get_uncle_aunt_unknown(self, level, reltocommon, inlaw=""):
         """
         Return uncle/aunt generation name when gender unknown
         """
@@ -400,7 +442,9 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             elif level == 3:
                 return "dedesi veya babaannesinin kardeşi"
             else:
-                return "(baba tarafından) %s üstsoyunun kardeşi" % _level_name[level-1]
+                return (
+                    "(baba tarafından) %s üstsoyunun kardeşi" % _level_name[level - 1]
+                )
         elif reltocommon[0] == self.REL_MOTHER:
             # from Mother
             if level == 2:
@@ -408,18 +452,20 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             elif level == 3:
                 return "dedesinin ve anneannesinin kardeşi"
             else:
-                return "(anne tarafından) %s üstsoyunun kardeşi" % _level_name[level-1]
+                return (
+                    "(anne tarafından) %s üstsoyunun kardeşi" % _level_name[level - 1]
+                )
         else:
             if level == 2:
                 return "ebeveynlerinin kardeşi"
             else:
-                return "%s üstsoyunun kardeşi" % _level_name[level-1]
+                return "%s üstsoyunun kardeşi" % _level_name[level - 1]
 
-    def get_nephew(self, level, reltocommon, inlaw=''):
+    def get_nephew(self, level, reltocommon, inlaw=""):
         """
         Return nephew generation name
         """
-        if inlaw == '':
+        if inlaw == "":
             t_inlaw = ""
         else:
             t_inlaw = "kayın "
@@ -434,45 +480,53 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             else:
                 return t_inlaw + "(kardeşinden) yeğeni"
         elif level >= 2 and level <= 6:
-            if reltocommon[level-2] == self.REL_FATHER:
+            if reltocommon[level - 2] == self.REL_FATHER:
                 # Brother's son generation
-                if reltocommon[level-3] == self.REL_FATHER:
+                if reltocommon[level - 3] == self.REL_FATHER:
                     # Son of brother son
-                    return "erkek kardeşinin oğlunun " + self.get_son((level - 2), inlaw)
-                elif reltocommon[level-3] == self.REL_MOTHER:
+                    return "erkek kardeşinin oğlunun " + self.get_son(
+                        (level - 2), inlaw
+                    )
+                elif reltocommon[level - 3] == self.REL_MOTHER:
                     # Son of brother daughter
-                    return "erkek kardeşinin kızının " + self.get_son((level - 2), inlaw)
+                    return "erkek kardeşinin kızının " + self.get_son(
+                        (level - 2), inlaw
+                    )
                 else:
                     # Currently not used
-                    return "erkek kardeşinin çocuğunun " + self.get_son((level - 2), inlaw)
-            elif reltocommon[level-2] == self.REL_MOTHER:
+                    return "erkek kardeşinin çocuğunun " + self.get_son(
+                        (level - 2), inlaw
+                    )
+            elif reltocommon[level - 2] == self.REL_MOTHER:
                 # Sister's son generation
-                if reltocommon[level-3] == self.REL_FATHER:
+                if reltocommon[level - 3] == self.REL_FATHER:
                     # Son of sister son
                     return "kız kardeşinin oğlunun " + self.get_son((level - 2), inlaw)
-                elif reltocommon[level-3] == self.REL_MOTHER:
+                elif reltocommon[level - 3] == self.REL_MOTHER:
                     # Son of sister daughter
                     return "kız kardeşinin kızının " + self.get_son((level - 2), inlaw)
                 else:
                     # Currently not used
-                    return "kız kardeşinin çocuğunun " + self.get_son((level - 2), inlaw)
+                    return "kız kardeşinin çocuğunun " + self.get_son(
+                        (level - 2), inlaw
+                    )
             else:
                 return "kardeşinin çocuğunun " + self.get_son((level - 2), inlaw)
         else:
-            if reltocommon[level-2] == self.REL_FATHER:
+            if reltocommon[level - 2] == self.REL_FATHER:
                 # Brother's son generation
                 return t_inlaw + "erkek kardeşinin oğlunun %d kuşak torunu" % (level)
-            elif reltocommon[level-2] == self.REL_MOTHER:
+            elif reltocommon[level - 2] == self.REL_MOTHER:
                 # Sister's son generation
                 return t_inlaw + "kız kardeşinin oğlunun %d kuşak torunu" % (level)
             else:
                 return t_inlaw + "kardeşinin oğlunun %d kuşak torunu" % (level)
 
-    def get_niece(self, level, reltocommon, inlaw=''):
+    def get_niece(self, level, reltocommon, inlaw=""):
         """
         Return niece generation name
         """
-        if inlaw == '':
+        if inlaw == "":
             t_inlaw = ""
         else:
             t_inlaw = "kayın "
@@ -487,68 +541,80 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             else:
                 return t_inlaw + "(kardeşinden) yeğeni"
         elif level >= 2 and level <= 6:
-            if reltocommon[level-2] == self.REL_FATHER:
+            if reltocommon[level - 2] == self.REL_FATHER:
                 # Brother's daughter generation
-                if reltocommon[level-3] == self.REL_FATHER:
+                if reltocommon[level - 3] == self.REL_FATHER:
                     # daughter of brother son
-                    return "erkek kardeşinin oğlunun " + self.get_daughter((level - 2), inlaw)
-                elif reltocommon[level-3] == self.REL_MOTHER:
+                    return "erkek kardeşinin oğlunun " + self.get_daughter(
+                        (level - 2), inlaw
+                    )
+                elif reltocommon[level - 3] == self.REL_MOTHER:
                     # daughter of brother daughter
-                    return "erkek kardeşinin kızının " + self.get_daughter((level - 2), inlaw)
+                    return "erkek kardeşinin kızının " + self.get_daughter(
+                        (level - 2), inlaw
+                    )
                 else:
                     # Currently not used
-                    return "erkek kardeşinin çocuğunun " + self.get_daughter((level - 2), inlaw)
-            elif reltocommon[level-2] == self.REL_MOTHER:
+                    return "erkek kardeşinin çocuğunun " + self.get_daughter(
+                        (level - 2), inlaw
+                    )
+            elif reltocommon[level - 2] == self.REL_MOTHER:
                 # Sister's daughter generation
-                if reltocommon[level-3] == self.REL_FATHER:
+                if reltocommon[level - 3] == self.REL_FATHER:
                     # daughter of sister son
-                    return "kız kardeşinin oğlunun " + self.get_daughter((level - 2), inlaw)
-                elif reltocommon[level-3] == self.REL_MOTHER:
+                    return "kız kardeşinin oğlunun " + self.get_daughter(
+                        (level - 2), inlaw
+                    )
+                elif reltocommon[level - 3] == self.REL_MOTHER:
                     # daughter of sister daughter
-                    return "kız kardeşinin kızının " + self.get_daughter((level - 2), inlaw)
+                    return "kız kardeşinin kızının " + self.get_daughter(
+                        (level - 2), inlaw
+                    )
                 else:
                     # Currently not used
-                    return "kız kardeşinin çocuğunun " + self.get_daughter((level - 2), inlaw)
+                    return "kız kardeşinin çocuğunun " + self.get_daughter(
+                        (level - 2), inlaw
+                    )
             else:
                 return "kardeşinin çocuğunun " + self.get_daughter(level, inlaw)
         else:
-            if reltocommon[level-2] == self.REL_FATHER:
+            if reltocommon[level - 2] == self.REL_FATHER:
                 # Brother's daughter generation
                 return t_inlaw + "erkek kardeşinin kızının %d kuşak torunu" % (level)
-            elif reltocommon[level-2] == self.REL_MOTHER:
+            elif reltocommon[level - 2] == self.REL_MOTHER:
                 # Sister's daughter generation
                 return t_inlaw + "kız kardeşinin kızının %d kuşak torunu" % (level)
             else:
                 return t_inlaw + "kardeşinin kızının %d kuşak torunu" % (level)
 
-    def get_nephew_niece_unknown(self, level, reltocommon, inlaw=''):
+    def get_nephew_niece_unknown(self, level, reltocommon, inlaw=""):
         """
         Return nephew/niece generation name when gender unknown
         """
-        if inlaw == '':
+        if inlaw == "":
             t_inlaw = ""
         else:
             t_inlaw = "kayın "
 
-        if reltocommon[level-2] == self.REL_FATHER:
+        if reltocommon[level - 2] == self.REL_FATHER:
             # Brother's descendant
-            return t_inlaw + "erkek kardeşinin " + _child_level[level-1]
-        elif (reltocommon[level-2] == self.REL_MOTHER):
+            return t_inlaw + "erkek kardeşinin " + _child_level[level - 1]
+        elif reltocommon[level - 2] == self.REL_MOTHER:
             # Sister's descendant
-            return t_inlaw + "kız kardeşinin " + _child_level[level-1]
+            return t_inlaw + "kız kardeşinin " + _child_level[level - 1]
         else:
-            return t_inlaw + "kardeşinin " + _child_level[level-1]
+            return t_inlaw + "kardeşinin " + _child_level[level - 1]
 
     def get_level(self, level, gender):
         """
         Return level name depend of gender
         """
-        if (gender == Person.MALE):
+        if gender == Person.MALE:
             if level < len(_level_name_male):
                 return _level_name_male[level]
             else:
                 return "%d" % level
-        elif (gender == Person.FEMALE):
+        elif gender == Person.FEMALE:
             if level < len(_level_name_female):
                 return _level_name_female[level]
             else:
@@ -563,26 +629,34 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         """
         Return level name depend of gender
         """
-        if (gender == Person.MALE):
+        if gender == Person.MALE:
             if level < len(_level_name_male):
-                return _level_name_male[level-1]
+                return _level_name_male[level - 1]
             else:
                 return "%d" % level
-        elif (gender == Person.FEMALE):
+        elif gender == Person.FEMALE:
             if level < len(_level_name_female):
-                return _level_name_female[level-1]
+                return _level_name_female[level - 1]
             else:
                 return "%d" % level
         else:
             if level < len(_level_name):
-                return _level_name[level-1]
+                return _level_name[level - 1]
             else:
                 return "%d" % level
 
-    def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
-                                       reltocommon_a, reltocommon_b,
-                                       only_birth=True,
-                                       in_law_a=False, in_law_b=False):
+    def get_single_relationship_string(
+        self,
+        Ga,
+        Gb,
+        gender_a,
+        gender_b,
+        reltocommon_a,
+        reltocommon_b,
+        only_birth=True,
+        in_law_a=False,
+        in_law_b=False,
+    ):
         """
         Provide a string that describes the relationsip between a person, and
         another person. E.g. "grandparent" or "child".
@@ -617,14 +691,14 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         """
 
         if only_birth:
-            step = ''
+            step = ""
         else:
             step = self.STEP
 
         if in_law_a or in_law_b:
             inlaw = self.INLAW
         else:
-            inlaw = ''
+            inlaw = ""
 
         t_inlaw = ""
 
@@ -699,9 +773,9 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         elif Gb == 1 and Ga > 1:
             # b is aunt/uncle of a
 
-            if (gender_b == Person.MALE):
+            if gender_b == Person.MALE:
                 rel_str = self.get_uncle(Ga, reltocommon_a, inlaw)
-            elif (gender_b == Person.FEMALE):
+            elif gender_b == Person.FEMALE:
                 rel_str = self.get_aunt(Ga, reltocommon_a, inlaw)
             else:
                 rel_str = self.get_uncle_aunt_unknown(Ga, reltocommon_a, inlaw)
@@ -709,13 +783,12 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         elif Ga == 1 and Gb > 1:
             # b is niece/nephew of a
 
-            if (gender_b == Person.MALE):
+            if gender_b == Person.MALE:
                 rel_str = self.get_nephew(Gb, reltocommon_b, inlaw)
-            elif (gender_b == Person.FEMALE):
+            elif gender_b == Person.FEMALE:
                 rel_str = self.get_niece(Gb, reltocommon_b, inlaw)
             else:
-                rel_str = self.get_nephew_niece_unknown(
-                    Gb, reltocommon_b, inlaw)
+                rel_str = self.get_nephew_niece_unknown(Gb, reltocommon_b, inlaw)
 
         elif Ga > 1 and Gb > 1:
             # b is (cousin/far aunt/far  uncle/far niece/far nephew) of a
@@ -728,83 +801,86 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 else:
                     level_name = self.get_level(Gb, gender_b)
 
-                if (gender_b == Person.MALE):
+                if gender_b == Person.MALE:
                     # b is far  uncle
-                    if inlaw != '':
+                    if inlaw != "":
                         # Currently not used.
                         t_inlaw = " "
                     if level < len(_parent_level):
-                        rel_str = t_inlaw + \
-                            "%s kuzeni(kuşağı)" % (_parent_level[level])
+                        rel_str = t_inlaw + "%s kuzeni(kuşağı)" % (_parent_level[level])
                     else:
-                        rel_str = t_inlaw + \
-                            "%s üstsoyunun kuzeni(kuşağı)" % (
-                                _level_name[level-1])
-                elif (gender_b == Person.FEMALE):
+                        rel_str = t_inlaw + "%s üstsoyunun kuzeni(kuşağı)" % (
+                            _level_name[level - 1]
+                        )
+                elif gender_b == Person.FEMALE:
                     # b is far aunt
-                    if inlaw != '':
+                    if inlaw != "":
                         # Currently not used.
                         t_inlaw = " "
                     if level < len(_aunt_level):
-                        rel_str = t_inlaw + \
-                            "%s kuzeni(kuşağı)" % (_parent_level[level])
+                        rel_str = t_inlaw + "%s kuzeni(kuşağı)" % (_parent_level[level])
                     else:
-                        rel_str = t_inlaw + \
-                            "%s üstsoyunun kuzeni(kuşağı)" % (
-                                _level_name[level-1])
+                        rel_str = t_inlaw + "%s üstsoyunun kuzeni(kuşağı)" % (
+                            _level_name[level - 1]
+                        )
                 else:
-                    if inlaw != '':
+                    if inlaw != "":
                         # Currently not used.
                         t_inlaw = " "
                     if level == 2:
-                        rel_str = t_inlaw + \
-                            "%s kuzeni(kuşağı)" % (_parent_level[level])
+                        rel_str = t_inlaw + "%s kuzeni(kuşağı)" % (_parent_level[level])
                     else:
-                        rel_str = t_inlaw + \
-                            "%s üstsoyunun kuzeni(kuşağı)" % (
-                                _level_name[level-1])
+                        rel_str = t_inlaw + "%s üstsoyunun kuzeni(kuşağı)" % (
+                            _level_name[level - 1]
+                        )
 
             elif Ga < Gb:
                 # b is far niece/far nephew of a
                 level_name = self.get_level(Ga, gender_b)
                 level = Gb - Ga + 1
 
-                if (gender_b == Person.MALE):
+                if gender_b == Person.MALE:
                     # b is far nephew
                     if level == 2:
                         rel_str = "%s yeğeni" % level_name
                     else:
                         rel_str = "%s yeğeninin %s" % (
-                            level_name, _son_level[level-2])
-                elif (gender_b == Person.FEMALE):
+                            level_name,
+                            _son_level[level - 2],
+                        )
+                elif gender_b == Person.FEMALE:
                     # b is far niece
                     if level == 2:
                         rel_str = "%s yeğeni" % level_name
                     else:
                         rel_str = "%s yeğeninin %s" % (
-                            level_name, _daughter_level[level-2])
+                            level_name,
+                            _daughter_level[level - 2],
+                        )
                 else:
                     if level == 2:
                         rel_str = "%s yeğeni" % level_name
                     else:
                         rel_str = "%s yeğeninin %s" % (
-                            level_name, _child_level[level-2])
+                            level_name,
+                            _child_level[level - 2],
+                        )
 
             else:  # Gb == Ga
                 # b is cousin of a
                 level_name = self.get_cousin_level(Ga, gender_b)
-                if (gender_b == Person.MALE):
-                    if inlaw != '':
+                if gender_b == Person.MALE:
+                    if inlaw != "":
                         # Currently not used.
                         t_inlaw = " "
                     rel_str = t_inlaw + "%s kuzeni" % level_name
-                elif (gender_b == Person.FEMALE):
-                    if inlaw != '':
+                elif gender_b == Person.FEMALE:
+                    if inlaw != "":
                         # Currently not used.
                         t_inlaw = " "
                     rel_str = t_inlaw + "%s kuzeni" % level_name
                 else:
-                    if inlaw != '':
+                    if inlaw != "":
                         # Currently not used.
                         t_inlaw = " "
                     rel_str = t_inlaw + "%s kuzeni" % level_name
@@ -815,10 +891,16 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
         return rel_str
 
-    def get_plural_relationship_string(self, Ga, Gb,
-                                       reltocommon_a='', reltocommon_b='',
-                                       only_birth=True,
-                                       in_law_a=False, in_law_b=False):
+    def get_plural_relationship_string(
+        self,
+        Ga,
+        Gb,
+        reltocommon_a="",
+        reltocommon_b="",
+        only_birth=True,
+        in_law_a=False,
+        in_law_b=False,
+    ):
         """
         Generate a text with information, how far away is a group of persons
         from a main person
@@ -857,12 +939,13 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             return "uzak akrabaları"
         return "arasındaki ilişki belirsiz"
 
-    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b,
-                                        in_law_a=False, in_law_b=False):
+    def get_sibling_relationship_string(
+        self, sib_type, gender_a, gender_b, in_law_a=False, in_law_b=False
+    ):
         if in_law_a or in_law_b:
             inlaw = self.INLAW
         else:
-            inlaw = ''
+            inlaw = ""
 
         if sib_type == self.NORM_SIB:
             if not inlaw:
@@ -898,8 +981,8 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             rel_str = "arasındaki ilişki belirsiz"
         return rel_str
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     # Test function. Call it as follows from the command line (so as to find
     #        imported modules):
     #    export PYTHONPATH=/path/to/gramps/src
@@ -911,5 +994,6 @@ if __name__ == "__main__":
     python src/plugins/rel/rel_xx.py
     """
     from gramps.gen.relationship import test
+
     RC = RelationshipCalculator()
     test(RC, True)

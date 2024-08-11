@@ -19,56 +19,65 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
-#
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-from ....const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
+"""
+Rule that checks for a place with a particular value
+"""
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .. import Rule
+# -------------------------------------------------------------------------
+from ....const import GRAMPS_LOCALE as glocale
 from ....lib import PlaceType
+from .. import Rule
 
-#-------------------------------------------------------------------------
+_ = glocale.translation.sgettext
+
+
+# -------------------------------------------------------------------------
 #
 # HasData
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasData(Rule):
     """
     Rule that checks for a place with a particular value
     """
 
-    labels = [ _('Name:', 'place'),
-                    _('Place type:'),
-                    _('Code:'),
-                    ]
-    name = _('Places matching parameters')
-    description = _('Matches places with particular parameters')
-    category = _('General filters')
+    labels = [
+        _("Name:", "place"),
+        _("Place type:"),
+        _("Code:"),
+    ]
+    name = _("Places matching parameters")
+    description = _("Matches places with particular parameters")
+    category = _("General filters")
     allow_regex = True
 
-    def prepare(self, db, user):
-        self.place_type = self.list[1]
+    def __init__(self, arg, use_regex=False, use_case=False):
+        super().__init__(arg, use_regex, use_case)
+        self.place_type = None
 
-        if self.place_type:
+    def prepare(self, db, user):
+        """
+        Prepare the rule. Things we only want to do once.
+        """
+        if self.list[1]:
             self.place_type = PlaceType()
             self.place_type.set_from_xml_str(self.list[1])
 
-    def apply(self, db, place):
-        if not self.match_name(place):
+    def apply(self, _db, obj):
+        """
+        Apply the rule. Return True on a match.
+        """
+        if not self.match_name(obj):
             return False
 
-        if self.place_type and place.get_type() != self.place_type:
+        if self.place_type and obj.get_type() != self.place_type:
             return False
 
-        if not self.match_substring(2, place.get_code()):
+        if not self.match_substring(2, obj.get_code()):
             return False
 
         return True

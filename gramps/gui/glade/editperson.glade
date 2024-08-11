@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.3 -->
+<!-- Generated with glade 3.40.0 -->
 <interface>
-  <requires lib="gtk+" version="3.10"/>
+  <requires lib="gtk+" version="3.24"/>
   <requires lib="grampswidgets" version="0.0"/>
   <object class="GtkImage" id="image1">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="icon_name">gtk-edit</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">gtk-edit</property>
     <child internal-child="accessible">
       <object class="AtkObject" id="image1-atkobject">
         <property name="AtkObject::accessible-description" translatable="yes">Edit</property>
@@ -15,8 +15,8 @@
   </object>
   <object class="GtkImage" id="image2">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="icon_name">list-add</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">list-add</property>
     <child internal-child="accessible">
       <object class="AtkObject" id="image2-atkobject">
         <property name="AtkObject::accessible-description" translatable="yes">Add</property>
@@ -24,33 +24,33 @@
     </child>
   </object>
   <object class="GtkDialog" id="editperson">
-    <property name="can_focus">False</property>
-    <property name="has_focus">True</property>
-    <property name="type_hint">dialog</property>
+    <property name="can-focus">False</property>
+    <property name="has-focus">True</property>
+    <property name="type-hint">dialog</property>
     <signal name="delete-event" handler="on_delete_event" swapped="no"/>
     <child internal-child="vbox">
       <object class="GtkBox" id="vbox">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="vexpand">True</property>
         <property name="orientation">vertical</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="hbuttonbox1">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="valign">start</property>
-            <property name="layout_style">end</property>
+            <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="button15">
                 <property name="label" translatable="yes">_Cancel</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">False</property>
-                <property name="tooltip_text" translatable="yes">Abandon changes and close window</property>
-                <property name="use_underline">True</property>
-                <property name="image_position">bottom</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">False</property>
+                <property name="tooltip-text" translatable="yes">Abandon changes and close window</property>
+                <property name="use-underline">True</property>
+                <property name="image-position">bottom</property>
                 <signal name="clicked" handler="destroy_passed_object" object="editperson" swapped="yes"/>
               </object>
               <packing>
@@ -62,13 +62,13 @@
             <child>
               <object class="GtkButton" id="ok">
                 <property name="label" translatable="yes">_OK</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">False</property>
-                <property name="tooltip_text" translatable="yes">Accept changes and close window</property>
-                <property name="use_underline">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">False</property>
+                <property name="tooltip-text" translatable="yes">Accept changes and close window</property>
+                <property name="use-underline">True</property>
                 <signal name="clicked" handler="on_apply_person_clicked" object="editperson" swapped="yes"/>
               </object>
               <packing>
@@ -80,12 +80,12 @@
             <child>
               <object class="GtkButton" id="button134">
                 <property name="label" translatable="yes">_Help</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">False</property>
-                <property name="use_underline">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">False</property>
+                <property name="use-underline">True</property>
                 <signal name="clicked" handler="on_help_person_clicked" swapped="no"/>
               </object>
               <packing>
@@ -98,132 +98,133 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">False</property>
-            <property name="pack_type">end</property>
+            <property name="pack-type">end</property>
             <property name="position">0</property>
           </packing>
         </child>
         <child>
           <object class="GtkEventBox" id="eventboxtop">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="valign">start</property>
-            <property name="visible_window">False</property>
+            <property name="visible-window">False</property>
             <child>
               <object class="GtkBox" id="vbox1">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="valign">start</property>
-                <property name="border_width">3</property>
+                <property name="border-width">3</property>
                 <property name="orientation">vertical</property>
                 <child>
+                  <!-- n-columns=9 n-rows=8 -->
                   <object class="GtkGrid" id="table3">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="valign">start</property>
-                    <property name="row_spacing">4</property>
-                    <property name="column_spacing">3</property>
+                    <property name="row-spacing">4</property>
+                    <property name="column-spacing">3</property>
                     <child>
                       <object class="GtkLabel" id="label21">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin_left">3</property>
-                        <property name="margin_right">3</property>
-                        <property name="margin_top">3</property>
-                        <property name="margin_bottom">3</property>
+                        <property name="margin-left">3</property>
+                        <property name="margin-right">3</property>
+                        <property name="margin-top">3</property>
+                        <property name="margin-bottom">3</property>
                         <property name="label" translatable="yes">_Given:</property>
-                        <property name="use_underline">True</property>
+                        <property name="use-underline">True</property>
                         <property name="justify">center</property>
-                        <property name="mnemonic_widget">given_name</property>
+                        <property name="mnemonic-widget">given_name</property>
                       </object>
                       <packing>
-                        <property name="left_attach">2</property>
-                        <property name="top_attach">3</property>
+                        <property name="left-attach">2</property>
+                        <property name="top-attach">3</property>
                       </packing>
                     </child>
                     <child>
                       <object class="UndoableEntry" id="given_name">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="can_default">True</property>
-                        <property name="has_default">True</property>
-                        <property name="tooltip_text" translatable="yes">The person's given names</property>
-                        <property name="invisible_char">●</property>
+                        <property name="can-focus">True</property>
+                        <property name="can-default">True</property>
+                        <property name="has-default">True</property>
+                        <property name="tooltip-text" translatable="yes">The person's given names</property>
+                        <property name="invisible-char">●</property>
                         <signal name="focus-out-event" handler="on_given_focus_out" swapped="no"/>
                       </object>
                       <packing>
-                        <property name="left_attach">3</property>
-                        <property name="top_attach">3</property>
+                        <property name="left-attach">3</property>
+                        <property name="top-attach">3</property>
                         <property name="width">4</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label444">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
                         <property name="label" translatable="yes">C_all:</property>
-                        <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">call</property>
+                        <property name="use-underline">True</property>
+                        <property name="mnemonic-widget">call</property>
                       </object>
                       <packing>
-                        <property name="left_attach">6</property>
-                        <property name="top_attach">2</property>
+                        <property name="left-attach">6</property>
+                        <property name="top-attach">2</property>
                       </packing>
                     </child>
                     <child>
                       <object class="ValidatableMaskedEntry" id="call">
-                        <property name="width_request">75</property>
+                        <property name="width-request">75</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="tooltip_text" translatable="yes">Part of the Given name that is the normally used name. If background is red, call name is not part of Given name and will not be printed underlined in some reports.</property>
-                        <property name="invisible_char">●</property>
+                        <property name="can-focus">True</property>
+                        <property name="tooltip-text" translatable="yes">Part of the Given name that is the normally used name. If background is red, call name is not part of Given name and will not be printed underlined in some reports.</property>
+                        <property name="invisible-char">●</property>
                       </object>
                       <packing>
-                        <property name="left_attach">7</property>
-                        <property name="top_attach">2</property>
+                        <property name="left-attach">7</property>
+                        <property name="top-attach">2</property>
                         <property name="width">2</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="titlelabel">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin_left">3</property>
-                        <property name="margin_right">3</property>
-                        <property name="margin_top">3</property>
-                        <property name="margin_bottom">3</property>
+                        <property name="margin-left">3</property>
+                        <property name="margin-right">3</property>
+                        <property name="margin-top">3</property>
+                        <property name="margin-bottom">3</property>
                         <property name="label" translatable="yes">T_itle:</property>
-                        <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">title</property>
+                        <property name="use-underline">True</property>
+                        <property name="mnemonic-widget">title</property>
                       </object>
                       <packing>
-                        <property name="left_attach">2</property>
-                        <property name="top_attach">2</property>
+                        <property name="left-attach">2</property>
+                        <property name="top-attach">2</property>
                       </packing>
                     </child>
                     <child>
                       <object class="UndoableEntry" id="title">
-                        <property name="width_request">100</property>
+                        <property name="width-request">100</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="tooltip_text" translatable="yes">A title used to refer to the person, such as 'Dr.' or 'Rev.'</property>
+                        <property name="can-focus">True</property>
+                        <property name="tooltip-text" translatable="yes">A title used to refer to the person, such as 'Dr.' or 'Rev.'</property>
                         <property name="hexpand">True</property>
-                        <property name="invisible_char">●</property>
+                        <property name="invisible-char">●</property>
                       </object>
                       <packing>
-                        <property name="left_attach">3</property>
-                        <property name="top_attach">2</property>
+                        <property name="left-attach">3</property>
+                        <property name="top-attach">2</property>
                       </packing>
                     </child>
                     <child>
                       <object class="UndoableEntry" id="suffix">
-                        <property name="width_request">75</property>
+                        <property name="width-request">75</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="tooltip_text" translatable="yes">An optional suffix to the name, such as "Jr." or "III"</property>
-                        <property name="invisible_char">●</property>
+                        <property name="can-focus">True</property>
+                        <property name="tooltip-text" translatable="yes">An optional suffix to the name, such as "Jr." or "III"</property>
+                        <property name="invisible-char">●</property>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="suffix-atkobject">
                             <property name="AtkObject::accessible-name" translatable="yes">Suffix</property>
@@ -231,55 +232,55 @@
                         </child>
                       </object>
                       <packing>
-                        <property name="left_attach">7</property>
-                        <property name="top_attach">3</property>
+                        <property name="left-attach">7</property>
+                        <property name="top-attach">3</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label6">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin_left">3</property>
-                        <property name="margin_right">3</property>
+                        <property name="margin-left">3</property>
+                        <property name="margin-right">3</property>
                         <property name="label" translatable="yes">_Nick:</property>
-                        <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">nickname</property>
+                        <property name="use-underline">True</property>
+                        <property name="mnemonic-widget">nickname</property>
                       </object>
                       <packing>
-                        <property name="left_attach">4</property>
-                        <property name="top_attach">2</property>
+                        <property name="left-attach">4</property>
+                        <property name="top-attach">2</property>
                       </packing>
                     </child>
                     <child>
                       <object class="UndoableEntry" id="nickname">
-                        <property name="width_request">100</property>
+                        <property name="width-request">100</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="tooltip_text" translatable="yes">A descriptive name given in place of or in addition to the official given name.</property>
+                        <property name="can-focus">True</property>
+                        <property name="tooltip-text" translatable="yes">A descriptive name given in place of or in addition to the official given name.</property>
                         <property name="hexpand">True</property>
-                        <property name="invisible_char">●</property>
+                        <property name="invisible-char">●</property>
                       </object>
                       <packing>
-                        <property name="left_attach">5</property>
-                        <property name="top_attach">2</property>
+                        <property name="left-attach">5</property>
+                        <property name="top-attach">2</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkFrame" id="frame5">
-                        <property name="width_request">114</property>
-                        <property name="height_request">114</property>
+                        <property name="width-request">114</property>
+                        <property name="height-request">114</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label_xalign">2.2351741291171123e-10</property>
+                        <property name="can-focus">False</property>
+                        <property name="label-xalign">2.2351741291171123e-10</property>
                         <child>
                           <object class="GtkEventBox" id="eventbox1">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <child>
                               <object class="GtkImage" id="personPix">
                                 <property name="visible">True</property>
-                                <property name="can_focus">False</property>
+                                <property name="can-focus">False</property>
                                 <property name="valign">start</property>
                               </object>
                             </child>
@@ -288,7 +289,7 @@
                         <child type="label">
                           <object class="GtkLabel" id="label270">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <property name="label" translatable="yes">Image</property>
                             <attributes>
                               <attribute name="weight" value="bold"/>
@@ -302,37 +303,37 @@
                         </child>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">0</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">0</property>
                         <property name="width">2</property>
                         <property name="height">4</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkComboBox" id="ntype">
-                        <property name="width_request">100</property>
+                        <property name="width-request">100</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="tooltip_text" translatable="yes">An identification of what type of Name this is, eg. Birth Name, Married Name.</property>
-                        <property name="has_entry">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="tooltip-text" translatable="yes">An identification of what type of Name this is, eg. Birth Name, Married Name.</property>
+                        <property name="has-entry">True</property>
                         <child internal-child="entry">
                           <object class="GtkEntry" id="ntype-entry">
-                            <property name="can_focus">True</property>
-                            <property name="overwrite_mode">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="overwrite-mode">True</property>
                           </object>
                         </child>
                       </object>
                       <packing>
-                        <property name="left_attach">7</property>
-                        <property name="top_attach">1</property>
+                        <property name="left-attach">7</property>
+                        <property name="top-attach">1</property>
                         <property name="width">2</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkBox" id="hboxmultsurnames">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="tooltip_text" translatable="yes">Click on a table cell to edit.</property>
+                        <property name="can-focus">False</property>
+                        <property name="tooltip-text" translatable="yes">Click on a table cell to edit.</property>
                         <child>
                           <placeholder/>
                         </child>
@@ -341,21 +342,21 @@
                         </child>
                       </object>
                       <packing>
-                        <property name="left_attach">2</property>
-                        <property name="top_attach">5</property>
+                        <property name="left-attach">2</property>
+                        <property name="top-attach">5</property>
                         <property name="width">6</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkButton" id="multsurnamebtn">
-                        <property name="use_action_appearance">False</property>
+                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
-                        <property name="tooltip_text" translatable="yes">Use Multiple Surnames
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="tooltip-text" translatable="yes">Use Multiple Surnames
 Indicate that the surname consists of different parts. Every surname has its own prefix and a possible connector to the next surname. Eg., the surname Ramón y Cajal can be stored as Ramón, which is inherited from the father, the connector y, and Cajal, which is inherited from the mother.</property>
                         <property name="image">image2</property>
-                        <property name="use_underline">True</property>
+                        <property name="use-underline">True</property>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="multsurnamebtn-atkobject">
                             <property name="AtkObject::accessible-name" translatable="yes">Add</property>
@@ -364,21 +365,21 @@ Indicate that the surname consists of different parts. Every surname has its own
                         <accelerator key="a" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                       </object>
                       <packing>
-                        <property name="left_attach">8</property>
-                        <property name="top_attach">4</property>
+                        <property name="left-attach">8</property>
+                        <property name="top-attach">4</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkBox" id="hbox1">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <child>
                           <object class="GtkLabel" id="label3">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin_top">3</property>
-                            <property name="margin_bottom">3</property>
+                            <property name="margin-top">3</property>
+                            <property name="margin-bottom">3</property>
                             <property name="label" translatable="yes">General</property>
                             <attributes>
                               <attribute name="weight" value="bold"/>
@@ -392,19 +393,19 @@ Indicate that the surname consists of different parts. Every surname has its own
                         </child>
                         <child>
                           <object class="GtkToggleButton" id="private">
-                            <property name="use_action_appearance">False</property>
+                            <property name="use-action-appearance">False</property>
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">True</property>
-                            <property name="tooltip_text" translatable="yes">Set person as private data</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <property name="tooltip-text" translatable="yes">Set person as private data</property>
                             <property name="halign">end</property>
                             <property name="relief">none</property>
                             <child>
                               <object class="GtkImage" id="image3">
                                 <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="pixel_size">16</property>
-                                <property name="icon_name">dialog-password</property>
+                                <property name="can-focus">False</property>
+                                <property name="pixel-size">16</property>
+                                <property name="icon-name">dialog-password</property>
                                 <child internal-child="accessible">
                                   <object class="AtkObject" id="image3-atkobject">
                                     <property name="AtkObject::accessible-description" translatable="yes">Privacy</property>
@@ -422,34 +423,34 @@ Indicate that the surname consists of different parts. Every surname has its own
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">False</property>
-                            <property name="pack_type">end</property>
+                            <property name="pack-type">end</property>
                             <property name="position">1</property>
                           </packing>
                         </child>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">6</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">6</property>
                         <property name="width">9</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkBox" id="hbox4">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="spacing">6</property>
                         <child>
                           <object class="GtkLabel" id="surnamelabel">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin_left">6</property>
-                            <property name="margin_right">6</property>
-                            <property name="margin_top">3</property>
-                            <property name="margin_bottom">3</property>
+                            <property name="margin-left">6</property>
+                            <property name="margin-right">6</property>
+                            <property name="margin-top">3</property>
+                            <property name="margin-bottom">3</property>
                             <property name="label" translatable="yes">_Surname:</property>
-                            <property name="use_underline">True</property>
-                            <property name="mnemonic_widget">surname</property>
+                            <property name="use-underline">True</property>
+                            <property name="mnemonic-widget">surname</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -460,11 +461,11 @@ Indicate that the surname consists of different parts. Every surname has its own
                         </child>
                         <child>
                           <object class="UndoableEntry" id="prefix">
-                            <property name="width_request">70</property>
+                            <property name="width-request">70</property>
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">An optional prefix for the family that is not used in sorting, such as "de" or "van".</property>
-                            <property name="invisible_char">●</property>
+                            <property name="can-focus">True</property>
+                            <property name="tooltip-text" translatable="yes">An optional prefix for the family that is not used in sorting, such as "de" or "van".</property>
+                            <property name="invisible-char">●</property>
                             <child internal-child="accessible">
                               <object class="AtkObject" id="prefix-atkobject">
                                 <property name="AtkObject::accessible-name" translatable="yes">Prefix</property>
@@ -479,12 +480,12 @@ Indicate that the surname consists of different parts. Every surname has its own
                         </child>
                         <child>
                           <object class="UndoableEntry" id="surname">
-                            <property name="width_request">150</property>
+                            <property name="width-request">150</property>
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">Part of a person's name indicating the family to which the person belongs</property>
+                            <property name="can-focus">True</property>
+                            <property name="tooltip-text" translatable="yes">Part of a person's name indicating the family to which the person belongs</property>
                             <property name="hexpand">True</property>
-                            <property name="invisible_char">●</property>
+                            <property name="invisible-char">●</property>
                             <accessibility>
                               <relation type="labelled-by" target="surnamelabel"/>
                             </accessibility>
@@ -497,18 +498,18 @@ Indicate that the surname consists of different parts. Every surname has its own
                         </child>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">4</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">4</property>
                         <property name="width">6</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkButton" id="editnamebtn">
-                        <property name="use_action_appearance">False</property>
+                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
-                        <property name="tooltip_text" translatable="yes">Go to Name Editor to add more information about this name</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="tooltip-text" translatable="yes">Go to Name Editor to add more information about this name</property>
                         <property name="image">image1</property>
                         <signal name="clicked" handler="on_edit_name_clicked" swapped="no"/>
                         <child internal-child="accessible">
@@ -519,23 +520,23 @@ Indicate that the surname consists of different parts. Every surname has its own
                         <accelerator key="e" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                       </object>
                       <packing>
-                        <property name="left_attach">8</property>
-                        <property name="top_attach">3</property>
+                        <property name="left-attach">8</property>
+                        <property name="top-attach">3</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkBox" id="hbox5">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="spacing">6</property>
                         <child>
                           <object class="GtkLabel" id="originlabel">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <property name="halign">start</property>
                             <property name="label" translatable="yes">O_rigin:</property>
-                            <property name="use_underline">True</property>
-                            <property name="mnemonic_widget">cmborigin</property>
+                            <property name="use-underline">True</property>
+                            <property name="mnemonic-widget">cmborigin</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -545,15 +546,15 @@ Indicate that the surname consists of different parts. Every surname has its own
                         </child>
                         <child>
                           <object class="GtkComboBox" id="cmborigin">
-                            <property name="width_request">75</property>
+                            <property name="width-request">75</property>
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="tooltip_text" translatable="yes">The origin of this family name for this family, eg 'Inherited' or 'Patronymic'.</property>
-                            <property name="has_entry">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="tooltip-text" translatable="yes">The origin of this family name for this family, eg 'Inherited' or 'Patronymic'.</property>
+                            <property name="has-entry">True</property>
                             <child internal-child="entry">
                               <object class="GtkEntry" id="cmborigin-entry">
-                                <property name="can_focus">True</property>
-                                <property name="overwrite_mode">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="overwrite-mode">True</property>
                               </object>
                             </child>
                           </object>
@@ -565,26 +566,26 @@ Indicate that the surname consists of different parts. Every surname has its own
                         </child>
                       </object>
                       <packing>
-                        <property name="left_attach">6</property>
-                        <property name="top_attach">4</property>
+                        <property name="left-attach">6</property>
+                        <property name="top-attach">4</property>
                         <property name="width">2</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkBox" id="hbox6">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="spacing">6</property>
                         <child>
                           <object class="GtkLabel" id="label436">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin_left">6</property>
-                            <property name="margin_right">6</property>
+                            <property name="margin-left">6</property>
+                            <property name="margin-right">6</property>
                             <property name="label" translatable="yes">G_ender:</property>
-                            <property name="use_underline">True</property>
-                            <property name="mnemonic_widget">gender</property>
+                            <property name="use-underline">True</property>
+                            <property name="mnemonic-widget">gender</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -595,7 +596,7 @@ Indicate that the surname consists of different parts. Every surname has its own
                         <child>
                           <object class="GtkComboBox" id="gender">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <child>
                               <object class="GtkCellRendererText" id="cellrenderertext2"/>
                               <attributes>
@@ -612,12 +613,12 @@ Indicate that the surname consists of different parts. Every surname has its own
                         <child>
                           <object class="GtkLabel" id="label437">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <property name="halign">start</property>
                             <property name="label" translatable="yes">_ID:</property>
-                            <property name="use_underline">True</property>
+                            <property name="use-underline">True</property>
                             <property name="justify">right</property>
-                            <property name="mnemonic_widget">gid</property>
+                            <property name="mnemonic-widget">gid</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -627,12 +628,12 @@ Indicate that the surname consists of different parts. Every surname has its own
                         </child>
                         <child>
                           <object class="UndoableEntry" id="gid">
-                            <property name="width_request">75</property>
+                            <property name="width-request">130</property>
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">A unique ID for the person.</property>
-                            <property name="invisible_char">●</property>
-                            <property name="width_chars">6</property>
+                            <property name="can-focus">True</property>
+                            <property name="tooltip-text" translatable="yes">A unique ID for the person.</property>
+                            <property name="invisible-char">●</property>
+                            <property name="width-chars">10</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -643,13 +644,13 @@ Indicate that the surname consists of different parts. Every surname has its own
                         <child>
                           <object class="GtkLabel" id="label1">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin_left">6</property>
-                            <property name="margin_right">6</property>
+                            <property name="margin-left">6</property>
+                            <property name="margin-right">6</property>
                             <property name="label" translatable="yes">_Tags:</property>
-                            <property name="use_underline">True</property>
-                            <property name="mnemonic_widget">tag_button</property>
+                            <property name="use-underline">True</property>
+                            <property name="mnemonic-widget">tag_button</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -660,7 +661,7 @@ Indicate that the surname consists of different parts. Every surname has its own
                         <child>
                           <object class="GtkLabel" id="tag_label">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                           </object>
                           <packing>
                             <property name="expand">True</property>
@@ -670,10 +671,10 @@ Indicate that the surname consists of different parts. Every surname has its own
                         </child>
                         <child>
                           <object class="GtkButton" id="tag_button">
-                            <property name="use_action_appearance">False</property>
+                            <property name="use-action-appearance">False</property>
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
                             <property name="halign">end</property>
                             <accessibility>
                               <relation type="labelled-by" target="label1"/>
@@ -687,69 +688,69 @@ Indicate that the surname consists of different parts. Every surname has its own
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">False</property>
-                            <property name="pack_type">end</property>
+                            <property name="pack-type">end</property>
                             <property name="position">6</property>
                           </packing>
                         </child>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">7</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">7</property>
                         <property name="width">9</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label2">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin_top">3</property>
-                        <property name="margin_bottom">3</property>
+                        <property name="margin-top">3</property>
+                        <property name="margin-bottom">3</property>
                         <property name="label" translatable="yes">Preferred Name</property>
                         <attributes>
                           <attribute name="weight" value="bold"/>
                         </attributes>
                       </object>
                       <packing>
-                        <property name="left_attach">2</property>
-                        <property name="top_attach">0</property>
+                        <property name="left-attach">2</property>
+                        <property name="top-attach">0</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label269">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin_left">3</property>
-                        <property name="margin_right">3</property>
-                        <property name="margin_top">3</property>
-                        <property name="margin_bottom">3</property>
+                        <property name="margin-left">3</property>
+                        <property name="margin-right">3</property>
+                        <property name="margin-top">3</property>
+                        <property name="margin-bottom">3</property>
                         <property name="label" translatable="yes">_Type:</property>
-                        <property name="use_underline">True</property>
+                        <property name="use-underline">True</property>
                         <property name="justify">center</property>
-                        <property name="mnemonic_widget">ntype</property>
+                        <property name="mnemonic-widget">ntype</property>
                       </object>
                       <packing>
-                        <property name="left_attach">6</property>
-                        <property name="top_attach">1</property>
+                        <property name="left-attach">6</property>
+                        <property name="top-attach">1</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="full_name">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin_left">3</property>
-                        <property name="margin_right">3</property>
-                        <property name="margin_top">3</property>
-                        <property name="margin_bottom">3</property>
+                        <property name="margin-left">3</property>
+                        <property name="margin-right">3</property>
+                        <property name="margin-top">3</property>
+                        <property name="margin-bottom">3</property>
                         <property name="hexpand">True</property>
-                        <property name="use_markup">True</property>
+                        <property name="use-markup">True</property>
                         <property name="ellipsize">end</property>
                       </object>
                       <packing>
-                        <property name="left_attach">2</property>
-                        <property name="top_attach">1</property>
+                        <property name="left-attach">2</property>
+                        <property name="top-attach">1</property>
                         <property name="width">4</property>
                       </packing>
                     </child>

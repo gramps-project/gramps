@@ -23,91 +23,98 @@
 Russian-specific classes for parsing and displaying dates.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import re
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ..lib.date import Date
 from ._dateparser import DateParser
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Russian parser
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class DateParserRU(DateParser):
     modifier_to_int = {
-        'перед'    : Date.MOD_BEFORE,
-        'по'    : Date.MOD_BEFORE,
-        'до'    : Date.MOD_BEFORE,
-        'после' : Date.MOD_AFTER,
-        'п.'    : Date.MOD_AFTER,
-        'п'    : Date.MOD_AFTER,
-        'с'     : Date.MOD_AFTER,
-        'ок' : Date.MOD_ABOUT,
-        'ок.'   : Date.MOD_ABOUT,
-        'около'    : Date.MOD_ABOUT,
-        'примерно'  : Date.MOD_ABOUT,
-        'прим'     : Date.MOD_ABOUT,
-        'прим.'     : Date.MOD_ABOUT,
-        'приблизительно'  : Date.MOD_ABOUT,
-        'приб.'  : Date.MOD_ABOUT,
-        'прибл.'  : Date.MOD_ABOUT,
-        'приб'  : Date.MOD_ABOUT,
-        'прибл'  : Date.MOD_ABOUT,
-        }
-
+        "перед": Date.MOD_BEFORE,
+        "по": Date.MOD_BEFORE,
+        "до": Date.MOD_BEFORE,
+        "после": Date.MOD_AFTER,
+        "п.": Date.MOD_AFTER,
+        "п": Date.MOD_AFTER,
+        "с": Date.MOD_AFTER,
+        "ок": Date.MOD_ABOUT,
+        "ок.": Date.MOD_ABOUT,
+        "около": Date.MOD_ABOUT,
+        "примерно": Date.MOD_ABOUT,
+        "прим": Date.MOD_ABOUT,
+        "прим.": Date.MOD_ABOUT,
+        "приблизительно": Date.MOD_ABOUT,
+        "приб.": Date.MOD_ABOUT,
+        "прибл.": Date.MOD_ABOUT,
+        "приб": Date.MOD_ABOUT,
+        "прибл": Date.MOD_ABOUT,
+        "от": Date.MOD_FROM,
+        "к": Date.MOD_TO,
+    }
 
     quality_to_int = {
-        'оценено'  : Date.QUAL_ESTIMATED,
-        'оцен.'       : Date.QUAL_ESTIMATED,
-        'оц.'        : Date.QUAL_ESTIMATED,
-        'оцен'       : Date.QUAL_ESTIMATED,
-        'оц'        : Date.QUAL_ESTIMATED,
-        'вычислено'      : Date.QUAL_CALCULATED,
-        'вычисл.'       : Date.QUAL_CALCULATED,
-        'выч.' : Date.QUAL_CALCULATED,
-        'вычисл'       : Date.QUAL_CALCULATED,
-        'выч' : Date.QUAL_CALCULATED,
-        }
+        "оценено": Date.QUAL_ESTIMATED,
+        "оцен.": Date.QUAL_ESTIMATED,
+        "оц.": Date.QUAL_ESTIMATED,
+        "оцен": Date.QUAL_ESTIMATED,
+        "оц": Date.QUAL_ESTIMATED,
+        "вычислено": Date.QUAL_CALCULATED,
+        "вычисл.": Date.QUAL_CALCULATED,
+        "выч.": Date.QUAL_CALCULATED,
+        "вычисл": Date.QUAL_CALCULATED,
+        "выч": Date.QUAL_CALCULATED,
+    }
 
-    bce = [
-        'до нашей эры', 'до н. э.', 'до н.э.',
-        'до н э', 'до нэ'] + DateParser.bce
+    bce = ["до нашей эры", "до н. э.", "до н.э.", "до н э", "до нэ"] + DateParser.bce
 
     def init_strings(self):
         DateParser.init_strings(self)
-        DateParser.calendar_to_int.update({
-            'персидский'    : Date.CAL_PERSIAN,
-            'п'             : Date.CAL_PERSIAN,
-        })
-        _span_1 = ['с', 'от']
-        #_span_2 = ['по', 'до'] # <-- clashes with bce parsing :-(
-        _span_2 = ['по']
-        _range_1 = ['между', r'меж\.', 'меж']
-        _range_2 = ['и']
-        self._span = re.compile(r"(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)"
-                                % ('|'.join(_span_1), '|'.join(_span_2)),
-                                re.IGNORECASE)
-        self._range = re.compile(r"(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)"
-                                 % ('|'.join(_range_1), '|'.join(_range_2)),
-                                 re.IGNORECASE)
+        DateParser.calendar_to_int.update(
+            {
+                "персидский": Date.CAL_PERSIAN,
+                "п": Date.CAL_PERSIAN,
+            }
+        )
+        _span_1 = ["с", "от"]
+        # _span_2 = ['по', 'до'] # <-- clashes with bce parsing :-(
+        _span_2 = ["по"]
+        _range_1 = ["между", r"меж\.", "меж"]
+        _range_2 = ["и"]
+        self._span = re.compile(
+            r"(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)"
+            % ("|".join(_span_1), "|".join(_span_2)),
+            re.IGNORECASE,
+        )
+        self._range = re.compile(
+            r"(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)"
+            % ("|".join(_range_1), "|".join(_range_2)),
+            re.IGNORECASE,
+        )
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Russian displayer
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class DateDisplayRU(DateDisplay):
     """
     Russian language date display class.
@@ -128,20 +135,19 @@ class DateDisplayRU(DateDisplay):
             if date_val[1] == 0:
                 return year
             else:
-                return self.format_long_month_year(date_val[1], year,
-                                                   inflect, long_months)
-        elif date_val[1] == 0: # month is zero but day is not (see 8477)
+                return self.format_long_month_year(
+                    date_val[1], year, inflect, long_months
+                )
+        elif date_val[1] == 0:  # month is zero but day is not (see 8477)
             return self.display_iso(date_val)
-        elif not hasattr(long_months[date_val[1]], 'f'): # not a Lexeme
+        elif not hasattr(long_months[date_val[1]], "forms"):  # not a Lexeme
             return "{day:d} {long_month} {year}".format(
-                     day = date_val[0],
-                     long_month = long_months[date_val[1]],
-                     year = year)
+                day=date_val[0], long_month=long_months[date_val[1]], year=year
+            )
         else:
-            return "{day:d} {long_month.f[Р]} {year}".format(
-                     day = date_val[0],
-                     long_month = long_months[date_val[1]],
-                     year = year)
+            return "{day:d} {long_month.forms[Р]} {year}".format(
+                day=date_val[0], long_month=long_months[date_val[1]], year=year
+            )
 
     def dd_dformat05(self, date_val, inflect, short_months):
         """
@@ -152,26 +158,26 @@ class DateDisplayRU(DateDisplay):
             if date_val[1] == 0:
                 return year
             else:
-                return self.format_short_month_year(date_val[1], year,
-                                                    inflect, short_months)
-        elif date_val[1] == 0: # month is zero but day is not (see 8477)
+                return self.format_short_month_year(
+                    date_val[1], year, inflect, short_months
+                )
+        elif date_val[1] == 0:  # month is zero but day is not (see 8477)
             return self.display_iso(date_val)
-        elif not hasattr(short_months[date_val[1]], 'f'): # not a Lexeme
+        elif not hasattr(short_months[date_val[1]], "f"):  # not a Lexeme
             return "{day:d} {short_month} {year}".format(
-                     day = date_val[0],
-                     short_month = short_months[date_val[1]],
-                     year = year)
+                day=date_val[0], short_month=short_months[date_val[1]], year=year
+            )
         else:
-            return "{day:d} {short_month.f[Р]} {year}".format(
-                     day = date_val[0],
-                     short_month = short_months[date_val[1]],
-                     year = year)
+            return "{day:d} {short_month.forms[Р]} {year}".format(
+                day=date_val[0], short_month=short_months[date_val[1]], year=year
+            )
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Register classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 register_datehandler(
-    ('ru_RU', 'ru', 'russian', 'Russian', ('%d.%m.%Y',)),
-    DateParserRU, DateDisplayRU)
+    ("ru_RU", "ru", "russian", "Russian", ("%d.%m.%Y",)), DateParserRU, DateDisplayRU
+)

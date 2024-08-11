@@ -67,7 +67,7 @@ _LOG = logging.getLogger("GeoGraphy.geomoves")
 _ = glocale.translation.gettext
 
 _UI_DEF = [
-    '''
+    """
       <placeholder id="CommonGo">
       <section>
         <item>
@@ -86,16 +86,16 @@ _UI_DEF = [
         </item>
       </section>
       </placeholder>
-''',
-    '''
+""",
+    """
       <section id='CommonEdit' groups='RW'>
         <item>
           <attribute name="action">win.PrintView</attribute>
           <attribute name="label" translatable="yes">Print...</attribute>
         </item>
       </section>
-''',
-    '''
+""",
+    """
       <section id="AddEditBook">
         <item>
           <attribute name="action">win.AddBook</attribute>
@@ -106,15 +106,16 @@ _UI_DEF = [
           <attribute name="label" translatable="no">%s...</attribute>
         </item>
       </section>
-''' % _('Organize Bookmarks'),  # Following are the Toolbar items
-    '''
+"""
+    % _("Organize Bookmarks"),  # Following are the Toolbar items
+    """
     <placeholder id='CommonNavigation'>
     <child groups='RO'>
       <object class="GtkToolButton">
         <property name="icon-name">go-previous</property>
         <property name="action-name">win.Back</property>
-        <property name="tooltip_text" translatable="yes">'''
-    '''Go to the previous object in the history</property>
+        <property name="tooltip_text" translatable="yes">"""
+    """Go to the previous object in the history</property>
         <property name="label" translatable="yes">_Back</property>
         <property name="use-underline">True</property>
       </object>
@@ -126,8 +127,8 @@ _UI_DEF = [
       <object class="GtkToolButton">
         <property name="icon-name">go-next</property>
         <property name="action-name">win.Forward</property>
-        <property name="tooltip_text" translatable="yes">'''
-    '''Go to the next object in the history</property>
+        <property name="tooltip_text" translatable="yes">"""
+    """Go to the next object in the history</property>
         <property name="label" translatable="yes">_Forward</property>
         <property name="use-underline">True</property>
       </object>
@@ -139,8 +140,8 @@ _UI_DEF = [
       <object class="GtkToolButton">
         <property name="icon-name">go-home</property>
         <property name="action-name">win.HomePerson</property>
-        <property name="tooltip_text" translatable="yes">'''
-    '''Go to the home person</property>
+        <property name="tooltip_text" translatable="yes">"""
+    """Go to the home person</property>
         <property name="label" translatable="yes">_Home</property>
         <property name="use-underline">True</property>
       </object>
@@ -149,15 +150,15 @@ _UI_DEF = [
       </packing>
     </child>
     </placeholder>
-''',
-    '''
+""",
+    """
     <placeholder id='BarCommonEdit'>
     <child groups='RO'>
       <object class="GtkToolButton">
         <property name="icon-name">document-print</property>
         <property name="action-name">win.PrintView</property>
-        <property name="tooltip_text" translatable="yes">'''
-    '''Print or save the Map</property>
+        <property name="tooltip_text" translatable="yes">"""
+    """Print or save the Map</property>
         <property name="label" translatable="yes">Print...</property>
         <property name="use-underline">True</property>
       </object>
@@ -166,7 +167,8 @@ _UI_DEF = [
       </packing>
     </child>
     </placeholder>
-    ''']
+    """,
+]
 
 # pylint: disable=no-member
 # pylint: disable=unused-variable
@@ -183,33 +185,35 @@ class GeoMoves(GeoGraphyView):
     The view used to render all places visited by one person and all
     his descendants.
     """
+
     CONFIGSETTINGS = (
-        ('geography.path', constants.GEOGRAPHY_PATH),
-
-        ('geography.zoom', 10),
-        ('geography.zoom_when_center', 12),
-        ('geography.show_cross', True),
-        ('geography.lock', True),
-        ('geography.center-lat', 0.0),
-        ('geography.center-lon', 0.0),
-        ('geography.use-keypad', True),
-        ('geography.personal-map', ""),
-
-        ('geography.map_service', constants.OPENSTREETMAP),
-        ('geography.max_places', 5000),
-
+        ("geography.path", constants.GEOGRAPHY_PATH),
+        ("geography.zoom", 10),
+        ("geography.zoom_when_center", 12),
+        ("geography.show_cross", True),
+        ("geography.lock", True),
+        ("geography.center-lat", 0.0),
+        ("geography.center-lon", 0.0),
+        ("geography.use-keypad", True),
+        ("geography.personal-map", ""),
+        ("geography.map_service", constants.OPENSTREETMAP),
+        ("geography.max_places", 5000),
         # specific to geoclose :
-
-        ('geography.color_base', 'orange'),
-        ('geography.maximum_generations', 10),
-        ('geography.generation_interval', 500),
-
-        )
+        ("geography.color_base", "orange"),
+        ("geography.maximum_generations", 10),
+        ("geography.generation_interval", 500),
+    )
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
-        GeoGraphyView.__init__(self, _("Descendants of the active person."),
-                               pdata, dbstate, uistate, PersonBookmarks,
-                               nav_group)
+        GeoGraphyView.__init__(
+            self,
+            _("Descendants of the active person."),
+            pdata,
+            dbstate,
+            uistate,
+            PersonBookmarks,
+            nav_group,
+        )
         self.dbstate = dbstate
         self.uistate = uistate
         self.place_list = []
@@ -227,7 +231,7 @@ class GeoMoves(GeoGraphyView):
         self.track = []
         self.place_list_active = []
         self.place_list_ref = []
-        self.cal = config.get('preferences.calendar-format-report')
+        self.cal = config.get("preferences.calendar-format-report")
         self.markers_by_level = dict()
         self.count = dict()
         self.no_show_places_in_status_bar = False
@@ -237,7 +241,7 @@ class GeoMoves(GeoGraphyView):
         """
         Used to set the titlebar in the configuration window.
         """
-        return _('GeoMoves')
+        return _("GeoMoves")
 
     def get_stock(self):
         """
@@ -245,12 +249,11 @@ class GeoMoves(GeoGraphyView):
         This assumes that this icon has already been registered
         as a stock icon.
         """
-        return 'geo-show-family-down'
+        return "geo-show-family-down"
 
     def get_viewtype_stock(self):
-        """Type of view in category
-        """
-        return 'geo-show-family-down'
+        """Type of view in category"""
+        return "geo-show-family-down"
 
     def additional_ui(self):
         """
@@ -264,7 +267,7 @@ class GeoMoves(GeoGraphyView):
         Indicates the navigation type. Navigation type can be the string
         name of any of the primary objects.
         """
-        return 'Person'
+        return "Person"
 
     def goto_handle(self, handle=None):
         """
@@ -354,44 +357,50 @@ class GeoMoves(GeoGraphyView):
                     date = event.get_date_object().to_calendar(self.cal)
                 except:
                     continue
-                eyear = str("%04d" % date.get_year()) + \
-                          str("%02d" % date.get_month()) + \
-                          str("%02d" % date.get_day())
+                eyear = (
+                    str("%04d" % date.get_year())
+                    + str("%02d" % date.get_month())
+                    + str("%02d" % date.get_day())
+                )
                 place_handle = event.get_place_handle()
                 if place_handle:
                     place = dbstate.db.get_place_from_handle(place_handle)
                     if place:
                         longitude = place.get_longitude()
                         latitude = place.get_latitude()
-                        latitude, longitude = conv_lat_lon(latitude,
-                                                           longitude, "D.D8")
+                        latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
                         descr = _pd.display(dbstate.db, place)
                         evt = EventType(event.get_type())
                         descr1 = _("%(eventtype)s : %(name)s") % {
-                            'eventtype': evt,
-                            'name': _nd.display(person)}
+                            "eventtype": evt,
+                            "name": _nd.display(person),
+                        }
                         # place.get_longitude and place.get_latitude return
                         # one string. We have coordinates when the two values
                         # contains non null string.
                         if longitude and latitude:
-                            self._append_to_places_list(descr, evt,
-                                                        person.gramps_id,
-                                                        latitude, longitude,
-                                                        descr1, eyear,
-                                                        event.get_type(),
-                                                        person.gramps_id,
-                                                        place.gramps_id,
-                                                        event.gramps_id,
-                                                        role)
+                            self._append_to_places_list(
+                                descr,
+                                evt,
+                                person.gramps_id,
+                                latitude,
+                                longitude,
+                                descr1,
+                                eyear,
+                                event.get_type(),
+                                person.gramps_id,
+                                place.gramps_id,
+                                event.gramps_id,
+                                role,
+                            )
                         else:
-                            self._append_to_places_without_coord(
-                                place.gramps_id, descr)
+                            self._append_to_places_without_coord(place.gramps_id, descr)
             family_list = person.get_family_handle_list()
             descr1 = " - "
             for family_hdl in family_list:
                 family = self.dbstate.db.get_family_from_handle(family_hdl)
                 if family is not None:
-                    fhandle = family_list[0] # first is primary
+                    fhandle = family_list[0]  # first is primary
                     fam = dbstate.db.get_family_from_handle(fhandle)
                     mother = father = None
                     handle = fam.get_father_handle()
@@ -406,39 +415,61 @@ class GeoMoves(GeoGraphyView):
                         descr1 = "%s%s" % (descr1, _nd.display(mother))
                     for event_ref in family.get_event_ref_list():
                         if event_ref:
-                            event = dbstate.db.get_event_from_handle(
-                                event_ref.ref)
+                            event = dbstate.db.get_event_from_handle(event_ref.ref)
                             role = event_ref.get_role()
                             if event.get_place_handle():
                                 place_handle = event.get_place_handle()
                                 if place_handle:
                                     place = dbstate.db.get_place_from_handle(
-                                        place_handle)
+                                        place_handle
+                                    )
                                     if place:
                                         longitude = place.get_longitude()
                                         latitude = place.get_latitude()
                                         latitude, longitude = conv_lat_lon(
-                                            latitude, longitude, "D.D8")
+                                            latitude, longitude, "D.D8"
+                                        )
                                         descr = _pd.display(dbstate.db, place)
                                         evt = EventType(event.get_type())
-                                        eyear = str(
-     "%04d" % event.get_date_object().to_calendar(self.cal).get_year()) + \
-     str("%02d" % event.get_date_object().to_calendar(self.cal).get_month()) + \
-     str("%02d" % event.get_date_object().to_calendar(self.cal).get_day())
+                                        eyear = (
+                                            str(
+                                                "%04d"
+                                                % event.get_date_object()
+                                                .to_calendar(self.cal)
+                                                .get_year()
+                                            )
+                                            + str(
+                                                "%02d"
+                                                % event.get_date_object()
+                                                .to_calendar(self.cal)
+                                                .get_month()
+                                            )
+                                            + str(
+                                                "%02d"
+                                                % event.get_date_object()
+                                                .to_calendar(self.cal)
+                                                .get_day()
+                                            )
+                                        )
                                         if longitude and latitude:
                                             self._append_to_places_list(
                                                 descr,
                                                 evt,
                                                 person.gramps_id,
-                                                latitude, longitude,
-                                                descr1, eyear,
+                                                latitude,
+                                                longitude,
+                                                descr1,
+                                                eyear,
                                                 event.get_type(),
                                                 person.gramps_id,
                                                 place.gramps_id,
                                                 event.gramps_id,
-                                                role)
+                                                role,
+                                            )
                                         else:
-                                            self._append_to_places_without_coord(place.gramps_id, descr)
+                                            self._append_to_places_without_coord(
+                                                place.gramps_id, descr
+                                            )
 
             sort1 = sorted(self.place_list, key=operator.itemgetter(1, 6))
             self.draw(None, sort1, color)
@@ -469,21 +500,20 @@ class GeoMoves(GeoGraphyView):
         dbstate = self.dbstate
         person = None
         try:
-            person = dbstate.db.get_person_from_handle(
-                family.get_father_handle())
+            person = dbstate.db.get_person_from_handle(family.get_father_handle())
         except:
             return
         family_id = family.gramps_id
-        if person is None: # family without father ?
+        if person is None:  # family without father ?
             handle = family.get_mother_handle()
             if handle:
                 person = dbstate.db.get_person_from_handle(handle)
         if person is None:
-            handle = self.uistate.get_active('Person')
+            handle = self.uistate.get_active("Person")
             if handle:
                 person = dbstate.db.get_person_from_handle(handle)
         if person is not None:
-            self._add_person_to_list(person.gramps_id, curlevel-1)
+            self._add_person_to_list(person.gramps_id, curlevel - 1)
             family_list = person.get_family_handle_list()
             for fhandle in family_list:
                 fam = dbstate.db.get_family_from_handle(fhandle)
@@ -492,14 +522,14 @@ class GeoMoves(GeoGraphyView):
                 if handle:
                     father = dbstate.db.get_person_from_handle(handle)
                 if father:
-                    self._createmap_for_next_level(father, level-1, level)
-                    self._add_person_to_list(father.gramps_id, curlevel-1)
+                    self._createmap_for_next_level(father, level - 1, level)
+                    self._add_person_to_list(father.gramps_id, curlevel - 1)
                 handle = fam.get_mother_handle()
                 if handle:
                     mother = dbstate.db.get_person_from_handle(handle)
                 if mother:
-                    self._createmap_for_next_level(father, level-1, level)
-                    self._add_person_to_list(mother.gramps_id, curlevel-1)
+                    self._createmap_for_next_level(father, level - 1, level)
+                    self._add_person_to_list(mother.gramps_id, curlevel - 1)
                 index = 0
                 child_ref_list = fam.get_child_ref_list()
                 if child_ref_list:
@@ -507,8 +537,7 @@ class GeoMoves(GeoGraphyView):
                         child = dbstate.db.get_person_from_handle(child_ref.ref)
                         if child:
                             index += 1
-                            self._createmap_for_next_level(child, level,
-                                                           curlevel)
+                            self._createmap_for_next_level(child, level, curlevel)
                             self._add_person_to_list(child.gramps_id, curlevel)
 
     def _createmap_for_one_level(self, family, level, curlevel):
@@ -519,7 +548,7 @@ class GeoMoves(GeoGraphyView):
             return
         if level < curlevel:
             return
-        self._prepare_for_one_family(family, level, curlevel+1)
+        self._prepare_for_one_family(family, level, curlevel + 1)
 
     def _createmap_for_next_level(self, person, level, curlevel):
         """
@@ -549,7 +578,7 @@ class GeoMoves(GeoGraphyView):
         a lat/lon.
         """
         dbstate = self.dbstate
-        self.cal = config.get('preferences.calendar-format-report')
+        self.cal = config.get("preferences.calendar-format-report")
         self.place_list = []
         self.person_list = []
         self.count = dict()
@@ -564,16 +593,22 @@ class GeoMoves(GeoGraphyView):
         self.place_without_coordinates = []
         self.minlat = self.maxlat = self.minlon = self.maxlon = 0.0
         if person is None:
-            handle = self.uistate.get_active('Person')
+            handle = self.uistate.get_active("Person")
             if handle:
                 person = self.dbstate.db.get_person_from_handle(handle)
             if not person:
                 return
         self.message_layer.add_message(
-            _("All descendants for %s") % _nd.display(person))
-        color = Gdk.color_parse(self._config.get('geography.color_base'))
-        GLib.timeout_add(int(self._config.get("geography.generation_interval")),
-                         self.animate_moves, 0, person, color)
+            _("All descendants for %s") % _nd.display(person)
+        )
+        color = Gdk.color_parse(self._config.get("geography.color_base"))
+        GLib.timeout_add(
+            int(self._config.get("geography.generation_interval")),
+            self.animate_moves,
+            0,
+            person,
+            color,
+        )
 
     def animate_moves(self, index, person, color):
         """
@@ -591,7 +626,7 @@ class GeoMoves(GeoGraphyView):
             family_list = people.get_family_handle_list()
             for fhandle in family_list:
                 family = self.dbstate.db.get_family_from_handle(fhandle)
-                self._prepare_for_one_family(family, index, index+1)
+                self._prepare_for_one_family(family, index, index + 1)
         new_list = []
         for plx, level in self.person_list:
             plxp = self.dbstate.db.get_person_from_gramps_id(plx)
@@ -626,26 +661,27 @@ class GeoMoves(GeoGraphyView):
         pidx = 0
         if isinstance(color, str):
             color = Gdk.color_parse(color)
-        for (level, plxp,
-             birth, death) in sorted(new_list, key=operator.itemgetter(0, 2)):
+        for level, plxp, birth, death in sorted(
+            new_list, key=operator.itemgetter(0, 2)
+        ):
             if index == int(self._config.get("geography.maximum_generations")):
                 break
             if level == index:
                 pidx += 1
                 self._createmap_for_one_person(plxp, color)
-                color.red = (float(color.red - (index)*3000) % 65535)
+                color.red = float(color.red - (index) * 3000) % 65535
                 if index % 2:
-                    color.green = float((color.green + (index)*3000) % 65535)
+                    color.green = float((color.green + (index) * 3000) % 65535)
                 else:
-                    color.blue = float((color.blue + (index)*3000) % 65535)
+                    color.blue = float((color.blue + (index) * 3000) % 65535)
                 self._createmap_for_one_person(person, color)
         if index < int(self._config.get("geography.maximum_generations")):
-            time_to_wait = int(
-                self._config.get("geography.generation_interval"))
+            time_to_wait = int(self._config.get("geography.generation_interval"))
             self._create_markers()
             # process next generation in a few milliseconds
-            GLib.timeout_add(int(time_to_wait), self.animate_moves,
-                             index+1, person, color)
+            GLib.timeout_add(
+                int(time_to_wait), self.animate_moves, index + 1, person, color
+            )
         else:
             self.started = False
         return False
@@ -668,9 +704,9 @@ class GeoMoves(GeoGraphyView):
                 events.append(mark[10])
             if mark[0] != oldplace:
                 message = "%s :" % mark[0]
-                self.add_place_bubble_message(event, lat, lon,
-                                              marks, menu,
-                                              message, mark)
+                self.add_place_bubble_message(
+                    event, lat, lon, marks, menu, message, mark
+                )
                 oldplace = mark[0]
                 message = ""
             evt = self.dbstate.db.get_event_from_gramps_id(mark[10])
@@ -682,15 +718,17 @@ class GeoMoves(GeoGraphyView):
                 person = self.dbstate.db.get_person_from_gramps_id(mark[1])
                 message = "(%s) %s : %s" % (date, mark[2], _nd.display(person))
             elif mark[11] == EventRoleType.FAMILY:
-                (father_name,
-                 mother_name) = self._get_father_and_mother_name(evt)
-                message = "(%s) %s : %s - %s" % (date, mark[2],
-                                                 father_name,
-                                                 mother_name)
+                (father_name, mother_name) = self._get_father_and_mother_name(evt)
+                message = "(%s) %s : %s - %s" % (
+                    date,
+                    mark[2],
+                    father_name,
+                    mother_name,
+                )
             else:
                 descr = evt.get_description()
                 if descr == "":
-                    descr = _('No description')
+                    descr = _("No description")
                 message = "(%s) %s => %s" % (date, mark[11], descr)
             prevmark = mark
             add_item = Gtk.MenuItem(label=message)
@@ -702,13 +740,11 @@ class GeoMoves(GeoGraphyView):
             add_item.set_submenu(itemoption)
             modify = Gtk.MenuItem(label=_("Edit Event"))
             modify.show()
-            modify.connect("activate", self.edit_event,
-                           event, lat, lon, prevmark)
+            modify.connect("activate", self.edit_event, event, lat, lon, prevmark)
             itemoption.append(modify)
             center = Gtk.MenuItem(label=_("Center on this place"))
             center.show()
-            center.connect("activate", self.center_here,
-                           event, lat, lon, prevmark)
+            center.connect("activate", self.center_here, event, lat, lon, prevmark)
             itemoption.append(center)
             person = self.dbstate.db.get_person_from_gramps_id(mark[8])
             hdle = person.get_handle()
@@ -717,8 +753,7 @@ class GeoMoves(GeoGraphyView):
             bookm.connect("activate", self.add_bookmark_from_popup, hdle)
             itemoption.append(bookm)
             menu.show()
-            menu.popup(None, None, None,
-                       None, event.button, event.time)
+            menu.popup_at_pointer(event)
         return 1
 
     def add_specific_menu(self, menu, event, lat, lon):
@@ -731,8 +766,7 @@ class GeoMoves(GeoGraphyView):
         """
         Define the default gramplets for the sidebar and bottombar.
         """
-        return (("Person Filter",),
-                ())
+        return (("Person Filter",), ())
 
     def specific_options(self, configdialog):
         """
@@ -743,29 +777,26 @@ class GeoMoves(GeoGraphyView):
         grid.set_border_width(12)
         grid.set_column_spacing(6)
         grid.set_row_spacing(6)
-        configdialog.add_text(grid,
-                              _('The maximum number of generations.\n'),
-                              1, line_wrap=False)
-        configdialog.add_slider(grid,
-                                "",
-                                2, 'geography.maximum_generations',
-                                (1, 20))
-        configdialog.add_text(grid,
-                              _('Time in milliseconds between drawing two'
-                                ' generations.\n'),
-                              3, line_wrap=False)
-        configdialog.add_slider(grid,
-                                "",
-                                4, 'geography.generation_interval',
-                                (500, 3000))
-        return _('The parameters for moves'), grid
+        configdialog.add_text(
+            grid, _("The maximum number of generations.\n"), 1, line_wrap=False
+        )
+        configdialog.add_slider(grid, "", 2, "geography.maximum_generations", (1, 20))
+        configdialog.add_text(
+            grid,
+            _("Time in milliseconds between drawing two" " generations.\n"),
+            3,
+            line_wrap=False,
+        )
+        configdialog.add_slider(
+            grid, "", 4, "geography.generation_interval", (500, 3000)
+        )
+        return _("The parameters for moves"), grid
 
     def config_connect(self):
         """
         used to monitor changes in the ini file
         """
-        self._config.connect('geography.maximum_generations',
-                             self._maximum_generations)
+        self._config.connect("geography.maximum_generations", self._maximum_generations)
 
     def _maximum_generations(self, client, cnxn_id, entry, data):
         """

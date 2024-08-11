@@ -23,20 +23,21 @@
 Source View
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 import logging
+
 LOG = logging.getLogger(".citation")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.lib import Source
 from gramps.gen.config import config
 from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
@@ -51,23 +52,24 @@ from gramps.gui.merge import MergeSource
 from gramps.gen.plug import CATEGORY_QR_SOURCE
 from gramps.plugins.lib.libsourceview import LibSourceView
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # internationalization
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # SourceView
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class SourceView(LibSourceView, ListView):
-    """ sources listview class
-    """
+    """sources listview class"""
+
     COL_TITLE = 0
     COL_ID = 1
     COL_AUTH = 2
@@ -79,22 +81,33 @@ class SourceView(LibSourceView, ListView):
 
     # column definitions
     COLUMNS = [
-        (_('Title'), TEXT, None),
-        (_('ID'), TEXT, None),
-        (_('Author'), TEXT, None),
-        (_('Abbreviation'), TEXT, None),
-        (_('Publication Information'), TEXT, None),
-        (_('Private'), ICON, 'gramps-lock'),
-        (_('Tags'), TEXT, None),
-        (_('Last Changed'), TEXT, None),
-        ]
+        (_("Title"), TEXT, None),
+        (_("ID"), TEXT, None),
+        (_("Author"), TEXT, None),
+        (_("Abbreviation"), TEXT, None),
+        (_("Publication Information"), TEXT, None),
+        (_("Private"), ICON, "gramps-lock"),
+        (_("Tags"), TEXT, None),
+        (_("Last Changed"), TEXT, None),
+    ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
-        ('columns.visible', [COL_TITLE, COL_ID, COL_AUTH, COL_PINFO]),
-        ('columns.rank', [COL_TITLE, COL_ID, COL_AUTH, COL_ABBR, COL_PINFO,
-                          COL_PRIV, COL_TAGS, COL_CHAN]),
-        ('columns.size', [200, 75, 150, 100, 150, 40, 100, 100])
-        )
+        ("columns.visible", [COL_TITLE, COL_ID, COL_AUTH, COL_PINFO]),
+        (
+            "columns.rank",
+            [
+                COL_TITLE,
+                COL_ID,
+                COL_AUTH,
+                COL_ABBR,
+                COL_PINFO,
+                COL_PRIV,
+                COL_TAGS,
+                COL_CHAN,
+            ],
+        ),
+        ("columns.size", [200, 75, 150, 100, 150, 40, 100, 100]),
+    )
     ADD_MSG = _("Add a new source")
     EDIT_MSG = _("Edit the selected source")
     DEL_MSG = _("Delete the selected source")
@@ -103,42 +116,48 @@ class SourceView(LibSourceView, ListView):
     QR_CATEGORY = CATEGORY_QR_SOURCE
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
-
         signal_map = {
-            'source-add'     : self.row_add,
-            'source-update'  : self.row_update,
-            'source-delete'  : self.row_delete,
-            'source-rebuild' : self.object_build,
-            }
+            "source-add": self.row_add,
+            "source-update": self.row_update,
+            "source-delete": self.row_delete,
+            "source-rebuild": self.object_build,
+        }
 
         ListView.__init__(
-            self, _('Sources'), pdata, dbstate, uistate,
-            SourceModel, signal_map,
-            SourceBookmarks, nav_group,
+            self,
+            _("Sources"),
+            pdata,
+            dbstate,
+            uistate,
+            SourceModel,
+            signal_map,
+            SourceBookmarks,
+            nav_group,
             multiple=True,
-            filter_class=SourceSidebarFilter)
+            filter_class=SourceSidebarFilter,
+        )
 
         self.additional_uis.append(self.additional_ui)
 
     def navigation_type(self):
-        return 'Source'
+        return "Source"
 
     def drag_info(self):
         return DdTargets.SOURCE_LINK
 
     def get_stock(self):
-        return 'gramps-source'
+        return "gramps-source"
 
     additional_ui = [  # Defines the UI string for UIManager
-        '''
+        """
       <placeholder id="LocalExport">
         <item>
           <attribute name="action">win.ExportTab</attribute>
           <attribute name="label" translatable="yes">Export View...</attribute>
         </item>
       </placeholder>
-''',
-        '''
+""",
+        """
       <section id="AddEditBook">
         <item>
           <attribute name="action">win.AddBook</attribute>
@@ -149,8 +168,9 @@ class SourceView(LibSourceView, ListView):
           <attribute name="label" translatable="no">%s...</attribute>
         </item>
       </section>
-''' % _('Organize Bookmarks'),
-        '''
+"""
+        % _("Organize Bookmarks"),
+        """
       <placeholder id="CommonGo">
       <section>
         <item>
@@ -163,8 +183,8 @@ class SourceView(LibSourceView, ListView):
         </item>
       </section>
       </placeholder>
-''',
-        '''
+""",
+        """
       <section id='CommonEdit' groups='RW'>
         <item>
           <attribute name="action">win.Add</attribute>
@@ -183,24 +203,25 @@ class SourceView(LibSourceView, ListView):
           <attribute name="label" translatable="yes">_Merge...</attribute>
         </item>
       </section>
-''' % _("_Edit...", "action"),  # to use sgettext()
-        '''
+"""
+        % _("_Edit...", "action"),  # to use sgettext()
+        """
         <placeholder id='otheredit'>
         <item>
           <attribute name="action">win.FilterEdit</attribute>
-          <attribute name="label" translatable="yes">'''
-        '''Source Filter Editor</attribute>
+          <attribute name="label" translatable="yes">"""
+        """Source Filter Editor</attribute>
         </item>
         </placeholder>
-''',  # Following are the Toolbar items
-        '''
+""",  # Following are the Toolbar items
+        """
     <placeholder id='CommonNavigation'>
     <child groups='RO'>
       <object class="GtkToolButton">
         <property name="icon-name">go-previous</property>
         <property name="action-name">win.Back</property>
-        <property name="tooltip_text" translatable="yes">'''
-        '''Go to the previous object in the history</property>
+        <property name="tooltip_text" translatable="yes">"""
+        """Go to the previous object in the history</property>
         <property name="label" translatable="yes">_Back</property>
         <property name="use-underline">True</property>
       </object>
@@ -212,8 +233,8 @@ class SourceView(LibSourceView, ListView):
       <object class="GtkToolButton">
         <property name="icon-name">go-next</property>
         <property name="action-name">win.Forward</property>
-        <property name="tooltip_text" translatable="yes">'''
-        '''Go to the next object in the history</property>
+        <property name="tooltip_text" translatable="yes">"""
+        """Go to the next object in the history</property>
         <property name="label" translatable="yes">_Forward</property>
         <property name="use-underline">True</property>
       </object>
@@ -222,8 +243,8 @@ class SourceView(LibSourceView, ListView):
       </packing>
     </child>
     </placeholder>
-''',
-        '''
+""",
+        """
     <placeholder id='BarCommonEdit'>
     <child groups='RW'>
       <object class="GtkToolButton">
@@ -274,8 +295,9 @@ class SourceView(LibSourceView, ListView):
       </packing>
     </child>
     </placeholder>
-''' % (ADD_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
-        '''
+"""
+        % (ADD_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
+        """
     <menu id="Popup">
       <section>
         <item>
@@ -312,7 +334,8 @@ class SourceView(LibSourceView, ListView):
         </placeholder>
       </section>
     </menu>
-    ''' % _('_Edit...', 'action')  # to use sgettext()
+    """
+        % _("_Edit...", "action"),  # to use sgettext()
     ]
 
     def add(self, *obj):
@@ -334,9 +357,11 @@ class SourceView(LibSourceView, ListView):
 
         if len(mlist) != 2:
             msg = _("Cannot merge sources.")
-            msg2 = _("Exactly two sources must be selected to perform a merge. "
-                     "A second source can be selected by holding down the "
-                     "control key while clicking on the desired source.")
+            msg2 = _(
+                "Exactly two sources must be selected to perform a merge. "
+                "A second source can be selected by holding down the "
+                "control key while clicking on the desired source."
+            )
             ErrorDialog(msg, msg2, parent=self.uistate.window)
         else:
             MergeSource(self.dbstate, self.uistate, [], mlist[0], mlist[1])
@@ -354,9 +379,14 @@ class SourceView(LibSourceView, ListView):
         """
         all_links = set([])
         for tag_handle in handle_list:
-            links = set([link[1] for link in
-                         self.dbstate.db.find_backlink_handles(tag_handle,
-                                                include_classes='Source')])
+            links = set(
+                [
+                    link[1]
+                    for link in self.dbstate.db.find_backlink_handles(
+                        tag_handle, include_classes="Source"
+                    )
+                ]
+            )
             all_links = all_links.union(links)
         self.row_update(list(all_links))
 
@@ -380,7 +410,10 @@ class SourceView(LibSourceView, ListView):
         """
         Define the default gramplets for the sidebar and bottombar.
         """
-        return (("Source Filter",),
-                ("Source Gallery",
-                 "Source Notes",
-                 "Source Backlinks"))
+        return (
+            ("Source Filter",),
+            ("Source Gallery", "Source Notes", "Source Backlinks"),
+        )
+
+    def get_config_name(self):
+        return __name__

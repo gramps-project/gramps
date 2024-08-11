@@ -18,27 +18,29 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gtk
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gui.widgets import Photo
 from gramps.gen.utils.thumbnails import get_thumbnail_image
 from gramps.gen.utils.file import media_path_full
 
+
 class Gallery(Gramplet):
     """
     Displays a gallery of media objects.
     """
+
     def init(self):
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
@@ -83,9 +85,12 @@ class Gallery(Gramplet):
                 photo.set_uistate(self.uistate, media_handle)
             else:
                 photo = Photo(self.uistate.screen_height() < 1000)
-                photo.set_pixbuf(full_path,
-                                 get_thumbnail_image(full_path, mime_type,
-                                                     media_ref.get_rectangle()))
+                photo.set_pixbuf(
+                    full_path,
+                    get_thumbnail_image(
+                        full_path, mime_type, media_ref.get_rectangle()
+                    ),
+                )
             self.image_list.append(photo)
             self.top.pack_start(photo, False, False, 0)
             count += 1
@@ -103,24 +108,26 @@ class Gallery(Gramplet):
             media_handle = media_ref.get_reference_handle()
             media = self.dbstate.db.get_media_from_handle(media_handle)
             mime_type = media.get_mime_type()
-            #bug 7390 : tab is not highlighted if there are only media
+            # bug 7390 : tab is not highlighted if there are only media
             #           like pdf, open document, ...
             if mime_type:
                 return True
         return False
 
+
 class PersonGallery(Gallery):
     """
     Displays a gallery of media objects for a person.
     """
+
     def db_changed(self):
-        self.connect(self.dbstate.db, 'person-update', self.update)
+        self.connect(self.dbstate.db, "person-update", self.update)
 
     def active_changed(self, handle):
         self.update()
 
     def update_has_data(self):
-        active_handle = self.get_active('Person')
+        active_handle = self.get_active("Person")
         if active_handle:
             active = self.dbstate.db.get_person_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
@@ -129,7 +136,7 @@ class PersonGallery(Gallery):
 
     def main(self):
         self.clear_images()
-        active_handle = self.get_active('Person')
+        active_handle = self.get_active("Person")
         if active_handle:
             active = self.dbstate.db.get_person_from_handle(active_handle)
             if active:
@@ -138,17 +145,19 @@ class PersonGallery(Gallery):
                 self.set_has_data(False)
         else:
             self.set_has_data(False)
+
 
 class FamilyGallery(Gallery):
     """
     Displays a gallery of media objects for a family.
     """
+
     def db_changed(self):
-        self.connect(self.dbstate.db, 'family-update', self.update)
-        self.connect_signal('Family', self.update)
+        self.connect(self.dbstate.db, "family-update", self.update)
+        self.connect_signal("Family", self.update)
 
     def update_has_data(self):
-        active_handle = self.get_active('Family')
+        active_handle = self.get_active("Family")
         if active_handle:
             active = self.dbstate.db.get_family_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
@@ -157,7 +166,7 @@ class FamilyGallery(Gallery):
 
     def main(self):
         self.clear_images()
-        active_handle = self.get_active('Family')
+        active_handle = self.get_active("Family")
         if active_handle:
             active = self.dbstate.db.get_family_from_handle(active_handle)
             if active:
@@ -166,17 +175,19 @@ class FamilyGallery(Gallery):
                 self.set_has_data(False)
         else:
             self.set_has_data(False)
+
 
 class EventGallery(Gallery):
     """
     Displays a gallery of media objects for an event.
     """
+
     def db_changed(self):
-        self.connect(self.dbstate.db, 'event-update', self.update)
-        self.connect_signal('Event', self.update)
+        self.connect(self.dbstate.db, "event-update", self.update)
+        self.connect_signal("Event", self.update)
 
     def update_has_data(self):
-        active_handle = self.get_active('Event')
+        active_handle = self.get_active("Event")
         if active_handle:
             active = self.dbstate.db.get_event_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
@@ -185,7 +196,7 @@ class EventGallery(Gallery):
 
     def main(self):
         self.clear_images()
-        active_handle = self.get_active('Event')
+        active_handle = self.get_active("Event")
         if active_handle:
             active = self.dbstate.db.get_event_from_handle(active_handle)
             if active:
@@ -194,17 +205,19 @@ class EventGallery(Gallery):
                 self.set_has_data(False)
         else:
             self.set_has_data(False)
+
 
 class PlaceGallery(Gallery):
     """
     Displays a gallery of media objects for a place.
     """
+
     def db_changed(self):
-        self.connect(self.dbstate.db, 'place-update', self.update)
-        self.connect_signal('Place', self.update)
+        self.connect(self.dbstate.db, "place-update", self.update)
+        self.connect_signal("Place", self.update)
 
     def update_has_data(self):
-        active_handle = self.get_active('Place')
+        active_handle = self.get_active("Place")
         if active_handle:
             active = self.dbstate.db.get_place_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
@@ -213,7 +226,7 @@ class PlaceGallery(Gallery):
 
     def main(self):
         self.clear_images()
-        active_handle = self.get_active('Place')
+        active_handle = self.get_active("Place")
         if active_handle:
             active = self.dbstate.db.get_place_from_handle(active_handle)
             if active:
@@ -222,17 +235,19 @@ class PlaceGallery(Gallery):
                 self.set_has_data(False)
         else:
             self.set_has_data(False)
+
 
 class SourceGallery(Gallery):
     """
     Displays a gallery of media objects for a source.
     """
+
     def db_changed(self):
-        self.connect(self.dbstate.db, 'event-update', self.update)
-        self.connect_signal('Source', self.update)
+        self.connect(self.dbstate.db, "event-update", self.update)
+        self.connect_signal("Source", self.update)
 
     def update_has_data(self):
-        active_handle = self.get_active('Source')
+        active_handle = self.get_active("Source")
         if active_handle:
             active = self.dbstate.db.get_source_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
@@ -241,7 +256,7 @@ class SourceGallery(Gallery):
 
     def main(self):
         self.clear_images()
-        active_handle = self.get_active('Source')
+        active_handle = self.get_active("Source")
         if active_handle:
             active = self.dbstate.db.get_source_from_handle(active_handle)
             if active:
@@ -251,16 +266,18 @@ class SourceGallery(Gallery):
         else:
             self.set_has_data(False)
 
+
 class CitationGallery(Gallery):
     """
     Displays a gallery of media objects for a Citation.
     """
+
     def db_changed(self):
-        self.connect(self.dbstate.db, 'event-update', self.update)
-        self.connect_signal('Citation', self.update)
+        self.connect(self.dbstate.db, "event-update", self.update)
+        self.connect_signal("Citation", self.update)
 
     def update_has_data(self):
-        active_handle = self.get_active('Citation')
+        active_handle = self.get_active("Citation")
         if active_handle:
             active = self.dbstate.db.get_citation_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
@@ -269,7 +286,7 @@ class CitationGallery(Gallery):
 
     def main(self):
         self.clear_images()
-        active_handle = self.get_active('Citation')
+        active_handle = self.get_active("Citation")
         if active_handle:
             active = self.dbstate.db.get_citation_from_handle(active_handle)
             if active:

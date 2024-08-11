@@ -18,40 +18,49 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
-#
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-from ....const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+"""
+Rules that check for events containing particular values.
+"""
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+from ....const import GRAMPS_LOCALE as glocale
 from ....datehandler import parser
 from ....display.place import displayer as place_displayer
 from ....lib.eventtype import EventType
 from .. import Rule
 
-#-------------------------------------------------------------------------
-#
-# HasBirth
-#
-#-------------------------------------------------------------------------
-class HasData(Rule):
-    """Rule that checks for an event containing particular values"""
+_ = glocale.translation.gettext
 
-    labels = [ _('Event type:'), _('Date:'), _('Place:'),
-                    _('Description:') ]
-    name = _('Events with <data>')
+
+# -------------------------------------------------------------------------
+#
+# HasData
+#
+# -------------------------------------------------------------------------
+class HasData(Rule):
+    """
+    Rule that checks for an event containing particular values.
+    """
+
+    labels = [_("Event type:"), _("Date:"), _("Place:"), _("Description:")]
+    name = _("Events with <data>")
     description = _("Matches events with data of a particular value")
-    category = _('General filters')
+    category = _("General filters")
     allow_regex = True
 
+    def __init__(self, arg, use_regex=False, use_case=False):
+        super().__init__(arg, use_regex, use_case)
+        self.event_type = None
+        self.date = None
+
     def prepare(self, db, user):
+        """
+        Prepare the rule. Things we only want to do once.
+        """
         self.event_type = self.list[0]
         self.date = self.list[1]
 
@@ -62,17 +71,20 @@ class HasData(Rule):
         if self.date:
             self.date = parser.parse(self.date)
 
-    def apply(self, db, event):
-        if self.event_type and event.get_type() != self.event_type:
+    def apply(self, db, obj):
+        """
+        Apply the rule. Return True on a match.
+        """
+        if self.event_type and obj.get_type() != self.event_type:
             # No match
             return False
 
-        if self.date and not event.get_date_object().match(self.date):
+        if self.date and not obj.get_date_object().match(self.date):
             # No match
             return False
 
         if self.list[2]:
-            place_id = event.get_place_handle()
+            place_id = obj.get_place_handle()
             if place_id:
                 place = db.get_place_from_handle(place_id)
                 place_title = place_displayer.display(db, place)
@@ -83,7 +95,7 @@ class HasData(Rule):
                 # No place attached to event
                 return False
 
-        if not self.match_substring(3, event.get_description()):
+        if not self.match_substring(3, obj.get_description()):
             # No match
             return False
 

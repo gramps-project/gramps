@@ -26,25 +26,27 @@
 Person Reference class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .secondaryobj import SecondaryObject
-from .privacybase import PrivacyBase
-from .citationbase import CitationBase
-from .notebase import NoteBase
-from .refbase import RefBase
-from .const import IDENTICAL, EQUAL, DIFFERENT
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .citationbase import CitationBase
+from .const import DIFFERENT, EQUAL, IDENTICAL
+from .notebase import NoteBase
+from .privacybase import PrivacyBase
+from .refbase import RefBase
+from .secondaryobj import SecondaryObject
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# Person References for Person/Family
+# PersonRef
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class PersonRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
     """
     Person reference class.
@@ -62,17 +64,19 @@ class PersonRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
         if source:
             self.rel = source.rel
         else:
-            self.rel = ''
+            self.rel = ""
 
     def serialize(self):
         """
         Convert the object to a serialized tuple of data.
         """
-        return (PrivacyBase.serialize(self),
-                CitationBase.serialize(self),
-                NoteBase.serialize(self),
-                RefBase.serialize(self),
-                self.rel)
+        return (
+            PrivacyBase.serialize(self),
+            CitationBase.serialize(self),
+            NoteBase.serialize(self),
+            RefBase.serialize(self),
+            self.rel,
+        )
 
     def unserialize(self, data):
         """
@@ -98,22 +102,24 @@ class PersonRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
             "title": _("Person ref"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "private": {"type": "boolean",
-                            "title": _("Private")},
-                "citation_list": {"type": "array",
-                                  "title": _("Citations"),
-                                  "items": {"type": "string",
-                                            "maxLength": 50}},
-                "note_list": {"type": "array",
-                              "title": _("Notes"),
-                              "items": {"type": "string",
-                                        "maxLength": 50}},
-                "ref": {"type": "string",
-                        "title": _("Handle"),
-                        "maxLength": 50},
-                "rel": {"type": "string",
-                        "title": _("Association")}
-            }
+                "private": {"type": "boolean", "title": _("Private")},
+                "citation_list": {
+                    "type": "array",
+                    "title": _("Citations"),
+                    "items": {"type": "string", "maxLength": 50},
+                },
+                "note_list": {
+                    "type": "array",
+                    "title": _("Notes"),
+                    "items": {"type": "string", "maxLength": 50},
+                },
+                "ref": {
+                    "type": "string",
+                    "title": _("Handle"),
+                    "maxLength": 50,
+                },
+                "rel": {"type": "string", "title": _("Association")},
+            },
         }
 
     def get_text_data_list(self):
@@ -152,10 +158,11 @@ class PersonRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        ret = self.get_referenced_note_handles() + \
-                self.get_referenced_citation_handles()
+        ret = (
+            self.get_referenced_note_handles() + self.get_referenced_citation_handles()
+        )
         if self.ref:
-            ret += [('Person', self.ref)]
+            ret += [("Person", self.ref)]
         return ret
 
     def get_handle_referents(self):
@@ -178,14 +185,14 @@ class PersonRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
         :returns: Constant indicating degree of equivalence.
         :rtype: int
         """
-        if self.ref != other.ref or \
-            self.get_text_data_list() != other.get_text_data_list():
+        if (
+            self.ref != other.ref
+            or self.get_text_data_list() != other.get_text_data_list()
+        ):
             return DIFFERENT
-        else:
-            if self.is_equal(other):
-                return IDENTICAL
-            else:
-                return EQUAL
+        if self.is_equal(other):
+            return IDENTICAL
+        return EQUAL
 
     def merge(self, acquisition):
         """

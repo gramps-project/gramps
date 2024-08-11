@@ -19,48 +19,51 @@
 #
 # gen.filters.rules/Source/_MatchesRepositoryFilter.py
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import MatchesFilterBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # "Sources which reference a repository by selection"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MatchesRepositoryFilter(MatchesFilterBase):
     """Sources which reference the selected repository"""
 
-    labels = [ _('Repository filter name:') ]
-    name = _('Sources with repository reference matching the <repository filter>')
-    description = _("Matches sources with a repository reference that match a certain\n"
-                  "repository filter")
-    category = _('General filters')
+    labels = [_("Repository filter name:")]
+    name = _("Sources with repository reference matching the <repository filter>")
+    description = _(
+        "Matches sources with a repository reference that match a certain\n"
+        "repository filter"
+    )
+    category = _("General filters")
 
     # we want to have this filter show repository filters
-    namespace = 'Repository'
-
+    namespace = "Repository"
 
     def prepare(self, db, user):
         MatchesFilterBase.prepare(self, db, user)
         self.MRF_filt = self.find_filter()
 
     def apply(self, db, object):
-        if self.MRF_filt is None :
+        if self.MRF_filt is None:
             return False
 
         repolist = [x.ref for x in object.get_reporef_list()]
         for repohandle in repolist:
-            #check if repo in repository filter
+            # check if repo in repository filter
             if self.MRF_filt.check(db, repohandle):
                 return True
         return False

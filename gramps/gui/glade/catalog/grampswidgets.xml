@@ -15,10 +15,15 @@
         name="StyledTextEditor" 
         title="Styled Text Editor"
         generic-name="styled_text"/>
+    <glade-widget-class
+        name="PersistentTreeView"
+        title="Persistent TreeView"
+        generic-name="resizable_treeview"/>
   </glade-widget-classes>
   <glade-widget-group name="GrampsWidgets" title="Gramps Widgets">
     <glade-widget-class-ref name="ValidatableMaskedEntry"/>
     <glade-widget-class-ref name="UndoableEntry"/>
     <glade-widget-class-ref name="StyledTextEditor"/>
+    <glade-widget-class-ref name="PersistentTreeView"/>
   </glade-widget-group>
 </glade-catalog>

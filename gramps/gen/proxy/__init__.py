@@ -20,7 +20,7 @@
 #
 # gen/proxy/__init__.py
 
-__all__ = [ "filter", "living", "private", "proxybase", "referencedbyselection" ]
+__all__ = ["filter", "living", "private", "proxybase", "referencedbyselection"]
 
 from .filter import FilterProxyDb
 from .living import LivingProxyDb

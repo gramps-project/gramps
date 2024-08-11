@@ -22,20 +22,22 @@
 Define text formatting tag types.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .grampstype import GrampsType
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .grampstype import GrampsType
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# StyledTextTagType class
+# StyledTextTagType
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class StyledTextTagType(GrampsType):
     """
     Text formatting tag type definition.
@@ -43,6 +45,7 @@ class StyledTextTagType(GrampsType):
     Here we only define new class variables. For details see
     :class:`~gen.lib.grampstype.GrampsType`.
     """
+
     NONE_TYPE = -1
     BOLD = 0
     ITALIC = 1
@@ -53,6 +56,8 @@ class StyledTextTagType(GrampsType):
     HIGHLIGHT = 6
     SUPERSCRIPT = 7
     LINK = 8
+    STRIKETHROUGH = 9
+    SUBSCRIPT = 10
 
     _CUSTOM = NONE_TYPE
     _DEFAULT = NONE_TYPE
@@ -67,6 +72,8 @@ class StyledTextTagType(GrampsType):
         (HIGHLIGHT, _("Highlight"), "highlight"),
         (SUPERSCRIPT, _("Superscript"), "superscript"),
         (LINK, _("Link"), "link"),
+        (STRIKETHROUGH, _("Strikethrough"), "strikethrough"),
+        (SUBSCRIPT, _("Subscript"), "subscript"),
     ]
 
     STYLE_TYPE = {
@@ -79,18 +86,22 @@ class StyledTextTagType(GrampsType):
         FONTSIZE: int,
         SUPERSCRIPT: bool,
         LINK: str,
+        STRIKETHROUGH: bool,
+        SUBSCRIPT: bool,
     }
 
     STYLE_DEFAULT = {
         BOLD: False,
         ITALIC: False,
         UNDERLINE: False,
-        FONTCOLOR: '#000000',
-        HIGHLIGHT: '#FFFFFF',
-        FONTFACE: 'Sans',
+        FONTCOLOR: "#000000",
+        HIGHLIGHT: "#FFFFFF",
+        FONTFACE: "Sans",
         FONTSIZE: 10,
         SUPERSCRIPT: False,
-        LINK: '',
+        LINK: "",
+        STRIKETHROUGH: False,
+        SUBSCRIPT: False,
     }
 
     def __init__(self, value=None):

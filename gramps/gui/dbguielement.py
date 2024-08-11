@@ -26,18 +26,19 @@ Group common stuff Gramps GUI elements must be able to do when tracking a DB:
    * determine if the GUI has become out of sync with the db
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.utils.callman import CallbackManager
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # DbGUIElement class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class DbGUIElement:
     """
     Most interaction with the DB should be done via the callman attribute.
@@ -48,6 +49,7 @@ class DbGUIElement:
     .. attribute callman: a :class:`.CallbackManager` object, to be used to
                           track specific changes in the db and set up callbacks
     """
+
     def __init__(self, database):
         self.callman = CallbackManager(database)
         self._connect_db_signals()
@@ -84,9 +86,9 @@ class DbGUIElement:
         """
         database = self.callman.database
         if database.is_open():
-            #a closed database has disconnected all signals
+            # a closed database has disconnected all signals
             self.callman.disconnect_all()
-        #set a new callback manager
+        # set a new callback manager
         self.callman = CallbackManager(database)
 
     def _change_db(self, database):
@@ -98,8 +100,8 @@ class DbGUIElement:
         """
         dbold = self.callman.database
         if dbold.is_open():
-            #a closed database has disconnected all signals
+            # a closed database has disconnected all signals
             self.callman.disconnect_all()
-        #set a new callback manager on new database
+        # set a new callback manager on new database
         self.callman = CallbackManager(database)
         self._connect_db_signals()

@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.3 -->
+<!-- Generated with glade 3.40.0 -->
 <interface>
-  <requires lib="gtk+" version="3.10"/>
+  <requires lib="gtk+" version="3.24"/>
+  <requires lib="grampswidgets" version="0.0"/>
   <object class="GtkDialog" id="clipboard">
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <property name="title" translatable="yes">Clipboard</property>
-    <property name="type_hint">dialog</property>
+    <property name="type-hint">dialog</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox1">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="dialog-action_area1">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="helpbutton1">
                 <property name="label" translatable="yes">_Help</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">False</property>
-                <property name="use_underline">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">False</property>
+                <property name="use-underline">True</property>
                 <signal name="clicked" handler="on_help_clicked" swapped="no"/>
               </object>
               <packing>
@@ -36,12 +37,12 @@
             <child>
               <object class="GtkButton" id="btn_clear_all">
                 <property name="label" translatable="yes">Clear _All</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">False</property>
-                <property name="use_underline">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">False</property>
+                <property name="use-underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -52,12 +53,12 @@
             <child>
               <object class="GtkButton" id="btn_clear">
                 <property name="label" translatable="yes">_Clear</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">False</property>
-                <property name="use_underline">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">False</property>
+                <property name="use-underline">True</property>
                 <signal name="clicked" handler="on_clear_clicked" swapped="no"/>
               </object>
               <packing>
@@ -69,12 +70,12 @@
             <child>
               <object class="GtkButton" id="btn_close">
                 <property name="label" translatable="yes">_Close</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">False</property>
-                <property name="use_underline">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">False</property>
+                <property name="use-underline">True</property>
                 <signal name="clicked" handler="on_close_clipboard" swapped="no"/>
               </object>
               <packing>
@@ -87,19 +88,19 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="pack_type">end</property>
+            <property name="pack-type">end</property>
             <property name="position">0</property>
           </packing>
         </child>
         <child>
           <object class="GtkScrolledWindow" id="scrolledwindow86">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="shadow_type">in</property>
+            <property name="can-focus">True</property>
+            <property name="shadow-type">in</property>
             <child>
-              <object class="GtkTreeView" id="objectlist">
+              <object class="PersistentTreeView" id="objectlist">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
+                <property name="can-focus">True</property>
                 <child internal-child="selection">
                   <object class="GtkTreeSelection" id="treeview-selection1"/>
                 </child>

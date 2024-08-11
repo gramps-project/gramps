@@ -25,11 +25,11 @@ Provide the management of databases. This includes opening, renaming,
 creating, and deleting of databases.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import os
 import time
 import copy
@@ -38,20 +38,20 @@ from urllib.parse import urlparse
 import logging
 import re
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Pango
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .display import display_help
 from gramps.gen.const import URL_WIKISTRING, URL_MANUAL_PAGE
 from .user import User
@@ -69,20 +69,22 @@ from .listmodel import ListModel
 from gramps.gen.constfunc import win
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gui.widgets.persistenttreeview import PersistentTreeView
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # set up logging
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 LOG = logging.getLogger(".DbManager")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 if win():
     _RCS_FOUND = os.system("rcs -V >nul 2>nul") == 0
     if _RCS_FOUND and "TZ" not in os.environ:
@@ -94,8 +96,8 @@ else:
 _RETURN = Gdk.keyval_from_name("Return")
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 
-WIKI_HELP_PAGE = _('%s_-_Manage_Family_Trees') % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('Family_Trees_manager_window')
+WIKI_HELP_PAGE = _("%s_-_Manage_Family_Trees") % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _("Family_Trees_manager_window")
 
 ARCHIVE = "rev.gramps"
 ARCHIVE_V = "rev.gramps,v"
@@ -109,26 +111,29 @@ OPEN_COL = 5
 ICON_COL = 6
 BACKEND_COL = 7
 
-RCS_BUTTON = {True : _('_Extract'), False : _('_Archive')}
+RCS_BUTTON = {True: _("_Extract"), False: _("_Archive")}
+
 
 class Information(ManagedWindow):
-
     def __init__(self, uistate, data, track):
         super().__init__(uistate, track, self, modal=True)
         self.window = Gtk.Dialog()
         self.set_window(self.window, None, _("Database Information"))
-        self.setup_configs('interface.information', 600, 400)
-        self.ok = self.window.add_button(_('_OK'), Gtk.ResponseType.OK)
-        self.ok.connect('clicked', self.on_ok_clicked)
+        self.setup_configs("interface.information", 600, 400)
+        self.ok = self.window.add_button(_("_OK"), Gtk.ResponseType.OK)
+        self.ok.connect("clicked", self.on_ok_clicked)
         s = Gtk.ScrolledWindow()
-        titles = [
-            (_('Setting'), 0, 150),
-            (_('Value'), 1, 400)
-        ]
+        titles = [(_("Setting"), 0, 150), (_("Value"), 1, 400)]
         treeview = Gtk.TreeView()
         model = ListModel(treeview, titles)
         for key, value in sorted(data.items()):
-            model.add((key, str(value),), key)
+            model.add(
+                (
+                    key,
+                    str(value),
+                ),
+                key,
+            )
         s.add(treeview)
         self.window.vbox.pack_start(s, True, True, 0)
         self.show()
@@ -137,7 +142,7 @@ class Information(ManagedWindow):
         self.window.close()
 
     def build_menu_names(self, obj):
-        return (_('Database Information'), None)
+        return (_("Database Information"), None)
 
 
 class DbManager(CLIDbManager, ManagedWindow):
@@ -145,15 +150,17 @@ class DbManager(CLIDbManager, ManagedWindow):
     Database Manager. Opens a database manager window that allows users to
     create, rename, delete and open databases.
     """
-    ICON_MAP = {
-        CLIDbManager.ICON_NONE : None,
-        CLIDbManager.ICON_RECOVERY : 'dialog-error',
-        CLIDbManager.ICON_LOCK : 'gramps-lock',
-        CLIDbManager.ICON_OPEN : 'document-open',
-        }
 
-    BUSY_CURSOR = Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
-                                             Gdk.CursorType.WATCH)
+    ICON_MAP = {
+        CLIDbManager.ICON_NONE: None,
+        CLIDbManager.ICON_RECOVERY: "dialog-error",
+        CLIDbManager.ICON_LOCK: "gramps-lock",
+        CLIDbManager.ICON_OPEN: "document-open",
+    }
+
+    BUSY_CURSOR = Gdk.Cursor.new_for_display(
+        Gdk.Display.get_default(), Gdk.CursorType.WATCH
+    )
 
     def __init__(self, uistate, dbstate, viewmanager, parent=None):
         """
@@ -163,15 +170,25 @@ class DbManager(CLIDbManager, ManagedWindow):
         window_id = self
         ManagedWindow.__init__(self, uistate, [], window_id, modal=True)
         CLIDbManager.__init__(self, dbstate)
-        self.glade = Glade(toplevel='dbmanager')
+        self.glade = Glade(toplevel="dbmanager")
         self.top = self.glade.toplevel
         self.set_window(self.top, None, None)
-        self.setup_configs('interface.dbmanager', 780, 350)
+        self.setup_configs("interface.dbmanager", 780, 350)
         self.viewmanager = viewmanager
 
-        for attr in ['connect_btn', 'cancel_btn', 'new_btn', 'remove_btn',
-                     'info_btn', 'dblist', 'rename_btn', 'convert_btn',
-                     'repair_btn', 'rcs_btn', 'msg', 'close_btn']:
+        for attr in [
+            "connect_btn",
+            "cancel_btn",
+            "new_btn",
+            "remove_btn",
+            "info_btn",
+            "rename_btn",
+            "convert_btn",
+            "repair_btn",
+            "rcs_btn",
+            "msg",
+            "close_btn",
+        ]:
             setattr(self, attr, self.glade.get_object(attr))
 
         self.model = None
@@ -179,6 +196,10 @@ class DbManager(CLIDbManager, ManagedWindow):
         self.lock_file = None
         self.data_to_delete = None
 
+        self.dblist = PersistentTreeView(uistate, "dbman")
+        self.dblist.set_vexpand(True)
+        scrolledwindow = self.glade.get_object("scrolledwindow")
+        scrolledwindow.add(self.dblist)
         self.selection = self.dblist.get_selection()
 
         # For already loaded database:
@@ -189,15 +210,18 @@ class DbManager(CLIDbManager, ManagedWindow):
         self.before_change = ""
         self.after_change = ""
         self._select_default()
-        self.user = User(error=ErrorDialog, parent=parent,
-                         callback=self.uistate.pulse_progressbar,
-                         uistate=self.uistate)
+        self.user = User(
+            error=ErrorDialog,
+            parent=parent,
+            callback=self.uistate.pulse_progressbar,
+            uistate=self.uistate,
+        )
 
     def build_menu_names(self, obj):
-        ''' This window can have children, but they are modal so no submenu
-        is visible'''
+        """This window can have children, but they are modal so no submenu
+        is visible"""
         submenu_label = " "
-        menu_label = _('Family Trees')
+        menu_label = _("Family Trees")
         return (menu_label, submenu_label)
 
     def _select_default(self):
@@ -216,31 +240,32 @@ class DbManager(CLIDbManager, ManagedWindow):
         Connects the signals to the buttons on the interface.
         """
         ddtarget = DdTargets.URI_LIST
-        self.top.drag_dest_set(Gtk.DestDefaults.ALL,
-                               [DdTargets.URI_LIST.target()],
-                               Gdk.DragAction.COPY)
+        self.top.drag_dest_set(
+            Gtk.DestDefaults.ALL, [DdTargets.URI_LIST.target()], Gdk.DragAction.COPY
+        )
 
-        self.remove_btn.connect('clicked', self.__remove_db)
-        self.new_btn.connect('clicked', self.__new_db)
-        self.rename_btn.connect('clicked', self.__rename_db)
-        self.convert_btn.connect('clicked', self.__convert_db_ask)
-        self.info_btn.connect('clicked', self.__info_db)
-        self.close_btn.connect('clicked', self.__close_db)
-        self.repair_btn.connect('clicked', self.__repair_db)
-        self.selection.connect('changed', self.__selection_changed)
-        self.dblist.connect('button-press-event', self.__button_press)
-        self.dblist.connect('key-press-event', self.__key_press)
-        self.top.connect('drag_data_received', self.__drag_data_received)
-        self.top.connect('drag_motion', drag_motion)
-        self.top.connect('drag_drop', drop_cb)
+        self.remove_btn.connect("clicked", self.__remove_db)
+        self.new_btn.connect("clicked", self.__new_db)
+        self.rename_btn.connect("clicked", self.__rename_db)
+        self.convert_btn.connect("clicked", self.__convert_db_ask)
+        self.info_btn.connect("clicked", self.__info_db)
+        self.close_btn.connect("clicked", self.__close_db)
+        self.repair_btn.connect("clicked", self.__repair_db)
+        self.selection.connect("changed", self.__selection_changed)
+        self.dblist.connect("button-press-event", self.__button_press)
+        self.dblist.connect("key-press-event", self.__key_press)
+        self.top.connect("drag_data_received", self.__drag_data_received)
+        self.top.connect("drag_motion", drag_motion)
+        self.top.connect("drag_drop", drop_cb)
         self.define_help_button(
-            self.glade.get_object('help_btn'), WIKI_HELP_PAGE, WIKI_HELP_SEC)
+            self.glade.get_object("help_btn"), WIKI_HELP_PAGE, WIKI_HELP_SEC
+        )
 
         if _RCS_FOUND:
-            self.rcs_btn.connect('clicked', self.__rcs)
+            self.rcs_btn.connect("clicked", self.__rcs)
 
-    def define_help_button(self, button, webpage='', section=''):
-        button.connect('clicked', lambda x: display_help(webpage, section))
+    def define_help_button(self, button, webpage="", section=""):
+        button.connect("clicked", lambda x: display_help(webpage, section))
 
     def __button_press(self, obj, event):
         """
@@ -248,9 +273,8 @@ class DbManager(CLIDbManager, ManagedWindow):
         treat a double click as if it was OK button press. However, we have
         to make sure that an item was selected first.
         """
-        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
-                and event.button == 1):
-            if self.connect_btn.get_property('sensitive'):
+        if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS and event.button == 1:
+            if self.connect_btn.get_property("sensitive"):
                 self.top.response(Gtk.ResponseType.OK)
                 return True
         return False
@@ -261,7 +285,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         like double click instead
         """
         if event.keyval in (_RETURN, _KP_ENTER):
-            if self.connect_btn.get_property('sensitive'):
+            if self.connect_btn.get_property("sensitive"):
                 self.top.response(Gtk.ResponseType.OK)
                 return True
         return False
@@ -284,7 +308,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         # Get the current selection
         store, node = selection.get_selected()
 
-        if not _RCS_FOUND: # it's not in Windows
+        if not _RCS_FOUND:  # it's not in Windows
             self.rcs_btn.set_visible(False)
 
         # if nothing is selected
@@ -306,7 +330,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         is_rev = len(path.get_indices()) > 1
         self.rcs_btn.set_label(RCS_BUTTON[is_rev])
 
-        if store.get_value(node, ICON_COL) == 'document-open':
+        if store.get_value(node, ICON_COL) == "document-open":
             self.close_btn.set_sensitive(True)
             self.convert_btn.set_sensitive(False)
             self.connect_btn.set_sensitive(False)
@@ -320,10 +344,12 @@ class DbManager(CLIDbManager, ManagedWindow):
             self.repair_btn.set_sensitive(False)
         else:
             self.close_btn.set_sensitive(False)
-            dbid = config.get('database.backend')
+            dbid = config.get("database.backend")
             backend_type = self.get_backend_name_from_dbid(dbid)
-            if (store.get_value(node, ICON_COL) in [None, ""] and
-                    store.get_value(node, BACKEND_COL) != backend_type):
+            if (
+                store.get_value(node, ICON_COL) in [None, ""]
+                and store.get_value(node, BACKEND_COL) != backend_type
+            ):
                 self.convert_btn.set_sensitive(True)
             else:
                 self.convert_btn.set_sensitive(False)
@@ -333,7 +359,7 @@ class DbManager(CLIDbManager, ManagedWindow):
             else:
                 self.rcs_btn.set_sensitive(False)
 
-        if store.get_value(node, ICON_COL) == 'dialog-error':
+        if store.get_value(node, ICON_COL) == "dialog-error":
             path = store.get_value(node, PATH_COL)
             backup = os.path.join(path, "person.gbkp")
             self.repair_btn.set_sensitive(os.path.isfile(backup))
@@ -364,22 +390,21 @@ class DbManager(CLIDbManager, ManagedWindow):
         The Backend Type column is a string based on database backend.
         """
         # Put some help on the buttons:
-        dbid = config.get('database.backend')
+        dbid = config.get("database.backend")
         backend_type = self.get_backend_name_from_dbid(dbid)
         if backend_type == UNAVAILABLE:
-            dbid = 'sqlite'
-            config.set('database.backend', dbid)
+            dbid = "sqlite"
+            config.set("database.backend", dbid)
             backend_type = self.get_backend_name_from_dbid(dbid)
         self.new_btn.set_tooltip_text(backend_type)
 
         # build the database name column
         render = Gtk.CellRendererText()
-        render.set_property('ellipsize', Pango.EllipsizeMode.END)
-        render.connect('edited', self.__change_name)
-        render.connect('editing-canceled', self.__stop_edit)
-        render.connect('editing-started', self.__start_edit)
-        self.column = Gtk.TreeViewColumn(_('Family Tree name'), render,
-                                         text=NAME_COL)
+        render.set_property("ellipsize", Pango.EllipsizeMode.END)
+        render.connect("edited", self.__change_name)
+        render.connect("editing-canceled", self.__stop_edit)
+        render.connect("editing-started", self.__start_edit)
+        self.column = Gtk.TreeViewColumn(_("Family Tree name"), render, text=NAME_COL)
         self.column.set_sort_column_id(NAME_COL)
         self.column.set_sort_indicator(True)
         self.column.set_resizable(True)
@@ -389,17 +414,16 @@ class DbManager(CLIDbManager, ManagedWindow):
 
         # build the icon column
         render = Gtk.CellRendererPixbuf()
-        #icon_column = Gtk.TreeViewColumn(_('Status'), render,
-                                         #icon_name=ICON_COL)
-        icon_column = Gtk.TreeViewColumn(_('Status'), render)
+        # icon_column = Gtk.TreeViewColumn(_('Status'), render,
+        # icon_name=ICON_COL)
+        icon_column = Gtk.TreeViewColumn(_("Status"), render)
         icon_column.set_cell_data_func(render, bug_fix)
         icon_column.set_sort_column_id(ICON_COL)
         self.dblist.append_column(icon_column)
 
         # build the backend column
         render = Gtk.CellRendererText()
-        column = Gtk.TreeViewColumn(_('Database Type'), render,
-                                    text=BACKEND_COL)
+        column = Gtk.TreeViewColumn(_("Database Type"), render, text=BACKEND_COL)
         column.set_sort_column_id(BACKEND_COL)
         column.set_sort_indicator(True)
         column.set_resizable(True)
@@ -407,9 +431,10 @@ class DbManager(CLIDbManager, ManagedWindow):
 
         # build the last accessed column
         render = Gtk.CellRendererText()
-        column = Gtk.TreeViewColumn(_('Last accessed'), render, text=DATE_COL)
+        column = Gtk.TreeViewColumn(_("Last accessed"), render, text=DATE_COL)
         column.set_sort_column_id(DSORT_COL)
         self.dblist.append_column(column)
+        self.dblist.restore_column_size()
 
     def __populate(self):
         """
@@ -424,7 +449,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         """
         self.model = Gtk.TreeStore(str, str, str, str, int, bool, str, str)
 
-        #use current names to set up the model
+        # use current names to set up the model
         self._current_node = None
         last_accessed_node = None
         last_accessed = 0
@@ -433,15 +458,22 @@ class DbManager(CLIDbManager, ManagedWindow):
             backend_type = self.get_backend_name_from_dbid(data[BACKEND_COL])
             node = self.model.append(None, data[:-1] + [backend_type])
             # For already loaded database, set current_node:
-            if self.dbstate.is_open() and \
-                self.dbstate.db.get_save_path() == data[1]:
+            if self.dbstate.is_open() and self.dbstate.db.get_save_path() == data[1]:
                 self._current_node = node
             if data[DSORT_COL] > last_accessed:
                 last_accessed = data[DSORT_COL]
                 last_accessed_node = node
             for rdata in find_revisions(os.path.join(items[1], ARCHIVE_V)):
-                data = [rdata[2], rdata[0], items[1], rdata[1], 0, False, "",
-                        backend_type]
+                data = [
+                    rdata[2],
+                    rdata[0],
+                    items[1],
+                    rdata[1],
+                    0,
+                    False,
+                    "",
+                    backend_type,
+                ]
                 self.model.append(node, data)
         if self._current_node is None:
             self._current_node = last_accessed_node
@@ -477,7 +509,7 @@ class DbManager(CLIDbManager, ManagedWindow):
             if value == Gtk.ResponseType.OK:
                 store, node = self.selection.get_selected()
                 # don't open a locked file
-                if store.get_value(node, ICON_COL) == 'gramps-lock':
+                if store.get_value(node, ICON_COL) == "gramps-lock":
                     self.__ask_to_break_lock(store, node)
                     continue
                 # don't open a version
@@ -506,14 +538,18 @@ class DbManager(CLIDbManager, ManagedWindow):
 
         QuestionDialog(
             _("Break the lock on the '%s' database?") % store[path][0],
-            _("Gramps believes that someone else is actively editing "
-              "this database. You cannot edit this database while it "
-              "is locked. If no one is editing the database you may "
-              "safely break the lock. However, if someone else is editing "
-              "the database and you break the lock, you may corrupt the "
-              "database."),
+            _(
+                "Gramps believes that someone else is actively editing "
+                "this database. You cannot edit this database while it "
+                "is locked. If no one is editing the database you may "
+                "safely break the lock. However, if someone else is editing "
+                "the database and you break the lock, you may corrupt the "
+                "database."
+            ),
             _("Break lock"),
-            self.__really_break_lock, parent=self.top)
+            self.__really_break_lock,
+            parent=self.top,
+        )
 
     def __really_break_lock(self):
         """
@@ -526,14 +562,14 @@ class DbManager(CLIDbManager, ManagedWindow):
             dbpath = store.get_value(node, PATH_COL)
             (tval, last) = time_val(dbpath)
             store.set_value(node, OPEN_COL, 0)
-            store.set_value(node, ICON_COL, "") # see bug_fix
+            store.set_value(node, ICON_COL, "")  # see bug_fix
             store.set_value(node, DATE_COL, last)
             store.set_value(node, DSORT_COL, tval)
         except IOError:
             return
 
     def __stop_edit(self, *args):
-        self.name_renderer.set_property('editable', False)
+        self.name_renderer.set_property("editable", False)
         self.__update_buttons(self.selection)
 
     def __start_edit(self, *args):
@@ -561,12 +597,12 @@ class DbManager(CLIDbManager, ManagedWindow):
         """
         # kill special characters so can use as file name in backup.
         new_text = re.sub(r"[':<>|,;=\"\[\]\.\+\*\/\?\\]", "_", new_text)
-        #path is a string, convert to TreePath first
+        # path is a string, convert to TreePath first
         path = Gtk.TreePath(path=path)
         if len(new_text) > 0:
             node = self.model.get_iter(path)
             old_text = self.model.get_value(node, NAME_COL)
-            if self.model.get_value(node, ICON_COL) == 'document-open':
+            if self.model.get_value(node, ICON_COL) == "document-open":
                 # this database is loaded. We must change the title
                 # in case we change the name several times before quitting,
                 # we save the first old name.
@@ -579,7 +615,7 @@ class DbManager(CLIDbManager, ManagedWindow):
                 else:
                     self.__rename_database(path, new_text)
 
-        self.name_renderer.set_property('editable', False)
+        self.name_renderer.set_property("editable", False)
         self.__update_buttons(self.selection)
 
     def __rename_revision(self, path, new_text):
@@ -604,13 +640,18 @@ class DbManager(CLIDbManager, ManagedWindow):
         del proc
 
         if status != 0:
-            ErrorDialog(_("Rename failed"),
-                        _("An attempt to rename a version failed "
-                          "with the following message:\n\n%s") % message,
-                        parent=self.top)
+            ErrorDialog(
+                _("Rename failed"),
+                _(
+                    "An attempt to rename a version failed "
+                    "with the following message:\n\n%s"
+                )
+                % message,
+                parent=self.top,
+            )
         else:
             self.model.set_value(node, NAME_COL, new_text)
-            #scroll to new position
+            # scroll to new position
             store, node = self.selection.get_selected()
             tree_path = store.get_path(node)
             self.dblist.scroll_to_cell(tree_path, None, False, 0.5, 0.5)
@@ -623,15 +664,17 @@ class DbManager(CLIDbManager, ManagedWindow):
         node = self.model.get_iter(path)
         filename = self.model.get_value(node, FILE_COL)
         if self.existing_name(new_text, skippath=path):
-            ErrorDialog(_("Could not rename the Family Tree."),
-                        _("Family Tree already exists, choose a unique name."),
-                        parent=self.top)
+            ErrorDialog(
+                _("Could not rename the Family Tree."),
+                _("Family Tree already exists, choose a unique name."),
+                parent=self.top,
+            )
             return
         old_text, new_text = self.rename_database(filename, new_text)
         if old_text is not None:
             rename_filename(old_text, new_text)
             self.model.set_value(node, NAME_COL, new_text)
-        #scroll to new position
+        # scroll to new position
         store, node = self.selection.get_selected()
         tree_path = store.get_path(node)
         self.dblist.scroll_to_cell(tree_path, None, False, 0.5, 0.5)
@@ -655,8 +698,13 @@ class DbManager(CLIDbManager, ManagedWindow):
         else:
             base_path = self.dbstate.db.get_save_path()
             archive = os.path.join(base_path, ARCHIVE)
-            _check_in(self.dbstate.db, archive, self.user,
-                      self.__start_cursor, parent=self.window)
+            _check_in(
+                self.dbstate.db,
+                archive,
+                self.user,
+                self.__start_cursor,
+                parent=self.window,
+            )
             self.__end_cursor()
 
         self.__populate()
@@ -667,9 +715,10 @@ class DbManager(CLIDbManager, ManagedWindow):
         Create a new database, then extracts a revision from RCS and
         imports it into the db
         """
-        dbid = config.get('database.backend')
-        new_path, newname = self._create_new_db("%s : %s" % (parent_name, name),
-                                                dbid=dbid)
+        dbid = config.get("database.backend")
+        new_path, newname = self._create_new_db(
+            "%s : %s" % (parent_name, name), dbid=dbid
+        )
 
         self.__start_cursor(_("Extracting archive..."))
 
@@ -693,21 +742,25 @@ class DbManager(CLIDbManager, ManagedWindow):
         if len(path.get_indices()) == 1:
             QuestionDialog(
                 _("Remove the '%s' Family Tree?") % self.data_to_delete[0],
-                _("Removing this Family Tree will permanently destroy "
-                  "the data."),
+                _("Removing this Family Tree will permanently destroy " "the data."),
                 _("Remove Family Tree"),
-                self.__really_delete_db, parent=self.top)
+                self.__really_delete_db,
+                parent=self.top,
+            )
         else:
             rev = self.data_to_delete[0]
             parent = store[(path[0],)][0]
-            QuestionDialog(_("Remove the '%(revision)s' version "
-                             "of '%(database)s'"
-                            ) % {'revision' : rev,
-                                 'database' : parent},
-                           _("Removing this version will prevent you from "
-                             "extracting it in the future."),
-                           _("Remove version"),
-                           self.__really_delete_version, parent=self.top)
+            QuestionDialog(
+                _("Remove the '%(revision)s' version " "of '%(database)s'")
+                % {"revision": rev, "database": parent},
+                _(
+                    "Removing this version will prevent you from "
+                    "extracting it in the future."
+                ),
+                _("Remove version"),
+                self.__really_delete_version,
+                parent=self.top,
+            )
 
     def __really_delete_db(self):
         """
@@ -726,18 +779,16 @@ class DbManager(CLIDbManager, ManagedWindow):
         node = self.model.get_iter(path)
         filename = self.model.get_value(node, FILE_COL)
         try:
-            with open(filename, "r", encoding='utf-8') as name_file:
+            with open(filename, "r", encoding="utf-8") as name_file:
                 file_name_to_delete = name_file.read()
             remove_filename(file_name_to_delete)
             directory = self.data_to_delete[1]
-            for (top, dirs, files) in os.walk(directory):
+            for top, dirs, files in os.walk(directory):
                 for filename in files:
                     os.unlink(os.path.join(top, filename))
             os.rmdir(directory)
         except (IOError, OSError) as msg:
-            ErrorDialog(_("Could not delete Family Tree"),
-                        str(msg),
-                        parent=self.top)
+            ErrorDialog(_("Could not delete Family Tree"), str(msg), parent=self.top)
         # rebuild the display
         self.__populate()
         self._select_default()
@@ -761,10 +812,15 @@ class DbManager(CLIDbManager, ManagedWindow):
         del proc
 
         if status != 0:
-            ErrorDialog(_("Deletion failed"),
-                        _("An attempt to delete a version failed "
-                          "with the following message:\n\n%s") % message,
-                        parent=self.top)
+            ErrorDialog(
+                _("Deletion failed"),
+                _(
+                    "An attempt to delete a version failed "
+                    "with the following message:\n\n%s"
+                )
+                % message,
+                parent=self.top,
+            )
 
         # rebuild the display
         self.__populate()
@@ -777,14 +833,19 @@ class DbManager(CLIDbManager, ManagedWindow):
         store, node = self.selection.get_selected()
         name = store[node][0]
         dirname = store[node][1]
-        dbid = config.get('database.backend')
+        dbid = config.get("database.backend")
         backend_type = self.get_backend_name_from_dbid(dbid)
         QuestionDialog(
             _("Convert the '%s' database?") % name,
-            _("Do you wish to convert this family tree into a "
-              "%(database_type)s database?") % {'database_type': backend_type},
+            _(
+                "Do you wish to convert this family tree into a "
+                "%(database_type)s database?"
+            )
+            % {"database_type": backend_type},
             _("Convert"),
-            lambda: self.__convert_db(name, dirname), parent=self.top)
+            lambda: self.__convert_db(name, dirname),
+            parent=self.top,
+        )
 
     def __convert_db(self, name, dirname):
         """
@@ -793,9 +854,14 @@ class DbManager(CLIDbManager, ManagedWindow):
         try:
             db = open_database(name)
         except:
-            ErrorDialog(_("Opening the '%s' database") % name,
-                        _("An attempt to convert the database failed. "
-                          "Perhaps it needs updating."), parent=self.top)
+            ErrorDialog(
+                _("Opening the '%s' database") % name,
+                _(
+                    "An attempt to convert the database failed. "
+                    "Perhaps it needs updating."
+                ),
+                parent=self.top,
+            )
             return
         plugin_manager = GuiPluginManager.get_instance()
         export_function = None
@@ -805,9 +871,11 @@ class DbManager(CLIDbManager, ManagedWindow):
                 break
         ## Next, get an XML dump:
         if export_function is None:
-            ErrorDialog(_("Converting the '%s' database") % name,
-                        _("An attempt to export the database failed."),
-                        parent=self.top)
+            ErrorDialog(
+                _("Converting the '%s' database") % name,
+                _("An attempt to export the database failed."),
+                parent=self.top,
+            )
             db.close(user=self.user)
             return
         self.__start_cursor(_("Converting data..."))
@@ -819,9 +887,8 @@ class DbManager(CLIDbManager, ManagedWindow):
         while self.existing_name(new_text):
             count += 1
             new_text = "%s %s" % (name, _("(Converted #%d)") % count)
-        dbid = config.get('database.backend')
-        new_path, newname = self._create_new_db(new_text, dbid=dbid,
-                                                edit_entry=False)
+        dbid = config.get("database.backend")
+        new_path, newname = self._create_new_db(new_text, dbid=dbid, edit_entry=False)
         ## Create a new database of correct type:
         dbase = make_database(dbid)
         dbase.load(new_path)
@@ -831,9 +898,11 @@ class DbManager(CLIDbManager, ManagedWindow):
             if plugin.get_extension() == "gramps":
                 import_function = plugin.get_import_function()
         if import_function is None:
-            ErrorDialog(_("Converting the '%s' database") % name,
-                        _("An attempt to import into the database failed."),
-                        parent=self.top)
+            ErrorDialog(
+                _("Converting the '%s' database") % name,
+                _("An attempt to import into the database failed."),
+                parent=self.top,
+            )
         else:
             import_function(dbase, xml_file, self.user)
         self.__end_cursor()
@@ -848,7 +917,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         """
         store, node = self.selection.get_selected()
         path = self.model.get_path(node)
-        self.name_renderer.set_property('editable', True)
+        self.name_renderer.set_property("editable", True)
         self.dblist.set_cursor(path, self.column, True)
 
     def __close_db(self, obj):
@@ -861,7 +930,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         dbpath = store.get_value(node, PATH_COL)
         (tval, last) = time_val(dbpath)
         store.set_value(node, OPEN_COL, 0)
-        store.set_value(node, ICON_COL, "") # see bug_fix
+        store.set_value(node, ICON_COL, "")  # see bug_fix
         store.set_value(node, DATE_COL, last)
         store.set_value(node, DSORT_COL, tval)
         self.dbstate.no_database()
@@ -887,43 +956,48 @@ class DbManager(CLIDbManager, ManagedWindow):
         store, node = self.selection.get_selected()
         dirname = store[node][1]
 
-        #First ask user if he is really sure :-)
+        # First ask user if he is really sure :-)
         yes_no = QuestionDialog2(
             _("Repair Family Tree?"),
-            _("If you click %(bold_start)sProceed%(bold_end)s, Gramps will "
-              "attempt to recover your Family Tree from the last good "
-              "backup. There are several ways this can cause unwanted "
-              "effects, so %(bold_start)sbackup%(bold_end)s the "
-              "Family Tree first.\nThe Family Tree you have selected "
-              "is stored in %(dirname)s.\n\n"
-              "Before doing a repair, verify that the Family Tree can "
-              "really no longer be opened, as the database back-end can "
-              "recover from some errors automatically.\n\n"
-              "%(bold_start)sDetails:%(bold_end)s Repairing a Family Tree "
-              "actually uses the last backup of the Family Tree, which "
-              "Gramps stored on last use. If you have worked for "
-              "several hours/days without closing Gramps, then all "
-              "this information will be lost! If the repair fails, then "
-              "the original Family Tree will be lost forever, hence "
-              "a backup is needed. If the repair fails, or too much "
-              "information is lost, you can fix the original "
-              "Family Tree manually. For details, see the webpage\n"
-              "%(gramps_wiki_recover_url)s\n"
-              "Before doing a repair, try to open the Family Tree "
-              "in the normal manner. Several errors that trigger the "
-              "repair button can be fixed automatically. "
-              "If this is the case, you can disable the repair button "
-              "by removing the file %(recover_file)s in the "
-              "Family Tree directory."
-             ) % {'bold_start': '<b>',
-                  'bold_end': '</b>',
-                  'recover_file': '<i>need_recover</i>',
-                  'gramps_wiki_recover_url':
-                      URL_WIKISTRING + 'Recover_corrupted_family_tree',
-                  'dirname': dirname},
+            _(
+                "If you click %(bold_start)sProceed%(bold_end)s, Gramps will "
+                "attempt to recover your Family Tree from the last good "
+                "backup. There are several ways this can cause unwanted "
+                "effects, so %(bold_start)sbackup%(bold_end)s the "
+                "Family Tree first.\nThe Family Tree you have selected "
+                "is stored in %(dirname)s.\n\n"
+                "Before doing a repair, verify that the Family Tree can "
+                "really no longer be opened, as the database back-end can "
+                "recover from some errors automatically.\n\n"
+                "%(bold_start)sDetails:%(bold_end)s Repairing a Family Tree "
+                "actually uses the last backup of the Family Tree, which "
+                "Gramps stored on last use. If you have worked for "
+                "several hours/days without closing Gramps, then all "
+                "this information will be lost! If the repair fails, then "
+                "the original Family Tree will be lost forever, hence "
+                "a backup is needed. If the repair fails, or too much "
+                "information is lost, you can fix the original "
+                "Family Tree manually. For details, see the webpage\n"
+                "%(gramps_wiki_recover_url)s\n"
+                "Before doing a repair, try to open the Family Tree "
+                "in the normal manner. Several errors that trigger the "
+                "repair button can be fixed automatically. "
+                "If this is the case, you can disable the repair button "
+                "by removing the file %(recover_file)s in the "
+                "Family Tree directory."
+            )
+            % {
+                "bold_start": "<b>",
+                "bold_end": "</b>",
+                "recover_file": "<i>need_recover</i>",
+                "gramps_wiki_recover_url": URL_WIKISTRING
+                + "Recover_corrupted_family_tree",
+                "dirname": dirname,
+            },
             _("Proceed, I have taken a backup"),
             _("Stop"),
-            parent=self.top)
+            parent=self.top,
+        )
         prompt = yes_no.run()
         if not prompt:
             return
@@ -946,8 +1020,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         try:
             dbase.restore()
         except DbException as msg:
-            ErrorDialog(_("Error restoring backup data"), msg,
-                        parent=self.top)
+            ErrorDialog(_("Error restoring backup data"), msg, parent=self.top)
 
         self.__end_cursor()
 
@@ -980,18 +1053,17 @@ class DbManager(CLIDbManager, ManagedWindow):
         message.
         """
         self.new_btn.set_sensitive(False)
-        dbid = config.get('database.backend')
+        dbid = config.get("database.backend")
         if dbid:
             try:
                 self._create_new_db(dbid=dbid)
             except (OSError, IOError) as msg:
-                ErrorDialog(_("Could not create Family Tree"),
-                            str(msg),
-                            parent=self.top)
+                ErrorDialog(
+                    _("Could not create Family Tree"), str(msg), parent=self.top
+                )
         self.new_btn.set_sensitive(True)
 
-    def _create_new_db(self, title=None, create_db=True, dbid=None,
-                       edit_entry=True):
+    def _create_new_db(self, title=None, create_db=True, dbid=None, edit_entry=True):
         """
         Create a new database, append to model
         """
@@ -999,33 +1071,35 @@ class DbManager(CLIDbManager, ManagedWindow):
         path_name = os.path.join(new_path, NAME_FILE)
         (tval, last) = time_val(new_path)
         backend_type = self.get_backend_name_from_dbid(dbid)
-        node = self.model.append(None, [title, new_path, path_name,
-                                        last, tval, False, '', backend_type])
+        node = self.model.append(
+            None, [title, new_path, path_name, last, tval, False, "", backend_type]
+        )
         self.selection.select_iter(node)
         path = self.model.get_path(node)
         if edit_entry:
-            self.name_renderer.set_property('editable', True)
+            self.name_renderer.set_property("editable", True)
             self.dblist.set_cursor(path, self.column, True)
         return new_path, title
 
-    def __drag_data_received(self, widget, context, xpos, ypos, selection,
-                             info, rtime):
+    def __drag_data_received(self, widget, context, xpos, ypos, selection, info, rtime):
         """
         Handle the reception of drag data
         """
-        drag_value = selection.get_data().decode().strip(' \r\n\x00')
+        drag_value = selection.get_data().decode().strip(" \r\n\x00")
         fname = None
         type = None
         title = None
         # Allow any type of URL ("file://", "http://", etc):
         if drag_value and urlparse(drag_value).scheme != "":
             fname, title = [], []
-            for treename in [v.strip() for v in drag_value.split("\n")
-                             if v.strip() != '']:
+            for treename in [
+                v.strip() for v in drag_value.split("\n") if v.strip() != ""
+            ]:
                 f, t = self.import_new_db(treename, self.user)
                 fname.append(f)
                 title.append(t)
         return fname, title
+
 
 def drag_motion(wid, context, xpos, ypos, time_stamp):
     """
@@ -1034,12 +1108,14 @@ def drag_motion(wid, context, xpos, ypos, time_stamp):
     Gdk.drag_status(context, Gdk.DragAction.COPY, time_stamp)
     return True
 
+
 def drop_cb(wid, context, xpos, ypos, time_stamp):
     """
     DND callback that finishes the DND operation
     """
     Gtk.drag_finish(context, True, False, time_stamp)
     return True
+
 
 def find_revisions(name):
     """
@@ -1068,7 +1144,7 @@ def find_revisions(name):
         for line in proc.stdout:
             if not isinstance(line, str):
                 # we assume utf-8 ...
-                line = line.decode('utf-8')
+                line = line.decode("utf-8")
             match = rev.match(line)
             if match:
                 rev_str = copy.copy(match.groups()[0])
@@ -1076,8 +1152,8 @@ def find_revisions(name):
             match = date.match(line)
             if match:
                 date_str = time.strftime(
-                    '%x %X', time.strptime(match.groups()[0],
-                                           '%Y-%m-%d %H:%M:%S'))
+                    "%x %X", time.strptime(match.groups()[0], "%Y-%m-%d %H:%M:%S")
+                )
                 get_next = True
                 continue
             if get_next:
@@ -1089,14 +1165,15 @@ def find_revisions(name):
     return revlist
 
 
-
 def check_out(dbase, rev, path, user):
     """
     Checks out the revision from rcs, and loads the resulting XML file
     into the database.
     """
-    co_cmd = ["co", "-x,v", "-q%s" % rev] + [os.path.join(path, ARCHIVE),
-                                             os.path.join(path, ARCHIVE_V)]
+    co_cmd = ["co", "-x,v", "-q%s" % rev] + [
+        os.path.join(path, ARCHIVE),
+        os.path.join(path, ARCHIVE_V),
+    ]
 
     proc = subprocess.Popen(co_cmd, stderr=subprocess.PIPE)
     status = proc.wait()
@@ -1107,9 +1184,12 @@ def check_out(dbase, rev, path, user):
     if status != 0:
         user.notify_error(
             _("Retrieve failed"),
-            _("An attempt to retrieve the data failed "
-              "with the following message:\n\n%s") % message
+            _(
+                "An attempt to retrieve the data failed "
+                "with the following message:\n\n%s"
             )
+            % message,
+        )
         return
 
     pmgr = GuiPluginManager.get_instance()
@@ -1121,17 +1201,18 @@ def check_out(dbase, rev, path, user):
     rdr(dbase, xml_file, user)
     os.unlink(xml_file)
 
+
 def _check_in(dbase, filename, user, cursor_func=None, parent=None):
     """
     Checks in the specified file into RCS
     """
-    init = ["rcs", '-x,v', '-i', '-U', '-q', '-t-"Gramps database"']
-    ci_cmd = ["ci", '-x,v', "-q", "-f"]
+    init = ["rcs", "-x,v", "-i", "-U", "-q", '-t-"Gramps database"']
+    ci_cmd = ["ci", "-x,v", "-q", "-f"]
     archive_name = filename + ",v"
 
-    glade = Glade(toplevel='comment')
+    glade = Glade(toplevel="comment")
     top = glade.toplevel
-    text = glade.get_object('description')
+    text = glade.get_object("description")
     top.set_transient_for(parent)
     top.run()
     comment = text.get_text()
@@ -1146,10 +1227,15 @@ def _check_in(dbase, filename, user, cursor_func=None, parent=None):
         del proc
 
         if status != 0:
-            ErrorDialog(_("Archiving failed"),
-                        _("An attempt to create the archive failed "
-                          "with the following message:\n\n%s") % message,
-                        parent=self.top)
+            ErrorDialog(
+                _("Archiving failed"),
+                _(
+                    "An attempt to create the archive failed "
+                    "with the following message:\n\n%s"
+                )
+                % message,
+                parent=self.top,
+            )
 
     if cursor_func:
         cursor_func(_("Creating data to be archived..."))
@@ -1163,7 +1249,7 @@ def _check_in(dbase, filename, user, cursor_func=None, parent=None):
     if cursor_func:
         cursor_func(_("Saving archive..."))
 
-    cmd = ci_cmd + ['-m%s' % comment, filename, archive_name]
+    cmd = ci_cmd + ["-m%s" % comment, filename, archive_name]
     proc = subprocess.Popen(cmd, stderr=subprocess.PIPE)
 
     status = proc.wait()
@@ -1172,10 +1258,16 @@ def _check_in(dbase, filename, user, cursor_func=None, parent=None):
     del proc
 
     if status != 0:
-        ErrorDialog(_("Archiving failed"),
-                    _("An attempt to archive the data failed "
-                      "with the following message:\n\n%s") % message,
-                    parent=self.top)
+        ErrorDialog(
+            _("Archiving failed"),
+            _(
+                "An attempt to archive the data failed "
+                "with the following message:\n\n%s"
+            )
+            % message,
+            parent=self.top,
+        )
+
 
 def bug_fix(column, renderer, model, iter_, data):
     """
@@ -1186,6 +1278,6 @@ def bug_fix(column, renderer, model, iter_, data):
     string and convert it to None here.
     """
     icon_name = model.get_value(iter_, ICON_COL)
-    if icon_name == '':
+    if icon_name == "":
         icon_name = None
-    renderer.set_property('icon-name', icon_name)
+    renderer.set_property("icon-name", icon_name)

@@ -24,11 +24,13 @@
 
 "Quick Report Framework"
 
-from ._quickreports import (create_web_connect_menu,
-                           create_quickreport_menu,
-                           get_quick_report_list,
-                           run_quick_report_by_name,
-                           run_quick_report_by_name_direct,
-                           run_report)
+from ._quickreports import (
+    create_web_connect_menu,
+    create_quickreport_menu,
+    get_quick_report_list,
+    run_quick_report_by_name,
+    run_quick_report_by_name_direct,
+    run_report,
+)
 from ._quicktable import QuickTable
 from ._textbufdoc import TextBufDoc

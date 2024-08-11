@@ -22,43 +22,46 @@
 
 __all__ = ["MenuItemWithData", "add_menuitem"]
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 _LOG = logging.getLogger(".widgets.menuitem")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import GObject
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # MenuItemWithData class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 
 class MenuItemWithData(Gtk.MenuItem):
-    """ A MenuItem that stores a data property. As set_data in GTK3 is not
+    """A MenuItem that stores a data property. As set_data in GTK3 is not
     working, this is a workaround to have set_data"""
+
     data = GObject.Property(type=object)
 
-    def __init__(self, label=''):
+    def __init__(self, label=""):
         Gtk.MenuItem.__init__(self, label=label)
 
     def set_data(self, data):
         self.data = data
 
     def get_data(self, _=None):
-        """ obtain the data, for backward compat, we allow a dummy argument"""
+        """obtain the data, for backward compat, we allow a dummy argument"""
         return self.data
+
 
 def add_menuitem(menu, msg, obj, func):
     """

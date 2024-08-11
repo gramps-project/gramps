@@ -19,25 +19,25 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import GLib
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.lib import Citation, Source
@@ -49,11 +49,13 @@ from ...ddtargets import DdTargets
 
 LOG = logging.getLogger(".citation")
 _ = glocale.translation.gettext
-#-------------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------------
 #
 # CitationEmbedList
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class CitationEmbedList(EmbeddedList, DbGUIElement):
     """
     Citation List display tab for edit dialogs.
@@ -61,59 +63,70 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
     Derives from the EmbeddedList class.
     """
 
-    _HANDLE_COL = 9  # Column number from CitationRefModel
+    _HANDLE_COL = 10  # Column number from CitationRefModel
     _DND_TYPE = DdTargets.CITATION_LINK
     _DND_EXTRA = DdTargets.SOURCE_LINK
 
     _MSG = {
-        'add'   : _('Create and add a new citation and new source'),
-        'del'   : _('Remove the existing citation'),
-        'edit'  : _('Edit the selected citation'),
-        'share' : _('Add an existing citation or source'),
-        'up'    : _('Move the selected citation upwards'),
-        'down'  : _('Move the selected citation downwards'),
+        "add": _("Create and add a new citation and new source"),
+        "del": _("Remove the existing citation"),
+        "edit": _("Edit the selected citation"),
+        "share": _("Add an existing citation or source"),
+        "up": _("Move the selected citation upwards"),
+        "down": _("Move the selected citation downwards"),
     }
 
-    #index = column in model. Value =
+    # index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Title'), 0, 350, TEXT_COL, -1, None),
-        (_('Author'), 1, 200, TEXT_COL, -1, None),
-        (_('Date'), 8, 180, MARKUP_COL, -1, None),
-        (_('Publisher'), 3, 200, TEXT_COL, -1, None),
-        (_('Confidence Level'), 4, 120, TEXT_COL, -1, None),
-        (_('Page'), 5, 100, TEXT_COL, -1, None),
-        (_('ID'), 6, 80, TEXT_COL, -1, None),
-        (_('Private'), 7, 30, ICON_COL, -1, 'gramps-lock'),
-        (_('Sorted date'), 8, 80, TEXT_COL, -1, None)
+        (_("Title"), 0, 350, TEXT_COL, -1, None),
+        (_("Author"), 1, 200, TEXT_COL, -1, None),
+        (_("Date"), 8, 180, MARKUP_COL, -1, None),
+        (_("Publisher"), 3, 200, TEXT_COL, -1, None),
+        (_("Confidence"), 9, 120, MARKUP_COL, -1, None),
+        (_("Page"), 5, 100, TEXT_COL, -1, None),
+        (_("ID"), 6, 80, TEXT_COL, -1, None),
+        (_("Private"), 7, 30, ICON_COL, -1, "gramps-lock"),
+        (_("Sorted date"), 8, 80, TEXT_COL, -1, None),
+        (_("Sorted confidence"), 9, 120, TEXT_COL, -1, None),
     ]
 
-    def __init__(self, dbstate, uistate, track, data, callertitle=None):
+    def __init__(self, dbstate, uistate, track, data, config_key, callertitle=None):
         self.data = data
         self.callertitle = callertitle
-        EmbeddedList.__init__(self, dbstate, uistate, track,
-                              _("_Source Citations"), CitationRefModel,
-                              share_button=True, move_buttons=True)
+        EmbeddedList.__init__(
+            self,
+            dbstate,
+            uistate,
+            track,
+            _("_Source Citations"),
+            CitationRefModel,
+            config_key,
+            share_button=True,
+            move_buttons=True,
+        )
         DbGUIElement.__init__(self, dbstate.db)
-        self.callman.register_handles({'citation': self.data})
+        self.callman.register_handles({"citation": self.data})
 
     def _connect_db_signals(self):
         """
         Implement base class DbGUIElement method
         """
-        #citation: citation-rebuild closes the editors, so no need to connect
+        # citation: citation-rebuild closes the editors, so no need to connect
         # to it
         self.callman.register_callbacks(
-            {'citation-delete': self.citation_delete,
-             'citation-update': self.citation_update,
-            })
-        self.callman.connect_all(keys=['citation'])
+            {
+                "citation-delete": self.citation_delete,
+                "citation-update": self.citation_update,
+            }
+        )
+        self.callman.connect_all(keys=["citation"])
 
     def get_icon_name(self):
         """
         Return the stock-id icon name associated with the display tab
         """
-        return 'gramps-source'
+        return "gramps-source"
 
     def get_data(self):
         """
@@ -138,9 +151,16 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         """
         try:
             from .. import EditCitation
-            EditCitation(self.dbstate, self.uistate, self.track,
-                         Citation(), Source(),
-                         self.add_callback, self.callertitle)
+
+            EditCitation(
+                self.dbstate,
+                self.uistate,
+                self.track,
+                Citation(),
+                Source(),
+                self.add_callback,
+                self.callertitle,
+            )
         except WindowActiveError:
             pass
 
@@ -150,13 +170,13 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         """
         data = self.get_data()
         data.append(value)
-        self.callman.register_handles({'citation': [value]})
+        self.callman.register_handles({"citation": [value]})
         self.changed = True
         self.rebuild()
         GLib.idle_add(self.tree.scroll_to_cell, len(data) - 1)
 
     def share_button_clicked(self, obj):
-        SelectCitation = SelectorFactory('Citation')
+        SelectCitation = SelectorFactory("Citation")
 
         sel = SelectCitation(self.dbstate, self.uistate, self.track)
         objct = sel.run()
@@ -166,26 +186,44 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
             if isinstance(objct, Source):
                 try:
                     from .. import EditCitation
-                    EditCitation(self.dbstate, self.uistate, self.track,
-                                 Citation(), objct,
-                                 callback=self.add_callback,
-                                 callertitle=self.callertitle)
+
+                    EditCitation(
+                        self.dbstate,
+                        self.uistate,
+                        self.track,
+                        Citation(),
+                        objct,
+                        callback=self.add_callback,
+                        callertitle=self.callertitle,
+                    )
                 except WindowActiveError:
                     from ...dialog import WarningDialog
-                    WarningDialog(_("Cannot share this reference"),
-                                  self.__blocked_text(),
-                                  parent=self.uistate.window)
+
+                    WarningDialog(
+                        _("Cannot share this reference"),
+                        self.__blocked_text(),
+                        parent=self.uistate.window,
+                    )
             elif isinstance(objct, Citation):
                 try:
                     from .. import EditCitation
-                    EditCitation(self.dbstate, self.uistate, self.track,
-                                 objct, callback=self.add_callback,
-                                 callertitle=self.callertitle)
+
+                    EditCitation(
+                        self.dbstate,
+                        self.uistate,
+                        self.track,
+                        objct,
+                        callback=self.add_callback,
+                        callertitle=self.callertitle,
+                    )
                 except WindowActiveError:
                     from ...dialog import WarningDialog
-                    WarningDialog(_("Cannot share this reference"),
-                                  self.__blocked_text(),
-                                  parent=self.uistate.window)
+
+                    WarningDialog(
+                        _("Cannot share this reference"),
+                        self.__blocked_text(),
+                        parent=self.uistate.window,
+                    )
             else:
                 raise ValueError("selection must be either source or citation")
 
@@ -193,11 +231,13 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         """
         Return the common text used when citation cannot be edited
         """
-        return _("This citation cannot be created at this time. "
-                 "Either the associated Source object is already being "
-                 "edited, or another citation associated with the same "
-                 "source is being edited.\n\nTo edit this "
-                 "citation, you need to close the object.")
+        return _(
+            "This citation cannot be created at this time. "
+            "Either the associated Source object is already being "
+            "edited, or another citation associated with the same "
+            "source is being edited.\n\nTo edit this "
+            "citation, you need to close the object."
+        )
 
     def edit_button_clicked(self, obj):
         """
@@ -213,8 +253,14 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
             citation = self.dbstate.db.get_citation_from_handle(handle)
             try:
                 from .. import EditCitation
-                EditCitation(self.dbstate, self.uistate, self.track, citation,
-                             callertitle=self.callertitle)
+
+                EditCitation(
+                    self.dbstate,
+                    self.uistate,
+                    self.track,
+                    citation,
+                    callertitle=self.callertitle,
+                )
             except WindowActiveError:
                 pass
 
@@ -252,14 +298,23 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
             if isinstance(objct, Citation):
                 try:
                     from .. import EditCitation
-                    EditCitation(self.dbstate, self.uistate, self.track,
-                                 objct, callback=self.add_callback,
-                                 callertitle=self.callertitle)
+
+                    EditCitation(
+                        self.dbstate,
+                        self.uistate,
+                        self.track,
+                        objct,
+                        callback=self.add_callback,
+                        callertitle=self.callertitle,
+                    )
                 except WindowActiveError:
                     from ...dialog import WarningDialog
-                    WarningDialog(_("Cannot share this reference"),
-                                  self.__blocked_text(),
-                                  parent=self.uistate.window)
+
+                    WarningDialog(
+                        _("Cannot share this reference"),
+                        self.__blocked_text(),
+                        parent=self.uistate.window,
+                    )
             else:
                 raise ValueError("selection must be either source or citation")
 
@@ -272,14 +327,23 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
             if isinstance(objct, Source):
                 try:
                     from .. import EditCitation
-                    EditCitation(self.dbstate, self.uistate, self.track,
-                                 Citation(), objct,
-                                 callback=self.add_callback,
-                                 callertitle=self.callertitle)
+
+                    EditCitation(
+                        self.dbstate,
+                        self.uistate,
+                        self.track,
+                        Citation(),
+                        objct,
+                        callback=self.add_callback,
+                        callertitle=self.callertitle,
+                    )
                 except WindowActiveError:
                     from ...dialog import WarningDialog
-                    WarningDialog(_("Cannot share this reference"),
-                                  self.__blocked_text(),
-                                  parent=self.uistate.window)
+
+                    WarningDialog(
+                        _("Cannot share this reference"),
+                        self.__blocked_text(),
+                        parent=self.uistate.window,
+                    )
             else:
                 raise ValueError("selection must be either source or citation")

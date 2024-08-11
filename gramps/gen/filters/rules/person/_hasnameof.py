@@ -19,44 +19,48 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 from ....lib.nameorigintype import NameOriginType
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasNameOf
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasNameOf(Rule):
     """Rule that checks for full or partial name matches"""
 
-    labels = [_('Given name:'),
-                    _('Full Family name:'),
-                    _('Title:', 'person'),
-                    _('Suffix:'),
-                    _('Call Name:'),
-                    _('Nick Name:'),
-                    _('Prefix:'),
-                    _('Single Surname:'),
-                    _('Connector'),
-                    _('Patronymic:'),
-                    _('Family Nick Name:')]
-    name = _('People with the <name>')
+    labels = [
+        _("Given name:"),
+        _("Full Family name:"),
+        _("Title:", "person"),
+        _("Suffix:"),
+        _("Call Name:"),
+        _("Nick Name:"),
+        _("Prefix:"),
+        _("Single Surname:"),
+        _("Connector"),
+        _("Patronymic:"),
+        _("Family Nick Name:"),
+    ]
+    name = _("People with the <name>")
     description = _("Matches people with a specified (partial) name")
-    category = _('General filters')
+    category = _("General filters")
     allow_regex = True
 
     def apply(self, db, person):
@@ -78,7 +82,9 @@ class HasNameOf(Rule):
             return False
         elif self.list[5] and not self.match_substring(5, name.get_nick_name()):
             return False
-        elif self.list[10] and not self.match_substring(10, name.get_family_nick_name()):
+        elif self.list[10] and not self.match_substring(
+            10, name.get_family_nick_name()
+        ):
             return False
         else:
             for surn in name.get_surname_list():

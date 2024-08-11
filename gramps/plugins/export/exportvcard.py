@@ -24,29 +24,31 @@
 
 "Export Persons to vCard (RFC 2426)."
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python Modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import sys
 from textwrap import TextWrapper
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Set up logging
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import logging
 from collections import abc
+
 log = logging.getLogger(".ExportVCard")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gramps.gen.const import PROGRAM_NAME
 from gramps.version import VERSION
@@ -57,11 +59,12 @@ from gramps.gen.lib.eventtype import EventType
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.plug.utils import OpenFileOrStdout
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Support Functions
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def exportData(database, filename, user, option_box=None):
     """Function called by Gramps to export data on persons in VCard format."""
     cardw = VCardWriter(database, filename, option_box, user)
@@ -76,17 +79,19 @@ def exportData(database, filename, user, option_box=None):
         return False
     return True
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # VCardWriter class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class VCardWriter:
     """Class to create a file with data in VCard format."""
-    LINELENGTH = 73 # unclear if the 75 chars of spec includes \r\n.
-    ESCAPE_CHAR = '\\'
-    TOBE_ESCAPED = ['\\', ',', ';'] # order is important
-    LINE_CONTINUATION = [' ', '\t']
+
+    LINELENGTH = 73  # unclear if the 75 chars of spec includes \r\n.
+    ESCAPE_CHAR = "\\"
+    TOBE_ESCAPED = ["\\", ",", ";"]  # order is important
+    LINE_CONTINUATION = [" ", "\t"]
 
     @staticmethod
     def esc(data):
@@ -100,8 +105,10 @@ class VCardWriter:
         elif type(data) == type(()):
             return tuple(map(VCardWriter.esc, data))
         else:
-            raise TypeError("VCard escaping is not implemented for "
-                              "data type %s." % str(type(data)))
+            raise TypeError(
+                "VCard escaping is not implemented for "
+                "data type %s." % str(type(data))
+            )
 
     def __init__(self, database, filename, option_box=None, user=None):
         self.db = database
@@ -118,11 +125,13 @@ class VCardWriter:
             self.option_box.parse_options()
             self.db = option_box.get_filtered_database(self.db)
 
-        self.txtwrp = TextWrapper(width=self.LINELENGTH,
-                                  expand_tabs=False,
-                                  replace_whitespace=False,
-                                  drop_whitespace=False,
-                                  subsequent_indent=self.LINE_CONTINUATION[0])
+        self.txtwrp = TextWrapper(
+            width=self.LINELENGTH,
+            expand_tabs=False,
+            replace_whitespace=False,
+            drop_whitespace=False,
+            subsequent_indent=self.LINE_CONTINUATION[0],
+        )
         self.count = 0
         self.total = 0
 
@@ -133,7 +142,7 @@ class VCardWriter:
     def update_real(self):
         """Report progress."""
         self.count += 1
-        newval = int(100*self.count/self.total)
+        newval = int(100 * self.count / self.total)
         if newval != self.oldval:
             self.user.callback(newval)
             self.oldval = newval
@@ -144,13 +153,15 @@ class VCardWriter:
 
         Can't cope with nested VCards, section 2.4.2 of RFC 2426.
         """
-        self.filehandle.write('%s\r\n' % '\r\n'.join(
-            [line for line in self.txtwrp.wrap(text)]))
+        self.filehandle.write(
+            "%s\r\n" % "\r\n".join([line for line in self.txtwrp.wrap(text)])
+        )
 
     def export_data(self):
         """Open the file and loop over everyone too write their VCards."""
-        with OpenFileOrStdout(self.filename, encoding='utf-8',
-                              errors='strict', newline='') as self.filehandle:
+        with OpenFileOrStdout(
+            self.filename, encoding="utf-8", errors="strict", newline=""
+        ) as self.filehandle:
             if self.filehandle:
                 self.count = 0
                 self.oldval = 0
@@ -181,8 +192,7 @@ class VCardWriter:
         """Write the opening lines of a VCard."""
         self.writeln("BEGIN:VCARD")
         self.writeln("VERSION:3.0")
-        self.writeln("PRODID:-//Gramps//NONSGML %s %s//EN" %
-                     (PROGRAM_NAME, VERSION))
+        self.writeln("PRODID:-//Gramps//NONSGML %s %s//EN" % (PROGRAM_NAME, VERSION))
 
     def write_footer(self):
         """Write the closing lines of a VCard."""
@@ -199,20 +209,32 @@ class VCardWriter:
 
     def write_name(self, prname):
         """Write the compulsory N property of a VCard."""
-        family_name = ''
-        given_name = ''
-        additional_names = ''
-        hon_prefix = ''
-        suffix = ''
+        family_name = ""
+        given_name = ""
+        additional_names = ""
+        hon_prefix = ""
+        suffix = ""
 
         primary_surname = prname.get_primary_surname()
         surname_list = prname.get_surname_list()
         if not surname_list[0].get_primary():
             surname_list.remove(primary_surname)
             surname_list.insert(0, primary_surname)
-        family_name = ','.join(self.esc([("%s %s %s" % (surname.get_prefix(),
-            surname.get_surname(), surname.get_connector())).strip()
-            for surname in surname_list]))
+        family_name = ",".join(
+            self.esc(
+                [
+                    (
+                        "%s %s %s"
+                        % (
+                            surname.get_prefix(),
+                            surname.get_surname(),
+                            surname.get_connector(),
+                        )
+                    ).strip()
+                    for surname in surname_list
+                ]
+            )
+        )
 
         call_name = prname.get_call_name()
         if call_name:
@@ -220,23 +242,25 @@ class VCardWriter:
             additional_name_list = prname.get_first_name().split()
             if call_name in additional_name_list:
                 additional_name_list.remove(call_name)
-            additional_names = ','.join(self.esc(additional_name_list))
+            additional_names = ",".join(self.esc(additional_name_list))
         else:
             name_list = prname.get_first_name().split()
             if len(name_list) > 0:
                 given_name = self.esc(name_list[0])
                 if len(name_list) > 1:
-                    additional_names = ','.join(self.esc(name_list[1:]))
+                    additional_names = ",".join(self.esc(name_list[1:]))
         # Alternate names are ignored because names just don't add up:
         # if one name is Jean and an alternate is Paul then you can't
         # conclude the Jean Paul is also an alternate name of that person.
 
         # Assume all titles/suffixes that apply are present in primary name.
-        hon_prefix = ','.join(self.esc(prname.get_title().split()))
-        suffix = ','.join(self.esc(prname.get_suffix().split()))
+        hon_prefix = ",".join(self.esc(prname.get_title().split()))
+        suffix = ",".join(self.esc(prname.get_suffix().split()))
 
-        self.writeln("N:%s;%s;%s;%s;%s" % (family_name, given_name,
-                     additional_names, hon_prefix, suffix))
+        self.writeln(
+            "N:%s;%s;%s;%s;%s"
+            % (family_name, given_name, additional_names, hon_prefix, suffix)
+        )
 
     def write_sortstring(self, prname):
         """Write the SORT-STRING property of a VCard."""
@@ -245,21 +269,24 @@ class VCardWriter:
 
     def write_nicknames(self, person, prname):
         """Write the NICKNAME property of a VCard."""
-        nicknames = [x.get_nick_name() for x in person.get_alternate_names()
-                     if x.get_nick_name()]
+        nicknames = [
+            x.get_nick_name() for x in person.get_alternate_names() if x.get_nick_name()
+        ]
         if prname.get_nick_name():
             nicknames.insert(0, prname.get_nick_name())
         if len(nicknames) > 0:
-            self.writeln("NICKNAME:%s" % (','.join(self.esc(nicknames))))
+            self.writeln("NICKNAME:%s" % (",".join(self.esc(nicknames))))
 
     def write_gender(self, person):
         """Write the X-GENDER property of a VCard (X- dropped in 4.0, we're at 3.0)."""
         gender = person.get_gender()
-        gender_value = ''
+        gender_value = ""
         if gender == Person.MALE:
-            gender_value = 'Male'
+            gender_value = "Male"
         elif gender == Person.FEMALE:
-            gender_value = 'Female'
+            gender_value = "Female"
+        elif gender == Person.OTHER:
+            gender_value = "Other"
         log.info("gender: %s -> %s" % (gender, gender_value))
         if gender_value:
             self.writeln("X-GENDER:%s" % (gender_value))
@@ -272,10 +299,14 @@ class VCardWriter:
             if birth:
                 b_date = birth.get_date_object()
                 mod = b_date.get_modifier()
-                if (mod != Date.MOD_TEXTONLY and
-                    not b_date.is_empty() and
-                    not mod == Date.MOD_SPAN and
-                    not mod == Date.MOD_RANGE):
+                if (
+                    mod != Date.MOD_TEXTONLY
+                    and not b_date.is_empty()
+                    and not mod == Date.MOD_SPAN
+                    and not mod == Date.MOD_FROM
+                    and not mod == Date.MOD_TO
+                    and not mod == Date.MOD_RANGE
+                ):
                     (day, month, year, slash) = b_date.get_start_date()
                     if day > 0 and month > 0 and year > 0:
                         self.writeln("BDAY:%s-%02d-%02d" % (year, month, day))
@@ -292,8 +323,10 @@ class VCardWriter:
             zipcode = address.get_postal_code()
             country = address.get_country()
             if street or city or state or zipcode or country:
-                self.writeln("ADR:%s;%s;%s;%s;%s;%s;%s" % self.esc(
-                    (postbox, ext, street, city, state, zipcode, country)))
+                self.writeln(
+                    "ADR:%s;%s;%s;%s;%s;%s;%s"
+                    % self.esc((postbox, ext, street, city, state, zipcode, country))
+                )
 
             phone = address.get_phone()
             if phone:
@@ -306,8 +339,8 @@ class VCardWriter:
             href = url.get_path()
             if href:
                 if url.get_type() == UrlType(UrlType.EMAIL):
-                    if href.startswith('mailto:'):
-                        href = href[len('mailto:'):]
+                    if href.startswith("mailto:"):
+                        href = href[len("mailto:") :]
                     self.writeln("EMAIL:%s" % self.esc(href))
                 else:
                     self.writeln("URL:%s" % self.esc(href))
@@ -319,12 +352,13 @@ class VCardWriter:
         Use the most recent occupation event.
         """
         event_refs = person.get_primary_event_ref_list()
-        events = [event for event in
-                    [self.db.get_event_from_handle(ref.ref) for ref in event_refs]
-                    if event.get_type() == EventType(EventType.OCCUPATION)]
+        events = [
+            event
+            for event in [self.db.get_event_from_handle(ref.ref) for ref in event_refs]
+            if event.get_type() == EventType(EventType.OCCUPATION)
+        ]
         if len(events) > 0:
             events.sort(key=lambda x: x.get_date_object())
             occupation = events[-1].get_description()
             if occupation:
                 self.writeln("ROLE:%s" % occupation)
-

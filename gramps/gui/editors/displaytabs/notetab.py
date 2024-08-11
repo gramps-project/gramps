@@ -18,27 +18,28 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import GObject
 from gi.repository import GLib
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.lib import Note
 from ...dbguielement import DbGUIElement
@@ -47,11 +48,12 @@ from .notemodel import NoteModel
 from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 from ...ddtargets import DdTargets
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # NoteTab
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class NoteTab(EmbeddedList, DbGUIElement):
     """
     Note List display tab for edit dialogs.
@@ -63,43 +65,61 @@ class NoteTab(EmbeddedList, DbGUIElement):
     _DND_TYPE = DdTargets.NOTE_LINK
 
     _MSG = {
-        'add'   : _('Create and add a new note'),
-        'del'   : _('Remove the existing note'),
-        'edit'  : _('Edit the selected note'),
-        'share' : _('Add an existing note'),
-        'up'    : _('Move the selected note upwards'),
-        'down'  : _('Move the selected note downwards'),
+        "add": _("Create and add a new note"),
+        "del": _("Remove the existing note"),
+        "edit": _("Edit the selected note"),
+        "share": _("Add an existing note"),
+        "up": _("Move the selected note upwards"),
+        "down": _("Move the selected note downwards"),
     }
 
-    #index = column in model. Value =
+    # index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Type'), 0, 100, TEXT_COL, -1, None),
-        (_('Preview'), 1, 200, TEXT_COL, -1, None),
-        (_('Private'), 2, 30, ICON_COL, -1, 'gramps-lock')
+        (_("Type"), 0, 100, TEXT_COL, -1, None),
+        (_("Preview"), 1, 200, TEXT_COL, -1, None),
+        (_("Private"), 2, 30, ICON_COL, -1, "gramps-lock"),
     ]
 
-    def __init__(self, dbstate, uistate, track, data, callertitle=None,
-                    notetype=None):
+    def __init__(
+        self,
+        dbstate,
+        uistate,
+        track,
+        data,
+        config_key,
+        callertitle=None,
+        notetype=None,
+    ):
         self.data = data
         self.callertitle = callertitle
         self.notetype = notetype
-        EmbeddedList.__init__(self, dbstate, uistate, track,
-                              _("_Notes"), NoteModel, share_button=True,
-                              move_buttons=True)
+        EmbeddedList.__init__(
+            self,
+            dbstate,
+            uistate,
+            track,
+            _("_Notes"),
+            NoteModel,
+            config_key,
+            share_button=True,
+            move_buttons=True,
+        )
         DbGUIElement.__init__(self, dbstate.db)
-        self.callman.register_handles({'note': self.data})
+        self.callman.register_handles({"note": self.data})
 
     def _connect_db_signals(self):
         """
         Implement base class DbGUIElement method
         """
-        #note: note-rebuild closes the editors, so no need to connect to it
+        # note: note-rebuild closes the editors, so no need to connect to it
         self.callman.register_callbacks(
-           {'note-delete': self.note_delete,  # delete a note we track
-            'note-update': self.note_update,  # change a note we track
-           })
-        self.callman.connect_all(keys=['note'])
+            {
+                "note-delete": self.note_delete,  # delete a note we track
+                "note-update": self.note_update,  # change a note we track
+            }
+        )
+        self.callman.connect_all(keys=["note"])
 
     def get_editor(self):
         pass
@@ -129,13 +149,20 @@ class NoteTab(EmbeddedList, DbGUIElement):
         This prevents the dialog from coming up twice on the same object.
         """
         note = Note()
-        if self.notetype :
+        if self.notetype:
             note.set_type(self.notetype)
         try:
             from .. import EditNote
-            EditNote(self.dbstate, self.uistate, self.track,
-                            note, self.add_callback,
-                            self.callertitle, extratype = [self.notetype])
+
+            EditNote(
+                self.dbstate,
+                self.uistate,
+                self.track,
+                note,
+                self.add_callback,
+                self.callertitle,
+                extratype=[self.notetype],
+            )
         except WindowActiveError:
             pass
 
@@ -145,7 +172,7 @@ class NoteTab(EmbeddedList, DbGUIElement):
         """
         data = self.get_data()
         data.append(name)
-        self.callman.register_handles({'note': [name]})
+        self.callman.register_handles({"note": [name]})
         self.changed = True
         self.rebuild()
         GLib.idle_add(self.tree.scroll_to_cell, len(data) - 1)
@@ -164,16 +191,22 @@ class NoteTab(EmbeddedList, DbGUIElement):
             note = self.dbstate.db.get_note_from_handle(handle)
             try:
                 from .. import EditNote
-                EditNote(self.dbstate, self.uistate, self.track, note,
-                        callertitle = self.callertitle,
-                        extratype = [self.notetype] )
+
+                EditNote(
+                    self.dbstate,
+                    self.uistate,
+                    self.track,
+                    note,
+                    callertitle=self.callertitle,
+                    extratype=[self.notetype],
+                )
             except WindowActiveError:
                 pass
 
     def share_button_clicked(self, obj):
-        SelectNote = SelectorFactory('Note')
+        SelectNote = SelectorFactory("Note")
 
-        sel = SelectNote(self.dbstate,self.uistate,self.track)
+        sel = SelectNote(self.dbstate, self.uistate, self.track)
         note = sel.run()
         if note:
             self.add_callback(note.handle)
@@ -182,7 +215,7 @@ class NoteTab(EmbeddedList, DbGUIElement):
         """
         Return the stock-id icon name associated with the display tab
         """
-        return 'gramps-notes'
+        return "gramps-notes"
 
     def note_delete(self, del_note_handle_list):
         """
@@ -192,7 +225,7 @@ class NoteTab(EmbeddedList, DbGUIElement):
             so this method need not do this
         """
         rebuild = False
-        for handle in del_note_handle_list :
+        for handle in del_note_handle_list:
             while self.data.count(handle) > 0:
                 self.data.remove(handle)
                 rebuild = True
@@ -204,7 +237,7 @@ class NoteTab(EmbeddedList, DbGUIElement):
         Outside of this tab note objects have been updated. Check if tab
         and object must be updated.
         """
-        for handle in upd_note_handle_list :
+        for handle in upd_note_handle_list:
             if handle in self.data:
                 self.rebuild()
                 break

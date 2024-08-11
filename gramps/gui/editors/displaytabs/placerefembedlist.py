@@ -18,20 +18,21 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import GObject
 from gi.repository import GLib
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gramps.gen.lib import Place, PlaceRef
 from gramps.gen.errors import WindowActiveError
@@ -43,45 +44,54 @@ from ...selectors import SelectorFactory
 from ...dbguielement import DbGUIElement
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 #
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class PlaceRefEmbedList(DbGUIElement, EmbeddedList):
-
     _HANDLE_COL = 4
     _DND_TYPE = DdTargets.PLACEREF
     _DND_EXTRA = DdTargets.PLACE_LINK
 
-    #index = column in model. Value =
+    # index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('ID'),   0, 75, TEXT_COL, -1, None),
-        (_('Name'), 1, 250, TEXT_COL, -1, None),
-        (_('Type'), 2, 100, TEXT_COL, -1, None),
-        (_('Date'), 3, 150, TEXT_COL, -1, None),
-        ]
+        (_("ID"), 0, 75, TEXT_COL, -1, None),
+        (_("Name"), 1, 250, TEXT_COL, -1, None),
+        (_("Type"), 2, 100, TEXT_COL, -1, None),
+        (_("Date"), 3, 150, TEXT_COL, -1, None),
+    ]
 
-    def __init__(self, dbstate, uistate, track, data, handle, callback):
+    def __init__(self, dbstate, uistate, track, data, config_key, handle, callback):
         self.data = data
         self.handle = handle
         self.callback = callback
         DbGUIElement.__init__(self, dbstate.db)
-        EmbeddedList.__init__(self, dbstate, uistate, track,
-                              _('Enclosed By'), PlaceRefModel,
-                              share_button=True, move_buttons=True)
+        EmbeddedList.__init__(
+            self,
+            dbstate,
+            uistate,
+            track,
+            _("Enclosed By"),
+            PlaceRefModel,
+            config_key,
+            share_button=True,
+            move_buttons=True,
+        )
 
     def _connect_db_signals(self):
         """
         called on init of DbGUIElement, connect to db as required.
         """
-        #note: place-rebuild closes the editors, so no need to connect to it
+        # note: place-rebuild closes the editors, so no need to connect to it
         self.callman.register_callbacks(
-            {'place-update': self.place_change,  # change to place we track
-             'place-delete': self.place_delete,  # delete of place we track
-             })
-        self.callman.connect_all(keys=['place'])
+            {
+                "place-update": self.place_change,  # change to place we track
+                "place-delete": self.place_delete,  # delete of place we track
+            }
+        )
+        self.callman.connect_all(keys=["place"])
 
     def place_change(self, *obj):
         """
@@ -109,15 +119,14 @@ class PlaceRefEmbedList(DbGUIElement, EmbeddedList):
                     indexlist.append(last)
                 except ValueError:
                     break
-            #remove the deleted workgroup places from the object
+            # remove the deleted workgroup places from the object
             for index in reversed(indexlist):
                 del self.data[index]
-        #now rebuild the display tab
+        # now rebuild the display tab
         self.rebuild()
 
     def get_data(self):
-        self.callman.register_handles(
-            {'place': [pref.ref for pref in self.data]})
+        self.callman.register_handles({"place": [pref.ref for pref in self.data]})
         return self.data
 
     def column_order(self):
@@ -128,8 +137,7 @@ class PlaceRefEmbedList(DbGUIElement, EmbeddedList):
         skip = [handle]
         while todo:
             handle = todo.pop()
-            for child in self.dbstate.db.find_backlink_handles(handle,
-                                                               ['Place']):
+            for child in self.dbstate.db.find_backlink_handles(handle, ["Place"]):
                 if child[1] not in skip:
                     todo.append(child[1])
                     skip.append(child[1])
@@ -140,8 +148,10 @@ class PlaceRefEmbedList(DbGUIElement, EmbeddedList):
         place = Place()
         try:
             from .. import EditPlaceRef
-            EditPlaceRef(self.dbstate, self.uistate, self.track,
-                         place, ref, self.add_callback)
+
+            EditPlaceRef(
+                self.dbstate, self.uistate, self.track, place, ref, self.add_callback
+            )
         except WindowActiveError:
             pass
 
@@ -153,17 +163,25 @@ class PlaceRefEmbedList(DbGUIElement, EmbeddedList):
         GLib.idle_add(self.tree.scroll_to_cell, len(data) - 1)
 
     def share_button_clicked(self, obj):
-        SelectPlace = SelectorFactory('Place')
+        SelectPlace = SelectorFactory("Place")
 
-        sel = SelectPlace(self.dbstate, self.uistate, self.track,
-                          skip=self.get_skip_list(self.handle))
+        sel = SelectPlace(
+            self.dbstate, self.uistate, self.track, skip=self.get_skip_list(self.handle)
+        )
         place = sel.run()
         if place:
             ref = PlaceRef()
             try:
                 from .. import EditPlaceRef
-                EditPlaceRef(self.dbstate, self.uistate, self.track,
-                             place, ref, self.add_callback)
+
+                EditPlaceRef(
+                    self.dbstate,
+                    self.uistate,
+                    self.track,
+                    place,
+                    ref,
+                    self.add_callback,
+                )
             except WindowActiveError:
                 pass
 
@@ -173,8 +191,15 @@ class PlaceRefEmbedList(DbGUIElement, EmbeddedList):
             place = self.dbstate.db.get_place_from_handle(ref.ref)
             try:
                 from .. import EditPlaceRef
-                EditPlaceRef(self.dbstate, self.uistate, self.track,
-                             place, ref, self.edit_callback)
+
+                EditPlaceRef(
+                    self.dbstate,
+                    self.uistate,
+                    self.track,
+                    place,
+                    ref,
+                    self.edit_callback,
+                )
             except WindowActiveError:
                 pass
 
@@ -186,16 +211,24 @@ class PlaceRefEmbedList(DbGUIElement, EmbeddedList):
 
     def handle_extra_type(self, objtype, obj):
         if obj in self.get_skip_list(self.handle):
-            ErrorDialog(_("Place cycle detected"),
-                        _("The place you are adding is already enclosed by "
-                          "this place"),
-                        parent=self.uistate.window)
+            ErrorDialog(
+                _("Place cycle detected"),
+                _("The place you are adding is already enclosed by " "this place"),
+                parent=self.uistate.window,
+            )
             return
         place = self.dbstate.db.get_place_from_handle(obj)
         placeref = PlaceRef()
         try:
             from .. import EditPlaceRef
-            EditPlaceRef(self.dbstate, self.uistate, self.track,
-                         place, placeref, self.add_callback)
+
+            EditPlaceRef(
+                self.dbstate,
+                self.uistate,
+                self.track,
+                place,
+                placeref,
+                self.add_callback,
+            )
         except WindowActiveError:
             pass

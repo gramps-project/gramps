@@ -23,31 +23,32 @@
 Provide the base classes for GRAMPS' DataView classes
 """
 
-#----------------------------------------------------------------
+# ----------------------------------------------------------------
 #
 # python modules
 #
-#----------------------------------------------------------------
+# ----------------------------------------------------------------
 from abc import abstractmethod
 import html
 import logging
 
-_LOG = logging.getLogger('.navigationview')
+_LOG = logging.getLogger(".navigationview")
 
-#----------------------------------------------------------------
+# ----------------------------------------------------------------
 #
 # gtk
 #
-#----------------------------------------------------------------
+# ----------------------------------------------------------------
 from gi.repository import Gdk
 from gi.repository import Gtk
 
-#----------------------------------------------------------------
+# ----------------------------------------------------------------
 #
 # Gramps
 #
-#----------------------------------------------------------------
+# ----------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from .pageview import PageView
 from ..uimanager import ActionGroup
@@ -59,13 +60,14 @@ DISABLED = -1
 MRU_SIZE = 10
 
 MRU_TOP = '<section id="CommonHistory">'
-MRU_BTM = '</section>'
+MRU_BTM = "</section>"
 
-#------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
 #
 # NavigationView
 #
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 class NavigationView(PageView):
     """
     The NavigationView class is the base class for all Data Views that require
@@ -88,7 +90,6 @@ class NavigationView(PageView):
         self.uimanager = uistate.uimanager
 
         self.uistate.register(state, self.navigation_type(), self.nav_group)
-
 
     def navigation_type(self):
         """
@@ -128,22 +129,19 @@ class NavigationView(PageView):
         self.uimanager.set_actions_visible(self.fwd_action, True)
         self.uimanager.set_actions_visible(self.back_action, True)
         hobj = self.get_history()
-        self.uimanager.set_actions_sensitive(self.fwd_action,
-                                             not hobj.at_end())
-        self.uimanager.set_actions_sensitive(self.back_action,
-                                             not hobj.at_front())
+        self.uimanager.set_actions_sensitive(self.fwd_action, not hobj.at_end())
+        self.uimanager.set_actions_sensitive(self.back_action, not hobj.at_front())
 
     def change_page(self):
         """
         Called when the page changes.
         """
         hobj = self.get_history()
-        self.uimanager.set_actions_sensitive(self.fwd_action,
-                                             not hobj.at_end())
-        self.uimanager.set_actions_sensitive(self.back_action,
-                                             not hobj.at_front())
-        self.uimanager.set_actions_sensitive(self.other_action,
-                                             not self.dbstate.db.readonly)
+        self.uimanager.set_actions_sensitive(self.fwd_action, not hobj.at_end())
+        self.uimanager.set_actions_sensitive(self.back_action, not hobj.at_front())
+        self.uimanager.set_actions_sensitive(
+            self.other_action, not self.dbstate.db.readonly
+        )
         self.uistate.modify_statusbar(self.dbstate)
 
     def set_active(self):
@@ -154,8 +152,8 @@ class NavigationView(PageView):
         self.bookmarks.display()
 
         hobj = self.get_history()
-        self.active_signal = hobj.connect('active-changed', self.goto_active)
-        self.mru_signal = hobj.connect('mru-changed', self.update_mru_menu)
+        self.active_signal = hobj.connect("active-changed", self.goto_active)
+        self.mru_signal = hobj.connect("mru-changed", self.update_mru_menu)
         self.update_mru_menu(hobj.mru, update_menu=False)
 
         self.goto_active(None)
@@ -182,31 +180,28 @@ class NavigationView(PageView):
         """
         Return the history object.
         """
-        return self.uistate.get_history(self.navigation_type(),
-                                        self.navigation_group())
+        return self.uistate.get_history(self.navigation_type(), self.navigation_group())
 
     def goto_active(self, active_handle):
         """
         Callback (and usable function) that selects the active person
         in the display tree.
         """
-        active_handle = self.uistate.get_active(self.navigation_type(),
-                                                self.navigation_group())
+        active_handle = self.uistate.get_active(
+            self.navigation_type(), self.navigation_group()
+        )
         if active_handle:
             self.goto_handle(active_handle)
 
         hobj = self.get_history()
-        self.uimanager.set_actions_sensitive(self.fwd_action,
-                                             not hobj.at_end())
-        self.uimanager.set_actions_sensitive(self.back_action,
-                                             not hobj.at_front())
+        self.uimanager.set_actions_sensitive(self.fwd_action, not hobj.at_end())
+        self.uimanager.set_actions_sensitive(self.back_action, not hobj.at_front())
 
     def get_active(self):
         """
         Return the handle of the active object.
         """
-        hobj = self.uistate.get_history(self.navigation_type(),
-                                        self.navigation_group())
+        hobj = self.uistate.get_history(self.navigation_type(), self.navigation_group())
         return hobj.present()
 
     def change_active(self, handle):
@@ -230,8 +225,9 @@ class NavigationView(PageView):
         compatibility with those list views that can return multiply
         selected items.
         """
-        active_handle = self.uistate.get_active(self.navigation_type(),
-                                                self.navigation_group())
+        active_handle = self.uistate.get_active(
+            self.navigation_type(), self.navigation_group()
+        )
         return [active_handle] if active_handle else []
 
     ####################################################################
@@ -243,20 +239,20 @@ class NavigationView(PageView):
         """
         from gramps.gen.display.name import displayer as name_displayer
 
-        active_handle = self.uistate.get_active('Person')
+        active_handle = self.uistate.get_active("Person")
         active_person = self.dbstate.db.get_person_from_handle(active_handle)
         if active_person:
             self.bookmarks.add(active_handle)
             name = name_displayer.display(active_person)
-            self.uistate.push_message(self.dbstate,
-                                      _("%s has been bookmarked") % name)
+            self.uistate.push_message(self.dbstate, _("%s has been bookmarked") % name)
         else:
             from ..dialog import WarningDialog
+
             WarningDialog(
                 _("Could Not Set a Bookmark"),
-                _("A bookmark could not be set because "
-                  "no one was selected."),
-                parent=self.uistate.window)
+                _("A bookmark could not be set because " "no one was selected."),
+                parent=self.uistate.window,
+            )
 
     def edit_bookmarks(self, *obj):
         """
@@ -268,11 +264,13 @@ class NavigationView(PageView):
         """
         Define the bookmark menu actions.
         """
-        self.book_action = ActionGroup(name=self.title + '/Bookmark')
-        self.book_action.add_actions([
-            ('AddBook', self.add_bookmark, '<PRIMARY>d'),
-            ('EditBook', self.edit_bookmarks, '<shift><PRIMARY>D'),
-            ])
+        self.book_action = ActionGroup(name=self.title + "/Bookmark")
+        self.book_action.add_actions(
+            [
+                ("AddBook", self.add_bookmark, "<PRIMARY>d"),
+                ("EditBook", self.edit_bookmarks, "<shift><PRIMARY>D"),
+            ]
+        )
 
         self._add_action_group(self.book_action)
 
@@ -284,20 +282,21 @@ class NavigationView(PageView):
         Define the navigation menu actions.
         """
         # add the Forward action group to handle the Forward button
-        self.fwd_action = ActionGroup(name=self.title + '/Forward')
-        self.fwd_action.add_actions([('Forward', self.fwd_clicked,
-                                      "%sRight" % mod_key())])
+        self.fwd_action = ActionGroup(name=self.title + "/Forward")
+        self.fwd_action.add_actions(
+            [("Forward", self.fwd_clicked, "%sRight" % mod_key())]
+        )
 
         # add the Backward action group to handle the Forward button
-        self.back_action = ActionGroup(name=self.title + '/Backward')
-        self.back_action.add_actions([('Back', self.back_clicked,
-                                       "%sLeft" % mod_key())])
+        self.back_action = ActionGroup(name=self.title + "/Backward")
+        self.back_action.add_actions(
+            [("Back", self.back_clicked, "%sLeft" % mod_key())]
+        )
 
-        self._add_action('HomePerson', self.home, "%sHome" % mod_key())
+        self._add_action("HomePerson", self.home, "%sHome" % mod_key())
 
-        self.other_action = ActionGroup(name=self.title + '/PersonOther')
-        self.other_action.add_actions([
-            ('SetActive', self.set_default_person)])
+        self.other_action = ActionGroup(name=self.title + "/PersonOther")
+        self.other_action.add_actions([("SetActive", self.set_default_person)])
 
         self._add_action_group(self.back_action)
         self._add_action_group(self.fwd_action)
@@ -307,7 +306,7 @@ class NavigationView(PageView):
         """
         Set the default person.
         """
-        active = self.uistate.get_active('Person')
+        active = self.uistate.get_active("Person")
         if active:
             self.dbstate.db.set_default_person_handle(active)
 
@@ -320,34 +319,43 @@ class NavigationView(PageView):
             self.change_active(defperson.get_handle())
         else:
             from ..dialog import WarningDialog
-            WarningDialog(_("No Home Person"),
-                _("You need to set a 'Home Person' to go to. "
-                  "Select the People View, select the person you want as "
-                  "'Home Person', then confirm your choice "
-                  "via the menu Edit -> Set Home Person."),
-                parent=self.uistate.window)
+
+            WarningDialog(
+                _("No Home Person"),
+                _(
+                    "You need to set a 'Home Person' to go to. "
+                    "Select the People View, select the person you want as "
+                    "'Home Person', then confirm your choice "
+                    "via the menu Edit -> Set Home Person."
+                ),
+                parent=self.uistate.window,
+            )
 
     def jump(self, *obj):
         """
         A dialog to move to a Gramps ID entered by the user.
         """
-        dialog = Gtk.Dialog(title=_('Jump to by Gramps ID'),
-                            transient_for=self.uistate.window)
+        dialog = Gtk.Dialog(
+            title=_("Jump to by Gramps ID"), transient_for=self.uistate.window
+        )
         dialog.set_border_width(12)
-        label = Gtk.Label(label='<span weight="bold" size="larger">%s</span>' %
-                          _('Jump to by Gramps ID'))
+        label = Gtk.Label(
+            label='<span weight="bold" size="larger">%s</span>'
+            % _("Jump to by Gramps ID")
+        )
         label.set_use_markup(True)
         dialog.vbox.add(label)
         dialog.vbox.set_spacing(10)
         dialog.vbox.set_border_width(12)
         hbox = Gtk.Box()
-        hbox.pack_start(Gtk.Label(label=_("%s: ") % _('ID')), True, True, 0)
+        hbox.pack_start(Gtk.Label(label=_("%s: ") % _("ID")), True, True, 0)
         text = Gtk.Entry()
         text.set_activates_default(True)
         hbox.pack_start(text, False, True, 0)
         dialog.vbox.pack_start(hbox, False, True, 0)
-        dialog.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
-                           _('_Jump to'), Gtk.ResponseType.OK)
+        dialog.add_buttons(
+            _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Jump to"), Gtk.ResponseType.OK
+        )
         dialog.set_default_response(Gtk.ResponseType.OK)
         dialog.vbox.show_all()
 
@@ -358,8 +366,8 @@ class NavigationView(PageView):
                 self.change_active(handle)
             else:
                 self.uistate.push_message(
-                    self.dbstate,
-                    _("Error: %s is not a valid Gramps ID") % gid)
+                    self.dbstate, _("Error: %s is not a valid Gramps ID") % gid
+                )
         dialog.destroy()
 
     def get_handle_from_gramps_id(self, gid):
@@ -374,12 +382,13 @@ class NavigationView(PageView):
         Move forward one object in the history.
         """
         hobj = self.get_history()
+        if hobj.lock:
+            return
         hobj.lock = True
         if not hobj.at_end():
             hobj.forward()
             self.uistate.modify_statusbar(self.dbstate)
-        self.uimanager.set_actions_sensitive(self.fwd_action,
-                                             not hobj.at_end())
+        self.uimanager.set_actions_sensitive(self.fwd_action, not hobj.at_end())
         self.uimanager.set_actions_sensitive(self.back_action, True)
         hobj.lock = False
 
@@ -388,12 +397,13 @@ class NavigationView(PageView):
         Move backward one object in the history.
         """
         hobj = self.get_history()
+        if hobj.lock:
+            return
         hobj.lock = True
         if not hobj.at_front():
             hobj.back()
             self.uistate.modify_statusbar(self.dbstate)
-        self.uimanager.set_actions_sensitive(self.back_action,
-                                             not hobj.at_front())
+        self.uimanager.set_actions_sensitive(self.back_action, not hobj.at_front())
         self.uimanager.set_actions_sensitive(self.fwd_action, True)
         hobj.lock = False
 
@@ -424,12 +434,12 @@ class NavigationView(PageView):
         """
         Builds the UI and action group for the MRU list.
         """
-        menuitem = '''        <item>
+        menuitem = """        <item>
               <attribute name="action">win.%s%02d</attribute>
               <attribute name="label">%s</attribute>
             </item>
-            '''
-        menus = ''
+            """
+        menus = ""
         self.mru_disable()
         nav_type = self.navigation_type()
         hobj = self.get_history()
@@ -437,15 +447,18 @@ class NavigationView(PageView):
 
         data = []
         for index in range(menu_len - 1, -1, -1):
-            name, _obj = navigation_label(self.dbstate.db, nav_type,
-                                          items[index])
+            name, _obj = navigation_label(self.dbstate.db, nav_type, items[index])
             menus += menuitem % (nav_type, index, html.escape(name))
-            data.append(('%s%02d' % (nav_type, index),
-                         make_callback(hobj.push, items[index]),
-                         "%s%d" % (mod_key(), menu_len - 1 - index)))
+            data.append(
+                (
+                    "%s%02d" % (nav_type, index),
+                    make_callback(hobj.push, items[index]),
+                    "%s%d" % (mod_key(), menu_len - 1 - index),
+                )
+            )
         self.mru_ui = [MRU_TOP + menus + MRU_BTM]
 
-        self.mru_action = ActionGroup(name=self.title + '/MRU')
+        self.mru_action = ActionGroup(name=self.title + "/MRU")
         self.mru_action.add_actions(data)
         self.mru_enable(update_menu)
 
@@ -472,11 +485,23 @@ class NavigationView(PageView):
         """
         if self.active:
             if event.type == Gdk.EventType.KEY_PRESS:
-                if (event.keyval == Gdk.KEY_c and
-                    match_primary_mask(event.get_state())):
+                if event.keyval == Gdk.KEY_c and match_primary_mask(event.get_state()):
                     self.call_copy()
                     return True
         return super(NavigationView, self).key_press_handler(widget, event)
+
+    def button_press_handler(self, widget, event):
+        """
+        Handle forward and backward buttons, or pass it on.
+        """
+        if self.active:
+            if event.button == 8:
+                self.back_clicked()
+                return True
+            elif event.button == 9:
+                self.fwd_clicked()
+                return True
+        return super(NavigationView, self).button_press_handler(widget, event)
 
     def call_copy(self):
         """
@@ -490,6 +515,7 @@ class NavigationView(PageView):
         nav_type = self.navigation_type()
         handles = self.selected_handles()
         return self.copy_to_clipboard(nav_type, handles)
+
 
 def make_callback(func, handle):
     """

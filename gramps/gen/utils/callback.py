@@ -41,11 +41,12 @@ import copy
 
 log = sys.stderr.write
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Callback signal support for non-gtk parts of Gramps
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
 
 class Callback:
     """
@@ -200,28 +201,28 @@ class Callback:
     __LOG_ALL = False
 
     def __init__(self):
-        self.__enable_logging = False # controls whether lots of debug
-                                      # information will be produced.
-        self.__block_instance_signals = False # controls the blocking of
-                                              # signals from this instance
-        self.__callback_map = {} # dictionary containing all the connected
-                                 # callback functions. The keys are the
-                                 # signal names and the values are tuples
-                                 # of the form (key, bound_method), where
-                                 # the key is unique within the instance
-                                 # and the bound_method is the callback
-                                 # that will be called when the signal is
-                                 # emitted
-        self.__signal_map = {}   # dictionary contains all the signals that
-                                 # this instance can emit. The keys are the
-                                 # signal names and the values are tuples
-                                 # containing the list of types of the arguments
-                                 # that the callback methods must accept.
-        self._current_key = 0    # counter to give a unique key to each callback
-        self._current_signals = [] # list of all the signals that are currently
-                                   # being emitted by this instance. This is
-                                   # used to prevent recursive emittion of the
-                                   # same signal.
+        self.__enable_logging = False  # controls whether lots of debug
+        # information will be produced.
+        self.__block_instance_signals = False  # controls the blocking of
+        # signals from this instance
+        self.__callback_map = {}  # dictionary containing all the connected
+        # callback functions. The keys are the
+        # signal names and the values are tuples
+        # of the form (key, bound_method), where
+        # the key is unique within the instance
+        # and the bound_method is the callback
+        # that will be called when the signal is
+        # emitted
+        self.__signal_map = {}  # dictionary contains all the signals that
+        # this instance can emit. The keys are the
+        # signal names and the values are tuples
+        # containing the list of types of the arguments
+        # that the callback methods must accept.
+        self._current_key = 0  # counter to give a unique key to each callback
+        self._current_signals = []  # list of all the signals that are currently
+        # being emitted by this instance. This is
+        # used to prevent recursive emittion of the
+        # same signal.
 
         # To speed up the signal type checking the signals declared by
         # each of the classes in the inheritance tree of this instance
@@ -232,7 +233,7 @@ class Callback:
             """A traversal function to walk through all the classes in
             the inheritance tree. The return is a list of all the
             __signals__ dictionaries."""
-            if '__signals__' in cls.__dict__:
+            if "__signals__" in cls.__dict__:
                 signal_list = [cls.__signals__]
             else:
                 signal_list = []
@@ -246,11 +247,10 @@ class Callback:
 
         # Build a signal dict from the list of signal dicts
         for s in trav(self.__class__):
-            for (k, v) in s.items():
+            for k, v in s.items():
                 if k in self.__signal_map:
                     # signal name clash
-                    sys.stderr.write("Warning: signal name clash: %s\n"
-                                     % str(k))
+                    sys.stderr.write("Warning: signal name clash: %s\n" % str(k))
                 self.__signal_map[k] = v
         # Set to None to prevent a memory leak in this recursive function
         trav = None
@@ -258,10 +258,12 @@ class Callback:
         # self.__signal_map now contains the connonical list
         # of signals that this instance can emit.
 
-        self._log("registered signals: \n   %s\n" %
-                  "\n   ".join(["%s: %s" % (k, v) for (k, v)
-                                in list(self.__signal_map.items())]))
-
+        self._log(
+            "registered signals: \n   %s\n"
+            % "\n   ".join(
+                ["%s: %s" % (k, v) for (k, v) in list(self.__signal_map.items())]
+            )
+        )
 
     def connect(self, signal_name, callback):
         """
@@ -273,8 +275,9 @@ class Callback:
         """
         # Check that signal exists.
         if signal_name not in self.__signal_map:
-            self._log("Warning: attempt to connect to unknown signal: %s\n"
-                      % str(signal_name))
+            self._log(
+                "Warning: attempt to connect to unknown signal: %s\n" % str(signal_name)
+            )
             return
 
         # Add callable to callback_map
@@ -282,9 +285,10 @@ class Callback:
             self.__callback_map[signal_name] = []
 
         self._current_key += 1
-        self._log("Connecting callback to signal: "
-                  "%s with key: %s\n"
-                  % (signal_name, str(self._current_key)))
+        self._log(
+            "Connecting callback to signal: "
+            "%s with key: %s\n" % (signal_name, str(self._current_key))
+        )
         self.__callback_map[signal_name].append((self._current_key, callback))
 
         return self._current_key
@@ -300,12 +304,13 @@ class Callback:
                 (skey, fn) = cb
                 if skey == key:
                     # delete the callback from the map.
-                    self._log("Disconnecting callback from signal"
-                              ": %s with key: %s\n" % (signal_name,
-                                                       str(key)))
+                    self._log(
+                        "Disconnecting callback from signal"
+                        ": %s with key: %s\n" % (signal_name, str(key))
+                    )
                     self.__callback_map[signal_name].remove(cb)
 
-    def disconnect_all(self):# Find the key in the callback map.
+    def disconnect_all(self):  # Find the key in the callback map.
         for signal_name in self.__callback_map:
             keymap = copy.copy(self.__callback_map[signal_name])
             for key in keymap:
@@ -319,8 +324,7 @@ class Callback:
         arguments that match the types declared for the signals signature.
         """
         # Check that signals are not blocked
-        if self.__BLOCK_ALL_SIGNALS or \
-               self.__block_instance_signals:
+        if self.__BLOCK_ALL_SIGNALS or self.__block_instance_signals:
             return
 
         # Check signal exists
@@ -329,22 +333,24 @@ class Callback:
         c_code = c_frame.f_code
         frame_info = (c_code.co_filename, c_frame.f_lineno, c_code.co_name)
         if signal_name not in self.__signal_map:
-            self._warn("Attempt to emit to unknown signal: %s\n"
-                       "         from: file: %s\n"
-                       "               line: %d\n"
-                       "               func: %s\n"
-                       % ((str(signal_name), ) + frame_info))
+            self._warn(
+                "Attempt to emit to unknown signal: %s\n"
+                "         from: file: %s\n"
+                "               line: %d\n"
+                "               func: %s\n" % ((str(signal_name),) + frame_info)
+            )
             return
 
         # check that the signal is not already being emitted. This prevents
         # against recursive signal emissions.
         if signal_name in self._current_signals:
-            self._warn("Signal recursion blocked. "
-                       "Signals was : %s\n"
-                       "        from: file: %s\n"
-                       "              line: %d\n"
-                       "              func: %s\n"
-                       % ((str(signal_name), ) + frame_info))
+            self._warn(
+                "Signal recursion blocked. "
+                "Signals was : %s\n"
+                "        from: file: %s\n"
+                "              line: %d\n"
+                "              func: %s\n" % ((str(signal_name),) + frame_info)
+            )
             return
 
         try:
@@ -352,68 +358,82 @@ class Callback:
 
             # check that args is a tuple. This is a common programming error.
             if not (isinstance(args, tuple) or args is None):
-                self._warn("Signal emitted with argument that is not a tuple.\n"
-                           "  emit() takes two arguments, the signal name and a \n"
-                           "  tuple that contains the arguments that are to be \n"
-                           "  passed to the callbacks. If you are passing a signal \n"
-                           "  argument it must be done as a single element tuple \n"
-                           "  e.g. emit('my-signal', (1, )) \n"
-                           "         signal was: %s\n"
-                           "         from: file: %s\n"
-                           "               line: %d\n"
-                           "               func: %s\n"
-                           % ((str(signal_name), ) + frame_info))
+                self._warn(
+                    "Signal emitted with argument that is not a tuple.\n"
+                    "  emit() takes two arguments, the signal name and a \n"
+                    "  tuple that contains the arguments that are to be \n"
+                    "  passed to the callbacks. If you are passing a signal \n"
+                    "  argument it must be done as a single element tuple \n"
+                    "  e.g. emit('my-signal', (1, )) \n"
+                    "         signal was: %s\n"
+                    "         from: file: %s\n"
+                    "               line: %d\n"
+                    "               func: %s\n" % ((str(signal_name),) + frame_info)
+                )
                 return
 
             # type check arguments
             arg_types = self.__signal_map[signal_name]
             if arg_types is None and len(args) > 0:
-                self._warn("Signal emitted with "
-                           "wrong number of args: %s\n"
-                           "         from: file: %s\n"
-                           "               line: %d\n"
-                           "               func: %s\n"
-                           % ((str(signal_name), ) + frame_info))
+                self._warn(
+                    "Signal emitted with "
+                    "wrong number of args: %s\n"
+                    "         from: file: %s\n"
+                    "               line: %d\n"
+                    "               func: %s\n" % ((str(signal_name),) + frame_info)
+                )
                 return
 
             if len(args) > 0:
                 if len(args) != len(arg_types):
-                    self._warn("Signal emitted with "
-                               "wrong number of args: %s\n"
-                               "         from: file: %s\n"
-                               "               line: %d\n"
-                               "               func: %s\n"
-                               % ((str(signal_name), ) + frame_info))
+                    self._warn(
+                        "Signal emitted with "
+                        "wrong number of args: %s\n"
+                        "         from: file: %s\n"
+                        "               line: %d\n"
+                        "               func: %s\n" % ((str(signal_name),) + frame_info)
+                    )
                     return
 
                 if arg_types is not None:
                     for i in range(0, len(arg_types)):
                         if not isinstance(args[i], arg_types[i]):
-                            self._warn("Signal emitted with "
-                                       "wrong arg types: %s\n"
-                                       "         from: file: %s\n"
-                                       "               line: %d\n"
-                                       "               func: %s\n"
-                                       "    arg passed was: %s, type of arg passed %s,  type should be: %s\n"
-                                       % ((str(signal_name), ) + frame_info +\
-                                          (args[i], repr(type(args[i])), repr(arg_types[i]))))
+                            self._warn(
+                                "Signal emitted with "
+                                "wrong arg types: %s\n"
+                                "         from: file: %s\n"
+                                "               line: %d\n"
+                                "               func: %s\n"
+                                "    arg passed was: %s, type of arg passed %s,  type should be: %s\n"
+                                % (
+                                    (str(signal_name),)
+                                    + frame_info
+                                    + (args[i], repr(type(args[i])), repr(arg_types[i]))
+                                )
+                            )
                             return
             if signal_name in self.__callback_map:
-                self._log("emitting signal: %s\n" % (signal_name, ))
+                self._log("emitting signal: %s\n" % (signal_name,))
                 # Don't bother if there are no callbacks.
-                for (key, fn) in self.__callback_map[signal_name]:
-                    self._log("Calling callback with key: %s\n" % (key, ))
+                for key, fn in self.__callback_map[signal_name]:
+                    self._log("Calling callback with key: %s\n" % (key,))
                     try:
-                        if isinstance(fn, types.FunctionType) or \
-                                isinstance(fn, types.MethodType): # call func
+                        if isinstance(fn, types.FunctionType) or isinstance(
+                            fn, types.MethodType
+                        ):  # call func
                             fn(*args)
                         else:
                             self._warn("Badly formed entry in callback map.\n")
                     except:
-                        self._warn("Exception occurred in callback function.\n"
-                                   "%s" % ("".join(traceback.format_exception(*sys.exc_info())), ))
+                        self._warn(
+                            "Exception occurred in callback function.\n"
+                            "%s"
+                            % ("".join(traceback.format_exception(*sys.exc_info())),)
+                        )
         finally:
             self._current_signals.remove(signal_name)
+
+        del frame  # Needed for garbage collection
 
     #
     # instance signals control methods
@@ -454,4 +474,3 @@ class Callback:
     @classmethod
     def enable_all_signals(cls):
         cls.__BLOCK_ALL_SIGNALS = False
-

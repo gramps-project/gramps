@@ -18,33 +18,35 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 from ....lib.person import Person
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasUnknownGender
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasUnknownGender(Rule):
     """Rule that checks for a person that has unknown gender"""
 
-    name = _('People with unknown gender')
-    category = _('General filters')
-    description = _('Matches all people with unknown gender')
+    name = _("People with unknown gender")
+    category = _("General filters")
+    description = _("Matches all people with unknown gender")
 
-    def apply(self,db,person):
+    def apply(self, db, person):
         return person.gender == Person.UNKNOWN

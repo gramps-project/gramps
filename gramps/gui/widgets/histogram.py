@@ -21,54 +21,57 @@
 Provides a simple histogram widget for use in gramplets.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import math
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gtk modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GObject
 from gi.repository import Pango, PangoCairo
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 from ...gen.const import GRAMPS_LOCALE as glocale
+
 
 class Histogram(Gtk.DrawingArea):
     """
     A simple histogram widget for use in gramplets.
     """
 
-    __gsignals__ = {'clicked': (GObject.SignalFlags.RUN_FIRST, None, (int,))}
+    __gsignals__ = {"clicked": (GObject.SignalFlags.RUN_FIRST, None, (int,))}
 
     def __init__(self):
         Gtk.DrawingArea.__init__(self)
 
-        self.add_events(Gdk.EventMask.POINTER_MOTION_MASK |
-                        Gdk.EventMask.BUTTON_PRESS_MASK |
-                        Gdk.EventMask.BUTTON_RELEASE_MASK)
-        self.connect('motion-notify-event', self.on_pointer_motion)
-        self.connect('button-press-event', self.on_button_press)
+        self.add_events(
+            Gdk.EventMask.POINTER_MOTION_MASK
+            | Gdk.EventMask.BUTTON_PRESS_MASK
+            | Gdk.EventMask.BUTTON_RELEASE_MASK
+        )
+        self.connect("motion-notify-event", self.on_pointer_motion)
+        self.connect("button-press-event", self.on_button_press)
 
-        self.title = ''
-        self.bucket_axis = ''
-        self.value_axis = ''
+        self.title = ""
+        self.bucket_axis = ""
+        self.value_axis = ""
         self.grid_lines = True
         self.data = []
         self.labels = []
-        self.tooltip = ''
+        self.tooltip = ""
         self.highlight = None
         self.__bars = None
         self.__active = -1
@@ -162,7 +165,7 @@ class Histogram(Gtk.DrawingArea):
             width, height = layout.get_pixel_size()
             if width > label_width:
                 label_width = width
-            cr.move_to(0, i*height + offset)
+            cr.move_to(0, i * height + offset)
             PangoCairo.show_layout(cr, layout)
 
         layout = self.create_pango_layout(self.bucket_axis)
@@ -178,14 +181,14 @@ class Histogram(Gtk.DrawingArea):
         total = sum(self.data)
         for i in range(len(self.data)):
             if total > 0:
-                percent = glocale.format('%.2f', self.data[i] / total * 100)
+                percent = glocale.format_string("%.2f", self.data[i] / total * 100)
             else:
-                percent = ''
+                percent = ""
             layout = self.create_pango_layout(percent)
             width, height = layout.get_pixel_size()
             if width > percent_width:
                 percent_width = width
-            cr.move_to(allocation.width-width, i*height + offset)
+            cr.move_to(allocation.width - width, i * height + offset)
             PangoCairo.show_layout(cr, layout)
 
         layout = self.create_pango_layout(self.value_axis)
@@ -240,7 +243,7 @@ class Histogram(Gtk.DrawingArea):
                 cr.line_to(tick_pos, (2 * spacing) + offset)
                 cr.stroke()
                 cr.set_dash([])
-            layout = self.create_pango_layout('%d' % count)
+            layout = self.create_pango_layout("%d" % count)
             width, height = layout.get_pixel_size()
             cr.move_to(tick_pos - (width / 2), bottom + 5)
             PangoCairo.show_layout(cr, layout)
@@ -251,14 +254,20 @@ class Histogram(Gtk.DrawingArea):
         bar_size = height - (2 * spacing)
         self.__bars = []
         for i in range(len(self.labels)):
-            cr.rectangle(label_width,
-                         i * height + (2 * spacing) + offset,
-                         chart_width * self.data[i] / maximum,
-                         bar_size)
-            self.__bars.append([label_width,
-                                i * height + (2 * spacing) + offset,
-                                chart_width * self.data[i] / maximum,
-                                bar_size])
+            cr.rectangle(
+                label_width,
+                i * height + (2 * spacing) + offset,
+                chart_width * self.data[i] / maximum,
+                bar_size,
+            )
+            self.__bars.append(
+                [
+                    label_width,
+                    i * height + (2 * spacing) + offset,
+                    chart_width * self.data[i] / maximum,
+                    bar_size,
+                ]
+            )
             if i in self.highlight:
                 if self.__active == i:
                     cr.set_source_rgba(1, 0.7, 0, 1)
@@ -311,16 +320,20 @@ class Histogram(Gtk.DrawingArea):
             return False
         active = -1
         for i, bar in enumerate(self.__bars):
-            if (event.x > bar[0] and event.x < bar[0] + bar[2] and
-                    event.y > bar[1] and event.y < bar[1] + bar[3]):
+            if (
+                event.x > bar[0]
+                and event.x < bar[0] + bar[2]
+                and event.y > bar[1]
+                and event.y < bar[1] + bar[3]
+            ):
                 active = i
         if self.__active != active:
             self.__active = active
             self.queue_draw()
             if active == -1:
-                self.set_tooltip_text('')
+                self.set_tooltip_text("")
             else:
-                if '%d' in self.tooltip:
+                if "%d" in self.tooltip:
                     self.set_tooltip_text(self.tooltip % self.data[active])
                 else:
                     self.set_tooltip_text(self.tooltip)
@@ -334,7 +347,9 @@ class Histogram(Gtk.DrawingArea):
         @param event: An event.
         @type event: Gdk.Event
         """
-        if (event.button == 1 and
-                event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS and
-                self.__active != -1):
-            self.emit('clicked', self.__active)
+        if (
+            event.button == 1
+            and event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
+            and self.__active != -1
+        ):
+            self.emit("clicked", self.__active)

@@ -1,0 +1,21 @@
+.lozenge {
+  font-size: small;
+  color: #ffffff;
+  background-color: #0d6efd;
+  padding: 3px;
+  border-radius: 6px;
+  box-shadow: 0px 0px 6px black;
+}
+
+.addon-row {
+  border-width: 1px;
+  border-style: solid;
+  border-color: alpha(currentColor, .2);
+  border-radius: 10px;
+  margin: 1px;
+}
+
+paned>separator {
+  margin: 0px;
+  padding: 1px;
+}

@@ -22,42 +22,44 @@
 
 __all__ = ["UndoableEntry"]
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 import warnings
 import logging
+
 _LOG = logging.getLogger(".widgets.undoableentry")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gdk
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .undoablebuffer import Stack
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 # table for skipping illegal control chars
-INVISIBLE = dict.fromkeys(list(range(32)) + [0x202d, 0x202e])
+INVISIBLE = dict.fromkeys(list(range(32)) + [0x202D, 0x202E])
 
 
 class UndoableInsertEntry:
     """something that has been inserted into our Gtk.editable"""
+
     def __init__(self, text, length, position):
         self.offset = position
         self.text = text
-        #unicode char can have length > 1 as it points in the buffer
+        # unicode char can have length > 1 as it points in the buffer
         charlength = len(text)
         self.length = charlength
         if charlength > 1 or self.text in ("\r", "\n", " "):
@@ -65,8 +67,10 @@ class UndoableInsertEntry:
         else:
             self.mergeable = True
 
+
 class UndoableDeleteEntry:
     """something that has been deleted from our textbuffer"""
+
     def __init__(self, editable, start, end):
         self.text = editable.get_chars(start, end)
         self.start = start
@@ -83,6 +87,7 @@ class UndoableDeleteEntry:
         else:
             self.mergeable = True
 
+
 class UndoableEntry(Gtk.Entry, Gtk.Editable):
     """
     The UndoableEntry is an Entry subclass with additional features.
@@ -94,12 +99,13 @@ class UndoableEntry(Gtk.Entry, Gtk.Editable):
         coordinates and similar numbers that might contain RTL characters.
         See set_ltr_mode.
     """
-    __gtype_name__ = 'UndoableEntry'
+
+    __gtype_name__ = "UndoableEntry"
 
     insertclass = UndoableInsertEntry
     deleteclass = UndoableDeleteEntry
 
-    #how many undo's are remembered
+    # how many undo's are remembered
     undo_stack_size = 50
 
     def __init__(self):
@@ -109,14 +115,14 @@ class UndoableEntry(Gtk.Entry, Gtk.Editable):
         self.undo_in_progress = False
         self.ltr_mode = False
         Gtk.Entry.__init__(self)
-        self.connect('delete-text', self._on_delete_text)
-        self.connect('key-press-event', self._on_key_press_event)
+        self.connect("delete-text", self._on_delete_text)
+        self.connect("key-press-event", self._on_key_press_event)
 
     def set_text(self, text):
         with warnings.catch_warnings():
             # Suppress warnings.  See bug #8029.
             # https://bugzilla.gnome.org/show_bug.cgi?id=644927
-            warnings.simplefilter('ignore')
+            warnings.simplefilter("ignore")
             Gtk.Entry.set_text(self, text)
         self.reset()
 
@@ -125,15 +131,16 @@ class UndoableEntry(Gtk.Entry, Gtk.Editable):
         Handle formatting undo/redo key press.
 
         """
-        keymap = Gdk.Keymap.get_default();
+        keymap = Gdk.Keymap.get_for_display(Gdk.Display.get_default())
         primary = keymap.get_modifier_mask(Gdk.ModifierIntent.PRIMARY_ACCELERATOR)
-        if ((Gdk.keyval_name(event.keyval) == 'Z') and
-            (event.get_state() & primary) and
-            (event.get_state() & Gdk.ModifierType.SHIFT_MASK)):
+        if (
+            (Gdk.keyval_name(event.keyval) == "Z")
+            and (event.get_state() & primary)
+            and (event.get_state() & Gdk.ModifierType.SHIFT_MASK)
+        ):
             self.redo()
             return True
-        elif ((Gdk.keyval_name(event.keyval) == 'z') and
-              (event.get_state() & primary)):
+        elif (Gdk.keyval_name(event.keyval) == "z") and (event.get_state() & primary):
             self.undo()
             return True
 
@@ -153,7 +160,7 @@ class UndoableEntry(Gtk.Entry, Gtk.Editable):
             can't merge across word boundaries
             """
 
-            WHITESPACE = (' ', '\t')
+            WHITESPACE = (" ", "\t")
             if not cur.mergeable or not prev.mergeable:
                 return False
             # offset is char offset, not byte, so length is the char length!
@@ -196,7 +203,6 @@ class UndoableEntry(Gtk.Entry, Gtk.Editable):
         self.get_buffer().insert_text(position, text, len(text))
         return position + len(text)
 
-
     def _on_delete_text(self, editable, start, end):
         def can_be_merged(prev, cur):
             """
@@ -208,18 +214,16 @@ class UndoableEntry(Gtk.Entry, Gtk.Editable):
             can't merge across word boundaries
             """
 
-            WHITESPACE = (' ', '\t')
+            WHITESPACE = (" ", "\t")
             if not cur.mergeable or not prev.mergeable:
                 return False
             elif prev.delete_key_used != cur.delete_key_used:
                 return False
             elif prev.start != cur.start and prev.start != cur.end:
                 return False
-            elif cur.text not in WHITESPACE and \
-               prev.text in WHITESPACE:
+            elif cur.text not in WHITESPACE and prev.text in WHITESPACE:
                 return False
-            elif cur.text in WHITESPACE and \
-               prev.text not in WHITESPACE:
+            elif cur.text in WHITESPACE and prev.text not in WHITESPACE:
                 return False
             return True
 
@@ -253,10 +257,9 @@ class UndoableEntry(Gtk.Entry, Gtk.Editable):
             if can_be_merged(prev_delete, undo_action):
                 if prev_delete.start == undo_action.start:  # delete key used
                     prev_delete.text += undo_action.text
-                    prev_delete.end += (undo_action.end - undo_action.start)
+                    prev_delete.end += undo_action.end - undo_action.start
                 else:  # Backspace used
-                    prev_delete.text = "%s%s" % (undo_action.text,
-                                                 prev_delete.text)
+                    prev_delete.text = "%s%s" % (undo_action.text, prev_delete.text)
                     prev_delete.start = undo_action.start
                 self.undo_stack.append(prev_delete)
             else:
@@ -264,7 +267,7 @@ class UndoableEntry(Gtk.Entry, Gtk.Editable):
                 self.undo_stack.append(undo_action)
             break
         self.get_buffer().delete_text(start, end - start)
-        self.stop_emission_by_name('delete-text')
+        self.stop_emission_by_name("delete-text")
         return True
 
     def begin_not_undoable_action(self):
@@ -315,7 +318,7 @@ class UndoableEntry(Gtk.Entry, Gtk.Editable):
 
     def _undo_delete(self, undo_action):
         with warnings.catch_warnings():
-            warnings.simplefilter('ignore')
+            warnings.simplefilter("ignore")
             self.insert_text(undo_action.text, undo_action.start)
         if undo_action.delete_key_used:
             self.set_position(undo_action.start)
@@ -359,7 +362,7 @@ class UndoableEntry(Gtk.Entry, Gtk.Editable):
         raise NotImplementedError
 
     def set_ltr_mode(self):
-        """ sets up the Entry to always be in LTR left to right even if some
+        """sets up the Entry to always be in LTR left to right even if some
         characters are RTL.
         This works by inserting the LRO/PDF Unicode Explicit Directional
         Override characters around the entry text.  These characters are then
@@ -378,8 +381,8 @@ class UndoableEntry(Gtk.Entry, Gtk.Editable):
             self.ltr_mode = True
 
     def do_set_position(self, position):
-        """ In ltr_mode, this ensures that the cursor cannot be put outside
-        the LRO/PDF characters on the ends of the buffer. """
+        """In ltr_mode, this ensures that the cursor cannot be put outside
+        the LRO/PDF characters on the ends of the buffer."""
         if position < 0:
             position = self.get_text_length()
         if self.ltr_mode:
@@ -390,7 +393,6 @@ class UndoableEntry(Gtk.Entry, Gtk.Editable):
         Gtk.Editable.select_region(self, position, position)
 
     def get_text(self):
-        """ Used to remove the LRO/PDF characters when in ltr_mode.
-        """
+        """Used to remove the LRO/PDF characters when in ltr_mode."""
         text = Gtk.Entry.get_text(self)
         return text[1:-1] if self.ltr_mode else text

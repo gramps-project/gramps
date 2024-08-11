@@ -22,16 +22,18 @@
 Provide autocompletion functionality.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import GObject
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
+
 
 def fill_combo(combo, data_list):
     """
@@ -51,6 +53,7 @@ def fill_combo(combo, data_list):
     completion.set_text_column(0)
     combo.get_child().set_completion(completion)
 
+
 def fill_entry(entry, data_list):
     """
     Fill a entry with completion data
@@ -68,11 +71,12 @@ def fill_entry(entry, data_list):
     completion.set_text_column(0)
     entry.set_completion(completion)
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # StandardCustomSelector class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class StandardCustomSelector:
     """
     This class provides an interface to selecting from the predefined
@@ -103,8 +107,16 @@ class StandardCustomSelector:
     (active_key,mapping[active_key]) tuple.
 
     """
-    def __init__(self, mapping, cbe=None, custom_key=None, active_key=None,
-                 additional=None, menu=None):
+
+    def __init__(
+        self,
+        mapping,
+        cbe=None,
+        custom_key=None,
+        active_key=None,
+        additional=None,
+        menu=None,
+    ):
         """
         Constructor for the StandardCustomSelector class.
 
@@ -146,13 +158,13 @@ class StandardCustomSelector:
 
         if menu:
             for cell in self.selector.get_cells():
-                self.selector.add_attribute(cell, 'sensitive', 2)
+                self.selector.add_attribute(cell, "sensitive", 2)
 
-        #renderer = Gtk.CellRendererText()
-        #self.selector.pack_start(renderer, True)
-        #self.selector.add_attribute(renderer, 'text', 1)
-        #if self.active_key is not None:
-            #self.selector.set_active(self.active_index)
+        # renderer = Gtk.CellRendererText()
+        # self.selector.pack_start(renderer, True)
+        # self.selector.add_attribute(renderer, 'text', 1)
+        # if self.active_key is not None:
+        # self.selector.set_active(self.active_index)
 
         # make autocompletion work
         completion = Gtk.EntryCompletion()
@@ -176,7 +188,7 @@ class StandardCustomSelector:
                 store.append(parent, row=[item, self.mapping[item], True])
 
         if self.additional:
-            parent = store.append(None, row=[None, _('Custom'), False])
+            parent = store.append(None, row=[None, _("Custom"), False])
             for event_type in self.additional:
                 key, value = self.get_key_and_value(event_type)
                 store.append(parent, row=[key, value, True])
@@ -271,4 +283,4 @@ class StandardCustomSelector:
             if event_type[1]:
                 return (event_type[0], event_type[1])
         else:
-            return(int(event_type), str(event_type))
+            return (int(event_type), str(event_type))

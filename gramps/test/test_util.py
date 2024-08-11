@@ -38,7 +38,9 @@ from gramps.cli.argparser import ArgParser
 from gramps.cli.arghandler import ArgHandler
 from gramps.gen.const import USER_DIRLIST
 from gramps.gen.filters import reload_custom_filters
+
 reload_custom_filters()  # so reports with filter options don't fail
+
 
 # _caller_context is primarily here to support and document the process
 # of determining the test-module's directory.
@@ -54,7 +56,7 @@ def _caller_context():
     st = traceback.extract_stack(limit=lim)
     thisfile = __file__.rstrip("co")  # eg, in ".py[co]
     while st and st[-1][0] == thisfile:
-        del(st[-1])
+        del st[-1]
     if not st:
         raise TestError("Unexpected function call chain length!")
     return st[-1]
@@ -74,8 +76,10 @@ class TestError(Exception):
     Use this, for example, to distuinguish testing errors.
 
     """
+
     def __init__(self, value):
         self.value = value
+
     def __str__(self):
         return repr(self.value)
 
@@ -150,10 +154,11 @@ def make_subdir(dir, parent=None):
     """
     if not parent:
         parent = _caller_dir()
-    sdir = os.path.join(parent,dir)
+    sdir = os.path.join(parent, dir)
     if not os.path.exists(sdir):
         os.mkdir(sdir)
     return sdir
+
 
 def delete_tree(dir):
     """Recursively delete directory and content
@@ -170,14 +175,16 @@ def delete_tree(dir):
     here = _caller_dir() + os.path.sep
     tmp = tempfile.gettempdir() + os.path.sep
     if not (sdir.startswith(here) or sdir.startswith(tmp)):
-        raise TestError("%r is not a subdir of here (%r) or %r"
-            % (dir, here, tmp))
+        raise TestError("%r is not a subdir of here (%r) or %r" % (dir, here, tmp))
     shutil.rmtree(sdir)
+
 
 ### Support for testing CLI
 
+
 def new_exit(edit_code=None):
     raise SystemExit()
+
 
 @contextlib.contextmanager
 def capture(stdin, bytesio=False):
@@ -205,12 +212,14 @@ def capture(stdin, bytesio=False):
         output[0] = output[0].getvalue()
         output[1] = output[1].getvalue()
 
+
 class Gramps:
     def __init__(self, user=None, dbstate=None):
         ## Setup:
         from gramps.cli.clidbman import CLIDbManager
+
         self.dbstate = dbstate or DbState()
-        #we need a manager for the CLI session
+        # we need a manager for the CLI session
         self.user = user or User()
         self.climanager = CLIManager(self.dbstate, setloader=True, user=self.user)
         self.clidbmanager = CLIDbManager(self.dbstate)
@@ -218,7 +227,7 @@ class Gramps:
     def run(self, *args, stdin=None, bytesio=False):
         with capture(stdin, bytesio=bytesio) as output:
             try:
-                try:    # make sure we have user directories
+                try:  # make sure we have user directories
                     for path in USER_DIRLIST:
                         if not os.path.isdir(path):
                             os.makedirs(path)
@@ -226,7 +235,7 @@ class Gramps:
                     print("Error creating user directories: " + str(msg))
                 except:
                     print("Error reading configuration.", exc_info=True)
-                #load the plugins
+                # load the plugins
                 self.climanager.do_reg_plugins(self.dbstate, uistate=None)
                 # handle the arguments
                 args = [sys.executable] + list(args)
@@ -249,4 +258,5 @@ class Gramps:
 
         return output
 
-#===eof===
+
+# ===eof===

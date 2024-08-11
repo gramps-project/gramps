@@ -20,40 +20,44 @@
 
 # gen.filters.rules/_ChangedSinceBase.py
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import re
 import time
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import Rule
 from ...errors import FilterError
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # ChangedSince
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class ChangedSinceBase(Rule):
     """
     Rule that checks for primary objects changed since a specific time.
     """
 
-    labels = [ 'Changed after:', 'but before:' ]
-    name = 'Objects changed after <date time>'
-    description = "Matches object records changed after a specified " \
-                    "date/time (yyyy-mm-dd hh:mm:ss) or in range, if a second " \
-                    "date/time is given."
-    category = _('General filters')
+    labels = ["Changed after:", "but before:"]
+    name = "Objects changed after <date time>"
+    description = (
+        "Matches object records changed after a specified "
+        "date/time (yyyy-mm-dd hh:mm:ss) or in range, if a second "
+        "date/time is given."
+    )
+    category = _("General filters")
 
     def add_time(self, date):
         if re.search(r"\d.*\s+\d{1,2}:\d{2}:\d{2}", date):
@@ -80,9 +84,13 @@ class ChangedSinceBase(Rule):
         except ValueError:
             raise FilterError(
                 _("Wrong format of date-time"),
-                _("Only date-times in the iso format of yyyy-mm-dd "
-                  "hh:mm:ss, where the time part is optional, are "
-                  "accepted. %s does not satisfy.") % iso_date_time)
+                _(
+                    "Only date-times in the iso format of yyyy-mm-dd "
+                    "hh:mm:ss, where the time part is optional, are "
+                    "accepted. %s does not satisfy."
+                )
+                % iso_date_time,
+            )
         return time_sec
 
     def prepare(self, db, user):

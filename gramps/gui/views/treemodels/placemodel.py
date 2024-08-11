@@ -24,49 +24,51 @@
 """
 Place Model.
 """
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 _LOG = logging.getLogger(".gui.views.treemodels.placemodel")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.lib import Place, PlaceType
 from gramps.gen.datehandler import format_time
-from gramps.gen.utils.place import conv_lat_lon
+from gramps.gen.utils.place import conv_lat_lon, coord_formats
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.config import config
 from .flatbasemodel import FlatBaseModel
 from .treebasemodel import TreeBaseModel
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # internationalization
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # PlaceBaseModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class PlaceBaseModel:
-
     def __init__(self, db):
         self.gen_cursor = db.get_place_cursor
         self.map = db.get_raw_place_data
@@ -83,7 +85,7 @@ class PlaceBaseModel:
             self.column_change,
             self.column_tag_color,
             self.search_name,
-            ]
+        ]
         self.smap = [
             self.column_name,
             self.column_id,
@@ -97,7 +99,7 @@ class PlaceBaseModel:
             self.sort_change,
             self.column_tag_color,
             self.search_name,
-            ]
+        ]
 
     def destroy(self):
         """
@@ -116,7 +118,7 @@ class PlaceBaseModel:
         return 10
 
     def on_get_n_columns(self):
-        return len(self.fmap)+1
+        return len(self.fmap) + 1
 
     def column_title(self, data):
         handle = data[0]
@@ -129,42 +131,45 @@ class PlaceBaseModel:
         return value
 
     def column_name(self, data):
-        """ Return the primary name """
+        """Return the primary name"""
         return data[6][0]
 
     def search_name(self, data):
-        """ The search name includes all alt names to enable finding by alt name
-        """
-        return ','.join([data[6][0]] + [name[0] for name in data[7]])
+        """The search name includes all alt names to enable finding by alt name"""
+        return ",".join([data[6][0]] + [name[0] for name in data[7]])
 
     def column_longitude(self, data):
         if not data[3]:
-            return ''
-        value = conv_lat_lon('0', data[3], format='DEG')[1]
+            return ""
+        value = conv_lat_lon(
+            "0", data[3], format=coord_formats[config.get("preferences.coord-format")]
+        )[1]
         if not value:
             return _("Error in format")
         return ("\u202d" + value + "\u202e") if glocale.rtl_locale else value
 
     def column_latitude(self, data):
         if not data[4]:
-            return ''
-        value = conv_lat_lon(data[4], '0', format='DEG')[0]
+            return ""
+        value = conv_lat_lon(
+            data[4], "0", format=coord_formats[config.get("preferences.coord-format")]
+        )[0]
         if not value:
             return _("Error in format")
         return ("\u202d" + value + "\u202e") if glocale.rtl_locale else value
 
     def sort_longitude(self, data):
         if not data[3]:
-            return ''
-        value = conv_lat_lon('0', data[3], format='ISO-DMS') if data[3] else ''
+            return ""
+        value = conv_lat_lon("0", data[3], format="ISO-DMS") if data[3] else ""
         if not value:
-             return _("Error in format")
+            return _("Error in format")
         return value
 
     def sort_latitude(self, data):
         if not data[4]:
-            return ''
-        value = conv_lat_lon(data[4], '0', format='ISO-DMS') if data[4] else ''
+            return ""
+        value = conv_lat_lon(data[4], "0", format="ISO-DMS") if data[4] else ""
         if not value:
             return _("Error in format")
         return value
@@ -180,10 +185,10 @@ class PlaceBaseModel:
 
     def column_private(self, data):
         if data[17]:
-            return 'gramps-lock'
+            return "gramps-lock"
         else:
             # There is a problem returning None here.
-            return ''
+            return ""
 
     def sort_change(self, data):
         return "%012x" % data[15]
@@ -227,7 +232,7 @@ class PlaceBaseModel:
         """
         tag_list = list(map(self.get_tag_name, data[16]))
         # TODO for Arabic, should the next line's comma be translated?
-        return ', '.join(sorted(tag_list, key=glocale.sort_key))
+        return ", ".join(sorted(tag_list, key=glocale.sort_key))
 
     def clear_cache(self, handle=None):
         """
@@ -249,21 +254,31 @@ class PlaceBaseModel:
         # Invalidates all paths
         self.lru_path.clear()
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # PlaceListModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class PlaceListModel(PlaceBaseModel, FlatBaseModel):
     """
     Flat place model.  (Original code in PlaceBaseModel).
     """
-    def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
-                 search=None, skip=set(), sort_map=None):
 
+    def __init__(
+        self,
+        db,
+        uistate,
+        scol=0,
+        order=Gtk.SortType.ASCENDING,
+        search=None,
+        skip=set(),
+        sort_map=None,
+    ):
         PlaceBaseModel.__init__(self, db)
-        FlatBaseModel.__init__(self, db, uistate, scol, order, search=search,
-                               skip=skip, sort_map=sort_map)
+        FlatBaseModel.__init__(
+            self, db, uistate, scol, order, search=search, skip=skip, sort_map=sort_map
+        )
 
     def destroy(self):
         """
@@ -272,23 +287,40 @@ class PlaceListModel(PlaceBaseModel, FlatBaseModel):
         PlaceBaseModel.destroy(self)
         FlatBaseModel.destroy(self)
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # PlaceTreeModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
     """
     Hierarchical place model.
     """
-    def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
-                 search=None, skip=set(), sort_map=None):
 
+    def __init__(
+        self,
+        db,
+        uistate,
+        scol=0,
+        order=Gtk.SortType.ASCENDING,
+        search=None,
+        skip=set(),
+        sort_map=None,
+    ):
         PlaceBaseModel.__init__(self, db)
-        TreeBaseModel.__init__(self, db, uistate, scol=scol, order=order,
-                               search=search, skip=skip, sort_map=sort_map,
-                               nrgroups=3,
-                               group_can_have_handle=True)
+        TreeBaseModel.__init__(
+            self,
+            db,
+            uistate,
+            scol=scol,
+            order=order,
+            search=search,
+            skip=skip,
+            sort_map=sort_map,
+            nrgroups=3,
+            group_can_have_handle=True,
+        )
 
     def destroy(self):
         """
@@ -309,7 +341,7 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
         """
         Return the headings of the levels in the hierarchy.
         """
-        return [_('Country'), _('State'), _('County'), _('Place')]
+        return [_("Country"), _("State"), _("County"), _("Place")]
 
     def add_row(self, handle, data):
         """
@@ -333,4 +365,4 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
 
     def column_header(self, data):
         # should not get here!
-        return '????'
+        return "????"

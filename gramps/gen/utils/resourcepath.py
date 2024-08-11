@@ -21,12 +21,14 @@
 import sys
 import os
 import logging
+
 LOG = logging.getLogger("ResourcePath")
 _hdlr = logging.StreamHandler()
 _hdlr.setFormatter(logging.Formatter(fmt="%(name)s.%(levelname)s: %(message)s"))
 LOG.addHandler(_hdlr)
 
 from ..constfunc import get_env_var
+
 
 class ResourcePath:
     """
@@ -43,12 +45,12 @@ class ResourcePath:
     The package path will be one of the following:
 
     <prefix>/lib/pythonX.Y/site-packages
-    <prefix>\Lib\site-packages
+    <prefix>\\Lib\\site-packages
 
     <home>/lib/python
 
     <userbase>/lib/pythonX.Y/site-packages
-    <userbase>\PythonXY\site-packages
+    <userbase>\\PythonXY\\site-packages
 
     Where <prefix>, <home> and <userbase> are the resource paths used in the
     Prefix, Home and User installation schemes.
@@ -56,7 +58,9 @@ class ResourcePath:
     The use of the command line option "--install-data" in the setup script
     is no longer supported.
     """
+
     instance = None
+
     def __new__(cls):
         if not cls.instance:
             cls.instance = super(ResourcePath, cls).__new__(cls)
@@ -67,32 +71,33 @@ class ResourcePath:
     def __init__(self):
         if self.initialized:
             return
-        package_path = os.path.abspath(os.path.join(os.path.dirname(
-            __file__), '..', "..", ".."))
-        installed = not os.path.exists(os.path.join(package_path, '.git'))
+        package_path = os.path.abspath(
+            os.path.join(os.path.dirname(__file__), "..", "..", "..")
+        )
+        installed = not os.path.exists(os.path.join(package_path, ".git"))
         if installed:
             test_path = os.path.join("gramps", "authors.xml")
         else:
             test_path = os.path.join("data", "authors.xml")
         resource_path = None
-        tmp_path = get_env_var('GRAMPS_RESOURCES')
-        if (tmp_path and os.path.exists(os.path.join(tmp_path, test_path))):
+        tmp_path = get_env_var("GRAMPS_RESOURCES")
+        if tmp_path and os.path.exists(os.path.join(tmp_path, test_path)):
             resource_path = tmp_path
         elif installed:
             base_path = None
             head, tail = os.path.split(package_path)
-            if tail in ('site-packages', 'dist-packages'):
+            if tail in ("site-packages", "dist-packages"):
                 # Prefix or User installation scheme
                 head, tail = os.path.split(head)
-                if tail.startswith('python'):
+                if tail.startswith("python"):
                     base_path, tail = os.path.split(head)
-                elif tail == 'Lib' or tail.startswith('Python'):
+                elif tail == "Lib" or tail.startswith("Python"):
                     base_path = head
-            elif tail == 'python':
+            elif tail == "python":
                 # Home installation scheme
                 base_path, tail = os.path.split(head)
             if base_path is not None:
-                resource_path = os.path.join(base_path, 'share')
+                resource_path = os.path.join(base_path, "share")
             else:
                 LOG.error("Unable to determine resource path")
                 sys.exit(1)
@@ -100,23 +105,21 @@ class ResourcePath:
             # Let's try to run from source without env['GRAMPS_RESOURCES']:
             resource_path = package_path
 
-        if (not os.path.exists(os.path.join(resource_path, test_path))):
+        if not os.path.exists(os.path.join(resource_path, test_path)):
             LOG.error("Resource Path %s is invalid", resource_path)
             sys.exit(1)
 
         resource_path = os.path.abspath(resource_path)
         if installed:
-            self.locale_dir = os.path.join(resource_path, 'locale')
-            self.data_dir = os.path.join(resource_path, 'gramps')
-            self.image_dir = os.path.join(resource_path, 'gramps', 'images')
-            self.doc_dir = os.path.join(resource_path, 'doc', 'gramps')
+            self.locale_dir = os.path.join(resource_path, "locale")
+            self.data_dir = os.path.join(resource_path, "gramps")
+            self.image_dir = os.path.join(resource_path, "gramps", "images")
+            self.doc_dir = os.path.join(resource_path, "doc", "gramps")
 
         else:
-            self.locale_dir = os.path.join(resource_path, 'build', 'mo')
-            self.image_dir = os.path.join(resource_path, 'images')
-            self.data_dir = os.path.join(resource_path, 'data')
-            self.doc_dir = os.path.join(resource_path, 'build', 'data')
+            self.locale_dir = os.path.join(resource_path, "build", "mo")
+            self.image_dir = os.path.join(resource_path, "images")
+            self.data_dir = os.path.join(resource_path, "data")
+            self.doc_dir = os.path.join(resource_path, "build", "data")
 
         self.initialized = True
-
-

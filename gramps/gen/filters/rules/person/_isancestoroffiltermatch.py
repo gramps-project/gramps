@@ -18,36 +18,39 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ._isancestorof import IsAncestorOf
 from ._matchesfilter import MatchesFilter
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # IsAncestorOfFilterMatch
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class IsAncestorOfFilterMatch(IsAncestorOf):
     """Rule that checks for a person that is an ancestor of
     someone matched by a filter"""
 
-    labels = [ _('Filter name:') ]
-    name = _('Ancestors of <filter> match')
+    labels = [_("Filter name:")]
+    name = _("Ancestors of <filter> match")
     category = _("Ancestral filters")
-    description = _("Matches people that are ancestors "
-                    "of anybody matched by a filter")
+    description = _(
+        "Matches people that are ancestors " "of anybody matched by a filter"
+    )
 
     def prepare(self, db, user):
         self.db = db
@@ -63,9 +66,11 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
         self.filt = MatchesFilter(self.list[0:1])
         self.filt.requestprepare(db, user)
         if user:
-            user.begin_progress(self.category,
-                                _('Retrieving all sub-filter matches'),
-                                db.get_number_of_people())
+            user.begin_progress(
+                self.category,
+                _("Retrieving all sub-filter matches"),
+                db.get_number_of_people(),
+            )
         for person in db.iter_people():
             if user:
                 user.step_progress()
@@ -78,5 +83,5 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
         self.filt.requestreset()
         self.map.clear()
 
-    def apply(self,db,person):
+    def apply(self, db, person):
         return person.handle in self.map

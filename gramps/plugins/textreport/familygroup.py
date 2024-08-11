@@ -24,19 +24,20 @@
 
 """Reports/Text Reports/Family Group Report"""
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Python Library
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from functools import partial
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from gramps.gen.lib import EventRoleType, EventType, NoteType, Person
 from gramps.gen.plug.menu import BooleanOption, FamilyOption, FilterOption
@@ -44,22 +45,30 @@ from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
-from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
-                                    TableStyle, TableCellStyle,
-                                    FONT_SANS_SERIF, FONT_SERIF,
-                                    INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
+from gramps.gen.plug.docgen import (
+    IndexMark,
+    FontStyle,
+    ParagraphStyle,
+    TableStyle,
+    TableCellStyle,
+    FONT_SANS_SERIF,
+    FONT_SERIF,
+    INDEX_TYPE_TOC,
+    PARA_ALIGN_CENTER,
+)
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.proxy import CacheProxyDb
 from gramps.gen.errors import ReportError
 from gramps.gen.utils.db import family_name
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # FamilyGroup
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class FamilyGroup(Report):
-    """ Family Group Report """
+    """Family Group Report"""
 
     def __init__(self, database, options, user):
         """
@@ -87,8 +96,8 @@ class FamilyGroup(Report):
         self._user = user
         menu = options.menu
 
-        self.set_locale(menu.get_option_by_name('trans').get_value())
-        self._ = self._locale.translation.sgettext # needed for English
+        self.set_locale(menu.get_option_by_name("trans").get_value())
+        self._ = self._locale.translation.sgettext  # needed for English
 
         stdoptions.run_date_format_option(self, menu)
 
@@ -97,23 +106,23 @@ class FamilyGroup(Report):
         self.database = CacheProxyDb(self.database)
         self.db = self.database
 
-        self.filter = menu.get_option_by_name('filter').get_filter()
+        self.filter = menu.get_option_by_name("filter").get_filter()
 
         get_option_by_name = menu.get_option_by_name
         get_value = lambda name: get_option_by_name(name).get_value()
-        self.gramps_ids = get_value('inc_id')
-        self.recursive = get_value('recursive')
-        self.missing_info = get_value('missinginfo')
-        self.generations = get_value('generations')
-        self.inc_fam_notes = get_value('incFamNotes')
-        self.inc_par_events = get_value('incParEvents')
-        self.inc_par_addr = get_value('incParAddr')
-        self.inc_par_notes = get_value('incParNotes')
-        self.inc_par_names = get_value('incParNames')
-        self.inc_par_mar = get_value('incParMar')
-        self.inc_rel_dates = get_value('incRelDates')
-        self.inc_chi_mar = get_value('incChiMar')
-        self.include_attrs = get_value('incattrs')
+        self.gramps_ids = get_value("inc_id")
+        self.recursive = get_value("recursive")
+        self.missing_info = get_value("missinginfo")
+        self.generations = get_value("generations")
+        self.inc_fam_notes = get_value("incFamNotes")
+        self.inc_par_events = get_value("incParEvents")
+        self.inc_par_addr = get_value("incParAddr")
+        self.inc_par_notes = get_value("incParNotes")
+        self.inc_par_names = get_value("incParNames")
+        self.inc_par_mar = get_value("incParMar")
+        self.inc_rel_dates = get_value("incRelDates")
+        self.inc_chi_mar = get_value("incChiMar")
+        self.include_attrs = get_value("incattrs")
 
         stdoptions.run_name_format_option(self, menu)
 
@@ -127,7 +136,7 @@ class FamilyGroup(Report):
             date = self._get_date(event.get_date_object())
             place = _pd.display_event(self.db, event, self.place_format)
             if place is None:
-                place = ''
+                place = ""
             descr = event.get_description()
 
             if self.include_attrs:
@@ -137,20 +146,21 @@ class FamilyGroup(Report):
                         descr += self._("; ")
                     attr_type = self._get_type(attr.get_type())
                     # Translators: needed for French, ignore otherwise
-                    descr += self._("%(str1)s: %(str2)s"
-                                   ) % {'str1' : self._(attr_type),
-                                        'str2' : attr.get_value()}
+                    descr += self._("%(str1)s: %(str2)s") % {
+                        "str1": self._(attr_type),
+                        "str2": attr.get_value(),
+                    }
 
         self.doc.start_row()
         self.doc.start_cell("FGR-TextContents")
-        self.doc.start_paragraph('FGR-Normal')
+        self.doc.start_paragraph("FGR-Normal")
         self.doc.write_text(name)
         self.doc.end_paragraph()
         self.doc.end_cell()
 
         if descr:
             self.doc.start_cell("FGR-TextContentsEnd", 2)
-            self.doc.start_paragraph('FGR-Normal')
+            self.doc.start_paragraph("FGR-Normal")
             self.doc.write_text(descr)
             self.doc.end_paragraph()
             self.doc.end_cell()
@@ -159,18 +169,18 @@ class FamilyGroup(Report):
             if date or place:
                 self.doc.start_row()
                 self.doc.start_cell("FGR-TextContents")
-                self.doc.start_paragraph('FGR-Normal')
+                self.doc.start_paragraph("FGR-Normal")
                 self.doc.end_paragraph()
                 self.doc.end_cell()
 
         if (date or place) or not descr:
             self.doc.start_cell("FGR-TextContents")
-            self.doc.start_paragraph('FGR-Normal')
+            self.doc.start_paragraph("FGR-Normal")
             self.doc.write_text(date)
             self.doc.end_paragraph()
             self.doc.end_cell()
             self.doc.start_cell("FGR-TextContentsEnd")
-            self.doc.start_paragraph('FGR-Normal')
+            self.doc.start_paragraph("FGR-Normal")
             self.doc.write_text(place)
             self.doc.end_paragraph()
             self.doc.end_cell()
@@ -228,12 +238,12 @@ class FamilyGroup(Report):
         if father_name != "":
             self.doc.start_row()
             self.doc.start_cell("FGR-TextContents")
-            self.doc.start_paragraph('FGR-Normal')
+            self.doc.start_paragraph("FGR-Normal")
             self.doc.write_text(self._("Father"))
             self.doc.end_paragraph()
             self.doc.end_cell()
             self.doc.start_cell("FGR-TextContentsEnd", 2)
-            self.doc.start_paragraph('FGR-Normal')
+            self.doc.start_paragraph("FGR-Normal")
             mark = utils.get_person_mark(self.db, father)
             self.doc.write_text(father_name, mark)
             self.doc.end_paragraph()
@@ -245,12 +255,12 @@ class FamilyGroup(Report):
         if mother_name != "":
             self.doc.start_row()
             self.doc.start_cell("FGR-TextContents")
-            self.doc.start_paragraph('FGR-Normal')
+            self.doc.start_paragraph("FGR-Normal")
             self.doc.write_text(self._("Mother"))
             self.doc.end_paragraph()
             self.doc.end_cell()
             self.doc.start_cell("FGR-TextContentsEnd", 2)
-            self.doc.start_paragraph('FGR-Normal')
+            self.doc.start_paragraph("FGR-Normal")
             mark = utils.get_person_mark(self.db, mother)
             self.doc.write_text(mother_name, mark)
             self.doc.end_paragraph()
@@ -262,12 +272,12 @@ class FamilyGroup(Report):
     def dump_parent_line(self, name, text):
         self.doc.start_row()
         self.doc.start_cell("FGR-TextContents")
-        self.doc.start_paragraph('FGR-Normal')
+        self.doc.start_paragraph("FGR-Normal")
         self.doc.write_text(name)
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.start_cell("FGR-TextContentsEnd", 2)
-        self.doc.start_paragraph('FGR-Normal')
+        self.doc.start_paragraph("FGR-Normal")
         self.doc.write_text(text)
         self.doc.end_paragraph()
         self.doc.end_cell()
@@ -276,19 +286,21 @@ class FamilyGroup(Report):
     def dump_parent_noteline(self, name, note):
         self.doc.start_row()
         self.doc.start_cell("FGR-TextContents")
-        self.doc.start_paragraph('FGR-Normal')
+        self.doc.start_paragraph("FGR-Normal")
         self.doc.write_text(name)
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.start_cell("FGR-TextContentsEnd", 2)
         self.doc.write_styled_note(
-            note.get_styledtext(), note.get_format(), 'FGR-Note',
-            contains_html=(note.get_type() == NoteType.HTML_CODE))
+            note.get_styledtext(),
+            note.get_format(),
+            "FGR-Note",
+            contains_html=(note.get_type() == NoteType.HTML_CODE),
+        )
         self.doc.end_cell()
         self.doc.end_row()
 
     def dump_parent(self, table_name, person_handle):
-
         if not person_handle and not self.missing_info:
             return
         elif not person_handle:
@@ -297,10 +309,10 @@ class FamilyGroup(Report):
             person = self.db.get_person_from_handle(person_handle)
         name = self._name_display.display(person)
 
-        self.doc.start_table(table_name, 'FGR-ParentTable')
+        self.doc.start_table(table_name, "FGR-ParentTable")
         self.doc.start_row()
-        self.doc.start_cell('FGR-ParentHead', 3)
-        self.doc.start_paragraph('FGR-ParentName')
+        self.doc.start_cell("FGR-ParentHead", 3)
+        self.doc.start_paragraph("FGR-ParentName")
         mark = utils.get_person_mark(self.db, person)
         self.doc.write_text(name, mark)
         if self.gramps_ids:
@@ -344,17 +356,17 @@ class FamilyGroup(Report):
 
                 self.doc.start_row()
                 self.doc.start_cell("FGR-TextContents")
-                self.doc.start_paragraph('FGR-Normal')
+                self.doc.start_paragraph("FGR-Normal")
                 self.doc.write_text(self._("Address"))
                 self.doc.end_paragraph()
                 self.doc.end_cell()
                 self.doc.start_cell("FGR-TextContents")
-                self.doc.start_paragraph('FGR-Normal')
+                self.doc.start_paragraph("FGR-Normal")
                 self.doc.write_text(date)
                 self.doc.end_paragraph()
                 self.doc.end_cell()
                 self.doc.start_cell("FGR-TextContentsEnd")
-                self.doc.start_paragraph('FGR-Normal')
+                self.doc.start_paragraph("FGR-Normal")
                 self.doc.write_text(location)
                 self.doc.end_paragraph()
                 self.doc.end_cell()
@@ -379,7 +391,6 @@ class FamilyGroup(Report):
         self.doc.end_table()
 
     def dump_marriage(self, family):
-
         if not family:
             return
 
@@ -388,17 +399,18 @@ class FamilyGroup(Report):
         for event_ref in family_list:
             if event_ref:
                 event = self.db.get_event_from_handle(event_ref.ref)
-                if (event.get_type() == EventType.MARRIAGE and
-                        (event_ref.get_role() == EventRoleType.FAMILY or
-                         event_ref.get_role() == EventRoleType.PRIMARY)):
+                if event.get_type() == EventType.MARRIAGE and (
+                    event_ref.get_role() == EventRoleType.FAMILY
+                    or event_ref.get_role() == EventRoleType.PRIMARY
+                ):
                     mrg = event
                     break
 
         if len(family_list) > 0 or self.missing_info or self.include_attrs:
-            self.doc.start_table("MarriageInfo", 'FGR-ParentTable')
+            self.doc.start_table("MarriageInfo", "FGR-ParentTable")
             self.doc.start_row()
-            self.doc.start_cell('FGR-ParentHead', 3)
-            self.doc.start_paragraph('FGR-ParentName')
+            self.doc.start_cell("FGR-ParentHead", 3)
+            self.doc.start_paragraph("FGR-ParentName")
             relationship_type = self._get_type(family.get_relationship())
             header = self._("Relationship: %s") % self._(relationship_type)
             if self.gramps_ids:
@@ -438,32 +450,31 @@ class FamilyGroup(Report):
             if place_handle:
                 place = _pd.display_event(self.db, event, self.place_format)
                 if place is None:
-                    place = ''
+                    place = ""
 
         self.doc.start_row()
         self.doc.start_cell(text)
-        self.doc.start_paragraph('FGR-Normal')
+        self.doc.start_paragraph("FGR-Normal")
         self.doc.end_paragraph()
         self.doc.end_cell()
-        self.doc.start_cell('FGR-TextContents')
-        self.doc.start_paragraph('FGR-Normal')
+        self.doc.start_cell("FGR-TextContents")
+        self.doc.start_paragraph("FGR-Normal")
         self.doc.write_text(name)
         self.doc.end_paragraph()
         self.doc.end_cell()
-        self.doc.start_cell('FGR-TextContents')
-        self.doc.start_paragraph('FGR-Normal')
+        self.doc.start_cell("FGR-TextContents")
+        self.doc.start_paragraph("FGR-Normal")
         self.doc.write_text(date)
         self.doc.end_paragraph()
         self.doc.end_cell()
-        self.doc.start_cell('FGR-TextContentsEnd')
-        self.doc.start_paragraph('FGR-Normal')
+        self.doc.start_cell("FGR-TextContentsEnd")
+        self.doc.start_paragraph("FGR-Normal")
         self.doc.write_text(place)
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.end_row()
 
     def dump_child(self, index, person_handle):
-
         person = self.db.get_person_from_handle(person_handle)
         families = len(person.get_family_handle_list())
         birth_ref = person.get_birth_ref()
@@ -490,19 +501,23 @@ class FamilyGroup(Report):
                     spouse_count += 1
 
         self.doc.start_row()
-        if (spouse_count != 0
-                or self.missing_info
-                or death is not None
-                or birth is not None):
-            self.doc.start_cell('FGR-TextChild1')
+        if (
+            spouse_count != 0
+            or self.missing_info
+            or death is not None
+            or birth is not None
+        ):
+            self.doc.start_cell("FGR-TextChild1")
         else:
-            self.doc.start_cell('FGR-TextChild2')
-        self.doc.start_paragraph('FGR-ChildText')
-        index_str = ("%d" % index)
+            self.doc.start_cell("FGR-TextChild2")
+        self.doc.start_paragraph("FGR-ChildText")
+        index_str = "%d" % index
         if person.get_gender() == Person.MALE:
             self.doc.write_text(index_str + self._("M", "acronym for male"))
         elif person.get_gender() == Person.FEMALE:
             self.doc.write_text(index_str + self._("F", "acronym for female"))
+        elif person.get_gender() == Person.OTHER:
+            self.doc.write_text(index_str + self._("X", "acronym for other"))
         else:
             self.doc.write_text(self._("%dU", "acronym for unknown") % index)
         self.doc.end_paragraph()
@@ -510,8 +525,8 @@ class FamilyGroup(Report):
 
         name = self._name_display.display(person)
         mark = utils.get_person_mark(self.db, person)
-        self.doc.start_cell('FGR-ChildName', 3)
-        self.doc.start_paragraph('FGR-ChildText')
+        self.doc.start_cell("FGR-ChildName", 3)
+        self.doc.start_paragraph("FGR-ChildText")
         self.doc.write_text(name, mark)
         if self.gramps_ids:
             self.doc.write_text(" (%s)" % person.get_gramps_id())
@@ -521,15 +536,15 @@ class FamilyGroup(Report):
 
         if self.missing_info or birth is not None:
             if spouse_count != 0 or self.missing_info or death is not None:
-                self.dump_child_event('FGR-TextChild1', self._('Birth'), birth)
+                self.dump_child_event("FGR-TextChild1", self._("Birth"), birth)
             else:
-                self.dump_child_event('FGR-TextChild2', self._('Birth'), birth)
+                self.dump_child_event("FGR-TextChild2", self._("Birth"), birth)
 
         if self.missing_info or death is not None:
             if spouse_count == 0 or not self.inc_chi_mar:
-                self.dump_child_event('FGR-TextChild2', self._('Death'), death)
+                self.dump_child_event("FGR-TextChild2", self._("Death"), death)
             else:
-                self.dump_child_event('FGR-TextChild1', self._('Death'), death)
+                self.dump_child_event("FGR-TextChild1", self._("Death"), death)
 
         if self.inc_chi_mar:
             index = 0
@@ -555,19 +570,19 @@ class FamilyGroup(Report):
                 if spouse_id:
                     self.doc.start_row()
                     if mrg or index != families:
-                        self.doc.start_cell('FGR-TextChild1')
+                        self.doc.start_cell("FGR-TextChild1")
                     else:
-                        self.doc.start_cell('FGR-TextChild2')
-                    self.doc.start_paragraph('FGR-Normal')
+                        self.doc.start_cell("FGR-TextChild2")
+                    self.doc.start_paragraph("FGR-Normal")
                     self.doc.end_paragraph()
                     self.doc.end_cell()
-                    self.doc.start_cell('FGR-TextContents')
-                    self.doc.start_paragraph('FGR-Normal')
+                    self.doc.start_cell("FGR-TextContents")
+                    self.doc.start_paragraph("FGR-Normal")
                     self.doc.write_text(self._("Spouse"))
                     self.doc.end_paragraph()
                     self.doc.end_cell()
-                    self.doc.start_cell('FGR-TextContentsEnd', 2)
-                    self.doc.start_paragraph('FGR-Normal')
+                    self.doc.start_cell("FGR-TextContentsEnd", 2)
+                    self.doc.start_paragraph("FGR-Normal")
 
                     spouse = self.db.get_person_from_handle(spouse_id)
                     spouse_name = self._name_display.display(spouse)
@@ -601,15 +616,15 @@ class FamilyGroup(Report):
                 if mrg:
                     ev_name = self._("Marriage")
                     if index == families:
-                        self.dump_child_event('FGR-TextChild2', ev_name, mrg)
+                        self.dump_child_event("FGR-TextChild2", ev_name, mrg)
                     else:
-                        self.dump_child_event('FGR-TextChild1', ev_name, mrg)
+                        self.dump_child_event("FGR-TextChild1", ev_name, mrg)
 
     def dump_family(self, family_handle, generation):
         family = self.db.get_family_from_handle(family_handle)
         family_toc_name = family_name(family, self.db)
 
-        self.doc.start_paragraph('FGR-Title')
+        self.doc.start_paragraph("FGR-Title")
         if self.recursive and self.generations:
             title = self._("Family Group Report - Generation %d") % generation
         else:
@@ -617,10 +632,10 @@ class FamilyGroup(Report):
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
         mark = IndexMark(family_toc_name, INDEX_TYPE_TOC, 2)
-        self.doc.write_text('', mark)
+        self.doc.write_text("", mark)
         self.doc.end_paragraph()
 
-        self.dump_parent('Parent1', family.get_father_handle())
+        self.dump_parent("Parent1", family.get_father_handle())
         self.doc.start_paragraph("FGR-blank")
         self.doc.end_paragraph()
 
@@ -629,16 +644,16 @@ class FamilyGroup(Report):
             self.doc.start_paragraph("FGR-blank")
             self.doc.end_paragraph()
 
-        self.dump_parent('Parent2', family.get_mother_handle())
+        self.dump_parent("Parent2", family.get_mother_handle())
 
         length = len(family.get_child_ref_list())
         if length > 0:
             self.doc.start_paragraph("FGR-blank")
             self.doc.end_paragraph()
-            self.doc.start_table('FGR-Children', 'FGR-ChildTable')
+            self.doc.start_table("FGR-Children", "FGR-ChildTable")
             self.doc.start_row()
-            self.doc.start_cell('FGR-ParentHead', 4)
-            self.doc.start_paragraph('FGR-ParentName')
+            self.doc.start_cell("FGR-ParentHead", 4)
+            self.doc.start_paragraph("FGR-ParentName")
             self.doc.write_text(self._("Children"))
             self.doc.end_paragraph()
             self.doc.end_cell()
@@ -655,34 +670,32 @@ class FamilyGroup(Report):
                 for child_family_handle in child.get_family_handle_list():
                     if child_family_handle != family_handle:
                         self.doc.page_break()
-                        self.dump_family(child_family_handle, (generation+1))
+                        self.dump_family(child_family_handle, (generation + 1))
 
     def write_report(self):
-        flist = self.db.get_family_handles(sort_handles=True,
-                                           locale=self._locale)
+        flist = self.db.get_family_handles(sort_handles=True, locale=self._locale)
         if not self.filter:
             fam_list = flist
         else:
             fam_list = self.filter.apply(self.db, flist, user=self._user)
         if fam_list:
-            with self._user.progress(_('Family Group Report'),
-                                     _('Writing families'),
-                                     len(fam_list)) as step:
+            with self._user.progress(
+                _("Family Group Report"), _("Writing families"), len(fam_list)
+            ) as step:
                 for family_handle in fam_list:
                     self.dump_family(family_handle, 1)
                     self.doc.page_break()
                     step()
         else:
-            raise ReportError(_('Empty report'),
-                              _('You did not specify anybody'))
+            raise ReportError(_("Empty report"), _("You did not specify anybody"))
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # FamilyGroupOptions
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class FamilyGroupOptions(MenuReportOptions):
-
     """
     Defines options and provides handling interface.
     """
@@ -697,32 +710,31 @@ class FamilyGroupOptions(MenuReportOptions):
         MenuReportOptions.__init__(self, name, dbase)
 
     def get_subject(self):
-        """ Return a string that describes the subject of the report. """
+        """Return a string that describes the subject of the report."""
         return self.__filter.get_filter().get_name()
 
     def add_menu_options(self, menu):
-
         ##########################
         category_name = _("Report Options")
         add_option = partial(menu.add_option, category_name)
         ##########################
 
         self.__filter = FilterOption(_("Filter"), 0)
-        self.__filter.set_help(
-            _("Select the filter to be applied to the report."))
+        self.__filter.set_help(_("Select the filter to be applied to the report."))
         add_option("filter", self.__filter)
-        self.__filter.connect('value-changed', self.__filter_changed)
+        self.__filter.connect("value-changed", self.__filter_changed)
 
         self.__fid = FamilyOption(_("Center Family"))
         self.__fid.set_help(_("The center family for the filter"))
         add_option("family_id", self.__fid)
-        self.__fid.connect('value-changed', self.__update_filters)
+        self.__fid.connect("value-changed", self.__update_filters)
 
-        self.__recursive = BooleanOption(_('Recursive (down)'), False)
-        self.__recursive.set_help(_("Create reports for all descendants "
-                                    "of this family."))
+        self.__recursive = BooleanOption(_("Recursive (down)"), False)
+        self.__recursive.set_help(
+            _("Create reports for all descendants " "of this family.")
+        )
         add_option("recursive", self.__recursive)
-        self.__recursive.connect('value-changed', self.__recursive_changed)
+        self.__recursive.connect("value-changed", self.__recursive_changed)
 
         ##########################
         category_name = _("Report Options (2)")
@@ -730,7 +742,7 @@ class FamilyGroupOptions(MenuReportOptions):
         ##########################
 
         self._nf = stdoptions.add_name_format_option(menu, category_name)
-        self._nf.connect('value-changed', self.__update_filters)
+        self._nf.connect("value-changed", self.__update_filters)
 
         self.__update_filters()
 
@@ -749,8 +761,7 @@ class FamilyGroupOptions(MenuReportOptions):
         ##########################
 
         inc_par_mar = BooleanOption(_("Parent Marriage"), True)
-        inc_par_mar.set_help(
-            _("Whether to include marriage information for parents."))
+        inc_par_mar.set_help(_("Whether to include marriage information for parents."))
         add_option("incParMar", inc_par_mar)
 
         inc_par_events = BooleanOption(_("Parent Events"), False)
@@ -770,8 +781,7 @@ class FamilyGroupOptions(MenuReportOptions):
         add_option("incattrs", incattrs)
 
         inc_par_names = BooleanOption(_("Alternate Parent Names"), False)
-        inc_par_names.set_help(
-            _("Whether to include alternate names for parents."))
+        inc_par_names.set_help(_("Whether to include alternate names for parents."))
         add_option("incParNames", inc_par_names)
 
         ##########################
@@ -786,25 +796,25 @@ class FamilyGroupOptions(MenuReportOptions):
         add_option("incFamNotes", inc_fam_notes)
 
         inc_rel_dates = BooleanOption(_("Dates of Relatives"), False)
-        inc_rel_dates.set_help(_("Whether to include dates for relatives "
-                                 "(father, mother, spouse)."))
+        inc_rel_dates.set_help(
+            _("Whether to include dates for relatives " "(father, mother, spouse).")
+        )
         add_option("incRelDates", inc_rel_dates)
 
         inc_chi_mar = BooleanOption(_("Children Marriages"), True)
-        inc_chi_mar.set_help(
-            _("Whether to include marriage information for children."))
+        inc_chi_mar.set_help(_("Whether to include marriage information for children."))
         add_option("incChiMar", inc_chi_mar)
 
-        self.__generations = BooleanOption(_("Generation numbers "
-                                             "(recursive only)"), False)
-        self.__generations.set_help(_("Whether to include the generation "
-                                      "on each report (recursive only)."))
+        self.__generations = BooleanOption(
+            _("Generation numbers " "(recursive only)"), False
+        )
+        self.__generations.set_help(
+            _("Whether to include the generation " "on each report (recursive only).")
+        )
         add_option("generations", self.__generations)
 
-        missinginfo = BooleanOption(_("Print fields for missing "
-                                      "information"), True)
-        missinginfo.set_help(_("Whether to include fields for missing "
-                               "information."))
+        missinginfo = BooleanOption(_("Print fields for missing " "information"), True)
+        missinginfo.set_help(_("Whether to include fields for missing " "information."))
         add_option("missinginfo", missinginfo)
 
     def __update_filters(self):
@@ -814,9 +824,9 @@ class FamilyGroupOptions(MenuReportOptions):
         fid = self.__fid.get_value()
         family = self.__db.get_family_from_gramps_id(fid)
         nfv = self._nf.get_value()
-        filter_list = utils.get_family_filters(self.__db, family,
-                                               include_single=True,
-                                               name_format=nfv)
+        filter_list = utils.get_family_filters(
+            self.__db, family, include_single=True, name_format=nfv
+        )
         self.__filter.set_filters(filter_list)
 
     def __filter_changed(self):
@@ -825,7 +835,7 @@ class FamilyGroupOptions(MenuReportOptions):
         If the filter is not family-specific, disable the family option
         """
         filter_value = self.__filter.get_value()
-        if filter_value == 1: # "Entire Database" (as "include_single=True")
+        if filter_value == 1:  # "Entire Database" (as "include_single=True")
             self.__fid.set_available(False)
         else:
             # The other filters need a center family (assume custom ones too)
@@ -848,11 +858,11 @@ class FamilyGroupOptions(MenuReportOptions):
     def make_default_style(self, default_style):
         """Make default output style for the Family Group Report."""
         para = ParagraphStyle()
-        #Paragraph Styles
+        # Paragraph Styles
         font = FontStyle()
         font.set_size(4)
         para.set_font(font)
-        default_style.add_paragraph_style('FGR-blank', para)
+        default_style.add_paragraph_style("FGR-blank", para)
 
         font = FontStyle()
         font.set_type_face(FONT_SANS_SERIF)
@@ -863,7 +873,7 @@ class FamilyGroupOptions(MenuReportOptions):
         para.set_alignment(PARA_ALIGN_CENTER)
         para.set_header_level(1)
         para.set_description(_("The style used for the title."))
-        default_style.add_paragraph_style('FGR-Title', para)
+        default_style.add_paragraph_style("FGR-Title", para)
 
         font = FontStyle()
         font.set_type_face(FONT_SERIF)
@@ -871,8 +881,8 @@ class FamilyGroupOptions(MenuReportOptions):
         font.set_bold(0)
         para = ParagraphStyle()
         para.set_font(font)
-        para.set_description(_('The basic style used for the text display.'))
-        default_style.add_paragraph_style('FGR-Normal', para)
+        para.set_description(_("The basic style used for the text display."))
+        default_style.add_paragraph_style("FGR-Normal", para)
 
         para = ParagraphStyle()
         font = FontStyle()
@@ -883,7 +893,7 @@ class FamilyGroupOptions(MenuReportOptions):
         para.set(lmargin=0.0)
         para.set_top_margin(0.0)
         para.set_bottom_margin(0.0)
-        para.set_description(_('The basic style used for the note display.'))
+        para.set_description(_("The basic style used for the note display."))
         default_style.add_paragraph_style("FGR-Note", para)
 
         font = FontStyle()
@@ -892,9 +902,8 @@ class FamilyGroupOptions(MenuReportOptions):
         font.set_bold(1)
         para = ParagraphStyle()
         para.set_font(font)
-        para.set_description(
-            _('The style used for the text related to the children.'))
-        default_style.add_paragraph_style('FGR-ChildText', para)
+        para.set_description(_("The style used for the text related to the children."))
+        default_style.add_paragraph_style("FGR-ChildText", para)
 
         font = FontStyle()
         font.set_type_face(FONT_SANS_SERIF)
@@ -904,53 +913,53 @@ class FamilyGroupOptions(MenuReportOptions):
         para.set_font(font)
         para.set_header_level(3)
         para.set_description(_("The style used for the parent's name"))
-        default_style.add_paragraph_style('FGR-ParentName', para)
+        default_style.add_paragraph_style("FGR-ParentName", para)
 
-        #Table Styles
+        # Table Styles
         cell = TableCellStyle()
         cell.set_padding(0.2)
         cell.set_top_border(1)
         cell.set_bottom_border(1)
         cell.set_right_border(1)
         cell.set_left_border(1)
-        default_style.add_cell_style('FGR-ParentHead', cell)
+        default_style.add_cell_style("FGR-ParentHead", cell)
 
         cell = TableCellStyle()
         cell.set_padding(0.1)
         cell.set_bottom_border(1)
         cell.set_left_border(1)
-        cell.set_right_border(1) # for RTL
-        default_style.add_cell_style('FGR-TextContents', cell)
+        cell.set_right_border(1)  # for RTL
+        default_style.add_cell_style("FGR-TextContents", cell)
 
         cell = TableCellStyle()
         cell.set_padding(0.1)
         cell.set_bottom_border(0)
         cell.set_left_border(1)
-        cell.set_right_border(1) # for RTL
+        cell.set_right_border(1)  # for RTL
         cell.set_padding(0.1)
-        default_style.add_cell_style('FGR-TextChild1', cell)
+        default_style.add_cell_style("FGR-TextChild1", cell)
 
         cell = TableCellStyle()
         cell.set_padding(0.1)
         cell.set_bottom_border(1)
         cell.set_left_border(1)
-        cell.set_right_border(1) # for RTL
+        cell.set_right_border(1)  # for RTL
         cell.set_padding(0.1)
-        default_style.add_cell_style('FGR-TextChild2', cell)
+        default_style.add_cell_style("FGR-TextChild2", cell)
 
         cell = TableCellStyle()
         cell.set_padding(0.1)
         cell.set_bottom_border(1)
         cell.set_right_border(1)
         cell.set_left_border(1)
-        default_style.add_cell_style('FGR-TextContentsEnd', cell)
+        default_style.add_cell_style("FGR-TextContentsEnd", cell)
 
         cell = TableCellStyle()
         cell.set_padding(0.2)
         cell.set_bottom_border(1)
         cell.set_right_border(1)
         cell.set_left_border(1)
-        default_style.add_cell_style('FGR-ChildName', cell)
+        default_style.add_cell_style("FGR-ChildName", cell)
 
         table = TableStyle()
         table.set_width(100)
@@ -958,7 +967,7 @@ class FamilyGroupOptions(MenuReportOptions):
         table.set_column_width(0, 20)
         table.set_column_width(1, 40)
         table.set_column_width(2, 40)
-        default_style.add_table_style('FGR-ParentTable', table)
+        default_style.add_table_style("FGR-ParentTable", table)
 
         table = TableStyle()
         table.set_width(100)
@@ -967,4 +976,4 @@ class FamilyGroupOptions(MenuReportOptions):
         table.set_column_width(1, 18)
         table.set_column_width(2, 35)
         table.set_column_width(3, 40)
-        default_style.add_table_style('FGR-ChildTable', table)
+        default_style.add_table_style("FGR-ChildTable", table)

@@ -23,28 +23,29 @@
 Lithuanian-specific classes for parsing and displaying dates.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import re
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ..lib.date import Date
 from ._dateparser import DateParser
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Lithuanian parser
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class DateParserLT(DateParser):
     """
     Convert a text string into a Date object. If the date cannot be
@@ -101,92 +102,137 @@ class DateParserLT(DateParser):
     month_to_int["gruod"] = 12
 
     modifier_to_int = {
-        'prieš'    : Date.MOD_BEFORE,
-        'po' : Date.MOD_AFTER,
-        'apie' : Date.MOD_ABOUT,
-        }
+        "prieš": Date.MOD_BEFORE,
+        "po": Date.MOD_AFTER,
+        "apie": Date.MOD_ABOUT,
+        "from": Date.MOD_FROM,
+        "to": Date.MOD_TO,
+    }
 
     calendar_to_int = {
-        'grigaliaus'   : Date.CAL_GREGORIAN,
-        'g'                 : Date.CAL_GREGORIAN,
-        'julijaus'            : Date.CAL_JULIAN,
-        'j'                 : Date.CAL_JULIAN,
-        'hebrajų'         : Date.CAL_HEBREW,
-        'h'         : Date.CAL_HEBREW,
-        'islamo'         : Date.CAL_ISLAMIC,
-        'i'                 : Date.CAL_ISLAMIC,
-        'prancūzų respublikos': Date.CAL_FRENCH,
-        'r'                 : Date.CAL_FRENCH,
-        'persų'             : Date.CAL_PERSIAN,
-        'p'             : Date.CAL_PERSIAN,
-        'švedų'      : Date.CAL_SWEDISH,
-        's'            : Date.CAL_SWEDISH,
-        }
+        "grigaliaus": Date.CAL_GREGORIAN,
+        "g": Date.CAL_GREGORIAN,
+        "julijaus": Date.CAL_JULIAN,
+        "j": Date.CAL_JULIAN,
+        "hebrajų": Date.CAL_HEBREW,
+        "h": Date.CAL_HEBREW,
+        "islamo": Date.CAL_ISLAMIC,
+        "i": Date.CAL_ISLAMIC,
+        "prancūzų respublikos": Date.CAL_FRENCH,
+        "r": Date.CAL_FRENCH,
+        "persų": Date.CAL_PERSIAN,
+        "p": Date.CAL_PERSIAN,
+        "švedų": Date.CAL_SWEDISH,
+        "s": Date.CAL_SWEDISH,
+    }
 
     quality_to_int = {
-        'apytikriai'  : Date.QUAL_ESTIMATED,
-        'apskaičiuota'      : Date.QUAL_CALCULATED,
-        }
+        "apytikriai": Date.QUAL_ESTIMATED,
+        "apskaičiuota": Date.QUAL_CALCULATED,
+    }
 
     def init_strings(self):
         DateParser.init_strings(self)
         # this next RE has the (possibly-slashed) year at the string's start
         self._text2 = re.compile(
-            r'((\d+)(/\d+)?)?\s+?m\.\s+%s\s*(\d+)?\s*d?\.?$'
-            % self._mon_str, re.IGNORECASE)
-        _span_1 = ['nuo']
-        _span_2 = ['iki']
-        _range_1 = ['tarp']
-        _range_2 = ['ir']
-        self._span = re.compile(r"(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
-                                ('|'.join(_span_1), '|'.join(_span_2)),
-                                re.IGNORECASE)
+            r"((\d+)(/\d+)?)?\s+?m\.\s+%s\s*(\d+)?\s*d?\.?$" % self._mon_str,
+            re.IGNORECASE,
+        )
+        _span_1 = ["nuo"]
+        _span_2 = ["iki"]
+        _range_1 = ["tarp"]
+        _range_2 = ["ir"]
+        self._span = re.compile(
+            r"(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)"
+            % ("|".join(_span_1), "|".join(_span_2)),
+            re.IGNORECASE,
+        )
         self._range = re.compile(
-            r"(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
-            ('|'.join(_range_1), '|'.join(_range_2)), re.IGNORECASE)
+            r"(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)"
+            % ("|".join(_range_1), "|".join(_range_2)),
+            re.IGNORECASE,
+        )
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Lithuanian displayer
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class DateDisplayLT(DateDisplay):
     """
     Lithuanian language date display class.
     """
 
-    long_months = ( "", "sausio", "vasario", "kovo", "balandžio", "gegužės",
-                    "birželio", "liepos", "rugpjūčio", "rugsėjo", "spalio",
-                    "lapkričio", "gruodžio" )
+    long_months = (
+        "",
+        "sausio",
+        "vasario",
+        "kovo",
+        "balandžio",
+        "gegužės",
+        "birželio",
+        "liepos",
+        "rugpjūčio",
+        "rugsėjo",
+        "spalio",
+        "lapkričio",
+        "gruodžio",
+    )
 
-    long_months_vardininkas = ( "", "sausis", "vasaris", "kovas", "balandis", "gegužė",
-                    "birželis", "liepa", "rugpjūtis", "rugsėjis", "spalis",
-                    "lapkritis", "gruodis" )
+    long_months_vardininkas = (
+        "",
+        "sausis",
+        "vasaris",
+        "kovas",
+        "balandis",
+        "gegužė",
+        "birželis",
+        "liepa",
+        "rugpjūtis",
+        "rugsėjis",
+        "spalis",
+        "lapkritis",
+        "gruodis",
+    )
 
-    short_months = ( "", "Sau", "Vas", "Kov", "Bal", "Geg", "Bir",
-                     "Lie", "Rgp", "Rgs", "Spa", "Lap", "Grd" )
+    short_months = (
+        "",
+        "Sau",
+        "Vas",
+        "Kov",
+        "Bal",
+        "Geg",
+        "Bir",
+        "Lie",
+        "Rgp",
+        "Rgs",
+        "Spa",
+        "Lap",
+        "Grd",
+    )
 
     calendar = (
-        "", "julijaus",
+        "",
+        "julijaus",
         "hebrajų",
         "prancūzų respublikos",
         "persų",
         "islamo",
-        "švedų"
-        )
+        "švedų",
+    )
 
-    _mod_str = ("",
-        "prieš ",
-        "po ",
-        "apie ",
-        "", "", "")
+    _mod_str = ("", "prieš ", "po ", "apie ", "", "", "")
 
     _qual_str = ("", "apytikriai ", "apskaičiuota ")
 
     formats = (
-        "mmmm-MM-DD (ISO)", "mmmm.MM.DD",
-        "mmmm m. mėnesio diena d.", "Mėn diena, metai")
-        # this definition must agree with its "_display_gregorian" method
+        "mmmm-MM-DD (ISO)",
+        "mmmm.MM.DD",
+        "mmmm m. mėnesio diena d.",
+        "Mėn diena, metai",
+    )
+    # this definition must agree with its "_display_gregorian" method
 
     def _display_gregorian(self, date_val, **kwargs):
         """
@@ -206,11 +252,16 @@ class DateDisplayLT(DateDisplay):
                 if date_val[1] == 0:
                     value = year
                 else:
-                    value = "%s m. %s" % (year, self.long_months_vardininkas[date_val[1]])
+                    value = "%s m. %s" % (
+                        year,
+                        self.long_months_vardininkas[date_val[1]],
+                    )
             else:
-                value = "%s m. %s %d d." % (year,
-                                            self.long_months[date_val[1]],
-                                            date_val[0])
+                value = "%s m. %s %d d." % (
+                    year,
+                    self.long_months[date_val[1]],
+                    date_val[0],
+                )
         elif self.format == 3:
             # month_abbreviation day, year
             if date_val[0] == 0:
@@ -219,8 +270,11 @@ class DateDisplayLT(DateDisplay):
                 else:
                     value = "%s %s" % (self.short_months[date_val[1]], year)
             else:
-                value = "%s %d, %s" % (self.short_months[date_val[1]],
-                                       date_val[0], year)
+                value = "%s %d, %s" % (
+                    self.short_months[date_val[1]],
+                    date_val[0],
+                    year,
+                )
         if date_val[2] < 0:
             return self._bce_str % value
         else:
@@ -246,25 +300,25 @@ class DateDisplayLT(DateDisplay):
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, 'nuo', d1, 'iki',
-                                        d2, scal)
+            return "%s%s %s %s %s%s" % (qual_str, "nuo", d1, "iki", d2, scal)
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, 'tarp', d1, 'ir',
-                                        d2, scal)
+            return "%s%s %s %s %s%s" % (qual_str, "tarp", d1, "ir", d2, scal)
         else:
             text = self.display_cal[date.get_calendar()](start)
             scal = self.format_extras(cal, newyear)
-            return "%s%s%s%s" % (qual_str, self._mod_str[mod], text,
-                                 scal)
+            return "%s%s%s%s" % (qual_str, self._mod_str[mod], text, scal)
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Register classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 register_datehandler(
-    ('lt_LT', 'lt', 'lithuanian', 'Lithuanian', ('%Y.%m.%d',)),
-    DateParserLT, DateDisplayLT)
+    ("lt_LT", "lt", "lithuanian", "Lithuanian", ("%Y.%m.%d",)),
+    DateParserLT,
+    DateDisplayLT,
+)

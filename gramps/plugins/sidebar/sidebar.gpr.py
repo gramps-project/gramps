@@ -18,57 +18,61 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-MODULE_VERSION="5.2"
+MODULE_VERSION = "5.3"
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Register default sidebars
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
-register(SIDEBAR,
-id = 'categorysidebar',
-name = _("Category Sidebar"),
-description = _("A sidebar to allow the selection of view categories"),
-version = '1.0',
-gramps_target_version = MODULE_VERSION,
-status = STABLE,
-fname = 'categorysidebar.py',
-authors = ["Nick Hall"],
-authors_email = ["nick__hall@hotmail.com"],
-sidebarclass = 'CategorySidebar',
-menu_label = _('Category'),
-order = START
+register(
+    SIDEBAR,
+    id="categorysidebar",
+    name=_("Category Sidebar"),
+    description=_("A sidebar to allow the selection of view categories"),
+    version="1.0",
+    gramps_target_version=MODULE_VERSION,
+    status=STABLE,
+    fname="categorysidebar.py",
+    authors=["Nick Hall"],
+    authors_email=["nick__hall@hotmail.com"],
+    sidebarclass="CategorySidebar",
+    menu_label=_("Category"),
+    order=START,
 )
 
-register(SIDEBAR,
-id = 'dropdownsidebar',
-name = _("Drop-down Sidebar"),
-description = _("Selection of categories and views from drop-down lists"),
-version = '1.0',
-gramps_target_version = MODULE_VERSION,
-status = STABLE,
-fname = 'dropdownsidebar.py',
-authors = ["Nick Hall"],
-authors_email = ["nick__hall@hotmail.com"],
-sidebarclass = 'DropdownSidebar',
-menu_label = _('Drop-Down'),
-order = END
+register(
+    SIDEBAR,
+    id="dropdownsidebar",
+    name=_("Drop-down Sidebar"),
+    description=_("Selection of categories and views from drop-down lists"),
+    version="1.0",
+    gramps_target_version=MODULE_VERSION,
+    status=STABLE,
+    fname="dropdownsidebar.py",
+    authors=["Nick Hall"],
+    authors_email=["nick__hall@hotmail.com"],
+    sidebarclass="DropdownSidebar",
+    menu_label=_("Drop-Down"),
+    order=END,
 )
 
-register(SIDEBAR,
-id = 'expandersidebar',
-name = _("Expander Sidebar"),
-description = _("Selection of views from lists with expanders"),
-version = '1.0',
-gramps_target_version = MODULE_VERSION,
-status = STABLE,
-fname = 'expandersidebar.py',
-authors = ["Nick Hall"],
-authors_email = ["nick__hall@hotmail.com"],
-sidebarclass = 'ExpanderSidebar',
-menu_label = _('Expander'),
-order = END
+register(
+    SIDEBAR,
+    id="expandersidebar",
+    name=_("Expander Sidebar"),
+    description=_("Selection of views from lists with expanders"),
+    version="1.0",
+    gramps_target_version=MODULE_VERSION,
+    status=STABLE,
+    fname="expandersidebar.py",
+    authors=["Nick Hall"],
+    authors_email=["nick__hall@hotmail.com"],
+    sidebarclass="ExpanderSidebar",
+    menu_label=_("Expander"),
+    order=END,
 )

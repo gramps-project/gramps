@@ -27,65 +27,77 @@
 Family Lines, a Graphviz-based plugin for Gramps.
 """
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from functools import partial
 import html
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Set up logging
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import logging
+
 LOG = logging.getLogger(".FamilyLines")
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps module
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gramps.gen.lib import EventRoleType, EventType, Person, PlaceType, Date
 from gramps.gen.utils.file import media_path_full
-from gramps.gen.utils.thumbnails import (get_thumbnail_path, SIZE_NORMAL,
-                                         SIZE_LARGE)
+from gramps.gen.utils.thumbnails import get_thumbnail_path, SIZE_NORMAL, SIZE_LARGE
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
-from gramps.gen.plug.menu import (NumberOption, ColorOption, BooleanOption,
-                                  EnumeratedListOption, PersonListOption,
-                                  SurnameColorOption)
+from gramps.gen.plug.menu import (
+    NumberOption,
+    ColorOption,
+    BooleanOption,
+    EnumeratedListOption,
+    PersonListOption,
+    SurnameColorOption,
+)
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.proxy import CacheProxyDb
 from gramps.gen.errors import ReportError
 from gramps.gen.display.place import displayer as _pd
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Constant options items
 #
-#------------------------------------------------------------------------
-_COLORS = [{'name' : _("B&W outline"), 'value' : "outline"},
-           {'name' : _("Colored outline"), 'value' : "colored"},
-           {'name' : _("Color fill"), 'value' : "filled"}]
+# ------------------------------------------------------------------------
+_COLORS = [
+    {"name": _("B&W outline"), "value": "outline"},
+    {"name": _("Colored outline"), "value": "colored"},
+    {"name": _("Color fill"), "value": "filled"},
+]
 
-_ARROWS = [ { 'name' : _("Descendants <- Ancestors"),  'value' : 'd' },
-            { 'name' : _("Descendants -> Ancestors"),  'value' : 'a' },
-            { 'name' : _("Descendants <-> Ancestors"), 'value' : 'da' },
-            { 'name' : _("Descendants - Ancestors"),   'value' : '' }]
+_ARROWS = [
+    {"name": _("Descendants <- Ancestors"), "value": "d"},
+    {"name": _("Descendants -> Ancestors"), "value": "a"},
+    {"name": _("Descendants <-> Ancestors"), "value": "da"},
+    {"name": _("Descendants - Ancestors"), "value": ""},
+]
 
-_CORNERS = [ { 'name' : _("None"),  'value' : '' },
-             { 'name' : _("Female"), 'value' : 'f' },
-             { 'name' : _("Male"),   'value' : 'm' },
-             { 'name' : _("Both"),  'value' : 'fm' }]
+_CORNERS = [
+    {"name": _("None"), "value": ""},
+    {"name": _("Female"), "value": "f"},
+    {"name": _("Male"), "value": "m"},
+    {"name": _("Both"), "value": "fm"},
+]
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # A quick overview of the classes we'll be using:
 #
@@ -97,13 +109,15 @@ _CORNERS = [ { 'name' : _("None"),  'value' : '' },
 #       - this class is created only after the user clicks on "OK"
 #       - the actual report generation is done by this class
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
+
 
 class FamilyLinesOptions(MenuReportOptions):
     """
     Defines all of the controls necessary
     to configure the FamilyLines report.
     """
+
     def __init__(self, name, dbase):
         self.limit_parents = None
         self.max_parents = None
@@ -116,34 +130,45 @@ class FamilyLinesOptions(MenuReportOptions):
         MenuReportOptions.__init__(self, name, dbase)
 
     def add_menu_options(self, menu):
-
         # ---------------------
-        category_name = _('Report Options')
+        category_name = _("Report Options")
         add_option = partial(menu.add_option, category_name)
         # ---------------------
 
-        followpar = BooleanOption(_('Follow parents to determine '
-                                    '"family lines"'), True)
-        followpar.set_help(_('Parents and their ancestors will be '
-                             'considered when determining "family lines".'))
-        add_option('followpar', followpar)
+        followpar = BooleanOption(
+            _("Follow parents to determine " '"family lines"'), True
+        )
+        followpar.set_help(
+            _(
+                "Parents and their ancestors will be "
+                'considered when determining "family lines".'
+            )
+        )
+        add_option("followpar", followpar)
 
-        followchild = BooleanOption(_('Follow children to determine '
-                                      '"family lines"'), True)
-        followchild.set_help(_('Children will be considered when '
-                               'determining "family lines".'))
-        add_option('followchild', followchild)
+        followchild = BooleanOption(
+            _("Follow children to determine " '"family lines"'), True
+        )
+        followchild.set_help(
+            _("Children will be considered when " 'determining "family lines".')
+        )
+        add_option("followchild", followchild)
 
-        remove_extra_people = BooleanOption(_('Try to remove extra '
-                                              'people and families'), True)
-        remove_extra_people.set_help(_('People and families not directly '
-                                       'related to people of interest will '
-                                       'be removed when determining '
-                                       '"family lines".'))
-        add_option('removeextra', remove_extra_people)
+        remove_extra_people = BooleanOption(
+            _("Try to remove extra " "people and families"), True
+        )
+        remove_extra_people.set_help(
+            _(
+                "People and families not directly "
+                "related to people of interest will "
+                "be removed when determining "
+                '"family lines".'
+            )
+        )
+        add_option("removeextra", remove_extra_people)
 
-        arrow = EnumeratedListOption(_("Arrowhead direction"), 'd')
-        for i in range( 0, len(_ARROWS) ):
+        arrow = EnumeratedListOption(_("Arrowhead direction"), "d")
+        for i in range(0, len(_ARROWS)):
             arrow.add_item(_ARROWS[i]["value"], _ARROWS[i]["name"])
         arrow.set_help(_("Choose the direction that the arrows point."))
         add_option("arrow", arrow)
@@ -151,23 +176,28 @@ class FamilyLinesOptions(MenuReportOptions):
         color = EnumeratedListOption(_("Graph coloring"), "filled")
         for COLOR in _COLORS:
             color.add_item(COLOR["value"], COLOR["name"])
-        color.set_help(_("Males will be shown with blue, females "
-                         "with red, unless otherwise set above for filled. "
-                         "If the sex of an individual "
-                         "is unknown it will be shown with gray."))
+        color.set_help(
+            _(
+                "Males will be shown with blue, females "
+                "with red, unless otherwise set above for filled. "
+                "If the sex of an individual "
+                "is unknown it will be shown with gray."
+            )
+        )
         add_option("color", color)
 
-        roundedcorners = EnumeratedListOption(_("Rounded corners"), '')
-        for i in range( 0, len(_CORNERS) ):
+        roundedcorners = EnumeratedListOption(_("Rounded corners"), "")
+        for i in range(0, len(_CORNERS)):
             roundedcorners.add_item(_CORNERS[i]["value"], _CORNERS[i]["name"])
-        roundedcorners.set_help(_("Use rounded corners e.g. to differentiate "
-                         "between women and men."))
+        roundedcorners.set_help(
+            _("Use rounded corners e.g. to differentiate " "between women and men.")
+        )
         add_option("useroundedcorners", roundedcorners)
 
         stdoptions.add_gramps_id_option(menu, category_name, ownline=True)
 
         # ---------------------
-        category_name = _('Report Options (2)')
+        category_name = _("Report Options (2)")
         add_option = partial(menu.add_option, category_name)
         # ---------------------
 
@@ -181,125 +211,150 @@ class FamilyLinesOptions(MenuReportOptions):
 
         stdoptions.add_date_format_option(menu, category_name, locale_opt)
 
-        use_subgraphs = BooleanOption(_('Use subgraphs'), True)
-        use_subgraphs.set_help(_("Subgraphs can help Graphviz position "
-                                 "spouses together, but with non-trivial "
-                                 "graphs will result in longer lines and "
-                                 "larger graphs."))
+        use_subgraphs = BooleanOption(_("Use subgraphs"), True)
+        use_subgraphs.set_help(
+            _(
+                "Subgraphs can help Graphviz position "
+                "spouses together, but with non-trivial "
+                "graphs will result in longer lines and "
+                "larger graphs."
+            )
+        )
         add_option("usesubgraphs", use_subgraphs)
 
         # --------------------------------
-        add_option = partial(menu.add_option, _('People of Interest'))
+        add_option = partial(menu.add_option, _("People of Interest"))
         # --------------------------------
 
-        person_list = PersonListOption(_('People of interest'))
-        person_list.set_help(_('People of interest are used as a starting '
-                               'point when determining "family lines".'))
-        add_option('gidlist', person_list)
+        person_list = PersonListOption(_("People of interest"))
+        person_list.set_help(
+            _(
+                "People of interest are used as a starting "
+                'point when determining "family lines".'
+            )
+        )
+        add_option("gidlist", person_list)
 
-        self.limit_parents = BooleanOption(_('Limit the number of ancestors'),
-                                           False)
-        self.limit_parents.set_help(_('Whether to '
-                                      'limit the number of ancestors.'))
-        add_option('limitparents', self.limit_parents)
-        self.limit_parents.connect('value-changed', self.limit_changed)
+        self.limit_parents = BooleanOption(_("Limit the number of ancestors"), False)
+        self.limit_parents.set_help(_("Whether to " "limit the number of ancestors."))
+        add_option("limitparents", self.limit_parents)
+        self.limit_parents.connect("value-changed", self.limit_changed)
 
-        self.max_parents = NumberOption('', 50, 10, 9999)
-        self.max_parents.set_help(_('The maximum number '
-                                    'of ancestors to include.'))
-        add_option('maxparents', self.max_parents)
+        self.max_parents = NumberOption("", 50, 10, 9999)
+        self.max_parents.set_help(_("The maximum number " "of ancestors to include."))
+        add_option("maxparents", self.max_parents)
 
-        self.limit_children = BooleanOption(_('Limit the number '
-                                              'of descendants'),
-                                            False)
-        self.limit_children.set_help(_('Whether to '
-                                       'limit the number of descendants.'))
-        add_option('limitchildren', self.limit_children)
-        self.limit_children.connect('value-changed', self.limit_changed)
+        self.limit_children = BooleanOption(
+            _("Limit the number " "of descendants"), False
+        )
+        self.limit_children.set_help(
+            _("Whether to " "limit the number of descendants.")
+        )
+        add_option("limitchildren", self.limit_children)
+        self.limit_children.connect("value-changed", self.limit_changed)
 
-        self.max_children = NumberOption('', 50, 10, 9999)
-        self.max_children.set_help(_('The maximum number '
-                                     'of descendants to include.'))
-        add_option('maxchildren', self.max_children)
+        self.max_children = NumberOption("", 50, 10, 9999)
+        self.max_children.set_help(
+            _("The maximum number " "of descendants to include.")
+        )
+        add_option("maxchildren", self.max_children)
 
         # --------------------
-        category_name = _('Include')
+        category_name = _("Include")
         add_option = partial(menu.add_option, category_name)
         # --------------------
 
-        self.include_dates = BooleanOption(_('Include dates'), True)
-        self.include_dates.set_help(_('Whether to include dates for people '
-                                      'and families.'))
-        add_option('incdates', self.include_dates)
-        self.include_dates.connect('value-changed', self.include_dates_changed)
+        self.include_dates = BooleanOption(_("Include dates"), True)
+        self.include_dates.set_help(
+            _("Whether to include dates for people " "and families.")
+        )
+        add_option("incdates", self.include_dates)
+        self.include_dates.connect("value-changed", self.include_dates_changed)
 
         self.justyears = BooleanOption(_("Limit dates to years only"), False)
-        self.justyears.set_help(_("Prints just dates' year, neither "
-                                  "month or day nor date approximation "
-                                  "or interval are shown."))
+        self.justyears.set_help(
+            _(
+                "Prints just dates' year, neither "
+                "month or day nor date approximation "
+                "or interval are shown."
+            )
+        )
         add_option("justyears", self.justyears)
 
-        include_places = BooleanOption(_('Include places'), True)
-        include_places.set_help(_('Whether to include placenames for people '
-                                  'and families.'))
-        add_option('incplaces', include_places)
+        include_places = BooleanOption(_("Include places"), True)
+        include_places.set_help(
+            _("Whether to include placenames for people " "and families.")
+        )
+        add_option("incplaces", include_places)
 
-        include_num_children = BooleanOption(_('Include the number of '
-                                               'children'), True)
-        include_num_children.set_help(_('Whether to include the number of '
-                                        'children for families with more '
-                                        'than 1 child.'))
-        add_option('incchildcnt', include_num_children)
+        include_num_children = BooleanOption(
+            _("Include the number of " "children"), True
+        )
+        include_num_children.set_help(
+            _(
+                "Whether to include the number of "
+                "children for families with more "
+                "than 1 child."
+            )
+        )
+        add_option("incchildcnt", include_num_children)
 
-        self.include_images = BooleanOption(_('Include '
-                                              'thumbnail images of people'),
-                                            True)
-        self.include_images.set_help(_('Whether to '
-                                       'include thumbnail images of people.'))
-        add_option('incimages', self.include_images)
-        self.include_images.connect('value-changed', self.images_changed)
+        self.include_images = BooleanOption(
+            _("Include " "thumbnail images of people"), True
+        )
+        self.include_images.set_help(
+            _("Whether to " "include thumbnail images of people.")
+        )
+        add_option("incimages", self.include_images)
+        self.include_images.connect("value-changed", self.images_changed)
 
-        self.image_location = EnumeratedListOption(_('Thumbnail location'), 0)
-        self.image_location.add_item(0, _('Above the name'))
-        self.image_location.add_item(1, _('Beside the name'))
-        self.image_location.set_help(_('Where the thumbnail image '
-                                       'should appear relative to the name'))
-        add_option('imageonside', self.image_location)
+        self.image_location = EnumeratedListOption(_("Thumbnail location"), 0)
+        self.image_location.add_item(0, _("Above the name"))
+        self.image_location.add_item(1, _("Beside the name"))
+        self.image_location.set_help(
+            _("Where the thumbnail image " "should appear relative to the name")
+        )
+        add_option("imageonside", self.image_location)
 
-        self.image_size = EnumeratedListOption(_('Thumbnail size'), SIZE_NORMAL)
-        self.image_size.add_item(SIZE_NORMAL, _('Normal'))
-        self.image_size.add_item(SIZE_LARGE, _('Large'))
-        self.image_size.set_help(_('Size of the thumbnail image'))
-        add_option('imagesize', self.image_size)
+        self.image_size = EnumeratedListOption(_("Thumbnail size"), SIZE_NORMAL)
+        self.image_size.add_item(SIZE_NORMAL, _("Normal"))
+        self.image_size.add_item(SIZE_LARGE, _("Large"))
+        self.image_size.set_help(_("Size of the thumbnail image"))
+        add_option("imagesize", self.image_size)
 
         # ----------------------------
-        add_option = partial(menu.add_option, _('Family Colors'))
+        add_option = partial(menu.add_option, _("Family Colors"))
         # ----------------------------
 
-        surname_color = SurnameColorOption(_('Family colors'))
-        surname_color.set_help(_('Colors to use for various family lines.'))
-        add_option('surnamecolors', surname_color)
+        surname_color = SurnameColorOption(_("Family colors"))
+        surname_color.set_help(_("Colors to use for various family lines."))
+        add_option("surnamecolors", surname_color)
 
         # -------------------------
-        add_option = partial(menu.add_option, _('Individuals'))
+        add_option = partial(menu.add_option, _("Individuals"))
         # -------------------------
 
-        color_males = ColorOption(_('Males'), '#e0e0ff')
-        color_males.set_help(_('The color to use to display men.'))
-        add_option('colormales', color_males)
+        color_males = ColorOption(_("Males"), "#e0e0ff")
+        color_males.set_help(_("The color to use to display men."))
+        add_option("colormales", color_males)
 
-        color_females = ColorOption(_('Females'), '#ffe0e0')
-        color_females.set_help(_('The color to use to display women.'))
-        add_option('colorfemales', color_females)
+        color_females = ColorOption(_("Females"), "#ffe0e0")
+        color_females.set_help(_("The color to use to display women."))
+        add_option("colorfemales", color_females)
 
-        color_unknown = ColorOption(_('Unknown'), '#e0e0e0')
-        color_unknown.set_help(_('The color to use '
-                                 'when the gender is unknown.'))
-        add_option('colorunknown', color_unknown)
+        color_other = ColorOption(_("Other"), "#94ef9e")
+        color_other.set_help(
+            _("The color to use to display people who are " "neither men nor women.")
+        )
+        add_option("colorother", color_other)
 
-        color_family = ColorOption(_('Families'), '#ffffe0')
-        color_family.set_help(_('The color to use to display families.'))
-        add_option('colorfamilies', color_family)
+        color_unknown = ColorOption(_("Unknown"), "#e0e0e0")
+        color_unknown.set_help(_("The color to use " "when the gender is unknown."))
+        add_option("colorunknown", color_unknown)
+
+        color_family = ColorOption(_("Families"), "#ffffe0")
+        color_family.set_help(_("The color to use to display families."))
+        add_option("colorfamilies", color_family)
 
         self.limit_changed()
         self.images_changed()
@@ -327,13 +382,14 @@ class FamilyLinesOptions(MenuReportOptions):
         else:
             self.justyears.set_available(False)
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # FamilyLinesReport -- created once the user presses 'OK'
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class FamilyLinesReport(Report):
-    """ FamilyLines report """
+    """FamilyLines report"""
 
     def __init__(self, database, options, user):
         """
@@ -356,7 +412,7 @@ class FamilyLinesReport(Report):
         get_option_by_name = menu.get_option_by_name
         get_value = lambda name: get_option_by_name(name).get_value()
 
-        self.set_locale(menu.get_option_by_name('trans').get_value())
+        self.set_locale(menu.get_option_by_name("trans").get_value())
 
         stdoptions.run_date_format_option(self, menu)
 
@@ -366,76 +422,76 @@ class FamilyLinesReport(Report):
         self._db = self.database
 
         # initialize several convenient variables
-        self._people = set() # handle of people we need in the report
-        self._families = set() # handle of families we need in the report
+        self._people = set()  # handle of people we need in the report
+        self._families = set()  # handle of families we need in the report
         self._deleted_people = 0
         self._deleted_families = 0
         self._user = user
 
-        self._followpar = get_value('followpar')
-        self._followchild = get_value('followchild')
-        self._removeextra = get_value('removeextra')
-        self._gidlist = get_value('gidlist')
-        self._colormales = get_value('colormales')
-        self._colorfemales = get_value('colorfemales')
-        self._colorunknown = get_value('colorunknown')
-        self._colorfamilies = get_value('colorfamilies')
-        self._limitparents = get_value('limitparents')
-        self._maxparents = get_value('maxparents')
-        self._limitchildren = get_value('limitchildren')
-        self._maxchildren = get_value('maxchildren')
-        self._incimages = get_value('incimages')
-        self._imageonside = get_value('imageonside')
-        self._imagesize = get_value('imagesize')
-        self._useroundedcorners = get_value('useroundedcorners')
-        self._usesubgraphs = get_value('usesubgraphs')
-        self._incdates = get_value('incdates')
-        self._just_years = get_value('justyears')
-        self._incplaces = get_value('incplaces')
-        self._incchildcount = get_value('incchildcnt')
-        self.includeid = get_value('inc_id')
+        self._followpar = get_value("followpar")
+        self._followchild = get_value("followchild")
+        self._removeextra = get_value("removeextra")
+        self._gidlist = get_value("gidlist")
+        self._colormales = get_value("colormales")
+        self._colorfemales = get_value("colorfemales")
+        self._colorother = get_value("colorother")
+        self._colorunknown = get_value("colorunknown")
+        self._colorfamilies = get_value("colorfamilies")
+        self._limitparents = get_value("limitparents")
+        self._maxparents = get_value("maxparents")
+        self._limitchildren = get_value("limitchildren")
+        self._maxchildren = get_value("maxchildren")
+        self._incimages = get_value("incimages")
+        self._imageonside = get_value("imageonside")
+        self._imagesize = get_value("imagesize")
+        self._useroundedcorners = get_value("useroundedcorners")
+        self._usesubgraphs = get_value("usesubgraphs")
+        self._incdates = get_value("incdates")
+        self._just_years = get_value("justyears")
+        self._incplaces = get_value("incplaces")
+        self._incchildcount = get_value("incchildcnt")
+        self.includeid = get_value("inc_id")
 
-        arrow_str = get_value('arrow')
-        if 'd' in arrow_str:
-            self._arrowheadstyle = 'normal'
+        arrow_str = get_value("arrow")
+        if "d" in arrow_str:
+            self._arrowheadstyle = "normal"
         else:
-            self._arrowheadstyle = 'none'
-        if 'a' in arrow_str:
-            self._arrowtailstyle = 'normal'
+            self._arrowheadstyle = "none"
+        if "a" in arrow_str:
+            self._arrowtailstyle = "normal"
         else:
-            self._arrowtailstyle = 'none'
+            self._arrowtailstyle = "none"
 
         # the gidlist is annoying for us to use since we always have to convert
         # the GIDs to either Person or to handles, so we may as well convert the
         # entire list right now and not have to deal with it ever again
         self._interest_set = set()
         if not self._gidlist:
-            raise ReportError(_('Empty report'),
-                              _('You did not specify anybody'))
+            raise ReportError(_("Empty report"), _("You did not specify anybody"))
         for gid in self._gidlist.split():
             person = self._db.get_person_from_gramps_id(gid)
             if person:
-                #option can be from another family tree, so person can be None
+                # option can be from another family tree, so person can be None
                 self._interest_set.add(person.get_handle())
 
         stdoptions.run_name_format_option(self, menu)
 
         # convert the 'surnamecolors' string to a dictionary of names and colors
         self._surnamecolors = {}
-        tmp = get_value('surnamecolors')
-        if tmp.find('\xb0') >= 0:
+        tmp = get_value("surnamecolors")
+        if tmp.find("\xb0") >= 0:
             # new style delimiter (see bug report #2162)
-            tmp = tmp.split('\xb0')
+            tmp = tmp.split("\xb0")
         else:
             # old style delimiter
-            tmp = tmp.split(' ')
+            tmp = tmp.split(" ")
 
         while len(tmp) > 1:
-            surname = tmp.pop(0).encode('iso-8859-1', 'xmlcharrefreplace')
+            surname = tmp.pop(0).encode("iso-8859-1", "xmlcharrefreplace")
             colour = tmp.pop(0)
             self._surnamecolors[surname] = colour
 
-        self._colorize = get_value('color')
+        self._colorize = get_value("color")
 
     def begin_report(self):
         """
@@ -460,7 +516,6 @@ class FamilyLinesReport(Report):
         # once we get here we have a full list of people
         # and families that we need to generate a report
 
-
     def write_report(self):
         """
         Inherited method; called by report() in _ReportDialog.py
@@ -469,40 +524,45 @@ class FamilyLinesReport(Report):
         # now that begin_report() has done the work, output what we've
         # obtained into whatever file or format the user expects to use
 
-        self.doc.add_comment('# %s %d' %
-                             (self._('Number of people in database:'),
-                              self._db.get_number_of_people()))
-        self.doc.add_comment('# %s %d' %
-                             (self._('Number of people of interest:'),
-                              len(self._people)))
-        self.doc.add_comment('# %s %d' %
-                             (self._('Number of families in database:'),
-                              self._db.get_number_of_families()))
-        self.doc.add_comment('# %s %d' %
-                             (self._('Number of families of interest:'),
-                              len(self._families)))
+        self.doc.add_comment(
+            "# %s %d"
+            % (self._("Number of people in database:"), self._db.get_number_of_people())
+        )
+        self.doc.add_comment(
+            "# %s %d" % (self._("Number of people of interest:"), len(self._people))
+        )
+        self.doc.add_comment(
+            "# %s %d"
+            % (
+                self._("Number of families in database:"),
+                self._db.get_number_of_families(),
+            )
+        )
+        self.doc.add_comment(
+            "# %s %d" % (self._("Number of families of interest:"), len(self._families))
+        )
         if self._removeextra:
-            self.doc.add_comment('# %s %d' %
-                                 (self._('Additional people removed:'),
-                                  self._deleted_people))
-            self.doc.add_comment('# %s %d' %
-                                 (self._('Additional families removed:'),
-                                  self._deleted_families))
-        self.doc.add_comment('# %s' %
-                             self._('Initial list of people of interest:'))
+            self.doc.add_comment(
+                "# %s %d" % (self._("Additional people removed:"), self._deleted_people)
+            )
+            self.doc.add_comment(
+                "# %s %d"
+                % (self._("Additional families removed:"), self._deleted_families)
+            )
+        self.doc.add_comment("# %s" % self._("Initial list of people of interest:"))
         for handle in self._interest_set:
             person = self._db.get_person_from_handle(handle)
             gid = person.get_gramps_id()
             name = person.get_primary_name().get_regular_name()
             # Translators: needed for Arabic, ignore otherwise
-            id_n = self._("%(str1)s, %(str2)s") % {'str1':gid, 'str2':name}
-            self.doc.add_comment('# -> ' + id_n)
+            id_n = self._("%(str1)s, %(str2)s") % {"str1": gid, "str2": name}
+            self.doc.add_comment("# -> " + id_n)
 
         self.write_people()
         self.write_families()
 
     def find_parents(self):
-        """ find the parents """
+        """find the parents"""
         # we need to start with all of our "people of interest"
         ancestors_not_yet_processed = set(self._interest_set)
 
@@ -524,7 +584,6 @@ class FamilyLinesReport(Report):
             # people of interest.
 
             if handle not in self._people:
-
                 person = self._db.get_person_from_handle(handle)
 
                 # remember this person!
@@ -540,16 +599,19 @@ class FamilyLinesReport(Report):
                         continue
                     spouse_handle = utils.find_spouse(person, family)
                     if spouse_handle:
-                        if (spouse_handle in self._people or
-                                spouse_handle in ancestors_not_yet_processed):
+                        if (
+                            spouse_handle in self._people
+                            or spouse_handle in ancestors_not_yet_processed
+                        ):
                             self._families.add(family_handle)
 
                 # if we have a limit on the number of people, and we've
                 # reached that limit, then don't attempt to find any
                 # more ancestors
-                if (self._limitparents and
-                        (self._maxparents <
-                         len(ancestors_not_yet_processed) + len(self._people))):
+                if self._limitparents and (
+                    self._maxparents
+                    < len(ancestors_not_yet_processed) + len(self._people)
+                ):
                     # get back to the top of the while loop so we can finish
                     # processing the people queued up in the "not yet
                     # processed" list
@@ -574,7 +636,7 @@ class FamilyLinesReport(Report):
                             self._families.add(family_handle)
 
     def remove_uninteresting_parents(self):
-        """ remove any uninteresting parents """
+        """remove any uninteresting parents"""
         # start with all the people we've already identified
         unprocessed_parents = set(self._people)
 
@@ -605,7 +667,7 @@ class FamilyLinesReport(Report):
             spouse_mother_handle = None
             spouse_surname = ""
             surname = person.get_primary_name().get_surname()
-            surname = surname.encode('iso-8859-1', 'xmlcharrefreplace')
+            surname = surname.encode("iso-8859-1", "xmlcharrefreplace")
 
             # first we get the person's father and mother
             for family_handle in person.get_parent_family_handle_list():
@@ -627,14 +689,13 @@ class FamilyLinesReport(Report):
                     spouse_handle = handle
                     spouse_surname = spouse.get_primary_name().get_surname()
                     spouse_surname = spouse_surname.encode(
-                        'iso-8859-1', 'xmlcharrefreplace')
+                        "iso-8859-1", "xmlcharrefreplace"
+                    )
 
                     # see if the spouse has parents
                     if not spouse_father_handle and not spouse_mother_handle:
-                        for family_handle in \
-                                spouse.get_parent_family_handle_list():
-                            family = self._db.get_family_from_handle(
-                                family_handle)
+                        for family_handle in spouse.get_parent_family_handle_list():
+                            family = self._db.get_family_from_handle(family_handle)
                             handle = family.get_father_handle()
                             if handle in self._people:
                                 spouse_father_handle = handle
@@ -671,8 +732,7 @@ class FamilyLinesReport(Report):
 
             # if the spouse has parents, then we automatically keep
             # this person
-            if (spouse_father_handle is not None or
-                    spouse_mother_handle is not None):
+            if spouse_father_handle is not None or spouse_mother_handle is not None:
                 continue
 
             # if this is a person of interest, then we automatically keep
@@ -688,12 +748,16 @@ class FamilyLinesReport(Report):
             keep_this_person = False
             for person_of_interest_handle in self._interest_set:
                 person_of_interest = self._db.get_person_from_handle(
-                    person_of_interest_handle)
+                    person_of_interest_handle
+                )
                 surname_of_interest = person_of_interest.get_primary_name()
                 surname_of_interest = surname_of_interest.get_surname().encode(
-                    'iso-8859-1', 'xmlcharrefreplace')
-                if (surname_of_interest == surname or
-                        surname_of_interest == spouse_surname):
+                    "iso-8859-1", "xmlcharrefreplace"
+                )
+                if (
+                    surname_of_interest == surname
+                    or surname_of_interest == spouse_surname
+                ):
                     keep_this_person = True
                     break
 
@@ -731,9 +795,8 @@ class FamilyLinesReport(Report):
                 if child_handle not in unprocessed_parents:
                     unprocessed_parents.add(child_handle)
 
-
     def find_children(self):
-        """ find any children """
+        """find any children"""
         # we need to start with all of our "people of interest"
         children_not_yet_processed = set(self._interest_set)
         children_to_include = set()
@@ -744,7 +807,6 @@ class FamilyLinesReport(Report):
             handle = children_not_yet_processed.pop()
 
             if handle not in children_to_include:
-
                 person = self._db.get_person_from_handle(handle)
 
                 # remember this person!
@@ -753,11 +815,10 @@ class FamilyLinesReport(Report):
                 # if we have a limit on the number of people, and we've
                 # reached that limit, then don't attempt to find any
                 # more children
-                if (self._limitchildren and
-                        (self._maxchildren <
-                         len(children_not_yet_processed) +
-                         len(children_to_include)
-                        )):
+                if self._limitchildren and (
+                    self._maxchildren
+                    < len(children_not_yet_processed) + len(children_to_include)
+                ):
                     # get back to the top of the while loop
                     # so we can finish processing the people
                     # queued up in the "not yet processed" list
@@ -783,9 +844,9 @@ class FamilyLinesReport(Report):
         self._people.update(children_to_include)
 
     def write_people(self):
-        """ write the people """
+        """write the people"""
 
-        self.doc.add_comment('')
+        self.doc.add_comment("")
 
         # If we're going to attempt to include images, then use the HTML style
         # of .gv file.
@@ -794,7 +855,7 @@ class FamilyLinesReport(Report):
             use_html_output = True
 
         # loop through all the people we need to output
-        for handle in sorted(self._people): # enable a diff
+        for handle in sorted(self._people):  # enable a diff
             person = self._db.get_person_from_handle(handle)
             name = self._name_display.display(person)
             p_id = person.get_gramps_id()
@@ -806,10 +867,12 @@ class FamilyLinesReport(Report):
                 colour = self._colormales
             elif gender == Person.FEMALE:
                 colour = self._colorfemales
+            elif gender == Person.OTHER:
+                colour = self._colorother
 
             # see if we have surname colours that match this person
             surname = person.get_primary_name().get_surname()
-            surname = surname.encode('iso-8859-1', 'xmlcharrefreplace')
+            surname = surname.encode("iso-8859-1", "xmlcharrefreplace")
             if surname in self._surnamecolors:
                 colour = self._surnamecolors[surname]
 
@@ -826,8 +889,7 @@ class FamilyLinesReport(Report):
             if bth_event and self._incdates:
                 date = bth_event.get_date_object()
                 if self._just_years and date.get_year_valid():
-                    birth_str = self.get_date( # localized year
-                        Date(date.get_year()))
+                    birth_str = self.get_date(Date(date.get_year()))  # localized year
                 else:
                     birth_str = self.get_date(date)
 
@@ -842,8 +904,7 @@ class FamilyLinesReport(Report):
             if dth_event and self._incdates:
                 date = dth_event.get_date_object()
                 if self._just_years and date.get_year_valid():
-                    death_str = self.get_date( # localized year
-                        Date(date.get_year()))
+                    death_str = self.get_date(Date(date.get_year()))  # localized year
                 else:
                     death_str = self.get_date(date)
 
@@ -865,56 +926,58 @@ class FamilyLinesReport(Report):
                         image_path = get_thumbnail_path(
                             media_path_full(self._db, media.get_path()),
                             rectangle=media_list[0].get_rectangle(),
-                            size=self._imagesize)
+                            size=self._imagesize,
+                        )
 
             # put the label together and output this person
             label = ""
-            line_delimiter = '\\n'
+            line_delimiter = "\\n"
             if use_html_output:
-                line_delimiter = '<BR/>'
+                line_delimiter = "<BR/>"
 
             # if we have an image, then start an HTML table;
             # remember to close the table afterwards!
             if image_path:
-                label = ('<TABLE BORDER="0" CELLSPACING="2" CELLPADDING="0" '
-                         'CELLBORDER="0"><TR><TD><IMG SRC="%s"/></TD>' %
-                         image_path)
+                label = (
+                    '<TABLE BORDER="0" CELLSPACING="2" CELLPADDING="0" '
+                    'CELLBORDER="0"><TR><TD><IMG SRC="%s"/></TD>' % image_path
+                )
                 if self._imageonside == 0:
-                    label += '</TR><TR>'
-                label += '<TD>'
+                    label += "</TR><TR>"
+                label += "<TD>"
 
             # at the very least, the label must have the person's name
             label += html.escape(name)
-            if self.includeid == 1: # same line
+            if self.includeid == 1:  # same line
                 label += " (%s)" % p_id
-            elif self.includeid == 2: # own line
+            elif self.includeid == 2:  # own line
                 label += "%s(%s)" % (line_delimiter, p_id)
 
             if birth_str or death_str:
-                label += '%s(' % line_delimiter
+                label += "%s(" % line_delimiter
                 if birth_str:
-                    label += '%s' % birth_str
-                label += ' – '
+                    label += "%s" % birth_str
+                label += " – "
                 if death_str:
-                    label += '%s' % death_str
-                label += ')'
+                    label += "%s" % death_str
+                label += ")"
             if birthplace or deathplace:
                 if birthplace == deathplace:
-                    deathplace = None    # no need to print the same name twice
-                label += '%s' % line_delimiter
+                    deathplace = None  # no need to print the same name twice
+                label += "%s" % line_delimiter
                 if birthplace:
-                    label += '%s' % birthplace
+                    label += "%s" % birthplace
                 if birthplace and deathplace:
-                    label += ' / '
+                    label += " / "
                 if deathplace:
-                    label += '%s' % deathplace
+                    label += "%s" % deathplace
 
             # see if we have a table that needs to be terminated
             if image_path:
-                label += '</TD></TR></TABLE>'
+                label += "</TD></TR></TABLE>"
             else:
                 # non html label is enclosed by "" so escape other "
-                label = label.replace('"', '\\\"')
+                label = label.replace('"', '\\"')
 
             shape = "box"
             style = "solid"
@@ -922,7 +985,7 @@ class FamilyLinesReport(Report):
             fill = colour
 
             # do not use colour if this is B&W outline
-            if self._colorize == 'outline':
+            if self._colorize == "outline":
                 border = ""
                 fill = ""
 
@@ -934,27 +997,29 @@ class FamilyLinesReport(Report):
                 shape = "hexagon"
 
             # if we're filling the entire node:
-            if self._colorize == 'filled':
+            if self._colorize == "filled":
                 style += ",filled"
                 border = ""
 
             # we're done -- add the node
-            self.doc.add_node(p_id,
-                              label=label,
-                              shape=shape,
-                              color=border,
-                              style=style,
-                              fillcolor=fill,
-                              htmloutput=use_html_output)
+            self.doc.add_node(
+                p_id,
+                label=label,
+                shape=shape,
+                color=border,
+                style=style,
+                fillcolor=fill,
+                htmloutput=use_html_output,
+            )
 
     def write_families(self):
-        """ write the families """
+        """write the families"""
 
-        self.doc.add_comment('')
-        ngettext = self._locale.translation.ngettext # to see "nearby" comments
+        self.doc.add_comment("")
+        ngettext = self._locale.translation.ngettext  # to see "nearby" comments
 
         # loop through all the families we need to output
-        for family_handle in sorted(self._families): # enable a diff
+        for family_handle in sorted(self._families):  # enable a diff
             family = self._db.get_family_from_handle(family_handle)
             fgid = family.get_gramps_id()
 
@@ -964,15 +1029,17 @@ class FamilyLinesReport(Report):
             if self._incdates or self._incplaces:
                 for event_ref in family.get_event_ref_list():
                     event = self._db.get_event_from_handle(event_ref.ref)
-                    if (event.get_type() == EventType.MARRIAGE and
-                            (event_ref.get_role() == EventRoleType.FAMILY or
-                             event_ref.get_role() == EventRoleType.PRIMARY)):
+                    if event.get_type() == EventType.MARRIAGE and (
+                        event_ref.get_role() == EventRoleType.FAMILY
+                        or event_ref.get_role() == EventRoleType.PRIMARY
+                    ):
                         # get the wedding date
                         if self._incdates:
                             date = event.get_date_object()
                             if self._just_years and date.get_year_valid():
-                                wedding_date = self.get_date( # localized year
-                                    Date(date.get_year()))
+                                wedding_date = self.get_date(  # localized year
+                                    Date(date.get_year())
+                                )
                             else:
                                 wedding_date = self.get_date(date)
                         # get the wedding location
@@ -986,40 +1053,40 @@ class FamilyLinesReport(Report):
                 child_count = len(family.get_child_ref_list())
                 if child_count >= 1:
                     # Translators: leave all/any {...} untranslated
-                    children_str = ngettext("{number_of} child",
-                                            "{number_of} children", child_count
-                                           ).format(number_of=child_count)
+                    children_str = ngettext(
+                        "{number_of} child", "{number_of} children", child_count
+                    ).format(number_of=child_count)
 
-            label = ''
+            label = ""
             fgid_already = False
             if wedding_date:
-                if label != '':
-                    label += '\\n'
-                label += '%s' % wedding_date
-                if self.includeid == 1 and not fgid_already: # same line
+                if label != "":
+                    label += "\\n"
+                label += "%s" % wedding_date
+                if self.includeid == 1 and not fgid_already:  # same line
                     label += " (%s)" % fgid
                     fgid_already = True
             if wedding_place:
-                if label != '':
-                    label += '\\n'
-                label += '%s' % wedding_place
-                if self.includeid == 1 and not fgid_already: # same line
+                if label != "":
+                    label += "\\n"
+                label += "%s" % wedding_place
+                if self.includeid == 1 and not fgid_already:  # same line
                     label += " (%s)" % fgid
                     fgid_already = True
             if self.includeid == 1 and not label:
                 label = "(%s)" % fgid
                 fgid_already = True
-            elif self.includeid == 2 and not label: # own line
+            elif self.includeid == 2 and not label:  # own line
                 label = "(%s)" % fgid
                 fgid_already = True
             elif self.includeid == 2 and label and not fgid_already:
                 label += "\\n(%s)" % fgid
                 fgid_already = True
             if children_str:
-                if label != '':
-                    label += '\\n'
-                label += '%s' % children_str
-                if self.includeid == 1 and not fgid_already: # same line
+                if label != "":
+                    label += "\\n"
+                label += "%s" % children_str
+                if self.includeid == 1 and not fgid_already:  # same line
                     label += " (%s)" % fgid
                     fgid_already = True
 
@@ -1029,12 +1096,12 @@ class FamilyLinesReport(Report):
             fill = self._colorfamilies
 
             # do not use colour if this is B&W outline
-            if self._colorize == 'outline':
+            if self._colorize == "outline":
                 border = ""
                 fill = ""
 
             # if we're filling the entire node:
-            if self._colorize == 'filled':
+            if self._colorize == "filled":
                 style += ",filled"
                 border = ""
 
@@ -1044,14 +1111,13 @@ class FamilyLinesReport(Report):
         # now that we have the families written,
         # go ahead and link the parents and children to the families
         for family_handle in self._families:
-
             # get the parents for this family
             family = self._db.get_family_from_handle(family_handle)
             fgid = family.get_gramps_id()
             father_handle = family.get_father_handle()
             mother_handle = family.get_mother_handle()
 
-            self.doc.add_comment('')
+            self.doc.add_comment("")
 
             if self._usesubgraphs and father_handle and mother_handle:
                 self.doc.start_subgraph(fgid)
@@ -1062,9 +1128,14 @@ class FamilyLinesReport(Report):
                     father = self._db.get_person_from_handle(father_handle)
                     father_rn = father.get_primary_name().get_regular_name()
                     comment = self._("father: %s") % father_rn
-                    self.doc.add_link(father.get_gramps_id(), fgid, "",
-                                      self._arrowheadstyle, self._arrowtailstyle,
-                                      comment=comment)
+                    self.doc.add_link(
+                        father.get_gramps_id(),
+                        fgid,
+                        "",
+                        self._arrowheadstyle,
+                        self._arrowtailstyle,
+                        comment=comment,
+                    )
 
             # see if we have a mother to link to this family
             if mother_handle:
@@ -1072,9 +1143,14 @@ class FamilyLinesReport(Report):
                     mother = self._db.get_person_from_handle(mother_handle)
                     mother_rn = mother.get_primary_name().get_regular_name()
                     comment = self._("mother: %s") % mother_rn
-                    self.doc.add_link(mother.get_gramps_id(), fgid, "",
-                                      self._arrowheadstyle, self._arrowtailstyle,
-                                      comment=comment)
+                    self.doc.add_link(
+                        mother.get_gramps_id(),
+                        fgid,
+                        "",
+                        self._arrowheadstyle,
+                        self._arrowtailstyle,
+                        comment=comment,
+                    )
 
             if self._usesubgraphs and father_handle and mother_handle:
                 self.doc.end_subgraph()
@@ -1085,13 +1161,18 @@ class FamilyLinesReport(Report):
                     child = self._db.get_person_from_handle(childref.ref)
                     child_rn = child.get_primary_name().get_regular_name()
                     comment = self._("child: %s") % child_rn
-                    self.doc.add_link(fgid, child.get_gramps_id(), "",
-                                      self._arrowheadstyle, self._arrowtailstyle,
-                                      comment=comment)
+                    self.doc.add_link(
+                        fgid,
+                        child.get_gramps_id(),
+                        "",
+                        self._arrowheadstyle,
+                        self._arrowtailstyle,
+                        comment=comment,
+                    )
 
     def get_event_place(self, event):
-        """ get the place of the event """
-        place_text = ''
+        """get the place of the event"""
+        place_text = ""
         place_handle = event.get_place_handle()
         if place_handle:
             place = self._db.get_place_from_handle(place_handle)
@@ -1101,5 +1182,5 @@ class FamilyLinesReport(Report):
         return place_text
 
     def get_date(self, date):
-        """ return a formatted date """
+        """return a formatted date"""
         return html.escape(self._get_date(date))

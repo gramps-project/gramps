@@ -22,23 +22,33 @@
 Note types.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .grampstype import GrampsType
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .grampstype import GrampsType
+
 _ = glocale.translation.sgettext
 
+
+# -------------------------------------------------------------------------
+#
+# NoteType
+#
+# -------------------------------------------------------------------------
 class NoteType(GrampsType):
+    """
+    Class encapsulating the type of note.
+    """
 
     UNKNOWN = -1
     CUSTOM = 0
     GENERAL = 1
     RESEARCH = 2
     TRANSCRIPT = 3
-    #per object with notes a Type to distinguish the notes
+    # per object with notes a Type to distinguish the notes
     PERSON = 4
     ATTRIBUTE = 5
     ADDRESS = 6
@@ -57,14 +67,15 @@ class NoteType(GrampsType):
     CHILDREF = 19
     PERSONNAME = 20
     # other common types
-    SOURCE_TEXT = 21    # this is used for verbatim source text in SourceRef
+    SOURCE_TEXT = 21  # this is used for verbatim source text in SourceRef
     CITATION = 22
-    REPORT_TEXT = 23    # this is used for notes used for reports
+    REPORT_TEXT = 23  # this is used for notes used for reports
     # indicate a note is html code
     HTML_CODE = 24
     TODO = 25
     # indicate a note used as link in another note
     LINK = 26
+    ANALYSIS = 27
 
     _CUSTOM = CUSTOM
     _DEFAULT = GENERAL
@@ -74,14 +85,15 @@ class NoteType(GrampsType):
         (CUSTOM, _("Custom"), "Custom"),
         (GENERAL, _("General"), "General"),
         (RESEARCH, _("Research"), "Research"),
+        (ANALYSIS, _("Analysis"), "Analysis"),
         (TRANSCRIPT, _("Transcript"), "Transcript"),
         (SOURCE_TEXT, _("Source text"), "Source text"),
-        (CITATION, _('Citation'), "Citation"),
+        (CITATION, _("Citation"), "Citation"),
         (REPORT_TEXT, _("Report"), "Report"),
         (HTML_CODE, _("Html code"), "Html code"),
         (TODO, _("To Do", "notetype"), "To Do"),
         (LINK, _("Link", "notetype"), "Link"),
-        ]
+    ]
 
     _DATAMAPIGNORE = [
         (PERSON, _("Person Note"), "Person Note"),
@@ -101,7 +113,7 @@ class NoteType(GrampsType):
         (MEDIA, _("Media Note"), "Media Note"),
         (MEDIAREF, _("Media Reference Note"), "Media Reference Note"),
         (CHILDREF, _("Child Reference Note"), "Child Reference Note"),
-        ]
+    ]
 
     _DATAMAP = _DATAMAPREAL + _DATAMAPIGNORE
 

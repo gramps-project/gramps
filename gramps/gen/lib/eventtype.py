@@ -23,15 +23,22 @@
 Provide the different event types
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .grampstype import GrampsType
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .grampstype import GrampsType
+
 _ = glocale.translation.sgettext
 
+
+# -------------------------------------------------------------------------
+#
+# EventType
+#
+# -------------------------------------------------------------------------
 class EventType(GrampsType):
     """
     Event types.
@@ -84,6 +91,7 @@ class EventType(GrampsType):
     .. attribute MARR_ALT:        Alternate Marriage
     .. attribute STILLBIRTH:      Stillbirth
     """
+
     UNKNOWN = -1
     CUSTOM = 0
     MARRIAGE = 1
@@ -133,29 +141,52 @@ class EventType(GrampsType):
     STILLBIRTH = 45
 
     # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
-    def _T_(value, context=''): # enable deferred translations
+    def _T_(value, context=""):  # enable deferred translations
         return "%s\x04%s" % (context, value) if context else value
 
-    _MENU = [[_T_('Life Events'),
-              [BIRTH, BAPTISM, DEATH, STILLBIRTH, BURIAL, CREMATION, ADOPT]],
-             [_T_('Family'),
-              [ENGAGEMENT, MARRIAGE, DIVORCE, ANNULMENT, MARR_SETTL, MARR_LIC,
-               MARR_CONTR, MARR_BANNS, DIV_FILING, MARR_ALT]],
-             [_T_('Religious'),
-              [CHRISTEN, ADULT_CHRISTEN, CONFIRMATION, FIRST_COMMUN, BLESS,
-               BAR_MITZVAH, BAS_MITZVAH, RELIGION]],
-             [_T_('Vocational'),
-              [OCCUPATION, RETIREMENT, ELECTED, MILITARY_SERV, ORDINATION]],
-             [_T_('Academic'),
-              [EDUCATION, DEGREE, GRADUATION]],
-             [_T_('Travel'),
-              [EMIGRATION, IMMIGRATION, NATURALIZATION]],
-             [_T_('Legal'),
-              [PROBATE, WILL]],
-             [_T_('Residence'),
-              [RESIDENCE, CENSUS, PROPERTY]],
-             [_T_('Other'),
-              [CAUSE_DEATH, MED_INFO, NOB_TITLE, NUM_MARRIAGES]]]
+    _MENU = [
+        [
+            _T_("Life Events"),
+            [BIRTH, BAPTISM, DEATH, STILLBIRTH, BURIAL, CREMATION, ADOPT],
+        ],
+        [
+            _T_("Family"),
+            [
+                ENGAGEMENT,
+                MARRIAGE,
+                DIVORCE,
+                ANNULMENT,
+                MARR_SETTL,
+                MARR_LIC,
+                MARR_CONTR,
+                MARR_BANNS,
+                DIV_FILING,
+                MARR_ALT,
+            ],
+        ],
+        [
+            _T_("Religious"),
+            [
+                CHRISTEN,
+                ADULT_CHRISTEN,
+                CONFIRMATION,
+                FIRST_COMMUN,
+                BLESS,
+                BAR_MITZVAH,
+                BAS_MITZVAH,
+                RELIGION,
+            ],
+        ],
+        [
+            _T_("Vocational"),
+            [OCCUPATION, RETIREMENT, ELECTED, MILITARY_SERV, ORDINATION],
+        ],
+        [_T_("Academic"), [EDUCATION, DEGREE, GRADUATION]],
+        [_T_("Travel"), [EMIGRATION, IMMIGRATION, NATURALIZATION]],
+        [_T_("Legal"), [PROBATE, WILL]],
+        [_T_("Residence"), [RESIDENCE, CENSUS, PROPERTY]],
+        [_T_("Other"), [CAUSE_DEATH, MED_INFO, NOB_TITLE, NUM_MARRIAGES]],
+    ]
 
     _CUSTOM = CUSTOM
     _DEFAULT = BIRTH
@@ -208,7 +239,7 @@ class EventType(GrampsType):
         (ANNULMENT, _("Annulment"), "Annulment"),
         (MARR_ALT, _("Alternate Marriage"), "Alternate Marriage"),
         (STILLBIRTH, _("Stillbirth"), "Stillbirth"),
-        ]
+    ]
 
     _ABBREVIATIONS = {
         BIRTH: _T_("b.", "birth abbreviation"),
@@ -217,13 +248,13 @@ class EventType(GrampsType):
         UNKNOWN: _T_("unkn.", "Unknown abbreviation"),
         CUSTOM: _T_("cust.", "Custom abbreviation"),
         ADOPT: _T_("adop.", "Adopted abbreviation"),
-        ADULT_CHRISTEN : _T_("a.chr.", "Adult Christening abbreviation"),
+        ADULT_CHRISTEN: _T_("a.chr.", "Adult Christening abbreviation"),
         BAPTISM: _T_("bap.", "Baptism abbreviation"),
-        BAR_MITZVAH : _T_("bar.", "Bar Mitzvah abbreviation"),
-        BAS_MITZVAH : _T_("bat.", "Bat Mitzvah abbreviation"),
+        BAR_MITZVAH: _T_("bar.", "Bar Mitzvah abbreviation"),
+        BAS_MITZVAH: _T_("bat.", "Bat Mitzvah abbreviation"),
         BLESS: _T_("bles.", "Blessing abbreviation"),
         BURIAL: _T_("bur.", "Burial abbreviation"),
-        CAUSE_DEATH : _T_("d.cau.", "Cause Of Death abbreviation"),
+        CAUSE_DEATH: _T_("d.cau.", "Cause Of Death abbreviation"),
         CENSUS: _T_("cens.", "Census abbreviation"),
         CHRISTEN: _T_("chr.", "Christening abbreviation"),
         CONFIRMATION: _T_("conf.", "Confirmation abbreviation"),
@@ -257,8 +288,8 @@ class EventType(GrampsType):
         DIVORCE: _T_("div.", "Divorce abbreviation"),
         DIV_FILING: _T_("div.f.", "Divorce Filing abbreviation"),
         ANNULMENT: _T_("annul.", "Annulment abbreviation"),
-        STILLBIRTH: _T_("still.", "Stillbirth abbreviation")
-        }
+        STILLBIRTH: _T_("still.", "Stillbirth abbreviation"),
+    }
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)
@@ -296,19 +327,19 @@ class EventType(GrampsType):
         Returns True if EventType is a birth fallback, False
         otherwise.
         """
-        return self.value in [self.STILLBIRTH,
-                              self.BAPTISM,
-                              self.CHRISTEN]
+        return self.value in [self.STILLBIRTH, self.BAPTISM, self.CHRISTEN]
 
     def is_death_fallback(self):
         """
         Returns True if EventType is a death fallback, False
         otherwise.
         """
-        return self.value in [self.STILLBIRTH,
-                              self.BURIAL,
-                              self.CREMATION,
-                              self.CAUSE_DEATH]
+        return self.value in [
+            self.STILLBIRTH,
+            self.BURIAL,
+            self.CREMATION,
+            self.CAUSE_DEATH,
+        ]
 
     def is_marriage(self):
         """
@@ -321,8 +352,7 @@ class EventType(GrampsType):
         Returns True if EventType is a marriage fallback, False
         otherwise.
         """
-        return self.value in [self.ENGAGEMENT,
-                              self.MARR_ALT]
+        return self.value in [self.ENGAGEMENT, self.MARR_ALT]
 
     def is_divorce(self):
         """
@@ -335,8 +365,7 @@ class EventType(GrampsType):
         Returns True if EventType is a divorce fallback, False
         otherwise.
         """
-        return self.value in [self.ANNULMENT,
-                              self.DIV_FILING]
+        return self.value in [self.ANNULMENT, self.DIV_FILING]
 
     def is_relationship_event(self):
         """
@@ -350,7 +379,7 @@ class EventType(GrampsType):
         """
         event_type = [tup for tup in self._DATAMAP if tup[2] == event_name]
         if len(event_type) > 0:
-            return self.value == event_type[0][0] # first one, the code
+            return self.value == event_type[0][0]  # first one, the code
         return False
 
     def get_abbreviation(self, trans_text=glocale.translation.sgettext):
@@ -365,10 +394,7 @@ class EventType(GrampsType):
         """
         if self.value in self._ABBREVIATIONS:
             return trans_text(self._ABBREVIATIONS[self.value])
-        else:
-            abbrev = str(self)
-            if " " in abbrev:
-                return ".".join([letter[0].lower()
-                                 for letter in abbrev.split()]) + "."
-            else:
-                return abbrev[:3].lower() + "."
+        abbrev = str(self)
+        if " " in abbrev:
+            return ".".join([letter[0].lower() for letter in abbrev.split()]) + "."
+        return abbrev[:3].lower() + "."

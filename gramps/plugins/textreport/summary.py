@@ -25,41 +25,49 @@
 Reports/Text Reports/Database Summary Report.
 """
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # standard python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import os
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gramps.gen.lib import Person
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
-from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
-                                    FONT_SANS_SERIF, INDEX_TYPE_TOC,
-                                    PARA_ALIGN_CENTER)
+from gramps.gen.plug.docgen import (
+    IndexMark,
+    FontStyle,
+    ParagraphStyle,
+    FONT_SANS_SERIF,
+    INDEX_TYPE_TOC,
+    PARA_ALIGN_CENTER,
+)
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.datehandler import get_date
 from gramps.gen.proxy import CacheProxyDb
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # SummaryReport
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class SummaryReport(Report):
     """
     This report produces a summary of the objects in the database.
     """
+
     def __init__(self, database, options, user):
         """
         Create the SummaryReport object that produces the report.
@@ -75,7 +83,7 @@ class SummaryReport(Report):
         """
         Report.__init__(self, database, options, user)
 
-        self.set_locale(options.menu.get_option_by_name('trans').get_value())
+        self.set_locale(options.menu.get_option_by_name("trans").get_value())
 
         stdoptions.run_private_data_option(self, options.menu)
         stdoptions.run_living_people_option(self, options.menu, self._locale)
@@ -112,6 +120,7 @@ class SummaryReport(Report):
         missing_bday = 0
         males = 0
         females = 0
+        others = 0
         unknowns = 0
         namelist = []
 
@@ -142,8 +151,9 @@ class SummaryReport(Report):
                         incomp_names += 1
 
             # Count people without families.
-            if (not person.get_main_parents_family_handle() and
-                    not len(person.get_family_handle_list())):
+            if not person.get_main_parents_family_handle() and not len(
+                person.get_family_handle_list()
+            ):
                 disconnected += 1
 
             # Count missing birthdays.
@@ -160,13 +170,17 @@ class SummaryReport(Report):
                 females += 1
             elif person.get_gender() == Person.MALE:
                 males += 1
+            elif person.get_gender() == Person.OTHER:
+                others += 1
             else:
                 unknowns += 1
 
             # Count unique surnames
             for name in primary_names + person.get_alternate_names():
-                if (not name.get_surname().strip() in namelist
-                        and not name.get_surname().strip() == ""):
+                if (
+                    not name.get_surname().strip() in namelist
+                    and not name.get_surname().strip() == ""
+                ):
                     namelist.append(name.get_surname().strip())
 
         self.doc.start_paragraph("SR-Normal")
@@ -182,8 +196,11 @@ class SummaryReport(Report):
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(self._("Individuals with unknown gender: %d"
-                                  ) % unknowns)
+        self.doc.write_text(self._("Individuals with other gender: %d") % others)
+        self.doc.end_paragraph()
+
+        self.doc.start_paragraph("SR-Normal")
+        self.doc.write_text(self._("Individuals with unknown gender: %d") % unknowns)
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("SR-Normal")
@@ -191,13 +208,13 @@ class SummaryReport(Report):
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(self._("Individuals missing birth dates: %d"
-                                  ) % missing_bday)
+        self.doc.write_text(
+            self._("Individuals missing birth dates: %d") % missing_bday
+        )
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(self._("Disconnected individuals: %d"
-                                  ) % disconnected)
+        self.doc.write_text(self._("Disconnected individuals: %d") % disconnected)
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("SR-Normal")
@@ -205,8 +222,7 @@ class SummaryReport(Report):
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(self._("Individuals with media objects: %d"
-                                  ) % with_media)
+        self.doc.write_text(self._("Individuals with media objects: %d") % with_media)
         self.doc.end_paragraph()
 
     def summarize_families(self):
@@ -218,8 +234,9 @@ class SummaryReport(Report):
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(self._("Number of families: %d"
-                                  ) % self.__db.get_number_of_families())
+        self.doc.write_text(
+            self._("Number of families: %d") % self.__db.get_number_of_families()
+        )
         self.doc.end_paragraph()
 
     def summarize_events(self):
@@ -231,8 +248,9 @@ class SummaryReport(Report):
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(self._("Number of events: %d"
-                                  ) % self.__db.get_number_of_events())
+        self.doc.write_text(
+            self._("Number of events: %d") % self.__db.get_number_of_events()
+        )
         self.doc.end_paragraph()
 
     def summarize_places(self):
@@ -244,8 +262,9 @@ class SummaryReport(Report):
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(self._("Number of places: %d"
-                                  ) % self.__db.get_number_of_places())
+        self.doc.write_text(
+            self._("Number of places: %d") % self.__db.get_number_of_places()
+        )
         self.doc.end_paragraph()
 
     def summarize_sources(self):
@@ -257,8 +276,9 @@ class SummaryReport(Report):
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(self._("Number of sources: %d"
-                                  ) % self.__db.get_number_of_sources())
+        self.doc.write_text(
+            self._("Number of sources: %d") % self.__db.get_number_of_sources()
+        )
         self.doc.end_paragraph()
 
     def summarize_citations(self):
@@ -270,8 +290,9 @@ class SummaryReport(Report):
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(self._("Number of citations: %d"
-                                  ) % self.__db.get_number_of_citations())
+        self.doc.write_text(
+            self._("Number of citations: %d") % self.__db.get_number_of_citations()
+        )
         self.doc.end_paragraph()
 
     def summarize_repositories(self):
@@ -283,8 +304,10 @@ class SummaryReport(Report):
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(self._("Number of repositories: %d"
-                                  ) % self.__db.get_number_of_repositories())
+        self.doc.write_text(
+            self._("Number of repositories: %d")
+            % self.__db.get_number_of_repositories()
+        )
         self.doc.end_paragraph()
 
     def summarize_media(self):
@@ -305,23 +328,22 @@ class SummaryReport(Report):
             media = self.__db.get_media_from_handle(media_id)
             try:
                 size_in_bytes += os.path.getsize(
-                    media_path_full(self.__db, media.get_path()))
+                    media_path_full(self.__db, media.get_path())
+                )
                 length = len(str(size_in_bytes))
                 if size_in_bytes <= 999999:
                     mbytes = self._("less than 1")
                 else:
-                    mbytes = str(size_in_bytes)[:(length-6)]
+                    mbytes = str(size_in_bytes)[: (length - 6)]
             except:
                 notfound.append(media.get_path())
 
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(self._("Number of unique media objects: %d"
-                                  ) % total_media)
+        self.doc.write_text(self._("Number of unique media objects: %d") % total_media)
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(self._("Total size of media objects: %s MB"
-                                  ) % mbytes)
+        self.doc.write_text(self._("Total size of media objects: %s MB") % mbytes)
         self.doc.end_paragraph()
 
         if len(notfound) > 0:
@@ -343,25 +365,28 @@ class SummaryReport(Report):
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(self._("Number of notes: %d"
-                                  ) % self.__db.get_number_of_notes())
+        self.doc.write_text(
+            self._("Number of notes: %d") % self.__db.get_number_of_notes()
+        )
         self.doc.end_paragraph()
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # SummaryOptions
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class SummaryOptions(MenuReportOptions):
     """
     SummaryOptions provides the options for the SummaryReport.
     """
+
     def __init__(self, name, dbase):
         MenuReportOptions.__init__(self, name, dbase)
 
     def get_subject(self):
-        """ Return a string that describes the subject of the report. """
-        return _('Entire Database')
+        """Return a string that describes the subject of the report."""
+        return _("Entire Database")
 
     def add_menu_options(self, menu):
         """
@@ -370,11 +395,10 @@ class SummaryOptions(MenuReportOptions):
         category_name = _("Report Options")
 
         stdoptions.add_private_data_option(menu, category_name)
-        include_private_data = menu.get_option_by_name('incl_private')
+        include_private_data = menu.get_option_by_name("incl_private")
         include_private_data.set_help(_("Whether to count private data"))
 
-        stdoptions.add_living_people_option(menu, category_name,
-                                            process_names=False)
+        stdoptions.add_living_people_option(menu, category_name, process_names=False)
 
         stdoptions.add_localization_option(menu, category_name)
 
@@ -400,15 +424,15 @@ class SummaryOptions(MenuReportOptions):
         para = ParagraphStyle()
         para.set_font(font)
         para.set_top_margin(0)
-        para.set_description(_('The style used for second level headings.'))
+        para.set_description(_("The style used for second level headings."))
         default_style.add_paragraph_style("SR-Heading", para)
 
         font = FontStyle()
         font.set_size(12)
         para = ParagraphStyle()
-        para.set(first_indent=-0.75, lmargin=.75)
+        para.set(first_indent=-0.75, lmargin=0.75)
         para.set_font(font)
         para.set_top_margin(utils.pt2cm(3))
         para.set_bottom_margin(utils.pt2cm(3))
-        para.set_description(_('The basic style used for the text display.'))
+        para.set_description(_("The basic style used for the text display."))
         default_style.add_paragraph_style("SR-Normal", para)

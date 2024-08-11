@@ -18,26 +18,28 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._matchesfilterbase import MatchesFilterBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MatchesFilter
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MatchesEventFilter(MatchesFilterBase):
     """
     Rule that checks against another filter.
@@ -46,19 +48,22 @@ class MatchesEventFilter(MatchesFilterBase):
     Subclasses need to define the namespace class attribute.
     """
 
-    labels = [_('Event filter name:')]
-    name = _('Places of events matching the <event filter>')
-    description = _("Matches places where events happened that match the "
-                    "specified event filter name")
-    category = _('General filters')
+    labels = [_("Event filter name:")]
+    name = _("Places of events matching the <event filter>")
+    description = _(
+        "Matches places where events happened that match the "
+        "specified event filter name"
+    )
+    category = _("General filters")
     # we want to have this filter show event filters
-    namespace = 'Event'
+    namespace = "Event"
 
-
-    def apply(self,db,event):
+    def apply(self, db, event):
         filt = self.find_filter()
         if filt:
-            for (classname, handle) in db.find_backlink_handles(event.get_handle(), ['Event']):
+            for classname, handle in db.find_backlink_handles(
+                event.get_handle(), ["Event"]
+            ):
                 if filt.check(db, handle):
                     return True
         return False

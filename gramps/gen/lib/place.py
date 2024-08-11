@@ -26,29 +26,31 @@
 Place object for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .primaryobj import PrimaryObject
-from .placeref import PlaceRef
-from .placename import PlaceName
-from .placetype import PlaceType
-from .citationbase import CitationBase
-from .notebase import NoteBase
-from .mediabase import MediaBase
-from .urlbase import UrlBase
-from .tagbase import TagBase
-from .location import Location
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .citationbase import CitationBase
+from .location import Location
+from .mediabase import MediaBase
+from .notebase import NoteBase
+from .placename import PlaceName
+from .placeref import PlaceRef
+from .placetype import PlaceType
+from .primaryobj import PrimaryObject
+from .tagbase import TagBase
+from .urlbase import UrlBase
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Place class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
     """
     Contains information related to a place, including multiple address
@@ -107,17 +109,26 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                   be considered persistent.
         :rtype: tuple
         """
-        return (self.handle, self.gramps_id, self.title, self.long, self.lat,
-                [pr.serialize() for pr in self.placeref_list],
-                self.name.serialize(),
-                [an.serialize() for an in self.alt_names],
-                self.place_type.serialize(), self.code,
-                [al.serialize() for al in self.alt_loc],
-                UrlBase.serialize(self),
-                MediaBase.serialize(self),
-                CitationBase.serialize(self),
-                NoteBase.serialize(self),
-                self.change, TagBase.serialize(self), self.private)
+        return (
+            self.handle,
+            self.gramps_id,
+            self.title,
+            self.long,
+            self.lat,
+            [pr.serialize() for pr in self.placeref_list],
+            self.name.serialize(),
+            [an.serialize() for an in self.alt_names],
+            self.place_type.serialize(),
+            self.code,
+            [al.serialize() for al in self.alt_loc],
+            UrlBase.serialize(self),
+            MediaBase.serialize(self),
+            CitationBase.serialize(self),
+            NoteBase.serialize(self),
+            self.change,
+            TagBase.serialize(self),
+            self.private,
+        )
 
     @classmethod
     def get_schema(cls):
@@ -127,60 +138,70 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
-        from .url import Url
+        # pylint: disable=import-outside-toplevel
         from .mediaref import MediaRef
+        from .url import Url
+
         return {
             "type": "object",
             "title": _("Place"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "handle": {"type": "string",
-                           "maxLength": 50,
-                           "title": _("Handle")},
-                "gramps_id": {"type": "string",
-                              "title": _("Gramps ID")},
-                "title": {"type": "string",
-                          "title": _("Title")},
-                "long": {"type": "string",
-                         "title": _("Longitude")},
-                "lat": {"type": "string",
-                        "title": _("Latitude")},
-                "placeref_list": {"type": "array",
-                                  "items": PlaceRef.get_schema(),
-                                  "title": _("Places")},
+                "handle": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "title": _("Handle"),
+                },
+                "gramps_id": {"type": "string", "title": _("Gramps ID")},
+                "title": {"type": "string", "title": _("Title")},
+                "long": {"type": "string", "title": _("Longitude")},
+                "lat": {"type": "string", "title": _("Latitude")},
+                "placeref_list": {
+                    "type": "array",
+                    "items": PlaceRef.get_schema(),
+                    "title": _("Places"),
+                },
                 "name": PlaceName.get_schema(),
-                "alt_names": {"type": "array",
-                              "items": PlaceName.get_schema(),
-                              "title": _("Alternate Names")},
+                "alt_names": {
+                    "type": "array",
+                    "items": PlaceName.get_schema(),
+                    "title": _("Alternate Names"),
+                },
                 "place_type": PlaceType.get_schema(),
-                "code": {"type": "string",
-                         "title": _("Code")},
-                "alt_loc": {"type": "array",
-                            "items": Location.get_schema(),
-                            "title": _("Alternate Locations")},
-                "urls": {"type": "array",
-                         "items": Url.get_schema(),
-                         "title": _("URLs")},
-                "media_list": {"type": "array",
-                               "items": MediaRef.get_schema(),
-                               "title": _("Media")},
-                "citation_list": {"type": "array",
-                                  "items": {"type": "string",
-                                            "maxLength": 50},
-                                  "title": _("Citations")},
-                "note_list": {"type": "array",
-                              "items": {"type": "string",
-                                        "maxLength": 50},
-                              "title": _("Notes")},
-                "change": {"type": "integer",
-                           "title": _("Last changed")},
-                "tag_list": {"type": "array",
-                             "items": {"type": "string",
-                                       "maxLength": 50},
-                             "title": _("Tags")},
-                "private": {"type": "boolean",
-                            "title": _("Private")}
-            }
+                "code": {"type": "string", "title": _("Code")},
+                "alt_loc": {
+                    "type": "array",
+                    "items": Location.get_schema(),
+                    "title": _("Alternate Locations"),
+                },
+                "urls": {
+                    "type": "array",
+                    "items": Url.get_schema(),
+                    "title": _("URLs"),
+                },
+                "media_list": {
+                    "type": "array",
+                    "items": MediaRef.get_schema(),
+                    "title": _("Media"),
+                },
+                "citation_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Citations"),
+                },
+                "note_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Notes"),
+                },
+                "change": {"type": "integer", "title": _("Last changed")},
+                "tag_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Tags"),
+                },
+                "private": {"type": "boolean", "title": _("Private")},
+            },
         }
 
     def unserialize(self, data):
@@ -192,10 +213,26 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                      Place object
         :type data: tuple
         """
-        (self.handle, self.gramps_id, self.title, self.long, self.lat,
-         placeref_list, name, alt_names, the_type, self.code,
-         alt_loc, urls, media_list, citation_list, note_list,
-         self.change, tag_list, self.private) = data
+        (
+            self.handle,
+            self.gramps_id,
+            self.title,
+            self.long,
+            self.lat,
+            placeref_list,
+            name,
+            alt_names,
+            the_type,
+            self.code,
+            alt_loc,
+            urls,
+            media_list,
+            citation_list,
+            note_list,
+            self.change,
+            tag_list,
+            self.private,
+        ) = data
 
         self.place_type = PlaceType()
         self.place_type.unserialize(the_type)
@@ -227,15 +264,15 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :rtype: list
         """
 
-        ret = (self.media_list + self.alt_loc + self.urls +
-               [self.name] + self.alt_names)
+        ret = self.media_list + self.alt_loc + self.urls + [self.name] + self.alt_names
         return ret
 
     def get_citation_child_list(self):
         """
         Return the list of child secondary objects that may refer citations.
 
-        :returns: List of child secondary child objects that may refer citations.
+        :returns: List of child secondary child objects that may reference
+                citations.
         :rtype: list
         """
         return self.media_list
@@ -268,12 +305,14 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        return (self.get_referenced_note_handles() +
-                self.get_referenced_citation_handles() +
-                self.get_referenced_tag_handles())
+        return (
+            self.get_referenced_note_handles()
+            + self.get_referenced_citation_handles()
+            + self.get_referenced_tag_handles()
+        )
 
     def merge(self, acquisition):
-        """ Merge the content of acquisition into this place.
+        """Merge the content of acquisition into this place.
 
         :param acquisition: The place to merge with the present place.
         :type acquisition: Place
@@ -464,7 +503,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                 this object type.
         :rtype: bool
         """
-        if classname == 'Place':
+        if classname == "Place":
             for placeref in self.placeref_list:
                 if placeref.ref == handle:
                     return True
@@ -481,7 +520,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :param new_handle: The handle to replace the old one with.
         :type new_handle: str
         """
-        if classname == 'Place':
+        if classname == "Place":
             for placeref in self.placeref_list:
                 if placeref.ref == old_handle:
                     placeref.ref = new_handle

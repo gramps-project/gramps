@@ -24,11 +24,11 @@
 Package providing filtering framework for Gramps.
 """
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps imports
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from ..lib.person import Person
 from ..lib.family import Family
 from ..lib.src import Source
@@ -40,17 +40,19 @@ from ..lib.media import Media
 from ..lib.note import Note
 from ..lib.tag import Tag
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # GenericFilter
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class GenericFilter:
     """Filter class that consists of several rules."""
 
-    logical_functions = ['or', 'and', 'xor', 'one']
+    logical_functions = ["or", "and", "xor", "one"]
 
     def __init__(self, source=None):
         if source:
@@ -63,9 +65,9 @@ class GenericFilter:
         else:
             self.need_param = 0
             self.flist = []
-            self.name = ''
-            self.comment = ''
-            self.logical_op = 'and'
+            self.name = ""
+            self.comment = ""
+            self.logical_op = "and"
             self.invert = False
 
     def match(self, handle, db):
@@ -78,15 +80,15 @@ class GenericFilter:
             return False
 
     def is_empty(self):
-        return ((len(self.flist) == 0) or
-                (len(self.flist) == 1 and ((self.flist[0].is_empty() and
-                                            not self.invert))))
+        return (len(self.flist) == 0) or (
+            len(self.flist) == 1 and ((self.flist[0].is_empty() and not self.invert))
+        )
 
     def set_logical_op(self, val):
         if val in GenericFilter.logical_functions:
             self.logical_op = val
         else:
-            self.logical_op = 'and'
+            self.logical_op = "and"
 
     def get_logical_op(self):
         return self.logical_op
@@ -136,15 +138,12 @@ class GenericFilter:
     def get_number(self, db):
         return db.get_number_of_people()
 
-    def check_func(self, db, id_list, task, user=None, tupleind=None,
-                   tree=False):
+    def check_func(self, db, id_list, task, user=None, tupleind=None, tree=False):
         final_list = []
         if user:
-            user.begin_progress(_('Filter'), _('Applying ...'),
-                                self.get_number(db))
+            user.begin_progress(_("Filter"), _("Applying ..."), self.get_number(db))
         if id_list is None:
-            with (self.get_tree_cursor(db) if tree else
-                  self.get_cursor(db)) as cursor:
+            with self.get_tree_cursor(db) if tree else self.get_cursor(db) as cursor:
                 for handle, data in cursor:
                     person = self.make_obj()
                     person.unserialize(data)
@@ -171,11 +170,9 @@ class GenericFilter:
         final_list = []
         flist = self.flist
         if user:
-            user.begin_progress(_('Filter'), _('Applying ...'),
-                                self.get_number(db))
+            user.begin_progress(_("Filter"), _("Applying ..."), self.get_number(db))
         if id_list is None:
-            with (self.get_tree_cursor(db) if tree else
-                  self.get_cursor(db)) as cursor:
+            with self.get_tree_cursor(db) if tree else self.get_cursor(db) as cursor:
                 for handle, data in cursor:
                     person = self.make_obj()
                     person.unserialize(data)
@@ -201,16 +198,13 @@ class GenericFilter:
         return final_list
 
     def check_or(self, db, id_list, user=None, tupleind=None, tree=False):
-        return self.check_func(db, id_list, self.or_test, user, tupleind,
-                               tree=False)
+        return self.check_func(db, id_list, self.or_test, user, tupleind, tree=False)
 
     def check_one(self, db, id_list, user=None, tupleind=None, tree=False):
-        return self.check_func(db, id_list, self.one_test, user, tupleind,
-                               tree=False)
+        return self.check_func(db, id_list, self.one_test, user, tupleind, tree=False)
 
     def check_xor(self, db, id_list, user=None, tupleind=None, tree=False):
-        return self.check_func(db, id_list, self.xor_test, user, tupleind,
-                               tree=False)
+        return self.check_func(db, id_list, self.xor_test, user, tupleind, tree=False)
 
     def xor_test(self, db, person):
         test = False
@@ -223,7 +217,7 @@ class GenericFilter:
         for rule in self.flist:
             if rule.apply(db, person):
                 if found_one:
-                    return False    # There can be only one!
+                    return False  # There can be only one!
                 found_one = True
         return found_one
 
@@ -232,7 +226,7 @@ class GenericFilter:
 
     def get_check_func(self):
         try:
-            m = getattr(self, 'check_' + self.logical_op)
+            m = getattr(self, "check_" + self.logical_op)
         except AttributeError:
             m = self.check_and
         return m
@@ -265,8 +259,8 @@ class GenericFilter:
             rule.requestreset()
         return res
 
-class GenericFamilyFilter(GenericFilter):
 
+class GenericFamilyFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
@@ -282,8 +276,8 @@ class GenericFamilyFilter(GenericFilter):
     def get_number(self, db):
         return db.get_number_of_families()
 
-class GenericEventFilter(GenericFilter):
 
+class GenericEventFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
@@ -299,8 +293,8 @@ class GenericEventFilter(GenericFilter):
     def get_number(self, db):
         return db.get_number_of_events()
 
-class GenericSourceFilter(GenericFilter):
 
+class GenericSourceFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
@@ -316,8 +310,8 @@ class GenericSourceFilter(GenericFilter):
     def get_number(self, db):
         return db.get_number_of_sources()
 
-class GenericCitationFilter(GenericFilter):
 
+class GenericCitationFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
@@ -336,8 +330,8 @@ class GenericCitationFilter(GenericFilter):
     def get_number(self, db):
         return db.get_number_of_citations()
 
-class GenericPlaceFilter(GenericFilter):
 
+class GenericPlaceFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
@@ -356,8 +350,8 @@ class GenericPlaceFilter(GenericFilter):
     def get_number(self, db):
         return db.get_number_of_places()
 
-class GenericMediaFilter(GenericFilter):
 
+class GenericMediaFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
@@ -373,8 +367,8 @@ class GenericMediaFilter(GenericFilter):
     def get_number(self, db):
         return db.get_number_of_media()
 
-class GenericRepoFilter(GenericFilter):
 
+class GenericRepoFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
@@ -390,8 +384,8 @@ class GenericRepoFilter(GenericFilter):
     def get_number(self, db):
         return db.get_number_of_repositories()
 
-class GenericNoteFilter(GenericFilter):
 
+class GenericNoteFilter(GenericFilter):
     def __init__(self, source=None):
         GenericFilter.__init__(self, source)
 
@@ -409,23 +403,23 @@ class GenericNoteFilter(GenericFilter):
 
 
 def GenericFilterFactory(namespace):
-    if namespace == 'Person':
+    if namespace == "Person":
         return GenericFilter
-    elif namespace == 'Family':
+    elif namespace == "Family":
         return GenericFamilyFilter
-    elif namespace == 'Event':
+    elif namespace == "Event":
         return GenericEventFilter
-    elif namespace == 'Source':
+    elif namespace == "Source":
         return GenericSourceFilter
-    elif namespace == 'Citation':
+    elif namespace == "Citation":
         return GenericCitationFilter
-    elif namespace == 'Place':
+    elif namespace == "Place":
         return GenericPlaceFilter
-    elif namespace == 'Media':
+    elif namespace == "Media":
         return GenericMediaFilter
-    elif namespace == 'Repository':
+    elif namespace == "Repository":
         return GenericRepoFilter
-    elif namespace == 'Note':
+    elif namespace == "Note":
         return GenericNoteFilter
 
 
@@ -452,6 +446,7 @@ class DeferredFilter(GenericFilter):
         if self.name_pair[1]:
             return self._(self.name_pair[0]) % self.name_pair[1]
         return self._(self.name_pair[0])
+
 
 class DeferredFamilyFilter(GenericFamilyFilter):
     """

@@ -18,33 +18,35 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 from ._matchesfilter import MatchesFilter
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # IsSiblingOfFilterMatch
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class IsSiblingOfFilterMatch(Rule):
     """Rule that checks for siblings of someone matched by a filter"""
 
-    labels = [ _('Filter name:') ]
-    name = _('Siblings of <filter> match')
-    category = _('Family filters')
+    labels = [_("Filter name:")]
+    name = _("Siblings of <filter> match")
+    category = _("Family filters")
     description = _("Matches siblings of anybody matched by a filter")
 
     def prepare(self, db, user):
@@ -53,9 +55,11 @@ class IsSiblingOfFilterMatch(Rule):
         self.matchfilt = MatchesFilter(self.list)
         self.matchfilt.requestprepare(db, user)
         if user:
-            user.begin_progress(self.category,
-                                _('Retrieving all sub-filter matches'),
-                                db.get_number_of_people())
+            user.begin_progress(
+                self.category,
+                _("Retrieving all sub-filter matches"),
+                db.get_number_of_people(),
+            )
         for person in db.iter_people():
             if user:
                 user.step_progress()
@@ -68,10 +72,10 @@ class IsSiblingOfFilterMatch(Rule):
         self.matchfilt.requestreset()
         self.map.clear()
 
-    def apply(self,db,person):
+    def apply(self, db, person):
         return person.handle in self.map
 
-    def init_list(self,person):
+    def init_list(self, person):
         if not person:
             return
         fam_id = person.get_main_parents_family_handle()
@@ -79,5 +83,7 @@ class IsSiblingOfFilterMatch(Rule):
             fam = self.db.get_family_from_handle(fam_id)
             if fam:
                 self.map.update(
-                    child_ref.ref for child_ref in fam.get_child_ref_list()
-                    if child_ref and child_ref.ref != person.handle)
+                    child_ref.ref
+                    for child_ref in fam.get_child_ref_list()
+                    if child_ref and child_ref.ref != person.handle
+                )

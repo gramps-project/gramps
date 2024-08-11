@@ -1,3 +1,937 @@
+2024-07-13
+Version 5.2.3
+* Updated translations: da, de_AT, en_GB, es, fr, he, hr, hu, mk, nb, nl, pt_PT,
+  ru, tr, zh_HK, zh_TW.
+* Fix bug with regular expressions in check_po script.
+* Update translation template for new release.
+* Corrected terminology. Replaced "matronymic" with "matrilineal" to accurately
+  reflect genetic inheritance rather than naming conventions.
+* Clarified terminology for father lineage description. Changed
+  "patronymic lineage" to "patrilineal lineage" for accuracy.
+* Fix PDF generation failure with LaTeX-based reports on Windows. Fixes #10696.
+* Fix fallback for the `image_size` utility function Use Gdk if the size of the
+  image cannot be determined by imagesize.  Fixes #13310.
+* Disable rounding glyph positions in cairo document generator.
+* Package Gramps 5.2.3 for macOS.
+* Fix NoteType values in CSV import.
+* Some short french month names can not be entered.  Fixes #13307.
+* Remove detached process flag when running lualatex.
+* Check that pdf output file exists in genealogy tree reports. Fixes #10696.
+* Fix error when changing the style of misspelt words. In the note editor,
+  changing the style of text failing the spell check caused an error.
+  Fixes #13282.
+* Update span characters for zh_TW. Add span characters so that the new display
+  format is accepted as a valid input format.
+* Restore BerkelyDB, Gramps still uses it.
+* Update gramps.modules.
+  * Remove obsolete comment and comment out the private include.
+  * Update the branch in gramps-git.
+  * Remove BerkeleyDB and pybsddb dependencies.
+  * Remove unused patches.
+* Fix missing media in narrative web report person pages. Fixes #13252, #13272.
+* Remove the spaces padding the connector in a hyphenated surname. This fixes
+  the previous code which replaced " - " with "-" within the entire name.
+  Fixes #13274.
+* Url-quote norm_path and use urljoin to attach the scheme.  Assumes that if
+  the path is already a URI it is also already quoted.  Fixes #13218, #13197.
+* Prevent hyperlink tagging being added as an undo action. Clicking the undo
+  button in the note editor sometimes had no noticeable effect.  Fixes #13267.
+* Change repository "Title" to "Name" in the source editor.  Fixes #13258.
+* Better error handling in the narrative web report.
+* Handle not found when creating the narrative web report updates page.
+  Fixes #13216.
+* Add workflow for Debian build.
+* Package Gramps 5.2.2 for macOS.
+* Use README.md for PyPI long description.
+* Fix Windows AIO build.
+
+2024-04-06
+Version 5.2.2
+* Updated translations: cs, de, de_AT, es, fi, he, hr, nb, nl, pl, ru, sk, sv,
+  tr.
+* Hebrew relationship calculator not loading. Fixes #13251.
+* Narweb: Person object has no get_father_handle. Fixes #13207.
+* Package Gramps 5.2.1 on macOS.
+* Restrict CI workflow to run on a single branch.
+* Don't show Navigation when we print a page.  Fixes #13160.
+
+2024-03-24
+Version 5.2.1
+* Updated translations: de_AT, fi, fr, ga, he, it, nb_NO, pl, sk, sr, tr, uk,
+  zh_Hans.
+* Fix error when installing an addon that will not be registered. Fixes #13233.
+* Allow experimental and beta plugins to be registered. Fixes #13232.
+* Tidy up the README file.
+* Fix fan charts on HiDPI screens.
+* Replace PIL with Pillow in the README. Issue #10016.
+* Fix the Tag.is_empty() method. The `Tag.is_empty()` method was returning the
+  inverse of the expected value. Fixes #12579.
+* Cannot create Place with coordinates via Geography. Fixes #13228.
+* Fix place title when place names use open spans. Fixes #13222.
+* Fix the addon translator language for core translations. Fixes #13221.
+* Update AIO minimum Windows version requirement to 8.1 64-bit.
+* Prevent unwanted output in unit test logs.
+* Fix unit tests when run with Python 3.12. Fixes #13212.
+* Revert Death fallback symbol from Latin Cross to "+".
+* Change the cross mark and check mark symbols used in the Addon Manager.
+  Requirements screen to be valid characters on Mac. Fixes #13194.
+* Fix display of invalid dates in editor citation tabs. Fixes #13192.
+* Include metainfo rather than appdata 'its' files.
+* Update AppStream MetaInfo file to conform to latest spec.
+* Fix filter rules missing the use_case parameter. Fixes #13187.
+* Rename metadata file to follow spec.
+* Add release information to appdata.
+* Package Gramps 5.2.0 on macOS.
+
+2024-02-23
+Version 5.2.0
+* Updated translations: ca, cs, da, de, de_AT, en_GB, es, fr, hr, hu, id, it,
+  nb, nl, pl, sk, sl, sv, tr, uk, zh_CN.
+* Update development status to production.
+* Remove the Trove classifier "Natural Language :: German(Austrian)".
+* Emit a "plugins-reloaded" signal when a new addon is installed. This ensures
+  that the user interface will be updated to include the new addon.
+  Fixes #13021.
+* Fix Windows AIO build.
+* Update GitHub actions to latest versions. Some actions are deprecated.
+* Package Gramps 5.2.0-rc1 on macOS.
+
+2024-02-09
+Version 5.2.0-rc1
+* Updated translations: ar, bg, cs, da, de, de_AT, en_GB, es, fi, fr, he, hr,
+  mk, nb, nl, pl, pt_PT, ru, sk, sr, sv, tr, uk, zh_CN.
+* Add Hebrew relationship calculator.
+* Add Hebrew date handler.
+* Refine Hebrew About modifiers in date parser.
+* Add Hebrew to the list of user manual translations.
+* Update copyright dates.
+* Windows AIO:
+  * Improve AIO build script to run without modifications. The build script
+    required modification before first use to set the full path to the local
+    aio directory. Second change is to use the `-N` option in wget to avoid
+    downloading a file if the timestamp hasn't changed on the server. Third
+    change is to avoid the script from asking for interactive input on second
+    and subsequent runs.
+  * Add pip.exe and Adwaita scalable icons to Windows AIO.
+  * Fix up Windows AIO for pip, and Finnish spell check.
+  * Ignore AIO build artifacts in .gitignore file.
+* Addon Manager:
+  * Invalidate caches after new python modules are installed. This ensures that
+    any new python modules installed will be found by the python import
+    mechanism.
+  * Allow multiple versions in gi requirements. Enhances the `requires_gi`
+    property in gpr files to allow mutiple versions of a GObject introspection
+    module.  e.g. requires_gi=[("GooCanvas", "2.0,3.0")]
+  * Update a couple of strings to clarify the Addon Manager UI. Fixes #13019.
+  * Fix Addon Manager help link. Fixes #13018.
+  * Capitalize "python" in the Addon Manager settings. Fixes #13016.
+  * Fix addon prerequisites install.
+  * Make the Addon Manager available without a tree loaded.
+  * Change "url" to "URL" in the project editor.
+  * Set default project editor window width to 600.
+  * Refresh row in Addon Manager after an addon is installed. When an addon is
+    installed there is no need to refresh the addon listing. We just need to
+    update the row. This also keeps the user in the same place in the list.
+    Fixes #13001.
+  * Rename "Uninstalled" to "Not installed".
+  * Add an extra requirements check after installing modules.
+* Verify tool:
+  * Convert the Data Verify tool to display results in a tree.
+  * Add 8 more data verify rules.
+  * Fix some garbage collection issues.
+  * Performance enhancements.
+  * Also fixed a small amount of easy pylint issues.
+* Fix invalid escape sequences by doubling backslashes, or making the strings
+  raw, as is commonly done for regexes.
+* Make subprocess inherit environment variables in setup script. The PATH
+  environment variable got unset for that subprocess, thus not being able to
+  find msgfmt.
+* Fix command line progress output. The text was partly overwritten whenever
+  the percent value was updated. Add unit tests.
+* Added HasRepo rule to rule list. Fixes #13097.
+* Fix references to gramps-xml file format in man pages.  Change -f gramps-xml
+  to -f gramps Fixes #9723.
+* Update and fix CSV import. See discussion on the discourse forum:
+  https://gramps.discourse.group/t/how-can-people-be-deleted-according-to-a-list/4511/13?u=dsblank
+* Fix gramps example media source.
+* Clarify the Tip of the Day text to indicate that it applies specifically to
+  "Grouped People View", not the flat People View.  Fixes #12897.
+* Report simpler Python version string in About and Error dialogs.
+* Fix DeprecationWarning for invalid escape sequence. Change to use raw string.
+* Fix invalid file mode error with Python 3.11.
+* Fix hyphenated surnames in name displayer. Strip spaces around a hyphen,
+  so for example, "Smith - Jones" is cleaned up to become "Smith-Jones".
+  Fixes #13086.
+* Add year rounding option to preferences. Fixes #12422.
+* Fix context menu in all family events quick view screen. Fixes #12759.
+* Added option to display birth and death info in descendant report.
+  Implements #12758.
+* Update Doug Blank's email address.
+* Add new event reference citations to the private proxy.
+* New citations not included on the Narrative Web. Fixes #13046
+* Add event reference citations to the complete individual report. Fixes #13035.
+* Fix display of gramplet help URLs that start with "https://". A help_url
+  starting with either "http://" or "https://" should be used as the full url
+  to be displayed in the browser.  Fixes #13039.
+* Fix bug in narrative web when the role name contains a dash. Not enough values
+  to unpack in sort_by_role. Fixes #13042.
+* Make the narrative web support both LTR and RTL layouts. Fixes #12960.
+* Minor string changes to narrative web report options.
+* Sort Confidence column in source citation tabs. The "Confidence level" is
+  sorted by confidence label instead of the internal value. The
+  "Confidence level" text is too wide and replaced by "Confidence".
+  Fixes #13036.
+* Fix imports test for new note added to database.
+* Fix GEDCOM import for SUBN record containing note. Fixes #13024, #12152.
+* Use imagesize rather than magic.
+* Reformat code using the latest stable version of black.
+* Fix sizing of shared information in the reference editors. Sets the packing
+  of the expander widget to depend on whether or not it is expanded.
+  Fixes #13030.
+* Fix crash when displaying settings in context menu popup of the pedigree view.
+  A separator menu item was being added twice.  Fixes #13029.
+* Add help_url to built-in gramplet plugin data. Link Gramplets to new wiki
+  landing anchor of lookup table which shows which Gramplets work in which
+  categories.
+* Add right and left margins to the welcome gramplet. Add some white space
+  between the left/right text box borders and the text glyphs. See:
+  https://gramps.discourse.group/t/what-can-i-do-to-help-fix-unpadded-text-gramplets/2293/2
+* Rename "Ancestor View" to "Pedigree View" in Tip of the Day. Fixes #13023.
+* Fix translated Tip of the Day entries with quote characters. When extracting
+  strings from the `tips.xml` file, xgettext removes the escape sequence for
+  the quote character (&quot;) so we don't need to add it back before we obtain
+  the translated string.  Fixes #12325.
+* Fix a few deprecation warnings Issue #13021.
+* Fix report dialog error when no active person selected. Running a report from
+  the reports dialog with no active person selected caused an error.
+  Fixes #13020.
+* Rename citation formatter from "Default" to "Legacy".
+* Update width of Gramps ID fields in editors. These fields appeared wider in
+  earlier Gtk versions. Fixes #12999.
+* Replace remaining Gtk.Menu.popup calls The `popup` method is deprecated. The
+  remaining calls to `popup` are replaced by `popup_at_pointer`.
+* Fix positioning of popups relative to widgets. Replace `popup` with
+  `popup_at_widget` and remove old positioning functions. Fixes #13008.
+* Change the subscript key binding in the note editor. Use <PRIMARY>r for
+  subscript. The standard keyboard shortcut for copy is <PRIMARY>c.
+  Fixes #13002.
+* Set filter editor rule list to expand.
+* Fix display of help links in gramplet bars. Use `display_help` rather than
+  `display_url` to display manual pages.
+* Add more scrollbars to the Preferences dialog.
+* Fix bug in endnotes citations.
+* Fix bug when deleting a row from a filtered flat list view. Fixes #12995.
+* Fix sizing of the surname table in the name editor. The columns were slightly
+  too large requiring a scrollbar with the default dialog size and column
+  widths.  Fixes #12994.
+* Add missing cite and thumbnailer plugin directories to build script.
+* Include javascript files in installation. Fixes #12991.
+* Fix black margin in project list with scrollbar. Fixes #12993.
+* Package Gramps-5.2.0-beta2 on macOS.
+* Fix translator date inflection comments.
+
+2023-08-25
+Version 5.2.0-beta2
+* Updated translations: ca, cs, da, de, en_GB, es, fi, he, hr, it, nb, nl, pl,
+  pt_BR, pt_PT, ru, sk, sv, tr, uk.
+* Add option to exclude fan chart title.
+* Prevent fan chart title being overwritten by the chart. Fixes #12926.
+* No longer state that Gramps will close in the backup message. Fixes #12984.
+* Clean up some Gdk Screen deprecations.
+* Fix Gedcom import tagging a note with an undefined tag handle. Fixes #12985.
+* Fix crash when printing notes during endnote creation. Fixes #12983.
+* Fix `trans_text` keyword in `xgettext`. Fixes #12982.
+* Fix vertical expansion of family tree manager list.
+* Fix error 404 with openstreetmap map service.
+* Restrict access to Stamen maps. Fixes #12971.
+* Track column width settings for all editor tabs separately.
+  Fixes #12945, #12970.
+* Add support for Hebrew prefixes.
+* Add Farsi and Galician to Microsoft Windows Locale list.
+* Add a scrolled window to the preferences data tab. Fixes #12968.
+* Addon Manager:
+  * Rename "Upgrade" to "Update".
+  * Fix addon settings bug.
+  * Add installation status filter.
+  * Add project up, down and restore buttons.
+  * Add help button.
+* Fix error when deleting a surname. Fixes #11744, #12626, #12629, #12963.
+* Fix glocale problems on Windows.
+* Fix system locale detection on MS Windows.
+* Add Windows AIO workflow.
+* Fixes for the Windows AIO build:
+  * Convert packages from python3 to python.
+  * Replace `share.tgz` with downloaded files.
+  * Add missing dictionaries.
+  * Add missing D-Bus executable.
+  * Use newly available bsddb3 package.
+* Improved organization of the Addon Manager filter lists. Fixes #12958.
+  * Update the plugin type names and sort them alphabetically.
+  * Swap the order of "Expert" and "Developer" in the audience list.
+  * Reverse the order of the status list.
+* Include event reference citations and notes in Gedcom export.
+* Better URLs for gramplet bar help. Fixes #12957.
+* Tidy up strings in preferences.
+* Fix spelling mistake in Pro-Gen importer.
+* Improve Addon Manager search. Fixes #12955.
+* Check for Windows executables in addon requirements. Fixes #12954.
+* Do not strip checksum of media object in private proxy.
+* Update po snippet generation to output msgctxt.
+* Save column sizes before a rebuild. Save column sizes as floats rather than
+  integers. Fixes #12943.
+* Set default column size in list views to sensible defaults.  Fixes #12944.
+* String improvements.
+* Update authors file.
+* Fix changes reverted by mistake.  This restores a couple of autobackup
+  intervals and removes bsddb from the list of backends.
+* Fix bottombar not saving size. Fixes #12941.
+* Fix incorrect genealogical symbols. Fixes #12937.
+* Mac: Use tarball for osm-gps-map instead of git repository.
+* Changes for Black integration.
+
+2023-08-01
+Version 5.2.0-beta1
+* Highlights
+  * Create new Addon Manager dialog.
+  * Add support for open spans.
+  * Add strikethrough and superscript/subscript support.
+  * Add new gender option of "Other".
+  * Add citations to event references.
+  * Deprecate BSDDB, but allow to be loaded with convert to SQLite.
+  * Add coordinates format with description. Fixes #11248
+  * Add the possibility of case sensitive/insensitive search.
+  * Add source icon to editor dialogs. Implements #11372
+  * Make the tab columns resizable. Implements #8767
+  * Support XDG base directory specification. Fixes #8025
+* General
+  * Update README, INSTALL and FAQ files.
+  * Update copyright dates.
+  * Update Creative Commons license version to 4.0.
+  * Minor string fixes. Add or remove whitespace.
+  * Append full stops to ends of sentences. Remove full stops after ellipses.
+  * Spelling fixes.
+  * Many Pylint and other cleanups.
+* Reports
+  * Birthday and Anniversary Report: Add person ID.
+  * Common calendar on Statistics chart. Fixes #12571
+  * HourGlass graph: Add option to use genealogical symbols for events.
+  * Statistics chart: Small code improvements.
+  * Calendar report enhancements:
+    * Added symbols for birth, marriage and death.
+    * Added symbols for dead spouse in anniversaries.
+    * Optionally include death dates.
+    * Refactored method `collect_data`.
+  * Added flipped text option to Graphical Report Fan Chart.  This option flips
+    the names in generations 2, 3 and 4 that on the bottom half of the fan.
+  * Kinship report: change max number of generations. Fixes #12004
+  * Add a new primary surname substitution keyword option.
+  * Add option name_format to treedoc. Implements #12136
+  * Enhance name formats in the genealogytree reports.
+  * Add new output format of "graph" to the tree document generator.
+  * Display leap day anniversaries every year on calendars.
+  * Show index of person in ancestor tree report.
+  * Enable markup in ODF backend.
+  * Relationship Graph: Add option for 'offset parents' Replaces 'use subgraph'
+    option. Fixes #11550, #11494
+  * Add fanchart option with overhang. By adding an overhang to the fanchart,
+    more space can be used.
+  * Do not round rotation in SVG. When making >8 generation fan charts,
+    the rounding of rotation becomes visible.
+  * Family group report enhancements:
+    * Replace Marriage heading with relationship type.
+    * Remove Husband and Wife headings. These are incorrect for same-sex
+      relationships or when the couple are unmarried.  Resolves #11199
+  * Complete individual report:
+    * Use shorter name to reduce line length.
+    * Add option that allows to use the name of the individual as title.
+  * Calendar: Use the death symbol defined in preferences.
+  * Add descriptions to decendant tree report styles.
+* Gramplets
+  * Improved Age Stats gramplet:
+    * New Histogram widget.
+    * Extra bucket for ages above maximum.
+    * Automatic scaling to available width.
+  * Image Metadata Gramplet expand metadata support:
+    * Enable showing XMP and IPTC metadata.
+    * Add additional metadata fields that contain tags and text descriptions.
+    * Display thumbnails for XMP-mwg-rs Regions.
+  * Calendar gramplet: Add day names. The first day is defined according to the
+    locale. Fixes #12515
+  * Allow gramplets to have an orientation dependent layout. Use this for the
+    gallery gramplets.  Implements #11527
+  * Update Welcome gramplet.
+  * Link to translated wiki pages in welcome gramplet.
+  * Add a note gramplet for NoteView.
+  * Show note type in notes gramplet. Also move page number next to
+    forward/back buttons.  Implements #12402
+  * Add Copy All functionality to Ancestor gramplet.
+  * Citations gramplet: Add date, page, and confidence. Fixes #9224
+    * Change columns order and size.
+    * Sort correctly by date.
+  * Display the event date in the backlinks gramplet. Fixes #12230
+  * AgeOnDate gramplet: Fix position of input field and button.
+  * Add context menu entries for Gramplet Bar. Link to help for Gramplets and
+    the Gramplet Bar Menu. Issue #10919
+* Narrative Web Report
+  * Sort events by date in the individual page.  Fixes #12717
+  * Clarify how to get the API_KEY. Fixes #12646
+  * Solves some problems. Force place name to be "Full" names. Fixes #12821
+  * Add noindex for robots.
+  * Lightbox feature. Feature request: #12801
+  * The latest version of openlayers doesn't work:
+    * Change the location of js and css files.
+    * Menu simplification and usage clarification.
+    * Show in which file the openlayers version should be modified.
+    * Show the config name to modify.
+  * Code simplification.
+  * Add a comment if invalid lat/long. Fixes #12565
+  * Some fixes to alphabet_navigation. Ensure correct index letters according
+    to normal indexing conventions by using ICU AlphabeticIndex. Fixes #12350
+  * Change order of Event Reference Notes and Notes. Fixes #12356
+  * Possible loop with associated people.
+  * Add option to show all places. Fixes #12315
+  * Don't display media, source ref for unused place.
+  * Backlink gramplet problem if no back references.
+  * Show image on the map only if it was collected.
+  * Show the thumbnail place if already collected.
+  * Add place name to birth and death dates when we use the toggle section.
+  * Possible problem with RTL languages.
+  * Inconsistency between the name of the link to a reference and the name of
+    this reference for an individual.  Fixes #12336
+  * Translation problem + missing events on markers.
+  * Addressbooklist: headers aren't translated.
+  * Missing events for markers + code simplification.
+  * Various fixes to user-visible strings.
+  * Toggle bug for source attribute.
+  * Remove the note type 'Html code' for notes. Fixes #12184
+  * Add php session_start. Fixes #12135
+  * Multiple languages for the narrative web and optional other additions
+  * Fix letters in comment:
+    * Insert missing letters in comments.
+    * Terms to upper case (gregorian, javascript).
+  * In cms mode, some inconsistent image links.
+  * Incorrect place index if alternate names. The places page index doesn't
+    show the alternate names used. Fixes #11645
+  * Description message is not translatable.
+  * Possibility to have more than 2 downloads. By default, I set this to
+    3 downloads. Fixes #11626
+  * Add family map to family pages. Adapt css files to have a better look.
+    Fixes #11614
+  * Set unused media to False by default Fixes #11496
+  * Center correctly the map in the web page.
+  * Dropmenu doesn't work if only one year.
+  * Add notes to updates and delete empty rows.
+  * References enhancement on place pages.
+  * Convert the years in gregorian calendar.
+  * Enclosed places not correctly sorted. Fixes #11487
+  * Don't use event links if no event pages + some pylint changes.
+  * Map popup links must be visible for all stylesheet.
+  * Add scrollbar in popup content.
+  * Event type, Date and place in bold.
+  * Family events shifted one column on the left.
+  * ancestortree css file before narrative-screen to allow modification.
+  * Adaptation for all themes. Fixes #11393
+  * Allow scrolling if the ancestor tree is too large.
+  * Translation of alternate stylesheets name.
+  * Crash when using the family map.
+  * Translate only the css title, not the file name.
+  * Some minor corrections to css files.
+  * Open layers optimizations.
+  * Open layers and link in popup.
+  * Some events missing in popup.
+  * Reference date column too large.
+  * Allow the place title to use the maximum of width .
+  * Shift children from one column, adapt the css files to the new table
+    and fix some inconsistencies between the source and the css.
+  * Make the drop down menu button size usable.
+  * Incorrect rendering when use of alternate place name .
+  * Removing the unused image heigth option.
+  * Click on image link gives a not found URL.
+  * Allow alternate stylesheets in pages.
+  * Allow urls for images in user css files.
+  * Add popup to manage markers. Fixes #11150
+  * Add Stamen map. Fixes #5984
+  * Correct English in narrative web report.
+  * Links in notes not obvious in Narrated Web report. Fixes #12105
+* Web Calendar
+  * Have config files for multiple databases.
+  * Best management for the narrative web link.
+  * Use arrows, compress monthname and arrows adapt the css files accordingly.
+  * Use arrows in one day within a year compress monthname and arrows adapt the
+    css files accordingly.
+  * Index go now to the current month.
+  * Year glance + some pylint improvements
+  * Incorrect width size with Mainz css.
+  * Problem with Visually css file.
+  * The table cell is highlighted when hover.
+  * Better rendering for full year at a glance.
+  * better rendering on small devices.
+  * Duplicate marriage.
+  * Incorrect results when divorce event.
+  * Add alternate stylesheets.
+  * Missing death symbol.
+* Geography
+  * Use path from constants.
+  * Remove redundant class members.
+  * Simplify popup menu builder.
+  * Use Gtk.SeparatorMenuItem instead of empty Gtk.MenuItem.
+  * Change Gtk.MenuItem to Gtk.CheckMenuItem for map providers.
+  * Gramps crashes on import of large KML file. Fixes #11954
+  * Better management when closing database.
+  * Add two new icons.
+  * Better handling of bad tile path. Fixes #11629
+  * Add custom tiles provider. Fixes #11416
+* GUI
+  * Fix for panes that are unable to be resized.
+  * Backup: Add a modal status popup This is used to prevent the user closing
+    Gramps during a backup. Fixes #12846, #12475, #12538
+  * Fix ColorButton size in preferences.
+  * Display a tooltip warning if a window saves data immediately. Fixes #12117
+  * Move privacy column in editor citation tabs.
+  * Add Preferences and Addon Manager toolbar buttons.
+  * Update Tip of the Day entries.
+  * Provide better formatting for the import statistics. Also fix concatenation
+    bug.
+  * Enhance InfoDialog to display simple tables
+  * Add "All supported files" as file type selection. Fixes #12161
+  * Date input: allow yyyy-mm for iso format.
+  * Add option to hide ages for events after death.
+  * Correct spelling of "vCard" in importer.
+  * Add option to control display format of latitude and longitude. Fixes #11248
+  * Allow entering place latitude and longitude without space.
+  * Use replacement text for blank surname heading in person tree.
+  * Improve description of regular expressions in filter editor.
+  * Add Back/Forward labels to citation tree view. Fixes #12510
+  * "Number of Parents" column in Person Views doesn't sum all parent.
+    Fixes #12268
+  * Symbols enhancement:
+    * Add the possibility to set all default value to a string.
+    * Gui configuration improvement.
+    * Possibility to drag and drop a symbol from the symbol list.
+    * Replace death symbol by buried, cremated or killed symbol depending on
+      the event type.
+  * Fix spelling of "Descendants". Resolves #12535
+  * Provide an option to "hide" the LDS tab. Immplements #3872.
+  * Add possibility to select the dialect of CSV export.
+  * Add Abbreviation column to source and citation selectors. Implements #11710
+  * Update confirmation message in the export assistant.
+  * Implement calendar quarter dates as date ranges.  For example, "Q2 2020" is
+    converted to "between 1 April 2020 and 30 June 2020".
+  * Use a contrasting text color in pedigree view. White text shows up better
+    in boxes with a dark background color.  Fixes #11799
+  * Allow user to set default calendar in date editor. Fixes #11809
+  * Update Preferences dialog. Clean up of existing Preferences tabs.
+    Implements #12049
+  * Update address lists. Capitalize postal and phone column headers.
+  * Add Phone/Postal to Addresses tab of Person editor. Fixes #11600
+  * Fix presumed typo in menu item "Sorts events" should be "Sort events".
+  * Move beta warning into the status bar.
+  * Increase information in database summary text report. Add type counts
+    for events, places, sources, citations, repositories and notes.
+  * In familysidebarfilter, search on each part of name. Fixes #12023
+  * Add tooltips to sidebar filter 'Find' and 'Reset' buttons. Issue #11783
+  * Media view: Set new media as active.
+  * Typo on variable name in navigator. Fixes #12039
+  * Pedigree View: Add Help context menu. Fixes #10919
+  * EditLink: When changing the link type choose the active object as default.
+  * EditLink: When creating a link, prefer linking persons over
+    places, events, ..., and images.
+  * Allow filter rules to access Family filters.
+  * Add a new person filter rule 'HasAddressText'.
+  * New Remove tag from selected rows functionality.
+  * Add 'HasAttribute' filter rule to repositories, sources and citations.
+    Fixes #9845
+  * Add tooltips for places in clean input data tool.
+  * Improve CSV import to allow places that are not in enclosed order.
+    Fixes #11407
+  * Update tags: Translation for menu strings added and escape illegal
+    characters.
+* Types
+  * Add new note type of "Analysis".
+  * Add Stillbirth as pre-defined event type. Add Stillbirth as a fallback
+    for both Birth and Death events.
+  * Change "death cause" to "cause of death".
+  * Add Godparent as event role.
+* Gedcom
+  * Implement the GEDCOM tag "_RUFNAME".
+  * Add round trip Ancestry.com _APID tag support. Implements #9925
+  * Explicitly set birth name in GEDCOM export.
+  * Fix GEDCOM import/export DATE/TIME creep by UTC offset.
+* Improvements in the English manpage
+  * Various grammar improvements.
+  * Use HTTPS URLs.
+  * Use Unicode trademarks and arrows.
+  * Improve syntax.
+* Translation
+  * Updated translations: ar, bg, br, ca, cs, da, de_AT, de, el, en_GB, eo, es,
+    fa, fi, fr, ga, gl, he, hr, hu, id, is, it, ja, mk, nb, nl, nn, pl, pt_BR,
+    pt_PT, ru, sk, sl, sr, sv, ta, tr, uk, vi, zh_CN, zh_HK.
+  * Support msgctxt in po files instead of a vertical bar in the msgid.
+  * Update check_po to support msgctxt strings.
+  * Add JJ/MM/AAAA French date format.
+  * Add header to XML fragments file. A header containing a charset is required
+    by xgettext.
+  * Holidays: Sort countries alphabetically.
+  * Add Russian holidays.
+  * Add Italian holidays.
+  * Add Catalan holidays.
+  * Add Turkish holidays.
+  * Fix Russian calendar unit test. The translation of "Julian" is hardcoded
+    and the test and will fail if the translation is updated.
+  * Give consistency to short months in Spanish.
+  * Fix unit tests requiring English locale.
+  * Fix invalid Persian calendar dates. Fixes #12576
+  * Add Turkish Relationship Calculator.
+  * Add translation context to ChildRefType. Needed for Russian.
+  * New de_AT translation Based on the de translation.
+  * Add German date format option for 'numeric date with leading zeros'.
+  * Add context to place name strings. Needed for Russian translation.
+  * Remove translatable attribute from "%s" strings.
+  * Add "Translator" tag to comments intended for translators.
+  * Convert old translator tags. Change the old tags "translator" and
+    "TRANSLATOR" to "Translator".
+  * Only extract comments with the "Translator" tag. Previously all comments
+    before a translated string were extracted.
+  * Remove old translation context separators.
+  * Fix month lexeme translations for da, fi, sl and sv.
+  * Merge translation changes from the gramps51 converting the files to the
+    new msgctxt format.
+  * Fix fatal errors in po files.
+  * German relation calculator fixed issue if more then 24 generations between
+    the two people.
+  * Replace intltool with gettext tools. The build now requires gettext v0.19.7
+    or above.
+    * Removed obsolete files: gramps.applications, gramps.keys, gramps.mime
+    * Created ITS rules for holidays.xml and tips.xml files.
+    * Included ITS files for shared-mime-info from a gettext v0.20.2
+      installation.
+  * New datehandler and relationship calculator for de_AT.
+  * Corrected a few relationships in pt relationship calculator.
+* Locale
+  * Extract win32 localatiztion to a new file win32locale.py.
+  * Fix minor PyLint complaints.
+  * Fix PyLint complaints about import statements.
+  * Remove deprecated locale.getdefaultlocale and locale.format functions.
+  * Extract translation classes from grampslocale.py
+  * Correct remaining pylint issues in maclocale.py
+  * Fix shadowed variables.
+  * Fix unnecessary parens.
+  * Fix unused variables.
+  * Fix pylint line-too-long.
+  * Remove unused numeric.
+  * Remove unused currency.
+  * Use msgctxt in Lexeme docstring.
+* Technical
+  * Increase minimum version requirements - Python: 3.8 Gtk: 3.24
+  * Migrate code style to Black.
+  * Use GitHub Actions to run continuous integration checks.
+  * Attempt to derive the resource path from the package path.  Intended to
+    allow a Gramps core package to be created as a wheel and installed via pip.
+  * Use setup from setuptools to allow creation of python wheels.
+  * Port from GtkSpell to Gspell.
+  * Add source files for Windows AIO. Remove old Windows directory.
+  * Add support for thumbnailer plugins.
+  * Add support for CITE plugins Provide a single default plugin that
+    replicates the existing functionality.
+  * Allow custom undo managers in database plugins.
+  * Add bookmark-list-changed signal.
+  * Remove redundant code since Gtk 3.24 required.
+  * Fix deprecation of Gtk positional arguments.
+  * Fix Gtk deprecation Menu.set_title
+  * Fix Gtk deprecation ScrolledWindow.add_with_viewport
+  * Fix GObject.PARAM_READWRITE deprecation.
+  * Fix deprecation GObject.GError -> GLib.GError
+  * Fix Gtk deprecation Widget.reparent.
+  * Fix Gtk deprFix deprecation on Gtk.Widget.override_font and
+    modify_fontecation Widget.set_padding
+  * Fix garbage collection issue in ConfigManager.
+  * Fix garbage collection issue in UIManager.
+  * Fix garbage collection issue in Callback.
+  * Color values in the range [0-1] are supposed to be floats See rgb_to_hex.
+  * Save and restore standard streams.
+  * Close standard streams on exit. Prevents the warning:
+    "ResourceWarning: unclosed file".
+  * Replace os.system with subprocess.call in setup.py
+  * Add extra plugin properties:
+    * Add 'Experimental' and 'Beta' status options.
+    * Add audience property with possible values:
+     'All', 'Developer' and 'Expert'.
+    * Add maintainers and maintainers email properties.
+    * Add requires_mod, requires_gi and requires_exe properties to specify
+      addon requirements.
+    * Allow help url for all plugin types.
+  * Add stock_category_icon support.
+  * Replace deprecated imp by importlib.
+  * CI: Upgrade actions/checkout to v3.
+  * Update Gramps CI workflow to run on Ubuntu 20.04 Ubuntu 18.04 became
+    fully unsupported on 1 Dec 2022.
+  * Fix package installation failures in CI.
+  * Gallery tabs: Avoid signal warning during editor clean up. The signal
+    no longer exists to disconnect from at this point.
+  * Fix display warnings in unit tests Attemps to get rid of the follow
+    warning: "Unable to init server: Could not connect: Connection refused".
+  * Add .venv environments to .gitignore
+  * Migrate build from distutils to setuptools Distutils is deprecated with
+    removal planned for Python 3.12.
+  * Remove options and disables that pylint no longer uses.
+  * Enable "file:///" URI paths for addons location.
+  * Use ObjEntry to select a person as an association.
+  * ConfigManager: Add support for embedding comments in ini header.
+  * Fix incorrect title of event schema attribute_list.
+  * Test: Use temporary directory to test bsddb.
+  * Remove unused constant ENV_DIR.
+  * Add gramps_id to repository & note text data lists.
+  * Add unit test for python3 -m gramps
+  * Add __main__.py
+  * Skip inspect.stack also when debug logging is disabled.
+  * Wrap inspect.stack in if __debug__.
+  * Replace TEMP_DIR by tempfile object.
+  * Remove xdg-utils dependency.
+  * Fix application id.
+  * Use reverse-DNS scheme for mime file, application icon, appdata + desktop.
+  * Move MIME icons together with other hicolor icons. This way, all the
+    hicolor icons are logically in the same place.
+  * Simplify looping. Index based loops are mapped to their Pythonic equalivant.
+  * Fix Place.get_text_data_child_list
+  * Fix Check&Repair progress meter for Duplicated Gramps_ID check.
+  * Fix no_magic for dbapi.
+  * Cairodoc: Correct enumerations unpacking.
+  * Rework primary object Deletes in views.
+  * Faster Multiple Event delete.
+  * Faster Multiple Person Delete.
+  * Speed up Event, Media, and Repo reference editors.
+  * Speed up Place Reference Editor and Listview for enclose place. Fixes #11531
+  * Speed up Event displaytab and gramplet.
+  * Fix StatusBar for potential HandleError.
+  * Smoother progress for Rebuid reference maps/secondary indices.
+  * Skip test3b_delete_tree_constraint if $HOME is a subdirectory of /tmp.
+    Fixes #12577.
+  * Remove the "database is closed" warning. Fixes #12492
+  * Note LINK support for merge of other objects.
+  * Note LINK support for deletes of other objects.
+  * Support Note LINKS as backlinks.
+  * mac modules: Replace git with https in github URI They don't accept
+    unauthenticated git connections anymore.
+  * Fix datehandlers for round trip. Parsers should be able to parse the output
+    from the displayer.
+  * Enhance date handler tests:
+    * Add tests for all languages with a custom date handler.
+    * Remove some months so that the tests run quicker.
+  * Enhance Date Parser Display Test debug tool. Test for both Julian and
+    Gregorian dates.
+  * Check & Repair: search and fix bad "links" in StyledTextTags. Issue #11855
+  * Update shared-mime-info for application/x-geneweb and application/x-gedcom.
+  * Fix tags in shared mime info file. With the switch from intltool to gettext
+    underscores became obsolete.
+  * Update _pythonmime.py When editing a Media image, display TIFF image or PNG
+    image instead of Unknown.
+  * Make "gramps -v" consistent with Prerequisites Checker. Issue #12770
+  * Fix EditEventRef, EditPlaceRef, EditMediaRef, EditRepoRef for improperly
+    saving objects in their object lists. Fixes #11917, #11933
+  * Autobackup: Add delay after wake from sleep/hibernate to allow time for
+    system to settle. Fixes #10953
+  * Autobackup only if new commits since last autobackup in session.
+  * Fix images: 22x22 to 24x24
+    Real picture's size from images/hicolor/24x24/actions
+    old size: 22x22 72dpi or 90dpi now: 24x24 72dpi.
+  * Use XDG pictures directory as the default media path. This is a better
+    default for our Flatpak distribution. Fixes #12217.
+  * Add place name to place in geneweb import. Fixes #12710
+  * Argparser:
+    * Refactor error construction into a common method.
+    * Simplify handling of getops error.
+    * Add unit test for handling getopt error.
+  * Name displayer:
+    * Correct continuation line unaligned for hanging indent.
+    * Remove unused imports.
+    * Correct the assumed order of the name formats.
+    * Use list comprehension for name format list.
+    * Simplify sorting in get_name_format.
+    * Add unit tests for methods relying on name_formats.
+    * Add test coverage for get_name_format.
+  * Update Appdata to pass validation:
+    * Fix tags. With the switch from intltool to gettext underscores
+      became obsolete.
+    * Add content-rating information.
+    * Add link for translators.
+    * Add release information.
+    * Add translation domain.
+    * Make appdata summary consistent with desktop comment.
+    * Avoid using deprecated license identifier.
+    * Tidy up tag order.
+  * merge_ref_test: Tests update for Note rework.
+  * Fix MultiSelectDialog for two issues.
+  * Fix unit test for check & repair tool.
+  * Limit print statement by using logging module
+    python3 Gramps.py -d "gui.uimanager".
+  * Image magic: add bmp and tiff + Readme, exception if file not found.
+  * Fix db corrupted error message to make it apply to all db types.
+    Fixes #12242
+  * Test: No need to check for mock support with Python 3.3+
+  * Install application icons into correct directories.
+  * Replace obsolete file() -> open().
+  * Remove non-existent old attribute personal for an event.
+  * Use the callback parameter passed to EditEvent.__init__ by passing it to
+    EditPrimary.__init__.
+  * For all types of EditPrimary window, consistently call self._do_close()
+    before self.callback(), during save().
+  * EditRepository now stores the callback passed to __init__ and calls it
+    during save().
+  * Better code quality for within area rule.
+  * Add missing 'get_number_of_citations' method.
+
+2023-06-29
+Version 5.1.6
+* Update copyright date.
+* Narrative web: problem with small pictures. Fixes #12884.
+* Implement the "<CTRL>J" for the family view. Fixes #12882.
+* Avoid application crash on invalid user input. If the user inputs an invalid
+  date this change keeps the application from crashing. The invalid date
+  information is reported to the user in the log. Fixes #12658.
+* Fix export where private citations are excluded.
+* Fix Event Compare tool to display enclosed places properly.
+* Check that view exists before calling post_create method. Avoids 'NoneType'
+  object has no attribute 'post_create' error. Fixes #12638.
+* Fix a wrong operator bug in the web calendar report.
+* Revert "Enclose tree report image path and file name in braces" due to reports
+  of regression where processing of the generated TeX file fails due to bad path
+  specificiation for image files. Fixes #12437 and #12697.
+* Geography View: Fix number of arguments in add_bookmark method. Fixes #12718.
+* Use date-specific place in report substitution variables. Fix place title in
+  graphical reports which have user-defined display formats to use date-specific
+  alternate name.  This impacts the Ancestor Tree, Descendant Tree, and Family
+  Descendant Tree reports. Fixes #12763.
+* Try to import berkeleydb if bsddb3 isn't found.  berkelydb is usable for
+  python >= 3.6 and required for python >= 3.10.
+  See https://www.jcea.es/programacion/pybsddb.htm.
+* HtmlDoc: Create a unique filename for cropped images.
+* Fix corrupted NOTE tag in Gedcom export. Remove Python2 code obsoleted by
+  Python3, which was corrupting Gedcom export of Gramps Notes text that includes
+  multi-byte utf-8 characters.  Fixes #12709.
+* Fix IndexError that sometimes occurs when changing view This occurs when
+  restarting Gramps.  Fixes #12636, #12304, #12429, #12623, #12695.
+* Fix crash when invalid note link. Fixes #12854.
+* Fix tags with color names in pedigree views. Fixes #12866.
+* Crash when invalid event date.
+* ListModel: Fix multiple level paths when we use checkboxes in columns.
+  The path was previously converted to int.
+* Update Gramps CI workflow to run on Ubuntu 20.04. Ubuntu 18.04 became fully
+  unsupported on 1 Dec 2022.
+* Fix package installation failures in CI.
+* Fix spouse's name and underlined call names in records. Fixes #12391.
+* Update INCOMPLETE_TRANSLATIONS list. Remove: he, Add: zh_HK, zh_TW.
+* Update Debian folder after 5.1.5 release.
+* Mac:
+  * Patch bsddb to use berkeleydb instead of bsddb3 module.
+  * Patch berkeleydb configure to work on Apple Silicon.
+  * Update Exiv2 download URL, moved to github.
+  * Repackage Gramps 5.1.5 with Gtk updates fixing use on macOS 13 Ventura.
+
+2022-02-05
+Version 5.1.5
+* Update translations: de, pl, sv, zh_CN.
+* Remove Travis CI configuration.
+* Fix badges in README file.
+* Update copyright date.
+* Strange behavior for the scrollbar in the bottombar. Fixes #12438.
+* Fix place object element order in DTD and RNG schemas. Element placeobj
+  content does not follow the DTD and RNG, expecting (ptitle? , pname+).
+  Fixes #12500.
+* Solve InterpolationSyntaxError if "%" in a string. The grampletpane module
+  saves data in a config file for all the gramplets added in the dashboard.  The
+  python configparser module doesn't like if we have a "%" character in a string.
+  Fixes #12423.
+* '<' not supported between 2 instances of IndexMark. Fixes #12467.
+* Remove debug statements in unit tests.
+* Fix negative Span when dates are not Gregorian. Fixes #12525.
+* Incorrect grouping if no ma/patronymic surname.
+* Group As override is ignored for ma/patronymic surnames. Fixes #12395.
+  See: https://gramps.discourse.group/t/patronymic-and-matronymic-name/1684/5
+* Add comments for the lat-lon field of editplace.
+* Place editor, lat and long text are swapped. Fixes #12374.
+* Fix Statusbar progress being shown before use. Fixes #12373.
+* Fix exception when removing a group name in Sqlite db when group name is
+  already missing.  Fixes #12367.
+* Fix error when trying to close name editor during long name group mapping
+  view rebuild.  Fixes #12328.
+* OsmGpsMap-CRITICAL: Map source setup called twice Fixes #12352.
+* Fix probably alive function unit test.
+* Use GitHub Actions to run continuous integration checks.
+* Mac:
+  * Update Exiv2, PYExiv2, and json-glib.
+  * Repackage Gramps.app to work with macOS 12.
+  * Add entitlements path to bundle-file so Gramps.app is signed with it.
+  * Add python-fontconfig to the macOS build.  Needed to enable using
+    genealogical symbols.
+  * Inlude fontconfig's etc/fonts in macOS app bundle.  Graphviz now uses
+    fontconfig to find its fonts.  Fixes #12370.
+
+2021-07-26
+Version 5.1.4
+* Update translations: cs, de, es, fi, fr, hu, nl, pt_BR, ru, sv, zh_CN.
+* Update copyright date.
+* Fix probably alive if death without date.
+* Place editor, copy and paste of lat and long text no longer
+  auto-populating latitude and longitude fields.
+* Fix for crash when changing views if part of toolbar is not shown because
+  of a small screen when changing views.
+* Fix bottombar always showing after restart, even when not wanted.
+* Always use filtered collation names.  Store the Sqlite3 collations in the
+  __collations array to short-circuit re-creation.
+* Fix issue with German relation calculator fixed issue when more than 24
+  generations between the two people.
+* Add file logging for macOS. When Gramps is launched from macOS's
+  LaunchServices it doesn't have a sys.stderr attached so the default stream
+  logger goes to /dev/null. Use a FileHandler in tht case, writing the log
+  to $TMPDIR/gramps-pid.log. This will help particularly in analyzing
+  crashes where python shuts down as there's no crash report in that case.
+* Fix libplaceview to avoid exception when mapservice is no longer present.
+* Fix References Gramplet for inadequate updates when other objects change.
+* Fix geofamily crash if a family has no father.
+* Home Person setting does not convey in a merge.
+* Fix CSV export of view to only put single CR character.
+* Add Media filter rule 'HasMedia' to list of media rules for editor.
+* Need to set locale.textdomain under linux. _build_popup_ui() ignores
+  translated strings without locale.textdomain set.
+* Change category of 'MatchesEventFilter'.
+* Fix issue where separator between top and bottom bar of View creeps up.
+* Fix Locations Gramplet (Enclosed by) to properly display certain nested
+  places when the smallest place has undated enclosure and larger places are
+  dated.
+* Fix Family Tree Manager drop error on Windows.
+* Fix exportvcalendar error is "is not" with a literal (Python 3.8 issue)
+* Handle not found when copying source from the citation tree.
+* Fix call to 'file' function, which doesn't exist in Python3.
+* Fix write_lock_file exception when USERNAME is missing.
+* Fix EditPlace so Tab key doesn't get stuck on Private icon.
+* Fix Tag report for places that have a hierarchy.
+* Fix exception when cancelling out of a db upgrade in GUI.
+* Icon file changes:
+  * Install 128x128 and 256x256 application icons.
+  * Install MIME type icons into the hicolor theme.
+  * Remove gnome-mime- prefix from icon filenames.
+  * Install application icons into correct directories.
+* Fix error in Birthday and Anniversary report. Fixes an error triggered
+  when the first person_handle in the list has a death event, but no birth
+  event and does not have family relationships.  These conditions lead to
+  the local variable short_name not being declared before it comes time to
+  process death events.
+* Fix graphdoc to properly escape characters in ids for Graphviz.
+* Replace inspect.stack() with inspect.currentframe().
+  Works around https://bugs.python.org/issue12920 which causes every
+  call to inspect.trace() to fail because __main__ is always the
+  starting point.
+* Fix crash sorting on columns in Selectors with TreeModels.
+* Fix progress bar freeze due to changes in Gtk.
+* Fix svgdrawdoc for text containing XML invalid characters.
+* Mac:
+  * Update PyICU to 2.7.2 in macOS build.
+  * Update dependencies. Includes moving berkeleydb and pybsddb over from
+    gtk-osx.
+  * Further changes for bundling with Python 3.8.
+  * Set __file__ if gramps_launcher.py is run as __main__.
+  * Add geocode-glib to build.
+
 2020-08-11
 Version 5.1.3
 * Update ca, de, fi, fr, ja, pl, ru, sl, sv, uk, zh_CN translation
@@ -94,7 +1028,7 @@ Version 5.1.2
 * [Tree doc Tex] fix typo on custom size
 * Fix duplicated "døde døde" Norwegion Translation for libnarrate
 * Fix up Event Editors Place display for bidi text with Gramps ID
-* Fix issues with RTL languages and LAT/LONG 
+* Fix issues with RTL languages and LAT/LONG
   * Fix display of GPS coordinates in Places view for RTL languages
   * Fix place editor lat/long entry for RTL languages
 * Fix GEDCOM export to avoid translated GrampsType strings

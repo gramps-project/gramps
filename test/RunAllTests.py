@@ -31,17 +31,31 @@ import sys
 import unittest
 from optparse import OptionParser
 
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-os.environ['GRAMPS_RESOURCES'] = os.path.join(
-        os.path.dirname(os.path.abspath(__file__)), '..')
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+os.environ["GRAMPS_RESOURCES"] = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), ".."
+)
+
 
 def make_parser():
     usage = "usage: %prog [options]"
     parser = OptionParser(usage)
-    parser.add_option("-v", "--verbosity", type="int", dest="verbose_level", default=0,
-                      help="Level of verboseness")
-    parser.add_option("-p", "--performance", action="store_true", dest="performance", default=False,
-                      help="Run the performance tests.")
+    parser.add_option(
+        "-v",
+        "--verbosity",
+        type="int",
+        dest="verbose_level",
+        default=0,
+        help="Level of verboseness",
+    )
+    parser.add_option(
+        "-p",
+        "--performance",
+        action="store_true",
+        dest="performance",
+        default=False,
+        help="Run the performance tests.",
+    )
     return parser
 
 
@@ -51,14 +65,16 @@ def getTestSuites():
     # a tuple per directory of (dirpath,filelist) if the directory
     # contains any test files.
 
-    paths = [(f[0],f[2]) for f in os.walk('.') \
-             if len ([i for i in f[2] \
-                      if i[-8:] == "_Test.py"]) ]
+    paths = [
+        (f[0], f[2])
+        for f in os.walk(".")
+        if len([i for i in f[2] if i[-8:] == "_Test.py"])
+    ]
 
     test_suites = []
     perf_suites = []
 
-    for (dir,test_modules) in paths:
+    for dir, test_modules in paths:
         sys.path.append(dir)
 
         for module in test_modules:
@@ -71,23 +87,26 @@ def getTestSuites():
             except:
                 pass
 
-    return (test_suites,perf_suites)
+    return (test_suites, perf_suites)
+
 
 def allTheTests():
     return unittest.TestSuite(getTestSuites()[0])
 
+
 def perfTests():
     return unittest.TestSuite(getTestSuites()[1])
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     console = logging.StreamHandler()
     console.setLevel(logging.INFO)
-    console.setFormatter(logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s'))
+    console.setFormatter(logging.Formatter("%(name)-12s: %(levelname)-8s %(message)s"))
 
-    logger = logging.getLogger('Gramps')
+    logger = logging.getLogger("Gramps")
     logger.addHandler(console)
 
-    (options,args) = make_parser().parse_args()
+    (options, args) = make_parser().parse_args()
 
     if options.verbose_level == 1:
         logger.setLevel(logging.INFO)
@@ -101,7 +120,7 @@ if __name__ == '__main__':
     elif options.verbose_level >= 4:
         logger.setLevel(logging.NOTSET)
         console.setLevel(logging.NOTSET)
-        os.environ['GRAMPS_SIGNAL'] = "1"
+        os.environ["GRAMPS_SIGNAL"] = "1"
     else:
         logger.setLevel(logging.ERROR)
         console.setLevel(logging.ERROR)

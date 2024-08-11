@@ -27,87 +27,92 @@ This module exports the Html class
 
 """
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 # Python modules
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Constants
 #
-#------------------------------------------------------------------------
-__all__ = ['Html']
+# ------------------------------------------------------------------------
+__all__ = ["Html"]
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # XHTML DOCTYPE constants to be used in <!DOCTYPE ... > statements
 #
 # Reference: http://www.w3.org/QA/2002/04/valid-dtd-list.html
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
-_XHTML10_STRICT = '"-//W3C//DTD XHTML 1.0 Strict//EN"\n' \
-                  '\t"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"'
-_XTHML10_TRANS = '"-//W3C//DTD XHTML 1.0 Transitional//EN"\n' \
-                 '\t"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"'
-_XHTML10_FRAME = '"-//W3C//DTD XHTML 1.0 Frameset//EN"\n' \
-                 '\t"http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd"'
-_XHTML11 = '"-//W3C//DTD XHTML 1.1//EN"\n' \
-           '\t"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"'
-_XHTML10_BASIC = '"-//W3C//DTD XHTML Basic 1.0//EN"\n' \
-                 '\t"http://www.w3.org/TR/xhtml-basic/xhtml-basic10.dtd"'
-_XHTML11_BASIC = '"-//W3C//DTD XHTML Basic 1.1//EN"\n ' \
-                 '\t"http://www.w3.org/TR/xhtml-basic/xhtml-basic11.dtd"'
+_XHTML10_STRICT = (
+    '"-//W3C//DTD XHTML 1.0 Strict//EN"\n'
+    '\t"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"'
+)
+_XTHML10_TRANS = (
+    '"-//W3C//DTD XHTML 1.0 Transitional//EN"\n'
+    '\t"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"'
+)
+_XHTML10_FRAME = (
+    '"-//W3C//DTD XHTML 1.0 Frameset//EN"\n'
+    '\t"http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd"'
+)
+_XHTML11 = (
+    '"-//W3C//DTD XHTML 1.1//EN"\n' '\t"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"'
+)
+_XHTML10_BASIC = (
+    '"-//W3C//DTD XHTML Basic 1.0//EN"\n'
+    '\t"http://www.w3.org/TR/xhtml-basic/xhtml-basic10.dtd"'
+)
+_XHTML11_BASIC = (
+    '"-//W3C//DTD XHTML Basic 1.1//EN"\n '
+    '\t"http://www.w3.org/TR/xhtml-basic/xhtml-basic11.dtd"'
+)
 _HTML5 = ""
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # XML Namespace constant for use in <html xmlns=...> tags
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
 _XMLNS = "http://www.w3.org/1999/xhtml"
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Local constants.
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
 # Set of html tags that do not use a complementary closing tag, but close with
 # /> instead
-_START_CLOSE = set([
-    'area',
-    'base',
-    'br',
-    'frame',
-    'hr',
-    'img',
-    'input',
-    'link',
-    'meta',
-    'param'
-    ])
+_START_CLOSE = set(
+    ["area", "base", "br", "frame", "hr", "img", "input", "link", "meta", "param"]
+)
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Html class.
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
+
 
 class Html(list):
     """
     HTML class: Manages a rooted tree of HTML objects
     """
-    __slots__ = ['items', 'indent', 'inline', 'close', 'cms']
-#
+
+    __slots__ = ["items", "indent", "inline", "close", "cms"]
+
+    #
     @staticmethod
     def xmldecl(version=1.0, encoding="UTF-8", standalone="no"):
         """
@@ -120,14 +125,15 @@ class Html(list):
         :type  standalone: string
         :param standalone: "yes" or "no".  Defaults to "no"
         """
-        return '<?xml %s %s %s?>' % (
+        return "<?xml %s %s %s?>" % (
             'version="%s"' % version,
             'encoding="%s"' % encoding,
-            'standalone="%s"' % standalone
-            )
-#
+            'standalone="%s"' % standalone,
+        )
+
+    #
     @staticmethod
-    def doctype(name='HTML', public='', external_id=_HTML5):
+    def doctype(name="HTML", public="", external_id=_HTML5):
         """
         Build and return a DOCTYPE statement
 
@@ -143,15 +149,17 @@ class Html(list):
                             this DOCTYPE.
         """
         return (
-            '<!DOCTYPE %s %s %s' % (
+            "<!DOCTYPE %s %s %s"
+            % (
                 name,
                 public,
                 external_id,
-                )
-            ).rstrip() + '>'
-#
+            )
+        ).rstrip() + ">"
+
+    #
     @staticmethod
-    def html(xmlns=_XMLNS, lang='en', php_session=None, *args, **keywargs):
+    def html(xmlns=_XMLNS, lang="en", php_session=None, *args, **keywargs):
         """
         Build and return a properly-formated <html> object
 
@@ -165,13 +173,19 @@ class Html(list):
         :returns:     reference to the newly-created Html instances
                       for <html> object
         """
-        return Html('html', indent=False, xmlns=xmlns,
-                    attr='xml:lang="%s" lang="%s"' % ((lang,)*2),
-                    php=php_session,
-                    *args, **keywargs)
-#
+        return Html(
+            "html",
+            indent=False,
+            xmlns=xmlns,
+            attr='xml:lang="%s" lang="%s"' % ((lang,) * 2),
+            php=php_session,
+            *args,
+            **keywargs,
+        )
+
+    #
     @staticmethod
-    def head(title=None, encoding='utf-8', html5=True, *args, **keywargs):
+    def head(title=None, encoding="utf-8", html5=True, *args, **keywargs):
         """
         Build and return a properly-formated <head> object
 
@@ -187,21 +201,30 @@ class Html(list):
                          for <head> object
         """
 
-        head = Html('head', *args, **keywargs)
+        head = Html("head", *args, **keywargs)
         if title is not None:
-            head += (Html('title', title, inline=True, indent=True))
+            head += Html("title", title, inline=True, indent=True)
         if html5:
-            head += Html('meta', charset=encoding, indent=True)
+            head += Html("meta", charset=encoding, indent=True)
         else:
             meta1 = 'http-equiv="content-type" content="text/html;charset=%s"'
             meta2 = 'http-equiv="Content-Style-Type" content="text/css"'
-            head += Html('meta', attr=meta1 % encoding, indent=True)
-            head += Html('meta', attr=meta2, indent=True)
+            head += Html("meta", attr=meta1 % encoding, indent=True)
+            head += Html("meta", attr=meta2, indent=True)
         return head
-#
+
+    #
     @staticmethod
-    def page(title=None, encoding='utf-8', lang='en', html5=True, cms=False,
-             php_session=None, *args, **keywargs):
+    def page(
+        title=None,
+        encoding="utf-8",
+        lang="en",
+        html5=True,
+        cms=False,
+        php_session=None,
+        *args,
+        **keywargs,
+    ):
         """
         This function prepares a new Html class based page and returns
 
@@ -218,26 +241,32 @@ class Html(list):
         :returns:        references to the newly-created Html instances for
                          page, head and body
         """
-        page = Html.html(lang=lang, php_session=php_session,
-                         *args, **keywargs)
+        page = Html.html(lang=lang, php_session=php_session, *args, **keywargs)
         if html5:
             page.addDOCTYPE(external_id=_HTML5)
         else:
             page.addXML(encoding=encoding)
             page.addDOCTYPE(external_id=_XHTML10_STRICT)
-#
-        head = Html.head(title=title, encoding=encoding, lang=lang,
-                         html5=html5, indent=False, *args, **keywargs)
-#
+        #
+        head = Html.head(
+            title=title,
+            encoding=encoding,
+            lang=lang,
+            html5=html5,
+            indent=False,
+            *args,
+            **keywargs,
+        )
+        #
         if cms:
-            body = Html('div', class_="body", indent=False,
-                        *args, **keywargs)
+            body = Html("div", class_="body", indent=False, *args, **keywargs)
         else:
-            body = Html('body', indent=False, *args, **keywargs)
+            body = Html("body", indent=False, *args, **keywargs)
         page += (head, body)
         return page, head, body
-#
-    def __init__(self, tag='html', *args, **keywargs):
+
+    #
+    def __init__(self, tag="html", *args, **keywargs):
         """
         Class Constructor: Returns a new instance of the Html class
 
@@ -278,52 +307,52 @@ class Html(list):
         """
         # Replace super(Html, self) with list
         # Issue with Python 2.6 and reload of plugin
-        list.__init__(self, [])                  # instantiate object
-        attr = ''
+        list.__init__(self, [])  # instantiate object
+        attr = ""
         self.indent, self.close, self.inline = True, True, False
-#
-#       Handle keyword arguments passed to this constructor.
-#       Keywords that we process directly are handled.
-#       Keywords we don't recognize are saved for later
-#       addition to the opening tag as attributes.
-#
+        #
+        #       Handle keyword arguments passed to this constructor.
+        #       Keywords that we process directly are handled.
+        #       Keywords we don't recognize are saved for later
+        #       addition to the opening tag as attributes.
+        #
         phpnote = None
         for keyw, arg in sorted(keywargs.items()):
-            if (keyw in ['indent', 'close', 'inline'] and
-                    arg in [True, False, None]):
+            if keyw in ["indent", "close", "inline"] and arg in [True, False, None]:
                 setattr(self, keyw, arg)
-            elif keyw == 'attr':                      # pass attributes along
-                attr += ' ' + arg
-            elif keyw == 'php':                       # php init session
+            elif keyw == "attr":  # pass attributes along
+                attr += " " + arg
+            elif keyw == "php":  # php init session
                 phpnote = arg
-            elif keyw[-1] == '_':                     # avoid Python conflicts
-                attr += ' %s="%s"' % (keyw[:-1], arg) # pass keyword arg along
+            elif keyw[-1] == "_":  # avoid Python conflicts
+                attr += ' %s="%s"' % (keyw[:-1], arg)  # pass keyword arg along
             else:
-                attr += ' %s="%s"' % (keyw, arg)      # pass keyword arg along
-#
-        if tag[0] == '<':               # if caller provided preformatted tag?
-            self[0:] = [tag]            #   add it in
-            self.close = None           #   caller must close the tag
+                attr += ' %s="%s"' % (keyw, arg)  # pass keyword arg along
+        #
+        if tag[0] == "<":  # if caller provided preformatted tag?
+            self[0:] = [tag]  #   add it in
+            self.close = None  #   caller must close the tag
         else:
-            if tag in _START_CLOSE:     # if tag in special list
-                self.close = False      #   it needs no closing tag
+            if tag in _START_CLOSE:  # if tag in special list
+                self.close = False  #   it needs no closing tag
             if phpnote:
                 # We need to insert php code before the html tag
                 # This is used to initiate a php session.
-                htmlhead = phpnote + '<%s%s%s>'
+                htmlhead = phpnote + "<%s%s%s>"
             else:
-                htmlhead = '<%s%s%s>'
-            begin = htmlhead % (        # build opening tag with attributes
+                htmlhead = "<%s%s%s>"
+            begin = htmlhead % (  # build opening tag with attributes
                 tag,
                 attr,
-                ('' if self.close is not False else ' /')
-                )
-#
+                ("" if self.close is not False else " /"),
+            )
+            #
             # Use slice syntax since we don't override slicing
-            self[0:] = [begin] + list(args)         # add beginning tag
-            if self.close:                          # if need closing tab
-                self[len(self):] = ['</%s>' % tag]  # add it on the end
-#
+            self[0:] = [begin] + list(args)  # add beginning tag
+            if self.close:  # if need closing tab
+                self[len(self) :] = ["</%s>" % tag]  # add it on the end
+
+    #
     def __add(self, value):
         """
         Helper function for +, +=, operators and append() and extend()
@@ -335,23 +364,30 @@ class Html(list):
         :rtype:       object reference
         :returns:     reference to object with new value added
         """
-        if (isinstance(value, Html) or not hasattr(value, '__iter__') or
-                isinstance(value, str)):
+        if (
+            isinstance(value, Html)
+            or not hasattr(value, "__iter__")
+            or isinstance(value, str)
+        ):
             value = [value]
         index = len(self) - (1 if self.close else 0)
         self[index:index] = value
         return self
-#
+
+    #
     __iadd__ = __add__ = __add
-#
+
+    #
     def append(self, value):
         """
         Append a new value
         """
         self.__add(value)
-#
+
+    #
     extend = append
-#
+
+    #
     def replace(self, cur_value, value):
         """
         Replace current value with new value
@@ -365,7 +401,8 @@ class Html(list):
         :returns:         reference to object with new value added
         """
         self[self.index(cur_value)] = value
-#
+
+    #
     def __sub__(self, value):
         """
         Overload function for - and -= operators
@@ -377,9 +414,11 @@ class Html(list):
         """
         del self[self.index(value)]
         return self
-#
+
+    #
     __isub__ = remove = __sub__
-#
+
+    #
     def __str__(self):
         """
         Returns string representation
@@ -387,23 +426,26 @@ class Html(list):
         :rtype:   string
         :returns: string representation of object
         """
-        return '%s'*len(self) % tuple(self[:])
-#
+        return "%s" * len(self) % tuple(self[:])
+
+    #
     def __iter__(self):
         """
         Iterator function: returns a generator that performs an
         insertion-order tree traversal and yields each item found.
         """
-        for item in self[:]:               # loop through all list elements
-            if isinstance(item, Html):     # if nested list found
-                for sub_item in item:      #     recurse
+        for item in self[:]:  # loop through all list elements
+            if isinstance(item, Html):  # if nested list found
+                for sub_item in item:  #     recurse
                     yield sub_item
             else:
                 yield item
-#
+
+    #
     iterkeys = itervalues = iteritems = __iter__
-#
-    def write(self, method=print, indent='\t', tabs=''):
+
+    #
+    def write(self, method=print, indent="\t", tabs=""):
         """
         Output function: performs an insertion-order tree traversal and
                          calls supplied method for each item found.
@@ -416,19 +458,20 @@ class Html(list):
         :param tabs:     starting indentation
         """
         if self.indent is None:
-            tabs = ''
+            tabs = ""
         elif self.indent:
             tabs += indent
-        if self.inline:                        # if inline, write all list and
-            method(str('%s%s' % (tabs, self))) # nested list elements
-#
+        if self.inline:  # if inline, write all list and
+            method(str("%s%s" % (tabs, self)))  # nested list elements
+        #
         else:
-            for item in self[:]:               # else write one at a time
-                if isinstance(item, Html):     # recurse if nested Html class
+            for item in self[:]:  # else write one at a time
+                if isinstance(item, Html):  # recurse if nested Html class
                     item.write(method=method, indent=indent, tabs=tabs)
                 else:
-                    method(str('%s%s' % (tabs, item)))  # else write the line
-#
+                    method(str("%s%s" % (tabs, item)))  # else write the line
+
+    #
     def addXML(self, version=1.0, encoding="UTF-8", standalone="no"):
         """
         Add an XML statement to the start of the list for this object
@@ -441,14 +484,12 @@ class Html(list):
         :param standalone: "yes" or "no".  Defaults to "no"
         """
         xmldecl = Html.xmldecl(
-            version=version,
-            encoding=encoding,
-            standalone=standalone
-            )
+            version=version, encoding=encoding, standalone=standalone
+        )
         self[0:0] = [xmldecl]
-#
-    def addDOCTYPE(self, name='html', public='PUBLIC',
-                   external_id=_HTML5, *args):
+
+    #
+    def addDOCTYPE(self, name="html", public="PUBLIC", external_id=_HTML5, *args):
         """
         Add a DOCTYPE statement to the start of the list
 
@@ -462,20 +503,23 @@ class Html(list):
                             to this DOCTYPE.
         """
         doctype = (
-            '<!DOCTYPE %s %s %s%s' % (name,
-                                      ('' if external_id == _HTML5
-                                       else public),
-                                      external_id,
-                                      ' %s'*len(args) % args)
-            ).rstrip() + '>'
+            "<!DOCTYPE %s %s %s%s"
+            % (
+                name,
+                ("" if external_id == _HTML5 else public),
+                external_id,
+                " %s" * len(args) % args,
+            )
+        ).rstrip() + ">"
         # Note: DOCTYPE declaration must follow XML declaration
 
-        #if len(self) and self[0][:6] == '<?xml ':
-        if self[0][:6] == '<?xml ':
+        # if len(self) and self[0][:6] == '<?xml ':
+        if self[0][:6] == "<?xml ":
             self[1:1] = [doctype]
         else:
             self[0:0] = [doctype]
-#
+
+    #
     def __gettag(self):
         """
         Returns HTML tag for this object
@@ -483,8 +527,9 @@ class Html(list):
         :rtype:   string
         :returns: HTML tag
         """
-        return self[0].split()[0].strip('< >')
-#
+        return self[0].split()[0].strip("< >")
+
+    #
     def __settag(self, newtag):
         """
         Sets a new HTML tag for this object
@@ -496,14 +541,16 @@ class Html(list):
 
         # Replace closing tag, if any
 
-        if self[-1] == '</%s>' % curtag:
-            self[-1] = '</%s>' % newtag
+        if self[-1] == "</%s>" % curtag:
+            self[-1] = "</%s>" % newtag
 
         # Replace opening tag
 
-        self[0] = self[0].replace('<' + curtag, '<' + newtag)
+        self[0] = self[0].replace("<" + curtag, "<" + newtag)
+
     tag = property(__gettag, __settag)
-#
+
+    #
     def __getattr(self):
         """
         Returns HTML attributes for this object
@@ -511,9 +558,10 @@ class Html(list):
         :rtype:   string
         :returns: HTML attributes
         """
-        attr = self[0].strip('<!?/>').split(None, 1)
-        return attr[1] if len(attr) > 1 else ''
-#
+        attr = self[0].strip("<!?/>").split(None, 1)
+        return attr[1] if len(attr) > 1 else ""
+
+    #
     def __setattr(self, value):
         """
         Sets new HTML attributes for this object
@@ -526,17 +574,25 @@ class Html(list):
         # See if self-closed or normal
 
         end = -2 if self.close is False else -1
-        self[0] = self[0][:beg] + ' ' + value + self[0][end:]
-#
+        self[0] = self[0][:beg] + " " + value + self[0][end:]
+
+    #
     def __delattr(self):
         """
         Removes HTML attributes for this object
         """
-        self[0] = '<' + self.tag + (# Set correct closing delimiter(s)
-            ' />' if self.close is False else '>')
-#
+        self[0] = (
+            "<"
+            + self.tag
+            + (  # Set correct closing delimiter(s)
+                " />" if self.close is False else ">"
+            )
+        )
+
+    #
     attr = property(__getattr, __setattr, __delattr)
-#
+
+    #
     def __getinside(self):
         """
         Returns list of items between opening and closing tags
@@ -545,7 +601,8 @@ class Html(list):
         :returns: list of items between opening and closing HTML tags
         """
         return self[1:-1]
-#
+
+    #
     def __setinside(self, value):
         """
         Sets new contents between opening and closing tags
@@ -554,44 +611,55 @@ class Html(list):
         :param name: new HTML contents
         """
         if len(self) < 2:
-            raise AttributeError('No closing tag. Cannot set inside value')
-        if (isinstance(value, Html) or not hasattr(value, '__iter__') or
-                isinstance(value, str)):
+            raise AttributeError("No closing tag. Cannot set inside value")
+        if (
+            isinstance(value, Html)
+            or not hasattr(value, "__iter__")
+            or isinstance(value, str)
+        ):
             value = [value]
         self[1:-1] = value
-#
+
+    #
     def __delinside(self):
         """
         Removes contents between opening and closing tag
         """
         if len(self) > 2:
             self[:] = self[:1] + self[-1:]
+
     inside = property(__getinside, __setinside, __delinside)
-#
+
+    #
     def __enter__(self):
         return self
-#
+
+    #
     def __exit__(self, exc_type, exc_val, exc_tb):
         return exc_type is None
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # Functions
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 def xml_lang():
-    return glocale.lang[:5].replace('_', '-')
+    return glocale.lang[:5].replace("_", "-")
 
-#-------------------------------------------
+
+# -------------------------------------------
 #
 #           Unit tests
 #
-#-------------------------------------------
+# -------------------------------------------
+
 
 def htmltest():
     pass
 
-if __name__ == '__main__':
-    #from libhtmltest import htmltest
-    #htmltest()
+
+if __name__ == "__main__":
+    # from libhtmltest import htmltest
+    # htmltest()
     pass

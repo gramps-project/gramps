@@ -89,6 +89,7 @@ img {
     width: 98%;
 }
 #outerwrapper > div {
+    width: 100%;
     clear: both;
 }
 .content {
@@ -231,6 +232,18 @@ p#user_header {
     padding:.2em 0 .6em 20px;
     background-color:#542;
 }
+.ltr, .ltr li {
+    float: left;
+    list-style: none;
+}
+li:not(:first-child) {
+    padding-right: 8px;
+    padding-left: 8px;
+}
+.rtl, .rtl li {
+    float: right;
+    list-style: none;
+}
 
 /* Alphabet and Navigation Menus
 ----------------------------------------------------- */
@@ -252,9 +265,14 @@ div#alphanav ul, div#nav ul, div#subnavigation ul {
 div#alphanav ul li:after, div#nav ul li:after, div#subnavigation ul li:after {
     content: "  |";
 }
+div#nav.wrappernav.ltr {
+    float: left;
+}
+div#nav.wrappernav.rtl {
+    float: right;
+}
 div#alphanav ul li, div#nav ul li, div#subnavigation ul li {
     margin: 0;
-    float: left;
 }
 div#alphanav ul li a, div#nav ul li a, div#subnavigation ul li a {
     display: block;
@@ -291,6 +309,8 @@ div#nav li.lang {
 div#nav li.lang:hover > ul {
     visibility: visible;
     opacity: 1;
+    width: 80px;
+    padding-right: 5px;
 }
 div#nav ul.lang {
     position: absolute;
@@ -326,6 +346,18 @@ button.navIcon {
     color: #FFF;
 }
 
+div#header.rtl h1 {
+    margin-right: 40px;
+}
+div#header.rtl button {
+    float: right;
+}
+div#header.ltr h1 {
+    margin-left: 40px;
+}
+div#header.ltr button {
+    float: left;
+}
 div#header::after {
     content: "";
     clear: both;
@@ -355,7 +387,6 @@ div#nav::after {
         list-style: none;
         min-width: unset;
         width: 200px;
-        height: 32px;
         margin: 0;
         padding: 0;
     }
@@ -363,20 +394,35 @@ div#nav::after {
         float: unset;
         display: unset
     }
+    li:first-child {
+        padding-right: 8px;
+        padding-left: 8px;
+    }
 
     /* Start with hidden menu options */
     /* .nav li:not(:first-child) {display: none;} */
     .nav li {display: none;}
     .nav ul {display: none;}
 
+    button.navIcon.rtl {
+        text-align:right;
+    }
+    button.navIcon.ltr {
+        text-align:left;
+    }
     button.navIcon {
         display: block;
-        float: left;
         font-size:2.9em;
         line-height: 70px;
         border: 0px;
         background-color: #542;
         color: #FFF;
+    }
+    h1#SiteTitle.ltr  {
+        float: left;
+    }
+    h1#SiteTitle.rlt  {
+        float: right;
     }
 
     .nav.responsive {position: absolute; display: block; z-index: 100;}
@@ -389,6 +435,12 @@ div#nav::after {
         /* need to remove the "|" when we are in the dropdown menu. */
         color: #A97;
         background-color: #A97;
+    }
+    .nav.rtl.responsive li.lang {
+        text-align: right;
+    }
+    .nav.ltr.responsive li.lang {
+        text-align: left;
     }
     .nav.responsive li {
         display: block;
@@ -419,7 +471,7 @@ div#nav::after {
     }
     .lang > .lang {
         top: 0;
-        left: 100%;
+        /* left: 100%; */
         margin-top: -6px;
         margin-left: -1px;
         -webkit-border-radius: 0 6px 6px 6px;
@@ -433,6 +485,12 @@ div#nav::after {
 
 /* Main Table
 ----------------------------------------------------- */
+table.relationships.ltr tr th, table.infolist.ltr tr th, table.primobjlist.ltr tr th, table.eventlist.ltr tr th {
+    text-align: left;
+}
+table.relationships.rtl tr th, table.infolist.rtl tr th, table.primobjlist.rtl tr th, table.eventlist.rtl tr th {
+    text-align: right;
+}
 table.infolist {
     width:100%;
     margin:0;
@@ -506,10 +564,15 @@ table.surnamelist tr thead th.ColumnSurname, #Surnames table.surnamelist tbody t
 table.surnamelist tr th {
     padding:0;
 }
+table.surnamelist.ltr {
+    text-align:left;
+}
+table.surnamelist.rtl {
+    text-align:right;
+}
 table.surnamelist tr th a, table.surnamelist tr th a:visited {
     display:block;
     color:#FFF;
-    text-align:left;
     text-decoration:none;
     padding:.2em 10px;
 }
@@ -1227,8 +1290,13 @@ div#Addresses table.infolist tr td a, div#Addresses table.infolist tr td p a {
 #gallery {
     background-color: green;
 }
-#gallery .gallerycell {
+#gallery .gallerycell.ltr {
     float: left;
+}
+#gallery .gallerycell.rtl {
+    float: right;
+}
+#gallery .gallerycell {
     width: 130px;
     height: 150px;
     text-align: center;
@@ -1521,6 +1589,12 @@ body#WebCal {
     padding:0 14px;
     background-color:#542;
 }
+.dropmenu.rtl li {
+    text-align: right;
+}
+.dropmenu.ltr li {
+    text-align: left;
+}
 .calendar {
     empty-cells:show;
     width:100%;
@@ -1727,7 +1801,7 @@ body#fullyearlinked #YearGlance tbody td:hover .date {
     border: 5px solid;
 }
 h4 button.icon {
-    width: 0.9em;
+    width: 1.9em;
     border: 0px solid;
     padding: 0;
     opacity: 1;

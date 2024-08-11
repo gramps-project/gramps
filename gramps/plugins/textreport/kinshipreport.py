@@ -24,24 +24,30 @@
 
 """Reports/Text Reports/Kinship Report"""
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gramps.gen.errors import ReportError
 from gramps.gen.relationship import get_relationship_calculator
-from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
-                                    FONT_SANS_SERIF, INDEX_TYPE_TOC,
-                                    PARA_ALIGN_CENTER)
+from gramps.gen.plug.docgen import (
+    IndexMark,
+    FontStyle,
+    ParagraphStyle,
+    FONT_SANS_SERIF,
+    INDEX_TYPE_TOC,
+    PARA_ALIGN_CENTER,
+)
 from gramps.gen.plug.menu import NumberOption, BooleanOption, PersonOption
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils
@@ -51,13 +57,14 @@ from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.proxy import CacheProxyDb
 from gramps.gen.display.name import displayer as _nd
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # KinshipReport
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class KinshipReport(Report):
-    """ Kinship Report """
+    """Kinship Report"""
 
     def __init__(self, database, options, user):
         """
@@ -86,7 +93,7 @@ class KinshipReport(Report):
         Report.__init__(self, database, options, user)
         menu = options.menu
 
-        self.set_locale(menu.get_option_by_name('trans').get_value())
+        self.set_locale(menu.get_option_by_name("trans").get_value())
 
         stdoptions.run_date_format_option(self, menu)
 
@@ -95,20 +102,19 @@ class KinshipReport(Report):
         self.database = CacheProxyDb(self.database)
         self.__db = self.database
 
-        self.max_descend = menu.get_option_by_name('maxdescend').get_value()
-        self.max_ascend = menu.get_option_by_name('maxascend').get_value()
-        self.inc_spouses = menu.get_option_by_name('incspouses').get_value()
-        self.inc_cousins = menu.get_option_by_name('inccousins').get_value()
-        self.inc_aunts = menu.get_option_by_name('incaunts').get_value()
-        pid = menu.get_option_by_name('pid').get_value()
+        self.max_descend = menu.get_option_by_name("maxdescend").get_value()
+        self.max_ascend = menu.get_option_by_name("maxascend").get_value()
+        self.inc_spouses = menu.get_option_by_name("incspouses").get_value()
+        self.inc_cousins = menu.get_option_by_name("inccousins").get_value()
+        self.inc_aunts = menu.get_option_by_name("incaunts").get_value()
+        pid = menu.get_option_by_name("pid").get_value()
         self.person = self.database.get_person_from_gramps_id(pid)
         if self.person is None:
             raise ReportError(_("Person %s is not in the Database") % pid)
 
         stdoptions.run_name_format_option(self, menu)
 
-        self.rel_calc = get_relationship_calculator(reinit=True,
-                                                    clocale=self._locale)
+        self.rel_calc = get_relationship_calculator(reinit=True, clocale=self._locale)
 
         self.kinship_map = {}
         self.spouse_map = {}
@@ -156,9 +162,11 @@ class KinshipReport(Report):
                 title = get_rel_str(Ga, Gb, in_law_b=False)
                 self.write_people(self._(title), self.kinship_map[Ga][Gb])
 
-                if (self.inc_spouses and
-                        Ga in self.spouse_map and
-                        Gb in self.spouse_map[Ga]):
+                if (
+                    self.inc_spouses
+                    and Ga in self.spouse_map
+                    and Gb in self.spouse_map[Ga]
+                ):
                     title = get_rel_str(Ga, Gb, in_law_b=True)
                     self.write_people(self._(title), self.spouse_map[Ga][Gb])
 
@@ -189,7 +197,7 @@ class KinshipReport(Report):
                         self.add_spouse(spouse_handle, Ga, Gb)
 
                 if Gb < self.max_descend:
-                    self.traverse_down(child_handle, Ga, Gb+1)
+                    self.traverse_down(child_handle, Ga, Gb + 1)
 
     def traverse_up(self, person_handle, Ga, Gb):
         """
@@ -209,9 +217,9 @@ class KinshipReport(Report):
         parent_handles = self.get_parent_handles(person_handle)
         for parent_handle in parent_handles:
             self.add_kin(parent_handle, Ga, Gb)
-            self.traverse_down(parent_handle, Ga, Gb+1, person_handle)
+            self.traverse_down(parent_handle, Ga, Gb + 1, person_handle)
             if Ga < self.max_ascend:
-                self.traverse_up(parent_handle, Ga+1, 0)
+                self.traverse_up(parent_handle, Ga + 1, 0)
 
     def add_kin(self, person_handle, Ga, Gb):
         """
@@ -316,24 +324,25 @@ class KinshipReport(Report):
         death = get_death_or_fallback(self.database, person)
         if death:
             death_date = self._get_date(death.get_date_object())
-        dates = ''
+        dates = ""
         if birth_date or death_date:
             dates = " (%(birth_date)s - %(death_date)s)" % {
-                               'birth_date' : birth_date,
-                               'death_date' : death_date}
+                "birth_date": birth_date,
+                "death_date": death_date,
+            }
 
-        self.doc.start_paragraph('KIN-Normal')
+        self.doc.start_paragraph("KIN-Normal")
         self.doc.write_text(name, mark)
         self.doc.write_text(dates)
         self.doc.end_paragraph()
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # KinshipOptions
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class KinshipOptions(MenuReportOptions):
-
     """
     Defines options and provides handling interface.
     """
@@ -344,7 +353,7 @@ class KinshipOptions(MenuReportOptions):
         MenuReportOptions.__init__(self, name, dbase)
 
     def get_subject(self):
-        """ Return a string that describes the subject of the report. """
+        """Return a string that describes the subject of the report."""
         gid = self.__pid.get_value()
         person = self.__db.get_person_from_gramps_id(gid)
         return _nd.display(person)
@@ -413,7 +422,7 @@ class KinshipOptions(MenuReportOptions):
         para.set_header_level(3)
         para.set_font(font)
         para.set_top_margin(utils.pt2cm(6))
-        para.set_description(_('The style used for second level headings.'))
+        para.set_description(_("The style used for second level headings."))
         default_style.add_paragraph_style("KIN-Subtitle", para)
 
         font = FontStyle()
@@ -421,5 +430,5 @@ class KinshipOptions(MenuReportOptions):
         para = ParagraphStyle()
         para.set_font(font)
         para.set_left_margin(0.5)
-        para.set_description(_('The basic style used for the text display.'))
+        para.set_description(_("The basic style used for the text display."))
         default_style.add_paragraph_style("KIN-Normal", para)

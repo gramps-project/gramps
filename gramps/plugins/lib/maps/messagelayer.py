@@ -20,54 +20,57 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
 from gi.repository import GObject
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gdk
 from gi.repository import Pango, PangoCairo
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps Modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.config import config
 from gramps.gen.constfunc import is_quartz
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # osmGpsMap
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 try:
     import gi
-    gi.require_version('OsmGpsMap', '1.0')
+
+    gi.require_version("OsmGpsMap", "1.0")
     from gi.repository import OsmGpsMap as osmgpsmap
 except:
     raise
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Set up logging
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 _LOG = logging.getLogger("maps.messagelayer")
+
 
 class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
     """
     This is the layer used to display messages over the map
     """
+
     def __init__(self):
         """
         Initialize the layer
@@ -75,7 +78,7 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
         GObject.GObject.__init__(self)
         self.message = ""
         self.color = "black"
-        self.font = config.get('utf8.selected-font')
+        self.font = config.get("utf8.selected-font")
         self.size = 13
 
     def clear_messages(self):
@@ -89,7 +92,7 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
         reset the font attributes.
         """
         self.color = "black"
-        self.font = config.get('utf8.selected-font')
+        self.font = config.get("utf8.selected-font")
         self.size = 13
 
     def set_font_attributes(self, font, size, color):
@@ -101,7 +104,7 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
         if font is not None:
             self.font = font
         else:
-            self.font = config.get('utf8.selected-font')
+            self.font = config.get("utf8.selected-font")
         if size is not None:
             self.size = size
 
@@ -116,15 +119,17 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
         Draw all the messages
         """
         ctx.save()
-        #font_size = "%s %d" % (self.font, self.size)
-        #font = Pango.FontDescription(font_size)
+        # font_size = "%s %d" % (self.font, self.size)
+        # font = Pango.FontDescription(font_size)
         descr = Pango.font_description_from_string(self.font)
         descr.set_size(self.size * Pango.SCALE)
         color = Gdk.color_parse(self.color)
-        ctx.set_source_rgba(float(color.red / 65535.0),
-                            float(color.green / 65535.0),
-                            float(color.blue / 65535.0),
-                            0.9) # transparency
+        ctx.set_source_rgba(
+            float(color.red / 65535.0),
+            float(color.green / 65535.0),
+            float(color.blue / 65535.0),
+            0.9,
+        )  # transparency
         d_width = gpsmap.get_allocation().width
         d_width -= 100
         ctx.restore()
@@ -163,5 +168,6 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
         dummy_map = gpsmap
         dummy_evt = gdkeventbutton
         return False
+
 
 GObject.type_register(MessageLayer)

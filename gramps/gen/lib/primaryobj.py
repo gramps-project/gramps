@@ -23,31 +23,31 @@
 Basic Primary Object class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# Standard Python modules
+# Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from abc import abstractmethod
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .tableobj import TableObject
-from .privacybase import PrivacyBase
+# -------------------------------------------------------------------------
 from .citationbase import CitationBase
 from .mediabase import MediaBase
 from .notebase import NoteBase
+from .privacybase import PrivacyBase
+from .tableobj import TableObject
 from .tagbase import TagBase
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# Basic Primary Object class
+# BasicPrimaryObject
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
     """
     The BasicPrimaryObject is the base class for :class:`~.note.Note` objects.
@@ -137,7 +137,6 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
         :param handle_list: The list of handles to be removed.
         :type handle_list: str
         """
-        pass
 
     def replace_handle_reference(self, classname, old_handle, new_handle):
         """
@@ -150,7 +149,6 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
         :param new_handle: The handle to replace the old one with.
         :type new_handle: str
         """
-        pass
 
     def has_citation_reference(self, handle):
         """
@@ -177,7 +175,6 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
         In the base class no such references exist. Derived classes should
         override this if they provide citation references.
         """
-        pass
 
     def remove_media_references(self, handle_list):
         """
@@ -186,27 +183,33 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
         In the base class no such references exist. Derived classes should
         override this if they provide media references.
         """
-        pass
+
+    def remove_note_references(self, handle_list):
+        """
+        Remove the specified note references from the object.
+
+        In the base class no such references exist. Derived classes should
+        override this if they provide note references.
+        """
 
     def replace_citation_references(self, old_handle, new_handle):
         """
         Replace all references to the old citation handle with those to the new
         citation handle.
         """
-        pass
 
     def replace_media_references(self, old_handle, new_handle):
         """
         Replace all references to the old media handle with those to the new
         media handle.
         """
-        pass
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Primary Object class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class PrimaryObject(BasicPrimaryObject):
     """
     The PrimaryObject is the base class for all primary objects in the
@@ -256,12 +259,11 @@ class PrimaryObject(BasicPrimaryObject):
                   of this object type.
         :rtype: bool
         """
-        if classname == 'Citation' and isinstance(self, CitationBase):
+        if classname == "Citation" and isinstance(self, CitationBase):
             return self.has_citation_reference(handle)
-        elif classname == 'Media' and isinstance(self, MediaBase):
+        if classname == "Media" and isinstance(self, MediaBase):
             return self.has_media_reference(handle)
-        else:
-            return self._has_handle_reference(classname, handle)
+        return self._has_handle_reference(classname, handle)
 
     def remove_handle_references(self, classname, handle_list):
         """
@@ -272,11 +274,11 @@ class PrimaryObject(BasicPrimaryObject):
         :param handle_list: The list of handles to be removed.
         :type handle_list: str
         """
-        if classname == 'Citation' and isinstance(self, CitationBase):
+        if classname == "Citation" and isinstance(self, CitationBase):
             self.remove_citation_references(handle_list)
-        elif classname == 'Media' and isinstance(self, MediaBase):
+        elif classname == "Media" and isinstance(self, MediaBase):
             self.remove_media_references(handle_list)
-        elif classname == 'Note' and isinstance(self, NoteBase):
+        elif classname == "Note" and isinstance(self, NoteBase):
             self.remove_note_references(handle_list)
         else:
             self._remove_handle_references(classname, handle_list)
@@ -292,9 +294,9 @@ class PrimaryObject(BasicPrimaryObject):
         :param new_handle: The handle to replace the old one with.
         :type new_handle: str
         """
-        if classname == 'Citation' and isinstance(self, CitationBase):
+        if classname == "Citation" and isinstance(self, CitationBase):
             self.replace_citation_references(old_handle, new_handle)
-        elif classname == 'Media' and isinstance(self, MediaBase):
+        elif classname == "Media" and isinstance(self, MediaBase):
             self.replace_media_references(old_handle, new_handle)
         else:
             self._replace_handle_reference(classname, old_handle, new_handle)
@@ -309,10 +311,8 @@ class PrimaryObject(BasicPrimaryObject):
         """
         Remove the handle references from the object.
         """
-        pass
 
     def _replace_handle_reference(self, classname, old_handle, new_handle):
         """
         Replace the handle reference with the new reference.
         """
-        pass

@@ -18,34 +18,36 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._hasgallerybase import HasGalleryBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # "People with media object reference "
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HavePhotos(HasGalleryBase):
     """Rule that checks for person who has media object reference"""
 
-    name = _('People with <count> media')
+    name = _("People with <count> media")
     description = _("Matches people with a certain number of items in the gallery")
 
-    def __init__(self, arg, use_regex=False):
+    def __init__(self, arg, use_regex=False, use_case=False):
         # Upgrade from pre 3.1 HasPhotos filter, use defaults that correspond
         # Previous filter had 0 arguments
         if len(arg) == 0:
-            HasGalleryBase.__init__(self, ["0", 'greater than'], use_regex)
+            HasGalleryBase.__init__(self, ["0", "greater than"], use_regex, use_case)
         else:
-            HasGalleryBase.__init__(self, arg, use_regex)
+            HasGalleryBase.__init__(self, arg, use_regex, use_case)

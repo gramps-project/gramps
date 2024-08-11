@@ -22,28 +22,30 @@
 """
 Note View.
 """
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 import logging
+
 _LOG = logging.getLogger(".plugins.noteview")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gui.views.treemodels import NoteModel
 from gramps.gen.errors import WindowActiveError
@@ -57,15 +59,17 @@ from gramps.gui.editors import EditNote
 from gramps.gui.merge import MergeNote
 from gramps.gen.plug import CATEGORY_QR_NOTE
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # NoteView
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class NoteView(ListView):
     """
     Noteview, a normal flat listview for the notes
     """
+
     COL_PREVIEW = 0
     COL_ID = 1
     COL_TYPE = 2
@@ -75,19 +79,19 @@ class NoteView(ListView):
 
     # column definitions
     COLUMNS = [
-        (_('Preview'), TEXT, None),
-        (_('ID'), TEXT, None),
-        (_('Type'), TEXT, None),
-        (_('Private'), ICON, 'gramps-lock'),
-        (_('Tags'), TEXT, None),
-        (_('Last Changed'), TEXT, None),
-        ]
+        (_("Preview"), TEXT, None),
+        (_("ID"), TEXT, None),
+        (_("Type"), TEXT, None),
+        (_("Private"), ICON, "gramps-lock"),
+        (_("Tags"), TEXT, None),
+        (_("Last Changed"), TEXT, None),
+    ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
-        ('columns.visible', [COL_PREVIEW, COL_ID, COL_TYPE]),
-        ('columns.rank', [COL_PREVIEW, COL_ID, COL_TYPE, COL_PRIV, COL_TAGS,
-                          COL_CHAN]),
-        ('columns.size', [350, 75, 100, 40, 100, 100]))
+        ("columns.visible", [COL_PREVIEW, COL_ID, COL_TYPE]),
+        ("columns.rank", [COL_PREVIEW, COL_ID, COL_TYPE, COL_PRIV, COL_TAGS, COL_CHAN]),
+        ("columns.size", [350, 75, 100, 40, 100, 100]),
+    )
 
     ADD_MSG = _("Add a new note")
     EDIT_MSG = _("Edit the selected note")
@@ -97,25 +101,31 @@ class NoteView(ListView):
     QR_CATEGORY = CATEGORY_QR_NOTE
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
-
         signal_map = {
-            'note-add'     : self.row_add,
-            'note-update'  : self.row_update,
-            'note-delete'  : self.row_delete,
-            'note-rebuild' : self.object_build,
+            "note-add": self.row_add,
+            "note-update": self.row_update,
+            "note-delete": self.row_delete,
+            "note-rebuild": self.object_build,
         }
 
         ListView.__init__(
-            self, _('Notes'), pdata, dbstate, uistate,
-            NoteModel, signal_map,
-            NoteBookmarks, nav_group,
+            self,
+            _("Notes"),
+            pdata,
+            dbstate,
+            uistate,
+            NoteModel,
+            signal_map,
+            NoteBookmarks,
+            nav_group,
             filter_class=NoteSidebarFilter,
-            multiple=True)
+            multiple=True,
+        )
 
         self.additional_uis.append(self.additional_ui)
 
     def navigation_type(self):
-        return 'Note'
+        return "Note"
 
     def drag_info(self):
         """
@@ -127,18 +137,18 @@ class NoteView(ListView):
         """
         Use the gramps-event stock icon
         """
-        return 'gramps-notes'
+        return "gramps-notes"
 
     additional_ui = [  # Defines the UI string for UIManager
-        '''
+        """
       <placeholder id="LocalExport">
         <item>
           <attribute name="action">win.ExportTab</attribute>
           <attribute name="label" translatable="yes">Export View...</attribute>
         </item>
       </placeholder>
-''',
-        '''
+""",
+        """
       <section id="AddEditBook">
         <item>
           <attribute name="action">win.AddBook</attribute>
@@ -149,8 +159,9 @@ class NoteView(ListView):
           <attribute name="label">%s...</attribute>
         </item>
       </section>
-''' % _('Organize Bookmarks'),
-        '''
+"""
+        % _("Organize Bookmarks"),
+        """
       <placeholder id="CommonGo">
       <section>
         <item>
@@ -163,8 +174,8 @@ class NoteView(ListView):
         </item>
       </section>
       </placeholder>
-''',
-        '''
+""",
+        """
       <section id='CommonEdit' groups='RW'>
         <item>
           <attribute name="action">win.Add</attribute>
@@ -183,24 +194,25 @@ class NoteView(ListView):
           <attribute name="label" translatable="yes">_Merge...</attribute>
         </item>
       </section>
-''' % _("_Edit...", "action"),  # to use sgettext()
-        '''
+"""
+        % _("_Edit...", "action"),  # to use sgettext()
+        """
         <placeholder id='otheredit'>
         <item>
           <attribute name="action">win.FilterEdit</attribute>
-          <attribute name="label" translatable="yes">'''
-        '''Note Filter Editor</attribute>
+          <attribute name="label" translatable="yes">"""
+        """Note Filter Editor</attribute>
         </item>
         </placeholder>
-''',  # Following are the Toolbar items
-        '''
+""",  # Following are the Toolbar items
+        """
     <placeholder id='CommonNavigation'>
     <child groups='RO'>
       <object class="GtkToolButton">
         <property name="icon-name">go-previous</property>
         <property name="action-name">win.Back</property>
-        <property name="tooltip_text" translatable="yes">'''
-        '''Go to the previous object in the history</property>
+        <property name="tooltip_text" translatable="yes">"""
+        """Go to the previous object in the history</property>
         <property name="label" translatable="yes">_Back</property>
         <property name="use-underline">True</property>
       </object>
@@ -212,8 +224,8 @@ class NoteView(ListView):
       <object class="GtkToolButton">
         <property name="icon-name">go-next</property>
         <property name="action-name">win.Forward</property>
-        <property name="tooltip_text" translatable="yes">'''
-        '''Go to the next object in the history</property>
+        <property name="tooltip_text" translatable="yes">"""
+        """Go to the next object in the history</property>
         <property name="label" translatable="yes">_Forward</property>
         <property name="use-underline">True</property>
       </object>
@@ -222,8 +234,8 @@ class NoteView(ListView):
       </packing>
     </child>
     </placeholder>
-''',
-        '''
+""",
+        """
     <placeholder id='BarCommonEdit'>
     <child groups='RW'>
       <object class="GtkToolButton">
@@ -274,8 +286,9 @@ class NoteView(ListView):
       </packing>
     </child>
     </placeholder>
-''' % (ADD_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
-        '''
+"""
+        % (ADD_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
+        """
     <menu id="Popup">
       <section>
         <item>
@@ -312,7 +325,8 @@ class NoteView(ListView):
         </placeholder>
       </section>
     </menu>
-    ''' % _('_Edit...', 'action')  # to use sgettext()
+    """
+        % _("_Edit...", "action"),  # to use sgettext()
     ]
 
     def get_handle_from_gramps_id(self, gid):
@@ -330,7 +344,7 @@ class NoteView(ListView):
 
     def remove(self, *obj):
         handles = self.selected_handles()
-        ht_list = [('Note', hndl) for hndl in handles]
+        ht_list = [("Note", hndl) for hndl in handles]
         self.remove_selected_objects(ht_list)
 
     def edit(self, *obj):
@@ -349,9 +363,11 @@ class NoteView(ListView):
 
         if len(mlist) != 2:
             msg = _("Cannot merge notes.")
-            msg2 = _("Exactly two notes must be selected to perform a merge. "
-                    "A second note can be selected by holding down the "
-                    "control key while clicking on the desired note.")
+            msg2 = _(
+                "Exactly two notes must be selected to perform a merge. "
+                "A second note can be selected by holding down the "
+                "control key while clicking on the desired note."
+            )
             ErrorDialog(msg, msg2, parent=self.uistate.window)
         else:
             MergeNote(self.dbstate, self.uistate, [], mlist[0], mlist[1])
@@ -362,9 +378,14 @@ class NoteView(ListView):
         """
         all_links = set([])
         for tag_handle in handle_list:
-            links = set([link[1] for link in
-                         self.dbstate.db.find_backlink_handles(tag_handle,
-                                                    include_classes='Note')])
+            links = set(
+                [
+                    link[1]
+                    for link in self.dbstate.db.find_backlink_handles(
+                        tag_handle, include_classes="Note"
+                    )
+                ]
+            )
             all_links = all_links.union(links)
         self.row_update(list(all_links))
 
@@ -388,5 +409,7 @@ class NoteView(ListView):
         """
         Define the default gramplets for the sidebar and bottombar.
         """
-        return (("Note Filter",),
-                ("Note Backlinks",))
+        return (("Note Filter",), ("Note Backlinks",))
+
+    def get_config_name(self):
+        return __name__

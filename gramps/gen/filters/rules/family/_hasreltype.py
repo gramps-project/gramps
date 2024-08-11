@@ -18,48 +18,57 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
-#
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-from ....const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+"""
+Rule that checks for families with a particular relationship type.
+"""
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+from ....const import GRAMPS_LOCALE as glocale
 from ....lib.familyreltype import FamilyRelType
 from .. import Rule
 
-#-------------------------------------------------------------------------
-#
-# HasAttribute
-#
-#-------------------------------------------------------------------------
-class HasRelType(Rule):
-    """Rule that checks for a person with a particular personal attribute"""
+_ = glocale.translation.gettext
 
-    labels = [ _('Relationship type:') ]
-    name = _('Families with the relationship type')
-    description = _("Matches families with the relationship type "
-                    "of a particular value")
-    category = _('General filters')
+
+# -------------------------------------------------------------------------
+#
+# HasRelType
+#
+# -------------------------------------------------------------------------
+class HasRelType(Rule):
+    """
+    Rule that checks for families with a particular relationship type.
+    """
+
+    labels = [_("Relationship type:")]
+    name = _("Families with the relationship type")
+    description = _("Matches families with the relationship type of a particular value")
+    category = _("General filters")
+
+    def __init__(self, arg, use_regex=False, use_case=False):
+        super().__init__(arg, use_regex, use_case)
+        self.relation_type = None
 
     def prepare(self, db, user):
+        """
+        Prepare the rule. Things we only want to do once.
+        """
         if self.list[0]:
-            self.rtype = FamilyRelType()
-            self.rtype.set_from_xml_str(self.list[0])
-        else:
-            self.rtype = None
+            self.relation_type = FamilyRelType()
+            self.relation_type.set_from_xml_str(self.list[0])
 
-    def apply(self, db, family):
-        if self.rtype:
-            if self.rtype.is_custom() and self.use_regex:
-                if self.regex[0].search(str(family.get_relationship())) is None:
+    def apply(self, _db, obj):
+        """
+        Apply the rule. Return True on a match.
+        """
+        if self.relation_type:
+            if self.relation_type.is_custom() and self.use_regex:
+                if self.regex[0].search(str(obj.get_relationship())) is None:
                     return False
-            elif self.rtype != family.get_relationship():
+            elif self.relation_type != obj.get_relationship():
                 return False
         return True

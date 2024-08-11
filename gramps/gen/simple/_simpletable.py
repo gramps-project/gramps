@@ -26,11 +26,24 @@ Provide a simplified table creation interface
 
 from html import escape
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
-from ..lib import (Person, Family, Event, Source, Place, Citation,
-                   Repository, Media, Note, Date, Span)
+from ..lib import (
+    Person,
+    Family,
+    Event,
+    Source,
+    Place,
+    Citation,
+    Repository,
+    Media,
+    Note,
+    Date,
+    Span,
+)
 from ..config import config
 from ..datehandler import displayer
+
 
 class SimpleTable:
     """
@@ -44,8 +57,8 @@ class SimpleTable:
         self.access = access
         self.title = title
         self._columns = []
-        self._cell_markup = {} # [col][row] = "<b>data</b>"
-        self._cell_type = {} # [col] = "text"
+        self._cell_markup = {}  # [col][row] = "<b>data</b>"
+        self._cell_type = {}  # [col] = "text"
         self._rows = []
         self._raw_data = []
         self._link = []
@@ -112,67 +125,65 @@ class SimpleTable:
                 self.row_sort_val(col, int(item))
             elif isinstance(item, Person):
                 retval.append(self.access.describe(item))
-                if (self._link_col == col or link is None):
-                    link = ('Person', item.handle)
+                if self._link_col == col or link is None:
+                    link = ("Person", item.handle)
             elif isinstance(item, Family):
                 retval.append(self.access.describe(item))
-                if (self._link_col == col or link is None):
-                    link = ('Family', item.handle)
+                if self._link_col == col or link is None:
+                    link = ("Family", item.handle)
             elif isinstance(item, Citation):
                 retval.append(self.access.describe(item))
-                if (self._link_col == col or link is None):
-                    link = ('Citation', item.handle)
+                if self._link_col == col or link is None:
+                    link = ("Citation", item.handle)
             elif isinstance(item, Source):
                 retval.append(self.access.describe(item))
-                if (self._link_col == col or link is None):
-                    link = ('Source', item.handle)
+                if self._link_col == col or link is None:
+                    link = ("Source", item.handle)
             elif isinstance(item, Event):
                 retval.append(self.access.describe(item))
-                if (self._link_col == col or link is None):
-                    link = ('Event', item.handle)
+                if self._link_col == col or link is None:
+                    link = ("Event", item.handle)
             elif isinstance(item, Media):
                 retval.append(self.access.describe(item))
-                if (self._link_col == col or link is None):
-                    link = ('Media', item.handle)
+                if self._link_col == col or link is None:
+                    link = ("Media", item.handle)
             elif isinstance(item, Place):
                 retval.append(self.access.describe(item))
-                if (self._link_col == col or link is None):
-                    link = ('Place', item.handle)
+                if self._link_col == col or link is None:
+                    link = ("Place", item.handle)
             elif isinstance(item, Repository):
                 retval.append(self.access.describe(item))
-                if (self._link_col == col or link is None):
-                    link = ('Repository', item.handle)
+                if self._link_col == col or link is None:
+                    link = ("Repository", item.handle)
             elif isinstance(item, Note):
                 retval.append(self.access.describe(item))
-                if (self._link_col == col or link is None):
-                    link = ('Note', item.handle)
+                if self._link_col == col or link is None:
+                    link = ("Note", item.handle)
             elif isinstance(item, Date):
                 text = displayer.display(item)
                 retval.append(text)
                 if item.get_valid():
                     if item.format:
-                        self.set_cell_markup(col, row,
-                                             item.format % escape(text))
+                        self.set_cell_markup(col, row, item.format % escape(text))
                     self.row_sort_val(col, item.sortval)
                 else:
                     # sort before others:
                     self.row_sort_val(col, -1)
                     # give formatted version:
-                    invalid_date_format = config.get('preferences.invalid-date-format')
-                    self.set_cell_markup(col, row,
-                                         invalid_date_format % escape(text))
-                if (self._link_col == col or link is None):
-                    link = ('Date', item)
+                    invalid_date_format = config.get("preferences.invalid-date-format")
+                    self.set_cell_markup(col, row, invalid_date_format % escape(text))
+                if self._link_col == col or link is None:
+                    link = ("Date", item)
             elif isinstance(item, Span):
                 text = str(item)
                 retval.append(text)
                 self.row_sort_val(col, item)
-            elif isinstance(item, list): # [text, "PersonList", handle, ...]
+            elif isinstance(item, list):  # [text, "PersonList", handle, ...]
                 retval.append(item[0])
                 link = (item[1], item[2:])
             else:
                 retval.append(item)
-                if (self._link_col == col or link is None):
+                if self._link_col == col or link is None:
                     if hasattr(item, "get_url"):
                         link = ("url", item.get_url())
         self._link.append(link)
@@ -193,16 +204,16 @@ class SimpleTable:
     def write(self, document, column_widths=None):
         doc = document.doc
         columns = len(self._columns)
-        doc.start_table('simple', 'Table')
+        doc.start_table("simple", "Table")
         if column_widths:
             doc._tbl.set_column_widths(column_widths)
         else:
-            doc._tbl.set_column_widths([100/columns] * columns)
+            doc._tbl.set_column_widths([100 / columns] * columns)
         doc._tbl.set_columns(columns)
         if self.title:
             doc.start_row()
-            doc.start_cell('TableHead', span=columns)
-            doc.start_paragraph('TableTitle')
+            doc.start_cell("TableHead", span=columns)
+            doc.start_paragraph("TableTitle")
             doc.write_text(_(self.title))
             doc.end_paragraph()
             doc.end_cell()
@@ -211,15 +222,15 @@ class SimpleTable:
             self._sort()
         doc.start_row()
         for col in self._columns:
-            doc.start_cell('TableHeaderCell', span=1)
-            doc.write_text(col, 'TableTitle')
+            doc.start_cell("TableHeaderCell", span=1)
+            doc.write_text(col, "TableTitle")
             doc.end_cell()
         doc.end_row()
         index = 0
         for row in self._rows:
             doc.start_row()
             for col in row:
-                doc.start_cell('TableDataCell', span=1)
+                doc.start_cell("TableDataCell", span=1)
                 obj_type, handle = None, None
                 if hasattr(col, "get_url"):
                     obj_type, handle = "URL", col.get_url()
@@ -235,9 +246,8 @@ class SimpleTable:
                         if handle:
                             doc.start_link(handle)
                     else:
-                        doc.start_link("/%s/%s" %
-                                       (obj_type.lower(), handle))
-                doc.write_text(str(col), 'Normal')
+                        doc.start_link("/%s/%s" % (obj_type.lower(), handle))
+                doc.write_text(str(col), "Normal")
                 if obj_type and handle:
                     doc.stop_link()
                 doc.end_cell()
@@ -256,14 +266,14 @@ class SimpleTable:
         """
         if x in self._cell_markup:
             if y is None:
-                return True # markup for this column
+                return True  # markup for this column
             elif y in self._cell_markup[x]:
                 return self._cell_markup[x][y]
             else:
                 return escape(data)
         else:
             if y is None:
-                return False # no markup for this column
+                return False  # no markup for this column
             else:
                 return data
 

@@ -17,48 +17,56 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
-from gramps.gui.plug.quick import (run_quick_report_by_name,
-                                   get_quick_report_list)
-from gramps.gen.plug  import (
-    CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY, CATEGORY_QR_EVENT,
-    CATEGORY_QR_SOURCE, CATEGORY_QR_NOTE, CATEGORY_QR_PLACE,
-    CATEGORY_QR_MEDIA, CATEGORY_QR_REPOSITORY, CATEGORY_QR_CITATION,
-    CATEGORY_QR_SOURCE_OR_CITATION)
+from gramps.gui.plug.quick import run_quick_report_by_name, get_quick_report_list
+from gramps.gen.plug import (
+    CATEGORY_QR_PERSON,
+    CATEGORY_QR_FAMILY,
+    CATEGORY_QR_EVENT,
+    CATEGORY_QR_SOURCE,
+    CATEGORY_QR_NOTE,
+    CATEGORY_QR_PLACE,
+    CATEGORY_QR_MEDIA,
+    CATEGORY_QR_REPOSITORY,
+    CATEGORY_QR_CITATION,
+    CATEGORY_QR_SOURCE_OR_CITATION,
+)
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # QuickViewGramplet class
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class QuickViewGramplet(Gramplet):
     def active_changed(self, handle):
         self.update()
 
     def db_changed(self):
-        self.connect_signal('Person', self._active_changed)
-        self.connect_signal('Family', self._active_changed)
-        self.connect_signal('Event', self._active_changed)
-        self.connect_signal('Place', self._active_changed)
-        self.connect_signal('Source', self._active_changed)
-        self.connect_signal('Citation', self._active_changed)
-        self.connect_signal('Repository', self._active_changed)
-        self.connect_signal('Media', self._active_changed)
-        self.connect_signal('Note', self._active_changed)
+        self.connect_signal("Person", self._active_changed)
+        self.connect_signal("Family", self._active_changed)
+        self.connect_signal("Event", self._active_changed)
+        self.connect_signal("Place", self._active_changed)
+        self.connect_signal("Source", self._active_changed)
+        self.connect_signal("Citation", self._active_changed)
+        self.connect_signal("Repository", self._active_changed)
+        self.connect_signal("Media", self._active_changed)
+        self.connect_signal("Note", self._active_changed)
 
     def clear_text(self):
         self.gui.textview.get_buffer().set_text("")
@@ -84,11 +92,13 @@ class QuickViewGramplet(Gramplet):
         except:
             active_handle = None
         if active_handle:
-            docman = run_quick_report_by_name(self.gui.dbstate,
-                                              self.gui.uistate,
-                                              quick_view,
-                                              active_handle,
-                                              container=self.gui.textview)
+            docman = run_quick_report_by_name(
+                self.gui.dbstate,
+                self.gui.uistate,
+                quick_view,
+                active_handle,
+                container=self.gui.textview,
+            )
             if docman:
                 self.set_has_data(docman.document.has_data)
         else:
@@ -103,44 +113,47 @@ class QuickViewGramplet(Gramplet):
 
     def build_options(self):
         from gramps.gen.plug.menu import EnumeratedListOption
+
         # Add types:
         type_list = EnumeratedListOption(_("View Type"), self.gui.data[0])
-        for item in [("Person", _("Person")),
-                     ("Event", _("Event")),
-                     ("Family", _("Family")),
-                     ("Media", _("Media")),
-                     ("Note", _("Note")),
-                     ("Place", _("Place")),
-                     ("Repository", _("Repository")),
-                     ("Source", _("Source")),
-                     ("Citation", _("Citation")),
-                    ]:
+        for item in [
+            ("Person", _("Person")),
+            ("Event", _("Event")),
+            ("Family", _("Family")),
+            ("Media", _("Media")),
+            ("Note", _("Note")),
+            ("Place", _("Place")),
+            ("Repository", _("Repository")),
+            ("Source", _("Source")),
+            ("Citation", _("Citation")),
+        ]:
             type_list.add_item(item[0], item[1])
         # Add particular lists:
         qv_list = get_quick_report_list(CATEGORY_QR_PERSON)
         if self.gui.data[1] is None:
             self.gui.data[1] = qv_list[0].id
-        list_option = EnumeratedListOption(_("Quick Views"),
-                                           self.gui.data[1])
+        list_option = EnumeratedListOption(_("Quick Views"), self.gui.data[1])
         for pdata in qv_list:
             list_option.add_item(pdata.id, pdata.name)
         self.add_option(type_list)
         self.add_option(list_option)
         type_widget = self.get_option_widget(_("View Type"))
         type_widget.value_changed = self.rebuild_option_list
-        self.rebuild_option_list() # call for initial setting
+        self.rebuild_option_list()  # call for initial setting
 
     def rebuild_option_list(self):
-        code_map = {"Person": CATEGORY_QR_PERSON,
-                    "Family": CATEGORY_QR_FAMILY,
-                    "Event": CATEGORY_QR_EVENT,
-                    "Source": CATEGORY_QR_SOURCE,
-                    "Citation": CATEGORY_QR_CITATION,
-                    "Source or Citation": CATEGORY_QR_SOURCE_OR_CITATION,
-                    "Place": CATEGORY_QR_PLACE,
-                    "Media": CATEGORY_QR_MEDIA,
-                    "Note": CATEGORY_QR_NOTE,
-                    "Repository": CATEGORY_QR_REPOSITORY}
+        code_map = {
+            "Person": CATEGORY_QR_PERSON,
+            "Family": CATEGORY_QR_FAMILY,
+            "Event": CATEGORY_QR_EVENT,
+            "Source": CATEGORY_QR_SOURCE,
+            "Citation": CATEGORY_QR_CITATION,
+            "Source or Citation": CATEGORY_QR_SOURCE_OR_CITATION,
+            "Place": CATEGORY_QR_PLACE,
+            "Media": CATEGORY_QR_MEDIA,
+            "Note": CATEGORY_QR_NOTE,
+            "Repository": CATEGORY_QR_REPOSITORY,
+        }
         qv_option = self.get_option(_("View Type"))
         list_option = self.get_option(_("Quick Views"))
         list_option.clear()

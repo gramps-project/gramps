@@ -19,28 +19,29 @@
 """
 Provide tagging functionality.
 """
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from bisect import insort_left
 from xml.sax.saxutils import escape
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import Gdk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from gramps.gen.lib import Tag
 from gramps.gen.db import DbTxn
@@ -52,29 +53,30 @@ from ..dialog import ErrorDialog, QuestionDialog2
 import gramps.gui.widgets.progressdialog as progressdlg
 from ..uimanager import ActionGroup
 from ..managedwindow import ManagedWindow
+from gramps.gen.config import config
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
-TAG_1 = '''
+# -------------------------------------------------------------------------
+TAG_1 = """
       <section id='TagMenu' groups='RW'>
         <submenu>
         <attribute name="label" translatable="yes">Tag</attribute>
         %s
         </submenu>
       </section>
-    '''
+    """
 
 TAG_2 = (
-    '''    <placeholder id='TagTool' groups='RW'>
+    """    <placeholder id='TagTool' groups='RW'>
     <child groups='RO'>
       <object class="GtkToolButton" id="TagButton">
         <property name="icon-name">gramps-tag</property>
         <property name="action-name">win.TagButton</property>
-        <property name="tooltip_text" translatable="yes">'''
-    '''Tag selected rows</property>
+        <property name="tooltip_text" translatable="yes">"""
+    """Tag selected rows</property>
         <property name="label" translatable="yes">Tag</property>
       </object>
       <packing>
@@ -82,52 +84,55 @@ TAG_2 = (
       </packing>
      </child>
     </placeholder>
-    ''')
+    """
+)
 
-TAG_3 = '''
+TAG_3 = """
       <menu id='TagPopup' groups='RW'>
         %s
-      </menu>'''
+      </menu>"""
 
 TAG_MENU = (
-    '''<section>
+    """<section>
         <item>
           <attribute name="action">win.NewTag</attribute>
-          <attribute name="label" translatable="yes">'''
-    '''New Tag...</attribute>
+          <attribute name="label" translatable="yes">"""
+    """New Tag...</attribute>
         </item>
         <item>
           <attribute name="action">win.OrganizeTags</attribute>
-          <attribute name="label" translatable="yes">'''
-    '''Organize Tags...</attribute>
+          <attribute name="label" translatable="yes">"""
+    """Organize Tags...</attribute>
         </item>
         </section>
         <section>
         %s
         </section>
-    ''')
+    """
+)
 
-WIKI_HELP_PAGE = '%s_-_Filters' % \
-                                URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('Organize_Tags_Window', 'manual')
-WIKI_HELP_SEC2 = _('New_Tag_dialog', 'manual')
+WIKI_HELP_PAGE = "%s_-_Filters" % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _("Organize_Tags_Window", "manual")
+WIKI_HELP_SEC2 = _("New_Tag_dialog", "manual")
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Tags
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Tags(DbGUIElement):
     """
     Provide tagging functionality.
     """
+
     def __init__(self, uistate, dbstate):
         self.signal_map = {
-            'tag-add'     : self._tag_add,
-            'tag-delete'  : self._tag_delete,
-            'tag-update'  : self._tag_update,
-            'tag-rebuild' : self._tag_rebuild
-            }
+            "tag-add": self._tag_add,
+            "tag-delete": self._tag_delete,
+            "tag-update": self._tag_update,
+            "tag-rebuild": self._tag_rebuild,
+        }
         DbGUIElement.__init__(self, dbstate.db)
 
         self.dbstate = dbstate
@@ -139,8 +144,8 @@ class Tags(DbGUIElement):
         self.tag_action = None
         self.__tag_list = []
 
-        dbstate.connect('database-changed', self._db_changed)
-        dbstate.connect('no-database', self.tag_disable)
+        dbstate.connect("database-changed", self._db_changed)
+        dbstate.connect("no-database", self.tag_disable)
 
         self._build_tag_menu()
 
@@ -201,8 +206,9 @@ class Tags(DbGUIElement):
         """
         Called when tags are deleted.
         """
-        self.__tag_list = [item for item in self.__tag_list
-                           if item[1] not in handle_list]
+        self.__tag_list = [
+            item for item in self.__tag_list if item[1] not in handle_list
+        ]
         self.update_tag_menu()
 
     def _tag_rebuild(self):
@@ -234,54 +240,59 @@ class Tags(DbGUIElement):
         actions = []
 
         if not self.dbstate.is_open():
-            self.tag_ui = ['']
-            self.tag_action = ActionGroup(name='Tag')
+            self.tag_ui = [""]
+            self.tag_action = ActionGroup(name="Tag")
             return
 
-        tag_menu = ''
-        menuitem = '''
+        tag_menu = ""
+        menuitem = """
         <item>
           <attribute name="action">win.%s</attribute>
           <attribute name="label">%s</attribute>
-        </item>'''
+        </item>"""
 
         for tag_name, handle in self.__tag_list:
-            tag_menu += menuitem % ("TAG-%s" % handle,
-                                    _("Add tag '%s'") % escape(tag_name))
-            actions.append(('TAG-%s' % handle,
-                            make_callback(self.tag_selected_rows, handle)))
+            tag_menu += menuitem % (
+                "TAG-%s" % handle,
+                _("Add tag '%s'") % escape(tag_name),
+            )
+            actions.append(
+                ("TAG-%s" % handle, make_callback(self.tag_selected_rows, handle))
+            )
         for tag_name, handle in self.__tag_list:
-            tag_menu += menuitem % ("R-TAG-%s" % handle,
-                                    _("Remove tag '%s'") % escape(tag_name))
-            actions.append(('R-TAG-%s' % handle,
-                            make_callback(self.remove_tag_selected_rows,
-                                          handle)))
+            tag_menu += menuitem % (
+                "R-TAG-%s" % handle,
+                _("Remove tag '%s'") % escape(tag_name),
+            )
+            actions.append(
+                (
+                    "R-TAG-%s" % handle,
+                    make_callback(self.remove_tag_selected_rows, handle),
+                )
+            )
         tag_menu = TAG_MENU % tag_menu
 
         self.tag_ui = [TAG_1 % tag_menu, TAG_2, TAG_3 % tag_menu]
 
-        actions.append(('NewTag', self.cb_new_tag))
-        actions.append(('OrganizeTags', self.cb_organize_tags))
-        actions.append(('TagButton', self.cb_tag_button))
+        actions.append(("NewTag", self.cb_new_tag))
+        actions.append(("OrganizeTags", self.cb_organize_tags))
+        actions.append(("TagButton", self.cb_tag_button))
 
-        self.tag_action = ActionGroup(name='Tag')
+        self.tag_action = ActionGroup(name="Tag")
         self.tag_action.add_actions(actions)
 
     def cb_tag_button(self, *args):
         """
         Display the popup menu when the toolbar button is clicked.
         """
-        menu = self.uistate.uimanager.get_widget('TagPopup')
-        button = self.uistate.uimanager.get_widget('TagButton')
+        menu = self.uistate.uimanager.get_widget("TagPopup")
+        button = self.uistate.uimanager.get_widget("TagButton")
         popup_menu = Gtk.Menu.new_from_model(menu)
         popup_menu.attach_to_widget(button, None)
         popup_menu.show_all()
-        if Gtk.MINOR_VERSION < 22:
-            # ToDo The following is reported to work poorly with Wayland
-            popup_menu.popup(None, None, cb_menu_position, button, 0, 0)
-        else:
-            popup_menu.popup_at_widget(button, Gdk.Gravity.SOUTH,
-                                       Gdk.Gravity.NORTH_WEST, None)
+        popup_menu.popup_at_widget(
+            button, Gdk.Gravity.SOUTH_WEST, Gdk.Gravity.NORTH_WEST, None
+        )
 
     def cb_organize_tags(self, *action):
         """
@@ -308,14 +319,19 @@ class Tags(DbGUIElement):
         selected = view.selected_handles()
         # Make the dialog modal so that the user can't start another
         # database transaction while the one setting tags is still running.
-        pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog,
-                ("", self.uistate.window, Gtk.DialogFlags.MODAL), popup_time=2)
-        status = progressdlg.LongOpStatus(msg=_("Adding Tags"),
-                                          total_steps=len(selected),
-                                          interval=len(selected)//20)
+        pmon = progressdlg.ProgressMonitor(
+            progressdlg.GtkProgressDialog,
+            ("", self.uistate.window, Gtk.DialogFlags.MODAL),
+            popup_time=2,
+        )
+        status = progressdlg.LongOpStatus(
+            msg=_("Adding Tags"),
+            total_steps=len(selected),
+            interval=len(selected) // 20,
+        )
         pmon.add_op(status)
         tag = self.db.get_tag_from_handle(tag_handle)
-        msg = _('Tag Selection (%s)') % tag.get_name()
+        msg = _("Tag Selection (%s)") % tag.get_name()
         with DbTxn(msg, self.db) as trans:
             for object_handle in selected:
                 status.heartbeat()
@@ -330,38 +346,25 @@ class Tags(DbGUIElement):
         selected = view.selected_handles()
         # Make the dialog modal so that the user can't start another
         # database transaction while the one setting tags is still running.
-        pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog,
-                ("", self.uistate.window, Gtk.DialogFlags.MODAL), popup_time=2)
-        status = progressdlg.LongOpStatus(msg=_("Removing Tags"),
-                                          total_steps=len(selected),
-                                          interval=len(selected)//20)
+        pmon = progressdlg.ProgressMonitor(
+            progressdlg.GtkProgressDialog,
+            ("", self.uistate.window, Gtk.DialogFlags.MODAL),
+            popup_time=2,
+        )
+        status = progressdlg.LongOpStatus(
+            msg=_("Removing Tags"),
+            total_steps=len(selected),
+            interval=len(selected) // 20,
+        )
         pmon.add_op(status)
         tag = self.db.get_tag_from_handle(tag_handle)
-        msg = _('Tag Selection (%s)') % tag.get_name()
+        msg = _("Tag Selection (%s)") % tag.get_name()
         with DbTxn(msg, self.db) as trans:
             for object_handle in selected:
                 status.heartbeat()
                 view.remove_tag(trans, object_handle, tag_handle)
         status.end()
 
-def cb_menu_position(*args):
-    """
-    Determine the position of the popup menu.
-    """
-    # takes two argument: menu, button
-    if len(args) == 2:
-        menu = args[0]
-        button = args[1]
-    # broken introspection can't handle MenuPositionFunc annotations corectly
-    else:
-        menu = args[0]
-        button = args[3]
-
-    ret_val, x_pos, y_pos = button.get_window().get_origin()
-    x_pos += button.get_allocation().x
-    y_pos += button.get_allocation().y + button.get_allocation().height
-
-    return (x_pos, y_pos, False)
 
 def make_callback(func, tag_handle):
     """
@@ -369,15 +372,17 @@ def make_callback(func, tag_handle):
     """
     return lambda x, y: func(tag_handle)
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Organize Tags Dialog
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class OrganizeTagsDialog(ManagedWindow):
     """
     A dialog to enable the user to organize tags.
     """
+
     def __init__(self, db, uistate, track):
         ManagedWindow.__init__(self, uistate, track, self.__class__, modal=True)
         # the self.top.run() below makes Gtk make it modal, so any change to
@@ -386,15 +391,17 @@ class OrganizeTagsDialog(ManagedWindow):
         self.namelist = None
         self.namemodel = None
         self.top = self._create_dialog()
-        self.set_window(self.top, None, _('Organize Tags'))
-        self.setup_configs('interface.organizetagsdialog', 400, 350)
+        self.set_window(self.top, None, _("Organize Tags"))
+        self.setup_configs("interface.organizetagsdialog", 400, 350)
+        if not config.get("behavior.immediate-warn"):
+            self.get_window().set_tooltip_text(_("Any changes are saved immediately"))
         self.show()
         self.run()
 
     # this is meaningless while it's modal, but since this ManagedWindow can
     # have an EditTag ManagedWindow child it needs a non-None second argument
     def build_menu_names(self, obj):
-        return (_('Organize Tags'), ' ')
+        return (_("Organize Tags"), " ")
 
     def run(self):
         """
@@ -406,14 +413,13 @@ class OrganizeTagsDialog(ManagedWindow):
             # line would require the ManagedWindow.__init__ to be changed also
             response = self.top.run()
             if response == Gtk.ResponseType.HELP:
-                display_help(webpage=WIKI_HELP_PAGE,
-                                   section=WIKI_HELP_SEC)
+                display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
             else:
                 break
 
         # Save changed priority values
         if response == Gtk.ResponseType.CLOSE and self.__priorities_changed():
-            with DbTxn(_('Change Tag Priority'), self.db) as trans:
+            with DbTxn(_("Change Tag Priority"), self.db) as trans:
                 self.__change_tag_priority(trans)
         if response != Gtk.ResponseType.DELETE_EVENT:
             self.close()
@@ -446,10 +452,9 @@ class OrganizeTagsDialog(ManagedWindow):
         self.namemodel.clear()
         tags = []
         for tag in self.db.iter_tags():
-            tags.append((tag.get_priority(),
-                         tag.get_handle(),
-                         tag.get_name(),
-                         tag.get_color()))
+            tags.append(
+                (tag.get_priority(), tag.get_handle(), tag.get_name(), tag.get_color())
+            )
 
         for row in sorted(tags):
             self.namemodel.add(row)
@@ -461,17 +466,20 @@ class OrganizeTagsDialog(ManagedWindow):
         # pylint: disable-msg=E1101
         top = Gtk.Dialog(transient_for=self.parent_window)
         top.vbox.set_spacing(5)
-        label = Gtk.Label(label='<span size="larger" weight="bold">%s</span>'
-                          % _("Organize Tags"))
+        label = Gtk.Label(
+            label='<span size="larger" weight="bold">%s</span>' % _("Organize Tags")
+        )
         label.set_use_markup(True)
         top.vbox.pack_start(label, 0, 0, 5)
         box = Gtk.Box()
         top.vbox.pack_start(box, 1, 1, 5)
 
-        name_titles = [('', NOSORT, 20, INTEGER), # Priority
-                       ('', NOSORT, 100), # Handle
-                       (_('Name'), NOSORT, 200),
-                       (_('Color'), NOSORT, 50, COLOR)]
+        name_titles = [
+            ("", NOSORT, 20, INTEGER),  # Priority
+            ("", NOSORT, 100),  # Handle
+            (_("Name"), NOSORT, 200),
+            (_("Color"), NOSORT, 50, COLOR),
+        ]
         self.namelist = Gtk.TreeView()
         self.namemodel = ListModel(self.namelist, name_titles)
 
@@ -482,18 +490,18 @@ class OrganizeTagsDialog(ManagedWindow):
         bbox = Gtk.ButtonBox(orientation=Gtk.Orientation.VERTICAL)
         bbox.set_layout(Gtk.ButtonBoxStyle.START)
         bbox.set_spacing(6)
-        up = Gtk.Button.new_with_mnemonic(_('_Up'))
-        down = Gtk.Button.new_with_mnemonic(_('_Down'))
-        add = Gtk.Button.new_with_mnemonic(_('_Add'))
-        edit = Gtk.Button.new_with_mnemonic(_('_Edit'))
-        remove = Gtk.Button.new_with_mnemonic(_('_Remove'))
-        up.connect('clicked', self.cb_up_clicked)
-        down.connect('clicked', self.cb_down_clicked)
-        add.connect('clicked', self.cb_add_clicked, top)
-        edit.connect('clicked', self.cb_edit_clicked, top)
-        remove.connect('clicked', self.cb_remove_clicked, top)
-        top.add_button(_('_Close'), Gtk.ResponseType.CLOSE)
-        top.add_button(_('_Help'), Gtk.ResponseType.HELP)
+        up = Gtk.Button.new_with_mnemonic(_("_Up"))
+        down = Gtk.Button.new_with_mnemonic(_("_Down"))
+        add = Gtk.Button.new_with_mnemonic(_("_Add"))
+        edit = Gtk.Button.new_with_mnemonic(_("_Edit"))
+        remove = Gtk.Button.new_with_mnemonic(_("_Remove"))
+        up.connect("clicked", self.cb_up_clicked)
+        down.connect("clicked", self.cb_down_clicked)
+        add.connect("clicked", self.cb_add_clicked, top)
+        edit.connect("clicked", self.cb_edit_clicked, top)
+        remove.connect("clicked", self.cb_remove_clicked, top)
+        top.add_button(_("_Close"), Gtk.ResponseType.CLOSE)
+        top.add_button(_("_Help"), Gtk.ResponseType.HELP)
         bbox.add(up)
         bbox.add(down)
         bbox.add(add)
@@ -525,10 +533,9 @@ class OrganizeTagsDialog(ManagedWindow):
         EditTag(self.db, self.uistate, self.track, tag)
 
         if tag.get_handle():
-            self.namemodel.add((tag.get_priority(),
-                                tag.get_handle(),
-                                tag.get_name(),
-                                tag.get_color()))
+            self.namemodel.add(
+                (tag.get_priority(), tag.get_handle(), tag.get_name(), tag.get_color())
+            )
 
     def cb_edit_clicked(self, button, top):
         """
@@ -556,71 +563,76 @@ class OrganizeTagsDialog(ManagedWindow):
 
         yes_no = QuestionDialog2(
             _("Remove tag '%s'?") % tag_name,
-            _("The tag definition will be removed.  The tag will be also "
-              "removed from all objects in the database."),
+            _(
+                "The tag definition will be removed.  The tag will be also "
+                "removed from all objects in the database."
+            ),
             _("Yes"),
             _("No"),
-            parent=self.window)
+            parent=self.window,
+        )
         prompt = yes_no.run()
         if prompt:
-
-            fnc = {'Person': (self.db.get_person_from_handle,
-                              self.db.commit_person),
-                   'Family': (self.db.get_family_from_handle,
-                              self.db.commit_family),
-                   'Event': (self.db.get_event_from_handle,
-                             self.db.commit_event),
-                   'Place': (self.db.get_place_from_handle,
-                             self.db.commit_place),
-                   'Source': (self.db.get_source_from_handle,
-                              self.db.commit_source),
-                   'Citation': (self.db.get_citation_from_handle,
-                                self.db.commit_citation),
-                   'Repository': (self.db.get_repository_from_handle,
-                                  self.db.commit_repository),
-                   'Media': (self.db.get_media_from_handle,
-                                   self.db.commit_media),
-                   'Note': (self.db.get_note_from_handle,
-                            self.db.commit_note)}
+            fnc = {
+                "Person": (self.db.get_person_from_handle, self.db.commit_person),
+                "Family": (self.db.get_family_from_handle, self.db.commit_family),
+                "Event": (self.db.get_event_from_handle, self.db.commit_event),
+                "Place": (self.db.get_place_from_handle, self.db.commit_place),
+                "Source": (self.db.get_source_from_handle, self.db.commit_source),
+                "Citation": (self.db.get_citation_from_handle, self.db.commit_citation),
+                "Repository": (
+                    self.db.get_repository_from_handle,
+                    self.db.commit_repository,
+                ),
+                "Media": (self.db.get_media_from_handle, self.db.commit_media),
+                "Note": (self.db.get_note_from_handle, self.db.commit_note),
+            }
 
             links = [link for link in self.db.find_backlink_handles(tag_handle)]
             # Make the dialog modal so that the user can't start another
             # database transaction while the one removing tags is still running.
-            pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog,
-                       ("", self.parent_window, Gtk.DialogFlags.MODAL), popup_time=2)
-            status = progressdlg.LongOpStatus(msg=_("Removing Tags"),
-                                              total_steps=len(links),
-                                              interval=len(links)//20)
+            pmon = progressdlg.ProgressMonitor(
+                progressdlg.GtkProgressDialog,
+                ("", self.parent_window, Gtk.DialogFlags.MODAL),
+                popup_time=2,
+            )
+            status = progressdlg.LongOpStatus(
+                msg=_("Removing Tags"),
+                total_steps=len(links),
+                interval=len(links) // 20,
+            )
             pmon.add_op(status)
 
-            msg = _('Delete Tag (%s)') % tag_name
+            msg = _("Delete Tag (%s)") % tag_name
             self.namemodel.remove(iter_)
             with DbTxn(msg, self.db) as trans:
                 for classname, handle in links:
                     status.heartbeat()
-                    obj = fnc[classname][0](handle) # get from handle
+                    obj = fnc[classname][0](handle)  # get from handle
                     obj.remove_tag(tag_handle)
-                    fnc[classname][1](obj, trans) # commit
+                    fnc[classname][1](obj, trans)  # commit
 
                 self.db.remove_tag(tag_handle, trans)
                 self.__change_tag_priority(trans)
             status.end()
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Tag editor
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class EditTag(ManagedWindow):
     """
     A dialog to enable the user to create a new tag.
     """
+
     def __init__(self, db, uistate, track, tag):
         self.tag = tag
         if self.tag.get_handle():
-            self.title = _('Tag: %s') % self.tag.get_name()
+            self.title = _("Tag: %s") % self.tag.get_name()
         else:
-            self.title = _('New Tag')
+            self.title = _("New Tag")
         ManagedWindow.__init__(self, uistate, track, self.__class__, modal=True)
         # the self.top.run() below makes Gtk make it modal, so any change to
         # the previous line's "modal" would require that line to be changed
@@ -629,11 +641,11 @@ class EditTag(ManagedWindow):
         self.color = None
         self.top = self._create_dialog()
         self.set_window(self.top, None, self.title)
-        self.setup_configs('interface.edittag', 320, 100)
+        self.setup_configs("interface.edittag", 320, 100)
         self.show()
         self.run()
 
-    def build_menu_names(self, obj): # this is meaningless while it's modal
+    def build_menu_names(self, obj):  # this is meaningless while it's modal
         return (self.title, None)
 
     def run(self):
@@ -645,8 +657,7 @@ class EditTag(ManagedWindow):
             # line would require the ManagedWindow.__init__ to be changed also
             response = self.top.run()
             if response == Gtk.ResponseType.HELP:
-                display_help(webpage=WIKI_HELP_PAGE,
-                                   section=WIKI_HELP_SEC2)
+                display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC2)
             else:
                 break
 
@@ -661,15 +672,19 @@ class EditTag(ManagedWindow):
         """
         self.tag.set_name(str(self.entry.get_text()))
         rgba = self.color.get_rgba()
-        hexval = "#%02x%02x%02x" % (int(rgba.red * 255),
-                                    int(rgba.green * 255),
-                                    int(rgba.blue * 255))
+        hexval = "#%02x%02x%02x" % (
+            int(rgba.red * 255),
+            int(rgba.green * 255),
+            int(rgba.blue * 255),
+        )
         self.tag.set_color(hexval)
 
         if not self.tag.get_name():
-            ErrorDialog(_("Cannot save tag"),
-                        _("The tag name cannot be empty"),
-                        parent=self.window)
+            ErrorDialog(
+                _("Cannot save tag"),
+                _("The tag name cannot be empty"),
+                parent=self.window,
+            )
             return
 
         if not self.tag.get_handle():
@@ -694,20 +709,20 @@ class EditTag(ManagedWindow):
         hbox = Gtk.Box()
         top.vbox.pack_start(hbox, False, False, 10)
 
-        label = Gtk.Label(label=_('Tag Name:'))
+        label = Gtk.Label(label=_("Tag Name:"))
         self.entry = Gtk.Entry()
         self.entry.set_text(self.tag.get_name())
         self.color = Gtk.ColorButton()
         rgba = Gdk.RGBA()
         rgba.parse(self.tag.get_color())
         self.color.set_rgba(rgba)
-        title = _("%(title)s - Gramps") % {'title': _("Pick a Color")}
+        title = _("%(title)s - Gramps") % {"title": _("Pick a Color")}
         self.color.set_title(title)
         hbox.pack_start(label, False, False, 5)
         hbox.pack_start(self.entry, True, True, 5)
         hbox.pack_start(self.color, False, False, 5)
 
-        top.add_button(_('_Help'), Gtk.ResponseType.HELP)
-        top.add_button(_('_Cancel'), Gtk.ResponseType.CANCEL)
-        top.add_button(_('_OK'), Gtk.ResponseType.OK)
+        top.add_button(_("_Help"), Gtk.ResponseType.HELP)
+        top.add_button(_("_Cancel"), Gtk.ResponseType.CANCEL)
+        top.add_button(_("_OK"), Gtk.ResponseType.OK)
         return top

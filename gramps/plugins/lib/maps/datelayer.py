@@ -20,54 +20,57 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
 import cairo
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gdk
 from gi.repository import GObject
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps Modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.config import config
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # osmGpsMap
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 try:
     import gi
     from gi.repository import OsmGpsMap as osmgpsmap
-    gi.require_version('OsmGpsMap', '1.0')
+
+    gi.require_version("OsmGpsMap", "1.0")
 except:
     raise
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Set up logging
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 _LOG = logging.getLogger("maps.datelayer")
+
 
 class DateLayer(GObject.GObject, osmgpsmap.MapLayer):
     """
     This is the layer used to display the two extreme dates
     on the top left of the view
     """
+
     def __init__(self):
         """
         Initialize the layer
@@ -76,7 +79,7 @@ class DateLayer(GObject.GObject, osmgpsmap.MapLayer):
         self.first = "    "
         self.last = "    "
         self.color = "black"
-        self.font = config.get('utf8.selected-font')
+        self.font = config.get("utf8.selected-font")
         self.size = 36
 
     def clear_dates(self):
@@ -86,7 +89,7 @@ class DateLayer(GObject.GObject, osmgpsmap.MapLayer):
         self.first = "    "
         self.last = "    "
         self.color = "black"
-        self.font = config.get('utf8.selected-font')
+        self.font = config.get("utf8.selected-font")
         self.size = 36
 
     def set_font_attributes(self, font, size, color):
@@ -97,7 +100,7 @@ class DateLayer(GObject.GObject, osmgpsmap.MapLayer):
         if font:
             self.font = font
         else:
-            self.font = config.get('utf8.selected-font')
+            self.font = config.get("utf8.selected-font")
         self.size = size
 
     def add_date(self, date):
@@ -116,20 +119,22 @@ class DateLayer(GObject.GObject, osmgpsmap.MapLayer):
         Draw the two extreme dates
         """
         dummy_map = gpsmap
-        ctx.select_font_face(self.font,
-                             cairo.FONT_SLANT_NORMAL,
-                             cairo.FONT_WEIGHT_NORMAL)
+        ctx.select_font_face(
+            self.font, cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL
+        )
         ctx.set_font_size(int(self.size))
         color = Gdk.color_parse(self.color)
-        ctx.set_source_rgba(float(color.red / 65535.0),
-                            float(color.green / 65535.0),
-                            float(color.blue / 65535.0),
-                            0.6) # transparency
+        ctx.set_source_rgba(
+            float(color.red / 65535.0),
+            float(color.green / 65535.0),
+            float(color.blue / 65535.0),
+            0.6,
+        )  # transparency
         coord_x = 10
-        coord_y = 15 + 2*int(self.size) # Display the oldest date
+        coord_y = 15 + 2 * int(self.size)  # Display the oldest date
         ctx.move_to(coord_x, coord_y)
         ctx.show_text(self.first)
-        coord_y = 15 + 3*int(self.size) # Display the newest date
+        coord_y = 15 + 3 * int(self.size)  # Display the newest date
         ctx.move_to(coord_x, coord_y)
         ctx.show_text(self.last)
 
@@ -152,5 +157,6 @@ class DateLayer(GObject.GObject, osmgpsmap.MapLayer):
         dummy_map = gpsmap
         dummy_evt = gdkeventbutton
         return False
+
 
 GObject.type_register(DateLayer)

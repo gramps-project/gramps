@@ -42,6 +42,7 @@ class LayoutTree:
         BuchheimTree - A tree suitable for passing to the Bushheim layout
         algorithm
     """
+
     def __init__(self, handle, *children):
         self.handle = handle
         self.children = []

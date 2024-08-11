@@ -23,46 +23,50 @@
 #
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # set up logging
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 log = logging.getLogger(".paperstyle")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Page orientation
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 PAPER_PORTRAIT = 0
 PAPER_LANDSCAPE = 1
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # PaperSize
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class PaperSize:
     """
     Defines the dimensions of a sheet of paper. All dimensions are in
     centimeters.
     """
+
     def __init__(self, name, height, width):
         """
         Create a new paper style with.
@@ -74,12 +78,12 @@ class PaperSize:
         self.name = name
         self.height = height
         self.width = width
-        if self.name == 'Letter':
-            self.trans_pname = _('Letter', 'paper size')
-        elif self.name == 'Legal':
-            self.trans_pname = _('Legal', 'paper size')
-        elif self.name == 'Custom Size':
-            self.trans_pname = _('Custom Size')
+        if self.name == "Letter":
+            self.trans_pname = _("Letter", "paper size")
+        elif self.name == "Legal":
+            self.trans_pname = _("Legal", "paper size")
+        elif self.name == "Custom Size":
+            self.trans_pname = _("Custom Size")
         else:
             self.trans_pname = None
 
@@ -111,17 +115,20 @@ class PaperSize:
         "Return the page width in inches"
         return self.width / 2.54
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # PaperStyle
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class PaperStyle:
     """
     Define the various options for a sheet of paper.
     """
-    def __init__(self, size, orientation,
-                 lmargin=2.54, rmargin=2.54, tmargin=2.54, bmargin=2.54):
+
+    def __init__(
+        self, size, orientation, lmargin=2.54, rmargin=2.54, tmargin=2.54, bmargin=2.54
+    ):
         """
         Create a new paper style.
 
@@ -134,13 +141,13 @@ class PaperStyle:
         self.__orientation = orientation
 
         if orientation == PAPER_PORTRAIT:
-            self.__size = PaperSize(size.get_name(),
-                                    size.get_height(),
-                                    size.get_width())
+            self.__size = PaperSize(
+                size.get_name(), size.get_height(), size.get_width()
+            )
         else:
-            self.__size = PaperSize(size.get_name(),
-                                    size.get_width(),
-                                    size.get_height())
+            self.__size = PaperSize(
+                size.get_name(), size.get_width(), size.get_height()
+            )
         self.__lmargin = lmargin
         self.__rmargin = rmargin
         self.__tmargin = tmargin

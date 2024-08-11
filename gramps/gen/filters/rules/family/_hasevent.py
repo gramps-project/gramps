@@ -21,35 +21,39 @@
 """
 Filter rule to match families with a particular event.
 """
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._haseventbase import HasEventBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasEvent
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasEvent(HasEventBase):
     """Rule that checks for a family event with a particular value"""
 
-    labels = [ _('Family event:'),
-                    _('Date:'),
-                    _('Place:'),
-                    _('Description:'),
-                    _('Main Participants') ]
-    name = _('Families with the <event>')
+    labels = [
+        _("Family event:"),
+        _("Date:"),
+        _("Place:"),
+        _("Description:"),
+        _("Main Participants"),
+    ]
+    name = _("Families with the <event>")
     description = _("Matches families with an event of a particular value")
 
     def apply(self, dbase, family):

@@ -41,4 +41,4 @@ Thus, this package would allow test code like
 
 # This file does not presently contain any code.
 
-#===eof===
+# ===eof===

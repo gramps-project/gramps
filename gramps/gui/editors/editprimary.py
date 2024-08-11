@@ -19,27 +19,28 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import abc
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository.Gio import SimpleActionGroup
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from ..managedwindow import ManagedWindow
 from gramps.gen.datehandler import displayer, parser
@@ -54,11 +55,18 @@ from ..uimanager import ActionGroup
 
 
 class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
-
     QR_CATEGORY = -1
 
-    def __init__(self, state, uistate, track, obj, get_from_handle,
-                 get_from_gramps_id, callback=None):
+    def __init__(
+        self,
+        state,
+        uistate,
+        track,
+        obj,
+        get_from_handle,
+        get_from_gramps_id,
+        callback=None,
+    ):
         """
         Create an edit window.
 
@@ -92,10 +100,11 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
         self._create_tabbed_pages()
         self._setup_fields()
         self._connect_signals()
-        #if the database is changed, all info shown is invalid and the window
+        # if the database is changed, all info shown is invalid and the window
         # should close
-        self.dbstate_connect_key = self.dbstate.connect('database-changed',
-                                   self._do_close)
+        self.dbstate_connect_key = self.dbstate.connect(
+            "database-changed", self._do_close
+        )
         self.show()
         self._post_init()
 
@@ -131,13 +140,10 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
             label = notebook.get_tab_label(child)
             page_no = notebook.page_num(child)
             label.drag_dest_set(0, [], 0)
-            label.connect('drag_motion',
-                          self._switch_page_on_dnd,
-                          notebook,
-                          page_no)
+            label.connect("drag_motion", self._switch_page_on_dnd, notebook, page_no)
             child.set_parent_notebook(notebook)
 
-        notebook.connect('key-press-event', self.key_pressed, notebook)
+        notebook.connect("key-press-event", self.key_pressed, notebook)
 
     def key_pressed(self, obj, event, notebook):
         """
@@ -148,8 +154,7 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
         if not pag == -1:
             notebook.get_nth_page(pag).key_pressed(obj, event)
 
-    def _switch_page_on_dnd(self, widget, context, x, y, time, notebook,
-                            page_no):
+    def _switch_page_on_dnd(self, widget, context, x, y, time, notebook, page_no):
         if notebook.get_current_page() != page_no:
             notebook.set_current_page(page_no)
 
@@ -164,7 +169,7 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
         Finalize rest
         """
         for tab in self.__tabs:
-            if hasattr(tab, '_cleanup_on_exit'):
+            if hasattr(tab, "_cleanup_on_exit"):
                 tab._cleanup_on_exit()
         self.__tabs = None
 
@@ -173,15 +178,14 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
 
     def define_ok_button(self, button, function):
         self.ok_button = button
-        button.connect('clicked', function)
+        button.connect("clicked", function)
         button.set_sensitive(not self.db.readonly)
 
     def define_cancel_button(self, button):
-        button.connect('clicked', self.close)
+        button.connect("clicked", self.close)
 
-    def define_help_button(self, button, webpage='', section=''):
-        button.connect('clicked', lambda x: display_help(webpage,
-                                                               section))
+    def define_help_button(self, button, webpage="", section=""):
+        button.connect("clicked", lambda x: display_help(webpage, section))
 
     def _do_close(self, *obj):
         self._cleanup_db_connects()
@@ -204,10 +208,10 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
         1. The connects on the main view must be disconnected
         2. Connects done in subelements must be disconnected
         """
-        #cleanup callbackmanager of this editor
+        # cleanup callbackmanager of this editor
         self._cleanup_callbacks()
         for tab in self.__tabs:
-            if hasattr(tab, 'callman'):
+            if hasattr(tab, "callman"):
                 tab._cleanup_callbacks()
 
     def _cleanup_connects(self):
@@ -216,7 +220,9 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
         removed before destroying the interface
         """
         self._cleanup_local_connects()
-        for tab in [tab for tab in self.__tabs if hasattr(tab, '_cleanup_local_connects')]:
+        for tab in [
+            tab for tab in self.__tabs if hasattr(tab, "_cleanup_local_connects")
+        ]:
             tab._cleanup_local_connects()
 
     def _cleanup_local_connects(self):
@@ -239,14 +245,17 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
     def close(self, *obj):
         """If the data has changed, give the user a chance to cancel
         the close window"""
-        if not config.get('interface.dont-ask') and self.data_has_changed():
+        if not config.get("interface.dont-ask") and self.data_has_changed():
             SaveDialog(
-                _('Save Changes?'),
-                _('If you close without saving, the changes you '
-                  'have made will be lost'),
+                _("Save Changes?"),
+                _(
+                    "If you close without saving, the changes you "
+                    "have made will be lost"
+                ),
                 self._do_close,
                 self.save,
-                parent=self.window)
+                parent=self.window,
+            )
             return True
         else:
             self._do_close()
@@ -254,7 +263,7 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def empty_object(self):
-        """ empty_object should be overridden in child class """
+        """empty_object should be overridden in child class"""
 
     def data_has_changed(self):
         if self.db.readonly:
@@ -266,17 +275,17 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
         return cmp_obj.serialize()[1:] != self.obj.serialize()[1:]
 
     def save(self, *obj):
-        """ Save changes and close. Inheriting classes must implement this
-        """
+        """Save changes and close. Inheriting classes must implement this"""
         self.close()
 
     def set_contexteventbox(self, eventbox):
         """Set the contextbox that grabs button presses if not grabbed
-            by overlying widgets.
+        by overlying widgets.
         """
         self.contexteventbox = eventbox
-        self.contexteventbox.connect('button-press-event',
-                                self._contextmenu_button_press)
+        self.contexteventbox.connect(
+            "button-press-event", self._contextmenu_button_press
+        )
 
     def _contextmenu_button_press(self, obj, event):
         """
@@ -285,25 +294,20 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
         It opens a context menu with possible actions
         """
         if is_right_click(event):
-            if self.obj.get_handle() == 0 :
+            if self.obj.get_handle() == 0:
                 return False
 
-            #build the possible popup menu
+            # build the possible popup menu
             menu_model = self._build_popup_ui()
             if not menu_model:
                 return False
-            #set or unset sensitivity in popup
+            # set or unset sensitivity in popup
             self._post_build_popup_ui()
 
             menu = Gtk.Menu.new_from_model(menu_model)
             menu.attach_to_widget(obj, None)
             menu.show_all()
-            if Gtk.MINOR_VERSION < 22:
-                # ToDo The following is reported to work poorly with Wayland
-                menu.popup(None, None, None, None,
-                           event.button, event.time)
-            else:
-                menu.popup_at_pointer(event)
+            menu.popup_at_pointer(event)
             return True
         return False
 
@@ -315,34 +319,44 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
         from ..plug.quick import create_quickreport_menu
 
         prefix = str(id(self))
-        #get custom ui and actions
+        # get custom ui and actions
         (ui_top, actions) = self._top_contextmenu(prefix)
-        #see which quick reports are available now:
-        ui_qr = ''
-        if self.QR_CATEGORY > -1 :
+        # see which quick reports are available now:
+        ui_qr = ""
+        if self.QR_CATEGORY > -1:
             (ui_qr, reportactions) = create_quickreport_menu(
-                self.QR_CATEGORY, self.dbstate, self.uistate,
-                self.obj, prefix, track=self.track)
+                self.QR_CATEGORY,
+                self.dbstate,
+                self.uistate,
+                self.obj,
+                prefix,
+                track=self.track,
+            )
             actions.extend(reportactions)
 
-        popupui = '''<?xml version="1.0" encoding="UTF-8"?>
+        popupui = (
+            """<?xml version="1.0" encoding="UTF-8"?>
             <interface>
-            <menu id="Popup">''' + ui_top + '''
+            <menu id="Popup">"""
+            + ui_top
+            + """
               <section>
-            ''' + ui_qr + '''
+            """
+            + ui_qr
+            + """
               </section>
             </menu>
-            </interface>'''
+            </interface>"""
+        )
 
         builder = Gtk.Builder.new_from_string(popupui, -1)
 
-        self.action_group = ActionGroup('EditPopup' + prefix, actions,
-                                        prefix)
+        self.action_group = ActionGroup("EditPopup" + prefix, actions, prefix)
         act_grp = SimpleActionGroup()
         self.window.insert_action_group(prefix, act_grp)
         self.window.set_application(self.uistate.uimanager.app)
         self.uistate.uimanager.insert_action_group(self.action_group, act_grp)
-        return builder.get_object('Popup')
+        return builder.get_object("Popup")
 
     def _top_contextmenu(self, prefix):
         """

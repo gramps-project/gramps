@@ -22,43 +22,45 @@
 
 """Tools/Database Processing/Rebuild Secondary Indexes"""
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Set up logging
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import logging
+
 log = logging.getLogger(".Rebuild")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gtk modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gui.plug import tool
 from gramps.gui.dialog import OkDialog
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # runTool
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Rebuild(tool.Tool):
-
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
 
@@ -79,9 +81,11 @@ class Rebuild(tool.Tool):
 
             uistate.set_busy_cursor(False)
             uistate.progress.hide()
-            OkDialog(_("Secondary indexes rebuilt"),
-                     _('All secondary indexes have been rebuilt.'),
-                     parent=uistate.window)
+            OkDialog(
+                _("Secondary indexes rebuilt"),
+                _("All secondary indexes have been rebuilt."),
+                parent=uistate.window,
+            )
         else:
             print("Rebuilding Secondary Indexes...")
             self.db.rebuild_secondary(None)
@@ -90,15 +94,16 @@ class Rebuild(tool.Tool):
         self.db.enable_signals()
         self.db.request_rebuild()
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 #
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class RebuildOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
 
-    def __init__(self, name,person_id=None):
-        tool.ToolOptions.__init__(self, name,person_id)
+    def __init__(self, name, person_id=None):
+        tool.ToolOptions.__init__(self, name, person_id)

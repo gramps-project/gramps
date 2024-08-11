@@ -22,26 +22,26 @@
 
 """Tools/Analysis and Exploration/Compare Individual Events"""
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import os
 from collections import defaultdict
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.filters import GenericFilter, rules
 from gramps.gui.filters import build_filter_model
 from gramps.gen.sort import Sort
@@ -56,35 +56,38 @@ from gramps.gen.plug.report import utils
 from gramps.gui.display import display_help
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from gramps.gui.glade import Glade
 from gramps.gui.editors import FilterEditor
 from gramps.gen.constfunc import get_curr_dir
+from gramps.gen.display.place import displayer as _pd
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('Compare_Individual_Events', 'manual')
+# -------------------------------------------------------------------------
+WIKI_HELP_PAGE = "%s_-_Tools" % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _("Compare_Individual_Events", "manual")
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # EventCmp
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class TableReport:
     """
     This class provides an interface for the spreadsheet table
     used to save the data into the file.
     """
 
-    def __init__(self,filename,doc):
+    def __init__(self, filename, doc):
         self.filename = filename
         self.doc = doc
 
-    def initialize(self,cols):
+    def initialize(self, cols):
         self.doc.open(self.filename)
         self.doc.start_page()
 
@@ -92,7 +95,7 @@ class TableReport:
         self.doc.end_page()
         self.doc.close()
 
-    def write_table_data(self,data,skip_columns=[]):
+    def write_table_data(self, data, skip_columns=[]):
         self.doc.start_row()
         index = -1
         for item in data:
@@ -101,7 +104,7 @@ class TableReport:
                 self.doc.write_cell(item)
         self.doc.end_row()
 
-    def set_row(self,val):
+    def set_row(self, val):
         self.row = val + 2
 
     def write_table_head(self, data):
@@ -109,39 +112,41 @@ class TableReport:
         list(map(self.doc.write_cell, data))
         self.doc.end_row()
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 #
 #
-#------------------------------------------------------------------------
-class EventComparison(tool.Tool,ManagedWindow):
+# ------------------------------------------------------------------------
+class EventComparison(tool.Tool, ManagedWindow):
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
         self.dbstate = dbstate
         self.uistate = uistate
 
-        tool.Tool.__init__(self,dbstate, options_class, name)
+        tool.Tool.__init__(self, dbstate, options_class, name)
         ManagedWindow.__init__(self, uistate, [], self)
         self.qual = 0
 
         self.filterDialog = Glade(toplevel="filters", also_load=["liststore1"])
-        self.filterDialog.connect_signals({
-            "on_apply_clicked"       : self.on_apply_clicked,
-            "on_editor_clicked"      : self.filter_editor_clicked,
-            "on_help_clicked"        : self.on_help_clicked,
-            "destroy_passed_object"  : self.close,
-            "on_write_table"         : self.__dummy,
-            })
+        self.filterDialog.connect_signals(
+            {
+                "on_apply_clicked": self.on_apply_clicked,
+                "on_editor_clicked": self.filter_editor_clicked,
+                "on_help_clicked": self.on_help_clicked,
+                "destroy_passed_object": self.close,
+                "on_write_table": self.__dummy,
+            }
+        )
 
         window = self.filterDialog.toplevel
         self.filters = self.filterDialog.get_object("filter_list")
-        self.label = _('Event comparison filter selection')
-        self.set_window(window,self.filterDialog.get_object('title'),
-                        self.label)
-        self.setup_configs('interface.eventcomparison', 640, 220)
+        self.label = _("Event comparison filter selection")
+        self.set_window(window, self.filterDialog.get_object("title"), self.label)
+        self.setup_configs("interface.eventcomparison", 640, 220)
 
-        self.on_filters_changed('Person')
-        uistate.connect('filters-changed', self.on_filters_changed)
+        self.on_filters_changed("Person")
+        uistate.connect("filters-changed", self.on_filters_changed)
 
         self.show()
 
@@ -152,11 +157,11 @@ class EventComparison(tool.Tool,ManagedWindow):
         pass
 
     def on_filters_changed(self, name_space):
-        if name_space == 'Person':
+        if name_space == "Person":
             all_filter = GenericFilter()
             all_filter.set_name(_("Entire Database"))
             all_filter.add_rule(rules.person.Everyone([]))
-            self.filter_model = build_filter_model('Person', [all_filter])
+            self.filter_model = build_filter_model("Person", [all_filter])
             self.filters.set_model(self.filter_model)
             self.filters.set_active(0)
 
@@ -165,61 +170,60 @@ class EventComparison(tool.Tool,ManagedWindow):
         display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def build_menu_names(self, obj):
-        return (_("Filter selection"),_("Event Comparison tool"))
+        return (_("Filter selection"), _("Event Comparison tool"))
 
     def filter_editor_clicked(self, obj):
         try:
-            FilterEditor('Person',CUSTOM_FILTERS,
-                                      self.dbstate,self.uistate)
+            FilterEditor("Person", CUSTOM_FILTERS, self.dbstate, self.uistate)
         except WindowActiveError:
             pass
 
     def on_apply_clicked(self, obj):
         cfilter = self.filter_model[self.filters.get_active()][1]
 
-        progress_bar = ProgressMeter(_('Comparing events'), '',
-                                     parent=self.window)
-        progress_bar.set_pass(_('Selecting people'),1)
+        progress_bar = ProgressMeter(_("Comparing events"), "", parent=self.window)
+        progress_bar.set_pass(_("Selecting people"), 1)
 
-        plist = cfilter.apply(self.db,
-                              self.db.iter_person_handles())
+        plist = cfilter.apply(self.db, self.db.iter_person_handles())
 
         progress_bar.step()
         progress_bar.close()
-        self.options.handler.options_dict['filter'] = self.filters.get_active()
+        self.options.handler.options_dict["filter"] = self.filters.get_active()
         # Save options
         self.options.handler.save_options()
 
         if len(plist) == 0:
-            WarningDialog(_("No matches were found"),
-                          parent=self.window)
+            WarningDialog(_("No matches were found"), parent=self.window)
         else:
             EventComparisonResults(self.dbstate, self.uistate, plist, self.track)
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 #
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 ##def by_value(first,second):
 ##    return cmp(second[0],first[0])
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def fix(line):
-    l = line.strip().replace('&','&amp;').replace('>','&gt;')
-    return l.replace(l,'<','&lt;').replace(l,'"','&quot;')
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 #
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+def fix(line):
+    l = line.strip().replace("&", "&amp;").replace(">", "&gt;")
+    return l.replace(l, "<", "&lt;").replace(l, '"', "&quot;")
+
+
+# -------------------------------------------------------------------------
+#
+#
+#
+# -------------------------------------------------------------------------
 class EventComparisonResults(ManagedWindow):
-    def __init__(self,dbstate,uistate,people_list,track):
+    def __init__(self, dbstate, uistate, people_list, track):
         self.dbstate = dbstate
         self.uistate = uistate
 
@@ -231,34 +235,37 @@ class EventComparisonResults(ManagedWindow):
         self.save_form = None
 
         self.topDialog = Glade(toplevel="eventcmp")
-        self.topDialog.connect_signals({
-            "on_write_table"        : self.on_write_table,
-            "destroy_passed_object" : self.close,
-            "on_help_clicked"       : self.on_help_clicked,
-            "on_apply_clicked"      : self.__dummy,
-            "on_editor_clicked"     : self.__dummy,
-            })
+        self.topDialog.connect_signals(
+            {
+                "on_write_table": self.on_write_table,
+                "destroy_passed_object": self.close,
+                "on_help_clicked": self.on_help_clicked,
+                "on_apply_clicked": self.__dummy,
+                "on_editor_clicked": self.__dummy,
+            }
+        )
 
         window = self.topDialog.toplevel
-        self.set_window(window, self.topDialog.get_object('title'),
-                        _('Event Comparison Results'))
-        self.setup_configs('interface.eventcomparisonresults', 750, 400)
+        self.set_window(
+            window, self.topDialog.get_object("title"), _("Event Comparison Results")
+        )
+        self.setup_configs("interface.eventcomparisonresults", 750, 400)
 
-        self.eventlist = self.topDialog.get_object('treeview')
+        self.eventlist = self.topDialog.get_object("treeview")
         self.sort = Sort(self.db)
         self.my_list.sort(key=self.sort.by_last_name_key)
 
         self.event_titles = self.make_event_titles()
 
-        self.table_titles = [_("Person"),_("ID")]
+        self.table_titles = [_("Person"), _("ID")]
         for event_name in self.event_titles:
-            self.table_titles.append(_("%(event_name)s Date") %
-                {'event_name' :event_name}
-                )
-            self.table_titles.append('sort') # This won't be shown in a tree
-            self.table_titles.append(_("%(event_name)s Place") %
-                {'event_name' :event_name}
-                )
+            self.table_titles.append(
+                _("%(event_name)s Date") % {"event_name": event_name}
+            )
+            self.table_titles.append("sort")  # This won't be shown in a tree
+            self.table_titles.append(
+                _("%(event_name)s Place") % {"event_name": event_name}
+            )
 
         self.build_row_data()
         self.draw_display()
@@ -275,22 +282,22 @@ class EventComparisonResults(ManagedWindow):
         display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def build_menu_names(self, obj):
-        return (_("Event Comparison Results"),None)
+        return (_("Event Comparison Results"), None)
 
     def draw_display(self):
-
         model_index = 0
         tree_index = 0
         mylist = []
         renderer = Gtk.CellRendererText()
         for title in self.table_titles:
             mylist.append(str)
-            if title == 'sort':
+            if title == "sort":
                 # This will override the previously defined column
-                self.eventlist.get_column(
-                    tree_index-1).set_sort_column_id(model_index)
+                self.eventlist.get_column(tree_index - 1).set_sort_column_id(
+                    model_index
+                )
             else:
-                column = Gtk.TreeViewColumn(title,renderer,text=model_index)
+                column = Gtk.TreeViewColumn(title, renderer, text=model_index)
                 column.set_sort_column_id(model_index)
                 self.eventlist.append_column(column)
                 # This one numbers the tree columns: increment on new column
@@ -301,7 +308,7 @@ class EventComparisonResults(ManagedWindow):
         model = Gtk.ListStore(*mylist)
         self.eventlist.set_model(model)
 
-        self.progress_bar.set_pass(_('Building display'),len(self.row_data))
+        self.progress_bar.set_pass(_("Building display"), len(self.row_data))
         for data in self.row_data:
             model.append(row=list(data))
             self.progress_bar.step()
@@ -309,8 +316,9 @@ class EventComparisonResults(ManagedWindow):
 
     def build_row_data(self):
         self.progress_bar = ProgressMeter(
-            _('Comparing Events'), '', parent=self.uistate.window)
-        self.progress_bar.set_pass(_('Building data'),len(self.my_list))
+            _("Comparing Events"), "", parent=self.uistate.window
+        )
+        self.progress_bar.set_pass(_("Building data"), len(self.my_list))
         for individual_id in self.my_list:
             individual = self.db.get_person_from_handle(individual_id)
             name = individual.get_primary_name().get_name()
@@ -332,22 +340,22 @@ class EventComparisonResults(ManagedWindow):
                     if ename in the_map and len(the_map[ename]) > 0:
                         event_handle = the_map[ename][0]
                         del the_map[ename][0]
-                        date = place = ""
+                        date = p_title = ""
 
                         if event_handle:
                             event = self.db.get_event_from_handle(event_handle)
                             date = get_date(event)
                             sortdate = "%09d" % (
-                                       event.get_date_object().get_sort_value()
-                                       )
+                                event.get_date_object().get_sort_value()
+                            )
                             place_handle = event.get_place_handle()
                             if place_handle:
-                                place = self.db.get_place_from_handle(
-                                            place_handle).get_title()
-                        tlist += [date, sortdate, place]
+                                place = self.db.get_place_from_handle(place_handle)
+                                p_title = _pd.display(self.dbstate.db, place)
+                        tlist += [date, sortdate, p_title]
                         added = True
                     else:
-                        tlist += [""]*3
+                        tlist += [""] * 3
 
                 if first:
                     first = False
@@ -374,29 +382,33 @@ class EventComparisonResults(ManagedWindow):
                     break
                 the_map[name] += 1
 
-        unsort_list = sorted([(d, k) for k,d in the_map.items()],
-                             key=lambda x: x[0], reverse=True)
+        unsort_list = sorted(
+            [(d, k) for k, d in the_map.items()], key=lambda x: x[0], reverse=True
+        )
 
-        sort_list = [ item[1] for item in unsort_list ]
-## Presently there's no Birth and Death. Instead there's Birth Date and
-## Birth Place, as well as Death Date and Death Place.
-##         # Move birth and death to the begining of the list
-##         if _("Death") in the_map:
-##             sort_list.remove(_("Death"))
-##             sort_list = [_("Death")] + sort_list
+        sort_list = [item[1] for item in unsort_list]
+        ## Presently there's no Birth and Death. Instead there's Birth Date and
+        ## Birth Place, as well as Death Date and Death Place.
+        ##         # Move birth and death to the begining of the list
+        ##         if _("Death") in the_map:
+        ##             sort_list.remove(_("Death"))
+        ##             sort_list = [_("Death")] + sort_list
 
-##         if _("Birth") in the_map:
-##             sort_list.remove(_("Birth"))
-##             sort_list = [_("Birth")] + sort_list
+        ##         if _("Birth") in the_map:
+        ##             sort_list.remove(_("Birth"))
+        ##             sort_list = [_("Birth")] + sort_list
 
         return sort_list
 
     def on_write_table(self, obj):
-        f = Gtk.FileChooserDialog(_("Select filename"),
-                                  transient_for=self.window,
-                                  action=Gtk.FileChooserAction.SAVE)
-        f.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
-                      _('_Save'), Gtk.ResponseType.OK)
+        f = Gtk.FileChooserDialog(
+            _("Select filename"),
+            transient_for=self.window,
+            action=Gtk.FileChooserAction.SAVE,
+        )
+        f.add_buttons(
+            _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Save"), Gtk.ResponseType.OK
+        )
 
         f.set_current_folder(get_curr_dir())
         status = f.run()
@@ -413,7 +425,7 @@ class EventComparisonResults(ManagedWindow):
             skip_columns = []
             index = 0
             for title in self.table_titles:
-                if title == 'sort':
+                if title == "sort":
                     skip_columns.append(index)
                 else:
                     new_titles.append(title)
@@ -424,33 +436,37 @@ class EventComparisonResults(ManagedWindow):
 
             index = 0
             for top in self.row_data:
-                spreadsheet.set_row(index%2)
+                spreadsheet.set_row(index % 2)
                 index += 1
-                spreadsheet.write_table_data(top,skip_columns)
+                spreadsheet.write_table_data(top, skip_columns)
 
             spreadsheet.finalize()
         f.destroy()
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 #
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class EventComparisonOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
 
-    def __init__(self, name,person_id=None):
-        tool.ToolOptions.__init__(self, name,person_id)
+    def __init__(self, name, person_id=None):
+        tool.ToolOptions.__init__(self, name, person_id)
 
         # Options specific for this report
         self.options_dict = {
-            'filter'   : 0,
+            "filter": 0,
         }
         filters = utils.get_person_filters(None)
         self.options_help = {
-            'filter'   : ("=num","Filter number.",
-                          [ filt.get_name() for filt in filters ],
-                          True ),
+            "filter": (
+                "=num",
+                "Filter number.",
+                [filt.get_name() for filt in filters],
+                True,
+            ),
         }

@@ -25,54 +25,61 @@
 EditCitation class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 LOG = logging.getLogger(".citation")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from gramps.gen.lib import Citation, NoteType, Source
 from gramps.gen.db import DbTxn
 from .editprimary import EditPrimary
 from .objectentries import SourceEntry
-from .displaytabs import (NoteTab, GalleryTab, SrcAttrEmbedList,
-                          CitationBackRefList)
-from ..widgets import (MonitoredEntry, PrivacyButton, MonitoredMenu,
-                       MonitoredDate, MonitoredTagList)
+from .displaytabs import NoteTab, GalleryTab, SrcAttrEmbedList, CitationBackRefList
+from ..widgets import (
+    MonitoredEntry,
+    PrivacyButton,
+    MonitoredMenu,
+    MonitoredDate,
+    MonitoredTagList,
+)
 from ..dialog import ErrorDialog
 from ..glade import Glade
 from gramps.gen.const import URL_MANUAL_SECT2
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 WIKI_HELP_PAGE = URL_MANUAL_SECT2
-WIKI_HELP_SEC = _('New_Citation_dialog', 'manual')
+WIKI_HELP_SEC = _("New_Citation_dialog", "manual")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # EditCitationclass
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
 
 class EditCitation(EditPrimary):
     """
@@ -87,8 +94,9 @@ class EditCitation(EditPrimary):
     @type callertitle: str
     """
 
-    def __init__(self, dbstate, uistate, track, obj, source=None, callback=None,
-                 callertitle = None):
+    def __init__(
+        self, dbstate, uistate, track, obj, source=None, callback=None, callertitle=None
+    ):
         """
         The obj parameter is mandatory. If the source parameter is not
         provided, it will be deduced from the obj Citation object.
@@ -96,9 +104,16 @@ class EditCitation(EditPrimary):
         if source:
             obj.set_reference_handle(source.get_handle())
         self.callertitle = callertitle
-        EditPrimary.__init__(self, dbstate, uistate, track, obj,
-                             dbstate.db.get_citation_from_handle,
-                             dbstate.db.get_citation_from_gramps_id, callback)
+        EditPrimary.__init__(
+            self,
+            dbstate,
+            uistate,
+            track,
+            obj,
+            dbstate.db.get_citation_from_handle,
+            dbstate.db.get_citation_from_gramps_id,
+            callback,
+        )
 
     def empty_object(self):
         """
@@ -116,22 +131,20 @@ class EditCitation(EditPrimary):
         title = self.obj.get_page()
         if title:
             if self.callertitle:
-                title = _('Citation') + \
-                        (': %(id)s - %(context)s' % {
-                         'id'      : title,
-                         'context' : self.callertitle
-                         })
+                title = _("Citation") + (
+                    ": %(id)s - %(context)s"
+                    % {"id": title, "context": self.callertitle}
+                )
             else:
-                title = _('Citation') + ": " + title
+                title = _("Citation") + ": " + title
         else:
             if self.callertitle:
-                title = _('New Citation') + \
-                        (': %(id)s - %(context)s' % {
-                         'id'      : title,
-                         'context' : self.callertitle
-                         })
+                title = _("New Citation") + (
+                    ": %(id)s - %(context)s"
+                    % {"id": title, "context": self.callertitle}
+                )
             else:
-                title = _('New Citation')
+                title = _("New Citation")
         return title
 
     def _local_init(self):
@@ -143,12 +156,11 @@ class EditCitation(EditPrimary):
         and overridden here.
         """
         self.glade = Glade()
-        self.set_window(self.glade.toplevel, None,
-                        self.get_menu_title())
-        self.setup_configs('interface.citation', 600, 450)
+        self.set_window(self.glade.toplevel, None, self.get_menu_title())
+        self.setup_configs("interface.citation", 600, 450)
 
-        self.share_btn = self.glade.get_object('select_source')
-        self.add_del_btn = self.glade.get_object('add_del_source')
+        self.share_btn = self.glade.get_object("select_source")
+        self.add_del_btn = self.glade.get_object("add_del_source")
 
     def _connect_signals(self):
         """
@@ -156,10 +168,11 @@ class EditCitation(EditPrimary):
 
         Called by the init routine of the base class L{EditPrimary}.
         """
-        self.define_ok_button(self.glade.get_object('ok'), self.save)
-        self.define_cancel_button(self.glade.get_object('cancel'))
-        self.define_help_button(self.glade.get_object('help'),
-                WIKI_HELP_PAGE, WIKI_HELP_SEC)
+        self.define_ok_button(self.glade.get_object("ok"), self.save)
+        self.define_cancel_button(self.glade.get_object("cancel"))
+        self.define_help_button(
+            self.glade.get_object("help"), WIKI_HELP_PAGE, WIKI_HELP_SEC
+        )
 
     def _connect_db_signals(self):
         """
@@ -172,22 +185,27 @@ class EditCitation(EditPrimary):
         database object type we also abort the edit.
         """
 
-        self._add_db_signal('citation-rebuild', self._do_close)
-        self._add_db_signal('citation-delete', self.check_for_close)
-        self._add_db_signal('source-delete', self.source_delete)
-        self._add_db_signal('source-update', self.source_update)
+        self._add_db_signal("citation-rebuild", self._do_close)
+        self._add_db_signal("citation-delete", self.check_for_close)
+        self._add_db_signal("source-delete", self.source_delete)
+        self._add_db_signal("source-update", self.source_update)
 
     def _setup_fields(self):
         """
         Get control widgets and attach them to Citation's attributes.
         """
-        self.source_field = SourceEntry(self.dbstate, self.uistate, self.track,
-                                      self.glade.get_object("source"),
-                                      self.glade.get_object("source_event_box"),
-                                      self.obj.set_reference_handle,
-                                      self.obj.get_reference_handle,
-                                      self.add_del_btn, self.share_btn,
-                                      callback=self.source_changed)
+        self.source_field = SourceEntry(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.glade.get_object("source"),
+            self.glade.get_object("source_event_box"),
+            self.obj.set_reference_handle,
+            self.obj.get_reference_handle,
+            self.add_del_btn,
+            self.share_btn,
+            callback=self.source_changed,
+        )
 
         self.date = MonitoredDate(
             self.glade.get_object("date_entry"),
@@ -195,26 +213,36 @@ class EditCitation(EditPrimary):
             self.obj.get_date_object(),
             self.uistate,
             self.track,
-            self.db.readonly)
+            self.db.readonly,
+        )
 
         self.gid = MonitoredEntry(
-            self.glade.get_object('gid'), self.obj.set_gramps_id,
-            self.obj.get_gramps_id,self.db.readonly)
+            self.glade.get_object("gid"),
+            self.obj.set_gramps_id,
+            self.obj.get_gramps_id,
+            self.db.readonly,
+        )
 
         self.volume = MonitoredEntry(
-            self.glade.get_object("volume"), self.obj.set_page,
-            self.obj.get_page, self.db.readonly)
+            self.glade.get_object("volume"),
+            self.obj.set_page,
+            self.obj.get_page,
+            self.db.readonly,
+        )
 
         self.type_mon = MonitoredMenu(
-            self.glade.get_object('confidence'),
+            self.glade.get_object("confidence"),
             self.obj.set_confidence_level,
-            self.obj.get_confidence_level, [
-            (_('Very Low'), Citation.CONF_VERY_LOW),
-            (_('Low'), Citation.CONF_LOW),
-            (_('Normal'), Citation.CONF_NORMAL),
-            (_('High'), Citation.CONF_HIGH),
-            (_('Very High'), Citation.CONF_VERY_HIGH)],
-            self.db.readonly)
+            self.obj.get_confidence_level,
+            [
+                (_("Very Low"), Citation.CONF_VERY_LOW),
+                (_("Low"), Citation.CONF_LOW),
+                (_("Normal"), Citation.CONF_NORMAL),
+                (_("High"), Citation.CONF_HIGH),
+                (_("Very High"), Citation.CONF_VERY_HIGH),
+            ],
+            self.db.readonly,
+        )
 
         self.tags2 = MonitoredTagList(
             self.glade.get_object("tag_label"),
@@ -222,11 +250,14 @@ class EditCitation(EditPrimary):
             self.obj.set_tag_list,
             self.obj.get_tag_list,
             self.db,
-            self.uistate, self.track,
-            self.db.readonly)
+            self.uistate,
+            self.track,
+            self.db.readonly,
+        )
 
         self.ref_privacy = PrivacyButton(
-            self.glade.get_object('privacy'), self.obj, self.db.readonly)
+            self.glade.get_object("privacy"), self.obj, self.db.readonly
+        )
 
     def _create_tabbed_pages(self):
         """
@@ -235,32 +266,51 @@ class EditCitation(EditPrimary):
         """
         notebook = Gtk.Notebook()
 
-        self.note_tab = NoteTab(self.dbstate, self.uistate, self.track,
-                    self.obj.get_note_list(), self.get_menu_title(),
-                    notetype=NoteType.CITATION)
+        self.note_tab = NoteTab(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_note_list(),
+            "citation_editor_notes",
+            self.get_menu_title(),
+            notetype=NoteType.CITATION,
+        )
         self._add_tab(notebook, self.note_tab)
         self.track_ref_for_deletion("note_tab")
 
-        self.gallery_tab = GalleryTab(self.dbstate, self.uistate, self.track,
-                       self.obj.get_media_list())
+        self.gallery_tab = GalleryTab(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_media_list(),
+        )
         self._add_tab(notebook, self.gallery_tab)
         self.track_ref_for_deletion("gallery_tab")
 
-        self.attr_tab = SrcAttrEmbedList(self.dbstate, self.uistate, self.track,
-                          self.obj.get_attribute_list())
+        self.attr_tab = SrcAttrEmbedList(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_attribute_list(),
+            "citation_editor_attributes",
+        )
         self._add_tab(notebook, self.attr_tab)
         self.track_ref_for_deletion("attr_tab")
 
-        self.citationref_list = CitationBackRefList(self.dbstate, self.uistate,
-                              self.track,
-                              self.db.find_backlink_handles(self.obj.handle))
+        self.citationref_list = CitationBackRefList(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.db.find_backlink_handles(self.obj.handle),
+            "citation_editor_references",
+        )
         self._add_tab(notebook, self.citationref_list)
         self.track_ref_for_deletion("citationref_list")
 
         self._setup_notebook_tabs(notebook)
 
         notebook.show_all()
-        self.glade.get_object('vbox').pack_start(notebook, True, True, 0)
+        self.glade.get_object("vbox").pack_start(notebook, True, True, 0)
 
     def source_changed(self):
         handle = self.obj.get_reference_handle()
@@ -268,11 +318,11 @@ class EditCitation(EditPrimary):
             source = self.db.get_source_from_handle(handle)
             author = source.get_author()
         else:
-            author = ''
+            author = ""
         self.glade.get_object("author").set_text(author)
 
     def source_update(self, hndls):
-        ''' Source changed outside of dialog, update text if its ours '''
+        """Source changed outside of dialog, update text if its ours"""
         handle = self.obj.get_reference_handle()
         if handle and handle in hndls:
             source = self.db.get_source_from_handle(handle)
@@ -282,13 +332,12 @@ class EditCitation(EditPrimary):
             self.glade.get_object("author").set_text(author)
 
     def source_delete(self, hndls):
-        ''' Source deleted outside of dialog, remove it if its ours'''
+        """Source deleted outside of dialog, remove it if its ours"""
         handle = self.obj.get_reference_handle()
         if handle and handle in hndls:
             self.obj.set_reference_handle(None)
-            self.glade.get_object("source").set_markup(
-                self.source_field.EMPTY_TEXT)
-            self.glade.get_object("author").set_text('')
+            self.glade.get_object("source").set_markup(self.source_field.EMPTY_TEXT)
+            self.glade.get_object("author").set_text("")
             self.source_field.set_button(False)
 
     def build_menu_names(self, source):
@@ -296,7 +345,7 @@ class EditCitation(EditPrimary):
         Provide the information needed by the base class to define the
         window management menu entries.
         """
-        return (_('Edit Citation'), self.get_menu_title())
+        return (_("Edit Citation"), self.get_menu_title())
 
     def save(self, *obj):
         """
@@ -304,14 +353,19 @@ class EditCitation(EditPrimary):
         """
         self.ok_button.set_sensitive(False)
         if not self.obj.get_reference_handle():
-            ErrorDialog(_("No source selected"),
-                        _("A source is anything (personal testimony, "
-                          "video recording, photograph, newspaper column, "
-                          "gravestone...) from which information can be "
-                          "derived. To create a citation, first select the "
-                          "required source, and then record the location of "
-                          "the information referenced within the source in the "
-                          "'Volume/Page' field."), parent=self.window)
+            ErrorDialog(
+                _("No source selected"),
+                _(
+                    "A source is anything (personal testimony, "
+                    "video recording, photograph, newspaper column, "
+                    "gravestone...) from which information can be "
+                    "derived. To create a citation, first select the "
+                    "required source, and then record the location of "
+                    "the information referenced within the source in the "
+                    "'Volume/Page' field."
+                ),
+                parent=self.window,
+            )
             self.ok_button.set_sensitive(True)
             return
 
@@ -320,23 +374,24 @@ class EditCitation(EditPrimary):
             prim_object = self.get_from_gramps_id(gramps_id)
             name = prim_object.get_page()
             msg1 = _("Cannot save citation. ID already exists.")
-            msg2 = _("You have attempted to use the existing Gramps ID with "
-                     "value %(id)s. This value is already used by '"
-                     "%(prim_object)s'. Please enter a different ID or leave "
-                     "blank to get the next available ID value.") % {
-                         'id' : gramps_id, 'prim_object' : name }
+            msg2 = _(
+                "You have attempted to use the existing Gramps ID with "
+                "value %(id)s. This value is already used by '"
+                "%(prim_object)s'. Please enter a different ID or leave "
+                "blank to get the next available ID value."
+            ) % {"id": gramps_id, "prim_object": name}
             ErrorDialog(msg1, msg2, parent=self.window)
             self.ok_button.set_sensitive(True)
             return
 
         if not self.obj.handle:
-            with DbTxn(_("Add Citation (%s)") % self.obj.get_page(),
-                       self.db) as trans:
+            with DbTxn(_("Add Citation (%s)") % self.obj.get_page(), self.db) as trans:
                 self.db.add_citation(self.obj, trans)
         else:
             if self.data_has_changed():
-                with DbTxn(_("Edit Citation (%s)") % self.obj.get_page(),
-                           self.db) as trans:
+                with DbTxn(
+                    _("Edit Citation (%s)") % self.obj.get_page(), self.db
+                ) as trans:
                     if not self.obj.get_gramps_id():
                         self.obj.set_gramps_id(self.db.find_next_citation_gramps_id())
                     self.db.commit_citation(self.obj, trans)

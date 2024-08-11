@@ -1,0 +1,18 @@
+name: PyPI upload
+
+on: workflow_dispatch
+
+jobs:
+  pypi-publish:
+    name: upload release to PyPI
+    runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build package distributions
+        run: |
+          python3 setup.py sdist bdist_wheel
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1

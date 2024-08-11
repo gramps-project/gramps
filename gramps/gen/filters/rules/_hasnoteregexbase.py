@@ -18,33 +18,37 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import re
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # Objects having notes that contain a substring or match a regular expression
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasNoteRegexBase(Rule):
     """Objects having notes containing <text>."""
 
-    labels = [ _('Text:')]
-    name = 'Objects having notes containing <text>'
-    description = ("Matches objects whose notes contain a substring "
-                   "or match a regular expression")
-    category = _('General filters')
+    labels = [_("Text:")]
+    name = "Objects having notes containing <text>"
+    description = (
+        "Matches objects whose notes contain a substring "
+        "or match a regular expression"
+    )
+    category = _("General filters")
     allow_regex = True
 
     def apply(self, db, person):

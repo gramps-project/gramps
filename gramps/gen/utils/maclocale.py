@@ -46,9 +46,8 @@ are the names of the controls in System Preferences; the names in the
 defaults system are AppleCollationOrder and AppleLocale,
 respectively.)
 
-The user can override the currency and calendar, and those values are
-appended to AppleLocale and parsed below. But Gramps makes no use of
-currency and sets the calendar in its own preferences, so they're
+The user can override the calendar, and thise value is appended to AppleLocale
+and parsed below. But Gramps sets the calendar in its own preferences, so it is
 ignored.
 
 Where the mismatch becomes a problem is in date and number
@@ -56,7 +55,7 @@ formatting. POSIX specifies a locale for this, but ICU uses format
 strings, and there is no good way to map those strings into one of the
 available locales. Users who whan to specify particular ways of
 formatting different from their base locales will have to figure out
-the appropriate locale on their own and set LC_TIME and LC_NUMERIC
+the appropriate locale on their own and set LC_TIME
 appropriately. The "Formats" page on the Languages & Text
 (International in Leopard) System Preferences pane is a good way to
 quickly assess the formats in various locales.
@@ -69,34 +68,40 @@ locale, leaving $LANGUAGE unset (which is the same as setting it to
 
 """
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
-import os, subprocess, locale
+import os
+import subprocess
+import locale
 import logging
+
 LOG = logging.getLogger(".gramps.gen.utils.grampslocale.mac")
 LOG.propagate = True
-#LOG.setLevel(logging.DEBUG)
+# LOG.setLevel(logging.DEBUG)
+
 
 def mac_setup_localization(glocale):
     """
     Set up the localization parameters from OSX's "defaults" system,
     permitting environment variables to override the settings.
     """
+
     def _mac_get_gramps_defaults(domain, key):
         try:
             if domain == "Global":
-                args = ('/usr/bin/defaults', 'read', '-g', key)
+                args = ("/usr/bin/defaults", "read", "-g", key)
             else:
-                args = ('/usr/bin/defaults', 'read', 'org.gramps-project.gramps', key)
+                args = ("/usr/bin/defaults", "read", "org.gramps-project.gramps", key)
 
-            answer = subprocess.Popen(
-                args,
-                stderr=open("/dev/null"),
-                stdout=subprocess.PIPE).communicate()[0]
+            answer = None
+            with subprocess.Popen(
+                args, stderr=open("/dev/null", encoding="utf8"), stdout=subprocess.PIPE
+            ) as proc:
+                answer = proc.communicate()[0]
             if not answer:
                 LOG.debug("No prefs found for %s:%s", domain, key)
                 return None
@@ -104,21 +109,19 @@ def mac_setup_localization(glocale):
             LOG.debug("Found %s for defaults %s:%s", answer.strip(), domain, key)
             return answer
         except OSError as err:
-            LOG.warning("Failed to read %s from System Preferences: %s",
-                        key, str(err))
+            LOG.warning("Failed to read %s from System Preferences: %s", key, str(err))
             return None
 
     def _mac_check_languages(languages):
         if not languages:
             return None
-        languages = map(lambda x: x.strip(),
-                    languages.strip("()\n").split(",\n"))
+        languages = map(lambda x: x.strip(), languages.strip("()\n").split(",\n"))
         usable = []
         for lang in languages:
             lang = lang.strip().strip('"').replace("-", "_", 1)
-            if lang == "cn_Hant": #Traditional; Gettext uses cn_TW
+            if lang == "cn_Hant":  # Traditional; Gettext uses cn_TW
                 lang = "cn_TW"
-            if lang == "cn_Hans": #Simplified; Gettext uses cn_CN
+            if lang == "cn_Hans":  # Simplified; Gettext uses cn_CN
                 lang = "cn_CN"
             lang = glocale.check_available_translations(lang)
             if lang:
@@ -135,55 +138,56 @@ def mac_setup_localization(glocale):
             translations = _mac_check_languages(languages)
             if translations:
                 return translations
-            LOG.debug("No suitable translations found in language list on Gramps defaults")
+            LOG.debug(
+                "No suitable translations found in language list on " "Gramps defaults"
+            )
         languages = _mac_get_gramps_defaults("Global", "AppleLanguages")
         if languages:
             translations = _mac_check_languages(languages)
             if translations:
                 return translations
-            LOG.debug("No suitable translations found in language list on Global defaults")
+            LOG.debug(
+                "No suitable translations found in language list on " "Global defaults"
+            )
         LOG.debug("No translations found in System Preferences")
         return None
 
     def _mac_check_locale(locale_string):
-        locale = None
+        loc = None
         calendar = None
-        currency = None
         div = locale_string.strip().split("@")
-        LOG.debug("Checking Locale %s", ' '.join(div))
-        locale = glocale.check_available_translations(div[0])
+        LOG.debug("Checking Locale %s", " ".join(div))
+        loc = glocale.check_available_translations(div[0])
         if len(div) > 1:
             div = div[1].split(";")
             for phrase in div:
                 (name, value) = phrase.split("=")
                 if name == "calendar":
                     calendar = glocale.check_available_translations(value)
-                elif name == "currency":
-                    currency = value
 
-        return (locale, calendar, currency)
+        return (loc, calendar)
 
     def _mac_get_locale():
         """
         Get the locale and specifiers from defaults.
         """
-#Note that numeric separators are encoded in AppleICUNumberSymbols,
-#with [0] being the decimal separator and [1] the thousands
-#separator. This obviously won't translate into a locale without
-#searching the locales database for a match.
-        locale = _mac_get_gramps_defaults("Gramps", "AppleLocale")
-        if locale:
-            locale_values = _mac_check_locale(locale)
-            if (locale_values[0]):
+        # Note that numeric separators are encoded in AppleICUNumberSymbols,
+        # with [0] being the decimal separator and [1] the thousands
+        # separator. This obviously won't translate into a locale without
+        # searching the locales database for a match.
+        loc = _mac_get_gramps_defaults("Gramps", "AppleLocale")
+        if loc:
+            locale_values = _mac_check_locale(loc)
+            if locale_values[0]:
                 return locale_values
-            LOG.debug("Gramps defaults locale %s isn't supported", locale)
+            LOG.debug("Gramps defaults locale %s isn't supported", loc)
 
-        locale = _mac_get_gramps_defaults("Global", "AppleLocale")
-        if locale:
-            locale_values = _mac_check_locale(locale)
-            if (locale_values[0]):
+        loc = _mac_get_gramps_defaults("Global", "AppleLocale")
+        if loc:
+            locale_values = _mac_check_locale(loc)
+            if locale_values[0]:
                 return locale_values
-            LOG.debug("Global defaults locale %s isn't supported", locale)
+            LOG.debug("Global defaults locale %s isn't supported", loc)
 
         return (None, None, None)
 
@@ -194,14 +198,12 @@ def mac_setup_localization(glocale):
         # The locale module can't deal with collation-qualified
         # locales and setting one blows up setlocale, so we use
         # $COLLATION directly instead.
-        if ('COLLATION') in os.environ:
-            apple_collation = os.environ['COLLATION']
+        if "COLLATION" in os.environ:
+            apple_collation = os.environ["COLLATION"]
         else:
-            apple_collation = _mac_get_gramps_defaults("Gramps",
-                                                       "AppleCollationOrder")
+            apple_collation = _mac_get_gramps_defaults("Gramps", "AppleCollationOrder")
         if not apple_collation:
-            apple_collation = _mac_get_gramps_defaults("Global",
-                                                       "AppleCollationOrder")
+            apple_collation = _mac_get_gramps_defaults("Global", "AppleCollationOrder")
 
         if not apple_collation:
             return None
@@ -210,56 +212,36 @@ def mac_setup_localization(glocale):
             return None
         return apple_collation
 
-#The action starts here
-    _locale = None
-    _failure = False
-    glocale.calendar = None
-    glocale.currency = None
-    try:
-        locale.setlocale(locale.LC_ALL, '')
-        _locale = locale.getlocale()
-    except locale.Error as err:
-        LOG.warning("Environment locale not usable: %s", str(err))
-
-    if not glocale.lang and _locale:
-        if glocale.check_available_translations(_locale[0]):
-            glocale.lang = '.'.join(_locale)
-        else:
-            LOG.debug("Environment locale %s not supported", _locale)
-
-    if not glocale.lang:
-        LOG.debug("Setting from the environment didn't work out, checking defaults")
-        (glocale.lang, glocale.currency, glocale.calendar) = _mac_get_locale()
-
-    glocale.coll_qualifier = None
-    glocale.collation = _mac_get_collation()
-
-    if not glocale.lang and glocale.collation:
-        coll_parts = glocale.collation.split('@')
-        glocale.lang = glocale.check_available_translations(coll_parts[0])
-
-    if not glocale.lang:
-        glocale.lang = "en_US.UTF-8"
-
-    glocale.lang = locale.normalize(glocale.lang)
-    if not glocale.lang.split('.')[1].lower() in ['utf8', 'utf-8']:
-        LOG.debug('Forcing locale encoding to UTF-8')
-        glocale.lang = '.'.join([glocale.lang.split('.')[0], 'UTF-8'])
+    def _set_from_environment(glocale):
+        _locale = None
+        glocale.calendar = None
         try:
-            locale.setlocale(locale.LC_ALL, glocale.lang)
-        except locale.Error:
-            LOG.debug('Attempt failed, locale %s unsupported', glocale.lang)
-    glocale.encoding = glocale.lang.split('.')[1]
-    if not glocale.language:
+            locale.setlocale(locale.LC_ALL, "")
+            _locale = locale.getlocale()
+        except locale.Error as err:
+            LOG.warning("Environment locale not usable: %s", str(err))
+
+        if not glocale.lang and _locale:
+            if glocale.check_available_translations(_locale[0]):
+                glocale.lang = ".".join(_locale)
+            else:
+                LOG.debug("Environment locale %s not supported", _locale)
+
+    def _find_language(glocale):
         lang = locale.getlocale(locale.LC_MESSAGES)[0]
         language = [glocale.check_available_translations(lang)]
         if not language:
             LOG.debug("Environment LC_MESSAGES value %s not supported", lang)
 
         if "LANGUAGE" in os.environ:
-            lang = [x for x in [glocale.check_available_translations(l)
-                                 for l in os.environ["LANGUAGE"].split(":")]
-                     if x]
+            lang = [
+                x
+                for x in [
+                    glocale.check_available_translations(l)
+                    for l in os.environ["LANGUAGE"].split(":")
+                ]
+                if x
+            ]
             if lang and lang[0]:
                 language = lang
             else:
@@ -268,33 +250,66 @@ def mac_setup_localization(glocale):
             translations = _mac_language_list()
             if translations and len(translations) > 0:
                 language = translations
-                LOG.debug("Returning Translations %s", ':'.join(translations))
+                LOG.debug("Returning Translations %s", ":".join(translations))
 
         if not (language and language[0]):
             if glocale.lang:
                 glocale.language = [glocale.lang[:5]]
             else:
-                LOG.warning("No locale settings matching available translations found, using US English")
-                glocale.lang = 'C'
-                glocale.language = ['en']
-                glocale.encoding = 'utf-8'
+                LOG.warning(
+                    "No locale settings matching available "
+                    "translations found, using US English"
+                )
+                glocale.lang = "C"
+                glocale.language = ["en"]
+                glocale.encoding = "utf-8"
         else:
             glocale.language = language
             if not glocale.lang:
                 glocale.lang = locale.normalize(glocale.language[0])
-                glocale.encoding = glocale.lang.split('.')[1]
-    LOG.debug("Ended check for languages with glocale.language %s", glocale.language)
+                glocale.encoding = glocale.lang.split(".")[1]
+        LOG.debug(
+            "Ended check for languages with glocale.language %s", glocale.language
+        )
 
-    if not glocale.collation:
-        glocale.collation = locale.getlocale(locale.LC_COLLATE)[0] or glocale.lang
-    if not glocale.calendar:
+    def _force_encoding(glocale):
+        LOG.debug("Forcing locale encoding to UTF-8")
+        glocale.lang = ".".join([glocale.lang.split(".")[0], "UTF-8"])
+        try:
+            locale.setlocale(locale.LC_ALL, glocale.lang)
+        except locale.Error:
+            LOG.debug("Attempt failed, locale %s unsupported", glocale.lang)
+
+    def _set_calendar_from_translation(glocale):
         time = locale.getlocale(locale.LC_TIME)[0]
         if glocale.check_available_translations(time):
             glocale.calendar = time
         else:
             glocale.calendar = glocale.lang[:5]
 
-    if not glocale.currency:
-        glocale.currency = locale.getlocale(locale.LC_MONETARY)[0] or glocale.lang
+    # The action starts here
+    _set_from_environment(glocale)
+    if not glocale.lang:
+        LOG.debug("Setting from the environment didn't work out, checking " "defaults")
+        (glocale.lang, glocale.calendar) = _mac_get_locale()
 
-    glocale.numeric = locale.getlocale(locale.LC_NUMERIC)[0] or glocale.lang
+    glocale.coll_qualifier = None
+    glocale.collation = _mac_get_collation()
+
+    if not glocale.lang and glocale.collation:
+        coll_parts = glocale.collation.split("@")
+        glocale.lang = glocale.check_available_translations(coll_parts[0])
+
+    if not glocale.lang:
+        glocale.lang = "en_US.UTF-8"
+
+    glocale.lang = locale.normalize(glocale.lang)
+    if not glocale.lang.split(".")[1].lower() in ["utf8", "utf-8"]:
+        _force_encoding(glocale)
+    glocale.encoding = glocale.lang.split(".")[1]
+    if not glocale.language:
+        _find_language(glocale)
+    if not glocale.collation:
+        glocale.collation = locale.getlocale(locale.LC_COLLATE)[0] or glocale.lang
+    if not glocale.calendar:
+        _set_calendar_from_translation(glocale)

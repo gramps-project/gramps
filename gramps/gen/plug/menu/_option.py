@@ -23,18 +23,19 @@
 The base option class for all other option classes.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...utils.callback import Callback
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Option class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Option(Callback):
     """
     This class serves as a base class for all options. All Options must
@@ -42,8 +43,7 @@ class Option(Callback):
     to add additional functionality.
     """
 
-    __signals__ = { 'value-changed' : None,
-                    'avail-changed' : None}
+    __signals__ = {"value-changed": None, "avail-changed": None}
 
     def __init__(self, label, value):
         """
@@ -98,7 +98,7 @@ class Option(Callback):
         :return: nothing
         """
         self.__value = value
-        self.emit('value-changed')
+        self.emit("value-changed")
 
     def get_help(self):
         """
@@ -132,7 +132,7 @@ class Option(Callback):
         """
         if avail != self.__available:
             self.__available = avail
-            self.emit('avail-changed')
+            self.emit("avail-changed")
 
     def get_available(self):
         """

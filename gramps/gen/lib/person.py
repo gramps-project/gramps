@@ -25,37 +25,48 @@
 Person object for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .primaryobj import PrimaryObject
-from .citationbase import CitationBase
-from .notebase import NoteBase
-from .mediabase import MediaBase
-from .attrbase import AttributeBase
-from .addressbase import AddressBase
-from .ldsordbase import LdsOrdBase
-from .urlbase import UrlBase
-from .tagbase import TagBase
-from .name import Name
-from .eventref import EventRef
-from .personref import PersonRef
-from .attrtype import AttributeType
-from .eventroletype import EventRoleType
-from .attribute import Attribute
-from .const import IDENTICAL, EQUAL, DIFFERENT
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .addressbase import AddressBase
+from .attrbase import AttributeBase
+from .attribute import Attribute
+from .attrtype import AttributeType
+from .citationbase import CitationBase
+from .const import DIFFERENT, EQUAL, IDENTICAL
+from .eventbase import EventBase
+from .eventref import EventRef
+from .ldsordbase import LdsOrdBase
+from .mediabase import MediaBase
+from .name import Name
+from .notebase import NoteBase
+from .personref import PersonRef
+from .primaryobj import PrimaryObject
+from .tagbase import TagBase
+from .urlbase import UrlBase
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# Person class
+# Person
 #
-#-------------------------------------------------------------------------
-class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
-             AddressBase, UrlBase, LdsOrdBase, PrimaryObject):
+# -------------------------------------------------------------------------
+class Person(
+    CitationBase,
+    NoteBase,
+    EventBase,
+    AttributeBase,
+    MediaBase,
+    AddressBase,
+    UrlBase,
+    LdsOrdBase,
+    PrimaryObject,
+):
     """
     The Person record is the Gramps in-memory representation of an
     individual person. It contains all the information related to
@@ -73,6 +84,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
 
     """
 
+    OTHER = 3
     UNKNOWN = 2
     MALE = 1
     FEMALE = 0
@@ -88,12 +100,12 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         CitationBase.__init__(self)
         NoteBase.__init__(self)
         MediaBase.__init__(self)
+        EventBase.__init__(self)
         AttributeBase.__init__(self)
         AddressBase.__init__(self)
         UrlBase.__init__(self)
         LdsOrdBase.__init__(self)
         self.primary_name = Name()
-        self.event_ref_list = []
         self.family_list = []
         self.parent_family_list = []
         self.alternate_names = []
@@ -133,28 +145,28 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         :rtype: tuple
         """
         return (
-            self.handle,                                         #  0
-            self.gramps_id,                                      #  1
-            self.__gender,                                       #  2
-            self.primary_name.serialize(),                       #  3
-            [name.serialize() for name in self.alternate_names], #  4
-            self.death_ref_index,                                #  5
-            self.birth_ref_index,                                #  6
-            [er.serialize() for er in self.event_ref_list],      #  7
-            self.family_list,                                    #  8
-            self.parent_family_list,                             #  9
-            MediaBase.serialize(self),                           # 10
-            AddressBase.serialize(self),                         # 11
-            AttributeBase.serialize(self),                       # 12
-            UrlBase.serialize(self),                             # 13
-            LdsOrdBase.serialize(self),                          # 14
-            CitationBase.serialize(self),                        # 15
-            NoteBase.serialize(self),                            # 16
-            self.change,                                         # 17
-            TagBase.serialize(self),                             # 18
-            self.private,                                        # 19
-            [pr.serialize() for pr in self.person_ref_list]      # 20
-            )
+            self.handle,  #  0
+            self.gramps_id,  #  1
+            self.__gender,  #  2
+            self.primary_name.serialize(),  #  3
+            [name.serialize() for name in self.alternate_names],  #  4
+            self.death_ref_index,  #  5
+            self.birth_ref_index,  #  6
+            EventBase.serialize(self),  #  7
+            self.family_list,  #  8
+            self.parent_family_list,  #  9
+            MediaBase.serialize(self),  # 10
+            AddressBase.serialize(self),  # 11
+            AttributeBase.serialize(self),  # 12
+            UrlBase.serialize(self),  # 13
+            LdsOrdBase.serialize(self),  # 14
+            CitationBase.serialize(self),  # 15
+            NoteBase.serialize(self),  # 16
+            self.change,  # 17
+            TagBase.serialize(self),  # 18
+            self.private,  # 19
+            [pr.serialize() for pr in self.person_ref_list],  # 20
+        )
 
     @classmethod
     def get_schema(cls):
@@ -164,78 +176,102 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
-        from .mediaref import MediaRef
+        # pylint: disable=import-outside-toplevel
         from .address import Address
-        from .url import Url
         from .ldsord import LdsOrd
+        from .mediaref import MediaRef
+        from .url import Url
+
         return {
             "type": "object",
             "title": _("Person"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "handle": {"type": "string",
-                           "maxLength": 50,
-                           "title": _("Handle")},
-                "gramps_id": {"type": "string",
-                              "title": _("Gramps ID")},
-                "gender": {"type": "integer",
-                           "minimum": 0,
-                           "maximum": 2,
-                           "title": _("Gender")},
+                "handle": {"type": "string", "maxLength": 50, "title": _("Handle")},
+                "gramps_id": {"type": "string", "title": _("Gramps ID")},
+                "gender": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 2,
+                    "title": _("Gender"),
+                },
                 "primary_name": Name.get_schema(),
-                "alternate_names": {"type": "array",
-                                    "items": Name.get_schema(),
-                                    "title": _("Alternate names")},
-                "death_ref_index": {"type": "integer",
-                                    "title": _("Death reference index")},
-                "birth_ref_index": {"type": "integer",
-                                    "title": _("Birth reference index")},
-                "event_ref_list": {"type": "array",
-                                   "items": EventRef.get_schema(),
-                                   "title": _("Event references")},
-                "family_list": {"type": "array",
-                                "items": {"type": "string",
-                                          "maxLength": 50},
-                                "title": _("Families")},
-                "parent_family_list": {"type": "array",
-                                       "items": {"type": "string",
-                                                 "maxLength": 50},
-                                       "title": _("Parent families")},
-                "media_list": {"type": "array",
-                               "items": MediaRef.get_schema(),
-                               "title": _("Media")},
-                "address_list": {"type": "array",
-                                 "items": Address.get_schema(),
-                                 "title": _("Addresses")},
-                "attribute_list": {"type": "array",
-                                   "items": Attribute.get_schema(),
-                                   "title": _("Attributes")},
-                "urls": {"type": "array",
-                         "items": Url.get_schema(),
-                         "title": _("Urls")},
-                "lds_ord_list": {"type": "array",
-                                 "items": LdsOrd.get_schema(),
-                                 "title": _("LDS ordinances")},
-                "citation_list": {"type": "array",
-                                  "items": {"type": "string",
-                                            "maxLength": 50},
-                                  "title": _("Citations")},
-                "note_list": {"type": "array",
-                              "items": {"type": "string",
-                                        "maxLength": 50},
-                              "title": _("Notes")},
-                "change": {"type": "integer",
-                           "title": _("Last changed")},
-                "tag_list": {"type": "array",
-                             "items": {"type": "string",
-                                       "maxLength": 50},
-                             "title": _("Tags")},
-                "private": {"type": "boolean",
-                            "title": _("Private")},
-                "person_ref_list": {"type": "array",
-                                    "items": PersonRef.get_schema(),
-                                    "title": _("Person references")}
-            }
+                "alternate_names": {
+                    "type": "array",
+                    "items": Name.get_schema(),
+                    "title": _("Alternate names"),
+                },
+                "death_ref_index": {
+                    "type": "integer",
+                    "title": _("Death reference index"),
+                },
+                "birth_ref_index": {
+                    "type": "integer",
+                    "title": _("Birth reference index"),
+                },
+                "event_ref_list": {
+                    "type": "array",
+                    "items": EventRef.get_schema(),
+                    "title": _("Event references"),
+                },
+                "family_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Families"),
+                },
+                "parent_family_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Parent families"),
+                },
+                "media_list": {
+                    "type": "array",
+                    "items": MediaRef.get_schema(),
+                    "title": _("Media"),
+                },
+                "address_list": {
+                    "type": "array",
+                    "items": Address.get_schema(),
+                    "title": _("Addresses"),
+                },
+                "attribute_list": {
+                    "type": "array",
+                    "items": Attribute.get_schema(),
+                    "title": _("Attributes"),
+                },
+                "urls": {
+                    "type": "array",
+                    "items": Url.get_schema(),
+                    "title": _("Urls"),
+                },
+                "lds_ord_list": {
+                    "type": "array",
+                    "items": LdsOrd.get_schema(),
+                    "title": _("LDS ordinances"),
+                },
+                "citation_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Citations"),
+                },
+                "note_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Notes"),
+                },
+                "change": {"type": "integer", "title": _("Last changed")},
+                "tag_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Tags"),
+                },
+                "private": {"type": "boolean", "title": _("Private")},
+                "person_ref_list": {
+                    "type": "array",
+                    "items": PersonRef.get_schema(),
+                    "title": _("Person references"),
+                },
+            },
         }
 
     def unserialize(self, data):
@@ -247,37 +283,35 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
                      Person object
         :type data: tuple
         """
-        (self.handle,             #  0
-         self.gramps_id,          #  1
-         self.__gender,           #  2
-         primary_name,            #  3
-         alternate_names,         #  4
-         self.death_ref_index,    #  5
-         self.birth_ref_index,    #  6
-         event_ref_list,          #  7
-         self.family_list,        #  8
-         self.parent_family_list, #  9
-         media_list,              # 10
-         address_list,            # 11
-         attribute_list,          # 12
-         urls,                    # 13
-         lds_ord_list,            # 14
-         citation_list,           # 15
-         note_list,               # 16
-         self.change,             # 17
-         tag_list,                # 18
-         self.private,            # 19
-         person_ref_list,         # 20
+        (
+            self.handle,  #  0
+            self.gramps_id,  #  1
+            self.__gender,  #  2
+            primary_name,  #  3
+            alternate_names,  #  4
+            self.death_ref_index,  #  5
+            self.birth_ref_index,  #  6
+            event_ref_list,  #  7
+            self.family_list,  #  8
+            self.parent_family_list,  #  9
+            media_list,  # 10
+            address_list,  # 11
+            attribute_list,  # 12
+            urls,  # 13
+            lds_ord_list,  # 14
+            citation_list,  # 15
+            note_list,  # 16
+            self.change,  # 17
+            tag_list,  # 18
+            self.private,  # 19
+            person_ref_list,  # 20
         ) = data
 
         self.primary_name = Name()
         self.primary_name.unserialize(primary_name)
-        self.alternate_names = [Name().unserialize(name)
-                                for name in alternate_names]
-        self.event_ref_list = [EventRef().unserialize(er)
-                               for er in event_ref_list]
-        self.person_ref_list = [PersonRef().unserialize(pr)
-                                for pr in person_ref_list]
+        self.alternate_names = [Name().unserialize(name) for name in alternate_names]
+        self.person_ref_list = [PersonRef().unserialize(pr) for pr in person_ref_list]
+        EventBase.unserialize(self, event_ref_list)
         MediaBase.unserialize(self, media_list)
         LdsOrdBase.unserialize(self, lds_ord_list)
         AddressBase.unserialize(self, address_list)
@@ -301,36 +335,41 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
                   this object type.
         :rtype: bool
         """
-        if classname == 'Event':
-            return any(ref.ref == handle for ref in self.event_ref_list)
-        elif classname == 'Person':
+        if classname == "Event":
+            return self._has_event_reference(handle)
+        if classname == "Person":
             return any(ref.ref == handle for ref in self.person_ref_list)
-        elif classname == 'Family':
-            return any(ref == handle
-                       for ref in self.family_list + self.parent_family_list +
-                       [ordinance.famc for ordinance in self.lds_ord_list])
-        elif classname == 'Place':
-            return any(ordinance.place == handle
-                       for ordinance in self.lds_ord_list)
+        if classname == "Family":
+            return any(
+                ref == handle
+                for ref in self.family_list
+                + self.parent_family_list
+                + [ordinance.famc for ordinance in self.lds_ord_list]
+            )
+        if classname == "Place":
+            return any(ordinance.place == handle for ordinance in self.lds_ord_list)
         return False
 
     def _remove_handle_references(self, classname, handle_list):
-        if classname == 'Event':
+        if classname == "Event":
             # Keep a copy of the birth and death references
             birth_ref = self.get_birth_ref()
             death_ref = self.get_death_ref()
 
-            new_list = [ref for ref in self.event_ref_list
-                        if ref.ref not in handle_list]
+            new_list = [
+                ref for ref in self.event_ref_list if ref.ref not in handle_list
+            ]
             # If deleting removing the reference to the event
             # to which birth or death ref_index points, unset the index
-            if (self.birth_ref_index != -1
-                    and self.event_ref_list[self.birth_ref_index].ref
-                    in handle_list):
+            if (
+                self.birth_ref_index != -1
+                and self.event_ref_list[self.birth_ref_index].ref in handle_list
+            ):
                 self.set_birth_ref(None)
-            if (self.death_ref_index != -1
-                    and self.event_ref_list[self.death_ref_index].ref
-                    in handle_list):
+            if (
+                self.death_ref_index != -1
+                and self.event_ref_list[self.death_ref_index].ref in handle_list
+            ):
                 self.set_death_ref(None)
             self.event_ref_list = new_list
 
@@ -339,33 +378,38 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
                 self.set_birth_ref(birth_ref)
             if self.death_ref_index != -1:
                 self.set_death_ref(death_ref)
-        elif classname == 'Person':
-            new_list = [ref for ref in self.person_ref_list
-                        if ref.ref not in handle_list]
+        elif classname == "Person":
+            new_list = [
+                ref for ref in self.person_ref_list if ref.ref not in handle_list
+            ]
             self.person_ref_list = new_list
-        elif classname == 'Family':
-            new_list = [handle for handle in self.family_list
-                        if handle not in handle_list]
+        elif classname == "Family":
+            new_list = [
+                handle for handle in self.family_list if handle not in handle_list
+            ]
             self.family_list = new_list
-            new_list = [handle for handle in self.parent_family_list
-                        if handle not in handle_list]
+            new_list = [
+                handle
+                for handle in self.parent_family_list
+                if handle not in handle_list
+            ]
             self.parent_family_list = new_list
             for ordinance in self.lds_ord_list:
                 if ordinance.famc in handle_list:
                     ordinance.famc = None
-        elif classname == 'Place':
+        elif classname == "Place":
             for ordinance in self.lds_ord_list:
                 if ordinance.place in handle_list:
                     ordinance.place = None
 
     def _replace_handle_reference(self, classname, old_handle, new_handle):
-        if classname == 'Event':
+        if classname == "Event":
             refs_list = [ref.ref for ref in self.event_ref_list]
             new_ref = None
             if new_handle in refs_list:
                 new_ref = self.event_ref_list[refs_list.index(new_handle)]
             n_replace = refs_list.count(old_handle)
-            for ix_replace in range(n_replace):
+            for _ in range(n_replace):
                 idx = refs_list.index(old_handle)
                 self.event_ref_list[idx].ref = new_handle
                 refs_list[idx] = new_handle
@@ -389,13 +433,13 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
                             self.death_ref_index = -1
                             # death_ref_index should be recalculated which
                             # needs database access!
-        elif classname == 'Person':
+        elif classname == "Person":
             refs_list = [ref.ref for ref in self.person_ref_list]
             new_ref = None
             if new_handle in refs_list:
                 new_ref = self.person_ref_list[refs_list.index(new_handle)]
             n_replace = refs_list.count(old_handle)
-            for ix_replace in range(n_replace):
+            for _ in range(n_replace):
                 idx = refs_list.index(old_handle)
                 self.person_ref_list[idx].ref = new_handle
                 refs_list[idx] = new_handle
@@ -407,24 +451,24 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
                             new_ref.merge(person_ref)
                         self.person_ref_list.pop(idx)
                         refs_list.pop(idx)
-        elif classname == 'Family':
+        elif classname == "Family":
             while old_handle in self.family_list:
-                ix = self.family_list.index(old_handle)
-                self.family_list[ix] = new_handle
+                idx = self.family_list.index(old_handle)
+                self.family_list[idx] = new_handle
             while old_handle in self.parent_family_list:
-                ix = self.parent_family_list.index(old_handle)
-                self.parent_family_list[ix] = new_handle
+                idx = self.parent_family_list.index(old_handle)
+                self.parent_family_list[idx] = new_handle
             handle_list = [ordinance.famc for ordinance in self.lds_ord_list]
             while old_handle in handle_list:
-                ix = handle_list.index(old_handle)
-                self.lds_ord_list[ix].famc = new_handle
-                handle_list[ix] = ''
+                idx = handle_list.index(old_handle)
+                self.lds_ord_list[idx].famc = new_handle
+                handle_list[idx] = ""
         elif classname == "Place":
             handle_list = [ordinance.place for ordinance in self.lds_ord_list]
             while old_handle in handle_list:
-                ix = handle_list.index(old_handle)
-                self.lds_ord_list[ix].place = new_handle
-                handle_list[ix] = ''
+                idx = handle_list.index(old_handle)
+                self.lds_ord_list[idx].place = new_handle
+                handle_list[idx] = ""
 
     def get_text_data_list(self):
         """
@@ -444,16 +488,17 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         """
         check_list = self.lds_ord_list
         add_list = [_f for _f in check_list if _f]
-        return ([self.primary_name] +
-                self.media_list +
-                self.alternate_names +
-                self.address_list +
-                self.attribute_list +
-                self.urls +
-                self.event_ref_list +
-                add_list +
-                self.person_ref_list
-               )
+        return (
+            [self.primary_name]
+            + self.media_list
+            + self.alternate_names
+            + self.address_list
+            + self.attribute_list
+            + self.urls
+            + self.event_ref_list
+            + add_list
+            + self.person_ref_list
+        )
 
     def get_citation_child_list(self):
         """
@@ -463,15 +508,16 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
                   refer citations.
         :rtype: list
         """
-        return ([self.primary_name] +
-                self.media_list +
-                self.alternate_names +
-                self.address_list +
-                self.attribute_list +
-                self.lds_ord_list +
-                self.person_ref_list +
-                self.event_ref_list
-               )
+        return (
+            [self.primary_name]
+            + self.media_list
+            + self.alternate_names
+            + self.address_list
+            + self.attribute_list
+            + self.lds_ord_list
+            + self.person_ref_list
+            + self.event_ref_list
+        )
 
     def get_note_child_list(self):
         """
@@ -481,15 +527,16 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
                   refer notes.
         :rtype: list
         """
-        return ([self.primary_name] +
-                self.media_list +
-                self.alternate_names +
-                self.address_list +
-                self.attribute_list +
-                self.lds_ord_list +
-                self.person_ref_list +
-                self.event_ref_list
-               )
+        return (
+            [self.primary_name]
+            + self.media_list
+            + self.alternate_names
+            + self.address_list
+            + self.attribute_list
+            + self.lds_ord_list
+            + self.person_ref_list
+            + self.event_ref_list
+        )
 
     def get_referenced_handles(self):
         """
@@ -499,12 +546,14 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        return [('Family', handle) for handle in
-                (self.family_list + self.parent_family_list)] + (
-                    self.get_referenced_note_handles() +
-                    self.get_referenced_citation_handles() +
-                    self.get_referenced_tag_handles()
-                )
+        return [
+            ("Family", handle)
+            for handle in (self.family_list + self.parent_family_list)
+        ] + (
+            self.get_referenced_note_handles()
+            + self.get_referenced_citation_handles()
+            + self.get_referenced_tag_handles()
+        )
 
     def get_handle_referents(self):
         """
@@ -514,15 +563,16 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
-        return ([self.primary_name] +
-                self.media_list +
-                self.alternate_names +
-                self.address_list +
-                self.attribute_list +
-                self.lds_ord_list +
-                self.person_ref_list +
-                self.event_ref_list
-               )
+        return (
+            [self.primary_name]
+            + self.media_list
+            + self.alternate_names
+            + self.address_list
+            + self.attribute_list
+            + self.lds_ord_list
+            + self.person_ref_list
+            + self.event_ref_list
+        )
 
     def merge(self, acquisition):
         """
@@ -552,8 +602,12 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         self._merge_citation_list(acquisition)
         self._merge_tag_list(acquisition)
 
-        list(map(self.add_parent_family_handle,
-                 acquisition.get_parent_family_handle_list()))
+        list(
+            map(
+                self.add_parent_family_handle,
+                acquisition.get_parent_family_handle_list(),
+            )
+        )
         list(map(self.add_family_handle, acquisition.get_family_handle_list()))
 
     def set_primary_name(self, name):
@@ -611,7 +665,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
                 equi = name.is_equivalent(addendum)
                 if equi == IDENTICAL:
                     break
-                elif equi == EQUAL:
+                if equi == EQUAL:
                     name.merge(addendum)
                     break
             else:
@@ -627,13 +681,19 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         self.alternate_names.append(name)
 
     def get_nick_name(self):
+        """
+        Return the person nick name if available.
+
+        :returns: Returns the nick name
+        :rtype: str
+        """
         for name in [self.get_primary_name()] + self.get_alternate_names():
             if name.get_nick_name():
                 return name.get_nick_name()
         for attr in self.attribute_list:
             if int(attr.type) == AttributeType.NICKNAME:
                 return attr.get_value()
-        return ''
+        return ""
 
     def set_gender(self, gender):
         """
@@ -644,11 +704,12 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
 
                        - Person.MALE
                        - Person.FEMALE
+                       - Person.OTHER
                        - Person.UNKNOWN
         :type gender: int
         """
-        if gender not in (Person.MALE, Person.FEMALE, Person.UNKNOWN):
-            raise ValueError('Attempt to assign invalid gender')
+        if gender not in (Person.MALE, Person.FEMALE, Person.OTHER, Person.UNKNOWN):
+            raise ValueError("Attempt to assign invalid gender")
         self.__gender = gender
 
     def get_gender(self):
@@ -659,13 +720,15 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
 
                   - Person.MALE
                   - Person.FEMALE
+                  - Person.OTHER
                   - Person.UNKNOWN
         :rtype: int
         """
         return self.__gender
 
-    gender = property(get_gender, set_gender, None,
-                      'Returns or sets the gender of the person')
+    gender = property(
+        get_gender, set_gender, None, "Returns or sets the gender of the person"
+    )
 
     def set_birth_ref(self, event_ref):
         """
@@ -687,10 +750,10 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         # check whether we already have this ref in the list
         for self.birth_ref_index, ref in enumerate(self.event_ref_list):
             if event_ref.is_equal(ref):
-                return    # Note: self.birth_ref_index already set
+                return  # Note: self.birth_ref_index already set
 
         self.event_ref_list.append(event_ref)
-        self.birth_ref_index = len(self.event_ref_list)-1
+        self.birth_ref_index = len(self.event_ref_list) - 1
 
     def set_death_ref(self, event_ref):
         """
@@ -712,10 +775,10 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         # check whether we already have this ref in the list
         for self.death_ref_index, ref in enumerate(self.event_ref_list):
             if event_ref.is_equal(ref):
-                return    # Note: self.death_ref_index already set
+                return  # Note: self.death_ref_index already set
 
         self.event_ref_list.append(event_ref)
-        self.death_ref_index = len(self.event_ref_list)-1
+        self.death_ref_index = len(self.event_ref_list) - 1
 
     def get_birth_ref(self):
         """
@@ -731,8 +794,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
 
         if 0 <= self.birth_ref_index < len(self.event_ref_list):
             return self.event_ref_list[self.birth_ref_index]
-        else:
-            return None
+        return None
 
     def get_death_ref(self):
         """
@@ -748,63 +810,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
 
         if 0 <= self.death_ref_index < len(self.event_ref_list):
             return self.event_ref_list[self.death_ref_index]
-        else:
-            return None
-
-    def add_event_ref(self, event_ref):
-        """
-        Add the :class:`~.eventref.EventRef` to the Person instance's
-        :class:`~.eventref.EventRef` list.
-
-        This is accomplished by assigning the :class:`~.eventref.EventRef` of a
-        valid :class:`~.event.Event` in the current database.
-
-        :param event_ref: the :class:`~.eventref.EventRef` to be added to the
-                          Person's :class:`~.eventref.EventRef` list.
-        :type event_ref: EventRef
-        """
-        if event_ref and not isinstance(event_ref, EventRef):
-            raise ValueError("Expecting EventRef instance")
-
-        # check whether we already have this ref in the list
-        if not any(event_ref.is_equal(ref) for ref in self.event_ref_list):
-            self.event_ref_list.append(event_ref)
-
-    def get_event_ref_list(self):
-        """
-        Return the list of :class:`~.eventref.EventRef` objects associated with
-        :class:`~.event.Event` instances.
-
-        :returns: Returns the list of :class:`~.eventref.EventRef` objects
-                  associated with the Person instance.
-        :rtype: list
-        """
-        return self.event_ref_list
-
-    def get_primary_event_ref_list(self):
-        """
-        Return the list of :class:`~.eventref.EventRef` objects associated with
-        :class:`~.event.Event` instances that have been marked as primary
-        events.
-
-        :returns: Returns generator of :class:`~.eventref.EventRef` objects
-                  associated with the Person instance.
-        :rtype: generator
-        """
-        return (ref for ref in self.event_ref_list
-                if ref.get_role() == EventRoleType.PRIMARY
-               )
-
-    def set_event_ref_list(self, event_ref_list):
-        """
-        Set the Person instance's :class:`~.eventref.EventRef` list to the
-        passed list.
-
-        :param event_ref_list: List of valid :class:`~.eventref.EventRef`
-                               objects.
-        :type event_ref_list: list
-        """
-        self.event_ref_list = event_ref_list
+        return None
 
     def _merge_event_ref_list(self, acquisition):
         """
@@ -820,16 +826,14 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
                 equi = eventref.is_equivalent(addendum)
                 if equi == IDENTICAL:
                     break
-                elif equi == EQUAL:
+                if equi == EQUAL:
                     eventref.merge(addendum)
                     break
             else:
                 self.event_ref_list.append(addendum)
-                if (self.birth_ref_index == -1 and
-                        idx == acquisition.birth_ref_index):
+                if self.birth_ref_index == -1 and idx == acquisition.birth_ref_index:
                     self.birth_ref_index = len(self.event_ref_list) - 1
-                if (self.death_ref_index == -1 and
-                        idx == acquisition.death_ref_index):
+                if self.death_ref_index == -1 and idx == acquisition.death_ref_index:
                     self.death_ref_index = len(self.event_ref_list) - 1
 
     def add_family_handle(self, family_handle):
@@ -877,8 +881,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
             self.family_list.remove(family_handle)
             self.family_list = [family_handle] + self.family_list
             return True
-        else:
-            return False
+        return False
 
     def get_family_handle_list(self):
         """
@@ -928,8 +931,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         if family_handle in self.family_list:
             self.family_list.remove(family_handle)
             return True
-        else:
-            return False
+        return False
 
     def get_parent_family_handle_list(self):
         """
@@ -974,7 +976,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         :type family_handle: str
         """
         if not isinstance(family_handle, str):
-            raise ValueError("Expecting handle, obtained %s" % str(family_handle))
+            raise ValueError(f"Expecting handle, obtained {family_handle}")
         if family_handle not in self.parent_family_list:
             self.parent_family_list.append(family_handle)
 
@@ -1005,8 +1007,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         if family_handle in self.parent_family_list:
             self.parent_family_list.remove(family_handle)
             return True
-        else:
-            return False
+        return False
 
     def set_main_parent_family_handle(self, family_handle):
         """
@@ -1027,8 +1028,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
             self.parent_family_list.remove(family_handle)
             self.parent_family_list = [family_handle] + self.parent_family_list
             return True
-        else:
-            return False
+        return False
 
     def get_main_parents_family_handle(self):
         """
@@ -1041,8 +1041,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         """
         if self.parent_family_list:
             return self.parent_family_list[0]
-        else:
-            return None
+        return None
 
     def add_person_ref(self, person_ref):
         """
@@ -1091,7 +1090,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
                 equi = personref.is_equivalent(addendum)
                 if equi == IDENTICAL:
                     break
-                elif equi == EQUAL:
+                if equi == EQUAL:
                     personref.merge(addendum)
                     break
             else:

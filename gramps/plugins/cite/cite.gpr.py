@@ -1,8 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2008       Steve Hall
-# Copyright (C) 2008       Stephen George
+# Copyright (C) 2022       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,32 +17,27 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-import sys
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 
-fn = sys.argv[1]
-f = open(fn,"w")
+_ = glocale.translation.gettext
 
-f.write('[tests]\n')
+MODULE_VERSION = "5.3"
 
-try:
-    from gi.repository import Gtk
-    f.write('gtk=yes\n')
-    f.write('gtkver=%d.%d.%d\n' % Gtk.gtk_version)
-    f.write('pygtk=yes\n')
-    f.write('pygtkver=%d.%d.%d\n' % Gtk.pygtk_version)
-except ImportError:
-    f.write('gtk=no\n')
-    f.write('gtkver=no\n')
-    f.write('pygtk=no\n')
-    f.write('pygtkver=no\n')
+# ------------------------------------------------------------------------
+#
+# Default citation formatters for Gramps
+#
+# ------------------------------------------------------------------------
 
-try:
-    import cairo
-    f.write('pycairo=yes\n')
-    #f.write('pycairover=%s\n' % cairo.version_info)
-    f.write('pycairover=%s\n' % str(cairo.version_info) )
-except ImportError:
-    f.write('pycairo=no\n')
-    f.write('pycairover=no\n')
-f.close()
-
+register(
+    CITE,
+    id="cite-legacy",
+    name=_("Legacy"),
+    description=_("Legacy citation formatter"),
+    version="1.0",
+    gramps_target_version=MODULE_VERSION,
+    status=STABLE,
+    fname="legacy.py",
+    authors=["The Gramps project"],
+    authors_email=["http://gramps-project.org"],
+)

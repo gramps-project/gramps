@@ -23,20 +23,20 @@
 Provide the database state class
 """
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import sys
 import logging
 import inspect
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from .db import DbReadBase
 from .proxy.proxybase import ProxyDbBase
 from .utils.callback import Callback
@@ -44,13 +44,14 @@ from .config import config
 from .db.dbconst import DBLOGNAME
 from .db.dummydb import DummyDb
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # set up logging
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 LOG = logging.getLogger(".dbstate")
 _LOG = logging.getLogger(DBLOGNAME)
+
 
 class DbState(Callback):
     """
@@ -58,9 +59,9 @@ class DbState(Callback):
     """
 
     __signals__ = {
-        'database-changed' : ((DbReadBase, ProxyDbBase), ),
-        'no-database' :  None,
-        }
+        "database-changed": ((DbReadBase, ProxyDbBase),),
+        "no-database": None,
+    }
 
     def __init__(self):
         """
@@ -91,9 +92,14 @@ class DbState(Callback):
             frame = inspect.currentframe()
             c_frame = frame.f_back
             c_code = c_frame.f_code
-            _LOG.debug('calling %s.%s()... from file %s, line %s in %s',
-                       class_name, func_name, c_code.co_filename,
-                       c_frame.f_lineno, c_code.co_name)
+            _LOG.debug(
+                "calling %s.%s()... from file %s, line %s in %s",
+                class_name,
+                func_name,
+                c_code.co_filename,
+                c_frame.f_lineno,
+                c_code.co_name,
+            )
         return (self.db is not None) and self.db.is_open()
 
     def change_database(self, database):
@@ -102,7 +108,7 @@ class DbState(Callback):
         Retained for backward compatibility.
         """
         if database:
-            self.emit('no-database', ())
+            self.emit("no-database", ())
             if self.is_open():
                 self.db.close()
             self.change_database_noclose(database)
@@ -113,33 +119,34 @@ class DbState(Callback):
         """
         self.db = database
         self.db.set_prefixes(
-            config.get('preferences.iprefix'),
-            config.get('preferences.oprefix'),
-            config.get('preferences.fprefix'),
-            config.get('preferences.sprefix'),
-            config.get('preferences.cprefix'),
-            config.get('preferences.pprefix'),
-            config.get('preferences.eprefix'),
-            config.get('preferences.rprefix'),
-            config.get('preferences.nprefix'))
+            config.get("preferences.iprefix"),
+            config.get("preferences.oprefix"),
+            config.get("preferences.fprefix"),
+            config.get("preferences.sprefix"),
+            config.get("preferences.cprefix"),
+            config.get("preferences.pprefix"),
+            config.get("preferences.eprefix"),
+            config.get("preferences.rprefix"),
+            config.get("preferences.nprefix"),
+        )
         self.open = True
 
     def signal_change(self):
         """
         Emits the database-changed signal with the new database
         """
-        self.emit('database-changed', (self.db, ))
+        self.emit("database-changed", (self.db,))
 
     def no_database(self):
         """
         Closes the database without a new database (except for the DummyDb)
         """
-        self.emit('no-database', ())
+        self.emit("no-database", ())
         if self.is_open():
             self.db.close()
         self.db = DummyDb()
         self.open = False
-        self.emit('database-changed', (self.db, ))
+        self.emit("database-changed", (self.db,))
 
     def get_database(self):
         """
@@ -168,7 +175,7 @@ class DbState(Callback):
         """
         self.stack.append(self.db)
         self.db = proxy(self.db, *args, **kwargs)
-        self.emit('database-changed', (self.db, ))
+        self.emit("database-changed", (self.db,))
 
     def pop_proxy(self):
         """
@@ -180,4 +187,4 @@ class DbState(Callback):
         >>> dbstate.pop_proxy()
         """
         self.db = self.stack.pop()
-        self.emit('database-changed', (self.db, ))
+        self.emit("database-changed", (self.db,))

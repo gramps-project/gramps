@@ -774,6 +774,7 @@
       <name type="Birth Name">
         <first>Amber Marie</first>
         <surname>Smith</surname>
+        <call>Marie</call>
       </name>
       <eventref hlink="_0000003100000031" role="Primary"/>
       <eventref hlink="_0000003300000033" role="Primary"/>

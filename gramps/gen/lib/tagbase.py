@@ -22,11 +22,12 @@
 TagBase class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# TagBase class
+# TagBase
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class TagBase:
     """
     Base class for tag-aware objects.
@@ -85,8 +86,7 @@ class TagBase:
         if tag in self.tag_list:
             self.tag_list.remove(tag)
             return True
-        else:
-            return False
+        return False
 
     def get_tag_list(self):
         """
@@ -116,7 +116,7 @@ class TagBase:
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        return [('Tag', handle) for handle in self.tag_list]
+        return [("Tag", handle) for handle in self.tag_list]
 
     def _merge_tag_list(self, acquisition):
         """
@@ -144,11 +144,10 @@ class TagBase:
         if new_handle in self.tag_list:
             new_ref = new_handle
         n_replace = refs_list.count(old_handle)
-        for ix_replace in range(n_replace):
+        for _ in range(n_replace):
             idx = refs_list.index(old_handle)
             if new_ref:
                 self.tag_list.pop(idx)
                 refs_list.pop(idx)
             else:
                 self.tag_list[idx] = new_handle
-

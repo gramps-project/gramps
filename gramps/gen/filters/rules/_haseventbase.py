@@ -18,51 +18,53 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
-#
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-from ...const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+"""
+Rule that checks for an event with a particular value.
+"""
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+from ...const import GRAMPS_LOCALE as glocale
 from ...datehandler import parser
-from ...lib.eventtype import EventType
-from . import Rule
-from ...utils.db import get_participant_from_event
 from ...display.place import displayer as place_displayer
+from ...lib.eventtype import EventType
+from ...utils.db import get_participant_from_event
+from . import Rule
 
-#-------------------------------------------------------------------------
+_ = glocale.translation.gettext
+
+
+# -------------------------------------------------------------------------
 #
 # HasEventBase
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasEventBase(Rule):
-    """Rule that checks for an event with a particular value."""
+    """
+    Rule that checks for an event with a particular value.
+    """
 
-
-    labels = [ 'Event type:',
-                    'Date:',
-                    'Place:',
-                    'Description:',
-                    'Main Participants:' ]
-    name = 'Events matching parameters'
+    labels = ["Event type:", "Date:", "Place:", "Description:", "Main Participants:"]
+    name = "Events matching parameters"
     description = "Matches events with particular parameters"
-    category = _('Event filters')
+    category = _("Event filters")
     allow_regex = True
 
-    def prepare(self, db, user):
+    def __init__(self, arg, use_regex=False, use_case=False):
+        super().__init__(arg, use_regex, use_case)
         self.date = None
+        self.event_type = None
+
+    def prepare(self, db, user):
+        """
+        Prepare the rule. Things that should only be done once.
+        """
         if self.list[0]:
-            self.etype = EventType()
-            self.etype.set_from_xml_str(self.list[0])
-        else:
-            self.etype = None
+            self.event_type = EventType()
+            self.event_type.set_from_xml_str(self.list[0])
         try:
             if self.list[1]:
                 self.date = parser.parse(self.list[1])
@@ -70,11 +72,14 @@ class HasEventBase(Rule):
             pass
 
     def apply(self, db, event):
-        if self.etype:
-            if self.etype.is_custom() and self.use_regex:
+        """
+        Apply the rule. Return True if a match.
+        """
+        if self.event_type:
+            if self.event_type.is_custom() and self.use_regex:
                 if self.regex[0].search(str(event.type)) is None:
                     return False
-            elif event.type != self.etype:
+            elif event.type != self.event_type:
                 return False
 
         if not self.match_substring(3, event.get_description()):
@@ -94,8 +99,9 @@ class HasEventBase(Rule):
             else:
                 return False
 
-        if not self.match_substring(4,
-                get_participant_from_event(db, event.get_handle(), all_=True)):
+        if not self.match_substring(
+            4, get_participant_from_event(db, event.get_handle(), all_=True)
+        ):
             return False
 
         return True

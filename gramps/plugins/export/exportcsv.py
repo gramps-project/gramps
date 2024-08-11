@@ -25,32 +25,34 @@
 
 "Export to CSV Spreadsheet."
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python Modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import os
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 import csv
 from io import StringIO
 import codecs
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Set up logging
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import logging
 from collections import abc
+
 LOG = logging.getLogger(".ExportCSV")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.config import config
 from gramps.gen.lib import EventType, Person
 from gramps.gen.lib.eventroletype import EventRoleType
@@ -61,20 +63,22 @@ from gramps.gen.display.place import displayer as _pd
 from gramps.gui.glade import Glade
 from gramps.gen.constfunc import win
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # The function that does the exporting
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def exportData(database, filename, user, option_box=None):
     gw = CSVWriter(database, filename, user, option_box)
     return gw.export_data()
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Support Functions
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def sortable_string_representation(text):
     numeric = ""
     alpha = ""
@@ -84,6 +88,7 @@ def sortable_string_representation(text):
         else:
             alpha += s
     return alpha + (("0" * 10) + numeric)[-10:]
+
 
 def get_primary_event_ref_from_type(db, person, event_name):
     """
@@ -96,6 +101,7 @@ def get_primary_event_ref_from_type(db, person, event_name):
                 return ref
     return None
 
+
 def get_primary_source_title(db, obj):
     for citation_handle in obj.get_citation_list():
         citation = db.get_citation_from_handle(citation_handle)
@@ -104,20 +110,23 @@ def get_primary_source_title(db, obj):
             return source.get_title()
     return ""
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # CSVWriter Options
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class CSVWriterOptionBox(WriterOptionBox):
     """
     Create a VBox with the option widgets and define methods to retrieve
     the options.
 
     """
+
     def __init__(self, person, dbstate, uistate, track=[], window=None):
-        WriterOptionBox.__init__(self, person, dbstate, uistate, track=track,
-                                 window=window)
+        WriterOptionBox.__init__(
+            self, person, dbstate, uistate, track=track, window=window
+        )
         ## TODO: add place filter selection
         self.include_individuals = 1
         self.include_marriages = 1
@@ -132,6 +141,7 @@ class CSVWriterOptionBox(WriterOptionBox):
 
     def get_option_box(self):
         from gi.repository import Gtk
+
         option_box = WriterOptionBox.get_option_box(self)
 
         self.include_individuals_check = Gtk.CheckButton(label=_("Include people"))
@@ -163,11 +173,12 @@ class CSVWriterOptionBox(WriterOptionBox):
             self.include_places = self.include_places_check.get_active()
             self.translate_headers = self.translate_headers_check.get_active()
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # CSVWriter class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class CSVWriter:
     def __init__(self, database, filename, user, option_box=None):
         self.db = database
@@ -214,7 +225,7 @@ class CSVWriter:
             if place:
                 if all([(x.ref in self.place_list) for x in place.placeref_list]):
                     self.place_list.append(place_list.pop(0))
-                else: # put at the back of the line:
+                else:  # put at the back of the line:
                     place_list.append(place_list.pop(0))
             else:
                 place_list.pop(0)
@@ -240,7 +251,7 @@ class CSVWriter:
 
     def update_real(self):
         self.count += 1
-        newval = int(100*self.count/self.total)
+        newval = int(100 * self.count / self.total)
         if newval != self.oldval:
             self.user.callback(newval)
             self.oldval = newval
@@ -252,20 +263,23 @@ class CSVWriter:
         self.g.writerow(items)
 
     def export_data(self):
-        self.dirname = os.path.dirname (self.filename)
+        self.dirname = os.path.dirname(self.filename)
         try:
-            self.fp = open(self.filename, "w",
-                           encoding='utf_8_sig' if win() else 'utf_8',
-                           newline='')
-            my_dialect = config.get('csv.dialect')
-            my_delimiter = config.get('csv.delimiter')
+            self.fp = open(
+                self.filename,
+                "w",
+                encoding="utf_8_sig" if win() else "utf_8",
+                newline="",
+            )
+            my_dialect = config.get("csv.dialect")
+            my_delimiter = config.get("csv.delimiter")
             if my_dialect == _("Custom"):
                 self.g = csv.writer(self.fp, delimiter=my_delimiter)
             else:
                 self.g = csv.writer(self.fp, dialect=my_dialect)
         except IOError as msg:
             msg2 = _("Could not create %s") % self.filename
-            self.user.notify_error(msg2,str(msg))
+            self.user.notify_error(msg2, str(msg))
             return False
         except:
             self.user.notify_error(_("Could not create %s") % self.filename)
@@ -289,13 +303,29 @@ class CSVWriter:
         ###########################
         if self.include_places:
             if self.translate_headers:
-                self.write_csv(_("Place"), _("Title"), _("Name"),
-                               _("Type"), _("Latitude"), _("Longitude"),
-                               _("Code"), _("Enclosed_by"), _("Date"))
+                self.write_csv(
+                    _("Place"),
+                    _("Title"),
+                    _("Name"),
+                    _("Type"),
+                    _("Latitude"),
+                    _("Longitude"),
+                    _("Code"),
+                    _("Enclosed_by"),
+                    _("Date"),
+                )
             else:
-                self.write_csv("Place", "Title", "Name",
-                               "Type", "Latitude", "Longitude",
-                               "Code", "Enclosed_by", "Date")
+                self.write_csv(
+                    "Place",
+                    "Title",
+                    "Name",
+                    "Type",
+                    "Latitude",
+                    "Longitude",
+                    "Code",
+                    "Enclosed_by",
+                    "Date",
+                )
             for key in self.place_list:
                 place = self.db.get_place_from_handle(key)
                 if place:
@@ -315,13 +345,29 @@ class CSVWriter:
                             placeref_id = ""
                             if placeref_obj:
                                 placeref_id = "[%s]" % placeref_obj.gramps_id
-                            self.write_csv("[%s]" % place_id, place_title, place_name, place_type,
-                                           place_latitude, place_longitude, place_code, placeref_id,
-                                           placeref_date)
+                            self.write_csv(
+                                "[%s]" % place_id,
+                                place_title,
+                                place_name,
+                                place_type,
+                                place_latitude,
+                                place_longitude,
+                                place_code,
+                                placeref_id,
+                                placeref_date,
+                            )
                     else:
-                        self.write_csv("[%s]" % place_id, place_title, place_name, place_type,
-                                       place_latitude, place_longitude, place_code, "",
-                                       "")
+                        self.write_csv(
+                            "[%s]" % place_id,
+                            place_title,
+                            place_name,
+                            place_type,
+                            place_latitude,
+                            place_longitude,
+                            place_code,
+                            "",
+                            "",
+                        )
                 self.update()
             self.writeln()
         ########################### sort:
@@ -340,41 +386,82 @@ class CSVWriter:
                 nonprimary_surnames.remove(surname_obj)
                 dropped_surnames.update(nonprimary_surnames)
 
-                sortorder.append( (surname, first_name, key) )
+                sortorder.append((surname, first_name, key))
         if dropped_surnames:
             LOG.warning(
-                    _("CSV export doesn't support non-primary surnames, "
-                        "{count} dropped").format(
-                            count=len(dropped_surnames)) )
+                _(
+                    "CSV export doesn't support non-primary surnames, "
+                    "{count} dropped"
+                ).format(count=len(dropped_surnames))
+            )
             LOG.debug(
-                    "Dropped surnames: " +
-                    ', '.join([("%s %s %s" % (surname.get_prefix(),
-                    surname.get_surname(), surname.get_connector())).strip()
-                    for surname in dropped_surnames]))
-        sortorder.sort() # will sort on tuples
+                "Dropped surnames: "
+                + ", ".join(
+                    [
+                        (
+                            "%s %s %s"
+                            % (
+                                surname.get_prefix(),
+                                surname.get_surname(),
+                                surname.get_connector(),
+                            )
+                        ).strip()
+                        for surname in dropped_surnames
+                    ]
+                )
+            )
+        sortorder.sort()  # will sort on tuples
         plist = [data[2] for data in sortorder]
         ###########################
         if self.include_individuals:
             if self.translate_headers:
                 self.write_csv(
-                    _("Person"), _("Surname"), _("Given"),
-                    _("Call"), _("Suffix"), _("Prefix"),
-                    _("Title", "Person"), _("Gender"),
-                    _("Birth date"), _("Birth place"), _("Birth source"),
-                    _("Baptism date"), _("Baptism place"), _("Baptism source"),
-                    _("Death date"), _("Death place"), _("Death source"),
-                    _("Burial date"), _("Burial place"), _("Burial source"),
-                    _("Note"))
+                    _("Person"),
+                    _("Surname"),
+                    _("Given"),
+                    _("Call"),
+                    _("Suffix"),
+                    _("Prefix"),
+                    _("Title", "Person"),
+                    _("Gender"),
+                    _("Birth date"),
+                    _("Birth place"),
+                    _("Birth source"),
+                    _("Baptism date"),
+                    _("Baptism place"),
+                    _("Baptism source"),
+                    _("Death date"),
+                    _("Death place"),
+                    _("Death source"),
+                    _("Burial date"),
+                    _("Burial place"),
+                    _("Burial source"),
+                    _("Note"),
+                )
             else:
                 self.write_csv(
-                    "Person", "Surname", "Given",
-                    "Call", "Suffix", "Prefix",
-                    "Title", "Gender",
-                    "Birth date", "Birth place", "Birth source",
-                    "Baptism date", "Baptism place", "Baptism source",
-                    "Death date", "Death place", "Death source",
-                    "Burial date", "Burial place", "Burial source",
-                    "Note")
+                    "Person",
+                    "Surname",
+                    "Given",
+                    "Call",
+                    "Suffix",
+                    "Prefix",
+                    "Title",
+                    "Gender",
+                    "Birth date",
+                    "Birth place",
+                    "Birth source",
+                    "Baptism date",
+                    "Baptism place",
+                    "Baptism source",
+                    "Death date",
+                    "Death place",
+                    "Death source",
+                    "Burial date",
+                    "Burial place",
+                    "Burial source",
+                    "Note",
+                )
             for key in plist:
                 person = self.db.get_person_from_handle(key)
                 if person:
@@ -389,13 +476,15 @@ class CSVWriter:
                     grampsid_ref = ""
                     if grampsid != "":
                         grampsid_ref = "[" + grampsid + "]"
-                    note = '' # don't export notes
+                    note = ""  # don't export notes
                     callname = primary_name.get_call_name()
                     gender = person.get_gender()
                     if gender == Person.MALE:
                         gender = gender_map[Person.MALE]
                     elif gender == Person.FEMALE:
                         gender = gender_map[Person.FEMALE]
+                    elif gender == Person.OTHER:
+                        gender = gender_map[Person.OTHER]
                     else:
                         gender = gender_map[Person.UNKNOWN]
                     # Birth:
@@ -406,7 +495,7 @@ class CSVWriter:
                     if birth_ref:
                         birth = self.db.get_event_from_handle(birth_ref.ref)
                         if birth:
-                            birthdate = self.format_date( birth)
+                            birthdate = self.format_date(birth)
                             birthplace = self.format_place(birth)
                             birthsource = get_primary_source_title(self.db, birth)
                     # Baptism:
@@ -414,11 +503,12 @@ class CSVWriter:
                     baptismplace = ""
                     baptismsource = ""
                     baptism_ref = get_primary_event_ref_from_type(
-                        self.db, person, "Baptism")
+                        self.db, person, "Baptism"
+                    )
                     if baptism_ref:
                         baptism = self.db.get_event_from_handle(baptism_ref.ref)
                         if baptism:
-                            baptismdate = self.format_date( baptism)
+                            baptismdate = self.format_date(baptism)
                             baptismplace = self.format_place(baptism)
                             baptismsource = get_primary_source_title(self.db, baptism)
                     # Death:
@@ -429,7 +519,7 @@ class CSVWriter:
                     if death_ref:
                         death = self.db.get_event_from_handle(death_ref.ref)
                         if death:
-                            deathdate = self.format_date( death)
+                            deathdate = self.format_date(death)
                             deathplace = self.format_place(death)
                             deathsource = get_primary_source_title(self.db, death)
                     # Burial:
@@ -437,21 +527,38 @@ class CSVWriter:
                     burialplace = ""
                     burialsource = ""
                     burial_ref = get_primary_event_ref_from_type(
-                        self.db, person, "Burial")
+                        self.db, person, "Burial"
+                    )
                     if burial_ref:
                         burial = self.db.get_event_from_handle(burial_ref.ref)
                         if burial:
-                            burialdate = self.format_date( burial)
+                            burialdate = self.format_date(burial)
                             burialplace = self.format_place(burial)
                             burialsource = get_primary_source_title(self.db, burial)
                     # Write it out:
-                    self.write_csv(grampsid_ref, surname, first_name, callname,
-                                   suffix, prefix, title, gender,
-                                   birthdate, birthplace, birthsource,
-                                   baptismdate, baptismplace, baptismsource,
-                                   deathdate, deathplace, deathsource,
-                                   burialdate, burialplace, burialsource,
-                                   note)
+                    self.write_csv(
+                        grampsid_ref,
+                        surname,
+                        first_name,
+                        callname,
+                        suffix,
+                        prefix,
+                        title,
+                        gender,
+                        birthdate,
+                        birthplace,
+                        birthsource,
+                        baptismdate,
+                        baptismplace,
+                        baptismsource,
+                        deathdate,
+                        deathplace,
+                        deathsource,
+                        burialdate,
+                        burialplace,
+                        burialsource,
+                        note,
+                    )
                 self.update()
             self.writeln()
         ########################### sort:
@@ -460,27 +567,33 @@ class CSVWriter:
             family = self.db.get_family_from_handle(key)
             if family:
                 marriage_id = family.get_gramps_id()
-                sortorder.append(
-                    (sortable_string_representation(marriage_id), key)
-                    )
-        sortorder.sort() # will sort on tuples
+                sortorder.append((sortable_string_representation(marriage_id), key))
+        sortorder.sort()  # will sort on tuples
         flist = [data[1] for data in sortorder]
         ###########################
         if self.include_marriages:
             if self.translate_headers:
-                self.write_csv(_("Marriage"), _("Husband"), _("Wife"),
-                               _("Date"), _("Place"), _("Source"), _("Note"))
+                self.write_csv(
+                    _("Marriage"),
+                    _("Husband"),
+                    _("Wife"),
+                    _("Date"),
+                    _("Place"),
+                    _("Source"),
+                    _("Note"),
+                )
             else:
-                self.write_csv("Marriage", "Husband", "Wife",
-                               "Date", "Place", "Source", "Note")
+                self.write_csv(
+                    "Marriage", "Husband", "Wife", "Date", "Place", "Source", "Note"
+                )
             for key in flist:
                 family = self.db.get_family_from_handle(key)
                 if family:
                     marriage_id = family.get_gramps_id()
                     if marriage_id != "":
                         marriage_id = "[" + marriage_id + "]"
-                    mother_id = ''
-                    father_id = ''
+                    mother_id = ""
+                    father_id = ""
                     father_handle = family.get_father_handle()
                     if father_handle:
                         father = self.db.get_person_from_handle(father_handle)
@@ -494,17 +607,18 @@ class CSVWriter:
                         if mother_id != "":
                             mother_id = "[" + mother_id + "]"
                     # get mdate, mplace
-                    mdate, mplace, source = '', '', ''
+                    mdate, mplace, source = "", "", ""
                     event_ref_list = family.get_event_ref_list()
                     for event_ref in event_ref_list:
                         event = self.db.get_event_from_handle(event_ref.ref)
                         if event.get_type() == EventType.MARRIAGE:
-                            mdate = self.format_date( event)
+                            mdate = self.format_date(event)
                             mplace = self.format_place(event)
                             source = get_primary_source_title(self.db, event)
-                    note = ''
-                    self.write_csv(marriage_id, father_id, mother_id, mdate,
-                                   mplace, source, note)
+                    note = ""
+                    self.write_csv(
+                        marriage_id, father_id, mother_id, mdate, mplace, source, note
+                    )
                 self.update()
             self.writeln()
         if self.include_children:

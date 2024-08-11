@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Install dependencies
       run: |
         sudo apt-get update
@@ -68,6 +68,7 @@ jobs:
         python3 setup.py build
     - name: Run unit test suite
       run: |
+        export GDK_BACKEND=-
         python3 setup.py test
     - name: Trailing whitespace check
       run: |

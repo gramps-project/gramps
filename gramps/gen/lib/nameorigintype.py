@@ -19,18 +19,25 @@
 #
 
 """
-Name types.
+Name origin types.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .grampstype import GrampsType
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .grampstype import GrampsType
+
 _ = glocale.translation.sgettext
 
+
+# -------------------------------------------------------------------------
+#
+# NameOriginType
+#
+# -------------------------------------------------------------------------
 class NameOriginType(GrampsType):
     """
     Name Origin Types
@@ -84,7 +91,7 @@ class NameOriginType(GrampsType):
         (MATRILINEAL, _("Matrilineal"), "Matrilineal"),
         (OCCUPATION, _("Occupation"), "Occupation"),
         (LOCATION, _("Location"), "Location"),
-        ]
+    ]
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)

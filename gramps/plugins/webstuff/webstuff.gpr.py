@@ -19,26 +19,28 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
 # plugins/webstuff/webstuff.gpr.py
 
-MODULE_VERSION="5.2"
+MODULE_VERSION = "5.3"
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Stylesheets
 #
-#------------------------------------------------------------------------
-register(GENERAL,
-id = 'system webstuff',
-category = "WEBSTUFF",
-name = _("Webstuff"),
-description = _("Provides a collection of resources for the web"),
-version = '1.0',
-gramps_target_version = MODULE_VERSION,
-fname = "webstuff.py",
-load_on_reg = True,
-process = "process_list",
-status = STABLE
-  )
+# ------------------------------------------------------------------------
+register(
+    GENERAL,
+    id="system webstuff",
+    category="WEBSTUFF",
+    name=_("Webstuff"),
+    description=_("Provides a collection of resources for the web"),
+    version="1.0",
+    gramps_target_version=MODULE_VERSION,
+    fname="webstuff.py",
+    load_on_reg=True,
+    process="process_list",
+    status=STABLE,
+)

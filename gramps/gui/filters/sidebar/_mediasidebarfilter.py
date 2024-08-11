@@ -19,41 +19,48 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gtk
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ... import widgets
 from .. import build_filter_model
 from . import SidebarFilter
 from gramps.gen.filters import GenericFilterFactory, rules
-from gramps.gen.filters.rules.media import (RegExpIdOf, HasMedia, HasTag,
-                                            HasNoteRegexp, MatchesFilter)
+from gramps.gen.filters.rules.media import (
+    RegExpIdOf,
+    HasMedia,
+    HasTag,
+    HasNoteRegexp,
+    MatchesFilter,
+)
 
-GenericMediaFilter = GenericFilterFactory('Media')
-#-------------------------------------------------------------------------
+GenericMediaFilter = GenericFilterFactory("Media")
+
+
+# -------------------------------------------------------------------------
 #
 # MediaSidebarFilter class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MediaSidebarFilter(SidebarFilter):
-
     def __init__(self, dbstate, uistate, clicked):
         self.clicked_func = clicked
         self.filter_id = widgets.BasicEntry()
@@ -63,7 +70,8 @@ class MediaSidebarFilter(SidebarFilter):
         self.filter_date = widgets.DateEntry(uistate, [])
         self.filter_note = widgets.BasicEntry()
 
-        self.filter_regex = Gtk.CheckButton(label=_('Use regular expressions'))
+        self.filter_regex = Gtk.CheckButton(label=_("Use regular expressions"))
+        self.sensitive_regex = Gtk.CheckButton(label=_("Case sensitive"))
 
         self.tag = Gtk.ComboBox()
         self.generic = Gtk.ComboBox()
@@ -72,35 +80,36 @@ class MediaSidebarFilter(SidebarFilter):
 
     def create_widget(self):
         cell = Gtk.CellRendererText()
-        cell.set_property('width', self._FILTER_WIDTH)
-        cell.set_property('ellipsize', self._FILTER_ELLIPSIZE)
+        cell.set_property("width", self._FILTER_WIDTH)
+        cell.set_property("ellipsize", self._FILTER_ELLIPSIZE)
         self.generic.pack_start(cell, True)
-        self.generic.add_attribute(cell, 'text', 0)
-        self.on_filters_changed('Media')
+        self.generic.add_attribute(cell, "text", 0)
+        self.on_filters_changed("Media")
 
         cell = Gtk.CellRendererText()
-        cell.set_property('width', self._FILTER_WIDTH)
-        cell.set_property('ellipsize', self._FILTER_ELLIPSIZE)
+        cell.set_property("width", self._FILTER_WIDTH)
+        cell.set_property("ellipsize", self._FILTER_ELLIPSIZE)
         self.tag.pack_start(cell, True)
-        self.tag.add_attribute(cell, 'text', 0)
+        self.tag.add_attribute(cell, "text", 0)
 
-        self.add_text_entry(_('ID'), self.filter_id)
-        self.add_text_entry(_('Title'), self.filter_title)
-        self.add_text_entry(_('Type'), self.filter_type)
-        self.add_text_entry(_('Path'), self.filter_path)
-        self.add_text_entry(_('Date'), self.filter_date)
-        self.add_text_entry(_('Note'), self.filter_note)
-        self.add_entry(_('Tag'), self.tag)
-        self.add_filter_entry(_('Custom filter'), self.generic)
+        self.add_text_entry(_("ID"), self.filter_id)
+        self.add_text_entry(_("Title"), self.filter_title)
+        self.add_text_entry(_("Type"), self.filter_type)
+        self.add_text_entry(_("Path"), self.filter_path)
+        self.add_text_entry(_("Date"), self.filter_date)
+        self.add_text_entry(_("Note"), self.filter_note)
+        self.add_entry(_("Tag"), self.tag)
+        self.add_filter_entry(_("Custom filter"), self.generic)
         self.add_regex_entry(self.filter_regex)
+        self.add_regex_case(self.sensitive_regex)
 
     def clear(self, obj):
-        self.filter_id.set_text('')
-        self.filter_title.set_text('')
-        self.filter_type.set_text('')
-        self.filter_path.set_text('')
-        self.filter_date.set_text('')
-        self.filter_note.set_text('')
+        self.filter_id.set_text("")
+        self.filter_title.set_text("")
+        self.filter_type.set_text("")
+        self.filter_path.set_text("")
+        self.filter_date.set_text("")
+        self.filter_note.set_text("")
         self.tag.set_active(0)
         self.generic.set_active(0)
 
@@ -112,24 +121,28 @@ class MediaSidebarFilter(SidebarFilter):
         date = str(self.filter_date.get_text()).strip()
         note = str(self.filter_note.get_text()).strip()
         regex = self.filter_regex.get_active()
+        usecase = self.sensitive_regex.get_active()
         tag = self.tag.get_active() > 0
         gen = self.generic.get_active() > 0
 
-        empty = not (gid or title or mime or path or date
-                     or note or regex or tag or gen)
+        empty = not (
+            gid or title or mime or path or date or note or regex or tag or gen
+        )
         if empty:
             generic_filter = None
         else:
             generic_filter = GenericMediaFilter()
             if gid:
-                rule = RegExpIdOf([gid], use_regex=regex)
+                rule = RegExpIdOf([gid], use_regex=regex, use_case=usecase)
                 generic_filter.add_rule(rule)
 
-            rule = HasMedia([title, mime, path, date], use_regex=regex)
+            rule = HasMedia(
+                [title, mime, path, date], use_regex=regex, use_case=usecase
+            )
             generic_filter.add_rule(rule)
 
             if note:
-                rule = HasNoteRegexp([note], use_regex=regex)
+                rule = HasNoteRegexp([note], use_regex=regex, use_case=usecase)
                 generic_filter.add_rule(rule)
 
             # check the Tag
@@ -150,11 +163,11 @@ class MediaSidebarFilter(SidebarFilter):
         return generic_filter
 
     def on_filters_changed(self, name_space):
-        if name_space == 'Media':
+        if name_space == "Media":
             all_filter = GenericMediaFilter()
             all_filter.set_name(_("None"))
             all_filter.add_rule(rules.media.AllMedia([]))
-            self.generic.set_model(build_filter_model('Media', [all_filter]))
+            self.generic.set_model(build_filter_model("Media", [all_filter]))
             self.generic.set_active(0)
 
     def on_tags_changed(self, tag_list):
@@ -162,7 +175,7 @@ class MediaSidebarFilter(SidebarFilter):
         Update the list of tags in the tag filter.
         """
         model = Gtk.ListStore(str)
-        model.append(('',))
+        model.append(("",))
         for tag_name in tag_list:
             model.append((tag_name,))
         self.tag.set_model(model)

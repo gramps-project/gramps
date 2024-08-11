@@ -23,20 +23,20 @@
 """
 Narrative Web index for multi languages
 """
-#------------------------------------------------
+# ------------------------------------------------
 # python modules
-#------------------------------------------------
+# ------------------------------------------------
 import logging
 
-#------------------------------------------------
+# ------------------------------------------------
 # Gramps module
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.plugins.lib.libhtml import Html
 
-#------------------------------------------------
+# ------------------------------------------------
 # specific narrative web import
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
 
 _ = glocale.translation.sgettext
@@ -59,10 +59,12 @@ function lang() {
 }
 """
 
+
 class IndexPage(BasePage):
     """
     This class is responsible for redirecting the user to the good page
     """
+
     def __init__(self, report, langs):
         """
         Create an index for multi language.
@@ -76,13 +78,11 @@ class IndexPage(BasePage):
         """
         BasePage.__init__(self, report, None, "index")
         output_file, sio = report.create_file("index", ext="index")
-        page, head, body = Html.page('index',
-                                     self.report.encoding,
-                                     langs[0][0])
+        page, head, body = Html.page("index", self.report.encoding, langs[0][0])
         body.attr = ' onload="lang();"'
         my_langs = "["
         for lang in langs:
-            my_langs += "'" + lang[0].replace('_', '-')
+            my_langs += "'" + lang[0].replace("_", "-")
             my_langs += "', "
         my_langs += "]"
         with Html("script", type="text/javascript") as jsc:

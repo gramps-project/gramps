@@ -23,19 +23,20 @@
 AddressBase class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .address import Address
-from .const import IDENTICAL, EQUAL
+from .const import EQUAL, IDENTICAL
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# AddressBase classes
+# AddressBase
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class AddressBase:
     """
     Base class for address-aware objects.
@@ -78,7 +79,8 @@ class AddressBase:
 
     def remove_address(self, address):
         """
-        Remove the specified :class:`~.address.Address` instance from the address list.
+        Remove the specified :class:`~.address.Address` instance from the
+        address list.
 
         If the instance does not exist in the list, the operation has
         no effect.
@@ -94,8 +96,7 @@ class AddressBase:
         if address in self.address_list:
             self.address_list.remove(address)
             return True
-        else:
-            return False
+        return False
 
     def get_address_list(self):
         """
@@ -132,7 +133,7 @@ class AddressBase:
                 equi = address.is_equivalent(addendum)
                 if equi == IDENTICAL:
                     break
-                elif equi == EQUAL:
+                if equi == EQUAL:
                     address.merge(addendum)
                     break
             else:

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- 
+<!--
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2001       Graham J. Williams
@@ -24,15 +24,15 @@
 -->
 
 <!--
-    This is the Document Type Definition file for v1.7.1
+    This is the Document Type Definition file for v1.7.2
     of the GRAMPS XML genealogy data format.
     Please use the following formal public identifier to identify it:
 
-    "-//GRAMPS//DTD GRAMPS XML V1.7.1//EN"
+    "-//GRAMPS//DTD GRAMPS XML V1.7.2//EN"
 
     For example:
-        <!DOCTYPE database PUBLIC "-//GRAMPS//DTD GRAMPS XML V1.7.1//EN"
-                "http://gramps-project.org/xml/1.7.1/grampsxml.dtd"
+        <!DOCTYPE database PUBLIC "-//GRAMPS//DTD GRAMPS XML V1.7.2//EN"
+                "http://gramps-project.org/xml/1.7.2/grampsxml.dtd"
                 [...]>
 -->
 
@@ -61,7 +61,7 @@ DATABASE
 <!ELEMENT database (header, name-formats?, tags?, events?, people?, families?,
                     citations?, sources?, places?, objects?, repositories?,
                     notes?, bookmarks?, namemaps?)>
-<!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.7.1/">
+<!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.7.2/">
 
 
 <!--    ************************************************************
@@ -99,7 +99,7 @@ PEOPLE
 -->
 
 <!ELEMENT people (person)*>
-<!ATTLIST people 
+<!ATTLIST people
         default CDATA #IMPLIED
         home    IDREF #IMPLIED
 >
@@ -122,7 +122,7 @@ GENDER has values of M, F, or U.
 <!ELEMENT name    (first?, call?, surname*, suffix?, title?, nick?, familynick?, group?,
                   (daterange|datespan|dateval|datestr)?, noteref*, citationref*)>
 <!-- (Unknown|Also Know As|Birth Name|Married Name|Other Name) -->
-<!ATTLIST name    
+<!ATTLIST name
         alt       (0|1) #IMPLIED
         type      CDATA #IMPLIED
         priv      (0|1) #IMPLIED
@@ -155,15 +155,15 @@ Pseudonym|Patrilineal|Matrilineal|Occupation|Location) -->
 <!ATTLIST parentin hlink IDREF #REQUIRED>
 
 <!ELEMENT personref (citationref*, noteref*)>
-<!ATTLIST personref 
+<!ATTLIST personref
         hlink IDREF #REQUIRED
         priv  (0|1) #IMPLIED
         rel   CDATA #REQUIRED
 >
 
-<!ELEMENT address ((daterange|datespan|dateval|datestr)?, street?, 
-				   locality?, city?, county?, state?, country?, postal?, 
-				   phone?, noteref*,citationref*)>
+<!ELEMENT address ((daterange|datespan|dateval|datestr)?, street?,
+                   locality?, city?, county?, state?, country?, postal?,
+                   phone?, noteref*, citationref*)>
 <!ATTLIST address priv (0|1) #IMPLIED>
 
 <!ELEMENT street   (#PCDATA)>
@@ -220,7 +220,7 @@ EVENT
 <!ELEMENT event (type?, (daterange|datespan|dateval|datestr)?, place?, cause?,
                  description?, attribute*, noteref*, citationref*, objref*,
                  tagref*)>
-<!ATTLIST event 
+<!ATTLIST event
         id        CDATA #IMPLIED
         handle    ID    #REQUIRED
         priv      (0|1) #IMPLIED
@@ -396,7 +396,7 @@ BOOKMARKS
 
 <!ELEMENT bookmarks (bookmark)*>
 <!ELEMENT bookmark EMPTY>
-<!ATTLIST bookmark 
+<!ATTLIST bookmark
         target (person|family|event|source|citation|place|media|repository|
                 note) #REQUIRED
         hlink  IDREF #REQUIRED
@@ -407,7 +407,7 @@ NAME MAPS
 -->
 <!ELEMENT namemaps (map)*>
 <!ELEMENT map EMPTY>
-<!ATTLIST map 
+<!ATTLIST map
         type  CDATA #REQUIRED
         key   CDATA #REQUIRED
         value CDATA #REQUIRED
@@ -436,7 +436,7 @@ SHARED ELEMENTS
         quality   (estimated|calculated) #IMPLIED
         cformat   CDATA                  #IMPLIED
         dualdated (0|1)                  #IMPLIED
-        newyear   CDATA                  #IMPLIED 
+        newyear   CDATA                  #IMPLIED
 >
 
 <!ELEMENT datespan EMPTY>
@@ -446,7 +446,7 @@ SHARED ELEMENTS
         quality   (estimated|calculated) #IMPLIED
         cformat   CDATA                  #IMPLIED
         dualdated (0|1)                  #IMPLIED
-        newyear   CDATA                  #IMPLIED 
+        newyear   CDATA                  #IMPLIED
 >
 
 <!ELEMENT dateval EMPTY>
@@ -456,7 +456,7 @@ SHARED ELEMENTS
         quality   (estimated|calculated) #IMPLIED
         cformat   CDATA                  #IMPLIED
         dualdated (0|1)                  #IMPLIED
-        newyear   CDATA                  #IMPLIED 
+        newyear   CDATA                  #IMPLIED
 >
 
 <!ELEMENT datestr EMPTY>
@@ -472,7 +472,7 @@ SHARED ELEMENTS
         hlink IDREF #REQUIRED
 >
 
-<!ELEMENT eventref (attribute*, noteref*)>
+<!ELEMENT eventref (attribute*, noteref*, citationref*)>
 <!ATTLIST eventref
         hlink IDREF #REQUIRED
         priv  (0|1) #IMPLIED
@@ -529,7 +529,7 @@ SHARED ELEMENTS
 >
 
 <!ELEMENT objref (region?, attribute*, citationref*, noteref*)>
-<!ATTLIST objref 
+<!ATTLIST objref
         hlink IDREF #REQUIRED
         priv (0|1)  #IMPLIED
 >

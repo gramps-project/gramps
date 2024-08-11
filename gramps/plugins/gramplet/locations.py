@@ -17,18 +17,18 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gtk modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gui.dbguielement import DbGUIElement
 from gramps.gui.editors import EditPlace
@@ -37,17 +37,20 @@ from gramps.gui.listmodel import ListModel, NOSORT
 from gramps.gen.datehandler import get_date
 from gramps.gen.lib import Date
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Locations gramplet
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Locations(Gramplet, DbGUIElement):
     """
     Gramplet showing the locations of a place over time.
     """
+
     def __init__(self, gui, nav_group=0):
         Gramplet.__init__(self, gui, nav_group)
         DbGUIElement.__init__(self, self.dbstate.db)
@@ -62,11 +65,11 @@ class Locations(Gramplet, DbGUIElement):
         """
         called on init of DbGUIElement, connect to db as required.
         """
-        self.callman.register_callbacks({'place-update': self.changed})
-        self.callman.connect_all(keys=['place'])
+        self.callman.register_callbacks({"place-update": self.changed})
+        self.callman.connect_all(keys=["place"])
 
     def db_changed(self):
-        self.connect_signal('Place', self.update)
+        self.connect_signal("Place", self.update)
 
     def changed(self, handle):
         """
@@ -78,24 +81,27 @@ class Locations(Gramplet, DbGUIElement):
         """
         Build the GUI interface.
         """
-        tip = _('Double-click on a row to edit the selected place.')
+        tip = _("Double-click on a row to edit the selected place.")
         self.set_tooltip(tip)
         top = Gtk.TreeView()
-        titles = [('', 0, 50),
-                  (_('Name'), 1, 300),
-                  (_('Type'), 2, 150),
-                  (_('Date'), 5, 250),
-                  (_('ID'), 4, 100),
-                  ('', NOSORT, 50)]
-        self.model = ListModel(top, titles, list_mode="tree",
-                               event_func=self.edit_place)
+        titles = [
+            ("", 0, 50),
+            (_("Name"), 1, 300),
+            (_("Type"), 2, 150),
+            (_("Date"), 5, 250),
+            (_("ID"), 4, 100),
+            ("", NOSORT, 50),
+        ]
+        self.model = ListModel(
+            top, titles, list_mode="tree", event_func=self.edit_place
+        )
         return top
 
     def active_changed(self, handle):
         self.update()
 
     def update_has_data(self):
-        active_handle = self.get_active('Place')
+        active_handle = self.get_active("Place")
         if active_handle:
             active = self.dbstate.db.get_place_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
@@ -111,7 +117,7 @@ class Locations(Gramplet, DbGUIElement):
     def main(self):
         self.model.clear()
         self.callman.unregister_all()
-        active_handle = self.get_active('Place')
+        active_handle = self.get_active("Place")
         if active_handle:
             active = self.dbstate.db.get_place_from_handle(active_handle)
             if active:
@@ -132,21 +138,18 @@ class Locations(Gramplet, DbGUIElement):
         Add a place to the model.
         """
         place_date = get_date(placeref)
-        place_sort = '%012d' % placeref.get_date_object().get_sort_value()
+        place_sort = "%012d" % placeref.get_date_object().get_sort_value()
         place_name = place.get_name().get_value()
         place_type = str(place.get_type())
         place_id = place.get_gramps_id()
 
         if drange.overlap:
-            place_date += ' *'
+            place_date += " *"
 
-        new_node = self.model.add([place.handle,
-                                   place_name,
-                                   place_type,
-                                   place_date,
-                                   place_id,
-                                   place_sort],
-                                  node=node)
+        new_node = self.model.add(
+            [place.handle, place_name, place_type, place_date, place_id, place_sort],
+            node=node,
+        )
 
         self.display_place(place, new_node, visited + [place.handle], drange)
 
@@ -163,15 +166,17 @@ class Locations(Gramplet, DbGUIElement):
             except WindowActiveError:
                 pass
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # EnclosedBy gramplet
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class EnclosedBy(Locations):
     """
     Gramplet showing the locations enclosed by the active place.
     """
+
     def display_place(self, place, node, visited, drange):
         """
         Display the location hierarchy for the active place.
@@ -201,22 +206,25 @@ class EnclosedBy(Locations):
             return True
         return False
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Encloses gramplet
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Encloses(Locations):
     """
     Gramplet showing the locations which the active place encloses.
     """
+
     def display_place(self, place, node, visited, drange):
         """
         Display the location hierarchy for the active place.
         """
         self.callman.register_obj(place)
         for link in self.dbstate.db.find_backlink_handles(
-                place.handle, include_classes=['Place']):
+            place.handle, include_classes=["Place"]
+        ):
             if link[1] in visited:
                 continue
 
@@ -224,7 +232,6 @@ class Encloses(Locations):
             placeref = None
             for placeref in child_place.get_placeref_list():
                 if placeref.ref == place.handle:
-
                     dr2 = drange.intersect(placeref.date)
                     if dr2.is_empty():
                         continue
@@ -241,19 +248,22 @@ class Encloses(Locations):
         if place is None:
             return False
         for link in self.dbstate.db.find_backlink_handles(
-                place.handle, include_classes=['Place']):
+            place.handle, include_classes=["Place"]
+        ):
             return True
         return False
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # DateRange class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class DateRange:
     """
     A class that represents a date range.
     """
+
     def __init__(self, source=None):
         self.start = None
         self.stop = None

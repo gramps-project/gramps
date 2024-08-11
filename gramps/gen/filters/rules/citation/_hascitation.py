@@ -21,35 +21,35 @@
 """
 Filter rule to match citation data.
 """
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 from ....datehandler import parser
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasCitation
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasCitation(Rule):
     """Rule that checks for a citations with a particular value"""
 
-    labels = [ _('Volume/Page:'),
-                    _('Date:'),
-                    _('Confidence level:')]
-    name = _('Citations matching parameters')
-    category = _('General filters')
+    labels = [_("Volume/Page:"), _("Date:"), _("Confidence level:")]
+    name = _("Citations matching parameters")
+    category = _("General filters")
     description = _("Matches citations with particular parameters")
     allow_regex = True
 

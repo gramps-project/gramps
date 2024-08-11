@@ -46,35 +46,47 @@ from .edittaglist import EditTagList
 from .editurl import EditUrl
 from .editlink import EditLink
 from .filtereditor import FilterEditor, EditFilter
-from gramps.gen.lib import (Person, Family, Event, Place, Repository, Source,
-                            Citation, Media, Note)
+from gramps.gen.lib import (
+    Person,
+    Family,
+    Event,
+    Place,
+    Repository,
+    Source,
+    Citation,
+    Media,
+    Note,
+)
 
 # Map from gramps.gen.lib name to Editor:
 EDITORS = {
-    'Person': EditPerson,
-    'Event': EditEvent,
-    'Family': EditFamily,
-    'Media': EditMedia,
-    'Source': EditSource,
-    'Citation': EditCitation,
-    'Place': EditPlace,
-    'Repository': EditRepository,
-    'Note': EditNote,
-    }
+    "Person": EditPerson,
+    "Event": EditEvent,
+    "Family": EditFamily,
+    "Media": EditMedia,
+    "Source": EditSource,
+    "Citation": EditCitation,
+    "Place": EditPlace,
+    "Repository": EditRepository,
+    "Note": EditNote,
+}
 
 CLASSES = {
-    'Person': Person,
-    'Event': Event,
-    'Family': Family,
-    'Media': Media,
-    'Source': Source,
-    'Citation': Citation,
-    'Place': Place,
-    'Repository': Repository,
-    'Note': Note,
-    }
+    "Person": Person,
+    "Event": Event,
+    "Family": Family,
+    "Media": Media,
+    "Source": Source,
+    "Citation": Citation,
+    "Place": Place,
+    "Repository": Repository,
+    "Note": Note,
+}
 
-def EditObject(dbstate, uistate, track, obj_class, prop=None, value=None, callback=None):
+
+def EditObject(
+    dbstate, uistate, track, obj_class, prop=None, value=None, callback=None
+):
     """
     Generic Object Editor.
     obj_class is Person, Source, Repository, etc.
@@ -82,6 +94,7 @@ def EditObject(dbstate, uistate, track, obj_class, prop=None, value=None, callba
     value is string handle, string gramps_id, or None (for new object)
     """
     import logging
+
     LOG = logging.getLogger(".Edit")
     if obj_class in EDITORS.keys():
         if value is None:
@@ -91,19 +104,21 @@ def EditObject(dbstate, uistate, track, obj_class, prop=None, value=None, callba
             except Exception as msg:
                 LOG.warning(str(msg))
         elif prop in ("gramps_id", "handle"):
-            obj = dbstate.db.method('get_%s_from_%s', obj_class, prop)(value)
+            obj = dbstate.db.method("get_%s_from_%s", obj_class, prop)(value)
             if obj:
                 try:
                     EDITORS[obj_class](dbstate, uistate, track, obj, callback=callback)
                 except Exception as msg:
                     LOG.warning(str(msg))
             else:
-                LOG.warning("gramps://%s/%s/%s not found" %
-                         (obj_class, prop, value))
+                LOG.warning("gramps://%s/%s/%s not found" % (obj_class, prop, value))
         else:
-            LOG.warning("unknown property to edit '%s'; "
-                     "should be 'gramps_id' or 'handle'" % prop)
+            LOG.warning(
+                "unknown property to edit '%s'; "
+                "should be 'gramps_id' or 'handle'" % prop
+            )
     else:
-        LOG.warning("unknown object to edit '%s'; "
-                 "should be one of %s" % (obj_class, list(EDITORS.keys())))
-
+        LOG.warning(
+            "unknown object to edit '%s'; "
+            "should be one of %s" % (obj_class, list(EDITORS.keys()))
+        )

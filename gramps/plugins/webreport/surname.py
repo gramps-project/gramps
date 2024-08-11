@@ -38,31 +38,36 @@ Narrative Web Page generator.
 Classe:
     SurnamePage - creates list of individuals with same surname
 """
-#------------------------------------------------
+# ------------------------------------------------
 # python modules
-#------------------------------------------------
+# ------------------------------------------------
 from decimal import getcontext
 import logging
 
-#------------------------------------------------
+# ------------------------------------------------
 # Gramps module
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.plug.report import utils
 from gramps.plugins.lib.libhtml import Html
 
-#------------------------------------------------
+# ------------------------------------------------
 # specific narrative web import
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
-from gramps.plugins.webreport.common import (name_to_md5,
-                                             _find_birth_date, _find_death_date,
-                                             FULLCLEAR, html_escape)
+from gramps.plugins.webreport.common import (
+    name_to_md5,
+    _find_birth_date,
+    _find_death_date,
+    FULLCLEAR,
+    html_escape,
+)
 
 _ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb")
 getcontext().prec = 8
+
 
 #################################################
 #
@@ -73,6 +78,7 @@ class SurnamePage(BasePage):
     """
     This will create a list of individuals with the same surname
     """
+
     def __init__(self, report, the_lang, the_title, surname, ppl_handle_list):
         """
         @param: report          -- The instance of the main report class for
@@ -86,12 +92,12 @@ class SurnamePage(BasePage):
         BasePage.__init__(self, report, the_lang, the_title)
 
         # module variables
-        showbirth = report.options['showbirth']
-        showdeath = report.options['showdeath']
-        showpartner = report.options['showpartner']
-        showparents = report.options['showparents']
+        showbirth = report.options["showbirth"]
+        showdeath = report.options["showdeath"]
+        showpartner = report.options["showpartner"]
+        showparents = report.options["showparents"]
 
-        if surname == '':
+        if surname == "":
             surname = self._("<absent>")
 
         output_file, sio = self.report.create_file(name_to_md5(surname), "srn")
@@ -109,7 +115,7 @@ class SurnamePage(BasePage):
             # We must display this field in upper case. So we use
             # the english format of format_name to find if this is
             # the case.
-            name_format = self.report.options['name_format']
+            name_format = self.report.options["name_format"]
             nme_format = _nd.name_formats[name_format][1]
             if "SURNAME" in nme_format:
                 surnamed = surname.upper()
@@ -118,15 +124,19 @@ class SurnamePage(BasePage):
             surnamedetail += Html("h3", html_escape(surnamed), inline=True)
 
             # feature request 2356: avoid genitive form
-            msg = self._("This page contains an index of all the individuals "
-                         "in the database with the surname of %s. "
-                         "Selecting the person&#8217;s name "
-                         "will take you to that person&#8217;s "
-                         "individual page.") % html_escape(surname)
+            msg = self._(
+                "This page contains an index of all the individuals "
+                "in the database with the surname of %s. "
+                "Selecting the person&#8217;s name "
+                "will take you to that person&#8217;s "
+                "individual page."
+            ) % html_escape(surname)
             surnamedetail += Html("p", msg, id="description")
 
             # begin surname table and thead
-            with Html("table", class_="infolist primobjlist surname") as table:
+            with Html(
+                "table", class_="infolist primobjlist surname " + self.dir
+            ) as table:
                 surnamedetail += table
                 thead = Html("thead")
                 table += thead
@@ -135,34 +145,35 @@ class SurnamePage(BasePage):
                 thead += trow
 
                 # Name Column
-                trow += Html("th", self._("Name"), class_="ColumnName",
-                             inline=True)
+                trow += Html("th", self._("Name"), class_="ColumnName", inline=True)
 
                 if showbirth:
-                    trow += Html("th", self._("Birth"), class_="ColumnDate",
-                                 inline=True)
+                    trow += Html(
+                        "th", self._("Birth"), class_="ColumnDate", inline=True
+                    )
 
                 if showdeath:
-                    trow += Html("th", self._("Death"), class_="ColumnDate",
-                                 inline=True)
+                    trow += Html(
+                        "th", self._("Death"), class_="ColumnDate", inline=True
+                    )
 
                 if showpartner:
-                    trow += Html("th", self._("Partner"),
-                                 class_="ColumnPartner",
-                                 inline=True)
+                    trow += Html(
+                        "th", self._("Partner"), class_="ColumnPartner", inline=True
+                    )
 
                 if showparents:
-                    trow += Html("th", self._("Parents"),
-                                 class_="ColumnParents",
-                                 inline=True)
+                    trow += Html(
+                        "th", self._("Parents"), class_="ColumnParents", inline=True
+                    )
 
                 # begin table body
                 tbody = Html("tbody")
                 table += tbody
 
-                for person_handle in sorted(ppl_handle_list,
-                                            key=self.sort_on_given_and_birth):
-
+                for person_handle in sorted(
+                    ppl_handle_list, key=self.sort_on_given_and_birth
+                ):
                     person = self.r_db.get_person_from_handle(person_handle)
                     if person.get_change_time() > ldatec:
                         ldatec = person.get_change_time()
@@ -170,8 +181,9 @@ class SurnamePage(BasePage):
                     tbody += trow
 
                     # firstname column
-                    link = self.new_person_link(person_handle, uplink=True,
-                                                person=person)
+                    link = self.new_person_link(
+                        person_handle, uplink=True, person=person
+                    )
                     trow += Html("td", link, class_="ColumnName")
 
                     # birth column
@@ -182,9 +194,9 @@ class SurnamePage(BasePage):
                         birth_date = _find_birth_date(self.r_db, person)
                         if birth_date is not None:
                             if birth_date.fallback:
-                                tcell += Html('em',
-                                              self.rlocale.get_date(birth_date),
-                                              inline=True)
+                                tcell += Html(
+                                    "em", self.rlocale.get_date(birth_date), inline=True
+                                )
                             else:
                                 tcell += self.rlocale.get_date(birth_date)
                         else:
@@ -198,9 +210,9 @@ class SurnamePage(BasePage):
                         death_date = _find_death_date(self.r_db, person)
                         if death_date is not None:
                             if death_date.fallback:
-                                tcell += Html('em',
-                                              self.rlocale.get_date(death_date),
-                                              inline=True)
+                                tcell += Html(
+                                    "em", self.rlocale.get_date(death_date), inline=True
+                                )
                             else:
                                 tcell += self.rlocale.get_date(death_date)
                         else:
@@ -215,18 +227,17 @@ class SurnamePage(BasePage):
                             fam_count = 0
                             for family_handle in family_list:
                                 fam_count += 1
-                                family = self.r_db.get_family_from_handle(
-                                    family_handle)
-                                partner_handle = utils.find_spouse(
-                                    person, family)
+                                family = self.r_db.get_family_from_handle(family_handle)
+                                partner_handle = utils.find_spouse(person, family)
                                 if partner_handle:
-                                    link = self.new_person_link(partner_handle,
-                                                                uplink=True)
+                                    link = self.new_person_link(
+                                        partner_handle, uplink=True
+                                    )
                                     if fam_count < len(family_list):
                                         if isinstance(link, Html):
                                             link.inside += ","
                                         else:
-                                            link += ','
+                                            link += ","
                                     tcell += link
                         else:
                             tcell += "&nbsp;"
@@ -249,22 +260,25 @@ class SurnamePage(BasePage):
                                 if mother:
                                     mother_name = self.get_name(mother)
                             if mother and father:
-                                tcell = Html("span", father_name,
-                                             class_="father fatherNmother")
-                                tcell += Html("span", mother_name,
-                                              class_="mother")
+                                tcell = Html(
+                                    "span", father_name, class_="father fatherNmother"
+                                )
+                                tcell += Html("span", mother_name, class_="mother")
                             elif mother:
-                                tcell = Html("span", mother_name,
-                                             class_="mother", inline=True)
+                                tcell = Html(
+                                    "span", mother_name, class_="mother", inline=True
+                                )
                             elif father:
-                                tcell = Html("span", father_name,
-                                             class_="father", inline=True)
+                                tcell = Html(
+                                    "span", father_name, class_="father", inline=True
+                                )
                             samerow = False
                         else:
                             tcell = "&nbsp;"
                             samerow = True
-                        trow += Html("td", tcell,
-                                     class_="ColumnParents", inline=samerow)
+                        trow += Html(
+                            "td", tcell, class_="ColumnParents", inline=samerow
+                        )
 
         # add clearline for proper styling
         # add footer section

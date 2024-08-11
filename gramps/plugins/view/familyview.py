@@ -23,27 +23,29 @@
 Family View.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 import logging
+
 _LOG = logging.getLogger(".plugins.eventview")
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME/GTK+ modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.lib import Family
 from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gui.views.treemodels import FamilyModel
@@ -57,14 +59,15 @@ from gramps.gui.merge import MergeFamily
 from gramps.gen.plug import CATEGORY_QR_FAMILY
 from gramps.gui.ddtargets import DdTargets
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # FamilyView
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class FamilyView(ListView):
-    """ FamilyView class, derived from the ListView
-    """
+    """FamilyView class, derived from the ListView"""
+
     # columns in the model used in view
     COL_ID = 0
     COL_FATHER = 1
@@ -76,23 +79,33 @@ class FamilyView(ListView):
     COL_CHAN = 7
     # column definitions
     COLUMNS = [
-        (_('ID'), TEXT, None),
-        (_('Father'), TEXT, None),
-        (_('Mother'), TEXT, None),
-        (_('Relationship'), TEXT, None),
-        (_('Marriage Date'), MARKUP, None),
-        (_('Private'), ICON, 'gramps-lock'),
-        (_('Tags'), TEXT, None),
-        (_('Last Changed'), TEXT, None),
-        ]
-    #default setting with visible columns, order of the col, and their size
+        (_("ID"), TEXT, None),
+        (_("Father"), TEXT, None),
+        (_("Mother"), TEXT, None),
+        (_("Relationship"), TEXT, None),
+        (_("Marriage Date"), MARKUP, None),
+        (_("Private"), ICON, "gramps-lock"),
+        (_("Tags"), TEXT, None),
+        (_("Last Changed"), TEXT, None),
+    ]
+    # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
-        ('columns.visible', [COL_ID, COL_FATHER, COL_MOTHER, COL_REL,
-                             COL_MARDATE]),
-        ('columns.rank', [COL_ID, COL_FATHER, COL_MOTHER, COL_REL,
-                           COL_MARDATE, COL_PRIV, COL_TAGS, COL_CHAN]),
-        ('columns.size', [75, 200, 200, 100, 100, 40, 100, 100])
-        )
+        ("columns.visible", [COL_ID, COL_FATHER, COL_MOTHER, COL_REL, COL_MARDATE]),
+        (
+            "columns.rank",
+            [
+                COL_ID,
+                COL_FATHER,
+                COL_MOTHER,
+                COL_REL,
+                COL_MARDATE,
+                COL_PRIV,
+                COL_TAGS,
+                COL_CHAN,
+            ],
+        ),
+        ("columns.size", [75, 200, 200, 100, 100, 40, 100, 100]),
+    )
 
     ADD_MSG = _("Add a new family")
     EDIT_MSG = _("Edit the selected family")
@@ -102,44 +115,52 @@ class FamilyView(ListView):
     QR_CATEGORY = CATEGORY_QR_FAMILY
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
-
         signal_map = {
-            'family-add'     : self.row_add,
-            'family-update'  : self.row_update,
-            'family-delete'  : self.row_delete,
-            'family-rebuild' : self.object_build,
-            'event-update'   : self.related_update,
-            'person-update'  : self.related_update,
-            }
+            "family-add": self.row_add,
+            "family-update": self.row_update,
+            "family-delete": self.row_delete,
+            "family-rebuild": self.object_build,
+            "event-update": self.related_update,
+            "person-update": self.related_update,
+        }
 
         ListView.__init__(
-            self, _('Families'), pdata, dbstate, uistate,
+            self,
+            _("Families"),
+            pdata,
+            dbstate,
+            uistate,
             FamilyModel,
             signal_map,
-            FamilyBookmarks, nav_group,
+            FamilyBookmarks,
+            nav_group,
             multiple=True,
-            filter_class=FamilySidebarFilter)
+            filter_class=FamilySidebarFilter,
+        )
 
-        uistate.connect('nameformat-changed', self.build_tree)
+        uistate.connect("nameformat-changed", self.build_tree)
 
         self.additional_uis.append(self.additional_ui)
 
+    def get_config_name(self):
+        return __name__
+
     def navigation_type(self):
-        return 'Family'
+        return "Family"
 
     def get_stock(self):
-        return 'gramps-family'
+        return "gramps-family"
 
     additional_ui = [  # Defines the UI string for UIManager
-        '''
+        """
       <placeholder id="LocalExport">
         <item>
           <attribute name="action">win.ExportTab</attribute>
           <attribute name="label" translatable="yes">Export View...</attribute>
         </item>
       </placeholder>
-''',
-        '''
+""",
+        """
       <section id="AddEditBook">
         <item>
           <attribute name="action">win.AddBook</attribute>
@@ -150,8 +171,9 @@ class FamilyView(ListView):
           <attribute name="label" translatable="no">%s...</attribute>
         </item>
       </section>
-''' % _('Organize Bookmarks'),
-        '''
+"""
+        % _("Organize Bookmarks"),
+        """
       <placeholder id="CommonGo">
       <section>
         <item>
@@ -164,8 +186,8 @@ class FamilyView(ListView):
         </item>
       </section>
       </placeholder>
-''',
-        '''
+""",
+        """
       <section id='CommonEdit' groups='RW'>
         <item>
           <attribute name="action">win.Add</attribute>
@@ -184,24 +206,25 @@ class FamilyView(ListView):
           <attribute name="label" translatable="yes">_Merge...</attribute>
         </item>
       </section>
-''' % _("_Edit...", "action"),  # to use sgettext()
-        '''
+"""
+        % _("_Edit...", "action"),  # to use sgettext()
+        """
         <placeholder id='otheredit'>
         <item>
           <attribute name="action">win.FilterEdit</attribute>
-          <attribute name="label" translatable="yes">'''
-        '''Family Filter Editor</attribute>
+          <attribute name="label" translatable="yes">"""
+        """Family Filter Editor</attribute>
         </item>
         </placeholder>
-''',  # Following are the Toolbar items
-        '''
+""",  # Following are the Toolbar items
+        """
     <placeholder id='CommonNavigation'>
     <child groups='RO'>
       <object class="GtkToolButton">
         <property name="icon-name">go-previous</property>
         <property name="action-name">win.Back</property>
-        <property name="tooltip_text" translatable="yes">'''
-        '''Go to the previous object in the history</property>
+        <property name="tooltip_text" translatable="yes">"""
+        """Go to the previous object in the history</property>
         <property name="label" translatable="yes">_Back</property>
         <property name="use-underline">True</property>
       </object>
@@ -213,8 +236,8 @@ class FamilyView(ListView):
       <object class="GtkToolButton">
         <property name="icon-name">go-next</property>
         <property name="action-name">win.Forward</property>
-        <property name="tooltip_text" translatable="yes">'''
-        '''Go to the next object in the history</property>
+        <property name="tooltip_text" translatable="yes">"""
+        """Go to the next object in the history</property>
         <property name="label" translatable="yes">_Forward</property>
         <property name="use-underline">True</property>
       </object>
@@ -223,8 +246,8 @@ class FamilyView(ListView):
       </packing>
     </child>
     </placeholder>
-''',
-        '''
+""",
+        """
     <placeholder id='BarCommonEdit'>
     <child groups='RW'>
       <object class="GtkToolButton">
@@ -275,8 +298,9 @@ class FamilyView(ListView):
       </packing>
     </child>
     </placeholder>
-''' % (ADD_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
-        '''
+"""
+        % (ADD_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
+        """
     <menu id="Popup">
       <section>
         <item>
@@ -311,13 +335,13 @@ class FamilyView(ListView):
       <section>
         <item>
           <attribute name="action">win.MakeFatherActive</attribute>
-          <attribute name="label" translatable="yes">'''
-        '''Make Father Active Person</attribute>
+          <attribute name="label" translatable="yes">"""
+        """Make Father Active Person</attribute>
         </item>
         <item>
           <attribute name="action">win.MakeMotherActive</attribute>
-          <attribute name="label" translatable="yes">'''
-        '''Make Mother Active Person</attribute>
+          <attribute name="label" translatable="yes">"""
+        """Make Mother Active Person</attribute>
         </item>
       </section>
       <section>
@@ -325,7 +349,8 @@ class FamilyView(ListView):
         </placeholder>
       </section>
     </menu>
-''' % _('_Edit...', 'action')  # to use sgettext()
+"""
+        % _("_Edit...", "action"),  # to use sgettext()
     ]
 
     def define_actions(self):
@@ -333,9 +358,12 @@ class FamilyView(ListView):
 
         ListView.define_actions(self)
 
-        self.action_list.extend([
-            ('MakeFatherActive', self._make_father_active),
-            ('MakeMotherActive', self._make_mother_active), ])
+        self.action_list.extend(
+            [
+                ("MakeFatherActive", self._make_father_active),
+                ("MakeMotherActive", self._make_mother_active),
+            ]
+        )
 
     def add_bookmark(self, *obj):
         mlist = self.selected_handles()
@@ -343,10 +371,22 @@ class FamilyView(ListView):
             self.bookmarks.add(mlist[0])
         else:
             from gramps.gui.dialog import WarningDialog
+
             WarningDialog(
                 _("Could Not Set a Bookmark"),
-                _("A bookmark could not be set because "
-                  "no one was selected."), parent=self.uistate.window)
+                _("A bookmark could not be set because " "no one was selected."),
+                parent=self.uistate.window,
+            )
+
+    def get_handle_from_gramps_id(self, gid):
+        """
+        Return the handle of the family having the given Gramps ID.
+        """
+        obj = self.dbstate.db.get_family_from_gramps_id(gid)
+        if obj:
+            return obj.get_handle()
+        else:
+            return None
 
     def add(self, *obj):
         family = Family()
@@ -360,18 +400,18 @@ class FamilyView(ListView):
         Method called when deleting a family from a family view.
         """
         handles = self.selected_handles()
-        ht_list = [('Family', hndl) for hndl in handles]
+        ht_list = [("Family", hndl) for hndl in handles]
         self.remove_selected_objects(ht_list)
 
     def _message1_format(self, family):
         """
         Header format for remove dialogs.
         """
-        return _('Delete %s?') % (_('family') +
-                                  (" [%s]" % family.gramps_id))
+        return _("Delete %s?") % (_("family") + (" [%s]" % family.gramps_id))
 
-    def remove_object_from_handle(self, _obj_type, handle,
-                                  trans, in_use_prompt=False, parent=None):
+    def remove_object_from_handle(
+        self, _obj_type, handle, trans, in_use_prompt=False, parent=None
+    ):
         """
         deletes a single object from database
         """
@@ -394,9 +434,11 @@ class FamilyView(ListView):
 
         if len(mlist) != 2:
             msg = _("Cannot merge families.")
-            msg2 = _("Exactly two families must be selected to perform a merge."
-                     " A second family can be selected by holding down the "
-                     "control key while clicking on the desired family.")
+            msg2 = _(
+                "Exactly two families must be selected to perform a merge."
+                " A second family can be selected by holding down the "
+                "control key while clicking on the desired family."
+            )
             ErrorDialog(msg, msg2, parent=self.uistate.window)
         else:
             MergeFamily(self.dbstate, self.uistate, [], mlist[0], mlist[1])
@@ -409,7 +451,7 @@ class FamilyView(ListView):
         if fhandle:
             family = self.dbstate.db.get_family_from_handle(fhandle)
             if family:
-                self.uistate.set_active(family.father_handle, 'Person')
+                self.uistate.set_active(family.father_handle, "Person")
 
     def _make_mother_active(self, *obj):
         """
@@ -419,7 +461,7 @@ class FamilyView(ListView):
         if fhandle:
             family = self.dbstate.db.get_family_from_handle(fhandle)
             if family:
-                self.uistate.set_active(family.mother_handle, 'Person')
+                self.uistate.set_active(family.mother_handle, "Person")
 
     def drag_info(self):
         """
@@ -433,9 +475,14 @@ class FamilyView(ListView):
         """
         all_links = set([])
         for tag_handle in handle_list:
-            links = set([link[1] for link in
-                         self.dbstate.db.find_backlink_handles(tag_handle,
-                                                    include_classes='Family')])
+            links = set(
+                [
+                    link[1]
+                    for link in self.dbstate.db.find_backlink_handles(
+                        tag_handle, include_classes="Family"
+                    )
+                ]
+            )
             all_links = all_links.union(links)
         self.row_update(list(all_links))
 
@@ -459,11 +506,15 @@ class FamilyView(ListView):
         """
         Define the default gramplets for the sidebar and bottombar.
         """
-        return (("Family Filter",),
-                ("Family Gallery",
-                 "Family Events",
-                 "Family Children",
-                 "Family Citations",
-                 "Family Notes",
-                 "Family Attributes",
-                 "Family Backlinks"))
+        return (
+            ("Family Filter",),
+            (
+                "Family Gallery",
+                "Family Events",
+                "Family Children",
+                "Family Citations",
+                "Family Notes",
+                "Family Attributes",
+                "Family Backlinks",
+            ),
+        )

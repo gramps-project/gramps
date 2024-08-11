@@ -165,6 +165,12 @@ div#nav, #subnavigation {
     border: solid 1px #454; /* needed by IE7 */
     position: relative;
 }
+div#nav.wrappernav.ltr {
+    float: left;
+}
+div#nav.wrappernav.rtl {
+    float: right;
+}
 #subnavigation ul {
     overflow: hidden;
 }
@@ -176,7 +182,10 @@ div#nav ul, #subnavigation ul {
 #subnavigation ul {
     border-bottom: solid 1px #7C8F7C;
 }
-div#nav ul li, #subnavigation ul li {
+div#nav.rlt ul li {
+    float: right;
+}
+div#nav.ltr ul li {
     float: left;
 }
 div#nav ul li a, #subnavigation ul li a {
@@ -184,7 +193,6 @@ div#nav ul li a, #subnavigation ul li a {
     font-size: smaller;
     font-weight: bold;
     color: #E0E6E0;
-    padding: 5px;
     border-bottom: solid 1px #454;
 }
 div#nav ul li a:hover, #subnavigation ul li a:hover {
@@ -215,6 +223,8 @@ div#nav li.lang {
 div#nav li.lang:hover > ul {
     visibility: visible;
     opacity: 1;
+    width: 80px;
+    padding-right: 5px;
 }
 div#nav ul.lang {
     position: absolute;
@@ -234,6 +244,19 @@ div#nav ul.lang li {
     float: none;
     padding: 1px 2px;
 }
+.ltr, .ltr li {
+    float: left;
+    list-style: none;
+}
+li:not(:first-child) {
+    padding-right: 8px;
+    padding-left: 8px;
+}
+.rtl, .rtl li {
+    float: right;
+    list-style: none;
+}
+
 /* Alphabet Navigation
 ----------------------------------------------------- */
 div#alphanav {
@@ -275,6 +298,18 @@ button.navIcon {
     display: none;
 }
 
+div#header.rtl h1 {
+    margin-right: 40px;
+}
+div#header.rtl button {
+    float: right;
+}
+div#header.ltr h1 {
+    margin-left: 40px;
+}
+div#header.ltr button {
+    float: left;
+}
 div#header::after {
     content: "";
     clear: both;
@@ -304,7 +339,6 @@ div#nav::after {
         list-style: none;
         min-width: unset;
         width: 200px;
-        height: 32px;
         margin: 0;
         padding: 0;
     }
@@ -312,12 +346,22 @@ div#nav::after {
         float: unset;
         display: unset
     }
+    li:first-child {
+        padding-right: 8px;
+        padding-left: 8px;
+    }
 
     /* Start with hidden menu options */
     /* .nav li:not(:first-child) {display: none;} */
     .nav li {display: none;}
     .nav ul {display: none;}
 
+    button.navIcon.rtl {
+        text-align:right;
+    }
+    button.navIcon.ltr {
+        text-align:left;
+    }
     button.navIcon {
         display: block;
         float: left;
@@ -327,6 +371,12 @@ div#nav::after {
         color: #E0E6E0;
         background-color: #454;
     }
+    h1#SiteTitle.ltr  {
+        float: left;
+    }
+    h1#SiteTitle.rlt  {
+        float: right;
+    }
 
     .nav.responsive {position: absolute; display: block; z-index: 100;}
     .nav.responsive a.icon {
@@ -334,6 +384,12 @@ div#nav::after {
         right: 0;
         top: 0;
         margin-right: 10px;
+    }
+    .nav.rtl.responsive li.lang {
+        text-align: right;
+    }
+    .nav.ltr.responsive li.lang {
+        text-align: left;
     }
     .nav.responsive li {
         display: block;
@@ -362,7 +418,6 @@ div#nav::after {
     }
     .lang > .lang {
         top: 0;
-        left: 100%;
         margin-top: -6px;
         margin-left: -1px;
         -webkit-border-radius: 0 6px 6px 6px;
@@ -396,6 +451,12 @@ table tr th:first-child {
 }
 table tr th:last-child {
     border-right: solid 1px #7C8F7C;
+}
+table.relationships.ltr tr th, table.infolist.ltr tr th, table.primobjlist.ltr tr th, table.eventlist.ltr tr th {
+    text-align: left;
+}
+table.relationships.rtl tr th, table.infolist.rtl tr th, table.primobjlist.rtl tr th, table.eventlist.rtl tr th {
+    text-align: right;
 }
 table.primobjlist tr th {
     background-color: #9DBF9D;
@@ -767,8 +828,13 @@ div#families table.attrlist td.ColumnType {
     word-wrap: break-word;
     display: block;
 }
-#gallery .gallerycell {
+#gallery .gallerycell.ltr {
     float: left;
+}
+#gallery .gallerycell.rtl {
+    float: right;
+}
+#gallery .gallerycell {
     width: 130px;
     height: 150px;
     text-align: center;
@@ -983,6 +1049,12 @@ body#FamilyMap {
 
 /* Calendar Styles
 ===================================================== */
+.dropmenu.rtl li {
+    text-align: right;
+}
+.dropmenu.ltr li {
+    text-align: left;
+}
 table.calendar {
     table-layout: fixed;
     empty-cells: show;
@@ -1137,7 +1209,7 @@ body#fullyearlinked #YearGlance tbody td:hover .date {
     border: 5px solid;
 }
 h4 button.icon {
-    width: 0.9em;
+    width: 1.9em;
     border: 0px solid;
     padding: 0;
     opacity: 1;

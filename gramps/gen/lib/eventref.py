@@ -26,29 +26,32 @@
 Event Reference class for Gramps
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .secondaryobj import SecondaryObject
-from .privacybase import PrivacyBase
-from .notebase import NoteBase
-from .attrbase import AttributeBase
-from .refbase import RefBase
-from .eventroletype import EventRoleType
-from .const import IDENTICAL, EQUAL, DIFFERENT
-from .citationbase import IndirectCitationBase
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .attrbase import AttributeBase
+from .citationbase import CitationBase
+from .const import DIFFERENT, EQUAL, IDENTICAL
+from .eventroletype import EventRoleType
+from .notebase import NoteBase
+from .privacybase import PrivacyBase
+from .refbase import RefBase
+from .secondaryobj import SecondaryObject
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# Event References for Person/Family
+# EventRef
 #
-#-------------------------------------------------------------------------
-class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
-               IndirectCitationBase, SecondaryObject):
+# -------------------------------------------------------------------------
+class EventRef(
+    PrivacyBase, NoteBase, AttributeBase, RefBase, CitationBase, SecondaryObject
+):
     """
     Event reference class.
 
@@ -61,6 +64,7 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
         Create a new EventRef instance, copying from the source if present.
         """
         PrivacyBase.__init__(self, source)
+        CitationBase.__init__(self, source)
         NoteBase.__init__(self, source)
         AttributeBase.__init__(self, source)
         RefBase.__init__(self, source)
@@ -75,11 +79,12 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
         """
         return (
             PrivacyBase.serialize(self),
+            CitationBase.serialize(self),
             NoteBase.serialize(self),
             AttributeBase.serialize(self),
             RefBase.serialize(self),
-            self.__role.serialize()
-            )
+            self.__role.serialize(),
+        )
 
     @classmethod
     def get_schema(cls):
@@ -89,34 +94,42 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
+        # pylint: disable=import-outside-toplevel
         from .attribute import Attribute
+
         return {
             "type": "object",
             "title": _("Event reference"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "private": {"type": "boolean",
-                            "title": _("Private")},
-                "note_list": {"type": "array",
-                              "items": {"type": "string",
-                                        "maxLength": 50},
-                              "title": _("Notes")},
-                "attribute_list": {"type": "array",
-                                   "items": Attribute.get_schema(),
-                                   "title": _("Attributes")},
-                "ref": {"type": "string",
-                        "maxLength": 50,
-                        "title": _("Event")},
+                "private": {"type": "boolean", "title": _("Private")},
+                "citation_list": {
+                    "type": "array",
+                    "title": _("Citations"),
+                    "items": {"type": "string", "maxLength": 50},
+                },
+                "note_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Notes"),
+                },
+                "attribute_list": {
+                    "type": "array",
+                    "items": Attribute.get_schema(),
+                    "title": _("Attributes"),
+                },
+                "ref": {"type": "string", "maxLength": 50, "title": _("Event")},
                 "role": EventRoleType.get_schema(),
-            }
+            },
         }
 
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
         """
-        (privacy, note_list, attribute_list, ref, role) = data
+        (privacy, citation_list, note_list, attribute_list, ref, role) = data
         PrivacyBase.unserialize(self, privacy)
+        CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
         AttributeBase.unserialize(self, attribute_list)
         RefBase.unserialize(self, ref)
@@ -140,7 +153,7 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
         :returns: Returns the list of child objects that may carry textual data.
         :rtype: list
         """
-        return  self.attribute_list
+        return self.attribute_list
 
     def get_citation_child_list(self):
         """
@@ -171,9 +184,11 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
                   objects.
         :rtype: list
         """
-        ret = self.get_referenced_note_handles()
+        ret = (
+            self.get_referenced_citation_handles() + self.get_referenced_note_handles()
+        )
         if self.ref:
-            ret += [('Event', self.ref)]
+            ret += [("Event", self.ref)]
         return ret
 
     def get_handle_referents(self):
@@ -198,11 +213,9 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
         """
         if self.ref != other.ref or self.role != other.role:
             return DIFFERENT
-        else:
-            if self.is_equal(other):
-                return IDENTICAL
-            else:
-                return EQUAL
+        if self.is_equal(other):
+            return IDENTICAL
+        return EQUAL
 
     def merge(self, acquisition):
         """
@@ -215,6 +228,7 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
         """
         self._merge_privacy(acquisition)
         self._merge_attribute_list(acquisition)
+        self._merge_citation_list(acquisition)
         self._merge_note_list(acquisition)
 
     def get_role(self):
@@ -228,4 +242,5 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
         Set the role according to the given argument.
         """
         self.__role.set(role)
-    role = property(get_role, set_role, None, 'Returns or sets role property')
+
+    role = property(get_role, set_role, None, "Returns or sets role property")

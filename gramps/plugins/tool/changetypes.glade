@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.3 -->
+<!-- Generated with glade 3.40.0 -->
 <interface>
-  <requires lib="gtk+" version="3.10"/>
+  <requires lib="gtk+" version="3.24"/>
   <object class="GtkDialog" id="changetypes">
-    <property name="visible">False</property>
-    <property name="can_focus">False</property>
-    <property name="type_hint">dialog</property>
+    <property name="can-focus">False</property>
+    <property name="type-hint">dialog</property>
     <signal name="delete-event" handler="on_delete_event" swapped="no"/>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox2">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <property name="spacing">8</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="dialog-action_area2">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="button5">
                 <property name="label">gtk-cancel</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">False</property>
+                <property name="use-stock">True</property>
                 <signal name="clicked" handler="on_close_clicked" object="changetypes" swapped="yes"/>
               </object>
               <packing>
@@ -38,12 +37,12 @@
             <child>
               <object class="GtkButton" id="button3">
                 <property name="label">gtk-ok</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">False</property>
+                <property name="use-stock">True</property>
                 <signal name="clicked" handler="on_apply_clicked" object="changetypes" swapped="yes"/>
               </object>
               <packing>
@@ -56,22 +55,22 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="pack_type">end</property>
+            <property name="pack-type">end</property>
             <property name="position">0</property>
           </packing>
         </child>
         <child>
           <object class="GtkBox" id="vbox1">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="border_width">10</property>
+            <property name="can-focus">False</property>
+            <property name="border-width">10</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkLabel" id="title">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_top">10</property>
-                <property name="margin_bottom">10</property>
+                <property name="can-focus">False</property>
+                <property name="margin-top">10</property>
+                <property name="margin-bottom">10</property>
                 <property name="justify">center</property>
               </object>
               <packing>
@@ -83,11 +82,11 @@
             <child>
               <object class="GtkLabel" id="label4">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_left">12</property>
-                <property name="margin_right">12</property>
-                <property name="margin_top">12</property>
-                <property name="margin_bottom">12</property>
+                <property name="can-focus">False</property>
+                <property name="margin-left">12</property>
+                <property name="margin-right">12</property>
+                <property name="margin-top">12</property>
+                <property name="margin-bottom">12</property>
                 <property name="label" translatable="yes">This tool will rename all events of one type to a different type. Once completed, this cannot be undone by the regular Undo function.</property>
                 <property name="wrap">True</property>
               </object>
@@ -98,71 +97,87 @@
               </packing>
             </child>
             <child>
+              <!-- n-columns=3 n-rows=3 -->
               <object class="GtkGrid" id="table1">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="border_width">12</property>
-                <property name="row_spacing">6</property>
-                <property name="column_spacing">12</property>
+                <property name="can-focus">False</property>
+                <property name="border-width">12</property>
+                <property name="row-spacing">6</property>
+                <property name="column-spacing">12</property>
                 <child>
                   <object class="GtkLabel" id="label2">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">Original event type:</property>
                   </object>
                   <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">0</property>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">0</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkLabel" id="label3">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">New event type:</property>
                   </object>
                   <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">1</property>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">1</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkComboBox" id="new">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="hexpand">True</property>
-                    <property name="has_entry">True</property>
+                    <property name="has-entry">True</property>
                     <child internal-child="entry">
                       <object class="GtkEntry" id="new-entry">
-                        <property name="can_focus">True</property>
-                        <property name="overwrite_mode">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="overwrite-mode">True</property>
                       </object>
                     </child>
                   </object>
                   <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">1</property>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">1</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkComboBox" id="original">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="hexpand">True</property>
-                    <property name="has_entry">True</property>
+                    <property name="has-entry">True</property>
                     <child internal-child="entry">
                       <object class="GtkEntry" id="original-entry">
-                        <property name="can_focus">True</property>
-                        <property name="overwrite_mode">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="overwrite-mode">True</property>
                       </object>
                     </child>
                   </object>
                   <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">0</property>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">0</property>
                   </packing>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
                 </child>
               </object>
               <packing>

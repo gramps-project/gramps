@@ -25,28 +25,29 @@
 Repository object for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .primaryobj import PrimaryObject
-from .notebase import NoteBase
-from .addressbase import AddressBase
-from .urlbase import UrlBase
-from .tagbase import TagBase
-from .repotype import RepositoryType
-from .citationbase import IndirectCitationBase
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .addressbase import AddressBase
+from .citationbase import IndirectCitationBase
+from .notebase import NoteBase
+from .primaryobj import PrimaryObject
+from .repotype import RepositoryType
+from .tagbase import TagBase
+from .urlbase import UrlBase
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# Repository class
+# Repository
 #
-#-------------------------------------------------------------------------
-class Repository(NoteBase, AddressBase, UrlBase, IndirectCitationBase,
-                 PrimaryObject):
+# -------------------------------------------------------------------------
+class Repository(NoteBase, AddressBase, UrlBase, IndirectCitationBase, PrimaryObject):
     """A location where collections of Sources are found."""
 
     def __init__(self):
@@ -64,12 +65,18 @@ class Repository(NoteBase, AddressBase, UrlBase, IndirectCitationBase,
         """
         Convert the object to a serialized tuple of data.
         """
-        return (self.handle, self.gramps_id, self.type.serialize(),
-                str(self.name),
-                NoteBase.serialize(self),
-                AddressBase.serialize(self),
-                UrlBase.serialize(self),
-                self.change, TagBase.serialize(self), self.private)
+        return (
+            self.handle,
+            self.gramps_id,
+            self.type.serialize(),
+            str(self.name),
+            NoteBase.serialize(self),
+            AddressBase.serialize(self),
+            UrlBase.serialize(self),
+            self.change,
+            TagBase.serialize(self),
+            self.private,
+        )
 
     @classmethod
     def get_schema(cls):
@@ -79,40 +86,46 @@ class Repository(NoteBase, AddressBase, UrlBase, IndirectCitationBase,
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
+        # pylint: disable=import-outside-toplevel
         from .address import Address
         from .url import Url
+
         return {
             "type": "object",
             "title": _("Repository"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "handle": {"type": "string",
-                           "maxLength": 50,
-                           "title": _("Handle")},
-                "gramps_id": {"type": "string",
-                              "title": _("Gramps ID")},
+                "handle": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "title": _("Handle"),
+                },
+                "gramps_id": {"type": "string", "title": _("Gramps ID")},
                 "type": RepositoryType.get_schema(),
-                "name": {"type": "string",
-                         "title": _("Name")},
-                "note_list": {"type": "array",
-                              "items": {"type": "string",
-                                        "maxLength": 50},
-                              "title": _("Notes")},
-                "address_list": {"type": "array",
-                                 "items": Address.get_schema(),
-                                 "title": _("Addresses")},
-                "urls": {"type": "array",
-                         "items": Url.get_schema(),
-                         "title": _("URLs")},
-                "change": {"type": "integer",
-                           "title": _("Last changed")},
-                "tag_list": {"type": "array",
-                             "items": {"type": "string",
-                                       "maxLength": 50},
-                             "title": _("Tags")},
-                "private": {"type": "boolean",
-                            "title": _("Private")}
-            }
+                "name": {"type": "string", "title": _("Name")},
+                "note_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Notes"),
+                },
+                "address_list": {
+                    "type": "array",
+                    "items": Address.get_schema(),
+                    "title": _("Addresses"),
+                },
+                "urls": {
+                    "type": "array",
+                    "items": Url.get_schema(),
+                    "title": _("URLs"),
+                },
+                "change": {"type": "integer", "title": _("Last changed")},
+                "tag_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Tags"),
+                },
+                "private": {"type": "boolean", "title": _("Private")},
+            },
         }
 
     def unserialize(self, data):
@@ -120,8 +133,18 @@ class Repository(NoteBase, AddressBase, UrlBase, IndirectCitationBase,
         Convert the data held in a tuple created by the serialize method
         back into the data in a Repository structure.
         """
-        (self.handle, self.gramps_id, the_type, self.name, note_list,
-         address_list, urls, self.change, tag_list, self.private) = data
+        (
+            self.handle,
+            self.gramps_id,
+            the_type,
+            self.name,
+            note_list,
+            address_list,
+            urls,
+            self.change,
+            tag_list,
+            self.private,
+        ) = data
 
         self.type = RepositoryType()
         self.type.unserialize(the_type)
@@ -187,8 +210,7 @@ class Repository(NoteBase, AddressBase, UrlBase, IndirectCitationBase,
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        return (self.get_referenced_note_handles() +
-                self.get_referenced_tag_handles())
+        return self.get_referenced_note_handles() + self.get_referenced_tag_handles()
 
     def merge(self, acquisition):
         """

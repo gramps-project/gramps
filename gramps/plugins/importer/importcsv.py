@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -24,54 +25,76 @@
 
 "Import from CSV Spreadsheet"
 
-#-------------------------------------------------------------------------
-#
-# Standard Python Modules
-#
-#-------------------------------------------------------------------------
-import time
-import csv
 import codecs
-from io import TextIOWrapper
+import csv
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Set up logging
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import logging
-LOG = logging.getLogger(".ImportCSV")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Standard Python Modules
+#
+# -------------------------------------------------------------------------
+import time
+from io import TextIOWrapper
+
+from gramps.gen.config import config
+
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
-ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
-from gramps.gen.lib import (ChildRef, Citation, Event, EventRef, EventType,
-                            Family, FamilyRelType, Name, NameType, Note,
-                            NoteType, Person, Place, Source, Surname, Tag,
-                            PlaceName, PlaceType, PlaceRef,
-                            Attribute, AttributeType)
-from gramps.gen.db import DbTxn
 from gramps.gen.datehandler import parser as _dp
-from gramps.gen.utils.string import gender as gender_map
-from gramps.gen.utils.id import create_id
-from gramps.gen.utils.location import located_in
-from gramps.gen.utils.unknown import create_explanation_note
-from gramps.gen.lib.eventroletype import EventRoleType
-from gramps.gen.config import config
+from gramps.gen.db import DbTxn
 from gramps.gen.display.place import displayer as place_displayer
-from gramps.gen.utils.libformatting import ImportInfo
 from gramps.gen.errors import GrampsImportError as Error
+from gramps.gen.lib import (
+    Attribute,
+    ChildRef,
+    Citation,
+    Event,
+    EventRef,
+    EventType,
+    Family,
+    FamilyRelType,
+    Name,
+    NameType,
+    Note,
+    NoteType,
+    Person,
+    Place,
+    PlaceName,
+    PlaceRef,
+    PlaceType,
+    Source,
+    Surname,
+    Tag,
+)
+from gramps.gen.lib.eventroletype import EventRoleType
+from gramps.gen.utils.id import create_id
+from gramps.gen.utils.libformatting import ImportInfo
+from gramps.gen.utils.string import gender as gender_map
+from gramps.gen.utils.unknown import create_explanation_note
 
-#-------------------------------------------------------------------------
+LOG = logging.getLogger(".ImportCSV")
+
+_ = glocale.translation.sgettext
+ngettext = glocale.translation.ngettext  # else "nearby" comments are ignored
+
+# -------------------------------------------------------------------------
 #
 # Support Functions
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
+
 def get_primary_event_ref_from_type(dbase, person, event_name):
     """
     >>> get_primary_event_ref_from_type(dbase, Person(), "Baptism"):
@@ -83,13 +106,14 @@ def get_primary_event_ref_from_type(dbase, person, event_name):
                 return ref
     return None
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Support and main functions
 #
-#-------------------------------------------------------------------------
-def rd(line_number, row, col, key, default = None):
-    """ Return Row data by column name """
+# -------------------------------------------------------------------------
+def rd(line_number, row, col, key, default=None):
+    """Return Row data by column name"""
     if key in col:
         if col[key] >= len(row):
             LOG.warning("missing '%s, on line %d" % (key, line_number))
@@ -102,24 +126,32 @@ def rd(line_number, row, col, key, default = None):
     else:
         return default
 
+
 def importData(dbase, filename, user):
     """Function called by Gramps to import data on persons in CSV format."""
-    if dbase.get_feature("skip-import-additions"): # don't add source or tags
+    if dbase.get_feature("skip-import-additions"):  # don't add source or tags
         parser = CSVParser(dbase, user, None)
     else:
-        parser = CSVParser(dbase, user, (config.get('preferences.tag-on-import-format') if
-                                         config.get('preferences.tag-on-import') else None))
+        parser = CSVParser(
+            dbase,
+            user,
+            (
+                config.get("preferences.tag-on-import-format")
+                if config.get("preferences.tag-on-import")
+                else None
+            ),
+        )
     try:
-        with open(filename, 'rb') as filehandle:
+        with open(filename, "rb") as filehandle:
             line = filehandle.read(3)
             if line == codecs.BOM_UTF8:
                 filehandle.seek(0)
-                filehandle = TextIOWrapper(filehandle, encoding='utf_8_sig',
-                                           errors='replace', newline='')
-            else:                       # just open with OS encoding
+                filehandle = TextIOWrapper(
+                    filehandle, encoding="utf_8_sig", errors="replace", newline=""
+                )
+            else:  # just open with OS encoding
                 filehandle.seek(0)
-                filehandle = TextIOWrapper(filehandle,
-                                           errors='replace', newline='')
+                filehandle = TextIOWrapper(filehandle, errors="replace", newline="")
             msg = parser.parse(filehandle)
             if msg:
                 user.notify_error(_("Bad references"), msg)
@@ -128,13 +160,15 @@ def importData(dbase, filename, user):
         return
     return ImportInfo({_("Results"): _("done")})
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # CSV Parser
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class CSVParser:
     """Class to read data in CSV format from a file object."""
+
     def __init__(self, dbase, user, default_tag_format=None):
         self.db = dbase
         self.user = user
@@ -144,12 +178,13 @@ class CSVParser:
         self.fam_count = 0
         self.indi_count = 0
         self.place_count = 0
-        self.pref = {} # person ref, internal to this sheet
-        self.fref = {} # family ref, internal to this sheet
+        self.pref = {}  # person ref, internal to this sheet
+        self.fref = {}  # family ref, internal to this sheet
         self.placeref = {}
+        self.eventref = {}
         self.place_types = {}
         # Build reverse dictionary, name to type number
-        for items in PlaceType().get_map().items(): # (0, 'Custom')
+        for items in PlaceType().get_map().items():  # (0, 'Custom')
             self.place_types[items[1]] = items[0]
             self.place_types[items[1].lower()] = items[0]
             if _(items[1]) != items[1]:
@@ -159,82 +194,179 @@ class CSVParser:
             self.place_types[custom_type] = 0
             self.place_types[custom_type.lower()] = 0
         column2label = {
-            "surname": ("lastname", "last_name", "surname", _("surname"),
-                        _("Surname")),
-            "firstname": ("firstname", "first_name", "given_name", "given",
-                          "given name", _("given name"), _("given"),
-                          _("Given"), _("Given name")),
-            "callname": ("call name", _("Call name"), "callname", "call_name",
-                         "call", _("Call"), _("call")),
+            "surname": ("lastname", "last_name", "surname", _("surname"), _("Surname")),
+            "firstname": (
+                "firstname",
+                "first_name",
+                "given_name",
+                "given",
+                "given name",
+                _("given name"),
+                _("given"),
+                _("Given"),
+                _("Given name"),
+            ),
+            "callname": (
+                "call name",
+                _("Call name"),
+                "callname",
+                "call_name",
+                "call",
+                _("Call"),
+                _("call"),
+            ),
+            "tag": ("tag", _("tag"), _("Tag")),
             "title": ("title", _("title"), _("title", "Person or Place")),
             "prefix": ("prefix", _("prefix"), _("Prefix")),
             "suffix": ("suffix", _("suffix"), _("Suffix")),
             "gender": ("gender", _("gender"), _("Gender")),
             "source": ("source", _("source"), _("Source")),
             "note": ("note", _("note"), _("Note")),
-            "birthplace": ("birthplace", "birth_place", "birth place",
-                           _("birth place"), _("Birth place")),
-            "birthplace_id": ("birthplaceid", "birth_place_id",
-                              "birth place id", _("birth place id"),
-                              "birthplace_id"),
-            "birthdate": ("birthdate", "birth_date", "birth date",
-                          _("birth date")),
-            "birthsource": ("birthsource", "birth_source", "birth source",
-                            _("birth source")),
-            "baptismplace": ("baptismplace", "baptism place",
-                             _("baptism place")),
-            "baptismplace_id": ("baptismplaceid", "baptism place id",
-                                _("baptism place id"), "baptism_place_id",
-                                "baptismplace_id"),
+            "birthplace": (
+                "birthplace",
+                "birth_place",
+                "birth place",
+                _("birth place"),
+                _("Birth place"),
+            ),
+            "birthplace_id": (
+                "birthplaceid",
+                "birth_place_id",
+                "birth place id",
+                _("birth place id"),
+                "birthplace_id",
+            ),
+            "birthdate": ("birthdate", "birth_date", "birth date", _("birth date")),
+            "birthsource": (
+                "birthsource",
+                "birth_source",
+                "birth source",
+                _("birth source"),
+            ),
+            "baptismplace": ("baptismplace", "baptism place", _("baptism place")),
+            "baptismplace_id": (
+                "baptismplaceid",
+                "baptism place id",
+                _("baptism place id"),
+                "baptism_place_id",
+                "baptismplace_id",
+            ),
             "baptismdate": ("baptismdate", "baptism date", _("baptism date")),
-            "baptismsource": ("baptismsource", "baptism source",
-                              _("baptism source")),
+            "baptismsource": ("baptismsource", "baptism source", _("baptism source")),
             "burialplace": ("burialplace", "burial place", _("burial place")),
-            "burialplace_id": ("burialplaceid", "burial place id",
-                               _("burial place id"), "burial_place_id",
-                               "burialplace_id"),
+            "burialplace_id": (
+                "burialplaceid",
+                "burial place id",
+                _("burial place id"),
+                "burial_place_id",
+                "burialplace_id",
+            ),
             "burialdate": ("burialdate", "burial date", _("burial date")),
-            "burialsource": ("burialsource", "burial source",
-                             _("burial source")),
-            "deathplace": ("deathplace", "death_place", "death place",
-                           _("death place")),
-            "deathplace_id": ("deathplaceid", "death place id",
-                              _("death place id"), "death_place_id",
-                              "deathplace_id"),
-            "deathdate": ("deathdate", "death_date", "death date",
-                          _("death date")),
-            "deathsource": ("deathsource", "death_source", "death source",
-                            _("death source")),
-            "deathcause": ("deathcause", "death_cause", "death cause",
-                           _("death cause")),
-            "grampsid": (_("Gramps ID"), "grampsid", "id", "gramps_id",
-                         "gramps id"),
+            "burialsource": ("burialsource", "burial source", _("burial source")),
+            "deathplace": (
+                "deathplace",
+                "death_place",
+                "death place",
+                _("death place"),
+            ),
+            "deathplace_id": (
+                "deathplaceid",
+                "death place id",
+                _("death place id"),
+                "death_place_id",
+                "deathplace_id",
+            ),
+            "deathdate": ("deathdate", "death_date", "death date", _("death date")),
+            "deathsource": (
+                "deathsource",
+                "death_source",
+                "death source",
+                _("death source"),
+            ),
+            "deathcause": (
+                "deathcause",
+                "death_cause",
+                "death cause",
+                _("death cause"),
+            ),
+            "grampsid": (_("Gramps ID"), "grampsid", "id", "gramps_id", "gramps id"),
             "person": ("person", _("person"), _("Person")),
-            "occupationdescr": ("occupationdescr", _("occupationdescr"), _("Occupation description")),
-            "occupationdate": ("occupationdate", _("occupationdate"), _("Occupation date")),
-            "occupationplace": ("occupationplace", _("occupationplace"), _("Occupation place")),
-            "occupationplace_id": ("occupationplace_id", _("occupationplace_id"), _("Occupation place id")),
-            "occupationsource": ("occupationsource", _("occupationsource"), _("Occupation source")),
-
+            "occupationdescr": (
+                "occupationdescr",
+                _("occupationdescr"),
+                _("Occupation description"),
+            ),
+            "occupationdate": (
+                "occupationdate",
+                _("occupationdate"),
+                _("Occupation date"),
+            ),
+            "occupationplace": (
+                "occupationplace",
+                _("occupationplace"),
+                _("Occupation place"),
+            ),
+            "occupationplace_id": (
+                "occupationplace_id",
+                _("occupationplace_id"),
+                _("Occupation place id"),
+            ),
+            "occupationsource": (
+                "occupationsource",
+                _("occupationsource"),
+                _("Occupation source"),
+            ),
             "residencedate": ("residencedate", _("residencedate"), _("residence date")),
-            "residenceplace": ("residenceplace", _("residenceplace"), _("residence place")),
-            "residenceplace_id": ("residenceplace_id", _("residenceplace_id"), _("residence place id")),
-            "residencesource": ("residencesource", _("residencesource"), _("residence source")),
-
+            "residenceplace": (
+                "residenceplace",
+                _("residenceplace"),
+                _("residence place"),
+            ),
+            "residenceplace_id": (
+                "residenceplace_id",
+                _("residenceplace_id"),
+                _("residence place id"),
+            ),
+            "residencesource": (
+                "residencesource",
+                _("residencesource"),
+                _("residence source"),
+            ),
             "attributetype": ("attributetype", _("attributetype"), _("attribute type")),
-            "attributevalue": ("attributevalue", _("attributevalue"), _("attribute value")),
-            "attributesource": ("attributesource", _("attributesource"), _("attribute source")),
-
+            "attributevalue": (
+                "attributevalue",
+                _("attributevalue"),
+                _("attribute value"),
+            ),
+            "attributesource": (
+                "attributesource",
+                _("attributesource"),
+                _("attribute source"),
+            ),
             # ----------------------------------
             "child": ("child", _("child"), _("Child")),
             "family": ("family", _("family"), _("Family")),
             # ----------------------------------
-            "wife": ("mother", _("mother"), _("Mother"),
-                     "wife", _("wife"), _("Wife"),
-                     "parent2", _("parent2")),
-            "husband": ("father", _("father"), _("Father"),
-                        "husband", _("husband"), _("Husband"),
-                        "parent1", _("parent1")),
+            "wife": (
+                "mother",
+                _("mother"),
+                _("Mother"),
+                "wife",
+                _("wife"),
+                _("Wife"),
+                "parent2",
+                _("parent2"),
+            ),
+            "husband": (
+                "father",
+                _("father"),
+                _("Father"),
+                "husband",
+                _("husband"),
+                _("Husband"),
+                "parent1",
+                _("parent1"),
+            ),
             "marriage": ("marriage", _("marriage"), _("Marriage")),
             "date": ("date", _("date"), _("Date")),
             "place": ("place", _("place"), _("Place")),
@@ -244,8 +376,13 @@ class CSVParser:
             "latitude": ("latitude", _("latitude")),
             "longitude": ("longitude", _("longitude")),
             "code": ("code", _("code"), _("Code")),
-            "enclosed_by": ("enclosed by", _("enclosed by"),
-                            "enclosed_by", _("enclosed_by"), "enclosedby")
+            "enclosed_by": (
+                "enclosed by",
+                _("enclosed by"),
+                "enclosed_by",
+                _("enclosed_by"),
+                "enclosedby",
+            ),
         }
         lab2col_dict = []
         for key in list(column2label.keys()):
@@ -269,19 +406,24 @@ class CSVParser:
 
     def read_csv(self, filehandle):
         "Read the data from the file and return it as a list."
-        my_dialect = config.get('csv.dialect')
-        my_delimiter = config.get('csv.delimiter')
+        my_dialect = config.get("csv.dialect")
+        my_delimiter = config.get("csv.delimiter")
         try:
             if my_dialect == _("Custom"):
-                data = [[r.strip() for r in row]
-                        for row in csv.reader(filehandle,
-                                              delimiter=my_delimiter)]
+                data = [
+                    [r.strip() for r in row]
+                    for row in csv.reader(filehandle, delimiter=my_delimiter)
+                ]
             else:
-                data = [[r.strip() for r in row]
-                        for row in csv.reader(filehandle, dialect=my_dialect)]
+                data = [
+                    [r.strip() for r in row]
+                    for row in csv.reader(filehandle, dialect=my_dialect)
+                ]
         except csv.Error as err:
-            self.user.notify_error(_('format error: line %(line)d: %(zero)s') % {
-                        'line' : csv.reader.line_num, 'zero' : err } )
+            self.user.notify_error(
+                _("format error: line %(line)d: %(zero)s")
+                % {"line": csv.reader.line_num, "zero": err}
+            )
             return None
         return data
 
@@ -334,6 +476,20 @@ class CSVParser:
                     return self.placeref[id_.lower()]
                 else:
                     return None
+        elif type_ == "event":
+            if id_.startswith("[") and id_.endswith("]"):
+                id_ = self.db.eid2user_format(id_[1:-1])
+                db_lookup = self.db.get_event_from_gramps_id(id_)
+                if db_lookup is None:
+                    return self.lookup(type_, id_)
+                else:
+                    return db_lookup
+            else:
+                id_ = self.db.eid2user_format(id_)
+                if id_.lower() in self.eventref:
+                    return self.eventref[id_.lower()]
+                else:
+                    return None
         else:
             LOG.warning("invalid lookup type in CSV import: '%s'" % type_)
             return None
@@ -342,7 +498,7 @@ class CSVParser:
         "Store object object_ of type type_ in a dictionary under key id_."
         if id_.startswith("[") and id_.endswith("]"):
             id_ = id_[1:-1]
-            #return # do not store gramps people; go look them up
+            # return # do not store gramps people; go look them up
         if type_ == "person":
             id_ = self.db.id2user_format(id_)
             self.pref[id_.lower()] = object_
@@ -361,13 +517,13 @@ class CSVParser:
 
         :param filehandle: open file handle positioned at start of the file
         """
-        progress_title = _('CSV Import')
-        with self.user.progress(progress_title,
-                _('Reading data...'), 1) as step:
+        progress_title = _("CSV Import")
+        with self.user.progress(progress_title, _("Reading data..."), 1) as step:
             data = self.read_csv(filehandle)
 
-        with self.user.progress(progress_title,
-                _('Importing data...'), len(data)) as step:
+        with self.user.progress(
+            progress_title, _("Importing data..."), len(data)
+        ) as step:
             tym = time.time()
             self.db.disable_signals()
             with DbTxn(_("CSV import"), self.db, batch=True) as self.trans:
@@ -379,9 +535,11 @@ class CSVParser:
             self.db.request_rebuild()
             tym = time.time() - tym
             # Translators: leave all/any {...} untranslated
-            msg = ngettext('Import Complete: {number_of} second',
-                           'Import Complete: {number_of} seconds', tym
-                          ).format(number_of=tym)
+            msg = ngettext(
+                "Import Complete: {number_of} second",
+                "Import Complete: {number_of} seconds",
+                tym,
+            ).format(number_of=tym)
             LOG.debug(msg)
             LOG.debug("New Families: %d" % self.fam_count)
             LOG.debug("New Individuals: %d" % self.indi_count)
@@ -389,19 +547,18 @@ class CSVParser:
         return err_msg
 
     def _check_refs(self):
-        """ Check that forward cross references were satisfied """
-        txt = ''
+        """Check that forward cross references were satisfied"""
+        txt = ""
         expl_note = create_explanation_note(self.db)
         for key in self.placeref:
             place = self.placeref[key]
             if place.name.value == _("Unknown"):
-                txt = (', ' + key) if txt else key
+                txt = (", " + key) if txt else key
                 place.add_note(expl_note.handle)
                 self.db.commit_place(place, self.trans)
         if txt:
             self.db.commit_note(expl_note, self.trans, time.time())
-            return _("The following IDs were referenced but not found:\n" +
-                     txt)
+            return _("The following IDs were referenced but not found:\n" + txt)
         else:
             return None
 
@@ -412,16 +569,17 @@ class CSVParser:
         self.fam_count = 0
         self.indi_count = 0
         self.place_count = 0
-        self.pref = {} # person ref, internal to this sheet
-        self.fref = {} # family ref, internal to this sheet
+        self.pref = {}  # person ref, internal to this sheet
+        self.fref = {}  # family ref, internal to this sheet
         self.placeref = {}
+        self.eventref = {}
         header = None
         line_number = 0
         for row in data:
             step()
             line_number += 1
-            if "".join(row) == "": # no blanks are allowed inside a table
-                header = None # clear headers, ready for next "table"
+            if "".join(row) == "":  # no blanks are allowed inside a table
+                header = None  # clear headers, ready for next "table"
                 continue
             ######################################
             if header is None:
@@ -433,13 +591,11 @@ class CSVParser:
                     count += 1
                 continue
             # four different kinds of data: person, family, and marriage
-            if (("marriage" in header) or
-                ("husband" in header) or
-                ("wife" in header)):
+            if ("marriage" in header) or ("husband" in header) or ("wife" in header):
                 self._parse_marriage(line_number, row, col)
             elif "family" in header:
                 self._parse_family(line_number, row, col)
-            elif "surname" in header:
+            elif any(("surname" in header, "person" in header)):
                 self._parse_person(line_number, row, col)
             elif "place" in header:
                 self._parse_place(line_number, row, col)
@@ -457,12 +613,34 @@ class CSVParser:
         marriageplace_id = rd(line_number, row, col, "place_id")
         marriagesource = rd(line_number, row, col, "source")
         note = rd(line_number, row, col, "note")
+        tag = rd(line_number, row, col, "tag")
         wife = self.lookup("person", wife)
         husband = self.lookup("person", husband)
-        if husband is None and wife is None:
+
+        if (
+            husband is None
+            and wife is None
+            and (tag is not None or note is not None)
+            and marriage_ref is not None
+        ):
+            # Just adding a note or tag to a marriage event
+            marriage = self.lookup("event", marriage_ref)
+            if marriage is None:
+                LOG.warning("no marriage found for ref %s" % marriage_ref)
+                return
+            if tag:
+                self.add_tag(marriage, tag)
+            if note:
+                self.add_note(NoteType.EVENT, marriage, note)
+            self.db.commit_event(marriage, self.trans)
+            return
+
+        # Below, we assume editing/creating a family
+
+        if husband is None and wife is None and marriage_ref is None:
             # might have children, so go ahead and add
-            LOG.warning("no parents on line %d; adding family anyway" %
-                        line_number)
+            LOG.warning("no parents on line %d; adding family anyway" % line_number)
+
         family = self.get_or_create_family(marriage_ref, husband, wife)
         # adjust gender, if not already provided
         if husband:
@@ -490,126 +668,97 @@ class CSVParser:
             marriageplace = self.lookup("place", marriageplace_id)
         if marriagedate:
             marriagedate = _dp.parse(marriagedate)
-        if marriagedate or marriageplace or marriagesource or note:
+        if marriagedate or marriageplace or marriagesource:
             # add, if new; replace, if different
-            new, marriage = self.get_or_create_event(family,
-                    EventType.MARRIAGE, marriagedate,
-                    marriageplace, marriagesource)
+            new, marriage = self.get_or_create_event(
+                family, EventType.MARRIAGE, marriagedate, marriageplace, marriagesource
+            )
             if new:
                 mar_ref = EventRef()
                 mar_ref.set_reference_handle(marriage.get_handle())
                 mar_ref.set_role(EventRoleType(EventRoleType.FAMILY))
                 family.add_event_ref(mar_ref)
-                self.db.commit_family(family, self.trans)
-            # only add note to event:
-            # append notes, if previous notes
+            if tag:
+                self.add_tag(marriage, tag)
             if note:
-                previous_notes_list = marriage.get_note_list()
-                updated_note = False
-                for note_handle in previous_notes_list:
-                    previous_note = self.db.get_note_from_handle(
-                            note_handle)
-                    if previous_note.type == NoteType.EVENT:
-                        previous_text = previous_note.get()
-                        if note not in previous_text:
-                            note = previous_text + "\n" + note
-                        previous_note.set(note)
-                        self.db.commit_note(previous_note, self.trans)
-                        updated_note = True
-                        break
-                if not updated_note:
-                    # add new note here
-                    new_note = Note()
-                    new_note.handle = create_id()
-                    new_note.type.set(NoteType.EVENT)
-                    new_note.set(note)
-                    if self.default_tag:
-                        new_note.add_tag(self.default_tag.handle)
-                    self.db.add_note(new_note, self.trans)
-                    marriage.add_note(new_note.handle)
-                self.db.commit_event(marriage, self.trans)
+                self.add_note(NoteType.EVENT, marriage, note)
+            self.db.commit_event(marriage, self.trans)
+
+        self.db.commit_family(family, self.trans)
 
     def _parse_family(self, line_number, row, col):
         "Parse the content of a family line"
         family_ref = rd(line_number, row, col, "family")
         if family_ref is None:
-            LOG.warning("no family reference found for family on line %d" %
-                        line_number)
-            return # required
-        child = rd(line_number, row, col, "child")
+            LOG.warning("no family reference found for family on line %d" % line_number)
+            return  # required
         source = rd(line_number, row, col, "source")
         note = rd(line_number, row, col, "note")
         gender = rd(line_number, row, col, "gender")
-        child = self.lookup("person", child)
+        tag = rd(line_number, row, col, "tag")
+        child_ref = rd(line_number, row, col, "child")
+        child = self.lookup("person", child_ref)
         family = self.lookup("family", family_ref)
         if family is None:
-            LOG.warning("no matching family reference found for family "
-                        "on line %d" % line_number)
+            LOG.warning(
+                "no matching family reference found for family "
+                "on line %d" % line_number
+            )
             return
-        if child is None:
-            LOG.warning("no matching child reference found for family "
-                        "on line %d" % line_number)
-            return
-        # is this child already in this family? If so, don't add
-        LOG.debug("children: %s", [ref.ref for ref in
-                                   family.get_child_ref_list()])
-        LOG.debug("looking for: %s", child.get_handle())
-        if child.get_handle() not in [ref.ref for ref in
-                                      family.get_child_ref_list()]:
-            # add child to family
-            LOG.debug("   adding child [%s] to family [%s]",
-                      child.get_gramps_id(), family.get_gramps_id())
-            childref = ChildRef()
-            childref.set_reference_handle(child.get_handle())
-            family.add_child_ref( childref)
-            self.db.commit_family(family, self.trans)
-            child.add_parent_family_handle(family.get_handle())
-        if gender:
-            # replace
-            gender = gender.lower()
-            if gender == gender_map[Person.MALE].lower():
-                gender = Person.MALE
-            elif gender == gender_map[Person.FEMALE].lower():
-                gender = Person.FEMALE
-            else:
-                gender = Person.UNKNOWN
-            child.set_gender(gender)
-        if source:
-            # add, if new
-            dummy_new, source = self.get_or_create_source(source)
-            self.find_and_set_citation(child, source)
-        # put note on child
-        if note:
-            # append notes, if previous notes
-            previous_notes_list = child.get_note_list()
-            updated_note = False
-            for note_handle in previous_notes_list:
-                previous_note = self.db.get_note_from_handle(note_handle)
-                if previous_note.type == NoteType.PERSON:
-                    previous_text = previous_note.get()
-                    if note not in previous_text:
-                        note = previous_text + "\n" + note
-                    previous_note.set(note)
-                    self.db.commit_note(previous_note, self.trans)
-                    updated_note = True
-                    break
-            if not updated_note:
-                # add new note here
-                new_note = Note()
-                new_note.handle = create_id()
-                new_note.type.set(NoteType.PERSON)
-                new_note.set(note)
-                if self.default_tag:
-                    new_note.add_tag(self.default_tag.handle)
-                self.db.add_note(new_note, self.trans)
-                child.add_note(new_note.handle)
-        self.db.commit_person(child, self.trans)
+        if child:
+            # is this child already in this family? If so, don't add
+            LOG.debug("children: %s", [ref.ref for ref in family.get_child_ref_list()])
+            LOG.debug("looking for: %s", child.get_handle())
+            if child.get_handle() not in [
+                ref.ref for ref in family.get_child_ref_list()
+            ]:
+                # add child to family
+                LOG.debug(
+                    "   adding child [%s] to family [%s]",
+                    child.get_gramps_id(),
+                    family.get_gramps_id(),
+                )
+                childref = ChildRef()
+                childref.set_reference_handle(child.get_handle())
+                family.add_child_ref(childref)
+                self.db.commit_family(family, self.trans)
+                child.add_parent_family_handle(family.get_handle())
+            if gender:
+                # replace
+                gender = gender.lower()
+                if gender == gender_map[Person.MALE].lower():
+                    gender = Person.MALE
+                elif gender == gender_map[Person.FEMALE].lower():
+                    gender = Person.FEMALE
+                elif gender == gender_map[Person.OTHER].lower():
+                    gender = Person.OTHER
+                else:
+                    gender = Person.UNKNOWN
+                child.set_gender(gender)
+            if source:
+                dummy_new, source = self.get_or_create_source(source)
+                self.find_and_set_citation(child, source)
+            if tag is not None:
+                self.add_tag(child, tag)
+            if note:
+                self.add_note(NoteType.PERSON, child, note)
+
+            self.db.commit_person(child, self.trans)
+
+        else:  # not a child; note and tag refers to family
+            if tag is not None:
+                self.add_tag(family, tag)
+            if note:
+                self.add_note(NoteType.EVENT, family, note)
+
+        self.db.commit_family(family, self.trans)
 
     def _parse_person(self, line_number, row, col):
         "Parse the content of a Person line."
         surname = rd(line_number, row, col, "surname")
-        firstname = rd(line_number, row, col, "firstname", "")
+        firstname = rd(line_number, row, col, "firstname")
         callname = rd(line_number, row, col, "callname")
+        tag = rd(line_number, row, col, "tag")
         title = rd(line_number, row, col, "title")
         prefix = rd(line_number, row, col, "prefix")
         suffix = rd(line_number, row, col, "suffix")
@@ -653,16 +802,17 @@ class CSVParser:
         person = self.lookup("person", person_ref)
         if person is None:
             if surname is None:
-                LOG.warning("empty surname for new person on line %d" %
-                            line_number)
+                LOG.warning("empty surname for new person on line %d" % line_number)
                 surname = ""
             # new person
             person = self.create_person()
             name = Name()
             name.set_type(NameType(NameType.BIRTH))
-            name.set_first_name(firstname)
+            if firstname is not None:
+                name.set_first_name(firstname)
             surname_obj = Surname()
-            surname_obj.set_surname(surname)
+            if surname is not None:
+                surname_obj.set_surname(surname)
             name.add_surname(surname_obj)
             person.set_primary_name(name)
         else:
@@ -681,7 +831,7 @@ class CSVParser:
             name.set_title(title)
         if prefix is not None:
             name.get_primary_surname().set_prefix(prefix)
-            name.group_as = '' # HELP? what should I do here?
+            name.group_as = ""  # HELP? what should I do here?
         if suffix is not None:
             name.set_suffix(suffix)
         if note is not None:
@@ -713,16 +863,19 @@ class CSVParser:
         elif person_ref is not None:
             if person_ref.startswith("[") and person_ref.endswith("]"):
                 person.gramps_id = self.db.id2user_format(person_ref[1:-1])
-        if (person.get_gender() == Person.UNKNOWN and
-                gender is not None):
+        if person.get_gender() == Person.UNKNOWN and gender is not None:
             gender = gender.lower()
             if gender == gender_map[Person.MALE].lower():
                 gender = Person.MALE
             elif gender == gender_map[Person.FEMALE].lower():
                 gender = Person.FEMALE
+            elif gender == gender_map[Person.OTHER].lower():
+                gender = Person.OTHER
             else:
                 gender = Person.UNKNOWN
             person.set_gender(gender)
+        if tag is not None:
+            self.add_tag(person, tag)
         #########################################################
         # add if new, replace if different
         # Birth:
@@ -738,20 +891,22 @@ class CSVParser:
         if birthsource is not None:
             new, birthsource = self.get_or_create_source(birthsource)
         if birthdate or birthplace or birthsource:
-            new, birth = self.get_or_create_event(person,
-                 EventType.BIRTH, birthdate,
-                 birthplace, birthsource)
+            new, birth = self.get_or_create_event(
+                person, EventType.BIRTH, birthdate, birthplace, birthsource
+            )
             birth_ref = person.get_birth_ref()
             if birth_ref is None:
                 # new
                 birth_ref = EventRef()
-            birth_ref.set_reference_handle( birth.get_handle())
-            person.set_birth_ref( birth_ref)
+            birth_ref.set_reference_handle(birth.get_handle())
+            person.set_birth_ref(birth_ref)
         # Baptism:
         if baptismdate is not None:
             baptismdate = _dp.parse(baptismdate)
         if baptismplace and baptismplace_id:
-            raise Error("Error in person: can't have a baptismplace and baptismplace_id")
+            raise Error(
+                "Error in person: can't have a baptismplace and baptismplace_id"
+            )
         if baptismplace is not None:
             new, baptismplace = self.get_or_create_place(baptismplace)
         elif baptismplace_id:
@@ -760,16 +915,15 @@ class CSVParser:
         if baptismsource is not None:
             new, baptismsource = self.get_or_create_source(baptismsource)
         if baptismdate or baptismplace or baptismsource:
-            new, baptism = self.get_or_create_event(person,
-                 EventType.BAPTISM, baptismdate,
-                 baptismplace, baptismsource)
-            baptism_ref = get_primary_event_ref_from_type(self.db, person,
-                                                          "Baptism")
+            new, baptism = self.get_or_create_event(
+                person, EventType.BAPTISM, baptismdate, baptismplace, baptismsource
+            )
+            baptism_ref = get_primary_event_ref_from_type(self.db, person, "Baptism")
             if baptism_ref is None:
                 # new
                 baptism_ref = EventRef()
-            baptism_ref.set_reference_handle( baptism.get_handle())
-            person.add_event_ref( baptism_ref)
+            baptism_ref.set_reference_handle(baptism.get_handle())
+            person.add_event_ref(baptism_ref)
         # Death:
         if deathdate is not None:
             deathdate = _dp.parse(deathdate)
@@ -783,9 +937,9 @@ class CSVParser:
         if deathsource is not None:
             new, deathsource = self.get_or_create_source(deathsource)
         if deathdate or deathplace or deathsource or deathcause:
-            new, death = self.get_or_create_event(person,
-                    EventType.DEATH, deathdate, deathplace,
-                    deathsource)
+            new, death = self.get_or_create_event(
+                person, EventType.DEATH, deathdate, deathplace, deathsource
+            )
             if deathcause:
                 death.set_description(deathcause)
                 self.db.commit_event(death, self.trans)
@@ -808,16 +962,15 @@ class CSVParser:
         if burialsource is not None:
             new, burialsource = self.get_or_create_source(burialsource)
         if burialdate or burialplace or burialsource:
-            new, burial = self.get_or_create_event(person,
-                 EventType.BURIAL, burialdate,
-                 burialplace, burialsource)
-            burial_ref = get_primary_event_ref_from_type(self.db, person,
-                                                         "Burial")
+            new, burial = self.get_or_create_event(
+                person, EventType.BURIAL, burialdate, burialplace, burialsource
+            )
+            burial_ref = get_primary_event_ref_from_type(self.db, person, "Burial")
             if burial_ref is None:
                 # new
                 burial_ref = EventRef()
-            burial_ref.set_reference_handle( burial.get_handle())
-            person.add_event_ref( burial_ref)
+            burial_ref.set_reference_handle(burial.get_handle())
+            person.add_event_ref(burial_ref)
         if source:
             # add, if new
             new, source = self.get_or_create_source(source)
@@ -826,13 +979,14 @@ class CSVParser:
         # Attribute
         # update existing custom attribute or create it
         if attributevalue is not None:
-            new, attr = self.get_or_create_attribute(person, attributetype,
-                attributevalue, attributesource)
+            new, attr = self.get_or_create_attribute(
+                person, attributetype, attributevalue, attributesource
+            )
 
         # Occupation:
         # Contrary to the fields above,
         # each line in the csv will add a new occupation event
-        if occupationdescr is not None: # if no description we have no info to add
+        if occupationdescr is not None:  # if no description we have no info to add
             if occupationdate is not None:
                 occupationdate = _dp.parse(occupationdate)
             # occupation place takes precedence over place id if both are set
@@ -842,12 +996,18 @@ class CSVParser:
                 occupationplace = self.lookup("place", occupationplace_id)
             if occupationsource is not None:
                 new, occupationsource = self.get_or_create_source(occupationsource)
-            new, occupation = self.get_or_create_event(person,
-                 EventType.OCCUPATION, occupationdate,
-                 occupationplace, occupationsource, occupationdescr, True)
+            new, occupation = self.get_or_create_event(
+                person,
+                EventType.OCCUPATION,
+                occupationdate,
+                occupationplace,
+                occupationsource,
+                occupationdescr,
+                True,
+            )
             occupation_ref = EventRef()
-            occupation_ref.set_reference_handle( occupation.get_handle())
-            person.add_event_ref( occupation_ref)
+            occupation_ref.set_reference_handle(occupation.get_handle())
+            person.add_event_ref(occupation_ref)
 
         # Residence:
         # Contrary to the fields above occupation,
@@ -862,13 +1022,18 @@ class CSVParser:
         if residencesource is not None:
             new, residencesource = self.get_or_create_source(residencesource)
         if residencedate or residenceplace or residencesource:
-            new, residence = self.get_or_create_event(person,
-                 EventType.RESIDENCE, residencedate,
-                 residenceplace, residencesource, None, True)
+            new, residence = self.get_or_create_event(
+                person,
+                EventType.RESIDENCE,
+                residencedate,
+                residenceplace,
+                residencesource,
+                None,
+                True,
+            )
             residence_ref = EventRef()
-            residence_ref.set_reference_handle( residence.get_handle())
-            person.add_event_ref( residence_ref)
-
+            residence_ref.set_reference_handle(residence.get_handle())
+            person.add_event_ref(residence_ref)
 
         self.db.commit_person(person, self.trans)
 
@@ -883,6 +1048,7 @@ class CSVParser:
         place_code = rd(line_number, row, col, "code")
         place_enclosed_by_id = rd(line_number, row, col, "enclosed_by")
         place_date = rd(line_number, row, col, "date")
+        tag = rd(line_number, row, col, "tag")
         #########################################################
         # if this place already exists, don't create it
         place = self.lookup("place", place_id)
@@ -895,6 +1061,8 @@ class CSVParser:
                 self.storeup("place", place_id, place)
         if place_title is not None:
             place.title = place_title
+        if tag is not None:
+            self.add_tag(place, tag)
         if place_name is not None:
             place.name = PlaceName(value=place_name)
         if place_type_str is not None:
@@ -910,11 +1078,13 @@ class CSVParser:
             if place_enclosed_by is None:
                 # Not yet found in import, so store for later
                 place_enclosed_by = self.create_place()
-                place_enclosed_by.name.set_value(_('Unknown'))
-                if(place_enclosed_by_id.startswith("[") and
-                   place_enclosed_by_id.endswith("]")):
+                place_enclosed_by.name.set_value(_("Unknown"))
+                if place_enclosed_by_id.startswith(
+                    "["
+                ) and place_enclosed_by_id.endswith("]"):
                     place_enclosed_by.gramps_id = self.db.pid2user_format(
-                        place_enclosed_by_id[1:-1])
+                        place_enclosed_by_id[1:-1]
+                    )
                 self.storeup("place", place_enclosed_by_id, place_enclosed_by)
             for placeref in place.placeref_list:
                 if place_enclosed_by.handle == placeref.ref:
@@ -982,8 +1152,16 @@ class CSVParser:
         self.fam_count += 1
         return family
 
-    def get_or_create_event(self, object_, type_, date=None, place=None,
-                            source=None, descr=None, create_only=False):
+    def get_or_create_event(
+        self,
+        object_,
+        type_,
+        date=None,
+        place=None,
+        source=None,
+        descr=None,
+        create_only=False,
+    ):
         # first, see if it exists
         LOG.debug("get_or_create_event")
         ref_list = object_.get_event_ref_list()
@@ -991,11 +1169,12 @@ class CSVParser:
         # look for a match, and possible correction
         # except if create_only is true (for events that
         # can have several occurrences like occupations, residences)
-        if not create_only :
+        if not create_only:
             for ref in ref_list:
                 event = self.db.get_event_from_handle(ref.ref)
-                LOG.debug("   compare event type %s == %s", int(event.get_type()),
-                          type_)
+                LOG.debug(
+                    "   compare event type %s == %s", int(event.get_type()), type_
+                )
                 if int(event.get_type()) == type_:
                     # Match! Let's update
                     if date:
@@ -1050,7 +1229,7 @@ class CSVParser:
         return (1, attr)
 
     def create_person(self):
-        """ Used to create a new person we know doesn't exist """
+        """Used to create a new person we know doesn't exist"""
         person = Person()
         if self.default_tag:
             person.add_tag(self.default_tag.handle)
@@ -1059,7 +1238,7 @@ class CSVParser:
         return person
 
     def create_place(self):
-        """ Used to create a new person we know doesn't exist """
+        """Used to create a new person we know doesn't exist"""
         place = Place()
         if self.default_tag:
             place.add_tag(self.default_tag.handle)
@@ -1103,16 +1282,22 @@ class CSVParser:
 
     def find_and_set_citation(self, obj, source):
         # look for the source in the existing citations for the object
-        LOG.debug("find_and_set_citation: looking for source: %s",
-                  source.get_gramps_id())
+        LOG.debug(
+            "find_and_set_citation: looking for source: %s", source.get_gramps_id()
+        )
         for citation_handle in obj.get_citation_list():
             citation = self.db.get_citation_from_handle(citation_handle)
-            LOG.debug("find_and_set_citation: existing citation: %s",
-                      citation.get_gramps_id())
+            LOG.debug(
+                "find_and_set_citation: existing citation: %s", citation.get_gramps_id()
+            )
             poss_source = self.db.get_source_from_handle(
-                                    citation.get_reference_handle())
-            LOG.debug("   compare source %s == %s", source.get_gramps_id(),
-                      poss_source.get_gramps_id())
+                citation.get_reference_handle()
+            )
+            LOG.debug(
+                "   compare source %s == %s",
+                source.get_gramps_id(),
+                poss_source.get_gramps_id(),
+            )
             if poss_source.get_handle() == source.get_handle():
                 # The source is already cited
                 LOG.debug("   source already cited")
@@ -1122,6 +1307,51 @@ class CSVParser:
         LOG.debug("   creating citation")
         citation.set_reference_handle(source.get_handle())
         self.db.add_citation(citation, self.trans)
-        LOG.debug("   created citation, citation %s %s" %
-                  (citation, citation.get_gramps_id()))
+        LOG.debug(
+            "   created citation, citation %s %s" % (citation, citation.get_gramps_id())
+        )
         obj.add_citation(citation.get_handle())
+
+    def add_tag(self, obj, name):
+        """
+        Add a tag to an obj and database if it doesn't have it already
+        """
+        tag = self.db.get_tag_from_name(name)
+        if tag is None:
+            tag = Tag()
+            tag.set_name(name)
+            self.db.add_tag(tag, self.trans)
+        obj.add_tag(tag.handle)
+
+    def add_note(self, note_type, obj, note):
+        """
+        Add a note to an object
+        """
+        previous_notes_list = obj.get_note_list()
+        updated_note = False
+        for note_handle in previous_notes_list:
+            previous_note = self.db.get_note_from_handle(note_handle)
+            if previous_note.type == note_type:
+                previous_text = previous_note.get()
+                if note not in previous_text:
+                    note = previous_text + "\n" + note
+                previous_note.set(note)
+                self.db.commit_note(previous_note, self.trans)
+                updated_note = True
+                break
+        if not updated_note:
+            new_note = Note()
+            new_note.handle = create_id()
+            new_note.type.set(note_type)
+            new_note.set(note)
+            if self.default_tag:
+                new_note.add_tag(self.default_tag.handle)
+            self.db.add_note(new_note, self.trans)
+            obj.add_note(new_note.handle)
+
+        if note_type == NoteType.PERSON:
+            self.db.commit_person(obj, self.trans)
+        elif note_type == NoteType.EVENT:
+            self.db.commit_event(obj, self.trans)
+        elif note_type == NoteType.FAMILY:
+            self.db.commit_family(obj, self.trans)

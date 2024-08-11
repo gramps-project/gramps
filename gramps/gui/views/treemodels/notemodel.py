@@ -19,41 +19,51 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 _LOG = logging.getLogger(".gui.notemodel")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.datehandler import format_time
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from .flatbasemodel import FlatBaseModel
-from gramps.gen.lib import (Note, NoteType, StyledText)
+from gramps.gen.lib import Note, NoteType, StyledText
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # NoteModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class NoteModel(FlatBaseModel):
-    """
-    """
-    def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
-                 search=None, skip=set(), sort_map=None):
+    """ """
+
+    def __init__(
+        self,
+        db,
+        uistate,
+        scol=0,
+        order=Gtk.SortType.ASCENDING,
+        search=None,
+        skip=set(),
+        sort_map=None,
+    ):
         """Setup initial values for instance variables."""
         self.gen_cursor = db.get_note_cursor
         self.map = db.get_raw_note_data
@@ -64,7 +74,7 @@ class NoteModel(FlatBaseModel):
             self.column_private,
             self.column_tags,
             self.column_change,
-            self.column_tag_color
+            self.column_tag_color,
         ]
         self.smap = [
             self.column_preview,
@@ -73,10 +83,11 @@ class NoteModel(FlatBaseModel):
             self.column_private,
             self.column_tags,
             self.sort_change,
-            self.column_tag_color
+            self.column_tag_color,
         ]
-        FlatBaseModel.__init__(self, db, uistate, scol, order, search=search,
-                               skip=skip, sort_map=sort_map)
+        FlatBaseModel.__init__(
+            self, db, uistate, scol, order, search=search, skip=skip, sort_map=sort_map
+        )
 
     def destroy(self):
         """
@@ -120,15 +131,15 @@ class NoteModel(FlatBaseModel):
 
     def column_private(self, data):
         if data[Note.POS_PRIVATE]:
-            return 'gramps-lock'
+            return "gramps-lock"
         else:
             # There is a problem returning None here.
-            return ''
+            return ""
 
     def sort_change(self, data):
         return "%012x" % data[Note.POS_CHANGE]
 
-    def column_change(self,data):
+    def column_change(self, data):
         return format_time(data[Note.POS_CHANGE])
 
     def get_tag_name(self, tag_handle):
@@ -167,4 +178,4 @@ class NoteModel(FlatBaseModel):
         """
         tag_list = list(map(self.get_tag_name, data[Note.POS_TAGS]))
         # TODO for Arabic, should the next line's comma be translated?
-        return ', '.join(sorted(tag_list, key=glocale.sort_key))
+        return ", ".join(sorted(tag_list, key=glocale.sort_key))

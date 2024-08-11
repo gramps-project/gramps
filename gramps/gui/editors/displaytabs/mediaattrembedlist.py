@@ -18,25 +18,26 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .attrembedlist import AttrEmbedList
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MediaAttrEmbedList
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MediaAttrEmbedList(AttrEmbedList):
-
-    def __init__(self, dbstate, uistate, track, data):
-        AttrEmbedList.__init__(self, dbstate, uistate, track, data)
+    def __init__(self, dbstate, uistate, track, data, config_key):
+        AttrEmbedList.__init__(self, dbstate, uistate, track, data, config_key)
 
     def get_editor(self):
         from .. import EditAttribute
+
         return EditAttribute
 
     def get_user_values(self):

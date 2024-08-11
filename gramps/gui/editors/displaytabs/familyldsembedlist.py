@@ -18,50 +18,52 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .embeddedlist import TEXT_COL, MARKUP_COL, ICON_COL
 from .ldsembedlist import LdsEmbedList
 from gramps.gen.lib import LdsOrd
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 #
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class FamilyLdsEmbedList(LdsEmbedList):
-
     _HANDLE_COL = 7
-#    _DND_TYPE = DdTargets.ADDRESS
+    #    _DND_TYPE = DdTargets.ADDRESS
 
-    #index = column in model. Value =
+    # index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Type'),    0, 150, TEXT_COL, -1, None),
-        (_('Date'),    1, 150, MARKUP_COL, -1, None),
-        (_('Status'),  3, 75, TEXT_COL, -1, None),
-        (_('Temple'),  2, 200, TEXT_COL, -1, None),
-        (_('Place'),   4, 100, TEXT_COL, -1, None),
-        (_('Source'),  5,  30, ICON_COL, -1, 'gramps-source'),
-        (_('Private'), 6,  30, ICON_COL, -1, 'gramps-lock'),
-        ]
+        (_("Type"), 0, 150, TEXT_COL, -1, None),
+        (_("Date"), 1, 150, MARKUP_COL, -1, None),
+        (_("Status"), 3, 75, TEXT_COL, -1, None),
+        (_("Temple"), 2, 200, TEXT_COL, -1, None),
+        (_("Place"), 4, 100, TEXT_COL, -1, None),
+        (_("Source"), 5, 30, ICON_COL, -1, "gramps-source"),
+        (_("Private"), 6, 30, ICON_COL, -1, "gramps-lock"),
+    ]
 
-    def __init__(self, dbstate, uistate, track, data):
-        LdsEmbedList.__init__(self, dbstate, uistate, track, data)
+    def __init__(self, dbstate, uistate, track, data, config_key):
+        LdsEmbedList.__init__(self, dbstate, uistate, track, data, config_key)
 
     def get_editor(self):
         from .. import EditFamilyLdsOrd
+
         return EditFamilyLdsOrd
 
     def new_data(self):

@@ -87,7 +87,7 @@ class Check_fmt( Check ):
 
 class Check_named_fmt( Check ):
     # A pattern to find all %()
-    find_named_fmt_pat = re.compile('% \( \w+ \) \d* \D', re.VERBOSE)
+    find_named_fmt_pat = re.compile(r'% \( \w+ \) \d* \D', re.VERBOSE)
 
     def __init__( self ):
         Check.__init__( self )
@@ -119,7 +119,7 @@ class Check_named_fmt( Check ):
 
 class Check_mapping_fmt( Check ):
     # A pattern to find all {}
-    find_map_pat = re.compile('\{\w+\.?f?\[?.*?\]?\}',
+    find_map_pat = re.compile(r'\{\w+\.?f?\[?.*?\]?\}',
                               re.UNICODE) # needed for Russian index letters
 
     def __init__( self ):
@@ -157,7 +157,7 @@ class Check_missing_sd( Check ):
     # A pattern to find %() without s or d
     # Here is a command to use for testing
     # print(re.compile('% \( \w+ \) \d* (\D|$)', re.VERBOSE).findall( '%(event_name)s: %(place)s%(endnotes)s. ' ))
-    find_named_fmt_pat2 = re.compile('% \( \w+ \) \d* (\D|$)', re.VERBOSE)
+    find_named_fmt_pat2 = re.compile(r'% \( \w+ \) \d* (\D|$)', re.VERBOSE)
 
     def __init__( self ):
         Check.__init__( self )
@@ -276,9 +276,11 @@ class Msgid:
     fuzzy_pat = re.compile( 'fuzzy' )
     tips_xml_pat = re.compile( r'tips\.xml' )
     def __init__( self, msgnr, lineno ):
+        self._msgctxt = [] # For debugging purpose the original text
         self._msgid = [] # For debugging purpose the original text
         self._msgidp = [] # For debugging purpose the original text
         self._msgstr = [] # For debugging purpose the original text
+        self.msgctxt = ''
         self.msgid = ''
         self.msgidp = ''
         self.msgstr = [] # This is a list to support plural
@@ -298,6 +300,15 @@ class Msgid:
             sys.stdout.write(''.join(self._msgstr).encode('utf-8'))
         else:
             sys.stdout.write( ''.join( self._msgstr ) )
+
+    def add_msgctxt( self, line, lineno ):
+        self._msgctxt.append( line )
+        line = re.sub( r'msgctxt\s+', '', line )
+        line = line.strip()
+        if line[0] != '"' or line[-1:] != '"':
+            print("ERROR at line %d: Missing quote." % lineno)
+        line = strip_quotes( line )
+        self.msgctxt += line
 
     def add_msgid( self, line, lineno ):
         self._msgid.append( line )
@@ -345,6 +356,7 @@ def create_new_Msgid( msgs, lineno ):
 def read_msgs( fname ):
     empty_pat   = re.compile( r'^ \s* $',      re.VERBOSE )
     comment_pat = re.compile( r'\#',           re.VERBOSE )
+    msgctxt_pat = re.compile( r'msgctxt \s+ "',  re.VERBOSE )
     msgid_pat   = re.compile( r'msgid \s+ "',  re.VERBOSE )
     msgid_plural_pat = re.compile( r'msgid_plural \s+ "', re.VERBOSE )
     msgstr_pat  = re.compile( r'msgstr (\[\d\])? \s+ "', re.VERBOSE )
@@ -355,13 +367,14 @@ def read_msgs( fname ):
     lines = f.readlines()
 
     # parse it like a statemachine
-    NONE   = 'NONE' # Nothing detected, yet
-    CMNT   = 'CMNT' # Inside comment part
-    MSGID  = 'msgid' # Inside msgid part
-    MSGIDP = 'msgid_plural' # Inside msgid_plural part
-    MSGSTR = 'msgstr' # Inside msgstr part
-    STR    = 'STR' # A continuation string
-    OLD    = 'OLD' # An old pattern with #~
+    NONE    = 'NONE' # Nothing detected, yet
+    CMNT    = 'CMNT' # Inside comment part
+    MSGCTXT = 'msgctxt' # Inside msgctxt part
+    MSGID   = 'msgid' # Inside msgid part
+    MSGIDP  = 'msgid_plural' # Inside msgid_plural part
+    MSGSTR  = 'msgstr' # Inside msgstr part
+    STR     = 'STR' # A continuation string
+    OLD     = 'OLD' # An old pattern with #~
 
     global msgs
     state = NONE
@@ -380,6 +393,8 @@ def read_msgs( fname ):
             next_state = OLD
         elif comment_pat.match( line ):
             next_state = CMNT
+        elif msgctxt_pat.match( line ):
+            next_state = MSGCTXT
         elif msgid_pat.match( line ):
             next_state = MSGID
         elif msgid_plural_pat.match( line ):
@@ -394,12 +409,18 @@ def read_msgs( fname ):
 
         #print("%(state)d->%(next_state)d\t%(line)s" % vars())
         if state == NONE:
-            # expect msgid or comment or old stuff
+            # expect msgctxt, msgid, comment or old stuff
             if next_state == CMNT:
                 state = CMNT
                 # Start with an empty new item
                 msg = create_new_Msgid( msgs, lineno )
                 msg.add_cmnt( line )
+
+            elif next_state == MSGCTXT:
+                state = MSGCTXT
+                # Start with an empty new item
+                msg = create_new_Msgid( msgs, lineno )
+                msg.add_msgctxt( line, lineno )
 
             elif next_state == MSGID:
                 state = MSGID
@@ -429,7 +450,7 @@ def read_msgs( fname ):
                                       '(state = %(state)s)' % vars() )
 
         elif state == CMNT:
-            # Expect more comment, or msgid.
+            # Expect more comment, msgctxt, or msgid.
             # If msgstr or string it is flagged as error.
             if next_state == CMNT:
                 if msg:
@@ -438,6 +459,13 @@ def read_msgs( fname ):
                     # Note. We may need to do something about these comments
                     # Skip for now
                     pass
+
+            elif next_state == MSGCTXT:
+                state = MSGCTXT
+                if not msg:
+                    # Start with an empty new item
+                    msg = create_new_Msgid( msgs, lineno )
+                msg.add_msgctxt( line, lineno )
 
             elif next_state == MSGID:
                 state = MSGID
@@ -467,6 +495,43 @@ def read_msgs( fname ):
             else:
                 raise CheckException( 'Unexpected state in po parsing '
                                       '(state = %(state)s)' % vars() )
+        elif state == MSGCTXT:
+            # Expect more msgctxt or msgid.
+            # If msgstr or string it is flagged as error.
+            if next_state == CMNT:
+                # Hmmm. A comment here?
+                print('WARNING: Unexpted comment '
+                      'at %(fname)s:%(lineno)d' % vars())
+
+            elif next_state == MSGCTXT:
+                raise CheckException( 'Unexpected %(next_state)s '
+                                      'at %(fname)s:%(lineno)d' % vars() )
+
+            elif next_state == MSGID:
+                state = MSGID
+                msg.add_msgid( line, lineno )
+
+            elif next_state == MSGIDP:
+                raise CheckException( 'Unexpected %(next_state)s '
+                                      'at %(fname)s:%(lineno)d' % vars() )
+
+            elif next_state == MSGSTR:
+                print('WARNING: Wild msgstr at %(fname)s:%(lineno)d' % vars())
+                state = MSGSTR
+                # Start with an empty new item
+                msg = create_new_Msgid( msgs, lineno )
+                msg.add_new_msgstr( line, lineno )
+
+            elif next_state == STR:
+                print('WARNING: Wild string at %(fname)s:%(lineno)d' % vars())
+
+            elif next_state == STR:
+                # Continuation of msgctxt, stay in state MSGCTXT
+                msg.add_msgctxt( line, lineno )
+
+            else:
+                raise CheckException( 'Unexpected state in po parsing '
+                                      '(state = %(state)s)' % vars() )
 
         elif state == MSGID:
             # Expect msgstr or msgid_plural or string
@@ -474,6 +539,10 @@ def read_msgs( fname ):
                 # Hmmm. A comment here?
                 print('WARNING: Unexpted comment '
                       'at %(fname)s:%(lineno)d' % vars())
+
+            elif next_state == MSGCTXT:
+                raise CheckException( 'Unexpected %(next_state)s '
+                                      'at %(fname)s:%(lineno)d' % vars() )
 
             elif next_state == MSGID:
                 raise CheckException( 'Unexpected %(next_state)s '
@@ -506,6 +575,10 @@ def read_msgs( fname ):
                 print('WARNING: Unexpected comment '
                       'at %(fname)s:%(lineno)d' % vars())
 
+            elif next_state == MSGCTXT:
+                raise CheckException( 'Unexpected %(next_state)s '
+                                      'at %(fname)s:%(lineno)d' % vars() )
+
             elif next_state == MSGID:
                 raise CheckException( 'Unexpected %(next_state)s '
                                       'at %(fname)s:%(lineno)d' % vars() )
@@ -537,6 +610,11 @@ def read_msgs( fname ):
                 state = CMNT
                 msg = create_new_Msgid( msgs, lineno )
                 msg.add_cmnt( line )
+
+            elif next_state == MSGCTXT:
+                state = MSGCTXT
+                msg = create_new_Msgid( msgs, lineno )
+                msg.add_msgctxt( line, lineno )
 
             elif next_state == MSGID:
                 state = MSGID

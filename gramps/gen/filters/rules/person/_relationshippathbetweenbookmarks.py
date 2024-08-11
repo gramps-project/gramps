@@ -18,29 +18,31 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 try:
     set()
 except NameError:
     from sets import Set as set
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # RelationshipPathBetween
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class RelationshipPathBetweenBookmarks(Rule):
     """
     Rule that matches the ancestors of bookmarked individuals back to
@@ -49,17 +51,19 @@ class RelationshipPathBetweenBookmarks(Rule):
     """
 
     name = _("Relationship path between bookmarked persons")
-    category = _('Relationship filters')
-    description = _("Matches the ancestors of bookmarked individuals "
-                    "back to common ancestors, producing the relationship "
-                    "path(s) between bookmarked persons.")
+    category = _("Relationship filters")
+    description = _(
+        "Matches the ancestors of bookmarked individuals "
+        "back to common ancestors, producing the relationship "
+        "path(s) between bookmarked persons."
+    )
 
     def prepare(self, db, user):
         self.db = db
         self.map = set()
         bookmarks = db.get_bookmarks().get()
         if len(bookmarks) == 0:
-            self.apply = lambda db,p : False
+            self.apply = lambda db, p: False
         else:
             self.bookmarks = set(bookmarks)
         try:
@@ -90,7 +94,8 @@ class RelationshipPathBetweenBookmarks(Rule):
     # The value keyed by the individual handles is the path from
     # the original person up, like generation[gfather]= [son,father,gfather]
     def parents(self, generation):
-        if len(generation) < 1: return None
+        if len(generation) < 1:
+            return None
         prev_generation = {}
         for handle in generation:
             try:
@@ -115,31 +120,33 @@ class RelationshipPathBetweenBookmarks(Rule):
     # Given two handles for individuals, a list of all individuals
     # in the relationship path between the two.
     def rel_path_for_two(self, handle1, handle2):
-        #print "rel_path_for_two (", handle1, self.hnm(handle1), ",", handle2, self.hnm(handle2), ")"
-        rel_path = {}                       # Result map
-        gmap1 = { handle1 : [ handle1 ] }   # Key is ancestor, value is the path
-        gmap2 = { handle2 : [ handle2 ] }
+        # print "rel_path_for_two (", handle1, self.hnm(handle1), ",", handle2, self.hnm(handle2), ")"
+        rel_path = {}  # Result map
+        gmap1 = {handle1: [handle1]}  # Key is ancestor, value is the path
+        gmap2 = {handle2: [handle2]}
         map1 = {}
         map2 = {}
-        overlap = set( {} )
-        for rank in range(1, 50):       # Limit depth of search
+        overlap = set({})
+        for rank in range(1, 50):  # Limit depth of search
             try:
-                gmap1 = self.parents(gmap1)     # Get previous generation into map
-                gmap2 = self.parents(gmap2)     # Get previous generation into map
-                map1.update(gmap1)              # Merge previous generation into map
-                map2.update(gmap2)              # Merge previous generation into map
-                overlap = set(map1).intersection(set(map2)) # Any common ancestors?
-                if len(overlap) > 0: break      # If so, stop walking through generations
-            except: pass
-        if len(overlap) < 1:                # No common ancestor found
-            rel_path[handle1] = handle1     # Results for degenerate case
+                gmap1 = self.parents(gmap1)  # Get previous generation into map
+                gmap2 = self.parents(gmap2)  # Get previous generation into map
+                map1.update(gmap1)  # Merge previous generation into map
+                map2.update(gmap2)  # Merge previous generation into map
+                overlap = set(map1).intersection(set(map2))  # Any common ancestors?
+                if len(overlap) > 0:
+                    break  # If so, stop walking through generations
+            except:
+                pass
+        if len(overlap) < 1:  # No common ancestor found
+            rel_path[handle1] = handle1  # Results for degenerate case
             rel_path[handle2] = handle2
-            #print "  In rel_path_for_two, returning rel_path = ", rel_path
+            # print "  In rel_path_for_two, returning rel_path = ", rel_path
             return rel_path
-        for handle in overlap:          # Handle of common ancestor(s)
+        for handle in overlap:  # Handle of common ancestor(s)
             for phandle in map1[handle] + map2[handle]:
                 rel_path[phandle] = phandle
-        #print "  In rel_path_for_two, returning rel_path = ", rel_path
+        # print "  In rel_path_for_two, returning rel_path = ", rel_path
         return rel_path
 
     def init_list(self):
@@ -151,15 +158,13 @@ class RelationshipPathBetweenBookmarks(Rule):
         # Go through all bookmarked individuals, and mark all
         # of the people in each of the paths betweent them.
         lb = len(bmarks)
-        for i in range(lb-1):
-            for j in range(i+1, lb):
+        for i in range(lb - 1):
+            for j in range(i + 1, lb):
                 try:
                     pathmap = self.rel_path_for_two(bmarks[i], bmarks[j])
                     self.map.update(pathmap)
                 except:
                     pass
 
-    def apply(self,db,person):
+    def apply(self, db, person):
         return person.handle in self.map
-
-

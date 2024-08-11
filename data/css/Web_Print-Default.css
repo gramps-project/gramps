@@ -177,7 +177,7 @@ ol {
 
 /* Navigation
 ----------------------------------------------------- */
-#alphabet, #navigation, #subnavigation { display:none; }
+#alphabet, #navigation, #nav, #gototop, #subnavigation, #treeContainer, .triangle, .polygon { display:none; }
 
 /* Main Table
 ----------------------------------------------------- */

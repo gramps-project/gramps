@@ -22,16 +22,26 @@
 URL types
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .grampstype import GrampsType
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .grampstype import GrampsType
+
 _ = glocale.translation.gettext
 
+
+# -------------------------------------------------------------------------
+#
+# UrlType
+#
+# -------------------------------------------------------------------------
 class UrlType(GrampsType):
+    """
+    Class encapsulating the type of a url.
+    """
 
     UNKNOWN = -1
     CUSTOM = 0
@@ -50,7 +60,7 @@ class UrlType(GrampsType):
         (WEB_HOME, _("Web Home"), "Web Home"),
         (WEB_SEARCH, _("Web Search"), "Web Search"),
         (WEB_FTP, _("FTP"), "FTP"),
-        ]
+    ]
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)

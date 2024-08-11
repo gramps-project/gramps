@@ -21,42 +21,47 @@
 OpenStreetMap map service plugin. Open place in openstreetmap.org
 """
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.plugins.lib.libmapservice import MapService
 from gramps.gen.utils.location import get_main_location
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.lib import PlaceType
 
+
 class OpensStreetMapService(MapService):
     """Map  service using http://openstreetmap.org
-        Resource: http://wiki.openstreetmap.org/wiki/Nominatim
+    Resource: http://wiki.openstreetmap.org/wiki/Nominatim
     """
+
     def __init__(self):
         MapService.__init__(self)
 
     def calc_url(self):
-        """ Determine the url to use
-            Logic: Use lat lon if present
-                   otherwise use description of the place
+        """Determine the url to use
+        Logic: Use lat lon if present
+               otherwise use description of the place
         """
         place = self._get_first_place()[0]
         latitude, longitude = self._lat_lon(place)
         if longitude and latitude:
-            self.url = "http://www.openstreetmap.org/" \
-                        "?lat=%s&lon=%s&zoom=15" % (latitude, longitude)
+            self.url = "http://www.openstreetmap.org/" "?lat=%s&lon=%s&zoom=15" % (
+                latitude,
+                longitude,
+            )
 
             return
 
         titledescr = place_displayer.display(self.database, place)
-        self.url = "http://nominatim.openstreetmap.org/"\
-                        "search.php?q=%s" % '+'.join(titledescr.split())
+        self.url = "http://nominatim.openstreetmap.org/" "search?q=%s" % "+".join(
+            titledescr.split()
+        )

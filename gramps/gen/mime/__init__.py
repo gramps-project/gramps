@@ -24,16 +24,21 @@ try:
 except:
     from ._pythonmime import get_description, get_type, mime_type_is_defined
 
+
 def base_type(val):
-    return val.split('/')[0]
+    return val.split("/")[0]
+
 
 def is_image_type(val):
     return base_type(val) == "image"
 
+
 def is_directory(val):
     return base_type(val) == "x-directory"
 
-_invalid_mime_types = ('x-directory','x-special')
+
+_invalid_mime_types = ("x-directory", "x-special")
+
 
 def is_valid_type(val):
     return base_type(val) not in _invalid_mime_types

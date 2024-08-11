@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.20.0 -->
+<!-- Generated with glade 3.40.0 -->
 <interface>
-  <requires lib="gtk+" version="3.10"/>
+  <requires lib="gtk+" version="3.24"/>
   <object class="GtkDialog" id="dialog1">
-    <property name="can_focus">False</property>
-    <property name="border_width">5</property>
-    <property name="default_width">700</property>
-    <property name="default_height">500</property>
-    <property name="destroy_with_parent">True</property>
-    <property name="type_hint">normal</property>
+    <property name="can-focus">False</property>
+    <property name="border-width">5</property>
+    <property name="default-width">700</property>
+    <property name="default-height">500</property>
+    <property name="destroy-with-parent">True</property>
+    <property name="type-hint">normal</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox1">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <property name="spacing">2</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="dialog-action_area1">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="layout_style">start</property>
+            <property name="can-focus">False</property>
+            <property name="layout-style">start</property>
             <child>
               <object class="GtkButton" id="cancel">
                 <property name="label" translatable="yes">_Close</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_underline">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -39,11 +39,11 @@
             <child>
               <object class="GtkButton" id="apply">
                 <property name="label" translatable="yes">Install Selected _Addons</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_underline">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -56,19 +56,19 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="pack_type">end</property>
+            <property name="pack-type">end</property>
             <property name="position">0</property>
           </packing>
         </child>
         <child>
           <object class="GtkBox" id="vbox1">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkLabel" id="title">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Available Gramps Updates for Addons</property>
                 <attributes>
                   <attribute name="weight" value="bold"/>
@@ -83,10 +83,10 @@
             </child>
             <child>
               <object class="GtkLabel" id="label1">
-                <property name="width_request">650</property>
+                <property name="width-request">650</property>
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Gramps comes with a core set of plugins which provide all of the necessary features. However, you can extend this functionality with additional Addons. These addons provide reports, listings, views, gramplets, and more. Here you can select among the available extra addons, they will be retrieved from the internet off of the Gramps website, and installed locally on your computer. If you close this dialog now, you can install addons later from the menu under Edit -&gt; Preferences.</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes">Gramps comes with a core set of plugins which provide all of the necessary features. However, you can extend this functionality with additional Addons. These addons provide reports, listings, views, gramplets, and more. Here you can select among the available extra addons, they will be retrieved from the internet off of the Gramps website, and installed locally on your computer. If you close this dialog now, you can install addons later from the menu under Edit -&gt; Addon Manager.</property>
                 <property name="wrap">True</property>
               </object>
               <packing>
@@ -98,16 +98,16 @@
             <child>
               <object class="GtkButtonBox" id="hbuttonbox1">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="layout_style">start</property>
+                <property name="can-focus">False</property>
+                <property name="layout-style">start</property>
                 <child>
                   <object class="GtkButton" id="select_all">
                     <property name="label" translatable="yes">_Select All</property>
-                    <property name="use_action_appearance">False</property>
+                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="use_underline">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="use-underline">True</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -118,11 +118,11 @@
                 <child>
                   <object class="GtkButton" id="select_none">
                     <property name="label" translatable="yes">Select _None</property>
-                    <property name="use_action_appearance">False</property>
+                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="use_underline">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="use-underline">True</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -148,11 +148,11 @@
         <child>
           <object class="GtkScrolledWindow" id="scrolledwindow1">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can-focus">True</property>
             <child>
               <object class="GtkTreeView" id="list">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
+                <property name="can-focus">True</property>
                 <child internal-child="selection">
                   <object class="GtkTreeSelection" id="treeview-selection1"/>
                 </child>
@@ -162,7 +162,7 @@
           <packing>
             <property name="expand">True</property>
             <property name="fill">True</property>
-            <property name="pack_type">end</property>
+            <property name="pack-type">end</property>
             <property name="position">2</property>
           </packing>
         </child>

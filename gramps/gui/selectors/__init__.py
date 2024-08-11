@@ -19,4 +19,3 @@
 #
 
 from .selectorfactory import SelectorFactory
-

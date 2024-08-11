@@ -22,35 +22,41 @@
 
 """ Simple Book Title for the book report """
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import time
 import os
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from gramps.gen.plug.menu import StringOption, MediaOption, NumberOption
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import MenuReportOptions
-from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle,
-                                    FONT_SANS_SERIF, PARA_ALIGN_CENTER)
+from gramps.gen.plug.docgen import (
+    FontStyle,
+    ParagraphStyle,
+    FONT_SANS_SERIF,
+    PARA_ALIGN_CENTER,
+)
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # SimpleBookTitle
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class SimpleBookTitle(Report):
-    """ This report class generates a title page for a book. """
+    """This report class generates a title page for a book."""
 
     def __init__(self, database, options, user):
         """
@@ -75,19 +81,19 @@ class SimpleBookTitle(Report):
         self._user = user
 
         menu = options.menu
-        self.title_string = menu.get_option_by_name('title').get_value()
-        self.image_size = menu.get_option_by_name('imgsize').get_value()
-        self.subtitle_string = menu.get_option_by_name('subtitle').get_value()
-        self.footer_string = menu.get_option_by_name('footer').get_value()
-        self.media_id = menu.get_option_by_name('imgid').get_value()
+        self.title_string = menu.get_option_by_name("title").get_value()
+        self.image_size = menu.get_option_by_name("imgsize").get_value()
+        self.subtitle_string = menu.get_option_by_name("subtitle").get_value()
+        self.footer_string = menu.get_option_by_name("footer").get_value()
+        self.media_id = menu.get_option_by_name("imgid").get_value()
 
     def write_report(self):
-        """ Generate the contents of the report """
-        self.doc.start_paragraph('SBT-Title')
+        """Generate the contents of the report"""
+        self.doc.start_paragraph("SBT-Title")
         self.doc.write_text(self.title_string)
         self.doc.end_paragraph()
 
-        self.doc.start_paragraph('SBT-Subtitle')
+        self.doc.start_paragraph("SBT-Subtitle")
         self.doc.write_text(self.subtitle_string)
         self.doc.end_paragraph()
 
@@ -98,25 +104,28 @@ class SimpleBookTitle(Report):
                 if self.image_size:
                     image_size = self.image_size
                 else:
-                    image_size = min(0.8 * self.doc.get_usable_width(),
-                                     0.7 * self.doc.get_usable_height())
-                self.doc.add_media(filename, 'center',
-                                   image_size, image_size)
+                    image_size = min(
+                        0.8 * self.doc.get_usable_width(),
+                        0.7 * self.doc.get_usable_height(),
+                    )
+                self.doc.add_media(filename, "center", image_size, image_size)
             else:
-                self._user.warn(_('Could not add photo to page'),
-                                _('File %s does not exist') % filename)
+                self._user.warn(
+                    _("Could not add photo to page"),
+                    _("File %s does not exist") % filename,
+                )
 
-        self.doc.start_paragraph('SBT-Footer')
+        self.doc.start_paragraph("SBT-Footer")
         self.doc.write_text(self.footer_string)
         self.doc.end_paragraph()
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # SimpleBookTitleOptions
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class SimpleBookTitleOptions(MenuReportOptions):
-
     """
     Defines options and provides handling interface.
     """
@@ -126,37 +135,42 @@ class SimpleBookTitleOptions(MenuReportOptions):
         MenuReportOptions.__init__(self, name, dbase)
 
     def get_subject(self):
-        """ Return a string that describes the subject of the report. """
+        """Return a string that describes the subject of the report."""
         return self.__title.get_value()
 
     def add_menu_options(self, menu):
-        """ Add the options for this report """
+        """Add the options for this report"""
         category_name = _("Report Options")
 
-        self.__title = StringOption(_('Title'), _('Title of the Book', 'book'))
+        self.__title = StringOption(_("Title"), _("Title of the Book", "book"))
         self.__title.set_help(_("Title string for the book."))
         menu.add_option(category_name, "title", self.__title)
 
-        subtitle = StringOption(_('Subtitle'), _('Subtitle of the Book'))
+        subtitle = StringOption(_("Subtitle"), _("Subtitle of the Book"))
         subtitle.set_help(_("Subtitle string for the book."))
         menu.add_option(category_name, "subtitle", subtitle)
 
         dateinfo = time.localtime(time.time())
         rname = self.__db.get_researcher().get_name()
-        footer_string = _('Copyright %(year)d %(name)s'
-                         ) % {'year' : dateinfo[0], 'name' : rname}
-        footer = StringOption(_('Footer'), footer_string)
+        footer_string = _("Copyright %(year)d %(name)s") % {
+            "year": dateinfo[0],
+            "name": rname,
+        }
+        footer = StringOption(_("Footer"), footer_string)
         footer.set_help(_("Footer string for the page."))
         menu.add_option(category_name, "footer", footer)
 
-        imgid = MediaOption(_('Image'))
-        imgid.set_help(
-            _("Gramps ID of the media object to use as an image."))
+        imgid = MediaOption(_("Image"))
+        imgid.set_help(_("Gramps ID of the media object to use as an image."))
         menu.add_option(category_name, "imgid", imgid)
 
-        imgsize = NumberOption(_('Image Size'), 0, 0, 20, 0.1)
-        imgsize.set_help(_("Size of the image in cm. A value of 0 indicates "
-                           "that the image should be fit to the page."))
+        imgsize = NumberOption(_("Image Size"), 0, 0, 20, 0.1)
+        imgsize.set_help(
+            _(
+                "Size of the image in cm. A value of 0 indicates "
+                "that the image should be fit to the page."
+            )
+        )
         menu.add_option(category_name, "imgsize", imgsize)
 
     def make_default_style(self, default_style):
@@ -168,7 +182,7 @@ class SimpleBookTitleOptions(MenuReportOptions):
         para.set_header_level(1)
         para.set_alignment(PARA_ALIGN_CENTER)
         para.set(pad=0.5)
-        para.set_description(_('The style used for the title.'))
+        para.set_description(_("The style used for the title."))
         default_style.add_paragraph_style("SBT-Title", para)
 
         font = FontStyle()
@@ -178,7 +192,7 @@ class SimpleBookTitleOptions(MenuReportOptions):
         para.set_header_level(2)
         para.set(pad=0.5)
         para.set_alignment(PARA_ALIGN_CENTER)
-        para.set_description(_('The style used for the subtitle.'))
+        para.set_description(_("The style used for the subtitle."))
         default_style.add_paragraph_style("SBT-Subtitle", para)
 
         font = FontStyle()
@@ -188,5 +202,5 @@ class SimpleBookTitleOptions(MenuReportOptions):
         para.set_header_level(2)
         para.set(pad=0.5)
         para.set_alignment(PARA_ALIGN_CENTER)
-        para.set_description(_('The style used for the footer.'))
+        para.set_description(_("The style used for the footer."))
         default_style.add_paragraph_style("SBT-Footer", para)

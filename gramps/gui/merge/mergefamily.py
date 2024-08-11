@@ -22,12 +22,13 @@
 Provide merge capabilities for families.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.const import URL_MANUAL_SECT3
@@ -37,36 +38,40 @@ from ..dialog import ErrorDialog
 from ..managedwindow import ManagedWindow
 from gramps.gen.merge import MergePersonQuery, MergeFamilyQuery
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 WIKI_HELP_PAGE = URL_MANUAL_SECT3
-WIKI_HELP_SEC = _('Merge_Families', 'manual')
-_GLADE_FILE = 'mergefamily.glade'
+WIKI_HELP_SEC = _("Merge_Families", "manual")
+_GLADE_FILE = "mergefamily.glade"
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MergeFamily
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MergeFamily(ManagedWindow):
     """
     Merges two families into a single family. Displays a dialog box that allows
     the families to be combined into one.
     """
+
     def __init__(self, dbstate, uistate, track, handle1, handle2):
         ManagedWindow.__init__(self, uistate, track, self.__class__)
         self.database = dbstate.db
         self.fy1 = self.database.get_family_from_handle(handle1)
         self.fy2 = self.database.get_family_from_handle(handle2)
 
-        self.define_glade('mergefamily', _GLADE_FILE)
-        self.set_window(self._gladeobj.toplevel,
-                        self.get_widget("family_title"),
-                        _("Merge Families"))
-        self.setup_configs('interface.merge-family', 500, 250)
+        self.define_glade("mergefamily", _GLADE_FILE)
+        self.set_window(
+            self._gladeobj.toplevel,
+            self.get_widget("family_title"),
+            _("Merge Families"),
+        )
+        self.setup_configs("interface.merge-family", 500, 250)
 
         # Detailed selection widgets
         father1 = self.fy1.get_father_handle()
@@ -95,8 +100,7 @@ class MergeFamily(ManagedWindow):
         elif entry1.get_text() == entry2.get_text():
             deactivate = True
         if deactivate:
-            for widget_name in ('father1', 'father2', 'father_btn1',
-                    'father_btn2'):
+            for widget_name in ("father1", "father2", "father_btn1", "father_btn2"):
                 self.get_widget(widget_name).set_sensitive(False)
 
         mother1 = self.fy1.get_mother_handle()
@@ -125,8 +129,7 @@ class MergeFamily(ManagedWindow):
         elif entry1.get_text() == entry2.get_text():
             deactivate = True
         if deactivate:
-            for widget_name in ('mother1', 'mother2', 'mother_btn1',
-                    'mother_btn2'):
+            for widget_name in ("mother1", "mother2", "mother_btn1", "mother_btn2"):
                 self.get_widget(widget_name).set_sensitive(False)
 
         entry1 = self.get_widget("rel1")
@@ -134,7 +137,7 @@ class MergeFamily(ManagedWindow):
         entry1.set_text(str(self.fy1.get_relationship()))
         entry2.set_text(str(self.fy2.get_relationship()))
         if entry1.get_text() == entry2.get_text():
-            for widget_name in ('rel1', 'rel2', 'rel_btn1', 'rel_btn2'):
+            for widget_name in ("rel1", "rel2", "rel_btn1", "rel_btn2"):
                 self.get_widget(widget_name).set_sensitive(False)
 
         gramps1 = self.fy1.get_gramps_id()
@@ -144,8 +147,7 @@ class MergeFamily(ManagedWindow):
         entry1.set_text(gramps1)
         entry2.set_text(gramps2)
         if entry1.get_text() == entry2.get_text():
-            for widget_name in ('gramps1', 'gramps2', 'gramps_btn1',
-                    'gramps_btn2'):
+            for widget_name in ("gramps1", "gramps2", "gramps_btn1", "gramps_btn2"):
                 self.get_widget(widget_name).set_sensitive(False)
 
         # Main window widgets that determine which handle survives
@@ -153,8 +155,8 @@ class MergeFamily(ManagedWindow):
         rbutton_label1 = self.get_widget("label_handle_btn1")
         rbutton_label2 = self.get_widget("label_handle_btn2")
         add = _("and")
-        rbutton_label1.set_label("%s %s %s [%s]" %(father1, add, mother1, gramps1))
-        rbutton_label2.set_label("%s %s %s [%s]" %(father2, add, mother2, gramps2))
+        rbutton_label1.set_label("%s %s %s [%s]" % (father1, add, mother1, gramps1))
+        rbutton_label2.set_label("%s %s %s [%s]" % (father2, add, mother2, gramps2))
         rbutton1.connect("toggled", self.on_handle1_toggled)
 
         self.connect_button("family_help", self.cb_help)
@@ -166,30 +168,26 @@ class MergeFamily(ManagedWindow):
         """Preferred family changes"""
         if obj.get_active():
             father1_text = self.get_widget("father1").get_text()
-            if (father1_text != " []" or
-                self.get_widget("father2").get_text() == " []"):
-                    self.get_widget("father_btn1").set_active(True)
+            if father1_text != " []" or self.get_widget("father2").get_text() == " []":
+                self.get_widget("father_btn1").set_active(True)
             mother1_text = self.get_widget("mother1").get_text()
-            if (mother1_text != " []" or
-                self.get_widget("mother2").get_text() == " []"):
-                    self.get_widget("mother_btn1").set_active(True)
+            if mother1_text != " []" or self.get_widget("mother2").get_text() == " []":
+                self.get_widget("mother_btn1").set_active(True)
             self.get_widget("rel_btn1").set_active(True)
             self.get_widget("gramps_btn1").set_active(True)
         else:
             father2_text = self.get_widget("father2").get_text()
-            if (father2_text != " []" or
-                self.get_widget("father1").get_text() == " []"):
-                    self.get_widget("father_btn2").set_active(True)
+            if father2_text != " []" or self.get_widget("father1").get_text() == " []":
+                self.get_widget("father_btn2").set_active(True)
             mother2_text = self.get_widget("mother2").get_text()
-            if (mother2_text != " []" or
-                self.get_widget("mother1").get_text() == " []"):
-                    self.get_widget("mother_btn2").set_active(True)
+            if mother2_text != " []" or self.get_widget("mother1").get_text() == " []":
+                self.get_widget("mother_btn2").set_active(True)
             self.get_widget("rel_btn2").set_active(True)
             self.get_widget("gramps_btn2").set_active(True)
 
     def cb_help(self, obj):
         """Display the relevant portion of the Gramps manual"""
-        display_help(webpage = WIKI_HELP_PAGE, section = WIKI_HELP_SEC)
+        display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def cb_merge(self, obj):
         """
@@ -217,14 +215,14 @@ class MergeFamily(ManagedWindow):
             phoenix.set_gramps_id(titanic.get_gramps_id())
 
         try:
-            query = MergeFamilyQuery(self.database, phoenix, titanic,
-                                     phoenix_fh, phoenix_mh)
+            query = MergeFamilyQuery(
+                self.database, phoenix, titanic, phoenix_fh, phoenix_mh
+            )
             query.execute()
             # Add the selected handle to history so that when merge is complete,
             # phoenix is the selected row.
-            self.uistate.set_active(phoenix.get_handle(), 'Family')
+            self.uistate.set_active(phoenix.get_handle(), "Family")
         except MergeError as err:
-            ErrorDialog(_("Cannot merge people"), str(err),
-                        parent=self.window)
+            ErrorDialog(_("Cannot merge people"), str(err), parent=self.window)
         self.uistate.set_busy_cursor(False)
         self.close()

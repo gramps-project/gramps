@@ -22,14 +22,22 @@
 
 from gi.repository import Gtk
 
+
 class ValidatableMaskedEntry(Gtk.Entry):
-    __gtype_name__ = 'ValidatableMaskedEntry'
+    __gtype_name__ = "ValidatableMaskedEntry"
+
 
 class UndoableEntry(Gtk.Entry):
-    __gtype_name__ = 'UndoableEntry'
+    __gtype_name__ = "UndoableEntry"
+
 
 class StyledTextEditor(Gtk.TextView):
-    __gtype_name__ = 'StyledTextEditor'
+    __gtype_name__ = "StyledTextEditor"
+
 
 class UndoableBuffer(Gtk.TextBuffer):
-    __gtype_name__ = 'UndoableBuffer'
+    __gtype_name__ = "UndoableBuffer"
+
+
+class PersistentTreeView(Gtk.TreeView):
+    __gtype_name__ = "PersistentTreeView"

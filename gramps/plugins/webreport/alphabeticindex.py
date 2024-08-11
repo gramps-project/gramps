@@ -28,36 +28,42 @@ Class:
     AlphabeticIndex - approximate emulation of ICU Alphabetic Index
 """
 
-#------------------------------------------------
+# ------------------------------------------------
 # python modules
-#------------------------------------------------
+# ------------------------------------------------
 from unicodedata import normalize
 from collections import defaultdict
 import logging
 
-#------------------------------------------------
+# ------------------------------------------------
 # Gramps module
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 HAVE_ICU = False
 try:
     from icu import Locale, Collator
+
     HAVE_ICU = True
 except ImportError:
     try:
         from PyICU import Locale, Collator
+
         HAVE_ICU = True
     except ImportError:
         pass
 
 LOG = logging.getLogger(".NarrativeWeb")
 COLLATE_LANG = glocale.collation
-class U_ENUM_OUT_OF_SYNC_ERROR(Exception): # pylint: disable=invalid-name
+
+
+class U_ENUM_OUT_OF_SYNC_ERROR(Exception):  # pylint: disable=invalid-name
     """
     Exception to match the error in the ICU AlphabetiIndex
     """
+
     pass
+
 
 # See : http://www.gramps-project.org/bugs/view.php?id = 4423
 
@@ -82,61 +88,64 @@ class U_ENUM_OUT_OF_SYNC_ERROR(Exception): # pylint: disable=invalid-name
 # as are the supresscontractions in some locales.
 
 CONTRACTIONS_DICT = {
-# bg Bulgarian validSubLocales="bg_BG" no contractions
-# ca Catalan validSubLocales="ca_AD ca_ES"
-"ca" : [(("l·", "L·"), "L")],
-# Czech, validSubLocales="cs_CZ" Czech_Czech Republic
-"cs" : [(("ch", "cH", "Ch", "CH"), "CH")],
-# Danish validSubLocales="da_DK" Danish_Denmark
-"da" : [(("aa", "Aa", "AA"), "Å")],
-# de German validSubLocales="de_AT de_BE de_CH de_DE de_LI de_LU" no
-# contractions in standard collation.
-# el Greek validSubLocales="el_CY el_GR" no contractions.
-# es Spanish validSubLocales="es_419 es_AR es_BO es_CL es_CO es_CR es_CU
-# es_DO es_EA es_EC es_ES es_GQ es_GT es_HN es_IC es_MX es_NI es_PA es_PE
-# es_PH es_PR es_PY es_SV es_US es_UY es_VE" no contractions in standard
-# collation.
-# fi Finish validSubLocales="fi_FI" no contractions in default (phonebook)
-# collation.
-# fr French no collation data.
-# he Hebrew validSubLocales="he_IL" no contractions
-# hr Croation validSubLocales="hr_BA hr_HR"
-"hr" : [(("dž", "Dž", "DŽ"), "DŽ"),
-        (("lj", "Lj", 'LJ'), "Ǉ"),
-        (("Nj", "NJ", "nj"), "Ǌ")],
-# Hungarian hu_HU for two and three character contractions.
-"hu" : [(("cs", "Cs", "CS"), "CS"),
-        (("dzs", "Dzs", "DZS"), "DZS"), # order is important
+    # bg Bulgarian validSubLocales="bg_BG" no contractions
+    # ca Catalan validSubLocales="ca_AD ca_ES"
+    "ca": [(("l·", "L·"), "L")],
+    # Czech, validSubLocales="cs_CZ" Czech_Czech Republic
+    "cs": [(("ch", "cH", "Ch", "CH"), "CH")],
+    # Danish validSubLocales="da_DK" Danish_Denmark
+    "da": [(("aa", "Aa", "AA"), "Å")],
+    # de German validSubLocales="de_AT de_BE de_CH de_DE de_LI de_LU" no
+    # contractions in standard collation.
+    # el Greek validSubLocales="el_CY el_GR" no contractions.
+    # es Spanish validSubLocales="es_419 es_AR es_BO es_CL es_CO es_CR es_CU
+    # es_DO es_EA es_EC es_ES es_GQ es_GT es_HN es_IC es_MX es_NI es_PA es_PE
+    # es_PH es_PR es_PY es_SV es_US es_UY es_VE" no contractions in standard
+    # collation.
+    # fi Finish validSubLocales="fi_FI" no contractions in default (phonebook)
+    # collation.
+    # fr French no collation data.
+    # he Hebrew validSubLocales="he_IL" no contractions
+    # hr Croation validSubLocales="hr_BA hr_HR"
+    "hr": [
+        (("dž", "Dž", "DŽ"), "DŽ"),
+        (("lj", "Lj", "LJ"), "Ǉ"),
+        (("Nj", "NJ", "nj"), "Ǌ"),
+    ],
+    # Hungarian hu_HU for two and three character contractions.
+    "hu": [
+        (("cs", "Cs", "CS"), "CS"),
+        (("dzs", "Dzs", "DZS"), "DZS"),  # order is important
         (("dz", "Dz", "DZ"), "DZ"),
         (("gy", "Gy", "GY"), "GY"),
         (("ly", "Ly", "LY"), "LY"),
         (("ny", "Ny", "NY"), "NY"),
         (("sz", "Sz", "SZ"), "SZ"),
         (("ty", "Ty", "TY"), "TY"),
-        (("zs", "Zs", "ZS"), "ZS")
-       ],
-# it Italian no collation data.
-# ja Japanese unable to process the data as it is too complex.
-# lt Lithuanian no contractions.
-# Norwegian Bokmål
-"nb" : [(("aa", "Aa", "AA"), "Å")],
-# nn Norwegian Nynorsk validSubLocales="nn_NO"
-"nn" : [(("aa", "Aa", "AA"), "Å")],
-# nl Dutch no collation data.
-# pl Polish validSubLocales="pl_PL" no contractions
-# pt Portuguese no collation data.
-# ru Russian validSubLocales="ru_BY ru_KG ru_KZ ru_MD ru_RU ru_UA" no
-# contractions
-# Slovak,  validSubLocales="sk_SK" Slovak_Slovakia
-# having DZ in Slovak as a contraction was rejected in
-# http://unicode.org/cldr/trac/ticket/2968
-"sk" : [(("ch", "cH", "Ch", "CH"), "Ch")],
-# sl Slovenian validSubLocales="sl_SI" no contractions
-# sv Swedish validSubLocales="sv_AX sv_FI sv_SE" default collation is
-# "reformed" no contractions.
-# vi Vietnamese validSubLocales="vi_VN" no contractions.
-# zh Chinese validSubLocales="zh_Hans zh_Hans_CN zh_Hans_SG" no contractions
-# in Latin characters the others are too complex.
+        (("zs", "Zs", "ZS"), "ZS"),
+    ],
+    # it Italian no collation data.
+    # ja Japanese unable to process the data as it is too complex.
+    # lt Lithuanian no contractions.
+    # Norwegian Bokmål
+    "nb": [(("aa", "Aa", "AA"), "Å")],
+    # nn Norwegian Nynorsk validSubLocales="nn_NO"
+    "nn": [(("aa", "Aa", "AA"), "Å")],
+    # nl Dutch no collation data.
+    # pl Polish validSubLocales="pl_PL" no contractions
+    # pt Portuguese no collation data.
+    # ru Russian validSubLocales="ru_BY ru_KG ru_KZ ru_MD ru_RU ru_UA" no
+    # contractions
+    # Slovak,  validSubLocales="sk_SK" Slovak_Slovakia
+    # having DZ in Slovak as a contraction was rejected in
+    # http://unicode.org/cldr/trac/ticket/2968
+    "sk": [(("ch", "cH", "Ch", "CH"), "Ch")],
+    # sl Slovenian validSubLocales="sl_SI" no contractions
+    # sv Swedish validSubLocales="sv_AX sv_FI sv_SE" default collation is
+    # "reformed" no contractions.
+    # vi Vietnamese validSubLocales="vi_VN" no contractions.
+    # zh Chinese validSubLocales="zh_Hans zh_Hans_CN zh_Hans_SG" no contractions
+    # in Latin characters the others are too complex.
 }
 
 # The comment below from the glibc locale sv_SE in
@@ -161,14 +170,15 @@ CONTRACTIONS_DICT = {
 # difference that is primary in other languages is secondary, and those are not
 # specially handled.
 
+
 def first_letter(string, rlocale=glocale):
     """
     Receives a string and returns the first letter
     """
     if string is None or len(string) < 1:
-        return ' '
+        return " "
 
-    norm_unicode = normalize('NFKC', str(string))
+    norm_unicode = normalize("NFKC", str(string))
     contractions = CONTRACTIONS_DICT.get(rlocale.collation)
     if contractions is None:
         contractions = CONTRACTIONS_DICT.get(rlocale.collation.split("_")[0])
@@ -176,14 +186,15 @@ def first_letter(string, rlocale=glocale):
     if contractions is not None:
         for contraction in contractions:
             count = len(contraction[0][0])
-            if (len(norm_unicode) >= count and
-                    norm_unicode[:count] in contraction[0]):
+            if len(norm_unicode) >= count and norm_unicode[:count] in contraction[0]:
                 return contraction[1]
 
     # no special case
     return norm_unicode[0].upper()
 
+
 if HAVE_ICU:
+
     def primary_difference(prev_key, new_key, rlocale=glocale):
         """
         Try to use the PyICU collation.
@@ -196,6 +207,7 @@ if HAVE_ICU:
         return collation.compare(prev_key, new_key) != 0
 
 else:
+
     def primary_difference(prev_key, new_key, rlocale=glocale):
         """
         The PyICU collation is not available.
@@ -208,10 +220,10 @@ else:
         The test characters here must not be any that are used in contractions.
         """
 
-        return rlocale.sort_key(prev_key + "e") >= \
-                   rlocale.sort_key(new_key + "f") or \
-                   rlocale.sort_key(new_key + "e") >= \
-                   rlocale.sort_key(prev_key + "f")
+        return rlocale.sort_key(prev_key + "e") >= rlocale.sort_key(
+            new_key + "f"
+        ) or rlocale.sort_key(new_key + "e") >= rlocale.sort_key(prev_key + "f")
+
 
 def get_index_letter(letter, index_list, rlocale=glocale):
     """
@@ -228,20 +240,21 @@ def get_index_letter(letter, index_list, rlocale=glocale):
         if not primary_difference(letter, index, rlocale):
             return index
 
-    LOG.warning("Initial letter '%s' not found in alphabetic navigation list",
-                letter)
+    LOG.warning("Initial letter '%s' not found in alphabetic navigation list", letter)
     LOG.debug("filtered sorted index list %s", index_list)
     return letter
 
-#------------------------------------------------------------
+
+# ------------------------------------------------------------
 #
 # AlphabeticIndex (local non-ICU version)
 #
-#------------------------------------------------------------
-class AlphabeticIndex():
+# ------------------------------------------------------------
+class AlphabeticIndex:
     """
     Approximately emulate the ICU AlphabeticIndex
     """
+
     def __init__(self, rlocale):
         self.rlocale = rlocale
         self._record_list = []
@@ -252,10 +265,10 @@ class AlphabeticIndex():
         self._bucket = -1
         self._record = -1
         # Externally available properties
-        self.bucketLabel = "" # pylint: disable=invalid-name
-        self.recordName = "" # pylint: disable=invalid-name
-        self.recordData = "" # pylint: disable=invalid-name
-        self.bucketRecordCount = 0 # pylint: disable=invalid-name
+        self.bucketLabel = ""  # pylint: disable=invalid-name
+        self.recordName = ""  # pylint: disable=invalid-name
+        self.recordData = ""  # pylint: disable=invalid-name
+        self.bucketRecordCount = 0  # pylint: disable=invalid-name
 
     def __create_index(self):
         """
@@ -266,7 +279,7 @@ class AlphabeticIndex():
         # there may be letters where there is only a secondary or tertiary
         # difference, not a primary difference.
         index_list = []
-        for (name, dummy_data) in self._record_list:
+        for name, dummy_data in self._record_list:
             ltr = first_letter(name, self.rlocale)
             index_list.append(ltr)
         # The list is sorted in collation order.
@@ -293,15 +306,16 @@ class AlphabeticIndex():
 
         # finally construct the buckets and contents
         bucket_dict = defaultdict(list)
-        for (name, data) in \
-                    sorted(self._record_list,
-                           key=lambda x: self.rlocale.sort_key(x[0])):
+        for name, data in sorted(
+            self._record_list, key=lambda x: self.rlocale.sort_key(x[0])
+        ):
             letter = first_letter(name, self.rlocale)
             letter = get_index_letter(letter, index_list, self.rlocale)
             bucket_dict[letter].append((name, data))
 
-        self._bucket_list = sorted(bucket_dict.items(),
-                             key=lambda x : self.rlocale.sort_key(x[0]))
+        self._bucket_list = sorted(
+            bucket_dict.items(), key=lambda x: self.rlocale.sort_key(x[0])
+        )
 
         self._dirty = False
 
@@ -326,7 +340,7 @@ class AlphabeticIndex():
         self._record_list.append((name, data))
         self._dirty = True
 
-    def resetBucketIterator(self): # pylint: disable=invalid-name
+    def resetBucketIterator(self):  # pylint: disable=invalid-name
         """
         Reset the Bucket iteration for this index.
 
@@ -341,7 +355,7 @@ class AlphabeticIndex():
         self.recordName = ""
         self.recordData = ""
 
-    def nextBucket(self): # pylint: disable=invalid-name
+    def nextBucket(self):  # pylint: disable=invalid-name
         """
         Advance the iteration over the Buckets of this index.
 
@@ -360,7 +374,7 @@ class AlphabeticIndex():
         else:
             return False
 
-    def nextRecord(self): # pylint: disable=invalid-name
+    def nextRecord(self):  # pylint: disable=invalid-name
         """
         Advance to the next record in the current Bucket.
 

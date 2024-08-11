@@ -20,19 +20,20 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from ..dialog import ErrorDialog
 from ..managedwindow import ManagedWindow
@@ -40,11 +41,12 @@ from .displaytabs import GrampsTab
 from gramps.gen.config import config
 from ..dbguielement import DbGUIElement
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
 
 class RefTab(GrampsTab):
     """
@@ -74,7 +76,7 @@ class RefTab(GrampsTab):
         eventbox.add(widget)
         self.pack_start(eventbox, True, True, 0)
         self._set_label(show_image=False)
-        widget.connect('key_press_event', self.key_pressed)
+        widget.connect("key_press_event", self.key_pressed)
         self.show_all()
 
     def is_empty(self):
@@ -83,13 +85,13 @@ class RefTab(GrampsTab):
         """
         return False
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # EditReference class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class EditReference(ManagedWindow, DbGUIElement):
-
     def __init__(self, state, uistate, track, source, source_ref, update):
         self.db = state.db
         self.dbstate = state
@@ -118,14 +120,25 @@ class EditReference(ManagedWindow, DbGUIElement):
         """
         pass
 
-    def define_warn_box(self,box):
+    def define_warn_box(self, box):
         self.warn_box = box
 
     def enable_warnbox(self):
         self.warn_box.show()
 
-    def define_expander(self,expander):
+    def define_expander(self, expander):
         expander.set_expanded(True)
+        expander.connect("activate", self.__on_expand)
+
+    def __on_expand(self, expander):
+        """
+        Sets the packing of the expander widget to depend on whether or not
+        it is expanded.
+        """
+        state = not expander.get_expanded()
+        parent = expander.get_parent()
+        parent.set_child_packing(expander, state, state, 0, Gtk.PackType.START)
+        expander.set_vexpand(state)
 
     def _post_init(self):
         """
@@ -138,12 +151,9 @@ class EditReference(ManagedWindow, DbGUIElement):
             label = notebook.get_tab_label(child)
             page_no = notebook.page_num(child)
             label.drag_dest_set(0, [], 0)
-            label.connect('drag_motion',
-                          self._switch_page_on_dnd,
-                          notebook,
-                          page_no)
+            label.connect("drag_motion", self._switch_page_on_dnd, notebook, page_no)
             child.set_parent_notebook(notebook)
-        notebook.connect('key-press-event', self.key_pressed, notebook)
+        notebook.connect("key-press-event", self.key_pressed, notebook)
 
     def key_pressed(self, obj, event, notebook):
         """
@@ -158,7 +168,7 @@ class EditReference(ManagedWindow, DbGUIElement):
         if notebook.get_current_page() != page_no:
             notebook.set_current_page(page_no)
 
-    def _add_tab(self, notebook,page):
+    def _add_tab(self, notebook, page):
         self.__tabs.append(page)
         notebook.insert_page(page, page.get_tab_widget(), -1)
         page.label.set_use_underline(True)
@@ -173,19 +183,19 @@ class EditReference(ManagedWindow, DbGUIElement):
     def _create_tabbed_pages(self):
         pass
 
-    def build_window_key(self,sourceref):
-        #the window key for managedwindow identification. No need to return None
+    def build_window_key(self, sourceref):
+        # the window key for managedwindow identification. No need to return None
         if self.source and self.source.get_handle():
             return self.source.get_handle()
         else:
             return id(self)
 
     def define_ok_button(self, button, function):
-        button.connect('clicked',function)
+        button.connect("clicked", function)
         button.set_sensitive(not self.db.readonly)
 
     def define_cancel_button(self, button):
-        button.connect('clicked',self.close_and_cancel)
+        button.connect("clicked", self.close_and_cancel)
 
     def close_and_cancel(self, obj):
         self.close(obj)
@@ -199,10 +209,10 @@ class EditReference(ManagedWindow, DbGUIElement):
         if self.source.get_handle() in handles:
             self.close()
 
-    def define_help_button(self, button, webpage='', section=''):
+    def define_help_button(self, button, webpage="", section=""):
         from ..display import display_help
-        button.connect('clicked', lambda x: display_help(webpage,
-                                                               section))
+
+        button.connect("clicked", lambda x: display_help(webpage, section))
         button.set_sensitive(True)
 
     def _cleanup_on_exit(self):
@@ -210,7 +220,7 @@ class EditReference(ManagedWindow, DbGUIElement):
         Finalize rest
         """
         for tab in self.__tabs:
-            if hasattr(tab, '_cleanup_on_exit'):
+            if hasattr(tab, "_cleanup_on_exit"):
                 tab._cleanup_on_exit()
         self.__tabs = None
         self.dbstate = None
@@ -223,7 +233,7 @@ class EditReference(ManagedWindow, DbGUIElement):
         self.callman.database = None
         self.callman = None
 
-    def close(self,*obj):
+    def close(self, *obj):
         self._cleanup_db_connects()
         self._cleanup_connects()
         ManagedWindow.close(self)
@@ -236,9 +246,9 @@ class EditReference(ManagedWindow, DbGUIElement):
         1. The connects on the main view must be disconnected
         2. Connects done in subelements must be disconnected
         """
-        #cleanup callbackmanager of this editor
+        # cleanup callbackmanager of this editor
         self._cleanup_callbacks()
-        for tab in [tab for tab in self.__tabs if hasattr(tab, 'callman')]:
+        for tab in [tab for tab in self.__tabs if hasattr(tab, "callman")]:
             tab._cleanup_callbacks()
 
     def _cleanup_connects(self):
@@ -247,7 +257,9 @@ class EditReference(ManagedWindow, DbGUIElement):
         removed before destroying the interface
         """
         self._cleanup_local_connects()
-        for tab in [tab for tab in self.__tabs if hasattr(tab, '_cleanup_local_connects')]:
+        for tab in [
+            tab for tab in self.__tabs if hasattr(tab, "_cleanup_local_connects")
+        ]:
             tab._cleanup_local_connects()
 
     def _cleanup_local_connects(self):
@@ -269,35 +281,37 @@ class EditReference(ManagedWindow, DbGUIElement):
         """
         new_id = self.source.get_gramps_id()
         if new_id:
-            id_func = getattr(self.db, 'get_%s_from_gramps_id' % type.lower())
+            id_func = getattr(self.db, "get_%s_from_gramps_id" % type.lower())
             old_primary = id_func(new_id)
             if old_primary:
                 description = None
-                if type == 'Event':
+                if type == "Event":
                     msg1 = _("Cannot save event. ID already exists.")
                     description = old_primary.get_description()
-                elif type == 'Media':
+                elif type == "Media":
                     msg1 = _("Cannot save media object. ID already exists.")
                     description = old_primary.get_description()
-                elif type == 'Repository':
+                elif type == "Repository":
                     msg1 = _("Cannot save repository. ID already exists.")
                     description = old_primary.get_name()
                 else:
                     msg1 = _("Cannot save item. ID already exists.")
                 if description:
-                    msg2 = _("You have attempted to use the existing Gramps "
-                             "ID with value %(id)s. This value is already "
-                             "used by '%(prim_object)s'. Please enter a "
-                             "different ID or leave blank to get the next "
-                             "available ID value.") % {
-                                 'id' : new_id, 'prim_object' : description }
+                    msg2 = _(
+                        "You have attempted to use the existing Gramps "
+                        "ID with value %(id)s. This value is already "
+                        "used by '%(prim_object)s'. Please enter a "
+                        "different ID or leave blank to get the next "
+                        "available ID value."
+                    ) % {"id": new_id, "prim_object": description}
                 else:
-                    msg2 = _("You have attempted to use the existing Gramps "
-                             "ID with value %(id)s. This value is already "
-                             "used. Please enter a "
-                             "different ID or leave blank to get the next "
-                             "available ID value.") % {
-                                 'id' : new_id}
+                    msg2 = _(
+                        "You have attempted to use the existing Gramps "
+                        "ID with value %(id)s. This value is already "
+                        "used. Please enter a "
+                        "different ID or leave blank to get the next "
+                        "available ID value."
+                    ) % {"id": new_id}
                 ErrorDialog(msg1, msg2, parent=self.window)
                 return True
         return False

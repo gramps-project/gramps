@@ -35,6 +35,7 @@ import sys
 import os
 import random
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
 # ------------------------------------------------------------------------
@@ -50,13 +51,47 @@ from gi.repository import Gtk
 #
 # ------------------------------------------------------------------------
 from gramps.gen.lib import (
-    Address, Attribute, AttributeType, ChildRef,
-    ChildRefType, Citation, Date, Event, EventRef, EventRoleType,
-    EventType, Family, FamilyRelType, GrampsType, LdsOrd, Location,
-    Media, MediaRef, Name, NameOriginType, NameType, Note,
-    NoteType, Person, PersonRef, Place, PlaceType, PlaceRef, PlaceName,
-    RepoRef, Repository, RepositoryType, Source, SourceMediaType,
-    SrcAttribute, SrcAttributeType, Surname, Tag, Url, UrlType)
+    Address,
+    Attribute,
+    AttributeType,
+    ChildRef,
+    ChildRefType,
+    Citation,
+    Date,
+    Event,
+    EventRef,
+    EventRoleType,
+    EventType,
+    Family,
+    FamilyRelType,
+    GrampsType,
+    LdsOrd,
+    Location,
+    Media,
+    MediaRef,
+    Name,
+    NameOriginType,
+    NameType,
+    Note,
+    NoteType,
+    Person,
+    PersonRef,
+    Place,
+    PlaceType,
+    PlaceRef,
+    PlaceName,
+    RepoRef,
+    Repository,
+    RepositoryType,
+    Source,
+    SourceMediaType,
+    SrcAttribute,
+    SrcAttributeType,
+    Surname,
+    Tag,
+    Url,
+    UrlType,
+)
 from gramps.gen.lib.addressbase import AddressBase
 from gramps.gen.lib.attrbase import AttributeBase
 from gramps.gen.lib.primaryobj import BasicPrimaryObject
@@ -87,8 +122,8 @@ from gramps.gen.const import URL_MANUAL_PAGE
 # Constants
 #
 # ------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('Generate_Testcases_for_Persons_and_Families')
+WIKI_HELP_PAGE = "%s_-_Tools" % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _("Generate_Testcases_for_Persons_and_Families")
 
 # the following allows test code to access a private copy of the random
 # number generator.  The access is typically used for seeding the generator
@@ -107,52 +142,75 @@ _randint = myrand.randint
 
 LDS_ORD_BAPT_STATUS = (
     LdsOrd.STATUS_NONE,
-    LdsOrd.STATUS_CHILD, LdsOrd.STATUS_CLEARED,
-    LdsOrd.STATUS_COMPLETED, LdsOrd.STATUS_INFANT,
-    LdsOrd.STATUS_PRE_1970, LdsOrd.STATUS_QUALIFIED,
-    LdsOrd.STATUS_STILLBORN, LdsOrd.STATUS_SUBMITTED,
-    LdsOrd.STATUS_UNCLEARED)
+    LdsOrd.STATUS_CHILD,
+    LdsOrd.STATUS_CLEARED,
+    LdsOrd.STATUS_COMPLETED,
+    LdsOrd.STATUS_INFANT,
+    LdsOrd.STATUS_PRE_1970,
+    LdsOrd.STATUS_QUALIFIED,
+    LdsOrd.STATUS_STILLBORN,
+    LdsOrd.STATUS_SUBMITTED,
+    LdsOrd.STATUS_UNCLEARED,
+)
 
 LDS_ORD_CHILD_SEALING_STATUS = (
     LdsOrd.STATUS_NONE,
-    LdsOrd.STATUS_BIC, LdsOrd.STATUS_CLEARED,
-    LdsOrd.STATUS_COMPLETED, LdsOrd.STATUS_DNS,
-    LdsOrd.STATUS_PRE_1970, LdsOrd.STATUS_QUALIFIED,
-    LdsOrd.STATUS_STILLBORN, LdsOrd.STATUS_SUBMITTED,
-    LdsOrd.STATUS_UNCLEARED)
+    LdsOrd.STATUS_BIC,
+    LdsOrd.STATUS_CLEARED,
+    LdsOrd.STATUS_COMPLETED,
+    LdsOrd.STATUS_DNS,
+    LdsOrd.STATUS_PRE_1970,
+    LdsOrd.STATUS_QUALIFIED,
+    LdsOrd.STATUS_STILLBORN,
+    LdsOrd.STATUS_SUBMITTED,
+    LdsOrd.STATUS_UNCLEARED,
+)
 
 LDS_ENDOWMENT_DATE_STATUS = (
     LdsOrd.STATUS_NONE,
-    LdsOrd.STATUS_CHILD, LdsOrd.STATUS_CLEARED,
-    LdsOrd.STATUS_COMPLETED, LdsOrd.STATUS_INFANT,
-    LdsOrd.STATUS_PRE_1970, LdsOrd.STATUS_QUALIFIED,
-    LdsOrd.STATUS_STILLBORN, LdsOrd.STATUS_SUBMITTED,
-    LdsOrd.STATUS_UNCLEARED)
+    LdsOrd.STATUS_CHILD,
+    LdsOrd.STATUS_CLEARED,
+    LdsOrd.STATUS_COMPLETED,
+    LdsOrd.STATUS_INFANT,
+    LdsOrd.STATUS_PRE_1970,
+    LdsOrd.STATUS_QUALIFIED,
+    LdsOrd.STATUS_STILLBORN,
+    LdsOrd.STATUS_SUBMITTED,
+    LdsOrd.STATUS_UNCLEARED,
+)
 
 LDS_SPOUSE_SEALING_DATE_STATUS = (
     LdsOrd.STATUS_NONE,
-    LdsOrd.STATUS_CANCELED, LdsOrd.STATUS_CLEARED,
-    LdsOrd.STATUS_COMPLETED, LdsOrd.STATUS_DNS,
-    LdsOrd.STATUS_DNS_CAN, LdsOrd.STATUS_PRE_1970,
-    LdsOrd.STATUS_QUALIFIED, LdsOrd.STATUS_SUBMITTED,
-    LdsOrd.STATUS_UNCLEARED)
+    LdsOrd.STATUS_CANCELED,
+    LdsOrd.STATUS_CLEARED,
+    LdsOrd.STATUS_COMPLETED,
+    LdsOrd.STATUS_DNS,
+    LdsOrd.STATUS_DNS_CAN,
+    LdsOrd.STATUS_PRE_1970,
+    LdsOrd.STATUS_QUALIFIED,
+    LdsOrd.STATUS_SUBMITTED,
+    LdsOrd.STATUS_UNCLEARED,
+)
 
-LDS_INDIVIDUAL_ORD = [(LdsOrd.BAPTISM, LDS_ORD_BAPT_STATUS),
-                      (LdsOrd.CONFIRMATION, LDS_ORD_BAPT_STATUS),
-                      (LdsOrd.ENDOWMENT, LDS_ENDOWMENT_DATE_STATUS),
-                      (LdsOrd.SEAL_TO_PARENTS, LDS_ORD_CHILD_SEALING_STATUS)]
+LDS_INDIVIDUAL_ORD = [
+    (LdsOrd.BAPTISM, LDS_ORD_BAPT_STATUS),
+    (LdsOrd.CONFIRMATION, LDS_ORD_BAPT_STATUS),
+    (LdsOrd.ENDOWMENT, LDS_ENDOWMENT_DATE_STATUS),
+    (LdsOrd.SEAL_TO_PARENTS, LDS_ORD_CHILD_SEALING_STATUS),
+]
 
-LDS_SPOUSE_SEALING = [(LdsOrd.SEAL_TO_SPOUSE,
-                       LDS_SPOUSE_SEALING_DATE_STATUS)]
+LDS_SPOUSE_SEALING = [(LdsOrd.SEAL_TO_SPOUSE, LDS_SPOUSE_SEALING_DATE_STATUS)]
 
 
 # ------------------------------------------------------------------------
 
+
 class TestcaseGenerator(tool.BatchTool):
-    '''
+    """
     This tool generates various test cases for problems that have occured.
     The issues it generates can be corrected via the 'Check and Repair' tool.
-    '''
+    """
+
     NUMERIC = 0
     FIRSTNAME = 1
     FIRSTNAME_FEMALE = 2
@@ -164,35 +222,38 @@ class TestcaseGenerator(tool.BatchTool):
     TAG = 8
     STYLED_TEXT = 9
 
-#    GEDCON definition:
-#
-#    FAMILY_EVENT_STRUCTURE:=
-#    [
-#    n [ ANUL | CENS | DIV | DIVF ] [Y|<NULL>] {1:1}
-#    +1 <<EVENT_DETAIL>> {0:1} p.29
-#    |
-#    n [ ENGA | MARR | MARB | MARC ] [Y|<NULL>] {1:1}
-#    +1 <<EVENT_DETAIL>> {0:1} p.29
-#    |
-#    n [ MARL | MARS ] [Y|<NULL>] {1:1}
-#    +1 <<EVENT_DETAIL>> {0:1} p.29
-#    |
-#    n EVEN {1:1}
-#    +1 <<EVENT_DETAIL>> {0:1} p.29
-#    ]
+    #    GEDCON definition:
+    #
+    #    FAMILY_EVENT_STRUCTURE:=
+    #    [
+    #    n [ ANUL | CENS | DIV | DIVF ] [Y|<NULL>] {1:1}
+    #    +1 <<EVENT_DETAIL>> {0:1} p.29
+    #    |
+    #    n [ ENGA | MARR | MARB | MARC ] [Y|<NULL>] {1:1}
+    #    +1 <<EVENT_DETAIL>> {0:1} p.29
+    #    |
+    #    n [ MARL | MARS ] [Y|<NULL>] {1:1}
+    #    +1 <<EVENT_DETAIL>> {0:1} p.29
+    #    |
+    #    n EVEN {1:1}
+    #    +1 <<EVENT_DETAIL>> {0:1} p.29
+    #    ]
 
-    FAMILY_EVENTS = set([
-        EventType.ANNULMENT,
-        EventType.CENSUS,
-        EventType.DIVORCE,
-        EventType.DIV_FILING,
-        EventType.ENGAGEMENT,
-        EventType.MARRIAGE,
-        EventType.MARR_BANNS,
-        EventType.MARR_CONTR,
-        EventType.MARR_LIC,
-        EventType.MARR_SETTL,
-        EventType.CUSTOM])
+    FAMILY_EVENTS = set(
+        [
+            EventType.ANNULMENT,
+            EventType.CENSUS,
+            EventType.DIVORCE,
+            EventType.DIV_FILING,
+            EventType.ENGAGEMENT,
+            EventType.MARRIAGE,
+            EventType.MARR_BANNS,
+            EventType.MARR_CONTR,
+            EventType.MARR_LIC,
+            EventType.MARR_SETTL,
+            EventType.CUSTOM,
+        ]
+    )
 
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
@@ -202,21 +263,22 @@ class TestcaseGenerator(tool.BatchTool):
             parent_window = None
         self.progress = user.progress
 
-# ******** This ensures that a chunk of code below never executes!!!!
+        # ******** This ensures that a chunk of code below never executes!!!!
         self.person = None
 
         if dbstate.db.readonly:
             return
 
-        tool.BatchTool.__init__(self, dbstate, user, options_class, name,
-                                parent=parent_window)
+        tool.BatchTool.__init__(
+            self, dbstate, user, options_class, name, parent=parent_window
+        )
 
         if self.fail:
             return
 
         self.options_dict = self.options.handler.options_dict
         self.person_count = 0
-        self.max_person_count = self.options_dict['person_count']
+        self.max_person_count = self.options_dict["person_count"]
         self.persons_todo = []
         self.parents_todo = []
         self.person_dates = {}
@@ -276,46 +338,53 @@ class TestcaseGenerator(tool.BatchTool):
         self.window = uistate.window
         self.top.set_default_size(400, 150)
         self.top.vbox.set_spacing(5)
-        label = Gtk.Label(label='<span size="larger" weight="bold">%s</span>'
-                          % _("Generate testcases"))
+        label = Gtk.Label(
+            label='<span size="larger" weight="bold">%s</span>'
+            % _("Generate testcases")
+        )
         label.set_use_markup(True)
         self.top.vbox.pack_start(label, 0, 0, 5)
 
-        self.check_lowlevel = Gtk.CheckButton(label=_(
-            "Generate low level database "
-            "errors\nCorrection needs database reload"))
-        self.check_lowlevel.set_active(self.options_dict['lowlevel'])
+        self.check_lowlevel = Gtk.CheckButton(
+            label=_(
+                "Generate low level database "
+                "errors\nCorrection needs database reload"
+            )
+        )
+        self.check_lowlevel.set_active(self.options_dict["lowlevel"])
         self.top.vbox.pack_start(self.check_lowlevel, 0, 0, 5)
 
         self.check_bugs = Gtk.CheckButton(label=_("Generate database errors"))
-        self.check_bugs.set_active(self.options_dict['bugs'])
+        self.check_bugs.set_active(self.options_dict["bugs"])
         self.top.vbox.pack_start(self.check_bugs, 0, 0, 5)
 
         self.check_persons = Gtk.CheckButton(label=_("Generate dummy data"))
-        self.check_persons.set_active(self.options_dict['persons'])
-        self.check_persons.connect('clicked', self.on_dummy_data_clicked)
+        self.check_persons.set_active(self.options_dict["persons"])
+        self.check_persons.connect("clicked", self.on_dummy_data_clicked)
         self.top.vbox.pack_start(self.check_persons, 0, 0, 5)
 
         self.check_longnames = Gtk.CheckButton(label=_("Generate long names"))
-        self.check_longnames.set_active(self.options_dict['long_names'])
+        self.check_longnames.set_active(self.options_dict["long_names"])
         self.top.vbox.pack_start(self.check_longnames, 0, 0, 5)
 
-        self.check_specialchars = Gtk.CheckButton(label=_(
-            "Add special characters"))
-        self.check_specialchars.set_active(self.options_dict['specialchars'])
+        self.check_specialchars = Gtk.CheckButton(label=_("Add special characters"))
+        self.check_specialchars.set_active(self.options_dict["specialchars"])
         self.top.vbox.pack_start(self.check_specialchars, 0, 0, 5)
 
         self.check_serial = Gtk.CheckButton(label=_("Add serial number"))
-        self.check_serial.set_active(self.options_dict['add_serial'])
+        self.check_serial.set_active(self.options_dict["add_serial"])
         self.top.vbox.pack_start(self.check_serial, 0, 0, 5)
 
         self.check_linebreak = Gtk.CheckButton(label=_("Add line break"))
-        self.check_linebreak.set_active(self.options_dict['add_linebreak'])
+        self.check_linebreak.set_active(self.options_dict["add_linebreak"])
         self.top.vbox.pack_start(self.check_linebreak, 0, 0, 5)
 
-        self.label = Gtk.Label(label=_(
-            "Number of people to generate\n"
-            "(Number is approximate because families are generated)"))
+        self.label = Gtk.Label(
+            label=_(
+                "Number of people to generate\n"
+                "(Number is approximate because families are generated)"
+            )
+        )
         self.label.set_halign(Gtk.Align.START)
         self.top.vbox.pack_start(self.label, 0, 0, 5)
 
@@ -324,34 +393,25 @@ class TestcaseGenerator(tool.BatchTool):
         self.on_dummy_data_clicked(self.check_persons)
         self.top.vbox.pack_start(self.entry_count, 0, 0, 5)
 
-        self.top.add_button(_('_Cancel'), Gtk.ResponseType.CANCEL)
-        self.top.add_button(_('_OK'), Gtk.ResponseType.OK)
-        self.top.add_button(_('_Help'), Gtk.ResponseType.HELP)
+        self.top.add_button(_("_Cancel"), Gtk.ResponseType.CANCEL)
+        self.top.add_button(_("_OK"), Gtk.ResponseType.OK)
+        self.top.add_button(_("_Help"), Gtk.ResponseType.HELP)
         self.top.show_all()
 
         while True:
             response = self.top.run()
             if response == Gtk.ResponseType.HELP:
-                display_help(webpage=WIKI_HELP_PAGE,
-                             section=WIKI_HELP_SEC)
+                display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
             else:
                 break
-        self.options_dict['lowlevel'] = int(
-            self.check_lowlevel.get_active())
-        self.options_dict['bugs'] = int(
-            self.check_bugs.get_active())
-        self.options_dict['persons'] = int(
-            self.check_persons.get_active())
-        self.options_dict['long_names'] = int(
-            self.check_longnames.get_active())
-        self.options_dict['specialchars'] = int(
-            self.check_specialchars.get_active())
-        self.options_dict['add_serial'] = int(
-            self.check_serial.get_active())
-        self.options_dict['add_linebreak'] = int(
-            self.check_linebreak.get_active())
-        self.options_dict['person_count'] = int(
-            self.entry_count.get_text())
+        self.options_dict["lowlevel"] = int(self.check_lowlevel.get_active())
+        self.options_dict["bugs"] = int(self.check_bugs.get_active())
+        self.options_dict["persons"] = int(self.check_persons.get_active())
+        self.options_dict["long_names"] = int(self.check_longnames.get_active())
+        self.options_dict["specialchars"] = int(self.check_specialchars.get_active())
+        self.options_dict["add_serial"] = int(self.check_serial.get_active())
+        self.options_dict["add_linebreak"] = int(self.check_linebreak.get_active())
+        self.options_dict["person_count"] = int(self.entry_count.get_text())
         self.top.destroy()
 
         if response == Gtk.ResponseType.OK:
@@ -373,27 +433,28 @@ class TestcaseGenerator(tool.BatchTool):
 
         self.transaction_count = 0
 
-        if self.options_dict['lowlevel']:
-            with self.progress(_('Generating testcases'),
-                               _('Generating low level database errors'),
-                               1) as step:
+        if self.options_dict["lowlevel"]:
+            with self.progress(
+                _("Generating testcases"), _("Generating low level database errors"), 1
+            ) as step:
                 self.test_low_level()
                 step()
 
-        if self.options_dict['bugs'] or self.options_dict['persons']:
+        if self.options_dict["bugs"] or self.options_dict["persons"]:
             self.generate_tags()
 
-        if self.options_dict['bugs']:
-            with self.progress(_('Generating testcases'),
-                               _('Generating database errors'),
-                               20) as step:
+        if self.options_dict["bugs"]:
+            with self.progress(
+                _("Generating testcases"), _("Generating database errors"), 20
+            ) as step:
                 self.generate_data_errors(step)
 
-        if self.options_dict['persons']:
-            with self.progress(_('Generating testcases'),
-                               _('Generating families'),
-                               self.max_person_count) \
-                               as self.progress_step:
+        if self.options_dict["persons"]:
+            with self.progress(
+                _("Generating testcases"),
+                _("Generating families"),
+                self.max_person_count,
+            ) as self.progress_step:
                 self.person_count = 0
 
                 while True:
@@ -420,7 +481,7 @@ class TestcaseGenerator(tool.BatchTool):
     def generate_data_errors(self, step):
         """This generates errors in the database to test src/plugins/tool/Check
         The module names correspond to the checking methods in
-        src/plugins/tool/Check.CheckIntegrity """
+        src/plugins/tool/Check.CheckIntegrity"""
         # The progress meter is normally stepped every time a person is
         # generated by generate_person. However in this case, generate_person
         # is called by some of the constituent functions, but we only want the
@@ -467,8 +528,9 @@ class TestcaseGenerator(tool.BatchTool):
         step()
 
     def test_low_level(self):
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
 
             obj = Note()
@@ -476,8 +538,9 @@ class TestcaseGenerator(tool.BatchTool):
             obj.set_format(_choice((Note.FLOWED, Note.FORMATTED)))
             obj.set_type(self.rand_type(NoteType()))
             self.db.add_note(obj, self.trans)
-            print("object %s, handle %s, Gramps_Id %s" % (obj, obj.handle,
-                                                          obj.gramps_id))
+            print(
+                "object %s, handle %s, Gramps_Id %s" % (obj, obj.handle, obj.gramps_id)
+            )
 
             handle = obj.get_handle()
 
@@ -496,29 +559,29 @@ class TestcaseGenerator(tool.BatchTool):
                 src.add_attribute(sattr)
             src.set_handle(handle)
             self.db.add_source(src, self.trans)
-            print("object %s, handle %s, Gramps_Id %s" % (src, src.handle,
-                                                          src.gramps_id))
+            print(
+                "object %s, handle %s, Gramps_Id %s" % (src, src.handle, src.gramps_id)
+            )
 
     def test_fix_encoding(self):
-        """ Creates a media object with character encoding errors. This tests
+        """Creates a media object with character encoding errors. This tests
         Check.fix_encoding() and also cleanup_missing_photos
         """
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
 
             med = Media()
             self.fill_object(med)
-            med.set_description("leave this media object invalid description"
-                                "\x9f")
+            med.set_description("leave this media object invalid description" "\x9f")
             med.set_path("/tmp/click_on_keep_reference.png\x9f")
             med.set_mime_type("image/png\x9f")
             self.db.add_media(med, self.trans)
 
             med = Media()
             self.fill_object(med)
-            med.set_description("reselect this media object invalid "
-                                "description\x9f")
+            med.set_description("reselect this media object invalid " "description\x9f")
             med.set_path("/tmp/click_on_select_file.png\x9f")
             med.set_mime_type("image/png\x9f")
             self.db.add_media(med, self.trans)
@@ -527,13 +590,13 @@ class TestcaseGenerator(tool.BatchTool):
 
             med = Media()
             self.fill_object(med)
-            med.set_description('remove this media object')
+            med.set_description("remove this media object")
             med.set_path("/tmp/click_on_remove_object.png")
             med.set_mime_type("image/png")
             self.db.add_media(med, self.trans)
 
             src = Source()
-            src.set_title('media should be removed from this source')
+            src.set_title("media should be removed from this source")
             ref = MediaRef()
             ref.set_reference_handle(med.handle)
             src.add_media_reference(ref)
@@ -542,18 +605,19 @@ class TestcaseGenerator(tool.BatchTool):
             cit = Citation()
             self.fill_object(cit)
             cit.set_reference_handle(src.handle)
-            cit.set_page('media should be removed from this citation')
+            cit.set_page("media should be removed from this citation")
             ref = MediaRef()
             ref.set_reference_handle(med.handle)
             cit.add_media_reference(ref)
             self.db.add_citation(cit, self.trans)
 
     def test_fix_ctrlchars_in_notes(self):
-        """ Creates a note with control characters. This tests
+        """Creates a note with control characters. This tests
         Check.fix_ctrlchars_in_notes()
         """
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
 
             obj = Note()
@@ -569,8 +633,9 @@ class TestcaseGenerator(tool.BatchTool):
         include two alt names that are almost duplicates, but not quite.
         This tests Check.fix_alt_place_names()
         """
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
 
             plac = Place()
@@ -584,8 +649,14 @@ class TestcaseGenerator(tool.BatchTool):
             alt_name3 = PlaceName()
             alt_name3.set_value("Alt name 1")
             alt_name3.set_date_object(Today())
-            alt_names = [pri_name, alt_name1, alt_name1, PlaceName(),
-                         alt_name2, alt_name3]
+            alt_names = [
+                pri_name,
+                alt_name1,
+                alt_name1,
+                PlaceName(),
+                alt_name2,
+                alt_name3,
+            ]
             plac.set_name(pri_name)
             plac.set_alternative_names(alt_names)
             self.db.add_place(plac, self.trans)
@@ -595,8 +666,9 @@ class TestcaseGenerator(tool.BatchTool):
         Create some duplicate Gramps IDs in various object types
         This tests Check.fix_duplicated_grampsid()
         """
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
             for dummy in range(0, 2):
                 cit = Citation()
@@ -610,13 +682,13 @@ class TestcaseGenerator(tool.BatchTool):
                 self.db.add_event(evt, self.trans)
 
                 person1_h = self.generate_person(
-                    Person.MALE, "Smith",
-                    "Dup Gramps ID test F1001")
+                    Person.MALE, "Smith", "Dup Gramps ID test F1001"
+                )
                 person2_h = self.generate_person(Person.FEMALE, "Jones", None)
                 fam = Family()
                 fam.set_father_handle(person1_h)
                 fam.set_mother_handle(person2_h)
-                fam.set_relationship((FamilyRelType.MARRIED, ''))
+                fam.set_relationship((FamilyRelType.MARRIED, ""))
                 fam.set_gramps_id("F1001")
                 fam_h = self.db.add_family(fam, self.trans)
                 person1 = self.db.get_person_from_handle(person1_h)
@@ -636,8 +708,9 @@ class TestcaseGenerator(tool.BatchTool):
                 note.set_gramps_id("N1001")
                 self.db.add_note(note, self.trans)
 
-                person1_h = self.generate_person(Person.MALE, "Smith",
-                                                 "Dup GID test GID I1001")
+                person1_h = self.generate_person(
+                    Person.MALE, "Smith", "Dup GID test GID I1001"
+                )
                 person1 = self.db.get_person_from_handle(person1_h)
                 person1.set_gramps_id("I1001")
                 self.db.commit_person(person1, self.trans)
@@ -664,9 +737,10 @@ class TestcaseGenerator(tool.BatchTool):
         pass
 
     def test_cleanup_empty_objects(self):
-        """ Generate empty objects to test their deletion """
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        """Generate empty objects to test their deletion"""
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
 
             pers = Person()
@@ -697,20 +771,23 @@ class TestcaseGenerator(tool.BatchTool):
             self.db.add_note(note, self.trans)
 
     def test_chk_for_broke_family_link(self):
-        """ Create various family related errors """
+        """Create various family related errors"""
         # Create a family, that links to father and mother, but father does not
         # link back
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
             person1_h = self.generate_person(
-                Person.MALE, "Broken1",
-                "Family links to this person, but person does not link back")
+                Person.MALE,
+                "Broken1",
+                "Family links to this person, but person does not link back",
+            )
             person2_h = self.generate_person(Person.FEMALE, "Broken1", None)
             fam = Family()
             fam.set_father_handle(person1_h)
             fam.set_mother_handle(person2_h)
-            fam.set_relationship((FamilyRelType.MARRIED, ''))
+            fam.set_relationship((FamilyRelType.MARRIED, ""))
             fam_h = self.db.add_family(fam, self.trans)
             # person1 = self.db.get_person_from_handle(person1_h)
             # person1.add_family_handle(fam_h)
@@ -720,15 +797,16 @@ class TestcaseGenerator(tool.BatchTool):
             self.db.commit_person(person2, self.trans)
 
         # Create a family, that misses the link to the father
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
             person1_h = self.generate_person(Person.MALE, "Broken2", None)
             person2_h = self.generate_person(Person.FEMALE, "Broken2", None)
             fam = Family()
             # fam.set_father_handle(person1_h)
             fam.set_mother_handle(person2_h)
-            fam.set_relationship((FamilyRelType.MARRIED, ''))
+            fam.set_relationship((FamilyRelType.MARRIED, ""))
             fam_h = self.db.add_family(fam, self.trans)
             person1 = self.db.get_person_from_handle(person1_h)
             person1.add_family_handle(fam_h)
@@ -738,15 +816,16 @@ class TestcaseGenerator(tool.BatchTool):
             self.db.commit_person(person2, self.trans)
 
         # Create a family, that misses the link to the mother
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
             person1_h = self.generate_person(Person.MALE, "Broken3", None)
             person2_h = self.generate_person(Person.FEMALE, "Broken3", None)
             fam = Family()
             fam.set_father_handle(person1_h)
             # fam.set_mother_handle(person2_h)
-            fam.set_relationship((FamilyRelType.MARRIED, ''))
+            fam.set_relationship((FamilyRelType.MARRIED, ""))
             fam_h = self.db.add_family(fam, self.trans)
             person1 = self.db.get_person_from_handle(person1_h)
             person1.add_family_handle(fam_h)
@@ -757,17 +836,20 @@ class TestcaseGenerator(tool.BatchTool):
 
         # Create a family, that links to father and mother, but mother does not
         # link back
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
             person1_h = self.generate_person(Person.MALE, "Broken4", None)
             person2_h = self.generate_person(
-                Person.FEMALE, "Broken4",
-                "Family links to this person, but person does not link back")
+                Person.FEMALE,
+                "Broken4",
+                "Family links to this person, but person does not link back",
+            )
             fam = Family()
             fam.set_father_handle(person1_h)
             fam.set_mother_handle(person2_h)
-            fam.set_relationship((FamilyRelType.MARRIED, ''))
+            fam.set_relationship((FamilyRelType.MARRIED, ""))
             fam_h = self.db.add_family(fam, self.trans)
             person1 = self.db.get_person_from_handle(person1_h)
             person1.add_family_handle(fam_h)
@@ -778,15 +860,16 @@ class TestcaseGenerator(tool.BatchTool):
 
         # Create two married people of same sex.
         # This is NOT detected as an error by plugins/tool/Check.py
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
             person1_h = self.generate_person(Person.MALE, "Broken5", None)
             person2_h = self.generate_person(Person.MALE, "Broken5", None)
             fam = Family()
             fam.set_father_handle(person1_h)
             fam.set_mother_handle(person2_h)
-            fam.set_relationship((FamilyRelType.MARRIED, ''))
+            fam.set_relationship((FamilyRelType.MARRIED, ""))
             fam_h = self.db.add_family(fam, self.trans)
             person1 = self.db.get_person_from_handle(person1_h)
             person1.add_family_handle(fam_h)
@@ -796,15 +879,16 @@ class TestcaseGenerator(tool.BatchTool):
             self.db.commit_person(person2, self.trans)
 
         # Create a family, that contains an invalid handle to for the father
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
             # person1_h = self.generate_person(Person.MALE, "Broken6", None)
             person2_h = self.generate_person(Person.FEMALE, "Broken6", None)
             fam = Family()
             fam.set_father_handle("InvalidHandle1")
             fam.set_mother_handle(person2_h)
-            fam.set_relationship((FamilyRelType.MARRIED, ''))
+            fam.set_relationship((FamilyRelType.MARRIED, ""))
             fam_h = self.db.add_family(fam, self.trans)
             # person1 = self.db.get_person_from_handle(person1_h)
             # person1.add_family_handle(fam_h)
@@ -814,15 +898,16 @@ class TestcaseGenerator(tool.BatchTool):
             self.db.commit_person(person2, self.trans)
 
         # Create a family, that contains an invalid handle to for the mother
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
             person1_h = self.generate_person(Person.MALE, "Broken7", None)
             # person2_h = self.generate_person(Person.FEMALE, "Broken7", None)
             fam = Family()
             fam.set_father_handle(person1_h)
             fam.set_mother_handle("InvalidHandle2")
-            fam.set_relationship((FamilyRelType.MARRIED, ''))
+            fam.set_relationship((FamilyRelType.MARRIED, ""))
             fam_h = self.db.add_family(fam, self.trans)
             person1 = self.db.get_person_from_handle(person1_h)
             person1.add_family_handle(fam_h)
@@ -832,8 +917,9 @@ class TestcaseGenerator(tool.BatchTool):
             # self.db.commit_person(person2, self.trans)
 
         # Creates a family where the child does not link back to the family
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
             person1_h = self.generate_person(Person.MALE, "Broken8", None)
             person2_h = self.generate_person(Person.FEMALE, "Broken8", None)
@@ -841,7 +927,7 @@ class TestcaseGenerator(tool.BatchTool):
             fam = Family()
             fam.set_father_handle(person1_h)
             fam.set_mother_handle(person2_h)
-            fam.set_relationship((FamilyRelType.MARRIED, ''))
+            fam.set_relationship((FamilyRelType.MARRIED, ""))
             child_ref = ChildRef()
             child_ref.set_reference_handle(child_h)
             self.fill_object(child_ref)
@@ -859,8 +945,9 @@ class TestcaseGenerator(tool.BatchTool):
 
         # Creates a family where the child is not linked, but the child links
         # to the family
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
             person1_h = self.generate_person(Person.MALE, "Broken9", None)
             person2_h = self.generate_person(Person.FEMALE, "Broken9", None)
@@ -868,7 +955,7 @@ class TestcaseGenerator(tool.BatchTool):
             fam = Family()
             fam.set_father_handle(person1_h)
             fam.set_mother_handle(person2_h)
-            fam.set_relationship((FamilyRelType.MARRIED, ''))
+            fam.set_relationship((FamilyRelType.MARRIED, ""))
             # child_ref = ChildRef()
             # child_ref.set_reference_handle(child_h)
             # self.fill_object(child_ref)
@@ -885,8 +972,9 @@ class TestcaseGenerator(tool.BatchTool):
             self.db.commit_person(child, self.trans)
 
         # Creates a family where the child is one of the parents
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
             person1_h = self.generate_person(Person.MALE, "Broken19", None)
             person2_h = self.generate_person(Person.FEMALE, "Broken19", None)
@@ -894,7 +982,7 @@ class TestcaseGenerator(tool.BatchTool):
             fam = Family()
             fam.set_father_handle(person1_h)
             fam.set_mother_handle(person2_h)
-            fam.set_relationship((FamilyRelType.MARRIED, ''))
+            fam.set_relationship((FamilyRelType.MARRIED, ""))
             child_ref = ChildRef()
             child_ref.set_reference_handle(child_h)
             self.fill_object(child_ref)
@@ -912,29 +1000,31 @@ class TestcaseGenerator(tool.BatchTool):
 
         # Creates a couple that refer to a family that does not exist in the
         # database.
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
             person1_h = self.generate_person(Person.MALE, "Broken20", None)
             person2_h = self.generate_person(Person.FEMALE, "Broken20", None)
-#            fam = Family()
-#            fam.set_father_handle(person1_h)
-#            fam.set_mother_handle(person2_h)
-#            fam.set_relationship((FamilyRelType.MARRIED, ''))
-#            child_ref = ChildRef()
-#            # child_ref.set_reference_handle(child_h)
-#            # self.fill_object(child_ref)
-#            # fam.add_child_ref(child_ref)
-#            fam_h = self.db.add_family(fam, self.trans)
+            #            fam = Family()
+            #            fam.set_father_handle(person1_h)
+            #            fam.set_mother_handle(person2_h)
+            #            fam.set_relationship((FamilyRelType.MARRIED, ''))
+            #            child_ref = ChildRef()
+            #            # child_ref.set_reference_handle(child_h)
+            #            # self.fill_object(child_ref)
+            #            # fam.add_child_ref(child_ref)
+            #            fam_h = self.db.add_family(fam, self.trans)
             person1 = self.db.get_person_from_handle(person1_h)
             person1.add_family_handle("InvalidHandle3")
             self.db.commit_person(person1, self.trans)
             person2 = self.db.get_person_from_handle(person2_h)
             person2.add_family_handle("InvalidHandle3")
             self.db.commit_person(person2, self.trans)
-#            child = self.db.get_person_from_handle(child_h)
-#            child.add_parent_family_handle(fam_h)
-#            self.db.commit_person(child, self.trans)
+
+    #            child = self.db.get_person_from_handle(child_h)
+    #            child.add_parent_family_handle(fam_h)
+    #            self.db.commit_person(child, self.trans)
 
     def test_check_parent_relationships(self):
         pass
@@ -946,10 +1036,11 @@ class TestcaseGenerator(tool.BatchTool):
         pass
 
     def test_check_events(self):
-        """ Various event related tests """
+        """Various event related tests"""
         # Creates a person having a non existing birth event handle set
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
             person_h = self.generate_person(None, "Broken11", None)
             person = self.db.get_person_from_handle(person_h)
@@ -959,8 +1050,9 @@ class TestcaseGenerator(tool.BatchTool):
             self.db.commit_person(person, self.trans)
 
         # Creates a person having a non existing death event handle set
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
             person_h = self.generate_person(None, "Broken12", None)
             person = self.db.get_person_from_handle(person_h)
@@ -970,8 +1062,9 @@ class TestcaseGenerator(tool.BatchTool):
             self.db.commit_person(person, self.trans)
 
         # Creates a person having a non existing event handle set
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
             person_h = self.generate_person(None, "Broken13", None)
             person = self.db.get_person_from_handle(person_h)
@@ -981,13 +1074,14 @@ class TestcaseGenerator(tool.BatchTool):
             self.db.commit_person(person, self.trans)
 
         # Creates a person with a birth event having an empty type
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
             person_h = self.generate_person(None, "Broken14", None)
             event = Event()
             # The default type _DEFAULT = BIRTH is set in eventtype
-            event.set_type('')
+            event.set_type("")
             event.set_description("Test for Broken14")
             event_h = self.db.add_event(event, self.trans)
             event_ref = EventRef()
@@ -997,13 +1091,14 @@ class TestcaseGenerator(tool.BatchTool):
             self.db.commit_person(person, self.trans)
 
         # Creates a person with a death event having an empty type
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
             person_h = self.generate_person(None, "Broken15", None)
             event = Event()
             # The default type _DEFAULT = BIRTH is set in eventtype
-            event.set_type('')
+            event.set_type("")
             event.set_description("Test for Broken15")
             event_h = self.db.add_event(event, self.trans)
             event_ref = EventRef()
@@ -1014,13 +1109,14 @@ class TestcaseGenerator(tool.BatchTool):
 
         # Creates a person with an event having an empty type
         # This is NOT detected as an error by plugins/tool/Check.py
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
             person_h = self.generate_person(None, "Broken16", None)
             event = Event()
             # The default type _DEFAULT = BIRTH is set in eventtype
-            event.set_type('')
+            event.set_type("")
             event.set_description("Test for Broken16")
             event_h = self.db.add_event(event, self.trans)
             event_ref = EventRef()
@@ -1036,10 +1132,11 @@ class TestcaseGenerator(tool.BatchTool):
         pass
 
     def test_check_place_references(self):
-        """ Tests various place reference errors """
+        """Tests various place reference errors"""
         # Creates a person with a birth event pointing to nonexisting place
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
             person_h = self.generate_person(None, "Broken17", None)
             event = Event()
@@ -1054,8 +1151,9 @@ class TestcaseGenerator(tool.BatchTool):
             self.db.commit_person(person, self.trans)
 
         # Creates a person with an event pointing to nonexisting place
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
             person_h = self.generate_person(None, "Broken18", None)
             event = Event()
@@ -1070,80 +1168,84 @@ class TestcaseGenerator(tool.BatchTool):
             self.db.commit_person(person, self.trans)
 
     def test_check_source_references(self):
-        """ Tests various source reference errors """
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        """Tests various source reference errors"""
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
 
             cit = Citation()
             self.fill_object(cit)
             cit.set_reference_handle("unknownsourcehandle")
-            cit.set_page('unreferenced citation with invalid source ref')
+            cit.set_page("unreferenced citation with invalid source ref")
             self.db.add_citation(cit, self.trans)
 
             cit = Citation()
             self.fill_object(cit)
             cit.set_reference_handle(None)
-            cit.set_page('unreferenced citation with invalid source ref')
+            cit.set_page("unreferenced citation with invalid source ref")
             self.db.add_citation(cit, self.trans)
 
             cit = Citation()
             self.fill_object(cit)
             cit.set_reference_handle("unknownsourcehandle")
-            cit.set_page('citation and references to it should be removed')
+            cit.set_page("citation and references to it should be removed")
             c_h1 = self.db.add_citation(cit, self.trans)
 
             cit = Citation()
             self.fill_object(cit)
             cit.set_reference_handle(None)
-            cit.set_page('citation and references to it should be removed')
+            cit.set_page("citation and references to it should be removed")
             c_h2 = self.db.add_citation(cit, self.trans)
 
-            self.create_all_possible_citations([c_h1, c_h2], "Broken21",
-                                               'non-existent source')
+            self.create_all_possible_citations(
+                [c_h1, c_h2], "Broken21", "non-existent source"
+            )
 
     def test_check_citation_references(self):
-        """ Generate objects that refer to non-existant citations """
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        """Generate objects that refer to non-existant citations"""
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
 
             c_h = "unknowncitationhandle"
-            self.create_all_possible_citations([c_h, ''], "Broken22",
-                                               'non-existent citation')
+            self.create_all_possible_citations(
+                [c_h, ""], "Broken22", "non-existent citation"
+            )
 
     def create_all_possible_citations(self, c_h_list, name, message):
-        """ Create citations attached to each of the following objects:
-            Person
-             Name
-             Address
-             Attribute
-             PersonRef
-             MediaRef
-              Attribute
-             LdsOrd
+        """Create citations attached to each of the following objects:
+        Person
+         Name
+         Address
+         Attribute
+         PersonRef
+         MediaRef
+          Attribute
+         LdsOrd
 
-            Family
-             Attribute
-             ChildRef
-             MediaRef
-              Attribute
-             LdsOrd
+        Family
+         Attribute
+         ChildRef
+         MediaRef
+          Attribute
+         LdsOrd
 
-            Event
-             Attribute
-             MediaRef
-              Attribute
+        Event
+         Attribute
+         MediaRef
+          Attribute
 
-            Media
-             Attribute
+        Media
+         Attribute
 
-            Place
-             MediaRef
-              Attribute
+        Place
+         MediaRef
+          Attribute
 
-            Repository (Repositories themselves do not have SourceRefs)
-             Address
+        Repository (Repositories themselves do not have SourceRefs)
+         Address
         """
         med = Media()
         med.set_description(message)
@@ -1164,7 +1266,7 @@ class TestcaseGenerator(tool.BatchTool):
         fam = Family()
         fam.set_father_handle(person1_h)
         fam.set_mother_handle(person2_h)
-        fam.set_relationship((FamilyRelType.MARRIED, ''))
+        fam.set_relationship((FamilyRelType.MARRIED, ""))
         # Family
         fam.add_citation(_choice(c_h_list))
         # Family : Attribute
@@ -1264,8 +1366,7 @@ class TestcaseGenerator(tool.BatchTool):
         # TODO: adapt type and status to family/person
         # if isinstance(obj, Person):
         # if isinstance(obj, Family):
-        ldsord.set_type(_choice(
-            [item[0] for item in LdsOrd._TYPE_MAP]))
+        ldsord.set_type(_choice([item[0] for item in LdsOrd._TYPE_MAP]))
         ldsord.set_status(_randint(0, len(LdsOrd._STATUS_MAP) - 1))
         ldsord.add_citation(_choice(c_h_list))
         person1.add_lds_ord(ldsord)
@@ -1350,9 +1451,10 @@ class TestcaseGenerator(tool.BatchTool):
     def test_check_note_references(self):
         pass
 
-    def generate_person(self, gender=None, lastname=None, note=None,
-                        alive_in_year=None):
-        """ This generates a person with lots of attachments """
+    def generate_person(
+        self, gender=None, lastname=None, note=None, alive_in_year=None
+    ):
+        """This generates a person with lots of attachments"""
         if not self.cli:
             if self.person_count % 10 == 0:
                 while Gtk.events_pending():
@@ -1364,8 +1466,11 @@ class TestcaseGenerator(tool.BatchTool):
         # Gender
         if gender is None:
             gender = _randint(0, 1)
-        if _randint(0, 10) == 1:  # Set some persons to unknown gender
-            pers.set_gender(Person.UNKNOWN)
+        if _randint(0, 10) == 1:  # Set some persons to unknown and other gender
+            if _randint(0, 1) == 0:
+                pers.set_gender(Person.OTHER)
+            else:
+                pers.set_gender(Person.UNKNOWN)
         else:
             pers.set_gender(gender)
 
@@ -1380,8 +1485,7 @@ class TestcaseGenerator(tool.BatchTool):
         pers.set_primary_name(name)
 
         # generate some slightly different alternate name
-        firstname2 = \
-            firstname.replace("m", "n").replace("l", "i").replace("b", "d")
+        firstname2 = firstname.replace("m", "n").replace("l", "i").replace("b", "d")
         if firstname2 != firstname:
             alt_name = Name(name)
             self.fill_object(alt_name)
@@ -1403,15 +1507,13 @@ class TestcaseGenerator(tool.BatchTool):
                 patronymic.set_origintype(NameOriginType.PATRONYMIC)
                 alt_name.add_surname(patronymic)
             if _randint(0, 1) == 1:
-                alt_name.get_primary_surname().set_prefix(
-                    self.rand_text(self.SHORT))
+                alt_name.get_primary_surname().set_prefix(self.rand_text(self.SHORT))
             if _randint(0, 1) == 1:
                 alt_name.set_suffix(self.rand_text(self.SHORT))
             if _randint(0, 1) == 1:
                 alt_name.set_call_name(self.rand_text(self.FIRSTNAME))
             pers.add_alternate_name(alt_name)
-        firstname2 = \
-            firstname.replace("a", "e").replace("o", "u").replace("r", "p")
+        firstname2 = firstname.replace("a", "e").replace("o", "u").replace("r", "p")
         if firstname2 != firstname:
             alt_name = Name(name)
             self.fill_object(alt_name)
@@ -1433,8 +1535,7 @@ class TestcaseGenerator(tool.BatchTool):
                 patronymic.set_origintype(NameOriginType.PATRONYMIC)
                 alt_name.add_surname(patronymic)
             if _randint(0, 1) == 1:
-                alt_name.get_primary_surname().set_prefix(
-                    self.rand_text(self.SHORT))
+                alt_name.get_primary_surname().set_prefix(self.rand_text(self.SHORT))
             if _randint(0, 1) == 1:
                 alt_name.set_suffix(self.rand_text(self.SHORT))
             if _randint(0, 1) == 1:
@@ -1455,7 +1556,8 @@ class TestcaseGenerator(tool.BatchTool):
         # baptism
         if _randint(0, 1) == 1:
             (dummy, eref) = self.rand_personal_event(
-                _choice((EventType.BAPTISM, EventType.CHRISTEN)), b_y, b_y + 2)
+                _choice((EventType.BAPTISM, EventType.CHRISTEN)), b_y, b_y + 2
+            )
             pers.add_event_ref(eref)
 
         # death
@@ -1466,7 +1568,8 @@ class TestcaseGenerator(tool.BatchTool):
         # burial
         if _randint(0, 1) == 1:
             (dummy, eref) = self.rand_personal_event(
-                _choice((EventType.BURIAL, EventType.CREMATION)), d_y, d_y + 2)
+                _choice((EventType.BURIAL, EventType.CREMATION)), d_y, d_y + 2
+            )
             pers.add_event_ref(eref)
 
         # some other events
@@ -1489,8 +1592,9 @@ class TestcaseGenerator(tool.BatchTool):
                 if self.person_count > self.max_person_count:
                     break
                 if alive_in_year:
-                    asso_h = self.generate_person(None, None,
-                                                  alive_in_year=alive_in_year)
+                    asso_h = self.generate_person(
+                        None, None, alive_in_year=alive_in_year
+                    )
                 else:
                     asso_h = self.generate_person()
                 asso = PersonRef()
@@ -1516,23 +1620,21 @@ class TestcaseGenerator(tool.BatchTool):
         return person_handle
 
     def generate_family(self, person1_h):
-        """ Make up a family """
+        """Make up a family"""
         person1 = self.db.get_person_from_handle(person1_h)
         if not person1:
             return
         alive_in_year = None
         if person1_h in self.person_dates:
             (born, died) = self.person_dates[person1_h]
-            alive_in_year = min(born + _randint(10, 50),
-                                died + _randint(-10, 10))
+            alive_in_year = min(born + _randint(10, 50), died + _randint(-10, 10))
 
         if person1.get_gender() == 1:
             if _randint(0, 7) == 1:
                 person2_h = None
             else:
                 if alive_in_year:
-                    person2_h = \
-                        self.generate_person(0, alive_in_year=alive_in_year)
+                    person2_h = self.generate_person(0, alive_in_year=alive_in_year)
                 else:
                     person2_h = self.generate_person(0)
         else:
@@ -1541,8 +1643,7 @@ class TestcaseGenerator(tool.BatchTool):
                 person1_h = None
             else:
                 if alive_in_year:
-                    person1_h = \
-                        self.generate_person(1, alive_in_year=alive_in_year)
+                    person1_h = self.generate_person(1, alive_in_year=alive_in_year)
                 else:
                     person1_h = self.generate_person(1)
 
@@ -1551,8 +1652,9 @@ class TestcaseGenerator(tool.BatchTool):
         if person2_h and _randint(0, 2) > 0:
             self.parents_todo.append(person2_h)
 
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
             fam = Family()
             self.add_defaults(fam)
@@ -1612,9 +1714,10 @@ class TestcaseGenerator(tool.BatchTool):
                     break
                 if alive_in_year:
                     child_h = self.generate_person(
-                        None, lastname,
-                        alive_in_year=alive_in_year +
-                        _randint(16 + 2 * i, 30 + 2 * i))
+                        None,
+                        lastname,
+                        alive_in_year=alive_in_year + _randint(16 + 2 * i, 30 + 2 * i),
+                    )
                 else:
                     child_h = self.generate_person(None, lastname)
                     (born, died) = self.person_dates[child_h]
@@ -1632,13 +1735,12 @@ class TestcaseGenerator(tool.BatchTool):
                     self.persons_todo.append(child_h)
 
     def generate_parents(self, child_h):
-        """ Add parents to a person, if not present already"""
+        """Add parents to a person, if not present already"""
         if not child_h:
             return
         child = self.db.get_person_from_handle(child_h)
         if not child:
-            print("ERROR: Person handle %s does not exist in database" %
-                  child_h)
+            print("ERROR: Person handle %s does not exist in database" % child_h)
             return
         if child.get_parent_family_handle_list():
             return
@@ -1657,8 +1759,9 @@ class TestcaseGenerator(tool.BatchTool):
         if _randint(0, 2) > 1:
             self.parents_todo.append(person2_h)
 
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
             fam = Family()
             self.add_defaults(fam)
@@ -1681,9 +1784,10 @@ class TestcaseGenerator(tool.BatchTool):
             self.db.commit_person(child, self.trans)
 
     def generate_tags(self):
-        """ Make up some odd tags """
-        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
-                   self.db) as self.trans:
+        """Make up some odd tags"""
+        with DbTxn(
+            _("Testcase generator step %d") % self.transaction_count, self.db
+        ) as self.trans:
             self.transaction_count += 1
             for dummy in range(10):
                 tag = Tag()
@@ -1697,7 +1801,7 @@ class TestcaseGenerator(tool.BatchTool):
         self.fill_object(obj)
 
     def rand_name(self, lastname=None, gender=None):
-        """ Create a name pair (first, last)"""
+        """Create a name pair (first, last)"""
         if gender == Person.MALE:
             firstname = self.rand_text(self.FIRSTNAME_MALE)
         elif gender == Person.FEMALE:
@@ -1723,8 +1827,11 @@ class TestcaseGenerator(tool.BatchTool):
         ndate = Date()
         if _randint(0, 10) == 1:
             # Some get a textual date
-            ndate.set_as_text(_choice((self.rand_text(self.SHORT), "Unknown",
-                                       "??", "Don't know", "TODO!")))
+            ndate.set_as_text(
+                _choice(
+                    (self.rand_text(self.SHORT), "Unknown", "??", "Don't know", "TODO!")
+                )
+            )
         else:
             if _randint(0, 10) == 1:
                 # some get an empty date
@@ -1732,15 +1839,19 @@ class TestcaseGenerator(tool.BatchTool):
             else:
                 # regular dates
                 calendar = Date.CAL_GREGORIAN
-                quality = _choice((Date.QUAL_NONE,
-                                   Date.QUAL_ESTIMATED,
-                                   Date.QUAL_CALCULATED))
-                modifier = _choice((Date.MOD_NONE,
-                                    Date.MOD_BEFORE,
-                                    Date.MOD_AFTER,
-                                    Date.MOD_ABOUT,
-                                    Date.MOD_RANGE,
-                                    Date.MOD_SPAN))
+                quality = _choice(
+                    (Date.QUAL_NONE, Date.QUAL_ESTIMATED, Date.QUAL_CALCULATED)
+                )
+                modifier = _choice(
+                    (
+                        Date.MOD_NONE,
+                        Date.MOD_BEFORE,
+                        Date.MOD_AFTER,
+                        Date.MOD_ABOUT,
+                        Date.MOD_RANGE,
+                        Date.MOD_SPAN,
+                    )
+                )
                 day = _randint(0, 28)
                 if day > 0:  # avoid days without month
                     month = _randint(1, 12)
@@ -1754,17 +1865,22 @@ class TestcaseGenerator(tool.BatchTool):
                     else:
                         month2 = _randint(0, 12)
                     year2 = year + _randint(1, 5)
-                    ndate.set(quality, modifier, calendar,
-                              (day, month, year, False, day2, month2, year2,
-                               False), "")
+                    ndate.set(
+                        quality,
+                        modifier,
+                        calendar,
+                        (day, month, year, False, day2, month2, year2, False),
+                        "",
+                    )
                 else:
-                    ndate.set(quality, modifier, calendar,
-                              (day, month, year, False), "")
+                    ndate.set(
+                        quality, modifier, calendar, (day, month, year, False), ""
+                    )
 
         return (year, ndate)
 
     def fill_object(self, obj):
-        ''' Generic object fill routine '''
+        """Generic object fill routine"""
 
         if issubclass(obj.__class__, AddressBase):
             while _randint(0, 1) == 1:
@@ -1819,8 +1935,7 @@ class TestcaseGenerator(tool.BatchTool):
                 if isinstance(obj, Family):
                     lds_type = LDS_SPOUSE_SEALING[0]
                     if self.generated_families:
-                        ldsord.set_family_handle(
-                            _choice(self.generated_families))
+                        ldsord.set_family_handle(_choice(self.generated_families))
                 ldsord.set_type(lds_type[0])
                 status = _choice(lds_type[1])
                 if status != LdsOrd.STATUS_NONE:
@@ -1872,8 +1987,14 @@ class TestcaseGenerator(tool.BatchTool):
                 self.generated_media.append(med.get_handle())
             obj.set_reference_handle(_choice(self.generated_media))
             if _randint(0, 1) == 1:
-                obj.set_rectangle((_randint(0, 200), _randint(0, 200),
-                                   _randint(0, 200), _randint(0, 200)))
+                obj.set_rectangle(
+                    (
+                        _randint(0, 200),
+                        _randint(0, 200),
+                        _randint(0, 200),
+                        _randint(0, 200),
+                    )
+                )
 
         if isinstance(obj, Name):
             obj.set_type(self.rand_type(NameType()))
@@ -1885,8 +2006,7 @@ class TestcaseGenerator(tool.BatchTool):
                 patronymic.set_origintype(NameOriginType.PATRONYMIC)
                 obj.add_surname(patronymic)
             if _randint(0, 1) == 1:
-                obj.get_primary_surname().set_prefix(
-                    self.rand_text(self.SHORT))
+                obj.get_primary_surname().set_prefix(self.rand_text(self.SHORT))
             if _randint(0, 1) == 1:
                 obj.set_suffix(self.rand_text(self.SHORT))
             if _randint(0, 1) == 1:
@@ -2014,15 +2134,16 @@ class TestcaseGenerator(tool.BatchTool):
                 obj.add_url(url)
 
         if isinstance(obj, Url):
-            obj.set_path("http://www.gramps-project.org/?test=%s" %
-                         self.rand_text(self.SHORT))
+            obj.set_path(
+                "http://www.gramps-project.org/?test=%s" % self.rand_text(self.SHORT)
+            )
             obj.set_description(self.rand_text(self.SHORT))
             obj.set_type(self.rand_type(UrlType()))
 
         return obj
 
     def rand_personal_event(self, e_type=None, start=None, end=None):
-        """ Random personal event """
+        """Random personal event"""
         if e_type:
             typeval = EventType(e_type)
         else:
@@ -2030,7 +2151,7 @@ class TestcaseGenerator(tool.BatchTool):
         return self._rand_event(typeval, start, end)
 
     def rand_family_event(self, e_type=None, start=None, end=None):
-        """ Random family event """
+        """Random family event"""
         if e_type:
             EventType(e_type)
         else:
@@ -2040,7 +2161,7 @@ class TestcaseGenerator(tool.BatchTool):
         return self._rand_event(typeval, start, end)
 
     def _rand_event(self, e_type, start, end):
-        """ Random general event """
+        """Random general event"""
         evt = Event()
         self.fill_object(evt)
         evt.set_type(e_type)
@@ -2061,7 +2182,7 @@ class TestcaseGenerator(tool.BatchTool):
             if key == gtype.get_custom():
                 value = self.rand_text(self.SHORT)
             else:
-                value = ''
+                value = ""
             gtype.set((key, value))
             return gtype
 
@@ -2105,16 +2226,53 @@ class TestcaseGenerator(tool.BatchTool):
         place.add_placeref(place_ref)
 
     def rand_text(self, t_type=None):
-        """ make random text strings according to desired type """
+        """make random text strings according to desired type"""
         # for lastnamesnames
-        syllables1 = ["sa", "li", "na", "ma", "no", "re", "mi",
-                      "cha", "ki", "du", "ba", "ku", "el"]
+        syllables1 = [
+            "sa",
+            "li",
+            "na",
+            "ma",
+            "no",
+            "re",
+            "mi",
+            "cha",
+            "ki",
+            "du",
+            "ba",
+            "ku",
+            "el",
+        ]
         # for firstnames
-        syllables2 = ["as", "il", "an", "am", "on", "er", "im",
-                      "ach", "ik", "ud", "ab", "ul", "le"]
+        syllables2 = [
+            "as",
+            "il",
+            "an",
+            "am",
+            "on",
+            "er",
+            "im",
+            "ach",
+            "ik",
+            "ud",
+            "ab",
+            "ul",
+            "le",
+        ]
         # others
-        syllables3 = ["ka", "po", "lo", "chi", "she", "di", "fa",
-                      "go", "ja", "ne", "pe"]
+        syllables3 = [
+            "ka",
+            "po",
+            "lo",
+            "chi",
+            "she",
+            "di",
+            "fa",
+            "go",
+            "ja",
+            "ne",
+            "pe",
+        ]
 
         syllables = syllables1 + syllables2 + syllables3
         minwords = 5
@@ -2128,10 +2286,10 @@ class TestcaseGenerator(tool.BatchTool):
         else:
             result = ""
 
-        if self.options_dict['specialchars']:
+        if self.options_dict["specialchars"]:
             result = result + "ä<ö&ü%ß'\""
 
-        if self.options_dict['add_serial'] and t_type != self.TAG:
+        if self.options_dict["add_serial"] and t_type != self.TAG:
             result = result + "#+#%06d#-#" % self.text_serial_number
             self.text_serial_number = self.text_serial_number + 1
 
@@ -2159,7 +2317,7 @@ class TestcaseGenerator(tool.BatchTool):
             maxwords = 5
             minsyllables = 2
             maxsyllables = 5
-            if not self.options_dict['long_names']:
+            if not self.options_dict["long_names"]:
                 maxwords = 2
                 maxsyllables = 3
 
@@ -2169,7 +2327,7 @@ class TestcaseGenerator(tool.BatchTool):
             maxwords = 1
             minsyllables = 2
             maxsyllables = 5
-            if not self.options_dict['long_names']:
+            if not self.options_dict["long_names"]:
                 maxsyllables = 3
 
         if t_type == self.NOTE or t_type == self.STYLED_TEXT:
@@ -2181,8 +2339,7 @@ class TestcaseGenerator(tool.BatchTool):
             if _randint(0, 1) == 1:
                 return "%d %s" % (_randint(1, 100), result)
             if _randint(0, 1) == 1:
-                return "%d, %d %s" % (_randint(1, 100), _randint(100, 1000),
-                                      result)
+                return "%d, %d %s" % (_randint(1, 100), _randint(100, 1000), result)
             med = _randint(100, 1000)
             return "%d - %d %s" % (med, med + _randint(1, 5), result)
 
@@ -2210,14 +2367,19 @@ class TestcaseGenerator(tool.BatchTool):
             if t_type == self.STYLED_TEXT:
                 tags = []
                 if _randint(0, 10) == 1:
-                    tags += [StyledTextTag(StyledTextTagType.BOLD, True,
-                                           [(0, len(word))])]
+                    tags += [
+                        StyledTextTag(StyledTextTagType.BOLD, True, [(0, len(word))])
+                    ]
                 elif _randint(0, 10) == 1:
-                    tags += [StyledTextTag(StyledTextTagType.ITALIC, True,
-                                           [(0, len(word))])]
+                    tags += [
+                        StyledTextTag(StyledTextTagType.ITALIC, True, [(0, len(word))])
+                    ]
                 elif _randint(0, 10) == 1:
-                    tags += [StyledTextTag(StyledTextTagType.UNDERLINE, True,
-                                           [(0, len(word))])]
+                    tags += [
+                        StyledTextTag(
+                            StyledTextTagType.UNDERLINE, True, [(0, len(word))]
+                        )
+                    ]
                 sword = StyledText(word, tags)
                 if _randint(0, 20) == 1:
                     sword = sword + "."
@@ -2234,14 +2396,13 @@ class TestcaseGenerator(tool.BatchTool):
             elif case == 1:
                 result = result.upper()
 
-        if self.options_dict['add_linebreak'] and \
-                t_type != self.TAG:
+        if self.options_dict["add_linebreak"] and t_type != self.TAG:
             result = result + "\nNEWLINE"
 
         return result
 
     def rand_color(self):
-        return '#%012X' % _randint(0, 281474976710655)
+        return "#%012X" % _randint(0, 281474976710655)
 
     def rand_tags(self):
         maxtags = 5
@@ -2268,51 +2429,61 @@ class TestcaseGeneratorOptions(tool.ToolOptions):
 
         # Options specific for this report
         self.options_dict = {
-            'lowlevel':       0,
-            'bugs':           0,
-            'persons':        1,
-            'person_count':   2000,
-            'long_names':     0,
-            'specialchars':   0,
-            'add_serial':     0,
-            'add_linebreak':  0,
+            "lowlevel": 0,
+            "bugs": 0,
+            "persons": 1,
+            "person_count": 2000,
+            "long_names": 0,
+            "specialchars": 0,
+            "add_serial": 0,
+            "add_linebreak": 0,
         }
         self.options_help = {
-            'lowlevel':      ("=0/1",
-                              "Whether to create low level database errors.",
-                              ["Skip test",
-                               "Create low level database errors"],
-                              True),
-            'bugs':          ("=0/1",
-                              "Whether to create invalid database references.",
-                              ["Skip test",
-                               "Create invalid Database references"],
-                              True),
-            'persons':       ("=0/1",
-                              "Whether to create a bunch of dummy persons",
-                              ["Dont create persons", "Create dummy persons"],
-                              True),
-            'person_count':  ("=int",
-                              "Number of dummy persons to generate",
-                              "Number of persons"),
-            'long_names':    ("=0/1",
-                              "Whether to create short or long names",
-                              ["Short names", "Long names"],
-                              True),
-            'specialchars':  ("=0/1",
-                              "Whether to ass some special characters to every"
-                              " text field",
-                              ["No special characters",
-                               "Add special characters"],
-                              True),
-            'add_serial':    ("=0/1",
-                              "Whether to add a serial number to every text "
-                              "field",
-                              ["No serial", "Add serial number"],
-                              True),
-            'add_linebreak': ("=0/1",
-                              "Whether to add a line break to every text "
-                              "field",
-                              ["No linebreak", "Add line break"],
-                              True),
+            "lowlevel": (
+                "=0/1",
+                "Whether to create low level database errors.",
+                ["Skip test", "Create low level database errors"],
+                True,
+            ),
+            "bugs": (
+                "=0/1",
+                "Whether to create invalid database references.",
+                ["Skip test", "Create invalid Database references"],
+                True,
+            ),
+            "persons": (
+                "=0/1",
+                "Whether to create a bunch of dummy persons",
+                ["Dont create persons", "Create dummy persons"],
+                True,
+            ),
+            "person_count": (
+                "=int",
+                "Number of dummy persons to generate",
+                "Number of persons",
+            ),
+            "long_names": (
+                "=0/1",
+                "Whether to create short or long names",
+                ["Short names", "Long names"],
+                True,
+            ),
+            "specialchars": (
+                "=0/1",
+                "Whether to ass some special characters to every" " text field",
+                ["No special characters", "Add special characters"],
+                True,
+            ),
+            "add_serial": (
+                "=0/1",
+                "Whether to add a serial number to every text " "field",
+                ["No serial", "Add serial number"],
+                True,
+            ),
+            "add_linebreak": (
+                "=0/1",
+                "Whether to add a line break to every text " "field",
+                ["No linebreak", "Add line break"],
+                True,
+            ),
         }

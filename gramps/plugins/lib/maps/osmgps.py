@@ -75,17 +75,20 @@ _ = glocale.translation.sgettext
 
 try:
     import gi
-    gi.require_version('OsmGpsMap', '1.0')
+
+    gi.require_version("OsmGpsMap", "1.0")
     from gi.repository import OsmGpsMap as osmgpsmap
 except:
     raise
+
 
 def lon2pixel(zoom, longitude, size):
     """
     pixel_x = (2^zoom * size * longitude) / 2PI + (2^zoom * size) / 2
     """
-    value = ((longitude * size * (2**zoom)) / (2*pi)) + ((2**zoom) * size / 2)
+    value = ((longitude * size * (2**zoom)) / (2 * pi)) + ((2**zoom) * size / 2)
     return int(value)
+
 
 def lat2pixel(zoom, latitude, size):
     """
@@ -94,13 +97,15 @@ def lat2pixel(zoom, latitude, size):
     pixel_y = -(2^zoom * size * lat_m) / 2PI + (2^zoom * size) / 2
     """
     lat_m = atanh(sin(latitude))
-    value = -((lat_m * size * (2**zoom)) / (2*pi)) + ((2**zoom) * (size/2))
+    value = -((lat_m * size * (2**zoom)) / (2 * pi)) + ((2**zoom) * (size / 2))
     return int(value)
+
 
 class OsmGps:
     """
     This class is used to create a map
     """
+
     def __init__(self, uistate):
         """
         Initialize the map
@@ -129,26 +134,32 @@ class OsmGps:
         create the vbox
         """
         self.vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        cache_path = config.get('geography.path')
+        cache_path = config.get("geography.path")
         if not os.path.isdir(cache_path):
             try:
-                os.makedirs(cache_path, 0o755) # create dir like mkdir -p
+                os.makedirs(cache_path, 0o755)  # create dir like mkdir -p
             except:
-                ErrorDialog(_("Can't create "
-                              "tiles cache directory %s") % cache_path,
-                            parent=self.uistate.window)
-                gini = os.path.join(VERSION_DIR, 'gramps.ini')
-                ErrorDialog(_("You must verify and change the tiles cache"
-                              "\n..."
-                              "\n[geography]"
-                              "\n..."
-                              "\npath='bad/path'"
-                              "\n..."
-                              "\nin the gramps.ini file :\n%s"
-                              "\n\nBefore to change the gramps.ini file, "
-                              "you need to close gramps"
-                              "\n\nThe next errors will be normal") % gini,
-                            parent=self.uistate.window)
+                ErrorDialog(
+                    _("Can't create " "tile cache directory %s") % cache_path,
+                    parent=self.uistate.window,
+                )
+                gini = os.path.join(VERSION_DIR, "gramps.ini")
+                ErrorDialog(
+                    _(
+                        "You must verify and change the tile cache"
+                        "\n..."
+                        "\n[geography]"
+                        "\n..."
+                        "\npath='bad/path'"
+                        "\n..."
+                        "\nin the gramps.ini file :\n%s"
+                        "\n\nBefore changing the gramps.ini file, "
+                        "you need to close Gramps"
+                        "\n\nThe following errors are expected"
+                    )
+                    % gini,
+                    parent=self.uistate.window,
+                )
                 return None
 
         self.change_map(None, config.get("geography.map_service"))
@@ -158,41 +169,43 @@ class OsmGps:
         """
         Change the current map
         """
-        if map_type == constants.PERSONAL:
-            map_source = config.get('geography.personal-map')
-            if map_source == "":
-                return
-            name = constants.TILES_PATH[map_type]
-            self.change_new_map(name, map_source)
-            config.set("geography.map_service", map_type)
-            self.current_map = map_type
-            return
+        # if map_type == constants.PERSONAL:
+        #     map_source = config.get("geography.pers# onal-map")
+        #     if map_source == "":
+        #         return
+        #     name = constants.TILES_PATH[map_type]
+        #     self.change_new_map(name, map_source)
+        #     config.set("geography.map_service", map_type)
+        #     self.current_map = map_type
+        #     return
         if obj is not None:
             self.osm.layer_remove_all()
             self.osm.image_remove_all()
             self.vbox.remove(self.osm)
             self.osm.destroy()
-        tiles_path = os.path.join(config.get('geography.path'),
-                                  constants.TILES_PATH[map_type])
+        tiles_path = os.path.join(
+            config.get("geography.path"), constants.TILES_PATH[map_type]
+        )
         if not os.path.isdir(tiles_path):
             try:
-                os.makedirs(tiles_path, 0o755) # create dir like mkdir -p
+                os.makedirs(tiles_path, 0o755)  # create dir like mkdir -p
             except:
-                ErrorDialog(_("Can't create "
-                              "tiles cache directory for '%s'.") %
-                            constants.MAP_TITLE[map_type],
-                            parent=self.uistate.window)
+                ErrorDialog(
+                    _("Can't create " "tiles cache directory for '%s'.")
+                    % constants.MAP_TITLE[map_type],
+                    parent=self.uistate.window,
+                )
         config.set("geography.map_service", map_type)
         self.current_map = map_type
-        http_proxy = get_env_var('http_proxy')
+        http_proxy = get_env_var("http_proxy")
         if 0:
             self.osm = DummyMapNoGpsPoint()
         else:
-            if map_type == constants.PERSONAL:
-                self.osm = osmgpsmap.Map(repo_uri=map_source)
-            else:
-                self.osm = osmgpsmap.Map(
-                    map_source=constants.MAP_TYPE[map_type])
+            # if map_type == constants.PERSONAL:
+            #     self.osm = osmgpsmap.Map(repo_uri=map_source)
+            # else:
+            #     self.osm = osmgpsmap.Map(map_source=constants.MAP_TYPE[map_type])
+            self.osm = osmgpsmap.Map(map_source=constants.MAP_TYPE[map_type])
             if http_proxy:
                 self.osm.set_property("proxy_uri", http_proxy)
             self.osm.set_property("tile_cache", tiles_path)
@@ -209,14 +222,16 @@ class OsmGps:
         self.message_layer = self.add_message_layer()
         self.cross_map = osmgpsmap.MapOsd(show_crosshair=False)
         self.set_crosshair(config.get("geography.show_cross"))
-        self.osm.set_center_and_zoom(config.get("geography.center-lat"),
-                                     config.get("geography.center-lon"),
-                                     config.get("geography.zoom"))
+        self.osm.set_center_and_zoom(
+            config.get("geography.center-lat"),
+            config.get("geography.center-lon"),
+            config.get("geography.zoom"),
+        )
 
-        self.osm.connect('button_release_event', self.map_clicked)
-        self.osm.connect('button_press_event', self.map_clicked)
+        self.osm.connect("button_release_event", self.map_clicked)
+        self.osm.connect("button_press_event", self.map_clicked)
         self.osm.connect("motion-notify-event", self.motion_event)
-        self.osm.connect('changed', self.zoom_changed)
+        self.osm.connect("changed", self.zoom_changed)
         self.update_shortcuts(True)
         self.osm.show()
         self.vbox.pack_start(self.osm, True, True, 0)
@@ -237,25 +252,26 @@ class OsmGps:
             self.osm.destroy()
         except:
             pass
-        tiles_path = os.path.join(config.get('geography.path'), name)
+        tiles_path = os.path.join(config.get("geography.path"), name)
         if not os.path.isdir(tiles_path):
             try:
-                os.makedirs(tiles_path, 0o755) # create dir like mkdir -p
+                os.makedirs(tiles_path, 0o755)  # create dir like mkdir -p
             except:
-                ErrorDialog(_("Can't create "
-                              "tiles cache directory for '%s'.") %
-                            constants.MAP_TITLE[self.current_map],
-                            parent=self.uistate.window)
-        http_proxy = get_env_var('http_proxy')
+                ErrorDialog(
+                    _("Can't create " "tiles cache directory for '%s'.")
+                    % constants.MAP_TITLE[self.current_map],
+                    parent=self.uistate.window,
+                )
+        http_proxy = get_env_var("http_proxy")
         if 0:
             self.osm = DummyMapNoGpsPoint()
         else:
             map_type = int(config.get("geography.map_service"))
-            if map_type == constants.PERSONAL:
-                self.osm = osmgpsmap.Map(repo_uri=map_source)
-            else:
-                self.osm = osmgpsmap.Map(
-                    map_source=constants.MAP_TYPE[map_type])
+            # if map_type == constants.PERSONAL:
+            #     self.osm = osmgpsmap.Map(repo_uri=map_source)
+            # else:
+            #     self.osm = osmgpsmap.Map(map_source=constants.MAP_TYPE[map_type])
+            self.osm = osmgpsmap.Map(map_source=constants.MAP_TYPE[map_type])
             if http_proxy:
                 self.osm.set_property("proxy_uri", http_proxy)
             self.osm.set_property("tile_cache", tiles_path)
@@ -272,14 +288,16 @@ class OsmGps:
         self.message_layer = self.add_message_layer()
         self.cross_map = osmgpsmap.MapOsd(show_crosshair=False)
         self.set_crosshair(config.get("geography.show_cross"))
-        self.osm.set_center_and_zoom(config.get("geography.center-lat"),
-                                     config.get("geography.center-lon"),
-                                     config.get("geography.zoom"))
+        self.osm.set_center_and_zoom(
+            config.get("geography.center-lat"),
+            config.get("geography.center-lon"),
+            config.get("geography.zoom"),
+        )
 
-        self.osm.connect('button_release_event', self.map_clicked)
-        self.osm.connect('button_press_event', self.map_clicked)
+        self.osm.connect("button_release_event", self.map_clicked)
+        self.osm.connect("button_press_event", self.map_clicked)
         self.osm.connect("motion-notify-event", self.motion_event)
-        self.osm.connect('changed', self.zoom_changed)
+        self.osm.connect("changed", self.zoom_changed)
         self.update_shortcuts(True)
         self.osm.show()
         self.vbox.pack_start(self.osm, True, True, 0)
@@ -291,19 +309,21 @@ class OsmGps:
         """
         map_idx = config.get("geography.map_service")
         map_name = constants.TILES_PATH[map_idx]
-        map_path = os.path.join(config.get('geography.path'), map_name)
+        map_path = os.path.join(config.get("geography.path"), map_name)
         # get the top left corner and bottom right corner
         bbox = self.osm.get_bbox()
         pt1 = bbox[0]
         pt2 = bbox[1]
         self.zoom = config.get("geography.zoom")
         tile_size = float(256)
-        if map_idx != constants.PERSONAL:
-            # get the file extension depending on the map provider
-            img_format = self.osm.source_get_image_format(map_idx)
-        else:
-            filename = config.get("geography.personal-map")
-            img_format = os.path.splitext(filename)[1]
+        # if map_idx != constants.PERSONAL:
+        #     # get the file extension depending on the map provider
+        #     img_format = self.osm.source_get_image_format(map_idx)
+        # else:
+        #     filename = config.get("geography.personal-map")
+        #     img_format = os.path.splitext(filename)[1]
+        # get the file extension depending on the map provider
+        img_format = self.osm.source_get_image_format(map_idx)
         # calculate the number of images to download in rows and columns
         pt1_x = floor(lon2pixel(self.zoom, pt1.rlon, tile_size) / tile_size)
         pt1_y = floor(lat2pixel(self.zoom, pt1.rlat, tile_size) / tile_size)
@@ -311,9 +331,16 @@ class OsmGps:
         pt2_y = floor(lat2pixel(self.zoom, pt2.rlat, tile_size) / tile_size)
         for ptx_i in range(pt1_x, pt2_x):
             for pty_j in range(pt1_y, pt2_y):
-                tile_path = "%s%c%d%c%d%c%d.%s" % (map_path, os.sep, self.zoom,
-                                                   os.sep, ptx_i, os.sep, pty_j,
-                                                   img_format)
+                tile_path = "%s%c%d%c%d%c%d.%s" % (
+                    map_path,
+                    os.sep,
+                    self.zoom,
+                    os.sep,
+                    ptx_i,
+                    os.sep,
+                    pty_j,
+                    img_format,
+                )
                 _LOG.debug("file removed : %s", tile_path)
                 try:
                     os.unlink(tile_path)
@@ -330,27 +357,34 @@ class OsmGps:
         the checkbox button
         """
         dummy_arg = arg
-        config.set('geography.use-keypad',
-                   self._config.get('geography.use-keypad'))
-        if config.get('geography.use-keypad'):
-            self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.ZOOMIN,
-                                           Gdk.keyval_from_name("KP_Add"))
-            self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.ZOOMOUT,
-                                           Gdk.keyval_from_name("KP_Subtract"))
+        config.set("geography.use-keypad", self._config.get("geography.use-keypad"))
+        if config.get("geography.use-keypad"):
+            self.osm.set_keyboard_shortcut(
+                osmgpsmap.MapKey_t.ZOOMIN, Gdk.keyval_from_name("KP_Add")
+            )
+            self.osm.set_keyboard_shortcut(
+                osmgpsmap.MapKey_t.ZOOMOUT, Gdk.keyval_from_name("KP_Subtract")
+            )
         else:
-            self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.ZOOMIN,
-                                           Gdk.keyval_from_name("plus"))
-            self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.ZOOMOUT,
-                                           Gdk.keyval_from_name("minus"))
+            self.osm.set_keyboard_shortcut(
+                osmgpsmap.MapKey_t.ZOOMIN, Gdk.keyval_from_name("plus")
+            )
+            self.osm.set_keyboard_shortcut(
+                osmgpsmap.MapKey_t.ZOOMOUT, Gdk.keyval_from_name("minus")
+            )
 
-        self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.UP,
-                                       Gdk.keyval_from_name("Up"))
-        self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.DOWN,
-                                       Gdk.keyval_from_name("Down"))
-        self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.LEFT,
-                                       Gdk.keyval_from_name("Left"))
-        self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.RIGHT,
-                                       Gdk.keyval_from_name("Right"))
+        self.osm.set_keyboard_shortcut(
+            osmgpsmap.MapKey_t.UP, Gdk.keyval_from_name("Up")
+        )
+        self.osm.set_keyboard_shortcut(
+            osmgpsmap.MapKey_t.DOWN, Gdk.keyval_from_name("Down")
+        )
+        self.osm.set_keyboard_shortcut(
+            osmgpsmap.MapKey_t.LEFT, Gdk.keyval_from_name("Left")
+        )
+        self.osm.set_keyboard_shortcut(
+            osmgpsmap.MapKey_t.RIGHT, Gdk.keyval_from_name("Right")
+        )
 
         # For shortcuts work, we must grab the focus
         self.osm.grab_focus()
@@ -457,8 +491,7 @@ class OsmGps:
         """
         Moving during selection
         """
-        current = osmmap.convert_screen_to_geographic(int(event.x),
-                                                      int(event.y))
+        current = osmmap.convert_screen_to_geographic(int(event.x), int(event.y))
         lat, lon = current.get_degrees()
         if self.zone_selection:
             # We draw a rectangle to show the selected region.
@@ -467,11 +500,11 @@ class OsmGps:
                 self.osm.layer_remove(layer)
             self.selection_layer = self.add_selection_layer()
             if self.end_selection is None:
-                self.selection_layer.add_rectangle(self.begin_selection,
-                                                   current)
+                self.selection_layer.add_rectangle(self.begin_selection, current)
             else:
-                self.selection_layer.add_rectangle(self.begin_selection,
-                                                   self.end_selection)
+                self.selection_layer.add_rectangle(
+                    self.begin_selection, self.end_selection
+                )
         else:
             places = self.is_there_a_place_here(lat, lon)
             mess = ""
@@ -494,9 +527,11 @@ class OsmGps:
             _LOG.debug("save_center : new coordinates : %s,%s", lat, lon)
             _LOG.debug("save_center : old coordinates : %s,%s", lat, lon)
             # osmgpsmap bug ? reset to prior values to avoid osmgpsmap problems.
-            self.osm.set_center_and_zoom(config.get("geography.center-lat"),
-                                         config.get("geography.center-lon"),
-                                         config.get("geography.zoom"))
+            self.osm.set_center_and_zoom(
+                config.get("geography.center-lat"),
+                config.get("geography.center-lon"),
+                config.get("geography.zoom"),
+            )
 
     def activate_selection_zoom(self, osm, event):
         """
@@ -547,44 +582,78 @@ class OsmGps:
         if self.no_show_places_in_status_bar:
             return mark_selected
         oldplace = ""
-        _LOG.debug("%s", time.strftime("start is_there_a_place_here : "
-                                       "%a %d %b %Y %H:%M:%S", time.gmtime()))
+        _LOG.debug(
+            "%s",
+            time.strftime(
+                "start is_there_a_place_here : " "%a %d %b %Y %H:%M:%S", time.gmtime()
+            ),
+        )
         for mark in self.places_found:
             # as we are not precise with our hand, reduce the precision
             # depending on the zoom.
             if mark[0] != oldplace:
                 oldplace = mark[0]
                 precision = {
-                    1 : '%3.0f', 2 : '%3.1f', 3 : '%3.1f',
-                    4 : '%3.1f', 5 : '%3.2f', 6 : '%3.2f',
-                    7 : '%3.2f', 8 : '%3.3f', 9 : '%3.3f',
-                    10 : '%3.3f', 11 : '%3.3f', 12 : '%3.3f',
-                    13 : '%3.3f', 14 : '%3.4f', 15 : '%3.4f',
-                    16 : '%3.4f', 17 : '%3.4f', 18 : '%3.4f'
-                    }.get(config.get("geography.zoom"), '%3.1f')
+                    1: "%3.0f",
+                    2: "%3.1f",
+                    3: "%3.1f",
+                    4: "%3.1f",
+                    5: "%3.2f",
+                    6: "%3.2f",
+                    7: "%3.2f",
+                    8: "%3.3f",
+                    9: "%3.3f",
+                    10: "%3.3f",
+                    11: "%3.3f",
+                    12: "%3.3f",
+                    13: "%3.3f",
+                    14: "%3.4f",
+                    15: "%3.4f",
+                    16: "%3.4f",
+                    17: "%3.4f",
+                    18: "%3.4f",
+                }.get(config.get("geography.zoom"), "%3.1f")
                 shift = {
-                    1 : 5.0, 2 : 5.0, 3 : 3.0,
-                    4 : 1.0, 5 : 0.5, 6 : 0.3, 7 : 0.15,
-                    8 : 0.06, 9 : 0.03, 10 : 0.015,
-                    11 : 0.005, 12 : 0.003, 13 : 0.001,
-                    14 : 0.0005, 15 : 0.0003, 16 : 0.0001,
-                    17 : 0.0001, 18 : 0.0001
-                    }.get(config.get("geography.zoom"), 5.0)
+                    1: 5.0,
+                    2: 5.0,
+                    3: 3.0,
+                    4: 1.0,
+                    5: 0.5,
+                    6: 0.3,
+                    7: 0.15,
+                    8: 0.06,
+                    9: 0.03,
+                    10: 0.015,
+                    11: 0.005,
+                    12: 0.003,
+                    13: 0.001,
+                    14: 0.0005,
+                    15: 0.0003,
+                    16: 0.0001,
+                    17: 0.0001,
+                    18: 0.0001,
+                }.get(config.get("geography.zoom"), 5.0)
                 latp = precision % lat
                 lonp = precision % lon
                 mlatp = precision % float(mark[1])
                 mlonp = precision % float(mark[2])
                 latok = lonok = False
-                if (float(mlatp) >= (float(latp) - shift)) and \
-                   (float(mlatp) <= (float(latp) + shift)):
+                if (float(mlatp) >= (float(latp) - shift)) and (
+                    float(mlatp) <= (float(latp) + shift)
+                ):
                     latok = True
-                if (float(mlonp) >= (float(lonp) - shift)) and \
-                   (float(mlonp) <= (float(lonp) + shift)):
+                if (float(mlonp) >= (float(lonp) - shift)) and (
+                    float(mlonp) <= (float(lonp) + shift)
+                ):
                     lonok = True
                 if latok and lonok:
                     mark_selected.append(mark)
-        _LOG.debug("%s", time.strftime("  end is_there_a_place_here : "
-                                       "%a %d %b %Y %H:%M:%S", time.gmtime()))
+        _LOG.debug(
+            "%s",
+            time.strftime(
+                "  end is_there_a_place_here : " "%a %d %b %Y %H:%M:%S", time.gmtime()
+            ),
+        )
         return mark_selected
 
     def build_nav_menu(self, osm, event, lat, lon):

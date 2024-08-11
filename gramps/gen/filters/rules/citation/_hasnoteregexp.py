@@ -19,26 +19,28 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._hasnoteregexbase import HasNoteRegexBase
 
-#-------------------------------------------------------------------------
-# "Sources having notes that contain a substring"
-#-------------------------------------------------------------------------
-class HasNoteRegexp(HasNoteRegexBase):
 
-    name = _('Citations having notes containing <text>')
-    description = _("Matches citations whose notes contain text "
-                    "matching a regular expression")
+# -------------------------------------------------------------------------
+# "Sources having notes that contain a substring"
+# -------------------------------------------------------------------------
+class HasNoteRegexp(HasNoteRegexBase):
+    name = _("Citations having notes containing <text>")
+    description = _(
+        "Matches citations whose notes contain text " "matching a regular expression"
+    )

@@ -25,29 +25,30 @@
 File tests.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import os
 import tempfile
 import unittest
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from ...const import USER_HOME, USER_PLUGINS, VERSION
+# -------------------------------------------------------------------------
+from ...const import USER_HOME, USER_PICTURES, USER_PLUGINS, VERSION
 from ...utils.file import media_path
 from ...db.utils import make_database
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # FileTest class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class FileTest(unittest.TestCase):
     """
     File tests.
@@ -65,55 +66,90 @@ class FileTest(unittest.TestCase):
             db.load(path)
 
             # Test without db.mediapath set
-            self.assertEqual(media_path(db), os.path.normcase(os.path.normpath(
-                os.path.abspath(USER_HOME))))
+            self.assertEqual(
+                media_path(db),
+                os.path.normcase(os.path.normpath(os.path.abspath(USER_PICTURES))),
+            )
             self.assertTrue(os.path.exists(media_path(db)))
 
             # Test with absolute db.mediapath
             db.set_mediapath(os.path.abspath(USER_HOME) + "/test_abs")
-            self.assertEqual(media_path(db), os.path.normcase(os.path.normpath(
-                os.path.abspath(USER_HOME + "/test_abs"))))
+            self.assertEqual(
+                media_path(db),
+                os.path.normcase(
+                    os.path.normpath(os.path.abspath(USER_HOME + "/test_abs"))
+                ),
+            )
 
             # Test with relative db.mediapath
             db.set_mediapath("test_rel")
-            self.assertEqual(media_path(db), os.path.normcase(os.path.normpath(
-                os.path.abspath(tmpdirname + "/utils_file_test/test_rel"))))
+            self.assertEqual(
+                media_path(db),
+                os.path.normcase(
+                    os.path.normpath(
+                        os.path.abspath(tmpdirname + "/utils_file_test/test_rel")
+                    )
+                ),
+            )
 
             # Test with environment variable
             db.set_mediapath("/test/{VERSION}/test_var")
-            self.assertEqual(media_path(db), os.path.normcase(os.path.normpath(
-                os.path.abspath("/test/" + VERSION + "/test_var"))))
+            self.assertEqual(
+                media_path(db),
+                os.path.normcase(
+                    os.path.normpath(os.path.abspath("/test/" + VERSION + "/test_var"))
+                ),
+            )
             db.set_mediapath("{USER_PLUGINS}/test_var")
-            self.assertEqual(media_path(db), os.path.normcase(os.path.normpath(
-                os.path.abspath(USER_PLUGINS + "/test_var"))))
+            self.assertEqual(
+                media_path(db),
+                os.path.normcase(
+                    os.path.normpath(os.path.abspath(USER_PLUGINS + "/test_var"))
+                ),
+            )
             db.set_mediapath("{VERSION}/test_var")
-            self.assertEqual(media_path(db), os.path.normcase(os.path.normpath(
-                os.path.abspath(tmpdirname + "/utils_file_test/" + VERSION +
-                                "/test_var"))))
+            self.assertEqual(
+                media_path(db),
+                os.path.normcase(
+                    os.path.normpath(
+                        os.path.abspath(
+                            tmpdirname + "/utils_file_test/" + VERSION + "/test_var"
+                        )
+                    )
+                ),
+            )
 
             # Test with $GRAMPSHOME environment variable not set
             old_env = os.environ.copy()
-            if 'GRAMPSHOME' in os.environ:
-                del os.environ['GRAMPSHOME']
+            if "GRAMPSHOME" in os.environ:
+                del os.environ["GRAMPSHOME"]
             db.set_mediapath("{GRAMPSHOME}/test_var")
-            self.assertEqual(media_path(db), os.path.normcase(os.path.normpath(
-                os.path.abspath(USER_HOME + "/test_var"))))
+            self.assertEqual(
+                media_path(db),
+                os.path.normcase(
+                    os.path.normpath(os.path.abspath(USER_HOME + "/test_var"))
+                ),
+            )
 
             # Test with $GRAMPSHOME environment variable set
-            os.environ['GRAMPSHOME'] = "/this/is/a/test"
+            os.environ["GRAMPSHOME"] = "/this/is/a/test"
             db.set_mediapath("{GRAMPSHOME}/test_var")
-            self.assertEqual(media_path(db), os.path.normcase(os.path.normpath(
-                os.path.abspath("/this/is/a/test/test_var"))))
+            self.assertEqual(
+                media_path(db),
+                os.path.normcase(
+                    os.path.normpath(os.path.abspath("/this/is/a/test/test_var"))
+                ),
+            )
 
-            # Restore environment
+            # Restore environment
             os.environ = old_env
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # main
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 if __name__ == "__main__":
     unittest.main()

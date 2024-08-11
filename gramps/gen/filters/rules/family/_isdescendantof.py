@@ -23,28 +23,31 @@
 Rule that checks for a family that is a descendant of a specified family.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # IsDescendantOf
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class IsDescendantOf(Rule):
     """
     Rule that checks for a family that is a descendant of a specified family.
     """
-    labels = [_('ID:'), _('Inclusive:')]
-    name = _('Descendant families of <family>')
-    category = _('General filters')
-    description = _('Matches descendant families of the specified family')
+
+    labels = [_("ID:"), _("Inclusive:")]
+    name = _("Descendant families of <family>")
+    category = _("General filters")
+    description = _("Matches descendant families of the specified family")
 
     def prepare(self, db, user):
         self.map = set()

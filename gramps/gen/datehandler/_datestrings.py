@@ -38,19 +38,21 @@ strings as needed. Then remove the strings from your language's
 :class:`DateParserXX` and :class:`DateHandlerXX` classes.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # set up logging
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 log = logging.getLogger(".DateStrings")
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # DateStrings
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class DateStrings:
     """
     String tables for :class:`.DateDisplay` and :class:`.DateParser`.
@@ -61,17 +63,26 @@ class DateStrings:
     # Display of these months uses the regular long_months.
     # TODO should we pack these into alt_long_months instead?
     swedish_SV = (
-        "", "Januari", "Februari", "Mars",
-        "April", "Maj", "Juni",
-        "Juli", "Augusti", "September",
-        "Oktober", "November", "December"
-        )
-
+        "",
+        "Januari",
+        "Februari",
+        "Mars",
+        "April",
+        "Maj",
+        "Juni",
+        "Juli",
+        "Augusti",
+        "September",
+        "Oktober",
+        "November",
+        "December",
+    )
 
     def __init__(self, locale):
         _ = locale.translation.lexgettext
 
-        self.long_months = ( "",
+        self.long_months = (
+            "",
             # Translators: see
             # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
             # to learn how to select proper inflection to be used in your localized
@@ -87,9 +98,11 @@ class DateStrings:
             _("September", "localized lexeme inflections"),
             _("October", "localized lexeme inflections"),
             _("November", "localized lexeme inflections"),
-            _("December", "localized lexeme inflections") )
+            _("December", "localized lexeme inflections"),
+        )
 
-        self.short_months = ( "",
+        self.short_months = (
+            "",
             # Translators: see
             # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
             # to learn how to select proper inflection to be used in your localized
@@ -105,10 +118,12 @@ class DateStrings:
             _("Sep", "localized lexeme inflections - short month form"),
             _("Oct", "localized lexeme inflections - short month form"),
             _("Nov", "localized lexeme inflections - short month form"),
-            _("Dec", "localized lexeme inflections - short month form") )
+            _("Dec", "localized lexeme inflections - short month form"),
+        )
 
         _ = locale.translation.sgettext
-        self.alt_long_months = ( "",
+        self.alt_long_months = (
+            "",
             # Translators: see
             # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
             # to learn how to add proper alternatives to be recognized in your localized
@@ -124,17 +139,19 @@ class DateStrings:
             _("", "alternative month names for September"),
             _("", "alternative month names for October"),
             _("", "alternative month names for November"),
-            _("", "alternative month names for December") )
+            _("", "alternative month names for December"),
+        )
 
         self.calendar = (
-# Must appear in the order indexed by Date.CAL_... numeric constants
-                _("Gregorian", "calendar"),
-                _("Julian", "calendar"),
-                _("Hebrew", "calendar"),
-                _("French Republican", "calendar"),
-                _("Persian", "calendar"),
-                _("Islamic", "calendar"),
-                _("Swedish", "calendar") )
+            # Must appear in the order indexed by Date.CAL_... numeric constants
+            _("Gregorian", "calendar"),
+            _("Julian", "calendar"),
+            _("Hebrew", "calendar"),
+            _("French Republican", "calendar"),
+            _("Persian", "calendar"),
+            _("Islamic", "calendar"),
+            _("Swedish", "calendar"),
+        )
         _ = locale.translation.lexgettext
 
         self.hebrew = (
@@ -155,8 +172,8 @@ class DateStrings:
             _("Sivan", "Hebrew month lexeme"),
             _("Tammuz", "Hebrew month lexeme"),
             _("Av", "Hebrew month lexeme"),
-            _("Elul", "Hebrew month lexeme")
-            )
+            _("Elul", "Hebrew month lexeme"),
+        )
 
         self.french = (
             "",
@@ -177,7 +194,7 @@ class DateStrings:
             _("Thermidor", "French month lexeme"),
             _("Fructidor", "French month lexeme"),
             _("Extra", "French month lexeme"),
-            )
+        )
 
         self.islamic = (
             "",
@@ -197,7 +214,7 @@ class DateStrings:
             _("Shawwal", "Islamic month lexeme"),
             _("Dhu l-Qa`da", "Islamic month lexeme"),
             _("Dhu l-Hijja", "Islamic month lexeme"),
-            )
+        )
 
         self.persian = (
             "",
@@ -217,76 +234,98 @@ class DateStrings:
             _("Dey", "Persian month lexeme"),
             _("Bahman", "Persian month lexeme"),
             _("Esfand", "Persian month lexeme"),
-            )
+        )
 
-        self.modifiers = ("",
-                # Translators: if the modifier is after the date
-                # put the space ahead of the word instead of after it
-                _("before ", "date modifier"),
-                # Translators: if the modifier is after the date
-                # put the space ahead of the word instead of after it
-                _("after ", "date modifier"),
-                # Translators: if the modifier is after the date
-                # put the space ahead of the word instead of after it
-                _("about ", "date modifier"),
-                "", "", "")
+        self.modifiers = (
+            "",
+            # Translators: if the modifier is after the date
+            # put the space ahead of the word instead of after it
+            _("before ", "date modifier"),
+            # Translators: if the modifier is after the date
+            # put the space ahead of the word instead of after it
+            _("after ", "date modifier"),
+            # Translators: if the modifier is after the date
+            # put the space ahead of the word instead of after it
+            _("about ", "date modifier"),
+            "",
+            "",
+            "",
+            # Translators: if the modifier is after the date
+            # put the space ahead of the word instead of after it
+            _("from ", "date modifier"),
+            # Translators: if the modifier is after the date
+            # put the space ahead of the word instead of after it
+            _("to ", "date modifier"),
+        )
 
-        self.qualifiers = ("",
-                _("estimated ", "date quality"),
-                _("calculated ", "date quality"),
-                )
+        self.qualifiers = (
+            "",
+            _("estimated ", "date quality"),
+            _("calculated ", "date quality"),
+        )
 
         # 6753: localized day names. Eventually should sprout into
         # a per-calendar type thing instead.
-        self.long_days = ("",
-                _("Sunday"),
-                _("Monday"),
-                _("Tuesday"),
-                _("Wednesday"),
-                _("Thursday"),
-                _("Friday"),
-                _("Saturday"),
-            )
+        self.long_days = (
+            "",
+            _("Sunday"),
+            _("Monday"),
+            _("Tuesday"),
+            _("Wednesday"),
+            _("Thursday"),
+            _("Friday"),
+            _("Saturday"),
+        )
 
-        self.short_days = ("", # Icelandic needs them
+        self.short_days = (
+            "",  # Icelandic needs them
             _("Sun"),
             _("Mon"),
             _("Tue"),
             _("Wed"),
             _("Thu"),
             _("Fri"),
-            _("Sat"))
+            _("Sat"),
+        )
+
 
 # set GRAMPS_RESOURCES then: python3 -m gramps.gen.datehandler._datestrings
-if __name__ == '__main__':
+if __name__ == "__main__":
     import sys
     from ..utils.grampslocale import GrampsLocale
     from ..const import GRAMPS_LOCALE as glocale
-    from ._grampslocale import (_deprecated_long_months as old_long,
-            _deprecated_short_months as old_short,
-            _deprecated_short_days as old_short_days, # Icelandic needs them
-            _deprecated_long_days as old_days)
+    from ._grampslocale import (
+        _deprecated_long_months as old_long,
+        _deprecated_short_months as old_short,
+        _deprecated_short_days as old_short_days,  # Icelandic needs them
+        _deprecated_long_days as old_days,
+    )
     from ._datedisplay import DateDisplay
     import gettext
+
     lang = glocale.lang
     lang_short = lang[:2]
-    available_langs = glocale.languages # get the cached list
+    available_langs = glocale.get_language_list()  # get the cached list
     if glocale.check_available_translations(lang) is None:
-        print ("Translation for current language {lang} not available.\n"
-                "Available translations: {list}.\n"
-                "Does po/{lang_short}*.po exist in gramps source tree?!\n"
-                "Please set your LANG / LC_ALL environment to something else...\n".format(
-                    lang=lang, list=available_langs, lang_short=lang_short),
-                file=sys.stderr)
+        print(
+            "Translation for current language {lang} not available.\n"
+            "Available translations: {list}.\n"
+            "Does po/{lang_short}*.po exist in gramps source tree?!\n"
+            "Please set your LANG / LC_ALL environment to something else...\n".format(
+                lang=lang, list=available_langs, lang_short=lang_short
+            ),
+            file=sys.stderr,
+        )
         sys.exit(1)
 
-    print ("# Generating snippets for {}*.po\n"
-            "# Available languages: {}".format(
-                    lang_short, available_langs))
-    glocale = GrampsLocale(languages=(lang)) # in __main__
+    print(
+        "# Generating snippets for {}*.po\n"
+        "# Available languages: {}".format(lang_short, available_langs)
+    )
+    glocale = GrampsLocale(languages=(lang))  # in __main__
     dd = glocale.date_displayer
     ds = dd._ds
-    glocale_EN = GrampsLocale(languages=('en')) # in __main__
+    glocale_EN = GrampsLocale(languages=("en"))  # in __main__
     ds_EN = DateStrings(glocale_EN)
 
     filename = __file__
@@ -297,35 +336,41 @@ if __name__ == '__main__':
         localized_months = old_long
 
     def print_po_snippet(en_loc_old_lists, context):
-        for m,localized,old in zip(*en_loc_old_lists):
+        for m, localized, old in zip(*en_loc_old_lists):
             if m == "":
                 continue
             if m == localized:
                 localized = old
-            print ('#: {file}:{line}\n'
-                   'msgid "{context}{en_month}"\n'
-                   'msgstr "{localized_month}"\n'.format(
-                       context = context,
-                       file = filename,
-                       line = print_po_snippet.line,
-                       en_month = m,
-                       localized_month = localized))
+            print("#: {file}:{line}".format(file=filename, line=print_po_snippet.line))
+            if context:
+                print('msgctxt "{context}"'.format(context=context))
+            print(
+                'msgid "{en_month}"\n'
+                'msgstr "{localized_month}"\n'.format(
+                    en_month=m, localized_month=localized
+                )
+            )
             print_po_snippet.line += 1
+
     print_po_snippet.line = 10000
 
     try:
         localized_months = dd.__class__.long_months
     except AttributeError:
         localized_months = old_long
-    print_po_snippet((ds_EN.long_months, localized_months, old_long),
-            "localized lexeme inflections||")
+    print_po_snippet(
+        (ds_EN.long_months, localized_months, old_long),
+        "localized lexeme inflections",
+    )
 
     try:
         localized_months = dd.__class__.short_months
     except AttributeError:
         localized_months = old_short
-    print_po_snippet((ds_EN.short_months, localized_months, old_short),
-            "localized lexeme inflections - short month form||")
+    print_po_snippet(
+        (ds_EN.short_months, localized_months, old_short),
+        "localized lexeme inflections - short month form",
+    )
 
     print_po_snippet((ds_EN.long_days, old_days, old_days), "")
 
@@ -333,42 +378,36 @@ if __name__ == '__main__':
 
     try:
         loc = dd.__class__.hebrew
-        print_po_snippet((ds_EN.hebrew, loc, loc),
-                "Hebrew month lexeme|")
+        print_po_snippet((ds_EN.hebrew, loc, loc), "Hebrew month lexeme")
     except AttributeError:
         pass
 
     try:
         loc = dd.__class__.french
-        print_po_snippet((ds_EN.french, loc, loc),
-                "French month lexeme|")
+        print_po_snippet((ds_EN.french, loc, loc), "French month lexeme")
     except AttributeError:
         pass
 
     try:
         loc = dd.__class__.islamic
-        print_po_snippet((ds_EN.islamic, loc, loc),
-                "Islamic month lexeme|")
+        print_po_snippet((ds_EN.islamic, loc, loc), "Islamic month lexeme")
     except AttributeError:
         pass
 
     try:
         loc = dd.__class__.persian
-        print_po_snippet((ds_EN.persian, loc, loc),
-                "Persian month lexeme|")
+        print_po_snippet((ds_EN.persian, loc, loc), "Persian month lexeme")
     except AttributeError:
         pass
 
     try:
         loc = dd.__class__._mod_str
-        print_po_snippet((ds_EN.modifiers, loc, loc),
-                "date modifier|")
+        print_po_snippet((ds_EN.modifiers, loc, loc), "date modifier")
     except AttributeError:
         pass
 
     try:
         loc = dd.__class__._qual_str
-        print_po_snippet((ds_EN.qualifiers, loc, loc),
-                "date quality|")
+        print_po_snippet((ds_EN.qualifiers, loc, loc), "date quality")
     except AttributeError:
         pass

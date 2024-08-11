@@ -24,29 +24,30 @@
 Traditional-Chinese-specific classes for parsing and displaying dates.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import re
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 from ..lib.date import Date
 from ._dateparser import DateParser
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Traditional-Chinese parser
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class DateParserZH_TW(DateParser):
     """
     Convert a text string into a Date object. If the date cannot be
@@ -55,10 +56,12 @@ class DateParserZH_TW(DateParser):
 
     # modifiers before the date
     modifier_to_int = {
-        '以前'   : Date.MOD_BEFORE,
-        '以後'   : Date.MOD_AFTER,
-        '大約'   : Date.MOD_ABOUT,
-        }
+        "以前": Date.MOD_BEFORE,
+        "以後": Date.MOD_AFTER,
+        "大約": Date.MOD_ABOUT,
+        "from": Date.MOD_FROM,
+        "to": Date.MOD_TO,
+    }
 
     month_to_int = DateParser.month_to_int
 
@@ -91,26 +94,26 @@ class DateParserZH_TW(DateParser):
     month_to_int["jiǎ rùn yùe"] = 13
 
     calendar_to_int = {
-        '陽曆'             : Date.CAL_GREGORIAN,
-        'g'                : Date.CAL_GREGORIAN,
-        '儒略曆'           : Date.CAL_JULIAN,
-        'j'                : Date.CAL_JULIAN,
-        '希伯來歷'         : Date.CAL_HEBREW,
-        'h'                : Date.CAL_HEBREW,
-        '伊斯蘭曆'         : Date.CAL_ISLAMIC,
-        'i'                : Date.CAL_ISLAMIC,
-        '法國共和歷'       : Date.CAL_FRENCH,
-        'f'                : Date.CAL_FRENCH,
-        '伊郎歷'           : Date.CAL_PERSIAN,
-        'p'                : Date.CAL_PERSIAN,
-        '瑞典歷'           : Date.CAL_SWEDISH,
-        's'                : Date.CAL_SWEDISH,
-        }
+        "陽曆": Date.CAL_GREGORIAN,
+        "g": Date.CAL_GREGORIAN,
+        "儒略曆": Date.CAL_JULIAN,
+        "j": Date.CAL_JULIAN,
+        "希伯來歷": Date.CAL_HEBREW,
+        "h": Date.CAL_HEBREW,
+        "伊斯蘭曆": Date.CAL_ISLAMIC,
+        "i": Date.CAL_ISLAMIC,
+        "法國共和歷": Date.CAL_FRENCH,
+        "f": Date.CAL_FRENCH,
+        "伊郎歷": Date.CAL_PERSIAN,
+        "p": Date.CAL_PERSIAN,
+        "瑞典歷": Date.CAL_SWEDISH,
+        "s": Date.CAL_SWEDISH,
+    }
 
     quality_to_int = {
-        '據估計'     : Date.QUAL_ESTIMATED,
-        '據計算'     : Date.QUAL_CALCULATED,
-        }
+        "據估計": Date.QUAL_ESTIMATED,
+        "據計算": Date.QUAL_CALCULATED,
+    }
 
     # FIXME translate these English strings into traditional-Chinese ones
     bce = ["before calendar", "negative year"] + DateParser.bce
@@ -120,41 +123,46 @@ class DateParserZH_TW(DateParser):
         This method compiles regular expression strings for matching dates.
         """
         DateParser.init_strings(self)
-        _span_1 = ['自']
-        _span_2 = ['至']
-        _range_1 = ['介於']
-        _range_2 = ['與']
-        _range_3 = ['之間']
-        self._span = re.compile(r"(%s)\s*(?P<start>.+)\s*(%s)\s*(?P<stop>.+)" %
-                                ('|'.join(_span_1), '|'.join(_span_2)),
-                                re.IGNORECASE)
-        self._range = re.compile(r"(%s)\s*(?P<start>.+)\s*(%s)\s*(?P<stop>.+)\s*(%s)" %
-                                 ('|'.join(_range_1), '|'.join(_range_2), '|'.join(_range_3)),
-                                 re.IGNORECASE)
+        _span_1 = ["自", "從"]
+        _span_2 = ["至", "到"]
+        _range_1 = ["介於"]
+        _range_2 = ["與"]
+        _range_3 = ["之間"]
+        self._span = re.compile(
+            r"(%s)\s*(?P<start>.+)\s*(%s)\s*(?P<stop>.+)"
+            % ("|".join(_span_1), "|".join(_span_2)),
+            re.IGNORECASE,
+        )
+        self._range = re.compile(
+            r"(%s)\s*(?P<start>.+)\s*(%s)\s*(?P<stop>.+)\s*(%s)"
+            % ("|".join(_range_1), "|".join(_range_2), "|".join(_range_3)),
+            re.IGNORECASE,
+        )
         self._numeric = re.compile(r"((\d+)年\s*)?((\d+)月\s*)?(\d+)?日?\s*$")
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Traditional-Chinese display
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class DateDisplayZH_TW(DateDisplay):
     """
     Traditional-Chinese language date display class.
     """
 
     formats = (
-        "年年年年-月月-日日 (ISO)",  "數字格式",
-        )
-        # this definition must agree with its "_display_calendar" method
+        "年年年年-月月-日日 (ISO)",
+        "數字格式",
+    )
+    # this definition must agree with its "_display_calendar" method
 
     # FIXME translate these English strings into traditional-Chinese ones
     _bce_str = "%s B.C.E."
 
     display = DateDisplay.display_formatted
 
-    def _display_calendar(self, date_val, long_months, short_months = None,
-                          inflect=""):
+    def _display_calendar(self, date_val, long_months, short_months=None, inflect=""):
         # this must agree with its locale-specific "formats" definition
 
         if short_months is None:
@@ -173,12 +181,13 @@ class DateDisplayZH_TW(DateDisplay):
         else:
             return value
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Register classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 register_datehandler(
-    ('zh_TW', 'zh_HK', ('西元%Y年%m月%d日',)),
-    DateParserZH_TW, DateDisplayZH_TW)
+    ("zh_TW", "zh_HK", ("西元%Y年%m月%d日",)), DateParserZH_TW, DateDisplayZH_TW
+)

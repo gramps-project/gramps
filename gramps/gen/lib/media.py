@@ -25,38 +25,39 @@
 Media object for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# standard python modules
+# Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+import logging
 import os
 from urllib.parse import urlparse
-import logging
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .primaryobj import PrimaryObject
-from .citationbase import CitationBase
-from .notebase import NoteBase
-from .datebase import DateBase
-from .attrbase import AttributeBase
-from .tagbase import TagBase
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .attrbase import AttributeBase
+from .citationbase import CitationBase
+from .datebase import DateBase
+from .notebase import NoteBase
+from .primaryobj import PrimaryObject
+from .tagbase import TagBase
+
 _ = glocale.translation.gettext
 
 LOG = logging.getLogger(".citation")
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# Media class
+# Media
 #
-#-------------------------------------------------------------------------
-class Media(CitationBase, NoteBase, DateBase, AttributeBase,
-                  PrimaryObject):
+# -------------------------------------------------------------------------
+class Media(CitationBase, NoteBase, DateBase, AttributeBase, PrimaryObject):
     """
     Container for information about an image file, including location,
     description and privacy.
@@ -109,15 +110,21 @@ class Media(CitationBase, NoteBase, DateBase, AttributeBase,
                   be considered persistent.
         :rtype: tuple
         """
-        return (self.handle, self.gramps_id, self.path, self.mime, self.desc,
-                self.checksum,
-                AttributeBase.serialize(self),
-                CitationBase.serialize(self),
-                NoteBase.serialize(self),
-                self.change,
-                DateBase.serialize(self, no_text_date),
-                TagBase.serialize(self),
-                self.private)
+        return (
+            self.handle,
+            self.gramps_id,
+            self.path,
+            self.mime,
+            self.desc,
+            self.checksum,
+            AttributeBase.serialize(self),
+            CitationBase.serialize(self),
+            NoteBase.serialize(self),
+            self.change,
+            DateBase.serialize(self, no_text_date),
+            TagBase.serialize(self),
+            self.private,
+        )
 
     @classmethod
     def get_schema(cls):
@@ -127,47 +134,52 @@ class Media(CitationBase, NoteBase, DateBase, AttributeBase,
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
+        # pylint: disable=import-outside-toplevel
         from .attribute import Attribute
         from .date import Date
+
         return {
             "type": "object",
             "title": _("Media"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "handle": {"type": "string",
-                           "maxLength": 50,
-                           "title": _("Handle")},
-                "gramps_id": {"type": "string",
-                              "title": _("Gramps ID")},
-                "path": {"type": "string",
-                         "title": _("Path")},
-                "mime": {"type": "string",
-                         "title": _("MIME")},
-                "desc": {"type": "string",
-                         "title": _("Description")},
-                "checksum": {"type": "string",
-                             "title": _("Checksum")},
-                "attribute_list": {"type": "array",
-                                   "items": Attribute.get_schema(),
-                                   "title": _("Attributes")},
-                "citation_list": {"type": "array",
-                                  "items": {"type": "string",
-                                            "maxLength": 50},
-                                  "title": _("Citations")},
-                "note_list": {"type": "array",
-                              "items": {"type": "string"},
-                              "title": _("Notes")},
-                "change": {"type": "integer",
-                           "title": _("Last changed")},
-                "date": {"oneOf": [{"type": "null"}, Date.get_schema()],
-                         "title": _("Date")},
-                "tag_list": {"type": "array",
-                             "items": {"type": "string",
-                                       "maxLength": 50},
-                             "title": _("Tags")},
-                "private": {"type": "boolean",
-                            "title": _("Private")}
-            }
+                "handle": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "title": _("Handle"),
+                },
+                "gramps_id": {"type": "string", "title": _("Gramps ID")},
+                "path": {"type": "string", "title": _("Path")},
+                "mime": {"type": "string", "title": _("MIME")},
+                "desc": {"type": "string", "title": _("Description")},
+                "checksum": {"type": "string", "title": _("Checksum")},
+                "attribute_list": {
+                    "type": "array",
+                    "items": Attribute.get_schema(),
+                    "title": _("Attributes"),
+                },
+                "citation_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Citations"),
+                },
+                "note_list": {
+                    "type": "array",
+                    "items": {"type": "string"},
+                    "title": _("Notes"),
+                },
+                "change": {"type": "integer", "title": _("Last changed")},
+                "date": {
+                    "oneOf": [{"type": "null"}, Date.get_schema()],
+                    "title": _("Date"),
+                },
+                "tag_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Tags"),
+                },
+                "private": {"type": "boolean", "title": _("Private")},
+            },
         }
 
     def unserialize(self, data):
@@ -178,9 +190,21 @@ class Media(CitationBase, NoteBase, DateBase, AttributeBase,
         :param data: tuple containing the persistent data associated the object
         :type data: tuple
         """
-        (self.handle, self.gramps_id, self.path, self.mime, self.desc,
-         self.checksum, attribute_list, citation_list, note_list, self.change,
-         date, tag_list, self.private) = data
+        (
+            self.handle,
+            self.gramps_id,
+            self.path,
+            self.mime,
+            self.desc,
+            self.checksum,
+            attribute_list,
+            citation_list,
+            note_list,
+            self.change,
+            date,
+            tag_list,
+            self.private,
+        ) = data
 
         AttributeBase.unserialize(self, attribute_list)
         CitationBase.unserialize(self, citation_list)
@@ -235,9 +259,11 @@ class Media(CitationBase, NoteBase, DateBase, AttributeBase,
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        return self.get_referenced_note_handles() + \
-               self.get_referenced_tag_handles()  + \
-               self.get_referenced_citation_handles()
+        return (
+            self.get_referenced_note_handles()
+            + self.get_referenced_tag_handles()
+            + self.get_referenced_citation_handles()
+        )
 
     def get_handle_referents(self):
         """
@@ -285,7 +311,7 @@ class Media(CitationBase, NoteBase, DateBase, AttributeBase,
     def set_path(self, path):
         """Set the file path to the passed path."""
         res = urlparse(path)
-        if res.scheme == '' or res.scheme == 'file':
+        if res.scheme in ["", "file"]:
             self.path = os.path.normpath(path)
         else:
             # The principal case this path caters for is where the scheme is

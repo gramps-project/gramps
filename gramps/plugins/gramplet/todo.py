@@ -17,18 +17,18 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gtk modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gui.widgets.styledtexteditor import StyledTextEditor
 from gramps.gui.widgets import SimpleButton
@@ -37,12 +37,15 @@ from gramps.gen.lib import StyledText, Note, NoteType
 from gramps.gen.db import DbTxn
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
+
 
 class ToDo(Gramplet):
     """
     Displays the To Do notes for an object.
     """
+
     def init(self):
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
@@ -56,27 +59,26 @@ class ToDo(Gramplet):
         top = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 
         hbox = Gtk.Box()
-        self.left = SimpleButton('go-previous', self.left_clicked)
-        self.left.set_tooltip_text(_('Previous To Do note'))
+        self.left = SimpleButton("go-previous", self.left_clicked)
+        self.left.set_tooltip_text(_("Previous To Do note"))
         self.left.set_sensitive(False)
         hbox.pack_start(self.left, False, False, 0)
-        self.right = SimpleButton('go-next', self.right_clicked)
-        self.right.set_tooltip_text(_('Next To Do note'))
+        self.right = SimpleButton("go-next", self.right_clicked)
+        self.right.set_tooltip_text(_("Next To Do note"))
         self.right.set_sensitive(False)
         hbox.pack_start(self.right, False, False, 0)
-        self.edit = SimpleButton('gtk-edit', self.edit_clicked)
-        self.edit.set_tooltip_text(_('Edit the selected To Do note'))
+        self.edit = SimpleButton("gtk-edit", self.edit_clicked)
+        self.edit.set_tooltip_text(_("Edit the selected To Do note"))
         self.edit.set_sensitive(False)
         hbox.pack_start(self.edit, False, False, 0)
-        self.new = SimpleButton('document-new', self.new_clicked)
-        self.new.set_tooltip_text(_('Add a new To Do note'))
+        self.new = SimpleButton("document-new", self.new_clicked)
+        self.new.set_tooltip_text(_("Add a new To Do note"))
         hbox.pack_start(self.new, False, False, 0)
         self.page = Gtk.Label()
         hbox.pack_end(self.page, False, False, 10)
 
         scrolledwindow = Gtk.ScrolledWindow()
-        scrolledwindow.set_policy(Gtk.PolicyType.AUTOMATIC,
-                                  Gtk.PolicyType.AUTOMATIC)
+        scrolledwindow.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.texteditor = StyledTextEditor()
         self.texteditor.set_editable(False)
         self.texteditor.set_wrap_mode(Gtk.WrapMode.WORD)
@@ -108,7 +110,7 @@ class ToDo(Gramplet):
         self.edit.set_sensitive(False)
         self.texteditor.set_text(StyledText())
         self.note_list = self.get_note_list(obj)
-        self.page.set_text('')
+        self.page.set_text("")
         if len(self.note_list) > 0:
             self.set_has_data(True)
             self.edit.set_sensitive(True)
@@ -124,7 +126,7 @@ class ToDo(Gramplet):
         self.right.set_sensitive(False)
         self.edit.set_sensitive(False)
         self.texteditor.set_text(StyledText())
-        self.page.set_text('')
+        self.page.set_text("")
         self.current = 0
 
     def display_note(self):
@@ -134,9 +136,10 @@ class ToDo(Gramplet):
         note_handle = self.note_list[self.current]
         note = self.dbstate.db.get_note_from_handle(note_handle)
         self.texteditor.set_text(note.get_styledtext())
-        self.page.set_text(_('%(current)d of %(total)d') %
-                           {'current': self.current + 1,
-                            'total': len(self.note_list)})
+        self.page.set_text(
+            _("%(current)d of %(total)d")
+            % {"current": self.current + 1, "total": len(self.note_list)}
+        )
 
     def left_clicked(self, button):
         """
@@ -175,6 +178,7 @@ class ToDo(Gramplet):
         Edit current To Do note.
         """
         from gramps.gui.editors import EditNote
+
         note_handle = self.note_list[self.current]
         note = self.dbstate.db.get_note_from_handle(note_handle)
         try:
@@ -190,6 +194,7 @@ class ToDo(Gramplet):
         active_handle = self.get_active(nav_type)
         if active_handle:
             from gramps.gui.editors import EditNote
+
             note = Note()
             note.set_type(NoteType.TODO)
             try:
@@ -197,23 +202,28 @@ class ToDo(Gramplet):
             except WindowActiveError:
                 pass
         else:
-            WarningDialog(_("No active object"),
+            WarningDialog(
+                _("No active object"),
                 _("First select the object to which you want to attach a note")
-                    + _(":") + _(nav_type),
-                parent=self.uistate.window)
+                + _(":")
+                + _(nav_type),
+                parent=self.uistate.window,
+            )
+
 
 class PersonToDo(ToDo):
     """
     Displays the To Do notes for a person.
     """
+
     def db_changed(self):
-        self.connect(self.dbstate.db, 'person-update', self.update)
+        self.connect(self.dbstate.db, "person-update", self.update)
 
     def active_changed(self, handle):
         self.update()
 
     def update_has_data(self):
-        active_handle = self.get_active('Person')
+        active_handle = self.get_active("Person")
         if active_handle:
             active = self.dbstate.db.get_person_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
@@ -222,7 +232,7 @@ class PersonToDo(ToDo):
 
     def main(self):
         self.clear_text()
-        active_handle = self.get_active('Person')
+        active_handle = self.get_active("Person")
         if active_handle:
             active = self.dbstate.db.get_person_from_handle(active_handle)
             if active:
@@ -233,20 +243,22 @@ class PersonToDo(ToDo):
             self.set_has_data(False)
 
     def created(self, handle):
-        with DbTxn('Attach Note', self.dbstate.db) as trans:
+        with DbTxn("Attach Note", self.dbstate.db) as trans:
             self.obj.add_note(handle)
             self.dbstate.db.commit_person(self.obj, trans)
+
 
 class EventToDo(ToDo):
     """
     Displays the To Do notes for an event.
     """
+
     def db_changed(self):
-        self.connect(self.dbstate.db, 'event-update', self.update)
-        self.connect_signal('Event', self.update)
+        self.connect(self.dbstate.db, "event-update", self.update)
+        self.connect_signal("Event", self.update)
 
     def update_has_data(self):
-        active_handle = self.get_active('Event')
+        active_handle = self.get_active("Event")
         if active_handle:
             active = self.dbstate.db.get_event_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
@@ -255,7 +267,7 @@ class EventToDo(ToDo):
 
     def main(self):
         self.clear_text()
-        active_handle = self.get_active('Event')
+        active_handle = self.get_active("Event")
         if active_handle:
             active = self.dbstate.db.get_event_from_handle(active_handle)
             if active:
@@ -266,20 +278,22 @@ class EventToDo(ToDo):
             self.set_has_data(False)
 
     def created(self, handle):
-        with DbTxn('Attach Note', self.dbstate.db) as trans:
+        with DbTxn("Attach Note", self.dbstate.db) as trans:
             self.obj.add_note(handle)
             self.dbstate.db.commit_event(self.obj, trans)
+
 
 class FamilyToDo(ToDo):
     """
     Displays the To Do notes for a family.
     """
+
     def db_changed(self):
-        self.connect(self.dbstate.db, 'family-update', self.update)
-        self.connect_signal('Family', self.update)
+        self.connect(self.dbstate.db, "family-update", self.update)
+        self.connect_signal("Family", self.update)
 
     def update_has_data(self):
-        active_handle = self.get_active('Family')
+        active_handle = self.get_active("Family")
         if active_handle:
             active = self.dbstate.db.get_family_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
@@ -288,7 +302,7 @@ class FamilyToDo(ToDo):
 
     def main(self):
         self.clear_text()
-        active_handle = self.get_active('Family')
+        active_handle = self.get_active("Family")
         if active_handle:
             active = self.dbstate.db.get_family_from_handle(active_handle)
             if active:
@@ -299,20 +313,22 @@ class FamilyToDo(ToDo):
             self.set_has_data(False)
 
     def created(self, handle):
-        with DbTxn('Attach Note', self.dbstate.db) as trans:
+        with DbTxn("Attach Note", self.dbstate.db) as trans:
             self.obj.add_note(handle)
             self.dbstate.db.commit_family(self.obj, trans)
+
 
 class PlaceToDo(ToDo):
     """
     Displays the To Do notes for a place.
     """
+
     def db_changed(self):
-        self.connect(self.dbstate.db, 'place-update', self.update)
-        self.connect_signal('Place', self.update)
+        self.connect(self.dbstate.db, "place-update", self.update)
+        self.connect_signal("Place", self.update)
 
     def update_has_data(self):
-        active_handle = self.get_active('Place')
+        active_handle = self.get_active("Place")
         if active_handle:
             active = self.dbstate.db.get_place_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
@@ -321,7 +337,7 @@ class PlaceToDo(ToDo):
 
     def main(self):
         self.clear_text()
-        active_handle = self.get_active('Place')
+        active_handle = self.get_active("Place")
         if active_handle:
             active = self.dbstate.db.get_place_from_handle(active_handle)
             if active:
@@ -332,20 +348,22 @@ class PlaceToDo(ToDo):
             self.set_has_data(False)
 
     def created(self, handle):
-        with DbTxn('Attach Note', self.dbstate.db) as trans:
+        with DbTxn("Attach Note", self.dbstate.db) as trans:
             self.obj.add_note(handle)
             self.dbstate.db.commit_place(self.obj, trans)
+
 
 class SourceToDo(ToDo):
     """
     Displays the To Do notes for a source.
     """
+
     def db_changed(self):
-        self.connect(self.dbstate.db, 'source-update', self.update)
-        self.connect_signal('Source', self.update)
+        self.connect(self.dbstate.db, "source-update", self.update)
+        self.connect_signal("Source", self.update)
 
     def update_has_data(self):
-        active_handle = self.get_active('Source')
+        active_handle = self.get_active("Source")
         if active_handle:
             active = self.dbstate.db.get_source_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
@@ -354,7 +372,7 @@ class SourceToDo(ToDo):
 
     def main(self):
         self.clear_text()
-        active_handle = self.get_active('Source')
+        active_handle = self.get_active("Source")
         if active_handle:
             active = self.dbstate.db.get_source_from_handle(active_handle)
             if active:
@@ -365,20 +383,22 @@ class SourceToDo(ToDo):
             self.set_has_data(False)
 
     def created(self, handle):
-        with DbTxn('Attach Note', self.dbstate.db) as trans:
+        with DbTxn("Attach Note", self.dbstate.db) as trans:
             self.obj.add_note(handle)
             self.dbstate.db.commit_source(self.obj, trans)
+
 
 class CitationToDo(ToDo):
     """
     Displays the To Do notes for a Citation.
     """
+
     def db_changed(self):
-        self.connect(self.dbstate.db, 'citation-update', self.update)
-        self.connect_signal('Citation', self.update)
+        self.connect(self.dbstate.db, "citation-update", self.update)
+        self.connect_signal("Citation", self.update)
 
     def update_has_data(self):
-        active_handle = self.get_active('Citation')
+        active_handle = self.get_active("Citation")
         if active_handle:
             active = self.dbstate.db.get_citation_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
@@ -387,7 +407,7 @@ class CitationToDo(ToDo):
 
     def main(self):
         self.clear_text()
-        active_handle = self.get_active('Citation')
+        active_handle = self.get_active("Citation")
         if active_handle:
             active = self.dbstate.db.get_citation_from_handle(active_handle)
             if active:
@@ -398,20 +418,22 @@ class CitationToDo(ToDo):
             self.set_has_data(False)
 
     def created(self, handle):
-        with DbTxn('Attach Note', self.dbstate.db) as trans:
+        with DbTxn("Attach Note", self.dbstate.db) as trans:
             self.obj.add_note(handle)
             self.dbstate.db.commit_citation(self.obj, trans)
+
 
 class RepositoryToDo(ToDo):
     """
     Displays the To Do notes for a repository.
     """
+
     def db_changed(self):
-        self.connect(self.dbstate.db, 'repository-update', self.update)
-        self.connect_signal('Repository', self.update)
+        self.connect(self.dbstate.db, "repository-update", self.update)
+        self.connect_signal("Repository", self.update)
 
     def update_has_data(self):
-        active_handle = self.get_active('Repository')
+        active_handle = self.get_active("Repository")
         if active_handle:
             active = self.dbstate.db.get_repository_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
@@ -420,7 +442,7 @@ class RepositoryToDo(ToDo):
 
     def main(self):
         self.clear_text()
-        active_handle = self.get_active('Repository')
+        active_handle = self.get_active("Repository")
         if active_handle:
             active = self.dbstate.db.get_repository_from_handle(active_handle)
             if active:
@@ -431,20 +453,22 @@ class RepositoryToDo(ToDo):
             self.set_has_data(False)
 
     def created(self, handle):
-        with DbTxn('Attach Note', self.dbstate.db) as trans:
+        with DbTxn("Attach Note", self.dbstate.db) as trans:
             self.obj.add_note(handle)
             self.dbstate.db.commit_repository(self.obj, trans)
+
 
 class MediaToDo(ToDo):
     """
     Displays the To Do notes for a media object.
     """
+
     def db_changed(self):
-        self.connect(self.dbstate.db, 'media-update', self.update)
-        self.connect_signal('Media', self.update)
+        self.connect(self.dbstate.db, "media-update", self.update)
+        self.connect_signal("Media", self.update)
 
     def update_has_data(self):
-        active_handle = self.get_active('Media')
+        active_handle = self.get_active("Media")
         if active_handle:
             active = self.dbstate.db.get_media_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
@@ -453,7 +477,7 @@ class MediaToDo(ToDo):
 
     def main(self):
         self.clear_text()
-        active_handle = self.get_active('Media')
+        active_handle = self.get_active("Media")
         if active_handle:
             active = self.dbstate.db.get_media_from_handle(active_handle)
             if active:
@@ -464,6 +488,6 @@ class MediaToDo(ToDo):
             self.set_has_data(False)
 
     def created(self, handle):
-        with DbTxn('Attach Note', self.dbstate.db) as trans:
+        with DbTxn("Attach Note", self.dbstate.db) as trans:
             self.obj.add_note(handle)
             self.dbstate.db.commit_media(self.obj, trans)

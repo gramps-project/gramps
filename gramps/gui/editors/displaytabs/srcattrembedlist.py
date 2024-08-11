@@ -18,54 +18,54 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gi.repository import GObject, GLib
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.lib import SrcAttribute
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
-from .attrmodel import AttrModel
-from .embeddedlist import (EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL,
-                           TEXT_EDIT_COL)
+from .srcattrmodel import SrcAttrModel
+from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL, TEXT_EDIT_COL
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 #
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class SrcAttrEmbedList(EmbeddedList):
-
     _HANDLE_COL = 3
     _DND_TYPE = DdTargets.SRCATTRIBUTE
 
     _MSG = {
-        'add'   : _('Create and add a new attribute'),
-        'del'   : _('Remove the existing attribute'),
-        'edit'  : _('Edit the selected attribute'),
-        'up'    : _('Move the selected attribute upwards'),
-        'down'  : _('Move the selected attribute downwards'),
+        "add": _("Create and add a new attribute"),
+        "del": _("Remove the existing attribute"),
+        "edit": _("Edit the selected attribute"),
+        "up": _("Move the selected attribute upwards"),
+        "down": _("Move the selected attribute downwards"),
     }
 
-    #index = column in model. Value =
+    # index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col, icon
     _column_names = [
-        (_('Type'), 0, 250, TEXT_COL, -1, None),
-        (_('Value'), 1, 200, TEXT_EDIT_COL, -1, None),
-        (_('Private'), 2, 30, ICON_COL, -1, 'gramps-lock')
-        ]
+        (_("Type"), 0, 250, TEXT_COL, -1, None),
+        (_("Value"), 1, 200, TEXT_EDIT_COL, -1, None),
+        (_("Private"), 2, 30, ICON_COL, -1, "gramps-lock"),
+    ]
 
-    def __init__(self, dbstate, uistate, track, data):
+    def __init__(self, dbstate, uistate, track, data, config_key):
         """
         Initialize the displaytab. The dbstate and uistate is needed
         track is the list of parent windows
@@ -73,18 +73,27 @@ class SrcAttrEmbedList(EmbeddedList):
             display and edit
         """
         self.data = data
-        EmbeddedList.__init__(self, dbstate, uistate, track, _('_Attributes'),
-                              AttrModel, move_buttons=True)
+        EmbeddedList.__init__(
+            self,
+            dbstate,
+            uistate,
+            track,
+            _("_Attributes"),
+            SrcAttrModel,
+            config_key,
+            move_buttons=True,
+        )
 
     def get_editor(self):
         from .. import EditSrcAttribute
+
         return EditSrcAttribute
 
     def get_user_values(self):
         return self.dbstate.db.get_source_attribute_types()
 
     def get_icon_name(self):
-        return 'gramps-attribute'
+        return "gramps-attribute"
 
     def get_data(self):
         return self.data
@@ -102,8 +111,9 @@ class SrcAttrEmbedList(EmbeddedList):
                                   'edited': self.on_edited
                               }}
         """
-        self.edit_col_funcs ={1: {'edit_start': self.on_value_edit_start,
-                                  'edited': self.on_value_edited}}
+        self.edit_col_funcs = {
+            1: {"edit_start": self.on_value_edit_start, "edited": self.on_value_edited}
+        }
 
     def on_value_edit_start(self, cellr, celle, path, colnr):
         """
@@ -111,9 +121,9 @@ class SrcAttrEmbedList(EmbeddedList):
         are
         """
         pass
-        #self.curr_col = colnr
-        #self.curr_cellr = cellr
-        #self.curr_celle = celle
+        # self.curr_col = colnr
+        # self.curr_cellr = cellr
+        # self.curr_celle = celle
 
     def on_value_edited(self, cell, path, new_text, colnr):
         """
@@ -123,18 +133,24 @@ class SrcAttrEmbedList(EmbeddedList):
         node = self.model.get_iter(path)
         self.model.set_value(node, colnr, new_text)
         ## Now we need to update the data in the object driving the editor.
-        #path appears to be a string
+        # path appears to be a string
         path = int(path)
         attr = self.data[path]
         attr.set_value(new_text)
 
     def add_button_clicked(self, obj):
-        pname = ''
+        pname = ""
         attr = SrcAttribute()
         try:
             self.get_editor()(
-                self.dbstate, self.uistate, self.track, attr,
-                pname, self.get_user_values(), self.add_callback)
+                self.dbstate,
+                self.uistate,
+                self.track,
+                attr,
+                pname,
+                self.get_user_values(),
+                self.add_callback,
+            )
         except WindowActiveError:
             pass
 
@@ -143,16 +159,22 @@ class SrcAttrEmbedList(EmbeddedList):
         data.append(name)
         self.changed = True
         self.rebuild()
-        GLib.idle_add(self.tree.scroll_to_cell, len(data)-1)
+        GLib.idle_add(self.tree.scroll_to_cell, len(data) - 1)
 
     def edit_button_clicked(self, obj):
         attr = self.get_selected()
         if attr:
-            pname = ''
+            pname = ""
             try:
                 self.get_editor()(
-                    self.dbstate, self.uistate, self.track, attr,
-                    pname, self.get_user_values(), self.edit_callback)
+                    self.dbstate,
+                    self.uistate,
+                    self.track,
+                    attr,
+                    pname,
+                    self.get_user_values(),
+                    self.edit_callback,
+                )
             except WindowActiveError:
                 pass
 

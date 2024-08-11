@@ -17,44 +17,57 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-# gen.filters.rules/Person/_HasNameOriginType.py
 
-#-------------------------------------------------------------------------
-#
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-from ....const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+"""
+Rule that checks the type of Surname origin.
+"""
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .. import Rule
+# -------------------------------------------------------------------------
+from ....const import GRAMPS_LOCALE as glocale
 from ....lib.nameorigintype import NameOriginType
+from .. import Rule
 
-#-------------------------------------------------------------------------
+_ = glocale.translation.gettext
+
+
+# -------------------------------------------------------------------------
 #
 # HasNameOriginType
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasNameOriginType(Rule):
-    """Rule that checks the type of Surname origin"""
+    """
+    Rule that checks the type of Surname origin.
+    """
 
-    labels = [ _('Surname origin type:')]
-    name = _('People with the <Surname origin type>')
+    labels = [_("Surname origin type:")]
+    name = _("People with the <Surname origin type>")
     description = _("Matches people with a surname origin")
-    category = _('General filters')
+    category = _("General filters")
 
-    def apply(self, db, person):
-        if not self.list[0]:
-            return False
-        for name in [person.get_primary_name()] + person.get_alternate_names():
-            for surname in name.get_surname_list():
-                specified_type = NameOriginType()
-                specified_type.set_from_xml_str(self.list[0])
-                if surname.get_origintype() == specified_type:
-                    return True
+    def __init__(self, arg, use_regex=False, use_case=False):
+        super().__init__(arg, use_regex, use_case)
+        self.name_origin_type = None
+
+    def prepare(self, db, user):
+        """
+        Prepare the rule. Things we only want to do once.
+        """
+        if self.list[0]:
+            self.name_origin_type = NameOriginType()
+            self.name_origin_type.set_from_xml_str(self.list[0])
+
+    def apply(self, _db, obj):
+        """
+        Apply the rule. Return True on a match.
+        """
+        if self.name_origin_type:
+            for name in [obj.get_primary_name()] + obj.get_alternate_names():
+                for surname in name.get_surname_list():
+                    if surname.get_origintype() == self.name_origin_type:
+                        return True
         return False

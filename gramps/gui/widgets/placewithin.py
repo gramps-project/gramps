@@ -21,38 +21,40 @@
 
 __all__ = ["PlaceWithin"]
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 _LOG = logging.getLogger(".widgets.placewithin")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ..selectors import SelectorFactory
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # PlaceWithin class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class PlaceWithin(Gtk.Box):
-
     def __init__(self, dbstate, uistate, track):
         Gtk.Box.__init__(self)
         self.dbstate = dbstate
@@ -60,17 +62,18 @@ class PlaceWithin(Gtk.Box):
         self.track = track
         self.last = ""
         # initial tooltip when no place already selected.
-        self.tooltip = _('Matches places within a given distance'
-                         ' of the active place. You have no active place.')
+        self.tooltip = _(
+            "Matches places within a given distance"
+            " of the active place. You have no active place."
+        )
         self.set_tooltip_text(self.tooltip)
         self.entry = Gtk.Entry()
         self.entry.set_max_length(3)
         self.entry.set_width_chars(5)
-        self.entry.connect('changed', self.entry_change)
+        self.entry.connect("changed", self.entry_change)
         self.pack_start(self.entry, True, True, 0)
         self.unit = Gtk.ComboBoxText()
-        list(map(self.unit.append_text,
-            [ _('kilometers'), _('miles'), _('degrees') ]))
+        list(map(self.unit.append_text, [_("kilometers"), _("miles"), _("degrees")]))
         self.unit.set_active(0)
         self.pack_start(self.unit, False, True, 0)
         self.show_all()
@@ -88,11 +91,11 @@ class PlaceWithin(Gtk.Box):
     def entry_change(self, entry):
         value = entry.get_text()
         if value.isnumeric() or value == "":
-            self.last = value # This entry is numeric and valid.
+            self.last = value  # This entry is numeric and valid.
         else:
-            entry.set_text(self.last) # reset to the last valid entry
+            entry.set_text(self.last)  # reset to the last valid entry
         _db = self.dbstate.db
-        active_reference = self.uistate.get_active('Place')
+        active_reference = self.uistate.get_active("Place")
         place_name = None
         if active_reference:
             place = _db.get_place_from_handle(active_reference)

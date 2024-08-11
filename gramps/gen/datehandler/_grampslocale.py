@@ -20,19 +20,19 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import locale
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from ..const import GRAMPS_LOCALE as glocale # TODO unneeded? (see codeset)
+# -------------------------------------------------------------------------
+from ..const import GRAMPS_LOCALE as glocale  # TODO unneeded? (see codeset)
 
 """
 Some OS environments do not support the locale.nl_langinfo() method
@@ -44,10 +44,9 @@ strftime.
 Since these routines return values encoded into selected character
 set, we have to convert to unicode.
 """
-codeset = glocale.encoding # TODO I don't think "codeset" is used anymore
+codeset = glocale.encoding  # TODO I don't think "codeset" is used anymore
 
 try:
-
     # here only for the upgrade tool, see _datestrings.py __main__
     _deprecated_long_months = (
         "",
@@ -63,7 +62,7 @@ try:
         locale.nl_langinfo(locale.MON_10),
         locale.nl_langinfo(locale.MON_11),
         locale.nl_langinfo(locale.MON_12),
-        )
+    )
 
     _deprecated_short_months = (
         "",
@@ -79,7 +78,7 @@ try:
         locale.nl_langinfo(locale.ABMON_10),
         locale.nl_langinfo(locale.ABMON_11),
         locale.nl_langinfo(locale.ABMON_12),
-        )
+    )
 
     # Gramps day number: Sunday => 1, Monday => 2, etc
     # "Return name of the n-th day of the week. Warning:
@@ -89,60 +88,60 @@ try:
     # see http://docs.python.org/library/locale.html
     _deprecated_long_days = (
         "",
-        locale.nl_langinfo(locale.DAY_1), # Sunday
-        locale.nl_langinfo(locale.DAY_2), # Monday
-        locale.nl_langinfo(locale.DAY_3), # Tuesday
-        locale.nl_langinfo(locale.DAY_4), # Wednesday
-        locale.nl_langinfo(locale.DAY_5), # Thursday
-        locale.nl_langinfo(locale.DAY_6), # Friday
-        locale.nl_langinfo(locale.DAY_7), # Saturday
-        )
+        locale.nl_langinfo(locale.DAY_1),  # Sunday
+        locale.nl_langinfo(locale.DAY_2),  # Monday
+        locale.nl_langinfo(locale.DAY_3),  # Tuesday
+        locale.nl_langinfo(locale.DAY_4),  # Wednesday
+        locale.nl_langinfo(locale.DAY_5),  # Thursday
+        locale.nl_langinfo(locale.DAY_6),  # Friday
+        locale.nl_langinfo(locale.DAY_7),  # Saturday
+    )
 
     _deprecated_short_days = (
         "",
-        locale.nl_langinfo(locale.ABDAY_1), # Sun
-        locale.nl_langinfo(locale.ABDAY_2), # Mon
-        locale.nl_langinfo(locale.ABDAY_3), # Tue
-        locale.nl_langinfo(locale.ABDAY_4), # Wed
-        locale.nl_langinfo(locale.ABDAY_5), # Thu
-        locale.nl_langinfo(locale.ABDAY_6), # Fri
-        locale.nl_langinfo(locale.ABDAY_7), # Sat
-        )
+        locale.nl_langinfo(locale.ABDAY_1),  # Sun
+        locale.nl_langinfo(locale.ABDAY_2),  # Mon
+        locale.nl_langinfo(locale.ABDAY_3),  # Tue
+        locale.nl_langinfo(locale.ABDAY_4),  # Wed
+        locale.nl_langinfo(locale.ABDAY_5),  # Thu
+        locale.nl_langinfo(locale.ABDAY_6),  # Fri
+        locale.nl_langinfo(locale.ABDAY_7),  # Sat
+    )
 
 except:
     import time
 
     _deprecated_long_months = (
         "",
-        time.strftime('%B',(1,1,1,1,1,1,1,1,1)),
-        time.strftime('%B',(1,2,1,1,1,1,1,1,1)),
-        time.strftime('%B',(1,3,1,1,1,1,1,1,1)),
-        time.strftime('%B',(1,4,1,1,1,1,1,1,1)),
-        time.strftime('%B',(1,5,1,1,1,1,1,1,1)),
-        time.strftime('%B',(1,6,1,1,1,1,1,1,1)),
-        time.strftime('%B',(1,7,1,1,1,1,1,1,1)),
-        time.strftime('%B',(1,8,1,1,1,1,1,1,1)),
-        time.strftime('%B',(1,9,1,1,1,1,1,1,1)),
-        time.strftime('%B',(1,10,1,1,1,1,1,1,1)),
-        time.strftime('%B',(1,11,1,1,1,1,1,1,1)),
-        time.strftime('%B',(1,12,1,1,1,1,1,1,1)),
-       )
+        time.strftime("%B", (1, 1, 1, 1, 1, 1, 1, 1, 1)),
+        time.strftime("%B", (1, 2, 1, 1, 1, 1, 1, 1, 1)),
+        time.strftime("%B", (1, 3, 1, 1, 1, 1, 1, 1, 1)),
+        time.strftime("%B", (1, 4, 1, 1, 1, 1, 1, 1, 1)),
+        time.strftime("%B", (1, 5, 1, 1, 1, 1, 1, 1, 1)),
+        time.strftime("%B", (1, 6, 1, 1, 1, 1, 1, 1, 1)),
+        time.strftime("%B", (1, 7, 1, 1, 1, 1, 1, 1, 1)),
+        time.strftime("%B", (1, 8, 1, 1, 1, 1, 1, 1, 1)),
+        time.strftime("%B", (1, 9, 1, 1, 1, 1, 1, 1, 1)),
+        time.strftime("%B", (1, 10, 1, 1, 1, 1, 1, 1, 1)),
+        time.strftime("%B", (1, 11, 1, 1, 1, 1, 1, 1, 1)),
+        time.strftime("%B", (1, 12, 1, 1, 1, 1, 1, 1, 1)),
+    )
 
     _deprecated_short_months = (
         "",
-        time.strftime('%b',(1,1,1,1,1,1,1,1,1)),
-        time.strftime('%b',(1,2,1,1,1,1,1,1,1)),
-        time.strftime('%b',(1,3,1,1,1,1,1,1,1)),
-        time.strftime('%b',(1,4,1,1,1,1,1,1,1)),
-        time.strftime('%b',(1,5,1,1,1,1,1,1,1)),
-        time.strftime('%b',(1,6,1,1,1,1,1,1,1)),
-        time.strftime('%b',(1,7,1,1,1,1,1,1,1)),
-        time.strftime('%b',(1,8,1,1,1,1,1,1,1)),
-        time.strftime('%b',(1,9,1,1,1,1,1,1,1)),
-        time.strftime('%b',(1,10,1,1,1,1,1,1,1)),
-        time.strftime('%b',(1,11,1,1,1,1,1,1,1)),
-        time.strftime('%b',(1,12,1,1,1,1,1,1,1)),
-       )
+        time.strftime("%b", (1, 1, 1, 1, 1, 1, 1, 1, 1)),
+        time.strftime("%b", (1, 2, 1, 1, 1, 1, 1, 1, 1)),
+        time.strftime("%b", (1, 3, 1, 1, 1, 1, 1, 1, 1)),
+        time.strftime("%b", (1, 4, 1, 1, 1, 1, 1, 1, 1)),
+        time.strftime("%b", (1, 5, 1, 1, 1, 1, 1, 1, 1)),
+        time.strftime("%b", (1, 6, 1, 1, 1, 1, 1, 1, 1)),
+        time.strftime("%b", (1, 7, 1, 1, 1, 1, 1, 1, 1)),
+        time.strftime("%b", (1, 8, 1, 1, 1, 1, 1, 1, 1)),
+        time.strftime("%b", (1, 9, 1, 1, 1, 1, 1, 1, 1)),
+        time.strftime("%b", (1, 10, 1, 1, 1, 1, 1, 1, 1)),
+        time.strftime("%b", (1, 11, 1, 1, 1, 1, 1, 1, 1)),
+        time.strftime("%b", (1, 12, 1, 1, 1, 1, 1, 1, 1)),
+    )
 
     # Gramps day number: Sunday => 1, Monday => 2, etc
     # strftime takes a (from the doc of standard Python library "time")
@@ -155,22 +154,22 @@ except:
     # just a dummy.
     _deprecated_long_days = (
         "",
-        time.strftime('%A',(1,1,1,1,1,1,6,1,1)), # Sunday
-        time.strftime('%A',(1,1,1,1,1,1,0,1,1)), # Monday
-        time.strftime('%A',(1,1,1,1,1,1,1,1,1)), # Tuesday
-        time.strftime('%A',(1,1,1,1,1,1,2,1,1)), # Wednesday
-        time.strftime('%A',(1,1,1,1,1,1,3,1,1)), # Thursday
-        time.strftime('%A',(1,1,1,1,1,1,4,1,1)), # Friday
-        time.strftime('%A',(1,1,1,1,1,1,5,1,1)), # Saturday
-        )
+        time.strftime("%A", (1, 1, 1, 1, 1, 1, 6, 1, 1)),  # Sunday
+        time.strftime("%A", (1, 1, 1, 1, 1, 1, 0, 1, 1)),  # Monday
+        time.strftime("%A", (1, 1, 1, 1, 1, 1, 1, 1, 1)),  # Tuesday
+        time.strftime("%A", (1, 1, 1, 1, 1, 1, 2, 1, 1)),  # Wednesday
+        time.strftime("%A", (1, 1, 1, 1, 1, 1, 3, 1, 1)),  # Thursday
+        time.strftime("%A", (1, 1, 1, 1, 1, 1, 4, 1, 1)),  # Friday
+        time.strftime("%A", (1, 1, 1, 1, 1, 1, 5, 1, 1)),  # Saturday
+    )
 
     _deprecated_short_days = (
         "",
-        time.strftime('%a',(1,1,1,1,1,1,6,1,1)), # Sun
-        time.strftime('%a',(1,1,1,1,1,1,0,1,1)), # Mon
-        time.strftime('%a',(1,1,1,1,1,1,1,1,1)), # Tue
-        time.strftime('%a',(1,1,1,1,1,1,2,1,1)), # Wed
-        time.strftime('%a',(1,1,1,1,1,1,3,1,1)), # Thu
-        time.strftime('%a',(1,1,1,1,1,1,4,1,1)), # Fri
-        time.strftime('%a',(1,1,1,1,1,1,5,1,1)), # Sat
-        )
+        time.strftime("%a", (1, 1, 1, 1, 1, 1, 6, 1, 1)),  # Sun
+        time.strftime("%a", (1, 1, 1, 1, 1, 1, 0, 1, 1)),  # Mon
+        time.strftime("%a", (1, 1, 1, 1, 1, 1, 1, 1, 1)),  # Tue
+        time.strftime("%a", (1, 1, 1, 1, 1, 1, 2, 1, 1)),  # Wed
+        time.strftime("%a", (1, 1, 1, 1, 1, 1, 3, 1, 1)),  # Thu
+        time.strftime("%a", (1, 1, 1, 1, 1, 1, 4, 1, 1)),  # Fri
+        time.strftime("%a", (1, 1, 1, 1, 1, 1, 5, 1, 1)),  # Sat
+    )

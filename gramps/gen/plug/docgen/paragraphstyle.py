@@ -22,42 +22,44 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .fontstyle import FontStyle
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # set up logging
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 log = logging.getLogger(".paragraphstyle")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Paragraph alignment
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 PARA_ALIGN_CENTER = 0
 PARA_ALIGN_LEFT = 1
 PARA_ALIGN_RIGHT = 2
 PARA_ALIGN_JUSTIFY = 3
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # ParagraphStyle
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class ParagraphStyle:
     """
     Defines the characteristics of a paragraph. The characteristics are:
@@ -66,6 +68,7 @@ class ParagraphStyle:
     bottom border, right border, left border, padding, and background color.
 
     """
+
     def __init__(self, source=None):
         """
         :param source: if not None, then the ParagraphStyle is created using the
@@ -118,10 +121,22 @@ class ParagraphStyle:
         """
         return self.description
 
-    def set(self, rmargin=None, lmargin=None, first_indent=None,
-            tmargin=None, bmargin=None, align=None,
-            tborder=None, bborder=None, rborder=None, lborder=None,
-            pad=None, bgcolor=None, font=None):
+    def set(
+        self,
+        rmargin=None,
+        lmargin=None,
+        first_indent=None,
+        tmargin=None,
+        bmargin=None,
+        align=None,
+        tborder=None,
+        bborder=None,
+        rborder=None,
+        lborder=None,
+        pad=None,
+        bgcolor=None,
+        font=None,
+    ):
         """
         Allows the values of the object to be set.
 

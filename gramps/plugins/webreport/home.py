@@ -39,21 +39,21 @@ Narrative Web Page generator.
 Classe:
     HomePage
 """
-#------------------------------------------------
+# ------------------------------------------------
 # python modules
-#------------------------------------------------
+# ------------------------------------------------
 from decimal import getcontext
 import logging
 
-#------------------------------------------------
+# ------------------------------------------------
 # Gramps module
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.plugins.lib.libhtml import Html
 
-#------------------------------------------------
+# ------------------------------------------------
 # specific narrative web import
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
 from gramps.plugins.webreport.common import FULLCLEAR
 
@@ -61,10 +61,12 @@ _ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb")
 getcontext().prec = 8
 
+
 class HomePage(BasePage):
     """
     This class is responsible for displaying information about the Home page.
     """
+
     def __init__(self, report, the_lang, the_title):
         """
         @param: report    -- The instance of the main report class for
@@ -76,18 +78,18 @@ class HomePage(BasePage):
         ldatec = 0
 
         output_file, sio = self.report.create_file("index")
-        result = self.write_header(self._('Home'))
+        result = self.write_header(self._("Home"))
         homepage, head, dummy_body, outerwrapper = result
 
         # begin home division
         with Html("div", class_="content", id="Home") as section:
             outerwrapper += section
 
-            homeimg = self.add_image('homeimg', head)
+            homeimg = self.add_image("homeimg", head)
             if homeimg is not None:
                 section += homeimg
 
-            note_id = report.options['homenote']
+            note_id = report.options["homenote"]
             ldatec = None
             if note_id:
                 note = self.r_db.get_note_from_gramps_id(note_id)

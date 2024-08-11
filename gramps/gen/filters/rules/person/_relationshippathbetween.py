@@ -18,36 +18,40 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # RelationshipPathBetween
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class RelationshipPathBetween(Rule):
     """Rule that checks for a person that is a descendant of a specified person
     not more than N generations away"""
 
-    labels = [ _('ID:'), _('ID:') ]
+    labels = [_("ID:"), _("ID:")]
     name = _("Relationship path between <persons>")
-    category = _('Relationship filters')
-    description = _("Matches the ancestors of two persons back "
-                    "to a common ancestor, producing the relationship "
-                    "path between two persons.")
+    category = _("Relationship filters")
+    description = _(
+        "Matches the ancestors of two persons back "
+        "to a common ancestor, producing the relationship "
+        "path between two persons."
+    )
 
     def prepare(self, db, user):
         self.db = db
@@ -88,8 +92,8 @@ class RelationshipPathBetween(Rule):
             return
         family = self.db.get_family_from_handle(fam_id)
         if family is not None:
-            self.apply_filter(rank+1, family.get_father_handle(), plist, pmap)
-            self.apply_filter(rank+1, family.get_mother_handle(), plist, pmap)
+            self.apply_filter(rank + 1, family.get_father_handle(), plist, pmap)
+            self.apply_filter(rank + 1, family.get_mother_handle(), plist, pmap)
 
     def apply(self, db, person):
         return person.handle in self.map
@@ -103,7 +107,7 @@ class RelationshipPathBetween(Rule):
         rank = 9999999
 
         self.apply_filter(0, p1_handle, firstList, firstMap)
-        self.apply_filter(0, p2_handle ,secondList, secondMap)
+        self.apply_filter(0, p2_handle, secondList, secondMap)
 
         for person_handle in firstList & secondList:
             new_rank = firstMap[person_handle]

@@ -19,16 +19,17 @@
 #
 from gramps.gen.plug._pluginreg import newplugin, STABLE, DATABASE
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
 plg = newplugin()
-plg.id = 'bsddb'
+plg.id = "bsddb"
 plg.name = _("BSDDB")
 plg.name_accell = _("_BSDDB Database")
 plg.description = _("Berkeley Software Distribution Database Backend")
-plg.version = '2.0'
-plg.gramps_target_version = "5.2"
+plg.version = "2.0"
+plg.gramps_target_version = "5.3"
 plg.status = STABLE
-plg.fname = 'bsddb.py'
+plg.fname = "bsddb.py"
 plg.ptype = DATABASE
-plg.databaseclass = 'DbBsddb'
+plg.databaseclass = "DbBsddb"

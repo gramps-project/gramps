@@ -26,38 +26,42 @@
 General option handling, including saving and parsing.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# Standard Python modules
+# Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import os
 import sys
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # SAX interface
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from xml.sax import make_parser, handler, SAXParseException
 from xml.sax.saxutils import quoteattr
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+from ..const import GRAMPS_LOCALE as glocale
+from ..plug import BasePluginManager
 from ..utils.cast import get_type_converter
 from .menu import Menu
-from ..plug import BasePluginManager
+
 PLUGMAN = BasePluginManager.get_instance()
-from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
-#-------------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------------
 #
 # List of options for a single module
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class OptionList:
     """
     Implements a set of options to parse and store for a given module.
@@ -116,11 +120,12 @@ class OptionList:
         """
         return self.options.get(name, None)
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Collection of option lists
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class OptionListCollection:
     """
     Implements a collection of option lists.
@@ -142,7 +147,9 @@ class OptionListCollection:
         self.parse()
 
     def init_common(self):
-        pass
+        """
+        Stub function for common initialization
+        """
 
     def get_option_list_map(self):
         """
@@ -189,66 +196,65 @@ class OptionListCollection:
         """
         Stub function for common options. Overridden by reports.
         """
-        pass
 
     def write_module_common(self, filename, option_list):
         """
         Stub function for common options. Overridden by reports.
         """
-        pass
 
     def save(self):
         """
         Saves the current OptionListCollection to the associated file.
         """
         with open(self.filename, "w", encoding="utf-8") as file:
-            file.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
-            file.write('<options>\n')
+            file.write('<?xml version="1.0" encoding="utf-8"?>\n')
+            file.write("<options>\n")
 
             self.write_common(file)
 
-            for module_name in sorted(self.get_module_names()): # enable a diff
+            for module_name in sorted(self.get_module_names()):  # enable a diff
                 option_list = self.get_option_list(module_name)
                 module_docgen_opts = {}
                 for docgen_name in self.docgen_names:
                     module_docgen_opts[docgen_name] = []
-                file.write('<module name=%s>\n' % quoteattr(module_name))
+                file.write(f"<module name={quoteattr(module_name)}>\n")
                 options = option_list.get_options()
-                for option_name in sorted(options.keys()): # enable a diff
+                for option_name in sorted(options.keys()):  # enable a diff
                     option_data = options[option_name]
                     if isinstance(option_data, (list, tuple)):
                         if option_data and option_data[0] in self.docgen_names:
                             module_docgen_opts[option_data[0]].append(
-                                (option_name, option_data[1]))
+                                (option_name, option_data[1])
+                            )
                         else:
-                            file.write('  <option name=%s '
-                                       'value="" length="%d">\n'
-                                       % (quoteattr(option_name),
-                                          len(option_data)))
+                            file.write(
+                                f"  <option name={quoteattr(option_name)} "
+                                f'value="" length="{len(option_data)}">\n'
+                            )
                             for list_index, list_data in enumerate(option_data):
-                                file.write('    <listitem '
-                                           'number="%d" value=%s/>\n'
-                                           % (list_index,
-                                              quoteattr(str(list_data))))
-                            file.write('  </option>\n')
+                                file.write(
+                                    f'    <listitem number="{list_index}" '
+                                    f"value={quoteattr(str(list_data))}/>\n"
+                                )
+                            file.write("  </option>\n")
                     else:
-                        file.write('  <option name=%s value=%s/>\n'
-                                   % (quoteattr(option_name),
-                                      quoteattr(str(option_data))))
+                        file.write(
+                            f"  <option name={quoteattr(option_name)} "
+                            f"value={quoteattr(str(option_data))}/>\n"
+                        )
                 for docgen_name in self.docgen_names:
                     if module_docgen_opts[docgen_name]:
-                        for idx, data in enumerate(
-                                module_docgen_opts[docgen_name]):
-                            file.write('  <docgen-option docgen=%s '
-                                       'name=%s value=%s/>\n'
-                                       % (quoteattr(docgen_name),
-                                          quoteattr(data[0]),
-                                          quoteattr(str(data[1]))))
+                        for data in module_docgen_opts[docgen_name]:
+                            file.write(
+                                f"  <docgen-option docgen={quoteattr(docgen_name)} "
+                                f"name={quoteattr(data[0])} "
+                                f"value={quoteattr(str(data[1]))}/>\n"
+                            )
                 self.write_module_common(file, option_list)
 
-                file.write('</module>\n')
+                file.write("</module>\n")
 
-            file.write('</options>\n')
+            file.write("</options>\n")
 
     def parse(self):
         """
@@ -262,11 +268,12 @@ class OptionListCollection:
         except (IOError, OSError, SAXParseException):
             pass
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # OptionParser
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class OptionParser(handler.ContentHandler):
     """
     SAX parsing class for the OptionListCollection XML file.
@@ -288,36 +295,39 @@ class OptionParser(handler.ContentHandler):
         self.an_o = None
         self.list_class = OptionList
 
-    def startElement(self, tag, attrs):
+    def startElement(self, name, attrs):
         """
         Overridden class that handles the start of a XML element
         """
+        tag = name
         if tag in ("report", "module"):
-            self.mname = attrs['name']
+            self.mname = attrs["name"]
             self.option_list = self.list_class()
             self.odict = {}
         elif tag == "option":
-            self.oname = attrs['name']
-            if 'length' in attrs:
+            self.oname = attrs["name"]
+            if "length" in attrs:
                 self.an_o = []
             else:
-                self.an_o = attrs['value']
+                self.an_o = attrs["value"]
         elif tag == "listitem":
-            self.an_o.append(attrs['value'])
+            self.an_o.append(attrs["value"])
 
-    def endElement(self, tag):
+    def endElement(self, name):
         "Overridden class that handles the end of a XML element"
+        tag = name
         if tag == "option":
             self.odict[self.oname] = self.an_o
         elif tag in ("report", "module"):
             self.option_list.set_options(self.odict)
             self.collection.set_option_list(self.mname, self.option_list)
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Class handling options for plugins
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class OptionHandler:
     """
     Implements handling of the options for the plugins.
@@ -333,7 +343,8 @@ class OptionHandler:
         self.option_list_collection = self.collection_class(self.filename)
         self.init_common()
         self.saved_option_list = self.option_list_collection.get_option_list(
-            module_name)
+            module_name
+        )
         self.person_id = person_id
 
         # Whatever was found should override the defaults
@@ -342,16 +353,22 @@ class OptionHandler:
         else:
             # If nothing was found, set up the option list
             self.saved_option_list = self.list_class()
-            self.option_list_collection.set_option_list(module_name,
-                                                        self.saved_option_list)
+            self.option_list_collection.set_option_list(
+                module_name, self.saved_option_list
+            )
 
     def init_subclass(self):
+        """
+        Initialize option subclasses
+        """
         self.collection_class = OptionListCollection
         self.list_class = OptionList
         self.filename = None
 
     def init_common(self):
-        pass
+        """
+        Stub method to initialize common options, for derived classes
+        """
 
     def set_options(self):
         """
@@ -380,21 +397,31 @@ class OptionHandler:
         docgen_names = self.option_list_collection.docgen_names
         for option_name in bad_opts:
             option_data = options[option_name]
-            if not (isinstance(option_data, list)
-                    and option_data
-                    and option_data[0] in docgen_names):
-                print(_("Option '%(opt_name)s' is present in %(file)s\n"
+            if not (
+                isinstance(option_data, list)
+                and option_data
+                and option_data[0] in docgen_names
+            ):
+                print(
+                    _(
+                        "Option '%(opt_name)s' is present in %(file)s\n"
                         "  but is not known to the module.  Ignoring..."
-                       ) % {'opt_name' : option_name,
-                            'file'     : self.option_list_collection.filename},
-                      file=sys.stderr)
+                    )
+                    % {
+                        "opt_name": option_name,
+                        "file": self.option_list_collection.filename,
+                    },
+                    file=sys.stderr,
+                )
             options.pop(option_name)
 
         # Then we set common options from whatever was found
         self.set_common_options()
 
     def set_common_options(self):
-        pass
+        """
+        Stub method to set common options, for derived classes
+        """
 
     def save_options(self):
         """
@@ -410,7 +437,8 @@ class OptionHandler:
                 self.saved_option_list.remove_option(option_name)
             else:
                 self.saved_option_list.set_option(
-                    option_name, self.options_dict[option_name])
+                    option_name, self.options_dict[option_name]
+                )
 
         # Handle common options
         self.save_common_options()
@@ -419,21 +447,29 @@ class OptionHandler:
         self.option_list_collection.save()
 
     def save_common_options(self):
-        pass
+        """
+        Stub method to save common options, for derived classes
+        """
 
     def get_person_id(self):
+        """
+        Return the person id
+        """
         return self.person_id
 
     def set_person_id(self, val):
+        """
+        Set the person id
+        """
         self.person_id = val
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # Base Options class
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class Options:
-
     """
     Defines options and provides handling interface.
 
@@ -476,8 +512,7 @@ class Options:
         Modifies all options to have the value they were last used as.
         Call this function after all options have been added.
         """
-        self.handler = OptionHandler(
-            self.name, self.options_dict, self.person_id)
+        self.handler = OptionHandler(self.name, self.options_dict, self.person_id)
 
     def add_user_options(self):
         """
@@ -489,7 +524,6 @@ class Options:
                   set up here must be also parsed in the
                   :meth:`parse_user_options` method below.
         """
-        pass
 
     def parse_user_options(self):
         """
@@ -504,13 +538,13 @@ class Options:
         .. note:: Any widget parsed here MUST be defined and added to the dialog
                   in the :meth:`add_user_options` method above.
         """
-        pass
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # MenuOptions class
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class MenuOptions:
     """
     **Introduction**
@@ -518,6 +552,7 @@ class MenuOptions:
     A MenuOptions is used to implement the necessary functions for adding
     options to a menu.
     """
+
     def __init__(self):
         self.menu = Menu()
 
@@ -534,7 +569,6 @@ class MenuOptions:
         """
         This function is currently required by some reports.
         """
-        pass
 
     def add_menu_options(self, menu):
         """

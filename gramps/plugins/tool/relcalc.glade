@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.3 -->
+<!-- Generated with glade 3.40.0 -->
 <interface>
-  <requires lib="gtk+" version="3.10"/>
+  <requires lib="gtk+" version="3.24"/>
   <object class="GtkDialog" id="relcalc">
-    <property name="can_focus">False</property>
-    <property name="type_hint">dialog</property>
+    <property name="can-focus">False</property>
+    <property name="type-hint">dialog</property>
     <signal name="delete-event" handler="on_delete_event" swapped="no"/>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox2">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <property name="spacing">8</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="dialog-action_area2">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="button5">
                 <property name="label">gtk-close</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">False</property>
+                <property name="use-stock">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -37,9 +37,9 @@
               <object class="GtkButton" id="help_btn">
                 <property name="label">gtk-help</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-stock">True</property>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -52,23 +52,23 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="pack_type">end</property>
+            <property name="pack-type">end</property>
             <property name="position">0</property>
           </packing>
         </child>
         <child>
           <object class="GtkBox" id="vbox1">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="border_width">6</property>
+            <property name="can-focus">False</property>
+            <property name="border-width">6</property>
             <property name="orientation">vertical</property>
             <property name="spacing">6</property>
             <child>
               <object class="GtkLabel" id="title">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_top">6</property>
-                <property name="margin_bottom">6</property>
+                <property name="can-focus">False</property>
+                <property name="margin-top">6</property>
+                <property name="margin-bottom">6</property>
                 <property name="justify">center</property>
               </object>
               <packing>
@@ -81,13 +81,13 @@
             <child>
               <object class="GtkScrolledWindow" id="scrolledwindow3">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="shadow_type">in</property>
+                <property name="can-focus">True</property>
+                <property name="shadow-type">in</property>
                 <child>
                   <object class="GtkTreeView" id="peopleList">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes">Select a person to determine the relationship</property>
+                    <property name="can-focus">True</property>
+                    <property name="tooltip-text" translatable="yes">Select a person to determine the relationship</property>
                     <child internal-child="selection">
                       <object class="GtkTreeSelection" id="treeview-selection1"/>
                     </child>
@@ -103,16 +103,16 @@
             <child>
               <object class="GtkScrolledWindow" id="scrolledwindow2">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="shadow_type">in</property>
-                <property name="min_content_height">75</property>
+                <property name="can-focus">False</property>
+                <property name="shadow-type">in</property>
+                <property name="min-content-height">75</property>
                 <child>
                   <object class="GtkTextView" id="text1">
-                    <property name="height_request">75</property>
+                    <property name="height-request">75</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
+                    <property name="can-focus">True</property>
                     <property name="editable">False</property>
-                    <property name="wrap_mode">word</property>
+                    <property name="wrap-mode">word</property>
                   </object>
                 </child>
               </object>

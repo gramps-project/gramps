@@ -23,28 +23,30 @@
 Image manipulation routines.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import os
 import sys
 import tempfile
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
+
 
 def crop_percentage_to_subpixel(width, height, crop):
     """
@@ -52,19 +54,22 @@ def crop_percentage_to_subpixel(width, height, crop):
     pixels, given image width and height. No rounding to pixel resolution.
     """
     return (
-        crop[0]/100.0*width,
-        crop[1]/100.0*height,
-        crop[2]/100.0*width,
-        crop[3]/100.0*height )
+        crop[0] / 100.0 * width,
+        crop[1] / 100.0 * height,
+        crop[2] / 100.0 * width,
+        crop[3] / 100.0 * height,
+    )
+
 
 def crop_percentage_to_pixel(width, height, crop):
-    return map (int, crop_percentage_to_subpixel(width, height, crop))
+    return map(int, crop_percentage_to_subpixel(width, height, crop))
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # resize_to_jpeg
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def resize_to_jpeg(source, destination, width, height, crop=None):
     """
     Create the destination, derived from the source, resizing it to the
@@ -86,26 +91,30 @@ def resize_to_jpeg(source, destination, width, height, crop=None):
     img = GdkPixbuf.Pixbuf.new_from_file(source)
 
     if crop:
-        (start_x, start_y, end_x, end_y
-                ) = crop_percentage_to_pixel(
-                        img.get_width(), img.get_height(), crop)
-        if end_x-start_x > 0 and end_y-start_y > 0:
-            img = img.new_subpixbuf(start_x, start_y,
-                                    end_x-start_x, end_y-start_y)
+        (start_x, start_y, end_x, end_y) = crop_percentage_to_pixel(
+            img.get_width(), img.get_height(), crop
+        )
+        if end_x - start_x > 0 and end_y - start_y > 0:
+            img = img.new_subpixbuf(start_x, start_y, end_x - start_x, end_y - start_y)
 
     # Need to keep the ratio intact, otherwise scaled images look stretched
     # if the dimensions aren't close in size
-    (width, height) = image_actual_size(width, height, img.get_width(), img.get_height())
+    (width, height) = image_actual_size(
+        width, height, img.get_width(), img.get_height()
+    )
 
     scaled = img.scale_simple(int(width), int(height), GdkPixbuf.InterpType.BILINEAR)
     scaled.savev(destination, "jpeg", "", "")
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # image_dpi
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 MM_PER_INCH = 25.4
+
+
 def image_dpi(source):
     """
     Return the dpi found in the image header. Use a sensible
@@ -120,8 +129,13 @@ def image_dpi(source):
         import PIL.Image
     except ImportError:
         import logging
-        logging.warning(_("WARNING: PIL module not loaded.  "
-                "Image cropping in report files will be impaired."))
+
+        logging.warning(
+            _(
+                "WARNING: PIL module not loaded.  "
+                "Image cropping in report files will be impaired."
+            )
+        )
     else:
         try:
             img = PIL.Image.open(source)
@@ -135,22 +149,26 @@ def image_dpi(source):
                 pass
     try:
         from gi.repository import Gdk
-        s = Gdk.Display.get_default().get_default_screen()
+
+        mon = Gdk.Display.get_default().get_primary_monitor()
+        mon_geom = mon.get_geometry()
+        scale = mon.get_scale_factor() * MM_PER_INCH
         dpi = (
-            s.get_width() * MM_PER_INCH / s.get_width_mm(),
-            s.get_height() * MM_PER_INCH / s.get_height_mm()
-            )
+            mon_geom.width * scale / mon.get_width_mm(),
+            mon_geom.height * scale / mon.get_height_mm(),
+        )
     except:
-        dpi = (96.0,96.0) #LibOO 3.6 assumes this if image contains no DPI info
+        dpi = (96.0, 96.0)  # LibOO 3.6 assumes this if image contains no DPI info
         # This isn't safe even within a single platform (Windows), but we
         # can't do better if all of the above failed. See bug# 7290.
     return dpi
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # image_size
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def image_size(source):
     """
     Return the width and size of the specified image.
@@ -162,31 +180,15 @@ def image_size(source):
     """
     from gi.repository import GdkPixbuf
     from gi.repository import GLib
+
     try:
-        import re
-        import magic
-        # For performance reasons, we'll try to get image size from magic.
-        # This avoid to load the image in memory. This is a real improvement
-        # when we have many big images.
-        # Used in odfdoc, rtfdoc and webreport and tested with png, gif, jpeg,
-        # bmp, tiff
-        #
-        #            file size     with magic  without (Gdk)   ratio
-        # example 1 :     256k        0.00080        0.00575       7
-        # example 2 :      21M        0.00171        0.55860     326
-        img = magic.from_file(source)
-        found = img.find("TIFF")
-        if found == 0:
-            width = re.search('width=(\d+)', img).groups()
-            height = re.search('height=(\d+)', img).groups()
-            return (int(width[0]), int(height[0]))
-        found = img.find("precision")
-        if found > 0:
-            img = img[found:]
-        size = re.search('(\d+)\s*x\s*(\d+)', img).groups()
-        return (int(size[0]), int(size[1]))
-    except (ImportError, FileNotFoundError):
-        # python-magic is not installed or the file does not exist.
+        # For performance reasons, we'll try to get image size from imagesize.
+        import imagesize
+
+        return imagesize.get(source)
+    except (ImportError, FileNotFoundError, ValueError):
+        # python-imagesize is not installed, the file does not exist, or
+        # the size cannot be determined by imagesize.
         # So Trying to get image size with Gdk.
         try:
             img = GdkPixbuf.Pixbuf.new_from_file(source)
@@ -197,11 +199,12 @@ def image_size(source):
             height = 0
         return (width, height)
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # image_actual_size
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def image_actual_size(x_cm, y_cm, x, y):
     """
     Calculate what the actual width & height of the image should be.
@@ -218,22 +221,23 @@ def image_actual_size(x_cm, y_cm, x, y):
     :returns: a tuple consisting of the width and height in centimeters
     """
 
-    ratio = float(x_cm)*float(y)/(float(y_cm)*float(x))
+    ratio = float(x_cm) * float(y) / (float(y_cm) * float(x))
 
     if ratio < 1:
         act_width = x_cm
-        act_height = y_cm*ratio
+        act_height = y_cm * ratio
     else:
         act_height = y_cm
-        act_width = x_cm/ratio
+        act_width = x_cm / ratio
 
     return (act_width, act_height)
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # resize_to_buffer
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def resize_to_buffer(source, size, crop=None):
     """
     Loads the image and resizes it. Instead of saving the file, the data
@@ -249,29 +253,32 @@ def resize_to_buffer(source, size, crop=None):
     :returns: raw data
     """
     from gi.repository import GdkPixbuf
+
     img = GdkPixbuf.Pixbuf.new_from_file(source)
 
     if crop:
-        (start_x, start_y, end_x, end_y
-                ) = crop_percentage_to_pixel(
-                        img.get_width(), img.get_height(), crop)
-        if end_x-start_x > 0 and end_y-start_y > 0:
-            img = img.new_subpixbuf(start_x, start_y,
-                                    end_x-start_x, end_y-start_y)
+        (start_x, start_y, end_x, end_y) = crop_percentage_to_pixel(
+            img.get_width(), img.get_height(), crop
+        )
+        if end_x - start_x > 0 and end_y - start_y > 0:
+            img = img.new_subpixbuf(start_x, start_y, end_x - start_x, end_y - start_y)
 
     # Need to keep the ratio intact, otherwise scaled images look stretched
     # if the dimensions aren't close in size
-    (size[0], size[1]) = image_actual_size(size[0], size[1], img.get_width(), img.get_height())
+    (size[0], size[1]) = image_actual_size(
+        size[0], size[1], img.get_width(), img.get_height()
+    )
 
     scaled = img.scale_simple(int(size[0]), int(size[1]), GdkPixbuf.InterpType.BILINEAR)
 
     return scaled
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # resize_to_jpeg_buffer
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def resize_to_jpeg_buffer(source, size, crop=None):
     """
     Loads the image, converting the file to JPEG, and resizing it. Instead of
@@ -287,25 +294,27 @@ def resize_to_jpeg_buffer(source, size, crop=None):
     :returns: jpeg image as raw data
     """
     from gi.repository import GdkPixbuf
+
     filed, dest = tempfile.mkstemp()
     img = GdkPixbuf.Pixbuf.new_from_file(source)
 
     if crop:
-        (start_x, start_y, end_x, end_y
-                ) = crop_percentage_to_pixel(
-                        img.get_width(), img.get_height(), crop)
-        if end_x-start_x > 0 and end_y-start_y > 0:
-            img = img.new_subpixbuf(start_x, start_y,
-                                    end_x-start_x, end_y-start_y)
+        (start_x, start_y, end_x, end_y) = crop_percentage_to_pixel(
+            img.get_width(), img.get_height(), crop
+        )
+        if end_x - start_x > 0 and end_y - start_y > 0:
+            img = img.new_subpixbuf(start_x, start_y, end_x - start_x, end_y - start_y)
 
     # Need to keep the ratio intact, otherwise scaled images look stretched
     # if the dimensions aren't close in size
-    (size[0], size[1]) = image_actual_size(size[0], size[1], img.get_width(), img.get_height())
+    (size[0], size[1]) = image_actual_size(
+        size[0], size[1], img.get_width(), img.get_height()
+    )
 
     scaled = img.scale_simple(int(size[0]), int(size[1]), GdkPixbuf.InterpType.BILINEAR)
     os.close(filed)
     scaled.savev(dest, "jpeg", "", "")
-    with open(dest, mode='rb') as ofile:
+    with open(dest, mode="rb") as ofile:
         data = ofile.read()
     try:
         os.unlink(dest)

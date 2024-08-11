@@ -22,22 +22,24 @@
 DashboardView interface.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gui.views.pageview import PageView
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gramps.gui.widgets.grampletpane import GrampletPane
+
 
 class DashboardView(PageView):
     """
@@ -48,7 +50,7 @@ class DashboardView(PageView):
         """
         Create a DashboardView, with the current dbstate and uistate
         """
-        PageView.__init__(self, _('Dashboard'), pdata, dbstate, uistate)
+        PageView.__init__(self, _("Dashboard"), pdata, dbstate, uistate)
         self.ui_def = []  # No special menu for Dashboard, Popup in GrampletPane
 
     def build_interface(self):
@@ -66,8 +68,9 @@ class DashboardView(PageView):
         the base class. Returns a gtk container widget.
         """
         # load the user's gramplets and set columns, etc
-        self.widget = GrampletPane("Gramplets_dashboardview_gramplets", self,
-                            self.dbstate, self.uistate)
+        self.widget = GrampletPane(
+            "Gramplets_dashboardview_gramplets", self, self.dbstate, self.uistate
+        )
         return self.widget
 
     def build_tree(self):
@@ -80,19 +83,18 @@ class DashboardView(PageView):
         """
         Used to set the titlebar in the configuration window.
         """
-        return _('Dashboard')
+        return _("Dashboard")
 
     def get_stock(self):
         """
         Return image associated with the view, which is used for the
         icon for the button.
         """
-        return 'gramps-gramplet'
+        return "gramps-gramplet"
 
     def get_viewtype_stock(self):
-        """Type of view in category
-        """
-        return 'gramps-gramplet'
+        """Type of view in category"""
+        return "gramps-gramplet"
 
     def define_actions(self):
         """
@@ -107,8 +109,10 @@ class DashboardView(PageView):
         self.widget.set_inactive()
 
     def set_active(self):
-        new_title = "%s - %s - Gramps" % (self.dbstate.db.get_dbname(),
-                                          self.get_title())
+        new_title = "%s - %s - Gramps" % (
+            self.dbstate.db.get_dbname(),
+            self.get_title(),
+        )
         self.uistate.window.set_title(new_title)
         self.active = True
         self.widget.set_active()

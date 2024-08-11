@@ -33,20 +33,21 @@ from ..gen.const import GRAMPS_LOCALE as glocale
 from ..gen.config import config
 
 
-LOG = logging.getLogger('gui.uimanager')
+LOG = logging.getLogger("gui.uimanager")
 
 
 ACTION_NAME = 0  # tuple index for action name
-ACTION_CB = 1    # tuple index for action callback
-ACTION_ACC = 2   # tuple index for action accelerator
-ACTION_ST = 3    # tuple index for action state
+ACTION_CB = 1  # tuple index for action callback
+ACTION_ACC = 2  # tuple index for action accelerator
+ACTION_ST = 3  # tuple index for action state
 
 
-class ActionGroup():
-    """ This class represents a group of actions that con be manipulated
+class ActionGroup:
+    """This class represents a group of actions that con be manipulated
     together.
     """
-    def __init__(self, name, actionlist=None, prefix='win'):
+
+    def __init__(self, name, actionlist=None, prefix="win"):
         """
         @param name: the action group name, used to match to the 'groups'
                      attribute in the ui xml.
@@ -69,19 +70,19 @@ class ActionGroup():
         """
         self.name = name
         self.actionlist = actionlist if actionlist else []
-        self.prefix = prefix + '.'
+        self.prefix = prefix + "."
         self.act_group = None
         self.sensitive = True
 
     def add_actions(self, actionlist):
-        """  Add a list of actions to the current list
+        """Add a list of actions to the current list
         @type actionlist: list
         @param actionlist: the list of actions to add
         """
         self.actionlist.extend(actionlist)
 
 
-class UIManager():
+class UIManager:
     """
     This is Gramps UIManager, it is designed to replace the deprecated Gtk
     UIManager.  The replacement is not exact, but performs similar
@@ -139,7 +140,7 @@ class UIManager():
         self.accel_dict = {}  # used to store accel overrides from file
 
     def update_menu(self, init=False):
-        """ This updates the menus and toolbar when there is a change in the
+        """This updates the menus and toolbar when there is a change in the
         ui; any addition or removal or set_visible operation needs to call
         this.  It is best to make the call only once, at the end, if multiple
         changes are to be made.
@@ -153,7 +154,7 @@ class UIManager():
         """
 
         def iterator(parents):
-            """ This recursively goes through the ET xml and deals with the
+            """This recursively goes through the ET xml and deals with the
             'groups' attribute and <placeholder> tags, which are not valid for
             builder.  Empty submenus are also removed.
             Groups processing removes elements that are not shown, as well as
@@ -170,25 +171,33 @@ class UIManager():
                 if len(child) >= 1:
                     # Recurse until we have a stand-alone child
                     iterator(child)
-                if((len(child) == 1 and child.tag == "submenu") or
-                   (len(child) == 0 and child.tag == "section")):
+                if (len(child) == 1 and child.tag == "submenu") or (
+                    len(child) == 0 and child.tag == "section"
+                ):
                     # remove empty submenus and sections
-                    LOG.debug(('del', child.tag, child.attrib))
+                    LOG.debug(("del", child.tag, child.attrib))
                     del parents[indx]
                     continue
                 LOG.debug((child.attrib))
-                groups = child.get('groups')
+                groups = child.get("groups")
                 if not groups:
                     indx += 1
                     continue
-                del child.attrib['groups']
-                for group in groups.split(' '):
+                del child.attrib["groups"]
+                for group in groups.split(" "):
                     if group in self.show_groups:
                         indx += 1
                         break
                     else:
-                        LOG.debug(('del', child.tag, child.attrib, parents.tag,
-                                parents.attrib))
+                        LOG.debug(
+                            (
+                                "del",
+                                child.tag,
+                                child.attrib,
+                                parents.tag,
+                                parents.attrib,
+                            )
+                        )
                         del parents[indx]
                         break
             # The following looks for 'placeholder' elements and if found,
@@ -198,8 +207,15 @@ class UIManager():
             while indx < len(parents):
                 if parents[indx].tag == "placeholder":
                     subtree = parents[indx]
-                    LOG.debug(('placholder del', parents[indx].tag,
-                            parents[indx].attrib, parents.tag, parents.attrib))
+                    LOG.debug(
+                        (
+                            "placholder del",
+                            parents[indx].tag,
+                            parents[indx].attrib,
+                            parents.tag,
+                            parents.attrib,
+                        )
+                    )
                     del parents[indx]
                     for child in subtree:
                         parents.insert(indx, child)
@@ -213,17 +229,18 @@ class UIManager():
         # need to copy the tree so we can preserve original for later edits.
         editable = copy.deepcopy(self.et_xml)
         iterator(editable)  # clean up tree to builder specifications
+        del iterator  # Needed for garbage collection
         # The following should work, but seems to have a Gtk bug
         # xml_str = ET.tostring(editable, encoding="unicode")
 
-        xml_str = ET.tostring(editable).decode(encoding='ascii')
+        xml_str = ET.tostring(editable).decode(encoding="ascii")
 
         # debugging
         # with open('try.xml', 'w', encoding='utf8') as file:
         #     file.write(xml_str)
         # with open('try.xml', encoding='utf8') as file:
         #     xml_str = file.read()
-        #LOG.info(xml_str)
+        # LOG.info(xml_str)
         self.builder = Gtk.Builder()
         self.builder.set_translation_domain(glocale.get_localedomain())
         self.builder.add_from_string(xml_str)
@@ -236,7 +253,7 @@ class UIManager():
         # ApplicationWindow creation, further uses do NOT cause the menus to
         # update.
         self.app.menubar.remove_all()
-        section = self.builder.get_object('menubar-update')
+        section = self.builder.get_object("menubar-update")
         self.app.menubar.append_section(None, section)
 
         # the following updates the toolbar from the new builder
@@ -244,17 +261,17 @@ class UIManager():
         tb_show = toolbar.get_visible()
         toolbar_parent.remove(toolbar)
         toolbar = self.builder.get_object("ToolBar")  # new toolbar
-        if config.get('interface.toolbar-text'):
+        if config.get("interface.toolbar-text"):
             toolbar.set_style(Gtk.ToolbarStyle.BOTH)
         toolbar_parent.pack_start(toolbar, False, True, 0)
         if tb_show:
             toolbar.show_all()
         else:
             toolbar.hide()
-        LOG.info('*** Update ui')
+        LOG.info("*** Update ui")
 
     def add_ui_from_string(self, changexml):
-        """ This performs a merge operation on the xml elements that have
+        """This performs a merge operation on the xml elements that have
         matching 'id's between the current ui xml and change xml strings.
         The 'changexml' is a list of xml fragment strings used to replace
         matching elements in the current xml.
@@ -270,32 +287,32 @@ class UIManager():
                     # allow an xml fragment to be an empty string
                     continue
                 update = ET.fromstring(xml)
-                el_id = update.attrib['id']
+                el_id = update.attrib["id"]
                 # find the parent of the id'd element in original xml
                 parent = self.et_xml.find(".//*[@id='%s'].." % el_id)
                 if parent:
                     # we found it, now delete original, inset updated
                     for indx in range(len(parent)):
-                        if parent[indx].get('id') == el_id:
+                        if parent[indx].get("id") == el_id:
                             del parent[indx]
                             parent.insert(indx, update)
                 else:
                     # updated item not present in original, just add it
                     # This allow addition of popups etc.
                     self.et_xml.append(update)
-            #results = ET.tostring(self.et_xml, encoding="unicode")
-            #LOG.info(results)
-            LOG.info('*** Add ui')
+            # results = ET.tostring(self.et_xml, encoding="unicode")
+            # LOG.info(results)
+            LOG.info("*** Add ui")
             return changexml
         except:
             # the following is only here to assist debug
-            LOG.debug('*****', sys.exc_info())
+            LOG.debug("*****", sys.exc_info())
             LOG.debug(xml)
             LOG.debug(changexml)
             assert False
 
     def remove_ui(self, change_xml):
-        """ This removes the 'change_xml' from the current ui xml.  It works on
+        """This removes the 'change_xml' from the current ui xml.  It works on
         any element with matching 'id', the actual element remains but any
         children are removed.
         The 'change_xml' is a list of xml strings originally used to replace
@@ -303,26 +320,26 @@ class UIManager():
         @param change_xml: list of xml fragments to remove from main
         @type change_xml: list
         """
-#         if not change_xml:
-#             import pydevd
-#             pydevd.settrace()
+        #         if not change_xml:
+        #             import pydevd
+        #             pydevd.settrace()
         for xml in change_xml:
             if not xml:
                 continue
             update = ET.fromstring(xml)
-            el_id = update.attrib['id']
+            el_id = update.attrib["id"]
             # find parent of id'd element
             element = self.et_xml.find(".//*[@id='%s']" % el_id)
             if element:  # element may have already been deleted
                 for dummy in range(len(element)):
                     del element[0]
-        #results = ET.tostring(self.et_xml, encoding="unicode")
-        #LOG.info(results)
-        LOG.info('*** Remove ui')
+        # results = ET.tostring(self.et_xml, encoding="unicode")
+        # LOG.info(results)
+        LOG.info("*** Remove ui")
         return
 
     def get_widget(self, obj):
-        """ Get the object from the builder.
+        """Get the object from the builder.
         @param obj: the widget to get
         @type obj: string
         @return: the object
@@ -365,12 +382,13 @@ class UIManager():
                 window_group = group.act_group = self.app.window
             for item in group.actionlist:
                 if not Gio.action_name_is_valid(item[ACTION_NAME]):
-                    LOG.warning('**Invalid action name %s', item[ACTION_NAME])
+                    LOG.warning("**Invalid action name %s", item[ACTION_NAME])
                 # deal with accelerator overrides from a file
                 accel = self.accel_dict.get(group.prefix + item[ACTION_NAME])
                 if accel:
                     self.app.set_accels_for_action(
-                        group.prefix + item[ACTION_NAME], [accel])
+                        group.prefix + item[ACTION_NAME], [accel]
+                    )
                 elif len(item) > 2 and item[ACTION_ACC]:
                     # deal with accelerators defined in the group
                     accels = self.app.get_actions_for_accel(item[ACTION_ACC])
@@ -382,10 +400,12 @@ class UIManager():
                         # different prefix is used for different windows.
                         for accel in accels:
                             if group.prefix in accel:
-                                LOG.warning('**Duplicate Accelerator %s',
-                                            item[ACTION_ACC])
+                                LOG.warning(
+                                    "**Duplicate Accelerator %s", item[ACTION_ACC]
+                                )
                     self.app.set_accels_for_action(
-                        group.prefix + item[ACTION_NAME], [item[ACTION_ACC]])
+                        group.prefix + item[ACTION_NAME], [item[ACTION_ACC]]
+                    )
                 if len(item) <= 3:
                     # Normal stateless actions
                     action = Gio.SimpleAction.new(item[ACTION_NAME], None)
@@ -394,14 +414,18 @@ class UIManager():
                 elif isinstance(item[ACTION_ST], str):
                     # Radio Actions
                     action = Gio.SimpleAction.new_stateful(
-                        item[ACTION_NAME], GLib.VariantType.new("s"),
-                        GLib.Variant("s", item[ACTION_ST]))
+                        item[ACTION_NAME],
+                        GLib.VariantType.new("s"),
+                        GLib.Variant("s", item[ACTION_ST]),
+                    )
                     action.connect("change-state", item[ACTION_CB])
                 elif isinstance(item[ACTION_ST], bool):
                     # Checkbox actions
                     action = Gio.SimpleAction.new_stateful(
-                        item[ACTION_NAME], None,
-                        GLib.Variant.new_boolean(item[ACTION_ST]))
+                        item[ACTION_NAME],
+                        None,
+                        GLib.Variant.new_boolean(item[ACTION_ST]),
+                    )
                     action.connect("change-state", item[ACTION_CB])
                 window_group.add_action(action)
             self.action_groups.append(group)
@@ -415,7 +439,7 @@ class UIManager():
             assert False
 
     def remove_action_group(self, group):
-        """ This removes the ActionGroup from the UIManager
+        """This removes the ActionGroup from the UIManager
 
         @param group: the action group
         @type group: ActionGroup
@@ -426,18 +450,17 @@ class UIManager():
             window_group = self.app.window
         for item in group.actionlist:
             window_group.remove_action(item[ACTION_NAME])
-            self.app.set_accels_for_action(group.prefix + item[ACTION_NAME],
-                                           [])
+            self.app.set_accels_for_action(group.prefix + item[ACTION_NAME], [])
         self.action_groups.remove(group)
 
     def get_action_groups(self):
-        """ This returns a list of action Groups installed into the UIManager.
+        """This returns a list of action Groups installed into the UIManager.
         @return: list of groups
         """
         return self.action_groups
 
     def set_actions_sensitive(self, group, value):
-        """ This sets an ActionGroup enabled or disabled.  A disabled action
+        """This sets an ActionGroup enabled or disabled.  A disabled action
         will be greyed out in the UI.
 
         @param group: the action group
@@ -455,7 +478,7 @@ class UIManager():
         group.sensitive = value
 
     def get_actions_sensitive(self, group):
-        """ This gets an ActionGroup sensitive setting.  A disabled action
+        """This gets an ActionGroup sensitive setting.  A disabled action
         will be greyed out in the UI.
         We assume that the first action represents the group.
 
@@ -468,7 +491,7 @@ class UIManager():
         return action.get_enabled()
 
     def set_actions_visible(self, group, value):
-        """ This sets an ActionGroup visible and enabled or invisible and
+        """This sets an ActionGroup visible and enabled or invisible and
         disabled.  Make sure that the menuitems or sections and toolbar items
         have the 'groups=' xml attribute matching the group name for this to
         work correctly.
@@ -487,7 +510,7 @@ class UIManager():
                 self.show_groups.remove(group.name)
 
     def get_action(self, group, actionname):
-        """ Return a single action from the group.
+        """Return a single action from the group.
         @param group: the action group
         @type group: ActionGroup
         @param actionname: the action name
@@ -507,25 +530,30 @@ class UIManager():
                         action.set_enabled(group.sensitive if state else False)
 
     def dump_all_accels(self):
-        ''' A function used diagnostically to see what accels are present.
+        """A function used diagnostically to see what accels are present.
         This will only dump the current accel set, if other non-open windows
         or views have accels, you will need to open them and run this again
         and manually merge the result files.  The results are in a
-        'gramps.accel' file located in the current working directory.'''
+        'gramps.accel' file located in the current working directory."""
         out_dict = {}
         for group in self.action_groups:
             for item in group.actionlist:
                 act = group.prefix + item[ACTION_NAME]
                 accels = self.app.get_accels_for_action(
-                    group.prefix + item[ACTION_NAME])
-                out_dict[act] = accels[0] if accels else ''
+                    group.prefix + item[ACTION_NAME]
+                )
+                out_dict[act] = accels[0] if accels else ""
         import json
-        with open('gramps.accel', 'w', ) as hndl:
+
+        with open(
+            "gramps.accel",
+            "w",
+        ) as hndl:
             accels = json.dumps(out_dict, indent=0).replace('\n"', '\n# "')
             hndl.write(accels)
 
     def load_accels(self, filename):
-        """ This function loads accels from a file such as created by
+        """This function loads accels from a file such as created by
         dump_all_accels.  The file contents is basically a Python dict
         definition.  As such it contains a line for each dict element.
         These elements can be commented out with '#' at the beginning of the
@@ -535,20 +563,21 @@ class UIManager():
         As such it must be loaded before any insert_action_group calls.
         """
         import ast
-        with open(filename, 'r') as hndl:
+
+        with open(filename, "r") as hndl:
             accels = hndl.read()
             self.accel_dict = ast.literal_eval(accels)
 
 
-INVALID_CHARS = [' ', '_', '(', ')', ',', "'"]
+INVALID_CHARS = [" ", "_", "(", ")", ",", "'"]
 
 
 def valid_action_name(text):
-    """ This function cleans up action names to avoid some illegal
+    """This function cleans up action names to avoid some illegal
     characters.  It does NOT clean up non-ASCII characters.
     This is used for plugin IDs to clean them up.  It would be better if we
     made all plugin ids:
     ASCII Alphanumeric and the '.' or '-' characters."""
     for char in INVALID_CHARS:
-        text = text.replace(char, '-')
+        text = text.replace(char, "-")
     return text

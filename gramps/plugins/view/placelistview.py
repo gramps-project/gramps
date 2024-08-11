@@ -21,32 +21,38 @@
 Place List View
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.plugins.lib.libplaceview import PlaceBaseView
 from gramps.gui.views.treemodels.placemodel import PlaceListModel
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Internationalization
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # PlaceListView
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class PlaceListView(PlaceBaseView):
     """
     Flat place view.  (Original code in PlaceBaseView).
     """
+
     def __init__(self, pdata, dbstate, uistate):
-        PlaceBaseView.__init__(self, pdata, dbstate, uistate,
-                               _('Place View'), PlaceListModel,
-                               nav_group=0)
+        PlaceBaseView.__init__(
+            self, pdata, dbstate, uistate, _("Place View"), PlaceListModel, nav_group=0
+        )
+
+    def get_config_name(self):
+        return __name__

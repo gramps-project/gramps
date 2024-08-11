@@ -20,54 +20,60 @@
 
 __all__ = ["ExpandCollapseArrow"]
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
 import logging
+
 _LOG = logging.getLogger(".widgets.expandcollapsearrow")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gramps.gen.constfunc import has_display
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 if has_display():
-    HAND_CURSOR = Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
-                                             Gdk.CursorType.HAND2)
+    HAND_CURSOR = Gdk.Cursor.new_for_display(
+        Gdk.Display.get_default(), Gdk.CursorType.HAND2
+    )
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Module functions
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def realize_cb(widget):
     widget.get_window().set_cursor(HAND_CURSOR)
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # ExpandCollapseArrow class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class ExpandCollapseArrow(Gtk.EventBox):
     """
     Arrow to be used for expand/collapse of sections.
 
     .. note:: shadow does not work, we indicate action with realize_cb
     """
+
     def __init__(self, collapsed, onbuttonpress, pair):
         """
         Constructor for the ExpandCollapseArrow class.
@@ -80,14 +86,16 @@ class ExpandCollapseArrow(Gtk.EventBox):
         :param pair: user param for onbuttonpress function
         """
         Gtk.EventBox.__init__(self)
-        if collapsed :
-            self.arrow = Gtk.Arrow(arrow_type=Gtk.ArrowType.RIGHT,
-                                              shadow_type=Gtk.ShadowType.OUT)
+        if collapsed:
+            self.arrow = Gtk.Image.new_from_icon_name(
+                "pan-end-symbolic", Gtk.IconSize.BUTTON
+            )
             self.set_tooltip_text(_("Expand this section"))
         else:
-            self.arrow = Gtk.Arrow(arrow_type=Gtk.ArrowType.DOWN,
-                                              shadow_type=Gtk.ShadowType.OUT)
+            self.arrow = Gtk.Image.new_from_icon_name(
+                "pan-down-symbolic", Gtk.IconSize.BUTTON
+            )
             self.set_tooltip_text(_("Collapse this section"))
         self.add(self.arrow)
-        self.connect('button-press-event', onbuttonpress, pair)
-        self.connect('realize', realize_cb)
+        self.connect("button-press-event", onbuttonpress, pair)
+        self.connect("realize", realize_cb)

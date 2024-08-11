@@ -18,73 +18,90 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
-#
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-from ....const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+"""
+Rule that checks for a person who has a particular relationship.
+"""
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .. import Rule
+# -------------------------------------------------------------------------
+from ....const import GRAMPS_LOCALE as glocale
 from ....lib.familyreltype import FamilyRelType
+from .. import Rule
 
-#-------------------------------------------------------------------------
+_ = glocale.translation.gettext
+
+
+# -------------------------------------------------------------------------
 #
 # HasRelationship
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasRelationship(Rule):
-    """Rule that checks for a person who has a particular relationship"""
+    """
+    Rule that checks for a person who has a particular relationship.
+    """
 
-    labels = [ _('Number of relationships:'),
-                    _('Relationship type:'),
-                    _('Number of children:') ]
-    name = _('People with the <relationships>')
+    labels = [
+        _("Number of relationships:"),
+        _("Relationship type:"),
+        _("Number of children:"),
+    ]
+    name = _("People with the <relationships>")
     description = _("Matches people with a particular relationship")
-    category = _('Family filters')
+    category = _("Family filters")
 
-    def apply(self,db,person):
-        rel_type = 0
-        cnt = 0
-        num_rel = len(person.get_family_handle_list())
+    def __init__(self, arg, use_regex=False, use_case=False):
+        super().__init__(arg, use_regex, use_case)
+        self.relationship_type = None
+
+    def prepare(self, db, user):
+        """
+        Prepare the rule. Things we only want to do once.
+        """
         if self.list[1]:
-            specified_type = FamilyRelType()
-            specified_type.set_from_xml_str(self.list[1])
+            self.relationship_type = FamilyRelType()
+            self.relationship_type.set_from_xml_str(self.list[1])
+
+    def apply(self, db, obj):
+        """
+        Apply the rule. Return True on a match.
+        """
+        relationship_type = 0
+        total_children = 0
+        number_relations = len(obj.get_family_handle_list())
 
         # count children and look for a relationship type match
-        for f_id in person.get_family_handle_list():
-            f = db.get_family_from_handle(f_id)
-            if f:
-                cnt = cnt + len(f.get_child_ref_list())
-                if self.list[1] and specified_type == f.get_relationship():
-                    rel_type = 1
+        for handle in obj.get_family_handle_list():
+            family = db.get_family_from_handle(handle)
+            if family:
+                total_children += len(family.get_child_ref_list())
+                if (
+                    self.relationship_type
+                    and self.relationship_type == family.get_relationship()
+                ):
+                    relationship_type = 1
 
         # if number of relations specified
         if self.list[0]:
             try:
-                v = int(self.list[0])
+                if int(self.list[0]) != number_relations:
+                    return False
             except:
-                return False
-            if v != num_rel:
                 return False
 
-        # number of childred
+        # number of children
         if self.list[2]:
             try:
-                v = int(self.list[2])
+                if int(self.list[2]) != total_children:
+                    return False
             except:
-                return False
-            if v != cnt:
                 return False
 
         # relation
         if self.list[1]:
-            return rel_type == 1
-        else:
-            return True
+            return relationship_type == 1
+
+        return True

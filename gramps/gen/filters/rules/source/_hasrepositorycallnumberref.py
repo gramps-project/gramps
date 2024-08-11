@@ -19,32 +19,36 @@
 #
 # gen.filters.rules/Source/_HasRepositoryCallNumberRef.py
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # "Sources which reference repositories by a special Call Name"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasRepositoryCallNumberRef(Rule):
     """Sources which reference repositories by a special Call Number"""
 
-    labels = [ _('Text:')]
+    labels = [_("Text:")]
     name = _('Sources with repository reference containing <text> in "Call Number"')
-    description = _("Matches sources with a repository reference\n"
-                    "containing a substring in \"Call Number\"")
-    category = _('General filters')
+    description = _(
+        "Matches sources with a repository reference\n"
+        'containing a substring in "Call Number"'
+    )
+    category = _("General filters")
     allow_regex = True
 
     def apply(self, db, obj):

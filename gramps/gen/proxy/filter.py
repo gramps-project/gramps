@@ -25,15 +25,30 @@
 Proxy class for the Gramps databases. Apply filter
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .proxybase import ProxyDbBase
-from ..lib import (Date, Person, Name, Surname, NameOriginType, Family, Source,
-                   Citation, Event, Media, Place, Repository, Note, Tag)
+from ..lib import (
+    Date,
+    Person,
+    Name,
+    Surname,
+    NameOriginType,
+    Family,
+    Source,
+    Citation,
+    Event,
+    Media,
+    Place,
+    Repository,
+    Note,
+    Tag,
+)
 from ..const import GRAMPS_LOCALE as glocale
+
 
 class FilterProxyDb(ProxyDbBase):
     """
@@ -42,28 +57,32 @@ class FilterProxyDb(ProxyDbBase):
     the user.
     """
 
-    def __init__(self, db, person_filter=None, event_filter=None,
-                 note_filter=None, user=None):
+    def __init__(
+        self, db, person_filter=None, event_filter=None, note_filter=None, user=None
+    ):
         """
         Create a new FilterProxyDb instance.
         """
         ProxyDbBase.__init__(self, db)
         self.person_filter = person_filter
         if person_filter:
-            self.plist = set(person_filter.apply(
-                    self.db, self.db.iter_person_handles(), user=user))
+            self.plist = set(
+                person_filter.apply(self.db, self.db.iter_person_handles(), user=user)
+            )
         else:
             self.plist = set(self.db.iter_person_handles())
 
         if event_filter:
-            self.elist = set(event_filter.apply(
-                    self.db, self.db.iter_event_handles(), user=user))
+            self.elist = set(
+                event_filter.apply(self.db, self.db.iter_event_handles(), user=user)
+            )
         else:
             self.elist = set(self.db.iter_event_handles())
 
         if note_filter:
-            self.nlist = set(note_filter.apply(
-                    self.db, self.db.iter_note_handles(), user=user))
+            self.nlist = set(
+                note_filter.apply(self.db, self.db.iter_note_handles(), user=user)
+            )
         else:
             self.nlist = set(self.db.iter_note_handles())
 
@@ -84,23 +103,26 @@ class FilterProxyDb(ProxyDbBase):
             if person is None:
                 return None
             person.set_person_ref_list(
-                [ ref for ref in person.get_person_ref_list()
-                  if ref.ref in self.plist ])
+                [ref for ref in person.get_person_ref_list() if ref.ref in self.plist]
+            )
 
             person.set_family_handle_list(
-                [ hndl for hndl in person.get_family_handle_list()
-                  if hndl in self.flist ])
+                [hndl for hndl in person.get_family_handle_list() if hndl in self.flist]
+            )
 
             person.set_parent_family_handle_list(
-                [ hndl for hndl in person.get_parent_family_handle_list()
-                  if hndl in self.flist ])
+                [
+                    hndl
+                    for hndl in person.get_parent_family_handle_list()
+                    if hndl in self.flist
+                ]
+            )
 
             eref_list = person.get_event_ref_list()
             bref = person.get_birth_ref()
             dref = person.get_death_ref()
 
-            new_eref_list = [ ref for ref in eref_list
-                              if ref.ref in self.elist]
+            new_eref_list = [ref for ref in eref_list if ref.ref in self.elist]
 
             person.set_event_ref_list(new_eref_list)
             if bref in new_eref_list:
@@ -220,8 +242,9 @@ class FilterProxyDb(ProxyDbBase):
             family = self.db.get_family_from_handle(handle)
             if family is None:
                 return None
-            eref_list = [ eref for eref in family.get_event_ref_list()
-                          if eref.ref in self.elist ]
+            eref_list = [
+                eref for eref in family.get_event_ref_list() if eref.ref in self.elist
+            ]
             family.set_event_ref_list(eref_list)
 
             if family.get_father_handle() not in self.plist:
@@ -230,8 +253,9 @@ class FilterProxyDb(ProxyDbBase):
             if family.get_mother_handle() not in self.plist:
                 family.set_mother_handle(None)
 
-            clist = [ cref for cref in family.get_child_ref_list()
-                      if cref.ref in self.plist ]
+            clist = [
+                cref for cref in family.get_child_ref_list() if cref.ref in self.plist
+            ]
             family.set_child_ref_list(clist)
 
             # Filter notes out
@@ -539,7 +563,7 @@ class FilterProxyDb(ProxyDbBase):
 
         >    result_list = list(find_backlink_handles(handle))
         """
-        #FIXME: add a filter for returned handles (see private.py as an example)
+        # FIXME: add a filter for returned handles (see private.py as an example)
         return self.db.find_backlink_handles(handle, include_classes)
 
     def sanitize_notebase(self, notebase):
@@ -551,7 +575,7 @@ class FilterProxyDb(ProxyDbBase):
         """
         if notebase:
             note_list = notebase.get_note_list()
-            new_note_list = [ note for note in note_list if note in self.nlist ]
+            new_note_list = [note for note in note_list if note in self.nlist]
             notebase.set_note_list(new_note_list)
 
     def sanitize_addressbase(self, addressbase):

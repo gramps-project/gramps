@@ -19,18 +19,22 @@
 
 ## Based on the normal fanchart
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
-from gramps.gui.widgets.fanchartdesc import (FanChartDescWidget,
-                                             FanChartDescGrampsGUI,
-                                             ANGLE_WEIGHT)
+from gramps.gui.widgets.fanchartdesc import (
+    FanChartDescWidget,
+    FanChartDescGrampsGUI,
+    ANGLE_WEIGHT,
+)
 from gramps.gui.widgets.fanchart import FORM_HALFCIRCLE, BACKGROUND_SCHEME1
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
+
 
 class FanChartDescGramplet(FanChartDescGrampsGUI, Gramplet):
     """
@@ -42,10 +46,10 @@ class FanChartDescGramplet(FanChartDescGrampsGUI, Gramplet):
         FanChartDescGrampsGUI.__init__(self, self.on_childmenu_changed)
         self.maxgen = 6
         self.background = BACKGROUND_SCHEME1
-        self.fonttype = 'Sans'
-        self.grad_start = '#0000FF'
-        self.grad_end = '#FF0000'
-        self.dupcolor = '#888A85'  #light grey
+        self.fonttype = "Sans"
+        self.grad_start = "#0000FF"
+        self.grad_end = "#FF0000"
+        self.dupcolor = "#888A85"  # light grey
         self.generic_filter = None
         self.alpha_filter = 0.2
         self.form = FORM_HALFCIRCLE
@@ -53,8 +57,7 @@ class FanChartDescGramplet(FanChartDescGrampsGUI, Gramplet):
         self.flipupsidedownname = True
         self.twolinename = True
         self.showid = False
-        self.set_fan(FanChartDescWidget(self.dbstate, self.uistate,
-                                        self.on_popup))
+        self.set_fan(FanChartDescWidget(self.dbstate, self.uistate, self.on_popup))
         # Replace the standard textview with the fan chart widget:
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add(self.fan)
@@ -62,9 +65,13 @@ class FanChartDescGramplet(FanChartDescGrampsGUI, Gramplet):
         self.fan.show()
 
     def init(self):
-        self.set_tooltip(_("Click to expand/contract person\n"
-                           "Right-click for options\n"
-                           "Click and drag in open area to rotate"))
+        self.set_tooltip(
+            _(
+                "Click to expand/contract person\n"
+                "Right-click for options\n"
+                "Click and drag in open area to rotate"
+            )
+        )
 
     def active_changed(self, handle):
         """
@@ -75,7 +82,7 @@ class FanChartDescGramplet(FanChartDescGrampsGUI, Gramplet):
 
     def on_childmenu_changed(self, obj, person_handle):
         """Callback for the pulldown menu selection, changing to the person
-           attached with menu item."""
+        attached with menu item."""
         dummy_obj = obj
-        self.set_active('Person', person_handle)
+        self.set_active("Person", person_handle)
         return True

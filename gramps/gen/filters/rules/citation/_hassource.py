@@ -22,41 +22,38 @@
 """
 Filter rule to match citation with a particular source.
 """
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._hassourcebase import HasSourceBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasEvent
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasSource(HasSourceBase):
     """Rule that checks for an citation with a particular value"""
 
-    labels = [ _('Title:'),
-                    _('Author:'),
-                    _('Abbreviation:'),
-                    _('Publication:') ]
-    name = _('Sources matching parameters')
-    description = _("Matches citations with a source of a particular "
-                    "value")
-    category = _('Source filters')
+    labels = [_("Title:"), _("Author:"), _("Abbreviation:"), _("Publication:")]
+    name = _("Sources matching parameters")
+    description = _("Matches citations with a source of a particular " "value")
+    category = _("Source filters")
 
     def apply(self, dbase, citation):
-        source = dbase.get_source_from_handle(
-                                    citation.get_reference_handle())
+        source = dbase.get_source_from_handle(citation.get_reference_handle())
         if HasSourceBase.apply(self, dbase, source):
             return True
         return False

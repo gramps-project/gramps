@@ -9,6 +9,12 @@ dist/
 # Gramps
 docs/_build/
 
+# Gramps AIO build artifacts
+aio/grampsaio64.nsi
+aio/mingw-w64-x86_64-db-*.pkg.tar.xz
+aio/mingw64
+gramps.egg-info
+
 # Editing
 tags
 *.swp
@@ -25,3 +31,7 @@ ehthumbs.db
 
 # Glade temp files
 *~
+
+# Python metadata
+.venv*/
+

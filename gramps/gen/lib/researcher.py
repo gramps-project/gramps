@@ -23,20 +23,23 @@
 Researcher information for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .locationbase import LocationBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
+# Researcher
 #
-#
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Researcher(LocationBase):
-    """Contains the information about the owner of the database."""
+    """
+    Contains the information about the owner of the database.
+    """
 
     def __init__(self, source=None):
         """
@@ -57,8 +60,7 @@ class Researcher(LocationBase):
         """
         Convert the object to a serialized tuple of data.
         """
-        return (LocationBase.serialize(self),
-                self.name, self.addr, self.email)
+        return (LocationBase.serialize(self), self.name, self.addr, self.email)
 
     def unserialize(self, data):
         """
@@ -86,7 +88,7 @@ class Researcher(LocationBase):
         return self.addr
 
     def set_email(self, data):
-        """ Set the database owner's email."""
+        """Set the database owner's email."""
         self.email = data
 
     def get_email(self):
@@ -109,14 +111,39 @@ class Researcher(LocationBase):
         self.email = other_researcher.email
 
     def get(self):
-        return [getattr(self, value) for value in
-                ['name', 'addr', 'locality', 'city', 'state',
-                 'country', 'postal', 'phone', 'email']
-               ]
+        """
+        Return attributes about the researcher.
+        """
+        return [
+            getattr(self, value)
+            for value in [
+                "name",
+                "addr",
+                "locality",
+                "city",
+                "state",
+                "country",
+                "postal",
+                "phone",
+                "email",
+            ]
+        ]
 
     def is_empty(self):
-        for attr in ['name', 'addr', 'locality', 'city', 'state',
-                     'country', 'postal', 'phone', 'email']:
+        """
+        Check and return true if object empty.
+        """
+        for attr in [
+            "name",
+            "addr",
+            "locality",
+            "city",
+            "state",
+            "country",
+            "postal",
+            "phone",
+            "email",
+        ]:
             if getattr(self, attr) != "":
                 return False
         return True

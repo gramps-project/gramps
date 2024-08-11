@@ -25,22 +25,24 @@
 Location class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .secondaryobj import SecondaryObject
-from .locationbase import LocationBase
-from .const import IDENTICAL, DIFFERENT
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .const import DIFFERENT, IDENTICAL
+from .locationbase import LocationBase
+from .secondaryobj import SecondaryObject
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# Location class for Places
+# Location
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Location(SecondaryObject, LocationBase):
     """
     Provide information about a place.
@@ -87,25 +89,16 @@ class Location(SecondaryObject, LocationBase):
             "title": _("Location"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "street": {"type": "string",
-                           "title": _("Street")},
-                "locality": {"type": "string",
-                             "title": _("Locality")},
-                "city": {"type": "string",
-                         "title": _("City")},
-                "county": {"type": "string",
-                           "title": _("County")},
-                "state": {"type": "string",
-                          "title": _("State")},
-                "country": {"type": "string",
-                            "title": _("Country")},
-                "postal": {"type": "string",
-                           "title": _("Postal Code")},
-                "phone": {"type": "string",
-                          "title": _("Phone")},
-                "parish": {"type": "string",
-                           "title": _("Parish")}
-            }
+                "street": {"type": "string", "title": _("Street")},
+                "locality": {"type": "string", "title": _("Locality")},
+                "city": {"type": "string", "title": _("City")},
+                "county": {"type": "string", "title": _("County")},
+                "state": {"type": "string", "title": _("State")},
+                "country": {"type": "string", "title": _("Country")},
+                "postal": {"type": "string", "title": _("Postal Code")},
+                "phone": {"type": "string", "title": _("Phone")},
+                "parish": {"type": "string", "title": _("Parish")},
+            },
         }
 
     def get_text_data_list(self):
@@ -128,8 +121,7 @@ class Location(SecondaryObject, LocationBase):
         """
         if self.is_equal(other):
             return IDENTICAL
-        else:
-            return DIFFERENT
+        return DIFFERENT
 
     def merge(self, acquisition):
         """
@@ -140,12 +132,19 @@ class Location(SecondaryObject, LocationBase):
         :param acquisition: The location to merge with the present location.
         :type acquisition: Location
         """
-        pass
 
     def is_empty(self):
-        return not self.street and not self.locality and not self.city and \
-               not self.county and not self.state and not self.country and \
-               not self.postal and not self.phone
+        """Return true if empty."""
+        return (
+            not self.street
+            and not self.locality
+            and not self.city
+            and not self.county
+            and not self.state
+            and not self.country
+            and not self.postal
+            and not self.phone
+        )
 
     def set_parish(self, data):
         """Set the religious parish name."""

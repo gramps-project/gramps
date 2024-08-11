@@ -20,6 +20,7 @@
 #
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from bisect import insort_left
 from gi.repository import Gdk
@@ -34,20 +35,18 @@ from ...utils import no_match_primary_mask
 _RETURN = Gdk.keyval_from_name("Return")
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 
+
 class SidebarFilter(DbGUIElement):
-    if Gtk.get_minor_version() > 17:
-        _FILTER_WIDTH = -1
-    else:
-        _FILTER_WIDTH = 20
+    _FILTER_WIDTH = -1
     _FILTER_ELLIPSIZE = Pango.EllipsizeMode.END
 
     def __init__(self, dbstate, uistate, namespace):
         self.signal_map = {
-            'tag-add'     : self._tag_add,
-            'tag-delete'  : self._tag_delete,
-            'tag-update'  : self._tag_update,
-            'tag-rebuild' : self._tag_rebuild
-            }
+            "tag-add": self._tag_add,
+            "tag-delete": self._tag_delete,
+            "tag-update": self._tag_update,
+            "tag-rebuild": self._tag_rebuild,
+        }
         DbGUIElement.__init__(self, dbstate.db)
 
         self.position = 1
@@ -57,18 +56,22 @@ class SidebarFilter(DbGUIElement):
         self.grid.set_border_width(6)
         self.grid.set_row_spacing(6)
         self.grid.set_column_spacing(6)
-        self.apply_btn = Gtk.Button.new_with_mnemonic(_('_Find'))
-        self.apply_btn.set_tooltip_text(_(
-            "This updates the view with the current filter parameters."))
+        self.apply_btn = Gtk.Button.new_with_mnemonic(_("_Find"))
+        self.apply_btn.set_tooltip_text(
+            _("This updates the view with the current filter parameters.")
+        )
         self.clear_btn = Gtk.Button()
-        self.clear_btn.set_tooltip_text(_(
-            "This resets the filter parameters to empty state.  The 'Find' "
-            "button should be used to actually update the view to its "
-            "defaults."))
+        self.clear_btn.set_tooltip_text(
+            _(
+                "This resets the filter parameters to empty state.  The 'Find' "
+                "button should be used to actually update the view to its "
+                "defaults."
+            )
+        )
 
         self._init_interface()
-        uistate.connect('filters-changed', self.on_filters_changed)
-        dbstate.connect('database-changed', self._db_changed)
+        uistate.connect("filters-changed", self.on_filters_changed)
+        dbstate.connect("database-changed", self._db_changed)
         self.uistate = uistate
         self.dbstate = dbstate
         self.namespace = namespace
@@ -78,21 +81,21 @@ class SidebarFilter(DbGUIElement):
     def _init_interface(self):
         self.create_widget()
 
-        self.apply_btn.connect('clicked', self.clicked)
+        self.apply_btn.connect("clicked", self.clicked)
 
         hbox = Gtk.Box()
         hbox.show()
         image = Gtk.Image()
-        image.set_from_icon_name('edit-undo', Gtk.IconSize.BUTTON)
+        image.set_from_icon_name("edit-undo", Gtk.IconSize.BUTTON)
         image.show()
-        label = Gtk.Label(label=_('Reset'))
+        label = Gtk.Label(label=_("Reset"))
         label.show()
         hbox.pack_start(image, False, False, 0)
         hbox.pack_start(label, False, True, 0)
         hbox.set_spacing(4)
 
         self.clear_btn.add(hbox)
-        self.clear_btn.connect('clicked', self.clear)
+        self.clear_btn.connect("clicked", self.clear)
 
         hbox = Gtk.ButtonBox()
         hbox.set_layout(Gtk.ButtonBoxStyle.START)
@@ -127,11 +130,26 @@ class SidebarFilter(DbGUIElement):
     def add_regex_entry(self, widget):
         hbox = Gtk.Box()
         hbox.pack_start(widget, False, False, 12)
+        widget.connect("toggled", self.regex_selection)
         self.vbox.pack_start(hbox, False, False, 0)
+
+    def add_regex_case(self, widget):
+        hbox = Gtk.Box()
+        hbox.pack_start(widget, False, False, 12)
+        self.vbox.pack_start(hbox, False, False, 0)
+        self.regex_selection()
+
+    def regex_selection(self, widget=None):
+        if self.sensitive_regex:
+            if widget and widget.get_active():
+                self.sensitive_regex.set_sensitive(True)
+            else:
+                self.sensitive_regex.set_active(False)
+                self.sensitive_regex.set_sensitive(False)
 
     def add_text_entry(self, name, widget, tooltip=None):
         self.add_entry(name, widget)
-        widget.connect('key-press-event', self.key_press)
+        widget.connect("key-press-event", self.key_press)
         if tooltip:
             widget.set_tooltip_text(tooltip)
 
@@ -143,7 +161,7 @@ class SidebarFilter(DbGUIElement):
 
     def add_heading(self, heading):
         label = Gtk.Label()
-        label.set_text('<b>%s</b>' % heading)
+        label.set_text("<b>%s</b>" % heading)
         label.set_use_markup(True)
         label.set_halign(Gtk.Align.START)
         self.grid.attach(label, 1, self.position, 1, 1)
@@ -207,8 +225,9 @@ class SidebarFilter(DbGUIElement):
         """
         Called when tags are deleted.
         """
-        self.__tag_list = [item for item in self.__tag_list
-                           if item[1] not in handle_list]
+        self.__tag_list = [
+            item for item in self.__tag_list if item[1] not in handle_list
+        ]
         self.on_tags_changed([item[0] for item in self.__tag_list])
 
     def _tag_rebuild(self):
@@ -234,8 +253,9 @@ class SidebarFilter(DbGUIElement):
         """
         hbox = Gtk.Box()
         hbox.pack_start(widget, True, True, 0)
-        hbox.pack_start(widgets.SimpleButton('gtk-edit', self.edit_filter),
-                        False, False, 0)
+        hbox.pack_start(
+            widgets.SimpleButton("gtk-edit", self.edit_filter), False, False, 0
+        )
         self.add_entry(text, hbox)
 
     def edit_filter(self, obj):
@@ -246,6 +266,7 @@ class SidebarFilter(DbGUIElement):
         from ...editors import EditFilter
         from gramps.gen.filters import FilterList, GenericFilterFactory
         from gramps.gen.const import CUSTOM_FILTERS
+
         the_filter = None
         filterdb = FilterList(CUSTOM_FILTERS)
         filterdb.load()
@@ -261,9 +282,15 @@ class SidebarFilter(DbGUIElement):
         else:
             the_filter = GenericFilterFactory(self.namespace)()
         if the_filter:
-            EditFilter(self.namespace, self.dbstate, self.uistate, [],
-                       the_filter, filterdb,
-                       selection_callback=self.edit_filter_save)
+            EditFilter(
+                self.namespace,
+                self.dbstate,
+                self.uistate,
+                [],
+                the_filter,
+                filterdb,
+                selection_callback=self.edit_filter_save,
+            )
 
     def edit_filter_save(self, filterdb, filter_name):
         """
@@ -271,9 +298,10 @@ class SidebarFilter(DbGUIElement):
         Takes the filter database, and the filter name edited.
         """
         from gramps.gen.filters import reload_custom_filters
+
         filterdb.save()
         reload_custom_filters()
-        self.uistate.emit('filters-changed', (self.namespace,))
+        self.uistate.emit("filters-changed", (self.namespace,))
         self.set_filters_to_name(filter_name)
 
     def set_filters_to_name(self, filter_name):

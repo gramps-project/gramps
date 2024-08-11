@@ -19,30 +19,32 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._hassourceofbase import HasSourceOfBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasSourceOf
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasSourceOf(HasSourceOfBase):
     """Rule that checks media that have a particular source."""
 
-    labels = [ _('Source ID:') ]
-    name = _('Media with the <source>')
-    category = _('Citation/source filters')
-    description = _('Matches media who have a particular source')
+    labels = [_("Source ID:")]
+    name = _("Media with the <source>")
+    category = _("Citation/source filters")
+    description = _("Matches media who have a particular source")

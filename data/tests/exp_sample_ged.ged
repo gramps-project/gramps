@@ -65,6 +65,7 @@
 2 TYPE birth
 2 GIVN Amber Marie
 2 SURN Smith
+2 _RUFNAME Marie
 1 SEX F
 1 BIRT
 2 TYPE Birth of Amber Marie Smith
@@ -74,8 +75,6 @@
 2 TYPE Christening of Amber Marie Smith
 2 DATE 26 APR 1998
 2 PLAC Community Presbyterian Church, Danville, CA
-2 ADDR
-3 ADR2 Community Presbyterian Church, Danville, CA
 1 FAMC @F0013@
 2 PEDI birth
 1 CHAN
@@ -130,8 +129,6 @@
 2 TYPE Christening of Mason Michael Smith
 2 DATE 10 JUL 1996
 2 PLAC Community Presbyterian Church, Danville, CA
-2 ADDR
-3 ADR2 Community Presbyterian Church, Danville, CA
 1 FAMC @F0013@
 2 PEDI birth
 1 CHAN
@@ -625,10 +622,6 @@
 3 MAP
 4 LATI N39.7392
 4 LONG W104.9903
-2 ADDR
-3 CITY Denver, Denver Co., CO
-3 STAE Colorado
-3 CTRY USA
 1 DEAT
 2 TYPE Death of Marjorie Ohman
 2 DATE 22 JUN 1980
@@ -647,8 +640,6 @@
 2 TYPE Birth of Darcy Horne
 2 DATE 2 JUL 1966
 2 PLAC Sacramento, Sacramento Co., CA
-2 ADDR
-3 CITY Sacramento, Sacramento Co., CA
 1 FAMS @F0010@
 1 CHAN
 2 DATE 21 DEC 2007
@@ -857,12 +848,6 @@
 1 BIRT
 2 DATE 29 DEC 1954
 2 PLAC 123 High St, Cleveland, Cuyahoga, Ohio, USA
-2 ADDR 123 High St
-3 ADR1 123 High St
-3 CITY Cleveland
-3 STAE Ohio
-3 POST 44140
-3 CTRY USA
 2 PHON 440-871-3400
 2 PHON 800-871-3400
 2 EMAIL thetester@@gmail.com
@@ -883,8 +868,7 @@
 1 SOUR @S0005@
 1 RESI
 2 DATE 27 OCT 2017
-2 ADDR
-3 CONT test village
+2 ADDR test village
 3 CONT Akron
 3 CONT OH
 3 CONT 44177
@@ -945,10 +929,6 @@
 3 MAP
 4 LATI N39.7392
 4 LONG W104.9903
-2 ADDR
-3 CITY Denver, Denver Co., CO
-3 STAE Colorado
-3 CTRY USA
 2 PHON 440-871-3402
 2 EMAIL tomtester@@gmail.com
 2 FAX 440-321-4569
@@ -964,10 +944,6 @@
 3 MAP
 4 LATI N39.7392
 4 LONG W104.9903
-2 ADDR
-3 CITY Denver, Denver Co., CO
-3 STAE Colorado
-3 CTRY USA
 1 FAMC @F0016@
 2 PEDI birth
 1 SOUR @S0005@
@@ -984,6 +960,7 @@
 2 GIVN Fake
 2 SPFX von
 2 SURN Person
+2 _RUFNAME Person
 2 NSFX I
 2 NPFX Fake person
 2 NICK Fake
@@ -1021,10 +998,6 @@
 3 MAP
 4 LATI N39.7392
 4 LONG W104.9903
-2 ADDR
-3 CITY Denver, Denver Co., CO
-3 STAE Colorado
-3 CTRY USA
 2 STAT QUALIFIED
 1 FAMC @F0016@
 2 _FREL Adopted
@@ -1276,8 +1249,6 @@
 2 DATE 22 FEB 2000
 2 TEMP DENVE
 2 PLAC Community Presbyterian Church, Danville, CA
-2 ADDR
-3 ADR2 Community Presbyterian Church, Danville, CA
 2 STAT CLEARED
 1 MARR
 2 HUSB

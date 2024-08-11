@@ -18,18 +18,18 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import csv
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.config import config
 from .tabbeddoc import *
@@ -39,7 +39,6 @@ _ = glocale.translation.gettext
 
 
 class CSVTab(TabbedDoc):
-
     def __init__(self, columns):
         TabbedDoc.__init__(self, columns)
         self.filename = None
@@ -48,23 +47,23 @@ class CSVTab(TabbedDoc):
         self.writer = None
 
     def open(self, filename):
-
         if filename[-4:] != ".csv":
             self.filename = filename + ".csv"
         else:
             self.filename = filename
 
-        self.f = open(self.filename, "w", newline='',
-                      encoding='utf_8_sig' if win() else 'utf_8')
-        my_dialect = config.get('csv.dialect')
-        my_delimiter = config.get('csv.delimiter')
+        self.f = open(
+            self.filename, "w", newline="", encoding="utf_8_sig" if win() else "utf_8"
+        )
+        my_dialect = config.get("csv.dialect")
+        my_delimiter = config.get("csv.delimiter")
         if my_dialect == _("Custom"):
             self.writer = csv.writer(self.f, delimiter=my_delimiter)
         else:
             self.writer = csv.writer(self.f, dialect=my_dialect)
 
     def close(self):
-        assert(self.f)
+        assert self.f
         self.f.close()
 
     def start_row(self):
@@ -82,13 +81,12 @@ class CSVTab(TabbedDoc):
     def end_page(self):
         pass
 
+
 if __name__ == "__main__":
-
-
     file = CSVTab(2, 3)
     file.open("test.csv")
     file.start_page()
-    for i in [ ('one', 'two', 'three'), ('fo"ur', 'fi,ve', 'six') ]:
+    for i in [("one", "two", "three"), ('fo"ur', "fi,ve", "six")]:
         file.start_row()
         for j in i:
             file.write_cell(j)

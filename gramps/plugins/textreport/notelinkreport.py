@@ -20,37 +20,45 @@
 
 """"""
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # standard python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gramps.gen.errors import ReportError
 from gramps.gen.plug.menu import PersonOption
-from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
-                                    TableStyle, TableCellStyle,
-                                    FONT_SANS_SERIF, PARA_ALIGN_CENTER,
-                                    INDEX_TYPE_TOC)
+from gramps.gen.plug.docgen import (
+    IndexMark,
+    FontStyle,
+    ParagraphStyle,
+    TableStyle,
+    TableCellStyle,
+    FONT_SANS_SERIF,
+    PARA_ALIGN_CENTER,
+    INDEX_TYPE_TOC,
+)
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.simple import SimpleAccess
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # NoteLinkReport
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class NoteLinkReport(Report):
     """
     This report
@@ -68,30 +76,30 @@ class NoteLinkReport(Report):
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
-        self.doc.start_table('NoteLinkTable','NoteLink-Table')
+        self.doc.start_table("NoteLinkTable", "NoteLink-Table")
 
         self.doc.start_row()
 
-        self.doc.start_cell('NoteLink-TableCell')
-        self.doc.start_paragraph('NoteLink-Normal-Bold')
+        self.doc.start_cell("NoteLink-TableCell")
+        self.doc.start_paragraph("NoteLink-Normal-Bold")
         self.doc.write_text(_("Note ID"))
         self.doc.end_paragraph()
         self.doc.end_cell()
 
-        self.doc.start_cell('NoteLink-TableCell')
-        self.doc.start_paragraph('NoteLink-Normal-Bold')
+        self.doc.start_cell("NoteLink-TableCell")
+        self.doc.start_paragraph("NoteLink-Normal-Bold")
         self.doc.write_text(_("Link Type"))
         self.doc.end_paragraph()
         self.doc.end_cell()
 
-        self.doc.start_cell('NoteLink-TableCell')
-        self.doc.start_paragraph('NoteLink-Normal-Bold')
+        self.doc.start_cell("NoteLink-TableCell")
+        self.doc.start_paragraph("NoteLink-Normal-Bold")
         self.doc.write_text(_("Links To"))
         self.doc.end_paragraph()
         self.doc.end_cell()
 
-        self.doc.start_cell('NoteLink-TableCell')
-        self.doc.start_paragraph('NoteLink-Normal-Bold')
+        self.doc.start_cell("NoteLink-TableCell")
+        self.doc.start_paragraph("NoteLink-Normal-Bold")
         self.doc.write_text(_("Status"))
         self.doc.end_paragraph()
         self.doc.end_cell()
@@ -99,69 +107,71 @@ class NoteLinkReport(Report):
         self.doc.end_row()
 
         if self._user:
-            self._user.begin_progress(_("Note Link Check Report"),
-                                      _("Generating report"),
-                                      self.database.get_number_of_notes())
+            self._user.begin_progress(
+                _("Note Link Check Report"),
+                _("Generating report"),
+                self.database.get_number_of_notes(),
+            )
         for note in self.database.iter_notes():
             if self._user:
                 self._user.step_progress()
-            for (ldomain, ltype, lprop, lvalue) in note.get_links():
-                    if ldomain == "gramps":
-                        tagtype = _(ltype)
-                        ref_obj = sdb.get_link(ltype, lprop, lvalue)
-                        if ref_obj:
-                            tagvalue = sdb.describe(ref_obj)
-                            tagcheck = _("Ok")
-                        else:
-                            tagvalue = "%s://%s/%s/%s" % (ldomain, ltype, lprop, lvalue)
-                            tagcheck = _("Failed")
+            for ldomain, ltype, lprop, lvalue in note.get_links():
+                if ldomain == "gramps":
+                    tagtype = _(ltype)
+                    ref_obj = sdb.get_link(ltype, lprop, lvalue)
+                    if ref_obj:
+                        tagvalue = sdb.describe(ref_obj)
+                        tagcheck = _("Ok")
                     else:
-                        tagtype = _("Internet")
-                        tagvalue = lvalue
-                        tagcheck = ""
+                        tagvalue = "%s://%s/%s/%s" % (ldomain, ltype, lprop, lvalue)
+                        tagcheck = _("Failed")
+                else:
+                    tagtype = _("Internet")
+                    tagvalue = lvalue
+                    tagcheck = ""
 
-                    self.doc.start_row()
+                self.doc.start_row()
 
-                    self.doc.start_cell('NoteLink-TableCell')
-                    self.doc.start_paragraph('NoteLink-Normal')
-                    self.doc.write_text(note.gramps_id)
-                    self.doc.end_paragraph()
-                    self.doc.end_cell()
+                self.doc.start_cell("NoteLink-TableCell")
+                self.doc.start_paragraph("NoteLink-Normal")
+                self.doc.write_text(note.gramps_id)
+                self.doc.end_paragraph()
+                self.doc.end_cell()
 
-                    self.doc.start_cell('NoteLink-TableCell')
-                    self.doc.start_paragraph('NoteLink-Normal')
-                    self.doc.write_text(tagtype)
-                    self.doc.end_paragraph()
-                    self.doc.end_cell()
+                self.doc.start_cell("NoteLink-TableCell")
+                self.doc.start_paragraph("NoteLink-Normal")
+                self.doc.write_text(tagtype)
+                self.doc.end_paragraph()
+                self.doc.end_cell()
 
-                    self.doc.start_cell('NoteLink-TableCell')
-                    self.doc.start_paragraph('NoteLink-Normal')
-                    self.doc.write_text(tagvalue)
-                    self.doc.end_paragraph()
-                    self.doc.end_cell()
+                self.doc.start_cell("NoteLink-TableCell")
+                self.doc.start_paragraph("NoteLink-Normal")
+                self.doc.write_text(tagvalue)
+                self.doc.end_paragraph()
+                self.doc.end_cell()
 
-                    self.doc.start_cell('NoteLink-TableCell')
-                    self.doc.start_paragraph('NoteLink-Normal')
-                    self.doc.write_text(tagcheck)
-                    self.doc.end_paragraph()
-                    self.doc.end_cell()
+                self.doc.start_cell("NoteLink-TableCell")
+                self.doc.start_paragraph("NoteLink-Normal")
+                self.doc.write_text(tagcheck)
+                self.doc.end_paragraph()
+                self.doc.end_cell()
 
-                    self.doc.end_row()
+                self.doc.end_row()
         if self._user:
             self._user.end_progress()
 
         self.doc.end_table()
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # NoteLinkOptions
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class NoteLinkOptions(MenuReportOptions):
-
     def get_subject(self):
-        """ Return a string that describes the subject of the report. """
-        return _('Entire Database')
+        """Return a string that describes the subject of the report."""
+        return _("Entire Database")
 
     def add_menu_options(self, menu):
         """
@@ -169,7 +179,7 @@ class NoteLinkOptions(MenuReportOptions):
         """
         pass
 
-    def make_default_style(self,default_style):
+    def make_default_style(self, default_style):
         """Make the default output style for the Note Link Report."""
         # Paragraph Styles
         f = FontStyle()
@@ -193,33 +203,33 @@ class NoteLinkOptions(MenuReportOptions):
         para.set_header_level(2)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
-        para.set_description(_('The style used for the section headers.'))
+        para.set_description(_("The style used for the section headers."))
         default_style.add_paragraph_style("NoteLink-Heading", para)
 
         font = FontStyle()
         font.set_size(12)
         p = ParagraphStyle()
-        p.set(first_indent=-0.75, lmargin=.75)
+        p.set(first_indent=-0.75, lmargin=0.75)
         p.set_font(font)
         p.set_top_margin(utils.pt2cm(3))
         p.set_bottom_margin(utils.pt2cm(3))
-        p.set_description(_('The basic style used for the text display.'))
+        p.set_description(_("The basic style used for the text display."))
         default_style.add_paragraph_style("NoteLink-Normal", p)
 
         font = FontStyle()
         font.set_size(12)
         font.set_bold(True)
         p = ParagraphStyle()
-        p.set(first_indent=-0.75, lmargin=.75)
+        p.set(first_indent=-0.75, lmargin=0.75)
         p.set_font(font)
         p.set_top_margin(utils.pt2cm(3))
         p.set_bottom_margin(utils.pt2cm(3))
-        p.set_description(_('The basic style used for table headings.'))
+        p.set_description(_("The basic style used for table headings."))
         default_style.add_paragraph_style("NoteLink-Normal-Bold", p)
 
-        #Table Styles
+        # Table Styles
         cell = TableCellStyle()
-        default_style.add_cell_style('NoteLink-TableCell', cell)
+        default_style.add_cell_style("NoteLink-TableCell", cell)
 
         table = TableStyle()
         table.set_width(100)
@@ -228,4 +238,4 @@ class NoteLinkOptions(MenuReportOptions):
         table.set_column_width(1, 15)
         table.set_column_width(2, 65)
         table.set_column_width(3, 10)
-        default_style.add_table_style('NoteLink-Table',table)
+        default_style.add_table_style("NoteLink-Table", table)

@@ -18,31 +18,33 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # IsDefaultPerson
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class IsDefaultPerson(Rule):
     """Rule that checks for a default person in the database"""
 
-    name = _('Home Person')
-    category = _('General filters')
+    name = _("Home Person")
+    category = _("General filters")
     description = _("Matches the Home Person")
 
     def prepare(self, db, user):
@@ -51,7 +53,7 @@ class IsDefaultPerson(Rule):
             self.def_handle = p.get_handle()
             self.apply = self.apply_real
         else:
-            self.apply = lambda db,p: False
+            self.apply = lambda db, p: False
 
-    def apply_real(self,db,person):
+    def apply_real(self, db, person):
         return person.handle == self.def_handle

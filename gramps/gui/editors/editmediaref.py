@@ -23,110 +23,123 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import os
 from copy import deepcopy
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import GdkPixbuf
 from gi.repository import Gdk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from ..utils import open_file_with_default_application
 from gramps.gen.const import THUMBSCALE
 from gramps.gen.mime import get_description, get_type
 from gramps.gen.utils.thumbnails import get_thumbnail_image, find_mime_type_pixbuf
-from gramps.gen.utils.file import (media_path_full, find_file, create_checksum)
+from gramps.gen.utils.file import media_path_full, find_file, create_checksum
 from gramps.gen.lib import NoteType
 from gramps.gen.db import DbTxn
 from ..glade import Glade
-from .displaytabs import (CitationEmbedList, MediaAttrEmbedList, MediaBackRefList,
-                         NoteTab)
-from ..widgets import (MonitoredSpinButton, MonitoredEntry, PrivacyButton,
-                       MonitoredDate, MonitoredTagList, SelectionWidget, Region)
+from .displaytabs import (
+    CitationEmbedList,
+    MediaAttrEmbedList,
+    MediaBackRefList,
+    NoteTab,
+)
+from ..widgets import (
+    MonitoredSpinButton,
+    MonitoredEntry,
+    PrivacyButton,
+    MonitoredDate,
+    MonitoredTagList,
+    SelectionWidget,
+    Region,
+)
 from .editreference import RefTab, EditReference
 from .addmedia import AddMedia
 from gramps.gen.const import URL_MANUAL_SECT2
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 WIKI_HELP_PAGE = URL_MANUAL_SECT2
-WIKI_HELP_SEC = _('Media_Reference_Editor_dialog', 'manual')
+WIKI_HELP_SEC = _("Media_Reference_Editor_dialog", "manual")
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # EditMediaRef
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class EditMediaRef(EditReference):
-
     def __init__(self, state, uistate, track, media, media_ref, update):
-        EditReference.__init__(self, state, uistate, track, media,
-                               media_ref, update)
+        EditReference.__init__(self, state, uistate, track, media, media_ref, update)
         if not self.source.get_handle():
-            #show the addmedia dialog immediately, with track of parent.
-            AddMedia(state, self.uistate, self.track, self.source,
-                     self._update_addmedia)
+            # show the addmedia dialog immediately, with track of parent.
+            AddMedia(
+                state, self.uistate, self.track, self.source, self._update_addmedia
+            )
         else:
             self.original = deepcopy(self.source.serialize())
 
     def _local_init(self):
-
         self.top = Glade()
-        self.set_window(self.top.toplevel,
-                        self.top.get_object('title'),
-                        _('Media Reference Editor'))
-        self.setup_configs('interface.media-ref', 600, 450)
+        self.set_window(
+            self.top.toplevel, self.top.get_object("title"), _("Media Reference Editor")
+        )
+        self.setup_configs("interface.media-ref", 600, 450)
 
         self.define_warn_box(self.top.get_object("warn_box"))
         self.top.get_object("label427").set_text(_("Y", "Y coordinate"))
         self.top.get_object("label428").set_text(_("Y", "Y coordinate"))
 
-        tblref = self.top.get_object('table50')
-        self.notebook_ref = self.top.get_object('notebook_ref')
+        tblref = self.top.get_object("table50")
+        self.notebook_ref = self.top.get_object("notebook_ref")
         self.track_ref_for_deletion("notebook_ref")
-        self.expander = self.top.get_object('expander1')
-        #recreate start page as GrampsTab
+        self.expander = self.top.get_object("expander1")
+        # recreate start page as GrampsTab
         self.notebook_ref.remove_page(0)
-        self.reftab = RefTab(self.dbstate, self.uistate, self.track,
-                              _('General'), tblref)
+        self.reftab = RefTab(
+            self.dbstate, self.uistate, self.track, _("General"), tblref
+        )
         self.track_ref_for_deletion("reftab")
-        tblref = self.top.get_object('table2')
-        self.notebook_shared = self.top.get_object('notebook_shared')
-        #recreate start page as GrampsTab
+        tblref = self.top.get_object("table2")
+        self.notebook_shared = self.top.get_object("notebook_shared")
+        # recreate start page as GrampsTab
         self.notebook_shared.remove_page(0)
         self.track_ref_for_deletion("notebook_shared")
-        self.primtab = RefTab(self.dbstate, self.uistate, self.track,
-                              _('_General'), tblref)
+        self.primtab = RefTab(
+            self.dbstate, self.uistate, self.track, _("_General"), tblref
+        )
         self.track_ref_for_deletion("primtab")
         self.rect_pixbuf = None
 
     def setup_filepath(self):
-        self.select = self.top.get_object('file_select')
+        self.select = self.top.get_object("file_select")
         self.track_ref_for_deletion("select")
         self.file_path = self.top.get_object("path")
         self.track_ref_for_deletion("file_path")
 
         self.file_path.set_text(self.source.get_path())
-        self.select.connect('clicked', self.select_file)
+        self.select.connect("clicked", self.select_file)
 
     def determine_mime(self):
         descr = get_description(self.source.get_mime_type())
@@ -136,17 +149,17 @@ class EditMediaRef(EditReference):
         path = self.file_path.get_text()
         path_full = media_path_full(self.db, path)
         if path != self.source.get_path() and path_full != self.source.get_path():
-            #redetermine mime
+            # redetermine mime
             mime = get_type(find_file(path_full))
             self.source.set_mime_type(mime)
             descr = get_description(mime)
             if descr:
                 self.mimetext.set_text(descr)
             else:
-                self.mimetext.set_text(_('Unknown'))
-        #if mime type not set, is note
+                self.mimetext.set_text(_("Unknown"))
+        # if mime type not set, is note
         if not self.source.get_mime_type():
-            self.mimetext.set_text(_('Note'))
+            self.mimetext.set_text(_("Note"))
 
     def draw_preview(self):
         """
@@ -160,26 +173,25 @@ class EditMediaRef(EditReference):
             self.pixmap.set_from_pixbuf(pb)
             self.selection.load_image(fullpath)
         else:
-            pb = find_mime_type_pixbuf('text/plain')
+            pb = find_mime_type_pixbuf("text/plain")
             self.pixmap.set_from_pixbuf(pb)
-            self.selection.load_image('')
+            self.selection.load_image("")
 
     def _setup_fields(self):
-
-        ebox_shared = self.top.get_object('eventbox')
-        ebox_shared.connect('button-press-event', self.button_press_event)
+        ebox_shared = self.top.get_object("eventbox")
+        ebox_shared.connect("button-press-event", self.button_press_event)
         self.pixmap = self.top.get_object("pixmap")
         self.mimetext = self.top.get_object("type")
         self.track_ref_for_deletion("mimetext")
 
         coord = self.source_ref.get_rectangle()
-        #upgrade path: set invalid (from eg old db) to none
+        # upgrade path: set invalid (from eg old db) to none
 
         if coord is not None and coord in (
-                (None,)*4,
-                (0, 0, 100, 100),
-                (coord[0], coord[1])*2
-            ):
+            (None,) * 4,
+            (0, 0, 100, 100),
+            (coord[0], coord[1]) * 2,
+        ):
             coord = None
 
         if coord is not None:
@@ -217,64 +229,71 @@ class EditMediaRef(EditReference):
             self.top.get_object("corner1_x"),
             self.set_corner1_x,
             self.get_corner1_x,
-            self.db.readonly)
+            self.db.readonly,
+        )
         self.track_ref_for_deletion("corner1_x_spinbutton")
 
         self.corner1_y_spinbutton = MonitoredSpinButton(
             self.top.get_object("corner1_y"),
             self.set_corner1_y,
             self.get_corner1_y,
-            self.db.readonly)
+            self.db.readonly,
+        )
         self.track_ref_for_deletion("corner1_y_spinbutton")
 
         self.corner2_x_spinbutton = MonitoredSpinButton(
             self.top.get_object("corner2_x"),
             self.set_corner2_x,
             self.get_corner2_x,
-            self.db.readonly)
+            self.db.readonly,
+        )
         self.track_ref_for_deletion("corner2_x_spinbutton")
 
         self.corner2_y_spinbutton = MonitoredSpinButton(
             self.top.get_object("corner2_y"),
             self.set_corner2_y,
             self.get_corner2_y,
-            self.db.readonly)
+            self.db.readonly,
+        )
         self.track_ref_for_deletion("corner2_y_spinbutton")
 
         self.descr_window = MonitoredEntry(
             self.top.get_object("description"),
             self.source.set_description,
             self.source.get_description,
-            self.db.readonly)
+            self.db.readonly,
+        )
 
         self.ref_privacy = PrivacyButton(
-            self.top.get_object("private"),
-            self.source_ref,
-            self.db.readonly)
+            self.top.get_object("private"), self.source_ref, self.db.readonly
+        )
 
         self.gid = MonitoredEntry(
             self.top.get_object("gid"),
             self.source.set_gramps_id,
             self.source.get_gramps_id,
-            self.db.readonly)
+            self.db.readonly,
+        )
 
         self.privacy = PrivacyButton(
-            self.top.get_object("privacy"),
-            self.source,
-            self.db.readonly)
+            self.top.get_object("privacy"), self.source, self.db.readonly
+        )
 
         self.path_obj = MonitoredEntry(
             self.top.get_object("path"),
             self.source.set_path,
             self.source.get_path,
-            self.db.readonly)
+            self.db.readonly,
+        )
 
         self.date_field = MonitoredDate(
             self.top.get_object("date_entry"),
             self.top.get_object("date_edit"),
             self.source.get_date_object(),
-            self.uistate, self.track,
-            self.db.readonly)
+            self.uistate,
+            self.track,
+            self.db.readonly,
+        )
 
         self.tags = MonitoredTagList(
             self.top.get_object("tag_label"),
@@ -282,8 +301,10 @@ class EditMediaRef(EditReference):
             self.source.set_tag_list,
             self.source.get_tag_list,
             self.db,
-            self.uistate, self.track,
-            self.db.readonly)
+            self.uistate,
+            self.track,
+            self.db.readonly,
+        )
 
     def _post_init(self):
         """
@@ -409,14 +430,13 @@ class EditMediaRef(EditReference):
         window management menu entries.
         """
         if self.source:
-            submenu_label = _('Media: %s')  % self.source.get_gramps_id()
+            submenu_label = _("Media: %s") % self.source.get_gramps_id()
         else:
-            submenu_label = _('New Media')
-        return (_('Media Reference Editor'),submenu_label)
+            submenu_label = _("New Media")
+        return (_("Media Reference Editor"), submenu_label)
 
     def button_press_event(self, obj, event):
-        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
-                and event.button == 1):
+        if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS and event.button == 1:
             photo_path = media_path_full(self.db, self.source.get_path())
             open_file_with_default_application(photo_path, self.uistate)
 
@@ -442,118 +462,151 @@ class EditMediaRef(EditReference):
         self.determine_mime()
         path = self.file_path.get_text()
         self.source.set_path(path)
-        AddMedia(self.dbstate, self.uistate, self.track, self.source,
-                       self._update_addmedia)
+        AddMedia(
+            self.dbstate, self.uistate, self.track, self.source, self._update_addmedia
+        )
 
     def _connect_signals(self):
-        self.define_cancel_button(self.top.get_object('button84'))
-        self.define_ok_button(self.top.get_object('button82'),self.save)
+        self.define_cancel_button(self.top.get_object("button84"))
+        self.define_ok_button(self.top.get_object("button82"), self.save)
         # TODO help button (rename glade button name)
-        self.define_help_button(self.top.get_object('button104'),
-                WIKI_HELP_PAGE, WIKI_HELP_SEC)
+        self.define_help_button(
+            self.top.get_object("button104"), WIKI_HELP_PAGE, WIKI_HELP_SEC
+        )
 
     def _connect_db_signals(self):
         """
         Connect any signals that need to be connected.
         Called by the init routine of the base class (_EditPrimary).
         """
-        self._add_db_signal('media-rebuild', self.close)
-        self._add_db_signal('media-delete', self.check_for_close)
+        self._add_db_signal("media-rebuild", self.close)
+        self._add_db_signal("media-delete", self.check_for_close)
 
     def _create_tabbed_pages(self):
         """
         Create the notebook tabs and inserts them into the main
         window.
         """
-        notebook_ref = self.top.get_object('notebook_ref')
-        notebook_src = self.top.get_object('notebook_shared')
+        notebook_ref = self.top.get_object("notebook_ref")
+        notebook_src = self.top.get_object("notebook_shared")
 
         self._add_tab(notebook_src, self.primtab)
         self._add_tab(notebook_ref, self.reftab)
 
-        self.srcref_list = CitationEmbedList(self.dbstate,
-                                         self.uistate,
-                                         self.track,
-                                         self.source_ref.get_citation_list())
+        self.srcref_list = CitationEmbedList(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.source_ref.get_citation_list(),
+            "mediaref_editor_ref_citations",
+        )
         self._add_tab(notebook_ref, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
 
-        self.attr_list = MediaAttrEmbedList(self.dbstate,self.uistate,self.track,
-                                       self.source_ref.get_attribute_list())
+        self.attr_list = MediaAttrEmbedList(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.source_ref.get_attribute_list(),
+            "mediaref_editor_ref_attributes",
+        )
         self._add_tab(notebook_ref, self.attr_list)
         self.track_ref_for_deletion("attr_list")
 
-        self.backref_list = MediaBackRefList(self.dbstate,self.uistate,self.track,
-                             self.db.find_backlink_handles(self.source.handle),
-                             self.enable_warnbox
-                             )
+        self.backref_list = MediaBackRefList(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.db.find_backlink_handles(self.source.handle),
+            "mediaref_editor_shared_references",
+            self.enable_warnbox,
+        )
         self._add_tab(notebook_src, self.backref_list)
         self.track_ref_for_deletion("backref_list")
 
-        self.note_ref_tab = NoteTab(self.dbstate, self.uistate, self.track,
-                                    self.source_ref.get_note_list(),
-                                    notetype=NoteType.MEDIAREF)
+        self.note_ref_tab = NoteTab(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.source_ref.get_note_list(),
+            "mediaref_editor_ref_notes",
+            notetype=NoteType.MEDIAREF,
+        )
         self._add_tab(notebook_ref, self.note_ref_tab)
         self.track_ref_for_deletion("note_ref_tab")
 
-        self.src_srcref_list = CitationEmbedList(self.dbstate,
-                                             self.uistate,
-                                             self.track,
-                                             self.source.get_citation_list())
+        self.src_srcref_list = CitationEmbedList(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.source.get_citation_list(),
+            "mediaref_editor_shared_citations",
+        )
         self._add_tab(notebook_src, self.src_srcref_list)
         self.track_ref_for_deletion("src_srcref_list")
 
-        self.src_attr_list = MediaAttrEmbedList(self.dbstate,self.uistate,self.track,
-                                           self.source.get_attribute_list())
+        self.src_attr_list = MediaAttrEmbedList(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.source.get_attribute_list(),
+            "mediaref_editor_shared_attributes",
+        )
         self._add_tab(notebook_src, self.src_attr_list)
         self.track_ref_for_deletion("src_attr_list")
 
-        self.src_note_ref_tab = NoteTab(self.dbstate, self.uistate, self.track,
-                                        self.source.get_note_list(),
-                                        notetype=NoteType.MEDIA)
+        self.src_note_ref_tab = NoteTab(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.source.get_note_list(),
+            "mediaref_editor_shared_notes",
+            notetype=NoteType.MEDIA,
+        )
         self._add_tab(notebook_src, self.src_note_ref_tab)
         self.track_ref_for_deletion("src_note_ref_tab")
 
         self._setup_notebook_tabs(notebook_src)
         self._setup_notebook_tabs(notebook_ref)
 
-    def save(self,*obj):
-
-        #first save primary object
+    def save(self, *obj):
+        # first save primary object
         if self.source.handle:
             # only commit if it has changed
             if self.source.serialize() != self.original:
-                with DbTxn(_("Edit Media Object (%s)") %
-                           self.source.get_description(), self.db) as trans:
+                with DbTxn(
+                    _("Edit Media Object (%s)") % self.source.get_description(), self.db
+                ) as trans:
                     self.db.commit_media(self.source, trans)
         else:
-            if self.check_for_duplicate_id('Media'):
+            if self.check_for_duplicate_id("Media"):
                 return
-            with DbTxn(_("Add Media Object (%s)") %
-                       self.source.get_description(), self.db) as trans:
+            with DbTxn(
+                _("Add Media Object (%s)") % self.source.get_description(), self.db
+            ) as trans:
                 self.db.add_media(self.source, trans)
 
-        #save reference object in memory
+        # save reference object in memory
         coord = (
             self.top.get_object("corner1_x").get_value_as_int(),
             self.top.get_object("corner1_y").get_value_as_int(),
             self.top.get_object("corner2_x").get_value_as_int(),
             self.top.get_object("corner2_y").get_value_as_int(),
-            )
+        )
 
-        #do not set unset or invalid coord
+        # do not set unset or invalid coord
 
         if coord is not None and coord in (
-                (None,)*4,
-                (0, 0, 100, 100),
-                (coord[0], coord[1])*2
-            ):
+            (None,) * 4,
+            (0, 0, 100, 100),
+            (coord[0], coord[1]) * 2,
+        ):
             coord = None
 
         self.source_ref.set_rectangle(coord)
 
-        #call callback if given
+        # call callback if given
         if self.update:
-            self.update(self.source_ref,self.source)
+            self.update(self.source_ref, self.source)
             self.update = None
         self.close()

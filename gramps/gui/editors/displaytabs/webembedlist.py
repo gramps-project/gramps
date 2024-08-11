@@ -18,63 +18,73 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gi.repository import Gtk
 from gi.repository import GObject
 from gi.repository import GLib
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.lib import Url
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
 from .webmodel import WebModel
 from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-class WebEmbedList(EmbeddedList):
 
+# -------------------------------------------------------------------------
+#
+#
+#
+# -------------------------------------------------------------------------
+class WebEmbedList(EmbeddedList):
     _HANDLE_COL = 4
     _DND_TYPE = DdTargets.URL
 
     _MSG = {
-        'add'   : _('Create and add a new web address'),
-        'del'   : _('Remove the existing web address'),
-        'edit'  : _('Edit the selected web address'),
-        'up'    : _('Move the selected web address upwards'),
-        'down'  : _('Move the selected web address downwards'),
-        'jump'  : _('Jump to the selected web address'),
+        "add": _("Create and add a new web address"),
+        "del": _("Remove the existing web address"),
+        "edit": _("Edit the selected web address"),
+        "up": _("Move the selected web address upwards"),
+        "down": _("Move the selected web address downwards"),
+        "jump": _("Jump to the selected web address"),
     }
 
-    #index = column in model. Value =
+    # index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Type')       , 0, 100, TEXT_COL, -1, None),
-        (_('Path')       , 1, 200, TEXT_COL, -1, None),
-        (_('Description'), 2, 150, TEXT_COL, -1, None),
-        (_('Private'),     3,  30, ICON_COL, -1, 'gramps-lock')
-        ]
+        (_("Type"), 0, 100, TEXT_COL, -1, None),
+        (_("Path"), 1, 200, TEXT_COL, -1, None),
+        (_("Description"), 2, 150, TEXT_COL, -1, None),
+        (_("Private"), 3, 30, ICON_COL, -1, "gramps-lock"),
+    ]
 
-    def __init__(self, dbstate, uistate, track, data):
+    def __init__(self, dbstate, uistate, track, data, config_key):
         self.data = data
-        EmbeddedList.__init__(self, dbstate, uistate, track, _('_Internet'),
-                              WebModel, move_buttons=True, jump_button=True)
+        EmbeddedList.__init__(
+            self,
+            dbstate,
+            uistate,
+            track,
+            _("_Internet"),
+            WebModel,
+            config_key,
+            move_buttons=True,
+            jump_button=True,
+        )
 
     def get_icon_name(self):
-        return 'gramps-url'
+        return "gramps-url"
 
     def get_data(self):
         return self.data
@@ -84,10 +94,10 @@ class WebEmbedList(EmbeddedList):
 
     def add_button_clicked(self, obj):
         from .. import EditUrl
+
         url = Url()
         try:
-            EditUrl(self.dbstate, self.uistate, self.track,
-                    '', url, self.add_callback)
+            EditUrl(self.dbstate, self.uistate, self.track, "", url, self.add_callback)
         except WindowActiveError:
             pass
 
@@ -99,11 +109,13 @@ class WebEmbedList(EmbeddedList):
 
     def edit_button_clicked(self, obj):
         from .. import EditUrl
+
         url = self.get_selected()
         if url:
             try:
-                EditUrl(self.dbstate, self.uistate, self.track,
-                        '', url, self.edit_callback)
+                EditUrl(
+                    self.dbstate, self.uistate, self.track, "", url, self.edit_callback
+                )
             except WindowActiveError:
                 pass
 
@@ -112,11 +124,11 @@ class WebEmbedList(EmbeddedList):
 
     def get_popup_menu_items(self):
         return [
-            (True, _('_Add'), self.add_button_clicked),
-            (False, _('_Edit'), self.edit_button_clicked),
-            (True, _('_Remove'), self.del_button_clicked),
-            (True, _('_Jump to'), self.jump_button_clicked),
-            ]
+            (True, _("_Add"), self.add_button_clicked),
+            (False, _("_Edit"), self.edit_button_clicked),
+            (True, _("_Remove"), self.del_button_clicked),
+            (True, _("_Jump to"), self.jump_button_clicked),
+        ]
 
     def jump_button_clicked(self, obj):
         from ...display import display_url

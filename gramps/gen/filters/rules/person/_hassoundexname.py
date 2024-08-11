@@ -18,63 +18,89 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+"""
+Rule that checks for full or partial name matches based on soundex.
+"""
+
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .. import Rule
+# -------------------------------------------------------------------------
+from ....const import GRAMPS_LOCALE as glocale
 from ....lib.nameorigintype import NameOriginType
 from ....soundex import soundex
-from ....const import GRAMPS_LOCALE as glocale
+from .. import Rule
+
 _ = glocale.translation.sgettext
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# HasNameOf
+# HasSoundexName
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasSoundexName(Rule):
-    """Rule that checks for full or partial name matches"""
+    """
+    Rule that checks for full or partial name matches based on soundex.
+    """
 
-    labels = [_('Name:')]
-    name = _('Soundex match of People with the <name>')
-    description = _("Soundex Match of people with a specified name. First "
-                    "name, Surname, Call name, and Nickname are searched in "
-                    "primary and alternate names.")
-    category = _('General filters')
+    labels = [_("Name:")]
+    name = _("Soundex match of People with the <name>")
+    description = _(
+        "Soundex Match of people with a specified name. First name, Surname, "
+        "Call name, and Nickname are searched in primary and alternate names."
+    )
+    category = _("General filters")
     allow_regex = False
 
-    def apply(self, db, person):
-        self.sndx = soundex(self.list[0])
-        for name in [person.get_primary_name()] + person.get_alternate_names():
+    def __init__(self, arg, use_regex=False, use_case=False):
+        super().__init__(arg, use_regex, use_case)
+        self.soundex = None
+
+    def prepare(self, db, user):
+        """
+        Prepare the rule. Things we only want to do once.
+        """
+        if self.list[0]:
+            self.soundex = soundex(self.list[0])
+
+    def apply(self, _db, obj):
+        """
+        Apply the rule. Return True on a match.
+        """
+        for name in [obj.get_primary_name()] + obj.get_alternate_names():
             if self._match_name(name):
                 return True
         return False
 
     def _match_name(self, name):
-        if self.list[0]:
-            if soundex(str(name.get_first_name())) == self.sndx:
+        """
+        Match a name against the soundex.
+        """
+        if self.soundex:
+            if soundex(str(name.get_first_name())) == self.soundex:
                 return True
-            elif soundex(str(name.get_surname())) == self.sndx:
+            if soundex(str(name.get_surname())) == self.soundex:
                 return True
-            elif soundex(str(name.get_call_name())) == self.sndx:
+            if soundex(str(name.get_call_name())) == self.soundex:
                 return True
-            elif soundex(str(name.get_nick_name())) == self.sndx:
+            if soundex(str(name.get_nick_name())) == self.soundex:
                 return True
-            elif soundex(str(name.get_family_nick_name())) == self.sndx:
+            if soundex(str(name.get_family_nick_name())) == self.soundex:
                 return True
-            else:
-                for surn in name.get_surname_list():
-                    if self._match_surname(surn):
-                        return True
+            for surname in name.get_surname_list():
+                if self._match_surname(surname):
+                    return True
         return False
 
-    def _match_surname(self, surn):
-        if soundex(str(surn.get_surname())) == self.sndx:
+    def _match_surname(self, surname):
+        """
+        Match a surname against the soundex.
+        """
+        if soundex(str(surname.get_surname())) == self.soundex:
             return True
-        if surn.get_origintype().value == NameOriginType.PATRONYMIC:
-            if soundex(str(surn.get_surname())) == self.sndx:
+        if surname.get_origintype().value == NameOriginType.PATRONYMIC:
+            if soundex(str(surname.get_surname())) == self.soundex:
                 return True
         return False

@@ -23,11 +23,12 @@
 LocationBase class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# LocationBase class
+# LocationBase
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class LocationBase:
     """
     Base class for all things Address.
@@ -61,15 +62,31 @@ class LocationBase:
         """
         Convert the object to a serialized tuple of data.
         """
-        return (self.street, self.locality, self.city, self.county, self.state,
-                self.country, self.postal, self.phone)
+        return (
+            self.street,
+            self.locality,
+            self.city,
+            self.county,
+            self.state,
+            self.country,
+            self.postal,
+            self.phone,
+        )
 
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
         """
-        (self.street, self.locality, self.city, self.county, self.state,
-         self.country, self.postal, self.phone) = data
+        (
+            self.street,
+            self.locality,
+            self.city,
+            self.county,
+            self.state,
+            self.country,
+            self.postal,
+            self.phone,
+        ) = data
         return self
 
     def get_text_data_list(self):
@@ -79,8 +96,35 @@ class LocationBase:
         :returns: Returns the list of all textual attributes of the object.
         :rtype: list
         """
-        return [self.street, self.locality, self.city, self.county,
-                self.state, self.country, self.postal, self.phone]
+        return [
+            self.street,
+            self.locality,
+            self.city,
+            self.county,
+            self.state,
+            self.country,
+            self.postal,
+            self.phone,
+        ]
+
+    def get_address_lines(self):
+        """
+        Return a list of non-empty address lines for the Location suitable for
+        producing a formatted address.
+
+        :returns: A list of address lines for the Location.
+        :rtype: list
+        """
+        addr_lines = [
+            self.street,
+            self.locality,
+            self.city,
+            self.county,
+            self.state,
+            self.postal,
+            self.country,
+        ]
+        return [line for line in addr_lines if line]
 
     def set_street(self, val):
         """Set the street portion of the Location."""

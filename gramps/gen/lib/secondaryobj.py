@@ -22,25 +22,26 @@
 Secondary Object class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# Standard Python modules
+# Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from abc import abstractmethod
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .baseobj import BaseObject
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# Secondary Object class
+# SecondaryObject
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class SecondaryObject(BaseObject):
     """
     The SecondaryObject is the base class for all secondary objects in the
@@ -60,6 +61,9 @@ class SecondaryObject(BaseObject):
         """
 
     def is_equal(self, source):
+        """
+        Check if two secondary objects are equivalent.
+        """
         return self.serialize() == source.serialize()
 
     def is_equivalent(self, other):
@@ -68,4 +72,3 @@ class SecondaryObject(BaseObject):
 
         Should be overwritten by objects that inherit from this class.
         """
-        pass

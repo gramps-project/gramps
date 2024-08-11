@@ -19,41 +19,51 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 log = logging.getLogger(".")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gramps.gen.datehandler import displayer, format_time
 from gramps.gen.lib import Date, Media
 from .flatbasemodel import FlatBaseModel
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MediaModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MediaModel(FlatBaseModel):
-
-    def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
-                 search=None, skip=set(), sort_map=None):
+    def __init__(
+        self,
+        db,
+        uistate,
+        scol=0,
+        order=Gtk.SortType.ASCENDING,
+        search=None,
+        skip=set(),
+        sort_map=None,
+    ):
         self.gen_cursor = db.get_media_cursor
         self.map = db.get_raw_media_data
 
@@ -67,7 +77,7 @@ class MediaModel(FlatBaseModel):
             self.column_tags,
             self.column_change,
             self.column_tag_color,
-            ]
+        ]
 
         self.smap = [
             self.column_description,
@@ -79,9 +89,10 @@ class MediaModel(FlatBaseModel):
             self.column_tags,
             self.sort_change,
             self.column_tag_color,
-            ]
-        FlatBaseModel.__init__(self, db, uistate, scol, order, search=search,
-                               skip=skip, sort_map=sort_map)
+        ]
+        FlatBaseModel.__init__(
+            self, db, uistate, scol, order, search=search, skip=skip, sort_map=sort_map
+        )
 
     def destroy(self):
         """
@@ -101,7 +112,7 @@ class MediaModel(FlatBaseModel):
         return 8
 
     def on_get_n_columns(self):
-        return len(self.fmap)+1
+        return len(self.fmap) + 1
 
     def column_description(self, data):
         return data[4]
@@ -114,45 +125,45 @@ class MediaModel(FlatBaseModel):
         if mime:
             return mime
         else:
-            return _('Note')
+            return _("Note")
 
-    def column_id(self,data):
+    def column_id(self, data):
         return data[1]
 
-    def column_date(self,data):
+    def column_date(self, data):
         if data[10]:
             date = Date()
             date.unserialize(data[10])
             return displayer.display(date)
-        return ''
+        return ""
 
-    def sort_date(self,data):
+    def sort_date(self, data):
         obj = Media()
         obj.unserialize(data)
         d = obj.get_date_object()
         if d:
             return "%09d" % d.get_sort_value()
         else:
-            return ''
+            return ""
 
-    def column_handle(self,data):
+    def column_handle(self, data):
         return str(data[0])
 
     def column_private(self, data):
         if data[12]:
-            return 'gramps-lock'
+            return "gramps-lock"
         else:
             # There is a problem returning None here.
-            return ''
+            return ""
 
-    def sort_change(self,data):
+    def sort_change(self, data):
         return "%012x" % data[9]
 
-    def column_change(self,data):
+    def column_change(self, data):
         return format_time(data[9])
 
-    def column_tooltip(self,data):
-        return 'Media tooltip'
+    def column_tooltip(self, data):
+        return "Media tooltip"
 
     def get_tag_name(self, tag_handle):
         """
@@ -188,4 +199,4 @@ class MediaModel(FlatBaseModel):
         """
         tag_list = list(map(self.get_tag_name, data[11]))
         # TODO for Arabic, should the next line's comma be translated?
-        return ', '.join(sorted(tag_list, key=glocale.sort_key))
+        return ", ".join(sorted(tag_list, key=glocale.sort_key))

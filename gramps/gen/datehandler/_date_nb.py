@@ -23,28 +23,29 @@
 Norwegian-specific classes for parsing and displaying dates.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import re
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ..lib.date import Date
 from ._dateparser import DateParser
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Norwegian parser class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class DateParserNb(DateParser):
     """
     Convert a text string into a Date object, expecting a date
@@ -54,66 +55,94 @@ class DateParserNb(DateParser):
 
     # modifiers before the date
     modifier_to_int = {
-        'før'    : Date.MOD_BEFORE,
-        'innen'  : Date.MOD_BEFORE,
-        'etter'   : Date.MOD_AFTER,
-        'omkring' : Date.MOD_ABOUT,
-        'omtrent' : Date.MOD_ABOUT,
-        'ca'      : Date.MOD_ABOUT
-        }
+        "før": Date.MOD_BEFORE,
+        "innen": Date.MOD_BEFORE,
+        "etter": Date.MOD_AFTER,
+        "omkring": Date.MOD_ABOUT,
+        "omtrent": Date.MOD_ABOUT,
+        "ca": Date.MOD_ABOUT,
+        "fra": Date.MOD_FROM,
+        "til": Date.MOD_TO,
+    }
 
     bce = ["f Kr"]
 
     calendar_to_int = {
-        'gregoriansk   '      : Date.CAL_GREGORIAN,
-        'g'                   : Date.CAL_GREGORIAN,
-        'juliansk'            : Date.CAL_JULIAN,
-        'j'                   : Date.CAL_JULIAN,
-        'hebraisk'            : Date.CAL_HEBREW,
-        'h'                   : Date.CAL_HEBREW,
-        'islamisk'            : Date.CAL_ISLAMIC,
-        'muslimsk'            : Date.CAL_ISLAMIC,
-        'i'                   : Date.CAL_ISLAMIC,
-        'fransk'              : Date.CAL_FRENCH,
-        'fransk republikansk' : Date.CAL_FRENCH,
-        'f'                   : Date.CAL_FRENCH,
-        'persisk'             : Date.CAL_PERSIAN,
-        'p'                   : Date.CAL_PERSIAN,
-        'svensk'              : Date.CAL_SWEDISH,
-        's'                   : Date.CAL_SWEDISH,
-        }
+        "gregoriansk   ": Date.CAL_GREGORIAN,
+        "g": Date.CAL_GREGORIAN,
+        "juliansk": Date.CAL_JULIAN,
+        "j": Date.CAL_JULIAN,
+        "hebraisk": Date.CAL_HEBREW,
+        "h": Date.CAL_HEBREW,
+        "islamisk": Date.CAL_ISLAMIC,
+        "muslimsk": Date.CAL_ISLAMIC,
+        "i": Date.CAL_ISLAMIC,
+        "fransk": Date.CAL_FRENCH,
+        "fransk republikansk": Date.CAL_FRENCH,
+        "f": Date.CAL_FRENCH,
+        "persisk": Date.CAL_PERSIAN,
+        "p": Date.CAL_PERSIAN,
+        "svensk": Date.CAL_SWEDISH,
+        "s": Date.CAL_SWEDISH,
+    }
 
     quality_to_int = {
-        'estimert' : Date.QUAL_ESTIMATED,
-        'beregnet'   : Date.QUAL_CALCULATED,
-        }
+        "estimert": Date.QUAL_ESTIMATED,
+        "beregnet": Date.QUAL_CALCULATED,
+    }
 
     def init_strings(self):
         DateParser.init_strings(self)
-        self._numeric = re.compile(
-            r"((\d+)[/\.\s]\s*)?((\d+)[/\.\-\s]\s*)?(\d+)\s*$")
+        self._numeric = re.compile(r"((\d+)[/\.\s]\s*)?((\d+)[/\.\-\s]\s*)?(\d+)\s*$")
         self._span = re.compile(
-            r"(fra)?\s*(?P<start>.+)\s*(til|--|–)\s*(?P<stop>.+)",
-            re.IGNORECASE)
+            r"(fra)?\s*(?P<start>.+)\s*(til|--|–)\s*(?P<stop>.+)", re.IGNORECASE
+        )
         self._range = re.compile(
-            r"(mellom)\s+(?P<start>.+)\s+og\s+(?P<stop>.+)", re.IGNORECASE)
+            r"(mellom)\s+(?P<start>.+)\s+og\s+(?P<stop>.+)", re.IGNORECASE
+        )
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Norwegian display class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class DateDisplayNb(DateDisplay):
     """
     Norwegian language date display class.
     """
 
-    long_months = ( "", "januar", "februar", "mars", "april", "mai",
-                    "juni", "juli", "august", "september", "oktober",
-                    "november", "desember" )
+    long_months = (
+        "",
+        "januar",
+        "februar",
+        "mars",
+        "april",
+        "mai",
+        "juni",
+        "juli",
+        "august",
+        "september",
+        "oktober",
+        "november",
+        "desember",
+    )
 
-    short_months = ( "", "jan", "feb", "mar", "apr", "mai", "jun",
-                     "jul", "aug", "sep", "okt", "nov", "des" )
+    short_months = (
+        "",
+        "jan",
+        "feb",
+        "mar",
+        "apr",
+        "mai",
+        "jun",
+        "jul",
+        "aug",
+        "sep",
+        "okt",
+        "nov",
+        "des",
+    )
 
     formats = (
         "ÅÅÅÅ-MM-DD (ISO)",
@@ -122,9 +151,9 @@ class DateDisplayNb(DateDisplay):
         "Mån Dag År",
         "Dag måned år",
         "Dag Mån År",
-        )
-        # this must agree with DateDisplayEn's "formats" definition
-        # (since no locale-specific _display_gregorian exists, here)
+    )
+    # this must agree with DateDisplayEn's "formats" definition
+    # (since no locale-specific _display_gregorian exists, here)
 
     calendar = (
         "",
@@ -133,8 +162,8 @@ class DateDisplayNb(DateDisplay):
         "fransk republikansk",
         "persisk",
         "islamisk",
-        "svensk"
-        )
+        "svensk",
+    )
 
     _mod_str = ("", "før ", "etter ", "ca ", "", "", "")
 
@@ -167,23 +196,24 @@ class DateDisplayNb(DateDisplay):
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%smellom %s og %s%s" % (qual_str, d1, d2,
-                                              scal)
+            return "%smellom %s og %s%s" % (qual_str, d1, d2, scal)
         else:
             text = self.display_cal[date.get_calendar()](start)
             scal = self.format_extras(cal, newyear)
-            return "%s%s%s%s" % (qual_str, self._mod_str[mod],
-                                 text, scal)
+            return "%s%s%s%s" % (qual_str, self._mod_str[mod], text, scal)
 
     def dd_dformat01(self, date_val):
-        """ numerical -- for Norwegian dates """
+        """numerical -- for Norwegian dates"""
         return DateDisplay.dd_dformat01(self, date_val).lstrip()
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Register classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 register_datehandler(
-    ('nb_NO', 'nb', 'nn_NO', 'nn', 'norsk', 'Norwegian', ('%d. %b %Y',)),
-    DateParserNb, DateDisplayNb)
+    ("nb_NO", "nb", "nn_NO", "nn", "norsk", "Norwegian", ("%d. %b %Y",)),
+    DateParserNb,
+    DateDisplayNb,
+)

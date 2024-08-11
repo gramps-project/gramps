@@ -27,7 +27,9 @@ Display a person's events, both personal and family
 from gramps.gen.simple import SimpleAccess, SimpleDoc
 from gramps.gui.plug.quick import QuickTable
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
+
 
 def run(database, document, person):
     """
@@ -60,14 +62,13 @@ def run(database, document, person):
     stab.columns(_("Event Type"), _("Event Date"), _("Event Place"))
     document.has_data = False
     for event in event_list:
-        stab.row(event,
-                 sdb.event_date_obj(event),
-                 sdb.event_place(event))
+        stab.row(event, sdb.event_date_obj(event), sdb.event_place(event))
         document.has_data = True
     if document.has_data:
         stab.write(sdoc)
     else:
         sdoc.header1(_("Not found"))
+
 
 def run_fam(database, document, family):
     """
@@ -80,18 +81,18 @@ def run_fam(database, document, family):
     stab = QuickTable(sdb)
 
     # get the family events
-    event_list = [(_('Family'), x) for x in sdb.events(family)]
+    event_list = [(family, x) for x in sdb.events(family)]
 
     # get the events of father and mother
-    #fathername = sdb.first_name(sdb.father(family))
+    # fathername = sdb.first_name(sdb.father(family))
     event_list += [(sdb.father(family), x) for x in sdb.events(sdb.father(family))]
-    #mothername = sdb.first_name(sdb.mother(family))
+    # mothername = sdb.first_name(sdb.mother(family))
     event_list += [(sdb.mother(family), x) for x in sdb.events(sdb.mother(family))]
 
     # children events
     event_list_children = []
     for child in sdb.children(family):
-        #name = sdb.first_name(child)
+        # name = sdb.first_name(child)
         event_list_children += [(child, x) for x in sdb.events(child)]
 
     # Sort the events by their date
@@ -100,19 +101,25 @@ def run_fam(database, document, family):
 
     # display the results
 
-    sdoc.title(_("Sorted events of family\n %(father)s - %(mother)s") % {
-        'father': sdb.name(sdb.father(family)),
-        'mother': sdb.name(sdb.mother(family))})
+    sdoc.title(
+        _("Sorted events of family\n %(father)s - %(mother)s")
+        % {
+            "father": sdb.name(sdb.father(family)),
+            "mother": sdb.name(sdb.mother(family)),
+        }
+    )
     sdoc.paragraph("")
 
     document.has_data = False
-    stab.columns(_("Family Member"), _("Event Type"),
-                 _("Event Date"), _("Event Place"))
+    stab.columns(_("Family Member"), _("Event Type"), _("Event Date"), _("Event Place"))
 
-    for (person, event) in event_list:
-        stab.row(person, sdb.event_type(event),
-                 sdb.event_date_obj(event),
-                 sdb.event_place(event))
+    for person, event in event_list:
+        stab.row(
+            person,
+            sdb.event_type(event),
+            sdb.event_date_obj(event),
+            sdb.event_place(event),
+        )
         document.has_data = True
     if document.has_data:
         stab.write(sdoc)
@@ -121,12 +128,14 @@ def run_fam(database, document, family):
 
     stab = QuickTable(sdb)
     sdoc.header1(_("Personal events of the children"))
-    stab.columns(_("Family Member"), _("Event Type"),
-                 _("Event Date"), _("Event Place"))
-    for (person, event) in event_list_children:
-        stab.row(person, sdb.event_type(event),
-                 sdb.event_date_obj(event),
-                 sdb.event_place(event))
+    stab.columns(_("Family Member"), _("Event Type"), _("Event Date"), _("Event Place"))
+    for person, event in event_list_children:
+        stab.row(
+            person,
+            sdb.event_type(event),
+            sdb.event_date_obj(event),
+            sdb.event_place(event),
+        )
         document.has_data = True
     if document.has_data:
         stab.write(sdoc)

@@ -19,31 +19,33 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GObject
 from gi.repository import Pango
+
 _TAB = Gdk.keyval_from_name("Tab")
 _ENTER = Gdk.keyval_from_name("Enter")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .surnamemodel import SurnameModel
 from .embeddedlist import EmbeddedList, TEXT_EDIT_COL
 from ...ddtargets import DdTargets
@@ -53,48 +55,64 @@ from ...utils import match_primary_mask, no_match_primary_mask
 # table for skipping illegal control chars
 INVISIBLE = dict.fromkeys(list(range(32)))
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # SurnameTab
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class SurnameTab(EmbeddedList):
-
     _HANDLE_COL = 5
     _DND_TYPE = DdTargets.SURNAME
 
     _MSG = {
-        'add'   : _('Create and add a new surname'),
-        'del'   : _('Remove the selected surname'),
-        'edit'  : _('Edit the selected surname'),
-        'up'    : _('Move the selected surname upwards'),
-        'down'  : _('Move the selected surname downwards'),
+        "add": _("Create and add a new surname"),
+        "del": _("Remove the selected surname"),
+        "edit": _("Edit the selected surname"),
+        "up": _("Move the selected surname upwards"),
+        "down": _("Move the selected surname downwards"),
     }
 
-    #index = column in model. Value =
+    # index = column in model. Value =
     #  (name, sortcol in model, width, markup/text
     _column_names = [
-        (_('Prefix'), 0, 150, TEXT_EDIT_COL, -1, None),
-        (_('Surname'), 1, -1, TEXT_EDIT_COL, -1, None),
-        (_('Connector'), 2, 100, TEXT_EDIT_COL, -1, None),
-        ]
-    _column_combo = (_('Origin'), -1, 150, 3)  # name, sort, width, modelcol
-    _column_toggle = (_('Primary', 'Name'), -1, 80, 4)
+        (_("Prefix"), 0, 150, TEXT_EDIT_COL, -1, None),
+        (_("Surname"), 1, -1, TEXT_EDIT_COL, -1, None),
+        (_("Connector"), 2, 100, TEXT_EDIT_COL, -1, None),
+    ]
+    _column_combo = (_("Origin"), -1, 150, 3)  # name, sort, width, modelcol
+    _column_toggle = (_("Primary", "Name"), -1, 80, 4)
 
-    def __init__(self, dbstate, uistate, track, name, on_change=None,
-                 top_label='<b>%s</b>' % _("Multiple Surnames") ):
+    def __init__(
+        self,
+        dbstate,
+        uistate,
+        track,
+        name,
+        config_key,
+        on_change=None,
+        top_label="<b>%s</b>" % _("Multiple Surnames"),
+    ):
         self.obj = name
         self.on_change = on_change
         self.curr_col = -1
         self.curr_cellr = None
         self.curr_celle = None
 
-        EmbeddedList.__init__(self, dbstate, uistate, track, _('Family Surnames'),
-                              SurnameModel, move_buttons=True,
-                              top_label=top_label)
+        EmbeddedList.__init__(
+            self,
+            dbstate,
+            uistate,
+            track,
+            _("Family Surnames"),
+            SurnameModel,
+            config_key,
+            move_buttons=True,
+            top_label=top_label,
+        )
 
     def build_columns(self):
-        #first the standard text columns with normal method
+        # first the standard text columns with normal method
         EmbeddedList.build_columns(self)
 
         # now we add the two special columns
@@ -102,13 +120,15 @@ class SurnameTab(EmbeddedList):
         colno = len(self.columns)
         name = self._column_combo[0]
         renderer = Gtk.CellRendererCombo()
-        renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
+        renderer.set_property("ellipsize", Pango.EllipsizeMode.END)
         # set up the comboentry editable
         no = NameOriginType()
         self.cmborig = Gtk.ListStore(GObject.TYPE_INT, GObject.TYPE_STRING)
         self.cmborigmap = no.get_map().copy()
-        #sort the keys based on the value
-        keys = sorted(self.cmborigmap, key=lambda x: glocale.sort_key(self.cmborigmap[x]))
+        # sort the keys based on the value
+        keys = sorted(
+            self.cmborigmap, key=lambda x: glocale.sort_key(self.cmborigmap[x])
+        )
         for key in keys:
             if key != no.get_custom():
                 self.cmborig.append(row=[key, self.cmborigmap[key]])
@@ -119,10 +139,10 @@ class SurnameTab(EmbeddedList):
                     self.cmborig.append(row=[no.get_custom(), type])
         renderer.set_property("model", self.cmborig)
         renderer.set_property("text-column", 1)
-        renderer.set_property('editable', not self.dbstate.db.readonly)
+        renderer.set_property("editable", not self.dbstate.db.readonly)
 
-        renderer.connect('editing_started', self.on_edit_start_cmb, colno)
-        renderer.connect('edited', self.on_orig_edited, self._column_combo[3])
+        renderer.connect("editing_started", self.on_edit_start_cmb, colno)
+        renderer.connect("edited", self.on_orig_edited, self._column_combo[3])
         # add to treeview
         column = Gtk.TreeViewColumn(name, renderer, text=self._column_combo[3])
         column.set_resizable(True)
@@ -135,9 +155,9 @@ class SurnameTab(EmbeddedList):
         colno += 1
         name = self._column_toggle[0]
         renderer = Gtk.CellRendererToggle()
-        renderer.set_property('activatable', True)
-        renderer.set_property('radio', True)
-        renderer.connect( 'toggled', self.on_prim_toggled, self._column_toggle[3])
+        renderer.set_property("activatable", True)
+        renderer.set_property("radio", True)
+        renderer.connect("toggled", self.on_prim_toggled, self._column_toggle[3])
         # add to treeview
         column = Gtk.TreeViewColumn(name, renderer, active=self._column_toggle[3])
         column.set_resizable(False)
@@ -159,18 +179,16 @@ class SurnameTab(EmbeddedList):
                               }}
         """
         self.edit_col_funcs = {
-            0: {'edit_start': self.on_edit_start,
-                'edited': self.on_edit_inline},
-            1: {'edit_start': self.on_edit_start,
-                'edited': self.on_edit_inline},
-            2: {'edit_start': self.on_edit_start,
-                'edited': self.on_edit_inline}}
+            0: {"edit_start": self.on_edit_start, "edited": self.on_edit_inline},
+            1: {"edit_start": self.on_edit_start, "edited": self.on_edit_inline},
+            2: {"edit_start": self.on_edit_start, "edited": self.on_edit_inline},
+        }
 
     def get_data(self):
         return self.obj.get_surname_list()
 
     def is_empty(self):
-        return len(self.model)==0
+        return len(self.model) == 0
 
     def _get_surn_from_model(self):
         """
@@ -218,32 +236,36 @@ class SurnameTab(EmbeddedList):
         prim = False
         if len(self.obj.get_surname_list()) == 0:
             prim = True
-        node = self.model.append(row=['', '', '', str(NameOriginType()), prim,
-                                      Surname()])
+        node = self.model.append(
+            row=["", "", "", str(NameOriginType()), prim, Surname()]
+        )
         self.selection.select_iter(node)
         path = self.model.get_path(node)
-        self.tree.set_cursor_on_cell(path,
-                                     focus_column=self.columns[0],
-                                     focus_cell=None,
-                                     start_editing=True)
+        self.tree.set_cursor_on_cell(
+            path, focus_column=self.columns[0], focus_cell=None, start_editing=True
+        )
         self.update()
 
     def del_button_clicked(self, obj):
         """
         Delete button is clicked. Remove from the model
         """
-        (model, node) = self.selection.get_selected()
+        (_model, node) = self.selection.get_selected()
         if node:
+            path = self.model.get_path(node).to_string()
+            if path == self.curr_path:
+                self.curr_path = None
             self.model.remove(node)
             self.update()
 
     def on_edit_start(self, cellr, celle, path, colnr):
-        """ start of editing. Store stuff so we know when editing ends where we
+        """start of editing. Store stuff so we know when editing ends where we
         are
         """
         self.curr_col = colnr
         self.curr_cellr = cellr
         self.curr_celle = celle
+        self.curr_path = path
 
     def on_edit_start_cmb(self, cellr, celle, path, colnr):
         """
@@ -253,7 +275,7 @@ class SurnameTab(EmbeddedList):
         in the cmb happens.
         """
         self.on_edit_start(cellr, celle, path, colnr)
-        #set up autocomplete
+        # set up autocomplete
         entry = celle.get_child()
         entry.set_width_chars(10)
         completion = Gtk.EntryCompletion()
@@ -262,7 +284,7 @@ class SurnameTab(EmbeddedList):
         completion.set_text_column(1)
         entry.set_completion(completion)
         #
-        celle.connect('changed', self.on_origcmb_change, path, colnr)
+        celle.connect("changed", self.on_origcmb_change, path, colnr)
 
     def on_edit_start_toggle(self, cellr, celle, path, colnr):
         """
@@ -275,6 +297,8 @@ class SurnameTab(EmbeddedList):
         Edit is happening. The model is updated and the surname objects updated.
         colnr must be the column in the model.
         """
+        if self.curr_path == None:
+            return
         node = self.model.get_iter(path)
         text = new_text.translate(INVISIBLE).strip()
         self.model.set_value(node, colnr, text)
@@ -297,26 +321,25 @@ class SurnameTab(EmbeddedList):
         act = cmb.get_active()
         if act == -1:
             return
-        self.on_orig_edited(None, path,
-                            self.cmborig.get_value(
-                                            self.cmborig.get_iter((act,)),1),
-                            colnr)
+        self.on_orig_edited(
+            None, path, self.cmborig.get_value(self.cmborig.get_iter((act,)), 1), colnr
+        )
 
     def on_prim_toggled(self, cell, path, colnr):
         """
         Primary surname on path is toggled. colnr must be the col
         in the model
         """
-        #obtain current value
+        # obtain current value
         node = self.model.get_iter(path)
         old_val = self.model.get_value(node, colnr)
         for nr, surname in enumerate(self.obj.get_surname_list()):
             if nr == int(path[0]):
                 if old_val:
-                    #True remains True
+                    # True remains True
                     break
                 else:
-                    #This value becomes True
+                    # This value becomes True
                     self.model.set_value(self.model.get_iter((nr,)), colnr, True)
             else:
                 self.model.set_value(self.model.get_iter((nr,)), colnr, False)
@@ -324,15 +347,13 @@ class SurnameTab(EmbeddedList):
         return
 
     def edit_button_clicked(self, obj):
-        """ Edit button clicked
-        """
+        """Edit button clicked"""
         (model, node) = self.selection.get_selected()
         if node:
             path = self.model.get_path(node)
-            self.tree.set_cursor_on_cell(path,
-                                         focus_column=self.columns[0],
-                                         focus_cell=None,
-                                         start_editing=True)
+            self.tree.set_cursor_on_cell(
+                path, focus_column=self.columns[0], focus_cell=None, start_editing=True
+            )
 
     def key_pressed(self, obj, event):
         """
@@ -341,8 +362,9 @@ class SurnameTab(EmbeddedList):
         """
         if not EmbeddedList.key_pressed(self, obj, event):
             if event.type == Gdk.EventType.KEY_PRESS and event.keyval in (_TAB,):
-                if no_match_primary_mask(event.get_state(),
-                                         Gdk.ModifierType.SHIFT_MASK):
+                if no_match_primary_mask(
+                    event.get_state(), Gdk.ModifierType.SHIFT_MASK
+                ):
                     return self.next_cell()
                 elif match_primary_mask(event.get_state(), Gdk.ModifierType.SHIFT_MASK):
                     return self.prev_cell()
@@ -359,30 +381,33 @@ class SurnameTab(EmbeddedList):
         (model, node) = self.selection.get_selected()
         if node:
             path = self.model.get_path(node).get_indices()[0]
-            nccol = self.curr_col+1
-            if  nccol < 4:
+            nccol = self.curr_col + 1
+            if nccol < 4:
                 if self.curr_celle:
                     self.curr_celle.editing_done()
-                self.tree.set_cursor_on_cell(Gtk.TreePath((path,)),
-                                         focus_column=self.columns[nccol],
-                                         focus_cell=None,
-                                         start_editing=True)
+                self.tree.set_cursor_on_cell(
+                    Gtk.TreePath((path,)),
+                    focus_column=self.columns[nccol],
+                    focus_cell=None,
+                    start_editing=True,
+                )
             elif nccol == 4:
-                #go to next line if there is one
+                # go to next line if there is one
                 if path < len(self.obj.get_surname_list()):
-                    newpath = Gtk.TreePath((path+1,))
+                    newpath = Gtk.TreePath((path + 1,))
                     self.curr_celle.editing_done()
                     self.selection.select_path(newpath)
-                    self.tree.set_cursor_on_cell(newpath,
-                                     focus_column=self.columns[0],
-                                     focus_cell=None,
-                                     start_editing=True)
+                    self.tree.set_cursor_on_cell(
+                        newpath,
+                        focus_column=self.columns[0],
+                        focus_cell=None,
+                        start_editing=True,
+                    )
                 else:
-                    #stop editing
+                    # stop editing
                     self.curr_celle.editing_done()
                     return
         return True
-
 
     def prev_cell(self):
         """
@@ -391,22 +416,26 @@ class SurnameTab(EmbeddedList):
         (model, node) = self.selection.get_selected()
         if node:
             path = self.model.get_path(node).get_indices()[0]
-            if  self.curr_col > 0:
-                self.tree.set_cursor_on_cell(Gtk.TreePath((path,)),
-                                         focus_column=self.columns[self.curr_col-1],
-                                         focus_cell=None,
-                                         start_editing=True)
+            if self.curr_col > 0:
+                self.tree.set_cursor_on_cell(
+                    Gtk.TreePath((path,)),
+                    focus_column=self.columns[self.curr_col - 1],
+                    focus_cell=None,
+                    start_editing=True,
+                )
             elif self.curr_col == 0:
-                #go to prev line if there is one
+                # go to prev line if there is one
                 if path > 0:
-                    newpath = Gtk.TreePath((path-1,))
+                    newpath = Gtk.TreePath((path - 1,))
                     self.selection.select_path(newpath)
-                    self.tree.set_cursor_on_cell(newpath,
-                                     focus_column=self.columns[-2],
-                                     focus_cell=None,
-                                     start_editing=True)
+                    self.tree.set_cursor_on_cell(
+                        newpath,
+                        focus_column=self.columns[-2],
+                        focus_cell=None,
+                        start_editing=True,
+                    )
                 else:
-                    #stop editing
+                    # stop editing
                     self.curr_celle.editing_done()
                     return
         return True

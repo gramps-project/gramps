@@ -22,25 +22,26 @@
 The TreeModel for the Address list in the Address Tab.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.datehandler import get_date
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # AddressModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class AddressModel(Gtk.ListStore):
     """
     AddressModel derives from the ListStore, defining te items in the list
@@ -50,20 +51,23 @@ class AddressModel(Gtk.ListStore):
         """
         AddressModel derives from the ListStore, defining te items in the list
         """
-        Gtk.ListStore.__init__(self, str, str, str, str, str, str, str, str,
-                               bool, bool, object)
+        Gtk.ListStore.__init__(
+            self, str, str, str, str, str, str, str, str, bool, bool, object
+        )
         self.db = dbase
         for obj in obj_list:
-            self.append(row=[
-                get_date(obj),
-                obj.street,
-                obj.locality,
-                obj.city,
-                obj.state,
-                obj.country,
-                obj.postal,
-                obj.phone,
-                obj.has_citations(),
-                obj.get_privacy(),
-                obj,
-                ])
+            self.append(
+                row=[
+                    get_date(obj),
+                    obj.street,
+                    obj.locality,
+                    obj.city,
+                    obj.state,
+                    obj.country,
+                    obj.postal,
+                    obj.phone,
+                    obj.has_citations(),
+                    obj.get_privacy(),
+                    obj,
+                ]
+            )

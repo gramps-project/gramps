@@ -23,26 +23,32 @@
 
 """Reports/Text Reports/Ahnentafel Report"""
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import math
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gramps.gen.errors import ReportError
 from gramps.gen.lib import ChildRefType
-from gramps.gen.plug.menu import (BooleanOption, NumberOption, PersonOption)
-from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
-                                    FONT_SANS_SERIF, INDEX_TYPE_TOC,
-                                    PARA_ALIGN_CENTER)
+from gramps.gen.plug.menu import BooleanOption, NumberOption, PersonOption
+from gramps.gen.plug.docgen import (
+    IndexMark,
+    FontStyle,
+    ParagraphStyle,
+    FONT_SANS_SERIF,
+    INDEX_TYPE_TOC,
+    PARA_ALIGN_CENTER,
+)
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
@@ -51,26 +57,29 @@ from gramps.plugins.lib.libnarrate import Narrator
 from gramps.gen.proxy import CacheProxyDb
 from gramps.gen.display.name import displayer as _nd
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # log2val
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 def log2(val):
     """
     Calculate the log base 2 of a number
     """
     return int(math.log(val, 2))
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # AncestorReport
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class AncestorReport(Report):
     """
     Ancestor Report class
     """
+
     def __init__(self, database, options, user):
         """
         Create the AncestorReport object that produces the Ahnentafel report.
@@ -98,7 +107,7 @@ class AncestorReport(Report):
         self.map = {}
         menu = options.menu
 
-        self.set_locale(menu.get_option_by_name('trans').get_value())
+        self.set_locale(menu.get_option_by_name("trans").get_value())
 
         stdoptions.run_date_format_option(self, menu)
 
@@ -106,20 +115,21 @@ class AncestorReport(Report):
         stdoptions.run_living_people_option(self, menu, self._locale)
         self.database = CacheProxyDb(self.database)
 
-        self.max_generations = menu.get_option_by_name('maxgen').get_value()
-        self.pgbrk = menu.get_option_by_name('pagebbg').get_value()
-        self.opt_namebrk = menu.get_option_by_name('namebrk').get_value()
-        self.want_ids = menu.get_option_by_name('inc_id').get_value()
+        self.max_generations = menu.get_option_by_name("maxgen").get_value()
+        self.pgbrk = menu.get_option_by_name("pagebbg").get_value()
+        self.opt_namebrk = menu.get_option_by_name("namebrk").get_value()
+        self.want_ids = menu.get_option_by_name("inc_id").get_value()
 
-        pid = menu.get_option_by_name('pid').get_value()
+        pid = menu.get_option_by_name("pid").get_value()
         self.center_person = self.database.get_person_from_gramps_id(pid)
         if self.center_person is None:
             raise ReportError(_("Person %s is not in the Database") % pid)
 
         stdoptions.run_name_format_option(self, menu)
 
-        self.__narrator = Narrator(self.database,  use_fulldate=True,
-                                   nlocale=self._locale)
+        self.__narrator = Narrator(
+            self.database, use_fulldate=True, nlocale=self._locale
+        )
 
     def apply_filter(self, person_handle, index, generation=1):
         """
@@ -155,28 +165,34 @@ class AncestorReport(Report):
             # the passed person. There should be exactly one, but there is
             # nothing that prevents the same child in the list multiple times.
 
-            ref = [ c for c in family.get_child_ref_list()
-                    if c.get_reference_handle() == person_handle]
+            ref = [
+                c
+                for c in family.get_child_ref_list()
+                if c.get_reference_handle() == person_handle
+            ]
             if ref:
-
                 # If the father_handle is not defined and the relationship is
                 # BIRTH, then we have found the birth father. Same applies to
                 # the birth mother. If for some reason, the we have multiple
                 # people defined as the birth parents, we will select based on
                 # priority in the list
 
-                if not father_handle and \
-                   ref[0].get_father_relation() == ChildRefType.BIRTH:
+                if (
+                    not father_handle
+                    and ref[0].get_father_relation() == ChildRefType.BIRTH
+                ):
                     father_handle = family.get_father_handle()
-                if not mother_handle and \
-                   ref[0].get_mother_relation() == ChildRefType.BIRTH:
+                if (
+                    not mother_handle
+                    and ref[0].get_mother_relation() == ChildRefType.BIRTH
+                ):
                     mother_handle = family.get_mother_handle()
 
         # Recursively call the function. It is okay if the handle is None,
         # since routine handles a handle of None
 
-        self.apply_filter(father_handle, index*2, generation+1)
-        self.apply_filter(mother_handle, (index*2)+1, generation+1)
+        self.apply_filter(father_handle, index * 2, generation + 1)
+        self.apply_filter(mother_handle, (index * 2) + 1, generation + 1)
 
     def write_report(self):
         """
@@ -205,10 +221,8 @@ class AncestorReport(Report):
         generation = 0
 
         for key in sorted(self.map):
-
             # check the index number to see if we need to start a new generation
             if generation == log2(key):
-
                 # generate a page break if requested
                 if self.pgbrk and generation > 0:
                     self.doc.page_break()
@@ -216,7 +230,7 @@ class AncestorReport(Report):
 
                 # Create the Generation title, set an index marker
                 gen_text = self._("Generation %d") % generation
-                mark = None # don't need any with no page breaks
+                mark = None  # don't need any with no page breaks
                 if self.pgbrk:
                     mark = IndexMark(gen_text, INDEX_TYPE_TOC, 2)
                 self.doc.start_paragraph("AHN-Generation")
@@ -225,7 +239,7 @@ class AncestorReport(Report):
 
             # Build the entry
 
-            self.doc.start_paragraph("AHN-Entry","%d." % key)
+            self.doc.start_paragraph("AHN-Entry", "%d." % key)
             person = self.database.get_person_from_handle(self.map[key])
             if person is None:
                 continue
@@ -237,18 +251,18 @@ class AncestorReport(Report):
             self.doc.write_text(name.strip(), mark)
             self.doc.end_bold()
             if self.want_ids:
-                self.doc.write_text(' (%s)' % person.get_gramps_id())
+                self.doc.write_text(" (%s)" % person.get_gramps_id())
 
             # terminate with a period if it is not already terminated.
             # This can happen if the person's name ends with something 'Jr.'
-            if name[-1:] == '.' and not self.want_ids:
+            if name[-1:] == "." and not self.want_ids:
                 self.doc.write_text(" ")
             else:
                 self.doc.write_text(". ")
 
             # Add a line break if requested
             if self.opt_namebrk:
-                self.doc.write_text('\n')
+                self.doc.write_text("\n")
 
             self.__narrator.set_subject(person)
             self.doc.write_text(self.__narrator.get_born_string())
@@ -259,13 +273,13 @@ class AncestorReport(Report):
 
             self.doc.end_paragraph()
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # AncestorOptions
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class AncestorOptions(MenuReportOptions):
-
     """
     Defines options and provides handling interface.
     """
@@ -276,7 +290,7 @@ class AncestorOptions(MenuReportOptions):
         MenuReportOptions.__init__(self, name, dbase)
 
     def get_subject(self):
-        """ Return a string that describes the subject of the report. """
+        """Return a string that describes the subject of the report."""
         gid = self.__pid.get_value()
         person = self.__db.get_person_from_gramps_id(gid)
         return _nd.display(person)
@@ -292,15 +306,13 @@ class AncestorOptions(MenuReportOptions):
         menu.add_option(category_name, "pid", self.__pid)
 
         maxgen = NumberOption(_("Generations"), 10, 1, 100)
-        maxgen.set_help(
-            _("The number of generations to include in the report"))
+        maxgen.set_help(_("The number of generations to include in the report"))
         menu.add_option(category_name, "maxgen", maxgen)
 
         stdoptions.add_gramps_id_option(menu, category_name)
 
         pagebbg = BooleanOption(_("Page break between generations"), False)
-        pagebbg.set_help(
-                     _("Whether to start a new page after each generation."))
+        pagebbg.set_help(_("Whether to start a new page after each generation."))
         menu.add_option(category_name, "pagebbg", pagebbg)
 
         namebrk = BooleanOption(_("Add linebreak after each name"), False)
@@ -360,7 +372,7 @@ class AncestorOptions(MenuReportOptions):
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
         para.set_alignment(PARA_ALIGN_CENTER)
-        para.set_description(_('The style used for the title.'))
+        para.set_description(_("The style used for the title."))
         default_style.add_paragraph_style("AHN-Title", para)
 
         #
@@ -373,7 +385,7 @@ class AncestorOptions(MenuReportOptions):
         para.set_header_level(2)
         para.set_top_margin(0.125)
         para.set_bottom_margin(0.125)
-        para.set_description(_('The style used for the generation header.'))
+        para.set_description(_("The style used for the generation header."))
         default_style.add_paragraph_style("AHN-Generation", para)
 
         #
@@ -383,5 +395,5 @@ class AncestorOptions(MenuReportOptions):
         para.set(first_indent=-1.0, lmargin=1.0)
         para.set_top_margin(0.125)
         para.set_bottom_margin(0.125)
-        para.set_description(_('The basic style used for the text display.'))
+        para.set_description(_("The basic style used for the text display."))
         default_style.add_paragraph_style("AHN-Entry", para)

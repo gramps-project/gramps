@@ -18,48 +18,51 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import os
 import webbrowser
 import sys
 from urllib.parse import quote
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.const import URL_MANUAL_PAGE, URL_WIKISTRING
 from gramps.gen.constfunc import is_quartz, mac
 from gramps.gen.config import config
 from .utils import open_file_with_default_application as run_file
 
-#list of manuals on wiki, map locale code to wiki extension, add language codes
-#completely, or first part, so pt_BR if Brazilian portugeze wiki manual, and
-#nl for Dutch (nl_BE, nl_NL language code)
+# list of manuals on wiki, map locale code to wiki extension, add language codes
+# completely, or first part, so pt_BR if Brazilian portugeze wiki manual, and
+# nl for Dutch (nl_BE, nl_NL language code)
 MANUALS = {
-    'nl' : '/nl',
-    'fr' : '/fr',
-    'sq' : '/sq',
-    'mk' : '/mk',
-    'de' : '/de',
-    'fi' : '/fi',
-    'ru' : '/ru',
-    'sk' : '/sk',
+    "de": "/de",
+    "fi": "/fi",
+    "fr": "/fr",
+    "he": "/he",
+    "mk": "/mk",
+    "nl": "/nl",
+    "ru": "/ru",
+    "sk": "/sk",
+    "sq": "/sq",
 }
 
-#first, determine language code, so nl_BE --> wiki /nl
+# first, determine language code, so nl_BE --> wiki /nl
 lang = glocale.language[0]
 if lang in MANUALS:
     EXTENSION = MANUALS[lang]
 else:
-    EXTENSION = ''
+    EXTENSION = ""
 
-def display_help(webpage='', section=''):
+
+def display_help(webpage="", section=""):
     """
     Display the specified webpage and section from the Gramps wiki.
     """
@@ -68,8 +71,9 @@ def display_help(webpage='', section=''):
     else:
         link = URL_WIKISTRING + quote(webpage) + EXTENSION
         if section:
-            link += '#' + quote(section.replace(' ', '_')).replace('%', '.')
+            link += "#" + quote(section.replace(" ", "_")).replace("%", ".")
     display_url(link)
+
 
 def display_url(link, uistate=None):
     """

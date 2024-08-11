@@ -22,32 +22,32 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from html import escape
 import math
 import os
 import pickle
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import GdkPixbuf
 from gi.repository import PangoCairo
 import cairo
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps Modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.lib import ChildRef, ChildRefType, Family
 from gramps.gui.views.navigationview import NavigationView
 from gramps.gui.editors import FilterEditor
@@ -65,26 +65,32 @@ from gramps.gen.config import config
 from gramps.gui.views.bookmarks import PersonBookmarks
 from gramps.gen.const import CUSTOM_FILTERS, URL_MANUAL_PAGE, URL_WIKISTRING
 from gramps.gui.dialog import RunDatabaseRepair, ErrorDialog
-from gramps.gui.utils import (color_graph_box, hex_to_rgb_float,
-                              is_right_click, get_contrast_color)
+from gramps.gui.utils import (
+    color_graph_box,
+    hex_to_rgb_float,
+    is_right_click,
+    get_contrast_color,
+)
 from gramps.gen.constfunc import lin
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from gramps.gen.utils.symbols import Symbols
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
-WIKI_PAGE = URL_WIKISTRING + URL_MANUAL_PAGE + '_-_Categories#Pedigree_View'
+# -------------------------------------------------------------------------
+WIKI_PAGE = URL_WIKISTRING + URL_MANUAL_PAGE + "_-_Categories#Pedigree_View"
 _PERSON = "p"
-_BORN = _('b.', 'short for born')
-_DIED = _('d.', 'short for died')
-_BAPT = _('bap.', 'short for baptized')
-_CHRI = _('chr.', 'short for christened')
-_BURI = _('bur.', 'short for buried')
-_CREM = _('crem.', 'short for cremated')
+_BORN = _("b.", "short for born")
+_DIED = _("d.", "short for died")
+_BAPT = _("bap.", "short for baptized")
+_CHRI = _("chr.", "short for christened")
+_BURI = _("bur.", "short for buried")
+_CREM = _("crem.", "short for cremated")
+
 
 class _PersonWidgetBase(Gtk.DrawingArea):
     """
@@ -107,21 +113,21 @@ class _PersonWidgetBase(Gtk.DrawingArea):
             self.connect("drag_begin", self.cb_drag_begin)
             self.connect("drag_end", self.cb_drag_end)
             # Enable drag
-            self.drag_source_set(Gdk.ModifierType.BUTTON1_MASK,
-                                [],
-                                Gdk.DragAction.COPY)
+            self.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, [], Gdk.DragAction.COPY)
             tglist = Gtk.TargetList.new([])
-            tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
-                       DdTargets.PERSON_LINK.target_flags,
-                       DdTargets.PERSON_LINK.app_id)
-            #allow drag to a text document, info on drag_get will be 0L !
+            tglist.add(
+                DdTargets.PERSON_LINK.atom_drag_type,
+                DdTargets.PERSON_LINK.target_flags,
+                DdTargets.PERSON_LINK.app_id,
+            )
+            # allow drag to a text document, info on drag_get will be 0L !
             tglist.add_text_targets(0)
             self.drag_source_set_target_list(tglist)
 
     def cb_drag_begin(self, widget, data):
         """Set up some inital conditions for drag. Set up icon."""
         self.in_drag = True
-        self.drag_source_set_icon_name('gramps-person')
+        self.drag_source_set_icon_name("gramps-person")
 
     def cb_drag_end(self, widget, data):
         """Set up some inital conditions for drag. Set up icon."""
@@ -134,10 +140,14 @@ class _PersonWidgetBase(Gtk.DrawingArea):
         """
         tgs = [x.name() for x in context.list_targets()]
         if info == DdTargets.PERSON_LINK.app_id:
-            data = (DdTargets.PERSON_LINK.drag_type,
-                    id(self), self.person.get_handle(), 0)
+            data = (
+                DdTargets.PERSON_LINK.drag_type,
+                id(self),
+                self.person.get_handle(),
+                0,
+            )
             sel_data.set(sel_data.get_target(), 8, pickle.dumps(data))
-        elif ('TEXT' in tgs or 'text/plain' in tgs) and info == 0:
+        elif ("TEXT" in tgs or "text/plain" in tgs) and info == 0:
             sel_data.set_text(self.format_helper.format_person(self.person, 11), -1)
 
     def cb_on_button_release(self, widget, event):
@@ -161,22 +171,31 @@ class _PersonWidgetBase(Gtk.DrawingArea):
         if media_list:
             photo = media_list[0]
             object_handle = photo.get_reference_handle()
-            obj = dbstate.db.get_media_from_handle(
-                object_handle)
+            obj = dbstate.db.get_media_from_handle(object_handle)
             if obj:
                 mtype = obj.get_mime_type()
                 if mtype and mtype[0:5] == "image":
                     image_path = get_thumbnail_path(
-                                media_path_full(
-                                            dbstate.db,
-                                            obj.get_path()),
-                                rectangle=photo.get_rectangle())
+                        media_path_full(dbstate.db, obj.get_path()),
+                        rectangle=photo.get_rectangle(),
+                    )
         return image_path
+
 
 class PersonBoxWidgetCairo(_PersonWidgetBase):
     """Draw person box using cairo library"""
-    def __init__(self, view, format_helper, dbstate, person, alive, maxlines,
-                image=None, tags=False):
+
+    def __init__(
+        self,
+        view,
+        format_helper,
+        dbstate,
+        person,
+        alive,
+        maxlines,
+        image=None,
+        tags=False,
+    ):
         _PersonWidgetBase.__init__(self, view, format_helper, person)
         self.set_size_request(120, 25)
         # Required for tooltip and mouse-over
@@ -189,8 +208,9 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         self.connect("draw", self.draw)
         self.text = ""
         if self.person:
-            self.text = self.format_helper.format_person(self.person,
-                                                         self.maxlines, True)
+            self.text = self.format_helper.format_person(
+                self.person, self.maxlines, True
+            )
             gender = self.person.get_gender()
         else:
             gender = None
@@ -209,7 +229,7 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         if image:
             image_path = self.get_image(dbstate, person)
             if image_path and os.path.exists(image_path):
-                with open(image_path, 'rb') as image:
+                with open(image_path, "rb") as image:
                     self.img_surf = cairo.ImageSurface.create_from_png(image)
 
         # enable mouse-over
@@ -236,23 +256,27 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         Creat new cairo object and draw in it all (borders, background and etc.)
         witout text.
         """
+
         def _boxpath(context, alloc):
             # Create box shape and store path
-            #context.new_path()
+            # context.new_path()
             context.move_to(0, 5)
             context.curve_to(0, 2, 2, 0, 5, 0)
-            context.line_to(alloc.width-8, 0)
-            context.curve_to(alloc.width-5, 0,
-                                  alloc.width-3, 2,
-                                  alloc.width-3, 5)
-            context.line_to(alloc.width-3, alloc.height-8)
-            context.curve_to(alloc.width-3, alloc.height-5,
-                                  alloc.width-5, alloc.height-3,
-                                  alloc.width-8, alloc.height-3)
-            context.line_to(5, alloc.height-3)
-            context.curve_to(2, alloc.height-3,
-                                  0, alloc.height-5,
-                                  0, alloc.height-8)
+            context.line_to(alloc.width - 8, 0)
+            context.curve_to(alloc.width - 5, 0, alloc.width - 3, 2, alloc.width - 3, 5)
+            context.line_to(alloc.width - 3, alloc.height - 8)
+            context.curve_to(
+                alloc.width - 3,
+                alloc.height - 5,
+                alloc.width - 5,
+                alloc.height - 3,
+                alloc.width - 8,
+                alloc.height - 3,
+            )
+            context.line_to(5, alloc.height - 3)
+            context.curve_to(
+                2, alloc.height - 3, 0, alloc.height - 5, 0, alloc.height - 8
+            )
             context.close_path()
 
         # pylint: disable-msg=E1101
@@ -273,7 +297,7 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         ymin = size[1] + 11
         if self.img_surf:
             xmin += self.img_surf.get_width()
-            ymin = max(ymin, self.img_surf.get_height()+4)
+            ymin = max(ymin, self.img_surf.get_height() + 4)
         self.set_size_request(max(xmin, minw), max(ymin, minh))
 
         alloc = self.get_allocation()
@@ -312,8 +336,9 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
 
         # image
         if self.img_surf:
-            context.set_source_surface(self.img_surf,
-                alloc.width-4-self.img_surf.get_width(), 1)
+            context.set_source_surface(
+                self.img_surf, alloc.width - 4 - self.img_surf.get_width(), 1
+            )
             context.paint()
 
         # Mark deceased
@@ -325,7 +350,7 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
             context.line_to(10, 0)
             context.stroke()
 
-        #border
+        # border
         _boxpath(context, alloc)
         if self.hightlight:
             context.set_line_width(5)
@@ -344,10 +369,12 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         context.restore()
         context.get_target().flush()
 
+
 class LineWidget(Gtk.DrawingArea):
     """
     Draw lines linking Person boxes - Types A and C.
     """
+
     def __init__(self, child, father, frel, mother, mrel, direction):
         Gtk.DrawingArea.__init__(self)
 
@@ -365,7 +392,7 @@ class LineWidget(Gtk.DrawingArea):
         Redraw the contents of the widget.
         """
         self.set_size_request(20, 20)
-        context.set_source_rgb(0.,0.,0.)
+        context.set_source_rgb(0.0, 0.0, 0.0)
         # pylint: disable-msg=E1101
         alloc = self.get_allocation()
         child = self.child_box.get_allocation()
@@ -375,7 +402,7 @@ class LineWidget(Gtk.DrawingArea):
         if self.mother_box:
             mother = self.mother_box.get_allocation()
 
-        if self.direction in [2, 3]: # horizontal
+        if self.direction in [2, 3]:  # horizontal
             child_side = 0
             centre = alloc.width / 2
             parent_side = alloc.width
@@ -394,17 +421,19 @@ class LineWidget(Gtk.DrawingArea):
             if self.mother_box:
                 mother_side = alloc.width - mother.width / 2
 
-        if self.direction in [1, 3]: # bottom to top or right to left
+        if self.direction in [1, 3]:  # bottom to top or right to left
             child_side = parent_side
             parent_side = 0
 
         if self.father_box:
-            self.draw_link(context, parent_side, middle, child_side, centre,
-                           father_side, self.mrel)
+            self.draw_link(
+                context, parent_side, middle, child_side, centre, father_side, self.mrel
+            )
 
         if self.mother_box:
-            self.draw_link(context, parent_side, middle, child_side, centre,
-                           mother_side, self.frel)
+            self.draw_link(
+                context, parent_side, middle, child_side, centre, mother_side, self.frel
+            )
 
     def draw_link(self, cr, parent_side, middle, child_side, centre, side, rela):
         """
@@ -413,9 +442,9 @@ class LineWidget(Gtk.DrawingArea):
 
         cr.set_line_width(3)
         if rela:
-            cr.set_dash([], 0) #SOLID
+            cr.set_dash([], 0)  # SOLID
         else:
-            cr.set_dash([9.], 1) #DASH
+            cr.set_dash([9.0], 1)  # DASH
 
         self.draw_line(cr, parent_side, side, centre, side)
         self.draw_line(cr, centre, side, centre, middle, True)
@@ -427,7 +456,7 @@ class LineWidget(Gtk.DrawingArea):
         Draw a single line in a link.
         """
         # pylint: disable-msg=E1101
-        if self.direction in [2, 3]: # horizontal
+        if self.direction in [2, 3]:  # horizontal
             if not join:
                 cr.move_to(x_from, y_from)
             cr.line_to(x_to, y_to)
@@ -436,10 +465,12 @@ class LineWidget(Gtk.DrawingArea):
                 cr.move_to(y_from, x_from)
             cr.line_to(y_to, x_to)
 
+
 class LineWidget2(Gtk.DrawingArea):
     """
     Draw lines linking Person boxes - Type B.
     """
+
     def __init__(self, male, rela, direction):
         Gtk.DrawingArea.__init__(self)
 
@@ -454,11 +485,11 @@ class LineWidget2(Gtk.DrawingArea):
         Redraw the contents of the widget.
         """
         self.set_size_request(20, -1)
-        context.set_source_rgb(0.,0.,0.)
+        context.set_source_rgb(0.0, 0.0, 0.0)
         # pylint: disable-msg=E1101
         alloc = self.get_allocation()
 
-        if self.direction in [2, 3]: # horizontal
+        if self.direction in [2, 3]:  # horizontal
             child_x = alloc.width / 2
             child_y = alloc.height
             parent_x = alloc.width
@@ -475,9 +506,9 @@ class LineWidget2(Gtk.DrawingArea):
 
         context.set_line_width(3)
         if self.rela:
-            context.set_dash([], 0) #SOLID
+            context.set_dash([], 0)  # SOLID
         else:
-            context.set_dash([9.], 1) #DASH
+            context.set_dash([9.0], 1)  # DASH
 
         if self.direction in [1, 3]:
             parent_x = 0
@@ -493,7 +524,7 @@ class LineWidget2(Gtk.DrawingArea):
         Draw a single line in a link.
         """
         # pylint: disable-msg=E1101
-        if self.direction in [2, 3]: # horizontal
+        if self.direction in [2, 3]:  # horizontal
             if not join:
                 cr.move_to(x_from, y_from)
             cr.line_to(x_to, y_to)
@@ -502,41 +533,44 @@ class LineWidget2(Gtk.DrawingArea):
                 cr.move_to(y_from, x_from)
             cr.line_to(y_to, x_to)
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # PedigreeView
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class PedigreeView(NavigationView):
     """
     View for pedigree tree.
     Displays the ancestors of a selected individual.
     """
-    #settings in the config file
+
+    # settings in the config file
     CONFIGSETTINGS = (
-        ('interface.pedview-tree-size', 5),
-        ('interface.pedview-layout', 0),
-        ('interface.pedview-show-images', True),
-        ('interface.pedview-show-marriage', True),
-        ('interface.pedview-show-tags', False),
-        ('interface.pedview-tree-direction', 2),
-        ('interface.pedview-show-unknown-people', True),
-        )
+        ("interface.pedview-tree-size", 5),
+        ("interface.pedview-layout", 0),
+        ("interface.pedview-show-images", True),
+        ("interface.pedview-show-marriage", True),
+        ("interface.pedview-show-tags", False),
+        ("interface.pedview-tree-direction", 2),
+        ("interface.pedview-show-unknown-people", True),
+    )
 
-    FLEUR_CURSOR = Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
-                                              Gdk.CursorType.FLEUR)
-
+    FLEUR_CURSOR = Gdk.Cursor.new_for_display(
+        Gdk.Display.get_default(), Gdk.CursorType.FLEUR
+    )
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
-        NavigationView.__init__(self, _('Pedigree'), pdata, dbstate, uistate,
-                                PersonBookmarks, nav_group)
+        NavigationView.__init__(
+            self, _("Pedigree"), pdata, dbstate, uistate, PersonBookmarks, nav_group
+        )
 
         self.dbstate = dbstate
         self.uistate = uistate
-        self.dbstate.connect('database-changed', self.change_db)
-        uistate.connect('nameformat-changed', self.person_rebuild)
-        uistate.connect('placeformat-changed', self.person_rebuild)
-        uistate.connect('font-changed', self.person_rebuild)
+        self.dbstate.connect("database-changed", self.change_db)
+        uistate.connect("nameformat-changed", self.person_rebuild)
+        uistate.connect("placeformat-changed", self.person_rebuild)
+        uistate.connect("font-changed", self.person_rebuild)
 
         self.format_helper = FormattingHelper(self.dbstate, self.uistate)
 
@@ -554,38 +588,36 @@ class PedigreeView(NavigationView):
         self.additional_uis.append(self.additional_ui)
 
         # Automatic resize
-        self.force_size = self._config.get('interface.pedview-tree-size')
+        self.force_size = self._config.get("interface.pedview-tree-size")
         # Nice tree
-        self.tree_style = self._config.get('interface.pedview-layout')
+        self.tree_style = self._config.get("interface.pedview-layout")
         # Show photos of persons
-        self.show_images = self._config.get('interface.pedview-show-images')
+        self.show_images = self._config.get("interface.pedview-show-images")
         # Hide marriage data by default
-        self.show_marriage_data = self._config.get(
-                                'interface.pedview-show-marriage')
+        self.show_marriage_data = self._config.get("interface.pedview-show-marriage")
         # Show person with tag color
-        self.show_tag_color = self._config.get('interface.pedview-show-tags')
+        self.show_tag_color = self._config.get("interface.pedview-show-tags")
         # Tree draw direction
-        self.tree_direction = self._config.get('interface.pedview-tree-direction')
+        self.tree_direction = self._config.get("interface.pedview-tree-direction")
         self.cb_change_scroll_direction(None, self.tree_direction < 2)
         # Show on not unknown people.
         # Default - not show, for mo fast display hight tree
         self.show_unknown_people = self._config.get(
-                                'interface.pedview-show-unknown-people')
+            "interface.pedview-show-unknown-people"
+        )
 
         # use symbols
         self.symbols = Symbols()
-        self.uistate.connect('font-changed', self.reload_symbols)
+        self.uistate.connect("font-changed", self.reload_symbols)
 
     def reload_symbols(self):
         self.symbols = Symbols()
         dth_idx = self.uistate.death_symbol
         if self.uistate.symbols:
-            self.bth = self.symbols.get_symbol_for_string(
-                self.symbols.SYMBOL_BIRTH)
+            self.bth = self.symbols.get_symbol_for_string(self.symbols.SYMBOL_BIRTH)
             self.dth = self.symbols.get_death_symbol_for_char(dth_idx)
         else:
-            self.bth = self.symbols.get_symbol_fallback(
-                self.symbols.SYMBOL_BIRTH)
+            self.bth = self.symbols.get_symbol_fallback(self.symbols.SYMBOL_BIRTH)
             self.dth = self.symbols.get_death_symbol_fallback(dth_idx)
 
     def get_handle_from_gramps_id(self, gid):
@@ -609,12 +641,11 @@ class PedigreeView(NavigationView):
         """
         The category stock icon
         """
-        return 'gramps-pedigree'
+        return "gramps-pedigree"
 
     def get_viewtype_stock(self):
-        """Type of view in category
-        """
-        return 'gramps-pedigree'
+        """Type of view in category"""
+        return "gramps-pedigree"
 
     def build_widget(self):
         """
@@ -622,22 +653,24 @@ class PedigreeView(NavigationView):
         contains the interface. This containter will be inserted into
         a Gtk.ScrolledWindow page.
         """
-        self.scrolledwindow = Gtk.ScrolledWindow(hadjustment=None,
-                                                    vadjustment=None)
-        self.scrolledwindow.set_policy(Gtk.PolicyType.AUTOMATIC,
-                                       Gtk.PolicyType.AUTOMATIC)
+        self.scrolledwindow = Gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
+        self.scrolledwindow.set_policy(
+            Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC
+        )
         self.scrolledwindow.add_events(Gdk.EventMask.SCROLL_MASK)
         self.scrolledwindow.connect("scroll-event", self.cb_bg_scroll_event)
         event_box = Gtk.EventBox()
         # Required for drag-scroll events and popup menu
-        event_box.add_events(Gdk.EventMask.BUTTON_PRESS_MASK
-                             | Gdk.EventMask.BUTTON_RELEASE_MASK
-                             | Gdk.EventMask.BUTTON1_MOTION_MASK)
+        event_box.add_events(
+            Gdk.EventMask.BUTTON_PRESS_MASK
+            | Gdk.EventMask.BUTTON_RELEASE_MASK
+            | Gdk.EventMask.BUTTON1_MOTION_MASK
+        )
         # Signal begin drag-scroll
         event_box.connect("button-press-event", self.cb_bg_button_press)
         # Signal end drag-scroll and popup menu
         event_box.connect("button-release-event", self.cb_bg_button_release)
-        #Signal for controll motion-notify when left mouse button pressed
+        # Signal for controll motion-notify when left mouse button pressed
         event_box.connect("motion-notify-event", self.cb_bg_motion_notify_event)
         self.scrolledwindow.add(event_box)
 
@@ -655,7 +688,7 @@ class PedigreeView(NavigationView):
         return self.scrolledwindow
 
     additional_ui = [  # Defines the UI string for UIManager
-        '''
+        """
       <placeholder id="CommonGo">
       <section>
         <item>
@@ -674,8 +707,8 @@ class PedigreeView(NavigationView):
         </item>
       </section>
       </placeholder>
-''',
-        '''
+""",
+        """
       <section id="AddEditBook">
         <item>
           <attribute name="action">win.AddBook</attribute>
@@ -686,24 +719,25 @@ class PedigreeView(NavigationView):
           <attribute name="label" translatable="no">%s...</attribute>
         </item>
       </section>
-''' % _('Organize Bookmarks'),
-        '''
+"""
+        % _("Organize Bookmarks"),
+        """
         <placeholder id='otheredit'>
         <item>
           <attribute name="action">win.FilterEdit</attribute>
-          <attribute name="label" translatable="yes">'''
-        '''Person Filter Editor</attribute>
+          <attribute name="label" translatable="yes">"""
+        """Person Filter Editor</attribute>
         </item>
         </placeholder>
-''',  # Following are the Toolbar items
-        '''
+""",  # Following are the Toolbar items
+        """
     <placeholder id='CommonNavigation'>
     <child groups='RO'>
       <object class="GtkToolButton">
         <property name="icon-name">go-previous</property>
         <property name="action-name">win.Back</property>
-        <property name="tooltip_text" translatable="yes">'''
-        '''Go to the previous object in the history</property>
+        <property name="tooltip_text" translatable="yes">"""
+        """Go to the previous object in the history</property>
         <property name="label" translatable="yes">_Back</property>
         <property name="use-underline">True</property>
       </object>
@@ -715,8 +749,8 @@ class PedigreeView(NavigationView):
       <object class="GtkToolButton">
         <property name="icon-name">go-next</property>
         <property name="action-name">win.Forward</property>
-        <property name="tooltip_text" translatable="yes">'''
-        '''Go to the next object in the history</property>
+        <property name="tooltip_text" translatable="yes">"""
+        """Go to the next object in the history</property>
         <property name="label" translatable="yes">_Forward</property>
         <property name="use-underline">True</property>
       </object>
@@ -728,8 +762,8 @@ class PedigreeView(NavigationView):
       <object class="GtkToolButton">
         <property name="icon-name">go-home</property>
         <property name="action-name">win.HomePerson</property>
-        <property name="tooltip_text" translatable="yes">'''
-        '''Go to the home person</property>
+        <property name="tooltip_text" translatable="yes">"""
+        """Go to the home person</property>
         <property name="label" translatable="yes">_Home</property>
         <property name="use-underline">True</property>
       </object>
@@ -738,7 +772,8 @@ class PedigreeView(NavigationView):
       </packing>
     </child>
     </placeholder>
-    ''']
+    """,
+    ]
 
     def define_actions(self):
         """
@@ -755,17 +790,16 @@ class PedigreeView(NavigationView):
         """
         NavigationView.define_actions(self)
 
-        self._add_action('FilterEdit', self.cb_filter_editor)
-        self._add_action('F2', self.kb_goto_home, 'F2')
-        self._add_action('PRIMARY-J', self.jump, '<PRIMARY>J')
+        self._add_action("FilterEdit", self.cb_filter_editor)
+        self._add_action("F2", self.kb_goto_home, "F2")
+        self._add_action("PRIMARY-J", self.jump, "<PRIMARY>J")
 
     def cb_filter_editor(self, *obj):
         """
         Display the person filter editor.
         """
         try:
-            FilterEditor('Person', CUSTOM_FILTERS,
-                         self.dbstate, self.uistate)
+            FilterEditor("Person", CUSTOM_FILTERS, self.dbstate, self.uistate)
         except WindowActiveError:
             return
 
@@ -782,22 +816,21 @@ class PedigreeView(NavigationView):
             else:
                 self.rebuild_trees(None)
         except AttributeError as msg:
-            RunDatabaseRepair(str(msg),
-                              parent=self.uistate.window)
+            RunDatabaseRepair(str(msg), parent=self.uistate.window)
 
     def _connect_db_signals(self):
         """
         Connect database signals.
         """
-        self._add_db_signal('person-add', self.person_rebuild)
-        self._add_db_signal('person-update', self.person_rebuild)
-        self._add_db_signal('person-delete', self.person_rebuild)
-        self._add_db_signal('person-rebuild', self.person_rebuild_bm)
-        self._add_db_signal('family-update', self.person_rebuild)
-        self._add_db_signal('family-add', self.person_rebuild)
-        self._add_db_signal('family-delete', self.person_rebuild)
-        self._add_db_signal('family-rebuild', self.person_rebuild)
-        self._add_db_signal('event-update', self.person_rebuild)
+        self._add_db_signal("person-add", self.person_rebuild)
+        self._add_db_signal("person-update", self.person_rebuild)
+        self._add_db_signal("person-delete", self.person_rebuild)
+        self._add_db_signal("person-rebuild", self.person_rebuild_bm)
+        self._add_db_signal("family-update", self.person_rebuild)
+        self._add_db_signal("family-add", self.person_rebuild)
+        self._add_db_signal("family-delete", self.person_rebuild)
+        self._add_db_signal("family-rebuild", self.person_rebuild)
+        self._add_db_signal("event-update", self.person_rebuild)
 
     def change_db(self, db):
         """
@@ -817,7 +850,7 @@ class PedigreeView(NavigationView):
         Indicates the navigation type. Navigation type can be the string
         name of any of the primary objects.
         """
-        return 'Person'
+        return "Person"
 
     def can_configure(self):
         """
@@ -831,7 +864,7 @@ class PedigreeView(NavigationView):
         NavigationView.on_delete(self)
 
     def on_help_clicked(self, dummy):
-        """ Button: Display the relevant portion of Gramps manual"""
+        """Button: Display the relevant portion of Gramps manual"""
         display_url(WIKI_PAGE)
 
     def goto_handle(self, handle=None):
@@ -874,8 +907,7 @@ class PedigreeView(NavigationView):
 
         self.dirty = False
 
-        if self.tree_style == 1 and (
-           self.force_size > 5 or self.force_size == 0):
+        if self.tree_style == 1 and (self.force_size > 5 or self.force_size == 0):
             self.force_size = 5
 
         # A position definition is a tuple of nodes.
@@ -886,65 +918,73 @@ class PedigreeView(NavigationView):
         # A line is of the format (x, y, height).  Lines have a width of 1.
         if self.tree_style == 1:
             if self.force_size == 2:
-                pos = (((0, 3, 3, 3), ((1, 0, 3), (1, 6, 3)), (3, 3, 2, 3)),
-                      ((2, 0, 3, 3), None, None),
-                      ((2, 6, 3, 3), None, None))
+                pos = (
+                    ((0, 3, 3, 3), ((1, 0, 3), (1, 6, 3)), (3, 3, 2, 3)),
+                    ((2, 0, 3, 3), None, None),
+                    ((2, 6, 3, 3), None, None),
+                )
             elif self.force_size == 3:
-                pos = (((0, 4, 3, 5), ((1, 1, 3), (1, 9, 3)), (3, 5, 2, 3)),
-                      ((2, 1, 3, 3), ((3, 0, 1), (3, 4, 1)), (5, 1, 2, 3)),
-                      ((2, 9, 3, 3), ((3, 8, 1), (3, 12, 1)), (5, 9, 2, 3)),
-                      ((4, 0, 3, 1), None, None),
-                      ((4,4,3,1),None,None),
-                      ((4,8,3,1),None,None),
-                      ((4,12,3,1),None,None))
+                pos = (
+                    ((0, 4, 3, 5), ((1, 1, 3), (1, 9, 3)), (3, 5, 2, 3)),
+                    ((2, 1, 3, 3), ((3, 0, 1), (3, 4, 1)), (5, 1, 2, 3)),
+                    ((2, 9, 3, 3), ((3, 8, 1), (3, 12, 1)), (5, 9, 2, 3)),
+                    ((4, 0, 3, 1), None, None),
+                    ((4, 4, 3, 1), None, None),
+                    ((4, 8, 3, 1), None, None),
+                    ((4, 12, 3, 1), None, None),
+                )
             elif self.force_size == 4:
-                pos = (((0, 5, 3, 5), ((1, 2, 3), (1, 10, 3)), (3,  6, 2, 3)),
-                      ((2,  2, 3, 3), ((3, 1, 1), (3, 5, 1)), (5,  3, 2, 1)),
-                      ((2, 10, 3, 3), ((3, 9, 1), (3, 13, 1)), (5, 11, 2, 1)),
-                      ((4,  1, 3, 1), ((5, 0, 1), (5, 2, 1)), (7, 1, 2, 1)),
-                      ((4,  5, 3, 1), ((5, 4, 1), (5, 6, 1)), (7, 5, 2, 1)),
-                      ((4,  9, 3, 1), ((5, 8, 1), (5, 10, 1)), (7, 9, 2, 1)),
-                      ((4, 13, 3, 1), ((5, 12, 1), (5, 14, 1)), (7, 13, 2, 1)),
-                      ((6,  0, 3, 1), None, None),
-                      ((6,  2, 3, 1), None, None),
-                      ((6,  4, 3, 1), None, None),
-                      ((6,  6, 3, 1), None, None),
-                      ((6,  8, 3, 1), None, None),
-                      ((6, 10, 3, 1), None, None),
-                      ((6, 12, 3, 1), None, None),
-                      ((6, 14, 3, 1), None, None))
+                pos = (
+                    ((0, 5, 3, 5), ((1, 2, 3), (1, 10, 3)), (3, 6, 2, 3)),
+                    ((2, 2, 3, 3), ((3, 1, 1), (3, 5, 1)), (5, 3, 2, 1)),
+                    ((2, 10, 3, 3), ((3, 9, 1), (3, 13, 1)), (5, 11, 2, 1)),
+                    ((4, 1, 3, 1), ((5, 0, 1), (5, 2, 1)), (7, 1, 2, 1)),
+                    ((4, 5, 3, 1), ((5, 4, 1), (5, 6, 1)), (7, 5, 2, 1)),
+                    ((4, 9, 3, 1), ((5, 8, 1), (5, 10, 1)), (7, 9, 2, 1)),
+                    ((4, 13, 3, 1), ((5, 12, 1), (5, 14, 1)), (7, 13, 2, 1)),
+                    ((6, 0, 3, 1), None, None),
+                    ((6, 2, 3, 1), None, None),
+                    ((6, 4, 3, 1), None, None),
+                    ((6, 6, 3, 1), None, None),
+                    ((6, 8, 3, 1), None, None),
+                    ((6, 10, 3, 1), None, None),
+                    ((6, 12, 3, 1), None, None),
+                    ((6, 14, 3, 1), None, None),
+                )
             elif self.force_size == 5:
-                pos = (((0, 10, 3, 11), ((1, 5, 5), (1, 21, 5)), (3, 13, 2, 5)),
-                      ((2,  5, 3, 5), ((3, 2, 3), (3, 10, 3)), (5,  6, 2, 3)),
-                      ((2, 21, 3, 5), ((3, 18, 3), (3, 26, 3)), (5, 22, 2, 3)),
-                      ((4,  2, 3, 3), ((5, 1, 1), (5, 5, 1)), (7, 3, 2, 1)),
-                      ((4, 10, 3, 3), ((5, 9, 1), (5, 13, 1)), (7, 11, 2, 1)),
-                      ((4, 18, 3, 3), ((5, 17, 1), (5, 21, 1)), (7, 19, 2, 1)),
-                      ((4, 26, 3, 3), ((5, 25, 1), (5, 29, 1)), (7, 27, 2, 1)),
-                      ((6,  1, 3, 1), ((7, 0, 1), (7, 2, 1)), (9, 1, 2, 1)),
-                      ((6,  5, 3, 1), ((7, 4, 1), (7, 6, 1)), (9, 5, 2, 1)),
-                      ((6,  9, 3, 1), ((7, 8, 1), (7, 10, 1)), (9, 9, 2, 1)),
-                      ((6, 13, 3, 1), ((7, 12, 1), (7, 14, 1)), (9, 13, 2, 1)),
-                      ((6, 17, 3, 1), ((7, 16, 1), (7, 18, 1)), (9, 17, 2, 1)),
-                      ((6, 21, 3, 1), ((7, 20, 1), (7, 22, 1)), (9, 21, 2, 1)),
-                      ((6, 25, 3, 1), ((7, 24, 1), (7, 26, 1)), (9, 25, 2, 1)),
-                      ((6, 29, 3, 1), ((7, 28, 1), (7, 30, 1)), (9, 29, 2, 1)),
-                      ((8,  0, 3, 1), None, None),
-                      ((8,  2, 3, 1), None, None),
-                      ((8,  4, 3, 1), None, None),
-                      ((8,  6, 3, 1), None, None),
-                      ((8,  8, 3, 1), None, None),
-                      ((8, 10, 3, 1), None, None),
-                      ((8, 12, 3, 1), None, None),
-                      ((8, 14, 3, 1), None, None),
-                      ((8, 16, 3, 1), None, None),
-                      ((8, 18, 3, 1), None, None),
-                      ((8, 20, 3, 1), None, None),
-                      ((8, 22, 3, 1), None, None),
-                      ((8, 24, 3, 1), None, None),
-                      ((8, 26, 3, 1), None, None),
-                      ((8, 28, 3, 1), None, None),
-                      ((8, 30, 3, 1), None, None))
+                pos = (
+                    ((0, 10, 3, 11), ((1, 5, 5), (1, 21, 5)), (3, 13, 2, 5)),
+                    ((2, 5, 3, 5), ((3, 2, 3), (3, 10, 3)), (5, 6, 2, 3)),
+                    ((2, 21, 3, 5), ((3, 18, 3), (3, 26, 3)), (5, 22, 2, 3)),
+                    ((4, 2, 3, 3), ((5, 1, 1), (5, 5, 1)), (7, 3, 2, 1)),
+                    ((4, 10, 3, 3), ((5, 9, 1), (5, 13, 1)), (7, 11, 2, 1)),
+                    ((4, 18, 3, 3), ((5, 17, 1), (5, 21, 1)), (7, 19, 2, 1)),
+                    ((4, 26, 3, 3), ((5, 25, 1), (5, 29, 1)), (7, 27, 2, 1)),
+                    ((6, 1, 3, 1), ((7, 0, 1), (7, 2, 1)), (9, 1, 2, 1)),
+                    ((6, 5, 3, 1), ((7, 4, 1), (7, 6, 1)), (9, 5, 2, 1)),
+                    ((6, 9, 3, 1), ((7, 8, 1), (7, 10, 1)), (9, 9, 2, 1)),
+                    ((6, 13, 3, 1), ((7, 12, 1), (7, 14, 1)), (9, 13, 2, 1)),
+                    ((6, 17, 3, 1), ((7, 16, 1), (7, 18, 1)), (9, 17, 2, 1)),
+                    ((6, 21, 3, 1), ((7, 20, 1), (7, 22, 1)), (9, 21, 2, 1)),
+                    ((6, 25, 3, 1), ((7, 24, 1), (7, 26, 1)), (9, 25, 2, 1)),
+                    ((6, 29, 3, 1), ((7, 28, 1), (7, 30, 1)), (9, 29, 2, 1)),
+                    ((8, 0, 3, 1), None, None),
+                    ((8, 2, 3, 1), None, None),
+                    ((8, 4, 3, 1), None, None),
+                    ((8, 6, 3, 1), None, None),
+                    ((8, 8, 3, 1), None, None),
+                    ((8, 10, 3, 1), None, None),
+                    ((8, 12, 3, 1), None, None),
+                    ((8, 14, 3, 1), None, None),
+                    ((8, 16, 3, 1), None, None),
+                    ((8, 18, 3, 1), None, None),
+                    ((8, 20, 3, 1), None, None),
+                    ((8, 22, 3, 1), None, None),
+                    ((8, 24, 3, 1), None, None),
+                    ((8, 26, 3, 1), None, None),
+                    ((8, 28, 3, 1), None, None),
+                    ((8, 30, 3, 1), None, None),
+                )
         else:
             pos = None
 
@@ -974,7 +1014,7 @@ class PedigreeView(NavigationView):
         ymax = 0
         if self.tree_style == 0:
             xmax = 2 * size
-            ymax = 2 ** size
+            ymax = 2**size
         elif self.tree_style == 1:
             xmax = 2 * size + 2
             ymax = [0, 10, 14, 16, 32][size - 1]
@@ -985,10 +1025,10 @@ class PedigreeView(NavigationView):
             if size > self._depth:
                 size = self._depth
             xmax = 2 * size
-            ymax = 2 ** size * 2
+            ymax = 2**size * 2
 
         pbw = None
-        for i in range(0, 2 ** size - 1):
+        for i in range(0, 2**size - 1):
             ####################################################################
             # Table placement for person data
             ####################################################################
@@ -996,7 +1036,7 @@ class PedigreeView(NavigationView):
                 # Dynamic position person in tree
                 width = _width = 1
                 height = _height = 3
-                level = int(math.log(i+1, 2))
+                level = int(math.log(i + 1, 2))
                 offset = i + 1 - (2**level)
 
                 if self.tree_style == 0:
@@ -1012,8 +1052,8 @@ class PedigreeView(NavigationView):
                     height = _height = 1
             else:
                 try:
-                    x_pos = positions[i][0][0]+1
-                    y_pos = positions[i][0][1]+1
+                    x_pos = positions[i][0][0] + 1
+                    y_pos = positions[i][0][1] + 1
                     width = positions[i][0][2]
                     height = positions[i][0][3]
                 except IndexError:  # no position for this person defined
@@ -1022,24 +1062,39 @@ class PedigreeView(NavigationView):
             last_pbw = pbw
             pbw = None
             if not lst[i] and (
-               (self.tree_style in [0, 2] and self.show_unknown_people and
-               lst[((i+1) // 2) - 1]) or self.tree_style == 1):
+                (
+                    self.tree_style in [0, 2]
+                    and self.show_unknown_people
+                    and lst[((i + 1) // 2) - 1]
+                )
+                or self.tree_style == 1
+            ):
                 #
                 # No person -> show empty box
                 #
-                pbw = PersonBoxWidgetCairo(self, self.format_helper,
-                        self.dbstate, None, False, 0, None,
-                        tags=self.show_tag_color)
+                pbw = PersonBoxWidgetCairo(
+                    self,
+                    self.format_helper,
+                    self.dbstate,
+                    None,
+                    False,
+                    0,
+                    None,
+                    tags=self.show_tag_color,
+                )
 
-                if i > 0 and lst[((i+1) // 2) - 1]:
+                if i > 0 and lst[((i + 1) // 2) - 1]:
                     fam_h = None
-                    fam = lst[((i+1) // 2) - 1][2]
+                    fam = lst[((i + 1) // 2) - 1][2]
                     if fam:
                         fam_h = fam.get_handle()
                     if not self.dbstate.db.readonly:
-                        pbw.connect("button-press-event",
-                                    self.cb_missing_parent_button_press,
-                                    lst[((i+1) // 2) - 1][0].get_handle(), fam_h)
+                        pbw.connect(
+                            "button-press-event",
+                            self.cb_missing_parent_button_press,
+                            lst[((i + 1) // 2) - 1][0].get_handle(),
+                            fam_h,
+                        )
                         pbw.force_mouse_over = True
 
             elif lst[i]:
@@ -1047,74 +1102,106 @@ class PedigreeView(NavigationView):
                 # Person exists -> populate box
                 #
                 image = False
-                if self.show_images and height > 1 and (
-                   i < ((2**size-1) // 2) or self.tree_style == 2):
+                if (
+                    self.show_images
+                    and height > 1
+                    and (i < ((2**size - 1) // 2) or self.tree_style == 2)
+                ):
                     image = True
 
-                pbw = PersonBoxWidgetCairo(self, self.format_helper,
-                        self.dbstate, lst[i][0], lst[i][3], height, image,
-                        tags=self.show_tag_color)
+                pbw = PersonBoxWidgetCairo(
+                    self,
+                    self.format_helper,
+                    self.dbstate,
+                    lst[i][0],
+                    lst[i][3],
+                    height,
+                    image,
+                    tags=self.show_tag_color,
+                )
                 lst[i][4] = pbw
                 if height < 7:
-                    pbw.set_tooltip_text(self.format_helper.format_person(
-                                                                lst[i][0], 11))
+                    pbw.set_tooltip_text(
+                        self.format_helper.format_person(lst[i][0], 11)
+                    )
 
                 fam_h = None
                 if lst[i][2]:
                     fam_h = lst[i][2].get_handle()
-                pbw.connect("button-press-event",
-                            self.cb_person_button_press,
-                            lst[i][0].get_handle(), fam_h)
+                pbw.connect(
+                    "button-press-event",
+                    self.cb_person_button_press,
+                    lst[i][0].get_handle(),
+                    fam_h,
+                )
 
             if pbw:
-                self.attach_widget(table_widget, pbw, xmax,
-                                    x_pos, x_pos+width, y_pos, y_pos+height)
+                self.attach_widget(
+                    table_widget, pbw, xmax, x_pos, x_pos + width, y_pos, y_pos + height
+                )
 
             ####################################################################
             # Connection lines
             ####################################################################
-            if self.tree_style == 1 and (
-               positions[i][1] and len(positions[i][1]) == 2):
+            if self.tree_style == 1 and (positions[i][1] and len(positions[i][1]) == 2):
                 # separate boxes for father and mother
-                x_pos = positions[i][1][0][0]+1
-                y_pos = positions[i][1][0][1]+1
+                x_pos = positions[i][1][0][0] + 1
+                y_pos = positions[i][1][0][1] + 1
                 width = 1
                 height = positions[i][1][0][2]
 
                 rela = False
-                if lst[2*i+1]: # Father
-                    rela = lst[2*i+1][1]
+                if lst[2 * i + 1]:  # Father
+                    rela = lst[2 * i + 1][1]
                 line = LineWidget2(1, rela, self.tree_direction)
 
                 if lst[i] and lst[i][2]:
                     # Required for popup menu
                     line.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
-                    line.connect("button-press-event",
-                                 self.cb_relation_button_press,
-                                 lst[i][2].get_handle())
+                    line.connect(
+                        "button-press-event",
+                        self.cb_relation_button_press,
+                        lst[i][2].get_handle(),
+                    )
 
-                self.attach_widget(table_widget, line, xmax,
-                                    x_pos, x_pos+width, y_pos, y_pos+height)
+                self.attach_widget(
+                    table_widget,
+                    line,
+                    xmax,
+                    x_pos,
+                    x_pos + width,
+                    y_pos,
+                    y_pos + height,
+                )
 
-                x_pos = positions[i][1][1][0]+1
-                y_pos = positions[i][1][1][1]+1
+                x_pos = positions[i][1][1][0] + 1
+                y_pos = positions[i][1][1][1] + 1
 
                 rela = False
-                if lst[2*i+2]: # Mother
-                    rela = lst[2*i+2][1]
-                line = LineWidget2(0,  rela, self.tree_direction)
+                if lst[2 * i + 2]:  # Mother
+                    rela = lst[2 * i + 2][1]
+                line = LineWidget2(0, rela, self.tree_direction)
 
                 if lst[i] and lst[i][2]:
                     # Required for popup menu
                     line.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
-                    line.connect("button-press-event",
-                                 self.cb_relation_button_press,
-                                 lst[i][2].get_handle())
+                    line.connect(
+                        "button-press-event",
+                        self.cb_relation_button_press,
+                        lst[i][2].get_handle(),
+                    )
 
-                self.attach_widget(table_widget, line, xmax,
-                                    x_pos, x_pos+width, y_pos, y_pos+height)
+                self.attach_widget(
+                    table_widget,
+                    line,
+                    xmax,
+                    x_pos,
+                    x_pos + width,
+                    y_pos,
+                    y_pos + height,
+                )
 
-            elif self.tree_style in [0, 2] and lst[((i+1) // 2) - 1]:
+            elif self.tree_style in [0, 2] and lst[((i + 1) // 2) - 1]:
                 # combined for father and mother
                 x_pos = (1 + _width) * level
                 y_pos = offset * _delta - (_delta // 2) - 1
@@ -1130,36 +1217,53 @@ class PedigreeView(NavigationView):
                     if lst[i]:
                         frela = lst[i][1]
                     if lst[i - 1]:
-                        mrela = lst[i-1][1]
+                        mrela = lst[i - 1][1]
 
-                    line = LineWidget(lst[((i+1) // 2) - 1][4],
-                                      last_pbw, frela,
-                                      pbw, mrela,
-                                      self.tree_direction)
+                    line = LineWidget(
+                        lst[((i + 1) // 2) - 1][4],
+                        last_pbw,
+                        frela,
+                        pbw,
+                        mrela,
+                        self.tree_direction,
+                    )
 
-                    if lst[((i+1) // 2) - 1] and lst[((i+1) // 2) - 1][2]:
+                    if lst[((i + 1) // 2) - 1] and lst[((i + 1) // 2) - 1][2]:
                         # Required for popup menu
                         line.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
-                        line.connect("button-press-event",
-                                     self.cb_relation_button_press,
-                                     lst[((i+1) // 2) - 1][2].get_handle())
+                        line.connect(
+                            "button-press-event",
+                            self.cb_relation_button_press,
+                            lst[((i + 1) // 2) - 1][2].get_handle(),
+                        )
                         # Required for tooltip and mouse-over
                         line.add_events(Gdk.EventMask.ENTER_NOTIFY_MASK)
                         # Required for tooltip and mouse-over
                         line.add_events(Gdk.EventMask.LEAVE_NOTIFY_MASK)
                         line.set_tooltip_text(
                             self.format_helper.format_relation(
-                                                lst[((i+1) // 2) - 1][2], 11))
+                                lst[((i + 1) // 2) - 1][2], 11
+                            )
+                        )
 
-                    self.attach_widget(table_widget, line, xmax,
-                                        x_pos, x_pos+width, y_pos, y_pos+height)
+                    self.attach_widget(
+                        table_widget,
+                        line,
+                        xmax,
+                        x_pos,
+                        x_pos + width,
+                        y_pos,
+                        y_pos + height,
+                    )
 
             ####################################################################
             # Show marriage data
             ####################################################################
             if self.show_marriage_data and (
-                self.tree_style == 1 and positions[i][2] or
-               (self.tree_style in [0, 2] and level+1 < size)):
+                self.tree_style == 1
+                and positions[i][2]
+                or (self.tree_style in [0, 2] and level + 1 < size)
+            ):
                 if lst[i] and lst[i][2]:
                     text = self.format_helper.format_relation(lst[i][2], 1, True)
                 else:
@@ -1171,7 +1275,7 @@ class PedigreeView(NavigationView):
                 label.set_halign(Gtk.Align.START)
                 if self.tree_style in [0, 2]:
                     x_pos = (1 + _width) * (level + 1) + 1
-                    y_pos = _delta // 2 + offset * _delta -1 + _height // 2
+                    y_pos = _delta // 2 + offset * _delta - 1 + _height // 2
                     width = 1
                     height = 1
                     if self.tree_style == 0 and level < 2 and size > 4:
@@ -1179,37 +1283,46 @@ class PedigreeView(NavigationView):
                         y_pos -= 2
                         height += 4
                 else:
-                    x_pos = positions[i][2][0]+1
-                    y_pos = positions[i][2][1]+1
+                    x_pos = positions[i][2][0] + 1
+                    y_pos = positions[i][2][1] + 1
                     width = positions[i][2][2]
                     height = positions[i][2][3]
 
-                self.attach_widget(table_widget, label, xmax,
-                                    x_pos, x_pos+width, y_pos, y_pos+height)
+                self.attach_widget(
+                    table_widget,
+                    label,
+                    xmax,
+                    x_pos,
+                    x_pos + width,
+                    y_pos,
+                    y_pos + height,
+                )
 
         ########################################################################
         # Add navigation arrows
         ########################################################################
         if lst[0]:
             if self.tree_direction == 2:
-                child_arrow = "go-previous-symbolic" # Gtk.ArrowType.LEFT
-                parent_arrow = "go-next-symbolic" # Gtk.ArrowType.RIGHT
+                child_arrow = "go-previous-symbolic"  # Gtk.ArrowType.LEFT
+                parent_arrow = "go-next-symbolic"  # Gtk.ArrowType.RIGHT
             elif self.tree_direction == 0:
-                child_arrow = "go-up-symbolic" # Gtk.ArrowType.UP
-                parent_arrow = "go-down-symbolic" # Gtk.ArrowType.DOWN
+                child_arrow = "go-up-symbolic"  # Gtk.ArrowType.UP
+                parent_arrow = "go-down-symbolic"  # Gtk.ArrowType.DOWN
             elif self.tree_direction == 1:
-                child_arrow = "go-down-symbolic" # Gtk.ArrowType.DOWN
-                parent_arrow = "go-up-symbolic" # Gtk.ArrowType.UP
+                child_arrow = "go-down-symbolic"  # Gtk.ArrowType.DOWN
+                parent_arrow = "go-up-symbolic"  # Gtk.ArrowType.UP
             elif self.tree_direction == 3:
-                child_arrow = "go-next-symbolic" # Gtk.ArrowType.RIGHT
-                parent_arrow = "go-previous-symbolic" # Gtk.ArrowType.LEFT
+                child_arrow = "go-next-symbolic"  # Gtk.ArrowType.RIGHT
+                parent_arrow = "go-previous-symbolic"  # Gtk.ArrowType.LEFT
             # GTK will reverse the icons for RTL locales, but we force LTR layout of the table,
             # so reverse the arrows back...
-            if self.tree_direction in [2,3] and self.scrolledwindow.get_direction() == Gtk.TextDirection.RTL:
+            if (
+                self.tree_direction in [2, 3]
+                and self.scrolledwindow.get_direction() == Gtk.TextDirection.RTL
+            ):
                 child_arrow, parent_arrow = parent_arrow, child_arrow
 
-            button = Gtk.Button.new_from_icon_name(child_arrow,
-                                                  Gtk.IconSize.BUTTON)
+            button = Gtk.Button.new_from_icon_name(child_arrow, Gtk.IconSize.BUTTON)
             childlist = find_children(self.dbstate.db, lst[0][0])
             if childlist:
                 button.connect("clicked", self.cb_on_show_child_menu)
@@ -1218,52 +1331,49 @@ class PedigreeView(NavigationView):
                 button.set_sensitive(False)
 
             ymid = ymax // 2
-            self.attach_widget(table_widget, button, xmax,
-                                0, 1, ymid, ymid +1)
+            self.attach_widget(table_widget, button, xmax, 0, 1, ymid, ymid + 1)
 
             button = Gtk.Button()
-            button = Gtk.Button.new_from_icon_name(parent_arrow,
-                                                  Gtk.IconSize.BUTTON)
+            button = Gtk.Button.new_from_icon_name(parent_arrow, Gtk.IconSize.BUTTON)
             if lst[1]:
-                button.connect("clicked", self.cb_childmenu_changed,
-                          lst[1][0].handle)
+                button.connect("clicked", self.cb_childmenu_changed, lst[1][0].handle)
                 button.set_tooltip_text(_("Jump to father"))
             else:
                 button.set_sensitive(False)
 
             ymid = ymax // 4
-            self.attach_widget(table_widget, button, xmax,
-                                xmax, xmax+1, ymid-1, ymid+2)
+            self.attach_widget(
+                table_widget, button, xmax, xmax, xmax + 1, ymid - 1, ymid + 2
+            )
 
             button = Gtk.Button()
-            button = Gtk.Button.new_from_icon_name(parent_arrow,
-                                                  Gtk.IconSize.BUTTON)
+            button = Gtk.Button.new_from_icon_name(parent_arrow, Gtk.IconSize.BUTTON)
             if lst[2]:
-                button.connect("clicked", self.cb_childmenu_changed,
-                          lst[2][0].handle)
+                button.connect("clicked", self.cb_childmenu_changed, lst[2][0].handle)
                 button.set_tooltip_text(_("Jump to mother"))
             else:
                 button.set_sensitive(False)
 
             ymid = ymax // 4 * 3
-            self.attach_widget(table_widget, button, xmax,
-                                xmax, xmax+1, ymid-1, ymid+2)
+            self.attach_widget(
+                table_widget, button, xmax, xmax, xmax + 1, ymid - 1, ymid + 2
+            )
 
         # add dummy widgets into the corners of the table
         # to allow the pedigree to be centered
-##        label = Gtk.Label(label="")
-##        table_widget.attach(label, 0, 1, 0, 1,
-##                        Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL,
-##                        Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL, 0, 0)
-##        label = Gtk.Label(label="")
-##        if self.tree_direction in [2, 3]:
-##            table_widget.attach(label, xmax, xmax+1, ymax, ymax+1,
-##                        Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL,
-##                        Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL, 0, 0)
-##        else:
-##            table_widget.attach(label, ymax, ymax+1, xmax, xmax+1,
-##                        Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL,
-##                        Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL, 0, 0)
+        ##        label = Gtk.Label(label="")
+        ##        table_widget.attach(label, 0, 1, 0, 1,
+        ##                        Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL,
+        ##                        Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL, 0, 0)
+        ##        label = Gtk.Label(label="")
+        ##        if self.tree_direction in [2, 3]:
+        ##            table_widget.attach(label, xmax, xmax+1, ymax, ymax+1,
+        ##                        Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL,
+        ##                        Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL, 0, 0)
+        ##        else:
+        ##            table_widget.attach(label, ymax, ymax+1, xmax, xmax+1,
+        ##                        Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL,
+        ##                        Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL, 0, 0)
 
         debug = False
         if debug:
@@ -1287,15 +1397,14 @@ class PedigreeView(NavigationView):
                             ymax = y_pos
                     if x_pos > xmax:
                         xmax = x_pos
-            for x_pos in range(0, xmax+1):
-                for y_pos in range(0, ymax+1):
+            for x_pos in range(0, xmax + 1):
+                for y_pos in range(0, ymax + 1):
                     try:
                         tmp = used_cells[x_pos][y_pos]
                     except KeyError:
                         # fill unused cells
-                        label = Gtk.Label(label="%d,%d"%(x_pos, y_pos))
-                        frame = Gtk.ScrolledWindow(hadjustment=None,
-                                                vadjustment=None)
+                        label = Gtk.Label(label="%d,%d" % (x_pos, y_pos))
+                        frame = Gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
                         frame.set_shadow_type(Gtk.ShadowType.NONE)
                         frame.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.NEVER)
                         frame.add(label)
@@ -1308,22 +1417,28 @@ class PedigreeView(NavigationView):
         vadjustment = window.get_vadjustment()
         if self.tree_direction == 2:
             self.update_scrollbar_positions(hadjustment, hadjustment.get_lower())
-            self.update_scrollbar_positions(vadjustment,
-                (vadjustment.get_upper() - vadjustment.get_page_size()) / 2)
+            self.update_scrollbar_positions(
+                vadjustment, (vadjustment.get_upper() - vadjustment.get_page_size()) / 2
+            )
         elif self.tree_direction == 0:
-            self.update_scrollbar_positions(hadjustment,
-                (hadjustment.get_upper() - hadjustment.get_page_size()) / 2)
-            self.update_scrollbar_positions(vadjustment,
-                vadjustment.get_upper() - vadjustment.get_page_size())
+            self.update_scrollbar_positions(
+                hadjustment, (hadjustment.get_upper() - hadjustment.get_page_size()) / 2
+            )
+            self.update_scrollbar_positions(
+                vadjustment, vadjustment.get_upper() - vadjustment.get_page_size()
+            )
         elif self.tree_direction == 1:
-            self.update_scrollbar_positions(hadjustment,
-                (hadjustment.get_upper() - hadjustment.get_page_size()) / 2)
+            self.update_scrollbar_positions(
+                hadjustment, (hadjustment.get_upper() - hadjustment.get_page_size()) / 2
+            )
             self.update_scrollbar_positions(vadjustment, vadjustment.get_lower())
         elif self.tree_direction == 3:
-            self.update_scrollbar_positions(hadjustment,
-                hadjustment.get_upper() - hadjustment.get_page_size())
-            self.update_scrollbar_positions(vadjustment,
-                (vadjustment.get_upper() - vadjustment.get_page_size()) / 2)
+            self.update_scrollbar_positions(
+                hadjustment, hadjustment.get_upper() - hadjustment.get_page_size()
+            )
+            self.update_scrollbar_positions(
+                vadjustment, (vadjustment.get_upper() - vadjustment.get_page_size()) / 2
+            )
 
         # Setup mouse wheel scroll direction for style C,
         # depending of tree direction
@@ -1336,14 +1451,14 @@ class PedigreeView(NavigationView):
         """
         Attach a widget to the table.
         """
-        if self.tree_direction == 0: # Vertical (top to bottom)
-            table.attach(widget, top, right, bottom-top, left-right)
-        elif self.tree_direction == 1: # Vertical (bottom to top)
-            table.attach(widget, top, xmax - left + 1, bottom-top, left - right)
-        elif self.tree_direction == 2: # Horizontal (left to right)
-            table.attach(widget, right, top, left-right, bottom-top)
-        elif self.tree_direction == 3: # Horizontal (right to left)
-            table.attach(widget, xmax - left + 1, top, left - right, bottom-top)
+        if self.tree_direction == 0:  # Vertical (top to bottom)
+            table.attach(widget, top, right, bottom - top, left - right)
+        elif self.tree_direction == 1:  # Vertical (bottom to top)
+            table.attach(widget, top, xmax - left + 1, bottom - top, left - right)
+        elif self.tree_direction == 2:  # Horizontal (left to right)
+            table.attach(widget, right, top, left - right, bottom - top)
+        elif self.tree_direction == 3:  # Horizontal (right to left)
+            table.attach(widget, xmax - left + 1, top, left - right, bottom - top)
 
     def cb_home(self, menuitem):
         """Change root person to default person for database."""
@@ -1353,7 +1468,7 @@ class PedigreeView(NavigationView):
 
     def cb_set_home(self, menuitem, handle):
         """Set the root person to current person for database."""
-        active = self.uistate.get_active('Person')
+        active = self.uistate.get_active("Person")
         if active:
             self.dbstate.db.set_default_person_handle(handle)
         self.cb_home(None)
@@ -1388,9 +1503,9 @@ class PedigreeView(NavigationView):
 
     def cb_add_parents(self, obj, person_handle, family_handle):
         """Edit not full family."""
-        if family_handle:   # one parent already exists -> Edit current family
+        if family_handle:  # one parent already exists -> Edit current family
             family = self.dbstate.db.get_family_from_handle(family_handle)
-        else:   # no parents -> create new family
+        else:  # no parents -> create new family
             family = Family()
             childref = ChildRef()
             childref.set_reference_handle(person_handle)
@@ -1407,8 +1522,9 @@ class PedigreeView(NavigationView):
         """
         person = self.dbstate.db.get_person_from_handle(person_handle)
         if person:
-            clipboard = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(),
-                        Gdk.SELECTION_CLIPBOARD)
+            clipboard = Gtk.Clipboard.get_for_display(
+                Gdk.Display.get_default(), Gdk.SELECTION_CLIPBOARD
+            )
             clipboard.set_text(self.format_helper.format_person(person, 11), -1)
             return True
         return False
@@ -1420,8 +1536,9 @@ class PedigreeView(NavigationView):
         """
         family = self.dbstate.db.get_family_from_handle(family_handle)
         if family:
-            clipboard = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(),
-                        Gdk.SELECTION_CLIPBOARD)
+            clipboard = Gtk.Clipboard.get_for_display(
+                Gdk.Display.get_default(), Gdk.SELECTION_CLIPBOARD
+            )
             clipboard.set_text(self.format_helper.format_relation(family, 11), -1)
             return True
         return False
@@ -1432,7 +1549,7 @@ class PedigreeView(NavigationView):
         self.menu.set_reserve_toggle_size(False)
         self.add_nav_portion_to_menu(self.menu, None)
         self.add_settings_to_menu(self.menu)
-        self.menu.popup(None, None, None, None, 0, event.time)
+        self.menu.popup_at_pointer(event)
         return True
 
     def cb_bg_button_press(self, widget, event):
@@ -1462,15 +1579,19 @@ class PedigreeView(NavigationView):
 
     def cb_bg_motion_notify_event(self, widget, event):
         """Function for motion notify events for drag and scroll mode."""
-        if self._in_move and (event.type == Gdk.EventType.MOTION_NOTIFY or
-           event.type == Gdk.EventType.BUTTON_RELEASE):
+        if self._in_move and (
+            event.type == Gdk.EventType.MOTION_NOTIFY
+            or event.type == Gdk.EventType.BUTTON_RELEASE
+        ):
             window = widget.get_parent()
             hadjustment = window.get_hadjustment()
             vadjustment = window.get_vadjustment()
-            self.update_scrollbar_positions(vadjustment,
-                vadjustment.get_value() - (event.y - self._last_y))
-            self.update_scrollbar_positions(hadjustment,
-                hadjustment.get_value() - (event.x - self._last_x))
+            self.update_scrollbar_positions(
+                vadjustment, vadjustment.get_value() - (event.y - self._last_y)
+            )
+            self.update_scrollbar_positions(
+                hadjustment, hadjustment.get_value() - (event.x - self._last_x)
+            )
             return True
         return False
 
@@ -1501,11 +1622,9 @@ class PedigreeView(NavigationView):
         And setup plug for button press on person widget.
         """
         if is_right_click(event):
-            self.cb_build_full_nav_menu(obj, event,
-                                        person_handle, family_handle)
+            self.cb_build_full_nav_menu(obj, event, person_handle, family_handle)
             return True
-        elif (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
-                  and event.button == 1):
+        elif event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS and event.button == 1:
             self.cb_edit_person(obj, person_handle)
             return True
         return True
@@ -1519,25 +1638,23 @@ class PedigreeView(NavigationView):
         if is_right_click(event):
             self.cb_build_relation_nav_menu(obj, event, family_handle)
             return True
-        elif (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
-                  and event.button == 1):
+        elif event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS and event.button == 1:
             self.cb_edit_family(obj, family_handle)
             return True
         return True
 
-    def cb_missing_parent_button_press(self, obj, event,
-                                       person_handle, family_handle):
+    def cb_missing_parent_button_press(self, obj, event, person_handle, family_handle):
         """
         Call function for not full family for mouse left button double click
         on missing persons or call submenu for mouse right click.
         """
-        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
-                and event.button == 1):
+        if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS and event.button == 1:
             self.cb_add_parents(obj, person_handle, family_handle)
             return True
         elif is_right_click(event):
-            self.cb_build_missing_parent_nav_menu(obj, event, person_handle,
-                                                  family_handle)
+            self.cb_build_missing_parent_nav_menu(
+                obj, event, person_handle, family_handle
+            )
             return True
         return False
 
@@ -1561,7 +1678,7 @@ class PedigreeView(NavigationView):
                     child = self.dbstate.db.get_person_from_handle(child_handle)
                     cname = escape(name_displayer.display(child))
                     if find_children(self.dbstate.db, child):
-                        label = Gtk.Label(label='<b><i>%s</i></b>' % cname)
+                        label = Gtk.Label(label="<b><i>%s</i></b>" % cname)
                     else:
                         label = Gtk.Label(label=cname)
                     label.set_use_markup(True)
@@ -1570,10 +1687,11 @@ class PedigreeView(NavigationView):
                     menuitem = Gtk.MenuItem()
                     menuitem.add(label)
                     self.my_menu.append(menuitem)
-                    menuitem.connect("activate", self.cb_childmenu_changed,
-                                     child_handle)
+                    menuitem.connect(
+                        "activate", self.cb_childmenu_changed, child_handle
+                    )
                     menuitem.show()
-                self.my_menu.popup(None, None, None, None, 0, 0)
+                self.my_menu.popup_at_pointer(None)
             return 1
         return 0
 
@@ -1608,9 +1726,11 @@ class PedigreeView(NavigationView):
         try:
             alive = probably_alive(person, self.dbstate.db)
         except RuntimeError:
-            ErrorDialog(_('Relationship loop detected'),
-                        _('A person was found to be his/her own ancestor.'),
-                        parent=self.uistate.window)
+            ErrorDialog(
+                _("Relationship loop detected"),
+                _("A person was found to be his/her own ancestor."),
+                parent=self.uistate.window,
+            )
             alive = False
         lst[index] = [person, val, None, alive, None]
 
@@ -1631,14 +1751,12 @@ class PedigreeView(NavigationView):
                     lst[index] = [person, val, family, alive, None]
                     father_handle = family.get_father_handle()
                     if father_handle:
-                        father = self.dbstate.db.get_person_from_handle(
-                                    father_handle)
-                        self.find_tree(father, (2*index)+1, depth+1, lst, frel)
+                        father = self.dbstate.db.get_person_from_handle(father_handle)
+                        self.find_tree(father, (2 * index) + 1, depth + 1, lst, frel)
                     mother_handle = family.get_mother_handle()
                     if mother_handle:
-                        mother = self.dbstate.db.get_person_from_handle(
-                                    mother_handle)
-                        self.find_tree(mother, (2*index)+2, depth+1, lst, mrel)
+                        mother = self.dbstate.db.get_person_from_handle(mother_handle)
+                        self.find_tree(mother, (2 * index) + 2, depth + 1, lst, mrel)
 
     def add_nav_portion_to_menu(self, menu, person_handle):
         """
@@ -1646,8 +1764,7 @@ class PedigreeView(NavigationView):
         to the context menu. Used by both build_nav_menu() and
         build_full_nav_menu() methods.
         """
-        hobj = self.uistate.get_history(self.navigation_type(),
-                                        self.navigation_group())
+        hobj = self.uistate.get_history(self.navigation_type(), self.navigation_group())
         home_sensitivity = True
         if not self.dbstate.db.get_default_person():
             home_sensitivity = False
@@ -1711,21 +1828,20 @@ class PedigreeView(NavigationView):
         menu.append(item)
 
         # Help menu entry
-        menu.append(item)
         item = Gtk.MenuItem(label=_("About Pedigree View"))
         item.connect("activate", self.on_help_clicked)
         item.show()
         menu.append(item)
 
-    def cb_build_missing_parent_nav_menu(self, obj, event,
-                                         person_handle, family_handle):
+    def cb_build_missing_parent_nav_menu(
+        self, obj, event, person_handle, family_handle
+    ):
         """Builds the menu for a missing parent."""
         self.menu = Gtk.Menu()
         self.menu.set_reserve_toggle_size(False)
 
-        add_item = Gtk.MenuItem.new_with_mnemonic(_('_Add'))
-        add_item.connect("activate", self.cb_add_parents, person_handle,
-                         family_handle)
+        add_item = Gtk.MenuItem.new_with_mnemonic(_("_Add"))
+        add_item.connect("activate", self.cb_add_parents, person_handle, family_handle)
         add_item.show()
         self.menu.append(add_item)
 
@@ -1737,7 +1853,7 @@ class PedigreeView(NavigationView):
         # Add history-based navigation
         self.add_nav_portion_to_menu(self.menu, None)
         self.add_settings_to_menu(self.menu)
-        self.menu.popup(None, None, None, None, 0, event.time)
+        self.menu.popup_at_pointer(event)
         return 1
 
     def cb_build_full_nav_menu(self, obj, event, person_handle, family_handle):
@@ -1758,14 +1874,15 @@ class PedigreeView(NavigationView):
         go_item.show()
         self.menu.append(go_item)
 
-        edit_item = Gtk.MenuItem.new_with_mnemonic(_('_Edit'))
+        edit_item = Gtk.MenuItem.new_with_mnemonic(_("_Edit"))
         edit_item.connect("activate", self.cb_edit_person, person_handle)
         edit_item.show()
         self.menu.append(edit_item)
 
-        clipboard_item = Gtk.MenuItem.new_with_mnemonic(_('_Copy'))
-        clipboard_item.connect("activate", self.cb_copy_person_to_clipboard,
-                               person_handle)
+        clipboard_item = Gtk.MenuItem.new_with_mnemonic(_("_Copy"))
+        clipboard_item.connect(
+            "activate", self.cb_copy_person_to_clipboard, person_handle
+        )
         clipboard_item.show()
         self.menu.append(clipboard_item)
 
@@ -1828,8 +1945,9 @@ class PedigreeView(NavigationView):
                     sib_menu.set_reserve_toggle_size(False)
 
                 if find_children(self.dbstate.db, sib):
-                    label = Gtk.Label(label='<b><i>%s</i></b>'
-                                % escape(name_displayer.display(sib)))
+                    label = Gtk.Label(
+                        label="<b><i>%s</i></b>" % escape(name_displayer.display(sib))
+                    )
                 else:
                     label = Gtk.Label(label=escape(name_displayer.display(sib)))
 
@@ -1864,8 +1982,9 @@ class PedigreeView(NavigationView):
                 child_menu.set_reserve_toggle_size(False)
 
             if find_children(self.dbstate.db, child):
-                label = Gtk.Label(label='<b><i>%s</i></b>'
-                            % escape(name_displayer.display(child)))
+                label = Gtk.Label(
+                    label="<b><i>%s</i></b>" % escape(name_displayer.display(child))
+                )
             else:
                 label = Gtk.Label(label=escape(name_displayer.display(child)))
 
@@ -1875,8 +1994,7 @@ class PedigreeView(NavigationView):
             label.set_halign(Gtk.Align.START)
             child_item.add(label)
             linked_persons.append(child_handle)
-            child_item.connect("activate", self.cb_childmenu_changed,
-                               child_handle)
+            child_item.connect("activate", self.cb_childmenu_changed, child_handle)
             child_item.show()
             child_menu.append(child_item)
 
@@ -1903,8 +2021,9 @@ class PedigreeView(NavigationView):
                 par_menu.set_reserve_toggle_size(False)
 
             if find_parents(self.dbstate.db, par):
-                label = Gtk.Label(label='<b><i>%s</i></b>'
-                            % escape(name_displayer.display(par)))
+                label = Gtk.Label(
+                    label="<b><i>%s</i></b>" % escape(name_displayer.display(par))
+                )
             else:
                 label = Gtk.Label(label=escape(name_displayer.display(par)))
 
@@ -1924,8 +2043,9 @@ class PedigreeView(NavigationView):
                 par_menu = item.get_submenu()
                 par_menu.set_reserve_toggle_size(False)
                 par_item = Gtk.MenuItem(label=_("Add New Parents..."))
-                par_item.connect("activate", self.cb_add_parents, person_handle,
-                         family_handle)
+                par_item.connect(
+                    "activate", self.cb_add_parents, person_handle, family_handle
+                )
                 par_item.show()
                 par_menu.append(par_item)
             else:
@@ -1937,7 +2057,7 @@ class PedigreeView(NavigationView):
         item = Gtk.MenuItem(label=_("Related"))
         no_related = 1
         for p_id in find_witnessed_people(self.dbstate.db, person):
-            #if p_id in linked_persons:
+            # if p_id in linked_persons:
             #    continue    # skip already listed family members
 
             per = self.dbstate.db.get_person_from_handle(p_id)
@@ -1974,7 +2094,7 @@ class PedigreeView(NavigationView):
         # Add history-based navigation
         self.add_nav_portion_to_menu(self.menu, person_handle)
         self.add_settings_to_menu(self.menu)
-        self.menu.popup(None, None, None, None, 0, event.time)
+        self.menu.popup_at_pointer(event)
         return 1
 
     def cb_build_relation_nav_menu(self, obj, event, family_handle):
@@ -1986,14 +2106,15 @@ class PedigreeView(NavigationView):
         if not family:
             return 0
 
-        edit_item = Gtk.MenuItem.new_with_mnemonic(_('_Edit'))
+        edit_item = Gtk.MenuItem.new_with_mnemonic(_("_Edit"))
         edit_item.connect("activate", self.cb_edit_family, family_handle)
         edit_item.show()
         self.menu.append(edit_item)
 
-        clipboard_item = Gtk.MenuItem.new_with_mnemonic(_('_Copy'))
-        clipboard_item.connect("activate", self.cb_copy_family_to_clipboard,
-                               family_handle)
+        clipboard_item = Gtk.MenuItem.new_with_mnemonic(_("_Copy"))
+        clipboard_item.connect(
+            "activate", self.cb_copy_family_to_clipboard, family_handle
+        )
         clipboard_item.show()
         self.menu.append(clipboard_item)
 
@@ -2005,14 +2126,14 @@ class PedigreeView(NavigationView):
         # Add history-based navigation
         self.add_nav_portion_to_menu(self.menu, None)
         self.add_settings_to_menu(self.menu)
-        self.menu.popup(None, None, None, None, 0, event.time)
+        self.menu.popup_at_pointer(event)
         return 1
 
     def cb_update_show_tags(self, client, cnxn_id, entry, data):
         """
         Called when the configuration menu changes the tags setting.
         """
-        if entry == 'True':
+        if entry == "True":
             self.show_tag_color = True
         else:
             self.show_tag_color = False
@@ -2022,7 +2143,7 @@ class PedigreeView(NavigationView):
         """
         Called when the configuration menu changes the images setting.
         """
-        if entry == 'True':
+        if entry == "True":
             self.show_images = True
         else:
             self.show_images = False
@@ -2032,7 +2153,7 @@ class PedigreeView(NavigationView):
         """
         Called when the configuration menu changes the marriage data setting.
         """
-        if entry == 'True':
+        if entry == "True":
             self.show_marriage_data = True
         else:
             self.show_marriage_data = False
@@ -2042,7 +2163,7 @@ class PedigreeView(NavigationView):
         """
         Called when the configuration menu changes the unknown people setting.
         """
-        if entry == 'True':
+        if entry == "True":
             self.show_unknown_people = True
         else:
             self.show_unknown_people = False
@@ -2056,7 +2177,7 @@ class PedigreeView(NavigationView):
         self._config.set(constant, entry)
         self.tree_style = int(entry)
         adj = self.config_size_slider.get_adjustment()
-        if entry == 1: # Limit tree size to 5 for the compact style
+        if entry == 1:  # Limit tree size to 5 for the compact style
             adj.set_upper(5)
             if self.force_size > 5:
                 self.force_size = 5
@@ -2086,18 +2207,20 @@ class PedigreeView(NavigationView):
         This method will be called after the ini file is initialized,
         use it to monitor changes in the ini file
         """
-        self._config.connect('interface.pedview-show-images',
-                          self.cb_update_show_images)
-        self._config.connect('interface.pedview-show-marriage',
-                          self.cb_update_show_marriage)
-        self._config.connect('interface.pedview-show-tags',
-                          self.cb_update_show_tags)
-        self._config.connect('interface.pedview-show-unknown-people',
-                          self.cb_update_show_unknown_people)
-        self._config.connect('interface.pedview-tree-direction',
-                          self.cb_update_tree_direction)
-        self._config.connect('interface.pedview-tree-size',
-                          self.cb_update_tree_size)
+        self._config.connect(
+            "interface.pedview-show-images", self.cb_update_show_images
+        )
+        self._config.connect(
+            "interface.pedview-show-marriage", self.cb_update_show_marriage
+        )
+        self._config.connect("interface.pedview-show-tags", self.cb_update_show_tags)
+        self._config.connect(
+            "interface.pedview-show-unknown-people", self.cb_update_show_unknown_people
+        )
+        self._config.connect(
+            "interface.pedview-tree-direction", self.cb_update_tree_direction
+        )
+        self._config.connect("interface.pedview-tree-size", self.cb_update_tree_size)
 
     def _get_configure_page_funcs(self):
         """
@@ -2117,35 +2240,40 @@ class PedigreeView(NavigationView):
         grid.set_column_spacing(6)
         grid.set_row_spacing(6)
 
-        configdialog.add_checkbox(grid,
-                _('Show images'),
-                0, 'interface.pedview-show-images')
-        configdialog.add_checkbox(grid,
-                _('Show marriage data'),
-                1, 'interface.pedview-show-marriage')
-        configdialog.add_checkbox(grid,
-                _('Show unknown people'),
-                2, 'interface.pedview-show-unknown-people')
-        configdialog.add_checkbox(grid,
-                _('Show tags'),
-                3, 'interface.pedview-show-tags')
-        configdialog.add_combo(grid,
-                _('Tree style'),
-                4, 'interface.pedview-layout',
-                ((0, _('Standard')),
-                (1, _('Compact')),
-                (2, _('Expanded'))),
-                callback=self.cb_update_layout)
-        configdialog.add_combo(grid,
-                _('Tree direction'),
-                5, 'interface.pedview-tree-direction',
-                ((0, _('Vertical (↓)')),
-                (1, _('Vertical (↑)')),
-                (2, _('Horizontal (→)')),
-                (3, _('Horizontal (←)'))))
-        self.config_size_slider = configdialog.add_slider(grid,
-                _('Tree size'),
-                6, 'interface.pedview-tree-size',
-                (2, 9))
+        configdialog.add_checkbox(
+            grid, _("Show images"), 0, "interface.pedview-show-images"
+        )
+        configdialog.add_checkbox(
+            grid, _("Show marriage data"), 1, "interface.pedview-show-marriage"
+        )
+        configdialog.add_checkbox(
+            grid, _("Show unknown people"), 2, "interface.pedview-show-unknown-people"
+        )
+        configdialog.add_checkbox(
+            grid, _("Show tags"), 3, "interface.pedview-show-tags"
+        )
+        configdialog.add_combo(
+            grid,
+            _("Tree style"),
+            4,
+            "interface.pedview-layout",
+            ((0, _("Standard")), (1, _("Compact")), (2, _("Expanded"))),
+            callback=self.cb_update_layout,
+        )
+        configdialog.add_combo(
+            grid,
+            _("Tree direction"),
+            5,
+            "interface.pedview-tree-direction",
+            (
+                (0, _("Vertical (↓)")),
+                (1, _("Vertical (↑)")),
+                (2, _("Horizontal (→)")),
+                (3, _("Horizontal (←)")),
+            ),
+        )
+        self.config_size_slider = configdialog.add_slider(
+            grid, _("Tree size"), 6, "interface.pedview-tree-size", (2, 9)
+        )
 
-        return _('Layout'), grid
+        return _("Layout"), grid

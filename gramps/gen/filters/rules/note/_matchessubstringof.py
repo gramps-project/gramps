@@ -19,35 +19,36 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # "Events having notes that contain a substring"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MatchesSubstringOf(Rule):
     """Notes having notes containing <substring>"""
 
-    labels = [ _('Substring:')]
-    name = _('Notes containing <substring>')
-    description = _("Matches notes that contain text "
-                    "which matches a substring")
-    category = _('General filters')
+    labels = [_("Substring:")]
+    name = _("Notes containing <substring>")
+    description = _("Matches notes that contain text " "which matches a substring")
+    category = _("General filters")
 
     def apply(self, db, note):
-        """ Apply the filter """
+        """Apply the filter"""
         text = note.get()
         if text.upper().find(self.list[0].upper()) != -1:
             return True

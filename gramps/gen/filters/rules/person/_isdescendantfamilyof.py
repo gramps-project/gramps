@@ -18,39 +18,43 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 try:
     set()
 except NameError:
     from sets import Set as set
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # IsDescendantFamilyOf
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class IsDescendantFamilyOf(Rule):
     """Rule that checks for a person that is a descendant or the spouse
     of a descendant of a specified person"""
 
-    labels = [ _('ID:'), _('Inclusive:') ]
-    name = _('Descendant family members of <person>')
-    category = _('Descendant filters')
-    description = _("Matches people that are descendants or the spouse "
-                    "of a descendant of a specified person")
+    labels = [_("ID:"), _("Inclusive:")]
+    name = _("Descendant family members of <person>")
+    category = _("Descendant filters")
+    description = _(
+        "Matches people that are descendants or the spouse "
+        "of a descendant of a specified person"
+    )
 
     def prepare(self, db, user):
         self.db = db
@@ -70,10 +74,10 @@ class IsDescendantFamilyOf(Rule):
     def reset(self):
         self.matches = set()
 
-    def apply(self,db,person):
+    def apply(self, db, person):
         return person.handle in self.matches
 
-    def add_matches(self,person):
+    def add_matches(self, person):
         if not person:
             return
 
@@ -102,7 +106,8 @@ class IsDescendantFamilyOf(Rule):
 
     def exclude(self):
         # This removes root person and his/her spouses from the matches set
-        if not self.root_person: return
+        if not self.root_person:
+            return
         self.matches.remove(self.root_person.handle)
         for family_handle in self.root_person.get_family_handle_list():
             family = self.db.get_family_from_handle(family_handle)

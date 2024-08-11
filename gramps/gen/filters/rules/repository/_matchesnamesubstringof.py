@@ -18,33 +18,35 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # "Repositories having a name that contain a substring"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MatchesNameSubstringOf(Rule):
     """Repository name containing <substring>"""
 
-    labels = [ _('Text:')]
-    name = _('Repositories with name containing <text>')
+    labels = [_("Text:")]
+    name = _("Repositories with name containing <text>")
     description = _("Matches repositories whose name contains a certain substring")
-    category = _('General filters')
+    category = _("General filters")
     allow_regex = True
 
     def apply(self, db, repository):
-        """ Apply the filter """
+        """Apply the filter"""
         return self.match_substring(0, repository.get_name())

@@ -38,33 +38,38 @@ Narrative Web Page generator.
 Classe:
     SurnameListPage - Index for first letters of surname
 """
-#------------------------------------------------
+# ------------------------------------------------
 # python modules
-#------------------------------------------------
+# ------------------------------------------------
 from decimal import getcontext
 import logging
 from collections import defaultdict
 from unicodedata import name as uniname
 
-#------------------------------------------------
+# ------------------------------------------------
 # Gramps module
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.plugins.lib.libhtml import Html
 
-#------------------------------------------------
+# ------------------------------------------------
 # specific narrative web import
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
 from gramps.gen.display.name import displayer as _nd
-from gramps.plugins.webreport.common import (alphabet_navigation, html_escape,
-                                             name_to_md5, FULLCLEAR,
-                                             get_surname_from_person,
-                                             AlphabeticIndex)
+from gramps.plugins.webreport.common import (
+    alphabet_navigation,
+    html_escape,
+    name_to_md5,
+    FULLCLEAR,
+    get_surname_from_person,
+    AlphabeticIndex,
+)
 
 _ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb")
 getcontext().prec = 8
+
 
 #################################################
 #
@@ -75,11 +80,19 @@ class SurnameListPage(BasePage):
     """
     This class is responsible for displaying the list of Surnames
     """
+
     ORDER_BY_NAME = 0
     ORDER_BY_COUNT = 1
 
-    def __init__(self, report, the_lang, the_title, ppl_handle_list,
-                 order_by=ORDER_BY_NAME, filename="surnames"):
+    def __init__(
+        self,
+        report,
+        the_lang,
+        the_title,
+        ppl_handle_list,
+        order_by=ORDER_BY_NAME,
+        filename="surnames",
+    ):
         """
         @param: report          -- The instance of the main report class for
                                    this report
@@ -95,10 +108,10 @@ class SurnameListPage(BasePage):
 
         if order_by == self.ORDER_BY_NAME:
             output_file, sio = self.report.create_file(filename)
-            result = self.write_header(self._('Surnames'))
+            result = self.write_header(self._("Surnames"))
         else:
             output_file, sio = self.report.create_file("surnames_count")
-            result = self.write_header(self._('Surnames by person count'))
+            result = self.write_header(self._("Surnames by person count"))
         surnamelistpage, dummy_head, dummy_body, outerwrapper = result
 
         # begin surnames division
@@ -106,10 +119,12 @@ class SurnameListPage(BasePage):
             outerwrapper += surnamelist
 
             # page message
-            msg = self._('This page contains an index of all the '
-                         'surnames in the database. Selecting a link '
-                         'will lead to a list of individuals in the '
-                         'database with this same surname.')
+            msg = self._(
+                "This page contains an index of all the "
+                "surnames in the database. Selecting a link "
+                "will lead to a list of individuals in the "
+                "database with this same surname."
+            )
             surnamelist += Html("p", msg, id="description")
 
             # Assemble all the handles for each surname into a dictionary
@@ -136,18 +151,21 @@ class SurnameListPage(BasePage):
                     if index.bucketRecordCount != 0:
                         index_list.append(index.bucketLabel)
                 # Output the navigation
-                alpha_nav = alphabet_navigation(index_list, self.rlocale)
+                alpha_nav = alphabet_navigation(index_list, self.rlocale, rtl=self.dir)
                 if alpha_nav is not None:
                     surnamelist += alpha_nav
 
             if order_by == self.ORDER_BY_COUNT:
-                table_id = 'SortByCount'
+                table_id = "SortByCount"
             else:
-                table_id = 'SortByName'
+                table_id = "SortByName"
 
             # begin surnamelist table and table head
-            with Html("table", class_="infolist primobjlist surnamelist",
-                      id=table_id) as table:
+            with Html(
+                "table",
+                class_="infolist primobjlist surnamelist " + self.dir,
+                id=table_id,
+            ) as table:
                 surnamelist += table
 
                 thead = Html("thead")
@@ -156,15 +174,15 @@ class SurnameListPage(BasePage):
                 trow = Html("tr")
                 thead += trow
 
-                trow += Html("th", self._("Letter"), class_="ColumnLetter",
-                             inline=True)
+                trow += Html("th", self._("Letter"), class_="ColumnLetter", inline=True)
 
                 # create table header surname hyperlink
                 fname = self.report.surname_fname + self.ext
                 tcell = Html("th", class_="ColumnSurname", inline=True)
                 trow += tcell
-                hyper = Html("a", self._("Surname"),
-                             href=fname, title=self._("Surnames"))
+                hyper = Html(
+                    "a", self._("Surname"), href=fname, title=self._("Surnames")
+                )
                 tcell += hyper
 
                 # create table header number of people hyperlink
@@ -175,7 +193,7 @@ class SurnameListPage(BasePage):
                 hyper = Html("a", num_people, href=fname, title=num_people)
                 tcell += hyper
 
-                name_format = self.report.options['name_format']
+                name_format = self.report.options["name_format"]
                 # begin table body
                 with Html("tbody") as tbody:
                     table += tbody
@@ -190,26 +208,25 @@ class SurnameListPage(BasePage):
                         # }]
                         count_ppl_handle_dict = defaultdict(list)
                         for surname, data_list in surname_handle_dict.items():
-                            count_ppl_handle_dict[len(data_list)].append \
-                                ((surname,data_list))
+                            count_ppl_handle_dict[len(data_list)].append(
+                                (surname, data_list)
+                            )
                         # For each count, we construct and output a separate
                         # AlphabeticIndex for all surnames with that count
-                        for (dummy_count, ppl_handles) in \
-                            sorted(count_ppl_handle_dict.items(), reverse=True):
+                        for dummy_count, ppl_handles in sorted(
+                            count_ppl_handle_dict.items(), reverse=True
+                        ):
                             # Construct the AplhabeticIndex for that count
                             index = AlphabeticIndex(self.rlocale)
-                            for (surname, handle_list) in ppl_handles:
+                            for surname, handle_list in ppl_handles:
                                 index.addRecord(surname, handle_list)
                             # Output the AlphabeticIndex for that count
-                            self.output_surname_records(index, tbody,
-                                                        name_format)
+                            self.output_surname_records(index, tbody, name_format)
 
-                    else: # order_by == self.ORDER_BY_NAME
+                    else:  # order_by == self.ORDER_BY_NAME
                         # The AlphabeticIndex has already been constructed
                         # Output the AlphabeticIndex
-                        self.output_surname_records(index, tbody,
-                                                    name_format)
-
+                        self.output_surname_records(index, tbody, name_format)
 
         # create footer section
         # add clearline for proper styling
@@ -218,8 +235,9 @@ class SurnameListPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.xhtml_writer(surnamelistpage,
-                          output_file, sio, 0) # 0 => current date modification
+        self.xhtml_writer(
+            surnamelistpage, output_file, sio, 0
+        )  # 0 => current date modification
 
     def surname_link(self, fname, name, opt_val=None, uplink=False):
         """
@@ -232,13 +250,17 @@ class SurnameListPage(BasePage):
                            the result.
         """
         url = self.report.build_url_fname_html(fname, "srn", uplink)
-        try: # some characters don't have a unicode name
+        try:  # some characters don't have a unicode name
             char = uniname(name[0])
         except (ValueError, TypeError) as dummy_err:
             char = " "
-        hyper = Html("a", html_escape(name), href=url,
-                     title="%s starting with %s" % (name, char),
-                     inline=True)
+        hyper = Html(
+            "a",
+            html_escape(name),
+            href=url,
+            title="%s starting with %s" % (name, char),
+            inline=True,
+        )
         if opt_val is not None:
             hyper += opt_val
 
@@ -272,15 +294,21 @@ class SurnameListPage(BasePage):
                     bucket_link = "%s (%i)" % (bucket_letter, dup_index)
                     dup_index += 1
                 output.append(bucket_letter)
-                try: # some characters don't have a unicode name
+                try:  # some characters don't have a unicode name
                     char = uniname(bucket_letter)
                 except (ValueError, TypeError) as dummy_err:
                     char = " "
-                ttle = self._("Surnames beginning with "
-                              "letter '%s' %s") % \
-                              (bucket_letter, char)
-                hyper = Html("a", index.bucketLabel, name=index.bucketLabel,
-                             id_=bucket_link, title=ttle)
+                ttle = self._("Surnames beginning with " "letter '%s' %s") % (
+                    bucket_letter,
+                    char,
+                )
+                hyper = Html(
+                    "a",
+                    index.bucketLabel,
+                    name=index.bucketLabel,
+                    id_=bucket_link,
+                    title=ttle,
+                )
                 tcell += hyper
 
                 first = True
@@ -305,10 +333,16 @@ class SurnameListPage(BasePage):
                         surnamed = surname.upper()
                     else:
                         surnamed = surname
-                    trow += Html("td",
-                                 self.surname_link(name_to_md5(surname),
-                                                  surnamed),
-                                 class_="ColumnSurname", inline=True)
+                    trow += Html(
+                        "td",
+                        self.surname_link(name_to_md5(surname), surnamed),
+                        class_="ColumnSurname",
+                        inline=True,
+                    )
 
-                    trow += Html("td", len(index.recordData),
-                                 class_="ColumnQuantity", inline=True)
+                    trow += Html(
+                        "td",
+                        len(index.recordData),
+                        class_="ColumnQuantity",
+                        inline=True,
+                    )

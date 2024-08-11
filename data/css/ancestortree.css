@@ -18,8 +18,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-# $Id: $
-#
+
 *******************************************************************************
 GRAMPS Cascading Style Sheet
 Style Name: Combined Ancestor Tree Style Sheet
@@ -179,6 +178,10 @@ Females     Web_Gender_Female.png
 #treeContainer div.female a,
 #treeContainer div.female span.unlinked {
     background:url(../images/Web_Gender_Female.png) #FFC0CB no-repeat top right;
+}
+#treeContainer div.other a,
+#treeContainer div.other span.unlinked {
+    background:url(../images/Web_Gender_Other.png) #94EF9E no-repeat top right;
 }
 #treeContainer div.unknown a,
 #treeContainer div.unknown span.unlinked {

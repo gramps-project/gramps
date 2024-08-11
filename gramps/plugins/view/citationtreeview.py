@@ -22,27 +22,28 @@
 Citation Tree View (or Source tree view).
 A view showing all the Sources with child Citations
 """
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
-LOG = logging.getLogger(".citation")
-_LOG = logging.getLogger('.gui.citationtreeview')
 
-#-------------------------------------------------------------------------
+LOG = logging.getLogger(".citation")
+_LOG = logging.getLogger(".gui.citationtreeview")
+
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gui.views.listview import TEXT, MARKUP, ICON
 from gramps.gui.views.treemodels.citationtreemodel import CitationTreeModel
 from gramps.gen.plug import CATEGORY_QR_SOURCE_OR_CITATION
@@ -57,24 +58,26 @@ from gramps.gui.filters.sidebar import SourceSidebarFilter
 from gramps.gui.merge import MergeCitation, MergeSource
 from gramps.plugins.lib.libsourceview import LibSourceView
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Internationalization
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # PlaceTreeView
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class CitationTreeView(LibSourceView, ListView):
     """
     A hierarchical view of sources with citations below them.
     """
+
     # The data items here have to correspond, in order, to the items in
     # src/giu/views/treemodels/citationtreemodel.py
     COL_TITLE_PAGE = 0
@@ -89,34 +92,45 @@ class CitationTreeView(LibSourceView, ListView):
     COL_SRC_PINFO = 9
     # column definitions
     COLUMNS = [
-        (_('Source: Title or Citation: Volume/Page'), TEXT, None),
-        (_('ID'), TEXT, None),
-        (_('Date'), MARKUP, None),
-        (_('Confidence'), TEXT, None),
-        (_('Private'), ICON, 'gramps-lock'),
-        (_('Tags'), TEXT, None),
-        (_('Last Changed'), TEXT, None),
-        (_('Source: Author'), TEXT, None),
-        (_('Source: Abbreviation'), TEXT, None),
-        (_('Source: Publication Information'), TEXT, None),
-        ]
+        (_("Source: Title or Citation: Volume/Page"), TEXT, None),
+        (_("ID"), TEXT, None),
+        (_("Date"), MARKUP, None),
+        (_("Confidence"), TEXT, None),
+        (_("Private"), ICON, "gramps-lock"),
+        (_("Tags"), TEXT, None),
+        (_("Last Changed"), TEXT, None),
+        (_("Source: Author"), TEXT, None),
+        (_("Source: Abbreviation"), TEXT, None),
+        (_("Source: Publication Information"), TEXT, None),
+    ]
     COLUMN_FILTERABLE = [
         COL_TITLE_PAGE,
         COL_ID,
         COL_CHAN,
         COL_SRC_AUTH,
         COL_SRC_ABBR,
-        COL_SRC_PINFO
-        ]
+        COL_SRC_PINFO,
+    ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
-        ('columns.visible', [COL_TITLE_PAGE, COL_ID, COL_SRC_AUTH,
-                             COL_SRC_PINFO]),
-        ('columns.rank', [COL_TITLE_PAGE, COL_ID, COL_DATE, COL_CONFIDENCE,
-                          COL_PRIV, COL_TAGS, COL_CHAN, COL_SRC_AUTH,
-                          COL_SRC_ABBR, COL_SRC_PINFO]),
-        ('columns.size', [200, 75, 100, 75, 40, 100, 100, 150, 100, 150])
-        )
+        ("columns.visible", [COL_TITLE_PAGE, COL_ID, COL_SRC_AUTH, COL_SRC_PINFO]),
+        (
+            "columns.rank",
+            [
+                COL_TITLE_PAGE,
+                COL_ID,
+                COL_DATE,
+                COL_CONFIDENCE,
+                COL_PRIV,
+                COL_TAGS,
+                COL_CHAN,
+                COL_SRC_AUTH,
+                COL_SRC_ABBR,
+                COL_SRC_PINFO,
+            ],
+        ),
+        ("columns.size", [200, 75, 100, 75, 40, 100, 100, 150, 100, 150]),
+    )
     ADD_MSG = _("Add a new citation and a new source")
     ADD_SOURCE_MSG = _("Add a new source")
     ADD_CITATION_MSG = _("Add a new citation to an existing source")
@@ -127,24 +141,30 @@ class CitationTreeView(LibSourceView, ListView):
     QR_CATEGORY = CATEGORY_QR_SOURCE_OR_CITATION
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
-
         signal_map = {
-            'citation-add'     : self._citation_row_add,
-            'citation-update'  : self._citation_row_update,
-            'citation-delete'  : self._citation_row_delete,
-            'citation-rebuild' : self._citation_object_build,
-            'source-add'       : self._source_row_add,
-            'source-update'    : self._source_row_update,
-            'source-delete'    : self._source_row_delete,
-            'source-rebuild'   : self._source_object_build,
-            }
+            "citation-add": self._citation_row_add,
+            "citation-update": self._citation_row_update,
+            "citation-delete": self._citation_row_delete,
+            "citation-rebuild": self._citation_object_build,
+            "source-add": self._source_row_add,
+            "source-update": self._source_row_update,
+            "source-delete": self._source_row_delete,
+            "source-rebuild": self._source_object_build,
+        }
 
         ListView.__init__(
-            self, _('Citation Tree View'), pdata, dbstate, uistate,
-            CitationTreeModel, signal_map,
-            CitationBookmarks, nav_group,
+            self,
+            _("Citation Tree View"),
+            pdata,
+            dbstate,
+            uistate,
+            CitationTreeModel,
+            signal_map,
+            CitationBookmarks,
+            nav_group,
             multiple=True,
-            filter_class=SourceSidebarFilter)
+            filter_class=SourceSidebarFilter,
+        )
 
         self.additional_uis.append(self.additional_ui)
 
@@ -167,20 +187,21 @@ class CitationTreeView(LibSourceView, ListView):
         """
 
         self.search_bar.setup_filter(
-            [(self.COLUMNS[pair[1]][0], pair[1], pair[1] in self.exact_search())
-                for pair in self.column_order() if pair[0] and
-                                pair[1] in self.COLUMN_FILTERABLE])
+            [
+                (self.COLUMNS[pair[1]][0], pair[1], pair[1] in self.exact_search())
+                for pair in self.column_order()
+                if pair[0] and pair[1] in self.COLUMN_FILTERABLE
+            ]
+        )
 
     def _print_handles(self, text, handle_list):
         for handle in handle_list:
             source, citation = self.get_source_or_citation(handle, False)
             _LOG.debug("\n\n\n")
             if source:
-                _LOG.debug("---- %s -- source %s" %
-                           (text, source.get_title()))
+                _LOG.debug("---- %s -- source %s" % (text, source.get_title()))
             elif citation:
-                _LOG.debug("---- %s -- citation %s" %
-                           (text, citation.get_page()))
+                _LOG.debug("---- %s -- citation %s" % (text, citation.get_page()))
             else:
                 _LOG.debug("---- %s -- handle %s" % (text, handle))
 
@@ -209,7 +230,7 @@ class CitationTreeView(LibSourceView, ListView):
         # if the source update changes the title or other item being sorted
         # then it may change position on tree; it's easier to just rebuild the
         # whole tree.  row_update cannot fix changes to first level of tree
-        #self.row_update(handle_list)
+        # self.row_update(handle_list)
         self.dirty = True
         self.build_tree()
 
@@ -222,7 +243,7 @@ class CitationTreeView(LibSourceView, ListView):
         self.object_build(*args)
 
     def navigation_type(self):
-        return 'Citation'
+        return "Citation"
 
     def object_build(self, *args):
         """
@@ -237,8 +258,9 @@ class CitationTreeView(LibSourceView, ListView):
             # Reselect one, if it still exists after rebuild:
             for handle in selected_ids:
                 # Still exist?  It might be either a source or citation handle.
-                if (self.dbstate.db.has_citation_handle(handle) or
-                        self.dbstate.db.has_source_handle(handle)):
+                if self.dbstate.db.has_citation_handle(
+                    handle
+                ) or self.dbstate.db.has_source_handle(handle):
                     # Select it, and stop selecting:
                     self.change_active(handle)
                     break
@@ -265,13 +287,13 @@ class CitationTreeView(LibSourceView, ListView):
         return DdTargets.CITATION_LINK
 
     def get_stock(self):
-        return 'gramps-citation'
+        return "gramps-citation"
 
     def get_viewtype_stock(self):
         """
         Override the default icon.  Set for hierarchical view.
         """
-        return 'gramps-tree-group'
+        return "gramps-tree-group"
 
     def define_actions(self):
         """
@@ -292,22 +314,25 @@ class CitationTreeView(LibSourceView, ListView):
         """
         ListView.define_actions(self)
 
-        self.action_list.extend([
-            ('AddSource', self.add_source),
-            ('AddCitation', self.share),
-            ('OpenAllNodes', self.open_all_nodes),
-            ('CloseAllNodes', self.close_all_nodes), ])
+        self.action_list.extend(
+            [
+                ("AddSource", self.add_source),
+                ("AddCitation", self.share),
+                ("OpenAllNodes", self.open_all_nodes),
+                ("CloseAllNodes", self.close_all_nodes),
+            ]
+        )
 
     additional_ui = [  # Defines the UI string for UIManager
-        '''
+        """
       <placeholder id="LocalExport">
         <item>
           <attribute name="action">win.ExportTab</attribute>
           <attribute name="label" translatable="yes">Export View...</attribute>
         </item>
       </placeholder>
-''',
-        '''
+""",
+        """
       <section id="AddEditBook">
         <item>
           <attribute name="action">win.AddBook</attribute>
@@ -318,8 +343,9 @@ class CitationTreeView(LibSourceView, ListView):
           <attribute name="label" translatable="no">%s...</attribute>
         </item>
       </section>
-''' % _('Organize Bookmarks'),
-        '''
+"""
+        % _("Organize Bookmarks"),
+        """
       <placeholder id="CommonGo">
       <section>
         <item>
@@ -332,8 +358,8 @@ class CitationTreeView(LibSourceView, ListView):
         </item>
       </section>
       </placeholder>
-''',
-        '''
+""",
+        """
       <section id='CommonEdit' groups='RW'>
         <item>
           <attribute name="action">win.Add</attribute>
@@ -360,24 +386,25 @@ class CitationTreeView(LibSourceView, ListView):
           <attribute name="label" translatable="yes">_Merge...</attribute>
         </item>
       </section>
-''' % _("_Edit...", "action"),  # to use sgettext()
-        '''
+"""
+        % _("_Edit...", "action"),  # to use sgettext()
+        """
         <placeholder id='otheredit'>
         <item>
           <attribute name="action">win.FilterEdit</attribute>
-          <attribute name="label" translatable="yes">'''
-        '''Citation Filter Editor</attribute>
+          <attribute name="label" translatable="yes">"""
+        """Citation Filter Editor</attribute>
         </item>
         </placeholder>
-''',  # Following are the Toolbar items
-        '''
+""",  # Following are the Toolbar items
+        """
     <placeholder id='CommonNavigation'>
     <child groups='RO'>
       <object class="GtkToolButton">
         <property name="icon-name">go-previous</property>
         <property name="action-name">win.Back</property>
-        <property name="tooltip_text" translatable="yes">'''
-        '''Go to the previous object in the history</property>
+        <property name="tooltip_text" translatable="yes">"""
+        """Go to the previous object in the history</property>
         <property name="label" translatable="yes">_Back</property>
         <property name="use-underline">True</property>
       </object>
@@ -389,8 +416,8 @@ class CitationTreeView(LibSourceView, ListView):
       <object class="GtkToolButton">
         <property name="icon-name">go-next</property>
         <property name="action-name">win.Forward</property>
-        <property name="tooltip_text" translatable="yes">'''
-        '''Go to the next object in the history</property>
+        <property name="tooltip_text" translatable="yes">"""
+        """Go to the next object in the history</property>
         <property name="label" translatable="yes">_Forward</property>
         <property name="use-underline">True</property>
       </object>
@@ -399,8 +426,8 @@ class CitationTreeView(LibSourceView, ListView):
       </packing>
     </child>
     </placeholder>
-''',
-        '''
+""",
+        """
     <placeholder id='BarCommonEdit'>
     <child groups='RW'>
       <object class="GtkToolButton">
@@ -473,9 +500,9 @@ class CitationTreeView(LibSourceView, ListView):
       </packing>
     </child>
     </placeholder>
-''' % (ADD_MSG, ADD_SOURCE_MSG, ADD_CITATION_MSG, EDIT_MSG, DEL_MSG,
-            MERGE_MSG),
-        '''
+"""
+        % (ADD_MSG, ADD_SOURCE_MSG, ADD_CITATION_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
+        """
     <menu id="Popup">
       <section>
         <item>
@@ -490,13 +517,13 @@ class CitationTreeView(LibSourceView, ListView):
       <section id="PopUpTree">
         <item>
           <attribute name="action">win.OpenAllNodes</attribute>
-          <attribute name="label" translatable="yes">'''
-        '''Expand all Nodes</attribute>
+          <attribute name="label" translatable="yes">"""
+        """Expand all Nodes</attribute>
         </item>
         <item>
           <attribute name="action">win.CloseAllNodes</attribute>
-          <attribute name="label" translatable="yes">'''
-        '''Collapse all Nodes</attribute>
+          <attribute name="label" translatable="yes">"""
+        """Collapse all Nodes</attribute>
         </item>
       </section>
        <section>
@@ -506,8 +533,8 @@ class CitationTreeView(LibSourceView, ListView):
         </item>
         <item>
           <attribute name="action">win.AddCitation</attribute>
-          <attribute name="label" translatable="yes">'''
-        '''Add citation...</attribute>
+          <attribute name="label" translatable="yes">"""
+        """Add citation...</attribute>
         </item>
         <item>
           <attribute name="action">win.Edit</attribute>
@@ -527,8 +554,9 @@ class CitationTreeView(LibSourceView, ListView):
         </placeholder>
       </section>
     </menu>
-''' % _('_Edit...', 'action')  # to use sgettext()
-]
+"""
+        % _("_Edit...", "action"),  # to use sgettext()
+    ]
 
     def add_source(self, *obj):
         """
@@ -569,8 +597,7 @@ class CitationTreeView(LibSourceView, ListView):
         window to already exist, so this is just an extra safety measure.
         """
         try:
-            EditCitation(self.dbstate, self.uistate, [], Citation(),
-                         Source())
+            EditCitation(self.dbstate, self.uistate, [], Citation(), Source())
         except WindowActiveError:
             pass
 
@@ -584,15 +611,18 @@ class CitationTreeView(LibSourceView, ListView):
             source, citation = self.get_source_or_citation(handle)
             if not source:
                 source = self.dbstate.db.get_source_from_handle(
-                    citation.get_reference_handle())
+                    citation.get_reference_handle()
+                )
             try:
-                EditCitation(self.dbstate, self.uistate, [],
-                             Citation(), source)
+                EditCitation(self.dbstate, self.uistate, [], Citation(), source)
             except WindowActiveError:
                 from gramps.gui.dialog import WarningDialog
-                WarningDialog(_("Cannot share this reference"),
-                              self.__blocked_text(),
-                              parent=self.uistate.window)
+
+                WarningDialog(
+                    _("Cannot share this reference"),
+                    self.__blocked_text(),
+                    parent=self.uistate.window,
+                )
 
     def edit(self, *obj):
         """
@@ -611,29 +641,36 @@ class CitationTreeView(LibSourceView, ListView):
                     EditSource(self.dbstate, self.uistate, [], source)
                 except WindowActiveError:
                     from gramps.gui.dialog import WarningDialog
-                    WarningDialog(_("Cannot share this reference"),
-                                  self.__blocked_text2(),
-                                  parent=self.uistate.window)
+
+                    WarningDialog(
+                        _("Cannot share this reference"),
+                        self.__blocked_text2(),
+                        parent=self.uistate.window,
+                    )
 
     def __blocked_text(self):
         """
         Return the common text used when citation cannot be edited
         """
-        return _("This citation cannot be created at this time. "
-                    "Either the associated Source object is already being "
-                    "edited, or another citation associated with the same "
-                    "source is being edited.\n\nTo edit this "
-                    "citation, you need to close the object.")
+        return _(
+            "This citation cannot be created at this time. "
+            "Either the associated Source object is already being "
+            "edited, or another citation associated with the same "
+            "source is being edited.\n\nTo edit this "
+            "citation, you need to close the object."
+        )
 
     def __blocked_text2(self):
         """
         Return the common text used when citation cannot be edited
         """
-        return _("This source cannot be edited at this time. "
-                    "Either the associated Source object is already being "
-                    "edited, or another citation associated with the same "
-                    "source is being edited.\n\nTo edit this "
-                    "source, you need to close the object.")
+        return _(
+            "This source cannot be edited at this time. "
+            "Either the associated Source object is already being "
+            "edited, or another citation associated with the same "
+            "source is being edited.\n\nTo edit this "
+            "source, you need to close the object."
+        )
 
     def merge(self, *obj):
         """
@@ -643,35 +680,41 @@ class CitationTreeView(LibSourceView, ListView):
 
         if len(mlist) != 2:
             msg = _("Cannot merge citations.")
-            msg2 = _("Exactly two citations must be selected to perform a "
-                     "merge. A second citation can be selected by holding "
-                     "down the control key while clicking on the desired "
-                     "citation.")
+            msg2 = _(
+                "Exactly two citations must be selected to perform a "
+                "merge. A second citation can be selected by holding "
+                "down the control key while clicking on the desired "
+                "citation."
+            )
             ErrorDialog(msg, msg2, parent=self.uistate.window)
         else:
             source1, citation1 = self.get_source_or_citation(mlist[0])
             source2, citation2 = self.get_source_or_citation(mlist[1])
 
             if citation1 and citation2:
-                if not citation1.get_reference_handle()  == \
-                                citation2.get_reference_handle():
+                if (
+                    not citation1.get_reference_handle()
+                    == citation2.get_reference_handle()
+                ):
                     msg = _("Cannot merge citations.")
-                    msg2 = _("The two selected citations must have the same "
-                             "source to perform a merge. If you want to merge "
-                             "these two citations, then you must merge the "
-                             "sources first.")
-                    ErrorDialog(msg, msg2,
-                                parent=self.uistate.window)
+                    msg2 = _(
+                        "The two selected citations must have the same "
+                        "source to perform a merge. If you want to merge "
+                        "these two citations, then you must merge the "
+                        "sources first."
+                    )
+                    ErrorDialog(msg, msg2, parent=self.uistate.window)
                 else:
-                    MergeCitation(self.dbstate, self.uistate, [], mlist[0],
-                                  mlist[1])
+                    MergeCitation(self.dbstate, self.uistate, [], mlist[0], mlist[1])
             elif source1 and source2:
                 MergeSource(self.dbstate, self.uistate, [], mlist[0], mlist[1])
             else:
                 msg = _("Cannot perform merge.")
-                msg2 = _("Both objects must be of the same type, either "
-                         "both must be sources, or both must be "
-                         "citations.")
+                msg2 = _(
+                    "Both objects must be of the same type, either "
+                    "both must be sources, or both must be "
+                    "citations."
+                )
                 ErrorDialog(msg, msg2, parent=self.uistate.window)
             self.object_build()
 
@@ -705,9 +748,14 @@ class CitationTreeView(LibSourceView, ListView):
         """
         all_links = set([])
         for tag_handle in handle_list:
-            links = set([link[1] for link in
-                         self.dbstate.db.find_backlink_handles(tag_handle,
-                                                include_classes='Citation')])
+            links = set(
+                [
+                    link[1]
+                    for link in self.dbstate.db.find_backlink_handles(
+                        tag_handle, include_classes="Citation"
+                    )
+                ]
+            )
             all_links = all_links.union(links)
         self.row_update(list(all_links))
 
@@ -739,7 +787,10 @@ class CitationTreeView(LibSourceView, ListView):
         """
         Define the default gramplets for the sidebar and bottombar.
         """
-        return (("Citation Filter",),
-                ("Citation Gallery",
-                 "Citation Notes",
-                 "Citation Backlinks"))
+        return (
+            ("Citation Filter",),
+            ("Citation Gallery", "Citation Notes", "Citation Backlinks"),
+        )
+
+    def get_config_name(self):
+        return __name__

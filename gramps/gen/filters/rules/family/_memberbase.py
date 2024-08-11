@@ -31,6 +31,7 @@ in the class body, outside any method:
 >    apply = child_base
 """
 
+
 def father_base(self, db, family):
     father_handle = family.get_father_handle()
     if father_handle:
@@ -40,6 +41,7 @@ def father_base(self, db, family):
         else:
             return False
 
+
 def mother_base(self, db, family):
     mother_handle = family.get_mother_handle()
     if mother_handle:
@@ -48,6 +50,7 @@ def mother_base(self, db, family):
             return self.base_class.apply(self, db, mother)
         else:
             return False
+
 
 def child_base(self, db, family):
     for child_ref in family.get_child_ref_list():

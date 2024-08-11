@@ -20,20 +20,32 @@
 
 """ Unittest for JSON schema """
 
+import json
 import os
 import unittest
-import json
+
 import jsonschema
 
-from .. import (Person, Family, Event, Place, Repository, Source, Citation,
-                Media, Note, Tag)
-from ..serialize import to_json
-from ...db.utils import import_as_dict
 from ...const import DATA_DIR
+from ...db.utils import import_as_dict
 from ...user import User
+from .. import (
+    Citation,
+    Event,
+    Family,
+    Media,
+    Note,
+    Person,
+    Place,
+    Repository,
+    Source,
+    Tag,
+)
+from ..serialize import to_json
 
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
+
 
 class BaseTest(unittest.TestCase):
     def _schema_test(self, obj):
@@ -43,64 +55,78 @@ class BaseTest(unittest.TestCase):
         except jsonschema.exceptions.ValidationError:
             self.fail("JSON Schema validation error")
 
+
 class PersonTest(BaseTest):
     @classmethod
     def setUpClass(cls):
         cls.schema = Person.get_schema()
+
 
 class FamilyTest(BaseTest):
     @classmethod
     def setUpClass(cls):
         cls.schema = Family.get_schema()
 
+
 class EventTest(BaseTest):
     @classmethod
     def setUpClass(cls):
         cls.schema = Event.get_schema()
+
 
 class PlaceTest(BaseTest):
     @classmethod
     def setUpClass(cls):
         cls.schema = Place.get_schema()
 
+
 class RepositoryTest(BaseTest):
     @classmethod
     def setUpClass(cls):
         cls.schema = Repository.get_schema()
+
 
 class SourceTest(BaseTest):
     @classmethod
     def setUpClass(cls):
         cls.schema = Source.get_schema()
 
+
 class CitationTest(BaseTest):
     @classmethod
     def setUpClass(cls):
         cls.schema = Citation.get_schema()
+
 
 class MediaTest(BaseTest):
     @classmethod
     def setUpClass(cls):
         cls.schema = Media.get_schema()
 
+
 class NoteTest(BaseTest):
     @classmethod
     def setUpClass(cls):
         cls.schema = Note.get_schema()
+
 
 class TagTest(BaseTest):
     @classmethod
     def setUpClass(cls):
         cls.schema = Tag.get_schema()
 
+
 def generate_case(obj, test_class):
     """
     Dynamically generate tests.
     """
+
     def test(self):
         self._schema_test(obj)
+
     name = "test_schema_%s_%s" % (obj.__class__.__name__, obj.handle)
     setattr(test_class, name, test)
+
 
 db = import_as_dict(EXAMPLE, User())
 for obj in db.iter_people():

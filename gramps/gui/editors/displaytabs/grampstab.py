@@ -19,11 +19,11 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gtk
@@ -31,11 +31,12 @@ from gi.repository import Gtk
 _LEFT = Gdk.keyval_from_name("Left")
 _RIGHT = Gdk.keyval_from_name("Right")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
 
 class GrampsTab(Gtk.Box):
     """
@@ -130,7 +131,7 @@ class GrampsTab(Gtk.Box):
         @returns: stock icon name
         @rtype: str
         """
-        return 'document-new'
+        return "document-new"
 
     def get_tab_widget(self):
         """
@@ -149,11 +150,13 @@ class GrampsTab(Gtk.Box):
         to this method, eg an eventbox, tree, ...
         """
         if event.type == Gdk.EventType.KEY_PRESS:
-            if event.keyval in (_LEFT,) and \
-                    (event.get_state() & Gdk.ModifierType.MOD1_MASK):
+            if event.keyval in (_LEFT,) and (
+                event.get_state() & Gdk.ModifierType.MOD1_MASK
+            ):
                 self.prev_page()
-            elif event.keyval in (_RIGHT,) and \
-                    (event.get_state() & Gdk.ModifierType.MOD1_MASK):
+            elif event.keyval in (_RIGHT,) and (
+                event.get_state() & Gdk.ModifierType.MOD1_MASK
+            ):
                 self.next_page()
             else:
                 return

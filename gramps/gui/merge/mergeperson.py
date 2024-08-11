@@ -24,19 +24,20 @@
 Provide merge capabilities for persons.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Pango
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from gramps.gen.plug.report import utils
 from gramps.gen.display.name import displayer as name_displayer
@@ -49,11 +50,11 @@ from ..dialog import ErrorDialog, WarningDialog
 from ..managedwindow import ManagedWindow
 from gramps.gen.merge import MergePersonQuery
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 WIKI_HELP_PAGE = URL_MANUAL_SECT3
 WIKI_HELP_SEC = _("Merge_People", "manual")
 _GLADE_FILE = "mergeperson.glade"
@@ -61,7 +62,8 @@ _GLADE_FILE = "mergeperson.glade"
 # Translators: needed for French, ignore otherwise
 KEYVAL = _("%(key)s:\t%(value)s")
 
-sex = ( _("female"), _("male"), _("unknown") )
+sex = (_("female"), _("male"), _("other"), _("unknown"))
+
 
 def name_of(person):
     """Return string with name and ID of a person."""
@@ -69,28 +71,38 @@ def name_of(person):
         return ""
     return "%s [%s]" % (name_displayer.display(person), person.get_gramps_id())
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MergePerson
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MergePerson(ManagedWindow):
     """
     Displays a dialog box that allows the persons to be combined into one.
     """
-    def __init__(self, dbstate, uistate, track, handle1, handle2,
-                 cb_update=None, expand_context_info=True):
+
+    def __init__(
+        self,
+        dbstate,
+        uistate,
+        track,
+        handle1,
+        handle2,
+        cb_update=None,
+        expand_context_info=True,
+    ):
         ManagedWindow.__init__(self, uistate, track, self.__class__)
         self.database = dbstate.db
         self.pr1 = self.database.get_person_from_handle(handle1)
         self.pr2 = self.database.get_person_from_handle(handle2)
         self.update = cb_update
 
-        self.define_glade('mergeperson', _GLADE_FILE)
-        self.set_window(self._gladeobj.toplevel,
-                        self.get_widget("person_title"),
-                        _("Merge People"))
-        self.setup_configs('interface.merge-person', 700, 400)
+        self.define_glade("mergeperson", _GLADE_FILE)
+        self.set_window(
+            self._gladeobj.toplevel, self.get_widget("person_title"), _("Merge People")
+        )
+        self.setup_configs("interface.merge-person", 700, 400)
 
         # Detailed selection widgets
         name1 = name_displayer.display_name(self.pr1.get_primary_name())
@@ -100,7 +112,7 @@ class MergePerson(ManagedWindow):
         entry1.set_text(name1)
         entry2.set_text(name2)
         if entry1.get_text() == entry2.get_text():
-            for widget_name in ('name1', 'name2', 'name_btn1', 'name_btn2'):
+            for widget_name in ("name1", "name2", "name_btn1", "name_btn2"):
                 self.get_widget(widget_name).set_sensitive(False)
 
         entry1 = self.get_widget("gender1")
@@ -108,8 +120,7 @@ class MergePerson(ManagedWindow):
         entry1.set_text(sex[self.pr1.get_gender()])
         entry2.set_text(sex[self.pr2.get_gender()])
         if entry1.get_text() == entry2.get_text():
-            for widget_name in ('gender1', 'gender2', 'gender_btn1',
-                    'gender_btn2'):
+            for widget_name in ("gender1", "gender2", "gender_btn1", "gender_btn2"):
                 self.get_widget(widget_name).set_sensitive(False)
 
         gramps1 = self.pr1.get_gramps_id()
@@ -119,8 +130,7 @@ class MergePerson(ManagedWindow):
         entry1.set_text(gramps1)
         entry2.set_text(gramps2)
         if entry1.get_text() == entry2.get_text():
-            for widget_name in ('gramps1', 'gramps2', 'gramps_btn1',
-                    'gramps_btn2'):
+            for widget_name in ("gramps1", "gramps2", "gramps_btn1", "gramps_btn2"):
                 self.get_widget(widget_name).set_sensitive(False)
 
         # Main window widgets that determine which handle survives
@@ -131,8 +141,9 @@ class MergePerson(ManagedWindow):
         rbutton_label2.set_label(name2 + " [" + gramps2 + "]")
         rbutton1.connect("toggled", self.on_handle1_toggled)
         expander2 = self.get_widget("expander2")
-        self.expander_handler = expander2.connect("notify::expanded",
-                                                  self.cb_expander2_activated)
+        self.expander_handler = expander2.connect(
+            "notify::expanded", self.cb_expander2_activated
+        )
         expander2.set_expanded(expand_context_info)
 
         self.connect_button("person_help", self.cb_help)
@@ -154,8 +165,8 @@ class MergePerson(ManagedWindow):
     def cb_expander2_activated(self, obj, param_spec):
         """Context Information expander is activated"""
         if obj.get_expanded():
-            text1 = self.get_widget('text1')
-            text2 = self.get_widget('text2')
+            text1 = self.get_widget("text1")
+            text2 = self.get_widget("text2")
             self.display(text1.get_buffer(), self.pr1)
             self.display(text2.get_buffer(), self.pr2)
             obj.disconnect(self.expander_handler)
@@ -168,38 +179,45 @@ class MergePerson(ManagedWindow):
     def display(self, tobj, person):
         """Fill text buffer tobj with detailed info on person person."""
         normal = tobj.create_tag()
-        normal.set_property('indent', 10)
-        normal.set_property('pixels-above-lines', 1)
-        normal.set_property('pixels-below-lines', 1)
+        normal.set_property("indent", 10)
+        normal.set_property("pixels-above-lines", 1)
+        normal.set_property("pixels-below-lines", 1)
         indent = tobj.create_tag()
-        indent.set_property('indent', 30)
-        indent.set_property('pixels-above-lines', 1)
-        indent.set_property('pixels-below-lines', 1)
+        indent.set_property("indent", 30)
+        indent.set_property("pixels-above-lines", 1)
+        indent.set_property("pixels-below-lines", 1)
         title = tobj.create_tag()
-        title.set_property('weight', Pango.Weight.BOLD)
-        title.set_property('scale', 1.2)
+        title.set_property("weight", Pango.Weight.BOLD)
+        title.set_property("scale", 1.2)
         self.add(tobj, title, name_displayer.display(person))
-        self.add(tobj, normal, KEYVAL % {'key': _('ID'),
-                                         'value': person.get_gramps_id()})
-        self.add(tobj, normal, KEYVAL % {'key': _('Gender'),
-                                         'value': sex[person.get_gender()]})
+        self.add(
+            tobj, normal, KEYVAL % {"key": _("ID"), "value": person.get_gramps_id()}
+        )
+        self.add(
+            tobj,
+            normal,
+            KEYVAL % {"key": _("Gender"), "value": sex[person.get_gender()]},
+        )
         bref = person.get_birth_ref()
         if bref:
-            self.add(tobj, normal,
-                     KEYVAL % {'key': _('Birth'),
-                               'value': self.get_event_info(bref.ref)})
+            self.add(
+                tobj,
+                normal,
+                KEYVAL % {"key": _("Birth"), "value": self.get_event_info(bref.ref)},
+            )
         dref = person.get_death_ref()
         if dref:
-            self.add(tobj, normal,
-                     KEYVAL % {'key': _('Death'),
-                               'value': self.get_event_info(dref.ref)})
+            self.add(
+                tobj,
+                normal,
+                KEYVAL % {"key": _("Death"), "value": self.get_event_info(dref.ref)},
+            )
 
         nlist = person.get_alternate_names()
         if len(nlist) > 0:
             self.add(tobj, title, _("Alternate Names"))
             for name in nlist:
-                self.add(tobj, normal,
-                         name_displayer.display_name(name))
+                self.add(tobj, normal, name_displayer.display_name(name))
 
         elist = person.get_event_ref_list()
         if len(elist) > 0:
@@ -207,31 +225,32 @@ class MergePerson(ManagedWindow):
             for event_ref in person.get_event_ref_list():
                 event_handle = event_ref.ref
                 role = event_ref.get_role()
-                name = str(
-                    self.database.get_event_from_handle(event_handle).get_type())
+                name = str(self.database.get_event_from_handle(event_handle).get_type())
                 ev_info = self.get_event_info(event_handle)
                 if role.is_primary():
-                    self.add(tobj, normal,
-                             KEYVAL % {'key': name, 'value': ev_info})
+                    self.add(tobj, normal, KEYVAL % {"key": name, "value": ev_info})
                 else:
-                    self.add(tobj, normal, # Translators: needed for French
-                             "%(name)s (%(role)s):\t%(info)s"
-                                 % {'name': name, 'role': role,
-                                    'info': ev_info})
+                    self.add(
+                        tobj,
+                        normal,  # Translators: needed for French
+                        "%(name)s (%(role)s):\t%(info)s"
+                        % {"name": name, "role": role, "info": ev_info},
+                    )
         plist = person.get_parent_family_handle_list()
 
         if len(plist) > 0:
             self.add(tobj, title, _("Parents"))
             for fid in person.get_parent_family_handle_list():
                 (fname, mname, gid) = self.get_parent_info(fid)
-                self.add(tobj, normal,
-                         KEYVAL % {'key': _('Family ID'), 'value': gid})
+                self.add(tobj, normal, KEYVAL % {"key": _("Family ID"), "value": gid})
                 if fname:
-                    self.add(tobj, indent,
-                             KEYVAL % {'key': _('Father'), 'value': fname})
+                    self.add(
+                        tobj, indent, KEYVAL % {"key": _("Father"), "value": fname}
+                    )
                 if mname:
-                    self.add(tobj, indent,
-                             KEYVAL % {'key': _('Mother'), 'value': mname})
+                    self.add(
+                        tobj, indent, KEYVAL % {"key": _("Mother"), "value": mname}
+                    )
         else:
             self.add(tobj, normal, _("No parents found"))
 
@@ -241,25 +260,30 @@ class MergePerson(ManagedWindow):
             for fid in slist:
                 (fname, mname, pid) = self.get_parent_info(fid)
                 family = self.database.get_family_from_handle(fid)
-                self.add(tobj, normal,
-                         KEYVAL % {'key': _('Family ID'), 'value': pid})
+                self.add(tobj, normal, KEYVAL % {"key": _("Family ID"), "value": pid})
                 spouse_id = utils.find_spouse(person, family)
                 if spouse_id:
                     spouse = self.database.get_person_from_handle(spouse_id)
-                    self.add(tobj, indent, KEYVAL % {'key': _('Spouse'),
-                                                     'value': name_of(spouse)})
+                    self.add(
+                        tobj,
+                        indent,
+                        KEYVAL % {"key": _("Spouse"), "value": name_of(spouse)},
+                    )
                 relstr = str(family.get_relationship())
-                self.add(tobj, indent,
-                         KEYVAL % {'key': _('Type'), 'value': relstr})
+                self.add(tobj, indent, KEYVAL % {"key": _("Type"), "value": relstr})
                 event = utils.find_marriage(self.database, family)
                 if event:
                     m_info = self.get_event_info(event.get_handle())
-                    self.add(tobj, indent,
-                             KEYVAL % {'key': _('Marriage'), 'value': m_info})
+                    self.add(
+                        tobj, indent, KEYVAL % {"key": _("Marriage"), "value": m_info}
+                    )
                 for child_ref in family.get_child_ref_list():
                     child = self.database.get_person_from_handle(child_ref.ref)
-                    self.add(tobj, indent, KEYVAL % {'key': _('Child'),
-                                                     'value': name_of(child)})
+                    self.add(
+                        tobj,
+                        indent,
+                        KEYVAL % {"key": _("Child"), "value": name_of(child)},
+                    )
         else:
             self.add(tobj, normal, _("No spouses or children found"))
 
@@ -268,9 +292,16 @@ class MergePerson(ManagedWindow):
             self.add(tobj, title, _("Addresses"))
             for addr in alist:
                 # TODO for Arabic, should the next line's comma be translated?
-                location = ", ".join([addr.get_street(), addr.get_city(),
-                                     addr.get_state(), addr.get_country(),
-                                     addr.get_postal_code(), addr.get_phone()])
+                location = ", ".join(
+                    [
+                        addr.get_street(),
+                        addr.get_city(),
+                        addr.get_state(),
+                        addr.get_country(),
+                        addr.get_postal_code(),
+                        addr.get_phone(),
+                    ]
+                )
                 self.add(tobj, normal, location.strip())
 
     def get_parent_info(self, fid):
@@ -307,7 +338,7 @@ class MergePerson(ManagedWindow):
 
     def cb_help(self, obj):
         """Display the relevant portion of Gramps manual"""
-        display_help(webpage = WIKI_HELP_PAGE, section = WIKI_HELP_SEC)
+        display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def cb_merge(self, obj):
         """
@@ -339,17 +370,20 @@ class MergePerson(ManagedWindow):
             if not family_merge_ok:
                 WarningDialog(
                     _("Warning"),
-                    _("The persons have been merged.\nHowever, the families "
-                      "for this merge were too complex to automatically "
-                      "handle.  We recommend that you go to Relationships "
-                      "view and see if additional manual merging of families "
-                      "is necessary."), parent=self.window)
+                    _(
+                        "The persons have been merged.\nHowever, the families "
+                        "for this merge were too complex to automatically "
+                        "handle.  We recommend that you go to Relationships "
+                        "view and see if additional manual merging of families "
+                        "is necessary."
+                    ),
+                    parent=self.window,
+                )
             # Add the selected handle to history so that when merge is complete,
             # phoenix is the selected row.
-            self.uistate.set_active(phoenix.get_handle(), 'Person')
+            self.uistate.set_active(phoenix.get_handle(), "Person")
         except MergeError as err:
-            ErrorDialog(_("Cannot merge people"), str(err),
-                        parent=self.window)
+            ErrorDialog(_("Cannot merge people"), str(err), parent=self.window)
         self.uistate.set_busy_cursor(False)
         self.close()
         if self.update:

@@ -27,37 +27,47 @@ Narrative Web Page generator.
 Classe:
     UpdatesPage
 """
-#------------------------------------------------
+# ------------------------------------------------
 # python modules
-#------------------------------------------------
+# ------------------------------------------------
 from decimal import getcontext
 import logging
-from time import (strftime, time, localtime)
+from time import strftime, time, localtime
 
-#------------------------------------------------
+# ------------------------------------------------
 # Gramps module
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.plugins.lib.libhtml import Html
 
-#------------------------------------------------
+# ------------------------------------------------
 # specific narrative web import
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
 from gramps.gen.display.place import displayer as _pd
-from gramps.plugins.webreport.common import (FULLCLEAR, _EVENTMAP, html_escape)
-from gramps.gen.lib import (Person, Family, Event, Place, Source, Repository,
-                            Media, Citation)
+from gramps.plugins.webreport.common import FULLCLEAR, _EVENTMAP, html_escape
+from gramps.gen.lib import (
+    Person,
+    Family,
+    Event,
+    Place,
+    Source,
+    Repository,
+    Media,
+    Citation,
+)
 from gramps.gen.lib.date import Date
 
 _ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb")
 getcontext().prec = 8
 
+
 class UpdatesPage(BasePage):
     """
     This class is responsible for displaying information about the Home page.
     """
+
     def __init__(self, report, the_lang, the_title):
         """
         @param: report    -- The instance of the main report class
@@ -67,32 +77,30 @@ class UpdatesPage(BasePage):
         """
         BasePage.__init__(self, report, the_lang, the_title)
         ldatec = 0
-        self.inc_repository = self.report.options['inc_repository']
-        self.inc_families = self.report.options['inc_families']
-        self.inc_events = self.report.options['inc_events']
-        self.inc_places = self.report.options['inc_places']
-        self.inc_sources = self.report.options['inc_sources']
+        self.inc_repository = self.report.options["inc_repository"]
+        self.inc_families = self.report.options["inc_families"]
+        self.inc_events = self.report.options["inc_events"]
+        self.inc_places = self.report.options["inc_places"]
+        self.inc_sources = self.report.options["inc_sources"]
         self.inc_gallery = False
 
         output_file, sio = self.report.create_file("updates")
-        result = self.write_header(self._('New and updated objects'))
+        result = self.write_header(self._("New and updated objects"))
         homepage, dummy_head, dummy_body, outerwrapper = result
-        self.days = self.report.options['maxdays']
-        self.nbr = self.report.options['maxupdates']
+        self.days = self.report.options["maxdays"]
+        self.nbr = self.report.options["maxupdates"]
         cur_time = int(time())
         self.maxdays = cur_time - (86400 * self.days)
 
         # begin updates division
         with Html("div", class_="content", id="Updates") as section:
             outerwrapper += section
-            description = self._("This page contains the last updated objects "
-                                 "in the database in the last %(days)d days and"
-                                 " for a maximum of %(nb)d objects per object "
-                                 "type." % {
-                                     'days' : self.days,
-                                     'nb' : self.nbr
-                                     }
-                                )
+            description = self._(
+                "This page contains the last updated objects "
+                "in the database in the last %(days)d days and"
+                " for a maximum of %(nb)d objects per object "
+                "type." % {"days": self.days, "nb": self.nbr}
+            )
             section += Html("p", description)
 
             header = self._("People")
@@ -136,8 +144,10 @@ class UpdatesPage(BasePage):
                 if repos is not None:
                     section += repos
 
-            if (self.report.options['gallery'] and not
-                    self.report.options['create_thumbs_only']):
+            if (
+                self.report.options["gallery"]
+                and not self.report.options["create_thumbs_only"]
+            ):
                 self.inc_gallery = True
                 header = self._("Media")
                 section += Html("h4", header)
@@ -168,7 +178,7 @@ class UpdatesPage(BasePage):
         section = ""
 
         def sort_on_change(handle):
-            """ sort records based on the last change time """
+            """sort records based on the last change time"""
             fct = self.report.database.get_note_from_handle
             obj = fct(handle)
             timestamp = obj.get_change_time()
@@ -188,81 +198,80 @@ class UpdatesPage(BasePage):
                         handle_list = set(
                             self.report.database.find_backlink_handles(
                                 handle,
-                                include_classes=['Person', 'Family', 'Event',
-                                                 'Place', 'Media', 'Source',
-                                                 'Citation', 'Repository',
-                                                ]))
+                                include_classes=[
+                                    "Person",
+                                    "Family",
+                                    "Event",
+                                    "Place",
+                                    "Media",
+                                    "Source",
+                                    "Citation",
+                                    "Repository",
+                                ],
+                            )
+                        )
                         tims = localtime(timestamp)
                         odat = Date(tims.tm_year, tims.tm_mon, tims.tm_mday)
                         date = self.rlocale.date_displayer.display(odat)
-                        date += strftime(' %X', tims)
+                        date += strftime(" %X", tims)
                         if handle_list:
                             srbd = self.report.database
                             srbkref = self.report.bkref_dict
                             for obj_t, r_handle in handle_list:
-                                if obj_t == 'Person':
+                                if obj_t == "Person":
                                     if r_handle in srbkref[Person]:
                                         name = self.new_person_link(r_handle)
                                         show = True
-                                elif obj_t == 'Family':
+                                elif obj_t == "Family":
                                     if r_handle in srbkref[Family]:
-                                        fam = srbd.get_family_from_handle(
-                                            r_handle)
+                                        fam = srbd.get_family_from_handle(r_handle)
                                         fam = self._("Family")
                                         name = self.family_link(r_handle, fam)
                                         if self.inc_families:
                                             show = True
-                                elif obj_t == 'Place':
+                                elif obj_t == "Place":
                                     if r_handle in srbkref[Place]:
-                                        plc = srbd.get_place_from_handle(
-                                            r_handle)
-                                        plcn = _pd.display(self.report.database,
-                                                           plc)
+                                        plc = srbd.get_place_from_handle(r_handle)
+                                        plcn = _pd.display(self.report.database, plc)
                                         name = self.place_link(r_handle, plcn)
                                         if self.inc_places:
                                             show = True
-                                elif obj_t == 'Event':
+                                elif obj_t == "Event":
                                     if r_handle in srbkref[Event]:
-                                        evt = srbd.get_event_from_handle(
-                                            r_handle)
+                                        evt = srbd.get_event_from_handle(r_handle)
                                         evtn = self._(evt.get_type().xml_str())
                                         name = self.event_link(r_handle, evtn)
                                         if self.inc_events:
                                             show = True
-                                elif obj_t == 'Media':
+                                elif obj_t == "Media":
                                     if r_handle in srbkref[Media]:
-                                        media = srbd.get_media_from_handle(
-                                            r_handle)
+                                        media = srbd.get_media_from_handle(r_handle)
                                         evtn = media.get_description()
-                                        name = self.media_link(r_handle, evtn,
-                                                               evtn,
-                                                               usedescr=False)
+                                        name = self.media_link(
+                                            r_handle, evtn, evtn, usedescr=False
+                                        )
                                         if self.inc_gallery:
                                             show = True
-                                elif obj_t == 'Citation':
+                                elif obj_t == "Citation":
                                     if r_handle in srbkref[Citation]:
-                                        cit = srbd.get_event_from_handle(
-                                            r_handle)
+                                        cit = srbd.get_event_from_handle(r_handle)
                                         citsrc = cit.source_handle
                                         evtn = self._("Citation")
                                         name = self.source_link(citsrc, evtn)
                                         if self.inc_sources:
                                             show = True
-                                elif obj_t == 'Source':
+                                elif obj_t == "Source":
                                     if r_handle in srbkref[Source]:
-                                        src = srbd.get_source_from_handle(
-                                            r_handle)
+                                        src = srbd.get_source_from_handle(r_handle)
                                         evtn = src.get_title()
                                         name = self.source_link(r_handle, evtn)
                                         if self.inc_sources:
                                             show = True
-                                elif obj_t == 'Repository':
+                                elif obj_t == "Repository":
                                     if r_handle in srbkref[Repository]:
-                                        rep = srbd.get_repository_from_handle(
-                                            r_handle)
+                                        rep = srbd.get_repository_from_handle(r_handle)
                                         evtn = rep.get_name()
-                                        name = self.repository_link(r_handle,
-                                                                    evtn)
+                                        name = self.repository_link(r_handle, evtn)
                                         if self.inc_repository:
                                             show = True
                         if show:
@@ -283,9 +292,13 @@ class UpdatesPage(BasePage):
         nb_items = 0
 
         def sort_on_change(handle):
-            """ sort records based on the last change time """
-            obj = fct(handle)
-            timestamp = obj.get_change_time()
+            """sort records based on the last change time"""
+            try:
+                obj = fct(handle)
+                timestamp = obj.get_change_time()
+            except exception:
+                print("In sort :", handle, " not found for", object_type)
+                timestamp = 0
             return timestamp
 
         if object_type == Person:
@@ -300,20 +313,25 @@ class UpdatesPage(BasePage):
             fct = self.report.database.get_place_from_handle
             fct_link = self.place_link
         elif object_type == Source:
-            fct = self.report.database.get_place_from_handle
+            fct = self.report.database.get_source_from_handle
             fct_link = self.source_link
         elif object_type == Repository:
-            fct = self.report.database.get_place_from_handle
+            fct = self.report.database.get_repository_from_handle
             fct_link = self.repository_link
         elif object_type == Media:
-            fct = self.report.database.get_place_from_handle
-        obj_list = sorted(self.report.obj_dict[object_type],
-                          key=sort_on_change, reverse=True)
+            fct = self.report.database.get_media_from_handle
+        obj_list = sorted(
+            self.report.obj_dict[object_type], key=sort_on_change, reverse=True
+        )
         with Html("table", class_="list", id="list") as section:
             for handle in obj_list:
                 date = obj = None
                 name = ""
-                obj = fct(handle)
+                try:
+                    obj = fct(handle)
+                except exception:
+                    print("Handle not found:", handle, " not found for", object_type)
+                    continue
                 if object_type == Person:
                     name = fct_link(handle)
                 elif object_type == Family:
@@ -325,17 +343,19 @@ class UpdatesPage(BasePage):
                     if int(otype) in _EVENTMAP:
                         handle_list = set(
                             self.report.database.find_backlink_handles(
-                                handle,
-                                include_classes=['Family', 'Person']))
+                                handle, include_classes=["Family", "Person"]
+                            )
+                        )
                     else:
                         handle_list = set(
                             self.report.database.find_backlink_handles(
-                                handle,
-                                include_classes=['Person']))
+                                handle, include_classes=["Person"]
+                            )
+                        )
                     if handle_list:
-                        name = Html("span", self._(otype.xml_str())+" ")
+                        name = Html("span", self._(otype.xml_str()) + " ")
                         for obj_t, r_handle in handle_list:
-                            if obj_t == 'Person':
+                            if obj_t == "Person":
                                 name += self.new_person_link(r_handle)
                             else:
                                 srbd = self.report.database
@@ -364,7 +384,7 @@ class UpdatesPage(BasePage):
                         tims = localtime(timestamp)
                         odat = Date(tims.tm_year, tims.tm_mon, tims.tm_mday)
                         date = self.rlocale.date_displayer.display(odat)
-                        date += strftime(' %X', tims)
+                        date += strftime(" %X", tims)
                         row = Html("tr")
                         section += row
                         row += Html("td", date, class_="date")

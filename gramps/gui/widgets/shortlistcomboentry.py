@@ -22,52 +22,56 @@
 
 __all__ = ["ShortlistComboEntry"]
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 _LOG = logging.getLogger(".widgets.shortlistcomboentry")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import GObject
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .validatedcomboentry import ValidatedComboEntry
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 _GTYPE = {
     str: GObject.TYPE_STRING,
     int: GObject.TYPE_INT64,
     float: GObject.TYPE_FLOAT,
-    }
+}
 
-(COLUMN_ITEM,
- COLUMN_IS_SEP,) = list(range(2))
+(
+    COLUMN_ITEM,
+    COLUMN_IS_SEP,
+) = list(range(2))
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # ShortlistComboEntry class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class ShortlistComboEntry(ValidatedComboEntry):
-    """A ComboboxEntry class with optional shortlist.
-    """
+    """A ComboboxEntry class with optional shortlist."""
+
     __gtype_name__ = "ShortlistComboEntry"
 
     def __init__(self):
@@ -88,13 +92,14 @@ class ShortlistComboEntry(ValidatedComboEntry):
                 maxlen = len(str(item))
             model.append((item, False))
 
-        width = -1 #default width
+        width = -1  # default width
         if 1 < maxlen < 4:
             width = 4
         elif 1 < maxlen < 10:
             width = maxlen + 1
-        ValidatedComboEntry.__init__(self, data_type, model,
-                                     COLUMN_ITEM, validator, width=width)
+        ValidatedComboEntry.__init__(
+            self, data_type, model, COLUMN_ITEM, validator, width=width
+        )
         if shortlist:
             self._shortlist = []
             self.connect("changed", self._on_combobox_changed)

@@ -20,18 +20,18 @@
 
 """Ancestors Gramplet"""
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gui.listmodel import ListModel, NOSORT
 from gramps.gui.editors import EditPerson
@@ -43,12 +43,15 @@ from gramps.gen.config import config
 from gramps.gui.utils import model_to_text, text_to_clipboard
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
+
 
 class Ancestor(Gramplet):
     """
     Gramplet to display ancestors of the active person.
     """
+
     def init(self):
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
@@ -61,14 +64,20 @@ class Ancestor(Gramplet):
         """
         self.view = Gtk.TreeView()
         self.view.set_tooltip_column(3)
-        titles = [(_('Name'), 0, 230),
-                  (_('Birth'), 2, 100),
-                  ('', NOSORT, 1),
-                  ('', NOSORT, 1), # tooltip
-                  ('', NOSORT, 100)] # handle
-        self.model = ListModel(self.view, titles, list_mode="tree",
-                               event_func=self.cb_double_click,
-                               right_click=self.cb_right_click)
+        titles = [
+            (_("Name"), 0, 230),
+            (_("Birth"), 2, 100),
+            ("", NOSORT, 1),
+            ("", NOSORT, 1),  # tooltip
+            ("", NOSORT, 100),
+        ]  # handle
+        self.model = ListModel(
+            self.view,
+            titles,
+            list_mode="tree",
+            event_func=self.cb_double_click,
+            right_click=self.cb_right_click,
+        )
         return self.view
 
     def get_has_data(self, active_handle):
@@ -80,8 +89,9 @@ class Ancestor(Gramplet):
             family_handle = person.get_main_parents_family_handle()
             if family_handle:
                 family = self.dbstate.db.get_family_from_handle(family_handle)
-                if family and (family.get_father_handle() or
-                               family.get_mother_handle()):
+                if family and (
+                    family.get_father_handle() or family.get_mother_handle()
+                ):
                     return True
         return False
 
@@ -109,8 +119,7 @@ class Ancestor(Gramplet):
         menu = Gtk.Menu()
         menu.set_reserve_toggle_size(False)
         entries = [
-            (_("Edit"), lambda obj: self.cb_double_click(treeview),
-             sensitivity),
+            (_("Edit"), lambda obj: self.cb_double_click(treeview), sensitivity),
             (None, None, 0),
             (_("Copy all"), lambda obj: self.on_copy_all(treeview), 1),
         ]
@@ -124,7 +133,7 @@ class Ancestor(Gramplet):
             item.show()
             menu.append(item)
         self.menu = menu
-        self.menu.popup(None, None, None, None, event.button, event.time)
+        self.menu.popup_at_pointer(event)
 
     def on_copy_all(self, treeview):
         """
@@ -141,14 +150,14 @@ class Ancestor(Gramplet):
         self.update()
 
     def update_has_data(self):
-        active_handle = self.get_active('Person')
+        active_handle = self.get_active("Person")
         if active_handle:
             self.set_has_data(self.get_has_data(active_handle))
         else:
             self.set_has_data(False)
 
     def main(self):
-        active_handle = self.get_active('Person')
+        active_handle = self.get_active("Person")
         self.model.clear()
         if active_handle:
             self.add_to_tree(1, None, active_handle)
@@ -161,7 +170,7 @@ class Ancestor(Gramplet):
         """
         Add a person to the tree.
         """
-        if depth > config.get('behavior.generation-depth'):
+        if depth > config.get("behavior.generation-depth"):
             return
 
         person = self.dbstate.db.get_person_from_handle(person_handle)
@@ -170,27 +179,30 @@ class Ancestor(Gramplet):
         birth = get_birth_or_fallback(self.dbstate.db, person)
         death = get_death_or_fallback(self.dbstate.db, person)
 
-        birth_text = birth_date = birth_sort = ''
+        birth_text = birth_date = birth_sort = ""
         if birth:
             birth_date = get_date(birth)
-            birth_sort = '%012d' % birth.get_date_object().get_sort_value()
-            birth_text = _('%(abbr)s %(date)s') % \
-                         {'abbr': birth.type.get_abbreviation(),
-                          'date': birth_date}
+            birth_sort = "%012d" % birth.get_date_object().get_sort_value()
+            birth_text = _("%(abbr)s %(date)s") % {
+                "abbr": birth.type.get_abbreviation(),
+                "date": birth_date,
+            }
 
-        death_date = death_sort = death_text = ''
+        death_date = death_sort = death_text = ""
         if death:
             death_date = get_date(death)
-            death_sort = '%012d' % death.get_date_object().get_sort_value()
-            death_text = _('%(abbr)s %(date)s') % \
-                         {'abbr': death.type.get_abbreviation(),
-                          'date': death_date}
+            death_sort = "%012d" % death.get_date_object().get_sort_value()
+            death_text = _("%(abbr)s %(date)s") % {
+                "abbr": death.type.get_abbreviation(),
+                "date": death_date,
+            }
 
-        tooltip = name + '\n' + birth_text + '\n' + death_text
+        tooltip = name + "\n" + birth_text + "\n" + death_text
 
-        label = _('%(depth)s. %(name)s') % {'depth': depth, 'name': name}
-        item_id = self.model.add([label, birth_date, birth_sort,
-                                  tooltip, person_handle], node=parent_id)
+        label = _("%(depth)s. %(name)s") % {"depth": depth, "name": name}
+        item_id = self.model.add(
+            [label, birth_date, birth_sort, tooltip, person_handle], node=parent_id
+        )
 
         family_handle = person.get_main_parents_family_handle()
         if family_handle:

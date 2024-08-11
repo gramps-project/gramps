@@ -19,34 +19,38 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # "People with less than 2 parents"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MissingParent(Rule):
     """People with less than two parents"""
 
-    name = _('People missing parents')
-    description = _("Matches people that are children"
-                    " in a family with less than two parents"
-                    " or are not children in any family.")
-    category = _('Family filters')
+    name = _("People missing parents")
+    description = _(
+        "Matches people that are children"
+        " in a family with less than two parents"
+        " or are not children in any family."
+    )
+    category = _("Family filters")
 
-    def apply(self,db,person):
+    def apply(self, db, person):
         families = person.get_parent_family_handle_list()
         if families == []:
             return True

@@ -28,31 +28,34 @@ Display references for any object
 from gramps.gen.simple import SimpleAccess, SimpleDoc
 from gramps.gui.plug.quick import QuickTable
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
+
 
 def get_ref(db, objclass, handle):
     """
     Looks up object in database
     """
-    if objclass == 'Person':
+    if objclass == "Person":
         ref = db.get_person_from_handle(handle)
-    elif objclass == 'Family':
+    elif objclass == "Family":
         ref = db.get_family_from_handle(handle)
-    elif objclass == 'Event':
+    elif objclass == "Event":
         ref = db.get_event_from_handle(handle)
-    elif objclass == 'Source':
+    elif objclass == "Source":
         ref = db.get_source_from_handle(handle)
-    elif objclass == 'Citation':
+    elif objclass == "Citation":
         ref = db.get_citation_from_handle(handle)
-    elif objclass == 'Place':
+    elif objclass == "Place":
         ref = db.get_place_from_handle(handle)
-    elif objclass == 'Note':
+    elif objclass == "Note":
         ref = db.get_note_from_handle(handle)
-    elif objclass == 'Media':
+    elif objclass == "Media":
         ref = db.get_media_from_handle(handle)
     else:
         ref = objclass
     return ref
+
 
 def run(database, document, object, item, trans):
     """
@@ -68,9 +71,9 @@ def run(database, document, object, item, trans):
     sdoc.title(_("References for this %s") % trans)
     sdoc.paragraph("\n")
     stab.columns(_("Type"), _("Reference"))
-    for (objclass, handle) in database.find_backlink_handles(object.handle):
+    for objclass, handle in database.find_backlink_handles(object.handle):
         ref = get_ref(database, objclass, handle)
-        stab.row(_(objclass), ref) # translation are explicit (above)
+        stab.row(_(objclass), ref)  # translation are explicit (above)
 
     if stab.get_row_count() > 0:
         document.has_data = True
@@ -81,14 +84,16 @@ def run(database, document, object, item, trans):
         sdoc.paragraph("")
     sdoc.paragraph("")
 
-#functions for the actual quickreports
-run_person = lambda db, doc, obj: run(db, doc, obj, 'person', _("Person"))
-run_family = lambda db, doc, obj: run(db, doc, obj, 'family', _("Family"))
-run_event = lambda db, doc, obj: run(db, doc, obj, 'event', _("Event"))
-run_source = lambda db, doc, obj: run(db, doc, obj, 'source', _("Source"))
-run_citation = lambda db, doc, obj: run(db, doc, obj, 'citation', _("Citation"))
-run_source_or_citation = lambda db, doc, obj: run(db, doc, obj,
-                                'source or citation', _("Source or Citation"))
-run_place = lambda db, doc, obj: run(db, doc, obj, 'place', _("Place"))
-run_media = lambda db, doc, obj: run(db, doc, obj, 'media', _("Media"))
-run_note = lambda db, doc, obj: run(db, doc, obj, 'note', _("Note"))
+
+# functions for the actual quickreports
+run_person = lambda db, doc, obj: run(db, doc, obj, "person", _("Person"))
+run_family = lambda db, doc, obj: run(db, doc, obj, "family", _("Family"))
+run_event = lambda db, doc, obj: run(db, doc, obj, "event", _("Event"))
+run_source = lambda db, doc, obj: run(db, doc, obj, "source", _("Source"))
+run_citation = lambda db, doc, obj: run(db, doc, obj, "citation", _("Citation"))
+run_source_or_citation = lambda db, doc, obj: run(
+    db, doc, obj, "source or citation", _("Source or Citation")
+)
+run_place = lambda db, doc, obj: run(db, doc, obj, "place", _("Place"))
+run_media = lambda db, doc, obj: run(db, doc, obj, "media", _("Media"))
+run_note = lambda db, doc, obj: run(db, doc, obj, "note", _("Note"))

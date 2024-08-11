@@ -19,33 +19,42 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
-from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, TableStyle,
-                                    TableCellStyle, FONT_SANS_SERIF,
-                                    IndexMark, INDEX_TYPE_TOC)
+from gramps.gen.plug.docgen import (
+    FontStyle,
+    ParagraphStyle,
+    TableStyle,
+    TableCellStyle,
+    FONT_SANS_SERIF,
+    IndexMark,
+    INDEX_TYPE_TOC,
+)
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # TableOfContents
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class TableOfContents(Report):
-    """ This report class generates a table of contents for a book. """
+    """This report class generates a table of contents for a book."""
+
     def __init__(self, database, options, user):
         """
         Create TableOfContents object that produces the report.
@@ -57,24 +66,24 @@ class TableOfContents(Report):
         user            - a gen.user.User() instance
         """
         Report.__init__(self, database, options, user)
-        self.set_locale(options.menu.get_option_by_name('trans').get_value())
+        self.set_locale(options.menu.get_option_by_name("trans").get_value())
 
     def write_report(self):
-        """ Generate the contents of the report """
+        """Generate the contents of the report"""
         mark = IndexMark(self._("Table Of Contents"), INDEX_TYPE_TOC, 1)
         self.doc.start_paragraph("TOC-Title")
-        self.doc.write_text('', mark)
+        self.doc.write_text("", mark)
         self.doc.end_paragraph()
-        self.doc.toc_title = self._('Contents')
+        self.doc.toc_title = self._("Contents")
         self.doc.insert_toc()
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # TableOfContentsOptions
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class TableOfContentsOptions(MenuReportOptions):
-
     """
     Defines options and provides handling interface.
     """
@@ -84,11 +93,11 @@ class TableOfContentsOptions(MenuReportOptions):
         MenuReportOptions.__init__(self, name, dbase)
 
     def get_subject(self):
-        """ Return a string that describes the subject of the report. """
-        return _('Entire Book')
+        """Return a string that describes the subject of the report."""
+        return _("Entire Book")
 
     def add_menu_options(self, menu):
-        """ Add the options for this report """
+        """Add the options for this report"""
         category_name = _("Report Options")
         stdoptions.add_localization_option(menu, category_name)
 
@@ -99,7 +108,7 @@ class TableOfContentsOptions(MenuReportOptions):
         para = ParagraphStyle()
         para.set_font(font)
         para.set_bottom_margin(0.25)
-        para.set_description(_('The style used for the title.'))
+        para.set_description(_("The style used for the title."))
         default_style.add_paragraph_style("TOC-Title", para)
 
         table = TableStyle()
@@ -114,17 +123,17 @@ class TableOfContentsOptions(MenuReportOptions):
 
         para = ParagraphStyle()
         para.set_font(font)
-        para.set_description(_('The style used for first level headings.'))
+        para.set_description(_("The style used for first level headings."))
         default_style.add_paragraph_style("TOC-Heading1", para)
 
         para = ParagraphStyle()
         para.set_font(font)
         para.set_first_indent(0.5)
-        para.set_description(_('The style used for second level headings.'))
+        para.set_description(_("The style used for second level headings."))
         default_style.add_paragraph_style("TOC-Heading2", para)
 
         para = ParagraphStyle()
         para.set_font(font)
         para.set_first_indent(1)
-        para.set_description(_('The style used for third level headings.'))
+        para.set_description(_("The style used for third level headings."))
         default_style.add_paragraph_style("TOC-Heading3", para)

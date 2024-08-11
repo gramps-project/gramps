@@ -22,36 +22,39 @@ This module provides a progress dialog for displaying the status of
 long running operations.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import time
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 import logging
+
 log = logging.getLogger("gen.progressdialog")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.utils.callback import Callback
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # LongOpStatus
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class LongOpStatus(Callback):
     """
     LongOpStatus provides a way of communicating the status of a long
@@ -102,15 +105,9 @@ class LongOpStatus(Callback):
                  self._current_op = None
     """
 
-    __signals__ = {
-    'op-heartbeat'   : None,
-    'op-end'         : None
-    }
+    __signals__ = {"op-heartbeat": None, "op-end": None}
 
-    def __init__(self, msg="",
-                 total_steps=None,
-                 interval=1,
-                 can_cancel=False):
+    def __init__(self, msg="", total_steps=None, interval=1, can_cancel=False):
         """
         :param msg: A Message to indicated the purpose of the operation.
         :type msg: string
@@ -141,7 +138,7 @@ class LongOpStatus(Callback):
 
     def __del__(self):
         if self._running:
-            self.emit('op-end')
+            self.emit("op-end")
 
     def heartbeat(self):
         """This should be called for each step in the operation. It will
@@ -152,13 +149,13 @@ class LongOpStatus(Callback):
         self._countdown -= 1
         if self._countdown <= 0:
             elapsed = time.time() - self._start
-            self._secs_left = \
-            ( elapsed / self._interval ) \
-            * (self._total_steps - self._count)
+            self._secs_left = (elapsed / self._interval) * (
+                self._total_steps - self._count
+            )
             self._count += self._interval
             self._countdown = self._interval
             self._start = time.time()
-            self.emit('op-heartbeat')
+            self.emit("op-heartbeat")
 
     def step(self):
         """
@@ -194,7 +191,7 @@ class LongOpStatus(Callback):
         """
         End the operation. Causes the 'op-end' signal to be emitted.
         """
-        self.emit('op-end')
+        self.emit("op-end")
         self._running = False
 
     def should_cancel(self):
@@ -250,11 +247,12 @@ class LongOpStatus(Callback):
         """
         return self._interval
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # _StatusObjectFacade
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class _StatusObjectFacade:
     """
     This provides a simple structure for recording the information
@@ -276,11 +274,12 @@ class _StatusObjectFacade:
         self.pbar_idx = None
         self.active = False
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # ProgressMonitor
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class ProgressMonitor:
     """
     A dialog for displaying the status of long running operations.
@@ -292,11 +291,15 @@ class ProgressMonitor:
     happening.
     """
 
-    __default_popup_time = 5 # seconds
+    __default_popup_time = 5  # seconds
 
-    def __init__(self, dialog_class, dialog_class_params=(),
-                 title=_("Progress Information"),
-                 popup_time = None):
+    def __init__(
+        self,
+        dialog_class,
+        dialog_class_params=(),
+        title=_("Progress Information"),
+        popup_time=None,
+    ):
         """
         :param dialog_class: A class used to display the progress dialog.
         :type dialog_class: GtkProgressDialog or the same interface.
@@ -318,15 +321,14 @@ class ProgressMonitor:
         if self._popup_time is None:
             self._popup_time = self.__class__.__default_popup_time
 
-        self._status_stack = [] # list of current status objects
+        self._status_stack = []  # list of current status objects
         self._dlg = None
 
     def _get_dlg(self):
         if self._dlg is None:
-            self._dlg = self._dialog_class(self._dialog_class_params,
-                                           self._title)
+            self._dlg = self._dialog_class(self._dialog_class_params, self._title)
 
-        #self._dlg.show()
+        # self._dlg.show()
 
         return self._dlg
 
@@ -341,17 +343,17 @@ class ProgressMonitor:
         log.debug("adding op to Progress Monitor")
         facade = _StatusObjectFacade(op_status)
         self._status_stack.append(facade)
-        idx = len(self._status_stack)-1
+        idx = len(self._status_stack) - 1
 
         # wrap up the op_status object idx into the callback calls
         def heartbeat_cb():
             self._heartbeat(idx)
+
         def end_cb():
             self._end(idx)
 
-        facade.heartbeat_cb_id = op_status.connect('op-heartbeat',
-                                                   heartbeat_cb)
-        facade.end_cb_id = op_status.connect('op-end', end_cb)
+        facade.heartbeat_cb_id = op_status.connect("op-heartbeat", heartbeat_cb)
+        facade.end_cb_id = op_status.connect("op-end", end_cb)
 
     def _heartbeat(self, idx):
         # check the estimated time to complete to see if we need
@@ -404,11 +406,12 @@ class ProgressMonitor:
         if len(self._status_stack) == 0 and self._dlg:
             self._dlg.close()
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # _GtkProgressBar
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class _GtkProgressBar(Gtk.Box):
     """
     This widget displays the progress bar and labels for a progress
@@ -426,7 +429,7 @@ class _GtkProgressBar(Gtk.Box):
         self._old_val = -1
         self._lbl = Gtk.Label(label=msg)
         self._lbl.set_use_markup(True)
-        #self.set_border_width(24)
+        # self.set_border_width(24)
 
         self._pbar = Gtk.ProgressBar()
         self._hbox = Gtk.Box()
@@ -434,9 +437,8 @@ class _GtkProgressBar(Gtk.Box):
         # Only display the cancel button is the operation
         # can be canceled.
         if long_op_status.can_cancel():
-            self._cancel = Gtk.Button.new_with_mnemonic(_('_Cancel'))
-            self._cancel.connect("clicked",
-                                 lambda x: long_op_status.cancel())
+            self._cancel = Gtk.Button.new_with_mnemonic(_("_Cancel"))
+            self._cancel.connect("clicked", lambda x: long_op_status.cancel())
             self._cancel.show()
             self._hbox.pack_end(self._cancel, False, True, 0)
 
@@ -445,15 +447,22 @@ class _GtkProgressBar(Gtk.Box):
         self.pack_start(self._lbl, False, False, 0)
         self.pack_start(self._hbox, False, False, 0)
 
-
-        self._pbar_max = (long_op_status.get_total_steps()/
-                         long_op_status.get_interval())
+        self._pbar_max = (
+            long_op_status.get_total_steps() / long_op_status.get_interval()
+        )
         self._pbar_index = 0.0
-        self._pbar.set_fraction(((100/float(long_op_status.get_total_steps())*
-                                 float(long_op_status.get_interval())))/
-                                 100.0)
+        self._pbar.set_fraction(
+            (
+                (
+                    100
+                    / float(long_op_status.get_total_steps())
+                    * float(long_op_status.get_interval())
+                )
+            )
+            / 100.0
+        )
 
-        if msg != '':
+        if msg != "":
             self._lbl.show()
         self._pbar.show()
         self._hbox.show()
@@ -468,20 +477,21 @@ class _GtkProgressBar(Gtk.Box):
             self._pbar_index = self._pbar_max
 
         try:
-            val = int(100*self._pbar_index/self._pbar_max)
+            val = int(100 * self._pbar_index / self._pbar_max)
         except ZeroDivisionError:
             val = 0
 
         if val != self._old_val:
             self._pbar.set_text("%d%%" % val)
-            self._pbar.set_fraction(val/100.0)
+            self._pbar.set_fraction(val / 100.0)
             self._pbar.old_val = val
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # GtkProgressDialog
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class GtkProgressDialog(Gtk.Dialog):
     """
     A gtk window to display the status of a long running
@@ -496,8 +506,8 @@ class GtkProgressDialog(Gtk.Dialog):
         Gtk.Dialog.__init__(self)
         parent = None
         if len(window_params) >= 2:
-            parent = window_params[1]   # we got an explicit parent
-        else:                           # try to find an active window
+            parent = window_params[1]  # we got an explicit parent
+        else:  # try to find an active window
             for win in Gtk.Window.list_toplevels():
                 if win.is_active():
                     parent = win
@@ -513,10 +523,10 @@ class GtkProgressDialog(Gtk.Dialog):
                 self.set_destroy_with_parent(True)
         if len(window_params) >= 4:
             self.add_buttons(window_params[3:])
-        self.connect('delete_event', self._warn)
+        self.connect("delete_event", self._warn)
         self.set_title(title)
-        #self.set_resize_mode(Gtk.RESIZE_IMMEDIATE)
-        #self.show()
+        # self.set_resize_mode(Gtk.RESIZE_IMMEDIATE)
+        # self.show()
 
         self._progress_bars = []
 
@@ -536,12 +546,12 @@ class GtkProgressDialog(Gtk.Dialog):
 
         pbar.show()
         # this seems to cause an infinite loop:
-        #self.resize_children()
+        # self.resize_children()
 
         self._progress_bars.append(pbar)
         # This is a bad idea; could cause deletes while adding:
-        #self._process_events()
-        return len(self._progress_bars)-1
+        # self._process_events()
+        return len(self._progress_bars) - 1
 
     def remove(self, pbar_idx):
         """
@@ -592,11 +602,11 @@ class GtkProgressDialog(Gtk.Dialog):
         self.destroy()
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps main status bar Progress indicator
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class StatusProgress:
     """
     A gtk progress in main Gramps window status bar to display the status
@@ -624,18 +634,25 @@ class StatusProgress:
                   methods.
         :rtype: int
         """
-        assert(not self._progress_bars)
+        assert not self._progress_bars
         self._pbar = self.uistate.progress
 
-        self._pbar_max = (long_op_status.get_total_steps() /
-                          long_op_status.get_interval())
+        self._pbar_max = (
+            long_op_status.get_total_steps() / long_op_status.get_interval()
+        )
         self._pbar_index = 0.0
         self._pbar.set_fraction(
-            ((100 / float(long_op_status.get_total_steps()) *
-              float(long_op_status.get_interval()))) / 100.0)
+            (
+                (
+                    100
+                    / float(long_op_status.get_total_steps())
+                    * float(long_op_status.get_interval())
+                )
+            )
+            / 100.0
+        )
 
-        self.uistate.status.push(
-            self.uistate.status_id, self.title)
+        self.uistate.status.push(self.uistate.status_id, self.title)
         self._pbar.show()
 
         return True
@@ -692,8 +709,7 @@ class StatusProgress:
         Hide the dialog and process any events.
         """
         self._pbar.hide()
-        self.uistate.status.pop(
-            self.uistate.status_id)
+        self.uistate.status.pop(self.uistate.status_id)
         self._process_events()
 
     def _warn(self, x, y):
@@ -703,7 +719,8 @@ class StatusProgress:
         # self.destroy()
         pass
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
 
     def test(a, b):
         d = ProgressMonitor(GtkProgressDialog)
@@ -717,8 +734,7 @@ if __name__ == '__main__':
                 break
             time.sleep(0.1)
             if i == 30:
-                t = LongOpStatus("doing a shorter one", 100, 10,
-                                 can_cancel=True)
+                t = LongOpStatus("doing a shorter one", 100, 10, can_cancel=True)
                 d.add_op(t)
                 for j in range(0, 99):
                     if s.should_cancel():
@@ -745,11 +761,11 @@ if __name__ == '__main__':
             s.end()
 
     w = Gtk.Window(Gtk.WindowType.TOPLEVEL)
-    w.connect('destroy', Gtk.main_quit)
+    w.connect("destroy", Gtk.main_quit)
     button = Gtk.Button("Test")
     button.connect("clicked", test, None)
     w.add(button)
     button.show()
     w.show()
     Gtk.main()
-    print('done')
+    print("done")

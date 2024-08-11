@@ -18,27 +18,28 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 # the print settings to remember between print sessions
 PRINT_SETTINGS = None
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # CairoPrintSave class
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class CairoPrintSave:
     """
     Act as an abstract document that can render onto a cairo context.
@@ -78,8 +79,7 @@ class CairoPrintSave:
         page_setup = Gtk.PageSetup()
         if PRINT_SETTINGS is None:
             PRINT_SETTINGS = Gtk.PrintSettings()
-        page_setup = Gtk.print_run_page_setup_dialog(None, page_setup,
-                                                     PRINT_SETTINGS)
+        page_setup = Gtk.print_run_page_setup_dialog(None, page_setup, PRINT_SETTINGS)
         paper_size_used = page_setup.get_paper_size()
         if self.widthpx > self.heightpx:
             szw = self.widthpx
@@ -89,8 +89,8 @@ class CairoPrintSave:
             szw = self.heightpx
         height_used = paper_size_used.get_height(Gtk.Unit.POINTS)
         width_used = paper_size_used.get_width(Gtk.Unit.POINTS)
-        coefx = szw / height_used # width and height depends on the selected
-                                  # page (A4, A3, ...)
+        coefx = szw / height_used  # width and height depends on the selected
+        # page (A4, A3, ...)
         coefy = szh / width_used
         if coefx < coefy:
             self.scale = 100.0 / coefy
@@ -110,7 +110,7 @@ class CairoPrintSave:
         while True:
             self.preview = None
             res = operation.run(Gtk.PrintOperationAction.PRINT_DIALOG, None)
-            if self.preview is None: # cancel or print
+            if self.preview is None:  # cancel or print
                 break
             # set up printing again; can't reuse PrintOperation?
             operation = Gtk.PrintOperation()
@@ -126,8 +126,7 @@ class CairoPrintSave:
             PRINT_SETTINGS = operation.get_print_settings()
 
     def on_draw_page(self, operation, context, page_nr):
-        """Draw a page on a Cairo context.
-        """
+        """Draw a page on a Cairo context."""
         dummy_op = operation
         dummy_ct = context
         dummy_pg = page_nr
@@ -136,9 +135,9 @@ class CairoPrintSave:
 
     def on_preview(self, operation, preview, context, parent):
         """Implement custom print preview functionality.
-           We provide a dummy holder here, because on_preview crashes if no
-           default application is set with gir 3.3.2 (typically evince not
-           installed)!
+        We provide a dummy holder here, because on_preview crashes if no
+        default application is set with gir 3.3.2 (typically evince not
+        installed)!
         """
         dummy_op = operation
         dummy_ct = context

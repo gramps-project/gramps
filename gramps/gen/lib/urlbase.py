@@ -22,19 +22,20 @@
 UrlBase class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+from .const import EQUAL, IDENTICAL
 from .url import Url
-from .const import IDENTICAL, EQUAL
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# UrlBase classes
+# UrlBase
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class UrlBase:
     """
     Base class for url-aware objects.
@@ -97,7 +98,7 @@ class UrlBase:
                 equi = url.is_equivalent(addendum)
                 if equi == IDENTICAL:
                     break
-                elif equi == EQUAL:
+                if equi == EQUAL:
                     url.merge(addendum)
                     break
             else:
@@ -129,5 +130,4 @@ class UrlBase:
         if url in self.urls:
             self.urls.remove(url)
             return True
-        else:
-            return False
+        return False

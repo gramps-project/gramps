@@ -17,31 +17,35 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gtk modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository.GLib import markup_escape_text
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gui.widgets import Photo
-from gramps.gen.utils.place import conv_lat_lon
+from gramps.gen.utils.place import conv_lat_lon, coord_formats
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.const import COLON, GRAMPS_LOCALE as glocale
+from gramps.gen.config import config
+
 _ = glocale.translation.gettext
+
 
 class PlaceDetails(Gramplet):
     """
     Displays details for a place.
     """
+
     def init(self):
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
@@ -69,8 +73,9 @@ class PlaceDetails(Gramplet):
         """
         Add a row to the table.
         """
-        label = Gtk.Label(label=title + COLON, halign=Gtk.Align.END,
-                          valign=Gtk.Align.START)
+        label = Gtk.Label(
+            label=title + COLON, halign=Gtk.Align.END, valign=Gtk.Align.START
+        )
         label.set_selectable(True)
         label.show()
         value = Gtk.Label(label=value, halign=Gtk.Align.START)
@@ -86,11 +91,11 @@ class PlaceDetails(Gramplet):
         list(map(self.grid.remove, self.grid.get_children()))
 
     def db_changed(self):
-        self.connect(self.dbstate.db, 'place-update', self.update)
-        self.connect_signal('Place', self.update)
+        self.connect(self.dbstate.db, "place-update", self.update)
+        self.connect_signal("Place", self.update)
 
     def update_has_data(self):
-        active_handle = self.get_active('Person')
+        active_handle = self.get_active("Person")
         if active_handle:
             active_person = self.dbstate.db.get_person_from_handle(active_handle)
             self.set_has_data(active_person is not None)
@@ -99,7 +104,7 @@ class PlaceDetails(Gramplet):
 
     def main(self):
         self.display_empty()
-        active_handle = self.get_active('Place')
+        active_handle = self.get_active("Place")
         if active_handle:
             place = self.dbstate.db.get_place_from_handle(active_handle)
             self.top.hide()
@@ -118,32 +123,40 @@ class PlaceDetails(Gramplet):
         """
         self.load_place_image(place)
         title = place_displayer.display(self.dbstate.db, place)
-        self.title.set_markup("<span size='large' weight='bold'>%s</span>" %
-                              markup_escape_text(title))
+        self.title.set_markup(
+            "<span size='large' weight='bold'>%s</span>" % markup_escape_text(title)
+        )
 
         self.clear_grid()
-        self.add_row(_('Name'), place.get_name().get_value())
-        self.add_row(_('Type'), place.get_type())
+        self.add_row(_("Name"), place.get_name().get_value())
+        self.add_row(_("Type"), place.get_type())
         self.display_separator()
         self.display_alt_names(place)
         self.display_separator()
-        lat, lon = conv_lat_lon(place.get_latitude(),
-                                place.get_longitude(),
-                                format='DEG')
+        lat, lon = conv_lat_lon(
+            place.get_latitude(),
+            place.get_longitude(),
+            format=coord_formats[config.get("preferences.coord-format")],
+        )
         if lat:
-            self.add_row(_('Latitude'), lat)
+            self.add_row(_("Latitude"), lat)
         if lon:
-            self.add_row(_('Longitude'), lon)
+            self.add_row(_("Longitude"), lon)
 
     def display_alt_names(self, place):
         """
         Display alternative names for the place.
         """
-        alt_names = ["%s (%s)" % (name.get_value(), name.get_language())
-                     if name.get_language() else name.get_value()
-                     for name in place.get_alternative_names()]
+        alt_names = [
+            (
+                "%s (%s)" % (name.get_value(), name.get_language())
+                if name.get_language()
+                else name.get_value()
+            )
+            for name in place.get_alternative_names()
+        ]
         if len(alt_names) > 0:
-            self.add_row(_('Alternative Names'), '\n'.join(alt_names))
+            self.add_row(_("Alternative Names"), "\n".join(alt_names))
 
     def display_empty(self):
         """
@@ -151,7 +164,7 @@ class PlaceDetails(Gramplet):
         """
         self.photo.set_image(None)
         self.photo.set_uistate(None, None)
-        self.title.set_text('')
+        self.title.set_text("")
         self.clear_grid()
 
     def display_separator(self):
@@ -176,8 +189,7 @@ class PlaceDetails(Gramplet):
             full_path = media_path_full(self.dbstate.db, obj.get_path())
             mime_type = obj.get_mime_type()
             if mime_type and mime_type.startswith("image"):
-                self.photo.set_image(full_path, mime_type,
-                                     media_ref.get_rectangle())
+                self.photo.set_image(full_path, mime_type, media_ref.get_rectangle())
                 self.photo.set_uistate(self.uistate, object_handle)
             else:
                 self.photo.set_image(None)

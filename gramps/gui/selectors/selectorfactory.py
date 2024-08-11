@@ -21,37 +21,49 @@
 
 from .selectorexceptions import SelectorException
 
+
 def SelectorFactory(classname):
-    if classname == 'Person':
+    if classname == "Person":
         from .selectperson import SelectPerson
+
         cls = SelectPerson
-    elif classname == 'Family':
+    elif classname == "Family":
         from .selectfamily import SelectFamily
+
         cls = SelectFamily
-    elif classname == 'Event':
+    elif classname == "Event":
         from .selectevent import SelectEvent
+
         cls = SelectEvent
-    elif classname == 'Place':
+    elif classname == "Place":
         from .selectplace import SelectPlace
+
         cls = SelectPlace
-    elif classname == 'Source':
+    elif classname == "Source":
         from .selectsource import SelectSource
+
         cls = SelectSource
-    elif classname == 'Citation':
+    elif classname == "Citation":
         from .selectcitation import SelectCitation
+
         cls = SelectCitation
-    elif classname == 'Media':
+    elif classname == "Media":
         from .selectobject import SelectObject
+
         cls = SelectObject
-    elif classname == 'Repository':
+    elif classname == "Repository":
         from .selectrepository import SelectRepository
+
         cls = SelectRepository
-    elif classname == 'Note':
+    elif classname == "Note":
         from .selectnote import SelectNote
+
         cls = SelectNote
     else:
-        raise SelectorException("Attempt to create unknown "
-                                "selector class: "
-                                "classname = %s" % (str(classname),))
+        raise SelectorException(
+            "Attempt to create unknown "
+            "selector class: "
+            "classname = %s" % (str(classname),)
+        )
 
     return cls

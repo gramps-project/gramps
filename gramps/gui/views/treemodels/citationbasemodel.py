@@ -23,33 +23,35 @@
 CitationBaseModel classes for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from html import escape
 import logging
+
 log = logging.getLogger(".")
 LOG = logging.getLogger(".citation")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gramps.gen.datehandler import format_time, get_date, get_date_valid
 from gramps.gen.lib import Citation
 from gramps.gen.utils.string import conf_strings
 from gramps.gen.config import config
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # COLUMN constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 # These are the column numbers in the serialize/unserialize interfaces in
 # the Citation object
 COLUMN_HANDLE = 0
@@ -73,16 +75,16 @@ COLUMN2_CHANGE = 8
 COLUMN2_TAGS = 11
 COLUMN2_PRIV = 12
 
-INVALID_DATE_FORMAT = config.get('preferences.invalid-date-format')
+INVALID_DATE_FORMAT = config.get("preferences.invalid-date-format")
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # CitationModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class CitationBaseModel:
-
-# Fields access when 'data' is a Citation
+    # Fields access when 'data' is a Citation
 
     def citation_date(self, data):
         if data[COLUMN_DATE]:
@@ -95,7 +97,7 @@ class CitationBaseModel:
                 return INVALID_DATE_FORMAT % retval
             else:
                 return retval
-        return ''
+        return ""
 
     def citation_sort_date(self, data):
         if data[COLUMN_DATE]:
@@ -106,7 +108,7 @@ class CitationBaseModel:
                 return INVALID_DATE_FORMAT % retval
             else:
                 return retval
-        return ''
+        return ""
 
     def citation_id(self, data):
         return data[COLUMN_ID]
@@ -117,17 +119,17 @@ class CitationBaseModel:
     def citation_sort_confidence(self, data):
         if data[COLUMN_CONFIDENCE]:
             return str(data[COLUMN_CONFIDENCE])
-        return ''
+        return ""
 
     def citation_confidence(self, data):
         return _(conf_strings[data[COLUMN_CONFIDENCE]])
 
     def citation_private(self, data):
         if data[COLUMN_PRIV]:
-            return 'gramps-lock'
+            return "gramps-lock"
         else:
             # There is a problem returning None here.
-            return ''
+            return ""
 
     def citation_tags(self, data):
         """
@@ -135,7 +137,7 @@ class CitationBaseModel:
         """
         tag_list = list(map(self.get_tag_name, data[COLUMN_TAGS]))
         # TODO for Arabic, should the next line's comma be translated?
-        return ', '.join(sorted(tag_list, key=glocale.sort_key))
+        return ", ".join(sorted(tag_list, key=glocale.sort_key))
 
     def citation_tag_color(self, data):
         """
@@ -172,7 +174,7 @@ class CitationBaseModel:
                 source = self.db.get_source_from_handle(source_handle)
                 value = source.get_title()
             except:
-                value = ''
+                value = ""
             self.set_cached_value(source_handle, "SRC_TITLE", value)
         return value
 
@@ -184,7 +186,7 @@ class CitationBaseModel:
                 source = self.db.get_source_from_handle(source_handle)
                 value = source.gramps_id
             except:
-                value = ''
+                value = ""
             self.set_cached_value(source_handle, "SRC_ID", value)
         return value
 
@@ -196,7 +198,7 @@ class CitationBaseModel:
                 source = self.db.get_source_from_handle(source_handle)
                 value = source.get_author()
             except:
-                value = ''
+                value = ""
             self.set_cached_value(source_handle, "SRC_AUTH", value)
         return value
 
@@ -208,7 +210,7 @@ class CitationBaseModel:
                 source = self.db.get_source_from_handle(source_handle)
                 value = source.get_abbreviation()
             except:
-                value = ''
+                value = ""
             self.set_cached_value(source_handle, "SRC_ABBR", value)
         return value
 
@@ -220,7 +222,7 @@ class CitationBaseModel:
                 source = self.db.get_source_from_handle(source_handle)
                 value = source.get_publication_info()
             except:
-                value = ''
+                value = ""
             self.set_cached_value(source_handle, "SRC_PINFO", value)
         return value
 
@@ -231,12 +233,12 @@ class CitationBaseModel:
             try:
                 source = self.db.get_source_from_handle(source_handle)
                 if source.get_privacy():
-                    value = 'gramps-lock'
+                    value = "gramps-lock"
                 else:
                     # There is a problem returning None here.
-                    value = ''
+                    value = ""
             except:
-                value = ''
+                value = ""
             self.set_cached_value(source_handle, "SRC_PRIVATE", value)
         return value
 
@@ -248,9 +250,9 @@ class CitationBaseModel:
                 source = self.db.get_source_from_handle(source_handle)
                 tag_list = list(map(self.get_tag_name, source.get_tag_list()))
                 # TODO for Arabic, should the next line's comma be translated?
-                value = ', '.join(sorted(tag_list, key=glocale.sort_key))
+                value = ", ".join(sorted(tag_list, key=glocale.sort_key))
             except:
-                value = ''
+                value = ""
             self.set_cached_value(source_handle, "SRC_TAGS", value)
         return value
 
@@ -262,7 +264,7 @@ class CitationBaseModel:
                 source = self.db.get_source_from_handle(source_handle)
                 value = format_time(source.change)
             except:
-                value = ''
+                value = ""
             self.set_cached_value(source_handle, "SRC_CHAN", value)
         return value
 
@@ -274,11 +276,11 @@ class CitationBaseModel:
                 source = self.db.get_source_from_handle(source_handle)
                 value = "%012x" % source.change
             except:
-                value = ''
+                value = ""
             self.set_cached_value(source_handle, "SRC_CHAN", value)
         return value
 
-# Fields access when 'data' is a Source
+    # Fields access when 'data' is a Source
 
     def source_src_title(self, data):
         return data[COLUMN2_TITLE]
@@ -297,10 +299,10 @@ class CitationBaseModel:
 
     def source_src_private(self, data):
         if data[COLUMN2_PRIV]:
-            return 'gramps-lock'
+            return "gramps-lock"
         else:
             # There is a problem returning None here.
-            return ''
+            return ""
 
     def source_src_tags(self, data):
         """
@@ -308,7 +310,7 @@ class CitationBaseModel:
         """
         tag_list = list(map(self.get_tag_name, data[COLUMN2_TAGS]))
         # TODO for Arabic, should the next line's comma be translated?
-        return ', '.join(sorted(tag_list, key=glocale.sort_key))
+        return ", ".join(sorted(tag_list, key=glocale.sort_key))
 
     def source_src_tag_color(self, data):
         """

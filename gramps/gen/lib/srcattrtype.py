@@ -22,16 +22,26 @@
 Provide the different Source Attribute Types for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .grampstype import GrampsType
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .grampstype import GrampsType
+
 _ = glocale.translation.gettext
 
+
+# -------------------------------------------------------------------------
+#
+# SrcAttributeType
+#
+# -------------------------------------------------------------------------
 class SrcAttributeType(GrampsType):
+    """
+    Class encapsulating the type of source attribute.
+    """
 
     UNKNOWN = -1
     CUSTOM = 0
@@ -42,7 +52,7 @@ class SrcAttributeType(GrampsType):
     _DATAMAP = [
         (UNKNOWN, _("Unknown"), "Unknown"),
         (CUSTOM, _("Custom"), "Custom"),
-        ]
+    ]
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)

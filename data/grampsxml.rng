@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- 
+<!--
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2005-2007  Donald N. Allingham
@@ -30,12 +30,12 @@
 
 
 <grammar
-  datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"  
-  ns="http://gramps-project.org/xml/1.7.1/"
+  datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+  ns="http://gramps-project.org/xml/1.7.2/"
   xmlns="http://relaxng.org/ns/structure/1.0">
 
   <start><element name="database">
-    
+
       <element name="header">
         <element name="created">
             <attribute name="date"><data type="date"/></attribute>
@@ -547,7 +547,7 @@
     </choice></attribute>
     <attribute name="hlink"><data type="IDREF"/></attribute>
   </define>
-  
+
   <define name="map-content">
     <attribute name="type"><choice>
         <value>group_as</value>
@@ -604,7 +604,7 @@
   <define name="citationref-content">
     <attribute name="hlink"><data type="IDREF"/></attribute>
   </define>
-  
+
   <define name="personref-content">
     <attribute name="hlink"><data type="IDREF"/></attribute>
         <optional><attribute name="priv">
@@ -618,11 +618,11 @@
         <ref name="noteref-content"/>
     </element></zeroOrMore></optional>
   </define>
-    
+
   <define name="sourceref-content">
     <attribute name="hlink"><data type="IDREF"/></attribute>
   </define>
-    
+
   <define name="eventref-content">
     <attribute name="hlink"><data type="IDREF"/></attribute>
     <optional><attribute name="priv">
@@ -635,6 +635,9 @@
     <zeroOrMore><element name="noteref">
         <ref name="noteref-content"/>
     </element></zeroOrMore>
+    <optional><zeroOrMore><element name="citationref">
+        <ref name="citationref-content"/>
+    </element></zeroOrMore></optional>
   </define>
 
   <define name="reporef-content">
@@ -659,7 +662,7 @@
           <value>1</value>
       </choice>
   </define>
-  
+
   <define name="attribute-content">
     <optional><attribute name="priv">
         <ref name="priv-content"/>
@@ -673,7 +676,7 @@
         <ref name="noteref-content"/>
     </element></zeroOrMore>
   </define>
-  
+
   <define name="srcattribute-content">
     <optional><attribute name="priv">
         <ref name="priv-content"/>
@@ -698,7 +701,7 @@
     </attribute></optional>
     <optional><element name="region">
         <ref name="region-content"/>
-    </element></optional>    
+    </element></optional>
     <zeroOrMore><element name="attribute">
         <ref name="attribute-content"/>
     </element></zeroOrMore>

@@ -25,54 +25,58 @@
 #
 
 
-
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from abc import ABCMeta, abstractmethod
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # set up logging
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 log = logging.getLogger(".textdoc")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # URL string pattern
 #
-#-------------------------------------------------------------------------
-URL_PATTERN = r'''(((https?|mailto):)(//([^ /?#"]*))?([^ ?#"]*)(\?([^ #"]*))?(#([^ "]*))?)'''
+# -------------------------------------------------------------------------
+URL_PATTERN = (
+    r"""(((https?|mailto):)(//([^ /?#"]*))?([^ ?#"]*)(\?([^ #"]*))?(#([^ "]*))?)"""
+)
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # IndexMark types
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 INDEX_TYPE_ALP = 0
 INDEX_TYPE_TOC = 1
 LOCAL_HYPERLINK = 2
 LOCAL_TARGET = 3
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # IndexMark
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class IndexMark:
     """
     Defines a mark to be associated with text for indexing.
     """
+
     def __init__(self, key="", itype=INDEX_TYPE_ALP, level=1):
         """
         Initialize the object with default values, unless values are specified.
@@ -82,11 +86,12 @@ class IndexMark:
         self.level = level
 
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # TextDoc
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
+
 
 class TextDoc(metaclass=ABCMeta):
     """
@@ -209,8 +214,9 @@ class TextDoc(metaclass=ABCMeta):
         """
         self.write_text(text, mark=mark)
 
-    def write_styled_note(self, styledtext, format, style_name,
-                          contains_html=False, links=False):
+    def write_styled_note(
+        self, styledtext, format, style_name, contains_html=False, links=False
+    ):
         """
         Convenience function to write a styledtext to the cairo doc.
 
@@ -247,7 +253,7 @@ class TextDoc(metaclass=ABCMeta):
                 self.write_text(piecesplit[0], links=links)
                 self.end_superscript()
                 if not piecesplit[1]:
-                    #text ended with ' ... </super>'
+                    # text ended with ' ... </super>'
                     continue
                 if not markset:
                     self.write_text(piecesplit[1], mark, links=links)
@@ -262,7 +268,7 @@ class TextDoc(metaclass=ABCMeta):
                     self.write_text(piece, links=links)
 
     @abstractmethod
-    def add_media(self, name, align, w_cm, h_cm, alt='', style_name=None, crop=None):
+    def add_media(self, name, align, w_cm, h_cm, alt="", style_name=None, crop=None):
         """
         Add a photo of the specified width (in centimeters).
 

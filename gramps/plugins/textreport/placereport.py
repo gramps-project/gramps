@@ -23,38 +23,47 @@
 
 """Place Report"""
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
-from gramps.gen.plug.menu import (FilterOption, PlaceListOption,
-                                  EnumeratedListOption)
+from gramps.gen.plug.menu import FilterOption, PlaceListOption, EnumeratedListOption
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
-from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
-                                    TableStyle, TableCellStyle,
-                                    FONT_SANS_SERIF, FONT_SERIF,
-                                    INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
+from gramps.gen.plug.docgen import (
+    IndexMark,
+    FontStyle,
+    ParagraphStyle,
+    TableStyle,
+    TableCellStyle,
+    FONT_SANS_SERIF,
+    FONT_SERIF,
+    INDEX_TYPE_TOC,
+    PARA_ALIGN_CENTER,
+)
 from gramps.gen.sort import Sort
 from gramps.gen.utils.location import get_location_list
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.errors import ReportError
 from gramps.gen.proxy import LivingProxyDb, CacheProxyDb
 
+
 class PlaceReport(Report):
     """
     Place Report class
     """
+
     def __init__(self, database, options, user):
         """
         Create the PlaceReport object produces the Place report.
@@ -81,43 +90,42 @@ class PlaceReport(Report):
         self._user = user
         menu = options.menu
 
-        self.set_locale(menu.get_option_by_name('trans').get_value())
+        self.set_locale(menu.get_option_by_name("trans").get_value())
 
         stdoptions.run_date_format_option(self, menu)
 
         stdoptions.run_private_data_option(self, menu)
-        living_opt = stdoptions.run_living_people_option(self, menu,
-                                                         self._locale)
+        living_opt = stdoptions.run_living_people_option(self, menu, self._locale)
         self.database = CacheProxyDb(self.database)
         self._db = self.database
 
-        self._lv = menu.get_option_by_name('living_people').get_value()
-        for (value, description) in living_opt.get_items(xml_items=True):
+        self._lv = menu.get_option_by_name("living_people").get_value()
+        for value, description in living_opt.get_items(xml_items=True):
             if value == self._lv:
                 living_desc = self._(description)
                 break
-        self.living_desc = self._("(Living people: %(option_name)s)"
-                                 ) % {'option_name': living_desc}
+        self.living_desc = self._("(Living people: %(option_name)s)") % {
+            "option_name": living_desc
+        }
 
-        places = menu.get_option_by_name('places').get_value()
-        self.center = menu.get_option_by_name('center').get_value()
+        places = menu.get_option_by_name("places").get_value()
+        self.center = menu.get_option_by_name("center").get_value()
 
         stdoptions.run_name_format_option(self, menu)
         self._nd = self._name_display
 
         self.place_format = menu.get_option_by_name("place_format").get_value()
 
-        filter_option = menu.get_option_by_name('filter')
+        filter_option = menu.get_option_by_name("filter")
         self.filter = filter_option.get_filter()
 
         self.sort = Sort(self._db)
 
         self.place_handles = []
-        if self.filter.get_name() != '':
+        if self.filter.get_name() != "":
             # Use the selected filter to provide a list of place handles
             plist = self._db.iter_place_handles()
-            self.place_handles = self.filter.apply(self._db, plist,
-                                                   user=self._user)
+            self.place_handles = self.filter.apply(self._db, plist, user=self._user)
 
         if places:
             # Add places selected individually
@@ -125,8 +133,9 @@ class PlaceReport(Report):
 
         if not self.place_handles:
             raise ReportError(
-                _('Place Report'),
-                _('Please select at least one place before running this.'))
+                _("Place Report"),
+                _("Please select at least one place before running this."),
+            )
 
         self.place_handles.sort(key=self.sort.by_place_title_key)
 
@@ -156,10 +165,9 @@ class PlaceReport(Report):
         """
         place_nbr = 1
 
-        with self._user.progress(_("Place Report"),
-                                 _("Generating report"),
-                                 len(self.place_handles)) as step:
-
+        with self._user.progress(
+            _("Place Report"), _("Generating report"), len(self.place_handles)
+        ) as step:
             for handle in self.place_handles:
                 self.__write_place(handle, place_nbr)
                 if self.center == "Event":
@@ -172,7 +180,6 @@ class PlaceReport(Report):
                 # increment progress bar
                 step()
 
-
     def __write_place(self, handle, place_nbr):
         """
         This procedure writes out the details of a single place
@@ -182,25 +189,29 @@ class PlaceReport(Report):
         place_details = [self._("Gramps ID: %s ") % place.get_gramps_id()]
         for level in get_location_list(self._db, place):
             # Translators: needed for French, ignore otherwise
-            place_details.append(self._("%(str1)s: %(str2)s"
-                                       ) % {'str1': self._(level[1].xml_str()),
-                                            'str2': level[0]})
+            place_details.append(
+                self._("%(str1)s: %(str2)s")
+                % {"str1": self._(level[1].xml_str()), "str2": level[0]}
+            )
 
-        place_names = ''
+        place_names = ""
         all_names = place.get_all_names()
         if len(all_names) > 1 or __debug__:
             for place_name in all_names:
-                if place_names != '':
+                if place_names != "":
                     # Translators: needed for Arabic, ignore otherwise
                     place_names += self._(", ")
-                place_names += '%s' % place_name.get_value()
-                if place_name.get_language() != '' or __debug__:
-                    place_names += ' (%s)' % place_name.get_language()
-            place_details += [self._("All Names: %s", "places") % place_names,]
+                place_names += "%s" % place_name.get_value()
+                if place_name.get_language() != "" or __debug__:
+                    place_names += " (%s)" % place_name.get_language()
+            place_details += [
+                self._("All Names: %s", "places") % place_names,
+            ]
         self.doc.start_paragraph("PLC-PlaceTitle")
         place_title = _pd.display(self._db, place, None, self.place_format)
-        self.doc.write_text(("%(nbr)s. %(place)s") % {'nbr' : place_nbr,
-                                                      'place' : place_title})
+        self.doc.write_text(
+            ("%(nbr)s. %(place)s") % {"nbr": place_nbr, "place": place_title}
+        )
         self.doc.end_paragraph()
 
         for item in place_details:
@@ -212,8 +223,12 @@ class PlaceReport(Report):
         """
         This procedure writes out each of the events related to the place
         """
-        event_handles = [event_handle for (object_type, event_handle) in
-                         self._db.find_backlink_handles(handle, ['Event'])]
+        event_handles = [
+            event_handle
+            for (object_type, event_handle) in self._db.find_backlink_handles(
+                handle, ["Event"]
+            )
+        ]
         event_handles.sort(key=self.sort.by_date_key)
 
         if event_handles:
@@ -222,8 +237,12 @@ class PlaceReport(Report):
             self.doc.write_text(title)
             self.doc.end_paragraph()
             self.doc.start_table("EventTable", "PLC-EventTable")
-            column_titles = [self._("Date"), self._("Type of Event"),
-                             self._("Person"), self._("Description")]
+            column_titles = [
+                self._("Date"),
+                self._("Type of Event"),
+                self._("Person"),
+                self._("Description"),
+            ]
             self.doc.start_row()
             for title in column_titles:
                 self.doc.start_cell("PLC-TableColumn")
@@ -235,18 +254,17 @@ class PlaceReport(Report):
 
         for evt_handle in event_handles:
             event = self._db.get_event_from_handle(evt_handle)
-            if event: # will be None if marked private
+            if event:  # will be None if marked private
                 date = self._get_date(event.get_date_object())
                 descr = event.get_description()
                 event_type = self._(self._get_type(event.get_type()))
 
                 person_list = []
-                ref_handles = [x for x in
-                               self._db.find_backlink_handles(evt_handle)]
-                if not ref_handles: # since the backlink may point to private
-                    continue        # data, ignore an event with no backlinks
-                for (ref_type, ref_handle) in ref_handles:
-                    if ref_type == 'Person':
+                ref_handles = [x for x in self._db.find_backlink_handles(evt_handle)]
+                if not ref_handles:  # since the backlink may point to private
+                    continue  # data, ignore an event with no backlinks
+                for ref_type, ref_handle in ref_handles:
+                    if ref_type == "Person":
                         person_list.append(ref_handle)
                     else:
                         family = self._db.get_family_from_handle(ref_handle)
@@ -265,13 +283,15 @@ class PlaceReport(Report):
                         person_name = self._nd.display(person)
                         if people == "":
                             people = "%(name)s (%(id)s)" % {
-                                'name' : person_name,
-                                'id'   : person.get_gramps_id()}
+                                "name": person_name,
+                                "id": person.get_gramps_id(),
+                            }
                         else:
-                            people = self._("%(persons)s and %(name)s (%(id)s)"
-                                           ) % {'persons' : people,
-                                                'name'    : person_name,
-                                                'id' : person.get_gramps_id()}
+                            people = self._("%(persons)s and %(name)s (%(id)s)") % {
+                                "persons": people,
+                                "name": person_name,
+                                "id": person.get_gramps_id(),
+                            }
 
                 event_details = [date, event_type, people, descr]
                 self.doc.start_row()
@@ -290,8 +310,12 @@ class PlaceReport(Report):
         """
         This procedure writes out each of the people related to the place
         """
-        event_handles = [event_handle for (object_type, event_handle) in
-                         self._db.find_backlink_handles(handle, ['Event'])]
+        event_handles = [
+            event_handle
+            for (object_type, event_handle) in self._db.find_backlink_handles(
+                handle, ["Event"]
+            )
+        ]
 
         if event_handles:
             self.doc.start_paragraph("PLC-Section")
@@ -299,8 +323,12 @@ class PlaceReport(Report):
             self.doc.write_text(title)
             self.doc.end_paragraph()
             self.doc.start_table("EventTable", "PLC-PersonTable")
-            column_titles = [self._("Person"), self._("Type of Event"), \
-                             self._("Description"), self._("Date")]
+            column_titles = [
+                self._("Person"),
+                self._("Type of Event"),
+                self._("Description"),
+                self._("Date"),
+            ]
             self.doc.start_row()
             for title in column_titles:
                 self.doc.start_cell("PLC-TableColumn")
@@ -312,13 +340,14 @@ class PlaceReport(Report):
 
         person_dict = {}
         for evt_handle in event_handles:
-            ref_handles = [x for x in
-                           self._db.find_backlink_handles(evt_handle)]
-            for (ref_type, ref_handle) in ref_handles:
-                if ref_type == 'Person':
+            ref_handles = [x for x in self._db.find_backlink_handles(evt_handle)]
+            for ref_type, ref_handle in ref_handles:
+                if ref_type == "Person":
                     person = self._db.get_person_from_handle(ref_handle)
-                    name_entry = "%s (%s)" % (self._nd.display(person),
-                                              person.get_gramps_id())
+                    name_entry = "%s (%s)" % (
+                        self._nd.display(person),
+                        person.get_gramps_id(),
+                    )
                 else:
                     family = self._db.get_family_from_handle(ref_handle)
                     f_handle = family.get_father_handle()
@@ -330,12 +359,15 @@ class PlaceReport(Report):
                         mother_name = self._nd.display(mother)
                         father_id = father.get_gramps_id()
                         mother_id = mother.get_gramps_id()
-                        name_entry = self._("%(father)s (%(father_id)s) and "
-                                            "%(mother)s (%(mother_id)s)"
-                                           ) % {'father'    : father_name,
-                                                'father_id' : father_id,
-                                                'mother'    : mother_name,
-                                                'mother_id' : mother_id}
+                        name_entry = self._(
+                            "%(father)s (%(father_id)s) and "
+                            "%(mother)s (%(mother_id)s)"
+                        ) % {
+                            "father": father_name,
+                            "father_id": father_id,
+                            "mother": mother_name,
+                            "mother_id": mother_id,
+                        }
                     elif f_handle or m_handle:
                         if f_handle:
                             p_handle = f_handle
@@ -343,8 +375,10 @@ class PlaceReport(Report):
                             p_handle = m_handle
                         person = self._db.get_person_from_handle(p_handle)
 
-                        name_entry = "%s (%s)" % (self._nd.display(person),
-                                                  person.get_gramps_id())
+                        name_entry = "%s (%s)" % (
+                            self._nd.display(person),
+                            person.get_gramps_id(),
+                        )
                     else:
                         # No parents - bug #7299
                         continue
@@ -368,9 +402,9 @@ class PlaceReport(Report):
                     descr = event.get_description()
                     event_type = self._(self._get_type(event.get_type()))
                 else:
-                    date = ''
-                    descr = ''
-                    event_type = ''
+                    date = ""
+                    descr = ""
+                    event_type = ""
                 event_details = [people, event_type, descr, date]
                 self.doc.start_row()
                 for detail in event_details:
@@ -379,7 +413,7 @@ class PlaceReport(Report):
                     self.doc.write_text("%s " % detail)
                     self.doc.end_paragraph()
                     self.doc.end_cell()
-                people = "" # do not repeat the name on the next event
+                people = ""  # do not repeat the name on the next event
                 self.doc.end_row()
 
         if event_handles:
@@ -393,18 +427,18 @@ class PlaceReport(Report):
         for place_gid in places.split():
             place = self._db.get_place_from_gramps_id(place_gid)
             if place is not None:
-                #place can be None if option is gid of other fam tree
+                # place can be None if option is gid of other fam tree
                 place_handles.append(place.get_handle())
 
         return place_handles
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # PlaceOptions
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class PlaceOptions(MenuReportOptions):
-
     """
     Defines options and provides handling interface.
     """
@@ -417,7 +451,7 @@ class PlaceOptions(MenuReportOptions):
         MenuReportOptions.__init__(self, name, dbase)
 
     def get_subject(self):
-        """ Return a string that describes the subject of the report. """
+        """Return a string that describes the subject of the report."""
         subject = ""
         if self.__filter.get_filter().get_name():
             # Use the selected filter's name, if any
@@ -428,8 +462,7 @@ class PlaceOptions(MenuReportOptions):
                 if subject:
                     subject += " + "
                 place = self.__db.get_place_from_gramps_id(place_id)
-                subject += _pd.display(self.__db, place, None,
-                                       self.__pf.get_value())
+                subject += _pd.display(self.__db, place, None, self.__pf.get_value())
         return subject
 
     def add_menu_options(self, menu):
@@ -446,7 +479,7 @@ class PlaceOptions(MenuReportOptions):
         self.__filter.set_help(_("Select places using a filter"))
         filter_list = []
         filter_list.append(GenericFilter())
-        filter_list.extend(CustomFilters.get_filters('Place'))
+        filter_list.extend(CustomFilters.get_filters("Place"))
         self.__filter.set_filters(filter_list)
         menu.add_option(category_name, "filter", self.__filter)
 
@@ -501,7 +534,7 @@ class PlaceOptions(MenuReportOptions):
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
         para.set_alignment(PARA_ALIGN_CENTER)
-        para.set_description(_('The style used for the title.'))
+        para.set_description(_("The style used for the title."))
         self.default_style.add_paragraph_style("PLC-ReportTitle", para)
 
     def __report_subtitle_style(self):
@@ -516,7 +549,7 @@ class PlaceOptions(MenuReportOptions):
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
         para.set_alignment(PARA_ALIGN_CENTER)
-        para.set_description(_('The style used for the subtitle.'))
+        para.set_description(_("The style used for the subtitle."))
         self.default_style.add_paragraph_style("PLC-ReportSubtitle", para)
 
     def __place_title_style(self):
@@ -530,7 +563,7 @@ class PlaceOptions(MenuReportOptions):
         para.set(first_indent=-1.5, lmargin=1.5)
         para.set_top_margin(0.75)
         para.set_bottom_margin(0.25)
-        para.set_description(_('The style used for the section headers.'))
+        para.set_description(_("The style used for the section headers."))
         self.default_style.add_paragraph_style("PLC-PlaceTitle", para)
 
     def __place_details_style(self):
@@ -542,7 +575,7 @@ class PlaceOptions(MenuReportOptions):
         para = ParagraphStyle()
         para.set_font(font)
         para.set(first_indent=0.0, lmargin=1.5)
-        para.set_description(_('The style used for details.'))
+        para.set_description(_("The style used for details."))
         self.default_style.add_paragraph_style("PLC-PlaceDetails", para)
 
     def __column_title_style(self):
@@ -554,7 +587,7 @@ class PlaceOptions(MenuReportOptions):
         para = ParagraphStyle()
         para.set_font(font)
         para.set(first_indent=0.0, lmargin=0.0)
-        para.set_description(_('The basic style used for table headings.'))
+        para.set_description(_("The basic style used for table headings."))
         self.default_style.add_paragraph_style("PLC-ColumnTitle", para)
 
     def __section_style(self):
@@ -568,7 +601,7 @@ class PlaceOptions(MenuReportOptions):
         para.set(first_indent=-1.5, lmargin=1.5)
         para.set_top_margin(0.5)
         para.set_bottom_margin(0.25)
-        para.set_description(_('The basic style used for the text display.'))
+        para.set_description(_("The basic style used for the text display."))
         self.default_style.add_paragraph_style("PLC-Section", para)
 
     def __event_table_style(self):
@@ -599,7 +632,7 @@ class PlaceOptions(MenuReportOptions):
         font.set(face=FONT_SERIF, size=10)
         para = ParagraphStyle()
         para.set_font(font)
-        para.set_description(_('The style used for the items and values.'))
+        para.set_description(_("The style used for the items and values."))
         self.default_style.add_paragraph_style("PLC-Details", para)
 
     def __cell_style(self):
@@ -615,4 +648,4 @@ class PlaceOptions(MenuReportOptions):
         """
         cell = TableCellStyle()
         cell.set_bottom_border(1)
-        self.default_style.add_cell_style('PLC-TableColumn', cell)
+        self.default_style.add_cell_style("PLC-TableColumn", cell)

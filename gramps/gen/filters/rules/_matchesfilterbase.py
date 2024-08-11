@@ -18,31 +18,34 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 LOG = logging.getLogger(".filter")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 # we need global variableCustomFilters, so we need to query gramps.gen.filters
 # when we need this variable, not import it at the start!
 import gramps.gen.filters
 from . import Rule
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MatchesFilter
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MatchesFilterBase(Rule):
     """
     Rule that checks against another filter.
@@ -51,10 +54,11 @@ class MatchesFilterBase(Rule):
     Subclasses need to define the namespace class attribute.
 
     """
-    labels = [_('Filter name:')]
-    name = 'Objects matching the <filter>'
+
+    labels = [_("Filter name:")]
+    name = "Objects matching the <filter>"
     description = "Matches objects matched by the specified filter name"
-    category = _('General filters')
+    category = _("General filters")
 
     def prepare(self, db, user):
         if gramps.gen.filters.CustomFilters:
@@ -64,11 +68,14 @@ class MatchesFilterBase(Rule):
                 for rule in filt.flist:
                     rule.requestprepare(db, user)
             else:
-                LOG.warning(_("Can't find filter %s in the defined custom filters")
-                                    % self.list[0])
+                LOG.warning(
+                    _("Can't find filter %s in the defined custom filters")
+                    % self.list[0]
+                )
         else:
-            LOG.warning(_("Can't find filter %s in the defined custom filters")
-                                    % self.list[0])
+            LOG.warning(
+                _("Can't find filter %s in the defined custom filters") % self.list[0]
+            )
 
     def reset(self):
         if gramps.gen.filters.CustomFilters:

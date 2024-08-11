@@ -23,22 +23,24 @@ Helper class for importing places.
 """
 from collections import OrderedDict
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.lib import Place, PlaceName, PlaceType, PlaceRef
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # PlaceImport class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class PlaceImport:
     """
     Helper class for importing places.
     """
+
     def __init__(self, db):
         self.db = db
         self.loc2handle = {}
@@ -57,28 +59,27 @@ class PlaceImport:
         """
         if handle in self.handle2loc:
             loc = self.handle2loc[handle]
-            del(self.loc2handle[loc])
-            del(self.handle2loc[handle])
+            del self.loc2handle[loc]
+            del self.handle2loc[handle]
 
     def generate_hierarchy(self, trans):
         """
         Generate missing places in the place hierarchy.
         """
         for handle, location in self.handle2loc.items():
-
             # find title and type
             for type_num, name in enumerate(location):
                 if name:
                     break
 
             loc = list(location)
-            loc[type_num] = ''
+            loc[type_num] = ""
 
             # find top parent
             parent = None
             for n in range(7):
                 if loc[n]:
-                    tup = tuple([''] * n + loc[n:])
+                    tup = tuple([""] * n + loc[n:])
                     parent = self.loc2handle.get(tup)
                     if parent:
                         break
@@ -89,9 +90,9 @@ class PlaceImport:
             while n > type_num:
                 if loc[n]:
                     # TODO for Arabic, should the next comma be translated?
-                    title = ', '.join([item for item in loc[n:] if item])
+                    title = ", ".join([item for item in loc[n:] if item])
                     parent = self.__add_place(loc[n], n, parent, title, trans)
-                    self.loc2handle[tuple([''] * n + loc[n:])] = parent
+                    self.loc2handle[tuple([""] * n + loc[n:])] = parent
                 n -= 1
 
             # link to existing place
@@ -111,7 +112,7 @@ class PlaceImport:
         place_name.set_value(name)
         place.name = place_name
         place.title = title
-        place.place_type = PlaceType(7-type_num)
+        place.place_type = PlaceType(7 - type_num)
         if parent is not None:
             placeref = PlaceRef()
             placeref.ref = parent

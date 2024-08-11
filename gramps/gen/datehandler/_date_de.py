@@ -23,30 +23,30 @@
 German-specific classes for parsing and displaying dates.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import re
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ..lib.date import Date
 from ._dateparser import DateParser
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # German parser
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class DateParserDE(DateParser):
-
     month_to_int = DateParser.month_to_int
     # Always add german and austrian name variants no matter what the current
     # locale is
@@ -208,72 +208,90 @@ class DateParserDE(DateParser):
     month_to_int["wendeling"] = 11
 
     modifier_to_int = {
-        'vor'    : Date.MOD_BEFORE,
-        'nach'   : Date.MOD_AFTER,
-        'gegen'  : Date.MOD_ABOUT,
-        'um'     : Date.MOD_ABOUT,
-        'etwa'   : Date.MOD_ABOUT,
-        'circa'  : Date.MOD_ABOUT,
-        'ca.'  : Date.MOD_ABOUT,
-        }
+        "vor": Date.MOD_BEFORE,
+        "nach": Date.MOD_AFTER,
+        "gegen": Date.MOD_ABOUT,
+        "um": Date.MOD_ABOUT,
+        "etwa": Date.MOD_ABOUT,
+        "circa": Date.MOD_ABOUT,
+        "ca.": Date.MOD_ABOUT,
+        "von": Date.MOD_FROM,
+        "bis": Date.MOD_TO,
+    }
 
     calendar_to_int = {
-        'gregorianisch'  : Date.CAL_GREGORIAN,
-        'greg.'          : Date.CAL_GREGORIAN,
-        'julianisch'     : Date.CAL_JULIAN,
-        'jul.'           : Date.CAL_JULIAN,
-        'hebräisch'      : Date.CAL_HEBREW,
-        'hebr.'          : Date.CAL_HEBREW,
-        'islamisch'      : Date.CAL_ISLAMIC,
-        'isl.'           : Date.CAL_ISLAMIC,
-        'französisch republikanisch': Date.CAL_FRENCH,
-        'franz.'         : Date.CAL_FRENCH,
-        'persisch'       : Date.CAL_PERSIAN,
-        'schwedisch'     : Date.CAL_SWEDISH,
-        's'              : Date.CAL_SWEDISH,
-        }
+        "gregorianisch": Date.CAL_GREGORIAN,
+        "greg.": Date.CAL_GREGORIAN,
+        "julianisch": Date.CAL_JULIAN,
+        "jul.": Date.CAL_JULIAN,
+        "hebräisch": Date.CAL_HEBREW,
+        "hebr.": Date.CAL_HEBREW,
+        "islamisch": Date.CAL_ISLAMIC,
+        "isl.": Date.CAL_ISLAMIC,
+        "französisch republikanisch": Date.CAL_FRENCH,
+        "franz.": Date.CAL_FRENCH,
+        "persisch": Date.CAL_PERSIAN,
+        "schwedisch": Date.CAL_SWEDISH,
+        "s": Date.CAL_SWEDISH,
+    }
 
     quality_to_int = {
-        'geschätzt' : Date.QUAL_ESTIMATED,
-        'gesch.'    : Date.QUAL_ESTIMATED,
-        'errechnet' : Date.QUAL_CALCULATED,
-        'berechnet' : Date.QUAL_CALCULATED,
-        'ber.'      : Date.QUAL_CALCULATED,
-        }
+        "geschätzt": Date.QUAL_ESTIMATED,
+        "gesch.": Date.QUAL_ESTIMATED,
+        "errechnet": Date.QUAL_CALCULATED,
+        "berechnet": Date.QUAL_CALCULATED,
+        "ber.": Date.QUAL_CALCULATED,
+    }
 
-    bce = ["vor unserer Zeitrechnung", "vor unserer Zeit",
-           "vor der Zeitrechnung", "vor der Zeit",
-           "v. u. Z.", "v. d. Z.", "v.u.Z.", "v.d.Z.",
-           "vor Christi Geburt", "vor Christus", "v. Chr."] + DateParser.bce
+    bce = [
+        "vor unserer Zeitrechnung",
+        "vor unserer Zeit",
+        "vor der Zeitrechnung",
+        "vor der Zeit",
+        "v. u. Z.",
+        "v. d. Z.",
+        "v.u.Z.",
+        "v.d.Z.",
+        "vor Christi Geburt",
+        "vor Christus",
+        "v. Chr.",
+    ] + DateParser.bce
 
     def init_strings(self):
         DateParser.init_strings(self)
         self._span = re.compile(
-            r"(von|vom)\s+(?P<start>.+)\s+(bis)\s+(?P<stop>.+)", re.IGNORECASE)
+            r"(von|vom)\s+(?P<start>.+)\s+(bis)\s+(?P<stop>.+)", re.IGNORECASE
+        )
         self._range = re.compile(
-            r"zwischen\s+(?P<start>.+)\s+und\s+(?P<stop>.+)", re.IGNORECASE)
+            r"zwischen\s+(?P<start>.+)\s+und\s+(?P<stop>.+)", re.IGNORECASE
+        )
         self._text2 = re.compile(
-            r'(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._mon_str,
-            re.IGNORECASE)
+            r"(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?" % self._mon_str, re.IGNORECASE
+        )
         self._jtext2 = re.compile(
-            r'(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._jmon_str,
-            re.IGNORECASE)
+            r"(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?" % self._jmon_str, re.IGNORECASE
+        )
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # German display
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class DateDisplayDE(DateDisplay):
     """
     German language date display class.
     """
 
     calendar = (
-        "", "julianisch", "hebräisch",
-        "französisch republikanisch", "persisch", "islamisch",
-        "schwedisch"
-        )
+        "",
+        "julianisch",
+        "hebräisch",
+        "französisch republikanisch",
+        "persisch",
+        "islamisch",
+        "schwedisch",
+    )
 
     _mod_str = ("", "vor ", "nach ", "etwa ", "", "", "")
 
@@ -282,11 +300,15 @@ class DateDisplayDE(DateDisplay):
     _bce_str = "%s v. u. Z."
 
     formats = (
-        "JJJJ-MM-DD (ISO)", "Numerisch", "Monat Tag Jahr",
-        "MONAT Tag Jahr", "Tag. Monat Jahr", "Tag. MONAT Jahr",
-        "Numerisch mit führenden Nullen"
-        )
-        # this definition must agree with its "_display_gregorian" method
+        "JJJJ-MM-DD (ISO)",
+        "Numerisch",
+        "Monat Tag Jahr",
+        "MONAT Tag Jahr",
+        "Tag. Monat Jahr",
+        "Tag. MONAT Jahr",
+        "Numerisch mit führenden Nullen",
+    )
+    # this definition must agree with its "_display_gregorian" method
 
     def _display_gregorian(self, date_val, **kwargs):
         """
@@ -304,9 +326,9 @@ class DateDisplayDE(DateDisplay):
                 if date_val[0] == date_val[1] == 0:
                     value = str(date_val[2])
                 else:
-                    value = self.dhformat.replace('%m', str(date_val[1]))
-                    value = value.replace('%d', str(date_val[0]))
-                    value = value.replace('%Y', str(date_val[2]))
+                    value = self.dhformat.replace("%m", str(date_val[1]))
+                    value = value.replace("%d", str(date_val[0]))
+                    value = value.replace("%Y", str(date_val[2]))
         elif self.format == 2:
             # month_name day, year
             if date_val[0] == 0:
@@ -315,8 +337,7 @@ class DateDisplayDE(DateDisplay):
                 else:
                     value = "%s %s" % (self.long_months[date_val[1]], year)
             else:
-                value = "%s %d, %s" % (self.long_months[date_val[1]],
-                                       date_val[0], year)
+                value = "%s %d, %s" % (self.long_months[date_val[1]], date_val[0], year)
         elif self.format == 3:
             # month_abbreviation day, year
             if date_val[0] == 0:
@@ -325,8 +346,11 @@ class DateDisplayDE(DateDisplay):
                 else:
                     value = "%s %s" % (self.short_months[date_val[1]], year)
             else:
-                value = "%s %d, %s" % (self.short_months[date_val[1]],
-                                       date_val[0], year)
+                value = "%s %d, %s" % (
+                    self.short_months[date_val[1]],
+                    date_val[0],
+                    year,
+                )
         elif self.format == 4:
             # day. month_name year
             if date_val[0] == 0:
@@ -335,8 +359,7 @@ class DateDisplayDE(DateDisplay):
                 else:
                     value = "%s %s" % (self.long_months[date_val[1]], year)
             else:
-                value = "%d. %s %s" % (date_val[0],
-                                       self.long_months[date_val[1]], year)
+                value = "%d. %s %s" % (date_val[0], self.long_months[date_val[1]], year)
         elif self.format == 6:
             # day.month_number.year with leading zeros
             if date_val[3]:
@@ -345,10 +368,9 @@ class DateDisplayDE(DateDisplay):
                 if date_val[0] == date_val[1] == 0:
                     value = str(date_val[2])
                 else:
-                    value = self.dhformat.replace('%m', str(date_val[1])
-                                                  .zfill(2))
-                    value = value.replace('%d', str(date_val[0]).zfill(2))
-                    value = value.replace('%Y', str(date_val[2]))
+                    value = self.dhformat.replace("%m", str(date_val[1]).zfill(2))
+                    value = value.replace("%d", str(date_val[0]).zfill(2))
+                    value = value.replace("%Y", str(date_val[2]))
         else:
             # day. month_abbreviation year
             if date_val[0] == 0:
@@ -357,8 +379,11 @@ class DateDisplayDE(DateDisplay):
                 else:
                     value = "%s %s" % (self.short_months[date_val[1]], year)
             else:
-                value = "%d. %s %s" % (date_val[0],
-                                       self.short_months[date_val[1]], year)
+                value = "%d. %s %s" % (
+                    date_val[0],
+                    self.short_months[date_val[1]],
+                    year,
+                )
         if date_val[2] < 0:
             return self._bce_str % value
         else:
@@ -384,7 +409,7 @@ class DateDisplayDE(DateDisplay):
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, 'von', d1, 'bis', d2, scal)
+            return "%s%s %s %s %s%s" % (qual_str, "von", d1, "bis", d2, scal)
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
@@ -395,13 +420,25 @@ class DateDisplayDE(DateDisplay):
             scal = self.format_extras(cal, newyear)
             return "%s%s%s%s" % (qual_str, self._mod_str[mod], text, scal)
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Register classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 register_datehandler(
-    ('de_DE', 'german', 'German', 'de_CH',
-     'de_LI', 'de_LU', 'de_BE', 'de', ('%d.%m.%Y',)),
-    DateParserDE, DateDisplayDE)
-register_datehandler( ('de_AT', ('%d.%m.%Y',)), DateParserDE, DateDisplayDE)
+    (
+        "de_DE",
+        "german",
+        "German",
+        "de_CH",
+        "de_LI",
+        "de_LU",
+        "de_BE",
+        "de",
+        ("%d.%m.%Y",),
+    ),
+    DateParserDE,
+    DateDisplayDE,
+)
+register_datehandler(("de_AT", ("%d.%m.%Y",)), DateParserDE, DateDisplayDE)

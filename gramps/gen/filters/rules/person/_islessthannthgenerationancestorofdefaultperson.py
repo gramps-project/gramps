@@ -18,37 +18,39 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # IsLessThanNthGenerationAncestorOfDefaultPerson
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
     # Submitted by Wayne Bergeron
     """Rule that checks for a person that is an ancestor of the default person
     not more than N generations away"""
 
-    labels = [ _('Number of generations:') ]
-    name = _('Ancestors of the Home Person '
-                    'not more than <N> generations away')
-    category = _('Ancestral filters')
-    description = _("Matches ancestors of the Home Person "
-                    "not more than N generations away")
+    labels = [_("Number of generations:")]
+    name = _("Ancestors of the Home Person " "not more than <N> generations away")
+    category = _("Ancestral filters")
+    description = _(
+        "Matches ancestors of the Home Person " "not more than N generations away"
+    )
 
     def prepare(self, db, user):
         self.db = db
@@ -59,11 +61,11 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
             self.apply = self.apply_real
             self.init_ancestor_list(self.def_handle, 1)
         else:
-            self.apply = lambda db,p: False
+            self.apply = lambda db, p: False
 
     def init_ancestor_list(self, handle, gen):
-#        if p.get_handle() in self.map:
-#            loop_error(self.orig,p)
+        #        if p.get_handle() in self.map:
+        #            loop_error(self.orig,p)
         if not handle or handle in self.map:
             # if we have been here before, skip
             return
@@ -82,11 +84,11 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
             m_id = fam.get_mother_handle()
 
             if f_id:
-                self.init_ancestor_list(f_id, gen+1)
+                self.init_ancestor_list(f_id, gen + 1)
             if m_id:
-                self.init_ancestor_list(m_id, gen+1)
+                self.init_ancestor_list(m_id, gen + 1)
 
-    def apply_real(self,db,person):
+    def apply_real(self, db, person):
         return person.handle in self.map
 
     def reset(self):

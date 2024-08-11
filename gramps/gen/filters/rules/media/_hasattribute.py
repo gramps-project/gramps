@@ -18,30 +18,31 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._hasattributebase import HasAttributeBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasAttribute
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasAttribute(HasAttributeBase):
     """Rule that checks for a media object with a particular attribute"""
 
-    labels = [ _('Media attribute:'), _('Value:') ]
-    name = _('Media objects with the attribute <attribute>')
-    description = _("Matches media objects with the attribute "
-                    "of a particular value")
+    labels = [_("Media attribute:"), _("Value:")]
+    name = _("Media objects with the attribute <attribute>")
+    description = _("Matches media objects with the attribute " "of a particular value")

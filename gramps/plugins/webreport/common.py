@@ -37,33 +37,39 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.utils.db import get_death_or_fallback
-from gramps.gen.lib import (EventType, Date)
+from gramps.gen.lib import EventType, Date
 from gramps.gen.plug import BasePluginManager
 from gramps.plugins.lib.libgedcom import make_gedcom_date, DATE_QUALITY
 from gramps.gen.plug.report import utils
 from gramps.plugins.lib.libhtml import Html
 
 HAVE_ICU = False
-HAVE_ALPHABETICINDEX = False #separate check as this is only in ICU 4.6+
+HAVE_ALPHABETICINDEX = False  # separate check as this is only in ICU 4.6+
 try:
     from icu import Locale
+
     HAVE_ICU = True
     try:
         from icu import AlphabeticIndex as icuAlphabeticIndex
+
         HAVE_ALPHABETICINDEX = True
     except ImportError:
-        from gramps.plugins.webreport.alphabeticindex \
-            import AlphabeticIndex as localAlphabeticIndex
+        from gramps.plugins.webreport.alphabeticindex import (
+            AlphabeticIndex as localAlphabeticIndex,
+        )
 except ImportError:
     try:
         from PyICU import Locale
+
         HAVE_ICU = True
         try:
             from PyICU import AlphabeticIndex as icuAlphabeticIndex
+
             HAVE_ALPHABETICINDEX = True
         except ImportError:
-            from gramps.plugins.webreport.alphabeticindex \
-                import AlphabeticIndex as localAlphabeticIndex
+            from gramps.plugins.webreport.alphabeticindex import (
+                AlphabeticIndex as localAlphabeticIndex,
+            )
     except ImportError:
         pass
 
@@ -72,12 +78,12 @@ LOG = logging.getLogger(".NarrativeWeb")
 # define clear blank line for proper styling
 FULLCLEAR = Html("div", class_="fullclear", inline=True)
 # define all possible web page filename extensions
-_WEB_EXT = ['.html', '.htm', '.shtml', '.php', '.cgi']
+_WEB_EXT = [".html", ".htm", ".shtml", ".php", ".cgi"]
 # used to select secured web site or not
 HTTP = "http://"
 HTTPS = "https://"
 
-GOOGLE_MAPS = 'https://maps.googleapis.com/maps/'
+GOOGLE_MAPS = "https://maps.googleapis.com/maps/"
 # javascript code for marker path
 MARKER_PATH = """
   var marker_png = '%s';
@@ -386,9 +392,9 @@ _NAME_STYLE_FIRST = 0
 _NAME_STYLE_SPECIAL = None
 
 PLUGMAN = BasePluginManager.get_instance()
-CSS = PLUGMAN.process_plugin_data('WEBSTUFF')
+CSS = PLUGMAN.process_plugin_data("WEBSTUFF")
 
-#_NAME_COL = 3
+# _NAME_COL = 3
 
 _WRONGMEDIAPATH = []
 
@@ -396,11 +402,19 @@ _HTML_DBL_QUOTES = re.compile(r'([^"]*) " ([^"]*) " (.*)', re.VERBOSE)
 _HTML_SNG_QUOTES = re.compile(r"([^']*) ' ([^']*) ' (.*)", re.VERBOSE)
 
 # Events that are usually a family event
-_EVENTMAP = set([EventType.MARRIAGE, EventType.MARR_ALT,
-                 EventType.MARR_SETTL, EventType.MARR_LIC,
-                 EventType.MARR_CONTR, EventType.MARR_BANNS,
-                 EventType.ENGAGEMENT, EventType.DIVORCE,
-                 EventType.DIV_FILING])
+_EVENTMAP = set(
+    [
+        EventType.MARRIAGE,
+        EventType.MARR_ALT,
+        EventType.MARR_SETTL,
+        EventType.MARR_LIC,
+        EventType.MARR_CONTR,
+        EventType.MARR_BANNS,
+        EventType.ENGAGEMENT,
+        EventType.DIVORCE,
+        EventType.DIV_FILING,
+    ]
+)
 
 # Names for stylesheets
 _NARRATIVESCREEN = "narrative-screen.css"
@@ -408,37 +422,39 @@ _NARRATIVEPRINT = "narrative-print.css"
 
 HOLIDAYS_ASSOC = [
     # LANG INDEX HOLIDAY_NAME
-    ("be", 0, 'Bulgaria'),
-    ("ca", 1, 'Canada'),
-    ("cs", 2, 'Czech Republic'),
-    ("cl", 3, 'Chile'),
-    ("zh", 4, 'China'),
-    ("hr", 5, 'Croatia'),
-    ("en", 13, 'United States of America'), # must be here. should be en_US
-    ("en_GB", 6, 'England'),
-    ("fi", 7, 'Finland'),
-    ("fr_FR", 8, 'France'),
-    ("de", 9, 'Germany'),
-    ("ja", 10, 'Japan'),
-    ("sk", 11, 'Slovakia'),
-    ("sv", 12, 'Sweden'),
-    ("he", 14, 'Jewish Holidays'),
-    ("en_NZ", 15, 'New Zealand'),
-    ("uk", 16, 'Ukraine'),
-    ("sr_RS", 17, 'Serbia'),
-    ("sr_RS@latin", 18, 'Serbia (Latin)'),
+    ("be", 0, "Bulgaria"),
+    ("ca", 1, "Canada"),
+    ("cs", 2, "Czech Republic"),
+    ("cl", 3, "Chile"),
+    ("zh", 4, "China"),
+    ("hr", 5, "Croatia"),
+    ("en", 13, "United States of America"),  # must be here. should be en_US
+    ("en_GB", 6, "England"),
+    ("fi", 7, "Finland"),
+    ("fr_FR", 8, "France"),
+    ("de", 9, "Germany"),
+    ("ja", 10, "Japan"),
+    ("sk", 11, "Slovakia"),
+    ("sv", 12, "Sweden"),
+    ("he", 14, "Jewish Holidays"),
+    ("en_NZ", 15, "New Zealand"),
+    ("uk", 16, "Ukraine"),
+    ("sr_RS", 17, "Serbia"),
+    ("sr_RS@latin", 18, "Serbia (Latin)"),
 ]
+
 
 def do_we_have_holidays(lang):
     """
     Associate an index for the holidays depending on the LANG
     """
     for lng, idx, dummy_name in HOLIDAYS_ASSOC:
-        if lng == lang: # i.e. en_US
+        if lng == lang:  # i.e. en_US
             return idx
-        if lng[:2] == lang: # i.e. en_US[:2] => en
+        if lng[:2] == lang:  # i.e. en_US[:2] => en
             return idx
     return None
+
 
 def get_surname_from_person(dbase, person):
     """
@@ -460,8 +476,9 @@ def get_surname_from_person(dbase, person):
     # Treat people who have no name with those whose name is just
     # 'whitespace'
     if surname is None or surname.isspace():
-        surname = ''
+        surname = ""
     return surname
+
 
 def sort_people(dbase, handle_list, rlocale=glocale):
     """
@@ -498,13 +515,16 @@ def sort_people(dbase, handle_list, rlocale=glocale):
 
     for name in temp_list:
         if isinstance(name, bytes):
-            name = name.decode('utf-8')
-        slist = sorted(((sortnames[x], x) for x in sname_sub[name]),
-                       key=lambda x: rlocale.sort_key(x[0]))
+            name = name.decode("utf-8")
+        slist = sorted(
+            ((sortnames[x], x) for x in sname_sub[name]),
+            key=lambda x: rlocale.sort_key(x[0]),
+        )
         entries = [x[1] for x in slist]
         sorted_lists.append((name, entries))
 
     return sorted_lists
+
 
 def sort_places(dbase, handle_list, rlocale=glocale):
     """
@@ -513,24 +533,28 @@ def sort_places(dbase, handle_list, rlocale=glocale):
     pname_sub = defaultdict(list)
 
     for place_name in handle_list.keys():
-        (hdle, pname, dummy_id, event) = handle_list[place_name]
+        cname = sname = None
+        if len(handle_list[place_name]) == 6:
+            (hdle, pname, cname, sname, dummy_id, event) = handle_list[place_name]
+        else:
+            continue
         place = dbase.get_place_from_handle(hdle)
-        pname = _pd.display(dbase, place)
-        apname = _pd.display_event(dbase, event)
+        pname = _pd.display(dbase, place, fmt=0)
+        apname = _pd.display_event(dbase, event, fmt=0)
 
         pname_sub[pname].append(hdle)
-        if pname != apname:
-            pname_sub[apname].append(hdle)
+        pname_sub[apname].append((hdle, pname, cname, sname))
 
     sorted_lists = []
     temp_list = sorted(pname_sub, key=rlocale.sort_key)
 
     for name in temp_list:
         if isinstance(name, bytes):
-            name = name.decode('utf-8')
+            name = name.decode("utf-8")
         sorted_lists.append((name, pname_sub[name][0]))
 
     return sorted_lists
+
 
 def sort_event_types(dbase, event_types, event_handle_list, rlocale):
     """
@@ -544,7 +568,6 @@ def sort_event_types(dbase, event_types, event_handle_list, rlocale):
     event_dict = dict((rts(evt_type), list()) for evt_type in event_types)
 
     for event_handle in event_handle_list:
-
         event = dbase.get_event_from_handle(event_handle)
         event_type = rts(event.get_type().xml_str())
 
@@ -557,16 +580,18 @@ def sort_event_types(dbase, event_types, event_handle_list, rlocale):
         tup_list.sort()
 
     # return a list of sorted tuples, one per event
-    retval = [(event_type, event_list) for (event_type,
-                                            event_list) in event_dict.items()]
+    retval = [
+        (event_type, event_list) for (event_type, event_list) in event_dict.items()
+    ]
     retval.sort(key=lambda item: str(item[0]))
 
     return retval
 
+
 # Modified _get_regular_surname from WebCal.py to get prefix, first name,
 # and suffix
 def _get_short_name(gender, name):
-    """ Will get suffix for all people passed through it """
+    """Will get suffix for all people passed through it"""
 
     dummy_gender = gender
     short_name = name.get_first_name()
@@ -576,22 +601,27 @@ def _get_short_name(gender, name):
         short_name = short_name + ", " + suffix
     return short_name
 
+
 def __get_person_keyname(dbase, handle):
-    """ .... """
+    """...."""
 
     person = dbase.get_person_from_handle(handle)
     return _nd.sort_string(person.get_primary_name())
 
+
 def __get_place_keyname(dbase, handle):
-    """ ... """
+    """..."""
 
     return utils.place_name(dbase, handle)
 
+
 if HAVE_ALPHABETICINDEX:
+
     class AlphabeticIndex(icuAlphabeticIndex):
         """
         Call the ICU AlphabeticIndex, passing the ICU Locale
         """
+
         def __init__(self, rlocale):
             self.iculocale = Locale(rlocale.collation)
             super().__init__(self.iculocale)
@@ -599,7 +629,7 @@ if HAVE_ALPHABETICINDEX:
             # set the maximum number of buckets, the undocumented default is 99
             # Latin + Greek + Cyrillic + Hebrew + Arabic + Tamil + Hiragana +
             # CJK Unified is about 206 different buckets
-            self.maxLabelCount = 500 # pylint: disable=invalid-name
+            self.maxLabelCount = 500  # pylint: disable=invalid-name
 
             # Add bucket labels for scripts other than the one for the output
             # which is being generated
@@ -614,10 +644,12 @@ if HAVE_ALPHABETICINDEX:
                 if script not in used_scripts:
                     used_scripts.append(script)
                     super().addLabels(loc)
+
 else:
     AlphabeticIndex = localAlphabeticIndex
 
-def alphabet_navigation(sorted_alpha_index, rlocale=glocale):
+
+def alphabet_navigation(sorted_alpha_index, rlocale=glocale, rtl=False):
     """
     Will create the alphabet navigation bar for classes IndividualListPage,
     SurnameListPage, PlaceListPage, and EventList
@@ -631,22 +663,21 @@ def alphabet_navigation(sorted_alpha_index, rlocale=glocale):
 
     num_ltrs = len(sorted_alpha_index)
     num_of_cols = 26
-    num_of_rows = ((num_ltrs // num_of_cols) + 1)
+    num_of_rows = (num_ltrs // num_of_cols) + 1
 
     # begin alphabet navigation division
-    with Html("div", id="alphanav") as alphabetnavigation:
-
+    with Html("div", id=rtl) as alphabetnavigation:
         index = 0
         output = []
         dup_index = 0
         for dummy_row in range(num_of_rows):
-            unordered = Html("ul")
+            unordered = Html("ul", class_=rtl)
 
             cols = 0
             while cols <= num_of_cols and index < num_ltrs:
                 menu_item = sorted_alpha_index[index]
-                if menu_item == ' ':
-                    menu_item = '&nbsp;'
+                if menu_item == " ":
+                    menu_item = "&nbsp;"
                 # adding title to hyperlink menu for screen readers and
                 # braille writers
                 title_txt = "Alphabet Menu: %s" % menu_item
@@ -659,8 +690,7 @@ def alphabet_navigation(sorted_alpha_index, rlocale=glocale):
                     dup_index += 1
                 output.append(menu_item)
 
-                hyper = Html("a", menu_item, title=title_str,
-                             href="#%s" % link)
+                hyper = Html("a", menu_item, title=title_str, href="#%s" % link)
                 unordered.extend(Html("li", hyper, inline=True))
 
                 index += 1
@@ -671,6 +701,7 @@ def alphabet_navigation(sorted_alpha_index, rlocale=glocale):
 
     return alphabetnavigation
 
+
 def _has_webpage_extension(url):
     """
     determine if a filename has an extension or not...
@@ -678,6 +709,7 @@ def _has_webpage_extension(url):
     @param: url -- filename to be checked
     """
     return any(url.endswith(ext) for ext in _WEB_EXT)
+
 
 def add_birthdate(dbase, ppl_handle_list, rlocale):
     """
@@ -694,7 +726,7 @@ def add_birthdate(dbase, ppl_handle_list, rlocale):
     """
     sortable_individuals = []
     for person_handle in ppl_handle_list:
-        birth_date = 0    # dummy value in case none is found
+        birth_date = 0  # dummy value in case none is found
         person = dbase.get_person_from_handle(person_handle)
         if person:
             birth_ref = person.get_birth_ref()
@@ -713,6 +745,7 @@ def add_birthdate(dbase, ppl_handle_list, rlocale):
 
     # return a list of handles with the individual's birthdate attached
     return sortable_individuals
+
 
 def _find_birth_date(dbase, individual):
     """
@@ -741,6 +774,7 @@ def _find_birth_date(dbase, individual):
                         break
     return date_out
 
+
 def _find_death_date(dbase, individual):
     """
     will look for a death date within a person's events
@@ -768,6 +802,7 @@ def _find_death_date(dbase, individual):
                         break
     return date_out
 
+
 def build_event_data_by_individuals(dbase, ppl_handle_list):
     """
     creates a list of event handles and event types for this database
@@ -781,13 +816,11 @@ def build_event_data_by_individuals(dbase, ppl_handle_list):
     for person_handle in ppl_handle_list:
         person = dbase.get_person_from_handle(person_handle)
         if person:
-
             evt_ref_list = person.get_event_ref_list()
             if evt_ref_list:
                 for evt_ref in evt_ref_list:
                     event = dbase.get_event_from_handle(evt_ref.ref)
                     if event:
-
                         event_types.append(str(event.get_type()))
                         event_handle_list.append(evt_ref.ref)
 
@@ -796,7 +829,6 @@ def build_event_data_by_individuals(dbase, ppl_handle_list):
                 for family_handle in person_family_handle_list:
                     family = dbase.get_family_from_handle(family_handle)
                     if family:
-
                         family_evt_ref_list = family.get_event_ref_list()
                         if family_evt_ref_list:
                             for evt_ref in family_evt_ref_list:
@@ -808,10 +840,12 @@ def build_event_data_by_individuals(dbase, ppl_handle_list):
     # return event_handle_list and event types to its caller
     return event_handle_list, event_types
 
+
 def name_to_md5(text):
     """This creates an MD5 hex string to be used as filename."""
 
-    return md5(text.encode('utf-8')).hexdigest()
+    return md5(text.encode("utf-8")).hexdigest()
+
 
 def get_gendex_data(database, event_ref):
     """
@@ -820,8 +854,8 @@ def get_gendex_data(database, event_ref):
     @param: database  -- The database
     @param: event_ref -- The event reference
     """
-    doe = "" # date of event
-    poe = "" # place of event
+    doe = ""  # date of event
+    poe = ""  # place of event
     if event_ref and event_ref.ref:
         event = database.get_event_from_handle(event_ref.ref)
         if event:
@@ -834,6 +868,7 @@ def get_gendex_data(database, event_ref):
                     if place:
                         poe = _pd.display(database, place, date)
     return doe, poe
+
 
 def format_date(date):
     """
@@ -852,16 +887,19 @@ def format_date(date):
             val = "%sFROM %s TO %s" % (
                 qual_text,
                 make_gedcom_date(start, cal, mod, None),
-                make_gedcom_date(date.get_stop_date(), cal, mod, None))
+                make_gedcom_date(date.get_stop_date(), cal, mod, None),
+            )
         elif mod == Date.MOD_RANGE:
             val = "%sBET %s AND %s" % (
                 qual_text,
                 make_gedcom_date(start, cal, mod, None),
-                make_gedcom_date(date.get_stop_date(), cal, mod, None))
+                make_gedcom_date(date.get_stop_date(), cal, mod, None),
+            )
         else:
             val = make_gedcom_date(start, cal, mod, quality)
         return val
     return ""
+
 
 # This command then defines the 'html_escape' option for escaping
 # special characters for presentation in HTML based on the above list.
@@ -877,15 +915,15 @@ def html_escape(text):
         text = "%s" "&#8220;" "%s" "&#8221;" "%s" % match.groups()
         match = _HTML_DBL_QUOTES.match(text)
     # Replace remaining double quotes.
-    text = text.replace('"', '&#34;')
+    text = text.replace('"', "&#34;")
 
     # Deal with single quotes.
-    text = text.replace("'s ", '&#8217;s ')
+    text = text.replace("'s ", "&#8217;s ")
     match = _HTML_SNG_QUOTES.match(text)
     while match:
         text = "%s" "&#8216;" "%s" "&#8217;" "%s" % match.groups()
         match = _HTML_SNG_QUOTES.match(text)
     # Replace remaining single quotes.
-    text = text.replace("'", '&#39;')
+    text = text.replace("'", "&#39;")
 
     return text

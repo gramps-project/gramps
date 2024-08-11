@@ -19,33 +19,42 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
-from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, TableStyle,
-                                    TableCellStyle, FONT_SANS_SERIF,
-                                    IndexMark, INDEX_TYPE_TOC)
+from gramps.gen.plug.docgen import (
+    FontStyle,
+    ParagraphStyle,
+    TableStyle,
+    TableCellStyle,
+    FONT_SANS_SERIF,
+    IndexMark,
+    INDEX_TYPE_TOC,
+)
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # AlphabeticalIndex
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class AlphabeticalIndex(Report):
-    """ This report class generates an alphabetical index for a book. """
+    """This report class generates an alphabetical index for a book."""
+
     def __init__(self, database, options, user):
         """
         Create AlphabeticalIndex object that produces the report.
@@ -58,24 +67,24 @@ class AlphabeticalIndex(Report):
         """
         Report.__init__(self, database, options, user)
         self._user = user
-        self.set_locale(options.menu.get_option_by_name('trans').get_value())
+        self.set_locale(options.menu.get_option_by_name("trans").get_value())
 
     def write_report(self):
-        """ Generate the contents of the report """
+        """Generate the contents of the report"""
         mark = IndexMark(self._("Alphabetical Index"), INDEX_TYPE_TOC, 1)
         self.doc.start_paragraph("IDX-Title")
-        self.doc.write_text('', mark)
+        self.doc.write_text("", mark)
         self.doc.end_paragraph()
-        self.doc.index_title = self._('Index')
+        self.doc.index_title = self._("Index")
         self.doc.insert_index()
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # AlphabeticalIndexOptions
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class AlphabeticalIndexOptions(MenuReportOptions):
-
     """
     Defines options and provides handling interface.
     """
@@ -85,11 +94,11 @@ class AlphabeticalIndexOptions(MenuReportOptions):
         MenuReportOptions.__init__(self, name, dbase)
 
     def get_subject(self):
-        """ Return a string that describes the subject of the report. """
-        return _('Entire Book')
+        """Return a string that describes the subject of the report."""
+        return _("Entire Book")
 
     def add_menu_options(self, menu):
-        """ Add the options for this report """
+        """Add the options for this report"""
         category_name = _("Report Options")
         stdoptions.add_localization_option(menu, category_name)
 
@@ -100,7 +109,7 @@ class AlphabeticalIndexOptions(MenuReportOptions):
         para = ParagraphStyle()
         para.set_font(font)
         para.set_bottom_margin(0.25)
-        para.set_description(_('The style used for the title.'))
+        para.set_description(_("The style used for the title."))
         default_style.add_paragraph_style("IDX-Title", para)
 
         table = TableStyle()
@@ -117,5 +126,5 @@ class AlphabeticalIndexOptions(MenuReportOptions):
         font.set(face=FONT_SANS_SERIF, size=10)
         para = ParagraphStyle()
         para.set_font(font)
-        para.set_description(_('The basic style used for the text display.'))
+        para.set_description(_("The basic style used for the text display."))
         default_style.add_paragraph_style("IDX-Entry", para)

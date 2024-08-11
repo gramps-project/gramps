@@ -18,39 +18,48 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 log = logging.getLogger(".")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.datehandler import format_time
 from .flatbasemodel import FlatBaseModel
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # SourceModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class SourceModel(FlatBaseModel):
-
-    def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
-                 search=None, skip=set(), sort_map=None):
+    def __init__(
+        self,
+        db,
+        uistate,
+        scol=0,
+        order=Gtk.SortType.ASCENDING,
+        search=None,
+        skip=set(),
+        sort_map=None,
+    ):
         self.map = db.get_raw_source_data
         self.gen_cursor = db.get_source_cursor
         self.fmap = [
@@ -62,8 +71,8 @@ class SourceModel(FlatBaseModel):
             self.column_private,
             self.column_tags,
             self.column_change,
-            self.column_tag_color
-            ]
+            self.column_tag_color,
+        ]
         self.smap = [
             self.column_title,
             self.column_id,
@@ -73,10 +82,11 @@ class SourceModel(FlatBaseModel):
             self.column_private,
             self.column_tags,
             self.sort_change,
-            self.column_tag_color
-            ]
-        FlatBaseModel.__init__(self, db, uistate, scol, order, search=search,
-                               skip=skip, sort_map=sort_map)
+            self.column_tag_color,
+        ]
+        FlatBaseModel.__init__(
+            self, db, uistate, scol, order, search=search, skip=skip, sort_map=sort_map
+        )
 
     def destroy(self):
         """
@@ -96,34 +106,34 @@ class SourceModel(FlatBaseModel):
         return 8
 
     def on_get_n_columns(self):
-        return len(self.fmap)+1
+        return len(self.fmap) + 1
 
-    def column_title(self,data):
-        return data[2].replace('\n', ' ')
+    def column_title(self, data):
+        return data[2].replace("\n", " ")
 
-    def column_author(self,data):
+    def column_author(self, data):
         return data[3]
 
-    def column_abbrev(self,data):
+    def column_abbrev(self, data):
         return data[7]
 
-    def column_id(self,data):
+    def column_id(self, data):
         return data[1]
 
-    def column_pubinfo(self,data):
+    def column_pubinfo(self, data):
         return data[4]
 
     def column_private(self, data):
         if data[12]:
-            return 'gramps-lock'
+            return "gramps-lock"
         else:
             # There is a problem returning None here.
-            return ''
+            return ""
 
-    def column_change(self,data):
+    def column_change(self, data):
         return format_time(data[8])
 
-    def sort_change(self,data):
+    def sort_change(self, data):
         return "%012x" % data[8]
 
     def get_tag_name(self, tag_handle):
@@ -162,4 +172,4 @@ class SourceModel(FlatBaseModel):
         """
         tag_list = list(map(self.get_tag_name, data[11]))
         # TODO for Arabic, should the next line's comma be translated?
-        return ', '.join(sorted(tag_list, key=glocale.sort_key))
+        return ", ".join(sorted(tag_list, key=glocale.sort_key))

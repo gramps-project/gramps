@@ -18,27 +18,28 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._hasnoteregexbase import HasNoteRegexBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # "People having notes that contain a substring"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasNoteRegexp(HasNoteRegexBase):
-
-    name = _('Families having notes containing <text>')
-    description = _("Matches families whose notes contain text "
-                    "matching a regular expression")
-
+    name = _("Families having notes containing <text>")
+    description = _(
+        "Matches families whose notes contain text " "matching a regular expression"
+    )

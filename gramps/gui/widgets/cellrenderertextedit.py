@@ -18,33 +18,34 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Python Modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gi.repository import Gdk
 from gi.repository import Gtk
 
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps Modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class CellRendererTextEdit(Gtk.CellRendererText):
-    """ To be used where you normally use Gtk.CellRendererText and you want to
+    """To be used where you normally use Gtk.CellRendererText and you want to
     avoid losing the text if the user clicks outside the cell (Like an 'OK'
-    button. """
+    button."""
 
-    __gtype_name__ = 'CellRendererTextEdit'
+    __gtype_name__ = "CellRendererTextEdit"
 
     def __init__(self):
         Gtk.CellRendererText.__init__(self)
 
     def do_start_editing(
-            self, event, treeview, path, background_area, cell_area, flags):
-        if not self.get_property('editable'):
+        self, event, treeview, path, background_area, cell_area, flags
+    ):
+        if not self.get_property("editable"):
             return
         entry = Gtk.Entry()
         entry.set_has_frame(False)
@@ -53,13 +54,13 @@ class CellRendererTextEdit(Gtk.CellRendererText):
         entry.set_width_chars(5)
         entry.set_text(self.get_property("text"))  # get original cell text
         entry.add_events(Gdk.EventMask.FOCUS_CHANGE_MASK)
-        entry.connect('focus-out-event', self.focus_out, path)
-        entry.connect('key-press-event', self._key_press)
+        entry.connect("focus-out-event", self.focus_out, path)
+        entry.connect("key-press-event", self._key_press)
         entry.show()
         return entry
 
     def focus_out(self, entry, event, path):
-        self.emit('edited', path, entry.get_text())
+        self.emit("edited", path, entry.get_text())
         return False
 
     def _key_press(self, entry, event):

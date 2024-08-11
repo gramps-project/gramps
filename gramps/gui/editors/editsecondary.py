@@ -19,18 +19,18 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ..managedwindow import ManagedWindow
 from ..display import display_help
 from gramps.gen.config import config
 from ..dbguielement import DbGUIElement
 
-class EditSecondary(ManagedWindow, DbGUIElement):
 
+class EditSecondary(ManagedWindow, DbGUIElement):
     def __init__(self, state, uistate, track, obj, callback=None):
         """Create an edit window.  Associates a person with the window."""
 
@@ -83,12 +83,9 @@ class EditSecondary(ManagedWindow, DbGUIElement):
             label = notebook.get_tab_label(child)
             page_no = notebook.page_num(child)
             label.drag_dest_set(0, [], 0)
-            label.connect('drag_motion',
-                          self._switch_page_on_dnd,
-                          notebook,
-                          page_no)
+            label.connect("drag_motion", self._switch_page_on_dnd, notebook, page_no)
             child.set_parent_notebook(notebook)
-        notebook.connect('key-press-event', self.key_pressed, notebook)
+        notebook.connect("key-press-event", self.key_pressed, notebook)
 
     def key_pressed(self, obj, event, notebook):
         """
@@ -103,7 +100,7 @@ class EditSecondary(ManagedWindow, DbGUIElement):
         if notebook.get_current_page() != page_no:
             notebook.set_current_page(page_no)
 
-    def _add_tab(self, notebook,page):
+    def _add_tab(self, notebook, page):
         self.__tabs.append(page)
         notebook.insert_page(page, page.get_tab_widget(), -1)
         page.label.set_use_underline(True)
@@ -114,7 +111,7 @@ class EditSecondary(ManagedWindow, DbGUIElement):
         Finalize rest
         """
         for tab in self.__tabs:
-            if hasattr(tab, '_cleanup_on_exit'):
+            if hasattr(tab, "_cleanup_on_exit"):
                 tab._cleanup_on_exit()
         self.__tabs = None
         self.dbstate = None
@@ -125,16 +122,15 @@ class EditSecondary(ManagedWindow, DbGUIElement):
         self.callman.database = None
         self.callman = None
 
-    def define_ok_button(self,button,function):
-        button.connect('clicked',function)
+    def define_ok_button(self, button, function):
+        button.connect("clicked", function)
         button.set_sensitive(not self.db.readonly)
 
-    def define_cancel_button(self,button):
-        button.connect('clicked', self.canceledits)
+    def define_cancel_button(self, button):
+        button.connect("clicked", self.canceledits)
 
-    def define_help_button(self, button, webpage='', section=''):
-        button.connect('clicked', lambda x: display_help(webpage,
-                                                               section))
+    def define_help_button(self, button, webpage="", section=""):
+        button.connect("clicked", lambda x: display_help(webpage, section))
 
     def canceledits(self, *obj):
         """
@@ -156,9 +152,9 @@ class EditSecondary(ManagedWindow, DbGUIElement):
         1. The connects on the main view must be disconnected
         2. Connects done in subelements must be disconnected
         """
-        #cleanup callbackmanager of this editor
+        # cleanup callbackmanager of this editor
         self._cleanup_callbacks()
-        for tab in [tab for tab in self.__tabs if hasattr(tab, 'callman')]:
+        for tab in [tab for tab in self.__tabs if hasattr(tab, "callman")]:
             tab._cleanup_callbacks()
 
     def _cleanup_connects(self):
@@ -167,7 +163,9 @@ class EditSecondary(ManagedWindow, DbGUIElement):
         removed before destroying the interface
         """
         self._cleanup_local_connects()
-        for tab in [tab for tab in self.__tabs if hasattr(tab, '_cleanup_local_connects')]:
+        for tab in [
+            tab for tab in self.__tabs if hasattr(tab, "_cleanup_local_connects")
+        ]:
             tab._cleanup_local_connects()
 
     def _cleanup_local_connects(self):

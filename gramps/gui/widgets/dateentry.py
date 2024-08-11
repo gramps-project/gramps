@@ -20,51 +20,51 @@
 
 __all__ = ["DateEntry"]
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 _LOG = logging.getLogger(".widgets.dateentry")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .monitoredwidgets import MonitoredDate
 from .validatedmaskedentry import ValidatableMaskedEntry
 from gramps.gen.lib.date import Date
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # DateEntry class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class DateEntry(Gtk.Box):
-
     def __init__(self, uistate, track):
         Gtk.Box.__init__(self)
         self.entry = ValidatableMaskedEntry()
         self.entry.set_width_chars(13)
         self.pack_start(self.entry, True, True, 0)
         image = Gtk.Image()
-        image.set_from_icon_name('gramps-date-edit', Gtk.IconSize.BUTTON)
+        image.set_from_icon_name("gramps-date-edit", Gtk.IconSize.BUTTON)
         button = Gtk.Button()
         button.set_image(image)
         button.set_relief(Gtk.ReliefStyle.NORMAL)
         self.pack_start(button, False, True, 0)
         self.date = Date()
-        self.date_entry = MonitoredDate(self.entry, button, self.date,
-                                        uistate, track)
+        self.date_entry = MonitoredDate(self.entry, button, self.date, uistate, track)
         self.show_all()
 
     def get_text(self):

@@ -17,29 +17,32 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gtk
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import Pango
 from gi.repository.GLib import markup_escape_text
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.lib import UrlType
 from gramps.gen.plug import Gramplet
 from gramps.gen.const import COLON, GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
+
 
 class RepositoryDetails(Gramplet):
     """
     Displays details for a repository.
     """
+
     def init(self):
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
@@ -65,8 +68,9 @@ class RepositoryDetails(Gramplet):
         """
         Add a row to the table.
         """
-        label = Gtk.Label(label=title + COLON, halign=Gtk.Align.END,
-                          valign=Gtk.Align.START)
+        label = Gtk.Label(
+            label=title + COLON, halign=Gtk.Align.END, valign=Gtk.Align.START
+        )
         label.set_selectable(True)
         label.show()
         value = Gtk.Label(label=value, halign=Gtk.Align.START)
@@ -82,11 +86,11 @@ class RepositoryDetails(Gramplet):
         list(map(self.grid.remove, self.grid.get_children()))
 
     def db_changed(self):
-        self.connect(self.dbstate.db, 'repository-update', self.update)
-        self.connect_signal('Repository', self.update)
+        self.connect(self.dbstate.db, "repository-update", self.update)
+        self.connect_signal("Repository", self.update)
 
     def update_has_data(self):
-        active_handle = self.get_active('Repository')
+        active_handle = self.get_active("Repository")
         if active_handle:
             repo = self.dbstate.db.get_repository_from_handle(active_handle)
             self.set_has_data(repo is not None)
@@ -95,7 +99,7 @@ class RepositoryDetails(Gramplet):
 
     def main(self):
         self.display_empty()
-        active_handle = self.get_active('Repository')
+        active_handle = self.get_active("Repository")
         if active_handle:
             repo = self.dbstate.db.get_repository_from_handle(active_handle)
             self.top.hide()
@@ -113,8 +117,9 @@ class RepositoryDetails(Gramplet):
         Display details of the active repository.
         """
         self.name.set_markup(
-            "<span size='large' weight='bold'>%s</span>" %
-            markup_escape_text(repo.get_name(), -1))
+            "<span size='large' weight='bold'>%s</span>"
+            % markup_escape_text(repo.get_name(), -1)
+        )
 
         self.clear_grid()
         address_list = repo.get_address_list()
@@ -123,7 +128,7 @@ class RepositoryDetails(Gramplet):
             self.display_separator()
             phone = address_list[0].get_phone()
             if phone:
-                self.add_row(_('Phone'), phone)
+                self.add_row(_("Phone"), phone)
 
         self.display_url(repo, UrlType(UrlType.EMAIL))
         self.display_url(repo, UrlType(UrlType.WEB_HOME))
@@ -135,7 +140,7 @@ class RepositoryDetails(Gramplet):
         Display an address.
         """
         lines = [line for line in address.get_text_data_list()[:-1] if line]
-        self.add_row(_('Address'), '\n'.join(lines))
+        self.add_row(_("Address"), "\n".join(lines))
 
     def display_url(self, repo, url_type):
         """
@@ -149,7 +154,7 @@ class RepositoryDetails(Gramplet):
         """
         Display empty details when no repository is selected.
         """
-        self.name.set_text('')
+        self.name.set_text("")
         self.clear_grid()
 
     def display_separator(self):

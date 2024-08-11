@@ -19,21 +19,22 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import GObject
 from gi.repository import GLib
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gramps.gen.lib import Event, EventRef, EventRoleType, EventType
 from gramps.gen.errors import WindowActiveError
@@ -44,13 +45,13 @@ from .eventrefmodel import EventRefModel
 from ...dbguielement import DbGUIElement
 from ...selectors import SelectorFactory
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # EventEmbedList
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class EventEmbedList(DbGUIElement, GroupEmbeddedList):
-
     _HANDLE_COL = 8
     _DND_TYPE = DdTargets.EVENTREF
     _DND_EXTRA = DdTargets.EVENT
@@ -61,55 +62,93 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
     _MOTHNAME = _("Mother")
 
     _MSG = {
-        'add'   : _('Add a new family event'),
-        'del'   : _('Remove the selected family event'),
-        'edit'  : _('Edit the selected family event or edit person'),
-        'share' : _('Share an existing event'),
-        'up'    : _('Move the selected event upwards'),
-        'down'  : _('Move the selected event downwards'),
-        }
+        "add": _("Add a new family event"),
+        "del": _("Remove the selected family event"),
+        "edit": _("Edit the selected family event or edit person"),
+        "share": _("Share an existing event"),
+        "up": _("Move the selected event upwards"),
+        "down": _("Move the selected event downwards"),
+    }
 
-    #index = column in model. Value =
+    # index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Description'), EventRefModel.COL_DESCR[0], 240, TEXT_COL,
-                            EventRefModel.COL_FONTWEIGHT[0], None),
-        (_('Type'), EventRefModel.COL_TYPE[0], 120, TEXT_COL,
-                            EventRefModel.COL_FONTWEIGHT[0], None),
-        (_('ID'), EventRefModel.COL_GID[0], 60, TEXT_COL, -1, None),
-        (_('Date'), EventRefModel.COL_SORTDATE[0], 150, MARKUP_COL, -1, None),
-        (_('Place'), EventRefModel.COL_PLACE[0], 240, 0, -1, None),
-        (_('Role'), EventRefModel.COL_ROLE[0], 80, TEXT_COL, -1, None),
-        (_('Main Participants'), EventRefModel.COL_PARTIC[0], 240, TEXT_COL,
-                            -1, None),
+        (
+            _("Description"),
+            EventRefModel.COL_DESCR[0],
+            240,
+            TEXT_COL,
+            EventRefModel.COL_FONTWEIGHT[0],
+            None,
+        ),
+        (
+            _("Type"),
+            EventRefModel.COL_TYPE[0],
+            120,
+            TEXT_COL,
+            EventRefModel.COL_FONTWEIGHT[0],
+            None,
+        ),
+        (_("ID"), EventRefModel.COL_GID[0], 60, TEXT_COL, -1, None),
+        (_("Date"), EventRefModel.COL_SORTDATE[0], 150, MARKUP_COL, -1, None),
+        (_("Place"), EventRefModel.COL_PLACE[0], 240, 0, -1, None),
+        (_("Role"), EventRefModel.COL_ROLE[0], 80, TEXT_COL, -1, None),
+        (_("Main Participants"), EventRefModel.COL_PARTIC[0], 240, TEXT_COL, -1, None),
         None,
         None,
         None,
-        (_('Age'), EventRefModel.COL_SORTAGE[0], 60, TEXT_COL, -1, None),
+        (_("Age"), EventRefModel.COL_SORTAGE[0], 60, TEXT_COL, -1, None),
         None,
-        (_('Private'), EventRefModel.COL_PRIVATE[0], 30, ICON_COL, -1, 'gramps-lock'),
-        (_('Source'), EventRefModel.COL_HAS_SOURCE[0], 30, ICON_COL, -1, 'gramps-source'),
-        ]
+        (_("Private"), EventRefModel.COL_PRIVATE[0], 30, ICON_COL, -1, "gramps-lock"),
+        (
+            _("Source"),
+            EventRefModel.COL_HAS_SOURCE[0],
+            30,
+            ICON_COL,
+            -1,
+            "gramps-source",
+        ),
+    ]
 
-    def __init__(self, dbstate, uistate, track, obj, build_model=EventRefModel, **kwargs):
+    def __init__(
+        self,
+        dbstate,
+        uistate,
+        track,
+        obj,
+        config_key,
+        build_model=EventRefModel,
+        **kwargs
+    ):
         self.obj = obj
         self._groups = []
         self._data = []
         DbGUIElement.__init__(self, dbstate.db)
-        GroupEmbeddedList.__init__(self, dbstate, uistate, track, _('_Events'),
-                              build_model, share_button=True,
-                              move_buttons=True, **kwargs)
+        GroupEmbeddedList.__init__(
+            self,
+            dbstate,
+            uistate,
+            track,
+            _("_Events"),
+            build_model,
+            config_key,
+            share_button=True,
+            move_buttons=True,
+            **kwargs,
+        )
 
     def _connect_db_signals(self):
         """
         called on init of DbGUIElement, connect to db as required.
         """
-        #note: event-rebuild closes the editors, so no need to connect to it
+        # note: event-rebuild closes the editors, so no need to connect to it
         self.callman.register_callbacks(
-           {'event-update': self.event_change,  #change to an event we track
-            'event-delete': self.event_delete,  #delete of event we track
-           })
-        self.callman.connect_all(keys=['event'])
+            {
+                "event-update": self.event_change,  # change to an event we track
+                "event-delete": self.event_delete,  # delete of event we track
+            }
+        )
+        self.callman.connect_all(keys=["event"])
 
     def event_change(self, *obj):
         """
@@ -139,44 +178,46 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                     indexlist.append(last)
                 except ValueError:
                     break
-            #remove the deleted workgroup events from the object
+            # remove the deleted workgroup events from the object
             for index in reversed(indexlist):
                 del refs[index]
-        #now rebuild the display tab
+        # now rebuild the display tab
         self.rebuild_callback()
 
     def get_ref_editor(self):
         from .. import EditEventRef
+
         return EditEventRef
 
     def get_icon_name(self):
-        return 'gramps-event'
+        return "gramps-event"
 
     def get_data(self):
-        #family events
+        # family events
         if not self._data or self.changed:
             self._data = [self.obj.get_event_ref_list()]
-            self._groups = [(self.obj.get_handle(), self._WORKNAME, '')]
-            #father events
+            self._groups = [(self.obj.get_handle(), self._WORKNAME, "")]
+            # father events
             fhandle = self.obj.get_father_handle()
             if fhandle:
-                fdata = self.dbstate.db.get_person_from_handle(fhandle).\
-                                        get_event_ref_list()
+                fdata = self.dbstate.db.get_person_from_handle(
+                    fhandle
+                ).get_event_ref_list()
                 if fdata:
-                    self._groups.append((fhandle, self._FATHNAME, ''))
+                    self._groups.append((fhandle, self._FATHNAME, ""))
                     self._data.append(fdata)
-            #mother events
+            # mother events
             mhandle = self.obj.get_mother_handle()
             if mhandle:
-                mdata = self.dbstate.db.get_person_from_handle(mhandle).\
-                                        get_event_ref_list()
+                mdata = self.dbstate.db.get_person_from_handle(
+                    mhandle
+                ).get_event_ref_list()
                 if mdata:
-                    self._groups.append((mhandle, self._MOTHNAME, ''))
+                    self._groups.append((mhandle, self._MOTHNAME, ""))
                     self._data.append(mdata)
-            #we register all events that need to be tracked
+            # we register all events that need to be tracked
             for group in self._data:
-                self.callman.register_handles(
-                                    {'event': [eref.ref for eref in group]})
+                self.callman.register_handles({"event": [eref.ref for eref in group]})
             self.changed = False
 
         return self._data
@@ -192,23 +233,24 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         The columns to show as a tuple containing
         tuples (show/noshow, model column)
         """
-        return ((1, 1),  # type
-                (1, 0),  # description
-                (1, 3),  # date
-                (1, 4),  # place
-                (1, 6),  # main participants
-                (1, 13), # has source
-                (1, 12), # private
-                (1, 5),  # role
-                (1, 2),  # gramps id
-                (1, 10),  # age
-                )
+        return (
+            (1, 1),  # type
+            (1, 0),  # description
+            (1, 3),  # date
+            (1, 4),  # place
+            (1, 6),  # main participants
+            (1, 13),  # has source
+            (1, 12),  # private
+            (1, 5),  # role
+            (1, 2),  # gramps id
+            (1, 10),  # age
+        )
 
     def default_types(self):
         return [
             EventType(EventType.MARRIAGE),
             EventType(EventType.DIVORCE),
-            ]
+        ]
 
     def default_type(self):
         type_list = []
@@ -237,8 +279,8 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
             ref.set_role(self.default_role())
             event.set_type(self.default_type())
             self.get_ref_editor()(
-                self.dbstate, self.uistate, self.track,
-                event, ref, self.object_added)
+                self.dbstate, self.uistate, self.track, event, ref, self.object_added
+            )
         except WindowActiveError:
             pass
 
@@ -246,14 +288,16 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         """
         Return the common text used when eventref cannot be edited
         """
-        return _("This event reference cannot be edited at this time. "
-                    "Either the associated event is already being edited "
-                    "or another event reference that is associated with "
-                    "the same event is being edited.\n\nTo edit this event "
-                    "reference, you need to close the event.")
+        return _(
+            "This event reference cannot be edited at this time. "
+            "Either the associated event is already being edited "
+            "or another event reference that is associated with "
+            "the same event is being edited.\n\nTo edit this event "
+            "reference, you need to close the event."
+        )
 
     def share_button_clicked(self, obj):
-        SelectEvent = SelectorFactory('Event')
+        SelectEvent = SelectorFactory("Event")
 
         sel = SelectEvent(self.dbstate, self.uistate, self.track)
         event = sel.run()
@@ -262,13 +306,21 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                 ref = EventRef()
                 ref.set_role(self.default_role())
                 self.get_ref_editor()(
-                    self.dbstate, self.uistate, self.track,
-                    event, ref, self.object_added)
+                    self.dbstate,
+                    self.uistate,
+                    self.track,
+                    event,
+                    ref,
+                    self.object_added,
+                )
             except WindowActiveError:
                 from ...dialog import WarningDialog
-                WarningDialog(_("Cannot share this reference"),
-                              self.__blocked_text(),
-                              parent=self.uistate.window)
+
+                WarningDialog(
+                    _("Cannot share this reference"),
+                    self.__blocked_text(),
+                    parent=self.uistate.window,
+                )
 
     def edit_button_clicked(self, obj):
         ref = self.get_selected()
@@ -276,15 +328,23 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
             event = self.dbstate.db.get_event_from_handle(ref[1].ref)
             try:
                 self.get_ref_editor()(
-                    self.dbstate, self.uistate, self.track,
-                    event, ref[1], self.object_edited)
+                    self.dbstate,
+                    self.uistate,
+                    self.track,
+                    event,
+                    ref[1],
+                    self.object_edited,
+                )
             except WindowActiveError:
                 from ...dialog import WarningDialog
-                WarningDialog(_("Cannot edit this reference"),
-                              self.__blocked_text(),
-                              parent=self.uistate.window)
+
+                WarningDialog(
+                    _("Cannot edit this reference"),
+                    self.__blocked_text(),
+                    parent=self.uistate.window,
+                )
         elif ref and ref[0] != self._WORKGROUP:
-            #bring up family editor
+            # bring up family editor
             key = self._groups[ref[0]][0]
             self.editnotworkgroup(key)
 
@@ -292,11 +352,10 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         reference.ref = primary.handle
         data = self.get_data()[self._WORKGROUP]
         data.append(reference)
-        self.callman.register_handles({'event': [primary.handle]})
+        self.callman.register_handles({"event": [primary.handle]})
         self.changed = True
         self.rebuild()
-        GLib.idle_add(self.tree.scroll_to_cell,
-                         (self._WORKGROUP, len(data) - 1))
+        GLib.idle_add(self.tree.scroll_to_cell, (self._WORKGROUP, len(data) - 1))
 
     def object_edited(self, ref, event):
         """
@@ -313,19 +372,21 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
             return GroupEmbeddedList.get_popup_menu_items(self)
         else:
             return [
-                (True, _('_Add'), self.add_button_clicked),
-                (False, _('_Edit'), self.edit_button_clicked),
-                ]
+                (True, _("_Add"), self.add_button_clicked),
+                (False, _("_Edit"), self.edit_button_clicked),
+            ]
 
     def _non_native_change(self):
         """
         handle change request of non native data
         """
         from ...dialog import WarningDialog
+
         WarningDialog(
             _("Cannot change Person"),
             _("You cannot change Person events in the Family Editor"),
-            parent=self.uistate.window)
+            parent=self.uistate.window,
+        )
 
     def _handle_drag(self, row, obj):
         """
@@ -335,24 +396,35 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         """
         if row[0] == self._WORKGROUP:
             from gramps.gen.lib import EventRoleType
-            obj.set_role((EventRoleType.UNKNOWN,''))
-            #add the event
+
+            obj.set_role((EventRoleType.UNKNOWN, ""))
+            # add the event
             GroupEmbeddedList._handle_drag(self, row, obj)
-            #call editor to set new eventref
+            # call editor to set new eventref
             event = self.dbstate.db.get_event_from_handle(obj.ref)
             try:
-                self.get_ref_editor()(self.dbstate, self.uistate, self.track,
-                                      event, obj, self.object_edited)
+                self.get_ref_editor()(
+                    self.dbstate,
+                    self.uistate,
+                    self.track,
+                    event,
+                    obj,
+                    self.object_edited,
+                )
             except WindowActiveError:
                 from ...dialog import WarningDialog
+
                 WarningDialog(
                     _("Cannot edit this reference"),
-                    _("This event reference cannot be edited at this time. "
-                      "Either the associated event is already being edited "
-                      "or another event reference that is associated with "
-                      "the same event is being edited.\n\nTo edit this event "
-                      "reference, you need to close the event."),
-                    parent=self.uistate.window)
+                    _(
+                        "This event reference cannot be edited at this time. "
+                        "Either the associated event is already being edited "
+                        "or another event reference that is associated with "
+                        "the same event is being edited.\n\nTo edit this event "
+                        "reference, you need to close the event."
+                    ),
+                    parent=self.uistate.window,
+                )
         else:
             self.dropnotworkgroup(row, obj)
 
@@ -362,8 +434,8 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
             event = self.dbstate.db.get_event_from_handle(obj)
             ref.set_role(self.default_role())
             self.get_ref_editor()(
-                self.dbstate, self.uistate, self.track,
-                event, ref, self.object_added)
+                self.dbstate, self.uistate, self.track, event, ref, self.object_added
+            )
         except WindowActiveError:
             pass
 
@@ -374,6 +446,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         person = self.dbstate.db.get_person_from_handle(key)
         try:
             from .. import EditPerson
+
             EditPerson(self.dbstate, self.uistate, [], person)
         except WindowActiveError:
             pass

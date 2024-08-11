@@ -25,61 +25,70 @@
 Slovenian-specific classes for parsing and displaying dates - new framework.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import re
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ..lib.date import Date
 from ._dateparser import DateParser
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Slovenian parser
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class DateParserSL(DateParser):
     """
     Converts a text string into a Date object
     """
 
     modifier_to_int = {
-        'pred'   : Date.MOD_BEFORE,
-        'pr.'    : Date.MOD_BEFORE,
-        'po'     : Date.MOD_AFTER,
-        'okoli'  : Date.MOD_ABOUT,
-        'okrog'  : Date.MOD_ABOUT,
-        'okr.'   : Date.MOD_ABOUT,
-        'ok.'    : Date.MOD_ABOUT,
-        'cca.'   : Date.MOD_ABOUT,
-        'cca'    : Date.MOD_ABOUT,
-        'circa'  : Date.MOD_ABOUT,
-        'ca.'    : Date.MOD_ABOUT,
-        'približno' : Date.MOD_ABOUT,
-        'pribl.' : Date.MOD_ABOUT,
-        '~'      : Date.MOD_ABOUT,
-        }
+        "pred": Date.MOD_BEFORE,
+        "pr.": Date.MOD_BEFORE,
+        "po": Date.MOD_AFTER,
+        "okoli": Date.MOD_ABOUT,
+        "okrog": Date.MOD_ABOUT,
+        "okr.": Date.MOD_ABOUT,
+        "ok.": Date.MOD_ABOUT,
+        "cca.": Date.MOD_ABOUT,
+        "cca": Date.MOD_ABOUT,
+        "circa": Date.MOD_ABOUT,
+        "ca.": Date.MOD_ABOUT,
+        "približno": Date.MOD_ABOUT,
+        "pribl.": Date.MOD_ABOUT,
+        "~": Date.MOD_ABOUT,
+        "from": Date.MOD_FROM,
+        "to": Date.MOD_TO,
+    }
 
     quality_to_int = {
-        'ocenjeno'   : Date.QUAL_ESTIMATED,
-        'oc.'        : Date.QUAL_ESTIMATED,
-        'po oceni'   : Date.QUAL_ESTIMATED,
-        'izračunano' : Date.QUAL_CALCULATED,
-        'izrač.'     : Date.QUAL_CALCULATED,
-        'po izračunu': Date.QUAL_CALCULATED,
-        }
+        "ocenjeno": Date.QUAL_ESTIMATED,
+        "oc.": Date.QUAL_ESTIMATED,
+        "po oceni": Date.QUAL_ESTIMATED,
+        "izračunano": Date.QUAL_CALCULATED,
+        "izrač.": Date.QUAL_CALCULATED,
+        "po izračunu": Date.QUAL_CALCULATED,
+    }
 
-    bce = ["pred našim štetjem", "pred Kristusom",
-           "p.n.š.", "p. n. š.", "pr.Kr.", "pr. Kr."] + DateParser.bce
+    bce = [
+        "pred našim štetjem",
+        "pred Kristusom",
+        "p.n.š.",
+        "p. n. š.",
+        "pr.Kr.",
+        "pr. Kr.",
+    ] + DateParser.bce
 
     def init_strings(self):
         """
@@ -88,40 +97,48 @@ class DateParserSL(DateParser):
 
         DateParser.init_strings(self)
         # match 'Day. MONTH year.' format with or without dots
-        self._text2 = re.compile(r'(\d+)?\.?\s*?%s\.?\s*((\d+)(/\d+)?)?\s*\.?$'
-                                 % self._mon_str, re.IGNORECASE)
+        self._text2 = re.compile(
+            r"(\d+)?\.?\s*?%s\.?\s*((\d+)(/\d+)?)?\s*\.?$" % self._mon_str,
+            re.IGNORECASE,
+        )
         # match Day.Month.Year.
-        self._numeric = re.compile(
-            r"((\d+)[/\.-])?\s*((\d+)[/\.-])?\s*(\d+)\.?$")
+        self._numeric = re.compile(r"((\d+)[/\.-])?\s*((\d+)[/\.-])?\s*(\d+)\.?$")
 
-        self._span = re.compile(r"od\s+(?P<start>.+)\s+do\s+(?P<stop>.+)",
-                                re.IGNORECASE)
+        self._span = re.compile(
+            r"od\s+(?P<start>.+)\s+do\s+(?P<stop>.+)", re.IGNORECASE
+        )
         self._range = re.compile(
-            r"med\s+(?P<start>.+)\s+in\s+(?P<stop>.+)", re.IGNORECASE)
-        self._jtext2 = re.compile(r'(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?'
-                                  % self._jmon_str, re.IGNORECASE)
+            r"med\s+(?P<start>.+)\s+in\s+(?P<stop>.+)", re.IGNORECASE
+        )
+        self._jtext2 = re.compile(
+            r"(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?" % self._jmon_str, re.IGNORECASE
+        )
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Slovenian display
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class DateDisplaySL(DateDisplay):
     """
     Slovenian language date display class.
     """
+
     # TODO fix BUG 7064: non-Gregorian calendars wrongly use BCE notation for negative dates
     # not refactoring _bce_str into base class because it'll be gone under #7064
     _bce_str = "%s pr.Kr."
 
     display = DateDisplay.display_formatted
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Register classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 register_datehandler(
-    ("sl_SI", "sl", "SL",
-     "slovenščina", "slovenian", "Slovenian", ('%d. %m. %Y',)),
-    DateParserSL, DateDisplaySL)
+    ("sl_SI", "sl", "SL", "slovenščina", "slovenian", "Slovenian", ("%d. %m. %Y",)),
+    DateParserSL,
+    DateDisplaySL,
+)

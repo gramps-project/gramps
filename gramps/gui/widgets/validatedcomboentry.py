@@ -22,27 +22,29 @@
 
 __all__ = ["ValidatedComboEntry"]
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 _LOG = logging.getLogger(".widgets.validatedcomboentry")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gdk
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # ValidatedComboEntry class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class ValidatedComboEntry(Gtk.ComboBox):
     """
     A ComboBoxEntry widget with validation.
@@ -62,6 +64,7 @@ class ValidatedComboEntry(Gtk.ComboBox):
     The entry can be set as editable or not editable using the
     :meth:`set_entry_editable` method.
     """
+
     __gtype_name__ = "ValidatedComboEntry"
 
     def __init__(self, datatype, model=None, column=-1, validator=None, width=-1):
@@ -72,11 +75,7 @@ class ValidatedComboEntry(Gtk.ComboBox):
         self._entry.set_width_chars(width)
         # <hack description="set the GTK_ENTRY(self._entry)->is_cell_renderer
         # flag to TRUE in order to tell the entry to fill its allocation.">
-        if Gtk.get_minor_version() < 13:
-             dummy_event = Gdk.Event()
-             dummy_event.type = Gdk.EventType.NOTHING
-        else:
-             dummy_event = Gdk.Event()
+        dummy_event = Gdk.Event()
         self._entry.start_editing(dummy_event)
         # </hack>
         self.add(self._entry)
@@ -89,21 +88,21 @@ class ValidatedComboEntry(Gtk.ComboBox):
         self._data_column = -1
         self.set_data_column(column)
 
-        self._active_text = ''
+        self._active_text = ""
         self._active_data = None
         self.set_active(-1)
 
         self._validator = validator
 
-        self._entry.connect('activate', self._on_entry_activate)
-        self._entry.connect('focus-in-event', self._on_entry_focus_in_event)
-        self._entry.connect('focus-out-event', self._on_entry_focus_out_event)
-        self._entry.connect('key-press-event', self._on_entry_key_press_event)
-        self.connect('changed', self._on_changed)
+        self._entry.connect("activate", self._on_entry_activate)
+        self._entry.connect("focus-in-event", self._on_entry_focus_in_event)
+        self._entry.connect("focus-out-event", self._on_entry_focus_out_event)
+        self._entry.connect("key-press-event", self._on_entry_key_press_event)
+        self.connect("changed", self._on_changed)
         self._internal_change = False
 
         self._has_frame_changed()
-        self.connect('notify', self._on_notify)
+        self.connect("notify", self._on_notify)
 
     # Virtual overriden methods
 
@@ -139,7 +138,7 @@ class ValidatedComboEntry(Gtk.ComboBox):
 
         Called when the focus leaves the entry.
         """
-        if (self._entry.get_text() != self._text_on_focus_in):
+        if self._entry.get_text() != self._text_on_focus_in:
             self._entry_changed(widget)
 
     def _on_entry_key_press_event(self, entry, event):
@@ -178,7 +177,7 @@ class ValidatedComboEntry(Gtk.ComboBox):
 
         Called whenever a property of the object is changed.
         """
-        if gparamspec and gparamspec.name == 'has-frame':
+        if gparamspec and gparamspec.name == "has-frame":
             self._has_frame_changed()
 
     # Private methods
@@ -211,7 +210,7 @@ class ValidatedComboEntry(Gtk.ComboBox):
         self._internal_change = False
 
     def _has_frame_changed(self):
-        has_frame = self.get_property('has-frame')
+        has_frame = self.get_property("has-frame")
         self._entry.set_has_frame(has_frame)
 
     def _is_in_model(self, data):

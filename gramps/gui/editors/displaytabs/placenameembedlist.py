@@ -19,57 +19,65 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gi.repository import GObject, GLib
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.lib import PlaceName
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
 from .placenamemodel import PlaceNameModel
 from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # PlaceNameEmbedList
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class PlaceNameEmbedList(EmbeddedList):
-
     _HANDLE_COL = 3
     _DND_TYPE = DdTargets.PLACENAME
 
     _MSG = {
-        'add'   : _('Create and add a new place name'),
-        'del'   : _('Remove the existing place name'),
-        'edit'  : _('Edit the selected place name'),
-        'up'    : _('Move the selected place name upwards'),
-        'down'  : _('Move the selected place name downwards'),
+        "add": _("Create and add a new place name"),
+        "del": _("Remove the existing place name"),
+        "edit": _("Edit the selected place name"),
+        "up": _("Move the selected place name upwards"),
+        "down": _("Move the selected place name downwards"),
     }
 
-    #index = column in model. Value =
+    # index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Name'), 0, 250, TEXT_COL, -1, None),
-        (_('Date'), 1, 250, TEXT_COL, -1, None),
-        (_('Language'), 2, 100, TEXT_COL, -1, None),
-        ]
+        (_("Name"), 0, 250, TEXT_COL, -1, None),
+        (_("Date"), 1, 250, TEXT_COL, -1, None),
+        (_("Language"), 2, 100, TEXT_COL, -1, None),
+    ]
 
-    def __init__(self, dbstate, uistate, track, data):
+    def __init__(self, dbstate, uistate, track, data, config_key):
         self.data = data
-        EmbeddedList.__init__(self, dbstate, uistate, track,
-                              _('Alternative Names'), PlaceNameModel,
-                              move_buttons=True)
+        EmbeddedList.__init__(
+            self,
+            dbstate,
+            uistate,
+            track,
+            _("Alternative Names"),
+            PlaceNameModel,
+            config_key,
+            move_buttons=True,
+        )
 
     def get_data(self):
         return self.data
@@ -84,8 +92,10 @@ class PlaceNameEmbedList(EmbeddedList):
         pname = PlaceName()
         try:
             from .. import EditPlaceName
-            EditPlaceName(self.dbstate, self.uistate, self.track,
-                          pname, self.add_callback)
+
+            EditPlaceName(
+                self.dbstate, self.uistate, self.track, pname, self.add_callback
+            )
         except WindowActiveError:
             return
 
@@ -106,8 +116,10 @@ class PlaceNameEmbedList(EmbeddedList):
         if pname:
             try:
                 from .. import EditPlaceName
-                EditPlaceName(self.dbstate, self.uistate, self.track,
-                              pname, self.edit_callback)
+
+                EditPlaceName(
+                    self.dbstate, self.uistate, self.track, pname, self.edit_callback
+                )
             except WindowActiveError:
                 return
 

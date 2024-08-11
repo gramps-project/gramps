@@ -21,36 +21,36 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-# $Id: categorysidebar.py 20634 2012-11-07 17:53:14Z bmcage $
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 import logging
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.config import config
 from gramps.gui.basesidebar import BaseSidebar
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # ExpanderSidebar class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class ExpanderSidebar(BaseSidebar):
     """
     A sidebar displaying toggle buttons and buttons with drop-down menus that
     allows the user to change the current view.
     """
-    def __init__(self, dbstate, uistate, categories, views):
 
+    def __init__(self, dbstate, uistate, categories, views):
         self.viewmanager = uistate.viewmanager
         self.views = views
 
@@ -65,9 +65,8 @@ class ExpanderSidebar(BaseSidebar):
         self.window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.window.show()
 
-        use_text = config.get('interface.sidebar-text')
+        use_text = config.get("interface.sidebar-text")
         for cat_num, cat_name, cat_icon in categories:
-
             expander = Gtk.Expander()
             self.expanders.append(expander)
 
@@ -84,16 +83,17 @@ class ExpanderSidebar(BaseSidebar):
             viewbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
             for view_num, view_name, view_icon in views[cat_num]:
                 # create the button and add it to the sidebar
-                button = self.__make_sidebar_button(use_text, cat_num, view_num,
-                                                    view_name, view_icon)
+                button = self.__make_sidebar_button(
+                    use_text, cat_num, view_num, view_name, view_icon
+                )
 
                 viewbox.pack_start(button, False, False, 0)
             expander.add(viewbox)
             vbox.pack_start(expander, False, True, 0)
 
             # Enable view switching during DnD
-            #catbox.drag_dest_set(0, [], 0)
-            #catbox.connect('drag_motion', self.cb_switch_page_on_dnd, cat_num)
+            # catbox.drag_dest_set(0, [], 0)
+            # catbox.connect('drag_motion', self.cb_switch_page_on_dnd, cat_num)
 
         vbox.show_all()
 
@@ -179,7 +179,7 @@ class ExpanderSidebar(BaseSidebar):
         button.set_tooltip_text(view_name)
 
         # connect the signal, along with the index as user data
-        handler_id = button.connect('clicked', self.__view_clicked, cat_num, view_num)
+        handler_id = button.connect("clicked", self.__view_clicked, cat_num, view_num)
         self.button_handlers.append(handler_id)
         button.show()
 
@@ -216,21 +216,3 @@ class ExpanderSidebar(BaseSidebar):
         if self.viewmanager.notebook.get_current_page() != page_no:
             self.viewmanager.notebook.set_current_page(page_no)
         self.__handlers_unblock()
-
-def cb_menu_position(*args):
-    """
-    Determine the position of the popup menu.
-    """
-    # takes two argument: menu, button
-    if len(args) == 2:
-        menu = args[0]
-        button = args[1]
-    # broken introspection can't handle MenuPositionFunc annotations corectly
-    else:
-        menu = args[0]
-        button = args[3]
-    ret_val, x_pos, y_pos = button.get_window().get_origin()
-    x_pos += button.get_allocation().x
-    y_pos += button.get_allocation().y + button.get_allocation().height
-
-    return (x_pos, y_pos, False)

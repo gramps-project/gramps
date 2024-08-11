@@ -26,30 +26,35 @@
 Source object for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .primaryobj import PrimaryObject
+# -------------------------------------------------------------------------
+from ..const import GRAMPS_LOCALE as glocale
+from .attrbase import SrcAttributeBase
+from .citationbase import IndirectCitationBase
+from .const import DIFFERENT, EQUAL, IDENTICAL
 from .mediabase import MediaBase
 from .notebase import NoteBase
-from .tagbase import TagBase
-from .attrbase import SrcAttributeBase
+from .primaryobj import PrimaryObject
 from .reporef import RepoRef
-from .const import DIFFERENT, EQUAL, IDENTICAL
-from .citationbase import IndirectCitationBase
-from ..const import GRAMPS_LOCALE as glocale
+from .tagbase import TagBase
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# Source class
+# Source
 #
-#-------------------------------------------------------------------------
-class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
-             PrimaryObject):
-    """A record of a source of information."""
+# -------------------------------------------------------------------------
+class Source(
+    MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase, PrimaryObject
+):
+    """
+    A record of a source of information.
+    """
 
     def __init__(self):
         """Create a new Source instance."""
@@ -67,19 +72,21 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         """
         Convert the object to a serialized tuple of data.
         """
-        return (self.handle,                                       # 0
-                self.gramps_id,                                    # 1
-                str(self.title),                                  # 2
-                str(self.author),                                 # 3
-                str(self.pubinfo),                                # 4
-                NoteBase.serialize(self),                          # 5
-                MediaBase.serialize(self),                         # 6
-                str(self.abbrev),                                 # 7
-                self.change,                                       # 8
-                SrcAttributeBase.serialize(self),                  # 9
-                [rr.serialize() for rr in self.reporef_list],      # 10
-                TagBase.serialize(self),                           # 11
-                self.private)                                      # 12
+        return (
+            self.handle,  # 0
+            self.gramps_id,  # 1
+            str(self.title),  # 2
+            str(self.author),  # 3
+            str(self.pubinfo),  # 4
+            NoteBase.serialize(self),  # 5
+            MediaBase.serialize(self),  # 6
+            str(self.abbrev),  # 7
+            self.change,  # 8
+            SrcAttributeBase.serialize(self),  # 9
+            [rr.serialize() for rr in self.reporef_list],  # 10
+            TagBase.serialize(self),  # 11
+            self.private,
+        )  # 12
 
     @classmethod
     def get_schema(cls):
@@ -89,49 +96,53 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
-        from .srcattribute import SrcAttribute
-        from .reporef import RepoRef
+        # pylint: disable=import-outside-toplevel
         from .mediaref import MediaRef
+        from .srcattribute import SrcAttribute
+
         return {
             "type": "object",
             "title": _("Source"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "handle": {"type": "string",
-                           "maxLength": 50,
-                           "title": _("Handle")},
-                "gramps_id": {"type": "string",
-                              "title": _("Gramps ID")},
-                "title": {"type": "string",
-                          "title": _("Title")},
-                "author": {"type": "string",
-                           "title": _("Author")},
-                "pubinfo": {"type": "string",
-                            "title": _("Publication info")},
-                "note_list": {"type": "array",
-                              "items": {"type": "string",
-                                        "maxLength": 50},
-                              "title": _("Notes")},
-                "media_list": {"type": "array",
-                               "items": MediaRef.get_schema(),
-                               "title": _("Media")},
-                "abbrev": {"type": "string",
-                           "title": _("Abbreviation")},
-                "change": {"type": "integer",
-                           "title": _("Last changed")},
-                "attribute_list": {"type": "array",
-                                   "items": SrcAttribute.get_schema(),
-                                   "title": _("Source Attributes")},
-                "reporef_list": {"type": "array",
-                                 "items": RepoRef.get_schema(),
-                                 "title": _("Repositories")},
-                "tag_list": {"type": "array",
-                             "items": {"type": "string",
-                                       "maxLength": 50},
-                             "title": _("Tags")},
-                "private": {"type": "boolean",
-                            "title": _("Private")}
-            }
+                "handle": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "title": _("Handle"),
+                },
+                "gramps_id": {"type": "string", "title": _("Gramps ID")},
+                "title": {"type": "string", "title": _("Title")},
+                "author": {"type": "string", "title": _("Author")},
+                "pubinfo": {"type": "string", "title": _("Publication info")},
+                "note_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Notes"),
+                },
+                "media_list": {
+                    "type": "array",
+                    "items": MediaRef.get_schema(),
+                    "title": _("Media"),
+                },
+                "abbrev": {"type": "string", "title": _("Abbreviation")},
+                "change": {"type": "integer", "title": _("Last changed")},
+                "attribute_list": {
+                    "type": "array",
+                    "items": SrcAttribute.get_schema(),
+                    "title": _("Source Attributes"),
+                },
+                "reporef_list": {
+                    "type": "array",
+                    "items": RepoRef.get_schema(),
+                    "title": _("Repositories"),
+                },
+                "tag_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Tags"),
+                },
+                "private": {"type": "boolean", "title": _("Private")},
+            },
         }
 
     def unserialize(self, data):
@@ -139,19 +150,20 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         Convert the data held in a tuple created by the serialize method
         back into the data in a Source structure.
         """
-        (self.handle,       #  0
-         self.gramps_id,    #  1
-         self.title,        #  2
-         self.author,       #  3
-         self.pubinfo,      #  4
-         note_list,         #  5
-         media_list,        #  6
-         self.abbrev,       #  7
-         self.change,       #  8
-         srcattr_list,      #  9
-         reporef_list,      #  10
-         tag_list,          #  11
-         self.private       #  12
+        (
+            self.handle,  #  0
+            self.gramps_id,  #  1
+            self.title,  #  2
+            self.author,  #  3
+            self.pubinfo,  #  4
+            note_list,  #  5
+            media_list,  #  6
+            self.abbrev,  #  7
+            self.change,  #  8
+            srcattr_list,  #  9
+            reporef_list,  #  10
+            tag_list,  #  11
+            self.private,  #  12
         ) = data
 
         NoteBase.unserialize(self, note_list)
@@ -174,7 +186,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
                   this object type.
         :rtype: bool
         """
-        if classname == 'Repository':
+        if classname == "Repository":
             return handle in [ref.ref for ref in self.reporef_list]
         return False
 
@@ -187,9 +199,8 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         :param handle_list: The list of handles to be removed.
         :type handle_list: str
         """
-        if classname == 'Repository':
-            new_list = [ref for ref in self.reporef_list
-                        if ref.ref not in handle_list]
+        if classname == "Repository":
+            new_list = [ref for ref in self.reporef_list if ref.ref not in handle_list]
             self.reporef_list = new_list
 
     def _replace_handle_reference(self, classname, old_handle, new_handle):
@@ -203,12 +214,12 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         :param new_handle: The handle to replace the old one with.
         :type new_handle: str
         """
-        if classname == 'Repository':
+        if classname == "Repository":
             handle_list = [ref.ref for ref in self.reporef_list]
             while old_handle in handle_list:
                 idx = handle_list.index(old_handle)
                 self.reporef_list[idx].ref = new_handle
-                handle_list[idx] = ''
+                handle_list[idx] = ""
 
     def get_text_data_list(self):
         """
@@ -217,8 +228,13 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         :returns: Returns the list of all textual attributes of the object.
         :rtype: list
         """
-        return [self.title, self.author, self.pubinfo, self.abbrev,
-                self.gramps_id]
+        return [
+            self.title,
+            self.author,
+            self.pubinfo,
+            self.abbrev,
+            self.gramps_id,
+        ]
 
     def get_text_data_child_list(self):
         """
@@ -267,8 +283,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        return (self.get_referenced_note_handles() +
-                self.get_referenced_tag_handles())
+        return self.get_referenced_note_handles() + self.get_referenced_tag_handles()
 
     def merge(self, acquisition):
         """
@@ -373,7 +388,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
                 equi = reporef.is_equivalent(addendum)
                 if equi == IDENTICAL:
                     break
-                elif equi == EQUAL:
+                if equi == EQUAL:
                     reporef.merge(addendum)
                     break
             else:
@@ -398,8 +413,11 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         :param repo_handle_list: The list of Repository handles to be removed.
         :type repo_handle_list: list
         """
-        new_reporef_list = [repo_ref for repo_ref in self.reporef_list
-                            if repo_ref.ref not in repo_handle_list]
+        new_reporef_list = [
+            repo_ref
+            for repo_ref in self.reporef_list
+            if repo_ref.ref not in repo_handle_list
+        ]
         self.reporef_list = new_reporef_list
 
     def replace_repo_references(self, old_handle, new_handle):
@@ -417,7 +435,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         if new_handle in refs_list:
             new_ref = self.reporef_list[refs_list.index(new_handle)]
         n_replace = refs_list.count(old_handle)
-        for ix_replace in range(n_replace):
+        for _ in range(n_replace):
             idx = refs_list.index(old_handle)
             self.reporef_list[idx].ref = new_handle
             refs_list[idx] = new_handle

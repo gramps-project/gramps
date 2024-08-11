@@ -24,32 +24,44 @@
 Person list View
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.plugins.lib.libpersonview import BasePersonView
 from gramps.gui.views.treemodels.peoplemodel import PersonListModel
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Internationalization
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# PlaceTreeView
+# PersonListView
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class PersonListView(BasePersonView):
     """
     A hierarchical view of the top three levels of places.
     """
+
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
-        BasePersonView.__init__(self, pdata, dbstate, uistate,
-                               _('Person View'), PersonListModel,
-                               nav_group=nav_group)
+        BasePersonView.__init__(
+            self,
+            pdata,
+            dbstate,
+            uistate,
+            _("Person View"),
+            PersonListModel,
+            nav_group=nav_group,
+        )
+
+    def get_config_name(self):
+        return __name__

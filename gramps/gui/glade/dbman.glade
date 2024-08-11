@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.20.0 -->
+<!-- Generated with glade 3.40.0 -->
 <interface>
-  <requires lib="gtk+" version="3.10"/>
+  <requires lib="gtk+" version="3.24"/>
   <object class="GtkDialog" id="comment">
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <property name="title" translatable="yes">Revision comment - Gramps</property>
     <property name="modal">True</property>
-    <property name="window_position">center-on-parent</property>
-    <property name="default_width">450</property>
-    <property name="type_hint">dialog</property>
+    <property name="window-position">center-on-parent</property>
+    <property name="default-width">450</property>
+    <property name="type-hint">dialog</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox27">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="dialog-action_area26">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="okbutton3">
                 <property name="label" translatable="yes">_OK</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">False</property>
-                <property name="use_underline">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">False</property>
+                <property name="use-underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -39,21 +39,22 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="pack_type">end</property>
+            <property name="pack-type">end</property>
             <property name="position">0</property>
           </packing>
         </child>
         <child>
+          <!-- n-columns=3 n-rows=3 -->
           <object class="GtkGrid" id="table80">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="border_width">6</property>
-            <property name="row_spacing">6</property>
-            <property name="column_spacing">6</property>
+            <property name="can-focus">False</property>
+            <property name="border-width">6</property>
+            <property name="row-spacing">6</property>
+            <property name="column-spacing">6</property>
             <child>
               <object class="GtkLabel" id="label714">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="halign">start</property>
                 <property name="label" translatable="yes">Version description</property>
                 <attributes>
@@ -61,22 +62,37 @@
                 </attributes>
               </object>
               <packing>
-                <property name="left_attach">1</property>
-                <property name="top_attach">0</property>
+                <property name="left-attach">1</property>
+                <property name="top-attach">0</property>
               </packing>
             </child>
             <child>
               <object class="GtkEntry" id="description">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
+                <property name="can-focus">True</property>
                 <property name="hexpand">True</property>
-                <property name="invisible_char">●</property>
-                <property name="activates_default">True</property>
+                <property name="invisible-char">●</property>
+                <property name="activates-default">True</property>
               </object>
               <packing>
-                <property name="left_attach">1</property>
-                <property name="top_attach">1</property>
+                <property name="left-attach">1</property>
+                <property name="top-attach">1</property>
               </packing>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
             </child>
             <child>
               <placeholder/>
@@ -98,30 +114,30 @@
     </action-widgets>
   </object>
   <object class="GtkDialog" id="dbmanager">
-    <property name="can_focus">False</property>
-    <property name="border_width">6</property>
+    <property name="can-focus">False</property>
+    <property name="border-width">6</property>
     <property name="title" translatable="yes">Family Trees - Gramps</property>
-    <property name="type_hint">dialog</property>
+    <property name="type-hint">dialog</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox26">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="dialog-action_area25">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="margin_top">6</property>
-            <property name="layout_style">end</property>
+            <property name="can-focus">False</property>
+            <property name="margin-top">6</property>
+            <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="cancel_btn">
                 <property name="label" translatable="yes">_Close Window</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">False</property>
-                <property name="use_underline">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">False</property>
+                <property name="use-underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -132,12 +148,12 @@
             <child>
               <object class="GtkButton" id="connect_btn">
                 <property name="label" translatable="yes">_Load Family Tree</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">False</property>
-                <property name="use_underline">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">False</property>
+                <property name="use-underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -148,12 +164,12 @@
             <child>
               <object class="GtkButton" id="help_btn">
                 <property name="label" translatable="yes">_Help</property>
-                <property name="use_action_appearance">False</property>
+                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">False</property>
-                <property name="use_underline">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="receives-default">False</property>
+                <property name="use-underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -166,34 +182,26 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="pack_type">end</property>
+            <property name="pack-type">end</property>
             <property name="position">0</property>
           </packing>
         </child>
         <child>
           <object class="GtkBox" id="hbox138">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <child>
               <object class="GtkBox" id="vbox133">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkScrolledWindow" id="scrolledwindow88">
+                  <object class="GtkScrolledWindow" id="scrolledwindow">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="shadow_type">in</property>
+                    <property name="can-focus">True</property>
+                    <property name="shadow-type">in</property>
                     <child>
-                      <object class="GtkTreeView" id="dblist">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="hexpand">True</property>
-                        <property name="vexpand">True</property>
-                        <child internal-child="selection">
-                          <object class="GtkTreeSelection" id="treeview-selection1"/>
-                        </child>
-                      </object>
+                      <placeholder/>
                     </child>
                   </object>
                   <packing>
@@ -205,7 +213,7 @@
                 <child>
                   <object class="GtkLabel" id="msg">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="justify">center</property>
                   </object>
                   <packing>
@@ -225,20 +233,20 @@
             <child>
               <object class="GtkButtonBox" id="vbuttonbox2">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_left">12</property>
+                <property name="can-focus">False</property>
+                <property name="margin-left">12</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">6</property>
-                <property name="layout_style">start</property>
+                <property name="layout-style">start</property>
                 <child>
                   <object class="GtkButton" id="new_btn">
                     <property name="label" translatable="yes">_New</property>
-                    <property name="use_action_appearance">False</property>
+                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="can_default">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="use_underline">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="can-default">True</property>
+                    <property name="receives-default">False</property>
+                    <property name="use-underline">True</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -250,10 +258,10 @@
                   <object class="GtkButton" id="info_btn">
                     <property name="label" translatable="yes">_Info</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="can_default">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="use_underline">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="can-default">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="use-underline">True</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -264,12 +272,12 @@
                 <child>
                   <object class="GtkButton" id="remove_btn">
                     <property name="label" translatable="yes">_Delete</property>
-                    <property name="use_action_appearance">False</property>
+                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="can_default">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="use_underline">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="can-default">True</property>
+                    <property name="receives-default">False</property>
+                    <property name="use-underline">True</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -280,12 +288,12 @@
                 <child>
                   <object class="GtkButton" id="rename_btn">
                     <property name="label" translatable="yes">_Rename</property>
-                    <property name="use_action_appearance">False</property>
+                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="can_default">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="use_underline">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="can-default">True</property>
+                    <property name="receives-default">False</property>
+                    <property name="use-underline">True</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -296,12 +304,12 @@
                 <child>
                   <object class="GtkButton" id="close_btn">
                     <property name="label" translatable="yes">Close</property>
-                    <property name="use_action_appearance">False</property>
+                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="can_default">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="use_underline">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="can-default">True</property>
+                    <property name="receives-default">False</property>
+                    <property name="use-underline">True</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -312,12 +320,12 @@
                 <child>
                   <object class="GtkButton" id="convert_btn">
                     <property name="label" translatable="yes">Con_vert</property>
-                    <property name="use_action_appearance">False</property>
+                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="can_default">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="use_underline">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="can-default">True</property>
+                    <property name="receives-default">False</property>
+                    <property name="use-underline">True</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -328,12 +336,12 @@
                 <child>
                   <object class="GtkButton" id="repair_btn">
                     <property name="label" translatable="yes">Re_pair</property>
-                    <property name="use_action_appearance">False</property>
+                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="can_default">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="use_underline">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="can-default">True</property>
+                    <property name="receives-default">False</property>
+                    <property name="use-underline">True</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -344,12 +352,12 @@
                 <child>
                   <object class="GtkButton" id="rcs_btn">
                     <property name="label" translatable="yes">_Archive</property>
-                    <property name="use_action_appearance">False</property>
+                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="can_default">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="use_underline">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="can-default">True</property>
+                    <property name="receives-default">False</property>
+                    <property name="use-underline">True</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>

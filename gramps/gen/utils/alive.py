@@ -25,57 +25,63 @@ A utility to make a best guess if a person is alive.  This is used to provide
 privacy in reports and exports.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 LOG = logging.getLogger(".gen.utils.alive")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ..display.name import displayer as name_displayer
 from ..lib.date import Date, Today
 from ..errors import DatabaseError
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants from config .ini keys
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 # cache values; use refresh_constants() if they change
 try:
     from ..config import config
-    _MAX_AGE_PROB_ALIVE = config.get('behavior.max-age-prob-alive')
-    _MAX_SIB_AGE_DIFF = config.get('behavior.max-sib-age-diff')
-    _AVG_GENERATION_GAP = config.get('behavior.avg-generation-gap')
+
+    _MAX_AGE_PROB_ALIVE = config.get("behavior.max-age-prob-alive")
+    _MAX_SIB_AGE_DIFF = config.get("behavior.max-sib-age-diff")
+    _AVG_GENERATION_GAP = config.get("behavior.avg-generation-gap")
 except ImportError:
     # Utils used as module not part of GRAMPS
     _MAX_AGE_PROB_ALIVE = 110
     _MAX_SIB_AGE_DIFF = 20
     _AVG_GENERATION_GAP = 20
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # ProbablyAlive class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class ProbablyAlive:
     """
     An object to hold the parameters for considering someone alive.
     """
 
-    def __init__(self,
-                 db,
-                 max_sib_age_diff=None,
-                 max_age_prob_alive=None,
-                 avg_generation_gap=None):
+    def __init__(
+        self,
+        db,
+        max_sib_age_diff=None,
+        max_age_prob_alive=None,
+        avg_generation_gap=None,
+    ):
         self.db = db
         if max_sib_age_diff is None:
             max_sib_age_diff = _MAX_SIB_AGE_DIFF
@@ -119,7 +125,7 @@ class ProbablyAlive:
                     if ev and ev.type.is_death_fallback():
                         death_date = ev.get_date_object()
                         if not death_date.is_valid():
-                            death_date = Today() # before today
+                            death_date = Today()  # before today
                             death_date.set_modifier(Date.MOD_BEFORE)
 
         # If they were born within X years before current year then
@@ -152,7 +158,7 @@ class ProbablyAlive:
             explain = _("birth date")
 
         if death_date and birth_date:
-            return (birth_date, death_date, explain, person) # direct self evidence
+            return (birth_date, death_date, explain, person)  # direct self evidence
 
         # Neither birth nor death events are available. Try looking
         # at siblings. If a sibling was born more than X years past,
@@ -180,10 +186,16 @@ class ProbablyAlive:
                             year = dobj.get_year()
                             if year != 0:
                                 # sibling birth date
-                                return (Date().copy_ymd(year - self.MAX_SIB_AGE_DIFF),
-                                        Date().copy_ymd(year - self.MAX_SIB_AGE_DIFF + self.MAX_AGE_PROB_ALIVE),
-                                        _("sibling birth date"),
-                                        child)
+                                return (
+                                    Date().copy_ymd(year - self.MAX_SIB_AGE_DIFF),
+                                    Date().copy_ymd(
+                                        year
+                                        - self.MAX_SIB_AGE_DIFF
+                                        + self.MAX_AGE_PROB_ALIVE
+                                    ),
+                                    _("sibling birth date"),
+                                    child,
+                                )
                     elif ev and ev.type.is_death():
                         dobj = ev.get_date_object()
                         if dobj.get_start_date() != Date.EMPTY:
@@ -191,11 +203,21 @@ class ProbablyAlive:
                             year = dobj.get_year()
                             if year != 0:
                                 # sibling death date
-                                return (Date().copy_ymd(year - self.MAX_SIB_AGE_DIFF - self.MAX_AGE_PROB_ALIVE),
-                                        Date().copy_ymd(year - self.MAX_SIB_AGE_DIFF - self.MAX_AGE_PROB_ALIVE
-                                                                + self.MAX_AGE_PROB_ALIVE),
-                                        _("sibling death date"),
-                                        child)
+                                return (
+                                    Date().copy_ymd(
+                                        year
+                                        - self.MAX_SIB_AGE_DIFF
+                                        - self.MAX_AGE_PROB_ALIVE
+                                    ),
+                                    Date().copy_ymd(
+                                        year
+                                        - self.MAX_SIB_AGE_DIFF
+                                        - self.MAX_AGE_PROB_ALIVE
+                                        + self.MAX_AGE_PROB_ALIVE
+                                    ),
+                                    _("sibling death date"),
+                                    child,
+                                )
                 # Go through again looking for fallback:
                 for ev_ref in child.get_primary_event_ref_list():
                     ev = self.db.get_event_from_handle(ev_ref.ref)
@@ -206,10 +228,16 @@ class ProbablyAlive:
                             year = dobj.get_year()
                             if year != 0:
                                 # sibling birth date
-                                return (Date().copy_ymd(year - self.MAX_SIB_AGE_DIFF),
-                                        Date().copy_ymd(year - self.MAX_SIB_AGE_DIFF + self.MAX_AGE_PROB_ALIVE),
-                                        _("sibling birth-related date"),
-                                        child)
+                                return (
+                                    Date().copy_ymd(year - self.MAX_SIB_AGE_DIFF),
+                                    Date().copy_ymd(
+                                        year
+                                        - self.MAX_SIB_AGE_DIFF
+                                        + self.MAX_AGE_PROB_ALIVE
+                                    ),
+                                    _("sibling birth-related date"),
+                                    child,
+                                )
                     elif ev and ev.type.is_death_fallback():
                         dobj = ev.get_date_object()
                         if dobj.get_start_date() != Date.EMPTY:
@@ -217,12 +245,23 @@ class ProbablyAlive:
                             year = dobj.get_year()
                             if year != 0:
                                 # sibling death date
-                                return (Date().copy_ymd(year - self.MAX_SIB_AGE_DIFF - self.MAX_AGE_PROB_ALIVE),
-                                        Date().copy_ymd(year - self.MAX_SIB_AGE_DIFF - self.MAX_AGE_PROB_ALIVE + self.MAX_AGE_PROB_ALIVE),
-                                        _("sibling death-related date"),
-                                        child)
+                                return (
+                                    Date().copy_ymd(
+                                        year
+                                        - self.MAX_SIB_AGE_DIFF
+                                        - self.MAX_AGE_PROB_ALIVE
+                                    ),
+                                    Date().copy_ymd(
+                                        year
+                                        - self.MAX_SIB_AGE_DIFF
+                                        - self.MAX_AGE_PROB_ALIVE
+                                        + self.MAX_AGE_PROB_ALIVE
+                                    ),
+                                    _("sibling death-related date"),
+                                    child,
+                                )
 
-        if not is_spouse: # if you are not in recursion, let's recurse:
+        if not is_spouse:  # if you are not in recursion, let's recurse:
             for family_handle in person.get_family_handle_list():
                 family = self.db.get_family_from_handle(family_handle)
                 if family:
@@ -230,26 +269,66 @@ class ProbablyAlive:
                     father_handle = family.get_father_handle()
                     if mother_handle == person.handle and father_handle:
                         father = self.db.get_person_from_handle(father_handle)
-                        date1, date2, explain, other = self.probably_alive_range(father, is_spouse=True)
+                        date1, date2, explain, other = self.probably_alive_range(
+                            father, is_spouse=True
+                        )
                         if date1 and date1.get_year() != 0:
-                            return (Date().copy_ymd(date1.get_year() - self.AVG_GENERATION_GAP),
-                                    Date().copy_ymd(date1.get_year() - self.AVG_GENERATION_GAP + self.MAX_AGE_PROB_ALIVE),
-                                    _("a spouse's birth-related date, ") + explain, other)
+                            return (
+                                Date().copy_ymd(
+                                    date1.get_year() - self.AVG_GENERATION_GAP
+                                ),
+                                Date().copy_ymd(
+                                    date1.get_year()
+                                    - self.AVG_GENERATION_GAP
+                                    + self.MAX_AGE_PROB_ALIVE
+                                ),
+                                _("a spouse's birth-related date, ") + explain,
+                                other,
+                            )
                         elif date2 and date2.get_year() != 0:
-                            return (Date().copy_ymd(date2.get_year() + self.AVG_GENERATION_GAP - self.MAX_AGE_PROB_ALIVE),
-                                    Date().copy_ymd(date2.get_year() + self.AVG_GENERATION_GAP),
-                                    _("a spouse's death-related date, ") + explain, other)
+                            return (
+                                Date().copy_ymd(
+                                    date2.get_year()
+                                    + self.AVG_GENERATION_GAP
+                                    - self.MAX_AGE_PROB_ALIVE
+                                ),
+                                Date().copy_ymd(
+                                    date2.get_year() + self.AVG_GENERATION_GAP
+                                ),
+                                _("a spouse's death-related date, ") + explain,
+                                other,
+                            )
                     elif father_handle == person.handle and mother_handle:
                         mother = self.db.get_person_from_handle(mother_handle)
-                        date1, date2, explain, other = self.probably_alive_range(mother, is_spouse=True)
+                        date1, date2, explain, other = self.probably_alive_range(
+                            mother, is_spouse=True
+                        )
                         if date1 and date1.get_year() != 0:
-                            return (Date().copy_ymd(date1.get_year() - self.AVG_GENERATION_GAP),
-                                    Date().copy_ymd(date1.get_year() - self.AVG_GENERATION_GAP + self.MAX_AGE_PROB_ALIVE),
-                                    _("a spouse's birth-related date, ") + explain, other)
+                            return (
+                                Date().copy_ymd(
+                                    date1.get_year() - self.AVG_GENERATION_GAP
+                                ),
+                                Date().copy_ymd(
+                                    date1.get_year()
+                                    - self.AVG_GENERATION_GAP
+                                    + self.MAX_AGE_PROB_ALIVE
+                                ),
+                                _("a spouse's birth-related date, ") + explain,
+                                other,
+                            )
                         elif date2 and date2.get_year() != 0:
-                            return (Date().copy_ymd(date2.get_year() + self.AVG_GENERATION_GAP - self.MAX_AGE_PROB_ALIVE),
-                                    Date().copy_ymd(date2.get_year() + self.AVG_GENERATION_GAP),
-                                    _("a spouse's death-related date, ") + explain, other)
+                            return (
+                                Date().copy_ymd(
+                                    date2.get_year()
+                                    + self.AVG_GENERATION_GAP
+                                    - self.MAX_AGE_PROB_ALIVE
+                                ),
+                                Date().copy_ymd(
+                                    date2.get_year() + self.AVG_GENERATION_GAP
+                                ),
+                                _("a spouse's death-related date, ") + explain,
+                                other,
+                            )
                     # Let's check the family events and see if we find something
                     for ref in family.get_event_ref_list():
                         if ref:
@@ -260,19 +339,30 @@ class ProbablyAlive:
                                 if year != 0:
                                     other = None
                                     if person.handle == mother_handle and father_handle:
-                                        other = self.db.get_person_from_handle(father_handle)
-                                    elif person.handle == father_handle and mother_handle:
-                                        other = self.db.get_person_from_handle(mother_handle)
-                                    return (Date().copy_ymd(year - self.AVG_GENERATION_GAP),
-                                            Date().copy_ymd(year - self.AVG_GENERATION_GAP +
-                                                                    self.MAX_AGE_PROB_ALIVE),
-
-                                            _("event with spouse"), other)
+                                        other = self.db.get_person_from_handle(
+                                            father_handle
+                                        )
+                                    elif (
+                                        person.handle == father_handle and mother_handle
+                                    ):
+                                        other = self.db.get_person_from_handle(
+                                            mother_handle
+                                        )
+                                    return (
+                                        Date().copy_ymd(year - self.AVG_GENERATION_GAP),
+                                        Date().copy_ymd(
+                                            year
+                                            - self.AVG_GENERATION_GAP
+                                            + self.MAX_AGE_PROB_ALIVE
+                                        ),
+                                        _("event with spouse"),
+                                        other,
+                                    )
 
         # Try looking for descendants that were born more than a lifespan
         # ago.
 
-        def descendants_too_old (person, years):
+        def descendants_too_old(person, years):
             if person.handle in self.pset:
                 return (None, None, "", None)
             self.pset.add(person.handle)
@@ -293,19 +383,28 @@ class ProbablyAlive:
                             val = d.get_start_date()
                             val = d.get_year() - years
                             d.set_year(val)
-                            return (d, d.copy_offset_ymd(self.MAX_AGE_PROB_ALIVE),
-                                    _("descendant birth date"),
-                                    child)
+                            return (
+                                d,
+                                d.copy_offset_ymd(self.MAX_AGE_PROB_ALIVE),
+                                _("descendant birth date"),
+                                child,
+                            )
                     child_death_ref = child.get_death_ref()
                     if child_death_ref:
                         child_death = self.db.get_event_from_handle(child_death_ref.ref)
                         dobj = child_death.get_date_object()
                         if dobj.get_start_date() != Date.EMPTY:
-                            return (dobj.copy_offset_ymd(- self.AVG_GENERATION_GAP),
-                                    dobj.copy_offset_ymd(- self.AVG_GENERATION_GAP + self.MAX_AGE_PROB_ALIVE),
-                                    _("descendant death date"),
-                                    child)
-                    date1, date2, explain, other = descendants_too_old (child, years + self.AVG_GENERATION_GAP)
+                            return (
+                                dobj.copy_offset_ymd(-self.AVG_GENERATION_GAP),
+                                dobj.copy_offset_ymd(
+                                    -self.AVG_GENERATION_GAP + self.MAX_AGE_PROB_ALIVE
+                                ),
+                                _("descendant death date"),
+                                child,
+                            )
+                    date1, date2, explain, other = descendants_too_old(
+                        child, years + self.AVG_GENERATION_GAP
+                    )
                     if date1 and date2:
                         return date1, date2, explain, other
                     # Check fallback data:
@@ -318,17 +417,25 @@ class ProbablyAlive:
                                 val = d.get_start_date()
                                 val = d.get_year() - years
                                 d.set_year(val)
-                                return (d, d.copy_offset_ymd(self.MAX_AGE_PROB_ALIVE),
-                                        _("descendant birth-related date"),
-                                        child)
+                                return (
+                                    d,
+                                    d.copy_offset_ymd(self.MAX_AGE_PROB_ALIVE),
+                                    _("descendant birth-related date"),
+                                    child,
+                                )
 
                         elif ev and ev.type.is_death_fallback():
                             dobj = ev.get_date_object()
                             if dobj.get_start_date() != Date.EMPTY:
-                                return (dobj.copy_offset_ymd(- self.AVG_GENERATION_GAP),
-                                        dobj.copy_offset_ymd(- self.AVG_GENERATION_GAP + self.MAX_AGE_PROB_ALIVE),
-                                        _("descendant death-related date"),
-                                        child)
+                                return (
+                                    dobj.copy_offset_ymd(-self.AVG_GENERATION_GAP),
+                                    dobj.copy_offset_ymd(
+                                        -self.AVG_GENERATION_GAP
+                                        + self.MAX_AGE_PROB_ALIVE
+                                    ),
+                                    _("descendant death-related date"),
+                                    child,
+                                )
 
             return (None, None, "", None)
 
@@ -337,11 +444,14 @@ class ProbablyAlive:
 
         date1, date2, explain, other = None, None, "", None
         try:
-            date1, date2, explain, other = descendants_too_old(person, self.AVG_GENERATION_GAP)
+            date1, date2, explain, other = descendants_too_old(
+                person, self.AVG_GENERATION_GAP
+            )
         except RuntimeError:
             raise DatabaseError(
-                _("Database error: loop in %s's descendants") %
-                name_displayer.display(person))
+                _("Database error: loop in %s's descendants")
+                % name_displayer.display(person)
+            )
 
         if date1 and date2:
             return (date1, date2, explain, other)
@@ -350,8 +460,11 @@ class ProbablyAlive:
             if person.handle in self.pset:
                 return (None, None, "", None)
             self.pset.add(person.handle)
-            LOG.debug("ancestors_too_old('%s', %s)".format(
-                name_displayer.display(person), year) )
+            LOG.debug(
+                "ancestors_too_old('%s', %s)".format(
+                    name_displayer.display(person), year
+                )
+            )
             family_handle = person.get_main_parents_family_handle()
             if family_handle:
                 family = self.db.get_family_from_handle(family_handle)
@@ -364,23 +477,33 @@ class ProbablyAlive:
                     father_birth_ref = father.get_birth_ref()
                     if father_birth_ref and father_birth_ref.get_role().is_primary():
                         father_birth = self.db.get_event_from_handle(
-                            father_birth_ref.ref)
+                            father_birth_ref.ref
+                        )
                         dobj = father_birth.get_date_object()
                         if dobj.get_start_date() != Date.EMPTY:
-                            return (dobj.copy_offset_ymd(- year),
-                                    dobj.copy_offset_ymd(- year + self.MAX_AGE_PROB_ALIVE),
-                                    _("ancestor birth date"),
-                                    father)
+                            return (
+                                dobj.copy_offset_ymd(-year),
+                                dobj.copy_offset_ymd(-year + self.MAX_AGE_PROB_ALIVE),
+                                _("ancestor birth date"),
+                                father,
+                            )
                     father_death_ref = father.get_death_ref()
                     if father_death_ref and father_death_ref.get_role().is_primary():
                         father_death = self.db.get_event_from_handle(
-                            father_death_ref.ref)
+                            father_death_ref.ref
+                        )
                         dobj = father_death.get_date_object()
                         if dobj.get_start_date() != Date.EMPTY:
-                            return (dobj.copy_offset_ymd(- year - self.MAX_AGE_PROB_ALIVE),
-                                    dobj.copy_offset_ymd(- year - self.MAX_AGE_PROB_ALIVE + self.MAX_AGE_PROB_ALIVE),
-                                    _("ancestor death date"),
-                                    father)
+                            return (
+                                dobj.copy_offset_ymd(-year - self.MAX_AGE_PROB_ALIVE),
+                                dobj.copy_offset_ymd(
+                                    -year
+                                    - self.MAX_AGE_PROB_ALIVE
+                                    + self.MAX_AGE_PROB_ALIVE
+                                ),
+                                _("ancestor death date"),
+                                father,
+                            )
 
                     # Check fallback data:
                     for ev_ref in father.get_primary_event_ref_list():
@@ -388,20 +511,34 @@ class ProbablyAlive:
                         if ev and ev.type.is_birth_fallback():
                             dobj = ev.get_date_object()
                             if dobj.get_start_date() != Date.EMPTY:
-                                return (dobj.copy_offset_ymd(- year),
-                                        dobj.copy_offset_ymd(- year + self.MAX_AGE_PROB_ALIVE),
-                                        _("ancestor birth-related date"),
-                                        father)
+                                return (
+                                    dobj.copy_offset_ymd(-year),
+                                    dobj.copy_offset_ymd(
+                                        -year + self.MAX_AGE_PROB_ALIVE
+                                    ),
+                                    _("ancestor birth-related date"),
+                                    father,
+                                )
 
                         elif ev and ev.type.is_death_fallback():
                             dobj = ev.get_date_object()
                             if dobj.get_start_date() != Date.EMPTY:
-                                return (dobj.copy_offset_ymd(- year - self.MAX_AGE_PROB_ALIVE),
-                                        dobj.copy_offset_ymd(- year - self.MAX_AGE_PROB_ALIVE + self.MAX_AGE_PROB_ALIVE),
-                                        _("ancestor death-related date"),
-                                        father)
+                                return (
+                                    dobj.copy_offset_ymd(
+                                        -year - self.MAX_AGE_PROB_ALIVE
+                                    ),
+                                    dobj.copy_offset_ymd(
+                                        -year
+                                        - self.MAX_AGE_PROB_ALIVE
+                                        + self.MAX_AGE_PROB_ALIVE
+                                    ),
+                                    _("ancestor death-related date"),
+                                    father,
+                                )
 
-                    date1, date2, explain, other = ancestors_too_old (father, year - self.AVG_GENERATION_GAP)
+                    date1, date2, explain, other = ancestors_too_old(
+                        father, year - self.AVG_GENERATION_GAP
+                    )
                     if date1 and date2:
                         return date1, date2, explain, other
 
@@ -410,23 +547,34 @@ class ProbablyAlive:
                     mother = self.db.get_person_from_handle(mother_handle)
                     mother_birth_ref = mother.get_birth_ref()
                     if mother_birth_ref and mother_birth_ref.get_role().is_primary():
-                        mother_birth = self.db.get_event_from_handle(mother_birth_ref.ref)
+                        mother_birth = self.db.get_event_from_handle(
+                            mother_birth_ref.ref
+                        )
                         dobj = mother_birth.get_date_object()
                         if dobj.get_start_date() != Date.EMPTY:
-                            return (dobj.copy_offset_ymd(- year),
-                                    dobj.copy_offset_ymd(- year + self.MAX_AGE_PROB_ALIVE),
-                                    _("ancestor birth date"),
-                                    mother)
+                            return (
+                                dobj.copy_offset_ymd(-year),
+                                dobj.copy_offset_ymd(-year + self.MAX_AGE_PROB_ALIVE),
+                                _("ancestor birth date"),
+                                mother,
+                            )
                     mother_death_ref = mother.get_death_ref()
                     if mother_death_ref and mother_death_ref.get_role().is_primary():
                         mother_death = self.db.get_event_from_handle(
-                            mother_death_ref.ref)
+                            mother_death_ref.ref
+                        )
                         dobj = mother_death.get_date_object()
                         if dobj.get_start_date() != Date.EMPTY:
-                            return (dobj.copy_offset_ymd(- year - self.MAX_AGE_PROB_ALIVE),
-                                    dobj.copy_offset_ymd(- year - self.MAX_AGE_PROB_ALIVE + self.MAX_AGE_PROB_ALIVE),
-                                    _("ancestor death date"),
-                                    mother)
+                            return (
+                                dobj.copy_offset_ymd(-year - self.MAX_AGE_PROB_ALIVE),
+                                dobj.copy_offset_ymd(
+                                    -year
+                                    - self.MAX_AGE_PROB_ALIVE
+                                    + self.MAX_AGE_PROB_ALIVE
+                                ),
+                                _("ancestor death date"),
+                                mother,
+                            )
 
                     # Check fallback data:
                     for ev_ref in mother.get_primary_event_ref_list():
@@ -434,20 +582,34 @@ class ProbablyAlive:
                         if ev and ev.type.is_birth_fallback():
                             dobj = ev.get_date_object()
                             if dobj.get_start_date() != Date.EMPTY:
-                                return (dobj.copy_offset_ymd(- year),
-                                        dobj.copy_offset_ymd(- year + self.MAX_AGE_PROB_ALIVE),
-                                        _("ancestor birth-related date"),
-                                        mother)
+                                return (
+                                    dobj.copy_offset_ymd(-year),
+                                    dobj.copy_offset_ymd(
+                                        -year + self.MAX_AGE_PROB_ALIVE
+                                    ),
+                                    _("ancestor birth-related date"),
+                                    mother,
+                                )
 
                         elif ev and ev.type.is_death_fallback():
                             dobj = ev.get_date_object()
                             if dobj.get_start_date() != Date.EMPTY:
-                                return (dobj.copy_offset_ymd(- year - self.MAX_AGE_PROB_ALIVE),
-                                        dobj.copy_offset_ymd(- year - self.MAX_AGE_PROB_ALIVE + self.MAX_AGE_PROB_ALIVE),
-                                        _("ancestor death-related date"),
-                                        mother)
+                                return (
+                                    dobj.copy_offset_ymd(
+                                        -year - self.MAX_AGE_PROB_ALIVE
+                                    ),
+                                    dobj.copy_offset_ymd(
+                                        -year
+                                        - self.MAX_AGE_PROB_ALIVE
+                                        + self.MAX_AGE_PROB_ALIVE
+                                    ),
+                                    _("ancestor death-related date"),
+                                    mother,
+                                )
 
-                    date1, date2, explain, other = ancestors_too_old (mother, year - self.AVG_GENERATION_GAP)
+                    date1, date2, explain, other = ancestors_too_old(
+                        mother, year - self.AVG_GENERATION_GAP
+                    )
                     if date1 and date2:
                         return (date1, date2, explain, other)
 
@@ -456,11 +618,14 @@ class ProbablyAlive:
         try:
             # If there are ancestors that would be too old in the current year
             # then assume our person must be dead too.
-            date1, date2, explain, other = ancestors_too_old (person, - self.AVG_GENERATION_GAP)
+            date1, date2, explain, other = ancestors_too_old(
+                person, -self.AVG_GENERATION_GAP
+            )
         except RuntimeError:
             raise DatabaseError(
-                _("Database error: loop in %s's ancestors") %
-                name_displayer.display(person))
+                _("Database error: loop in %s's ancestors")
+                % name_displayer.display(person)
+            )
         if date1 and date2:
             return (date1, date2, explain, other)
 
@@ -469,18 +634,22 @@ class ProbablyAlive:
 
         return (None, None, "", None)
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # probably_alive
 #
-#-------------------------------------------------------------------------
-def probably_alive(person, db,
-                   current_date=None,
-                   limit=0,
-                   max_sib_age_diff=None,
-                   max_age_prob_alive=None,
-                   avg_generation_gap=None,
-                   return_range=False):
+# -------------------------------------------------------------------------
+def probably_alive(
+    person,
+    db,
+    current_date=None,
+    limit=0,
+    max_sib_age_diff=None,
+    max_age_prob_alive=None,
+    avg_generation_gap=None,
+    return_range=False,
+):
     """
     Return true if the person may be alive on current_date.
 
@@ -497,32 +666,36 @@ def probably_alive(person, db,
     """
     # First, get the real database to use all people
     # for determining alive status:
-    birth, death, explain, relative = probably_alive_range(person, db,
-            max_sib_age_diff, max_age_prob_alive, avg_generation_gap)
+    birth, death, explain, relative = probably_alive_range(
+        person, db, max_sib_age_diff, max_age_prob_alive, avg_generation_gap
+    )
     if current_date is None:
         current_date = Today()
-    LOG.debug("%s: b.%s, d.%s - %s".format(
-        " ".join(person.get_primary_name().get_text_data_list()),
-        birth, death, explain))
+    LOG.debug(
+        "%s: b.%s, d.%s - %s".format(
+            " ".join(person.get_primary_name().get_text_data_list()),
+            birth,
+            death,
+            explain,
+        )
+    )
     if not birth or not death:
         # no evidence, must consider alive
-        return ((True, None, None, _("no evidence"), None) if return_range
-                else True)
+        return (True, None, None, _("no evidence"), None) if return_range else True
     # must have dates from here:
     if limit:
-        death += limit # add these years to death
+        death += limit  # add these years to death
     # Finally, check to see if current_date is between dates
-    result = (current_date.match(birth, ">=") and
-              current_date.match(death, "<="))
+    result = current_date.match(birth, ">=") and current_date.match(death, "<=")
     if return_range:
         return (result, birth, death, explain, relative)
     else:
         return result
 
-def probably_alive_range(person, db,
-                         max_sib_age_diff=None,
-                         max_age_prob_alive=None,
-                         avg_generation_gap=None):
+
+def probably_alive_range(
+    person, db, max_sib_age_diff=None, max_age_prob_alive=None, avg_generation_gap=None
+):
     """
     Computes estimated birth and death dates.
     Returns: (birth_date, death_date, explain_text, related_person)
@@ -530,20 +703,22 @@ def probably_alive_range(person, db,
     # First, find the real database to use all people
     # for determining alive status:
     from ..proxy.proxybase import ProxyDbBase
+
     basedb = db
     while isinstance(basedb, ProxyDbBase):
         basedb = basedb.db
     # Now, we create a wrapper for doing work:
-    pb = ProbablyAlive(basedb, max_sib_age_diff,
-                       max_age_prob_alive, avg_generation_gap)
+    pb = ProbablyAlive(basedb, max_sib_age_diff, max_age_prob_alive, avg_generation_gap)
     return pb.probably_alive_range(person)
+
 
 def update_constants():
     """
     Used to update the constants that are cached in this module.
     """
     from ..config import config
+
     global _MAX_AGE_PROB_ALIVE, _MAX_SIB_AGE_DIFF, _AVG_GENERATION_GAP
-    _MAX_AGE_PROB_ALIVE = config.get('behavior.max-age-prob-alive')
-    _MAX_SIB_AGE_DIFF = config.get('behavior.max-sib-age-diff')
-    _AVG_GENERATION_GAP = config.get('behavior.avg-generation-gap')
+    _MAX_AGE_PROB_ALIVE = config.get("behavior.max-age-prob-alive")
+    _MAX_SIB_AGE_DIFF = config.get("behavior.max-sib-age-diff")
+    _AVG_GENERATION_GAP = config.get("behavior.avg-generation-gap")

@@ -22,8 +22,8 @@
 #
 # gui.plug.__init__.py
 #
-__author__="jfriant"
-__date__ ="$Apr 20, 2010 3:13:24 PM$"
+__author__ = "jfriant"
+__date__ = "$Apr 20, 2010 3:13:24 PM$"
 
 from . import tool
 
@@ -31,10 +31,11 @@ try:
     from ._guioptions import make_gui_option, add_gui_options
     from ._dialogs import ReportPluginDialog, ToolPluginDialog
     from . import _windows as PluginWindows
-except TypeError: # No GUI
+except TypeError:  # No GUI
     pass
 
 from gramps.gen.plug import MenuOptions
+
 
 # This needs to go above Tool and MenuOption as it needs both
 class MenuToolOptions(MenuOptions, tool.ToolOptions):
@@ -47,6 +48,7 @@ class MenuToolOptions(MenuOptions, tool.ToolOptions):
     add_menu_options function. The user can add options to the menu
     and the MenuToolOptions class will worry about setting up the GUI.
     """
+
     def __init__(self, name, person_id=None, dbstate=None):
         tool.ToolOptions.__init__(self, name, person_id)
         MenuOptions.__init__(self)

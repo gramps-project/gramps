@@ -18,62 +18,72 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gi.repository import GObject, GLib
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.lib import LdsOrd
 from gramps.gen.errors import WindowActiveError
 from .ldsmodel import LdsModel
 from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-class LdsEmbedList(EmbeddedList):
 
+# -------------------------------------------------------------------------
+#
+#
+#
+# -------------------------------------------------------------------------
+class LdsEmbedList(EmbeddedList):
     _HANDLE_COL = 7
-#    _DND_TYPE = DdTargets.ADDRESS
+    #    _DND_TYPE = DdTargets.ADDRESS
 
     _MSG = {
-        'add'   : _('Create and add a new LDS ordinance'),
-        'del'   : _('Remove the existing LDS ordinance'),
-        'edit'  : _('Edit the selected LDS ordinance'),
-        'up'    : _('Move the selected LDS ordinance upwards'),
-        'down'  : _('Move the selected LDS ordinance downwards'),
+        "add": _("Create and add a new LDS ordinance"),
+        "del": _("Remove the existing LDS ordinance"),
+        "edit": _("Edit the selected LDS ordinance"),
+        "up": _("Move the selected LDS ordinance upwards"),
+        "down": _("Move the selected LDS ordinance downwards"),
     }
 
-    #index = column in model. Value =
+    # index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Type'),    0, 150, TEXT_COL, -1, None),
-        (_('Date'),    1, 150, MARKUP_COL, -1, None),
-        (_('Status'),  3, 75, TEXT_COL, -1, None),
-        (_('Temple'),  2, 200, TEXT_COL, -1, None),
-        (_('Place'),   4, 100, TEXT_COL, -1, None),
-        (_('Source'),  5,  30, ICON_COL, -1, 'gramps-source'),
-        (_('Private'), 6,  30, ICON_COL, -1, 'gramps-lock'),
-        ]
+        (_("Type"), 0, 150, TEXT_COL, -1, None),
+        (_("Date"), 1, 150, MARKUP_COL, -1, None),
+        (_("Status"), 3, 75, TEXT_COL, -1, None),
+        (_("Temple"), 2, 200, TEXT_COL, -1, None),
+        (_("Place"), 4, 100, TEXT_COL, -1, None),
+        (_("Source"), 5, 30, ICON_COL, -1, "gramps-source"),
+        (_("Private"), 6, 30, ICON_COL, -1, "gramps-lock"),
+    ]
 
-    def __init__(self, dbstate, uistate, track, data):
+    def __init__(self, dbstate, uistate, track, data, config_key):
         self.data = data
-        EmbeddedList.__init__(self, dbstate, uistate, track, _('_LDS'),
-                              LdsModel, move_buttons=True)
+        EmbeddedList.__init__(
+            self,
+            dbstate,
+            uistate,
+            track,
+            _("_LDS"),
+            LdsModel,
+            config_key,
+            move_buttons=True,
+        )
 
     def get_editor(self):
         from .. import EditLdsOrd
+
         return EditLdsOrd
 
     def new_data(self):
@@ -87,8 +97,13 @@ class LdsEmbedList(EmbeddedList):
 
     def add_button_clicked(self, obj):
         try:
-            self.get_editor()(self.dbstate, self.uistate, self.track,
-                              self.new_data(), self.add_callback)
+            self.get_editor()(
+                self.dbstate,
+                self.uistate,
+                self.track,
+                self.new_data(),
+                self.add_callback,
+            )
         except WindowActiveError:
             pass
 
@@ -102,8 +117,9 @@ class LdsEmbedList(EmbeddedList):
         lds = self.get_selected()
         if lds:
             try:
-                self.get_editor()(self.dbstate, self.uistate, self.track,
-                                  lds, self.edit_callback)
+                self.get_editor()(
+                    self.dbstate, self.uistate, self.track, lds, self.edit_callback
+                )
             except WindowActiveError:
                 pass
 

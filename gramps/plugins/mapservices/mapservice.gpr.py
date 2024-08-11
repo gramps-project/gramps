@@ -18,63 +18,67 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-MODULE_VERSION="5.2"
+MODULE_VERSION = "5.3"
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # EniroMaps
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
-register(MAPSERVICE,
-id = 'EniroMaps',
-name = _("EniroMaps"),
-description = _("Opens on kartor.eniro.se"),
-version = '1.0',
-gramps_target_version = MODULE_VERSION,
-status = STABLE,
-fname = 'eniroswedenmap.py',
-authors = ["Peter Landgren"],
-authors_email = ["peter.talken@telia.com"],
-mapservice = 'EniroSVMapService'
-  )
+register(
+    MAPSERVICE,
+    id="EniroMaps",
+    name=_("EniroMaps"),
+    description=_("Opens on kartor.eniro.se"),
+    version="1.0",
+    gramps_target_version=MODULE_VERSION,
+    status=STABLE,
+    fname="eniroswedenmap.py",
+    authors=["Peter Landgren"],
+    authors_email=["peter.talken@telia.com"],
+    mapservice="EniroSVMapService",
+)
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # GoogleMaps
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
-register(MAPSERVICE,
-id = 'GoogleMaps',
-name = _("GoogleMaps"),
-description = _("Open on maps.google.com"),
-version = '1.0',
-gramps_target_version = MODULE_VERSION,
-status = STABLE,
-fname = 'googlemap.py',
-authors = ["Benny Malengier"],
-authors_email = ["benny.malengier@gramps-project.org"],
-mapservice = 'GoogleMapService'
-  )
+register(
+    MAPSERVICE,
+    id="GoogleMaps",
+    name=_("GoogleMaps"),
+    description=_("Open on maps.google.com"),
+    version="1.0",
+    gramps_target_version=MODULE_VERSION,
+    status=STABLE,
+    fname="googlemap.py",
+    authors=["Benny Malengier"],
+    authors_email=["benny.malengier@gramps-project.org"],
+    mapservice="GoogleMapService",
+)
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # OpenStreetMap
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
-register(MAPSERVICE,
-id = 'OpenStreetMap',
-name = _("OpenStreetMap"),
-description = _("Open on openstreetmap.org"),
-version = '1.0',
-gramps_target_version = MODULE_VERSION,
-status = STABLE,
-fname = 'openstreetmap.py',
-authors = ["Benny Malengier"],
-authors_email = ["benny.malengier@gramps-project.org"],
-mapservice = 'OpensStreetMapService'
-  )
+register(
+    MAPSERVICE,
+    id="OpenStreetMap",
+    name=_("OpenStreetMap"),
+    description=_("Open on openstreetmap.org"),
+    version="1.0",
+    gramps_target_version=MODULE_VERSION,
+    status=STABLE,
+    fname="openstreetmap.py",
+    authors=["Benny Malengier"],
+    authors_email=["benny.malengier@gramps-project.org"],
+    mapservice="OpensStreetMapService",
+)

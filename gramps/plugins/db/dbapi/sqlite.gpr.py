@@ -19,18 +19,20 @@
 #
 from gramps.gen.plug._pluginreg import register, STABLE, DATABASE
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-register(DATABASE,
-         id='sqlite',
-         name=_('SQLite'),
-         name_accell=_('_SQLite Database'),
-         description=_('SQLite Database'),
-         version='1.0.0',
-         gramps_target_version='5.2',
-         status=STABLE,
-         fname='sqlite.py',
-         databaseclass='SQLite',
-         authors=['Doug Blank'],
-         authors_email=['doug.blank@gmail.com']
+register(
+    DATABASE,
+    id="sqlite",
+    name=_("SQLite"),
+    name_accell=_("_SQLite Database"),
+    description=_("SQLite Database"),
+    version="1.0.0",
+    gramps_target_version="5.3",
+    status=STABLE,
+    fname="sqlite.py",
+    databaseclass="SQLite",
+    authors=["Doug Blank"],
+    authors_email=["doug.blank@gmail.com"],
 )

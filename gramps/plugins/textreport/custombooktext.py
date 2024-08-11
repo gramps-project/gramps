@@ -25,39 +25,46 @@
 # Written by Alex Roitman,
 # largely based on the SimpleBookTitle.py by Don Allingham
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # gtk
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gramps.gen.plug.menu import TextOption
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import MenuReportOptions
-from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle,
-                                    FONT_SANS_SERIF, PARA_ALIGN_CENTER,
-                                    IndexMark, INDEX_TYPE_TOC)
+from gramps.gen.plug.docgen import (
+    FontStyle,
+    ParagraphStyle,
+    FONT_SANS_SERIF,
+    PARA_ALIGN_CENTER,
+    IndexMark,
+    INDEX_TYPE_TOC,
+)
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # CustomText
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class CustomText(Report):
-    """ CustomText """
+    """CustomText"""
 
     def __init__(self, database, options, user):
         """
@@ -79,9 +86,9 @@ class CustomText(Report):
         Report.__init__(self, database, options, user)
 
         menu = options.menu
-        self.top_text = menu.get_option_by_name('top').get_value()
-        self.middle_text = menu.get_option_by_name('mid').get_value()
-        self.bottom_text = menu.get_option_by_name('bot').get_value()
+        self.top_text = menu.get_option_by_name("top").get_value()
+        self.middle_text = menu.get_option_by_name("mid").get_value()
+        self.bottom_text = menu.get_option_by_name("bot").get_value()
 
     def write_report(self):
         mark_text = _("Custom Text")
@@ -92,31 +99,31 @@ class CustomText(Report):
         elif self.bottom_text[0]:
             mark_text = "%s (%s)" % (_("Custom Text"), self.bottom_text[0])
         mark = IndexMark(mark_text, INDEX_TYPE_TOC, 1)
-        self.doc.start_paragraph('CBT-Initial')
+        self.doc.start_paragraph("CBT-Initial")
         for line in self.top_text:
             self.doc.write_text(line, mark)
             self.doc.write_text("\n")
         self.doc.end_paragraph()
 
-        self.doc.start_paragraph('CBT-Middle')
+        self.doc.start_paragraph("CBT-Middle")
         for line in self.middle_text:
             self.doc.write_text(line)
             self.doc.write_text("\n")
         self.doc.end_paragraph()
 
-        self.doc.start_paragraph('CBT-Final')
+        self.doc.start_paragraph("CBT-Final")
         for line in self.bottom_text:
             self.doc.write_text(line)
             self.doc.write_text("\n")
         self.doc.end_paragraph()
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # CustomTextOptions
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class CustomTextOptions(MenuReportOptions):
-
     """
     Defines options and provides handling interface.
     """
@@ -128,7 +135,6 @@ class CustomTextOptions(MenuReportOptions):
         MenuReportOptions.__init__(self, name, dbase)
 
     def add_menu_options(self, menu):
-
         category_name = _("Text")
 
         self.__top = TextOption(_("Initial Text"), [""])
@@ -144,7 +150,7 @@ class CustomTextOptions(MenuReportOptions):
         menu.add_option(category_name, "bot", self.__bot)
 
     def get_subject(self):
-        """ Return a string that describes the subject of the report. """
+        """Return a string that describes the subject of the report."""
         if len(self.__top.get_value()[0]) > 0:
             return self.__top.get_value()[0]
         if len(self.__mid.get_value()[0]) > 0:
@@ -161,7 +167,7 @@ class CustomTextOptions(MenuReportOptions):
         para.set_font(font)
         para.set_alignment(PARA_ALIGN_CENTER)
         para.set(pad=0.5)
-        para.set_description(_('Text to display at the top'))
+        para.set_description(_("Text to display at the top"))
         default_style.add_paragraph_style("CBT-Initial", para)
 
         font = FontStyle()
@@ -170,7 +176,7 @@ class CustomTextOptions(MenuReportOptions):
         para.set_font(font)
         para.set(pad=0.5)
         para.set_alignment(PARA_ALIGN_CENTER)
-        para.set_description(_('Text to display in the middle'))
+        para.set_description(_("Text to display in the middle"))
         default_style.add_paragraph_style("CBT-Middle", para)
 
         font = FontStyle()
@@ -179,5 +185,5 @@ class CustomTextOptions(MenuReportOptions):
         para.set_font(font)
         para.set_alignment(PARA_ALIGN_CENTER)
         para.set(pad=0.5)
-        para.set_description(_('Text to display at the bottom'))
+        para.set_description(_("Text to display at the bottom"))
         default_style.add_paragraph_style("CBT-Final", para)

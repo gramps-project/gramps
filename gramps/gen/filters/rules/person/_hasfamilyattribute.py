@@ -18,37 +18,38 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasFamilyAttribute
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasFamilyAttribute(Rule):
     """Rule that checks for a person with a particular family attribute"""
 
-    labels = [ _('Family attribute:'), _('Value:') ]
-    name = _('People with the family <attribute>')
-    description = _("Matches people with the family attribute "
-                    "of a particular value")
-    category = _('General filters')
+    labels = [_("Family attribute:"), _("Value:")]
+    name = _("People with the family <attribute>")
+    description = _("Matches people with the family attribute " "of a particular value")
+    category = _("General filters")
     allow_regex = True
 
-    def apply(self,db,person):
+    def apply(self, db, person):
         if not self.list[0]:
             return False
         for f_id in person.get_family_handle_list():

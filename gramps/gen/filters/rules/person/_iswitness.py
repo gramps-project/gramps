@@ -18,44 +18,61 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
-#
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-from ....const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+"""
+Rule matching people who are witnesses in any event.
+"""
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .. import Rule
+# -------------------------------------------------------------------------
+from ....const import GRAMPS_LOCALE as glocale
 from ....lib.eventroletype import EventRoleType
 from ....lib.eventtype import EventType
+from .. import Rule
 
-#-------------------------------------------------------------------------
-# "Witnesses"
-#-------------------------------------------------------------------------
+_ = glocale.translation.gettext
+
+
+# -------------------------------------------------------------------------
+#
+# IsWitness
+#
+# -------------------------------------------------------------------------
 class IsWitness(Rule):
-    """Witnesses"""
+    """
+    Rule matching people who are witnesses in any event.
+    """
 
-    labels = [_('Event type:')]
-    name = _('Witnesses')
+    labels = [_("Event type:")]
+    name = _("Witnesses")
     description = _("Matches people who are witnesses in any event")
-    category = _('Event filters')
+    category = _("Event filters")
 
-    def apply(self,db,person):
-        for event_ref in person.event_ref_list:
-            if event_ref and event_ref.role == EventRoleType.WITNESS:
+    def __init__(self, arg, use_regex=False, use_case=False):
+        super().__init__(arg, use_regex, use_case)
+        self.event_type = None
+
+    def prepare(self, db, user):
+        """
+        Prepare the rule. Things only want to do once.
+        """
+        if self.list[0]:
+            self.event_type = EventType()
+            self.event_type.set_from_xml_str(self.list[0])
+
+    def apply(self, db, obj):
+        """
+        Apply the rule. Return True on a match.
+        """
+        for event_ref in obj.event_ref_list:
+            if event_ref.role == EventRoleType.WITNESS:
                 # This is the witness.
                 # If event type was given, then check it.
-                if self.list[0]:
+                if self.event_type:
                     event = db.get_event_from_handle(event_ref.ref)
-                    specified_type = EventType()
-                    specified_type.set_from_xml_str(self.list[0])
-                    if event.type == specified_type:
+                    if event.type == self.event_type:
                         return True
                 else:
                     # event type was not specified, we're returning a match

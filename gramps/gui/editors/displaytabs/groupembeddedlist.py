@@ -19,36 +19,38 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import pickle
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Pango
 from gi.repository import GObject
 from gi.repository import GLib
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...utils import is_right_click
 from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class GroupEmbeddedList(EmbeddedList):
     """
     This class provides the base class for all the list tabs that show
@@ -59,18 +61,39 @@ class GroupEmbeddedList(EmbeddedList):
 
     _WORKGROUP = 0
 
-    def __init__(self, dbstate, uistate, track, name, build_model,
-                 share_button=False, move_buttons=False, jump_button=False, **kwargs):
+    def __init__(
+        self,
+        dbstate,
+        uistate,
+        track,
+        name,
+        build_model,
+        config_key,
+        share_button=False,
+        move_buttons=False,
+        jump_button=False,
+        **kwargs,
+    ):
         """
         Create a new list, using the passed build_model to populate the list.
         """
         self.kwargs = kwargs
-        EmbeddedList.__init__(self,  dbstate, uistate, track, name, build_model,
-                            share_button, move_buttons, jump_button)
-        #connect click on the first column
-        self.columns[0].connect('clicked', self.groupcol_click)
+        EmbeddedList.__init__(
+            self,
+            dbstate,
+            uistate,
+            track,
+            name,
+            build_model,
+            config_key,
+            share_button,
+            move_buttons,
+            jump_button,
+        )
+        # connect click on the first column
+        self.columns[0].connect("clicked", self.groupcol_click)
         for col in self.columns[1:]:
-            col.connect('clicked', self.col_click)
+            col.connect("clicked", self.col_click)
         self.dbsort = True
 
     def construct_model(self):
@@ -79,8 +102,9 @@ class GroupEmbeddedList(EmbeddedList):
         Overwrites the EmbeddedList calling sequence by adding the different
         groups
         """
-        return self.build_model(self.get_data(), self.dbstate.db,
-                                self.groups(), **self.kwargs)
+        return self.build_model(
+            self.get_data(), self.dbstate.db, self.groups(), **self.kwargs
+        )
 
     def groups(self):
         """
@@ -111,10 +135,10 @@ class GroupEmbeddedList(EmbeddedList):
                 self.right_click(obj[1], event)
                 return True
         elif event.type == Gdk.EventType.BUTTON_PRESS and event.button == 2:
-                fun = self.get_middle_click()
-                if fun:
-                    fun()
-                    return True
+            fun = self.get_middle_click()
+            if fun:
+                fun()
+                return True
         return False
 
     def is_empty(self):
@@ -142,12 +166,11 @@ class GroupEmbeddedList(EmbeddedList):
         # get the selected object, returning if not is defined
         obj = self.get_selected()
         if not obj or obj[1] is None:
-            #nothing selected or a grouping selected
+            # nothing selected or a grouping selected
             return
 
         # pickle the data, and build the tuple to be passed
-        value = (self._DND_TYPE.drag_type, id(self), obj[1],
-                 self.find_index(obj))
+        value = (self._DND_TYPE.drag_type, id(self), obj[1], self.find_index(obj))
         data = pickle.dumps(value)
 
         # pass as a string (8 bits)
@@ -161,7 +184,6 @@ class GroupEmbeddedList(EmbeddedList):
         and decide if this is a move or a reorder.
         """
         if sel_data and sel_data.get_data():
-
             # make sure data = 1 row
             # pickle.loads(sel_data.data)[3] = 0
             try:
@@ -171,7 +193,6 @@ class GroupEmbeddedList(EmbeddedList):
 
             # make sure this is the correct DND type for this object
             if mytype == self._DND_TYPE.drag_type:
-
                 # determine the destination row
                 row = self._find_row(x, y)
 
@@ -230,18 +251,20 @@ class GroupEmbeddedList(EmbeddedList):
                 if dest[1] == Gtk.TreeViewDropPosition.BEFORE:
                     if wgroup != 0:
                         # If before then put at end of previous group
-                        return (wgroup-1, len(self.get_data()[wgroup-1]))
+                        return (wgroup - 1, len(self.get_data()[wgroup - 1]))
                     else:
                         # unless it is the first group
                         return (wgroup, 0)
                 else:
                     return (wgroup, 0)
             else:
-                if dest[1] in (Gtk.TreeViewDropPosition.BEFORE,
-                               Gtk.TreeViewDropPosition.INTO_OR_BEFORE):
+                if dest[1] in (
+                    Gtk.TreeViewDropPosition.BEFORE,
+                    Gtk.TreeViewDropPosition.INTO_OR_BEFORE,
+                ):
                     return (wgroup, path[1])
                 else:
-                    return (wgroup, path[1]+1)
+                    return (wgroup, path[1] + 1)
 
     def _handle_drag(self, row, obj):
         """
@@ -297,16 +320,16 @@ class GroupEmbeddedList(EmbeddedList):
         Eg: 0,1,2,3 needs to become 0,2,1,3, here row_from = 2
         """
         if row_from[0] == self._WORKGROUP:
-            if selmethod :
+            if selmethod:
                 dlist = selmethod()
-            else :
+            else:
                 dlist = self.get_data()[self._WORKGROUP]
             del dlist[row_from[1]]
-            dlist.insert(row_from[1]-1, obj)
+            dlist.insert(row_from[1] - 1, obj)
             self.changed = True
             self.rebuild()
-            #select the row
-            path = (self._WORKGROUP, row_from[1]-1)
+            # select the row
+            path = (self._WORKGROUP, row_from[1] - 1)
             self.tree.get_selection().select_path(path)
             GLib.idle_add(self.tree.scroll_to_cell, path)
         else:
@@ -330,16 +353,16 @@ class GroupEmbeddedList(EmbeddedList):
         Eg: 0,1,2,3 needs to become 0,2,1,3, here row_from = 1
         """
         if row_from[0] == self._WORKGROUP:
-            if selmethod :
+            if selmethod:
                 dlist = selmethod()
-            else :
+            else:
                 dlist = self.get_data()[self._WORKGROUP]
             del dlist[row_from[1]]
-            dlist.insert(row_from[1]+1, obj)
+            dlist.insert(row_from[1] + 1, obj)
             self.changed = True
             self.rebuild()
-            #select the row
-            path = (self._WORKGROUP, row_from[1]+1)
+            # select the row
+            path = (self._WORKGROUP, row_from[1] + 1)
             self.tree.get_selection().select_path(path)
             GLib.idle_add(self.tree.scroll_to_cell, path)
         else:
@@ -364,12 +387,12 @@ class GroupEmbeddedList(EmbeddedList):
         STOCK_JUSTIFY_FILL icon, which in the default GTK style
         looks kind of like a list.
         """
-        return 'format-justify-fill'
+        return "format-justify-fill"
 
     def del_button_clicked(self, obj):
         ref = self.get_selected()
         if ref and ref[1] is not None:
-            if ref[0]==self._WORKGROUP:
+            if ref[0] == self._WORKGROUP:
                 ref_list = self.get_data()[self._WORKGROUP]
                 ref_list.remove(ref[1])
                 self.changed = True
@@ -387,7 +410,7 @@ class GroupEmbeddedList(EmbeddedList):
         ref = self.get_selected()
         if ref and ref[1] is not None:
             pos = self.find_index(ref)
-            if pos[1] > 0 :
+            if pos[1] > 0:
                 self._move_up(pos, ref[1])
         elif ref and ref[1] is None:
             self._move_up_group(ref[0])
@@ -396,7 +419,7 @@ class GroupEmbeddedList(EmbeddedList):
         ref = self.get_selected()
         if ref and ref[1] is not None:
             pos = self.find_index(ref)
-            if pos[1] >=0 and pos[1] < len(self.get_data()[pos[0]])-1:
+            if pos[1] >= 0 and pos[1] < len(self.get_data()[pos[0]]) - 1:
                 self._move_down(pos, ref[1])
         elif ref and ref[1] is None:
             self._move_down_group(ref[0])

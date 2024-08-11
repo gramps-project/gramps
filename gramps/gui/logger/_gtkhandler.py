@@ -29,7 +29,7 @@ class GtkHandler(logging.Handler):
     A handler class which pops up a Gtk Window when a log message occurs.
     """
 
-    def __init__(self,rotate_handler=None):
+    def __init__(self, rotate_handler=None):
         """
         Initialize the handler with a optional rotate_logger instance.
         """

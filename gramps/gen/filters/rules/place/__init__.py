@@ -71,5 +71,5 @@ editor_rule_list = [
     HasTag,
     HasTitle,
     WithinArea,
-    IsEnclosedBy
+    IsEnclosedBy,
 ]

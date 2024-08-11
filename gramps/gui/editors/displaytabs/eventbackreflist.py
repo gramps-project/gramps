@@ -18,19 +18,20 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .backrefmodel import BackRefModel
 from .backreflist import BackRefList
 
-class EventBackRefList(BackRefList):
 
-    def __init__(self, dbstate, uistate, track, obj, callback=None):
-        BackRefList.__init__(self, dbstate, uistate, track, obj,
-                             BackRefModel, callback)
+class EventBackRefList(BackRefList):
+    def __init__(self, dbstate, uistate, track, obj, config_key, callback=None):
+        BackRefList.__init__(
+            self, dbstate, uistate, track, obj, BackRefModel, config_key, callback
+        )
 
     def get_icon_name(self):
-        return 'gramps-event'
+        return "gramps-event"

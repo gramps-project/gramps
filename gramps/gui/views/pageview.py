@@ -22,30 +22,32 @@
 Provide the base class for GRAMPS' DataView classes
 """
 
-#----------------------------------------------------------------
+# ----------------------------------------------------------------
 #
 # python modules
 #
-#----------------------------------------------------------------
+# ----------------------------------------------------------------
 from abc import ABCMeta, abstractmethod
 import logging
-_LOG = logging.getLogger('.pageview')
 
-#----------------------------------------------------------------
+_LOG = logging.getLogger(".pageview")
+
+# ----------------------------------------------------------------
 #
 # gtk
 #
-#----------------------------------------------------------------
+# ----------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#----------------------------------------------------------------
+# ----------------------------------------------------------------
 #
 # Gramps
 #
-#----------------------------------------------------------------
+# ----------------------------------------------------------------
 from gramps.gen.errors import WindowActiveError
 from ..dbguielement import DbGUIElement
 from ..widgets.grampletbar import GrampletBar
@@ -53,11 +55,12 @@ from ..configure import ConfigureDialog
 from gramps.gen.config import config
 from ..uimanager import ActionGroup
 
-#------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
 #
 # PageView
 #
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 class PageView(DbGUIElement, metaclass=ABCMeta):
     """
     The PageView class is the base class for all Data Views in Gramps.  All
@@ -100,7 +103,8 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         self.action_group = None
         self.additional_action_groups = []
         self.additional_uis = []
-        self.ui_def = ['''
+        self.ui_def = [
+            """
           <placeholder id="Bars">
             <item>
               <attribute name="action">win.Sidebar</attribute>
@@ -111,7 +115,8 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
               <attribute name="label" translatable="yes">_Bottombar</attribute>
             </item>
           </placeholder>
-            ''']
+            """
+        ]
         self.dirty = True
         self.active = False
         self._dirty_on_change_inactive = True
@@ -120,11 +125,12 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
             self.category, self.translated_category = self.pdata.category
         else:
             raise AttributeError("View category must be (name, translated-name)")
-        self.ident = self.category + '_' + self.pdata.id
+        self.ident = self.category + "_" + self.pdata.id
 
-        self.dbstate.connect('no-database', self.disable_action_group)
-        self.dbstate.connect('database-changed', self.enable_action_group)
+        self.dbstate.connect("no-database", self.disable_action_group)
+        self.dbstate.connect("database-changed", self.enable_action_group)
         self.uistate.window.connect("key-press-event", self.key_press_handler)
+        self.uistate.window.connect("button-press-event", self.button_press_handler)
 
         self.model = None
         self.selection = None
@@ -148,14 +154,22 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         Returns a gtk container widget.
         """
         defaults = self.get_default_gramplets()
-        self.sidebar = GrampletBar(self.dbstate, self.uistate, self,
-                                   self.ident + "_sidebar",
-                                   defaults[0],
-                                   Gtk.Orientation.VERTICAL)
-        self.bottombar = GrampletBar(self.dbstate, self.uistate, self,
-                                     self.ident + "_bottombar",
-                                     defaults[1],
-                                     Gtk.Orientation.HORIZONTAL)
+        self.sidebar = GrampletBar(
+            self.dbstate,
+            self.uistate,
+            self,
+            self.ident + "_sidebar",
+            defaults[0],
+            Gtk.Orientation.VERTICAL,
+        )
+        self.bottombar = GrampletBar(
+            self.dbstate,
+            self.uistate,
+            self,
+            self.ident + "_bottombar",
+            defaults[1],
+            Gtk.Orientation.HORIZONTAL,
+        )
         hpane = Gtk.Paned()
         self.vpane = Gtk.Paned(orientation=Gtk.Orientation.VERTICAL)
         hpane.pack1(self.vpane, resize=True, shrink=False)
@@ -165,20 +179,19 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
 
         self.widget = self.build_widget()
         self.widget.show_all()
-        self.widget.set_name('view')
+        self.widget.set_name("view")
         self.vpane.pack1(self.widget, resize=True, shrink=False)
         self.vpane.pack2(self.bottombar, resize=False, shrink=False)
         self.vpane.show()
-        self._config.register('vpane.slider-position', -1)
-        self.vpane.set_position(self._config.get('vpane.slider-position'))
+        self._setup_slider_config(self.vpane, "vpane.slider-position", position=-1)
 
-        self.sidebar_toggled(self.sidebar.get_property('visible'))
+        self.sidebar_toggled(self.sidebar.get_property("visible"))
         self.hpane_sig = hpane.connect("draw", self.set_page_slider)
 
         return hpane
 
     def set_page_slider(self, widget, dummy):
-        """ Setup slider.  We have the page realized at this point. """
+        """Setup slider.  We have the page realized at this point."""
         widget.disconnect(self.hpane_sig)
         # get current width of pane
         width = widget.get_allocated_width()
@@ -190,8 +203,7 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         except AttributeError:
             ch_width = 300  # needed if no Gramplet installed
         pos = width - min(ch_width, 400)
-        self._setup_slider_config(widget, 'hpane.slider-position',
-                                  position=pos)
+        self._setup_slider_config(widget, "hpane.slider-position", position=pos)
 
     def _setup_slider_config(self, widget, setting, position=-1):
         """
@@ -199,7 +211,7 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         """
         self._config.register(setting, position)
         widget.set_position(self._config.get(setting))
-        widget.connect('notify::position', self._position_changed, setting)
+        widget.connect("notify::position", self._position_changed, setting)
 
     def _position_changed(self, widget, position, setting):
         """
@@ -253,6 +265,13 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         """
         return False
 
+    def button_press_handler(self, widget, event):
+        """
+        A general button press handler. Override if you want to handle
+        special buttons, like forward or backward.
+        """
+        return False
+
     def copy_to_clipboard(self, objclass, handles):
         """
         This code is called on Control+C in a navigation view. If the
@@ -264,6 +283,7 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         """
         import pickle
         from ..clipboard import ClipboardWindow, obj2target
+
         handled = False
         for handle in handles:
             if handle is None:
@@ -277,27 +297,35 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
             # Construct a drop:
             drag_type = obj2target(objclass)
             if drag_type:
+
                 class Selection:
                     def __init__(self, data):
                         self.data = data
+
                     def get_data(self):
                         return self.data
+
                 class Context:
                     targets = [Gdk.atom_intern(drag_type.name(), False)]
                     action = 1
+
                     def list_targets(self):
                         return Context.targets
+
                     def get_actions(self):
                         return Context.action
+
                 # eg: ('person-link', 23767, '27365123671', 0)
                 data = (drag_type.name(), id(self), handle, 0)
                 clipboard.object_list.object_drag_data_received(
-                    clipboard.object_list._widget, # widget
-                    Context(),       # drag type and action
-                    0, 0,            # x, y
-                    Selection(pickle.dumps(data)), # pickled data
-                    None,            # info (not used)
-                    -1)  # time
+                    clipboard.object_list._widget,  # widget
+                    Context(),  # drag type and action
+                    0,
+                    0,  # x, y
+                    Selection(pickle.dumps(data)),  # pickled data
+                    None,  # info (not used)
+                    -1,
+                )  # time
                 handled = True
         return handled
 
@@ -309,6 +337,7 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         The code creates the Clipboard if it does not already exist.
         """
         from ..clipboard import ClipboardWindow
+
         clipboard = None
         for widget in self.uistate.gwm.window_tree:
             if isinstance(widget, ClipboardWindow):
@@ -332,8 +361,10 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         self.sidebar.set_active()
         self.bottombar.set_active()
         self.active = True
-        new_title = "%s - %s - Gramps" % (self.dbstate.db.get_dbname(),
-                                      self.get_title())
+        new_title = "%s - %s - Gramps" % (
+            self.dbstate.db.get_dbname(),
+            self.get_title(),
+        )
         self.uistate.window.set_title(new_title)
         if self.dirty:
             self.uistate.set_busy_cursor(True)
@@ -350,7 +381,7 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
 
     def post_create(self):
         if self.vpane:
-            self._setup_slider_config(self.vpane, 'vpane.slider-position')
+            self._setup_slider_config(self.vpane, "vpane.slider-position")
             self.vpane = None
 
     @abstractmethod
@@ -378,8 +409,7 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         Turns off the visibility of the View's action group, if defined
         """
         if self.action_group:
-            self.uistate.uimanager.set_actions_visible(self.action_group,
-                                                       False)
+            self.uistate.uimanager.set_actions_visible(self.action_group, False)
 
     def enable_action_group(self, obj):
         """
@@ -393,14 +423,14 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         Return image associated with the view category, which is used for the
         icon for the button.
         """
-        return 'image-missing'
+        return "image-missing"
 
     def get_viewtype_stock(self):
         """
         Return immage associated with the viewtype inside a view category, it
         will be used for the icon on the button to select view in the category
         """
-        return 'image-missing'
+        return "image-missing"
 
     def get_title(self):
         """
@@ -444,10 +474,18 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         View. The user typically defines self.action_list and
         self.action_toggle_list in this function.
         """
-        self._add_toggle_action('Sidebar', self.__sidebar_toggled,
-            '<shift><PRIMARY>R', self.sidebar.get_property('visible'))
-        self._add_toggle_action('Bottombar', self.__bottombar_toggled,
-            '<shift><PRIMARY>B', self.bottombar.get_property('visible'))
+        self._add_toggle_action(
+            "Sidebar",
+            self.__sidebar_toggled,
+            "<shift><PRIMARY>R",
+            self.sidebar.get_property("visible"),
+        )
+        self._add_toggle_action(
+            "Bottombar",
+            self.__bottombar_toggled,
+            "<shift><PRIMARY>B",
+            self.bottombar.get_property("visible"),
+        )
 
     def __build_action_group(self):
         """
@@ -467,7 +505,7 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         """
         self.action_list.append((name, callback, accel))
 
-    def _add_toggle_action(self, name, callback=None, accel= None, value=False):
+    def _add_toggle_action(self, name, callback=None, accel=None, value=False):
         """
         Add a toggle action to the action list for the current view.
         """
@@ -526,8 +564,7 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         """
         if self._config:
             return
-        self._config = config.register_manager(self.ident,
-                                               use_config_path=True)
+        self._config = config.register_manager(self.ident, use_config_path=True)
         for section, value in self.CONFIGSETTINGS:
             self._config.register(section, value)
         self._config.init()
@@ -569,9 +606,10 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         """
         Open the configure dialog for the view.
         """
-        title = _("Configure %(cat)s - %(view)s") % \
-                        {'cat': self.get_translated_category(),
-                         'view': self.get_title()}
+        title = _("Configure %(cat)s - %(view)s") % {
+            "cat": self.get_translated_category(),
+            "view": self.get_title(),
+        }
 
         if self.can_configure():
             config_funcs = self._get_configure_page_funcs()
@@ -583,35 +621,58 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
             config_funcs += self.bottombar.get_config_funcs()
 
         try:
-            ViewConfigureDialog(self.uistate, self.dbstate,
-                            config_funcs,
-                            self, self._config, dialogtitle=title,
-                            ident=_("%(cat)s - %(view)s") %
-                                    {'cat': self.get_translated_category(),
-                                     'view': self.get_title()})
+            ViewConfigureDialog(
+                self.uistate,
+                self.dbstate,
+                config_funcs,
+                self,
+                self._config,
+                dialogtitle=title,
+                ident=_("%(cat)s - %(view)s")
+                % {"cat": self.get_translated_category(), "view": self.get_title()},
+            )
         except WindowActiveError:
             return
+
 
 class ViewConfigureDialog(ConfigureDialog):
     """
     All views can have their own configuration dialog
     """
-    def __init__(self, uistate, dbstate, configure_page_funcs, configobj,
-                 configmanager,
-                 dialogtitle=_("Preferences"), on_close=None, ident=''):
+
+    def __init__(
+        self,
+        uistate,
+        dbstate,
+        configure_page_funcs,
+        configobj,
+        configmanager,
+        dialogtitle=_("Preferences"),
+        on_close=None,
+        ident="",
+    ):
         self.ident = ident
-        ConfigureDialog.__init__(self, uistate, dbstate, configure_page_funcs,
-                                 configobj, configmanager,
-                                 dialogtitle=dialogtitle, on_close=on_close)
-        self.setup_configs('interface.viewconfiguredialog', 420, 500)
+        ConfigureDialog.__init__(
+            self,
+            uistate,
+            dbstate,
+            configure_page_funcs,
+            configobj,
+            configmanager,
+            dialogtitle=dialogtitle,
+            on_close=on_close,
+        )
+        self.setup_configs("interface.viewconfiguredialog", 420, 500)
 
     def build_menu_names(self, obj):
-        return (_('Configure %s View') % self.ident, None)
+        return (_("Configure %s View") % self.ident, None)
+
 
 class DummyPage(PageView):
     """
     A Dummy page for testing or errors
     """
+
     def __init__(self, title, pdata, dbstate, uistate, msg1="", msg2=""):
         self.msg = msg1
         self.msg2 = msg2
@@ -619,10 +680,16 @@ class DummyPage(PageView):
 
     def build_widget(self):
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=1)
-        #top widget at the top
-        box.pack_start(Gtk.Label(label=_('View %(name)s: %(msg)s') % {
-                'name': self.title,
-                'msg': self.msg}), False, False, 0)
+        # top widget at the top
+        box.pack_start(
+            Gtk.Label(
+                label=_("View %(name)s: %(msg)s")
+                % {"name": self.title, "msg": self.msg}
+            ),
+            False,
+            False,
+            0,
+        )
         tv = Gtk.TextView()
         tb = tv.get_buffer()
         tb.insert_at_cursor(self.msg2)

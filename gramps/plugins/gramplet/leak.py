@@ -23,43 +23,46 @@
 """
 Show uncollected objects in a window.
 """
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import weakref
 import sys
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import Gdk
 import gc
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gui.dialog import InfoDialog
 from gramps.gui.utils import is_right_click, ProgressMeter
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Leak
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Leak(Gramplet):
     """
     Shows uncollected objects.
     """
+
     def init(self):
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
@@ -84,7 +87,7 @@ class Leak(Gramplet):
         # add a listview to the scrollable
         self.list = Gtk.TreeView()
         self.list.set_headers_visible(True)
-        self.list.connect('button-press-event', self._button_press)
+        self.list.connect("button-press-event", self._button_press)
         self.scroll.add(self.list)
         # make a model
         self.model = Gtk.ListStore(int, str, str)
@@ -92,16 +95,15 @@ class Leak(Gramplet):
 
         # set the columns
         self.renderer = Gtk.CellRendererText()
-        column = Gtk.TreeViewColumn(_('Number'), self.renderer, text=0)
+        column = Gtk.TreeViewColumn(_("Number"), self.renderer, text=0)
         column.set_resizable(True)
         column.set_sizing(Gtk.TreeViewColumnSizing.FIXED)
         self.list.append_column(column)
-        column = Gtk.TreeViewColumn(_('Referrer'), self.renderer, text=1)
+        column = Gtk.TreeViewColumn(_("Referrer"), self.renderer, text=1)
         column.set_resizable(True)
         column.set_sizing(Gtk.TreeViewColumnSizing.FIXED)
         self.list.append_column(column)
-        column = Gtk.TreeViewColumn(_('Uncollected object'), self.renderer,
-                                    text=2)
+        column = Gtk.TreeViewColumn(_("Uncollected object"), self.renderer, text=2)
         column.set_resizable(True)
         column.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
         self.list.append_column(column)
@@ -110,7 +112,7 @@ class Leak(Gramplet):
 
         bbox = Gtk.ButtonBox()
         apply_button = Gtk.Button(label=_("Refresh"))
-        apply_button.connect('clicked', self.apply_clicked)
+        apply_button.connect("clicked", self.apply_clicked)
         bbox.pack_start(apply_button, False, False, 6)
         self.top.pack_start(bbox, False, False, 6)
 
@@ -119,13 +121,12 @@ class Leak(Gramplet):
         return self.top
 
     def main(self):
-        self.label.set_text(_('Press Refresh to see initial results'))
+        self.label.set_text(_("Press Refresh to see initial results"))
         self.model.clear()
         # self.display()    # We should only run this on demand
 
     def _button_press(self, obj, event):
-        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
-                and event.button == 1):
+        if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS and event.button == 1:
             self.referenced_in()
             return True
         elif is_right_click(event):
@@ -148,14 +149,15 @@ class Leak(Gramplet):
                             if referrer is junk:
                                 match = str(indx) + ": "
                                 break
-                        match += str(referrer) + '\n'
+                        match += str(referrer) + "\n"
                 except ReferenceError:
-                    match += 'weakly-referenced object no longer exists %s'\
-                        % type(referrer)
+                    match += "weakly-referenced object no longer exists %s" % type(
+                        referrer
+                    )
                 except:
                     print(sys.exc_info())
                 text += match
-            InfoDialog(_('Referrers of %d') % count, text, parent=self.parent)
+            InfoDialog(_("Referrers of %d") % count, text, parent=self.parent)
 
     def refers_to(self):
         model, _iter = self.selection.get_selected()
@@ -169,35 +171,41 @@ class Leak(Gramplet):
                     match = "****: "
                     for indx, junk in enumerate(self.junk):
                         if referent is junk:
-                            match = str(indx) + ': '
+                            match = str(indx) + ": "
                             break
-                    match += str(referent) + '\n'
+                    match += str(referent) + "\n"
                 except ReferenceError:
-                    match += '%s weakly-referenced object no longer'\
-                            ' exists\n' % type(referent)
+                    match += "%s weakly-referenced object no longer" " exists\n" % type(
+                        referent
+                    )
                 except:
                     print(sys.exc_info())
                 text += match
-            InfoDialog(_('%d refers to') % count, text, parent=self.parent)
+            InfoDialog(_("%d refers to") % count, text, parent=self.parent)
 
     def display(self):
         try:
             from bsddb3.db import DBError
         except:
-            class DBError(Exception):
-                """
-                Dummy.
-                """
+            try:
+                from berkeleydb.db import DBError
+            except:
+
+                class DBError(Exception):
+                    """
+                    Dummy.
+                    """
+
         self.parent = self.top.get_toplevel()
         progress = ProgressMeter(
-            _('Updating display...'), '', parent=self.parent, can_cancel=True)
+            _("Updating display..."), "", parent=self.parent, can_cancel=True
+        )
         self.model.clear()
         self.junk = []
         gc.collect(2)
         self.junk = gc.garbage
-        self.label.set_text(_('Uncollected Objects: %s') %
-                            str(len(self.junk)))
-        progress.set_pass(_('Updating display...'), len(self.junk))
+        self.label.set_text(_("Uncollected Objects: %s") % str(len(self.junk)))
+        progress.set_pass(_("Updating display..."), len(self.junk))
         for count in range(0, len(self.junk)):
             if progress.step():
                 break
@@ -209,35 +217,43 @@ class Leak(Gramplet):
                         if referrer is not self.junk:
                             for indx in range(0, len(self.junk)):
                                 if referrer is self.junk[indx]:
-                                    refs.append(str(indx) + ' ')
+                                    refs.append(str(indx) + " ")
                                     break
                     except:
                         print(sys.exc_info())
                 if len(refs) > 3:
-                    ref = ' '.join(refs[0:2]) + "..."
+                    ref = " ".join(refs[0:2]) + "..."
                 else:
-                    ref = ' '.join(refs)
+                    ref = " ".join(refs)
                 try:
                     self.model.append((count, ref, str(self.junk[count])))
                 except DBError:
-                    self.model.append((count, ref,
-                                      'db.DB instance at %s' %
-                                       id(self.junk[count])))
+                    self.model.append(
+                        (count, ref, "db.DB instance at %s" % id(self.junk[count]))
+                    )
                 except ReferenceError:
-                    self.model.append((
-                        count, ref,
-                        'weakly-referenced object no longer exists %s'
-                        % type(self.junk[count])))
+                    self.model.append(
+                        (
+                            count,
+                            ref,
+                            "weakly-referenced object no longer exists %s"
+                            % type(self.junk[count]),
+                        )
+                    )
                 except TypeError:
-                    self.model.append((
-                        count, ref,
-                        'Object cannot be displayed %s'
-                        % type(self.junk[count])))
+                    self.model.append(
+                        (
+                            count,
+                            ref,
+                            "Object cannot be displayed %s" % type(self.junk[count]),
+                        )
+                    )
                 except:
                     print(sys.exc_info())
             except ReferenceError:
-                InfoDialog(_('Reference Error'), "Refresh to correct",
-                           parent=self.parent)
+                InfoDialog(
+                    _("Reference Error"), "Refresh to correct", parent=self.parent
+                )
         progress.close()
 
     def apply_clicked(self, obj):

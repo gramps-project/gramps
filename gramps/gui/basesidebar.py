@@ -18,15 +18,17 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # BaseSidebar class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class BaseSidebar:
     """
     The base class for all sidebar plugins.
     """
+
     def __init__(self, dbstate, uistate):
         raise NotImplementedError
 

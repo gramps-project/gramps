@@ -39,10 +39,9 @@ Narrative Web Page generator.
 Classe:
     MediaPage - Media index page and individual Media pages
 """
-#------------------------------------------------
+# ------------------------------------------------
 # python modules
-#------------------------------------------------
-import gc
+# ------------------------------------------------
 import os
 import shutil
 import tempfile
@@ -50,27 +49,27 @@ from collections import defaultdict
 from decimal import getcontext
 import logging
 
-#------------------------------------------------
+# ------------------------------------------------
 # Gramps module
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gen.lib import (Date, Media)
+from gramps.gen.lib import Date, Media
 from gramps.gen.plug.report import Bibliography
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.thumbnails import run_thumbnailer
 from gramps.gen.utils.image import image_size
 from gramps.plugins.lib.libhtml import Html
 
-#------------------------------------------------
+# ------------------------------------------------
 # specific narrative web import
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
-from gramps.plugins.webreport.common import (FULLCLEAR, _WRONGMEDIAPATH,
-                                             html_escape)
+from gramps.plugins.webreport.common import FULLCLEAR, _WRONGMEDIAPATH, html_escape
 
 _ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb")
 getcontext().prec = 8
+
 
 #################################################
 #
@@ -89,6 +88,7 @@ class MediaPages(BasePage):
     The base class 'BasePage' is initialised once for each page that is
     displayed.
     """
+
     def __init__(self, report, the_lang, the_title):
         """
         @param: report    -- The instance of the main report class
@@ -100,7 +100,7 @@ class MediaPages(BasePage):
         self.media_dict = defaultdict(set)
         self.unused_media_handles = []
         self.cur_fname = None
-        self.create_images_index = self.report.options['create_images_index']
+        self.create_images_index = self.report.options["create_images_index"]
 
     def display_pages(self, the_lang, the_title):
         """
@@ -119,9 +119,7 @@ class MediaPages(BasePage):
             media_count = len(self.report.obj_dict[Media])
         message = _("Creating media pages")
         progress_title = self.report.pgrs_title(the_lang)
-        with self.r_user.progress(progress_title, message,
-                                  media_count + 1
-                                 ) as step:
+        with self.r_user.progress(progress_title, message, media_count + 1) as step:
             # bug 8950 : it seems it's better to sort on desc + gid.
             def sort_by_desc_and_gid(obj):
                 """
@@ -139,17 +137,18 @@ class MediaPages(BasePage):
                 self.unused_media_handles = sorted(
                     self.unused_media_handles,
                     key=lambda x: sort_by_desc_and_gid(
-                        self.r_db.get_media_from_handle(x)))
+                        self.r_db.get_media_from_handle(x)
+                    ),
+                )
 
             sorted_media_handles = sorted(
                 self.report.obj_dict[Media].keys(),
-                key=lambda x: sort_by_desc_and_gid(
-                    self.r_db.get_media_from_handle(x)))
+                key=lambda x: sort_by_desc_and_gid(self.r_db.get_media_from_handle(x)),
+            )
             prev = None
             total = len(sorted_media_handles)
             index = 1
             for handle in sorted_media_handles:
-                gc.collect() # Reduce memory usage when there are many images.
                 if index == media_count:
                     next_ = None
                 elif index < total:
@@ -158,8 +157,13 @@ class MediaPages(BasePage):
                     next_ = self.unused_media_handles[0]
                 else:
                     next_ = None
-                self.mediapage(self.report, the_lang, the_title,
-                               handle, (prev, next_, index, media_count))
+                self.mediapage(
+                    self.report,
+                    the_lang,
+                    the_title,
+                    handle,
+                    (prev, next_, index, media_count),
+                )
                 prev = handle
                 step()
                 index += 1
@@ -167,24 +171,26 @@ class MediaPages(BasePage):
             total = len(self.unused_media_handles)
             idx = 1
             total_m = len(sorted_media_handles)
-            prev = sorted_media_handles[total_m-1] if total_m > 0 else 0
+            prev = sorted_media_handles[total_m - 1] if total_m > 0 else 0
             if total > 0:
                 for media_handle in self.unused_media_handles:
-                    gc.collect() # Reduce memory usage when many images.
                     if index == media_count:
                         next_ = None
                     else:
                         next_ = self.unused_media_handles[idx]
-                    self.mediapage(self.report, the_lang, the_title,
-                                   media_handle,
-                                   (prev, next_, index, media_count))
+                    self.mediapage(
+                        self.report,
+                        the_lang,
+                        the_title,
+                        media_handle,
+                        (prev, next_, index, media_count),
+                    )
                     prev = media_handle
                     step()
                     index += 1
                     idx += 1
 
-        self.medialistpage(self.report, the_lang, the_title,
-                           sorted_media_handles)
+        self.medialistpage(self.report, the_lang, the_title, sorted_media_handles)
 
     def medialistpage(self, report, the_lang, the_title, sorted_media_handles):
         """
@@ -203,7 +209,7 @@ class MediaPages(BasePage):
             output_file, sio = self.report.create_file("media")
         # save the media file name in case we create unused media pages
         self.cur_fname = self.report.cur_fname
-        result = self.write_header(self._('Media'))
+        result = self.write_header(self._("Media"))
         medialistpage, dummy_head, dummy_body, outerwrapper = result
 
         ldatec = 0
@@ -211,18 +217,21 @@ class MediaPages(BasePage):
         with Html("div", class_="content", id="Gallery") as medialist:
             outerwrapper += medialist
 
-            msg = self._("This page contains an index of all the media objects "
-                         "in the database, sorted by their title. Clicking on "
-                         "the title will take you to that "
-                         "media object&#8217;s page.  "
-                         "If you see media size dimensions "
-                         "above an image, click on the "
-                         "image to see the full sized version.  ")
+            msg = self._(
+                "This page contains an index of all the media objects "
+                "in the database, sorted by their title. Clicking on "
+                "the title will take you to that "
+                "media object&#8217;s page.  "
+                "If you see media size dimensions "
+                "above an image, click on the "
+                "image to see the full sized version.  "
+            )
             medialist += Html("p", msg, id="description")
 
             # begin gallery table and table head
-            with Html("table",
-                      class_="infolist primobjlist gallerylist") as table:
+            with Html(
+                "table", class_="infolist primobjlist gallerylist " + self.dir
+            ) as table:
                 medialist += table
 
                 # begin table head
@@ -234,11 +243,12 @@ class MediaPages(BasePage):
 
                 trow.extend(
                     Html("th", trans, class_=colclass, inline=True)
-                    for trans, colclass in [("&nbsp;", "ColumnRowLabel"),
-                                            (self._(" Name", "Media "),
-                                             "ColumnName"),
-                                            (self._("Date"), "ColumnDate"),
-                                            (self._("Mime Type"), "ColumnMime")]
+                    for trans, colclass in [
+                        ("&nbsp;", "ColumnRowLabel"),
+                        (self._(" Name", "Media "), "ColumnName"),
+                        (self._("Date"), "ColumnDate"),
+                        (self._("Mime Type"), "ColumnMime"),
+                    ]
                 )
 
                 # begin table body
@@ -251,9 +261,9 @@ class MediaPages(BasePage):
                 else:
                     media_count = len(self.report.obj_dict[Media])
                 message = _("Creating list of media pages")
-                with self.r_user.progress(_("Narrated Web Site Report"),
-                                          message, media_count + 1
-                                         ) as step:
+                with self.r_user.progress(
+                    _("Narrated Web Site Report"), message, media_count + 1
+                ) as step:
                     for media_handle in sorted_media_handles:
                         media = self.r_db.get_media_from_handle(media_handle)
                         if media:
@@ -266,11 +276,16 @@ class MediaPages(BasePage):
 
                             media_data_row = [
                                 [index, "ColumnRowLabel"],
-                                [self.media_ref_link(media_handle,
-                                                     title), "ColumnName"],
-                                [self.rlocale.get_date(media.get_date_object()),
-                                 "ColumnDate"],
-                                [media.get_mime_type(), "ColumnMime"]]
+                                [
+                                    self.media_ref_link(media_handle, title),
+                                    "ColumnName",
+                                ],
+                                [
+                                    self.rlocale.get_date(media.get_date_object()),
+                                    "ColumnDate",
+                                ],
+                                [media.get_mime_type(), "ColumnMime"],
+                            ]
 
                             trow.extend(
                                 Html("td", data, class_=colclass)
@@ -284,28 +299,37 @@ class MediaPages(BasePage):
                     if total > 0:
                         trow += Html("tr")
                         trow.extend(
-                            Html("td", Html("h4", " "), inline=True) +
-                            Html("td",
-                                 Html("h4",
-                                      self._("Below unused media objects"),
-                                      inline=True),
-                                 class_="") +
-                            Html("td", Html("h4", " "), inline=True) +
                             Html("td", Html("h4", " "), inline=True)
+                            + Html(
+                                "td",
+                                Html(
+                                    "h4",
+                                    self._("Below unused media objects"),
+                                    inline=True,
+                                ),
+                                class_="",
+                            )
+                            + Html("td", Html("h4", " "), inline=True)
+                            + Html("td", Html("h4", " "), inline=True)
                         )
                         for media_handle in self.unused_media_handles:
                             gmfh = self.r_db.get_media_from_handle
                             media = gmfh(media_handle)
-                            gc.collect() # Reduce memory usage when many images.
                             trow += Html("tr")
                             media_data_row = [
                                 [index, "ColumnRowLabel"],
-                                [self.media_ref_link(media_handle,
-                                                     media.get_description()),
-                                 "ColumnName"],
-                                [self.rlocale.get_date(media.get_date_object()),
-                                 "ColumnDate"],
-                                [media.get_mime_type(), "ColumnMime"]]
+                                [
+                                    self.media_ref_link(
+                                        media_handle, media.get_description()
+                                    ),
+                                    "ColumnName",
+                                ],
+                                [
+                                    self.rlocale.get_date(media.get_date_object()),
+                                    "ColumnDate",
+                                ],
+                                [media.get_mime_type(), "ColumnMime"],
+                            ]
                             trow.extend(
                                 Html("td", data, class_=colclass)
                                 for data, colclass in media_data_row
@@ -335,8 +359,9 @@ class MediaPages(BasePage):
                           result.
         """
         # get media url
-        url = self.report.build_url_fname(handle, "img", uplink=2,
-                                          image=True) + self.ext
+        url = (
+            self.report.build_url_fname(handle, "img", uplink=2, image=True) + self.ext
+        )
 
         # get name
         name = html_escape(name)
@@ -386,20 +411,19 @@ class MediaPages(BasePage):
         self.copy_thumbnail(media_handle, media)
         self.page_title = media.get_description()
         esc_page_title = html_escape(self.page_title)
-        result = self.write_header("%s - %s" % (self._("Media"),
-                                                self.page_title))
+        result = self.write_header("%s - %s" % (self._("Media"), self.page_title))
         mediapage, head, dummy_body, outerwrapper = result
 
         # if there are media rectangle regions, attach behaviour style sheet
         if _region_items:
-
             if self.the_lang and not self.usecms:
                 fname = "/".join(["..", "css", "behaviour.css"])
             else:
                 fname = "/".join(["css", "behaviour.css"])
             url = self.report.build_url_fname(fname, None, self.uplink)
-            head += Html("link", href=url, type="text/css",
-                         media="screen", rel="stylesheet")
+            head += Html(
+                "link", href=url, type="text/css", media="screen", rel="stylesheet"
+            )
 
         # begin MediaDetail division
         with Html("div", class_="content", id="GalleryDetail") as mediadetail:
@@ -409,16 +433,17 @@ class MediaPages(BasePage):
             with Html("div", id="GalleryNav", role="navigation") as medianav:
                 mediadetail += medianav
                 if prev:
-                    medianav += self.media_nav_link(prev,
-                                                    self._("Previous"), True)
-                data = self._('%(strong1_strt)s%(page_number)d%(strong_end)s '
-                              'of %(strong2_strt)s%(total_pages)d%(strong_end)s'
-                             ) % {'strong1_strt' :
-                                  '<strong id="GalleryCurrent">',
-                                  'strong2_strt' : '<strong id="GalleryTotal">',
-                                  'strong_end' : '</strong>',
-                                  'page_number' : page_number,
-                                  'total_pages' : total_pages}
+                    medianav += self.media_nav_link(prev, self._("Previous"), True)
+                data = self._(
+                    "%(strong1_strt)s%(page_number)d%(strong_end)s "
+                    "of %(strong2_strt)s%(total_pages)d%(strong_end)s"
+                ) % {
+                    "strong1_strt": '<strong id="GalleryCurrent">',
+                    "strong2_strt": '<strong id="GalleryTotal">',
+                    "strong_end": "</strong>",
+                    "page_number": page_number,
+                    "total_pages": total_pages,
+                }
                 medianav += Html("span", data, id="GalleryPages")
                 if next_:
                     medianav += self.media_nav_link(next_, self._("Next"), True)
@@ -434,8 +459,9 @@ class MediaPages(BasePage):
                         if not target_exists:
                             with Html("div", id="MediaDisplay") as mediadisplay:
                                 summaryarea += mediadisplay
-                                mediadisplay += Html("span", errormsg,
-                                                     class_="MissingImage")
+                                mediadisplay += Html(
+                                    "span", errormsg, class_="MissingImage"
+                                )
 
                         else:
                             # Check how big the image is relative to the
@@ -445,18 +471,21 @@ class MediaPages(BasePage):
                             # the user to have to await a large download
                             # unnecessarily. Either way, set the display image
                             # size as requested.
-                            orig_image_path = media_path_full(self.r_db,
-                                                              media.get_path())
+                            orig_image_path = media_path_full(
+                                self.r_db, media.get_path()
+                            )
                             (width, height) = image_size(orig_image_path)
-                            max_width = self.report.options[
-                                'maxinitialimagewidth']
+                            max_width = self.report.options["maxinitialimagewidth"]
 
                             # TODO. Convert disk path to URL.
-                            url = self.report.build_url_fname(orig_image_path,
-                                                              None, self.uplink)
-                            with Html("div", id="GalleryDisplay",
-                                      style='max-width: %dpx; height: auto' % (
-                                          max_width)) as mediadisplay:
+                            url = self.report.build_url_fname(
+                                orig_image_path, None, self.uplink
+                            )
+                            with Html(
+                                "div",
+                                id="GalleryDisplay",
+                                style="max-width: %dpx; height: auto" % (max_width),
+                            ) as mediadisplay:
                                 summaryarea += mediadisplay
 
                                 # Feature #2634; display the mouse-selectable
@@ -467,41 +496,56 @@ class MediaPages(BasePage):
                                     ordered = Html("ol", class_="RegionBox")
                                     mediadisplay += ordered
                                     while _region_items:
-                                        (name, coord_x, coord_y,
-                                         width, height, linkurl
+                                        (
+                                            name,
+                                            coord_x,
+                                            coord_y,
+                                            width,
+                                            height,
+                                            linkurl,
                                         ) = _region_items.pop()
                                         ordered += Html(
                                             "li",
                                             style="left:%d%%; "
-                                                  "top:%d%%; "
-                                                  "width:%d%%; "
-                                                  "height:%d%%;" % (
-                                                      coord_x, coord_y,
-                                                      width, height)) + (
-                                                          Html("a", name,
-                                                               href=linkurl)
-                                                          )
+                                            "top:%d%%; "
+                                            "width:%d%%; "
+                                            "height:%d%%;"
+                                            % (coord_x, coord_y, width, height),
+                                        ) + (Html("a", name, href=linkurl))
 
                                 # display the image
                                 if orig_image_path != newpath:
                                     url = self.report.build_url_fname(
-                                        newpath, None, self.uplink, image=True)
-                                s_width = 'width: %dpx;' % max_width
+                                        newpath, None, self.uplink, image=True
+                                    )
+                                regions = self.media_ref_rect_regions(media_handle)
+                                if regions:
+                                    s_width = "width: %dpx;" % max_width
+                                elif width < max_width:
+                                    s_width = "width: %dpx;" % width
+                                else:
+                                    s_width = "width: %dpx;" % max_width
                                 mediadisplay += Html("a", href=url) + (
-                                    Html("img", src=url,
-                                         style=s_width,
-                                         alt=esc_page_title)
+                                    Html(
+                                        "img",
+                                        src=url,
+                                        style=s_width,
+                                        alt=esc_page_title,
+                                    )
                                 )
                     else:
                         dirname = tempfile.mkdtemp()
                         thmb_path = os.path.join(dirname, "document.png")
-                        if run_thumbnailer(mime_type,
-                                           media_path_full(self.r_db,
-                                                           media.get_path()),
-                                           thmb_path, 320):
+                        if run_thumbnailer(
+                            mime_type,
+                            media_path_full(self.r_db, media.get_path()),
+                            thmb_path,
+                            320,
+                        ):
                             try:
                                 path = self.report.build_path(
-                                    "preview", media.get_handle())
+                                    "preview", media.get_handle()
+                                )
                                 npath = os.path.join(path, media.get_handle())
                                 npath += ".png"
                                 self.report.copy_file(thmb_path, npath)
@@ -516,41 +560,45 @@ class MediaPages(BasePage):
                         with Html("div", id="GalleryDisplay") as mediadisplay:
                             summaryarea += mediadisplay
 
-                            img_url = self.report.build_url_fname(path,
-                                                                  None,
-                                                                  self.uplink,
-                                                                  image=True)
+                            img_url = self.report.build_url_fname(
+                                path, None, self.uplink, image=True
+                            )
                             if target_exists:
                                 # TODO. Convert disk path to URL
-                                url = self.report.build_url_fname(newpath,
-                                                                  None,
-                                                                  self.uplink,
-                                                                  image=True)
-                                s_width = 'width: 48px;'
-                                hyper = Html("a", href=url,
-                                             title=esc_page_title) + (
-                                                 Html("img", src=img_url,
-                                                      style=s_width,
-                                                      alt=esc_page_title)
-                                                 )
+                                url = self.report.build_url_fname(
+                                    newpath, None, self.uplink, image=True
+                                )
+                                s_width = "width: 48px;"
+                                hyper = Html("a", href=url, title=esc_page_title) + (
+                                    Html(
+                                        "img",
+                                        src=img_url,
+                                        style=s_width,
+                                        alt=esc_page_title,
+                                    )
+                                )
                                 mediadisplay += hyper
                             else:
-                                mediadisplay += Html("span", errormsg,
-                                                     class_="MissingImage")
+                                mediadisplay += Html(
+                                    "span", errormsg, class_="MissingImage"
+                                )
                 else:
                     with Html("div", id="GalleryDisplay") as mediadisplay:
                         summaryarea += mediadisplay
-                        url = self.report.build_url_image("document.png",
-                                                          "images", self.uplink)
-                        s_width = 'width: 48px;'
-                        mediadisplay += Html("img", src=url,
-                                             style=s_width,
-                                             alt=esc_page_title,
-                                             title=esc_page_title)
+                        url = self.report.build_url_image(
+                            "document.png", "images", self.uplink
+                        )
+                        s_width = "width: 48px;"
+                        mediadisplay += Html(
+                            "img",
+                            src=url,
+                            style=s_width,
+                            alt=esc_page_title,
+                            title=esc_page_title,
+                        )
 
                 # media title
-                title = Html("h3", html_escape(self.page_title.strip()),
-                             inline=True)
+                title = Html("h3", html_escape(self.page_title.strip()), inline=True)
                 summaryarea += title
 
                 # begin media table
@@ -561,46 +609,60 @@ class MediaPages(BasePage):
                     media_gid = media.gramps_id
                     if not self.noid and media_gid:
                         trow = Html("tr") + (
-                            Html("td", self._("Gramps ID"),
-                                 class_="ColumnAttribute",
-                                 inline=True),
-                            Html("td", media_gid, class_="ColumnValue",
-                                 inline=True)
-                            )
+                            Html(
+                                "td",
+                                self._("Gramps ID"),
+                                class_="ColumnAttribute",
+                                inline=True,
+                            ),
+                            Html("td", media_gid, class_="ColumnValue", inline=True),
+                        )
                         table += trow
 
                     # mime type
                     if mime_type:
                         trow = Html("tr") + (
-                            Html("td", self._("File Type"),
-                                 class_="ColumnAttribute",
-                                 inline=True),
-                            Html("td", mime_type, class_="ColumnValue",
-                                 inline=True)
-                            )
+                            Html(
+                                "td",
+                                self._("File Type"),
+                                class_="ColumnAttribute",
+                                inline=True,
+                            ),
+                            Html("td", mime_type, class_="ColumnValue", inline=True),
+                        )
                         table += trow
 
                     # media date
                     date = media.get_date_object()
                     if date and date is not Date.EMPTY:
                         trow = Html("tr") + (
-                            Html("td", self._("Date"), class_="ColumnAttribute",
-                                 inline=True),
-                            Html("td", self.rlocale.get_date(date),
-                                 class_="ColumnValue",
-                                 inline=True)
-                            )
+                            Html(
+                                "td",
+                                self._("Date"),
+                                class_="ColumnAttribute",
+                                inline=True,
+                            ),
+                            Html(
+                                "td",
+                                self.rlocale.get_date(date),
+                                class_="ColumnValue",
+                                inline=True,
+                            ),
+                        )
                         table += trow
 
                     # Tags
                     tags = self.show_tags(media)
                     if tags and self.report.inc_tags:
                         trow = Html("tr") + (
-                            Html("td", self._("Tags"),
-                                 class_="ColumnAttribute", inline=True),
-                            Html("td", tags,
-                                 class_="ColumnValue", inline=True)
-                            )
+                            Html(
+                                "td",
+                                self._("Tags"),
+                                class_="ColumnAttribute",
+                                inline=True,
+                            ),
+                            Html("td", tags, class_="ColumnValue", inline=True),
+                        )
                         table += trow
 
             # get media notes
@@ -643,11 +705,9 @@ class MediaPages(BasePage):
         @param: uplink -- If True, then "../../../" is inserted in front of the
                           result.
         """
-        url = self.report.build_url_fname(handle, "img", uplink,
-                                          image=True) + self.ext
+        url = self.report.build_url_fname(handle, "img", uplink, image=True) + self.ext
         name = html_escape(name)
-        return Html("a", name, name=name, id=name, href=url,
-                    title=name, inline=True)
+        return Html("a", name, name=name, id=name, href=url, title=name, inline=True)
 
     def display_media_sources(self, photo):
         """
@@ -655,10 +715,14 @@ class MediaPages(BasePage):
 
         @param: photo  -- The source object (image, pdf, ...)
         """
-        list(map(
-            lambda i: self.bibli.add_reference(
-                self.r_db.get_citation_from_handle(i)),
-            photo.get_citation_list()))
+        list(
+            map(
+                lambda i: self.bibli.add_reference(
+                    self.r_db.get_citation_from_handle(i)
+                ),
+                photo.get_citation_list(),
+            )
+        )
         sourcerefs = self.display_source_refs(self.bibli)
 
         # return source references to its caller
@@ -672,10 +736,9 @@ class MediaPages(BasePage):
         @param: photo  -- The source object (image, pdf, ...)
         """
         ext = os.path.splitext(photo.get_path())[1]
-        to_dir = self.report.build_path('images', handle, image=True)
+        to_dir = self.report.build_path("images", handle, image=True)
         newpath = os.path.join(to_dir, handle) + ext
-        if (self.the_lang is not None and
-                self.the_lang != self.report.languages[0][0]):
+        if self.the_lang is not None and self.the_lang != self.report.languages[0][0]:
             # if multi languages, copy the image only for the first language.
             return newpath
 
@@ -699,8 +762,9 @@ class MediaPages(BasePage):
                     os.utime(new_file, (mtime, mtime))
             return newpath
         except (IOError, OSError) as msg:
-            error = _("Missing media object:"
-                     ) + "%s (%s)" % (photo.get_description(),
-                                      photo.get_gramps_id())
+            error = _("Missing media object:") + "%s (%s)" % (
+                photo.get_description(),
+                photo.get_gramps_id(),
+            )
             self.r_user.warn(error, str(msg))
             return None

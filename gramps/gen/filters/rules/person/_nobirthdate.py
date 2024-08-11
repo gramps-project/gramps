@@ -18,32 +18,34 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # "People without a birth date"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class NoBirthdate(Rule):
     """People without a birth date"""
 
-    name = _('People without a known birth date')
+    name = _("People without a known birth date")
     description = _("Matches people without a known birthdate")
-    category = _('General filters')
+    category = _("General filters")
 
-    def apply(self,db,person):
+    def apply(self, db, person):
         birth_ref = person.get_birth_ref()
         if not birth_ref:
             return True

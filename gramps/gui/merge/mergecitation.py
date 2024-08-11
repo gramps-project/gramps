@@ -23,12 +23,13 @@
 Provide merge capabilities for citations.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from gramps.gen.const import URL_MANUAL_SECT3
 from ..display import display_help
@@ -37,24 +38,26 @@ from gramps.gen.datehandler import get_date
 from gramps.gen.utils.string import conf_strings
 from gramps.gen.merge import MergeCitationQuery
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 WIKI_HELP_PAGE = URL_MANUAL_SECT3
-WIKI_HELP_SEC = _('Merge_Citations', 'manual')
-_GLADE_FILE = 'mergecitation.glade'
+WIKI_HELP_SEC = _("Merge_Citations", "manual")
+_GLADE_FILE = "mergecitation.glade"
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MergeCitation
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MergeCitation(ManagedWindow):
     """
     Displays a dialog box that allows the citations to be combined into one.
     """
+
     def __init__(self, dbstate, uistate, track, handle1, handle2):
         ManagedWindow.__init__(self, uistate, track, self.__class__)
         self.dbstate = dbstate
@@ -62,11 +65,13 @@ class MergeCitation(ManagedWindow):
         self.citation1 = database.get_citation_from_handle(handle1)
         self.citation2 = database.get_citation_from_handle(handle2)
 
-        self.define_glade('mergecitation', _GLADE_FILE)
-        self.set_window(self._gladeobj.toplevel,
-                        self.get_widget('citation_title'),
-                        _("Merge Citations"))
-        self.setup_configs('interface.merge-citation', 500, 250)
+        self.define_glade("mergecitation", _GLADE_FILE)
+        self.set_window(
+            self._gladeobj.toplevel,
+            self.get_widget("citation_title"),
+            _("Merge Citations"),
+        )
+        self.setup_configs("interface.merge-citation", 500, 250)
 
         # Detailed Selection widgets
         page1 = self.citation1.get_page()
@@ -76,7 +81,7 @@ class MergeCitation(ManagedWindow):
         entry1.set_text(page1)
         entry2.set_text(page2)
         if entry1.get_text() == entry2.get_text():
-            for widget_name in ('page1', 'page2', 'page_btn1', 'page_btn2'):
+            for widget_name in ("page1", "page2", "page_btn1", "page_btn2"):
                 self.get_widget(widget_name).set_sensitive(False)
 
         entry1 = self.get_widget("date1")
@@ -84,8 +89,7 @@ class MergeCitation(ManagedWindow):
         entry1.set_text(get_date(self.citation1))
         entry2.set_text(get_date(self.citation2))
         if entry1.get_text() == entry2.get_text():
-            for widget_name in ('date1', 'date2', 'date_btn1',
-                    'date_btn2'):
+            for widget_name in ("date1", "date2", "date_btn1", "date_btn2"):
                 self.get_widget(widget_name).set_sensitive(False)
 
         entry1 = self.get_widget("confidence1")
@@ -93,8 +97,12 @@ class MergeCitation(ManagedWindow):
         entry1.set_text(_(conf_strings[self.citation1.get_confidence_level()]))
         entry2.set_text(_(conf_strings[self.citation2.get_confidence_level()]))
         if entry1.get_text() == entry2.get_text():
-            for widget_name in ('confidence1', 'confidence2', 'confidence_btn1',
-                    'confidence_btn2'):
+            for widget_name in (
+                "confidence1",
+                "confidence2",
+                "confidence_btn1",
+                "confidence_btn2",
+            ):
                 self.get_widget(widget_name).set_sensitive(False)
 
         gramps1 = self.citation1.get_gramps_id()
@@ -104,8 +112,7 @@ class MergeCitation(ManagedWindow):
         entry1.set_text(gramps1)
         entry2.set_text(gramps2)
         if entry1.get_text() == entry2.get_text():
-            for widget_name in ('gramps1', 'gramps2', 'gramps_btn1',
-                    'gramps_btn2'):
+            for widget_name in ("gramps1", "gramps2", "gramps_btn1", "gramps_btn2"):
                 self.get_widget(widget_name).set_sensitive(False)
 
         # Main window widgets that determine which handle survives
@@ -116,9 +123,9 @@ class MergeCitation(ManagedWindow):
         rbutton_label2.set_label(page2 + " [" + gramps2 + "]")
         rbutton1.connect("toggled", self.on_handle1_toggled)
 
-        self.connect_button('citation_help', self.cb_help)
-        self.connect_button('citation_ok', self.cb_merge)
-        self.connect_button('citation_cancel', self.close)
+        self.connect_button("citation_help", self.cb_help)
+        self.connect_button("citation_ok", self.cb_merge)
+        self.connect_button("citation_cancel", self.close)
         self.show()
 
     def on_handle1_toggled(self, obj):
@@ -136,7 +143,7 @@ class MergeCitation(ManagedWindow):
 
     def cb_help(self, obj):
         """Display the relevant portion of Gramps manual"""
-        display_help(webpage = WIKI_HELP_PAGE, section = WIKI_HELP_SEC)
+        display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def cb_merge(self, obj):
         """
@@ -164,6 +171,6 @@ class MergeCitation(ManagedWindow):
         query.execute()
         # Add the selected handle to history so that when merge is complete,
         # phoenix is the selected row.
-        self.uistate.set_active(phoenix.get_handle(), 'Citation')
+        self.uistate.set_active(phoenix.get_handle(), "Citation")
         self.uistate.set_busy_cursor(False)
         self.close()

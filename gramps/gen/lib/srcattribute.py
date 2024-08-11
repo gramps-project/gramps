@@ -23,21 +23,23 @@
 Source Attribute class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+from ..const import GRAMPS_LOCALE as glocale
 from .attribute import AttributeRoot
 from .srcattrtype import SrcAttributeType
-from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# Attribute for Source/Citation
+# SrcAttribute
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class SrcAttribute(AttributeRoot):
     """
     Provide a simple key/value pair for describing properties.
@@ -70,10 +72,8 @@ class SrcAttribute(AttributeRoot):
             "title": _("Attribute"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "private": {"type": "boolean",
-                            "title": _("Private")},
+                "private": {"type": "boolean", "title": _("Private")},
                 "type": SrcAttributeType.get_schema(),
-                "value": {"type": "string",
-                          "title": _("Value")}
-            }
+                "value": {"type": "string", "title": _("Value")},
+            },
         }

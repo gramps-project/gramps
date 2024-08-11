@@ -18,66 +18,63 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
-#
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-from ....const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+"""
+Rule to check for a person who has a relationship event with a particular value.
+"""
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+from ....const import GRAMPS_LOCALE as glocale
 from ....datehandler import parser
 from ....display.place import displayer as place_displayer
 from ....lib.eventtype import EventType
 from .. import Rule
 
-#-------------------------------------------------------------------------
+_ = glocale.translation.gettext
+
+
+# -------------------------------------------------------------------------
 #
 # HasFamilyEvent
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasFamilyEvent(Rule):
-    """Rule that checks for a person who has a relationship event
-    with a particular value"""
+    """
+    Rule to check for a person who has a relationship event with a particular value.
+    """
 
-    labels = [ _('Family event:'),
-                    _('Date:'),
-                    _('Place:'),
-                    _('Description:') ]
-    name = _('People with the family <event>')
+    labels = [_("Family event:"), _("Date:"), _("Place:"), _("Description:")]
+    name = _("People with the family <event>")
     description = _("Matches people with a family event of a particular value")
-    category = _('Event filters')
+    category = _("Event filters")
     allow_regex = True
 
-    def prepare(self, db, user):
+    def __init__(self, arg, use_regex=False, use_case=False):
+        super().__init__(arg, use_regex, use_case)
         self.date = None
+        self.event_type = None
+
+    def prepare(self, db, user):
+        if self.list[0]:
+            self.event_type = EventType()
+            self.event_type.set_from_xml_str(self.list[0])
         try:
             if self.list[1]:
                 self.date = parser.parse(self.list[1])
         except:
             pass
 
-    def apply(self,db,person):
-        for f_id in person.get_family_handle_list():
-            f = db.get_family_from_handle(f_id)
-            if not f:
-                continue
-            for event_ref in f.get_event_ref_list():
-                if not event_ref:
-                    continue
-                event_handle = event_ref.ref
-                event = db.get_event_from_handle(event_handle)
+    def apply(self, db, person):
+        for handle in person.get_family_handle_list():
+            family = db.get_family_from_handle(handle)
+            for event_ref in family.get_event_ref_list():
+                event = db.get_event_from_handle(event_ref.ref)
                 val = 1
-                if self.list[0]:
-                    specified_type = EventType()
-                    specified_type.set_from_xml_str(self.list[0])
-                    if event.type != specified_type:
-                        val = 0
+                if self.event_type and event.type != self.event_type:
+                    val = 0
                 if self.list[3]:
                     if not self.match_substring(3, event.get_description()):
                         val = 0

@@ -45,6 +45,7 @@ gramps/gen/datehandler/_date_el.py
 gramps/gen/datehandler/_date_es.py
 gramps/gen/datehandler/_date_fi.py
 gramps/gen/datehandler/_date_fr.py
+gramps/gen/datehandler/_date_he.py
 gramps/gen/datehandler/_date_hr.py
 gramps/gen/datehandler/_date_hu.py
 gramps/gen/datehandler/_date_is.py
@@ -156,6 +157,7 @@ gramps/gen/lib/baseobj.py
 gramps/gen/lib/citationbase.py
 gramps/gen/lib/const.py
 gramps/gen/lib/datebase.py
+gramps/gen/lib/eventbase.py
 gramps/gen/lib/gcalendar.py
 gramps/gen/lib/genderstats.py
 gramps/gen/lib/ldsordbase.py
@@ -343,6 +345,7 @@ gramps/gui/editors/displaytabs/placenamemodel.py
 gramps/gui/editors/displaytabs/placerefmodel.py
 gramps/gui/editors/displaytabs/reporefmodel.py
 gramps/gui/editors/displaytabs/sourcebackreflist.py
+gramps/gui/editors/displaytabs/srcattrmodel.py
 gramps/gui/editors/displaytabs/surnamemodel.py
 gramps/gui/editors/displaytabs/webmodel.py
 #
@@ -456,6 +459,10 @@ gramps/gui/widgets/validatedcomboentry.py
 #
 gramps/plugins/__init__.py
 #
+# plugins/cite directory
+#
+gramps/plugins/cite/__init__.py
+#
 # plugins/db/bsddb directory
 #
 gramps/plugins/db/bsddb/__init__.py
@@ -563,6 +570,7 @@ gramps/plugins/rel/rel_de.py
 gramps/plugins/rel/rel_es.py
 gramps/plugins/rel/rel_fi.py
 gramps/plugins/rel/rel_fr.py
+gramps/plugins/rel/rel_he.py
 gramps/plugins/rel/rel_hr.py
 gramps/plugins/rel/rel_hu.py
 gramps/plugins/rel/rel_is.py

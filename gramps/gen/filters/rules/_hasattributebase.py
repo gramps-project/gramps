@@ -19,49 +19,58 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
-#
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-from ...const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+"""
+Rule that checks for an object with a particular attribute.
+"""
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+from ...const import GRAMPS_LOCALE as glocale
 from ...lib.attrtype import AttributeType
 from . import Rule
 
+_ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# HasAttribute
+# HasAttributeBase
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasAttributeBase(Rule):
     """
     Rule that checks for an object with a particular attribute.
     """
 
-    labels = ['Attribute:', 'Value:']
-    name = 'Objects with the <attribute>'
-    description = "Matches objects with the given attribute " \
-                  "of a particular value"
-    category = _('General filters')
+    labels = ["Attribute:", "Value:"]
+    name = "Objects with the <attribute>"
+    description = "Matches objects with the given attribute of a particular value"
+    category = _("General filters")
     allow_regex = True
 
-    def apply(self, db, obj):
-        if not self.list[0]:
-            return False
-        for attr in obj.get_attribute_list():
-            specified_type = AttributeType()
-            specified_type.set_from_xml_str(self.list[0])
-            name_match = attr.get_type() == specified_type
+    def __init__(self, arg, use_regex=False, use_case=False):
+        super().__init__(arg, use_regex, use_case)
+        self.attribute_type = None
 
-            if name_match:
-                if self.match_substring(1, attr.get_value()):
-                    return True
+    def prepare(self, db, user):
+        """
+        Prepare the rule. Things that should only be done once.
+        """
+        if self.list[0]:
+            self.attribute_type = AttributeType()
+            self.attribute_type.set_from_xml_str(self.list[0])
+
+    def apply(self, db, obj):
+        """
+        Apply the rule. Return True if a match.
+        """
+        if self.attribute_type:
+            for attribute in obj.get_attribute_list():
+                name_match = attribute.get_type() == self.attribute_type
+                if name_match:
+                    if self.match_substring(1, attribute.get_value()):
+                        return True
         return False

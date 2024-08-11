@@ -27,28 +27,31 @@ Display all events on a particular day.
 from gramps.gen.simple import SimpleAccess, SimpleDoc, SimpleTable
 from gramps.gui.plug.quick import QuickTable
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gramps.gen.lib import Date
+
 
 def get_ref(db, objclass, handle):
     """
     Looks up object in database
     """
-    if objclass == 'Person':
+    if objclass == "Person":
         ref = db.get_person_from_handle(handle)
-    elif objclass == 'Family':
+    elif objclass == "Family":
         ref = db.get_family_from_handle(handle)
-    elif objclass == 'Event':
+    elif objclass == "Event":
         ref = db.get_event_from_handle(handle)
-    elif objclass == 'Source':
+    elif objclass == "Source":
         ref = db.get_source_from_handle(handle)
-    elif objclass == 'Place':
+    elif objclass == "Place":
         ref = db.get_place_from_handle(handle)
-    elif objclass == 'Repository':
+    elif objclass == "Repository":
         ref = db.get_repository_from_handle(handle)
     else:
         ref = objclass
     return ref
+
 
 def run(database, document, main_event):
     """
@@ -61,7 +64,7 @@ def run(database, document, main_event):
     else:
         main_date = main_event.get_date_object()
 
-    cal = main_date.get_calendar();
+    cal = main_date.get_calendar()
 
     # setup the simple access functions
     sdb = SimpleAccess(database)
@@ -74,8 +77,7 @@ def run(database, document, main_event):
     histab.set_link_col(3)
 
     # display the title
-    sdoc.title(_("Events of %(date)s") %
-               {"date": sdb.date_string(main_date)})
+    sdoc.title(_("Events of %(date)s") % {"date": sdb.date_string(main_date)})
     sdoc.paragraph("")
     stab.columns(_("Date"), _("Type"), _("Place"), _("Reference"))
     yeartab.columns(_("Date"), _("Type"), _("Place"), _("Reference"))
@@ -86,28 +88,26 @@ def run(database, document, main_event):
         date.convert_calendar(cal)
         if date.get_year() == 0:
             continue
-        if (date.get_year() == main_date.get_year() and
-            date.get_month() == main_date.get_month() and
-            date.get_day() == main_date.get_day()):
-            for (objclass, handle) in database.find_backlink_handles(event.handle):
+        if (
+            date.get_year() == main_date.get_year()
+            and date.get_month() == main_date.get_month()
+            and date.get_day() == main_date.get_day()
+        ):
+            for objclass, handle in database.find_backlink_handles(event.handle):
                 ref = get_ref(database, objclass, handle)
-                stab.row(date,
-                         sdb.event_type(event),
-                         sdb.event_place(event), ref)
-        elif (date.get_month() == main_date.get_month() and
-              date.get_day() == main_date.get_day() and
-              date.get_month() != 0):
-            for (objclass, handle) in database.find_backlink_handles(event.handle):
+                stab.row(date, sdb.event_type(event), sdb.event_place(event), ref)
+        elif (
+            date.get_month() == main_date.get_month()
+            and date.get_day() == main_date.get_day()
+            and date.get_month() != 0
+        ):
+            for objclass, handle in database.find_backlink_handles(event.handle):
                 ref = get_ref(database, objclass, handle)
-                histab.row(date,
-                           sdb.event_type(event),
-                           sdb.event_place(event), ref)
-        elif (date.get_year() == main_date.get_year()):
-            for (objclass, handle) in database.find_backlink_handles(event.handle):
+                histab.row(date, sdb.event_type(event), sdb.event_place(event), ref)
+        elif date.get_year() == main_date.get_year():
+            for objclass, handle in database.find_backlink_handles(event.handle):
                 ref = get_ref(database, objclass, handle)
-                yeartab.row(date,
-                            sdb.event_type(event),
-                            sdb.event_place(event), ref)
+                yeartab.row(date, sdb.event_type(event), sdb.event_place(event), ref)
 
     document.has_data = False
     if stab.get_row_count() > 0:
@@ -130,11 +130,11 @@ def run(database, document, main_event):
 
     if yeartab.get_row_count() > 0:
         document.has_data = True
-        sdoc.paragraph(_("Other events in %(year)d") %
-                       {"year":main_date.get_year()})
+        sdoc.paragraph(_("Other events in %(year)d") % {"year": main_date.get_year()})
         yeartab.write(sdoc)
     else:
-        sdoc.paragraph(_("No other events in %(year)d") %
-                       {"year":main_date.get_year()})
+        sdoc.paragraph(
+            _("No other events in %(year)d") % {"year": main_date.get_year()}
+        )
         sdoc.paragraph("")
     sdoc.paragraph("")

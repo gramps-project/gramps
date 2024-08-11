@@ -22,16 +22,26 @@
 SourceMedia types.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .grampstype import GrampsType
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .grampstype import GrampsType
+
 _ = glocale.translation.gettext
 
+
+# -------------------------------------------------------------------------
+#
+# SourceMediaType
+#
+# -------------------------------------------------------------------------
 class SourceMediaType(GrampsType):
+    """
+    Class encapsulating the media type for a source.
+    """
 
     UNKNOWN = -1
     CUSTOM = 0
@@ -68,7 +78,7 @@ class SourceMediaType(GrampsType):
         (PHOTO, _("Photo"), "Photo"),
         (TOMBSTONE, _("Tombstone"), "Tombstone"),
         (VIDEO, _("Video"), "Video"),
-        ]
+    ]
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)

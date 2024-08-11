@@ -22,22 +22,23 @@
 
 """Database Processing/Rename Event Types"""
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import GObject
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
-ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
+ngettext = glocale.translation.ngettext  # else "nearby" comments are ignored
 from gramps.gui.utils import ProgressMeter
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gen.lib import EventType
@@ -45,13 +46,13 @@ from gramps.gen.db import DbTxn
 from gramps.gui.plug import tool
 from gramps.gui.glade import Glade
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # ChangeTypes class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class ChangeTypes(tool.BatchTool, ManagedWindow):
-
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
         self.user = user
@@ -62,9 +63,8 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
             return
 
         if uistate:
-            self.title = _('Change Event Types')
-            ManagedWindow.__init__(self,uistate,[],
-                                                 self.__class__)
+            self.title = _("Change Event Types")
+            ManagedWindow.__init__(self, uistate, [], self.__class__)
             self.init_gui()
         else:
             self.run_tool()
@@ -80,52 +80,55 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
         # Need to display localized event names
         etype = EventType()
         custom_events = self.dbstate.db.get_event_types()
-        event_names = sorted(etype.get_standard_names() + custom_events,
-                             key=glocale.sort_key)
+        event_names = sorted(
+            etype.get_standard_names() + custom_events, key=glocale.sort_key
+        )
 
-        self.fill_combo(self.auto1,event_names)
-        self.fill_combo(self.auto2,event_names)
+        self.fill_combo(self.auto1, event_names)
+        self.fill_combo(self.auto2, event_names)
 
-        etype.set_from_xml_str(self.options.handler.options_dict['fromtype'])
+        etype.set_from_xml_str(self.options.handler.options_dict["fromtype"])
         self.auto1.get_child().set_text(str(etype))
 
-        etype.set_from_xml_str(self.options.handler.options_dict['totype'])
+        etype.set_from_xml_str(self.options.handler.options_dict["totype"])
         self.auto2.get_child().set_text(str(etype))
 
         window = self.glade.toplevel
-        self.set_window(window,self.glade.get_object('title'),self.title)
-        self.setup_configs('interface.changetypes', 640, 260)
+        self.set_window(window, self.glade.get_object("title"), self.title)
+        self.setup_configs("interface.changetypes", 640, 260)
 
-        self.glade.connect_signals({
-            "on_close_clicked"  : self.close,
-            "on_apply_clicked"  : self.on_apply_clicked,
-            "on_delete_event"   : self.close,
-            })
+        self.glade.connect_signals(
+            {
+                "on_close_clicked": self.close,
+                "on_apply_clicked": self.on_apply_clicked,
+                "on_delete_event": self.close,
+            }
+        )
 
         self.show()
 
     def build_menu_names(self, obj):
-        return (self.title,None)
+        return (self.title, None)
 
-    def run_tool(self, parent_window = None):
+    def run_tool(self, parent_window=None):
         # Run tool and return results
         # These are English names, no conversion needed
-        fromtype = self.options.handler.options_dict['fromtype']
-        totype = self.options.handler.options_dict['totype']
+        fromtype = self.options.handler.options_dict["fromtype"]
+        totype = self.options.handler.options_dict["totype"]
 
         modified = 0
 
-        with DbTxn(_('Change types'), self.db, batch=True) as self.trans:
+        with DbTxn(_("Change types"), self.db, batch=True) as self.trans:
             self.db.disable_signals()
             with self.user.progress(
-                    _('Analyzing Events'), '',
-                    self.db.get_number_of_events()) as step:
+                _("Analyzing Events"), "", self.db.get_number_of_events()
+            ) as step:
                 for event_handle in self.db.get_event_handles():
                     event = self.db.get_event_from_handle(event_handle)
                     if event.get_type().xml_str() == fromtype:
                         event.type.set_from_xml_str(totype)
                         modified += 1
-                        self.db.commit_event(event,self.trans)
+                        self.db.commit_event(event, self.trans)
                         step()
         self.db.enable_signals()
         self.db.request_rebuild()
@@ -134,22 +137,24 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
             msg = _("No event record was modified.")
         else:
             # Translators: leave all/any {...} untranslated
-            msg = ngettext("{number_of} event record was modified.",
-                           "{number_of} event records were modified.", modified
-                          ).format(number_of=modified)
+            msg = ngettext(
+                "{number_of} event record was modified.",
+                "{number_of} event records were modified.",
+                modified,
+            ).format(number_of=modified)
 
-        self.user.info(_('Change types'), msg, parent=parent_window)
-        return (bool(modified),msg)
+        self.user.info(_("Change types"), msg, parent=parent_window)
+        return (bool(modified), msg)
 
     def on_apply_clicked(self, obj):
         # Need to store English names for later comparison
         the_type = EventType()
 
         the_type.set(self.auto1.get_child().get_text())
-        self.options.handler.options_dict['fromtype'] = the_type.xml_str()
+        self.options.handler.options_dict["fromtype"] = the_type.xml_str()
 
         the_type.set(self.auto2.get_child().get_text())
-        self.options.handler.options_dict['totype'] = the_type.xml_str()
+        self.options.handler.options_dict["totype"] = the_type.xml_str()
 
         self.run_tool(self.parent_window)
 
@@ -178,27 +183,26 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
         completion.set_text_column(0)
         combo.get_child().set_completion(completion)
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 #
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class ChangeTypesOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
 
-    def __init__(self, name,person_id=None):
-        tool.ToolOptions.__init__(self, name,person_id)
+    def __init__(self, name, person_id=None):
+        tool.ToolOptions.__init__(self, name, person_id)
 
         # Options specific for this report
         self.options_dict = {
-            'fromtype'   : '',
-            'totype'     : '',
+            "fromtype": "",
+            "totype": "",
         }
         self.options_help = {
-            'fromtype'   : ("=str","Type of events to replace",
-                            "Event type string"),
-            'totype'     : ("=str","New type replacing the old one",
-                            "Event type string"),
+            "fromtype": ("=str", "Type of events to replace", "Event type string"),
+            "totype": ("=str", "New type replacing the old one", "Event type string"),
         }

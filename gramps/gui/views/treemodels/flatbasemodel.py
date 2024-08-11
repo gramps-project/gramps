@@ -46,43 +46,44 @@ The class FlatBaseModel, is the base class for all flat treeview models.
 It keeps a FlatNodeMap, and obtains data from database as needed
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
 import bisect
 from time import perf_counter
 
 _LOG = logging.getLogger(".gui.basetreemodel")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import GObject
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.filters import SearchFilter, ExactSearchFilter
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from .basemodel import BaseModel
 from ...user import User
 from gramps.gen.proxy.cache import CacheProxyDb
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # FlatNodeMap
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 UEMPTY = ""
+
 
 class FlatNodeMap:
     """
@@ -124,12 +125,12 @@ class FlatNodeMap:
         self._hndl2index = {}
         self._reverse = False
         self.__corr = (0, 1)
-        #We create a stamp to recognize invalid iterators. From the docs:
-        #Set the stamp to be equal to your model's stamp, to mark the
-        #iterator as valid. When your model's structure changes, you should
-        #increment your model's stamp to mark all older iterators as invalid.
-        #They will be recognised as invalid because they will then have an
-        #incorrect stamp.
+        # We create a stamp to recognize invalid iterators. From the docs:
+        # Set the stamp to be equal to your model's stamp, to mark the
+        # iterator as valid. When your model's structure changes, you should
+        # increment your model's stamp to mark all older iterators as invalid.
+        # They will be recognised as invalid because they will then have an
+        # incorrect stamp.
         self.stamp = 0
 
     def destroy(self):
@@ -140,8 +141,7 @@ class FlatNodeMap:
         self._fullhndl = None
         self._hndl2index = None
 
-    def set_path_map(self, index2hndllist, fullhndllist, identical=True,
-                     reverse=False):
+    def set_path_map(self, index2hndllist, fullhndllist, identical=True, reverse=False):
         """
         This is the core method to set up the FlatNodeMap
         Input is a list of (srtkey, handle), of which the index is the path
@@ -191,7 +191,7 @@ class FlatNodeMap:
         order, or reverse order.
         """
         if self._hndl2index:
-            #if hndl2index is build already, invert order, otherwise keep
+            # if hndl2index is build already, invert order, otherwise keep
             # requested order
             self._reverse = not self._reverse
         if self._reverse:
@@ -199,8 +199,9 @@ class FlatNodeMap:
         else:
             self.__corr = (0, 1)
         if not self._hndl2index:
-            self._hndl2index = dict((key[1], index)
-                for index, key in enumerate(self._index2hndl))
+            self._hndl2index = dict(
+                (key[1], index) for index, key in enumerate(self._index2hndl)
+            )
 
     def real_path(self, index):
         """
@@ -331,7 +332,7 @@ class FlatNodeMap:
             ##upstream bug: https://bugzilla.gnome.org/show_bug.cgi?id=698366
             index = 0
 
-        if self._reverse :
+        if self._reverse:
             index -= 1
             if index < 0:
                 # -1 does not raise IndexError, as -1 is last element. Catch.
@@ -378,21 +379,22 @@ class FlatNodeMap:
         :Returns type: Gtk.TreePath or None
         """
         if srtkey_hndl[1] in self._hndl2index:
-            print(('WARNING: Attempt to add row twice to the model (%s)' %
-                    srtkey_hndl[1]))
+            print(
+                ("WARNING: Attempt to add row twice to the model (%s)" % srtkey_hndl[1])
+            )
             return
         if not self._identical:
             bisect.insort_left(self._fullhndl, srtkey_hndl)
             if allkeyonly:
-                #key is not part of the view
+                # key is not part of the view
                 return None
         insert_pos = bisect.bisect_left(self._index2hndl, srtkey_hndl)
         self._index2hndl.insert(insert_pos, srtkey_hndl)
-        #make sure the index map is updated
-        for srt_key,hndl in self._index2hndl[insert_pos+1:]:
+        # make sure the index map is updated
+        for srt_key, hndl in self._index2hndl[insert_pos + 1 :]:
             self._hndl2index[hndl] += 1
         self._hndl2index[srtkey_hndl[1]] = insert_pos
-        #update self.__corr so it remains correct
+        # update self.__corr so it remains correct
         if self._reverse:
             self.__corr = (len(self._index2hndl) - 1, -1)
         return Gtk.TreePath((self.real_path(insert_pos),))
@@ -410,13 +412,13 @@ class FlatNodeMap:
         :Returns: path of the row deleted from the treeview
         :Returns type: Gtk.TreePath or None
         """
-        #remove it from the full list first
+        # remove it from the full list first
         if not self._identical:
             for indx, hndle in enumerate(self._fullhndl):
-                if self.hndle[1] == handle:
+                if hndle[1] == handle:
                     del self._fullhndl[indx]
                     break
-        #now remove it from the index maps
+        # now remove it from the index maps
         try:
             index = self._hndl2index[handle]
         except KeyError:
@@ -424,21 +426,21 @@ class FlatNodeMap:
             return None
         del self._index2hndl[index]
         del self._hndl2index[handle]
-        #update self.__corr so it remains correct
+        # update self.__corr so it remains correct
         delpath = self.real_path(index)
         if self._reverse:
             self.__corr = (len(self._index2hndl) - 1, -1)
-        #update the handle2path map so it remains correct
+        # update the handle2path map so it remains correct
         for dummy_srt_key, hndl in self._index2hndl[index:]:
             self._hndl2index[hndl] -= 1
         return Gtk.TreePath((delpath,))
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # FlatBaseModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
     """
     The base class for all flat treeview models.
@@ -447,28 +449,35 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
             so as to have localized sort
     """
 
-    def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
-                 search=None, skip=set(),
-                 sort_map=None):
+    def __init__(
+        self,
+        db,
+        uistate,
+        scol=0,
+        order=Gtk.SortType.ASCENDING,
+        search=None,
+        skip=set(),
+        sort_map=None,
+    ):
         cput = perf_counter()
         GObject.GObject.__init__(self)
         BaseModel.__init__(self)
         self.uistate = uistate
         self.user = User(parent=uistate.window, uistate=uistate)
-        #inheriting classes must set self.map to obtain the data
+        # inheriting classes must set self.map to obtain the data
         self.prev_handle = None
         self.prev_data = None
 
-        #GTK3 We leak ref, yes??
-        #self.set_property("leak_references", False)
+        # GTK3 We leak ref, yes??
+        # self.set_property("leak_references", False)
 
         self.db = db
-        #normally sort on first column, so scol=0
+        # normally sort on first column, so scol=0
         if sort_map:
-            #sort_map is the stored order of the columns and if they are
-            #enabled or not. We need to store on scol of that map
-            self.sort_map = [ f for f in sort_map if f[0]]
-            #we need the model col, that corresponds with scol
+            # sort_map is the stored order of the columns and if they are
+            # enabled or not. We need to store on scol of that map
+            self.sort_map = [f for f in sort_map if f[0]]
+            # we need the model col, that corresponds with scol
             col = self.sort_map[scol][1]
         else:
             col = scol
@@ -481,11 +490,12 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         self.node_map = FlatNodeMap()
         self.set_search(search)
 
-        self._reverse = (order == Gtk.SortType.DESCENDING)
+        self._reverse = order == Gtk.SortType.DESCENDING
 
         self.rebuild_data()
-        _LOG.debug(self.__class__.__name__ + ' __init__ ' +
-                    str(perf_counter() - cput) + ' sec')
+        _LOG.debug(
+            self.__class__.__name__ + " __init__ " + str(perf_counter() - cput) + " sec"
+        )
 
     def destroy(self):
         """
@@ -511,11 +521,11 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         """
         if search:
             if search[0]:
-                #following is None if no data given in filter sidebar
+                # following is None if no data given in filter sidebar
                 self.search = search[1]
                 self.rebuild_data = self._rebuild_filter
             else:
-                if search[1]: # Search from topbar in columns
+                if search[1]:  # Search from topbar in columns
                     # we have search[1] = (index, text_unicode, inversion)
                     col = search[1][0]
                     text = search[1][1]
@@ -565,15 +575,14 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         """
         # use cursor as a context manager
         with self.gen_cursor() as cursor:
-            #loop over database and store the sort field, and the handle
-            srt_keys=[(self.sort_func(data), key)
-                      for key, data in cursor]
+            # loop over database and store the sort field, and the handle
+            srt_keys = [(self.sort_func(data), key) for key, data in cursor]
             srt_keys.sort()
             return srt_keys
 
     def _rebuild_search(self, ignore=None):
-        """ function called when view must be build, given a search text
-            in the top search bar
+        """function called when view must be build, given a search text
+        in the top search bar
         """
         self.clear_cache()
         self._in_build = True
@@ -582,27 +591,31 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
             if not allkeys:
                 allkeys = self.sort_keys()
             if self.search and self.search.text:
-                dlist = [h for h in allkeys
-                             if self.search.match(h[1], self.db) and
-                             h[1] not in self.skip and h[1] != ignore]
+                dlist = [
+                    h
+                    for h in allkeys
+                    if self.search.match(h[1], self.db)
+                    and h[1] not in self.skip
+                    and h[1] != ignore
+                ]
                 ident = False
             elif ignore is None and not self.skip:
-                #nothing to remove from the keys present
+                # nothing to remove from the keys present
                 ident = True
                 dlist = allkeys
             else:
                 ident = False
-                dlist = [h for h in allkeys
-                             if h[1] not in self.skip and h[1] != ignore]
-            self.node_map.set_path_map(dlist, allkeys, identical=ident,
-                                       reverse=self._reverse)
+                dlist = [h for h in allkeys if h[1] not in self.skip and h[1] != ignore]
+            self.node_map.set_path_map(
+                dlist, allkeys, identical=ident, reverse=self._reverse
+            )
         else:
             self.node_map.clear_map()
         self._in_build = False
 
     def _rebuild_filter(self, ignore=None):
-        """ function called when view must be build, given filter options
-            in the filter sidebar
+        """function called when view must be build, given filter options
+        in the filter sidebar
         """
         self.clear_cache()
         self._in_build = True
@@ -614,20 +627,20 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
             if self.search:
                 ident = False
                 if ignore is None:
-                    dlist = self.search.apply(cdb, allkeys, tupleind=1,
-                                              user=self.user)
+                    dlist = self.search.apply(cdb, allkeys, tupleind=1, user=self.user)
                 else:
                     dlist = self.search.apply(
-                        cdb, [k for k in allkeys if k[1] != ignore],
-                        tupleind=1)
-            elif ignore is None :
+                        cdb, [k for k in allkeys if k[1] != ignore], tupleind=1
+                    )
+            elif ignore is None:
                 ident = True
                 dlist = allkeys
             else:
                 ident = False
-                dlist = [ k for k in allkeys if k[1] != ignore ]
-            self.node_map.set_path_map(dlist, allkeys, identical=ident,
-                                       reverse=self._reverse)
+                dlist = [k for k in allkeys if k[1] != ignore]
+            self.node_map.set_path_map(
+                dlist, allkeys, identical=ident, reverse=self._reverse
+            )
         else:
             self.node_map.clear_map()
         self._in_build = False
@@ -639,12 +652,11 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         """
         assert isinstance(handle, str)
         if self.node_map.get_path_from_handle(handle) is not None:
-            return # row is already displayed
+            return  # row is already displayed
         data = self.map(handle)
         insert_val = (self.sort_func(data), handle)
-        if not self.search or \
-                (self.search and self.search.match(handle, self.db)):
-            #row needs to be added to the model
+        if not self.search or (self.search and self.search.match(handle, self.db)):
+            # row needs to be added to the model
             insert_path = self.node_map.insert(insert_val)
 
             if insert_path is not None:
@@ -658,7 +670,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         Delete a row, called after the object with handle is deleted
         """
         delete_path = self.node_map.delete(handle)
-        #delete_path is an integer from 0 to n-1
+        # delete_path is an integer from 0 to n-1
         if delete_path is not None:
             self.clear_cache(handle)
             self.row_deleted(delete_path)
@@ -668,17 +680,17 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         Update a row, called after the object with handle is changed
         """
         if self.node_map.get_path_from_handle(handle) is None:
-            return # row is not currently displayed
+            return  # row is not currently displayed
         self.clear_cache(handle)
         oldsortkey = self.node_map.get_sortkey(handle)
         newsortkey = self.sort_func(self.map(handle))
         if oldsortkey is None or oldsortkey != newsortkey:
-            #or the changed object is not present in the view due to filtering
-            #or the order of the object must change.
+            # or the changed object is not present in the view due to filtering
+            # or the order of the object must change.
             self.delete_row_by_handle(handle)
             self.add_row_by_handle(handle)
         else:
-            #the row is visible in the view, is changed, but the order is fixed
+            # the row is visible in the view, is changed, but the order is fixed
             path = self.node_map.get_path_from_handle(handle)
             node = self.do_get_iter(path)[1]
             self.row_changed(path, node)
@@ -712,8 +724,8 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         Returns the GtkTreeModelFlags for this particular type of model
         See Gtk.TreeModel
         """
-        #print 'do_get_flags'
-        return Gtk.TreeModelFlags.LIST_ONLY #| Gtk.TreeModelFlags.ITERS_PERSIST
+        # print 'do_get_flags'
+        return Gtk.TreeModelFlags.LIST_ONLY  # | Gtk.TreeModelFlags.ITERS_PERSIST
 
     def do_get_n_columns(self):
         """Internal method. Don't inherit"""
@@ -724,7 +736,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         Return the number of columns. Must be implemented in the child objects
         See Gtk.TreeModel. Inherit as needed
         """
-        #print 'do_get_n_col'
+        # print 'do_get_n_col'
         raise NotImplementedError
 
     def do_get_path(self, iter):
@@ -733,25 +745,25 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         levels) for a particular iter. We use handles for unique key iters
         See Gtk.TreeModel
         """
-        #print 'do_get_path', iter
+        # print 'do_get_path', iter
         return self.node_map.get_path(iter)
 
     def do_get_column_type(self, index):
         """
         See Gtk.TreeModel
         """
-        #print 'do_get_col_type'
+        # print 'do_get_col_type'
         return str
 
     def do_get_iter_first(self):
-        #print 'get iter first'
+        # print 'get iter first'
         raise NotImplementedError
 
     def do_get_iter(self, path):
         """
         See Gtk.TreeModel
         """
-        #print 'do_get_iter', path
+        # print 'do_get_iter', path
         for p in path:
             break
         try:
@@ -770,8 +782,8 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
                 data = self.map(handle)
                 self.set_cached_value(handle, col, data)
             if data is None:
-                #object is no longer present
-                return ''
+                # object is no longer present
+                return ""
             self.prev_data = data
             self.prev_handle = handle
         return self.fmap[col](self.prev_data)
@@ -781,7 +793,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         See Gtk.TreeModel.
         col is the model column that is needed, not the visible column!
         """
-        #print ('do_get_val', iter, iter.user_data, col)
+        # print ('do_get_val', iter, iter.user_data, col)
         index = iter.user_data
         if index is None:
             ##GTK3: user data may only be an integer, we store the index
@@ -791,12 +803,12 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
             index = 0
         handle = self.node_map._index2hndl[index][1]
         val = self._get_value(handle, col)
-        #print 'val is', val, type(val)
+        # print 'val is', val, type(val)
 
         return val
 
     def do_iter_previous(self, iter):
-        #print 'do_iter_previous'
+        # print 'do_iter_previous'
         raise NotImplementedError
 
     def do_iter_next(self, iter):
@@ -811,8 +823,8 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         Return the first child of the node
         See Gtk.TreeModel
         """
-        #print 'do_iter_children'
-        print('ERROR: iter children, should not be called in flat base!!')
+        # print 'do_iter_children'
+        print("ERROR: iter children, should not be called in flat base!!")
         raise NotImplementedError
         if handle is None and len(self.node_map):
             return self.node_map.get_first_handle()
@@ -823,8 +835,8 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         Returns true if this node has children
         See Gtk.TreeModel
         """
-        #print 'do_iter_has_child'
-        print('ERROR: iter has_child', iter, 'should not be called in flat base')
+        # print 'do_iter_has_child'
+        print("ERROR: iter has_child", iter, "should not be called in flat base")
         return False
         if handle is None:
             return len(self.node_map) > 0
@@ -834,8 +846,8 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         """
         See Gtk.TreeModel
         """
-        #print 'do_iter_n_children'
-        print('ERROR: iter_n_children', iter, 'should not be called in flat base')
+        # print 'do_iter_n_children'
+        print("ERROR: iter_n_children", iter, "should not be called in flat base")
         return 0
         if handle is None:
             return len(self.node_map)
@@ -845,7 +857,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         """
         See Gtk.TreeModel
         """
-        #print 'do_iter_nth_child', iter, nth
+        # print 'do_iter_nth_child', iter, nth
         if iter is None:
             return True, self.node_map.get_iter(nth)
         return False, None
@@ -855,5 +867,5 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         Returns the parent of this node
         See Gtk.TreeModel
         """
-        #print 'do_iter_parent'
+        # print 'do_iter_parent'
         return False, None

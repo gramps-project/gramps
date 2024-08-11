@@ -18,64 +18,74 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
-#
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-from ....const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
+"""
+Rule that checks for a repo with a particular value.
+"""
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+from ....const import GRAMPS_LOCALE as glocale
 from ....lib.repotype import RepositoryType
 from .. import Rule
 
-#-------------------------------------------------------------------------
+_ = glocale.translation.sgettext
+
+
+# -------------------------------------------------------------------------
 #
 # HasRepo
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasRepo(Rule):
-    """Rule that checks for a repo with a particular value"""
+    """
+    Rule that checks for a repo with a particular value.
+    """
 
-
-    labels = [ _('Name:', 'repo'),
-                    _('Type:'),
-                    _('Address:'),
-                    _('URL:'),
-                    ]
-    name = _('Repositories matching parameters')
+    labels = [
+        _("Name:", "repo"),
+        _("Type:"),
+        _("Address:"),
+        _("URL:"),
+    ]
+    name = _("Repositories matching parameters")
     description = _("Matches Repositories with particular parameters")
-    category = _('General filters')
+    category = _("General filters")
     allow_regex = True
 
+    def __init__(self, arg, use_regex=False, use_case=False):
+        super().__init__(arg, use_regex, use_case)
+        self.rtype = None
+
     def prepare(self, db, user):
+        """
+        Prepare the rule. Things we only want to do once.
+        """
         if self.list[1]:
             self.rtype = RepositoryType()
             self.rtype.set_from_xml_str(self.list[1])
-        else:
-            self.rtype = None
 
-    def apply(self, db, repo):
-        if not self.match_substring(0, repo.get_name()):
+    def apply(self, _db, obj):
+        """
+        Apply the rule. Return True on a match.
+        """
+        if not self.match_substring(0, obj.get_name()):
             return False
 
         if self.rtype:
             if self.rtype.is_custom() and self.use_regex:
-                if self.regex[1].search(str(repo.type)) is None:
+                if self.regex[1].search(str(obj.type)) is None:
                     return False
-            elif repo.type != self.rtype:
+            elif obj.type != self.rtype:
                 return False
 
         if self.list[2]:
             addr_match = False
-            for addr in repo.address_list:
+            for addr in obj.address_list:
                 # TODO for Arabic, should the next line's comma be translated?
-                addr_text = ', '.join(addr.get_text_data_list())
+                addr_text = ", ".join(addr.get_text_data_list())
                 if self.match_substring(2, addr_text):
                     addr_match = True
                     break
@@ -84,9 +94,9 @@ class HasRepo(Rule):
 
         if self.list[3]:
             url_match = False
-            for url in repo.urls:
+            for url in obj.urls:
                 # TODO for Arabic, should the next line's comma be translated?
-                url_text = ', '.join(url.get_text_data_list())
+                url_text = ", ".join(url.get_text_data_list())
                 if self.match_substring(3, url_text):
                     url_match = True
                     break

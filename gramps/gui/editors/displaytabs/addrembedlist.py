@@ -22,31 +22,33 @@
 Address List display tab.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gi.repository import GObject, GLib
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.lib import Address
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
 from .addressmodel import AddressModel
 from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 #
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class AddrEmbedList(EmbeddedList):
     """
     Address List display tab for edit dialogs.
@@ -58,38 +60,46 @@ class AddrEmbedList(EmbeddedList):
     _DND_TYPE = DdTargets.ADDRESS
 
     _MSG = {
-        'add'   : _('Create and add a new address'),
-        'del'   : _('Remove the existing address'),
-        'edit'  : _('Edit the selected address'),
-        'up'    : _('Move the selected address upwards'),
-        'down'  : _('Move the selected address downwards'),
+        "add": _("Create and add a new address"),
+        "del": _("Remove the existing address"),
+        "edit": _("Edit the selected address"),
+        "up": _("Move the selected address upwards"),
+        "down": _("Move the selected address downwards"),
     }
 
-    #index = column in model. Value =
+    # index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Date'),         0, 150, MARKUP_COL, -1, None),
-        (_('Street'),       1, 225, TEXT_COL, -1, None),
-        (_('Locality'),     2, 100, TEXT_COL, -1, None),
-        (_('City'),         3, 100, TEXT_COL, -1, None),
-        (_('State/County'), 4, 100, TEXT_COL, -1, None),
-        (_('Country'),      5,  75, TEXT_COL, -1, None),
-        (_("Postal"),       6,  75, TEXT_COL, -1, None),
-        (_("Phone"),        7, 150, TEXT_COL, -1, None),
-        (_('Source'),       8,  30, ICON_COL, -1, 'gramps-source'),
-        (_('Private'),      9,  30, ICON_COL, -1, 'gramps-lock'),
-        ]
+        (_("Date"), 0, 150, MARKUP_COL, -1, None),
+        (_("Street"), 1, 225, TEXT_COL, -1, None),
+        (_("Locality"), 2, 100, TEXT_COL, -1, None),
+        (_("City"), 3, 100, TEXT_COL, -1, None),
+        (_("State/County"), 4, 100, TEXT_COL, -1, None),
+        (_("Country"), 5, 75, TEXT_COL, -1, None),
+        (_("Postal"), 6, 75, TEXT_COL, -1, None),
+        (_("Phone"), 7, 150, TEXT_COL, -1, None),
+        (_("Source"), 8, 30, ICON_COL, -1, "gramps-source"),
+        (_("Private"), 9, 30, ICON_COL, -1, "gramps-lock"),
+    ]
 
-    def __init__(self, dbstate, uistate, track, data):
+    def __init__(self, dbstate, uistate, track, data, config_key):
         self.data = data
-        EmbeddedList.__init__(self, dbstate, uistate, track, _('_Addresses'),
-                              AddressModel, move_buttons=True)
+        EmbeddedList.__init__(
+            self,
+            dbstate,
+            uistate,
+            track,
+            _("_Addresses"),
+            AddressModel,
+            config_key,
+            move_buttons=True,
+        )
 
     def get_icon_name(self):
         """
         Return the stock-id icon name associated with the display tab
         """
-        return 'gramps-address'
+        return "gramps-address"
 
     def get_data(self):
         """
@@ -101,7 +111,18 @@ class AddrEmbedList(EmbeddedList):
         """
         Return the column order of the columns in the display tab.
         """
-        return ((1, 8), (1, 9), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), (1, 7))
+        return (
+            (1, 8),
+            (1, 9),
+            (1, 0),
+            (1, 1),
+            (1, 2),
+            (1, 3),
+            (1, 4),
+            (1, 5),
+            (1, 6),
+            (1, 7),
+        )
 
     def add_button_clicked(self, obj):
         """
@@ -113,8 +134,8 @@ class AddrEmbedList(EmbeddedList):
         addr = Address()
         try:
             from .. import EditAddress
-            EditAddress(self.dbstate, self.uistate, self.track,
-                        addr, self.add_callback)
+
+            EditAddress(self.dbstate, self.uistate, self.track, addr, self.add_callback)
         except WindowActiveError:
             return
 
@@ -138,8 +159,10 @@ class AddrEmbedList(EmbeddedList):
         if addr:
             try:
                 from .. import EditAddress
-                EditAddress(self.dbstate, self.uistate, self.track,
-                            addr, self.edit_callback)
+
+                EditAddress(
+                    self.dbstate, self.uistate, self.track, addr, self.edit_callback
+                )
             except WindowActiveError:
                 return
 

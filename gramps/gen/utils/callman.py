@@ -26,50 +26,60 @@ Module providing support for callback handling in the GUI
   * manage callback functions
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
-PERSONKEY = 'person'
-FAMILYKEY = 'family'
-EVENTKEY = 'event'
-PLACEKEY = 'place'
-MEDIAKEY = 'media'
-SOURCEKEY = 'source'
-CITATIONKEY = 'citation'
-REPOKEY = 'repository'
-NOTEKEY = 'note'
-TAGKEY = 'tag'
+# -------------------------------------------------------------------------
+PERSONKEY = "person"
+FAMILYKEY = "family"
+EVENTKEY = "event"
+PLACEKEY = "place"
+MEDIAKEY = "media"
+SOURCEKEY = "source"
+CITATIONKEY = "citation"
+REPOKEY = "repository"
+NOTEKEY = "note"
+TAGKEY = "tag"
 
-ADD = '-add'
-UPDATE = '-update'
-DELETE = '-delete'
-REBUILD = '-rebuild'
+ADD = "-add"
+UPDATE = "-update"
+DELETE = "-delete"
+REBUILD = "-rebuild"
 
-KEYS = [PERSONKEY, FAMILYKEY, EVENTKEY, PLACEKEY, MEDIAKEY, SOURCEKEY,
-        CITATIONKEY, REPOKEY, NOTEKEY, TAGKEY]
+KEYS = [
+    PERSONKEY,
+    FAMILYKEY,
+    EVENTKEY,
+    PLACEKEY,
+    MEDIAKEY,
+    SOURCEKEY,
+    CITATIONKEY,
+    REPOKEY,
+    NOTEKEY,
+    TAGKEY,
+]
 
 METHODS = [ADD, UPDATE, DELETE, REBUILD]
 METHODS_LIST = [ADD, UPDATE, DELETE]
 METHODS_NONE = [REBUILD]
 
-PERSONCLASS = 'Person'
-FAMILYCLASS = 'Family'
-EVENTCLASS = 'Event'
-PLACECLASS = 'Place'
-MEDIACLASS = 'Media'
-SOURCECLASS = 'Source'
-CITATIONCLASS = 'Citation'
-REPOCLASS = 'Repository'
-NOTECLASS = 'Note'
-TAGCLASS = 'Tag'
+PERSONCLASS = "Person"
+FAMILYCLASS = "Family"
+EVENTCLASS = "Event"
+PLACECLASS = "Place"
+MEDIACLASS = "Media"
+SOURCECLASS = "Source"
+CITATIONCLASS = "Citation"
+REPOCLASS = "Repository"
+NOTECLASS = "Note"
+TAGCLASS = "Tag"
 
 CLASS2KEY = {
     PERSONCLASS: PERSONKEY,
@@ -81,8 +91,9 @@ CLASS2KEY = {
     CITATIONCLASS: CITATIONKEY,
     REPOCLASS: REPOKEY,
     NOTECLASS: NOTEKEY,
-    TAGCLASS: TAGKEY
-    }
+    TAGCLASS: TAGKEY,
+}
+
 
 def _return(*args):
     """
@@ -90,11 +101,13 @@ def _return(*args):
     """
     return True
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # CallbackManager class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
 
 class CallbackManager:
     """
@@ -106,13 +119,14 @@ class CallbackManager:
     Track changes to your relevant objects, calling callback functions as
     needed.
     """
+
     def __init__(self, database):
         """
         :param database: database to which to connect the callbacks of this
             CallbackManager object
         :type database: a class:`~gen.db.base.DbBase` object
         """
-        #no handles to track
+        # no handles to track
         self.database = database
         self.__handles = {
             PERSONKEY: [],
@@ -125,10 +139,10 @@ class CallbackManager:
             REPOKEY: [],
             NOTEKEY: [],
             TAGKEY: [],
-            }
-        #no custom callbacks to do
+        }
+        # no custom callbacks to do
         self.custom_signal_keys = []
-        #set up callbacks to do nothing
+        # set up callbacks to do nothing
         self.__callbacks = {}
         self.__init_callbacks()
 
@@ -139,7 +153,7 @@ class CallbackManager:
         self.__callbacks = {}
         for key in KEYS:
             for method in METHODS:
-                self.__callbacks[key+method] = [_return, None]
+                self.__callbacks[key + method] = [_return, None]
 
     def disconnect_all(self):
         """
@@ -179,8 +193,7 @@ class CallbackManager:
         for key in KEYS:
             handles = ahandledict.get(key)
             if handles:
-                self.__handles[key] = list(
-                    set(self.__handles[key]).union(handles))
+                self.__handles[key] = list(set(self.__handles[key]).union(handles))
 
     def unregister_handles(self, ahandledict):
         """
@@ -209,7 +222,7 @@ class CallbackManager:
             REPOKEY: [],
             NOTEKEY: [],
             TAGKEY: [],
-            }
+        }
 
     def register_callbacks(self, callbackdict):
         """
@@ -226,11 +239,11 @@ class CallbackManager:
             function = callbackdict.get(key)
             if function:
                 for method in METHODS:
-                    self.__add_callback(key+method, function)
+                    self.__add_callback(key + method, function)
             for method in METHODS:
-                function = callbackdict.get(key+method)
+                function = callbackdict.get(key + method)
                 if function:
-                    self.__add_callback(key+method, function)
+                    self.__add_callback(key + method, function)
 
     def connect_all(self, keys=None):
         """
@@ -253,12 +266,14 @@ class CallbackManager:
                 signal = key + method
                 self.__do_unconnect(signal)
                 self.__callbacks[signal][1] = self.database.connect(
-                    signal, self.__callbackcreator(signal))
+                    signal, self.__callbackcreator(signal)
+                )
             for method in METHODS_NONE:
                 signal = key + method
                 self.__do_unconnect(signal)
                 self.__callbacks[signal][1] = self.database.connect(
-                    signal, self.__callbackcreator(signal, noarg=True))
+                    signal, self.__callbackcreator(signal, noarg=True)
+                )
 
     def __do_callback(self, signal, *arg):
         """
@@ -268,7 +283,7 @@ class CallbackManager:
         For a DbBase that is that arg must be not given (rebuild
         methods), or arg[0] must be the list of handles affected.
         """
-        key = signal.split('-')[0]
+        key = signal.split("-")[0]
         if arg:
             handles = arg[0]
             affected = list(set(self.__handles[key]).intersection(handles))
@@ -301,8 +316,7 @@ class CallbackManager:
         managed automatically.
         """
         if self.database:
-            self.custom_signal_keys.append(self.database.connect(name,
-                                                                 callback))
+            self.custom_signal_keys.append(self.database.connect(name, callback))
 
     def __callbackcreator(self, signal, noarg=False):
         """
@@ -311,6 +325,7 @@ class CallbackManager:
         as callback based on the key/signal one needs to connect to.
         AttributeError is raised for unknown key or signal.
         """
+
         def gen(self, signal):
             """
             Generate lambda function that does call with an argument
@@ -329,7 +344,8 @@ class CallbackManager:
             else:
                 return gen(self, signal)
         else:
-            raise AttributeError('Signal ' + signal + 'not supported.')
+            raise AttributeError("Signal " + signal + "not supported.")
+
 
 def directhandledict(baseobj):
     """
@@ -346,10 +362,11 @@ def directhandledict(baseobj):
         REPOKEY: [],
         NOTEKEY: [],
         TAGKEY: [],
-        }
+    }
     for classn, handle in baseobj.get_referenced_handles():
         handles[CLASS2KEY[classn]].append(handle)
     return handles
+
 
 def handledict(baseobj):
     """
@@ -367,8 +384,7 @@ def handledict(baseobj):
         REPOKEY: [],
         NOTEKEY: [],
         TAGKEY: [],
-        }
+    }
     for classn, handle in baseobj.get_referenced_handles_recursively():
         handles[CLASS2KEY[classn]].append(handle)
     return handles
-

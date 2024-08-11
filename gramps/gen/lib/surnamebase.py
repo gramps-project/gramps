@@ -22,21 +22,23 @@
 SurnameBase class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .surname import Surname
-from .const import IDENTICAL, EQUAL
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .const import EQUAL, IDENTICAL
+from .surname import Surname
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# SurnameBase classes
+# SurnameBase
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class SurnameBase:
     """
     Base class for surname-aware objects.
@@ -96,8 +98,7 @@ class SurnameBase:
         if surname in self.surname_list:
             self.surname_list.remove(surname)
             return True
-        else:
-            return False
+        return False
 
     def get_surname_list(self):
         """
@@ -134,17 +135,18 @@ class SurnameBase:
                 return surname
         if self.surname_list:
             return self.surname_list[0]
-        else:
-            #self healing, add a surname to this object and return it
-            self.set_surname_list([Surname()])
-            return self.surname_list[0]
+        # self healing, add a surname to this object and return it
+        self.set_surname_list([Surname()])
+        return self.surname_list[0]
 
     def set_primary_surname(self, surnamenr=0):
         """
         Set the surname with surnamenr in the surname list as primary surname
         Counting starts at 0
         """
-        assert isinstance(surnamenr, int), "Surname.set_primary_surname requires integer"
+        assert isinstance(
+            surnamenr, int
+        ), "Surname.set_primary_surname requires integer"
         if surnamenr >= len(self.surname_list):
             return
         for surname in self.surname_list:
@@ -168,8 +170,8 @@ class SurnameBase:
                 equi = surname.is_equivalent(addendum)
                 if equi == IDENTICAL:
                     break
-                elif equi == EQUAL:
-                    #This should normally never happen, an alternate name
+                if equi == EQUAL:
+                    # This should normally never happen, an alternate name
                     # should be added
                     surname.merge(addendum)
                     break
@@ -184,19 +186,39 @@ class SurnameBase:
         for surn in self.surname_list:
             partsurn = surn.get_surname()
             if surn.get_prefix():
-                fsurn = _('%(first)s %(second)s') % {'first': surn.get_prefix(),
-                                                     'second': partsurn}
+                fsurn = _("%(first)s %(second)s") % {
+                    "first": surn.get_prefix(),
+                    "second": partsurn,
+                }
             else:
                 fsurn = partsurn
             fsurn = fsurn.strip()
             if surn.get_connector():
-                fsurn = _('%(first)s %(second)s') % {'first': fsurn,
-                                                     'second': surn.get_connector()}
+                fsurn = _("%(first)s %(second)s") % {
+                    "first": fsurn,
+                    "second": surn.get_connector(),
+                }
             fsurn = fsurn.strip()
-            totalsurn = _('%(first)s %(second)s') % {'first': totalsurn,
-                                                     'second': fsurn}
+            totalsurn = _("%(first)s %(second)s") % {
+                "first": totalsurn,
+                "second": fsurn,
+            }
         return totalsurn.strip()
 
+    def get_primary(self):
+        """
+        Return a fully formatted primary surname
+        """
+        primary = self.get_primary_surname()
+        partsurn = primary.get_surname()
+        if primary.get_prefix():
+            fsurn = _("%(first)s %(second)s") % {
+                "first": primary.get_prefix(),
+                "second": partsurn,
+            }
+        else:
+            fsurn = partsurn
+        return fsurn.strip()
 
     def get_upper_surname(self):
         """Return a fully formatted surname capitalized"""

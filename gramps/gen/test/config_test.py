@@ -25,6 +25,7 @@ import os
 import unittest
 from ..config import ConfigManager
 
+
 def callback(*args):
     # args: self, 0, str(setting), None
     # print "Calling callback with:", args
@@ -32,8 +33,11 @@ def callback(*args):
     self = args[0]
     self._x = args[2]
 
+
 TEMP_INI = "./temp.ini"
 TEST2_INI = "./test2.ini"
+
+
 class CompleteCheck(unittest.TestCase):
     def tearDown(self):
         os.remove(TEMP_INI)
@@ -41,10 +45,10 @@ class CompleteCheck(unittest.TestCase):
 
     def testAll(self):
         self.CM = ConfigManager(TEMP_INI)
-        self.CM.register("section.setting1", 1) # int
-        self.CM.register("section.setting2", 3.1415) # float
-        self.CM.register("section.setting3", "String") # string
-        self.CM.register("section.setting4", False) # boolean
+        self.CM.register("section.setting1", 1)  # int
+        self.CM.register("section.setting2", 3.1415)  # float
+        self.CM.register("section.setting3", "String")  # string
+        self.CM.register("section.setting4", False)  # boolean
 
         self.assertEqual(self.CM.get("section.setting1"), 1)
         self.assertEqual(self.CM.get("section.setting2"), 3.1415)
@@ -61,8 +65,8 @@ class CompleteCheck(unittest.TestCase):
         self.assertEqual(self.CM.get("section.setting3"), "Another String")
         self.assertTrue(self.CM.get("section.setting4"))
 
-        #self.assertRaises(AttributeError, self.CM.set, "section.setting1", 2.8)
-        #self.assertRaises(AttributeError, self.CM.set, "section.setting2", 2)
+        # self.assertRaises(AttributeError, self.CM.set, "section.setting1", 2.8)
+        # self.assertRaises(AttributeError, self.CM.set, "section.setting2", 2)
         self.assertRaises(AttributeError, self.CM.set, "section.setting3", 6)
         self.assertRaises(AttributeError, self.CM.set, "section.setting4", 1)
 
@@ -76,10 +80,12 @@ class CompleteCheck(unittest.TestCase):
 
         self.CM.save()
 
-        self.CM.reset() # to defaults
+        self.CM.reset()  # to defaults
 
         self.assertEqual(self.CM.get("section.setting1"), 1)
-        self.assertEqual(self.CM.get("section.setting2"), 3.1415, self.CM.get("section.setting2"))
+        self.assertEqual(
+            self.CM.get("section.setting2"), 3.1415, self.CM.get("section.setting2")
+        )
         self.assertEqual(self.CM.get("section.setting3"), "String")
         self.assertFalse(self.CM.get("section.setting4"))
 
@@ -116,30 +122,52 @@ class CompleteCheck(unittest.TestCase):
 
         self.CM.register("section2.windows-file", r"c:\drive\path\o'malley\file.pdf")
         self.CM.register("section2.list", [1, 2, 3, 4])
-        self.CM.register("section2.dict", {'a': "apple", "b": "banana"})
+        self.CM.register("section2.dict", {"a": "apple", "b": "banana"})
         self.CM.register("section2.unicode", "Raötröme")
 
         self.CM.save(TEST2_INI)
         self.CM.reset()
 
-        self.assertEqual(self.CM.get("section.setting1"), 1, self.CM.get("section.setting1"))
+        self.assertEqual(
+            self.CM.get("section.setting1"), 1, self.CM.get("section.setting1")
+        )
         self.assertEqual(self.CM.get("section.setting2"), 3.1415)
         self.assertEqual(self.CM.get("section.setting3"), "String")
         self.assertFalse(self.CM.get("section.setting4"))
 
         self.CM.load(TEST2_INI)
 
-        self.assertEqual(self.CM.get("section.setting1"), 2, self.CM.get("section.setting1"))
+        self.assertEqual(
+            self.CM.get("section.setting1"), 2, self.CM.get("section.setting1")
+        )
         self.assertEqual(self.CM.get("section.setting2"), 8.6)
         self.assertEqual(self.CM.get("section.setting3"), "Another String")
         self.assertTrue(self.CM.get("section.setting4"))
 
-        self.assertEqual(self.CM.get("section2.windows-file"), r"c:\drive\path\o'malley\file.pdf")
+        self.assertEqual(
+            self.CM.get("section2.windows-file"), r"c:\drive\path\o'malley\file.pdf"
+        )
         self.assertEqual(self.CM.get("section2.list"), [1, 2, 3, 4])
-        self.assertEqual(self.CM.get("section2.dict"), {'a': "apple", "b": "banana"})
+        self.assertEqual(self.CM.get("section2.dict"), {"a": "apple", "b": "banana"})
         self.assertEqual(self.CM.get("section2.unicode"), "Raötröme")
+
+        self.assertRaises(AttributeError, self.CM.save, TEST2_INI, comments=123)
+        self.assertRaises(
+            AttributeError, self.CM.save, TEST2_INI, comments={"key": "pair"}
+        )
+        self.assertRaises(AttributeError, self.CM.save, TEST2_INI, comments=[123])
+        self.assertRaises(
+            AttributeError, self.CM.save, TEST2_INI, comments=["line1", 123]
+        )
+
+        self.CM.save(TEST2_INI, comments=["test comment1"])
+        self.CM.load(TEST2_INI)
+        self.assertEqual(self.CM.get("section.setting3"), "Another String")
+
+        self.CM.save(TEST2_INI, comments=["test comment1", "test comment2"])
+        self.CM.load(TEST2_INI)
+        self.assertEqual(self.CM.get("section.setting3"), "Another String")
+
 
 if __name__ == "__main__":
     unittest.main()
-
-

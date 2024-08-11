@@ -18,31 +18,33 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # NoteModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class NoteModel(Gtk.ListStore):
-
     def __init__(self, note_list, db):
         Gtk.ListStore.__init__(self, str, str, bool, str)
         self.db = db
         for handle in note_list:
             note = self.db.get_note_from_handle(handle)
-            text = note.get()[:85].replace('\n', ' ')
+            text = note.get()[:85].replace("\n", " ")
             if len(text) > 80:
-                text = text[:80]+"..."
-            self.append(row=[
-                str(note.get_type()),
-                text,
-                note.get_privacy(),
-                handle,
-                ])
+                text = text[:80] + "..."
+            self.append(
+                row=[
+                    str(note.get_type()),
+                    text,
+                    note.get_privacy(),
+                    handle,
+                ]
+            )

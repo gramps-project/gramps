@@ -22,19 +22,19 @@
 Provide the basic functionality for a list view
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Pango, Gdk, Gtk, GdkPixbuf
 from gramps.gen.const import THUMBSCALE
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 TEXT = 0
 TOGGLE = 1
 COMBO = 2
@@ -44,11 +44,12 @@ COLOR = 5
 
 NOSORT = -1
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # ListModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class ListModel:
     """
     Simple model for lists in smaller dialogs (not views).
@@ -78,16 +79,22 @@ class ListModel:
     right_click:    Function called when the user right-clicks on a row.
     """
 
-    def __init__(self, tree, dlist, select_func=None, event_func=None,
-                 mode=Gtk.SelectionMode.SINGLE, list_mode="list",
-                 right_click=None):
-
+    def __init__(
+        self,
+        tree,
+        dlist,
+        select_func=None,
+        event_func=None,
+        mode=Gtk.SelectionMode.SINGLE,
+        list_mode="list",
+        right_click=None,
+    ):
         self.tree = tree
         self.tree.set_fixed_height_mode(True)
         self.mylist = []
         self.data_index = 0
         self.sel_iter = None
-        self.list_mode = list_mode # "list", or "tree"
+        self.list_mode = list_mode  # "list", or "tree"
         self.double_click = None
         self.right_click = None
 
@@ -126,19 +133,19 @@ class ListModel:
         self.connect_model()
 
         if select_func:
-            self.selection.connect('changed', select_func)
+            self.selection.connect("changed", select_func)
         if event_func or right_click:
             if event_func:
                 self.double_click = event_func
             if right_click:
                 self.right_click = right_click
-            self.tree.connect('button-press-event', self.__button_press)
+            self.tree.connect("button-press-event", self.__button_press)
 
     def __build_image_column(self, cnum, name, renderer, column):
         renderer = Gtk.CellRendererPixbuf()
         column = Gtk.TreeViewColumn(name[0], renderer)
-        column.add_attribute(renderer, 'pixbuf', cnum)
-        renderer.set_property('height', THUMBSCALE / 2)
+        column.add_attribute(renderer, "pixbuf", cnum)
+        renderer.set_property("height", THUMBSCALE / 2)
         return renderer, column
 
     def __build_columns(self, dlist):
@@ -157,8 +164,14 @@ class ListModel:
                     name = item
             elif isinstance(item, dict):
                 # valid fields: name, sort_id, width, type, editable, callback, visible_col
-                name = [item.get("name", " "), item.get("sort_id", NOSORT), item.get("width", 10),
-                        item.get("type", TEXT), item.get("editable", False), item.get("callback", None)]
+                name = [
+                    item.get("name", " "),
+                    item.get("sort_id", NOSORT),
+                    item.get("width", 10),
+                    item.get("type", TEXT),
+                    item.get("editable", False),
+                    item.get("callback", None),
+                ]
                 visible_col = item.get("visible_col", None)
             if len(name) == 3:
                 name = (name[0], name[1], name[2], TEXT, False, None)
@@ -173,42 +186,47 @@ class ListModel:
                     column = Gtk.TreeViewColumn(name[0], renderer, visible=visible_col)
                 else:
                     column = Gtk.TreeViewColumn(name[0], renderer)
-                column.add_attribute(renderer, 'active', cnum)
+                column.add_attribute(renderer, "active", cnum)
                 if name[4]:
-                    renderer.set_property('activatable', True)
-                    renderer.connect('toggled', self.__toggled_cb, cnum)
+                    renderer.set_property("activatable", True)
+                    renderer.connect("toggled", self.__toggled_cb, cnum)
                     if name[5]:
                         self.function[cnum] = name[5]
                 else:
-                    renderer.set_property('activatable', False)
+                    renderer.set_property("activatable", False)
             elif name[0] and name[3] == IMAGE:
-                renderer, column = self.__build_image_column(cnum, name, renderer, column)
+                renderer, column = self.__build_image_column(
+                    cnum, name, renderer, column
+                )
             elif name[0] and name[3] == COLOR:
                 renderer = Gtk.CellRendererText()
                 if visible_col is not None:
-                    column = Gtk.TreeViewColumn(name[0], renderer, background=cnum,
-                                                visible=visible_col)
+                    column = Gtk.TreeViewColumn(
+                        name[0], renderer, background=cnum, visible=visible_col
+                    )
                 else:
                     column = Gtk.TreeViewColumn(name[0], renderer, background=cnum)
             else:
                 renderer = Gtk.CellRendererText()
                 renderer.set_fixed_height_from_font(True)
-                renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
+                renderer.set_property("ellipsize", Pango.EllipsizeMode.END)
                 if name[4]:
-                    renderer.set_property('editable', True)
-                    renderer.connect('edited', self.__edited_cb, cnum)
+                    renderer.set_property("editable", True)
+                    renderer.connect("edited", self.__edited_cb, cnum)
                     if name[5]:
                         self.function[cnum] = name[5]
                 else:
-                    renderer.set_property('editable', False)
+                    renderer.set_property("editable", False)
                 if visible_col is not None:
-                    column = Gtk.TreeViewColumn(name[0], renderer, text=cnum, visible=visible_col)
+                    column = Gtk.TreeViewColumn(
+                        name[0], renderer, text=cnum, visible=visible_col
+                    )
                 else:
                     column = Gtk.TreeViewColumn(name[0], renderer, text=cnum)
                 column.set_reorderable(True)
             column.set_min_width(name[2])
 
-            if name[0] == '':
+            if name[0] == "":
                 column.set_visible(False)
             else:
                 column.set_resizable(True)
@@ -219,11 +237,12 @@ class ListModel:
                 column.set_sort_column_id(name[1])
 
             column.set_sizing(Gtk.TreeViewColumnSizing.FIXED)
-            column.set_fixed_width(name[2])
+            # removed since we have a PersistentTreeView
+            # column.set_fixed_width(name[2])
 
             cnum += 1
             self.cids.append(name[1])
-            if name[0] != '':
+            if name[0] != "":
                 self.tree.append_column(column)
 
     def __toggled_cb(self, obj, path, col):
@@ -233,7 +252,7 @@ class ListModel:
         new_value = not self.model[path][col]
         self.model[path][col] = new_value
         if col in self.function:
-            self.function[col](int(path), new_value)
+            self.function[col](path, new_value)
 
     def __edited_cb(self, cell, path, new_text, col):
         """
@@ -241,7 +260,7 @@ class ListModel:
         """
         self.model[path][col] = new_text
         if col in self.function:
-            self.function[col](int(path), new_text)
+            self.function[col](path, new_text)
 
     def unselect(self):
         """
@@ -314,9 +333,9 @@ class ListModel:
         """
         path = self.tree.get_path_at_pos(xpos, ypos)
         if path is None:
-            return self.count -1
+            return self.count - 1
         else:
-            return path[0][0]-1
+            return path[0][0] - 1
 
     def get_selected_row(self):
         """
@@ -426,23 +445,23 @@ class ListModel:
         """
         Return a list of data from the model associated with the node
         """
-        return [ self.model.get_value(node, c) for c in cols ]
+        return [self.model.get_value(node, c) for c in cols]
 
     def add(self, data, info=None, select=0, node=None):
         """
         Add the data to the model at the end of the model
         """
-        info = info or ''
+        info = info or ""
         self.count += 1
         need_to_set = True
         # Create the node:
         if self.list_mode == "list":
             node = self.model.append()
         elif self.list_mode == "tree":
-            if node is None: # new node
+            if node is None:  # new node
                 node = self.model.append(None, data + [info])
                 need_to_set = False
-            else: # use a previous node, passed in
+            else:  # use a previous node, passed in
                 node = self.model.append(node)
         # Add data:
         if need_to_set:
@@ -481,8 +500,8 @@ class ListModel:
         Called when a button press is executed
         """
         from .utils import is_right_click
-        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
-                and event.button == 1):
+
+        if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS and event.button == 1:
             if self.double_click:
                 self.double_click(obj)
                 return True
@@ -506,8 +525,8 @@ class ListModel:
         """
         if row < 1 or row == -1:
             return False
-        this_row = self.model.get_iter((row, ))
-        prev_row = self.model.get_iter((row - 1, ))
+        this_row = self.model.get_iter((row,))
+        prev_row = self.model.get_iter((row - 1,))
         self.model.move_before(this_row, prev_row)
         return True
 
@@ -517,7 +536,7 @@ class ListModel:
         """
         if row >= self.count - 1 or row == -1:
             return False
-        this_row = self.model.get_iter((row, ))
-        next_row = self.model.get_iter((row + 1, ))
+        this_row = self.model.get_iter((row,))
+        next_row = self.model.get_iter((row + 1,))
         self.model.move_after(this_row, next_row)
         return True

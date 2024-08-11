@@ -20,49 +20,50 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.plugins.lib.librecords import find_records, CALLNAME_DONTUSE
 from gramps.gen.plug import Gramplet
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # RecordsGramplet
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class RecordsGramplet(Gramplet):
-
     def init(self):
         self.set_use_markup(True)
         self.set_tooltip(_("Double-click name for details"))
         self.set_text(_("No Family Tree loaded."))
 
     def db_changed(self):
-        self.connect(self.dbstate.db, 'person-rebuild', self.update)
-        self.connect(self.dbstate.db, 'family-rebuild', self.update)
+        self.connect(self.dbstate.db, "person-rebuild", self.update)
+        self.connect(self.dbstate.db, "family-rebuild", self.update)
 
     def main(self):
         self.set_text(_("Processing...") + "\n")
         yield True
         records = find_records(self.dbstate.db, None, 3, CALLNAME_DONTUSE)
         self.set_text("")
-        for (text, varname, top) in records:
+        for text, varname, top in records:
             yield True
             self.render_text("<b>%s</b>" % text)
             last_value = None
             rank = 0
-            for (number, (sort, value, name, handletype, handle)) in enumerate(top):
+            for number, (sort, value, name, handletype, handle) in enumerate(top):
                 if value != last_value:
                     last_value = value
                     rank = number
-                self.append_text("\n  %s. " % (rank+1))
+                self.append_text("\n  %s. " % (rank + 1))
                 self.link(str(name), handletype, handle)
                 self.append_text(" (%s)" % value)
             self.append_text("\n")
-        self.append_text("", scroll_to='begin')
+        self.append_text("", scroll_to="begin")
         yield False

@@ -21,11 +21,11 @@
 Place Tree View
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gui.views.listview import ListView, TEXT, ICON
 from gramps.plugins.lib.libplaceview import PlaceBaseView
 from gramps.gui.views.treemodels.placemodel import PlaceTreeModel
@@ -33,33 +33,42 @@ from gramps.gen.lib import Place, PlaceRef
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.editors import EditPlace
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Internationalization
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # PlaceTreeView
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class PlaceTreeView(PlaceBaseView):
     """
     A hierarchical view of the top three levels of places.
     """
+
     def __init__(self, pdata, dbstate, uistate):
-        PlaceBaseView.__init__(self, pdata, dbstate, uistate,
-                               _('Place Tree View'), PlaceTreeModel,
-                               nav_group=0)
+        PlaceBaseView.__init__(
+            self,
+            pdata,
+            dbstate,
+            uistate,
+            _("Place Tree View"),
+            PlaceTreeModel,
+            nav_group=0,
+        )
 
     def get_viewtype_stock(self):
         """
         Override the default icon.  Set for hierarchical view.
         """
-        return 'gramps-tree-group'
+        return "gramps-tree-group"
 
     def define_actions(self):
         """
@@ -67,37 +76,38 @@ class PlaceTreeView(PlaceBaseView):
         """
         PlaceBaseView.define_actions(self)
 
-        self._add_action('OpenBranch', self.open_branch)
-        self._add_action('CloseBranch', self.close_branch)
-        self._add_action('OpenAllNodes', self.open_all_nodes)
-        self._add_action('CloseAllNodes', self.close_all_nodes)
+        self._add_action("OpenBranch", self.open_branch)
+        self._add_action("CloseBranch", self.close_branch)
+        self._add_action("OpenAllNodes", self.open_all_nodes)
+        self._add_action("CloseAllNodes", self.close_all_nodes)
 
     additional_ui = PlaceBaseView.additional_ui[:]
     additional_ui.append(
-        '''
+        """
         <section id="PopUpTree">
           <item>
             <attribute name="action">win.OpenBranch</attribute>
-            <attribute name="label" translatable="yes">'''
-        '''Expand this Entire Group</attribute>
+            <attribute name="label" translatable="yes">"""
+        """Expand this Entire Group</attribute>
           </item>
           <item>
             <attribute name="action">win.CloseBranch</attribute>
-            <attribute name="label" translatable="yes">'''
-        '''Collapse this Entire Group</attribute>
+            <attribute name="label" translatable="yes">"""
+        """Collapse this Entire Group</attribute>
           </item>
           <item>
             <attribute name="action">win.OpenAllNodes</attribute>
-            <attribute name="label" translatable="yes">'''
-        '''Expand all Nodes</attribute>
+            <attribute name="label" translatable="yes">"""
+        """Expand all Nodes</attribute>
           </item>
           <item>
             <attribute name="action">win.CloseAllNodes</attribute>
-            <attribute name="label" translatable="yes">'''
-        '''Collapse all Nodes</attribute>
+            <attribute name="label" translatable="yes">"""
+        """Collapse all Nodes</attribute>
           </item>
         </section>
-        ''')
+        """
+    )
 
     def add(self, *obj):
         """
@@ -153,3 +163,6 @@ class PlaceTreeView(PlaceBaseView):
                 old_handle = self.model.get_handle_from_iter(parent_iter)
             children = self.model.get_node_from_iter(iter_).children
         return new_handle != old_handle or children
+
+    def get_config_name(self):
+        return __name__

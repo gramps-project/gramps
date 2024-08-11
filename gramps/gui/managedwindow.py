@@ -24,68 +24,71 @@ Provide the managed window interface, which allows Gramps to track
 the create/deletion of dialog windows.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import os
 from io import StringIO
 import html
 import logging
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Set up logging
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 _LOG = logging.getLogger(".")
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME/GTK
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import Gdk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GLADE_FILE, ICON
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.config import config
 from gramps.gen.constfunc import is_quartz
 from .uimanager import ActionGroup, valid_action_name
+from .utils import get_display_size
 from .glade import Glade
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Window manager
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 _win_top = '<section id="WinMenu">\n'
-_win_btm = '</section>\n'
+_win_btm = "</section>\n"
 DISABLED = -1
 
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 #
 # Helper function
 #
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 
-def get_object(self,value):
+
+def get_object(self, value):
     raise DeprecationWarning("ManagedWindow.get_object: shouldn't get here")
     if self.get_name() == value:
         return self
-    elif hasattr(self,'get_children'):
+    elif hasattr(self, "get_children"):
         for child in self.get_children():
             object = get_object(child, value)
             if object is not None:
                 return object
     return None
+
 
 class GrampsWindowManager:
     """
@@ -117,7 +120,7 @@ class GrampsWindowManager:
         self.uimanager = uimanager
         self.window_tree = []
         self.id2item = {}
-        self.action_group = ActionGroup(name='WindowManger')
+        self.action_group = ActionGroup(name="WindowManger")
         self.active = DISABLED
         self.ui = _win_top + _win_btm
 
@@ -151,7 +154,7 @@ class GrampsWindowManager:
         return self.id2item.get(item_id, None)
 
     def get_item_from_window(self, window):
-        """ This finds a ManagedWindow from a Gtk top_level object (typicaly
+        """This finds a ManagedWindow from a Gtk top_level object (typicaly
         a window).
 
         For example, to find my managedwindow track within a class of Gtk
@@ -166,7 +169,7 @@ class GrampsWindowManager:
         return None
 
     def find_modal_window(self, window):
-        """ This finds a ManagedWindow that is modal, if any, excluding the
+        """This finds a ManagedWindow that is modal, if any, excluding the
         'window' that is a parameter.  There should be only one.
         If no ManagedWindow is modal, returns None.
         """
@@ -232,7 +235,7 @@ class GrampsWindowManager:
         # so that it's track is down by one on this level
         for ix in range(child_in_parent, len(parent_item)):
             item = parent_item[ix]
-            self.recursive_action(item, self.move_item_down, len(track)-1)
+            self.recursive_action(item, self.move_item_down, len(track) - 1)
         # Rebuild menu
         self.build_windows_menu()
 
@@ -256,8 +259,9 @@ class GrampsWindowManager:
 
         # Make sure we have a track
         parent_item = self.get_item_from_track(track)
-        assert isinstance(parent_item, list) or track == [], \
-               "Gwm: add_item: Incorrect track - Is parent not a leaf?"
+        assert (
+            isinstance(parent_item, list) or track == []
+        ), "Gwm: add_item: Incorrect track - Is parent not a leaf?"
 
         # Prepare a new item, depending on whether it is branch or leaf
         if item.submenu_label:
@@ -274,34 +278,41 @@ class GrampsWindowManager:
         self.build_windows_menu()
 
         # prepare new track corresponding to the added item and return it
-        new_track = track + [len(parent_item)-1]
+        new_track = track + [len(parent_item) - 1]
         return new_track
 
     def call_back_factory(self, item):
         if not isinstance(item, list):
+
             def func(*obj):
                 if item.window_id and self.id2item.get(item.window_id):
                     self.id2item[item.window_id]._present()
+
         else:
+
             def func(*obj):
                 pass
+
         return func
 
     def generate_id(self, item):
-        return valid_action_name('wm-' + str(item.window_id))
+        return valid_action_name("wm-" + str(item.window_id))
 
     def display_menu_list(self, data, action_data, mlist):
-        menuitem = ('<item>\n'
-                    '<attribute name="action">win.%s</attribute>\n'
-                    '<attribute name="label" translatable="yes">'
-                    '%s...</attribute>\n'
-                    '</item>\n')
+        menuitem = (
+            "<item>\n"
+            '<attribute name="action">win.%s</attribute>\n'
+            '<attribute name="label" translatable="yes">'
+            "%s...</attribute>\n"
+            "</item>\n"
+        )
         if isinstance(mlist, (list, tuple)):
             i = mlist[0]
             idval = self.generate_id(i)
-            data.write('<submenu>\n<attribute name="label"'
-                       ' translatable="yes">%s</attribute>\n' %
-                       html.escape(i.submenu_label))
+            data.write(
+                '<submenu>\n<attribute name="label"'
+                ' translatable="yes">%s</attribute>\n' % html.escape(i.submenu_label)
+            )
         else:
             i = mlist
             idval = self.generate_id(i)
@@ -318,14 +329,14 @@ class GrampsWindowManager:
                     data.write(menuitem % (idval, html.escape(i.menu_label)))
                     action_data.append((idval, self.call_back_factory(i)))
         if isinstance(mlist, (list, tuple)):
-            data.write('</submenu>\n')
+            data.write("</submenu>\n")
 
     def build_windows_menu(self):
         if self.active != DISABLED:
             self.uimanager.remove_ui(self.active)
             self.uimanager.remove_action_group(self.action_group)
 
-        self.action_group = ActionGroup(name='WindowManger')
+        self.action_group = ActionGroup(name="WindowManger")
         action_data = []
 
         data = StringIO()
@@ -338,11 +349,12 @@ class GrampsWindowManager:
         self.action_group.add_actions(action_data)
         self.enable()
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Gramps Managed Window class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class ManagedWindow:
     """
     Managed window base class.
@@ -352,6 +364,7 @@ class ManagedWindow:
     menu, keeping track of child windows, closing them on close/delete
     event, and presenting itself when selected or attempted to create again.
     """
+
     def __init__(self, uistate, track, obj, modal=False):
         """
         Create child windows and add itself to menu, if not there already.
@@ -435,7 +448,7 @@ class ManagedWindow:
 
         if uistate and uistate.gwm.get_item_from_id(window_key):
             uistate.gwm.get_item_from_id(window_key)._present()
-            raise WindowActiveError('This window is already active')
+            raise WindowActiveError("This window is already active")
         else:
             self.window_id = window_key
             self.submenu_label = submenu_label
@@ -447,21 +460,20 @@ class ManagedWindow:
                 self.track = []
             # Work out parent_window
             if len(self.track) > 1:
-            # We don't belong to the lop level
+                # We don't belong to the lop level
                 if self.track[-1] > 0:
-                # If we are not the first in the group,
-                # then first in that same group is our parent
+                    # If we are not the first in the group,
+                    # then first in that same group is our parent
                     parent_item_track = self.track[:-1]
                     parent_item_track.append(0)
                 else:
-                # If we're first in the group, then our parent
-                # is the first in the group one level up
+                    # If we're first in the group, then our parent
+                    # is the first in the group one level up
                     parent_item_track = self.track[:-2]
                     parent_item_track.append(0)
 
                 # Based on the track, get item and then window object
-                managed_parent = self.uistate.gwm.get_item_from_track(
-                    parent_item_track)
+                managed_parent = self.uistate.gwm.get_item_from_track(parent_item_track)
                 self.parent_window = managed_parent.window
             else:
                 # On the top level: we use gramps top window
@@ -492,33 +504,32 @@ class ManagedWindow:
         self.isWindow = isWindow
         self.msg = msg
         self.titlelabel = title
-        if self.isWindow :
+        if self.isWindow:
             set_titles(self, title, text, msg)
             self.window = self
-        else :
+        else:
             set_titles(window, title, text, msg)
-            #closing the Gtk.Window must also close ManagedWindow
+            # closing the Gtk.Window must also close ManagedWindow
             self.window = window
-            self.window.connect('delete-event', self.close)
-        #Set the mnemonic modifier on Macs to alt-ctrl so that it
-        #doesn't interfere with the extended keyboard, see
-        #https://gramps-project.org/bugs/view.php?id=6943
+            self.window.connect("delete-event", self.close)
+        # Set the mnemonic modifier on Macs to alt-ctrl so that it
+        # doesn't interfere with the extended keyboard, see
+        # https://gramps-project.org/bugs/view.php?id=6943
         if is_quartz():
             self.window.set_mnemonic_modifier(
-                Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.MOD1_MASK)
+                Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.MOD1_MASK
+            )
 
         if self.modal:
             self.window.set_modal(True)
         # The following makes sure that we only have one modal window open;
         # if more the older ones get temporarily made non-modal.
         if self.uistate:
-            self.other_modal_window = self.uistate.gwm.find_modal_window(
-                window)
+            self.other_modal_window = self.uistate.gwm.find_modal_window(window)
         if self.other_modal_window:
             self.other_modal_window.set_modal(False)
             self.window.set_modal(True)
             self.modal = True
-
 
     def get_window(self):
         """
@@ -536,7 +547,7 @@ class ManagedWindow:
             set_titles(self.window, self.titlelabel, text, self.msg)
 
     def build_menu_names(self, obj):
-        return ('Undefined Menu','Undefined Submenu')
+        return ("Undefined Menu", "Undefined Submenu")
 
     def build_window_key(self, obj):
         return id(obj)
@@ -549,21 +560,22 @@ class ManagedWindow:
         return self._gladeobj
 
     def get_widget(self, name):
-        assert(self._gladeobj)
+        assert self._gladeobj
         object = self._gladeobj.get_child_object(name)
         if object is not None:
             return object
         raise ValueError(
-            'ManagedWindow.get_widget: "%s" widget not found in "%s/%s"' %
-            (name, self._gladeobj.dirname, self._gladeobj.filename))
+            'ManagedWindow.get_widget: "%s" widget not found in "%s/%s"'
+            % (name, self._gladeobj.dirname, self._gladeobj.filename)
+        )
         return object
 
     def connect_button(self, button_name, function):
-        assert(self._gladeobj)
-        self.get_widget(button_name).connect('clicked', function)
+        assert self._gladeobj
+        self.get_widget(button_name).connect("clicked", function)
 
     def show(self):
-        """ The following covers a case where there are multiple modal windows
+        """The following covers a case where there are multiple modal windows
         to be open; possibly not in parent child relation.  If this occurs,
         we use most recent modal window as parent.  This occurs during startup
         when both the 'Available Gramps Updates for Addons' and 'Family Trees'
@@ -583,7 +595,7 @@ class ManagedWindow:
 
         Takes care of closing children and removing itself from menu.
         """
-        if hasattr(self, 'opened') and not self.opened:
+        if hasattr(self, "opened") and not self.opened:
             _LOG.warning("Tried to close a ManagedWindow more than once.")
             return  # in case close somehow gets called again
         self.opened = False
@@ -600,8 +612,7 @@ class ManagedWindow:
         """
         Present window (unroll/unminimize/bring to top).
         """
-        assert hasattr(self, 'window'), \
-               "ManagedWindow: self.window does not exist!"
+        assert hasattr(self, "window"), "ManagedWindow: self.window does not exist!"
         self.window.present()
 
     def _set_size(self):
@@ -635,9 +646,7 @@ class ManagedWindow:
             vert_position = config.get(self.vert_position_key)
             # make sure some of left side shows on screen
             # for part time multi monitor setups
-            screen = Gtk.Window().get_screen()
-            s_width = screen.get_width()
-            s_height = screen.get_height()
+            s_width, s_height = get_display_size(self.window)
             if horiz_position > s_width - 50 or vert_position > s_height - 50:
                 (p_width, p_height) = self.parent_window.get_size()
                 (p_horiz, p_vert) = self.parent_window.get_position()
@@ -660,10 +669,16 @@ class ManagedWindow:
             if save_config:
                 config.save()
 
-    def setup_configs(self, config_base,
-                      default_width, default_height,
-                      default_horiz_position=None, default_vert_position=None,
-                      p_width=None, p_height=None): # for fullscreen
+    def setup_configs(
+        self,
+        config_base,
+        default_width,
+        default_height,
+        default_horiz_position=None,
+        default_vert_position=None,
+        p_width=None,
+        p_height=None,
+    ):  # for fullscreen
         """
         Helper method to setup the window's configuration settings
 
@@ -677,15 +692,15 @@ class ManagedWindow:
         @param p_width, p_height: the parent's width and height
         @type p_width, p_height: int or None
         """
-        self.width_key = config_base + '-width'
-        self.height_key = config_base + '-height'
-        self.horiz_position_key = config_base + '-horiz-position'
-        self.vert_position_key = config_base + '-vert-position'
-        if p_width is None and p_height is None: # default case
+        self.width_key = config_base + "-width"
+        self.height_key = config_base + "-height"
+        self.horiz_position_key = config_base + "-horiz-position"
+        self.vert_position_key = config_base + "-vert-position"
+        if p_width is None and p_height is None:  # default case
             (p_width, p_height) = self.parent_window.get_size()
             (p_horiz, p_vert) = self.parent_window.get_position()
         else:
-            p_horiz = p_vert = 0 # fullscreen
+            p_horiz = p_vert = 0  # fullscreen
         if default_horiz_position is None:
             default_horiz_position = p_horiz + ((p_width - default_width) // 2)
         if default_vert_position is None:
@@ -715,20 +730,22 @@ class ManagedWindow:
         while len(self.__refs_for_deletion):
             attr = self.__refs_for_deletion.pop()
             obj = getattr(self, attr)
-            if hasattr(obj, 'clean_up'):
+            if hasattr(obj, "clean_up"):
                 obj.clean_up()
             delattr(self, attr)
-#-------------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------------
 #
 # Helper functions
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def set_titles(window, title, text, msg=None):
     if title:
         title.set_text('<span weight="bold" size="larger">%s</span>' % text)
         title.set_use_markup(True)
     if msg:
-        window.set_title('%s - Gramps' % msg)
+        window.set_title("%s - Gramps" % msg)
     elif text:
-        window.set_title('%s - Gramps' % text)
+        window.set_title("%s - Gramps" % text)
     window.set_icon_from_file(ICON)

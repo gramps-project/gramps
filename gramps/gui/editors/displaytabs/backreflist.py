@@ -20,58 +20,72 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...widgets import SimpleButton
 from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 from ...utils import edit_object
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # BackRefList
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class BackRefList(EmbeddedList):
-
     _HANDLE_COL = 3
 
-    #index = column in model. Value =
+    # index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Type'), 0, 100, TEXT_COL, -1, None),
-        (_('ID'),  1,  75, TEXT_COL, -1, None),
-        (_('Name'), 2, 250, TEXT_COL, -1, None),
-        ]
+        (_("Type"), 0, 100, TEXT_COL, -1, None),
+        (_("ID"), 1, 75, TEXT_COL, -1, None),
+        (_("Name"), 2, 250, TEXT_COL, -1, None),
+    ]
 
-    def __init__(self, dbstate, uistate, track, obj, refmodel, callback=None):
+    def __init__(
+        self, dbstate, uistate, track, obj, refmodel, config_key, callback=None
+    ):
         self.obj = obj
-        EmbeddedList.__init__(self, dbstate, uistate, track,
-                              _('_References'), refmodel)
+        EmbeddedList.__init__(
+            self, dbstate, uistate, track, _("_References"), refmodel, config_key
+        )
         self._callback = callback
-        self.connectid = self.model.connect('row-inserted', self.update_label)
+        self.connectid = self.model.connect("row-inserted", self.update_label)
         self.db_connect = []
-        for item in ['person', 'family', 'source', 'citation', 'event',
-                     'media', 'place', 'repository', 'note']:
-            self.db_connect.append(self.dbstate.db.connect(
-                '%s-delete' % item, self.model.delete_row))
+        for item in [
+            "person",
+            "family",
+            "source",
+            "citation",
+            "event",
+            "media",
+            "place",
+            "repository",
+            "note",
+        ]:
+            self.db_connect.append(
+                self.dbstate.db.connect("%s-delete" % item, self.model.delete_row)
+            )
         self.tree.set_reorderable(False)
         self.track_ref_for_deletion("model")
 
@@ -91,7 +105,7 @@ class BackRefList(EmbeddedList):
 
     def _cleanup_on_exit(self):
         # model may be destroyed already in closing managedwindow
-        if hasattr(self, 'model'):
+        if hasattr(self, "model"):
             self.model.destroy()
 
     def is_empty(self):
@@ -103,8 +117,8 @@ class BackRefList(EmbeddedList):
         This button box is then appended hbox (self).
         Method has signature of, and overrides create_buttons from _ButtonTab.py
         """
-        self.edit_btn = SimpleButton('gtk-edit', self.edit_button_clicked)
-        self.edit_btn.set_tooltip_text(_('Edit reference'))
+        self.edit_btn = SimpleButton("gtk-edit", self.edit_button_clicked)
+        self.edit_btn.set_tooltip_text(_("Edit reference"))
 
         hbox = Gtk.Box()
         hbox.set_spacing(6)

@@ -25,29 +25,38 @@ import unittest
 from unittest.mock import Mock, patch
 from .. import user
 
+
 class TestUser:
     TITLE = "Testing prompt"
     MSG = "Choices are hard. Nevertheless, please choose!"
     ACCEPT = "To be"
     REJECT = "Not to be"
 
+
 class TestUser_prompt(unittest.TestCase):
     def setUp(self):
         self.user = user.User()
 
     def test_prompt_runs_QuestionDialog2(self):
-        with patch('gramps.gui.user.QuestionDialog2') as MockQD:
-            self.user.prompt(TestUser.TITLE, TestUser.MSG,
-                             TestUser.ACCEPT, TestUser.REJECT, parent=None)
-        MockQD.assert_called_once_with(TestUser.TITLE, TestUser.MSG,
-                                       TestUser.ACCEPT, TestUser.REJECT,
-                                       parent=None)
+        with patch("gramps.gui.user.QuestionDialog2") as MockQD:
+            self.user.prompt(
+                TestUser.TITLE,
+                TestUser.MSG,
+                TestUser.ACCEPT,
+                TestUser.REJECT,
+                parent=None,
+            )
+        MockQD.assert_called_once_with(
+            TestUser.TITLE, TestUser.MSG, TestUser.ACCEPT, TestUser.REJECT, parent=None
+        )
         MockQD.return_value.run.assert_called_once_with()
         # TODO test that run's return is the one returned by prompt()...
 
+
 class TestUser_init_accepts_uistate(unittest.TestCase):
     def test(self):
-        user.User(uistate = None)
+        user.User(uistate=None)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -21,33 +21,37 @@ AgeOnDateGramplet computes the age for everyone thought to be alive
 on a particular date.
 """
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gen.datehandler import parser
 from gramps.gui.plug.quick import run_quick_report_by_name
 from gramps.gen.const import COLON, GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # AgeOnDateGramplet class
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class AgeOnDateGramplet(Gramplet):
     """
     Gramplet that computes ages on a particular date for everyone
     thought to be alive.
     """
+
     def init(self):
         """
         Constructs the GUI, consisting of a message, an entry, and
         a Run button.
         """
         from gi.repository import Gtk
+
         # GUI setup:
         self.set_tooltip(_("Enter a date, click Run"))
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
@@ -57,11 +61,15 @@ class AgeOnDateGramplet(Gramplet):
         description.set_wrap_mode(Gtk.WrapMode.WORD)
         description.set_editable(False)
         buffer = description.get_buffer()
-        buffer.set_text(_("Enter a valid date (like YYYY-MM-DD) in the"
-                          " entry below and click Run. This will compute"
-                          " the ages for everyone in your Family Tree on"
-                          " that date. You can then sort by the age column,"
-                          " and double-click the row to view or edit."))
+        buffer.set_text(
+            _(
+                "Enter a valid date (like YYYY-MM-DD) in the"
+                " entry below and click Run. This will compute"
+                " the ages for everyone in your Family Tree on"
+                " that date. You can then sort by the age column,"
+                " and double-click the row to view or edit."
+            )
+        )
         label = Gtk.Label()
         label.set_text(_("Date") + COLON)
         self.entry = Gtk.Entry()
@@ -85,7 +93,4 @@ class AgeOnDateGramplet(Gramplet):
         """
         text = self.entry.get_text()
         date = parser.parse(text)
-        run_quick_report_by_name(self.gui.dbstate,
-                                 self.gui.uistate,
-                                 'ageondate',
-                                 date)
+        run_quick_report_by_name(self.gui.dbstate, self.gui.uistate, "ageondate", date)

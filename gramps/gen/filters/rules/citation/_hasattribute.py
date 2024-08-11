@@ -25,6 +25,7 @@
 #
 # -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
@@ -43,7 +44,6 @@ from .._hasattributebase import HasAttributeBase
 class HasAttribute(HasAttributeBase):
     """Rule that checks for a citation with a particular attribute"""
 
-    labels = [_('Citation attribute:'), _('Value:')]
-    name = _('Citations with the attribute <attribute>')
-    description = _("Matches citations with the attribute "
-                    "of a particular value")
+    labels = [_("Citation attribute:"), _("Value:")]
+    name = _("Citations with the attribute <attribute>")
+    description = _("Matches citations with the attribute " "of a particular value")

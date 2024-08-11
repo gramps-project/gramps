@@ -20,30 +20,30 @@
 
 "Geography constants"
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import os
 import gi
 from gi.repository import OsmGpsMap as osmgpsmap
 from gramps.gen.lib import EventType
-from gramps.gen.const import HOME_DIR
+from gramps.gen.const import USER_CACHE
 
-gi.require_version('OsmGpsMap', '1.0')
+gi.require_version("OsmGpsMap", "1.0")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
-GEOGRAPHY_PATH = os.path.join(HOME_DIR, "maps")
+# -------------------------------------------------------------------------
+GEOGRAPHY_PATH = os.path.join(USER_CACHE, "maps")
 
 ICONS = {
-    EventType.BIRTH                : 'gramps-geo-birth',
-    EventType.DEATH                : 'gramps-geo-death',
-    EventType.MARRIAGE             : 'gramps-geo-marriage',
+    EventType.BIRTH: "gramps-geo-birth",
+    EventType.DEATH: "gramps-geo-death",
+    EventType.MARRIAGE: "gramps-geo-marriage",
 }
 
 # map providers
@@ -63,58 +63,58 @@ VIRTUAL_EARTH_HYBRID = 13
 YAHOO_STREET = 14
 YAHOO_SATELLITE = 15
 YAHOO_HYBRID = 16
-PERSONAL = 30
+# PERSONAL = 30
 
 TILES_PATH = {
-    OPENSTREETMAP           : "openstreetmap",
-    OPENSTREETMAP_RENDERER  : "openstreetmaprenderer",
-    OPENAERIALMAP           : "openaerialmap",
-    MAPS_FOR_FREE           : "mapsforfree",
-    OPENCYCLEMAP            : "opencyclemap",
-    OSM_PUBLIC_TRANSPORT    : "publictransport",
-    OSMC_TRAILS             : "osmctrails",
-    GOOGLE_STREET           : "googlestreet",
-    GOOGLE_SATELLITE        : "googlesat",
-    GOOGLE_HYBRID           : "googlehybrid",
-    VIRTUAL_EARTH_STREET    : "virtualearthstreet",
-    VIRTUAL_EARTH_SATELLITE : "virtualearthsat",
-    VIRTUAL_EARTH_HYBRID    : "virtualearthhybrid",
-    YAHOO_STREET            : "yahoostreet",
-    YAHOO_SATELLITE         : "yahoosat",
-    YAHOO_HYBRID            : "yahoohybrid",
-    PERSONAL                : "personal",
+    OPENSTREETMAP: "openstreetmap",
+    OPENSTREETMAP_RENDERER: "openstreetmaprenderer",
+    OPENAERIALMAP: "openaerialmap",
+    MAPS_FOR_FREE: "mapsforfree",
+    OPENCYCLEMAP: "opencyclemap",
+    OSM_PUBLIC_TRANSPORT: "publictransport",
+    OSMC_TRAILS: "osmctrails",
+    GOOGLE_STREET: "googlestreet",
+    GOOGLE_SATELLITE: "googlesat",
+    GOOGLE_HYBRID: "googlehybrid",
+    VIRTUAL_EARTH_STREET: "virtualearthstreet",
+    VIRTUAL_EARTH_SATELLITE: "virtualearthsat",
+    VIRTUAL_EARTH_HYBRID: "virtualearthhybrid",
+    YAHOO_STREET: "yahoostreet",
+    YAHOO_SATELLITE: "yahoosat",
+    YAHOO_HYBRID: "yahoohybrid",
+    # PERSONAL: "personal",
 }
 
 MAP_TITLE = {
-    OPENSTREETMAP           : "OpenStreetMap",
-    OPENSTREETMAP_RENDERER  : "OpenStreetMap renderer",
-    OPENAERIALMAP           : "OpenAerialMap",
-    MAPS_FOR_FREE           : "Maps For Free",
-    OPENCYCLEMAP            : "OpenCycleMap",
-    OSM_PUBLIC_TRANSPORT    : "Public Transport",
-    OSMC_TRAILS             : "OSMC Trails",
-    GOOGLE_STREET           : "Google street",
-    GOOGLE_SATELLITE        : "Google sat",
-    GOOGLE_HYBRID           : "Google hybrid",
-    VIRTUAL_EARTH_STREET    : "Virtualearth street",
-    VIRTUAL_EARTH_SATELLITE : "Virtualearth sat",
-    VIRTUAL_EARTH_HYBRID    : "Virtualearth hybrid",
-    YAHOO_STREET            : "Yahoo street",
-    YAHOO_SATELLITE         : "Yahoo sat",
-    YAHOO_HYBRID            : "Yahoo hybrid",
-    PERSONAL                : "Personal map",
+    OPENSTREETMAP: "OpenStreetMap",
+    OPENSTREETMAP_RENDERER: "OpenStreetMap renderer",
+    OPENAERIALMAP: "OpenAerialMap",
+    MAPS_FOR_FREE: "Maps For Free",
+    OPENCYCLEMAP: "OpenCycleMap",
+    OSM_PUBLIC_TRANSPORT: "Public Transport",
+    OSMC_TRAILS: "OSMC Trails",
+    GOOGLE_STREET: "Google street",
+    GOOGLE_SATELLITE: "Google sat",
+    GOOGLE_HYBRID: "Google hybrid",
+    VIRTUAL_EARTH_STREET: "Virtualearth street",
+    VIRTUAL_EARTH_SATELLITE: "Virtualearth sat",
+    VIRTUAL_EARTH_HYBRID: "Virtualearth hybrid",
+    YAHOO_STREET: "Yahoo street",
+    YAHOO_SATELLITE: "Yahoo sat",
+    YAHOO_HYBRID: "Yahoo hybrid",
+    # PERSONAL: "Personal map",
 }
 
 MAP_TYPE = {
-    OPENSTREETMAP           : osmgpsmap.MapSource_t.OPENSTREETMAP,
-    MAPS_FOR_FREE           : osmgpsmap.MapSource_t.MAPS_FOR_FREE,
-    OPENCYCLEMAP            : osmgpsmap.MapSource_t.OPENCYCLEMAP,
-    OSM_PUBLIC_TRANSPORT    : osmgpsmap.MapSource_t.OSM_PUBLIC_TRANSPORT,
-    GOOGLE_STREET           : osmgpsmap.MapSource_t.GOOGLE_STREET,
-    GOOGLE_SATELLITE        : osmgpsmap.MapSource_t.GOOGLE_SATELLITE,
-    GOOGLE_HYBRID           : osmgpsmap.MapSource_t.GOOGLE_HYBRID,
-    VIRTUAL_EARTH_STREET    : osmgpsmap.MapSource_t.VIRTUAL_EARTH_STREET,
-    VIRTUAL_EARTH_SATELLITE : osmgpsmap.MapSource_t.VIRTUAL_EARTH_SATELLITE,
-    VIRTUAL_EARTH_HYBRID    : osmgpsmap.MapSource_t.VIRTUAL_EARTH_HYBRID,
-    PERSONAL                : None,
+    OPENSTREETMAP: osmgpsmap.MapSource_t.OPENSTREETMAP,
+    MAPS_FOR_FREE: osmgpsmap.MapSource_t.MAPS_FOR_FREE,
+    OPENCYCLEMAP: osmgpsmap.MapSource_t.OPENCYCLEMAP,
+    OSM_PUBLIC_TRANSPORT: osmgpsmap.MapSource_t.OSM_PUBLIC_TRANSPORT,
+    GOOGLE_STREET: osmgpsmap.MapSource_t.GOOGLE_STREET,
+    GOOGLE_SATELLITE: osmgpsmap.MapSource_t.GOOGLE_SATELLITE,
+    GOOGLE_HYBRID: osmgpsmap.MapSource_t.GOOGLE_HYBRID,
+    VIRTUAL_EARTH_STREET: osmgpsmap.MapSource_t.VIRTUAL_EARTH_STREET,
+    VIRTUAL_EARTH_SATELLITE: osmgpsmap.MapSource_t.VIRTUAL_EARTH_SATELLITE,
+    VIRTUAL_EARTH_HYBRID: osmgpsmap.MapSource_t.VIRTUAL_EARTH_HYBRID,
+    # PERSONAL: None,
 }

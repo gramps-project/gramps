@@ -26,12 +26,13 @@ execution of Gramps.
 Provides also two small base classes: :class:`CLIDbLoader`, :class:`CLIManager`
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 import os
 import sys
@@ -39,11 +40,11 @@ import sys
 import logging
 
 LOG = logging.getLogger(".grampscli")
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps  modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.config import config
 from gramps.gen.const import PLUGINS_DIR, USER_PLUGINS
@@ -51,26 +52,30 @@ from gramps.gen.db.dbconst import DBBACKEND
 from gramps.gen.db.utils import make_database
 from gramps.gen.errors import DbError
 from gramps.gen.dbstate import DbState
-from gramps.gen.db.exceptions import (DbUpgradeRequiredError,
-                                      DbSupportedError,
-                                      DbVersionError,
-                                      DbPythonError,
-                                      DbConnectionError)
+from gramps.gen.db.exceptions import (
+    DbUpgradeRequiredError,
+    DbSupportedError,
+    DbVersionError,
+    DbPythonError,
+    DbConnectionError,
+)
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.utils.config import get_researcher
 from gramps.gen.recentfiles import recent_files
 from gramps.gen.filters import reload_custom_filters
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # CLI DbLoader class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class CLIDbLoader:
     """
     Base class for Db loading action inside a :class:`.DbState`. Only the
     minimum is present needed for CLI handling
     """
+
     def __init__(self, dbstate):
         self.dbstate = dbstate
 
@@ -78,14 +83,14 @@ class CLIDbLoader:
         """
         Issue a warning message. Inherit for GUI action
         """
-        print(_('WARNING: %s') % warnmessage, file=sys.stderr)
+        print(_("WARNING: %s") % warnmessage, file=sys.stderr)
 
     def _errordialog(self, title, errormessage):
         """
         Show the error. A title for the error and an errormessage
         Inherit for GUI action
         """
-        print(_('ERROR: %s') % errormessage, file=sys.stderr)
+        print(_("ERROR: %s") % errormessage, file=sys.stderr)
         sys.exit(1)
 
     def _dberrordialog(self, msg):
@@ -98,14 +103,18 @@ class CLIDbLoader:
         .. note:: Inherit for GUI action
         """
         self._errordialog(
-            '',
+            "",
             _("Low level database corruption detected")
-            + '\n' +
-            _("Gramps has detected a problem in the underlying "
-              "database. This can sometimes be repaired from "
-              "the Family Tree Manager. Select the database and "
-              'click on the Repair button'
-             ) + '\n\n' + str(msg))
+            + "\n"
+            + _(
+                "Gramps has detected a problem in the underlying "
+                "database. This can sometimes be repaired from "
+                "the Family Tree Manager. Select the database and "
+                "click on the Repair button"
+            )
+            + "\n\n"
+            + str(msg),
+        )
 
     def _begin_progress(self):
         """
@@ -146,13 +155,14 @@ class CLIDbLoader:
         if os.path.exists(filename):
             if not os.access(filename, os.W_OK):
                 mode = "r"
-                self._warn(_('Read only database'),
-                           _('You do not have write access '
-                             'to the selected file.'))
+                self._warn(
+                    _("Read only database"),
+                    _("You do not have write access " "to the selected file."),
+                )
             else:
                 mode = "w"
         else:
-            mode = 'w'
+            mode = "w"
 
         dbid_path = os.path.join(filename, DBBACKEND)
         if os.path.isfile(dbid_path):
@@ -169,16 +179,26 @@ class CLIDbLoader:
         self._begin_progress()
 
         try:
-            self.dbstate.db.load(filename, self._pulse_progress, mode,
-                                 username=username, password=password)
-        except (DbConnectionError, DbSupportedError, DbUpgradeRequiredError,
-                DbVersionError, DbPythonError, DbConnectionError) as msg:
+            self.dbstate.db.load(
+                filename,
+                self._pulse_progress,
+                mode,
+                username=username,
+                password=password,
+            )
+        except (
+            DbConnectionError,
+            DbSupportedError,
+            DbUpgradeRequiredError,
+            DbVersionError,
+            DbPythonError,
+            DbConnectionError,
+        ) as msg:
             self.dbstate.no_database()
             self._errordialog(_("Cannot open database"), str(msg))
         except OSError as msg:
             self.dbstate.no_database()
-            self._errordialog(
-                _("Could not open file: %s") % filename, str(msg))
+            self._errordialog(_("Could not open file: %s") % filename, str(msg))
         except DbError as msg:
             self.dbstate.no_database()
             self._dberrordialog(msg)
@@ -187,11 +207,13 @@ class CLIDbLoader:
             LOG.error("Failed to open database.", exc_info=True)
         return True
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # CLIManager class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
 
 class CLIManager:
     """
@@ -201,6 +223,7 @@ class CLIManager:
     Aim is to manage a dbstate on which to work (load, unload), and interact
     with the plugin session
     """
+
     def __init__(self, dbstate, setloader, user):
         self.dbstate = dbstate
         if setloader:
@@ -221,7 +244,7 @@ class CLIManager:
         """
         Show the error. A title for the error and an errormessage
         """
-        print(_('ERROR: %s') % errormessage, file=sys.stderr)
+        print(_("ERROR: %s") % errormessage, file=sys.stderr)
         sys.exit(1)
 
     def _read_recent_file(self, filename, username=None, password=None):
@@ -232,29 +255,33 @@ class CLIManager:
         # If not, do nothing, just return.
         # This can be handled better if family tree delete/rename
         # also updated the recent file menu info in displaystate.py
-        if not  os.path.isdir(filename):
+        if not os.path.isdir(filename):
             self._errordialog(
                 _("Could not load a recent Family Tree."),
-                _("Family Tree does not exist, as it has been deleted."))
+                _("Family Tree does not exist, as it has been deleted."),
+            )
             return
 
         if os.path.isfile(os.path.join(filename, "lock")):
             self._errordialog(
                 _("The database is locked."),
-                _("Use the --force-unlock option if you are sure "
-                  "that the database is not in use."))
+                _(
+                    "Use the --force-unlock option if you are sure "
+                    "that the database is not in use."
+                ),
+            )
             return
 
         if self.db_loader.read_file(filename, username, password):
             # Attempt to figure out the database title
             path = os.path.join(filename, "name.txt")
             try:
-                with open(path, encoding='utf8') as ifile:
+                with open(path, encoding="utf8") as ifile:
                     title = ifile.readline().strip()
             except:
                 title = filename
 
-            self._post_load_newdb(filename, 'x-directory/normal', title)
+            self._post_load_newdb(filename, "x-directory/normal", title)
 
     def _post_load_newdb(self, filename, filetype, title=None):
         """
@@ -283,20 +310,18 @@ class CLIManager:
         # If the DB Owner Info is empty and
         # [default] Researcher is not empty and
         # database is empty, then copy default researcher to DB owner
-        if (res.is_empty()
-                and not owner.is_empty()
-                and self.dbstate.db.get_total() == 0):
+        if res.is_empty() and not owner.is_empty() and self.dbstate.db.get_total() == 0:
             self.dbstate.db.set_researcher(owner)
 
         name_displayer.clear_custom_formats()
         name_displayer.set_name_format(self.dbstate.db.name_formats)
-        fmt_default = config.get('preferences.name-format')
+        fmt_default = config.get("preferences.name-format")
         name_displayer.set_default_format(fmt_default)
 
         self.dbstate.db.enable_signals()
         self.dbstate.signal_change()
 
-        config.set('paths.recent-file', filename)
+        config.set("paths.recent-file", filename)
 
         recent_files(filename, name)
         self.file_loaded = True
@@ -310,6 +335,7 @@ class CLIManager:
         if rescan:  # supports updated plugin installs
             self._pmgr.reload_plugins()
 
+
 def startcli(errors, argparser):
     """
     Starts a cli session of Gramps.
@@ -318,34 +344,35 @@ def startcli(errors, argparser):
     :param argparser: :class:`.ArgParser` instance
     """
     if errors:
-        #already errors encountered. Show first one on terminal and exit
-        errmsg = _('Error encountered: %s') % errors[0][0]
+        # already errors encountered. Show first one on terminal and exit
+        errmsg = _("Error encountered: %s") % errors[0][0]
         print(errmsg, file=sys.stderr)
-        errmsg = _('  Details: %s') % errors[0][1]
+        errmsg = _("  Details: %s") % errors[0][1]
         print(errmsg, file=sys.stderr)
         sys.exit(1)
 
     if argparser.errors:
-        errmsg = _('Error encountered in argument parsing: %s'
-                  ) % argparser.errors[0][0]
+        errmsg = _("Error encountered in argument parsing: %s") % argparser.errors[0][0]
         print(errmsg, file=sys.stderr)
-        errmsg = _('  Details: %s') % argparser.errors[0][1]
+        errmsg = _("  Details: %s") % argparser.errors[0][1]
         print(errmsg, file=sys.stderr)
         sys.exit(1)
 
-    #we need to keep track of the db state
+    # we need to keep track of the db state
     dbstate = DbState()
 
-    #we need a manager for the CLI session
+    # we need a manager for the CLI session
     from .user import User
+
     user = User(auto_accept=argparser.auto_accept, quiet=argparser.quiet)
     climanager = CLIManager(dbstate, True, user)
 
-    #load the plugins
+    # load the plugins
     climanager.do_reg_plugins(dbstate, uistate=None)
     reload_custom_filters()
     # handle the arguments
     from .arghandler import ArgHandler
+
     handler = ArgHandler(dbstate, argparser, climanager)
     # create a manager to manage the database
 

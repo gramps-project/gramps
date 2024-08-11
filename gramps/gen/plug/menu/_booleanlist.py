@@ -22,22 +22,24 @@
 Option class representing a list of boolean values.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import Option
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # BooleanListOption class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class BooleanListOption(Option):
     """
     This class describes an option that provides a list of check buttons.
     """
+
     def __init__(self, heading):
         """
         :param heading: A heading for the entire list of check buttons.
@@ -45,7 +47,7 @@ class BooleanListOption(Option):
         :type heading: string
         :return: nothing
         """
-        Option.__init__(self, heading, '')
+        Option.__init__(self, heading, "")
         self.__descriptions = []
 
     def add_button(self, description, default):
@@ -62,10 +64,10 @@ class BooleanListOption(Option):
         """
         self.__descriptions.append(description)
         value = self.get_value()
-        if value == '':
+        if value == "":
             value = str(default)
         else:
-            value = value + ',' + str(default)
+            value = value + "," + str(default)
         self.set_value(value)
 
     def get_descriptions(self):
@@ -83,6 +85,5 @@ class BooleanListOption(Option):
         :return: a list of check button descriptions.
         """
         descriptions = self.__descriptions
-        values = self.get_value().split(',')
-        return [x[0] for x in zip(descriptions, values) if x[1] == 'True']
-
+        values = self.get_value().split(",")
+        return [x[0] for x in zip(descriptions, values) if x[1] == "True"]

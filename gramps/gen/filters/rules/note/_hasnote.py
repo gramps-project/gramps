@@ -18,55 +18,65 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
-#
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-from ....const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+"""
+Rule that checks for a note with a particular value.
+"""
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+from ....const import GRAMPS_LOCALE as glocale
 from ....lib.notetype import NoteType
 from .. import Rule
 
-#-------------------------------------------------------------------------
+_ = glocale.translation.gettext
+
+
+# -------------------------------------------------------------------------
 #
 # HasNote
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasNote(Rule):
-    """Rule that checks for a note with a particular value"""
+    """
+    Rule that checks for a note with a particular value.
+    """
 
-
-    labels = [ _('Text:'),
-                    _('Note type:'),
-                    ]
-    name = _('Notes matching parameters')
+    labels = [
+        _("Text:"),
+        _("Note type:"),
+    ]
+    name = _("Notes matching parameters")
     description = _("Matches Notes with particular parameters")
-    category = _('General filters')
+    category = _("General filters")
     allow_regex = True
 
-    def prepare(self, db, user):
-        if self.list[1]:
-            self.ntype = NoteType()
-            self.ntype.set_from_xml_str(self.list[1])
-        else:
-            self.ntype = None
+    def __init__(self, arg, use_regex=False, use_case=False):
+        super().__init__(arg, use_regex, use_case)
+        self.note_type = None
 
-    def apply(self,db, note):
-        if not self.match_substring(0, note.get()):
+    def prepare(self, db, user):
+        """
+        Prepare the rule. Things we only want to do once.
+        """
+        if self.list[1]:
+            self.note_type = NoteType()
+            self.note_type.set_from_xml_str(self.list[1])
+
+    def apply(self, _db, obj):
+        """
+        Apply the rule. Return True on a match.
+        """
+        if not self.match_substring(0, obj.get()):
             return False
 
-        if self.ntype:
-            if self.ntype.is_custom() and self.use_regex:
-                if self.regex[1].search(str(note.type)) is None:
+        if self.note_type:
+            if self.note_type.is_custom() and self.use_regex:
+                if self.regex[1].search(str(obj.type)) is None:
                     return False
-            elif note.type != self.ntype:
+            elif obj.type != self.note_type:
                 return False
 
         return True

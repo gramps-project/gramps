@@ -28,52 +28,55 @@
 Report option handling, including saving and parsing.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import os
 import copy
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # SAX interface
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from xml.sax import make_parser, SAXParseException
 from xml.sax.saxutils import escape
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Set up logging
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import logging
+
 LOG = logging.getLogger(".plug.report.options")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
 # (do not import anything from 'gui' as this is in 'gen')
 #
-#-------------------------------------------------------------------------
-from ...const import HOME_DIR, REPORT_OPTIONS
+# -------------------------------------------------------------------------
+from ...const import USER_DATA, REPORT_OPTIONS
 from ...config import config
 from ..docgen import PAPER_PORTRAIT
 from .. import _options
 from .. import MenuOptions
 from ...utils.cast import get_type_converter
 
-def escxml(word):
-    return escape(word, {'"' : '&quot;'})
 
-#-------------------------------------------------------------------------
+def escxml(word):
+    return escape(word, {'"': "&quot;"})
+
+
+# -------------------------------------------------------------------------
 #
 # List of options for a single report
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class OptionList(_options.OptionList):
     """
     Implements a set of options to parse and store for a given report.
@@ -277,28 +280,30 @@ class OptionList(_options.OptionList):
         """
         return self.output
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Collection of option lists
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class OptionListCollection(_options.OptionListCollection):
     """
     Implements a collection of option lists.
     """
+
     def __init__(self, filename):
         _options.OptionListCollection.__init__(self, filename)
 
     def init_common(self):
         # Default values for common options
         self.default_style_name = "default"
-        self.default_paper_metric = config.get('preferences.paper-metric')
-        self.default_paper_name = config.get('preferences.paper-preference')
+        self.default_paper_metric = config.get("preferences.paper-metric")
+        self.default_paper_name = config.get("preferences.paper-preference")
         self.default_orientation = PAPER_PORTRAIT
         self.default_css_filename = ""
         self.default_custom_paper_size = [29.7, 21.0]
         self.default_margins = [2.54, 2.54, 2.54, 2.54]
-        self.default_format_name = 'print'
+        self.default_format_name = "print"
 
         self.last_paper_metric = self.default_paper_metric
         self.last_paper_name = self.default_paper_name
@@ -452,61 +457,62 @@ class OptionListCollection(_options.OptionListCollection):
         return self.last_format_name
 
     def write_common(self, file):
-        file.write('<last-common>\n')
+        file.write("<last-common>\n")
         if self.get_last_paper_metric() != self.default_paper_metric:
-            file.write('  <metric value="%d"/>\n'
-                       % self.get_last_paper_metric())
+            file.write('  <metric value="%d"/>\n' % self.get_last_paper_metric())
         if self.get_last_custom_paper_size() != self.default_custom_paper_size:
             size = self.get_last_custom_paper_size()
             file.write('  <size value="%f %f"/>\n' % (size[0], size[1]))
         if self.get_last_paper_name() != self.default_paper_name:
-            file.write('  <paper name="%s"/>\n'
-                       % escxml(self.get_last_paper_name()))
+            file.write('  <paper name="%s"/>\n' % escxml(self.get_last_paper_name()))
         if self.get_last_css_filename() != self.default_css_filename:
-            file.write('  <css name="%s"/>\n'
-                       % escxml(self.get_last_css_filename()))
+            file.write('  <css name="%s"/>\n' % escxml(self.get_last_css_filename()))
         if self.get_last_format_name() != self.default_format_name:
-            file.write('  <format name="%s"/>\n'
-                       % escxml(self.get_last_format_name()))
+            file.write('  <format name="%s"/>\n' % escxml(self.get_last_format_name()))
         if self.get_last_orientation() != self.default_orientation:
-            file.write('  <orientation value="%d"/>\n'
-                       % self.get_last_orientation())
-        file.write('</last-common>\n')
+            file.write('  <orientation value="%d"/>\n' % self.get_last_orientation())
+        file.write("</last-common>\n")
 
     def write_module_common(self, file, option_list):
         if option_list.get_format_name():
-            file.write('  <format name="%s"/>\n'
-                       % escxml(option_list.get_format_name()))
-            if option_list.get_format_name() == 'html':
+            file.write(
+                '  <format name="%s"/>\n' % escxml(option_list.get_format_name())
+            )
+            if option_list.get_format_name() == "html":
                 if option_list.get_css_filename():
-                    file.write('  <css name="%s"/>\n'
-                               % escxml(option_list.get_css_filename()))
-            else: # not HTML format, therefore it's paper
+                    file.write(
+                        '  <css name="%s"/>\n' % escxml(option_list.get_css_filename())
+                    )
+            else:  # not HTML format, therefore it's paper
                 if option_list.get_paper_name():
-                    file.write('  <paper name="%s"/>\n'
-                               % escxml(option_list.get_paper_name()))
-                if option_list.get_orientation() is not None: # 0 is legal
-                    file.write('  <orientation value="%d"/>\n'
-                               % option_list.get_orientation())
-                if option_list.get_paper_metric() is not None: # 0 is legal
-                    file.write('  <metric value="%d"/>\n'
-                               % option_list.get_paper_metric())
+                    file.write(
+                        '  <paper name="%s"/>\n' % escxml(option_list.get_paper_name())
+                    )
+                if option_list.get_orientation() is not None:  # 0 is legal
+                    file.write(
+                        '  <orientation value="%d"/>\n' % option_list.get_orientation()
+                    )
+                if option_list.get_paper_metric() is not None:  # 0 is legal
+                    file.write(
+                        '  <metric value="%d"/>\n' % option_list.get_paper_metric()
+                    )
                 if option_list.get_custom_paper_size():
                     size = option_list.get_custom_paper_size()
-                    file.write('  <size value="%f %f"/>\n'
-                               % (size[0], size[1]))
+                    file.write('  <size value="%f %f"/>\n' % (size[0], size[1]))
                 if option_list.get_margins():
                     margins = option_list.get_margins()
                     for pos, margin in enumerate(margins):
-                        file.write('  <margin number="%s" value="%f"/>\n'
-                                   % (pos, margin))
+                        file.write(
+                            '  <margin number="%s" value="%f"/>\n' % (pos, margin)
+                        )
 
         if option_list.get_style_name():
-            file.write('  <style name="%s"/>\n'
-                       % escxml(option_list.get_style_name()))
+            file.write('  <style name="%s"/>\n' % escxml(option_list.get_style_name()))
         if option_list.get_output():
-            file.write('  <output name="%s"/>\n'
-                       % escxml(os.path.basename(option_list.get_output())))
+            file.write(
+                '  <output name="%s"/>\n'
+                % escxml(os.path.basename(option_list.get_output()))
+            )
 
     def parse(self):
         """
@@ -521,11 +527,12 @@ class OptionListCollection(_options.OptionListCollection):
         except (IOError, OSError, SAXParseException):
             pass
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # OptionParser
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class OptionParser(_options.OptionParser):
     """
     SAX parsing class for the OptionListCollection XML file.
@@ -548,39 +555,39 @@ class OptionParser(_options.OptionParser):
         # First we try report-specific tags
         if tag == "last-common":
             self.common = True
-        elif tag == 'docgen-option':
+        elif tag == "docgen-option":
             if not self.common:
-                self.oname = attrs['name']
-                self.an_o = [attrs['docgen'], attrs['value']]
+                self.oname = attrs["name"]
+                self.an_o = [attrs["docgen"], attrs["value"]]
         elif tag == "style":
-            self.option_list.set_style_name(attrs['name'])
+            self.option_list.set_style_name(attrs["name"])
         elif tag == "paper":
             if self.common:
-                self.collection.set_last_paper_name(attrs['name'])
+                self.collection.set_last_paper_name(attrs["name"])
             else:
-                self.option_list.set_paper_name(attrs['name'])
+                self.option_list.set_paper_name(attrs["name"])
         elif tag == "css":
             if self.common:
-                self.collection.set_last_css_filename(attrs['name'])
+                self.collection.set_last_css_filename(attrs["name"])
             else:
-                self.option_list.set_css_filename(attrs['name'])
+                self.option_list.set_css_filename(attrs["name"])
         elif tag == "format":
             if self.common:
-                self.collection.set_last_format_name(attrs['name'])
+                self.collection.set_last_format_name(attrs["name"])
             else:
-                self.option_list.set_format_name(attrs['name'])
+                self.option_list.set_format_name(attrs["name"])
         elif tag == "orientation":
             if self.common:
-                self.collection.set_last_orientation(int(attrs['value']))
+                self.collection.set_last_orientation(int(attrs["value"]))
             else:
-                self.option_list.set_orientation(int(attrs['value']))
+                self.option_list.set_orientation(int(attrs["value"]))
         elif tag == "metric":
             if self.common:
-                self.collection.set_last_paper_metric(int(attrs['value']))
+                self.collection.set_last_paper_metric(int(attrs["value"]))
             else:
-                self.option_list.set_paper_metric(int(attrs['value']))
+                self.option_list.set_paper_metric(int(attrs["value"]))
         elif tag == "size":
-            width, height = attrs['value'].split()
+            width, height = attrs["value"].split()
             width = float(width)
             height = float(height)
             if self.common:
@@ -589,14 +596,14 @@ class OptionParser(_options.OptionParser):
                 self.option_list.set_custom_paper_size([width, height])
 
         elif tag == "margin":
-            pos, value = int(attrs['number']), float(attrs['value'])
+            pos, value = int(attrs["number"]), float(attrs["value"])
             if self.common:
                 self.collection.set_last_margin(pos, value)
             else:
                 self.option_list.set_margin(pos, value)
-        elif tag == 'output':
+        elif tag == "output":
             if not self.common:
-                self.option_list.set_output(attrs['name'])
+                self.option_list.set_output(attrs["name"])
         else:
             # Tag is not report-specific, so we let the base class handle it.
             _options.OptionParser.startElement(self, tag, attrs)
@@ -606,19 +613,20 @@ class OptionParser(_options.OptionParser):
         # First we try report-specific tags
         if tag == "last-common":
             self.common = False
-        elif tag == 'docgen-option':
+        elif tag == "docgen-option":
             self.odict[self.oname] = self.an_o
         else:
             # Tag is not report-specific, so we let the base class handle it.
             _options.OptionParser.endElement(self, tag)
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # Empty class to keep the BaseDoc-targeted format happy
 # Yes, this is a hack. Find some other way to pass around documents so that
 # we don't have to handle them for reports that don't use documents (web)
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class EmptyDoc:
     def init(self):
         pass
@@ -626,7 +634,7 @@ class EmptyDoc:
     def set_creator(self, creator):
         pass
 
-    def set_rtl_doc(self, value): # crock!
+    def set_rtl_doc(self, value):  # crock!
         pass
 
     def open(self, filename):
@@ -635,15 +643,17 @@ class EmptyDoc:
     def close(self):
         pass
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Class handling options for plugins
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class OptionHandler(_options.OptionHandler):
     """
     Implements handling of the options for the plugins.
     """
+
     def __init__(self, module_name, options_dict):
         _options.OptionHandler.__init__(self, module_name, options_dict, None)
 
@@ -658,7 +668,7 @@ class OptionHandler(_options.OptionHandler):
         """
         # These are needed for running reports.
         # We will not need to save/retrieve them, just keep around.
-        self.doc = EmptyDoc() # Nasty hack. Text reports replace this
+        self.doc = EmptyDoc()  # Nasty hack. Text reports replace this
         self.output = None
 
         # Retrieve our options from whole collection
@@ -666,8 +676,9 @@ class OptionHandler(_options.OptionHandler):
         self.paper_metric = self.option_list_collection.get_last_paper_metric()
         self.paper_name = self.option_list_collection.get_last_paper_name()
         self.orientation = self.option_list_collection.get_last_orientation()
-        self.custom_paper_size = \
+        self.custom_paper_size = (
             self.option_list_collection.get_last_custom_paper_size()
+        )
         self.css_filename = self.option_list_collection.get_last_css_filename()
         self.margins = self.option_list_collection.get_last_margins()
         self.format_name = self.option_list_collection.get_last_format_name()
@@ -675,16 +686,15 @@ class OptionHandler(_options.OptionHandler):
     def set_common_options(self):
         if self.saved_option_list.get_style_name():
             self.style_name = self.saved_option_list.get_style_name()
-        if self.saved_option_list.get_orientation() is not None: # 0 is legal
+        if self.saved_option_list.get_orientation() is not None:  # 0 is legal
             self.orientation = self.saved_option_list.get_orientation()
         if self.saved_option_list.get_custom_paper_size():
-            self.custom_paper_size = \
-                self.saved_option_list.get_custom_paper_size()
+            self.custom_paper_size = self.saved_option_list.get_custom_paper_size()
         if self.saved_option_list.get_margins():
             self.margins = self.saved_option_list.get_margins()
         if self.saved_option_list.get_css_filename():
             self.css_filename = self.saved_option_list.get_css_filename()
-        if self.saved_option_list.get_paper_metric() is not None: # 0 is legal
+        if self.saved_option_list.get_paper_metric() is not None:  # 0 is legal
             self.paper_metric = self.saved_option_list.get_paper_metric()
         if self.saved_option_list.get_paper_name():
             self.paper_name = self.saved_option_list.get_paper_name()
@@ -701,8 +711,9 @@ class OptionHandler(_options.OptionHandler):
 
         # First we save options from options_dict
         for option_name, option_data in self.options_dict.items():
-            self.saved_option_list.set_option(option_name,
-                                              self.options_dict[option_name])
+            self.saved_option_list.set_option(
+                option_name, self.options_dict[option_name]
+            )
 
         # Handle common options
         self.save_common_options()
@@ -721,13 +732,13 @@ class OptionHandler(_options.OptionHandler):
         self.saved_option_list.set_paper_name(self.paper_name)
         self.saved_option_list.set_css_filename(self.css_filename)
         self.saved_option_list.set_format_name(self.format_name)
-        self.option_list_collection.set_option_list(self.module_name,
-                                                    self.saved_option_list)
+        self.option_list_collection.set_option_list(
+            self.module_name, self.saved_option_list
+        )
 
         # Then save last-common options from the current selection
         self.option_list_collection.set_last_orientation(self.orientation)
-        self.option_list_collection.set_last_custom_paper_size(
-            self.custom_paper_size)
+        self.option_list_collection.set_last_custom_paper_size(self.custom_paper_size)
         self.option_list_collection.set_last_margins(self.margins)
         self.option_list_collection.set_last_paper_metric(self.paper_metric)
         self.option_list_collection.set_last_paper_name(self.paper_name)
@@ -739,38 +750,38 @@ class OptionHandler(_options.OptionHandler):
         # Get the first part of name, if it contains a comma:
         # (will just be module_name, if no comma)
         filename = "%s.xml" % self.module_name.split(",")[0]
-        return os.path.join(HOME_DIR, filename)
+        return os.path.join(USER_DATA, filename)
 
     def get_default_stylesheet_name(self):
-        """ get the default stylesheet name """
+        """get the default stylesheet name"""
         return self.style_name
 
     def set_default_stylesheet_name(self, style_name):
-        """ set the default stylesheet name """
+        """set the default stylesheet name"""
         self.style_name = style_name
 
     def get_format_name(self):
-        """ get the format name """
+        """get the format name"""
         return self.format_name
 
     def set_format_name(self, format_name):
-        """ set the format name """
+        """set the format name"""
         self.format_name = format_name
 
     def get_paper_metric(self):
-        """ get the paper metric """
+        """get the paper metric"""
         return self.paper_metric
 
     def set_paper_metric(self, paper_metric):
-        """ set the paper metric """
+        """set the paper metric"""
         self.paper_metric = paper_metric
 
     def get_paper_name(self):
-        """ get the paper name """
+        """get the paper name"""
         return self.paper_name
 
     def set_paper_name(self, paper_name):
-        """ set the paper name """
+        """set the paper name"""
         self.paper_name = paper_name
 
     def get_paper(self):
@@ -786,50 +797,51 @@ class OptionHandler(_options.OptionHandler):
         self.paper = paper
 
     def get_css_filename(self):
-        """ get the CSS filename """
+        """get the CSS filename"""
         return self.css_filename
 
     def set_css_filename(self, css_filename):
-        """ set the CSS filename """
+        """set the CSS filename"""
         self.css_filename = css_filename
 
     def get_orientation(self):
-        """ get the paper's orientation """
+        """get the paper's orientation"""
         return self.orientation
 
     def set_orientation(self, orientation):
-        """ set the paper's orientation """
+        """set the paper's orientation"""
         self.orientation = orientation
 
     def get_custom_paper_size(self):
-        """ get the paper's custom paper size, if any """
+        """get the paper's custom paper size, if any"""
         return copy.copy(self.custom_paper_size)
 
     def set_custom_paper_size(self, custom_paper_size):
-        """ set the paper's custom paper size """
+        """set the paper's custom paper size"""
         self.custom_paper_size = copy.copy(custom_paper_size)
 
     def get_margins(self):
-        """ get the paper's margin sizes """
+        """get the paper's margin sizes"""
         return copy.copy(self.margins)
 
     def set_margins(self, margins):
-        """ set the paper's margin sizes """
+        """set the paper's margin sizes"""
         self.margins = copy.copy(margins)
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # Base Options class
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class ReportOptions(_options.Options):
-
     """
     Defines options and provides handling interface.
 
     This is a base Options class for the reports. All reports, options
     classes should derive from it.
     """
+
     def __init__(self, name, dbase):
         """
         Initialize the class, performing usual house-keeping tasks.
@@ -916,11 +928,12 @@ class ReportOptions(_options.Options):
         """
         self.handler.output = val
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MenuReportOptions
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MenuReportOptions(MenuOptions, ReportOptions):
     """
 
@@ -933,6 +946,7 @@ class MenuReportOptions(MenuOptions, ReportOptions):
     MenuReportOptions class will worry about setting up the UI.
 
     """
+
     def __init__(self, name, dbase):
         ReportOptions.__init__(self, name, dbase)
         MenuOptions.__init__(self)
@@ -955,11 +969,12 @@ class MenuReportOptions(MenuOptions, ReportOptions):
         LOG.warning("get_subject not implemented for %s" % self.name)
         return ""
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # DocOptionHandler class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class DocOptionHandler(_options.OptionHandler):
     """
     Implements handling of the docgen options for the plugins.
@@ -986,22 +1001,24 @@ class DocOptionHandler(_options.OptionHandler):
         options = self.saved_option_list.get_options()
         docgen_names = self.option_list_collection.docgen_names
         for option_name, option_data in options.items():
-            if (option_name in self.options_dict
-                    and isinstance(option_data, list)
-                    and option_data
-                    and option_data[0] in docgen_names):
+            if (
+                option_name in self.options_dict
+                and isinstance(option_data, list)
+                and option_data
+                and option_data[0] in docgen_names
+            ):
                 try:
-                    converter = get_type_converter(
-                        self.options_dict[option_name])
+                    converter = get_type_converter(self.options_dict[option_name])
                     self.options_dict[option_name] = converter(option_data[1])
                 except (TypeError, ValueError):
                     pass
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # DocOptions class
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class DocOptions(MenuOptions):
     """
     Defines options and provides handling interface.
@@ -1018,11 +1035,12 @@ class DocOptions(MenuOptions):
     def load_previous_values(self):
         self.handler = DocOptionHandler(self.name, self.options_dict)
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # DocOptionListCollection class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class DocOptionListCollection(_options.OptionListCollection):
     """
     Implements a collection of option lists.
@@ -1047,11 +1065,12 @@ class DocOptionListCollection(_options.OptionListCollection):
         except (IOError, OSError, SAXParseException):
             pass
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # DocOptionParser class
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class DocOptionParser(_options.OptionParser):
     """
     SAX parsing class for the DocOptionListCollection XML file.
@@ -1068,15 +1087,15 @@ class DocOptionParser(_options.OptionParser):
 
     def startElement(self, tag, attrs):
         "Overridden class that handles the start of a XML element"
-        if tag == 'docgen-option':
-            self.oname = attrs['name']
-            self.an_o = [attrs['docgen'], attrs['value']]
+        if tag == "docgen-option":
+            self.oname = attrs["name"]
+            self.an_o = [attrs["docgen"], attrs["value"]]
         else:
             _options.OptionParser.startElement(self, tag, attrs)
 
     def endElement(self, tag):
         "Overridden class that handles the end of a XML element"
-        if tag == 'docgen-option':
+        if tag == "docgen-option":
             self.odict[self.oname] = self.an_o
         else:
             _options.OptionParser.endElement(self, tag)

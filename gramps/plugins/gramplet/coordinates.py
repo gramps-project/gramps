@@ -18,18 +18,18 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gtk modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gui.editors import EditEvent
 from gramps.gui.editors import EditPlace
 from gramps.gui.listmodel import ListModel, NOSORT
@@ -40,16 +40,19 @@ from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.datehandler import get_date
 from gramps.gen.utils.place import conv_lat_lon
-from gramps.gen.utils.db import (get_participant_from_event,
-                                 get_birth_or_fallback,
-                                 get_marriage_or_fallback)
+from gramps.gen.utils.db import (
+    get_participant_from_event,
+    get_birth_or_fallback,
+    get_marriage_or_fallback,
+)
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-class GeoEvents(Gramplet, DbGUIElement):
 
+class GeoEvents(Gramplet, DbGUIElement):
     def __init__(self, gui, nav_group=0):
         Gramplet.__init__(self, gui, nav_group)
         DbGUIElement.__init__(self, self.dbstate.db)
@@ -57,6 +60,7 @@ class GeoEvents(Gramplet, DbGUIElement):
     """
     Displays the events for a person or family.
     """
+
     def init(self):
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
@@ -67,8 +71,8 @@ class GeoEvents(Gramplet, DbGUIElement):
         """
         called on init of DbGUIElement, connect to db as required.
         """
-        self.callman.register_callbacks({'event-update': self.changed})
-        self.callman.connect_all(keys=['event'])
+        self.callman.register_callbacks({"event-update": self.changed})
+        self.callman.connect_all(keys=["event"])
 
     def changed(self, handle):
         """
@@ -80,21 +84,27 @@ class GeoEvents(Gramplet, DbGUIElement):
         """
         Build the GUI interface.
         """
-        tip = _('Right-click on a row to edit the selected event'
-                ' or the related place.')
+        tip = _(
+            "Right-click on a row to edit the selected event" " or the related place."
+        )
         self.set_tooltip(tip)
         top = Gtk.TreeView()
         top.set_hover_selection(True)
-        titles = [('', NOSORT, 50,),
-                  (_('Type'), 1, 100),
-                  (_('Description'), 2, 250),
-                  (_('Date'), 3, 160),
-                  ('', NOSORT, 50),
-                  (_('Place'), 4, 300),
-                  (_('Id'), 5, 80),
-                  (_('Latitude'), 6, 130),
-                  (_('Longitude'), 7, 130),
-                  ]
+        titles = [
+            (
+                "",
+                NOSORT,
+                50,
+            ),
+            (_("Type"), 1, 100),
+            (_("Description"), 2, 250),
+            (_("Date"), 3, 160),
+            ("", NOSORT, 50),
+            (_("Place"), 4, 300),
+            (_("Id"), 5, 80),
+            (_("Latitude"), 6, 130),
+            (_("Longitude"), 7, 130),
+        ]
         self.model = ListModel(top, titles, right_click=self.menu_edit)
         return top
 
@@ -102,10 +112,10 @@ class GeoEvents(Gramplet, DbGUIElement):
         """
         Add an event to the model.
         """
-        self.callman.register_handles({'event': [event_ref.ref]})
+        self.callman.register_handles({"event": [event_ref.ref]})
         event = self.dbstate.db.get_event_from_handle(event_ref.ref)
         event_date = get_date(event)
-        event_sort = '%012d' % event.get_date_object().get_sort_value()
+        event_sort = "%012d" % event.get_date_object().get_sort_value()
         place_name = place_displayer.display_event(self.dbstate.db, event)
         place_handle = event.get_place_handle()
         place_id = latitude = longitude = ""
@@ -121,16 +131,19 @@ class GeoEvents(Gramplet, DbGUIElement):
         if description == "":
             description = name
 
-        self.model.add((event.get_handle(),
-                        str(event.get_type()),
-                        description,
-                        event_date,
-                        event_sort,
-                        place_name,
-                        place_id,
-                        latitude,
-                        longitude
-                        ))
+        self.model.add(
+            (
+                event.get_handle(),
+                str(event.get_type()),
+                description,
+                event_date,
+                event_sort,
+                place_name,
+                place_id,
+                latitude,
+                longitude,
+            )
+        )
 
     def menu_edit(self, treeview, event):
         """
@@ -139,18 +152,18 @@ class GeoEvents(Gramplet, DbGUIElement):
         """
         self.menu = Gtk.Menu()
         menu = self.menu
-        title = _('Edit the event')
+        title = _("Edit the event")
         add_item = Gtk.MenuItem(label=title)
         add_item.connect("activate", self.edit_event, treeview)
         add_item.show()
         menu.append(add_item)
-        title = _('Edit the place')
+        title = _("Edit the place")
         add_item = Gtk.MenuItem(label=title)
         add_item.connect("activate", self.edit_place, treeview)
         add_item.show()
         menu.append(add_item)
         menu.show()
-        menu.popup(None, None, None, None, event.button, event.time)
+        menu.popup_at_pointer(event)
 
     def edit_place(self, menuitem, treeview):
         """
@@ -182,18 +195,20 @@ class GeoEvents(Gramplet, DbGUIElement):
             except WindowActiveError:
                 pass
 
+
 class GeoPersonEvents(GeoEvents):
     """
     Displays the events for a person.
     """
+
     def db_changed(self):
-        self.connect(self.dbstate.db, 'person-update', self.update)
+        self.connect(self.dbstate.db, "person-update", self.update)
 
     def active_changed(self, handle):
         self.update()
 
     def update_has_data(self):
-        active_handle = self.get_active('Person')
+        active_handle = self.get_active("Person")
         active = None
         if active_handle:
             active = self.dbstate.db.get_person_from_handle(active_handle)
@@ -213,8 +228,8 @@ class GeoPersonEvents(GeoEvents):
                         return True
         return False
 
-    def main(self): # return false finishes
-        active_handle = self.get_active('Person')
+    def main(self):  # return false finishes
+        active_handle = self.get_active("Person")
 
         self.model.clear()
         self.callman.unregister_all()
@@ -250,16 +265,18 @@ class GeoPersonEvents(GeoEvents):
             for event_ref in family.get_event_ref_list():
                 self.add_event_ref(event_ref, spouse)
 
+
 class GeoFamilyEvents(GeoEvents):
     """
     Displays the events for a family.
     """
+
     def db_changed(self):
-        self.connect(self.dbstate.db, 'family-update', self.update)
-        self.connect_signal('Family', self.update)
+        self.connect(self.dbstate.db, "family-update", self.update)
+        self.connect_signal("Family", self.update)
 
     def update_has_data(self):
-        active_handle = self.get_active('Family')
+        active_handle = self.get_active("Family")
         active = None
         if active_handle:
             active = self.dbstate.db.get_family_from_handle(active_handle)
@@ -274,8 +291,8 @@ class GeoFamilyEvents(GeoEvents):
                 return True
         return False
 
-    def main(self): # return false finishes
-        active_handle = self.get_active('Family')
+    def main(self):  # return false finishes
+        active_handle = self.get_active("Family")
 
         self.model.clear()
         self.callman.unregister_all()

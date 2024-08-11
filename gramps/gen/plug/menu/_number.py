@@ -23,24 +23,26 @@
 Option class representing a number.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import Option
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # NumberOption class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class NumberOption(Option):
     """
     This class describes an option that is a simple number with defined maximum
     and minimum values.
     """
-    def __init__(self, label, value, min_val, max_val, step = 1):
+
+    def __init__(self, label, value, min_val, max_val, step=1):
         """
         :param label: A friendly label to be applied to this option.
             Example: "Number of generations to include"

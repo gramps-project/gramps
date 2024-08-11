@@ -28,63 +28,75 @@
 ## Found by redwood:
 ## http://www.gramps-project.org/bugs/view.php?id=2611
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import math
 import cairo
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.plug.report.utils import find_spouse
 from ..utils import hex_to_rgb
-from .fanchart import (FanChartBaseWidget, FanChartGrampsGUI,
-                       PAD_PX, TRANSLATE_PX,
-                       FORM_CIRCLE, FORM_HALFCIRCLE, FORM_QUADRANT,
-                       NORMAL, EXPANDED, COLLAPSED,
-                       BACKGROUND_GRAD_GEN, BACKGROUND_GRAD_AGE,
-                       BACKGROUND_GRAD_PERIOD, CHILDRING_WIDTH)
+from .fanchart import (
+    FanChartBaseWidget,
+    FanChartGrampsGUI,
+    PAD_PX,
+    TRANSLATE_PX,
+    FORM_CIRCLE,
+    FORM_HALFCIRCLE,
+    FORM_QUADRANT,
+    NORMAL,
+    EXPANDED,
+    COLLAPSED,
+    BACKGROUND_GRAD_GEN,
+    BACKGROUND_GRAD_AGE,
+    BACKGROUND_GRAD_PERIOD,
+    CHILDRING_WIDTH,
+)
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-PIXELS_PER_GENPERSON_RATIO = 0.55 # ratio of generation radius for person
-                                  # (rest for partner)
+PIXELS_PER_GENPERSON_RATIO = 0.55  # ratio of generation radius for person
+# (rest for partner)
 PIXELS_PER_GEN_SMALL = 80
 PIXELS_PER_GEN_LARGE = 160
 N_GEN_SMALL = 4
-PIXELS_PER_GENFAMILY = 25 # size of radius for family
-PIXELS_PER_RECLAIM = 4 # size of the radius of pixels taken from family
-                       # to reclaim space
-PIXELS_PARTNER_GAP = 0 # Padding between someone and his partner
-PIXELS_CHILDREN_GAP = 5 # Padding between generations
+PIXELS_PER_GENFAMILY = 25  # size of radius for family
+PIXELS_PER_RECLAIM = 4  # size of the radius of pixels taken from family
+# to reclaim space
+PIXELS_PARTNER_GAP = 0  # Padding between someone and his partner
+PIXELS_CHILDREN_GAP = 5  # Padding between generations
 PARENTRING_WIDTH = 12  # width of the parent ring inside the person
 
-ANGLE_CHEQUI = 0   #Algorithm with homogeneous children distribution
-ANGLE_WEIGHT = 1   #Algorithm for angle computation based on nr of descendants
+ANGLE_CHEQUI = 0  # Algorithm with homogeneous children distribution
+ANGLE_WEIGHT = 1  # Algorithm for angle computation based on nr of descendants
 
 TYPE_BOX_NORMAL = 0
 TYPE_BOX_FAMILY = 1
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # FanChartDescWidget
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
 
 class FanChartDescWidget(FanChartBaseWidget):
     """
     Interactive Fan Chart Widget.
     """
-    CENTER = 60 # we require a larger center as CENTER includes the 1st partner
+
+    CENTER = 60  # we require a larger center as CENTER includes the 1st partner
 
     def __init__(self, dbstate, uistate, callback_popup=None):
         """
@@ -99,14 +111,41 @@ class FanChartDescWidget(FanChartBaseWidget):
         self.handle2fam = {}
         self.innerring = []
         self.angle = {}
-        self.set_values(None, 9, True, True, BACKGROUND_GRAD_GEN, 'Sans',
-                        '#0000FF', '#FF0000', None, 0.5,
-                        FORM_CIRCLE, ANGLE_WEIGHT, '#888a85', False)
+        self.set_values(
+            None,
+            9,
+            True,
+            True,
+            BACKGROUND_GRAD_GEN,
+            "Sans",
+            "#0000FF",
+            "#FF0000",
+            None,
+            0.5,
+            FORM_CIRCLE,
+            ANGLE_WEIGHT,
+            "#888a85",
+            False,
+        )
         FanChartBaseWidget.__init__(self, dbstate, uistate, callback_popup)
 
-    def set_values(self, root_person_handle, maxgen, flipupsidedownname,
-                   twolinename, background, fontdescr, grad_start, grad_end,
-                   filtr, alpha_filter, form, angle_algo, dupcolor, showid):
+    def set_values(
+        self,
+        root_person_handle,
+        maxgen,
+        flipupsidedownname,
+        twolinename,
+        background,
+        fontdescr,
+        grad_start,
+        grad_end,
+        filtr,
+        alpha_filter,
+        form,
+        angle_algo,
+        dupcolor,
+        showid,
+    ):
         """
         Reset the values to be used:
 
@@ -162,15 +201,16 @@ class FanChartDescWidget(FanChartBaseWidget):
         self.gen2people = {}
         self.gen2fam = {}
         self.innerring = []
-        self.gen2people[0] = [(None, False, 0, 2*math.pi, 0, 0,
-                               [], NORMAL)] #no center person
-        self.gen2fam[0] = [] #no families
+        self.gen2people[0] = [
+            (None, False, 0, 2 * math.pi, 0, 0, [], NORMAL)
+        ]  # no center person
+        self.gen2fam[0] = []  # no families
         self.angle = {}
         self.angle[-2] = []
-        for i in range(1, self.generations+1):
+        for i in range(1, self.generations + 1):
             self.gen2fam[i] = []
             self.gen2people[i] = []
-        self.gen2people[self.generations] = [] #indication of more children
+        self.gen2people[self.generations] = []  # indication of more children
 
     def _fill_data_structures(self):
         self.set_generations()
@@ -178,12 +218,12 @@ class FanChartDescWidget(FanChartBaseWidget):
             return
         person = self.dbstate.db.get_person_from_handle(self.rootpersonh)
         if not person:
-            #nothing to do, just return
+            # nothing to do, just return
             return
 
         # person, duplicate or not, start angle, slice size,
         #                   text, parent pos in fam, nrfam, userdata, status
-        self.gen2people[0] = [[person, False, 0, 2*math.pi, 0, 0, [], NORMAL]]
+        self.gen2people[0] = [[person, False, 0, 2 * math.pi, 0, 0, [], NORMAL]]
         self.handle2desc[self.rootpersonh] = 0
         # fill in data for the parents
         self.innerring = []
@@ -194,15 +234,14 @@ class FanChartDescWidget(FanChartBaseWidget):
                 family = self.dbstate.db.get_family_from_handle(family_handle)
                 if not family:
                     continue
-                for hparent in [family.get_father_handle(),
-                                family.get_mother_handle()]:
+                for hparent in [family.get_father_handle(), family.get_mother_handle()]:
                     if hparent and hparent not in handleparents:
                         parent = self.dbstate.db.get_person_from_handle(hparent)
                         if parent:
                             self.innerring.append((parent, []))
                             handleparents.append(hparent)
 
-        #recursively fill in the datastructures:
+        # recursively fill in the datastructures:
         nrdesc = self._rec_fill_data(0, person, 0, self.generations)
         self.handle2desc[person.handle] += nrdesc
         self._compute_angles(*self.rootangle_rad)
@@ -228,11 +267,12 @@ class FanChartDescWidget(FanChartBaseWidget):
             fam_duplicate = family_handle in self.famhandle2desc
             # family, duplicate or not, start angle, slice size,
             #   spouse pos in gen, nrchildren, userdata, parnter, status
-            self.gen2fam[gen].append([family, fam_duplicate, 0, 0,
-                                      pos, 0, [], spouse, NORMAL])
+            self.gen2fam[gen].append(
+                [family, fam_duplicate, 0, 0, pos, 0, [], spouse, NORMAL]
+            )
             posfam = len(self.gen2fam[gen]) - 1
 
-            if not fam_duplicate and gen < maxgen-1:
+            if not fam_duplicate and gen < maxgen - 1:
                 nrchild = len(family.get_child_ref_list())
                 self.gen2fam[gen][posfam][5] = nrchild
                 for child_ref in family.get_child_ref_list():
@@ -243,13 +283,13 @@ class FanChartDescWidget(FanChartBaseWidget):
                         self.handle2desc[child_ref.ref] = 0
                     # person, duplicate or not, start angle, slice size,
                     #         parent pos in fam, nrfam, userdata, status
-                    self.gen2people[gen+1].append([chld, child_dup, 0, 0,
-                                                   posfam, 0, [], NORMAL])
-                    totdescfam += 1 #add this person as descendant
+                    self.gen2people[gen + 1].append(
+                        [chld, child_dup, 0, 0, posfam, 0, [], NORMAL]
+                    )
+                    totdescfam += 1  # add this person as descendant
                     pospers = len(self.gen2people[gen + 1]) - 1
                     if not child_dup:
-                        nrdesc = self._rec_fill_data(gen + 1, chld,
-                                                     pospers, maxgen)
+                        nrdesc = self._rec_fill_data(gen + 1, chld, pospers, maxgen)
                         self.handle2desc[child_ref.ref] += nrdesc
                         # add children of him as descendants
                         totdescfam += nrdesc
@@ -262,10 +302,10 @@ class FanChartDescWidget(FanChartBaseWidget):
         """
         Compute the angles of the boxes
         """
-        #first we compute the size of the slice.
-        #set angles root person
+        # first we compute the size of the slice.
+        # set angles root person
         start, portion = start_rad, stop_rad - start_rad
-        nr_gen = len(self.gen2people)-1
+        nr_gen = len(self.gen2people) - 1
         # Fill in central person angles
         gen = 0
         data = self.gen2people[gen][0]
@@ -275,7 +315,7 @@ class FanChartDescWidget(FanChartBaseWidget):
             prevpartnerdatahandle = None
             offset = 0
             for data_fam in self.gen2fam[gen]:  # for each partner/fam of gen-1
-                #obtain start and stop from the people of this partner
+                # obtain start and stop from the people of this partner
                 persondata = self.gen2people[gen][data_fam[4]]
                 dupfam = data_fam[1]
                 if dupfam:
@@ -287,10 +327,10 @@ class FanChartDescWidget(FanChartBaseWidget):
                 nrfam = persondata[5]
                 personstart, personslice = persondata[2:4]
                 if prevpartnerdatahandle != persondata[0].handle:
-                    #partner of a new person: reset the offset
+                    # partner of a new person: reset the offset
                     offset = 0
                     prevpartnerdatahandle = persondata[0].handle
-                portion = personslice/(nrdescperson+nrfam)*(nrdescfam+1)
+                portion = personslice / (nrdescperson + nrfam) * (nrdescfam + 1)
                 if data_fam[8] == COLLAPSED:
                     portion = 0
                 elif data_fam[8] == EXPANDED:
@@ -300,37 +340,37 @@ class FanChartDescWidget(FanChartBaseWidget):
                 data_fam[3] = portion
                 offset += portion
 
-##                if nrdescperson == 0:
-##                    #no offspring, draw as large as fraction of
-##                    #nr families
-##                    nrfam = persondata[6]
-##                    portion = personslice/nrfam
-##                    data_fam[2] = personstart + offset
-##                    data_fam[3] = portion
-##                    offset += portion
-##                elif nrdescfam == 0:
-##                    #no offspring this family, but there is another
-##                    #family. We draw this as a weight of 1
-##                    nrfam = persondata[6]
-##                    portion = (personslice/(nrdescperson + nrfam - 1) *
-##                               (nrdescfam + 1))
-##                    data_fam[2] = personstart + offset
-##                    data_fam[3] = portion
-##                    offset += portion
-##                else:
-##                    #this family has offspring. We give it space for it's
-##                    #weight in offspring
-##                    nrfam = persondata[6]
-##                    portion = (personslice/(nrdescperson + nrfam - 1) *
-##                               (nrdescfam + 1))
-##                    data_fam[2] = personstart + offset
-##                    data_fam[3] = portion
-##                    offset += portion
+            ##                if nrdescperson == 0:
+            ##                    #no offspring, draw as large as fraction of
+            ##                    #nr families
+            ##                    nrfam = persondata[6]
+            ##                    portion = personslice/nrfam
+            ##                    data_fam[2] = personstart + offset
+            ##                    data_fam[3] = portion
+            ##                    offset += portion
+            ##                elif nrdescfam == 0:
+            ##                    #no offspring this family, but there is another
+            ##                    #family. We draw this as a weight of 1
+            ##                    nrfam = persondata[6]
+            ##                    portion = (personslice/(nrdescperson + nrfam - 1) *
+            ##                               (nrdescfam + 1))
+            ##                    data_fam[2] = personstart + offset
+            ##                    data_fam[3] = portion
+            ##                    offset += portion
+            ##                else:
+            ##                    #this family has offspring. We give it space for it's
+            ##                    #weight in offspring
+            ##                    nrfam = persondata[6]
+            ##                    portion = (personslice/(nrdescperson + nrfam - 1) *
+            ##                               (nrdescfam + 1))
+            ##                    data_fam[2] = personstart + offset
+            ##                    data_fam[3] = portion
+            ##                    offset += portion
 
             prevfamdatahandle = None
             offset = 0
-            for persondata in self.gen2people[gen+1] if gen < nr_gen else []:
-                #obtain start and stop of family this is child of
+            for persondata in self.gen2people[gen + 1] if gen < nr_gen else []:
+                # obtain start and stop of family this is child of
                 parentfamdata = self.gen2fam[gen][persondata[4]]
                 nrdescfam = 0
                 if not parentfamdata[1]:
@@ -341,17 +381,18 @@ class FanChartDescWidget(FanChartBaseWidget):
                 famstart = parentfamdata[2]
                 famslice = parentfamdata[3]
                 nrchild = parentfamdata[5]
-                #now we divide this slice to the weight of children,
-                #adding one for every child
+                # now we divide this slice to the weight of children,
+                # adding one for every child
                 if self.anglealgo == ANGLE_CHEQUI:
                     portion = famslice / nrchild
                 elif self.anglealgo == ANGLE_WEIGHT:
-                    portion = famslice/(nrdescfam) * (nrdesc + 1)
+                    portion = famslice / (nrdescfam) * (nrdesc + 1)
                 else:
-                    raise NotImplementedError('Unknown angle algorithm %d' %
-                                              self.anglealgo)
+                    raise NotImplementedError(
+                        "Unknown angle algorithm %d" % self.anglealgo
+                    )
                 if prevfamdatahandle != parentfamdata[0].handle:
-                    #reset the offset
+                    # reset the offset
                     offset = 0
                     prevfamdatahandle = parentfamdata[0].handle
                 if persondata[7] == COLLAPSED:
@@ -386,9 +427,11 @@ class FanChartDescWidget(FanChartBaseWidget):
             radius_start = PIXELS_PER_GEN_SMALL * generation + radius_first_gen
             return (radius_start, radius_start + PIXELS_PER_GEN_SMALL)
         else:
-            radius_start = (PIXELS_PER_GEN_SMALL * N_GEN_SMALL +
-                            PIXELS_PER_GEN_LARGE * (generation - N_GEN_SMALL)
-                            + radius_first_gen)
+            radius_start = (
+                PIXELS_PER_GEN_SMALL * N_GEN_SMALL
+                + PIXELS_PER_GEN_LARGE * (generation - N_GEN_SMALL)
+                + radius_first_gen
+            )
             return (radius_start, radius_start + PIXELS_PER_GEN_LARGE)
 
     def get_radiusinout_for_gen_pair(self, generation):
@@ -396,16 +439,13 @@ class FanChartDescWidget(FanChartBaseWidget):
         Get the in and out radius for the father and mother
         """
         radiusin, radiusout = self.get_radiusinout_for_generation(generation)
-        radius_spread = (radiusout - radiusin -
-                         PIXELS_CHILDREN_GAP - PIXELS_PARTNER_GAP)
+        radius_spread = radiusout - radiusin - PIXELS_CHILDREN_GAP - PIXELS_PARTNER_GAP
 
         radiusin_pers = radiusin + PIXELS_CHILDREN_GAP
-        radiusout_pers = (radiusin_pers +
-                          PIXELS_PER_GENPERSON_RATIO * radius_spread)
+        radiusout_pers = radiusin_pers + PIXELS_PER_GENPERSON_RATIO * radius_spread
         radiusin_partner = radiusout_pers + PIXELS_PARTNER_GAP
         radiusout_partner = radiusout
-        return (radiusin_pers, radiusout_pers,
-                radiusin_partner, radiusout_partner)
+        return (radiusin_pers, radiusout_pers, radiusin_partner, radiusout_partner)
 
     def people_generator(self):
         """
@@ -451,8 +491,11 @@ class FanChartDescWidget(FanChartBaseWidget):
             self.set_size_request(max(size_w, size_w_a), max(size_h, size_h_a))
             size_w = self.get_allocated_width()
             size_h = self.get_allocated_height()
-            self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32,
-                                              size_w, size_h)
+            scale_factor = self.get_scale_factor()
+            self.surface = cairo.ImageSurface(
+                cairo.FORMAT_ARGB32, size_w * scale_factor, size_h * scale_factor
+            )
+            self.surface.set_device_scale(scale_factor, scale_factor)
             ctx = cairo.Context(self.surface)
             self.center_xy = self.center_xy_from_delta()
             ctx.translate(*self.center_xy)
@@ -466,56 +509,115 @@ class FanChartDescWidget(FanChartBaseWidget):
 
         ctx.save()
         # Draw center person:
-        (person, dup, start, portion, dummy_parentfampos, dummy_nrfam,
-         userdata, status) = self.gen2people[0][0]
+        (
+            person,
+            dup,
+            start,
+            portion,
+            dummy_parentfampos,
+            dummy_nrfam,
+            userdata,
+            status,
+        ) = self.gen2people[0][0]
         if person:
-            #r, g, b, a = self.background_box(person, 0, userdata)
-            (radiusin_pers, radiusout_pers, radiusin_partner,
-             radiusout_partner) = self.get_radiusinout_for_gen_pair(0)
+            # r, g, b, a = self.background_box(person, 0, userdata)
+            (
+                radiusin_pers,
+                radiusout_pers,
+                radiusin_partner,
+                radiusout_partner,
+            ) = self.get_radiusinout_for_gen_pair(0)
             if not self.innerring:
                 radiusin_pers = TRANSLATE_PX
-            self.draw_person(ctx, person, radiusin_pers, radiusout_pers,
-                             math.pi / 2, math.pi / 2 + 2 * math.pi,
-                             0, False, userdata, is_central_person=True)
-            #draw center to move chart
-            ctx.set_source_rgb(0, 0, 0) # black
+            self.draw_person(
+                ctx,
+                person,
+                radiusin_pers,
+                radiusout_pers,
+                math.pi / 2,
+                math.pi / 2 + 2 * math.pi,
+                0,
+                False,
+                userdata,
+                is_central_person=True,
+            )
+            # draw center to move chart
+            ctx.set_source_rgb(0, 0, 0)  # black
             ctx.move_to(TRANSLATE_PX, 0)
             ctx.arc(0, 0, TRANSLATE_PX, 0, 2 * math.pi)
-            if self.innerring: # has at least one parent
+            if self.innerring:  # has at least one parent
                 ctx.fill()
                 self.draw_innerring_people(ctx)
             else:
                 ctx.stroke()
-        #now write all the families and children
-        ctx.rotate(self.rotate_value * math.pi/180)
+        # now write all the families and children
+        ctx.rotate(self.rotate_value * math.pi / 180)
         for gen in range(self.generations):
-            (radiusin_pers, radiusout_pers, radiusin_partner,
-             radiusout_partner) = self.get_radiusinout_for_gen_pair(gen)
+            (
+                radiusin_pers,
+                radiusout_pers,
+                radiusin_partner,
+                radiusout_partner,
+            ) = self.get_radiusinout_for_gen_pair(gen)
             if gen > 0:
                 for pdata in self.gen2people[gen]:
                     # person, duplicate or not, start angle, slice size,
                     #             parent pos in fam, nrfam, userdata, status
-                    (pers, dup, start, portion, dummy_pospar, dummy_nrfam,
-                     userdata, status) = pdata
+                    (
+                        pers,
+                        dup,
+                        start,
+                        portion,
+                        dummy_pospar,
+                        dummy_nrfam,
+                        userdata,
+                        status,
+                    ) = pdata
                     if status != COLLAPSED:
-                        self.draw_person(ctx, pers, radiusin_pers,
-                                         radiusout_pers, start, start + portion,
-                                         gen, dup, userdata,
-                                         thick=status != NORMAL)
-            #if gen < self.generations-1:
+                        self.draw_person(
+                            ctx,
+                            pers,
+                            radiusin_pers,
+                            radiusout_pers,
+                            start,
+                            start + portion,
+                            gen,
+                            dup,
+                            userdata,
+                            thick=status != NORMAL,
+                        )
+            # if gen < self.generations-1:
             for famdata in self.gen2fam[gen]:
                 # family, duplicate or not, start angle, slice size,
                 #       spouse pos in gen, nrchildren, userdata, status
-                (fam, dup, start, portion, dummy_posfam, dummy_nrchild,
-                 userdata, partner, status) = famdata
+                (
+                    fam,
+                    dup,
+                    start,
+                    portion,
+                    dummy_posfam,
+                    dummy_nrchild,
+                    userdata,
+                    partner,
+                    status,
+                ) = famdata
                 if status != COLLAPSED:
-                    more_pers_flag = (gen == self.generations - 1
-                                      and fam.get_child_ref_list())
-                    self.draw_person(ctx, partner, radiusin_partner,
-                                     radiusout_partner, start, start + portion,
-                                     gen, dup, userdata,
-                                     thick=(status != NORMAL),
-                                     has_moregen_indicator=more_pers_flag)
+                    more_pers_flag = (
+                        gen == self.generations - 1 and fam.get_child_ref_list()
+                    )
+                    self.draw_person(
+                        ctx,
+                        partner,
+                        radiusin_partner,
+                        radiusout_partner,
+                        start,
+                        start + portion,
+                        gen,
+                        dup,
+                        userdata,
+                        thick=(status != NORMAL),
+                        has_moregen_indicator=more_pers_flag,
+                    )
         ctx.restore()
 
         if self.background in [BACKGROUND_GRAD_AGE, BACKGROUND_GRAD_PERIOD]:
@@ -527,22 +629,28 @@ class FanChartDescWidget(FanChartBaseWidget):
         position x and y.
         None if outside of diagram
         """
-        radius, rads, raw_rads = self.cursor_to_polar(curx, cury,
-                                                      get_raw_rads=True)
+        radius, rads, raw_rads = self.cursor_to_polar(curx, cury, get_raw_rads=True)
 
         btype = TYPE_BOX_NORMAL
         if radius < TRANSLATE_PX:
             return None
-        elif (self.innerring and self.angle[-2] and
-              radius < CHILDRING_WIDTH + TRANSLATE_PX):
+        elif (
+            self.innerring
+            and self.angle[-2]
+            and radius < CHILDRING_WIDTH + TRANSLATE_PX
+        ):
             generation = -2  # indication of one of the children
         elif radius < self.CENTER:
             generation = 0
         else:
             generation = None
             for gen in range(self.generations):
-                (radiusin_pers, radiusout_pers, radiusin_partner,
-                 radiusout_partner) = self.get_radiusinout_for_gen_pair(gen)
+                (
+                    radiusin_pers,
+                    radiusout_pers,
+                    radiusin_partner,
+                    radiusout_partner,
+                ) = self.get_radiusinout_for_gen_pair(gen)
                 if radiusin_pers <= radius <= radiusout_pers:
                     generation, btype = gen, TYPE_BOX_NORMAL
                     break
@@ -559,7 +667,7 @@ class FanChartDescWidget(FanChartBaseWidget):
                 if self.radian_in_bounds(start, raw_rads, stop):
                     selected = idx
                     break
-        if (generation is None or selected is None):
+        if generation is None or selected is None:
             return None
         return generation, selected, btype
 
@@ -568,17 +676,17 @@ class FanChartDescWidget(FanChartBaseWidget):
         Draw the innerring person
         """
         ctx.move_to(TRANSLATE_PX + CHILDRING_WIDTH, 0)
-        ctx.set_source_rgb(0, 0, 0) # black
+        ctx.set_source_rgb(0, 0, 0)  # black
         ctx.set_line_width(1)
         ctx.arc(0, 0, TRANSLATE_PX + CHILDRING_WIDTH, 0, 2 * math.pi)
         ctx.stroke()
         nrparent = len(self.innerring)
-        #Y axis is downward. positve angles are hence clockwise
+        # Y axis is downward. positve angles are hence clockwise
         startangle = math.pi
         if nrparent <= 2:
             angleinc = math.pi
         elif nrparent <= 4:
-            angleinc = math.pi/2
+            angleinc = math.pi / 2
         else:
             angleinc = 2 * math.pi / nrparent
         for data in self.innerring:
@@ -656,13 +764,13 @@ class FanChartDescWidget(FanChartBaseWidget):
             parpos = data[4]
             status = data[7]
             if status == NORMAL:
-                #should be expanded, rest collapsed
+                # should be expanded, rest collapsed
                 for entry in self.gen2people[generation]:
                     if entry[4] == parpos:
                         entry[7] = COLLAPSED
                 data[7] = EXPANDED
             else:
-                #is expanded, set back to normal
+                # is expanded, set back to normal
                 for entry in self.gen2people[generation]:
                     if entry[4] == parpos:
                         entry[7] = NORMAL
@@ -671,33 +779,43 @@ class FanChartDescWidget(FanChartBaseWidget):
             parpos = data[4]
             status = data[8]
             if status == NORMAL:
-                #should be expanded, rest collapsed
+                # should be expanded, rest collapsed
                 for entry in self.gen2fam[generation]:
                     if entry[4] == parpos:
                         entry[8] = COLLAPSED
                 data[8] = EXPANDED
             else:
-                #is expanded, set back to normal
+                # is expanded, set back to normal
                 for entry in self.gen2fam[generation]:
                     if entry[4] == parpos:
                         entry[8] = NORMAL
 
+
 class FanChartDescGrampsGUI(FanChartGrampsGUI):
-    """ class for functions fanchart GUI elements will need in Gramps
-    """
+    """class for functions fanchart GUI elements will need in Gramps"""
 
     def main(self):
         """
         Fill the data structures with the active data. This initializes all
         data.
         """
-        root_person_handle = self.get_active('Person')
-        self.fan.set_values(root_person_handle, self.maxgen,
-                            self.flipupsidedownname, self.twolinename,
-                            self.background, self.fonttype, self.grad_start,
-                            self.grad_end, self.generic_filter,
-                            self.alpha_filter, self.form, self.angle_algo,
-                            self.dupcolor, self.showid)
+        root_person_handle = self.get_active("Person")
+        self.fan.set_values(
+            root_person_handle,
+            self.maxgen,
+            self.flipupsidedownname,
+            self.twolinename,
+            self.background,
+            self.fonttype,
+            self.grad_start,
+            self.grad_end,
+            self.generic_filter,
+            self.alpha_filter,
+            self.form,
+            self.angle_algo,
+            self.dupcolor,
+            self.showid,
+        )
         self.fan.reset()
         self.fan.draw()
         self.fan.queue_draw()
