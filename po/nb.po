@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 22:29+0000\n"
-"PO-Revision-Date: 2024-08-09 08:09+0000\n"
+"PO-Revision-Date: 2024-08-13 20:09+0000\n"
 "Last-Translator: Harald Herreros <h.herreros@proton.me>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/nb_NO/>\n"
@@ -95,27 +95,27 @@ msgstr "Jødisk påske"
 
 #: ../data/holidays.xml:361
 msgid "2 of Passover"
-msgstr "2. jødiske påskedag"
+msgstr "2. dag av Pesach"
 
 #: ../data/holidays.xml:362
 msgid "3 of Passover"
-msgstr "3. jødiske påskedag"
+msgstr "3. dag av Pesach"
 
 #: ../data/holidays.xml:363
 msgid "4 of Passover"
-msgstr "4. jødiske påskedag"
+msgstr "4. dag av Pesach"
 
 #: ../data/holidays.xml:364
 msgid "5 of Passover"
-msgstr "5. jødiske påskedag"
+msgstr "5. dag av Pesach"
 
 #: ../data/holidays.xml:365
 msgid "6 of Passover"
-msgstr "6. jødiske påskedag"
+msgstr "6. dag av Pesach"
 
 #: ../data/holidays.xml:366
 msgid "7 of Passover"
-msgstr "7. jødiske påskedag"
+msgstr "7. dag av Pesach"
 
 #: ../data/holidays.xml:367
 msgid "Shavuot"
@@ -2185,7 +2185,7 @@ msgstr "Datovisning for '%s' er ikke tilgjengelig, bruker standard"
 #. Translators: Numeric year, month, day
 #: ../gramps/gen/datehandler/_datedisplay.py:74
 msgid "YYYY-MM-DD (ISO)"
-msgstr "DD.MM.YYYY (ISO)"
+msgstr "YYYY-MM-DD (ISO)"
 
 #. Translators: You may translate this as "Numerical",
 #. "System preferred", or similar.
@@ -2202,7 +2202,7 @@ msgstr "Måned Dag, År"
 #. Translators: Abbreviated month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:85
 msgid "MON DAY, YEAR"
-msgstr "MÅN DAG, ÅR"
+msgstr "MND DAG, ÅR"
 
 #. Translators: Day, full month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:87
@@ -19562,7 +19562,7 @@ msgstr "Velg et annet filter for redigering"
 #: ../gramps/gui/plug/export/_exportoptions.py:762
 #: ../gramps/gui/plug/export/_exportoptions.py:787
 msgid "Include all selected people"
-msgstr "Ta bare alle valgte personer"
+msgstr "Inkluder alle valgte personer"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:776
 msgid "Include all selected notes"
