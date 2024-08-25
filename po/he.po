@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
 "PO-Revision-Date: 2024-08-26 19:09+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -36936,7 +36936,7 @@ msgstr "עץ מובאות"
 
 #: ../gramps/plugins/view/view.gpr.py:318
 msgid "A view displaying citations and sources in a tree format."
-msgstr "מצג להצגת מובאות ומקורות בתסדיר עץ."
+msgstr "מצג להצגת מובאות ומקורות בתסדיר אילן."
 
 #: ../gramps/plugins/webreport/addressbook.py:92
 #: ../gramps/plugins/webreport/addressbooklist.py:84
