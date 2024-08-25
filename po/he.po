@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
 "PO-Revision-Date: 2024-08-25 18:37+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -12087,7 +12087,7 @@ msgstr "ניחוש שם משפחה"
 
 #: ../gramps/gui/configure.py:1692
 msgid "Default family relationship"
-msgstr "קשר־משפחתי כברירת מחדל"
+msgstr "קשר־משפחתי ברירת מחדל"
 
 #: ../gramps/gui/configure.py:1699
 msgid "Hide LDS tab in person and family editors"
@@ -34709,7 +34709,7 @@ msgstr "מחשבון קשרי־קרבה: %(person_name)s"
 #: ../gramps/plugins/tool/relcalc.py:118
 #, python-format
 msgid "Relationship to %(person_name)s"
-msgstr "קשר־קרבה ל־%(person_name)s"
+msgstr "קשר־קרבה אל %(person_name)s"
 
 #: ../gramps/plugins/tool/relcalc.py:182
 msgid "Relationship Calculator tool"
