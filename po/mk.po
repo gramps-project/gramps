@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-08-18 17:09+0000\n"
+"PO-Revision-Date: 2024-08-25 12:09+0000\n"
 "Last-Translator: AND <andam.i380f@aleeas.com>\n"
 "Language-Team: Macedonian <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/mk/>\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
-"X-Generator: Weblate 5.7\n"
+"X-Generator: Weblate 5.7.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -237,7 +237,7 @@ msgstr "Соединети Американски Држави"
 #: ../data/org.gramps_project.Gramps.desktop.in:3
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:4
 msgid "Gramps"
-msgstr "Грампс (семејно дрво)"
+msgstr "Дедовник (семејно дрво)"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:4
 msgid "Genealogy System"
@@ -478,7 +478,6 @@ msgstr ""
 "можете да ги изберете сите луѓе без деца."
 
 #: ../data/tips.xml:18
-#, fuzzy
 msgid ""
 "<b>Locating People</b><br/>In the Grouped People View, each surname is "
 "listed only once. By clicking on the arrow to the left of a name, the list "
@@ -487,9 +486,12 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>Сместување лица</b>: По основа, секое презиме во погледот Лица е запишано "
-"само еднаш. Со кликање на стрелката лево од името, списокот ќе се прошири за "
-"да ги прикаже сите поединци со тоа презиме."
+"<b>Сместување лица</b><br/>: По основа, секое презиме во погледот Лица е "
+"запишано само еднаш. Со кликање на стрелката лево од името, списокот ќе се "
+"прошири за да ги прикаже сите поединци со тоа презиме. За да го пронајдете "
+"било кое презиме од долг список, избери едно од презимињата (не личност) и "
+"почни да типкаш. Приказот ќе скокне до првото презиме кое се поклопува со "
+"внесените букви."
 
 #: ../data/tips.xml:20
 msgid ""
@@ -512,7 +514,6 @@ msgstr ""
 "одберете некого од нивните сопружници, роднини, деца, или родители."
 
 #: ../data/tips.xml:24
-#, fuzzy
 msgid ""
 "<b>Who Was Born When?</b><br/>Under \"Tools &gt; Analysis and exploration "
 "&gt; Compare Individual Events...\" you can compare the data of individuals "
@@ -520,13 +521,13 @@ msgid ""
 "of everyone in your database. You can use a custom filter to narrow the "
 "results."
 msgstr ""
-"<b>Кој кога беше роден</b>: Алатката „Спореди настани на поединци“ ви "
-"дозволува да споредите податоци на сите (или на некои) поединци во вашата "
-"база на податоци. Ова е корисно ако, да речеме, посакате да направите список "
-"на датумите на раѓање на сите во вашата база."
+"<b>Кој кога беше роден</b><br/>: Преку „Алати &gt; Анализа и истражување &gt;"
+" Спореди поединечни настани...“ можете да споредите податоци на сите (или на "
+"некои) поединци во вашата база на податоци. Ова е корисно ако, да речеме, "
+"посакате да направите список на датумите на раѓање на сите во вашата база. "
+"За ограничување на резултатите можете да користите прилагоден филтер."
 
 #: ../data/tips.xml:26
-#, fuzzy
 msgid ""
 "<b>Gramps Tools</b><br/>Gramps comes with a rich set of tools. These allow "
 "you to undertake operations such as checking the database for errors and "
@@ -534,22 +535,21 @@ msgid ""
 "finding duplicate people, interactive descendant browser, and many others. "
 "All tools can be accessed through the \"Tools\" menu."
 msgstr ""
-"GRAMPS доаѓа со богат пакет на алатки. Со овие алатки можете да правите "
-"операции како што се проверка на базата за грешки и доследност, како и "
-"истражувачки и расчленувачки алатки како што се споредба на настани, "
-"пронаоѓање на удвоени лица, интерактивен разгледувач за потомци и друго. До "
-"сите алатки може да се пристапи преку менито <b>Алатки</b>."
+"<b>Дедовник алати</b><br/>Дедовникот доаѓа со богат пакет на алати. Со овие "
+"алати можете да правите операции како што се проверка на базата за грешки и "
+"доследност, како и истражувачки и расчленувачки алатки како што се споредба "
+"на настани, пронаоѓање на удвоени лица, интерактивен разгледувач за потомци "
+"и друго. До сите алати може да се пристапи преку менито „Алати“."
 
 #: ../data/tips.xml:28
-#, fuzzy
 msgid ""
 "<b>Calculating Relationships</b><br/>To check if two people in the database "
 "are related (by blood, not marriage) try the tool under \"Tools &gt; "
 "Utilities &gt; Relationship Calculator...\". The exact relationship as well "
 "as all common ancestors are reported."
 msgstr ""
-"<b>Пресметување врски</b>: Оваа алатка, под <b>Алатки &gt; Услуги &gt; "
-"Пресметувач на врски</b> ви овозможува да проверите ако некој друг во "
+"<b>Пресметување врски</b><br/>: Оваа алатка, под „Алатки &gt; Услуги &gt; "
+"Пресметувач на врски...“ ви овозможува да проверите ако некој друг во "
 "семејството е поврзан (преку крвно сродство, не брак) со вас. Конкретни "
 "врски, како и заеднички предци се соопштени."
 
@@ -589,7 +589,6 @@ msgstr ""
 "\"."
 
 #: ../data/tips.xml:34
-#, fuzzy
 msgid ""
 "<b>Gramps Reports</b><br/>Gramps offers a wide variety of reports. The "
 "Graphical Reports and Graphs can present complex relationships easily and "
@@ -597,12 +596,12 @@ msgid ""
 "your family tree to members of the family via email. If you're ready to make "
 "a website for your family tree then there's a report for that as well."
 msgstr ""
-"<b>GRAMPS Извештаи</b>: GRAMPS нуди многу разновидни извештаи. Текстуалните "
-"извештаи се особено корисни ако сакате да ги испратите резултатите од вашето "
-"семејно стебло до членовите од семејството преку е-пошта."
+"<b>Дедовник Извештаи</b>: Дедовникот нуди многу разновидни извештаи. "
+"Текстуалните извештаи се особено корисни ако сакате да ги испратите "
+"резултатите од вашето семејно стебло до членовите од семејството преку "
+"е-пошта."
 
 #: ../data/tips.xml:36
-#, fuzzy
 msgid ""
 "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree "
 "is to enter all the members of the family into the database using the Person "
@@ -610,10 +609,11 @@ msgid ""
 "the People View). Then go to the Relationship View and create relationships "
 "between people."
 msgstr ""
-"<b>Почнување Ново семејно стебло</b>: Добар начин за да почнете ново семејно "
-"стебло е да ги внесете сите членови на семејството во базата на податоци "
-"(употребете <b>Уреди &gt; Додади</b> или кликнете на копчето Додади во "
-"менито Лица). Потоа, одете во погледот Врска и направете врска помеѓу лицата."
+"<b>Почнување Ново семејно стебло</b><br/>: Добар начин за да почнете ново "
+"семејно стебло е да ги внесете сите членови на семејството во базата на "
+"податоци користејќи го Прегледот на лица (употребете „Уреди &gt; Додади“ или "
+"кликнете на копчето Додај ново лице во Прегледот на лица). Потоа, одете во "
+"погледот Врска и направете однос помеѓу лицата."
 
 #: ../data/tips.xml:38
 #, fuzzy
@@ -870,6 +870,11 @@ msgid ""
 "different types and set the preferred name by dragging it to the Preferred "
 "Name section."
 msgstr ""
+"<b>Управување со имиња</b><br/>Во Дедовникот е лесно да се управува со "
+"личности кои имаат повеќе имиња. Во Уредникот за личности одберете го "
+"јазичето Имиња. Можете да додавате имиња од различни видови и да го нагодите "
+"предпочитуваното име така што ќе го повлечете во одделот наречен "
+"Предпочитано име."
 
 #: ../data/tips.xml:76
 #, fuzzy
@@ -1039,16 +1044,19 @@ msgid ""
 "Tools\". This is the best way for advanced users to experiment and create "
 "new functionality."
 msgstr ""
+"<b>Додатни извештаи и алати</b><br/>Во Дедовникот можат да се додадат "
+"додатни извештаи и алати преку системот за „Додатоци“. Видете ги под „Помош "
+"&gt; Додатни извештаи / алати“. Ова е најдобриот начин за напредните "
+"корисници да испробуваат и создаваат нови функционалности."
 
 #: ../data/tips.xml:104
-#, fuzzy
 msgid ""
 "<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books...\" "
 "allows you to collect a variety of reports into a single document. This "
 "single report is easier to distribute than multiple reports, especially when "
 "printed."
 msgstr ""
-"Извештајот Книга, <b>Извештаи &gt; Книги &gt; Извештај Книга</b>, им "
+"<b>Книгов извешта</b><br/>Книгов извештај, под „Извештаи &gt; Книги...“ им "
 "дозволува на корисниците да собираат различни извештаи во единствен "
 "документ. Овој единствен документ е полесен за дистрибуирање отколку "
 "повеќекратните извештаи, а особено за печатење."
@@ -1059,25 +1067,23 @@ msgid ""
 "version of Gramps is released? Join the Gramps-announce mailing list at "
 "\"Help &gt; Gramps Mailing Lists\"."
 msgstr ""
-"<b>Gramps објавувања</b><br/>Заинтересирани сте да бидете известени за "
-"објавувањето на нова верзија на Gramps? Приклучете се на мејл листа на "
-"Gramps-announce на \"Помош &gt; Gramps Мејл листа\"."
+"<b>Дедовник објавувања</b><br/>Заинтересирани сте да бидете известени за "
+"објавувањето на нова верзија на Дедонвикот? Приклучете се на мејл листа на "
+"Gramps-announce на \"Помош &gt; Дедонвик дописна листа\"."
 
 #: ../data/tips.xml:108
-#, fuzzy
 msgid ""
 "<b>Record Your Sources</b><br/>Information collected about your family is "
 "only as good as the source it came from. Take the time and trouble to record "
 "all the details of where the information came from. Whenever possible get a "
 "copy of original documents."
 msgstr ""
-"<b>Добар генеалошки совет</b>: Информациите собрани за вашето семејство се "
-"толку добри, колку и изворот од каде што дошле. Најдете време и обидете се "
-"да ги забележите сите подробности за тоа од каде дошла некоја информација. "
-"Каде што е возможно, направете копија од оригиналниот документ."
+"<b>Запишете ги вашите извори</b><br/> Информациите собрани за вашето "
+"семејство се толку добри, колку и изворот од каде што дошле. Најдете време и "
+"обидете се да ги забележите сите подробности за тоа од каде дошла некоја "
+"информација. Каде што е возможно, направете копија од оригиналниот документ."
 
 #: ../data/tips.xml:110
-#, fuzzy
 msgid ""
 "<b>Directing Your Research</b><br/>Go from what you know to what you do not. "
 "Always record everything that is known before making conjectures. Often the "
@@ -1085,36 +1091,35 @@ msgid ""
 "time looking through thousands of records hoping for a trail when you have "
 "other unexplored leads."
 msgstr ""
-"Одете од тоа што го знаете кон она што не го знаете. Секогаш запишувајте сѐ "
-"што е познато пред да направите претпоставка. Секогаш фактите што ви се на "
-"дофат предложуваат многу правци за повеќе истражувања. Не губете време со "
-"пребарување на илјадници записи, надевајќи се на трага кога имате други "
-"неистражени патокази."
+"<b>Водење на вашето истражување</b><br/>Одете од тоа што го знаете кон она "
+"што не го знаете. Секогаш запишувајте сѐ што е познато пред да направите "
+"претпоставка. Секогаш фактите што ви се на дофат предложуваат многу правци "
+"за повеќе истражувања. Не губете време со пребарување на илјадници записи, "
+"надевајќи се на трага кога имате други неистражени патокази."
 
 #: ../data/tips.xml:112
-#, fuzzy
 msgid ""
 "<b>The 'How and Why' of Your Genealogy</b><br/> Genealogy isn't only about "
 "dates and names. It is about people. Be descriptive. Include why things "
 "happened, and how descendants might have been shaped by the events they went "
 "through. Narratives go a long way in making your family history come alive."
 msgstr ""
-"Генеалогијата не е само за датуми и имиња. Таа е за луѓе. Бидете описни. "
-"Вклучете <b>зошто</b> во како се случиле нештата и како потомците можеби се "
-"оформиле од настаните низ коишто поминале. Приказните поминуваат долг пат во "
-"оживувањето на вашата историја."
+"<b>Како и зашто во вашиот Родословот</b><br/>Родословот не е само за датуми "
+"и имиња. Таа е за луѓе. Бидете описни. Вклучете зошто се случиле нештата и "
+"како потомците можеби се изградиле и оформиле од настаните низ коишто "
+"поминале. Приказните поминуваат долг пат во оживувањето на вашата историја."
 
 #: ../data/tips.xml:114
-#, fuzzy
 msgid ""
 "<b>Don't speak English?</b><br/>Volunteers have translated Gramps into more "
 "than 40 languages. If Gramps supports your language and it is not being "
 "displayed, set the default language in your operating system and restart "
 "Gramps."
 msgstr ""
-"GRAMPS е преведен на 15 јазици. Ако GRAMPS го поддржува вашиот јазик, а не е "
+"<b>Не зборувате англиски?</b><br/>Доброволци го преведоа Дедовникот на "
+"повеќе од 40 јазици. Ако Дедовникот го поддржува вашиот јазик, а не е "
 "прикажан, поставете го основниот јазик на вашата машина и повторно пуштете "
-"го GRAMPS."
+"го Дедовникот."
 
 #: ../data/tips.xml:116
 msgid ""
@@ -1122,42 +1127,42 @@ msgid ""
 "translations can easily be added with little development effort. If you are "
 "interested in participating please email gramps-devel@lists.sf.net."
 msgstr ""
-"<b>Gramps преведувачи</b><br/>Gramps е дизајниран така што нови преводи "
-"можат лесно да бидат додадени со мал напор. Ако сакате да учествувате, ве "
-"молиме испратете е-мејл на gramps-devel@lists.sf.net."
+"<b>Дедовник преведувачи</b><br/>Дедовникот е дизајниран така што нови "
+"преводи можат лесно да бидат додадени со мал напор. Ако сакате да "
+"учествувате, ве молиме испратете е-пошта на gramps-devel@lists.sf.net."
 
 #: ../data/tips.xml:118
-#, fuzzy
 msgid ""
 "<b>Hello, привет or 喂</b><br/>Whatever script you use Gramps offers full "
 "Unicode support. Characters for all languages are properly displayed."
 msgstr ""
-"GRAMPS нуди целосна уникод поддршка. Знаците за сите јазици се соодветно "
-"прикажани."
+"<b>Hello, привет or 喂</b><br/>Дедовникот нуди целосна уникод поддршка. "
+"Знаците за сите јазици се соодветно прикажани."
 
 #: ../data/tips.xml:120
-#, fuzzy
 msgid ""
 "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
 "Gramps. Use \"Edit &gt; Set Home Person\" in the Person View. The home "
 "person is the person who is selected when the database is opened or when the "
 "home button is pressed."
 msgstr ""
-"Секој може да биде избран како „почетно лице“ во GRAMPS. Употребете <b>Уреди "
-"&gt; Постави Почетно лице</b>. Почетното лице е лице кое е избрано кога е "
-"отворена базата на податоци или кога е притиснато почетното копче."
+"<b>Почетно лице</b><br/>Секој може да биде избран како „почетно лице“ во "
+"Дедовникот. Употребете „Уреди &gt; Постави Почетно лице“ во Личниот преглед. "
+"Почетното лице е лице кое е избрано кога е отворена базата на податоци или "
+"кога е притиснато почетното копче."
 
 #: ../data/tips.xml:122
-#, fuzzy
 msgid ""
 "<b>The Gramps Code</b><br/>Gramps is written in a computer language called "
 "Python using the GTK and GNOME libraries for the graphical interface. Gramps "
 "is supported on any computer system where these programs have been ported. "
 "Gramps is known to be run on Linux, BSD, Solaris, Windows and Mac OS X."
 msgstr ""
-"GRAMPS е напишан на сметачки јазик наречен Python, користејќи ги "
-"библиотеките на ГТК (GTK) и ГНОМЕ (GNOME) за графичкиот интерфејс. GRAMPS е "
-"поддржан од секој сметач каде што овие програми се пренесени."
+"<b>Кодот на Дедовникот</b><br/>Дедовникот е напишан на машински јазик "
+"наречен Пајтон (Python), користејќи ги библиотеките на ГТК (GTK) и ГНОМ "
+"(GNOME) за графичкото окружување. Дедовникот е поддржан на секој сметач каде "
+"што овие програми се пренесени. Дедовникот познато е дека работи на Линукс, "
+"БСД, Соларис, Виндоус и МекОС."
 
 #: ../data/tips.xml:124
 msgid ""
@@ -1168,6 +1173,13 @@ msgid ""
 "tool. For more about Open Source software lookup the Free Software "
 "Foundation and the Open Source Initiative."
 msgstr ""
+"<b>Програм со отворен код</b><br/>Развојниот модел на бесплатни/слободни "
+"програми (Free/Libre and Open Source Software, FLOSS) значи дека Дедовникот "
+"може да се надгради од секој програмер бидејќи целиот изворен код е "
+"бесплатно достапен под оваа дозвола. Така, не се работи само за бесплатно "
+"пиво, туку и за слободата да се проучува и промени алатот. За повеќе околу "
+"програмите со отворен код прегледајте ја Фондацијата за слободни програми и "
+"Иницијативата за отворен код."
 
 #: ../data/tips.xml:126
 msgid ""
@@ -1176,6 +1188,11 @@ msgid ""
 "License, see http://www.gnu.org/licenses/licenses.html#GPL to read about the "
 "rights and restrictions of this license."
 msgstr ""
+"<b>Дедовниковата програмска дозвола</b><br/>Слободни сте да го користите и "
+"споделувате Дедовникот со другите. Дедовнико е програм кој слободно може да "
+"с споделува под Гномовата Општа јавна дозвола, видете „http://www.gnu.org/"
+"licenses/licenses.html#GPL“ за да прочитате околу правата и ограничувањата "
+"на оваа дозвола."
 
 #: ../data/tips.xml:128
 msgid ""
@@ -1183,6 +1200,9 @@ msgid ""
 "whichever desktop environment you prefer. As long as the required GTK "
 "libraries are installed it will run fine."
 msgstr ""
+"<b>Дедовник за Гном или КДЕ?</b><br/>На Линукс Дедовникот работи со било кое "
+"работно окружување кое го предпочитувате. Под услов потребните ГТК "
+"библиотеки да се инсталирани."
 
 #: ../gramps/cli/arghandler.py:233
 #, python-format
@@ -1190,6 +1210,8 @@ msgid ""
 "Error: Family Tree '%s' already exists.\n"
 "The '-C' option cannot be used."
 msgstr ""
+"Грешка: Родословот „%s“ веќе постои.\n"
+"Не може да се користи опцијата -С."
 
 #: ../gramps/cli/arghandler.py:248
 #, python-format
@@ -1502,7 +1524,7 @@ msgstr ""
 #: ../gramps/cli/argparser.py:281
 #, python-format
 msgid "Trying to open: %s ..."
-msgstr ""
+msgstr "Се обидувам да отворам: %s ..."
 
 #: ../gramps/cli/argparser.py:326
 #, python-format
@@ -1510,6 +1532,8 @@ msgid ""
 "WARNING: %(strerr)s (errno=%(errno)s):\n"
 "WARNING: %(name)s\n"
 msgstr ""
+"ВНИМАНИЕ: %(strerr)s (errno=%(errno)s:\n"
+"ВНИМАНИЕ: %(name)s\n"
 
 #: ../gramps/cli/argparser.py:336
 #, python-format
@@ -1518,31 +1542,31 @@ msgstr "Непозната акција: %s. Се игнорира."
 
 #: ../gramps/cli/argparser.py:346
 msgid "setup debugging"
-msgstr ""
+msgstr "исправување на грешките при припрема"
 
 #: ../gramps/cli/argparser.py:359
 #, python-format
 msgid "Gramps config settings from %s:"
-msgstr ""
+msgstr "Местенки за нагодување на Дедовникот од %s:"
 
 #: ../gramps/cli/argparser.py:377
 #, python-format
 msgid "Current Gramps config setting: %(name)s:%(value)s"
-msgstr ""
+msgstr "Моменталното нагодување на Дедовникот: %(name)s:%(value)s"
 
 #: ../gramps/cli/argparser.py:383
 msgid "DEFAULT"
-msgstr ""
+msgstr "ЗАДАДЕНА ВРЕДНОСТ"
 
 #: ../gramps/cli/argparser.py:392
 #, python-format
 msgid "    New Gramps config setting: %(name)s:%(value)s"
-msgstr ""
+msgstr "    Ново нагодување на Дедовникот: %(name)s:%(value)s"
 
 #: ../gramps/cli/argparser.py:405
 #, python-format
 msgid "Gramps: no such config setting: '%s'"
-msgstr ""
+msgstr "Дедовник: нема такво нагодување: „%s“"
 
 #: ../gramps/cli/argparser.py:498
 msgid "Error parsing the arguments"
@@ -1560,6 +1584,8 @@ msgid ""
 "ERROR: %(title)s \n"
 "       %(message)s"
 msgstr ""
+"ГРЕШКА: %(title)s \n"
+"       %(message)s"
 
 #: ../gramps/cli/clidbman.py:178 ../gramps/gen/lib/media.py:147
 #: ../gramps/gen/lib/url.py:94
@@ -1583,7 +1609,7 @@ msgstr "Последна промена"
 
 #: ../gramps/cli/clidbman.py:181
 msgid "Locked?"
-msgstr ""
+msgstr "Заклучено?"
 
 #: ../gramps/cli/clidbman.py:216
 #, python-format
@@ -1621,7 +1647,7 @@ msgstr "Не може да се увезе %s"
 
 #: ../gramps/cli/clidbman.py:321
 msgid "Import finished..."
-msgstr ""
+msgstr "Увозот заврши..."
 
 #: ../gramps/cli/clidbman.py:406 ../gramps/plugins/importer/importcsv.py:525
 #, fuzzy
@@ -9292,7 +9318,7 @@ msgstr "Повикувачки број"
 #: ../gramps/plugins/quickview/filterbyname.py:347
 #: ../gramps/plugins/tool/reorderids.glade:835
 msgid "Repository"
-msgstr "склад"
+msgstr "Склад"
 
 #: ../gramps/gen/lib/reporef.py:99 ../gramps/gui/clipboard.py:524
 #, fuzzy
@@ -9463,7 +9489,7 @@ msgstr "Уредувач на стил"
 #: ../gramps/plugins/textreport/tagreport.py:920
 #: ../gramps/plugins/textreport/tagreport.py:924
 msgid "Tag"
-msgstr ""
+msgstr "Ознака"
 
 #: ../gramps/gen/lib/styledtexttag.py:117
 #, fuzzy
@@ -9526,7 +9552,7 @@ msgstr "Локација"
 #: ../gramps/gen/lib/styledtexttagtype.py:75
 #: ../gramps/gui/widgets/styledtexteditor.py:84
 msgid "Strikethrough"
-msgstr ""
+msgstr "Прецртано"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:76
 #: ../gramps/gui/widgets/styledtexteditor.py:84
@@ -9569,7 +9595,7 @@ msgstr "Главен"
 #: ../gramps/gen/lib/surnamebase.py:204 ../gramps/gen/lib/surnamebase.py:217
 #, python-format
 msgid "%(first)s %(second)s"
-msgstr ""
+msgstr "%(first)s %(second)s"
 
 #: ../gramps/gen/lib/tag.py:114 ../gramps/gen/plug/docgen/treedoc.py:252
 #: ../gramps/gui/glade/styleeditor.glade:400
@@ -9581,7 +9607,7 @@ msgstr "Полнење со боја"
 
 #: ../gramps/gen/lib/tag.py:115
 msgid "Priority"
-msgstr ""
+msgstr "Приоритет"
 
 #: ../gramps/gen/lib/url.py:90 ../gramps/gui/clipboard.py:428
 msgid "Url"
@@ -9627,7 +9653,7 @@ msgstr "Медиумски објекти"
 
 #: ../gramps/gen/merge/mergefamilyquery.py:94
 msgid "A parent should be a father or mother."
-msgstr ""
+msgstr "Родител треба да биде татко или мајка."
 
 #: ../gramps/gen/merge/mergefamilyquery.py:112
 #: ../gramps/gen/merge/mergefamilyquery.py:128
@@ -9691,7 +9717,7 @@ msgstr "Обедини извори"
 #: ../gramps/gen/plug/_gramplet.py:347
 #, python-format
 msgid "Gramplet %s caused an error"
-msgstr ""
+msgstr "Дедозорчето „%s“ причини грешка"
 
 #: ../gramps/gen/plug/_manager.py:64
 msgid "No description was provided"
@@ -9704,6 +9730,8 @@ msgid ""
 "Option '%(opt_name)s' is present in %(file)s\n"
 "  but is not known to the module.  Ignoring..."
 msgstr ""
+"Опцијата „%(opt_name)s“ е присутна во „%(file)s“\n"
+"  но не му е позната на модулот.  Занемарувам..."
 
 #: ../gramps/gen/plug/_pluginreg.py:65
 #, fuzzy
@@ -9712,11 +9740,11 @@ msgstr "Стабилно"
 
 #: ../gramps/gen/plug/_pluginreg.py:66
 msgid "Experimental"
-msgstr ""
+msgstr "Експериментално"
 
 #: ../gramps/gen/plug/_pluginreg.py:67
 msgid "Beta"
-msgstr ""
+msgstr "Бета"
 
 #: ../gramps/gen/plug/_pluginreg.py:68
 msgid "Stable"
@@ -9724,15 +9752,15 @@ msgstr "Стабилно"
 
 #: ../gramps/gen/plug/_pluginreg.py:76
 msgid "Developer"
-msgstr ""
+msgstr "Програмер"
 
 #: ../gramps/gen/plug/_pluginreg.py:76
 msgid "Expert"
-msgstr ""
+msgstr "Стручњак"
 
 #: ../gramps/gen/plug/_pluginreg.py:116
 msgid "Quick view"
-msgstr ""
+msgstr "Брз преглед"
 
 #: ../gramps/gen/plug/_pluginreg.py:117
 #, fuzzy
@@ -9820,6 +9848,7 @@ msgstr "Разновидни филтри"
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
 msgstr ""
+"ГРЕШКА: Не успеав да ја прочитам регистрацијата на приклучокот „%(filename)s“"
 
 #: ../gramps/gen/plug/_pluginreg.py:1370
 #, python-format
@@ -9827,6 +9856,8 @@ msgid ""
 "WARNING: Plugin %(plugin_name)s has no translation for any of your "
 "configured languages, using US English instead"
 msgstr ""
+"ВНИМАНИЕ: Приклучокот „%(plugin_name)s“ нема превод за ниту еден од вашите "
+"одбрани јазици, ќе користам американски англиски"
 
 #: ../gramps/gen/plug/_pluginreg.py:1419
 #, python-format
@@ -9836,17 +9867,24 @@ msgid ""
 "\"%(gramps_target_version)s\" which is invalid for Gramps "
 "\"%(gramps_version)s\"."
 msgstr ""
+"ГРЕШКА: Датотеката на додатокот %(filename)s ја содржи верзијата "
+"„%(gramps_target_version)s” која е невалидна за Дедовник верзија "
+"„%(gramps_version)s”."
 
 #: ../gramps/gen/plug/_pluginreg.py:1451
 #, python-format
 msgid "ERROR: Wrong python file %(filename)s in register file %(regfile)s"
 msgstr ""
+"ГРЕШКА: погрешна пајтон датотека „%(filename)s“ во регистрационата датотека "
+"„%(regfile)s“"
 
 #: ../gramps/gen/plug/_pluginreg.py:1464
 #, python-format
 msgid ""
 "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
 msgstr ""
+"ГРЕШКА: пајтон датотеката „%(filename)s“ во регистрационата датотека "
+"„%(regfile)s“ не постои"
 
 #: ../gramps/gen/plug/docbackend/docbackend.py:136
 #, fuzzy
@@ -9855,7 +9893,7 @@ msgstr "Филтри за дете"
 
 #: ../gramps/gen/plug/docbackend/docbackend.py:146
 msgid "No filename given"
-msgstr ""
+msgstr "Не е зададено име на датотеката"
 
 #: ../gramps/gen/plug/docbackend/docbackend.py:149
 #, fuzzy, python-format
@@ -9944,12 +9982,12 @@ msgstr "По татко"
 #: ../gramps/gen/plug/docgen/graphdoc.py:78
 #: ../gramps/plugins/view/pedigreeview.py:2271
 msgid "Horizontal (→)"
-msgstr ""
+msgstr "Водорамно (→)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:79
 #: ../gramps/plugins/view/pedigreeview.py:2272
 msgid "Horizontal (←)"
-msgstr ""
+msgstr "Водорамно (←)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:85
 msgid "Bottom, left"
@@ -9994,7 +10032,7 @@ msgstr "Пополни ја дадената област"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:98
 msgid "Expand uniformly"
-msgstr ""
+msgstr "Рашири еднолико"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:101
 #: ../gramps/gen/plug/docgen/treedoc.py:117
@@ -10015,11 +10053,11 @@ msgstr "исправено"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:106
 msgid "Curved"
-msgstr ""
+msgstr "Кривулесто"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:109
 msgid "Orthogonal"
-msgstr ""
+msgstr "Правоаголно"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:156
 #, fuzzy
@@ -10100,6 +10138,8 @@ msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
 msgstr ""
+"Редот по кој се редат страниците на графиконот. Оваа опција се применува "
+"само ако бројот на водорамни или исправени страници е поголем од 1."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:219
 #, fuzzy
@@ -10108,7 +10148,7 @@ msgstr "Прередување ИД на семејства"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:222
 msgid "How the lines between objects will be drawn."
-msgstr ""
+msgstr "Како ќе се прикажат цртите меѓу објектите."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:225
 #, fuzzy
