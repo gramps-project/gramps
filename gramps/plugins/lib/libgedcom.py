@@ -1006,10 +1006,8 @@ class Lexer:
                     line_value = line[2].lstrip()
                     # Ignore meaningless @IDENT@ on CONT or CONC line
                     # as noted at http://www.tamurajones.net/IdentCONT.xhtml
-                    if line_value.lstrip().startswith(
-                        "CONT "
-                    ) or line_value.lstrip().startswith("CONC "):
-                        line = line_value.lstrip().partition(" ")
+                    if line_value.startswith(("CONT ", "CONC ")):
+                        line = line_value.partition(" ")
                         tag = line[0]
                         line_value = line[2]
                 else:
@@ -4009,7 +4007,7 @@ class GedcomParser(UpdateCallback):
                 self.__check_msgs(_("Top Level"), state, None)
             elif key in ("SOUR", "SOURCE"):
                 self.__parse_source(line.token_text, 1)
-            elif line.data.startswith("SOUR ") or line.data.startswith("SOURCE "):
+            elif line.data.startswith(("SOUR ", "SOURCE ")):
                 # A source formatted in a single line, for example:
                 # 0 @S62@ SOUR This is the title of the source
                 source = self.__find_or_create_source(self.sid_map[line.data])

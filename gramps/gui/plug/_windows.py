@@ -1254,7 +1254,7 @@ class PluginStatus(ManagedWindow):
         pm.set_pass(total=len(lines), header=_("Reading gramps-project.org..."))
         for line in lines:
             pm.step()
-            if line.startswith("|-") or line.startswith("|}"):
+            if line.startswith(("|-", "|}")):
                 if row != []:
                     rows.append(row)
                 state = "row"
@@ -1308,12 +1308,7 @@ class PluginStatus(ManagedWindow):
                 url = download[1:-1]
                 if " " in url:
                     url, text = url.split(" ", 1)
-            if (
-                url.endswith(".zip")
-                or url.endswith(".ZIP")
-                or url.endswith(".tar.gz")
-                or url.endswith(".tgz")
-            ):
+            if url.endswith((".zip", ".ZIP", ".tar.gz", ".tgz")):
                 # Then this is ok:
                 self.addon_model.append(
                     row=[
