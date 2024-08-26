@@ -98,7 +98,7 @@ _LOG = logging.getLogger(".WebPage")
 FULLCLEAR = Html("div", class_="fullclear", inline=True)
 
 # Web page filename extensions
-_WEB_EXT = [".html", ".htm", ".shtml", ".php", ".php3", ".cgi"]
+_WEB_EXT = (".html", ".htm", ".shtml", ".php", ".php3", ".cgi")
 
 # Calendar stylesheet names
 _CALENDARSCREEN = "calendar-screen.css"
@@ -710,7 +710,7 @@ return false;
                     url = url_fname
                     add_subdirs = False
                     if not (url.startswith("http:") or url.startswith("/")):
-                        add_subdirs = not any(url.endswith(ext) for ext in _WEB_EXT)
+                        add_subdirs = not _has_webpage_extension(url)
 
                     # whether to add subdirs or not???
                     if add_subdirs:
@@ -2238,7 +2238,7 @@ def _has_webpage_extension(url):
 
     url = filename to be checked
     """
-    return any(url.endswith(ext) for ext in _WEB_EXT)
+    return url.endswith(_WEB_EXT)
 
 
 def get_day_list(event_date, holiday_list, bday_anniv_list, rlocale=glocale):
