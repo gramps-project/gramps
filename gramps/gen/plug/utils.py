@@ -73,29 +73,37 @@ def version_str_to_tup(sversion, positions):
     return tup[:positions]
 
 
-class newplugin:
+class FakeRegistrar:
     """
-    Fake newplugin.
+    Fakes ``register`` and ``newplugin``.
     """
 
     def __init__(self):
-        globals()["register_results"].append({})
+        self.results = []
 
-    def __setattr__(self, attr, value):
-        globals()["register_results"][-1][attr] = value
+    @property
+    def newplugin(self):
+        class _newplugin:
+            """
+            Fake newplugin.
+            """
 
+            def __init__(inner_self):
+                self.results.append({})
 
-def register(ptype, **kwargs):
-    """
-    Fake registration. Side-effect sets register_results to kwargs.
-    """
-    retval = {"ptype": ptype}
-    retval.update(kwargs)
-    # Get the results back to calling function
-    if "register_results" in globals():
-        globals()["register_results"].append(retval)
-    else:
-        globals()["register_results"] = [retval]
+            def __setattr__(inner_self, attr, value):
+                self.results[-1][attr] = value
+
+        return _newplugin
+
+    def register(self, ptype, **kwargs):
+        """
+        Fake registration. Side-effect sets results to kwargs.
+        """
+        retval = {"ptype": ptype}
+        retval.update(kwargs)
+        # Get the results back to calling function
+        self.results.append(retval)
 
 
 class Zipfile:
@@ -380,12 +388,13 @@ def load_addon_file(path, callback=None):
         if callback:
             callback((_("Examining '%s'...") % gpr_file) + "\n")
         contents = file_obj.extractfile(gpr_file).read()
+        registrar = FakeRegistrar()
         # Put a fake register and _ function in environment:
         env = make_environment(
-            register=register, newplugin=newplugin, _=lambda text: text
+            register=registrar.register,
+            newplugin=registrar.newplugin,
+            _=lambda text: text,
         )
-        # clear out the result variable:
-        globals()["register_results"] = []
         # evaluate the contents:
         try:
             exec(contents, env)
@@ -395,7 +404,7 @@ def load_addon_file(path, callback=None):
                 callback("   " + msg + "\n" + str(exp))
             continue
         # There can be multiple addons per gpr file:
-        for results in globals()["register_results"]:
+        for results in registrar.results:
             gramps_target_version = results.get("gramps_target_version", None)
             if gramps_target_version:
                 vtup = version_str_to_tup(gramps_target_version, 2)
