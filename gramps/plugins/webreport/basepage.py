@@ -2746,15 +2746,13 @@ class BasePage:
 
                     # Web Site address
                     elif _type == UrlType.WEB_HOME:
-                        if not (
-                            uri.startswith("http://") or uri.startswith("https://")
-                        ):
+                        if not uri.startswith(("http://", "https://")):
                             url = self.secure_mode
                             uri = url + "%(website)s" % {"website": uri}
 
                     # FTP server address
                     elif _type == UrlType.WEB_FTP:
-                        if not (uri.startswith("ftp://") or uri.startswith("ftps://")):
+                        if not uri.startswith(("ftp://", "ftps://")):
                             uri = "ftp://%(ftpsite)s" % {"ftpsite": uri}
 
                     descr = Html("p", html_escape(descr)) + (

@@ -526,7 +526,7 @@ class GrampsLocale:
                 translator.lang = lang
                 return translator
 
-            if lang.startswith("en") or lang.startswith("C"):
+            if lang.startswith(("en", "C")):
                 translator = GrampsNullTranslations()
                 translator.lang = "en"
                 return translator

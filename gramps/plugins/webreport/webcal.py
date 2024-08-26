@@ -709,7 +709,7 @@ return false;
                         url_fname = url_fname.lower()
                     url = url_fname
                     add_subdirs = False
-                    if not (url.startswith("http:") or url.startswith("/")):
+                    if not url.startswith(("http:", "/")):
                         add_subdirs = not _has_webpage_extension(url)
 
                     # whether to add subdirs or not???
