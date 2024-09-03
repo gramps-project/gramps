@@ -79,6 +79,8 @@ class CairoBackend(DocBackend):
         DocBackend.FONTCOLOR,
         DocBackend.HIGHLIGHT,
         DocBackend.SUPERSCRIPT,
+        DocBackend.STRIKETHROUGH,
+        DocBackend.SUBSCRIPT,
     ]
 
     STYLETAG_MARKUP = {
@@ -86,6 +88,8 @@ class CairoBackend(DocBackend):
         DocBackend.ITALIC: ("<i>", "</i>"),
         DocBackend.UNDERLINE: ("<u>", "</u>"),
         DocBackend.SUPERSCRIPT: ("<sup>", "</sup>"),
+        DocBackend.STRIKETHROUGH: ("<s>", "</s>"),
+        DocBackend.SUBSCRIPT: ("<sub>", "</sub>"),
     }
 
     ESCAPE_FUNC = lambda x: escape
