@@ -65,7 +65,6 @@ class SQLite(DBAPI):
         summary.update(
             {
                 _("Database version"): sqlite3.sqlite_version,
-                _("Database module version"): sqlite3.version,
                 _("Database module location"): sqlite3.__file__,
             }
         )
