@@ -92,10 +92,8 @@ except:
 try:
     import sqlite3
 
-    sqlite3_py_version_str = sqlite3.version
     sqlite3_version_str = sqlite3.sqlite_version
 except:
-    sqlite3_py_version_str = "not found"
     sqlite3_version_str = "not found"
 
 
@@ -154,11 +152,7 @@ class GrampsAboutDialog(Gtk.AboutDialog):
         if hasattr(os, "uname"):
             distro = "\n" + _("Distribution: %s") % ellipses(os.uname()[2])
 
-        sqlite = (
-            "sqlite"
-            + COLON
-            + " %s (%s)\n" % (sqlite3_version_str, sqlite3_py_version_str)
-        )
+        sqlite = f"sqlite{COLON} {sqlite3_version_str}\n"
 
         return (
             "\n\n"
