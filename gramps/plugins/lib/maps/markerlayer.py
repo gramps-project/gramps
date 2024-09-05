@@ -191,11 +191,12 @@ GObject.type_register(MarkerLayer)
 def draw_marker(ctx, x01, y01, size, color):
     width = 48.0 * size
     height = width / 2
-    color = Gdk.color_parse(color)
+    rgba = Gdk.RGBA()
+    rgba.parse(color)
     fill_color = (
-        color.red / 65535.0,
-        color.green / 65535.0,
-        color.blue / 65535.0,
+        rgba.red,
+        rgba.green,
+        rgba.blue,
         1.0,  # transparency
     )
     stroke_color = (1.0, 0.0, 0.0, 0.5)
