@@ -123,13 +123,9 @@ class DateLayer(GObject.GObject, osmgpsmap.MapLayer):
             self.font, cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL
         )
         ctx.set_font_size(int(self.size))
-        color = Gdk.color_parse(self.color)
-        ctx.set_source_rgba(
-            float(color.red / 65535.0),
-            float(color.green / 65535.0),
-            float(color.blue / 65535.0),
-            0.6,
-        )  # transparency
+        rgba = Gdk.RGBA()
+        rgba.parse(self.color)
+        ctx.set_source_rgba(rgba.red, rgba.green, rgba.blue, 0.6)
         coord_x = 10
         coord_y = 15 + 2 * int(self.size)  # Display the oldest date
         ctx.move_to(coord_x, coord_y)

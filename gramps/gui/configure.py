@@ -525,8 +525,9 @@ class ConfigureDialog(ManagedWindow):
             hexval = colors[scheme]
         else:
             hexval = colors
-        color = Gdk.color_parse(hexval)
-        entry = Gtk.ColorButton(color=color)
+        rgba = Gdk.RGBA()
+        rgba.parse(hexval)
+        entry = Gtk.ColorButton.new_with_rgba(rgba)
         color_hex_label = BasicLabel(hexval)
         color_hex_label.set_hexpand(True)
         entry.connect("notify::color", self.update_color, constant, color_hex_label)
