@@ -599,7 +599,6 @@ class PedigreeView(NavigationView):
         self.show_tag_color = self._config.get("interface.pedview-show-tags")
         # Tree draw direction
         self.tree_direction = self._config.get("interface.pedview-tree-direction")
-        self.cb_change_scroll_direction(None, self.tree_direction < 2)
         # Show on not unknown people.
         # Default - not show, for mo fast display hight tree
         self.show_unknown_people = self._config.get(
@@ -657,8 +656,6 @@ class PedigreeView(NavigationView):
         self.scrolledwindow.set_policy(
             Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC
         )
-        self.scrolledwindow.add_events(Gdk.EventMask.SCROLL_MASK)
-        self.scrolledwindow.connect("scroll-event", self.cb_bg_scroll_event)
         event_box = Gtk.EventBox()
         # Required for drag-scroll events and popup menu
         event_box.add_events(
@@ -1440,13 +1437,6 @@ class PedigreeView(NavigationView):
                 vadjustment, (vadjustment.get_upper() - vadjustment.get_page_size()) / 2
             )
 
-        # Setup mouse wheel scroll direction for style C,
-        # depending of tree direction
-        if self.tree_direction in [0, 1]:
-            self.cb_change_scroll_direction(None, True)
-        elif self.tree_direction in [2, 3]:
-            self.cb_change_scroll_direction(None, False)
-
     def attach_widget(self, table, widget, xmax, right, left, top, bottom):
         """
         Attach a widget to the table.
@@ -1603,18 +1593,6 @@ class PedigreeView(NavigationView):
             adjustment.set_value(value)
         return True
 
-    def cb_bg_scroll_event(self, widget, event):
-        """
-        Function change scroll direction to horizontally
-        if variable self.scroll_direction setup.
-        """
-        if self.scroll_direction and event.type == Gdk.EventType.SCROLL:
-            if event.direction == Gdk.ScrollDirection.UP:
-                event.direction = Gdk.ScrollDirection.LEFT
-            elif event.direction == Gdk.ScrollDirection.DOWN:
-                event.direction = Gdk.ScrollDirection.RIGHT
-        return False
-
     def cb_person_button_press(self, obj, event, person_handle, family_handle):
         """
         Call edit person function for mouse left button double click on person
@@ -1703,13 +1681,6 @@ class PedigreeView(NavigationView):
         self.change_active(person_handle)
         return True
 
-    def cb_change_scroll_direction(self, menuitem, data):
-        """Change scroll_direction option."""
-        if data:
-            self.scroll_direction = True
-        else:
-            self.scroll_direction = False
-
     def kb_goto_home(self, *obj):
         """Goto home person from keyboard."""
         self.cb_home(None)
@@ -1794,34 +1765,6 @@ class PedigreeView(NavigationView):
         Add frequently used settings to the menu.  Most settings will be set
         from the configuration dialog.
         """
-        # Separator.
-        item = Gtk.SeparatorMenuItem()
-        item.show()
-        menu.append(item)
-
-        # Mouse scroll direction setting.
-        item = Gtk.MenuItem(label=_("Mouse scroll direction"))
-        item.set_submenu(Gtk.Menu())
-        scroll_direction_menu = item.get_submenu()
-
-        entry = Gtk.RadioMenuItem(label=_("Top <-> Bottom"))
-        entry.connect("activate", self.cb_change_scroll_direction, False)
-        if self.scroll_direction == False:
-            entry.set_active(True)
-        entry.show()
-        scroll_direction_menu.append(entry)
-
-        entry = Gtk.RadioMenuItem(label=_("Left <-> Right"))
-        entry.connect("activate", self.cb_change_scroll_direction, True)
-        if self.scroll_direction == True:
-            entry.set_active(True)
-        entry.show()
-        scroll_direction_menu.append(entry)
-
-        scroll_direction_menu.show()
-        item.show()
-        menu.append(item)
-
         # Separator.
         item = Gtk.SeparatorMenuItem()
         item.show()
