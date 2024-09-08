@@ -74,7 +74,6 @@ from ..editors import FilterEditor
 from ..ddtargets import DdTargets
 from ..plug.quick import create_quickreport_menu, create_web_connect_menu
 from ..utils import is_right_click
-from ..widgets.interactivesearchbox import InteractiveSearchBox
 from ..widgets.persistenttreeview import PersistentTreeView
 
 # ----------------------------------------------------------------
@@ -175,7 +174,6 @@ class ListView(NavigationView):
         self.list.connect("button-press-event", self._button_press)
         self.list.connect("key-press-event", self._key_press)
         self.list.connect("start-interactive-search", self.open_all_nodes)
-        self.searchbox = InteractiveSearchBox(self.list)
 
         if self.drag_info():
             self.list.connect("drag_data_get", self.drag_data_get)
@@ -1115,9 +1113,6 @@ class ListView(NavigationView):
         if event.keyval in (Gdk.KEY_Return, Gdk.KEY_KP_Enter):
             self.edit(obj)
             return True
-        # Custom interactive search
-        if Gdk.keyval_to_unicode(event.keyval):
-            return self.searchbox.treeview_keypress(obj, event)
         return False
 
     def _key_press_tree(self, obj, event):
@@ -1146,9 +1141,6 @@ class ListView(NavigationView):
                 else:
                     self.edit(obj)
                     return True
-        elif Gdk.keyval_to_unicode(event.keyval):
-            # Custom interactive search
-            return self.searchbox.treeview_keypress(obj, event)
         return False
 
     def expand_collapse_tree(self):
