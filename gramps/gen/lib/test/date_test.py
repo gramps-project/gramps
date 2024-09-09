@@ -414,7 +414,7 @@ ENGLISH_DATE_HANDLER = _dd.__class__ == DateDisplayEn
 
 @unittest.skipUnless(
     ENGLISH_DATE_HANDLER,
-    "This test of Date() matching logic can only run in English locale.",
+    "This test of Date() matching logic can only run in US-English locale.",
 )
 class MatchDateTest(BaseDateTest):
     """
@@ -635,7 +635,7 @@ class SpanTest(BaseDateTest):
 # -------------------------------------------------------------------------
 @unittest.skipUnless(
     ENGLISH_DATE_HANDLER,
-    "This test of Date() matching logic can only run in English locale.",
+    "This test of Date() matching logic can only run in US-English locale.",
 )
 class DateComparisonTest(BaseDateTest):
     """
@@ -1010,7 +1010,7 @@ class DateComparisonTest(BaseDateTest):
 # -------------------------------------------------------------------------
 @unittest.skipUnless(
     ENGLISH_DATE_HANDLER,
-    "This test of Date() matching logic can only run in English locale.",
+    "This test of Date() matching logic can only run in US-English locale.",
 )
 class AgeTest(BaseDateTest):
     """
