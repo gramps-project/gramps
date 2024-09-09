@@ -264,7 +264,6 @@
             <child>
               <object class="GtkButton" id="button28">
                 <property name="label" translatable="yes">Custom filter _editor</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>

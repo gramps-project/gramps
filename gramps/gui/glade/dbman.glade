@@ -22,7 +22,6 @@
             <child>
               <object class="GtkButton" id="okbutton3">
                 <property name="label" translatable="yes">_OK</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -132,7 +131,6 @@
             <child>
               <object class="GtkButton" id="cancel_btn">
                 <property name="label" translatable="yes">_Close Window</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -148,7 +146,6 @@
             <child>
               <object class="GtkButton" id="connect_btn">
                 <property name="label" translatable="yes">_Load Family Tree</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -164,7 +161,6 @@
             <child>
               <object class="GtkButton" id="help_btn">
                 <property name="label" translatable="yes">_Help</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -241,7 +237,6 @@
                 <child>
                   <object class="GtkButton" id="new_btn">
                     <property name="label" translatable="yes">_New</property>
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="can-default">True</property>
@@ -272,7 +267,6 @@
                 <child>
                   <object class="GtkButton" id="remove_btn">
                     <property name="label" translatable="yes">_Delete</property>
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="can-default">True</property>
@@ -288,7 +282,6 @@
                 <child>
                   <object class="GtkButton" id="rename_btn">
                     <property name="label" translatable="yes">_Rename</property>
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="can-default">True</property>
@@ -304,7 +297,6 @@
                 <child>
                   <object class="GtkButton" id="close_btn">
                     <property name="label" translatable="yes">Close</property>
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="can-default">True</property>
@@ -320,7 +312,6 @@
                 <child>
                   <object class="GtkButton" id="convert_btn">
                     <property name="label" translatable="yes">Con_vert</property>
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="can-default">True</property>
@@ -336,7 +327,6 @@
                 <child>
                   <object class="GtkButton" id="repair_btn">
                     <property name="label" translatable="yes">Re_pair</property>
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="can-default">True</property>
@@ -352,7 +342,6 @@
                 <child>
                   <object class="GtkButton" id="rcs_btn">
                     <property name="label" translatable="yes">_Archive</property>
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="can-default">True</property>

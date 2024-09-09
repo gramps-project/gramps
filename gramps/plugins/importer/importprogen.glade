@@ -26,7 +26,6 @@
             <child>
               <object class="GtkButton" id="import_cancel">
                 <property name="label" translatable="yes">_Cancel</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="is-focus">True</property>
@@ -43,7 +42,6 @@
             <child>
               <object class="GtkButton" id="import_ok">
                 <property name="label" translatable="yes">_Ok</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="is-focus">True</property>
@@ -61,7 +59,6 @@
             <child>
               <object class="GtkButton" id="import_help">
                 <property name="label" translatable="yes">_Help</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -516,7 +513,6 @@
                     </child>
                     <child>
                       <object class="GtkButton" id="tag_default_date_btn">
-                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>

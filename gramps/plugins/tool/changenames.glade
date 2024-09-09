@@ -102,7 +102,6 @@ Select the names you wish Gramps to convert. </property>
             <child>
               <object class="GtkButton" id="button5">
                 <property name="label" translatable="yes">_Accept changes and close</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>

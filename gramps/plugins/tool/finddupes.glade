@@ -140,7 +140,6 @@
                 <child>
                   <object class="GtkCheckButton" id="soundex">
                     <property name="label" translatable="yes">Use soundex codes</property>
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -257,7 +256,6 @@
             <child>
               <object class="GtkButton" id="button7">
                 <property name="label" translatable="yes">Co_mpare</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>

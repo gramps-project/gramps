@@ -377,7 +377,6 @@
             <child>
               <object class="GtkCheckButton" id="metric">
                 <property name="label" translatable="yes">Metric</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>

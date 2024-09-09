@@ -130,7 +130,6 @@
             </child>
             <child>
               <object class="GtkToolItem" id="toolitem1">
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <child>
