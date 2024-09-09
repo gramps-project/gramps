@@ -140,7 +140,6 @@
                 <child>
                   <object class="GtkCheckButton" id="notes">
                     <property name="label" translatable="yes">Don't merge if citation has notes</property>
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>

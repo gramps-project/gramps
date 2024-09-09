@@ -88,7 +88,6 @@
                     <child>
                       <object class="GtkCheckButton" id="events_box">
                         <property name="label" translatable="yes">Search for events</property>
-                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
@@ -105,7 +104,6 @@
                     <child>
                       <object class="GtkCheckButton" id="sources_box">
                         <property name="label" translatable="yes">Search for sources</property>
-                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
@@ -137,7 +135,6 @@
                     <child>
                       <object class="GtkCheckButton" id="places_box">
                         <property name="label" translatable="yes">Search for places</property>
-                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
@@ -154,7 +151,6 @@
                     <child>
                       <object class="GtkCheckButton" id="media_box">
                         <property name="label" translatable="yes">Search for media</property>
-                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
@@ -171,7 +167,6 @@
                     <child>
                       <object class="GtkCheckButton" id="repos_box">
                         <property name="label" translatable="yes">Search for repositories</property>
-                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
@@ -188,7 +183,6 @@
                     <child>
                       <object class="GtkCheckButton" id="notes_box">
                         <property name="label" translatable="yes">Search for notes</property>
-                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
@@ -276,7 +270,6 @@
                 <child>
                   <object class="GtkButton" id="mark_button">
                     <property name="label" translatable="yes">_Mark all</property>
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="can-default">True</property>
@@ -292,7 +285,6 @@
                 <child>
                   <object class="GtkButton" id="unmark_button">
                     <property name="label" translatable="yes">_Unmark all</property>
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="can-default">True</property>
@@ -308,7 +300,6 @@
                 <child>
                   <object class="GtkButton" id="invert_button">
                     <property name="label" translatable="yes">In_vert marks</property>
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="can-default">True</property>

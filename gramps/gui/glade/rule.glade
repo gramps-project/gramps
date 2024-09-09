@@ -22,7 +22,6 @@
             <child>
               <object class="GtkButton" id="filter_list_close">
                 <property name="label" translatable="yes">_Close</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -39,7 +38,6 @@
             <child>
               <object class="GtkButton" id="filter_list_help">
                 <property name="label" translatable="yes">_Help</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -114,7 +112,6 @@
                     <property name="spacing">6</property>
                     <child>
                       <object class="GtkButton" id="filter_list_add">
-                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="can-default">True</property>
@@ -137,7 +134,6 @@
                     </child>
                     <child>
                       <object class="GtkButton" id="filter_list_edit">
-                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
                         <property name="can-focus">True</property>
@@ -161,7 +157,6 @@
                     </child>
                     <child>
                       <object class="GtkButton" id="filter_list_clone">
-                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
                         <property name="can-focus">True</property>
@@ -185,7 +180,6 @@
                     </child>
                     <child>
                       <object class="GtkButton" id="filter_list_test">
-                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
@@ -207,7 +201,6 @@
                     </child>
                     <child>
                       <object class="GtkButton" id="filter_list_delete">
-                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
                         <property name="can-focus">True</property>
@@ -314,7 +307,6 @@
             <child>
               <object class="GtkButton" id="definition_cancel">
                 <property name="label" translatable="yes">_Cancel</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -331,7 +323,6 @@
             <child>
               <object class="GtkButton" id="definition_ok">
                 <property name="label" translatable="yes">_OK</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="sensitive">False</property>
                 <property name="can-focus">True</property>
@@ -349,7 +340,6 @@
             <child>
               <object class="GtkButton" id="definition_help">
                 <property name="label" translatable="yes">_Help</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -406,7 +396,6 @@
                     <property name="spacing">6</property>
                     <child>
                       <object class="GtkButton" id="definition_add">
-                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="can-default">True</property>
@@ -439,7 +428,6 @@
                     </child>
                     <child>
                       <object class="GtkButton" id="definition_edit">
-                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
                         <property name="can-focus">True</property>
@@ -473,7 +461,6 @@
                     </child>
                     <child>
                       <object class="GtkButton" id="definition_delete">
-                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
                         <property name="can-focus">True</property>
@@ -602,7 +589,6 @@
                 <child>
                   <object class="GtkCheckButton" id="logical_not">
                     <property name="label" translatable="yes">Return values that do no_t match the filter rules</property>
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -746,7 +732,6 @@
             <child>
               <object class="GtkButton" id="rule_editor_cancel">
                 <property name="label" translatable="yes">_Cancel</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -763,7 +748,6 @@
             <child>
               <object class="GtkButton" id="rule_editor_ok">
                 <property name="label" translatable="yes">_OK</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -780,7 +764,6 @@
             <child>
               <object class="GtkButton" id="rule_editor_help">
                 <property name="label" translatable="yes">_Help</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -1021,7 +1004,6 @@
             <child>
               <object class="GtkButton" id="test_close">
                 <property name="label" translatable="yes">_Close</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
