@@ -17,13 +17,12 @@
             <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="remove_button">
-                <property name="label">gtk-delete</property>
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">_Delete</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                <property name="use-stock">True</property>
                 <signal name="clicked" handler="on_remove_button_clicked" swapped="no"/>
               </object>
               <packing>
@@ -34,13 +33,12 @@
             </child>
             <child>
               <object class="GtkButton" id="closebutton1">
-                <property name="label">gtk-close</property>
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">_Close</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
                 <property name="receives-default">False</property>
-                <property name="use-stock">True</property>
                 <signal name="clicked" handler="destroy_passed_object" swapped="no"/>
               </object>
               <packing>
@@ -218,13 +216,12 @@
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                     <child>
                       <object class="GtkButton" id="find_button">
-                        <property name="label">gtk-find</property>
-                        <property name="use-action-appearance">False</property>
+                        <property name="label" translatable="1">_Find</property>
+                        <property name="use-underline">1</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                        <property name="use-stock">True</property>
                         <signal name="clicked" handler="on_find_button_clicked" swapped="no"/>
                       </object>
                       <packing>

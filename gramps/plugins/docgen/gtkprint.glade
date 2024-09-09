@@ -22,11 +22,11 @@
             <property name="toolbar-style">icons</property>
             <child>
               <object class="GtkToolButton" id="quit">
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">_Quit</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="tooltip-text" translatable="yes">Closes print preview window</property>
-                <property name="stock-id">gtk-quit</property>
                 <signal name="clicked" handler="on_quit_clicked" swapped="no"/>
               </object>
               <packing>
@@ -36,11 +36,11 @@
             </child>
             <child>
               <object class="GtkToolButton" id="print">
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">_Print</property>
+                <property name="use-underline">1</property>
                 <property name="sensitive">False</property>
                 <property name="can-focus">False</property>
                 <property name="tooltip-text" translatable="yes">Prints the current file</property>
-                <property name="stock-id">gtk-print</property>
                 <signal name="clicked" handler="on_print_clicked" swapped="no"/>
               </object>
               <packing>
@@ -60,13 +60,12 @@
             </child>
             <child>
               <object class="GtkToolButton" id="first">
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">_First</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="sensitive">False</property>
                 <property name="can-focus">False</property>
                 <property name="tooltip-text" translatable="yes">Shows the first page</property>
-                <property name="is-important">True</property>
-                <property name="stock-id">gtk-goto-first</property>
                 <signal name="clicked" handler="on_first_clicked" swapped="no"/>
               </object>
               <packing>
@@ -76,13 +75,12 @@
             </child>
             <child>
               <object class="GtkToolButton" id="prev">
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">_Back</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="sensitive">False</property>
                 <property name="can-focus">False</property>
                 <property name="tooltip-text" translatable="yes">Shows previous page</property>
-                <property name="is-important">True</property>
-                <property name="stock-id">gtk-go-back</property>
                 <signal name="clicked" handler="on_prev_clicked" swapped="no"/>
               </object>
               <packing>
@@ -92,13 +90,12 @@
             </child>
             <child>
               <object class="GtkToolButton" id="next">
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">_Forward</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="sensitive">False</property>
                 <property name="can-focus">False</property>
                 <property name="tooltip-text" translatable="yes">Shows the next page</property>
-                <property name="is-important">True</property>
-                <property name="stock-id">gtk-go-forward</property>
                 <signal name="clicked" handler="on_next_clicked" swapped="no"/>
               </object>
               <packing>
@@ -108,13 +105,12 @@
             </child>
             <child>
               <object class="GtkToolButton" id="last">
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">_Last</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="sensitive">False</property>
                 <property name="can-focus">False</property>
                 <property name="tooltip-text" translatable="yes">Shows the last page</property>
-                <property name="is-important">True</property>
-                <property name="stock-id">gtk-goto-last</property>
                 <signal name="clicked" handler="on_last_clicked" swapped="no"/>
               </object>
               <packing>
@@ -189,7 +185,7 @@
             </child>
             <child>
               <object class="GtkToggleToolButton" id="zoom_fit_width">
-                <property name="use-action-appearance">False</property>
+                <property name="icon-name">gramps-zoom-fit-width</property>
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="tooltip-text" translatable="yes">Zooms to fit the page width</property>
@@ -203,11 +199,10 @@
             </child>
             <child>
               <object class="GtkToggleToolButton" id="zoom_best_fit">
-                <property name="use-action-appearance">False</property>
+                <property name="icon-name">gramps-zoom-best-fit</property>
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="tooltip-text" translatable="yes">Zooms to fit the whole page</property>
-                <property name="stock-id">gtk-zoom-fit</property>
                 <signal name="toggled" handler="on_zoom_best_fit_toggled" swapped="no"/>
               </object>
               <packing>
@@ -217,11 +212,10 @@
             </child>
             <child>
               <object class="GtkToolButton" id="zoom_in">
-                <property name="use-action-appearance">False</property>
+                <property name="icon-name">gramps-zoom-in</property>
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="tooltip-text" translatable="yes">Zooms the page in</property>
-                <property name="stock-id">gtk-zoom-in</property>
                 <signal name="clicked" handler="on_zoom_in_clicked" swapped="no"/>
               </object>
               <packing>
@@ -231,11 +225,10 @@
             </child>
             <child>
               <object class="GtkToolButton" id="zoom_out">
-                <property name="use-action-appearance">False</property>
+                <property name="icon-name">gramps-zoom-out</property>
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="tooltip-text" translatable="yes">Zooms the page out</property>
-                <property name="stock-id">gtk-zoom-out</property>
                 <signal name="clicked" handler="on_zoom_out_clicked" swapped="no"/>
               </object>
               <packing>
