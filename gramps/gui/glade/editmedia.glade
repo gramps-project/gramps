@@ -20,7 +20,6 @@
             <child>
               <object class="GtkButton" id="button91">
                 <property name="label" translatable="yes">_Cancel</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -36,7 +35,6 @@
             <child>
               <object class="GtkButton" id="ok">
                 <property name="label" translatable="yes">_OK</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -53,7 +51,6 @@
             <child>
               <object class="GtkButton" id="button102">
                 <property name="label" translatable="yes">_Help</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -228,7 +225,6 @@ Gramps does not store the media internally, it only stores the path! Set the 'Re
                 </child>
                 <child>
                   <object class="GtkButton" id="date_edit">
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
@@ -264,7 +260,6 @@ Gramps does not store the media internally, it only stores the path! Set the 'Re
                 </child>
                 <child>
                   <object class="GtkButton" id="file_select">
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
@@ -311,7 +306,6 @@ Gramps does not store the media internally, it only stores the path! Set the 'Re
                 </child>
                 <child>
                   <object class="GtkToggleButton" id="private">
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
@@ -385,7 +379,6 @@ Gramps does not store the media internally, it only stores the path! Set the 'Re
                     </child>
                     <child>
                       <object class="GtkButton" id="tag_button">
-                        <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>

@@ -20,14 +20,12 @@
             <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="close">
-                <property name="label">gtk-close</property>
+                <property name="label" translatable="1">_Close</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
                 <property name="receives-default">False</property>
-                <property name="use-stock">True</property>
-                <property name="image-position">right</property>
-                <property name="always-show-image">True</property>
                 <signal name="clicked" handler="destroy_passed_object" swapped="yes"/>
               </object>
               <packing>
@@ -39,13 +37,12 @@
             </child>
             <child>
               <object class="GtkButton" id="helpbutton1">
-                <property name="label">gtk-help</property>
+                <property name="label" translatable="1">_Help</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
                 <property name="receives-default">False</property>
-                <property name="use-stock">True</property>
-                <property name="always-show-image">True</property>
                 <signal name="clicked" handler="on_help_clicked" swapped="no"/>
               </object>
               <packing>
@@ -74,7 +71,6 @@
                 <property name="height-request">1</property>
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="double-buffered">False</property>
                 <property name="justify">center</property>
                 <property name="ellipsize">start</property>
               </object>

@@ -69,13 +69,12 @@ Select the names you wish Gramps to convert. </property>
             <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="help">
-                <property name="label">gtk-help</property>
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">_Help</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
                 <property name="receives-default">True</property>
-                <property name="use-stock">True</property>
                 <signal name="clicked" handler="on_help_clicked" swapped="no"/>
               </object>
               <packing>
@@ -86,13 +85,12 @@ Select the names you wish Gramps to convert. </property>
             </child>
             <child>
               <object class="GtkButton" id="button6">
-                <property name="label">gtk-cancel</property>
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">_Cancel</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
                 <property name="receives-default">True</property>
-                <property name="use-stock">True</property>
                 <signal name="clicked" handler="destroy_passed_object" object="changenames" swapped="yes"/>
               </object>
               <packing>
@@ -104,7 +102,6 @@ Select the names you wish Gramps to convert. </property>
             <child>
               <object class="GtkButton" id="button5">
                 <property name="label" translatable="yes">_Accept changes and close</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>

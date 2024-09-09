@@ -23,7 +23,6 @@
             <child>
               <object class="GtkButton" id="cancel">
                 <property name="label" translatable="yes">_Close</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
@@ -39,7 +38,6 @@
             <child>
               <object class="GtkButton" id="apply">
                 <property name="label" translatable="yes">Install Selected _Addons</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
@@ -103,7 +101,6 @@
                 <child>
                   <object class="GtkButton" id="select_all">
                     <property name="label" translatable="yes">_Select All</property>
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
@@ -118,7 +115,6 @@
                 <child>
                   <object class="GtkButton" id="select_none">
                     <property name="label" translatable="yes">Select _None</property>
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>

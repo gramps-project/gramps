@@ -211,13 +211,9 @@ class PrintPreview:
         self._pages_entry = glade_xml.get_object("entry")
         self._pages_label = glade_xml.get_object("label")
         self._zoom_fit_width_button = glade_xml.get_object("zoom_fit_width")
-        self._zoom_fit_width_button.set_stock_id("gramps-zoom-fit-width")
         self._zoom_best_fit_button = glade_xml.get_object("zoom_best_fit")
-        self._zoom_best_fit_button.set_stock_id("gramps-zoom-best-fit")
         self._zoom_in_button = glade_xml.get_object("zoom_in")
-        self._zoom_in_button.set_stock_id("gramps-zoom-in")
         self._zoom_out_button = glade_xml.get_object("zoom_out")
-        self._zoom_out_button.set_stock_id("gramps-zoom-out")
 
         # connect the signals
         glade_xml.connect_signals(self)

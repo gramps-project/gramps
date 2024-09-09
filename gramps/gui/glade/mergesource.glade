@@ -19,7 +19,6 @@
             <child>
               <object class="GtkButton" id="source_cancel">
                 <property name="label" translatable="yes">_Cancel</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -35,7 +34,6 @@
             <child>
               <object class="GtkButton" id="source_ok">
                 <property name="label" translatable="yes">_OK</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -51,7 +49,6 @@
             <child>
               <object class="GtkButton" id="source_help">
                 <property name="label" translatable="yes">_Help</property>
-                <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -110,7 +107,6 @@ primary data for the merged source.</property>
                 <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkRadioButton" id="handle_btn1">
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -133,7 +129,6 @@ primary data for the merged source.</property>
                 </child>
                 <child>
                   <object class="GtkRadioButton" id="handle_btn2">
-                    <property name="use-action-appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -211,7 +206,6 @@ primary data for the merged source.</property>
                         <child>
                           <object class="GtkRadioButton" id="title_btn1">
                             <property name="label" translatable="yes">Title:</property>
-                            <property name="use-action-appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
@@ -227,7 +221,6 @@ primary data for the merged source.</property>
                         <child>
                           <object class="GtkRadioButton" id="title_btn2">
                             <property name="label" translatable="yes">Title:</property>
-                            <property name="use-action-appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
@@ -244,7 +237,6 @@ primary data for the merged source.</property>
                         <child>
                           <object class="GtkRadioButton" id="author_btn1">
                             <property name="label" translatable="yes">Author:</property>
-                            <property name="use-action-appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
@@ -260,7 +252,6 @@ primary data for the merged source.</property>
                         <child>
                           <object class="GtkRadioButton" id="author_btn2">
                             <property name="label" translatable="yes">Author:</property>
-                            <property name="use-action-appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
@@ -277,7 +268,6 @@ primary data for the merged source.</property>
                         <child>
                           <object class="GtkRadioButton" id="abbrev_btn1">
                             <property name="label" translatable="yes">Abbreviation:</property>
-                            <property name="use-action-appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
@@ -293,7 +283,6 @@ primary data for the merged source.</property>
                         <child>
                           <object class="GtkRadioButton" id="abbrev_btn2">
                             <property name="label" translatable="yes">Abbreviation:</property>
-                            <property name="use-action-appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
@@ -310,7 +299,6 @@ primary data for the merged source.</property>
                         <child>
                           <object class="GtkRadioButton" id="pub_btn1">
                             <property name="label" translatable="yes">Publication:</property>
-                            <property name="use-action-appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
@@ -326,7 +314,6 @@ primary data for the merged source.</property>
                         <child>
                           <object class="GtkRadioButton" id="pub_btn2">
                             <property name="label" translatable="yes">Publication:</property>
-                            <property name="use-action-appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
@@ -343,7 +330,6 @@ primary data for the merged source.</property>
                         <child>
                           <object class="GtkRadioButton" id="gramps_btn1">
                             <property name="label" translatable="yes">Gramps ID:</property>
-                            <property name="use-action-appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
@@ -359,7 +345,6 @@ primary data for the merged source.</property>
                         <child>
                           <object class="GtkRadioButton" id="gramps_btn2">
                             <property name="label" translatable="yes">Gramps ID:</property>
-                            <property name="use-action-appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>

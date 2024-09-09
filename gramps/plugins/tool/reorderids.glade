@@ -69,8 +69,8 @@
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="halign">start</property>
-                <property name="margin-left">6</property>
-                <property name="margin-right">6</property>
+                <property name="margin-start">6</property>
+                <property name="margin-end">6</property>
                 <property name="margin-top">24</property>
                 <property name="margin-bottom">24</property>
                 <property name="hexpand">True</property>
@@ -102,8 +102,8 @@
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="halign">start</property>
-                <property name="margin-left">6</property>
-                <property name="margin-right">6</property>
+                <property name="margin-start">6</property>
+                <property name="margin-end">6</property>
                 <property name="hexpand">True</property>
                 <property name="use-markup">True</property>
                 <property name="wrap">True</property>
@@ -122,7 +122,6 @@
                 <property name="tooltip-text" translatable="yes">If you check this button, your next answer will apply to the rest of the selected items</property>
                 <property name="halign">center</property>
                 <property name="use-underline">True</property>
-                <property name="xalign">0.5</property>
                 <property name="draw-indicator">True</property>
               </object>
               <packing>
@@ -179,14 +178,12 @@
             <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="reorder_cancel">
-                <property name="label">gtk-cancel</property>
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">_Cancel</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="is-focus">True</property>
                 <property name="receives-default">False</property>
-                <property name="use-underline">True</property>
-                <property name="use-stock">True</property>
                 <signal name="clicked" handler="on_cancel_button_clicked" swapped="no"/>
               </object>
               <packing>
@@ -197,14 +194,12 @@
             </child>
             <child>
               <object class="GtkButton" id="reorder_ok">
-                <property name="label">gtk-ok</property>
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">_OK</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
                 <property name="receives-default">False</property>
-                <property name="use-underline">True</property>
-                <property name="use-stock">True</property>
                 <signal name="clicked" handler="on_ok_button_clicked" swapped="no"/>
               </object>
               <packing>
@@ -215,14 +210,12 @@
             </child>
             <child>
               <object class="GtkButton" id="reorder_help">
-                <property name="label">gtk-help</property>
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">_Help</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
                 <property name="receives-default">False</property>
-                <property name="use-underline">True</property>
-                <property name="use-stock">True</property>
                 <signal name="clicked" handler="on_help_button_clicked" swapped="no"/>
               </object>
               <packing>
@@ -877,8 +870,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
-                <property name="resize-mode">queue</property>
-                <property name="xalign">0</property>
+                <property name="halign">start</property>
                 <property name="active">True</property>
                 <property name="draw-indicator">True</property>
                 <signal name="toggled" handler="on_object_button_toggled" swapped="no"/>
@@ -893,7 +885,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
-                <property name="xalign">0</property>
+                <property name="halign">start</property>
                 <property name="active">True</property>
                 <property name="draw-indicator">True</property>
                 <signal name="toggled" handler="on_object_button_toggled" swapped="no"/>
@@ -908,7 +900,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
-                <property name="xalign">0</property>
+                <property name="halign">start</property>
                 <property name="active">True</property>
                 <property name="draw-indicator">True</property>
                 <signal name="toggled" handler="on_object_button_toggled" swapped="no"/>
@@ -923,7 +915,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
-                <property name="xalign">0</property>
+                <property name="halign">start</property>
                 <property name="active">True</property>
                 <property name="draw-indicator">True</property>
                 <signal name="toggled" handler="on_object_button_toggled" swapped="no"/>
@@ -938,7 +930,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
-                <property name="xalign">0</property>
+                <property name="halign">start</property>
                 <property name="active">True</property>
                 <property name="draw-indicator">True</property>
                 <signal name="toggled" handler="on_object_button_toggled" swapped="no"/>
@@ -953,7 +945,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
-                <property name="xalign">0</property>
+                <property name="halign">start</property>
                 <property name="active">True</property>
                 <property name="draw-indicator">True</property>
                 <signal name="toggled" handler="on_object_button_toggled" swapped="no"/>
@@ -968,7 +960,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
-                <property name="xalign">0</property>
+                <property name="halign">start</property>
                 <property name="active">True</property>
                 <property name="draw-indicator">True</property>
                 <signal name="toggled" handler="on_object_button_toggled" swapped="no"/>
@@ -983,7 +975,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
-                <property name="xalign">0</property>
+                <property name="halign">start</property>
                 <property name="active">True</property>
                 <property name="draw-indicator">True</property>
                 <signal name="toggled" handler="on_object_button_toggled" swapped="no"/>
@@ -998,7 +990,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
-                <property name="xalign">0</property>
+                <property name="halign">start</property>
                 <property name="active">True</property>
                 <property name="draw-indicator">True</property>
                 <signal name="toggled" handler="on_object_button_toggled" swapped="no"/>
@@ -1141,7 +1133,6 @@
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
                 <property name="halign">center</property>
-                <property name="xalign">0</property>
                 <property name="draw-indicator">True</property>
               </object>
               <packing>
@@ -1156,7 +1147,6 @@
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
                 <property name="halign">center</property>
-                <property name="xalign">0</property>
                 <property name="draw-indicator">True</property>
               </object>
               <packing>
@@ -1171,7 +1161,6 @@
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
                 <property name="halign">center</property>
-                <property name="xalign">0</property>
                 <property name="draw-indicator">True</property>
               </object>
               <packing>
@@ -1186,7 +1175,6 @@
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
                 <property name="halign">center</property>
-                <property name="xalign">0</property>
                 <property name="draw-indicator">True</property>
               </object>
               <packing>
@@ -1201,7 +1189,6 @@
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
                 <property name="halign">center</property>
-                <property name="xalign">0</property>
                 <property name="draw-indicator">True</property>
               </object>
               <packing>
@@ -1216,7 +1203,6 @@
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
                 <property name="halign">center</property>
-                <property name="xalign">0</property>
                 <property name="draw-indicator">True</property>
               </object>
               <packing>
@@ -1231,7 +1217,6 @@
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
                 <property name="halign">center</property>
-                <property name="xalign">0</property>
                 <property name="draw-indicator">True</property>
               </object>
               <packing>
@@ -1246,7 +1231,6 @@
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
                 <property name="halign">center</property>
-                <property name="xalign">0</property>
                 <property name="draw-indicator">True</property>
               </object>
               <packing>
@@ -1261,7 +1245,6 @@
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
                 <property name="halign">center</property>
-                <property name="xalign">0</property>
                 <property name="draw-indicator">True</property>
               </object>
               <packing>
@@ -1275,7 +1258,6 @@
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
                 <property name="halign">center</property>
-                <property name="xalign">0</property>
                 <property name="draw-indicator">True</property>
                 <signal name="toggled" handler="on_change_button_toggled" swapped="no"/>
               </object>
@@ -1290,7 +1272,6 @@
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
                 <property name="halign">center</property>
-                <property name="xalign">0</property>
                 <property name="draw-indicator">True</property>
                 <signal name="toggled" handler="on_change_button_toggled" swapped="no"/>
               </object>
@@ -1305,7 +1286,6 @@
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
                 <property name="halign">center</property>
-                <property name="xalign">0</property>
                 <property name="draw-indicator">True</property>
                 <signal name="toggled" handler="on_change_button_toggled" swapped="no"/>
               </object>
@@ -1320,7 +1300,6 @@
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
                 <property name="halign">center</property>
-                <property name="xalign">0</property>
                 <property name="draw-indicator">True</property>
                 <signal name="toggled" handler="on_change_button_toggled" swapped="no"/>
               </object>
@@ -1335,7 +1314,6 @@
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
                 <property name="halign">center</property>
-                <property name="xalign">0</property>
                 <property name="draw-indicator">True</property>
                 <signal name="toggled" handler="on_change_button_toggled" swapped="no"/>
               </object>
@@ -1350,7 +1328,6 @@
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
                 <property name="halign">center</property>
-                <property name="xalign">0</property>
                 <property name="draw-indicator">True</property>
                 <signal name="toggled" handler="on_change_button_toggled" swapped="no"/>
               </object>
@@ -1365,7 +1342,6 @@
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
                 <property name="halign">center</property>
-                <property name="xalign">0</property>
                 <property name="draw-indicator">True</property>
                 <signal name="toggled" handler="on_change_button_toggled" swapped="no"/>
               </object>
@@ -1380,7 +1356,6 @@
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
                 <property name="halign">center</property>
-                <property name="xalign">0</property>
                 <property name="draw-indicator">True</property>
                 <signal name="toggled" handler="on_change_button_toggled" swapped="no"/>
               </object>
@@ -1395,7 +1370,6 @@
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
                 <property name="halign">center</property>
-                <property name="xalign">0</property>
                 <property name="draw-indicator">True</property>
                 <signal name="toggled" handler="on_change_button_toggled" swapped="no"/>
               </object>
@@ -1475,7 +1449,6 @@
                 <property name="focus-on-click">False</property>
                 <property name="receives-default">True</property>
                 <property name="tooltip-text" translatable="yes">Enable ID reordering with Start / Step sequence.</property>
-                <property name="resize-mode">immediate</property>
                 <property name="relief">none</property>
                 <signal name="clicked" handler="on_change_button_clicked" swapped="no"/>
               </object>
