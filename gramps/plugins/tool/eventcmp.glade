@@ -18,13 +18,12 @@
             <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="button21">
-                <property name="label">gtk-close</property>
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">_Close</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
                 <property name="receives-default">False</property>
-                <property name="use-stock">True</property>
                 <signal name="clicked" handler="destroy_passed_object" object="eventcmp" swapped="yes"/>
               </object>
               <packing>
@@ -35,13 +34,12 @@
             </child>
             <child>
               <object class="GtkButton" id="button19">
-                <property name="label">gtk-save-as</property>
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">Save _As</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
                 <property name="receives-default">False</property>
-                <property name="use-stock">True</property>
                 <signal name="clicked" handler="on_write_table" object="eventcmp" swapped="yes"/>
               </object>
               <packing>
@@ -52,13 +50,12 @@
             </child>
             <child>
               <object class="GtkButton" id="button30">
-                <property name="label">gtk-help</property>
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">_Help</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
                 <property name="receives-default">False</property>
-                <property name="use-stock">True</property>
                 <signal name="clicked" handler="on_help_clicked" swapped="no"/>
               </object>
               <packing>
@@ -173,13 +170,12 @@
             <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="button27">
-                <property name="label">gtk-close</property>
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">_Close</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
                 <property name="receives-default">False</property>
-                <property name="use-stock">True</property>
                 <signal name="clicked" handler="destroy_passed_object" object="filters" swapped="yes"/>
               </object>
               <packing>
@@ -190,13 +186,12 @@
             </child>
             <child>
               <object class="GtkButton" id="button26">
-                <property name="label">gtk-apply</property>
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">_Apply</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
                 <property name="receives-default">False</property>
-                <property name="use-stock">True</property>
                 <signal name="clicked" handler="on_apply_clicked" object="filters" swapped="yes"/>
               </object>
               <packing>
@@ -207,13 +202,12 @@
             </child>
             <child>
               <object class="GtkButton" id="button29">
-                <property name="label">gtk-help</property>
-                <property name="use-action-appearance">False</property>
+                <property name="label" translatable="1">_Help</property>
+                <property name="use-underline">1</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
                 <property name="receives-default">False</property>
-                <property name="use-stock">True</property>
                 <signal name="clicked" handler="on_help_clicked" swapped="no"/>
               </object>
               <packing>
