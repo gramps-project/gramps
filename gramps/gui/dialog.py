@@ -55,7 +55,6 @@ from gramps.gen.constfunc import is_quartz
 from .glade import Glade
 
 from .display import display_url
-from .glade import Glade
 
 try:
     ICON = GdkPixbuf.Pixbuf.new_from_file(ICON_PATH)
