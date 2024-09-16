@@ -142,6 +142,10 @@ class EditDate(ManagedWindow):
         self.new_year.set_text(self.date.newyear_to_str())
 
         cal = self.date.get_calendar()
+        # for the brand new dates, use the calendar from user preferences instead of the default Date.CAL_GREGORIAN
+        if self.date.dateval == Date.EMPTY:
+            cal = config.get("preferences.calendar-format-input")
+
         self.calendar_box.set_active(cal)
         self.align_newyear_ui_with_calendar(cal)
         self.calendar_box.connect("changed", self.switch_calendar)
@@ -204,9 +208,6 @@ class EditDate(ManagedWindow):
             self.calendar_box.set_sensitive(0)
             self.calendar_box.set_active(Date.CAL_JULIAN)
         self.dual_dated.connect("toggled", self.switch_dual_dated)
-
-        cal = config.get("preferences.calendar-format-input")
-        self.calendar_box.set_active(cal)
 
         # The dialog is modal -- since dates don't have names, we don't
         # want to have several open dialogs, since then the user will
