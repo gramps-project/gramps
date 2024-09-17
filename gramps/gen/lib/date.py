@@ -569,6 +569,12 @@ class Date:
     The core date handling class for Gramps.
 
     Supports partial dates, compound dates and alternate calendars.
+    Create a new Date instance using one of the following:
+    Date()              - an empty (invalid) date
+    Date( other_date )  - duplicate another Date
+    Date( year )        - create an exact date - 1st Jan of the specified year
+    Date( year, month ) - create an exact date - 1st of the given month, year
+    Date( year, month, day ) - create an exact date
     """
 
     MOD_NONE = 0  # CODE
@@ -1035,12 +1041,12 @@ class Date:
         Comparison  Returns
         ==========  =======================================================
         =,==        True if any part of other_date matches any part of self
-        <           True if any part of other_date < any part of self
-        <=          True if any part of other_date <= any part of self
-        <<          True if all parts of other_date < all parts of self
-        >           True if any part of other_date > any part of self
-        >=          True if any part of other_date >= any part of self
-        >>          True if all parts of other_date > all parts of self
+        <           True if any part of self < any part of other_date
+        <=          True if any part of self <= any part of other_date
+        <<          True if all parts of self < all parts of other_date
+        >           True if any part of self > any part of other_date
+        >=          True if any part of self >= any part of other_date
+        >>          True if all parts of self > all parts of other_date
         ==========  =======================================================
         """
         if (
@@ -1475,6 +1481,7 @@ class Date:
     def set_yr_mon_day_offset(self, year=0, month=0, day=0):
         """
         Offset the date by the given year, month, and day values.
+        If the source is a compound date then both are offset.
         """
         if self.__set_yr_mon_day_offset(
             year, month, day, Date._POS_YR, Date._POS_MON, Date._POS_DAY
@@ -1498,6 +1505,7 @@ class Date:
     def copy_offset_ymd(self, year=0, month=0, day=0):
         """
         Return a Date copy based on year, month, and day offset.
+        If the source is a compound date then both are offset.
         """
         orig_cal = self.calendar
         if self.calendar != 0:
