@@ -1757,15 +1757,7 @@ class Date:
         self.calendar = calendar
         self.dateval = value
         self.set_new_year(newyear)
-        year, month, day = self._zero_adjust_ymd(
-            value[Date._POS_YR], value[Date._POS_MON], value[Date._POS_DAY]
-        )
-
-        if year == month == day == 0:
-            self.sortval = 0
-        else:
-            func = Date._calendar_convert[calendar]
-            self.sortval = func(year, month, day)
+        self._calc_sort_value()
 
         if self.get_slash() and self.get_calendar() != Date.CAL_JULIAN:
             self.set_calendar(Date.CAL_JULIAN)
@@ -1840,14 +1832,19 @@ class Date:
         """
         Calculate the numerical sort value associated with the date.
         """
-        year, month, day = self._zero_adjust_ymd(
-            self.dateval[Date._POS_YR],
-            self.dateval[Date._POS_MON],
-            self.dateval[Date._POS_DAY],
-        )
-        if year == month == 0 and day == 0:
+        if (
+            self.dateval[Date._POS_YR]
+            == self.dateval[Date._POS_MON]
+            == self.dateval[Date._POS_DAY]
+            == 0
+        ):
             self.sortval = 0
         else:
+            year, month, day = self._zero_adjust_ymd(
+                self.dateval[Date._POS_YR],
+                self.dateval[Date._POS_MON],
+                self.dateval[Date._POS_DAY],
+            )
             func = Date._calendar_convert[self.calendar]
             self.sortval = func(year, month, day)
 
