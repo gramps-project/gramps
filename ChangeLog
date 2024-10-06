@@ -139,7 +139,7 @@
 	zh_TW Add span characters so that the new display format is accepted as a
 	valid input format.  This is necessary to make the unit tests pass.
 
-2024-07-07  Lajos Nemeséri <nemeseril@gmail.com>
+2024-07-07  Lajos NemesÃ©ri <nemeseril@gmail.com>
 
 	* po/hu.po: Translated using Weblate (Hungarian) Currently translated at 100.0% (7117 of 7117 strings) Translation: Gramps/Program Translate-URL:
 	https://hosted.weblate.org/projects/gramps-project/gramps/hu/
