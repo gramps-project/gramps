@@ -749,7 +749,8 @@ class RelGraphReport(Report):
                 for event in [
                     self._db.get_event_from_handle(ref.ref) for ref in event_refs
                 ]
-                if event.get_type() == EventType(EventType.OCCUPATION)
+                if (event.get_type() == EventType(EventType.OCCUPATION))
+                or (event.get_type() == EventType(EventType.CENSUS))
             ]
             if len(events) > 0:
                 events.sort(key=lambda x: x.get_date_object())
