@@ -126,7 +126,11 @@ class EventRef(
         """
         Convert a serialized tuple of data to an object.
         """
-        (privacy, citation_list, note_list, attribute_list, ref, role) = data
+        try:
+            (privacy, citation_list, note_list, attribute_list, ref, role) = data
+        except ValueError:
+            (privacy, note_list, attribute_list, ref, role) = data
+            citation_list = []
         PrivacyBase.unserialize(self, privacy)
         CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
