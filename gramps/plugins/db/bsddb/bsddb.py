@@ -44,6 +44,7 @@ from gramps.gen.db.exceptions import (
     DbVersionError,
 )
 from gramps.gen.db.utils import clear_lock_file
+from gramps.gen.db.bizlogic import BusinessLogic
 from gramps.gen.lib import Researcher
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.updatecallback import UpdateCallback
@@ -55,7 +56,7 @@ _MINVERSION = 9
 _DBVERSION = 19
 
 
-class DbBsddb(SQLite):
+class DbBsddb(SQLite, BusinessLogic):
     """
     Gramps BSDDB Converter
     """
