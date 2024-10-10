@@ -96,7 +96,7 @@ def gramps_upgrade_21(self):
             pass
 
         for handle in method():
-            obj = self._get_raw_data(key, handle)
+            obj = self._get_raw_data_pre_21(key, handle)
             self._commit_raw(obj, key)
             self.update()
 
