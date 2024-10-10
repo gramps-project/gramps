@@ -104,42 +104,42 @@ class DBAPI(DbGeneric):
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
             "given_name TEXT, "
             "surname TEXT, "
-            "unblob TEXT"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE family "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "unblob TEXT"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE source "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "unblob TEXT"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE citation "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "unblob TEXT"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE event "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "unblob TEXT"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE media "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "unblob TEXT"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
@@ -147,28 +147,28 @@ class DBAPI(DbGeneric):
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
             "enclosed_by VARCHAR(50), "
-            "unblob TEXT"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE repository "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "unblob TEXT"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE note "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "unblob TEXT"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE tag "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "unblob TEXT"
+            "json_data TEXT"
             ")"
         )
         # Secondary:
@@ -580,7 +580,7 @@ class DBAPI(DbGeneric):
 
         If no such Tag exists, None is returned.
         """
-        self.dbapi.execute("SELECT unblob FROM tag WHERE name = ?", [name])
+        self.dbapi.execute("SELECT json_data FROM tag WHERE name = ?", [name])
         row = self.dbapi.fetchone()
         if row:
             return Tag.create(json.loads(row[0]))
@@ -636,13 +636,13 @@ class DBAPI(DbGeneric):
             old_data = self._get_raw_data(obj_key, obj.handle)
             # update the object:
             self.dbapi.execute(
-                f"UPDATE {table} SET unblob = ? WHERE handle = ?",
+                f"UPDATE {table} SET json_data = ? WHERE handle = ?",
                 [json.dumps(obj.serialize()), obj.handle],
             )
         else:
             # Insert the object:
             self.dbapi.execute(
-                f"INSERT INTO {table} (handle, unblob) VALUES (?, ?)",
+                f"INSERT INTO {table} (handle, json_data) VALUES (?, ?)",
                 [obj.handle, json.dumps(obj.serialize())],
             )
         self._update_secondary_values(obj)
@@ -666,13 +666,13 @@ class DBAPI(DbGeneric):
         if self._has_handle(obj_key, handle):
             # update the object:
             self.dbapi.execute(
-                f"UPDATE {table} SET unblob = ? WHERE handle = ?",
+                f"UPDATE {table} SET json_data = ? WHERE handle = ?",
                 [json.dumps(data), handle],
             )
         else:
             # Insert the object:
             self.dbapi.execute(
-                f"INSERT INTO {table} (handle, unblob) VALUES (?, ?)",
+                f"INSERT INTO {table} (handle, json_data) VALUES (?, ?)",
                 [handle, json.dumps(data)],
             )
 
@@ -830,7 +830,7 @@ class DBAPI(DbGeneric):
         """
         table = KEY_TO_NAME_MAP[obj_key]
         with self.dbapi.cursor() as cursor:
-            cursor.execute(f"SELECT handle, unblob FROM {table}")
+            cursor.execute(f"SELECT handle, json_data FROM {table}")
             rows = cursor.fetchmany()
             while rows:
                 for row in rows:
@@ -845,7 +845,7 @@ class DBAPI(DbGeneric):
         while to_do:
             handle = to_do.pop()
             self.dbapi.execute(
-                "SELECT handle, unblob FROM place WHERE enclosed_by = ?", [handle]
+                "SELECT handle, json_data FROM place WHERE enclosed_by = ?", [handle]
             )
             rows = self.dbapi.fetchall()
             for row in rows:
@@ -975,7 +975,7 @@ class DBAPI(DbGeneric):
 
     def _get_raw_data(self, obj_key, handle):
         table = KEY_TO_NAME_MAP[obj_key]
-        self.dbapi.execute(f"SELECT unblob FROM {table} WHERE handle = ?", [handle])
+        self.dbapi.execute(f"SELECT json_data FROM {table} WHERE handle = ?", [handle])
         row = self.dbapi.fetchone()
         if row:
             return json.loads(row[0])
@@ -984,7 +984,7 @@ class DBAPI(DbGeneric):
     def _get_raw_from_id_data(self, obj_key, gramps_id):
         table = KEY_TO_NAME_MAP[obj_key]
         self.dbapi.execute(
-            f"SELECT unblob FROM {table} WHERE gramps_id = ?", [gramps_id]
+            f"SELECT json_data FROM {table} WHERE gramps_id = ?", [gramps_id]
         )
         row = self.dbapi.fetchone()
         if row:
@@ -1043,12 +1043,12 @@ class DBAPI(DbGeneric):
         else:
             if self._has_handle(obj_key, handle):
                 self.dbapi.execute(
-                    f"UPDATE {table} SET unblob = ? WHERE handle = ?",
+                    f"UPDATE {table} SET json_data = ? WHERE handle = ?",
                     [json.dumps(data), handle],
                 )
             else:
                 self.dbapi.execute(
-                    f"INSERT INTO {table} (handle, unblob) VALUES (?, ?)",
+                    f"INSERT INTO {table} (handle, json_data) VALUES (?, ?)",
                     [handle, json.dumps(data)],
                 )
             obj = self._get_table_func(cls)["class_func"].create(data)

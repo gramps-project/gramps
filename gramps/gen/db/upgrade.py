@@ -90,7 +90,7 @@ def gramps_upgrade_21(self):
     ]
     for (key, method, table_name) in tables:
         try:
-            self.dbapi.execute("ALTER TABLE %s ADD COLUMN unblob TEXT;" % table_name)
+            self.dbapi.execute("ALTER TABLE %s ADD COLUMN json_data TEXT;" % table_name)
             self.dbapi.commit()
         except Exception:
             pass
