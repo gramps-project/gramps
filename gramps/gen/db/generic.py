@@ -389,7 +389,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     __callback_map = {}
 
-    VERSION = (20, 0, 0)
+    VERSION = (21, 0, 0)
 
     def __init__(self, directory=None):
         DbReadBase.__init__(self)
@@ -1744,7 +1744,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def _get_raw_data(self, obj_key, handle):
         """
-        Return raw (serialized and pickled) object from handle.
+        Return raw (serialized) object from handle.
         """
         raise NotImplementedError
 
@@ -2663,6 +2663,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             gramps_upgrade_18,
             gramps_upgrade_19,
             gramps_upgrade_20,
+            gramps_upgrade_21,
         )
 
         if version < 14:
@@ -2679,6 +2680,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             gramps_upgrade_19(self)
         if version < 20:
             gramps_upgrade_20(self)
+        if version < 21:
+            gramps_upgrade_21(self)
 
         self.rebuild_secondary(callback)
         self.reindex_reference_map(callback)
