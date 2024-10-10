@@ -981,6 +981,14 @@ class DBAPI(DbGeneric):
             return json.loads(row[0])
         return None
 
+    def _get_raw_data_pre_21(self, obj_key, handle):
+        table = KEY_TO_NAME_MAP[obj_key]
+        self.dbapi.execute(f"SELECT blob_data FROM {table} WHERE handle = ?", [handle])
+        row = self.dbapi.fetchone()
+        if row:
+            return pickle.loads(row[0])
+        return None
+
     def _get_raw_from_id_data(self, obj_key, gramps_id):
         table = KEY_TO_NAME_MAP[obj_key]
         self.dbapi.execute(
