@@ -91,3 +91,26 @@ def from_json(data):
     :rtype: object
     """
     return json.loads(data, object_hook=__object_hook)
+
+def to_dict(obj):
+    """
+    Encode a Gramps object in JSON format.
+
+    :param obj: The object to be serialized.
+    :type obj: object
+    :returns: A JSON string.
+    :rtype: str
+    """
+    return json.loads(json.dumps(obj, default=__default, ensure_ascii=False))
+
+
+def from_dict(data):
+    """
+    Decode JSON data into a Gramps object hierarchy.
+
+    :param data: The JSON string to be unserialized.
+    :type data: str
+    :returns: A Gramps object.
+    :rtype: object
+    """
+    return json.loads(json.dumps(data), object_hook=__object_hook)
