@@ -57,6 +57,7 @@ from ..lib import (
     Source,
     Tag,
 )
+from ..lib.serialize import from_dict
 from ..lib.genderstats import GenderStats
 from ..lib.researcher import Researcher
 from ..updatecallback import UpdateCallback
@@ -1355,7 +1356,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             raise HandleError("Handle is empty")
         data = self._get_raw_data(obj_key, handle)
         if data:
-            return obj_class.create(data)
+            return from_dict(data)
         raise HandleError(f"Handle {handle} not found")
 
     def get_event_from_handle(self, handle):
@@ -1396,39 +1397,39 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def get_person_from_gramps_id(self, gramps_id):
         data = self._get_raw_person_from_id_data(gramps_id)
-        return Person.create(data)
+        return from_dict(data)
 
     def get_family_from_gramps_id(self, gramps_id):
         data = self._get_raw_family_from_id_data(gramps_id)
-        return Family.create(data)
+        return from_dict(data)
 
     def get_citation_from_gramps_id(self, gramps_id):
         data = self._get_raw_citation_from_id_data(gramps_id)
-        return Citation.create(data)
+        return from_dict(data)
 
     def get_source_from_gramps_id(self, gramps_id):
         data = self._get_raw_source_from_id_data(gramps_id)
-        return Source.create(data)
+        return from_dict(data)
 
     def get_event_from_gramps_id(self, gramps_id):
         data = self._get_raw_event_from_id_data(gramps_id)
-        return Event.create(data)
+        return from_dict(data)
 
     def get_media_from_gramps_id(self, gramps_id):
         data = self._get_raw_media_from_id_data(gramps_id)
-        return Media.create(data)
+        return from_dict(data)
 
     def get_place_from_gramps_id(self, gramps_id):
         data = self._get_raw_place_from_id_data(gramps_id)
-        return Place.create(data)
+        return from_dict(data)
 
     def get_repository_from_gramps_id(self, gramps_id):
         data = self._get_raw_repository_from_id_data(gramps_id)
-        return Repository.create(data)
+        return from_dict(data)
 
     def get_note_from_gramps_id(self, gramps_id):
         data = self._get_raw_note_from_id_data(gramps_id)
-        return Note.create(data)
+        return from_dict(data)
 
     ################################################################
     #
@@ -1629,7 +1630,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         cursor = self._get_table_func(class_.__name__, "cursor_func")
         for data in cursor():
-            yield class_.create(data[1])
+            yield from_dict(data[1])
 
     def iter_people(self):
         return self._iter_objects(Person)
