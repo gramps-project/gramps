@@ -61,6 +61,7 @@ from gramps.gen.lib import (
     Source,
     Tag,
 )
+from gramps.gen.db.bizlogic import BusinessLogic
 from gramps.gen.lib.genderstats import GenderStats
 from gramps.gen.updatecallback import UpdateCallback
 
@@ -73,7 +74,7 @@ _LOG = logging.getLogger(DBLOGNAME)
 # DBAPI class
 #
 # -------------------------------------------------------------------------
-class DBAPI(DbGeneric):
+class DBAPI(DbGeneric, BusinessLogic):
     """
     Database backends class for DB-API 2.0 databases
     """
@@ -1142,3 +1143,72 @@ class DBAPI(DbGeneric):
         in the appropriate type.
         """
         return [v if not isinstance(v, bool) else int(v) for v in values]
+
+    # ------------------------------------------------------------
+    # Fast SQL-specific implementations of primary object versions
+    # in BusniessLogic. These don't need to be blob-compatible
+    # because we added them after conversion to JSON.
+    # ------------------------------------------------------------
+
+    def get_father_mother_handles_from_family(self, handle=None, family=None):
+        """ Get the father and mother handles given a family """
+        if family:
+            handle = family.handle
+
+        self.dbapi.execute(
+            "SELECT JSON_EXTRACT(json_data, '$.father_handle', '$.mother_handle') FROM family WHERE handle = ? limit 1;",
+            [handle]
+        )
+        row = self.dbapi.fetchone()
+        if row:
+            parent_list = json.loads(row[0])
+            if parent_list:
+                return parent_list[0], parent_list[1]
+        return (None, None)
+
+    def get_main_parents_family_handle_from_person(self, handle=None, person=None):
+        """ Get the main parent's family handle given a person """
+        if person:
+            handle = person.handle
+
+        self.dbapi.execute(
+            ("SELECT JSON_EXTRACT(json_data, '$.parent_family_list') " +
+             "FROM person WHERE handle = ? limit 1;"),
+            [handle]
+        )
+        row = self.dbapi.fetchone()
+        parent_family_list = json.loads(row[0])
+        if parent_family_list:
+            return parent_family_list[0]
+
+    def get_person_handle_from_gramps_id(self, gid):
+        """
+        Return the handle of the person having the given Gramps ID.
+        """
+        self.dbapi.execute(
+            "SELECT handle FROM person WHERE gramps_id = ? limit 1;",
+            [gid]
+        )
+        row = self.dbapi.fetchone()
+        if row:
+            return row[0]
+
+    def get_father_mother_handles_from_primary_family_from_person(
+            self,
+            handle=None,
+            person=None
+    ):
+        """ Get the father and mother handle's from a person primary family """
+        if person:
+            handle = person.handle
+
+        fam_handle = self.get_main_parents_family_handle_from_person(
+            handle=handle
+        )
+        if fam_handle:
+            f_handle, m_handle = self.get_father_mother_handles_from_family(
+                handle=fam_handle
+            )
+            return (f_handle, m_handle)
+        return (None, None)
+
