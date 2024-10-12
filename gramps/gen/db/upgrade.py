@@ -35,6 +35,8 @@ import logging
 #
 # ------------------------------------------------------------------------
 from gramps.cli.clidbman import NAME_FILE
+from gramps.gen.db.dbconst import CLASS_TO_KEY_MAP
+from gramps.gen.lib.serialize import to_dict
 from gramps.gen.lib import EventType, NameOriginType, Tag, MarkerType
 from gramps.gen.utils.file import create_checksum
 from gramps.gen.utils.id import create_id
@@ -62,42 +64,34 @@ def gramps_upgrade_21(self):
     """
     Add unpickled data to tables.
     """
-    length = (
-        self.get_number_of_events()
-        + self.get_number_of_places()
-        + self.get_number_of_citations()
-        + self.get_number_of_sources()
-        + self.get_number_of_repositories()
-        + self.get_number_of_media()
-        + self.get_number_of_notes()
-        + self.get_number_of_tags()
-        + self.get_number_of_people()
-    )
+    length = 0
+    for key in self._get_table_func():
+        count_func = self._get_table_func(key, "count_func")
+        length += count_func()
+
     self.set_total(length)
     self._txn_begin()
 
-    tables = [
-        (PERSON_KEY, self.get_person_handles, "person"),
-        (FAMILY_KEY, self.get_family_handles, "family"),
-        (EVENT_KEY, self.get_event_handles, "event"),
-        (MEDIA_KEY, self.get_media_handles, "media"),
-        (PLACE_KEY, self.get_place_handles, "place"),
-        (REPOSITORY_KEY, self.get_repository_handles, "repository"),
-        (CITATION_KEY, self.get_citation_handles, "citation"),
-        (SOURCE_KEY, self.get_source_handles, "source"),
-        (NOTE_KEY, self.get_note_handles, "note"),
-        (TAG_KEY, self.get_tag_handles, "tag"),
-    ]
-    for (key, method, table_name) in tables:
+    for table_name in self._get_table_func():
+        # FIXME: temp, move to dbapi
         try:
-            self.dbapi.execute("ALTER TABLE %s ADD COLUMN json_data TEXT;" % table_name)
+            self.dbapi.execute("ALTER TABLE %s ADD COLUMN json_data TEXT;" % table_name.lower())
             self.dbapi.commit()
         except Exception:
             pass
 
-        for handle in method():
-            obj = self._get_raw_data_pre_21(key, handle)
-            self._commit_raw(obj, key)
+        get_obj_from_handle = self._get_table_func(table_name, "handle_func")
+        get_handles = self._get_table_func(table_name, "handles_func")
+        commit_func = self._get_table_func(table_name, "commit_func")
+        key = CLASS_TO_KEY_MAP[table_name]
+        for handle in get_handles():
+            obj = get_obj_from_handle(handle)
+            # Force the save in json_data:
+            # FIXME: temp, move to dbapi
+            raw = to_dict(obj)
+            self._setup_data_access("json")
+            self._commit_raw(raw, key)
+            self._setup_data_access("blob")
             self.update()
 
     self._txn_commit()

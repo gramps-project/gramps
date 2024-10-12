@@ -28,9 +28,9 @@ Database API interface
 # Python modules
 #
 # -------------------------------------------------------------------------
-import json
 import logging
 import pickle
+import json
 import time
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -82,6 +82,26 @@ class DBAPI(DbGeneric):
     def _initialize(self, directory, username, password):
         raise NotImplementedError
 
+    def _setup_data_access(self, format):
+        """
+        Called by subclasses to setup data access SQL field and method.
+        Format must be 'blob' or 'json'.
+        """
+        if format == "blob":
+            self._data_field = "blob_data"
+            self._data_access = pickle
+        elif format == "json":
+            self._data_field = "json_data"
+            self._data_access = json
+        else:
+            raise Exception("Invalid data access format: must be 'blob' or 'json'")
+
+    def _get_handle_from_data(self, data):
+        if self._data_field == "blob_data":
+            return data[0]
+        elif self._data_field == "json_data":
+            return data["handle"]
+
     def _schema_exists(self):
         """
         Check to see if the schema exists.
@@ -104,42 +124,42 @@ class DBAPI(DbGeneric):
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
             "given_name TEXT, "
             "surname TEXT, "
-            "json_data TEXT"
+            "blob_data BLOB"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE family "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "json_data TEXT"
+            "blob_data BLOB"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE source "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "json_data TEXT"
+            "blob_data BLOB"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE citation "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "json_data TEXT"
+            "blob_data BLOB"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE event "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "json_data TEXT"
+            "blob_data BLOB"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE media "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "json_data TEXT"
+            "blob_data BLOB"
             ")"
         )
         self.dbapi.execute(
@@ -147,28 +167,28 @@ class DBAPI(DbGeneric):
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
             "enclosed_by VARCHAR(50), "
-            "json_data TEXT"
+            "blob_data BLOB"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE repository "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "json_data TEXT"
+            "blob_data BLOB"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE note "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "json_data TEXT"
+            "blob_data BLOB"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE tag "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "json_data TEXT"
+            "blob_data BLOB"
             ")"
         )
         # Secondary:
@@ -354,7 +374,11 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("SELECT value FROM metadata WHERE setting = ?", [key])
         row = self.dbapi.fetchone()
         if row:
-            return pickle.loads(row[0])
+            # FIXME: hack, temp
+            try:
+                return pickle.loads(row[0])
+            except Exception:
+                return row[0]
         if default == "_":
             return []
         return default
@@ -580,10 +604,10 @@ class DBAPI(DbGeneric):
 
         If no such Tag exists, None is returned.
         """
-        self.dbapi.execute("SELECT json_data FROM tag WHERE name = ?", [name])
+        self.dbapi.execute(f"SELECT {self._data_field} FROM tag WHERE name = ?", [name])
         row = self.dbapi.fetchone()
         if row:
-            return Tag.create(json.loads(row[0]))
+            return Tag.create(self._data_access.loads(row[0]))
         return None
 
     def _get_number_of(self, obj_key):
@@ -636,14 +660,14 @@ class DBAPI(DbGeneric):
             old_data = self._get_raw_data(obj_key, obj.handle)
             # update the object:
             self.dbapi.execute(
-                f"UPDATE {table} SET json_data = ? WHERE handle = ?",
-                [json.dumps(obj.serialize()), obj.handle],
+                f"UPDATE {table} SET {self._data_field} = ? WHERE handle = ?",
+                [self._data_access.dumps(obj.serialize()), obj.handle],
             )
         else:
             # Insert the object:
             self.dbapi.execute(
-                f"INSERT INTO {table} (handle, json_data) VALUES (?, ?)",
-                [obj.handle, json.dumps(obj.serialize())],
+                f"INSERT INTO {table} (handle, {self._data_field}) VALUES (?, ?)",
+                [obj.handle, self._data_access.dumps(obj.serialize())],
             )
         self._update_secondary_values(obj)
         self._update_backlinks(obj, trans)
@@ -661,19 +685,19 @@ class DBAPI(DbGeneric):
         changes as part of the transaction.
         """
         table = KEY_TO_NAME_MAP[obj_key]
-        handle = data[0]
+        handle = self._get_handle_from_data(data)
 
         if self._has_handle(obj_key, handle):
             # update the object:
             self.dbapi.execute(
-                f"UPDATE {table} SET json_data = ? WHERE handle = ?",
-                [json.dumps(data), handle],
+                f"UPDATE {table} SET {self._data_field} = ? WHERE handle = ?",
+                [self._data_access.dumps(data), handle],
             )
         else:
             # Insert the object:
             self.dbapi.execute(
-                f"INSERT INTO {table} (handle, json_data) VALUES (?, ?)",
-                [handle, json.dumps(data)],
+                f"INSERT INTO {table} (handle, {self._data_field}) VALUES (?, ?)",
+                [handle, self._data_access.dumps(data)],
             )
 
     def _update_backlinks(self, obj, transaction):
@@ -830,11 +854,11 @@ class DBAPI(DbGeneric):
         """
         table = KEY_TO_NAME_MAP[obj_key]
         with self.dbapi.cursor() as cursor:
-            cursor.execute(f"SELECT handle, json_data FROM {table}")
+            cursor.execute(f"SELECT handle, {self._data_field} FROM {table}")
             rows = cursor.fetchmany()
             while rows:
                 for row in rows:
-                    yield (row[0], json.loads(row[1]))
+                    yield (row[0], self._data_access.loads(row[1]))
                 rows = cursor.fetchmany()
 
     def _iter_raw_place_tree_data(self):
@@ -845,12 +869,12 @@ class DBAPI(DbGeneric):
         while to_do:
             handle = to_do.pop()
             self.dbapi.execute(
-                "SELECT handle, json_data FROM place WHERE enclosed_by = ?", [handle]
+                f"SELECT handle, {self._data_field} FROM place WHERE enclosed_by = ?", [handle]
             )
             rows = self.dbapi.fetchall()
             for row in rows:
                 to_do.append(row[0])
-                yield (row[0], json.loads(row[1]))
+                yield (row[0], self._data_access.loads(row[1]))
 
     def reindex_reference_map(self, callback):
         """
@@ -975,28 +999,20 @@ class DBAPI(DbGeneric):
 
     def _get_raw_data(self, obj_key, handle):
         table = KEY_TO_NAME_MAP[obj_key]
-        self.dbapi.execute(f"SELECT json_data FROM {table} WHERE handle = ?", [handle])
+        self.dbapi.execute(f"SELECT {self._data_field} FROM {table} WHERE handle = ?", [handle])
         row = self.dbapi.fetchone()
         if row:
-            return json.loads(row[0])
-        return None
-
-    def _get_raw_data_pre_21(self, obj_key, handle):
-        table = KEY_TO_NAME_MAP[obj_key]
-        self.dbapi.execute(f"SELECT blob_data FROM {table} WHERE handle = ?", [handle])
-        row = self.dbapi.fetchone()
-        if row:
-            return pickle.loads(row[0])
+            return self._data_access.loads(row[0])
         return None
 
     def _get_raw_from_id_data(self, obj_key, gramps_id):
         table = KEY_TO_NAME_MAP[obj_key]
         self.dbapi.execute(
-            f"SELECT json_data FROM {table} WHERE gramps_id = ?", [gramps_id]
+            f"SELECT {self._data_field} FROM {table} WHERE gramps_id = ?", [gramps_id]
         )
         row = self.dbapi.fetchone()
         if row:
-            return json.loads(row[0])
+            return self._data_access.loads(row[0])
         return None
 
     def get_gender_stats(self):
@@ -1051,13 +1067,13 @@ class DBAPI(DbGeneric):
         else:
             if self._has_handle(obj_key, handle):
                 self.dbapi.execute(
-                    f"UPDATE {table} SET json_data = ? WHERE handle = ?",
-                    [json.dumps(data), handle],
+                    f"UPDATE {table} SET {self._data_field} = ? WHERE handle = ?",
+                    [self._data_access.dumps(data), handle],
                 )
             else:
                 self.dbapi.execute(
-                    f"INSERT INTO {table} (handle, json_data) VALUES (?, ?)",
-                    [handle, json.dumps(data)],
+                    f"INSERT INTO {table} (handle, {self._data_field}) VALUES (?, ?)",
+                    [handle, self._data_access.dumps(data)],
                 )
             obj = self._get_table_func(cls)["class_func"].create(data)
             self._update_secondary_values(obj)
