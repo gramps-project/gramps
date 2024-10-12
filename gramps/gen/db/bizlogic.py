@@ -20,39 +20,8 @@
 
 """
 Collection of business logic functions, moved from views
-to here for possible "underload" from low-level implementations
+to here for possible overloading by low-level implementations
 """
-
-# -------------------------------------------------------------------------
-#
-# Python modules
-#
-# -------------------------------------------------------------------------
-from functools import wraps
-
-# -------------------------------------------------------------------------
-#
-# underloadable decorator
-#
-# -------------------------------------------------------------------------
-def underloadable(func):
-    """ Mark a method as allowing a lower-level implementation """
-    @wraps(func)
-    def wrapper(self, *args, **kwargs):
-        method_name = func.__name__
-        # Find the deepest method to underload
-        # Start at lowest, work up, but not current instance:
-        for cls in reversed(type(self).__mro__[1:]):
-            super_method = getattr(cls, method_name, None)
-            if super_method:
-                # bottom level, don't call wrapper:
-                if hasattr(super_method, "__wrapped__"):
-                    return super_method.__wrapped__(self, *args, **kwargs)
-                else:
-                    return super_method(self, *args, **kwargs)
-        # Nothing found in hierarchy, call this one:
-        return func(self, *args, **kwargs)
-    return wrapper
 
 # -------------------------------------------------------------------------
 #
@@ -62,10 +31,8 @@ def underloadable(func):
 class BusinessLogic():
     """
     Mixin for Database classes. Implements business logic in high-level
-    object-based code. Each of these methods could be "underloaded"
-    from a lower-level implementation for speed.
+    object-based code. 
     """
-    @underloadable
     def get_father_mother_handles_from_primary_family_from_person(
             self,
             handle=None,
