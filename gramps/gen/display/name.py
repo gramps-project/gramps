@@ -72,6 +72,7 @@ from ..const import ARABIC_COMMA, ARABIC_SEMICOLON, GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from ..lib.name import Name
 from ..lib.nameorigintype import NameOriginType
+from ..lib.serialize import to_dict
 
 try:
     from ..config import config
@@ -102,10 +103,8 @@ _PREFIX_IN_LIST = "prefix"
 _PRIMARY_IN_LIST = "primary"
 _TYPE_IN_LIST = "origintype"
 _CONNECTOR_IN_LIST = "connector"
-# FIXME: question: are these translated? Hope not!
-_ORIGINPATRO = "Patronymic" # NameOriginType.PATRONYMIC
-_ORIGINMATRO = "Matronymic" # NameOriginType.MATRONYMIC
-
+_ORIGINPATRO = str(NameOriginType(NameOriginType.PATRONYMIC))
+_ORIGINMATRO = str(NameOriginType(NameOriginType.MATRONYMIC))
 _ACT = True
 _INA = False
 
@@ -859,8 +858,6 @@ class NameDisplay:
         return self._make_fn(format_str, d, args)
 
     def format_str(self, name, format_str):
-        # FIXME: edit the raw format functions
-        return "XXX"
         return self._format_str_base(
             name.first_name,
             name.surname_list,
@@ -927,7 +924,7 @@ class NameDisplay:
         try:
             s = func(
                 first,
-                [surn.serialize() for surn in surname_list],
+                [to_dict(surn) for surn in surname_list],
                 suffix,
                 title,
                 call,
