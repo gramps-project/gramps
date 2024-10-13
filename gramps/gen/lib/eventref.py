@@ -69,9 +69,9 @@ class EventRef(
         AttributeBase.__init__(self, source)
         RefBase.__init__(self, source)
         if source:
-            self.__role = EventRoleType(source.role)
+            self.role = EventRoleType(source.role)
         else:
-            self.__role = EventRoleType()
+            self.role = EventRoleType()
 
     def serialize(self):
         """
@@ -83,7 +83,7 @@ class EventRef(
             NoteBase.serialize(self),
             AttributeBase.serialize(self),
             RefBase.serialize(self),
-            self.__role.serialize(),
+            self.role.serialize(),
         )
 
     @classmethod
@@ -133,8 +133,8 @@ class EventRef(
         NoteBase.unserialize(self, note_list)
         AttributeBase.unserialize(self, attribute_list)
         RefBase.unserialize(self, ref)
-        self.__role = EventRoleType()
-        self.__role.unserialize(role)
+        self.role = EventRoleType()
+        self.role.unserialize(role)
         return self
 
     def get_text_data_list(self):
@@ -144,7 +144,7 @@ class EventRef(
         :returns: Returns the list of all textual attributes of the object.
         :rtype: list
         """
-        return [self.__role.string]
+        return [self.role.string]
 
     def get_text_data_child_list(self):
         """
@@ -235,12 +235,10 @@ class EventRef(
         """
         Return the tuple corresponding to the preset role.
         """
-        return self.__role
+        return self.role
 
     def set_role(self, role):
         """
         Set the role according to the given argument.
         """
-        self.__role.set(role)
-
-    role = property(get_role, set_role, None, "Returns or sets role property")
+        self.role.set(role)

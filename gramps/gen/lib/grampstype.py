@@ -117,22 +117,22 @@ class GrampsType(metaclass=GrampsTypeMeta):
     __slots__ = ("__value", "__string")
 
     def __getstate__(self):
-        return {"__value": self.__value, "__string": self.__string}
+        return {"__value": self.value, "__string": self.string}
 
     def __setstate__(self, dict_):
-        self.__value = dict_["__value"]
-        if self.__value == self._CUSTOM:
-            self.__string = dict_["__string"]
+        self.value = dict_["__value"]
+        if self.value == self._CUSTOM:
+            self.string = dict_["__string"]
         else:
-            self.__string = ""
+            self.string = ""
 
     def __init__(self, value=None):
         """
         Create a new type, initialize the value from one of several possible
         states.
         """
-        self.__value = self._DEFAULT
-        self.__string = ""
+        self.value = self._DEFAULT
+        self.string = ""
         if value is not None:
             self.set(value)
 
@@ -143,29 +143,29 @@ class GrampsType(metaclass=GrampsTypeMeta):
             val = value[0]
             if len(value) > 1 and val == self._CUSTOM:
                 strg = value[1]
-        self.__value = val
-        self.__string = strg
+        self.value = val
+        self.string = strg
 
     def __set_int(self, value):
         "Set the value/string properties from an integer."
-        self.__value = value
-        self.__string = ""
+        self.value = value
+        self.string = ""
 
     def __set_instance(self, value):
         "Set the value/string properties from another grampstype."
-        self.__value = value.value
-        if self.__value == self._CUSTOM:
-            self.__string = value.string
+        self.value = value.value
+        if self.value == self._CUSTOM:
+            self.string = value.string
         else:
-            self.__string = ""
+            self.string = ""
 
     def __set_str(self, value):
         "Set the value/string properties from a string."
-        self.__value = self._S2IMAP.get(value, self._CUSTOM)
-        if self.__value == self._CUSTOM:
-            self.__string = value
+        self.value = self._S2IMAP.get(value, self._CUSTOM)
+        if self.value == self._CUSTOM:
+            self.string = value
         else:
-            self.__string = ""
+            self.string = ""
 
     def set(self, value):
         "Set the value/string properties from the passed in value."
@@ -178,8 +178,8 @@ class GrampsType(metaclass=GrampsTypeMeta):
         elif isinstance(value, str):
             self.__set_str(value)
         else:
-            self.__value = self._DEFAULT
-            self.__string = ""
+            self.value = self._DEFAULT
+            self.string = ""
 
     def set_from_xml_str(self, value):
         """
@@ -187,30 +187,30 @@ class GrampsType(metaclass=GrampsTypeMeta):
         (obtained e.g. from XML).
         """
         if value in self._E2IMAP:
-            self.__value = self._E2IMAP[value]
-            self.__string = ""
-            if self.__value == self._CUSTOM:
+            self.value = self._E2IMAP[value]
+            self.string = ""
+            if self.value == self._CUSTOM:
                 # if the custom event is actually 'Custom' then we should save it
                 # with that string value. That is, 'Custom' is in _E2IMAP
-                self.__string = value
+                self.string = value
         else:
-            self.__value = self._CUSTOM
-            self.__string = value
+            self.value = self._CUSTOM
+            self.string = value
 
     def xml_str(self):
         """
         Return the untranslated string (e.g. suitable for XML) corresponding
         to the type.
         """
-        if self.__value == self._CUSTOM:
-            return self.__string
-        if self.__value in self._I2EMAP:
-            return self._I2EMAP[self.__value]
+        if self.value == self._CUSTOM:
+            return self.string
+        if self.value in self._I2EMAP:
+            return self._I2EMAP[self.value]
         return _UNKNOWN
 
     def serialize(self):
         """Convert the object to a serialized tuple of data."""
-        return (self.__value, self.__string)
+        return (self.value, self.string)
 
     @classmethod
     def get_schema(cls):
@@ -231,18 +231,18 @@ class GrampsType(metaclass=GrampsTypeMeta):
 
     def unserialize(self, data):
         """Convert a serialized tuple of data to an object."""
-        self.__value, self.__string = data
-        if self.__value != self._CUSTOM:
-            self.__string = ""
+        self.value, self.string = data
+        if self.value != self._CUSTOM:
+            self.string = ""
         return self
 
     def __str__(self):
-        if self.__value == self._CUSTOM:
-            return self.__string
-        return self._I2SMAP.get(self.__value, _UNKNOWN)
+        if self.value == self._CUSTOM:
+            return self.string
+        return self._I2SMAP.get(self.value, _UNKNOWN)
 
     def __int__(self):
-        return self.__value
+        return self.value
 
     def get_map(self):
         return self._I2SMAP
@@ -265,11 +265,11 @@ class GrampsType(metaclass=GrampsTypeMeta):
 
     def is_custom(self):
         """Return true if custom type."""
-        return self.__value == self._CUSTOM
+        return self.value == self._CUSTOM
 
     def is_default(self):
         """Return true if default type."""
-        return self.__value == self._DEFAULT
+        return self.value == self._DEFAULT
 
     def get_custom(self):
         """Return custom type."""
@@ -287,24 +287,21 @@ class GrampsType(metaclass=GrampsTypeMeta):
 
     def __eq__(self, value):
         if isinstance(value, int):
-            return self.__value == value
+            return self.value == value
         if isinstance(value, str):
-            if self.__value == self._CUSTOM:
-                return self.__string == value
-            return self._I2SMAP.get(self.__value) == value
+            if self.value == self._CUSTOM:
+                return self.string == value
+            return self._I2SMAP.get(self.value) == value
         if isinstance(value, tuple):
-            if self.__value == self._CUSTOM:
-                return (self.__value, self.__string) == value
-            return self.__value == value[0]
+            if self.value == self._CUSTOM:
+                return (self.value, self.string) == value
+            return self.value == value[0]
 
-        if value.value == self._CUSTOM and self.__value == self._CUSTOM:
-            return self.__string == value.string
-        if self._CUSTOM not in [value.value, self.__value]:
-            return self.__value == value.value
+        if value.value == self._CUSTOM and self.value == self._CUSTOM:
+            return self.string == value.string
+        if self._CUSTOM not in [value.value, self.value]:
+            return self.value == value.value
         return False
 
     def __ne__(self, value):
         return not self.__eq__(value)
-
-    value = property(__int__, __set_int, None, "Returns or sets integer value")
-    string = property(__str__, __set_str, None, "Returns or sets string value")

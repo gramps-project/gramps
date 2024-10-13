@@ -56,13 +56,13 @@ class Tag(TableObject):
         TableObject.__init__(self, source)
 
         if source:
-            self.__name = source.name
-            self.__color = source.color
-            self.__priority = source.priority
+            self.name = source.name
+            self.color = source.color
+            self.priority = source.priority
         else:
-            self.__name = ""
-            self.__color = "#000000000000"  # Black
-            self.__priority = 0
+            self.name = ""
+            self.color = "#000000000000"  # Black
+            self.priority = 0
 
     def serialize(self):
         """
@@ -84,9 +84,9 @@ class Tag(TableObject):
         """
         return (
             self.handle,
-            self.__name,
-            self.__color,
-            self.__priority,
+            self.name,
+            self.color,
+            self.priority,
             self.change,
         )
 
@@ -101,9 +101,9 @@ class Tag(TableObject):
         """
         (
             self.handle,
-            self.__name,
-            self.__color,
-            self.__priority,
+            self.name,
+            self.color,
+            self.priority,
             self.change,
         ) = data
         return self
@@ -120,7 +120,7 @@ class Tag(TableObject):
             "type": "object",
             "title": _("Tag"),
             "properties": {
-                "_class": {"enum": [cls.__name__]},
+                "_class": {"enum": [cls.name__]},
                 "handle": {
                     "type": "string",
                     "maxLength": 50,
@@ -148,7 +148,7 @@ class Tag(TableObject):
         :returns: Returns the list of all textual attributes of the object.
         :rtype: list
         """
-        return [self.__name]
+        return [self.name]
 
     def is_empty(self):
         """
@@ -157,7 +157,7 @@ class Tag(TableObject):
         :returns: True if the Tag is empty
         :rtype: bool
         """
-        return not self.__name
+        return not self.name
 
     def are_equal(self, other):
         """
@@ -172,9 +172,9 @@ class Tag(TableObject):
             other = Tag()
 
         if (
-            self.__name != other.name
-            or self.__color != other.color
-            or self.__priority != other.priority
+            self.name != other.name
+            or self.color != other.color
+            or self.priority != other.priority
         ):
             return False
         return True
@@ -186,7 +186,7 @@ class Tag(TableObject):
         :param name: Name to assign to the Tag
         :type name: str
         """
-        self.__name = name
+        self.name = name
 
     def get_name(self):
         """
@@ -195,9 +195,7 @@ class Tag(TableObject):
         :returns: Name of the Tag
         :rtype: str
         """
-        return self.__name
-
-    name = property(get_name, set_name, None, "Returns or sets name of the tag")
+        return self.name
 
     def set_color(self, color):
         """
@@ -208,7 +206,7 @@ class Tag(TableObject):
         :param color: Color to assign to the Tag
         :type color: str
         """
-        self.__color = color
+        self.color = color
 
     def get_color(self):
         """
@@ -217,9 +215,7 @@ class Tag(TableObject):
         :returns: Returns the color of the Tag
         :rtype: str
         """
-        return self.__color
-
-    color = property(get_color, set_color, None, "Returns or sets color of the tag")
+        return self.color
 
     def set_priority(self, priority):
         """
@@ -230,7 +226,7 @@ class Tag(TableObject):
         :param priority: Priority to assign to the Tag
         :type priority: int
         """
-        self.__priority = priority
+        self.priority = priority
 
     def get_priority(self):
         """
@@ -239,8 +235,4 @@ class Tag(TableObject):
         :returns: Returns the priority of the Tag
         :rtype: int
         """
-        return self.__priority
-
-    priority = property(
-        get_priority, set_priority, None, "Returns or sets priority of the tag"
-    )
+        return self.priority
