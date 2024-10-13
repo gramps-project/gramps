@@ -73,12 +73,7 @@ def gramps_upgrade_21(self):
     self._txn_begin()
 
     for table_name in self._get_table_func():
-        # FIXME: temp, move to dbapi
-        try:
-            self.dbapi.execute("ALTER TABLE %s ADD COLUMN json_data TEXT;" % table_name.lower())
-            self.dbapi.commit()
-        except Exception:
-            pass
+        self.upgrade_table_for_json_access(table_name.lower())
 
         get_obj_from_handle = self._get_table_func(table_name, "handle_func")
         get_handles = self._get_table_func(table_name, "handles_func")

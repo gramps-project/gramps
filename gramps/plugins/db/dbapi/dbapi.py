@@ -82,6 +82,13 @@ class DBAPI(DbGeneric):
     def _initialize(self, directory, username, password):
         raise NotImplementedError
 
+    def upgrade_table_for_json_access(self, table_name):
+        try:
+            self.dbapi.execute("ALTER TABLE %s ADD COLUMN json_data TEXT;" % table_name)
+            self.dbapi.commit()
+        except Exception:
+            pass
+
     def _setup_data_access(self, format):
         """
         Called by subclasses to setup data access SQL field and method.
@@ -124,42 +131,42 @@ class DBAPI(DbGeneric):
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
             "given_name TEXT, "
             "surname TEXT, "
-            "blob_data BLOB"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE family "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "blob_data BLOB"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE source "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "blob_data BLOB"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE citation "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "blob_data BLOB"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE event "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "blob_data BLOB"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE media "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "blob_data BLOB"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
@@ -167,28 +174,28 @@ class DBAPI(DbGeneric):
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
             "enclosed_by VARCHAR(50), "
-            "blob_data BLOB"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE repository "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "blob_data BLOB"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE note "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "blob_data BLOB"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE tag "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "blob_data BLOB"
+            "json_data TEXT"
             ")"
         )
         # Secondary:

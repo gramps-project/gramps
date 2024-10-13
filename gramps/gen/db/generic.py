@@ -2698,3 +2698,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def set_schema_version(self, value):
         """set the current schema version"""
         self._set_metadata("version", str(value))
+
+    def upgrade_table_for_json_access(self, table_name):
+        pass
