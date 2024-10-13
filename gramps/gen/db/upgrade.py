@@ -93,6 +93,7 @@ def gramps_upgrade_21(self):
     # Bump up database version. Separate transaction to save metadata.
     self._set_metadata("version", 21)
 
+
 def gramps_upgrade_20(self):
     """
     Placeholder update.

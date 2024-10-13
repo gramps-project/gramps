@@ -876,7 +876,8 @@ class DBAPI(DbGeneric):
         while to_do:
             handle = to_do.pop()
             self.dbapi.execute(
-                f"SELECT handle, {self._data_field} FROM place WHERE enclosed_by = ?", [handle]
+                f"SELECT handle, {self._data_field} FROM place WHERE enclosed_by = ?",
+                [handle],
             )
             rows = self.dbapi.fetchall()
             for row in rows:
@@ -1006,7 +1007,9 @@ class DBAPI(DbGeneric):
 
     def _get_raw_data(self, obj_key, handle):
         table = KEY_TO_NAME_MAP[obj_key]
-        self.dbapi.execute(f"SELECT {self._data_field} FROM {table} WHERE handle = ?", [handle])
+        self.dbapi.execute(
+            f"SELECT {self._data_field} FROM {table} WHERE handle = ?", [handle]
+        )
         row = self.dbapi.fetchone()
         if row:
             return self._data_access.loads(row[0])

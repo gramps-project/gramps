@@ -131,6 +131,7 @@ PAT_AS_SURN = False
 def _make_cmp_key(a):
     return (len(a[1]), a[1])  # set reverse to True!!
 
+
 # -------------------------------------------------------------------------
 #
 # NameDisplayError class

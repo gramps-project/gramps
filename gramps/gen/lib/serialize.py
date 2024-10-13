@@ -92,6 +92,7 @@ def from_json(data):
     """
     return json.loads(data, object_hook=__object_hook)
 
+
 def to_dict(obj):
     """
     Encode a Gramps object in JSON format.
