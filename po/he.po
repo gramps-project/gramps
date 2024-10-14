@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-09-14 15:09+0000\n"
+"PO-Revision-Date: 2024-09-29 18:15+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -3344,7 +3344,7 @@ msgstr "שם פרטי שם משפחה סיומת"
 
 #: ../gramps/gen/display/name.py:417
 msgid "Main Surnames, Given Patronymic Suffix Prefix"
-msgstr "שם משפחה ראשוני, סיומת/קידומת שם שם נגזר משם האב שניתן"
+msgstr "שם משפחה ראשי, סיומת/קידומת שם שנגזר משם האב"
 
 #: ../gramps/gen/display/name.py:422
 msgid "Patronymic, Given"
@@ -8414,7 +8414,7 @@ msgstr "מצד האם"
 
 #: ../gramps/gen/lib/nametype.py:49
 msgid "Also Known As"
-msgstr "ידוע גם כ"
+msgstr "ידוע גם בשם"
 
 #: ../gramps/gen/lib/nametype.py:50
 msgid "Birth Name"
@@ -37699,7 +37699,7 @@ msgstr "הערה שתשמש ככותרת העמוד או כקוד PHP להכנס
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2357
 msgid "HTML user footer"
-msgstr "סיומת משתמש לעמוד HTML"
+msgstr "סיומת עמוד משתמש HTML"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2358
 msgid "A note to be used as the page footer"
