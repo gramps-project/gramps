@@ -129,7 +129,7 @@ class EventModel(FlatBaseModel):
         """
         Return the color column.
         """
-        return "color"
+        return 5
 
     def on_get_n_columns(self):
         return len(self.fmap) + 1
