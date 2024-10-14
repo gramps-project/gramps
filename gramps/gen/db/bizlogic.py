@@ -57,10 +57,17 @@ class BusinessLogic:
         return (None, None)
 
     def extract_data(self, table, handle, json_path_list):
+        """
+        Generic function that can handle jsonpath items in a list.
+        """
         raw_func = self._get_table_func(table.title(), "raw_func")
         raw_data = raw_func(handle)
         results = []
         for json_path in json_path_list:
             jsonpath_expr = jsonpath_ng.parse(json_path)
-            results.append(jsonpath_expr.find(raw_data)[0])
+            match = jsonpath_expr.find(raw_data)
+            if match:
+                results.append(match[0].value)
+            else:
+                results.append(None)
         return results
