@@ -11,13 +11,14 @@
 # Dan <denqwerta@gmail.com>, 2022.
 # Andrey Serbovets <serbovets.translation@gmail.com>, 2023, 2024.
 # Andrii Serbovets <serbovets.translation@gmail.com>, 2024.
+# Illia Maier <Illia-M@users.noreply.hosted.weblate.org>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-08-10 20:09+0000\n"
-"Last-Translator: Tymofii Lytvynenko <till.svit@gmail.com>\n"
+"PO-Revision-Date: 2024-10-08 07:15+0000\n"
+"Last-Translator: Illia Maier <Illia-M@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/uk/>\n"
 "Language: uk\n"
@@ -26,7 +27,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.8-dev\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -7042,7 +7043,7 @@ msgstr "Народження"
 #: ../gramps/gen/lib/childreftype.py:71
 msgctxt "relationship"
 msgid "Adopted"
-msgstr "Прийомн."
+msgstr "Всиновлений"
 
 #: ../gramps/gen/lib/childreftype.py:72
 msgid "Stepchild"
@@ -14286,7 +14287,7 @@ msgstr "Від"
 
 #: ../gramps/gui/editors/editdate.py:83
 msgid "To"
-msgstr "Кому"
+msgstr "По"
 
 #: ../gramps/gui/editors/editdate.py:84
 msgid "Span"
@@ -22752,7 +22753,7 @@ msgstr "vCalendar"
 
 #: ../gramps/plugins/export/export.gpr.py:176
 msgid "vC_alendar"
-msgstr "vC_alendar"
+msgstr "_vCalendar"
 
 #: ../gramps/plugins/export/export.gpr.py:177
 msgid "vCalendar is used in many calendaring and PIM applications."
@@ -37972,7 +37973,7 @@ msgstr "Архівом має бути файл, а не каталог"
 #: ../gramps/plugins/webreport/narrativeweb.py:595
 #, python-format
 msgid "ID=%(grampsid)s, path=%(dir)s"
-msgstr "ID=%(grampsid)s, path=%(dir)s"
+msgstr "ID=%(grampsid)s, шлях=%(dir)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:601
 msgid "Missing media objects:"
