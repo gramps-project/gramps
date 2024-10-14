@@ -5,7 +5,7 @@
 # Copyright (C) 2009-2013  Douglas S. Blank
 # Copyright (C) 2013       Paul Franklin
 # Copyright (C) 2013-2014  Vassilii Khachaturov
-# Copyright (C) 2017       Nick Hall
+# Copyright (C) 2017,2024  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -749,6 +749,28 @@ class Date(BaseObject):
         else:
             raise DateError("Invalid date to unserialize")
         return self
+
+    def get_object_state(self):
+        """
+        Get the current object state as a dictionary.
+
+        We override this method to represent an empty date as null in JSON.
+        """
+        if self.is_empty() and not self.text:
+            return None
+        else:
+            return super().get_object_state()
+
+    def set_object_state(self, attr_dict):
+        """
+        Set the current object state using information provided in the given
+        dictionary.
+
+        We override this method to convert `dateval` into a tuple.
+        """
+        if "dateval" in attr_dict:
+            attr_dict["dateval"] = tuple(attr_dict["dateval"])
+        super().set_object_state(attr_dict)
 
     @classmethod
     def get_schema(cls):
