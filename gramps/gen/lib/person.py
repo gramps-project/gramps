@@ -328,8 +328,9 @@ class Person(
         return attr_dict
 
     def set_attrs(self, attr_dict):
-        self.__gender = attr_dict["gender"]
-        del attr_dict["gender"]
+        if "gender" in attr_dict:
+            self.__gender = attr_dict["gender"]
+            del attr_dict["gender"]
         super().set_attrs(attr_dict)
 
     def _has_handle_reference(self, classname, handle):

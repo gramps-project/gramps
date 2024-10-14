@@ -116,12 +116,15 @@ class Tag(TableObject):
         return attr_dict
 
     def set_attrs(self, attr_dict):
-        self.__name = attr_dict["name"]
-        del attr_dict["name"]
-        self.__color = attr_dict["color"]
-        del attr_dict["color"]
-        self.__priority = attr_dict["priority"]
-        del attr_dict["priority"]
+        if "name" in attr_dict:
+            self.__name = attr_dict["name"]
+            del attr_dict["name"]
+        if "color" in attr_dict:
+            self.__color = attr_dict["color"]
+            del attr_dict["color"]
+        if "priority" in attr_dict:
+            self.__priority = attr_dict["priority"]
+            del attr_dict["priority"]
         super().set_attrs(attr_dict)
 
     @classmethod

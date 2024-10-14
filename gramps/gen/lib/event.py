@@ -143,10 +143,12 @@ class Event(
         return attr_dict
 
     def set_attrs(self, attr_dict):
-        self.__type = attr_dict["type"]
-        del attr_dict["type"]
-        self.__description = attr_dict["description"]
-        del attr_dict["description"]
+        if "type" in attr_dict:
+            self.__type = attr_dict["type"]
+            del attr_dict["type"]
+        if "description" in attr_dict:
+            self.__description = attr_dict["description"]
+            del attr_dict["description"]
         super().set_attrs(attr_dict)
 
     @classmethod
