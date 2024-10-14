@@ -1153,8 +1153,8 @@ class DBAPI(DbGeneric, BusinessLogic):
     def extract_data(self, table, handle, json_path_list):
         self.dbapi.execute(
             f"""SELECT
-                JSON_EXTRACT(json_data, {",".join(json_path_list)})
-                FROM {table} WHERE handle = ? limit 1;""",
+                    JSON_EXTRACT(json_data, {",".join([repr(item) for item in json_path_list])})
+                    FROM {table} WHERE handle = ? limit 1;""",
             [handle],
         )
         row = self.dbapi.fetchone()
