@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2008       Zsolt Foldvari
 # Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
-# Copyright (C) 2017       Nick Hall
+# Copyright (C) 2017,2024  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -101,6 +101,27 @@ class StyledText(BaseObject):
             self._tags = tags
         else:
             self._tags = []
+
+    def get_object_state(self):
+        """
+        Get the current object state as a dictionary.
+
+        We override this method to handle the `tags` and `string` properties.
+        """
+        attr_dict = {"_class": self.__class__.__name__}
+        attr_dict["tags"] = self._tags
+        attr_dict["string"] = self._string
+        return attr_dict
+
+    def set_object_state(self, attr_dict):
+        """
+        Set the current object state using information provided in the given
+        dictionary.
+
+        We override this method to handle the `tags` and `string` properties.
+        """
+        self._tags = attr_dict["tags"]
+        self._string = attr_dict["string"]
 
     # special methods
 

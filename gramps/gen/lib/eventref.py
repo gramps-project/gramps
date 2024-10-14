@@ -5,7 +5,7 @@
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
-# Copyright (C) 2017       Nick Hall
+# Copyright (C) 2017,2024  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -85,6 +85,26 @@ class EventRef(
             RefBase.serialize(self),
             self.__role.serialize(),
         )
+
+    def get_object_state(self):
+        """
+        Get the current object state as a dictionary.
+
+        We override this method to handle the `role` property.
+        """
+        attr_dict = super().get_object_state()
+        attr_dict["role"] = self.__role
+        return attr_dict
+
+    def set_object_state(self, attr_dict):
+        """
+        Set the current object state using information provided in the given
+        dictionary.
+
+        We override this method to handle the `role` property.
+        """
+        self.__role = attr_dict.pop("role")
+        super().set_object_state(attr_dict)
 
     @classmethod
     def get_schema(cls):

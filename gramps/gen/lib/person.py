@@ -1,10 +1,10 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2010       Michiel D. Nauta
-# Copyright (C) 2010,2017  Nick Hall
-# Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2000-2007       Donald N. Allingham
+# Copyright (C) 2010            Michiel D. Nauta
+# Copyright (C) 2010,2017,2024  Nick Hall
+# Copyright (C) 2011            Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -321,6 +321,26 @@ class Person(
         NoteBase.unserialize(self, note_list)
         TagBase.unserialize(self, tag_list)
         return self
+
+    def get_object_state(self):
+        """
+        Get the current object state as a dictionary.
+
+        We override this method to handle the `gender` property.
+        """
+        attr_dict = super().get_object_state()
+        attr_dict["gender"] = self.__gender
+        return attr_dict
+
+    def set_object_state(self, attr_dict):
+        """
+        Set the current object state using information provided in the given
+        dictionary.
+
+        We override this method to handle the `gender` property.
+        """
+        self.__gender = attr_dict.pop("gender")
+        super().set_object_state(attr_dict)
 
     def _has_handle_reference(self, classname, handle):
         """
