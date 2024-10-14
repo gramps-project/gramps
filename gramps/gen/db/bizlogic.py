@@ -23,31 +23,44 @@ Collection of business logic functions, moved from views
 to here for possible overloading by low-level implementations
 """
 
+
 # -------------------------------------------------------------------------
 #
 # Business class
 #
 # -------------------------------------------------------------------------
-class BusinessLogic():
+class BusinessLogic:
     """
     Mixin for Database classes. Implements business logic in high-level
-    object-based code. 
+    object-based code.
     """
+
     def get_father_mother_handles_from_primary_family_from_person(
-            self,
-            handle=None,
-            person=None
+        self, handle=None, person=None
     ):
-        """ High-level implementation """
-        if handle:
-            person = self.get_person_from_handle(handle)
+        if person:
+            handle = person.handle
 
-        fam_id = person.get_main_parents_family_handle()
-        if fam_id:
-            fam = self.get_family_from_handle(fam_id)
-            if fam:
-                f_id = fam.get_father_handle()
-                m_id = fam.get_mother_handle()
-                return (f_id, m_id)
+        fam_handle = self.extract_data(
+            "person",
+            handle,
+            ["$.parent_family_list[0]"],
+        )
 
+        if fam_handle:
+            f_handle, m_handle = self.extract_data(
+                "family",
+                fam_handle,
+                ["$.father_handle", "$.mother_handle"],
+            )
+            return (f_handle, m_handle)
         return (None, None)
+
+    def extract_data(table, handle, json_path_list):
+        raw_func = self._get_table_func(table.title(), "raw_func")
+        raw_data = raw_func(handle)
+        results = []
+        for json_path in json_path_list:
+            jsonpath_expr = jsonpath_ng.parse(json_path)
+            results.append(jsonpath_expr.find(raw_data)[0])
+        return results
