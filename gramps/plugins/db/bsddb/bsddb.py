@@ -152,12 +152,14 @@ class DbBsddb(SQLite):
             self._txn_begin()
             if new_t == "metadata":
                 sql = "REPLACE INTO metadata (setting, value) VALUES " "(?, ?)"
+                data_access = pickle
             else:
-                sql = "INSERT INTO %s (handle, blob_data) VALUES " "(?, ?)" % new_t
+                sql = "INSERT INTO %s (handle, json_data) VALUES " "(?, ?)" % new_t
+                data_access = json
 
             for key in dbmap.keys():
                 self.update()
-                data = pickle.loads(dbmap[key], encoding="utf-8")
+                data = data_access.loads(dbmap[key], encoding="utf-8")
 
                 if new_t == "metadata":
                     if key == b"version":
@@ -215,7 +217,7 @@ class DbBsddb(SQLite):
                         # These are list, but need to be set
                         data = set(data)
 
-                self.dbapi.execute(sql, [key.decode("utf-8"), pickle.dumps(data)])
+                self.dbapi.execute(sql, [key.decode("utf-8"), data_access.dumps(data)])
 
             # get schema version from file if not in metadata
             if new_t == "metadata" and schema_vers is None:

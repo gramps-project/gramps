@@ -35,6 +35,8 @@ import logging
 #
 # ------------------------------------------------------------------------
 from gramps.cli.clidbman import NAME_FILE
+from gramps.gen.db.dbconst import CLASS_TO_KEY_MAP
+from gramps.gen.lib.serialize import to_dict
 from gramps.gen.lib import EventType, NameOriginType, Tag, MarkerType
 from gramps.gen.utils.file import create_checksum
 from gramps.gen.utils.id import create_id
@@ -56,6 +58,40 @@ from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 LOG = logging.getLogger(".upgrade")
+
+
+def gramps_upgrade_21(self):
+    """
+    Add unpickled data to tables.
+    """
+    length = 0
+    for key in self._get_table_func():
+        count_func = self._get_table_func(key, "count_func")
+        length += count_func()
+
+    self.set_total(length)
+    self._txn_begin()
+
+    for table_name in self._get_table_func():
+        self.upgrade_table_for_json_access(table_name.lower())
+
+        get_obj_from_handle = self._get_table_func(table_name, "handle_func")
+        get_handles = self._get_table_func(table_name, "handles_func")
+        commit_func = self._get_table_func(table_name, "commit_func")
+        key = CLASS_TO_KEY_MAP[table_name]
+        for handle in get_handles():
+            obj = get_obj_from_handle(handle)
+            # Force the save in json_data:
+            # FIXME: temp, move to dbapi
+            raw = to_dict(obj)
+            self._setup_data_access("json")
+            self._commit_raw(raw, key)
+            self._setup_data_access("blob")
+            self.update()
+
+    self._txn_commit()
+    # Bump up database version. Separate transaction to save metadata.
+    self._set_metadata("version", 21)
 
 
 def gramps_upgrade_20(self):

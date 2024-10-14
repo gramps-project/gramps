@@ -77,6 +77,7 @@ class SQLite(DBAPI):
         else:
             path_to_db = os.path.join(directory, "sqlite.db")
         self.dbapi = Connection(path_to_db)
+        self._setup_data_access("json")
 
 
 # -------------------------------------------------------------------------
