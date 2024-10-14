@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-08-25 12:09+0000\n"
+"PO-Revision-Date: 2024-09-29 18:15+0000\n"
 "Last-Translator: AND <andam.i380f@aleeas.com>\n"
 "Language-Team: Macedonian <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/mk/>\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
-"X-Generator: Weblate 5.7.1-dev\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -297,9 +297,8 @@ msgstr "Потекло"
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:34
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:165
 #: ../gramps/plugins/view/view.gpr.py:168
-#, fuzzy
 msgid "Descendant Fan"
-msgstr "Потомци на %s"
+msgstr "Ладало графикон на потомци"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:38
 #: ../gramps/plugins/importer/importxml.py:349
@@ -554,7 +553,6 @@ msgstr ""
 "врски, како и заеднички предци се соопштени."
 
 #: ../data/tips.xml:30
-#, fuzzy
 msgid ""
 "<b>SoundEx can help with family research</b><br/>SoundEx solves a long "
 "standing problem in genealogy, how to handle spelling variations. The "
@@ -570,7 +568,7 @@ msgstr ""
 "е еднаква на имиња слични по звук. Познавањето на SoundEx кодот за презиме е "
 "многу корисно за пребарување на датотеките со Пописни податоци (микрофилм) "
 "во библиотека или друго истражувачко место. За да ги земете SoundEx кодовите "
-"за презимиња во вашата база, одете на <b>Алатки &gt; Услуги &gt; Генерирај "
+"за презимиња во вашата база, одете на <b>Алатки &gt; Услуги &gt; Создади "
 "SoundEx кодови</b>."
 
 #: ../data/tips.xml:32
@@ -1461,6 +1459,59 @@ msgid ""
 "                 F - filters are cleared\n"
 "                 E - Everything is set to default or cleared\n"
 msgstr ""
+"\n"
+"Употреба: gramps.py [ОПЦИЈА...]\n"
+"  --load-modules=МОДУЛ1,МОДУЛ2,...       Динамички модули за вчитување\n"
+"\n"
+"Опције помоћи\n"
+"  -?, --help                             Ја прикажува оваа порака за помош\n"
+"  --usage                                Прикажува кратка порака за "
+"користење\n"
+"\n"
+"Опције програма\n"
+"  -O, --open=СЕМЕЈНО_СТЕБЛО            Отвора семејно стебло\n"
+"  -U, --username=КОРИСНИК                Корисничко име на базата на "
+"податоци\n"
+"  -P, --password=ЛОЗИНКА                 Лозинка на корисникот на базата на "
+"податоци\n"
+"  -C, --create=СЕМЕЈНО_СТЕБЛО          Создава при отворање ако се работи за "
+"ново семејно стебло\n"
+"  -i, --import=НАЗИВ_НА_ДАТОТЕКА            Увезува датотека\n"
+"  -e, --export=НАЗИВ_НА_ДАТОТЕКА            Извезува датотека\n"
+"  -r, --remove=ШАБЛОН_НА_СЕМЕЈНО_СТЕБЛО  Го брише семејното стебло/а (со "
+"употреба на регуларни изрази)\n"
+"  -f, --format=ЗАПИС                     Наведува запис на семејното стебло\n"
+"  -a, --action=РАБОТА                     Ја наведува работата\n"
+"  -p, --options=ИСКАЗ_НА_ОПЦИИ             Наведува ОПЦИИ\n"
+"  -d, --debug=НАЗИВ_НА_ЗАПИСНИЧАРОТ          Го вклучува дневникот при "
+"одстранување на грешки\n"
+"  -l [ШАБЛОН_НА_СЕМЕЈНОТО_СТЕБЛО...]       Список на семејни стебла\n"
+"  -L [ШАБЛОН_НА_СЕМЕЈНОТО_СТЕБЛО...]       Детален список на семејни стебла\n"
+"  -t [ШАБЛОН_НА_СЕМЕЈНОТО_СТЕБЛО...]       Список на семејни стебла, одвоени "
+"со табулатор\n"
+"  -u, --force-unlock                     Присилува одклучување на семејното "
+"стебло\n"
+"  -s, --show                             Прикажува нагодувања\n"
+"  -c, --config=[подешавање[:вредност]]   Поставува нагодувања и го покренува "
+"Дедовникот\n"
+"  -y, --yes                              Не бара потврдување за опасни "
+"работи (само во конзолен режим)\n"
+"  -q, --quiet                            Го заќутува исказот на информации ("
+"само во конзолен режим)\n"
+"  -v, --version                          Прикажува издание\n"
+"  -S, --safe                             Покрени го Дедовникот во „Безбеден "
+"режим“\n"
+"                                          (со привремена употреба на "
+"подразбрани нагодувања)\n"
+"  -D, --default=[APXFE]                  Врати ги нагодувањата на "
+"подразбраните вредности;\n"
+"                 A - додатоците се исчистени\n"
+"                 P - нагодувања на подразбрани вредности\n"
+"                 X - книгите се исчистени, нагодувањата за извештаи и алати "
+"се вратени на подразбраните вредности\n"
+"                 F - филтрите се исчистени\n"
+"                 E - сѐ е вратено на подразбраните вредности или е "
+"исчистено\n"
 
 #: ../gramps/cli/argparser.py:108
 msgid ""
@@ -1689,16 +1740,25 @@ msgid ""
 "    %s\n"
 "\n"
 msgstr ""
+"\n"
+"ГРЕШКА: погрешна патека на базата на податоци во изборникот „Уредување —> "
+"Нагодувања.\n"
+"Отворете ги нагодувањата и наместете ја исправната патека за базата на "
+"податоци.\n"
+"\n"
+"Детали: не можам да ја создадат базата на податоци.\n"
+"    %s\n"
+"\n"
 
 #: ../gramps/cli/clidbman.py:585 ../gramps/gui/configure.py:2304
 #: ../gramps/gui/plug/_windows.py:764
 msgid "Never"
-msgstr ""
+msgstr "Никогаш"
 
 #: ../gramps/cli/clidbman.py:602
 #, python-format
 msgid "Locked by %s"
-msgstr ""
+msgstr "Заклучено од %s"
 
 #: ../gramps/cli/clidbman.py:604 ../gramps/gen/lib/attrtype.py:65
 #: ../gramps/gen/lib/childreftype.py:75 ../gramps/gen/lib/eventroletype.py:54
@@ -1782,12 +1842,12 @@ msgstr "Непознато"
 #: ../gramps/cli/grampscli.py:86
 #, python-format
 msgid "WARNING: %s"
-msgstr ""
+msgstr "ПРЕДУПРЕДУВАЊЕ: %s"
 
 #: ../gramps/cli/grampscli.py:93 ../gramps/cli/grampscli.py:247
 #, python-format
 msgid "ERROR: %s"
-msgstr ""
+msgstr "ГРЕШКА: %s"
 
 #: ../gramps/cli/grampscli.py:107 ../gramps/cli/user.py:219
 #: ../gramps/gui/dialog.py:317
@@ -1801,6 +1861,9 @@ msgid ""
 "be repaired from the Family Tree Manager. Select the database and click on "
 "the Repair button"
 msgstr ""
+"Дедовникот одкри проблем во базата на податоци. Ова некогаш може да се "
+"поправи преку управувачот на семејно стебло. Изберете ја базата и притиснете "
+"на копчето за Поправка."
 
 #: ../gramps/cli/grampscli.py:159 ../gramps/gui/dbloader.py:165
 msgid "Read only database"
@@ -2353,7 +2416,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:499
 msgctxt "from-date"
 msgid ""
-msgstr ""
+msgstr "од"
 
 #. Translators: If there is no special inflection for
 #. "to <Month>" in your language, DON'T translate this.
@@ -2368,7 +2431,7 @@ msgstr "Датум"
 #: ../gramps/gen/datehandler/_datedisplay.py:423
 #, python-brace-format
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
-msgstr ""
+msgstr "{date_quality} од {date_start} до {date_stop}{nonstd_calendar_and_ny}"
 
 #. Translators: If there is no special inflection for
 #. "between <Month>" in your language, DON'T translate this.
@@ -2376,7 +2439,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:444
 msgctxt "between-date"
 msgid ""
-msgstr ""
+msgstr "меѓу"
 
 #. Translators: If there is no special inflection for
 #. "and <Month>" in your language, DON'T translate this.
@@ -2391,7 +2454,7 @@ msgstr "Датум"
 #, python-brace-format
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
-msgstr ""
+msgstr "{date_quality}измеѓу {date_start} и {date_stop}{nonstd_calendar_and_ny}"
 
 #. Translators: If there is no special inflection for
 #. "before <Month>" in your language, DON'T translate this.
@@ -2597,12 +2660,12 @@ msgstr "дек (сне)"
 #: ../gramps/gen/datehandler/_datestrings.py:131
 msgctxt "alternative month names for January"
 msgid ""
-msgstr ""
+msgstr "јануари|I|i"
 
 #: ../gramps/gen/datehandler/_datestrings.py:132
 msgctxt "alternative month names for February"
 msgid ""
-msgstr ""
+msgstr "февруари|II|ii"
 
 #: ../gramps/gen/datehandler/_datestrings.py:133
 #, fuzzy
@@ -2655,12 +2718,12 @@ msgstr "Стилот употребен за подножјето."
 #: ../gramps/gen/datehandler/_datestrings.py:141
 msgctxt "alternative month names for November"
 msgid ""
-msgstr ""
+msgstr "ноември|XI|xi"
 
 #: ../gramps/gen/datehandler/_datestrings.py:142
 msgctxt "alternative month names for December"
 msgid ""
-msgstr ""
+msgstr "декември|XII|xii"
 
 #: ../gramps/gen/datehandler/_datestrings.py:147 ../gramps/gen/lib/date.py:645
 #, fuzzy
@@ -3200,6 +3263,22 @@ msgid ""
 "start your previous version of Gramps and %(wiki_backup_html_start)smake a "
 "backup%(html_end)s of your Family Tree."
 msgstr ""
+"Семејното дрво кое се обидуваш да го вчиташ е во %(dbtype)s вид на база, кој "
+"повеќе не е поддржан.\n"
+"Затоа не можеш да го вчиташ Семејното дрво без да го надградиш.\n"
+"\n"
+"Ако го надградиш тогаш нема да можеш да ја користиш предходното издание на "
+"Дедовникот, па дури и ако потоа направиш "
+"%(wiki_manual_backup_html_start)sрезерва%(html_end)s или го "
+"%(wiki_manual_export_html_start)sизвезеш%(html_end)s твоето надградено "
+"Семејно дрво.\n"
+"\n"
+"Силно се препорачува да направиш резервна копија на Семејното дрво.\n"
+"\n"
+"Ако сеуште не си направил резервна копија на Семејното дрво, тогаш треба да "
+"ја покренеш твоето предходно издание на Дедовникот и да "
+"%(wiki_backup_html_start)sнаправиш резервна копија%(html_end)s од твоето "
+"Семејно дрво."
 
 #: ../gramps/gen/db/generic.py:196 ../gramps/gen/db/generic.py:246
 #: ../gramps/gen/db/generic.py:2157
@@ -3283,42 +3362,51 @@ msgstr "Отстрани родители"
 msgid ""
 "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
+"Личноста:            %(n1)6d надоградена со %(n2)6d цитати за %(n3)6d "
+"секунди\n"
 
 #: ../gramps/gen/db/upgrade.py:588
 #, python-format
 msgid ""
 "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
+"Семејство:         %(n1)6d надоградено со  %(n2)6d цитати за %(n3)6d "
+"секунди\n"
 
 #: ../gramps/gen/db/upgrade.py:592
 #, python-format
 msgid ""
 "%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
+"Настани:         %(n1)6d надоградено со  %(n2)6d цитати за  %(n3)6d секунди\n"
 
 #: ../gramps/gen/db/upgrade.py:596
 #, python-format
 msgid ""
 "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
+"Медијски објекти: %(n1)6d надоградено со  %(n2)6d цитати за %(n3)6d секунди\n"
 
 #: ../gramps/gen/db/upgrade.py:600
 #, python-format
 msgid ""
 "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
+"Места:           %(n1)6d надоградено со  %(n2)6d цитати за %(n3)6d секунди\n"
 
 #: ../gramps/gen/db/upgrade.py:604
 #, python-format
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
+"Складови:        %(n1)6d надоградеи со %(n2)6d цитати за %(n3)6d секунди\n"
 
 #: ../gramps/gen/db/upgrade.py:608
 #, python-format
 msgid ""
 "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
+"Извори:           %(n1)6d надоградено со %(n2)6d цитати за %(n3)6d секунди\n"
 
 #: ../gramps/gen/db/upgrade.py:1173
 msgid "Number of new objects upgraded:\n"
@@ -3333,6 +3421,12 @@ msgid ""
 "in order to merge citations that contain similar\n"
 "information"
 msgstr ""
+"\n"
+"\n"
+"Можете да го покренете изборникот\n"
+"Алати —> Обработка на семејно стебло —> Спој\n"
+"за да ги споите цитатите кои содржат слични\n"
+"информации"
 
 #: ../gramps/gen/db/upgrade.py:1189
 #, fuzzy
@@ -3375,6 +3469,7 @@ msgstr "Дадено име"
 #: ../gramps/gen/display/name.py:417
 msgid "Main Surnames, Given Patronymic Suffix Prefix"
 msgstr ""
+"Главни презимиња, Име Татково име Послеставка (суфикс) Представка (префикс)"
 
 #: ../gramps/gen/display/name.py:422
 #, fuzzy
@@ -3501,7 +3596,7 @@ msgstr "Семејство"
 #: ../gramps/gen/display/name.py:1293
 #, python-format
 msgid "Wrong name format string %s"
-msgstr ""
+msgstr "Погрешна нишка на запис на име „%s“"
 
 #: ../gramps/gen/display/name.py:1299
 #, fuzzy
@@ -3511,7 +3606,7 @@ msgstr "Пребарување на неважечки упатувања на �
 #: ../gramps/gen/display/place.py:74 ../gramps/gen/plug/utils.py:394
 #, python-format
 msgid "Error in '%s' file: cannot load."
-msgstr ""
+msgstr "Грешка во датотеката „%s“: не може да се вчита."
 
 #: ../gramps/gen/display/place.py:75 ../gramps/gen/plug/docgen/treedoc.py:66
 #, fuzzy
@@ -3524,6 +3619,8 @@ msgid ""
 "WARNING: Too many arguments in filter '%s'!\n"
 "Trying to load with subset of arguments."
 msgstr ""
+"ПРЕДУПРЕДУВАЊЕ: Премногу аргументи во филтерот „%s“!\n"
+"Се обидувам да вчитам со подзбир на аргументи."
 
 #: ../gramps/gen/filters/_filterparser.py:142
 #, python-format
@@ -3531,11 +3628,13 @@ msgid ""
 "WARNING: Too few arguments in filter '%s'!\n"
 "         Trying to load anyway in the hope this will be upgraded."
 msgstr ""
+"ПРЕДУПРЕДУВАЊЕ: Премалку аргументи во филтерот „%s“!\n"
+"         Сепак се обидувам да вчитам со надеж дека ова ќе биде надоградено."
 
 #: ../gramps/gen/filters/_filterparser.py:154
 #, python-format
 msgid "ERROR: filter %s could not be correctly loaded. Edit the filter!"
-msgstr ""
+msgstr "ГРЕШКА: филтерот „%s“ не може исправно да се вчита. Уреди го филтерот!"
 
 #: ../gramps/gen/filters/_genericfilter.py:144
 #: ../gramps/gen/filters/_genericfilter.py:173
@@ -3653,7 +3752,7 @@ msgstr "Општи филтри"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:86
 msgid "Wrong format of date-time"
-msgstr ""
+msgstr "Погрешна форма на датум-време"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:88
 #, python-format
@@ -3661,6 +3760,8 @@ msgid ""
 "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
 msgstr ""
+"Прифатен е само датум-време во ИСО формата од ГГГГ-ММ-ДД чч:мм:сс, каде "
+"делот за „време“ е изборен. %s не задоволува."
 
 # !?!?!?
 #: ../gramps/gen/filters/rules/_hascitationbase.py:51
@@ -3754,7 +3855,7 @@ msgstr "Филтри на настани"
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:48
 #: ../gramps/gui/editors/filtereditor.py:553
 msgid "Number must be:"
-msgstr ""
+msgstr "Бројот мора да биде:"
 
 #: ../gramps/gen/filters/rules/_hasgallerybase.py:47
 #: ../gramps/gen/filters/rules/_hasldsbase.py:50
@@ -3855,7 +3956,7 @@ msgstr "Име на филтер:"
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:77
 #, python-format
 msgid "Can't find filter %s in the defined custom filters"
-msgstr ""
+msgstr "Не можам да го најдам филтерот %s во одредените посебни филтри"
 
 #: ../gramps/gen/filters/rules/_matchessourcefilterbase.py:49
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:50
@@ -3880,11 +3981,11 @@ msgstr "Нема опис"
 
 #: ../gramps/gen/filters/rules/_rule.py:102
 msgid "The filter definition contains a loop."
-msgstr ""
+msgstr "Дефиницијата на филтерот содржи круг."
 
 #: ../gramps/gen/filters/rules/_rule.py:104
 msgid "One rule references another which eventually references the first."
-msgstr ""
+msgstr "Едно правило укажува на друго, кое пак укажува на првото."
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:47
 #, fuzzy
