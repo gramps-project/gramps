@@ -110,7 +110,7 @@ class Person(
         self.parent_family_list = []
         self.alternate_names = []
         self.person_ref_list = []
-        self.gender = Person.UNKNOWN
+        self.__gender = Person.UNKNOWN
         self.death_ref_index = -1
         self.birth_ref_index = -1
         if data:
@@ -147,7 +147,7 @@ class Person(
         return (
             self.handle,  #  0
             self.gramps_id,  #  1
-            self.gender,  #  2
+            self.__gender,  #  2
             self.primary_name.serialize(),  #  3
             [name.serialize() for name in self.alternate_names],  #  4
             self.death_ref_index,  #  5
@@ -286,7 +286,7 @@ class Person(
         (
             self.handle,  #  0
             self.gramps_id,  #  1
-            self.gender,  #  2
+            self.__gender,  #  2
             primary_name,  #  3
             alternate_names,  #  4
             self.death_ref_index,  #  5
@@ -710,7 +710,7 @@ class Person(
         """
         if gender not in (Person.MALE, Person.FEMALE, Person.OTHER, Person.UNKNOWN):
             raise ValueError("Attempt to assign invalid gender")
-        self.gender = gender
+        self.__gender = gender
 
     def get_gender(self):
         """
@@ -724,7 +724,11 @@ class Person(
                   - Person.UNKNOWN
         :rtype: int
         """
-        return self.gender
+        return self.__gender
+
+    gender = property(
+        get_gender, set_gender, None, "Returns or sets the gender of the person"
+    )
 
     def set_birth_ref(self, event_ref):
         """
