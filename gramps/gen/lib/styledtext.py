@@ -101,6 +101,16 @@ class StyledText:
         else:
             self._tags = []
 
+    def get_attrs(self):
+        attr_dict = {"_class": self.__class__.__name__}
+        attr_dict["tags"] = self._tags
+        attr_dict["string"] = self._string
+        return attr_dict
+
+    def set_attrs(self, attr_dict):
+        self._tags = attr_dict["tags"]
+        self._string = attr_dict["string"]
+
     # special methods
 
     def __str__(self):

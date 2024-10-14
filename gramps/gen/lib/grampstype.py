@@ -136,6 +136,19 @@ class GrampsType(metaclass=GrampsTypeMeta):
         if value is not None:
             self.set(value)
 
+    def get_attrs(self):
+        attr_dict = {"_class": self.__class__.__name__}
+        attr_dict["value"] = self.__value
+        attr_dict["string"] = self.__string
+        return attr_dict
+
+    def set_attrs(self, attr_dict):
+        self.__value = attr_dict["value"]
+        if self.__value == self._CUSTOM:
+            self.__string = attr_dict["string"]
+        else:
+            self.__string = ""
+
     def __set_tuple(self, value):
         "Set the value/string properties from a tuple."
         val, strg = self._DEFAULT, ""
@@ -225,7 +238,8 @@ class GrampsType(metaclass=GrampsTypeMeta):
             "title": _("Type"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "string": {"type": "string", "title": _("Type")},
+                "string": {"type": "string", "title": _("Type String")},
+                "value": {"type": "integer", "title": _("Type Value")},
             },
         }
 

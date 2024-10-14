@@ -136,6 +136,19 @@ class Event(
             self.private,
         )
 
+    def get_attrs(self):
+        attr_dict = super().get_attrs()
+        attr_dict["type"] = self.__type
+        attr_dict["description"] = self.__description
+        return attr_dict
+
+    def set_attrs(self, attr_dict):
+        self.__type = attr_dict["type"]
+        del attr_dict["type"]
+        self.__description = attr_dict["description"]
+        del attr_dict["description"]
+        super().set_attrs(attr_dict)
+
     @classmethod
     def get_schema(cls):
         """

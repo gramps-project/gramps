@@ -151,6 +151,12 @@ class MediaRef(
         RefBase.unserialize(self, ref)
         return self
 
+    def set_attrs(self, attr_dict):
+        rect = attr_dict["rect"]
+        if rect is not None:
+            attr_dict["rect"] = tuple(rect)
+        super().set_attrs(attr_dict)
+
     def get_text_data_child_list(self):
         """
         Return the list of child objects that may carry textual data.

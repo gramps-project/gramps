@@ -749,6 +749,20 @@ class Date:
             raise DateError("Invalid date to unserialize")
         return self
 
+    def get_attrs(self):
+        attr_dict = {"_class": self.__class__.__name__}
+        for key, value in self.__dict__.items():
+            if not key.startswith("_"):
+                attr_dict[key] = value
+        return attr_dict
+
+    def set_attrs(self, attr_dict):
+        for key, value in attr_dict.items():
+            if key == "dateval":
+                value = tuple(value)
+            if key != "_class":
+                setattr(self, key, value)
+
     @classmethod
     def get_schema(cls):
         """

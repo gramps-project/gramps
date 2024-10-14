@@ -108,6 +108,22 @@ class Tag(TableObject):
         ) = data
         return self
 
+    def get_attrs(self):
+        attr_dict = super().get_attrs()
+        attr_dict["name"] = self.__name
+        attr_dict["color"] = self.__color
+        attr_dict["priority"] = self.__priority
+        return attr_dict
+
+    def set_attrs(self, attr_dict):
+        self.__name = attr_dict["name"]
+        del attr_dict["name"]
+        self.__color = attr_dict["color"]
+        del attr_dict["color"]
+        self.__priority = attr_dict["priority"]
+        del attr_dict["priority"]
+        super().set_attrs(attr_dict)
+
     @classmethod
     def get_schema(cls):
         """

@@ -57,6 +57,18 @@ class BaseObject(metaclass=ABCMeta):
         Convert a serialized tuple of data to an object.
         """
 
+    def get_attrs(self):
+        attr_dict = {"_class": self.__class__.__name__}
+        for key, value in self.__dict__.items():
+            if not key.startswith("_"):
+                attr_dict[key] = value
+        return attr_dict
+
+    def set_attrs(self, attr_dict):
+        for key, value in attr_dict.items():
+            if key != "_class":
+                setattr(self, key, value)
+
     def matches_string(self, pattern, case_sensitive=False):
         """
         Return True if any text data in the object or any of it's child
