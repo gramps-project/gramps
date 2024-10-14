@@ -28,7 +28,6 @@ Backend for SQLite database.
 # Python modules
 #
 # -------------------------------------------------------------------------
-import json
 import logging
 import os
 import re
@@ -78,6 +77,7 @@ class SQLite(DBAPI):
         else:
             path_to_db = os.path.join(directory, "sqlite.db")
         self.dbapi = Connection(path_to_db)
+
 
 # -------------------------------------------------------------------------
 #
