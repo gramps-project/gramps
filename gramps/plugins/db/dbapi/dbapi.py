@@ -1150,7 +1150,7 @@ class DBAPI(DbGeneric, BusinessLogic):
     # because we added them after conversion to JSON.
     # ------------------------------------------------------------
 
-    def extract_data(table, handle, json_path_list):
+    def extract_data(self, table, handle, json_path_list):
         self.dbapi.execute(
             f"""SELECT
                 JSON_EXTRACT(json_data, {",".join(json_path_list)})

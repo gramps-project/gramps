@@ -56,7 +56,7 @@ class BusinessLogic:
             return (f_handle, m_handle)
         return (None, None)
 
-    def extract_data(table, handle, json_path_list):
+    def extract_data(self, table, handle, json_path_list):
         raw_func = self._get_table_func(table.title(), "raw_func")
         raw_data = raw_func(handle)
         results = []
