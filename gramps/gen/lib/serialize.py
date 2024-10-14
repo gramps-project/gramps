@@ -38,47 +38,48 @@ import gramps.gen.lib as lib
 
 
 def __default(obj):
-    obj_dict = {'_class': obj.__class__.__name__}
+    obj_dict = {"_class": obj.__class__.__name__}
     if isinstance(obj, lib.GrampsType):
-        obj_dict['string'] = getattr(obj, 'string')
+        obj_dict["string"] = getattr(obj, "string")
     # FIXME
-    #if isinstance(obj, lib.Date):
-        #if obj.is_empty() and not obj.text:
-            #return None
+    # if isinstance(obj, lib.Date):
+    # if obj.is_empty() and not obj.text:
+    # return None
     for key, value in obj.__dict__.items():
-        if not key.startswith('_'):
+        if not key.startswith("_"):
             obj_dict[key] = value
     for key, value in obj.__class__.__dict__.items():
         if isinstance(value, property):
-            if key != 'year':
+            if key != "year":
                 obj_dict[key] = getattr(obj, key)
     return obj_dict
 
+
 def __object_hook(obj_dict):
-    g_class = obj_dict.pop('_class')
+    g_class = obj_dict.pop("_class")
     objcl = getattr(lib, g_class)
     obj = objcl.__new__(objcl)  # now we have instance, but NOT initialized
     if isinstance(obj, lib.GrampsType):
-        obj.set(obj_dict['string'])
+        obj.set(obj_dict["string"])
     else:
-        if 'dateval' in obj_dict:  # fix up tuple
-            value = obj_dict['dateval']
+        if "dateval" in obj_dict:  # fix up tuple
+            value = obj_dict["dateval"]
             if value is not None:
-                obj_dict['dateval'] = tuple(value)
-        elif 'rect' in obj_dict:  # fix up tuple
-            value = obj_dict['rect']
+                obj_dict["dateval"] = tuple(value)
+        elif "rect" in obj_dict:  # fix up tuple
+            value = obj_dict["rect"]
             if value is not None:
-                obj_dict['rect'] = tuple(value)
-        elif 'ranges' in obj_dict:  # fix up tuple
-            value = obj_dict['ranges']
-            obj_dict['ranges'] = [tuple(item) for item in value]
+                obj_dict["rect"] = tuple(value)
+        elif "ranges" in obj_dict:  # fix up tuple
+            value = obj_dict["ranges"]
+            obj_dict["ranges"] = [tuple(item) for item in value]
 
         # now we can merge the json dict with the object, loading everything
         obj.__dict__.update(obj_dict)
     # FIXME
-    #if obj_dict['_class'] == 'Date':
-        #if obj.is_empty() and not obj.text:
-            #return None
+    # if obj_dict['_class'] == 'Date':
+    # if obj.is_empty() and not obj.text:
+    # return None
     return obj
 
 
