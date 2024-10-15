@@ -403,9 +403,9 @@ if not os.path.exists(CONFIGMAN.filename):
     # If not, let's read old if there:
     if os.path.exists(os.path.join(USER_CONFIG, "keys.ini")):
         # read it in old style:
-        logging.warning("Importing old key file 'keys.ini'...")
+        logging.info("Importing old key file 'keys.ini'...")
         CONFIGMAN.load(os.path.join(USER_CONFIG, "keys.ini"), oldstyle=True)
-        logging.warning("Done importing old key file 'keys.ini'")
+        logging.info("Done importing old key file 'keys.ini'")
     # other version upgrades here...
     # check previous version of gramps:
     fullpath, filename = os.path.split(CONFIGMAN.filename)
@@ -424,11 +424,9 @@ if not os.path.exists(CONFIGMAN.filename):
             digits = str(int(match.groups()[0]) - i)
             previous_grampsini = os.path.join(fullpath, "gramps" + digits, filename)
             if os.path.exists(previous_grampsini):
-                logging.warning("Importing old config file '%s'...", previous_grampsini)
+                logging.info("Importing old config file '%s'...", previous_grampsini)
                 CONFIGMAN.load(previous_grampsini)
-                logging.warning(
-                    "Done importing old config file '%s'", previous_grampsini
-                )
+                logging.info("Done importing old config file '%s'", previous_grampsini)
                 break
 
 # ---------------------------------------------------------------
