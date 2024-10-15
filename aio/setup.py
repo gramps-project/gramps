@@ -196,7 +196,7 @@ EXECUTABLES = [
         "grampsaioc.py",
         base="Console",
         target_name="gramps.exe",
-        icon="gramps.ico",
+        icon="grampsc.ico",
         copyright=COPYRIGHT,
     ),
     cx_Freeze.Executable(
