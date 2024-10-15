@@ -23,6 +23,8 @@ Collection of business logic functions, moved from views
 to here for possible overloading by low-level implementations
 """
 
+import jsonpath_ng
+
 
 # -------------------------------------------------------------------------
 #
