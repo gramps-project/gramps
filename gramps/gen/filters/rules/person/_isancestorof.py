@@ -75,13 +75,15 @@ class IsAncestorOf(Rule):
             return
         if not first:
             self.map.add(person.handle)
-        f_id, m_id = db.get_father_mother_handles_from_primary_family_from_person(person=person)
+        f_id, m_id = db.get_father_mother_handles_from_primary_family_from_person(
+            person=person
+        )
         if f_id:
             self.init_ancestor_list(db, db.get_person_from_handle(f_id), 0)
         if m_id:
             self.init_ancestor_list(db, db.get_person_from_handle(m_id), 0)
-        #fam_id = person.get_main_parents_family_handle()
-        #if fam_id:
+        # fam_id = person.get_main_parents_family_handle()
+        # if fam_id:
         #    fam = db.get_family_from_handle(fam_id)
         #    if fam:
         #        f_id = fam.get_father_handle()
