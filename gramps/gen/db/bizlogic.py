@@ -37,6 +37,8 @@ class BusinessLogic:
     object-based code.
     """
 
+    CACHE = {}
+
     def get_father_mother_handles_from_primary_family_from_person(
         self, handle=None, person=None
     ):
@@ -66,7 +68,9 @@ class BusinessLogic:
         raw_data = raw_func(handle)
         results = []
         for json_path in json_path_list:
-            jsonpath_expr = jsonpath_ng.parse(json_path)
+            if json_path not in self.CACHE:
+                self.CACHE[json_path] = jsonpath_ng.parse(json_path)
+            jsonpath_expr = self.CACHE[json_path]
             match = jsonpath_expr.find(raw_data)
             if match:
                 results.append(match[0].value)
