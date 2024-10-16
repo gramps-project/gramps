@@ -62,6 +62,7 @@ from types import FunctionType
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .bizlogic import BusinessLogic
 from ..const import GRAMPS_LOCALE as glocale
 from ..errors import HandleError
 from ..lib import Researcher
@@ -153,6 +154,7 @@ class DummyDb(
     M_A_M_B(
         "NewBaseClass",
         (
+            BusinessLogic,
             DbReadBase,
             Callback,
             object,

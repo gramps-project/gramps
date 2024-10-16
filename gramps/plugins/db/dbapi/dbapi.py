@@ -61,6 +61,7 @@ from gramps.gen.lib import (
     Source,
     Tag,
 )
+from gramps.gen.db.bizlogic import BusinessLogic
 from gramps.gen.lib.genderstats import GenderStats
 from gramps.gen.updatecallback import UpdateCallback
 
@@ -73,7 +74,7 @@ _LOG = logging.getLogger(DBLOGNAME)
 # DBAPI class
 #
 # -------------------------------------------------------------------------
-class DBAPI(DbGeneric):
+class DBAPI(DbGeneric, BusinessLogic):
     """
     Database backends class for DB-API 2.0 databases
     """
@@ -1142,3 +1143,29 @@ class DBAPI(DbGeneric):
         in the appropriate type.
         """
         return [v if not isinstance(v, bool) else int(v) for v in values]
+
+    # ------------------------------------------------------------
+    # Fast SQL-specific implementations of primary object versions
+    # in BusniessLogic. These don't need to be blob-compatible
+    # because we added them after conversion to JSON.
+    # ------------------------------------------------------------
+
+    def extract_data(self, table, handle, json_path_list):
+        self.dbapi.execute(
+            f"""SELECT
+                    JSON_EXTRACT(json_data, {",".join([repr(item) for item in json_path_list])})
+                    FROM {table} WHERE handle = ? limit 1;""",
+            [handle],
+        )
+        row = self.dbapi.fetchone()
+        if row:
+            results = json.loads(row[0])
+            if results:
+                if len(json_path_list) == 1:
+                    return results[0]
+                else:
+                    return results
+        if len(json_path_list) == 1:
+            None
+        else:
+            return [None] * len(json_path_list)
