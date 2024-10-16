@@ -95,6 +95,8 @@ class DocBackend:
     HIGHLIGHT = 6
     SUPERSCRIPT = 7
     LINK = 8
+    STRIKETHROUGH = 9
+    SUBSCRIPT = 10
 
     SUPPORTED_MARKUP = []
 
@@ -111,6 +113,8 @@ class DocBackend:
         UNDERLINE: ("", ""),
         SUPERSCRIPT: ("", ""),
         LINK: ("", ""),
+        STRIKETHROUGH: ("", ""),
+        SUBSCRIPT: ("", ""),
     }
 
     def __init__(self, filename=None):
@@ -200,7 +204,6 @@ class DocBackend:
     def find_tag_by_stag(self, s_tag):
         """
         :param s_tag: object: assumed styledtexttag
-        :param s_tagvalue: None/int/str: value associated with the tag
 
         A styled tag is type with a value. Every styled tag must be converted
         to the tags used in the corresponding markup for the backend,
@@ -222,6 +225,8 @@ class DocBackend:
             self.STYLETYPE_MAP[tagtype.HIGHLIGHT] = self.HIGHLIGHT
             self.STYLETYPE_MAP[tagtype.SUPERSCRIPT] = self.SUPERSCRIPT
             self.STYLETYPE_MAP[tagtype.LINK] = self.LINK
+            self.STYLETYPE_MAP[tagtype.STRIKETHROUGH] = self.STRIKETHROUGH
+            self.STYLETYPE_MAP[tagtype.SUBSCRIPT] = self.SUBSCRIPT
 
         if s_tag.name == tagtype.LINK:
             return self.format_link(s_tag.value)

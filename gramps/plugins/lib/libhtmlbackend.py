@@ -182,6 +182,8 @@ class HtmlBackend(DocBackend):
         DocBackend.HIGHLIGHT,
         DocBackend.SUPERSCRIPT,
         DocBackend.LINK,
+        DocBackend.STRIKETHROUGH,
+        DocBackend.SUBSCRIPT,
     ]
 
     STYLETAG_MARKUP = {
@@ -189,6 +191,8 @@ class HtmlBackend(DocBackend):
         DocBackend.ITALIC: ("<em>", "</em>"),
         DocBackend.UNDERLINE: ('<span style="text-decoration:underline;">', "</span>"),
         DocBackend.SUPERSCRIPT: ("<sup>", "</sup>"),
+        DocBackend.STRIKETHROUGH: ("<s>", "</s>"),
+        DocBackend.SUBSCRIPT: ("<sub>", "</sub>"),
     }
 
     ESCAPE_FUNC = lambda self: escape
