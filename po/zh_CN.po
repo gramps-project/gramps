@@ -16,21 +16,22 @@
 # Tian Shixiong <tiansworld@fedoraproject.org>, 2023, 2024.
 # Nick Hall <nick-h@gramps-project.org>, 2024.
 # 快乐的老鼠宝宝 <laoshubaby@protonmail.com>, 2024.
+# pyccl <changcongliang@163.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-13 17:49+0100\n"
-"PO-Revision-Date: 2024-02-29 20:02+0000\n"
-"Last-Translator: Tian Shixiong <tiansworld@fedoraproject.org>\n"
-"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
-"gramps-project/gramps/zh_Hans/>\n"
+"PO-Revision-Date: 2024-10-18 00:20+0000\n"
+"Last-Translator: pyccl <changcongliang@163.com>\n"
+"Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
+"projects/gramps-project/gramps/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.8-rc\n"
 "X-Poedit-Bookmarks: 6522,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -1198,7 +1199,7 @@ msgstr "Gramps 家族树："
 #: ../gramps/cli/clidbman.py:177 ../gramps/cli/clidbman.py:216
 #: ../gramps/gui/clipboard.py:920 ../gramps/gui/configure.py:2359
 msgid "Family Tree"
-msgstr "家族树"
+msgstr "家谱"
 
 #. Translators: used in French+Russian, ignore otherwise
 #: ../gramps/cli/arghandler.py:466 ../gramps/cli/arghandler.py:470
@@ -3366,7 +3367,7 @@ msgstr "%(n1)6d  人员        与 %(n2)6d 引用于 %(n3)6d 秒内已升级\n"
 #, python-format
 msgid ""
 "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
+msgstr "%(n1)6d   家族      在 %(n3)6d 秒内获得了 %(n2)6d 引用的升级\n"
 
 #: ../gramps/gen/db/upgrade.py:592
 #, python-format
@@ -9029,7 +9030,7 @@ msgstr "数字"
 #: ../gramps/plugins/quickview/filterbyname.py:347
 #: ../gramps/plugins/tool/reorderids.glade:835
 msgid "Repository"
-msgstr "文库"
+msgstr "库"
 
 #: ../gramps/gen/lib/reporef.py:99 ../gramps/gui/clipboard.py:524
 msgid "Repository ref"
