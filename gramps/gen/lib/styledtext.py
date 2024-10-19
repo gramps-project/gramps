@@ -35,6 +35,7 @@ from copy import copy
 #
 # -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .baseobj import BaseObject
 from .styledtexttag import StyledTextTag
 
 _ = glocale.translation.gettext
@@ -45,7 +46,7 @@ _ = glocale.translation.gettext
 # StyledText
 #
 # -------------------------------------------------------------------------
-class StyledText:
+class StyledText(BaseObject):
     """Helper class to enable character based text formatting.
 
     :py:class:`StyledText` is a wrapper class binding the clear text string and

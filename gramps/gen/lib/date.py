@@ -38,6 +38,7 @@ import time
 # Gramps modules
 #
 # ------------------------------------------------------------------------
+from .baseobj import BaseObject
 from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
 from ..errors import DateError
@@ -563,7 +564,7 @@ class Span:
 # Date
 #
 # -------------------------------------------------------------------------
-class Date:
+class Date(BaseObject):
     """
     The core date handling class for Gramps.
 
