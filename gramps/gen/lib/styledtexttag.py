@@ -28,6 +28,7 @@
 #
 # -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .baseobj import BaseObject
 from .styledtexttagtype import StyledTextTagType
 
 _ = glocale.translation.gettext
@@ -38,7 +39,7 @@ _ = glocale.translation.gettext
 # StyledTextTag
 #
 # -------------------------------------------------------------------------
-class StyledTextTag:
+class StyledTextTag(BaseObject):
     """Hold formatting information for :py:class:`.StyledText`.
 
     :py:class:`StyledTextTag` is a container class, it's attributes are
