@@ -5,7 +5,7 @@
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
-# Copyright (C) 2017       Nick Hall
+# Copyright (C) 2017,2024  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -150,6 +150,18 @@ class MediaRef(
         AttributeBase.unserialize(self, attribute_list)
         RefBase.unserialize(self, ref)
         return self
+
+    def set_object_state(self, attr_dict):
+        """
+        Set the current object state using information provided in the given
+        dictionary.
+
+        We override this method to convert `rect` into a tuple.
+        """
+        rect = attr_dict["rect"]
+        if rect is not None:
+            attr_dict["rect"] = tuple(rect)
+        super().set_object_state(attr_dict)
 
     def get_text_data_child_list(self):
         """
