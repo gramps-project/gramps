@@ -25,17 +25,10 @@ This package implements an object difference engine.
 import json
 
 from ..db.utils import import_as_dict
-from ..lib.serialize import to_json
+from ..lib.serialize import to_struct, from_struct
 from ..const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
-
-
-def to_struct(obj):
-    """
-    Convert an object into a struct.
-    """
-    return json.loads(to_json(obj))
 
 
 def diff_dates(json1, json2):

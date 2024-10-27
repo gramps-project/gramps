@@ -36,7 +36,7 @@ import logging
 # ------------------------------------------------------------------------
 from gramps.cli.clidbman import NAME_FILE
 from gramps.gen.db.dbconst import CLASS_TO_KEY_MAP
-from gramps.gen.lib.serialize import to_dict
+from gramps.gen.lib.serialize import to_struct
 from gramps.gen.lib import EventType, NameOriginType, Tag, MarkerType
 from gramps.gen.utils.file import create_checksum
 from gramps.gen.utils.id import create_id
@@ -62,7 +62,7 @@ LOG = logging.getLogger(".upgrade")
 
 def gramps_upgrade_21(self):
     """
-    Add unpickled data to tables.
+    Add json_data field to tables.
     """
     length = 0
     for key in self._get_table_func():
@@ -73,6 +73,7 @@ def gramps_upgrade_21(self):
     self._txn_begin()
 
     for table_name in self._get_table_func():
+        # For each table, alter the database in an appropriate way:
         self.upgrade_table_for_json_access(table_name.lower())
 
         get_obj_from_handle = self._get_table_func(table_name, "handle_func")
@@ -80,13 +81,13 @@ def gramps_upgrade_21(self):
         commit_func = self._get_table_func(table_name, "commit_func")
         key = CLASS_TO_KEY_MAP[table_name]
         for handle in get_handles():
+            # Initially, serializer must be set to blob:
+            self.set_serializer("blob")
             obj = get_obj_from_handle(handle)
             # Force the save in json_data:
-            # FIXME: temp, move to dbapi
-            raw = to_dict(obj)
-            self._setup_data_access("json")
+            raw = to_struct(obj)
+            self.set_serializer("json")
             self._commit_raw(raw, key)
-            self._setup_data_access("blob")
             self.update()
 
     self._txn_commit()

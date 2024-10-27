@@ -83,31 +83,15 @@ class DBAPI(DbGeneric):
         raise NotImplementedError
 
     def upgrade_table_for_json_access(self, table_name):
+        """
+        A DBAPI level method for upgrading the given table
+        for a json_data field.
+        """
         try:
             self.dbapi.execute("ALTER TABLE %s ADD COLUMN json_data TEXT;" % table_name)
             self.dbapi.commit()
         except Exception:
             pass
-
-    def _setup_data_access(self, format):
-        """
-        Called by subclasses to setup data access SQL field and method.
-        Format must be 'blob' or 'json'.
-        """
-        if format == "blob":
-            self._data_field = "blob_data"
-            self._data_access = pickle
-        elif format == "json":
-            self._data_field = "json_data"
-            self._data_access = json
-        else:
-            raise Exception("Invalid data access format: must be 'blob' or 'json'")
-
-    def _get_handle_from_data(self, data):
-        if self._data_field == "blob_data":
-            return data[0]
-        elif self._data_field == "json_data":
-            return data["handle"]
 
     def _schema_exists(self):
         """
@@ -611,10 +595,10 @@ class DBAPI(DbGeneric):
 
         If no such Tag exists, None is returned.
         """
-        self.dbapi.execute(f"SELECT {self._data_field} FROM tag WHERE name = ?", [name])
+        self.dbapi.execute(f"SELECT {self.serializer.data_field} FROM tag WHERE name = ?", [name])
         row = self.dbapi.fetchone()
         if row:
-            return Tag.create(self._data_access.loads(row[0]))
+            return self.serializer.string_to_object(Tag, row[0])
         return None
 
     def _get_number_of(self, obj_key):
@@ -667,14 +651,14 @@ class DBAPI(DbGeneric):
             old_data = self._get_raw_data(obj_key, obj.handle)
             # update the object:
             self.dbapi.execute(
-                f"UPDATE {table} SET {self._data_field} = ? WHERE handle = ?",
-                [self._data_access.dumps(obj.serialize()), obj.handle],
+                f"UPDATE {table} SET {self.serializer.data_field} = ? WHERE handle = ?",
+                [self.serializer.object_to_string(obj), obj.handle],
             )
         else:
             # Insert the object:
             self.dbapi.execute(
-                f"INSERT INTO {table} (handle, {self._data_field}) VALUES (?, ?)",
-                [obj.handle, self._data_access.dumps(obj.serialize())],
+                f"INSERT INTO {table} (handle, {self.serializer.data_field}) VALUES (?, ?)",
+                [obj.handle, self.serializer.object_to_string(obj)],
             )
         self._update_secondary_values(obj)
         self._update_backlinks(obj, trans)
@@ -692,19 +676,19 @@ class DBAPI(DbGeneric):
         changes as part of the transaction.
         """
         table = KEY_TO_NAME_MAP[obj_key]
-        handle = self._get_handle_from_data(data)
+        handle = self.serializer.get_handle(data)
 
         if self._has_handle(obj_key, handle):
             # update the object:
             self.dbapi.execute(
-                f"UPDATE {table} SET {self._data_field} = ? WHERE handle = ?",
-                [self._data_access.dumps(data), handle],
+                f"UPDATE {table} SET {self.serializer.data_field} = ? WHERE handle = ?",
+                [self.serializer.data_to_string(data), handle],
             )
         else:
             # Insert the object:
             self.dbapi.execute(
-                f"INSERT INTO {table} (handle, {self._data_field}) VALUES (?, ?)",
-                [handle, self._data_access.dumps(data)],
+                f"INSERT INTO {table} (handle, {self.serializer.data_field}) VALUES (?, ?)",
+                [handle, self.serializer.data_to_string(data)],
             )
 
     def _update_backlinks(self, obj, transaction):
@@ -861,11 +845,11 @@ class DBAPI(DbGeneric):
         """
         table = KEY_TO_NAME_MAP[obj_key]
         with self.dbapi.cursor() as cursor:
-            cursor.execute(f"SELECT handle, {self._data_field} FROM {table}")
+            cursor.execute(f"SELECT handle, {self.serializer.data_field} FROM {table}")
             rows = cursor.fetchmany()
             while rows:
                 for row in rows:
-                    yield (row[0], self._data_access.loads(row[1]))
+                    yield (row[0], self.serializer.string_to_data(row[1]))
                 rows = cursor.fetchmany()
 
     def _iter_raw_place_tree_data(self):
@@ -876,13 +860,13 @@ class DBAPI(DbGeneric):
         while to_do:
             handle = to_do.pop()
             self.dbapi.execute(
-                f"SELECT handle, {self._data_field} FROM place WHERE enclosed_by = ?",
+                f"SELECT handle, {self.serializer.data_field} FROM place WHERE enclosed_by = ?",
                 [handle],
             )
             rows = self.dbapi.fetchall()
             for row in rows:
                 to_do.append(row[0])
-                yield (row[0], self._data_access.loads(row[1]))
+                yield (row[0], self.serializer.string_to_data(row[1]))
 
     def reindex_reference_map(self, callback):
         """
@@ -924,7 +908,7 @@ class DBAPI(DbGeneric):
             logging.info("Rebuilding %s reference map", class_func.__name__)
             with cursor_func() as cursor:
                 for _, val in cursor:
-                    obj = class_func.create(val)
+                    obj = self.serializer.data_to_object(class_func, val)
                     references = set(obj.get_referenced_handles_recursively())
                     # handle addition of new references
                     for ref_class_name, ref_handle in references:
@@ -1008,21 +992,21 @@ class DBAPI(DbGeneric):
     def _get_raw_data(self, obj_key, handle):
         table = KEY_TO_NAME_MAP[obj_key]
         self.dbapi.execute(
-            f"SELECT {self._data_field} FROM {table} WHERE handle = ?", [handle]
+            f"SELECT {self.serializer.data_field} FROM {table} WHERE handle = ?", [handle]
         )
         row = self.dbapi.fetchone()
         if row:
-            return self._data_access.loads(row[0])
+            return self.serializer.string_to_data(row[0])
         return None
 
     def _get_raw_from_id_data(self, obj_key, gramps_id):
         table = KEY_TO_NAME_MAP[obj_key]
         self.dbapi.execute(
-            f"SELECT {self._data_field} FROM {table} WHERE gramps_id = ?", [gramps_id]
+            f"SELECT {self.serializer.data_field} FROM {table} WHERE gramps_id = ?", [gramps_id]
         )
         row = self.dbapi.fetchone()
         if row:
-            return self._data_access.loads(row[0])
+            return self.serializer.string_to_data(row[0])
         return None
 
     def get_gender_stats(self):
@@ -1077,13 +1061,13 @@ class DBAPI(DbGeneric):
         else:
             if self._has_handle(obj_key, handle):
                 self.dbapi.execute(
-                    f"UPDATE {table} SET {self._data_field} = ? WHERE handle = ?",
-                    [self._data_access.dumps(data), handle],
+                    f"UPDATE {table} SET {self.serializer.data_field} = ? WHERE handle = ?",
+                    [self.serializer.data_to_string(data), handle],
                 )
             else:
                 self.dbapi.execute(
-                    f"INSERT INTO {table} (handle, {self._data_field}) VALUES (?, ?)",
-                    [handle, self._data_access.dumps(data)],
+                    f"INSERT INTO {table} (handle, {self.serializer.data_field}) VALUES (?, ?)",
+                    [handle, self.serializer.data_to_string(data)],
                 )
             obj = self._get_table_func(cls)["class_func"].create(data)
             self._update_secondary_values(obj)

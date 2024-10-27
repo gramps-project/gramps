@@ -28,6 +28,7 @@ Serialization utilities for Gramps.
 #
 # ------------------------------------------------------------------------
 import json
+import pickle
 
 # ------------------------------------------------------------------------
 #
@@ -41,10 +42,9 @@ def __default(obj):
     obj_dict = {"_class": obj.__class__.__name__}
     if isinstance(obj, lib.GrampsType):
         obj_dict["string"] = getattr(obj, "string")
-    # FIXME
-    # if isinstance(obj, lib.Date):
-    # if obj.is_empty() and not obj.text:
-    # return None
+    if isinstance(obj, lib.Date):
+        if obj.is_empty() and not obj.text:
+            return None
     for key, value in obj.__dict__.items():
         if not key.startswith("_"):
             obj_dict[key] = value
@@ -56,30 +56,17 @@ def __default(obj):
 
 
 def __object_hook(obj_dict):
-    g_class = obj_dict.pop("_class")
-    objcl = getattr(lib, g_class)
-    obj = objcl.__new__(objcl)  # now we have instance, but NOT initialized
-    if isinstance(obj, lib.GrampsType):
-        obj.set(obj_dict["string"])
-    else:
-        if "dateval" in obj_dict:  # fix up tuple
-            value = obj_dict["dateval"]
-            if value is not None:
-                obj_dict["dateval"] = tuple(value)
-        elif "rect" in obj_dict:  # fix up tuple
-            value = obj_dict["rect"]
-            if value is not None:
-                obj_dict["rect"] = tuple(value)
-        elif "ranges" in obj_dict:  # fix up tuple
-            value = obj_dict["ranges"]
-            obj_dict["ranges"] = [tuple(item) for item in value]
-
-        # now we can merge the json dict with the object, loading everything
-        obj.__dict__.update(obj_dict)
-    # FIXME
-    # if obj_dict['_class'] == 'Date':
-    # if obj.is_empty() and not obj.text:
-    # return None
+    obj = getattr(lib, obj_dict["_class"])()
+    for key, value in obj_dict.items():
+        if key != "_class":
+            if key in ("dateval", "rect") and value is not None:
+                value = tuple(value)
+            if key == "ranges":
+                value = [tuple(item) for item in value]
+            setattr(obj, key, value)
+    if obj_dict["_class"] == "Date":
+        if obj.is_empty() and not obj.text:
+            return None
     return obj
 
 
@@ -107,25 +94,78 @@ def from_json(data):
     return json.loads(data, object_hook=__object_hook)
 
 
-def to_dict(obj):
+def to_struct(obj):
     """
-    Encode a Gramps object in JSON format.
+    Convert a Gramps object into a struct.
 
-    :param obj: The Gramps object to be serialized.
+    :param obj: The object to be serialized.
     :type obj: object
-    :returns: The dictionary representation of the obj.
+    :returns: A dictionary.
     :rtype: dict
     """
-    return json.loads(json.dumps(obj, default=__default, ensure_ascii=False))
+    return json.loads(to_json(obj))
 
 
-def from_dict(data):
+def from_struct(struct):
     """
-    Decode JSON data into a Gramps object hierarchy.
+    Convert a struct into a Gramps object.
 
-    :param data: The dictionary representation of the obj.
+    :param data: The dictionary to be unserialized.
     :type data: dict
-    :returns: A Gramps object, fully instantiated
+    :returns: A Gramps object.
     :rtype: object
     """
-    return json.loads(json.dumps(data), object_hook=__object_hook)
+    return from_json(json.dumps(struct))
+
+from_dict = from_struct
+to_dict = to_struct
+
+class BlobSerializer:
+    """
+    Serializer for blob data
+    """
+    data_field = "blob_data"
+    def data_to_object(self, obj_class, data):
+        return obj_class.create(data)
+
+    def string_to_object(self, obj_class, string):
+        return obj_class.create(pickle.loads(string))
+
+    def string_to_data(self, string):
+        return pickle.loads(string)
+
+    def object_to_string(self, obj):
+        return pickle.dumps(obj.serialize())
+
+    def data_to_string(self, data):
+        return pickle.dumps(data)
+
+    def get_handle(self, data):
+        return data[0]
+
+class JSONSerializer:
+    """
+    Serializer for JSON data
+    """
+    data_field = "json_data"
+    def data_to_object(self, obj_class, data):
+        return from_struct(data)
+
+    def string_to_object(self, obj_class, string):
+        return from_json(string)
+
+    def string_to_data(self, string):
+        return json.loads(string)
+
+    def object_to_string(self, obj):
+        return to_json(obj)
+
+    def data_to_string(self, data):
+        return json.dumps(data)
+
+    def get_handle(self, data):
+        return data["handle"]
+
+
+BLOB_SERIALIZER = BlobSerializer()
+JSON_SERIALIZER = JSONSerializer()
