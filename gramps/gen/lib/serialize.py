@@ -117,9 +117,6 @@ def from_struct(struct):
     """
     return from_json(json.dumps(struct))
 
-from_dict = from_struct
-to_dict = to_struct
-
 class BlobSerializer:
     """
     Serializer for blob data
@@ -140,8 +137,8 @@ class BlobSerializer:
     def data_to_string(self, data):
         return pickle.dumps(data)
 
-    def get_handle(self, data):
-        return data[0]
+    def get_item(self, data, position):
+        return data[position]
 
 class JSONSerializer:
     """
@@ -163,8 +160,8 @@ class JSONSerializer:
     def data_to_string(self, data):
         return json.dumps(data)
 
-    def get_handle(self, data):
-        return data["handle"]
+    def get_item(self, data, key):
+        return data[key]
 
 
 BLOB_SERIALIZER = BlobSerializer()

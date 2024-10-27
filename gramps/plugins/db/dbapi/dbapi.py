@@ -676,7 +676,7 @@ class DBAPI(DbGeneric):
         changes as part of the transaction.
         """
         table = KEY_TO_NAME_MAP[obj_key]
-        handle = self.serializer.get_handle(data)
+        handle = self.serializer.get_item(data, "handle")
 
         if self._has_handle(obj_key, handle):
             # update the object:
