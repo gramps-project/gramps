@@ -1637,7 +1637,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         cursor = self._get_table_func(class_.__name__, "cursor_func")
         for data in cursor():
-            return self.serializer.data_to_object(class_, data[1])
+            yield self.serializer.data_to_object(class_, data[1])
 
     def iter_people(self):
         return self._iter_objects(Person)
