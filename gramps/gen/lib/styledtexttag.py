@@ -1,9 +1,9 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2008  Zsolt Foldvari
-# Copyright (C) 2013  Doug Blank <doug.blank@gmail.com>
-# Copyright (C) 2017  Nick Hall
+# Copyright (C) 2008       Zsolt Foldvari
+# Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2017,2024  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@
 #
 # -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .baseobj import BaseObject
 from .styledtexttagtype import StyledTextTagType
 
 _ = glocale.translation.gettext
@@ -38,7 +39,7 @@ _ = glocale.translation.gettext
 # StyledTextTag
 #
 # -------------------------------------------------------------------------
-class StyledTextTag:
+class StyledTextTag(BaseObject):
     """Hold formatting information for :py:class:`.StyledText`.
 
     :py:class:`StyledTextTag` is a container class, it's attributes are
@@ -68,6 +69,16 @@ class StyledTextTag:
         else:
             # Current use of StyledTextTag is such that a shallow copy suffices.
             self.ranges = ranges
+
+    def set_object_state(self, attr_dict):
+        """
+        Set the current object state using information provided in the given
+        dictionary.
+
+        We override this method to convert the elements of `ranges` into tuples.
+        """
+        attr_dict["ranges"] = [tuple(item) for item in attr_dict["ranges"]]
+        super().set_object_state(attr_dict)
 
     def serialize(self):
         """Convert the object to a serialized tuple of data.

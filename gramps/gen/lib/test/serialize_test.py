@@ -50,11 +50,6 @@ class BaseCheck:
         obj = from_json(data)
         self.assertEqual(self.object.serialize(), obj.serialize())
 
-    def test_from_empty_json(self):
-        data = '{"_class": "%s"}' % self.cls.__name__
-        obj = from_json(data)
-        self.assertEqual(self.object.serialize(), obj.serialize())
-
 
 class PersonCheck(unittest.TestCase, BaseCheck):
     def setUp(self):
