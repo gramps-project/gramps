@@ -87,22 +87,12 @@ class GrampsType(metaclass=GrampsTypeMeta):
       List of indices to ignore (obsolete/retired entries).
       (gramps policy is never to delete type values, or reuse the name (TOKEN)
       of any specific type value)
-    :cvar POS_<x>: (int)
-      Position of <x> attribute in the serialized format of
-      an instance.
-
-    .. warning:: The POS_<x> class variables reflect the serialized object,
-                 they have to be updated in case the data structure or the
-                 :meth:`serialize` method changes!
-
     :cvar _CUSTOM:  (int) a custom type object
     :cvar _DEFAULT: (int) the default type, used on creation
 
     :attribute value: (int) Returns or sets integer value
     :attribute string: (str) Returns or sets string value
     """
-
-    (POS_VALUE, POS_STRING) = list(range(2))
 
     _CUSTOM = 0
     _DEFAULT = 0
