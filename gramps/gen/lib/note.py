@@ -62,26 +62,9 @@ class Note(BasicPrimaryObject):
 
     :cvar FLOWED: indicates flowed format
     :cvar FORMATTED: indicates formatted format (respecting whitespace needed)
-    :cvar POS_<x>: (int) Position of <x> attribute in the serialized format of
-        an instance.
-
-    .. warning:: The POS_<x> class variables reflect the serialized object,
-                 they have to be updated in case the data structure or the
-                 :meth:`serialize` method changes!
     """
 
     (FLOWED, FORMATTED) = list(range(2))
-
-    (
-        POS_HANDLE,
-        POS_ID,
-        POS_TEXT,
-        POS_FORMAT,
-        POS_TYPE,
-        POS_CHANGE,
-        POS_TAGS,
-        POS_PRIVATE,
-    ) = list(range(8))
 
     def __init__(self, text=""):
         """Create a new Note object, initializing from the passed string."""

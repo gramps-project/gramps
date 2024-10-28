@@ -254,7 +254,7 @@ class PeopleBaseModel(BaseModel):
         if index != -1:
             try:
                 local = data[COLUMN_EVENT][index]
-                b = db.serializer.data_to_object(EventRef, local)
+                b = self.db.serializer.data_to_object(EventRef, local)
                 #b = EventRef()
                 #b.unserialize(local)
                 birth = self.db.get_event_from_handle(b.ref)
@@ -315,7 +315,7 @@ class PeopleBaseModel(BaseModel):
         if index != -1:
             try:
                 local = data[COLUMN_EVENT][index]
-                ref = db.serializer.data_to_object(EventRef, local)
+                ref = self.db.serializer.data_to_object(EventRef, local)
                 #ref = EventRef()
                 #ref.unserialize(local)
                 event = self.db.get_event_from_handle(ref.ref)
@@ -364,7 +364,7 @@ class PeopleBaseModel(BaseModel):
             if index != -1:
                 try:
                     local = data[COLUMN_EVENT][index]
-                    br = db.serializer.data_to_object(EventRef, local)
+                    br = self.db.serializer.data_to_object(EventRef, local)
                     #br = EventRef()
                     #br.unserialize(local)
                     event = self.db.get_event_from_handle(br.ref)
@@ -380,7 +380,7 @@ class PeopleBaseModel(BaseModel):
                     return value
 
             for event_ref in data[COLUMN_EVENT]:
-                er = db.serializer.data_to_object(EventRef, event_ref)
+                er = self.db.serializer.data_to_object(EventRef, event_ref)
                 #er = EventRef()
                 #er.unserialize(event_ref)
                 event = self.db.get_event_from_handle(er.ref)
@@ -405,7 +405,7 @@ class PeopleBaseModel(BaseModel):
             if index != -1:
                 try:
                     local = data[COLUMN_EVENT][index]
-                    dr = db.serializer.data_to_object(EventRef, local)
+                    dr = self.db.serializer.data_to_object(EventRef, local)
                     #dr = EventRef()
                     #dr.unserialize(local)
                     event = self.db.get_event_from_handle(dr.ref)
@@ -421,7 +421,7 @@ class PeopleBaseModel(BaseModel):
                     return value
 
             for event_ref in data[COLUMN_EVENT]:
-                er = db.serializer.data_to_object(EventRef, event_ref)
+                er = self.db.serializer.data_to_object(EventRef, event_ref)
                 #er = EventRef()
                 #er.unserialize(event_ref)
                 event = self.db.get_event_from_handle(er.ref)

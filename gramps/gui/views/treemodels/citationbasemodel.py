@@ -54,15 +54,15 @@ from gramps.gen.config import config
 # -------------------------------------------------------------------------
 # These are the column numbers in the serialize/unserialize interfaces in
 # the Citation object
-COLUMN_HANDLE = 0
-COLUMN_ID = 1
-COLUMN_DATE = 2
-COLUMN_PAGE = 3
-COLUMN_CONFIDENCE = 4
-COLUMN_SOURCE = 5
-COLUMN_CHANGE = 9
-COLUMN_TAGS = 10
-COLUMN_PRIV = 11
+COLUMN_HANDLE = "handle"
+COLUMN_ID = "gramps_id"
+COLUMN_DATE = "date"
+COLUMN_PAGE = "page"
+COLUMN_CONFIDENCE = "confidence"
+COLUMN_SOURCE = "source_handle"
+COLUMN_CHANGE = "change"
+COLUMN_TAGS = "tag_list"
+COLUMN_PRIV = "private"
 
 # Data for the Source object
 COLUMN2_HANDLE = 0
@@ -88,8 +88,9 @@ class CitationBaseModel:
 
     def citation_date(self, data):
         if data[COLUMN_DATE]:
-            citation = Citation()
-            citation.unserialize(data)
+            citation = self.db.serializer.data_to_object(Citation, data)
+            #citation = Citation()
+            #citation.unserialize(data)
             date_str = get_date(citation)
             if date_str != "":
                 retval = escape(date_str)
@@ -101,8 +102,9 @@ class CitationBaseModel:
 
     def citation_sort_date(self, data):
         if data[COLUMN_DATE]:
-            citation = Citation()
-            citation.unserialize(data)
+            citation = self.db.serializer.data_to_object(Citation, data)
+            #citation = Citation()
+            #citation.unserialize(data)
             retval = "%09d" % citation.get_date_object().get_sort_value()
             if not get_date_valid(citation):
                 return INVALID_DATE_FORMAT % retval
@@ -143,7 +145,7 @@ class CitationBaseModel:
         """
         Return the tag color.
         """
-        tag_handle = data[0]
+        tag_handle = data["handle"]
         cached, tag_color = self.get_cached_value(tag_handle, "TAG_COLOR")
         if not cached:
             tag_color = ""
@@ -316,7 +318,7 @@ class CitationBaseModel:
         """
         Return the tag color.
         """
-        tag_handle = data[0]
+        tag_handle = data["handle"]
         cached, tag_color = self.get_cached_value(tag_handle, "TAG_COLOR")
         if not cached:
             tag_color = ""
