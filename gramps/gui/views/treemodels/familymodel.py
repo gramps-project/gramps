@@ -172,7 +172,7 @@ class FamilyModel(FlatBaseModel):
         if not cached:
             family = self.db.get_family_from_handle(data["handle"])
             event = get_marriage_or_fallback(self.db, family, "<i>%s</i>")
-            if event:
+            if event and event.date:
                 if event.date.format:
                     value = event.date.format % displayer.display(event.date)
                 elif not get_date_valid(event):
