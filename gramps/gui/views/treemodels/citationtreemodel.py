@@ -213,15 +213,21 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
         # source)
         if self._get_node(data["source_handle"]):
             #             parent   child   sortkey   handle
-            self.add_node(data["source_handle"], handle, sort_key, handle, secondary=True)
+            self.add_node(
+                data["source_handle"], handle, sort_key, handle, secondary=True
+            )
         else:
             # add the source node first
             source_sort_key = self.sort_func(self.map(data["source_handle"]))
             #            parent child    sortkey          handle
-            self.add_node(None, data["source_handle"], source_sort_key, data["source_handle"])
+            self.add_node(
+                None, data["source_handle"], source_sort_key, data["source_handle"]
+            )
 
             #            parent    child   sortkey   handle
-            self.add_node(data["source_handle"], handle, sort_key, handle, secondary=True)
+            self.add_node(
+                data["source_handle"], handle, sort_key, handle, secondary=True
+            )
 
     def on_get_n_columns(self):
         return len(self.fmap) + 1

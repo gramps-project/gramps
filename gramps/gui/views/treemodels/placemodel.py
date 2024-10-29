@@ -137,13 +137,17 @@ class PlaceBaseModel:
 
     def search_name(self, data):
         """The search name includes all alt names to enable finding by alt name"""
-        return ",".join([data["name"]["value"]] + [name["value"] for name in data["alt_name"]])
+        return ",".join(
+            [data["name"]["value"]] + [name["value"] for name in data["alt_name"]]
+        )
 
     def column_longitude(self, data):
         if not data["long"]:
             return ""
         value = conv_lat_lon(
-            "0", data["long"], format=coord_formats[config.get("preferences.coord-format")]
+            "0",
+            data["long"],
+            format=coord_formats[config.get("preferences.coord-format")],
         )[1]
         if not value:
             return _("Error in format")
@@ -153,7 +157,9 @@ class PlaceBaseModel:
         if not data["lat"]:
             return ""
         value = conv_lat_lon(
-            data["lat"], "0", format=coord_formats[config.get("preferences.coord-format")]
+            data["lat"],
+            "0",
+            format=coord_formats[config.get("preferences.coord-format")],
         )[0]
         if not value:
             return _("Error in format")
@@ -162,7 +168,9 @@ class PlaceBaseModel:
     def sort_longitude(self, data):
         if not data["long"]:
             return ""
-        value = conv_lat_lon("0", data["long"], format="ISO-DMS") if data["long"] else ""
+        value = (
+            conv_lat_lon("0", data["long"], format="ISO-DMS") if data["long"] else ""
+        )
         if not value:
             return _("Error in format")
         return value

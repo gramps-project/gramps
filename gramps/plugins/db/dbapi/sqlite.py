@@ -78,6 +78,7 @@ class SQLite(DBAPI):
             path_to_db = os.path.join(directory, "sqlite.db")
         self.dbapi = Connection(path_to_db)
 
+
 # -------------------------------------------------------------------------
 #
 # Connection class

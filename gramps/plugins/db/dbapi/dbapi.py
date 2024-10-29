@@ -596,7 +596,9 @@ class DBAPI(DbGeneric):
 
         If no such Tag exists, None is returned.
         """
-        self.dbapi.execute(f"SELECT {self.serializer.data_field} FROM tag WHERE name = ?", [name])
+        self.dbapi.execute(
+            f"SELECT {self.serializer.data_field} FROM tag WHERE name = ?", [name]
+        )
         row = self.dbapi.fetchone()
         if row:
             return self.serializer.string_to_object(Tag, row[0])
@@ -993,7 +995,8 @@ class DBAPI(DbGeneric):
     def _get_raw_data(self, obj_key, handle):
         table = KEY_TO_NAME_MAP[obj_key]
         self.dbapi.execute(
-            f"SELECT {self.serializer.data_field} FROM {table} WHERE handle = ?", [handle]
+            f"SELECT {self.serializer.data_field} FROM {table} WHERE handle = ?",
+            [handle],
         )
         row = self.dbapi.fetchone()
         if row:
@@ -1003,7 +1006,8 @@ class DBAPI(DbGeneric):
     def _get_raw_from_id_data(self, obj_key, gramps_id):
         table = KEY_TO_NAME_MAP[obj_key]
         self.dbapi.execute(
-            f"SELECT {self.serializer.data_field} FROM {table} WHERE gramps_id = ?", [gramps_id]
+            f"SELECT {self.serializer.data_field} FROM {table} WHERE gramps_id = ?",
+            [gramps_id],
         )
         row = self.dbapi.fetchone()
         if row:
