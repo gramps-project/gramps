@@ -90,8 +90,6 @@ class CitationBaseModel:
     def citation_date(self, data):
         if data[COLUMN_DATE]:
             citation = from_struct(data)
-            #citation = Citation()
-            #citation.unserialize(data)
             date_str = get_date(citation)
             if date_str != "":
                 retval = escape(date_str)
@@ -104,8 +102,6 @@ class CitationBaseModel:
     def citation_sort_date(self, data):
         if data[COLUMN_DATE]:
             citation = from_struct(data)
-            #citation = Citation()
-            #citation.unserialize(data)
             retval = "%09d" % citation.get_date_object().get_sort_value()
             if not get_date_valid(citation):
                 return INVALID_DATE_FORMAT % retval

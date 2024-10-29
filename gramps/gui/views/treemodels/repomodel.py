@@ -142,8 +142,6 @@ class RepositoryModel(FlatBaseModel):
         try:
             if data["address_list"]:
                 addr = from_struct(data["address_list"][0])
-                #addr = Address()
-                #addr.unserialize(data[5][0])
                 return addr.get_city()
         except:
             pass
@@ -153,8 +151,6 @@ class RepositoryModel(FlatBaseModel):
         try:
             if data["address_list"]:
                 addr = from_struct(data["address_list"][0])
-                #addr = Address()
-                #addr.unserialize(data[5][0])
                 return addr.get_street()
         except:
             pass
@@ -164,8 +160,6 @@ class RepositoryModel(FlatBaseModel):
         try:
             if data["address_list"]:
                 addr = from_struct(data["address_list"][0])
-                #addr = Address()
-                #addr.unserialize(data[5][0])
                 return addr.get_locality()
         except:
             pass
@@ -175,8 +169,6 @@ class RepositoryModel(FlatBaseModel):
         try:
             if data["address_list"]:
                 addr = from_struct(data["address_list"][0])
-                #addr = Address()
-                #addr.unserialize(data[5][0])
                 return addr.get_state()
         except:
             pass
@@ -186,8 +178,6 @@ class RepositoryModel(FlatBaseModel):
         try:
             if data["address_list"]:
                 addr = from_struct(data["address_list"][0])
-                #addr = Address()
-                #addr.unserialize(data[5][0])
                 return addr.get_country()
         except:
             pass
@@ -197,8 +187,6 @@ class RepositoryModel(FlatBaseModel):
         try:
             if data["address_list"]:
                 addr = from_struct(data["address_list"][0])
-                #addr = Address()
-                #addr.unserialize(data[5][0])
                 return addr.get_postal_code()
         except:
             pass
@@ -208,8 +196,6 @@ class RepositoryModel(FlatBaseModel):
         try:
             if data["address_list"]:
                 addr = from_struct(data["address_list"][0])
-                #addr = Address()
-                #addr.unserialize(data[5][0])
                 return addr.get_phone()
         except:
             pass
@@ -219,8 +205,6 @@ class RepositoryModel(FlatBaseModel):
         if data["urls"]:
             for url_data in data["urls"]:
                 url = from_struct(url_data)
-                #url = Url()
-                #url.unserialize(i)
                 if url.get_type() == UrlType.EMAIL:
                     return url.path
         return ""
@@ -229,8 +213,6 @@ class RepositoryModel(FlatBaseModel):
         if data["urls"]:
             for url_data in data["urls"]:
                 url = from_struct(url_data)
-                #url = Url()
-                #url.unserialize(i)
                 if url.get_type() == UrlType.WEB_SEARCH:
                     return url.path
         return ""
@@ -239,8 +221,6 @@ class RepositoryModel(FlatBaseModel):
         if data["urls"]:
             for url_data in data["urls"]:
                 url = from_struct(url_data)
-                #url = Url()
-                #url.unserialize(i)
                 if url.get_type() == UrlType.WEB_HOME:
                     return url.path
         return ""

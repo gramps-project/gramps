@@ -127,8 +127,6 @@ class PlaceBaseModel:
         cached, value = self.get_cached_value(handle, "PLACE")
         if not cached:
             place = from_struct(data)
-            #place = Place()
-            #place.unserialize(data)
             value = place_displayer.display(self.db, place)
             self.set_cached_value(handle, "PLACE", value)
         return value

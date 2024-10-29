@@ -135,15 +135,11 @@ class MediaModel(FlatBaseModel):
     def column_date(self, data):
         if data["date"]:
             date = from_struct(data["date"])
-            #date = Date()
-            #date.unserialize(data[10])
             return displayer.display(date)
         return ""
 
     def sort_date(self, data):
         obj = from_struct(data)
-        #obj = Media()
-        #obj.unserialize(data)
         d = obj.get_date_object()
         if d:
             return "%09d" % d.get_sort_value()
