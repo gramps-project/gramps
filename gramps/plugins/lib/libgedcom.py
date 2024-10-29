@@ -3211,7 +3211,7 @@ class GedcomParser(UpdateCallback):
             family.set_handle(intid)
             family.set_gramps_id(gramps_id)
         # Add a counter for reordering the children later:
-        family.child_ref_count = 0
+        family._child_ref_count = 0
         return family
 
     def __find_or_create_media(self, gramps_id):
@@ -5647,8 +5647,8 @@ class GedcomParser(UpdateCallback):
         order given in the FAM section.
         """
         family.child_ref_list.remove(child_ref)
-        family.child_ref_list.insert(family.child_ref_count, child_ref)
-        family.child_ref_count += 1
+        family.child_ref_list.insert(family._child_ref_count, child_ref)
+        family._child_ref_count += 1
 
     def __family_slgs(self, line, state):
         """
