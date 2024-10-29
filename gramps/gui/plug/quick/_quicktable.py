@@ -471,7 +471,7 @@ class QuickTable(SimpleTable):
                 model.append(
                     row=([count] + list(rowdata) + [col[count] for col in sort_data])
                 )
-            except KeyError as msg:
+            except (IndexError, KeyError) as msg:
                 print(msg)
                 if sort_data:
                     print(
