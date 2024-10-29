@@ -44,6 +44,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.datehandler import format_time, get_date, get_date_valid
 from gramps.gen.lib import Citation
+from gramps.gen.lib.serialize import from_struct
 from gramps.gen.utils.string import conf_strings
 from gramps.gen.config import config
 
@@ -65,15 +66,15 @@ COLUMN_TAGS = "tag_list"
 COLUMN_PRIV = "private"
 
 # Data for the Source object
-COLUMN2_HANDLE = 0
-COLUMN2_ID = 1
-COLUMN2_TITLE = 2
-COLUMN2_AUTHOR = 3
-COLUMN2_PUBINFO = 4
-COLUMN2_ABBREV = 7
-COLUMN2_CHANGE = 8
-COLUMN2_TAGS = 11
-COLUMN2_PRIV = 12
+COLUMN2_HANDLE = "handle"
+COLUMN2_ID = "gramps_id"
+COLUMN2_TITLE = "title"
+COLUMN2_AUTHOR = "author"
+COLUMN2_PUBINFO = "pubinfo"
+COLUMN2_ABBREV = "abbrev"
+COLUMN2_CHANGE = "change"
+COLUMN2_TAGS = "tag_list"
+COLUMN2_PRIV = "private"
 
 INVALID_DATE_FORMAT = config.get("preferences.invalid-date-format")
 
@@ -88,7 +89,7 @@ class CitationBaseModel:
 
     def citation_date(self, data):
         if data[COLUMN_DATE]:
-            citation = self.db.serializer.data_to_object(Citation, data)
+            citation = from_struct(data)
             #citation = Citation()
             #citation.unserialize(data)
             date_str = get_date(citation)
@@ -102,7 +103,7 @@ class CitationBaseModel:
 
     def citation_sort_date(self, data):
         if data[COLUMN_DATE]:
-            citation = self.db.serializer.data_to_object(Citation, data)
+            citation = from_struct(data)
             #citation = Citation()
             #citation.unserialize(data)
             retval = "%09d" % citation.get_date_object().get_sort_value()

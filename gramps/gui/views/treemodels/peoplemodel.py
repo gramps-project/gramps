@@ -66,6 +66,7 @@ from gramps.gen.lib import (
     ChildRefType,
     NoteType,
 )
+from gramps.gen.lib.serialize import from_struct
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.datehandler import format_time, get_date, get_date_valid
@@ -254,7 +255,7 @@ class PeopleBaseModel(BaseModel):
         if index != -1:
             try:
                 local = data[COLUMN_EVENT][index]
-                b = self.db.serializer.data_to_object(EventRef, local)
+                b = from_struct(local)
                 #b = EventRef()
                 #b.unserialize(local)
                 birth = self.db.get_event_from_handle(b.ref)
@@ -272,7 +273,7 @@ class PeopleBaseModel(BaseModel):
                 return ""
 
         for event_ref in data[COLUMN_EVENT]:
-            er = self.db.serializer.data_to_object(EventRef, event_ref)
+            er = from_struct(event_ref)
             #er = EventRef()
             #er.unserialize(event_ref)
             event = self.db.get_event_from_handle(er.ref)
@@ -315,7 +316,7 @@ class PeopleBaseModel(BaseModel):
         if index != -1:
             try:
                 local = data[COLUMN_EVENT][index]
-                ref = self.db.serializer.data_to_object(EventRef, local)
+                ref = from_struct(local)
                 #ref = EventRef()
                 #ref.unserialize(local)
                 event = self.db.get_event_from_handle(ref.ref)
@@ -333,7 +334,7 @@ class PeopleBaseModel(BaseModel):
                 return ""
 
         for event_ref in data[COLUMN_EVENT]:
-            er = self.db.serializer.data_to_object(EventRef, event_ref)
+            er = from_struct(event_ref)
             #er = EventRef()
             #er.unserialize(event_ref)
             event = self.db.get_event_from_handle(er.ref)
@@ -364,7 +365,7 @@ class PeopleBaseModel(BaseModel):
             if index != -1:
                 try:
                     local = data[COLUMN_EVENT][index]
-                    br = self.db.serializer.data_to_object(EventRef, local)
+                    br = from_struct(local)
                     #br = EventRef()
                     #br.unserialize(local)
                     event = self.db.get_event_from_handle(br.ref)
@@ -380,7 +381,7 @@ class PeopleBaseModel(BaseModel):
                     return value
 
             for event_ref in data[COLUMN_EVENT]:
-                er = self.db.serializer.data_to_object(EventRef, event_ref)
+                er = from_struct(event_ref)
                 #er = EventRef()
                 #er.unserialize(event_ref)
                 event = self.db.get_event_from_handle(er.ref)
@@ -405,7 +406,7 @@ class PeopleBaseModel(BaseModel):
             if index != -1:
                 try:
                     local = data[COLUMN_EVENT][index]
-                    dr = self.db.serializer.data_to_object(EventRef, local)
+                    dr = from_struct(local)
                     #dr = EventRef()
                     #dr.unserialize(local)
                     event = self.db.get_event_from_handle(dr.ref)
@@ -421,7 +422,7 @@ class PeopleBaseModel(BaseModel):
                     return value
 
             for event_ref in data[COLUMN_EVENT]:
-                er = self.db.serializer.data_to_object(EventRef, event_ref)
+                er = from_struct(event_ref)
                 #er = EventRef()
                 #er.unserialize(event_ref)
                 event = self.db.get_event_from_handle(er.ref)

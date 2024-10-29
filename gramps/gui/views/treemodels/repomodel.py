@@ -40,6 +40,7 @@ from gi.repository import Gtk
 #
 # -------------------------------------------------------------------------
 from gramps.gen.lib import Address, RepositoryType, Url, UrlType
+from gramps.gen.lib.serialize import from_struct
 from gramps.gen.datehandler import format_time
 from .flatbasemodel import FlatBaseModel
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -140,9 +141,7 @@ class RepositoryModel(FlatBaseModel):
     def column_city(self, data):
         try:
             if data["address_list"]:
-                addr = self.db.serializer.data_to_object(
-                    Address, data["address_list"][0]
-                )
+                addr = from_struct(data["address_list"][0])
                 #addr = Address()
                 #addr.unserialize(data[5][0])
                 return addr.get_city()
@@ -153,9 +152,7 @@ class RepositoryModel(FlatBaseModel):
     def column_street(self, data):
         try:
             if data["address_list"]:
-                addr = self.db.serializer.data_to_object(
-                    Address, data["address_list"][0]
-                )
+                addr = from_struct(data["address_list"][0])
                 #addr = Address()
                 #addr.unserialize(data[5][0])
                 return addr.get_street()
@@ -166,9 +163,7 @@ class RepositoryModel(FlatBaseModel):
     def column_locality(self, data):
         try:
             if data["address_list"]:
-                addr = self.db.serializer.data_to_object(
-                    Address, data["address_list"][0]
-                )
+                addr = from_struct(data["address_list"][0])
                 #addr = Address()
                 #addr.unserialize(data[5][0])
                 return addr.get_locality()
@@ -179,9 +174,7 @@ class RepositoryModel(FlatBaseModel):
     def column_state(self, data):
         try:
             if data["address_list"]:
-                addr = self.db.serializer.data_to_object(
-                    Address, data["address_list"][0]
-                )
+                addr = from_struct(data["address_list"][0])
                 #addr = Address()
                 #addr.unserialize(data[5][0])
                 return addr.get_state()
@@ -192,9 +185,7 @@ class RepositoryModel(FlatBaseModel):
     def column_country(self, data):
         try:
             if data["address_list"]:
-                addr = self.db.serializer.data_to_object(
-                    Address, data["address_list"][0]
-                )
+                addr = from_struct(data["address_list"][0])
                 #addr = Address()
                 #addr.unserialize(data[5][0])
                 return addr.get_country()
@@ -205,9 +196,7 @@ class RepositoryModel(FlatBaseModel):
     def column_postal_code(self, data):
         try:
             if data["address_list"]:
-                addr = self.db.serializer.data_to_object(
-                    Address, data["address_list"][0]
-                )
+                addr = from_struct(data["address_list"][0])
                 #addr = Address()
                 #addr.unserialize(data[5][0])
                 return addr.get_postal_code()
@@ -218,9 +207,7 @@ class RepositoryModel(FlatBaseModel):
     def column_phone(self, data):
         try:
             if data["address_list"]:
-                addr = self.db.serializer.data_to_object(
-                    Address, data["address_list"][0]
-                )
+                addr = from_struct(data["address_list"][0])
                 #addr = Address()
                 #addr.unserialize(data[5][0])
                 return addr.get_phone()
@@ -231,9 +218,7 @@ class RepositoryModel(FlatBaseModel):
     def column_email(self, data):
         if data["urls"]:
             for url_data in data["urls"]:
-                url = self.db.serializer.data_to_object(
-                    Url, url_data
-                )
+                url = from_struct(url_data)
                 #url = Url()
                 #url.unserialize(i)
                 if url.get_type() == UrlType.EMAIL:
@@ -243,9 +228,7 @@ class RepositoryModel(FlatBaseModel):
     def column_search_url(self, data):
         if data["urls"]:
             for url_data in data["urls"]:
-                url = self.db.serializer.data_to_object(
-                    Url, url_data
-                )
+                url = from_struct(url_data)
                 #url = Url()
                 #url.unserialize(i)
                 if url.get_type() == UrlType.WEB_SEARCH:
@@ -255,9 +238,7 @@ class RepositoryModel(FlatBaseModel):
     def column_home_url(self, data):
         if data["urls"]:
             for url_data in data["urls"]:
-                url = self.db.serializer.data_to_object(
-                    Url, url_data
-                )
+                url = from_struct(url_data)
                 #url = Url()
                 #url.unserialize(i)
                 if url.get_type() == UrlType.WEB_HOME:
