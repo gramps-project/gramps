@@ -602,6 +602,7 @@ class Date(BaseObject):
 
     EMPTY = (0, 0, 0, False)
 
+    # These are positions in JSON dateval:
     _POS_DAY = 0
     _POS_MON = 1
     _POS_YR = 2
