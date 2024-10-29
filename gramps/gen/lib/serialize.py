@@ -97,11 +97,14 @@ def from_struct(struct):
     """
     return from_json(json.dumps(struct))
 
+
 class BlobSerializer:
     """
     Serializer for blob data
     """
+
     data_field = "blob_data"
+
     def data_to_object(self, obj_class, data):
         return obj_class.create(data)
 
@@ -120,11 +123,14 @@ class BlobSerializer:
     def get_item(self, data, position):
         return data[position]
 
+
 class JSONSerializer:
     """
     Serializer for JSON data
     """
+
     data_field = "json_data"
+
     def data_to_object(self, obj_class, data):
         return from_struct(data)
 
