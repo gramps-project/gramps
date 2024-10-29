@@ -1943,7 +1943,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         old_data = self._commit_base(person, PERSON_KEY, transaction, change_time)
 
         if old_data:
-            old_person = Person(old_data)
+            old_person = from_struct(old_data)
             # Update gender statistics if necessary
             if old_person.gender != person.gender or (
                 old_person.primary_name.first_name != person.primary_name.first_name
