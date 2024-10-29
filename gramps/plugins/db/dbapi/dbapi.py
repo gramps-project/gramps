@@ -62,7 +62,7 @@ from gramps.gen.lib import (
     Source,
     Tag,
 )
-from gramps.gen.lib.serialize import from_struct
+from gramps.gen.lib.serialize import from_struct, to_struct
 from gramps.gen.lib.genderstats import GenderStats
 from gramps.gen.updatecallback import UpdateCallback
 
