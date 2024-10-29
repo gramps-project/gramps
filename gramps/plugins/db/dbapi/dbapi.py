@@ -667,9 +667,9 @@ class DBAPI(DbGeneric):
         self._update_backlinks(obj, trans)
         if not trans.batch:
             if old_data:
-                trans.add(obj_key, TXNUPD, obj.handle, old_data, obj.serialize())
+                trans.add(obj_key, TXNUPD, obj.handle, old_data, to_struct(obj))
             else:
-                trans.add(obj_key, TXNADD, obj.handle, None, obj.serialize())
+                trans.add(obj_key, TXNADD, obj.handle, None, to_struct(obj))
 
         return old_data
 
