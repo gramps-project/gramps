@@ -256,8 +256,6 @@ class PeopleBaseModel(BaseModel):
             try:
                 local = data[COLUMN_EVENT][index]
                 b = from_struct(local)
-                #b = EventRef()
-                #b.unserialize(local)
                 birth = self.db.get_event_from_handle(b.ref)
                 if sort_mode:
                     retval = "%09d" % birth.get_date_object().get_sort_value()
@@ -274,8 +272,6 @@ class PeopleBaseModel(BaseModel):
 
         for event_ref in data[COLUMN_EVENT]:
             er = from_struct(event_ref)
-            #er = EventRef()
-            #er.unserialize(event_ref)
             event = self.db.get_event_from_handle(er.ref)
             etype = event.get_type()
             date_str = get_date(event)
@@ -317,8 +313,6 @@ class PeopleBaseModel(BaseModel):
             try:
                 local = data[COLUMN_EVENT][index]
                 ref = from_struct(local)
-                #ref = EventRef()
-                #ref.unserialize(local)
                 event = self.db.get_event_from_handle(ref.ref)
                 if sort_mode:
                     retval = "%09d" % event.get_date_object().get_sort_value()
@@ -335,8 +329,6 @@ class PeopleBaseModel(BaseModel):
 
         for event_ref in data[COLUMN_EVENT]:
             er = from_struct(event_ref)
-            #er = EventRef()
-            #er.unserialize(event_ref)
             event = self.db.get_event_from_handle(er.ref)
             etype = event.get_type()
             date_str = get_date(event)
@@ -366,8 +358,6 @@ class PeopleBaseModel(BaseModel):
                 try:
                     local = data[COLUMN_EVENT][index]
                     br = from_struct(local)
-                    #br = EventRef()
-                    #br.unserialize(local)
                     event = self.db.get_event_from_handle(br.ref)
                     if event:
                         place_title = place_displayer.display_event(self.db, event)
@@ -382,8 +372,6 @@ class PeopleBaseModel(BaseModel):
 
             for event_ref in data[COLUMN_EVENT]:
                 er = from_struct(event_ref)
-                #er = EventRef()
-                #er.unserialize(event_ref)
                 event = self.db.get_event_from_handle(er.ref)
                 etype = event.get_type()
                 if etype.is_birth_fallback() and er.get_role() == EventRoleType.PRIMARY:
@@ -407,8 +395,6 @@ class PeopleBaseModel(BaseModel):
                 try:
                     local = data[COLUMN_EVENT][index]
                     dr = from_struct(local)
-                    #dr = EventRef()
-                    #dr.unserialize(local)
                     event = self.db.get_event_from_handle(dr.ref)
                     if event:
                         place_title = place_displayer.display_event(self.db, event)
@@ -423,8 +409,6 @@ class PeopleBaseModel(BaseModel):
 
             for event_ref in data[COLUMN_EVENT]:
                 er = from_struct(event_ref)
-                #er = EventRef()
-                #er.unserialize(event_ref)
                 event = self.db.get_event_from_handle(er.ref)
                 etype = event.get_type()
                 if etype.is_death_fallback() and er.get_role() == EventRoleType.PRIMARY:

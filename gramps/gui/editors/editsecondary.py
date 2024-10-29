@@ -27,6 +27,7 @@
 from ..managedwindow import ManagedWindow
 from ..display import display_help
 from gramps.gen.config import config
+from gramps.gen.lib.serialize import to_struct, from_struct
 from ..dbguielement import DbGUIElement
 
 
@@ -35,7 +36,7 @@ class EditSecondary(ManagedWindow, DbGUIElement):
         """Create an edit window.  Associates a person with the window."""
 
         self.obj = obj
-        self.old_obj = obj.serialize()
+        self.old_obj = to_struct(obj)
         self.dbstate = state
         self.uistate = uistate
         self.db = state.db
@@ -136,7 +137,7 @@ class EditSecondary(ManagedWindow, DbGUIElement):
         """
         Undo the edits that happened on this secondary object
         """
-        self.obj.unserialize(self.old_obj)
+        self.obj = from_struct(self.old_obj)
         self.close(obj)
 
     def close(self, *obj):

@@ -62,6 +62,7 @@ from gramps.gen.lib import (
     Source,
     Tag,
 )
+from gramps.gen.lib.serialize import from_struct
 from gramps.gen.lib.genderstats import GenderStats
 from gramps.gen.updatecallback import UpdateCallback
 
@@ -1069,7 +1070,7 @@ class DBAPI(DbGeneric):
                     f"INSERT INTO {table} (handle, {self.serializer.data_field}) VALUES (?, ?)",
                     [handle, self.serializer.data_to_string(data)],
                 )
-            obj = self._get_table_func(cls)["class_func"].create(data)
+            obj = from_struct(data)
             self._update_secondary_values(obj)
 
     def get_surname_list(self):

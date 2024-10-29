@@ -30,6 +30,7 @@ import time
 # ------------------------------------------------------------------------
 
 from gramps.gen.lib import Person, Family
+from gramps.gen.lib.serialize import from_struct
 from gramps.gen.db import PERSON_KEY, FAMILY_KEY, TXNDEL
 from gramps.gen.plug import Gramplet
 from gramps.gen.display.name import displayer as name_displayer
@@ -128,8 +129,7 @@ class LogGramplet(Gramplet):
                                 and trans_type == TXNDEL
                                 and hndl == handle
                             ):
-                                person = Person()
-                                person.unserialize(old_data)
+                                person = from_struct(old_data)
                                 name = name_displayer.display(person)
                                 break
                 elif ltype == "Family":
@@ -150,8 +150,7 @@ class LogGramplet(Gramplet):
                                 and trans_type == TXNDEL
                                 and hndl == handle
                             ):
-                                family = Family()
-                                family.unserialize(old_data)
+                                family = from_struct(old_data)
                                 name = family_name(family, self.dbstate.db, name)
                                 break
                 self.append_text(name)
