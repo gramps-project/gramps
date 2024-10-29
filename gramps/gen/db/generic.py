@@ -1432,7 +1432,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def get_repository_from_gramps_id(self, gramps_id):
         data = self._get_raw_repository_from_id_data(gramps_id)
-        return self.serializer.data_to_object(Repositiory, data)
+        return self.serializer.data_to_object(Repository, data)
 
     def get_note_from_gramps_id(self, gramps_id):
         data = self._get_raw_note_from_id_data(gramps_id)
