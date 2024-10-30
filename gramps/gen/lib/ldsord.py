@@ -196,10 +196,7 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase, DateBase, PlaceBase, Priva
                     "title": _("Notes"),
                     "items": {"type": "string", "maxLength": 50},
                 },
-                "date": {
-                    "oneOf": [{"type": "null"}, Date.get_schema()],
-                    "title": _("Date"),
-                },
+                "date": Date.get_schema(),
                 "type": {"type": "integer", "title": _("Type")},
                 "place": {"type": "string", "title": _("Place")},
                 "famc": {"type": ["null", "string"], "title": _("Family")},

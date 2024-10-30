@@ -183,10 +183,7 @@ class Event(
                 },
                 "gramps_id": {"type": "string", "title": _("Gramps ID")},
                 "type": EventType.get_schema(),
-                "date": {
-                    "oneOf": [{"type": "null"}, Date.get_schema()],
-                    "title": _("Date"),
-                },
+                "date": Date.get_schema(),
                 "description": {"type": "string", "title": _("Description")},
                 "place": {
                     "type": ["string", "null"],

@@ -96,10 +96,7 @@ class PlaceName(SecondaryObject, DateBase):
             "properties": {
                 "_class": {"enum": [cls.__name__]},
                 "value": {"type": "string", "title": _("Text")},
-                "date": {
-                    "oneOf": [{"type": "null"}, Date.get_schema()],
-                    "title": _("Date"),
-                },
+                "date": Date.get_schema(),
                 "lang": {"type": "string", "title": _("Language")},
             },
         }
