@@ -757,10 +757,7 @@ class Date(BaseObject):
 
         We override this method to represent an empty date as null in JSON.
         """
-        if self.is_empty() and not self.text:
-            return None
-        else:
-            return super().get_object_state()
+        return super().get_object_state()
 
     def set_object_state(self, attr_dict):
         """

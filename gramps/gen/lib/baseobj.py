@@ -98,11 +98,6 @@ class BaseObject(metaclass=ABCMeta):
                           the object.
         :type attr_dict: dict
         """
-        from gramps.gen.lib import Date
-
-        if "date" in attr_dict and attr_dict["date"] is None:
-            attr_dict.pop("date")
-            self.date = Date()
         self.__dict__.update(attr_dict)
 
     def matches_string(self, pattern, case_sensitive=False):
