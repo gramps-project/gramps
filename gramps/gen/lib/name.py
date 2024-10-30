@@ -177,10 +177,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase, Da
                     "items": {"type": "string", "maxLength": 50},
                     "title": _("Notes"),
                 },
-                "date": {
-                    "oneOf": [{"type": "null"}, Date.get_schema()],
-                    "title": _("Date"),
-                },
+                "date": Date.get_schema(),
                 "first_name": {"type": "string", "title": _("Given name")},
                 "surname_list": {
                     "type": "array",

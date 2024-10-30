@@ -113,10 +113,7 @@ class Citation(
                     "title": _("Handle"),
                 },
                 "gramps_id": {"type": "string", "title": _("Gramps ID")},
-                "date": {
-                    "oneOf": [{"type": "null"}, Date.get_schema()],
-                    "title": _("Date"),
-                },
+                "date": Date.get_schema(),
                 "page": {"type": "string", "title": _("Page")},
                 "confidence": {
                     "type": "integer",

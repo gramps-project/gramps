@@ -169,10 +169,7 @@ class Media(CitationBase, NoteBase, DateBase, AttributeBase, PrimaryObject):
                     "title": _("Notes"),
                 },
                 "change": {"type": "integer", "title": _("Last changed")},
-                "date": {
-                    "oneOf": [{"type": "null"}, Date.get_schema()],
-                    "title": _("Date"),
-                },
+                "date": Date.get_schema(),
                 "tag_list": {
                     "type": "array",
                     "items": {"type": "string", "maxLength": 50},
