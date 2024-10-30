@@ -103,8 +103,8 @@ _PREFIX_IN_LIST = "prefix"
 _PRIMARY_IN_LIST = "primary"
 _TYPE_IN_LIST = "origintype"
 _CONNECTOR_IN_LIST = "connector"
-_ORIGINPATRO = str(NameOriginType(NameOriginType.PATRONYMIC))
-_ORIGINMATRO = str(NameOriginType(NameOriginType.MATRONYMIC))
+_ORIGINPATRO = NameOriginType.PATRONYMIC
+_ORIGINMATRO = NameOriginType.MATRONYMIC
 _ACT = True
 _INA = False
 
