@@ -751,14 +751,6 @@ class Date(BaseObject):
             raise DateError("Invalid date to unserialize")
         return self
 
-    def get_object_state(self):
-        """
-        Get the current object state as a dictionary.
-
-        We override this method to represent an empty date as null in JSON.
-        """
-        return super().get_object_state()
-
     def set_object_state(self, attr_dict):
         """
         Set the current object state using information provided in the given

@@ -117,10 +117,7 @@ class Address(
                     "title": _("Notes"),
                     "items": {"type": "string", "maxLength": 50},
                 },
-                "date": {
-                    "oneOf": [{"type": "null"}, Date.get_schema()],
-                    "title": _("Date"),
-                },
+                "date": Date.get_schema(),
                 "street": {"type": "string", "title": _("Street")},
                 "locality": {"type": "string", "title": _("Locality")},
                 "city": {"type": "string", "title": _("City")},

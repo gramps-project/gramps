@@ -93,10 +93,7 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
                     "title": _("Handle"),
                     "maxLength": 50,
                 },
-                "date": {
-                    "oneOf": [{"type": "null"}, Date.get_schema()],
-                    "title": _("Date"),
-                },
+                "date": Date.get_schema(),
             },
         }
 

@@ -67,11 +67,10 @@ class BaseObject(metaclass=ABCMeta):
         properties to be saved.
 
         This method is called to provide the information required to serialize
-        the object.  If None is returned then the object will be represented as
-        null in JSON.
+        the object.
 
         :returns: Returns a dictionary of attributes that represent the state
-                  of the object or None.
+                  of the object.
         :rtype: dict
         """
         attr_dict = dict(
