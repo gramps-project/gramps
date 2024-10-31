@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2015,2017  Nick Hall
+# Copyright (C) 2024       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
