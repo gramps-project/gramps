@@ -1,6 +1,6 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007-2024  Douglas S. Blank <doug.blank@gmail.com>
+# Copyright (C) 2007-2009  Douglas S. Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

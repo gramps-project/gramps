@@ -1,11 +1,11 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2007       Donald N. Allingham
-# Copyright (C) 2009-2013,2024  Douglas S. Blank
-# Copyright (C) 2013            Paul Franklin
-# Copyright (C) 2013-2014       Vassilii Khachaturov
-# Copyright (C) 2017,2024       Nick Hall
+# Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2009-2013  Douglas S. Blank
+# Copyright (C) 2013       Paul Franklin
+# Copyright (C) 2013-2014  Vassilii Khachaturov
+# Copyright (C) 2017,2024  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

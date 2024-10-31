@@ -6,7 +6,6 @@
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2012       Nick Hall
-# Copyright (C) 2024       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

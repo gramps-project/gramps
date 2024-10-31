@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
 # Copyright (C) 2011       Tim G L Lyons
-# Copyright (C) 2012,2024  Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2012       Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

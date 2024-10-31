@@ -4,7 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2011       Tim G L Lyons
-# Copyright (C) 2013,2024  Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2017       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify

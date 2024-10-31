@@ -5,7 +5,6 @@
 # Copyright (C) 2009       Gary Burton
 # Copyright (C) 2009-2010  Nick Hall
 # Copyright (C) 2009       Benny Malengier
-# Copyright (C) 2024       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

@@ -3,7 +3,6 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 #               2009       Gary Burton
-# Copyright (C) 2024       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

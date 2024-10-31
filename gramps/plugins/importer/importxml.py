@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 200?-2013  Benny Malengier
-# Copyright (C) 2009,2024  Douglas S. Blank
+# Copyright (C) 2009       Douglas S. Blank
 # Copyright (C) 2010-2011  Nick Hall
 # Copyright (C) 2011       Michiel D. Nauta
 # Copyright (C) 2011       Tim G L Lyons
