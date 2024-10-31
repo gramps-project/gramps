@@ -2,7 +2,8 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2020 Paul Culley <paulr2787@gmail.com>
-# Copyright (C) 2020  Nick Hall
+# Copyright (C) 2020 Nick Hall
+# Copyright (C) 2024 Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
