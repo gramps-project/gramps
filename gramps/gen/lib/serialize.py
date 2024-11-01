@@ -89,10 +89,10 @@ def to_dict(obj):
 
 def from_dict(struct):
     """
-    Convert a struct into a Gramps object.
+    Convert a dictionary into a Gramps object.
 
-    :param data: The dictionary to be unserialized.
-    :type data: dict
+    :param struct: The dictionary to be unserialized.
+    :type struct: dict
     :returns: A Gramps object.
     :rtype: object
     """
