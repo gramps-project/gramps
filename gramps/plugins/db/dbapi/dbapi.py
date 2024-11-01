@@ -366,11 +366,7 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("SELECT value FROM metadata WHERE setting = ?", [key])
         row = self.dbapi.fetchone()
         if row:
-            # FIXME: hack, temp
-            try:
-                return pickle.loads(row[0])
-            except Exception:
-                return row[0]
+            return pickle.loads(row[0])
         if default == "_":
             return []
         return default
