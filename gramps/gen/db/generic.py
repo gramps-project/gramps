@@ -58,7 +58,7 @@ from ..lib import (
     Source,
     Tag,
 )
-from ..lib.serialize import from_struct, BlobSerializer, JSONSerializer
+from ..lib.serialize import from_dict, BlobSerializer, JSONSerializer
 from ..lib.genderstats import GenderStats
 from ..lib.researcher import Researcher
 from ..updatecallback import UpdateCallback
@@ -1944,7 +1944,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         old_data = self._commit_base(person, PERSON_KEY, transaction, change_time)
 
         if old_data:
-            old_person = from_struct(old_data)
+            old_person = from_dict(old_data)
             # Update gender statistics if necessary
             if old_person.gender != person.gender or (
                 old_person.primary_name.first_name != person.primary_name.first_name

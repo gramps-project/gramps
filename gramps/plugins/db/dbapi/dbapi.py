@@ -62,7 +62,7 @@ from gramps.gen.lib import (
     Source,
     Tag,
 )
-from gramps.gen.lib.serialize import from_struct, to_struct
+from gramps.gen.lib.serialize import from_dict, to_dict
 from gramps.gen.lib.genderstats import GenderStats
 from gramps.gen.updatecallback import UpdateCallback
 
@@ -663,9 +663,9 @@ class DBAPI(DbGeneric):
         self._update_backlinks(obj, trans)
         if not trans.batch:
             if old_data:
-                trans.add(obj_key, TXNUPD, obj.handle, old_data, to_struct(obj))
+                trans.add(obj_key, TXNUPD, obj.handle, old_data, to_dict(obj))
             else:
-                trans.add(obj_key, TXNADD, obj.handle, None, to_struct(obj))
+                trans.add(obj_key, TXNADD, obj.handle, None, to_dict(obj))
 
         return old_data
 
@@ -1070,7 +1070,7 @@ class DBAPI(DbGeneric):
                     f"INSERT INTO {table} (handle, {self.serializer.data_field}) VALUES (?, ?)",
                     [handle, self.serializer.data_to_string(data)],
                 )
-            obj = from_struct(data)
+            obj = from_dict(data)
             self._update_secondary_values(obj)
 
     def get_surname_list(self):

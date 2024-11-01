@@ -37,7 +37,7 @@ import logging
 # ------------------------------------------------------------------------
 from gramps.cli.clidbman import NAME_FILE
 from gramps.gen.db.dbconst import CLASS_TO_KEY_MAP
-from gramps.gen.lib.serialize import to_struct
+from gramps.gen.lib.serialize import to_dict
 from gramps.gen.lib import EventType, NameOriginType, Tag, MarkerType
 from gramps.gen.utils.file import create_checksum
 from gramps.gen.utils.id import create_id
@@ -86,7 +86,7 @@ def gramps_upgrade_21(self):
             self.set_serializer("blob")
             obj = get_obj_from_handle(handle)
             # Force the save in json_data:
-            raw = to_struct(obj)
+            raw = to_dict(obj)
             self.set_serializer("json")
             self._commit_raw(raw, key)
             self.update()

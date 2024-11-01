@@ -45,7 +45,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.datehandler import format_time, get_date, get_date_valid
 from gramps.gen.lib import Citation
-from gramps.gen.lib.serialize import from_struct
+from gramps.gen.lib.serialize import from_dict
 from gramps.gen.utils.string import conf_strings
 from gramps.gen.config import config
 
@@ -90,7 +90,7 @@ class CitationBaseModel:
 
     def citation_date(self, data):
         if data[COLUMN_DATE]:
-            citation = from_struct(data)
+            citation = from_dict(data)
             date_str = get_date(citation)
             if date_str != "":
                 retval = escape(date_str)
@@ -102,7 +102,7 @@ class CitationBaseModel:
 
     def citation_sort_date(self, data):
         if data[COLUMN_DATE]:
-            citation = from_struct(data)
+            citation = from_dict(data)
             retval = "%09d" % citation.get_date_object().get_sort_value()
             if not get_date_valid(citation):
                 return INVALID_DATE_FORMAT % retval

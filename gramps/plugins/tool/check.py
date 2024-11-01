@@ -76,7 +76,7 @@ from gramps.gen.lib import (
     StyledTextTagType,
     Tag,
 )
-from gramps.gen.lib.serialize import to_struct
+from gramps.gen.lib.serialize import to_dict
 from gramps.gen.db import DbTxn, CLASS_TO_KEY_MAP
 from gramps.gen.config import config
 from gramps.gen.utils.id import create_id
@@ -909,15 +909,15 @@ class CheckIntegrity:
             logging.info("    OK: no missing photos found")
 
     def cleanup_empty_objects(self):
-        empty_person_data = to_struct(Person())
-        empty_family_data = to_struct(Family())
-        empty_event_data = to_struct(Event())
-        empty_source_data = to_struct(Source())
-        empty_citation_data = to_struct(Citation())
-        empty_place_data = to_struct(Place())
-        empty_media_data = to_struct(Media())
-        empty_repos_data = to_struct(Repository())
-        empty_note_data = to_struct(Note())
+        empty_person_data = to_dict(Person())
+        empty_family_data = to_dict(Family())
+        empty_event_data = to_dict(Event())
+        empty_source_data = to_dict(Source())
+        empty_citation_data = to_dict(Citation())
+        empty_place_data = to_dict(Place())
+        empty_media_data = to_dict(Media())
+        empty_repos_data = to_dict(Repository())
+        empty_note_data = to_dict(Note())
 
         _db = self.db
 

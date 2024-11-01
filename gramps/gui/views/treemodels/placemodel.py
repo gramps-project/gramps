@@ -47,7 +47,7 @@ from gi.repository import Gtk
 #
 # -------------------------------------------------------------------------
 from gramps.gen.lib import Place, PlaceType
-from gramps.gen.lib.serialize import from_struct
+from gramps.gen.lib.serialize import from_dict
 from gramps.gen.datehandler import format_time
 from gramps.gen.utils.place import conv_lat_lon, coord_formats
 from gramps.gen.display.place import displayer as place_displayer
@@ -127,7 +127,7 @@ class PlaceBaseModel:
         handle = data["handle"]
         cached, value = self.get_cached_value(handle, "PLACE")
         if not cached:
-            place = from_struct(data)
+            place = from_dict(data)
             value = place_displayer.display(self.db, place)
             self.set_cached_value(handle, "PLACE", value)
         return value
@@ -188,7 +188,7 @@ class PlaceBaseModel:
         return data["gramps_id"]
 
     def column_type(self, data):
-        pt = from_struct(data["place_type"])
+        pt = from_dict(data["place_type"])
         return str(pt)
 
     def column_code(self, data):

@@ -91,7 +91,7 @@ from gramps.gen.lib import (
     Tag,
     Url,
 )
-from gramps.gen.lib.serialize import from_struct
+from gramps.gen.lib.serialize import from_dict
 from gramps.gen.db import DbTxn
 
 # from gramps.gen.db.write import CLASS_TO_KEY_MAP
@@ -840,7 +840,7 @@ class GrampsParser(UpdateCallback):
                     "tag": self.db.get_raw_tag_data,
                 }[target]
                 raw = get_raw_obj_data(handle)
-                temp_obj = from_struct(raw)
+                temp_obj = from_dict(raw)
                 prim_obj.set_object_state(temp_obj.get_object_state())
                 self.import_handles[orig_handle][target][INSTANTIATED] = True
             return handle
@@ -1002,7 +1002,7 @@ class GrampsParser(UpdateCallback):
         handle = id2handle_map.get(gramps_id)
         if handle:
             raw = get_raw_obj_data(handle)
-            temp_obj = from_struct(raw)
+            temp_obj = from_dict(raw)
             prim_obj.set_object_state(temp_obj.get_object_state())
         else:
             handle = create_id()

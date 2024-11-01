@@ -39,7 +39,7 @@ from gramps.gen.lib import (
     Note,
     Tag,
 )
-from gramps.gen.lib.serialize import from_struct
+from gramps.gen.lib.serialize import from_dict
 
 
 # ------------------------------------------------------------------------------
@@ -79,7 +79,7 @@ class DbMixin:
         new = True
         raw = get_raw_obj_data(handle)
         if raw is not None:
-            obj = from_struct(raw)
+            obj = from_dict(raw)
             # references create object with id None before object is really made
             if obj.gramps_id is not None:
                 new = False
@@ -105,7 +105,7 @@ class DbMixin:
         handle = str(handle)
         raw = get_raw_obj_data(handle)
         if raw is not None:
-            obj = from_struct(raw)
+            obj = from_dict(raw)
             return obj, False
         else:
             obj.set_handle(handle)

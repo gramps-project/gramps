@@ -43,7 +43,7 @@ from gi.repository import Gtk
 # -------------------------------------------------------------------------
 from gramps.gen.datehandler import format_time, get_date, get_date_valid
 from gramps.gen.lib import Event, EventType
-from gramps.gen.lib.serialize import from_struct
+from gramps.gen.lib.serialize import from_dict
 from gramps.gen.utils.db import get_participant_from_event
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.config import config
@@ -152,7 +152,7 @@ class EventModel(FlatBaseModel):
         if data[COLUMN_PLACE]:
             cached, value = self.get_cached_value(data["handle"], "PLACE")
             if not cached:
-                event = from_struct(data)
+                event = from_dict(data)
                 value = place_displayer.display_event(self.db, event)
                 self.set_cached_value(data["handle"], "PLACE", value)
             return value
@@ -167,7 +167,7 @@ class EventModel(FlatBaseModel):
 
     def column_date(self, data):
         if data[COLUMN_DATE]:
-            event = from_struct(data)
+            event = from_dict(data)
             date_str = get_date(event)
             if date_str != "":
                 retval = escape(date_str)
@@ -181,7 +181,7 @@ class EventModel(FlatBaseModel):
 
     def sort_date(self, data):
         if data[COLUMN_DATE]:
-            event = from_struct(data)
+            event = from_dict(data)
             retval = "%09d" % event.get_date_object().get_sort_value()
             if not get_date_valid(event):
                 return INVALID_DATE_FORMAT % retval

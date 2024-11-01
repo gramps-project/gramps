@@ -75,7 +75,7 @@ def from_json(data):
     return json.loads(data, object_hook=__object_hook)
 
 
-def to_struct(obj):
+def to_dict(obj):
     """
     Convert a Gramps object into a struct.
 
@@ -87,7 +87,7 @@ def to_struct(obj):
     return json.loads(to_json(obj))
 
 
-def from_struct(struct):
+def from_dict(struct):
     """
     Convert a struct into a Gramps object.
 
@@ -140,7 +140,7 @@ class JSONSerializer:
 
     @staticmethod
     def data_to_object(obj_class, data):
-        return from_struct(data)
+        return from_dict(data)
 
     @staticmethod
     def string_to_object(obj_class, string):

@@ -158,7 +158,7 @@ from gramps.gen.lib import (
     PlaceRef,
     PlaceName,
 )
-from gramps.gen.lib.serialize import from_struct, to_struct
+from gramps.gen.lib.serialize import from_dict, to_dict
 from gramps.gen.db import DbTxn
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.utils.file import media_path
@@ -2165,7 +2165,7 @@ class GedcomParser(UpdateCallback):
     __TRUNC_MSG = _(
         "Your GEDCOM file is corrupted. " "It appears to have been truncated."
     )
-    _EMPTY_LOC = to_struct(Location())
+    _EMPTY_LOC = to_dict(Location())
 
     SyntaxError = "Syntax Error"
     BadFile = "Not a GEDCOM file"
@@ -3189,7 +3189,7 @@ class GedcomParser(UpdateCallback):
         """
         intid = self.gid2id.get(gramps_id)
         if self.dbase.has_person_handle(intid):
-            person = from_struct(self.dbase.get_raw_person_data(intid))
+            person = from_dict(self.dbase.get_raw_person_data(intid))
         else:
             person = Person()
             intid = self.__find_from_handle(gramps_id, self.gid2id)
@@ -3205,7 +3205,7 @@ class GedcomParser(UpdateCallback):
         """
         intid = self.fid2id.get(gramps_id)
         if self.dbase.has_family_handle(intid):
-            family = from_struct(self.dbase.get_raw_family_data(intid))
+            family = from_dict(self.dbase.get_raw_family_data(intid))
         else:
             family = Family()
             intid = self.__find_from_handle(gramps_id, self.fid2id)
@@ -3223,7 +3223,7 @@ class GedcomParser(UpdateCallback):
         """
         intid = self.oid2id.get(gramps_id)
         if self.dbase.has_media_handle(intid):
-            obj = from_struct(self.dbase.get_raw_media_data(intid))
+            obj = from_dict(self.dbase.get_raw_media_data(intid))
         else:
             obj = Media()
             intid = self.__find_from_handle(gramps_id, self.oid2id)
@@ -3241,7 +3241,7 @@ class GedcomParser(UpdateCallback):
         """
         intid = self.sid2id.get(gramps_id)
         if self.dbase.has_source_handle(intid):
-            obj = from_struct(self.dbase.get_raw_source_data(intid))
+            obj = from_dict(self.dbase.get_raw_source_data(intid))
         else:
             obj = Source()
             intid = self.__find_from_handle(gramps_id, self.sid2id)
@@ -3260,7 +3260,7 @@ class GedcomParser(UpdateCallback):
         """
         intid = self.rid2id.get(gramps_id)
         if self.dbase.has_repository_handle(intid):
-            repository = from_struct(self.dbase.get_raw_repository_data(intid))
+            repository = from_dict(self.dbase.get_raw_repository_data(intid))
         else:
             repository = Repository()
             intid = self.__find_from_handle(gramps_id, self.rid2id)
@@ -3284,7 +3284,7 @@ class GedcomParser(UpdateCallback):
 
         intid = self.nid2id.get(gramps_id)
         if self.dbase.has_note_handle(intid):
-            note = from_struct(self.dbase.get_raw_note_data(intid))
+            note = from_dict(self.dbase.get_raw_note_data(intid))
         else:
             note = Note()
             intid = self.__find_from_handle(gramps_id, self.nid2id)
@@ -3304,7 +3304,7 @@ class GedcomParser(UpdateCallback):
         """
         if location is None:
             return True
-        elif to_struct(location) == self._EMPTY_LOC:
+        elif to_dict(location) == self._EMPTY_LOC:
             return True
         elif location.is_empty():
             return True
