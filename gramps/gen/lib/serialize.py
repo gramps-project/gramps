@@ -106,22 +106,28 @@ class BlobSerializer:
 
     data_field = "blob_data"
 
-    def data_to_object(self, obj_class, data):
+    @staticmethod
+    def data_to_object(obj_class, data):
         return obj_class.create(data)
 
-    def string_to_object(self, obj_class, string):
+    @staticmethod
+    def string_to_object(obj_class, string):
         return obj_class.create(pickle.loads(string))
 
-    def string_to_data(self, string):
+    @staticmethod
+    def string_to_data(string):
         return pickle.loads(string)
 
-    def object_to_string(self, obj):
+    @staticmethod
+    def object_to_string(obj):
         return pickle.dumps(obj.serialize())
 
-    def data_to_string(self, data):
+    @staticmethod
+    def data_to_string(data):
         return pickle.dumps(data)
 
-    def get_item(self, data, position):
+    @staticmethod
+    def get_item(data, position):
         return data[position]
 
 
@@ -132,24 +138,26 @@ class JSONSerializer:
 
     data_field = "json_data"
 
-    def data_to_object(self, obj_class, data):
+    @staticmethod
+    def data_to_object(obj_class, data):
         return from_struct(data)
 
-    def string_to_object(self, obj_class, string):
+    @staticmethod
+    def string_to_object(obj_class, string):
         return from_json(string)
 
-    def string_to_data(self, string):
+    @staticmethod
+    def string_to_data(string):
         return json.loads(string)
 
-    def object_to_string(self, obj):
+    @staticmethod
+    def object_to_string(obj):
         return to_json(obj)
 
-    def data_to_string(self, data):
+    @staticmethod
+    def data_to_string(data):
         return json.dumps(data)
 
-    def get_item(self, data, key):
+    @staticmethod
+    def get_item(data, key):
         return data[key]
-
-
-BLOB_SERIALIZER = BlobSerializer()
-JSON_SERIALIZER = JSONSerializer()

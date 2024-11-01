@@ -58,7 +58,7 @@ from ..lib import (
     Source,
     Tag,
 )
-from ..lib.serialize import from_struct, BLOB_SERIALIZER, JSON_SERIALIZER
+from ..lib.serialize import from_struct, BlobSerializer, JSONSerializer
 from ..lib.genderstats import GenderStats
 from ..lib.researcher import Researcher
 from ..updatecallback import UpdateCallback
@@ -2715,6 +2715,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Set the serializer to 'blob' or 'json'
         """
         if serializer_name == "blob":
-            self.serializer = BLOB_SERIALIZER
+            self.serializer = BlobSerializer
         elif serializer_name == "json":
-            self.serializer = JSON_SERIALIZER
+            self.serializer = JSONSerializer
