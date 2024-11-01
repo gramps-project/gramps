@@ -525,11 +525,11 @@ class VCardParser:
                     else:
                         addr.set_street(strng)
 
-            addr.add_street = add_street
+            addr._add_street = add_street
             set_func = [
-                "add_street",
-                "add_street",
-                "add_street",
+                "_add_street",
+                "_add_street",
+                "_add_street",
                 "set_city",
                 "set_state",
                 "set_postal_code",
