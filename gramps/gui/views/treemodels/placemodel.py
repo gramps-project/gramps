@@ -117,7 +117,7 @@ class PlaceBaseModel:
         """
         Return the color column.
         """
-        # FIXME: this is a model.get_value() arg
+        # This is a model.get_value() arg
         return 10
 
     def on_get_n_columns(self):
