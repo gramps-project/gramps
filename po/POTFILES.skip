@@ -441,7 +441,6 @@ gramps/gui/widgets/fanchart2way.py
 gramps/gui/widgets/fanchartdesc.py
 gramps/gui/widgets/grabbers.py
 gramps/gui/widgets/histogram.py
-gramps/gui/widgets/interactivesearchbox.py
 gramps/gui/widgets/linkbox.py
 gramps/gui/widgets/menuitem.py
 gramps/gui/widgets/multitreeview.py

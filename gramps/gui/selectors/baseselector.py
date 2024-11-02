@@ -35,7 +35,6 @@ from gi.repository import Pango
 from ..managedwindow import ManagedWindow
 from ..filters import SearchBar
 from ..glade import Glade
-from ..widgets.interactivesearchbox import InteractiveSearchBox
 from ..display import display_help
 from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gui.widgets.persistenttreeview import PersistentTreeView
@@ -106,10 +105,6 @@ class BaseSelector(ManagedWindow):
         self.define_help_button(
             self.glade.get_object("help"), self.WIKI_HELP_PAGE, self.WIKI_HELP_SEC
         )
-
-        # connect to signal for custom interactive-search
-        self.searchbox = InteractiveSearchBox(self.tree)
-        self.tree.connect("key-press-event", self.searchbox.treeview_keypress)
 
         # add the search bar
         self.search_bar = SearchBar(
