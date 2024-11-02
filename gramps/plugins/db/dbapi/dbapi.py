@@ -86,7 +86,7 @@ class DBAPI(DbGeneric):
     def upgrade_table_for_json_access(self, table_name):
         """
         A DBAPI level method for upgrading the given table
-        for a json_data field.
+        adding a json_data column.
         """
         try:
             self.dbapi.execute("ALTER TABLE %s ADD COLUMN json_data TEXT;" % table_name)

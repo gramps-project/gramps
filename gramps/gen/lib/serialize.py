@@ -91,12 +91,12 @@ def from_dict(dict):
     """
     Convert a dictionary into a Gramps object.
 
-    :param struct: The dictionary to be unserialized.
-    :type struct: dict
+    :param dict: The dictionary to be unserialized.
+    :type dict: dict
     :returns: A Gramps object.
     :rtype: object
     """
-    return from_json(json.dumps(struct))
+    return from_json(json.dumps(dict))
 
 
 class BlobSerializer:

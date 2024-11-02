@@ -81,6 +81,7 @@ from gramps.gen.config import config
 # COLUMN constants; positions in raw data structure
 #
 # -------------------------------------------------------------------------
+COLUMN_HANDLE = "handle"
 COLUMN_ID = "gramps_id"
 COLUMN_GENDER = "gender"
 COLUMN_NAME = "primary_name"
