@@ -87,7 +87,7 @@ def to_dict(obj):
     return json.loads(to_json(obj))
 
 
-def from_dict(struct):
+def from_dict(dict):
     """
     Convert a dictionary into a Gramps object.
 
