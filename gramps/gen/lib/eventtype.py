@@ -339,6 +339,7 @@ class EventType(GrampsType):
             self.BURIAL,
             self.CREMATION,
             self.CAUSE_DEATH,
+            self.PROBATE,
         ]
 
     def is_marriage(self):
