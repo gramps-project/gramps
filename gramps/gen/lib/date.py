@@ -1415,6 +1415,11 @@ class Date(BaseObject):
     def _assert_compound(self):
         if not self.is_compound():
             raise DateError("Operation allowed for compound dates only!")
+        # ensure the dateval structure is suitable
+        if len(self.dateval) == 4:
+            dlist = list(self.dateval)
+            dlist.extend(self.EMPTY)
+            self.dateval = tuple(dlist)
 
     def set2_yr_mon_day(self, year, month, day):
         """
