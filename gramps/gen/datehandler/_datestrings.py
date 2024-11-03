@@ -335,13 +335,13 @@ if __name__ == "__main__":
     except AttributeError:
         localized_months = old_long
 
-    def print_po_snippet(en_loc_old_lists, context):
+    def print_po_snippet(en_loc_old_lists, context, line: int):
         for m, localized, old in zip(*en_loc_old_lists):
             if m == "":
                 continue
             if m == localized:
                 localized = old
-            print("#: {file}:{line}".format(file=filename, line=print_po_snippet.line))
+            print("#: {file}:{line}".format(file=filename, line=line))
             if context:
                 print('msgctxt "{context}"'.format(context=context))
             print(
@@ -350,64 +350,76 @@ if __name__ == "__main__":
                     en_month=m, localized_month=localized
                 )
             )
-            print_po_snippet.line += 1
-
-    print_po_snippet.line = 10000
+            line += 1
+            return line
 
     try:
         localized_months = dd.__class__.long_months
     except AttributeError:
         localized_months = old_long
-    print_po_snippet(
+    line = 10000
+    line = print_po_snippet(
         (ds_EN.long_months, localized_months, old_long),
         "localized lexeme inflections",
+        line=line,
     )
 
     try:
         localized_months = dd.__class__.short_months
     except AttributeError:
         localized_months = old_short
-    print_po_snippet(
+    line = print_po_snippet(
         (ds_EN.short_months, localized_months, old_short),
         "localized lexeme inflections - short month form",
+        line=line,
     )
 
-    print_po_snippet((ds_EN.long_days, old_days, old_days), "")
+    line = print_po_snippet((ds_EN.long_days, old_days, old_days), "", line=line)
 
-    print_po_snippet((ds_EN.short_days, old_short_days, old_short_days), "")
+    line = print_po_snippet(
+        (ds_EN.short_days, old_short_days, old_short_days), "", line=line
+    )
 
     try:
         loc = dd.__class__.hebrew
-        print_po_snippet((ds_EN.hebrew, loc, loc), "Hebrew month lexeme")
+        line = print_po_snippet(
+            (ds_EN.hebrew, loc, loc), "Hebrew month lexeme", line=line
+        )
     except AttributeError:
         pass
 
     try:
         loc = dd.__class__.french
-        print_po_snippet((ds_EN.french, loc, loc), "French month lexeme")
+        line = print_po_snippet(
+            (ds_EN.french, loc, loc), "French month lexeme", line=line
+        )
     except AttributeError:
         pass
 
     try:
         loc = dd.__class__.islamic
-        print_po_snippet((ds_EN.islamic, loc, loc), "Islamic month lexeme")
+        line = print_po_snippet(
+            (ds_EN.islamic, loc, loc), "Islamic month lexeme", line=line
+        )
     except AttributeError:
         pass
 
     try:
         loc = dd.__class__.persian
-        print_po_snippet((ds_EN.persian, loc, loc), "Persian month lexeme")
+        line = print_po_snippet(
+            (ds_EN.persian, loc, loc), "Persian month lexeme", line=line
+        )
     except AttributeError:
         pass
 
     try:
         loc = dd.__class__._mod_str
-        print_po_snippet((ds_EN.modifiers, loc, loc), "date modifier")
+        line = print_po_snippet((ds_EN.modifiers, loc, loc), "date modifier", line=line)
     except AttributeError:
         pass
 
     try:
         loc = dd.__class__._qual_str
-        print_po_snippet((ds_EN.qualifiers, loc, loc), "date quality")
+        line = print_po_snippet((ds_EN.qualifiers, loc, loc), "date quality", line=line)
     except AttributeError:
         pass
