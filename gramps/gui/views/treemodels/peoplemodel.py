@@ -76,24 +76,6 @@ from .treebasemodel import TreeBaseModel
 from .basemodel import BaseModel
 from gramps.gen.config import config
 
-# -------------------------------------------------------------------------
-#
-# COLUMN constants; positions in raw data structure
-#
-# -------------------------------------------------------------------------
-COLUMN_HANDLE = "handle"
-COLUMN_ID = "gramps_id"
-COLUMN_GENDER = "gender"
-COLUMN_NAME = "primary_name"
-COLUMN_DEATH = "death_ref_index"
-COLUMN_BIRTH = "birth_ref_index"
-COLUMN_EVENT = "event_ref_list"
-COLUMN_FAMILY = "family_list"
-COLUMN_PARENT = "parent_family_list"
-COLUMN_NOTES = "note_list"
-COLUMN_CHANGE = "change"
-COLUMN_TAGS = "tag_list"
-COLUMN_PRIV = "private"
 
 invalid_date_format = config.get("preferences.invalid-date-format")
 no_surname = config.get("preferences.no-surname-text")
@@ -182,7 +164,7 @@ class PeopleBaseModel(BaseModel):
         handle = data["handle"]
         cached, name = self.get_cached_value(handle, "SORT_NAME")
         if not cached:
-            name = name_displayer.raw_sorted_name(data[COLUMN_NAME])
+            name = name_displayer.raw_sorted_name(data["primary_name"])
             self.set_cached_value(handle, "SORT_NAME", name)
         return name
 
@@ -190,7 +172,7 @@ class PeopleBaseModel(BaseModel):
         handle = data["handle"]
         cached, name = self.get_cached_value(handle, "NAME")
         if not cached:
-            name = name_displayer.raw_display_name(data[COLUMN_NAME])
+            name = name_displayer.raw_display_name(data["primary_name"])
             self.set_cached_value(handle, "NAME", name)
         return name
 
@@ -203,7 +185,7 @@ class PeopleBaseModel(BaseModel):
         return value
 
     def column_private(self, data):
-        if data[COLUMN_PRIV]:
+        if data["private"]:
             return "gramps-lock"
         else:
             # There is a problem returning None here.
@@ -211,7 +193,7 @@ class PeopleBaseModel(BaseModel):
 
     def _get_spouse_data(self, data):
         spouses_names = ""
-        for family_handle in data[COLUMN_FAMILY]:
+        for family_handle in data["family_list"]:
             family = self.db.get_family_from_handle(family_handle)
             for spouse_id in [family.get_father_handle(), family.get_mother_handle()]:
                 if not spouse_id:
@@ -225,16 +207,16 @@ class PeopleBaseModel(BaseModel):
         return spouses_names
 
     def column_id(self, data):
-        return data[COLUMN_ID]
+        return data["gramps_id"]
 
     def sort_change(self, data):
-        return "%012x" % data[COLUMN_CHANGE]
+        return "%012x" % data["change"]
 
     def column_change(self, data):
-        return format_time(data[COLUMN_CHANGE])
+        return format_time(data["change"])
 
     def column_gender(self, data):
-        return PeopleBaseModel._GENDER[data[COLUMN_GENDER]]
+        return PeopleBaseModel._GENDER[data["gender"]]
 
     def column_birth_day(self, data):
         handle = data["handle"]
@@ -253,10 +235,10 @@ class PeopleBaseModel(BaseModel):
         return value
 
     def _get_birth_data(self, data, sort_mode):
-        index = data[COLUMN_BIRTH]
+        index = data["birth_ref_index"]
         if index != -1:
             try:
-                local = data[COLUMN_EVENT][index]
+                local = data["event_ref_list"][index]
                 b = from_dict(local)
                 birth = self.db.get_event_from_handle(b.ref)
                 if sort_mode:
@@ -272,7 +254,7 @@ class PeopleBaseModel(BaseModel):
             except:
                 return ""
 
-        for event_ref in data[COLUMN_EVENT]:
+        for event_ref in data["event_ref_list"]:
             er = from_dict(event_ref)
             event = self.db.get_event_from_handle(er.ref)
             etype = event.get_type()
@@ -310,10 +292,10 @@ class PeopleBaseModel(BaseModel):
         return value
 
     def _get_death_data(self, data, sort_mode):
-        index = data[COLUMN_DEATH]
+        index = data["death_ref_index"]
         if index != -1:
             try:
-                local = data[COLUMN_EVENT][index]
+                local = data["event_ref_list"][index]
                 ref = from_dict(local)
                 event = self.db.get_event_from_handle(ref.ref)
                 if sort_mode:
@@ -329,7 +311,7 @@ class PeopleBaseModel(BaseModel):
             except:
                 return ""
 
-        for event_ref in data[COLUMN_EVENT]:
+        for event_ref in data["event_ref_list"]:
             er = from_dict(event_ref)
             event = self.db.get_event_from_handle(er.ref)
             etype = event.get_type()
@@ -355,10 +337,10 @@ class PeopleBaseModel(BaseModel):
         if cached:
             return value
         else:
-            index = data[COLUMN_BIRTH]
+            index = data["birth_ref_index"]
             if index != -1:
                 try:
-                    local = data[COLUMN_EVENT][index]
+                    local = data["event_ref_list"][index]
                     br = from_dict(local)
                     event = self.db.get_event_from_handle(br.ref)
                     if event:
@@ -372,7 +354,7 @@ class PeopleBaseModel(BaseModel):
                     self.set_cached_value(handle, "BIRTH_PLACE", value)
                     return value
 
-            for event_ref in data[COLUMN_EVENT]:
+            for event_ref in data["event_ref_list"]:
                 er = from_dict(event_ref)
                 event = self.db.get_event_from_handle(er.ref)
                 etype = event.get_type()
@@ -392,10 +374,10 @@ class PeopleBaseModel(BaseModel):
         if cached:
             return value
         else:
-            index = data[COLUMN_DEATH]
+            index = data["death_ref_index"]
             if index != -1:
                 try:
-                    local = data[COLUMN_EVENT][index]
+                    local = data["event_ref_list"][index]
                     dr = from_dict(local)
                     event = self.db.get_event_from_handle(dr.ref)
                     if event:
@@ -409,7 +391,7 @@ class PeopleBaseModel(BaseModel):
                     self.set_cached_value(handle, "DEATH_PLACE", value)
                     return value
 
-            for event_ref in data[COLUMN_EVENT]:
+            for event_ref in data["event_ref_list"]:
                 er = from_dict(event_ref)
                 event = self.db.get_event_from_handle(er.ref)
                 etype = event.get_type()
@@ -425,8 +407,8 @@ class PeopleBaseModel(BaseModel):
 
     def _get_parents_data(self, data):
         parents = 0
-        if data[COLUMN_PARENT]:
-            person = self.db.get_person_from_gramps_id(data[COLUMN_ID])
+        if data["parent_family_list"]:
+            person = self.db.get_person_from_gramps_id(data["gramps_id"])
             family_list = person.get_parent_family_handle_list()
             for fam_hdle in family_list:
                 family = self.db.get_family_from_handle(fam_hdle)
@@ -438,7 +420,7 @@ class PeopleBaseModel(BaseModel):
 
     def _get_marriages_data(self, data):
         marriages = 0
-        for family_handle in data[COLUMN_FAMILY]:
+        for family_handle in data["family_list"]:
             family = self.db.get_family_from_handle(family_handle)
             if int(family.get_relationship()) == FamilyRelType.MARRIED:
                 marriages += 1
@@ -446,7 +428,7 @@ class PeopleBaseModel(BaseModel):
 
     def _get_children_data(self, data):
         children = 0
-        for family_handle in data[COLUMN_FAMILY]:
+        for family_handle in data["family_list"]:
             family = self.db.get_family_from_handle(family_handle)
             for child_ref in family.get_child_ref_list():
                 if (
@@ -458,7 +440,7 @@ class PeopleBaseModel(BaseModel):
 
     def _get_todo_data(self, data):
         todo = 0
-        for note_handle in data[COLUMN_NOTES]:
+        for note_handle in data["note_list"]:
             note = self.db.get_note_from_handle(note_handle)
             if int(note.get_type()) == NoteType.TODO:
                 todo += 1
@@ -549,7 +531,7 @@ class PeopleBaseModel(BaseModel):
         if not cached:
             tag_color = ""
             tag_priority = None
-            for handle in data[COLUMN_TAGS]:
+            for handle in data["tag_list"]:
                 tag = self.db.get_tag_from_handle(handle)
                 if tag:
                     this_priority = tag.get_priority()
@@ -567,7 +549,7 @@ class PeopleBaseModel(BaseModel):
         handle = data["handle"]
         cached, value = self.get_cached_value(handle, "TAGS")
         if not cached:
-            tag_list = list(map(self.get_tag_name, data[COLUMN_TAGS]))
+            tag_list = list(map(self.get_tag_name, data["tag_list"]))
             # TODO for Arabic, should the next line's comma be translated?
             value = ", ".join(sorted(tag_list, key=glocale.sort_key))
             self.set_cached_value(handle, "TAGS", value)
@@ -666,7 +648,7 @@ class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
         """
         ngn = name_displayer.name_grouping_data
 
-        name_data = data[COLUMN_NAME]
+        name_data = data["primary_name"]
         group_name = ngn(self.db, name_data)
         sort_key = self.sort_func(data)
 

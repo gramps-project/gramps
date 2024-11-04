@@ -64,10 +64,6 @@ from gramps.gen.lib.serialize import from_dict
 #
 # -------------------------------------------------------------------------
 
-COLUMN_GENDER = "gender"
-COLUMN_NAME = "primary_name"
-COLUMN_ALTNAMES = "alternate_names"
-
 
 class RebuildGenderStat(tool.Tool, UpdateCallback):
     def __init__(self, dbstate, user, options_class, name, callback=None):
@@ -116,13 +112,13 @@ class RebuildGenderStat(tool.Tool, UpdateCallback):
             # loop over database and store the sort field, and the handle, and
             # allow for a third iter
             for key, data in cursor:
-                rawprimname = data[COLUMN_NAME]
-                rawaltnames = data[COLUMN_ALTNAMES]
+                rawprimname = data["primary_name"]
+                rawaltnames = data["alternate_names"]
                 primary_name = from_dict(rawprimname).get_first_name()
                 alternate_names = [
                     from_dict(name).get_first_name() for name in rawaltnames
                 ]
-                self.db.genderStats.count_name(primary_name, data[COLUMN_GENDER])
+                self.db.genderStats.count_name(primary_name, data["gender"])
 
 
 # ------------------------------------------------------------------------

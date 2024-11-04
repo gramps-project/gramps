@@ -50,21 +50,6 @@ from gramps.gen.config import config
 from .flatbasemodel import FlatBaseModel
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
-# -------------------------------------------------------------------------
-#
-# Positions in raw data structure
-#
-# -------------------------------------------------------------------------
-COLUMN_HANDLE = "handle"
-COLUMN_ID = "gramps_id"
-COLUMN_TYPE = "type"
-COLUMN_DATE = "date"
-COLUMN_DESCRIPTION = "description"
-COLUMN_PLACE = "place"
-COLUMN_CHANGE = "change"
-COLUMN_TAGS = "tag_list"
-COLUMN_PRIV = "private"
-
 INVALID_DATE_FORMAT = config.get("preferences.invalid-date-format")
 
 
@@ -136,20 +121,20 @@ class EventModel(FlatBaseModel):
         return len(self.fmap) + 1
 
     def column_description(self, data):
-        return data[COLUMN_DESCRIPTION]
+        return data["description"]
 
     def column_participant(self, data):
         handle = data["handle"]
         cached, value = self.get_cached_value(handle, "PARTICIPANT")
         if not cached:
             value = get_participant_from_event(
-                self.db, data[COLUMN_HANDLE], all_=True
+                self.db, data["handle"], all_=True
             )  # all participants
             self.set_cached_value(handle, "PARTICIPANT", value)
         return value
 
     def column_place(self, data):
-        if data[COLUMN_PLACE]:
+        if data["place"]:
             cached, value = self.get_cached_value(data["handle"], "PLACE")
             if not cached:
                 event = from_dict(data)
@@ -160,13 +145,13 @@ class EventModel(FlatBaseModel):
             return ""
 
     def column_type(self, data):
-        return str(EventType(data[COLUMN_TYPE]))
+        return str(EventType(data["type"]))
 
     def column_id(self, data):
-        return data[COLUMN_ID]
+        return data["gramps_id"]
 
     def column_date(self, data):
-        if data[COLUMN_DATE]:
+        if data["date"]:
             event = from_dict(data)
             date_str = get_date(event)
             if date_str != "":
@@ -180,7 +165,7 @@ class EventModel(FlatBaseModel):
         return ""
 
     def sort_date(self, data):
-        if data[COLUMN_DATE]:
+        if data["date"]:
             event = from_dict(data)
             retval = "%09d" % event.get_date_object().get_sort_value()
             if not get_date_valid(event):
@@ -191,17 +176,17 @@ class EventModel(FlatBaseModel):
         return ""
 
     def column_private(self, data):
-        if data[COLUMN_PRIV]:
+        if data["private"]:
             return "gramps-lock"
         else:
             # There is a problem returning None here.
             return ""
 
     def sort_change(self, data):
-        return "%012x" % data[COLUMN_CHANGE]
+        return "%012x" % data["change"]
 
     def column_change(self, data):
-        return format_time(data[COLUMN_CHANGE])
+        return format_time(data["change"])
 
     def get_tag_name(self, tag_handle):
         """
@@ -223,7 +208,7 @@ class EventModel(FlatBaseModel):
         if not cached:
             tag_color = ""
             tag_priority = None
-            for handle in data[COLUMN_TAGS]:
+            for handle in data["tag_list"]:
                 tag = self.db.get_tag_from_handle(handle)
                 this_priority = tag.get_priority()
                 if tag_priority is None or this_priority < tag_priority:
@@ -236,6 +221,6 @@ class EventModel(FlatBaseModel):
         """
         Return the sorted list of tags.
         """
-        tag_list = list(map(self.get_tag_name, data[COLUMN_TAGS]))
+        tag_list = list(map(self.get_tag_name, data["tag_list"]))
         # TODO for Arabic, should the next line's comma be translated?
         return ", ".join(sorted(tag_list, key=glocale.sort_key))
