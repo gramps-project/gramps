@@ -150,8 +150,8 @@ class ToolControl(unittest.TestCase):
         out, err = call("-O", TREE_NAME, "-y", "-a", "tool", "-p", "name=check")
         expect = [
             "1 place alternate name fixed",
-            "3 media objects were referenced, but not found",
-            "References to 3 missing media objects were kept",
+            "9 media objects were referenced, but not found",
+            "References to 9 missing media objects were kept",
             "3 events were referenced, but not found",
             "1 invalid birth event name was fixed",
             "1 invalid death event name was fixed",
