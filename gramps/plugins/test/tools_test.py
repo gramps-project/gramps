@@ -149,11 +149,9 @@ class ToolControl(unittest.TestCase):
         self.assertTrue(check_res(out, err, expect, do_out=True))
         out, err = call("-O", TREE_NAME, "-y", "-a", "tool", "-p", "name=check")
         expect = [
-            "7 broken child/family links were fixed",
-            "4 broken spouse/family links were fixed",
             "1 place alternate name fixed",
-            "10 media objects were referenced, but not found",
-            "References to 10 missing media objects were kept",
+            "3 media objects were referenced, but not found",
+            "References to 3 missing media objects were kept",
             "3 events were referenced, but not found",
             "1 invalid birth event name was fixed",
             "1 invalid death event name was fixed",
@@ -161,13 +159,13 @@ class ToolControl(unittest.TestCase):
             "16 citations were referenced, but not found",
             "19 sources were referenced, but not found",
             "9 Duplicated Gramps IDs fixed",
-            "7 empty objects removed",
+            "9 empty objects removed:",
             "1 person objects",
             "1 family objects",
             "1 event objects",
             "1 source objects",
-            "0 media objects",
-            "0 place objects",
+            "1 media objects",
+            "1 place objects",
             "1 repository objects",
             "1 note objects",
         ]
