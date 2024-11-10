@@ -91,6 +91,7 @@ from . import (
 from .bookmarks import DbBookmarks
 from .exceptions import DbUpgradeRequiredError, DbVersionError
 from .utils import clear_lock_file, write_lock_file
+from .select_utils import select
 
 _ = glocale.translation.gettext
 
@@ -2737,3 +2738,16 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.serializer = BlobSerializer
         elif serializer_name == "json":
             self.serializer = JSONSerializer
+
+    def select(self, table, selections=None, where=None, sort_by=None):
+        """
+        Generic function that can handle jsonpath items in a list.
+
+        table - name of table
+        selections -
+            Example: ("gender", "primary_name.suname_list[0].surname", ...)
+        sort_by - "gender"
+        where - ("and", ("handle", "=", "abc64564346"),
+                        ("gramps_id", "=", ""))
+        """
+        yield from select(self, table, selections, where, sort_by)
