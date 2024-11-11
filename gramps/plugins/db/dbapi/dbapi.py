@@ -1189,12 +1189,13 @@ class DBAPI(DbGeneric):
         This method can be overloaded for different SQL
         jsonpath syntaxes.
         """
-        if expr.startswith("$"):
-            return 'json_data->>"%s"' % expr
-        elif isinstance(expr, numbers.Number):
+        if isinstance(expr, numbers.Number):
             return expr
         elif isinstance(expr, str):
-            return "'%s'" % expr
+            if expr.startswith("$"):
+                return 'json_data->>"%s"' % expr
+            else:
+                return "'%s'" % expr
         elif expr is None:
             return "null"
         elif expr is True:
@@ -1230,7 +1231,7 @@ class DBAPI(DbGeneric):
         where=None,
         sort_by=None,
         page=0,
-        page_size=25,
+        page_size=None,
     ):
         """This is a DB-API implementation of the DbGeneric.select()
         method.
@@ -1279,17 +1280,21 @@ class DBAPI(DbGeneric):
             [self._convert_expr_to_sql(item) for item in selections]
         )
         where_clause = self._convert_where_expr_to_sql(where) if where else ""
+        if where_clause:
+            where_clause = " WHERE" + where_clause
         sort_by = sort_by if sort_by else []
         sort_by_clause = ", ".join(
             [self._convert_expr_to_sql(item) for item in sort_by]
         )
+        if sort_by_clause:
+            sort_by_clause = " ORDER BY " + sort_by_clause
         if page_size is None:
             offset_limit_clause = ""
         else:
-            offset_limit_clause = f"LIMIT {page_size} OFFSET {page * page_size}"
+            offset_limit_clause = f" LIMIT {page_size} OFFSET {page * page_size}"
 
         self.dbapi.execute(
-            f"select {select_clause} from {table} WHERE {where_clause} ORDER BY {sort_by_clause} {offset_limit_clause};"
+            f"select {select_clause} from {table}{where_clause}{sort_by_clause}{offset_limit_clause};"
         )
         for row in self.dbapi.fetchall():
             if "$" in selections:

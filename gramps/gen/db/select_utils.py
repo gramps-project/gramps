@@ -88,9 +88,19 @@ def select_where(db, table, where):
     handle and gramps_id lookup methods.
     """
     if where:
+        # Check for a simple optimization:
+        # is where composed of indexable expressions?
         indexed_expressions = []
-        get_indexed_fields(where, indexed_expressions)
-        if indexed_expressions:
+        non_indexed_expressions = []
+        connectors = []
+        get_indexed_fields(
+            where, indexed_expressions, non_indexed_expressions, connectors
+        )
+        # Has to have some indexed, and either no non-indexed
+        # or only non-indexed combined with "and"
+        if indexed_expressions and (
+            (not non_indexed_expressions) or ("or" not in connectors)
+        ):
             handles_returned = []
             for indexed in indexed_expressions:
                 index_field, compare, index_value = indexed
@@ -226,10 +236,10 @@ def compare_where(lhs, op, rhs):
         raise Exception("Operator %r is not supported" % op)
 
 
-def get_indexed_fields(where, indexes):
+def get_indexed_fields(where, indexes, non_indexes, connectors):
     """
-    Recursive function that accumpulates matches
-    in the mutable `indexes` list.
+    Recursive function that accumpulates data
+    in the mutable lists.
 
     A match is an expression that compares "$.handle"
     or "$.gramps_id" equal to a value.
@@ -251,8 +261,11 @@ def get_indexed_fields(where, indexes):
         # A comparison expression
         if where[0] in ["$.gramps_id", "$.handle"] and where[1] == "=":
             indexes += [where]
+        else:
+            non_indexes += [where]
     else:
         # Must be ("and", exprs) or ("or", exprs)
         # Recurse on all expressions
+        connectors += [where[0]]
         for expr in where[1]:
-            get_indexed_fields(expr, indexes)
+            get_indexed_fields(expr, indexes, non_indexes, connectors)

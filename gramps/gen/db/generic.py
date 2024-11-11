@@ -2739,7 +2739,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.serializer = JSONSerializer
 
     def select(
-        self, table, selections=None, where=None, sort_by=None, page=0, page_size=25
+        self, table, selections=None, where=None, sort_by=None, page=0, page_size=None
     ):
         """
         Generic implementation of select, with where and sort_by clauses.
