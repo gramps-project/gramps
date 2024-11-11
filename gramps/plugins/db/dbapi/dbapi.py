@@ -1184,42 +1184,103 @@ class DBAPI(DbGeneric):
         """
         return [v if not isinstance(v, bool) else int(v) for v in values]
 
-    def select(self, table, selections=None, where=None, sort_by=None):
-        def convert_expr(expr):
-            if expr.startswith("$."):
-                return 'json_data->>"%s"' % expr
-            elif isinstance(expr, numbers.Number):
-                return expr
-            elif isinstance(expr, str):
-                return "'%s'" % expr
-            elif expr is None:
-                return "null"
-            elif expr is True:
-                return 1
-            elif expr is False:
-                return 0
-            else:
-                return expr
+    def _convert_expr_to_sql(self, expr):
+        """
+        This method can be overloaded for different SQL
+        jsonpath syntaxes.
+        """
+        if expr.startswith("$"):
+            return 'json_data->>"%s"' % expr
+        elif isinstance(expr, numbers.Number):
+            return expr
+        elif isinstance(expr, str):
+            return "'%s'" % expr
+        elif expr is None:
+            return "null"
+        elif expr is True:
+            return 1
+        elif expr is False:
+            return 0
+        else:
+            return expr
 
-        def convert_where_expr(where):
-            if len(where) == 3:
-                lhs = convert_expr(where[0])
-                op = where[1]
-                rhs = convert_expr(where[2])
-                return "%s %s %s" % (lhs, op, rhs)
+    def _convert_where_expr_to_sql(self, where):
+        """
+        This method can be overloaded for different SQL
+        syntaxes.
+        """
+        if len(where) == 3:
+            lhs = self._convert_expr_to_sql(where[0])
+            op = where[1]
+            rhs = self._convert_expr_to_sql(where[2])
+            return "(%s %s %s)" % (lhs, op, rhs)
+        else:
+            cond = where[0]
+            expressions = [self._convert_where_expr_to_sql(expr) for expr in where[1]]
+            expressions_str = (" " + cond + " ").join(expressions)
+            if len(expressions) > 1:
+                return "(%s)" % expressions_str
             else:
-                cond = where[0]
-                expressions = [convert_where_expr(expr) for expr in where[1]]
-                return (" " + cond + " ").join(expressions)
+                return expressions_str
 
-        selections = selections if selections else []
+    def select(
+            self, table, selections=None, where=None, sort_by=None,
+            page=0, page_size=25,
+    ):
+        """This is a DB-API implementation of the DbGeneric.select()
+        method.
+
+        :param table: Name of table
+        :type table: str
+        :param selections: List of json-paths
+        :type selections: List[str] or tuple(str)
+        :param where: A single where-expression (see below)
+        :type where: tuple or list
+        :param sort_by: A list of expressions to sort on
+        :type where: tuple or list
+        :param page: The page number to return (zero-based)
+        :type page: int
+        :param page_size: The size of a page in rows; None means ignore
+        :type page: int or None
+        :returns: Returns selected items from select rows, from iterator
+        :rtype: dict
+
+        Examples:
+
+        Get the gender and surname of all males, sort by gramps_id:
+        ```
+        db.select(
+            "person",
+            ["$.gender", "$.primary_name.surname_list[0].surname"],
+            where=["$.gender", "=", Person.MALE],
+            sort_by=["$.gramps_id"],
+        )
+        ```
+        Notes:
+
+        Although the SQL engine may support more variations than
+        Python (or other implementations) you should not use them to
+        ensure that your code will run with all backends.
+
+        The where expressions only support the following operators:
+            "=", "!=", "<", "<=", ">", ">=", "in", "not in", "like"
+
+        The `like` operator supports "%" (zero or more characters)
+        and "_" (one character) regular expression matches.
+
+        """
+        selections = selections if selections else ["$"]
+        select_clause = ", ".join([self._convert_expr_to_sql(item) for item in selections])
+        where_clause = self._convert_where_expr_to_sql(where) if where else ""
         sort_by = sort_by if sort_by else []
-        select_clause = ", ".join([('json_data->>"%s"' % item) for item in selections])
-        where_clause = convert_where_expr(where) if where else ""
-        sort_by_clause = ", ".join([('json_data->>"%s"' % item) for item in sort_by])
+        sort_by_clause = ", ".join([self._convert_expr_to_sql(item) for item in sort_by])
+        if page_size is None:
+            offset_limit_clause = ""
+        else:
+            offset_limit_clause = f"LIMIT {page_size} OFFSET {page * page_size}"
 
         self.dbapi.execute(
-            f"select {select_clause} from {table} WHERE {where_clause} ORDER BY {sort_by_clause};"
+            f"select {select_clause} from {table} WHERE {where_clause} ORDER BY {sort_by_clause} {offset_limit_clause};"
         )
         for row in self.dbapi.fetchall():
             if "$" in selections:

@@ -2738,7 +2738,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         elif serializer_name == "json":
             self.serializer = JSONSerializer
 
-    def select(self, table, selections=None, where=None, sort_by=None):
+    def select(self, table, selections=None, where=None, sort_by=None,
+               page=0, page_size=25):
         """
         Generic implementation of select, with where and sort_by clauses.
 
@@ -2748,8 +2749,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         :type selections: List[str] or tuple(str)
         :param where: A single where-expression (see below)
         :type where: tuple or list
-        :param sort_by: A list of expressions to sort on
-        :type where: tuple or list
+        :param page: The page number to return (zero-based)
+        :type page: int
+        :param page_size: The size of a page in rows; None means ignore
+        :type page: int or None
         :returns: Returns selected items from select rows, from iterator
         :rtype: dict
 
@@ -2764,7 +2767,21 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             sort_by=["$.gramps_id"],
         )
         ```
+        Notes:
+
+        Although the Python jsonpath_ng library may support more
+        variations than SQL (or other implementations) you should
+        not use them to ensure that your code will run with all
+        backends.
+
+        The where expressions only support the following operators:
+            "=", "!=", "<", "<=", ">", ">=", "in", "not in", "like"
+
+        The `like` operator supports "%" (zero or more characters)
+        and "_" (one character) regular expression matches.
         """
         from gramps.gen.db.select_utils import select
 
-        yield from select(self, table, selections, where, sort_by)
+        yield from select(
+            self, table, selections, where, sort_by, page, page_size
+        )

@@ -28,7 +28,7 @@ import jsonpath_ng
 PARSE_CACHE = {}
 
 
-def select(db, table, selections, where, sort_by):
+def select(db, table, selections, where, sort_by, page, page_size):
     """
     Top-level function for select functions.
 
@@ -40,11 +40,27 @@ def select(db, table, selections, where, sort_by):
         sort_by: list of jsonpaths to sort by
     """
     selections = selections if selections else ["$"]
+    if page_size is None:
+        limit = float("+inf")
+        offset = 0
+    else:
+        offset = page * page_size
+        limit = page_size
+
     if sort_by is None:
-        yield from select_items(db, table, selections, where)
+        for count, row in enumerate(select_items(db, table, selections, where)):
+            if count < offset:
+                continue
+            if count > (offset + limit):
+                break
+            yield row
     else:
         results = list(select_items(db, table, ["$"], where))
-        for row in sorted(results, key=lambda item: sort_function(item, sort_by)):
+        for count, row in enumerate(sorted(results, key=lambda item: sort_function(item, sort_by))):
+            if count < offset:
+                continue
+            if count > (offset + limit):
+                break
             yield get_items(row, selections)
 
 
