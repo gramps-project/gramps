@@ -91,7 +91,6 @@ from . import (
 from .bookmarks import DbBookmarks
 from .exceptions import DbUpgradeRequiredError, DbVersionError
 from .utils import clear_lock_file, write_lock_file
-from .select_utils import select
 
 _ = glocale.translation.gettext
 
@@ -2741,13 +2740,31 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def select(self, table, selections=None, where=None, sort_by=None):
         """
-        Generic function that can handle jsonpath items in a list.
+        Generic implementation of select, with where and sort_by clauses.
 
-        table - name of table
-        selections -
-            Example: ("gender", "primary_name.suname_list[0].surname", ...)
-        sort_by - "gender"
-        where - ("and", ("handle", "=", "abc64564346"),
-                        ("gramps_id", "=", ""))
+        :param table: Name of table
+        :type table: str
+        :param selections: List of json-paths
+        :type selections: List[str] or tuple(str)
+        :param where: A single where-expression (see below)
+        :type where: tuple or list
+        :param sort_by: A list of expressions to sort on
+        :type where: tuple or list
+        :returns: Returns selected items from select rows, from iterator
+        :rtype: dict
+
+        Examples:
+
+        Get the gender and surname of all males, sort by gramps_id:
+        ```
+        db.select(
+            "person",
+            ["$.gender", "$.primary_name.surname_list[0].surname"],
+            where=["$.gender", "=", Person.MALE],
+            sort_by=["$.gramps_id"],
+        )
+        ```
         """
+        from gramps.gen.db.select_utils import select
+
         yield from select(self, table, selections, where, sort_by)
