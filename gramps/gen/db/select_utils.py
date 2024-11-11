@@ -22,6 +22,7 @@
 Support functions for Generic DB select functionality
 """
 
+import re
 import jsonpath_ng
 
 PARSE_CACHE = {}
@@ -34,9 +35,9 @@ def select(db, table, selections, where, sort_by):
     Args:
         db: database instance
         table: the table name
-        selections: list of json paths
-        where: a where expression (see below)
-        sort_by: list of json_paths to sort by
+        selections: list of jsonpaths
+        where: a where expression
+        sort_by: list of jsonpaths to sort by
     """
     selections = selections if selections else ["$"]
     if sort_by is None:
@@ -102,7 +103,7 @@ def select_where(db, table, where):
 
 def sort_function(item, sort_by):
     """
-    Given a list of json paths, return a
+    Given a list of jsonpaths, return a
     tuple of associated values for sorting.
     """
     results = get_items(item, sort_by)
@@ -111,7 +112,7 @@ def sort_function(item, sort_by):
 
 def get_items(row, selections):
     """
-    Given a list of json paths, get the
+    Given a list of jsonpaths, get the
     items from the row.
     """
     results = {}
@@ -121,6 +122,7 @@ def get_items(row, selections):
         else:
             match = match_json_path(json_path, row)
             if match:
+                # Remove jsonpath syntax:
                 results[json_path[2:]] = match[0].value
     return results
 
@@ -136,7 +138,13 @@ def match_json_path(json_path, row):
     match = jsonpath_expr.find(row)
     return match
 
+
 def eval_expr(expr, data):
+    """
+    Evaluate the expr. If the expr is a jsonpath,
+    then get the matching value, else all
+    other values are assumed to be self-evaluating.
+    """
     if isinstance(expr, str) and expr.startswith("$"):
         match = match_json_path(expr, data)
         if match:
@@ -149,8 +157,8 @@ def eval_expr(expr, data):
 
 def match_where(data, where):
     """
-    Assumes all comparisons are using JSONpath
-    ("gender", "=", value)
+    Assumes all comparisons are using jsonpath
+    ("$.gender", "=", value)
     """
     if len(where) == 3:
         lhs = eval_expr(where[0], data)
@@ -183,12 +191,19 @@ def compare_where(lhs, op, rhs):
         return lhs != rhs
     elif op == "<":
         return lhs < rhs
+    elif op == "<=":
+        return lhs <= rhs
     elif op == ">":
         return lhs > rhs
+    elif op == ">=":
+        return lhs >= rhs
     elif op == "in":
         return lhs in rhs
     elif op == "not in":
         return lhs not in rhs
+    elif op == "like":
+        pattern = rhs.replace("%", ".*").replace("_", ".")
+        return re.match("^" + pattern + "$", lhs) is not None
     else:
         raise Exception("Operator %r is not supported" % op)
 
