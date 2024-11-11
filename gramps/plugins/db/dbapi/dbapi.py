@@ -1224,8 +1224,13 @@ class DBAPI(DbGeneric):
                 return expressions_str
 
     def select(
-            self, table, selections=None, where=None, sort_by=None,
-            page=0, page_size=25,
+        self,
+        table,
+        selections=None,
+        where=None,
+        sort_by=None,
+        page=0,
+        page_size=25,
     ):
         """This is a DB-API implementation of the DbGeneric.select()
         method.
@@ -1270,10 +1275,14 @@ class DBAPI(DbGeneric):
 
         """
         selections = selections if selections else ["$"]
-        select_clause = ", ".join([self._convert_expr_to_sql(item) for item in selections])
+        select_clause = ", ".join(
+            [self._convert_expr_to_sql(item) for item in selections]
+        )
         where_clause = self._convert_where_expr_to_sql(where) if where else ""
         sort_by = sort_by if sort_by else []
-        sort_by_clause = ", ".join([self._convert_expr_to_sql(item) for item in sort_by])
+        sort_by_clause = ", ".join(
+            [self._convert_expr_to_sql(item) for item in sort_by]
+        )
         if page_size is None:
             offset_limit_clause = ""
         else:

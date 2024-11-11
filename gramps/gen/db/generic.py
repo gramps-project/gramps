@@ -2738,8 +2738,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         elif serializer_name == "json":
             self.serializer = JSONSerializer
 
-    def select(self, table, selections=None, where=None, sort_by=None,
-               page=0, page_size=25):
+    def select(
+        self, table, selections=None, where=None, sort_by=None, page=0, page_size=25
+    ):
         """
         Generic implementation of select, with where and sort_by clauses.
 
@@ -2782,6 +2783,4 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         from gramps.gen.db.select_utils import select
 
-        yield from select(
-            self, table, selections, where, sort_by, page, page_size
-        )
+        yield from select(self, table, selections, where, sort_by, page, page_size)
