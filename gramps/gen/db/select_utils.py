@@ -56,7 +56,9 @@ def select(db, table, selections, where, sort_by, page, page_size):
             yield row
     else:
         results = list(select_items(db, table, ["$"], where))
-        for count, row in enumerate(sorted(results, key=lambda item: sort_function(item, sort_by))):
+        for count, row in enumerate(
+            sorted(results, key=lambda item: sort_function(item, sort_by))
+        ):
             if count < offset:
                 continue
             if count > (offset + limit):
