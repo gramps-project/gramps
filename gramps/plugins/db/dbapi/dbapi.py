@@ -31,6 +31,7 @@ Database API interface
 import logging
 import json
 import time
+import numbers
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
@@ -1182,3 +1183,46 @@ class DBAPI(DbGeneric):
         in the appropriate type.
         """
         return [v if not isinstance(v, bool) else int(v) for v in values]
+
+    def select(self, table, selections=None, where=None, sort_by=None):
+        def convert_expr(expr):
+            if expr.startswith("$."):
+                return 'json_data->>"%s"' % expr
+            elif isinstance(expr, numbers.Number):
+                return expr
+            elif isinstance(expr, str):
+                return "'%s'" % expr
+            elif expr is None:
+                return "null"
+            elif expr is True:
+                return 1
+            elif expr is False:
+                return 0
+            else:
+                return expr
+
+        def convert_where_expr(where):
+            if len(where) == 3:
+                lhs = convert_expr(where[0])
+                op = where[1]
+                rhs = convert_expr(where[2])
+                return "%s %s %s" % (lhs, op, rhs)
+            else:
+                cond = where[0]
+                expressions = [convert_where_expr(expr) for expr in where[1]]
+                return (" " + cond + " ").join(expressions)
+
+        selections = selections if selections else []
+        sort_by = sort_by if sort_by else []
+        select_clause = ", ".join([('json_data->>"%s"' % item) for item in selections])
+        where_clause = convert_where_expr(where) if where else ""
+        sort_by_clause = ", ".join([('json_data->>"%s"' % item) for item in sort_by])
+
+        self.dbapi.execute(
+            f"select {select_clause} from {table} WHERE {where_clause} ORDER BY {sort_by_clause};"
+        )
+        for row in self.dbapi.fetchall():
+            if "$" in selections:
+                yield row[0]
+            else:
+                yield dict(zip([s[2:] for s in selections], row))
