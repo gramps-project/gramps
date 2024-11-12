@@ -671,13 +671,17 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # run backend-specific code:
         self._initialize(directory, username, password)
 
+        need_to_set_version = False
+        if not self._schema_exists():
+            self._create_schema()
+            need_to_set_version =True
+
         if self.supports_json_access():
             self.set_serializer("json")
         else:
             self.set_serializer("blob")
 
-        if not self._schema_exists():
-            self._create_schema()
+        if need_to_set_version:
             self._set_metadata("version", str(self.VERSION[0]))
 
         # Load metadata
