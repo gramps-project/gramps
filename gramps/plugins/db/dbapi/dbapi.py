@@ -29,7 +29,6 @@ Database API interface
 #
 # -------------------------------------------------------------------------
 import logging
-import pickle
 import json
 import time
 
@@ -82,6 +81,21 @@ class DBAPI(DbGeneric):
 
     def _initialize(self, directory, username, password):
         raise NotImplementedError
+
+    def supports_json_access(self):
+        """
+        A DBAPI level method for testing if the
+        database support JSON access.
+        """
+        try:
+            self.dbapi.execute("SELECT json_data from person limit 1;")
+            self.dbapi.fetchone()
+            self.dbapi.execute("SELECT json_data from metadata limit 1;")
+            self.dbapi.fetchone()
+            self.dbapi.commit()
+            return True
+        except Exception:
+            return False
 
     def upgrade_table_for_json_access(self, table_name):
         """
@@ -204,7 +218,7 @@ class DBAPI(DbGeneric):
             "CREATE TABLE metadata "
             "("
             "setting VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "value BLOB"
+            "json_data TEXT"
             ")"
         )
         self.dbapi.execute(
@@ -357,16 +371,28 @@ class DBAPI(DbGeneric):
         transaction.last = None
         self._after_commit(transaction)
 
+    def _get_metadata_keys(self):
+        """
+        Get all of the metadata setting names from the
+        database.
+        """
+        self.dbapi.execute("SELECT setting FROM metadata;")
+        return [row[0] for row in self.dbapi.fetchall()]
+
     def _get_metadata(self, key, default="_"):
         """
         Get an item from the database.
 
         Note we reserve and use _ to denote default value of []
         """
-        self.dbapi.execute("SELECT value FROM metadata WHERE setting = ?", [key])
+        self.dbapi.execute(
+            f"SELECT {self.serializer.metadata_field} FROM metadata WHERE setting = ?",
+            [key],
+        )
         row = self.dbapi.fetchone()
         if row:
-            return pickle.loads(row[0])
+            return self.serializer.metadata_to_object(row[0])
+
         if default == "_":
             return []
         return default
@@ -381,13 +407,13 @@ class DBAPI(DbGeneric):
         row = self.dbapi.fetchone()
         if row:
             self.dbapi.execute(
-                "UPDATE metadata SET value = ? WHERE setting = ?",
-                [pickle.dumps(value), key],
+                f"UPDATE metadata SET {self.serializer.metadata_field} = ? WHERE setting = ?",
+                [self.serializer.object_to_metadata(value), key],
             )
         else:
             self.dbapi.execute(
-                "INSERT INTO metadata (setting, value) VALUES (?, ?)",
-                [key, pickle.dumps(value)],
+                f"INSERT INTO metadata (setting, {self.serializer.metadata_field}) VALUES (?, ?)",
+                [key, self.serializer.object_to_metadata(value)],
             )
         self._txn_commit()
 

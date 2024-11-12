@@ -671,6 +671,11 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # run backend-specific code:
         self._initialize(directory, username, password)
 
+        if self.supports_json_access():
+            self.set_serializer("json")
+        else:
+            self.set_serializer("blob")
+
         if not self._schema_exists():
             self._create_schema()
             self._set_metadata("version", str(self.VERSION[0]))
@@ -743,12 +748,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if dbversion > self.VERSION[0]:
             self.close()
             raise DbVersionError(dbversion, 18, self.VERSION[0])
-
-        if dbversion < 21:
-            # For doing upgrades
-            self.set_serializer("blob")
-        else:
-            self.set_serializer("json")
 
         if not self.readonly and dbversion < self.VERSION[0]:
             LOG.debug(
@@ -907,6 +906,13 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         self.transaction = transaction
         return transaction
+
+    def _get_metadata_keys(self):
+        """
+        Get all of the metadata setting names from the
+        database.
+        """
+        raise NotImplementedError
 
     def _get_metadata(self, key, default=[]):
         """
@@ -2708,7 +2714,17 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self._set_metadata("version", str(value))
 
     def upgrade_table_for_json_access(self, table_name):
+        """
+        Overload this method to add JSON access
+        """
         pass
+
+    def supports_json_access(self):
+        """
+        By default, don't support JSON. Overload
+        to check.
+        """
+        return False
 
     def set_serializer(self, serializer_name):
         """

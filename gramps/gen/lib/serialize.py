@@ -105,6 +105,7 @@ class BlobSerializer:
     """
 
     data_field = "blob_data"
+    metadata_field = "value"
 
     @staticmethod
     def data_to_object(obj_class, data):
@@ -127,8 +128,12 @@ class BlobSerializer:
         return pickle.dumps(data)
 
     @staticmethod
-    def get_item(data, position):
-        return data[position]
+    def metadata_to_object(blob):
+        return pickle.loads(blob)
+
+    @staticmethod
+    def object_to_metadata(value):
+        return pickle.dumps(value)
 
 
 class JSONSerializer:
@@ -137,6 +142,7 @@ class JSONSerializer:
     """
 
     data_field = "json_data"
+    metadata_field = "json_data"
 
     @staticmethod
     def data_to_object(obj_class, data):
@@ -159,5 +165,31 @@ class JSONSerializer:
         return json.dumps(data)
 
     @staticmethod
-    def get_item(data, key):
-        return data[key]
+    def metadata_to_object(string):
+        doc = json.loads(string)
+        type_name = doc["type"]
+        if type_name in ("int", "str", "list"):
+            return doc["value"]
+        elif type_name == "set":
+            return set(doc["value"])
+        elif type_name == "tuple":
+            return tuple(doc["value"])
+        elif type_name == "dict" and "_class" in doc:
+            return from_dict(doc["value"])
+        else:
+            return from_json(json.dumps(doc["value"]))
+
+    @staticmethod
+    def object_to_metadata(value):
+        type_name = type(value).__name__
+        if type_name in ("set", "tuple"):
+            value = list(value)
+        elif type_name == "Researcher":
+            value = to_dict(value)
+        elif type_name not in ("int", "str", "list"):
+            value = json.loads(to_json(value))
+        data = {
+            "type": type_name,
+            "value": value,
+        }
+        return json.dumps(data)
