@@ -109,8 +109,11 @@ class DbBsddb(SQLite):
             username=username,
             password=password,
         )
+        # Default new DBAPI uses "json"
+        # So, we force read/write in blobs:
+        self.set_serializer("blob")
 
-        # now read in the bsddb and copy to dpapi
+        # now read in the bsddb and copy to dbapi
         schema_vers = None
         total = 0
         tables = (
@@ -150,17 +153,9 @@ class DbBsddb(SQLite):
         self.set_total(total)
         # copy data from each dbmap to sqlite table
         for old_t, new_t, dbmap in table_list:
-            self._txn_begin()
-            if new_t == "metadata":
-                sql = "REPLACE INTO metadata (setting, value) VALUES " "(?, ?)"
-                data_access = pickle
-            else:
-                sql = "INSERT INTO %s (handle, json_data) VALUES " "(?, ?)" % new_t
-                data_access = json
-
             for key in dbmap.keys():
                 self.update()
-                data = data_access.loads(dbmap[key], encoding="utf-8")
+                data = pickle.loads(dbmap[key], encoding="utf-8")
 
                 if new_t == "metadata":
                     if key == b"version":
@@ -218,7 +213,15 @@ class DbBsddb(SQLite):
                         # These are list, but need to be set
                         data = set(data)
 
-                self.dbapi.execute(sql, [key.decode("utf-8"), data_access.dumps(data)])
+                    self._set_metadata(key.decode("utf-8"), data)
+                else:
+                    # Not metadata, but object
+                    self._txn_begin()
+                    self.dbapi(
+                        f"INSERT INTO {new_t} (handle, blob_data) VALUES " "(?, ?)",
+                        [key.decode("utf-8"), pickle.dumps(data)],
+                    )
+                    self._txn_commit()
 
             # get schema version from file if not in metadata
             if new_t == "metadata" and schema_vers is None:
@@ -229,8 +232,8 @@ class DbBsddb(SQLite):
                 else:
                     schema_vers = 0
                 # and put schema version into metadata
-                self.dbapi.execute(sql, ["version", schema_vers])
-            self._txn_commit()
+                self._set_metadata("version", schema_vers)
+
             dbmap.close()
             if new_t == "metadata" and schema_vers < _MINVERSION:
                 raise DbVersionError(schema_vers, _MINVERSION, _DBVERSION)
