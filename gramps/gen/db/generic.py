@@ -674,7 +674,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         need_to_set_version = False
         if not self._schema_exists():
             self._create_schema()
-            need_to_set_version =True
+            need_to_set_version = True
 
         if self.supports_json_access():
             self.set_serializer("json")
