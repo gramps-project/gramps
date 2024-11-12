@@ -26,18 +26,50 @@ import re
 import jsonpath_ng
 
 PARSE_CACHE = {}
+OPERATORS = ("=", "!=", "<", "<=", ">", ">=", "in", "not in", "like")
 
 
 def select(db, table, selections, where, sort_by, page, page_size):
-    """
-    Top-level function for select functions.
+    """This is a DB-API implementation of the DbGeneric.select()
+    method.
 
-    Args:
-        db: database instance
-        table: the table name
-        selections: list of jsonpaths
-        where: a where expression
-        sort_by: list of jsonpaths to sort by
+    :param table: Name of table
+    :type table: str
+    :param selections: List of json-paths
+    :type selections: List[str] or tuple(str)
+    :param where: A single where-expression (see below)
+    :type where: tuple or list
+    :param sort_by: A list of expressions to sort on
+    :type where: tuple or list
+    :param page: The page number to return (zero-based)
+    :type page: int
+    :param page_size: The size of a page in rows; None means ignore
+    :type page: int or None
+    :returns: Returns selected items from select rows, from iterator
+    :rtype: dict
+
+    Examples:
+
+    Get the gender and surname of all males, sort by gramps_id:
+    ```
+    db.select(
+        "person",
+        ["$.gender", "$.primary_name.surname_list[0].surname"],
+        where=["$.gender", "=", Person.MALE],
+        sort_by=["$.gramps_id"],
+    )
+    ```
+    Notes:
+
+    Although the SQL engine may support more variations than
+    Python (or other implementations) you should not use them to
+    ensure that your code will run with all backends.
+
+    The where expressions only support the following operators:
+        "=", "!=", "<", "<=", ">", ">=", "in", "not in", "like"
+
+    The `like` operator supports "%" (zero or more characters)
+    and "_" (one character) regular expression matches.
     """
     selections = selections if selections else ["$"]
     if page_size is None:
@@ -104,6 +136,12 @@ def select_where(db, table, where):
             handles_returned = []
             for indexed in indexed_expressions:
                 index_field, compare, index_value = indexed
+                if isinstance(index_value, str) and index_value.startswith("$"):
+                    index_value, compare, index_field = (
+                        index_field,
+                        compare,
+                        index_value,
+                    )
                 if index_field == "$.gramps_id":
                     func_name = "raw_id_func"
                 elif index_field == "$.handle":
@@ -189,22 +227,25 @@ def match_where(data, where):
     ("$.gender", "=", value)
     """
     if len(where) == 3:
-        lhs = eval_expr(where[0], data)
-        op = where[1].lower()
-        rhs = eval_expr(where[2], data)
-        return compare_where(lhs, op, rhs)
-    elif where[0].lower() == "and":
-        for expr in where[1]:
-            result = match_where(data, expr)
-            if not result:
-                return False
-        return True
-    elif where[0].lower() == "or":
-        for expr in where[1]:
-            result = match_where(data, expr)
-            if result:
-                return True
-        return False
+        if where[1].lower() == "and":
+            for expr in [where[0], where[2]]:
+                result = match_where(data, expr)
+                if not result:
+                    return False
+            return True
+        elif where[1].lower() == "or":
+            for expr in [where[0], where[2]]:
+                result = match_where(data, expr)
+                if result:
+                    return True
+            return False
+        elif where[1].lower() in OPERATORS:
+            lhs = eval_expr(where[0], data)
+            op = where[1].lower()
+            rhs = eval_expr(where[2], data)
+            return compare_where(lhs, op, rhs)
+        else:
+            raise Exception("Operator %r is not supported" % where[1])
     else:
         raise Exception("Malformed where expression: %r" % where)
 
@@ -257,15 +298,18 @@ def get_indexed_fields(where, indexes, non_indexes, connectors):
     ("or", (...))
     ```
     """
-    if len(where) == 3:
+    if where[1] in OPERATORS:
         # A comparison expression
-        if where[0] in ["$.gramps_id", "$.handle"] and where[1] == "=":
+        if (
+            (where[0] in ["$.gramps_id", "$.handle"])
+            or (where[2] in ["$.gramps_id", "$.handle"])
+        ) and where[1] == "=":
             indexes += [where]
         else:
             non_indexes += [where]
     else:
-        # Must be ("and", exprs) or ("or", exprs)
+        # Must be (lhs, "and", rhs) or (lhs, "or", rhs)
         # Recurse on all expressions
-        connectors += [where[0]]
-        for expr in where[1]:
+        connectors += [where[1]]
+        for expr in [where[0], where[2]]:
             get_indexed_fields(expr, indexes, non_indexes, connectors)
