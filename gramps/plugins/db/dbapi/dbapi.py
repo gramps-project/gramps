@@ -1210,19 +1210,16 @@ class DBAPI(DbGeneric):
         This method can be overloaded for different SQL
         syntaxes.
         """
-        if len(where) == 3:
+        if where[1].lower() in ["and", "or"]:
+            lhs = self._convert_where_expr_to_sql(where[0])
+            cond = where[1]
+            rhs = self._convert_where_expr_to_sql(where[2])
+            return "(%s %s %s)" % (lhs, cond, rhs)
+        else:
             lhs = self._convert_expr_to_sql(where[0])
             op = where[1]
             rhs = self._convert_expr_to_sql(where[2])
             return "(%s %s %s)" % (lhs, op, rhs)
-        else:
-            cond = where[0]
-            expressions = [self._convert_where_expr_to_sql(expr) for expr in where[1]]
-            expressions_str = (" " + cond + " ").join(expressions)
-            if len(expressions) > 1:
-                return "(%s)" % expressions_str
-            else:
-                return expressions_str
 
     def select(
         self,
