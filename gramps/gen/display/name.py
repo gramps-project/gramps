@@ -447,7 +447,7 @@ class NameDisplay:
         result = self.LNFN_STR % (
             _raw_full_surname(raw_data["surname_list"]),
             raw_data["first_name"],
-            raw_data["suffic"],
+            raw_data["suffix"],
         )
         return " ".join(result.split())
 
