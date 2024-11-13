@@ -85,14 +85,13 @@ class DBAPI(DbGeneric):
     def supports_json_access(self):
         """
         A DBAPI level method for testing if the
-        database support JSON access.
+        database supports JSON access.
         """
+        # Check if json_data exists on metadata as a proxy to see
+        # if the database has been converted to use JSON data
         try:
-            self.dbapi.execute("SELECT json_data from person limit 1;")
-            self.dbapi.fetchone()
             self.dbapi.execute("SELECT json_data from metadata limit 1;")
             self.dbapi.fetchone()
-            self.dbapi.commit()
             return True
         except Exception:
             return False
