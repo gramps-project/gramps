@@ -209,7 +209,6 @@ class Connection:
         )
         return self.fetchone()[0] != 0
 
-
     def close(self):
         """
         Close the current database.
@@ -262,6 +261,7 @@ class Cursor:
         empty list is returned when no more rows are available.
         """
         return self.__cursor.fetchmany()
+
 
 def regexp(expr, value):
     """
