@@ -631,7 +631,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def supports_json_access(self):
         """
-        Overload this method to add check for JSON access
+        Overload this method to check if the database stores objects in JSON format
         """
         raise NotImplementedError
 
