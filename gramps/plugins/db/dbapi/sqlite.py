@@ -198,7 +198,7 @@ class Connection:
         :param table: table name to check.
         :type table: str
         :param table: column name to check.
-        :type table: str
+        :type column: str
         :returns: True if the column exists, False otherwise.
         :rtype: bool
         """
