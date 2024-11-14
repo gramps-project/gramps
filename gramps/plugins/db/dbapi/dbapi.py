@@ -1184,7 +1184,7 @@ class DBAPI(DbGeneric):
         """
         return [v if not isinstance(v, bool) else int(v) for v in values]
 
-    def _convert_expr_to_sql(self, expr):
+    def _convert_expr_to_sql(self, expr, values):
         """
         This method can be overloaded for different SQL
         jsonpath syntaxes.
@@ -1195,7 +1195,8 @@ class DBAPI(DbGeneric):
             if expr.startswith("$"):
                 return 'json_data->>"%s"' % expr
             else:
-                return "'%s'" % expr
+                values.append(expr)
+                return "?"
         elif expr is None:
             return "null"
         elif expr is True:
@@ -1203,22 +1204,23 @@ class DBAPI(DbGeneric):
         elif expr is False:
             return 0
         else:
-            return expr
+            values.append(expr)
+            return "?"
 
-    def _convert_where_expr_to_sql(self, where):
+    def _convert_where_expr_to_sql(self, where, values):
         """
         This method can be overloaded for different SQL
         syntaxes.
         """
         if where[1].lower() in ["and", "or"]:
-            lhs = self._convert_where_expr_to_sql(where[0])
+            lhs = self._convert_where_expr_to_sql(where[0], values)
             cond = where[1]
-            rhs = self._convert_where_expr_to_sql(where[2])
+            rhs = self._convert_where_expr_to_sql(where[2], values)
             return "(%s %s %s)" % (lhs, cond, rhs)
         else:
-            lhs = self._convert_expr_to_sql(where[0])
+            lhs = self._convert_expr_to_sql(where[0], values)
             op = where[1]
-            rhs = self._convert_expr_to_sql(where[2])
+            rhs = self._convert_expr_to_sql(where[2], values)
             return "(%s %s %s)" % (lhs, op, rhs)
 
     def select(
@@ -1274,14 +1276,15 @@ class DBAPI(DbGeneric):
         """
         selections = selections if selections else ["$"]
         select_clause = ", ".join(
-            [self._convert_expr_to_sql(item) for item in selections]
+            [self._convert_expr_to_sql(item, []) for item in selections]
         )
-        where_clause = self._convert_where_expr_to_sql(where) if where else ""
+        values = []
+        where_clause = self._convert_where_expr_to_sql(where, values) if where else ""
         if where_clause:
-            where_clause = " WHERE" + where_clause
+            where_clause = " WHERE " + where_clause
         sort_by = sort_by if sort_by else []
         sort_by_clause = ", ".join(
-            [self._convert_expr_to_sql(item) for item in sort_by]
+            [self._convert_expr_to_sql(item, []) for item in sort_by]
         )
         if sort_by_clause:
             sort_by_clause = " ORDER BY " + sort_by_clause
@@ -1291,7 +1294,8 @@ class DBAPI(DbGeneric):
             offset_limit_clause = f" LIMIT {page_size} OFFSET {page * page_size}"
 
         self.dbapi.execute(
-            f"select {select_clause} from {table}{where_clause}{sort_by_clause}{offset_limit_clause};"
+            f"select {select_clause} from {table}{where_clause}{sort_by_clause}{offset_limit_clause};",
+            values
         )
         for row in self.dbapi.fetchall():
             if "$" in selections:
