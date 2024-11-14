@@ -73,7 +73,7 @@ def gramps_upgrade_21(self):
     self.set_total(length)
 
     # First, do metadata:
-    self.upgrade_table_for_json_access("metadata")
+    self.upgrade_table_for_json_data("metadata")
     keys = self._get_metadata_keys()
     for key in keys:
         self.set_serializer("blob")
@@ -85,7 +85,7 @@ def gramps_upgrade_21(self):
     self._txn_begin()
     for table_name in self._get_table_func():
         # For each table, alter the database in an appropriate way:
-        self.upgrade_table_for_json_access(table_name.lower())
+        self.upgrade_table_for_json_data(table_name.lower())
 
         get_obj_from_handle = self._get_table_func(table_name, "handle_func")
         get_handles = self._get_table_func(table_name, "handles_func")

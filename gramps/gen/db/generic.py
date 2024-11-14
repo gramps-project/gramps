@@ -623,13 +623,13 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         raise NotImplementedError
 
-    def upgrade_table_for_json_access(self, table_name):
+    def upgrade_table_for_json_data(self, table_name):
         """
         Overload this method to add JSON access
         """
         raise NotImplementedError
 
-    def supports_json_access(self):
+    def use_json_data(self):
         """
         Overload this method to check if the database stores objects in JSON format
         """
@@ -688,7 +688,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self._create_schema()
             need_to_set_version = True
 
-        if self.supports_json_access():
+        if self.use_json_data():
             self.set_serializer("json")
         else:
             self.set_serializer("blob")

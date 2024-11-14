@@ -82,7 +82,7 @@ class DBAPI(DbGeneric):
     def _initialize(self, directory, username, password):
         raise NotImplementedError
 
-    def supports_json_access(self):
+    def use_json_data(self):
         """
         A DBAPI level method for testing if the
         database supports JSON access.
@@ -91,7 +91,7 @@ class DBAPI(DbGeneric):
         # if the database has been converted to use JSON data
         return self.dbapi.column_exists("metadata", "json_data")
 
-    def upgrade_table_for_json_access(self, table_name):
+    def upgrade_table_for_json_data(self, table_name):
         """
         A DBAPI level method for upgrading the given table
         adding a json_data column.
