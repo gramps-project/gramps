@@ -623,6 +623,18 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         raise NotImplementedError
 
+    def upgrade_table_for_json_access(self, table_name):
+        """
+        Overload this method to add JSON access
+        """
+        raise NotImplementedError
+
+    def supports_json_access(self):
+        """
+        Overload this method to add check for JSON access
+        """
+        raise NotImplementedError
+
     def __check_readonly(self, name):
         """
         Return True if we don't have read/write access to the database,
@@ -2716,19 +2728,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def set_schema_version(self, value):
         """set the current schema version"""
         self._set_metadata("version", str(value))
-
-    def upgrade_table_for_json_access(self, table_name):
-        """
-        Overload this method to add JSON access
-        """
-        pass
-
-    def supports_json_access(self):
-        """
-        By default, don't support JSON. Overload
-        to check.
-        """
-        return False
 
     def set_serializer(self, serializer_name):
         """

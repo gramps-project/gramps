@@ -89,12 +89,7 @@ class DBAPI(DbGeneric):
         """
         # Check if json_data exists on metadata as a proxy to see
         # if the database has been converted to use JSON data
-        try:
-            self.dbapi.execute("SELECT json_data from metadata limit 1;")
-            self.dbapi.fetchone()
-            return True
-        except Exception:
-            return False
+        return self.dbapi.column_exists("metadata", "json_data")
 
     def upgrade_table_for_json_access(self, table_name):
         """

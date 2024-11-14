@@ -191,6 +191,25 @@ class Connection:
         )
         return self.fetchone()[0] != 0
 
+    def column_exists(self, table, column):
+        """
+        Test whether the specified SQL column exists.
+
+        :param table: table name to check.
+        :type table: str
+        :param table: column name to check.
+        :type table: str
+        :returns: True if the column exists, False otherwise.
+        :rtype: bool
+        """
+        self.execute(
+            "SELECT COUNT(*) "
+            f"FROM pragma_table_info('{table}') "
+            f"WHERE name = '{column}'"
+        )
+        return self.fetchone()[0] != 0
+
+
     def close(self):
         """
         Close the current database.
@@ -243,7 +262,6 @@ class Cursor:
         empty list is returned when no more rows are available.
         """
         return self.__cursor.fetchmany()
-
 
 def regexp(expr, value):
     """
