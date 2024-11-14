@@ -193,7 +193,7 @@ class Connection:
 
     def column_exists(self, table, column):
         """
-        Test whether the specified SQL column exists.
+        Test whether the specified SQL column exists in the specified table.
 
         :param table: table name to check.
         :type table: str
