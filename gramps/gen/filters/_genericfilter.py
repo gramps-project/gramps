@@ -41,6 +41,7 @@ from ..lib.note import Note
 from ..lib.tag import Tag
 from ..lib.serialize import from_dict
 from ..const import GRAMPS_LOCALE as glocale
+from .rules import Rule
 
 _ = glocale.translation.gettext
 
@@ -53,7 +54,7 @@ _ = glocale.translation.gettext
 class GenericFilter:
     """Filter class that consists of several rules."""
 
-    logical_functions = ["or", "and", "xor", "one"]
+    logical_functions = ["and", "or", "one"]
 
     def __init__(self, source=None):
         if source:
@@ -89,10 +90,7 @@ class GenericFilter:
         if val in GenericFilter.logical_functions:
             self.logical_op = val
         else:
-            self.logical_op = "and"
-
-    def get_logical_op(self):
-        return self.logical_op
+            raise Exception("invalid operator: %r" % val)
 
     def set_invert(self, val):
         self.invert = bool(val)
@@ -139,10 +137,39 @@ class GenericFilter:
     def get_number(self, db):
         return db.get_number_of_people()
 
-    def check_func(self, db, id_list, logical_test, user=None, tupleind=None, tree=False):
+    def walk_filters(self, filter, result):
+        """
+        Walk all of the filters/rules and get
+        rules with maps
+        """
+        rules = []
+        for item in filter.flist:
+            if hasattr(item, "find_filter"):
+                self.walk_filters(item.find_filter(), result)
+            elif hasattr(item, "map"):
+                rules.append(item)
+        if rules:
+            result.append((filter.invert, filter.logical_op, rules))
+
+    def apply_logical_op_to_all(
+        self, db, id_list, apply_logical_op, user=None, tupleind=None, tree=False
+    ):
         final_list = []
         if user:
             user.begin_progress(_("Filter"), _("Applying ..."), self.get_number(db))
+
+        # Optimiziations
+        print("------------------------")
+        all_maps = []
+        self.walk_filters(self, all_maps)
+        for invert, logical_op, maps in all_maps:
+            print(
+                "handle must be",
+                "not in" if invert else "in",
+                "joined",
+                logical_op,
+                maps,
+            )
 
         if id_list is None:
             with self.get_tree_cursor(db) if tree else self.get_cursor(db) as cursor:
@@ -150,7 +177,7 @@ class GenericFilter:
                     if user:
                         user.step_progress()
 
-                    if logical_test(db, data) != self.invert:
+                    if apply_logical_op(db, data, self.flist) != self.invert:
                         final_list.append(handle)
 
         else:
@@ -165,7 +192,7 @@ class GenericFilter:
                 if user:
                     user.step_progress()
 
-                if logical_test(db, json_data) != self.invert:
+                if apply_logical_op(db, json_data, self.flist) != self.invert:
                     final_list.append(data)
 
         if user:
@@ -173,41 +200,37 @@ class GenericFilter:
 
         return final_list
 
-    def check_or(self, db, id_list, user=None, tupleind=None, tree=False):
-        return self.check_func(db, id_list, self.or_test, user, tupleind, tree=False)
+    def and_test(self, db, data, flist):
+        return all(rule.apply_to_one(db, data) for rule in flist)
 
-    def check_and(self, db, id_list, user=None, tupleind=None, tree=False):
-        return self.check_func(db, id_list, self.and_test, user, tupleind, tree=False)
-
-    def check_one(self, db, id_list, user=None, tupleind=None, tree=False):
-        return self.check_func(db, id_list, self.one_test, user, tupleind, tree=False)
-
-    def and_test(self, db, data):
-        return all(rule.apply_to_one(db, data) for rule in self.flist)
-
-    def one_test(self, db, data):
+    def one_test(self, db, data, flist):
         found_one = False
-        for rule in self.flist:
+        for rule in flist:
             if rule.apply_to_one(db, data):
                 if found_one:
                     return False  # There can be only one!
                 found_one = True
         return found_one
 
-    def or_test(self, db, data):
-        return any(rule.apply_to_one(db, data) for rule in self.flist)
+    def or_test(self, db, data, flist):
+        return any(rule.apply_to_one(db, data) for rule in flist)
+
+    def get_logical_op(self):
+        return self.logical_op
 
     def apply_to_one(self, db, data):
+        """
+        Filter-level apply rules to single data item.
+        """
         if self.logical_op == "and":
-            res = self.and_test(db, data)
+            res = self.and_test(db, data, self.flist)
         elif self.logical_op == "or":
-            res = self.or_test(db, data)
+            res = self.or_test(db, data, self.flist)
         elif self.logical_op == "one":
-            res = self.one_test(db, data)
+            res = self.one_test(db, data, self.flist)
         else:
             raise Exception("invalid operator: %r" % self.logical_op)
         return res != self.invert
-
 
     def apply_to_all(self, db, id_list=None, tupleind=None, user=None, tree=False):
         """
@@ -226,18 +249,22 @@ class GenericFilter:
                 if id_list not given, all items in the database that
                 match the filter are returned as a list of handles
         """
-        
+
         for rule in self.flist:
             rule.requestprepare(db, user)
 
         if self.logical_op == "and":
-            res = self.check_and(db, id_list, user, tupleind, tree)
+            apply_logical_op = self.and_test
         elif self.logical_op == "or":
-            res = self.check_or(db, id_list, user, tupleind, tree)
+            apply_logical_op = self.or_test
         elif self.logical_op == "one":
-            res = self.check_one(db, id_list, user, tupleind, tree)
+            apply_logical_op = self.one_test
         else:
             raise Exception("invalid operator: %r" % self.logical_op)
+
+        res = self.apply_logical_op_to_all(
+            db, id_list, apply_logical_op, user, tupleind, tree
+        )
 
         for rule in self.flist:
             rule.requestreset()
