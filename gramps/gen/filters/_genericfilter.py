@@ -71,11 +71,11 @@ class GenericFilter:
             self.logical_op = "and"
             self.invert = False
 
-    def match(self, handle, db):
+    def match(self, data, db):
         """
         Return True or False depending on whether the handle matches the filter.
         """
-        if self.apply(db, [handle]):
+        if self.apply_to_one(db, data):
             return True
         else:
             return False
@@ -139,101 +139,77 @@ class GenericFilter:
     def get_number(self, db):
         return db.get_number_of_people()
 
-    def check_func(self, db, id_list, task, user=None, tupleind=None, tree=False):
+    def check_func(self, db, id_list, logical_test, user=None, tupleind=None, tree=False):
         final_list = []
         if user:
             user.begin_progress(_("Filter"), _("Applying ..."), self.get_number(db))
-        if id_list is None:
-            with self.get_tree_cursor(db) if tree else self.get_cursor(db) as cursor:
-                for handle, data in cursor:
-                    person = from_dict(data)
-                    if user:
-                        user.step_progress()
-                    if task(db, person) != self.invert:
-                        final_list.append(handle)
-        else:
-            for data in id_list:
-                if tupleind is None:
-                    handle = data
-                else:
-                    handle = data[tupleind]
-                person = self.find_from_handle(db, handle)
-                if user:
-                    user.step_progress()
-                if task(db, person) != self.invert:
-                    final_list.append(data)
-        if user:
-            user.end_progress()
-        return final_list
 
-    def check_and(self, db, id_list, user=None, tupleind=None, tree=False):
-        final_list = []
-        flist = self.flist
-        if user:
-            user.begin_progress(_("Filter"), _("Applying ..."), self.get_number(db))
         if id_list is None:
             with self.get_tree_cursor(db) if tree else self.get_cursor(db) as cursor:
                 for handle, data in cursor:
-                    person = from_dict(data)
                     if user:
                         user.step_progress()
-                    val = all(rule.apply(db, person) for rule in flist)
-                    if val != self.invert:
+
+                    if logical_test(db, data) != self.invert:
                         final_list.append(handle)
+
         else:
             for data in id_list:
                 if tupleind is None:
                     handle = data
                 else:
                     handle = data[tupleind]
-                person = self.find_from_handle(db, handle)
+
+                json_data = db.get_raw_person_data(handle)
+
                 if user:
                     user.step_progress()
-                val = all(rule.apply(db, person) for rule in flist if person)
-                if val != self.invert:
+
+                if logical_test(db, json_data) != self.invert:
                     final_list.append(data)
+
         if user:
             user.end_progress()
+
         return final_list
 
     def check_or(self, db, id_list, user=None, tupleind=None, tree=False):
         return self.check_func(db, id_list, self.or_test, user, tupleind, tree=False)
 
+    def check_and(self, db, id_list, user=None, tupleind=None, tree=False):
+        return self.check_func(db, id_list, self.and_test, user, tupleind, tree=False)
+
     def check_one(self, db, id_list, user=None, tupleind=None, tree=False):
         return self.check_func(db, id_list, self.one_test, user, tupleind, tree=False)
 
-    def check_xor(self, db, id_list, user=None, tupleind=None, tree=False):
-        return self.check_func(db, id_list, self.xor_test, user, tupleind, tree=False)
+    def and_test(self, db, data):
+        return all(rule.apply_to_one(db, data) for rule in self.flist)
 
-    def xor_test(self, db, person):
-        test = False
-        for rule in self.flist:
-            test = test ^ rule.apply(db, person)
-        return test
-
-    def one_test(self, db, person):
+    def one_test(self, db, data):
         found_one = False
         for rule in self.flist:
-            if rule.apply(db, person):
+            if rule.apply_to_one(db, data):
                 if found_one:
                     return False  # There can be only one!
                 found_one = True
         return found_one
 
-    def or_test(self, db, person):
-        return any(rule.apply(db, person) for rule in self.flist)
+    def or_test(self, db, data):
+        return any(rule.apply_to_one(db, data) for rule in self.flist)
 
-    def get_check_func(self):
-        try:
-            m = getattr(self, "check_" + self.logical_op)
-        except AttributeError:
-            m = self.check_and
-        return m
+    def apply_to_one(self, db, data):
+        if self.logical_op == "and":
+            res = self.and_test(db, data)
+        elif self.logical_op == "or":
+            res = self.or_test(db, data)
+        elif self.logical_op == "one":
+            res = self.one_test(db, data)
+        else:
+            raise Exception("invalid operator: %r" % self.logical_op)
+        return res != self.invert
 
-    def check(self, db, handle):
-        return self.get_check_func()(db, [handle])
 
-    def apply(self, db, id_list=None, tupleind=None, user=None, tree=False):
+    def apply_to_all(self, db, id_list=None, tupleind=None, user=None, tree=False):
         """
         Apply the filter using db.
         If id_list given, the handles in id_list are used. If not given
@@ -250,12 +226,22 @@ class GenericFilter:
                 if id_list not given, all items in the database that
                 match the filter are returned as a list of handles
         """
-        m = self.get_check_func()
+        
         for rule in self.flist:
             rule.requestprepare(db, user)
-        res = m(db, id_list, user, tupleind, tree)
+
+        if self.logical_op == "and":
+            res = self.check_and(db, id_list, user, tupleind, tree)
+        elif self.logical_op == "or":
+            res = self.check_or(db, id_list, user, tupleind, tree)
+        elif self.logical_op == "one":
+            res = self.check_one(db, id_list, user, tupleind, tree)
+        else:
+            raise Exception("invalid operator: %r" % self.logical_op)
+
         for rule in self.flist:
             rule.requestreset()
+
         return res
 
 

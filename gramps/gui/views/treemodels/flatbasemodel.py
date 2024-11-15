@@ -627,9 +627,9 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
             if self.search:
                 ident = False
                 if ignore is None:
-                    dlist = self.search.apply(cdb, allkeys, tupleind=1, user=self.user)
+                    dlist = self.search.apply_to_all(cdb, allkeys, tupleind=1, user=self.user)
                 else:
-                    dlist = self.search.apply(
+                    dlist = self.search.apply_to_all(
                         cdb, [k for k in allkeys if k[1] != ignore], tupleind=1
                     )
             elif ignore is None:

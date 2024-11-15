@@ -61,11 +61,16 @@ class HasTagBase(Rule):
         tag = db.get_tag_from_name(self.list[0])
         if tag is not None:
             self.tag_handle = tag.get_handle()
+            results = db.select(self.table, ["$.handle"], ("$.tag_list", "LIKE", f'%"{self.tag_handle}"%'))
+            self.map = set([row["handle"] for row in list(results)])
+        else:
+            self.map = set()
 
-    def apply(self, db, obj):
+    def get_rules_with_maps(self):
+        return [self]
+            
+    def apply_to_one(self, db, data):
         """
         Apply the rule.  Return True for a match.
         """
-        if self.tag_handle is None:
-            return False
-        return self.tag_handle in obj.get_tag_list()
+        return data["handle"] in self.map
