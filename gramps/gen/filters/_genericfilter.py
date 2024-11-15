@@ -210,23 +210,23 @@ class GenericFilter:
                         handles = intersection(maps)
                     else:
                         handles = intersection([handles] + maps)
-            if handles:
-                for data in id_list:
-                    if tupleind is None:
-                        handle = data
-                    else:
-                        handle = data[tupleind]
 
-                    if handle not in handles:
-                        continue
+            for data in id_list:
+                if tupleind is None:
+                    handle = data
+                else:
+                    handle = data[tupleind]
 
-                    json_data = db.get_raw_person_data(handle)
+                if handles is not None and handle not in handles:
+                    continue
 
-                    if user:
-                        user.step_progress()
+                json_data = db.get_raw_person_data(handle)
 
-                    if apply_logical_op(db, json_data, self.flist) != self.invert:
-                        final_list.append(data)
+                if user:
+                    user.step_progress()
+
+                if apply_logical_op(db, json_data, self.flist) != self.invert:
+                    final_list.append(data)
 
         if user:
             user.end_progress()
