@@ -66,6 +66,9 @@ class CitationBaseModel:
             date_str = get_date(citation)
             if date_str != "":
                 retval = escape(date_str)
+            else:
+                retval = ""
+
             if not get_date_valid(citation):
                 return INVALID_DATE_FORMAT % retval
             else:
