@@ -147,7 +147,7 @@ class GenericFilter:
             if hasattr(item, "find_filter"):
                 self.walk_filters(item.find_filter(), result)
             elif hasattr(item, "map"):
-                rules.append(item)
+                rules.append(item.map)
         if rules:
             result.append((filter.invert, filter.logical_op, rules))
 
@@ -158,27 +158,43 @@ class GenericFilter:
         if user:
             user.begin_progress(_("Filter"), _("Applying ..."), self.get_number(db))
 
-        # Optimiziations
-        print("------------------------")
-        all_maps = []
-        self.walk_filters(self, all_maps)
-        for invert, logical_op, maps in all_maps:
-            print(
-                "handle must be",
-                "not in" if invert else "in",
-                "joined",
-                logical_op,
-                maps,
-            )
+        def intersection(sets):
+            result = sets[0]
+            for s in sets[1:]:
+                result = result.intersection(s)
+            return result
 
         if id_list is None:
-            with self.get_tree_cursor(db) if tree else self.get_cursor(db) as cursor:
-                for handle, data in cursor:
+            # Optimiziation
+            all_maps = []
+            self.walk_filters(self, all_maps)
+            handles = None
+            # Get all positive non-inverted maps
+            for inverted, logical_op, maps in all_maps:
+                if logical_op == "and" and not inverted:
+                    if handles is None:
+                        handles = intersection(maps)
+                    else:
+                        handles = intersection([handles] + maps)
+            if handles:
+                # Use these rather than going through entire database
+                for handle in handles:
+                    json_data = db.get_raw_person_data(handle)
+
                     if user:
                         user.step_progress()
 
-                    if apply_logical_op(db, data, self.flist) != self.invert:
-                        final_list.append(handle)
+                    if apply_logical_op(db, json_data, self.flist) != self.invert:
+                        final_list.append(json_data)
+
+            else:
+                with self.get_tree_cursor(db) if tree else self.get_cursor(db) as cursor:
+                    for handle, data in cursor:
+                        if user:
+                            user.step_progress()
+
+                        if apply_logical_op(db, data, self.flist) != self.invert:
+                            final_list.append(handle)
 
         else:
             for data in id_list:
