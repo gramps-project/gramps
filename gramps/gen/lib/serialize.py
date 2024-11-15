@@ -30,6 +30,7 @@ Serialization utilities for Gramps.
 # ------------------------------------------------------------------------
 import json
 import pickle
+import logging
 
 # ------------------------------------------------------------------------
 #
@@ -37,6 +38,8 @@ import pickle
 #
 # ------------------------------------------------------------------------
 import gramps.gen.lib as lib
+
+LOG = logging.getLogger(".serialize")
 
 
 def __object_hook(obj_dict):
@@ -102,6 +105,9 @@ def from_dict(dict):
 class BlobSerializer:
     """
     Serializer for blob data
+
+    In this serializer, data is a nested array,
+    and string is pickled bytes.
     """
 
     data_field = "blob_data"
@@ -109,22 +115,27 @@ class BlobSerializer:
 
     @staticmethod
     def data_to_object(obj_class, data):
+        LOG.debug("blob, data_to_object: %s(%r)", obj_class, data[0])
         return obj_class.create(data)
 
     @staticmethod
-    def string_to_object(obj_class, string):
-        return obj_class.create(pickle.loads(string))
+    def string_to_object(obj_class, bytes):
+        LOG.debug("blob, string_to_object: %r...", bytes[:35])
+        return obj_class.create(pickle.loads(bytes))
 
     @staticmethod
-    def string_to_data(string):
-        return pickle.loads(string)
+    def string_to_data(bytes):
+        LOG.debug("blob, string_to_object: %r...", bytes[:35])
+        return pickle.loads(bytes)
 
     @staticmethod
     def object_to_string(obj):
+        LOG.debug("blob, object_to_string: %s...", obj)
         return pickle.dumps(obj.serialize())
 
     @staticmethod
     def data_to_string(data):
+        LOG.debug("blob, data_to_string: %s...", data[:2])
         return pickle.dumps(data)
 
     @staticmethod
@@ -138,7 +149,10 @@ class BlobSerializer:
 
 class JSONSerializer:
     """
-    Serializer for JSON data
+    Serializer for JSON data.
+
+    In this serializer, data is a dict,
+    and string is a JSON string.
     """
 
     data_field = "json_data"
@@ -146,22 +160,27 @@ class JSONSerializer:
 
     @staticmethod
     def data_to_object(obj_class, data):
+        LOG.debug("json, data_to_object: {'_class': %r, ...}", data["_class"])
         return from_dict(data)
 
     @staticmethod
     def string_to_object(obj_class, string):
+        LOG.debug("json, string_to_object: %r...", string[:65])
         return from_json(string)
 
     @staticmethod
     def string_to_data(string):
+        LOG.debug("json, string_to_data: %r...", string[:65])
         return json.loads(string)
 
     @staticmethod
     def object_to_string(obj):
+        LOG.debug("json, object_to_string: %s...", obj)
         return to_json(obj)
 
     @staticmethod
     def data_to_string(data):
+        LOG.debug("json, data_to_string: {'_class': %r, ...}", data["_class"])
         return json.dumps(data)
 
     @staticmethod
