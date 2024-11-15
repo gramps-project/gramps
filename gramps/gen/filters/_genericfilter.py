@@ -188,7 +188,9 @@ class GenericFilter:
                         final_list.append(json_data)
 
             else:
-                with self.get_tree_cursor(db) if tree else self.get_cursor(db) as cursor:
+                with self.get_tree_cursor(db) if tree else self.get_cursor(
+                    db
+                ) as cursor:
                     for handle, data in cursor:
                         if user:
                             user.step_progress()
