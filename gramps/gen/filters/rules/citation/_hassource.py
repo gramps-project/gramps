@@ -54,7 +54,7 @@ class HasSource(HasSourceBase):
 
     def apply_to_one(self, dbase, data):
         citation = self.get_object(data)
-        source = dbase.get_source_from_handle(citation.get_reference_handle())
-        if HasSourceBase.apply_to_one(self, dbase, source.handle):
+        source_data = dbase.get_raw_source_data(citation.get_reference_handle())
+        if HasSourceBase.apply_to_one(self, dbase, source_data):
             return True
         return False
