@@ -71,10 +71,11 @@ class HasEventBase(Rule):
         except:
             pass
 
-    def apply(self, db, event):
+    def apply_to_one(self, db, data):
         """
         Apply the rule. Return True if a match.
         """
+        event = self.get_object(data)
         if self.event_type:
             if self.event_type.is_custom() and self.use_regex:
                 if self.regex[0].search(str(event.type)) is None:

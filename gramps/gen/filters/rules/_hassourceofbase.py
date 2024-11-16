@@ -61,7 +61,8 @@ class HasSourceOfBase(Rule):
         except:
             self.source_handle = None
 
-    def apply(self, db, object):
+    def apply_to_one(self, db, data):
+        object = self.get_object(data)
         if not self.source_handle:
             if self.nosource:
                 # check whether the citation list is empty as a proxy for

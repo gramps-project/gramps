@@ -45,7 +45,9 @@ class NoBirthdate(Rule):
     description = _("Matches people without a known birthdate")
     category = _("General filters")
 
-    def apply(self, db, person):
+    def apply_to_one(self, db, data):
+        person = self.get_object(data)
+        # FIXME: can probably do all of this without object:
         birth_ref = person.get_birth_ref()
         if not birth_ref:
             return True

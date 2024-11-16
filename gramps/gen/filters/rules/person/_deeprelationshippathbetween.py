@@ -170,13 +170,13 @@ class DeepRelationshipPathBetween(Rule):
                 _("Evaluating people"),
                 db.get_number_of_people(),
             )
-        self.__matches = find_deep_relations(db, user, root_person, target_people)
+        self.map = find_deep_relations(db, user, root_person, target_people)
         if user:
             user.end_progress()
 
     def reset(self):
         self.filt.requestreset()
-        self.__matches = set()
+        self.map.clear()
 
-    def apply(self, db, person):
-        return person.get_handle() in self.__matches
+    def apply_to_one(self, db, data):
+        return data["handle"] in self.__matches

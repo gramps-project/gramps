@@ -70,23 +70,32 @@ class MatchesPersonFilter(MatchesFilterBase):
         except IndexError:
             self.MPF_famevents = False
 
-    def apply(self, db, event):
+    def apply_to_one(self, db, event_data):
         filt = self.find_filter()
         if filt:
             for classname, handle in db.find_backlink_handles(
-                event.get_handle(), ["Person"]
+                event_data["handle"], ["Person"]
             ):
-                if filt.check(db, handle):
+                data = db.get_raw_person_data(handle)
+                if filt.apply_to_one(db, data):
                     return True
             if self.MPF_famevents:
                 # also include if family event of the person
                 for classname, handle in db.find_backlink_handles(
-                    event.get_handle(), ["Family"]
+                    event_data["handle"], ["Family"]
                 ):
-                    family = db.get_family_from_handle(handle)
-                    if family.father_handle and filt.check(db, family.father_handle):
-                        return True
-                    if family.mother_handle and filt.check(db, family.mother_handle):
-                        return True
+                    family_data = db.get_raw_family_data(handle)
+                    if family_data["father_handle"]:
+                        father_data = db.get_raw_person_data(
+                            family_data["father_handle"]
+                        )
+                        if filt.apply_to_one(db, father_data):
+                            return True
+                    if family_data["mother_handle"]:
+                        mother_data = db.get_raw_person_data(
+                            family_data["mother_handle"]
+                        )
+                        if filt.apply_to_one(db, mother_data):
+                            return True
 
         return False

@@ -67,10 +67,12 @@ class HasRepo(Rule):
             self.rtype = RepositoryType()
             self.rtype.set_from_xml_str(self.list[1])
 
-    def apply(self, _db, obj):
+    def apply_to_one(self, _db, data):
         """
         Apply the rule. Return True on a match.
         """
+        obj = self.get_object(data)
+        # FIXME: probably can do the rest without object:
         if not self.match_substring(0, obj.get_name()):
             return False
 

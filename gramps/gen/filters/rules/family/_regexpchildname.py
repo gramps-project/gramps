@@ -51,4 +51,4 @@ class RegExpChildName(RegExpName):
     )
     category = _("Child filters")
     base_class = RegExpName
-    apply = child_base
+    apply_to_one = child_base

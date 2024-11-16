@@ -47,8 +47,9 @@ class MatchesSubstringOf(Rule):
     description = _("Matches notes that contain text " "which matches a substring")
     category = _("General filters")
 
-    def apply(self, db, note):
+    def apply_to_one(self, db, data):
         """Apply the filter"""
+        note = self.get_object(data)
         text = note.get()
         if text.upper().find(self.list[0].upper()) != -1:
             return True

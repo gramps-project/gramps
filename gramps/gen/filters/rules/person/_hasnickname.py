@@ -48,7 +48,8 @@ class HasNickname(Rule):
     description = _("Matches people with a nickname")
     category = _("General filters")
 
-    def apply(self, db, person):
+    def apply_to_one(self, db, data):
+        person = self.get_object(data)
         if person.get_nick_name():
             return True
         return False

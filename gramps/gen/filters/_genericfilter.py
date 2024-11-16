@@ -151,7 +151,7 @@ class GenericFilter:
         if rules:
             result.append((filter.invert, filter.logical_op, rules))
 
-    def apply_logical_op_to_all(
+    def apply_to_one_logical_op_to_all(
         self, db, id_list, apply_logical_op, user=None, tupleind=None, tree=False
     ):
         final_list = []
@@ -260,7 +260,9 @@ class GenericFilter:
             raise Exception("invalid operator: %r" % self.logical_op)
         return res != self.invert
 
-    def apply_to_all(self, db, id_list=None, tupleind=None, user=None, tree=False):
+    def apply_to_one_to_all(
+        self, db, id_list=None, tupleind=None, user=None, tree=False
+    ):
         """
         Apply the filter using db.
         If id_list given, the handles in id_list are used. If not given

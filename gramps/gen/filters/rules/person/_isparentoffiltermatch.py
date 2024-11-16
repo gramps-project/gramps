@@ -73,8 +73,8 @@ class IsParentOfFilterMatch(Rule):
         self.filt.requestreset()
         self.map.clear()
 
-    def apply(self, db, person):
-        return person.handle in self.map
+    def apply_to_one(self, db, data):
+        return data["handle"] in self.map
 
     def init_list(self, person):
         for fam_id in person.get_parent_family_handle_list():

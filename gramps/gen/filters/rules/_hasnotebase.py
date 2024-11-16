@@ -69,8 +69,8 @@ class HasNoteBase(Rule):
 
         self.userSelectedCount = int(self.list[0])
 
-    def apply(self, db, obj):
-        count = len(obj.get_note_list())
+    def apply_to_one(self, db, data):
+        count = len(data["note_list"])
         if self.count_type == 0:  # "less than"
             return count < self.userSelectedCount
         elif self.count_type == 2:  # "greater than"

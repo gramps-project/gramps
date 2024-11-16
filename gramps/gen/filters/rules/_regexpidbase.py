@@ -56,5 +56,5 @@ class RegExpIdBase(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply(self, db, obj):
-        return self.match_substring(0, obj.gramps_id)
+    def apply_to_one(self, db, data):
+        return self.match_substring(0, data["gramps_id"])

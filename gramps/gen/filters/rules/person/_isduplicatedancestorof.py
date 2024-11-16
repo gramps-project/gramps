@@ -54,18 +54,18 @@ class IsDuplicatedAncestorOf(Rule):
 
     def prepare(self, db, user):
         self.db = db
+        self.cache = set()
         self.map = set()
-        self.map2 = set()
         root_person = db.get_person_from_gramps_id(self.list[0])
         if root_person:
             self.init_ancestor_list(db, root_person)
 
     def reset(self):
+        self.cache.clear()
         self.map.clear()
-        self.map2.clear()
 
-    def apply(self, db, person):
-        return person.handle in self.map2
+    def apply_to_one(self, db, data):
+        return data["handle"] in self.map
 
     def init_ancestor_list(self, db, person):
         fam_id = person.get_main_parents_family_handle()
@@ -80,10 +80,10 @@ class IsDuplicatedAncestorOf(Rule):
                     self.go_deeper(db, db.get_person_from_handle(f_id))
 
     def go_deeper(self, db, person):
-        if person and person.handle in self.map:
-            self.map2.add((person.handle))
+        if person and person.handle in self.cache:
+            self.map.add((person.handle))
             # the following keeps from scanning same parts of tree multiple
             # times and avoids crash on tree loops.
             return
-        self.map.add((person.handle))
+        self.cache.add((person.handle))
         self.init_ancestor_list(db, person)

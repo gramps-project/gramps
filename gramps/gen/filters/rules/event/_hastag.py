@@ -51,3 +51,4 @@ class HasTag(HasTagBase):
     labels = [_("Tag:")]
     name = _("Events with the <tag>")
     description = _("Matches events with the particular tag")
+    table = "event"

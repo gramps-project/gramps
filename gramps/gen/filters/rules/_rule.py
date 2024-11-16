@@ -32,6 +32,7 @@ import re
 
 from ...errors import FilterError
 from ...const import GRAMPS_LOCALE as glocale
+from ...lib.serialize import from_dict
 
 _ = glocale.translation.gettext
 
@@ -153,6 +154,14 @@ class Rule:
     def apply_to_one(self, dummy_db, dummy_data):
         """Apply the rule to some database entry; must be overwritten."""
         return True
+
+    def get_object(self, data):
+        """
+        Create an object, but only do it once per data.
+        """
+        if "_object" not in data:
+            data["_object"] = from_dict(data)
+        return data["_object"]
 
     def display_values(self):
         """Return the labels and values of this rule."""

@@ -45,7 +45,8 @@ class PersonWithIncompleteEvent(Rule):
     description = _("Matches people with missing date or place in an event")
     category = _("Event filters")
 
-    def apply(self, db, person):
+    def apply_to_one(self, db, data):
+        person = self.get_object(data)
         for event_ref in person.get_event_ref_list():
             if event_ref:
                 event = db.get_event_from_handle(event_ref.ref)

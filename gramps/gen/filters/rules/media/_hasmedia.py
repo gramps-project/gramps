@@ -63,7 +63,8 @@ class HasMedia(Rule):
         except:
             pass
 
-    def apply(self, db, obj):
+    def apply_to_one(self, db, data):
+        obj = self.get_object(data)
         if not self.match_substring(0, obj.get_description()):
             return False
 

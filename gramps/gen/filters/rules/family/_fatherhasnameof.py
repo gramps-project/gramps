@@ -48,4 +48,4 @@ class FatherHasNameOf(HasNameOf):
     description = _("Matches families whose father has a specified " "(partial) name")
     category = _("Father filters")
     base_class = HasNameOf
-    apply = father_base
+    apply_to_one = father_base

@@ -48,7 +48,8 @@ class HasTwins(Rule):
     description = _("Matches families with twins")
     category = _("Child filters")
 
-    def apply(self, db, family):
+    def apply_to_one(self, db, data):
+        family = self.get_object(data)
         date_list = []
         for childref in family.get_child_ref_list():
             if int(childref.get_mother_relation()) == ChildRefType.BIRTH:

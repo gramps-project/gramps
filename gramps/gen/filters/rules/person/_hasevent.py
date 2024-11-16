@@ -55,10 +55,11 @@ class HasEvent(HasEventBase):
     name = _("People with the personal <event>")
     description = _("Matches people with a personal event of a particular value")
 
-    def apply(self, db, person):
+    def apply_to_one(self, db, data):
         """
         Apply the rule. Return True if a match.
         """
+        person = self.get_object(data)
         for event_ref in person.get_event_ref_list():
             if int(self.list[5]) and event_ref.role != EventRoleType.PRIMARY:
                 # Only match primaries, no witnesses

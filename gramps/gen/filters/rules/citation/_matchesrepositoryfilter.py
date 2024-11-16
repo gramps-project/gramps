@@ -63,7 +63,8 @@ class MatchesRepositoryFilter(MatchesFilterBase):
         MatchesFilterBase.prepare(self, db, user)
         self.MRF_filt = self.find_filter()
 
-    def apply(self, db, object):
+    def apply_to_one(self, db, data):
+        object = self.get_object(data)
         if self.MRF_filt is None:
             return False
 

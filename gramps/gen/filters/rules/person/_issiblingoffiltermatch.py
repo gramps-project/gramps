@@ -72,8 +72,8 @@ class IsSiblingOfFilterMatch(Rule):
         self.matchfilt.requestreset()
         self.map.clear()
 
-    def apply(self, db, person):
-        return person.handle in self.map
+    def apply_to_one(self, db, data):
+        return data["handle"] in self.map
 
     def init_list(self, person):
         if not person:

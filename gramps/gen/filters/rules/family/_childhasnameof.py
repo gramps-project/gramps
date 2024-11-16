@@ -48,4 +48,4 @@ class ChildHasNameOf(HasNameOf):
     description = _("Matches families where child has a specified " "(partial) name")
     category = _("Child filters")
     base_class = HasNameOf
-    apply = child_base
+    apply_to_one = child_base

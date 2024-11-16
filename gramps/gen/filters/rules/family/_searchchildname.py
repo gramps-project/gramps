@@ -50,4 +50,4 @@ class SearchChildName(SearchName):
     )
     category = _("Child filters")
     base_class = SearchName
-    apply = child_base
+    apply_to_one = child_base

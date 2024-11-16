@@ -53,7 +53,8 @@ class MatchesSourceConfidenceBase(Rule):
     )
     category = _("Citation/source filters")
 
-    def apply(self, db, obj):
+    def apply_to_one(self, db, data):
+        obj = self.get_object(data)
         required_conf = int(self.list[0])
         for citation_handle in obj.get_citation_list():
             citation = db.get_citation_from_handle(citation_handle)

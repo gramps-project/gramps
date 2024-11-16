@@ -61,10 +61,11 @@ class HasRelType(Rule):
             self.relation_type = FamilyRelType()
             self.relation_type.set_from_xml_str(self.list[0])
 
-    def apply(self, _db, obj):
+    def apply_to_one(self, _db, data):
         """
         Apply the rule. Return True on a match.
         """
+        obj = self.get_object(data)
         if self.relation_type:
             if self.relation_type.is_custom() and self.use_regex:
                 if self.regex[0].search(str(obj.get_relationship())) is None:

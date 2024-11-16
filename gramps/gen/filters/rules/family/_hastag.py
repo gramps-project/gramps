@@ -51,3 +51,4 @@ class HasTag(HasTagBase):
     labels = [_("Tag:")]
     name = _("Families with the <tag>")
     description = _("Matches families with the particular tag")
+    table = "family"

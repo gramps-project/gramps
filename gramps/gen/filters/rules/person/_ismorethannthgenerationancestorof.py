@@ -84,5 +84,5 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
     def reset(self):
         self.map.clear()
 
-    def apply(self, db, person):
-        return person.handle in self.map
+    def apply_to_one(self, db, data):
+        return data["handle"] in self.map

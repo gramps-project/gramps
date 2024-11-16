@@ -50,5 +50,5 @@ class IsBookmarked(Rule):
     def prepare(self, db, user):
         self.bookmarks = db.get_family_bookmarks().get()
 
-    def apply(self, db, family):
-        return family.get_handle() in self.bookmarks
+    def apply_to_one(self, db, data):
+        return data["handle"] in self.bookmarks

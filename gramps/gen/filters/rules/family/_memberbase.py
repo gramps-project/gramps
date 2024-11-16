@@ -32,7 +32,8 @@ in the class body, outside any method:
 """
 
 
-def father_base(self, db, family):
+def father_base(self, db, data):
+    family = self.get_object(data)
     father_handle = family.get_father_handle()
     if father_handle:
         father = db.get_person_from_handle(father_handle)
@@ -42,7 +43,8 @@ def father_base(self, db, family):
             return False
 
 
-def mother_base(self, db, family):
+def mother_base(self, db, data):
+    family = self.get_object(data)
     mother_handle = family.get_mother_handle()
     if mother_handle:
         mother = db.get_person_from_handle(mother_handle)
@@ -52,7 +54,8 @@ def mother_base(self, db, family):
             return False
 
 
-def child_base(self, db, family):
+def child_base(self, db, data):
+    family = self.get_object(data)
     for child_ref in family.get_child_ref_list():
         child = db.get_person_from_handle(child_ref.ref)
         if self.base_class.apply(self, db, child):

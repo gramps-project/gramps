@@ -51,8 +51,8 @@ class HasNoteRegexBase(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply(self, db, person):
-        for handle in person.get_note_list():
+    def apply_to_one(self, db, data):
+        for handle in data["note_list"]:
             note = db.get_note_from_handle(handle)
             if self.match_substring(0, note.get()):
                 return True

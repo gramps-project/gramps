@@ -61,11 +61,12 @@ class HasNameType(Rule):
             self.name_type = NameType()
             self.name_type.set_from_xml_str(self.list[0])
 
-    def apply(self, _db, obj):
+    def apply_to_one(self, _db, data):
         """
         Apply the rule. Return True on a match.
         """
         if self.name_type:
+            obj = self.get_object(data)
             for name in [obj.get_primary_name()] + obj.get_alternate_names():
                 if name.get_type() == self.name_type:
                     return True

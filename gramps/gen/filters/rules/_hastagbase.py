@@ -70,9 +70,6 @@ class HasTagBase(Rule):
         else:
             self.map = set()
 
-    def get_rules_with_maps(self):
-        return [self]
-
     def apply_to_one(self, db, data):
         """
         Apply the rule.  Return True for a match.

@@ -33,6 +33,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .._matchesfilterbase import MatchesFilterBase
+from gramps.gen.lib.serialize import to_dict
 
 
 # -------------------------------------------------------------------------
@@ -58,10 +59,11 @@ class MatchesPlaceFilter(MatchesFilterBase):
     # we want to have this filter show place filters
     namespace = "Place"
 
-    def apply(self, db, event):
+    def apply_to_one(self, db, data):
+        event = self.get_object(data)
         filt = self.find_filter()
         if filt:
             handle = event.get_place_handle()
-            if handle and filt.check(db, handle):
+            if handle and filt.apply_to_one(db, to_dict(event)):
                 return True
         return False

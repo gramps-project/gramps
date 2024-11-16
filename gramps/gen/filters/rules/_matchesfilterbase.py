@@ -90,7 +90,6 @@ class MatchesFilterBase(Rule):
             filters = gramps.gen.filters.CustomFilters.get_filters_dict(self.namespace)
             if self.list[0] in filters:
                 filt = filters[self.list[0]]
-                # FIXME: Is this correct?
                 return filt.apply_to_one(db, data)
         return False
 

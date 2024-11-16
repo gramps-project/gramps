@@ -46,8 +46,8 @@ class HasNoteSubstrBase(Rule):
     description = "Matches objects whose notes contain text matching a " "substring"
     category = _("General filters")
 
-    def apply(self, db, person):
-        notelist = person.get_note_list()
+    def apply_to_one(self, db, data):
+        notelist = data["note_list"]
         for notehandle in notelist:
             note = db.get_note_from_handle(notehandle)
             n = note.get()

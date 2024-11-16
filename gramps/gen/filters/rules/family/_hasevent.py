@@ -56,7 +56,8 @@ class HasEvent(HasEventBase):
     name = _("Families with the <event>")
     description = _("Matches families with an event of a particular value")
 
-    def apply(self, dbase, family):
+    def apply_to_one(self, dbase, data):
+        family = self.get_object(data)
         for event_ref in family.get_event_ref_list():
             if not event_ref:
                 continue

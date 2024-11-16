@@ -60,13 +60,15 @@ class MatchesSourceFilterBase(MatchesFilterBase):
         MatchesFilterBase.prepare(self, db, user)
         self.MSF_filt = self.find_filter()
 
-    def apply(self, db, object):
+    def apply_to_one(self, db, data):
         if self.MSF_filt is None:
             return False
 
+        object = self.get_object(data)
         for citation_handle in object.get_citation_list():
             citation = db.get_citation_from_handle(citation_handle)
             sourcehandle = citation.get_reference_handle()
-            if self.MSF_filt.check(db, sourcehandle):
+            source_data = db.get_raw_source_data(sourcehandle)
+            if self.MSF_filt.apply_to_one(db, source_data):
                 return True
         return False

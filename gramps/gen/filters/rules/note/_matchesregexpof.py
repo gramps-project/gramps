@@ -49,8 +49,9 @@ class MatchesRegexpOf(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply(self, db, note):
+    def apply_to_one(self, db, data):
         """Apply the filter"""
+        note = self.get_object(data)
         if self.match_substring(0, note.get()):
             return True
         return False
