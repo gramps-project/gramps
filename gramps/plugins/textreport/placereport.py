@@ -125,7 +125,9 @@ class PlaceReport(Report):
         if self.filter.get_name() != "":
             # Use the selected filter to provide a list of place handles
             plist = self._db.iter_place_handles()
-            self.place_handles = self.filter.apply_to_all(self._db, plist, user=self._user)
+            self.place_handles = self.filter.apply_to_all(
+                self._db, plist, user=self._user
+            )
 
         if places:
             # Add places selected individually

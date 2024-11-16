@@ -1295,7 +1295,7 @@ class DBAPI(DbGeneric):
 
         self.dbapi.execute(
             f"select {select_clause} from {table}{where_clause}{sort_by_clause}{offset_limit_clause};",
-            values
+            values,
         )
         for row in self.dbapi.fetchall():
             if "$" in selections:
