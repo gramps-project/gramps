@@ -159,23 +159,30 @@ class GenericFilter:
             user.begin_progress(_("Filter"), _("Applying ..."), self.get_number(db))
 
         def intersection(sets):
-            result = sets[0]
-            for s in sets[1:]:
-                result = result.intersection(s)
-            return result
+            if sets:
+                result = sets[0]
+                for s in sets[1:]:
+                    result = result.intersection(s)
+                return result
+            else:
+                return set()
+
+        # ------------------------------------------------------
+        # Optimiziation
+        # ------------------------------------------------------
+        all_maps = []
+        self.walk_filters(self, all_maps)
+        handles = None
+        # Get all positive non-inverted maps
+        for inverted, logical_op, maps in all_maps:
+            if logical_op == "and" and not inverted:
+                if handles is None:
+                    handles = intersection(maps)
+                else:
+                    handles = intersection([handles] + maps)
+        # ------------------------------------------------------
 
         if id_list is None:
-            # Optimiziation
-            all_maps = []
-            self.walk_filters(self, all_maps)
-            handles = None
-            # Get all positive non-inverted maps
-            for inverted, logical_op, maps in all_maps:
-                if logical_op == "and" and not inverted:
-                    if handles is None:
-                        handles = intersection(maps)
-                    else:
-                        handles = intersection([handles] + maps)
             if handles:
                 # Use these rather than going through entire database
                 for handle in handles:
@@ -199,25 +206,13 @@ class GenericFilter:
                             final_list.append(handle)
 
         else:
-            # Optimiziation
-            all_maps = []
-            self.walk_filters(self, all_maps)
-            handles = None
-            # Get all positive non-inverted maps
-            for inverted, logical_op, maps in all_maps:
-                if logical_op == "and" and not inverted:
-                    if handles is None:
-                        handles = intersection(maps)
-                    else:
-                        handles = intersection([handles] + maps)
-
             for data in id_list:
                 if tupleind is None:
                     handle = data
                 else:
                     handle = data[tupleind]
 
-                if handles is not None and handle not in handles:
+                if handles and handle not in handles:
                     continue
 
                 json_data = db.get_raw_person_data(handle)
