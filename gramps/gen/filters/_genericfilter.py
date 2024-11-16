@@ -24,6 +24,8 @@
 Package providing filtering framework for Gramps.
 """
 
+import logging
+
 # ------------------------------------------------------------------------
 #
 # Gramps imports
@@ -44,6 +46,7 @@ from ..const import GRAMPS_LOCALE as glocale
 from .rules import Rule
 
 _ = glocale.translation.gettext
+LOG = logging.getLogger(".filter.optimize")
 
 
 # -------------------------------------------------------------------------
@@ -137,19 +140,31 @@ class GenericFilter:
     def get_number(self, db):
         return db.get_number_of_people()
 
-    def walk_filters(self, filter, result):
+    def walk_filters(self, filter, parent_invert, result):
         """
         Walk all of the filters/rules and get
         rules with maps
         """
+        LOG.debug(
+            "walking, filter: %s, invert=%s, parent_invert=%s",
+            filter, filter.invert, parent_invert
+        )
         rules = []
         for item in filter.flist:
             if hasattr(item, "find_filter"):
-                self.walk_filters(item.find_filter(), result)
+                self.walk_filters(
+                    item.find_filter(),
+                    not parent_invert if filter.invert else parent_invert,
+                    result
+                )
             elif hasattr(item, "map"):
                 rules.append(item.map)
         if rules:
-            result.append((filter.invert, filter.logical_op, rules))
+            LOG.debug(
+                "filter %s: parent_invert=%s, invert=%s, op=%s, number of maps=%s",
+                filter, parent_invert, filter.invert, filter.logical_op, len(rules)
+            )
+            result.append((parent_invert, filter.logical_op, rules))
 
     def apply_logical_op_to_all(
         self, db, id_list, apply_logical_op, user=None, tupleind=None, tree=False
@@ -171,22 +186,24 @@ class GenericFilter:
         # Optimiziation
         # ------------------------------------------------------
         all_maps = []
-        self.walk_filters(self, all_maps)
+        self.walk_filters(self, False, all_maps)
+        LOG.debug("number of maps to consider: %s", len(all_maps))
         handles = None
         # Get all positive non-inverted maps
         for inverted, logical_op, maps in all_maps:
             if logical_op == "and" and not inverted:
+                LOG.debug("optimizer match!")
                 if handles is None:
                     handles = intersection(maps)
                 else:
                     handles = intersection([handles] + maps)
         # ------------------------------------------------------
-
+        LOG.debug("optimizer handles: %s", len(handles) if handles else 0)
         if id_list is None:
             if handles:
                 # Use these rather than going through entire database
                 for handle in handles:
-                    json_data = db.get_raw_person_data(handle)
+                    json_data = self.get_raw_data(db, handle)
 
                     if user:
                         user.step_progress()
@@ -215,7 +232,7 @@ class GenericFilter:
                 if handles and handle not in handles:
                     continue
 
-                json_data = db.get_raw_person_data(handle)
+                json_data = self.get_raw_data(db, handle)
 
                 if user:
                     user.step_progress()
@@ -299,6 +316,9 @@ class GenericFilter:
 
         return res
 
+    def get_raw_data(self, db, handle):
+        return db.get_raw_person_data(handle)
+
 
 class GenericFamilyFilter(GenericFilter):
     def __init__(self, source=None):
@@ -315,6 +335,9 @@ class GenericFamilyFilter(GenericFilter):
 
     def get_number(self, db):
         return db.get_number_of_families()
+
+    def get_raw_data(self, db, handle):
+        return db.get_raw_family_data(handle)
 
 
 class GenericEventFilter(GenericFilter):
@@ -333,6 +356,9 @@ class GenericEventFilter(GenericFilter):
     def get_number(self, db):
         return db.get_number_of_events()
 
+    def get_raw_data(self, db, handle):
+        return db.get_raw_event_data(handle)
+
 
 class GenericSourceFilter(GenericFilter):
     def __init__(self, source=None):
@@ -349,6 +375,9 @@ class GenericSourceFilter(GenericFilter):
 
     def get_number(self, db):
         return db.get_number_of_sources()
+
+    def get_raw_data(self, db, handle):
+        return db.get_raw_source_data(handle)
 
 
 class GenericCitationFilter(GenericFilter):
@@ -370,6 +399,9 @@ class GenericCitationFilter(GenericFilter):
     def get_number(self, db):
         return db.get_number_of_citations()
 
+    def get_raw_data(self, db, handle):
+        return db.get_raw_citation_data(handle)
+
 
 class GenericPlaceFilter(GenericFilter):
     def __init__(self, source=None):
@@ -390,6 +422,10 @@ class GenericPlaceFilter(GenericFilter):
     def get_number(self, db):
         return db.get_number_of_places()
 
+    def get_raw_data(self, db, handle):
+        return db.get_raw_place_data(handle)
+
+
 
 class GenericMediaFilter(GenericFilter):
     def __init__(self, source=None):
@@ -406,6 +442,9 @@ class GenericMediaFilter(GenericFilter):
 
     def get_number(self, db):
         return db.get_number_of_media()
+
+    def get_raw_data(self, db, handle):
+        return db.get_raw_media_data(handle)
 
 
 class GenericRepoFilter(GenericFilter):
@@ -424,6 +463,9 @@ class GenericRepoFilter(GenericFilter):
     def get_number(self, db):
         return db.get_number_of_repositories()
 
+    def get_raw_data(self, db, handle):
+        return db.get_raw_repository_data(handle)
+
 
 class GenericNoteFilter(GenericFilter):
     def __init__(self, source=None):
@@ -440,6 +482,9 @@ class GenericNoteFilter(GenericFilter):
 
     def get_number(self, db):
         return db.get_number_of_notes()
+
+    def get_raw_data(self, db, handle):
+        return db.get_raw_note_data(handle)
 
 
 def GenericFilterFactory(namespace):

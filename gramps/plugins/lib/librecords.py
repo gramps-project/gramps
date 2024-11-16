@@ -386,6 +386,7 @@ def find_records(
         # Test if either father or mother are in filter
         if filter:
             # we don't want many progress reports popping up, so no user=user
+            # FIXME:
             if not filter.apply_to_all(db, [father_handle, mother_handle]):
                 continue
 
