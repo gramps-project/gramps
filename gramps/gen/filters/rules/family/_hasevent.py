@@ -58,7 +58,7 @@ class HasEvent(HasEventBase):
 
     def apply_to_one(self, dbase, data):
         family = self.get_object(data)
-        for event_ref in data["event_ref_list"]
+        for event_ref in data["event_ref_list"]:
             if not event_ref:
                 continue
             event_data = dbase.get_raw_event_data(event_ref["ref"])

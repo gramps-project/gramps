@@ -59,12 +59,14 @@ class HasEvent(HasEventBase):
         """
         Apply the rule. Return True if a match.
         """
-        person = self.get_object(data)
-        for event_ref in person.get_event_ref_list():
-            if int(self.list[5]) and event_ref.role != EventRoleType.PRIMARY:
+        for event_ref in data["event_ref_list"]:
+            if (
+                int(self.list[5])
+                and event_ref["role"]["value"] != EventRoleType.PRIMARY
+            ):
                 # Only match primaries, no witnesses
                 continue
-            event = db.get_event_from_handle(event_ref.ref)
-            if HasEventBase.apply(self, db, event):
+            event_data = db.get_raw_event_data(event_ref["ref"])
+            if HasEventBase.apply_to_one(self, db, event_data):
                 return True
         return False

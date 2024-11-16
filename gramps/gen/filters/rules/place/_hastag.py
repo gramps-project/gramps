@@ -51,3 +51,4 @@ class HasTag(HasTagBase):
     labels = [_("Tag:")]
     name = _("Places with the <tag>")
     description = _("Matches places with the particular tag")
+    table = "place"

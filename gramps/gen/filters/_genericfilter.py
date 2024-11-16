@@ -170,7 +170,13 @@ class GenericFilter:
                 filter.logical_op,
                 len(rules),
             )
-            result.append((parent_invert, filter.logical_op, rules))
+            result.append(
+                (
+                    parent_invert if not filter.invert else not parent_invert,
+                    filter.logical_op,
+                    rules,
+                )
+            )
 
     def apply_logical_op_to_all(
         self, db, id_list, apply_logical_op, user=None, tupleind=None, tree=False
@@ -192,7 +198,7 @@ class GenericFilter:
         # Optimiziation
         # ------------------------------------------------------
         all_maps = []
-        self.walk_filters(self, False, all_maps)
+        self.walk_filters(self, self.invert, all_maps)
         LOG.debug("number of maps to consider: %s", len(all_maps))
         handles = None
         # Get all positive non-inverted maps

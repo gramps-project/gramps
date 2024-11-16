@@ -51,3 +51,4 @@ class HasTag(HasTagBase):
     labels = [_("Tag:")]
     name = _("Sources with the <tag>")
     description = _("Matches sources with the particular tag")
+    table = "source"

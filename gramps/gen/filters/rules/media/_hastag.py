@@ -51,3 +51,4 @@ class HasTag(HasTagBase):
     labels = [_("Tag:")]
     name = _("Media objects with the <tag>")
     description = _("Matches media objects with the particular tag")
+    table = "media"
