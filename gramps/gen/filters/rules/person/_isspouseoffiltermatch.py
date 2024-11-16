@@ -67,7 +67,8 @@ class IsSpouseOfFilterMatch(Rule):
                         continue
                     if spouse_id == person.handle:
                         continue
-                    if self.filt.apply(db, db.get_person_from_handle(spouse_id)):
+                    person_data = db.get_raw_person_data(spouse_id)
+                    if self.filt.apply_to_one(db, person_data):
                         return True
         return False
 

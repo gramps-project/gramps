@@ -147,7 +147,7 @@ class BaseTest(unittest.TestCase):
         filter_.set_logical_op(l_op)
         filter_.set_invert(invert)
         stime = perf_counter()
-        results = filter_.apply(self.db)
+        results = filter_.apply_to_all(self.db)
         # if __debug__:
         # frame = inspect.currentframe()
         # rulename = frame.f_back.f_code.co_name

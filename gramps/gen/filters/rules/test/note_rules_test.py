@@ -65,7 +65,7 @@ class BaseTest(unittest.TestCase):
         """
         filter_ = GenericNoteFilter()
         filter_.add_rule(rule)
-        results = filter_.apply(self.db)
+        results = filter_.apply_to_all(self.db)
         return set(results)
 
     def test_allnotes(self):

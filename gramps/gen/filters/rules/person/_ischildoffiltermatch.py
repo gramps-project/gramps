@@ -34,6 +34,7 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 from .. import Rule
 from ._matchesfilter import MatchesFilter
+from gramps.gen.lib.serialize import from_dict
 
 
 # -------------------------------------------------------------------------
@@ -61,11 +62,11 @@ class IsChildOfFilterMatch(Rule):
                 _("Retrieving all sub-filter matches"),
                 db.get_number_of_people(),
             )
-        for person in db.iter_people():
+        for person_data in db.iter_raw_person():
             if user:
                 user.step_progress()
-            if self.filt.apply(db, person):
-                self.init_list(person)
+            if self.filt.apply_to_one(db, person_data):
+                self.init_list(from_dict(person_data))
         if user:
             user.end_progress()
 
